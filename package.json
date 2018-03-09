@@ -2,10 +2,10 @@
   "name": "baseui",
   "version": "0.0.1",
   "description": "React implementation of uber design components platform.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "lint": "eslint ./",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "commitmsg": "npm run test && commitlint -e $GIT_PARAMS",
     "test": "npm run lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -28,16 +28,21 @@
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",
     "@commitlint/config-conventional": "^6.1.3",
-    "eslint": "^4.18.2",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
-    "@storybook/react": "^3.3.15",
     "@storybook/addon-actions": "^3.3.15",
     "@storybook/addon-links": "^3.3.15",
     "@storybook/addons": "^3.3.15",
-    "babel-core": "^6.26.0"
+    "@storybook/react": "^3.3.15",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.67.1"
   },
   "dependencies": {
     "react": "^16.2.0",
