@@ -3,9 +3,9 @@
 import React from 'react';
 
 type Props = {
-  onClick: () => {}
+  onClick: () => {},
 };
 
-export default ({ onClick }: Props) => (
+export default ({onClick}: Props) => (
   <button onClick={onClick}>it is a button!</button>
 );
