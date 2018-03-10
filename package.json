@@ -2,25 +2,22 @@
   "name": "baseui",
   "version": "0.0.1",
   "description": "React implementation of uber design components platform.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "eslint ./",
-    "commitmsg": "npm run test && commitlint -e $GIT_PARAMS",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "npm run lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "precommit": "pretty-quick --staged"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uber-web/baseui.git"
   },
-  "keywords": [
-    "react",
-    "uber",
-    "base-ui"
-  ],
+  "keywords": ["react", "uber", "base-ui"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/uber-web/baseui/issues"
   },
@@ -42,7 +39,10 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "flow-bin": "^0.67.1"
+    "flow-bin": "^0.67.1",
+    "husky": "^0.14.3",
+    "prettier": "1.11.1",
+    "pretty-quick": "^1.4.1"
   },
   "dependencies": {
     "react": "^16.2.0",
