@@ -1,0 +1,54 @@
+{
+  "name": "baseui",
+  "version": "0.0.1",
+  "description": "React implementation of uber design components platform.",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint ./",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "test": "npm run lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "precommit": "pretty-quick --staged && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uber-web/baseui.git"
+  },
+  "keywords": ["react", "uber", "base-ui"],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uber-web/baseui/issues"
+  },
+  "homepage": "https://github.com/uber-web/baseui#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^6.1.3",
+    "@commitlint/config-conventional": "^6.1.3",
+    "@storybook/addon-actions": "^3.3.15",
+    "@storybook/addon-links": "^3.3.15",
+    "@storybook/addons": "^3.3.15",
+    "@storybook/react": "^3.3.15",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-uber-universal-stage-3": "^1.0.0-rc.7",
+    "eslint-plugin-cup": "^1.0.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.67.1",
+    "husky": "^0.14.3",
+    "prettier": "1.11.1",
+    "pretty-quick": "^1.4.1"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
