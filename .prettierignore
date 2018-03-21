@@ -1,3 +1,4 @@
 node_modules
 dist
 coverage
+chore: rollup build (#2)
