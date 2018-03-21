@@ -1,3 +1,7 @@
-node_modules
+/node_modules
 .DS_STORE
 /.eslintcache
+build
+*.log
+/dist
+stats.html
