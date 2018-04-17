@@ -1,4 +1,8 @@
 [ignore]
+node_modules
+flow-typed
+dist
+storybook-static
 
 [include]
 
