@@ -22,7 +22,7 @@
     "test": "npm run lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "precommit": "pretty-quick --staged && yarn run test"
+    "precommit": "pretty-quick --staged && yarn run test",
     "build": "rollup -c rollup.config.js",
     "prepublish": "npm run build"
   },
