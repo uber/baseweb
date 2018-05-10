@@ -1,0 +1,22 @@
+steps:
+  # Build the image in a single place for all parallel steps to leverage the same image.
+  - name: ':docker: :package:'
+    plugins:
+      'docker-compose':
+        build: baseui
+        # Our docker registry where we can upload and download images to.
+        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
+ # Wait until all images are built.
+ # This way we can download the built image from a registry instead of building each for each test task.
+  - wait
+  # All of the commands after the wait are run in parallel.
+  - name: ':eslint:'
+    command: yarn lint
+    plugins:
+      'docker-compose':
+        run: baseui
+  # - name: ':jest:'
+  #   command: yarn test
+  #   plugins:
+  #     'docker-compose':
+  #       run: baseui
