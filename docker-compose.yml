@@ -1,7 +1,7 @@
 version: '3'
 services:
   # Define the service, which is used in pipeline.yml
-  baseui-docker-service:
+  baseui:
     build: .
     volumes:
       # Mount the current source directory (if not copied in Dockerfile)

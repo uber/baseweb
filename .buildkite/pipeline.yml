@@ -1,11 +1,9 @@
 steps:
   # Build the image in a single place for all parallel steps to leverage the same image.
   - name: ':docker: :package:'
-    agents:
-      queue: builders
     plugins:
       'docker-compose':
-        build: baseui-docker-service
+        build: baseui
         # Our docker registry where we can upload and download images to.
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
  # Wait until all images are built.
@@ -14,15 +12,11 @@ steps:
   # All of the commands after the wait are run in parallel.
   - name: ':eslint:'
     command: yarn lint
-    agents:
-      queue: workers
     plugins:
       'docker-compose':
-        run: baseui-docker-service
+        run: baseui
   - name: ':test:'
     command: yarn test
-    agents:
-      queue: workers
     plugins:
       'docker-compose':
-        run: baseui-docker-service
+        run: baseui
