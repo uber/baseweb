@@ -15,8 +15,8 @@ steps:
     plugins:
       'docker-compose':
         run: baseui
-  # - name: ':jest:'
-  #   command: yarn test
-  #   plugins:
-  #     'docker-compose':
-  #       run: baseui
+  - name: ':flowtype:'
+    command: yarn flow check
+    plugins:
+      'docker-compose':
+        run: baseui
