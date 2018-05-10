@@ -2,23 +2,6 @@
   "name": "baseui",
   "version": "0.0.1",
   "description": "React implementation of uber design components platform.",
-  "main": "dist/index.js",
-  "jsnext:main": "dist/index.es.js",
-  "module": "dist/index.es.js",
-  "scripts": {
-    "lint": "eslint ./",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
-    "test": "npm run lint",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "precommit": "pretty-quick --staged && npm run test",
-    "build": "rollup -c rollup.config.js",
-    "prepublish": "npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/uber-web/baseui.git"
-  },
   "keywords": ["react", "uber", "base-ui"],
   "author": "",
   "license": "MIT",
@@ -26,6 +9,23 @@
     "url": "https://github.com/uber-web/baseui/issues"
   },
   "homepage": "https://github.com/uber-web/baseui#readme",
+  "main": "dist/index.js",
+  "jsnext:main": "dist/index.es.js",
+  "module": "dist/index.es.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uber-web/baseui.git"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "test": "npm run lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "precommit": "pretty-quick --staged && yarn run test",
+    "build": "rollup -c rollup.config.js",
+    "prepublish": "npm run build"
+  },
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",
     "@commitlint/config-conventional": "^6.1.3",
@@ -64,6 +64,13 @@
   },
   "dependencies": {
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "styletron-engine-atomic": "^1.0.5",
+    "styletron-react": "^4.1.0"
+  },
+  "engines": {
+    "node": "8.11.1",
+    "npm": "6.0.0",
+    "yarn": ">=1.5.1"
   }
 }
