@@ -3,10 +3,6 @@ services:
   # Define the service, which is used in pipeline.yml
   baseui:
     build: .
-    volumes:
-      # Mount the current source directory (if not copied in Dockerfile)
-      - .:/baseui
-      - /baseui/node_modules/
     environment:
       # Pass through any necessary environment variables
       - CODECOV_TOKEN
