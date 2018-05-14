@@ -20,8 +20,8 @@ steps:
     plugins:
       'docker-compose':
         run: baseui
-    - name: ':jest:'
-      command: yarn unit-test check
-      plugins:
-        'docker-compose':
-          run: baseui
+  - name: ':jest:'
+    command: yarn unit-test check
+    plugins:
+      'docker-compose':
+        run: baseui
