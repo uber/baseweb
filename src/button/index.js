@@ -3,7 +3,7 @@
 import React from 'react';
 
 type Props = {
-  onClick: () => {},
+  onClick: () => void,
 };
 
 export default ({onClick}: Props) => (
