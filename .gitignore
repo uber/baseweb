@@ -6,3 +6,4 @@ build
 /dist
 stats.html
 storybook-static
+coverage
