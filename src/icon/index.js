@@ -1,6 +1,6 @@
 // @flow
 
-export {default as CloudUploadIcon} from './cloud-upload-icon';
-export {default as MagnifyingGlassIcon} from './magnifying-glass-icon';
-export {default as RightArrowIcon} from './right-arrow-icon';
-export {default as XIcon} from './x-icon';
+export {default as IconCloudUpload} from './icon-cloud-upload';
+export {default as IconMagnifyingGlass} from './icon-magnifying-glass';
+export {default as IconRightArrow} from './icon-right-arrow';
+export {default as IconX} from './icon-x';
