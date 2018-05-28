@@ -1,16 +1,16 @@
-import React from 'react';
+// @flow
 
+import React, {Fragment} from 'react';
 import {storiesOf} from '@storybook/react';
-
-import {
-  CloudUploadIcon,
-  MagnifyingGlassIcon,
-  RightArrowIcon,
-  XIcon,
-} from './index';
+import {IconCloudUpload, IconMagnifyingGlass, IconRightArrow, IconX} from '.';
 
 storiesOf('Icon', module)
-  .add('cloud upload', () => <CloudUploadIcon />)
-  .add('magnifying glass', () => <MagnifyingGlassIcon />)
-  .add('right arrow', () => <RightArrowIcon />)
-  .add('x', () => <XIcon />);
+  .add('All Icons', () => (
+    <Fragment>
+      <IconCloudUpload />
+      <IconMagnifyingGlass />
+      <IconRightArrow />
+      <IconX />
+    </Fragment>
+  ))
+  .add('Icon w/ Alternate Text', () => <IconX alt="Close" />);

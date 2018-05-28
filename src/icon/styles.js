@@ -3,7 +3,7 @@
 
 import styled from '../styles/styled';
 
-export const DefaultIcon = styled('svg', ({theme}) => ({
+export const StyledIcon = styled('svg', ({theme}) => ({
   display: 'inline-block',
   fill: 'current-color',
   height: theme.sizing.scale400,
