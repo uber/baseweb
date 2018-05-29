@@ -30,7 +30,7 @@ export default {
       sourcemap: 'inline',
     },
   ],
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'styletron-react-core'],
   plugins: [
     progress(),
     nodeResolve(),
