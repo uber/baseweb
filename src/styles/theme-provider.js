@@ -6,7 +6,7 @@ import type {ThemeT} from './types';
 
 export const ThemeContext = React.createContext(LIGHT_THEME);
 
-const ThemeProvider = (props: {theme: ThemeT, children: ?React.Node<any>}) => {
+const ThemeProvider = (props: {theme: ThemeT, children: ?React.Node}) => {
   return (
     <ThemeContext.Provider value={props.theme}>
       {props.children}
