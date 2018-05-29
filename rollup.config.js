@@ -15,6 +15,7 @@ export default {
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
+        'styletron-react-core': 'StyletronReactCore',
       },
       sourcemap: 'inline',
     },
@@ -26,6 +27,7 @@ export default {
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
+        'styletron-react-core': 'StyletronReactCore',
       },
       sourcemap: 'inline',
     },
