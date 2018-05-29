@@ -69,6 +69,7 @@
     "rollup-plugin-visualizer": "^0.4.0"
   },
   "dependencies": {
+    "create-react-context": "^0.2.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "styletron-engine-atomic": "^1.0.5",
