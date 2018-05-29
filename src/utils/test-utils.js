@@ -7,7 +7,7 @@ import DEFAULT_THEME from '../themes/light-theme';
 
 const engine = new Styletron();
 
-export const withStyletronProvider = (Component: any) => props => {
+export const withStyletronProvider = (Component: any) => (props: any) => {
   return (
     <StyletronProvider value={engine}>
       <Component {...props} />
@@ -15,7 +15,7 @@ export const withStyletronProvider = (Component: any) => props => {
   );
 };
 
-export const withThemeProvider = (Component: any) => props => {
+export const withThemeProvider = (Component: any) => (props: any) => {
   return (
     <ThemeProvider theme={DEFAULT_THEME}>
       <Component {...props} />
