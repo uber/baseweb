@@ -3178,6 +3178,10 @@ enzyme-adapter-utils@^1.3.0:
     object.assign "^4.0.4"
     prop-types "^15.6.0"
 
+enzyme-context-patch@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/enzyme-context-patch/-/enzyme-context-patch-0.0.7.tgz#24559e8ed25e83ced33bfc72fe7e1678a5d90a28"
+
 enzyme@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.3.0.tgz#0971abd167f2d4bf3f5bd508229e1c4b6dc50479"
