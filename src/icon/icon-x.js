@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Icon from './icon';
+import type {IconProps} from './types';
 
-export default function IconX(props) {
+export default function IconX(props: IconProps) {
   return (
     <Icon viewBox="0 0 24 24" {...props}>
       <path

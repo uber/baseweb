@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Icon from './icon';
+import type {IconProps} from './types';
 
-export default function IconRightArrow(props) {
+export default function IconRightArrow(props: IconProps) {
   return (
     <Icon viewBox="0 0 24 24" {...props}>
       <path
