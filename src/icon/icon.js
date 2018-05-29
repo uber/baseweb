@@ -6,10 +6,11 @@ import type {IconProps} from './types';
 
 export default function Icon(props: IconProps) {
   const {alt, children, ...rest} = props;
+  const title = !alt ? null : <title>{alt}</title>;
 
   return (
     <StyledIcon {...rest}>
-      <title>{alt}</title>
+      {title}
       {children}
     </StyledIcon>
   );
