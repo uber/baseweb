@@ -140,7 +140,14 @@ type Lighting = {
   overlay600: string,
 };
 
-type Animation = {};
+type Animation = {
+  timing100: 'string',
+  timing400: 'string',
+  timing700: 'string',
+  easeOutCurve: 'string',
+  easeInCurve: 'string',
+  easeInOutCurve: 'string',
+};
 
 export type ThemeT = {
   colors: Colors,
