@@ -15,6 +15,8 @@ export default {
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
+        'styletron-react-core': 'StyletronReactCore',
+        'create-react-context': 'createReactContext',
       },
       sourcemap: 'inline',
     },
@@ -26,11 +28,18 @@ export default {
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
+        'styletron-react-core': 'StyletronReactCore',
+        'create-react-context': 'createReactContext',
       },
       sourcemap: 'inline',
     },
   ],
-  external: ['react', 'react-dom'],
+  external: [
+    'react',
+    'react-dom',
+    'styletron-react-core',
+    'create-react-context',
+  ],
   plugins: [
     progress(),
     nodeResolve(),
