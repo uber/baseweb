@@ -144,7 +144,7 @@ type Animation = {};
 
 export type ThemeT = {
   colors: Colors,
-  typorgaphy: Typography,
+  typography: Typography,
   sizing: Sizing,
   lighting: Lighting,
   animation: Animation,
