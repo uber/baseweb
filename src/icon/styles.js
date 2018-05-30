@@ -7,7 +7,7 @@ import type {StyledIconProps} from './types';
 // eslint-disable-next-line import/prefer-default-export
 export const StyledIcon = styled('svg', ({theme}: StyledIconProps) => ({
   display: 'inline-block',
-  fill: 'current-color',
+  fill: 'currentColor',
   height: theme.sizing.scale600,
   width: theme.sizing.scale600,
 }));
