@@ -13,4 +13,3 @@ COPY . .
 # Perform any build steps if you want binaries inside of the image
 RUN yarn build && patch -p1 < ./node_modules/enzyme-context-patch/patches/enzyme-adapter-react-16+1.1.1.patch
 RUN yarn build-storybook
-RUN yarn test
