@@ -1,11 +1,14 @@
 // @flow
 import React from 'react';
-import DEFAULT_THEME from '../../themes/light-theme';
+import LIGHT_THEME from '../../themes/light-theme';
+import createMockTheme from '../../test/create-mock-theme';
 
 type objOrFnT = {} | (({}) => {});
 
+const MOCK_THEME = createMockTheme(LIGHT_THEME);
+
 function styled(Base: string, objOrFn: objOrFnT) {
-  return class MockStyledComponent extends React.Component<{}, {}> {
+  return class MockStyledComponent extends React.Component<{}, {styles?: {}}> {
     static displayName = 'MockStyledComponent';
 
     state = {};
@@ -14,9 +17,13 @@ function styled(Base: string, objOrFn: objOrFnT) {
       return {
         styles:
           typeof objOrFn === 'function'
-            ? objOrFn({...props, $theme: DEFAULT_THEME})
+            ? objOrFn({...props, $theme: MOCK_THEME})
             : objOrFn,
       };
+    }
+
+    getStyles() {
+      return this.state.styles;
     }
 
     getPassedProps() {
