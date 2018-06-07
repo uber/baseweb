@@ -37,16 +37,13 @@
   Initial state of an uncontrolled popover component.
   * `isChecked` - an initial isChecked state
   * `isFocused` - an initial isFocused state
-  * `isDisabled` - an initial isDisabled state
+  * `isHovered` - an initial isHovered state
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
   * `changes` - a new state changes that will be set
   * `currentState` - current full state of the component
-* `components: {Checkbox: any, Checkmark: any, Label: any}`
-  * `Checkbox` to render. Styled or drop-in. Optional.  
-  * `Label` to render. Optional.
-  * Custom `Checkmark` (exact control). If used, most of handlers may not work. Optional  
+* `children: func` should return `Checkbox` instance with standard or customized inner elements.
 * `isChecked: ?boolean`:
   check or uncheck the control. Default is `false`. Value of `null` means non-determinated
 * `isFocused: boolean`:
@@ -66,14 +63,8 @@
 
 ### `Label` API
 
-* `$label: node | text | func`:
-  Label text or DOM markup to render. Required
-  
 ### `Checkmark` API
 
-* `$checkmark: node | text | func`:
-  Checkmark to render. Required  
-  
 
 ### Usage
 
@@ -102,12 +93,14 @@ export default () => {
         placement="left"
         onHover={this.onCheckboxHover}
         onChange={this.onCheckboxChange}
-        components={{
-          Checkbox: <CustomStyledCheckbox />,
-          Label: <CustomLabel $label={"Click me"}/>,
-          Checkmark: <CustomCheckmark $checkmark={<input type='checkbox'/>}/>
-        }}
       >
+        {childrenProps => {
+          return <CustomStyledCheckbox {...childrenProps} 
+              components={{
+                Label: <CustomLabel>Click me</CustomLabel>,
+                Checkmark: <CustomCheckmark/>
+              }} />
+        }}
       </StatefulCheckbox>
     </div>
   );
