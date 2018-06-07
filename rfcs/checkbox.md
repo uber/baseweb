@@ -35,9 +35,9 @@
 
 * `initialState: {isChecked: boolean, isFocused: boolean}`
   Initial state of an uncontrolled popover component.
-  * `isChecked` - an initial isChecked state
-  * `isFocused` - an initial isFocused state
-  * `isHovered` - an initial isHovered state
+  * `$isChecked` - an initial isChecked state
+  * `$isFocused` - an initial isFocused state
+  * `$isHovered` - an initial isHovered state
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
