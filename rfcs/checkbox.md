@@ -23,41 +23,36 @@
   How to position the label relative to the checkbox itself. Default is `right`
 * `onChange: func`:
   handler for events on trigger element
-* `onHover: func`:
+* `onMouseEnter: func`:
   handler for events on trigger element
-* `onUnhover: func`:
+* `onMouseLeave: func`:
   handler for events on trigger element
 * `onFocus: func`:
   handler for events on trigger element  
 * `onBlur: func`:
   handler for events on trigger element      
 
-### `StatefulCheckbox`, `StatefulCheckboxContainer` API
+### `StatefulCheckboxContainer` API
 
-* `initialState: {isChecked: boolean, isFocused: boolean}`
+* `initialState: {}`
   Initial state of an uncontrolled popover component.
-  * `isChecked` - an initial isChecked state
-  * `isFocused` - an initial isFocused state
-  * `isHovered` - an initial isHovered state
+  * `isChecked` - an initial isChecked state. Check or uncheck the control. Default is `false`. Value of `null` means non-determinated
+  * `isFocused` - an initial isFocused state. Make the control focused (active). Default is `false`
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
-  * `changes` - a new state changes that will be set
+  * `nextState` - a new state changes that will be set
   * `currentState` - current full state of the component
 * `children: func` should return `Checkbox` instance with standard or customized inner elements. It makes sense only for `StatefulCheckboxContainer` and is ignored by `StatefulCheckbox`
-* `$isChecked: ?boolean`:
-  check or uncheck the control. Default is `false`. Value of `null` means non-determinated
-* `$isFocused: boolean`:
-  make the control focused (active). Default is `false`
 * `$isDisabled: boolean`:
   Disable control from being changed
 * `$placement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`      
 * `onChange: func`:
   handler for events on trigger element
-* `onHover: func`:
+* `onMouseEnter: func`:
   handler for events on trigger element
-* `onUnhover: func`:
+* `onMouseLeave: func`:
   handler for events on trigger element
 * `onFocus: func`:
   handler for events on trigger element  
@@ -96,10 +91,13 @@ export default () => {
   return (
     <div>
       <StatefulCheckboxContainer
-        $isChecked={true}
+        initialState={{
+          isChecked: true,
+          isFocused: true
+        }}
         $isDisabled={false}
         $placement="left"
-        onHover={this.onCheckboxHover}
+        onMouseEnter={this.onCheckboxHover}
         onChange={this.onCheckboxChange}
       >
         {childrenProps => {
@@ -111,7 +109,7 @@ export default () => {
         }}
       </StatefulCheckboxContainer>
       <StatefulCheckbox
-        $placement="right" onHover={this.onCheckboxHover} onChange={this.onCheckboxChange}>
+        $placement="right" onMouseEnter={this.onCheckboxHover} onChange={this.onCheckboxChange}>
       </StatefulCheckbox>
     </div>
   );
