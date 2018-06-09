@@ -16,7 +16,9 @@
   make the control focused (active). Default is `false`
 * `$isDisabled: boolean`:
   Disable control from being changed
-* `components: {Checkmark: any, Label: any}`
+* `$isIndeterminate: boolean`:
+  Indeterminate control value. isChecked is ignored.  
+* `components: {Checkmark: React$Node, Label: React$Node}`
   * `Label` to render. Optional.
   * Custom `Checkmark` (exact control). If used, most of handlers may not work.    
 * `$placement: 'top' | 'right' | 'bottom' | 'left'`:
@@ -38,6 +40,7 @@
   Initial state of an uncontrolled popover component.
   * `isChecked` - an initial isChecked state. Check or uncheck the control. Default is `false`. Value of `null` means non-determinated
   * `isFocused` - an initial isFocused state. Make the control focused (active). Default is `false`
+  * `isIndeterminate` - an initial isIndeterminate state. Indeterminate control value. isChecked is ignored. Default is `false`
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
