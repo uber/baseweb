@@ -11,7 +11,7 @@
 ### `Checkbox` API
 
 * `$isChecked: ?boolean`:
-  check or uncheck the control. Default is `false`. Value of `null` means non-determinated
+  check or uncheck the control. Default is `false`.
 * `$isFocused: boolean`:
   make the control focused (active). Default is `false`
 * `$isDisabled: boolean`:
@@ -38,7 +38,7 @@
 
 * `initialState: {}`
   Initial state of an uncontrolled popover component.
-  * `isChecked` - an initial isChecked state. Check or uncheck the control. Default is `false`. Value of `null` means non-determinated
+  * `isChecked` - an initial isChecked state. Check or uncheck the control. Default is `false`.
   * `isFocused` - an initial isFocused state. Make the control focused (active). Default is `false`
   * `isIndeterminate` - an initial isIndeterminate state. Indeterminate control value. isChecked is ignored. Default is `false`
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
