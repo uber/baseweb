@@ -18,7 +18,7 @@
   Disable control from being changed
 * `$isIndeterminate: boolean`:
   Indeterminate control value. checked is ignored.  
-* `components: {Checkmark: React$Node, Label: React$Node}`
+* `components: {Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node}`
   * `Label` to render. Optional.
   * Custom `Checkmark` (exact control). If used, most of handlers may not work.    
 * `$placement: 'top' | 'right' | 'bottom' | 'left'`:
@@ -107,7 +107,7 @@ export default () => {
           return <CustomCheckbox {...childrenProps} 
               components={{
                 Label: <CustomLabel>Click me</CustomLabel>,
-                Checkmark: <CustomCheckmark/>
+                Checkmark: props => <CustomCheckmark {...props}/>
               }} />
         }}
       </StatefulCheckboxContainer>
