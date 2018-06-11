@@ -6,17 +6,17 @@ Some of the API here is inspired by [Downshift](https://github.com/paypal/downsh
 
 The Autocomplete component should complete the following user/dev stories:
 
-> Given a list of items, I want to be able to type into a text input to filter through them, have the filtered items displayed back to me, navigate up and down that displayed list using my keyboard, and select an item from that list of filtered items.
+> Given a list of items, I want to be able to type into a text input to filter through them, have the filtered items displayed back to me, navigate up and down that displayed list using my keyboard, and select or deselect item(s) from that list of filtered items.
 
 ## Exported Components
 
 * `Autocomplete`
 * `StatefulContainer`
 * `StyledAutocomplete`
-  * `StyledAutocomplete.Root`
-  * `StyledAutocomplete.Input`
-  * `StyledAutocomplete.ResultList`
-  * `StyledAutocomplete.Result`
+* `StyledRoot`
+* `StyledInput`
+* `StyledResultList`
+* `StyledResult`
 
 ## Default Internal Structure
 
@@ -24,16 +24,18 @@ The default exported `Autocomplete` component will have roughly the following st
 
 ```js
 <StatefulContainer>
-  <StyledAutocomplete.Root>
-    <StyledAutocomplete.Input />
-    <StyledAutocomplete.ResultList>
-      <StyledAutocomplete.Result />
-    </StyledAutocomplete.ResultList>
-  </StyledAutocomplete.Root>
+  <StyledRoot>
+    <StyledInput />
+    <ResultList>
+      <Result />
+    </ResultList>
+  </StyledRoot>
 </StatefulContainer>
 ```
 
-## Autocomplete | StatefulContainer API
+`Autocomplete` will be implemented using `MenuList` by default to render the `ResultList` and `Result`. This allows us to push all dropdown interaction concerns to `MenuList` and a user can be instructed to swap in another component for `MenuList` if he/she needs additional functionalities.
+
+## StatefulContainer API
 
 #### `items (required)`
 
@@ -43,26 +45,30 @@ Array<Object>
 
 List of items
 
-#### `getItemLabel (required)`
+#### `getItemString (required)`
 
 ```js
 (item: Object) => string;
 ```
 
-Function used to get the label for each item. This is the string that the autocomplete logic will work with
+Function used to get the string value for each item. This is the string that the autocomplete logic will work with; can also be used as label
 
-Component injection prop, can be used to override any or all of the internal components
+#### `mode (optional)`
+
+```
+string: 'single' | 'multiple'
+```
+
+Defaults to `single` - determine if the user will be allowed to only select a single or multiple items
 
 #### `initialState (optional)`
 
 ```js
 {
-  // currently selected item
-  selectedItem: Object,
+  // currently selected items
+  selectedItems: Array<Object>,
   // whether dropdown list is shown or not
   isOpen: boolean,
-  // highlighted item's index if applicable
-  highlightedIndex: number,
   // current input query
   query: string
 }
@@ -76,7 +82,6 @@ Used to set initial state for the component. All the component's state can be co
 {
   selectedItem: Object,
   isOpen: boolean,
-  highlightedIndex: number,
   query: string
 }
 ```
@@ -118,12 +123,12 @@ On input blur; will be called after internal logic
 #### `onItemSelect (optional)`
 
 ```js
-(prevSelectedItem: ?Object, selectedItem: ?Object) => any;
+(selectedItem: ?Object) => any;
 ```
 
 Called when an item is selected
 
-#### `onOuterClick (optional)`
+#### `onClickOutside (optional)`
 
 ```js
 () => any;
@@ -133,7 +138,7 @@ When controlling `isOpen` state, it's useful to know when the user has clicked o
 
 ## Autocomplete API
 
-Everything from StatefulContainer and
+Everything from `StatefulContainer` and
 
 #### `components (optional)`
 
@@ -147,6 +152,8 @@ Everything from StatefulContainer and
   CloseIcon: React.ComponentType<*>
 }
 ```
+
+Component injection prop, can be used to override any or all of the internal components
 
 ## Render Props API
 
@@ -176,14 +183,6 @@ Object;
 
 Selected item
 
-#### `highlightedIndex`
-
-```js
-number;
-```
-
-Index of highlighted item if applicable
-
 #### `query`
 
 ```js
@@ -192,13 +191,13 @@ string;
 
 Current input query
 
-#### `getItemLabel`
+#### `getItemString`
 
 ```js
 (item: Object) => string;
 ```
 
-The user-passed-in function to get an item's label
+The user-passed-in function to get an item's string value
 
 #### `getInputProps`
 
@@ -207,14 +206,6 @@ The user-passed-in function to get an item's label
 ```
 
 Minimal set of props that should be passed into an input component. Any hooks should be using the top level `onInputChange`, `onInputBlur`, `onInputFocus`. This is simply exposing this so users can apply to their own input. This is a function so we can ensure that it is called.
-
-#### `getItemProps`
-
-```js
-(item: Object) => Object;
-```
-
-Function to get props for each rendered item. This will have some defaults needed for keyboard bindings to work properly. Every rendered item should call this. This is a function to ensure that it is used.
 
 ## StyledAutocomplete API
 
@@ -236,17 +227,39 @@ All of Render Props API and the following component props
 
 We will also support the following keybindings
 
-#### KeyDown / KeyUp
+#### Escape
 
-Will cycle down / up the dropdown list, highlighting items as needed
-
-#### Enter
-
-Select the currently highlighted item; if no item is highlighted, select the first item in the dropdown list
+Will close the dropdown list
 
 ## Accessibility
 
 I will be following the autocomplete accessibility wai-aria best practices shown [here](https://www.w3.org/TR/wai-aria-practices-1.1/examples/combobox/aria1.0pattern/combobox-autocomplete-both.html)
+
+## Implementation
+
+This is what the internal implementation of `Autocomplete`, using `MenuList`, might look like.
+
+```js
+import {MenuList} from './menu-list';
+
+function Autocomplete({
+  items,
+  getItemString,
+  components: {Root, Input, ResultList, Result},
+}) {
+  return (
+    <Root>
+      <Input />
+      <MenuList
+        components={{
+          List: ResultList,
+          ListItem: Result,
+        }}
+      />
+    </Root>
+  );
+}
+```
 
 ## Sample Usage
 
@@ -279,14 +292,12 @@ import {StatefulAutocompleteContainer} from 'base-ui';
 function MyComponent() {
   return (
     <StatefulAutocompleteContainer items={[]}>
-      {({isOpen, getInputProps, getItemProps, filteredItems, getItemLabel}) => {
+      {({isOpen, getInputProps, filteredItems, getItemString}) => {
         return (
           <div id="my-new-container">
             <input {...getInputProps()} />
             {isOpen &&
-              filteredItems.map(item => (
-                <span {...getItemProps(item)}>{getItemLabel(item)}</span>
-              ))}
+              filteredItems.map(item => <span>{getItemString(item)}</span>)}
           </div>
         );
       }}
