@@ -11,6 +11,7 @@ class StatelessCheckbox extends React.Component<Props & DefaultProps> {
     $placement: 'right',
     $inputRef: React.createRef(),
     $error: false,
+    $label: '',
     onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},

@@ -26,7 +26,7 @@ class StatefulCheckboxContainer extends React.Component<
     onBlur: () => {},
   };
 
-  constructor(props) {
+  constructor(props: StatefulProps & DefaultStatefulProps) {
     super(props);
     this.state = {
       ...this.props.initialState,
@@ -79,8 +79,7 @@ class StatefulCheckboxContainer extends React.Component<
       default:
         nextState = this.state;
     }
-    const {stateReducer} = this.props;
-    const newState = stateReducer(type, nextState, this.state, e);
+    const newState = this.props.stateReducer(type, nextState, this.state, e);
     this.setState(newState);
   };
 

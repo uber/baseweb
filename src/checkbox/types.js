@@ -5,6 +5,7 @@ export type Placement = 'top' | 'right' | 'bottom' | 'left';
 export type Components = {
   Checkmark: any,
   Label: any,
+  Root: any,
 };
 
 export type Props = {
@@ -13,6 +14,7 @@ export type Props = {
   disabled?: boolean,
   $error?: boolean,
   $isFocused?: boolean,
+  $label?: string,
   $isIndeterminate?: boolean,
   $placement?: Placement,
   onChange?: Function,
@@ -30,6 +32,7 @@ export type DefaultProps = {
   $isIndeterminate: boolean,
   $placement: Placement,
   $inputRef: any,
+  $label: string,
   onChange: Function,
   onMouseEnter: Function,
   onMouseLeave: Function,
