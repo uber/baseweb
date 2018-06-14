@@ -3,20 +3,18 @@
 export type Placement = 'top' | 'right' | 'bottom' | 'left';
 
 export type Components = {
-  Checkmark?: any,
-  Label?: any,
+  Checkmark: any,
+  Label: any,
 };
 
 export type Props = {
-  components?: Components,
+  components: Components,
   checked?: boolean,
   disabled?: boolean,
   $error?: boolean,
   $isFocused?: boolean,
   $isIndeterminate?: boolean,
   $placement?: Placement,
-  $theme?: any,
-  $inputRef?: {current: any},
   onChange?: Function,
   onMouseEnter?: Function,
   onMouseLeave?: Function,
@@ -25,20 +23,18 @@ export type Props = {
 };
 
 export type DefaultProps = {
-  components?: Components,
-  checked?: boolean,
-  disabled?: boolean,
-  $error?: boolean,
-  $isFocused?: boolean,
-  $isIndeterminate?: boolean,
-  $placement?: Placement,
-  $theme?: any,
-  $inputRef?: {current: any},
-  onChange?: Function,
-  onMouseEnter?: Function,
-  onMouseLeave?: Function,
-  onFocus?: Function,
-  onBlur?: Function,
+  checked: boolean,
+  disabled: boolean,
+  $error: boolean,
+  $isFocused: boolean,
+  $isIndeterminate: boolean,
+  $placement: Placement,
+  $inputRef: any,
+  onChange: Function,
+  onMouseEnter: Function,
+  onMouseLeave: Function,
+  onFocus: Function,
+  onBlur: Function,
 };
 
 export type StateType = 'change' | 'focus' | 'blur' | 'hover';
@@ -46,8 +42,6 @@ export type StateType = 'change' | 'focus' | 'blur' | 'hover';
 export type State = {
   checked?: string,
   $isFocused?: boolean,
-  $isIndeterminate?: boolean,
-  $error?: boolean,
 };
 
 export type StateReducer = (
@@ -58,15 +52,22 @@ export type StateReducer = (
 ) => State;
 
 export type StatefulProps = {
-  children?: Function,
+  children: Function,
   initialState?: State,
   stateReducer?: StateReducer,
-  disabled?: boolean,
-  $placement?: Placement,
-  $theme?: any,
   onChange?: Function,
   onMouseEnter?: Function,
   onMouseLeave?: Function,
   onFocus?: Function,
   onBlur?: Function,
+};
+
+export type DefaultStatefulProps = {
+  initialState: State,
+  stateReducer: StateReducer,
+  onChange: Function,
+  onMouseEnter: Function,
+  onMouseLeave: Function,
+  onFocus: Function,
+  onBlur: Function,
 };

@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
 import type {Props, DefaultProps} from './types';
 
 class StatelessCheckbox extends React.Component<Props & DefaultProps> {
@@ -27,27 +27,17 @@ class StatelessCheckbox extends React.Component<Props & DefaultProps> {
   render() {
     const {
       components: {Checkmark, Label, Root},
-      $inputRef,
-      $isFocused,
-      $error,
-      $placement,
-      checked,
-      $label,
-      disabled,
       onChange,
       onMouseEnter,
       onMouseLeave,
       onFocus,
       onBlur,
-      ...rest
+      $placement,
+      $label,
+      $inputRef,
+      ...sharedProps
     } = this.props;
 
-    const sharedProps = {
-      $isFocused,
-      $error,
-      $placement,
-      disabled,
-    };
     const events = {
       onChange,
       onMouseEnter,
@@ -59,16 +49,11 @@ class StatelessCheckbox extends React.Component<Props & DefaultProps> {
     return (
       <Root {...sharedProps}>
         {($placement === 'top' || $placement === 'left') && (
-          <Label {...sharedProps} {...rest}>
+          <Label $placement={$placement} {...sharedProps}>
             {$label}
           </Label>
         )}
-        <Checkmark
-          {...sharedProps}
-          checked={checked}
-          disabled={disabled}
-          {...rest}
-        />
+        <Checkmark {...sharedProps} />
         <input
           ref={$inputRef}
           type="checkbox"
@@ -80,12 +65,11 @@ class StatelessCheckbox extends React.Component<Props & DefaultProps> {
             margin: 0,
             padding: 0,
           }}
-          checked={checked}
-          disabled={disabled}
+          {...sharedProps}
           {...events}
         />
         {($placement === 'bottom' || $placement === 'right') && (
-          <Label {...sharedProps} {...rest}>
+          <Label $placement={$placement} {...sharedProps}>
             {$label}
           </Label>
         )}

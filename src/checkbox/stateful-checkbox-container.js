@@ -1,16 +1,24 @@
 // @flow
 import * as React from 'react';
 import {STATE_TYPE} from './constants';
-import type {StatefulProps, Props, StateReducer, StateType} from './types';
+import type {
+  StatefulProps,
+  StateReducer,
+  DefaultStatefulProps,
+  StateType,
+  State,
+} from './types';
 
 const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulCheckboxContainer extends React.Component<StatefulProps & Props> {
+class StatefulCheckboxContainer extends React.Component<
+  StatefulProps & DefaultStatefulProps,
+  State
+> {
   static defaultProps = {
+    children: () => {},
     initialState: {},
     stateReducer: defaultStateReducer,
-    disabled: false,
-    $placement: 'right',
     onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
@@ -21,8 +29,6 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps & Props> {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
-      $isFocused: false,
       ...this.props.initialState,
     };
   }
