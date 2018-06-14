@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {STATE_TYPE} from './constants';
 import type {
   StatefulProps,
@@ -11,11 +11,8 @@ import type {
 
 const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
-class StatefulCheckboxContainer extends React.Component<
-  StatefulProps & DefaultStatefulProps,
-  State
-> {
-  static defaultProps = {
+class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
+  static defaultProps: DefaultStatefulProps = {
     children: () => {},
     initialState: {},
     stateReducer: defaultStateReducer,
@@ -26,7 +23,7 @@ class StatefulCheckboxContainer extends React.Component<
     onBlur: () => {},
   };
 
-  constructor(props: StatefulProps & DefaultStatefulProps) {
+  constructor(props: StatefulProps) {
     super(props);
     this.state = {
       ...this.props.initialState,

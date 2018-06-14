@@ -9,7 +9,7 @@ import {
 } from './index';
 import type {StatefulProps, Props} from './types';
 
-export default function(props: StatefulProps & Props) {
+export default function(props: StatefulProps) {
   const components = {
     Root: StyledRoot,
     Checkmark: StyledCheckmark,

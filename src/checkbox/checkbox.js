@@ -2,7 +2,7 @@
 import React from 'react';
 import type {Props, DefaultProps} from './types';
 
-class StatelessCheckbox extends React.Component<Props & DefaultProps> {
+class StatelessCheckbox extends React.Component<Props> {
   static defaultProps: DefaultProps = {
     checked: false,
     disabled: false,

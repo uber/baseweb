@@ -8,22 +8,6 @@ export type Components = {
   Root: any,
 };
 
-export type Props = {
-  components: Components,
-  checked?: boolean,
-  disabled?: boolean,
-  $error?: boolean,
-  $isFocused?: boolean,
-  $label?: string,
-  $isIndeterminate?: boolean,
-  $placement?: Placement,
-  onChange?: Function,
-  onMouseEnter?: Function,
-  onMouseLeave?: Function,
-  onFocus?: Function,
-  onBlur?: Function,
-};
-
 export type DefaultProps = {
   checked: boolean,
   disabled: boolean,
@@ -40,6 +24,22 @@ export type DefaultProps = {
   onBlur: Function,
 };
 
+export type Props = DefaultProps & {
+  components: Components,
+  checked?: boolean,
+  disabled?: boolean,
+  $error?: boolean,
+  $isFocused?: boolean,
+  $label?: string,
+  $isIndeterminate?: boolean,
+  $placement?: Placement,
+  onChange?: Function,
+  onMouseEnter?: Function,
+  onMouseLeave?: Function,
+  onFocus?: Function,
+  onBlur?: Function,
+};
+
 export type StateType = 'change' | 'focus' | 'blur' | 'hover';
 
 export type State = {
@@ -54,17 +54,6 @@ export type StateReducer = (
   event: any
 ) => State;
 
-export type StatefulProps = {
-  children: Function,
-  initialState?: State,
-  stateReducer?: StateReducer,
-  onChange?: Function,
-  onMouseEnter?: Function,
-  onMouseLeave?: Function,
-  onFocus?: Function,
-  onBlur?: Function,
-};
-
 export type DefaultStatefulProps = {
   initialState: State,
   stateReducer: StateReducer,
@@ -73,4 +62,16 @@ export type DefaultStatefulProps = {
   onMouseLeave: Function,
   onFocus: Function,
   onBlur: Function,
+};
+
+export type StatefulProps = DefaultStatefulProps & {
+  components?: Components,
+  children: Function,
+  initialState?: State,
+  stateReducer?: StateReducer,
+  onChange?: Function,
+  onMouseEnter?: Function,
+  onMouseLeave?: Function,
+  onFocus?: Function,
+  onBlur?: Function,
 };
