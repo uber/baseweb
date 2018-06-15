@@ -109,7 +109,7 @@ number;
 
 Index of highlighted item if applicable
 
-#### `getItemProps`
+#### `getRequiredItemProps`
 
 ```js
 (item: Object) => ({key: string, id: string});

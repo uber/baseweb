@@ -119,7 +119,7 @@ Called when an item is selected
 #### `onClickOutside (optional)`
 
 ```js
-() => any;
+(event: Object) => any;
 ```
 
 When controlling `isOpen` state, it's useful to know when the user has clicked outside of the Autocomplete component to potentially set/unset the dropdown list. This function allows users to do that
@@ -187,7 +187,7 @@ Current input query
 
 The user-passed-in function to get an item's string value
 
-#### `getInputProps`
+#### `getRequiredInputProps`
 
 ```js
 () => ({onChange: Function, onBlur: Function, onFocus: Function});
@@ -280,10 +280,10 @@ import {StatefulAutocompleteContainer} from 'base-ui';
 function MyComponent() {
   return (
     <StatefulAutocompleteContainer items={[]}>
-      {({isOpen, getInputProps, filteredItems, getItemString}) => {
+      {({isOpen, getRequiredInputProps, filteredItems, getItemString}) => {
         return (
           <div id="my-new-container">
-            <input {...getInputProps()} />
+            <input {...getRequiredInpurProps()} />
             {isOpen &&
               filteredItems.map(item => <span>{getItemString(item)}</span>)}
           </div>
