@@ -85,10 +85,11 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
       default:
         nextState = this.state;
     }
+    let newState = nextState;
     if (this.props.stateReducer) {
-      const newState = this.props.stateReducer(type, nextState, this.state, e);
-      this.setState(newState);
+      newState = this.props.stateReducer(type, nextState, this.state, e);
     }
+    this.setState(newState);
   };
 
   render() {
