@@ -131,6 +131,21 @@ storiesOf('Checkbox', module)
       />
     );
   })
+  .add('Checkbox with extra props', () => {
+    function withProps(Component: any, customProps: {}) {
+      return (props: {}) => <Component {...customProps} {...props} />;
+    }
+    const RootWithProps = withProps(StyledRoot, {'data-value': 'secret value'});
+    return (
+      <Checkbox
+        onChange={onChange}
+        components={{
+          Root: RootWithProps,
+        }}
+        $label="With a custom 'data-value' attr on the Root"
+      />
+    );
+  })
   .add('Checkbox with Enter key to change it', () => {
     const inputRef = React.createRef();
     return (

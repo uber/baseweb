@@ -33,9 +33,7 @@ function getLabelColor(props) {
 }
 
 export const Root = styled('label', () => {
-  return {
-    color: 'red',
-  };
+  return {};
 });
 
 export const Checkmark = styled('span', props => {
