@@ -131,6 +131,26 @@ storiesOf('Checkbox', module)
       />
     );
   })
+  .add('Checkbox with Enter key to change it', () => {
+    const inputRef = React.createRef();
+    return (
+      <div>
+        <Icon
+          $position="right"
+          onClick={() => {
+            if (inputRef.current && inputRef.current.focus) {
+              inputRef.current.focus();
+            }
+          }}
+        />
+        <Checkbox
+          $label="Checkbox works with Enter keyboard"
+          onChange={onChange}
+          $inputRef={inputRef}
+        />
+      </div>
+    );
+  })
   .add('Checkbox with a ref to focus on', () => {
     const inputRef = React.createRef();
     return (

@@ -38,6 +38,7 @@ export type Props = DefaultProps & {
   onMouseLeave?: Function,
   onFocus?: Function,
   onBlur?: Function,
+  onKeyPress?: Function,
 };
 
 export type StateType = 'change' | 'focus' | 'blur' | 'hover';

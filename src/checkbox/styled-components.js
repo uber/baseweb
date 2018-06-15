@@ -39,7 +39,7 @@ export const Root = styled('label', () => {
 });
 
 export const Checkmark = styled('span', props => {
-  const {checked, $isIndeterminate} = props;
+  const {checked, disabled, $isIndeterminate} = props;
   return {
     width: '16px',
     height: '16px',
@@ -60,7 +60,8 @@ export const Checkmark = styled('span', props => {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     ':hover': {
-      backgroundColor: !$isIndeterminate && !checked ? '#E5E5E5' : '',
+      backgroundColor:
+        !disabled && !$isIndeterminate && !checked ? '#E5E5E5' : '',
     },
   };
 });
@@ -72,6 +73,7 @@ export const Label = styled('div', props => {
       $placement === 'left' || $placement === 'right'
         ? 'inline-block'
         : 'block',
+    verticalAlign: 'middle',
     fontWeight: 'bolder',
     fontFamily: 'Clan Pro For UBER',
     textTransform: 'capitalize',

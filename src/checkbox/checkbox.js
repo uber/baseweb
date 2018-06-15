@@ -34,6 +34,7 @@ class StatelessCheckbox extends React.Component<Props> {
       onMouseLeave,
       onFocus,
       onBlur,
+      onKeyPress,
       $placement,
       $label,
       $inputRef,
@@ -51,8 +52,18 @@ class StatelessCheckbox extends React.Component<Props> {
       onMouseLeave,
       onFocus,
       onBlur,
+      onKeyPress,
     };
-
+    events.onKeyPress = event => {
+      const keycode = event.keyCode ? event.keyCode : event.which;
+      if (keycode === 13) {
+        $inputRef.current.click();
+        event.stopPropagation();
+      }
+      if (onKeyPress) {
+        onKeyPress(event);
+      }
+    };
     return (
       <Root {...sharedProps}>
         {($placement === 'top' || $placement === 'left') && (
