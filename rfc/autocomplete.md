@@ -76,18 +76,6 @@ Defaults to `single` - determine if the user will be allowed to only select a si
 
 Used to set initial state for the component. All the component's state can be controlled via props as well.
 
-#### `controlledState (optional)`
-
-```js
-{
-  selectedItem: Object,
-  isOpen: boolean,
-  query: string
-}
-```
-
-Used to manually set and keep a piece of state
-
 #### `stateReducer (optional)`
 
 ```js

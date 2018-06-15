@@ -52,16 +52,6 @@ Function used to get the string label for each item.
 
 Used to set initial state for the component. All the component's state can be controlled via props as well.
 
-#### `controlledState (optional)`
-
-```js
-{
-  highlightedIndex: number,
-}
-```
-
-Used to manually set and keep a piece of state
-
 #### `stateReducer (optional)`
 
 ```js
