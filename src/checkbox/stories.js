@@ -138,7 +138,9 @@ storiesOf('Checkbox', module)
         <Icon
           $position="right"
           onClick={() => {
-            inputRef.current.focus();
+            if (inputRef.current && inputRef.current.focus) {
+              inputRef.current.focus();
+            }
           }}
         />
         <Checkbox

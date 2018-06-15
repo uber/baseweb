@@ -13,7 +13,6 @@ const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
 class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
   static defaultProps: DefaultStatefulProps = {
-    children: () => {},
     initialState: {},
     stateReducer: defaultStateReducer,
     onChange: () => {},
@@ -32,27 +31,37 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
 
   onChange = (e: any) => {
     this.stateReducer(STATE_TYPE.change, e);
-    this.props.onChange(e);
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
   };
 
   onMouseEnter = (e: any) => {
     this.stateReducer(STATE_TYPE.hover, e);
-    this.props.onMouseEnter(e);
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
+    }
   };
 
   onMouseLeave = (e: any) => {
     this.stateReducer(STATE_TYPE.unhover, e);
-    this.props.onMouseEnter(e);
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
   };
 
   onFocus = (e: any) => {
     this.stateReducer(STATE_TYPE.focus, e);
-    this.props.onFocus(e);
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
   };
 
   onBlur = (e: any) => {
     this.stateReducer(STATE_TYPE.blur, e);
-    this.props.onBlur(e);
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
   };
 
   stateReducer = (type: StateType, e: any) => {
@@ -76,12 +85,19 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
       default:
         nextState = this.state;
     }
-    const newState = this.props.stateReducer(type, nextState, this.state, e);
-    this.setState(newState);
+    if (this.props.stateReducer) {
+      const newState = this.props.stateReducer(type, nextState, this.state, e);
+      this.setState(newState);
+    }
   };
 
   render() {
-    const {children, initialState, stateReducer, ...rest} = this.props;
+    const {
+      children = () => {},
+      initialState,
+      stateReducer,
+      ...rest
+    } = this.props;
     const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;
     return children({
       ...rest,

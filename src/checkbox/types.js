@@ -5,7 +5,7 @@ export type Placement = 'top' | 'right' | 'bottom' | 'left';
 export type Components = {
   Checkmark: any,
   Label: any,
-  Root: any,
+  Root?: any,
 };
 
 export type DefaultProps = {
@@ -64,9 +64,9 @@ export type DefaultStatefulProps = {
   onBlur: Function,
 };
 
-export type StatefulProps = DefaultStatefulProps & {
+export type StatefulProps = {
   components?: Components,
-  children: Function,
+  children?: Function,
   initialState?: State,
   stateReducer?: StateReducer,
   onChange?: Function,
