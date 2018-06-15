@@ -629,7 +629,7 @@ type JestPrettyFormatOptions = {|
   plugins: JestPrettyFormatPlugins,
   printFunctionName: boolean,
   spacing: string,
-  $theme: {|
+  theme: {|
     comment: string,
     content: string,
     prop: string,

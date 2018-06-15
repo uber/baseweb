@@ -3,8 +3,8 @@
 export type Placement = 'top' | 'right' | 'bottom' | 'left';
 
 export type Components = {
-  Checkmark: any,
-  Label: any,
+  Checkmark?: any,
+  Label?: any,
   Root?: any,
 };
 
@@ -24,11 +24,12 @@ export type DefaultProps = {
   onBlur: Function,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   components: Components,
   checked?: boolean,
   disabled?: boolean,
   $error?: boolean,
+  $inputRef: any,
   $isFocused?: boolean,
   $label?: string,
   $isIndeterminate?: boolean,
