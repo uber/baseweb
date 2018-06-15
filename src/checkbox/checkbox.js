@@ -38,6 +38,9 @@ class StatelessCheckbox extends React.Component<Props> {
       $placement,
       $label,
       $inputRef,
+      $isFocused,
+      $isIndeterminate,
+      $error,
       ...sharedProps
     } = this.props;
     const {
@@ -65,13 +68,18 @@ class StatelessCheckbox extends React.Component<Props> {
       }
     };
     return (
-      <Root {...sharedProps}>
+      <Root {...sharedProps} $error={$error}>
         {($placement === 'top' || $placement === 'left') && (
           <Label $placement={$placement} {...sharedProps}>
             {$label}
           </Label>
         )}
-        <Checkmark {...sharedProps} />
+        <Checkmark
+          {...sharedProps}
+          $error={$error}
+          $isFocused={$isFocused}
+          $isIndeterminate={$isIndeterminate}
+        />
         <input
           ref={$inputRef}
           type="checkbox"
@@ -87,7 +95,7 @@ class StatelessCheckbox extends React.Component<Props> {
           {...events}
         />
         {($placement === 'bottom' || $placement === 'right') && (
-          <Label $placement={$placement} {...sharedProps}>
+          <Label $placement={$placement} {...sharedProps} $error={$error}>
             {$label}
           </Label>
         )}
