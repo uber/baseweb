@@ -93,7 +93,7 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
 
   render() {
     const {
-      children = () => {},
+      children = (childProps?: any) => {}, // eslint-disable-line no-unused-vars
       initialState,
       stateReducer,
       ...rest
