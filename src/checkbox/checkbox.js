@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import type {Props, DefaultProps} from './types';
-import {StyledRoot, StyledCheckmark, StyledLabel, StyledInput} from './index';
 
 class StatelessCheckbox extends React.Component<Props> {
   static defaultProps: DefaultProps = {
@@ -43,12 +42,7 @@ class StatelessCheckbox extends React.Component<Props> {
       $error,
       ...sharedProps
     } = this.props;
-    const {
-      Root = StyledRoot,
-      Checkmark = StyledCheckmark,
-      Label = StyledLabel,
-      Input = StyledInput,
-    } = components;
+    const {Root, Checkmark, Label, Input} = components;
 
     const events = {
       onChange,

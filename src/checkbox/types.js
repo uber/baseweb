@@ -9,6 +9,13 @@ export type Components = {
   Input?: any,
 };
 
+export type RequiredComponents = {
+  Checkmark: any,
+  Label: any,
+  Root: any,
+  Input: any,
+};
+
 export type DefaultProps = {
   checked: boolean,
   disabled: boolean,
@@ -26,7 +33,7 @@ export type DefaultProps = {
 };
 
 export type Props = {
-  components: Components,
+  components: RequiredComponents,
   checked?: boolean,
   disabled?: boolean,
   $error?: boolean,
