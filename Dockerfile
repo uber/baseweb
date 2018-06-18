@@ -1,4 +1,4 @@
-FROM uber/web-base-image:1.0.4
+FROM uber/web-base-image:1.0.6
 
 WORKDIR /baseui
 
@@ -11,5 +11,5 @@ RUN yarn --ignore-scripts
 COPY . .
 
 # Perform any build steps if you want binaries inside of the image
-RUN yarn build && patch -p1 < ./node_modules/enzyme-context-patch/patches/enzyme-adapter-react-16+1.1.1.patch
+RUN yarn build
 RUN yarn build-storybook
