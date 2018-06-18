@@ -1,8 +1,13 @@
 import {styled} from '../styles';
 
 function getBorderColor(props) {
-  const {checked, $error, $isIndeterminate} = props;
-  return $error ? 'red' : $isIndeterminate || checked ? '#1B6DE0' : '#999999';
+  const {checked, $error, $isIndeterminate, theme} = props;
+  const {colors} = theme;
+  return $error
+    ? colors.checkboxError
+    : $isIndeterminate || checked
+      ? colors.checkboxCheckedOrIndeterminate
+      : colors.checkboxDefaultBorder;
 }
 
 function getLabelPadding(props) {
@@ -21,15 +26,21 @@ function getLabelPadding(props) {
 }
 
 function getBackgroundColor(props) {
-  const {disabled, checked, $isIndeterminate, $isFocused} = props;
+  const {disabled, checked, $isIndeterminate, $isFocused, theme} = props;
+  const {colors} = theme;
   return disabled
-    ? '#F0F0F0'
-    : $isIndeterminate || checked ? '#1B6DE0' : $isFocused ? '#CCCCCC' : '';
+    ? colors.checkboxDisabledBackground
+    : $isIndeterminate || checked
+      ? colors.checkboxCheckedOrIndeterminate
+      : $isFocused ? colors.checkboxDefaultBackground : '';
 }
 
 function getLabelColor(props) {
-  const {disabled, $error} = props;
-  return disabled ? '#B3B3B3' : $error ? 'red' : '#000000';
+  const {disabled, $error, theme} = props;
+  const {colors} = theme;
+  return disabled
+    ? colors.checkboxDisabled
+    : $error ? colors.checkboxError : colors.checkboxDefaultLabel;
 }
 
 export const Root = styled('label', () => {
@@ -37,10 +48,11 @@ export const Root = styled('label', () => {
 });
 
 export const Checkmark = styled('span', props => {
-  const {checked, disabled, $isIndeterminate} = props;
+  const {checked, disabled, $isIndeterminate, theme} = props;
+  const {colors, sizing} = theme;
   return {
-    width: '16px',
-    height: '16px',
+    width: sizing.scale400,
+    height: sizing.scale400,
     left: '4px',
     top: '4px',
     borderStyle: 'solid',
@@ -59,24 +71,23 @@ export const Checkmark = styled('span', props => {
     backgroundPosition: 'center',
     ':hover': {
       backgroundColor:
-        !disabled && !$isIndeterminate && !checked ? '#E5E5E5' : '',
+        !disabled && !$isIndeterminate && !checked ? colors.checkboxHover : '',
     },
   };
 });
 
 export const Label = styled('div', props => {
-  const {$placement} = props;
+  const {$placement, theme} = props;
+  const {typography} = theme;
   return {
     display:
       $placement === 'left' || $placement === 'right'
         ? 'inline-block'
         : 'block',
     verticalAlign: 'middle',
-    fontWeight: 'bolder',
-    fontFamily: 'Clan Pro For UBER',
     textTransform: 'capitalize',
     padding: getLabelPadding(props),
-    fontSize: '14px',
     color: getLabelColor(props),
+    ...typography.font401,
   };
 });

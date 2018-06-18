@@ -5,6 +5,7 @@ const primary300 = 'hsl(215, 75%, 75%)';
 const primary400 = 'hsl(215, 78%, 49%)';
 const primary500 = 'hsl(215, 79%, 25%)';
 const alert400 = 'hsl(6, 77%, 56%)';
+const alert100 = 'hsl(6, 83%, 95%)';
 const warning400 = 'hsl(26, 89%, 49%)';
 const success400 = 'hsl(152, 92%, 33%)';
 const mono100 = 'hsl(0, 0%, 100%)';
@@ -20,6 +21,7 @@ const mono1000 = 'hsl(0, 0%, 0%)';
 
 // font constants
 const primaryFontFamily = '"Helvetica Neue", arial, sans-serif';
+const secondaryFontFamily = '"Clan Pro For UBER", arial, sans-serif';
 
 export default {
   colors: {
@@ -32,7 +34,7 @@ export default {
     primary500,
 
     // Alert Palette
-    alert100: 'hsl(6, 83%, 95%)',
+    alert100: alert100,
     alert200: 'hsl(6, 83%, 91%)',
     alert300: 'hsl(6, 83%, 77%)',
     alert400,
@@ -109,6 +111,16 @@ export default {
     // Shadow
     shadowFocus: mono600,
     shadowError: mono600,
+
+    // Checkbox
+    checkboxCheckedOrIndeterminate: primary400, // #1B6DE0
+    checkboxHover: mono400, // #E5E5E5
+    checkboxDisabled: mono600, // #B3B3B3
+    checkboxDefaultBackground: mono500, // #CCCCCC
+    checkboxDisabledBackground: mono300, // #F0F0F0
+    checkboxDefaultBorder: mono700, // #999999
+    checkboxDefaultLabel: mono1000, // #000000
+    checkboxError: alert400, // #E54A38
   },
   typography: {
     font100: {
@@ -134,6 +146,12 @@ export default {
       fontSize: '14px',
       fontWeight: 'normal',
       lineHeight: '24px',
+    },
+    font401: {
+      fontFamily: secondaryFontFamily,
+      fontSize: '14px',
+      fontWeight: 'bolder',
+      lineHeight: '20px',
     },
     font500: {
       fontFamily: primaryFontFamily,

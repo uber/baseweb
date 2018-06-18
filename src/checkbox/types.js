@@ -47,6 +47,7 @@ export type StateType = 'change' | 'focus' | 'blur' | 'hover';
 export type State = {
   checked?: string,
   $isFocused?: boolean,
+  $isHovered?: boolean,
 };
 
 export type StateReducer = (
