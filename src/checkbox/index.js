@@ -8,4 +8,5 @@ export {
   Root as StyledRoot,
   Checkmark as StyledCheckmark,
   Label as StyledLabel,
+  Input as StyledInput,
 } from './styled-components';

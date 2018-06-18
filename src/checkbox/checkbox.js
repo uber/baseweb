@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import type {Props, DefaultProps} from './types';
-import {StyledRoot, StyledCheckmark, StyledLabel} from './index';
+import {StyledRoot, StyledCheckmark, StyledLabel, StyledInput} from './index';
 
 class StatelessCheckbox extends React.Component<Props> {
   static defaultProps: DefaultProps = {
@@ -47,6 +47,7 @@ class StatelessCheckbox extends React.Component<Props> {
       Root = StyledRoot,
       Checkmark = StyledCheckmark,
       Label = StyledLabel,
+      Input = StyledInput,
     } = components;
 
     const events = {
@@ -80,20 +81,7 @@ class StatelessCheckbox extends React.Component<Props> {
           $isFocused={$isFocused}
           $isIndeterminate={$isIndeterminate}
         />
-        <input
-          ref={$inputRef}
-          type="checkbox"
-          // tricky style for focus event cause display: none doesn't work
-          style={{
-            opacity: 0,
-            width: 0,
-            overflow: 'hidden',
-            margin: 0,
-            padding: 0,
-          }}
-          {...sharedProps}
-          {...events}
-        />
+        <Input type="checkbox" $ref={$inputRef} {...sharedProps} {...events} />
         {($placement === 'bottom' || $placement === 'right') && (
           <Label $placement={$placement} {...sharedProps} $error={$error}>
             {$label}

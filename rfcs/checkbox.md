@@ -7,6 +7,7 @@
 * `Checkbox`
 * `Checkmark`
 * `Label`
+* `Input`
 
 ### `Checkbox` API
 
@@ -22,10 +23,11 @@
   Sets control into error state. Default is `false`
 * `$isIndeterminate: boolean`:
   Indeterminate control value. checked is ignored.
-* `components: {Root: (props: {[string]: any}) => React$Node, Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node}`
+* `components: {Root: (props: {[string]: any}) => React$Node, Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node, , Input: (props: {[string]: any}) => React$Node}`
   * `Label` to render. Optional.
   * Custom `Checkmark` (exact control). If used, most of handlers may not work.
   * `Root` wrapper element for the whole checkbox control to apply styles
+  * `Input` may replace original functionality of checkbox. If provided should follow the same interface and logic or may break the whole component
 * `$placement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
 * `onChange: func`:
@@ -46,8 +48,6 @@
   * `checked` - an initial checked state. Check or uncheck the control. Default is `false`.
   * `$isFocused` - an initial isFocused state. Make the control focused (active). Default is `false`
   * `$isIndeterminate` - an initial isIndeterminate state. Indeterminate control value. checked is ignored. Default is `false`
-  * `$error` - an initial error. Sets control into error state. Default is `false`
-  * `$label` - an initial text for label. String value for label of checkbox. Default is empty string
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
@@ -72,6 +72,8 @@
 ### `Label` API
 
 ### `Checkmark` API
+
+### `Input` API
 
 ### Usage
 

@@ -6,6 +6,7 @@ export type Components = {
   Checkmark?: any,
   Label?: any,
   Root?: any,
+  Input?: any,
 };
 
 export type DefaultProps = {

@@ -91,3 +91,14 @@ export const Label = styled('div', props => {
     ...typography.font401,
   };
 });
+
+export const Input = styled('input', () => {
+  // tricky style for focus event cause display: none doesn't work
+  return {
+    opacity: 0,
+    width: 0,
+    overflow: 'hidden',
+    margin: 0,
+    padding: 0,
+  };
+});
