@@ -528,13 +528,12 @@ acorn@^5.0.0, acorn@^5.0.3, acorn@^5.3.0, acorn@^5.5.3, acorn@^5.6.0:
 =======
 acorn@^5.0.0, acorn@^5.3.0, acorn@^5.5.0, acorn@^5.5.3:
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Base text input
+=======
+>>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.1.tgz#f095829297706a7c9776958c0afc8930a9b9d9d8"
-=======
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.6.1.tgz#c9e50c3e3717cf897f1b071ceadbb543bbc0a8d4"
->>>>>>> Base text input
 
 address@1.0.3, address@^1.0.1:
   version "1.0.3"
@@ -2209,6 +2208,7 @@ caniuse-api@^1.5.2:
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
 <<<<<<< HEAD
+<<<<<<< HEAD
   version "1.0.30000865"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000865.tgz#82ffb64d40f7567620aac02d3a632079689abc6b"
 
@@ -2217,12 +2217,15 @@ caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.300008
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000865.tgz#70026616e8afe6e1442f8bb4e1092987d81a2f25"
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
   version "1.0.30000856"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000856.tgz#fbebb99abe15a5654fc7747ebb5315bdfde3358f"
 
 caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844:
   version "1.0.30000856"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000856.tgz#ecc16978135a6f219b138991eb62009d25ee8daa"
+<<<<<<< HEAD
 =======
   version "1.0.30000848"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000848.tgz#e149c981c72aa20439e3bc12c7cf8b3f7e1237c6"
@@ -2232,6 +2235,8 @@ caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.300008
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000848.tgz#ec9c0a72ec8f9ef812e4f4b8628625af9c85ade0"
 >>>>>>> Base text input
 >>>>>>> Base text input
+=======
+>>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
 
 capture-exit@^1.2.0:
   version "1.2.0"
@@ -2518,13 +2523,8 @@ compare-func@^1.3.1:
     dot-prop "^3.0.0"
 
 compare-versions@^3.1.0:
-<<<<<<< HEAD
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.3.0.tgz#af93ea705a96943f622ab309578b9b90586f39c3"
-=======
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.2.1.tgz#a49eb7689d4caaf0b6db5220173fd279614000f7"
->>>>>>> Base text input
 
 component-emitter@^1.2.1:
   version "1.2.1"
@@ -2824,6 +2824,7 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
 
 csstype@^2.2.0:
 <<<<<<< HEAD
+<<<<<<< HEAD
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.5.tgz#4125484a3d42189a863943f23b9e4b80fedfa106"
 =======
@@ -2835,6 +2836,10 @@ csstype@^2.2.0:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.3.tgz#2504152e6e1cc59b32098b7f5d6a63f16294c1f7"
 >>>>>>> Base text input
 >>>>>>> Base text input
+=======
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.4.tgz#93850187209b6d0a71d30a85abc95a6ae3f3e8cd"
+>>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -3140,23 +3145,14 @@ dot-prop@^3.0.0:
     is-obj "^1.0.0"
 
 dotenv-webpack@^1.5.5:
-<<<<<<< HEAD
   version "1.5.7"
   resolved "https://registry.yarnpkg.com/dotenv-webpack/-/dotenv-webpack-1.5.7.tgz#c44395ab21d1fd28d79a90942a7b14b1debd145f"
-=======
-  version "1.5.6"
-  resolved "https://registry.yarnpkg.com/dotenv-webpack/-/dotenv-webpack-1.5.6.tgz#60146a37ce53b934c85404f689c35cb617371e04"
->>>>>>> Base text input
   dependencies:
-    dotenv "^6.0.0"
+    dotenv "^5.0.1"
 
 dotenv@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-5.0.1.tgz#a5317459bd3d79ab88cff6e44057a6a3fbb1fcef"
-
-dotenv@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
 
 duplexer@^0.1.1:
   version "0.1.1"
@@ -3308,15 +3304,6 @@ error-ex@^1.2.0, error-ex@^1.3.1:
   dependencies:
     is-arrayish "^0.2.1"
 
-<<<<<<< HEAD
-=======
-error-stack-parser@^2.0.1:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-2.0.2.tgz#4ae8dbaa2bf90a8b450707b9149dcabca135520d"
-  dependencies:
-    stackframe "^1.0.4"
-
->>>>>>> Base text input
 es-abstract@^1.10.0, es-abstract@^1.12.0, es-abstract@^1.4.3, es-abstract@^1.5.1, es-abstract@^1.6.1, es-abstract@^1.7.0, es-abstract@^1.9.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.12.0.tgz#9dbbdd27c6856f0001421ca18782d786bf8a6165"
@@ -3998,6 +3985,7 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 flow-bin@^0.75.0:
   version "0.75.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.75.0.tgz#b96d1ee99d3b446a3226be66b4013224ce9df260"
@@ -4012,6 +4000,11 @@ flow-bin@0.73.0:
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.73.0.tgz#da1b90a02b0ef9c439f068c2fc14968db83be425"
 >>>>>>> Base text input
 >>>>>>> Base text input
+=======
+flow-bin@^0.74.0:
+  version "0.74.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.74.0.tgz#8017bb00efb37cbe8d81fbb7f464038bde06adc9"
+>>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
@@ -4090,11 +4083,7 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-<<<<<<< HEAD
 fsevents@^1.0.0, fsevents@^1.2.2, fsevents@^1.2.3:
-=======
-fsevents@^1.0.0, fsevents@^1.1.2, fsevents@^1.2.3:
->>>>>>> Base text input
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.4.tgz#f41dcb1af2582af3692da36fc55cbd8e1041c426"
   dependencies:
@@ -6348,13 +6337,8 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
 nwsapi@^2.0.0:
-<<<<<<< HEAD
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.4.tgz#dc79040a5f77b97716dc79565fc7fc3ef7d50570"
-=======
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.1.tgz#a50d59a2dcb14b6931401171713ced2d0eb3468f"
->>>>>>> Base text input
 
 oauth-sign@~0.8.2:
   version "0.8.2"
@@ -7089,7 +7073,18 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
+<<<<<<< HEAD
 prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+=======
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0, prop-types@^15.6.1:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
+prop-types@^15.5.7, prop-types@^15.6.2:
+>>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -7112,13 +7107,8 @@ pseudomap@^1.0.2:
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
 psl@^1.1.24:
-<<<<<<< HEAD
   version "1.1.28"
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.1.28.tgz#4fb6ceb08a1e2214d4fd4de0ca22dae13740bc7b"
-=======
-  version "1.1.27"
-  resolved "https://registry.yarnpkg.com/psl/-/psl-1.1.27.tgz#2b2c77019db86855170d903532400bf71ee085b6"
->>>>>>> Base text input
 
 public-encrypt@^4.0.0:
   version "4.0.2"
@@ -7323,15 +7313,9 @@ react-docgen@^3.0.0-beta11:
     node-dir "^0.1.10"
     recast "^0.12.6"
 
-<<<<<<< HEAD
 react-dom@^16.4.0:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
-=======
-react-dom@^16.2.0:
-  version "16.4.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.0.tgz#099f067dd5827ce36a29eaf9a6cdc7cbf6216b1e"
->>>>>>> Base text input
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7374,15 +7358,9 @@ react-inspector@^2.2.2:
     babel-runtime "^6.26.0"
     is-dom "^1.0.9"
 
-<<<<<<< HEAD
 react-is@^16.4.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
-=======
-react-is@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.0.tgz#cc9fdc855ac34d2e7d9d2eb7059bbc240d35ffcf"
->>>>>>> Base text input
 
 react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -7426,22 +7404,13 @@ react-style-proptype@^3.0.0:
     prop-types "^15.5.4"
 
 react-test-renderer@^16.0.0-0:
-<<<<<<< HEAD
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.4.1.tgz#f2fb30c2c7b517db6e5b10ed20bb6b0a7ccd8d70"
-=======
-  version "16.4.0"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.4.0.tgz#0dbe0e24263e94e1830c7afb1f403707fad313a3"
->>>>>>> Base text input
   dependencies:
     fbjs "^0.8.16"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
-<<<<<<< HEAD
     react-is "^16.4.1"
-=======
-    react-is "^16.4.0"
->>>>>>> Base text input
 
 react-textarea-autosize@^5.2.1:
   version "5.2.1"
@@ -7469,15 +7438,9 @@ react-treebeard@^2.1.0:
     shallowequal "^0.2.2"
     velocity-react "^1.3.1"
 
-<<<<<<< HEAD
 react@^16.4.0:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
-=======
-react@^16.2.0:
-  version "16.4.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.4.0.tgz#402c2db83335336fba1962c08b98c6272617d585"
->>>>>>> Base text input
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -8327,41 +8290,10 @@ ssri@^5.2.4:
   dependencies:
     safe-buffer "^5.1.1"
 
-<<<<<<< HEAD
-=======
-stack-generator@^2.0.1:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/stack-generator/-/stack-generator-2.0.3.tgz#bb74385c67ffc4ccf3c4dee5831832d4e509c8a0"
-  dependencies:
-    stackframe "^1.0.4"
-
->>>>>>> Base text input
 stack-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.1.tgz#d4f33ab54e8e38778b0ca5cfd3b3afb12db68620"
 
-<<<<<<< HEAD
-=======
-stackframe@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-1.0.4.tgz#357b24a992f9427cba6b545d96a14ed2cbca187b"
-
-stacktrace-gps@^3.0.1:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/stacktrace-gps/-/stacktrace-gps-3.0.2.tgz#33f8baa4467323ab2bd1816efa279942ba431ccc"
-  dependencies:
-    source-map "0.5.6"
-    stackframe "^1.0.4"
-
-stacktrace-js@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/stacktrace-js/-/stacktrace-js-2.0.0.tgz#776ca646a95bc6c6b2b90776536a7fc72c6ddb58"
-  dependencies:
-    error-stack-parser "^2.0.1"
-    stack-generator "^2.0.1"
-    stacktrace-gps "^3.0.1"
-
->>>>>>> Base text input
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"
@@ -8530,6 +8462,7 @@ styletron-engine-atomic@^1.0.5:
     styletron-standard "^1.0.3"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 styletron-react-core@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/styletron-react-core/-/styletron-react-core-1.3.1.tgz#3f7565798f653541ce1d825e33a11cd45813e568"
@@ -8544,11 +8477,15 @@ styletron-react-core@^1.2.2:
   resolved "https://registry.yarnpkg.com/styletron-react-core/-/styletron-react-core-1.2.2.tgz#82c2f15880c21c597826e080161056cc79bee2f9"
 >>>>>>> Base text input
 >>>>>>> Base text input
+=======
+styletron-react-core@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/styletron-react-core/-/styletron-react-core-1.3.0.tgz#0fc19384cd6361bc0f3db4ae8e93d9a3082f57e5"
+>>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
   dependencies:
     create-react-context "^0.2.2"
     prop-types "^15.6.0"
 
-<<<<<<< HEAD
 styletron-react@^4.3.0:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-4.3.1.tgz#7609233340c1240c7b118a83df4d6088a4515b7c"
@@ -8558,6 +8495,7 @@ styletron-react@^4.3.0:
     styletron-react-core "^1.3.1"
 =======
     styletron-react-core "^1.3.0"
+<<<<<<< HEAD
 =======
 styletron-react@^4.1.0:
   version "4.2.2"
@@ -8567,6 +8505,8 @@ styletron-react@^4.1.0:
     styletron-react-core "^1.2.2"
 >>>>>>> Base text input
 >>>>>>> Base text input
+=======
+>>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
     styletron-standard "^1.0.3"
 
 styletron-standard@^1.0.3:
@@ -8921,11 +8861,7 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-<<<<<<< HEAD
 upath@^1.0.5:
-=======
-upath@^1.0.0:
->>>>>>> Base text input
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.1.0.tgz#35256597e46a581db4793d0ce47fa9aebfc9fabd"
 
@@ -8952,13 +8888,8 @@ url-loader@^0.6.2:
     schema-utils "^0.3.0"
 
 url-parse@^1.1.8, url-parse@~1.4.0:
-<<<<<<< HEAD
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.1.tgz#4dec9dad3dc8585f862fed461d2e19bbf623df30"
-=======
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.0.tgz#6bfdaad60098c7fe06f623e42b22de62de0d3d75"
->>>>>>> Base text input
   dependencies:
     querystringify "^2.0.0"
     requires-port "^1.0.0"
@@ -9183,13 +9114,8 @@ whatwg-mimetype@^2.0.0, whatwg-mimetype@^2.1.0:
   resolved "https://registry.yarnpkg.com/whatwg-mimetype/-/whatwg-mimetype-2.1.0.tgz#f0f21d76cbba72362eb609dbed2a30cd17fcc7d4"
 
 whatwg-url@^6.4.0, whatwg-url@^6.4.1:
-<<<<<<< HEAD
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/whatwg-url/-/whatwg-url-6.5.0.tgz#f2df02bff176fd65070df74ad5ccbb5a199965a8"
-=======
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/whatwg-url/-/whatwg-url-6.4.1.tgz#fdb94b440fd4ad836202c16e9737d511f012fd67"
->>>>>>> Base text input
   dependencies:
     lodash.sortby "^4.7.0"
     tr46 "^1.0.1"

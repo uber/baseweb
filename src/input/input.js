@@ -1,64 +1,79 @@
 // @flow
 import * as React from 'react';
-import type {Props, DefaultProps} from './types';
+import {BaseInput} from './index';
 
-class StatelessInput extends React.Component<Props & DefaultProps> {
-  static defaultProps: DefaultProps = {
-    type: 'text',
-    value: '',
-    placeholder: '',
+function getAdjoinedProp({startEnhancer, endEnhancer}) {
+  if (startEnhancer && endEnhancer) {
+    return 'both';
+  } else if (startEnhancer) {
+    return 'left';
+  } else if (endEnhancer) {
+    return 'right';
+  }
+  return 'none';
+}
+
+class TextInput extends React.Component {
+  static defaultProps = {
+    label: null,
+    caption: null,
+    startEnhancer: null,
+    endEnhancer: null,
     disabled: false,
-    $inputRef: React.createRef(),
-    $isFocused: false,
     $error: false,
-    $adjoined: 'none',
     $size: 'default',
-    onChange: () => {},
-    onFocus: () => {},
-    onBlur: () => {},
   };
 
-  componentDidMount() {
-    if (this.props.$isFocused) {
-      this.props.$inputRef.current.focus();
+  getSharedProps(props) {
+    const sharedProps = {};
+    for (let key in props) {
+      if (key[0] === '$') {
+        sharedProps[key] = props[key];
+      }
     }
+    sharedProps.$disabled = this.props.disabled;
+    return sharedProps;
   }
 
   render() {
+    const {label, caption, startEnhancer, endEnhancer, ...rest} = this.props;
+
     const {
-      components: {Root, Input, Before, After},
-      $inputRef,
-      $isFocused,
-      $error,
-      $adjoined,
-      $size,
-      type,
-      value,
-      ...rest
-    } = this.props;
+      Root,
+      Label,
+      Caption,
+      StartEnhancer,
+      EndEnhancer,
+    } = this.props.components;
 
-    const sharedProps = {
-      $isFocused,
-      $error,
-      $adjoined,
-      $size,
-      $disabled: this.props.disabled,
-    };
-
+    const sharedProps = this.getSharedProps(rest);
     return (
-      <Root {...sharedProps}>
-        {Before ? <Before {...sharedProps} /> : null}
-        <Input
-          {...sharedProps}
-          {...rest}
-          $ref={$inputRef}
-          type={type}
-          value={value}
-        />
-        {After ? <After {...sharedProps} /> : null}
-      </Root>
+      <React.Fragment>
+        {label ? <Label {...sharedProps} children={label} /> : null}
+        <Root {...sharedProps}>
+          {startEnhancer ? (
+            <StartEnhancer
+              {...sharedProps}
+              $position="start"
+              children={startEnhancer}
+            />
+          ) : null}
+          <BaseInput
+            {...rest}
+            $adjoined={getAdjoinedProp({startEnhancer, endEnhancer})}
+          />
+          {endEnhancer ? (
+            <EndEnhancer
+              {...sharedProps}
+              $position="end"
+              children={endEnhancer}
+            />
+          ) : null}
+        </Root>
+        {caption ? <Caption {...sharedProps} children={caption} /> : null}
+      </React.Fragment>
     );
   }
 }
 
-export default StatelessInput;
+export default TextInput;

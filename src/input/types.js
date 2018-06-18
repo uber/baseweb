@@ -5,15 +5,27 @@ export type Size = 'default' | 'compact';
 
 export type StateType = 'change' | 'focus' | 'blur';
 
-export type Components = {
+export type BaseComponents = {
   Root: any,
   Input: any,
   Before?: ?any,
   After?: ?any,
 };
 
+export type Components = {
+  Label: any,
+  Root: any,
+  StartEnhancer: any,
+  InputContainer: any,
+  Before?: ?any,
+  Input: any,
+  After?: ?any,
+  EndEnhancer: any,
+  Caption: any,
+};
+
 export type Props = {
-  components: Components,
+  components: BaseComponents,
   type?: string,
   value?: string,
   placeholder?: string,
@@ -52,7 +64,7 @@ export type StateReducer = (
   stateType: StateType,
   nextState: State,
   currentState: State,
-  event: any,
+  event: any
 ) => State;
 
 export type StatefulProps = {

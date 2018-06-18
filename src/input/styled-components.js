@@ -1,14 +1,5 @@
 import {styled} from '../styles';
 
-function getBorderRadius(adjoined, radius) {
-  return {
-    none: radius,
-    left: `0 ${radius} ${radius} 0`,
-    right: `${radius} 0 0 ${radius}`,
-    both: '0',
-  }[adjoined];
-}
-
 function getInputPadding(size, sizing) {
   return {
     default: {
@@ -26,7 +17,23 @@ function getInputPadding(size, sizing) {
   }[size];
 }
 
-function getInputFont(size, typography) {
+function getBorderRadius(adjoined, radius) {
+  return {
+    none: radius,
+    left: `0 ${radius} ${radius} 0`,
+    right: `${radius} 0 0 ${radius}`,
+    both: '0',
+  }[adjoined];
+}
+
+function getDecoratorBorderRadius(position, radius) {
+  return {
+    start: `${radius} 0 0 ${radius}`,
+    end: `0 ${radius} ${radius} 0`,
+  }[position];
+}
+
+function getFont(size, typography) {
   return {
     default: typography.font400,
     compact: typography.font300,
@@ -34,16 +41,72 @@ function getInputFont(size, typography) {
 }
 
 export const Root = styled('div', props => {
+  const {$size, $theme: {colors, typography}} = props;
+  return {
+    ...getFont($size, typography),
+    color: colors.mono1000,
+    display: 'flex',
+    width: '100%',
+  };
+});
+
+export const Label = styled('label', props => {
+  const {$size, $disabled, $theme: {colors, sizing, typography}} = props;
+  return {
+    ...getFont($size, typography),
+    fontWeight: 500,
+    color: $disabled ? colors.mono700 : colors.mono1000,
+    display: 'block',
+    paddingTop: '0',
+    paddingRight: '0',
+    paddingBottom: '0',
+    paddingLeft: '0',
+    marginTop: sizing.scale300,
+    marginRight: '0',
+    marginBottom: sizing.scale300,
+    marginLeft: '0',
+  };
+});
+
+export const Caption = styled('p', props => {
+  const {$size, $error, $theme: {colors, sizing, typography}} = props;
+  return {
+    ...getFont($size, typography),
+    color: $error ? colors.alert400 : colors.mono800,
+    paddingTop: '0',
+    paddingRight: '0',
+    paddingBottom: '0',
+    paddingLeft: '0',
+    marginTop: sizing.scale300,
+    marginRight: '0',
+    marginBottom: sizing.scale300,
+    marginLeft: '0',
+  };
+});
+
+export const InputEnhancer = styled('div', props => {
+  const {$position, $size, $theme: {colors, sizing, typography}} = props;
+  return {
+    ...getFont($size, typography),
+    color: colors.mono900,
+    ...getInputPadding($size, sizing),
+    backgroundColor: colors.mono400,
+    borderRadius: getDecoratorBorderRadius($position, sizing.scale100),
+  };
+});
+
+export const InputContainer = styled('div', props => {
   const {
     $isFocused,
     $adjoined,
     $error,
     $disabled,
     $size,
-    theme: {colors, sizing, typography},
+    $theme: {colors, sizing, typography},
   } = props;
   return {
-    ...getInputFont($size, typography),
+    ...getFont($size, typography),
+    color: colors.mono1000,
     boxSizing: 'border-box',
     display: 'flex',
     width: '100%',
@@ -69,11 +132,9 @@ export const Root = styled('div', props => {
 });
 
 export const Input = styled('input', props => {
-  const {$disabled, $size, theme: {colors, sizing, typography}} = props;
+  const {$disabled, $size, $theme: {colors, sizing, typography}} = props;
   return {
-    ...getInputFont($size, typography),
-    // TODO: Add 14/20 font option to theme?
-    lineHeight: '20px',
+    ...getFont($size, typography),
     color: colors.mono1000,
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
@@ -84,6 +145,9 @@ export const Input = styled('input', props => {
     width: '100%',
     '::placeholder': {
       color: $disabled ? colors.mono600 : colors.mono700,
+    },
+    ':hover': {
+      cursor: $disabled ? 'not-allowed' : 'text',
     },
   };
 });

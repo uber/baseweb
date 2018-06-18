@@ -1,13 +1,28 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import {styled, withStyle} from 'styletron-react';
-import {Input, StyledRoot} from './index';
+import {withStyle} from 'styletron-react';
+import {styled} from '../styles';
+import {StatefulInput as Input, StyledInputContainer} from './index';
 import {withProps} from '../helpers';
 
 const onChange = e => {
   // eslint-disable-next-line no-console
   console.log('New Value:', e.target.value);
 };
+
+const Button = styled('button', ({$theme}) => {
+  return {
+    ...$theme.typography.font400,
+    display: 'block',
+    paddingTop: '10px',
+    paddingRight: '12px',
+    paddingBottom: '10px',
+    paddingLeft: '12px',
+    marginTop: '8px',
+    width: '100%',
+    borderRadius: $theme.sizing.scale100,
+  };
+});
 
 const Icon = styled('span', props => {
   return {
@@ -28,61 +43,140 @@ const Icon = styled('span', props => {
   };
 });
 
-const RootWithStyle = withStyle(StyledRoot, props => {
-  const {$disabled, $error, $isFocused, theme: {colors}} = props;
+const RootWithStyle = withStyle(StyledInputContainer, props => {
+  const {$disabled, $error, $isFocused, $theme: {colors, sizing}} = props;
   return {
-    border: `1px solid ${
+    borderColor: $disabled
+      ? colors.borderAlt
+      : $error
+        ? colors.borderError
+        : $isFocused ? 'darkseagreen' : colors.border,
+    boxShadow: `0 0 ${sizing.scale100} ${
       $disabled
-        ? colors.borderAlt
-        : $error ? colors.borderError : $isFocused ? 'lightpink' : colors.border
+        ? 'transparent'
+        : $error
+          ? colors.shadowError
+          : $isFocused ? 'lightseagreen' : 'transparent'
     }`,
   };
 });
 
-const RootWithProps = withProps(StyledRoot, {'data-value': 'secret value'});
+const RootWithProps = withProps(StyledInputContainer, {
+  'data-value': 'hidden value',
+});
 
 storiesOf('Input', module)
-  .add('Input example', () => {
-    return <Input onChange={onChange} placeholder="Uncontrolled input" />;
-  })
-  .add('Input initially focused', () => {
+  .add('Input size', () => {
     return (
-      <Input
-        initialState={{$isFocused: true}}
-        onChange={onChange}
-        placeholder="Uncontrolled initially focused input"
-      />
+      <React.Fragment>
+        <Input
+          label="Default input"
+          caption="Caption"
+          placeholder="Placeholder"
+        />
+        <Input
+          label="Compact input"
+          caption="Caption"
+          $size="compact"
+          placeholder="Placeholder"
+        />
+      </React.Fragment>
     );
   })
-  .add('Input with an error', () => {
+  .add('Input state', () => {
     return (
-      <Input onChange={onChange} $error placeholder="Input with an error " />
+      <React.Fragment>
+        <Input
+          label="Dafault input"
+          caption="Caption"
+          $size="compact"
+          placeholder="Placeholder"
+        />
+        <Input
+          label="Initially focused input"
+          caption="Caption"
+          initialState={{$isFocused: true}}
+          startEnhancer="@"
+          endEnhancer=".00"
+          $size="compact"
+          placeholder="Placeholder"
+        />
+        <Input
+          label="Input in an error state"
+          caption="Error caption"
+          $size="compact"
+          $error
+          placeholder="Placeholder"
+        />
+        <Input
+          label="Input with enhancers in an error state"
+          caption="Error caption"
+          startEnhancer="@"
+          endEnhancer=".00"
+          $size="compact"
+          $error
+          placeholder="Placeholder"
+        />
+        <Input
+          label="Disabled input"
+          caption="Caption"
+          $size="compact"
+          disabled
+          placeholder="Placeholder"
+        />
+        <Input
+          label="Disabled input with enhancers"
+          caption="Caption"
+          startEnhancer="@"
+          endEnhancer=".00"
+          $size="compact"
+          disabled
+          placeholder="Placeholder"
+        />
+      </React.Fragment>
     );
   })
-  .add('Input disabled', () => {
-    return <Input onChange={onChange} disabled placeholder="Disabled" />;
-  })
-  .add('Input compact', () => {
+  .add('Input label and caption', () => {
     return (
-      <Input onChange={onChange} $size="compact" placeholder="Compact input" />
+      <React.Fragment>
+        <Input
+          label="String type label"
+          caption="String type caption"
+          $size="compact"
+          placeholder="Placeholder"
+        />
+        <Input
+          label={<span>Node type label</span>}
+          caption={<span>Node type caption</span>}
+          $size="compact"
+          placeholder="Placeholder"
+        />
+      </React.Fragment>
     );
   })
-  .add('Input adjoined left', () => {
+  .add('Input enhancers', () => {
     return (
-      <Input
-        onChange={onChange}
-        $adjoined="left"
-        placeholder="To be grouped on the left"
-      />
-    );
-  })
-  .add('Input adjoined right', () => {
-    return (
-      <Input
-        onChange={onChange}
-        $adjoined="right"
-        placeholder="To be grouped on the right"
-      />
+      <React.Fragment>
+        <Input
+          label="Input with a startEnhancer"
+          caption="Caption"
+          startEnhancer="@"
+          placeholder="Start enhancer"
+        />
+        <Input
+          label="Input with an endEnhancer"
+          caption="Caption"
+          endEnhancer=".00"
+          placeholder="End enhancer"
+        />
+        <Input
+          label="Input with start and end enhancers"
+          caption="Caption"
+          startEnhancer="@"
+          endEnhancer=".00"
+          placeholder="Placeholder"
+        />
+      </React.Fragment>
     );
   })
   .add('Input adjoined both', () => {
@@ -94,62 +188,60 @@ storiesOf('Input', module)
       />
     );
   })
-  .add('Input with before', () => {
+  .add('Input with Before and After', () => {
     return (
-      <Input
-        onChange={onChange}
-        components={{Before: props => <Icon {...props} $position="left" />}}
-        placeholder="With a Before element"
-      />
+      <React.Fragment>
+        <Input
+          label="Input with a Before component"
+          onChange={onChange}
+          components={{Before: props => <Icon {...props} $position="left" />}}
+          placeholder="With a Before element"
+        />
+        <Input
+          label="Input with an After component"
+          onChange={onChange}
+          components={{After: props => <Icon {...props} $position="right" />}}
+          placeholder="With an After element"
+        />
+      </React.Fragment>
     );
   })
-  .add('Input with after', () => {
+  .add('Input with style overrides and extra props passed', () => {
     return (
-      <Input
-        onChange={onChange}
-        components={{After: props => <Icon {...props} $position="right" />}}
-        placeholder="With an After element"
-      />
-    );
-  })
-  .add('Input with style overrides', () => {
-    return (
-      <Input
-        onChange={onChange}
-        components={{Root: RootWithStyle}}
-        placeholder="With style overrides on the Root element"
-      />
-    );
-  })
-  .add('Input with extra props', () => {
-    return (
-      <Input
-        onChange={onChange}
-        components={{
-          Root: RootWithProps,
-        }}
-        placeholder="With a custom 'data-value' attr on the Root"
-      />
+      <React.Fragment>
+        <Input
+          label="Input with style overrides"
+          onChange={onChange}
+          components={{InputContainer: RootWithStyle}}
+          placeholder="With style overrides on the Root element"
+        />
+        <Input
+          label="Input with extra props"
+          onChange={onChange}
+          components={{
+            InputContainer: RootWithProps,
+          }}
+          placeholder="With a custom 'data-value' attr on the Root"
+        />
+      </React.Fragment>
     );
   })
   .add('Input with a ref', () => {
     const inputRef = React.createRef();
     return (
-      <Input
-        onChange={onChange}
-        $inputRef={inputRef}
-        components={{
-          After: props => (
-            <Icon
-              {...props}
-              $position="right"
-              onClick={() => {
-                inputRef.current.focus();
-              }}
-            />
-          ),
-        }}
-        placeholder="With input ref"
-      />
+      <React.Fragment>
+        <Input
+          onChange={onChange}
+          $inputRef={inputRef}
+          placeholder="With input ref"
+        />
+        <Button
+          onClick={() => {
+            inputRef.current.focus();
+          }}
+        >
+          Click here to focus input
+        </Button>
+      </React.Fragment>
     );
   });
