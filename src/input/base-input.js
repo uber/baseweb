@@ -1,86 +1,117 @@
 // @flow
 import * as React from 'react';
-import type {Props, DefaultProps} from './types';
+import type {BaseInputPropsT, InternalStateT} from './types';
+import getBuiId from '../utils/get-bui-id';
+import {ADJOINED, SIZE} from './constants';
+import {getSharedProps, getComponent, getComponentProps} from './utils';
+import {StyledInputContainer, StyledInput} from './index';
 
-class BaseInput extends React.Component<Props & DefaultProps> {
-  static defaultProps: DefaultProps = {
-    type: 'text',
-    value: '',
-    placeholder: '',
+class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
+  static defaultProps = {
+    adjoined: ADJOINED.none,
+    autoFocus: false,
     disabled: false,
-    $inputRef: React.createRef(),
-    $isFocused: false,
-    $error: false,
-    $adjoined: 'none',
-    $size: 'default',
+    error: false,
+    id: getBuiId(),
+    inputRef: React.createRef(),
+    onBlur: () => {},
     onChange: () => {},
     onFocus: () => {},
-    onBlur: () => {},
+    override: {},
+    placeholder: '',
+    required: false,
+    size: SIZE.default,
+    type: 'text',
+    value: '',
   };
 
   state = {
-    $isFocused: this.props.$isFocused || false,
+    isFocused: this.props.autoFocus || false,
   };
 
   componentDidMount() {
-    if (this.props.$isFocused) {
-      this.props.$inputRef.current.focus();
+    const {autoFocus, inputRef} = this.props;
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
     }
   }
 
-  onFocus = (e: any) => {
-    this.setState({$isFocused: true});
+  onFocus = (e: SyntheticFocusEvent<HTMLInputElement>) => {
+    this.setState({isFocused: true});
     this.props.onFocus(e);
   };
 
-  onBlur = (e: any) => {
-    this.setState({$isFocused: false});
+  onBlur = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.setState({isFocused: false});
     this.props.onBlur(e);
+  };
+
+  getInputProps = () => {
+    const {
+      disabled,
+      error,
+      id,
+      inputRef,
+      onChange,
+      placeholder,
+      required,
+      type,
+      value,
+    } = this.props;
+    return {
+      $ref: inputRef,
+      'aria-invalid': !!error,
+      'aria-required': required,
+      disabled,
+      id,
+      onChange,
+      onFocus: this.onFocus,
+      onBlur: this.onBlur,
+      placeholder,
+      type: type,
+      value: value,
+    };
   };
 
   render() {
     const {
-      components: {InputContainer, Input, Before, After},
-      $inputRef,
-      $isFocused,
-      $error,
-      $adjoined,
-      $size,
-      type,
-      value,
-      ...rest
+      override: {
+        InputContainer: InputContainerOverride,
+        Input: InputOverride,
+        Before: BeforeOverride,
+        After: AfterOverride,
+      },
     } = this.props;
 
-    const sharedProps = {};
-    for (let key in this.props) {
-      if (key[0] === '$') {
-        sharedProps[key] = this.props[key];
-      }
-    }
-    sharedProps.$disabled = this.props.disabled;
-    sharedProps.$isFocused = this.state.$isFocused;
+    const sharedProps = getSharedProps(this.props, this.state);
 
-    // const sharedProps = {
-    //   $isFocused,
-    //   $error,
-    //   $adjoined,
-    //   $size,
-    //   $disabled: this.props.disabled,
-    // };
+    const InputContainer = getComponent(
+      InputContainerOverride,
+      StyledInputContainer,
+    );
+    const Input = getComponent(InputOverride, StyledInput);
+    const Before = getComponent(BeforeOverride, null);
+    const After = getComponent(AfterOverride, null);
 
     return (
-      <InputContainer {...sharedProps}>
-        {Before ? <Before {...sharedProps} /> : null}
+      <InputContainer
+        {...getComponentProps(InputContainerOverride)}
+        {...sharedProps}
+      >
+        <span>
+          <i />
+        </span>
+        {Before ? (
+          <Before {...getComponentProps(BeforeOverride)} {...sharedProps} />
+        ) : null}
         <Input
-          {...rest}
+          {...getComponentProps(InputOverride)}
+          {...this.getInputProps()}
           {...sharedProps}
-          $ref={$inputRef}
-          type={type}
-          value={value}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
         />
-        {After ? <After {...sharedProps} /> : null}
+        {After ? (
+          <After {...getComponentProps(AfterOverride)} {...sharedProps} />
+        ) : null}
       </InputContainer>
     );
   }

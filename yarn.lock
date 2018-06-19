@@ -523,15 +523,7 @@ acorn@^4.0.3:
   version "4.0.13"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.13.tgz#105495ae5361d697bd195c825192e1ad7f253787"
 
-<<<<<<< HEAD
 acorn@^5.0.0, acorn@^5.0.3, acorn@^5.3.0, acorn@^5.5.3, acorn@^5.6.0:
-=======
-acorn@^5.0.0, acorn@^5.3.0, acorn@^5.5.0, acorn@^5.5.3:
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Base text input
-=======
->>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.1.tgz#f095829297706a7c9776958c0afc8930a9b9d9d8"
 
@@ -2207,36 +2199,12 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-<<<<<<< HEAD
-<<<<<<< HEAD
   version "1.0.30000865"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000865.tgz#82ffb64d40f7567620aac02d3a632079689abc6b"
 
 caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844:
   version "1.0.30000865"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000865.tgz#70026616e8afe6e1442f8bb4e1092987d81a2f25"
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
-  version "1.0.30000856"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000856.tgz#fbebb99abe15a5654fc7747ebb5315bdfde3358f"
-
-caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844:
-  version "1.0.30000856"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000856.tgz#ecc16978135a6f219b138991eb62009d25ee8daa"
-<<<<<<< HEAD
-=======
-  version "1.0.30000848"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000848.tgz#e149c981c72aa20439e3bc12c7cf8b3f7e1237c6"
-
-caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844:
-  version "1.0.30000848"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000848.tgz#ec9c0a72ec8f9ef812e4f4b8628625af9c85ade0"
->>>>>>> Base text input
->>>>>>> Base text input
-=======
->>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
 
 capture-exit@^1.2.0:
   version "1.2.0"
@@ -2823,23 +2791,8 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
     cssom "0.3.x"
 
 csstype@^2.2.0:
-<<<<<<< HEAD
-<<<<<<< HEAD
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.5.tgz#4125484a3d42189a863943f23b9e4b80fedfa106"
-=======
-<<<<<<< HEAD
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.4.tgz#93850187209b6d0a71d30a85abc95a6ae3f3e8cd"
-=======
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.3.tgz#2504152e6e1cc59b32098b7f5d6a63f16294c1f7"
->>>>>>> Base text input
->>>>>>> Base text input
-=======
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.4.tgz#93850187209b6d0a71d30a85abc95a6ae3f3e8cd"
->>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -3178,8 +3131,8 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30, electron-to-chromium@^1.3.47:
-  version "1.3.51"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.51.tgz#6a42b49daaf7f22a5b37b991daf949f34dbdb9b5"
+  version "1.3.52"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.52.tgz#d2d9f1270ba4a3b967b831c40ef71fb4d9ab5ce0"
 
 elliptic@^6.0.0:
   version "6.4.0"
@@ -3984,27 +3937,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 flow-bin@^0.75.0:
   version "0.75.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.75.0.tgz#b96d1ee99d3b446a3226be66b4013224ce9df260"
-=======
-<<<<<<< HEAD
-flow-bin@^0.74.0:
-  version "0.74.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.74.0.tgz#8017bb00efb37cbe8d81fbb7f464038bde06adc9"
-=======
-flow-bin@0.73.0:
-  version "0.73.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.73.0.tgz#da1b90a02b0ef9c439f068c2fc14968db83be425"
->>>>>>> Base text input
->>>>>>> Base text input
-=======
-flow-bin@^0.74.0:
-  version "0.74.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.74.0.tgz#8017bb00efb37cbe8d81fbb7f464038bde06adc9"
->>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
@@ -7073,18 +7008,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-<<<<<<< HEAD
 prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
-=======
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0, prop-types@^15.6.1:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
-  dependencies:
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
-prop-types@^15.5.7, prop-types@^15.6.2:
->>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -8461,27 +8385,9 @@ styletron-engine-atomic@^1.0.5:
     inline-style-prefixer "^4.0.0"
     styletron-standard "^1.0.3"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 styletron-react-core@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/styletron-react-core/-/styletron-react-core-1.3.1.tgz#3f7565798f653541ce1d825e33a11cd45813e568"
-=======
-<<<<<<< HEAD
-styletron-react-core@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/styletron-react-core/-/styletron-react-core-1.3.0.tgz#0fc19384cd6361bc0f3db4ae8e93d9a3082f57e5"
-=======
-styletron-react-core@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/styletron-react-core/-/styletron-react-core-1.2.2.tgz#82c2f15880c21c597826e080161056cc79bee2f9"
->>>>>>> Base text input
->>>>>>> Base text input
-=======
-styletron-react-core@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/styletron-react-core/-/styletron-react-core-1.3.0.tgz#0fc19384cd6361bc0f3db4ae8e93d9a3082f57e5"
->>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
   dependencies:
     create-react-context "^0.2.2"
     prop-types "^15.6.0"
@@ -8491,22 +8397,7 @@ styletron-react@^4.3.0:
   resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-4.3.1.tgz#7609233340c1240c7b118a83df4d6088a4515b7c"
   dependencies:
     prop-types "^15.6.0"
-<<<<<<< HEAD
     styletron-react-core "^1.3.1"
-=======
-    styletron-react-core "^1.3.0"
-<<<<<<< HEAD
-=======
-styletron-react@^4.1.0:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-4.2.2.tgz#f0a228aad05b4e5c7303fa56e273a36dd9eb1ff7"
-  dependencies:
-    prop-types "^15.6.0"
-    styletron-react-core "^1.2.2"
->>>>>>> Base text input
->>>>>>> Base text input
-=======
->>>>>>> Move the  state into the base input, split input into BaseInput and Input components, where later accepts label, caption and enhancers, other related changes.
     styletron-standard "^1.0.3"
 
 styletron-standard@^1.0.3:

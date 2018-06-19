@@ -1,80 +1,55 @@
 // @flow
 import * as React from 'react';
-import {STATE_TYPE} from './constants';
+import {STATE_CHANGE_TYPE} from './constants';
 import type {
-  StatefulProps,
-  DefaultStatefulProps,
-  StateReducer,
-  StateType,
-  State,
+  StatefulContainerPropsT,
+  StateT,
+  StateReducerT,
+  StateTypeT,
 } from './types';
 
-const defaultStateReducer: StateReducer = (type, nextState) => nextState;
+const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 class StatefulContainer extends React.Component<
-  StatefulProps & DefaultStatefulProps,
-  State,
+  StatefulContainerPropsT,
+  StateT,
 > {
-  static defaultProps: DefaultStatefulProps = {
+  static defaultProps = {
     initialState: {},
     stateReducer: defaultStateReducer,
     onChange: () => {},
-    onFocus: () => {},
-    onBlur: () => {},
   };
 
-  constructor(props: StatefulProps & DefaultStatefulProps) {
-    super(props);
-    this.state = {
-      value: '',
-      $isFocused: false,
-      ...this.props.initialState,
-    };
-  }
+  state: StateT = {
+    value: '',
+    ...this.props.initialState,
+  };
 
-  onChange = (e: any) => {
-    this.stateReducer(STATE_TYPE.change, e);
+  onChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.stateReducer(STATE_CHANGE_TYPE.change, e);
     this.props.onChange(e);
   };
 
-  onFocus = (e: any) => {
-    this.stateReducer(STATE_TYPE.focus, e);
-    this.props.onFocus(e);
-  };
-
-  onBlur = (e: any) => {
-    this.stateReducer(STATE_TYPE.blur, e);
-    this.props.onBlur(e);
-  };
-
-  stateReducer = (type: StateType, e: any) => {
+  stateReducer = (type: StateTypeT, e: SyntheticEvent<HTMLInputElement>) => {
     let nextState = {};
-    switch (type) {
-      case STATE_TYPE.change:
-        nextState = {value: e.target.value};
-        break;
-      case STATE_TYPE.focus:
-        nextState = {$isFocused: true};
-        break;
-      case STATE_TYPE.blur:
-        nextState = {$isFocused: false};
-        break;
-      default:
-        nextState;
+    if (
+      type === STATE_CHANGE_TYPE.change &&
+      // eslint-disable-next-line cup/no-undef
+      e.target instanceof window.HTMLInputElement
+    ) {
+      nextState = {value: e.target.value};
     }
-    const newState = this.props.stateReducer(type, nextState, this.state, e);
+    const newState = this.props.stateReducer(type, nextState, this.state);
     this.setState(newState);
   };
 
   render() {
     const {children, initialState, stateReducer, ...rest} = this.props;
-    const {onChange, onFocus, onBlur} = this;
+    const {onChange} = this;
     return children({
       ...rest,
       ...this.state,
       onChange,
-      onFocus,
-      onBlur,
     });
   }
 }

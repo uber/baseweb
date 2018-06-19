@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input - basic functionality: input has correct props 1`] = `
+Object {
+  "aria-invalid": false,
+  "aria-required": false,
+  "disabled": false,
+  "id": "bui-1",
+  "onBlur": [Function],
+  "onChange": [MockFunction],
+  "onFocus": [Function],
+  "placeholder": "Placeholder",
+  "styled-component": "true",
+  "type": "text",
+  "value": "input value",
+}
+`;
