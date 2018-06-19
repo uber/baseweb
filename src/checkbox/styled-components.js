@@ -11,17 +11,19 @@ function getBorderColor(props) {
 }
 
 function getLabelPadding(props) {
-  const {$placement} = props;
+  const {$placement, theme} = props;
+  const {sizing} = theme;
+  const {scale100} = sizing;
   switch ($placement) {
     case 'left':
-      return '0 4px 0 0';
+      return '0 ' + scale100 + ' 0 0';
     case 'top':
-      return '0 0 4px 0';
+      return '0 0 ' + scale100 + ' 0';
     case 'bottom':
-      return '4px 0 0 0';
+      return scale100 + ' 0 0 0';
     case 'right':
     default:
-      return '0 0 0 4px';
+      return '0 0 0 ' + scale100;
   }
 }
 

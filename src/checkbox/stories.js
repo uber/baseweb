@@ -8,6 +8,8 @@ import {
   StyledRoot,
   StyledLabel,
   StyledCheckmark,
+  StyledInput,
+  StatelessCheckbox,
 } from './index';
 
 const onChange = e => {
@@ -33,6 +35,76 @@ const Icon = styled('span', () => {
   };
 });
 
+class GroupList extends React.Component<any, any> {
+  static defaultProps: any = {};
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      checkboxes: [false, false],
+    };
+  }
+  render() {
+    const {checkboxes} = this.state;
+    const unchecked = checkboxes.filter(checkbox => !checkbox).length;
+    const $isIndeterminate = unchecked > 0 && unchecked < checkboxes.length;
+    return (
+      <div>
+        <StatelessCheckbox
+          components={{
+            Root: StyledRoot,
+            Label: StyledLabel,
+            Checkmark: StyledCheckmark,
+            Input: StyledInput,
+          }}
+          onChange={e => {
+            const checkboxes = this.state.checkboxes.slice();
+            checkboxes[0] = e.target.checked;
+            checkboxes[1] = e.target.checked;
+            this.setState({checkboxes});
+          }}
+          $isIndeterminate={$isIndeterminate}
+          checked={unchecked === 0}
+          $label="Indeterminate checkbox if not all subcheckboxes are checked"
+        />
+        <div style={{padding: 30}}>
+          <div>
+            <StatelessCheckbox
+              components={{
+                Root: StyledRoot,
+                Label: StyledLabel,
+                Checkmark: StyledCheckmark,
+                Input: StyledInput,
+              }}
+              checked={this.state.checkboxes[0]}
+              onChange={e => {
+                const checkboxes = this.state.checkboxes.slice();
+                checkboxes[0] = e.target.checked;
+                this.setState({checkboxes});
+              }}
+              $label="First subcheckbox"
+            />
+          </div>
+          <StatelessCheckbox
+            components={{
+              Root: StyledRoot,
+              Label: StyledLabel,
+              Checkmark: StyledCheckmark,
+              Input: StyledInput,
+            }}
+            checked={this.state.checkboxes[1]}
+            onChange={e => {
+              const checkboxes = this.state.checkboxes.slice();
+              checkboxes[1] = e.target.checked;
+              this.setState({checkboxes});
+            }}
+            $label="Second subcheckbox"
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
 storiesOf('Checkbox', module)
   .add('Checkbox example', () => {
     return <Checkbox onChange={onChange} $label="click me" />;
@@ -43,13 +115,9 @@ storiesOf('Checkbox', module)
     );
   })
   .add('Checkbox Indeterminate', () => {
-    return (
-      <Checkbox
-        onChange={onChange}
-        $isIndeterminate
-        $label="Indeterminate checkbox"
-      />
-    );
+    //let checkboxes = [false, false];
+    //const ref = React.createRef();
+    return <GroupList />;
   })
   .add('Checkbox disabled', () => {
     return <Checkbox onChange={onChange} disabled $label="Disabled checkbox" />;

@@ -53,7 +53,7 @@ export type Props = {
 export type StateType = 'change' | 'focus' | 'blur' | 'hover';
 
 export type State = {
-  checked?: string,
+  checked?: boolean,
   $isFocused?: boolean,
   $isHovered?: boolean,
 };
@@ -79,7 +79,18 @@ export type StatefulProps = {
   components?: Components,
   children?: Function,
   initialState?: State,
-  stateReducer?: StateReducer,
+  stateReducer: StateReducer,
+  onChange?: Function,
+  onMouseEnter?: Function,
+  onMouseLeave?: Function,
+  onFocus?: Function,
+  onBlur?: Function,
+};
+
+export type StatefulCheckboxProps = {
+  components?: Components,
+  children?: Function,
+  initialState?: State,
   onChange?: Function,
   onMouseEnter?: Function,
   onMouseLeave?: Function,

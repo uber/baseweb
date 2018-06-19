@@ -13,7 +13,11 @@ const defaultStateReducer: StateReducer = (type, nextState) => nextState;
 
 class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
   static defaultProps: DefaultStatefulProps = {
-    initialState: {},
+    initialState: {
+      checked: false,
+      $isFocused: false,
+      $isIndeterminate: false,
+    },
     stateReducer: defaultStateReducer,
     onChange: () => {},
     onMouseEnter: () => {},
@@ -85,10 +89,7 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
       default:
         nextState = this.state;
     }
-    let newState = nextState;
-    if (this.props.stateReducer) {
-      newState = this.props.stateReducer(type, nextState, this.state, e);
-    }
+    const newState = this.props.stateReducer(type, nextState, this.state, e);
     this.setState(newState);
   };
 

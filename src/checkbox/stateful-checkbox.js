@@ -6,14 +6,16 @@ import {
   StyledRoot,
   StyledCheckmark,
   StyledLabel,
+  StyledInput,
 } from './index';
-import type {StatefulProps, Props} from './types';
+import type {Props, StatefulCheckboxProps} from './types';
 
-export default function(props: StatefulProps) {
+export default function(props: StatefulCheckboxProps) {
   const components = {
     Root: StyledRoot,
     Checkmark: StyledCheckmark,
     Label: StyledLabel,
+    Input: StyledInput,
     ...props.components,
   };
   return (
