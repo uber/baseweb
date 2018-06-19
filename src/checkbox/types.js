@@ -62,7 +62,7 @@ export type StateReducer = (
   stateType: string,
   nextState: State,
   currentState: State,
-  event: any
+  event: any,
 ) => State;
 
 export type DefaultStatefulProps = {

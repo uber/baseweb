@@ -10,8 +10,8 @@ import {LightTheme} from '../themes';
 Enzyme.configure({adapter: new Adapter()});
 
 test('styled', () => {
-  const StyledMockButton = styled('button', ({theme}) => ({
-    backgroundColor: theme.colors.primary400,
+  const StyledMockButton = styled('button', ({$theme}) => ({
+    backgroundColor: $theme.colors.primary400,
   }));
 
   const TestComponent = withStyletronProvider(
@@ -22,5 +22,5 @@ test('styled', () => {
     .find('#testButton')
     .children()
     .at(0);
-  expect(button.props().theme).toBe(LightTheme);
+  expect(button.props().$theme).toBe(LightTheme);
 });

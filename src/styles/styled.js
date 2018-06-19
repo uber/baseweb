@@ -9,7 +9,7 @@ const getInitialStyle = () => ({});
 
 const wrapper = StyledComponent => props => (
   <ThemeContext.Consumer>
-    {theme => <StyledComponent {...props} theme={theme} />}
+    {theme => <StyledComponent {...props} $theme={theme} />}
   </ThemeContext.Consumer>
 );
 
