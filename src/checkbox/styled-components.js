@@ -90,7 +90,9 @@ export const Label = styled('div', props => {
     textTransform: 'capitalize',
     padding: getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font401,
+    ...typography.font400,
+    fontWeight: 'bolder',
+    lineHeight: '20px',
   };
 });
 

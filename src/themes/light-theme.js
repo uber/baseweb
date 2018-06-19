@@ -21,7 +21,6 @@ const mono1000 = 'hsl(0, 0%, 0%)';
 
 // font constants
 const primaryFontFamily = '"Helvetica Neue", arial, sans-serif';
-const secondaryFontFamily = '"Clan Pro For UBER", arial, sans-serif';
 
 export default {
   colors: {
@@ -146,12 +145,6 @@ export default {
       fontSize: '14px',
       fontWeight: 'normal',
       lineHeight: '24px',
-    },
-    font401: {
-      fontFamily: secondaryFontFamily,
-      fontSize: '14px',
-      fontWeight: 'bolder',
-      lineHeight: '20px',
     },
     font500: {
       fontFamily: primaryFontFamily,
