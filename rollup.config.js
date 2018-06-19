@@ -1,3 +1,4 @@
+// @flow
 import babel from 'rollup-plugin-babel';
 import filesize from 'rollup-plugin-filesize';
 import nodeResolve from 'rollup-plugin-node-resolve';
