@@ -1,22 +1,35 @@
 // color constants
-const primary100 = 'hsl(215, 77%, 95%)';
-const primary200 = 'hsl(215, 77%, 90%)';
-const primary300 = 'hsl(215, 75%, 75%)';
-const primary400 = 'hsl(215, 78%, 49%)';
-const primary500 = 'hsl(215, 79%, 25%)';
-const alert400 = 'hsl(6, 77%, 56%)';
-const warning400 = 'hsl(26, 89%, 49%)';
-const success400 = 'hsl(152, 92%, 33%)';
-const mono100 = 'hsl(0, 0%, 100%)';
-const mono200 = 'hsl(0, 0%, 97%)';
-const mono300 = 'hsl(0, 0%, 94%)';
-const mono400 = 'hsl(0, 0%, 90%)';
-const mono500 = 'hsl(0, 0%, 80%)';
-const mono600 = 'hsl(0, 0%, 70%)';
-const mono700 = 'hsl(0, 0%, 60%)';
-const mono800 = 'hsl(0, 0%, 40%)';
-const mono900 = 'hsl(0, 0%, 20%)';
-const mono1000 = 'hsl(0, 0%, 0%)';
+const primary100 = 'hsl(215, 77%, 95%)'; /* #e8f1fc */
+const primary200 = 'hsl(215, 77%, 90%)'; /* #d2e2f9 */
+const primary300 = 'hsl(215, 75%, 75%)'; /* '#8fb7ef' */
+const primary400 = 'hsl(215, 78%, 49%)'; /* '#1b6dde' */
+const primary500 = 'hsl(215, 79%, 25%)'; /* '#0d3772' */
+const alert50 = 'hsl(6, 83%, 95%)'; /* '#fdeae8' */
+const alert100 = 'hsl(6, 83%, 91%)'; /* '#fbd9d5' */
+const alert200 = 'hsl(6, 83%, 77%)'; /* '#f59d94' */
+const alert300 = 'hsl(6, 40%, 52%)'; /* '#b65d54' */
+const alert400 = 'hsl(6, 77%, 56%)'; /* '#e54a38' */
+const alert500 = 'hsl(6, 72%, 27%)'; /* '#761d13' */
+const warning100 = 'hsl(26, 85%, 95%)'; /* '#fdf1e7' */
+const warning200 = 'hsl(26, 85%, 90%)'; /* '#fbe3d0' */
+const warning300 = 'hsl(26, 86%, 75%)'; /* '#f6b888' */
+const warning400 = 'hsl(26, 89%, 49%)'; /* '#ec6e0e' */
+const warning500 = 'hsl(26, 89%, 25%)'; /* '#783807' */
+const success100 = 'hsl(152, 49%, 93%)'; /* '#e4f6ee' */
+const success200 = 'hsl(152, 48%, 86%)'; /* '#caecdc' */
+const success300 = 'hsl(152, 47%, 66%)'; /* '#80d1ab' */
+const success400 = 'hsl(152, 92%, 33%)'; /* '#07a259' */
+const success500 = 'hsl(152, 100%, 16%)'; /* '#00522c' */
+const mono100 = 'hsl(0, 0%, 100%)'; /* #ffffff */
+const mono200 = 'hsl(0, 0%, 97%)'; /* #f7f7f7 */
+const mono300 = 'hsl(0, 0%, 94%)'; /* #f0f0f0 */
+const mono400 = 'hsl(0, 0%, 90%)'; /* #e6e6e6 */
+const mono500 = 'hsl(0, 0%, 80%)'; /* #cccccc */
+const mono600 = 'hsl(0, 0%, 70%)'; /* #b3b3b3 */
+const mono700 = 'hsl(0, 0%, 60%)'; /* #999999 */
+const mono800 = 'hsl(0, 0%, 40%)'; /* #666666 */
+const mono900 = 'hsl(0, 0%, 20%)'; /* #333333 */
+const mono1000 = 'hsl(0, 0%, 0%)'; /* #000000 */
 
 // font constants
 const primaryFontFamily = '"Helvetica Neue", arial, sans-serif';
@@ -32,28 +45,29 @@ export default {
     primary500,
 
     // Alert Palette
-    alert100: 'hsl(6, 83%, 95%)',
-    alert200: 'hsl(6, 83%, 91%)',
-    alert300: 'hsl(6, 83%, 77%)',
+    alert50,
+    alert100,
+    alert200,
+    alert300,
     alert400,
+    alert500,
     alert: alert400,
-    alert500: 'hsl(6, 72%, 27%)',
 
     // Warning Palette
-    warning100: 'hsl(26, 85%, 95%)',
-    warning200: 'hsl(26, 85%, 90%)',
-    warning300: 'hsl(26, 86%, 75%)',
+    warning100,
+    warning200,
+    warning300,
     warning400,
     warning: warning400,
-    warning500: 'hsl(26, 89%, 25%)',
+    warning500,
 
     // Success Palette
-    success100: 'hsl(152, 49%, 93%)',
-    success200: 'hsl(152, 48%, 86%)',
-    success300: 'hsl(152, 47%, 66%)',
+    success100,
+    success200,
+    success300,
     success400,
     success: success400,
-    success500: 'hsl(152, 100%, 16%)',
+    success500,
 
     // Monochrome Palette
     white: mono100,
@@ -107,8 +121,8 @@ export default {
     linkHover: primary500,
 
     // Shadow
-    shadowFocus: mono600,
-    shadowError: mono600,
+    shadowFocus: primary300,
+    shadowError: alert100,
   },
   typography: {
     font100: {
@@ -126,6 +140,12 @@ export default {
     font300: {
       fontFamily: primaryFontFamily,
       fontSize: '12px',
+      fontWeight: 'normal',
+      lineHeight: '20px',
+    },
+    font350: {
+      fontFamily: primaryFontFamily,
+      fontSize: '14px',
       fontWeight: 'normal',
       lineHeight: '20px',
     },
@@ -175,12 +195,14 @@ export default {
   sizing: {
     scale0: '2px',
     scale100: '4px',
-    scale200: '8px',
-    scale300: '12px',
-    scale400: '16px',
-    scale500: '20px',
-    scale600: '24px',
-    scale800: '32px',
+    scale200: '6px',
+    scale300: '8px',
+    scale400: '10px',
+    scale500: '12px',
+    scale600: '16px',
+    scale700: '20px',
+    scale800: '24px',
+    scale900: '32px',
     scale1000: '40px',
     scale1200: '48px',
     scale1400: '56px',

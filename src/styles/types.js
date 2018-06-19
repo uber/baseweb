@@ -9,6 +9,7 @@ type Colors = {
   primary500: string,
 
   // Alert Palette
+  alert50: string,
   alert100: string,
   alert200: string,
   alert300: string,
@@ -116,7 +117,9 @@ type Sizing = {
   scale400: string,
   scale500: string,
   scale600: string,
+  scale700: string,
   scale800: string,
+  scale900: string,
   scale1000: string,
   scale1200: string,
   scale1400: string,

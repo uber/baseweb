@@ -24,5 +24,5 @@ test('<ThemeProvider />', () => {
     .find('#testButton')
     .children()
     .at(0);
-  expect(button.props().theme).toBe('red');
+  expect(button.props().$theme).toBe('red');
 });
