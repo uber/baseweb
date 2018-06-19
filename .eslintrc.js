@@ -10,6 +10,8 @@ module.exports = {
     'plugin:flowtype/recommended',
   ],
   rules: {
+    'flowtype/require-valid-file-annotation': ['error', 'always'],
+    'flowtype/no-weak-types': ['error', {}],
     'react/jsx-filename-extension': 0,
     'import/no-extraneous-dependencies': 0,
     'prettier/prettier': ['error', {
