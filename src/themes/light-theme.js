@@ -1,3 +1,4 @@
+// @flow
 // color constants
 const primary100 = 'hsl(215, 77%, 95%)'; /* #e8f1fc */
 const primary200 = 'hsl(215, 77%, 90%)'; /* #d2e2f9 */
