@@ -14,17 +14,17 @@ function getBorderColor(props) {
 function getLabelPadding(props) {
   const {$placement, $theme} = props;
   const {sizing} = $theme;
-  const {scale100} = sizing;
+  const {scale200} = sizing;
   switch ($placement) {
     case 'left':
-      return '0 ' + scale100 + ' 0 0';
+      return '0 ' + scale200 + ' 0 0';
     case 'top':
-      return '0 0 ' + scale100 + ' 0';
+      return '0 0 ' + scale200 + ' 0';
     case 'bottom':
-      return scale100 + ' 0 0 0';
+      return scale200 + ' 0 0 0';
     case 'right':
     default:
-      return '0 0 0 ' + scale100;
+      return '0 0 0 ' + scale200;
   }
 }
 
@@ -46,22 +46,20 @@ function getLabelColor(props) {
     : $error ? colors.checkboxError : colors.checkboxDefaultLabel;
 }
 
-export const Root = styled('label', () => {
-  return {};
-});
+export const Root = styled('label', () => {});
 
 export const Checkmark = styled('span', props => {
   const {checked, disabled, $isIndeterminate, $theme} = props;
   const {colors, sizing} = $theme;
   return {
-    width: sizing.scale400,
-    height: sizing.scale400,
+    width: sizing.scale600,
+    height: sizing.scale600,
     left: '4px',
     top: '4px',
     borderStyle: 'solid',
     borderWidth: '2px',
     borderColor: getBorderColor(props),
-    borderRadius: '2px',
+    borderRadius: '3px',
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
@@ -92,7 +90,7 @@ export const Label = styled('div', props => {
     padding: getLabelPadding(props),
     color: getLabelColor(props),
     ...typography.font400,
-    fontWeight: 'bolder',
+    fontWeight: '500',
     lineHeight: '20px',
   };
 });
