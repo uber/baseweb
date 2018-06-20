@@ -47,7 +47,6 @@
   Initial state of an uncontrolled popover component.
   * `checked` - an initial checked state. Check or uncheck the control. Default is `false`.
   * `$isFocused` - an initial isFocused state. Make the control focused (active). Default is `false`
-  * `$isIndeterminate` - an initial isIndeterminate state. Indeterminate control value. checked is ignored. Default is `false`
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type

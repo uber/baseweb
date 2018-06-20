@@ -1,3 +1,4 @@
+// @flow
 import {styled} from '../styles';
 
 function getBorderColor(props) {

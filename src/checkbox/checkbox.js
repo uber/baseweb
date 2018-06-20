@@ -62,13 +62,14 @@ class StatelessCheckbox extends React.Component<Props> {
         onKeyPress(event);
       }
     };
+    const getLabel = () => (
+      <Label $placement={$placement} {...sharedProps} $error={$error}>
+        {$label}
+      </Label>
+    );
     return (
       <Root {...sharedProps} $error={$error}>
-        {($placement === 'top' || $placement === 'left') && (
-          <Label $placement={$placement} {...sharedProps}>
-            {$label}
-          </Label>
-        )}
+        {($placement === 'top' || $placement === 'left') && getLabel()}
         <Checkmark
           {...sharedProps}
           $error={$error}
@@ -76,11 +77,7 @@ class StatelessCheckbox extends React.Component<Props> {
           $isIndeterminate={$isIndeterminate}
         />
         <Input type="checkbox" $ref={$inputRef} {...sharedProps} {...events} />
-        {($placement === 'bottom' || $placement === 'right') && (
-          <Label $placement={$placement} {...sharedProps} $error={$error}>
-            {$label}
-          </Label>
-        )}
+        {($placement === 'bottom' || $placement === 'right') && getLabel()}
       </Root>
     );
   }

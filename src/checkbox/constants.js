@@ -1,3 +1,4 @@
+// @flow
 /* eslint-disable import/prefer-default-export */
 
 export const STATE_TYPE = {
