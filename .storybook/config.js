@@ -1,9 +1,10 @@
 import React from 'react';
-import {configure, addDecorator} from '@storybook/react';
+import {configure, addDecorator, setAddon} from '@storybook/react';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../src/styles';
 import DEFAULT_THEME from '../src/themes/light-theme';
+import JSXAddon from 'storybook-addon-jsx';
 
 const engine = new Styletron();
 
@@ -21,5 +22,7 @@ addDecorator(story => {
     </StyletronProvider>
   );
 });
+
+setAddon(JSXAddon);
 
 configure(loadStories, module);
