@@ -94,14 +94,11 @@ export const Label = styled('div', props => {
     lineHeight: '20px',
   };
 });
-
-export const Input = styled('input', () => {
-  // tricky style for focus event cause display: none doesn't work
-  return {
-    opacity: 0,
-    width: 0,
-    overflow: 'hidden',
-    margin: 0,
-    padding: 0,
-  };
+// tricky style for focus event cause display: none doesn't work
+export const Input = styled('input', {
+  opacity: 0,
+  width: 0,
+  overflow: 'hidden',
+  margin: 0,
+  padding: 0,
 });
