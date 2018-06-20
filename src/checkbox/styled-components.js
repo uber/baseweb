@@ -1,8 +1,8 @@
 import {styled} from '../styles';
 
 function getBorderColor(props) {
-  const {checked, $error, $isIndeterminate, theme} = props;
-  const {colors} = theme;
+  const {checked, $error, $isIndeterminate, $theme} = props;
+  const {colors} = $theme;
   return $error
     ? colors.checkboxError
     : $isIndeterminate || checked
@@ -11,8 +11,8 @@ function getBorderColor(props) {
 }
 
 function getLabelPadding(props) {
-  const {$placement, theme} = props;
-  const {sizing} = theme;
+  const {$placement, $theme} = props;
+  const {sizing} = $theme;
   const {scale100} = sizing;
   switch ($placement) {
     case 'left':
@@ -28,8 +28,8 @@ function getLabelPadding(props) {
 }
 
 function getBackgroundColor(props) {
-  const {disabled, checked, $isIndeterminate, $isFocused, theme} = props;
-  const {colors} = theme;
+  const {disabled, checked, $isIndeterminate, $isFocused, $theme} = props;
+  const {colors} = $theme;
   return disabled
     ? colors.checkboxDisabledBackground
     : $isIndeterminate || checked
@@ -38,8 +38,8 @@ function getBackgroundColor(props) {
 }
 
 function getLabelColor(props) {
-  const {disabled, $error, theme} = props;
-  const {colors} = theme;
+  const {disabled, $error, $theme} = props;
+  const {colors} = $theme;
   return disabled
     ? colors.checkboxDisabled
     : $error ? colors.checkboxError : colors.checkboxDefaultLabel;
@@ -50,8 +50,8 @@ export const Root = styled('label', () => {
 });
 
 export const Checkmark = styled('span', props => {
-  const {checked, disabled, $isIndeterminate, theme} = props;
-  const {colors, sizing} = theme;
+  const {checked, disabled, $isIndeterminate, $theme} = props;
+  const {colors, sizing} = $theme;
   return {
     width: sizing.scale400,
     height: sizing.scale400,
@@ -79,8 +79,8 @@ export const Checkmark = styled('span', props => {
 });
 
 export const Label = styled('div', props => {
-  const {$placement, theme} = props;
-  const {typography} = theme;
+  const {$placement, $theme} = props;
+  const {typography} = $theme;
   return {
     display:
       $placement === 'left' || $placement === 'right'
