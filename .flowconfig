@@ -1,10 +1,10 @@
 [ignore]
-node_modules
-flow-typed
 dist
 storybook-static
+.*/node_modules/.*[^(package)]\.json$
 
 [include]
+./src/
 
 [libs]
 
