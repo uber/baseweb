@@ -144,12 +144,12 @@ type Lighting = {
 };
 
 type Animation = {
-  timing100: 'string',
-  timing400: 'string',
-  timing700: 'string',
-  easeOutCurve: 'string',
-  easeInCurve: 'string',
-  easeInOutCurve: 'string',
+  timing100: string,
+  timing400: string,
+  timing700: string,
+  easeOutCurve: string,
+  easeInCurve: string,
+  easeInOutCurve: string,
 };
 
 export type ThemeT = {
