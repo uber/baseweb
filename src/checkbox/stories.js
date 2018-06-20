@@ -9,7 +9,7 @@ import {
   StyledLabel,
   StyledCheckmark,
   StyledInput,
-  StatelessCheckbox,
+  Checkbox as StatelessCheckbox,
 } from './index';
 
 const onChange = e => {

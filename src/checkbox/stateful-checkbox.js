@@ -2,7 +2,7 @@
 import React from 'react';
 import {
   StatefulContainer,
-  StatelessCheckbox,
+  Checkbox,
   StyledRoot,
   StyledCheckmark,
   StyledLabel,
@@ -21,7 +21,7 @@ export default function(props: StatefulCheckboxProps) {
   return (
     <StatefulContainer {...props}>
       {(childrenProps: Props) => (
-        <StatelessCheckbox {...childrenProps} components={components} />
+        <Checkbox {...childrenProps} components={components} />
       )}
     </StatefulContainer>
   );
