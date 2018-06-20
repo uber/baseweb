@@ -2,6 +2,17 @@
 import React from 'react';
 import type {Props, DefaultProps} from './types';
 
+const checkBoxOnKeyPress = ($inputRef, onKeyPress, event) => {
+  const keycode = event.keyCode ? event.keyCode : event.which;
+  if (keycode === 13) {
+    $inputRef.current.click();
+    event.stopPropagation();
+  }
+  if (onKeyPress) {
+    onKeyPress(event);
+  }
+};
+
 class StatelessCheckbox extends React.Component<Props> {
   static defaultProps: DefaultProps = {
     checked: false,
@@ -52,16 +63,7 @@ class StatelessCheckbox extends React.Component<Props> {
       onBlur,
       onKeyPress,
     };
-    events.onKeyPress = event => {
-      const keycode = event.keyCode ? event.keyCode : event.which;
-      if (keycode === 13) {
-        $inputRef.current.click();
-        event.stopPropagation();
-      }
-      if (onKeyPress) {
-        onKeyPress(event);
-      }
-    };
+    events.onKeyPress = checkBoxOnKeyPress.bind(this, $inputRef, onKeyPress);
     const getLabel = () => (
       <Label $placement={$placement} {...sharedProps} $error={$error}>
         {$label}
