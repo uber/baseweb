@@ -1,11 +1,17 @@
 /* @flow */
 
 import React from 'react';
+/* eslint react/require-default-props: ["off"]*/
 
 type Props = {
   onClick: () => void,
+  children?: any,
 };
 
-export default ({onClick}: Props) => (
-  <button onClick={onClick}>it is a button!</button>
+const Button = ({onClick, children = undefined}: Props) => (
+  <button onClick={onClick}>{children}</button>
 );
+
+Button.displayName = 'Button';
+
+export default Button;
