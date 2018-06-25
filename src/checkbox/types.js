@@ -47,7 +47,6 @@ export type Props = {
   onMouseLeave?: Function,
   onFocus?: Function,
   onBlur?: Function,
-  onKeyPress?: Function,
 };
 
 export type StateType = 'change' | 'focus' | 'blur' | 'hover';
@@ -62,7 +61,7 @@ export type StateReducer = (
   stateType: string,
   nextState: State,
   currentState: State,
-  event: any,
+  event: any
 ) => State;
 
 export type DefaultStatefulProps = {
