@@ -1,3 +1,4 @@
+// @flow
 module.exports = {
   rootDir: 'src',
   setupFiles: ['<rootDir>/utils/test-setup.js'],
