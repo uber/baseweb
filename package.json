@@ -89,6 +89,7 @@
     "rollup-plugin-visualizer": "^0.8.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
     "serve-static": "^1.13.2",
+    "smoothscroll-polyfill": "^0.4.3",
     "storybook-readme": "^3.3.0",
     "styletron-engine-atomic": "^1.0.5",
     "styletron-react": "^4.3.0",
