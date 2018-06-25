@@ -1,13 +1,12 @@
 /* eslint-disable */
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import {mount} from 'enzyme';
 
 import ThemeProvider from './theme-provider';
 import styled from './styled';
-import {withStyletronProvider} from '../utils/test-utils';
+import {withStyletronProvider} from '../test/test-utils';
 
-Enzyme.configure({adapter: new Adapter()});
+jest.unmock('./styled.js');
 
 test('<ThemeProvider />', () => {
   const StyledMockButton = styled('button', ({theme}) => ({
