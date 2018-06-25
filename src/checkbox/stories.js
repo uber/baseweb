@@ -35,9 +35,9 @@ const Icon = styled('span', () => {
   };
 });
 
-class GroupList extends React.Component<any, any> {
-  static defaultProps: any = {};
-  constructor(props: any) {
+class GroupList extends React.Component<{}, {}> {
+  static defaultProps: {} = {};
+  constructor(props: {}) {
     super(props);
     this.state = {
       checkboxes: [false, false],
@@ -187,7 +187,7 @@ storiesOf('Checkbox', module)
               </span>
             );
           },
-          Checkmark: (props: any) => {
+          Checkmark: (props: {checked: boolean}) => {
             const color = props.checked ? 'red' : 'blue';
             const blackSandwatch = `data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000"  xml:space="preserve"><g fill="${color}"><path d="M293.7,886.8h-51.6V726.9c2.6-12.9,30.9-116.1,90.3-147c33.5-15.5,54.2-64.5,61.9-85.1v-18.1c-7.7-20.6-30.9-69.6-61.9-85.1c-59.3-30.9-87.7-134.1-90.3-147v-5.2V110.6h51.6v126.4c10.3,36.1,33.5,95.4,61.9,108.3c59.3,30.9,90.3,113.5,90.3,118.6l2.6,5.2v33.5l-2.6,5.2c0,2.6-30.9,87.7-90.3,118.6c-30.9,15.5-56.7,82.5-61.9,108.3V886.8z"/><path d="M757.9,886.8h-51.6V734.7c-10.3-36.1-33.5-95.4-61.9-108.3c-59.3-30.9-90.3-113.5-90.3-118.6l-2.6-2.6v-33.5l2.6-5.2c0-2.6,30.9-87.7,90.3-118.6c30.9-15.5,56.7-82.5,61.9-108.3V113.2h51.6v134.1c-2.6,12.9-30.9,116.1-90.3,147c-33.5,15.5-54.2,64.5-61.9,85.1v18.1c7.7,20.6,30.9,69.6,61.9,85.1c59.3,30.9,87.7,134.1,90.3,147v5.2V886.8z"/><path d="M371.1,267.9c0,0,51.6,128.9,128.9,128.9c77.4,0,128.9-128.9,128.9-128.9s-51.6,25.8-128.9,25.8C422.6,293.7,371.1,267.9,371.1,267.9z"/><path d="M809.5,61.6H190.5V10h618.9V61.6z"/><path d="M809.5,990H190.5v-51.6h618.9V990z"/><path d="M345.3,886.8c0,0,51.6-154.7,154.7-154.7c103.2,0,154.7,154.7,154.7,154.7H345.3z"/></g></svg>`;
             return (
@@ -200,7 +200,7 @@ storiesOf('Checkbox', module)
     );
   })
   .add('Checkbox with extra props', () => {
-    function withProps(Component: any, customProps: {}) {
+    function withProps(Component: React.Node, customProps: {}) {
       return (props: {}) => <Component {...customProps} {...props} />;
     }
     const RootWithProps = withProps(StyledRoot, {'data-value': 'secret value'});

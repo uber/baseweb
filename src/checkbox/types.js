@@ -1,19 +1,21 @@
 // @flow
 
+import * as React from 'react';
+
 export type Placement = 'top' | 'right' | 'bottom' | 'left';
 
 export type Components = {
-  Checkmark?: any,
-  Label?: any,
-  Root?: any,
-  Input?: any,
+  Checkmark?: React.ComponentType<>,
+  Label?: React.ComponentType<>,
+  Root?: React.ComponentType<>,
+  Input?: React.ComponentType<>,
 };
 
 export type RequiredComponents = {
-  Checkmark: any,
-  Label: any,
-  Root: any,
-  Input: any,
+  Checkmark: React.ComponentType<>,
+  Label: React.ComponentType<>,
+  Root: React.ComponentType<>,
+  Input: React.ComponentType<>,
 };
 
 export type DefaultProps = {
@@ -23,13 +25,13 @@ export type DefaultProps = {
   $isFocused: boolean,
   $isIndeterminate: boolean,
   $placement: Placement,
-  $inputRef: any,
+  $inputRef: React.Node,
   $label: string,
-  onChange: Function,
-  onMouseEnter: Function,
-  onMouseLeave: Function,
-  onFocus: Function,
-  onBlur: Function,
+  onChange: (e: Event) => {},
+  onMouseEnter: (e: Event) => {},
+  onMouseLeave: (e: Event) => {},
+  onFocus: (e: Event) => {},
+  onBlur: (e: Event) => {},
 };
 
 export type Props = {
@@ -37,16 +39,16 @@ export type Props = {
   checked?: boolean,
   disabled?: boolean,
   $error?: boolean,
-  $inputRef: any,
+  $inputRef: React.Node,
   $isFocused?: boolean,
   $label?: string,
   $isIndeterminate?: boolean,
   $placement?: Placement,
-  onChange?: Function,
-  onMouseEnter?: Function,
-  onMouseLeave?: Function,
-  onFocus?: Function,
-  onBlur?: Function,
+  onChange?: (e: Event) => {},
+  onMouseEnter?: (e: Event) => {},
+  onMouseLeave?: (e: Event) => {},
+  onFocus?: (e: Event) => {},
+  onBlur?: (e: Event) => {},
 };
 
 export type StateType = 'change' | 'focus' | 'blur' | 'hover';
@@ -61,38 +63,38 @@ export type StateReducer = (
   stateType: string,
   nextState: State,
   currentState: State,
-  event: any
+  event: Event,
 ) => State;
 
 export type DefaultStatefulProps = {
   initialState: State,
   stateReducer: StateReducer,
-  onChange: Function,
-  onMouseEnter: Function,
-  onMouseLeave: Function,
-  onFocus: Function,
-  onBlur: Function,
+  onChange: (e: Event) => {},
+  onMouseEnter: (e: Event) => {},
+  onMouseLeave: (e: Event) => {},
+  onFocus: (e: Event) => {},
+  onBlur: (e: Event) => {},
 };
 
 export type StatefulProps = {
   components?: Components,
-  children?: Function,
+  children?: React.ComponentType<>,
   initialState?: State,
   stateReducer: StateReducer,
-  onChange?: Function,
-  onMouseEnter?: Function,
-  onMouseLeave?: Function,
-  onFocus?: Function,
-  onBlur?: Function,
+  onChange?: (e: Event) => {},
+  onMouseEnter?: (e: Event) => {},
+  onMouseLeave?: (e: Event) => {},
+  onFocus?: (e: Event) => {},
+  onBlur?: (e: Event) => {},
 };
 
 export type StatefulCheckboxProps = {
   components?: Components,
-  children?: Function,
+  children?: React.ComponentType<>,
   initialState?: State,
-  onChange?: Function,
-  onMouseEnter?: Function,
-  onMouseLeave?: Function,
-  onFocus?: Function,
-  onBlur?: Function,
+  onChange?: (e: Event) => {},
+  onMouseEnter?: (e: Event) => {},
+  onMouseLeave?: (e: Event) => {},
+  onFocus?: (e: Event) => {},
+  onBlur?: (e: Event) => {},
 };

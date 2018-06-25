@@ -33,42 +33,42 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
     };
   }
 
-  onChange = (e: any) => {
+  onChange = (e: Event) => {
     this.stateReducer(STATE_TYPE.change, e);
     if (this.props.onChange) {
       this.props.onChange(e);
     }
   };
 
-  onMouseEnter = (e: any) => {
+  onMouseEnter = (e: Event) => {
     this.stateReducer(STATE_TYPE.hover, e);
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
     }
   };
 
-  onMouseLeave = (e: any) => {
+  onMouseLeave = (e: Event) => {
     this.stateReducer(STATE_TYPE.unhover, e);
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
   };
 
-  onFocus = (e: any) => {
+  onFocus = (e: Event) => {
     this.stateReducer(STATE_TYPE.focus, e);
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
   };
 
-  onBlur = (e: any) => {
+  onBlur = (e: Event) => {
     this.stateReducer(STATE_TYPE.blur, e);
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
   };
 
-  stateReducer = (type: StateType, e: any) => {
+  stateReducer = (type: StateType, e: Event) => {
     let nextState;
     switch (type) {
       case STATE_TYPE.change:
@@ -95,7 +95,7 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
 
   render() {
     const {
-      children = (childProps?: any) => {}, // eslint-disable-line no-unused-vars
+      children = (childProps?: Array) => {}, // eslint-disable-line no-unused-vars
       initialState,
       stateReducer,
       ...rest
