@@ -5,7 +5,6 @@ import type {
   StatefulProps,
   StateReducer,
   DefaultStatefulProps,
-  StateType,
   State,
 } from './types';
 
@@ -33,42 +32,42 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
     };
   }
 
-  onChange = (e: Event) => {
+  onChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.change, e);
     if (this.props.onChange) {
       this.props.onChange(e);
     }
   };
 
-  onMouseEnter = (e: Event) => {
+  onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.hover, e);
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
     }
   };
 
-  onMouseLeave = (e: Event) => {
+  onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.unhover, e);
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
   };
 
-  onFocus = (e: Event) => {
+  onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.focus, e);
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
   };
 
-  onBlur = (e: Event) => {
+  onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.blur, e);
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
   };
 
-  stateReducer = (type: StateType, e: Event) => {
+  stateReducer = (type: string, e: SyntheticInputEvent<HTMLInputElement>) => {
     let nextState;
     switch (type) {
       case STATE_TYPE.change:
@@ -95,7 +94,7 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
 
   render() {
     const {
-      children = (childProps?: Array) => {}, // eslint-disable-line no-unused-vars
+      children = (childProps: {}) => null, // eslint-disable-line no-unused-vars
       initialState,
       stateReducer,
       ...rest

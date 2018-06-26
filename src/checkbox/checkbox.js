@@ -21,7 +21,7 @@ class StatelessCheckbox extends React.Component<Props> {
 
   componentDidMount() {
     if (this.props.$isFocused) {
-      this.props.$inputRef.current.focus();
+      this.props.$inputRef.current && this.props.$inputRef.current.focus();
     }
   }
 

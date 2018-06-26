@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import {storiesOf} from '@storybook/react';
 import {styled, withStyle} from 'styletron-react';
 import {
@@ -35,7 +35,7 @@ const Icon = styled('span', () => {
   };
 });
 
-class GroupList extends React.Component<{}, {}> {
+class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
   static defaultProps: {} = {};
   constructor(props: {}) {
     super(props);
@@ -200,7 +200,7 @@ storiesOf('Checkbox', module)
     );
   })
   .add('Checkbox with extra props', () => {
-    function withProps(Component: React.Node, customProps: {}) {
+    function withProps(Component: React.ComponentType<*>, customProps: {}) {
       return (props: {}) => <Component {...customProps} {...props} />;
     }
     const RootWithProps = withProps(StyledRoot, {'data-value': 'secret value'});
