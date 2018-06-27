@@ -1,13 +1,12 @@
 /* eslint-disable */
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import {mount} from 'enzyme';
 
 import styled from './styled';
-import {withStyletronProvider, withThemeProvider} from '../utils/test-utils';
+import {withStyletronProvider, withThemeProvider} from '../test/test-utils';
 import {LightTheme} from '../themes';
 
-Enzyme.configure({adapter: new Adapter()});
+jest.unmock('./styled.js');
 
 test('styled', () => {
   const StyledMockButton = styled('button', ({$theme}) => ({
@@ -15,7 +14,7 @@ test('styled', () => {
   }));
 
   const TestComponent = withStyletronProvider(
-    withThemeProvider(() => <StyledMockButton id="testButton" />)
+    withThemeProvider(() => <StyledMockButton id="testButton" />),
   );
   const wrapper = mount(<TestComponent />);
   const button = wrapper
