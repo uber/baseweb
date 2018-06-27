@@ -3,6 +3,7 @@ module.exports = {
   plugins: ['flowtype'],
   env: {
     jest: true,
+    mocha: true,
   },
   extends: [
     'airbnb',
