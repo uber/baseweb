@@ -50,6 +50,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
     return (
       <div>
         <StatelessCheckbox
+          data-name="radioMain"
           components={{
             Root: StyledRoot,
             Label: StyledLabel,
@@ -69,6 +70,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
         <div style={{padding: 30}}>
           <div>
             <StatelessCheckbox
+              data-name="radioSub1"
               components={{
                 Root: StyledRoot,
                 Label: StyledLabel,
@@ -85,6 +87,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
             />
           </div>
           <StatelessCheckbox
+            data-name="radioSub2"
             components={{
               Root: StyledRoot,
               Label: StyledLabel,
