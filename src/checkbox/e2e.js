@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import 'chromedriver';
 import 'geckodriver';
 import webdriver from 'selenium-webdriver';
-import {assert} from 'chai';
+import AxeBuilder from 'axe-webdriverjs';
 
 const {By} = webdriver;
 const storyBookUrl =
@@ -13,18 +13,19 @@ const browsers = ['chrome', 'firefox'];
 
 browsers.map(browser => {
   describe('Checkbox Test Suite', function() {
-    this.timeout(5000);
+    jest.setTimeout(10000);
     let driver, checkbox;
 
-    before(async function() {
+    beforeAll(async function() {
       const caps = webdriver.Capabilities[browser]();
       driver = new webdriver.Builder()
         .forBrowser(browser)
         .withCapabilities(caps)
         .build();
+      await runBrowserAccecibilityTest(driver);
     });
 
-    after(async function() {
+    afterAll(async function() {
       await driver.quit();
     });
 
@@ -41,11 +42,7 @@ browsers.map(browser => {
       checkbox.click();
       const img = checkbox.findElement(By.css('span'));
       const imageUrl = await img.getCssValue('background-color');
-      assert.strictEqual(
-        imageUrl,
-        expectedResult[browser],
-        'Checkbox should be blue when clicked',
-      );
+      expect(imageUrl).toBe(expectedResult[browser]);
     });
 
     it('Indeterminate state', async function() {
@@ -57,18 +54,20 @@ browsers.map(browser => {
       cboxSub1.click();
       cboxSub2.click();
       let checked = await getCheckmarkAttribute(cboxMain, 'checked');
-      assert.strictEqual(
-        checked,
-        'true',
-        'Parent checkbox should be in checked state if all sub checkbox are set',
-      );
+      expect(checked).toBe('true');
     });
-    async function getElement(parent, css) {
-      return await parent.findElement(By.css(css));
-    }
-    async function getCheckmarkAttribute(parent, attr) {
-      const checkmark = await getElement(parent, 'input[type="checkbox"]');
-      return await checkmark.getAttribute(attr);
-    }
   });
+
+  async function getElement(parent, css) {
+    return await parent.findElement(By.css(css));
+  }
+  async function getCheckmarkAttribute(parent, attr) {
+    const checkmark = await getElement(parent, 'input[type="checkbox"]');
+    return await checkmark.getAttribute(attr);
+  }
+  async function runBrowserAccecibilityTest(driver) {
+    const results = await AxeBuilder(driver).analyze();
+    // eslint-disable-next-line no-console
+    console.log(results);
+  }
 });
