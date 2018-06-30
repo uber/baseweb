@@ -39,7 +39,7 @@ const runBrowserAccecibilityTest = async function(
   console.log(results.violations);
 };
 
-const getElement = async function(parent, css) {
+const getElement = async function(parent: webdriver$WebElementPromise, css: string) {
   return await parent.findElement(By.css(css));
 };
 
