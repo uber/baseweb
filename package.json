@@ -25,8 +25,9 @@
     "precommit": "pretty-quick --staged && yarn run test",
     "build": "rollup -c rollup.config.js",
     "prepublish": "npm run build",
-    "unit-test": "yarn jest --coverage",
-    "e2e": "jest --config=e2e.config.js"
+    "unit-test": "yarn jest --coverage --config=jest-unit.config.js",
+    "e2e":
+      "pkill \"chromedriver|geckodriver|safaridriver\" | jest --config=jest-e2e.config.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",
