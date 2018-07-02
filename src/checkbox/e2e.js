@@ -1,4 +1,5 @@
 // @flow
+
 import 'babel-polyfill';
 import 'chromedriver';
 import 'geckodriver';
@@ -34,7 +35,9 @@ browsers.map(browser => {
     it('Checked state', async function() {
       const storyName = 'Checkbox example';
       await driver.get(storyBookUrl + storyName);
-      checkbox = await driver.findElement(By.css('label'));
+      checkbox = await driver.executeScript(
+        'return window.storyEl.getDOMNode();'
+      );
       const expectedResult = {
         chrome: 'rgba(27, 109, 222, 1)',
         firefox: 'rgb(27, 109, 222)',

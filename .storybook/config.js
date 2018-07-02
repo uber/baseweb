@@ -1,4 +1,7 @@
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
 import {configure, addDecorator} from '@storybook/react';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
@@ -13,13 +16,17 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
+Enzyme.configure({adapter: new Adapter()});
+
 // Add providers for theme and styletron
 addDecorator(story => {
-  return (
+  const el = Enzyme.mount(
     <StyletronProvider value={engine}>
       <ThemeProvider theme={DEFAULT_THEME}>{story()}</ThemeProvider>
     </StyletronProvider>
   );
+  window.storyEl = el;
+  return el.getElement();
 });
 
 configure(loadStories, module);
