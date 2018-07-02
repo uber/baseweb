@@ -1,22 +1,25 @@
 // @flow
-import webdriver from 'selenium-webdriver';
+import * as webdriver from 'selenium-webdriver';
 import AxeBuilder from 'axe-webdriverjs';
 
 const {By} = webdriver;
 
 const browsers = ['chrome'];
-const activeDrivers = [];
+const activeDrivers = {};
 let currentDriver;
 
-const getStoryUrl = function(kind, story) {
+const getStoryUrl = function(kind: string, story: string) {
   return `http://localhost:6006/iframe.html?selectedKind=${kind}&selectedStory=${story}`;
 };
 
-const run = function(testSuite) {
+const run = function(
+  testSuite: (driver: webdriver$WebDriver, browser: string) => void,
+) {
   browsers.forEach(browser => {
-    if (!activeDrivers[browsers]) {
-      const caps = webdriver.Capabilities[browser]();
-      activeDrivers[browsers] = new webdriver.Builder()
+    if (!activeDrivers[browser]) {
+      const browserMethod = webdriver.Capabilities[browser];
+      const caps = browserMethod();
+      activeDrivers[browser] = new webdriver.Builder()
         .forBrowser(browser)
         .withCapabilities(caps)
         .build();
@@ -30,8 +33,8 @@ const run = function(testSuite) {
 };
 
 const runBrowserAccecibilityTest = async function(
-  driver,
-  rootSelector = 'body',
+  driver: webdriver$WebDriver,
+  rootSelector: string = 'body',
 ) {
   const builder = AxeBuilder(driver).include(rootSelector);
   const results = await builder.analyze();
@@ -39,7 +42,10 @@ const runBrowserAccecibilityTest = async function(
   console.log(results.violations);
 };
 
-const getElement = async function(parent: webdriver$WebElementPromise, css: string) {
+const getElement = async function(
+  parent: webdriver$WebElement | webdriver$WebDriver,
+  css: string,
+) {
   return await parent.findElement(By.css(css));
 };
 
