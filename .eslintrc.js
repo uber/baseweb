@@ -1,6 +1,6 @@
 module.exports = {
   parser: 'babel-eslint',
-  plugins: ['flowtype'],
+  plugins: ['flowtype', 'jsx-a11y'],
   env: {
     jest: true,
   },
@@ -8,6 +8,7 @@ module.exports = {
     'airbnb',
     'eslint-config-uber-universal-stage-3',
     'plugin:flowtype/recommended',
+    'plugin:jsx-a11y/recommended',
   ],
   rules: {
     'flowtype/require-valid-file-annotation': ['error', 'always'],
