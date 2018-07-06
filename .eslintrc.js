@@ -13,11 +13,15 @@ module.exports = {
     'flowtype/require-valid-file-annotation': ['error', 'always'],
     'flowtype/no-weak-types': ['error', {}],
     'react/jsx-filename-extension': 0,
+    'react/jsx-one-expression-per-line': 0,
     'import/no-extraneous-dependencies': 0,
-    'prettier/prettier': ['error', {
-      singleQuote: true,
-      trailingComma: 'all',
-      bracketSpacing: false
-    }]
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        trailingComma: 'all',
+        bracketSpacing: false,
+      },
+    ],
   },
 };
