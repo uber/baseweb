@@ -3,6 +3,7 @@
 exports[`<Button /> 1`] = `
 <button
   onClick={[Function]}
+  type="button"
 >
   it is a button!
 </button>
