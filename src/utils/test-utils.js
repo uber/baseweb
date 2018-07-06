@@ -26,3 +26,11 @@ export const withThemeProvider = (
     </ThemeProvider>
   );
 };
+
+export const withAll = (Component: () => React.Element<*>) => {
+  return (
+    <StyletronProvider value={engine}>
+      <ThemeProvider theme={DEFAULT_THEME}>{Component()}</ThemeProvider>
+    </StyletronProvider>
+  );
+};
