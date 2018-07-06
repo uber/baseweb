@@ -9,7 +9,9 @@ type Props = {
 };
 
 const Button = ({onClick, children}: Props) => (
-  <button onClick={onClick}>{children || 'it is a button!'}</button>
+  <button type="button" onClick={onClick}>
+    {children || 'it is a button!'}
+  </button>
 );
 
 Button.displayName = 'Button';
