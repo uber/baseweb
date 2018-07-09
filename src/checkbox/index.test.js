@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {withAll} from '../utils/test-utils';
+import {withAll} from '../test/test-utils';
 
 import {
   StyledRoot,
@@ -11,7 +11,7 @@ import {
   Checkbox as StatelessCheckbox,
 } from './index';
 
-describe.only('Checkbox', function() {
+describe('Checkbox', function() {
   let wrapper;
   beforeEach(function() {});
 

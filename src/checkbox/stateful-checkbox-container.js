@@ -27,48 +27,45 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
 
   constructor(props: StatefulProps) {
     super(props);
+    const {initialState} = this.props;
     this.state = {
-      ...this.props.initialState,
+      ...initialState,
     };
   }
 
   onChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.change, e);
-    if (this.props.onChange) {
-      this.props.onChange(e);
-    }
+    const {onChange} = this.props;
+    onChange && onChange(e);
   };
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.hover, e);
-    if (this.props.onMouseEnter) {
-      this.props.onMouseEnter(e);
-    }
+    const {onMouseEnter} = this.props;
+    onMouseEnter && onMouseEnter(e);
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.unhover, e);
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(e);
-    }
+    const {onMouseLeave} = this.props;
+    onMouseLeave && onMouseLeave(e);
   };
 
   onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.focus, e);
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
-    }
+    const {onFocus} = this.props;
+    onFocus && onFocus(e);
   };
 
   onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.stateReducer(STATE_TYPE.blur, e);
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
+    const {onBlur} = this.props;
+    onBlur && onBlur(e);
   };
 
   stateReducer = (type: string, e: SyntheticInputEvent<HTMLInputElement>) => {
     let nextState;
+    const {stateReducer} = this.props;
     switch (type) {
       case STATE_TYPE.change:
         nextState = {checked: e.target.checked};
@@ -88,7 +85,7 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
       default:
         nextState = this.state;
     }
-    const newState = this.props.stateReducer(type, nextState, this.state, e);
+    const newState = stateReducer(type, nextState, this.state, e);
     this.setState(newState);
   };
 
