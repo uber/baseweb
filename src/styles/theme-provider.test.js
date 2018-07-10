@@ -24,4 +24,5 @@ test('<ThemeProvider />', () => {
     .children()
     .at(0);
   expect(button.props().$theme).toBe('red');
+  wrapper.unmount();
 });
