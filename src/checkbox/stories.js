@@ -46,7 +46,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
   render() {
     const {checkboxes} = this.state;
     const unchecked = checkboxes.filter(checkbox => !checkbox).length;
-    const $isIndeterminate = unchecked > 0 && unchecked < checkboxes.length;
+    const isIndeterminate = unchecked > 0 && unchecked < checkboxes.length;
     return (
       <div>
         <StatelessCheckbox
@@ -60,9 +60,9 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
             const checkboxes = [e.target.checked, e.target.checked];
             this.setState({checkboxes});
           }}
-          $isIndeterminate={$isIndeterminate}
+          isIndeterminate={isIndeterminate}
           checked={unchecked === 0}
-          $label="Indeterminate checkbox if not all subcheckboxes are checked"
+          label="Indeterminate checkbox if not all subcheckboxes are checked"
         />
         <div style={{padding: 30}}>
           <div>
@@ -79,7 +79,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
                 newCheckboxes[0] = e.target.checked;
                 this.setState({checkboxes: newCheckboxes});
               }}
-              $label="First subcheckbox"
+              label="First subcheckbox"
             />
           </div>
           <StatelessCheckbox
@@ -95,7 +95,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
               newCheckboxes[1] = e.target.checked;
               this.setState({checkboxes: newCheckboxes});
             }}
-            $label="Second subcheckbox"
+            label="Second subcheckbox"
           />
         </div>
       </div>
@@ -105,11 +105,11 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
 
 storiesOf('Checkbox', module)
   .add('Checkbox example', () => {
-    return <Checkbox onChange={onChange} $label="click me" />;
+    return <Checkbox onChange={onChange} label="click me" />;
   })
   .add('Checkbox with an error', () => {
     return (
-      <Checkbox onChange={onChange} $error $label="Checkbox with an error " />
+      <Checkbox onChange={onChange} error label="Checkbox with an error " />
     );
   })
   .add('Checkbox Indeterminate', () => {
@@ -118,14 +118,14 @@ storiesOf('Checkbox', module)
     return <GroupList />;
   })
   .add('Checkbox disabled', () => {
-    return <Checkbox onChange={onChange} disabled $label="Disabled checkbox" />;
+    return <Checkbox onChange={onChange} disabled label="Disabled checkbox" />;
   })
   .add('Checkbox label placed left', () => {
     return (
       <Checkbox
         onChange={onChange}
-        $placement="left"
-        $label="Label on the left"
+        placement="left"
+        label="Label on the left"
       />
     );
   })
@@ -133,8 +133,8 @@ storiesOf('Checkbox', module)
     return (
       <Checkbox
         onChange={onChange}
-        $placement="bottom"
-        $label="Label on the bottom"
+        placement="bottom"
+        label="Label on the bottom"
       />
     );
   })
@@ -167,7 +167,7 @@ storiesOf('Checkbox', module)
                 };
           }),
         }}
-        $label="With style overrides"
+        label="With style overrides"
       />
     );
   })
@@ -195,7 +195,7 @@ storiesOf('Checkbox', module)
             );
           },
         }}
-        $label="With style overrides"
+        label="With style overrides"
       />
     );
   })
@@ -210,7 +210,7 @@ storiesOf('Checkbox', module)
         components={{
           Root: RootWithProps,
         }}
-        $label="With a custom 'data-value' attr on the Root"
+        label="With a custom 'data-value' attr on the Root"
       />
     );
   })
@@ -227,9 +227,9 @@ storiesOf('Checkbox', module)
           }}
         />
         <Checkbox
-          $label="Focused checkbox"
+          label="Focused checkbox"
           onChange={onChange}
-          $inputRef={inputRef}
+          inputRef={inputRef}
         />
       </div>
     );

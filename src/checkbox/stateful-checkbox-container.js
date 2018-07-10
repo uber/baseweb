@@ -14,8 +14,8 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
   static defaultProps: DefaultStatefulProps = {
     initialState: {
       checked: false,
-      $isFocused: false,
-      $isIndeterminate: false,
+      isFocused: false,
+      isIndeterminate: false,
     },
     stateReducer: defaultStateReducer,
     onChange: () => {},
@@ -71,10 +71,10 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
         nextState = {checked: e.target.checked};
         break;
       case STATE_TYPE.focus:
-        nextState = {$isFocused: true};
+        nextState = {isFocused: true};
         break;
       case STATE_TYPE.blur:
-        nextState = {$isFocused: false};
+        nextState = {isFocused: false};
         break;
       case STATE_TYPE.hover:
         nextState = {$isHovered: true};

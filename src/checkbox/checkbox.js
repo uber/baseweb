@@ -6,12 +6,12 @@ class StatelessCheckbox extends React.Component<Props> {
   static defaultProps: DefaultProps = {
     checked: false,
     disabled: false,
-    $isFocused: false,
-    $isIndeterminate: false,
-    $placement: 'right',
-    $inputRef: React.createRef(),
-    $error: false,
-    $label: '',
+    isFocused: false,
+    isIndeterminate: false,
+    placement: 'right',
+    inputRef: React.createRef(),
+    error: false,
+    label: '',
     onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
@@ -20,9 +20,9 @@ class StatelessCheckbox extends React.Component<Props> {
   };
 
   componentDidMount() {
-    const {$isFocused, $inputRef} = this.props;
-    if ($isFocused) {
-      $inputRef.current && $inputRef.current.focus();
+    const {isFocused, inputRef} = this.props;
+    if (isFocused) {
+      inputRef.current && inputRef.current.focus();
     }
   }
 
@@ -34,12 +34,12 @@ class StatelessCheckbox extends React.Component<Props> {
       onMouseLeave,
       onFocus,
       onBlur,
-      $placement,
-      $label,
-      $inputRef,
-      $isFocused,
-      $isIndeterminate,
-      $error,
+      placement,
+      label,
+      inputRef,
+      isFocused,
+      isIndeterminate,
+      error,
       ...sharedProps
     } = this.props;
     const {Root, Checkmark, Label, Input} = components;
@@ -52,21 +52,21 @@ class StatelessCheckbox extends React.Component<Props> {
       onBlur,
     };
     const getLabel = () => (
-      <Label $placement={$placement} {...sharedProps} $error={$error}>
-        {$label}
+      <Label placement={placement} {...sharedProps} $error={error}>
+        {label}
       </Label>
     );
     return (
-      <Root {...sharedProps} $error={$error}>
-        {($placement === 'top' || $placement === 'left') && getLabel()}
+      <Root {...sharedProps} $error={error}>
+        {(placement === 'top' || placement === 'left') && getLabel()}
         <Checkmark
           {...sharedProps}
-          $error={$error}
-          $isFocused={$isFocused}
-          $isIndeterminate={$isIndeterminate}
+          $error={error}
+          $isFocused={isFocused}
+          $isIndeterminate={isIndeterminate}
         />
-        <Input type="checkbox" $ref={$inputRef} {...sharedProps} {...events} />
-        {($placement === 'bottom' || $placement === 'right') && getLabel()}
+        <Input type="checkbox" $ref={inputRef} {...sharedProps} {...events} />
+        {(placement === 'bottom' || placement === 'right') && getLabel()}
       </Root>
     );
   }

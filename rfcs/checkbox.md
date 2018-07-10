@@ -13,22 +13,22 @@
 
 * `checked: ?boolean`:
   check or uncheck the control. Default is `false`.
-* `$isFocused: boolean`:
+* `isFocused: boolean`:
   make the control focused (active). Default is `false`
-* `$label: string`:
+* `label: string`:
   String value for label of checkbox. Default is empty string
 * `disabled: boolean`:
   Disable control from being changed
-* `$error: boolean`:
+* `error: boolean`:
   Sets control into error state. Default is `false`
-* `$isIndeterminate: boolean`:
+* `isIndeterminate: boolean`:
   Indeterminate control value. checked is ignored.
 * `components: {Root: (props: {[string]: any}) => React$Node, Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node, , Input: (props: {[string]: any}) => React$Node}`
   * `Label` to render. Optional.
   * Custom `Checkmark` (exact control). If used, most of handlers may not work.
   * `Root` wrapper element for the whole checkbox control to apply styles
   * `Input` may replace original functionality of checkbox. If provided should follow the same interface and logic or may break the whole component
-* `$placement: 'top' | 'right' | 'bottom' | 'left'`:
+* `placement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
 * `onChange: func`:
   handler for events on trigger element
@@ -46,7 +46,7 @@
 * `initialState: {}`
   Initial state of an uncontrolled popover component.
   * `checked` - an initial checked state. Check or uncheck the control. Default is `false`.
-  * `$isFocused` - an initial isFocused state. Make the control focused (active). Default is `false`
+  * `isFocused` - an initial isFocused state. Make the control focused (active). Default is `false`
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
@@ -55,7 +55,7 @@
 * `children: func` should return `Checkbox` instance with standard or customized inner elements. It makes sense only for `StatefulCheckboxContainer` and is ignored by `StatefulCheckbox`
 * `disabled: boolean`:
   Disable control from being changed
-* `$placement: 'top' | 'right' | 'bottom' | 'left'`:
+* `placement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
 * `onChange: func`:
   handler for events on trigger element
@@ -107,7 +107,7 @@ export default () => {
           isFocused: true,
         }}
         disabled={false}
-        $placement="left"
+        placement="left"
         onMouseEnter={this.onCheckboxHover}
         onChange={this.onCheckboxChange}
       >
@@ -124,7 +124,7 @@ export default () => {
         }}
       </StatefulCheckboxContainer>
       <StatefulCheckbox
-        $placement="right"
+        placement="right"
         onMouseEnter={this.onCheckboxHover}
         onChange={this.onCheckboxChange}
       />

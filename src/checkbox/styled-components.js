@@ -2,18 +2,18 @@
 import {styled} from '../styles';
 
 function getBorderColor(props) {
-  const {checked, $error, $isIndeterminate, $theme} = props;
+  const {checked, $error, isIndeterminate, $theme} = props;
   const {colors} = $theme;
   return $error
     ? colors.alert400
-    : $isIndeterminate || checked ? colors.primary400 : colors.mono700;
+    : isIndeterminate || checked ? colors.primary400 : colors.mono700;
 }
 
 function getLabelPadding(props) {
-  const {$placement, $theme} = props;
+  const {placement, $theme} = props;
   const {sizing} = $theme;
   const {scale200} = sizing;
-  switch ($placement) {
+  switch (placement) {
     case 'left':
       return '0 ' + scale200 + ' 0 0';
     case 'top':
@@ -27,11 +27,11 @@ function getLabelPadding(props) {
 }
 
 function getBackgroundColor(props) {
-  const {disabled, checked, $isIndeterminate, $isFocused, $theme} = props;
+  const {disabled, checked, isIndeterminate, $isFocused, $theme} = props;
   const {colors} = $theme;
   return disabled
     ? colors.mono300
-    : $isIndeterminate || checked
+    : isIndeterminate || checked
       ? colors.primary400
       : $isFocused ? colors.mono500 : null;
 }
@@ -74,13 +74,11 @@ export const Checkmark = styled('span', props => {
 });
 
 export const Label = styled('div', props => {
-  const {$placement, $theme} = props;
+  const {placement, $theme} = props;
   const {typography} = $theme;
   return {
     display:
-      $placement === 'left' || $placement === 'right'
-        ? 'inline-block'
-        : 'block',
+      placement === 'left' || placement === 'right' ? 'inline-block' : 'block',
     verticalAlign: 'middle',
     padding: getLabelPadding(props),
     color: getLabelColor(props),
