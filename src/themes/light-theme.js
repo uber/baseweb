@@ -225,6 +225,12 @@ export default {
     overlay500: 'inset 0 0 0 1000px hsla(0, 0%, 0%, 0.2)',
     overlay600: 'inset 0 0 0 1000px hsla(0, 0%, 0%, 0.24)',
   },
+  borders: {
+    useRoundedCorners: true,
+    radius100: '2px',
+    radius200: '4px',
+    radius300: '8px',
+  },
   animation: {
     timing100: '0.25s',
     timing400: '0.4s',
