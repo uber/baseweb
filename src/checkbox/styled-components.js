@@ -5,10 +5,8 @@ function getBorderColor(props) {
   const {checked, $error, $isIndeterminate, $theme} = props;
   const {colors} = $theme;
   return $error
-    ? colors.checkboxError
-    : $isIndeterminate || checked
-      ? colors.checkboxCheckedOrIndeterminate
-      : colors.checkboxDefaultBorder;
+    ? colors.alert400
+    : $isIndeterminate || checked ? colors.primary400 : colors.mono700;
 }
 
 function getLabelPadding(props) {
@@ -32,18 +30,16 @@ function getBackgroundColor(props) {
   const {disabled, checked, $isIndeterminate, $isFocused, $theme} = props;
   const {colors} = $theme;
   return disabled
-    ? colors.checkboxDisabledBackground
+    ? colors.mono300
     : $isIndeterminate || checked
-      ? colors.checkboxCheckedOrIndeterminate
-      : $isFocused ? colors.checkboxDefaultBackground : null;
+      ? colors.primary400
+      : $isFocused ? colors.mono500 : null;
 }
 
 function getLabelColor(props) {
   const {disabled, $error, $theme} = props;
   const {colors} = $theme;
-  return disabled
-    ? colors.checkboxDisabled
-    : $error ? colors.checkboxError : colors.checkboxDefaultLabel;
+  return disabled ? colors.mono600 : $error ? colors.alert400 : colors.mono1000;
 }
 
 export const Root = styled('label', () => {});
@@ -72,9 +68,7 @@ export const Checkmark = styled('span', props => {
     backgroundPosition: 'center',
     ':hover': {
       backgroundColor:
-        !disabled && !$isIndeterminate && !checked
-          ? colors.checkboxHover
-          : null,
+        !disabled && !$isIndeterminate && !checked ? colors.mono400 : null,
     },
   };
 });
@@ -88,7 +82,6 @@ export const Label = styled('div', props => {
         ? 'inline-block'
         : 'block',
     verticalAlign: 'middle',
-    textTransform: 'capitalize',
     padding: getLabelPadding(props),
     color: getLabelColor(props),
     ...typography.font400,

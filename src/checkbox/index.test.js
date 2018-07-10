@@ -54,7 +54,7 @@ describe('Checkbox', function() {
     });
 
     test.each([['Root'], ['Label'], ['Checkmark'], ['Input']])(
-      'should send shared components to %s',
+      'should send shared props to %s',
       subcomponent => {
         const mockComp = jest.fn(() => <div>{subcomponent}</div>);
         components[subcomponent] = mockComp;

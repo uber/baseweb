@@ -124,16 +124,6 @@ export default {
     // Shadow
     shadowFocus: primary300,
     shadowError: alert100,
-
-    // Checkbox
-    checkboxCheckedOrIndeterminate: primary400,
-    checkboxHover: mono400,
-    checkboxDisabled: mono600,
-    checkboxDefaultBackground: mono500,
-    checkboxDisabledBackground: mono300,
-    checkboxDefaultBorder: mono700,
-    checkboxDefaultLabel: mono1000,
-    checkboxError: alert400,
   },
   typography: {
     font100: {

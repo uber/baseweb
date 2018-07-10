@@ -2,6 +2,7 @@
 module.exports = {
   coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/test'],
   rootDir: 'src',
+  coverageDirectory: '../coverage',
   setupFiles: ['<rootDir>/test/test-setup.js'],
   setupTestFrameworkScriptFile: '<rootDir>/test/test-framework-setup.js',
   testEnvironment: 'jsdom',
