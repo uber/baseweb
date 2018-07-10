@@ -42,12 +42,15 @@ function getLabelColor(props) {
   return disabled ? colors.mono600 : $error ? colors.alert400 : colors.mono1000;
 }
 
-export const Root = styled('label', () => {});
+export const Root = styled('label', () => ({
+  display: 'flex',
+}));
 
 export const Checkmark = styled('span', props => {
   const {checked, disabled, $isIndeterminate, $theme} = props;
   const {colors, sizing} = $theme;
   return {
+    flex: '0 0 auto',
     width: sizing.scale600,
     height: sizing.scale600,
     left: '4px',
@@ -55,7 +58,7 @@ export const Checkmark = styled('span', props => {
     borderStyle: 'solid',
     borderWidth: '2px',
     borderColor: getBorderColor(props),
-    borderRadius: '3px',
+    borderRadius: '4px',
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
