@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatefulPopover basic render: renders <Popover/> as child to container 1`] = `
+<Popover
+  accessibilityType="menu"
+  components={
+    Object {
+      "Body": [Function],
+    }
+  }
+  content={[Function]}
+  isOpen={true}
+  onBlur={[Function]}
+  onClickOutside={[Function]}
+  onEsc={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseEnterDelay={100}
+  onMouseLeave={[Function]}
+  onMouseLeaveDelay={200}
+  placement="topLeft"
+  showArrow={true}
+  triggerType="hover"
+>
+  <span>
+    Hover me
+  </span>
+</Popover>
+`;
+
+exports[`StatefulPopover basic render: renders <StatefulContainer/> 1`] = `
+<StatefulContainer
+  accessibilityType="menu"
+  components={
+    Object {
+      "Body": [Function],
+    }
+  }
+  content={[MockFunction]}
+  dismissOnClickOutside={true}
+  dismissOnEsc={true}
+  initialState={
+    Object {
+      "isOpen": true,
+    }
+  }
+  onClose={[MockFunction]}
+  onMouseEnterDelay={100}
+  onMouseLeaveDelay={200}
+  onOpen={[MockFunction]}
+  placement="topLeft"
+  showArrow={true}
+  stateReducer={[MockFunction]}
+  triggerType="hover"
+/>
+`;

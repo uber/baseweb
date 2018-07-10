@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover styled components StyledArrow - basic render: StyledArrow has correct styles 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.background",
+  "boxShadow": "$theme.lighting.shadow600",
+  "height": "8px",
+  "left": "10px",
+  "position": "absolute",
+  "top": "0px",
+  "transform": "rotate(45deg)",
+  "width": "8px",
+  "zIndex": 1,
+}
+`;
+
+exports[`Popover styled components StyledBody - basic render: StyledBody has correct styles when closed 1`] = `
+Object {
+  "animationDuration": "0.2s",
+  "animationFillMode": "both",
+  "animationName": Object {
+    "from": Object {
+      "opacity": 1,
+      "transform": "scale(1)",
+    },
+    "to": Object {
+      "opacity": 0,
+      "transform": "scale(0.8)",
+    },
+  },
+  "animationPlayState": "paused",
+  "animationTimingFunction": "cubic-bezier(0.08, 0.82, 0.17, 1)",
+  "backgroundColor": "$theme.colors.background",
+  "borderRadius": "$theme.borders.radius300",
+  "boxShadow": "$theme.lighting.shadow600",
+  "left": "0px",
+  "marginTop": "6px",
+  "position": "absolute",
+  "top": "0px",
+  "transformOrigin": "0px top",
+  "zIndex": 1050,
+}
+`;
+
+exports[`Popover styled components StyledBody - basic render: StyledBody has correct styles when open and animating 1`] = `
+Object {
+  "animationDuration": "0.2s",
+  "animationFillMode": "both",
+  "animationName": Object {
+    "from": Object {
+      "opacity": 0,
+      "transform": "scale(0.8)",
+    },
+    "to": Object {
+      "opacity": 1,
+      "transform": "scale(1)",
+    },
+  },
+  "animationPlayState": "running",
+  "animationTimingFunction": "cubic-bezier(0.08, 0.82, 0.17, 1)",
+  "backgroundColor": "$theme.colors.background",
+  "borderRadius": "$theme.borders.radius300",
+  "boxShadow": "$theme.lighting.shadow600",
+  "left": "100px",
+  "marginTop": "6px",
+  "position": "absolute",
+  "top": "100px",
+  "transformOrigin": "10px top",
+  "zIndex": 1050,
+}
+`;
+
+exports[`Popover styled components StyledInner - basic render: StyledInner has correct styles 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.background",
+  "borderRadius": "$theme.borders.radius300",
+  "position": "relative",
+  "zIndex": 2,
+}
+`;
+
+exports[`Popover styled components StyledPadding - basic render: StyledPadding has correct styles 1`] = `
+Object {
+  "padding": "12px",
+}
+`;
