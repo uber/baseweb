@@ -7,7 +7,9 @@ describe('StatefulPopover', () => {
   test('basic render', () => {
     const props = {
       components: {
-        Body: () => <span />,
+        Body: function CustomBody() {
+          return <span />;
+        },
       },
       content: jest.fn(),
       initialState: {
