@@ -7,10 +7,13 @@ import {ThemeContext} from './theme-provider';
 
 const getInitialStyle = () => ({});
 
-const wrapper = StyledComponent => props => (
-  <ThemeContext.Consumer>
-    {theme => <StyledComponent {...props} $theme={theme} />}
-  </ThemeContext.Consumer>
-);
+const wrapper = StyledComponent =>
+  function withThemeHOC(props) {
+    return (
+      <ThemeContext.Consumer>
+        {theme => <StyledComponent {...props} $theme={theme} />}
+      </ThemeContext.Consumer>
+    );
+  };
 
 export default createStyled({wrapper, getInitialStyle, driver});

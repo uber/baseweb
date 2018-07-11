@@ -1,21 +1,24 @@
 module.exports = {
   parser: 'babel-eslint',
-  plugins: ['flowtype'],
+  plugins: ['flowtype', 'eslint-plugin-react', 'eslint-plugin-import'],
   env: {
     jest: true,
   },
   extends: [
-    'airbnb',
-    'eslint-config-uber-universal-stage-3',
     'plugin:flowtype/recommended',
+    'plugin:react/recommended',
+    require.resolve('eslint-config-uber-universal-stage-3'),
   ],
   rules: {
+    // Enforce flow file declarations
     'flowtype/require-valid-file-annotation': ['error', 'always'],
-    'flowtype/no-weak-types': ['error', {}],
+    'flowtype/no-weak-types': ['error'],
     'react/jsx-filename-extension': 0,
-    'react/destructuring-assignment': 0,
-    'react/jsx-one-expression-per-line': 0,
-    'import/no-extraneous-dependencies': 0,
+    // Enforces imports of external modules to be declared in the package.json
+    'import/no-extraneous-dependencies': [
+      'error',
+      {optionalDependencies: false},
+    ],
     'prettier/prettier': [
       'error',
       {
