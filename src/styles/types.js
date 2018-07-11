@@ -1,37 +1,48 @@
 // @flow
 type Colors = {
   // Primary Palette
+  primary50: string,
   primary100: string,
   primary200: string,
   primary300: string,
   primary400: string,
   primary: string,
   primary500: string,
+  primary600: string,
+  primary700: string,
 
   // Alert Palette
-  alert50: string,
-  alert100: string,
-  alert200: string,
-  alert300: string,
-  alert400: string,
-  alert: string,
-  alert500: string,
+  negative50: string,
+  negative100: string,
+  negative200: string,
+  negative300: string,
+  negative400: string,
+  negative: string,
+  negative500: string,
+  negative600: string,
+  negative700: string,
 
   // Warning Palette
+  warning50: string,
   warning100: string,
   warning200: string,
   warning300: string,
   warning400: string,
   warning: string,
   warning500: string,
+  warning600: string,
+  warning700: string,
 
   // Success Palette
-  success100: string,
-  success200: string,
-  success300: string,
-  success400: string,
-  success: string,
-  success500: string,
+  positive50: string,
+  positive100: string,
+  positive200: string,
+  positive300: string,
+  positive400: string,
+  positive: string,
+  positive500: string,
+  positive600: string,
+  positive700: string,
 
   // Monochrome Palette
   white: string,
@@ -92,8 +103,11 @@ type Colors = {
 type Typography = {
   font100: Font,
   font200: Font,
+  font250: Font,
   font300: Font,
+  font350: Font,
   font400: Font,
+  font450: Font,
   font500: Font,
   font600: Font,
   font700: Font,
