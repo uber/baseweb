@@ -1,36 +1,51 @@
 // @flow
 // color constants
-const primary100 = 'hsl(215, 77%, 95%)'; /* #e8f1fc */
-const primary200 = 'hsl(215, 77%, 90%)'; /* #d2e2f9 */
-const primary300 = 'hsl(215, 75%, 75%)'; /* '#8fb7ef' */
-const primary400 = 'hsl(215, 78%, 49%)'; /* '#1b6dde' */
-const primary500 = 'hsl(215, 79%, 25%)'; /* '#0d3772' */
-const alert50 = 'hsl(6, 83%, 95%)'; /* '#fdeae8' */
-const alert100 = 'hsl(6, 83%, 91%)'; /* '#fbd9d5' */
-const alert200 = 'hsl(6, 83%, 77%)'; /* '#f59d94' */
-const alert300 = 'hsl(6, 40%, 52%)'; /* '#b65d54' */
-const alert400 = 'hsl(6, 77%, 56%)'; /* '#e54a38' */
-const alert500 = 'hsl(6, 72%, 27%)'; /* '#761d13' */
-const warning100 = 'hsl(26, 85%, 95%)'; /* '#fdf1e7' */
-const warning200 = 'hsl(26, 85%, 90%)'; /* '#fbe3d0' */
-const warning300 = 'hsl(26, 86%, 75%)'; /* '#f6b888' */
-const warning400 = 'hsl(26, 89%, 49%)'; /* '#ec6e0e' */
-const warning500 = 'hsl(26, 89%, 25%)'; /* '#783807' */
-const success100 = 'hsl(152, 49%, 93%)'; /* '#e4f6ee' */
-const success200 = 'hsl(152, 48%, 86%)'; /* '#caecdc' */
-const success300 = 'hsl(152, 47%, 66%)'; /* '#80d1ab' */
-const success400 = 'hsl(152, 92%, 33%)'; /* '#07a259' */
-const success500 = 'hsl(152, 100%, 16%)'; /* '#00522c' */
-const mono100 = 'hsl(0, 0%, 100%)'; /* #ffffff */
-const mono200 = 'hsl(0, 0%, 97%)'; /* #f7f7f7 */
-const mono300 = 'hsl(0, 0%, 94%)'; /* #f0f0f0 */
-const mono400 = 'hsl(0, 0%, 90%)'; /* #e6e6e6 */
-const mono500 = 'hsl(0, 0%, 80%)'; /* #cccccc */
-const mono600 = 'hsl(0, 0%, 70%)'; /* #b3b3b3 */
-const mono700 = 'hsl(0, 0%, 60%)'; /* #999999 */
-const mono800 = 'hsl(0, 0%, 40%)'; /* #666666 */
-const mono900 = 'hsl(0, 0%, 20%)'; /* #333333 */
-const mono1000 = 'hsl(0, 0%, 0%)'; /* #000000 */
+const primary50 = '#EDF3FE';
+const primary100 = '#D2E0FC';
+const primary200 = '#9CBCF8';
+const primary300 = '#548BF4';
+const primary400 = '#1E66F0';
+const primary500 = '#174EB6';
+const primary600 = '#123D90';
+const primary700 = '#0C2960';
+
+const negative50 = '#FDF0EF';
+const negative100 = '#FADBD7';
+const negative200 = '#F4AFA7';
+const negative300 = '#EB7567';
+const negative400 = '#E54937';
+const negative500 = '#AE372A';
+const negative600 = '#892C21';
+const negative700 = '#5C1D16';
+
+const warning50 = '#FEF3EC';
+const warning100 = '#FBE2CF';
+const warning200 = '#F6BA8B';
+const warning300 = '#F19248';
+const warning400 = '#ED6F0E';
+const warning500 = '#B4540B';
+const warning600 = '#8E4308';
+const warning700 = '#5F2C06';
+
+const positive50 = '#EBF8F2';
+const positive100 = '#CDEDDE';
+const positive200 = '#88D3B0';
+const positive300 = '#43B982';
+const positive400 = '#07A35A';
+const positive500 = '#057C44';
+const positive600 = '#046236';
+const positive700 = '#034124';
+
+const mono100 = '#FFFFFF';
+const mono200 = '#F7F7F7';
+const mono300 = '#F0F0F0';
+const mono400 = '#E5E5E5';
+const mono500 = '#CCCCCC';
+const mono600 = '#B3B3B3';
+const mono700 = '#999999';
+const mono800 = '#666666';
+const mono900 = '#333333';
+const mono1000 = '#000000';
 
 // font constants
 const primaryFontFamily = '"Helvetica Neue", arial, sans-serif';
@@ -38,37 +53,48 @@ const primaryFontFamily = '"Helvetica Neue", arial, sans-serif';
 export default {
   colors: {
     // Primary Palette
+    primary50,
     primary100,
     primary200,
     primary300,
     primary400,
     primary: primary400,
     primary500,
+    primary600,
+    primary700,
 
-    // Alert Palette
-    alert50,
-    alert100,
-    alert200,
-    alert300,
-    alert400,
-    alert500,
-    alert: alert400,
+    // Negative Palette
+    negative50,
+    negative100,
+    negative200,
+    negative300,
+    negative400,
+    negative: negative400,
+    negative500,
+    negative600,
+    negative700,
 
     // Warning Palette
+    warning50,
     warning100,
     warning200,
     warning300,
     warning400,
     warning: warning400,
     warning500,
+    warning600,
+    warning700,
 
-    // Success Palette
-    success100,
-    success200,
-    success300,
-    success400,
-    success: success400,
-    success500,
+    // Positive Palette
+    positive50,
+    positive100,
+    positive200,
+    positive300,
+    positive400,
+    positive: positive400,
+    positive500,
+    positive600,
+    positive700,
 
     // Monochrome Palette
     white: mono100,
@@ -100,15 +126,15 @@ export default {
     border: mono500,
     borderAlt: mono600,
     borderFocus: primary400,
-    borderError: alert400,
+    borderError: negative400,
 
     // Buttons
     buttonPrimaryFill: primary400,
     buttonPrimaryText: mono100,
-    buttonPrimaryHover: primary500,
-    buttonPrimaryActive: primary500,
-    buttonSecondaryFill: primary100,
-    buttonSecondaryText: primary400,
+    buttonPrimaryHover: primary600,
+    buttonPrimaryActive: primary700,
+    buttonSecondaryFill: primary50,
+    buttonSecondaryText: primary500,
     buttonTertiaryFill: mono200,
     buttonTertiaryText: primary400,
     buttonMinimalFill: mono100,
@@ -119,11 +145,11 @@ export default {
     // Links
     linkText: primary400,
     linkVisited: primary500,
-    linkHover: primary500,
+    linkHover: primary600,
 
     // Shadow
     shadowFocus: primary300,
-    shadowError: alert100,
+    shadowError: negative100,
   },
   typography: {
     font100: {
@@ -136,61 +162,82 @@ export default {
       fontFamily: primaryFontFamily,
       fontSize: '12px',
       fontWeight: 'normal',
-      lineHeight: '16px',
+      lineHeight: '20px',
+    },
+    font250: {
+      fontFamily: primaryFontFamily,
+      fontSize: '12px',
+      fontWeight: 'bold',
+      lineHeight: '20px',
     },
     font300: {
       fontFamily: primaryFontFamily,
-      fontSize: '12px',
+      fontSize: '14px',
       fontWeight: 'normal',
-      lineHeight: '20px',
+      lineHeight: '24px',
     },
     font350: {
       fontFamily: primaryFontFamily,
       fontSize: '14px',
-      fontWeight: 'normal',
-      lineHeight: '20px',
-    },
-    font400: {
-      fontFamily: primaryFontFamily,
-      fontSize: '14px',
-      fontWeight: 'normal',
-      lineHeight: '24px',
-    },
-    font500: {
-      fontFamily: primaryFontFamily,
-      fontSize: '16px',
       fontWeight: 'bold',
       lineHeight: '24px',
     },
-    font600: {
+    font400: {
+      fontFamily: primaryFontFamily,
+      fontSize: '16px',
+      fontWeight: 'normal',
+      lineHeight: '28px',
+    },
+    font450: {
+      fontFamily: primaryFontFamily,
+      fontSize: '16px',
+      fontWeight: 'bold',
+      lineHeight: '28px',
+    },
+    font500: {
       fontFamily: primaryFontFamily,
       fontSize: '20px',
       fontWeight: 'bold',
       lineHeight: '28px',
+      letterSpacing: '-2%',
+    },
+    font600: {
+      fontFamily: primaryFontFamily,
+      fontSize: '24px',
+      fontWeight: 'bold',
+      lineHeight: '36px',
+      letterSpacing: '-2%',
     },
     font700: {
       fontFamily: primaryFontFamily,
       fontSize: '28px',
       fontWeight: 'bold',
       lineHeight: '40px',
+      letterSpacing: '-2%',
     },
     font800: {
       fontFamily: primaryFontFamily,
       fontSize: '32px',
       fontWeight: 'bold',
       lineHeight: '48px',
+      // TODO: move the letter spacing in an Uber specific theme
+      letterSpacing: '-2%',
     },
     font900: {
       fontFamily: primaryFontFamily,
       fontSize: '40px',
       fontWeight: 'bold',
       lineHeight: '56px',
+      // TODO: move the letter spacing in an Uber specific theme
+      letterSpacing: '-2%',
     },
     font1000: {
       fontFamily: primaryFontFamily,
       fontSize: '56px',
       fontWeight: 'normal',
       lineHeight: '80px',
+      // TODO: move the letter spacing in an Uber specific theme
+      letterSpacing: '-2%',
     },
   },
   sizing: {
