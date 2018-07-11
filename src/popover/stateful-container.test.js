@@ -13,7 +13,9 @@ describe('StatefulPopoverContainer', () => {
   test('basic render', () => {
     const props = {
       components: {
-        Body: () => <span />,
+        Body: function CustomBody() {
+          return <span />;
+        },
       },
       content: jest.fn(),
       onMouseEnterDelay: 100,
