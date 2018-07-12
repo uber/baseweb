@@ -14,49 +14,9 @@ import {
   SIZE,
 } from './index';
 
-// ==============================
-// const CustomInputContainer = withStyle(
-//   StyledInputContainer,
-//   ({$selectedColor, $isFocused, $disabled, $error, $theme: {colors}}) => {
-//     return {
-//       backgroundColor: $disabled
-//         ? colors.mono300
-//         : $isFocused || $error
-//           ? colors.mono100
-//           : $selectedColor || colors.mono200,
-//     };
-//   }
-// );
-// class MyComponent extends React.Component {
-//   state = {
-//     selectedColor: null,
-//   };
-//   changeColor = () => {
-//     this.setState({
-//       selectedColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
-//     });
-//   };
-//   render() {
-//     return (
-//       <div>
-//         <Input
-//           $selectedColor={this.state.selectedColor}
-//           $components={{
-//             InputContainer: CustomInputContainer,
-//           }}
-//           $size="compact"
-//           placeholder="Some placeholder"
-//         />
-//         <button onClick={this.changeColor}>Change Color</button>
-//       </div>
-//     );
-//   }
-// }
-// ==============================
-
 const Button = styled('button', ({$theme}) => {
   return {
-    ...$theme.typography.font400,
+    ...$theme.typography.font300,
     display: 'block',
     paddingTop: '10px',
     paddingRight: '12px',
@@ -245,7 +205,7 @@ storiesOf('Input', module)
           width: '16px',
           height: '16px',
           borderRadius: '50%',
-          backgroundColor: $error ? $theme.colors.alert400 : '#999999',
+          backgroundColor: $error ? $theme.colors.negative400 : '#999999',
         },
       };
     });

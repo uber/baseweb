@@ -37,8 +37,8 @@ function getDecoratorBorderRadius(position, radius) {
 
 function getFont(size, typography) {
   return {
-    [SIZE.default]: typography.font400,
-    [SIZE.compact]: typography.font300,
+    [SIZE.default]: typography.font300,
+    [SIZE.compact]: typography.font200,
   }[size];
 }
 
@@ -53,9 +53,9 @@ export const Root = styled('div', props => {
 });
 
 export const Label = styled('label', props => {
-  const {$size, $disabled, $theme: {colors, sizing, typography}} = props;
+  const {$disabled, $theme: {colors, sizing, typography}} = props;
   return {
-    ...getFont($size, typography),
+    ...typography.font350,
     fontWeight: 500,
     color: $disabled ? colors.mono700 : colors.mono1000,
     display: 'block',
@@ -71,11 +71,13 @@ export const Label = styled('label', props => {
 });
 
 export const Caption = styled('div', props => {
-  const {$size, $error, $theme: {colors, sizing, typography}} = props;
+  const {$error, $theme: {colors, sizing, typography}} = props;
   return {
-    ...getFont($size, typography),
+    ...typography.font200,
     color:
-      $error && typeof $error !== 'boolean' ? colors.alert400 : colors.mono800,
+      $error && typeof $error !== 'boolean'
+        ? colors.negative400
+        : colors.mono800,
     paddingTop: '0',
     paddingRight: '0',
     paddingBottom: '0',
@@ -106,11 +108,11 @@ export const InputContainer = styled('div', props => {
     $error,
     $disabled,
     $size,
-    $theme: {colors, sizing, typography},
+    $theme: {colors, sizing, typography, animation},
   } = props;
   return {
     ...getFont($size, typography),
-    color: colors.mono1000,
+    color: $disabled ? colors.mono600 : colors.mono1000,
     boxSizing: 'border-box',
     display: 'flex',
     width: '100%',
@@ -122,8 +124,8 @@ export const InputContainer = styled('div', props => {
     borderColor: $disabled
       ? colors.mono300
       : $error
-        ? colors.alert400
-        : $isFocused ? colors.primary300 : colors.mono200,
+        ? colors.negative400
+        : $isFocused ? colors.primary400 : colors.mono200,
     borderRadius: getBorderRadius($adjoined, sizing.scale100),
     boxShadow: `0 2px 6px ${
       $disabled
@@ -132,14 +134,23 @@ export const InputContainer = styled('div', props => {
           ? $error ? colors.shadowError : colors.shadowFocus
           : 'transparent'
     }`,
+    transitionProperty: 'border, boxShadow, backgroundColor',
+    transitionDuration: animation.timing100,
+    transitionTimingFunction: animation.easeOutCurve,
   };
 });
 
 export const Input = styled('input', props => {
-  const {$disabled, $size, $theme: {colors, sizing, typography}} = props;
+  const {
+    $disabled,
+    $error,
+    $size,
+    $theme: {colors, sizing, typography},
+  } = props;
   return {
     ...getFont($size, typography),
-    color: colors.mono1000,
+    color: $disabled ? colors.mono600 : colors.mono1000,
+    caretColor: $error ? colors.negative400 : colors.primary,
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
     borderWidth: '0',

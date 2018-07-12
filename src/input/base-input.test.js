@@ -18,7 +18,7 @@ test('BaseInput - basic functionality', () => {
 
   // $FlowFixMe
   const wrapper = mount(<BaseInput {...props} />);
-  expect(wrapper.instance().state.isFocused).toBe(false);
+  expect(wrapper).toHaveState('isFocused', false);
 
   // Renders input, before and after
   const renderedInput = wrapper.find('input').first();
@@ -39,17 +39,18 @@ test('BaseInput - basic functionality', () => {
   // onFocus handler from props is called
   renderedInput.simulate('focus');
   expect(props.onFocus).toBeCalled();
-  expect(wrapper.instance().state.isFocused).toBe(true);
+  expect(wrapper).toHaveState('isFocused', true);
 
   // onBlur handler from props is called
   renderedInput.simulate('blur');
   expect(props.onBlur).toBeCalled();
-  expect(wrapper.instance().state.isFocused).toBe(false);
+  expect(wrapper).toHaveState('isFocused', false);
 
   // onChange handler from props is called
   renderedInput.simulate('change');
   expect(props.onChange).toBeCalled();
 
+  // Correct props passed when error state
   wrapper.setProps({error: true});
 
   const updatedBefore = wrapper.find(props.override.Before);
@@ -59,4 +60,34 @@ test('BaseInput - basic functionality', () => {
 
   const updatedAfter = wrapper.find(props.override.After);
   expect(updatedAfter.props()).toMatchSnapshot('After gets correct error prop');
+});
+
+test('BaseInput - autoFocus sets the initial focus state', () => {
+  const props = {
+    autoFocus: true,
+    onFocus: jest.fn(),
+    onChange: jest.fn(),
+  };
+
+  // $FlowFixMe
+  const wrapper = mount(<BaseInput {...props} />);
+  // Is focused when mount
+  expect(wrapper).toHaveState('isFocused', true);
+});
+
+test('BaseInput - inputRef from props', () => {
+  const focus = jest.fn();
+  const props = {
+    autoFocus: true,
+    onFocus: jest.fn(),
+    onChange: jest.fn(),
+    inputRef: {current: {focus}},
+  };
+
+  // $FlowFixMe
+  const wrapper = mount(<BaseInput {...props} />);
+  // Is focused when mount
+  expect(wrapper).toHaveState('isFocused', true);
+  // ref's focus methos is called
+  expect(focus).toBeCalled();
 });
