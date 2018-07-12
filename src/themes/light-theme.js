@@ -148,8 +148,8 @@ export default {
     linkHover: primary600,
 
     // Shadow
-    shadowFocus: primary300,
-    shadowError: negative100,
+    shadowFocus: 'rgba(39, 110, 241, 0.32)',
+    shadowError: 'rgba(229, 73, 55, 0.32)',
   },
   typography: {
     font100: {
