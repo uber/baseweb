@@ -42,15 +42,18 @@ function getLabelColor(props) {
   return disabled ? colors.mono600 : $error ? colors.alert400 : colors.mono1000;
 }
 
-export const Root = styled('label', () => ({
-  display: 'flex',
-}));
+export const Root = styled('label', props => {
+  const {disabled} = props;
+  return {
+    display: 'flex',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+  };
+});
 
 export const Checkmark = styled('span', props => {
   const {checked, disabled, $isIndeterminate, $theme, $isFocused} = props;
   const {colors, sizing, animation} = $theme;
   return {
-    cursor: disabled ? 'not-allowed' : 'pointer',
     flex: '0 0 auto',
     transition: animation.timing100 + ' ' + animation.easeOutCurve,
     width: sizing.scale600,
@@ -60,7 +63,7 @@ export const Checkmark = styled('span', props => {
     borderStyle: 'solid',
     borderWidth: '2px',
     borderColor: getBorderColor(props),
-    borderRadius: '4px',
+    borderRadius: $theme.borders.useRoundedCorners ? '4px' : '0px',
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
