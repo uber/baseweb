@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatefulInput - basic render: renders <Input/> as a child 1`] = `
+<Input
+  autoFocus={false}
+  caption="Caption"
+  disabled={false}
+  endEnhancer={null}
+  error={false}
+  id="bui-1"
+  label="Label"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onFocus={[Function]}
+  override={
+    Object {
+      "Input": [Function],
+    }
+  }
+  required={false}
+  size="default"
+  startEnhancer={null}
+  value=""
+/>
+`;
+
+exports[`StatefulInput - basic render: renders <StatefulContainer/> 1`] = `
+<StatefulContainer
+  caption="Caption"
+  initialState={Object {}}
+  label="Label"
+  onChange={[MockFunction]}
+  override={
+    Object {
+      "Input": [Function],
+    }
+  }
+  stateReducer={[Function]}
+/>
+`;
