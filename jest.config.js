@@ -1,4 +1,5 @@
 // @flow
+/*eslint-env node*/
 module.exports = {
   coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/test'],
   rootDir: 'src',

@@ -7,25 +7,23 @@ import DEFAULT_THEME from '../themes/light-theme';
 
 const engine = new Styletron();
 
-export const withStyletronProvider = (
-  Component: React.ComponentType<*>,
-) => (props: {}) => {
-  return (
-    <StyletronProvider value={engine}>
-      <Component {...props} />
-    </StyletronProvider>
-  );
-};
+export const withStyletronProvider = (Component: React.ComponentType<*>) =>
+  function withStyletronProviderHOC(props: {}) {
+    return (
+      <StyletronProvider value={engine}>
+        <Component {...props} />
+      </StyletronProvider>
+    );
+  };
 
-export const withThemeProvider = (
-  Component: React.ComponentType<*>,
-) => (props: {}) => {
-  return (
-    <ThemeProvider theme={DEFAULT_THEME}>
-      <Component {...props} />
-    </ThemeProvider>
-  );
-};
+export const withThemeProvider = (Component: React.ComponentType<*>) =>
+  function withThemeProviderHOC(props: {}) {
+    return (
+      <ThemeProvider theme={DEFAULT_THEME}>
+        <Component {...props} />
+      </ThemeProvider>
+    );
+  };
 
 export const withAll = (Component: () => React.Element<*>) => {
   return (
