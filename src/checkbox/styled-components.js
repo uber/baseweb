@@ -47,10 +47,12 @@ export const Root = styled('label', () => ({
 }));
 
 export const Checkmark = styled('span', props => {
-  const {checked, disabled, $isIndeterminate, $theme} = props;
-  const {colors, sizing} = $theme;
+  const {checked, disabled, $isIndeterminate, $theme, $isFocused} = props;
+  const {colors, sizing, animation} = $theme;
   return {
+    cursor: disabled ? 'not-allowed' : 'pointer',
     flex: '0 0 auto',
+    transition: animation.timing100 + ' ' + animation.easeOutCurve,
     width: sizing.scale600,
     height: sizing.scale600,
     left: '4px',
@@ -70,8 +72,9 @@ export const Checkmark = styled('span', props => {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     ':hover': {
-      backgroundColor:
-        !disabled && !$isIndeterminate && !checked ? colors.mono400 : null,
+      backgroundColor: $isFocused
+        ? colors.mono500
+        : !disabled && !$isIndeterminate && !checked ? colors.mono400 : null,
     },
   };
 });

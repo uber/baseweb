@@ -64,7 +64,7 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
   };
 
   stateReducer = (type: string, e: SyntheticInputEvent<HTMLInputElement>) => {
-    let nextState;
+    let nextState = {};
     const {stateReducer} = this.props;
     switch (type) {
       case STATE_TYPE.change:
@@ -82,8 +82,6 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
       case STATE_TYPE.unhover:
         nextState = {$isHovered: false};
         break;
-      default:
-        nextState = this.state;
     }
     const newState = stateReducer(type, nextState, this.state, e);
     this.setState(newState);
