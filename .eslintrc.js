@@ -29,5 +29,7 @@ module.exports = {
         bracketSpacing: false,
       },
     ],
+    'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
+    'import/prefer-default-export': ['off'],
   },
 };

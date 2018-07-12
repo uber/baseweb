@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input - basic functionality: input has correct props 1`] = `
+Object {
+  "aria-invalid": false,
+  "aria-required": false,
+  "disabled": false,
+  "id": "bui-1",
+  "onBlur": [Function],
+  "onChange": [MockFunction],
+  "onFocus": [Function],
+  "placeholder": "Placeholder",
+  "styled-component": "true",
+  "type": "text",
+  "value": "input value",
+}
+`;
+
+exports[`Input - renders enhancers: input has correct props when end enhancers added 1`] = `
+Object {
+  "$adjoined": "right",
+  "$disabled": false,
+  "$error": false,
+  "$isFocused": false,
+  "$required": false,
+  "$size": "default",
+  "children": Array [
+    <span>
+      <i />
+    </span>,
+    null,
+    <MockStyledComponent
+      $adjoined="right"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $ref={
+        Object {
+          "current": null,
+        }
+      }
+      $required={false}
+      $size="default"
+      aria-invalid={false}
+      aria-required={false}
+      disabled={false}
+      id="bui-1"
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />,
+    null,
+  ],
+}
+`;
+
+exports[`Input - renders enhancers: input has correct props when enhancers added 1`] = `
+Object {
+  "$adjoined": "both",
+  "$disabled": false,
+  "$error": false,
+  "$isFocused": false,
+  "$required": false,
+  "$size": "default",
+  "children": Array [
+    <span>
+      <i />
+    </span>,
+    null,
+    <MockStyledComponent
+      $adjoined="both"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $ref={
+        Object {
+          "current": null,
+        }
+      }
+      $required={false}
+      $size="default"
+      aria-invalid={false}
+      aria-required={false}
+      disabled={false}
+      id="bui-1"
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />,
+    null,
+  ],
+}
+`;
+
+exports[`Input - renders enhancers: input has correct props when start enhancers added 1`] = `
+Object {
+  "$adjoined": "left",
+  "$disabled": false,
+  "$error": false,
+  "$isFocused": false,
+  "$required": false,
+  "$size": "default",
+  "children": Array [
+    <span>
+      <i />
+    </span>,
+    null,
+    <MockStyledComponent
+      $adjoined="left"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $ref={
+        Object {
+          "current": null,
+        }
+      }
+      $required={false}
+      $size="default"
+      aria-invalid={false}
+      aria-required={false}
+      disabled={false}
+      id="bui-1"
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />,
+    null,
+  ],
+}
+`;
