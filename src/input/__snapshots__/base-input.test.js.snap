@@ -27,7 +27,7 @@ Object {
   "aria-invalid": false,
   "aria-required": false,
   "disabled": false,
-  "id": "bui-2",
+  "id": "bui-1",
   "onBlur": [Function],
   "onChange": [MockFunction],
   "onFocus": [Function],
