@@ -4,14 +4,14 @@ import {mount} from 'enzyme';
 import {STATE_TYPE} from './constants';
 
 import {StatefulContainer} from './index';
-import type {StateReducer} from './types';
+import type {StateReducerT} from './types';
 
 describe('Stateful container', function() {
   let allProps: any, childFn;
   let wrapper;
 
   beforeEach(function() {
-    const stateReducer: StateReducer = (type, nextState) => nextState;
+    const stateReducer: StateReducerT = (type, nextState) => nextState;
     childFn = jest.fn(() => <div>test</div>);
     allProps = {
       children: childFn,

@@ -2,29 +2,29 @@
 
 import * as React from 'react';
 
-export type Placement = 'top' | 'right' | 'bottom' | 'left';
+export type PlacementT = 'top' | 'right' | 'bottom' | 'left';
 
-export type Components = {
+export type ComponentsT = {
   Checkmark?: React.ComponentType<*>,
   Label?: React.ComponentType<*>,
   Root?: React.ComponentType<*>,
   Input?: React.ComponentType<*>,
 };
 
-export type RequiredComponents = {
+export type RequiredComponentsT = {
   Checkmark: React.ComponentType<*>,
   Label: React.ComponentType<*>,
   Root: React.ComponentType<*>,
   Input: React.ComponentType<*>,
 };
 
-export type DefaultProps = {
+export type DefaultPropsT = {
   checked: boolean,
   disabled: boolean,
   error: boolean,
   isFocused: boolean,
   isIndeterminate: boolean,
-  placement: Placement,
+  placement: PlacementT,
   inputRef: {current: ?HTMLInputElement},
   label: string,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -34,8 +34,8 @@ export type DefaultProps = {
   onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
-export type Props = {
-  components: RequiredComponents,
+export type PropsT = {
+  components: RequiredComponentsT,
   checked?: boolean,
   disabled?: boolean,
   error?: boolean,
@@ -43,7 +43,7 @@ export type Props = {
   isFocused?: boolean,
   label?: string,
   isIndeterminate?: boolean,
-  placement?: Placement,
+  placement?: PlacementT,
   $theme?: *,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -52,25 +52,23 @@ export type Props = {
   onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
-export type StateType = 'change' | 'focus' | 'blur' | 'hover';
-
-export type State = {
+export type StateT = {
   checked?: boolean,
   isFocused?: boolean,
   $isHovered?: boolean,
 };
 
-export type StateReducer = (
+export type StateReducerT = (
   stateType: string,
-  nextState: State,
-  currentState: State,
+  nextState: StateT,
+  currentState: StateT,
   event: SyntheticInputEvent<HTMLInputElement>,
-) => State;
+) => StateT;
 
-export type DefaultStatefulProps = {
-  initialState: State,
+export type DefaultStatefulPropsT = {
+  initialState: StateT,
   children?: (*) => React.Node,
-  stateReducer: StateReducer,
+  stateReducer: StateReducerT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -78,11 +76,11 @@ export type DefaultStatefulProps = {
   onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
-export type StatefulProps = {
-  components?: Components,
+export type StatefulPropsT = {
+  components?: ComponentsT,
   children?: (*) => React.Node,
-  initialState?: State,
-  stateReducer: StateReducer,
+  initialState?: StateT,
+  stateReducer: StateReducerT,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -90,10 +88,10 @@ export type StatefulProps = {
   onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
-export type StatefulCheckboxProps = {
-  components?: Components,
+export type StatefulCheckboxPropsT = {
+  components?: ComponentsT,
   children?: React.ComponentType<*>,
-  initialState?: State,
+  initialState?: StateT,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,

@@ -2,16 +2,19 @@
 import React from 'react';
 import {STATE_TYPE} from './constants';
 import type {
-  StatefulProps,
-  StateReducer,
-  DefaultStatefulProps,
-  State,
+  StatefulPropsT,
+  StateReducerT,
+  DefaultStatefulPropsT,
+  StateT,
 } from './types';
 
-const defaultStateReducer: StateReducer = (type, nextState) => nextState;
+const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
-  static defaultProps: DefaultStatefulProps = {
+class StatefulCheckboxContainer extends React.Component<
+  StatefulPropsT,
+  StateT,
+> {
+  static defaultProps: DefaultStatefulPropsT = {
     initialState: {
       checked: false,
       isFocused: false,
@@ -25,7 +28,7 @@ class StatefulCheckboxContainer extends React.Component<StatefulProps, State> {
     onBlur: () => {},
   };
 
-  constructor(props: StatefulProps) {
+  constructor(props: StatefulPropsT) {
     super(props);
     const {initialState} = this.props;
     this.state = {

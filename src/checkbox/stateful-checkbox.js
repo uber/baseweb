@@ -4,7 +4,7 @@ import React from 'react';
 import {default as StatefulContainer} from './stateful-checkbox-container';
 // eslint-disable-next-line import/no-named-default
 import {default as Checkbox} from './checkbox';
-import type {Props, StatefulCheckboxProps} from './types';
+import type {PropsT, StatefulCheckboxPropsT} from './types';
 // Styled elements
 import {
   Root as StyledRoot,
@@ -13,7 +13,7 @@ import {
   Input as StyledInput,
 } from './styled-components';
 
-export default function(props: StatefulCheckboxProps) {
+export default function(props: StatefulCheckboxPropsT) {
   const {components} = props;
   const statelessComponents = {
     Root: StyledRoot,
@@ -24,7 +24,7 @@ export default function(props: StatefulCheckboxProps) {
   };
   return (
     <StatefulContainer {...props}>
-      {(childrenProps: Props) => (
+      {(childrenProps: PropsT) => (
         <Checkbox {...childrenProps} components={statelessComponents} />
       )}
     </StatefulContainer>

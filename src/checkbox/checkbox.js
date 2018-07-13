@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
-import type {Props, DefaultProps} from './types';
+import type {PropsT, DefaultPropsT} from './types';
 
-class StatelessCheckbox extends React.Component<Props> {
-  static defaultProps: DefaultProps = {
+class StatelessCheckbox extends React.Component<PropsT> {
+  static defaultProps: DefaultPropsT = {
     checked: false,
     disabled: false,
     isFocused: false,
