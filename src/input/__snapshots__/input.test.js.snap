@@ -5,7 +5,7 @@ Object {
   "aria-invalid": false,
   "aria-required": false,
   "disabled": false,
-  "id": "bui-1",
+  "id": "bui-2",
   "onBlur": [Function],
   "onChange": [MockFunction],
   "onFocus": [Function],
@@ -44,7 +44,7 @@ Object {
       aria-invalid={false}
       aria-required={false}
       disabled={false}
-      id="bui-1"
+      id="bui-2"
       onBlur={[Function]}
       onChange={[MockFunction]}
       onFocus={[Function]}
@@ -85,7 +85,7 @@ Object {
       aria-invalid={false}
       aria-required={false}
       disabled={false}
-      id="bui-1"
+      id="bui-2"
       onBlur={[Function]}
       onChange={[MockFunction]}
       onFocus={[Function]}
@@ -126,7 +126,7 @@ Object {
       aria-invalid={false}
       aria-required={false}
       disabled={false}
-      id="bui-1"
+      id="bui-2"
       onBlur={[Function]}
       onChange={[MockFunction]}
       onFocus={[Function]}

@@ -3,15 +3,14 @@ import * as React from 'react';
 import type {InputPropsT, InternalStateT, AdjoinedT} from './types';
 import {getSharedProps, getComponent, getComponentProps} from './utils';
 import getBuiId from '../utils/get-bui-id';
+import BaseInput from './base-input';
 import {
-  BaseInput,
-  StyledLabel,
-  StyledRoot,
-  StyledInputEnhancer,
-  StyledCaption,
-  ADJOINED,
-} from './index';
-import {ENHANCER_POSITION} from './constants';
+  Label as StyledLabel,
+  Root as StyledRoot,
+  InputEnhancer as StyledInputEnhancer,
+  Caption as StyledCaption,
+} from './styled-components';
+import {ADJOINED, ENHANCER_POSITION} from './constants';
 
 class Input extends React.Component<InputPropsT, InternalStateT> {
   static defaultProps = {

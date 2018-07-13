@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
-import {StatefulContainer, Input} from './index';
+import StatefulContainer from './stateful-container';
+import Input from './input';
 import type {StatefulInputPropsT, PropsT} from './types';
 
 export default function StatefulInput(props: StatefulInputPropsT) {
