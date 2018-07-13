@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Popper from 'popper.js';
 import {mount} from 'enzyme';
-import {Popover, StyledBody, ACCESSIBILITY_TYPE, TRIGGER_TYPE} from './index';
+import {Popover, StyledBody, ACCESSIBILITY_TYPE, TRIGGER_TYPE} from '../index';
 
 jest.useFakeTimers();
 
