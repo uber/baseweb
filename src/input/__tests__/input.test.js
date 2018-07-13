@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {Input, StyledInputContainer} from './index';
+import {Input, StyledInputContainer} from '../index';
 
 test('Input - basic functionality', () => {
   const props = {

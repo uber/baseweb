@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulInput, StyledInput} from './index';
+import {StatefulInput, StyledInput} from '../index';
 
 test('StatefulInput - basic render', () => {
   const props = {

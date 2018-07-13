@@ -2,11 +2,11 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-import styled from './styled';
-import {withStyletronProvider, withThemeProvider} from '../test/test-utils';
-import {LightTheme} from '../themes';
+import styled from '../styled';
+import {withStyletronProvider, withThemeProvider} from '../../test/test-utils';
+import {LightTheme} from '../../themes';
 
-jest.unmock('./styled.js');
+jest.unmock('../styled.js');
 
 test('styled', () => {
   const StyledMockButton = styled('button', ({$theme}) => ({

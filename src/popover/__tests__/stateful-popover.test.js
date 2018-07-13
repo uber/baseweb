@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from './index';
+import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from '../index';
 
 describe('StatefulPopover', () => {
   test('basic render', () => {

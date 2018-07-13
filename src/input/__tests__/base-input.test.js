@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {BaseInput} from './index';
+import {BaseInput} from '../index';
 
 test('BaseInput - basic functionality', () => {
   const props = {
