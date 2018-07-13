@@ -4,7 +4,10 @@ import type {BaseInputPropsT, InternalStateT} from './types';
 import getBuiId from '../utils/get-bui-id';
 import {ADJOINED, SIZE} from './constants';
 import {getSharedProps, getComponent, getComponentProps} from './utils';
-import {StyledInputContainer, StyledInput} from './index';
+import {
+  InputContainer as StyledInputContainer,
+  Input as StyledInput,
+} from './styled-components';
 
 class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
   static defaultProps = {
