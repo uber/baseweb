@@ -53,14 +53,14 @@ class StatelessCheckbox extends React.Component<PropsT> {
       onFocus,
       onBlur,
     };
-    const getLabel = () => (
+    const labelComp = (
       <Label disabled={disabled} placement={placement} $theme={$theme}>
         {label}
       </Label>
     );
     return (
       <Root disabled={disabled} $error={error} $theme={$theme}>
-        {(placement === 'top' || placement === 'left') && getLabel()}
+        {(placement === 'top' || placement === 'left') && labelComp}
         <Checkmark
           disabled={disabled}
           $error={error}
@@ -70,7 +70,7 @@ class StatelessCheckbox extends React.Component<PropsT> {
           $isIndeterminate={isIndeterminate}
         />
         <Input type="checkbox" $theme={$theme} $ref={inputRef} {...events} />
-        {(placement === 'bottom' || placement === 'right') && getLabel()}
+        {(placement === 'bottom' || placement === 'right') && labelComp}
       </Root>
     );
   }
