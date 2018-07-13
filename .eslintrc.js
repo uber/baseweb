@@ -3,6 +3,7 @@ module.exports = {
   plugins: ['flowtype', 'eslint-plugin-react', 'eslint-plugin-import'],
   env: {
     jest: true,
+    node: true,
   },
   extends: [
     'plugin:flowtype/recommended',
@@ -14,6 +15,7 @@ module.exports = {
     'flowtype/require-valid-file-annotation': ['error', 'always'],
     'flowtype/no-weak-types': ['error'],
     'react/jsx-filename-extension': 0,
+    'react/display-name': 0,
     // Enforces imports of external modules to be declared in the package.json
     'import/no-extraneous-dependencies': [
       'error',
@@ -30,4 +32,12 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
     'import/prefer-default-export': ['off'],
   },
+  overrides: [
+    {
+      files: ['*.test.js'],
+      rules: {
+        'flowtype/no-weak-types': 'off',
+      },
+    },
+  ],
 };
