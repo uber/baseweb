@@ -26,12 +26,12 @@ describe('Checkbox styled components', () => {
           <div />
         </StyledLabel>,
       );
-      ['left', 'right', 'top', 'bottom'].forEach(placement => {
+      ['left', 'right', 'top', 'bottom'].forEach(labelPlacement => {
         component.setProps({
-          placement: placement,
+          labelPlacement: labelPlacement,
         });
         expect(component.instance().getStyles()).toMatchSnapshot(
-          'StyledLabel has correct styles when set to ' + placement,
+          'StyledLabel has correct styles when set to ' + labelPlacement,
         );
       });
     });

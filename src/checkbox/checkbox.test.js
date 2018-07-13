@@ -37,7 +37,7 @@ describe('Stateless checkbox', function() {
     allProps = {
       components,
       ...events,
-      placement: 'left',
+      labelPlacement: 'left',
       label: 'some',
       isError: isError,
       inputRef: React.createRef(),
@@ -69,7 +69,7 @@ describe('Stateless checkbox', function() {
         },
         Label: {
           disabled: allProps.disabled,
-          placement: allProps.placement,
+          $labelPlacement: allProps.labelPlacement,
           $theme: allProps.$theme,
         },
         Checkmark: {
@@ -101,11 +101,11 @@ describe('Stateless checkbox', function() {
 
   test.each([['top', 0], ['left', 0], ['right', 3], ['bottom', 3]])(
     'should place label according to dock to %s',
-    (placement, index) => {
+    (labelPlacement, index) => {
       const mockComp = jest.fn(() => <div>test</div>);
       components.Root = mockComp;
       allProps.label = 'super-puper label';
-      allProps.placement = placement;
+      allProps.labelPlacement = labelPlacement;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const subComp = mockComp.mock.calls[0][0].children[index];
       const isLabel = comp => comp.props.children === allProps.label;

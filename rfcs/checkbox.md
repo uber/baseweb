@@ -28,7 +28,7 @@
   * Custom `Checkmark` (exact control). If used, most of handlers may not work.
   * `Root` wrapper element for the whole checkbox control to apply styles
   * `Input` may replace original functionality of checkbox. If provided should follow the same interface and logic or may break the whole component
-* `placement: 'top' | 'right' | 'bottom' | 'left'`:
+* `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
 * `onChange: func`:
   handler for events on trigger element
@@ -55,7 +55,7 @@
 * `children: func` should return `Checkbox` instance with standard or customized inner elements. It makes sense only for `StatefulCheckboxContainer` and is ignored by `StatefulCheckbox`
 * `disabled: boolean`:
   Disable control from being changed
-* `placement: 'top' | 'right' | 'bottom' | 'left'`:
+* `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
 * `onChange: func`:
   handler for events on trigger element
@@ -107,7 +107,7 @@ export default () => {
           isFocused: true,
         }}
         disabled={false}
-        placement="left"
+        labelPlacement="left"
         onMouseEnter={this.onCheckboxHover}
         onChange={this.onCheckboxChange}
       >
@@ -124,7 +124,7 @@ export default () => {
         }}
       </StatefulCheckboxContainer>
       <StatefulCheckbox
-        placement="right"
+        labelPlacement="right"
         onMouseEnter={this.onCheckboxHover}
         onChange={this.onCheckboxChange}
       />

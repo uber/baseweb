@@ -124,7 +124,7 @@ storiesOf('Checkbox', module)
     return (
       <Checkbox
         onChange={onChange}
-        placement="left"
+        labelPlacement="left"
         label="Label on the left"
       />
     );
@@ -133,7 +133,7 @@ storiesOf('Checkbox', module)
     return (
       <Checkbox
         onChange={onChange}
-        placement="bottom"
+        labelPlacement="bottom"
         label="Label on the bottom"
       />
     );

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-export type PlacementT = 'top' | 'right' | 'bottom' | 'left';
+export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 
 export type ComponentsT = {
   Checkmark?: React.ComponentType<*>,
@@ -24,7 +24,7 @@ export type DefaultPropsT = {
   isError: boolean,
   isFocused: boolean,
   isIndeterminate: boolean,
-  placement: PlacementT,
+  labelPlacement: LabelPlacementT,
   inputRef: {current: ?HTMLInputElement},
   label: string,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -43,7 +43,7 @@ export type PropsT = {
   isFocused?: boolean,
   label?: string,
   isIndeterminate?: boolean,
-  placement?: PlacementT,
+  labelPlacement?: LabelPlacementT,
   $theme?: *,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,

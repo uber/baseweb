@@ -8,7 +8,7 @@ class StatelessCheckbox extends React.Component<PropsT> {
     disabled: false,
     isFocused: false,
     isIndeterminate: false,
-    placement: 'right',
+    labelPlacement: 'right',
     inputRef: React.createRef(),
     isError: false,
     label: '',
@@ -34,7 +34,7 @@ class StatelessCheckbox extends React.Component<PropsT> {
       onMouseLeave,
       onFocus,
       onBlur,
-      placement,
+      labelPlacement,
       label,
       inputRef,
       isFocused,
@@ -54,13 +54,17 @@ class StatelessCheckbox extends React.Component<PropsT> {
       onBlur,
     };
     const labelComp = (
-      <Label disabled={disabled} placement={placement} $theme={$theme}>
+      <Label
+        disabled={disabled}
+        $labelPlacement={labelPlacement}
+        $theme={$theme}
+      >
         {label}
       </Label>
     );
     return (
       <Root disabled={disabled} $isError={isError} $theme={$theme}>
-        {(placement === 'top' || placement === 'left') && labelComp}
+        {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
         <Checkmark
           disabled={disabled}
           $isError={isError}
@@ -70,7 +74,8 @@ class StatelessCheckbox extends React.Component<PropsT> {
           $isIndeterminate={isIndeterminate}
         />
         <Input type="checkbox" $theme={$theme} $ref={inputRef} {...events} />
-        {(placement === 'bottom' || placement === 'right') && labelComp}
+        {(labelPlacement === 'bottom' || labelPlacement === 'right') &&
+          labelComp}
       </Root>
     );
   }

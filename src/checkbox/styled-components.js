@@ -10,10 +10,10 @@ function getBorderColor(props) {
 }
 
 function getLabelPadding(props) {
-  const {placement, $theme} = props;
+  const {$labelPlacement, $theme} = props;
   const {sizing} = $theme;
   const {scale200} = sizing;
-  switch (placement) {
+  switch ($labelPlacement) {
     case 'left':
       return '0 ' + scale200 + ' 0 0';
     case 'top':
@@ -83,11 +83,9 @@ export const Checkmark = styled('span', props => {
 });
 
 export const Label = styled('div', props => {
-  const {placement, $theme} = props;
+  const {$theme} = props;
   const {typography} = $theme;
   return {
-    display:
-      placement === 'left' || placement === 'right' ? 'inline-block' : 'block',
     verticalAlign: 'middle',
     padding: getLabelPadding(props),
     color: getLabelColor(props),
