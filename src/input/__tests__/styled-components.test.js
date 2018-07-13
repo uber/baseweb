@@ -10,8 +10,8 @@ import {
   StyledCaption,
   SIZE,
   ADJOINED,
-} from './index';
-import {ENHANCER_POSITION} from './constants';
+} from '../index';
+import {ENHANCER_POSITION} from '../constants';
 
 test('Input - StyledLabel - basic render', () => {
   const component = shallow(
