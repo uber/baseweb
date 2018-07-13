@@ -63,6 +63,7 @@ export default class MenuListStatefulContainer extends React.Component<
       case KEY_STRINGS.ArrowDown:
         this._handleArrowKey(event.key);
         event.preventDefault();
+        event.stopPropagation();
         break;
       case KEY_STRINGS.Enter:
         this._handleEnterKey();

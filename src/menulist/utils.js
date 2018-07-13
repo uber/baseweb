@@ -37,7 +37,7 @@ export function scrollItemIntoView({
   const nodeRect = nodeDOM.getBoundingClientRect();
   const parentNodeRect = parentNodeDOM.getBoundingClientRect();
   // while scrolling down, if element is below view
-  if (nodeRect.top > parentNodeRect.height) {
+  if (nodeRect.bottom > parentNodeRect.bottom) {
     if (isLast) {
       parentNodeDOM.scrollTop =
         parentNodeDOM.scrollHeight - parentNodeRect.height;
