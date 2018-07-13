@@ -1,6 +1,6 @@
 // @flow
-import {getSharedProps, getComponent, getComponentProps} from './utils';
-import {ADJOINED, SIZE} from './index';
+import {getSharedProps, getComponent, getComponentProps} from '../utils';
+import {ADJOINED, SIZE} from '../index';
 
 test('Utils - getSharedProps', () => {
   const props = {

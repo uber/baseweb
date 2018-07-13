@@ -11,7 +11,7 @@ import {
   prepareArrowPositionStyles,
   getPopoverMarginStyles,
   getTransformOrigin,
-} from './utils';
+} from '../utils';
 
 describe('Popover utils', () => {
   test('getOppositePosition', () => {

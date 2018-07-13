@@ -2,7 +2,7 @@
 /* global document */
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulContainer, STATE_CHANGE_TYPE} from './index';
+import {StatefulContainer, STATE_CHANGE_TYPE} from '../index';
 
 test('StatefulContainer - basic render', () => {
   const props = {
