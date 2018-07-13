@@ -6,7 +6,7 @@ class StatelessCheckbox extends React.Component<PropsT> {
   static defaultProps: DefaultPropsT = {
     checked: false,
     disabled: false,
-    isFocused: false,
+    autoFocus: false,
     isIndeterminate: false,
     labelPlacement: 'right',
     inputRef: React.createRef(),
@@ -19,25 +19,53 @@ class StatelessCheckbox extends React.Component<PropsT> {
     onBlur: () => {},
   };
 
+  state = {
+    isFocused: this.props.autoFocus || false,
+    isHovered: false,
+  };
+
   componentDidMount() {
-    const {isFocused, inputRef} = this.props;
-    if (isFocused) {
-      inputRef.current && inputRef.current.focus();
+    const {autoFocus, inputRef} = this.props;
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
     }
   }
+
+  onMouseEnter = (e: SyntheticFocusEvent<HTMLInputElement>) => {
+    this.setState({isHovered: true});
+    this.props.onMouseEnter(e);
+  };
+
+  onMouseLeave = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.setState({isHovered: false});
+    this.props.onMouseLeave(e);
+  };
+
+  onFocus = (e: SyntheticFocusEvent<HTMLInputElement>) => {
+    this.setState({isFocused: true});
+    this.props.onFocus(e);
+  };
+
+  onBlur = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.setState({isFocused: false});
+    this.props.onBlur(e);
+  };
+
+  onMouseDown = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.onFocus(e);
+  };
+
+  onMouseUp = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.onBlur(e);
+  };
 
   render() {
     const {
       components,
       onChange,
-      onMouseEnter,
-      onMouseLeave,
-      onFocus,
-      onBlur,
       labelPlacement,
       label,
       inputRef,
-      isFocused,
       isIndeterminate,
       isError,
       disabled,
@@ -48,32 +76,49 @@ class StatelessCheckbox extends React.Component<PropsT> {
 
     const events = {
       onChange,
-      onMouseEnter,
-      onMouseLeave,
-      onFocus,
-      onBlur,
+      onMouseEnter: this.onMouseEnter,
+      onMouseLeave: this.onMouseLeave,
+      onFocus: this.onFocus,
+      onBlur: this.onBlur,
+      onMouseDown: this.onMouseDown,
+      onMouseUp: this.onMouseUp,
     };
     const labelComp = (
       <Label
         disabled={disabled}
         $labelPlacement={labelPlacement}
         $theme={$theme}
+        $isFocused={this.state.isFocused}
+        $isHovered={this.state.isHovered}
+        {...events}
       >
         {label}
       </Label>
     );
     return (
-      <Root disabled={disabled} $isError={isError} $theme={$theme}>
+      <Root
+        disabled={disabled}
+        $isError={isError}
+        $theme={$theme}
+        $labelPlacement={labelPlacement}
+      >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
         <Checkmark
           disabled={disabled}
           $isError={isError}
           checked={checked}
-          $isFocused={isFocused}
+          $isFocused={this.state.isFocused}
+          $isHovered={this.state.isHovered}
           $theme={$theme}
           $isIndeterminate={isIndeterminate}
         />
-        <Input type="checkbox" $theme={$theme} $ref={inputRef} {...events} />
+        <Input
+          disabled={disabled}
+          type="checkbox"
+          $theme={$theme}
+          $ref={inputRef}
+          {...events}
+        />
         {(labelPlacement === 'bottom' || labelPlacement === 'right') &&
           labelComp}
       </Root>

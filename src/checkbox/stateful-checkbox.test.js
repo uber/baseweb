@@ -2,7 +2,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-describe('Stateful checkbox', function() {
+describe.only('Stateful checkbox', function() {
   let allProps: any, wrapper;
 
   beforeEach(function() {
@@ -46,7 +46,7 @@ describe('Stateful checkbox', function() {
     expect(rest).toMatchObject({
       someProp: 'some other props',
       checked: false,
-      isFocused: false,
+      autoFocus: false,
       isIndeterminate: false,
     });
   });

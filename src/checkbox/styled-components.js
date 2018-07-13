@@ -5,7 +5,7 @@ function getBorderColor(props) {
   const {checked, $isError, isIndeterminate, $theme} = props;
   const {colors} = $theme;
   return $isError
-    ? colors.alert400
+    ? colors.negative400
     : isIndeterminate || checked ? colors.primary400 : colors.mono700;
 }
 
@@ -27,13 +27,20 @@ function getLabelPadding(props) {
 }
 
 function getBackgroundColor(props) {
-  const {disabled, checked, isIndeterminate, $isFocused, $theme} = props;
+  const {
+    disabled,
+    checked,
+    $isIndeterminate,
+    $isFocused,
+    $isHovered,
+    $theme,
+  } = props;
   const {colors} = $theme;
   return disabled
     ? colors.mono300
-    : isIndeterminate || checked
+    : $isIndeterminate || checked
       ? colors.primary400
-      : $isFocused ? colors.mono500 : null;
+      : $isFocused ? colors.mono500 : $isHovered ? colors.mono400 : null;
 }
 
 function getLabelColor(props) {
@@ -43,8 +50,12 @@ function getLabelColor(props) {
 }
 
 export const Root = styled('label', props => {
-  const {disabled} = props;
+  const {disabled, $labelPlacement} = props;
   return {
+    flexDirection:
+      $labelPlacement === 'top' || $labelPlacement === 'bottom'
+        ? 'column'
+        : 'row',
     display: 'flex',
     cursor: disabled ? 'not-allowed' : 'pointer',
   };
@@ -53,6 +64,11 @@ export const Root = styled('label', props => {
 export const Checkmark = styled('span', props => {
   const {checked, disabled, $isIndeterminate, $theme, $isFocused} = props;
   const {colors, sizing, animation} = $theme;
+  const activeStyle = {
+    backgroundColor: $isFocused
+      ? colors.mono500
+      : !disabled && !$isIndeterminate && !checked ? colors.mono400 : null,
+  };
   return {
     flex: '0 0 auto',
     transition: animation.timing100 + ' ' + animation.easeOutCurve,
@@ -74,11 +90,8 @@ export const Checkmark = styled('span', props => {
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    ':hover': {
-      backgroundColor: $isFocused
-        ? colors.mono500
-        : !disabled && !$isIndeterminate && !checked ? colors.mono400 : null,
-    },
+    ':hover': activeStyle,
+    ':active': activeStyle,
   };
 });
 

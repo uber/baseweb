@@ -22,7 +22,7 @@ export type DefaultPropsT = {
   checked: boolean,
   disabled: boolean,
   isError: boolean,
-  isFocused: boolean,
+  autoFocus: boolean,
   isIndeterminate: boolean,
   labelPlacement: LabelPlacementT,
   inputRef: {current: ?HTMLInputElement},
@@ -40,7 +40,7 @@ export type PropsT = {
   disabled?: boolean,
   isError?: boolean,
   inputRef: {current: ?HTMLInputElement},
-  isFocused?: boolean,
+  autoFocus?: boolean,
   label?: string,
   isIndeterminate?: boolean,
   labelPlacement?: LabelPlacementT,
@@ -54,7 +54,6 @@ export type PropsT = {
 
 export type StateT = {
   checked?: boolean,
-  isFocused?: boolean,
   $isHovered?: boolean,
 };
 

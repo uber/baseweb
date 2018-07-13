@@ -107,14 +107,16 @@ storiesOf('Checkbox', module)
   .add('Checkbox example', () => {
     return <Checkbox onChange={onChange} label="click me" />;
   })
-  .add('Checkbox with an isError', () => {
+  .add('Checkbox with an error', () => {
     return (
-      <Checkbox onChange={onChange} isError label="Checkbox with an isError " />
+      <Checkbox
+        onChange={onChange}
+        isError={true}
+        label="Checkbox with an isError "
+      />
     );
   })
   .add('Checkbox Indeterminate', () => {
-    //let checkboxes = [false, false];
-    //const ref = React.createRef();
     return <GroupList />;
   })
   .add('Checkbox disabled', () => {
@@ -216,13 +218,19 @@ storiesOf('Checkbox', module)
   })
   .add('Checkbox with a ref to focus on', () => {
     const inputRef = React.createRef();
+    let isFocused = true;
     return (
       <div>
         <Icon
           $position="right"
           onClick={() => {
-            if (inputRef.current && inputRef.current.focus) {
-              inputRef.current.focus();
+            if (inputRef.current) {
+              isFocused = !isFocused;
+              if (isFocused) {
+                inputRef.current.focus();
+              } else {
+                inputRef.current.blur();
+              }
             }
           }}
         />
@@ -230,6 +238,7 @@ storiesOf('Checkbox', module)
           label="Focused checkbox"
           onChange={onChange}
           inputRef={inputRef}
+          autoFocus={isFocused}
         />
       </div>
     );

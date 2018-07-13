@@ -17,7 +17,6 @@ class StatefulCheckboxContainer extends React.Component<
   static defaultProps: DefaultStatefulPropsT = {
     initialState: {
       checked: false,
-      isFocused: false,
       isIndeterminate: false,
     },
     stateReducer: defaultStateReducer,
@@ -43,25 +42,21 @@ class StatefulCheckboxContainer extends React.Component<
   };
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.stateReducer(STATE_TYPE.hover, e);
     const {onMouseEnter} = this.props;
     onMouseEnter && onMouseEnter(e);
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.stateReducer(STATE_TYPE.unhover, e);
     const {onMouseLeave} = this.props;
     onMouseLeave && onMouseLeave(e);
   };
 
   onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.stateReducer(STATE_TYPE.focus, e);
     const {onFocus} = this.props;
     onFocus && onFocus(e);
   };
 
   onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.stateReducer(STATE_TYPE.blur, e);
     const {onBlur} = this.props;
     onBlur && onBlur(e);
   };
@@ -72,18 +67,6 @@ class StatefulCheckboxContainer extends React.Component<
     switch (type) {
       case STATE_TYPE.change:
         nextState = {checked: e.target.checked};
-        break;
-      case STATE_TYPE.focus:
-        nextState = {isFocused: true};
-        break;
-      case STATE_TYPE.blur:
-        nextState = {isFocused: false};
-        break;
-      case STATE_TYPE.hover:
-        nextState = {$isHovered: true};
-        break;
-      case STATE_TYPE.unhover:
-        nextState = {$isHovered: false};
         break;
     }
     const newState = stateReducer(type, nextState, this.state, e);

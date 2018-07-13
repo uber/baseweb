@@ -13,7 +13,7 @@
 
 * `checked: ?boolean`:
   check or uncheck the control. Default is `false`.
-* `isFocused: boolean`:
+* `autoFocus: boolean`:
   make the control focused (active). Default is `false`
 * `label: string`:
   String value for label of checkbox. Default is empty string
@@ -46,7 +46,6 @@
 * `initialState: {}`
   Initial state of an uncontrolled popover component.
   * `checked` - an initial checked state. Check or uncheck the control. Default is `false`.
-  * `isFocused` - an initial isFocused state. Make the control focused (active). Default is `false`
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
@@ -104,7 +103,6 @@ export default () => {
       <StatefulCheckboxContainer
         initialState={{
           checked: true,
-          isFocused: true,
         }}
         disabled={false}
         labelPlacement="left"

@@ -48,9 +48,6 @@ describe('Stateful container', function() {
       ['onChange', STATE_TYPE.change, {checked: event.target.checked}],
       ['onMouseEnter', STATE_TYPE.hover, {$isHovered: true}],
       ['onMouseLeave', STATE_TYPE.unhover, {$isHovered: false}],
-      ['onFocus', STATE_TYPE.focus, {isFocused: true}],
-      ['onBlur', STATE_TYPE.blur, {isFocused: false}],
-      ['onBlur', STATE_TYPE.blur, {isFocused: false}],
     ];
     beforeEach(function() {
       events = {

@@ -41,7 +41,7 @@ describe('Stateless checkbox', function() {
       label: 'some',
       isError: isError,
       inputRef: React.createRef(),
-      isFocused: false,
+      autoFocus: false,
       isIndeterminate: false,
       disabled: false,
       checked: false,
@@ -55,7 +55,7 @@ describe('Stateless checkbox', function() {
   });
 
   test.each([['Root'], ['Label'], ['Checkmark'], ['Input']])(
-    'should send shared props to %s',
+    'should send props to %s',
     subcomponent => {
       const mockComp: any = jest.fn(() => <div>{subcomponent}</div>);
       components[subcomponent] = mockComp;
@@ -76,7 +76,7 @@ describe('Stateless checkbox', function() {
           disabled: allProps.disabled,
           $isError: allProps.isError,
           checked: allProps.checked,
-          $isFocused: allProps.isFocused,
+          $isFocused: allProps.autoFocus,
           $theme: allProps.$theme,
           $isIndeterminate: allProps.isIndeterminate,
         },
@@ -117,7 +117,7 @@ describe('Stateless checkbox', function() {
     const mockFocus = jest.fn();
     const current = global.document.createElement('input');
     current.focus = mockFocus;
-    allProps.isFocused = true;
+    allProps.autoFocus = true;
     allProps.inputRef = {
       current: current,
     };
