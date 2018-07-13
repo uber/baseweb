@@ -5,7 +5,7 @@ import {StyledRoot, StyledLabel, StyledCheckmark, StyledInput} from './index';
 
 describe('Checkbox styled components', () => {
   describe('StyledLabel', () => {
-    test.each([[''], ['disabled'], ['$error']])('', prop => {
+    test.each([[''], ['disabled'], ['$isError']])('', prop => {
       const props = {};
       props[prop] = true;
       const component = shallow(

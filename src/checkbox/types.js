@@ -21,7 +21,7 @@ export type RequiredComponentsT = {
 export type DefaultPropsT = {
   checked: boolean,
   disabled: boolean,
-  error: boolean,
+  isError: boolean,
   isFocused: boolean,
   isIndeterminate: boolean,
   placement: PlacementT,
@@ -38,7 +38,7 @@ export type PropsT = {
   components: RequiredComponentsT,
   checked?: boolean,
   disabled?: boolean,
-  error?: boolean,
+  isError?: boolean,
   inputRef: {current: ?HTMLInputElement},
   isFocused?: boolean,
   label?: string,

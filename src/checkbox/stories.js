@@ -107,9 +107,9 @@ storiesOf('Checkbox', module)
   .add('Checkbox example', () => {
     return <Checkbox onChange={onChange} label="click me" />;
   })
-  .add('Checkbox with an error', () => {
+  .add('Checkbox with an isError', () => {
     return (
-      <Checkbox onChange={onChange} error label="Checkbox with an error " />
+      <Checkbox onChange={onChange} isError label="Checkbox with an isError " />
     );
   })
   .add('Checkbox Indeterminate', () => {

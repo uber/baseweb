@@ -15,7 +15,7 @@ describe('Stateless checkbox', function() {
     events = {};
   let allProps: any = {},
     components,
-    error,
+    isError,
     mockFn;
 
   beforeEach(function() {
@@ -26,7 +26,7 @@ describe('Stateless checkbox', function() {
       Label: StyledLabel,
       Input: StyledInput,
     };
-    error = false;
+    isError = false;
     events = {
       onChange: mockFn,
       onMouseEnter: mockFn,
@@ -39,7 +39,7 @@ describe('Stateless checkbox', function() {
       ...events,
       placement: 'left',
       label: 'some',
-      error: error,
+      isError: isError,
       inputRef: React.createRef(),
       isFocused: false,
       isIndeterminate: false,
@@ -64,7 +64,7 @@ describe('Stateless checkbox', function() {
       const expectedProps = {
         Root: {
           disabled: allProps.disabled,
-          $error: allProps.error,
+          $isError: allProps.isError,
           $theme: allProps.$theme,
         },
         Label: {
@@ -74,7 +74,7 @@ describe('Stateless checkbox', function() {
         },
         Checkmark: {
           disabled: allProps.disabled,
-          $error: allProps.error,
+          $isError: allProps.isError,
           checked: allProps.checked,
           $isFocused: allProps.isFocused,
           $theme: allProps.$theme,

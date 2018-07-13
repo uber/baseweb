@@ -2,9 +2,9 @@
 import {styled} from '../styles';
 
 function getBorderColor(props) {
-  const {checked, $error, isIndeterminate, $theme} = props;
+  const {checked, $isError, isIndeterminate, $theme} = props;
   const {colors} = $theme;
-  return $error
+  return $isError
     ? colors.alert400
     : isIndeterminate || checked ? colors.primary400 : colors.mono700;
 }

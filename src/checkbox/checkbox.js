@@ -10,7 +10,7 @@ class StatelessCheckbox extends React.Component<PropsT> {
     isIndeterminate: false,
     placement: 'right',
     inputRef: React.createRef(),
-    error: false,
+    isError: false,
     label: '',
     onChange: () => {},
     onMouseEnter: () => {},
@@ -39,7 +39,7 @@ class StatelessCheckbox extends React.Component<PropsT> {
       inputRef,
       isFocused,
       isIndeterminate,
-      error,
+      isError,
       disabled,
       checked,
       $theme,
@@ -59,11 +59,11 @@ class StatelessCheckbox extends React.Component<PropsT> {
       </Label>
     );
     return (
-      <Root disabled={disabled} $error={error} $theme={$theme}>
+      <Root disabled={disabled} $isError={isError} $theme={$theme}>
         {(placement === 'top' || placement === 'left') && labelComp}
         <Checkmark
           disabled={disabled}
-          $error={error}
+          $isError={isError}
           checked={checked}
           $isFocused={isFocused}
           $theme={$theme}

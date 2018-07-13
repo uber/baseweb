@@ -19,8 +19,8 @@
   String value for label of checkbox. Default is empty string
 * `disabled: boolean`:
   Disable control from being changed
-* `error: boolean`:
-  Sets control into error state. Default is `false`
+* `isError: boolean`:
+  Sets control into isError state. Default is `false`
 * `isIndeterminate: boolean`:
   Indeterminate control value. checked is ignored.
 * `components: {Root: (props: {[string]: any}) => React$Node, Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node, , Input: (props: {[string]: any}) => React$Node}`
