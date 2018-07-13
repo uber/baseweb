@@ -37,9 +37,9 @@ function getBackgroundColor(props) {
 }
 
 function getLabelColor(props) {
-  const {disabled, $error, $theme} = props;
+  const {disabled, $theme} = props;
   const {colors} = $theme;
-  return disabled ? colors.mono600 : $error ? colors.alert400 : colors.mono1000;
+  return disabled ? colors.mono600 : colors.mono1000;
 }
 
 export const Root = styled('label', props => {

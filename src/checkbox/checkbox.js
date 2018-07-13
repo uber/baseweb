@@ -40,7 +40,9 @@ class StatelessCheckbox extends React.Component<Props> {
       isFocused,
       isIndeterminate,
       error,
-      ...sharedProps
+      disabled,
+      checked,
+      $theme,
     } = this.props;
     const {Root, Checkmark, Label, Input} = components;
 
@@ -52,20 +54,22 @@ class StatelessCheckbox extends React.Component<Props> {
       onBlur,
     };
     const getLabel = () => (
-      <Label placement={placement} {...sharedProps} $error={error}>
+      <Label disabled={disabled} placement={placement} $theme={$theme}>
         {label}
       </Label>
     );
     return (
-      <Root {...sharedProps} $error={error}>
+      <Root disabled={disabled} $error={error} $theme={$theme}>
         {(placement === 'top' || placement === 'left') && getLabel()}
         <Checkmark
-          {...sharedProps}
+          disabled={disabled}
           $error={error}
+          checked={checked}
           $isFocused={isFocused}
+          $theme={$theme}
           $isIndeterminate={isIndeterminate}
         />
-        <Input type="checkbox" $ref={inputRef} {...sharedProps} {...events} />
+        <Input type="checkbox" $theme={$theme} $ref={inputRef} {...events} />
         {(placement === 'bottom' || placement === 'right') && getLabel()}
       </Root>
     );

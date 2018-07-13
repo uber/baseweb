@@ -11,14 +11,14 @@ import {
 } from './index';
 
 describe('Stateless checkbox', function() {
-  let wrapper;
-  let allProps: any, sharedProps, components, error, mockFn;
+  let wrapper,
+    events = {};
+  let allProps: any = {},
+    components,
+    error,
+    mockFn;
+
   beforeEach(function() {
-    sharedProps = {
-      prop1: 'some shared props',
-      checked: true,
-      disabled: false,
-    };
     mockFn = jest.fn();
     components = {
       Root: StyledRoot,
@@ -27,20 +27,25 @@ describe('Stateless checkbox', function() {
       Input: StyledInput,
     };
     error = false;
-    allProps = {
-      components,
+    events = {
       onChange: mockFn,
       onMouseEnter: mockFn,
       onMouseLeave: mockFn,
       onFocus: mockFn,
       onBlur: mockFn,
+    };
+    allProps = {
+      components,
+      ...events,
       placement: 'left',
       label: 'some',
       error: error,
       inputRef: React.createRef(),
       isFocused: false,
       isIndeterminate: false,
-      ...sharedProps,
+      disabled: false,
+      checked: false,
+      $theme: {},
     };
   });
 
@@ -56,27 +61,33 @@ describe('Stateless checkbox', function() {
       components[subcomponent] = mockComp;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const actualProps = mockComp.mock.calls[0][0];
-      let expectedProps =
-        subcomponent !== 'Input'
-          ? {$error: error, ...sharedProps}
-          : {
-              onChange: mockFn,
-              onMouseEnter: mockFn,
-              onMouseLeave: mockFn,
-              onFocus: mockFn,
-              onBlur: mockFn,
-              type: 'checkbox',
-              ...sharedProps,
-            };
-      expectedProps =
-        subcomponent === 'Checkmark'
-          ? {
-              $isFocused: allProps.isFocused,
-              $isIndeterminate: allProps.isIndeterminate,
-              ...expectedProps,
-            }
-          : expectedProps;
-      expect(actualProps).toMatchObject(expectedProps);
+      const expectedProps = {
+        Root: {
+          disabled: allProps.disabled,
+          $error: allProps.error,
+          $theme: allProps.$theme,
+        },
+        Label: {
+          disabled: allProps.disabled,
+          placement: allProps.placement,
+          $theme: allProps.$theme,
+        },
+        Checkmark: {
+          disabled: allProps.disabled,
+          $error: allProps.error,
+          checked: allProps.checked,
+          $isFocused: allProps.isFocused,
+          $theme: allProps.$theme,
+          $isIndeterminate: allProps.isIndeterminate,
+        },
+        Input: {
+          type: 'checkbox',
+          $theme: allProps.$theme,
+          $ref: allProps.inputRef,
+          ...events,
+        },
+      };
+      expect(actualProps).toMatchObject(expectedProps[subcomponent]);
     },
   );
 
@@ -103,14 +114,14 @@ describe('Stateless checkbox', function() {
   );
 
   test('should focus on element', function() {
-    const mockComp = jest.fn();
+    const mockFocus = jest.fn();
     const current = global.document.createElement('input');
-    current.focus = mockComp;
+    current.focus = mockFocus;
     allProps.isFocused = true;
     allProps.inputRef = {
       current: current,
     };
     wrapper = shallow(<StatelessCheckbox {...allProps} />);
-    expect(mockComp).toHaveBeenCalled();
+    expect(mockFocus).toHaveBeenCalled();
   });
 });

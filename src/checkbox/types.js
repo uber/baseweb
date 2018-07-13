@@ -44,6 +44,7 @@ export type Props = {
   label?: string,
   isIndeterminate?: boolean,
   placement?: Placement,
+  $theme?: *,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
