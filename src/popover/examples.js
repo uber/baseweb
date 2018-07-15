@@ -65,19 +65,21 @@ const GridItem = styled('div', ({row, col}) => ({
   textAlign: 'center',
 }));
 
-/* eslint-disable react/jsx-key */
-
 export default [
-  <Popover isOpen content={popoverContent}>
+  <Popover key="story1" isOpen content={popoverContent}>
     <Button>Open</Button>
   </Popover>,
-  <StatefulPopover content={popoverContent}>
+  <StatefulPopover key="story2" content={popoverContent}>
     <Button>Press Me</Button>
   </StatefulPopover>,
-  <StatefulPopover triggerType={TRIGGER_TYPE.hover} content={popoverContent}>
+  <StatefulPopover
+    key="story3"
+    triggerType={TRIGGER_TYPE.hover}
+    content={popoverContent}
+  >
     <Button>Hover Me</Button>
   </StatefulPopover>,
-  <Container>
+  <Container key="story4">
     <Grid>
       <GridItem row={1} col={2}>
         <StatefulPopover placement={PLACEMENT.topLeft} content={popoverContent}>
@@ -160,6 +162,7 @@ export default [
     </Grid>
   </Container>,
   <StatefulPopover
+    key="story5"
     content={popoverContent}
     showArrow
     triggerType={TRIGGER_TYPE.hover}
