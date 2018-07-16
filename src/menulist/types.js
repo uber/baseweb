@@ -55,7 +55,7 @@ export type RenderProps = StatefulContainerState & {
 export type DefaultStatefulContainerProps = {
   initialState: StatefulContainerState,
   stateReducer: StateReducerFn,
-  onItemSelect: (item: ?{}, event: SyntheticEvent<>) => mixed,
+  onItemSelect: (item: ?{}, event: SyntheticEvent<> | KeyboardEvent) => mixed,
   children: RenderProps => React.Node,
 };
 
@@ -64,7 +64,7 @@ export type StatefulContainerProps = {
   getItemString: GetItemStringFn,
   initialState?: StatefulContainerState,
   stateReducer?: StateReducerFn,
-  onItemSelect?: (item: ?{}, event: SyntheticEvent<>) => mixed,
+  onItemSelect?: (item: ?{}, event: SyntheticEvent<> | KeyboardEvent) => mixed,
   children?: RenderProps => React.Node,
 };
 

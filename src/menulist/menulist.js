@@ -6,16 +6,9 @@ import {
   ListItem as StyledListItem,
 } from './styled-components';
 import {STYLETRON_PROP_MAPPER} from './constants';
+import {mapStyletronProps} from './utils';
 // Types
 import type {StatelessMenulistProps} from './types';
-
-function mapStyletronProps(props: {}, mapper: {}): {} {
-  return Object.keys(props).reduce((newProps, propName) => {
-    const newName = mapper[propName] ? `$${propName}` : propName;
-    newProps[newName] = props[propName];
-    return newProps;
-  }, {});
-}
 
 export default function StatelessMenuList({
   items,
@@ -32,11 +25,17 @@ export default function StatelessMenuList({
   return (
     <List $ref={rootRef}>
       {items.map((item, index) => {
-        const itemProps = mapStyletronProps(
+        // $FlowFixMe
+        const {key, ...itemProps} = mapStyletronProps(
           getRequiredItemProps(item, index),
           STYLETRON_PROP_MAPPER,
         );
-        return <ListItem {...itemProps}>{getItemString(item)}</ListItem>;
+        // Need to be explicit with `key` otherwise eslint throws error?
+        return (
+          <ListItem key={key} {...itemProps}>
+            {getItemString(item)}
+          </ListItem>
+        );
       })}
     </List>
   );

@@ -66,7 +66,7 @@ export default class MenuListStatefulContainer extends React.Component<
         event.stopPropagation();
         break;
       case KEY_STRINGS.Enter:
-        this._handleEnterKey();
+        this._handleEnterKey(event);
         event.preventDefault();
         break;
     }
@@ -95,13 +95,11 @@ export default class MenuListStatefulContainer extends React.Component<
   }
 
   // Handler for enter key
-  _handleEnterKey() {
+  _handleEnterKey(event: KeyboardEvent) {
     const {items, onItemSelect} = this.props;
     const {highlightedIndex} = this.state;
     if (items[highlightedIndex] && onItemSelect) {
-      // Flow sucks at if statement checks
-      // $FlowFixMe
-      onItemSelect(items[highlightedIndex]);
+      onItemSelect(items[highlightedIndex], event);
     }
   }
 

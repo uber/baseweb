@@ -29,8 +29,8 @@ export function scrollItemIntoView({
 }: {
   node: React$ElementRef<*>,
   parentNode: React$ElementRef<*>,
-  isFirst: boolean,
-  isLast: boolean,
+  isFirst?: boolean,
+  isLast?: boolean,
 }) {
   const nodeDOM = node.current;
   const parentNodeDOM = parentNode.current;

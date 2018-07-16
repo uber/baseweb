@@ -16,8 +16,7 @@ export const List = styled('ul', ({$theme}: StyledProps) => ({
   display: 'flex',
   flexDirection: 'column',
   background: $theme.colors.white,
-  // TODO: switch to direct $theme value once provided
-  borderRadius: '4px',
+  borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
   padding: `${$theme.sizing.scale200} ${$theme.sizing.scale400}`,
 }));
@@ -31,9 +30,11 @@ export const ListItem = styled(
     margin: 0,
     cursor: 'pointer',
     ...$theme.typography.font400,
+    transition: `color ${$theme.animation.timing100} ${
+      $theme.animation.easeOutCurve
+    }`,
     ':hover': {
-      // TODO: verify hover style
-      color: $theme.colors.primary500,
+      color: $theme.colors.primary400,
     },
   }),
 );

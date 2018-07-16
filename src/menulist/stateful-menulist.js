@@ -10,6 +10,10 @@ import type {StatefulMenulistProps} from './types';
 export default class StatefulMenuList extends React.Component<
   StatefulMenulistProps,
 > {
+  static defaultProps = {
+    components: {},
+  };
+
   render() {
     const {components, ...props} = this.props;
     return (
