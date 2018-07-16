@@ -7,7 +7,7 @@ import {default as Checkbox} from './checkbox';
 import type {PropsT, StatefulCheckboxPropsT} from './types';
 // Styled elements
 
-export default function(props: StatefulCheckboxPropsT) {
+const StatefulCheckbox = function(props: StatefulCheckboxPropsT) {
   const {components} = props;
   return (
     <StatefulContainer {...props}>
@@ -16,4 +16,6 @@ export default function(props: StatefulCheckboxPropsT) {
       )}
     </StatefulContainer>
   );
-}
+};
+StatefulCheckbox.displayName = 'StatefulCheckbox';
+export default StatefulCheckbox;

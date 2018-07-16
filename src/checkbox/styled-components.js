@@ -11,19 +11,9 @@ function getBorderColor(props) {
 
 function getLabelPadding(props) {
   const {$labelPlacement, $theme} = props;
-  const {sizing} = $theme;
-  const {scale200} = sizing;
-  switch ($labelPlacement) {
-    case 'left':
-      return '0 ' + scale200 + ' 0 0';
-    case 'top':
-      return '0 0 ' + scale200 + ' 0';
-    case 'bottom':
-      return scale200 + ' 0 0 0';
-    case 'right':
-    default:
-      return '0 0 0 ' + scale200;
-  }
+  const {padding} = $theme;
+  const {scale200} = padding;
+  return scale200[$labelPlacement];
 }
 
 function getBackgroundColor(props) {
@@ -60,6 +50,7 @@ export const Root = styled('label', props => {
         ? 'column'
         : 'row',
     display: 'flex',
+    alignItems: 'center',
     cursor: disabled ? 'not-allowed' : 'pointer',
   };
 });
@@ -84,7 +75,7 @@ export const Checkmark = styled('span', props => {
   };
   return {
     flex: '0 0 auto',
-    transition: animation.timing100 + ' ' + animation.easeOutCurve,
+    transition: animation.fastEaseOutCurve,
     width: sizing.scale600,
     height: sizing.scale600,
     left: '4px',
@@ -92,7 +83,9 @@ export const Checkmark = styled('span', props => {
     borderStyle: 'solid',
     borderWidth: '2px',
     borderColor: getBorderColor(props),
-    borderRadius: $theme.borders.useRoundedCorners ? '4px' : '0px',
+    borderRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius200
+      : null,
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
@@ -116,8 +109,6 @@ export const Label = styled('div', props => {
     padding: getLabelPadding(props),
     color: getLabelColor(props),
     ...typography.font400,
-    fontWeight: '500',
-    lineHeight: '20px',
   };
 });
 // tricky style for focus event cause display: none doesn't work

@@ -50,7 +50,7 @@ const mono1000 = '#000000';
 // font constants
 const primaryFontFamily = '"Helvetica Neue", arial, sans-serif';
 
-export default {
+const styles = {
   colors: {
     // Primary Palette
     primary50,
@@ -286,4 +286,21 @@ export default {
     easeInCurve: 'cubic-bezier(.8, .2, .6, 1)',
     easeInOutCurve: 'cubic-bezier(0.4, 0, 0.2, 1)',
   },
+  padding: {},
 };
+styles.animation = {
+  fastEaseOutCurve:
+    styles.animation.timing100 + ' ' + styles.animation.easeOutCurve,
+  ...styles.animation,
+};
+
+styles.padding = {
+  scale200: {
+    left: '0 ' + styles.sizing.scale200 + ' 0 0',
+    top: '0 0 ' + styles.sizing.scale200 + ' 0',
+    bottom: styles.sizing.scale200 + ' 0 0 0',
+    right: '0 0 0 ' + styles.sizing.scale200,
+  },
+};
+
+export default styles;
