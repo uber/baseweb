@@ -166,10 +166,18 @@ type Animation = {
   easeInOutCurve: string,
 };
 
+type Borders = {
+  useRoundedCorners: boolean,
+  radius100: string,
+  radius200: string,
+  radius300: string,
+};
+
 export type ThemeT = {
   colors: Colors,
   typography: Typography,
   sizing: Sizing,
   lighting: Lighting,
   animation: Animation,
+  borders: Borders,
 };
