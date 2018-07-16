@@ -11,7 +11,7 @@ run((driver, browser) => {
 
     it('Checked state', async function() {
       await driver.get(location);
-      const popover = await driver.findElement(By.id('popover_story1'));
+      const popover = await driver.findElement(By.id('stateless%20popover'));
       popover.click();
     });
   });

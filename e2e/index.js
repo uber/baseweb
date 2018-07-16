@@ -14,8 +14,8 @@ const engine = new Styletron();
 const app = (
   <StyletronProvider value={engine}>
     <ThemeProvider theme={DEFAULT_THEME}>
-      {PopoverExamples.map((example, i) => (
-        <div key={`example${i}`} id={`popover_story${i}`}>
+      {PopoverExamples.map(({example, description}, i) => (
+        <div key={`example${i}`} id={escape(description)}>
           {example}
         </div>
       ))}
