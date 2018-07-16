@@ -7,6 +7,10 @@ export type GetItemStringFn = (item: *) => string;
 
 export type SetRootRefFn = (ref: React$ElementRef<*>) => void;
 export type RootRef = React$ElementRef<*>;
+export type OnItemSelectFn = (
+  item: ?{},
+  event: SyntheticEvent<> | KeyboardEvent,
+) => mixed;
 
 export type InjectableComponentProps = {
   List?: React.ComponentType<{}>,
@@ -55,7 +59,7 @@ export type RenderProps = StatefulContainerState & {
 export type DefaultStatefulContainerProps = {
   initialState: StatefulContainerState,
   stateReducer: StateReducerFn,
-  onItemSelect: (item: ?{}, event: SyntheticEvent<> | KeyboardEvent) => mixed,
+  onItemSelect: OnItemSelectFn,
   children: RenderProps => React.Node,
 };
 
@@ -64,7 +68,7 @@ export type StatefulContainerProps = {
   getItemString: GetItemStringFn,
   initialState?: StatefulContainerState,
   stateReducer?: StateReducerFn,
-  onItemSelect?: (item: ?{}, event: SyntheticEvent<> | KeyboardEvent) => mixed,
+  onItemSelect?: OnItemSelectFn,
   children?: RenderProps => React.Node,
 };
 
