@@ -15,7 +15,9 @@ const app = (
   <StyletronProvider value={engine}>
     <ThemeProvider theme={DEFAULT_THEME}>
       {PopoverExamples.map((example, i) => (
-        <div key={`example${i}`}>{example}</div>
+        <div key={`example${i}`} id={`popover_story${i}`}>
+          {example}
+        </div>
       ))}
     </ThemeProvider>
   </StyletronProvider>
