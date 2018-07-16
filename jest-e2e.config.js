@@ -1,4 +1,6 @@
 // @flow
+/*global module*/
+
 module.exports = {
   rootDir: 'src',
   setupFiles: ['<rootDir>/e2e-test.setup.js'],
