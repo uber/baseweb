@@ -4,6 +4,7 @@ import filesize from 'rollup-plugin-filesize';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import progress from 'rollup-plugin-progress';
 import visualizer from 'rollup-plugin-visualizer';
+import commonjs from 'rollup-plugin-commonjs';
 
 export default {
   input: 'src/index.js',
@@ -16,7 +17,6 @@ export default {
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'styletron-react-core': 'StyletronReactCore',
       },
       sourcemap: 'inline',
     },
@@ -28,12 +28,11 @@ export default {
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'styletron-react-core': 'StyletronReactCore',
       },
       sourcemap: 'inline',
     },
   ],
-  external: ['react', 'react-dom', 'styletron-react-core'],
+  external: ['react', 'react-dom'],
   plugins: [
     progress(),
     nodeResolve(),
@@ -44,5 +43,11 @@ export default {
     }),
     visualizer(),
     filesize(),
+    commonjs({
+      include: 'node_modules/**',
+      namedExports: {
+        'node_modules/create-react-context/index.js': ['createReactContext'],
+      },
+    }),
   ],
 };
