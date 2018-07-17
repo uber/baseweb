@@ -60,7 +60,7 @@ export type StatelessStateT = {
 
 export type StateT = {
   checked?: boolean,
-  $isHovered?: boolean,
+  isIndeterminate?: boolean,
 };
 
 export type StateReducerT = (
@@ -81,7 +81,7 @@ export type DefaultStatefulPropsT = {
   onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
-export type StatefulPropsT = {
+export type StatefulContainerPropsT = {
   components?: ComponentsT,
   children?: (*) => React.Node,
   initialState?: StateT,
@@ -91,6 +91,7 @@ export type StatefulPropsT = {
   onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  autoFocus?: boolean,
 };
 
 export type StatefulCheckboxPropsT = {

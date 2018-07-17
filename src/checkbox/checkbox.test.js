@@ -56,6 +56,13 @@ describe('Stateless checkbox', function() {
       components[subcomponent] = mockComp;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const instance = wrapper.instance();
+      const sharedProps = {
+        $isError: allProps.isError,
+        $checked: allProps.checked,
+        $isIndeterminate: allProps.isIndeterminate,
+        $required: allProps.required,
+        $disabled: allProps.disabled,
+      };
       events = {
         onMouseEnter: instance.onMouseEnter,
         onMouseLeave: instance.onMouseLeave,
@@ -65,25 +72,17 @@ describe('Stateless checkbox', function() {
       };
       const actualProps = mockComp.mock.calls[0][0];
       const expectedProps = {
-        Root: {
-          disabled: allProps.disabled,
-          $isError: allProps.isError,
-        },
+        Root: sharedProps,
         Label: {
-          disabled: allProps.disabled,
+          ...sharedProps,
           $labelPlacement: allProps.labelPlacement,
         },
-        Checkmark: {
-          disabled: allProps.disabled,
-          $isError: allProps.isError,
-          checked: allProps.checked,
-          $isFocused: allProps.autoFocus,
-          $isIndeterminate: allProps.isIndeterminate,
-        },
+        Checkmark: sharedProps,
         Input: {
           type: 'checkbox',
           disabled: false,
           $ref: allProps.inputRef,
+          ...sharedProps,
           ...events,
         },
       };
@@ -143,12 +142,10 @@ describe('Stateless checkbox', function() {
     let events, instance, event;
     event = {};
     const handlers = [
-      ['onMouseEnter', {isHovered: true}, ''],
-      ['onMouseLeave', {isHovered: false}, ''],
-      ['onFocus', {isFocused: true}, ''],
-      ['onBlur', {isFocused: false}, ''],
-      ['onMouseDown', {isFocused: true}, 'onFocus'],
-      ['onMouseUp', {isFocused: false}, 'onBlur'],
+      ['onMouseEnter', {isHovered: true}, false],
+      ['onMouseLeave', {isHovered: false}, false],
+      ['onFocus', {isFocused: true}, false],
+      ['onBlur', {isFocused: false}, false],
     ];
     beforeEach(function() {
       events = {
@@ -156,8 +153,6 @@ describe('Stateless checkbox', function() {
         onMouseLeave: jest.fn(),
         onFocus: jest.fn(),
         onBlur: jest.fn(),
-        onMouseDown: jest.fn(),
-        onMouseUp: jest.fn(),
       };
       allProps = {...allProps, ...events};
       wrapper = mount(<StatelessCheckbox {...allProps} />);
@@ -166,12 +161,14 @@ describe('Stateless checkbox', function() {
 
     test.each(handlers)(
       'should call handler for %s event if it is present',
-      (eventHandler, state, alternativeHandler) => {
+      (eventHandler, state, internalEvent) => {
+        const setStateMock = jest.spyOn(instance, 'setState');
         const handler = instance[eventHandler];
         handler(event);
-        expect(events[alternativeHandler || eventHandler]).toHaveBeenCalledWith(
-          event,
-        );
+        if (!internalEvent) {
+          expect(events[eventHandler]).toHaveBeenCalledWith(event);
+        }
+        expect(setStateMock).toHaveBeenCalledWith(state);
       },
     );
   });

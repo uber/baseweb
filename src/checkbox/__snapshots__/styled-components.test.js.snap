@@ -21,7 +21,8 @@ Object {
   "height": "$theme.sizing.scale600",
   "left": "4px",
   "top": "4px",
-  "transition": "$theme.animation.fastEaseOutCurve",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
   "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
@@ -48,7 +49,8 @@ Object {
   "height": "$theme.sizing.scale600",
   "left": "4px",
   "top": "4px",
-  "transition": "$theme.animation.fastEaseOutCurve",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
   "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
@@ -75,7 +77,8 @@ Object {
   "height": "$theme.sizing.scale600",
   "left": "4px",
   "top": "4px",
-  "transition": "$theme.animation.fastEaseOutCurve",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
   "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
@@ -102,7 +105,8 @@ Object {
   "height": "$theme.sizing.scale600",
   "left": "4px",
   "top": "4px",
-  "transition": "$theme.animation.fastEaseOutCurve",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
   "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
@@ -111,39 +115,12 @@ Object {
 exports[`Checkbox styled components StyledCheckmark : has correct styles when checked 1`] = `
 Object {
   ":active": Object {
-    "backgroundColor": null,
+    "backgroundColor": "$theme.colors.mono400",
   },
   ":hover": Object {
-    "backgroundColor": null,
+    "backgroundColor": "$theme.colors.mono400",
   },
-  "backgroundColor": "$theme.colors.primary400",
-  "backgroundImage": "url('data:image/svg+xml;utf8,<svg width=\\"11\\" height=\\"10\\" viewBox=\\"0 0 11 10\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path fill-rule=\\"evenodd\\" clip-rule=\\"evenodd\\" d=\\"M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z\\" fill=\\"white\\"/></svg>');",
-  "backgroundPosition": "center",
-  "backgroundRepeat": "no-repeat",
-  "borderColor": "$theme.colors.primary400",
-  "borderRadius": "$theme.borders.radius200",
-  "borderStyle": "solid",
-  "borderWidth": "2px",
-  "display": "inline-block",
-  "flex": "0 0 auto",
-  "height": "$theme.sizing.scale600",
-  "left": "4px",
-  "top": "4px",
-  "transition": "$theme.animation.fastEaseOutCurve",
-  "verticalAlign": "middle",
-  "width": "$theme.sizing.scale600",
-}
-`;
-
-exports[`Checkbox styled components StyledCheckmark : has correct styles when disabled 1`] = `
-Object {
-  ":active": Object {
-    "backgroundColor": null,
-  },
-  ":hover": Object {
-    "backgroundColor": null,
-  },
-  "backgroundColor": "$theme.colors.mono300",
+  "backgroundColor": null,
   "backgroundImage": null,
   "backgroundPosition": "center",
   "backgroundRepeat": "no-repeat",
@@ -156,7 +133,36 @@ Object {
   "height": "$theme.sizing.scale600",
   "left": "4px",
   "top": "4px",
-  "transition": "$theme.animation.fastEaseOutCurve",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+  "verticalAlign": "middle",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Checkbox styled components StyledCheckmark : has correct styles when disabled 1`] = `
+Object {
+  ":active": Object {
+    "backgroundColor": "$theme.colors.mono400",
+  },
+  ":hover": Object {
+    "backgroundColor": "$theme.colors.mono400",
+  },
+  "backgroundColor": null,
+  "backgroundImage": null,
+  "backgroundPosition": "center",
+  "backgroundRepeat": "no-repeat",
+  "borderColor": "$theme.colors.mono700",
+  "borderRadius": "$theme.borders.radius200",
+  "borderStyle": "solid",
+  "borderWidth": "2px",
+  "display": "inline-block",
+  "flex": "0 0 auto",
+  "height": "$theme.sizing.scale600",
+  "left": "4px",
+  "top": "4px",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
   "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
@@ -179,7 +185,7 @@ Object {
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
   "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": undefined,
+  "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
 `;
@@ -191,19 +197,19 @@ Object {
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
   "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": undefined,
+  "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
 `;
 
 exports[`Checkbox styled components StyledLabel : has correct styles when disabled 1`] = `
 Object {
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.mono1000",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
   "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": undefined,
+  "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
 `;
@@ -215,7 +221,7 @@ Object {
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
   "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": "$theme.padding.scale200.bottom",
+  "paddingBottom": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
 `;
@@ -227,7 +233,7 @@ Object {
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
   "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": "$theme.padding.scale200.left",
+  "paddingLeft": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
 `;
@@ -239,7 +245,7 @@ Object {
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
   "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": "$theme.padding.scale200.right",
+  "paddingRight": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
 `;
@@ -251,7 +257,7 @@ Object {
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
   "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": "$theme.padding.scale200.top",
+  "paddingTop": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
 `;

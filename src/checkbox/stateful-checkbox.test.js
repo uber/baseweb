@@ -49,6 +49,7 @@ describe('Stateful checkbox', function() {
     const {StatefulCheckbox} = require('./index');
     const checkbox: any = require('./checkbox');
     wrapper = mount(<StatefulCheckbox {...allProps} />);
+    // eslint-disable-next-line no-unused-vars
     const {components, ...rest} = checkbox.mock.calls[1][0];
     expect(rest).toMatchObject({
       someProp: 'some other props',

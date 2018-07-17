@@ -58,14 +58,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     this.props.onBlur(e);
   };
 
-  onMouseDown = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.onFocus(e);
-  };
-
-  onMouseUp = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.onBlur(e);
-  };
-
   render() {
     const {
       components,
@@ -91,35 +83,25 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       onMouseLeave: this.onMouseLeave,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      onMouseDown: this.onMouseDown,
-      onMouseUp: this.onMouseUp,
+    };
+    const sharedProps = {
+      $isFocused: this.state.isFocused,
+      $isHovered: this.state.isHovered,
+      $isError: isError,
+      $checked: checked,
+      $isIndeterminate: isIndeterminate,
+      $required: required,
+      $disabled: disabled,
     };
     const labelComp = (
-      <Label
-        disabled={disabled}
-        $labelPlacement={labelPlacement}
-        $isFocused={this.state.isFocused}
-        $isHovered={this.state.isHovered}
-        {...events}
-      >
+      <Label $labelPlacement={labelPlacement} {...sharedProps} {...events}>
         {label}
       </Label>
     );
     return (
-      <Root
-        disabled={disabled}
-        $isError={isError}
-        $labelPlacement={labelPlacement}
-      >
+      <Root $labelPlacement={labelPlacement} {...sharedProps}>
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
-        <Checkmark
-          disabled={disabled}
-          $isError={isError}
-          checked={checked}
-          $isFocused={this.state.isFocused}
-          $isHovered={this.state.isHovered}
-          $isIndeterminate={isIndeterminate}
-        />
+        <Checkmark checked={checked} {...sharedProps} />
         <Input
           required={required}
           aria-invalid={isError || null}
@@ -127,6 +109,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           disabled={disabled}
           type="checkbox"
           $ref={inputRef}
+          {...sharedProps}
           {...events}
         />
         {(labelPlacement === 'bottom' || labelPlacement === 'right') &&

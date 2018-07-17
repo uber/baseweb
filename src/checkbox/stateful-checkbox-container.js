@@ -2,7 +2,7 @@
 import React from 'react';
 import {STATE_TYPE} from './constants';
 import type {
-  StatefulPropsT,
+  StatefulContainerPropsT,
   StateReducerT,
   DefaultStatefulPropsT,
   StateT,
@@ -11,7 +11,7 @@ import type {
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 class StatefulCheckboxContainer extends React.Component<
-  StatefulPropsT,
+  StatefulContainerPropsT,
   StateT,
 > {
   static defaultProps: DefaultStatefulPropsT = {
@@ -27,7 +27,7 @@ class StatefulCheckboxContainer extends React.Component<
     onBlur: () => {},
   };
 
-  constructor(props: StatefulPropsT) {
+  constructor(props: StatefulContainerPropsT) {
     super(props);
     const {initialState} = this.props;
     this.state = {
@@ -76,8 +76,8 @@ class StatefulCheckboxContainer extends React.Component<
   render() {
     const {
       children = (childProps: {}) => null, // eslint-disable-line no-unused-vars
-      initialState,
-      stateReducer,
+      initialState, // eslint-disable-line no-unused-vars
+      stateReducer, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
     const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;
