@@ -67,148 +67,159 @@ const GridItem = styled('div', ({row, col}) => ({
   textAlign: 'center',
 }));
 
-/* eslint-disable react/display-name */
-
 export default [
   {
     description: 'stateless popover',
-    example: () => (
-      <Popover isOpen={boolean('isOpen', true)} content={popoverContent}>
-        <Button>{text('label', 'Open')}</Button>
-      </Popover>
-    ),
+    example: function Story1() {
+      return (
+        <Popover isOpen={boolean('isOpen', true)} content={popoverContent}>
+          <Button>{text('label', 'Open')}</Button>
+        </Popover>
+      );
+    },
   },
   {
     description: 'stateful popover (click)',
-    example: () => (
-      <StatefulPopover content={popoverContent}>
-        <Button>Press Me</Button>
-      </StatefulPopover>
-    ),
+    example: function Story2() {
+      return (
+        <StatefulPopover content={popoverContent}>
+          <Button>Press Me</Button>
+        </StatefulPopover>
+      );
+    },
   },
   {
     description: 'stateful popover (hover)',
-    example: () => (
-      <StatefulPopover
-        triggerType={TRIGGER_TYPE.hover}
-        content={popoverContent}
-      >
-        <Button>Hover Me</Button>
-      </StatefulPopover>
-    ),
+    example: function Story3() {
+      return (
+        <StatefulPopover
+          triggerType={TRIGGER_TYPE.hover}
+          content={popoverContent}
+        >
+          <Button>Hover Me</Button>
+        </StatefulPopover>
+      );
+    },
   },
   {
     description: 'popover placements',
-    example: () => (
-      <Container>
-        <Grid>
-          <GridItem row={1} col={2}>
-            <StatefulPopover
-              placement={PLACEMENT.topLeft}
-              content={popoverContent}
-            >
-              <Button>TL</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={1} col={3}>
-            <StatefulPopover placement={PLACEMENT.top} content={popoverContent}>
-              <Button>Top</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={1} col={4}>
-            <StatefulPopover
-              placement={PLACEMENT.topRight}
-              content={popoverContent}
-            >
-              <Button>TR</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={2} col={1}>
-            <StatefulPopover
-              placement={PLACEMENT.leftTop}
-              content={popoverContent}
-            >
-              <Button>LT</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={3} col={1}>
-            <StatefulPopover
-              placement={PLACEMENT.left}
-              content={popoverContent}
-            >
-              <Button>Left</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={4} col={1}>
-            <StatefulPopover
-              placement={PLACEMENT.leftBottom}
-              content={popoverContent}
-            >
-              <Button>LB</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={5} col={2}>
-            <StatefulPopover
-              placement={PLACEMENT.bottomLeft}
-              content={popoverContent}
-            >
-              <Button>BL</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={5} col={3}>
-            <StatefulPopover
-              placement={PLACEMENT.bottom}
-              content={popoverContent}
-            >
-              <Button>Bottom</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={5} col={4}>
-            <StatefulPopover
-              placement={PLACEMENT.bottomRight}
-              content={popoverContent}
-            >
-              <Button>BR</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={2} col={5}>
-            <StatefulPopover
-              placement={PLACEMENT.rightTop}
-              content={popoverContent}
-            >
-              <Button>RT</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={3} col={5}>
-            <StatefulPopover
-              placement={PLACEMENT.right}
-              content={popoverContent}
-            >
-              <Button>Right</Button>
-            </StatefulPopover>
-          </GridItem>
-          <GridItem row={4} col={5}>
-            <StatefulPopover
-              placement={PLACEMENT.rightBottom}
-              content={popoverContent}
-            >
-              <Button>RB</Button>
-            </StatefulPopover>
-          </GridItem>
-        </Grid>
-      </Container>
-    ),
+    example: function Story4() {
+      return (
+        <Container>
+          <Grid>
+            <GridItem row={1} col={2}>
+              <StatefulPopover
+                placement={PLACEMENT.topLeft}
+                content={popoverContent}
+              >
+                <Button>TL</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={1} col={3}>
+              <StatefulPopover
+                placement={PLACEMENT.top}
+                content={popoverContent}
+              >
+                <Button>Top</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={1} col={4}>
+              <StatefulPopover
+                placement={PLACEMENT.topRight}
+                content={popoverContent}
+              >
+                <Button>TR</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={2} col={1}>
+              <StatefulPopover
+                placement={PLACEMENT.leftTop}
+                content={popoverContent}
+              >
+                <Button>LT</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={3} col={1}>
+              <StatefulPopover
+                placement={PLACEMENT.left}
+                content={popoverContent}
+              >
+                <Button>Left</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={4} col={1}>
+              <StatefulPopover
+                placement={PLACEMENT.leftBottom}
+                content={popoverContent}
+              >
+                <Button>LB</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={5} col={2}>
+              <StatefulPopover
+                placement={PLACEMENT.bottomLeft}
+                content={popoverContent}
+              >
+                <Button>BL</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={5} col={3}>
+              <StatefulPopover
+                placement={PLACEMENT.bottom}
+                content={popoverContent}
+              >
+                <Button>Bottom</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={5} col={4}>
+              <StatefulPopover
+                placement={PLACEMENT.bottomRight}
+                content={popoverContent}
+              >
+                <Button>BR</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={2} col={5}>
+              <StatefulPopover
+                placement={PLACEMENT.rightTop}
+                content={popoverContent}
+              >
+                <Button>RT</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={3} col={5}>
+              <StatefulPopover
+                placement={PLACEMENT.right}
+                content={popoverContent}
+              >
+                <Button>Right</Button>
+              </StatefulPopover>
+            </GridItem>
+            <GridItem row={4} col={5}>
+              <StatefulPopover
+                placement={PLACEMENT.rightBottom}
+                content={popoverContent}
+              >
+                <Button>RB</Button>
+              </StatefulPopover>
+            </GridItem>
+          </Grid>
+        </Container>
+      );
+    },
   },
   {
     description: 'popover w/ arrow',
-    example: () => (
-      <StatefulPopover
-        content={popoverContent}
-        showArrow
-        triggerType={TRIGGER_TYPE.hover}
-      >
-        <Button>Hover Me</Button>
-      </StatefulPopover>
-    ),
+    example: function Story5() {
+      return (
+        <StatefulPopover
+          content={popoverContent}
+          showArrow
+          triggerType={TRIGGER_TYPE.hover}
+        >
+          <Button>Hover Me</Button>
+        </StatefulPopover>
+      );
+    },
   },
 ];
