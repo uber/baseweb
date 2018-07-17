@@ -7,5 +7,4 @@ module.exports = {
   testMatch: [/e2e.js/],
   testEnvironment: 'node',
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
 };
