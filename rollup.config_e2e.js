@@ -41,6 +41,7 @@ export default {
           'createRef',
         ],
         'node_modules/react-dom/index.js': ['render'],
+        'node_modules/@storybook/addon-knobs/dist/index.js': ['boolean'],
       },
     }),
     babel({

@@ -1,5 +1,7 @@
 // @flow
 import React from 'react';
+import {boolean, text} from '@storybook/addon-knobs';
+
 import {styled} from '../styles';
 import {
   PLACEMENT,
@@ -65,28 +67,29 @@ const GridItem = styled('div', ({row, col}) => ({
   textAlign: 'center',
 }));
 
+/* eslint-disable react/display-name */
+
 export default [
   {
     description: 'stateless popover',
-    example: (
-      <Popover key="story1" isOpen content={popoverContent}>
-        <Button>Open</Button>
+    example: () => (
+      <Popover isOpen={boolean('isOpen', true)} content={popoverContent}>
+        <Button>{text('label', 'Open')}</Button>
       </Popover>
     ),
   },
   {
     description: 'stateful popover (click)',
-    example: (
-      <StatefulPopover key="story2" content={popoverContent}>
+    example: () => (
+      <StatefulPopover content={popoverContent}>
         <Button>Press Me</Button>
       </StatefulPopover>
     ),
   },
   {
     description: 'stateful popover (hover)',
-    example: (
+    example: () => (
       <StatefulPopover
-        key="story3"
         triggerType={TRIGGER_TYPE.hover}
         content={popoverContent}
       >
@@ -96,8 +99,8 @@ export default [
   },
   {
     description: 'popover placements',
-    example: (
-      <Container key="story4">
+    example: () => (
+      <Container>
         <Grid>
           <GridItem row={1} col={2}>
             <StatefulPopover
@@ -198,9 +201,8 @@ export default [
   },
   {
     description: 'popover w/ arrow',
-    example: (
+    example: () => (
       <StatefulPopover
-        key="story5"
         content={popoverContent}
         showArrow
         triggerType={TRIGGER_TYPE.hover}

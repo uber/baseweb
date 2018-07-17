@@ -16,7 +16,7 @@ const app = (
     <ThemeProvider theme={DEFAULT_THEME}>
       {PopoverExamples.map(({example, description}, i) => (
         <div key={`example${i}`} id={escape(description)}>
-          {example}
+          {example()}
         </div>
       ))}
     </ThemeProvider>
