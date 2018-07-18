@@ -72,6 +72,7 @@ export function splitPlacement(placement: PopoverPlacementT) {
  * creates a new style object with units.
  */
 export function preparePopoverPositionStyles(styles?: PositionStylesT = {}) {
+  // eslint-disable-next-line no-unused-vars
   const {left, top, ...restStyles} = styles;
   return {
     ...restStyles,
