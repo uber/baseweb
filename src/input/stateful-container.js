@@ -44,6 +44,7 @@ class StatefulContainer extends React.Component<
   };
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const {children, initialState, stateReducer, ...rest} = this.props;
     const {onChange} = this;
     return children({
