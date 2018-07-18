@@ -3,6 +3,7 @@ module.exports = {
   plugins: ['flowtype', 'eslint-plugin-react', 'eslint-plugin-import'],
   env: {
     jest: true,
+    node: true,
   },
   extends: [
     'plugin:flowtype/recommended',
@@ -30,4 +31,12 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
     'import/prefer-default-export': ['off'],
   },
+  overrides: [
+    {
+      files: ['*.test.js'],
+      rules: {
+        'flowtype/no-weak-types': 'off',
+      },
+    },
+  ],
 };
