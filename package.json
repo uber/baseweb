@@ -84,7 +84,8 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-visualizer": "^0.4.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
-    "serve-static": "^1.13.2"
+    "serve-static": "^1.13.2",
+    "storybook-readme": "^3.3.0"
   },
   "dependencies": {
     "connect": "^3.6.6",

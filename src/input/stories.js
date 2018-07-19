@@ -5,6 +5,9 @@ import {storiesOf} from '@storybook/react';
 import {withStyle} from 'styletron-react';
 import {styled} from '../styles';
 import {withProps} from '../helpers';
+import {withReadme} from 'storybook-readme';
+//$FlowFixMe
+import InputReadme from '../../rfcs/input-component.md';
 import {
   Input as ControlledInput,
   StatefulInput as Input,
@@ -99,6 +102,7 @@ const TextHighlight = styled('span', ({$theme}) => {
 });
 
 storiesOf('Input', module)
+  .addDecorator(withReadme(InputReadme))
   // .add('Passing dynamic props', () => {
   //   return <MyComponent />;
   // })
