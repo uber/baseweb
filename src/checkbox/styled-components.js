@@ -103,6 +103,10 @@ export const Checkmark = styled('span', props => {
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    marginTop: $theme.sizing.scale200,
+    marginBottom: $theme.sizing.scale200,
+    marginLeft: $theme.sizing.scale200,
+    marginRight: $theme.sizing.scale200,
     ':hover': activeStyle,
     ':active': activeStyle,
   };
