@@ -3,23 +3,36 @@ import React from 'react';
 import LIGHT_THEME from '../../themes/light-theme';
 import createMockTheme from '../../test/create-mock-theme';
 
-type objOrFnT = {} | (({}) => {});
+type ObjOrFnT = {} | (({}) => {});
+
+type PropsT = {$style?: ObjOrFnT};
+
+type StateT = {styles?: {}};
 
 const MOCK_THEME = createMockTheme(LIGHT_THEME);
 
-function styled(Base: string, objOrFn: objOrFnT) {
-  return class MockStyledComponent extends React.Component<{}, {styles?: {}}> {
+function styled(Base: string, objOrFn?: ObjOrFnT = {}) {
+  return class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
     state = {};
 
-    static getDerivedStateFromProps(props: {}) {
-      return {
-        styles:
-          typeof objOrFn === 'function'
-            ? objOrFn({...props, $theme: MOCK_THEME})
-            : objOrFn,
-      };
+    static getDerivedStateFromProps(props: PropsT) {
+      const styleFnArg = {...props, $theme: MOCK_THEME};
+
+      let styles =
+        typeof objOrFn === 'function' ? objOrFn(styleFnArg) : objOrFn;
+
+      // Check for runtime overrides
+      let {$style} = props;
+      if (typeof $style === 'function') {
+        $style = $style(styleFnArg);
+      }
+      if ($style) {
+        styles = {...styles, ...$style};
+      }
+
+      return {styles};
     }
 
     getStyles() {
