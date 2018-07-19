@@ -13,14 +13,14 @@ jest.mock('global/document', () => ({
 }));
 
 const mockItems = [{label: 'item1'}, {label: 'item2'}];
-const mockGetItemString = item => item.label;
+const mockGetItemLabel = item => item.label;
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockItemSelect = jest.fn();
 
 function getSharedProps() {
   return {
     items: mockItems,
-    getItemString: mockGetItemString,
+    getItemLabel: mockGetItemLabel,
     onItemSelect: mockItemSelect,
     children: mockChildrenFn,
     stateReducer: jest
@@ -37,7 +37,7 @@ describe('Menulist StatefulContainer', () => {
   test('renders and passes required props to children function', () => {
     const props = {
       items: mockItems,
-      getItemString: mockGetItemString,
+      getItemLabel: mockGetItemLabel,
       onItemSelect: mockItemSelect,
       children: mockChildrenFn,
     };
@@ -47,7 +47,7 @@ describe('Menulist StatefulContainer', () => {
     expect(mockChildrenFn.mock.calls[0][0]).toEqual({
       highlightedIndex: -1,
       items: mockItems,
-      getItemString: mockGetItemString,
+      getItemLabel: mockGetItemLabel,
       rootRef: React.createRef(),
       getRequiredItemProps: component.instance()._getRequiredItemProps,
     });

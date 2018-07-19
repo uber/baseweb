@@ -2,22 +2,22 @@
 /* eslint-disable import/prefer-default-export */
 import * as React from 'react';
 
-export type Items = Array<*>;
-export type GetItemStringFn = (item: *) => string;
+export type ItemsT = Array<*>;
+export type GetItemLabelFnT = (item: *) => string;
 
-export type SetRootRefFn = (ref: React$ElementRef<*>) => void;
-export type RootRef = React$ElementRef<*>;
-export type OnItemSelectFn = (
+export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
+export type RootRefT = React$ElementRef<*>;
+export type OnItemSelectFnT = (
   item: ?{},
   event: SyntheticEvent<> | KeyboardEvent,
 ) => mixed;
 
-export type InjectableComponentProps = {
+export type InjectableComponentPropsT = {
   List?: React.ComponentType<{}>,
   ListItem?: React.ComponentType<{}>,
 };
 
-export type RenderItemProps = {
+export type RenderItemPropsT = {
   key: string,
   ref?: React$ElementRef<*>,
   // indicates when the item is visually focused
@@ -26,27 +26,27 @@ export type RenderItemProps = {
   // indicates when the item is visually focused
   'aria-activedescendant'?: boolean,
 };
-export type GetRequiredItemPropsFn = (
+export type GetRequiredItemPropsFnT = (
   item: {},
   index: number,
-) => RenderItemProps;
+) => RenderItemPropsT;
 
-export type StateReducerFn = (
+export type StateReducerFnT = (
   changeType: string,
-  changes: StatefulContainerState,
-  currentState: StatefulContainerState,
-) => StatefulContainerState;
+  changes: StatefulContainerStateT,
+  currentState: StatefulContainerStateT,
+) => StatefulContainerStateT;
 
-export type StatefulContainerState = {
+export type StatefulContainerStateT = {
   // index of currently highlighted item (from keyboard control)
   highlightedIndex: number,
 };
 
-export type RenderProps = StatefulContainerState & {
-  items: Items,
-  getItemString: GetItemStringFn,
-  rootRef: RootRef,
-  getRequiredItemProps: GetRequiredItemPropsFn,
+export type RenderPropsT = StatefulContainerStateT & {
+  items: ItemsT,
+  getItemLabel: GetItemLabelFnT,
+  rootRef: RootRefT,
+  getRequiredItemProps: GetRequiredItemPropsFnT,
 };
 
 /**
@@ -56,31 +56,31 @@ export type RenderProps = StatefulContainerState & {
  * marked as required because otherwise defaultProps will not work properly
  */
 
-export type DefaultStatefulContainerProps = {
-  initialState: StatefulContainerState,
-  stateReducer: StateReducerFn,
-  onItemSelect: OnItemSelectFn,
-  children: RenderProps => React.Node,
+export type DefaultStatefulContainerPropsT = {
+  initialState: StatefulContainerStateT,
+  stateReducer: StateReducerFnT,
+  onItemSelect: OnItemSelectFnT,
+  children: RenderPropsT => React.Node,
 };
 
-export type StatefulContainerProps = {
-  items: Items,
-  getItemString: GetItemStringFn,
-  initialState?: StatefulContainerState,
-  stateReducer?: StateReducerFn,
-  onItemSelect?: OnItemSelectFn,
-  children?: RenderProps => React.Node,
+export type StatefulContainerPropsT = {
+  items: ItemsT,
+  getItemLabel: GetItemLabelFnT,
+  initialState?: StatefulContainerStateT,
+  stateReducer?: StateReducerFnT,
+  onItemSelect?: OnItemSelectFnT,
+  children?: RenderPropsT => React.Node,
 };
 
-export type StatefulMenulistProps = StatefulContainerProps & {
-  components?: InjectableComponentProps,
+export type StatefulMenulistPropsT = StatefulContainerPropsT & {
+  components?: InjectableComponentPropsT,
 };
 
-export type StatelessMenulistProps = {
-  items: Items,
-  getItemString: GetItemStringFn,
-  rootRef: RootRef,
-  getRequiredItemProps?: GetRequiredItemPropsFn,
+export type StatelessMenulistPropsT = {
+  items: ItemsT,
+  getItemLabel: GetItemLabelFnT,
+  rootRef: RootRefT,
+  getRequiredItemProps?: GetRequiredItemPropsFnT,
   highlightedIndex?: number,
-  components?: InjectableComponentProps,
+  components?: InjectableComponentPropsT,
 };

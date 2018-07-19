@@ -9,7 +9,7 @@ const mockItems = [{label: 'item1'}, {label: 'item2'}];
 function getSharedProps() {
   return {
     items: mockItems,
-    getItemString: item => item.label,
+    getItemLabel: item => item.label,
     rootRef: React.createRef(),
     components: {
       List,

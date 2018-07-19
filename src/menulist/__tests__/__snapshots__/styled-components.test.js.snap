@@ -7,7 +7,10 @@ Object {
   "boxShadow": "$theme.lighting.shadow600",
   "display": "flex",
   "flexDirection": "column",
-  "padding": "$theme.sizing.scale200 $theme.sizing.scale400",
+  "paddingBottom": "$theme.sizing.scale200",
+  "paddingLeft": "$theme.sizing.scale400",
+  "paddingRight": "$theme.sizing.scale400",
+  "paddingTop": "$theme.sizing.scale200",
   "position": "relative",
 }
 `;
@@ -26,7 +29,9 @@ Object {
   "lineHeight": "$theme.typography.font400.lineHeight",
   "margin": 0,
   "position": "relative",
-  "transition": "color $theme.animation.timing100 $theme.animation.easeOutCurve",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "color",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;
 
@@ -44,6 +49,8 @@ Object {
   "lineHeight": "$theme.typography.font400.lineHeight",
   "margin": 0,
   "position": "relative",
-  "transition": "color $theme.animation.timing100 $theme.animation.easeOutCurve",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "color",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;

@@ -5,10 +5,10 @@ import * as React from 'react';
 import Menulist from './menulist';
 import StatefulContainer from './stateful-container';
 
-import type {StatefulMenulistProps} from './types';
+import type {StatefulMenulistPropsT} from './types';
 
 export default class StatefulMenuList extends React.Component<
-  StatefulMenulistProps,
+  StatefulMenulistPropsT,
 > {
   static defaultProps = {
     components: {},

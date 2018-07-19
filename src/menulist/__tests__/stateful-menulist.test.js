@@ -9,7 +9,7 @@ describe('Menulist StatefulMenulist', () => {
   test('renders with props', () => {
     const props = {
       items: [{label: 'item1'}, {label: 'item2'}],
-      getItemString: item => item.label,
+      getItemLabel: item => item.label,
     };
     const component = mount(<StatefulMenulist {...props} />);
     expect(component.find(StatefulContainer).length).toBe(1);

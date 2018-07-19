@@ -31,7 +31,7 @@ storiesOf('Menulist', module)
   .add('Stateless', () => (
     <Menulist
       items={ITEMS}
-      getItemString={item => item.label}
+      getItemLabel={item => item.label}
       rootRef={React.createRef()}
       components={{
         // $FlowFixMe
@@ -43,7 +43,7 @@ storiesOf('Menulist', module)
     <StatefulMenulist
       items={ITEMS}
       onItemSelect={action('item select')}
-      getItemString={item => item.label}
+      getItemLabel={item => item.label}
       components={{
         // $FlowFixMe
         List: withStyle(ListMaxWidth, {height: '150px', overflow: 'auto'}),

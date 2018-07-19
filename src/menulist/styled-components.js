@@ -3,36 +3,39 @@ import {styled} from '../styles';
 
 import type {ThemeT} from '../styles';
 
-type StyledProps = {
+type StyledPropsT = {
   $theme: ThemeT,
 };
 
-type StyledListItemProps = {
+type StyledListItemPropsT = {
   $isHighlighted: boolean,
-} & StyledProps;
+} & StyledPropsT;
 
-export const List = styled('ul', ({$theme}: StyledProps) => ({
+export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   background: $theme.colors.white,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
-  padding: `${$theme.sizing.scale200} ${$theme.sizing.scale400}`,
+  paddingTop: $theme.sizing.scale200,
+  paddingBottom: $theme.sizing.scale200,
+  paddingLeft: $theme.sizing.scale400,
+  paddingRight: $theme.sizing.scale400,
 }));
 
 export const ListItem = styled(
   'li',
-  ({$theme, $isHighlighted}: StyledListItemProps) => ({
+  ({$theme, $isHighlighted}: StyledListItemPropsT) => ({
+    ...$theme.typography.font400,
     position: 'relative',
     display: 'block',
     color: $isHighlighted ? $theme.colors.primary : $theme.colors.black,
     margin: 0,
     cursor: 'pointer',
-    ...$theme.typography.font400,
-    transition: `color ${$theme.animation.timing100} ${
-      $theme.animation.easeOutCurve
-    }`,
+    transitionProperty: 'color',
+    transitionDuration: $theme.animation.timing100,
+    transitionTimingFunction: $theme.animation.easeOutCurve,
     ':hover': {
       color: $theme.colors.primary400,
     },

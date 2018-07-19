@@ -6,19 +6,19 @@ import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants';
 import {scrollItemIntoView} from './utils';
 // Types
 import type {
-  StatefulContainerProps,
-  DefaultStatefulContainerProps,
-  StatefulContainerState,
-  GetRequiredItemPropsFn,
-  RootRef,
-  RenderProps,
+  StatefulContainerPropsT,
+  DefaultStatefulContainerPropsT,
+  StatefulContainerStateT,
+  GetRequiredItemPropsFnT,
+  RootRefT,
+  RenderPropsT,
 } from './types';
 
 export default class MenuListStatefulContainer extends React.Component<
-  StatefulContainerProps,
-  StatefulContainerState,
+  StatefulContainerPropsT,
+  StatefulContainerStateT,
 > {
-  static defaultProps: DefaultStatefulContainerProps = {
+  static defaultProps: DefaultStatefulContainerPropsT = {
     initialState: {
       // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,
@@ -28,9 +28,10 @@ export default class MenuListStatefulContainer extends React.Component<
     children: () => {},
   };
 
-  state: StatefulContainerState = {...this.props.initialState};
+  state: StatefulContainerStateT = {...this.props.initialState};
 
   componentDidMount() {
+    // TODO: perhaps only bind event listener on focus
     document.addEventListener('keydown', this._onKeyDown);
   }
 
@@ -43,12 +44,12 @@ export default class MenuListStatefulContainer extends React.Component<
 
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
-  _rootRef: RootRef = React.createRef();
+  _rootRef: RootRefT = React.createRef();
 
   // Internal set state function that will also invoke stateReducer
-  _setInternalState(
+  _internalSetState(
     changeType: ?$Keys<typeof STATE_CHANGE_TYPES>,
-    changes: StatefulContainerState,
+    changes: StatefulContainerStateT,
   ) {
     const {stateReducer} = this.props;
     // $FlowFixMe
@@ -91,7 +92,7 @@ export default class MenuListStatefulContainer extends React.Component<
       isFirst: highlightedIndex === 0,
       isLast: highlightedIndex === items.length - 1,
     });
-    this._setInternalState(stateChangeType, {highlightedIndex});
+    this._internalSetState(stateChangeType, {highlightedIndex});
   }
 
   // Handler for enter key
@@ -103,10 +104,10 @@ export default class MenuListStatefulContainer extends React.Component<
     }
   }
 
-  _getRequiredItemProps: GetRequiredItemPropsFn = (item, index) => {
+  _getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
     const {highlightedIndex} = this.state;
-    const {getItemString, onItemSelect} = this.props;
-    const itemString = getItemString(item);
+    const {getItemLabel, onItemSelect} = this.props;
+    const itemString = getItemLabel(item);
     // Create and store ref or re-use
     let itemRef = this._refs[index];
     if (!itemRef) {
@@ -126,16 +127,16 @@ export default class MenuListStatefulContainer extends React.Component<
 
   render() {
     const {highlightedIndex} = this.state;
-    const {children, items, getItemString} = this.props;
+    const {children, items, getItemLabel} = this.props;
     // $FlowFixMe
     return children(
       ({
         highlightedIndex,
         items,
-        getItemString,
+        getItemLabel,
         rootRef: this._rootRef,
         getRequiredItemProps: this._getRequiredItemProps,
-      }: RenderProps),
+      }: RenderPropsT),
     );
   }
 }
