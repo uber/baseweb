@@ -2,7 +2,7 @@
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {document} from 'global';
+import document from 'global/document';
 import Popper from 'popper.js';
 import isBrowser from '../utils/is-browser';
 import getBuiId from '../utils/get-bui-id';
