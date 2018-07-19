@@ -82,4 +82,17 @@ describe('Popover styled components', () => {
       'StyledPadding has correct styles',
     );
   });
+
+  test('StyledPadding - override', () => {
+    const component = shallow(
+      <StyledPadding $style={{padding: '21px', color: 'red'}}>
+        <div />
+      </StyledPadding>,
+    );
+
+    expect(component.instance().getStyles()).toEqual({
+      padding: '21px',
+      color: 'red',
+    });
+  });
 });
