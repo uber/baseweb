@@ -3,6 +3,9 @@
 import * as React from 'react';
 import {storiesOf} from '@storybook/react';
 import {styled, withStyle} from 'styletron-react';
+import {withReadme} from 'storybook-readme';
+//$FlowFixMe
+import CheckboxReadme from '../../rfcs/checkbox.md';
 import {
   StatefulCheckbox as Checkbox,
   StyledRoot,
@@ -104,6 +107,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
 }
 
 storiesOf('Checkbox', module)
+  .addDecorator(withReadme(CheckboxReadme))
   .add('Checkbox example', () => {
     return <Checkbox onChange={onChange} label="click me" />;
   })
