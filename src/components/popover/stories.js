@@ -5,7 +5,7 @@ import examples from './examples';
 
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import PopoverReadme from '../../rfcs/popover-component.md';
+import PopoverReadme from '../../../rfcs/popover-component.md';
 
 examples.forEach(({description, example}) =>
   storiesOf('Popover', module)

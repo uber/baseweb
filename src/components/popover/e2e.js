@@ -1,5 +1,5 @@
 // @flow
-import e2e from '../utils/e2e-test-utils';
+import e2e from '../../utils/e2e-test-utils';
 
 const {run, By, runBrowserAccecibilityTest, location} = e2e;
 
