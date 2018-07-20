@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import type {BaseInputPropsT, InternalStateT} from './types';
-import getBuiId from '../utils/get-bui-id';
+import getBuiId from '../../utils/get-bui-id';
 import {ADJOINED, SIZE} from './constants';
 import {getSharedProps, getComponent, getComponentProps} from './utils';
 import {

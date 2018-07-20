@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PopoverExamples from '../src/popover/examples';
+import PopoverExamples from '../src/components/popover/examples';
 import document from 'global/document';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';

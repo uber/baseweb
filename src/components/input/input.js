@@ -2,7 +2,7 @@
 import * as React from 'react';
 import type {InputPropsT, InternalStateT, AdjoinedT} from './types';
 import {getSharedProps, getComponent, getComponentProps} from './utils';
-import getBuiId from '../utils/get-bui-id';
+import getBuiId from '../../utils/get-bui-id';
 import BaseInput from './base-input';
 import {
   Label as StyledLabel,
