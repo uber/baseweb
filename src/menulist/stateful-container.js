@@ -32,22 +32,22 @@ export default class MenuListStatefulContainer extends React.Component<
 
   componentDidMount() {
     // TODO: perhaps only bind event listener on focus
-    document.addEventListener('keydown', this._onKeyDown);
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this._onKeyDown);
+    document.removeEventListener('keydown', this.onKeyDown);
   }
 
   // One array to hold all of list item refs
-  _refs: Array<React$ElementRef<*>> = [];
+  refList: Array<React$ElementRef<*>> = [];
 
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
-  _rootRef: RootRefT = React.createRef();
+  rootRef: RootRefT = React.createRef();
 
   // Internal set state function that will also invoke stateReducer
-  _internalSetState(
+  internalSetState(
     changeType: ?$Keys<typeof STATE_CHANGE_TYPES>,
     changes: StatefulContainerStateT,
   ) {
@@ -57,24 +57,24 @@ export default class MenuListStatefulContainer extends React.Component<
   }
 
   // Regular type here because this is not done through React
-  _onKeyDown = (event: KeyboardEvent) => {
+  onKeyDown = (event: KeyboardEvent) => {
     // Up arrow
     switch (event.key) {
       case KEY_STRINGS.ArrowUp:
       case KEY_STRINGS.ArrowDown:
-        this._handleArrowKey(event.key);
+        this.handleArrowKey(event.key);
         event.preventDefault();
         event.stopPropagation();
         break;
       case KEY_STRINGS.Enter:
-        this._handleEnterKey(event);
+        this.handleEnterKey(event);
         event.preventDefault();
         break;
     }
   };
 
   // Handler for arrow keys
-  _handleArrowKey(key: string) {
+  handleArrowKey(key: string) {
     const {items} = this.props;
     const {highlightedIndex: oldIndex} = this.state;
     let highlightedIndex = oldIndex;
@@ -87,16 +87,16 @@ export default class MenuListStatefulContainer extends React.Component<
       stateChangeType = STATE_CHANGE_TYPES.keyPressArrowDown;
     }
     scrollItemIntoView({
-      node: this._refs[highlightedIndex],
-      parentNode: this._rootRef,
+      node: this.refList[highlightedIndex],
+      parentNode: this.rootRef,
       isFirst: highlightedIndex === 0,
       isLast: highlightedIndex === items.length - 1,
     });
-    this._internalSetState(stateChangeType, {highlightedIndex});
+    this.internalSetState(stateChangeType, {highlightedIndex});
   }
 
   // Handler for enter key
-  _handleEnterKey(event: KeyboardEvent) {
+  handleEnterKey(event: KeyboardEvent) {
     const {items, onItemSelect} = this.props;
     const {highlightedIndex} = this.state;
     if (items[highlightedIndex] && onItemSelect) {
@@ -104,15 +104,15 @@ export default class MenuListStatefulContainer extends React.Component<
     }
   }
 
-  _getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
+  getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
     const {highlightedIndex} = this.state;
     const {getItemLabel, onItemSelect} = this.props;
     const itemString = getItemLabel(item);
     // Create and store ref or re-use
-    let itemRef = this._refs[index];
+    let itemRef = this.refList[index];
     if (!itemRef) {
       itemRef = React.createRef();
-      this._refs[index] = itemRef;
+      this.refList[index] = itemRef;
     }
     return {
       key: `${itemString}-${index}`,
@@ -134,8 +134,8 @@ export default class MenuListStatefulContainer extends React.Component<
         highlightedIndex,
         items,
         getItemLabel,
-        rootRef: this._rootRef,
-        getRequiredItemProps: this._getRequiredItemProps,
+        rootRef: this.rootRef,
+        getRequiredItemProps: this.getRequiredItemProps,
       }: RenderPropsT),
     );
   }

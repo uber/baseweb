@@ -42,14 +42,14 @@ describe('Menulist StatefulContainer', () => {
       children: mockChildrenFn,
     };
     const component = mount(<StatefulContainer {...props} />);
-    expect(component.instance()._refs).toEqual([]);
-    expect(component.instance()._rootRef).toEqual(React.createRef());
+    expect(component.instance().refList).toEqual([]);
+    expect(component.instance().rootRef).toEqual(React.createRef());
     expect(mockChildrenFn.mock.calls[0][0]).toEqual({
       highlightedIndex: -1,
       items: mockItems,
       getItemLabel: mockGetItemLabel,
       rootRef: React.createRef(),
-      getRequiredItemProps: component.instance()._getRequiredItemProps,
+      getRequiredItemProps: component.instance().getRequiredItemProps,
     });
   });
 
@@ -71,10 +71,10 @@ describe('Menulist StatefulContainer', () => {
     expect(document.removeEventListener.mock.calls.length).toBe(1);
   });
 
-  test('_getRequiredItemProps returns correct props', () => {
+  test('getRequiredItemProps returns correct props', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     const item = mockItems[0];
-    const props = component.instance()._getRequiredItemProps(item, 0);
+    const props = component.instance().getRequiredItemProps(item, 0);
     expect(props).toEqual({
       key: 'item1-0',
       ref: React.createRef(),
@@ -87,13 +87,13 @@ describe('Menulist StatefulContainer', () => {
     expect(mockItemSelect.mock.calls[0][0]).toEqual(item);
   });
 
-  test('_getRequiredItemProps returns correct props for active child', () => {
+  test('getRequiredItemProps returns correct props for active child', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     component.setState({
       highlightedIndex: 0,
     });
     const item = mockItems[0];
-    const props = component.instance()._getRequiredItemProps(item, 0);
+    const props = component.instance().getRequiredItemProps(item, 0);
     expect(props).toEqual({
       key: 'item1-0',
       ref: React.createRef(),
@@ -104,13 +104,13 @@ describe('Menulist StatefulContainer', () => {
     });
   });
 
-  test('_onKeyDown - handleArrowKey', () => {
+  test('onKeyDown - handleArrowKey', () => {
     const props = getSharedProps();
     const component = mount(<StatefulContainer {...props} />);
     expect(component.state('highlightedIndex')).toEqual(-1);
 
-    component.instance()._refs = [React.createRef(), React.createRef()];
-    component.instance()._onKeyDown({
+    component.instance().refList = [React.createRef(), React.createRef()];
+    component.instance().onKeyDown({
       key: KEY_STRINGS.ArrowUp,
       preventDefault: jest.fn(),
       stopPropagation: jest.fn(),
@@ -129,7 +129,7 @@ describe('Menulist StatefulContainer', () => {
       isLast: false,
     });
 
-    component.instance()._onKeyDown({
+    component.instance().onKeyDown({
       key: KEY_STRINGS.ArrowDown,
       preventDefault: jest.fn(),
       stopPropagation: jest.fn(),
@@ -142,20 +142,20 @@ describe('Menulist StatefulContainer', () => {
     ]);
   });
 
-  test('_onKeyDown - handleEnterKey', () => {
+  test('onKeyDown - handleEnterKey', () => {
     const props = getSharedProps();
     const component = mount(<StatefulContainer {...props} />);
     const event = {
       key: KEY_STRINGS.Enter,
       preventDefault: jest.fn(),
     };
-    component.instance()._onKeyDown(event);
+    component.instance().onKeyDown(event);
     expect(mockItemSelect.mock.calls.length).toBe(0);
 
     component.setState({
       highlightedIndex: 0,
     });
-    component.instance()._onKeyDown(event);
+    component.instance().onKeyDown(event);
     expect(mockItemSelect.mock.calls[0]).toEqual([mockItems[0], event]);
   });
 });
