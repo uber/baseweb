@@ -2,7 +2,7 @@
 import React from 'react';
 import {boolean, text} from '@storybook/addon-knobs';
 
-import {styled} from '../styles';
+import {styled} from '../../styles';
 import {
   PLACEMENT,
   TRIGGER_TYPE,
