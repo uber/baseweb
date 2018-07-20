@@ -15,6 +15,8 @@
 
 * `name?: string`:
   String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string
+* `value?: string`:
+  The value of radio button, which is preselected.
 * `autoFocus?: ?boolean`:
   Set to be focused (active) on selected\checked radio. Default is `undefined`
 * `disabled?: boolean`:
@@ -27,6 +29,8 @@
   Sets radio group into error state. Default is `false`
 * `align: 'vertical' | 'horizontal'`:
   How to position radio buttons in the group. Default is `vertical`
+* `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
+  How to position the label relative to the radio itself. Default is `right`
 * `onChange: func`:
   handler for events on trigger element. Second argument provides index of radio button
 * `onMouseEnter: func`:
@@ -41,8 +45,6 @@
 ### `StatefulRadioGroupContainer` API
 
 * `initialState: {}`
-  Initial state of an uncontrolled radio group component.
-  * `checked` - an initial checked state. Index of checked radio button in group. Default is `undefined`.
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
@@ -52,6 +54,8 @@
   * `disabled: boolean`:
 * `name?: string`:
   String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string
+* `value?: string`:
+  The value of radio button, which is preselected.
 * `autoFocus?: ?boolean`:
   Set to be focused (active) on selected\checked radio. Default is `undefined`
 * `disabled?: boolean`:
@@ -81,10 +85,10 @@
 
 ### `Radio` API
 
-* `checked: ?boolean`:
+* `Radio: ?boolean`:
   check or uncheck the control. Default is `false`.
-* `label: string`:
-  String value for label of radio. Default is empty string
+* `children: React$Node`:
+  Component or String value for label of checkbox. Default is empty string
 * `disabled: boolean`:
   Disable control from being changed
 * `isError: boolean`:
@@ -99,7 +103,8 @@
 ### Usage
 
 ```js
-import {StatefulRadioGroup, Radio, RadioMark, Label} from './index';
+import {StatefulRadioGroup, RadioMark, Label} from './index';
+import Radio from './radio';
 
 const CustomLabel = withStyle(Label, {
   textColor: 'blue',
@@ -121,18 +126,18 @@ export default () => {
         onMouseEnter={this.onRadioGroupHover}
         onChange={this.onRadioGroupChange}
       >
-        <Radio label="First choice" value="First" />
-        <Radio label="Second choice" value="Second" checked={true} />
-        <Radio label="Third choice" value="Third" disabled={true} />
+        <Radio value="First">First choice</Radio>
+        <Radio value="Second">Second choice</Radio>
         <Radio
-          label="Third choice"
           value="Third"
-          components={{
+          overrides={{
             Root: props => <div>Some custom root</div>,
             Label: props => <CustomLabel>Click me</CustomLabel>,
             RadioMark: props => <CustomRadioMark {...props} />,
           }}
-        />
+        >
+          Third choice
+        </Radio>
       </StatefulRadioGroup>
     </div>
   );

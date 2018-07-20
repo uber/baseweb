@@ -16,8 +16,8 @@
   check or uncheck the control. Default is `false`.
 * `autoFocus: boolean`:
   make the control focused (active). Default is `false`
-* `label: string`:
-  String value for label of checkbox. Default is empty string
+* `children: React$Node`:
+  Component or String value for label of checkbox. Default is empty string
 * `disabled: boolean`:
   Disable control from being changed
 * `required: boolean`:
