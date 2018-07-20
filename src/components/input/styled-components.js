@@ -1,5 +1,5 @@
 // @flow
-import {styled} from '../styles';
+import {styled} from '../../styles';
 import {ADJOINED, SIZE, ENHANCER_POSITION} from './constants';
 
 function getInputPadding(size, sizing) {

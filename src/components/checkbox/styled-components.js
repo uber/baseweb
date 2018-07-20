@@ -1,5 +1,5 @@
 // @flow
-import {styled} from '../styles';
+import {styled} from '../../styles';
 
 function getBorderColor(props) {
   const {$checked, $isError, $isIndeterminate, $theme} = props;

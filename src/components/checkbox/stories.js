@@ -5,7 +5,7 @@ import {storiesOf} from '@storybook/react';
 import {styled, withStyle} from 'styletron-react';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import CheckboxReadme from '../../rfcs/checkbox.md';
+import CheckboxReadme from '../../../rfcs/checkbox.md';
 import {
   StatefulCheckbox as Checkbox,
   StyledRoot,

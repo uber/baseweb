@@ -3,11 +3,11 @@
 import * as React from 'react';
 import {storiesOf} from '@storybook/react';
 import {withStyle} from 'styletron-react';
-import {styled} from '../styles';
-import {withProps} from '../helpers';
+import {styled} from '../../styles';
+import {withProps} from '../../helpers';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import InputReadme from '../../rfcs/input-component.md';
+import InputReadme from '../../../rfcs/input-component.md';
 import {
   Input as ControlledInput,
   StatefulInput as Input,

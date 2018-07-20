@@ -1,5 +1,5 @@
 // @flow
-import {styled} from '../styles';
+import {styled} from '../../styles';
 import {ARROW_SIZE} from './constants';
 import {getTransformOrigin, getPopoverMarginStyles} from './utils';
 
