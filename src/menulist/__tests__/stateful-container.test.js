@@ -117,7 +117,7 @@ describe('Menulist StatefulContainer', () => {
     });
     expect(component.state('highlightedIndex')).toEqual(0);
     expect(props.stateReducer.mock.calls[0]).toEqual([
-      STATE_CHANGE_TYPES.keyPressArrowUp,
+      STATE_CHANGE_TYPES.moveUp,
       {highlightedIndex: 0},
       {highlightedIndex: -1},
     ]);
@@ -136,7 +136,7 @@ describe('Menulist StatefulContainer', () => {
     });
     expect(component.state('highlightedIndex')).toEqual(1);
     expect(props.stateReducer.mock.calls[1]).toEqual([
-      STATE_CHANGE_TYPES.keyPressArrowDown,
+      STATE_CHANGE_TYPES.moveDown,
       {highlightedIndex: 1},
       {highlightedIndex: 0},
     ]);

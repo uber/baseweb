@@ -81,10 +81,10 @@ export default class MenuListStatefulContainer extends React.Component<
     let stateChangeType = null;
     if (key === KEY_STRINGS.ArrowUp) {
       highlightedIndex = Math.max(0, oldIndex - 1);
-      stateChangeType = STATE_CHANGE_TYPES.keyPressArrowUp;
+      stateChangeType = STATE_CHANGE_TYPES.moveUp;
     } else if (key === KEY_STRINGS.ArrowDown) {
       highlightedIndex = Math.min(oldIndex + 1, items.length - 1);
-      stateChangeType = STATE_CHANGE_TYPES.keyPressArrowDown;
+      stateChangeType = STATE_CHANGE_TYPES.moveDown;
     }
     scrollItemIntoView({
       node: this.refList[highlightedIndex],

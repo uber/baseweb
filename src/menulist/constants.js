@@ -2,8 +2,8 @@
 /* eslint-disable import/prefer-default-export */
 
 export const STATE_CHANGE_TYPES = {
-  keyPressArrowUp: 'keyPressArrowUp',
-  keyPressArrowDown: 'keyPressArrowDown',
+  moveUp: 'moveUp',
+  moveDown: 'moveDown',
 };
 
 // Dict of props to prepend $ to pass thru to styletron
