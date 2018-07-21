@@ -86,8 +86,8 @@ describe('Popover', () => {
     expect(popoverBody).toHaveProp({
       $showArrow: false,
       $placement: 'auto',
-      $positionStyles: {top: '0px', left: '0px'},
-      $arrowStyles: {top: '0px', left: '0px'},
+      $popoverOffset: {top: 0, left: 0},
+      $arrowOffset: {top: 0, left: 0},
       $isAnimating: false,
       $isOpen: true,
     });
@@ -106,8 +106,8 @@ describe('Popover', () => {
     popoverBody = wrapper.childAt(1).childAt(0);
     expect(popoverBody).toHaveProp({
       $placement: 'leftTop',
-      $positionStyles: {top: '10px', left: '10px'},
-      $arrowStyles: {top: '10px', right: '-5px'},
+      $popoverOffset: {top: 10, left: 10},
+      $arrowOffset: {top: 10, left: 10},
       $isAnimating: true,
       $isOpen: true,
     });

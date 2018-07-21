@@ -2,15 +2,17 @@
 /* eslint-disable flowtype/no-weak-types */
 
 import {
-  getOppositePosition,
   capitalize,
-  toPopperPlacement,
   fromPopperPlacement,
-  splitPlacement,
-  preparePopoverPositionStyles,
-  prepareArrowPositionStyles,
+  getOppositePosition,
   getPopoverMarginStyles,
-  getTransformOrigin,
+  getArrowPositionStyles,
+  getEndPosition,
+  getStartPosition,
+  isVerticalPosition,
+  parsePopperOffset,
+  splitPlacement,
+  toPopperPlacement,
 } from '../utils';
 
 describe('Popover utils', () => {
@@ -47,6 +49,27 @@ describe('Popover utils', () => {
     expect(fromPopperPlacement('')).toBe(null);
   });
 
+  test('parsePopperOffset', () => {
+    expect(
+      parsePopperOffset({
+        top: 10,
+        left: 15,
+      }),
+    ).toEqual({top: 10, left: 15});
+    expect(
+      parsePopperOffset({
+        top: 10.1,
+        left: 15.24,
+      }),
+    ).toEqual({top: 10, left: 15});
+    expect(
+      parsePopperOffset({
+        top: null,
+        left: null,
+      }),
+    ).toEqual({top: 0, left: 0});
+  });
+
   test('splitPlacement', () => {
     expect(splitPlacement('rightTop')).toEqual(['right', 'top']);
     expect(splitPlacement('right')).toEqual(['right']);
@@ -58,86 +81,29 @@ describe('Popover utils', () => {
     expect(splitPlacement(('': any))).toEqual([]);
   });
 
-  test('preparePopoverPositionStyles', () => {
-    expect(
-      preparePopoverPositionStyles({
-        'will-change': 'transform',
-        top: 10,
-        left: 15,
-      }),
-    ).toEqual({
-      'will-change': 'transform',
-      top: '10px',
-      left: '15px',
-    });
-
-    expect(
-      preparePopoverPositionStyles({
-        'will-change': 'transform',
-      }),
-    ).toEqual({
-      'will-change': 'transform',
-      top: '0px',
-      left: '0px',
-    });
-
-    expect(preparePopoverPositionStyles()).toEqual({left: '0px', top: '0px'});
-  });
-
-  test('prepareArrowPositionStyles', () => {
-    expect(
-      prepareArrowPositionStyles({left: 10, top: 0}, 'bottomLeft'),
-    ).toEqual({
-      top: '-5px',
-      left: '10px',
-    });
-    expect(prepareArrowPositionStyles({left: 50, top: 0}, 'bottom')).toEqual({
-      top: '-5px',
-      left: '50px',
-    });
-    expect(
-      prepareArrowPositionStyles({left: 100, top: 0}, 'bottomRight'),
-    ).toEqual({
-      top: '-5px',
-      left: '100px',
-    });
-
-    expect(prepareArrowPositionStyles({left: 0, top: 10}, 'leftTop')).toEqual({
-      top: '10px',
-      right: '-5px',
-    });
-    expect(prepareArrowPositionStyles({left: 0, top: 10}, 'rightTop')).toEqual({
-      top: '10px',
-      left: '-5px',
-    });
-    expect(prepareArrowPositionStyles({}, 'rightTop')).toEqual({
-      top: '0px',
-      left: '-5px',
-    });
-    expect(prepareArrowPositionStyles({}, 'topLeft')).toEqual({
-      bottom: '-5px',
-      left: '0px',
-    });
-
-    expect(prepareArrowPositionStyles(undefined, 'auto')).toEqual({
-      top: '0px',
-      left: '0px',
-    });
+  test('isVerticalPosition', () => {
+    expect(isVerticalPosition('top')).toEqual(true);
+    expect(isVerticalPosition('bottom')).toEqual(true);
+    expect(isVerticalPosition('left')).toEqual(false);
+    expect(isVerticalPosition('right')).toEqual(false);
+    expect(isVerticalPosition('')).toEqual(false);
+    const nullArg: any = null;
+    expect(isVerticalPosition(nullArg)).toEqual(false);
   });
 
   test('getPopoverMarginStyles', () => {
     let showArrow = false;
     expect(getPopoverMarginStyles(showArrow, 'topLeft')).toEqual({
-      marginBottom: '6px',
+      marginBottom: '8px',
     });
     expect(getPopoverMarginStyles(showArrow, 'top')).toEqual({
-      marginBottom: '6px',
+      marginBottom: '8px',
     });
     expect(getPopoverMarginStyles(showArrow, 'right')).toEqual({
-      marginLeft: '6px',
+      marginLeft: '8px',
     });
     expect(getPopoverMarginStyles(showArrow, 'bottomLeft')).toEqual({
-      marginTop: '6px',
+      marginTop: '8px',
     });
 
     showArrow = true;
@@ -155,26 +121,27 @@ describe('Popover utils', () => {
     });
   });
 
-  test('getTransformOrigin', () => {
-    expect(getTransformOrigin('leftTop')).toBe('right top');
-    expect(getTransformOrigin('left')).toBe('right center');
-    expect(getTransformOrigin('rightTop')).toBe('left top');
-    expect(getTransformOrigin('topLeft')).toBe('left bottom');
-    expect(getTransformOrigin('top')).toBe('center bottom');
-    expect(getTransformOrigin('bottomLeft')).toBe('left top');
+  test('getArrowPositionStyles', () => {
+    expect(getArrowPositionStyles({top: 0, left: 15}, 'auto')).toBe(null);
+    expect(getArrowPositionStyles({top: 0, left: 15}, 'topLeft')).toEqual({
+      bottom: '-4px',
+      left: '15px',
+    });
+    expect(getArrowPositionStyles({top: 15, left: 0}, 'leftTop')).toEqual({
+      right: '-4px',
+      top: '15px',
+    });
+  });
 
-    // With arrow styles
-    expect(getTransformOrigin('leftTop', {left: '0px', top: '10px'})).toBe(
-      'right 10px',
+  test('getStartPosition', () => {
+    expect(getStartPosition({left: 10, top: 15}, 'topLeft', true)).toEqual(
+      'translate3d(10px, 27px, 0)',
     );
-    expect(getTransformOrigin('leftBottom', {left: '0px', top: '10px'})).toBe(
-      'right 10px',
-    );
-    expect(getTransformOrigin('topLeft', {left: '10px', top: '0px'})).toBe(
-      '10px bottom',
-    );
-    expect(getTransformOrigin('topRight', {left: '10px', top: '0px'})).toBe(
-      '10px bottom',
+  });
+
+  test('getEndPosition', () => {
+    expect(getEndPosition({left: 10, top: 15})).toEqual(
+      'translate3d(10px, 15px, 0)',
     );
   });
 });

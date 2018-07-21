@@ -74,8 +74,8 @@ Main popover container component that gets positioned next to the anchor:
 
 * `$isOpen`: Propagated from the parent
 * `$iAnimating`: `true` if the popover should currently be animating in or out.
-* `$positionStyles`: Popover positioning css rules
-* `$arrowStyles`: Popover arrow positioning css rules
+* `$arrowOffset`: Object of numeric top/left pixel positions to offset arrow
+* `$popoverOffset`: Object of numeric top/left pixel positions to offset popover
 * `$showArrow`: Propagated from the parent
 * `$placement`: Runtime placement (may differ from placement prop if popover would have overflowed viewport)
 * `$ref`: React ref for the popover element (should be passed down to dom element)
@@ -86,8 +86,8 @@ Main popover container component that gets positioned next to the anchor:
 
 * `$isOpen`: Propagated from the parent
 * `$iAnimating`: `true` if the popover should currently be animating in or out.
-* `$positionStyles`: Popover positioning css rules
-* `$arrowStyles`: Popover arrow positioning css rules
+* `$arrowOffset`: Object of numeric top/left pixel positions to offset arrow
+* `$popoverOffset`: Object of numeric top/left pixel positions to offset popover
 * `$showArrow`: Propagated from the parent
 * `$placement`: Runtime placement (may differ from placement prop if popover would have overflowed viewport)
 * `$ref`: React ref for the arrow element (should be passed down to dom element)

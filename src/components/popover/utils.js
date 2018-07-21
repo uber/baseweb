@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable import/prefer-default-export */
-import type {PopoverPlacementT, PositionStylesT} from './types';
 import {ARROW_SIZE, POPOVER_MARGIN, PLACEMENT} from './constants';
+import type {OffsetT, PopoverPlacementT, PopperOffsetT} from './types';
 
 const OPPOSITE_POSITIONS = {
   top: 'bottom',
@@ -19,6 +19,13 @@ const OPPOSITE_POSITIONS = {
  */
 export function getOppositePosition(position: string): string {
   return OPPOSITE_POSITIONS[position];
+}
+
+/**
+ * Determines whether or not the specified position is a vertical one (top or bottom)
+ */
+export function isVerticalPosition(position: string): boolean {
+  return position === 'top' || position === 'bottom';
 }
 
 /**
@@ -67,71 +74,13 @@ export function splitPlacement(placement: PopoverPlacementT) {
 }
 
 /**
- * Popper returns css style objects (for popover & arrow) with positioning
- * information, but top/left don't have units. This helper function
- * creates a new style object with units.
+ * Takes the offset passed from popper.js and normalizes it
  */
-export function preparePopoverPositionStyles(styles?: PositionStylesT = {}) {
-  // eslint-disable-next-line no-unused-vars
-  const {left, top, ...restStyles} = styles;
+export function parsePopperOffset(offset: PopperOffsetT): OffsetT {
   return {
-    ...restStyles,
-    // Convert top/left from number to string with unit
-    top: `${styles.top || 0}px`,
-    left: `${styles.left || 0}px`,
+    top: Math.floor(offset.top || 0),
+    left: Math.floor(offset.left || 0),
   };
-}
-
-/**
- * Returns the CSS rules necessary to position the arrow next to its anchor
- * Popper.js provides us with a rule to align to the center of the anchor,
- * but does not supply a rule to place the arrow on a specific side of the
- * popover, so we add that ourselves based on the placement.
- */
-export function prepareArrowPositionStyles(
-  popperArrowStyles?: PositionStylesT,
-  placement: PopoverPlacementT,
-) {
-  if (!popperArrowStyles || !placement) {
-    return {left: '0px', top: '0px'};
-  }
-  const styles = {};
-  const [position] = splitPlacement(placement);
-
-  // Use Popper's rule that aligns to center of anchor
-  if (position === 'top' || position === 'bottom') {
-    styles.left = `${popperArrowStyles.left || 0}px`;
-  } else {
-    styles.top = `${popperArrowStyles.top || 0}px`;
-  }
-
-  // And supply our own rule to show arrow on a specific side
-  styles[getOppositePosition(position)] = `${-(ARROW_SIZE - 1)}px`;
-
-  return styles;
-}
-
-/**
- * Converts popover placement to transform origin for animation
- *
- * When an arrow is being used, we want the transform origin to
- * be the point of the arrow.
- */
-export function getTransformOrigin(
-  placement: PopoverPlacementT,
-  arrowStyles?: PositionStylesT = {},
-) {
-  const [position, alignment = 'center'] = splitPlacement(placement);
-  let xOffset;
-  let yOffset;
-  if (position === 'top' || position === 'bottom') {
-    xOffset = arrowStyles.left || alignment;
-    yOffset = getOppositePosition(position);
-  } else {
-    xOffset = getOppositePosition(position);
-    yOffset = arrowStyles.top || alignment;
-  }
-  return `${xOffset} ${yOffset}`;
 }
 
 /**
@@ -152,5 +101,51 @@ export function getPopoverMarginStyles(
   const property = `margin${capitalize(opposite)}`;
   return {
     [property]: `${showArrow ? ARROW_SIZE : POPOVER_MARGIN}px`,
+  };
+}
+
+/**
+ * Returns CSS rules for the popover animation start keyframe
+ */
+export function getStartPosition(
+  offset: OffsetT,
+  placement: PopoverPlacementT,
+  showArrow: boolean,
+) {
+  offset = {...offset};
+  const [position] = splitPlacement(placement);
+  const margin = (showArrow ? ARROW_SIZE : POPOVER_MARGIN) * 2;
+  if (isVerticalPosition(position)) {
+    offset.top += position === 'top' ? margin : -margin;
+  } else {
+    offset.left += position === 'left' ? margin : -margin;
+  }
+  return `translate3d(${offset.left}px, ${offset.top}px, 0)`;
+}
+
+/**
+ * Returns CSS rules for the popover animation end keyframe
+ */
+export function getEndPosition(offset: OffsetT) {
+  return `translate3d(${offset.left}px, ${offset.top}px, 0)`;
+}
+
+/**
+ * Returns top/left styles to position the popover arrow
+ */
+export function getArrowPositionStyles(
+  offsets: OffsetT,
+  placement: PopoverPlacementT,
+) {
+  const [position] = splitPlacement(placement);
+  const oppositePosition = getOppositePosition(position);
+  if (!oppositePosition) {
+    return null;
+  }
+
+  const alignmentProperty = isVerticalPosition(position) ? 'left' : 'top';
+  return {
+    [alignmentProperty]: `${offsets[alignmentProperty]}px`,
+    [oppositePosition]: `-${ARROW_SIZE - 2}px`,
   };
 }
