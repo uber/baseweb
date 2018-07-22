@@ -1,5 +1,10 @@
 // @flow
-import {getComponent, getOverrideProps} from '../overrides';
+import {
+  getComponent,
+  getOverrideProps,
+  toObjectOverride,
+  mergeOverrides,
+} from '../overrides';
 
 test('Helpers - Overrides - getComponent', () => {
   const DefaultComponent = jest.fn();
@@ -31,4 +36,54 @@ test('Helpers - Overrides - getOverrideProps', () => {
   expect(getOverrideProps(override)).toMatchSnapshot(
     'returns correct object when override has props and styles',
   );
+});
+
+test('Helpers - Overrides - toObjectOverride', () => {
+  const CustomComponent = jest.fn();
+  expect(toObjectOverride()).toBeUndefined();
+  expect(toObjectOverride(null)).toBe(null);
+  expect(toObjectOverride(CustomComponent)).toEqual({
+    component: CustomComponent,
+  });
+  expect(
+    toObjectOverride({
+      component: (CustomComponent: React.ComponentType<*>),
+      style: {width: '300px'},
+    }),
+  ).toEqual({
+    component: CustomComponent,
+    style: {width: '300px'},
+  });
+});
+
+test('Helpers - Overrides - mergeOverrides', () => {
+  const CustomRoot = jest.fn();
+  const CustomFoo = jest.fn();
+  const CustomBar = jest.fn();
+
+  const overrides1 = {
+    Root: CustomRoot,
+  };
+
+  const overrides2 = {
+    Root: {
+      component: (CustomFoo: React.ComponentType<*>),
+    },
+    Bar: CustomBar,
+  };
+
+  expect(mergeOverrides(overrides1)).toEqual({
+    Root: {
+      component: CustomRoot,
+    },
+  });
+
+  expect(mergeOverrides(overrides1, overrides2)).toEqual({
+    Root: {
+      component: CustomFoo,
+    },
+    Bar: {
+      component: CustomBar,
+    },
+  });
 });
