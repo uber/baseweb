@@ -225,7 +225,7 @@ describe('Popover', () => {
   });
 
   test('component overrides', () => {
-    const components = {
+    const overrides = {
       Arrow: jest.fn().mockImplementation(() => <div />),
       Body: jest.fn().mockImplementation(({children}) => <div>{children}</div>),
       Inner: jest
@@ -237,7 +237,7 @@ describe('Popover', () => {
       // $FlowFixMe - Flow is complaining about jest mock args
       <Popover
         isOpen
-        components={components}
+        overrides={overrides}
         showArrow
         triggerType={TRIGGER_TYPE.hover}
       >
@@ -252,19 +252,19 @@ describe('Popover', () => {
       return shallowCopy;
     }
 
-    const body = wrapper.find(components.Body);
+    const body = wrapper.find(overrides.Body);
     expect(body).toHaveLength(1);
     expect(withoutChildren(body.props())).toMatchSnapshot(
       'custom popover body has correct props',
     );
 
-    const arrow = wrapper.find(components.Arrow);
+    const arrow = wrapper.find(overrides.Arrow);
     expect(arrow).toHaveLength(1);
     expect(withoutChildren(arrow.props())).toMatchSnapshot(
       'custom popover arrow has correct props',
     );
 
-    const inner = wrapper.find(components.Inner);
+    const inner = wrapper.find(overrides.Inner);
     expect(inner).toHaveLength(1);
     expect(withoutChildren(inner.props())).toMatchSnapshot(
       'custom popover inner has correct props',

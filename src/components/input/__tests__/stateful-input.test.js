@@ -8,7 +8,7 @@ test('StatefulInput - basic render', () => {
     onChange: jest.fn(),
     label: 'Label',
     caption: 'Caption',
-    override: {
+    overrides: {
       Input: function CustomInput(props) {
         return (
           <span>

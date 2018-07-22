@@ -1,18 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Utils - getComponentProps: returns correct object when override has props and styles 1`] = `
-Object {
-  "$style": Object {
-    "color": "blue",
-  },
-  "propName": "propsValue",
-}
-`;
-
-exports[`Utils - getComponentProps: returns empty object when no overrides 1`] = `Object {}`;
-
-exports[`Utils - getComponentProps: returns empty object when override is a component 1`] = `Object {}`;
-
 exports[`Utils - getSharedProps: getSharedProps returns correct object 1`] = `
 Object {
   "$adjoined": "none",

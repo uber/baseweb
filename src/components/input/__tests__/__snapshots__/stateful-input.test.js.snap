@@ -12,7 +12,7 @@ exports[`StatefulInput - basic render: renders <Input/> as a child 1`] = `
   onBlur={[Function]}
   onChange={[Function]}
   onFocus={[Function]}
-  override={
+  overrides={
     Object {
       "Input": [Function],
     }
@@ -30,7 +30,7 @@ exports[`StatefulInput - basic render: renders <StatefulContainer/> 1`] = `
   initialState={Object {}}
   label="Label"
   onChange={[MockFunction]}
-  override={
+  overrides={
     Object {
       "Input": [Function],
     }

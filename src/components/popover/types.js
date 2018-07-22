@@ -1,13 +1,14 @@
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
+import type {ThemeT} from '../../styles/types';
+import type {OverrideT} from '../../helpers/overrides';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
   STATE_CHANGE_TYPE,
   TRIGGER_TYPE,
 } from './constants';
-import type {ThemeT} from '../../styles/types';
 
 export type PopoverPlacementT = $Keys<typeof PLACEMENT>;
 
@@ -33,11 +34,11 @@ export type StatefulContentRenderPropT = ({
   close: () => void,
 }) => React.Node;
 
-export type ComponentsPropT = {|
-  Body?: React.ComponentType<*> | React.StatelessFunctionalComponent<*>,
-  Arrow?: React.ComponentType<*> | React.StatelessFunctionalComponent<*>,
-  Inner?: React.ComponentType<*> | React.StatelessFunctionalComponent<*>,
-|};
+export type OverridesT = {
+  Body?: OverrideT<SharedStylePropsT>,
+  Arrow?: OverrideT<SharedStylePropsT>,
+  Inner?: OverrideT<SharedStylePropsT>,
+};
 
 // Basically React.Node minus React.Portal and Iterable
 export type ChildT =
@@ -54,7 +55,7 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 // Props shared by all flavors of popover
 export type BasePopoverPropsT = {
   accessibilityType?: AccessibilityTypeT,
-  components?: ComponentsPropT,
+  overrides?: OverridesT,
   id?: string,
   onMouseEnterDelay?: number,
   onMouseLeaveDelay?: number,

@@ -121,7 +121,7 @@ export default () => {
       <Popover
         placement="topLeft"
         content={popoverContent}
-        components={{
+        overrides={{
           Body: CustomPopoverBody,
         }}
       >
@@ -195,7 +195,7 @@ const PopoverContent = ({close}) => (
 );
 
 export default () => (
-  <StatefulPopover components={{Content: PopoverContent}}>
+  <StatefulPopover overrides={{Content: PopoverContent}}>
     <Button>Share</Button>
   </StatefulPopover>
 )

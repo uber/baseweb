@@ -14,13 +14,13 @@ describe('Stateless checkbox', function() {
   let wrapper,
     events = {};
   let allProps: any = {},
-    components,
+    overrides,
     isError,
     mockFn;
 
   beforeEach(function() {
     mockFn = jest.fn();
-    components = {
+    overrides = {
       Root: StyledRoot,
       Checkmark: StyledCheckmark,
       Label: StyledLabel,
@@ -31,7 +31,7 @@ describe('Stateless checkbox', function() {
       onChange: mockFn,
     };
     allProps = {
-      components,
+      overrides,
       ...events,
       labelPlacement: 'left',
       label: 'some',
@@ -53,7 +53,7 @@ describe('Stateless checkbox', function() {
     'should send props to %s',
     subcomponent => {
       const mockComp: any = jest.fn(() => <div>{subcomponent}</div>);
-      components[subcomponent] = mockComp;
+      overrides[subcomponent] = mockComp;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const instance = wrapper.instance();
       const sharedProps = {
@@ -107,7 +107,7 @@ describe('Stateless checkbox', function() {
 
   test('should show label text in label', function() {
     const mockComp = jest.fn(() => <div>test</div>);
-    components.Label = mockComp;
+    overrides.Label = mockComp;
     allProps.label = 'super-puper label';
     wrapper = mount(<StatelessCheckbox {...allProps} />);
     expect(mockComp.mock.calls[0][0].children).toEqual(allProps.label);
@@ -117,7 +117,7 @@ describe('Stateless checkbox', function() {
     'should place label according to dock to %s',
     (labelPlacement, index) => {
       const mockComp = jest.fn(() => <div>test</div>);
-      components.Root = mockComp;
+      overrides.Root = mockComp;
       allProps.label = 'super-puper label';
       allProps.labelPlacement = labelPlacement;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
