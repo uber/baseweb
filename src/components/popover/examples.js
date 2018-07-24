@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import {boolean, number} from '@storybook/addon-knobs';
-import {withStyleDeep} from 'styletron-react-core';
 
 import {styled} from '../../styles';
 import {
@@ -10,9 +9,6 @@ import {
   Popover,
   StatefulPopover,
   StyledPadding as StyledPopoverPadding,
-  StyledArrow,
-  StyledBody,
-  StyledInner,
 } from './index';
 
 function popoverContent() {
@@ -319,30 +315,30 @@ export default [
       const hue = number('Color', 100, {range: true, min: 0, max: 360});
       const hsl = `hsl(${hue}, 40%, 40%)`;
 
-      const CustomBody = withStyleDeep(StyledBody, {
-        backgroundColor: hsl,
-        borderRadius: 0,
-      });
-
-      const CustomInner = withStyleDeep(StyledInner, {
-        backgroundColor: hsl,
-        borderRadius: 0,
-        color: '#fff',
-      });
-
-      const CustomArrow = withStyleDeep(StyledArrow, {
-        backgroundColor: hsl,
-      });
-
       return (
         <Centered>
           <StatefulPopover
             initialState={{isOpen: true}}
             showArrow
-            components={{
-              Arrow: CustomArrow,
-              Body: CustomBody,
-              Inner: CustomInner,
+            overrides={{
+              Arrow: {
+                style: {
+                  backgroundColor: hsl,
+                },
+              },
+              Body: {
+                style: {
+                  backgroundColor: hsl,
+                  borderRadius: 0,
+                },
+              },
+              Inner: {
+                style: {
+                  backgroundColor: hsl,
+                  borderRadius: 0,
+                  color: '#fff',
+                },
+              },
             }}
             content={popoverContent}
           >

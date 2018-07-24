@@ -83,7 +83,7 @@ describe('Popover styled components', () => {
     );
   });
 
-  test('StyledPadding - override', () => {
+  test('StyledPadding - style override', () => {
     const component = shallow(
       <StyledPadding $style={{padding: '21px', color: 'red'}}>
         <div />

@@ -339,7 +339,7 @@ storiesOf('Input', module)
       <React.Fragment>
         <Input
           label="Input with a Before component"
-          override={{
+          overrides={{
             Before: function Before(props) {
               return <InputIcon {...props} $position="left" />;
             },
@@ -348,7 +348,7 @@ storiesOf('Input', module)
         />
         <Input
           label="Input with an After component"
-          override={{
+          overrides={{
             After: function After(props) {
               return <InputIcon {...props} $position="right" />;
             },
@@ -363,12 +363,12 @@ storiesOf('Input', module)
       <React.Fragment>
         <Input
           label="Input with style overrides"
-          override={{InputContainer: RootWithStyle}}
+          overrides={{InputContainer: RootWithStyle}}
           placeholder="With style overrides on the Root element"
         />
         <Input
           label="Input with extra props"
-          override={{
+          overrides={{
             Input: InputWithProps,
             Label: LabelWithProps,
           }}
@@ -382,7 +382,7 @@ storiesOf('Input', module)
       <React.Fragment>
         <Input
           label="Input with custom label"
-          override={{
+          overrides={{
             Label: CustomLabel,
           }}
           placeholder="Placeholder"

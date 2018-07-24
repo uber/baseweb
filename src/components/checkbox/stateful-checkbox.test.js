@@ -23,7 +23,7 @@ describe('Stateful checkbox', function() {
       StyledInput,
       StatefulCheckbox,
     } = require('./index');
-    allProps.components = {
+    allProps.overrides = {
       Root: StyledRoot,
       Label: StyledLabel,
       Checkmark: StyledCheckmark,
@@ -31,8 +31,8 @@ describe('Stateful checkbox', function() {
     };
     const checkbox: any = require('./checkbox');
     wrapper = mount(<StatefulCheckbox {...allProps} />);
-    const {components} = checkbox.mock.calls[0][0];
-    expect(components).toEqual({
+    const {overrides} = checkbox.mock.calls[0][0];
+    expect(overrides).toEqual({
       Root: StyledRoot,
       Checkmark: StyledCheckmark,
       Label: StyledLabel,
@@ -50,7 +50,7 @@ describe('Stateful checkbox', function() {
     const checkbox: any = require('./checkbox');
     wrapper = mount(<StatefulCheckbox {...allProps} />);
     // eslint-disable-next-line no-unused-vars
-    const {components, ...rest} = checkbox.mock.calls[1][0];
+    const {overrides, ...rest} = checkbox.mock.calls[1][0];
     expect(rest).toMatchObject({
       someProp: 'some other props',
       checked: false,
