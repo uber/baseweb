@@ -10,8 +10,8 @@ describe('Popover styled components', () => {
         $isOpen={false}
         $isAnimating={false}
         $placement="bottomLeft"
-        $arrowStyles={{top: '0px', left: '0px'}}
-        $positionStyles={{top: '0px', left: '0px'}}
+        $arrowOffset={{top: 0, left: 0}}
+        $popoverOffset={{top: 0, left: 0}}
         $showArrow
       >
         <div />
@@ -25,8 +25,8 @@ describe('Popover styled components', () => {
     component.setProps({
       $isOpen: true,
       $isAnimating: true,
-      $arrowStyles: {top: '0px', left: '10px'},
-      $positionStyles: {top: '100px', left: '100px'},
+      $arrowOffset: {top: 0, left: 10},
+      $popoverOffset: {top: 100, left: 100},
     });
     expect(component.instance().getStyles()).toMatchSnapshot(
       'StyledBody has correct styles when open and animating',
@@ -39,8 +39,8 @@ describe('Popover styled components', () => {
         $isOpen
         $isAnimating
         $placement="bottomLeft"
-        $arrowStyles={{top: '0px', left: '10px'}}
-        $positionStyles={{top: '100px', left: '100px'}}
+        $arrowOffset={{top: 0, left: 10}}
+        $popoverOffset={{top: 100, left: 100}}
         $showArrow
       >
         <div />
@@ -58,8 +58,8 @@ describe('Popover styled components', () => {
         $isOpen
         $isAnimating
         $placement="bottomLeft"
-        $arrowStyles={{top: '0px', left: '10px'}}
-        $positionStyles={{top: '100px', left: '100px'}}
+        $arrowOffset={{top: 0, left: 10}}
+        $popoverOffset={{top: 100, left: 100}}
         $showArrow
       >
         <div />

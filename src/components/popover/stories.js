@@ -1,9 +1,9 @@
 // @flow
 /* global module */
 import {storiesOf} from '@storybook/react';
+import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
-import {withReadme} from 'storybook-readme';
 //$FlowFixMe
 import PopoverReadme from '../../../rfcs/popover-component.md';
 

@@ -14,13 +14,15 @@ const mock = jest
         destroy,
         _callOnPopperUpdate: function() {
           onPopperUpdate({
-            styles: {
-              top: 10,
-              left: 10,
-            },
-            arrowStyles: {
-              top: 10,
-              left: 10,
+            offsets: {
+              popper: {
+                top: 10,
+                left: 10,
+              },
+              arrow: {
+                top: 10,
+                left: 10,
+              },
             },
             placement: 'left-start',
           });
