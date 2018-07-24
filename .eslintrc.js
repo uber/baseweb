@@ -38,11 +38,5 @@ module.exports = {
         'flowtype/no-weak-types': 'off',
       },
     },
-    {
-      files: ['src/components/*/examples.js'],
-      rules: {
-        'react/display-name': 'off',
-      },
-    },
   ],
 };
