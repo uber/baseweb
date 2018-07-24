@@ -38,7 +38,7 @@
 ### Input component API
 
 * All properties of the BaseInput except `adjoined`
-* `override: {Label, Root, StartEnhancer, InputContainer, Input, Before, After, EndEnhancer, Caption}` - Optional
+* `overrides: {Label, Root, StartEnhancer, InputContainer, Input, Before, After, EndEnhancer, Caption}` - Optional
   * `Label: ReactComponent` - Optional
   * `Root: ReactComponent` - Optional
   * `StartEnhancer: ReactComponent` - Optional
@@ -60,7 +60,7 @@
 
 ### BaseInput component API
 
-* `override: {InputContainer, Input, Before, After}` - Optional
+* `overrides: {InputContainer, Input, Before, After}` - Optional
   * `InputContainer: ReactComponent` - ReqOptionaluired
   * `Input: ReactComponent` - Optional
   * `Before: ReactComponent` - Optional
@@ -124,8 +124,8 @@ const RootWithStyle = withStyle(StyledRoot, props => {
 export default () => {
   return (
     <div>
-      <Input override={{Root: RootWithProps}} />
-      <Input override={{Root: RootWithStyle}} />
+      <Input overrides={{Root: RootWithProps}} />
+      <Input overrides={{Root: RootWithStyle}} />
     </div>
   );
 };

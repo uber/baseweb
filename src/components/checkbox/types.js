@@ -1,21 +1,15 @@
 // @flow
 
 import * as React from 'react';
+import type {OverrideT} from '../../helpers/overrides';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 
-export type ComponentsT = {
-  Checkmark?: React.ComponentType<*>,
-  Label?: React.ComponentType<*>,
-  Root?: React.ComponentType<*>,
-  Input?: React.ComponentType<*>,
-};
-
-export type RequiredComponentsT = {
-  Checkmark?: React.ComponentType<*>,
-  Label?: React.ComponentType<*>,
-  Root?: React.ComponentType<*>,
-  Input?: React.ComponentType<*>,
+export type OverridesT = {
+  Checkmark?: OverrideT<*>,
+  Label?: OverrideT<*>,
+  Root?: OverrideT<*>,
+  Input?: OverrideT<*>,
 };
 
 export type DefaultPropsT = {
@@ -35,7 +29,7 @@ export type DefaultPropsT = {
 };
 
 export type PropsT = {
-  components: RequiredComponentsT,
+  overrides?: OverridesT,
   checked?: boolean,
   disabled?: boolean,
   required?: boolean,
@@ -82,7 +76,7 @@ export type DefaultStatefulPropsT = {
 };
 
 export type StatefulContainerPropsT = {
-  components?: ComponentsT,
+  overrides?: OverridesT,
   children?: (*) => React.Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
@@ -95,7 +89,7 @@ export type StatefulContainerPropsT = {
 };
 
 export type StatefulCheckboxPropsT = {
-  components?: ComponentsT,
+  overrides?: OverridesT,
   children?: React.ComponentType<*>,
   initialState?: StateT,
   autoFocus?: boolean,

@@ -38,7 +38,11 @@ const BigOlTooltip = withStyle(StyledTooltip, {
 export default () => (
   <Tooltip
     content="Lorem ipsum dolor sit amet..."
-    components={{Tooltip: BigOlTooltip}}
+    overrides={{
+      Tooltip: {
+        style: {width: '500px'},
+      },
+    }}
   >
     <span>Hover me!</span>
   </Tooltip>
