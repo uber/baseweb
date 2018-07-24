@@ -15,17 +15,17 @@ import {
 import {
   toPopperPlacement,
   fromPopperPlacement,
-  prepareArrowPositionStyles,
-  preparePopoverPositionStyles,
+  parsePopperOffset,
 } from './utils';
 import defaultProps from './default-props';
 
 import type {
   AnchorPropsT,
+  ChildT,
   PopoverPropsT,
   PopoverPrivateStateT,
   PopperDataObjectT,
-  ChildT,
+  SharedStylePropsArgT,
 } from './types';
 
 class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
@@ -83,8 +83,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   getDefaultState(props: PopoverPropsT) {
     return {
       isAnimating: false,
-      arrowStyles: {left: '0px', top: '0px'},
-      positionStyles: {left: '0px', top: '0px'},
+      arrowOffset: {left: 0, top: 0},
+      popoverOffset: {left: 0, top: 0},
       placement: props.placement,
     };
   }
@@ -100,7 +100,11 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       this.setState({isAnimating: true});
       // Remove the popover from the DOM after animation finishes
       this.animateOutCompleteTimer = setTimeout(() => {
-        this.setState({isAnimating: false});
+        this.setState({
+          isAnimating: false,
+          // Reset to ideal placement specified in props
+          placement: this.props.placement,
+        });
       }, 500);
     }
   };
@@ -187,8 +191,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   onPopperUpdate = (data: PopperDataObjectT) => {
     const placement = fromPopperPlacement(data.placement) || PLACEMENT.top;
     this.setState({
-      arrowStyles: prepareArrowPositionStyles(data.arrowStyles, placement),
-      positionStyles: preparePopoverPositionStyles(data.styles),
+      arrowOffset: data.offsets.arrow
+        ? parsePopperOffset(data.offsets.arrow)
+        : {top: 0, left: 0},
+      popoverOffset: parsePopperOffset(data.offsets.popper),
       placement,
     });
 
@@ -357,13 +363,13 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return bodyProps;
   }
 
-  getSharedProps() {
+  getSharedProps(): SharedStylePropsArgT {
     const {isOpen, showArrow} = this.props;
-    const {isAnimating, arrowStyles, positionStyles, placement} = this.state;
+    const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {
-      $showArrow: showArrow,
-      $arrowStyles: arrowStyles,
-      $positionStyles: positionStyles,
+      $showArrow: Boolean(showArrow),
+      $arrowOffset: arrowOffset,
+      $popoverOffset: popoverOffset,
       $placement: placement,
       $isAnimating: isAnimating,
       $isOpen: isOpen,
