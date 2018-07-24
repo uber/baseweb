@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
-import {boolean, text} from '@storybook/addon-knobs';
+import {boolean, number} from '@storybook/addon-knobs';
+import {withStyleDeep} from 'styletron-react-core';
 
 import {styled} from '../../styles';
 import {
@@ -9,6 +10,9 @@ import {
   Popover,
   StatefulPopover,
   StyledPadding as StyledPopoverPadding,
+  StyledArrow,
+  StyledBody,
+  StyledInner,
 } from './index';
 
 function popoverContent() {
@@ -45,11 +49,13 @@ const Button = styled('button', ({$theme}) => ({
   },
 }));
 
-const Container = styled('div', {
+const Centered = styled('div', {
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  alignItems: 'center',
+  height: '90vh',
 });
 
 const Grid = styled('div', {
@@ -58,7 +64,6 @@ const Grid = styled('div', {
   gridTemplateRows: '20% 20% 20% 20% 20%',
   width: '380px',
   height: '250px',
-  margin: '100px auto',
 });
 
 const GridItem = styled('div', ({row, col}) => ({
@@ -67,45 +72,70 @@ const GridItem = styled('div', ({row, col}) => ({
   textAlign: 'center',
 }));
 
+/* eslint-disable flowtype/no-weak-types */
+const knobIsOpen = (defaultValue = true) => boolean('isOpen', defaultValue);
+const knobDismissOnEsc = (defaultValue = true) =>
+  boolean('dismissOnEsc', defaultValue);
+const knobDismissOnClickOutside = (defaultValue = true) =>
+  boolean('dismissOnClickOutside', defaultValue);
+
+const knobOnMouseEnterDelay: any = (defaultValue = 200) =>
+  number('onMouseEnterDelay', defaultValue, {range: true, min: 0, max: 1000});
+const knobOnMouseLeaveDelay: any = (defaultValue = 200) =>
+  number('onMouseLeaveDelay', defaultValue, {range: true, min: 0, max: 1000});
+/* eslint-enable flowtype/no-weak-types */
+
 export default [
   {
-    description: 'stateless popover',
-    example: function Story1() {
+    description: 'Stateless popover',
+    example() {
       return (
-        <Popover isOpen={boolean('isOpen', true)} content={popoverContent}>
-          <Button>{text('label', 'Open')}</Button>
-        </Popover>
+        <Centered>
+          <Popover isOpen={knobIsOpen()} content={popoverContent}>
+            <Button>Open</Button>
+          </Popover>
+        </Centered>
       );
     },
   },
   {
-    description: 'stateful popover (click)',
-    example: function Story2() {
+    description: 'Stateful popover (click)',
+    example() {
       return (
-        <StatefulPopover content={popoverContent}>
-          <Button>Press Me</Button>
-        </StatefulPopover>
+        <Centered>
+          <StatefulPopover
+            content={popoverContent}
+            dismissOnEsc={knobDismissOnEsc()}
+            dismissOnClickOutside={knobDismissOnClickOutside()}
+          >
+            <Button>Press Me</Button>
+          </StatefulPopover>
+        </Centered>
       );
     },
   },
   {
-    description: 'stateful popover (hover)',
-    example: function Story3() {
+    description: 'Stateful popover (hover)',
+    example() {
       return (
-        <StatefulPopover
-          triggerType={TRIGGER_TYPE.hover}
-          content={popoverContent}
-        >
-          <Button>Hover Me</Button>
-        </StatefulPopover>
+        <Centered>
+          <StatefulPopover
+            triggerType={TRIGGER_TYPE.hover}
+            content={popoverContent}
+            onMouseEnterDelay={knobOnMouseEnterDelay()}
+            onMouseLeaveDelay={knobOnMouseLeaveDelay()}
+          >
+            <Button>Hover Me</Button>
+          </StatefulPopover>
+        </Centered>
       );
     },
   },
   {
-    description: 'popover placements',
-    example: function Story4() {
+    description: 'Popover placements',
+    example() {
       return (
-        <Container>
+        <Centered>
           <Grid>
             <GridItem row={1} col={2}>
               <StatefulPopover
@@ -204,21 +234,121 @@ export default [
               </StatefulPopover>
             </GridItem>
           </Grid>
-        </Container>
+        </Centered>
       );
     },
   },
   {
-    description: 'popover w/ arrow',
-    example: function Story5() {
+    description: 'Popover with arrow',
+    example() {
       return (
-        <StatefulPopover
-          content={popoverContent}
-          showArrow
-          triggerType={TRIGGER_TYPE.hover}
-        >
-          <Button>Hover Me</Button>
-        </StatefulPopover>
+        <Centered>
+          <StatefulPopover
+            showArrow
+            initialState={{isOpen: true}}
+            content={popoverContent}
+            triggerType={TRIGGER_TYPE.hover}
+          >
+            <Button>Hover Me</Button>
+          </StatefulPopover>
+        </Centered>
+      );
+    },
+  },
+  {
+    description: 'Popover close callback',
+    example() {
+      return (
+        <Centered>
+          <StatefulPopover
+            initialState={{isOpen: true}}
+            content={({close}) => (
+              <StyledPopoverPadding
+                $style={{maxWidth: '300px', lineHeight: 1.5}}
+              >
+                <div>
+                  content render prop is passed a <code>close()</code> callback
+                  so it you can manually trigger popover close from within
+                </div>
+                <Button onClick={close}>Dismiss</Button>
+              </StyledPopoverPadding>
+            )}
+          >
+            <Button>Click Me</Button>
+          </StatefulPopover>
+        </Centered>
+      );
+    },
+  },
+  {
+    description: 'Popover clipping avoidance',
+    example() {
+      return (
+        <Centered>
+          <div style={{width: '300px', height: '300px', overflow: 'auto'}}>
+            <div
+              style={{
+                width: '100%',
+                height: '700px',
+                padding: '140px 0',
+                backgroundColor: '#ccc',
+                textAlign: 'center',
+              }}
+            >
+              <StatefulPopover
+                initialState={{isOpen: true}}
+                content={() => (
+                  <StyledPopoverPadding $style={{maxWidth: '230px'}}>
+                    Popover will reposition itself to avoid being clipped!<br />
+                    <strong>Try scrolling in this box...</strong>
+                  </StyledPopoverPadding>
+                )}
+                placement={PLACEMENT.top}
+              >
+                <Button>Click Me</Button>
+              </StatefulPopover>
+            </div>
+          </div>
+        </Centered>
+      );
+    },
+  },
+  {
+    description: 'Popover style overrides',
+    example() {
+      const hue = number('Color', 100, {range: true, min: 0, max: 360});
+      const hsl = `hsl(${hue}, 40%, 40%)`;
+
+      const CustomBody = withStyleDeep(StyledBody, {
+        backgroundColor: hsl,
+        borderRadius: 0,
+      });
+
+      const CustomInner = withStyleDeep(StyledInner, {
+        backgroundColor: hsl,
+        borderRadius: 0,
+        color: '#fff',
+      });
+
+      const CustomArrow = withStyleDeep(StyledArrow, {
+        backgroundColor: hsl,
+      });
+
+      return (
+        <Centered>
+          <StatefulPopover
+            initialState={{isOpen: true}}
+            showArrow
+            components={{
+              Arrow: CustomArrow,
+              Body: CustomBody,
+              Inner: CustomInner,
+            }}
+            content={popoverContent}
+          >
+            <Button>Click Me</Button>
+          </StatefulPopover>
+        </Centered>
       );
     },
   },

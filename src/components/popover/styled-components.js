@@ -1,48 +1,31 @@
 // @flow
 import {styled} from '../../styles';
-import {ARROW_SIZE} from './constants';
-import {getTransformOrigin, getPopoverMarginStyles} from './utils';
-
-/**
- * Since we use a 45-degree rotated div to render the arrow, the
- * width/height of this div is different than the arrow size itself
- *
- * The arrow size is essentially half the diagonal of the rotated div,
- * using pythagorean theorem:
- *   width^2 + height^2 = (arrow_size * 2)^2
- * In this case width = height so:
- *   2 * width^2 = (arrow_size * 2)^2
- * Simplifies to:
- *   width = √((arrow_size * 2)^2 / 2)
- */
-const ARROW_WIDTH = Math.floor(Math.sqrt((ARROW_SIZE * 2) ** 2 / 2));
-
-const ANIMATION_START_KEYFRAME = {
-  opacity: 0,
-  transform: 'scale(0.8)',
-};
-
-const ANIMATION_END_KEYFRAME = {
-  opacity: 1,
-  transform: 'scale(1)',
-};
+import {ARROW_WIDTH} from './constants';
+import {
+  getPopoverMarginStyles,
+  getArrowPositionStyles,
+  getStartPosition,
+  getEndPosition,
+} from './utils';
+import type {SharedStylePropsT} from './types';
 
 /**
  * Main popover container element that gets positioned next to the anchor
  */
-export const Body = styled('div', props => {
+export const Body = styled('div', (props: SharedStylePropsT) => {
   const {
     $isOpen,
     $isAnimating,
     $placement,
-    $arrowStyles,
-    $positionStyles,
+    $popoverOffset,
     $showArrow,
     $theme,
   } = props;
 
   return {
     position: 'absolute',
+    top: 0,
+    left: 0,
     zIndex: 1050,
     backgroundColor: $theme.colors.background,
     borderRadius: $theme.borders.useRoundedCorners
@@ -50,38 +33,34 @@ export const Body = styled('div', props => {
       : '0px',
     boxShadow: $theme.lighting.shadow600,
 
-    // Animation-related styles
-    transformOrigin: getTransformOrigin(
-      $placement,
-      $showArrow ? $arrowStyles : undefined,
-    ),
-    animationDuration: '0.2s',
-    animationFillMode: 'both',
-    animationPlayState: $isAnimating ? 'running' : 'paused',
-    animationTimingFunction: 'cubic-bezier(0.08, 0.82, 0.17, 1)',
-    animationName: {
-      from: $isOpen ? ANIMATION_START_KEYFRAME : ANIMATION_END_KEYFRAME,
-      to: $isOpen ? ANIMATION_END_KEYFRAME : ANIMATION_START_KEYFRAME,
-    },
-
+    transitionProperty: 'opacity,transform',
+    transitionDuration: $isAnimating ? '0.1s' : '0s',
+    transitionTimingFunction: $isOpen
+      ? $theme.animation.easeOutCurve
+      : $theme.animation.easeInCurve,
+    opacity: $isAnimating && $isOpen ? 1 : 0,
+    transform:
+      $isAnimating && $isOpen
+        ? getEndPosition($popoverOffset)
+        : getStartPosition($popoverOffset, $placement, $showArrow),
     ...getPopoverMarginStyles($showArrow, $placement),
-    ...$positionStyles,
   };
 });
 
 /**
  * Arrow shown between the popover and the anchor element
  */
-export const Arrow = styled('div', props => {
+export const Arrow = styled('div', (props: SharedStylePropsT) => {
+  const {$arrowOffset, $placement, $theme} = props;
   return {
-    backgroundColor: props.$theme.colors.background,
-    boxShadow: props.$theme.lighting.shadow600,
+    backgroundColor: $theme.colors.background,
+    boxShadow: $theme.lighting.shadow600,
     width: `${ARROW_WIDTH}px`,
     height: `${ARROW_WIDTH}px`,
     transform: 'rotate(45deg)',
     position: 'absolute',
-    zIndex: 1, // Below PopoverInner
-    ...props.$arrowStyles,
+    zIndex: 1, // Below "Inner"
+    ...getArrowPositionStyles($arrowOffset, $placement),
   };
 });
 
@@ -91,13 +70,13 @@ export const Arrow = styled('div', props => {
  * and rendering this extra element on top with a solid background
  * clips the part of the arrow that extends into the popover.
  */
-export const Inner = styled('div', ({$theme}) => ({
+export const Inner = styled('div', ({$theme}: SharedStylePropsT) => ({
   backgroundColor: $theme.colors.background,
   borderRadius: $theme.borders.useRoundedCorners
     ? $theme.borders.radius300
     : '0px',
   position: 'relative',
-  zIndex: 2, // Above PopoverArrow
+  zIndex: 2, // Above "Arrow"
 }));
 
 /**
