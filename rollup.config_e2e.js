@@ -33,6 +33,7 @@ export default {
         'node_modules/react/index.js': [
           'Children',
           'Component',
+          'Fragment',
           'PropTypes',
           'createElement',
           'cloneElement',

@@ -53,7 +53,7 @@ function getSharedConfig({filePath, name}) {
         sourcemap: 'inline',
       },
     ],
-    external: ['react', 'react-dom'],
+    external: ['react', 'react-dom', 'styletron-react'],
     plugins: [
       progress(),
       nodeResolve(),
