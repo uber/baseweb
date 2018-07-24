@@ -4,9 +4,6 @@ exports[`StatefulPopoverContainer basic render: function-as-child called with co
 Array [
   Object {
     "accessibilityType": "menu",
-    "components": Object {
-      "Body": [Function],
-    },
     "content": [Function],
     "isOpen": true,
     "onBlur": [Function],
@@ -17,6 +14,9 @@ Array [
     "onMouseEnterDelay": 100,
     "onMouseLeave": [Function],
     "onMouseLeaveDelay": 200,
+    "overrides": Object {
+      "Body": [Function],
+    },
     "placement": "topLeft",
     "showArrow": true,
     "triggerType": "hover",

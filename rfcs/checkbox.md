@@ -25,7 +25,7 @@
   Sets control into isError state. Default is `false`
 * `isIndeterminate: boolean`:
   Indeterminate control value. checked is ignored.
-* `components: {Root: (props: {[string]: any}) => React$Node, Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node, , Input: (props: {[string]: any}) => React$Node}`
+* `overrides: {Root: (props: {[string]: any}) => React$Node, Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node, , Input: (props: {[string]: any}) => React$Node}`
   * `Label` to render. Optional.
   * Custom `Checkmark` (exact control). If used, most of handlers may not work.
   * `Root` wrapper element for the whole checkbox control to apply styles
@@ -115,7 +115,7 @@ export default () => {
           return (
             <CustomCheckbox
               {...childrenProps}
-              components={{
+              overrides={{
                 Label: <CustomLabel>Click me</CustomLabel>,
                 Checkmark: props => <CustomCheckmark {...props} />,
               }}

@@ -4,7 +4,7 @@ import type {BasePopoverPropsT} from './types';
 
 const baseDefaultProps: $Shape<BasePopoverPropsT> = {
   accessibilityType: ACCESSIBILITY_TYPE.menu,
-  components: {},
+  overrides: {},
   onMouseEnterDelay: 200,
   onMouseLeaveDelay: 200,
   placement: PLACEMENT.auto,

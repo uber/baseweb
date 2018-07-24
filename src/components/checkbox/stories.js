@@ -53,12 +53,6 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
     return (
       <div>
         <StatelessCheckbox
-          components={{
-            Root: StyledRoot,
-            Label: StyledLabel,
-            Checkmark: StyledCheckmark,
-            Input: StyledInput,
-          }}
           onChange={e => {
             const checkboxes = [e.target.checked, e.target.checked];
             this.setState({checkboxes});
@@ -70,7 +64,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
         <div style={{padding: 30}}>
           <div>
             <StatelessCheckbox
-              components={{
+              overrides={{
                 Root: StyledRoot,
                 Label: StyledLabel,
                 Checkmark: StyledCheckmark,
@@ -86,12 +80,6 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
             />
           </div>
           <StatelessCheckbox
-            components={{
-              Root: StyledRoot,
-              Label: StyledLabel,
-              Checkmark: StyledCheckmark,
-              Input: StyledInput,
-            }}
             checked={checkboxes[1]}
             onChange={e => {
               const newCheckboxes = checkboxes.slice();
@@ -148,7 +136,7 @@ storiesOf('Checkbox', module)
     return (
       <Checkbox
         onChange={onChange}
-        components={{
+        overrides={{
           Root: withStyle(StyledRoot, () => {
             return {
               border: `1px solid green`,
@@ -197,7 +185,7 @@ storiesOf('Checkbox', module)
     return (
       <Checkbox
         onChange={onChange}
-        components={{
+        overrides={{
           Label: customLabel,
           Checkmark: customCheckmark,
         }}
@@ -214,7 +202,7 @@ storiesOf('Checkbox', module)
     return (
       <Checkbox
         onChange={onChange}
-        components={{
+        overrides={{
           Root: RootWithProps,
         }}
         label="With a custom 'data-value' attr on the Root"

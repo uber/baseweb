@@ -5,11 +5,13 @@ import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from '../index';
 
 describe('StatefulPopover', () => {
   test('basic render', () => {
+    function CustomBody() {
+      return <span />;
+    }
+
     const props = {
-      components: {
-        Body: function CustomBody() {
-          return <span />;
-        },
+      overrides: {
+        Body: CustomBody,
       },
       content: jest.fn(),
       initialState: {

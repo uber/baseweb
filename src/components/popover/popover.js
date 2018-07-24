@@ -4,6 +4,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import document from 'global/document';
 import Popper from 'popper.js';
+import {getComponent, getOverrideProps} from '../../helpers/overrides';
 import isBrowser from '../../utils/is-browser';
 import getBuiId from '../../utils/get-bui-id';
 import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants';
@@ -412,12 +413,17 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   renderPopover() {
-    const {showArrow, components = {}, content} = this.props;
+    const {showArrow, overrides = {}, content} = this.props;
+
     const {
-      Arrow = StyledArrow,
-      Body = StyledBody,
-      Inner = StyledInner,
-    } = components;
+      Arrow: ArrowOverride,
+      Body: BodyOverride,
+      Inner: InnerOverride,
+    } = overrides;
+
+    const Arrow = getComponent(ArrowOverride, StyledArrow);
+    const Body = getComponent(BodyOverride, StyledBody);
+    const Inner = getComponent(InnerOverride, StyledInner);
 
     const sharedProps = this.getSharedProps();
     const bodyProps = this.getPopoverBodyProps();
@@ -428,11 +434,21 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         $ref={this.popperRef}
         {...bodyProps}
         {...sharedProps}
+        {...getOverrideProps(BodyOverride)}
       >
         {showArrow ? (
-          <Arrow key="popover-arrow" $ref={this.arrowRef} {...sharedProps} />
+          <Arrow
+            key="popover-arrow"
+            $ref={this.arrowRef}
+            {...sharedProps}
+            {...getOverrideProps(ArrowOverride)}
+          />
         ) : null}
-        <Inner key="popover-inner" {...sharedProps}>
+        <Inner
+          key="popover-inner"
+          {...sharedProps}
+          {...getOverrideProps(InnerOverride)}
+        >
           {typeof content === 'function' ? content() : content}
         </Inner>
       </Body>

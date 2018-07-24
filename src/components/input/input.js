@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
-import type {InputPropsT, InternalStateT, AdjoinedT} from './types';
-import {getSharedProps, getComponent, getComponentProps} from './utils';
 import getBuiId from '../../utils/get-bui-id';
+import {getComponent, getOverrideProps} from '../../helpers/overrides';
+import type {InputPropsT, InternalStateT, AdjoinedT} from './types';
+import {getSharedProps} from './utils';
 import BaseInput from './base-input';
 import {
   Label as StyledLabel,
@@ -20,7 +21,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     error: false,
     onBlur: () => {},
     onFocus: () => {},
-    override: {},
+    overrides: {},
     required: false,
     size: 'default',
     label: null,
@@ -56,7 +57,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
       StartEnhancer: StartEnhancerOverride,
       EndEnhancer: EndEnhancerOverride,
       Caption: CaptionOverride,
-    } = this.props.override;
+    } = this.props.overrides;
 
     const Label = getComponent(LabelOverride, StyledLabel);
     const Root = getComponent(RootOverride, StyledRoot);
@@ -75,17 +76,17 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
       <React.Fragment>
         {label && (
           <Label
-            {...getComponentProps(LabelOverride)}
+            {...getOverrideProps(LabelOverride)}
             {...sharedProps}
             htmlFor={this.props.id}
           >
             {typeof label === 'function' ? label(sharedProps) : label}
           </Label>
         )}
-        <Root {...getComponentProps(RootOverride)} {...sharedProps}>
+        <Root {...getOverrideProps(RootOverride)} {...sharedProps}>
           {startEnhancer && (
             <StartEnhancer
-              {...getComponentProps(StartEnhancerOverride)}
+              {...getOverrideProps(StartEnhancerOverride)}
               {...sharedProps}
               $position={ENHANCER_POSITION.start}
             >
@@ -102,7 +103,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
           />
           {endEnhancer && (
             <EndEnhancer
-              {...getComponentProps(EndEnhancerOverride)}
+              {...getOverrideProps(EndEnhancerOverride)}
               {...sharedProps}
               $position={ENHANCER_POSITION.end}
             >
@@ -113,7 +114,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
           )}
         </Root>
         {(caption || error) && (
-          <Caption {...getComponentProps(CaptionOverride)} {...sharedProps}>
+          <Caption {...getOverrideProps(CaptionOverride)} {...sharedProps}>
             {error && typeof error !== 'boolean'
               ? typeof error === 'function' ? error(sharedProps) : error
               : typeof caption === 'function' ? caption(sharedProps) : caption}

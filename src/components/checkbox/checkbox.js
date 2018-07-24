@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import {getComponent, getOverrideProps} from '../../helpers/overrides';
 import type {PropsT, DefaultPropsT, StatelessStateT} from './types';
 import {
   Checkmark as StyledCheckmark,
@@ -10,7 +11,7 @@ import {
 
 class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
-    components: {},
+    overrides: {},
     checked: false,
     disabled: false,
     autoFocus: false,
@@ -60,7 +61,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
 
   render() {
     const {
-      components,
+      overrides = {},
       onChange,
       labelPlacement,
       label,
@@ -71,12 +72,19 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       checked,
       required,
     } = this.props;
+
     const {
-      Root = StyledRoot,
-      Checkmark = StyledCheckmark,
-      Label = StyledLabel,
-      Input = StyledInput,
-    } = components;
+      Root: RootOverride,
+      Checkmark: CheckmarkOverride,
+      Label: LabelOverride,
+      Input: InputOverride,
+    } = overrides;
+
+    const Root = getComponent(RootOverride, StyledRoot);
+    const Checkmark = getComponent(CheckmarkOverride, StyledCheckmark);
+    const Label = getComponent(LabelOverride, StyledLabel);
+    const Input = getComponent(InputOverride, StyledInput);
+
     const events = {
       onChange,
       onMouseEnter: this.onMouseEnter,
@@ -94,14 +102,27 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $disabled: disabled,
     };
     const labelComp = (
-      <Label $labelPlacement={labelPlacement} {...sharedProps} {...events}>
+      <Label
+        $labelPlacement={labelPlacement}
+        {...sharedProps}
+        {...events}
+        {...getOverrideProps(LabelOverride)}
+      >
         {label}
       </Label>
     );
     return (
-      <Root $labelPlacement={labelPlacement} {...sharedProps}>
+      <Root
+        $labelPlacement={labelPlacement}
+        {...sharedProps}
+        {...getOverrideProps(RootOverride)}
+      >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
-        <Checkmark checked={checked} {...sharedProps} />
+        <Checkmark
+          checked={checked}
+          {...sharedProps}
+          {...getOverrideProps(CheckmarkOverride)}
+        />
         <Input
           required={required}
           aria-invalid={isError || null}
@@ -111,6 +132,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           $ref={inputRef}
           {...sharedProps}
           {...events}
+          {...getOverrideProps(InputOverride)}
         />
         {(labelPlacement === 'bottom' || labelPlacement === 'right') &&
           labelComp}
