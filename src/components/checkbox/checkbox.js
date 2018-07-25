@@ -124,6 +124,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           {...getOverrideProps(CheckmarkOverride)}
         />
         <Input
+          checked={checked}
           required={required}
           aria-invalid={isError || null}
           aria-required={required || null}
