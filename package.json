@@ -9,9 +9,9 @@
     "url": "https://github.com/uber-web/baseui/issues"
   },
   "homepage": "https://github.com/uber-web/baseui#readme",
-  "main": "dist/index.js",
-  "jsnext:main": "dist/index.es.js",
-  "module": "dist/index.es.js",
+  "main": "dist/baseui.es.js",
+  "jsnext:main": "dist/baseui.es.js",
+  "module": "dist/baseui.es.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uber-web/baseui.git"
@@ -105,5 +105,6 @@
     "node": ">=8.11.0",
     "npm": ">=5.6.0",
     "yarn": ">=1.5.1"
-  }
+  },
+  "files": ["dist"]
 }
