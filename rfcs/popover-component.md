@@ -9,6 +9,10 @@
 * `StyledBody`
 * `StyledInner`
 * `StyledPadding`
+* `ACCESSIBILITY_TYPE`
+* `PLACEMENT`
+* `TRIGGER_TYPE`
+* `STATE_CHANGE_TYPE`
 
 ### `StatefulContainer` API
 
