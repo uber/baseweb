@@ -4,3 +4,6 @@ flow-typed
 storybook-static
 coverage
 docs
+
+# Ignore the linting for publish files
+/*.js

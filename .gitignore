@@ -9,3 +9,6 @@ storybook-static
 coverage
 /e2e/dist/index.js
 docs
+
+# For publish
+/*.js
