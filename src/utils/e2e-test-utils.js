@@ -10,6 +10,25 @@ let currentDriver;
 
 const location = 'http://localhost:8080';
 
+const goToUrl = async function(
+  driver: webdriver$WebDriver,
+  suite: string,
+  test: string,
+) {
+  const url = location + `/?suite=${suite}&test=${test}`;
+  await driver.get(url);
+  let errors = await driver
+    .manage()
+    .logs()
+    .get('browser');
+  errors = errors.filter(error => error.message.indexOf('NOT_FOUND_TEST') >= 0);
+  if (errors.length) {
+    // eslint-disable-next-line no-console
+    console.error(errors[0].message);
+  }
+  await new Promise(resolve => resolve());
+};
+
 const run = function(
   testSuite: (driver: webdriver$WebDriver, browser: string) => void,
 ) {
@@ -48,6 +67,7 @@ const getElement = async function(
 };
 
 export default {
+  goToUrl,
   run,
   By,
   runBrowserAccecibilityTest,
