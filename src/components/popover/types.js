@@ -55,10 +55,10 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 // Props shared by all flavors of popover
 export type BasePopoverPropsT = {
   accessibilityType?: AccessibilityTypeT,
-  overrides?: OverridesT,
   id?: string,
   onMouseEnterDelay?: number,
   onMouseLeaveDelay?: number,
+  overrides?: OverridesT,
   placement: PopoverPlacementT,
   showArrow?: boolean,
   triggerType: TriggerTypeT,

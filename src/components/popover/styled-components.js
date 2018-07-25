@@ -12,7 +12,7 @@ import type {SharedStylePropsT} from './types';
 /**
  * Main popover container element that gets positioned next to the anchor
  */
-export const Body = styled('div', (props: SharedStylePropsT) => {
+export function getBodyStyles(props: SharedStylePropsT) {
   const {
     $isOpen,
     $isAnimating,
@@ -45,12 +45,14 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
         : getStartPosition($popoverOffset, $placement, $showArrow),
     ...getPopoverMarginStyles($showArrow, $placement),
   };
-});
+}
+
+export const Body = styled('div', getBodyStyles);
 
 /**
  * Arrow shown between the popover and the anchor element
  */
-export const Arrow = styled('div', (props: SharedStylePropsT) => {
+export function getArrowStyles(props: SharedStylePropsT) {
   const {$arrowOffset, $placement, $theme} = props;
   return {
     backgroundColor: $theme.colors.background,
@@ -62,7 +64,9 @@ export const Arrow = styled('div', (props: SharedStylePropsT) => {
     zIndex: 1, // Below "Inner"
     ...getArrowPositionStyles($arrowOffset, $placement),
   };
-});
+}
+
+export const Arrow = styled('div', getArrowStyles);
 
 /**
  * Extra div that holds the popover content. This extra element
@@ -70,14 +74,18 @@ export const Arrow = styled('div', (props: SharedStylePropsT) => {
  * and rendering this extra element on top with a solid background
  * clips the part of the arrow that extends into the popover.
  */
-export const Inner = styled('div', ({$theme}: SharedStylePropsT) => ({
-  backgroundColor: $theme.colors.background,
-  borderRadius: $theme.borders.useRoundedCorners
-    ? $theme.borders.radius300
-    : '0px',
-  position: 'relative',
-  zIndex: 2, // Above "Arrow"
-}));
+export function getInnerStyles({$theme}: SharedStylePropsT) {
+  return {
+    backgroundColor: $theme.colors.background,
+    borderRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius300
+      : '0px',
+    position: 'relative',
+    zIndex: 2, // Above "Arrow"
+  };
+}
+
+export const Inner = styled('div', getInnerStyles);
 
 /**
  * A drop-in component that provides the recommended padding

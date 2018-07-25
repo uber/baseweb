@@ -23,7 +23,7 @@ function popoverContent() {
 }
 
 // TODO replace with real button when its available
-const Button = styled('button', ({$theme}) => ({
+export const Button = styled('button', ({$theme}) => ({
   padding: `${$theme.sizing.scale200} ${$theme.sizing.scale400}`,
   fontWeight: 'bold',
   backgroundColor: $theme.colors.buttonPrimaryFill,

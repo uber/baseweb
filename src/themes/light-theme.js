@@ -286,4 +286,7 @@ export default {
     easeInCurve: 'cubic-bezier(.8, .2, .6, 1)',
     easeInOutCurve: 'cubic-bezier(0.4, 0, 0.2, 1)',
   },
+  tooltip: {
+    backgroundColor: mono900,
+  },
 };
