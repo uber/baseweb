@@ -1,4 +1,5 @@
 // @flow
+import React from 'react';
 
 export type OverrideT<T> =
   | {
