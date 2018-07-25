@@ -7,3 +7,5 @@ build
 stats.html
 storybook-static
 coverage
+/e2e/dist/index.js
+docs
