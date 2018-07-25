@@ -7,8 +7,9 @@ import examples from './examples';
 //$FlowFixMe
 import PopoverReadme from '../../../rfcs/popover-component.md';
 
-examples.forEach(({description, example}) =>
+Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Popover', module)
     .addDecorator(withReadme(PopoverReadme))
+    // $FlowFixMe
     .add(description, example),
 );
