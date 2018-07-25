@@ -5,9 +5,10 @@
 * `StatefulCheckbox`
 * `StatefulCheckboxContainer`
 * `Checkbox`
-* `Checkmark`
-* `Label`
-* `Input`
+* `StyledRoot`
+* `StyledCheckmark`
+* `StyledLabel`
+* `StyledInput`
 
 ### `Checkbox` API
 
