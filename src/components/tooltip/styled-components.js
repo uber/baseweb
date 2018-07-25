@@ -7,8 +7,6 @@ import {
 } from '../popover/styled-components';
 import {getEndPosition} from '../popover/utils';
 
-const TOOLTIP_BACKGROUND = '#2b2b2b';
-
 /**
  * We want to reuse the default Popover styles and add our overrides
  * for Tooltip. Normally you could do something like
@@ -23,7 +21,7 @@ const TOOLTIP_BACKGROUND = '#2b2b2b';
 export const Body = styled('div', props => ({
   ...getBodyStyles(props),
   // Tooltip
-  backgroundColor: TOOLTIP_BACKGROUND,
+  backgroundColor: props.$theme.tooltip.backgroundColor,
   borderRadius: props.$theme.borders.radius200,
   boxShadow: props.$theme.lighting.shadow400,
   color: props.$theme.colors.mono100,
@@ -34,7 +32,7 @@ export const Body = styled('div', props => ({
 
 export const Inner = styled('div', props => ({
   ...getInnerStyles(props),
-  backgroundColor: TOOLTIP_BACKGROUND,
+  backgroundColor: props.$theme.tooltip.backgroundColor,
   borderRadius: props.$theme.borders.radius200,
   paddingTop: props.$theme.sizing.scale300,
   paddingBottom: props.$theme.sizing.scale300,
@@ -45,5 +43,5 @@ export const Inner = styled('div', props => ({
 
 export const Arrow = styled('div', props => ({
   ...getArrowStyles(props),
-  backgroundColor: TOOLTIP_BACKGROUND,
+  backgroundColor: props.$theme.tooltip.backgroundColor,
 }));

@@ -2,7 +2,7 @@
 
 exports[`Tooltip styled components StyledArrow - basic render: StyledArrow has correct styles 1`] = `
 Object {
-  "backgroundColor": "#2b2b2b",
+  "backgroundColor": "$theme.tooltip.backgroundColor",
   "boxShadow": "$theme.lighting.shadow600",
   "height": "9px",
   "left": "10px",
@@ -16,7 +16,7 @@ Object {
 
 exports[`Tooltip styled components StyledBody - basic render: StyledBody has correct styles when closed 1`] = `
 Object {
-  "backgroundColor": "#2b2b2b",
+  "backgroundColor": "$theme.tooltip.backgroundColor",
   "borderRadius": "$theme.borders.radius200",
   "boxShadow": "$theme.lighting.shadow400",
   "color": "$theme.colors.mono100",
@@ -35,7 +35,7 @@ Object {
 
 exports[`Tooltip styled components StyledBody - basic render: StyledBody has correct styles when open and animating 1`] = `
 Object {
-  "backgroundColor": "#2b2b2b",
+  "backgroundColor": "$theme.tooltip.backgroundColor",
   "borderRadius": "$theme.borders.radius200",
   "boxShadow": "$theme.lighting.shadow400",
   "color": "$theme.colors.mono100",
@@ -54,7 +54,7 @@ Object {
 
 exports[`Tooltip styled components StyledInner - basic render: StyledInner has correct styles 1`] = `
 Object {
-  "backgroundColor": "#2b2b2b",
+  "backgroundColor": "$theme.tooltip.backgroundColor",
   "borderRadius": "$theme.borders.radius200",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
