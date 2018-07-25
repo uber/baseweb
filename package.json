@@ -24,10 +24,10 @@
     "build-storybook": "build-storybook -o docs",
     "precommit": "pretty-quick --staged && yarn run test",
     "build": "rollup -c rollup.config.js",
-    "prepublish": "npm run build",
     "unit-test": "yarn jest --coverage",
     "build-e2e": "rollup -c rollup.config_e2e.js",
     "serve-e2e": "node e2e/serve.js",
+    "prepublishOnly": ". ./resources/prepublish.sh",
     "test-e2e":
       "pkill \"chromedriver|geckodriver|safaridriver\" | jest --config=jest-e2e.config.js"
   },
@@ -105,6 +105,5 @@
     "node": ">=8.11.0",
     "npm": ">=5.6.0",
     "yarn": ">=1.5.1"
-  },
-  "files": ["dist"]
+  }
 }
