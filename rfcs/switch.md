@@ -15,14 +15,14 @@
 * `autoFocus: boolean`:
   make the control focused (active). Default is `false`
 * `label: string`:
-  String value for the label of the Switch. Default is empty string
+  String value for the label of the StyledSwitch. Default is empty string
 * `disabled: boolean`:
   Disable control from being changed
 * `isError: boolean`:
   Sets control into isError state. Default is `false`
 * `components: {Root: (props: {[string]: any}) => React$Node, Node, StyledLabel: (props: {[string]: any}) => React$Node, StyledSwitch: (props: {[string]: any}) => React$Node}`
   * `Label` to render. Optional.
-  * `StyledSwitch` may replace the original functionality of the Switch. If provided should follow the same interface and logic or may break the whole component
+  * `StyledSwitch` may replace the original functionality of the StyledSwitch. If provided should follow the same interface and logic or may break the whole component
 * `onChange: func`:
   handler for events on trigger element
 
@@ -36,7 +36,7 @@
   * `type` - state change type
   * `nextState` - a new state changes that will be set
   * `currentState` - current full state of the component
-* `children: func` should return `Switch` instance with standard or customized inner elements. It makes sense only for `StatefulSwitchContainer` and is ignored by `StatefulSwitch`
+* `children: func` should return `StyledSwitch` instance with standard or customized inner elements. It makes sense only for `StatefulSwitchContainer` and is ignored by `StatefulSwitch`
 * `disabled: boolean`:
   Disable control from being changed
 * `onChange: func`:
