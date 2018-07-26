@@ -1,8 +1,9 @@
 // @flow
 
 /* eslint-disable react/display-name*/
-/*globals E2E_TEST*/
+
 // E2E_TEST is set by rollup;
+declare var E2E_TEST: boolean;
 
 import * as React from 'react';
 import {styled, withStyle} from 'styletron-react';
