@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Textarea - basic functionality: Textarea has correct props 1`] = `
+Object {
+  "aria-invalid": false,
+  "aria-required": false,
+  "children": "textarea value",
+  "disabled": false,
+  "id": "bui-mock-id",
+  "onBlur": [Function],
+  "onChange": [MockFunction],
+  "onFocus": [Function],
+  "placeholder": "Placeholder",
+  "rows": 3,
+  "styled-component": "true",
+  "type": "textarea",
+  "value": "textarea value",
+}
+`;
+
+exports[`Textarea - basic functionality: textarea renders BaseInput with correct props passed 1`] = `
+Object {
+  "adjoined": "none",
+  "autoFocus": false,
+  "disabled": false,
+  "error": false,
+  "id": "bui-mock-id",
+  "inputRef": Object {
+    "current": null,
+  },
+  "onBlur": [MockFunction],
+  "onChange": [MockFunction],
+  "onFocus": [MockFunction],
+  "overrides": Object {
+    "Input": [Function],
+  },
+  "placeholder": "Placeholder",
+  "required": false,
+  "rows": 3,
+  "size": "default",
+  "type": "textarea",
+  "value": "textarea value",
+}
+`;
+
+exports[`Textarea - with component overrides: components overrides get passed to the BaseInput 1`] = `
+Object {
+  "adjoined": "none",
+  "autoFocus": false,
+  "disabled": false,
+  "error": false,
+  "id": "bui-mock-id",
+  "inputRef": Object {
+    "current": null,
+  },
+  "onBlur": [MockFunction],
+  "onChange": [MockFunction],
+  "onFocus": [MockFunction],
+  "overrides": Object {
+    "Input": [Function],
+    "InputContainer": Object {
+      "component": [Function],
+    },
+  },
+  "placeholder": "Placeholder",
+  "required": false,
+  "rows": 3,
+  "size": "default",
+  "type": "textarea",
+  "value": "textarea value",
+}
+`;

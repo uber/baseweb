@@ -4,6 +4,7 @@ exports[`Input - basic functionality: input has correct props 1`] = `
 Object {
   "aria-invalid": false,
   "aria-required": false,
+  "children": null,
   "disabled": false,
   "id": "bui-mock-id",
   "onBlur": [Function],
@@ -25,9 +26,6 @@ Object {
   "$required": false,
   "$size": "default",
   "children": Array [
-    <span>
-      <i />
-    </span>,
     null,
     <MockStyledComponent
       $adjoined="right"
@@ -66,9 +64,6 @@ Object {
   "$required": false,
   "$size": "default",
   "children": Array [
-    <span>
-      <i />
-    </span>,
     null,
     <MockStyledComponent
       $adjoined="both"
@@ -107,9 +102,6 @@ Object {
   "$required": false,
   "$size": "default",
   "children": Array [
-    <span>
-      <i />
-    </span>,
     null,
     <MockStyledComponent
       $adjoined="left"
