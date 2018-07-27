@@ -25,6 +25,7 @@
     "precommit": "pretty-quick --staged && yarn run test",
     "build": "rollup -c rollup.config.js",
     "unit-test": "yarn jest --coverage",
+    "e2e": "node ./e2e/e2e.js",
     "build-e2e": "rollup -c rollup.config_e2e.js",
     "serve-e2e": "node e2e/serve.js",
     "prepublishOnly": ". ./resources/prepublish.sh",
