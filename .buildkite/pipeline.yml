@@ -25,8 +25,3 @@ steps:
     plugins:
       'docker-compose':
         run: baseui
-  - name: ':e2e:'
-    command: yarn e2e
-    plugins:
-      'docker-compose':
-        run: baseui
