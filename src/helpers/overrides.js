@@ -1,12 +1,13 @@
 // @flow
+import type {ComponentType} from 'react';
 
 export type OverrideT<T> =
   | {
-      component?: ?React.ComponentType<T>,
+      component?: ?ComponentType<T>,
       props?: ?{},
       style?: ?{},
     }
-  | React.ComponentType<T>;
+  | ComponentType<T>;
 
 export type OverridesT = {
   [string]: OverrideT<*>,
@@ -14,8 +15,8 @@ export type OverridesT = {
 
 export function getComponent<T>(
   override: ?OverrideT<T>,
-  defaultComponent: React.ComponentType<T>,
-): React.ComponentType<T> {
+  defaultComponent: ComponentType<T>,
+): ComponentType<T> {
   if (override && typeof override === 'object') {
     return override.component || defaultComponent;
   }
@@ -41,7 +42,7 @@ export function getOverrideProps<T>(override: ?OverrideT<T>) {
 export function toObjectOverride<T>(override: OverrideT<T>): OverrideT<T> {
   if (typeof override === 'function') {
     return {
-      component: (override: React.ComponentType<T>),
+      component: (override: ComponentType<T>),
     };
   }
   return override;

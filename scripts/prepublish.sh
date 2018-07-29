@@ -6,4 +6,5 @@ fi;
 # When Buildkite publishes to npm, the published files are available in the root
 # directory, which allows for a clean include or require of sub-modules.
 yarn build
+node ./scripts/prepublish-flow.js
 cp -r ./dist/* ./
