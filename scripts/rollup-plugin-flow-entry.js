@@ -10,7 +10,20 @@ This code is inspired by that npm package anyway.
  */
 
 function getFlowFileContent(filePath) {
+  const regex = new RegExp(/\.\.\//, 'g');
+  const matched = filePath.match(regex);
+  if (matched.length > 0) {
+    // Check whether it's only one `..`
+    if (matched.length === 1) {
+      // Only 1, replace it with `./`
+      filePath = filePath.replace('../', './');
+    } else {
+      // Must be more than 1
+      filePath = filePath.replace('../', '');
+    }
+  }
   return `// @flow
+// $FlowFixMe path is assuming that it's already in root directory
 export * from '${filePath}';`;
 }
 

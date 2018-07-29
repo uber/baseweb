@@ -2,10 +2,10 @@
 coverage
 dist
 e2e
-flow-typed
 node_modules
 rfcs
 scripts
+flow-typed
 
 commitlint.config.js
 docker-compose.yml

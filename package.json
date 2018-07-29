@@ -24,7 +24,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o docs",
     "precommit": "pretty-quick --staged && yarn run test",
-    "build": "rollup -c rollup.config.js",
+    "build": "rm -rf dist && rollup -c rollup.config.js",
     "unit-test": "yarn jest --coverage",
     "e2e": "node ./e2e/e2e.js",
     "build-e2e": "rollup -c rollup.config_e2e.js",
