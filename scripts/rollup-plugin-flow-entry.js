@@ -10,6 +10,11 @@ This code is inspired by that npm package anyway.
  */
 
 function getFlowFileContent(filePath) {
+  /*
+  Since we're going to copy `dist` dictionary into root in our publish step,
+  we will need to remove one level of the path.
+  Hence, instead of `../src` and `../../src`, they will become `./src` and `../src` respectively.
+  */
   const regex = new RegExp(/\.\.\//, 'g');
   const matched = filePath.match(regex);
   if (matched.length > 0) {
