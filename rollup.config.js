@@ -59,6 +59,12 @@ function getSharedConfig({filePath, name}) {
     plugins: [
       progress(),
       nodeResolve(),
+      commonjs({
+        include: 'node_modules/**',
+        namedExports: {
+          'node_modules/create-react-context/index.js': ['createReactContext'],
+        },
+      }),
       babel({
         babelrc: false,
         presets: [['es2015', {modules: false}], 'stage-1', 'react'],
@@ -66,14 +72,7 @@ function getSharedConfig({filePath, name}) {
       }),
       visualizer(),
       filesize(),
-      commonjs({
-        include: 'node_modules/**',
-        namedExports: {
-          'node_modules/create-react-context/index.js': ['createReactContext'],
-        },
-      }),
       flowEntry(),
-      // flowCopySrc(),
     ],
   };
 }
