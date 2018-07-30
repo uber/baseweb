@@ -35,9 +35,9 @@ export type StatefulContentRenderPropT = ({
 }) => React.Node;
 
 export type OverridesT = {
-  Body?: OverrideT<SharedStylePropsT>,
-  Arrow?: OverrideT<SharedStylePropsT>,
-  Inner?: OverrideT<SharedStylePropsT>,
+  Body?: OverrideT<SharedStylePropsArgT>,
+  Arrow?: OverrideT<SharedStylePropsArgT>,
+  Inner?: OverrideT<SharedStylePropsArgT>,
 };
 
 // Basically React.Node minus React.Portal and Iterable
@@ -147,6 +147,12 @@ export type SharedStylePropsArgT = {
   $popoverOffset: OffsetT,
   $placement: PopoverPlacementT,
   $showArrow: boolean,
+  children?: React.Node,
+  // Styletron stuff
+  $as?: string,
+  // TODO: Get this to work without 'any'
+  /* eslint-disable-next-line flowtype/no-weak-types */
+  $ref?: React.Ref<any>,
 };
 
 export type SharedStylePropsT = SharedStylePropsArgT & {

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import {getComponent, getOverrideProps} from '../../helpers/overrides';
+import {getOverride, getOverrideProps} from '../../helpers/overrides';
 import type {PropsT, DefaultPropsT, StatelessStateT} from './types';
 import {
   Checkmark as StyledCheckmark,
@@ -80,10 +80,10 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       Input: InputOverride,
     } = overrides;
 
-    const Root = getComponent(RootOverride, StyledRoot);
-    const Checkmark = getComponent(CheckmarkOverride, StyledCheckmark);
-    const Label = getComponent(LabelOverride, StyledLabel);
-    const Input = getComponent(InputOverride, StyledInput);
+    const Root = getOverride(RootOverride) || StyledRoot;
+    const Checkmark = getOverride(CheckmarkOverride) || StyledCheckmark;
+    const Label = getOverride(LabelOverride) || StyledLabel;
+    const Input = getOverride(InputOverride) || StyledInput;
 
     const events = {
       onChange,
