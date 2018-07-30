@@ -1,5 +1,7 @@
 // @flow
 
+import * as React from 'react';
+
 export type OverrideT<T> =
   | {
       component?: ?React.ComponentType<T>,
@@ -17,9 +19,20 @@ export function getComponent<T>(
   defaultComponent: React.ComponentType<T>,
 ): React.ComponentType<T> {
   if (override && typeof override === 'object') {
-    return override.component || defaultComponent;
+    if (
+      typeof override.component === 'object' &&
+      (override.component instanceof React.StatelessFunctionalComponent ||
+        override.component instanceof React.Component)
+    ) {
+      return override.component;
+    }
+  } else if (
+    override instanceof React.StatelessFunctionalComponent ||
+    override instanceof React.Component
+  ) {
+    return override;
   }
-  return override || defaultComponent;
+  return defaultComponent;
 }
 
 export function getOverrideProps<T>(override: ?OverrideT<T>) {

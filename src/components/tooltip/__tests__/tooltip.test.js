@@ -31,7 +31,7 @@ describe('Tooltip', () => {
         Body: {
           component: function CustomBody(props) {
             // eslint-disable-next-line react/prop-types
-            return <div>{props.children}</div>;
+            return <div>{props && props.children}</div>;
           },
           style: {width: '300px'},
         },

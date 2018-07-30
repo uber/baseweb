@@ -45,8 +45,6 @@ test('Helpers - Overrides - getOverrideProps', () => {
 
 test('Helpers - Overrides - toObjectOverride', () => {
   const CustomComponent = getMockComponent();
-  expect(toObjectOverride()).toBeUndefined();
-  expect(toObjectOverride(null)).toBe(null);
   expect(toObjectOverride(CustomComponent)).toEqual({
     component: CustomComponent,
   });

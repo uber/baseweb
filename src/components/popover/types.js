@@ -150,7 +150,8 @@ export type SharedStylePropsArgT = {
 };
 
 export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
+  $theme?: ThemeT,
+  children?: React.Node,
 };
 
 export type AnchorPropsT = {
