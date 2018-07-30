@@ -1,10 +1,55 @@
-version: '3'
+version: '2.1'
 services:
-  # Define the service, which is used in pipeline.yml
+  chrome-standalone:
+    image: selenium/standalone-chrome:latest@sha256:d62e070f4d242fdef0e527f84f784c8546b08f85cb4e344440861cf749ef5b9d
+    network_mode: "host"
+    restart: always
+    ports:
+      - "4444:4444"
+
+  e2e-server:
+    build: .
+    command: node e2e/serve.js
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    # network_mode: "host"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -H \"Accept: text/html\" -f http://localhost:8080 || exit 1"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  e2e-server-healthy:
+    build: .
+    network_mode: "host"
+    depends_on:
+      e2e-server:
+        condition: service_healthy
+
+  e2e-test-chrome:
+    build: .
+    network_mode: "host"
+    depends_on:
+      - chrome-standalone
+      - e2e-server-healthy
+    command: yarn test-e2e
+    environment:
+      - CODECOV_TOKEN
+      - CI=true
+      - BUILDKITE
+      - BUILDKITE_BRANCH
+      - BUILDKITE_BUILD_NUMBER
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_URL
+      - BUILDKITE_PROJECT_SLUG
+      - BUILDKITE_COMMIT
+      - SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub
+
   baseui:
     build: .
     environment:
-      # Pass through any necessary environment variables
       - CODECOV_TOKEN
       - CI=true
       - BUILDKITE
