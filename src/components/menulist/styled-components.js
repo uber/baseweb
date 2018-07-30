@@ -1,7 +1,7 @@
 // @flow
-import {styled} from '../styles';
+import {styled} from '../../styles';
 
-import type {ThemeT} from '../styles';
+import type {ThemeT} from '../../styles';
 
 type StyledPropsT = {
   $theme: ThemeT,
@@ -15,6 +15,7 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
+  margin: 0,
   background: $theme.colors.white,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,

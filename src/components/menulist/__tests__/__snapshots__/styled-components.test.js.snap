@@ -7,6 +7,7 @@ Object {
   "boxShadow": "$theme.lighting.shadow600",
   "display": "flex",
   "flexDirection": "column",
+  "margin": 0,
   "paddingBottom": "$theme.sizing.scale200",
   "paddingLeft": "$theme.sizing.scale400",
   "paddingRight": "$theme.sizing.scale400",
