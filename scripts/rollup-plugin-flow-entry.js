@@ -32,10 +32,10 @@ function getFlowFileContent(filePath) {
 export * from '${filePath}';`;
 }
 
-export default function uberFlowEntry() {
+export default function flowEntry() {
   let input;
   return {
-    name: '@uber/rollup-plugin-flow-entry',
+    name: 'rollup-plugin-flow-entry',
     options(opts) {
       input = opts.input;
     },

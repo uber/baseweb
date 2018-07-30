@@ -6,6 +6,7 @@ node_modules
 rfcs
 scripts
 flow-typed
+/src
 
 commitlint.config.js
 docker-compose.yml
@@ -14,13 +15,3 @@ jest-e2e.config.js
 jest.config.js
 rollup.config_e2e.js
 rollup.config.js
-
-# The parts below are due to flow type
-*.test.js
-*.setup.js
-*.stories.js
-stories.js
-*.test.js.snap
-test
-__mocks__
-e2e.js
