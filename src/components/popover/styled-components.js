@@ -27,17 +27,18 @@ export function getBodyStyles(props: SharedStylePropsT) {
     top: 0,
     left: 0,
     zIndex: 1050,
-    backgroundColor: $theme.colors.background,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius300
-      : '0px',
-    boxShadow: $theme.lighting.shadow600,
+    backgroundColor: $theme && $theme.colors.background,
+    borderRadius:
+      $theme && $theme.borders.useRoundedCorners
+        ? $theme.borders.radius300
+        : '0px',
+    boxShadow: $theme && $theme.lighting.shadow600,
 
     transitionProperty: 'opacity,transform',
     transitionDuration: $isAnimating ? '0.1s' : '0s',
     transitionTimingFunction: $isOpen
-      ? $theme.animation.easeOutCurve
-      : $theme.animation.easeInCurve,
+      ? $theme && $theme.animation.easeOutCurve
+      : $theme && $theme.animation.easeInCurve,
     opacity: $isAnimating && $isOpen ? 1 : 0,
     transform:
       $isAnimating && $isOpen
@@ -55,8 +56,8 @@ export const Body = styled('div', getBodyStyles);
 export function getArrowStyles(props: SharedStylePropsT) {
   const {$arrowOffset, $placement, $theme} = props;
   return {
-    backgroundColor: $theme.colors.background,
-    boxShadow: $theme.lighting.shadow600,
+    backgroundColor: $theme && $theme.colors.background,
+    boxShadow: $theme && $theme.lighting.shadow600,
     width: `${ARROW_WIDTH}px`,
     height: `${ARROW_WIDTH}px`,
     transform: 'rotate(45deg)',
@@ -76,10 +77,11 @@ export const Arrow = styled('div', getArrowStyles);
  */
 export function getInnerStyles({$theme}: SharedStylePropsT) {
   return {
-    backgroundColor: $theme.colors.background,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius300
-      : '0px',
+    backgroundColor: $theme && $theme.colors.background,
+    borderRadius:
+      $theme && $theme.borders.useRoundedCorners
+        ? $theme && $theme.borders.radius300
+        : '0px',
     position: 'relative',
     zIndex: 2, // Above "Arrow"
   };
