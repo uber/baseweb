@@ -26,6 +26,7 @@
     "build":
       "rm -rf dist && rollup -c rollup.config.js && cp package.json dist/package.json",
     "unit-test": "yarn jest --coverage",
+    "e2e": "node ./e2e/e2e.js",
     "build-e2e": "rollup -c rollup.config_e2e.js",
     "serve-e2e": "node e2e/serve.js",
     "release": "yarn build && yarn publish dist",
