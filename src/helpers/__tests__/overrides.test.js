@@ -1,27 +1,26 @@
 // @flow
+import * as React from 'react';
 import {
-  getComponent,
+  getOverride,
   getOverrideProps,
   toObjectOverride,
   mergeOverrides,
 } from '../overrides';
 
-test('Helpers - Overrides - getComponent', () => {
-  const DefaultComponent = jest.fn();
-  const CustomComponent = jest.fn();
-  expect(getComponent(null, DefaultComponent)).toEqual(DefaultComponent);
-  // $FlowFixMe
-  expect(getComponent(CustomComponent, DefaultComponent)).toEqual(
-    CustomComponent,
-  );
-  // $FlowFixMe
-  expect(getComponent({component: CustomComponent}, DefaultComponent)).toEqual(
-    CustomComponent,
-  );
+function getMockComponent<T>(): React.ComponentType<T> {
+  const mock: React.ComponentType<T> = () => null;
+  return mock;
+}
+
+test('Helpers - Overrides - getOverride', () => {
+  const CustomComponent = getMockComponent();
+  expect(getOverride(null)).toEqual(null);
+  expect(getOverride(CustomComponent)).toEqual(CustomComponent);
+  expect(getOverride({component: CustomComponent})).toEqual(CustomComponent);
 });
 
 test('Helpers - Overrides - getOverrideProps', () => {
-  const CustomComponent = jest.fn();
+  const CustomComponent = getMockComponent();
   const override = {
     props: {propName: 'propsValue'},
     style: {color: 'blue'},
@@ -29,7 +28,6 @@ test('Helpers - Overrides - getOverrideProps', () => {
   expect(getOverrideProps(null)).toMatchSnapshot(
     'returns empty object when no overrides',
   );
-  // $FlowFixMe
   expect(getOverrideProps(CustomComponent)).toMatchSnapshot(
     'returns empty object when override is a component',
   );
@@ -39,8 +37,10 @@ test('Helpers - Overrides - getOverrideProps', () => {
 });
 
 test('Helpers - Overrides - toObjectOverride', () => {
-  const CustomComponent = jest.fn();
+  const CustomComponent = getMockComponent();
+  // $FlowFixMe - Calling toObjectOverride with no args
   expect(toObjectOverride()).toBeUndefined();
+  // $FlowFixMe - Calling toObjectOverride with null
   expect(toObjectOverride(null)).toBe(null);
   expect(toObjectOverride(CustomComponent)).toEqual({
     component: CustomComponent,
@@ -57,9 +57,9 @@ test('Helpers - Overrides - toObjectOverride', () => {
 });
 
 test('Helpers - Overrides - mergeOverrides', () => {
-  const CustomRoot = jest.fn();
-  const CustomFoo = jest.fn();
-  const CustomBar = jest.fn();
+  const CustomRoot = getMockComponent();
+  const CustomFoo = getMockComponent();
+  const CustomBar = getMockComponent();
 
   const overrides1 = {
     Root: CustomRoot,
