@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import getBuiId from '../../utils/get-bui-id';
-import {getComponent, getOverrideProps} from '../../helpers/overrides';
+import {getOverride, getOverrideProps} from '../../helpers/overrides';
 import type {InputPropsT, InternalStateT, AdjoinedT} from './types';
 import {getSharedProps} from './utils';
 import BaseInput from './base-input';
@@ -59,14 +59,12 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
       Caption: CaptionOverride,
     } = this.props.overrides;
 
-    const Label = getComponent(LabelOverride, StyledLabel);
-    const Root = getComponent(RootOverride, StyledRoot);
-    const StartEnhancer = getComponent(
-      StartEnhancerOverride,
-      StyledInputEnhancer,
-    );
-    const EndEnhancer = getComponent(EndEnhancerOverride, StyledInputEnhancer);
-    const Caption = getComponent(CaptionOverride, StyledCaption);
+    const Label = getOverride(LabelOverride) || StyledLabel;
+    const Root = getOverride(RootOverride) || StyledRoot;
+    const StartEnhancer =
+      getOverride(StartEnhancerOverride) || StyledInputEnhancer;
+    const EndEnhancer = getOverride(EndEnhancerOverride) || StyledInputEnhancer;
+    const Caption = getOverride(CaptionOverride) || StyledCaption;
 
     const sharedProps = getSharedProps(this.props, this.state);
 
