@@ -1,25 +1,30 @@
 // @flow
+import * as React from 'react';
 
-export type OverrideT<T> =
-  | {
-      component?: ?React.ComponentType<T>,
-      props?: ?{},
-      style?: ?{},
-    }
-  | React.ComponentType<T>;
+export type OverrideObjectT<T> = {|
+  component?: ?React.ComponentType<T>,
+  props?: ?{},
+  style?: ?{},
+|};
 
-export type OverridesT = {
-  [string]: OverrideT<*>,
+export type OverrideT<T> = OverrideObjectT<T> | React.ComponentType<T>;
+
+export type OverridesT<T> = {
+  [string]: OverrideT<T>,
 };
 
-export function getComponent<T>(
+export function getOverride<T>(
   override: ?OverrideT<T>,
-  defaultComponent: React.ComponentType<T>,
-): React.ComponentType<T> {
+): ?React.ComponentType<T> {
+  // Check if override is OverrideObjectT
   if (override && typeof override === 'object') {
-    return override.component || defaultComponent;
+    // TODO remove this 'any' once this flow issue is fixed:
+    // https://github.com/facebook/flow/issues/6666
+    // eslint-disable-next-line flowtype/no-weak-types
+    return (override: any).component;
   }
-  return override || defaultComponent;
+  // Otherwise it must be a component type (function or class) or null/undefined
+  return override;
 }
 
 export function getOverrideProps<T>(override: ?OverrideT<T>) {
@@ -52,10 +57,10 @@ export function toObjectOverride<T>(override: OverrideT<T>): OverrideT<T> {
  * inject your own overrides into a child component, but also
  * accept further overrides from your parent.
  */
-export function mergeOverrides(
-  target?: OverridesT = {},
-  source?: OverridesT = {},
-): OverridesT {
+export function mergeOverrides<T>(
+  target?: OverridesT<T> = {},
+  source?: OverridesT<T> = {},
+): OverridesT<T> {
   return Object.keys({...target, ...source}).reduce((acc, name) => {
     acc[name] = {
       ...toObjectOverride(target[name]),
