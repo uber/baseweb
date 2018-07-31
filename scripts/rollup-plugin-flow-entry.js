@@ -27,8 +27,8 @@ function getFlowFileContent(filePath) {
       filePath = filePath.replace('../', '');
     }
   }
+  filePath = filePath.replace('.js', ''); // Remove the `.js` extension, if any
   return `// @flow
-// $FlowFixMe path is assuming that it's already in root directory
 export * from '${filePath}';`;
 }
 
