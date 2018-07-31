@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import getBuiId from '../../utils/get-bui-id';
-import {getComponent, getOverrideProps} from '../../helpers/overrides';
+import {getOverride, getOverrideProps} from '../../helpers/overrides';
 import type {BaseInputPropsT, InternalStateT} from './types';
 import {getSharedProps} from './utils';
 import {ADJOINED, SIZE} from './constants';
@@ -89,13 +89,11 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
 
     const sharedProps = getSharedProps(this.props, this.state);
 
-    const InputContainer = getComponent(
-      InputContainerOverride,
-      StyledInputContainer,
-    );
-    const Input = getComponent(InputOverride, StyledInput);
-    const Before = getComponent(BeforeOverride, null);
-    const After = getComponent(AfterOverride, null);
+    const InputContainer =
+      getOverride(InputContainerOverride) || StyledInputContainer;
+    const Input = getOverride(InputOverride) || StyledInput;
+    const Before = getOverride(BeforeOverride) || null;
+    const After = getOverride(AfterOverride) || null;
 
     return (
       <InputContainer

@@ -4,7 +4,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import document from 'global/document';
 import Popper from 'popper.js';
-import {getComponent, getOverrideProps} from '../../helpers/overrides';
+import {getOverride, getOverrideProps} from '../../helpers/overrides';
 import isBrowser from '../../utils/is-browser';
 import getBuiId from '../../utils/get-bui-id';
 import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants';
@@ -364,7 +364,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return bodyProps;
   }
 
-  getSharedProps(): SharedStylePropsArgT {
+  getSharedProps(): $Diff<SharedStylePropsArgT, {children: React.Node}> {
     const {isOpen, showArrow} = this.props;
     const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {
@@ -421,9 +421,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       Inner: InnerOverride,
     } = overrides;
 
-    const Arrow = getComponent(ArrowOverride, StyledArrow);
-    const Body = getComponent(BodyOverride, StyledBody);
-    const Inner = getComponent(InnerOverride, StyledInner);
+    const Arrow = getOverride(ArrowOverride) || StyledArrow;
+    const Body = getOverride(BodyOverride) || StyledBody;
+    const Inner = getOverride(InnerOverride) || StyledInner;
 
     const sharedProps = this.getSharedProps();
     const bodyProps = this.getPopoverBodyProps();
