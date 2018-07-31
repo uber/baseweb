@@ -7,10 +7,10 @@ import {
   mergeOverrides,
 } from '../overrides';
 
-const getMockComponent = (): React.ComponentType<*> => {
-  const mock: React.ComponentType<*> = () => null;
+function getMockComponent<T>(): React.ComponentType<T> {
+  const mock: React.ComponentType<T> = () => null;
   return mock;
-};
+}
 
 test('Helpers - Overrides - getOverride', () => {
   const CustomComponent = getMockComponent();
