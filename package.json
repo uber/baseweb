@@ -18,7 +18,6 @@
   },
   "scripts": {
     "lint": "eslint ./",
-    "flow": "flow --show-all-errors",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "yarn lint && yarn unit-test",
     "storybook": "start-storybook -p 6006",
