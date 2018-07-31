@@ -13,7 +13,6 @@ const getMockComponent = (): React.ComponentType<*> => {
 };
 
 test('Helpers - Overrides - getOverride', () => {
-  // eslint-disable-next-line
   const CustomComponent = getMockComponent();
   expect(getOverride(null)).toEqual(null);
   expect(getOverride(CustomComponent)).toEqual(CustomComponent);
