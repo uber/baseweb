@@ -34,7 +34,7 @@ describe('Stateless checkbox', function() {
       overrides,
       ...events,
       labelPlacement: 'left',
-      label: 'some',
+      children: 'some',
       isError: isError,
       inputRef: React.createRef(),
       autoFocus: false,
@@ -108,9 +108,9 @@ describe('Stateless checkbox', function() {
   test('should show label text in label', function() {
     const mockComp = jest.fn(() => <div>test</div>);
     overrides.Label = mockComp;
-    allProps.label = 'super-puper label';
+    allProps.children = 'super-puper label';
     wrapper = mount(<StatelessCheckbox {...allProps} />);
-    expect(mockComp.mock.calls[0][0].children).toEqual(allProps.label);
+    expect(mockComp.mock.calls[0][0].children).toEqual(allProps.children);
   });
 
   test.each([['top', 0], ['left', 0], ['right', 3], ['bottom', 3]])(
@@ -118,11 +118,11 @@ describe('Stateless checkbox', function() {
     (labelPlacement, index) => {
       const mockComp = jest.fn(() => <div>test</div>);
       overrides.Root = mockComp;
-      allProps.label = 'super-puper label';
+      allProps.children = 'super-puper label';
       allProps.labelPlacement = labelPlacement;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const subComp = mockComp.mock.calls[0][0].children[index];
-      const isLabel = comp => comp.props.children === allProps.label;
+      const isLabel = comp => comp.props.children === allProps.children;
       expect(isLabel(subComp)).toBeTruthy();
     },
   );
