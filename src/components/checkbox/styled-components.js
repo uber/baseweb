@@ -95,8 +95,12 @@ export const Root = styled('label', props => {
         ? 'column'
         : 'row',
     display: 'flex',
-    alignItems: 'center',
+    alignItems:
+      $labelPlacement === 'top' || $labelPlacement === 'bottom'
+        ? 'center'
+        : 'flex-start',
     cursor: $disabled ? 'not-allowed' : 'pointer',
+    userSelect: 'none',
   };
 });
 
@@ -131,8 +135,8 @@ export const Checkmark = styled('span', props => {
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    marginTop: $theme.sizing.scale200,
-    marginBottom: $theme.sizing.scale200,
+    marginTop: $theme.sizing.scale0,
+    marginBottom: $theme.sizing.scale0,
     marginLeft: $theme.sizing.scale200,
     marginRight: $theme.sizing.scale200,
   };
@@ -153,6 +157,7 @@ export const Label = styled('div', props => {
 export const Input = styled('input', {
   opacity: 0,
   width: 0,
+  height: 0,
   overflow: 'hidden',
   margin: 0,
   padding: 0,
