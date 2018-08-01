@@ -63,16 +63,23 @@ describe('Stateless checkbox', function() {
         $required: allProps.required,
         $disabled: allProps.disabled,
       };
-      events = {
+      const rootEvents = {
         onMouseEnter: instance.onMouseEnter,
         onMouseLeave: instance.onMouseLeave,
+        onMouseUp: instance.onMouseUp,
+        onMouseDown: instance.onMouseDown,
+      };
+      events = {
         onFocus: instance.onFocus,
         onBlur: instance.onBlur,
         ...events,
       };
       const actualProps = mockComp.mock.calls[0][0];
       const expectedProps = {
-        Root: sharedProps,
+        Root: {
+          ...sharedProps,
+          ...rootEvents,
+        },
         Label: {
           ...sharedProps,
           $labelPlacement: allProps.labelPlacement,
@@ -142,8 +149,10 @@ describe('Stateless checkbox', function() {
     let events, instance, event;
     event = {};
     const handlers = [
-      ['onMouseEnter', {isHovered: true}, false],
-      ['onMouseLeave', {isHovered: false}, false],
+      ['onMouseEnter', {isHovered: true}, true],
+      ['onMouseLeave', {isHovered: false, isActive: false}, true],
+      ['onMouseUp', {isActive: false}, true],
+      ['onMouseDown', {isActive: true}, true],
       ['onFocus', {isFocused: true}, false],
       ['onBlur', {isFocused: false}, false],
     ];

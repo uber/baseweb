@@ -2,13 +2,7 @@
 
 exports[`Checkbox styled components StyledCheckmark : has correct styles when  1`] = `
 Object {
-  ":active": Object {
-    "backgroundColor": "$theme.colors.mono400",
-  },
-  ":hover": Object {
-    "backgroundColor": "$theme.colors.mono400",
-  },
-  "backgroundColor": null,
+  "backgroundColor": "transparent",
   "backgroundImage": null,
   "backgroundPosition": "center",
   "backgroundRepeat": "no-repeat",
@@ -34,13 +28,7 @@ Object {
 
 exports[`Checkbox styled components StyledCheckmark : has correct styles when $isError 1`] = `
 Object {
-  ":active": Object {
-    "backgroundColor": null,
-  },
-  ":hover": Object {
-    "backgroundColor": null,
-  },
-  "backgroundColor": "$theme.colors.negative400",
+  "backgroundColor": "$theme.colors.negative50",
   "backgroundImage": null,
   "backgroundPosition": "center",
   "backgroundRepeat": "no-repeat",
@@ -66,12 +54,6 @@ Object {
 
 exports[`Checkbox styled components StyledCheckmark : has correct styles when $isFocused 1`] = `
 Object {
-  ":active": Object {
-    "backgroundColor": "$theme.colors.mono500",
-  },
-  ":hover": Object {
-    "backgroundColor": "$theme.colors.mono500",
-  },
   "backgroundColor": "$theme.colors.mono500",
   "backgroundImage": null,
   "backgroundPosition": "center",
@@ -98,17 +80,11 @@ Object {
 
 exports[`Checkbox styled components StyledCheckmark : has correct styles when $isIndeterminate 1`] = `
 Object {
-  ":active": Object {
-    "backgroundColor": null,
-  },
-  ":hover": Object {
-    "backgroundColor": null,
-  },
   "backgroundColor": "$theme.colors.primary400",
   "backgroundImage": "url('data:image/svg+xml;utf8,<svg width=\\"12\\" height=\\"2\\" viewBox=\\"0 0 12 2\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><line x1=\\"1\\" y1=\\"-1\\" x2=\\"11\\" y2=\\"-1\\" transform=\\"translate(0 2)\\" stroke=\\"white\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>');",
   "backgroundPosition": "center",
   "backgroundRepeat": "no-repeat",
-  "borderColor": "$theme.colors.primary400",
+  "borderColor": "transparent",
   "borderRadius": "$theme.borders.radius200",
   "borderStyle": "solid",
   "borderWidth": "2px",
@@ -130,13 +106,7 @@ Object {
 
 exports[`Checkbox styled components StyledCheckmark : has correct styles when checked 1`] = `
 Object {
-  ":active": Object {
-    "backgroundColor": "$theme.colors.mono400",
-  },
-  ":hover": Object {
-    "backgroundColor": "$theme.colors.mono400",
-  },
-  "backgroundColor": null,
+  "backgroundColor": "transparent",
   "backgroundImage": null,
   "backgroundPosition": "center",
   "backgroundRepeat": "no-repeat",
@@ -162,13 +132,7 @@ Object {
 
 exports[`Checkbox styled components StyledCheckmark : has correct styles when disabled 1`] = `
 Object {
-  ":active": Object {
-    "backgroundColor": "$theme.colors.mono400",
-  },
-  ":hover": Object {
-    "backgroundColor": "$theme.colors.mono400",
-  },
-  "backgroundColor": null,
+  "backgroundColor": "transparent",
   "backgroundImage": null,
   "backgroundPosition": "center",
   "backgroundRepeat": "no-repeat",
@@ -205,10 +169,10 @@ Object {
 exports[`Checkbox styled components StyledLabel : has correct styles when  1`] = `
 Object {
   "color": "$theme.colors.mono1000",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": 500,
+  "lineHeight": "$theme.typography.font350.lineHeight",
   "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -217,10 +181,10 @@ Object {
 exports[`Checkbox styled components StyledLabel : has correct styles when $isError 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": 500,
+  "lineHeight": "$theme.typography.font350.lineHeight",
   "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -229,10 +193,10 @@ Object {
 exports[`Checkbox styled components StyledLabel : has correct styles when disabled 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": 500,
+  "lineHeight": "$theme.typography.font350.lineHeight",
   "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -241,10 +205,10 @@ Object {
 exports[`Checkbox styled components StyledLabel Label: StyledLabel has correct styles when set to bottom 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": 500,
+  "lineHeight": "$theme.typography.font350.lineHeight",
   "paddingBottom": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -253,10 +217,10 @@ Object {
 exports[`Checkbox styled components StyledLabel Label: StyledLabel has correct styles when set to left 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": 500,
+  "lineHeight": "$theme.typography.font350.lineHeight",
   "paddingLeft": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -265,10 +229,10 @@ Object {
 exports[`Checkbox styled components StyledLabel Label: StyledLabel has correct styles when set to right 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": 500,
+  "lineHeight": "$theme.typography.font350.lineHeight",
   "paddingRight": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -277,10 +241,10 @@ Object {
 exports[`Checkbox styled components StyledLabel Label: StyledLabel has correct styles when set to top 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": 500,
+  "lineHeight": "$theme.typography.font350.lineHeight",
   "paddingTop": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
