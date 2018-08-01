@@ -1,6 +1,5 @@
 // @flow
 
-import * as React from 'react';
 import type {OverrideT} from '../../helpers/overrides';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
@@ -13,6 +12,7 @@ export type OverridesT = {
 };
 
 export type DefaultPropsT = {
+  children?: React$Node,
   checked: boolean,
   disabled: boolean,
   isError: boolean,
@@ -20,7 +20,6 @@ export type DefaultPropsT = {
   isIndeterminate: boolean,
   labelPlacement: LabelPlacementT,
   inputRef: {current: ?HTMLInputElement},
-  label: string,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -29,6 +28,7 @@ export type DefaultPropsT = {
 };
 
 export type PropsT = {
+  children?: React$Node,
   overrides?: OverridesT,
   checked?: boolean,
   disabled?: boolean,
@@ -36,7 +36,9 @@ export type PropsT = {
   isError?: boolean,
   inputRef: {current: ?HTMLInputElement},
   autoFocus?: boolean,
-  label?: string,
+  type?: string,
+  name?: string,
+  value?: string,
   isIndeterminate?: boolean,
   labelPlacement?: LabelPlacementT,
   $theme?: *,
@@ -66,7 +68,7 @@ export type StateReducerT = (
 
 export type DefaultStatefulPropsT = {
   initialState: StateT,
-  children?: (*) => React.Node,
+  children?: (*) => React$Node,
   stateReducer: StateReducerT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -77,7 +79,7 @@ export type DefaultStatefulPropsT = {
 
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
-  children?: (*) => React.Node,
+  children?: (*) => React$Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -90,7 +92,7 @@ export type StatefulContainerPropsT = {
 
 export type StatefulCheckboxPropsT = {
   overrides?: OverridesT,
-  children?: React.ComponentType<*>,
+  children?: React$Node,
   initialState?: StateT,
   autoFocus?: boolean,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
