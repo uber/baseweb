@@ -62,8 +62,9 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
             }}
             isIndeterminate={isIndeterminate}
             checked={unchecked === 0}
-            label="Indeterminate checkbox if not all subcheckboxes are checked"
-          />
+          >
+            Indeterminate checkbox if not all subcheckboxes are checked
+          </StatelessCheckbox>
         </div>
         <div style={{padding: 30}}>
           <div {...(E2E_TEST ? {'data-name': 'radioSub1'} : null)}>
@@ -80,8 +81,9 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
                 newCheckboxes[0] = e.target.checked;
                 this.setState({checkboxes: newCheckboxes});
               }}
-              label="First subcheckbox"
-            />
+            >
+              First subcheckbox
+            </StatelessCheckbox>
           </div>
           <div {...(E2E_TEST ? {'data-name': 'radioSub2'} : null)}>
             <StatelessCheckbox
@@ -91,8 +93,9 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
                 newCheckboxes[1] = e.target.checked;
                 this.setState({checkboxes: newCheckboxes});
               }}
-              label="Second subcheckbox"
-            />
+            >
+              Second subcheckbox
+            </StatelessCheckbox>
           </div>
         </div>
       </div>
@@ -116,39 +119,37 @@ export const tests = {
 
 export default {
   [tests.SIMPLE_EXAMPLE]: () => {
-    return <Checkbox onChange={onChange} label="click me" />;
+    return <Checkbox onChange={onChange}>click me</Checkbox>;
   },
   [tests.WITH_ERROR]: () => {
     return (
-      <Checkbox
-        onChange={onChange}
-        isError={true}
-        label="Checkbox with an isError "
-      />
+      <Checkbox onChange={onChange} isError={true}>
+        Checkbox with an isError
+      </Checkbox>
     );
   },
   [tests.INDETERMINATE]: () => {
     return <GroupList />;
   },
   [tests.DISABLED]: () => {
-    return <Checkbox onChange={onChange} disabled label="Disabled checkbox" />;
+    return (
+      <Checkbox onChange={onChange} disabled>
+        Disabled checkbox
+      </Checkbox>
+    );
   },
   [tests.LEFT_ALIGN]: () => {
     return (
-      <Checkbox
-        onChange={onChange}
-        labelPlacement="left"
-        label="Label on the left"
-      />
+      <Checkbox onChange={onChange} labelPlacement="left">
+        Label on the left
+      </Checkbox>
     );
   },
   [tests.BOTTOM_ALIGN]: () => {
     return (
-      <Checkbox
-        onChange={onChange}
-        labelPlacement="bottom"
-        label="Label on the bottom"
-      />
+      <Checkbox onChange={onChange} labelPlacement="bottom">
+        Label on the bottom
+      </Checkbox>
     );
   },
   [tests.STYLES_OVERRIDES]: () => {
@@ -180,8 +181,9 @@ export default {
                 };
           }),
         }}
-        label="With style overrides"
-      />
+      >
+        With style overrides
+      </Checkbox>
     );
   },
   [tests.COMPONENTS_OVERRIDES]: () => {
@@ -208,8 +210,9 @@ export default {
           Label: customLabel,
           Checkmark: customCheckmark,
         }}
-        label="With style overrides"
-      />
+      >
+        With style overrides
+      </Checkbox>
     );
   },
   [tests.EXTRA_PROPS]: () => {
@@ -223,8 +226,9 @@ export default {
         overrides={{
           Root: RootWithProps,
         }}
-        label="With a custom 'data-value' attr on the Root"
-      />
+      >
+        With a custom data-value attr on the Root
+      </Checkbox>
     );
   },
   [tests.WITH_FOCUS]: () => {
@@ -245,12 +249,9 @@ export default {
             }
           }}
         />
-        <Checkbox
-          label="Focused checkbox"
-          onChange={onChange}
-          inputRef={inputRef}
-          autoFocus={isFocused}
-        />
+        <Checkbox onChange={onChange} inputRef={inputRef} autoFocus={isFocused}>
+          Focused checkbox
+        </Checkbox>
       </div>
     );
   },

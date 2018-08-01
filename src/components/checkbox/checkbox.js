@@ -19,7 +19,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     labelPlacement: 'right',
     inputRef: React.createRef(),
     isError: false,
-    label: '',
+    type: 'checkbox',
     onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
@@ -64,12 +64,15 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       overrides = {},
       onChange,
       labelPlacement,
-      label,
       inputRef,
       isIndeterminate,
       isError,
       disabled,
+      value,
+      name,
+      type,
       checked,
+      children,
       required,
     } = this.props;
 
@@ -100,6 +103,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $isIndeterminate: isIndeterminate,
       $required: required,
       $disabled: disabled,
+      $value: value,
     };
     const labelComp = (
       <Label
@@ -108,7 +112,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {...events}
         {...getOverrideProps(LabelOverride)}
       >
-        {label}
+        {children}
       </Label>
     );
     return (
@@ -124,12 +128,14 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           {...getOverrideProps(CheckmarkOverride)}
         />
         <Input
+          value={value}
+          name={name}
           checked={checked}
           required={required}
           aria-invalid={isError || null}
           aria-required={required || null}
           disabled={disabled}
-          type="checkbox"
+          type={type}
           $ref={inputRef}
           {...sharedProps}
           {...events}
