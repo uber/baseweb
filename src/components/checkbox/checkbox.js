@@ -101,7 +101,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     const Label = getOverride(LabelOverride) || StyledLabel;
     const Input = getOverride(InputOverride) || StyledInput;
 
-
     const inputEvents = {
       onChange,
       onFocus: this.onFocus,
