@@ -157,6 +157,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           $ref={inputRef}
           {...sharedProps}
           {...inputEvents}
+          {...getOverrideProps(InputOverride)}
         />
         {(labelPlacement === 'bottom' || labelPlacement === 'right') &&
           labelComp}

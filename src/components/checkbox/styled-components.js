@@ -78,7 +78,7 @@ function getBackgroundColor(props) {
 function getCheckBackgroundColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.mono600 : 'white';
+  return $disabled ? colors.mono600 : colors.mono100;
 }
 
 function getLabelColor(props) {
@@ -150,7 +150,6 @@ export const Label = styled('div', props => {
     ...getLabelPadding(props),
     color: getLabelColor(props),
     ...typography.font350,
-    fontWeight: 500,
   };
 });
 // tricky style for focus event cause display: none doesn't work
