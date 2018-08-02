@@ -10,3 +10,6 @@ export {
   Label as StyledLabel,
   Input as StyledInput,
 } from './styled-components';
+
+// Flow
+export * from './types';
