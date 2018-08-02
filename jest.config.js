@@ -9,4 +9,5 @@ module.exports = {
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
+  testURL: 'http://localhost/',
 };

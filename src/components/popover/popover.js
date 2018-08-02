@@ -2,10 +2,9 @@
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import document from 'global/document';
+
 import Popper from 'popper.js';
 import {getOverride, getOverrideProps} from '../../helpers/overrides';
-import isBrowser from '../../utils/is-browser';
 import getBuiId from '../../utils/get-bui-id';
 import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants';
 import {
@@ -242,19 +241,17 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   addDomEvents() {
-    if (!isBrowser) {
-      return;
+    if (__BROWSER__) {
+      document.addEventListener('mousedown', this.onDocumentClick);
+      document.addEventListener('keyup', this.onKeyPress);
     }
-    document.addEventListener('mousedown', this.onDocumentClick);
-    document.addEventListener('keyup', this.onKeyPress);
   }
 
   removeDomEvents() {
-    if (!isBrowser) {
-      return;
+    if (__BROWSER__) {
+      document.removeEventListener('mousedown', this.onDocumentClick);
+      document.removeEventListener('keyup', this.onKeyPress);
     }
-    document.removeEventListener('mousedown', this.onDocumentClick);
-    document.removeEventListener('keyup', this.onKeyPress);
   }
 
   onDocumentClick = (evt: MouseEvent) => {
@@ -459,8 +456,12 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const rendered = [this.renderAnchor()];
 
     // Only render popover on the browser (portals aren't supported server-side)
-    if (isBrowser && (this.props.isOpen || this.state.isAnimating)) {
-      rendered.push(ReactDOM.createPortal(this.renderPopover(), document.body));
+    if (__BROWSER__) {
+      if (this.props.isOpen || this.state.isAnimating) {
+        rendered.push(
+          ReactDOM.createPortal(this.renderPopover(), document.body),
+        );
+      }
     }
     return rendered;
   }

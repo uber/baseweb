@@ -3,7 +3,6 @@ module.exports = {
   plugins: ['flowtype', 'eslint-plugin-react', 'eslint-plugin-import'],
   env: {
     jest: true,
-    node: true,
   },
   extends: [
     'plugin:flowtype/recommended',

@@ -1,9 +1,13 @@
 {
   "presets": ["env", "stage-1", "react"],
+  "plugins": [
+    "./babel/cup.js",
+  ],
   "env": {
     "testing": {
       "plugins": [
         [
+          "./babel/cup.js",
           "babel-plugin-webpack-loaders",
           {
             "config": "./node.webpack.config.js",
