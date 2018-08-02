@@ -16,3 +16,6 @@ export {
   Inner as StyledInner,
   Padding as StyledPadding,
 } from './styled-components';
+
+// Flow
+export * from './types';
