@@ -19,7 +19,7 @@
   "scripts": {
     "lint": "eslint ./",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "test": "yarn lint && yarn unit-test",
+    "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o docs",
     "precommit": "pretty-quick --staged && yarn run test",
