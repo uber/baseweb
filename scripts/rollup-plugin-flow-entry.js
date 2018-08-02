@@ -28,7 +28,7 @@ function getFlowFileContent(filePath) {
   const regex = new RegExp(/\.\.\//, 'g');
   // We want to know how many `../` is inside the file path
   const matched = filePath.match(regex);
-  if (matched.length > 0) {
+  if (matched && matched.length > 0) {
     // Check whether it's only one `../`
     if (matched.length === 1) {
       // Only 1, replace it with `./`
@@ -48,9 +48,11 @@ export default function flowEntry() {
   let input;
   return {
     name: 'rollup-plugin-flow-entry',
+    // $FlowFixMe can't have annotations here since it's for rollup
     options(opts) {
       input = opts.input;
     },
+    // $FlowFixMe can't have annotations here since it's for rollup
     async generateBundle(opts) {
       const {file = ''} = opts || {};
 
