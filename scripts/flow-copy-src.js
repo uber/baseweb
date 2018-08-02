@@ -1,4 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 const flowCopySource = require('flow-copy-source');
 
 async function run() {

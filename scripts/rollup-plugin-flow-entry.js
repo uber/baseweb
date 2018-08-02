@@ -1,33 +1,45 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 import fs from 'fs';
 import path from 'path';
 
 /*
 We can consider this as well:
 https://github.com/RichieAHB/rollup-plugin-flow-defs/blob/master/src/index.js
-
 This code is inspired by that npm package anyway.
+
+The reason why we don't use that is because:
+* Package depends on `mkdirp`. It's just one dependency, but it's an extra dep for such a simple thing to do.
+* We cannot override the output path for the flow entry file content
+
+Hence, it's easier to write our own so we can do full modifications as needed.
  */
 
 function getFlowFileContent(filePath) {
   /*
-  Since we're going to copy `dist` dictionary into root in our publish step,
-  we will need to remove one level of the path.
+  Since we're running this during rollup process, it will be relative to the main `src` directory.
+  We do not want that.
+  We want to make it point to the `src` directory that will be created with our scripts later in the build process
+  from `flow-copy-src.js`.
+
   Hence, instead of `../src` and `../../src`, they will become `./src` and `../src` respectively.
   */
+
+  // Find `../` pattern in the `filePath`
   const regex = new RegExp(/\.\.\//, 'g');
+  // We want to know how many `../` is inside the file path
   const matched = filePath.match(regex);
   if (matched.length > 0) {
-    // Check whether it's only one `..`
+    // Check whether it's only one `../`
     if (matched.length === 1) {
       // Only 1, replace it with `./`
       filePath = filePath.replace('../', './');
     } else {
-      // Must be more than 1
+      // Must be more than 1, then just remove one `../`
       filePath = filePath.replace('../', '');
     }
   }
-  filePath = filePath.replace('.js', ''); // Remove the `.js` extension, if any
+  // Remove the `.js` extension, if any, so that it could point to `.js.flow` automatically
+  filePath = filePath.replace('.js', '');
   return `// @flow
 export * from '${filePath}';`;
 }
