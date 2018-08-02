@@ -9,6 +9,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import fs from 'fs';
 import path from 'path';
 
+import flowEntry from './scripts/rollup-plugin-flow-entry';
+
 function getComponents() {
   return fs.readdirSync('./src/components').filter(filename => {
     const {ext, name} = path.parse(filename);
@@ -70,6 +72,7 @@ function getSharedConfig({filePath, name}) {
       }),
       visualizer(),
       filesize(),
+      flowEntry(),
     ],
   };
 }
