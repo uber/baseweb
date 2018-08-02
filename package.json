@@ -24,7 +24,7 @@
     "build-storybook": "build-storybook -o docs",
     "precommit": "pretty-quick --staged && yarn run test",
     "build":
-      "rm -rf dist && rollup -c rollup.config.js && cp package.json dist/package.json",
+      "rm -rf dist && rollup -c rollup.config.js && node ./scripts/flow-copy-src.js && cp package.json dist/package.json",
     "unit-test": "yarn jest --coverage",
     "e2e": "node ./e2e/e2e.js",
     "build-e2e": "rollup -c rollup.config_e2e.js",
@@ -68,6 +68,7 @@
     "eslint-plugin-prettier": "^2.6.1",
     "eslint-plugin-react": "^7.10.0",
     "flow-bin": "^0.75.0",
+    "flow-copy-source": "^2.0.2",
     "geckodriver": "^1.11.0",
     "husky": "^0.14.3",
     "jest": "^23.3.0",

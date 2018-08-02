@@ -13,3 +13,6 @@ export {
   Caption as StyledCaption,
 } from './styled-components';
 export {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants';
+
+// Flow
+export * from './types';
