@@ -68,7 +68,7 @@ function getSharedConfig({filePath, name}) {
       babel({
         babelrc: false,
         presets: [['es2015', {modules: false}], 'stage-1', 'react'],
-        plugins: ['external-helpers', './babel/cup.js'],
+        plugins: ['external-helpers', require.resolve('./babel/cup.js')],
       }),
       visualizer(),
       filesize(),

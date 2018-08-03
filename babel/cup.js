@@ -1,15 +1,15 @@
-// @flow
 /* eslint-env node */
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 module.exports = babel => {
   const t = babel.types;
 
   const buildAst = babel.template(`
-  typeof document === 'undefined'
+  typeof document !== 'undefined'
 `);
 
   const buildAst2 = babel.template(`
-  typeof document !== 'undefined'
+  typeof document === 'undefined'
 `);
   const targetMap = {
     __NODE__: buildAst2({}),
@@ -55,3 +55,4 @@ module.exports = babel => {
     },
   };
 };
+/* eslint-enable flowtype/require-valid-file-annotation */

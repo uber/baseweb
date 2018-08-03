@@ -241,6 +241,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   addDomEvents() {
+    // $FlowFixMe
     if (__BROWSER__) {
       document.addEventListener('mousedown', this.onDocumentClick);
       document.addEventListener('keyup', this.onKeyPress);
@@ -248,6 +249,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   removeDomEvents() {
+    // $FlowFixMe
     if (__BROWSER__) {
       document.removeEventListener('mousedown', this.onDocumentClick);
       document.removeEventListener('keyup', this.onKeyPress);
@@ -456,9 +458,11 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const rendered = [this.renderAnchor()];
 
     // Only render popover on the browser (portals aren't supported server-side)
+    // $FlowFixMe
     if (__BROWSER__) {
       if (this.props.isOpen || this.state.isAnimating) {
         rendered.push(
+          // $FlowFixMe
           ReactDOM.createPortal(this.renderPopover(), document.body),
         );
       }
@@ -468,3 +472,4 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 }
 
 export default Popover;
+/* eslint-enable react/no-find-dom-node */

@@ -17,4 +17,5 @@ const app = (
   </StyletronProvider>
 );
 
+// $FlowFixMe
 ReactDOM.render(app, document.getElementById('root'));
