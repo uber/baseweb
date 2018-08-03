@@ -1,5 +1,6 @@
 [ignore]
 dist
+babel
 storybook-static
 .*/node_modules/.*[^(package)]\.json$
 
