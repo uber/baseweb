@@ -1,6 +1,6 @@
 // @flow
 
-/*globals __dirname*/
+/* eslint-env node */
 /* eslint-disable no-console */
 
 const connect = require('connect');

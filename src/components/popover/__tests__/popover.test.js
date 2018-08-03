@@ -1,5 +1,6 @@
 // @flow
-/* global document */
+/* eslint-env browser */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Popper from 'popper.js';
