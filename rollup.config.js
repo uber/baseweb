@@ -55,10 +55,12 @@ function getSharedConfig({filePath, name}) {
         sourcemap: 'inline',
       },
     ],
-    external: ['react', 'react-dom', 'styletron-react'],
     plugins: [
       progress(),
-      nodeResolve(),
+      nodeResolve({
+        // https://github.com/rollup/rollup-plugin-node-resolve/issues/77#issuecomment-383964286
+        only: [/^\.{0,2}\//],
+      }),
       commonjs({
         include: 'node_modules/**',
         namedExports: {
@@ -68,7 +70,7 @@ function getSharedConfig({filePath, name}) {
       babel({
         babelrc: false,
         presets: [['es2015', {modules: false}], 'stage-1', 'react'],
-        plugins: ['external-helpers'],
+        plugins: ['external-helpers', require.resolve('./babel/cup.js')],
       }),
       visualizer(),
       filesize(),
