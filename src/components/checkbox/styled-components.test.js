@@ -69,7 +69,7 @@ describe('Checkbox styled components', () => {
         </StyledCheckmark>,
       );
       expect(component.instance().getStyles()).toMatchSnapshot(
-        'has correct styles when ' + props,
+        'has correct styles when ' + props.join(' '),
       );
     });
   });
