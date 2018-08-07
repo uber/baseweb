@@ -106,6 +106,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
 export const suite = 'Checkbox Test Suite';
 export const tests = {
   SIMPLE_EXAMPLE: 'Checkbox example',
+  MULTILINE: 'Multiline checkbox',
   WITH_ERROR: 'Checkbox with an error',
   INDETERMINATE: 'Checkbox Indeterminate',
   DISABLED: 'Checkbox disabled',
@@ -121,6 +122,18 @@ export default {
   [tests.SIMPLE_EXAMPLE]: () => {
     return <Checkbox onChange={onChange}>click me</Checkbox>;
   },
+  [tests.MULTILINE]: () => {
+    return (
+      <Checkbox onChange={onChange}>
+        It started as a simple idea: What if you could request a ride from your
+        phone? More than 5 billion trips later, we’re working to make
+        transportation safer and more accessible, helping people order food
+        quickly and affordably, reducing congestion in cities by getting more
+        people into fewer cars, and creating opportunities for people to work on
+        their own terms.
+      </Checkbox>
+    );
+  },
   [tests.WITH_ERROR]: () => {
     return (
       <Checkbox onChange={onChange} isError={true}>
@@ -133,9 +146,20 @@ export default {
   },
   [tests.DISABLED]: () => {
     return (
-      <Checkbox onChange={onChange} disabled>
-        Disabled checkbox
-      </Checkbox>
+      <div>
+        <Checkbox onChange={onChange} disabled>
+          Disabled checkbox
+        </Checkbox>
+        <Checkbox
+          onChange={onChange}
+          disabled
+          initialState={{
+            checked: true,
+          }}
+        >
+          Disabled checkbox (checked)
+        </Checkbox>
+      </div>
     );
   },
   [tests.LEFT_ALIGN]: () => {

@@ -23,6 +23,8 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
+    onMouseDown: () => {},
+    onMouseUp: () => {},
     onFocus: () => {},
     onBlur: () => {},
   };
@@ -30,6 +32,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   state = {
     isFocused: this.props.autoFocus || false,
     isHovered: false,
+    isActive: false,
   };
 
   componentDidMount() {
@@ -45,8 +48,18 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: false});
+    this.setState({isHovered: false, isActive: false});
     this.props.onMouseLeave(e);
+  };
+
+  onMouseDown = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({isActive: true});
+    this.props.onMouseDown(e);
+  };
+
+  onMouseUp = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({isActive: false});
+    this.props.onMouseUp(e);
   };
 
   onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -88,16 +101,21 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     const Label = getOverride(LabelOverride) || StyledLabel;
     const Input = getOverride(InputOverride) || StyledInput;
 
-    const events = {
+    const inputEvents = {
       onChange,
-      onMouseEnter: this.onMouseEnter,
-      onMouseLeave: this.onMouseLeave,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
+    };
+    const mouseEvents = {
+      onMouseEnter: this.onMouseEnter,
+      onMouseLeave: this.onMouseLeave,
+      onMouseDown: this.onMouseDown,
+      onMouseUp: this.onMouseUp,
     };
     const sharedProps = {
       $isFocused: this.state.isFocused,
       $isHovered: this.state.isHovered,
+      $isActive: this.state.isActive,
       $isError: isError,
       $checked: checked,
       $isIndeterminate: isIndeterminate,
@@ -109,7 +127,6 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       <Label
         $labelPlacement={labelPlacement}
         {...sharedProps}
-        {...events}
         {...getOverrideProps(LabelOverride)}
       >
         {children}
@@ -119,6 +136,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       <Root
         $labelPlacement={labelPlacement}
         {...sharedProps}
+        {...mouseEvents}
         {...getOverrideProps(RootOverride)}
       >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
@@ -138,7 +156,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           type={type}
           $ref={inputRef}
           {...sharedProps}
-          {...events}
+          {...inputEvents}
           {...getOverrideProps(InputOverride)}
         />
         {(labelPlacement === 'bottom' || labelPlacement === 'right') &&
