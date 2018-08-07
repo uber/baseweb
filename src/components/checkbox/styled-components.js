@@ -2,11 +2,17 @@
 import {styled} from '../../styles';
 
 function getBorderColor(props) {
-  const {$checked, $isError, $isIndeterminate, $theme} = props;
+  const {$disabled, $checked, $isError, $isIndeterminate, $theme} = props;
   const {colors} = $theme;
-  return $isError
-    ? colors.negative400
-    : $isIndeterminate || $checked ? colors.primary400 : colors.mono700;
+  if ($disabled) {
+    return colors.mono300;
+  } else if ($checked || $isIndeterminate) {
+    return 'transparent';
+  } else if ($isError) {
+    return colors.negative400;
+  } else {
+    return colors.mono700;
+  }
 }
 
 function getLabelPadding(props) {
@@ -28,16 +34,51 @@ function getBackgroundColor(props) {
     $isFocused,
     $isError,
     $isHovered,
+    $isActive,
     $theme,
   } = props;
   const {colors} = $theme;
-  return $disabled
-    ? colors.mono300
-    : $isError
-      ? colors.negative400
-      : $isIndeterminate || $checked
-        ? colors.primary400
-        : $isFocused ? colors.mono500 : $isHovered ? colors.mono400 : null;
+  if ($disabled) {
+    return colors.mono300;
+  } else if ($isError && ($isIndeterminate || $checked)) {
+    if ($isActive || $isFocused) {
+      return colors.negative600;
+    } else if ($isHovered) {
+      return colors.negative500;
+    } else {
+      return colors.negative400;
+    }
+  } else if ($isError) {
+    if ($isActive || $isFocused) {
+      return colors.negative200;
+    } else if ($isHovered) {
+      return colors.negative100;
+    } else {
+      return colors.negative50;
+    }
+  } else if ($isIndeterminate || $checked) {
+    if ($isActive || $isFocused) {
+      return colors.primary600;
+    } else if ($isHovered) {
+      return colors.primary500;
+    } else {
+      return colors.primary400;
+    }
+  } else {
+    if ($isActive || $isFocused) {
+      return colors.mono500;
+    } else if ($isHovered) {
+      return colors.mono400;
+    } else {
+      return 'transparent';
+    }
+  }
+}
+
+function getCheckBackgroundColor(props) {
+  const {$disabled, $theme} = props;
+  const {colors} = $theme;
+  return $disabled ? colors.mono600 : colors.mono100;
 }
 
 function getLabelColor(props) {
@@ -54,31 +95,18 @@ export const Root = styled('label', props => {
         ? 'column'
         : 'row',
     display: 'flex',
-    alignItems: 'center',
+    alignItems:
+      $labelPlacement === 'top' || $labelPlacement === 'bottom'
+        ? 'center'
+        : 'flex-start',
     cursor: $disabled ? 'not-allowed' : 'pointer',
+    userSelect: 'none',
   };
 });
 
 export const Checkmark = styled('span', props => {
-  const {
-    $checked,
-    $disabled,
-    $isIndeterminate,
-    $theme,
-    $isFocused,
-    $isError,
-  } = props;
-  const {colors, sizing, animation} = $theme;
-  const activeStyle = {
-    backgroundColor:
-      $checked || $isIndeterminate || $isError
-        ? null
-        : $isFocused
-          ? colors.mono500
-          : !$disabled && !$isIndeterminate && !$checked
-            ? colors.mono400
-            : null,
-  };
+  const {$checked, $isIndeterminate, $theme} = props;
+  const {sizing, animation} = $theme;
   return {
     flex: '0 0 auto',
     transitionDuration: animation.timing100,
@@ -96,19 +124,21 @@ export const Checkmark = styled('span', props => {
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
-      ? 'url(\'data:image/svg+xml;utf8,<svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="-1" x2="11" y2="-1" transform="translate(0 2)" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>\');'
+      ? `url('data:image/svg+xml;utf8,<svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="-1" x2="11" y2="-1" transform="translate(0 2)" stroke="${getCheckBackgroundColor(
+          props,
+        )}" stroke-width="2" stroke-linecap="round"/></svg>');`
       : $checked
-        ? 'url(\'data:image/svg+xml;utf8,<svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z" fill="white"/></svg>\');'
+        ? `url('data:image/svg+xml;utf8,<svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z" fill="${getCheckBackgroundColor(
+            props,
+          )}"/></svg>');`
         : null,
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    marginTop: $theme.sizing.scale200,
-    marginBottom: $theme.sizing.scale200,
+    marginTop: $theme.sizing.scale0,
+    marginBottom: $theme.sizing.scale0,
     marginLeft: $theme.sizing.scale200,
     marginRight: $theme.sizing.scale200,
-    ':hover': activeStyle,
-    ':active': activeStyle,
   };
 });
 
@@ -119,13 +149,14 @@ export const Label = styled('div', props => {
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font400,
+    ...typography.font350,
   };
 });
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
   opacity: 0,
   width: 0,
+  height: 0,
   overflow: 'hidden',
   margin: 0,
   padding: 0,
