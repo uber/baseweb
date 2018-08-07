@@ -29,7 +29,7 @@
     "e2e": "node ./e2e/e2e.js",
     "build-e2e": "rollup -c rollup.config_e2e.js",
     "serve-e2e": "node e2e/serve.js",
-    "release": "yarn build && yarn publish dist",
+    "release": "yarn build && npm publish dist",
     "test-e2e":
       "pkill \"chromedriver|geckodriver|safaridriver\" | jest --config=jest-e2e.config.js"
   },

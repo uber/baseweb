@@ -1,5 +1,6 @@
 /* eslint-env node */
 // @flow
+
 const flowCopySource = require('flow-copy-source');
 
 async function run() {
