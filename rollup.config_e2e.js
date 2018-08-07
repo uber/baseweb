@@ -54,7 +54,6 @@ export default {
     filesize(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
-      E2E_TEST: JSON.stringify('true'),
     }),
   ],
 };
