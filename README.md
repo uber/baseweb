@@ -8,23 +8,32 @@ Add `baseui` to your project:
 
 ```bash
 # using yarn
-yarn add baseui
+yarn add @uber/baseui
 
 # using npm
-npm install baseui
+npm install @uber/baseui
 ```
 
 ```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
+import {LightTheme, ThemeProvider, styled} from '@uber/baseui';
+import {StatefulInput} from '@uber/baseui/input';
 
-import {StatefulInput as Input} from 'baseui/input';
+const Centered = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+});
 
-function App() {
-  return <Input placeholder="First name" required="true" />;
+export default function Hello() {
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <Centered>
+        <StatefulInput />
+      </Centered>
+    </ThemeProvider>
+  );
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ### Docs
