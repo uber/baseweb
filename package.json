@@ -19,12 +19,12 @@
   "scripts": {
     "lint": "eslint ./",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "test": "yarn lint && yarn unit-test",
+    "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o docs",
     "precommit": "pretty-quick --staged && yarn run test",
     "build":
-      "rm -rf dist && rollup -c rollup.config.js && cp package.json dist/package.json",
+      "rm -rf dist && rollup -c rollup.config.js && node ./scripts/flow-copy-src.js && cp package.json dist/package.json",
     "unit-test": "yarn jest --coverage",
     "e2e": "node ./e2e/e2e.js",
     "build-e2e": "rollup -c rollup.config_e2e.js",
@@ -68,6 +68,7 @@
     "eslint-plugin-prettier": "^2.6.1",
     "eslint-plugin-react": "^7.10.0",
     "flow-bin": "^0.75.0",
+    "flow-copy-source": "^2.0.2",
     "geckodriver": "^1.11.0",
     "husky": "^0.14.3",
     "jest": "^23.3.0",
@@ -89,17 +90,18 @@
     "serve-static": "^1.13.2",
     "storybook-readme": "^3.3.0",
     "styletron-engine-atomic": "^1.0.5",
-    "styletron-react": "^4.3.0"
-  },
-  "dependencies": {
-    "connect": "^3.6.6",
-    "global": "^4.3.2",
-    "popper.js": "^1.14.3",
+    "styletron-react": "^4.3.0",
     "styletron-react-core": "^1.3.1",
     "styletron-standard": "^1.0.3"
   },
+  "dependencies": {
+    "connect": "^3.6.6",
+    "popper.js": "^1.14.3"
+  },
   "peerDependencies": {
     "styletron-react": "^4.3.0",
+    "styletron-react-core": "^1.3.1",
+    "styletron-standard": "^1.0.6",
     "react": ">= 16.4.0 < 17",
     "react-dom": ">= 16.4.0 < 17"
   },

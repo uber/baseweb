@@ -48,7 +48,7 @@ export default {
     babel({
       babelrc: false,
       presets: [['es2015', {modules: false}], 'stage-1', 'react'],
-      plugins: ['external-helpers'],
+      plugins: ['external-helpers', require.resolve('./babel/cup.js')],
     }),
     visualizer(),
     filesize(),

@@ -1,9 +1,9 @@
 // @flow
+/* eslint-env browser */
 
 import React from 'react';
 import PopoverExamples from '../src/components/popover/examples';
 import CheckboxExamples from '../src/components/checkbox/examples';
-import window from 'global/window';
 
 const Examples = [PopoverExamples, CheckboxExamples];
 

@@ -1,5 +1,5 @@
 // @flow
-
+/* eslint-env node */
 /* eslint-disable no-console */
 const {spawn} = require('child_process');
 const build = spawn('yarn', ['build-e2e']);
