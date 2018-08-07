@@ -23,6 +23,8 @@ export type DefaultPropsT = {
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseDown: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseUp: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
@@ -45,6 +47,8 @@ export type PropsT = {
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseDown: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseUp: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
@@ -52,6 +56,7 @@ export type PropsT = {
 export type StatelessStateT = {
   isFocused: boolean,
   isHovered: boolean,
+  isActive: boolean,
 };
 
 export type StateT = {

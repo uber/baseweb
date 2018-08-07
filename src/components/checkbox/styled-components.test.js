@@ -40,21 +40,36 @@ describe('Checkbox styled components', () => {
   describe('StyledCheckmark', () => {
     test.each([
       [''],
-      ['disabled'],
+      ['$disabled'],
+      ['$disabled', '$checked'],
       ['$isIndeterminate'],
       ['$isFocused'],
-      ['checked'],
+      ['$isActive'],
+      ['$isHovered'],
+      ['$checked'],
+      ['$checked', '$isHovered'],
+      ['$checked', '$isActive'],
+      ['$checked', '$isFocused'],
       ['$isError'],
-    ])('', prop => {
-      const props = {};
-      props[prop] = true;
+      ['$isError', '$checked'],
+      ['$isError', '$checked', '$isHovered'],
+      ['$isError', '$checked', '$isActive'],
+      ['$isError', '$checked', '$isFocused'],
+      ['$isError', '$isHovered'],
+      ['$isError', '$isActive'],
+      ['$isError', '$isFocused'],
+    ])('', (...props) => {
+      const passedProps = {};
+      props.map(prop => {
+        passedProps[prop] = true;
+      });
       const component = shallow(
-        <StyledCheckmark {...props}>
+        <StyledCheckmark {...passedProps}>
           <div />
         </StyledCheckmark>,
       );
       expect(component.instance().getStyles()).toMatchSnapshot(
-        'has correct styles when ' + prop,
+        'has correct styles when ' + props.join(' '),
       );
     });
   });
