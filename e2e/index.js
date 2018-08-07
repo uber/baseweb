@@ -4,12 +4,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import tests from './tests';
+import window from 'global/window';
 
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import DEFAULT_THEME from '../src/themes/light-theme';
 import {ThemeProvider} from '../src/styles';
 
+window.E2E_TEST = true;
 const engine = new Styletron();
 const app = (
   <StyletronProvider value={engine}>

@@ -2,9 +2,7 @@
 
 /* eslint-disable react/display-name*/
 
-// E2E_TEST is set by rollup;
-declare var E2E_TEST: boolean;
-
+import window from 'global/window';
 import * as React from 'react';
 import {styled, withStyle} from 'styletron-react';
 import {
@@ -53,7 +51,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
     const isIndeterminate = unchecked > 0 && unchecked < checkboxes.length;
     return (
       <div>
-        <div {...(E2E_TEST ? {'data-name': 'radioMain'} : null)}>
+        <div {...(window.E2E_TEST ? {'data-name': 'radioMain'} : null)}>
           <StatelessCheckbox
             components={{}}
             onChange={e => {
@@ -67,7 +65,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
           </StatelessCheckbox>
         </div>
         <div style={{padding: 30}}>
-          <div {...(E2E_TEST ? {'data-name': 'radioSub1'} : null)}>
+          <div {...(window.E2E_TEST ? {'data-name': 'radioSub1'} : null)}>
             <StatelessCheckbox
               overrides={{
                 Root: StyledRoot,
@@ -85,7 +83,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
               First subcheckbox
             </StatelessCheckbox>
           </div>
-          <div {...(E2E_TEST ? {'data-name': 'radioSub2'} : null)}>
+          <div {...(window.E2E_TEST ? {'data-name': 'radioSub2'} : null)}>
             <StatelessCheckbox
               checked={checkboxes[1]}
               onChange={e => {

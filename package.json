@@ -96,6 +96,7 @@
   },
   "dependencies": {
     "connect": "^3.6.6",
+    "global": "^4.3.2",
     "popper.js": "^1.14.3"
   },
   "peerDependencies": {
