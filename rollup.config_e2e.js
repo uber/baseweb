@@ -33,6 +33,7 @@ export default {
         'node_modules/react/index.js': [
           'Children',
           'Component',
+          'Fragment',
           'PropTypes',
           'createElement',
           'cloneElement',
@@ -47,12 +48,13 @@ export default {
     babel({
       babelrc: false,
       presets: [['es2015', {modules: false}], 'stage-1', 'react'],
-      plugins: ['external-helpers'],
+      plugins: ['external-helpers', require.resolve('./babel/cup.js')],
     }),
     visualizer(),
     filesize(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
+      E2E_TEST: JSON.stringify('true'),
     }),
   ],
 };

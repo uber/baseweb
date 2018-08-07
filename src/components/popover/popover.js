@@ -2,9 +2,9 @@
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import document from 'global/document';
+
 import Popper from 'popper.js';
-import isBrowser from '../../utils/is-browser';
+import {getOverride, getOverrideProps} from '../../helpers/overrides';
 import getBuiId from '../../utils/get-bui-id';
 import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants';
 import {
@@ -15,17 +15,17 @@ import {
 import {
   toPopperPlacement,
   fromPopperPlacement,
-  prepareArrowPositionStyles,
-  preparePopoverPositionStyles,
+  parsePopperOffset,
 } from './utils';
 import defaultProps from './default-props';
 
 import type {
   AnchorPropsT,
+  ChildT,
   PopoverPropsT,
   PopoverPrivateStateT,
   PopperDataObjectT,
-  ChildT,
+  SharedStylePropsArgT,
 } from './types';
 
 class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
@@ -83,8 +83,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   getDefaultState(props: PopoverPropsT) {
     return {
       isAnimating: false,
-      arrowStyles: {left: '0px', top: '0px'},
-      positionStyles: {left: '0px', top: '0px'},
+      arrowOffset: {left: 0, top: 0},
+      popoverOffset: {left: 0, top: 0},
       placement: props.placement,
     };
   }
@@ -100,7 +100,11 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       this.setState({isAnimating: true});
       // Remove the popover from the DOM after animation finishes
       this.animateOutCompleteTimer = setTimeout(() => {
-        this.setState({isAnimating: false});
+        this.setState({
+          isAnimating: false,
+          // Reset to ideal placement specified in props
+          placement: this.props.placement,
+        });
       }, 500);
     }
   };
@@ -187,8 +191,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   onPopperUpdate = (data: PopperDataObjectT) => {
     const placement = fromPopperPlacement(data.placement) || PLACEMENT.top;
     this.setState({
-      arrowStyles: prepareArrowPositionStyles(data.arrowStyles, placement),
-      positionStyles: preparePopoverPositionStyles(data.styles),
+      arrowOffset: data.offsets.arrow
+        ? parsePopperOffset(data.offsets.arrow)
+        : {top: 0, left: 0},
+      popoverOffset: parsePopperOffset(data.offsets.popper),
       placement,
     });
 
@@ -235,19 +241,19 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   addDomEvents() {
-    if (!isBrowser) {
-      return;
+    // $FlowFixMe
+    if (__BROWSER__) {
+      document.addEventListener('mousedown', this.onDocumentClick);
+      document.addEventListener('keyup', this.onKeyPress);
     }
-    document.addEventListener('mousedown', this.onDocumentClick);
-    document.addEventListener('keyup', this.onKeyPress);
   }
 
   removeDomEvents() {
-    if (!isBrowser) {
-      return;
+    // $FlowFixMe
+    if (__BROWSER__) {
+      document.removeEventListener('mousedown', this.onDocumentClick);
+      document.removeEventListener('keyup', this.onKeyPress);
     }
-    document.removeEventListener('mousedown', this.onDocumentClick);
-    document.removeEventListener('keyup', this.onKeyPress);
   }
 
   onDocumentClick = (evt: MouseEvent) => {
@@ -357,13 +363,13 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return bodyProps;
   }
 
-  getSharedProps() {
+  getSharedProps(): $Diff<SharedStylePropsArgT, {children: React.Node}> {
     const {isOpen, showArrow} = this.props;
-    const {isAnimating, arrowStyles, positionStyles, placement} = this.state;
+    const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {
-      $showArrow: showArrow,
-      $arrowStyles: arrowStyles,
-      $positionStyles: positionStyles,
+      $showArrow: Boolean(showArrow),
+      $arrowOffset: arrowOffset,
+      $popoverOffset: popoverOffset,
       $placement: placement,
       $isAnimating: isAnimating,
       $isOpen: isOpen,
@@ -406,12 +412,17 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   renderPopover() {
-    const {showArrow, components = {}, content} = this.props;
+    const {showArrow, overrides = {}, content} = this.props;
+
     const {
-      Arrow = StyledArrow,
-      Body = StyledBody,
-      Inner = StyledInner,
-    } = components;
+      Arrow: ArrowOverride,
+      Body: BodyOverride,
+      Inner: InnerOverride,
+    } = overrides;
+
+    const Arrow = getOverride(ArrowOverride) || StyledArrow;
+    const Body = getOverride(BodyOverride) || StyledBody;
+    const Inner = getOverride(InnerOverride) || StyledInner;
 
     const sharedProps = this.getSharedProps();
     const bodyProps = this.getPopoverBodyProps();
@@ -422,11 +433,21 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         $ref={this.popperRef}
         {...bodyProps}
         {...sharedProps}
+        {...getOverrideProps(BodyOverride)}
       >
         {showArrow ? (
-          <Arrow key="popover-arrow" $ref={this.arrowRef} {...sharedProps} />
+          <Arrow
+            key="popover-arrow"
+            $ref={this.arrowRef}
+            {...sharedProps}
+            {...getOverrideProps(ArrowOverride)}
+          />
         ) : null}
-        <Inner key="popover-inner" {...sharedProps}>
+        <Inner
+          key="popover-inner"
+          {...sharedProps}
+          {...getOverrideProps(InnerOverride)}
+        >
           {typeof content === 'function' ? content() : content}
         </Inner>
       </Body>
@@ -437,11 +458,18 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const rendered = [this.renderAnchor()];
 
     // Only render popover on the browser (portals aren't supported server-side)
-    if (isBrowser && (this.props.isOpen || this.state.isAnimating)) {
-      rendered.push(ReactDOM.createPortal(this.renderPopover(), document.body));
+    // $FlowFixMe
+    if (__BROWSER__) {
+      if (this.props.isOpen || this.state.isAnimating) {
+        rendered.push(
+          // $FlowFixMe
+          ReactDOM.createPortal(this.renderPopover(), document.body),
+        );
+      }
     }
     return rendered;
   }
 }
 
 export default Popover;
+/* eslint-enable react/no-find-dom-node */

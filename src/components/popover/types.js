@@ -1,6 +1,8 @@
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
+import type {ThemeT} from '../../styles/types';
+import type {OverrideT} from '../../helpers/overrides';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
@@ -26,15 +28,17 @@ export type StateReducerT = (
   currentState: StateT,
 ) => StateT;
 
-export type ContentRenderPropT = (arg?: {
-  close?: () => void,
+export type ContentRenderPropT = () => React.Node;
+
+export type StatefulContentRenderPropT = ({
+  close: () => void,
 }) => React.Node;
 
-export type ComponentsPropT = {|
-  Body?: React.ComponentType<mixed>,
-  Arrow?: React.ComponentType<mixed>,
-  Inner?: React.ComponentType<mixed>,
-|};
+export type OverridesT = {
+  Body?: OverrideT<SharedStylePropsArgT>,
+  Arrow?: OverrideT<SharedStylePropsArgT>,
+  Inner?: OverrideT<SharedStylePropsArgT>,
+};
 
 // Basically React.Node minus React.Portal and Iterable
 export type ChildT =
@@ -51,11 +55,10 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 // Props shared by all flavors of popover
 export type BasePopoverPropsT = {
   accessibilityType?: AccessibilityTypeT,
-  components?: ComponentsPropT,
-  content: React.Node | ContentRenderPropT,
   id?: string,
   onMouseEnterDelay?: number,
   onMouseLeaveDelay?: number,
+  overrides?: OverridesT,
   placement: PopoverPlacementT,
   showArrow?: boolean,
   triggerType: TriggerTypeT,
@@ -64,6 +67,7 @@ export type BasePopoverPropsT = {
 // Props for stateless render logic
 export type PopoverPropsT = BasePopoverPropsT & {
   children: ChildrenT,
+  content: React.Node | ContentRenderPropT,
   isOpen: boolean,
   onBlur?: () => void,
   onClick?: (e: Event) => void,
@@ -77,6 +81,7 @@ export type PopoverPropsT = BasePopoverPropsT & {
 // Props for stateful wrapper
 export type StatefulPopoverPropsT = BasePopoverPropsT & {
   children: ChildrenT,
+  content: React.Node | StatefulContentRenderPropT,
   dismissOnClickOutside: boolean,
   dismissOnEsc: boolean,
   initialState?: StateT,
@@ -98,19 +103,20 @@ export type PopoverPropsWithoutChildrenT = $Diff<
   {children: ChildrenT},
 >;
 
-export type PositionStylesT = {
-  top?: number | string,
-  left?: number | string,
+export type OffsetT = {
+  top: number,
+  left: number,
+};
+
+export type PopperOffsetT = {
+  top?: number | null,
+  left?: number | null,
 };
 
 export type PopperDataObjectT = {
-  arrowStyles?: {
-    top?: number | string,
-    left?: number | string,
-  },
-  styles?: {
-    top?: number | string,
-    left?: number | string,
+  offsets: {
+    arrow?: PopperOffsetT,
+    popper: PopperOffsetT,
   },
   placement: string,
 };
@@ -129,9 +135,28 @@ export type PopperOptionsT = {
 
 export type PopoverPrivateStateT = {
   isAnimating: boolean,
-  arrowStyles: PositionStylesT,
-  positionStyles: PositionStylesT,
+  arrowOffset: OffsetT,
+  popoverOffset: OffsetT,
   placement: PopoverPlacementT,
+};
+
+export type SharedStylePropsArgT = {
+  $arrowOffset: OffsetT,
+  $isAnimating: boolean,
+  $isOpen: boolean,
+  $popoverOffset: OffsetT,
+  $placement: PopoverPlacementT,
+  $showArrow: boolean,
+  children?: React.Node,
+  // Styletron stuff
+  $as?: string,
+  // TODO: Get this to work without 'any'
+  /* eslint-disable-next-line flowtype/no-weak-types */
+  $ref?: React.Ref<any>,
+};
+
+export type SharedStylePropsT = SharedStylePropsArgT & {
+  $theme: ThemeT,
 };
 
 export type AnchorPropsT = {

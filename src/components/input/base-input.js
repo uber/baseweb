@@ -1,9 +1,10 @@
 // @flow
 import * as React from 'react';
-import type {BaseInputPropsT, InternalStateT} from './types';
 import getBuiId from '../../utils/get-bui-id';
+import {getOverride, getOverrideProps} from '../../helpers/overrides';
+import type {BaseInputPropsT, InternalStateT} from './types';
+import {getSharedProps} from './utils';
 import {ADJOINED, SIZE} from './constants';
-import {getSharedProps, getComponent, getComponentProps} from './utils';
 import {
   InputContainer as StyledInputContainer,
   Input as StyledInput,
@@ -20,7 +21,7 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
     onBlur: () => {},
     onChange: () => {},
     onFocus: () => {},
-    override: {},
+    overrides: {},
     placeholder: '',
     required: false,
     size: SIZE.default,
@@ -78,7 +79,7 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
 
   render() {
     const {
-      override: {
+      overrides: {
         InputContainer: InputContainerOverride,
         Input: InputOverride,
         Before: BeforeOverride,
@@ -88,32 +89,30 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
 
     const sharedProps = getSharedProps(this.props, this.state);
 
-    const InputContainer = getComponent(
-      InputContainerOverride,
-      StyledInputContainer,
-    );
-    const Input = getComponent(InputOverride, StyledInput);
-    const Before = getComponent(BeforeOverride, null);
-    const After = getComponent(AfterOverride, null);
+    const InputContainer =
+      getOverride(InputContainerOverride) || StyledInputContainer;
+    const Input = getOverride(InputOverride) || StyledInput;
+    const Before = getOverride(BeforeOverride) || null;
+    const After = getOverride(AfterOverride) || null;
 
     return (
       <InputContainer
-        {...getComponentProps(InputContainerOverride)}
+        {...getOverrideProps(InputContainerOverride)}
         {...sharedProps}
       >
         <span>
           <i />
         </span>
         {Before ? (
-          <Before {...getComponentProps(BeforeOverride)} {...sharedProps} />
+          <Before {...getOverrideProps(BeforeOverride)} {...sharedProps} />
         ) : null}
         <Input
-          {...getComponentProps(InputOverride)}
+          {...getOverrideProps(InputOverride)}
           {...this.getInputProps()}
           {...sharedProps}
         />
         {After ? (
-          <After {...getComponentProps(AfterOverride)} {...sharedProps} />
+          <After {...getOverrideProps(AfterOverride)} {...sharedProps} />
         ) : null}
       </InputContainer>
     );

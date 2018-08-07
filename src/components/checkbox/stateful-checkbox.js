@@ -8,11 +8,10 @@ import type {PropsT, StatefulCheckboxPropsT} from './types';
 // Styled elements
 
 const StatefulCheckbox = function(props: StatefulCheckboxPropsT) {
-  const {components} = props;
   return (
     <StatefulContainer {...props}>
       {(childrenProps: PropsT) => (
-        <Checkbox {...childrenProps} components={components} />
+        <Checkbox {...childrenProps}>{props.children}</Checkbox>
       )}
     </StatefulContainer>
   );

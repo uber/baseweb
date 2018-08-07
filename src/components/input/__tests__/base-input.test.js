@@ -10,7 +10,7 @@ test('BaseInput - basic functionality', () => {
     onFocus: jest.fn(),
     onBlur: jest.fn(),
     onChange: jest.fn(),
-    override: {
+    overrides: {
       Before: jest.fn().mockImplementation(() => <span />),
       After: jest.fn().mockImplementation(() => <span />),
     },
@@ -28,11 +28,11 @@ test('BaseInput - basic functionality', () => {
   expect(renderedInput.props().onFocus).toEqual(wrapper.instance().onFocus);
   expect(renderedInput.props().onBlur).toEqual(wrapper.instance().onBlur);
 
-  const renderedBefore = wrapper.find(props.override.Before);
+  const renderedBefore = wrapper.find(props.overrides.Before);
   expect(renderedBefore).toHaveLength(1);
   expect(renderedBefore.props()).toMatchSnapshot('Before gets correct props');
 
-  const renderedAfter = wrapper.find(props.override.After);
+  const renderedAfter = wrapper.find(props.overrides.After);
   expect(renderedAfter).toHaveLength(1);
   expect(renderedAfter.props()).toMatchSnapshot('After gets correct props');
 
@@ -53,12 +53,12 @@ test('BaseInput - basic functionality', () => {
   // Correct props passed when error state
   wrapper.setProps({error: true});
 
-  const updatedBefore = wrapper.find(props.override.Before);
+  const updatedBefore = wrapper.find(props.overrides.Before);
   expect(updatedBefore.props()).toMatchSnapshot(
     'Before gets correct error prop',
   );
 
-  const updatedAfter = wrapper.find(props.override.After);
+  const updatedAfter = wrapper.find(props.overrides.After);
   expect(updatedAfter.props()).toMatchSnapshot('After gets correct error prop');
 });
 

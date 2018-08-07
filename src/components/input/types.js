@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import type {OverrideT} from '../../helpers/overrides';
 import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants';
 
 // function withEnhancedTypes<Props, Component: React.ComponentType<Props>>(
@@ -31,28 +32,20 @@ export type StateReducerT = (
 
 export type PropsT = mixed;
 
-export type ComponentOverridesT =
-  | {
-      component?: ?React.ComponentType<PropsT>,
-      props?: ?{},
-      style?: ?{},
-    }
-  | React.ComponentType<PropsT>;
-
 export type BaseInputComponentsT = {
-  InputContainer?: ComponentOverridesT,
-  Input?: ComponentOverridesT,
+  InputContainer?: OverrideT<PropsT>,
+  Input?: OverrideT<PropsT>,
   // TODO: Next two seems like shouldn't be in components prop
-  Before?: ComponentOverridesT,
-  After?: ComponentOverridesT,
+  Before?: OverrideT<PropsT>,
+  After?: OverrideT<PropsT>,
 };
 
 export type InputComponentsT = BaseInputComponentsT & {
-  Root?: ComponentOverridesT,
-  Label?: ComponentOverridesT,
-  StartEnhancer?: ComponentOverridesT,
-  EndEnhancer?: ComponentOverridesT,
-  Caption?: ComponentOverridesT,
+  Root?: OverrideT<PropsT>,
+  Label?: OverrideT<PropsT>,
+  StartEnhancer?: OverrideT<PropsT>,
+  EndEnhancer?: OverrideT<PropsT>,
+  Caption?: OverrideT<PropsT>,
 };
 
 export type BaseInputPropsT = {
@@ -65,7 +58,7 @@ export type BaseInputPropsT = {
   onBlur: (e: SyntheticEvent<HTMLInputElement>) => void,
   onChange: (e: SyntheticEvent<HTMLInputElement>) => void,
   onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
-  override: BaseInputComponentsT,
+  overrides: BaseInputComponentsT,
   placeholder: string,
   required: boolean,
   size: SizeT,
@@ -75,7 +68,7 @@ export type BaseInputPropsT = {
 
 export type InputPropsT = {
   ...BaseInputPropsT,
-  override: InputComponentsT,
+  overrides: InputComponentsT,
   label: ?(React.Node | ((props: PropsT) => React.Node)),
   caption: ?(React.Node | ((props: PropsT) => React.Node)),
   startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
@@ -92,7 +85,7 @@ export type StatefulContainerPropsT = {
 };
 
 type OmitPropsT = {
-  override: InputComponentsT,
+  overrides: InputComponentsT,
   children: ?(props: PropsT) => React.Node,
 };
 
@@ -102,5 +95,5 @@ type StInputPropsDiffT = $Diff<FullStPropsT, OmitPropsT>;
 
 export type StatefulInputPropsT = {
   ...StInputPropsDiffT,
-  override?: InputComponentsT,
+  overrides?: InputComponentsT,
 };

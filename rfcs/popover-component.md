@@ -9,6 +9,10 @@
 * `StyledBody`
 * `StyledInner`
 * `StyledPadding`
+* `ACCESSIBILITY_TYPE`
+* `PLACEMENT`
+* `TRIGGER_TYPE`
+* `STATE_CHANGE_TYPE`
 
 ### `StatefulContainer` API
 
@@ -74,8 +78,8 @@ Main popover container component that gets positioned next to the anchor:
 
 * `$isOpen`: Propagated from the parent
 * `$iAnimating`: `true` if the popover should currently be animating in or out.
-* `$positionStyles`: Popover positioning css rules
-* `$arrowStyles`: Popover arrow positioning css rules
+* `$arrowOffset`: Object of numeric top/left pixel positions to offset arrow
+* `$popoverOffset`: Object of numeric top/left pixel positions to offset popover
 * `$showArrow`: Propagated from the parent
 * `$placement`: Runtime placement (may differ from placement prop if popover would have overflowed viewport)
 * `$ref`: React ref for the popover element (should be passed down to dom element)
@@ -86,8 +90,8 @@ Main popover container component that gets positioned next to the anchor:
 
 * `$isOpen`: Propagated from the parent
 * `$iAnimating`: `true` if the popover should currently be animating in or out.
-* `$positionStyles`: Popover positioning css rules
-* `$arrowStyles`: Popover arrow positioning css rules
+* `$arrowOffset`: Object of numeric top/left pixel positions to offset arrow
+* `$popoverOffset`: Object of numeric top/left pixel positions to offset popover
 * `$showArrow`: Propagated from the parent
 * `$placement`: Runtime placement (may differ from placement prop if popover would have overflowed viewport)
 * `$ref`: React ref for the arrow element (should be passed down to dom element)
@@ -121,7 +125,7 @@ export default () => {
       <Popover
         placement="topLeft"
         content={popoverContent}
-        components={{
+        overrides={{
           Body: CustomPopoverBody,
         }}
       >
@@ -195,7 +199,7 @@ const PopoverContent = ({close}) => (
 );
 
 export default () => (
-  <StatefulPopover components={{Content: PopoverContent}}>
+  <StatefulPopover overrides={{Content: PopoverContent}}>
     <Button>Share</Button>
   </StatefulPopover>
 )

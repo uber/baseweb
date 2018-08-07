@@ -12,7 +12,7 @@ import type {PopoverPropsWithoutChildrenT} from '../types';
 describe('StatefulPopoverContainer', () => {
   test('basic render', () => {
     const props = {
-      components: {
+      overrides: {
         Body: function CustomBody() {
           return <span />;
         },

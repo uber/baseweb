@@ -9,6 +9,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import fs from 'fs';
 import path from 'path';
 
+import flowEntry from './scripts/rollup-plugin-flow-entry';
+
 function getComponents() {
   return fs.readdirSync('./src/components').filter(filename => {
     const {ext, name} = path.parse(filename);
@@ -53,23 +55,26 @@ function getSharedConfig({filePath, name}) {
         sourcemap: 'inline',
       },
     ],
-    external: ['react', 'react-dom'],
     plugins: [
       progress(),
-      nodeResolve(),
-      babel({
-        babelrc: false,
-        presets: [['es2015', {modules: false}], 'stage-1', 'react'],
-        plugins: ['external-helpers'],
+      nodeResolve({
+        // https://github.com/rollup/rollup-plugin-node-resolve/issues/77#issuecomment-383964286
+        only: [/^\.{0,2}\//],
       }),
-      visualizer(),
-      filesize(),
       commonjs({
         include: 'node_modules/**',
         namedExports: {
           'node_modules/create-react-context/index.js': ['createReactContext'],
         },
       }),
+      babel({
+        babelrc: false,
+        presets: [['es2015', {modules: false}], 'stage-1', 'react'],
+        plugins: ['external-helpers', require.resolve('./babel/cup.js')],
+      }),
+      visualizer(),
+      filesize(),
+      flowEntry(),
     ],
   };
 }

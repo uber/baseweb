@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env node */
 import React from 'react';
 import {mount, shallow} from 'enzyme';
 
@@ -14,13 +15,13 @@ describe('Stateless checkbox', function() {
   let wrapper,
     events = {};
   let allProps: any = {},
-    components,
+    overrides,
     isError,
     mockFn;
 
   beforeEach(function() {
     mockFn = jest.fn();
-    components = {
+    overrides = {
       Root: StyledRoot,
       Checkmark: StyledCheckmark,
       Label: StyledLabel,
@@ -31,10 +32,10 @@ describe('Stateless checkbox', function() {
       onChange: mockFn,
     };
     allProps = {
-      components,
+      overrides,
       ...events,
       labelPlacement: 'left',
-      label: 'some',
+      children: 'some',
       isError: isError,
       inputRef: React.createRef(),
       autoFocus: false,
@@ -53,7 +54,7 @@ describe('Stateless checkbox', function() {
     'should send props to %s',
     subcomponent => {
       const mockComp: any = jest.fn(() => <div>{subcomponent}</div>);
-      components[subcomponent] = mockComp;
+      overrides[subcomponent] = mockComp;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const instance = wrapper.instance();
       const sharedProps = {
@@ -107,22 +108,22 @@ describe('Stateless checkbox', function() {
 
   test('should show label text in label', function() {
     const mockComp = jest.fn(() => <div>test</div>);
-    components.Label = mockComp;
-    allProps.label = 'super-puper label';
+    overrides.Label = mockComp;
+    allProps.children = 'super-puper label';
     wrapper = mount(<StatelessCheckbox {...allProps} />);
-    expect(mockComp.mock.calls[0][0].children).toEqual(allProps.label);
+    expect(mockComp.mock.calls[0][0].children).toEqual(allProps.children);
   });
 
   test.each([['top', 0], ['left', 0], ['right', 3], ['bottom', 3]])(
     'should place label according to dock to %s',
     (labelPlacement, index) => {
       const mockComp = jest.fn(() => <div>test</div>);
-      components.Root = mockComp;
-      allProps.label = 'super-puper label';
+      overrides.Root = mockComp;
+      allProps.children = 'super-puper label';
       allProps.labelPlacement = labelPlacement;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const subComp = mockComp.mock.calls[0][0].children[index];
-      const isLabel = comp => comp.props.children === allProps.label;
+      const isLabel = comp => comp.props.children === allProps.children;
       expect(isLabel(subComp)).toBeTruthy();
     },
   );
