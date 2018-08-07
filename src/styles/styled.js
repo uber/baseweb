@@ -1,11 +1,9 @@
 // @flow
 import * as React from 'react';
 import {createStyled, withStyleDeep} from 'styletron-react-core';
-import {driver} from 'styletron-standard';
+import {driver, getInitialStyle} from 'styletron-standard';
 
 import {ThemeContext} from './theme-provider';
-
-const getInitialStyle = () => ({});
 
 const wrapper = StyledComponent =>
   function withThemeHOC(props) {
@@ -25,7 +23,9 @@ export default function styledWrapper(...args: any) {
   // Ex: <StyledDiv $style={{color: 'red'}} />
   // Issue for supporting this natively in styletron:
   // https://github.com/rtsao/styletron/issues/221
+  // $FlowFixMe
   return withStyleDeep(baseStyled(...args), props => {
+    // $FlowFixMe
     const {$style} = props;
     if (typeof $style === 'function') {
       return $style(props);
