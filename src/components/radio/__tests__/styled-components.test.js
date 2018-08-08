@@ -30,7 +30,7 @@ import {
   StyledRadioMark,
   StyledInput,
   StyledRadioGroupRoot,
-} from './index';
+} from '../index';
 
 describe('RadioGroup styled components', () => {
   describe('StyledLabel', () => {

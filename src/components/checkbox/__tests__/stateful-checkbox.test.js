@@ -25,11 +25,12 @@ THE SOFTWARE.
 import React from 'react';
 import {mount} from 'enzyme';
 
-describe('Stateful radiogroup', function() {
+describe('Stateful checkbox', function() {
   let allProps: any, wrapper;
 
   beforeEach(function() {
     allProps = {};
+    jest.mock('../checkbox', () => jest.fn(() => <div>test</div>));
   });
 
   afterEach(function() {
@@ -37,36 +38,47 @@ describe('Stateful radiogroup', function() {
     wrapper && wrapper.unmount();
   });
 
-  test('should provide overrides components to render', function() {
-    jest.mock('./radio', () => jest.fn(() => <div>test</div>));
+  test('should provide default styled components to render', function() {
     const {
       StyledRoot,
       StyledLabel,
-      StyledRadioMark,
+      StyledCheckmark,
       StyledInput,
-      StyledRadio,
-      StatefulRadioGroup,
-    } = require('./index');
+      StatefulCheckbox,
+    } = require('../index');
     allProps.overrides = {
       Root: StyledRoot,
       Label: StyledLabel,
-      RadioMark: StyledRadioMark,
+      Checkmark: StyledCheckmark,
       Input: StyledInput,
     };
-    const radio: any = require('./radio');
-    wrapper = mount(
-      <StatefulRadioGroup {...allProps}>
-        <StyledRadio value="1">First</StyledRadio>
-        <StyledRadio value="2">Second</StyledRadio>
-        <StyledRadio value="3">Third</StyledRadio>
-      </StatefulRadioGroup>,
-    );
-    const {overrides} = radio.mock.calls[0][0];
+    const checkbox: any = require('../checkbox');
+    wrapper = mount(<StatefulCheckbox {...allProps} />);
+    const {overrides} = checkbox.mock.calls[0][0];
     expect(overrides).toEqual({
       Root: StyledRoot,
-      Checkmark: StyledRadioMark,
+      Checkmark: StyledCheckmark,
       Label: StyledLabel,
       Input: StyledInput,
+    });
+  });
+
+  test('should pass all the other props to stateless checkbox', function() {
+    const otherProps = {
+      someProp: 'some other props',
+      autoFocus: false,
+    };
+    allProps = {...allProps, ...otherProps};
+    const {StatefulCheckbox} = require('../index');
+    const checkbox: any = require('../checkbox');
+    wrapper = mount(<StatefulCheckbox {...allProps} />);
+    // eslint-disable-next-line no-unused-vars
+    const {overrides, ...rest} = checkbox.mock.calls[1][0];
+    expect(rest).toMatchObject({
+      someProp: 'some other props',
+      checked: false,
+      autoFocus: false,
+      isIndeterminate: false,
     });
   });
 });

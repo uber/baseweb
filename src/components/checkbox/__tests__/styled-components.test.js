@@ -24,7 +24,7 @@ THE SOFTWARE.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledRoot, StyledLabel, StyledCheckmark, StyledInput} from './index';
+import {StyledRoot, StyledLabel, StyledCheckmark, StyledInput} from '../index';
 
 describe('Checkbox styled components', () => {
   describe('StyledLabel', () => {
