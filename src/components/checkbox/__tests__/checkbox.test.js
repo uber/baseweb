@@ -9,7 +9,7 @@ import {
   StyledCheckmark,
   StyledInput,
   Checkbox as StatelessCheckbox,
-} from './index';
+} from '../index';
 
 describe('Stateless checkbox', function() {
   let wrapper,
