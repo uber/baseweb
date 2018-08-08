@@ -7,7 +7,7 @@ describe('Stateful checkbox', function() {
 
   beforeEach(function() {
     allProps = {};
-    jest.mock('./checkbox', () => jest.fn(() => <div>test</div>));
+    jest.mock('../checkbox', () => jest.fn(() => <div>test</div>));
   });
 
   afterEach(function() {
@@ -22,14 +22,14 @@ describe('Stateful checkbox', function() {
       StyledCheckmark,
       StyledInput,
       StatefulCheckbox,
-    } = require('./index');
+    } = require('../index');
     allProps.overrides = {
       Root: StyledRoot,
       Label: StyledLabel,
       Checkmark: StyledCheckmark,
       Input: StyledInput,
     };
-    const checkbox: any = require('./checkbox');
+    const checkbox: any = require('../checkbox');
     wrapper = mount(<StatefulCheckbox {...allProps} />);
     const {overrides} = checkbox.mock.calls[0][0];
     expect(overrides).toEqual({
@@ -46,8 +46,8 @@ describe('Stateful checkbox', function() {
       autoFocus: false,
     };
     allProps = {...allProps, ...otherProps};
-    const {StatefulCheckbox} = require('./index');
-    const checkbox: any = require('./checkbox');
+    const {StatefulCheckbox} = require('../index');
+    const checkbox: any = require('../checkbox');
     wrapper = mount(<StatefulCheckbox {...allProps} />);
     // eslint-disable-next-line no-unused-vars
     const {overrides, ...rest} = checkbox.mock.calls[1][0];
