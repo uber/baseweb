@@ -1,9 +1,15 @@
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledRoot, StyledLabel, StyledCheckmark, StyledInput} from './index';
+import {
+  StyledRoot,
+  StyledLabel,
+  StyledRadioMark,
+  StyledInput,
+  StyledRadioGroupRoot,
+} from '../index';
 
-describe('Checkbox styled components', () => {
+describe('RadioGroup styled components', () => {
   describe('StyledLabel', () => {
     test.each([[''], ['disabled'], ['$isError']])('', prop => {
       const props = {};
@@ -37,41 +43,40 @@ describe('Checkbox styled components', () => {
     });
   });
 
-  describe('StyledCheckmark', () => {
-    test.each([
-      [''],
-      ['$disabled'],
-      ['$disabled', '$checked'],
-      ['$isIndeterminate'],
-      ['$isFocused'],
-      ['$isActive'],
-      ['$isHovered'],
-      ['$checked'],
-      ['$checked', '$isHovered'],
-      ['$checked', '$isActive'],
-      ['$checked', '$isFocused'],
-      ['$isError'],
-      ['$isError', '$checked'],
-      ['$isError', '$checked', '$isHovered'],
-      ['$isError', '$checked', '$isActive'],
-      ['$isError', '$checked', '$isFocused'],
-      ['$isError', '$isHovered'],
-      ['$isError', '$isActive'],
-      ['$isError', '$isFocused'],
-    ])('', (...props) => {
-      const passedProps = {};
-      props.map(prop => {
-        passedProps[prop] = true;
-      });
+  describe('StyledRadioGroupRoot', function() {
+    test('RadioGroupRoot', () => {
       const component = shallow(
-        <StyledCheckmark {...passedProps}>
+        <StyledRadioGroupRoot>
           <div />
-        </StyledCheckmark>,
+        </StyledRadioGroupRoot>,
       );
-      expect(component.instance().getStyles()).toMatchSnapshot(
-        'has correct styles when ' + props.join(' '),
-      );
+      ['horizontal', 'vertical'].forEach(align => {
+        component.setProps({
+          $align: align,
+        });
+        expect(component.instance().getStyles()).toMatchSnapshot(
+          'StyledRadioGroupRoot has correct styles when set to ' + align,
+        );
+      });
     });
+  });
+
+  describe('StyledRadioMark', () => {
+    test.each([[''], ['disabled'], ['$isFocused'], ['checked'], ['$isError']])(
+      '',
+      prop => {
+        const props = {};
+        props[prop] = true;
+        const component = shallow(
+          <StyledRadioMark {...props}>
+            <div />
+          </StyledRadioMark>,
+        );
+        expect(component.instance().getStyles()).toMatchSnapshot(
+          'has correct styles when ' + prop,
+        );
+      },
+    );
   });
 
   describe('StyledInput', function() {
