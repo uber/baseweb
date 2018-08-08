@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {STATE_TYPE} from './constants';
+import {STATE_TYPE} from '../constants';
 
-import {StatefulContainer} from './index';
-import type {StateReducerT} from './types';
+import {StatefulContainer} from '../index';
+import type {StateReducerT} from '../types';
 
 describe('Stateful container', function() {
   let allProps: any, childFn;
