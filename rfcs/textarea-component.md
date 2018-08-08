@@ -18,7 +18,7 @@
 
 * `children: (props: Props) => React.Node` - Required
 * `initialState: {value: string}` - Optional
-  Initial state of an uncontrolled textarea component. - `value` - an initial textarea value
+  Initial state of an uncontrolled textarea component. - `value` - an initial textarea value.
 * `stateReducer: (type: 'change', nextState: {}, currentState: {}, e: Event) => stateToSet: {}` - Optional
   A state change handler.
   * `type` - a state change type
@@ -30,34 +30,36 @@
 
 ### Textarea component API
 
-* `overrides: {InputContainer, Input}` - Optional
-  * `InputContainer: ReactComponent` - Optional
-  * `Input: ReactComponent` - Optional
-    Overrides for presentational components.
-* `id: string` - Optional
-  Id attribute value to be added to the textarea element
-* `required: boolean` - Optional
-  Indicates if the field is required and sets `aria-required` attribute
-* `value: string` - Optional
-  Field value.
-* `placeholder: string` - Optional
-  -Placeholder value.
-* `disabled: boolean` - Optional
-  Defines if the field is disabled.
-* `inputRef: {}` - Optional
-  A ref to access an textarea element.
 * `autoFocus: boolean` - Optional
   If `true` the textarea will be focused on the first mount.
+* `disabled: boolean` - Optional
+  Defines if the field is disabled.
 * `error: boolean | function` - Optional
   Error state of the field.
-* `size: 'default' | 'compact'`
-  Defines the size of the form control.
+* `id: string` - Optional
+  Id attribute value to be added to the textarea element.
+* `inputRef: {}` - Optional
+  A ref to access an textarea element.
+* `name: string` - Optional
+  Name attribute value.
+* `overrides: {InputContainer, Input}` - Optional
+  * `InputContainer: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
+  * `Input: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
+    Overrides for presentational components.
 * `onChange: Function` - Optional
   onChange event handler.
 * `onFocus: Function` - Optional
   onFocus event handler.
 * `onBlur: Function` - Optional
   onBlur event handler.
+* `placeholder: string` - Optional
+  -Placeholder value.
+* `required: boolean` - Optional
+  Indicates if the field is required and sets `aria-required` attribute.
+* `size: 'default' | 'compact'`
+  Defines the size of the form control.
+* `value: string` - Optional
+  Field value.
 
 ### Presentational components props API
 

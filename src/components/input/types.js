@@ -24,6 +24,7 @@ THE SOFTWARE.
 // @flow
 import * as React from 'react';
 import type {OverrideT} from '../../helpers/overrides';
+import type {ThemeT} from '../../styles';
 import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants';
 
 type SyntheticEventT = SyntheticEvent<HTMLElement>;
@@ -55,7 +56,7 @@ export type SharedPropsT = {
   $adjoined: AdjoinedT,
   $size: SizeT,
   $required: boolean,
-  $theme: *,
+  $theme: ThemeT,
 };
 
 export type PropsT = *;

@@ -1,8 +1,7 @@
 // @flow
-// export {default as StatefulTextarea} from './stateful-textarea';
-// export {default as StatefulContainer} from './stateful-container';
 export {default as Textarea} from './textarea';
 export {default as StatefulTextarea} from './stateful-textarea';
+export {default as StatefulContainer} from './stateful-container';
 // Styled elements
 export {
   TextareaContainer as StyledTextareaContainer,

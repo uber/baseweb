@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import StatefulContainer from '../input/stateful-container';
+import StatefulContainer from './stateful-container';
 import Textarea from './textarea';
 import type {StatefulTextareaPropsT, TextareaPropsT} from './types';
 

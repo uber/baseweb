@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import type {TextareaComponentsT, TextareaPropsT} from './types';
-import {getComponent} from '../../helpers/overrides';
+import type {TextareaPropsT} from './types';
+import {mergeOverrides} from '../../helpers/overrides';
 import getBuiId from '../../utils/get-bui-id';
 import {BaseInput, SIZE, CUSTOM_INPUT_TYPE} from '../input';
 import {Textarea as StyledTextarea} from './styled-components';
@@ -13,6 +13,7 @@ class Textarea extends React.Component<TextareaPropsT> {
     error: false,
     id: getBuiId(),
     inputRef: React.createRef(),
+    name: '',
     onBlur: () => {},
     onChange: () => {},
     onFocus: () => {},
@@ -25,22 +26,12 @@ class Textarea extends React.Component<TextareaPropsT> {
   };
 
   render() {
-    const overrides: TextareaComponentsT = {
-      ...this.props.overrides,
-      Input: this.props.overrides
-        ? this.props.overrides.Input &&
-          typeof this.props.overrides.Input === 'object'
-          ? // $FlowFixMe
-            {
-              ...this.props.overrides.Input,
-              component: getComponent(
-                this.props.overrides.Input,
-                StyledTextarea,
-              ),
-            }
-          : this.props.overrides.Input || StyledTextarea
-        : StyledTextarea,
-    };
+    const overrides = mergeOverrides(
+      {
+        Input: StyledTextarea,
+      },
+      this.props.overrides,
+    );
     return (
       <BaseInput
         {...this.props}

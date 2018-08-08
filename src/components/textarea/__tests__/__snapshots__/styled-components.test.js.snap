@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Textarea - Textarea - basic render: Textarea has correct default styles 1`] = `
+exports[`Textarea Textarea element - basic render: Textarea has correct default styles 1`] = `
 Object {
   "::placeholder": Object {
     "color": "$theme.colors.mono700",
@@ -27,7 +27,7 @@ Object {
 }
 `;
 
-exports[`Textarea - Textarea - basic render: Textarea has correct styles when compact and disabled 1`] = `
+exports[`Textarea Textarea element - basic render: Textarea has correct styles when compact and disabled 1`] = `
 Object {
   "::placeholder": Object {
     "color": "$theme.colors.mono600",
@@ -54,7 +54,7 @@ Object {
 }
 `;
 
-exports[`Textarea - TextareaContainer - basic render: TextareaContainer has correct default styles 1`] = `
+exports[`Textarea TextareaContainer - basic render: TextareaContainer has correct default styles 1`] = `
 Object {
   "backgroundColor": "$theme.colors.mono200",
   "borderColor": "$theme.colors.mono200",
@@ -76,7 +76,7 @@ Object {
 }
 `;
 
-exports[`Textarea - TextareaContainer - basic render: TextareaContainer has correct styles when compact 1`] = `
+exports[`Textarea TextareaContainer - basic render: TextareaContainer has correct styles when compact 1`] = `
 Object {
   "backgroundColor": "$theme.colors.mono100",
   "borderColor": "$theme.colors.primary400",
@@ -98,7 +98,7 @@ Object {
 }
 `;
 
-exports[`Textarea - TextareaContainer - basic render: TextareaContainer has correct styles when disabled 1`] = `
+exports[`Textarea TextareaContainer - basic render: TextareaContainer has correct styles when disabled 1`] = `
 Object {
   "backgroundColor": "$theme.colors.mono300",
   "borderColor": "$theme.colors.mono300",
@@ -120,7 +120,7 @@ Object {
 }
 `;
 
-exports[`Textarea - TextareaContainer - basic render: TextareaContainer has correct styles when error 1`] = `
+exports[`Textarea TextareaContainer - basic render: TextareaContainer has correct styles when error 1`] = `
 Object {
   "backgroundColor": "$theme.colors.mono100",
   "borderColor": "$theme.colors.negative400",
@@ -142,7 +142,7 @@ Object {
 }
 `;
 
-exports[`Textarea - TextareaContainer - basic render: TextareaContainer has correct styles when focused 1`] = `
+exports[`Textarea TextareaContainer - basic render: TextareaContainer has correct styles when focused 1`] = `
 Object {
   "backgroundColor": "$theme.colors.mono100",
   "borderColor": "$theme.colors.primary400",

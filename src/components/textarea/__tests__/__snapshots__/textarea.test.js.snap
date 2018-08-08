@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Textarea - basic functionality: Textarea has correct props 1`] = `
+exports[`Textarea Basic functionality: Textarea has correct props 1`] = `
 Object {
   "aria-invalid": false,
   "aria-required": false,
@@ -18,7 +18,7 @@ Object {
 }
 `;
 
-exports[`Textarea - basic functionality: textarea renders BaseInput with correct props passed 1`] = `
+exports[`Textarea Basic functionality: textarea renders BaseInput with correct props passed 1`] = `
 Object {
   "adjoined": "none",
   "autoFocus": false,
@@ -28,11 +28,14 @@ Object {
   "inputRef": Object {
     "current": null,
   },
+  "name": "",
   "onBlur": [MockFunction],
   "onChange": [MockFunction],
   "onFocus": [MockFunction],
   "overrides": Object {
-    "Input": [Function],
+    "Input": Object {
+      "component": [Function],
+    },
   },
   "placeholder": "Placeholder",
   "required": false,
@@ -43,7 +46,7 @@ Object {
 }
 `;
 
-exports[`Textarea - with component overrides: components overrides get passed to the BaseInput 1`] = `
+exports[`Textarea With component overrides: components overrides get passed to the BaseInput 1`] = `
 Object {
   "adjoined": "none",
   "autoFocus": false,
@@ -53,11 +56,14 @@ Object {
   "inputRef": Object {
     "current": null,
   },
+  "name": "",
   "onBlur": [MockFunction],
   "onChange": [MockFunction],
   "onFocus": [MockFunction],
   "overrides": Object {
-    "Input": [Function],
+    "Input": Object {
+      "component": [Function],
+    },
     "InputContainer": Object {
       "component": [Function],
     },

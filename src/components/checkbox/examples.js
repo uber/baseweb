@@ -22,10 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 // @flow
-
+/* eslint-env browser */
 /* eslint-disable react/display-name*/
 
-import window from 'global/window';
 import * as React from 'react';
 import {styled, withStyle} from 'styletron-react';
 import {
