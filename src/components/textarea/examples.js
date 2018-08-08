@@ -7,7 +7,6 @@ import {
   StatefulTextarea as Textarea,
   Textarea as ControlledTextarea,
   StyledTextarea,
-  StyledTextareaContainer,
   SIZE,
 } from './index';
 
@@ -26,7 +25,7 @@ const Button = styled('button', ({$theme}) => {
   };
 });
 
-const RootWithStyle = withStyle(StyledTextareaContainer, props => {
+const TextareaWithStyle = withStyle(StyledTextarea, props => {
   const {$disabled, $error, $isFocused, $theme: {colors, sizing}} = props;
   return {
     borderColor: $disabled
@@ -104,8 +103,9 @@ export default {
     return (
       <React.Fragment>
         <Textarea
-          overrides={{InputContainer: RootWithStyle}}
-          placeholder="With style overrides on the Root element"
+          autoFocus
+          overrides={{Input: TextareaWithStyle}}
+          placeholder="With style overrides on the textarea element"
         />
         <br />
         <Textarea

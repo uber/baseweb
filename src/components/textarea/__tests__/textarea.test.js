@@ -2,6 +2,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import Textarea from '../textarea';
+import {Textarea as StyledTextarea} from '../styled-components';
 import {BaseInput} from '../../input';
 
 describe('Textarea', () => {
@@ -80,7 +81,7 @@ describe('Textarea', () => {
     const baseInput = wrapper.find(BaseInput);
     // Is focused when mount
     expect(baseInput.instance().state.isFocused).toEqual(true);
-    // ref's focus methos is called
+    // ref's focus method is called
     expect(focus).toBeCalled();
   });
 
@@ -93,14 +94,14 @@ describe('Textarea', () => {
       onChange: jest.fn(),
       overrides: {
         InputContainer: {
-          component: function CustomContainer(props) {
-            return <span id="test-container" {...props} />;
+          component: function CustomContainer(props: {children: *}) {
+            return <span id="test-container">{props.children}</span>;
           },
         },
-        Input: function CustomInput(props) {
+        Input: function CustomTextarea(props) {
           return (
             <span id="test-input">
-              <textarea {...props} />
+              <StyledTextarea {...props} />
             </span>
           );
         },

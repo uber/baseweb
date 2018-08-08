@@ -36,6 +36,9 @@ Object {
     "Input": Object {
       "component": [Function],
     },
+    "InputContainer": Object {
+      "component": [Function],
+    },
   },
   "placeholder": "Placeholder",
   "required": false,

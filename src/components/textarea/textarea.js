@@ -4,7 +4,10 @@ import type {TextareaPropsT} from './types';
 import {mergeOverrides} from '../../helpers/overrides';
 import getBuiId from '../../utils/get-bui-id';
 import {BaseInput, SIZE, CUSTOM_INPUT_TYPE} from '../input';
-import {Textarea as StyledTextarea} from './styled-components';
+import {
+  Textarea as StyledTextarea,
+  TextareaContainer as StyledTextareaContainer,
+} from './styled-components';
 
 class Textarea extends React.Component<TextareaPropsT> {
   static defaultProps = {
@@ -29,6 +32,7 @@ class Textarea extends React.Component<TextareaPropsT> {
     const overrides = mergeOverrides(
       {
         Input: StyledTextarea,
+        InputContainer: StyledTextareaContainer,
       },
       this.props.overrides,
     );
@@ -36,7 +40,6 @@ class Textarea extends React.Component<TextareaPropsT> {
       <BaseInput
         {...this.props}
         type={CUSTOM_INPUT_TYPE.textarea}
-        // $FlowFixMe
         overrides={overrides}
       />
     );

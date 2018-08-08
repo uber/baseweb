@@ -1,11 +1,15 @@
 // @flow
 import {styled} from '../../styles';
-import {getInputStyles} from '../input/styled-components';
+import {
+  getInputStyles,
+  getInputContainerStyles,
+} from '../input/styled-components';
 
-export {InputContainer as TextareaContainer} from '../input/styled-components';
+export const TextareaContainer = styled('div', props => {});
 
 export const Textarea = styled('textarea', props => {
   return {
     ...getInputStyles(props),
+    ...getInputContainerStyles(props),
   };
 });

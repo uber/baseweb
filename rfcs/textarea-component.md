@@ -43,9 +43,11 @@
 * `name: string` - Optional
   Name attribute value.
 * `overrides: {InputContainer, Input}` - Optional
+  Overrides for presentational components.
   * `InputContainer: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
+    A textarea container, no styles applied to it by default.
   * `Input: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
-    Overrides for presentational components.
+    A styled textarea element.
 * `onChange: Function` - Optional
   onChange event handler.
 * `onFocus: Function` - Optional
@@ -56,6 +58,8 @@
   -Placeholder value.
 * `required: boolean` - Optional
   Indicates if the field is required and sets `aria-required` attribute.
+* `rows: number` - Optional
+  Sets the number of rows to display
 * `size: 'default' | 'compact'`
   Defines the size of the form control.
 * `value: string` - Optional
@@ -77,12 +81,12 @@ Next properties are passed to every presentational (styled) component that texta
 ```javascript
 import {withStyle} from 'styletron-react';
 import {withProps} from '../helpers';
-import {StatefulTextarea as Textarea, StyledTextareaContainer} from './index';
+import {StatefulTextarea as Textarea, StyledTextarea} from './index';
 
-const ContainerWithProps = withProps(StyledTextareaContainer, {
+const TextareaWithProps = withProps(StyledTextarea, {
   'data-value': 'some value',
 });
-const ContainerWithStyle = withStyle(StyledTextareaContainer, props => {
+const TextareaWithStyle = withStyle(StyledTextarea, props => {
   const {$isFocused, $theme: {sizing}} = props;
   return {
     borderRadius: $isFocused ? '0' : sizing.scale100,
@@ -92,8 +96,8 @@ const ContainerWithStyle = withStyle(StyledTextareaContainer, props => {
 export default () => {
   return (
     <div>
-      <Textarea overrides={{InputContainer: ContainerWithProps}} />
-      <Textarea overrides={{InputContainer: ContainerWithStyle}} />
+      <Textarea overrides={{Input: TextareaWithProps}} />
+      <Textarea overrides={{Input: TextareaWithStyle}} />
     </div>
   );
 };

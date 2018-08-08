@@ -125,7 +125,7 @@ export const InputEnhancer = styled('div', props => {
   };
 });
 
-export const InputContainer = styled('div', props => {
+export const getInputContainerStyles = (props: SharedPropsT) => {
   const {
     $isFocused,
     $adjoined,
@@ -162,7 +162,10 @@ export const InputContainer = styled('div', props => {
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
   };
-});
+};
+
+export const InputContainer = styled('div', getInputContainerStyles);
+
 export const getInputStyles = (props: SharedPropsT) => {
   const {
     $disabled,
@@ -181,6 +184,7 @@ export const getInputStyles = (props: SharedPropsT) => {
     outline: 'none',
     ...getInputPadding($size, sizing),
     width: '100%',
+    maxWidth: '100%',
     '::placeholder': {
       color: $disabled ? colors.mono600 : colors.mono700,
     },
