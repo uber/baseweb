@@ -9,3 +9,7 @@ storybook-static
 coverage
 /e2e/dist/index.js
 docs
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace
