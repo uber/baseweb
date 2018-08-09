@@ -33,7 +33,7 @@ run((driver, browser) => {
       runBrowserAccecibilityTest(driver, 'label');
     });
 
-    test('Checked state', async function() {
+    test.skip('Checked state', async function() {
       let checkbox;
       await goToUrl(driver, suite, tests.SIMPLE_EXAMPLE);
       checkbox = await driver.findElement(By.css('label'));
