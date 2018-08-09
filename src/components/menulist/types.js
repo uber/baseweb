@@ -1,20 +1,25 @@
 // @flow
 /* eslint-disable import/prefer-default-export */
 import * as React from 'react';
+import type {OverrideT} from '../../helpers/overrides';
+import {STATE_CHANGE_TYPES} from './constants';
 
 export type ItemsT = Array<*>;
+
 export type GetItemLabelFnT = (item: *) => string;
 
 export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
+
 export type RootRefT = React$ElementRef<*>;
+
 export type OnItemSelectFnT = (
   item: ?{},
   event: SyntheticEvent<> | KeyboardEvent,
 ) => mixed;
 
-export type InjectableComponentPropsT = {
-  List?: React.ComponentType<{}>,
-  ListItem?: React.ComponentType<{}>,
+export type OverridesT = {
+  List?: OverrideT<*>,
+  ListItem?: OverrideT<*>,
 };
 
 export type RenderItemPropsT = {
@@ -26,13 +31,14 @@ export type RenderItemPropsT = {
   // indicates when the item is visually focused
   'aria-activedescendant'?: boolean,
 };
+
 export type GetRequiredItemPropsFnT = (
   item: {},
   index: number,
 ) => RenderItemPropsT;
 
 export type StateReducerFnT = (
-  changeType: string,
+  changeType: $Keys<typeof STATE_CHANGE_TYPES>,
   changes: StatefulContainerStateT,
   currentState: StatefulContainerStateT,
 ) => StatefulContainerStateT;
@@ -73,7 +79,7 @@ export type StatefulContainerPropsT = {
 };
 
 export type StatefulMenulistPropsT = StatefulContainerPropsT & {
-  components?: InjectableComponentPropsT,
+  overrides?: OverridesT,
 };
 
 export type StatelessMenulistPropsT = {
@@ -82,5 +88,5 @@ export type StatelessMenulistPropsT = {
   rootRef: RootRefT,
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   highlightedIndex?: number,
-  components?: InjectableComponentPropsT,
+  overrides?: OverridesT,
 };

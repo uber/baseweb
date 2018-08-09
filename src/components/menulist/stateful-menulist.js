@@ -11,14 +11,14 @@ export default class StatefulMenuList extends React.Component<
   StatefulMenulistPropsT,
 > {
   static defaultProps = {
-    components: {},
+    overrides: {},
   };
 
   render() {
-    const {components, ...props} = this.props;
+    const {overrides, ...props} = this.props;
     return (
       <StatefulContainer {...props}>
-        {renderProps => <Menulist {...renderProps} components={components} />}
+        {renderProps => <Menulist {...renderProps} overrides={overrides} />}
       </StatefulContainer>
     );
   }

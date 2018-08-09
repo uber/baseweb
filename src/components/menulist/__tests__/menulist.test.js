@@ -11,7 +11,7 @@ function getSharedProps() {
     items: mockItems,
     getItemLabel: item => item.label,
     rootRef: React.createRef(),
-    components: {
+    overrides: {
       List,
       ListItem,
     },
@@ -55,7 +55,7 @@ describe('Menulist Stateless Component', () => {
       .mockImplementation(() => <div id="list-item" />);
     const props = {
       ...getSharedProps(),
-      components: {
+      overrides: {
         ListItem: NewListItem,
       },
     };

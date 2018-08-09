@@ -33,7 +33,7 @@ storiesOf('Menulist', module)
       items={ITEMS}
       getItemLabel={item => item.label}
       rootRef={React.createRef()}
-      components={{
+      overrides={{
         // $FlowFixMe
         List: ListMaxWidth,
       }}
@@ -44,7 +44,7 @@ storiesOf('Menulist', module)
       items={ITEMS}
       onItemSelect={action('item select')}
       getItemLabel={item => item.label}
-      components={{
+      overrides={{
         // $FlowFixMe
         List: withStyle(ListMaxWidth, {height: '150px', overflow: 'auto'}),
       }}
