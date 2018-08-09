@@ -9,7 +9,6 @@ steps:
     plugins:
       'docker-compose':
         build:
-          - chrome-standalone
           - e2e-test-chrome
           - e2e-server
           - e2e-server-healthy
