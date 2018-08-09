@@ -7,7 +7,7 @@ import {
 } from './styled-components';
 import {STYLETRON_PROP_MAPPER} from './constants';
 import {mapStyletronProps} from './utils';
-import {getComponent} from '../../helpers/overrides';
+import {getOverride} from '../../helpers/overrides';
 // Types
 import type {StatelessMenulistPropsT} from './types';
 
@@ -19,8 +19,8 @@ export default function MenuList({
   overrides = {},
 }: StatelessMenulistPropsT) {
   const {List: ListOverride, ListItem: ListItemOverride} = overrides;
-  const List = getComponent(ListOverride, StyledList);
-  const ListItem = getComponent(ListItemOverride, StyledListItem);
+  const List = getOverride(ListOverride) || StyledList;
+  const ListItem = getOverride(ListItemOverride) || StyledListItem;
   return (
     <List $ref={rootRef}>
       {items.map((item, index) => {
