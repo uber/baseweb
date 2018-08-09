@@ -1,21 +1,20 @@
 // @flow
+/* eslint-env browser */
 import React from 'react';
 import {mount} from 'enzyme';
-import document from 'global/document';
 import StatefulContainer from '../stateful-container';
 import {KEY_STRINGS, STATE_CHANGE_TYPES} from '../constants';
 import {scrollItemIntoView} from '../utils';
 
 jest.mock('../utils');
-jest.mock('global/document', () => ({
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
-}));
 
 const mockItems = [{label: 'item1'}, {label: 'item2'}];
 const mockGetItemLabel = item => item.label;
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockItemSelect = jest.fn();
+
+const originalAddEventListener = document.addEventListener;
+const originalRemoveEventListener = document.removeEventListener;
 
 function getSharedProps() {
   return {
@@ -30,8 +29,22 @@ function getSharedProps() {
 }
 
 describe('Menulist StatefulContainer', () => {
+  beforeAll(() => {
+    // $FlowFixMe
+    document.addEventListener = jest.fn();
+    // $FlowFixMe
+    document.removeEventListener = jest.fn();
+  });
+
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    // $FlowFixMe
+    document.addEventListener = originalAddEventListener;
+    // $FlowFixMe
+    document.removeEventListener = originalRemoveEventListener;
   });
 
   test('renders and passes required props to children function', () => {

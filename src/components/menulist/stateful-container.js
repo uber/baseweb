@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import document from 'global/document';
 // Files
 import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants';
 import {scrollItemIntoView} from './utils';
@@ -31,12 +30,18 @@ export default class MenuListStatefulContainer extends React.Component<
   state: StatefulContainerStateT = {...this.props.initialState};
 
   componentDidMount() {
-    // TODO: perhaps only bind event listener on focus
-    document.addEventListener('keydown', this.onKeyDown);
+    // $FlowFixMe
+    if (__BROWSER__) {
+      // TODO: perhaps only bind event listener on focus
+      document.addEventListener('keydown', this.onKeyDown);
+    }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyDown);
+    // $FlowFixMe
+    if (__BROWSER__) {
+      document.removeEventListener('keydown', this.onKeyDown);
+    }
   }
 
   // One array to hold all of list item refs
