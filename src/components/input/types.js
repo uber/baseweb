@@ -24,14 +24,10 @@ THE SOFTWARE.
 // @flow
 import * as React from 'react';
 import type {OverrideT} from '../../helpers/overrides';
+import type {ThemeT} from '../../styles';
 import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants';
 
-// function withEnhancedTypes<Props, Component: React.ComponentType<Props>>(
-//   WrappedComponent: Component
-// ): React.ComponentType<React.ElementConfig<Component>> {
-//   return props => <WrappedComponent {...props} />;
-// }
-// export {withEnhancedTypes};
+type SyntheticEventT = SyntheticEvent<HTMLElement>;
 
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 
@@ -53,22 +49,32 @@ export type StateReducerT = (
   currentState: StateT,
 ) => StateT;
 
-export type PropsT = mixed;
+export type SharedPropsT = {
+  $isFocused: boolean,
+  $disabled: boolean,
+  $error: boolean | React.Node,
+  $adjoined: AdjoinedT,
+  $size: SizeT,
+  $required: boolean,
+  $theme: ThemeT,
+};
+
+export type PropsT = *;
 
 export type BaseInputComponentsT = {
-  InputContainer?: OverrideT<PropsT>,
-  Input?: OverrideT<PropsT>,
+  InputContainer?: OverrideT<*>,
+  Input?: OverrideT<*>,
   // TODO: Next two seems like shouldn't be in components prop
-  Before?: OverrideT<PropsT>,
-  After?: OverrideT<PropsT>,
+  Before?: OverrideT<*>,
+  After?: OverrideT<*>,
 };
 
 export type InputComponentsT = BaseInputComponentsT & {
-  Root?: OverrideT<PropsT>,
-  Label?: OverrideT<PropsT>,
-  StartEnhancer?: OverrideT<PropsT>,
-  EndEnhancer?: OverrideT<PropsT>,
-  Caption?: OverrideT<PropsT>,
+  Root?: OverrideT<*>,
+  Label?: OverrideT<*>,
+  StartEnhancer?: OverrideT<*>,
+  EndEnhancer?: OverrideT<*>,
+  Caption?: OverrideT<*>,
 };
 
 export type BaseInputPropsT = {
@@ -78,15 +84,16 @@ export type BaseInputPropsT = {
   error: boolean | React.Node | ((props: PropsT) => React.Node),
   id: string,
   inputRef: {current: ?React.ElementRef<'input'>},
-  onBlur: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onChange: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
+  onBlur: (e: SyntheticEventT) => void,
+  onChange: (e: SyntheticEventT) => void,
+  onFocus: (e: SyntheticEventT) => void,
   overrides: BaseInputComponentsT,
   placeholder: string,
   required: boolean,
   size: SizeT,
   type: string,
   value: string,
+  rows?: number,
 };
 
 export type InputPropsT = {
@@ -96,20 +103,20 @@ export type InputPropsT = {
   caption: ?(React.Node | ((props: PropsT) => React.Node)),
   startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
   endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
-  onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
-  onBlur: (e: SyntheticEvent<HTMLInputElement>) => void,
+  onFocus: (e: SyntheticEventT) => void,
+  onBlur: (e: SyntheticEventT) => void,
 };
 
 export type StatefulContainerPropsT = {
   children: (props: PropsT) => React.Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
-  onChange: (e: SyntheticEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticEventT) => void,
 };
 
 type OmitPropsT = {
   overrides: InputComponentsT,
-  children: ?(props: PropsT) => React.Node,
+  children: ?(props: *) => React.Node,
 };
 
 type FullStPropsT = InputPropsT & StatefulContainerPropsT;

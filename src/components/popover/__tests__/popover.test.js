@@ -185,7 +185,7 @@ describe('Popover', () => {
     const onEsc = jest.fn();
     const content = <strong>Hello world</strong>;
     const button = <button type="button">Click me</button>;
-    mount(
+    wrapper = mount(
       <Popover isOpen content={content} onClick={onClick} onEsc={onEsc}>
         {button}
       </Popover>,

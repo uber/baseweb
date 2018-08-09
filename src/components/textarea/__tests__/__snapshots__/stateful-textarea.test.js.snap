@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Textarea StatefulTextarea - basic render: renders <StatefulContainer/> 1`] = `
+<StatefulContainer
+  initialState={Object {}}
+  onChange={[MockFunction]}
+  overrides={
+    Object {
+      "Input": [Function],
+    }
+  }
+  stateReducer={[Function]}
+/>
+`;
+
+exports[`Textarea StatefulTextarea - basic render: renders <Textarea/> as a child 1`] = `
+<Textarea
+  autoFocus={false}
+  disabled={false}
+  error={false}
+  id="bui-mock-id"
+  inputRef={
+    Object {
+      "current": null,
+    }
+  }
+  name=""
+  onBlur={[Function]}
+  onChange={[Function]}
+  onFocus={[Function]}
+  overrides={
+    Object {
+      "Input": [Function],
+    }
+  }
+  placeholder=""
+  required={false}
+  rows={3}
+  size="default"
+  value=""
+/>
+`;

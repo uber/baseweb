@@ -35,7 +35,10 @@ export {
   Input as StyledInput,
   Caption as StyledCaption,
 } from './styled-components';
-export {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants';
 
-// Flow
-export * from './types';
+export {
+  STATE_CHANGE_TYPE,
+  ADJOINED,
+  SIZE,
+  CUSTOM_INPUT_TYPE,
+} from './constants';

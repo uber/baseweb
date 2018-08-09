@@ -26,7 +26,7 @@ THE SOFTWARE.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import RadioGroupReadme from '../../../rfcs/radiogroup.md';
+import RadioGroupReadme from '../../../rfcs/radiogroup-component.md';
 import examples from './examples';
 
 //$FlowFixMe
