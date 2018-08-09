@@ -27,7 +27,7 @@ import getBuiId from '../../utils/get-bui-id';
 import {getOverride, getOverrideProps} from '../../helpers/overrides';
 import type {BaseInputPropsT, InternalStateT} from './types';
 import {getSharedProps} from './utils';
-import {ADJOINED, SIZE} from './constants';
+import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants';
 import {
   InputContainer as StyledInputContainer,
   Input as StyledInput,
@@ -63,12 +63,12 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
     }
   }
 
-  onFocus = (e: SyntheticFocusEvent<HTMLInputElement>) => {
+  onFocus = (e: SyntheticEvent<HTMLElement>) => {
     this.setState({isFocused: true});
     this.props.onFocus(e);
   };
 
-  onBlur = (e: SyntheticEvent<HTMLInputElement>) => {
+  onBlur = (e: SyntheticEvent<HTMLElement>) => {
     this.setState({isFocused: false});
     this.props.onBlur(e);
   };
@@ -84,6 +84,7 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
       required,
       type,
       value,
+      rows,
     } = this.props;
     return {
       $ref: inputRef,
@@ -95,13 +96,16 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       placeholder,
-      type: type,
+      type,
       value: value,
+      ...(type === CUSTOM_INPUT_TYPE.textarea ? {rows} : {}),
     };
   };
 
   render() {
     const {
+      value,
+      type,
       overrides: {
         InputContainer: InputContainerOverride,
         Input: InputOverride,
@@ -123,9 +127,6 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
         {...getOverrideProps(InputContainerOverride)}
         {...sharedProps}
       >
-        <span>
-          <i />
-        </span>
         {Before ? (
           <Before {...getOverrideProps(BeforeOverride)} {...sharedProps} />
         ) : null}
@@ -133,7 +134,9 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
           {...getOverrideProps(InputOverride)}
           {...this.getInputProps()}
           {...sharedProps}
-        />
+        >
+          {type === CUSTOM_INPUT_TYPE.textarea ? value : null}
+        </Input>
         {After ? (
           <After {...getOverrideProps(AfterOverride)} {...sharedProps} />
         ) : null}
