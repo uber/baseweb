@@ -142,7 +142,9 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
     width: '100%',
     backgroundColor: $disabled
       ? colors.mono300
-      : $isFocused || $error ? colors.mono100 : colors.mono200,
+      : $isFocused
+        ? colors.mono100
+        : $error ? colors.negative50 : colors.mono200,
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: $disabled
