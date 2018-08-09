@@ -97,7 +97,8 @@
   },
   "dependencies": {
     "connect": "^3.6.6",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "smoothscroll-polyfill": "^0.4.3"
   },
   "peerDependencies": {
     "react": ">= 16.4.0 < 17",
