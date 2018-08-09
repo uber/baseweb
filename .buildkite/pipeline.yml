@@ -33,7 +33,7 @@ steps:
     plugins:
       'docker-compose':
         run: baseui
-  - name: 'e2e'
+  - name: ':selenium: :chromium:'
     command: yarn test-e2e
     plugins:
       'docker-compose':
