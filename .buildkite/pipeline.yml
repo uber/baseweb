@@ -8,10 +8,13 @@ steps:
   - name: ':docker: :package: e2e'
     plugins:
       'docker-compose':
-        build: e2e-test-chrome
+        build:
+          - e2e-test-chrome
+          - e2e-server
+          - e2e-server-healthy
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
- # Wait until all images are built.
- # This way we can download the built image from a registry instead of building each for each test task.
+  # Wait until all images are built.
+  # This way we can download the built image from a registry instead of building each for each test task.
   - wait
   # All of the commands after the wait are run in parallel.
   - name: ':eslint:'
@@ -29,8 +32,12 @@ steps:
     plugins:
       'docker-compose':
         run: baseui
-  - name: 'e2e'
+  - name: ':selenium: :chromium:'
     command: yarn test-e2e
     plugins:
       'docker-compose':
         run: e2e-test-chrome
+        pull:
+          - e2e-test-chrome
+          - e2e-server
+          - e2e-server-healthy
