@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menulist Styled Components List - basic render: List has correct styles 1`] = `
+Object {
+  "background": "$theme.colors.white",
+  "borderRadius": "$theme.borders.radius300",
+  "boxShadow": "$theme.lighting.shadow600",
+  "display": "flex",
+  "flexDirection": "column",
+  "margin": 0,
+  "paddingBottom": "$theme.sizing.scale200",
+  "paddingLeft": "$theme.sizing.scale400",
+  "paddingRight": "$theme.sizing.scale400",
+  "paddingTop": "$theme.sizing.scale200",
+  "position": "relative",
+}
+`;
+
+exports[`Menulist Styled Components ListItem - basic render: ListItem has correct styles 1`] = `
+Object {
+  ":hover": Object {
+    "color": "$theme.colors.primary400",
+  },
+  "color": "$theme.colors.black",
+  "cursor": "pointer",
+  "display": "block",
+  "fontFamily": "$theme.typography.font400.fontFamily",
+  "fontSize": "$theme.typography.font400.fontSize",
+  "fontWeight": "$theme.typography.font400.fontWeight",
+  "lineHeight": "$theme.typography.font400.lineHeight",
+  "margin": 0,
+  "position": "relative",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "color",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+}
+`;
+
+exports[`Menulist Styled Components ListItem - highlighted render: ListItem has correct styles when highlighted 1`] = `
+Object {
+  ":hover": Object {
+    "color": "$theme.colors.primary400",
+  },
+  "color": "$theme.colors.primary",
+  "cursor": "pointer",
+  "display": "block",
+  "fontFamily": "$theme.typography.font400.fontFamily",
+  "fontSize": "$theme.typography.font400.fontSize",
+  "fontWeight": "$theme.typography.font400.fontWeight",
+  "lineHeight": "$theme.typography.font400.lineHeight",
+  "margin": 0,
+  "position": "relative",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "color",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+}
+`;
