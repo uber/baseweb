@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stateful Select Container should correctly render: Component has correct render  1`] = `
+<StatefulSelectContainer
+  initialState={Object {}}
+  onBlur={[Function]}
+  onChange={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  prop1="some other propq"
+  stateReducer={[Function]}
+>
+  <div>
+    test
+  </div>
+</StatefulSelectContainer>
+`;
