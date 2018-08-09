@@ -26,6 +26,7 @@ exports[`BaseInput - basic functionality: Base input has correct props 1`] = `
 Object {
   "aria-invalid": false,
   "aria-required": false,
+  "children": null,
   "disabled": false,
   "id": "bui-mock-id",
   "onBlur": [Function],

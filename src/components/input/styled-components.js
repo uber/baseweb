@@ -24,6 +24,7 @@ THE SOFTWARE.
 // @flow
 import {styled} from '../../styles';
 import {ADJOINED, SIZE, ENHANCER_POSITION} from './constants';
+import type {SharedPropsT} from './types';
 
 function getInputPadding(size, sizing) {
   return {
@@ -124,7 +125,7 @@ export const InputEnhancer = styled('div', props => {
   };
 });
 
-export const InputContainer = styled('div', props => {
+export const getInputContainerStyles = (props: SharedPropsT) => {
   const {
     $isFocused,
     $adjoined,
@@ -161,9 +162,11 @@ export const InputContainer = styled('div', props => {
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
   };
-});
+};
 
-export const Input = styled('input', props => {
+export const InputContainer = styled('div', getInputContainerStyles);
+
+export const getInputStyles = (props: SharedPropsT) => {
   const {
     $disabled,
     $error,
@@ -181,6 +184,7 @@ export const Input = styled('input', props => {
     outline: 'none',
     ...getInputPadding($size, sizing),
     width: '100%',
+    maxWidth: '100%',
     '::placeholder': {
       color: $disabled ? colors.mono600 : colors.mono700,
     },
@@ -188,4 +192,6 @@ export const Input = styled('input', props => {
       cursor: $disabled ? 'not-allowed' : 'text',
     },
   };
-});
+};
+
+export const Input = styled('input', getInputStyles);

@@ -61,12 +61,12 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     isFocused: this.props.autoFocus || false,
   };
 
-  onFocus = (e: SyntheticFocusEvent<HTMLInputElement>) => {
+  onFocus = (e: SyntheticEvent<HTMLElement>) => {
     this.setState({isFocused: true});
     this.props.onFocus(e);
   };
 
-  onBlur = (e: SyntheticEvent<HTMLInputElement>) => {
+  onBlur = (e: SyntheticEvent<HTMLElement>) => {
     this.setState({isFocused: false});
     this.props.onBlur(e);
   };

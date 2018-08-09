@@ -12,9 +12,10 @@
 * `StyledInputContainer`
 * `StyledInput`
 * `StyledCaption`
-* `STATE_TYPE`
+* `STATE_CHANGE_TYPE`
 * `ADJOINED`
 * `SIZE`
+* `CUSTOM_INPUT_TYPE`
 
 ### Stateful input API
 

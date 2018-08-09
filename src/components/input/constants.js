@@ -26,6 +26,10 @@ export const STATE_CHANGE_TYPE = {
   change: 'change',
 };
 
+export const CUSTOM_INPUT_TYPE = {
+  textarea: 'textarea',
+};
+
 export const ADJOINED = {
   none: 'none',
   left: 'left',
