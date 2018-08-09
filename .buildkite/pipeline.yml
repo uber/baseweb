@@ -1,10 +1,14 @@
 steps:
   # Build the image in a single place for all parallel steps to leverage the same image.
-  - name: ':docker: :package:'
+  - name: ':docker: :package: unit'
     plugins:
       'docker-compose':
         build: baseui
-        # Our docker registry where we can upload and download images to.
+        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
+  - name: ':docker: :package: e2e'
+    plugins:
+      'docker-compose':
+        build: e2e-test-chrome
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
  # Wait until all images are built.
  # This way we can download the built image from a registry instead of building each for each test task.
@@ -25,3 +29,8 @@ steps:
     plugins:
       'docker-compose':
         run: baseui
+  - name: 'e2e'
+    command: yarn test-e2e
+    plugins:
+      'docker-compose':
+        run: e2e-test-chrome
