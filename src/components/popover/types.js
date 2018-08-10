@@ -173,6 +173,8 @@ export type SharedStylePropsArgT = {
   children?: React.Node,
   // Styletron stuff
   $as?: string,
+  // styled function wrapper related
+  $style?: ?{},
   // TODO: Get this to work without 'any'
   /* eslint-disable-next-line flowtype/no-weak-types */
   $ref?: React.Ref<any>,
