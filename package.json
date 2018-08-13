@@ -40,6 +40,7 @@
     "@storybook/addon-info": "^3.4.7",
     "@storybook/addon-knobs": "^3.4.8",
     "@storybook/addon-links": "^3.3.15",
+    "@storybook/addon-options": "^3.4.10",
     "@storybook/addons": "^3.3.15",
     "@storybook/react": "^3.3.15",
     "axe-webdriverjs": "^2.0.1",
