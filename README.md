@@ -17,22 +17,13 @@ npm install @uber/baseui
 ```
 
 ```javascript
-import {LightTheme, ThemeProvider, styled} from '@uber/baseui';
+import {LightTheme, ThemeProvider} from '@uber/baseui';
 import {StatefulInput} from '@uber/baseui/input';
-
-const Centered = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
-});
 
 export default function Hello() {
   return (
     <ThemeProvider theme={LightTheme}>
-      <Centered>
-        <StatefulInput />
-      </Centered>
+      <StatefulInput />
     </ThemeProvider>
   );
 }
