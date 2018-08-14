@@ -12,8 +12,6 @@ import {StatefulInput, StyledInput} from '../index';
 test('StatefulInput - basic render', () => {
   const props = {
     onChange: jest.fn(),
-    label: 'Label',
-    caption: 'Caption',
     overrides: {
       Input: function CustomInput(props) {
         return (

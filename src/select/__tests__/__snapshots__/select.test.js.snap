@@ -25,12 +25,11 @@ exports[`Stateless select should render component in search mode and false for m
     >
       <Input
         autoFocus={false}
-        caption={null}
         disabled={false}
         endEnhancer={null}
-        error=""
+        error={false}
         id="bui-mock-id"
-        label={null}
+        name=""
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -53,7 +52,7 @@ exports[`Stateless select should render component in search mode and false for m
       >
         <MockStyledComponent
           $disabled={false}
-          $error=""
+          $error={false}
           $isFocused={false}
           $required={false}
           $size="default"
@@ -65,13 +64,14 @@ exports[`Stateless select should render component in search mode and false for m
               adjoined="none"
               autoFocus={false}
               disabled={false}
-              error=""
+              error={false}
               id="bui-mock-id"
               inputRef={
                 Object {
                   "current": null,
                 }
               }
+              name=""
               onBlur={[Function]}
               onChange={[Function]}
               onFocus={[Function]}
@@ -97,7 +97,7 @@ exports[`Stateless select should render component in search mode and false for m
               <MockStyledComponent
                 $adjoined="none"
                 $disabled={false}
-                $error=""
+                $error={false}
                 $isFocused={false}
                 $required={false}
                 $size="default"
@@ -108,7 +108,7 @@ exports[`Stateless select should render component in search mode and false for m
                   <Before
                     $adjoined="none"
                     $disabled={false}
-                    $error=""
+                    $error={false}
                     $isFocused={false}
                     $required={false}
                     $size="default"
@@ -126,7 +126,7 @@ exports[`Stateless select should render component in search mode and false for m
                   <MockStyledComponent
                     $adjoined="none"
                     $disabled={false}
-                    $error=""
+                    $error={false}
                     $isFocused={false}
                     $ref={
                       Object {
@@ -139,6 +139,7 @@ exports[`Stateless select should render component in search mode and false for m
                     aria-required={false}
                     disabled={false}
                     id="bui-mock-id"
+                    name=""
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
@@ -152,6 +153,7 @@ exports[`Stateless select should render component in search mode and false for m
                       aria-required={false}
                       disabled={false}
                       id="bui-mock-id"
+                      name=""
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -165,7 +167,7 @@ exports[`Stateless select should render component in search mode and false for m
                   <After
                     $adjoined="none"
                     $disabled={false}
-                    $error=""
+                    $error={false}
                     $isFocused={false}
                     $required={false}
                     $size="default"
@@ -229,12 +231,11 @@ exports[`Stateless select should render component in search mode and true for mu
     >
       <Input
         autoFocus={false}
-        caption={null}
         disabled={false}
         endEnhancer={null}
-        error=""
+        error={false}
         id="bui-mock-id"
-        label={null}
+        name=""
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -257,7 +258,7 @@ exports[`Stateless select should render component in search mode and true for mu
       >
         <MockStyledComponent
           $disabled={false}
-          $error=""
+          $error={false}
           $isFocused={false}
           $required={false}
           $size="default"
@@ -269,13 +270,14 @@ exports[`Stateless select should render component in search mode and true for mu
               adjoined="none"
               autoFocus={false}
               disabled={false}
-              error=""
+              error={false}
               id="bui-mock-id"
               inputRef={
                 Object {
                   "current": null,
                 }
               }
+              name=""
               onBlur={[Function]}
               onChange={[Function]}
               onFocus={[Function]}
@@ -301,7 +303,7 @@ exports[`Stateless select should render component in search mode and true for mu
               <MockStyledComponent
                 $adjoined="none"
                 $disabled={false}
-                $error=""
+                $error={false}
                 $isFocused={false}
                 $required={false}
                 $size="default"
@@ -312,7 +314,7 @@ exports[`Stateless select should render component in search mode and true for mu
                   <Before
                     $adjoined="none"
                     $disabled={false}
-                    $error=""
+                    $error={false}
                     $isFocused={false}
                     $required={false}
                     $size="default"
@@ -330,7 +332,7 @@ exports[`Stateless select should render component in search mode and true for mu
                   <MockStyledComponent
                     $adjoined="none"
                     $disabled={false}
-                    $error=""
+                    $error={false}
                     $isFocused={false}
                     $ref={
                       Object {
@@ -343,6 +345,7 @@ exports[`Stateless select should render component in search mode and true for mu
                     aria-required={false}
                     disabled={false}
                     id="bui-mock-id"
+                    name=""
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
@@ -356,6 +359,7 @@ exports[`Stateless select should render component in search mode and true for mu
                       aria-required={false}
                       disabled={false}
                       id="bui-mock-id"
+                      name=""
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -369,7 +373,7 @@ exports[`Stateless select should render component in search mode and true for mu
                   <After
                     $adjoined="none"
                     $disabled={false}
-                    $error=""
+                    $error={false}
                     $isFocused={false}
                     $required={false}
                     $size="default"
@@ -436,12 +440,11 @@ exports[`Stateless select should render component in select mode and false for m
       >
         <Input
           autoFocus={false}
-          caption={null}
           disabled={true}
           endEnhancer={null}
           error={false}
           id="bui-mock-id"
-          label={null}
+          name=""
           onBlur={[Function]}
           onFocus={[Function]}
           overrides={
@@ -477,6 +480,7 @@ exports[`Stateless select should render component in select mode and false for m
                     "current": null,
                   }
                 }
+                name=""
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -529,6 +533,7 @@ exports[`Stateless select should render component in select mode and false for m
                       aria-required={false}
                       disabled={true}
                       id="bui-mock-id"
+                      name=""
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -541,6 +546,7 @@ exports[`Stateless select should render component in select mode and false for m
                         aria-required={false}
                         disabled={true}
                         id="bui-mock-id"
+                        name=""
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -619,12 +625,11 @@ exports[`Stateless select should render component in select mode and true for mu
       >
         <Input
           autoFocus={false}
-          caption={null}
           disabled={true}
           endEnhancer={null}
           error={false}
           id="bui-mock-id"
-          label={null}
+          name=""
           onBlur={[Function]}
           onFocus={[Function]}
           overrides={
@@ -660,6 +665,7 @@ exports[`Stateless select should render component in select mode and true for mu
                     "current": null,
                   }
                 }
+                name=""
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -712,6 +718,7 @@ exports[`Stateless select should render component in select mode and true for mu
                       aria-required={false}
                       disabled={true}
                       id="bui-mock-id"
+                      name=""
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -724,6 +731,7 @@ exports[`Stateless select should render component in select mode and true for mu
                         aria-required={false}
                         disabled={true}
                         id="bui-mock-id"
+                        name=""
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}

@@ -10,16 +10,14 @@ import * as React from 'react';
 import {storiesOf} from '@storybook/react';
 import {withStyle} from 'styletron-react';
 import {styled} from '../styles';
-import {withProps} from '../helpers';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
 import InputReadme from '../../rfcs/input-component.md';
 import {
   Input as ControlledInput,
   StatefulInput as Input,
-  StyledInputContainer,
   StyledInput,
-  StyledLabel,
+  StyledInputContainer,
   SIZE,
 } from './index';
 
@@ -91,29 +89,6 @@ const RootWithStyle = withStyle(StyledInputContainer, props => {
   };
 });
 
-const InputWithProps = withProps(StyledInput, {
-  'data-test': 'test',
-});
-
-const LabelWithProps = withProps(StyledLabel, {
-  'data-test-label': 'test',
-});
-
-const LabelWithStyle = withStyle(StyledLabel, ({$isFocused, $theme}) => {
-  return {
-    display: 'flex',
-    color: $isFocused ? $theme.colors.primary : $theme.colors.mono1000,
-  };
-});
-const CustomLabel = ({children, ...rest}: {children: React.Node}) => {
-  return (
-    <LabelWithStyle {...rest} data-label="data-label">
-      {children}
-      <InputIcon $position="left" {...rest} />
-    </LabelWithStyle>
-  );
-};
-
 const TextHighlight = styled('span', ({$theme}) => {
   return {color: $theme.colors.primary};
 });
@@ -126,185 +101,57 @@ storiesOf('Input', module)
   .add('Controlled and uncontrolled input', () => {
     return (
       <React.Fragment>
-        <ControlledInput
-          label="Controlled input"
-          caption="Caption"
-          placeholder="Placeholder"
-        />
-        <Input
-          label="Uncontrolled (stateful) input"
-          caption="Caption"
-          placeholder="Placeholder"
-        />
+        <ControlledInput placeholder="Controlled input" />
+        <br />
+        <Input placeholder="Uncontrolled (stateful) input" />
       </React.Fragment>
     );
   })
   .add('Input size', () => {
     return (
       <React.Fragment>
-        <Input
-          label="Default input"
-          caption="Caption"
-          placeholder="Placeholder"
-        />
-        <Input
-          label="Compact input"
-          caption="Caption"
-          size={SIZE.compact}
-          placeholder="Placeholder"
-        />
+        <Input placeholder="Default input" />
+        <br />
+        <Input size={SIZE.compact} placeholder="Compact input" />
       </React.Fragment>
     );
   })
   .add('Input state', () => {
     return (
       <React.Fragment>
+        <Input size={SIZE.compact} placeholder="Default input" />
+        <br />
         <Input
-          label="Default input"
-          caption="Caption"
-          size={SIZE.compact}
-          placeholder="Placeholder"
-        />
-        <Input
-          label="Initially focused input"
           initialState={{value: 'uber'}}
-          caption="Caption"
           autoFocus
           startEnhancer="@"
           endEnhancer=".com"
           size={SIZE.compact}
-          placeholder="Placeholder"
+          placeholder="Initially focused input"
         />
+        <br />
         <Input
-          label="Input in an error state"
-          caption="Caption"
           size={SIZE.compact}
-          error="Error in place of caption when $error is a node"
-          placeholder="Placeholder"
+          error
+          placeholder="Input in an error state"
         />
+        <br />
         <Input
-          label="Input with enhancers in an error state"
-          caption="Caption rendered when $error is a boolean"
           startEnhancer="@"
           endEnhancer=".com"
           size={SIZE.compact}
           error
-          placeholder="Placeholder"
+          placeholder="Input with enhancers in an error state"
         />
+        <br />
+        <Input size={SIZE.compact} disabled placeholder="Disabled input" />
+        <br />
         <Input
-          label="Disabled input"
-          caption="Caption"
-          size={SIZE.compact}
-          disabled
-          placeholder="Placeholder"
-        />
-        <Input
-          label="Disabled input with enhancers"
-          caption="Caption"
           startEnhancer="@"
           endEnhancer=".com"
           size={SIZE.compact}
           disabled
-          placeholder="Placeholder"
-        />
-      </React.Fragment>
-    );
-  })
-  .add('Input label and caption', () => {
-    const Span = styled('span', {
-      display: 'flex',
-      alignItems: 'center',
-    });
-    const Icon = styled('span', ({$position, $error, $theme}) => {
-      return {
-        padding: $position === 'left' ? '0 8px 0 0' : '0 0 0 8px',
-        ':before': {
-          content: '""',
-          display: 'flex',
-          boxSizing: 'border-box',
-          verticalAlign: 'middle',
-          width: '16px',
-          height: '16px',
-          borderRadius: '50%',
-          backgroundColor: $error ? $theme.colors.negative400 : '#999999',
-        },
-      };
-    });
-    return (
-      <React.Fragment>
-        <Input
-          label="String type label"
-          caption="String type caption"
-          size={SIZE.compact}
-          placeholder="Placeholder"
-        />
-        <Input
-          label={
-            <Span>
-              Element type label
-              <Icon $position="right" />
-            </Span>
-          }
-          caption={
-            <Span>
-              <Icon $position="left" />
-              Element type caption
-            </Span>
-          }
-          size={SIZE.compact}
-          placeholder="Placeholder"
-        />
-        <Input
-          // $FlowFixMe
-          label={props => {
-            const {$isFocused} = props;
-            return $isFocused
-              ? 'Function type label gets shared props'
-              : 'Function type label';
-          }}
-          // $FlowFixMe
-          caption={props => {
-            const {$isFocused} = props;
-            return $isFocused
-              ? 'Function type caption gets shared props'
-              : 'Function type caption';
-          }}
-          size={SIZE.compact}
-          placeholder="Placeholder"
-        />
-        <Input
-          label="Label"
-          caption="Caption"
-          error="String type error caption"
-          size={SIZE.compact}
-          placeholder="Placeholder"
-        />
-        <Input
-          label="Label"
-          caption="Caption"
-          error={
-            <Span>
-              <Icon $position="left" $error />
-              Element type error caption
-            </Span>
-          }
-          size={SIZE.compact}
-          placeholder="Placeholder"
-        />
-        <Input
-          label="Label"
-          caption="Caption"
-          // $FlowFixMe
-          error={props => {
-            const {$isFocused} = props;
-            return $isFocused ? (
-              <TextHighlight>Change error when focused</TextHighlight>
-            ) : (
-              'Function type error gets shared props'
-            );
-          }}
-          size={SIZE.compact}
-          placeholder="Placeholder"
+          placeholder="Disabled input with enhancers"
         />
       </React.Fragment>
     );
@@ -312,44 +159,30 @@ storiesOf('Input', module)
   .add('Input enhancers', () => {
     return (
       <React.Fragment>
+        <Input startEnhancer="@" placeholder="Input with a startEnhancer" />
+        <br />
+        <Input endEnhancer=".00" placeholder="Input with an endEnhancer" />
+        <br />
         <Input
-          label="Input with a startEnhancer"
-          caption="Caption"
-          startEnhancer="@"
-          placeholder="Start enhancer"
-        />
-        <Input
-          label="Input with an endEnhancer"
-          caption="Caption"
-          endEnhancer=".00"
-          placeholder="End enhancer"
-        />
-        <Input
-          label="Input with start and end enhancers"
-          caption="Caption"
           startEnhancer="@"
           endEnhancer=".00"
-          placeholder="Placeholder"
+          placeholder="Input with start and end enhancers"
         />
+        <br />
         <Input
-          label="Input with element type enhancers"
-          caption="Caption"
           startEnhancer={<InputIcon />}
           endEnhancer={<InputIcon />}
-          placeholder="Placeholder"
+          placeholder="Input with element type enhancers"
         />
+        <br />
         <Input
-          label="Input with function type enhancers"
-          caption="Shared props are passed into an enhancer func"
-          // $FlowFixMe
           startEnhancer={({$isFocused}) => {
             return $isFocused ? <TextHighlight>@</TextHighlight> : '@';
           }}
-          // $FlowFixMe
           endEnhancer={({$isFocused}) => {
             return $isFocused ? <TextHighlight>.00</TextHighlight> : '.00';
           }}
-          placeholder="Placeholder"
+          placeholder="Input with function type enhancers. Shared props are passed into an enhancer func"
         />
       </React.Fragment>
     );
@@ -447,58 +280,53 @@ storiesOf('Input', module)
     return (
       <React.Fragment>
         <Input
-          label="Input with a Before component"
           overrides={{
             Before: function Before(props) {
               return <InputIcon {...props} $position="left" />;
             },
           }}
-          placeholder="With a Before element"
+          placeholder="Input with a Before component"
         />
+        <br />
         <Input
-          label="Input with an After component"
           overrides={{
             After: function After(props) {
               return <InputIcon {...props} $position="right" />;
             },
           }}
-          placeholder="With an After element"
+          placeholder="Input with an After component"
         />
       </React.Fragment>
     );
   })
-  .add('Input with style overrides and extra props passed', () => {
-    return (
-      <React.Fragment>
-        <Input
-          label="Input with style overrides"
-          overrides={{InputContainer: RootWithStyle}}
-          placeholder="With style overrides on the Root element"
-        />
-        <Input
-          label="Input with extra props"
-          overrides={{
-            Input: InputWithProps,
-            Label: LabelWithProps,
-          }}
-          placeholder="With a 'data-test' attrs passes to the input and label elements"
-        />
-      </React.Fragment>
-    );
-  })
-  .add('Input with custom components', () => {
-    return (
-      <React.Fragment>
-        <Input
-          label="Input with custom label"
-          overrides={{
-            Label: CustomLabel,
-          }}
-          placeholder="Placeholder"
-        />
-      </React.Fragment>
-    );
-  })
+  .add(
+    'Input with a with custom component override, style overrides and extra props passed',
+    () => {
+      return (
+        <React.Fragment>
+          <Input
+            overrides={{InputContainer: {component: RootWithStyle}}}
+            autoFocus
+            placeholder="Input with a custom InputContainer override"
+          />
+          <br />
+          <Input
+            overrides={{
+              Input: {
+                props: {'data-test': 'test'},
+                style: {color: '#00F'},
+              },
+            }}
+            initialState={{
+              value:
+                "With a 'data-test' attrs passes to the input and text style override",
+            }}
+            placeholder="With a 'data-test' attrs passes to the input and text style override"
+          />
+        </React.Fragment>
+      );
+    },
+  )
   .add('Input with a ref', () => {
     const inputRef: {current: ?React.ElementRef<'input'>} = React.createRef();
     return (

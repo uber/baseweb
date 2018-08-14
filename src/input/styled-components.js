@@ -62,49 +62,6 @@ export const Root = styled('div', props => {
   };
 });
 
-export const Label = styled('label', props => {
-  const {
-    $disabled,
-    $theme: {colors, sizing, typography},
-  } = props;
-  return {
-    ...typography.font350,
-    fontWeight: 500,
-    color: $disabled ? colors.mono700 : colors.mono1000,
-    display: 'block',
-    paddingTop: '0',
-    paddingRight: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
-    marginTop: sizing.scale300,
-    marginRight: '0',
-    marginBottom: sizing.scale300,
-    marginLeft: '0',
-  };
-});
-
-export const Caption = styled('div', props => {
-  const {
-    $error,
-    $theme: {colors, sizing, typography},
-  } = props;
-  return {
-    ...typography.font200,
-    color:
-      $error && typeof $error !== 'boolean'
-        ? colors.negative400
-        : colors.mono800,
-    paddingTop: '0',
-    paddingRight: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
-    marginTop: sizing.scale300,
-    marginRight: '0',
-    marginBottom: sizing.scale300,
-    marginLeft: '0',
-  };
-});
-
 export const InputEnhancer = styled('div', props => {
   const {
     $position,

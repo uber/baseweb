@@ -5,14 +5,15 @@
   "keywords": [
     "react",
     "uber",
-    "base-ui"
+    "baseui"
   ],
   "license": "MIT",
   "main": "baseui.js",
   "module": "baseui.es.js",
   "repository": "uber-web/baseui",
   "scripts": {
-    "lint": "eslint ./ && markdownlint -c ./.markdownlint.json rfcs README.md",
+    "lintcode": "eslint ./",
+    "lint": "yarn run lintcode && markdownlint -c ./.markdownlint.json rfcs README.md",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
