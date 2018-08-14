@@ -28,7 +28,7 @@ function getSharedProps() {
   };
 }
 
-describe('Menulist StatefulContainer', () => {
+describe('Menu StatefulContainer', () => {
   beforeAll(() => {
     // $FlowFixMe
     document.addEventListener = jest.fn();

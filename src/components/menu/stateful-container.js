@@ -13,7 +13,7 @@ import type {
   RenderPropsT,
 } from './types';
 
-export default class MenuListStatefulContainer extends React.Component<
+export default class MenuStatefulContainer extends React.Component<
   StatefulContainerPropsT,
   StatefulContainerStateT,
 > {

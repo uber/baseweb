@@ -2,14 +2,12 @@
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
 
-import Menulist from './menulist';
+import Menu from './menu';
 import StatefulContainer from './stateful-container';
 
-import type {StatefulMenulistPropsT} from './types';
+import type {StatefulMenuPropsT} from './types';
 
-export default class StatefulMenuList extends React.Component<
-  StatefulMenulistPropsT,
-> {
+export default class StatefulMenu extends React.Component<StatefulMenuPropsT> {
   static defaultProps = {
     overrides: {},
   };
@@ -18,7 +16,7 @@ export default class StatefulMenuList extends React.Component<
     const {overrides, ...props} = this.props;
     return (
       <StatefulContainer {...props}>
-        {renderProps => <Menulist {...renderProps} overrides={overrides} />}
+        {renderProps => <Menu {...renderProps} overrides={overrides} />}
       </StatefulContainer>
     );
   }

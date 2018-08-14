@@ -1,18 +1,18 @@
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import StatefulMenulist from '../stateful-menulist';
+import StatefulMenu from '../stateful-menu';
 import StatefulContainer from '../stateful-container';
-import Menulist from '../menulist';
+import Menu from '../menu';
 
-describe('Menulist StatefulMenulist', () => {
+describe('Menu StatefulMenu', () => {
   test('renders with props', () => {
     const props = {
       items: [{label: 'item1'}, {label: 'item2'}],
       getItemLabel: item => item.label,
     };
-    const component = mount(<StatefulMenulist {...props} />);
+    const component = mount(<StatefulMenu {...props} />);
     expect(component.find(StatefulContainer).length).toBe(1);
-    expect(component.find(Menulist).length).toBe(1);
+    expect(component.find(Menu).length).toBe(1);
   });
 });
