@@ -9,15 +9,15 @@ import {STYLETRON_PROP_MAPPER} from './constants';
 import {mapStyletronProps} from './utils';
 import {getOverride} from '../../helpers/overrides';
 // Types
-import type {StatelessMenulistPropsT} from './types';
+import type {StatelessMenuPropsT} from './types';
 
-export default function MenuList({
+export default function Menu({
   items,
   getItemLabel,
   getRequiredItemProps = (item, index) => ({key: String(index)}),
   rootRef = React.createRef(),
   overrides = {},
-}: StatelessMenulistPropsT) {
+}: StatelessMenuPropsT) {
   const {List: ListOverride, ListItem: ListItemOverride} = overrides;
   const List = getOverride(ListOverride) || StyledList;
   const ListItem = getOverride(ListItemOverride) || StyledListItem;

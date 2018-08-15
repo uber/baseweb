@@ -78,11 +78,11 @@ export type StatefulContainerPropsT = {
   children?: RenderPropsT => React.Node,
 };
 
-export type StatefulMenulistPropsT = StatefulContainerPropsT & {
+export type StatefulMenuPropsT = StatefulContainerPropsT & {
   overrides?: OverridesT,
 };
 
-export type StatelessMenulistPropsT = {
+export type StatelessMenuPropsT = {
   items: ItemsT,
   getItemLabel: GetItemLabelFnT,
   rootRef: RootRefT,
