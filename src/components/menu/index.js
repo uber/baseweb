@@ -1,7 +1,7 @@
 // @flow
-export {default as StatefulMenulist} from './stateful-menulist';
+export {default as StatefulMenu} from './stateful-menu';
 export {default as StatefulContainer} from './stateful-container';
-export {default as Menulist} from './menulist';
+export {default as Menu} from './menu';
 // Constants
 export {KEY_STRINGS, STATE_CHANGE_TYPES} from './constants';
 // Styled elements

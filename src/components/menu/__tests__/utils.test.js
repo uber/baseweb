@@ -1,7 +1,7 @@
 // @flow
 import * as Utils from '../utils';
 
-describe('Menulist Utils - mapStyletronProps', () => {
+describe('Menu Utils - mapStyletronProps', () => {
   test('successfully maps', () => {
     const props = {
       someStyletronProps: 'styletron',
@@ -17,7 +17,7 @@ describe('Menulist Utils - mapStyletronProps', () => {
   });
 });
 
-describe('Menulist Utils - scrollItemIntoView', () => {
+describe('Menu Utils - scrollItemIntoView', () => {
   test('scrolling down', () => {
     const mockNode = {
       current: {

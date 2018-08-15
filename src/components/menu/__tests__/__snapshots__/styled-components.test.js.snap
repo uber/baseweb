@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Menulist Styled Components List - basic render: List has correct styles 1`] = `
+exports[`Menu Styled Components List - basic render: List has correct styles 1`] = `
 Object {
   "background": "$theme.colors.white",
   "borderRadius": "$theme.borders.radius300",
@@ -16,7 +16,7 @@ Object {
 }
 `;
 
-exports[`Menulist Styled Components ListItem - basic render: ListItem has correct styles 1`] = `
+exports[`Menu Styled Components ListItem - basic render: ListItem has correct styles 1`] = `
 Object {
   ":hover": Object {
     "color": "$theme.colors.primary400",
@@ -36,7 +36,7 @@ Object {
 }
 `;
 
-exports[`Menulist Styled Components ListItem - highlighted render: ListItem has correct styles when highlighted 1`] = `
+exports[`Menu Styled Components ListItem - highlighted render: ListItem has correct styles when highlighted 1`] = `
 Object {
   ":hover": Object {
     "color": "$theme.colors.primary400",

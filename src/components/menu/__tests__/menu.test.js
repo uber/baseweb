@@ -2,7 +2,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {List, ListItem} from '../styled-components';
-import Menulist from '../menulist';
+import Menu from '../menu';
 
 const mockItems = [{label: 'item1'}, {label: 'item2'}];
 
@@ -18,10 +18,10 @@ function getSharedProps() {
   };
 }
 
-describe('Menulist Stateless Component', () => {
+describe('Menu Stateless Component', () => {
   test('basic renders', () => {
     // $FlowFixMe
-    const component = mount(<Menulist {...getSharedProps()} />);
+    const component = mount(<Menu {...getSharedProps()} />);
 
     expect(component.find(List)).toExist();
     expect(component.find(List)).toHaveProp({
@@ -60,7 +60,7 @@ describe('Menulist Stateless Component', () => {
       },
     };
     // $FlowFixMe
-    const component = mount(<Menulist {...props} />);
+    const component = mount(<Menu {...props} />);
     expect(component.find(ListItem)).not.toExist();
     expect(component.find(NewListItem)).toExist();
   });
