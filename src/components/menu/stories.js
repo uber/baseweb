@@ -5,8 +5,8 @@ import {storiesOf} from '@storybook/react';
 import {action} from '@storybook/addon-actions';
 import {withStyle} from 'styletron-react';
 
-import Menulist from './menulist';
-import StatefulMenulist from './stateful-menulist';
+import Menu from './menu';
+import StatefulMenu from './stateful-menu';
 import {List} from './styled-components';
 
 // Give a width to render this nicer
@@ -27,9 +27,9 @@ const ITEMS: Array<{label: string}> = [
   {label: 'Item Twelve'},
 ];
 
-storiesOf('Menulist', module)
+storiesOf('Menu', module)
   .add('Stateless', () => (
-    <Menulist
+    <Menu
       items={ITEMS}
       getItemLabel={item => item.label}
       rootRef={React.createRef()}
@@ -40,7 +40,7 @@ storiesOf('Menulist', module)
     />
   ))
   .add('Stateful with keybindings', () => (
-    <StatefulMenulist
+    <StatefulMenu
       items={ITEMS}
       onItemSelect={action('item select')}
       getItemLabel={item => item.label}

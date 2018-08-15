@@ -3,7 +3,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {List, ListItem} from '../styled-components';
 
-describe('Menulist Styled Components', () => {
+describe('Menu Styled Components', () => {
   test('ListItem - basic render', () => {
     const component = shallow(<ListItem>This is a list item</ListItem>);
     expect(component.instance().getStyles()).toMatchSnapshot(

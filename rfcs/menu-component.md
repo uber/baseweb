@@ -1,4 +1,4 @@
-# Menu List
+# Menu
 
 ## User Story
 
@@ -6,15 +6,15 @@
 
 ## Exported Components
 
-* `MenuList`
+* `Menu`
 * `StatefulContainer`
-* `StyledMenuList`
+* `StyledMenu`
 * `StyledList`
 * `StyledListItem`
 
 ## Default Internal Structure
 
-The default exported `MenuList` will have the following internal structure
+The default exported `Menu` will have the following internal structure
 
 ```js
 <StatefulContainer>
@@ -66,7 +66,7 @@ State reducer to intercept state changes and return new internal state
 (selectedItem: ?Object) => any;
 ```
 
-## MenuList API
+## Menu API
 
 All of `StatefulContainer` API and the following
 
@@ -83,7 +83,7 @@ Component injection prop, can be used to override any or all of the internal com
 
 ## Render Props API
 
-These are props passed down to the render prop, or children-as-a-function function, for advanced usages (and also used internally for the preconstructed `MenuList`)
+These are props passed down to the render prop, or children-as-a-function function, for advanced usages (and also used internally for the preconstructed `Menu`)
 
 #### `items`
 
