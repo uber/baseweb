@@ -19,8 +19,6 @@ type StyledListItemPropsT = {
 
 export const getListStyles = ({$theme}: StyledPropsT) => ({
   position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
   margin: 0,
   background: $theme.colors.white,
   borderRadius: $theme.borders.radius300,

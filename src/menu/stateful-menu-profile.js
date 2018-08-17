@@ -1,33 +1,35 @@
-/*
-Copyright (c) 2018 Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
-*/
 // @flow
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
 
-import Menu from './menu';
+import MenuProfile from './menu-profile';
 import StatefulContainer from './stateful-container';
 
-import type {StatefulMenuPropsT} from './types';
+import type {StatefulMenuProfilePropsT} from './types';
 
 export default class StatefulMenu extends React.PureComponent<
-  StatefulMenuPropsT,
+  StatefulMenuProfilePropsT,
 > {
   static defaultProps = {
     overrides: {},
   };
 
   render() {
-    const {overrides, getItemLabel, ...props} = this.props;
+    const {
+      overrides,
+      getProfileItemLabels,
+      getProfileItemImg,
+      getProfileItemImgText,
+      ...props
+    } = this.props;
     return (
       <StatefulContainer {...props}>
         {renderProps => (
-          <Menu
+          <MenuProfile
             {...renderProps}
-            getItemLabel={getItemLabel}
+            getProfileItemLabels={getProfileItemLabels}
+            getProfileItemImg={getProfileItemImg}
+            getProfileItemImgText={getProfileItemImgText}
             overrides={overrides}
           />
         )}

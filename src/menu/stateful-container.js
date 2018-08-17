@@ -135,13 +135,12 @@ export default class MenuStatefulContainer extends React.Component<
 
   render() {
     const {highlightedIndex} = this.state;
-    const {children, items, getItemLabel} = this.props;
+    const {children, items} = this.props;
     // $FlowFixMe
     return children(
       ({
         highlightedIndex,
         items,
-        getItemLabel,
         rootRef: this.rootRef,
         getRequiredItemProps: this.getRequiredItemProps,
       }: RenderPropsT),

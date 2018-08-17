@@ -11,7 +11,6 @@ import {
   List as StyledList,
   ListItem as StyledListItem,
 } from './styled-components';
-import {STYLETRON_PROP_MAPPER} from './constants';
 import {mapStyletronProps} from './utils';
 import {getOverride} from '../helpers/overrides';
 // Types
@@ -30,11 +29,9 @@ export default function Menu({
   return (
     <List $ref={rootRef}>
       {items.map((item, index) => {
+        const requiredProps = getRequiredItemProps(item, index);
         // $FlowFixMe
-        const {key, ...itemProps} = mapStyletronProps(
-          getRequiredItemProps(item, index),
-          STYLETRON_PROP_MAPPER,
-        );
+        const {key, ...itemProps} = mapStyletronProps(requiredProps);
         // Need to be explicit with `key` otherwise eslint throws error?
         return (
           <ListItem key={key} {...itemProps}>

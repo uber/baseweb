@@ -14,6 +14,18 @@ export type ItemsT = Array<*>;
 
 export type GetItemLabelFnT = (item: *) => React$Node;
 
+export type GetProfileItemLabelsFnT = (
+  item: *,
+) => {
+  title?: string,
+  subtitle?: string,
+  body?: string,
+};
+
+export type GetProfileItemImgFnT = (item: *) => string | React.ComponentType<*>;
+
+export type GetProfileItemImgTextFnT = (item: *) => string;
+
 export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
 
 export type RootRefT = React$ElementRef<*>;
@@ -26,6 +38,17 @@ export type OnItemSelectFnT = (
 export type OverridesT = {
   List?: OverrideT<*>,
   ListItem?: OverrideT<*>,
+};
+
+export type ProfileOverridesT = {
+  ListProfile?: OverrideT<*>,
+  ListItemProfile?: OverrideT<*>,
+  ProfileImgContainer?: OverrideT<*>,
+  ProfileImg?: OverrideT<*>,
+  ProfileLabelsContainer?: OverrideT<*>,
+  ProfileTitle?: OverrideT<*>,
+  ProfileSubtitle?: OverrideT<*>,
+  ProfileBody?: OverrideT<*>,
 };
 
 export type RenderItemPropsT = {
@@ -56,7 +79,6 @@ export type StatefulContainerStateT = {
 
 export type RenderPropsT = StatefulContainerStateT & {
   items: ItemsT,
-  getItemLabel: GetItemLabelFnT,
   rootRef: RootRefT,
   getRequiredItemProps: GetRequiredItemPropsFnT,
 };
@@ -77,22 +99,37 @@ export type DefaultStatefulContainerPropsT = {
 
 export type StatefulContainerPropsT = {
   items: ItemsT,
-  getItemLabel: GetItemLabelFnT,
   initialState?: StatefulContainerStateT,
   stateReducer?: StateReducerFnT,
   onItemSelect?: OnItemSelectFnT,
   children?: RenderPropsT => React.Node,
 };
 
-export type StatefulMenuPropsT = StatefulContainerPropsT & {
+export type MenuPropsT = {
+  getItemLabel: GetItemLabelFnT,
   overrides?: OverridesT,
 };
 
-export type StatelessMenuPropsT = {
+export type MenuProfilePropsT = {
+  getProfileItemLabels: GetProfileItemLabelsFnT,
+  getProfileItemImg: GetProfileItemImgFnT,
+  getProfileItemImgText: GetProfileItemImgTextFnT,
+  overrides?: ProfileOverridesT,
+};
+
+export type SharedStatelessPropsT = {
   items: ItemsT,
-  getItemLabel: GetItemLabelFnT,
   rootRef: RootRefT,
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   highlightedIndex?: number,
-  overrides?: OverridesT,
 };
+
+export type StatefulMenuPropsT = StatefulContainerPropsT & MenuPropsT;
+
+export type StatefulMenuProfilePropsT = StatefulContainerPropsT &
+  MenuProfilePropsT;
+
+export type StatelessMenuPropsT = SharedStatelessPropsT & MenuPropsT;
+
+export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
+  MenuProfilePropsT;

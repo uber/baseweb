@@ -1,34 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Menu Styled Components List - basic render: List has correct styles 1`] = `
+exports[`Menu Styled Components List - basic render: correct styles 1`] = `
 Object {
   "background": "$theme.colors.white",
   "borderRadius": "$theme.borders.radius300",
   "boxShadow": "$theme.lighting.shadow600",
-  "display": "flex",
-  "flexDirection": "column",
   "margin": 0,
-  "paddingBottom": "$theme.sizing.scale200",
-  "paddingLeft": "$theme.sizing.scale400",
-  "paddingRight": "$theme.sizing.scale400",
-  "paddingTop": "$theme.sizing.scale200",
+  "padding": "$theme.sizing.scale600",
   "position": "relative",
 }
 `;
 
-exports[`Menu Styled Components ListItem - basic render: ListItem has correct styles 1`] = `
+exports[`Menu Styled Components ListItem - basic render: correct styles 1`] = `
 Object {
   ":hover": Object {
     "color": "$theme.colors.primary400",
+  },
+  ":not(:last-child)": Object {
+    "marginBottom": "$theme.sizing.scale600",
   },
   "color": "$theme.colors.black",
   "cursor": "pointer",
   "display": "block",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "margin": 0,
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
   "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "color",
@@ -36,22 +33,106 @@ Object {
 }
 `;
 
-exports[`Menu Styled Components ListItem - highlighted render: ListItem has correct styles when highlighted 1`] = `
+exports[`Menu Styled Components ListItem - highlighted render: correct styles 1`] = `
 Object {
   ":hover": Object {
     "color": "$theme.colors.primary400",
   },
+  ":not(:last-child)": Object {
+    "marginBottom": "$theme.sizing.scale600",
+  },
   "color": "$theme.colors.primary",
   "cursor": "pointer",
   "display": "block",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "margin": 0,
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
   "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "color",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
+}
+`;
+
+exports[`Menu Styled Components ListItemProfile - basic render: correct styles 1`] = `
+Object {
+  ":not(:last-child)": Object {
+    "marginBottom": "18px",
+  },
+  "alignItems": "center",
+  "display": "flex",
+  "position": "relative",
+}
+`;
+
+exports[`Menu Styled Components ListProfile - basic render: correct styles 1`] = `
+Object {
+  "background": "$theme.colors.white",
+  "borderRadius": "$theme.borders.radius300",
+  "boxShadow": "$theme.lighting.shadow600",
+  "margin": 0,
+  "padding": "$theme.sizing.scale800",
+  "position": "relative",
+}
+`;
+
+exports[`Menu Styled Components ProfileBody - basic render: correct styles 1`] = `
+Object {
+  "color": "$theme.colors.mono800",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "$theme.typography.font200.fontWeight",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+  "margin": 0,
+}
+`;
+
+exports[`Menu Styled Components ProfileImg - basic render: correct styles 1`] = `
+Object {
+  "borderRadius": "50%",
+  "height": "100%",
+  "width": "100%",
+}
+`;
+
+exports[`Menu Styled Components ProfileImgContainer - basic render: correct styles 1`] = `
+Object {
+  "alignItems": "center",
+  "display": "flex",
+  "height": "60px",
+  "justifyContent": "center",
+  "width": "60px",
+}
+`;
+
+exports[`Menu Styled Components ProfileLabelsContainer - basic render: correct styles 1`] = `
+Object {
+  "alignSelf": "flex-start",
+  "display": "flex",
+  "flexDirection": "column",
+  "marginLeft": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Menu Styled Components ProfileSubtitle - basic render: correct styles 1`] = `
+Object {
+  "color": "$theme.colors.black",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "margin": 0,
+}
+`;
+
+exports[`Menu Styled Components ProfileTitle - basic render: correct styles 1`] = `
+Object {
+  "color": "$theme.colors.black",
+  "fontFamily": "$theme.typography.font450.fontFamily",
+  "fontSize": "$theme.typography.font450.fontSize",
+  "fontWeight": "$theme.typography.font450.fontWeight",
+  "lineHeight": "$theme.typography.font450.lineHeight",
+  "margin": 0,
 }
 `;
