@@ -57,6 +57,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "chromedriver": "^2.40.0",
+    "connect": "^3.6.6",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "npm:enzyme-react-adapter-future",
     "enzyme-to-json": "^3.3.4",
@@ -97,7 +98,6 @@
     "styletron-standard": "^1.0.3"
   },
   "dependencies": {
-    "connect": "^3.6.6",
     "popper.js": "^1.14.3",
     "smoothscroll-polyfill": "^0.4.3"
   },
