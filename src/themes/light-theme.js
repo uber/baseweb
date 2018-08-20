@@ -222,21 +222,21 @@ export default {
       fontSize: '20px',
       fontWeight: 'bold',
       lineHeight: '28px',
-      letterSpacing: '-2%',
+      letterSpacing: '-0.02em',
     },
     font600: {
       fontFamily: primaryFontFamily,
       fontSize: '24px',
       fontWeight: 'bold',
       lineHeight: '36px',
-      letterSpacing: '-2%',
+      letterSpacing: '-0.02em',
     },
     font700: {
       fontFamily: primaryFontFamily,
       fontSize: '28px',
       fontWeight: 'bold',
       lineHeight: '40px',
-      letterSpacing: '-2%',
+      letterSpacing: '-0.02em',
     },
     font800: {
       fontFamily: primaryFontFamily,
@@ -244,7 +244,7 @@ export default {
       fontWeight: 'bold',
       lineHeight: '48px',
       // TODO: move the letter spacing in an Uber specific theme
-      letterSpacing: '-2%',
+      letterSpacing: '-0.02em',
     },
     font900: {
       fontFamily: primaryFontFamily,
@@ -252,7 +252,7 @@ export default {
       fontWeight: 'bold',
       lineHeight: '56px',
       // TODO: move the letter spacing in an Uber specific theme
-      letterSpacing: '-2%',
+      letterSpacing: '-0.02em',
     },
     font1000: {
       fontFamily: primaryFontFamily,
@@ -260,7 +260,7 @@ export default {
       fontWeight: 'normal',
       lineHeight: '80px',
       // TODO: move the letter spacing in an Uber specific theme
-      letterSpacing: '-2%',
+      letterSpacing: '-0.02em',
     },
   },
   sizing: {
