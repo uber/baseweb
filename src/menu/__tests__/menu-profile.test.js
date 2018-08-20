@@ -2,7 +2,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {
-  ListProfile,
+  List,
   ListItemProfile,
   ProfileImgContainer,
   ProfileImg,
@@ -34,7 +34,7 @@ function getSharedProps() {
     getProfileItemImgText: item => item.title,
     rootRef: React.createRef(),
     overrides: {
-      ListProfile,
+      List,
       ListItemProfile,
       ProfileImgContainer,
       ProfileImg,
@@ -51,8 +51,8 @@ describe('Menu Profile Stateless Component', () => {
     // $FlowFixMe
     const component = mount(<MenuProfile {...getSharedProps()} />);
 
-    expect(component.find(ListProfile)).toExist();
-    expect(component.find(ListProfile)).toHaveProp({
+    expect(component.find(List)).toExist();
+    expect(component.find(List)).toHaveProp({
       $ref: React.createRef(),
     });
 

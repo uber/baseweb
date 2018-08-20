@@ -2,7 +2,7 @@
 import * as React from 'react';
 // Components
 import {
-  ListProfile as StyledListProfile,
+  List as StyledList,
   ListItemProfile as StyledListItemProfile,
   ProfileImgContainer as StyledProfileImgContainer,
   ProfileImg as StyledProfileImg,
@@ -25,7 +25,7 @@ export default function MenuProfile({
   rootRef = React.createRef(),
   overrides = {},
 }: StatelessMenuProfilePropsT) {
-  const ListProfile = getOverride(overrides.ListProfile) || StyledListProfile;
+  const List = getOverride(overrides.List) || StyledList;
   const ListItemProfile =
     getOverride(overrides.ListItemProfile) || StyledListItemProfile;
 
@@ -43,7 +43,7 @@ export default function MenuProfile({
   const ProfileBody = getOverride(overrides.ProfileBody) || StyledProfileBody;
 
   return (
-    <ListProfile $ref={rootRef}>
+    <List $ref={rootRef}>
       {items.map((item, index) => {
         const requiredProps = getRequiredItemProps(item, index);
         // $FlowFixMe
@@ -72,6 +72,6 @@ export default function MenuProfile({
           </ListItemProfile>
         );
       })}
-    </ListProfile>
+    </List>
   );
 }

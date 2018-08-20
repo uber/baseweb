@@ -15,7 +15,7 @@ import Menu from './menu';
 import MenuProfile from './menu-profile';
 import StatefulMenu from './stateful-menu';
 import StatefulMenuProfile from './stateful-menu-profile';
-import {List, ListProfile} from './styled-components';
+import {List} from './styled-components';
 
 function CloudComponent() {
   return (
@@ -95,7 +95,7 @@ storiesOf('Menu', module)
       rootRef={React.createRef()}
       overrides={{
         // $FlowFixMe
-        ListProfile: withStyle(ListProfile, {width: '300px'}),
+        List: withStyle(List, {width: '350px'}),
       }}
     />
   ))
@@ -122,8 +122,8 @@ storiesOf('Menu', module)
       getProfileItemImgText={item => item.title}
       overrides={{
         // $FlowFixMe
-        ListProfile: withStyle(ListProfile, {
-          width: '300px',
+        List: withStyle(List, {
+          width: '350px',
           height: '150px',
           overflow: 'auto',
         }),

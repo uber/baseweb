@@ -6,18 +6,21 @@ Object {
   "borderRadius": "$theme.borders.radius300",
   "boxShadow": "$theme.lighting.shadow600",
   "margin": 0,
-  "padding": "$theme.sizing.scale600",
+  "padding": 0,
   "position": "relative",
 }
 `;
 
 exports[`Menu Styled Components ListItem - basic render: correct styles 1`] = `
 Object {
+  ":first-child": Object {
+    "paddingTop": "$theme.sizing.scale600",
+  },
   ":hover": Object {
     "color": "$theme.colors.primary400",
   },
-  ":not(:last-child)": Object {
-    "marginBottom": "$theme.sizing.scale600",
+  ":last-child": Object {
+    "paddingBottom": "$theme.sizing.scale600",
   },
   "color": "$theme.colors.black",
   "cursor": "pointer",
@@ -26,6 +29,10 @@ Object {
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
   "lineHeight": "$theme.typography.font300.lineHeight",
+  "paddingBottom": "$theme.sizing.scale300",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale300",
   "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "color",
@@ -35,11 +42,14 @@ Object {
 
 exports[`Menu Styled Components ListItem - highlighted render: correct styles 1`] = `
 Object {
+  ":first-child": Object {
+    "paddingTop": "$theme.sizing.scale600",
+  },
   ":hover": Object {
     "color": "$theme.colors.primary400",
   },
-  ":not(:last-child)": Object {
-    "marginBottom": "$theme.sizing.scale600",
+  ":last-child": Object {
+    "paddingBottom": "$theme.sizing.scale600",
   },
   "color": "$theme.colors.primary",
   "cursor": "pointer",
@@ -48,6 +58,10 @@ Object {
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
   "lineHeight": "$theme.typography.font300.lineHeight",
+  "paddingBottom": "$theme.sizing.scale300",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale300",
   "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "color",
@@ -57,22 +71,18 @@ Object {
 
 exports[`Menu Styled Components ListItemProfile - basic render: correct styles 1`] = `
 Object {
-  ":not(:last-child)": Object {
-    "marginBottom": "18px",
+  ":first-child": Object {
+    "paddingTop": "$theme.sizing.scale800",
+  },
+  ":last-child": Object {
+    "paddingBottom": "$theme.sizing.scale800",
   },
   "alignItems": "center",
   "display": "flex",
-  "position": "relative",
-}
-`;
-
-exports[`Menu Styled Components ListProfile - basic render: correct styles 1`] = `
-Object {
-  "background": "$theme.colors.white",
-  "borderRadius": "$theme.borders.radius300",
-  "boxShadow": "$theme.lighting.shadow600",
-  "margin": 0,
-  "padding": "$theme.sizing.scale800",
+  "paddingBottom": "9px",
+  "paddingLeft": "$theme.sizing.scale800",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "9px",
   "position": "relative",
 }
 `;

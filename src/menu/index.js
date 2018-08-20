@@ -16,7 +16,6 @@ export {KEY_STRINGS, STATE_CHANGE_TYPES} from './constants';
 export {
   List as StyledList,
   ListItem as StyledListItem,
-  ListProfile as StyledListProfile,
   ListItemProfile as StyledListItemProfile,
   ProfileImgContainer as StyledProfileImgContainer,
   ProfileImg as StyledProfileImg,

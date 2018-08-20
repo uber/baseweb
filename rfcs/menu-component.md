@@ -13,7 +13,6 @@
 * `StatefulMenuProfile`
 * `StyledList`
 * `StyledListItem`
-* `StyledListProfile`
 * `StyledListItemProfile`
 * `StyledProfileImgContainer`
 * `StyledProfileImg`
@@ -67,7 +66,7 @@ All of `StatefulContainer` API and the following
   Returns either an image source url, or a full React component to render as the image
 * `getProfileItemImgText: (item: Object) => string`
   Returns the alt text for the image
-* `overrides: {ListProfile, ListItemProfile, ProfileImgContainer, ProfileImg, ProfileLabelsContainer, ProfileTitle, ProfileSubtitle, ProfileBody}`
+* `overrides: {ListItemProfile, ProfileImgContainer, ProfileImg, ProfileLabelsContainer, ProfileTitle, ProfileSubtitle, ProfileBody}`
   Component injection
   * All of these have type `Object | React.ComponentType<*>`
 
