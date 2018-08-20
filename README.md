@@ -15,7 +15,7 @@ Add `baseui` to your project:
 yarn add baseui
 
 # using npm
-npm install baseui
+npm install baseui --save
 ```
 
 ```javascript
