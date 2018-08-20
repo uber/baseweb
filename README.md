@@ -12,15 +12,15 @@ Add `baseui` to your project:
 
 ```bash
 # using yarn
-yarn add @uber/baseui
+yarn add baseui
 
 # using npm
-npm install @uber/baseui
+npm install baseui
 ```
 
 ```javascript
-import {LightTheme, ThemeProvider, styled} from '@uber/baseui';
-import {StatefulInput} from '@uber/baseui/input';
+import {LightTheme, ThemeProvider, styled} from 'baseui';
+import {StatefulInput} from 'baseui/input';
 
 const Centered = styled('div', {
   display: 'flex',
