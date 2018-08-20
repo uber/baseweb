@@ -14,7 +14,7 @@
 * All properties of the input's StatefulContainer except `children`
 * All properties of the Textarea comonent
 
-### Stateful container API (imported from `@uber/baseui/input`)
+### Stateful container API (imported from `baseui/input`)
 
 * `children: (props: Props) => React.Node` - Required
 * `initialState: {value: string}` - Optional
