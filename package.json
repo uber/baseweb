@@ -1,5 +1,5 @@
 {
-  "name": "@uber/baseui",
+  "name": "baseui",
   "version": "1.0.0",
   "description": "React implementation of uber design components platform.",
   "keywords": ["react", "uber", "base-ui"],
