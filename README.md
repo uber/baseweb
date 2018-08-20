@@ -2,7 +2,7 @@
 
 # BASE UI
 
-[![Build status](https://badge.buildkite.com/4c46e1f96d71ca1eaab3236c90a8ff4d218eb818e412ba1cf9.svg?branch=master)](https://buildkite.com/uber/baseui)
+[![Build status](https://badge.buildkite.com/4c46e1f96d71ca1eaab3236c90a8ff4d218eb818e412ba1cf9.svg?branch=master)](https://buildkite.com/uber/baseui) [![Greenkeeper badge](https://badges.greenkeeper.io/uber-web/baseui.svg)](https://greenkeeper.io/)
 
 `baseui` is a design system comprised of modern, responsive, living components.
 
