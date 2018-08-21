@@ -2,7 +2,7 @@
 
 # BASE UI
 
-[![Build status](https://badge.buildkite.com/4c46e1f96d71ca1eaab3236c90a8ff4d218eb818e412ba1cf9.svg?branch=master)](https://buildkite.com/uber/baseui)
+[![Build status](https://badge.buildkite.com/92a7500cd98f619621c4801833d8b358c2fd79efc9b98f1b98.svg)](https://buildkite.com/uberopensource/baseui)
 
 `baseui` is a design system comprised of modern, responsive, living components.
 
