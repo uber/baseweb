@@ -67,7 +67,10 @@ function getFont(size, typography) {
 }
 
 export const Root = styled('div', props => {
-  const {$size, $theme: {colors, typography}} = props;
+  const {
+    $size,
+    $theme: {colors, typography},
+  } = props;
   return {
     ...getFont($size, typography),
     color: colors.mono1000,
@@ -77,7 +80,10 @@ export const Root = styled('div', props => {
 });
 
 export const Label = styled('label', props => {
-  const {$disabled, $theme: {colors, sizing, typography}} = props;
+  const {
+    $disabled,
+    $theme: {colors, sizing, typography},
+  } = props;
   return {
     ...typography.font350,
     fontWeight: 500,
@@ -95,7 +101,10 @@ export const Label = styled('label', props => {
 });
 
 export const Caption = styled('div', props => {
-  const {$error, $theme: {colors, sizing, typography}} = props;
+  const {
+    $error,
+    $theme: {colors, sizing, typography},
+  } = props;
   return {
     ...typography.font200,
     color:
@@ -114,7 +123,11 @@ export const Caption = styled('div', props => {
 });
 
 export const InputEnhancer = styled('div', props => {
-  const {$position, $size, $theme: {colors, sizing, typography}} = props;
+  const {
+    $position,
+    $size,
+    $theme: {colors, sizing, typography},
+  } = props;
   return {
     ...getFont($size, typography),
     color: colors.mono900,
@@ -144,20 +157,26 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
       ? colors.mono300
       : $isFocused
         ? colors.mono100
-        : $error ? colors.negative50 : colors.mono200,
+        : $error
+          ? colors.negative50
+          : colors.mono200,
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: $disabled
       ? colors.mono300
       : $error
         ? colors.negative400
-        : $isFocused ? colors.primary400 : colors.mono200,
+        : $isFocused
+          ? colors.primary400
+          : colors.mono200,
     borderRadius: getBorderRadius($adjoined, sizing.scale100),
     boxShadow: `0 2px 6px ${
       $disabled
         ? 'transparent'
         : $isFocused
-          ? $error ? colors.shadowError : colors.shadowFocus
+          ? $error
+            ? colors.shadowError
+            : colors.shadowFocus
           : 'transparent'
     }`,
     transitionProperty: 'border, boxShadow, backgroundColor',
