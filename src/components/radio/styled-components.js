@@ -29,12 +29,16 @@ function getBorderColor(props) {
   const {colors} = $theme;
   return $isError
     ? colors.negative400
-    : $checked ? colors.primary400 : colors.mono700;
+    : $checked
+      ? colors.primary400
+      : colors.mono700;
 }
 
 function getLabelPadding(props) {
   const {$labelPlacement = '', $theme} = props;
-  const {sizing: {scale200}} = $theme;
+  const {
+    sizing: {scale200},
+  } = $theme;
   const paddingSide =
     'padding' + $labelPlacement.replace(/^\w/, c => c.toUpperCase());
   return {
@@ -73,14 +77,18 @@ export const Root = styled('label', props => {
 export const RadioMark = styled('span', props => {
   const {$checked, $disabled, $theme, $isFocused, $isError} = props;
   const {colors, animation} = $theme;
-  const {sizing: {scale0, scale100, scale300, scale600}} = $theme;
+  const {
+    sizing: {scale0, scale100, scale300, scale600},
+  } = $theme;
   const activeStyle = {
     backgroundColor:
       $checked || $isError
         ? null
         : $isFocused
           ? colors.mono500
-          : !$disabled && !$checked ? colors.mono400 : null,
+          : !$disabled && !$checked
+            ? colors.mono400
+            : null,
   };
   return {
     backgroundColor: 'transparent',
@@ -108,7 +116,9 @@ export const RadioMark = styled('span', props => {
 });
 
 export const Label = styled('div', props => {
-  const {$theme: {typography}} = props;
+  const {
+    $theme: {typography},
+  } = props;
   return {
     verticalAlign: 'middle',
     ...getLabelPadding(props),

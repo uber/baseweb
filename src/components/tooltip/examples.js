@@ -77,9 +77,9 @@ export default [
             You can use tooltips in many places, including inline text{' '}
             <StatefulTooltip content="Tooltips display short messages.">
               <FakeLink tabIndex="0">such as this</FakeLink>
-            </StatefulTooltip>. Tooltips are essentially just a Popover with a
-            few style tweaks, so you can use all the features that Popover
-            supports.
+            </StatefulTooltip>
+            . Tooltips are essentially just a Popover with a few style tweaks,
+            so you can use all the features that Popover supports.
           </div>
         </Centered>
       );
@@ -122,7 +122,8 @@ export default [
                       rel="noopener noreferrer"
                     >
                       links
-                    </Anchor>, and any other markup.
+                    </Anchor>
+                    , and any other markup.
                   </Paragraph>
                 </div>
               }

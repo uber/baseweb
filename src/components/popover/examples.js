@@ -305,7 +305,8 @@ export default {
               initialState={{isOpen: true}}
               content={() => (
                 <StyledPopoverPadding $style={{maxWidth: '230px'}}>
-                  Popover will reposition itself to avoid being clipped!<br />
+                  Popover will reposition itself to avoid being clipped!
+                  <br />
                   <strong>Try scrolling in this box...</strong>
                 </StyledPopoverPadding>
               )}
