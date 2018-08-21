@@ -137,8 +137,12 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
         {(caption || error) && (
           <Caption {...getOverrideProps(CaptionOverride)} {...sharedProps}>
             {error && typeof error !== 'boolean'
-              ? typeof error === 'function' ? error(sharedProps) : error
-              : typeof caption === 'function' ? caption(sharedProps) : caption}
+              ? typeof error === 'function'
+                ? error(sharedProps)
+                : error
+              : typeof caption === 'function'
+                ? caption(sharedProps)
+                : caption}
           </Caption>
         )}
       </React.Fragment>

@@ -26,19 +26,28 @@ const Button = styled('button', ({$theme}) => {
 });
 
 const TextareaWithStyle = withStyle(StyledTextarea, props => {
-  const {$disabled, $error, $isFocused, $theme: {colors, sizing}} = props;
+  const {
+    $disabled,
+    $error,
+    $isFocused,
+    $theme: {colors, sizing},
+  } = props;
   return {
     borderColor: $disabled
       ? colors.borderAlt
       : $error
         ? colors.borderError
-        : $isFocused ? 'darkseagreen' : colors.border,
+        : $isFocused
+          ? 'darkseagreen'
+          : colors.border,
     boxShadow: `0 0 ${sizing.scale100} ${
       $disabled
         ? 'transparent'
         : $error
           ? colors.shadowError
-          : $isFocused ? 'lightseagreen' : 'transparent'
+          : $isFocused
+            ? 'lightseagreen'
+            : 'transparent'
     }`,
   };
 });

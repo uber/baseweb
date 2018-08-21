@@ -63,7 +63,9 @@ const InputIcon = styled('span', props => {
     padding:
       props.$position === 'left'
         ? '0 0 0 12px'
-        : props.$position === 'right' ? '0 12px 0 0' : '0',
+        : props.$position === 'right'
+          ? '0 12px 0 0'
+          : '0',
     ':before': {
       content: '""',
       display: 'inline-block',
@@ -80,19 +82,28 @@ const InputIcon = styled('span', props => {
 });
 
 const RootWithStyle = withStyle(StyledInputContainer, props => {
-  const {$disabled, $error, $isFocused, $theme: {colors, sizing}} = props;
+  const {
+    $disabled,
+    $error,
+    $isFocused,
+    $theme: {colors, sizing},
+  } = props;
   return {
     borderColor: $disabled
       ? colors.borderAlt
       : $error
         ? colors.borderError
-        : $isFocused ? 'darkseagreen' : colors.border,
+        : $isFocused
+          ? 'darkseagreen'
+          : colors.border,
     boxShadow: `0 0 ${sizing.scale100} ${
       $disabled
         ? 'transparent'
         : $error
           ? colors.shadowError
-          : $isFocused ? 'lightseagreen' : 'transparent'
+          : $isFocused
+            ? 'lightseagreen'
+            : 'transparent'
     }`,
   };
 });
@@ -247,12 +258,14 @@ storiesOf('Input', module)
         <Input
           label={
             <Span>
-              Element type label<Icon $position="right" />
+              Element type label
+              <Icon $position="right" />
             </Span>
           }
           caption={
             <Span>
-              <Icon $position="left" />Element type caption
+              <Icon $position="left" />
+              Element type caption
             </Span>
           }
           size={SIZE.compact}
@@ -288,7 +301,8 @@ storiesOf('Input', module)
           caption="Caption"
           error={
             <Span>
-              <Icon $position="left" $error />Element type error caption
+              <Icon $position="left" $error />
+              Element type error caption
             </Span>
           }
           size={SIZE.compact}
