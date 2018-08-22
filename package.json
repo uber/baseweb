@@ -82,7 +82,7 @@
     "pretty-quick": "^1.4.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "rollup": "^0.63.4",
+    "rollup": "^0.64.0",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.1.4",
     "rollup-plugin-filesize": "^4.0.1",
