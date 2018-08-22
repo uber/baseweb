@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Styled Components BaseButton - basic render: correct styles 1`] = `
+Object {
+  ":disabled": Object {
+    "backgroundColor": "$theme.colors.mono300",
+    "color": "$theme.colors.mono600",
+    "cursor": "not-allowed",
+  },
+  "WebkitAppearance": "none",
+  "alignItems": "center",
+  "border": "none",
+  "borderRadius": "$theme.borders.radius200",
+  "cursor": "pointer",
+  "display": "flex",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "justifyContent": "space-between",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "outline": "none",
+  "paddingBottom": "$theme.sizing.scale300",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale300",
+}
+`;
+
+exports[`Button Styled Components BaseButton - round: correct styles 1`] = `
+Object {
+  ":disabled": Object {
+    "backgroundColor": "$theme.colors.mono300",
+    "color": "$theme.colors.mono600",
+    "cursor": "not-allowed",
+  },
+  "WebkitAppearance": "none",
+  "alignItems": "center",
+  "border": "none",
+  "borderRadius": "50%",
+  "cursor": "pointer",
+  "display": "flex",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "justifyContent": "space-between",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "outline": "none",
+  "padding": "$theme.sizing.scale500",
+}
+`;
+
+exports[`Button Styled Components ButtonLabel - basic render: correct styles 1`] = `Object {}`;
+
+exports[`Button Styled Components EndEnhancer - basic render: correct styles 1`] = `
+Object {
+  "marginLeft": "$theme.sizing.scale500",
+}
+`;
+
+exports[`Button Styled Components MinimalButton - basic render: correct styles 1`] = `
+Object {
+  ":active": Object {
+    "backgroundColor": "$theme.colors.mono400",
+  },
+  ":hover": Object {
+    "backgroundColor": "$theme.colors.mono200",
+  },
+  "backgroundColor": "transparent",
+  "color": "$theme.colors.primary",
+}
+`;
+
+exports[`Button Styled Components PrimaryButton - basic render: correct styles 1`] = `
+Object {
+  ":active": Object {
+    "backgroundColor": "$theme.colors.primary600",
+  },
+  ":hover": Object {
+    "backgroundColor": "$theme.colors.primary500",
+  },
+  "backgroundColor": "$theme.colors.primary",
+  "color": "$theme.colors.white",
+}
+`;
+
+exports[`Button Styled Components SecondaryButton - basic render: correct styles 1`] = `
+Object {
+  ":active": Object {
+    "backgroundColor": "$theme.colors.primary200",
+  },
+  ":hover": Object {
+    "backgroundColor": "$theme.colors.primary100",
+  },
+  "backgroundColor": "$theme.colors.primary50",
+  "color": "$theme.colors.primary",
+}
+`;
+
+exports[`Button Styled Components StartEnhancer - basic render: correct styles 1`] = `
+Object {
+  "marginRight": "$theme.sizing.scale500",
+}
+`;
+
+exports[`Button Styled Components TertiaryButton - basic render: correct styles 1`] = `
+Object {
+  ":active": Object {
+    "backgroundColor": "$theme.colors.mono500",
+  },
+  ":hover": Object {
+    "backgroundColor": "$theme.colors.mono400",
+  },
+  "backgroundColor": "$theme.colors.mono200",
+  "color": "$theme.colors.primary",
+}
+`;
