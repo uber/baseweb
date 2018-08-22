@@ -6778,6 +6778,12 @@ opn@5.2.0:
   dependencies:
     is-wsl "^1.1.0"
 
+opn@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/opn/-/opn-5.3.0.tgz#64871565c863875f052cfdf53d3e3cb5adb53b1c"
+  dependencies:
+    is-wsl "^1.1.0"
+
 optimist@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
@@ -8291,11 +8297,12 @@ rollup-plugin-replace@^2.0.0:
     minimatch "^3.0.2"
     rollup-pluginutils "^2.0.1"
 
-rollup-plugin-visualizer@^0.8.0:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-0.8.1.tgz#ebc14deef560f491c4be56f677db2529d7bba74b"
+rollup-plugin-visualizer@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-0.9.0.tgz#6b55ab07765e9fd95fd43fb9aae5541c7cf49f67"
   dependencies:
     mkdirp "^0.5.1"
+    opn "^5.3.0"
     source-map "^0.7.3"
 
 rollup-pluginutils@^1.5.0, rollup-pluginutils@^1.5.1:
