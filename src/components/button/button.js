@@ -14,6 +14,8 @@ export default function Button({
   startEnhancer,
   endEnhancer,
   overrides = {},
+  $size,
+  $kind,
 }) {
   // Base UI override logic goes here
   const BaseButton = overrides.BaseButton || StyledPrimaryButton;
@@ -21,7 +23,12 @@ export default function Button({
   const StartEnhancer = overrides.StartEnhancer || StyledStartEnhancer;
   const EndEnhancer = overrides.EndEnhancer || StyledEndEnhancer;
   return (
-    <BaseButton onClick={onClick} disabled={disabled}>
+    <BaseButton
+      onClick={onClick}
+      disabled={disabled}
+      $size={$size}
+      $kind={$kind}
+    >
       {startEnhancer && (
         <StartEnhancer>
           {typeof startEnhancer === 'function'

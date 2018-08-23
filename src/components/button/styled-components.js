@@ -1,16 +1,18 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 import {styled} from '../../styles';
-import {BUTTON_TYPE} from './constants';
+import {BUTTON_KIND, BUTTON_SIZE} from './constants';
 
-export const BaseButton = styled('button', ({$theme, $type}) => ({
-  ...$theme.typography.font300,
+export const BaseButton = styled('button', ({$theme, $size, $kind}) => ({
   display: 'flex',
+  ...$theme.typography[$size === BUTTON_SIZE.compact ? 'font200' : 'font300'],
   alignItems: 'center',
   justifyContent: 'space-between',
   border: 'none',
-  borderRadius: $type === BUTTON_TYPE.round ? '50%' : $theme.borders.radius200,
+  borderRadius: $kind === BUTTON_KIND.round ? '50%' : $theme.borders.radius200,
   outline: 'none',
   WebkitAppearance: 'none',
+  transitionDuration: $theme.animation.timing100,
+  transitionTimingFunction: $theme.animation.easeOutCurve,
   cursor: 'pointer',
   ':disabled': {
     cursor: 'not-allowed',
@@ -18,13 +20,19 @@ export const BaseButton = styled('button', ({$theme, $type}) => ({
     color: $theme.colors.mono600,
   },
   // Padding
-  ...($type === BUTTON_TYPE.round
+  ...($kind === BUTTON_KIND.round
     ? {
         padding: $theme.sizing.scale500,
       }
     : {
-        paddingTop: $theme.sizing.scale300,
-        paddingBottom: $theme.sizing.scale300,
+        paddingTop:
+          $size === BUTTON_SIZE.compact
+            ? $theme.sizing.scale200
+            : $theme.sizing.scale300,
+        paddingBottom:
+          $size === BUTTON_SIZE.compact
+            ? $theme.sizing.scale200
+            : $theme.sizing.scale300,
         paddingLeft: $theme.sizing.scale600,
         paddingRight: $theme.sizing.scale600,
       }),
