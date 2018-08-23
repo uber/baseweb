@@ -24,6 +24,7 @@ Object {
   "paddingRight": "$theme.sizing.scale600",
   "paddingTop": "$theme.sizing.scale300",
   "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "background",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;
@@ -49,6 +50,7 @@ Object {
   "outline": "none",
   "padding": "$theme.sizing.scale500",
   "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "background",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;
@@ -74,6 +76,7 @@ Object {
   "outline": "none",
   "padding": "$theme.sizing.scale500",
   "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "background",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;

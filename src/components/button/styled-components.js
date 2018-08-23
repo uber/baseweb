@@ -11,6 +11,7 @@ export const BaseButton = styled('button', ({$theme, $size, $kind}) => ({
   borderRadius: $kind === BUTTON_KIND.round ? '50%' : $theme.borders.radius200,
   outline: 'none',
   WebkitAppearance: 'none',
+  transitionProperty: 'background',
   transitionDuration: $theme.animation.timing100,
   transitionTimingFunction: $theme.animation.easeOutCurve,
   cursor: 'pointer',
