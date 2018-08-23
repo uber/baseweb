@@ -6,6 +6,7 @@ import {action} from '@storybook/addon-actions';
 import {styled} from '../../styles';
 
 import Button from './button';
+import {SIZE} from './index';
 import {
   SecondaryButton,
   TertiaryButton,
@@ -62,7 +63,7 @@ storiesOf('Button', module)
       <Button onClick={action('primary button click')} label="Primary" />
       <ButtonTypeLabel>Primary Button Compact</ButtonTypeLabel>
       <Button
-        $size="compact"
+        size={SIZE.compact}
         onClick={action('primary button compact click')}
         label="Primary compact"
       />
@@ -74,7 +75,7 @@ storiesOf('Button', module)
       />
       <ButtonTypeLabel>Secondary Button Compact</ButtonTypeLabel>
       <Button
-        $size="compact"
+        size={SIZE.compact}
         onClick={action('secondary button compact click')}
         label="Secondary compact"
         overrides={{BaseButton: SecondaryButton}}

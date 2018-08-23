@@ -11,7 +11,7 @@ import {
   StartEnhancer,
   EndEnhancer,
 } from '../styled-components';
-import {BUTTON_KIND, BUTTON_SIZE} from '../constants';
+import {KIND, SIZE} from '../constants';
 
 function makeTest({
   title,
@@ -36,7 +36,7 @@ describe('Button Styled Components', () => {
     title: 'BaseButton - round',
     component: BaseButton,
     props: {
-      $kind: BUTTON_KIND.round,
+      $kind: KIND.round,
     },
   });
 
@@ -44,8 +44,8 @@ describe('Button Styled Components', () => {
     title: 'BaseButton - round (compact)',
     component: BaseButton,
     props: {
-      $type: BUTTON_SIZE.compact,
-      $kind: BUTTON_KIND.round,
+      $type: SIZE.compact,
+      $kind: KIND.round,
     },
   });
 
