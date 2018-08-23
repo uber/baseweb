@@ -1,7 +1,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 export {default as Button} from './button';
 // Constants
-export {BUTTON_TYPE} from './constants';
+export {BUTTON_KIND, BUTTON_SIZE} from './constants';
 // Styled elements
 export {
   BaseButton as StyledBaseButton,
