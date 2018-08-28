@@ -61,8 +61,10 @@ const runBrowserAccecibilityTest = async function(
 ) {
   const builder = AxeBuilder(driver).include(rootSelector);
   const results = await builder.analyze();
-  // eslint-disable-next-line no-console
-  console.log(results.violations);
+  if (results.violations && results.violations.length) {
+    // eslint-disable-next-line no-console
+    console.log('Accessibility violations: ', results.violations);
+  }
 };
 
 const getElement = async function(

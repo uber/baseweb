@@ -22,40 +22,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 // @flow
-/* eslint-env browser */
+/* global document */
 
-import React from 'react';
-import CheckboxExamples from '../src/checkbox/examples';
-import ModalExamples from '../src/modal/examples';
-
-const Examples = [CheckboxExamples, ModalExamples];
-
-export default function() {
-  // needs polyfill for IE
-  const urlParams = new URLSearchParams(window.location.search);
-  const suite = urlParams.get('suite');
-  if (!suite) {
-    return null;
+/**
+ * Given a node, returns the ownerDocument if it exists, otherwise the
+ * global document. (Maybe this should go in a root utils file?)
+ */
+export function ownerDocument(node: ?HTMLElement): Document {
+  if (node && node.ownerDocument) {
+    return node.ownerDocument;
   }
-  const test = urlParams.get('test');
-  let example, description;
-  for (let i = 0; i < Examples.length; i++) {
-    const exampleSuite = Examples[i];
-    example = exampleSuite[test];
-    if (example) {
-      break;
-    }
-  }
-  description = escape(test);
-  if (example) {
-    return (
-      <div key={`example${description}`} id={description}>
-        {example()}
-      </div>
-    );
-  } else {
-    // eslint-disable-next-line no-console
-    console.error(`NOT_FOUND_TEST: Test ${test} is not found, please, check`);
-    return null;
-  }
+  return document;
 }
