@@ -31,6 +31,7 @@ import {
   Label as StyledLabel,
   Root as StyledRoot,
 } from './styled-components';
+import {STYLE_TYPE} from './constants';
 
 class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
@@ -39,10 +40,10 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     disabled: false,
     autoFocus: false,
     isIndeterminate: false,
-    labelPlacement: 'right',
     inputRef: React.createRef(),
     isError: false,
     type: 'checkbox',
+    checkmarkType: STYLE_TYPE.default,
     onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
@@ -96,10 +97,11 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   };
 
   render() {
+    const {checkmarkType} = this.props;
     const {
       overrides = {},
       onChange,
-      labelPlacement,
+      labelPlacement = checkmarkType === STYLE_TYPE.toggle ? 'left' : 'right',
       inputRef,
       isIndeterminate,
       isError,
@@ -145,6 +147,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $required: required,
       $disabled: disabled,
       $value: value,
+      $checkmarkType: checkmarkType,
     };
     const labelComp = (
       <Label
