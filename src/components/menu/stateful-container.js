@@ -30,7 +30,6 @@ export default class MenuStatefulContainer extends React.Component<
   state: StatefulContainerStateT = {...this.props.initialState};
 
   componentDidMount() {
-    // $FlowFixMe
     if (__BROWSER__) {
       // TODO: perhaps only bind event listener on focus
       document.addEventListener('keydown', this.onKeyDown);
@@ -38,7 +37,6 @@ export default class MenuStatefulContainer extends React.Component<
   }
 
   componentWillUnmount() {
-    // $FlowFixMe
     if (__BROWSER__) {
       document.removeEventListener('keydown', this.onKeyDown);
     }
