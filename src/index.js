@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 // @flow
+export {withStyle, withStyleDeep} from 'styletron-react-core';
 export {styled, ThemeProvider} from './styles';
 export {LightTheme} from './themes';
 export {withProps} from './helpers';
