@@ -99,3 +99,31 @@ test('styled override prop', () => {
 
   wrapper.unmount();
 });
+
+test('styled override styled component', () => {
+  const StyledBase = styled('div', {
+    color: 'red',
+  });
+  const StyledBaseOverride = styled(StyledBase, {
+    color: 'blue',
+  });
+  const TestComponent = withStyletronProvider(() => (
+    <div>
+      <StyledBase />
+      <StyledBaseOverride />
+    </div>
+  ));
+
+  const wrapper = mount(<TestComponent />);
+
+  const base = wrapper.find(StyledBase).getDOMNode();
+  expect(base.classList).toHaveLength(1);
+  const redColorClass = base.classList.item(0);
+
+  // BaseOverride should not have red color class
+  const override = wrapper.find(StyledBaseOverride).getDOMNode();
+  expect(override.classList).toHaveLength(1);
+  expect(override.classList).not.toContain(redColorClass);
+
+  wrapper.unmount();
+});
