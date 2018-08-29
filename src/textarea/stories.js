@@ -5,7 +5,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 //$FlowFixMe
-import TextareaReadme from '../../../rfcs/textarea-component.md';
+import TextareaReadme from '../../rfcs/textarea-component.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Textarea', module)
