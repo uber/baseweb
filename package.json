@@ -1,8 +1,12 @@
 {
   "name": "baseui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React implementation of uber design components platform.",
-  "keywords": ["react", "uber", "base-ui"],
+  "keywords": [
+    "react",
+    "uber",
+    "base-ui"
+  ],
   "author": "",
   "license": "MIT",
   "bugs": {
@@ -23,10 +27,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o docs",
     "precommit": "pretty-quick --staged && yarn run test",
-    "copy-dist-files":
-      "cp package.json dist/package.json && cp README.md dist/README.md",
-    "build":
-      "rm -rf dist && rollup -c rollup.config.js && node ./scripts/flow-copy-src.js && yarn copy-dist-files",
+    "copy-dist-files": "cp package.json dist/package.json && cp README.md dist/README.md",
+    "build": "rm -rf dist && rollup -c rollup.config.js && node ./scripts/flow-copy-src.js && yarn copy-dist-files",
     "unit-test": "yarn jest --coverage",
     "e2e": "node ./e2e/e2e.js",
     "build-e2e": "rollup -c rollup.config_e2e.js",
@@ -119,9 +121,13 @@
     "folder": ".",
     "license": "LICENSE",
     "exact_paths_method": "INCLUDE",
-    "exact_paths": ["src"],
+    "exact_paths": [
+      "src"
+    ],
     "file_type_method": "INCLUDE",
-    "file_types": [".js"],
+    "file_types": [
+      ".js"
+    ],
     "insert_license": true
   }
 }
