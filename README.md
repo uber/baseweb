@@ -22,7 +22,7 @@ npm install baseui
 
 ```javascript
 import {LightTheme, ThemeProvider, styled} from 'baseui';
-import {StatefulInput} from 'baseui/input';
+import {StatefulInput} from 'baseui/components/input';
 
 const Centered = styled('div', {
   display: 'flex',
