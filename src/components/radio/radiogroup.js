@@ -98,6 +98,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
           return React.cloneElement(child, {
             ...childrenProps,
             checked: this.props.value === child.props.value,
+            disabled: this.props.disabled || child.props.disabled,
           });
         })}
       </StyledRadioGroupRoot>
