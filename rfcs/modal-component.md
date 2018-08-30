@@ -24,8 +24,8 @@
   Modal content. The children-as-function API may be preferable for performance reasons (wont render until opened) and also gives users access to a `close()` callback that they can add to buttons
 * `isOpen: boolean` - Required
   Controls whether the modal is visible or not
-* `closable: boolean` - Optional, Defaults to `true`
-  Whether the modal should be closable by the user (either via escape, backdrop click, etc). You can set this to `false` if your modal has an action that the user _must_ take before closing.
+* `closeable: boolean` - Optional, Defaults to `true`
+  Whether the modal should be closeable by the user (either via escape, backdrop click, etc). You can set this to `false` if your modal has an action that the user _must_ take before closing.
 * `onClose: function` - Optional
   A callback that is invoked when the modal will close
 * `size: SIZE.{small|medium|large|full|cover|auto}|string|number`, Defaults to SIZE.default
@@ -40,7 +40,7 @@
   If specified, will be passed to the dialog element
 * `role: 'dialog'|'alertdialog'|string` - Optional, Defaults to 'dialog'
   Which accessibility role this modal should have
-* `mountNode: HTMLElement` - Optional, Defaults to document.body
+* `mountNode: HTMLElement | React.Ref` - Optional, Defaults to document.body
   Where to mount the modal
 * `overrides: {Root, Backdrop, Dialog, DialogInner, Close}` - Optional
   Overrides for presentational components. See "Presentational Components Props API" below.
@@ -48,23 +48,35 @@
 
 ### <ModalHeader/> API
 
-TBD
+ModalHeader is just a styled component with spacing / typography
+
+* `$style: () => {} | {}` - Optional
+  Style overrides object or function
 
 ### <ModalBody/> API
 
-TBD
+ModalBody is just a styled component with the correct spacing
+
+* `$style: () => {} | {}` - Optional
+  Style overrides object or function
 
 ### <ModalFooter/> API
 
-TBD
+ModalBody is just a styled component with spacing and top border
+
+* `$style: () => {} | {}` - Optional
+  Style overrides object or function
+
+### <ModalButton/> API
+
+ModalButton is just a normal BaseUI button with margin already applied
+See <Button/> docs for available props and usage.
 
 ### SIZE Constant
 
-* `small` - 400px width
-* `medium` - 550px width
-* `large` - 800px width
+* `compact` - 400px width
+* `default` - 550px width
 * `full` - Span full viewport, minus some margin
-* `cover` - Span full viewport, no margin
 * `auto` - Based on content width
 
 ^ Open to ideas here. Too many options?
@@ -76,7 +88,7 @@ Next properties are passed to every presentational (styled) component
 * `$isOpen: boolean`
 * `$size: string|number`
 * `$role: string`
-* `$closable: boolean`
+* `$closeable: boolean`
 * `$theme: theme`
 
 More props likely TBA as development continues
@@ -91,7 +103,7 @@ import {Modal, SIZE} from 'baseui/modal';
 
 class App extends React.Component {
   state = {
-    open: true
+    open: true,
   };
   render() {
     return (
@@ -103,17 +115,20 @@ class App extends React.Component {
         >
           {({close}) => (
             <>
-              <ModalTitle>Whatsup!</ModalTitle>
+              <ModalHeader>Whatsup!</ModalHeader>
               <ModalBody>This is a modal</ModalBody>
               <ModalFooter>
-                <Button type=”tertiary” onClick={close}>Close</Button>
-                <Button type=”primary” onClick={this.submit}>Let’s Go</Button>
+                <ModalButton kind="tertiary" onClick={close}>
+                  Close
+                </ModalButton>
+                <ModalButton kind="primary" onClick={this.submit}>
+                  Let’s Go
+                </ModalButton>
               </ModalFooter>
             </>
           )}
         </Modal>
       </div>
-
     );
   }
 }
