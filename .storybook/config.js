@@ -6,6 +6,7 @@ import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../src/styles';
 import DEFAULT_THEME from '../src/themes/light-theme';
 import {withInfo} from '@storybook/addon-info';
+import {checkA11y} from '@storybook/addon-a11y';
 import {withKnobs, text, boolean, number} from '@storybook/addon-knobs';
 
 setOptions({
@@ -28,6 +29,7 @@ addDecorator(story => {
 });
 
 addDecorator(withKnobs);
+addDecorator(checkA11y);
 
 // Add providers for theme and styletron
 addDecorator(story => {
