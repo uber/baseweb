@@ -28,4 +28,9 @@ export const STATE_TYPE = {
   change: 'CHANGE',
 };
 
+export const STYLE_TYPE = {
+  default: 'default',
+  toggle: 'toggle',
+};
+
 /* eslint-enable import/prefer-default-export */

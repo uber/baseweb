@@ -23,6 +23,7 @@ THE SOFTWARE.
 */
 // @flow
 import {styled} from '../styles';
+import {STYLE_TYPE} from './constants';
 
 function getBorderColor(props) {
   const {$disabled, $checked, $isError, $isIndeterminate, $theme} = props;
@@ -59,10 +60,12 @@ function getBackgroundColor(props) {
     $isHovered,
     $isActive,
     $theme,
+    $checkmarkType,
   } = props;
+  const isToggle = $checkmarkType === STYLE_TYPE.toggle;
   const {colors} = $theme;
   if ($disabled) {
-    return colors.mono300;
+    return isToggle ? colors.mono600 : colors.mono300;
   } else if ($isError && ($isIndeterminate || $checked)) {
     if ($isActive || $isFocused) {
       return colors.negative600;
@@ -89,11 +92,11 @@ function getBackgroundColor(props) {
     }
   } else {
     if ($isActive || $isFocused) {
-      return colors.mono500;
+      return isToggle ? colors.mono800 : colors.mono500;
     } else if ($isHovered) {
-      return colors.mono400;
+      return isToggle ? colors.mono700 : colors.mono400;
     } else {
-      return 'transparent';
+      return isToggle ? colors.mono600 : 'transparent';
     }
   }
 }
@@ -127,7 +130,76 @@ export const Root = styled('label', props => {
   };
 });
 
-export const Checkmark = styled('span', props => {
+function getToggleThumbColor(props) {
+  const {
+    $disabled,
+    $checked,
+    $isFocused,
+    $isError,
+    $isHovered,
+    $isActive,
+    $theme,
+  } = props;
+  const {colors} = $theme;
+  if ($disabled) {
+    return colors.mono600;
+  } else if ($isActive || $isFocused) {
+    return colors.primary450;
+  } else if ($isHovered) {
+    return $checked ? colors.primary450 : colors.primary470;
+  } else if ($isError) {
+    if ($isActive || $isFocused) {
+      return colors.negative200;
+    } else if ($isHovered) {
+      return colors.negative100;
+    } else {
+      return colors.negative50;
+    }
+  } else {
+    return colors.mono600;
+  }
+}
+
+const getToggleCheckMarkStyles = props => {
+  const {$checked, $theme, $disabled} = props;
+  const {animation, colors} = $theme;
+  const toggleSVG =
+    `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d)"><rect x="4" y="3" width="24" height="24" rx="4" fill="` +
+    ($disabled ? colors.mono500 : 'white') +
+    `"/><rect width="2" height="8"  x="15" y="11" rx="1" fill="` +
+    getToggleThumbColor(props) +
+    `"/></g><defs><filter id="filter0_d" x="0" y="0" width="32" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="1"/><feGaussianBlur stdDeviation="2"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.32 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/></filter></defs></svg>`;
+  return {
+    position: 'relative',
+    flex: '0 0 auto',
+    borderRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius200
+      : null,
+    display: 'inline-block',
+    backgroundColor: getBackgroundColor(props),
+    transitionDuration: animation.timing100,
+    transitionTimingFunction: animation.easeOutCurve,
+    transitionProperty: 'background-color',
+    width: '40px',
+    height: '16px',
+    marginTop: '4px',
+    marginBottom: '4px',
+    marginLeft: '4px',
+    marginRight: '4px',
+    ':after': {
+      position: 'absolute',
+      top: '-8px',
+      transitionProperty: 'margin-left',
+      transitionDuration: animation.timing400,
+      transitionTimingFunction: animation.easeOutCurve,
+      marginLeft: $checked ? '16px' : '-4px',
+      content: `url('data:image/svg+xml;utf8,` + toggleSVG + `')`,
+      color: 'black',
+    },
+  };
+};
+
+const getDefaultCheckMarkStyles = props => {
   const {$checked, $isIndeterminate, $theme} = props;
   const {sizing, animation} = $theme;
   return {
@@ -163,12 +235,20 @@ export const Checkmark = styled('span', props => {
     marginLeft: $theme.sizing.scale200,
     marginRight: $theme.sizing.scale200,
   };
+};
+
+export const Checkmark = styled('span', props => {
+  const {$checkmarkType} = props;
+  return $checkmarkType === STYLE_TYPE.toggle
+    ? getToggleCheckMarkStyles(props)
+    : getDefaultCheckMarkStyles(props);
 });
 
 export const Label = styled('div', props => {
-  const {$theme} = props;
+  const {$theme, $checkmarkType} = props;
   const {typography} = $theme;
   return {
+    flex: $checkmarkType === STYLE_TYPE.toggle ? 'auto' : null,
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),

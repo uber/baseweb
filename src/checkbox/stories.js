@@ -28,11 +28,19 @@ import {withReadme} from 'storybook-readme';
 //$FlowFixMe
 import CheckboxReadme from '../../rfcs/checkbox-component.md';
 import examples from './examples';
+import examplesToggle from './examples-toggle';
 
 //$FlowFixMe
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Checkbox', module)
+    .addDecorator(withReadme(CheckboxReadme))
+    // $FlowFixMe
+    .add(description, example),
+);
+
+Object.entries(examplesToggle).forEach(([description, example]) =>
+  storiesOf('Toggle', module)
     .addDecorator(withReadme(CheckboxReadme))
     // $FlowFixMe
     .add(description, example),

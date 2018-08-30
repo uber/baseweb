@@ -508,6 +508,7 @@ Object {
 exports[`Checkbox styled components StyledLabel : has correct styles when  1`] = `
 Object {
   "color": "$theme.colors.mono1000",
+  "flex": null,
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
@@ -520,6 +521,7 @@ Object {
 exports[`Checkbox styled components StyledLabel : has correct styles when $isError 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
+  "flex": null,
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
@@ -532,6 +534,7 @@ Object {
 exports[`Checkbox styled components StyledLabel : has correct styles when disabled 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
+  "flex": null,
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
@@ -544,6 +547,7 @@ Object {
 exports[`Checkbox styled components StyledLabel Label: StyledLabel has correct styles when set to bottom 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
+  "flex": null,
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
@@ -556,6 +560,7 @@ Object {
 exports[`Checkbox styled components StyledLabel Label: StyledLabel has correct styles when set to left 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
+  "flex": null,
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
@@ -568,6 +573,7 @@ Object {
 exports[`Checkbox styled components StyledLabel Label: StyledLabel has correct styles when set to right 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
+  "flex": null,
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
@@ -580,6 +586,7 @@ Object {
 exports[`Checkbox styled components StyledLabel Label: StyledLabel has correct styles when set to top 1`] = `
 Object {
   "color": "$theme.colors.mono1000",
+  "flex": null,
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",

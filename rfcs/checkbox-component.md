@@ -2,72 +2,74 @@
 
 ### Exports
 
-* `StatefulCheckbox`
-* `StatefulCheckboxContainer`
-* `Checkbox`
-* `StyledRoot`
-* `StyledCheckmark`
-* `StyledLabel`
-* `StyledInput`
+- `StatefulCheckbox`
+- `StatefulCheckboxContainer`
+- `Checkbox`
+- `StyledRoot`
+- `StyledCheckmark`
+- `StyledLabel`
+- `StyledInput`
 
 ### `Checkbox` API
 
-* `checked: ?boolean`:
+- `checked: ?boolean`:
   check or uncheck the control. Default is `false`.
-* `autoFocus: boolean`:
+- `autoFocus: boolean`:
   make the control focused (active). Default is `false`
-* `children: React$Node`:
+- `checkmarkType: STYLE_TYPE.default | STYLE_TYPE.toggle`:
+  the style to be applied to a checkmark. Default is `STYLE_TYPE.default`
+- `children: React$Node`:
   Component or String value for label of checkbox. Default is empty string
-* `disabled: boolean`:
+- `disabled: boolean`:
   Disable control from being changed
-* `required: boolean`:
+- `required: boolean`:
   Mark control as required
-* `isError: boolean`:
+- `isError: boolean`:
   Sets control into isError state. Default is `false`
-* `isIndeterminate: boolean`:
+- `isIndeterminate: boolean`:
   Indeterminate control value. checked is ignored.
-* `overrides: {Root: (props: {[string]: any}) => React$Node, Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node, , Input: (props: {[string]: any}) => React$Node}`
-  * `Label` to render. Optional.
-  * Custom `Checkmark` (exact control). If used, most of handlers may not work.
-  * `Root` wrapper element for the whole checkbox control to apply styles
-  * `Input` may replace original functionality of checkbox. If provided should follow the same interface and logic or may break the whole component
-* `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
+- `overrides: {Root: (props: {[string]: any}) => React$Node, Checkmark: (props: {[string]: any}) => React$Node, Label: (props: {[string]: any}) => React$Node, , Input: (props: {[string]: any}) => React$Node}`
+  - `Label` to render. Optional.
+  - Custom `Checkmark` (exact control). If used, most of handlers may not work.
+  - `Root` wrapper element for the whole checkbox control to apply styles
+  - `Input` may replace original functionality of checkbox. If provided should follow the same interface and logic or may break the whole component
+- `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
-* `onChange: func`:
+- `onChange: func`:
   handler for events on trigger element
-* `onMouseEnter: func`:
+- `onMouseEnter: func`:
   handler for events on trigger element
-* `onMouseLeave: func`:
+- `onMouseLeave: func`:
   handler for events on trigger element
-* `onFocus: func`:
+- `onFocus: func`:
   handler for events on trigger element
-* `onBlur: func`:
+- `onBlur: func`:
   handler for events on trigger element
 
 ### `StatefulCheckboxContainer` API
 
-* `initialState: {}`
+- `initialState: {}`
   Initial state of an uncontrolled popover component.
-  * `checked` - an initial checked state. Check or uncheck the control. Default is `false`.
-* `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
+  - `checked` - an initial checked state. Check or uncheck the control. Default is `false`.
+- `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
-  * `type` - state change type
-  * `nextState` - a new state changes that will be set
-  * `currentState` - current full state of the component
-* `children: func` should return `Checkbox` instance with standard or customized inner elements. It makes sense only for `StatefulCheckboxContainer` and is ignored by `StatefulCheckbox`
-* `disabled: boolean`:
+  - `type` - state change type
+  - `nextState` - a new state changes that will be set
+  - `currentState` - current full state of the component
+- `children: func` should return `Checkbox` instance with standard or customized inner elements. It makes sense only for `StatefulCheckboxContainer` and is ignored by `StatefulCheckbox`
+- `disabled: boolean`:
   Disable control from being changed
-* `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
+- `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
-* `onChange: func`:
+- `onChange: func`:
   handler for events on trigger element
-* `onMouseEnter: func`:
+- `onMouseEnter: func`:
   handler for events on trigger element
-* `onMouseLeave: func`:
+- `onMouseLeave: func`:
   handler for events on trigger element
-* `onFocus: func`:
+- `onFocus: func`:
   handler for events on trigger element
-* `onBlur: func`:
+- `onBlur: func`:
   handler for events on trigger element
 
 ### `Label` API
