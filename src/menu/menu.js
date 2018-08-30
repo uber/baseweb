@@ -7,36 +7,39 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 // Components
-import {
-  List as StyledList,
-  ListItem as StyledListItem,
-} from './styled-components';
+import {List as StyledList} from './styled-components';
+import OptionList from './option-list';
 import {mapStyletronProps} from './utils';
-import {getOverride} from '../helpers/overrides';
+import {getOverrideObject} from '../helpers/overrides';
 // Types
 import type {StatelessMenuPropsT} from './types';
 
 export default function Menu({
   items,
-  getItemLabel,
   getRequiredItemProps = (item, index) => ({key: String(index)}),
   rootRef = React.createRef(),
   overrides = {},
 }: StatelessMenuPropsT) {
-  const {List: ListOverride, ListItem: ListItemOverride} = overrides;
-  const List = getOverride(ListOverride) || StyledList;
-  const ListItem = getOverride(ListItemOverride) || StyledListItem;
+  const {component: List, props: listProps} = getOverrideObject(
+    overrides.List,
+    StyledList,
+  );
+  const {component: Option, props: optionProps} = getOverrideObject(
+    overrides.Option,
+    OptionList,
+  );
   return (
-    <List $ref={rootRef}>
+    <List $ref={rootRef} {...listProps}>
       {items.map((item, index) => {
         const requiredProps = getRequiredItemProps(item, index);
-        // $FlowFixMe
-        const {key, ...itemProps} = mapStyletronProps(requiredProps);
         // Need to be explicit with `key` otherwise eslint throws error?
         return (
-          <ListItem key={key} {...itemProps}>
-            {getItemLabel(item)}
-          </ListItem>
+          // eslint-disable-next-line react/jsx-key
+          <Option
+            item={item}
+            {...mapStyletronProps(requiredProps)}
+            {...optionProps}
+          />
         );
       })}
     </List>

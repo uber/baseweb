@@ -59,6 +59,21 @@ export function toObjectOverride<T>(override: OverrideT<T>): OverrideT<T> {
 }
 
 /**
+ * Get a convenient override object that will always have {component, props}
+ */
+export function getOverrideObject<T>(
+  override: ?OverrideT<T>,
+  defaultComponent: React.ComponentType<T>,
+): {
+  component: React.ComponentType<T>,
+  props: {},
+} {
+  const component = getOverride(override) || defaultComponent;
+  const props = getOverrideProps(override);
+  return {component, props};
+}
+
+/**
  * Merges two override objects – this is useful if you want to
  * inject your own overrides into a child component, but also
  * accept further overrides from your parent.

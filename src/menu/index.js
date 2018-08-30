@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as StatefulMenu} from './stateful-menu';
-export {default as StatefulMenuProfile} from './stateful-menu-profile';
 export {default as StatefulContainer} from './stateful-container';
+export {default as OptionList} from './option-list';
+export {default as OptionProfile} from './option-profile';
 export {default as Menu} from './menu';
-export {default as MenuProfile} from './menu-profile';
 // Constants
 export {KEY_STRINGS, STATE_CHANGE_TYPES} from './constants';
 // Styled elements

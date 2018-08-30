@@ -9,13 +9,11 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import {action} from '@storybook/addon-actions';
-import {withStyle} from 'styletron-react';
 
 import Menu from './menu';
-import MenuProfile from './menu-profile';
 import StatefulMenu from './stateful-menu';
-import StatefulMenuProfile from './stateful-menu-profile';
-import {List} from './styled-components';
+
+import OptionProfile from './option-profile';
 
 function CloudComponent() {
   return (
@@ -36,9 +34,6 @@ function CloudComponent() {
     </svg>
   );
 }
-
-// Give a width to render this nicer
-const ListMaxWidth = withStyle(List, {width: '200px'});
 
 const ITEMS = [
   {label: 'Item One'},
@@ -74,28 +69,43 @@ storiesOf('Menu', module)
   .add('Stateless simple', () => (
     <Menu
       items={ITEMS}
-      getItemLabel={item => item.label}
       rootRef={React.createRef()}
       overrides={{
-        // $FlowFixMe
-        List: ListMaxWidth,
+        List: {
+          style: {
+            width: '200px',
+          },
+        },
+        Option: {
+          props: {
+            getItemLabel: item => item.label,
+          },
+        },
       }}
     />
   ))
   .add('Stateless profile', () => (
-    <MenuProfile
+    <Menu
       items={PROFILE_ITEMS}
-      getProfileItemLabels={({title, subtitle, body}) => ({
-        title,
-        subtitle,
-        body,
-      })}
-      getProfileItemImg={item => item.imgUrl}
-      getProfileItemImgText={item => item.title}
       rootRef={React.createRef()}
       overrides={{
-        // $FlowFixMe
-        List: withStyle(List, {width: '350px'}),
+        List: {
+          style: {
+            width: '350px',
+          },
+        },
+        Option: {
+          component: OptionProfile,
+          props: {
+            getProfileItemLabels: ({title, subtitle, body}) => ({
+              title,
+              subtitle,
+              body,
+            }),
+            getProfileItemImg: item => item.imgUrl,
+            getProfileItemImgText: item => item.title,
+          },
+        },
       }}
     />
   ))
@@ -103,30 +113,45 @@ storiesOf('Menu', module)
     <StatefulMenu
       items={ITEMS}
       onItemSelect={action('item select')}
-      getItemLabel={item => item.label}
       overrides={{
-        // $FlowFixMe
-        List: withStyle(ListMaxWidth, {height: '150px', overflow: 'auto'}),
+        List: {
+          style: {
+            height: '150px',
+            width: '350px',
+            overflow: 'auto',
+          },
+        },
+        Option: {
+          props: {
+            getItemLabel: item => item.label,
+          },
+        },
       }}
     />
   ))
-  .add('Stateful profile with keybindingsw', () => (
-    <StatefulMenuProfile
+  .add('Stateful profile with keybindings', () => (
+    <StatefulMenu
       items={PROFILE_ITEMS}
-      getProfileItemLabels={({title, subtitle, body}) => ({
-        title,
-        subtitle,
-        body,
-      })}
-      getProfileItemImg={item => item.imgUrl}
-      getProfileItemImgText={item => item.title}
       overrides={{
-        // $FlowFixMe
-        List: withStyle(List, {
-          width: '350px',
-          height: '150px',
-          overflow: 'auto',
-        }),
+        List: {
+          style: {
+            width: '350px',
+            height: '150px',
+            overflow: 'auto',
+          },
+        },
+        Option: {
+          component: OptionProfile,
+          props: {
+            getProfileItemLabels: ({title, subtitle, body}) => ({
+              title,
+              subtitle,
+              body,
+            }),
+            getProfileItemImg: item => item.imgUrl,
+            getProfileItemImgText: item => item.title,
+          },
+        },
       }}
     />
   ));

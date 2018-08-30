@@ -7,7 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {List, ListItem} from '../styled-components';
+import {List} from '../styled-components';
+import OptionList from '../option-list';
 import Menu from '../menu';
 
 const mockItems = [{label: 'item1'}, {label: 'item2'}];
@@ -17,16 +18,11 @@ function getSharedProps() {
     items: mockItems,
     getItemLabel: item => item.label,
     rootRef: React.createRef(),
-    overrides: {
-      List,
-      ListItem,
-    },
   };
 }
 
 describe('Menu Stateless Component', () => {
   test('basic renders', () => {
-    // $FlowFixMe
     const component = mount(<Menu {...getSharedProps()} />);
 
     expect(component.find(List)).toExist();
@@ -34,15 +30,7 @@ describe('Menu Stateless Component', () => {
       $ref: React.createRef(),
     });
 
-    expect(component.find(ListItem)).toExist();
-    expect(component.find(ListItem).first()).toHaveProp({});
-
-    expect(
-      component
-        .find(ListItem)
-        .first()
-        .text(),
-    ).toEqual(mockItems[0].label);
+    expect(component.find(OptionList)).toExist();
 
     component.setProps({
       getRequiredItemProps: (item, index) => ({
@@ -50,24 +38,32 @@ describe('Menu Stateless Component', () => {
         isHighlighted: true,
       }),
     });
-    expect(component.find(ListItem).first()).toHaveProp({
+    expect(component.find(OptionList).first()).toHaveProp({
       $isHighlighted: true,
     });
   });
 
   test('renders with components overrides', () => {
-    const NewListItem = jest
-      .fn()
-      .mockImplementation(() => <div id="list-item" />);
+    const NewOption = () => <div />;
     const props = {
       ...getSharedProps(),
       overrides: {
-        ListItem: NewListItem,
+        Option: {
+          component: NewOption,
+          props: {
+            custom: 'prop',
+          },
+        },
       },
     };
-    // $FlowFixMe
     const component = mount(<Menu {...props} />);
-    expect(component.find(ListItem)).not.toExist();
-    expect(component.find(NewListItem)).toExist();
+    expect(component.find(OptionList)).not.toExist();
+    expect(component.find(NewOption)).toExist();
+    expect(
+      component
+        .find(NewOption)
+        .first()
+        .prop('custom'),
+    ).toEqual('prop');
   });
 });

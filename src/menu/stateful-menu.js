@@ -21,16 +21,10 @@ export default class StatefulMenu extends React.PureComponent<
   };
 
   render() {
-    const {overrides, getItemLabel, ...props} = this.props;
+    const {overrides, ...props} = this.props;
     return (
       <StatefulContainer {...props}>
-        {renderProps => (
-          <Menu
-            {...renderProps}
-            getItemLabel={getItemLabel}
-            overrides={overrides}
-          />
-        )}
+        {renderProps => <Menu {...renderProps} overrides={overrides} />}
       </StatefulContainer>
     );
   }

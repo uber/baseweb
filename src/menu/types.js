@@ -106,8 +106,10 @@ export type StatefulContainerPropsT = {
 };
 
 export type MenuPropsT = {
-  getItemLabel: GetItemLabelFnT,
-  overrides?: OverridesT,
+  overrides?: {
+    List?: OverrideT<*>,
+    Option?: OverrideT<*>,
+  },
 };
 
 export type MenuProfilePropsT = {
@@ -133,3 +135,27 @@ export type StatelessMenuPropsT = SharedStatelessPropsT & MenuPropsT;
 
 export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
   MenuProfilePropsT;
+
+export type OptionListPropsT = {
+  item: *,
+  getItemLabel: GetItemLabelFnT,
+  overrides?: {
+    ListItem?: OverrideT<*>,
+  },
+};
+
+export type OptionProfilePropsT = {
+  item: *,
+  getProfileItemLabels: GetProfileItemLabelsFnT,
+  getProfileItemImg: GetProfileItemImgFnT,
+  getProfileItemImgText: GetProfileItemImgTextFnT,
+  overrides?: {
+    ListItemProfile?: OverrideT<*>,
+    ProfileImgContainer?: OverrideT<*>,
+    ProfileImg?: OverrideT<*>,
+    ProfileLabelsContainer?: OverrideT<*>,
+    ProfileTitle?: OverrideT<*>,
+    ProfileSubtitle?: OverrideT<*>,
+    ProfileBody?: OverrideT<*>,
+  },
+};
