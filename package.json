@@ -7,19 +7,10 @@
     "uber",
     "base-ui"
   ],
-  "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/uber-web/baseui/issues"
-  },
-  "homepage": "https://github.com/uber-web/baseui#readme",
   "main": "baseui.js",
-  "jsnext:main": "baseui.es.js",
   "module": "baseui.es.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/uber-web/baseui.git"
-  },
+  "repository": "uber-web/baseui",
   "scripts": {
     "lint": "eslint ./",
     "commitmsg": "commitlint -e $GIT_PARAMS",
