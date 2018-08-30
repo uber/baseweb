@@ -22,19 +22,44 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 // @flow
+/* eslint-env browser */
+/* eslint-disable react/display-name*/
 
-export {default as StatefulCheckbox} from './stateful-checkbox';
-export {default as StatefulContainer} from './stateful-checkbox-container';
-export {default as Checkbox} from './checkbox';
-// Styled elements
-export {
-  Root as StyledRoot,
-  Checkmark as StyledCheckmark,
-  Label as StyledLabel,
-  Input as StyledInput,
-} from './styled-components';
+import * as React from 'react';
+import {StatefulCheckbox as Checkbox, STYLE_TYPE} from './index';
 
-export {STATE_TYPE, STYLE_TYPE} from './constants';
+const onChange = e => {
+  // eslint-disable-next-line no-console
+  console.log('Checked:', e.target.checked);
+};
 
-// Flow
-export * from './types';
+export const suite = 'Checkbox Test Suite';
+export const tests = {
+  SIMPLE_TOGGLE_EXAMPLE: 'Checkbox as toggle example',
+  TOGGLE_DISABLED_EXAMPLE: 'Checkbox as disabled toggle example',
+};
+
+export default {
+  [tests.SIMPLE_TOGGLE_EXAMPLE]: () => {
+    return (
+      <div style={{width: '400px'}}>
+        <Checkbox onChange={onChange} checkmarkType={STYLE_TYPE.toggle}>
+          click this toggle
+        </Checkbox>
+      </div>
+    );
+  },
+  [tests.TOGGLE_DISABLED_EXAMPLE]: () => {
+    return (
+      <div style={{width: '400px'}}>
+        <Checkbox
+          onChange={onChange}
+          disabled
+          checkmarkType={STYLE_TYPE.toggle}
+        >
+          this toggle is disabled
+        </Checkbox>
+      </div>
+    );
+  },
+};

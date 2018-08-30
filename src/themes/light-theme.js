@@ -28,6 +28,8 @@ const primary100 = '#D2E0FC';
 const primary200 = '#9CBCF8';
 const primary300 = '#548BF4';
 const primary400 = '#1E66F0';
+const primary450 = '#1B6DE0';
+const primary470 = '#276EF1';
 const primary500 = '#174EB6';
 const primary600 = '#123D90';
 const primary700 = '#0C2960';
@@ -81,6 +83,8 @@ export default {
     primary200,
     primary300,
     primary400,
+    primary450,
+    primary470,
     primary: primary400,
     primary500,
     primary600,

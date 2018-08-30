@@ -24,8 +24,10 @@ THE SOFTWARE.
 // @flow
 
 import type {OverrideT} from '../helpers/overrides';
+import {STYLE_TYPE} from './constants';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
+export type StyleTypeT = $Values<typeof STYLE_TYPE>;
 
 export type OverridesT = {
   Checkmark?: OverrideT<*>,
@@ -41,8 +43,8 @@ export type DefaultPropsT = {
   isError: boolean,
   autoFocus: boolean,
   isIndeterminate: boolean,
-  labelPlacement: LabelPlacementT,
   inputRef: {current: ?HTMLInputElement},
+  checkmarkType: StyleTypeT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -66,6 +68,7 @@ export type PropsT = {
   value?: string,
   isIndeterminate?: boolean,
   labelPlacement?: LabelPlacementT,
+  checkmarkType: StyleTypeT,
   $theme?: *,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
