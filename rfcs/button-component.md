@@ -6,8 +6,8 @@ Rough DOM composition:
 +-------------------------------------------------------------------+
 | BaseButton (display: flex; justifyContent: space-between)         |
 | +-----------------+-----------------------+---------------------+ |
-| |  startEnhancer  |         label         |     endEnhancer     | |
-| |  display:flex   |                       |     display:flex    | |
+| |  startEnhancer  |         label         |    endEnhancer      | |
+| |  display: flex  |                       |    display: flex    | |
 | |                 |                       |                     | |
 | |                 |                       |                     | |
 | |                 |                       |                     | |
@@ -28,14 +28,26 @@ Rough DOM composition:
 
 ### <Button/> API
 
-* `label: node | function` - Optional
-  A label in the button.
+* `children: (props: Props) => React.Node` - Required
+  This can be an SVG icon as well.
 * `startEnhancer: node | function` - Optional
   A helper rendered at the start of the button.
 * `endEnhancer: node | function` - Optional
   A helper rendered at the end of the button.
 * `disabled: boolean` - Optional
   Defines if the button disabled.
+* `overrides: {BaseButton, StartEnhancer, EndEnhancer}` - Optional
+  * `BaseButton: ReactComponent` - Optional
+  * `StartEnhancer: ReactComponent` - Optional
+  * `EndEnhancer: ReactComponent` - Optional
+* `size: 'default' | 'compact'`
+  Defines the size of a button.
+* `shape: 'round' | 'square'`
+  Defines the shape of a button.
+* `kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
+  Defines the kind (purpose) of a button
+* `...rest`
+  Passed to BaseButton as props. These can include `accesskey`, `disabled`, `formtarget`, `type`, `value` and more.
 
 ### Presentational components props API
 
@@ -52,23 +64,31 @@ Basic usage:
 
 ```javascript
 import * as React from 'react';
+import {Button, KIND} from 'baseui/button';
+
+export default () => <Button kind={KIND.primary}>Submit</Button>;
+```
+
+Advanced usage:
+
+```javascript
+import * as React from 'react';
 import {
-  Button, 
-  StyledStartEnhancer, 
-  StyledEndEnhancer, 
-  SIZE, 
-  KIND, 
+  Button,
+  StyledStartEnhancer,
+  StyledEndEnhancer,
+  SIZE,
+  KIND,
   SHAPE
 } from 'baseui/button';
 
-export default () => <Button 
-  label={<div>Hello</div>}
-  startEnhancer={<StyledStartEnhancer><SvgIcon></StyledStartEnhancer>}
-  endEnhancer={<StyledEndEnhancer><SvgIcon></StyledEndEnhancer>}
-  shape={SHAPE.round} 
+export default () => <Button
+  startEnhancer={<StyledStartEnhancer><SvgIcon /></StyledStartEnhancer>}
+  endEnhancer={<StyledEndEnhancer><SvgIcon /></StyledEndEnhancer>}
+  shape={SHAPE.round}
   kind={KIND.secondary}
   size={SIZE.compact}
-/>;
+>Hello</Button>;
 ```
 
 ### Dependencies
