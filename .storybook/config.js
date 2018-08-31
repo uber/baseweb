@@ -1,13 +1,26 @@
 import React from 'react';
-import {configure, addDecorator, setAddon} from '@storybook/react';
+import {configure, addDecorator} from '@storybook/react';
 import {setOptions} from '@storybook/addon-options';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../src/styles';
 import DEFAULT_THEME from '../src/themes/light-theme';
-import {withInfo} from '@storybook/addon-info';
+import {
+  withInfo,
+  setDefaults as infoAddonSetDefaults,
+} from '@storybook/addon-info';
 import {checkA11y} from '@storybook/addon-a11y';
-import {withKnobs, text, boolean, number} from '@storybook/addon-knobs';
+import {withKnobs} from '@storybook/addon-knobs';
+
+// we are using 3.x for addon-info
+// docs for that version can be found here
+// https://github.com/storybooks/storybook/tree/cf1a984f9eb23c58bdbed6860ff24d3d1534572b/addons/info
+
+infoAddonSetDefaults({
+  inline: true,
+  source: false,
+  header: false,
+});
 
 setOptions({
   name: 'baseui',
@@ -22,11 +35,6 @@ function loadStories() {
   require('../src/welcome.stories.js');
   req.keys().forEach(filename => req(filename));
 }
-
-// this should be first decorator to avoid extra code to be parsed here
-addDecorator(story => {
-  return withInfo()(story)({});
-});
 
 addDecorator(withKnobs);
 addDecorator(checkA11y);
