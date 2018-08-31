@@ -6,7 +6,7 @@ import {STATE_CHANGE_TYPES} from './constants';
 
 export type ItemsT = Array<*>;
 
-export type GetItemLabelFnT = (item: *) => string;
+export type GetItemLabelFnT = (item: *) => React$Node;
 
 export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
 
