@@ -17,11 +17,17 @@ export const Root = styled('div', props => {
 });
 
 export const Input = styled('input', props => {
+  const {$theme} = props;
+  const {
+    sizing: {scale300},
+  } = $theme;
   return {
     ...getInputStyles({...props, $size: SIZE.default}),
     cursor: 'pointer',
     width: 'auto',
     flexGrow: '1',
+    paddingTop: scale300,
+    paddingBottom: scale300,
   };
 });
 
@@ -29,14 +35,16 @@ export const InputContainer = styled('div', props => {
   const {$theme, $isFocused} = props;
   const {
     colors: {mono700},
-    sizing: {scale300, scale1000},
+    sizing: {scale300},
   } = $theme;
   const color = $isFocused ? {} : {borderColor: mono700};
   return {
     ...getInputContainerStyles({...props, $size: SIZE.default}),
-    height: scale1000,
     flexWrap: 'wrap',
-    padding: scale300,
+    paddingLeft: scale300,
+    paddingRight: scale300,
+    paddingTop: '0',
+    paddingBottom: '0',
     alignItems: 'center',
     position: 'relative',
     ...color,
