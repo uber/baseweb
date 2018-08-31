@@ -11,6 +11,7 @@ import {
   getOverrideProps,
   toObjectOverride,
   mergeOverrides,
+  getOverrideObject,
 } from '../overrides';
 
 function getMockComponent<T>(): React.ComponentType<T> {
@@ -90,6 +91,44 @@ test('Helpers - Overrides - mergeOverrides', () => {
     },
     Bar: {
       component: CustomBar,
+    },
+  });
+});
+
+test('Helpers - Overrides - getOverrideObject', () => {
+  const DefaultComponent = getMockComponent();
+  const OverrideComponent = getMockComponent();
+
+  expect(getOverrideObject(null, DefaultComponent)).toEqual({
+    component: DefaultComponent,
+    props: {},
+  });
+
+  expect(getOverrideObject(OverrideComponent, DefaultComponent)).toEqual({
+    component: OverrideComponent,
+    props: {},
+  });
+
+  expect(
+    getOverrideObject(
+      {
+        component: OverrideComponent,
+        props: {
+          custom: 'prop',
+        },
+        style: {
+          cursor: 'pointer',
+        },
+      },
+      DefaultComponent,
+    ),
+  ).toEqual({
+    component: OverrideComponent,
+    props: {
+      custom: 'prop',
+      $style: {
+        cursor: 'pointer',
+      },
     },
   });
 });
