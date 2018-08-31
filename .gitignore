@@ -8,7 +8,7 @@ stats.html
 storybook-static
 coverage
 /e2e/dist/index.js
-docs
+/docs
 .vscode
 .idea
 *.sublime-project
