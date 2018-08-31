@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stateless Select Dropdown should render component with options  and drondown open is true: Component has correct render with options length 0 and dropdown open is %s true 1`] = `
+<ul
+  getOptionLabel={[MockFunction]}
+  isDropDownOpen={true}
+  options={Array []}
+  styled-component="true"
+/>
+`;
+
+exports[`Stateless Select Dropdown should render component with options [object Object],[object Object],[object Object],[object Object] and drondown open is false: Component has correct render with options length 4 and dropdown open is %s false 1`] = `
+<ul
+  getOptionLabel={[MockFunction]}
+  isDropDownOpen={false}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "label": "label for 1",
+      },
+      Object {
+        "id": "2",
+        "label": "label for 2",
+      },
+      Object {
+        "id": "3",
+        "label": "label for 3",
+      },
+      Object {
+        "id": "4",
+        "label": "label for 4",
+      },
+    ]
+  }
+  styled-component="true"
+/>
+`;
+
+exports[`Stateless Select Dropdown should render component with options [object Object],[object Object],[object Object],[object Object] and drondown open is true: Component has correct render with options length 4 and dropdown open is %s true 1`] = `
+<ul
+  getOptionLabel={[MockFunction]}
+  isDropDownOpen={true}
+  options={
+    Array [
+      Object {
+        "id": "1",
+        "label": "label for 1",
+      },
+      Object {
+        "id": "2",
+        "label": "label for 2",
+      },
+      Object {
+        "id": "3",
+        "label": "label for 3",
+      },
+      Object {
+        "id": "4",
+        "label": "label for 4",
+      },
+    ]
+  }
+  styled-component="true"
+/>
+`;
