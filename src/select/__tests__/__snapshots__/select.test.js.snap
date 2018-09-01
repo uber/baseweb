@@ -4,6 +4,8 @@ exports[`Stateless select should render component in search mode and false for m
 <Select
   autoFocus={false}
   error=""
+  filterOption={[Function]}
+  filterable={false}
   multiple={false}
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
@@ -206,6 +208,8 @@ exports[`Stateless select should render component in search mode and true for mu
 <Select
   autoFocus={false}
   error=""
+  filterOption={[Function]}
+  filterable={false}
   multiple={true}
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
@@ -408,6 +412,8 @@ exports[`Stateless select should render component in select mode and false for m
 <Select
   autoFocus={false}
   error=""
+  filterOption={[Function]}
+  filterable={false}
   multiple={false}
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
@@ -589,6 +595,8 @@ exports[`Stateless select should render component in select mode and true for mu
 <Select
   autoFocus={false}
   error=""
+  filterOption={[Function]}
+  filterable={false}
   multiple={true}
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
