@@ -9,6 +9,7 @@
 - `StyledBackButton`
 - `StyledNextButton`
 - `StyledMaxLabel`
+- `STATE_CHANGE_TYPE`
 
 ### Pagination API
 
