@@ -86,9 +86,11 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   $isVisible={false}
                   $role="dialog"
                   $size="default"
+                  aria-label="Close"
                   onClick={[Function]}
                 >
-                  <div
+                  <button
+                    aria-label="Close"
                     onClick={[Function]}
                     styled-component="true"
                   >
@@ -111,7 +113,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                         />
                       </svg>
                     </CloseIcon>
-                  </div>
+                  </button>
                 </MockStyledComponent>
                 <MockStyledComponent>
                   <div
