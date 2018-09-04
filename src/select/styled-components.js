@@ -158,18 +158,13 @@ export const Option = styled('div', props => {
   const {$selected, disabled, $theme} = props;
   const {
     colors: {mono700, primary400},
-    sizing: {scale300},
   } = $theme;
   const padding = $selected
     ? {
-        paddingTop: scale300,
-        paddingBottom: scale300,
         paddingRight: '0px',
         paddingLeft: '0px',
       }
     : {
-        paddingTop: scale300,
-        paddingBottom: scale300,
         paddingRight: '18px',
         paddingLeft: '18px',
       };

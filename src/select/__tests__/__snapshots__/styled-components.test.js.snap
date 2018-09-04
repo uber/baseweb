@@ -162,10 +162,8 @@ Object {
     "cursor": "pointer",
   },
   "color": null,
-  "paddingBottom": "$theme.sizing.scale300",
   "paddingLeft": "18px",
   "paddingRight": "18px",
-  "paddingTop": "$theme.sizing.scale300",
 }
 `;
 
@@ -175,10 +173,8 @@ Object {
     "cursor": "pointer",
   },
   "color": "$theme.colors.primary400",
-  "paddingBottom": "$theme.sizing.scale300",
   "paddingLeft": "0px",
   "paddingRight": "0px",
-  "paddingTop": "$theme.sizing.scale300",
 }
 `;
 
@@ -188,10 +184,8 @@ Object {
     "cursor": "not-allowed",
   },
   "color": "$theme.colors.mono700",
-  "paddingBottom": "$theme.sizing.scale300",
   "paddingLeft": "18px",
   "paddingRight": "18px",
-  "paddingTop": "$theme.sizing.scale300",
 }
 `;
 
