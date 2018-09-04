@@ -10,7 +10,7 @@ Object {
   "listStyle": "none",
   "margin": 0,
   "overflowY": null,
-  "padding": "$theme.sizing.scale600",
+  "padding": 0,
   "position": "absolute",
   "top": null,
   "width": "96%",
@@ -27,7 +27,7 @@ Object {
   "listStyle": "none",
   "margin": 0,
   "overflowY": null,
-  "padding": "$theme.sizing.scale600",
+  "padding": 0,
   "position": "absolute",
   "top": null,
   "width": "96%",
@@ -44,7 +44,7 @@ Object {
   "listStyle": "none",
   "margin": 0,
   "overflowY": "scroll",
-  "padding": "$theme.sizing.scale600",
+  "padding": 0,
   "position": "absolute",
   "top": null,
   "width": "96%",
@@ -61,7 +61,7 @@ Object {
   "listStyle": "none",
   "margin": 0,
   "overflowY": null,
-  "padding": "$theme.sizing.scale600",
+  "padding": 0,
   "position": "absolute",
   "top": "$theme.sizing.scale1000",
   "width": "96%",
@@ -74,7 +74,7 @@ Object {
     "paddingTop": "$theme.sizing.scale600",
   },
   ":hover": Object {
-    "color": "$theme.colors.primary400",
+    "backgroundColor": "$theme.colors.mono300",
   },
   ":last-child": Object {
     "paddingBottom": "$theme.sizing.scale600",
@@ -92,7 +92,7 @@ Object {
   "paddingTop": "$theme.sizing.scale300",
   "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
-  "transitionProperty": "color",
+  "transitionProperty": "color, background-color",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;

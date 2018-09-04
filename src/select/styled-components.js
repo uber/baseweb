@@ -137,7 +137,6 @@ export const DropDown = styled('ul', props => {
     display: !$isOpen ? 'none' : null,
     width: '96%',
     position: 'absolute',
-    padding: scale600,
     listStyle: 'none',
     borderRadius: scale300,
     boxShadow: $theme.lighting.shadow600,

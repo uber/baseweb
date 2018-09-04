@@ -17,7 +17,7 @@ Object {
     "paddingTop": "$theme.sizing.scale600",
   },
   ":hover": Object {
-    "color": "$theme.colors.primary400",
+    "backgroundColor": "$theme.colors.mono300",
   },
   ":last-child": Object {
     "paddingBottom": "$theme.sizing.scale600",
@@ -35,7 +35,7 @@ Object {
   "paddingTop": "$theme.sizing.scale300",
   "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
-  "transitionProperty": "color",
+  "transitionProperty": "color, background-color",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;
@@ -46,7 +46,7 @@ Object {
     "paddingTop": "$theme.sizing.scale600",
   },
   ":hover": Object {
-    "color": "$theme.colors.primary400",
+    "backgroundColor": "$theme.colors.mono300",
   },
   ":last-child": Object {
     "paddingBottom": "$theme.sizing.scale600",
@@ -64,7 +64,7 @@ Object {
   "paddingTop": "$theme.sizing.scale300",
   "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
-  "transitionProperty": "color",
+  "transitionProperty": "color, background-color",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;
@@ -74,16 +74,23 @@ Object {
   ":first-child": Object {
     "paddingTop": "$theme.sizing.scale800",
   },
+  ":hover": Object {
+    "backgroundColor": "$theme.colors.mono300",
+  },
   ":last-child": Object {
     "paddingBottom": "$theme.sizing.scale800",
   },
   "alignItems": "center",
+  "cursor": "pointer",
   "display": "flex",
-  "paddingBottom": "9px",
+  "paddingBottom": "$theme.sizing.scale300",
   "paddingLeft": "$theme.sizing.scale800",
   "paddingRight": "$theme.sizing.scale800",
-  "paddingTop": "9px",
+  "paddingTop": "$theme.sizing.scale300",
   "position": "relative",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "color, background-color",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;
 
