@@ -112,7 +112,7 @@
   },
   "license-check-and-add-config": {
     "folder": ".",
-    "license": "LICENSE",
+    "license": "LICENSE-HEAD",
     "exact_paths_method": "INCLUDE",
     "exact_paths": [
       "src"
