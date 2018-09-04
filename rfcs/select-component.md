@@ -29,10 +29,16 @@
   Error message and error state. Default is `''`
 - `multiple: ?boolean`:
   Sets if multiple choices are allowed in Select component. Default is `false`
-- `simpleFilter: ?boolean`:
-  Sets if simple String lookup should filter options by default on keyUp event. It works only in Search mode and with `string` labels (case-insensitive). Custom keyUp handler is still called if provided. Default is `false`
+- `filterable?: boolean`:
+  Sets if options should be filtered when the input changes. It works only in Search mode. If your option labels aren't strings, or you need custom filtering logic, use the `filterOption` prop. Custom keyUp handler is still called if provided. Default is `false`
+- `filterOption?: (option: Object, query: String) => boolean`:
+  Custom method to filter whether an option should be displayed in the menu. Defaults to a simple lower-case string match.
+- `getOptionLabel?: (option: Object) => React$Node`:
+  Lets you control what label is rendered for the specified option. The default behavior returns `option.label`.
+- `getSelectedOptionLabel?: (option: Object) => React$Node`:
+  Lets you control what label is rendered for the selected option. If not specified, defaults to `getOptionLabel`.
 - `autoFocus: boolean`:
-  make the control focused (active). Default is `false`
+  Make the control focused (active). Default is `false`
 - `disabled: boolean`:
   Disable control from being changed
 - `required: boolean`:

@@ -42,6 +42,13 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     onMouseUp: () => {},
     error: '',
     autoFocus: false,
+    filterable: false,
+    filterOption: (option: OptionT, query: string) => {
+      return (
+        typeof option.label === 'string' &&
+        option.label.toLowerCase().indexOf(query.toLowerCase()) >= 0
+      );
+    },
   };
 
   state = {
@@ -143,12 +150,9 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         // $FlowFixMe
         const newTextValue = e.target.value;
         this.setState({textValue: newTextValue});
-        if (this.props.simpleFilter) {
-          let filteredOptions = this.props.options.filter(
-            option =>
-              typeof option.label === 'string' &&
-              option.label.toLowerCase().indexOf(newTextValue.toLowerCase()) >=
-                0,
+        if (this.props.filterable) {
+          let filteredOptions = this.props.options.filter(option =>
+            this.props.filterOption(option, newTextValue),
           );
           filteredOptions = filteredOptions.length
             ? filteredOptions

@@ -16,7 +16,7 @@ import {STATE_CHANGE_TYPE} from './constants';
 type ExamplePropsT = {
   multiple?: boolean,
   options?: Array<OptionT>,
-  simpleFilter?: boolean,
+  filterable?: boolean,
   getOptionLabel?: LabelT => React$Node,
   getSelectedOptionLabel?: LabelT => React$Node,
 };
@@ -42,7 +42,7 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
   constructor(props: ExamplePropsT) {
     super(props);
     this.state = {
-      options: props.simpleFilter ? generateOptions('text to search') : [],
+      options: props.filterable ? generateOptions('text to search') : [],
       selectedOptions: [
         {
           id: '123',
@@ -58,7 +58,7 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
           rows={8}
           options={this.state.options}
           multiple={true}
-          simpleFilter={this.props.simpleFilter}
+          filterable={this.props.filterable}
           type={TYPE.search}
           initialState={{
             selectedOptions: this.state.selectedOptions,
@@ -83,7 +83,7 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
                 // $FlowFixMe
                 let text = e.target.value;
                 let options = [];
-                if (!this.props.simpleFilter && text.length > 5) {
+                if (!this.props.filterable && text.length > 5) {
                   options = generateOptions(text);
                   this.setState({options: options});
                 }
@@ -177,7 +177,7 @@ export default {
     return <ParentSearch />;
   },
   [tests.AS_SEARCH_WITH_SIMPLE_SEARCH]: () => {
-    return <ParentSearch simpleFilter />;
+    return <ParentSearch filterable />;
   },
   [tests.AS_SELECT_WITH_MULTIPLE_CHOICE]: () => {
     return <ParentSelect multiple={true} />;
