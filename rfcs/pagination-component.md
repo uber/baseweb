@@ -21,13 +21,21 @@
   Defaults to "of"
 - `overrides: {PrevButton, NextButton, Select}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
+- `onBackClick: (event) => void` - Optional
+  Callback for prev button click
+- `onNextClick: (event) => void` - Optional
+  Callback for next button click
 
 ### StatefulContainer API
 
 - `numPages: number` - Required
   Max number of pages
+- `stateReducer: (changeType, changes, currentState) => Object`
+  State reducer function
 - `initialState: {currentPage: number}` - Optional
   The initial state
+- `onPageChange: (nextPage, prevPage) => void` - Optional
+  Callback for when page changes
 
 ### StatefulPagination API
 
@@ -37,6 +45,10 @@
   Defaults to "of"
 - `overrides: {PrevButton, NextButton, Select}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
+- `onBackClick: (event) => void` - Optional
+  Callback for prev button click
+- `onNextClick: (event) => void` - Optional
+  Callback for next button click
 
 ### Usage
 
