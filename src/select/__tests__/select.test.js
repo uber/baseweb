@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount, shallow} from 'enzyme';
-import {Select, StyledSearchIcon, StyledInput} from '../index';
+import {Select, StyledSearchIcon, StyledInput, StyledOption} from '../index';
 import {STATE_CHANGE_TYPE, TYPE, ICON} from '../constants';
 
 describe('Stateless select', function() {
@@ -249,6 +249,87 @@ describe('Stateless select', function() {
         type: STATE_CHANGE_TYPE.keyUp,
         textValue: value,
       });
+    });
+
+    test('should support simple filtering', function() {
+      allProps = Object.assign({}, allProps, {
+        type: TYPE.search,
+        filterable: true,
+        options: [
+          {
+            id: 'aaa',
+            label: 'AAA',
+          },
+          {
+            id: 'aab',
+            label: 'AAB',
+          },
+          {
+            id: 'abb',
+            label: 'ABB',
+          },
+        ],
+      });
+      wrapper = mount(<Select {...allProps} />);
+
+      let input = wrapper
+        .find(StyledInput)
+        .first()
+        .find('input');
+
+      input.simulate('keyup', {target: {value: 'a'}});
+      expect(wrapper.find(StyledOption)).toHaveLength(3);
+
+      input.simulate('keyup', {target: {value: 'aa'}});
+      expect(wrapper.find(StyledOption)).toHaveLength(2);
+
+      input.simulate('keyup', {target: {value: 'aaa'}});
+      expect(wrapper.find(StyledOption)).toHaveLength(1);
+
+      input.simulate('keyup', {target: {value: 'aaaa'}});
+      expect(wrapper.find(StyledOption)).toHaveLength(0);
+    });
+
+    test('should support custom filter option', function() {
+      allProps = Object.assign({}, allProps, {
+        type: TYPE.search,
+        filterable: true,
+        getOptionLabel: option => option.title,
+        options: [
+          {
+            id: 'a',
+            label: {
+              title: 'foo',
+              subtitle: 'bar',
+            },
+          },
+          {
+            id: 'b',
+            label: {
+              title: 'abc',
+              subtitle: 'bar',
+            },
+          },
+        ],
+        filterOption: jest.fn().mockImplementation((option, query) => {
+          return (
+            option.label.title.indexOf(query) >= 0 ||
+            option.label.subtitle.indexOf(query) >= 0
+          );
+        }),
+      });
+      wrapper = mount(<Select {...allProps} />);
+
+      let input = wrapper
+        .find(StyledInput)
+        .first()
+        .find('input');
+
+      input.simulate('keyup', {target: {value: 'xyz'}});
+      expect(wrapper.find(StyledOption).length).toBe(0);
+
+      input.simulate('keyup', {target: {value: 'ar'}});
+      expect(wrapper.find(StyledOption).length).toBe(2);
     });
   });
   describe('Select mode', function() {
