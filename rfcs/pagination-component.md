@@ -56,7 +56,7 @@ Basic usage:
 
 ```javascript
 import * as React from 'react';
-import {StatefulPagination} from 'baseui/paginate';
+import {StatefulPagination as Pagination} from 'baseui/paginate';
 
 export default () => <Pagination numPages={6} />;
 ```
@@ -64,4 +64,7 @@ export default () => <Pagination numPages={6} />;
 ### Accessibility
 
 How can this component be used via keyboard controls?
-What are the accessibility best practices for this component (aria-\*, role, etc.)
+
+`Tab` should be used to move focus among the focus-able elements (button, dropdown)
+`Escape` should be used to close the dropdown once opened
+`Up / Down Arrow Keys` are used to navigate the options in the dropdown
