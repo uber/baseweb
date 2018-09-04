@@ -6,7 +6,7 @@
 - `StatefulPagination`
 - `StatefulContainer`
 - `StyledRoot`
-- `StyledBackButton`
+- `StyledPrevButton`
 - `StyledNextButton`
 - `StyledMaxLabel`
 - `STATE_CHANGE_TYPE`
@@ -45,7 +45,7 @@
   Defaults to "of"
 - `overrides: {PrevButton, NextButton, Select}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
-- `onBackClick: (event) => void` - Optional
+- `onPrevClick: (event) => void` - Optional
   Callback for prev button click
 - `onNextClick: (event) => void` - Optional
   Callback for next button click
