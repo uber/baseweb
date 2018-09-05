@@ -1,5 +1,118 @@
 # Select Component
 
+## Usage
+
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import { StatefulSelect as Select } from 'baseui/select';
+
+export default () => {
+  const options = [
+    {
+      id: '1',
+      label: 'First',
+    },
+    {
+      id: '2',
+      disabled: true,
+      label: 'Second',
+    },
+  ];
+  return
+    <Select
+      options={options}
+      placeholder="Start typing to select a destination"
+      onChange={() => {console.log('selected value changed')}}
+    />
+};
+```
+
+### Advanced usage
+
+```javascript
+import * as React from 'react';
+import {
+  StatefulSelect,
+  Select,
+  StyledRoot,
+  StyledInput,
+  StyledInputContainer,
+  StyledTag,
+  StyledSearchIcon,
+  StyledDropDown,
+  StyledOption,
+  ICON,
+  OPTIONS,
+  TYPE,
+} from 'baseui/select';
+
+import {withStyle} from 'styletron-react';
+
+const CustomOption = withStyle(StyledOption, {
+  textColor: 'red',
+});
+
+export default () => {
+  const options = [
+    {
+      id: '1',
+      label: {
+        text: 'First',
+        imgSrc: '1.jpg',
+      },
+    },
+    {
+      id: '2',
+      disabled: true,
+      label: {
+        text: 'Second',
+        imgSrc: '2.jpg',
+      },
+    },
+  ];
+  return (
+    <React.Fragment>
+      <StatefulSelect
+        options={options}
+        initialState={{
+          selectedOptions: [
+            {
+              id: '3',
+              label: {
+                text: 'Third',
+                imgSrc: '3.jpg',
+              },
+            },
+          ],
+        }}
+        getOptionLabel={option => (
+          <span>
+            <img
+              style={{
+                borderRadius: '50%',
+                height: '75px',
+              }}
+              src={option.label.imgSrc}
+            />
+            {option.label.text}
+          </span>
+        )}
+        label="Select option..."
+        placeholder="Choose one..."
+        type={TYPE.select}
+        multiple={true}
+        onChange={this.onChange}
+        overrides={{
+          Option: props => <CustomOption>Select {props.children}</CustomOption>,
+        }}
+      />
+    </React.Fragment>
+  );
+};
+```
+
 ## Exports
 
 * `StatefulSelect`
@@ -83,86 +196,3 @@
   handler for events on trigger element
 * `onBlur: func`:
   handler for events on trigger element
-
-## Usage
-
-```js
-import {
-  StatefulSelect,
-  Select,
-  StyledRoot,
-  StyledInput,
-  StyledInputContainer,
-  StyledTag,
-  StyledSearchIcon,
-  StyledDropDown,
-  StyledOption,
-  ICON,
-  OPTIONS,
-  TYPE,
-} from './index';
-
-import {withStyle} from 'styletron-react';
-
-const CustomOption = withStyle(StyledOption, {
-  textColor: 'red',
-});
-
-export default () => {
-  const options = [
-    {
-      id: '1',
-      label: {
-        text: 'First',
-        imgSrc: '1.jpg',
-      },
-    },
-    {
-      id: '2',
-      disabled: true,
-      label: {
-        text: 'Second',
-        imgSrc: '2.jpg',
-      },
-    },
-  ];
-  return (
-    <React.Fragment>
-      <StatefulSelect
-        options={options}
-        initialState={{
-          selectedOptions: [
-            {
-              id: '3',
-              label: {
-                text: 'Third',
-                imgSrc: '3.jpg',
-              },
-            },
-          ],
-        }}
-        getOptionLabel={option => (
-          <span>
-            <img
-              style={{
-                borderRadius: '50%',
-                height: '75px',
-              }}
-              src={option.label.imgSrc}
-            />
-            {option.label.text}
-          </span>
-        )}
-        label="Select option..."
-        placeholder="Choose one..."
-        type={TYPE.select}
-        multiple={true}
-        onChange={this.onChange}
-        overrides={{
-          Option: props => <CustomOption>Select {props.children}</CustomOption>,
-        }}
-      />
-    </React.Fragment>
-  );
-};
-```

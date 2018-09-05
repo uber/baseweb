@@ -6,7 +6,7 @@
 
 ```javascript
 import * as React from 'react';
-import {Checkbox} from 'baseui/checkbox';
+import {StatefulCheckbox as Checkbox} from 'baseui/checkbox';
 
 export default () => {
   return

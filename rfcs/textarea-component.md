@@ -1,5 +1,46 @@
 # Textarea Component
 
+## Usage
+
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import {StatefulTextarea as Textarea} from 'baseui/textarea';
+
+export default () => {
+  return (
+    <Textarea name="description"/>
+  );
+};
+```
+
+### Advanced usage
+
+```javascript
+import * as React from 'react';
+import {StatefulTextarea as Textarea, StyledTextarea} from 'baseui/textarea';
+import {withStyle} from 'styletron-react';
+
+const TextareaWithStyle = withStyle(StyledTextarea, props => {
+  const {$isFocused, $theme: {sizing}} = props;
+  return {
+    borderRadius: $isFocused ? '0' : sizing.scale100,
+  };
+});
+
+export default () => {
+  return (
+    <div>
+      <Textarea
+        overrides={{Input: TextareaWithStyle}}
+        onChange={() => {console.log('textarea changed')}}
+      />
+    </div>
+  );
+};
+```
+
 ## Exports
 
 * `StatefulTextarea`
@@ -75,30 +116,3 @@ Next properties are passed to every presentational (styled) component that texta
 * `$size: 'default' | 'compact'`
 * `$required: boolean`
 * `$theme: theme`
-
-## Usage
-
-```javascript
-import {withStyle} from 'styletron-react';
-import {withProps} from '../helpers';
-import {StatefulTextarea as Textarea, StyledTextarea} from './index';
-
-const TextareaWithProps = withProps(StyledTextarea, {
-  'data-value': 'some value',
-});
-const TextareaWithStyle = withStyle(StyledTextarea, props => {
-  const {$isFocused, $theme: {sizing}} = props;
-  return {
-    borderRadius: $isFocused ? '0' : sizing.scale100,
-  };
-});
-
-export default () => {
-  return (
-    <div>
-      <Textarea overrides={{Input: TextareaWithProps}} />
-      <Textarea overrides={{Input: TextareaWithStyle}} />
-    </div>
-  );
-};
-```

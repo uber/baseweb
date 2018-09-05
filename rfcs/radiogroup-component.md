@@ -5,7 +5,8 @@
 ### Basic usage
 
 ```js
-import {Radio, RadioGroup} from 'baseui/radio';
+import * as React from 'react';
+import {Radio, StatefulRadioGroup as RadioGroup} from 'baseui/radio';
 
 export default () => {
   return
@@ -19,6 +20,7 @@ export default () => {
 ### Advanced usage
 
 ```js
+import * as React from 'react';
 import {StatefulRadioGroup, RadioMark, Label, Radio} from 'baseui/radio';
 import {withStyle} from 'styletron-react';
 
