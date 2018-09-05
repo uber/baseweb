@@ -1,6 +1,6 @@
 # Switch Component
 
-### Exports
+## Exports
 
 * `StatefulSwitch`
 * `StatefulContainer`
@@ -8,7 +8,7 @@
 * `StyledRoot`
 * `StyledSwitch`
 
-### `Switch` API
+## `Switch` API
 
 * `checked: ?boolean`:
   check or uncheck the control. Default is `false`.
@@ -26,7 +26,7 @@
 * `onChange: func`:
   handler for events on trigger element
 
-### `StatefulSwitchContainer` API
+## `StatefulSwitchContainer` API
 
 * `initialState: {}`
   Initial state of an uncontrolled popover component.
@@ -42,7 +42,7 @@
 * `onChange: func`:
   handler for events on trigger element
 
-### Usage
+## Usage
 
 ```js
 import {StatefulSwitch, StyledSwitch, StyledLabel} from './index';

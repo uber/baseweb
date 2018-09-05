@@ -1,6 +1,34 @@
 # Popover Component
 
-### Exports
+## Usage
+
+```js
+import {StatefulPopover as Popover, StyledBody} from 'baseui/popover';
+import {withStyle} from 'styletron-react';
+
+const CustomPopoverBody = withStyle(StyledBody, {
+  borderColor: 'red',
+});
+
+export default () => {
+  const popoverContent = <div>Hello world</div>;
+  return (
+    <div>
+      <Popover
+        placement="topLeft"
+        content={popoverContent}
+        overrides={{
+          Body: CustomPopoverBody,
+        }}
+      >
+        <span>Hover me!</span>
+      </Popover>
+    </div>
+  );
+};
+```
+
+## Exports
 
 * `StatefulPopover`
 * `Popover`
@@ -14,7 +42,7 @@
 * `TRIGGER_TYPE`
 * `STATE_CHANGE_TYPE`
 
-### `StatefulContainer` API
+## `StatefulContainer` API
 
 * `initialState: {isOpen: boolean}`
   Initial state of an uncontrolled popover component.
@@ -47,7 +75,7 @@
 * `triggerType: 'click' | 'hover'`:
   Whether to toggle the popover when trigger is clicked or hovered. Defaults to 'click'.
 
-### `Popover` API
+## `Popover` API
 
 * `isOpen: boolean`:
   Whether or not to show the popover
@@ -70,9 +98,9 @@
 * `onEsc: func`:
   handler for 'Escape' keypress events
 
-### Presentational components props API
+## Presentational components props API
 
-##### `Body`
+### `Body`
 
 Main popover container component that gets positioned next to the anchor:
 
@@ -86,7 +114,7 @@ Main popover container component that gets positioned next to the anchor:
 * `onMouseEnter`: Callback used for triggerType = 'hover' to prevent popover from hiding when mouse leaves anchor
 * `onMouseLeave`: Callback used for triggerType = 'hover' to hide popover
 
-##### `Arrow`
+### `Arrow`
 
 * `$isOpen`: Propagated from the parent
 * `$iAnimating`: `true` if the popover should currently be animating in or out.
@@ -96,73 +124,45 @@ Main popover container component that gets positioned next to the anchor:
 * `$placement`: Runtime placement (may differ from placement prop if popover would have overflowed viewport)
 * `$ref`: React ref for the arrow element (should be passed down to dom element)
 
-##### `Inner`
+### `Inner`
 
 Element that holds all the content.
 
 No props
 
-##### `Padding`
+### `Padding`
 
 Not used internally, just a helper customers can wrap their content in to add some default padding.
 
 No props
 
-### Usage
+## Implementation Details
 
-```js
-import {StatefulPopover as Popover, StyledBody} from './index';
-import {withStyle} from '../helpers';
-
-const CustomPopoverBody = withStyle(StyledBody, {
-  borderColor: 'red',
-});
-
-export default () => {
-  const popoverContent = <div>Hello world</div>;
-  return (
-    <div>
-      <Popover
-        placement="topLeft"
-        content={popoverContent}
-        overrides={{
-          Body: CustomPopoverBody,
-        }}
-      >
-        <span>Hover me!</span>
-      </Popover>
-    </div>
-  );
-};
-```
-
-### Implementation Details
-
-#### Dependencies
+### Dependencies
 
 * popper.js - Handles all the logic around positioning, detecting overflow, arrow placement, etc.
 
-#### Adding handlers to the trigger
+### Adding handlers to the trigger
 
 In order to trigger the popover the user has to click (or hover) on a trigger element. There are a couple strategies to set up these event handlers that have varying trade-offs:
 
-1.  **Wrapper** - We add a wrapper `<div>` or `<span>` around the passed in trigger element(s) and attach the necessary events. This gives us full control of events, but what's a good default `display` property? People might want their trigger to be display block, inline, or as a flex child, so we'd have to provide a prop or style override to control this.
-2.  **cloneElement** - Internally we call React.cloneElement on the `children` that the user passes in, and attach `onClick`, `onFocus`, etc event handlers. This avoids adding a wrapper DOM element but has other downside – (1) can't pass a string as child, (2) child passed in must accept arbitrary props, which is fine for DOM primitives but might get tricky when passing another component as the trigger.
-3.  **Child-as-function** - Instead of passing react elements through children, we could have users pass a function instead. This function would receive a props object with event handlers like `onClick`, `onFocus`, etc that they need to explicitly wire up (simplest case is spread into component props).
+1. **Wrapper** - We add a wrapper `<div>` or `<span>` around the passed in trigger element(s) and attach the necessary events. This gives us full control of events, but what's a good default `display` property? People might want their trigger to be display block, inline, or as a flex child, so we'd have to provide a prop or style override to control this.
+2. **cloneElement** - Internally we call React.cloneElement on the `children` that the user passes in, and attach `onClick`, `onFocus`, etc event handlers. This avoids adding a wrapper DOM element but has other downside – (1) can't pass a string as child, (2) child passed in must accept arbitrary props, which is fine for DOM primitives but might get tricky when passing another component as the trigger.
+3. **Child-as-function** - Instead of passing react elements through children, we could have users pass a function instead. This function would receive a props object with event handlers like `onClick`, `onFocus`, etc that they need to explicitly wire up (simplest case is spread into component props).
 
 All the various libraries (atlaskit, antd, material etc) have different approaches here, so there's not really an accepted best practice.
 
 The design in this RFC is based on #2 (`cloneElement`) as it seems like the solution that Just Works® the most. There may also be room for a hybrid approach – such as only adding a wrapper element if the user passes a string as the child. Thoughts are welcome here.
 
-#### Portals
+### Portals
 
 For reiable rendering we need to append the popover to the body (instead of in the DOM where the popover is rendered). We will use [React 16's portals](https://reactjs.org/docs/portals.html) for this.
 
-#### Manually triggering close event
+### Manually triggering close event
 
 Imagine a simple "Share" popover:
 
-```
+```javascript
   <StatefulPopover
     content={
       <div>
@@ -178,7 +178,7 @@ Let's say we want the popover to close after the user clicks "Copy". In theory w
 
 A better approach is probably to accept `content` as a render prop that receives a `close` method:
 
-```
+```javascript
   <StatefulPopover
     content={({close}) => (
       <div>
@@ -193,7 +193,7 @@ A better approach is probably to accept `content` as a render prop that receives
 
 We could also support a component injection API, where the component you inject is explicitly passed a `close` prop:
 
-```
+```javascript
 const PopoverContent = ({close}) => (
   <Button onClick={close}>Close</Button>
 );
@@ -207,22 +207,22 @@ export default () => (
 
 However it honestly seems like the render prop approach is a better API in this case.
 
-#### Default styles
+### Default styles
 
 The popover element will have zero padding by default. There are many valid use cases for both padded and non-padded popovers, so I'd argue that starting with zero padding and also exporting an optional `StyledPadding` is a better solution than forcing users to use a style override API to reset padding to zero.
 
 When used as a tooltip, it will have padding by default.
 
-### Accessibility
+## Accessibility
 
-#### Keyboard controls
+### Keyboard controls
 
 * The anchor will be focusable and user can tab to it using their keyboard.
 * When triggerType="hover" focusing on the anchor will open the tooltip automatically
 * When triggerType="click" a focused tooltip can be triggered via spacebar (assuming the anchor is a button)
 * Both the escape key and clicking outside the popover will close it
 
-#### A11y attributes (aria, etc)
+### A11y attributes (aria, etc)
 
 Unfortunately there is no single accepted best practice for popovers – I encourage you to go inspect the DOM of various Google, Facebook, Twitter, etc products and see just how much the approaches differ. The truth is that the accessibility strategy depends on the purpose of the popover. – is it displaying static content? form elements? a menu with a list of items? These all require a different approach, and it's difficult for us to determine this purpose at runtime and automatically apply the appropriate strategy. Accordingly, we will try to provide a sane default and allow users to override if needed.
 

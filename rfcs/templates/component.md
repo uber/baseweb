@@ -2,7 +2,7 @@
 
 Delete this line and any sections, exports, props, etc below where applicable.
 
-### Exports
+## Exports
 
 * `Foo`
 * `StatefulFoo`
@@ -11,7 +11,7 @@ Delete this line and any sections, exports, props, etc below where applicable.
 * `StyledBody`
 * `CONSTANT`
 
-### <Foo/> API
+## `Foo` API
 
 * `prop: type` - Optional|Required
   Description of prop
@@ -20,7 +20,7 @@ Delete this line and any sections, exports, props, etc below where applicable.
 * `prop: type` - Optional|Required
   Description of prop
 
-### <StatefulFoo/> API
+## `StatefulFoo` API
 
 * `prop: type` - Optional|Required
   Description of prop
@@ -29,7 +29,7 @@ Delete this line and any sections, exports, props, etc below where applicable.
 * `prop: type` - Optional|Required
   Description of prop
 
-### Presentational components props API
+## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported:
 
@@ -37,7 +37,7 @@ These properties are passed to every presentational (styled) component that is e
 * `$prop: type`
 * `$prop: type`
 
-### Usage
+## Usage
 
 Basic usage:
 
@@ -48,11 +48,11 @@ import {Foo} from 'baseui/foo';
 export default () => <Foo prop={true} />;
 ```
 
-### Dependencies
+## Dependencies
 
 Does this component depend on any 3rd party packages or other internal components?
 
-### Accessibility
+## Accessibility
 
 How can this component be used via keyboard controls?
 What are the accessibility best practices for this component (aria-\*, role, etc.)
