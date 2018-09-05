@@ -13,7 +13,9 @@ import StatefulContainer from './stateful-container';
 
 import type {StatefulMenuPropsT} from './types';
 
-export default class StatefulMenu extends React.Component<StatefulMenuPropsT> {
+export default class StatefulMenu extends React.PureComponent<
+  StatefulMenuPropsT,
+> {
   static defaultProps = {
     overrides: {},
   };
