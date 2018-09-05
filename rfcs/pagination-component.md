@@ -1,56 +1,56 @@
 # Pagination Component
 
-### Exports
+## Exports
 
-- `Pagination`
-- `StatefulPagination`
-- `StatefulContainer`
-- `StyledRoot`
-- `StyledPrevButton`
-- `StyledNextButton`
-- `StyledMaxLabel`
-- `STATE_CHANGE_TYPE`
+* `Pagination`
+* `StatefulPagination`
+* `StatefulContainer`
+* `StyledRoot`
+* `StyledPrevButton`
+* `StyledNextButton`
+* `StyledMaxLabel`
+* `STATE_CHANGE_TYPE`
 
-### Pagination API
+## Pagination API
 
-- `numPages: number` - Required
+* `numPages: number` - Required
   Max number of pages
-- `currentPage: number` - Required
+* `currentPage: number` - Required
   The current page
-- `prepositionLabel: string` - Optional
+* `prepositionLabel: string` - Optional
   Defaults to "of"
-- `overrides: {PrevButton, NextButton, Select}` - Optional
+* `overrides: {PrevButton, NextButton, Select}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
-- `onBackClick: (event) => void` - Optional
+* `onBackClick: (event) => void` - Optional
   Callback for prev button click
-- `onNextClick: (event) => void` - Optional
+* `onNextClick: (event) => void` - Optional
   Callback for next button click
 
-### StatefulContainer API
+## StatefulContainer API
 
-- `numPages: number` - Required
+* `numPages: number` - Required
   Max number of pages
-- `stateReducer: (changeType, changes, currentState) => Object`
+* `stateReducer: (changeType, changes, currentState) => Object`
   State reducer function
-- `initialState: {currentPage: number}` - Optional
+* `initialState: {currentPage: number}` - Optional
   The initial state
-- `onPageChange: (nextPage, prevPage) => void` - Optional
+* `onPageChange: (nextPage, prevPage) => void` - Optional
   Callback for when page changes
 
-### StatefulPagination API
+## StatefulPagination API
 
 `StatefulContainer` API and the following
 
-- `prepositionLabel: string` - Optional
+* `prepositionLabel: string` - Optional
   Defaults to "of"
-- `overrides: {PrevButton, NextButton, Select}` - Optional
+* `overrides: {PrevButton, NextButton, Select}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
-- `onPrevClick: (event) => void` - Optional
+* `onPrevClick: (event) => void` - Optional
   Callback for prev button click
-- `onNextClick: (event) => void` - Optional
+* `onNextClick: (event) => void` - Optional
   Callback for next button click
 
-### Usage
+## Usage
 
 Basic usage:
 

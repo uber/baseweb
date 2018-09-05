@@ -1,6 +1,6 @@
 # Textarea Component
 
-### Exports
+## Exports
 
 * `StatefulTextarea`
 * `Textarea`
@@ -9,12 +9,12 @@
 * `STATE_CHANGE_TYPE`
 * `SIZE`
 
-### StatefulTextarea API
+## StatefulTextarea API
 
 * All properties of the input's StatefulContainer except `children`
 * All properties of the Textarea comonent
 
-### Stateful container API (imported from `baseui/input`)
+## Stateful container API (imported from `baseui/input`)
 
 * `children: (props: Props) => React.Node` - Required
 * `initialState: {value: string}` - Optional
@@ -28,7 +28,7 @@
 * `onChange: (e: SyntheticEvent<HTMLElement>) => void` - Optional
   onChange event handler.
 
-### Textarea component API
+## Textarea component API
 
 * `autoFocus: boolean` - Optional
   If `true` the textarea will be focused on the first mount.
@@ -65,7 +65,7 @@
 * `value: string` - Optional
   Field value.
 
-### Presentational components props API
+## Presentational components props API
 
 Next properties are passed to every presentational (styled) component that textarea is composed of:
 
@@ -76,7 +76,7 @@ Next properties are passed to every presentational (styled) component that texta
 * `$required: boolean`
 * `$theme: theme`
 
-### Usage
+## Usage
 
 ```javascript
 import {withStyle} from 'styletron-react';

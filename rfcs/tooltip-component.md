@@ -8,7 +8,7 @@ The tooltip component is essentially a more opinionated `Popover`. Implementatio
 
 Accordingly, the RFC below will direct you to refer back to `popover-component.md` in many places.
 
-### Exports
+## Exports
 
 * `StatefulTooltip`
 * `Tooltip`
@@ -17,15 +17,15 @@ Accordingly, the RFC below will direct you to refer back to `popover-component.m
 * `StyledTooltipBody`
 * `StyledTooltipInner`
 
-### `StatefulTooltip` API
+## `StatefulTooltip` API
 
 Same props as `StatefulPopover` (see popover-component.md)
 
-### `Tooltip` API
+## `Tooltip` API
 
 Same props as `Popover` (see popover-component.md)
 
-### Usage
+## Usage
 
 ```js
 import {StatefulTooltip as Tooltip, StyledTooltip} from './index';
@@ -49,11 +49,11 @@ export default () => (
 );
 ```
 
-### Implementation Details
+## Implementation Details
 
 See popover-component.md
 
-### Accessibility
+## Accessibility
 
 See popover-component.md
 

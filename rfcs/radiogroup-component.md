@@ -1,6 +1,6 @@
 # RadioGroup Component
 
-### Exports
+## Exports
 
 * `StatefulRadioGroup`
 * `StatefulRadioGroupContainer`
@@ -11,7 +11,7 @@
 * `Input`
 * `Root`
 
-### `RadioGroup` API
+## `RadioGroup` API
 
 * `name?: string`:
   String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string
@@ -42,7 +42,7 @@
 * `onBlur: func`:
   handler for events on trigger element. Second argument provides index of radio button
 
-### `StatefulRadioGroupContainer` API
+## `StatefulRadioGroupContainer` API
 
 * `initialState: {}`
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
@@ -81,9 +81,7 @@
 * `onBlur: func`:
   handler for events on trigger element. Second argument provides index of radio button
 
-### `Radio` API
-
-### `Radio` API
+## `Radio` API
 
 * `Radio: ?boolean`:
   check or uncheck the control. Default is `false`.
@@ -100,7 +98,7 @@
   * `Root` wrapper element for the whole radio control to apply styles
   * `Input` may replace original functionality of radio. If provided should follow the same interface and logic or may break the whole component
 
-### Usage
+## Usage
 
 ```js
 import {StatefulRadioGroup, RadioMark, Label} from './index';

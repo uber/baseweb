@@ -26,7 +26,7 @@ The default exported `Menu` will have the following internal structure
 
 ## StatefulContainer API
 
-#### `items (required)`
+### `items (required)`
 
 ```js
 Array<Object>
@@ -34,7 +34,7 @@ Array<Object>
 
 List of items
 
-#### `getItemLabel (required)`
+### `getItemLabel (required)`
 
 ```js
 (item: Object) => string;
@@ -42,7 +42,7 @@ List of items
 
 Function used to get the string label for each item.
 
-#### `initialState (optional)`
+### `initialState (optional)`
 
 ```js
 {
@@ -52,7 +52,7 @@ Function used to get the string label for each item.
 
 Used to set initial state for the component. All the component's state can be controlled via props as well.
 
-#### `stateReducer (optional)`
+### `stateReducer (optional)`
 
 ```js
 (changeType: string, changes: Object, currentState: Object) => Object;
@@ -60,7 +60,7 @@ Used to set initial state for the component. All the component's state can be co
 
 State reducer to intercept state changes and return new internal state
 
-#### `onItemSelect (optional)`
+### `onItemSelect (optional)`
 
 ```js
 (selectedItem: ?Object) => any;
@@ -70,7 +70,7 @@ State reducer to intercept state changes and return new internal state
 
 All of `StatefulContainer` API and the following
 
-#### `overrides (optional)`
+### `overrides (optional)`
 
 ```js
 {
@@ -85,7 +85,7 @@ Component injection prop, can be used to override any or all of the internal com
 
 These are props passed down to the render prop, or children-as-a-function function, for advanced usages (and also used internally for the preconstructed `Menu`)
 
-#### `items`
+### `items`
 
 ```js
 Array<Object>
@@ -93,7 +93,7 @@ Array<Object>
 
 List of items
 
-#### `getItemLabel`
+### `getItemLabel`
 
 ```js
 (item: Object) => string;
@@ -101,7 +101,7 @@ List of items
 
 Function used to get the string label for each item.
 
-#### `highlightedIndex`
+### `highlightedIndex`
 
 ```js
 number;
@@ -109,7 +109,7 @@ number;
 
 Index of highlighted item if applicable
 
-#### `rootRef`
+### `rootRef`
 
 ```js
 React$ElementRef<*>;
@@ -117,7 +117,7 @@ React$ElementRef<*>;
 
 Ref for the root element
 
-#### `getRequiredItemProps`
+### `getRequiredItemProps`
 
 ```js
 (item: Object) => ({key: string, id: string});
@@ -129,11 +129,11 @@ Function to get props for each rendered item. This will have some defaults neede
 
 This menu list will support the following keybindings
 
-#### KeyDown / KeyUp
+### KeyDown / KeyUp
 
 Will cycle down / up the menu list, highlighting items as needed
 
-#### Enter
+### Enter
 
 Select the currently highlighted item; if no item is highlighted, select the first item in the menu list
 
