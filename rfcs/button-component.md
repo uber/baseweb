@@ -22,8 +22,6 @@ export default () => {
 import * as React from 'react';
 import {
   Button,
-  StyledStartEnhancer,
-  StyledEndEnhancer,
   SIZE,
   KIND,
   SHAPE,
@@ -31,16 +29,8 @@ import {
 
 export default () => (
   <Button
-    startEnhancer={
-      <StyledStartEnhancer>
-        <SvgIcon />
-      </StyledStartEnhancer>
-    }
-    endEnhancer={
-      <StyledEndEnhancer>
-        <SvgIcon />
-      </StyledEndEnhancer>
-    }
+    startEnhancer={<SvgIcon />}
+    endEnhancer={<SvgIcon />}
     shape={SHAPE.round}
     kind={KIND.secondary}
     size={SIZE.compact}
