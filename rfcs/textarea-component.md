@@ -32,7 +32,10 @@ const TextareaWithStyle = withStyle(StyledTextarea, props => {
 export default () => {
   return (
     <div>
-      <Textarea overrides={{Input: TextareaWithStyle}} />
+      <Textarea
+        overrides={{Input: TextareaWithStyle}}
+        onChange={() => {console.log('textarea changed')}}
+      />
     </div>
   );
 };

@@ -12,24 +12,19 @@ export default () => {
   const options = [
     {
       id: '1',
-      label: {
-        text: 'First',
-        imgSrc: '1.jpg',
-      },
+      label: 'First',
     },
     {
       id: '2',
       disabled: true,
-      label: {
-        text: 'Second',
-        imgSrc: '2.jpg',
-      },
+      label: 'Second',
     },
   ];
   return
     <Select
       options={options}
       placeholder="Start typing to select a destination"
+      onChange={() => {console.log('selected value changed')}}
     />
 };
 ```

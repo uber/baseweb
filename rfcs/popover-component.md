@@ -16,7 +16,7 @@ export default () => {
         placement="topLeft"
         content={popoverContent}
       >
-        <span>Hover me!</span>
+        <span>Click me!</span>
       </Popover>
     </React.Fragment>
   );
@@ -41,6 +41,7 @@ export default () => {
       <Popover
         placement="topLeft"
         content={popoverContent}
+        triggerType="hover"
         overrides={{
           Body: CustomPopoverBody,
         }}
