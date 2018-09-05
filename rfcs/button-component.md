@@ -8,7 +8,12 @@
 import * as React from 'react';
 import {Button, KIND} from 'baseui/button';
 
-export default () => <Button kind={KIND.primary}>Submit</Button>;
+export default () => {
+  return
+    <Button onClick={() => console.log('clicked')} kind={KIND.primary}>
+      Submit
+    </Button>
+}
 ```
 
 ### Advanced usage

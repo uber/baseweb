@@ -8,7 +8,14 @@
 import * as React from 'react';
 import {Checkbox} from 'baseui/checkbox';
 
-export default () => <Checkbox />;
+export default () => {
+  return
+    <Checkbox
+      checked={props.isEnabled}
+      onChange={evt => props.setEnabled(evt.target.checked)}>
+        Enabled
+    </Checkbox>;
+};
 ```
 
 ### Advanced usage

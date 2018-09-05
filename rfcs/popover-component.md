@@ -1,5 +1,33 @@
 # Popover Component
 
+## Usage
+
+```js
+import {StatefulPopover as Popover, StyledBody} from 'baseui/popover';
+import {withStyle} from 'styletron-react';
+
+const CustomPopoverBody = withStyle(StyledBody, {
+  borderColor: 'red',
+});
+
+export default () => {
+  const popoverContent = <div>Hello world</div>;
+  return (
+    <div>
+      <Popover
+        placement="topLeft"
+        content={popoverContent}
+        overrides={{
+          Body: CustomPopoverBody,
+        }}
+      >
+        <span>Hover me!</span>
+      </Popover>
+    </div>
+  );
+};
+```
+
 ## Exports
 
 * `StatefulPopover`
@@ -107,34 +135,6 @@ No props
 Not used internally, just a helper customers can wrap their content in to add some default padding.
 
 No props
-
-## Usage
-
-```js
-import {StatefulPopover as Popover, StyledBody} from './index';
-import {withStyle} from '../helpers';
-
-const CustomPopoverBody = withStyle(StyledBody, {
-  borderColor: 'red',
-});
-
-export default () => {
-  const popoverContent = <div>Hello world</div>;
-  return (
-    <div>
-      <Popover
-        placement="topLeft"
-        content={popoverContent}
-        overrides={{
-          Body: CustomPopoverBody,
-        }}
-      >
-        <span>Hover me!</span>
-      </Popover>
-    </div>
-  );
-};
-```
 
 ## Implementation Details
 

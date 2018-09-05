@@ -1,5 +1,16 @@
 # Pagination Component
 
+## Usage
+
+Basic usage:
+
+```javascript
+import * as React from 'react';
+import {StatefulPagination as Pagination} from 'baseui/pagination';
+
+export default () => <Pagination numPages={6} />;
+```
+
 ## Exports
 
 * `Pagination`
@@ -49,17 +60,6 @@
   Callback for prev button click
 * `onNextClick: (event) => void` - Optional
   Callback for next button click
-
-## Usage
-
-Basic usage:
-
-```javascript
-import * as React from 'react';
-import {StatefulPagination as Pagination} from 'baseui/paginate';
-
-export default () => <Pagination numPages={6} />;
-```
 
 ### Accessibility
 

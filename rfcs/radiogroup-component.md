@@ -1,5 +1,71 @@
 # RadioGroup Component
 
+## Usage
+
+### Basic usage
+
+```js
+import {Radio, RadioGroup} from 'baseui/radio';
+
+export default () => {
+  return
+    <RadioGroup>
+      <Radio value="first">First</Radio>
+      <Radio value="second">Second</Radio>
+    </RadioGroup>;
+};
+```
+
+### Advanced usage
+
+```js
+import {StatefulRadioGroup, RadioMark, Label, Radio} from 'baseui/radio';
+import {withStyle} from 'styletron-react';
+
+const CustomLabel = withStyle(Label, {
+  textColor: 'blue',
+});
+
+const CustomRadioMark = withStyle(RadioMark, {
+  textColor: 'green',
+});
+
+export default () => {
+  return (
+    <div>
+      <StatefulRadioGroup
+        name="BestGroupEver"
+        align="horizontal"
+        labelPlacement="left"
+        onMouseEnter={this.onRadioGroupHover}
+        onChange={this.onRadioGroupChange}
+      >
+        <Radio
+          value="First"
+          overrides={{
+            Root: props => <div>Some custom root</div>,
+            Label: props => <CustomLabel>Click me</CustomLabel>,
+            RadioMark: props => <CustomRadioMark {...props} />,
+          }}
+        >
+          First choice
+        </Radio>
+        <Radio
+          value="Second"
+          overrides={{
+            Root: props => <div>Some custom root</div>,
+            Label: props => <CustomLabel>Click me</CustomLabel>,
+            RadioMark: props => <CustomRadioMark {...props} />,
+          }}
+        >
+          Second choice
+        </Radio>
+      </StatefulRadioGroup>
+    </div>
+  );
+};
+```
+
 ## Exports
 
 * `StatefulRadioGroup`
@@ -97,47 +163,3 @@
   * Custom `RadioMark` (exact control). If used, most of handlers may not work.
   * `Root` wrapper element for the whole radio control to apply styles
   * `Input` may replace original functionality of radio. If provided should follow the same interface and logic or may break the whole component
-
-## Usage
-
-```js
-import {StatefulRadioGroup, RadioMark, Label} from './index';
-import Radio from './radio';
-
-const CustomLabel = withStyle(Label, {
-  textColor: 'blue',
-});
-
-const CustomRadioMark = withStyle(RadioMark, {
-  textColor: 'green',
-});
-
-import {withStyle} from 'styletron-react';
-
-export default () => {
-  return (
-    <div>
-      <StatefulRadioGroup
-        name="BestGroupEver"
-        align="horizontal"
-        labelPlacement="left"
-        onMouseEnter={this.onRadioGroupHover}
-        onChange={this.onRadioGroupChange}
-      >
-        <Radio value="First">First choice</Radio>
-        <Radio value="Second">Second choice</Radio>
-        <Radio
-          value="Third"
-          overrides={{
-            Root: props => <div>Some custom root</div>,
-            Label: props => <CustomLabel>Click me</CustomLabel>,
-            RadioMark: props => <CustomRadioMark {...props} />,
-          }}
-        >
-          Third choice
-        </Radio>
-      </StatefulRadioGroup>
-    </div>
-  );
-};
-```

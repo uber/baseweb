@@ -8,7 +8,13 @@
 import * as React from 'react';
 import {Input} from 'baseui/input';
 
-export default () => <Input />;
+export default () => {
+  return
+    <Input
+      value={props.name}
+      onChange={evt => props.setName(evt.target.value)}
+    />;
+};
 ```
 
 ### Advanced usage

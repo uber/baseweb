@@ -1,5 +1,46 @@
 # Modal Component
 
+## Usage
+
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import {Modal, SIZE} from 'baseui/modal';
+
+class App extends React.Component {
+  state = {
+    open: true,
+  };
+  render() {
+    return (
+      <React.Fragment>
+        <Button onClick={() => this.setState({open: true})}>Open</Button>
+        <Modal
+          isOpen={this.state.open}
+          close={() => this.setState({open: false})}
+        >
+          {({close}) => (
+            <>
+              <ModalHeader>Whatsup!</ModalHeader>
+              <ModalBody>This is a modal</ModalBody>
+              <ModalFooter>
+                <ModalButton kind="tertiary" onClick={close}>
+                  Close
+                </ModalButton>
+                <ModalButton kind="primary" onClick={this.submit}>
+                  Let’s Go
+                </ModalButton>
+              </ModalFooter>
+            </>
+          )}
+        </Modal>
+      </React.Fragment>
+    );
+  }
+}
+```
+
 ## Exports
 
 * `Modal`
@@ -90,47 +131,6 @@ Next properties are passed to every presentational (styled) component
 * `$theme: theme`
 
 More props likely TBA as development continues
-
-## Usage
-
-Basic usage:
-
-```javascript
-import * as React from 'react';
-import {Modal, SIZE} from 'baseui/modal';
-
-class App extends React.Component {
-  state = {
-    open: true,
-  };
-  render() {
-    return (
-      <div>
-        <Button onClick={() => this.setState({open: true})}>Open</Button>
-        <Modal
-          isOpen={this.state.open}
-          close={() => this.setState({open: false})}
-        >
-          {({close}) => (
-            <>
-              <ModalHeader>Whatsup!</ModalHeader>
-              <ModalBody>This is a modal</ModalBody>
-              <ModalFooter>
-                <ModalButton kind="tertiary" onClick={close}>
-                  Close
-                </ModalButton>
-                <ModalButton kind="primary" onClick={this.submit}>
-                  Let’s Go
-                </ModalButton>
-              </ModalFooter>
-            </>
-          )}
-        </Modal>
-      </div>
-    );
-  }
-}
-```
 
 ### Key Design Decisions
 
