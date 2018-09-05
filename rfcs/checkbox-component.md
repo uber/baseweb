@@ -1,5 +1,75 @@
 # Checkbox Component
 
+### Usage
+
+#### Basic usage
+
+```javascript
+import * as React from 'react';
+import {Checkbox} from 'baseui/checkbox';
+
+export default () => <Checkbox />;
+```
+
+#### Advanced usage
+
+```javascript
+import * as React from 'react';
+import {
+  StatefulCheckbox,
+  Checkbox,
+  StatefulCheckboxContainer,
+  Label,
+  Checkmark,
+} from 'baseui/checkbox';
+import {withStyle} from 'styletron-react';
+
+const CustomCheckbox = withStyle(Checkbox, {
+  textColor: 'red',
+});
+
+const CustomLabel = withStyle(Label, {
+  textColor: 'blue',
+});
+
+const CustomCheckmark = withStyle(Checkmark, {
+  textColor: 'green',
+});
+
+export default () => {
+  return (
+    <div>
+      <StatefulCheckboxContainer
+        initialState={{
+          checked: true,
+        }}
+        disabled={false}
+        labelPlacement="left"
+        onMouseEnter={this.onCheckboxHover}
+        onChange={this.onCheckboxChange}
+      >
+        {childrenProps => {
+          return (
+            <CustomCheckbox
+              {...childrenProps}
+              overrides={{
+                Label: <CustomLabel>Click me</CustomLabel>,
+                Checkmark: props => <CustomCheckmark {...props} />,
+              }}
+            />
+          );
+        }}
+      </StatefulCheckboxContainer>
+      <StatefulCheckbox
+        labelPlacement="right"
+        onMouseEnter={this.onCheckboxHover}
+        onChange={this.onCheckboxChange}
+      />
+    </div>
+  );
+};
+```
+
 ### Exports
 
 - `StatefulCheckbox`
@@ -77,61 +147,3 @@
 ### `Checkmark` API
 
 ### `Input` API
-
-### Usage
-
-```js
-import {
-  StatefulCheckbox,
-  Checkbox,
-  StatefulCheckboxContainer,
-  Label,
-  Checkmark,
-} from './index';
-import {withStyle} from 'styletron-react';
-
-const CustomCheckbox = withStyle(Checkbox, {
-  textColor: 'red',
-});
-
-const CustomLabel = withStyle(Label, {
-  textColor: 'blue',
-});
-
-const CustomCheckmark = withStyle(Checkmark, {
-  textColor: 'green',
-});
-
-export default () => {
-  return (
-    <div>
-      <StatefulCheckboxContainer
-        initialState={{
-          checked: true,
-        }}
-        disabled={false}
-        labelPlacement="left"
-        onMouseEnter={this.onCheckboxHover}
-        onChange={this.onCheckboxChange}
-      >
-        {childrenProps => {
-          return (
-            <CustomCheckbox
-              {...childrenProps}
-              overrides={{
-                Label: <CustomLabel>Click me</CustomLabel>,
-                Checkmark: props => <CustomCheckmark {...props} />,
-              }}
-            />
-          );
-        }}
-      </StatefulCheckboxContainer>
-      <StatefulCheckbox
-        labelPlacement="right"
-        onMouseEnter={this.onCheckboxHover}
-        onChange={this.onCheckboxChange}
-      />
-    </div>
-  );
-};
-```
