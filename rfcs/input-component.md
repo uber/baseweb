@@ -6,11 +6,11 @@
 
 ```javascript
 import * as React from 'react';
-import {StatefulInput as Input} from 'baseui/input';
+import {StatefulInput} from 'baseui/input';
 
 export default () => {
   return
-    <Input
+    <StatefulInput
       value={props.name}
       onChange={evt => props.setName(evt.target.value)}
     />;
