@@ -6,7 +6,7 @@
 
 ```javascript
 import * as React from 'react';
-import {Input} from 'baseui/input';
+import {StatefulInput as Input} from 'baseui/input';
 
 export default () => {
   return

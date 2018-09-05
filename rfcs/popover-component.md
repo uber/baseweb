@@ -2,7 +2,31 @@
 
 ## Usage
 
-```js
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import {StatefulPopover as Popover} from 'baseui/popover';
+
+export default () => {
+  const popoverContent = <div>Hello world</div>;
+  return (
+    <React.Fragment>
+      <Popover
+        placement="topLeft"
+        content={popoverContent}
+      >
+        <span>Hover me!</span>
+      </Popover>
+    </React.Fragment>
+  );
+};
+```
+
+### Advanced usage
+
+```javascript
+import * as React from 'react';
 import {StatefulPopover as Popover, StyledBody} from 'baseui/popover';
 import {withStyle} from 'styletron-react';
 
@@ -13,7 +37,7 @@ const CustomPopoverBody = withStyle(StyledBody, {
 export default () => {
   const popoverContent = <div>Hello world</div>;
   return (
-    <div>
+    <React.Fragment>
       <Popover
         placement="topLeft"
         content={popoverContent}
@@ -23,7 +47,7 @@ export default () => {
       >
         <span>Hover me!</span>
       </Popover>
-    </div>
+    </React.Fragment>
   );
 };
 ```
