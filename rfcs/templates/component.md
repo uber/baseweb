@@ -2,6 +2,35 @@
 
 Delete this line and any sections, exports, props, etc below where applicable.
 
+## Usage
+
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import {Foo} from 'baseui/foo';
+
+export default () => <Foo prop={true} />;
+```
+
+### Advanced usage
+
+```javascript
+import * as React from 'react';
+import {Foo} from 'baseui/foo';
+
+export default () => {
+  return
+    <Foo
+      prop={true}
+      onMagic={()=>{console.log('some magic happened')}}
+      overrides={{
+        Bar: props => <CustomBar>Click me</CustomBar>,
+      }}
+    />;
+}
+```
+
 ## Exports
 
 * `Foo`
@@ -36,17 +65,6 @@ These properties are passed to every presentational (styled) component that is e
 * `$prop: type`
 * `$prop: type`
 * `$prop: type`
-
-## Usage
-
-Basic usage:
-
-```javascript
-import * as React from 'react';
-import {Foo} from 'baseui/foo';
-
-export default () => <Foo prop={true} />;
-```
 
 ## Dependencies
 
