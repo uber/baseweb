@@ -2,7 +2,7 @@
 
 ## Usage
 
-Basic usage:
+### Basic usage
 
 ```javascript
 import * as React from 'react';

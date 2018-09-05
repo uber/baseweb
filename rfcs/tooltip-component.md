@@ -1,5 +1,45 @@
 # Tooltip Component
 
+## Usage
+
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import {StatefulTooltip as Tooltip} from 'baseui/tooltip';
+
+export default () => (
+  <Tooltip content="Lorem ipsum dolor sit amet...">
+    <span>Hover me!</span>
+  </Tooltip>
+);
+```
+
+### Advanced usage
+
+```javascript
+import * as React from 'react';
+import {StatefulTooltip as Tooltip, StyledTooltip} from 'baseui/tooltip';
+import {withStyle} from 'styletron-react';
+
+const BigOlTooltip = withStyle(StyledTooltip, {
+  width: '500px',
+});
+
+export default () => (
+  <Tooltip
+    content="Lorem ipsum dolor sit amet..."
+    overrides={{
+      Tooltip: {
+        style: {width: '500px'},
+      },
+    }}
+  >
+    <span>Hover me!</span>
+  </Tooltip>
+);
+```
+
 The tooltip component is essentially a more opinionated `Popover`. Implementation-wise it will just be a thin wrapper around a `Popover` with some defaults:
 
 * Darker theme (see Base UI docs)
@@ -24,30 +64,6 @@ Same props as `StatefulPopover` (see popover-component.md)
 ## `Tooltip` API
 
 Same props as `Popover` (see popover-component.md)
-
-## Usage
-
-```js
-import {StatefulTooltip as Tooltip, StyledTooltip} from './index';
-import {withStyle} from '../helpers';
-
-const BigOlTooltip = withStyle(StyledTooltip, {
-  width: '500px',
-});
-
-export default () => (
-  <Tooltip
-    content="Lorem ipsum dolor sit amet..."
-    overrides={{
-      Tooltip: {
-        style: {width: '500px'},
-      },
-    }}
-  >
-    <span>Hover me!</span>
-  </Tooltip>
-);
-```
 
 ## Implementation Details
 
