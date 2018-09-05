@@ -1,8 +1,57 @@
 # Button Component
 
+## Usage
+
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import {Button, KIND} from 'baseui/button';
+
+export default () => {
+  return
+    <Button onClick={() => console.log('clicked')} kind={KIND.primary}>
+      Submit
+    </Button>
+}
+```
+
+### Advanced usage
+
+```javascript
+import * as React from 'react';
+import {
+  Button,
+  StyledStartEnhancer,
+  StyledEndEnhancer,
+  SIZE,
+  KIND,
+  SHAPE,
+} from 'baseui/button';
+
+export default () => (
+  <Button
+    startEnhancer={
+      <StyledStartEnhancer>
+        <SvgIcon />
+      </StyledStartEnhancer>
+    }
+    endEnhancer={
+      <StyledEndEnhancer>
+        <SvgIcon />
+      </StyledEndEnhancer>
+    }
+    shape={SHAPE.round}
+    kind={KIND.secondary}
+    size={SIZE.compact}
+  >
+    Hello
+  </Button>
+);
+```
+
 Rough DOM composition:
 
-```
 +-------------------------------------------------------------------+
 | BaseButton (display: flex; justifyContent: space-between)         |
 | +-----------------+-----------------------+---------------------+ |
@@ -13,9 +62,8 @@ Rough DOM composition:
 | |                 |                       |                     | |
 | +-----------------+-----------------------+---------------------+ |
 +-------------------------------------------------------------------+
-```
 
-### Exports
+## Exports
 
 * `Button`
 * `StyledButton`
@@ -26,7 +74,7 @@ Rough DOM composition:
 * `SIZE`
 * `SHAPE`
 
-### <Button/> API
+## `Button` API
 
 * `children: (props: Props) => React.Node` - Required
   This can be an SVG icon as well.
@@ -49,7 +97,7 @@ Rough DOM composition:
 * `...rest`
   Passed to BaseButton as props. These can include `accesskey`, `disabled`, `formtarget`, `type`, `value` and more.
 
-### Presentational components props API
+## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported:
 
@@ -58,44 +106,11 @@ These properties are passed to every presentational (styled) component that is e
 * `$kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
 * `$theme: theme`
 
-### Usage
-
-Basic usage:
-
-```javascript
-import * as React from 'react';
-import {Button, KIND} from 'baseui/button';
-
-export default () => <Button kind={KIND.primary}>Submit</Button>;
-```
-
-Advanced usage:
-
-```javascript
-import * as React from 'react';
-import {
-  Button,
-  StyledStartEnhancer,
-  StyledEndEnhancer,
-  SIZE,
-  KIND,
-  SHAPE
-} from 'baseui/button';
-
-export default () => <Button
-  startEnhancer={<StyledStartEnhancer><SvgIcon /></StyledStartEnhancer>}
-  endEnhancer={<StyledEndEnhancer><SvgIcon /></StyledEndEnhancer>}
-  shape={SHAPE.round}
-  kind={KIND.secondary}
-  size={SIZE.compact}
->Hello</Button>;
-```
-
-### Dependencies
+## Dependencies
 
 None.
 
-### Accessibility
+## Accessibility
 
 How can this component be used via keyboard controls?
 What are the accessibility best practices for this component (aria-\*, role, etc.)

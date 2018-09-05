@@ -1,6 +1,48 @@
 # Input Component
 
-### Exports
+## Usage
+
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import {Input} from 'baseui/input';
+
+export default () => {
+  return
+    <Input
+      value={props.name}
+      onChange={evt => props.setName(evt.target.value)}
+    />;
+};
+```
+
+### Advanced usage
+
+```javascript
+import {StatefulInput as Input, StyledRoot} from 'baseui/input';
+import {withStyle} from 'styletron-react';
+
+const RootWithStyle = withStyle(StyledRoot, props => {
+  const {
+    $isFocused,
+    $theme: {sizing},
+  } = props;
+  return {
+    borderRadius: $isFocused ? '0' : sizing.scale100,
+  };
+});
+
+export default () => {
+  return (
+    <div>
+      <Input overrides={{Root: RootWithStyle}} />
+    </div>
+  );
+};
+```
+
+## Exports
 
 * `StatefulInput`
 * `StatefulContainer`
@@ -17,12 +59,12 @@
 * `SIZE`
 * `CUSTOM_INPUT_TYPE`
 
-### Stateful input API
+## Stateful input API
 
 * All properties of the StatefulContainer except `children`
 * All properties of the Input except `$components` that are optional and used to pass overrides for default styled components set.
 
-### Stateful container API
+## Stateful container API
 
 * `children: (props: Props) => React.Node` - Required
 * `initialState: {value: string}` - Optional
@@ -36,7 +78,7 @@
 * `onChange: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
   onChange event handler.
 
-### Input component API
+## Input component API
 
 * All properties of the BaseInput except `adjoined`
 * `overrides: {Label, Root, StartEnhancer, InputContainer, Input, Before, After, EndEnhancer, Caption}` - Optional
@@ -59,7 +101,7 @@
 * `endEnhancer: node | function` - Optional
   An input helper rendered after and attached to the input field.
 
-### BaseInput component API
+## BaseInput component API
 
 * `overrides: {InputContainer, Input, Before, After}` - Optional
   * `InputContainer: ReactComponent` - ReqOptionaluired
@@ -96,7 +138,7 @@
 * `onBlur: Function` - Optional
   onBlur event handler.
 
-### Presentational components props API
+## Presentational components props API
 
 Next properties are passed to every presentational (styled) component that input is composed of:
 
@@ -107,27 +149,3 @@ Next properties are passed to every presentational (styled) component that input
 * `$size: 'default' | 'compact'`
 * `$required: boolean`
 * `$theme: theme`
-
-### Usage
-
-```javascript
-import {StatefulInput as Input, StyledRoot} from './index';
-import {withProps} from '../helpers';
-
-const RootWithProps = withProps(StyledRoot, {'data-value': 'secret value'});
-const RootWithStyle = withStyle(StyledRoot, props => {
-  const {$isFocused, $theme: {sizing}} = props;
-  return {
-    borderRadius: $isFocused ? '0' : sizing.scale100,
-  };
-});
-
-export default () => {
-  return (
-    <div>
-      <Input overrides={{Root: RootWithProps}} />
-      <Input overrides={{Root: RootWithStyle}} />
-    </div>
-  );
-};
-```

@@ -1,90 +1,90 @@
 # Select Component
 
-### Exports
+## Exports
 
-- `StatefulSelect`
-- `StatefulSelectContainer`
-- `Select`
-- `StyledSelectInput`
-- `StyledOption`
-- `StyledDropDown`
-- `StyledLabel`
-- `StyledHint`
+* `StatefulSelect`
+* `StatefulSelectContainer`
+* `Select`
+* `StyledSelectInput`
+* `StyledOption`
+* `StyledDropDown`
+* `StyledLabel`
+* `StyledHint`
 
-### `Select` and `StatefulSelect` API
+## `Select` and `StatefulSelect` API
 
-- `type: TYPE.search | TYPE.select`:
+* `type: TYPE.search | TYPE.select`:
   type of component to be in select or search mode (with lookup input)
-- `selectedOptions: Array<Object>`:
+* `selectedOptions: Array<Object>`:
   Current selected options. Every option object has `id: string` and `label: string|Object`. Label is defaulted to display for selected option, otherwise see `getSelectedOptionLabel` method
-- `placeholder: ?string`:
+* `placeholder: ?string`:
   Placeholder text if nothing is selected. Default is `Choose one...`
-- `rows: ?number`:
+* `rows: ?number`:
   Represents maximum visible length of options, all other will be scrolled. If not defined, all options will be visible.
-- `options: Array<Object>`:
+* `options: Array<Object>`:
   All Options in dropdown. Should be provided for Select and Search mode equally. Every option object has `id: string` and `label: string|Object`. Label is defaulted to display for option in dropdown, otherwise see `getOptionLabel` method. Optional `disabled: boolean` for option to be disabled from selection.
-- `label: ?React$Node`:
+* `label: ?React$Node`:
   Component or String representing label for Select component. Default is `''`
-- `error: ?string`:
+* `error: ?string`:
   Error message and error state. Default is `''`
-- `multiple: ?boolean`:
+* `multiple: ?boolean`:
   Sets if multiple choices are allowed in Select component. Default is `false`
-- `filterable?: boolean`:
+* `filterable?: boolean`:
   Sets if options should be filtered when the input changes. It works only in Search mode. If your option labels aren't strings, or you need custom filtering logic, use the `filterOption` prop. Custom keyUp handler is still called if provided. Default is `false`
-- `filterOption?: (option: Object, query: String) => boolean`:
+* `filterOption?: (option: Object, query: String) => boolean`:
   Custom method to filter whether an option should be displayed in the menu. Defaults to a simple lower-case string match.
-- `getOptionLabel?: (option: Object) => React$Node`:
+* `getOptionLabel?: (option: Object) => React$Node`:
   Lets you control what label is rendered for the specified option. The default behavior returns `option.label`.
-- `getSelectedOptionLabel?: (option: Object) => React$Node`:
+* `getSelectedOptionLabel?: (option: Object) => React$Node`:
   Lets you control what label is rendered for the selected option. If not specified, defaults to `getOptionLabel`.
-- `autoFocus: boolean`:
+* `autoFocus: boolean`:
   Make the control focused (active). Default is `false`
-- `disabled: boolean`:
+* `disabled: boolean`:
   Disable control from being changed
-- `required: boolean`:
+* `required: boolean`:
   Mark control as required
-- `overrides: {}`
-  - `DropDown: ?React.ComponentType` component to use for dropdown list
-  - `Option: ?React.ComponentType` component to use for options in dropdown list
-  - `Root: ?React.ComponentType` component to use for most top of the select component
-  - `Input: ?React.ComponentType` component for Input showing current selected value(s). See `Input` Control of this framework for reference to override it's functionality.
-  - `SearchIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
-  - `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
-- `onChange: func(e: SyntheticInputEvent, params: Object)`:
+* `overrides: {}`
+  * `DropDown: ?React.ComponentType` component to use for dropdown list
+  * `Option: ?React.ComponentType` component to use for options in dropdown list
+  * `Root: ?React.ComponentType` component to use for most top of the select component
+  * `Input: ?React.ComponentType` component for Input showing current selected value(s). See `Input` Control of this framework for reference to override it's functionality.
+  * `SearchIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
+  * `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
+* `onChange: func(e: SyntheticInputEvent, params: Object)`:
   handler for events on trigger element when option are changing selection or text of search input (in Search mode has changed). `params` has `type` indicating which action is performed, `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected, has new `textValue` set in input (for `keyUp`)
-- `onMouseEnter: func`:
+* `onMouseEnter: func`:
   handler for events on trigger element
-- `onMouseLeave: func`:
+* `onMouseLeave: func`:
   handler for events on trigger element
-- `onFocus: func`:
+* `onFocus: func`:
   handler for events on trigger element
-- `onBlur: func`:
+* `onBlur: func`:
   handler for events on trigger element
 
-### `StatefulSelectContainer` API
+## `StatefulSelectContainer` API
 
-- `initialState: {}`
+* `initialState: {}`
   Initial state of an uncontrolled popover component.
-  - `selectedOptions` - an initial set of selected options. They are prepended to all Options array if not found there.
-- `stateReducer: (type: text, nextState: {}, currentState: {}, e: any, params: Object) => nextState`
+  * `selectedOptions` - an initial set of selected options. They are prepended to all Options array if not found there.
+* `stateReducer: (type: text, nextState: {}, currentState: {}, e: any, params: Object) => nextState`
   A state change handler.
-  - `type` - state change type
-  - `nextState` - a new state changes that will be set
-  - `currentState` - current full state of the component
-  - `params` may contain `id` and `label` of selected option and `selectedOptions` array of all of selected, as well as new `textValue` set in input.
-- `options: func` should return `Select` instance with standard or customized inner elements.
-- `onChange: func(e: SyntheticInputEvent, params: Object)`:
+  * `type` - state change type
+  * `nextState` - a new state changes that will be set
+  * `currentState` - current full state of the component
+  * `params` may contain `id` and `label` of selected option and `selectedOptions` array of all of selected, as well as new `textValue` set in input.
+* `options: func` should return `Select` instance with standard or customized inner elements.
+* `onChange: func(e: SyntheticInputEvent, params: Object)`:
   handler for events on trigger element when option are changing selection or text of search input (in Search mode has changed). `params` has `type` indicating which action is performed, `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected, has new `textValue` set in input (for `keyUp`)
-- `onMouseEnter: func`:
+* `onMouseEnter: func`:
   handler for events on trigger element
-- `onMouseLeave: func`:
+* `onMouseLeave: func`:
   handler for events on trigger element
-- `onFocus: func`:
+* `onFocus: func`:
   handler for events on trigger element
-- `onBlur: func`:
+* `onBlur: func`:
   handler for events on trigger element
 
-### Usage
+## Usage
 
 ```js
 import {
