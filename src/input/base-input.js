@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import getBuiId from '../utils/get-bui-id';
 import {getOverride, getOverrideProps} from '../helpers/overrides';
 import type {BaseInputPropsT, InternalStateT} from './types';
 import {getSharedProps} from './utils';
@@ -22,7 +21,6 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
     autoFocus: false,
     disabled: false,
     error: false,
-    id: getBuiId(),
     name: '',
     inputRef: React.createRef(),
     onBlur: () => {},

@@ -6,7 +6,6 @@ exports[`StatefulInput - basic render: renders <Input/> as a child 1`] = `
   disabled={false}
   endEnhancer={null}
   error={false}
-  id="bui-mock-id"
   name=""
   onBlur={[Function]}
   onChange={[Function]}
