@@ -6,7 +6,7 @@
 
 ```javascript
 import * as React from 'react';
-import { StatefulSelect as Select } from 'baseui/select';
+import { StatefulSelect } from 'baseui/select';
 
 export default () => {
   const options = [
@@ -21,7 +21,7 @@ export default () => {
     },
   ];
   return
-    <Select
+    <StatefulSelect
       options={options}
       placeholder="Start typing to select a destination"
       onChange={() => {console.log('selected value changed')}}

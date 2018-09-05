@@ -6,12 +6,12 @@
 
 ```javascript
 import * as React from 'react';
-import {StatefulTooltip as Tooltip} from 'baseui/tooltip';
+import {StatefulTooltip} from 'baseui/tooltip';
 
 export default () => (
-  <Tooltip content="Lorem ipsum dolor sit amet...">
+  <StatefulTooltip content="Lorem ipsum dolor sit amet...">
     <span>Hover me!</span>
-  </Tooltip>
+  </StatefulTooltip>
 );
 ```
 
@@ -19,7 +19,7 @@ export default () => (
 
 ```javascript
 import * as React from 'react';
-import {StatefulTooltip as Tooltip, StyledTooltip} from 'baseui/tooltip';
+import {StatefulTooltip, StyledTooltip} from 'baseui/tooltip';
 import {withStyle} from 'styletron-react';
 
 const BigOlTooltip = withStyle(StyledTooltip, {
@@ -27,7 +27,7 @@ const BigOlTooltip = withStyle(StyledTooltip, {
 });
 
 export default () => (
-  <Tooltip
+  <StatefulTooltip
     content="Lorem ipsum dolor sit amet..."
     overrides={{
       Tooltip: {
@@ -36,7 +36,7 @@ export default () => (
     }}
   >
     <span>Hover me!</span>
-  </Tooltip>
+  </StatefulTooltip>
 );
 ```
 

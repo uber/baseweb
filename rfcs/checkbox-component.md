@@ -6,15 +6,15 @@
 
 ```javascript
 import * as React from 'react';
-import {StatefulCheckbox as Checkbox} from 'baseui/checkbox';
+import {StatefulCheckbox} from 'baseui/checkbox';
 
 export default () => {
   return
-    <Checkbox
+    <StatefulCheckbox
       checked={props.isEnabled}
       onChange={evt => props.setEnabled(evt.target.checked)}>
         Enabled
-    </Checkbox>;
+    </StatefulCheckbox>;
 };
 ```
 

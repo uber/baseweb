@@ -6,14 +6,14 @@
 
 ```js
 import * as React from 'react';
-import {Radio, StatefulRadioGroup as RadioGroup} from 'baseui/radio';
+import {Radio, StatefulRadioGroup} from 'baseui/radio';
 
 export default () => {
   return
-    <RadioGroup>
+    <StatefulRadioGroup>
       <Radio value="first">First</Radio>
       <Radio value="second">Second</Radio>
-    </RadioGroup>;
+    </StatefulRadioGroup>;
 };
 ```
 
