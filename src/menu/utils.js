@@ -8,7 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable import/prefer-default-export */
 import smoothscroll from 'smoothscroll-polyfill';
 
-smoothscroll.polyfill();
+if (__BROWSER__) {
+  smoothscroll.polyfill();
+}
 
 /**
  * Given a props object and a mapper dictionary of prop keys, we will prepend
