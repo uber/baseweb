@@ -6,9 +6,9 @@
 
 ```javascript
 import * as React from 'react';
-import {StatefulPagination as Pagination} from 'baseui/pagination';
+import {StatefulPagination} from 'baseui/pagination';
 
-export default () => <Pagination numPages={6} />;
+export default () => <StatefulPagination numPages={6} />;
 ```
 
 ## Exports

@@ -6,11 +6,11 @@
 
 ```javascript
 import * as React from 'react';
-import {StatefulTextarea as Textarea} from 'baseui/textarea';
+import {StatefulTextarea} from 'baseui/textarea';
 
 export default () => {
   return (
-    <Textarea name="description"/>
+    <StatefulTextarea name="description"/>
   );
 };
 ```
@@ -19,7 +19,7 @@ export default () => {
 
 ```javascript
 import * as React from 'react';
-import {StatefulTextarea as Textarea, StyledTextarea} from 'baseui/textarea';
+import {StatefulTextarea, StyledTextarea} from 'baseui/textarea';
 import {withStyle} from 'styletron-react';
 
 const TextareaWithStyle = withStyle(StyledTextarea, props => {
@@ -32,7 +32,7 @@ const TextareaWithStyle = withStyle(StyledTextarea, props => {
 export default () => {
   return (
     <div>
-      <Textarea
+      <StatefulTextarea
         overrides={{Input: TextareaWithStyle}}
         onChange={() => {console.log('textarea changed')}}
       />

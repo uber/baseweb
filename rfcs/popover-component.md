@@ -6,18 +6,18 @@
 
 ```javascript
 import * as React from 'react';
-import {StatefulPopover as Popover} from 'baseui/popover';
+import {StatefulPopover} from 'baseui/popover';
 
 export default () => {
   const popoverContent = <div>Hello world</div>;
   return (
     <React.Fragment>
-      <Popover
+      <StatefulPopover
         placement="topLeft"
         content={popoverContent}
       >
         <span>Click me!</span>
-      </Popover>
+      </StatefulPopover>
     </React.Fragment>
   );
 };
@@ -27,7 +27,7 @@ export default () => {
 
 ```javascript
 import * as React from 'react';
-import {StatefulPopover as Popover, StyledBody} from 'baseui/popover';
+import {StatefulPopover, StyledBody} from 'baseui/popover';
 import {withStyle} from 'styletron-react';
 
 const CustomPopoverBody = withStyle(StyledBody, {
@@ -38,7 +38,7 @@ export default () => {
   const popoverContent = <div>Hello world</div>;
   return (
     <React.Fragment>
-      <Popover
+      <StatefulPopover
         placement="topLeft"
         content={popoverContent}
         triggerType="hover"
@@ -47,7 +47,7 @@ export default () => {
         }}
       >
         <span>Hover me!</span>
-      </Popover>
+      </StatefulPopover>
     </React.Fragment>
   );
 };
