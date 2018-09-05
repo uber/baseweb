@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-type Colors = {
+type ColorsT = {
   // Primary Palette
   primary50: string,
   primary100: string,
@@ -106,7 +106,7 @@ type Colors = {
   shadowError: string,
 };
 
-type Typography = {
+type TypographyT = {
   font100: Font,
   font200: Font,
   font250: Font,
@@ -129,7 +129,7 @@ type Font = {
   lineHeight: string,
 };
 
-type Sizing = {
+type SizingT = {
   scale0: string,
   scale100: string,
   scale200: string,
@@ -149,7 +149,7 @@ type Sizing = {
   scale4800: string,
 };
 
-type Lighting = {
+type LightingT = {
   shadow400: string,
   shadow500: string,
   shadow600: string,
@@ -163,7 +163,7 @@ type Lighting = {
   overlay600: string,
 };
 
-type Animation = {
+type AnimationT = {
   timing100: string,
   timing400: string,
   timing700: string,
@@ -172,18 +172,23 @@ type Animation = {
   easeInOutCurve: string,
 };
 
-type Borders = {
+type BordersT = {
   useRoundedCorners: boolean,
   radius100: string,
   radius200: string,
   radius300: string,
 };
 
+type ZIndexT = {
+  modal: number,
+};
+
 export type ThemeT = {
-  colors: Colors,
-  typography: Typography,
-  sizing: Sizing,
-  lighting: Lighting,
-  animation: Animation,
-  borders: Borders,
+  colors: ColorsT,
+  typography: TypographyT,
+  sizing: SizingT,
+  lighting: LightingT,
+  animation: AnimationT,
+  borders: BordersT,
+  zIndex: ZIndexT,
 };

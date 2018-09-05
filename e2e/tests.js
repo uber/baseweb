@@ -1,11 +1,17 @@
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 // @flow
 /* eslint-env browser */
 
 import React from 'react';
-import PopoverExamples from '../src/popover/examples';
 import CheckboxExamples from '../src/checkbox/examples';
+import ModalExamples from '../src/modal/examples';
 
-const Examples = [PopoverExamples, CheckboxExamples];
+const Examples = [CheckboxExamples, ModalExamples];
 
 export default function() {
   // needs polyfill for IE
