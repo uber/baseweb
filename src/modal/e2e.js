@@ -6,10 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import * as webdriver from 'selenium-webdriver';
 import e2e from '../utils/e2e-test-utils';
-
-const {run, By, goToUrl} = e2e;
 import {suite, examples} from './examples';
+
+const {run, goToUrl} = e2e;
+const {By, until} = webdriver;
 
 run((driver, browser) => {
   describe(suite, function() {
@@ -22,7 +24,8 @@ run((driver, browser) => {
       );
       closeButton.click();
 
-      await driver.sleep(100);
+      // Wait for dialog to close
+      await driver.wait(until.stalenessOf(closeButton));
 
       // Open modal
       let openModalButton = await driver.findElement(
@@ -30,7 +33,8 @@ run((driver, browser) => {
       );
       openModalButton.click();
 
-      await driver.sleep(100);
+      // Wait for dialog to open
+      await driver.wait(until.elementLocated(By.css('[role="document"]')));
 
       // Dialog should be focused
       const dialog = await driver.findElement(By.css('[role="document"]'));
@@ -43,7 +47,8 @@ run((driver, browser) => {
       );
       closeButton.click();
 
-      await driver.sleep(100);
+      // Wait for dialog to close
+      await driver.wait(until.stalenessOf(closeButton));
 
       // Focus should have transitioned back to button
       openModalButton = await driver.findElement(By.css('.open-modal-button'));
