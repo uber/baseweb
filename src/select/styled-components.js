@@ -137,7 +137,6 @@ export const DropDown = styled('ul', props => {
     display: !$isOpen ? 'none' : null,
     width: '96%',
     position: 'absolute',
-    padding: scale600,
     listStyle: 'none',
     borderRadius: scale300,
     boxShadow: $theme.lighting.shadow600,
@@ -159,18 +158,13 @@ export const Option = styled('div', props => {
   const {$selected, disabled, $theme} = props;
   const {
     colors: {mono700, primary400},
-    sizing: {scale300},
   } = $theme;
   const padding = $selected
     ? {
-        paddingTop: scale300,
-        paddingBottom: scale300,
         paddingRight: '0px',
         paddingLeft: '0px',
       }
     : {
-        paddingTop: scale300,
-        paddingBottom: scale300,
         paddingRight: '18px',
         paddingLeft: '18px',
       };

@@ -43,48 +43,59 @@ const SelectDropDown = function(props: DropDownPropsT) {
   } = props;
   return options.length ? (
     <StatefulMenu
-      getItemLabel={option => {
-        const $selected = selectedOptions.find(
-          selected => selected.id === option.id,
-        );
-        const events = option.disabled
-          ? {
-              onClickCapture: e => e.stopPropagation(),
-            }
-          : {
-              onClick: e =>
-                onChange(e, STATE_CHANGE_TYPE.select, option.id, option.label),
-            };
-        return (
-          <Option
-            disabled={option.disabled}
-            $selected={$selected}
-            {...events}
-            key={option.id}
-          >
-            {$selected && (
-              <SearchIcon
-                $type={ICON.selected}
-                src={
-                  'data:image/svg+xml;utf8,<svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6L4 9L10 1" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-                }
-              />
-            )}
-            {getOptionLabel(option)}
-          </Option>
-        );
-      }}
       overrides={{
         /* eslint-disable-next-line react/display-name*/
-        List: listProps => (
-          <DropDown
-            {...listProps}
-            $rows={rows}
-            $type={type}
-            $isOpen={isDropDownOpen}
-          />
-        ),
-        ListItem: DropDownItem,
+        List: {
+          component: DropDown,
+          props: {
+            $rows: rows,
+            $type: type,
+            $isOpen: isDropDownOpen,
+          },
+        },
+        Option: {
+          props: {
+            overrides: {
+              ListItem: DropDownItem,
+            },
+            getItemLabel: option => {
+              const $selected = selectedOptions.find(
+                selected => selected.id === option.id,
+              );
+              const events = option.disabled
+                ? {
+                    onClickCapture: e => e.stopPropagation(),
+                  }
+                : {
+                    onClick: e =>
+                      onChange(
+                        e,
+                        STATE_CHANGE_TYPE.select,
+                        option.id,
+                        option.label,
+                      ),
+                  };
+              return (
+                <Option
+                  disabled={option.disabled}
+                  $selected={$selected}
+                  {...events}
+                  key={option.id}
+                >
+                  {$selected && (
+                    <SearchIcon
+                      $type={ICON.selected}
+                      src={
+                        'data:image/svg+xml;utf8,<svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6L4 9L10 1" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+                      }
+                    />
+                  )}
+                  {getOptionLabel(option)}
+                </Option>
+              );
+            },
+          },
+        },
       }}
       items={options}
     />
