@@ -8,9 +8,9 @@ import {
   Body as StyledBody,
   Contents as StyledContents,
   HeaderImage as StyledHeaderImage,
+  Root as StyledRoot,
   Thumbnail as StyledThumbnail,
   Title as StyledTitle,
-  Wrapper as StyledWrapper,
 } from './styled-components';
 
 import type {OverrideObjectT} from '../helpers/overrides';
@@ -25,13 +25,17 @@ export type Props = {
     Body?: OverrideObjectT<?{}>,
     Contents?: OverrideObjectT<?{}>,
     HeaderImage?: OverrideObjectT<?{}>,
+    Root?: OverrideObjectT<?{}>,
     Thumbnail?: OverrideObjectT<?{}>,
     Title?: OverrideObjectT<?{}>,
-    Wrapper?: OverrideObjectT<?{}>,
   },
   +thumbnail?: string,
   +title?: Node,
 };
+
+export function hasThumbnail(props: {+thumbnail?: string}) {
+  return Boolean(props.thumbnail);
+}
 
 function Card(props: Props) {
   const {
@@ -49,22 +53,22 @@ function Card(props: Props) {
     Body: BodyOverride,
     Contents: ContentsOverride,
     HeaderImage: HeaderImageOverride,
+    Root: RootOverride,
     Thumbnail: ThumbnailOverride,
     Title: TitleOverride,
-    Wrapper: WrapperOverride,
   } = props.overrides;
 
   const Action = getOverride(ActionOverride) || StyledAction;
   const Body = getOverride(BodyOverride) || StyledBody;
   const Contents = getOverride(ContentsOverride) || StyledContents;
   const HeaderImage = getOverride(HeaderImageOverride) || StyledHeaderImage;
+  const Root = getOverride(RootOverride) || StyledRoot;
   const Thumbnail = getOverride(ThumbnailOverride) || StyledThumbnail;
   const Title = getOverride(TitleOverride) || StyledTitle;
-  const Wrapper = getOverride(WrapperOverride) || StyledWrapper;
 
   const $hasThumbnail = hasThumbnail(props);
   return (
-    <Wrapper {...getOverrideProps(WrapperOverride)} {...otherProps}>
+    <Root {...getOverrideProps(RootOverride)} {...otherProps}>
       {headerImage && (
         <HeaderImage
           src={headerImage}
@@ -89,14 +93,14 @@ function Card(props: Props) {
         <Body {...getOverrideProps(BodyOverride)}>{children}</Body>
         {action && <Action>{action}</Action>}
       </Contents>
-    </Wrapper>
+    </Root>
   );
 }
 
 Card.defaultProps = {
   action: null,
   children: null,
-  hasThumbnail: (props: {+thumbnail?: string}) => Boolean(props.thumbnail),
+  hasThumbnail,
   overrides: {},
 };
 

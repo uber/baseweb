@@ -30,6 +30,15 @@ export const HeaderImage = styled('img', ({$theme}) => {
   };
 });
 
+export const Root = styled('div', ({$theme}) => {
+  const {border, lighting, sizing} = $theme;
+  return {
+    ...border.border300,
+    boxShadow: lighting.shadow400,
+    borderRadius: sizing.scale100,
+  };
+});
+
 export const Thumbnail = styled('img', props => {
   const {
     $theme: {border, sizing},
@@ -54,14 +63,5 @@ export const Title = styled('h1', ({$hasThumbnail, $theme}) => {
     fontWeight: 500,
     margin: `0 0 ${sizing.scale300} 0`,
     padding: 0,
-  };
-});
-
-export const Wrapper = styled('div', ({$theme}) => {
-  const {border, lighting, sizing} = $theme;
-  return {
-    ...border.border300,
-    boxShadow: lighting.shadow400,
-    borderRadius: sizing.scale100,
   };
 });

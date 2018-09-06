@@ -9,5 +9,5 @@ export {
   HeaderImage as StyledHeaderImage,
   Thumbnail as StyledThumbnail,
   Title as StyledTitle,
-  Wrapper as StyledWrapper,
+  Root as StyledWrapper,
 } from './styled-components';

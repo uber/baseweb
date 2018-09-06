@@ -3,11 +3,15 @@
 import React from 'react';
 
 import {storiesOf} from '@storybook/react';
+import {withReadme} from 'storybook-readme';
+
+//$FlowFixMe
+import CardReadme from '../../rfcs/card-component.md';
 
 import {LightTheme} from '../themes';
 import {ThemeProvider} from '../styles';
 
-import BaseCard from './card';
+import BaseCard, {hasThumbnail} from './card';
 import {
   Action as CardAction,
   Body as CardBody,
@@ -28,7 +32,7 @@ const Card = (props: Props) => (
   <BaseCard style={{width: cardWidth}} {...props} />
 );
 Card.defaultProps = {
-  hasThumbnail: (props: {+thumbnail?: string}) => Boolean(props.thumbnail),
+  hasThumbnail,
   overrides: {},
 };
 
@@ -37,6 +41,7 @@ function Button(props) {
 }
 
 storiesOf('Card', module)
+  .addDecorator(withReadme(CardReadme))
   .addDecorator(story => (
     <ThemeProvider theme={LightTheme}>{story()}</ThemeProvider>
   ))
