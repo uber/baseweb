@@ -18,7 +18,7 @@ export default () => {
   return (
     <div>
       <Tag
-        onActionClick={event => {}}
+        onActionClick={(event, children) => {}}
         disabled={false}
         overrides={{
           Root: CustomRoot,
@@ -40,8 +40,8 @@ export default () => {
 
 ## `Tag` API
 
-* `color: STYLE.blue(theme.colors.primary470) | STYLE.orange(theme.colors.warning400) | STYLE.green(theme.colors.positive400) | STYLE.red(theme.colors.negative400)`:
-  the color theme to be applied to a Tag. Default is `STYLE.blue`.
+* `color: STYLE.primary(theme.colors.primary470) | STYLE.warning(theme.colors.warning400) | STYLE.positive(theme.colors.positive400) | STYLE.negative(theme.colors.negative400)`:
+  the color theme to be applied to a Tag. Default is `STYLE.primary`.
 * `children: React$Node`:
   Component or String value for label of tag. Default is empty string
 * `disabled: boolean`:
@@ -49,5 +49,5 @@ export default () => {
 * `overrides: {Root: (props: {[string]: any}) => React$Node, Action: (props: {[string]: any}) => React$Node}`
   * Custom `Action` button.
   * `Root` wrapper element for the whole tag control to apply styles
-* `onActionClick: func(evt => void)`:
-  handler for events on Action button element (default is Cross).
+* `onActionClick: func((evt, children) => void)`:
+  handler for events on Action button element (default is Cross). `children` provides which actual Tag was clicked

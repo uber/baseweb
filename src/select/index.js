@@ -13,7 +13,7 @@ export {
   Root as StyledRoot,
   Input as StyledInput,
   InputContainer as StyledInputContainer,
-  Tag as StyledTag,
+  SingleSelection as StyledSingleSelection,
   SearchIcon as StyledSearchIcon,
   DropDown as StyledDropDown,
   Option as StyledOption,

@@ -9,6 +9,7 @@ import React from 'react';
 import {mount, shallow} from 'enzyme';
 import {Select, StyledSearchIcon, StyledInput, StyledOption} from '../index';
 import {STATE_CHANGE_TYPE, TYPE, ICON} from '../constants';
+import {StyledAction} from '../../tag';
 
 describe('Stateless select', function() {
   let wrapper,
@@ -207,10 +208,7 @@ describe('Stateless select', function() {
     });
 
     test('should remove selected tag from selected options if X button is clicked', function() {
-      clearIcon = wrapper.find(StyledSearchIcon);
-      clearIcon = clearIcon.filterWhere(
-        comp => comp.props().$type === ICON.clearTag,
-      );
+      clearIcon = wrapper.find(StyledAction);
       expect(wrapper.instance().state.selectedOptions).toEqual(selectedOptions);
       clearIcon.first().simulate('click');
       expect(wrapper.instance().state.selectedOptions).toEqual([]);
