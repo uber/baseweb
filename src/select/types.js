@@ -68,6 +68,7 @@ export type PropsT = {
   multiple: boolean,
   error?: string,
   autoFocus?: boolean,
+  disabled?: boolean,
   type?: string,
   filterable: boolean,
   filterOption: (OptionT, string) => boolean,

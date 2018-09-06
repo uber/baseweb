@@ -55,7 +55,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     filteredOptions: null,
     textValue: this.props.textValue,
     selectedOptions: this.props.selectedOptions,
-    isDropDownOpen: this.props.type === TYPE.search,
+    isDropDownOpen: !this.props.disabled && this.props.type === TYPE.search,
   };
 
   constructor(props: PropsT) {
@@ -189,21 +189,24 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         SearchIcon: SearchIconOverride,
       } = {},
     } = this.props;
+
     const Root = getOverride(RootOverride) || StyledRoot;
     const Input = getOverride(InputOverride) || StyledInput;
     const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {label, placeholder} = this.props;
+    const {label, placeholder, disabled} = this.props;
     const {selectedOptions} = this.state;
     return (
       <div
         onClick={() => {
-          this.setState({isDropDownOpen: !this.state.isDropDownOpen});
+          if (!disabled) {
+            this.setState({isDropDownOpen: !this.state.isDropDownOpen});
+          }
         }}
       >
         <InputComponent
-          disabled={true}
           label={label}
           placeholder={!selectedOptions.length ? placeholder : ''}
+          disabled={disabled}
           overrides={{
             Root: Root,
             Input: Input,
@@ -224,6 +227,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getSearch() {
     const {
+      disabled,
       overrides: {
         Input: InputOverride,
         InputContainer: InputContainerOverride,
@@ -238,6 +242,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const {textValue} = this.state;
     return (
       <InputComponent
+        disabled={disabled}
         error={error}
         label={label}
         placeholder={placeholder}
@@ -256,7 +261,12 @@ class Select extends React.Component<PropsT, StatelessStateT> {
           InputContainer: InputContainer,
           After: () => (
             <SearchIcon
-              onClick={e => this.onChange(e, STATE_CHANGE_TYPE.clearAll)}
+              disabled={disabled}
+              onClick={e => {
+                if (!disabled) {
+                  this.onChange(e, STATE_CHANGE_TYPE.clearAll);
+                }
+              }}
               $type={ICON.clearAll}
               src={
                 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z" fill="#999999"/></svg>'
@@ -271,6 +281,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getMultipleSelections() {
     const {
+      disabled,
       overrides: {Tag: TagOverride, SearchIcon: SearchIconOverride} = {},
       type,
     } = this.props;
@@ -289,16 +300,19 @@ class Select extends React.Component<PropsT, StatelessStateT> {
           />
         )}
         {selectedOptions.map(option => (
-          <Tag key={option.id} $multiple={multiple}>
+          <Tag key={option.id} $multiple={multiple} disabled={disabled}>
             {this.getSelectedOptionLabel(option)}
             {multiple && (
               <SearchIcon
+                disabled={disabled}
                 onClick={e => {
-                  this.setState({
-                    selectedOptions: this.state.selectedOptions.filter(
-                      selectedOption => selectedOption.id !== option.id,
-                    ),
-                  });
+                  if (!disabled) {
+                    this.setState({
+                      selectedOptions: this.state.selectedOptions.filter(
+                        selectedOption => selectedOption.id !== option.id,
+                      ),
+                    });
+                  }
                   e.stopPropagation();
                 }}
                 $type={ICON.clearTag}

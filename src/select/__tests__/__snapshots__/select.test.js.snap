@@ -437,7 +437,7 @@ exports[`Stateless select should render component in select mode and false for m
         <Input
           autoFocus={false}
           caption={null}
-          disabled={true}
+          disabled={false}
           endEnhancer={null}
           error={false}
           id="bui-mock-id"
@@ -457,7 +457,7 @@ exports[`Stateless select should render component in select mode and false for m
           startEnhancer={null}
         >
           <MockStyledComponent
-            $disabled={true}
+            $disabled={false}
             $error={false}
             $isFocused={false}
             $required={false}
@@ -469,7 +469,7 @@ exports[`Stateless select should render component in select mode and false for m
               <BaseInput
                 adjoined="none"
                 autoFocus={false}
-                disabled={true}
+                disabled={false}
                 error={false}
                 id="bui-mock-id"
                 inputRef={
@@ -496,7 +496,7 @@ exports[`Stateless select should render component in select mode and false for m
               >
                 <MockStyledComponent
                   $adjoined="none"
-                  $disabled={true}
+                  $disabled={false}
                   $error={false}
                   $isFocused={false}
                   $required={false}
@@ -507,7 +507,7 @@ exports[`Stateless select should render component in select mode and false for m
                   >
                     <Before
                       $adjoined="none"
-                      $disabled={true}
+                      $disabled={false}
                       $error={false}
                       $isFocused={false}
                       $required={false}
@@ -515,7 +515,7 @@ exports[`Stateless select should render component in select mode and false for m
                     />
                     <MockStyledComponent
                       $adjoined="none"
-                      $disabled={true}
+                      $disabled={false}
                       $error={false}
                       $isFocused={false}
                       $ref={
@@ -527,7 +527,7 @@ exports[`Stateless select should render component in select mode and false for m
                       $size="default"
                       aria-invalid={false}
                       aria-required={false}
-                      disabled={true}
+                      disabled={false}
                       id="bui-mock-id"
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -539,7 +539,7 @@ exports[`Stateless select should render component in select mode and false for m
                       <input
                         aria-invalid={false}
                         aria-required={false}
-                        disabled={true}
+                        disabled={false}
                         id="bui-mock-id"
                         onBlur={[Function]}
                         onChange={[Function]}
@@ -552,7 +552,7 @@ exports[`Stateless select should render component in select mode and false for m
                     </MockStyledComponent>
                     <After
                       $adjoined="none"
-                      $disabled={true}
+                      $disabled={false}
                       $error={false}
                       $isFocused={false}
                       $required={false}
@@ -620,7 +620,7 @@ exports[`Stateless select should render component in select mode and true for mu
         <Input
           autoFocus={false}
           caption={null}
-          disabled={true}
+          disabled={false}
           endEnhancer={null}
           error={false}
           id="bui-mock-id"
@@ -640,7 +640,7 @@ exports[`Stateless select should render component in select mode and true for mu
           startEnhancer={null}
         >
           <MockStyledComponent
-            $disabled={true}
+            $disabled={false}
             $error={false}
             $isFocused={false}
             $required={false}
@@ -652,7 +652,7 @@ exports[`Stateless select should render component in select mode and true for mu
               <BaseInput
                 adjoined="none"
                 autoFocus={false}
-                disabled={true}
+                disabled={false}
                 error={false}
                 id="bui-mock-id"
                 inputRef={
@@ -679,7 +679,7 @@ exports[`Stateless select should render component in select mode and true for mu
               >
                 <MockStyledComponent
                   $adjoined="none"
-                  $disabled={true}
+                  $disabled={false}
                   $error={false}
                   $isFocused={false}
                   $required={false}
@@ -690,7 +690,7 @@ exports[`Stateless select should render component in select mode and true for mu
                   >
                     <Before
                       $adjoined="none"
-                      $disabled={true}
+                      $disabled={false}
                       $error={false}
                       $isFocused={false}
                       $required={false}
@@ -698,7 +698,7 @@ exports[`Stateless select should render component in select mode and true for mu
                     />
                     <MockStyledComponent
                       $adjoined="none"
-                      $disabled={true}
+                      $disabled={false}
                       $error={false}
                       $isFocused={false}
                       $ref={
@@ -710,7 +710,7 @@ exports[`Stateless select should render component in select mode and true for mu
                       $size="default"
                       aria-invalid={false}
                       aria-required={false}
-                      disabled={true}
+                      disabled={false}
                       id="bui-mock-id"
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -722,7 +722,7 @@ exports[`Stateless select should render component in select mode and true for mu
                       <input
                         aria-invalid={false}
                         aria-required={false}
-                        disabled={true}
+                        disabled={false}
                         id="bui-mock-id"
                         onBlur={[Function]}
                         onChange={[Function]}
@@ -735,7 +735,7 @@ exports[`Stateless select should render component in select mode and true for mu
                     </MockStyledComponent>
                     <After
                       $adjoined="none"
-                      $disabled={true}
+                      $disabled={false}
                       $error={false}
                       $isFocused={false}
                       $required={false}

@@ -198,7 +198,12 @@ Object {
 }
 `;
 
-exports[`Select styled components StyledSearchIcon : StyledSearchIcon has correct styles when type is clear_tag 1`] = `Object {}`;
+exports[`Select styled components StyledSearchIcon : StyledSearchIcon has correct styles when type is clear_tag 1`] = `
+Object {
+  "cursor": "pointer",
+  "display": "inline",
+}
+`;
 
 exports[`Select styled components StyledSearchIcon : StyledSearchIcon has correct styles when type is loop 1`] = `
 Object {
@@ -221,7 +226,7 @@ Object {
 exports[`Select styled components StyledTag : StyledTag has correct styles when  1`] = `
 Object {
   "::placeholder": Object {
-    "color": "$theme.colors.mono600",
+    "color": "$theme.colors.mono700",
   },
   ":hover": Object {
     "cursor": "pointer",
@@ -231,7 +236,7 @@ Object {
   "borderWidth": "0",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.mono1000",
   "cursor": "pointer",
   "flexGrow": "1",
   "fontFamily": "$theme.typography.font300.fontFamily",
