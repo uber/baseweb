@@ -1,42 +1,33 @@
 # Tooltip Component
 
-The tooltip component is essentially a more opinionated `Popover`. Implementation-wise it will just be a thin wrapper around a `Popover` with some defaults:
+## Usage
 
-* Darker theme (see Base UI docs)
-* `triggerType` default to `'hover'`
-* Adds padding to your content by default
+### Basic usage
 
-Accordingly, the RFC below will direct you to refer back to `popover-component.md` in many places.
+```javascript
+import * as React from 'react';
+import {StatefulTooltip} from 'baseui/tooltip';
 
-### Exports
+export default () => (
+  <StatefulTooltip content="Lorem ipsum dolor sit amet...">
+    <span>Hover me!</span>
+  </StatefulTooltip>
+);
+```
 
-* `StatefulTooltip`
-* `Tooltip`
-* `StatefulContainer`
-* `StyledTooltipArrow`
-* `StyledTooltipBody`
-* `StyledTooltipInner`
+### Advanced usage
 
-### `StatefulTooltip` API
-
-Same props as `StatefulPopover` (see popover-component.md)
-
-### `Tooltip` API
-
-Same props as `Popover` (see popover-component.md)
-
-### Usage
-
-```js
-import {StatefulTooltip as Tooltip, StyledTooltip} from './index';
-import {withStyle} from '../helpers';
+```javascript
+import * as React from 'react';
+import {StatefulTooltip, StyledTooltip} from 'baseui/tooltip';
+import {withStyle} from 'styletron-react';
 
 const BigOlTooltip = withStyle(StyledTooltip, {
   width: '500px',
 });
 
 export default () => (
-  <Tooltip
+  <StatefulTooltip
     content="Lorem ipsum dolor sit amet..."
     overrides={{
       Tooltip: {
@@ -45,15 +36,40 @@ export default () => (
     }}
   >
     <span>Hover me!</span>
-  </Tooltip>
+  </StatefulTooltip>
 );
 ```
 
-### Implementation Details
+The tooltip component is essentially a more opinionated `Popover`. Implementation-wise it will just be a thin wrapper around a `Popover` with some defaults:
+
+* Darker theme (see Base UI docs)
+* `triggerType` default to `'hover'`
+* Adds padding to your content by default
+
+Accordingly, the RFC below will direct you to refer back to `popover-component.md` in many places.
+
+## Exports
+
+* `StatefulTooltip`
+* `Tooltip`
+* `StatefulContainer`
+* `StyledTooltipArrow`
+* `StyledTooltipBody`
+* `StyledTooltipInner`
+
+## `StatefulTooltip` API
+
+Same props as `StatefulPopover` (see popover-component.md)
+
+## `Tooltip` API
+
+Same props as `Popover` (see popover-component.md)
+
+## Implementation Details
 
 See popover-component.md
 
-### Accessibility
+## Accessibility
 
 See popover-component.md
 

@@ -1,6 +1,47 @@
 # Textarea Component
 
-### Exports
+## Usage
+
+### Basic usage
+
+```javascript
+import * as React from 'react';
+import {StatefulTextarea} from 'baseui/textarea';
+
+export default () => {
+  return (
+    <StatefulTextarea name="description"/>
+  );
+};
+```
+
+### Advanced usage
+
+```javascript
+import * as React from 'react';
+import {StatefulTextarea, StyledTextarea} from 'baseui/textarea';
+import {withStyle} from 'styletron-react';
+
+const TextareaWithStyle = withStyle(StyledTextarea, props => {
+  const {$isFocused, $theme: {sizing}} = props;
+  return {
+    borderRadius: $isFocused ? '0' : sizing.scale100,
+  };
+});
+
+export default () => {
+  return (
+    <div>
+      <StatefulTextarea
+        overrides={{Input: TextareaWithStyle}}
+        onChange={() => {console.log('textarea changed')}}
+      />
+    </div>
+  );
+};
+```
+
+## Exports
 
 * `StatefulTextarea`
 * `Textarea`
@@ -9,12 +50,12 @@
 * `STATE_CHANGE_TYPE`
 * `SIZE`
 
-### StatefulTextarea API
+## StatefulTextarea API
 
 * All properties of the input's StatefulContainer except `children`
 * All properties of the Textarea comonent
 
-### Stateful container API (imported from `baseui/input`)
+## Stateful container API (imported from `baseui/input`)
 
 * `children: (props: Props) => React.Node` - Required
 * `initialState: {value: string}` - Optional
@@ -28,7 +69,7 @@
 * `onChange: (e: SyntheticEvent<HTMLElement>) => void` - Optional
   onChange event handler.
 
-### Textarea component API
+## Textarea component API
 
 * `autoFocus: boolean` - Optional
   If `true` the textarea will be focused on the first mount.
@@ -65,7 +106,7 @@
 * `value: string` - Optional
   Field value.
 
-### Presentational components props API
+## Presentational components props API
 
 Next properties are passed to every presentational (styled) component that textarea is composed of:
 
@@ -75,30 +116,3 @@ Next properties are passed to every presentational (styled) component that texta
 * `$size: 'default' | 'compact'`
 * `$required: boolean`
 * `$theme: theme`
-
-### Usage
-
-```javascript
-import {withStyle} from 'styletron-react';
-import {withProps} from '../helpers';
-import {StatefulTextarea as Textarea, StyledTextarea} from './index';
-
-const TextareaWithProps = withProps(StyledTextarea, {
-  'data-value': 'some value',
-});
-const TextareaWithStyle = withStyle(StyledTextarea, props => {
-  const {$isFocused, $theme: {sizing}} = props;
-  return {
-    borderRadius: $isFocused ? '0' : sizing.scale100,
-  };
-});
-
-export default () => {
-  return (
-    <div>
-      <Textarea overrides={{Input: TextareaWithProps}} />
-      <Textarea overrides={{Input: TextareaWithStyle}} />
-    </div>
-  );
-};
-```
