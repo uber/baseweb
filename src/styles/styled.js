@@ -27,7 +27,10 @@ const baseStyled = createStyled({wrapper, getInitialStyle, driver});
 export default function styledWrapper(...args: any) {
   // If user is trying to style a styled component
   // use withStyleDeep, otherwise use baseStyled
-  const styleFn = typeof args[0] === 'function' ? withStyleDeep : baseStyled;
+  let styleFn = baseStyled;
+  if (args[0] && args[0].__STYLETRON__) {
+    styleFn = withStyleDeep;
+  }
   // Also allow passing deep style overrides via $style prop
   // Ex: <StyledDiv $style={{color: 'red'}} />
   // Issue for supporting this natively in styletron:
