@@ -21,35 +21,35 @@ export const Contents = styled('div', ({$theme}) => {
 });
 
 export const HeaderImage = styled('img', ({$theme}) => {
-  const {sizing} = $theme;
+  const {borders} = $theme;
   return {
-    borderTopLeftRadius: sizing.scale100,
-    borderTopRightRadius: sizing.scale100,
+    borderTopLeftRadius: borders.radius200,
+    borderTopRightRadius: borders.radius200,
     objectFit: 'contain',
     maxWidth: '100%',
   };
 });
 
 export const Root = styled('div', ({$theme}) => {
-  const {border, lighting, sizing} = $theme;
+  const {borders, lighting} = $theme;
   return {
-    ...border.border300,
+    ...borders.border300,
     boxShadow: lighting.shadow400,
-    borderRadius: sizing.scale100,
+    borderRadius: borders.radius200,
   };
 });
 
 export const Thumbnail = styled('img', props => {
   const {
-    $theme: {border, sizing},
+    $theme: {borders, sizing},
   } = props;
   return {
     float: 'right',
     height: sizing.scale2400,
     width: sizing.scale2400,
     objectFit: 'cover',
-    borderRadius: sizing.scale100,
-    ...border.border200,
+    borderRadius: borders.radius200,
+    ...borders.border200,
     margin: `0 0 ${sizing.scale500} ${sizing.scale500}`,
   };
 });

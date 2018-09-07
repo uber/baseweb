@@ -8,29 +8,41 @@ import {withReadme} from 'storybook-readme';
 //$FlowFixMe
 import CardReadme from '../../rfcs/card-component.md';
 
-import {LightTheme} from '../themes';
-import {ThemeProvider} from '../styles';
+import {mergeOverrides} from '../helpers/overrides';
 
-import BaseCard, {hasThumbnail} from './card';
 import {
-  Action as CardAction,
-  Body as CardBody,
-  Thumbnail as CardThumbnail,
-  Title as CardTitle,
-} from './styled-components';
+  Card as BaseCard,
+  StyledAction,
+  StyledBody,
+  StyledThumbnail,
+  StyledTitle,
+  hasThumbnail,
+} from './';
 
 import {thumbnail as thumbnailImg, header as headerImg} from './images';
 
-import type {Props} from './card';
+import type {CardsPropsT} from './types';
 
 const cardWidth = '328px';
 const placeholderTitle = 'Card Title Entry';
 const placeholderText =
   'Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus cursus. Etiam semper luctus sem ac blandit. ';
 
-const Card = (props: Props) => (
-  <BaseCard style={{width: cardWidth}} {...props} />
-);
+const Card = (props: CardsPropsT) => {
+  const {overrides, ...otherProps} = props;
+  const cardOverrides = mergeOverrides(
+    {
+      Root: {
+        style: {
+          width: cardWidth,
+        },
+      },
+    },
+    overrides,
+  );
+  //$FlowFixMe
+  return <BaseCard {...otherProps} overrides={cardOverrides} />;
+};
 Card.defaultProps = {
   hasThumbnail,
   overrides: {},
@@ -42,71 +54,57 @@ function Button(props) {
 
 storiesOf('Card', module)
   .addDecorator(withReadme(CardReadme))
-  .addDecorator(story => (
-    <ThemeProvider theme={LightTheme}>{story()}</ThemeProvider>
-  ))
   .add('Headline & Text', () => (
     <Card>
-      <CardTitle>{placeholderTitle}</CardTitle>
-      <CardBody>{placeholderText}</CardBody>
+      <StyledTitle>{placeholderTitle}</StyledTitle>
+      <StyledBody>{placeholderText}</StyledBody>
     </Card>
   ))
   .add('Text only', () => (
     <Card style={{width: cardWidth}}>
-      <CardBody>{placeholderText}</CardBody>
+      <StyledBody>{placeholderText}</StyledBody>
     </Card>
   ))
   .add('Text w/Link', () => (
     <Card>
-      <CardTitle>{placeholderTitle}</CardTitle>
-      <CardBody>{placeholderText}</CardBody>
-      <CardAction>
+      <StyledTitle>{placeholderTitle}</StyledTitle>
+      <StyledBody>{placeholderText}</StyledBody>
+      <StyledAction>
         <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
-      </CardAction>
+      </StyledAction>
     </Card>
   ))
   .add('Text w/Button', () => (
     <Card>
-      <CardTitle>{placeholderTitle}</CardTitle>
-      <CardBody>{placeholderText}</CardBody>
-      <CardAction>
+      <StyledTitle>{placeholderTitle}</StyledTitle>
+      <StyledBody>{placeholderText}</StyledBody>
+      <StyledAction>
         <Button style={{width: '100%'}}>Button Label</Button>
-      </CardAction>
+      </StyledAction>
     </Card>
   ))
-  .add('Headline & Text w/Thumbnail (props)', () => (
-    <Card
-      action={<Button style={{width: '100%'}}>Button Label</Button>}
-      title={placeholderTitle}
-      thumbnail={thumbnailImg}
-    >
-      {placeholderText}
-    </Card>
-  ))
-  .add('Headline & Text w/Thumbnail (composed)', () => (
-    <Card>
-      <CardThumbnail src={thumbnailImg} />
-      <CardTitle $hasThumbnail={true}>{placeholderTitle}</CardTitle>
-      <CardBody>{placeholderText}</CardBody>
-      <CardAction>
+  .add('Headline & Text w/Thumbnail', () => (
+    <Card thumbnail={thumbnailImg} title={placeholderTitle}>
+      <StyledBody>{placeholderText}</StyledBody>
+      <StyledAction>
         <Button style={{width: '100%'}}>Button Label</Button>
-      </CardAction>
+      </StyledAction>
     </Card>
   ))
   .add('w/Thumbnail & Link', () => (
     <Card thumbnail={thumbnailImg} title={placeholderTitle}>
-      <CardBody>{placeholderText}</CardBody>
-      <CardAction>
+      <StyledBody>{placeholderText}</StyledBody>
+      <StyledAction>
         <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
-      </CardAction>
+      </StyledAction>
     </Card>
   ))
   .add('w/Thumbnail & Button', () => (
     <Card thumbnail={thumbnailImg} title={placeholderTitle}>
-      <CardBody>{placeholderText}</CardBody>
-      <CardAction>
+      <StyledBody>{placeholderText}</StyledBody>
+      <StyledAction>
         <Button style={{width: '100%'}}>Button Label</Button>
-      </CardAction>
+      </StyledAction>
     </Card>
   ))
   .add('Headline w/Image', () => (
@@ -119,17 +117,37 @@ storiesOf('Card', module)
   ))
   .add('Text w/Image & Link', () => (
     <Card headerImage={headerImg} title={placeholderTitle}>
-      <CardBody>{placeholderText}</CardBody>
-      <CardAction>
+      <StyledBody>{placeholderText}</StyledBody>
+      <StyledAction>
         <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
-      </CardAction>
+      </StyledAction>
     </Card>
   ))
   .add('Text w/Image & Button', () => (
     <Card headerImage={headerImg} title={placeholderTitle}>
-      <CardBody>{placeholderText}</CardBody>
-      <CardAction>
+      <StyledBody>{placeholderText}</StyledBody>
+      <StyledAction>
         <Button style={{width: '100%'}}>Button Label</Button>
-      </CardAction>
+      </StyledAction>
+    </Card>
+  ))
+  .add('Kitchen Sink (props)', () => (
+    <Card
+      action={<Button style={{width: '100%'}}>Button Label</Button>}
+      headerImage={headerImg}
+      title={placeholderTitle}
+      thumbnail={thumbnailImg}
+    >
+      {placeholderText}
+    </Card>
+  ))
+  .add('Kitchen Sink (composed)', () => (
+    <Card headerImage={headerImg}>
+      <StyledThumbnail src={thumbnailImg} />
+      <StyledTitle $hasThumbnail={true}>{placeholderTitle}</StyledTitle>
+      <StyledBody>{placeholderText}</StyledBody>
+      <StyledAction>
+        <Button style={{width: '100%'}}>Button Label</Button>
+      </StyledAction>
     </Card>
   ));

@@ -1,7 +1,6 @@
 /* @flow */
 
 import React from 'react';
-import type {Node} from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides';
 import {
   Action as StyledAction,
@@ -13,31 +12,13 @@ import {
   Title as StyledTitle,
 } from './styled-components';
 
-import type {OverrideObjectT} from '../helpers/overrides';
-
-export type Props = {
-  +action?: Node,
-  +children?: Node,
-  +hasThumbnail: ({+thumbnail?: string}) => boolean,
-  +headerImage?: string,
-  +overrides: {
-    Action?: OverrideObjectT<?{}>,
-    Body?: OverrideObjectT<?{}>,
-    Contents?: OverrideObjectT<?{}>,
-    HeaderImage?: OverrideObjectT<?{}>,
-    Root?: OverrideObjectT<?{}>,
-    Thumbnail?: OverrideObjectT<?{}>,
-    Title?: OverrideObjectT<?{}>,
-  },
-  +thumbnail?: string,
-  +title?: Node,
-};
+import type {CardsPropsT} from './types';
 
 export function hasThumbnail(props: {+thumbnail?: string}) {
   return Boolean(props.thumbnail);
 }
 
-function Card(props: Props) {
+function Card(props: CardsPropsT) {
   const {
     action,
     children,
@@ -68,7 +49,7 @@ function Card(props: Props) {
 
   const $hasThumbnail = hasThumbnail(props);
   return (
-    <Root {...getOverrideProps(RootOverride)} {...otherProps}>
+    <Root {...otherProps} {...getOverrideProps(RootOverride)}>
       {headerImage && (
         <HeaderImage
           src={headerImage}

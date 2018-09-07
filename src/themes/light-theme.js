@@ -59,38 +59,6 @@ const mono1000 = '#000000';
 const primaryFontFamily = '"Helvetica Neue", arial, sans-serif';
 
 export default {
-  border: {
-    border100: {
-      borderColor: 'hsla(0, 0%, 0%, 0.04)',
-      borderStyle: 'solid',
-      borderWidth: '1px',
-    },
-    border200: {
-      borderColor: 'hsla(0, 0%, 0%, 0.08)',
-      borderStyle: 'solid',
-      borderWidth: '1px',
-    },
-    border300: {
-      borderColor: 'hsla(0, 0%, 0%, 0.12)',
-      borderStyle: 'solid',
-      borderWidth: '1px',
-    },
-    border400: {
-      borderColor: 'hsla(0, 0%, 0%, 0.16)',
-      borderStyle: 'solid',
-      borderWidth: '1px',
-    },
-    border500: {
-      borderColor: 'hsla(0, 0%, 0%, 0.2)',
-      borderStyle: 'solid',
-      borderWidth: '1px',
-    },
-    border600: {
-      borderColor: 'hsla(0, 0%, 0%, 0.24)',
-      borderStyle: 'solid',
-      borderWidth: '1px',
-    },
-  },
   colors: {
     // Primary Palette
     primary50,
@@ -315,10 +283,40 @@ export default {
     overlay600: 'inset 0 0 0 1000px hsla(0, 0%, 0%, 0.24)',
   },
   borders: {
-    useRoundedCorners: true,
+    border100: {
+      borderColor: 'hsla(0, 0%, 0%, 0.04)',
+      borderStyle: 'solid',
+      borderWidth: '1px',
+    },
+    border200: {
+      borderColor: 'hsla(0, 0%, 0%, 0.08)',
+      borderStyle: 'solid',
+      borderWidth: '1px',
+    },
+    border300: {
+      borderColor: 'hsla(0, 0%, 0%, 0.12)',
+      borderStyle: 'solid',
+      borderWidth: '1px',
+    },
+    border400: {
+      borderColor: 'hsla(0, 0%, 0%, 0.16)',
+      borderStyle: 'solid',
+      borderWidth: '1px',
+    },
+    border500: {
+      borderColor: 'hsla(0, 0%, 0%, 0.2)',
+      borderStyle: 'solid',
+      borderWidth: '1px',
+    },
+    border600: {
+      borderColor: 'hsla(0, 0%, 0%, 0.24)',
+      borderStyle: 'solid',
+      borderWidth: '1px',
+    },
     radius100: '2px',
     radius200: '4px',
     radius300: '8px',
+    useRoundedCorners: true,
   },
   animation: {
     timing100: '0.25s',

@@ -1,6 +1,6 @@
 /* @flow */
 
-export {default as Card} from './card';
+export {default as Card, hasThumbnail} from './card';
 
 export {
   Action as StyledAction,
