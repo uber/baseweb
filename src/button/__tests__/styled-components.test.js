@@ -1,17 +1,8 @@
 /* eslint-disable flowtype/require-valid-file-annotation, react/prop-types */
 import React from 'react';
 import {shallow} from 'enzyme';
-import {
-  BaseButton,
-  PrimaryButton,
-  SecondaryButton,
-  TertiaryButton,
-  MinimalButton,
-  ButtonLabel,
-  StartEnhancer,
-  EndEnhancer,
-} from '../styled-components';
-import {KIND, SIZE} from '../constants';
+import {BaseButton, StartEnhancer, EndEnhancer} from '../styled-components';
+import {KIND, SIZE, SHAPE} from '../constants';
 
 function makeTest({
   title,
@@ -26,52 +17,25 @@ function makeTest({
   });
 }
 
+const allKinds = Object.values(KIND);
+const allSizes = Object.values(SIZE);
+const allShapes = Object.values(SHAPE);
+
 describe('Button Styled Components', () => {
-  makeTest({
-    title: 'BaseButton - basic render',
-    component: BaseButton,
-  });
-
-  makeTest({
-    title: 'BaseButton - round',
-    component: BaseButton,
-    props: {
-      $kind: KIND.round,
-    },
-  });
-
-  makeTest({
-    title: 'BaseButton - round (compact)',
-    component: BaseButton,
-    props: {
-      $type: SIZE.compact,
-      $kind: KIND.round,
-    },
-  });
-
-  makeTest({
-    title: 'PrimaryButton - basic render',
-    component: PrimaryButton,
-  });
-
-  makeTest({
-    title: 'SecondaryButton - basic render',
-    component: SecondaryButton,
-  });
-
-  makeTest({
-    title: 'TertiaryButton - basic render',
-    component: TertiaryButton,
-  });
-
-  makeTest({
-    title: 'MinimalButton - basic render',
-    component: MinimalButton,
-  });
-
-  makeTest({
-    title: 'ButtonLabel - basic render',
-    component: ButtonLabel,
+  allKinds.forEach(kind => {
+    allSizes.forEach(size => {
+      allShapes.forEach(shape => {
+        makeTest({
+          title: `BaseButton - ${kind} ${size} ${shape}`,
+          component: BaseButton,
+          props: {
+            $kind: kind,
+            $shape: shape,
+            $size: size,
+          },
+        });
+      });
+    });
   });
 
   makeTest({

@@ -1,43 +1,58 @@
-/* eslint-disable flowtype/require-valid-file-annotation, react/prop-types */
+// @flow
 import * as React from 'react';
 import {
-  PrimaryButton as StyledPrimaryButton,
-  ButtonLabel as StyledButtonLabel,
+  BaseButton as StyledBaseButton,
   StartEnhancer as StyledStartEnhancer,
   EndEnhancer as StyledEndEnhancer,
 } from './styled-components';
+import {getOverrideObject} from '../helpers/overrides';
+import {KIND, SHAPE, SIZE} from './constants';
+
+import type {ButtonPropsT} from './types';
 
 export default function Button({
-  onClick = () => {},
+  children,
   disabled,
-  label,
   startEnhancer,
   endEnhancer,
   overrides = {},
-  size,
-  kind,
-}) {
+  size = SIZE.default,
+  kind = KIND.primary,
+  shape = SHAPE.square,
+  ...restProps
+}: ButtonPropsT) {
   // Base UI override logic goes here
-  const BaseButton = overrides.BaseButton || StyledPrimaryButton;
-  const ButtonLabel = overrides.ButtonLabel || StyledButtonLabel;
-  const StartEnhancer = overrides.StartEnhancer || StyledStartEnhancer;
-  const EndEnhancer = overrides.EndEnhancer || StyledEndEnhancer;
+  const {component: BaseButton, props: baseButtonProps} = getOverrideObject(
+    overrides.BaseButton,
+    StyledBaseButton,
+  );
+  const {
+    component: StartEnhancer,
+    props: startEnhancerProps,
+  } = getOverrideObject(overrides.StartEnhancer, StyledStartEnhancer);
+  const {component: EndEnhancer, props: endEnhancerProps} = getOverrideObject(
+    overrides.EndEnhancer,
+    StyledEndEnhancer,
+  );
   return (
-    <BaseButton onClick={onClick} disabled={disabled} $size={size} $kind={kind}>
+    <BaseButton
+      disabled={disabled}
+      $size={size}
+      $kind={kind}
+      $shape={shape}
+      {...baseButtonProps}
+      {...restProps}
+    >
       {startEnhancer && (
-        <StartEnhancer>
+        <StartEnhancer {...startEnhancerProps}>
           {typeof startEnhancer === 'function'
             ? startEnhancer()
             : startEnhancer}
         </StartEnhancer>
       )}
-      {label && (
-        <ButtonLabel>
-          {typeof label === 'function' ? label() : label}
-        </ButtonLabel>
-      )}
+      {children}
       {endEnhancer && (
-        <EndEnhancer>
+        <EndEnhancer {...endEnhancerProps}>
           {typeof endEnhancer === 'function' ? endEnhancer() : endEnhancer}
         </EndEnhancer>
       )}
