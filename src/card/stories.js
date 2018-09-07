@@ -61,7 +61,7 @@ storiesOf('Card', module)
     </Card>
   ))
   .add('Text only', () => (
-    <Card style={{width: cardWidth}}>
+    <Card>
       <StyledBody>{placeholderText}</StyledBody>
     </Card>
   ))
