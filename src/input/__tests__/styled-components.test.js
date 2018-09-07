@@ -8,34 +8,14 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {shallow} from 'enzyme';
 import {
-  StyledLabel,
   StyledRoot,
   StyledInputEnhancer,
   StyledInputContainer,
   StyledInput,
-  StyledCaption,
   SIZE,
   ADJOINED,
 } from '../index';
 import {ENHANCER_POSITION} from '../constants';
-
-test('Input - StyledLabel - basic render', () => {
-  const component = shallow(
-    <StyledLabel $size={SIZE.default}>
-      <span />
-    </StyledLabel>,
-  );
-  expect(component.instance().getStyles()).toMatchSnapshot(
-    'StyledLabel has correct default styles',
-  );
-  component.setProps({
-    $size: SIZE.compact,
-    $disabled: true,
-  });
-  expect(component.instance().getStyles()).toMatchSnapshot(
-    'StyledLabel has correct styles when compact and disabled',
-  );
-});
 
 test('Input - StyledRoot - basic render', () => {
   const component = shallow(
@@ -139,29 +119,5 @@ test('Input - StyledInput - basic render', () => {
   });
   expect(component.instance().getStyles()).toMatchSnapshot(
     'StyledInput has correct styles when compact and disabled',
-  );
-});
-
-test('Input - StyledCaption - basic render', () => {
-  const component = shallow(
-    <StyledCaption $size={SIZE.default}>
-      <span />
-    </StyledCaption>,
-  );
-  expect(component.instance().getStyles()).toMatchSnapshot(
-    'StyledCaption has correct default styles',
-  );
-  component.setProps({
-    $size: SIZE.compact,
-    $error: true,
-  });
-  expect(component.instance().getStyles()).toMatchSnapshot(
-    'StyledCaption has correct styles when compact and error is boolean',
-  );
-  component.setProps({
-    $error: <span>Error message</span>,
-  });
-  expect(component.instance().getStyles()).toMatchSnapshot(
-    'StyledCaption has correct styles when error is a node',
   );
 });

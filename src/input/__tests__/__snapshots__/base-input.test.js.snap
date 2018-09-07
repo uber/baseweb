@@ -29,6 +29,7 @@ Object {
   "children": null,
   "disabled": false,
   "id": "bui-mock-id",
+  "name": "",
   "onBlur": [Function],
   "onChange": [MockFunction],
   "onFocus": [Function],

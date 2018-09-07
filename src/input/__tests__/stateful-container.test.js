@@ -12,11 +12,6 @@ import {StatefulContainer, STATE_CHANGE_TYPE} from '../index';
 
 test('StatefulContainer - basic render', () => {
   const props = {
-    components: {
-      Label: function CustomLabel() {
-        return <span />;
-      },
-    },
     initialState: {value: 'initial value'},
     onChange: jest.fn(),
     stateReducer: jest.fn(),

@@ -3,12 +3,11 @@
 exports[`StatefulInput - basic render: renders <Input/> as a child 1`] = `
 <Input
   autoFocus={false}
-  caption="Caption"
   disabled={false}
   endEnhancer={null}
   error={false}
   id="bui-mock-id"
-  label="Label"
+  name=""
   onBlur={[Function]}
   onChange={[Function]}
   onFocus={[Function]}
@@ -26,9 +25,7 @@ exports[`StatefulInput - basic render: renders <Input/> as a child 1`] = `
 
 exports[`StatefulInput - basic render: renders <StatefulContainer/> 1`] = `
 <StatefulContainer
-  caption="Caption"
   initialState={Object {}}
-  label="Label"
   onChange={[MockFunction]}
   overrides={
     Object {

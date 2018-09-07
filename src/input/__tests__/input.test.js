@@ -12,8 +12,6 @@ import {Input, StyledInputContainer} from '../index';
 test('Input - basic functionality', () => {
   const props = {
     value: 'input value',
-    label: 'This is label',
-    caption: 'This is caption',
     placeholder: 'Placeholder',
     onFocus: jest.fn(),
     onBlur: jest.fn(),
@@ -23,18 +21,10 @@ test('Input - basic functionality', () => {
   const wrapper = mount(<Input {...props} />);
   expect(wrapper).toHaveState('isFocused', false);
 
-  // Renders input, label and caption
+  // Renders input
   const renderedInput = wrapper.find('input').first();
   expect(renderedInput).toExist();
   expect(renderedInput.props()).toMatchSnapshot('input has correct props');
-
-  const renderedLabel = wrapper.find('label').first();
-  expect(renderedLabel).toExist();
-  expect(renderedLabel).toHaveText('This is label');
-
-  const renderedCaption = wrapper.find('div').last();
-  expect(renderedCaption).toExist();
-  expect(renderedCaption).toHaveText('This is caption');
 
   // onFocus handler from props is called
   renderedInput.simulate('focus');
@@ -61,7 +51,7 @@ test('Input - renders enhancers', () => {
   const wrapper = mount(<Input {...props} />);
   expect(wrapper).toHaveState('isFocused', false);
 
-  // Renders input, label and caption
+  // Renders input and exhancers
   const renderedInput = wrapper.find(StyledInputContainer).first();
   expect(renderedInput).toExist();
   expect(renderedInput.props()).toMatchSnapshot(

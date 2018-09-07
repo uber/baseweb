@@ -3,9 +3,6 @@
 exports[`StatefulContainer - basic render: function-as-child called with correct args 1`] = `
 Array [
   Object {
-    "components": Object {
-      "Label": [Function],
-    },
     "onChange": [Function],
     "value": "initial value",
   },
