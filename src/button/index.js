@@ -1,15 +1,12 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 export {default as Button} from './button';
 // Constants
-export {KIND, SIZE} from './constants';
+export {KIND, SIZE, SHAPE} from './constants';
 // Styled elements
 export {
   BaseButton as StyledBaseButton,
-  PrimaryButton as StyledPrimaryButton,
-  SecondaryButton as StyledSecondaryButton,
-  TertiaryButton as StyledTertiaryButton,
-  MinimalButton as StyledMinimalButton,
-  ButtonLabel as StyledButtonLabel,
   StartEnhancer as StyledStartEnhancer,
   EndEnhancer as StyledEndEnhancer,
 } from './styled-components';
+// Types
+export * from './types';

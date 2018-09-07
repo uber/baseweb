@@ -57,7 +57,6 @@ Rough DOM composition:
 
 * `Button`
 * `StyledButton`
-* `StyledButtonLabel`
 * `StyledStartEnhancer`
 * `StyledEndEnhancer`
 * `KIND`
