@@ -11,12 +11,10 @@ export {default as Input} from './input';
 export {default as BaseInput} from './base-input';
 // Styled elements
 export {
-  Label as StyledLabel,
   Root as StyledRoot,
   InputEnhancer as StyledInputEnhancer,
   InputContainer as StyledInputContainer,
   Input as StyledInput,
-  Caption as StyledCaption,
 } from './styled-components';
 
 export {
