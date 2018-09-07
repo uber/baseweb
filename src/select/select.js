@@ -192,7 +192,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const Root = getOverride(RootOverride) || StyledRoot;
     const Input = getOverride(InputOverride) || StyledInput;
     const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {label, placeholder} = this.props;
+    const {placeholder} = this.props;
     const {selectedOptions} = this.state;
     return (
       <div
@@ -202,7 +202,6 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       >
         <InputComponent
           disabled={true}
-          label={label}
           placeholder={!selectedOptions.length ? placeholder : ''}
           overrides={{
             Root: Root,
@@ -234,12 +233,11 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const InputContainer =
       getOverride(InputContainerOverride) || StyledInputContainer;
     const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {label, placeholder, error} = this.props;
+    const {placeholder, error} = this.props;
     const {textValue} = this.state;
     return (
       <InputComponent
-        error={error}
-        label={label}
+        error={!!error}
         placeholder={placeholder}
         value={textValue}
         //$FlowFixMe
