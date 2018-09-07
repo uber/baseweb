@@ -17,6 +17,7 @@ export const BaseButton = styled(
     justifyContent: 'space-between',
     border: 'none',
     borderRadius: $shape === SHAPE.round ? '50%' : $theme.borders.radius200,
+    textDecoration: 'none',
     outline: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',

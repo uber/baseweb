@@ -16,9 +16,9 @@ export default function Button({
   startEnhancer,
   endEnhancer,
   overrides = {},
-  size = SIZE.default,
-  kind = KIND.primary,
-  shape = SHAPE.square,
+  size,
+  kind,
+  shape,
   ...restProps
 }: ButtonPropsT) {
   // Base UI override logic goes here
@@ -34,17 +34,20 @@ export default function Button({
     overrides.EndEnhancer,
     StyledEndEnhancer,
   );
+  const sharedProps = {
+    $size: size,
+    $kind: kind,
+    $shape: shape,
+  };
   return (
     <BaseButton
       disabled={disabled}
-      $size={size}
-      $kind={kind}
-      $shape={shape}
-      {...baseButtonProps}
+      {...sharedProps}
       {...restProps}
+      {...baseButtonProps}
     >
       {startEnhancer && (
-        <StartEnhancer {...startEnhancerProps}>
+        <StartEnhancer {...sharedProps} {...startEnhancerProps}>
           {typeof startEnhancer === 'function'
             ? startEnhancer()
             : startEnhancer}
@@ -52,10 +55,17 @@ export default function Button({
       )}
       {children}
       {endEnhancer && (
-        <EndEnhancer {...endEnhancerProps}>
+        <EndEnhancer {...sharedProps} {...endEnhancerProps}>
           {typeof endEnhancer === 'function' ? endEnhancer() : endEnhancer}
         </EndEnhancer>
       )}
     </BaseButton>
   );
 }
+
+Button.defaultProps = {
+  overrides: {},
+  size: SIZE.default,
+  kind: KIND.primary,
+  shape: SHAPE.square,
+};
