@@ -3,7 +3,7 @@
 exports[`Stateless select should render component in search mode and false for multiple choice: Component has correct render in search mode and mutiple choice equal false 1`] = `
 <Select
   autoFocus={false}
-  error=""
+  error={false}
   filterOption={[Function]}
   filterable={false}
   multiple={false}
@@ -209,7 +209,7 @@ exports[`Stateless select should render component in search mode and false for m
 exports[`Stateless select should render component in search mode and true for multiple choice: Component has correct render in search mode and mutiple choice equal true 1`] = `
 <Select
   autoFocus={false}
-  error=""
+  error={false}
   filterOption={[Function]}
   filterable={false}
   multiple={true}
@@ -415,7 +415,7 @@ exports[`Stateless select should render component in search mode and true for mu
 exports[`Stateless select should render component in select mode and false for multiple choice: Component has correct render in select mode and mutiple choice equal false 1`] = `
 <Select
   autoFocus={false}
-  error=""
+  error={false}
   filterOption={[Function]}
   filterable={false}
   multiple={false}
@@ -600,7 +600,7 @@ exports[`Stateless select should render component in select mode and false for m
 exports[`Stateless select should render component in select mode and true for multiple choice: Component has correct render in select mode and mutiple choice equal true 1`] = `
 <Select
   autoFocus={false}
-  error=""
+  error={false}
   filterOption={[Function]}
   filterable={false}
   multiple={true}

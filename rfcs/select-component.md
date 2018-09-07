@@ -136,10 +136,8 @@ export default () => {
   Represents maximum visible length of options, all other will be scrolled. If not defined, all options will be visible.
 * `options: Array<Object>`:
   All Options in dropdown. Should be provided for Select and Search mode equally. Every option object has `id: string` and `label: string|Object`. Label is defaulted to display for option in dropdown, otherwise see `getOptionLabel` method. Optional `disabled: boolean` for option to be disabled from selection.
-* `label: ?React$Node`:
-  Component or String representing label for Select component. Default is `''`
-* `error: ?string`:
-  Error message and error state. Default is `''`
+* `error: ?boolean`:
+  Whether the control should be in an error state. Default is `false`
 * `multiple: ?boolean`:
   Sets if multiple choices are allowed in Select component. Default is `false`
 * `filterable?: boolean`:

@@ -40,7 +40,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     onMouseLeave: () => {},
     onMouseDown: () => {},
     onMouseUp: () => {},
-    error: '',
+    error: false,
     autoFocus: false,
     filterable: false,
     filterOption: (option: OptionT, query: string) => {
