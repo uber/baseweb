@@ -57,7 +57,6 @@ Rough DOM composition:
 
 * `Button`
 * `StyledButton`
-* `StyledButtonLabel`
 * `StyledStartEnhancer`
 * `StyledEndEnhancer`
 * `KIND`
@@ -80,7 +79,7 @@ Rough DOM composition:
   * `EndEnhancer: ReactComponent` - Optional
 * `size: 'default' | 'compact'`
   Defines the size of a button.
-* `shape: 'round' | 'square'`
+* `shape: 'default' | 'round' | 'square'`
   Defines the shape of a button.
 * `kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
   Defines the kind (purpose) of a button
@@ -92,7 +91,7 @@ Rough DOM composition:
 These properties are passed to every presentational (styled) component that is exported:
 
 * `$size: 'default' | 'compact'`
-* `$shape: 'round' | 'square'`
+* `$shape: 'default' | 'round' | 'square'`
 * `$kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
 * `$theme: theme`
 
