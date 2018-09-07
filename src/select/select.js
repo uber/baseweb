@@ -55,7 +55,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     filteredOptions: null,
     textValue: this.props.textValue,
     selectedOptions: this.props.selectedOptions,
-    isDropDownOpen: !this.props.disabled && this.props.type === TYPE.search,
+    isDropDownOpen: false,
   };
 
   constructor(props: PropsT) {

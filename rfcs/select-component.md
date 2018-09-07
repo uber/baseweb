@@ -150,9 +150,7 @@ export default () => {
   Lets you control what label is rendered for the specified option. The default behavior returns `option.label`.
 * `getSelectedOptionLabel?: (option: Object) => React$Node`:
   Lets you control what label is rendered for the selected option. If not specified, defaults to `getOptionLabel`.
-* `disabled: boolean`:
-  Make the control disabled. Default is `false`
-  * `autoFocus: boolean`:
+* `autoFocus: boolean`:
   Make the control focused (active). Default is `false`
 * `disabled: boolean`:
   Disable control from being changed
