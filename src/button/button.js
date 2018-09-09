@@ -67,5 +67,5 @@ Button.defaultProps = {
   overrides: {},
   size: SIZE.default,
   kind: KIND.primary,
-  shape: SHAPE.square,
+  shape: SHAPE.default,
 };
