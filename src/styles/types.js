@@ -172,7 +172,19 @@ type AnimationT = {
   easeInOutCurve: string,
 };
 
+type BorderT = {
+  borderColor: string,
+  borderStyle: string,
+  borderWidth: string,
+};
+
 type BordersT = {
+  border100: BorderT,
+  border200: BorderT,
+  border300: BorderT,
+  border400: BorderT,
+  border500: BorderT,
+  border600: BorderT,
   useRoundedCorners: boolean,
   radius100: string,
   radius200: string,
