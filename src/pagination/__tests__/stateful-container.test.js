@@ -50,7 +50,7 @@ describe('Pagination StatefulContainer', () => {
     expect(component.state('currentPage')).toBe(5);
   });
 
-  test('onPageChange', () => {
+  test('onPageChange called if and only if page has changed', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     const instance = component.instance();
     instance.onPageChange(5);
@@ -61,7 +61,7 @@ describe('Pagination StatefulContainer', () => {
     expect(mockOnPageChangeFn.mock.calls.length).toBe(1);
   });
 
-  test('internalSetState', () => {
+  test('internalSetState calls stateReducer with the correct args', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     component.instance().internalSetState(STATE_CHANGE_TYPE.changePage, {
       currentPage: 2,
