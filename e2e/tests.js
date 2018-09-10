@@ -21,6 +21,9 @@ export default function() {
     return null;
   }
   const test = urlParams.get('test');
+  if (!test) {
+    return null;
+  }
   let example, description;
   for (let i = 0; i < Examples.length; i++) {
     const exampleSuite = Examples[i];
