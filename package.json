@@ -73,7 +73,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^2.6.1",
     "eslint-plugin-react": "^7.10.0",
-    "flow-bin": "^0.79.0",
+    "flow-bin": "^0.80.0",
     "flow-copy-source": "^2.0.2",
     "geckodriver": "^1.11.0",
     "husky": "^0.14.3",
