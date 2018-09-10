@@ -73,7 +73,7 @@ export default {
           <Button disabled={true}>Disabled</Button>
         </ButtonRow>
         <ButtonRow>
-          <Button>
+          <Button shape={SHAPE.square}>
             <CloudComponent />
           </Button>
         </ButtonRow>
