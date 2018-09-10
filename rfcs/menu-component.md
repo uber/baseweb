@@ -2,7 +2,7 @@
 
 ## Usage
 
-Basic Usage:
+### Basic Usage
 
 ```javascript
 import {StatefulMenu} from 'baseui/menu';
@@ -15,6 +15,8 @@ export default () => (
   <StatefulMenu items={ITEMS} onItemSelect={onItemSelect} />
 );
 ```
+
+### Advanced Usage
 
 Overriding Default List Item with Profile Item
 
