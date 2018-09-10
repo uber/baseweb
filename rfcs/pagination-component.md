@@ -17,8 +17,6 @@ export default () => <StatefulPagination numPages={6} />;
 * `StatefulPagination`
 * `StatefulContainer`
 * `StyledRoot`
-* `StyledPrevButton`
-* `StyledNextButton`
 * `StyledMaxLabel`
 * `STATE_CHANGE_TYPE`
 
@@ -32,7 +30,7 @@ export default () => <StatefulPagination numPages={6} />;
   Defaults to "of"
 * `overrides: {PrevButton, NextButton, Select}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
-* `onBackClick: (event) => void` - Optional
+* `onPrevClick: (event) => void` - Optional
   Callback for prev button click
 * `onNextClick: (event) => void` - Optional
   Callback for next button click
