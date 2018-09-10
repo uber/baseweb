@@ -99,6 +99,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
+    "memoize-one": "^4.0.2",
     "popper.js": "^1.14.3",
     "smoothscroll-polyfill": "^0.4.3"
   },
