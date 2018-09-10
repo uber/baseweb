@@ -73,6 +73,9 @@ function getStyleForKind({$theme, $kind}) {
         ':hover:enabled': {
           backgroundColor: $theme.colors.primary500,
         },
+        ':focus:enabled': {
+          backgroundColor: $theme.colors.primary500,
+        },
         ':active:enabled': {
           backgroundColor: $theme.colors.primary600,
         },
@@ -82,6 +85,9 @@ function getStyleForKind({$theme, $kind}) {
         color: $theme.colors.primary,
         backgroundColor: $theme.colors.primary50,
         ':hover:enabled': {
+          backgroundColor: $theme.colors.primary100,
+        },
+        ':focus:enabled': {
           backgroundColor: $theme.colors.primary100,
         },
         ':active:enabled': {
@@ -95,6 +101,9 @@ function getStyleForKind({$theme, $kind}) {
         ':hover:enabled': {
           backgroundColor: $theme.colors.mono400,
         },
+        ':focus:enabled': {
+          backgroundColor: $theme.colors.mono400,
+        },
         ':active:enabled': {
           backgroundColor: $theme.colors.mono500,
         },
@@ -104,6 +113,9 @@ function getStyleForKind({$theme, $kind}) {
         color: $theme.colors.primary,
         backgroundColor: 'transparent',
         ':hover:enabled': {
+          backgroundColor: $theme.colors.mono200,
+        },
+        ':focus:enabled': {
           backgroundColor: $theme.colors.mono200,
         },
         ':active:enabled': {
