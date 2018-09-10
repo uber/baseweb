@@ -12,7 +12,7 @@ export const BaseButton = styled(
   'button',
   ({$theme, $size, $kind, $shape}) => ({
     ...$theme.typography[$size === SIZE.compact ? 'font200' : 'font300'],
-    display: 'flex',
+    display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     border: 'none',
