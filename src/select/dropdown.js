@@ -19,7 +19,7 @@ import {StatefulMenu} from '../menu';
 import type {DropDownPropsT} from './types';
 import {getOverride} from '../helpers/overrides';
 
-const SelectDropDown = function(props: DropDownPropsT) {
+export default function SelectDropDown(props: DropDownPropsT) {
   const {
     overrides: {
       SearchIcon: SearchIconOverride,
@@ -86,7 +86,7 @@ const SelectDropDown = function(props: DropDownPropsT) {
                     <SearchIcon
                       $type={ICON.selected}
                       src={
-                        'data:image/svg+xml;utf8,<svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6L4 9L10 1" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+                        'data:image/svg+xml;utf8,<svg width="10" height="9" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6L4 9L10 1" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
                       }
                     />
                   )}
@@ -102,6 +102,4 @@ const SelectDropDown = function(props: DropDownPropsT) {
   ) : (
     <div />
   );
-};
-SelectDropDown.displayName = 'SelectDropDown';
-export default SelectDropDown;
+}

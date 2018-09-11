@@ -14,7 +14,10 @@ import {
   getInputContainerStyles,
 } from '../input/styled-components';
 
-import {getListStyles, getListItemStyles} from '../menu/styled-components';
+import {
+  List as MenuList,
+  ListItem as MenuListItem,
+} from '../menu/styled-components';
 
 export const Root = styled('div', props => {
   return {
@@ -124,35 +127,23 @@ export const SearchIcon = styled('img', props => {
   }
 });
 
-export const DropDown = styled('ul', props => {
-  const {$theme, $isOpen, $type, $rows} = props;
-  const {
-    sizing: {scale300, scale600, scale1000},
-  } = $theme;
-  return {
-    ...getListStyles(props),
-    height: $rows ? parseInt(scale600) * $rows + 'px' : null,
-    overflowY: $rows ? 'scroll' : null,
-    top: $type === TYPE.select ? scale1000 : null,
-    display: !$isOpen ? 'none' : null,
-    width: '96%',
-    position: 'absolute',
-    listStyle: 'none',
-    borderRadius: scale300,
-    boxShadow: $theme.lighting.shadow600,
-  };
-});
+export const DropDown = styled(MenuList, ({$theme, $isOpen, $type, $rows}) => ({
+  height: $rows ? parseInt($theme.sizing.scale600) * $rows + 'px' : null,
+  overflowY: $rows ? 'scroll' : null,
+  display: !$isOpen ? 'none' : null,
+  top: $type === TYPE.select ? $theme.sizing.scale600 : null,
+  width: `calc(100% - ${$theme.sizing.scale600})`,
+  left: $theme.sizing.scale300,
+  position: 'absolute',
+  listStyle: 'none',
+  borderRadius: $theme.sizing.scale300,
+  boxShadow: $theme.lighting.shadow600,
+}));
 
-export const DropDownItem = styled('li', props => {
-  const {$theme} = props;
-  const {
-    sizing: {scale600},
-  } = $theme;
-  return {
-    ...getListItemStyles(props),
-    lineHeight: scale600,
-  };
-});
+export const DropDownItem = styled(MenuListItem, ({$theme}) => ({
+  // TODO: revisit after Menu gets condensed styles
+  lineHeight: $theme.sizing.scale600,
+}));
 
 export const Option = styled('div', props => {
   const {$selected, disabled, $theme} = props;

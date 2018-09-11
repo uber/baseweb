@@ -10,6 +10,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono200",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono200",
   },
@@ -47,6 +50,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono200",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono200",
@@ -86,6 +92,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono200",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono200",
   },
@@ -123,6 +132,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono200",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono200",
@@ -162,6 +174,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono200",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono200",
   },
@@ -199,6 +214,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono200",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono200",
@@ -238,6 +256,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary500",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary500",
   },
@@ -275,6 +296,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary500",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary500",
@@ -314,6 +338,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary500",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary500",
   },
@@ -351,6 +378,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary500",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary500",
@@ -390,6 +420,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary500",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary500",
   },
@@ -427,6 +460,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary500",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary500",
@@ -466,6 +502,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary100",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary100",
   },
@@ -503,6 +542,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary100",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary100",
@@ -542,6 +584,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary100",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary100",
   },
@@ -579,6 +624,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary100",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary100",
@@ -618,6 +666,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary100",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary100",
   },
@@ -655,6 +706,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.primary100",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.primary100",
@@ -694,6 +748,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono400",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono400",
   },
@@ -731,6 +788,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono400",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono400",
@@ -770,6 +830,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono400",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono400",
   },
@@ -807,6 +870,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono400",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono400",
@@ -846,6 +912,9 @@ Object {
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
   },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono400",
+  },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono400",
   },
@@ -883,6 +952,9 @@ Object {
     "backgroundColor": "$theme.colors.mono300",
     "color": "$theme.colors.mono600",
     "cursor": "not-allowed",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "$theme.colors.mono400",
   },
   ":hover:enabled": Object {
     "backgroundColor": "$theme.colors.mono400",
