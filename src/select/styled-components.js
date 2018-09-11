@@ -63,7 +63,7 @@ export const InputContainer = styled('div', props => {
 export const Tag = styled('span', props => {
   const {$theme, $multiple} = props;
   const {
-    colors: {primary400, mono400},
+    colors: {primary400, mono400, mono1000},
     sizing: {scale800, scale0},
     typography: {font200},
   } = $theme;
@@ -87,6 +87,7 @@ export const Tag = styled('span', props => {
       }
     : {
         ...getInputStyles({...props, $size: SIZE.default, $disabled: true}),
+        color: mono1000,
         cursor: 'pointer',
         width: 'auto',
         flexGrow: '1',

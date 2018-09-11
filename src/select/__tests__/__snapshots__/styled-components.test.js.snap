@@ -197,7 +197,7 @@ Object {
   "borderWidth": "0",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.mono1000",
   "cursor": "pointer",
   "flexGrow": "1",
   "fontFamily": "$theme.typography.font300.fontFamily",
