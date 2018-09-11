@@ -28,7 +28,7 @@ Object {
   "aria-required": false,
   "children": null,
   "disabled": false,
-  "id": "bui-mock-id",
+  "id": undefined,
   "name": "",
   "onBlur": [Function],
   "onChange": [MockFunction],
