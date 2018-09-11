@@ -2,98 +2,67 @@
 
 exports[`Select styled components StyledDropDown : StyledDropDown has correct styles when  is  1`] = `
 Object {
-  "background": "$theme.colors.white",
   "borderRadius": "$theme.sizing.scale300",
   "boxShadow": "$theme.lighting.shadow600",
   "display": "none",
   "height": null,
+  "left": "$theme.sizing.scale300",
   "listStyle": "none",
-  "margin": 0,
   "overflowY": null,
-  "padding": 0,
   "position": "absolute",
   "top": null,
-  "width": "96%",
+  "width": "calc(100% - $theme.sizing.scale600)",
 }
 `;
 
 exports[`Select styled components StyledDropDown : StyledDropDown has correct styles when $isOpen is true 1`] = `
 Object {
-  "background": "$theme.colors.white",
   "borderRadius": "$theme.sizing.scale300",
   "boxShadow": "$theme.lighting.shadow600",
   "display": null,
   "height": null,
+  "left": "$theme.sizing.scale300",
   "listStyle": "none",
-  "margin": 0,
   "overflowY": null,
-  "padding": 0,
   "position": "absolute",
   "top": null,
-  "width": "96%",
+  "width": "calc(100% - $theme.sizing.scale600)",
 }
 `;
 
 exports[`Select styled components StyledDropDown : StyledDropDown has correct styles when $rows is 3 1`] = `
 Object {
-  "background": "$theme.colors.white",
   "borderRadius": "$theme.sizing.scale300",
   "boxShadow": "$theme.lighting.shadow600",
   "display": "none",
   "height": "NaNpx",
+  "left": "$theme.sizing.scale300",
   "listStyle": "none",
-  "margin": 0,
   "overflowY": "scroll",
-  "padding": 0,
   "position": "absolute",
   "top": null,
-  "width": "96%",
+  "width": "calc(100% - $theme.sizing.scale600)",
 }
 `;
 
 exports[`Select styled components StyledDropDown : StyledDropDown has correct styles when $type is select 1`] = `
 Object {
-  "background": "$theme.colors.white",
   "borderRadius": "$theme.sizing.scale300",
   "boxShadow": "$theme.lighting.shadow600",
   "display": "none",
   "height": null,
+  "left": "$theme.sizing.scale300",
   "listStyle": "none",
-  "margin": 0,
   "overflowY": null,
-  "padding": 0,
   "position": "absolute",
-  "top": "$theme.sizing.scale1000",
-  "width": "96%",
+  "top": "$theme.sizing.scale600",
+  "width": "calc(100% - $theme.sizing.scale600)",
 }
 `;
 
 exports[`Select styled components StyledDropDownItem DropDownItem: StyledDropDownItem has correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "paddingTop": "$theme.sizing.scale600",
-  },
-  ":hover": Object {
-    "backgroundColor": "$theme.colors.mono300",
-  },
-  ":last-child": Object {
-    "paddingBottom": "$theme.sizing.scale600",
-  },
-  "color": "$theme.colors.black",
-  "cursor": "pointer",
-  "display": "block",
-  "fontFamily": "$theme.typography.font300.fontFamily",
-  "fontSize": "$theme.typography.font300.fontSize",
-  "fontWeight": "$theme.typography.font300.fontWeight",
   "lineHeight": "$theme.sizing.scale600",
-  "paddingBottom": "$theme.sizing.scale300",
-  "paddingLeft": "$theme.sizing.scale600",
-  "paddingRight": "$theme.sizing.scale600",
-  "paddingTop": "$theme.sizing.scale300",
-  "position": "relative",
-  "transitionDuration": "$theme.animation.timing100",
-  "transitionProperty": "color, background-color",
-  "transitionTimingFunction": "$theme.animation.easeOutCurve",
 }
 `;
 

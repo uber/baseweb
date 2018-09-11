@@ -1,8 +1,83 @@
 # Menu
 
-## User Story
+## Usage
 
-> Given an array of items, I want to render them as a list, navigate through it using keyboard bindings, and receive feedback when I select (via pointer select or Enter) an item.
+### Basic Usage
+
+```javascript
+import {StatefulMenu} from 'baseui/menu';
+
+const ITEMS = [{label: 'item1'}];
+
+function onItemSelect(item) {...}
+
+export default () => (
+  <StatefulMenu items={ITEMS} onItemSelect={onItemSelect} />
+);
+```
+
+### Advanced Usage
+
+Overriding Default List Item with Profile Item
+
+```javascript
+import {StatefulMenu, OptionProfile} from 'baseui/menu';
+
+const PROFILE_ITEMS = [{
+  title: 'David Smith',
+  subtitle: 'Senior Engineering Manager',
+  body: 'Uber Everything',
+  imgUrl: 'someImgUrl',
+}]
+
+function onItemSelect(item) {...}
+
+export default () => (
+  <StatefulMenu
+    items={PROFILE_ITEMS}
+    onItemSelect={onItemSelect}
+    overrides={{
+      Option: {
+        component: OptionProfile,
+        props: {
+          getProfileItemLabels: ({title, subtitle, body}) => ({
+            title,
+            subtitle,
+            body,
+          }),
+          getProfileItemImg: item => item.imgUrl,
+          getProfileItemImgText: item => item.title,
+        }
+      }
+    }}
+  />
+);
+```
+
+You can also choose to completely define the override component outside
+
+```javascript
+function OptionProfileOverride(props) {
+  return (
+    <OptionProfile
+      {...props}
+      getProfileItemLabels={({title, subtitle, body}) => ({title, subtitle, body})}
+      getProfileItemImg={item => item.imgUrl}
+      getProfileItemImgText={item => item.title}
+    />
+  )
+}
+
+export default () => (
+  <StatefulMenu
+    items={PROFILE_ITEMS}
+    onItemSelect={onItemSelect}
+    overrides={{
+      Option: OptionProfileOverride
+    }}
+  />
+);
+```
 
 ## Exported Components
 

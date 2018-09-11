@@ -6,19 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-// eslint-disable-next-line import/no-named-default
-import {default as StatefulContainer} from './stateful-select-container';
-// eslint-disable-next-line import/no-named-default
-import {default as Select} from './select';
+import StatefulContainer from './stateful-select-container';
+import Select from './select';
 import type {PropsT, StatefulSelectPropsT} from './types';
-// Styled elements
 
-const StatefulSelect = function(props: StatefulSelectPropsT) {
+export default function StatefulSelect(props: StatefulSelectPropsT) {
   return (
     <StatefulContainer {...props}>
       {(childrenProps: PropsT) => <Select {...childrenProps} />}
     </StatefulContainer>
   );
-};
-StatefulSelect.displayName = 'StatefulSelect';
-export default StatefulSelect;
+}
