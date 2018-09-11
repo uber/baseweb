@@ -16,7 +16,9 @@ type IconPropsT = {
   color: string,
 };
 
-export function ArrowLeft({color = LightTheme.colors.primary}: IconPropsT) {
+export function ArrowLeft({
+  color = LightTheme.colors.primary,
+}: IconPropsT = {}) {
   return (
     <svg viewBox="0 0 6 10" fill="none" style={{width: '6px', height: '10px'}}>
       <path
@@ -29,7 +31,9 @@ export function ArrowLeft({color = LightTheme.colors.primary}: IconPropsT) {
   );
 }
 
-export function ArrowRight({color = LightTheme.colors.primary}: IconPropsT) {
+export function ArrowRight({
+  color = LightTheme.colors.primary,
+}: IconPropsT = {}) {
   return (
     <svg viewBox="0 0 6 10" fill="none" style={{width: '6px', height: '10px'}}>
       <path
