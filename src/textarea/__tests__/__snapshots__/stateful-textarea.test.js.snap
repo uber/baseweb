@@ -18,7 +18,6 @@ exports[`Textarea StatefulTextarea - basic render: renders <Textarea/> as a chil
   autoFocus={false}
   disabled={false}
   error={false}
-  id="bui-mock-id"
   inputRef={
     Object {
       "current": null,

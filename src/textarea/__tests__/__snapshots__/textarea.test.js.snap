@@ -6,7 +6,7 @@ Object {
   "aria-required": false,
   "children": "textarea value",
   "disabled": false,
-  "id": "bui-mock-id",
+  "id": undefined,
   "name": "",
   "onBlur": [Function],
   "onChange": [MockFunction],
@@ -25,7 +25,6 @@ Object {
   "autoFocus": false,
   "disabled": false,
   "error": false,
-  "id": "bui-mock-id",
   "inputRef": Object {
     "current": null,
   },
@@ -56,7 +55,6 @@ Object {
   "autoFocus": false,
   "disabled": false,
   "error": false,
-  "id": "bui-mock-id",
   "inputRef": Object {
     "current": null,
   },
