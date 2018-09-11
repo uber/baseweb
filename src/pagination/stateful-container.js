@@ -33,6 +33,8 @@ export default class PaginationStatefulContainer extends React.Component<
     const {stateReducer} = this.props;
     if (stateReducer) {
       this.setState(stateReducer(changeType, changes, this.state));
+    } else {
+      this.setState(changes);
     }
   }
 

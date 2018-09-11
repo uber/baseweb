@@ -71,4 +71,17 @@ describe('Pagination StatefulContainer', () => {
     );
     expect(mockStateReducerFn.mock.calls[0][1]).toEqual({currentPage: 2});
   });
+
+  test('internalSetState should still call setState with no stateReducer', () => {
+    const props = {
+      ...getSharedProps(),
+      stateReducer: null,
+    };
+    // $FlowFixMe
+    const component = mount(<StatefulContainer {...props} />);
+    component.instance().internalSetState(STATE_CHANGE_TYPE.changePage, {
+      currentPage: 2,
+    });
+    expect(component.state('currentPage')).toBe(2);
+  });
 });
