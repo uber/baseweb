@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   chrome-standalone:
-    image: selenium/standalone-chrome:latest@sha256:f0d96d9dc9ccd6909a6d2375fe2f3daf0161edcdf3c7a993d6b9f96f027baa8c
+    image: selenium/standalone-chrome:latest@sha256:cdc74f75669a6578e8545dba01477e367a793d354d6cb40609ace7379fe9b1fc
     network_mode: "host"
     restart: always
     ports:
