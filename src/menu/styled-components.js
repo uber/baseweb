@@ -17,43 +17,41 @@ type StyledListItemPropsT = {
   $isHighlighted: boolean,
 } & StyledPropsT;
 
-export const getListStyles = ({$theme}: StyledPropsT) => ({
+export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   position: 'relative',
   margin: 0,
   padding: 0,
   background: $theme.colors.white,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
-});
-export const List = styled('ul', getListStyles);
+}));
 
-export const getListItemStyles = ({
-  $theme,
-  $isHighlighted,
-}: StyledListItemPropsT) => ({
-  ...$theme.typography.font300,
-  position: 'relative',
-  display: 'block',
-  color: $isHighlighted ? $theme.colors.primary : $theme.colors.black,
-  cursor: 'pointer',
-  transitionProperty: 'color, background-color',
-  transitionDuration: $theme.animation.timing100,
-  transitionTimingFunction: $theme.animation.easeOutCurve,
-  ':hover': {
-    backgroundColor: $theme.colors.mono300,
-  },
-  paddingTop: $theme.sizing.scale300,
-  paddingBottom: $theme.sizing.scale300,
-  paddingRight: $theme.sizing.scale600,
-  paddingLeft: $theme.sizing.scale600,
-  ':first-child': {
-    paddingTop: $theme.sizing.scale600,
-  },
-  ':last-child': {
-    paddingBottom: $theme.sizing.scale600,
-  },
-});
-export const ListItem = styled('li', getListItemStyles);
+export const ListItem = styled(
+  'li',
+  ({$theme, $isHighlighted}: StyledListItemPropsT) => ({
+    ...$theme.typography.font300,
+    position: 'relative',
+    display: 'block',
+    color: $isHighlighted ? $theme.colors.primary : $theme.colors.black,
+    cursor: 'pointer',
+    transitionProperty: 'color, background-color',
+    transitionDuration: $theme.animation.timing100,
+    transitionTimingFunction: $theme.animation.easeOutCurve,
+    ':hover': {
+      backgroundColor: $theme.colors.mono300,
+    },
+    paddingTop: $theme.sizing.scale300,
+    paddingBottom: $theme.sizing.scale300,
+    paddingRight: $theme.sizing.scale600,
+    paddingLeft: $theme.sizing.scale600,
+    ':first-child': {
+      paddingTop: $theme.sizing.scale600,
+    },
+    ':last-child': {
+      paddingBottom: $theme.sizing.scale600,
+    },
+  }),
+);
 
 export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   position: 'relative',
