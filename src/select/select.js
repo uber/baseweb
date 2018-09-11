@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* global document */
 import * as React from 'react';
 import {findDOMNode} from 'react-dom';
 import {
@@ -76,17 +77,19 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   }
 
   componentDidMount() {
-    /* eslint-disable-next-line cup/no-undef  */
-    document.addEventListener('click', this.handleClickEvent, {
-      capture: true,
-    });
+    if (__BROWSER__) {
+      document.addEventListener('click', this.handleClickEvent, {
+        capture: true,
+      });
+    }
   }
 
   componentWillUnmount() {
-    /* eslint-disable-next-line cup/no-undef  */
-    document.removeEventListener('click', this.handleClickEvent, {
-      capture: true,
-    });
+    if (__BROWSER__) {
+      document.removeEventListener('click', this.handleClickEvent, {
+        capture: true,
+      });
+    }
   }
 
   handleClickEvent = (event: MouseEvent) => {

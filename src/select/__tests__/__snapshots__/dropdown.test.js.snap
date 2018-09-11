@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Stateless Select Dropdown should render component with options  and drondown open is true: Component has correct render with options length 0 and dropdown open is %s true 1`] = `
-<ul
+<MockStyledComponent
   getOptionLabel={[MockFunction]}
   isDropDownOpen={true}
   options={Array []}
@@ -10,7 +10,7 @@ exports[`Stateless Select Dropdown should render component with options  and dro
 `;
 
 exports[`Stateless Select Dropdown should render component with options [object Object],[object Object],[object Object],[object Object] and drondown open is false: Component has correct render with options length 4 and dropdown open is %s false 1`] = `
-<ul
+<MockStyledComponent
   getOptionLabel={[MockFunction]}
   isDropDownOpen={false}
   options={
@@ -38,7 +38,7 @@ exports[`Stateless Select Dropdown should render component with options [object 
 `;
 
 exports[`Stateless Select Dropdown should render component with options [object Object],[object Object],[object Object],[object Object] and drondown open is true: Component has correct render with options length 4 and dropdown open is %s true 1`] = `
-<ul
+<MockStyledComponent
   getOptionLabel={[MockFunction]}
   isDropDownOpen={true}
   options={
