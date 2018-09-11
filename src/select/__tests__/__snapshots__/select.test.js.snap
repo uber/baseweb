@@ -28,7 +28,6 @@ exports[`Stateless select should render component in search mode and false for m
         disabled={false}
         endEnhancer={null}
         error={false}
-        id="bui-mock-id"
         name=""
         onBlur={[Function]}
         onChange={[Function]}
@@ -65,7 +64,6 @@ exports[`Stateless select should render component in search mode and false for m
               autoFocus={false}
               disabled={false}
               error={false}
-              id="bui-mock-id"
               inputRef={
                 Object {
                   "current": null,
@@ -138,7 +136,6 @@ exports[`Stateless select should render component in search mode and false for m
                     aria-invalid={false}
                     aria-required={false}
                     disabled={false}
-                    id="bui-mock-id"
                     name=""
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -152,7 +149,6 @@ exports[`Stateless select should render component in search mode and false for m
                       aria-invalid={false}
                       aria-required={false}
                       disabled={false}
-                      id="bui-mock-id"
                       name=""
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -234,7 +230,6 @@ exports[`Stateless select should render component in search mode and true for mu
         disabled={false}
         endEnhancer={null}
         error={false}
-        id="bui-mock-id"
         name=""
         onBlur={[Function]}
         onChange={[Function]}
@@ -271,7 +266,6 @@ exports[`Stateless select should render component in search mode and true for mu
               autoFocus={false}
               disabled={false}
               error={false}
-              id="bui-mock-id"
               inputRef={
                 Object {
                   "current": null,
@@ -344,7 +338,6 @@ exports[`Stateless select should render component in search mode and true for mu
                     aria-invalid={false}
                     aria-required={false}
                     disabled={false}
-                    id="bui-mock-id"
                     name=""
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -358,7 +351,6 @@ exports[`Stateless select should render component in search mode and true for mu
                       aria-invalid={false}
                       aria-required={false}
                       disabled={false}
-                      id="bui-mock-id"
                       name=""
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -443,7 +435,6 @@ exports[`Stateless select should render component in select mode and false for m
           disabled={true}
           endEnhancer={null}
           error={false}
-          id="bui-mock-id"
           name=""
           onBlur={[Function]}
           onFocus={[Function]}
@@ -474,7 +465,6 @@ exports[`Stateless select should render component in select mode and false for m
                 autoFocus={false}
                 disabled={true}
                 error={false}
-                id="bui-mock-id"
                 inputRef={
                   Object {
                     "current": null,
@@ -532,7 +522,6 @@ exports[`Stateless select should render component in select mode and false for m
                       aria-invalid={false}
                       aria-required={false}
                       disabled={true}
-                      id="bui-mock-id"
                       name=""
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -545,7 +534,6 @@ exports[`Stateless select should render component in select mode and false for m
                         aria-invalid={false}
                         aria-required={false}
                         disabled={true}
-                        id="bui-mock-id"
                         name=""
                         onBlur={[Function]}
                         onChange={[Function]}
@@ -628,7 +616,6 @@ exports[`Stateless select should render component in select mode and true for mu
           disabled={true}
           endEnhancer={null}
           error={false}
-          id="bui-mock-id"
           name=""
           onBlur={[Function]}
           onFocus={[Function]}
@@ -659,7 +646,6 @@ exports[`Stateless select should render component in select mode and true for mu
                 autoFocus={false}
                 disabled={true}
                 error={false}
-                id="bui-mock-id"
                 inputRef={
                   Object {
                     "current": null,
@@ -717,7 +703,6 @@ exports[`Stateless select should render component in select mode and true for mu
                       aria-invalid={false}
                       aria-required={false}
                       disabled={true}
-                      id="bui-mock-id"
                       name=""
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -730,7 +715,6 @@ exports[`Stateless select should render component in select mode and true for mu
                         aria-invalid={false}
                         aria-required={false}
                         disabled={true}
-                        id="bui-mock-id"
                         name=""
                         onBlur={[Function]}
                         onChange={[Function]}

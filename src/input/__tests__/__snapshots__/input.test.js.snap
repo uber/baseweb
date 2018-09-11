@@ -6,7 +6,7 @@ Object {
   "aria-required": false,
   "children": null,
   "disabled": false,
-  "id": "bui-mock-id",
+  "id": undefined,
   "name": "",
   "onBlur": [Function],
   "onChange": [MockFunction],
@@ -43,7 +43,6 @@ Object {
       aria-invalid={false}
       aria-required={false}
       disabled={false}
-      id="bui-mock-id"
       name=""
       onBlur={[Function]}
       onChange={[MockFunction]}
@@ -82,7 +81,6 @@ Object {
       aria-invalid={false}
       aria-required={false}
       disabled={false}
-      id="bui-mock-id"
       name=""
       onBlur={[Function]}
       onChange={[MockFunction]}
@@ -121,7 +119,6 @@ Object {
       aria-invalid={false}
       aria-required={false}
       disabled={false}
-      id="bui-mock-id"
       name=""
       onBlur={[Function]}
       onChange={[MockFunction]}
