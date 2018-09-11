@@ -104,6 +104,7 @@ export default () => {
 Represents content and title of each accordion item
 
 * `title: React$Node` - title of accordion item
+* `expanded: boolean` - If `true` accordion item is expanded. It has higher priority than value coming from `expanded` Array of parent accordion.
 * `children: React$Node` - content of accordion item is represented as children of it correspondingly
 
 ## Presentational components props API
