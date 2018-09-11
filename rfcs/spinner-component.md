@@ -10,10 +10,7 @@ import {Spinner} from 'baseui/spinner';
 
 export default () => {
   return
-    <Spinner
-      variant={Spinner.VARIANT.INDETERMINATE}
-      size={10}
-    />;
+    <Spinner size={10}/>;
 };
 ```
 
@@ -23,8 +20,6 @@ export default () => {
 
 ## `Spinner` API
 
-* `value: ?number` - Optional
-  The value of the progress indicator for the determinate and static variants. Value between `0` and `100`, defaults to `0`.
 * `size: ?number` - Optional
   The size of the circle. Defaults to `44`.
 * `color: ?string` - Optional
