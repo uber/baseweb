@@ -13,13 +13,13 @@ build.stderr.on('data', data => {
 });
 
 build.on('exit', function() {
-  const serve = spawn('yarn', ['serve-e2e']);
+  const serve = spawn('yarn', ['e2e:serve']);
 
   serve.stdout.on('data', data => {
     console.log(`serve stdout:\n${data}`);
 
     if (String(data).includes('listening')) {
-      const test = spawn('yarn', ['test-e2e']);
+      const test = spawn('yarn', ['e2e:test']);
 
       test.stdout.on('data', data => {
         console.log(`test stdout:\n${data}`);
