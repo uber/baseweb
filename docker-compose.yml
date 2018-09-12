@@ -2,10 +2,10 @@ version: '2.1'
 services:
   chrome-standalone:
     image: selenium/standalone-chrome:latest@sha256:cdc74f75669a6578e8545dba01477e367a793d354d6cb40609ace7379fe9b1fc
-    network_mode: "host"
+    network_mode: 'host'
     restart: always
     ports:
-      - "4444:4444"
+      - '4444:4444'
 
   e2e-server:
     build: .
@@ -13,28 +13,32 @@ services:
     expose:
       - 8080
     ports:
-      - "8080:8080"
+      - '8080:8080'
     # network_mode: "host"
     healthcheck:
-      test: ["CMD-SHELL", "curl -H \"Accept: text/html\" -f http://localhost:8080 || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          'curl -H "Accept: text/html" -f http://localhost:8080 || exit 1',
+        ]
       interval: 5s
       timeout: 10s
       retries: 5
 
   e2e-server-healthy:
     build: .
-    network_mode: "host"
+    network_mode: 'host'
     depends_on:
       e2e-server:
         condition: service_healthy
 
   e2e-test-chrome:
     build: .
-    network_mode: "host"
+    network_mode: 'host'
     depends_on:
       - chrome-standalone
       - e2e-server-healthy
-    command: yarn test-e2e
+    command: yarn e2e:test
     environment:
       - CODECOV_TOKEN
       - CI=true
