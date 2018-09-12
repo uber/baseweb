@@ -1,30 +1,32 @@
 {
   "name": "baseui",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "React implementation of uber design components platform.",
-  "keywords": [
-    "react",
-    "uber",
-    "baseui"
-  ],
+  "keywords": ["react", "uber", "baseui"],
   "license": "MIT",
   "main": "baseui.js",
   "module": "baseui.es.js",
   "repository": "uber-web/baseui",
   "scripts": {
     "lintcode": "eslint ./",
-    "lint": "yarn run lintcode && markdownlint -c ./.markdownlint.json rfcs README.md",
+    "lint":
+      "yarn run lintcode && markdownlint -c ./.markdownlint.json rfcs README.md",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o docs",
     "precommit": "pretty-quick --staged && yarn run test",
     "prebuild": "rimraf dist",
-    "build:copy-files": "cp package.json dist/package.json && cp README.md dist/README.md",
-    "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./dist --ignore *.test.js",
-    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./dist/index.es.js",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore *.test.js",
-    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
+    "build:copy-files":
+      "cp package.json dist/package.json && cp README.md dist/README.md",
+    "build:es2015":
+      "cross-env NODE_ENV=production babel ./src --out-dir ./dist --ignore *.test.js",
+    "build:es2015modules":
+      "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./dist/index.es.js",
+    "build:es":
+      "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore *.test.js",
+    "build":
+      "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
     "unit-test": "yarn jest --coverage",
     "e2e": "node ./e2e/e2e.js",
     "build-e2e": "webpack --config webpack.e2e.config.js --mode=production",
@@ -116,13 +118,9 @@
     "folder": ".",
     "license": "LICENSE-HEAD",
     "exact_paths_method": "INCLUDE",
-    "exact_paths": [
-      "src"
-    ],
+    "exact_paths": ["src"],
     "file_type_method": "INCLUDE",
-    "file_types": [
-      ".js"
-    ],
+    "file_types": [".js"],
     "insert_license": true
   }
 }
