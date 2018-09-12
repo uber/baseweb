@@ -3,6 +3,7 @@ dist
 babel
 storybook-static
 .*/node_modules/.*[^(package)]\.json$
+.*examples/fusion/.*
 
 [include]
 ./src/
