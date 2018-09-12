@@ -128,7 +128,7 @@ export const SearchIcon = styled('img', props => {
 });
 
 export const DropDown = styled(MenuList, ({$theme, $isOpen, $type, $rows}) => ({
-  height: $rows ? parseInt($theme.sizing.scale600) * $rows + 'px' : null,
+  height: $rows ? `calc(${$theme.sizing.scale900} * ${$rows})` : null,
   overflowY: $rows ? 'scroll' : null,
   display: !$isOpen ? 'none' : null,
   top: $type === TYPE.select ? $theme.sizing.scale600 : null,

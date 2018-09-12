@@ -5,26 +5,24 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* global document */
 import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
 import {Button, StyledBaseButton, KIND, SIZE} from '../button';
-import {StatefulMenu as Menu} from '../menu';
+import DefaultSelect from './select';
 import {
   Root as StyledRoot,
   MaxLabel as StyledMaxLabel,
   DropdownContainer as StyledDropdownContainer,
-  DropdownMenu as StyledDropdownMenu,
-  DropdownButton as StyledDropdownButton,
 } from './styled-components';
-import {ArrowLeft, ArrowRight, ArrowDown} from './icons';
+import {ArrowLeft, ArrowRight} from './icons';
 import {getOverrideObject} from '../helpers/overrides';
-import type {PaginationPropsT, PaginationStateT} from './types';
-
-type MenuItemT = {
-  label: number,
-};
+import type {
+  PaginationPropsT,
+  PaginationStateT,
+  SelectMenuItemT,
+} from './types';
+import type {PropsT} from '../select/types';
 
 export default class Pagination extends React.PureComponent<
   PaginationPropsT,
@@ -35,32 +33,18 @@ export default class Pagination extends React.PureComponent<
     overrides: {},
   };
 
-  state = {isMenuOpen: false};
-
-  dropdownContainerRef = React.createRef();
-
-  onPageClick = (event: MouseEvent) => {
-    const el: ?HTMLDivElement = this.dropdownContainerRef.current;
-    /* eslint-disable-next-line flowtype/no-weak-types */
-    if (el && !el.contains((event.target: any))) {
-      this.setState({isMenuOpen: false});
-    }
-  };
-
   getMenuOptions = memoize(numPages => {
     const menuOptions = [];
     for (let i = 1; i <= numPages; i++) {
-      menuOptions.push(({label: i}: MenuItemT));
+      menuOptions.push(({id: String(i), label: i}: SelectMenuItemT));
     }
     return menuOptions;
   });
 
-  onMenuItemSelect = (item: MenuItemT) => {
+  onItemSelect: $PropertyType<PropsT, 'onChange'> = (e, {label}) => {
     const {onPageChange, currentPage} = this.props;
-    const page = item.label;
-    if (page !== currentPage) {
-      onPageChange && onPageChange(page, currentPage);
-      this.onDropdownButtonClick();
+    if (label && label !== currentPage) {
+      onPageChange && onPageChange(label, currentPage);
     }
   };
 
@@ -76,21 +60,6 @@ export default class Pagination extends React.PureComponent<
     onNextClick && onNextClick(args);
   };
 
-  onDropdownButtonClick = () => {
-    const isMenuOpen = !this.state.isMenuOpen;
-    // no __BROWSER__ check because click only happens client-side
-    if (isMenuOpen) {
-      document.addEventListener('click', this.onPageClick, {
-        capture: true,
-      });
-    } else {
-      document.removeEventListener('click', this.onPageClick, {
-        capture: true,
-      });
-    }
-    this.setState({isMenuOpen});
-  };
-
   render() {
     const {
       overrides = {},
@@ -98,7 +67,6 @@ export default class Pagination extends React.PureComponent<
       prepositionLabel = '',
       numPages,
     } = this.props;
-    const {isMenuOpen} = this.state;
 
     const {component: Root, props: rootProps} = getOverrideObject(
       overrides.Root,
@@ -116,18 +84,14 @@ export default class Pagination extends React.PureComponent<
       overrides.MaxLabel,
       StyledMaxLabel,
     );
+    const {component: Select, props: selectProps} = getOverrideObject(
+      overrides.Select,
+      DefaultSelect,
+    );
     const {
       component: DropdownContainer,
       props: dropdownContainerProps,
     } = getOverrideObject(overrides.DropdownContainer, StyledDropdownContainer);
-    const {
-      component: DropdownButton,
-      props: dropdownButtonProps,
-    } = getOverrideObject(overrides.DropdownButton, StyledDropdownButton);
-    const {
-      component: DropdownMenu,
-      props: dropdownMenuProps,
-    } = getOverrideObject(overrides.DropdownMenu, Menu);
 
     const options = this.getMenuOptions(numPages);
 
@@ -145,33 +109,13 @@ export default class Pagination extends React.PureComponent<
         >
           Prev
         </Button>
-        <DropdownContainer
-          $ref={this.dropdownContainerRef}
-          {...dropdownContainerProps}
-        >
-          <Button
-            onClick={this.onDropdownButtonClick}
-            endEnhancer={ArrowDown}
-            kind={KIND.tertiary}
-            size={SIZE.condensed}
-            overrides={{
-              BaseButton: DropdownButton,
-            }}
-            {...dropdownButtonProps}
-          >
-            {currentPage}
-          </Button>
-          {isMenuOpen && (
-            <DropdownMenu
-              items={options}
-              onItemSelect={this.onMenuItemSelect}
-              initialState={{
-                highlightedIndex: Math.max(currentPage - 1, 0),
-              }}
-              overrides={{List: StyledDropdownMenu}}
-              {...dropdownMenuProps}
-            />
-          )}
+        <DropdownContainer {...dropdownContainerProps}>
+          <Select
+            currentPage={currentPage}
+            options={options}
+            onChange={this.onItemSelect}
+            {...selectProps}
+          />
         </DropdownContainer>
         <MaxLabel
           {...maxLabelProps}
