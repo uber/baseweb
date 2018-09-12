@@ -12,8 +12,9 @@
   "module": "baseui.es.js",
   "repository": "uber-web/baseui",
   "scripts": {
-    "lintcode": "eslint ./",
-    "lint": "yarn run lintcode && markdownlint -c ./.markdownlint.json rfcs README.md",
+    "lint:code": "eslint ./",
+    "lint:markdown": "markdownlint -c ./.markdownlint.json rfcs README.md",
+    "lint": "yarn lint:code && yarn lint:markdown",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
@@ -27,10 +28,10 @@
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
     "unit-test": "yarn jest --coverage",
     "e2e": "node ./e2e/e2e.js",
-    "build-e2e": "webpack --config webpack.e2e.config.js --mode=production",
-    "serve-e2e": "node e2e/serve.js",
+    "e2e:build": "webpack --config webpack.e2e.config.js --mode=production",
+    "e2e:serve": "node e2e/serve.js",
+    "e2e:test": "jest --config=jest-e2e.config.js",
     "release": "yarn build && npm publish dist",
-    "test-e2e": "jest --config=jest-e2e.config.js",
     "license": "license-check-and-add"
   },
   "devDependencies": {

@@ -43,7 +43,7 @@ steps:
     agents:
       queue: workers
   - name: ':selenium: :chromium:'
-    command: yarn test-e2e
+    command: yarn e2e:test
     plugins:
       'docker-compose':
         run: e2e-test-chrome
