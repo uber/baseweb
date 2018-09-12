@@ -1,9 +1,9 @@
-/node_modules
+node_modules
 .DS_STORE
 /.eslintcache
 build
 *.log
-/dist
+dist
 stats.html
 storybook-static
 coverage
@@ -13,3 +13,4 @@ docs
 .idea
 *.sublime-project
 *.sublime-workspace
+.fusion
