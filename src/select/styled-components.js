@@ -141,7 +141,7 @@ export const DropDown = styled(MenuList, ({$theme, $isOpen, $type, $rows}) => ({
 }));
 
 export const DropDownItem = styled(MenuListItem, ({$theme}) => ({
-  // TODO: revisit after Menu gets condensed styles
+  // TODO(#185): revisit after Menu gets condensed styles
   lineHeight: $theme.sizing.scale600,
 }));
 
