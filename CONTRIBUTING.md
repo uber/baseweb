@@ -9,11 +9,12 @@ This document helps you navigate the process.
 
 * It is ok, if your new component just implements the features you need, we may extend that later
 
-1.  Once your RFC PR is approved, start implementing the component
+2.  Once your RFC PR is approved, start implementing the component
 
 * To make the review process fast, please try to send small PRs, if you can
+* Every `TODO` in the code has to have a corresponding issue created. Refer to the created issue in the TODO following the following format `// TODO(#55): Something`
 
-1.  Once your implementation is merged, the baseui team will release it
+3.  Once your implementation is merged, the baseui team will release it
 
 ### Definition of done
 
