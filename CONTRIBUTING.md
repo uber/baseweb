@@ -12,7 +12,7 @@ This document helps you navigate the process.
 2.  Once your RFC PR is approved, start implementing the component
 
 * To make the review process fast, please try to send small PRs, if you can
-* All T0D0s in the code have to have a corresponding issue created. Refer to the created issue in the T0D0s following the format `// TODO(#44): Something`
+* All T0D0s in the code have to have a corresponding issue created. Refer to the created issue in the T0D0s following the format `// TOD0(#44): Something`
 
 3.  Once your implementation is merged, the baseui team will release it
 
