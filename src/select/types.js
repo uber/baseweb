@@ -45,20 +45,6 @@ export type OverridesDropDownT = {
   DropDownItem?: OverrideT<*>,
 };
 
-export type DefaultPropsT = {
-  overrides?: OverridesT,
-  options?: Array<OptionT>,
-  error: boolean,
-  autoFocus: boolean,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
-  onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseDown: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseUp: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onFocus: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onBlur: (e: SyntheticEvent<HTMLInputElement>) => void,
-};
-
 export type PropsT = {
   options: Array<OptionT>,
   overrides?: OverridesT,
@@ -67,7 +53,7 @@ export type PropsT = {
   textValue: string,
   multiple: boolean,
   error: boolean,
-  autoFocus?: boolean,
+  autoFocus: boolean,
   type?: string,
   filterable: boolean,
   filterOption: (OptionT, string) => boolean,
