@@ -5,15 +5,13 @@ Object {
   "::placeholder": Object {
     "color": "$theme.colors.mono700",
   },
-  ":hover": Object {
-    "cursor": "text",
-  },
   "backgroundColor": "transparent",
   "borderStyle": "none",
   "borderWidth": "0",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
   "color": "$theme.colors.mono1000",
+  "cursor": "text",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
@@ -33,15 +31,13 @@ Object {
   "::placeholder": Object {
     "color": "$theme.colors.mono600",
   },
-  ":hover": Object {
-    "cursor": "not-allowed",
-  },
   "backgroundColor": "transparent",
   "borderStyle": "none",
   "borderWidth": "0",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
   "color": "$theme.colors.mono600",
+  "cursor": "not-allowed",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
   "fontWeight": "$theme.typography.font200.fontWeight",
