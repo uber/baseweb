@@ -5,9 +5,6 @@ Object {
   "::placeholder": Object {
     "color": "$theme.colors.mono700",
   },
-  ":hover": Object {
-    "cursor": "text",
-  },
   "backgroundColor": "$theme.colors.mono200",
   "borderColor": "$theme.colors.mono200",
   "borderRadius": undefined,
@@ -17,6 +14,7 @@ Object {
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
   "color": "$theme.colors.mono1000",
+  "cursor": "text",
   "display": "flex",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
@@ -40,9 +38,6 @@ Object {
   "::placeholder": Object {
     "color": "$theme.colors.mono600",
   },
-  ":hover": Object {
-    "cursor": "not-allowed",
-  },
   "backgroundColor": "$theme.colors.mono300",
   "borderColor": "$theme.colors.mono300",
   "borderRadius": undefined,
@@ -52,6 +47,7 @@ Object {
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
   "color": "$theme.colors.mono600",
+  "cursor": "not-allowed",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",

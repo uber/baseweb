@@ -146,11 +146,9 @@ export const getInputStyles = (props: SharedPropsT) => {
     ...getInputPadding($size, sizing),
     width: '100%',
     maxWidth: '100%',
+    cursor: $disabled ? 'not-allowed' : 'text',
     '::placeholder': {
       color: $disabled ? colors.mono600 : colors.mono700,
-    },
-    ':hover': {
-      cursor: $disabled ? 'not-allowed' : 'text',
     },
   };
 };
