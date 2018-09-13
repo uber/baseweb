@@ -11,7 +11,6 @@ import {BaseInput} from '../index';
 
 test('BaseInput - basic functionality', () => {
   const props = {
-    value: 'input value',
     placeholder: 'Placeholder',
     onFocus: jest.fn(),
     onBlur: jest.fn(),
@@ -66,6 +65,13 @@ test('BaseInput - basic functionality', () => {
 
   const updatedAfter = wrapper.find(props.overrides.After);
   expect(updatedAfter.props()).toMatchSnapshot('After gets correct error prop');
+});
+
+test('BaseInput - should not take default value prop', () => {
+  // $FlowFixMe
+  const wrapper = mount(<BaseInput />);
+  // Guard against passing default value prop
+  expect(wrapper.prop('value')).not.toBeDefined();
 });
 
 test('BaseInput - autoFocus sets the initial focus state', () => {

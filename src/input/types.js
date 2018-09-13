@@ -74,7 +74,7 @@ export type BaseInputPropsT = {
   required: boolean,
   size: SizeT,
   type: string,
-  value: string,
+  value?: string,
   rows?: number,
 };
 
