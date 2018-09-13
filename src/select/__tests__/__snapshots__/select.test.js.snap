@@ -501,7 +501,6 @@ exports[`Stateless select should render component in select mode and false for m
                 required={false}
                 size="default"
                 type="text"
-                value=""
               >
                 <MockStyledComponent
                   $adjoined="none"
@@ -544,7 +543,6 @@ exports[`Stateless select should render component in select mode and false for m
                       onFocus={[Function]}
                       placeholder=""
                       type="text"
-                      value=""
                     >
                       <input
                         aria-invalid={false}
@@ -558,7 +556,6 @@ exports[`Stateless select should render component in select mode and false for m
                         placeholder=""
                         styled-component="true"
                         type="text"
-                        value=""
                       />
                     </MockStyledComponent>
                     <After
@@ -687,7 +684,6 @@ exports[`Stateless select should render component in select mode and true for mu
                 required={false}
                 size="default"
                 type="text"
-                value=""
               >
                 <MockStyledComponent
                   $adjoined="none"
@@ -730,7 +726,6 @@ exports[`Stateless select should render component in select mode and true for mu
                       onFocus={[Function]}
                       placeholder=""
                       type="text"
-                      value=""
                     >
                       <input
                         aria-invalid={false}
@@ -744,7 +739,6 @@ exports[`Stateless select should render component in select mode and true for mu
                         placeholder=""
                         styled-component="true"
                         type="text"
-                        value=""
                       />
                     </MockStyledComponent>
                     <After
