@@ -47,7 +47,6 @@ export type PropsT = *;
 export type BaseInputComponentsT = {
   InputContainer?: OverrideT<*>,
   Input?: OverrideT<*>,
-  // TODO: Next two seems like shouldn't be in components prop
   Before?: OverrideT<*>,
   After?: OverrideT<*>,
 };
@@ -74,7 +73,7 @@ export type BaseInputPropsT = {
   required: boolean,
   size: SizeT,
   type: string,
-  value: string,
+  value?: string,
   rows?: number,
 };
 

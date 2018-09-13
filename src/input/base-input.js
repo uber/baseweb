@@ -31,7 +31,6 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
     required: false,
     size: SIZE.default,
     type: 'text',
-    value: '',
   };
 
   state = {
@@ -81,7 +80,7 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
       onBlur: this.onBlur,
       placeholder,
       type,
-      value: value,
+      value,
       ...(type === CUSTOM_INPUT_TYPE.textarea ? {rows} : {}),
     };
   };
