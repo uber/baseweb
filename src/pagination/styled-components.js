@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles';
 import {StyledList} from '../menu';
 import {StyledBaseButton} from '../button';
+import {StyledInput} from '../input';
+import {StyledTag} from '../select';
 
 export const Root = styled('div', {
   display: 'flex',
@@ -22,8 +24,10 @@ export const MaxLabel = styled('span', ({$theme}) => ({
 
 export const DropdownContainer = styled('div', ({$theme}) => ({
   position: 'relative',
+  cursor: 'pointer',
   marginLeft: $theme.sizing.scale600,
   marginRight: $theme.sizing.scale300,
+  minWidth: `calc(${$theme.sizing.scale1600} + ${$theme.sizing.scale400})`,
 }));
 
 export const DropdownMenu = styled(StyledList, ({$theme}) => ({
@@ -38,5 +42,17 @@ export const DropdownMenu = styled(StyledList, ({$theme}) => ({
 
 export const DropdownButton = styled(StyledBaseButton, ({$theme}) => ({
   color: $theme.colors.black,
-  minWidth: `calc(${$theme.sizing.scale1600} + ${$theme.sizing.scale400})`,
+}));
+
+// The following are meant to be used internallt and not exported to external customers
+
+export const SelectInput = styled(StyledInput, {display: 'none'});
+export const SelectTag = styled(StyledTag, ({$theme}) => ({
+  ...$theme.typography.font300,
+  color: $theme.colors.black,
+  // Hacking to get around not being able to override borders
+  paddingTop: `calc(${$theme.sizing.scale300} - 1px)`,
+  paddingBottom: `calc(${$theme.sizing.scale300} - 1px)`,
+  paddingLeft: `calc(${$theme.sizing.scale600} - 1px)`,
+  paddingRight: `calc(${$theme.sizing.scale600} - 1px)`,
 }));

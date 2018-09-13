@@ -8,6 +8,12 @@ LICENSE file in the root directory of this source tree.
 import type {OverrideT} from '../helpers/overrides';
 import {STATE_CHANGE_TYPE} from './constants';
 
+export type SelectMenuItemT = {
+  id: string,
+  label: number,
+  disabled?: boolean,
+};
+
 export type StateReducerFnT = (
   changeType: $Keys<typeof STATE_CHANGE_TYPE>,
   changes: StatefulContainerStateT,
@@ -19,9 +25,8 @@ export type OverridesT = {
   PrevButton?: OverrideT<*>,
   NextButton?: OverrideT<*>,
   MaxLabel?: OverrideT<*>,
+  Select?: OverrideT<*>,
   DropdownContainer?: OverrideT<*>,
-  DropdownButton?: OverrideT<*>,
-  DropdownMenu?: OverrideT<*>,
 };
 
 export type PaginationPropsT = {
