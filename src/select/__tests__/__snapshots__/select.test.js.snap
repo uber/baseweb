@@ -92,6 +92,7 @@ exports[`Stateless select should render component in search mode and false for m
               required={false}
               size="default"
               type="text"
+              value=""
             >
               <MockStyledComponent
                 $adjoined="none"
@@ -144,6 +145,7 @@ exports[`Stateless select should render component in search mode and false for m
                     onKeyUp={[Function]}
                     placeholder=""
                     type="text"
+                    value=""
                   >
                     <input
                       aria-invalid={false}
@@ -157,6 +159,7 @@ exports[`Stateless select should render component in search mode and false for m
                       placeholder=""
                       styled-component="true"
                       type="text"
+                      value=""
                     />
                   </MockStyledComponent>
                   <After
@@ -293,6 +296,7 @@ exports[`Stateless select should render component in search mode and true for mu
               required={false}
               size="default"
               type="text"
+              value=""
             >
               <MockStyledComponent
                 $adjoined="none"
@@ -345,6 +349,7 @@ exports[`Stateless select should render component in search mode and true for mu
                     onKeyUp={[Function]}
                     placeholder=""
                     type="text"
+                    value=""
                   >
                     <input
                       aria-invalid={false}
@@ -358,6 +363,7 @@ exports[`Stateless select should render component in search mode and true for mu
                       placeholder=""
                       styled-component="true"
                       type="text"
+                      value=""
                     />
                   </MockStyledComponent>
                   <After

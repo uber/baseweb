@@ -47,7 +47,6 @@ export type PropsT = *;
 export type BaseInputComponentsT = {
   InputContainer?: OverrideT<*>,
   Input?: OverrideT<*>,
-  // TODO: Next two seems like shouldn't be in components prop
   Before?: OverrideT<*>,
   After?: OverrideT<*>,
 };
