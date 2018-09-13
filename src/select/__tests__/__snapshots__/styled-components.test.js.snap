@@ -71,9 +71,6 @@ Object {
   "::placeholder": Object {
     "color": "$theme.colors.mono700",
   },
-  ":hover": Object {
-    "cursor": "text",
-  },
   "backgroundColor": "transparent",
   "borderStyle": "none",
   "borderWidth": "0",
