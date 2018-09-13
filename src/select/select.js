@@ -20,7 +20,6 @@ import {Input as InputComponent} from '../input';
 import {ICON, TYPE, STATE_CHANGE_TYPE} from './constants';
 import SelectDropDown from './dropdown';
 import type {
-  DefaultPropsT,
   LabelT,
   OptionT,
   PropsT,
@@ -30,7 +29,7 @@ import type {
 import {getOverride} from '../helpers/overrides';
 
 class Select extends React.Component<PropsT, StatelessStateT> {
-  static defaultProps: DefaultPropsT = {
+  static defaultProps = {
     overrides: {},
     selectedOptions: [],
     options: [],
@@ -44,6 +43,8 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     error: false,
     autoFocus: false,
     filterable: false,
+    multiple: false,
+    textValue: '',
     filterOption: (option: OptionT, query: string) => {
       return (
         typeof option.label === 'string' &&

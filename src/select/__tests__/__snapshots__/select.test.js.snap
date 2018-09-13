@@ -17,6 +17,7 @@ exports[`Stateless select should render component in search mode and false for m
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
+  textValue=""
   type="search"
 >
   <MockStyledComponent>
@@ -48,6 +49,7 @@ exports[`Stateless select should render component in search mode and false for m
         required={false}
         size="default"
         startEnhancer={null}
+        value=""
       >
         <MockStyledComponent
           $disabled={false}
@@ -219,6 +221,7 @@ exports[`Stateless select should render component in search mode and true for mu
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
+  textValue=""
   type="search"
 >
   <MockStyledComponent>
@@ -250,6 +253,7 @@ exports[`Stateless select should render component in search mode and true for mu
         required={false}
         size="default"
         startEnhancer={null}
+        value=""
       >
         <MockStyledComponent
           $disabled={false}
@@ -421,6 +425,7 @@ exports[`Stateless select should render component in select mode and false for m
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
+  textValue=""
   type="select"
 >
   <MockStyledComponent>
@@ -602,6 +607,7 @@ exports[`Stateless select should render component in select mode and true for mu
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
+  textValue=""
   type="select"
 >
   <MockStyledComponent>
