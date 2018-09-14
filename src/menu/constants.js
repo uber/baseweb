@@ -13,7 +13,7 @@ export const STATE_CHANGE_TYPES = {
 };
 
 // Dict of props to prepend $ to pass thru to styletron
-export const STYLETRON_PROP_MAPPER = {
+export const SHARED_PROPS_MAPPER = {
   ref: true,
   isHighlighted: true,
 };

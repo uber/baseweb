@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable import/prefer-default-export */
 import smoothscroll from 'smoothscroll-polyfill';
-import {STYLETRON_PROP_MAPPER} from './constants';
+import {SHARED_PROPS_MAPPER} from './constants';
 
 if (__BROWSER__) {
   smoothscroll.polyfill();
@@ -18,9 +18,9 @@ if (__BROWSER__) {
  * all of the existing prop keys inside mapper with $ to present styletron
  * from passing through those props to the underlying React component.
  */
-export function mapStyletronProps(
+export function getSharedProps(
   props: {},
-  mapper: {} = STYLETRON_PROP_MAPPER,
+  mapper: {} = SHARED_PROPS_MAPPER,
 ): {} {
   return Object.keys(props).reduce((newProps, propName) => {
     const newName = mapper[propName] ? `$${propName}` : propName;
