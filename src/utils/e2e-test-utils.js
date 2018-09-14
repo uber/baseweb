@@ -4,11 +4,22 @@ Copyright (c) 2018 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* eslint-env node*/
 // @flow
 import * as webdriver from 'selenium-webdriver';
 import AxeBuilder from 'axe-webdriverjs';
 
 const {By} = webdriver;
+
+if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
+  throw new Error(
+    'You have to set the SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables',
+  );
+}
+
+const sauceUsername = process.env.SAUCE_USERNAME;
+const sauceAccessKey = process.env.SAUCE_ACCESS_KEY;
+const sauceServer = `http://${sauceUsername}:${sauceAccessKey}@ondemand.saucelabs.com:80/wd/hub`;
 
 const browsers = ['chrome'];
 const activeDrivers = {};
@@ -41,10 +52,16 @@ const run = function(
   browsers.forEach(browser => {
     if (!activeDrivers[browser]) {
       const browserMethod = webdriver.Capabilities[browser];
-      const caps = browserMethod();
+      const capabilities = browserMethod();
+
+      // adding Sauce Labs config
+      capabilities.username = sauceUsername;
+      capabilities.accessKey = sauceAccessKey;
+
       activeDrivers[browser] = new webdriver.Builder()
         .forBrowser(browser)
-        .withCapabilities(caps)
+        .withCapabilities(capabilities)
+        .usingServer(sauceServer)
         .build();
     }
     afterAll(async function() {
