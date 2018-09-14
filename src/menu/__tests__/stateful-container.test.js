@@ -91,11 +91,9 @@ describe('Menu StatefulContainer', () => {
     const item = mockItems[0];
     const props = component.instance().getRequiredItemProps(item, 0);
     expect(props).toEqual({
-      key: '0',
       ref: React.createRef(),
       isHighlighted: false,
       onClick: props.onClick,
-      role: 'option',
       'aria-activedescendant': false,
     });
     props.onClick();
@@ -110,11 +108,9 @@ describe('Menu StatefulContainer', () => {
     const item = mockItems[0];
     const props = component.instance().getRequiredItemProps(item, 0);
     expect(props).toEqual({
-      key: '0',
       ref: React.createRef(),
       isHighlighted: true,
       onClick: props.onClick,
-      role: 'option',
       'aria-activedescendant': true,
     });
   });

@@ -14,7 +14,7 @@ import {
 } from './styled-components';
 import type {FormControlPropsT} from './types';
 
-function mapStyletronProps(props: {}, mapper: {}) {
+function getSharedProps(props: {}, mapper: {}) {
   return Object.keys(props).reduce((newProps, propName) => {
     const newName = mapper[propName] && `$${propName}`;
     if (newName) {
@@ -42,10 +42,7 @@ export default class FormControl extends React.Component<FormControlPropsT> {
     } = this.props;
 
     const onlyChildProps = React.Children.only(children).props;
-    const sharedProps = mapStyletronProps(
-      onlyChildProps,
-      STYLETRON_PROP_MAPPER,
-    );
+    const sharedProps = getSharedProps(onlyChildProps, STYLETRON_PROP_MAPPER);
     sharedProps.$error = this.props.error || sharedProps.$error;
     const Label = getOverride(LabelOverride) || StyledLabel;
     const Caption = getOverride(CaptionOverride) || StyledCaption;
