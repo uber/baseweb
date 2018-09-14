@@ -10,35 +10,33 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides';
 import {STATE_CHANGE_TYPES} from './constants';
 
-export type ItemsT = Array<*>;
+export type ItemT = *;
+export type ItemsT = Array<ItemT>;
 
-export type GetItemLabelFnT = (item: *) => React$Node;
+export type GetItemLabelFnT = (item: ItemT) => React$Node;
 
 export type GetProfileItemLabelsFnT = (
-  item: *,
+  item: ItemT,
 ) => {
   title?: string,
   subtitle?: string,
   body?: string,
 };
 
-export type GetProfileItemImgFnT = (item: *) => string | React.ComponentType<*>;
+export type GetProfileItemImgFnT = (
+  item: ItemT,
+) => string | React.ComponentType<*>;
 
-export type GetProfileItemImgTextFnT = (item: *) => string;
+export type GetProfileItemImgTextFnT = (item: ItemT) => string;
 
 export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
 
 export type RootRefT = React$ElementRef<*>;
 
 export type OnItemSelectFnT = (
-  item: ?{},
+  item: ?ItemT,
   event: SyntheticEvent<> | KeyboardEvent,
 ) => mixed;
-
-export type OverridesT = {
-  List?: OverrideT<*>,
-  ListItem?: OverrideT<*>,
-};
 
 export type ProfileOverridesT = {
   List?: OverrideT<*>,
@@ -52,22 +50,19 @@ export type ProfileOverridesT = {
 };
 
 export type RenderItemPropsT = {
-  key: string,
   ref?: React$ElementRef<*>,
   // indicates when the item is visually focused
   isHighlighted?: boolean,
-  role?: string,
-  // indicates when the item is visually focused
   'aria-activedescendant'?: boolean,
 };
 
 export type GetRequiredItemPropsFnT = (
-  item: {},
+  item: ItemT,
   index: number,
 ) => RenderItemPropsT;
 
 export type StateReducerFnT = (
-  changeType: $Keys<typeof STATE_CHANGE_TYPES>,
+  changeType: ?$Keys<typeof STATE_CHANGE_TYPES>,
   changes: StatefulContainerStateT,
   currentState: StatefulContainerStateT,
 ) => StatefulContainerStateT;
@@ -99,10 +94,10 @@ export type DefaultStatefulContainerPropsT = {
 
 export type StatefulContainerPropsT = {
   items: ItemsT,
-  initialState?: StatefulContainerStateT,
-  stateReducer?: StateReducerFnT,
-  onItemSelect?: OnItemSelectFnT,
-  children?: RenderPropsT => React.Node,
+  initialState: StatefulContainerStateT,
+  stateReducer: StateReducerFnT,
+  onItemSelect: OnItemSelectFnT,
+  children: RenderPropsT => React.Node,
 };
 
 export type MenuPropsT = {
@@ -137,7 +132,7 @@ export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
   MenuProfilePropsT;
 
 export type OptionListPropsT = {
-  item: *,
+  item: ItemT,
   getItemLabel: GetItemLabelFnT,
   overrides?: {
     ListItem?: OverrideT<*>,
@@ -145,7 +140,7 @@ export type OptionListPropsT = {
 };
 
 export type OptionProfilePropsT = {
-  item: *,
+  item: ItemT,
   getProfileItemLabels: GetProfileItemLabelsFnT,
   getProfileItemImg: GetProfileItemImgFnT,
   getProfileItemImgText: GetProfileItemImgTextFnT,

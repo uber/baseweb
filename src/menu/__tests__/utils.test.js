@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as Utils from '../utils';
 
-describe('Menu Utils - mapStyletronProps', () => {
+describe('Menu Utils - getSharedProps', () => {
   test('successfully maps', () => {
     const props = {
       someStyletronProps: 'styletron',
@@ -16,7 +16,7 @@ describe('Menu Utils - mapStyletronProps', () => {
     const mapper = {
       someStyletronProps: true,
     };
-    expect(Utils.mapStyletronProps(props, mapper)).toEqual({
+    expect(Utils.getSharedProps(props, mapper)).toEqual({
       $someStyletronProps: 'styletron',
       normalProps: 'normal',
     });

@@ -17,6 +17,8 @@ export default class StatefulMenu extends React.PureComponent<
   StatefulMenuPropsT,
 > {
   static defaultProps = {
+    // Mostly to satisfy flow
+    ...StatefulContainer.defaultProps,
     overrides: {},
   };
 

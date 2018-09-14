@@ -9,14 +9,14 @@ import * as React from 'react';
 // Components
 import {List as StyledList} from './styled-components';
 import OptionList from './option-list';
-import {mapStyletronProps} from './utils';
+import {getSharedProps} from './utils';
 import {getOverrideObject} from '../helpers/overrides';
 // Types
 import type {StatelessMenuPropsT} from './types';
 
 export default function Menu({
   items,
-  getRequiredItemProps = (item, index) => ({key: String(index)}),
+  getRequiredItemProps = (item, index) => ({}),
   rootRef = React.createRef(),
   overrides = {},
 }: StatelessMenuPropsT) {
@@ -32,12 +32,14 @@ export default function Menu({
     <List $ref={rootRef} {...listProps}>
       {items.map((item, index) => {
         const requiredProps = getRequiredItemProps(item, index);
-        // Need to be explicit with `key` otherwise eslint throws error?
         return (
-          // eslint-disable-next-line react/jsx-key
           <Option
+            key={index}
             item={item}
-            {...mapStyletronProps(requiredProps)}
+            role="option"
+            // Allows tab focus into first element
+            tabIndex={index === 0 ? 0 : -1}
+            {...getSharedProps(requiredProps)}
             {...optionProps}
           />
         );
