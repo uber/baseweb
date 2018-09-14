@@ -51,6 +51,7 @@ export const examples = {
   BUTTON_COMPACT: 'Buttons Compact',
   BUTTON_WITH_ENHANCERS: 'Buttons with Enhancers',
   BUTTON_COMPACT_WITH_ENHANCERS: 'Buttons Compact with Enhancers',
+  BUTTON_LOADING: 'Buttons in Loading State',
 };
 
 export default {
@@ -167,6 +168,45 @@ export default {
             endEnhancer={CloudComponent}
           >
             Both Enhancers
+          </Button>
+        </ButtonRow>
+      </ButtonContainer>
+    );
+  },
+  [examples.BUTTON_LOADING]: function Story5() {
+    return (
+      <ButtonContainer>
+        <ButtonRow>
+          <Button isLoading={true}>Primary</Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button isLoading={true} kind={KIND.secondary}>
+            Secondary
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button isLoading={true} kind={KIND.tertiary}>
+            Tertiary
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button isLoading={true} kind={KIND.minimal}>
+            Minimal
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button isLoading={true} disabled={true}>
+            Disabled
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button isLoading={true} shape={SHAPE.square}>
+            <CloudComponent />
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button isLoading={true} shape={SHAPE.round}>
+            <CloudComponent />
           </Button>
         </ButtonRow>
       </ButtonContainer>

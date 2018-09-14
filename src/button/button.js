@@ -1,3 +1,9 @@
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 // @flow
 import * as React from 'react';
 import {
@@ -15,10 +21,11 @@ export default function Button({
   disabled,
   startEnhancer,
   endEnhancer,
-  overrides = {},
+  overrides,
   size,
   kind,
   shape,
+  isLoading,
   ...restProps
 }: ButtonPropsT) {
   // Base UI override logic goes here
@@ -38,6 +45,7 @@ export default function Button({
     $size: size,
     $kind: kind,
     $shape: shape,
+    $isLoading: isLoading,
   };
   return (
     <BaseButton
@@ -68,4 +76,6 @@ Button.defaultProps = {
   size: SIZE.default,
   kind: KIND.primary,
   shape: SHAPE.default,
+  isLoading: false,
+  disabled: false,
 };

@@ -7,10 +7,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles';
 import {KIND, SIZE, SHAPE} from './constants';
+import type {ThemeT} from '../styles';
+
+type StylePropsT = {
+  $theme: ThemeT,
+  $size?: $Keys<typeof SIZE>,
+  $kind?: $Keys<typeof KIND>,
+  $shape?: $Keys<typeof SHAPE>,
+  $isLoading?: boolean,
+};
 
 export const BaseButton = styled(
   'button',
-  ({$theme, $size, $kind, $shape}) => ({
+  ({$theme, $size, $kind, $shape, $isLoading}: StylePropsT) => ({
     ...$theme.typography[$size === SIZE.compact ? 'font200' : 'font300'],
     display: 'inline-flex',
     alignItems: 'center',
@@ -29,52 +38,62 @@ export const BaseButton = styled(
       backgroundColor: $theme.colors.mono300,
       color: $theme.colors.mono600,
     },
-    // Padding
-    ...($shape === SHAPE.round || $shape === SHAPE.square
-      ? {
-          paddingTop:
-            $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
-          paddingBottom:
-            $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
-          paddingLeft:
-            $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
-          paddingRight:
-            $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
-        }
-      : {
-          paddingTop:
-            $theme.sizing[$size === SIZE.compact ? 'scale200' : 'scale300'],
-          paddingBottom:
-            $theme.sizing[$size === SIZE.compact ? 'scale200' : 'scale300'],
-          paddingLeft: $theme.sizing.scale600,
-          paddingRight: $theme.sizing.scale600,
-        }),
+    // Padding For Shape and Size
+    ...getStyleForShape({$theme, $shape, $size}),
     // Kind style override
-    ...getStyleForKind({$theme, $kind}),
+    ...getStyleForKind({$theme, $kind, $isLoading}),
   }),
 );
 
-export const EndEnhancer = styled('div', ({$theme}) => ({
+export const EndEnhancer = styled('div', ({$theme}: StylePropsT) => ({
   display: 'flex',
   marginLeft: $theme.sizing.scale500,
 }));
 
-export const StartEnhancer = styled('div', ({$theme}) => ({
+export const StartEnhancer = styled('div', ({$theme}: StylePropsT) => ({
   display: 'flex',
   marginRight: $theme.sizing.scale500,
 }));
 
-function getStyleForKind({$theme, $kind}) {
+export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
+  switch ($shape) {
+    case SHAPE.round:
+    case SHAPE.square:
+      return {
+        paddingTop:
+          $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
+        paddingBottom:
+          $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
+        paddingLeft:
+          $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
+        paddingRight:
+          $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
+      };
+    default:
+      return {
+        paddingTop:
+          $theme.sizing[$size === SIZE.compact ? 'scale200' : 'scale300'],
+        paddingBottom:
+          $theme.sizing[$size === SIZE.compact ? 'scale200' : 'scale300'],
+        paddingLeft: $theme.sizing.scale600,
+        paddingRight: $theme.sizing.scale600,
+      };
+  }
+}
+
+export function getStyleForKind({$theme, $kind, $isLoading}: StylePropsT) {
   switch ($kind) {
     case KIND.primary:
       return {
         color: $theme.colors.white,
         backgroundColor: $theme.colors.primary,
         ':hover:enabled': {
-          backgroundColor: $theme.colors.primary500,
+          backgroundColor:
+            $theme.colors[$isLoading ? 'primary600' : 'primary500'],
         },
         ':focus:enabled': {
-          backgroundColor: $theme.colors.primary500,
+          backgroundColor:
+            $theme.colors[$isLoading ? 'primary600' : 'primary500'],
         },
         ':active:enabled': {
           backgroundColor: $theme.colors.primary600,
@@ -85,10 +104,12 @@ function getStyleForKind({$theme, $kind}) {
         color: $theme.colors.primary,
         backgroundColor: $theme.colors.primary50,
         ':hover:enabled': {
-          backgroundColor: $theme.colors.primary100,
+          backgroundColor:
+            $theme.colors[$isLoading ? 'primary200' : 'primary100'],
         },
         ':focus:enabled': {
-          backgroundColor: $theme.colors.primary100,
+          backgroundColor:
+            $theme.colors[$isLoading ? 'primary200' : 'primary100'],
         },
         ':active:enabled': {
           backgroundColor: $theme.colors.primary200,
@@ -99,10 +120,10 @@ function getStyleForKind({$theme, $kind}) {
         color: $theme.colors.primary,
         backgroundColor: $theme.colors.mono200,
         ':hover:enabled': {
-          backgroundColor: $theme.colors.mono400,
+          backgroundColor: $theme.colors[$isLoading ? 'mono500' : 'mono400'],
         },
         ':focus:enabled': {
-          backgroundColor: $theme.colors.mono400,
+          backgroundColor: $theme.colors[$isLoading ? 'mono500' : 'mono400'],
         },
         ':active:enabled': {
           backgroundColor: $theme.colors.mono500,
@@ -113,10 +134,10 @@ function getStyleForKind({$theme, $kind}) {
         color: $theme.colors.primary,
         backgroundColor: 'transparent',
         ':hover:enabled': {
-          backgroundColor: $theme.colors.mono200,
+          backgroundColor: $theme.colors[$isLoading ? 'mono400' : 'mono200'],
         },
         ':focus:enabled': {
-          backgroundColor: $theme.colors.mono200,
+          backgroundColor: $theme.colors[$isLoading ? 'mono400' : 'mono200'],
         },
         ':active:enabled': {
           backgroundColor: $theme.colors.mono400,

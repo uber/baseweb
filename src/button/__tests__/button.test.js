@@ -1,4 +1,10 @@
-/* eslint-disable flowtype/require-valid-file-annotation, react/prop-types */
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
 import React from 'react';
 import {mount} from 'enzyme';
 import {StartEnhancer, EndEnhancer} from '../styled-components';
@@ -24,7 +30,8 @@ describe('Button Component', () => {
     const NewStartEnhancer = () => <div />;
 
     const props = {
-      startEnhancer: 'start',
+      /* eslint-disable-next-line */
+      startEnhancer: () => <div />,
       overrides: {
         StartEnhancer: NewStartEnhancer,
       },
