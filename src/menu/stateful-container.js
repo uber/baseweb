@@ -12,32 +12,35 @@ import {scrollItemIntoView} from './utils';
 // Types
 import type {
   StatefulContainerPropsT,
-  DefaultStatefulContainerPropsT,
   StatefulContainerStateT,
   GetRequiredItemPropsFnT,
   RootRefT,
   RenderPropsT,
+  StateReducerFnT,
 } from './types';
 
 export default class MenuStatefulContainer extends React.Component<
   StatefulContainerPropsT,
   StatefulContainerStateT,
 > {
-  static defaultProps: DefaultStatefulContainerPropsT = {
+  static defaultProps = {
     initialState: {
       // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,
     },
-    stateReducer: (changeType, changes) => changes,
+    stateReducer: (
+      changeType: ?$PropertyType<StateReducerFnT, 'changeType'>,
+      changes: $PropertyType<StateReducerFnT, 'changes'>,
+    ) => changes,
     onItemSelect: () => {},
-    children: () => {},
+    children: () => null,
   };
 
   state: StatefulContainerStateT = {...this.props.initialState};
 
   componentDidMount() {
     if (__BROWSER__) {
-      // TODO: perhaps only bind event listener on focus
+      // TODO(#185): perhaps only bind event listener on focus
       document.addEventListener('keydown', this.onKeyDown);
     }
   }
@@ -61,7 +64,6 @@ export default class MenuStatefulContainer extends React.Component<
     changes: StatefulContainerStateT,
   ) {
     const {stateReducer} = this.props;
-    // $FlowFixMe
     this.setState(stateReducer(changeType, changes, this.state));
   }
 
@@ -127,11 +129,9 @@ export default class MenuStatefulContainer extends React.Component<
       this.refList[index] = itemRef;
     }
     return {
-      key: `${index}`,
       ref: itemRef,
       isHighlighted: highlightedIndex === index,
       onClick: onClickHandler,
-      role: 'option',
       'aria-activedescendant': highlightedIndex === index,
     };
   };
@@ -139,7 +139,6 @@ export default class MenuStatefulContainer extends React.Component<
   render() {
     const {highlightedIndex} = this.state;
     const {children, items} = this.props;
-    // $FlowFixMe
     return children(
       ({
         highlightedIndex,
