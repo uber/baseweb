@@ -83,6 +83,8 @@ Rough DOM composition:
   Defines the shape of a button.
 * `kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
   Defines the kind (purpose) of a button
+* `isLoading: boolean`
+  Show loading button style and spinner
 * `...rest`
   Passed to BaseButton as props. These can include `accesskey`, `disabled`, `formtarget`, `type`, `value` and more.
 
