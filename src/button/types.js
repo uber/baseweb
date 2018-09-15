@@ -15,12 +15,12 @@ export type OverridesT = {
 };
 
 export type ButtonPropsT = {
+  overrides: OverridesT,
+  size: $Keys<typeof SIZE>,
+  kind: $Keys<typeof KIND>,
+  shape: $Keys<typeof SHAPE>,
+  disabled: boolean,
   startEnhancer?: () => React$Node | React$Node,
   endEnhancer?: () => React$Node | React$Node,
-  disabled?: boolean,
-  overrides?: OverridesT,
-  size?: $Keys<typeof SIZE>,
-  kind?: $Keys<typeof KIND>,
-  shape?: $Keys<typeof SHAPE>,
   children?: React$Node,
 };
