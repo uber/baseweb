@@ -10,11 +10,22 @@ import {
   BaseButton as StyledBaseButton,
   StartEnhancer as StyledStartEnhancer,
   EndEnhancer as StyledEndEnhancer,
+  LoadingSpinner as StyledLoadingSpinner,
 } from './styled-components';
 import {getOverrideObject} from '../helpers/overrides';
 import {KIND, SHAPE, SIZE} from './constants';
 
 import type {ButtonPropsT} from './types';
+
+type SharedPropsT = {
+  $size: $Keys<typeof SIZE>,
+  $kind: $Keys<typeof KIND>,
+  $shape: $Keys<typeof SHAPE>,
+  $isLoading: boolean,
+};
+function getLoadingSpinnerEnhancer(sharedProps: SharedPropsT) {
+  return <StyledLoadingSpinner {...sharedProps} />;
+}
 
 export default function Button({
   children,
@@ -25,6 +36,7 @@ export default function Button({
   size,
   kind,
   shape,
+  isLoading,
   ...restProps
 }: ButtonPropsT) {
   // Base UI override logic goes here
@@ -40,10 +52,16 @@ export default function Button({
     overrides.EndEnhancer,
     StyledEndEnhancer,
   );
+  const overrideEndEnhancer = endEnhancer
+    ? endEnhancer
+    : isLoading && shape === SHAPE.default
+      ? getLoadingSpinnerEnhancer
+      : null;
   const sharedProps = {
     $size: size,
     $kind: kind,
     $shape: shape,
+    $isLoading: isLoading,
   };
   return (
     <BaseButton
@@ -55,14 +73,16 @@ export default function Button({
       {startEnhancer && (
         <StartEnhancer {...sharedProps} {...startEnhancerProps}>
           {typeof startEnhancer === 'function'
-            ? startEnhancer()
+            ? startEnhancer(sharedProps)
             : startEnhancer}
         </StartEnhancer>
       )}
       {children}
-      {endEnhancer && (
+      {overrideEndEnhancer && (
         <EndEnhancer {...sharedProps} {...endEnhancerProps}>
-          {typeof endEnhancer === 'function' ? endEnhancer() : endEnhancer}
+          {typeof overrideEndEnhancer === 'function'
+            ? overrideEndEnhancer(sharedProps)
+            : overrideEndEnhancer}
         </EndEnhancer>
       )}
     </BaseButton>
@@ -74,5 +94,6 @@ Button.defaultProps = {
   size: SIZE.default,
   kind: KIND.primary,
   shape: SHAPE.default,
+  isLoading: false,
   disabled: false,
 };

@@ -14,12 +14,15 @@ type StylePropsT = {
   $size?: $Keys<typeof SIZE>,
   $kind?: $Keys<typeof KIND>,
   $shape?: $Keys<typeof SHAPE>,
+  $isLoading?: boolean,
 };
 
 export const BaseButton = styled(
   'button',
-  ({$theme, $size, $kind, $shape}: StylePropsT) => ({
-    ...$theme.typography[$size === SIZE.compact ? 'font200' : 'font300'],
+  ({$theme, $size, $kind, $shape, $isLoading}: StylePropsT) => ({
+    ...($size === SIZE.compact
+      ? $theme.typography.font200
+      : $theme.typography.font300),
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -40,7 +43,7 @@ export const BaseButton = styled(
     // Padding For Shape and Size
     ...getStyleForShape({$theme, $shape, $size}),
     // Kind style override
-    ...getStyleForKind({$theme, $kind}),
+    ...getStyleForKind({$theme, $kind, $isLoading}),
   }),
 );
 
@@ -54,43 +57,92 @@ export const StartEnhancer = styled('div', ({$theme}: StylePropsT) => ({
   marginRight: $theme.sizing.scale500,
 }));
 
+export const LoadingSpinner = styled('div', ({$theme, $kind}: StylePropsT) => ({
+  height: $theme.sizing.scale600,
+  width: $theme.sizing.scale600,
+  borderRadius: '50%',
+  borderStyle: 'solid',
+  borderWidth: $theme.sizing.scale0,
+  borderTopColor:
+    $kind === KIND.primary ? $theme.colors.white : $theme.colors.primary,
+  borderLeftColor:
+    $kind === KIND.primary
+      ? 'rgba(255, 255, 255, 0.32)'
+      : 'rgba(39, 110, 241, 0.32)',
+  borderBottomColor:
+    $kind === KIND.primary
+      ? 'rgba(255, 255, 255, 0.32)'
+      : 'rgba(39, 110, 241, 0.32)',
+  borderRightColor:
+    $kind === KIND.primary
+      ? 'rgba(255, 255, 255, 0.32)'
+      : 'rgba(39, 110, 241, 0.32)',
+  animationDuration: $theme.animation.timing700,
+  animationTimingFunction: 'linear',
+  animationIterationCount: 'infinite',
+  animationName: {
+    to: {
+      transform: 'rotate(360deg)',
+    },
+    from: {
+      transform: 'rotate(0deg)',
+    },
+  },
+}));
+
 export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
   switch ($shape) {
     case SHAPE.round:
     case SHAPE.square:
       return {
         paddingTop:
-          $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
+          $size === SIZE.compact
+            ? $theme.sizing.scale400
+            : $theme.sizing.scale500,
         paddingBottom:
-          $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
+          $size === SIZE.compact
+            ? $theme.sizing.scale400
+            : $theme.sizing.scale500,
         paddingLeft:
-          $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
+          $size === SIZE.compact
+            ? $theme.sizing.scale400
+            : $theme.sizing.scale500,
         paddingRight:
-          $theme.sizing[$size === SIZE.compact ? 'scale400' : 'scale500'],
+          $size === SIZE.compact
+            ? $theme.sizing.scale400
+            : $theme.sizing.scale500,
       };
     default:
       return {
         paddingTop:
-          $theme.sizing[$size === SIZE.compact ? 'scale200' : 'scale300'],
+          $size === SIZE.compact
+            ? $theme.sizing.scale200
+            : $theme.sizing.scale300,
         paddingBottom:
-          $theme.sizing[$size === SIZE.compact ? 'scale200' : 'scale300'],
+          $size === SIZE.compact
+            ? $theme.sizing.scale200
+            : $theme.sizing.scale300,
         paddingLeft: $theme.sizing.scale600,
         paddingRight: $theme.sizing.scale600,
       };
   }
 }
 
-export function getStyleForKind({$theme, $kind}: StylePropsT) {
+export function getStyleForKind({$theme, $kind, $isLoading}: StylePropsT) {
   switch ($kind) {
     case KIND.primary:
       return {
         color: $theme.colors.white,
         backgroundColor: $theme.colors.primary,
         ':hover:enabled': {
-          backgroundColor: $theme.colors.primary500,
+          backgroundColor: $isLoading
+            ? $theme.colors.primary600
+            : $theme.colors.primary500,
         },
         ':focus:enabled': {
-          backgroundColor: $theme.colors.primary500,
+          backgroundColor: $isLoading
+            ? $theme.colors.primary600
+            : $theme.colors.primary500,
         },
         ':active:enabled': {
           backgroundColor: $theme.colors.primary600,
@@ -101,10 +153,14 @@ export function getStyleForKind({$theme, $kind}: StylePropsT) {
         color: $theme.colors.primary,
         backgroundColor: $theme.colors.primary50,
         ':hover:enabled': {
-          backgroundColor: $theme.colors.primary100,
+          backgroundColor: $isLoading
+            ? $theme.colors.primary200
+            : $theme.colors.primary100,
         },
         ':focus:enabled': {
-          backgroundColor: $theme.colors.primary100,
+          backgroundColor: $isLoading
+            ? $theme.colors.primary200
+            : $theme.colors.primary100,
         },
         ':active:enabled': {
           backgroundColor: $theme.colors.primary200,
@@ -115,10 +171,14 @@ export function getStyleForKind({$theme, $kind}: StylePropsT) {
         color: $theme.colors.primary,
         backgroundColor: $theme.colors.mono200,
         ':hover:enabled': {
-          backgroundColor: $theme.colors.mono400,
+          backgroundColor: $isLoading
+            ? $theme.colors.mono500
+            : $theme.colors.mono400,
         },
         ':focus:enabled': {
-          backgroundColor: $theme.colors.mono400,
+          backgroundColor: $isLoading
+            ? $theme.colors.mono500
+            : $theme.colors.mono400,
         },
         ':active:enabled': {
           backgroundColor: $theme.colors.mono500,
@@ -129,10 +189,14 @@ export function getStyleForKind({$theme, $kind}: StylePropsT) {
         color: $theme.colors.primary,
         backgroundColor: 'transparent',
         ':hover:enabled': {
-          backgroundColor: $theme.colors.mono200,
+          backgroundColor: $isLoading
+            ? $theme.colors.mono400
+            : $theme.colors.mono200,
         },
         ':focus:enabled': {
-          backgroundColor: $theme.colors.mono200,
+          backgroundColor: $isLoading
+            ? $theme.colors.mono400
+            : $theme.colors.mono200,
         },
         ':active:enabled': {
           backgroundColor: $theme.colors.mono400,
