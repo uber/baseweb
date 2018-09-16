@@ -17,9 +17,10 @@ export default () => <StatefulPagination numPages={6} />;
 * `StatefulPagination`
 * `StatefulContainer`
 * `StyledRoot`
-* `StyledPrevButton`
-* `StyledNextButton`
 * `StyledMaxLabel`
+* `StyledDropdownContainer`
+* `StyledDropdownMenu`
+* `StyledDropdownButton`
 * `STATE_CHANGE_TYPE`
 
 ## Pagination API
@@ -30,9 +31,9 @@ export default () => <StatefulPagination numPages={6} />;
   The current page
 * `prepositionLabel: string` - Optional
   Defaults to "of"
-* `overrides: {PrevButton, NextButton, Select}` - Optional
+* `overrides: {PrevButton, NextButton, DropdownContainer, DropdownMenu, DropdownButton}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
-* `onBackClick: (event) => void` - Optional
+* `onPrevClick: (event) => void` - Optional
   Callback for prev button click
 * `onNextClick: (event) => void` - Optional
   Callback for next button click
@@ -54,7 +55,7 @@ export default () => <StatefulPagination numPages={6} />;
 
 * `prepositionLabel: string` - Optional
   Defaults to "of"
-* `overrides: {PrevButton, NextButton, Select}` - Optional
+* `overrides: {PrevButton, NextButton, DropdownContainer, DropdownMenu, DropdownButton}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
 * `onPrevClick: (event) => void` - Optional
   Callback for prev button click
