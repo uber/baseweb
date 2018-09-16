@@ -28,7 +28,11 @@ export default {
     return (
       <StatefulPagination
         numPages={10}
-        prepositionLabel="out of"
+        labels={{
+          prevButton: 'Back',
+          nextButton: 'Forward',
+          preposition: 'out of',
+        }}
         overrides={{
           NextButton: {
             props: {

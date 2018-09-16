@@ -31,7 +31,11 @@ export default class Pagination extends React.PureComponent<
   PaginationStateT,
 > {
   static defaultProps = {
-    prepositionLabel: 'of',
+    labels: {
+      prevButton: 'Prev',
+      nextButton: 'Next',
+      preposition: 'of',
+    },
     overrides: {},
   };
 
@@ -92,12 +96,7 @@ export default class Pagination extends React.PureComponent<
   };
 
   render() {
-    const {
-      overrides = {},
-      currentPage,
-      prepositionLabel = '',
-      numPages,
-    } = this.props;
+    const {overrides = {}, currentPage, labels, numPages} = this.props;
     const {isMenuOpen} = this.state;
 
     const {component: Root, props: rootProps} = getOverrideObject(
@@ -143,7 +142,7 @@ export default class Pagination extends React.PureComponent<
           }}
           {...prevButtonProps}
         >
-          Prev
+          {labels.prevButton}
         </Button>
         <DropdownContainer
           $ref={this.dropdownContainerRef}
@@ -174,9 +173,9 @@ export default class Pagination extends React.PureComponent<
             />
           )}
         </DropdownContainer>
-        <MaxLabel
-          {...maxLabelProps}
-        >{`${prepositionLabel} ${numPages}`}</MaxLabel>
+        <MaxLabel {...maxLabelProps}>
+          {`${labels.preposition || ''} ${numPages}`}
+        </MaxLabel>
         <Button
           onClick={this.onNextClick}
           endEnhancer={ArrowRight}
@@ -187,7 +186,7 @@ export default class Pagination extends React.PureComponent<
           }}
           {...nextButtonProps}
         >
-          Next
+          {labels.nextButton}
         </Button>
       </Root>
     );

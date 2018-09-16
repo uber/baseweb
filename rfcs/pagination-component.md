@@ -25,12 +25,13 @@ export default () => <StatefulPagination numPages={6} />;
 
 ## Pagination API
 
-* `numPages: number` - Required
-  Max number of pages
 * `currentPage: number` - Required
   The current page
-* `prepositionLabel: string` - Optional
-  Defaults to "of"
+* `numPages: number` - Required
+  Max number of pages
+* `labels: {prevButton, nextButton, preposition}`
+  Set of labels to use for the buttons and preposition, defaults to
+    `{prevButton: 'Prev', nextButton: 'Next', preposition: 'of'}`
 * `overrides: {PrevButton, NextButton, DropdownContainer, DropdownMenu, DropdownButton}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
 * `onPrevClick: (event) => void` - Optional
@@ -53,8 +54,9 @@ export default () => <StatefulPagination numPages={6} />;
 
 `StatefulContainer` API and the following
 
-* `prepositionLabel: string` - Optional
-  Defaults to "of"
+* `labels: {prevButton, nextButton, preposition}`
+  Set of labels to use for the buttons and preposition, defaults to
+    `{prevButton: 'Prev', nextButton: 'Next', preposition: 'of'}`
 * `overrides: {PrevButton, NextButton, DropdownContainer, DropdownMenu, DropdownButton}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
 * `onPrevClick: (event) => void` - Optional
