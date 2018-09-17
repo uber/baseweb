@@ -91,6 +91,7 @@ export const Tag = styled('span', props => {
           $size: SIZE.default,
           $disabled: $disabled,
         }),
+        color: mono1000,
         cursor: 'pointer',
         width: 'auto',
         flexGrow: '1',
