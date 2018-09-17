@@ -41,6 +41,35 @@ Object {
 }
 `;
 
+exports[`Menu Styled Components ListItem - compact: correct styles 1`] = `
+Object {
+  ":first-child": Object {
+    "paddingTop": "$theme.sizing.scale500",
+  },
+  ":hover": Object {
+    "backgroundColor": "$theme.colors.mono300",
+  },
+  ":last-child": Object {
+    "paddingBottom": "$theme.sizing.scale500",
+  },
+  "color": "$theme.colors.black",
+  "cursor": "pointer",
+  "display": "block",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "$theme.typography.font200.fontWeight",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+  "paddingBottom": "$theme.sizing.scale100",
+  "paddingLeft": "$theme.sizing.scale900",
+  "paddingRight": "$theme.sizing.scale900",
+  "paddingTop": "$theme.sizing.scale100",
+  "position": "relative",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "color, background-color",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+}
+`;
+
 exports[`Menu Styled Components ListItem - highlighted render: correct styles 1`] = `
 Object {
   ":first-child": Object {

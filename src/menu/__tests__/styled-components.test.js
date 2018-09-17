@@ -18,6 +18,7 @@ import {
   ProfileImgContainer,
   ProfileLabelsContainer,
 } from '../styled-components';
+import {OPTION_LIST_SIZE} from '../constants';
 
 function makeTest({
   title,
@@ -49,6 +50,14 @@ describe('Menu Styled Components', () => {
     component: ListItem,
     props: {
       $isHighlighted: true,
+    },
+  });
+
+  makeTest({
+    title: 'ListItem - compact',
+    component: ListItem,
+    props: {
+      $size: OPTION_LIST_SIZE.compact,
     },
   });
 
