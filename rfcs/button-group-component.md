@@ -27,7 +27,7 @@ export default () => {
 
 * `children: (props: Props) => React.Node` - Required
   This can be an SVG icon as well.
-* `ariaLabel: string` - Required:
+* `ariaLabel: string` - Optional:
   Accessible label
 * `disabled: boolean` - Optional:
   Defines if the button group disabled.
@@ -37,8 +37,6 @@ export default () => {
   Called when a toggleable Button is selected
 * `onClick: func` - Optional:
   Called with the click event
-* `checked: numer | Array<number>` - Optional:
-  Index or array of indices of the selected
 
 ## Dependencies
 
