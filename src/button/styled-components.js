@@ -22,7 +22,7 @@ export const BaseButton = styled(
     ...$theme.typography[$size === SIZE.compact ? 'font200' : 'font300'],
     display: 'inline-flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     border: 'none',
     borderRadius: $shape === SHAPE.round ? '50%' : $theme.borders.radius200,
     textDecoration: 'none',

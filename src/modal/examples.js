@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 import * as React from 'react';
 import {select as selectKnob} from '@storybook/addon-knobs';
-import {Button} from '../popover/examples';
+import {Button} from '../button';
 import {Input} from '../input';
 
 import {styled} from '../styles';

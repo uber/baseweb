@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {styled} from '../styles';
-import {Button} from '../popover/examples';
+import {Button} from '../button';
 import {StatefulTooltip, TRIGGER_TYPE, PLACEMENT} from './index';
 
 const Centered = styled('div', {

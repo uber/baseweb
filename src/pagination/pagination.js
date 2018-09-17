@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
-import {Button, StyledBaseButton, KIND, SIZE} from '../button';
+import {Button, StyledBaseButton, KIND} from '../button';
 import {StatefulMenu as Menu} from '../menu';
 import {
   Root as StyledRoot,
@@ -137,7 +137,6 @@ export default class Pagination extends React.PureComponent<
           onClick={this.onPrevClick}
           startEnhancer={ArrowLeft}
           kind={KIND.tertiary}
-          size={SIZE.condensed}
           overrides={{
             BaseButton: PrevButton,
           }}
@@ -153,7 +152,6 @@ export default class Pagination extends React.PureComponent<
             onClick={this.onDropdownButtonClick}
             endEnhancer={ArrowDown}
             kind={KIND.tertiary}
-            size={SIZE.condensed}
             overrides={{
               BaseButton: DropdownButton,
             }}
@@ -181,7 +179,6 @@ export default class Pagination extends React.PureComponent<
           onClick={this.onNextClick}
           endEnhancer={ArrowRight}
           kind={KIND.tertiary}
-          size={SIZE.condensed}
           overrides={{
             BaseButton: NextButton,
           }}
