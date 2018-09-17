@@ -1,4 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 export {default as Button} from './button';
 // Constants
 export {KIND, SIZE, SHAPE} from './constants';
