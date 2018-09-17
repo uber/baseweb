@@ -66,6 +66,7 @@ export type PropsT = {
   rows: number,
   textValue: string,
   multiple: boolean,
+  disabled?: boolean,
   error: boolean,
   autoFocus?: boolean,
   disabled?: boolean,

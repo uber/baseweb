@@ -221,6 +221,9 @@ Object {
 
 exports[`Select styled components StyledTag : StyledTag has correct styles when $multiple 1`] = `
 Object {
+  ":hover": Object {
+    "cursor": "pointer",
+  },
   "alignItems": "center",
   "backgroundColor": "$theme.colors.mono400",
   "borderColor": "$theme.colors.primary400",
