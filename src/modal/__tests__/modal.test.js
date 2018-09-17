@@ -51,6 +51,7 @@ describe('Modal', () => {
   });
 
   afterAll(() => {
+    // $FlowFixMe
     ReactDOM.createPortal = originalCreatePortal;
     // $FlowFixMe
     document.addEventListener = originalDocumentAddListener;
