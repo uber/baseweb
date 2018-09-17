@@ -30,7 +30,7 @@ export function getOverride<T>(
 ): ?React.ComponentType<T> {
   // Check if override is OverrideObjectT
   if (override && typeof override === 'object') {
-    // TODO remove this 'any' once this flow issue is fixed:
+    // Remove this 'any' once this flow issue is fixed:
     // https://github.com/facebook/flow/issues/6666
     // eslint-disable-next-line flowtype/no-weak-types
     return (override: any).component;
