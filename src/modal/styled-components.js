@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles';
 import {SIZE, SIZE_WIDTHS} from './constants';
 import type {SharedStylePropsT, SizePropT, StyledComponentPropT} from './types';
-import type {ThemeT} from '../styles/types';
 
 function getSizeStyles($size: SizePropT) {
   const styles: {
@@ -58,7 +57,6 @@ export const Backdrop = styled('div', (props: SharedStylePropsT) => {
     bottom: 0,
     top: 0,
     left: 0,
-    // TODO There's no overlay in theme that matches the designs
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
@@ -180,33 +178,3 @@ export const ModalFooter = styled('div', ({$theme}: StyledComponentPropT) => ({
   borderTopStyle: 'solid',
   borderTopColor: $theme.colors.mono400,
 }));
-
-// TODO replace this with real button soon
-export const ModalButton = styled(
-  'button',
-  ({$theme, disabled}: {$theme: ThemeT, disabled?: boolean}) => ({
-    padding: `${$theme.sizing.scale300} ${$theme.sizing.scale500}`,
-    marginLeft: $theme.sizing.scale500,
-    fontSize: '14px',
-    fontWeight: 'bold',
-    backgroundColor: $theme.colors.buttonPrimaryFill,
-    opacity: disabled ? 0.3 : 1,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius200
-      : '0px',
-    border: 'none',
-    color: '#fff',
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    transitionProperty: 'background-color',
-    transitionDuration: '0.2s',
-    ':hover': {
-      backgroundColor: $theme.colors.buttonPrimaryHover,
-    },
-    ':focus': {
-      backgroundColor: $theme.colors.buttonPrimaryHover,
-    },
-    ':active': {
-      backgroundColor: $theme.colors.buttonPrimaryActive,
-    },
-  }),
-);
