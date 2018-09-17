@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {boolean, number} from '@storybook/addon-knobs';
 
+import {Button} from '../button';
 import {styled} from '../styles';
 import {
   PLACEMENT,
@@ -27,29 +28,6 @@ function popoverContent() {
     </StyledPopoverPadding>
   );
 }
-
-// TODO replace with real button when its available
-export const Button = styled('button', ({$theme}) => ({
-  padding: `${$theme.sizing.scale200} ${$theme.sizing.scale400}`,
-  fontWeight: 'bold',
-  backgroundColor: $theme.colors.buttonPrimaryFill,
-  borderRadius: '3px',
-  border: 'none',
-  color: '#fff',
-  cursor: 'pointer',
-  transitionProperty: 'background-color',
-  transitionDuration: '0.2s',
-  fontSize: '14px',
-  ':hover': {
-    backgroundColor: $theme.colors.buttonPrimaryHover,
-  },
-  ':focus': {
-    backgroundColor: $theme.colors.buttonPrimaryHover,
-  },
-  ':active': {
-    backgroundColor: $theme.colors.buttonPrimaryActive,
-  },
-}));
 
 const Centered = styled('div', {
   position: 'relative',
