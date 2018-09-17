@@ -32,7 +32,7 @@
     "e2e:build": "webpack --config webpack.e2e.config.js --mode=production",
     "e2e:serve": "node e2e/serve.js",
     "e2e:test": "jest --config=jest-e2e.config.js",
-    "prepublishOnly": "./prepublish.sh",
+    "prepublish": "npm run build",
     "license": "license-check-and-add"
   },
   "devDependencies": {
