@@ -127,5 +127,8 @@
       ".js"
     ],
     "insert_license": true
+  },
+  "config": {
+    "unsafe-perm": true
   }
 }
