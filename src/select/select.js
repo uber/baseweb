@@ -115,10 +115,16 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     type: ChangeActionT,
     id?: string = '',
     label?: LabelT,
+    disabled?: boolean,
   ) => {
     const multiple = this.isMultiple();
     const selected = this.state.selectedOptions.find(tag => tag.id === id);
     let selectedOptions;
+
+    if (disabled) {
+      return;
+    }
+
     switch (type) {
       case STATE_CHANGE_TYPE.select:
         if (!selected) {
@@ -193,12 +199,12 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         SearchIcon: SearchIconOverride,
       } = {},
     } = this.props;
-
     const Root = getOverride(RootOverride) || StyledRoot;
     const Input = getOverride(InputOverride) || StyledInput;
     const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
     const {placeholder, disabled} = this.props;
     const {selectedOptions} = this.state;
+
     const events = disabled
       ? {
           onClickCapture: e => e.stopPropagation(),
@@ -208,12 +214,11 @@ class Select extends React.Component<PropsT, StatelessStateT> {
             this.setState({isDropDownOpen: !this.state.isDropDownOpen});
           },
         };
-
     return (
       <div {...events}>
         <InputComponent
+          disabled={true}
           placeholder={!selectedOptions.length ? placeholder : ''}
-          disabled={disabled}
           overrides={{
             Root: Root,
             Input: Input,
@@ -234,7 +239,6 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getSearch() {
     const {
-      disabled,
       overrides: {
         Input: InputOverride,
         InputContainer: InputContainerOverride,
@@ -245,7 +249,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const InputContainer =
       getOverride(InputContainerOverride) || StyledInputContainer;
     const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {placeholder, error} = this.props;
+    const {placeholder, disabled, error} = this.props;
     const {textValue} = this.state;
     return (
       <InputComponent
@@ -265,28 +269,15 @@ class Select extends React.Component<PropsT, StatelessStateT> {
             component: Input,
           },
           InputContainer: InputContainer,
-          After: () => {
-            const events = disabled
-              ? {
-                  onClickCapture: e => e.stopPropagation(),
-                }
-              : {
-                  onClick: e => {
-                    this.onChange(e, STATE_CHANGE_TYPE.clearAll);
-                  },
-                };
-
-            return (
-              <SearchIcon
-                {...events}
-                $disabled={disabled}
-                $type={ICON.clearAll}
-                src={
-                  'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z" fill="#999999"/></svg>'
-                }
-              />
-            );
-          },
+          After: () => (
+            <SearchIcon
+              onClick={e => this.onChange(e, STATE_CHANGE_TYPE.clearAll)}
+              $type={ICON.clearAll}
+              src={
+                'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z" fill="#999999"/></svg>'
+              }
+            />
+          ),
           Before: () => this.getMultipleSelections(),
         }}
       />
@@ -295,15 +286,14 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getMultipleSelections() {
     const {
-      disabled,
       overrides: {Tag: TagOverride, SearchIcon: SearchIconOverride} = {},
+      disabled,
       type,
     } = this.props;
     const Tag = getOverride(TagOverride) || StyledTag;
     const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
     const {selectedOptions} = this.state;
     const multiple = this.isMultiple();
-
     return (
       <React.Fragment>
         {type === TYPE.search && (
@@ -314,38 +304,28 @@ class Select extends React.Component<PropsT, StatelessStateT> {
             }
           />
         )}
-        {selectedOptions.map(option => {
-          const events = disabled
-            ? {
-                onClickCapture: e => e.stopPropagation(),
-              }
-            : {
-                onClick: e => {
+        {selectedOptions.map(option => (
+          <Tag key={option.id} $disabled={disabled} $multiple={multiple}>
+            {this.getSelectedOptionLabel(option)}
+            {multiple && (
+              <SearchIcon
+                onClick={e => {
                   this.setState({
                     selectedOptions: this.state.selectedOptions.filter(
                       selectedOption => selectedOption.id !== option.id,
                     ),
                   });
                   e.stopPropagation();
-                },
-              };
-
-          return (
-            <Tag key={option.id} $multiple={multiple} $disabled={disabled}>
-              {this.getSelectedOptionLabel(option)}
-              {multiple && (
-                <SearchIcon
-                  {...events}
-                  $disabled={disabled}
-                  $type={ICON.clearTag}
-                  src={
-                    'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.195262 0.195262C0.455612 -0.0650874 0.877722 -0.0650874 1.13807 0.195262L3.33333 2.39052L5.5286 0.195262C5.78895 -0.0650874 6.21106 -0.0650874 6.4714 0.195262C6.73175 0.455612 6.73175 0.877722 6.4714 1.13807L4.27614 3.33333L6.4714 5.5286C6.73175 5.78895 6.73175 6.21106 6.4714 6.4714C6.21106 6.73175 5.78895 6.73175 5.5286 6.4714L3.33333 4.27614L1.13807 6.4714C0.877722 6.73175 0.455612 6.73175 0.195262 6.4714C-0.0650874 6.21106 -0.0650874 5.78895 0.195262 5.5286L2.39052 3.33333L0.195262 1.13807C-0.0650874 0.877722 -0.0650874 0.455612 0.195262 0.195262Z" transform="translate(4.66675 4.6665)" fill="#276EF1"/></svg>'
-                  }
-                />
-              )}
-            </Tag>
-          );
-        })}
+                }}
+                $disabled={disabled}
+                $type={ICON.clearTag}
+                src={
+                  'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.195262 0.195262C0.455612 -0.0650874 0.877722 -0.0650874 1.13807 0.195262L3.33333 2.39052L5.5286 0.195262C5.78895 -0.0650874 6.21106 -0.0650874 6.4714 0.195262C6.73175 0.455612 6.73175 0.877722 6.4714 1.13807L4.27614 3.33333L6.4714 5.5286C6.73175 5.78895 6.73175 6.21106 6.4714 6.4714C6.21106 6.73175 5.78895 6.73175 5.5286 6.4714L3.33333 4.27614L1.13807 6.4714C0.877722 6.73175 0.455612 6.73175 0.195262 6.4714C-0.0650874 6.21106 -0.0650874 5.78895 0.195262 5.5286L2.39052 3.33333L0.195262 1.13807C-0.0650874 0.877722 -0.0650874 0.455612 0.195262 0.195262Z" transform="translate(4.66675 4.6665)" fill="#276EF1"/></svg>'
+                }
+              />
+            )}
+          </Tag>
+        ))}
       </React.Fragment>
     );
   }
