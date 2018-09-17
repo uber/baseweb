@@ -34,7 +34,7 @@ export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
 export type RootRefT = React$ElementRef<*>;
 
 export type OnItemSelectFnT = (
-  item: ?ItemT,
+  item: ItemT,
   event: SyntheticEvent<> | KeyboardEvent,
 ) => mixed;
 
