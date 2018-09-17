@@ -45,6 +45,7 @@ describe('Popover', () => {
   });
 
   afterAll(() => {
+    // $FlowFixMe
     ReactDOM.createPortal = originalCreatePortal;
     // $FlowFixMe
     document.addEventListener = originalDocumentAddListener;

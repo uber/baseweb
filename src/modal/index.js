@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as Modal} from './modal';
+export {default as ModalButton} from './modal-button';
 export {SIZE, ROLE, CLOSE_SOURCE} from './constants';
 export {
   Root as StyledRoot,
@@ -16,6 +17,5 @@ export {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  ModalButton,
 } from './styled-components';
 export * from './types';
