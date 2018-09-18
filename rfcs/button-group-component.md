@@ -32,7 +32,11 @@ export default () => {
 * `disabled: boolean` - Optional:
   Defines if the button group disabled.
 * `size: 'default' | 'compact'`
-  Defines the size of a button
+  Defines the size of the buttons in the button group.
+* `shape: 'default' | 'round' | 'square'`
+  Defines the shape of the buttons in the button group.
+* `kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
+  Defines the kind (purpose) of the buttons in the button group.
 * `onChange: func` - Optinal:
   Called when a toggleable Button is selected
 * `onClick: func` - Optional:
