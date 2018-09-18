@@ -48,7 +48,7 @@ From left-to-right based on the image above:
 ## `Icon` API
 
 * `size: number|string` - Optional, Defaults to `scale500` (12px)
-  Size of element, will be passed to the svg width/height style. Can also be a baseui `theme.sizing` constant like `sizing500`.
+  Size of element, will be passed to the svg width/height style. Can also be a baseui `theme.sizing` constant like `scale500`.
 * `color: string` - Optional, Defaults to `currentColor`
   Color of icon, will be used as svg fill
 * `title: string` - Optional
