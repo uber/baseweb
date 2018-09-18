@@ -18,7 +18,6 @@ export const TYPE = {
 
 export const ICON = {
   clearAll: 'clear_all',
-  clearTag: 'clear_tag',
   select: 'select',
   selected: 'selected',
   loop: 'loop',

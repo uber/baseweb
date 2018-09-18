@@ -10,7 +10,6 @@ import {shallow} from 'enzyme';
 import {
   StyledInput,
   StyledInputContainer,
-  StyledTag,
   StyledSearchIcon,
   StyledDropDown,
   StyledDropDownItem,
@@ -44,39 +43,21 @@ describe('Select styled components', () => {
     });
   });
 
-  describe('StyledTag', () => {
-    test.each([[''], ['$multiple']])('', prop => {
-      const props = {};
-      props[prop] = true;
-      const component = shallow(
-        <StyledTag {...props}>
-          <div />
-        </StyledTag>,
-      );
-      expect(component.instance().getStyles()).toMatchSnapshot(
-        'StyledTag has correct styles when ' + prop,
-      );
-    });
-  });
-
   describe('StyledSearchIcon', () => {
-    test.each([
-      [ICON.clearAll],
-      [ICON.select],
-      [ICON.loop],
-      [ICON.clearTag],
-      [ICON.selected],
-    ])('', $type => {
-      const props = {$type};
-      const component = shallow(
-        <StyledSearchIcon {...props}>
-          <div />
-        </StyledSearchIcon>,
-      );
-      expect(component.instance().getStyles()).toMatchSnapshot(
-        'StyledSearchIcon has correct styles when type is ' + $type,
-      );
-    });
+    test.each([[ICON.clearAll], [ICON.select], [ICON.loop], [ICON.selected]])(
+      '',
+      $type => {
+        const props = {$type};
+        const component = shallow(
+          <StyledSearchIcon {...props}>
+            <div />
+          </StyledSearchIcon>,
+        );
+        expect(component.instance().getStyles()).toMatchSnapshot(
+          'StyledSearchIcon has correct styles when type is ' + $type,
+        );
+      },
+    );
   });
 
   describe('StyledDropDown', () => {

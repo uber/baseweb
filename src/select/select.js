@@ -12,11 +12,12 @@ import {
   Root as StyledRoot,
   Input as StyledInput,
   InputContainer as StyledInputContainer,
-  Tag as StyledTag,
+  SingleSelection as StyledSingleSelection,
   SearchIcon as StyledSearchIcon,
 } from './styled-components';
 
 import {Input as InputComponent} from '../input';
+import {Tag as StyledTag} from '../tag';
 import {ICON, TYPE, STATE_CHANGE_TYPE} from './constants';
 import SelectDropDown from './dropdown';
 import type {
@@ -290,12 +291,12 @@ class Select extends React.Component<PropsT, StatelessStateT> {
             }
           />
         )}
-        {selectedOptions.map(option => (
-          <Tag key={option.id} $multiple={multiple}>
-            {this.getSelectedOptionLabel(option)}
-            {multiple && (
-              <SearchIcon
-                onClick={e => {
+        {selectedOptions.map(
+          option =>
+            multiple ? (
+              <Tag
+                key={option.id}
+                onActionClick={e => {
                   this.setState({
                     selectedOptions: this.state.selectedOptions.filter(
                       selectedOption => selectedOption.id !== option.id,
@@ -303,14 +304,15 @@ class Select extends React.Component<PropsT, StatelessStateT> {
                   });
                   e.stopPropagation();
                 }}
-                $type={ICON.clearTag}
-                src={
-                  'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.195262 0.195262C0.455612 -0.0650874 0.877722 -0.0650874 1.13807 0.195262L3.33333 2.39052L5.5286 0.195262C5.78895 -0.0650874 6.21106 -0.0650874 6.4714 0.195262C6.73175 0.455612 6.73175 0.877722 6.4714 1.13807L4.27614 3.33333L6.4714 5.5286C6.73175 5.78895 6.73175 6.21106 6.4714 6.4714C6.21106 6.73175 5.78895 6.73175 5.5286 6.4714L3.33333 4.27614L1.13807 6.4714C0.877722 6.73175 0.455612 6.73175 0.195262 6.4714C-0.0650874 6.21106 -0.0650874 5.78895 0.195262 5.5286L2.39052 3.33333L0.195262 1.13807C-0.0650874 0.877722 -0.0650874 0.455612 0.195262 0.195262Z" transform="translate(4.66675 4.6665)" fill="#276EF1"/></svg>'
-                }
-              />
-            )}
-          </Tag>
-        ))}
+              >
+                {this.getSelectedOptionLabel(option)}
+              </Tag>
+            ) : (
+              <StyledSingleSelection>
+                {this.getSelectedOptionLabel(option)}
+              </StyledSingleSelection>
+            ),
+        )}
       </React.Fragment>
     );
   }
