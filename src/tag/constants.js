@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/prefer-default-export */
-import DEFAULT_THEME from '../../src/themes/light-theme';
+import DEFAULT_THEME from '../themes/light-theme';
 
 export const STYLE = {
   primary: DEFAULT_THEME.colors.primary470,
