@@ -57,7 +57,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     filteredOptions: null,
     textValue: this.props.textValue,
     selectedOptions: this.props.selectedOptions,
-    isDropDownOpen: this.props.type === TYPE.search,
+    isDropDownOpen: false,
   };
 
   constructor(props: PropsT) {
@@ -115,10 +115,16 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     type: ChangeActionT,
     id?: string = '',
     label?: LabelT,
+    disabled?: boolean,
   ) => {
     const multiple = this.isMultiple();
     const selected = this.state.selectedOptions.find(tag => tag.id === id);
     let selectedOptions;
+
+    if (disabled) {
+      return;
+    }
+
     switch (type) {
       case STATE_CHANGE_TYPE.select:
         if (!selected) {
@@ -196,14 +202,20 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const Root = getOverride(RootOverride) || StyledRoot;
     const Input = getOverride(InputOverride) || StyledInput;
     const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {placeholder} = this.props;
+    const {placeholder, disabled} = this.props;
     const {selectedOptions} = this.state;
+
+    const events = disabled
+      ? {
+          onClickCapture: e => e.stopPropagation(),
+        }
+      : {
+          onClick: e => {
+            this.setState({isDropDownOpen: !this.state.isDropDownOpen});
+          },
+        };
     return (
-      <div
-        onClick={() => {
-          this.setState({isDropDownOpen: !this.state.isDropDownOpen});
-        }}
-      >
+      <div {...events}>
         <InputComponent
           disabled={true}
           placeholder={!selectedOptions.length ? placeholder : ''}
@@ -237,10 +249,11 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const InputContainer =
       getOverride(InputContainerOverride) || StyledInputContainer;
     const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {placeholder, error} = this.props;
+    const {placeholder, disabled, error} = this.props;
     const {textValue} = this.state;
     return (
       <InputComponent
+        disabled={disabled}
         error={!!error}
         placeholder={placeholder}
         value={textValue}
@@ -274,6 +287,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   getMultipleSelections() {
     const {
       overrides: {Tag: TagOverride, SearchIcon: SearchIconOverride} = {},
+      disabled,
       type,
     } = this.props;
     const Tag = getOverride(TagOverride) || StyledTag;
@@ -291,7 +305,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
           />
         )}
         {selectedOptions.map(option => (
-          <Tag key={option.id} $multiple={multiple}>
+          <Tag key={option.id} $disabled={disabled} $multiple={multiple}>
             {this.getSelectedOptionLabel(option)}
             {multiple && (
               <SearchIcon
@@ -303,6 +317,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
                   });
                   e.stopPropagation();
                 }}
+                $disabled={disabled}
                 $type={ICON.clearTag}
                 src={
                   'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.195262 0.195262C0.455612 -0.0650874 0.877722 -0.0650874 1.13807 0.195262L3.33333 2.39052L5.5286 0.195262C5.78895 -0.0650874 6.21106 -0.0650874 6.4714 0.195262C6.73175 0.455612 6.73175 0.877722 6.4714 1.13807L4.27614 3.33333L6.4714 5.5286C6.73175 5.78895 6.73175 6.21106 6.4714 6.4714C6.21106 6.73175 5.78895 6.73175 5.5286 6.4714L3.33333 4.27614L1.13807 6.4714C0.877722 6.73175 0.455612 6.73175 0.195262 6.4714C-0.0650874 6.21106 -0.0650874 5.78895 0.195262 5.5286L2.39052 3.33333L0.195262 1.13807C-0.0650874 0.877722 -0.0650874 0.455612 0.195262 0.195262Z" transform="translate(4.66675 4.6665)" fill="#276EF1"/></svg>'

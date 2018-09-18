@@ -190,7 +190,7 @@ exports[`Stateless select should render component in search mode and false for m
       </Input>
       <SelectDropDown
         getOptionLabel={[Function]}
-        isDropDownOpen={true}
+        isDropDownOpen={false}
         onChange={[Function]}
         options={Array []}
         overrides={Object {}}
@@ -394,7 +394,7 @@ exports[`Stateless select should render component in search mode and true for mu
       </Input>
       <SelectDropDown
         getOptionLabel={[Function]}
-        isDropDownOpen={true}
+        isDropDownOpen={false}
         onChange={[Function]}
         options={Array []}
         overrides={Object {}}
