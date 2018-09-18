@@ -8,6 +8,12 @@ LICENSE file in the root directory of this source tree.
 import type {OverrideT} from '../helpers/overrides';
 import {STATE_CHANGE_TYPE} from './constants';
 
+export type LabelsT = {
+  prevButton?: string,
+  nextButton?: string,
+  preposition?: string,
+};
+
 export type StateReducerFnT = (
   changeType: $Keys<typeof STATE_CHANGE_TYPE>,
   changes: StatefulContainerStateT,
@@ -27,7 +33,7 @@ export type OverridesT = {
 export type PaginationPropsT = {
   numPages: number,
   currentPage: number,
-  prepositionLabel?: string,
+  labels: LabelsT,
   overrides?: OverridesT,
   onPrevClick?: (event: *) => *,
   onNextClick?: (event: *) => *,
@@ -40,11 +46,11 @@ export type PaginationStateT = {
 
 export type StatefulPaginationPropsT = {
   numPages: number,
+  labels: LabelsT,
   stateReducer?: StateReducerFnT,
   initialState?: StatefulContainerStateT,
   onPageChange?: (nextPage: number, prevPage: number) => *,
   overrides?: OverridesT,
-  prepositionLabel?: string,
   onPrevClick?: (event: *) => *,
   onNextClick?: (event: *) => *,
 };

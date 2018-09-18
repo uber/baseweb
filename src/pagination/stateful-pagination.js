@@ -31,3 +31,8 @@ export default function StatefulPagination({
     </StatefulContainer>
   );
 }
+
+StatefulPagination.defaultProps = {
+  ...StatefulContainer.defaultProps,
+  ...Pagination.defaultProps,
+};
