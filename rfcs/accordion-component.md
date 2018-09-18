@@ -2,8 +2,11 @@
 
 ## Usage
 
+### Basic usage
+
 ```js
-import {Accordion, AccordionItem, Root, Toggle} from './index';
+import * as React from 'react';
+import {Accordion, AccordionItem, Root, Toggle} from 'baseui/accordion';
 
 export default () => {
   return (
@@ -15,11 +18,14 @@ export default () => {
     </div>
   );
 };
-````
+```
+
+### Advanced usage
 
 ```js
-import {Accordion, AccordionItem, Root, Toggle} from './index';
-import {styled} from '../styles/index';
+import * as React from 'react';
+import {Accordion, AccordionItem, Root, Toggle} from 'baseui/accordion';
+import {styled} from 'baseui';
 
 const CustomRoot = styled(Root, props => ({
   textColor: 'red',
@@ -69,7 +75,7 @@ export default () => {
 * `expanded: Array<boolean>` - Optional
   Array of the same size as `children`(array of `AccordionItem`). If element is `true` corresponding accordion item is expanded. Default is `Array<false>`
 * `disabled: boolean`:
-  Disable control from being changed  
+  Disable control from being changed
 * `overrides: {Root: (props: {[string]: any}) => React$Node, Toggle: (props: {[string]: any}) => React$Node, Title: (props: {[string]: any}) => React$Node, Content: (props: {[string]: any}) => React$Node}`
   * `Root` container element to render.
   * `Toggle` is the expand\collapse button for each accordion item.
@@ -93,7 +99,7 @@ export default () => {
   * `title: React$Node` - title of accordion item
   * `children: React$Node` - content of accordion item is represented as children of it correspondingly
 * `exclusive: boolean` - Optional
-  If set to true, it will exclusively expand only one accordion item. So next accordion item to be expanded right after current is collapsed. Default is `'false`  
+  If set to true, it will exclusively expand only one accordion item. So next accordion item to be expanded right after current is collapsed. Default is `'false`
 * `disabled: boolean` - Optional
   Disable control from being changed
 * `onToggle: func(event, index, isExpanded)` - Optional
@@ -116,7 +122,7 @@ These properties are passed to every presentational (styled) component that is e
 * `$index: number`
   For `Toggle`, `Title` and `Content` to indicate number of accordion item.
 * `$isExpanded: number`
-  For `Toggle`, `Title` and `Content` to indicate if accordion item is expanded.  
+  For `Toggle`, `Title` and `Content` to indicate if accordion item is expanded.
 
 ## Accessibility
 
