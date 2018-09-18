@@ -2,9 +2,23 @@
 
 ## Usage
 
+### Basic usage
+
 ```js
-import {Tag, Root, Action} from './index';
-import {styled} from '../styles/index';
+import {Tag} from 'baseui/tag';
+
+export default () => {
+  return (
+    <Tag>I am a tag!</Tag>
+  );
+}
+```
+
+### Advanced usage
+
+```js
+import {Tag, Root, Action} from 'baseui/tag';
+import {styled} from 'baseui';
 
 const CustomRoot = styled(Root, {
   textColor: 'red',
