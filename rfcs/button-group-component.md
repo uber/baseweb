@@ -19,9 +19,29 @@ export default () => {
 }
 ```
 
+### Advanced usage
+
+```javascript
+import * as React from 'react';
+import {Button} from 'baseui/button';
+import {ButtonGroup} from 'baseui/button-group';
+
+export default () => {
+  return
+    <ButtonGroup
+      defaultChecked={[0, 1]}
+      mode="checkbox">
+      <Button>Bold</Button>
+      <Button>Italic</Button>
+      <Button>Underline</Button>
+    </ButtonGroup>
+}
+```
+
 ## Exports
 
 * `ButtonGroup`
+* `StyledRoot`
 
 ## `ButtonGroup` API
 
@@ -29,6 +49,16 @@ export default () => {
   This can be an SVG icon as well.
 * `ariaLabel: string` - Optional:
   Accessible label
+* `mode: string` - Optional:
+  Use the `mode` prop to render toggleable Buttons:
+  * the value `radio` will cause Buttons to behave like radio buttons,
+  * the value `checkbox` will cause Buttons to behave like checkboxes.
+* `defaultChecked: number | Array<number>`
+  Index or array of indices of the selected Button(s).
+  Primarily for use with uncontrolled components with a `mode` prop defined.
+* `checked: number | Array<number>` - Optional
+  Index or array of indices of the selected Button(s).
+  Primarily for use with controlled components with a `mode` prop defined.
 * `disabled: boolean` - Optional:
   Defines if the button group disabled.
 * `size: 'default' | 'compact'`
