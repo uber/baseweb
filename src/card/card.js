@@ -26,6 +26,7 @@ function Card(props: CardsPropsT) {
     headerImage,
     thumbnail: thumbnailSrc,
     title,
+    overrides,
     ...otherProps
   } = props;
 
@@ -37,7 +38,7 @@ function Card(props: CardsPropsT) {
     Root: RootOverride,
     Thumbnail: ThumbnailOverride,
     Title: TitleOverride,
-  } = props.overrides;
+  } = overrides;
 
   const Action = getOverride(ActionOverride) || StyledAction;
   const Body = getOverride(BodyOverride) || StyledBody;
