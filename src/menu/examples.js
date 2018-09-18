@@ -12,6 +12,7 @@ import Menu from './menu';
 import StatefulMenu from './stateful-menu';
 
 import OptionProfile from './option-profile';
+import {OPTION_LIST_SIZE} from './constants';
 
 function CloudComponent() {
   return (
@@ -66,6 +67,7 @@ const PROFILE_ITEMS = [
 export const suite = 'Menu Test Suite';
 export const examples = {
   MENU: 'Stateless Menu',
+  MENU_COMPACT: 'Stateless Menu Compact',
   MENU_PROFILE: 'Stateless Menu Profile',
   MENU_STATEFUL: 'Stateful Menu with Keybindings',
   MENU_PROFILE_STATEFUL: 'Stateful Menu Profile with Keybindings',
@@ -86,6 +88,27 @@ export default {
           Option: {
             props: {
               getItemLabel: item => item.label,
+            },
+          },
+        }}
+      />
+    );
+  },
+  [examples.MENU_COMPACT]: function StoryMenuCompact() {
+    return (
+      <Menu
+        items={ITEMS}
+        rootRef={React.createRef()}
+        overrides={{
+          List: {
+            style: {
+              width: '200px',
+            },
+          },
+          Option: {
+            props: {
+              getItemLabel: item => item.label,
+              size: OPTION_LIST_SIZE.compact,
             },
           },
         }}

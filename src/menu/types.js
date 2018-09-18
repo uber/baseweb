@@ -5,10 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* eslint-disable import/prefer-default-export */
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides';
-import {STATE_CHANGE_TYPES} from './constants';
+import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants';
 
 export type ItemT = *;
 export type ItemsT = Array<ItemT>;
@@ -134,7 +133,8 @@ export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
 export type OptionListPropsT = {
   item: ItemT,
   getItemLabel: GetItemLabelFnT,
-  overrides?: {
+  size: $Keys<typeof OPTION_LIST_SIZE>,
+  overrides: {
     ListItem?: OverrideT<*>,
   },
 };

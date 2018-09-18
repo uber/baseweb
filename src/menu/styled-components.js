@@ -6,16 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles';
+import {OPTION_LIST_SIZE} from './constants';
 
 import type {ThemeT} from '../styles';
 
 type StyledPropsT = {
   $theme: ThemeT,
+  $isHighlighted?: boolean,
+  $size?: $Keys<typeof OPTION_LIST_SIZE>,
 };
-
-type StyledListItemPropsT = {
-  $isHighlighted: boolean,
-} & StyledPropsT;
 
 export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   position: 'relative',
@@ -29,8 +28,10 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
 
 export const ListItem = styled(
   'li',
-  ({$theme, $isHighlighted}: StyledListItemPropsT) => ({
-    ...$theme.typography.font300,
+  ({$theme, $isHighlighted, $size}: StyledPropsT) => ({
+    ...($size === OPTION_LIST_SIZE.compact
+      ? $theme.typography.font200
+      : $theme.typography.font300),
     position: 'relative',
     display: 'block',
     color: $isHighlighted ? $theme.colors.primary : $theme.colors.black,
@@ -41,15 +42,33 @@ export const ListItem = styled(
     ':hover': {
       backgroundColor: $theme.colors.mono300,
     },
-    paddingTop: $theme.sizing.scale300,
-    paddingBottom: $theme.sizing.scale300,
-    paddingRight: $theme.sizing.scale600,
-    paddingLeft: $theme.sizing.scale600,
+    paddingTop:
+      $size === OPTION_LIST_SIZE.compact
+        ? $theme.sizing.scale100
+        : $theme.sizing.scale300,
+    paddingBottom:
+      $size === OPTION_LIST_SIZE.compact
+        ? $theme.sizing.scale100
+        : $theme.sizing.scale300,
+    paddingRight:
+      $size === OPTION_LIST_SIZE.compact
+        ? $theme.sizing.scale900
+        : $theme.sizing.scale600,
+    paddingLeft:
+      $size === OPTION_LIST_SIZE.compact
+        ? $theme.sizing.scale900
+        : $theme.sizing.scale600,
     ':first-child': {
-      paddingTop: $theme.sizing.scale600,
+      paddingTop:
+        $size === OPTION_LIST_SIZE.compact
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale600,
     },
     ':last-child': {
-      paddingBottom: $theme.sizing.scale600,
+      paddingBottom:
+        $size === OPTION_LIST_SIZE.compact
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale600,
     },
   }),
 );

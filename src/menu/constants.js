@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* eslint-disable import/prefer-default-export */
 
 export const STATE_CHANGE_TYPES = {
   moveUp: 'moveUp',
@@ -22,4 +21,9 @@ export const KEY_STRINGS = {
   ArrowUp: 'ArrowUp',
   ArrowDown: 'ArrowDown',
   Enter: 'Enter',
+};
+
+export const OPTION_LIST_SIZE = {
+  default: 'default',
+  compact: 'compact',
 };

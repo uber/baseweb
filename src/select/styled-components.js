@@ -60,41 +60,18 @@ export const InputContainer = styled('div', props => {
   };
 });
 
-export const Tag = styled('span', props => {
-  const {$theme, $multiple} = props;
+export const SingleSelection = styled('span', props => {
+  const {$theme} = props;
   const {
-    colors: {primary400, mono400, mono1000},
-    sizing: {scale800, scale0},
-    typography: {font200},
+    colors: {mono1000},
   } = $theme;
-  return $multiple
-    ? {
-        ...font200,
-        height: scale800,
-        fontWeight: 'bold',
-        display: 'flex',
-        alignItems: 'center',
-        paddingTop: scale0,
-        paddingBottom: scale0,
-        paddingRight: '5px',
-        paddingLeft: '5px',
-        margin: '5px',
-        borderWidth: '1px',
-        borderColor: primary400,
-        color: primary400,
-        borderRadius: '7px',
-        backgroundColor: mono400,
-      }
-    : {
-        ...getInputStyles({...props, $size: SIZE.default, $disabled: true}),
-        color: mono1000,
-        cursor: 'pointer',
-        width: 'auto',
-        flexGrow: '1',
-        ':hover': {
-          cursor: 'pointer',
-        },
-      };
+  return {
+    ...getInputStyles({...props, $size: SIZE.default, $disabled: true}),
+    cursor: 'pointer',
+    width: 'auto',
+    flexGrow: '1',
+    color: mono1000,
+  };
 });
 
 export const SearchIcon = styled('img', props => {
@@ -112,6 +89,8 @@ export const SearchIcon = styled('img', props => {
       };
     case ICON.select:
       return {
+        position: 'absolute',
+        right: scale600,
         marginRight: scale500,
       };
     case ICON.selected:
@@ -122,7 +101,6 @@ export const SearchIcon = styled('img', props => {
       return {
         paddingLeft: scale300,
       };
-    case ICON.clearTag:
     default:
       return {};
   }

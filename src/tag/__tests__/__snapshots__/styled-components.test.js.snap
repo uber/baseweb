@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag styled components StyledAction : StyledAction has correct styles when  1`] = `
+Object {
+  ":hover": Object {
+    "backgroundColor": null,
+  },
+  "alignItems": "center",
+  "borderBottomRightRadius": "2px",
+  "borderTopRightRadius": "2px",
+  "cursor": "pointer",
+  "display": "flex",
+  "marginLeft": "8px",
+  "padding": "12px",
+}
+`;
+
+exports[`Tag styled components StyledAction : StyledAction has correct styles when $disabled 1`] = `
+Object {
+  ":hover": Object {
+    "backgroundColor": null,
+  },
+  "alignItems": "center",
+  "borderBottomRightRadius": "2px",
+  "borderTopRightRadius": "2px",
+  "cursor": "not-allowed",
+  "display": "flex",
+  "marginLeft": "8px",
+  "padding": "12px",
+}
+`;
+
+exports[`Tag styled components StyledRoot : StyledRoot has correct styles when  1`] = `
+Object {
+  ":hover": Object {
+    "backgroundColor": null,
+  },
+  "alignItems": "center",
+  "backgroundColor": null,
+  "borderColor": undefined,
+  "borderRadius": "$theme.borders.radius100",
+  "borderWidth": "1px",
+  "color": undefined,
+  "cursor": "auto",
+  "display": "inline-flex",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "bold",
+  "height": "$theme.sizing.scale800",
+  "justifyContent": "space-between",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+  "margin": "5px",
+  "opacity": null,
+  "paddingBottom": "$theme.sizing.scale100",
+  "paddingLeft": "$theme.sizing.scale300",
+  "paddingTop": "$theme.sizing.scale100",
+}
+`;
+
+exports[`Tag styled components StyledRoot : StyledRoot has correct styles when $disabled 1`] = `
+Object {
+  ":hover": Object {
+    "backgroundColor": null,
+  },
+  "alignItems": "center",
+  "backgroundColor": null,
+  "borderColor": undefined,
+  "borderRadius": "$theme.borders.radius100",
+  "borderWidth": "1px",
+  "color": undefined,
+  "cursor": "not-allowed",
+  "display": "inline-flex",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "bold",
+  "height": "$theme.sizing.scale800",
+  "justifyContent": "space-between",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+  "margin": "5px",
+  "opacity": ".56",
+  "paddingBottom": "$theme.sizing.scale100",
+  "paddingLeft": "$theme.sizing.scale300",
+  "paddingTop": "$theme.sizing.scale100",
+}
+`;
+
+exports[`Tag styled components StyledRoot : StyledRoot has correct styles when $isActive 1`] = `
+Object {
+  ":hover": Object {
+    "backgroundColor": null,
+  },
+  "alignItems": "center",
+  "backgroundColor": null,
+  "borderColor": undefined,
+  "borderRadius": "$theme.borders.radius100",
+  "borderWidth": "1px",
+  "color": undefined,
+  "cursor": "auto",
+  "display": "inline-flex",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "bold",
+  "height": "$theme.sizing.scale800",
+  "justifyContent": "space-between",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+  "margin": "5px",
+  "opacity": null,
+  "paddingBottom": "$theme.sizing.scale100",
+  "paddingLeft": "$theme.sizing.scale300",
+  "paddingTop": "$theme.sizing.scale100",
+}
+`;
+
+exports[`Tag styled components StyledRoot : StyledRoot has correct styles when $isFocused 1`] = `
+Object {
+  ":hover": Object {
+    "backgroundColor": null,
+  },
+  "alignItems": "center",
+  "backgroundColor": null,
+  "borderColor": undefined,
+  "borderRadius": "$theme.borders.radius100",
+  "borderWidth": "1px",
+  "color": undefined,
+  "cursor": "auto",
+  "display": "inline-flex",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "bold",
+  "height": "$theme.sizing.scale800",
+  "justifyContent": "space-between",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+  "margin": "5px",
+  "opacity": null,
+  "paddingBottom": "$theme.sizing.scale100",
+  "paddingLeft": "$theme.sizing.scale300",
+  "paddingTop": "$theme.sizing.scale100",
+}
+`;
