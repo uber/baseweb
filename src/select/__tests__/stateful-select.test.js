@@ -26,18 +26,19 @@ describe('Stateful checkbox', function() {
       StyledRoot,
       StyledInput,
       StyledInputContainer,
-      StyledTag,
       StyledSearchIcon,
       StyledDropDown,
       StyledOption,
       StyledDropDownItem,
       StatefulSelect,
     } = require('../index');
+
+    const {Tag} = require('../../tag');
     allProps.overrides = {
       Root: StyledRoot,
       Input: StyledInput,
       InputContainer: StyledInputContainer,
-      Tag: StyledTag,
+      Tag: Tag,
       SearchIcon: StyledSearchIcon,
       DropDown: StyledDropDown,
       Option: StyledOption,
@@ -50,7 +51,7 @@ describe('Stateful checkbox', function() {
       Root: StyledRoot,
       Input: StyledInput,
       InputContainer: StyledInputContainer,
-      Tag: StyledTag,
+      Tag: Tag,
       SearchIcon: StyledSearchIcon,
       DropDown: StyledDropDown,
       Option: StyledOption,
