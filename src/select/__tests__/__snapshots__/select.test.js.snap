@@ -17,6 +17,7 @@ exports[`Stateless select should render component in search mode and false for m
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
+  tabIndex={0}
   textValue=""
   type="search"
 >
@@ -41,6 +42,7 @@ exports[`Stateless select should render component in search mode and false for m
               "component": [Function],
               "props": Object {
                 "onKeyUp": [Function],
+                "tabIndex": 0,
               },
             },
             "InputContainer": [Function],
@@ -83,6 +85,7 @@ exports[`Stateless select should render component in search mode and false for m
                     "component": [Function],
                     "props": Object {
                       "onKeyUp": [Function],
+                      "tabIndex": 0,
                     },
                   },
                   "InputContainer": [Function],
@@ -144,6 +147,7 @@ exports[`Stateless select should render component in search mode and false for m
                     onFocus={[Function]}
                     onKeyUp={[Function]}
                     placeholder=""
+                    tabIndex={0}
                     type="text"
                     value=""
                   >
@@ -158,6 +162,7 @@ exports[`Stateless select should render component in search mode and false for m
                       onKeyUp={[Function]}
                       placeholder=""
                       styled-component="true"
+                      tabIndex={0}
                       type="text"
                       value=""
                     />
@@ -192,6 +197,7 @@ exports[`Stateless select should render component in search mode and false for m
         getOptionLabel={[Function]}
         isDropDownOpen={true}
         onChange={[Function]}
+        onItemSelect={[Function]}
         options={Array []}
         overrides={Object {}}
         selectedOptions={Array []}
@@ -221,6 +227,7 @@ exports[`Stateless select should render component in search mode and true for mu
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
+  tabIndex={0}
   textValue=""
   type="search"
 >
@@ -245,6 +252,7 @@ exports[`Stateless select should render component in search mode and true for mu
               "component": [Function],
               "props": Object {
                 "onKeyUp": [Function],
+                "tabIndex": 0,
               },
             },
             "InputContainer": [Function],
@@ -287,6 +295,7 @@ exports[`Stateless select should render component in search mode and true for mu
                     "component": [Function],
                     "props": Object {
                       "onKeyUp": [Function],
+                      "tabIndex": 0,
                     },
                   },
                   "InputContainer": [Function],
@@ -348,6 +357,7 @@ exports[`Stateless select should render component in search mode and true for mu
                     onFocus={[Function]}
                     onKeyUp={[Function]}
                     placeholder=""
+                    tabIndex={0}
                     type="text"
                     value=""
                   >
@@ -362,6 +372,7 @@ exports[`Stateless select should render component in search mode and true for mu
                       onKeyUp={[Function]}
                       placeholder=""
                       styled-component="true"
+                      tabIndex={0}
                       type="text"
                       value=""
                     />
@@ -396,6 +407,7 @@ exports[`Stateless select should render component in search mode and true for mu
         getOptionLabel={[Function]}
         isDropDownOpen={true}
         onChange={[Function]}
+        onItemSelect={[Function]}
         options={Array []}
         overrides={Object {}}
         selectedOptions={Array []}
@@ -425,6 +437,7 @@ exports[`Stateless select should render component in select mode and false for m
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
+  tabIndex={0}
   textValue=""
   type="select"
 >
@@ -434,6 +447,8 @@ exports[`Stateless select should render component in select mode and false for m
     >
       <div
         onClick={[Function]}
+        onKeyUp={[Function]}
+        tabIndex={0}
       >
         <Input
           autoFocus={false}
@@ -575,6 +590,7 @@ exports[`Stateless select should render component in select mode and false for m
         getOptionLabel={[Function]}
         isDropDownOpen={false}
         onChange={[Function]}
+        onItemSelect={[Function]}
         options={Array []}
         overrides={Object {}}
         selectedOptions={Array []}
@@ -604,6 +620,7 @@ exports[`Stateless select should render component in select mode and true for mu
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
+  tabIndex={0}
   textValue=""
   type="select"
 >
@@ -613,6 +630,8 @@ exports[`Stateless select should render component in select mode and true for mu
     >
       <div
         onClick={[Function]}
+        onKeyUp={[Function]}
+        tabIndex={0}
       >
         <Input
           autoFocus={false}
@@ -754,6 +773,7 @@ exports[`Stateless select should render component in select mode and true for mu
         getOptionLabel={[Function]}
         isDropDownOpen={false}
         onChange={[Function]}
+        onItemSelect={[Function]}
         options={Array []}
         overrides={Object {}}
         selectedOptions={Array []}

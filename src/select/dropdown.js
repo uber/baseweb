@@ -38,6 +38,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
     isDropDownOpen,
     selectedOptions,
     onChange,
+    onItemSelect,
     type,
     rows,
   } = props;
@@ -97,6 +98,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
           },
         },
       }}
+      onItemSelect={onItemSelect}
       items={options}
     />
   ) : (

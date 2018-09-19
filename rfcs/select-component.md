@@ -154,6 +154,8 @@ export default () => {
   Disable control from being changed
 * `required: boolean`:
   Mark control as required
+* `tabindex: number`:
+  The start offset of tabindex to navigate through component. Default is `0`.  
 * `overrides: {}`
   * `DropDown: ?React.ComponentType` component to use for dropdown list
   * `Option: ?React.ComponentType` component to use for options in dropdown list
