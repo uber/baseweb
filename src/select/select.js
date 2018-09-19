@@ -169,8 +169,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
             this.setState({filteredOptions});
           }
           this.setState({isDropDownOpen: true});
-          this.props.onChange(e, {type: type, textValue: newTextValue});
-        }
+          this.props.onChange(e, {type: type, textValue: newTextValue});}
       }
     }
   };
@@ -206,7 +205,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     return (
       <div
         tabIndex={this.props.tabIndex}
-        onKeyDown={e => this.handledHotKeys(e)}
+        onKeyUp={e => this.handledHotKeys(e)}
         onClick={() => {
           this.setState({isDropDownOpen: !this.state.isDropDownOpen});
         }}
