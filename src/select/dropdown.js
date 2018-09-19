@@ -50,8 +50,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
               onClickCapture: e => e.stopPropagation(),
             }
           : {
-              onClick: e =>
-                onChange(e, STATE_CHANGE_TYPE.select, option.id, option.label),
+              onClick: e => onChange(e, STATE_CHANGE_TYPE.select, option),
             };
       }}
       overrides={{
