@@ -20,8 +20,7 @@ export type OptionT = {
 };
 
 export type ParamsT = {
-  id?: string,
-  label?: LabelT,
+  option?: OptionT,
   selectedOptions?: Array<OptionT>,
   textValue?: string,
   type: ChangeActionT,
@@ -37,6 +36,7 @@ export type OverridesT = {
   DropDown?: OverrideT<*>,
   SearchIcon?: OverrideT<*>,
   DropDownItem?: OverrideT<*>,
+  SingleSelection?: OverrideT<*>,
 };
 
 export type OverridesDropDownT = {
@@ -57,13 +57,17 @@ export type PropsT = {
   error: boolean,
   autoFocus: boolean,
   type?: string,
+  disabled?: boolean,
   filterable: boolean,
   filterOption: (OptionT, string) => boolean,
   placeholder?: string,
   getOptionLabel?: OptionT => React$Node,
   getSelectedOptionLabel?: OptionT => React$Node,
   $theme?: *,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange: (
+    e: SyntheticEvent<HTMLInputElement>,
+    params: ParamsT,
+  ) => Promise<void>,
   onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseDown: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -92,23 +96,15 @@ export type StateReducerT = (
   params: ParamsT,
 ) => StateT;
 
-export type DefaultStatefulPropsT = {
-  initialState: StateT,
-  children?: (*) => React$Node,
-  stateReducer: StateReducerT,
-  onChange: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onFocus: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onBlur: (e: SyntheticEvent<HTMLInputElement>) => void,
-};
-
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
   children?: (*) => React$Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
-  onChange?: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange: (
+    e: SyntheticEvent<HTMLInputElement>,
+    params: ParamsT,
+  ) => Promise<void>,
   onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -121,7 +117,10 @@ export type StatefulSelectPropsT = {
   options?: Array<OptionT>,
   initialState?: StateT,
   autoFocus?: boolean,
-  onChange?: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange?: (
+    e: SyntheticEvent<HTMLInputElement>,
+    params: ParamsT,
+  ) => Promise<void>,
   onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -140,7 +139,6 @@ export type DropDownPropsT = {
   onChange: (
     e: SyntheticEvent<HTMLInputElement>,
     type: ChangeActionT,
-    id: string,
-    label: LabelT,
+    option: OptionT,
   ) => void,
 };

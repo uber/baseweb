@@ -20,7 +20,7 @@ export type PropsT = {
   isFocused?: boolean,
   isHovered?: boolean,
   children?: React$Node,
-  color: string,
+  color?: string,
   $theme?: *,
   onActionClick: (
     e: SyntheticEvent<HTMLInputElement>,
