@@ -28,4 +28,5 @@ export const STATE_CHANGE_TYPE = {
   unselect: 'unselect',
   clearAll: 'clear_all',
   keyDown: 'key_down',
+  textChange: 'text_change',
 };
