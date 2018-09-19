@@ -89,6 +89,7 @@ export const SearchIcon = styled('img', props => {
       };
     case ICON.select:
       return {
+        top: '50%',
         position: 'absolute',
         right: scale600,
         marginRight: scale500,

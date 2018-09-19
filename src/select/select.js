@@ -60,7 +60,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     filteredOptions: null,
     textValue: this.props.textValue,
     selectedOptions: this.props.selectedOptions,
-    isDropDownOpen: this.props.type === TYPE.search,
+    isDropDownOpen: false,
   };
 
   constructor(props: PropsT) {
@@ -153,7 +153,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         this.props.onChange(e, {type: type, selectedOptions});
         break;
       }
-      case STATE_CHANGE_TYPE.keyUp: {
+      case STATE_CHANGE_TYPE.keyDown: {
         if (!this.handledHotKeys(e)) {
           // $FlowFixMe
           const newTextValue = e.target.value;
@@ -162,11 +162,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
             let filteredOptions = this.props.options.filter(option =>
               this.props.filterOption(option, newTextValue),
             );
-            filteredOptions = filteredOptions.length
-              ? filteredOptions
-              : newTextValue
-                ? []
-                : null;
+            // reset filtered options for new search
+            if (!filteredOptions.length) {
+              filteredOptions = newTextValue ? [] : null;
+            }
             this.setState({filteredOptions});
           }
           this.setState({isDropDownOpen: true});
@@ -207,7 +206,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     return (
       <div
         tabIndex={this.props.tabIndex}
-        onKeyUp={e => this.handledHotKeys(e)}
+        onKeyDown={e => this.handledHotKeys(e)}
         onClick={() => {
           this.setState({isDropDownOpen: !this.state.isDropDownOpen});
         }}
@@ -260,7 +259,8 @@ class Select extends React.Component<PropsT, StatelessStateT> {
           Input: {
             props: {
               tabIndex: this.props.tabIndex,
-              onKeyUp: e => this.onChange(e, STATE_CHANGE_TYPE.keyUp),
+              // onKeyDown happens before onChange to avoid race condition in set of value and hot keys processing
+              onKeyDown: e => this.onChange(e, STATE_CHANGE_TYPE.keyDown),
             },
             component: Input,
           },
@@ -316,7 +316,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
                 {this.getSelectedOptionLabel(option)}
               </Tag>
             ) : (
-              <StyledSingleSelection>
+              <StyledSingleSelection key={option.id}>
                 {this.getSelectedOptionLabel(option)}
               </StyledSingleSelection>
             ),
