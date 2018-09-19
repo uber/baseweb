@@ -19,6 +19,8 @@ import {
   hasThumbnail,
 } from './';
 
+import {Button} from '../button';
+
 import {thumbnail as thumbnailImg, header as headerImg} from './images';
 
 import type {CardsPropsT} from './types';
@@ -47,10 +49,6 @@ Card.defaultProps = {
   hasThumbnail,
   overrides: {},
 };
-
-function Button(props) {
-  return <button {...props} />;
-}
 
 storiesOf('Card', module)
   .addDecorator(withReadme(CardReadme))
