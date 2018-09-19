@@ -61,13 +61,13 @@ export const InputContainer = styled('div', props => {
 });
 
 export const SingleSelection = styled('span', props => {
-  const {$theme} = props;
+  const {$theme, $disabled} = props;
   const {
     colors: {mono1000},
   } = $theme;
   return {
     ...getInputStyles({...props, $size: SIZE.default, $disabled: true}),
-    cursor: 'pointer',
+    cursor: $disabled ? 'not-allowed' : 'pointer',
     width: 'auto',
     flexGrow: '1',
     color: mono1000,
@@ -75,7 +75,7 @@ export const SingleSelection = styled('span', props => {
 });
 
 export const SearchIcon = styled('img', props => {
-  const {$theme} = props;
+  const {$theme, $disabled} = props;
   const {
     sizing: {scale300, scale600, scale500},
   } = $theme;
@@ -85,7 +85,7 @@ export const SearchIcon = styled('img', props => {
         marginLeft: 'auto',
         position: 'absolute',
         right: scale600,
-        cursor: 'pointer',
+        cursor: $disabled ? 'not-allowed' : 'pointer',
       };
     case ICON.select:
       return {

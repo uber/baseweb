@@ -10,7 +10,6 @@ import {STATE_CHANGE_TYPE} from './constants';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
-  DefaultStatefulPropsT,
   StateT,
   ParamsT,
   ChangeActionT,
@@ -22,12 +21,12 @@ class StatefulSelectContainer extends React.Component<
   StatefulContainerPropsT,
   StateT,
 > {
-  static defaultProps: DefaultStatefulPropsT = {
+  static defaultProps = {
     initialState: {
       selectedOptions: [],
     },
     stateReducer: defaultStateReducer,
-    onChange: () => {},
+    onChange: () => Promise.resolve(),
     onMouseEnter: () => {},
     onMouseLeave: () => {},
     onFocus: () => {},
@@ -39,7 +38,7 @@ class StatefulSelectContainer extends React.Component<
   onChange = (e: SyntheticInputEvent<HTMLInputElement>, params: ParamsT) => {
     this.stateReducer(params.type, e, params);
     const {onChange} = this.props;
-    onChange && onChange(e, params);
+    return onChange(e, params);
   };
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {

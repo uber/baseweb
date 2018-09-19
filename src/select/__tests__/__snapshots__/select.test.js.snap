@@ -41,11 +41,14 @@ exports[`Stateless select should render component in search mode and false for m
             "Input": Object {
               "component": [Function],
               "props": Object {
-                "onKeyUp": [Function],
+                "onKeyDown": [Function],
                 "tabIndex": 0,
               },
             },
-            "InputContainer": [Function],
+            "InputContainer": Object {
+              "component": [Function],
+              "props": Object {},
+            },
           }
         }
         required={false}
@@ -84,11 +87,14 @@ exports[`Stateless select should render component in search mode and false for m
                   "Input": Object {
                     "component": [Function],
                     "props": Object {
-                      "onKeyUp": [Function],
+                      "onKeyDown": [Function],
                       "tabIndex": 0,
                     },
                   },
-                  "InputContainer": [Function],
+                  "InputContainer": Object {
+                    "component": [Function],
+                    "props": Object {},
+                  },
                 }
               }
               placeholder=""
@@ -145,7 +151,7 @@ exports[`Stateless select should render component in search mode and false for m
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
-                    onKeyUp={[Function]}
+                    onKeyDown={[Function]}
                     placeholder=""
                     tabIndex={0}
                     type="text"
@@ -159,7 +165,7 @@ exports[`Stateless select should render component in search mode and false for m
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      onKeyUp={[Function]}
+                      onKeyDown={[Function]}
                       placeholder=""
                       styled-component="true"
                       tabIndex={0}
@@ -195,7 +201,7 @@ exports[`Stateless select should render component in search mode and false for m
       </Input>
       <SelectDropDown
         getOptionLabel={[Function]}
-        isDropDownOpen={true}
+        isDropDownOpen={false}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -251,11 +257,14 @@ exports[`Stateless select should render component in search mode and true for mu
             "Input": Object {
               "component": [Function],
               "props": Object {
-                "onKeyUp": [Function],
+                "onKeyDown": [Function],
                 "tabIndex": 0,
               },
             },
-            "InputContainer": [Function],
+            "InputContainer": Object {
+              "component": [Function],
+              "props": Object {},
+            },
           }
         }
         required={false}
@@ -294,11 +303,14 @@ exports[`Stateless select should render component in search mode and true for mu
                   "Input": Object {
                     "component": [Function],
                     "props": Object {
-                      "onKeyUp": [Function],
+                      "onKeyDown": [Function],
                       "tabIndex": 0,
                     },
                   },
-                  "InputContainer": [Function],
+                  "InputContainer": Object {
+                    "component": [Function],
+                    "props": Object {},
+                  },
                 }
               }
               placeholder=""
@@ -355,7 +367,7 @@ exports[`Stateless select should render component in search mode and true for mu
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
-                    onKeyUp={[Function]}
+                    onKeyDown={[Function]}
                     placeholder=""
                     tabIndex={0}
                     type="text"
@@ -369,7 +381,7 @@ exports[`Stateless select should render component in search mode and true for mu
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      onKeyUp={[Function]}
+                      onKeyDown={[Function]}
                       placeholder=""
                       styled-component="true"
                       tabIndex={0}
@@ -405,7 +417,7 @@ exports[`Stateless select should render component in search mode and true for mu
       </Input>
       <SelectDropDown
         getOptionLabel={[Function]}
-        isDropDownOpen={true}
+        isDropDownOpen={false}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -447,7 +459,7 @@ exports[`Stateless select should render component in select mode and false for m
     >
       <div
         onClick={[Function]}
-        onKeyUp={[Function]}
+        onKeyDown={[Function]}
         tabIndex={0}
       >
         <Input
@@ -462,8 +474,18 @@ exports[`Stateless select should render component in select mode and false for m
             Object {
               "After": [Function],
               "Before": [Function],
-              "Input": [Function],
-              "Root": [Function],
+              "Input": Object {
+                "component": [Function],
+                "props": Object {},
+              },
+              "InputContainer": Object {
+                "component": [Function],
+                "props": Object {},
+              },
+              "Root": Object {
+                "component": [Function],
+                "props": Object {},
+              },
             }
           }
           required={false}
@@ -498,8 +520,18 @@ exports[`Stateless select should render component in select mode and false for m
                   Object {
                     "After": [Function],
                     "Before": [Function],
-                    "Input": [Function],
-                    "Root": [Function],
+                    "Input": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
+                    "InputContainer": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
+                    "Root": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
                   }
                 }
                 placeholder=""
@@ -630,7 +662,7 @@ exports[`Stateless select should render component in select mode and true for mu
     >
       <div
         onClick={[Function]}
-        onKeyUp={[Function]}
+        onKeyDown={[Function]}
         tabIndex={0}
       >
         <Input
@@ -645,8 +677,18 @@ exports[`Stateless select should render component in select mode and true for mu
             Object {
               "After": [Function],
               "Before": [Function],
-              "Input": [Function],
-              "Root": [Function],
+              "Input": Object {
+                "component": [Function],
+                "props": Object {},
+              },
+              "InputContainer": Object {
+                "component": [Function],
+                "props": Object {},
+              },
+              "Root": Object {
+                "component": [Function],
+                "props": Object {},
+              },
             }
           }
           required={false}
@@ -681,8 +723,18 @@ exports[`Stateless select should render component in select mode and true for mu
                   Object {
                     "After": [Function],
                     "Before": [Function],
-                    "Input": [Function],
-                    "Root": [Function],
+                    "Input": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
+                    "InputContainer": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
+                    "Root": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
                   }
                 }
                 placeholder=""
