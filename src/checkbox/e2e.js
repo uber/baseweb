@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import e2e from '../utils/e2e-test-utils';
+import e2e from '../e2e-test-utils';
 
 const {run, By, goToUrl, runBrowserAccecibilityTest, getElement} = e2e;
 import {suite, tests} from './examples';

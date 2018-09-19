@@ -4,7 +4,6 @@ Copyright (c) 2018 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
 import * as webdriver from 'selenium-webdriver';
 import AxeBuilder from 'axe-webdriverjs';
 
@@ -16,11 +15,7 @@ let currentDriver;
 
 const location = 'http://localhost:8080';
 
-const goToUrl = async function(
-  driver: webdriver$WebDriver,
-  suite: string,
-  test: string,
-) {
+const goToUrl = async function(driver, suite, test) {
   const url = location + `/?suite=${suite}&test=${test}`;
   await driver.get(url);
   let errors = await driver
@@ -35,16 +30,17 @@ const goToUrl = async function(
   await new Promise(resolve => resolve());
 };
 
-const run = function(
-  testSuite: (driver: webdriver$WebDriver, browser: string) => void,
-) {
+const run = function(testSuite) {
   browsers.forEach(browser => {
     if (!activeDrivers[browser]) {
-      const browserMethod = webdriver.Capabilities[browser];
-      const caps = browserMethod();
+      const capabilities = {
+        browserName: browser,
+        username: process.env.SAUCE_USERNAME,
+        accessKey: process.env.SAUCE_ACCESS_KEY,
+      };
       activeDrivers[browser] = new webdriver.Builder()
         .forBrowser(browser)
-        .withCapabilities(caps)
+        .withCapabilities(capabilities)
         .build();
     }
     afterAll(async function() {
@@ -56,8 +52,8 @@ const run = function(
 };
 
 const runBrowserAccecibilityTest = async function(
-  driver: webdriver$WebDriver,
-  rootSelector: string = 'body',
+  driver,
+  rootSelector = 'body',
 ) {
   const builder = AxeBuilder(driver).include(rootSelector);
   const results = await builder.analyze();
@@ -67,10 +63,7 @@ const runBrowserAccecibilityTest = async function(
   }
 };
 
-const getElement = async function(
-  parent: webdriver$WebElement | webdriver$WebDriver,
-  css: string,
-) {
+const getElement = async function(parent, css) {
   return await parent.findElement(By.css(css));
 };
 
