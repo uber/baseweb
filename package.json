@@ -83,7 +83,7 @@
     "jest-enzyme": "^6.0.2",
     "license-check-and-add": "^2.3.6",
     "markdownlint-cli": "^0.13.0",
-    "prettier": "1.14.2",
+    "prettier": "^1.14.3",
     "pretty-quick": "^1.4.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
