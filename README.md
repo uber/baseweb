@@ -51,3 +51,9 @@ export default function Hello() {
 ## Contributing
 
 [Contributing](CONTRIBUTING.md)
+
+## Big Thanks
+
+Cross-browser Testing Platform and Open Source <3 Provided by [Sauce Labs][sauce-homepage].
+
+[sauce-homepage]: https://saucelabs.com
