@@ -318,7 +318,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
     const anchorProps: AnchorPropsT = {
       key: 'popover-anchor',
-      // TODO Once styletron gets forwardRef support, switch to always using ref
+      // Once styletron gets forwardRef support, switch to always using ref
       // https://github.com/rtsao/styletron/issues/253
       [refKey]: this.anchorRef,
     };
