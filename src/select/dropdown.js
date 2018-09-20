@@ -38,13 +38,23 @@ export default function SelectDropDown(props: DropDownPropsT) {
     isDropDownOpen,
     selectedOptions,
     onChange,
+    onItemSelect,
     type,
     rows,
   } = props;
   return options.length ? (
     <StatefulMenu
+      getRequiredItemProps={(option, index) => {
+        return option.disabled
+          ? {
+              onClickCapture: e => e.stopPropagation(),
+            }
+          : {
+              onClick: e =>
+                onChange(e, STATE_CHANGE_TYPE.select, option.id, option.label),
+            };
+      }}
       overrides={{
-        /* eslint-disable-next-line react/display-name*/
         List: {
           component: DropDown,
           props: {
@@ -58,28 +68,15 @@ export default function SelectDropDown(props: DropDownPropsT) {
             overrides: {
               ListItem: DropDownItem,
             },
+            /* eslint-disable-next-line react/display-name*/
             getItemLabel: option => {
               const $selected = selectedOptions.find(
                 selected => selected.id === option.id,
               );
-              const events = option.disabled
-                ? {
-                    onClickCapture: e => e.stopPropagation(),
-                  }
-                : {
-                    onClick: e =>
-                      onChange(
-                        e,
-                        STATE_CHANGE_TYPE.select,
-                        option.id,
-                        option.label,
-                      ),
-                  };
               return (
                 <Option
                   disabled={option.disabled}
                   $selected={$selected}
-                  {...events}
                   key={option.id}
                 >
                   {$selected && (
@@ -97,6 +94,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
           },
         },
       }}
+      onItemSelect={onItemSelect}
       items={options}
     />
   ) : (

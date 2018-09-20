@@ -83,7 +83,7 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
                 // eslint-disable-next-line no-console
                 console.log('Cleared all tags');
                 break;
-              case STATE_CHANGE_TYPE.keyUp: {
+              case STATE_CHANGE_TYPE.keyDown: {
                 // $FlowFixMe
                 let text = e.target.value;
                 let options = [];

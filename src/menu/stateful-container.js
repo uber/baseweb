@@ -33,6 +33,7 @@ export default class MenuStatefulContainer extends React.Component<
       changes: $PropertyType<StateReducerFnT, 'changes'>,
     ) => changes,
     onItemSelect: () => {},
+    getRequiredItemProps: () => ({}),
     children: () => null,
   };
 
@@ -117,7 +118,7 @@ export default class MenuStatefulContainer extends React.Component<
 
   getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
     const {highlightedIndex} = this.state;
-    const {onItemSelect} = this.props;
+    const {onItemSelect, getRequiredItemProps} = this.props;
     let onClickHandler;
     if (onItemSelect) {
       onClickHandler = onItemSelect.bind(null, item);
@@ -133,6 +134,7 @@ export default class MenuStatefulContainer extends React.Component<
       isHighlighted: highlightedIndex === index,
       onClick: onClickHandler,
       'aria-activedescendant': highlightedIndex === index,
+      ...getRequiredItemProps(item, index),
     };
   };
 

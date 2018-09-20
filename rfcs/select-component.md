@@ -141,7 +141,7 @@ export default () => {
 * `multiple: ?boolean`:
   Sets if multiple choices are allowed in Select component. Default is `false`
 * `filterable?: boolean`:
-  Sets if options should be filtered when the input changes. It works only in Search mode. If your option labels aren't strings, or you need custom filtering logic, use the `filterOption` prop. Custom keyUp handler is still called if provided. Default is `false`
+  Sets if options should be filtered when the input changes. It works only in Search mode. If your option labels aren't strings, or you need custom filtering logic, use the `filterOption` prop. Custom keyDown handler is still called if provided. Default is `false`
 * `filterOption?: (option: Object, query: String) => boolean`:
   Custom method to filter whether an option should be displayed in the menu. Defaults to a simple lower-case string match.
 * `getOptionLabel?: (option: Object) => React$Node`:
@@ -154,6 +154,8 @@ export default () => {
   Disable control from being changed
 * `required: boolean`:
   Mark control as required
+* `tabindex: number`:
+  The start offset of tabindex to navigate through component. Default is `0`.  
 * `overrides: {}`
   * `DropDown: ?React.ComponentType` component to use for dropdown list
   * `Option: ?React.ComponentType` component to use for options in dropdown list
@@ -162,7 +164,7 @@ export default () => {
   * `SearchIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
   * `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
 * `onChange: func(e: SyntheticInputEvent, params: Object)`:
-  handler for events on trigger element when option are changing selection or text of search input (in Search mode has changed). `params` has `type` indicating which action is performed, `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected, has new `textValue` set in input (for `keyUp`)
+  handler for events on trigger element when option are changing selection or text of search input (in Search mode has changed). `params` has `type` indicating which action is performed, `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected, has new `textValue` set in input (for `keyDown`)
 * `onMouseEnter: func`:
   handler for events on trigger element
 * `onMouseLeave: func`:
@@ -185,7 +187,7 @@ export default () => {
   * `params` may contain `id` and `label` of selected option and `selectedOptions` array of all of selected, as well as new `textValue` set in input.
 * `options: func` should return `Select` instance with standard or customized inner elements.
 * `onChange: func(e: SyntheticInputEvent, params: Object)`:
-  handler for events on trigger element when option are changing selection or text of search input (in Search mode has changed). `params` has `type` indicating which action is performed, `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected, has new `textValue` set in input (for `keyUp`)
+  handler for events on trigger element when option are changing selection or text of search input (in Search mode has changed). `params` has `type` indicating which action is performed, `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected, has new `textValue` set in input (for `keyDown`)
 * `onMouseEnter: func`:
   handler for events on trigger element
 * `onMouseLeave: func`:

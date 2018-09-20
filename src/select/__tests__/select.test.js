@@ -7,9 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount, shallow} from 'enzyme';
-import {Select, StyledSearchIcon, StyledInput, StyledOption} from '../index';
+import {
+  Select,
+  StyledSearchIcon,
+  SelectDropDown,
+  StyledInput,
+  StyledOption,
+} from '../index';
 import {STATE_CHANGE_TYPE, TYPE, ICON} from '../constants';
 import {StyledAction} from '../../tag';
+import {KEY_STRINGS} from '../../menu/constants';
 
 describe('Stateless select', function() {
   let wrapper,
@@ -157,7 +164,7 @@ describe('Stateless select', function() {
       test.each([
         [STATE_CHANGE_TYPE.select, {id, label, selectedOptions: [{id, label}]}],
         [STATE_CHANGE_TYPE.clearAll, {selectedOptions: []}],
-        [STATE_CHANGE_TYPE.keyUp, {textValue}],
+        [STATE_CHANGE_TYPE.keyDown, {textValue}],
       ])(
         'should set update of state if change action is %s',
         (type, expectedResult) => {
@@ -242,9 +249,9 @@ describe('Stateless select', function() {
       const event = {
         target: {value},
       };
-      input.props().onKeyUp(event);
+      input.props().onKeyDown(event);
       expect(wrapper.instance().props.onChange).toHaveBeenCalledWith(event, {
-        type: STATE_CHANGE_TYPE.keyUp,
+        type: STATE_CHANGE_TYPE.keyDown,
         textValue: value,
       });
     });
@@ -275,16 +282,16 @@ describe('Stateless select', function() {
         .first()
         .find('input');
 
-      input.simulate('keyup', {target: {value: 'a'}});
+      input.simulate('keydown', {target: {value: 'a'}});
       expect(wrapper.find(StyledOption)).toHaveLength(3);
 
-      input.simulate('keyup', {target: {value: 'aa'}});
+      input.simulate('keydown', {target: {value: 'aa'}});
       expect(wrapper.find(StyledOption)).toHaveLength(2);
 
-      input.simulate('keyup', {target: {value: 'aaa'}});
+      input.simulate('keydown', {target: {value: 'aaa'}});
       expect(wrapper.find(StyledOption)).toHaveLength(1);
 
-      input.simulate('keyup', {target: {value: 'aaaa'}});
+      input.simulate('keydown', {target: {value: 'aaaa'}});
       expect(wrapper.find(StyledOption)).toHaveLength(0);
     });
 
@@ -323,10 +330,10 @@ describe('Stateless select', function() {
         .first()
         .find('input');
 
-      input.simulate('keyup', {target: {value: 'xyz'}});
+      input.simulate('keydown', {target: {value: 'xyz'}});
       expect(wrapper.find(StyledOption).length).toBe(0);
 
-      input.simulate('keyup', {target: {value: 'ar'}});
+      input.simulate('keydown', {target: {value: 'ar'}});
       expect(wrapper.find(StyledOption).length).toBe(2);
     });
   });
@@ -344,4 +351,66 @@ describe('Stateless select', function() {
       expect(wrapper.instance().state.isDropDownOpen).toBeTruthy();
     });
   });
+
+  //$FlowFixMe
+  describe.each([[TYPE.search], [TYPE.select]])(
+    'hot keys in %s mode of component',
+    mode => {
+      test.each([
+        [KEY_STRINGS.ArrowDown, 'open dropdown', {isDropDownOpen: true}],
+        [KEY_STRINGS.Space, 'open dropdown', {isDropDownOpen: true}],
+        [KEY_STRINGS.Escape, 'close dropdown', {isDropDownOpen: false}],
+        [
+          KEY_STRINGS.Enter,
+          'select option in dropdown',
+          {
+            selectedOptions: [
+              {
+                id: '123',
+                label: 'label for 123',
+              },
+            ],
+          },
+        ],
+        [
+          KEY_STRINGS.Backspace,
+          'remove last selected tag in multiple mode',
+          {selectedOptions: []},
+        ],
+      ])('when pressed key "%s" should %s', (hotKey, result, newState) => {
+        allProps.selectedOptions = [
+          {
+            id: '123',
+            label: 'label for 123',
+          },
+        ];
+        allProps = Object.assign({}, allProps, {
+          type: mode,
+          multiple: true,
+          options: [
+            {
+              id: '1',
+              label: 'foo1',
+            },
+          ],
+        });
+        wrapper = mount(<Select {...allProps} />);
+        let input;
+        if (hotKey !== KEY_STRINGS.Enter) {
+          input = wrapper
+            .find(StyledInput)
+            .first()
+            .find('input');
+        } else {
+          input = wrapper
+            .find(SelectDropDown)
+            .first()
+            .find('li')
+            .first();
+        }
+        input.simulate('keydown', {key: hotKey});
+        expect(wrapper.instance().state).toMatchObject(newState);
+      });
+    },
+  );
 });
