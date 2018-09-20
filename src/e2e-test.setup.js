@@ -9,4 +9,4 @@ import 'babel-polyfill';
 import 'chromedriver';
 import 'geckodriver';
 
-jest.setTimeout(5000);
+jest.setTimeout(20000);

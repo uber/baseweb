@@ -1,36 +1,12 @@
 version: '2.1'
 services:
+  # to run selenium with chrome locally
   chrome-standalone:
     image: selenium/standalone-chrome:latest@sha256:b3cd083132dc390a9f623223b45db66a44b043c2ba1e962b85a2004f67bc0831
     network_mode: 'host'
     restart: always
     ports:
       - '4444:4444'
-
-  e2e-server:
-    build: .
-    command: node e2e/serve.js
-    expose:
-      - 8080
-    ports:
-      - '8080:8080'
-    # network_mode: "host"
-    healthcheck:
-      test:
-        [
-          'CMD-SHELL',
-          'curl -H "Accept: text/html" -f http://localhost:8080 || exit 1',
-        ]
-      interval: 5s
-      timeout: 10s
-      retries: 5
-
-  e2e-server-healthy:
-    build: .
-    network_mode: 'host'
-    depends_on:
-      e2e-server:
-        condition: service_healthy
 
   e2e-test-chrome:
     build: .
@@ -50,6 +26,93 @@ services:
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
       - SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub
+
+  # so tests can run against localhost
+  sauce-tunnel:
+    image: henrrich/docker-sauce-connect:latest@sha256:9921657d1a3db8832f868ab25491363756abae52025a8d5af888aadc42ed31e9
+    restart: always
+    expose:
+      - 4445
+    ports:
+      - 4445
+    network_mode: 'host'
+    command:
+      [
+        '-u',
+        '${SAUCE_USERNAME}',
+        '-k',
+        '${SAUCE_ACCESS_KEY}',
+        '-i',
+        '${BUILDKITE_BUILD_NUMBER}',
+        '-p',
+      ]
+    environment:
+      - SAUCE_USERNAME
+      - SAUCE_ACCESS_KEY
+      - BUILDKITE_BUILD_NUMBER
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'grep -R "Sauce Connect is up" /tmp/sc-${BUILDKITE_BUILD_NUMBER}.log || exit 1',
+        ]
+      interval: 5s
+      timeout: 5m
+      retries: 10
+
+  # docker-compose run does not wait on healthchecks, so proxy using this service
+  sauce-tunnel-healthy:
+    build: .
+    network_mode: 'host'
+    depends_on:
+      sauce-tunnel:
+        condition: service_healthy
+
+  # this spins up a server that serves the html/js/css for the e2e tests
+  e2e-server:
+    build: .
+    command: node e2e/serve.js
+    expose:
+      - 8080
+    ports:
+      - '8080:8080'
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'curl -H "Accept: text/html" -f http://localhost:8080 || exit 1',
+        ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  # tests if the e2e-server is ready to serve traffic
+  e2e-server-healthy:
+    build: .
+    network_mode: 'host'
+    depends_on:
+      e2e-server:
+        condition: service_healthy
+
+  # running the e2e tests in ci
+  e2e-test:
+    build: .
+    network_mode: 'host'
+    depends_on:
+      - e2e-server-healthy
+      - sauce-tunnel-healthy
+    environment:
+      - CODECOV_TOKEN
+      - CI=true
+      - BUILDKITE
+      - BUILDKITE_BRANCH
+      - BUILDKITE_BUILD_NUMBER
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_URL
+      - BUILDKITE_PROJECT_SLUG
+      - BUILDKITE_COMMIT
+      - SAUCE_USERNAME
+      - SAUCE_ACCESS_KEY
 
   baseui:
     build: .
