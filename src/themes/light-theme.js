@@ -56,7 +56,8 @@ const mono900 = '#333333';
 const mono1000 = '#000000';
 
 // font constants
-const primaryFontFamily = '"Helvetica Neue", arial, sans-serif';
+const primaryFontFamily =
+  '"UberMove",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,sans-serif';
 
 export default {
   colors: {
