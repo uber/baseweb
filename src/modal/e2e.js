@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as webdriver from 'selenium-webdriver';
-import e2e from '../utils/e2e-test-utils';
+import e2e from '../e2e-test-utils';
 import {suite, examples} from './examples';
 
 const {run, goToUrl} = e2e;
