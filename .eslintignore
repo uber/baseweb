@@ -5,4 +5,3 @@ storybook-static
 coverage
 docs
 webpack.e2e.config.js
-src/e2e-test-utils.js

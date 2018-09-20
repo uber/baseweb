@@ -47,5 +47,10 @@ steps:
     plugins:
       'docker-compose':
         run: e2e-test
+        pull:
+          - e2e-server
+          - e2e-server-healthy
+          - sauce-tunnel
+          - sauce-tunnel-healthy
     agents:
       queue: workers

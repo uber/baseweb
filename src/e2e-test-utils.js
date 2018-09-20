@@ -4,6 +4,8 @@ Copyright (c) 2018 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* eslint-disable */
+/* no-flow */
 import * as webdriver from 'selenium-webdriver';
 import AxeBuilder from 'axe-webdriverjs';
 
@@ -14,6 +16,9 @@ const activeDrivers = {};
 let currentDriver;
 
 const location = 'http://localhost:8080';
+const JOB_IDENTIFIER = process.env.BUILDKITE_BUILD_NUMBER;
+const SAUCE_USERNAME = process.env.SAUCE_USERNAME;
+const SAUCE_ACCESS_KEY = process.env.SAUCE_ACCESS_KEY;
 
 const goToUrl = async function(driver, suite, test) {
   const url = location + `/?suite=${suite}&test=${test}`;
@@ -35,12 +40,18 @@ const run = function(testSuite) {
     if (!activeDrivers[browser]) {
       const capabilities = {
         browserName: browser,
-        username: process.env.SAUCE_USERNAME,
-        accessKey: process.env.SAUCE_ACCESS_KEY,
+        username: SAUCE_USERNAME,
+        accessKey: SAUCE_ACCESS_KEY,
+        tunnelIdentifier: JOB_IDENTIFIER,
       };
       activeDrivers[browser] = new webdriver.Builder()
         .forBrowser(browser)
         .withCapabilities(capabilities)
+        .usingServer(
+          `http://${capabilities.username}:${
+            capabilities.accessKey
+          }@ondemand.saucelabs.com:80/wd/hub`,
+        )
         .build();
     }
     afterAll(async function() {

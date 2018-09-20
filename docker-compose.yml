@@ -1,5 +1,32 @@
 version: '2.1'
 services:
+  # to run selenium with chrome locally
+  chrome-standalone:
+    image: selenium/standalone-chrome:latest@sha256:b3cd083132dc390a9f623223b45db66a44b043c2ba1e962b85a2004f67bc0831
+    network_mode: 'host'
+    restart: always
+    ports:
+      - '4444:4444'
+
+  e2e-test-chrome:
+    build: .
+    network_mode: 'host'
+    depends_on:
+      - chrome-standalone
+      - e2e-server-healthy
+    command: yarn e2e:test
+    environment:
+      - CODECOV_TOKEN
+      - CI=true
+      - BUILDKITE
+      - BUILDKITE_BRANCH
+      - BUILDKITE_BUILD_NUMBER
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_URL
+      - BUILDKITE_PROJECT_SLUG
+      - BUILDKITE_COMMIT
+      - SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub
+
   # so tests can run against localhost
   sauce-tunnel:
     image: henrrich/docker-sauce-connect:latest@sha256:9921657d1a3db8832f868ab25491363756abae52025a8d5af888aadc42ed31e9
@@ -86,7 +113,6 @@ services:
       - BUILDKITE_COMMIT
       - SAUCE_USERNAME
       - SAUCE_ACCESS_KEY
-      - SELENIUM_REMOTE_URL=http://localhost:4445/wd/hub
 
   baseui:
     build: .
