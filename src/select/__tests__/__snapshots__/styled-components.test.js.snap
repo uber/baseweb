@@ -175,6 +175,7 @@ Object {
   "marginRight": "$theme.sizing.scale500",
   "position": "absolute",
   "right": "$theme.sizing.scale600",
+  "top": "50%",
 }
 `;
 
