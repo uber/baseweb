@@ -84,17 +84,11 @@ export type RenderPropsT = StatefulContainerStateT & {
  * marked as required because otherwise defaultProps will not work properly
  */
 
-export type DefaultStatefulContainerPropsT = {
-  initialState: StatefulContainerStateT,
-  stateReducer: StateReducerFnT,
-  onItemSelect: OnItemSelectFnT,
-  children: RenderPropsT => React.Node,
-};
-
 export type StatefulContainerPropsT = {
   items: ItemsT,
   initialState: StatefulContainerStateT,
   stateReducer: StateReducerFnT,
+  getRequiredItemProps: GetRequiredItemPropsFnT,
   onItemSelect: OnItemSelectFnT,
   children: RenderPropsT => React.Node,
 };

@@ -27,5 +27,5 @@ export const STATE_CHANGE_TYPE = {
   select: 'select',
   unselect: 'unselect',
   clearAll: 'clear_all',
-  keyUp: 'key_up',
+  keyDown: 'key_down',
 };
