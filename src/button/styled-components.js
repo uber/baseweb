@@ -8,18 +8,16 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles';
 import {KIND, SIZE, SHAPE} from './constants';
 import type {ThemeT} from '../styles';
+import type {SharedStylePropsT} from './types';
 
-type StylePropsT = {
+type StylePropsT = SharedStylePropsT & {
   $theme: ThemeT,
-  $size?: $Keys<typeof SIZE>,
-  $kind?: $Keys<typeof KIND>,
-  $shape?: $Keys<typeof SHAPE>,
-  $isLoading?: boolean,
 };
 
 export const BaseButton = styled(
   'button',
   ({$theme, $size, $kind, $shape, $isLoading}: StylePropsT) => ({
+    position: 'relative',
     ...($size === SIZE.compact
       ? $theme.typography.font200
       : $theme.typography.font300),
@@ -57,38 +55,65 @@ export const StartEnhancer = styled('div', ({$theme}: StylePropsT) => ({
   marginRight: $theme.sizing.scale500,
 }));
 
-export const LoadingSpinner = styled('div', ({$theme, $kind}: StylePropsT) => ({
-  height: $theme.sizing.scale600,
-  width: $theme.sizing.scale600,
-  borderRadius: '50%',
-  borderStyle: 'solid',
-  borderWidth: $theme.sizing.scale0,
-  borderTopColor:
-    $kind === KIND.primary ? $theme.colors.white : $theme.colors.primary,
-  borderLeftColor:
-    $kind === KIND.primary
-      ? 'rgba(255, 255, 255, 0.32)'
-      : 'rgba(39, 110, 241, 0.32)',
-  borderBottomColor:
-    $kind === KIND.primary
-      ? 'rgba(255, 255, 255, 0.32)'
-      : 'rgba(39, 110, 241, 0.32)',
-  borderRightColor:
-    $kind === KIND.primary
-      ? 'rgba(255, 255, 255, 0.32)'
-      : 'rgba(39, 110, 241, 0.32)',
-  animationDuration: $theme.animation.timing700,
-  animationTimingFunction: 'linear',
-  animationIterationCount: 'infinite',
-  animationName: {
-    to: {
-      transform: 'rotate(360deg)',
-    },
-    from: {
-      transform: 'rotate(0deg)',
-    },
+export const LoadingSpinnerContainer = styled('div', {
+  // To center within parent
+  position: 'absolute',
+  left: '50%',
+  top: '50%',
+  transform: 'translate(-50%, -50%)',
+});
+
+export const LoadingSpinner = styled(
+  'div',
+  ({$theme, $kind, $disabled}: StylePropsT) => {
+    const {foreground, background} = getLoadingSpinnerColors({
+      $theme,
+      $kind,
+      $disabled,
+    });
+    return {
+      height: $theme.sizing.scale600,
+      width: $theme.sizing.scale600,
+      borderRadius: '50%',
+      borderStyle: 'solid',
+      borderWidth: $theme.sizing.scale0,
+      borderTopColor: foreground,
+      borderLeftColor: background,
+      borderBottomColor: background,
+      borderRightColor: background,
+      animationDuration: $theme.animation.timing700,
+      animationTimingFunction: 'linear',
+      animationIterationCount: 'infinite',
+      animationName: {
+        to: {
+          transform: 'rotate(360deg)',
+        },
+        from: {
+          transform: 'rotate(0deg)',
+        },
+      },
+    };
   },
-}));
+);
+
+export function getLoadingSpinnerColors({
+  $theme,
+  $kind,
+  $disabled,
+}: StylePropsT) {
+  return {
+    foreground: $disabled
+      ? $theme.colors.mono600
+      : $kind === KIND.primary
+        ? $theme.colors.white
+        : $theme.colors.primary,
+    background: $disabled
+      ? 'rgba(179, 179, 179, 0.32)'
+      : $kind === KIND.primary
+        ? 'rgba(255, 255, 255, 0.32)'
+        : 'rgba(39, 110, 241, 0.32)',
+  };
+}
 
 export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
   switch ($shape) {
