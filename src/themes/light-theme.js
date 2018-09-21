@@ -140,15 +140,21 @@ export default {
 
     // Buttons
     buttonPrimaryFill: primary400,
-    buttonPrimaryText: mono100,
-    buttonPrimaryHover: primary600,
-    buttonPrimaryActive: primary700,
+    buttonPrimaryText: mono100, // white
+    buttonPrimaryHover: primary500,
+    buttonPrimaryActive: primary600,
     buttonSecondaryFill: primary50,
-    buttonSecondaryText: primary500,
+    buttonSecondaryText: primary400,
+    buttonSecondaryHover: primary100,
+    buttonSecondaryActive: primary200,
     buttonTertiaryFill: mono200,
     buttonTertiaryText: primary400,
-    buttonMinimalFill: mono100,
+    buttonTertiaryHover: mono400,
+    buttonTertiaryActive: mono500,
+    buttonMinimalFill: 'transparent',
     buttonMinimalText: primary400,
+    buttonMinimalHover: mono200,
+    buttonMinimalActive: mono400,
     buttonDisabledFill: mono300,
     buttonDisabledText: mono600,
 

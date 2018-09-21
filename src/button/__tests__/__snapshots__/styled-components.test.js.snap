@@ -3,8 +3,8 @@
 exports[`Button Styled Components BaseButton - basic render: correct styles 1`] = `
 Object {
   ":disabled": Object {
-    "backgroundColor": "$theme.colors.mono300",
-    "color": "$theme.colors.mono600",
+    "backgroundColor": "$theme.colors.buttonDisabledFill",
+    "color": "$theme.colors.buttonDisabledText",
     "cursor": "not-allowed",
   },
   "WebkitAppearance": "none",
@@ -34,8 +34,8 @@ Object {
 exports[`Button Styled Components BaseButton - basic render: correct styles 2`] = `
 Object {
   ":disabled": Object {
-    "backgroundColor": "$theme.colors.mono300",
-    "color": "$theme.colors.mono600",
+    "backgroundColor": "$theme.colors.buttonDisabledFill",
+    "color": "$theme.colors.buttonDisabledText",
     "cursor": "not-allowed",
   },
   "WebkitAppearance": "none",
@@ -65,8 +65,8 @@ Object {
 exports[`Button Styled Components BaseButton - basic render: correct styles 3`] = `
 Object {
   ":disabled": Object {
-    "backgroundColor": "$theme.colors.mono300",
-    "color": "$theme.colors.mono600",
+    "backgroundColor": "$theme.colors.buttonDisabledFill",
+    "color": "$theme.colors.buttonDisabledText",
     "cursor": "not-allowed",
   },
   "WebkitAppearance": "none",
