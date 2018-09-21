@@ -23,6 +23,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale600",
   "paddingRight": "$theme.sizing.scale600",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textDecoration": "none",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "background",
@@ -53,6 +54,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale600",
   "paddingRight": "$theme.sizing.scale600",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textDecoration": "none",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "background",
@@ -83,6 +85,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale600",
   "paddingRight": "$theme.sizing.scale600",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textDecoration": "none",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "background",
@@ -104,7 +107,7 @@ Object {
 }
 `;
 
-exports[`Button Styled Components getStyleForKind minimal 1`] = `
+exports[`Button Styled Components getStyleForKind minimal and loading false 1`] = `
 Object {
   ":active:enabled": Object {
     "backgroundColor": "#E5E5E5",
@@ -120,7 +123,23 @@ Object {
 }
 `;
 
-exports[`Button Styled Components getStyleForKind primary 1`] = `
+exports[`Button Styled Components getStyleForKind minimal and loading true 1`] = `
+Object {
+  ":active:enabled": Object {
+    "backgroundColor": "#E5E5E5",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "#E5E5E5",
+  },
+  ":hover:enabled": Object {
+    "backgroundColor": "#E5E5E5",
+  },
+  "backgroundColor": "transparent",
+  "color": "#1E66F0",
+}
+`;
+
+exports[`Button Styled Components getStyleForKind primary and loading false 1`] = `
 Object {
   ":active:enabled": Object {
     "backgroundColor": "#123D90",
@@ -136,7 +155,23 @@ Object {
 }
 `;
 
-exports[`Button Styled Components getStyleForKind secondary 1`] = `
+exports[`Button Styled Components getStyleForKind primary and loading true 1`] = `
+Object {
+  ":active:enabled": Object {
+    "backgroundColor": "#123D90",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "#123D90",
+  },
+  ":hover:enabled": Object {
+    "backgroundColor": "#123D90",
+  },
+  "backgroundColor": "#1E66F0",
+  "color": "#FFFFFF",
+}
+`;
+
+exports[`Button Styled Components getStyleForKind secondary and loading false 1`] = `
 Object {
   ":active:enabled": Object {
     "backgroundColor": "#9CBCF8",
@@ -152,7 +187,23 @@ Object {
 }
 `;
 
-exports[`Button Styled Components getStyleForKind tertiary 1`] = `
+exports[`Button Styled Components getStyleForKind secondary and loading true 1`] = `
+Object {
+  ":active:enabled": Object {
+    "backgroundColor": "#9CBCF8",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "#9CBCF8",
+  },
+  ":hover:enabled": Object {
+    "backgroundColor": "#9CBCF8",
+  },
+  "backgroundColor": "#EDF3FE",
+  "color": "#1E66F0",
+}
+`;
+
+exports[`Button Styled Components getStyleForKind tertiary and loading false 1`] = `
 Object {
   ":active:enabled": Object {
     "backgroundColor": "#CCCCCC",
@@ -162,6 +213,22 @@ Object {
   },
   ":hover:enabled": Object {
     "backgroundColor": "#E5E5E5",
+  },
+  "backgroundColor": "#F7F7F7",
+  "color": "#1E66F0",
+}
+`;
+
+exports[`Button Styled Components getStyleForKind tertiary and loading true 1`] = `
+Object {
+  ":active:enabled": Object {
+    "backgroundColor": "#CCCCCC",
+  },
+  ":focus:enabled": Object {
+    "backgroundColor": "#CCCCCC",
+  },
+  ":hover:enabled": Object {
+    "backgroundColor": "#CCCCCC",
   },
   "backgroundColor": "#F7F7F7",
   "color": "#1E66F0",

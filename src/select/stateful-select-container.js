@@ -76,7 +76,7 @@ class StatefulSelectContainer extends React.Component<
           selectedOptions: params.selectedOptions,
         };
         break;
-      case STATE_CHANGE_TYPE.keyUp: {
+      case STATE_CHANGE_TYPE.keyDown: {
         nextState = {
           textValue: params.textValue,
         };

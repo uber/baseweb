@@ -42,14 +42,15 @@ steps:
         run: baseui
     agents:
       queue: workers
-  - name: ':selenium: :chromium:'
+  - name: ':saucelabs: :selenium:'
     command: yarn e2e:test
     plugins:
       'docker-compose':
-        run: e2e-test-chrome
+        run: e2e-test
         pull:
-          - e2e-test-chrome
           - e2e-server
           - e2e-server-healthy
+          - sauce-tunnel
+          - sauce-tunnel-healthy
     agents:
       queue: workers

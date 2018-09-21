@@ -1,54 +1,79 @@
 # Icon Component
 
-This is the set of ~16 icons used internally within baseui that are safe to open source. This is not the set of uber-specific icons published internally as @uber/icons (though the API is intended to align with that to reduce confusion).
-
-![image](https://user-images.githubusercontent.com/875591/45131331-51e8c500-b141-11e8-898d-ead83d44b345.png)
-
-## Usage
+## Basic Usage
 
 ```javascript
 import * as React from 'react';
-import {LeftArrow} from 'baseui/icon/left-arrow';
+import ArrowLeft from 'baseui/icon/arrow-left';
 
 export default () => (
-  <LeftArrow size="10px" color="#ccc" />
+  <ArrowLeft size="10px" color="#ccc" />
+);
+```
+
+## Advanced Usage
+
+```javascript
+import * as React from 'react';
+import Delete from 'baseui/icon/delete';
+
+export default () => (
+  <Delete
+    overrides={{
+      Svg: {
+        style: {margin: '5px'}
+      }
+    }}
+    size="10px"
+    color="scale300"
+    title="custom a11y title tag"
+  />
+);
+```
+
+## Usage with Button
+
+```javascript
+import * as React from 'react';
+import {Button} from 'baseui/button';
+import Upload from 'baseui/icon/upload';
+
+export default () => (
+  <Button endEnhancer={() => <Upload />}>Upload</Button>
 );
 ```
 
 ## Exports
 
 * `Icon` (Base Icon component used by other exports below)
-
-From left-to-right based on the image above:
-
-* `DeleteAlt`
-* `Search`
-* `Delete`
-* `Check`
-* `ArrowUp`
+* `Alert`
 * `ArrowDown`
 * `ArrowLeft`
 * `ArrowRight`
-* `TriangleRight`
-* `TriangleDown`
-* `Upload`
-* `Plus`
-* `Grab`
-* `Alert`
-* `Menu`
-* `ChevronRight`
-* `ChevronLeft`
-* `Spinner`
-* `Overflow`
-* `TriangleLeft`
-* `TriangleUp`
-* `Filter`
+* `ArrowUp`
+* `Check`
 * `CheckIndeterminate`
+* `ChevronLeft`
+* `ChevronRight`
+* `Delete`
+* `DeleteAlt`
+* `Filter`
+* `Grab`
+* `Menu`
+* `Overflow`
+* `Plus`
+* `Search`
+* `Spinner`
+* `TriangleDown`
+* `TriangleLeft`
+* `TriangleRight`
+* `TriangleUp`
+* `Upload`
 
 ## `Icon` API
 
 * `size: number|string` - Optional, Defaults to `scale500` (12px)
-  Size of element, will be passed to the svg width/height style. Can also be a baseui `theme.sizing` constant like `sizing500`.
+  Size of element, will be passed to the svg width/height style. Can also be a baseui `theme.sizing` constant like `scale500`.
 * `color: string` - Optional, Defaults to `currentColor`
   Color of icon, will be used as svg fill
 * `title: string` - Optional

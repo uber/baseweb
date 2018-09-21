@@ -21,6 +21,9 @@ export const KEY_STRINGS = {
   ArrowUp: 'ArrowUp',
   ArrowDown: 'ArrowDown',
   Enter: 'Enter',
+  Space: ' ',
+  Escape: 'Escape',
+  Backspace: 'Backspace',
 };
 
 export const OPTION_LIST_SIZE = {

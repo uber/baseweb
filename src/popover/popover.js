@@ -177,6 +177,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   onAnchorMouseLeave = () => {
+    // Clear any existing open timer, otherwise popover could be stuck open
+    if (this.onMouseEnterTimer) {
+      clearTimeout(this.onMouseEnterTimer);
+    }
     this.triggerOnMouseLeaveWithDelay();
   };
 
@@ -318,12 +322,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
     const anchorProps: AnchorPropsT = {
       key: 'popover-anchor',
-      // TODO Once styletron gets forwardRef support, switch to always using ref
+      // Once styletron gets forwardRef support, switch to always using ref
       // https://github.com/rtsao/styletron/issues/253
       [refKey]: this.anchorRef,
-      // Always attach onClick–it's still useful to toggle via click
-      // even if the anchor is hoverable
-      onClick: this.onAnchorClick,
     };
 
     const anchorId = this.getAnchorIdAttr();
@@ -347,6 +348,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       // Make it focusable too
       anchorProps.onBlur = this.props.onBlur;
       anchorProps.onFocus = this.props.onFocus;
+    } else {
+      anchorProps.onClick = this.onAnchorClick;
     }
     return anchorProps;
   }

@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import type {OverrideT} from '../helpers/overrides';
 import {STATE_CHANGE_TYPE} from './constants';
+import type {OnItemSelectFnT} from '../menu/types';
 
 export type ChangeActionT = $Values<typeof STATE_CHANGE_TYPE>;
 
@@ -50,6 +51,7 @@ export type PropsT = {
   overrides?: OverridesT,
   selectedOptions: Array<OptionT>,
   rows: number,
+  tabIndex: number,
   textValue: string,
   multiple: boolean,
   error: boolean,
@@ -134,6 +136,7 @@ export type DropDownPropsT = {
   isDropDownOpen: boolean,
   type: string,
   getOptionLabel: OptionT => React$Node,
+  onItemSelect: OnItemSelectFnT,
   onChange: (
     e: SyntheticEvent<HTMLInputElement>,
     type: ChangeActionT,
