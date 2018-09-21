@@ -80,7 +80,7 @@ Same as `{Button} from baseui/button`, with the additional property:
 
 Extends the `ButtonGroup` API with this additional props:
 
-* `initalState: number | Array<number>`
+* `initialState: {checked: number | Array<number>}`
   Index or array of indices of the selected Button(s).
   Primarily for use with uncontrolled components with a `mode` prop defined.
 
