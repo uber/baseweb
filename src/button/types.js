@@ -12,6 +12,8 @@ export type OverridesT = {
   BaseButton?: OverrideT<*>,
   StartEnhancer?: OverrideT<*>,
   EndEnhancer?: OverrideT<*>,
+  LoadingSpinnerContainer?: OverrideT<*>,
+  LoadingSpinner?: OverrideT<*>,
 };
 
 export type ButtonPropsT = {
@@ -19,8 +21,17 @@ export type ButtonPropsT = {
   size: $Keys<typeof SIZE>,
   kind: $Keys<typeof KIND>,
   shape: $Keys<typeof SHAPE>,
+  isLoading: boolean,
   disabled: boolean,
-  startEnhancer?: () => React$Node | React$Node,
-  endEnhancer?: () => React$Node | React$Node,
+  startEnhancer?: (*) => React$Node | React$Node,
+  endEnhancer?: (*) => React$Node | React$Node,
   children?: React$Node,
+};
+
+export type SharedStylePropsT = {
+  $size?: $Keys<typeof SIZE>,
+  $kind?: $Keys<typeof KIND>,
+  $shape?: $Keys<typeof SHAPE>,
+  $isLoading?: boolean,
+  $disabled?: boolean,
 };

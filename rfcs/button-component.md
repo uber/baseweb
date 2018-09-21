@@ -59,13 +59,15 @@ Rough DOM composition:
 * `StyledButton`
 * `StyledStartEnhancer`
 * `StyledEndEnhancer`
+* `StyledLoadingSpinnerContainer`
+* `StyledLoadingSpinner`
 * `KIND`
 * `SIZE`
 * `SHAPE`
 
 ## `Button` API
 
-* `children: (props: Props) => React.Node` - Required
+* `children: (props: Props) => React.Node | React.Node` - Required
   This can be an SVG icon as well.
 * `startEnhancer: node | function` - Optional
   A helper rendered at the start of the button.
@@ -83,6 +85,8 @@ Rough DOM composition:
   Defines the shape of a button.
 * `kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
   Defines the kind (purpose) of a button
+* `isLoading: boolean`
+  Show loading button style and spinner
 * `...rest`
   Passed to BaseButton as props. These can include `accesskey`, `disabled`, `formtarget`, `type`, `value` and more.
 

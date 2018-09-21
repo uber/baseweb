@@ -122,17 +122,22 @@ describe('Popover', () => {
   });
 
   test('basic mouseenter/mouseleave functionality', () => {
-    const onClick = jest.fn();
+    const onClickButton = jest.fn();
+    const onClickPopover = jest.fn();
     const onMouseEnter = jest.fn();
     const onMouseLeave = jest.fn();
     const content = <strong>Hello world</strong>;
-    const button = <button type="button">Click me</button>;
+    const button = (
+      <button onClick={onClickButton} type="button">
+        Click me
+      </button>
+    );
     wrapper = mount(
       <Popover
         content={content}
         isOpen={false}
         triggerType="hover"
-        onClick={onClick}
+        onClick={onClickPopover}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         onMouseLeaveDelay={200}
@@ -161,7 +166,8 @@ describe('Popover', () => {
 
     // Click should still work actually
     renderedButton.simulate('click');
-    expect(onClick).toBeCalled();
+    expect(onClickButton).toBeCalled();
+    expect(onClickPopover).not.toBeCalled();
   });
 
   test('dismissOnEsc', () => {

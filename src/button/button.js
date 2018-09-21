@@ -8,71 +8,62 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   BaseButton as StyledBaseButton,
-  StartEnhancer as StyledStartEnhancer,
-  EndEnhancer as StyledEndEnhancer,
+  LoadingSpinner as StyledLoadingSpinner,
+  LoadingSpinnerContainer as StyledLoadingSpinnerContainer,
 } from './styled-components';
+import {getSharedProps} from './utils';
+import ButtonInternals from './button-internals';
 import {getOverrideObject} from '../helpers/overrides';
-import {KIND, SHAPE, SIZE} from './constants';
 
 import type {ButtonPropsT} from './types';
 
-export default function Button({
-  children,
-  disabled,
-  startEnhancer,
-  endEnhancer,
-  overrides,
-  size,
-  kind,
-  shape,
-  ...restProps
-}: ButtonPropsT) {
-  // Base UI override logic goes here
+export default function Button(props: ButtonPropsT) {
+  const {
+    overrides,
+    size,
+    kind,
+    shape,
+    isLoading,
+    // Removing from restProps
+    startEnhancer,
+    endEnhancer,
+    children,
+    ...restProps
+  } = props;
+  // Get overrides
   const {component: BaseButton, props: baseButtonProps} = getOverrideObject(
     overrides.BaseButton,
     StyledBaseButton,
   );
   const {
-    component: StartEnhancer,
-    props: startEnhancerProps,
-  } = getOverrideObject(overrides.StartEnhancer, StyledStartEnhancer);
-  const {component: EndEnhancer, props: endEnhancerProps} = getOverrideObject(
-    overrides.EndEnhancer,
-    StyledEndEnhancer,
+    component: LoadingSpinner,
+    props: loadingSpinnerProps,
+  } = getOverrideObject(overrides.LoadingSpinner, StyledLoadingSpinner);
+  const {
+    component: LoadingSpinnerContainer,
+    props: loadingSpinnerContainerProps,
+  } = getOverrideObject(
+    overrides.LoadingSpinnerContainer,
+    StyledLoadingSpinnerContainer,
   );
-  const sharedProps = {
-    $size: size,
-    $kind: kind,
-    $shape: shape,
-  };
+  const sharedProps = getSharedProps(props);
   return (
-    <BaseButton
-      disabled={disabled}
-      {...sharedProps}
-      {...restProps}
-      {...baseButtonProps}
-    >
-      {startEnhancer && (
-        <StartEnhancer {...sharedProps} {...startEnhancerProps}>
-          {typeof startEnhancer === 'function'
-            ? startEnhancer()
-            : startEnhancer}
-        </StartEnhancer>
-      )}
-      {children}
-      {endEnhancer && (
-        <EndEnhancer {...sharedProps} {...endEnhancerProps}>
-          {typeof endEnhancer === 'function' ? endEnhancer() : endEnhancer}
-        </EndEnhancer>
+    <BaseButton {...sharedProps} {...restProps} {...baseButtonProps}>
+      {isLoading ? (
+        <React.Fragment>
+          {/* This is not meant to be overridable by users */}
+          <div style={{opacity: 0, display: 'flex'}}>
+            <ButtonInternals {...props} />
+          </div>
+          <LoadingSpinnerContainer {...loadingSpinnerContainerProps}>
+            <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
+          </LoadingSpinnerContainer>
+        </React.Fragment>
+      ) : (
+        <ButtonInternals {...props} />
       )}
     </BaseButton>
   );
 }
 
-Button.defaultProps = {
-  overrides: {},
-  size: SIZE.default,
-  kind: KIND.primary,
-  shape: SHAPE.default,
-  disabled: false,
-};
+Button.defaultProps = {...ButtonInternals.defaultProps};
