@@ -41,15 +41,18 @@ function makeTest({
 const allKinds = Object.values(KIND);
 const allSizes = Object.values(SIZE);
 const allShapes = Object.values(SHAPE);
+const allLoadingStates = [false, true];
 
 describe('Button Styled Components', () => {
   allKinds.forEach($kind => {
-    // $FlowFixMe
-    test(`getStyleForKind ${$kind}`, () => {
-      expect(
-        // $FlowFixMe
-        getStyleForKind({$theme: LightTheme, $kind}),
-      ).toMatchSnapshot();
+    allLoadingStates.forEach($isLoading => {
+      // $FlowFixMe
+      test(`getStyleForKind ${$kind} and loading ${$isLoading}`, () => {
+        expect(
+          // $FlowFixMe
+          getStyleForKind({$theme: LightTheme, $kind, $isLoading}),
+        ).toMatchSnapshot();
+      });
     });
   });
 

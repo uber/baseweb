@@ -45,45 +45,178 @@ const ButtonRow = styled('div', {
   },
 });
 
+type StateT = {
+  first: boolean,
+  second: boolean,
+  third: boolean,
+  mini: boolean,
+  disabled: boolean,
+  square: boolean,
+  round: boolean,
+};
+class MainButtonStory extends React.Component<*, StateT> {
+  state = {
+    first: false,
+    second: false,
+    third: false,
+    mini: false,
+    disabled: false,
+    square: false,
+    round: false,
+  };
+
+  onClick = id => {
+    if (!this.state[id]) {
+      this.setState({[id]: true});
+      setTimeout(() => {
+        this.setState({[id]: false});
+      }, 1000);
+    }
+  };
+
+  render() {
+    return (
+      <ButtonContainer>
+        <ButtonRow>
+          <Button>Primary</Button>
+          <Button style={{marginLeft: '10px'}} isLoading={true}>
+            Primary
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={this.state.first}
+            onClick={this.onClick.bind(this, 'first')}
+          >
+            Click Me
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button kind={KIND.secondary}>Secondary</Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={true}
+            kind={KIND.secondary}
+          >
+            Secondary
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={this.state.second}
+            onClick={this.onClick.bind(this, 'second')}
+            kind={KIND.secondary}
+          >
+            Click Me
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button kind={KIND.tertiary}>Tertiary</Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={true}
+            kind={KIND.tertiary}
+          >
+            Tertiary
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={this.state.third}
+            onClick={this.onClick.bind(this, 'third')}
+            kind={KIND.tertiary}
+          >
+            Click Me
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button kind={KIND.minimal}>Minimal</Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={true}
+            kind={KIND.minimal}
+          >
+            Minimal
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={this.state.mini}
+            onClick={this.onClick.bind(this, 'mini')}
+            kind={KIND.minimal}
+          >
+            Click Me
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button disabled={true}>Disabled</Button>
+          <Button style={{marginLeft: '10px'}} isLoading={true} disabled={true}>
+            Disabled
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={this.state.disabled}
+            disabled={true}
+            onClick={this.onClick.bind(this, 'disabled')}
+          >
+            Try To Click Me
+          </Button>
+        </ButtonRow>
+        <ButtonRow>
+          <Button shape={SHAPE.square}>
+            <CloudComponent />
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={true}
+            shape={SHAPE.square}
+          >
+            <CloudComponent />
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={this.state.square}
+            shape={SHAPE.square}
+            onClick={this.onClick.bind(this, 'square')}
+          >
+            <CloudComponent />
+          </Button>
+          <div style={{marginLeft: '10px'}}>{'<--- Click It'}</div>
+        </ButtonRow>
+        <ButtonRow>
+          <Button shape={SHAPE.round}>
+            <CloudComponent />
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={true}
+            shape={SHAPE.round}
+          >
+            <CloudComponent />
+          </Button>
+          <Button
+            style={{marginLeft: '10px'}}
+            isLoading={this.state.round}
+            shape={SHAPE.round}
+            onClick={this.onClick.bind(this, 'round')}
+          >
+            <CloudComponent />
+          </Button>
+          <div style={{marginLeft: '10px'}}>{'<--- Click It'}</div>
+        </ButtonRow>
+      </ButtonContainer>
+    );
+  }
+}
+
 export const suite = 'Button Test Suite';
 export const examples = {
   BUTTON: 'Buttons',
   BUTTON_COMPACT: 'Buttons Compact',
   BUTTON_WITH_ENHANCERS: 'Buttons with Enhancers',
   BUTTON_COMPACT_WITH_ENHANCERS: 'Buttons Compact with Enhancers',
+  BUTTON_LOADING: 'Buttons in Loading State',
 };
 
 export default {
   [examples.BUTTON]: function Story1() {
-    return (
-      <ButtonContainer>
-        <ButtonRow>
-          <Button>Primary</Button>
-        </ButtonRow>
-        <ButtonRow>
-          <Button kind={KIND.secondary}>Secondary</Button>
-        </ButtonRow>
-        <ButtonRow>
-          <Button kind={KIND.tertiary}>Tertiary</Button>
-        </ButtonRow>
-        <ButtonRow>
-          <Button kind={KIND.minimal}>Minimal</Button>
-        </ButtonRow>
-        <ButtonRow>
-          <Button disabled={true}>Disabled</Button>
-        </ButtonRow>
-        <ButtonRow>
-          <Button shape={SHAPE.square}>
-            <CloudComponent />
-          </Button>
-        </ButtonRow>
-        <ButtonRow>
-          <Button shape={SHAPE.round}>
-            <CloudComponent />
-          </Button>
-        </ButtonRow>
-      </ButtonContainer>
-    );
+    return <MainButtonStory />;
   },
   [examples.BUTTON_COMPACT]: function Story2() {
     return (

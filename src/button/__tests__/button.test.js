@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {StartEnhancer, EndEnhancer} from '../styled-components';
+import {StartEnhancer, EndEnhancer, LoadingSpinner} from '../styled-components';
 import Button from '../button';
 
 describe('Button Component', () => {
@@ -40,5 +40,13 @@ describe('Button Component', () => {
 
     expect(component.find(StartEnhancer)).not.toExist();
     expect(component.find(NewStartEnhancer)).toExist();
+  });
+
+  test('renders with loading spinner', () => {
+    const component = mount(<Button />);
+
+    expect(component.find(LoadingSpinner)).not.toExist();
+    component.setProps({isLoading: true});
+    expect(component.find(LoadingSpinner)).toExist();
   });
 });
