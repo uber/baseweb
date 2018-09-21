@@ -18,7 +18,18 @@ import {getOverrideObject} from '../helpers/overrides';
 import type {ButtonPropsT} from './types';
 
 export default function Button(props: ButtonPropsT) {
-  const {overrides, size, kind, shape, isLoading, ...restProps} = props;
+  const {
+    overrides,
+    size,
+    kind,
+    shape,
+    isLoading,
+    // Removing from restProps
+    startEnhancer,
+    endEnhancer,
+    children,
+    ...restProps
+  } = props;
   // Get overrides
   const {component: BaseButton, props: baseButtonProps} = getOverrideObject(
     overrides.BaseButton,
