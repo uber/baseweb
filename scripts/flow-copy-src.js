@@ -20,6 +20,7 @@ async function run() {
         '**/e2e.js',
         'coverage/**/*.js',
         '**/*examples.js',
+        'template-component/*',
       ],
     },
   );
