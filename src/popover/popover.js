@@ -177,6 +177,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   onAnchorMouseLeave = () => {
+    // Clear any existing open timer, otherwise popover could be stuck open
+    if (this.onMouseEnterTimer) {
+      clearTimeout(this.onMouseEnterTimer);
+    }
     this.triggerOnMouseLeaveWithDelay();
   };
 
