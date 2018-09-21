@@ -59,13 +59,15 @@ Rough DOM composition:
 * `StyledButton`
 * `StyledStartEnhancer`
 * `StyledEndEnhancer`
+* `StyledLoadingSpinnerContainer`
+* `StyledLoadingSpinner`
 * `KIND`
 * `SIZE`
 * `SHAPE`
 
 ## `Button` API
 
-* `children: (props: Props) => React.Node` - Required
+* `children: (props: Props) => React.Node | React.Node` - Required
   This can be an SVG icon as well.
 * `startEnhancer: node | function` - Optional
   A helper rendered at the start of the button.
