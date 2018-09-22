@@ -236,7 +236,7 @@ export default {
       fontSize: '32px',
       fontWeight: 'bold',
       lineHeight: '48px',
-      // TODO: move the letter spacing in an Uber specific theme
+      // TODO(#297): move the letter spacing in an Uber specific theme
       letterSpacing: '-0.02em',
     },
     font900: {
@@ -244,7 +244,7 @@ export default {
       fontSize: '40px',
       fontWeight: 'bold',
       lineHeight: '56px',
-      // TODO: move the letter spacing in an Uber specific theme
+      // TODO(#297): move the letter spacing in an Uber specific theme
       letterSpacing: '-0.02em',
     },
     font1000: {
@@ -252,7 +252,7 @@ export default {
       fontSize: '56px',
       fontWeight: 'normal',
       lineHeight: '80px',
-      // TODO: move the letter spacing in an Uber specific theme
+      // TODO(#297): move the letter spacing in an Uber specific theme
       letterSpacing: '-0.02em',
     },
   },
