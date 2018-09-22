@@ -35,8 +35,8 @@ export const BaseButton = styled(
     cursor: 'pointer',
     ':disabled': {
       cursor: 'not-allowed',
-      backgroundColor: $theme.colors.mono300,
-      color: $theme.colors.mono600,
+      backgroundColor: $theme.colors.buttonDisabledFill,
+      color: $theme.colors.buttonDisabledText,
     },
     // Padding For Shape and Size
     ...getStyleForShape({$theme, $shape, $size}),
@@ -157,74 +157,74 @@ export function getStyleForKind({$theme, $kind, $isLoading}: StylePropsT) {
   switch ($kind) {
     case KIND.primary:
       return {
-        color: $theme.colors.white,
-        backgroundColor: $theme.colors.primary,
+        color: $theme.colors.buttonPrimaryText,
+        backgroundColor: $theme.colors.buttonPrimaryFill,
         ':hover:enabled': {
           backgroundColor: $isLoading
-            ? $theme.colors.primary600
-            : $theme.colors.primary500,
+            ? $theme.colors.buttonPrimaryActive
+            : $theme.colors.buttonPrimaryHover,
         },
         ':focus:enabled': {
           backgroundColor: $isLoading
-            ? $theme.colors.primary600
-            : $theme.colors.primary500,
+            ? $theme.colors.buttonPrimaryActive
+            : $theme.colors.buttonPrimaryHover,
         },
         ':active:enabled': {
-          backgroundColor: $theme.colors.primary600,
+          backgroundColor: $theme.colors.buttonPrimaryActive,
         },
       };
     case KIND.secondary:
       return {
-        color: $theme.colors.primary,
-        backgroundColor: $theme.colors.primary50,
+        color: $theme.colors.buttonSecondaryText,
+        backgroundColor: $theme.colors.buttonSecondaryFill,
         ':hover:enabled': {
           backgroundColor: $isLoading
-            ? $theme.colors.primary200
-            : $theme.colors.primary100,
+            ? $theme.colors.buttonSecondaryActive
+            : $theme.colors.buttonSecondaryHover,
         },
         ':focus:enabled': {
           backgroundColor: $isLoading
-            ? $theme.colors.primary200
-            : $theme.colors.primary100,
+            ? $theme.colors.buttonSecondaryActive
+            : $theme.colors.buttonSecondaryHover,
         },
         ':active:enabled': {
-          backgroundColor: $theme.colors.primary200,
+          backgroundColor: $theme.colors.buttonSecondaryActive,
         },
       };
     case KIND.tertiary:
       return {
-        color: $theme.colors.primary,
-        backgroundColor: $theme.colors.mono200,
+        color: $theme.colors.buttonTertiaryText,
+        backgroundColor: $theme.colors.buttonTertiaryFill,
         ':hover:enabled': {
           backgroundColor: $isLoading
-            ? $theme.colors.mono500
-            : $theme.colors.mono400,
+            ? $theme.colors.buttonTertiaryActive
+            : $theme.colors.buttonTertiaryHover,
         },
         ':focus:enabled': {
           backgroundColor: $isLoading
-            ? $theme.colors.mono500
-            : $theme.colors.mono400,
+            ? $theme.colors.buttonTertiaryActive
+            : $theme.colors.buttonTertiaryHover,
         },
         ':active:enabled': {
-          backgroundColor: $theme.colors.mono500,
+          backgroundColor: $theme.colors.buttonTertiaryActive,
         },
       };
     case KIND.minimal:
       return {
-        color: $theme.colors.primary,
-        backgroundColor: 'transparent',
+        color: $theme.colors.buttonMinimalText,
+        backgroundColor: $theme.colors.buttonMinimalFill,
         ':hover:enabled': {
           backgroundColor: $isLoading
-            ? $theme.colors.mono400
-            : $theme.colors.mono200,
+            ? $theme.colors.buttonMinimalActive
+            : $theme.colors.buttonMinimalHover,
         },
         ':focus:enabled': {
           backgroundColor: $isLoading
-            ? $theme.colors.mono400
-            : $theme.colors.mono200,
+            ? $theme.colors.buttonMinimalActive
+            : $theme.colors.buttonMinimalHover,
         },
         ':active:enabled': {
-          backgroundColor: $theme.colors.mono400,
+          backgroundColor: $theme.colors.buttonMinimalActive,
         },
       };
     default:
