@@ -8,23 +8,22 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles';
 import type {StyledComponentParamsT} from './types';
 
-export const Svg = styled(
-  'svg',
-  ({$theme, $size, $color}: StyledComponentParamsT) => {
-    if ($size) {
-      if ($theme.sizing.hasOwnProperty($size)) {
-        $size = $theme.sizing[$size];
-      } else if (typeof $size === 'number') {
-        $size = `${$size}px`;
-      }
-    } else {
-      $size = $theme.sizing.scale800;
+export function getSvgStyles({$theme, $size, $color}: StyledComponentParamsT) {
+  if ($size) {
+    if ($theme.sizing.hasOwnProperty($size)) {
+      $size = $theme.sizing[$size];
+    } else if (typeof $size === 'number') {
+      $size = `${$size}px`;
     }
-    return {
-      display: 'inline-block',
-      fill: $color || 'currentColor',
-      height: $size,
-      width: $size,
-    };
-  },
-);
+  } else {
+    $size = $theme.sizing.scale800;
+  }
+  return {
+    display: 'inline-block',
+    fill: $color || 'currentColor',
+    height: $size,
+    width: $size,
+  };
+}
+
+export const Svg = styled('svg', getSvgStyles);
