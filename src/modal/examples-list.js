@@ -1,3 +1,6 @@
+/* eslint-env node */
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 module.exports = {
   SIMPLE_EXAMPLE: 'Modal',
   SCROLLING_EXAMPLE: 'Modal with long content',

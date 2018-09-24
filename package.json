@@ -30,7 +30,7 @@
     "unit-test": "yarn jest --coverage",
     "e2e": "node ./e2e/e2e.js",
     "e2e:build": "webpack --config webpack.e2e.config.js --mode=production",
-    "e2e:serve": "static-server e2e/dist --port 9080",
+    "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "nightwatch --filter e2e.js",
     "prepublish": "npm run build",
     "license": "license-check-and-add"

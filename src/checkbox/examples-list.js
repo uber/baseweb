@@ -1,3 +1,5 @@
+/* eslint-env node */
+/* eslint-disable flowtype/require-valid-file-annotation */
 module.exports = {
   SIMPLE_EXAMPLE: 'Checkbox example',
   MULTILINE: 'Multiline checkbox',

@@ -1,4 +1,5 @@
-/* no-flow */
+/* eslint-disable flowtype/require-valid-file-annotation */
+/* global exports document */
 
 exports.assertion = function(selector, msg) {
   const ancestors = selector;
