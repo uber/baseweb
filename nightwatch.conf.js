@@ -9,7 +9,7 @@ module.exports = {
   custom_assertions_path: 'e2e/assertions',
 
   selenium: {
-    start_process: true,
+    start_process: process.env.SAUCE_USERNAME ? false : true,
     server_path: jar.path,
     port: 4444,
   },
@@ -23,6 +23,14 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'chrome',
       },
+    },
+    saucelabs: {
+      launch_url: 'http://localhost:8080',
+      selenium_port: 80,
+      selenium_host: 'ondemand.saucelabs.com',
+      silent: true,
+      username: '${SAUCE_USERNAME}',
+      access_key: '${SAUCE_ACCESS_KEY}',
     },
   },
 };
