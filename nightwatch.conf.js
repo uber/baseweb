@@ -25,12 +25,15 @@ module.exports = {
       },
     },
     saucelabs: {
-      launch_url: 'http://ondemand.saucelabs.com:80',
+      launch_url: 'http://ondemand.saucelabs.com:8080',
       selenium_port: 80,
       selenium_host: 'ondemand.saucelabs.com',
       silent: true,
       username: '${SAUCE_USERNAME}',
       access_key: '${SAUCE_ACCESS_KEY}',
-    },
-  },
+      globals: {
+        waitForConditionTimeout: 10000
+      }
+    }
+  }
 };

@@ -28,7 +28,7 @@ module.exports = {
     client
       .url(
         getUrl({
-          launchUrl: client.launchUrl,
+          launchUrl: 'http://localhost:8080',
           suite,
           test: scenarios.SIMPLE_EXAMPLE,
         }),
