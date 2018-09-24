@@ -10,6 +10,7 @@ import * as React from 'react';
 import {select as selectKnob} from '@storybook/addon-knobs';
 import {Button} from '../button';
 import {Input} from '../input';
+import ExampleList from './examples-list';
 
 import {styled} from '../styles';
 import {
@@ -83,17 +84,8 @@ const sizeKnob = () =>
     'default',
   );
 
-export const suite = 'Modal Test Suite';
-export const examples = {
-  SIMPLE_EXAMPLE: 'Modal',
-  SCROLLING_EXAMPLE: 'Modal with long content',
-  CLOSEABLE_EXAMPLE: 'Modal non-closeable',
-  MOUNT_NODE_EXAMPLE: 'Modal custom mount node',
-  STYLE_OVERRIDES: 'Modal with style overrides',
-};
-
 export default {
-  [examples.SIMPLE_EXAMPLE]: function Story1() {
+  [ExampleList.SIMPLE_EXAMPLE]: function Story1() {
     return (
       <Centered>
         <ModalStateContainer isInitiallyOpen>
@@ -120,7 +112,7 @@ export default {
       </Centered>
     );
   },
-  [examples.SCROLLING_EXAMPLE]: function Story2() {
+  [ExampleList.SCROLLING_EXAMPLE]: function Story2() {
     return (
       <Centered>
         <ModalStateContainer isInitiallyOpen>
@@ -159,7 +151,7 @@ export default {
       </Centered>
     );
   },
-  [examples.CLOSEABLE_EXAMPLE]: function Story3() {
+  [ExampleList.CLOSEABLE_EXAMPLE]: function Story3() {
     return (
       <Centered>
         <ModalStateContainer isInitiallyOpen>
@@ -197,7 +189,7 @@ export default {
       </Centered>
     );
   },
-  [examples.MOUNT_NODE_EXAMPLE]: function Story3() {
+  [ExampleList.MOUNT_NODE_EXAMPLE]: function Story3() {
     class CustomMountNodeExample extends React.Component<
       {},
       {mounted: boolean},
@@ -260,7 +252,7 @@ export default {
     }
     return <CustomMountNodeExample />;
   },
-  [examples.STYLE_OVERRIDES]: function Story1() {
+  [ExampleList.STYLE_OVERRIDES]: function Story1() {
     return (
       <Centered>
         <ModalStateContainer isInitiallyOpen>

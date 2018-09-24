@@ -71,7 +71,7 @@ services:
   # this spins up a server that serves the html/js/css for the e2e tests
   e2e-server:
     build: .
-    command: node e2e/serve.js
+    command: yarn e2e:serve
     expose:
       - 8080
     ports:
