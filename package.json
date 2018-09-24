@@ -32,7 +32,7 @@
     "e2e:build": "webpack --config webpack.e2e.config.js --mode=production",
     "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "nightwatch --filter e2e.js",
-    "e2e:test:ci": "nightwatch --filter e2e.js --env saucelabs",
+    "e2e:test:ci": "nightwatch --filter e2e.js --env chrome-mac,chrome-windows,iPhone-X",
     "prepublish": "npm run build",
     "license": "license-check-and-add"
   },
