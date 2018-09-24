@@ -4,47 +4,39 @@ Copyright (c) 2018 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
-import e2e from '../e2e-test-utils';
+/* eslint-env node */
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-const {run, By, goToUrl, runBrowserAccecibilityTest, getElement} = e2e;
-import {suite, tests} from './examples';
+const scenarios = require('./examples-list');
 
-run((driver, browser) => {
-  describe(suite, function() {
-    beforeEach(function() {
-      runBrowserAccecibilityTest(driver, 'label');
-    });
+const suite = 'Checkbox Test Suite';
 
-    test.skip('Checked state', async function() {
-      let checkbox;
-      await goToUrl(driver, suite, tests.SIMPLE_EXAMPLE);
-      checkbox = await driver.findElement(By.css('label'));
-      const expectedResult = {
-        chrome: 'rgba(30, 102, 240, 0.243)',
-        firefox: 'rgb(30, 102, 240)',
-      };
-      checkbox.click();
-      const img = await checkbox.findElement(By.css('span'));
-      const imageUrl = await img.getCssValue('background-color');
-      expect(imageUrl.substr(0, 17)).toEqual(
-        expectedResult[browser].substr(0, 17),
-      );
-    });
+const selectors = {
+  radioOne: '[data-name="radioSub1"] label',
+  radioTwo: '[data-name="radioSub2"] label',
+  radioMain: '[data-name="radioMain"] label input[type="checkbox"]',
+};
 
-    test('Indeterminate state', async function() {
-      await goToUrl(driver, suite, tests.INDETERMINATE);
-      const cbMain = await getElement(driver, '[data-name="radioMain"] label');
-      const cbSub1 = await getElement(driver, '[data-name="radioSub1"] label');
-      const cbSub2 = await getElement(driver, '[data-name="radioSub2"] label');
-      cbSub1.click();
-      cbSub2.click();
-      let checked = await getCheckmarkAttribute(cbMain, 'checked');
-      expect(checked).toBe('true');
-    });
-  });
-  async function getCheckmarkAttribute(parent, attr) {
-    const checkmark = await getElement(parent, 'input[type="checkbox"]');
-    return await checkmark.getAttribute(attr);
-  }
-});
+function getUrl({launchUrl, suite, test}) {
+  return `${launchUrl}?suite=${encodeURIComponent(
+    suite,
+  )}&test=${encodeURIComponent(test)}`;
+}
+
+module.exports = {
+  [scenarios.INDETERMINATE]: function(client) {
+    client
+      .url(
+        getUrl({
+          launchUrl: 'http://localhost:8080',
+          suite,
+          test: scenarios.INDETERMINATE,
+        }),
+      )
+      .waitForElementVisible('body', 1000)
+      .click(selectors.radioOne)
+      .click(selectors.radioTwo)
+      .assert.attributeEquals(selectors.radioMain, 'checked', 'true')
+      .end();
+  },
+};

@@ -40,8 +40,11 @@ export default function() {
       </div>
     );
   } else {
-    // eslint-disable-next-line no-console
-    console.error(`NOT_FOUND_TEST: Test ${test} is not found, please, check`);
-    return null;
+    return (
+      <div>
+        Test did not found! Suite: {suite}
+        Test: {test}
+      </div>
+    );
   }
 }
