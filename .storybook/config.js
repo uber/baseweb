@@ -17,7 +17,7 @@ setOptions({
 const engine = new Styletron();
 
 // automatically import all files ending in *.stories.js
-const req = require.context('../src', true, /.stories.js$/);
+const req = require.context('../src', true, /^((?!template-component\/).)*.stories.js$/);
 function loadStories() {
   require('../src/welcome.stories.js');
   req.keys().forEach(filename => req(filename));
