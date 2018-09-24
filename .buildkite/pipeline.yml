@@ -43,7 +43,7 @@ steps:
     agents:
       queue: workers
   - name: ':saucelabs: :selenium:'
-    command: yarn e2e:test
+    command: yarn e2e:test:ci
     plugins:
       'docker-compose':
         run: e2e-test
