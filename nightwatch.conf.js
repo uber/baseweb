@@ -2,6 +2,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const jar = require('selenium-server-standalone-jar');
+const JOB_IDENTIFIER = process.env.BUILDKITE_BUILD_NUMBER;
 
 module.exports = {
   src_folders: ['src'],
@@ -32,8 +33,11 @@ module.exports = {
       username: '${SAUCE_USERNAME}',
       access_key: '${SAUCE_ACCESS_KEY}',
       globals: {
-        waitForConditionTimeout: 10000
-      }
-    }
-  }
+        waitForConditionTimeout: 10000,
+      },
+      desiredCapabilities: {
+        'tunnel-identifier': JOB_IDENTIFIER,
+      },
+    },
+  },
 };
