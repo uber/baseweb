@@ -37,7 +37,7 @@ const environments = {
 };
 
 const sauceLabsBaseConfig = {
-  launch_url: 'http://ondemand.saucelabs.com:8080',
+  launch_url: 'http://localhost:8080',
   selenium_port: 80,
   selenium_host: 'ondemand.saucelabs.com',
   silent: true,
