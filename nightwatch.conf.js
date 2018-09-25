@@ -6,13 +6,18 @@ const {resolve} = require('path');
 const jar = require('selenium-server-standalone-jar');
 const JOB_IDENTIFIER = process.env.BUILDKITE_BUILD_NUMBER;
 
+const buildSettings = {
+  'tunnel-identifier': JOB_IDENTIFIER,
+  build: JOB_IDENTIFIER,
+};
+
 const environments = {
   'chrome-mac': {
     desiredCapabilities: {
       browserName: 'chrome',
       platform: 'macOS 10.12',
       extendedDebugging: true,
-      'tunnel-identifier': JOB_IDENTIFIER,
+      ...buildSettings,
     },
   },
 
@@ -20,7 +25,7 @@ const environments = {
     desiredCapabilities: {
       browserName: 'chrome',
       platform: 'Windows 10',
-      'tunnel-identifier': JOB_IDENTIFIER,
+      ...buildSettings,
     },
   },
 
@@ -31,7 +36,7 @@ const environments = {
       deviceOrientation: 'portrait',
       platformVersion: '11.0',
       platformName: 'iOS',
-      'tunnel-identifier': JOB_IDENTIFIER,
+      ...buildSettings,
     },
   },
 };
