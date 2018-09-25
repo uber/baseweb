@@ -26,10 +26,8 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
       }
       $role="dialog"
       $size="default"
-      role="dialog"
     >
       <div
-        role="dialog"
         styled-component="true"
       >
         <MockStyledComponent
@@ -70,12 +68,12 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
               $role="dialog"
               $size="default"
               aria-modal="true"
-              role="document"
+              role="dialog"
               tabIndex="-1"
             >
               <div
                 aria-modal="true"
-                role="document"
+                role="dialog"
                 styled-component="true"
                 tabIndex="-1"
               >

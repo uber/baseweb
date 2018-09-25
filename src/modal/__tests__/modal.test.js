@@ -18,7 +18,6 @@ import {
   StyledBackdrop,
   StyledClose,
   StyledDialog,
-  StyledRoot,
   CLOSE_SOURCE,
 } from '../index';
 
@@ -161,7 +160,6 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    expect(wrapper.find(StyledRoot)).toHaveProp('role', 'mycustomrole');
-    expect(wrapper.find(StyledDialog)).toHaveProp('role', 'document');
+    expect(wrapper.find(StyledDialog)).toHaveProp('role', 'mycustomrole');
   });
 });
