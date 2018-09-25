@@ -37,9 +37,7 @@ module.exports = {
       .waitForElementVisible('body', 1000)
       .click(selectors.radioOne)
       .click(selectors.radioTwo)
-      .assert.accessibility('html', {
-        verbose: true,
-      })
+      .assert.accessibility('html', {})
       .assert.attributeEquals(selectors.radioMain, 'checked', 'true')
       .end();
   },

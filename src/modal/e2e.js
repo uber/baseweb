@@ -42,9 +42,7 @@ module.exports = {
       .waitForElementPresent(selectors.dialog, 1000)
       // dialog should be the focused element
       .assert.hasFocus(selectors.dialog)
-      .assert.accessibility(selectors.dialog, {
-        verbose: true,
-      })
+      .assert.accessibility('html', {})
       // close again
       .click(selectors.closeButton)
       .waitForElementNotPresent(selectors.closeButton, 1000)
