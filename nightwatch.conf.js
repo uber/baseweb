@@ -1,6 +1,8 @@
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+const {resolve} = require('path');
+
 const jar = require('selenium-server-standalone-jar');
 const JOB_IDENTIFIER = process.env.BUILDKITE_BUILD_NUMBER;
 
@@ -35,7 +37,7 @@ const environments = {
 };
 
 const sauceLabsBaseConfig = {
-  launch_url: 'http://ondemand.saucelabs.com:8080',
+  launch_url: 'http://localhost:8080',
   selenium_port: 80,
   selenium_host: 'ondemand.saucelabs.com',
   silent: true,
@@ -64,7 +66,13 @@ const sauceLabsEnvironments = Object.keys(environments).reduce(
 module.exports = {
   src_folders: ['src'],
   output_folder: 'reports',
-  custom_assertions_path: 'e2e/assertions',
+  custom_assertions_path: [
+    resolve(__dirname, 'e2e/assertions'),
+    resolve(__dirname, 'node_modules/nightwatch-accessibility/assertions'),
+  ],
+  custom_commands_path: [
+    resolve(__dirname, 'node_modules/nightwatch-accessibility/commands'),
+  ],
 
   selenium: {
     start_process: process.env.SAUCE_USERNAME ? false : true,
