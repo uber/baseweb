@@ -3,7 +3,10 @@
 
 const SauceLabs = require('saucelabs');
 
-exports.command = function(callback) {
+exports.command = function (callback) {
+  if (process.env.BUILDKITE_BRANCH !== 'master') {
+    return callback();
+  }
   const saucelabs = new SauceLabs({
     username: process.env.SAUCE_USERNAME,
     password: process.env.SAUCE_ACCESS_KEY,
