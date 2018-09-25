@@ -28,11 +28,12 @@ module.exports = {
     client
       .url(
         getUrl({
-          launchUrl: 'http://localhost:8080',
+          launchUrl: client.launchUrl,
           suite,
           test: scenarios.SIMPLE_EXAMPLE,
         }),
       )
+      .initAccessibility()
       .waitForElementVisible('body', 1000)
       // close modal to start fresh
       .click(selectors.closeButton)
@@ -41,6 +42,9 @@ module.exports = {
       .waitForElementPresent(selectors.dialog, 1000)
       // dialog should be the focused element
       .assert.hasFocus(selectors.dialog)
+      .assert.accessibility(selectors.dialog, {
+        verbose: true,
+      })
       // close again
       .click(selectors.closeButton)
       .waitForElementNotPresent(selectors.closeButton, 1000)
