@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner styled components StyledSvg - basic render: StyledSvg has correct default styles 1`] = `
+Object {
+  "animationDuration": "$theme.animation.timing700",
+  "animationIterationCount": "infinite",
+  "animationName": Object {
+    "from": Object {
+      "transform": "rotate(0deg)",
+    },
+    "to": Object {
+      "transform": "rotate(360deg)",
+    },
+  },
+  "animationTimingFunction": "linear",
+  "cursor": "wait",
+  "display": "inline-block",
+  "fill": "$theme.colors.primary450",
+  "height": "$theme.sizing.scale800",
+  "width": "$theme.sizing.scale800",
+}
+`;
+
+exports[`Spinner styled components StyledSvg - custom color: StyledSvg has correct fill value 1`] = `
+Object {
+  "animationDuration": "$theme.animation.timing700",
+  "animationIterationCount": "infinite",
+  "animationName": Object {
+    "from": Object {
+      "transform": "rotate(0deg)",
+    },
+    "to": Object {
+      "transform": "rotate(360deg)",
+    },
+  },
+  "animationTimingFunction": "linear",
+  "cursor": "wait",
+  "display": "inline-block",
+  "fill": "$theme.colors.primary450",
+  "height": "$theme.sizing.scale800",
+  "width": "$theme.sizing.scale800",
+}
+`;
+
+exports[`Spinner styled components StyledSvg - custom size: StyledSvg has correct height and width styles 1`] = `
+Object {
+  "animationDuration": "$theme.animation.timing700",
+  "animationIterationCount": "infinite",
+  "animationName": Object {
+    "from": Object {
+      "transform": "rotate(0deg)",
+    },
+    "to": Object {
+      "transform": "rotate(360deg)",
+    },
+  },
+  "animationTimingFunction": "linear",
+  "cursor": "wait",
+  "display": "inline-block",
+  "fill": "$theme.colors.primary450",
+  "height": "$theme.sizing.scale800",
+  "width": "$theme.sizing.scale800",
+}
+`;
