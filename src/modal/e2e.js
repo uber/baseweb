@@ -24,6 +24,9 @@ function getUrl({launchUrl, suite, test}) {
 }
 
 module.exports = {
+  afterEach: function(client, done) {
+    client.notifySauceLabs(done);
+  },
   [scenarios.SIMPLE_EXAMPLE]: function(client) {
     client
       .url(
