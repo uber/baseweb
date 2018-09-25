@@ -14,7 +14,7 @@ const suite = 'Modal Test Suite';
 const selectors = {
   closeButton: 'button[aria-label="Close"]',
   openModal: '.open-modal-button',
-  dialog: '[role="document"]',
+  dialog: '[role="dialog"]',
 };
 
 function getUrl({launchUrl, suite, test}) {

@@ -162,6 +162,6 @@ describe('Modal', () => {
     );
 
     expect(wrapper.find(StyledRoot)).toHaveProp('role', 'mycustomrole');
-    expect(wrapper.find(StyledDialog)).toHaveProp('role', 'document');
+    expect(wrapper.find(StyledDialog)).toHaveProp('role', 'dialog');
   });
 });

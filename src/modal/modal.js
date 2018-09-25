@@ -273,11 +273,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
               'true'
             }
-            role={
-              // Adding role="document" to dialogs in modals is recommended
-              // https://github.com/twbs/bootstrap/issues/15875
-              'document'
-            }
+            role={'dialog'}
             $ref={this.getRef('Dialog')}
             {...sharedProps}
             {...getOverrideProps(DialogOverride)}
