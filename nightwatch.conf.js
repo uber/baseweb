@@ -8,7 +8,8 @@ const JOB_IDENTIFIER = process.env.BUILDKITE_BUILD_NUMBER;
 
 const buildSettings = {
   'tunnel-identifier': JOB_IDENTIFIER,
-  build: JOB_IDENTIFIER,
+  // sauce lab does not support the concept of branches, so only reporting the master results
+  build: process.env.BUILDKITE_BRANCH === 'master' ? JOB_IDENTIFIER : undefined,
 };
 
 const environments = {
@@ -76,6 +77,7 @@ module.exports = {
     resolve(__dirname, 'node_modules/nightwatch-accessibility/assertions'),
   ],
   custom_commands_path: [
+    resolve(__dirname, 'e2e/commands'),
     resolve(__dirname, 'node_modules/nightwatch-accessibility/commands'),
   ],
 
