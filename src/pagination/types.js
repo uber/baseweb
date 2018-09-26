@@ -49,8 +49,8 @@ export type StatefulPaginationPropsT = {
   labels: LabelsT,
   stateReducer?: StateReducerFnT,
   initialState?: StatefulContainerStateT,
-  onPageChange?: (nextPage: number, prevPage: number) => *,
   overrides?: OverridesT,
+  onPageChange?: (nextPage: number, prevPage: number) => *,
   onPrevClick?: (event: *) => *,
   onNextClick?: (event: *) => *,
 };
