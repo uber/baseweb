@@ -3,7 +3,7 @@
 
 const SauceLabs = require('saucelabs');
 
-exports.command = function (callback) {
+exports.command = function(callback) {
   if (process.env.BUILDKITE_BRANCH !== 'master') {
     return callback();
   }
