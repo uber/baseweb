@@ -77,7 +77,7 @@
     "flow-bin": "^0.81.0",
     "flow-copy-source": "^2.0.2",
     "geckodriver": "^1.11.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0",
     "jest": "^23.3.0",
     "jest-enzyme": "^6.0.2",
     "license-check-and-add": "^2.3.6",
