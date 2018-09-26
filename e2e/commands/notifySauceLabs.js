@@ -4,6 +4,7 @@
 const SauceLabs = require('saucelabs');
 
 exports.command = function(callback) {
+  // sauce lab does not support the concept of branches, so only reporting the master results
   if (process.env.BUILDKITE_BRANCH !== 'master') {
     return callback();
   }
