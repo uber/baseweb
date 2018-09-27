@@ -14,6 +14,7 @@ exports[`Stateless select should render component in search mode and false for m
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
   onMouseUp={[Function]}
+  onTextInputChange={[MockFunction]}
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
@@ -230,6 +231,7 @@ exports[`Stateless select should render component in search mode and true for mu
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
   onMouseUp={[Function]}
+  onTextInputChange={[MockFunction]}
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
@@ -446,6 +448,7 @@ exports[`Stateless select should render component in select mode and false for m
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
   onMouseUp={[Function]}
+  onTextInputChange={[MockFunction]}
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
@@ -649,6 +652,7 @@ exports[`Stateless select should render component in select mode and true for mu
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
   onMouseUp={[Function]}
+  onTextInputChange={[MockFunction]}
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}

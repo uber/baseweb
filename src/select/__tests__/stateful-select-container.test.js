@@ -63,8 +63,7 @@ describe('Stateful Select Container', function() {
     event = {target: {checked: true}};
     const handlers = [
       ['onChange', STATE_CHANGE_TYPE.select, {selectedOptions}],
-      ['onChange', STATE_CHANGE_TYPE.clearAll, {selectedOptions: []}],
-      ['onChange', STATE_CHANGE_TYPE.keyDown, {textValue}],
+      ['onChange', STATE_CHANGE_TYPE.textChange, {textValue}],
     ];
     beforeEach(function() {
       events = {
