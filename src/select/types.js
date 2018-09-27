@@ -64,10 +64,8 @@ export type PropsT = {
   getOptionLabel?: OptionT => React$Node,
   getSelectedOptionLabel?: OptionT => React$Node,
   $theme?: *,
-  onChange: (
-    e: SyntheticEvent<HTMLInputElement>,
-    params: ParamsT,
-  ) => Promise<void>,
+  onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => Promise<void>,
+  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
   onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseDown: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -101,10 +99,8 @@ export type StatefulContainerPropsT = {
   children?: (*) => React$Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
-  onChange: (
-    e: SyntheticEvent<HTMLInputElement>,
-    params: ParamsT,
-  ) => Promise<void>,
+  onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => Promise<void>,
+  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
   onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -117,10 +113,8 @@ export type StatefulSelectPropsT = {
   options?: Array<OptionT>,
   initialState?: StateT,
   autoFocus?: boolean,
-  onChange?: (
-    e: SyntheticEvent<HTMLInputElement>,
-    params: ParamsT,
-  ) => Promise<void>,
+  onTextInputChange?: (e: SyntheticEvent<HTMLInputElement>) => Promise<void>,
+  onChange?: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
   onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -138,7 +132,6 @@ export type DropDownPropsT = {
   onItemSelect: OnItemSelectFnT,
   onChange: (
     e: SyntheticEvent<HTMLInputElement>,
-    type: ChangeActionT,
-    option: OptionT,
+    option: Array<OptionT>,
   ) => void,
 };

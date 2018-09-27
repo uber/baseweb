@@ -26,7 +26,8 @@ class StatefulSelectContainer extends React.Component<
       selectedOptions: [],
     },
     stateReducer: defaultStateReducer,
-    onChange: () => Promise.resolve(),
+    onTextInputChange: () => Promise.resolve(),
+    onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
     onFocus: () => {},
@@ -39,6 +40,15 @@ class StatefulSelectContainer extends React.Component<
     this.stateReducer(params.type, e, params);
     const {onChange} = this.props;
     return onChange(e, params);
+  };
+
+  onTextInputChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.stateReducer(STATE_CHANGE_TYPE.textChange, e, {
+      type: STATE_CHANGE_TYPE.textChange,
+      textValue: e.target.value,
+    });
+    const {onTextInputChange} = this.props;
+    return onTextInputChange(e);
   };
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -70,12 +80,11 @@ class StatefulSelectContainer extends React.Component<
     switch (type) {
       case STATE_CHANGE_TYPE.select:
       case STATE_CHANGE_TYPE.unselect:
-      case STATE_CHANGE_TYPE.clearAll:
         nextState = {
           selectedOptions: params.selectedOptions,
         };
         break;
-      case STATE_CHANGE_TYPE.keyDown: {
+      case STATE_CHANGE_TYPE.textChange: {
         nextState = {
           textValue: params.textValue,
         };
@@ -94,11 +103,19 @@ class StatefulSelectContainer extends React.Component<
       stateReducer, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
-    const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;
+    const {
+      onChange,
+      onTextInputChange,
+      onMouseEnter,
+      onMouseLeave,
+      onFocus,
+      onBlur,
+    } = this;
     return children({
       ...rest,
       ...this.state,
       onChange,
+      onTextInputChange,
       onMouseEnter,
       onMouseLeave,
       onFocus,
