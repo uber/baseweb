@@ -205,14 +205,7 @@ class MainButtonStory extends React.Component<*, StateT> {
   }
 }
 
-export const suite = 'Button Test Suite';
-export const examples = {
-  BUTTON: 'Buttons',
-  BUTTON_COMPACT: 'Buttons Compact',
-  BUTTON_WITH_ENHANCERS: 'Buttons with Enhancers',
-  BUTTON_COMPACT_WITH_ENHANCERS: 'Buttons Compact with Enhancers',
-  BUTTON_LOADING: 'Buttons in Loading State',
-};
+import examples from './examples-list';
 
 export default {
   [examples.BUTTON]: function Story1() {
