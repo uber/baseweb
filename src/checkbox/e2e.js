@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const scenarios = require('./examples-list');
+const {goToUrl} = require('../../e2e/helpers');
 
 const suite = 'Checkbox Test Suite';
 
@@ -17,25 +18,16 @@ const selectors = {
   radioMain: '[data-name="radioMain"] label input[type="checkbox"]',
 };
 
-function getUrl({launchUrl, suite, test}) {
-  return `${launchUrl}?suite=${encodeURIComponent(
-    suite,
-  )}&test=${encodeURIComponent(test)}`;
-}
-
 module.exports = {
   afterEach: function(client, done) {
     client.notifySauceLabs(done);
   },
   [scenarios.INDETERMINATE]: function(client) {
-    client
-      .url(
-        getUrl({
-          launchUrl: client.launchUrl,
-          suite,
-          test: scenarios.INDETERMINATE,
-        }),
-      )
+    goToUrl({
+      suite,
+      test: scenarios.INDETERMINATE,
+      client,
+    })
       .initAccessibility()
       .waitForElementVisible('body', 1000)
       .click(selectors.radioOne)
