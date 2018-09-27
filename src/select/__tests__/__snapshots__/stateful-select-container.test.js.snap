@@ -8,6 +8,7 @@ exports[`Stateful Select Container should correctly render: Component has correc
   onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onTextInputChange={[Function]}
   prop1="some other propq"
   stateReducer={[Function]}
 >

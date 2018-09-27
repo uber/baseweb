@@ -70,37 +70,30 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
           }}
           label="Search for tags"
           placeholder="Start searching"
-          onChange={(e, {type, option = emptyOption, selectedOptions}) => {
+          onTextInputChange={e => {
             return new Promise(resolve => {
-              switch (type) {
-                case STATE_CHANGE_TYPE.select:
-                  // eslint-disable-next-line no-console
-                  console.log('Selected id:' + option.id);
-                  resolve();
-                  break;
-                case STATE_CHANGE_TYPE.unselect:
-                  // eslint-disable-next-line no-console
-                  console.log('Unselected id:' + option.id);
-                  resolve();
-                  break;
-                case STATE_CHANGE_TYPE.clearAll:
-                  // eslint-disable-next-line no-console
-                  console.log('Cleared all tags');
-                  resolve();
-                  break;
-                case STATE_CHANGE_TYPE.textChange: {
-                  // $FlowFixMe
-                  let text = e.target.value;
-                  let options = [];
-                  if (text.length > 5) {
-                    options = generateOptions(text);
-                    this.setState({options: options}, resolve);
-                  }
-                  break;
-                }
+              // $FlowFixMe
+              let text = e.target.value;
+              let options = [];
+              if (text.length > 5) {
+                options = generateOptions(text);
+                this.setState({options: options}, resolve);
+              } else {
+                resolve();
               }
-              resolve();
             });
+          }}
+          onChange={(e, {type, option = emptyOption, selectedOptions}) => {
+            switch (type) {
+              case STATE_CHANGE_TYPE.select:
+                // eslint-disable-next-line no-console
+                console.log('Selected id:' + option.id);
+                break;
+              case STATE_CHANGE_TYPE.unselect:
+                // eslint-disable-next-line no-console
+                console.log('Unselected id:' + option.id);
+                break;
+            }
           }}
         />
       </React.Fragment>
@@ -159,13 +152,10 @@ class ParentSelect extends React.Component<ExamplePropsT, ExampleStateT> {
           label="Select"
           placeholder={this.props.multiple ? null : 'Choose one'}
           onChange={(e, {type, option = emptyOption}) => {
-            return new Promise(resolve => {
-              if (type === STATE_CHANGE_TYPE.select) {
-                // eslint-disable-next-line no-console
-                console.log('Selected option:' + option.id);
-              }
-              resolve();
-            });
+            if (type === STATE_CHANGE_TYPE.select) {
+              // eslint-disable-next-line no-console
+              console.log('Selected option:' + option.id);
+            }
           }}
         />
       </React.Fragment>
