@@ -10,8 +10,9 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import CheckboxExamples from '../src/checkbox/examples';
 import ModalExamples from '../src/modal/examples';
+import ButtonExamples from '../src/button/examples';
 
-const Examples = [CheckboxExamples, ModalExamples];
+const Examples = [CheckboxExamples, ModalExamples, ButtonExamples];
 
 export default function() {
   // needs polyfill for IE
