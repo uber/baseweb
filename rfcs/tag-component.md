@@ -54,7 +54,7 @@ export default () => {
 
 ## `Tag` API
 
-* `color: STYLE.primary(theme.colors.primary470) | STYLE.warning(theme.colors.warning400) | STYLE.positive(theme.colors.positive400) | STYLE.negative(theme.colors.negative400)`:
+* `color: STYLE.primary(theme.colors.primary) | STYLE.warning(theme.colors.warning) | STYLE.positive(theme.colors.positive) | STYLE.negative(theme.colors.negative)`:
   the color theme to be applied to a Tag. Default is `STYLE.primary`.
 * `children: React$Node`:
   Component or String value for label of tag. Default is empty string

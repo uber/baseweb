@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import DEFAULT_THEME from '../themes/light-theme';
 
 export const STYLE = {
-  primary: DEFAULT_THEME.colors.primary470,
+  primary: DEFAULT_THEME.colors.primary400,
   warning: DEFAULT_THEME.colors.warning400,
   positive: DEFAULT_THEME.colors.positive400,
   negative: DEFAULT_THEME.colors.negative400,
