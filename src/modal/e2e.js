@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const scenarios = require('./examples-list');
+const {goToUrl} = require('../../e2e/helpers');
 
 const suite = 'Modal Test Suite';
 
@@ -17,25 +18,16 @@ const selectors = {
   dialog: '[role="dialog"]',
 };
 
-function getUrl({launchUrl, suite, test}) {
-  return `${launchUrl}?suite=${encodeURIComponent(
-    suite,
-  )}&test=${encodeURIComponent(test)}`;
-}
-
 module.exports = {
   afterEach: function(client, done) {
     client.notifySauceLabs(done);
   },
   [scenarios.SIMPLE_EXAMPLE]: function(client) {
-    client
-      .url(
-        getUrl({
-          launchUrl: client.launchUrl,
-          suite,
-          test: scenarios.SIMPLE_EXAMPLE,
-        }),
-      )
+    goToUrl({
+      suite,
+      test: scenarios.SIMPLE_EXAMPLE,
+      client,
+    })
       .initAccessibility()
       .waitForElementVisible('body', 1000)
       // close modal to start fresh
