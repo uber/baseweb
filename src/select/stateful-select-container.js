@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {STATE_CHANGE_TYPE} from './constants';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
@@ -26,7 +25,7 @@ class StatefulSelectContainer extends React.Component<
       selectedOptions: [],
     },
     stateReducer: defaultStateReducer,
-    onTextInputChange: () => Promise.resolve(),
+    onTextInputChange: () => {},
     onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
@@ -37,18 +36,14 @@ class StatefulSelectContainer extends React.Component<
   state = {...this.props.initialState};
 
   onChange = (e: SyntheticInputEvent<HTMLInputElement>, params: ParamsT) => {
-    this.stateReducer(params.type, e, params);
+    this.internalSetState(params.type, e, params);
     const {onChange} = this.props;
     return onChange(e, params);
   };
 
   onTextInputChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.stateReducer(STATE_CHANGE_TYPE.textChange, e, {
-      type: STATE_CHANGE_TYPE.textChange,
-      textValue: e.target.value,
-    });
     const {onTextInputChange} = this.props;
-    return onTextInputChange(e);
+    onTextInputChange && onTextInputChange(e);
   };
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -71,26 +66,14 @@ class StatefulSelectContainer extends React.Component<
     onBlur && onBlur(e);
   };
 
-  stateReducer = (
+  internalSetState = (
     type: ChangeActionT,
     e: SyntheticInputEvent<HTMLInputElement>,
     params: ParamsT,
   ) => {
-    let nextState = {};
-    switch (type) {
-      case STATE_CHANGE_TYPE.select:
-      case STATE_CHANGE_TYPE.unselect:
-        nextState = {
-          selectedOptions: params.selectedOptions,
-        };
-        break;
-      case STATE_CHANGE_TYPE.textChange: {
-        nextState = {
-          textValue: params.textValue,
-        };
-        break;
-      }
-    }
+    const nextState = {
+      selectedOptions: params.selectedOptions,
+    };
     const {stateReducer} = this.props;
     const newState = stateReducer(type, nextState, this.state, e, params);
     this.setState(newState);

@@ -9,7 +9,7 @@ import React from 'react';
 import {mount, shallow} from 'enzyme';
 import {
   Select,
-  StyledSearchIcon,
+  StyledSelectComponentIcon,
   SelectDropDown,
   StyledInput,
   StyledOption,
@@ -28,7 +28,7 @@ describe('Stateless select', function() {
     mockFn = jest.fn();
     events = {
       onChange: jest.fn(),
-      onTextInputChange: jest.fn(() => Promise.resolve()),
+      onTextInputChange: jest.fn(),
       onMouseEnter: mockFn,
       onMouseLeave: mockFn,
       onFocus: mockFn,
@@ -163,7 +163,7 @@ describe('Stateless select', function() {
         allProps.type = TYPE.search;
         allProps.options = options;
         allProps.onChange = jest.fn();
-        allProps.onTextInputChange = jest.fn(() => Promise.resolve());
+        allProps.onTextInputChange = jest.fn();
         wrapper = mount(<Select {...allProps} />);
       });
 
@@ -183,8 +183,8 @@ describe('Stateless select', function() {
           };
           const event =
             type === STATE_CHANGE_TYPE.unselect
-              ? [e, []]
-              : [e, [selectedOption]];
+              ? [e, undefined, true]
+              : [e, selectedOption];
           wrapper.instance().onChange(...event);
           expect(allProps.onChange).toHaveBeenCalledWith(
             e,
@@ -245,7 +245,7 @@ describe('Stateless select', function() {
       wrapper.unmount();
       allProps.selectedOptions = options;
       wrapper = mount(<Select {...allProps} />);
-      clearIcon = wrapper.find(StyledSearchIcon);
+      clearIcon = wrapper.find(StyledSelectComponentIcon);
       clearIcon = clearIcon.filterWhere(
         comp => comp.props().$type === ICON.clearAll,
       );
@@ -279,23 +279,23 @@ describe('Stateless select', function() {
       allProps = Object.assign({}, allProps, {
         type: TYPE.search,
         filterable: true,
-        options: [
-          {
-            id: 'aaa',
-            label: 'AAA',
-          },
-          {
-            id: 'aab',
-            label: 'AAB',
-          },
-          {
-            id: 'abb',
-            label: 'ABB',
-          },
-        ],
+        options: jest.fn(),
       });
-      let onTextInputChangePromise = Promise.resolve();
-      allProps.onTextInputChange.mockReturnValue(onTextInputChangePromise);
+      let onTextInputChangePromise = Promise.resolve([
+        {
+          id: 'aaa',
+          label: 'AAA',
+        },
+        {
+          id: 'aab',
+          label: 'AAB',
+        },
+        {
+          id: 'abb',
+          label: 'ABB',
+        },
+      ]);
+      allProps.options.mockReturnValue(onTextInputChangePromise);
       wrapper = mount(<Select {...allProps} />);
 
       let input = wrapper
@@ -382,7 +382,9 @@ describe('Stateless select', function() {
         .find(StyledInput)
         .first()
         .simulate('click');
-      expect(wrapper.instance().state.isDropDownOpen).toBeTruthy();
+      setTimeout(() => {
+        expect(wrapper.instance().state.isDropDownOpen).toBeTruthy();
+      }, 0);
     });
   });
 
@@ -398,18 +400,6 @@ describe('Stateless select', function() {
           {isDropDownOpen: mode === TYPE.select},
         ],
         [KEY_STRINGS.Escape, 'close dropdown', {isDropDownOpen: false}],
-        [
-          KEY_STRINGS.Enter,
-          'select option in dropdown',
-          {
-            selectedOptions: [
-              {
-                id: '123',
-                label: 'label for 123',
-              },
-            ],
-          },
-        ],
         [
           KEY_STRINGS.Backspace,
           'remove last selected tag in multiple mode',
@@ -447,7 +437,9 @@ describe('Stateless select', function() {
             .first();
         }
         input.simulate('keydown', {key: hotKey});
-        expect(wrapper.instance().state).toMatchObject(newState);
+        setTimeout(() => {
+          expect(wrapper.instance().state).toMatchObject(newState);
+        }, 0);
       });
     },
   );

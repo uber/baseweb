@@ -206,6 +206,7 @@ exports[`Stateless select should render component in search mode and false for m
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
+        optionsLoaded={false}
         overrides={Object {}}
         selectedOptions={Array []}
         type="search"
@@ -423,6 +424,7 @@ exports[`Stateless select should render component in search mode and true for mu
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
+        optionsLoaded={false}
         overrides={Object {}}
         selectedOptions={Array []}
         type="search"
@@ -627,6 +629,7 @@ exports[`Stateless select should render component in select mode and false for m
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
+        optionsLoaded={false}
         overrides={Object {}}
         selectedOptions={Array []}
         type="select"
@@ -831,6 +834,7 @@ exports[`Stateless select should render component in select mode and true for mu
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
+        optionsLoaded={false}
         overrides={Object {}}
         selectedOptions={Array []}
         type="select"

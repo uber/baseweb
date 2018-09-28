@@ -13,7 +13,7 @@ import {
   Input as StyledInput,
   InputContainer as StyledInputContainer,
   SingleSelection as StyledSingleSelection,
-  SearchIcon as StyledSearchIcon,
+  SelectComponentIcon as StyledSelectComponentIcon,
 } from './styled-components';
 
 import {Input as InputComponent} from '../input';
@@ -29,7 +29,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     overrides: {},
     selectedOptions: [],
     options: [],
-    onTextInputChange: () => Promise.resolve(),
+    onTextInputChange: () => {},
     onChange: () => {},
     onBlur: () => {},
     onFocus: () => {},
@@ -53,26 +53,15 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   state = {
     filteredOptions: null,
-    textValue: this.props.textValue,
+    textValue: '',
     selectedOptions: this.props.selectedOptions,
     isDropDownOpen: false,
+    options: [],
+    optionsLoaded: false,
   };
 
   constructor(props: PropsT) {
     super(props);
-    if (props.type === TYPE.select) {
-      const {selectedOptions} = this.state;
-      const options = this.getOptions();
-      selectedOptions.forEach(selectedOption => {
-        // selected option is not in all options and needs to be added on top
-        if (!options.find(selected => selected.id === selectedOption.id)) {
-          options.unshift({
-            id: selectedOption.id,
-            label: this.getOptionLabel(selectedOption),
-          });
-        }
-      });
-    }
   }
 
   componentDidMount() {
@@ -111,11 +100,13 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
     // $FlowFixMe
     const newTextValue = e.target.value;
-    this.setState({textValue: newTextValue});
-    this.props.onTextInputChange(e).then(() => {
-      this.setState({isDropDownOpen: true});
+    this.setState({
+      textValue: newTextValue,
+    });
+    this.props.onTextInputChange(e);
+    this.openDropDown(newTextValue, () => {
       if (this.props.filterable) {
-        let filteredOptions = this.props.options.filter(option =>
+        let filteredOptions = this.state.options.filter(option =>
           this.props.filterOption(option, newTextValue),
         );
         // reset filtered options for new search
@@ -129,17 +120,15 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   onChange = (
     e: SyntheticEvent<HTMLInputElement>,
-    pendingOptions?: Array<OptionT> = [],
+    pendingOption?: OptionT = {
+      id: '',
+      label: '',
+    },
+    isClearAll?: boolean,
   ) => {
     const multiple = this.isMultiple();
-    const selected = pendingOptions.reduce((acc, pendingTag) => {
-      if (this.state.selectedOptions.find(tag => tag.id === pendingTag.id)) {
-        acc.push(pendingTag);
-      }
-      return acc;
-    }, []);
     let selectedOptions;
-    if (!pendingOptions.length) {
+    if (isClearAll) {
       // clear all
       selectedOptions = [];
       this.setState({selectedOptions: selectedOptions});
@@ -147,37 +136,57 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         type: STATE_CHANGE_TYPE.unselect,
         selectedOptions,
       });
-    } else if (!selected.length) {
-      // select
-      selectedOptions = multiple ? this.state.selectedOptions.slice() : [];
-      selectedOptions = selectedOptions.concat(pendingOptions);
-      this.setState({selectedOptions: selectedOptions});
-      if (this.props.type === TYPE.select && !multiple) {
-        this.setState({isDropDownOpen: false});
-      }
-      this.props.onChange(e, {
-        type: STATE_CHANGE_TYPE.select,
-        option: pendingOptions[0],
-        selectedOptions,
-      });
-    } else if (multiple) {
-      // unselect
-      selectedOptions = this.state.selectedOptions.filter(
-        selectedOption => selectedOption.id !== selected[0].id,
+    } else {
+      const selected = this.state.selectedOptions.find(
+        tag => tag.id === pendingOption.id,
       );
-      this.setState({
-        selectedOptions: selectedOptions,
-      });
-      this.props.onChange(e, {
-        type: STATE_CHANGE_TYPE.unselect,
-        option: pendingOptions[0],
-        selectedOptions,
-      });
+      const isSelect = !selected;
+      if (isSelect) {
+        // select
+        selectedOptions = multiple ? this.state.selectedOptions.slice() : [];
+        selectedOptions = selectedOptions.concat([pendingOption]);
+        this.setState({selectedOptions: selectedOptions});
+        if (this.props.type === TYPE.select && !multiple) {
+          this.setState({isDropDownOpen: false});
+        }
+        this.props.onChange(e, {
+          type: STATE_CHANGE_TYPE.select,
+          option: pendingOption,
+          selectedOptions,
+        });
+      } else if (multiple) {
+        // unselect
+        selectedOptions = this.state.selectedOptions.filter(
+          selectedOption => selectedOption.id !== (selected || {}).id,
+        );
+        this.setState({
+          selectedOptions: selectedOptions,
+        });
+        this.props.onChange(e, {
+          type: STATE_CHANGE_TYPE.unselect,
+          option: pendingOption,
+          selectedOptions,
+        });
+      }
     }
   };
 
+  loadOptions(query?: string): Promise<void> {
+    return new Promise(resolve => {
+      const {options} = this.props;
+      this.setState({optionsLoaded: false});
+      if (typeof options === 'function') {
+        options(query).then(loadedOptions =>
+          this.setState({options: loadedOptions, optionsLoaded: true}, resolve),
+        );
+      } else {
+        this.setState({options, optionsLoaded: true}, resolve);
+      }
+    });
+  }
+
   getOptions() {
-    return this.state.filteredOptions || this.props.options || [];
+    return this.state.filteredOptions || this.state.options || [];
   }
 
   render() {
@@ -198,7 +207,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const {
       Root: {component: Root, props: rootProps},
       Input: {component: Input, props: inputProps},
-      SearchIcon: {component: SearchIcon, props: searchIconProps},
+      SelectComponentIcon: {
+        component: SelectComponentIcon,
+        props: selectComponentIconProps,
+      },
       InputContainer: {component: InputContainer, props: inputContainerProps},
     } = this.getSubComponents();
     const {placeholder, disabled} = this.props;
@@ -210,7 +222,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       : {
           onKeyDown: e => this.handledHotKeys(e),
           onClick: () => {
-            this.setState({isDropDownOpen: !this.state.isDropDownOpen});
+            const newValue = !this.state.isDropDownOpen;
+            newValue
+              ? this.openDropDown()
+              : this.setState({isDropDownOpen: newValue});
           },
         };
     return (
@@ -226,12 +241,12 @@ class Select extends React.Component<PropsT, StatelessStateT> {
               props: inputContainerProps,
             },
             After: () => (
-              <SearchIcon
+              <SelectComponentIcon
                 $type={ICON.select}
                 src={
                   'data:image/svg+xml;utf8,<svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.29289 5.29289L0.853553 0.853553C0.538571 0.538571 0.761654 0 1.20711 0H10.7929C11.2383 0 11.4614 0.538571 11.1464 0.853554L6.70711 5.29289C6.31658 5.68342 5.68342 5.68342 5.29289 5.29289Z" transform="translate(12) scale(-1 1)" fill="#666666"/></svg>'
                 }
-                {...searchIconProps}
+                {...selectComponentIconProps}
               />
             ),
             Before: () => this.getMultipleSelections(),
@@ -245,7 +260,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const {
       InputContainer: {component: InputContainer, props: inputContainerProps},
       Input: {component: Input, props: inputProps},
-      SearchIcon: {component: SearchIcon, props: searchIconProps},
+      SelectComponentIcon: {
+        component: SelectComponentIcon,
+        props: selectComponentIconProps,
+      },
     } = this.getSubComponents();
     const {placeholder, error, disabled} = this.props;
     const {textValue} = this.state;
@@ -255,7 +273,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         placeholder={placeholder}
         value={textValue}
         //$FlowFixMe
-        onChange={this.onTextInputChange.bind(this)}
+        onChange={this.onTextInputChange}
         overrides={{
           Input: {
             props: {
@@ -271,14 +289,14 @@ class Select extends React.Component<PropsT, StatelessStateT> {
             props: inputContainerProps,
           },
           After: () => (
-            <SearchIcon
+            <SelectComponentIcon
               $disabled={disabled}
-              onClick={e => this.onChange(e, [])}
+              onClick={e => this.onChange(e, undefined, true)}
               $type={ICON.clearAll}
               src={
                 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z" fill="#999999"/></svg>'
               }
-              {...searchIconProps}
+              {...selectComponentIconProps}
             />
           ),
           Before: () => this.getMultipleSelections(),
@@ -289,7 +307,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getMultipleSelections() {
     const {
-      SearchIcon: {component: SearchIcon, props: searchIconProps},
+      SelectComponentIcon: {
+        component: SelectComponentIcon,
+        props: selectComponentIconProps,
+      },
       Tag: {component: Tag, props: tagProps},
       SingleSelection: {
         component: SingleSelection,
@@ -302,12 +323,12 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     return (
       <React.Fragment>
         {type === TYPE.search && (
-          <SearchIcon
+          <SelectComponentIcon
             $type={ICON.loop}
             src={
               'data:image/svg+xml;utf8,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z" transform="translate(1 1)" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round"/></svg>'
             }
-            {...searchIconProps}
+            {...selectComponentIconProps}
           />
         )}
         {selectedOptions.map(
@@ -345,12 +366,13 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   getDropDown() {
     const {overrides, type, rows} = this.props;
     const options = this.getOptions();
-    const {isDropDownOpen, selectedOptions} = this.state;
+    const {isDropDownOpen, selectedOptions, optionsLoaded} = this.state;
     const dropDownProps = {
       rows,
       type,
       options,
       overrides,
+      optionsLoaded,
       isDropDownOpen,
       selectedOptions,
       getOptionLabel: this.getOptionLabel.bind(this),
@@ -377,6 +399,12 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     return type === TYPE.search ? true : multiple;
   }
 
+  openDropDown(newTextValue?: string, callback?: () => void) {
+    this.setState({isDropDownOpen: true}, () => {
+      this.loadOptions(newTextValue).then(callback);
+    });
+  }
+
   handledHotKeys(
     // $FlowFixMe
     e: SyntheticEvent<EventTarget> | KeyboardEvent,
@@ -388,7 +416,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         if (e.key === KEY_STRINGS.Space && this.props.type === TYPE.search) {
           return;
         }
-        this.setState({isDropDownOpen: true});
+        this.openDropDown();
         e.preventDefault();
         e.stopPropagation();
         return true;
@@ -397,7 +425,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         return true;
       case KEY_STRINGS.Enter:
         if (option) {
-          this.onChange(e, [option]);
+          this.onChange(e, option);
         }
         return;
       case KEY_STRINGS.Backspace:
@@ -417,7 +445,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       Input: getOverrideObject(overrides.Input, StyledInput),
       Tag: getOverrideObject(overrides.Tag, StyledTag),
       Root: getOverrideObject(overrides.Root, StyledRoot),
-      SearchIcon: getOverrideObject(overrides.SearchIcon, StyledSearchIcon),
+      SelectComponentIcon: getOverrideObject(
+        overrides.SelectComponentIcon,
+        StyledSelectComponentIcon,
+      ),
       SingleSelection: getOverrideObject(
         overrides.SingleSelection,
         StyledSingleSelection,
