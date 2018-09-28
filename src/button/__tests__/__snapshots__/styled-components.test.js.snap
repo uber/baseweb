@@ -119,7 +119,7 @@ Object {
     "backgroundColor": "#F7F7F7",
   },
   "backgroundColor": "transparent",
-  "color": "#1E66F0",
+  "color": "#276EF1",
 }
 `;
 
@@ -135,7 +135,7 @@ Object {
     "backgroundColor": "#E5E5E5",
   },
   "backgroundColor": "transparent",
-  "color": "#1E66F0",
+  "color": "#276EF1",
 }
 `;
 
@@ -150,7 +150,7 @@ Object {
   ":hover:enabled": Object {
     "backgroundColor": "#174EB6",
   },
-  "backgroundColor": "#1E66F0",
+  "backgroundColor": "#276EF1",
   "color": "#FFFFFF",
 }
 `;
@@ -166,7 +166,7 @@ Object {
   ":hover:enabled": Object {
     "backgroundColor": "#123D90",
   },
-  "backgroundColor": "#1E66F0",
+  "backgroundColor": "#276EF1",
   "color": "#FFFFFF",
 }
 `;
@@ -183,7 +183,7 @@ Object {
     "backgroundColor": "#D2E0FC",
   },
   "backgroundColor": "#EDF3FE",
-  "color": "#1E66F0",
+  "color": "#276EF1",
 }
 `;
 
@@ -199,7 +199,7 @@ Object {
     "backgroundColor": "#9CBCF8",
   },
   "backgroundColor": "#EDF3FE",
-  "color": "#1E66F0",
+  "color": "#276EF1",
 }
 `;
 
@@ -215,7 +215,7 @@ Object {
     "backgroundColor": "#E5E5E5",
   },
   "backgroundColor": "#F7F7F7",
-  "color": "#1E66F0",
+  "color": "#276EF1",
 }
 `;
 
@@ -231,7 +231,7 @@ Object {
     "backgroundColor": "#CCCCCC",
   },
   "backgroundColor": "#F7F7F7",
-  "color": "#1E66F0",
+  "color": "#276EF1",
 }
 `;
 
