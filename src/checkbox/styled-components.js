@@ -116,7 +116,6 @@ export const Root = styled('label', props => {
 function getToggleThumbColor(props) {
   const {
     $disabled,
-    $checked,
     $isFocused,
     $isError,
     $isHovered,
@@ -126,10 +125,8 @@ function getToggleThumbColor(props) {
   const {colors} = $theme;
   if ($disabled) {
     return colors.mono600;
-  } else if ($isActive || $isFocused) {
-    return colors.primary450;
-  } else if ($isHovered) {
-    return $checked ? colors.primary450 : colors.primary470;
+  } else if ($isActive || $isFocused || $isHovered) {
+    return colors.primary400;
   } else if ($isError) {
     if ($isActive || $isFocused) {
       return colors.negative200;

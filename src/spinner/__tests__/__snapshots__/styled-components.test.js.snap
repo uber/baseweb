@@ -15,7 +15,7 @@ Object {
   "animationTimingFunction": "linear",
   "cursor": "wait",
   "display": "inline-block",
-  "fill": "$theme.colors.primary450",
+  "fill": "$theme.colors.primary400",
   "height": "$theme.sizing.scale800",
   "width": "$theme.sizing.scale800",
 }
@@ -36,7 +36,7 @@ Object {
   "animationTimingFunction": "linear",
   "cursor": "wait",
   "display": "inline-block",
-  "fill": "$theme.colors.primary450",
+  "fill": "$theme.colors.primary400",
   "height": "$theme.sizing.scale800",
   "width": "$theme.sizing.scale800",
 }
@@ -57,7 +57,7 @@ Object {
   "animationTimingFunction": "linear",
   "cursor": "wait",
   "display": "inline-block",
-  "fill": "$theme.colors.primary450",
+  "fill": "$theme.colors.primary400",
   "height": "$theme.sizing.scale800",
   "width": "$theme.sizing.scale800",
 }
