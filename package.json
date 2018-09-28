@@ -84,6 +84,7 @@
     "markdownlint-cli": "^0.13.0",
     "nightwatch": "^0.9.21",
     "nightwatch-accessibility": "^1.6.0",
+    "@gergelyke/nightwatch-vrt": "1.0.0",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.4.1",
     "react": "^16.4.0",

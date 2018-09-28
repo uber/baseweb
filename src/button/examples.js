@@ -252,7 +252,7 @@ export default {
   },
   [examples.BUTTON_WITH_ENHANCERS]: function Story3() {
     return (
-      <ButtonContainer>
+      <ButtonContainer className="buttongroup">
         <ButtonRow>
           <Button>Primary</Button>
         </ButtonRow>

@@ -11,7 +11,12 @@ function goToUrl({suite, test, client}) {
   return client.url(getUrl({launchUrl: client.launchUrl, suite, test}));
 }
 
+function formatFileName(testName) {
+  return testName.toLowerCase().replace(/ /g, '-');
+}
+
 module.exports = {
   getUrl,
   goToUrl,
+  formatFileName,
 };

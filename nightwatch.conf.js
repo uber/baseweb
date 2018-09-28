@@ -75,10 +75,12 @@ module.exports = {
   custom_assertions_path: [
     resolve(__dirname, 'e2e/assertions'),
     resolve(__dirname, 'node_modules/nightwatch-accessibility/assertions'),
+    resolve(__dirname, 'node_modules/@gergelyke/nightwatch-vrt/assertions'),
   ],
   custom_commands_path: [
     resolve(__dirname, 'e2e/commands'),
     resolve(__dirname, 'node_modules/nightwatch-accessibility/commands'),
+    resolve(__dirname, 'node_modules/@gergelyke/nightwatch-vrt/commands'),
   ],
 
   selenium: {

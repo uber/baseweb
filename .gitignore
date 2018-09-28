@@ -15,3 +15,5 @@ docs
 *.sublime-workspace
 .fusion
 reports
+vrt/latest
+vrt/diff
