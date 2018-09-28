@@ -28,7 +28,7 @@ describe('Stateless select', function() {
     mockFn = jest.fn();
     events = {
       onChange: jest.fn(),
-      onTextInputChange: jest.fn(() => Promise.resolve()),
+      onTextInputChange: jest.fn(),
       onMouseEnter: mockFn,
       onMouseLeave: mockFn,
       onFocus: mockFn,
@@ -163,7 +163,7 @@ describe('Stateless select', function() {
         allProps.type = TYPE.search;
         allProps.options = options;
         allProps.onChange = jest.fn();
-        allProps.onTextInputChange = jest.fn(() => Promise.resolve());
+        allProps.onTextInputChange = jest.fn();
         wrapper = mount(<Select {...allProps} />);
       });
 
@@ -279,23 +279,23 @@ describe('Stateless select', function() {
       allProps = Object.assign({}, allProps, {
         type: TYPE.search,
         filterable: true,
-        options: [
-          {
-            id: 'aaa',
-            label: 'AAA',
-          },
-          {
-            id: 'aab',
-            label: 'AAB',
-          },
-          {
-            id: 'abb',
-            label: 'ABB',
-          },
-        ],
+        options: jest.fn(),
       });
-      let onTextInputChangePromise = Promise.resolve();
-      allProps.onTextInputChange.mockReturnValue(onTextInputChangePromise);
+      let onTextInputChangePromise = Promise.resolve([
+        {
+          id: 'aaa',
+          label: 'AAA',
+        },
+        {
+          id: 'aab',
+          label: 'AAB',
+        },
+        {
+          id: 'abb',
+          label: 'ABB',
+        },
+      ]);
+      allProps.options.mockReturnValue(onTextInputChangePromise);
       wrapper = mount(<Select {...allProps} />);
 
       let input = wrapper
