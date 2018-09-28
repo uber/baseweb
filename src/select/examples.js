@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable react/display-name*/
+/* eslint-disable no-console*/
 
 import * as React from 'react';
 // Styled elements
@@ -61,7 +62,24 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
       <React.Fragment>
         <StatefulSelect
           rows={8}
-          options={this.state.options}
+          options={query => {
+            return new Promise(resolve => {
+              if (!query) {
+                resolve(this.state.options);
+              } else {
+                let text = query;
+                let options = [];
+                if (text.length > 5) {
+                  options = generateOptions(text);
+                  this.setState({options: options}, () =>
+                    resolve(this.state.options),
+                  );
+                } else {
+                  resolve(this.state.options);
+                }
+              }
+            });
+          }}
           multiple={true}
           filterable={this.props.filterable}
           type={TYPE.search}
@@ -70,18 +88,9 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
           }}
           label="Search for tags"
           placeholder="Start searching"
-          onTextInputChange={e => {
-            return new Promise(resolve => {
-              // $FlowFixMe
-              let text = e.target.value;
-              let options = [];
-              if (text.length > 5) {
-                options = generateOptions(text);
-                this.setState({options: options}, resolve);
-              } else {
-                resolve();
-              }
-            });
+          onTextInputChange={(e: SyntheticEvent<HTMLInputElement>) => {
+            //$FlowFixMe
+            console.log('Text has changed to:' + e.target.value);
           }}
           onChange={(e, {type, option = emptyOption, selectedOptions}) => {
             switch (type) {

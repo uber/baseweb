@@ -47,7 +47,7 @@ export type OverridesDropDownT = {
 };
 
 export type PropsT = {
-  options: Array<OptionT>,
+  options: Array<OptionT> | ((query?: *) => Promise<Array<OptionT>>),
   overrides?: OverridesT,
   selectedOptions: Array<OptionT>,
   rows: number,
@@ -64,7 +64,7 @@ export type PropsT = {
   getOptionLabel?: OptionT => React$Node,
   getSelectedOptionLabel?: OptionT => React$Node,
   $theme?: *,
-  onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => Promise<void>,
+  onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
   onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
   onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -79,6 +79,7 @@ export type StatelessStateT = {
   selectedOptions: Array<OptionT>,
   isDropDownOpen: boolean,
   filteredOptions?: ?Array<OptionT>,
+  options: Array<OptionT>,
 };
 
 export type StateT = {
@@ -99,7 +100,7 @@ export type StatefulContainerPropsT = {
   children?: (*) => React$Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
-  onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => Promise<void>,
+  onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
   onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
   onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -110,10 +111,10 @@ export type StatefulContainerPropsT = {
 
 export type StatefulSelectPropsT = {
   overrides?: OverridesT,
-  options?: Array<OptionT>,
+  options?: Array<OptionT> | ((query?: *) => Promise<Array<OptionT>>),
   initialState?: StateT,
   autoFocus?: boolean,
-  onTextInputChange?: (e: SyntheticEvent<HTMLInputElement>) => Promise<void>,
+  onTextInputChange?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onChange?: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
   onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,

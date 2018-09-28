@@ -29,7 +29,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     overrides: {},
     selectedOptions: [],
     options: [],
-    onTextInputChange: () => Promise.resolve(),
+    onTextInputChange: () => {},
     onChange: () => {},
     onBlur: () => {},
     onFocus: () => {},
@@ -56,26 +56,15 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     textValue: this.props.textValue,
     selectedOptions: this.props.selectedOptions,
     isDropDownOpen: false,
+    options: [],
   };
 
   constructor(props: PropsT) {
     super(props);
-    if (props.type === TYPE.select) {
-      const {selectedOptions} = this.state;
-      const options = this.getOptions();
-      selectedOptions.forEach(selectedOption => {
-        // selected option is not in all options and needs to be added on top
-        if (!options.find(selected => selected.id === selectedOption.id)) {
-          options.unshift({
-            id: selectedOption.id,
-            label: this.getOptionLabel(selectedOption),
-          });
-        }
-      });
-    }
   }
 
   componentDidMount() {
+    this.loadOptions();
     if (__BROWSER__) {
       document.addEventListener('click', this.handleClickEvent, {
         capture: true,
@@ -111,11 +100,14 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
     // $FlowFixMe
     const newTextValue = e.target.value;
-    this.setState({textValue: newTextValue});
-    this.props.onTextInputChange(e).then(() => {
+    this.setState({
+      textValue: newTextValue,
+    });
+    this.props.onTextInputChange(e);
+    this.loadOptions(newTextValue).then(() => {
       this.setState({isDropDownOpen: true});
       if (this.props.filterable) {
-        let filteredOptions = this.props.options.filter(option =>
+        let filteredOptions = this.state.options.filter(option =>
           this.props.filterOption(option, newTextValue),
         );
         // reset filtered options for new search
@@ -176,8 +168,21 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     }
   };
 
+  loadOptions(query?: string): Promise<void> {
+    return new Promise(resolve => {
+      const {options} = this.props;
+      if (typeof options === 'function') {
+        options(query).then(loadedOptions =>
+          this.setState({options: loadedOptions}, resolve),
+        );
+      } else {
+        this.setState({options}, resolve);
+      }
+    });
+  }
+
   getOptions() {
-    return this.state.filteredOptions || this.props.options || [];
+    return this.state.filteredOptions || this.state.options || [];
   }
 
   render() {
