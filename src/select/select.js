@@ -20,7 +20,7 @@ import {Input as InputComponent} from '../input';
 import {Tag as StyledTag} from '../tag';
 import {ICON, TYPE, STATE_CHANGE_TYPE} from './constants';
 import SelectDropDown from './dropdown';
-import type {OptionT, PropsT, StatelessStateT, ChangeActionT} from './types';
+import type {OptionT, PropsT, StatelessStateT} from './types';
 import {getOverrideObject} from '../helpers/overrides';
 import {KEY_STRINGS} from '../menu/constants';
 
@@ -29,7 +29,8 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     overrides: {},
     selectedOptions: [],
     options: [],
-    onChange: () => Promise.resolve(),
+    onTextInputChange: () => {},
+    onChange: () => {},
     onBlur: () => {},
     onFocus: () => {},
     onMouseEnter: () => {},
@@ -55,26 +56,15 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     textValue: this.props.textValue,
     selectedOptions: this.props.selectedOptions,
     isDropDownOpen: false,
+    options: [],
   };
 
   constructor(props: PropsT) {
     super(props);
-    if (props.type === TYPE.select) {
-      const {selectedOptions} = this.state;
-      const options = this.getOptions();
-      selectedOptions.forEach(selectedOption => {
-        // selected option is not in all options and needs to be added on top
-        if (!options.find(selected => selected.id === selectedOption.id)) {
-          options.unshift({
-            id: selectedOption.id,
-            label: this.getOptionLabel(selectedOption),
-          });
-        }
-      });
-    }
   }
 
   componentDidMount() {
+    this.loadOptions();
     if (__BROWSER__) {
       document.addEventListener('click', this.handleClickEvent, {
         capture: true,
@@ -107,82 +97,92 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   onMouseLeave = (e: SyntheticEvent<HTMLInputElement>) => {};
 
+  onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    // $FlowFixMe
+    const newTextValue = e.target.value;
+    this.setState({
+      textValue: newTextValue,
+    });
+    this.props.onTextInputChange(e);
+    this.loadOptions(newTextValue).then(() => {
+      this.setState({isDropDownOpen: true});
+      if (this.props.filterable) {
+        let filteredOptions = this.state.options.filter(option =>
+          this.props.filterOption(option, newTextValue),
+        );
+        // reset filtered options for new search
+        if (!filteredOptions.length) {
+          filteredOptions = newTextValue ? [] : null;
+        }
+        this.setState({filteredOptions});
+      }
+    });
+  };
+
   onChange = (
     e: SyntheticEvent<HTMLInputElement>,
-    type: ChangeActionT,
-    option?: OptionT = {
-      id: '',
-      label: '',
-    },
+    pendingOptions?: Array<OptionT> = [],
   ) => {
     const multiple = this.isMultiple();
-    const selected = this.state.selectedOptions.find(
-      tag => tag.id === option.id,
-    );
+    const selected = pendingOptions.reduce((acc, pendingTag) => {
+      if (this.state.selectedOptions.find(tag => tag.id === pendingTag.id)) {
+        acc.push(pendingTag);
+      }
+      return acc;
+    }, []);
     let selectedOptions;
-    switch (type) {
-      case STATE_CHANGE_TYPE.select:
-        if (!selected) {
-          selectedOptions = multiple ? this.state.selectedOptions.slice() : [];
-          selectedOptions.push(option);
-          this.setState({selectedOptions: selectedOptions});
-          if (this.props.type === TYPE.select && !multiple) {
-            this.setState({isDropDownOpen: false});
-          }
-          this.props.onChange(e, {type, option, selectedOptions});
-        } else if (multiple) {
-          selectedOptions = this.state.selectedOptions.filter(
-            selectedOption => selectedOption.id !== selected.id,
-          );
-          this.setState({
-            selectedOptions: selectedOptions,
-          });
-          this.props.onChange(e, {
-            type: STATE_CHANGE_TYPE.unselect,
-            option,
-            selectedOptions,
-          });
-        }
-        break;
-      case STATE_CHANGE_TYPE.clearAll: {
-        const selectedOptions = [];
-        this.setState({selectedOptions: selectedOptions});
-        this.props.onChange(e, {type, selectedOptions});
-        break;
+    if (!pendingOptions.length) {
+      // clear all
+      selectedOptions = [];
+      this.setState({selectedOptions: selectedOptions});
+      this.props.onChange(e, {
+        type: STATE_CHANGE_TYPE.unselect,
+        selectedOptions,
+      });
+    } else if (!selected.length) {
+      // select
+      selectedOptions = multiple ? this.state.selectedOptions.slice() : [];
+      selectedOptions = selectedOptions.concat(pendingOptions);
+      this.setState({selectedOptions: selectedOptions});
+      if (this.props.type === TYPE.select && !multiple) {
+        this.setState({isDropDownOpen: false});
       }
-      case STATE_CHANGE_TYPE.textChange: {
-        // $FlowFixMe
-        const newTextValue = e.target.value;
-        this.setState({textValue: newTextValue});
-        this.props
-          .onChange(e, {
-            type: STATE_CHANGE_TYPE.textChange,
-            textValue: newTextValue,
-          })
-          .then(() => {
-            this.setState({isDropDownOpen: true});
-            if (this.props.filterable) {
-              let filteredOptions = this.props.options.filter(option =>
-                this.props.filterOption(option, newTextValue),
-              );
-              // reset filtered options for new search
-              if (!filteredOptions.length) {
-                filteredOptions = newTextValue ? [] : null;
-              }
-              this.setState({filteredOptions});
-            }
-          });
-        break;
-      }
-      case STATE_CHANGE_TYPE.keyDown: {
-        this.handledHotKeys(e);
-        break;
-      }
+      this.props.onChange(e, {
+        type: STATE_CHANGE_TYPE.select,
+        option: pendingOptions[0],
+        selectedOptions,
+      });
+    } else if (multiple) {
+      // unselect
+      selectedOptions = this.state.selectedOptions.filter(
+        selectedOption => selectedOption.id !== selected[0].id,
+      );
+      this.setState({
+        selectedOptions: selectedOptions,
+      });
+      this.props.onChange(e, {
+        type: STATE_CHANGE_TYPE.unselect,
+        option: pendingOptions[0],
+        selectedOptions,
+      });
     }
   };
 
+  loadOptions(query?: string): Promise<void> {
+    return new Promise(resolve => {
+      const {options} = this.props;
+      if (typeof options === 'function') {
+        options(query).then(loadedOptions =>
+          this.setState({options: loadedOptions}, resolve),
+        );
+      } else {
+        this.setState({options}, resolve);
+      }
+    });
+  }
+
   getOptions() {
-    return this.state.filteredOptions || this.props.options || [];
+    return this.state.filteredOptions || this.state.options || [];
   }
 
   render() {
@@ -260,15 +260,13 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         placeholder={placeholder}
         value={textValue}
         //$FlowFixMe
-        onChange={(e: SyntheticInputEvent<HTMLElement>) =>
-          this.onChange(e, STATE_CHANGE_TYPE.textChange)
-        }
+        onChange={this.onTextInputChange.bind(this)}
         overrides={{
           Input: {
             props: {
               tabIndex: this.props.tabIndex,
               // onKeyDown happens before onChange to avoid race condition in set of value and hot keys processing
-              onKeyDown: e => this.onChange(e, STATE_CHANGE_TYPE.keyDown),
+              onKeyDown: e => this.handledHotKeys(e),
               ...inputProps,
             },
             component: Input,
@@ -280,7 +278,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
           After: () => (
             <SearchIcon
               $disabled={disabled}
-              onClick={e => this.onChange(e, STATE_CHANGE_TYPE.clearAll)}
+              onClick={e => this.onChange(e, [])}
               $type={ICON.clearAll}
               src={
                 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z" fill="#999999"/></svg>'
@@ -404,7 +402,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         return true;
       case KEY_STRINGS.Enter:
         if (option) {
-          this.onChange(e, STATE_CHANGE_TYPE.select, option);
+          this.onChange(e, [option]);
         }
         return;
       case KEY_STRINGS.Backspace:

@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable react/display-name*/
+/* eslint-disable no-console*/
 
 import * as React from 'react';
 // Styled elements
@@ -61,7 +62,24 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
       <React.Fragment>
         <StatefulSelect
           rows={8}
-          options={this.state.options}
+          options={query => {
+            return new Promise(resolve => {
+              if (!query) {
+                resolve(this.state.options);
+              } else {
+                let text = query;
+                let options = [];
+                if (text.length > 5) {
+                  options = generateOptions(text);
+                  this.setState({options: options}, () =>
+                    resolve(this.state.options),
+                  );
+                } else {
+                  resolve(this.state.options);
+                }
+              }
+            });
+          }}
           multiple={true}
           filterable={this.props.filterable}
           type={TYPE.search}
@@ -70,37 +88,21 @@ class ParentSearch extends React.Component<ExamplePropsT, ExampleStateT> {
           }}
           label="Search for tags"
           placeholder="Start searching"
+          onTextInputChange={(e: SyntheticEvent<HTMLInputElement>) => {
+            //$FlowFixMe
+            console.log('Text has changed to:' + e.target.value);
+          }}
           onChange={(e, {type, option = emptyOption, selectedOptions}) => {
-            return new Promise(resolve => {
-              switch (type) {
-                case STATE_CHANGE_TYPE.select:
-                  // eslint-disable-next-line no-console
-                  console.log('Selected id:' + option.id);
-                  resolve();
-                  break;
-                case STATE_CHANGE_TYPE.unselect:
-                  // eslint-disable-next-line no-console
-                  console.log('Unselected id:' + option.id);
-                  resolve();
-                  break;
-                case STATE_CHANGE_TYPE.clearAll:
-                  // eslint-disable-next-line no-console
-                  console.log('Cleared all tags');
-                  resolve();
-                  break;
-                case STATE_CHANGE_TYPE.textChange: {
-                  // $FlowFixMe
-                  let text = e.target.value;
-                  let options = [];
-                  if (text.length > 5) {
-                    options = generateOptions(text);
-                    this.setState({options: options}, resolve);
-                  }
-                  break;
-                }
-              }
-              resolve();
-            });
+            switch (type) {
+              case STATE_CHANGE_TYPE.select:
+                // eslint-disable-next-line no-console
+                console.log('Selected id:' + option.id);
+                break;
+              case STATE_CHANGE_TYPE.unselect:
+                // eslint-disable-next-line no-console
+                console.log('Unselected id:' + option.id);
+                break;
+            }
           }}
         />
       </React.Fragment>
@@ -159,13 +161,10 @@ class ParentSelect extends React.Component<ExamplePropsT, ExampleStateT> {
           label="Select"
           placeholder={this.props.multiple ? null : 'Choose one'}
           onChange={(e, {type, option = emptyOption}) => {
-            return new Promise(resolve => {
-              if (type === STATE_CHANGE_TYPE.select) {
-                // eslint-disable-next-line no-console
-                console.log('Selected option:' + option.id);
-              }
-              resolve();
-            });
+            if (type === STATE_CHANGE_TYPE.select) {
+              // eslint-disable-next-line no-console
+              console.log('Selected option:' + option.id);
+            }
           }}
         />
       </React.Fragment>

@@ -13,7 +13,7 @@ import {
   Option as StyledOption,
 } from './styled-components';
 
-import {ICON, STATE_CHANGE_TYPE} from './constants';
+import {ICON} from './constants';
 
 import {StatefulMenu} from '../menu';
 import type {DropDownPropsT} from './types';
@@ -50,7 +50,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
               onClickCapture: e => e.stopPropagation(),
             }
           : {
-              onClick: e => onChange(e, STATE_CHANGE_TYPE.select, option),
+              onClick: e => onChange(e, [option]),
             };
       }}
       overrides={{

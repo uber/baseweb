@@ -10,30 +10,21 @@ LICENSE file in the root directory of this source tree.
 const scenarios = require('./examples-list');
 const {goToUrl} = require('../../e2e/helpers');
 
-const suite = 'Checkbox Test Suite';
-
-const selectors = {
-  radioOne: '[data-name="radioSub1"] label',
-  radioTwo: '[data-name="radioSub2"] label',
-  radioMain: '[data-name="radioMain"] label input[type="checkbox"]',
-};
+const suite = 'Button Test Suite';
 
 module.exports = {
   afterEach: function(client, done) {
     client.notifySauceLabs(done);
   },
-  [scenarios.INDETERMINATE]: function(client) {
+  'Basic a11y test': function(client) {
     goToUrl({
       suite,
-      test: scenarios.INDETERMINATE,
+      test: scenarios.BUTTON_WITH_ENHANCERS,
       client,
     })
       .initAccessibility()
       .waitForElementVisible('body', 1000)
-      .click(selectors.radioOne)
-      .click(selectors.radioTwo)
       .assert.accessibility('html', {})
-      .assert.attributeEquals(selectors.radioMain, 'checked', 'true')
       .end();
   },
 };
