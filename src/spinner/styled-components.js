@@ -24,7 +24,7 @@ export const Svg = styled('svg', props => {
   const {$theme, $color} = props;
   return {
     ...getSvgStyles(props),
-    fill: $color || $theme.colors.primary450,
+    fill: $color || $theme.colors.primary400,
     cursor: 'wait',
     animationName: spin,
     animationDuration: $theme.animation.timing700,
