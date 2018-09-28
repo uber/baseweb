@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const scenarios = require('./examples-list');
-const {goToUrl, formatFileName} = require('../../e2e/helpers');
+const {goToUrl, assertVisuals} = require('../../e2e/helpers');
 
 const suite = 'Button Test Suite';
 
@@ -26,13 +26,10 @@ module.exports = {
       .waitForElementVisible('body', 1000)
       .assert.accessibility('html', {});
 
-    if (client.options.desiredCapabilities.browserName === 'chrome') {
-      client
-        .resizeWindow(1024, 768)
-        .assert.screenshotIdenticalToBaseline(
-          formatFileName(scenarios.BUTTON_WITH_ENHANCERS),
-        );
-    }
+    assertVisuals({
+      client,
+      id: scenarios.BUTTON_WITH_ENHANCERS,
+    });
 
     client.end();
   },

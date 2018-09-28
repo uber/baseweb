@@ -43,7 +43,7 @@ const environments = {
 };
 
 const sauceLabsBaseConfig = {
-  launch_url: 'http://localhost:8080',
+  launch_url: process.env.E2E_LAUNCH_URL || 'http://localhost:8080',
   selenium_port: 80,
   selenium_host: 'ondemand.saucelabs.com',
   silent: true,
@@ -51,6 +51,9 @@ const sauceLabsBaseConfig = {
   access_key: '${SAUCE_ACCESS_KEY}',
   globals: {
     waitForConditionTimeout: 10000,
+    visual_regression_settings: {
+      prompt: !!process.env.VRT_OVERRIDE,
+    },
   },
   desiredCapabilities: {
     'tunnel-identifier': JOB_IDENTIFIER,
@@ -91,7 +94,7 @@ module.exports = {
 
   test_settings: {
     default: {
-      launch_url: 'http://localhost:8080',
+      launch_url: process.env.E2E_LAUNCH_URL || 'http://localhost:8080',
       selenium_port: 4444,
       selenium_host: 'localhost',
       silent: true,
