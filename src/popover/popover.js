@@ -372,7 +372,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return bodyProps;
   }
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children: React.Node}> {
+  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
     const {isOpen, showArrow} = this.props;
     const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {

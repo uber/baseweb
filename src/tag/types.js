@@ -24,6 +24,6 @@ export type PropsT = {
   $theme?: *,
   onActionClick: (
     e: SyntheticEvent<HTMLInputElement>,
-    children: React$Node,
+    children?: React$Node,
   ) => void,
 };
