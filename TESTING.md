@@ -16,6 +16,15 @@ yarn e2e:test
 
 ## Running end to end tests against Sauce Labs
 
+### Using `docker-compose`
+
+```sh
+docker-compose build
+BUILDKITE_BUILD_NUMBER=local SAUCE_ACCESS_KEY= SAUCE_USERNAME= docker-compose run e2e-test yarn e2e:test:ci
+```
+
+### Using your system
+
 ```sh
 yarn e2e:build && yarn e2e:serve
 yarn localtunnel --port 8000
