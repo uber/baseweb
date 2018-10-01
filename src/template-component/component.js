@@ -17,7 +17,7 @@ class Component extends React.Component<ComponentPropsT> {
     onClick: () => {},
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children: React.Node}> {
+  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
     const {prop} = this.props;
     return {
       $prop: prop,
