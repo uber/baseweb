@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import {styled} from 'fusion-plugin-styletron-react';
+import {styled} from 'baseui';
 
 import {Button, KIND} from 'baseui/button';
 import {Card} from 'baseui/card';
