@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {goToUrl, assertVisuals} = require('../../e2e/helpers');
 
 const suite = 'Button Test Suite';
 
@@ -24,7 +24,13 @@ module.exports = {
     })
       .initAccessibility()
       .waitForElementVisible('body', 1000)
-      .assert.accessibility('html', {})
-      .end();
+      .assert.accessibility('html', {});
+
+    assertVisuals({
+      client,
+      id: scenarios.BUTTON_WITH_ENHANCERS,
+    });
+
+    client.end();
   },
 };
