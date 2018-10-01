@@ -54,6 +54,7 @@ export default () => {
 * `StyledRoot`
 * `StyledAxis`
 * `StyledTick`
+* `StyledTickBar`
 * `StyledThumb`
 
 ## `Slider` API
@@ -70,6 +71,7 @@ export default () => {
   * `Root` container element to render.
   * `Axis` is the range line element to render.
   * `Tick` to render a tick(label) for min, max and optional points on axis and on top of `Thumb`
+  * `TickBar` to render a ticks container for min, max and optional points.
   * `Thumb` to render a thumb sliding over axis.
 * `onChange: func(event, value)` - Optional
   handler for events on trigger element, each time thumbs change selection, which is passed in `value`
