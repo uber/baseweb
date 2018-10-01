@@ -16,11 +16,9 @@ function formatFileName(testName) {
 }
 
 function assertVisuals({client, id}) {
-  const isChrome = client.options.desiredCapabilities.browserName === 'chrome';
-  const isMac = client.options.desiredCapabilities.platform === 'macOS 10.12';
   const fileName = formatFileName(id);
 
-  if (isChrome && isMac) {
+  if (client.options.desiredCapabilities.isVrt) {
     client
       .resizeWindow(1024, 768)
       .assert.screenshotIdenticalToBaseline(fileName);

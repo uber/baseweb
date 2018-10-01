@@ -18,6 +18,7 @@ const environments = {
       browserName: 'chrome',
       platform: 'macOS 10.12',
       extendedDebugging: true,
+      isVrt: true,
       ...buildSettings,
     },
   },
