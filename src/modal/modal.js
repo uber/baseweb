@@ -187,7 +187,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     });
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children: React.Node}> {
+  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
     const {animate, isOpen, size, role, closeable} = this.props;
     return {
       $animate: animate,
