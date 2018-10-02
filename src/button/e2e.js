@@ -6,31 +6,35 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* global after */
 
 const scenarios = require('./examples-list');
 const {goToUrl, assertVisuals} = require('../../e2e/helpers');
 
 const suite = 'Button Test Suite';
 
-module.exports = {
-  afterEach: function(client, done) {
-    client.notifySauceLabs(done);
-  },
-  'Basic a11y test': function(client) {
+describe('The button component', () => {
+  afterEach((browser, done) => {
+    browser.notifySauceLabs(done);
+  });
+
+  after((browser, done) => {
+    browser.end(() => done());
+  });
+
+  it('passes basic a11y tests', browser => {
     goToUrl({
       suite,
       test: scenarios.BUTTON_WITH_ENHANCERS,
-      client,
+      browser,
     })
       .initAccessibility()
       .waitForElementVisible('body', 1000)
       .assert.accessibility('html', {});
 
     assertVisuals({
-      client,
+      browser,
       id: scenarios.BUTTON_WITH_ENHANCERS,
     });
-
-    client.end();
-  },
-};
+  });
+});
