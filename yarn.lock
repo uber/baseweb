@@ -4531,39 +4531,39 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-cup@^2.0.0:
+eslint-config-cup@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/eslint-config-cup/-/eslint-config-cup-2.0.1.tgz#20f5af07c66594a3bbcce718ccc30639e894ff81"
   integrity sha1-IPWvB8ZllKO7zOcYzMMGOeiU/4E=
 
-eslint-config-prettier@^2.0.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.9.0.tgz#5ecd65174d486c22dff389fe036febf502d468a3"
-  integrity sha512-ag8YEyBXsm3nmOv1Hz991VtNNDMRa+MNy8cY47Pl4bw6iuzqKbJajXdqUpiw13STdLLrznxgm1hj9NhxeOYq0A==
+eslint-config-prettier@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-3.1.0.tgz#2c26d2cdcfa3a05f0642cd7e6e4ef3316cdabfa2"
+  integrity sha512-QYGfmzuc4q4J6XIhlp8vRKdI/fI0tQfQPy1dME3UOLprE+v4ssH/3W9LM2Q7h5qBcy5m0ehCrBDU2YF8q6OY8w==
   dependencies:
-    get-stdin "^5.0.1"
+    get-stdin "^6.0.0"
 
-eslint-config-uber-base-stage-3@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-uber-base-stage-3/-/eslint-config-uber-base-stage-3-2.1.0.tgz#97aa40c3b254f6bdc40411eb3c7fa366b1777efe"
-  integrity sha512-P6Z4Hk6lbxTKxJ/IYU5rpugJIWxwU7SiTeCnM6QMIKS3IdLH/cXXE8XIU3x6DVdn3Og5QO4fHB5daApbnP4Jkg==
+eslint-config-uber-base-stage-3@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-uber-base-stage-3/-/eslint-config-uber-base-stage-3-3.0.0.tgz#8abf661ff0169c0fb06af1812958b867515c936e"
+  integrity sha512-3d7Z+7D1QY3S2T0SaVqBlVMKSZ0hIBu2xQPtJkBlESEPdMfDzGeFTEp9okAFB/7uQnUwOQ5dSfFtEwwaELKiJw==
   dependencies:
-    eslint-config-uber-base "^2.1.0"
+    eslint-config-uber-base "^3.0.0"
 
-eslint-config-uber-base@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-uber-base/-/eslint-config-uber-base-2.1.0.tgz#588d200eec45243728f2eeb66fab6fd296cf02cd"
-  integrity sha512-F3cTfu2V6TtAfvHVcyh4l1EKm2bXmh0VM5mX1sLLMtMEG4v0wM7pdsvr/FWcX9EMP0V1HGD/So9ui0/qGWqy3w==
+eslint-config-uber-base@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-uber-base/-/eslint-config-uber-base-3.0.0.tgz#35956a0b2ce1d21299a2bc6961563a5cc75c1582"
+  integrity sha512-NAj5a0kucvWTHD5+tI9bd7n2ZcNfhhwEE4SNZBwYaN1moWXlKbtQsLpAzmLFcJVy7SRH2RgoCzz+3NJVyaRpyg==
   dependencies:
-    eslint-config-prettier "^2.0.0"
+    eslint-config-prettier "^3.1.0"
 
-eslint-config-uber-universal-stage-3@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-uber-universal-stage-3/-/eslint-config-uber-universal-stage-3-2.1.0.tgz#a4e799377473065899e2232069d46fdea1c45b87"
-  integrity sha512-GEpGIbfQZpzvPhUmBwPzFr0MbuBbbmkhLG31vZ5izQHZarrGmWfR7T5bPQCZIRMuL7+45ZcOLBLP9C/smeHEwA==
+eslint-config-uber-universal-stage-3@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-uber-universal-stage-3/-/eslint-config-uber-universal-stage-3-3.0.0.tgz#fd122b837646215b0ac9e0ff67199affafca738f"
+  integrity sha512-8yx3xCNizet88gwegkEiwAEvEtbfs5is9Swb8KlUUk5KMs2Or/sa/UjXIy79GiEhXu59WsBw5o3jByg3WjRiJg==
   dependencies:
-    eslint-config-cup "^2.0.0"
-    eslint-config-uber-base-stage-3 "^2.1.0"
+    eslint-config-cup "^2.0.1"
+    eslint-config-uber-base-stage-3 "^3.0.0"
 
 eslint-import-resolver-node@^0.3.1:
   version "0.3.2"
@@ -5483,7 +5483,7 @@ get-pkg-repo@^1.0.0:
     parse-github-repo-url "^1.3.0"
     through2 "^2.0.0"
 
-get-stdin@5.0.1, get-stdin@^5.0.1, get-stdin@~5.0.1:
+get-stdin@5.0.1, get-stdin@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
   integrity sha1-Ei4WFZHiH/TFJTAwVpPyDmOTo5g=
