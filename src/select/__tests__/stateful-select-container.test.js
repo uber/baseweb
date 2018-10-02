@@ -58,13 +58,10 @@ describe('Stateful Select Container', function() {
         label: 'label for 123',
       },
     ];
-    let textValue = 'some good value';
     let events, stateReducerMock, instance, event;
     event = {target: {checked: true}};
     const handlers = [
       ['onChange', STATE_CHANGE_TYPE.select, {selectedOptions}],
-      ['onChange', STATE_CHANGE_TYPE.clearAll, {selectedOptions: []}],
-      ['onChange', STATE_CHANGE_TYPE.keyDown, {textValue}],
     ];
     beforeEach(function() {
       events = {
