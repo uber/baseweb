@@ -93,6 +93,13 @@ module.exports = {
     port: 4444,
   },
 
+  test_runner: {
+    type: 'mocha',
+    options: {
+      ui: 'bdd',
+    },
+  },
+
   test_settings: {
     default: {
       launch_url: process.env.E2E_LAUNCH_URL || 'http://localhost:8080',
