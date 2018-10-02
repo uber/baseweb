@@ -74,7 +74,7 @@ export const SingleSelection = styled('span', props => {
   };
 });
 
-export const SearchIcon = styled('img', props => {
+export const SelectComponentIcon = styled('img', props => {
   const {$theme, $disabled} = props;
   const {
     sizing: {scale300, scale600, scale500},
@@ -145,5 +145,11 @@ export const Option = styled('div', props => {
     },
     color: disabled ? mono700 : $selected ? primary400 : null,
     ...padding,
+  };
+});
+
+export const SelectSpinner = styled('div', () => {
+  return {
+    paddingLeft: '50%',
   };
 });

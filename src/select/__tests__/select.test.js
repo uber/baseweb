@@ -9,7 +9,7 @@ import React from 'react';
 import {mount, shallow} from 'enzyme';
 import {
   Select,
-  StyledSearchIcon,
+  StyledSelectComponentIcon,
   SelectDropDown,
   StyledInput,
   StyledOption,
@@ -27,7 +27,8 @@ describe('Stateless select', function() {
   beforeEach(function() {
     mockFn = jest.fn();
     events = {
-      onChange: jest.fn(() => Promise.resolve()),
+      onChange: jest.fn(),
+      onTextInputChange: jest.fn(),
       onMouseEnter: mockFn,
       onMouseLeave: mockFn,
       onFocus: mockFn,
@@ -161,7 +162,8 @@ describe('Stateless select', function() {
         ];
         allProps.type = TYPE.search;
         allProps.options = options;
-        allProps.onChange = jest.fn(() => Promise.resolve());
+        allProps.onChange = jest.fn();
+        allProps.onTextInputChange = jest.fn();
         wrapper = mount(<Select {...allProps} />);
       });
 
@@ -170,8 +172,7 @@ describe('Stateless select', function() {
           STATE_CHANGE_TYPE.select,
           {option: selectedOption, selectedOptions: [{id, label}]},
         ],
-        [STATE_CHANGE_TYPE.clearAll, {selectedOptions: []}],
-        [STATE_CHANGE_TYPE.textChange, {textValue}],
+        [STATE_CHANGE_TYPE.unselect, {selectedOptions: []}],
       ])(
         'should set update of state if change action is %s',
         (type, expectedResult) => {
@@ -180,7 +181,10 @@ describe('Stateless select', function() {
               value: textValue,
             },
           };
-          const event = [e, type, selectedOption];
+          const event =
+            type === STATE_CHANGE_TYPE.unselect
+              ? [e, undefined, true]
+              : [e, selectedOption];
           wrapper.instance().onChange(...event);
           expect(allProps.onChange).toHaveBeenCalledWith(
             e,
@@ -188,6 +192,15 @@ describe('Stateless select', function() {
           );
         },
       );
+      test('should change input value and call update of options', function() {
+        const e = {
+          target: {
+            value: textValue,
+          },
+        };
+        wrapper.instance().onTextInputChange(e);
+        expect(allProps.onTextInputChange).toHaveBeenCalledWith(e);
+      });
     });
   });
 
@@ -232,7 +245,7 @@ describe('Stateless select', function() {
       wrapper.unmount();
       allProps.selectedOptions = options;
       wrapper = mount(<Select {...allProps} />);
-      clearIcon = wrapper.find(StyledSearchIcon);
+      clearIcon = wrapper.find(StyledSelectComponentIcon);
       clearIcon = clearIcon.filterWhere(
         comp => comp.props().$type === ICON.clearAll,
       );
@@ -242,7 +255,7 @@ describe('Stateless select', function() {
     });
   });
   describe('Search mode', function() {
-    test('should call change method when change of input happened', function() {
+    test('should call text input change method when change of input happened', function() {
       allProps = Object.assign({}, allProps, {
         type: TYPE.search,
         multiple: true,
@@ -257,33 +270,32 @@ describe('Stateless select', function() {
         target: {value},
       };
       input.props().onChange(event);
-      expect(wrapper.instance().props.onChange).toHaveBeenCalledWith(event, {
-        type: STATE_CHANGE_TYPE.textChange,
-        textValue: value,
-      });
+      expect(wrapper.instance().props.onTextInputChange).toHaveBeenCalledWith(
+        event,
+      );
     });
 
     test('should support simple filtering', function() {
       allProps = Object.assign({}, allProps, {
         type: TYPE.search,
         filterable: true,
-        options: [
-          {
-            id: 'aaa',
-            label: 'AAA',
-          },
-          {
-            id: 'aab',
-            label: 'AAB',
-          },
-          {
-            id: 'abb',
-            label: 'ABB',
-          },
-        ],
+        options: jest.fn(),
       });
-      let onChangePromise = Promise.resolve();
-      allProps.onChange.mockReturnValue(onChangePromise);
+      let onTextInputChangePromise = Promise.resolve([
+        {
+          id: 'aaa',
+          label: 'AAA',
+        },
+        {
+          id: 'aab',
+          label: 'AAB',
+        },
+        {
+          id: 'abb',
+          label: 'ABB',
+        },
+      ]);
+      allProps.options.mockReturnValue(onTextInputChangePromise);
       wrapper = mount(<Select {...allProps} />);
 
       let input = wrapper
@@ -291,22 +303,22 @@ describe('Stateless select', function() {
         .first()
         .find('input');
       input.simulate('change', {target: {value: 'a'}});
-      onChangePromise.then(() =>
+      onTextInputChangePromise.then(() =>
         expect(wrapper.find(StyledOption)).toHaveLength(3),
       );
 
       input.simulate('change', {target: {value: 'aa'}});
-      onChangePromise.then(() =>
+      onTextInputChangePromise.then(() =>
         expect(wrapper.find(StyledOption)).toHaveLength(2),
       );
 
       input.simulate('change', {target: {value: 'aaa'}});
-      onChangePromise.then(() =>
+      onTextInputChangePromise.then(() =>
         expect(wrapper.find(StyledOption)).toHaveLength(1),
       );
 
       input.simulate('change', {target: {value: 'aaaa'}});
-      onChangePromise.then(() =>
+      onTextInputChangePromise.then(() =>
         expect(wrapper.find(StyledOption)).toHaveLength(0),
       );
     });
@@ -339,8 +351,8 @@ describe('Stateless select', function() {
           );
         }),
       });
-      let onChangePromise = Promise.resolve();
-      allProps.onChange.mockReturnValue(onChangePromise);
+      let onTextInputChangePromise = Promise.resolve();
+      allProps.onTextInputChange.mockReturnValue(onTextInputChangePromise);
       wrapper = mount(<Select {...allProps} />);
 
       let input = wrapper
@@ -349,18 +361,18 @@ describe('Stateless select', function() {
         .find('input');
 
       input.simulate('change', {target: {value: 'xyz'}});
-      onChangePromise.then(() =>
+      onTextInputChangePromise.then(() =>
         expect(wrapper.find(StyledOption).length).toBe(0),
       );
 
       input.simulate('change', {target: {value: 'ar'}});
-      onChangePromise.then(() =>
+      onTextInputChangePromise.then(() =>
         expect(wrapper.find(StyledOption).length).toBe(2),
       );
     });
   });
   describe('Select mode', function() {
-    test('should toggle dropdown if input is clicked', function() {
+    test('should toggle dropdown if input is clicked', function(done) {
       allProps = Object.assign({}, allProps, {
         type: TYPE.select,
       });
@@ -371,6 +383,7 @@ describe('Stateless select', function() {
         .first()
         .simulate('click');
       expect(wrapper.instance().state.isDropDownOpen).toBeTruthy();
+      done();
     });
   });
 
@@ -387,56 +400,47 @@ describe('Stateless select', function() {
         ],
         [KEY_STRINGS.Escape, 'close dropdown', {isDropDownOpen: false}],
         [
-          KEY_STRINGS.Enter,
-          'select option in dropdown',
-          {
-            selectedOptions: [
-              {
-                id: '123',
-                label: 'label for 123',
-              },
-            ],
-          },
-        ],
-        [
           KEY_STRINGS.Backspace,
           'remove last selected tag in multiple mode',
           {selectedOptions: []},
         ],
-      ])('when pressed key "%s" should %s', (hotKey, result, newState) => {
-        allProps.selectedOptions = [
-          {
-            id: '123',
-            label: 'label for 123',
-          },
-        ];
-        allProps = Object.assign({}, allProps, {
-          type: mode,
-          multiple: true,
-          options: [
+      ])(
+        'when pressed key "%s" should %s',
+        async (hotKey, result, newState) => {
+          allProps.selectedOptions = [
             {
-              id: '1',
-              label: 'foo1',
+              id: '123',
+              label: 'label for 123',
             },
-          ],
-        });
-        wrapper = mount(<Select {...allProps} />);
-        let input;
-        if (hotKey !== KEY_STRINGS.Enter) {
-          input = wrapper
-            .find(StyledInput)
-            .first()
-            .find('input');
-        } else {
-          input = wrapper
-            .find(SelectDropDown)
-            .first()
-            .find('li')
-            .first();
-        }
-        input.simulate('keydown', {key: hotKey});
-        expect(wrapper.instance().state).toMatchObject(newState);
-      });
+          ];
+          allProps = Object.assign({}, allProps, {
+            type: mode,
+            multiple: true,
+            options: [
+              {
+                id: '1',
+                label: 'foo1',
+              },
+            ],
+          });
+          wrapper = mount(<Select {...allProps} />);
+          let input;
+          if (hotKey !== KEY_STRINGS.Enter) {
+            input = wrapper
+              .find(StyledInput)
+              .first()
+              .find('input');
+          } else {
+            input = wrapper
+              .find(SelectDropDown)
+              .first()
+              .find('li')
+              .first();
+          }
+          input.simulate('keydown', {key: hotKey});
+          await expect(wrapper.instance().state).toMatchObject(newState);
+        },
+      );
     },
   );
 });

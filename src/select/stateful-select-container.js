@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {STATE_CHANGE_TYPE} from './constants';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
@@ -26,7 +25,8 @@ class StatefulSelectContainer extends React.Component<
       selectedOptions: [],
     },
     stateReducer: defaultStateReducer,
-    onChange: () => Promise.resolve(),
+    onTextInputChange: () => {},
+    onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
     onFocus: () => {},
@@ -36,9 +36,14 @@ class StatefulSelectContainer extends React.Component<
   state = {...this.props.initialState};
 
   onChange = (e: SyntheticInputEvent<HTMLInputElement>, params: ParamsT) => {
-    this.stateReducer(params.type, e, params);
+    this.internalSetState(params.type, e, params);
     const {onChange} = this.props;
     return onChange(e, params);
+  };
+
+  onTextInputChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    const {onTextInputChange} = this.props;
+    onTextInputChange && onTextInputChange(e);
   };
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -61,27 +66,14 @@ class StatefulSelectContainer extends React.Component<
     onBlur && onBlur(e);
   };
 
-  stateReducer = (
+  internalSetState = (
     type: ChangeActionT,
     e: SyntheticInputEvent<HTMLInputElement>,
     params: ParamsT,
   ) => {
-    let nextState = {};
-    switch (type) {
-      case STATE_CHANGE_TYPE.select:
-      case STATE_CHANGE_TYPE.unselect:
-      case STATE_CHANGE_TYPE.clearAll:
-        nextState = {
-          selectedOptions: params.selectedOptions,
-        };
-        break;
-      case STATE_CHANGE_TYPE.keyDown: {
-        nextState = {
-          textValue: params.textValue,
-        };
-        break;
-      }
-    }
+    const nextState = {
+      selectedOptions: params.selectedOptions,
+    };
     const {stateReducer} = this.props;
     const newState = stateReducer(type, nextState, this.state, e, params);
     this.setState(newState);
@@ -94,11 +86,19 @@ class StatefulSelectContainer extends React.Component<
       stateReducer, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
-    const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;
+    const {
+      onChange,
+      onTextInputChange,
+      onMouseEnter,
+      onMouseLeave,
+      onFocus,
+      onBlur,
+    } = this;
     return children({
       ...rest,
       ...this.state,
       onChange,
+      onTextInputChange,
       onMouseEnter,
       onMouseLeave,
       onFocus,

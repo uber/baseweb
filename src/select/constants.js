@@ -26,7 +26,4 @@ export const ICON = {
 export const STATE_CHANGE_TYPE = {
   select: 'select',
   unselect: 'unselect',
-  clearAll: 'clear_all',
-  keyDown: 'key_down',
-  textChange: 'text_change',
 };
