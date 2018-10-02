@@ -14,6 +14,7 @@ exports[`Stateless select should render component in search mode and false for m
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
   onMouseUp={[Function]}
+  onTextInputChange={[MockFunction]}
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
@@ -45,7 +46,10 @@ exports[`Stateless select should render component in search mode and false for m
                 "tabIndex": 0,
               },
             },
-            "InputContainer": [Function],
+            "InputContainer": Object {
+              "component": [Function],
+              "props": Object {},
+            },
           }
         }
         required={false}
@@ -88,7 +92,10 @@ exports[`Stateless select should render component in search mode and false for m
                       "tabIndex": 0,
                     },
                   },
-                  "InputContainer": [Function],
+                  "InputContainer": Object {
+                    "component": [Function],
+                    "props": Object {},
+                  },
                 }
               }
               placeholder=""
@@ -199,6 +206,7 @@ exports[`Stateless select should render component in search mode and false for m
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
+        optionsLoaded={false}
         overrides={Object {}}
         selectedOptions={Array []}
         type="search"
@@ -224,6 +232,7 @@ exports[`Stateless select should render component in search mode and true for mu
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
   onMouseUp={[Function]}
+  onTextInputChange={[MockFunction]}
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
@@ -255,7 +264,10 @@ exports[`Stateless select should render component in search mode and true for mu
                 "tabIndex": 0,
               },
             },
-            "InputContainer": [Function],
+            "InputContainer": Object {
+              "component": [Function],
+              "props": Object {},
+            },
           }
         }
         required={false}
@@ -298,7 +310,10 @@ exports[`Stateless select should render component in search mode and true for mu
                       "tabIndex": 0,
                     },
                   },
-                  "InputContainer": [Function],
+                  "InputContainer": Object {
+                    "component": [Function],
+                    "props": Object {},
+                  },
                 }
               }
               placeholder=""
@@ -409,6 +424,7 @@ exports[`Stateless select should render component in search mode and true for mu
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
+        optionsLoaded={false}
         overrides={Object {}}
         selectedOptions={Array []}
         type="search"
@@ -434,6 +450,7 @@ exports[`Stateless select should render component in select mode and false for m
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
   onMouseUp={[Function]}
+  onTextInputChange={[MockFunction]}
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
@@ -462,8 +479,18 @@ exports[`Stateless select should render component in select mode and false for m
             Object {
               "After": [Function],
               "Before": [Function],
-              "Input": [Function],
-              "Root": [Function],
+              "Input": Object {
+                "component": [Function],
+                "props": Object {},
+              },
+              "InputContainer": Object {
+                "component": [Function],
+                "props": Object {},
+              },
+              "Root": Object {
+                "component": [Function],
+                "props": Object {},
+              },
             }
           }
           required={false}
@@ -498,8 +525,18 @@ exports[`Stateless select should render component in select mode and false for m
                   Object {
                     "After": [Function],
                     "Before": [Function],
-                    "Input": [Function],
-                    "Root": [Function],
+                    "Input": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
+                    "InputContainer": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
+                    "Root": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
                   }
                 }
                 placeholder=""
@@ -592,6 +629,7 @@ exports[`Stateless select should render component in select mode and false for m
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
+        optionsLoaded={false}
         overrides={Object {}}
         selectedOptions={Array []}
         type="select"
@@ -617,6 +655,7 @@ exports[`Stateless select should render component in select mode and true for mu
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
   onMouseUp={[Function]}
+  onTextInputChange={[MockFunction]}
   options={Array []}
   overrides={Object {}}
   selectedOptions={Array []}
@@ -645,8 +684,18 @@ exports[`Stateless select should render component in select mode and true for mu
             Object {
               "After": [Function],
               "Before": [Function],
-              "Input": [Function],
-              "Root": [Function],
+              "Input": Object {
+                "component": [Function],
+                "props": Object {},
+              },
+              "InputContainer": Object {
+                "component": [Function],
+                "props": Object {},
+              },
+              "Root": Object {
+                "component": [Function],
+                "props": Object {},
+              },
             }
           }
           required={false}
@@ -681,8 +730,18 @@ exports[`Stateless select should render component in select mode and true for mu
                   Object {
                     "After": [Function],
                     "Before": [Function],
-                    "Input": [Function],
-                    "Root": [Function],
+                    "Input": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
+                    "InputContainer": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
+                    "Root": Object {
+                      "component": [Function],
+                      "props": Object {},
+                    },
                   }
                 }
                 placeholder=""
@@ -775,6 +834,7 @@ exports[`Stateless select should render component in select mode and true for mu
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
+        optionsLoaded={false}
         overrides={Object {}}
         selectedOptions={Array []}
         type="select"
