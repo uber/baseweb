@@ -7,19 +7,20 @@ function getUrl({launchUrl, suite, test}) {
   )}&test=${encodeURIComponent(test)}`;
 }
 
-function goToUrl({suite, test, client}) {
-  return client.url(getUrl({launchUrl: client.launchUrl, suite, test}));
+function goToUrl({suite, test, browser}) {
+  const url = getUrl({launchUrl: browser.launchUrl, suite, test});
+  return browser.url(url);
 }
 
 function formatFileName(testName) {
   return testName.toLowerCase().replace(/ /g, '-');
 }
 
-function assertVisuals({client, id}) {
+function assertVisuals({browser, id}) {
   const fileName = formatFileName(id);
 
-  if (client.options.desiredCapabilities.isVrt) {
-    client
+  if (browser.options.desiredCapabilities.isVrt) {
+    browser
       .resizeWindow(1024, 768)
       .assert.screenshotIdenticalToBaseline(fileName);
   }
