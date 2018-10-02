@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* global after */
 
 const scenarios = require('./examples-list');
 const {goToUrl} = require('../../e2e/helpers');
@@ -18,15 +19,20 @@ const selectors = {
   dialog: '[role="dialog"]',
 };
 
-module.exports = {
-  afterEach: function(client, done) {
-    client.notifySauceLabs(done);
-  },
-  [scenarios.SIMPLE_EXAMPLE]: function(client) {
+describe('The modal component', () => {
+  afterEach((browser, done) => {
+    browser.notifySauceLabs(done);
+  });
+
+  after((browser, done) => {
+    browser.end(() => done());
+  });
+
+  it('handles focus changes properly', browser => {
     goToUrl({
       suite,
       test: scenarios.SIMPLE_EXAMPLE,
-      client,
+      browser,
     })
       .initAccessibility()
       .waitForElementVisible('body', 1000)
@@ -48,7 +54,6 @@ module.exports = {
       .click(selectors.closeButton)
       .waitForElementNotPresent(selectors.closeButton, 1000)
       // open button should be in focus
-      .assert.hasFocus(selectors.openModal)
-      .end();
-  },
-};
+      .assert.hasFocus(selectors.openModal);
+  });
+});
