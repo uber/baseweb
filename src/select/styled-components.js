@@ -61,21 +61,21 @@ export const InputContainer = styled('div', props => {
 });
 
 export const SingleSelection = styled('span', props => {
-  const {$theme} = props;
+  const {$theme, $disabled} = props;
   const {
     colors: {mono1000},
   } = $theme;
   return {
     ...getInputStyles({...props, $size: SIZE.default, $disabled: true}),
-    cursor: 'pointer',
+    cursor: $disabled ? 'not-allowed' : 'pointer',
     width: 'auto',
     flexGrow: '1',
     color: mono1000,
   };
 });
 
-export const SearchIcon = styled('img', props => {
-  const {$theme} = props;
+export const SelectComponentIcon = styled('img', props => {
+  const {$theme, $disabled} = props;
   const {
     sizing: {scale300, scale600, scale500},
   } = $theme;
@@ -85,7 +85,7 @@ export const SearchIcon = styled('img', props => {
         marginLeft: 'auto',
         position: 'absolute',
         right: scale600,
-        cursor: 'pointer',
+        cursor: $disabled ? 'not-allowed' : 'pointer',
       };
     case ICON.select:
       return {
@@ -145,5 +145,11 @@ export const Option = styled('div', props => {
     },
     color: disabled ? mono700 : $selected ? primary400 : null,
     ...padding,
+  };
+});
+
+export const SelectSpinner = styled('div', () => {
+  return {
+    paddingLeft: '50%',
   };
 });

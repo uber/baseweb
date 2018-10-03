@@ -155,7 +155,7 @@ Object {
 }
 `;
 
-exports[`Select styled components StyledSearchIcon : StyledSearchIcon has correct styles when type is clear_all 1`] = `
+exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is clear_all 1`] = `
 Object {
   "cursor": "pointer",
   "marginLeft": "auto",
@@ -164,13 +164,13 @@ Object {
 }
 `;
 
-exports[`Select styled components StyledSearchIcon : StyledSearchIcon has correct styles when type is loop 1`] = `
+exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is loop 1`] = `
 Object {
   "paddingLeft": "$theme.sizing.scale300",
 }
 `;
 
-exports[`Select styled components StyledSearchIcon : StyledSearchIcon has correct styles when type is select 1`] = `
+exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is select 1`] = `
 Object {
   "marginRight": "$theme.sizing.scale500",
   "position": "absolute",
@@ -179,7 +179,7 @@ Object {
 }
 `;
 
-exports[`Select styled components StyledSearchIcon : StyledSearchIcon has correct styles when type is selected 1`] = `
+exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is selected 1`] = `
 Object {
   "paddingRight": "$theme.sizing.scale300",
 }

@@ -53,14 +53,15 @@ class Tag extends React.Component<PropsT, {}> {
       $disabled: disabled,
       $color: color,
     };
+    const events = disabled
+      ? {}
+      : {
+          onClick: e => onActionClick(e, children),
+        };
     return (
       <Root {...sharedProps} {...rootProps}>
         {children}
-        <Action
-          {...sharedProps}
-          {...actionProps}
-          onClick={e => onActionClick(e, children)}
-        >
+        <Action {...sharedProps} {...actionProps} {...events}>
           <ActionIcon
             width={'8'}
             height={'8'}

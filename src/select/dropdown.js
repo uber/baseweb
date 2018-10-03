@@ -7,42 +7,57 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {
-  SearchIcon as StyledSearchIcon,
+  SelectComponentIcon as StyledSelectComponentIcon,
   DropDown as StyledDropDown,
   DropDownItem as StyledDropDownItem,
   Option as StyledOption,
+  SelectSpinner as StyledSelectSpinner,
 } from './styled-components';
 
-import {ICON, STATE_CHANGE_TYPE} from './constants';
+import {ICON} from './constants';
 
 import {StatefulMenu} from '../menu';
+import {Spinner} from '../spinner';
 import type {DropDownPropsT} from './types';
-import {getOverride} from '../helpers/overrides';
+import {getOverrideObject} from '../helpers/overrides';
 
 export default function SelectDropDown(props: DropDownPropsT) {
+  const {overrides = {}} = props;
   const {
-    overrides: {
-      SearchIcon: SearchIconOverride,
-      DropDown: DropDownOverride,
-      DropDownItem: DropDownItemOverride,
-      Option: OptionOverride,
-    } = {},
-  } = props;
-  const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-  const DropDown = getOverride(DropDownOverride) || StyledDropDown;
-  const DropDownItem = getOverride(DropDownItemOverride) || StyledDropDownItem;
-  const Option = getOverride(OptionOverride) || StyledOption;
+    component: SelectComponentIcon,
+    props: selectComponentIconProps,
+  } = getOverrideObject(
+    overrides.SelectComponentIcon,
+    StyledSelectComponentIcon,
+  );
+  const {component: DropDown, props: dropDownProps} = getOverrideObject(
+    overrides.DropDown,
+    StyledDropDown,
+  );
+  const DropDownItem = getOverrideObject(
+    overrides.DropDownItem,
+    StyledDropDownItem,
+  );
+  const {component: Option, props: optionProps} = getOverrideObject(
+    overrides.Option,
+    StyledOption,
+  );
+  const {
+    component: SelectSpinner,
+    props: selectSpinnerProps,
+  } = getOverrideObject(overrides.SelectSpinner, StyledSelectSpinner);
   const {
     options = [],
     getOptionLabel,
     isDropDownOpen,
+    optionsLoaded,
     selectedOptions,
     onChange,
     onItemSelect,
     type,
     rows,
   } = props;
-  return options.length ? (
+  return isDropDownOpen ? (
     <StatefulMenu
       getRequiredItemProps={(option, index) => {
         return option.disabled
@@ -50,8 +65,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
               onClickCapture: e => e.stopPropagation(),
             }
           : {
-              onClick: e =>
-                onChange(e, STATE_CHANGE_TYPE.select, option.id, option.label),
+              onClick: e => onChange(e, option),
             };
       }}
       overrides={{
@@ -61,6 +75,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
             $rows: rows,
             $type: type,
             $isOpen: isDropDownOpen,
+            ...dropDownProps,
           },
         },
         Option: {
@@ -73,29 +88,35 @@ export default function SelectDropDown(props: DropDownPropsT) {
               const $selected = selectedOptions.find(
                 selected => selected.id === option.id,
               );
-              return (
+              return optionsLoaded ? (
                 <Option
                   disabled={option.disabled}
                   $selected={$selected}
                   key={option.id}
+                  {...optionProps}
                 >
                   {$selected && (
-                    <SearchIcon
+                    <SelectComponentIcon
                       $type={ICON.selected}
                       src={
                         'data:image/svg+xml;utf8,<svg width="10" height="9" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6L4 9L10 1" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
                       }
+                      {...selectComponentIconProps}
                     />
                   )}
                   {getOptionLabel(option)}
                 </Option>
+              ) : (
+                <SelectSpinner {...selectSpinnerProps}>
+                  <Spinner size={22} />
+                </SelectSpinner>
               );
             },
           },
         },
       }}
       onItemSelect={onItemSelect}
-      items={options}
+      items={optionsLoaded ? options : [{}]}
     />
   ) : (
     <div />
