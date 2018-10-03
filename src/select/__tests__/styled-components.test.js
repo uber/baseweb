@@ -10,7 +10,7 @@ import {shallow} from 'enzyme';
 import {
   StyledInput,
   StyledInputContainer,
-  StyledSearchIcon,
+  StyledSelectComponentIcon,
   StyledDropDown,
   StyledDropDownItem,
   StyledOption,
@@ -43,18 +43,18 @@ describe('Select styled components', () => {
     });
   });
 
-  describe('StyledSearchIcon', () => {
+  describe('StyledSelectComponentIcon', () => {
     test.each([[ICON.clearAll], [ICON.select], [ICON.loop], [ICON.selected]])(
       '',
       $type => {
         const props = {$type};
         const component = shallow(
-          <StyledSearchIcon {...props}>
+          <StyledSelectComponentIcon {...props}>
             <div />
-          </StyledSearchIcon>,
+          </StyledSelectComponentIcon>,
         );
         expect(component.instance().getStyles()).toMatchSnapshot(
-          'StyledSearchIcon has correct styles when type is ' + $type,
+          'StyledSelectComponentIcon has correct styles when type is ' + $type,
         );
       },
     );
