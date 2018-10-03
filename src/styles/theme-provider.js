@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import LIGHT_THEME from '../themes/light-theme';
+import {LightTheme} from '../themes';
 
 import type {ThemeT} from './types';
 
-export const ThemeContext = React.createContext(LIGHT_THEME);
+export const ThemeContext = React.createContext(LightTheme);
 
 const ThemeProvider = (props: {theme: ThemeT, children: ?React.Node}) => {
   const {theme, children} = props;
