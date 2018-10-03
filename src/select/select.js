@@ -83,14 +83,6 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     }
   };
 
-  onFocus = (e: SyntheticEvent<HTMLInputElement>) => {};
-
-  onBlur = (e: SyntheticEvent<HTMLInputElement>) => {};
-
-  onMouseEnter = (e: SyntheticEvent<HTMLInputElement>) => {};
-
-  onMouseLeave = (e: SyntheticEvent<HTMLInputElement>) => {};
-
   onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
     // $FlowFixMe
     const newTextValue = e.target.value;
@@ -396,7 +388,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const label = this.getOptionLabel(option);
     return (
       typeof label === 'string' &&
-      label.toLowerCase().indexOf(query.toLowerCase()) >= 0
+      label.toLowerCase().includes(query.toLowerCase())
     );
   }
 
@@ -422,10 +414,13 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         if (e.key === KEY_STRINGS.Space && this.props.type === TYPE.search) {
           return;
         }
-        this.openDropDown();
-        e.preventDefault();
-        e.stopPropagation();
-        return true;
+        if (!this.state.isDropDownOpen) {
+          this.openDropDown();
+          e.preventDefault();
+          e.stopPropagation();
+          return true;
+        }
+        return;
       case KEY_STRINGS.Escape:
         this.setState({isDropDownOpen: false});
         return true;

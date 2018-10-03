@@ -310,22 +310,22 @@ describe('Stateless select', function() {
         .find('input');
 
       input.simulate('change', {target: {value: 'a'}});
-      await sleep(20);
+      await sleep(1);
       wrapper.update();
       expect(wrapper.find(StyledOption)).toHaveLength(3);
 
       input.simulate('change', {target: {value: 'aa'}});
-      await sleep(20);
+      await sleep(1);
       wrapper.update();
       expect(wrapper.find(StyledOption)).toHaveLength(2);
 
       input.simulate('change', {target: {value: 'aaa'}});
-      await sleep(20);
+      await sleep(1);
       wrapper.update();
       expect(wrapper.find(StyledOption)).toHaveLength(1);
 
       input.simulate('change', {target: {value: 'aaaa'}});
-      await sleep(20);
+      await sleep(1);
       wrapper.update();
       expect(wrapper.find(StyledOption)).toHaveLength(0);
     });
@@ -368,12 +368,12 @@ describe('Stateless select', function() {
         .find('input');
 
       input.simulate('change', {target: {value: 'xyz'}});
-      await sleep(20);
+      await sleep(1);
       wrapper.update();
       expect(wrapper.find(StyledOption).length).toBe(0);
 
       input.simulate('change', {target: {value: 'ar'}});
-      await sleep(20);
+      await sleep(1);
       wrapper.update();
       expect(wrapper.find(StyledOption).length).toBe(2);
     });
