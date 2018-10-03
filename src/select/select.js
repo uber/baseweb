@@ -43,12 +43,6 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     multiple: false,
     tabIndex: 0,
     textValue: '',
-    filterOption: (option: OptionT, query: string) => {
-      return (
-        typeof option.label === 'string' &&
-        option.label.toLowerCase().indexOf(query.toLowerCase()) >= 0
-      );
-    },
   };
 
   state = {
@@ -89,14 +83,6 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     }
   };
 
-  onFocus = (e: SyntheticEvent<HTMLInputElement>) => {};
-
-  onBlur = (e: SyntheticEvent<HTMLInputElement>) => {};
-
-  onMouseEnter = (e: SyntheticEvent<HTMLInputElement>) => {};
-
-  onMouseLeave = (e: SyntheticEvent<HTMLInputElement>) => {};
-
   onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
     // $FlowFixMe
     const newTextValue = e.target.value;
@@ -107,7 +93,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     this.openDropDown(newTextValue, () => {
       if (this.props.filterable) {
         let filteredOptions = this.state.options.filter(option =>
-          this.props.filterOption(option, newTextValue),
+          this.filterOption(option, newTextValue),
         );
         // reset filtered options for new search
         if (!filteredOptions.length) {
@@ -176,9 +162,9 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       const {options} = this.props;
       this.setState({optionsLoaded: false});
       if (typeof options === 'function') {
-        options(query).then(loadedOptions =>
-          this.setState({options: loadedOptions, optionsLoaded: true}, resolve),
-        );
+        options(query).then(loadedOptions => {
+          this.setState({options: loadedOptions, optionsLoaded: true}, resolve);
+        });
       } else {
         this.setState({options, optionsLoaded: true}, resolve);
       }
@@ -394,6 +380,18 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       : this.getOptionLabel(option);
   }
 
+  filterOption(option: OptionT, query: string) {
+    if (this.props.filterOption) {
+      return this.props.filterOption(option, query);
+    }
+
+    const label = this.getOptionLabel(option);
+    return (
+      typeof label === 'string' &&
+      label.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
   isMultiple() {
     const {type, multiple} = this.props;
     return type === TYPE.search ? true : multiple;
@@ -416,10 +414,13 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         if (e.key === KEY_STRINGS.Space && this.props.type === TYPE.search) {
           return;
         }
-        this.openDropDown();
-        e.preventDefault();
-        e.stopPropagation();
-        return true;
+        if (!this.state.isDropDownOpen) {
+          this.openDropDown();
+          e.preventDefault();
+          e.stopPropagation();
+          return true;
+        }
+        return;
       case KEY_STRINGS.Escape:
         this.setState({isDropDownOpen: false});
         return true;

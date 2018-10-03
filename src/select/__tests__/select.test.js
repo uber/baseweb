@@ -18,6 +18,12 @@ import {STATE_CHANGE_TYPE, TYPE, ICON} from '../constants';
 import {StyledAction} from '../../tag';
 import {KEY_STRINGS} from '../../menu/constants';
 
+function sleep(ms: number) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
 describe('Stateless select', function() {
   let wrapper,
     events = {};
@@ -275,7 +281,7 @@ describe('Stateless select', function() {
       );
     });
 
-    test('should support simple filtering', function() {
+    test('should support simple filtering', async function() {
       allProps = Object.assign({}, allProps, {
         type: TYPE.search,
         filterable: true,
@@ -302,28 +308,29 @@ describe('Stateless select', function() {
         .find(StyledInput)
         .first()
         .find('input');
+
       input.simulate('change', {target: {value: 'a'}});
-      onTextInputChangePromise.then(() =>
-        expect(wrapper.find(StyledOption)).toHaveLength(3),
-      );
+      await sleep(1);
+      wrapper.update();
+      expect(wrapper.find(StyledOption)).toHaveLength(3);
 
       input.simulate('change', {target: {value: 'aa'}});
-      onTextInputChangePromise.then(() =>
-        expect(wrapper.find(StyledOption)).toHaveLength(2),
-      );
+      await sleep(1);
+      wrapper.update();
+      expect(wrapper.find(StyledOption)).toHaveLength(2);
 
       input.simulate('change', {target: {value: 'aaa'}});
-      onTextInputChangePromise.then(() =>
-        expect(wrapper.find(StyledOption)).toHaveLength(1),
-      );
+      await sleep(1);
+      wrapper.update();
+      expect(wrapper.find(StyledOption)).toHaveLength(1);
 
       input.simulate('change', {target: {value: 'aaaa'}});
-      onTextInputChangePromise.then(() =>
-        expect(wrapper.find(StyledOption)).toHaveLength(0),
-      );
+      await sleep(1);
+      wrapper.update();
+      expect(wrapper.find(StyledOption)).toHaveLength(0);
     });
 
-    test('should support custom filter option', function() {
+    test('should support custom filter option', async function() {
       allProps = Object.assign({}, allProps, {
         type: TYPE.search,
         filterable: true,
@@ -361,14 +368,14 @@ describe('Stateless select', function() {
         .find('input');
 
       input.simulate('change', {target: {value: 'xyz'}});
-      onTextInputChangePromise.then(() =>
-        expect(wrapper.find(StyledOption).length).toBe(0),
-      );
+      await sleep(1);
+      wrapper.update();
+      expect(wrapper.find(StyledOption).length).toBe(0);
 
       input.simulate('change', {target: {value: 'ar'}});
-      onTextInputChangePromise.then(() =>
-        expect(wrapper.find(StyledOption).length).toBe(2),
-      );
+      await sleep(1);
+      wrapper.update();
+      expect(wrapper.find(StyledOption).length).toBe(2);
     });
   });
   describe('Select mode', function() {
