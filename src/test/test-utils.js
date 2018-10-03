@@ -9,7 +9,7 @@ import * as React from 'react';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../styles';
-import DEFAULT_THEME from '../themes/light-theme';
+import {LightTheme} from '../themes';
 
 const engine = new Styletron();
 
@@ -25,7 +25,7 @@ export const withStyletronProvider = (Component: React.ComponentType<*>) =>
 export const withThemeProvider = (Component: React.ComponentType<*>) =>
   function withThemeProviderHOC(props: {}) {
     return (
-      <ThemeProvider theme={DEFAULT_THEME}>
+      <ThemeProvider theme={LightTheme}>
         <Component {...props} />
       </ThemeProvider>
     );
@@ -34,7 +34,7 @@ export const withThemeProvider = (Component: React.ComponentType<*>) =>
 export const withAll = (Component: () => React.Element<*>) => {
   return (
     <StyletronProvider value={engine}>
-      <ThemeProvider theme={DEFAULT_THEME}>{Component()}</ThemeProvider>
+      <ThemeProvider theme={LightTheme}>{Component()}</ThemeProvider>
     </StyletronProvider>
   );
 };
