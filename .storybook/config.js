@@ -4,7 +4,7 @@ import {setOptions} from '@storybook/addon-options';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../src/styles';
-import DEFAULT_THEME from '../src/themes/light-theme';
+import {LightTheme} from '../src/themes';
 import {withInfo} from '@storybook/addon-info';
 import {checkA11y} from '@storybook/addon-a11y';
 import {withKnobs, text, boolean, number} from '@storybook/addon-knobs';
@@ -17,7 +17,11 @@ setOptions({
 const engine = new Styletron();
 
 // automatically import all files ending in *.stories.js
-const req = require.context('../src', true, /^((?!template-component\/).)*.stories.js$/);
+const req = require.context(
+  '../src',
+  true,
+  /^((?!template-component\/).)*.stories.js$/,
+);
 function loadStories() {
   require('../src/welcome.stories.js');
   req.keys().forEach(filename => req(filename));
@@ -35,7 +39,7 @@ addDecorator(checkA11y);
 addDecorator(story => {
   return (
     <StyletronProvider value={engine}>
-      <ThemeProvider theme={DEFAULT_THEME}>{story()}</ThemeProvider>
+      <ThemeProvider theme={LightTheme}>{story()}</ThemeProvider>
     </StyletronProvider>
   );
 });
