@@ -2,7 +2,7 @@ version: '2.1'
 services:
   # to run selenium with chrome locally
   chrome-standalone:
-    image: selenium/standalone-chrome:latest@sha256:b3cd083132dc390a9f623223b45db66a44b043c2ba1e962b85a2004f67bc0831
+    image: selenium/standalone-chrome:latest@sha256:86dc98d89cb61ec66e01a9e83d2f90c1376b762c40ada0180b55ca941a0f9735
     network_mode: 'host'
     restart: always
     ports:
