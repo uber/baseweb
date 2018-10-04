@@ -28,7 +28,7 @@ export type SharedStylePropsT = SharedStylePropsArgT & {
 
 export type OverridesT = {
   Body?: OverrideT<SharedStylePropsArgT>,
-  Svg?: OverrideT<SharedStylePropsArgT>,
+  CloseIcon?: OverrideT<SharedStylePropsArgT>,
 };
 
 export type ComponentRenderPropT = (props: {dismiss: () => void}) => React.Node;

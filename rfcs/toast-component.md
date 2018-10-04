@@ -26,19 +26,19 @@ export default () => {
         onClose={()=>{console.log('Toast notification was dismissed.')}}
         autoHideDuration={5000}
         overrides={{
-          Body: props => <CustomContainer>{props.children}</CustomContainer>,
+          Body: props => <CustomContainer {...props} />,
         }}
       >
       This a dismissable info notification that is hidden after 5 seconds automatically.
       </Toast>
       <Toast
         closeable={false}
-        kind={KIND.negative}
+        kind={KIND.positive}
       >
       {({dismiss}) => {
         return (
           <div>
-            This is an error notification with an action button
+            This is a success notification with an action button
             <button onClick={() => {
               console.log('Action button clicked');
               dismiss();
