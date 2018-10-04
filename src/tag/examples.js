@@ -9,7 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 // Styled elements
-import {Tag, STYLE, StyledRoot} from './index';
+import {ThemeContext} from '../styles/theme-provider';
+import {Tag, COLOR_STYLE_KEYS, StyledRoot} from './index';
 import {withStyle} from 'styletron-react';
 
 export const suite = 'Tag Test Suite';
@@ -26,26 +27,40 @@ const colorIcons = {
 };
 
 //$FlowFixMe
-const tagStyles: Array<string> = Object.values(STYLE);
+const tagStyleKeys: Array<string> = Object.values(COLOR_STYLE_KEYS);
 
 export default {
   [tests.ALL_BASIC_COLORS]: () => {
     return (
       <React.Fragment>
         <div style={{width: '200px'}}>
-          {tagStyles.map(color => (
-            <Tag
-              key={color}
-              color={color}
-              onActionClick={(e, tag) => {
-                if (typeof tag === 'string') {
-                  // eslint-disable-next-line no-console
-                  console.log('Tag is clicked:' + tag);
-                }
-              }}
-            >
-              Color {color}
-            </Tag>
+          <Tag
+            key="default"
+            onActionClick={(e, tag) => {
+              if (typeof tag === 'string') {
+                // eslint-disable-next-line no-console
+                console.log('Tag is clicked:' + tag);
+              }
+            }}
+          >
+            Default Color
+          </Tag>
+          {tagStyleKeys.map(colorKey => (
+            <ThemeContext.Consumer key={colorKey}>
+              {({colors}) => (
+                <Tag
+                  color={colors[colorKey]}
+                  onActionClick={(e, tag) => {
+                    if (typeof tag === 'string') {
+                      // eslint-disable-next-line no-console
+                      console.log('Tag is clicked:' + tag);
+                    }
+                  }}
+                >
+                  Color {colors[colorKey]}
+                </Tag>
+              )}
+            </ThemeContext.Consumer>
           ))}
         </div>
       </React.Fragment>
@@ -106,20 +121,24 @@ export default {
     return (
       <React.Fragment>
         <div style={{width: '200px'}}>
-          {tagStyles.map(color => (
-            <Tag
-              disabled={true}
-              key={color}
-              color={color}
-              onActionClick={(e, tag = '') => {
-                if (typeof tag === 'string') {
-                  // eslint-disable-next-line no-console
-                  console.log('Tag is clicked:' + tag);
-                }
-              }}
-            >
-              Color {color}
-            </Tag>
+          {tagStyleKeys.map(colorKey => (
+            <ThemeContext.Consumer key={colorKey}>
+              {({colors}) => (
+                <Tag
+                  disabled={true}
+                  key={colorKey}
+                  color={colors[colorKey]}
+                  onActionClick={(e, tag = '') => {
+                    if (typeof tag === 'string') {
+                      // eslint-disable-next-line no-console
+                      console.log('Tag is clicked:' + tag);
+                    }
+                  }}
+                >
+                  Color {colors[colorKey]}
+                </Tag>
+              )}
+            </ThemeContext.Consumer>
           ))}
         </div>
       </React.Fragment>

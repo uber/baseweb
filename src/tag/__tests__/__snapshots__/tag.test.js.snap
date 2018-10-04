@@ -2,7 +2,6 @@
 
 exports[`Stateless tag should render component: Component has correct render 1`] = `
 <Tag
-  color="#276EF1"
   disabled={false}
   isFocused={false}
   isHovered={false}
