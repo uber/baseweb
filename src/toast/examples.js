@@ -187,7 +187,10 @@ export default {
                   'linear-gradient(#400080, transparent), linear-gradient(200deg, #d047d1, #ff0000, #ffff00)',
               },
             },
-            Svg: {
+            CloseIcon: {
+              props: {
+                title: 'Close',
+              },
               style: {
                 backgroundColor: '#fff',
                 color: '#000',
