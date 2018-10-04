@@ -38,7 +38,6 @@ Object {
   "fontFamily": "$theme.typography.font500.fontFamily",
   "fontSize": "$theme.typography.font500.fontSize",
   "fontWeight": "$theme.typography.font500.fontWeight",
-  "letterSpacing": "$theme.typography.font500.letterSpacing",
   "lineHeight": "$theme.typography.font500.lineHeight",
   "marginBottom": "$theme.sizing.scale600",
   "marginLeft": "$theme.sizing.scale800",
