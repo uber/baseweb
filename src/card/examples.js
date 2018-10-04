@@ -80,7 +80,7 @@ export default {
       <Card headerImage={headerImg} title={placeholderTitle}>
         <StyledBody>{placeholderText}</StyledBody>
         <StyledAction>
-          <Button style={{width: '100%'}}>Button Label</Button>
+          <Button style={{width: '100%'}}>OMG Label</Button>
         </StyledAction>
       </Card>
     );
