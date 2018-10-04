@@ -33,7 +33,7 @@ export default () => {
       </Toast>
       <Toast
         closeable={false}
-        kind={KIND.negative}
+        kind={KIND.positive}
       >
       {({dismiss}) => {
         return (

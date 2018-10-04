@@ -9,10 +9,14 @@ import * as React from 'react';
 import {
   getOverride,
   getOverrideProps,
+  getOverrideObject,
   mergeOverrides,
 } from '../helpers/overrides';
 import {Delete as DeleteAltIcon} from '../icon';
-import {Body as StyledBody, Svg as StyledSvg} from './styled-components';
+import {
+  Body as StyledBody,
+  CloseIconSvg as StyledCloseIcon,
+} from './styled-components';
 import {KIND, PLACEMENT} from './constants';
 
 import type {
@@ -20,6 +24,7 @@ import type {
   ToastPrivateStateT,
   SharedStylePropsArgT,
 } from './types';
+import type {OverridesT} from '../icon';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: $Shape<ToastPropsT> = {
@@ -126,13 +131,23 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   render() {
     const {children, closeable} = this.props;
     const {isAnimating, isHidden} = this.state;
-    const {Body: BodyOverride} = this.props.overrides;
+    const {
+      Body: BodyOverride,
+      CloseIcon: CloseIconOverride,
+    } = this.props.overrides;
 
     const Body = getOverride(BodyOverride) || StyledBody;
 
-    const IconOverrides = mergeOverrides(
-      {Svg: StyledSvg},
-      this.props.overrides,
+    const {component: CloseIcon, props: closeIconProps} = getOverrideObject(
+      // $FlowFixMe
+      CloseIconOverride,
+      StyledCloseIcon,
+    );
+
+    const closeIconOverrides: OverridesT = mergeOverrides(
+      {Svg: CloseIcon},
+      // $FlowFixMe
+      {Svg: CloseIconOverride},
     );
 
     const sharedProps = this.getSharedProps();
@@ -156,7 +171,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
           <DeleteAltIcon
             onClick={this.dismiss}
             {...sharedProps}
-            overrides={IconOverrides}
+            {...closeIconProps}
+            overrides={closeIconOverrides}
           />
         ) : null}
         {typeof children === 'function'

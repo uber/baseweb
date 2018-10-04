@@ -48,7 +48,7 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
 /**
  * DeleteAlt icon overrides
  */
-export const Svg = styled('svg', props => {
+export const CloseIconSvg = styled('svg', props => {
   return {
     ...getSvgStyles(props),
     cursor: 'pointer',
