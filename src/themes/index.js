@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import {default as LightThemeCreator} from './light-theme';
 
+export {LightThemeCreator};
+
 export const LightTheme = LightThemeCreator();
 
 export const LightThemeMove = LightThemeCreator({

@@ -5,165 +5,164 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 // color constants
-const primary50 = '#EDF3FE';
-const primary100 = '#D2E0FC';
-const primary200 = '#9CBCF8';
-const primary300 = '#548BF4';
-const primary400 = '#276EF1';
-const primary500 = '#174EB6';
-const primary600 = '#123D90';
-const primary700 = '#0C2960';
+const defaultTheme = {
+  primary50: '#EDF3FE',
+  primary100: '#D2E0FC',
+  primary200: '#9CBCF8',
+  primary300: '#548BF4',
+  primary400: '#276EF1',
+  primary500: '#174EB6',
+  primary600: '#123D90',
+  primary700: '#0C2960',
 
-const negative50 = '#FDF0EF';
-const negative100 = '#FADBD7';
-const negative200 = '#F4AFA7';
-const negative300 = '#EB7567';
-const negative400 = '#E54937';
-const negative500 = '#AE372A';
-const negative600 = '#892C21';
-const negative700 = '#5C1D16';
+  negative50: '#FDF0EF',
+  negative100: '#FADBD7',
+  negative200: '#F4AFA7',
+  negative300: '#EB7567',
+  negative400: '#E54937',
+  negative500: '#AE372A',
+  negative600: '#892C21',
+  negative700: '#5C1D16',
 
-const warning50 = '#FEF3EC';
-const warning100 = '#FBE2CF';
-const warning200 = '#F6BA8B';
-const warning300 = '#F19248';
-const warning400 = '#ED6F0E';
-const warning500 = '#B4540B';
-const warning600 = '#8E4308';
-const warning700 = '#5F2C06';
+  warning50: '#FEF3EC',
+  warning100: '#FBE2CF',
+  warning200: '#F6BA8B',
+  warning300: '#F19248',
+  warning400: '#ED6F0E',
+  warning500: '#B4540B',
+  warning600: '#8E4308',
+  warning700: '#5F2C06',
 
-const positive50 = '#EBF8F2';
-const positive100 = '#CDEDDE';
-const positive200 = '#88D3B0';
-const positive300 = '#43B982';
-const positive400 = '#07A35A';
-const positive500 = '#057C44';
-const positive600 = '#046236';
-const positive700 = '#034124';
+  positive50: '#EBF8F2',
+  positive100: '#CDEDDE',
+  positive200: '#88D3B0',
+  positive300: '#43B982',
+  positive400: '#07A35A',
+  positive500: '#057C44',
+  positive600: '#046236',
+  positive700: '#034124',
 
-const mono100 = '#FFFFFF';
-const mono200 = '#F7F7F7';
-const mono300 = '#F0F0F0';
-const mono400 = '#E5E5E5';
-const mono500 = '#CCCCCC';
-const mono600 = '#B3B3B3';
-const mono700 = '#999999';
-const mono800 = '#666666';
-const mono900 = '#333333';
-const mono1000 = '#000000';
+  mono100: '#FFFFFF',
+  mono200: '#F7F7F7',
+  mono300: '#F0F0F0',
+  mono400: '#E5E5E5',
+  mono500: '#CCCCCC',
+  mono600: '#B3B3B3',
+  mono700: '#999999',
+  mono800: '#666666',
+  mono900: '#333333',
+  mono1000: '#000000',
 
-export default function(
-  {
-    primaryFontFamily,
-  }: {
-    primaryFontFamily: string,
-  } = {
-    primaryFontFamily: '"Helvetica Neue", arial, sans-serif',
-  },
-) {
+  primaryFontFamily: '"Helvetica Neue", arial, sans-serif',
+};
+
+// $FlowFixMe
+export default function(overrides) {
+  const theme = Object.assign({}, defaultTheme, overrides);
   return {
     colors: {
       // Primary Palette
-      primary50,
-      primary100,
-      primary200,
-      primary300,
-      primary400,
-      primary: primary400,
-      primary500,
-      primary600,
-      primary700,
+      primary50: theme.primary50,
+      primary100: theme.primary100,
+      primary200: theme.primary200,
+      primary300: theme.primary300,
+      primary400: theme.primary400,
+      primary: theme.primary400,
+      primary500: theme.primary500,
+      primary600: theme.primary600,
+      primary700: theme.primary700,
 
       // Negative Palette
-      negative50,
-      negative100,
-      negative200,
-      negative300,
-      negative400,
-      negative: negative400,
-      negative500,
-      negative600,
-      negative700,
+      negative50: theme.negative50,
+      negative100: theme.negative100,
+      negative200: theme.negative200,
+      negative300: theme.negative300,
+      negative400: theme.negative400,
+      negative: theme.negative400,
+      negative500: theme.negative500,
+      negative600: theme.negative600,
+      negative700: theme.negative700,
 
       // Warning Palette
-      warning50,
-      warning100,
-      warning200,
-      warning300,
-      warning400,
-      warning: warning400,
-      warning500,
-      warning600,
-      warning700,
+      warning50: theme.warning50,
+      warning100: theme.warning100,
+      warning200: theme.warning200,
+      warning300: theme.warning300,
+      warning400: theme.warning400,
+      warning: theme.warning400,
+      warning500: theme.warning500,
+      warning600: theme.warning600,
+      warning700: theme.warning700,
 
       // Positive Palette
-      positive50,
-      positive100,
-      positive200,
-      positive300,
-      positive400,
-      positive: positive400,
-      positive500,
-      positive600,
-      positive700,
+      positive50: theme.positive50,
+      positive100: theme.positive100,
+      positive200: theme.positive200,
+      positive300: theme.positive300,
+      positive400: theme.positive400,
+      positive: theme.positive400,
+      positive500: theme.positive500,
+      positive600: theme.positive600,
+      positive700: theme.positive700,
 
       // Monochrome Palette
-      white: mono100,
-      mono100,
-      mono200,
-      mono300,
-      mono400,
-      mono500,
-      mono600,
-      mono700,
-      mono800,
-      mono900,
-      mono1000,
-      black: mono1000,
+      white: theme.mono100,
+      mono100: theme.mono100,
+      mono200: theme.mono200,
+      mono300: theme.mono300,
+      mono400: theme.mono400,
+      mono500: theme.mono500,
+      mono600: theme.mono600,
+      mono700: theme.mono700,
+      mono800: theme.mono800,
+      mono900: theme.mono900,
+      mono1000: theme.mono1000,
+      black: theme.mono1000,
 
       // Semantic Colors
 
       // Background
-      background: mono100,
-      backgroundAlt: mono800,
-      backgroundInv: mono100,
+      background: theme.mono100,
+      backgroundAlt: theme.mono800,
+      backgroundInv: theme.mono100,
 
       // Foreground
-      foreground: mono1000,
-      foregroundAlt: mono800,
-      foregroundInv: mono100,
+      foreground: theme.mono1000,
+      foregroundAlt: theme.mono800,
+      foregroundInv: theme.mono100,
 
       // Borders
-      border: mono500,
-      borderAlt: mono600,
-      borderFocus: primary400,
-      borderError: negative400,
+      border: theme.mono500,
+      borderAlt: theme.mono600,
+      borderFocus: theme.primary400,
+      borderError: theme.negative400,
 
       // Buttons
-      buttonPrimaryFill: primary400,
-      buttonPrimaryText: mono100, // white
-      buttonPrimaryHover: primary500,
-      buttonPrimaryActive: primary600,
-      buttonSecondaryFill: primary50,
-      buttonSecondaryText: primary400,
-      buttonSecondaryHover: primary100,
-      buttonSecondaryActive: primary200,
-      buttonTertiaryFill: mono200,
-      buttonTertiaryText: primary400,
-      buttonTertiaryHover: mono400,
-      buttonTertiaryActive: mono500,
+      buttonPrimaryFill: theme.primary400,
+      buttonPrimaryText: theme.mono100, // white
+      buttonPrimaryHover: theme.primary500,
+      buttonPrimaryActive: theme.primary600,
+      buttonSecondaryFill: theme.primary50,
+      buttonSecondaryText: theme.primary400,
+      buttonSecondaryHover: theme.primary100,
+      buttonSecondaryActive: theme.primary200,
+      buttonTertiaryFill: theme.mono200,
+      buttonTertiaryText: theme.primary400,
+      buttonTertiaryHover: theme.mono400,
+      buttonTertiaryActive: theme.mono500,
       buttonMinimalFill: 'transparent',
-      buttonMinimalText: primary400,
-      buttonMinimalHover: mono200,
-      buttonMinimalActive: mono400,
-      buttonDisabledFill: mono300,
-      buttonDisabledText: mono600,
+      buttonMinimalText: theme.primary400,
+      buttonMinimalHover: theme.mono200,
+      buttonMinimalActive: theme.mono400,
+      buttonDisabledFill: theme.mono300,
+      buttonDisabledText: theme.mono600,
 
       // Links
-      linkText: primary400,
-      linkVisited: primary500,
-      linkHover: primary600,
+      linkText: theme.primary400,
+      linkVisited: theme.primary500,
+      linkHover: theme.primary600,
 
       // Shadow
       shadowFocus: 'rgba(39, 110, 241, 0.32)',
@@ -171,79 +170,79 @@ export default function(
     },
     typography: {
       font100: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '11px',
         fontWeight: 'normal',
         lineHeight: '16px',
       },
       font200: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '12px',
         fontWeight: 'normal',
         lineHeight: '20px',
       },
       font250: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '12px',
         fontWeight: 'bold',
         lineHeight: '20px',
       },
       font300: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '14px',
         fontWeight: 'normal',
         lineHeight: '24px',
       },
       font350: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '14px',
         fontWeight: 'bold',
         lineHeight: '24px',
       },
       font400: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '16px',
         fontWeight: 'normal',
         lineHeight: '28px',
       },
       font450: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '16px',
         fontWeight: 'bold',
         lineHeight: '28px',
       },
       font500: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '20px',
         fontWeight: 'bold',
         lineHeight: '28px',
       },
       font600: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '24px',
         fontWeight: 'bold',
         lineHeight: '36px',
       },
       font700: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '28px',
         fontWeight: 'bold',
         lineHeight: '40px',
       },
       font800: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '32px',
         fontWeight: 'bold',
         lineHeight: '48px',
       },
       font900: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '40px',
         fontWeight: 'bold',
         lineHeight: '56px',
       },
       font1000: {
-        fontFamily: primaryFontFamily,
+        fontFamily: theme.primaryFontFamily,
         fontSize: '56px',
         fontWeight: 'normal',
         lineHeight: '80px',
@@ -329,7 +328,7 @@ export default function(
       modal: 2000,
     },
     tooltip: {
-      backgroundColor: mono900,
+      backgroundColor: theme.mono900,
     },
   };
 }
