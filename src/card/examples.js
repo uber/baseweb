@@ -102,7 +102,7 @@ export default {
         <StyledTitle>{placeholderTitle}</StyledTitle>
         <StyledBody>{placeholderText}</StyledBody>
         <StyledAction>
-          <Button style={{width: '100%'}}>Button Label</Button>
+          <Button style={{width: '100%'}}>Button to break the test :O</Button>
         </StyledAction>
       </Card>
     );
