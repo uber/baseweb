@@ -16,8 +16,15 @@ import {
 } from './styled-components';
 import {} from './constants';
 import {getOverrideObject} from '../helpers/overrides';
+import {STATE_CHANGE_TYPE} from './constants';
+import type {ChangeActionT, StatelessStateT, PropsT} from './types';
+/* global document */
+/* global window */
 
 class Slider extends React.Component<PropsT, StatelessStateT> {
+  domNode: ?Element | Text;
+  onMouseUpListener: ?MouseEventHandler;
+  onMouseMoveListener: ?MouseEventHandler;
   static defaultProps = {
     overrides: {},
     onChange: () => {},
@@ -35,7 +42,7 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
   state = {
     isThumbMoving: false,
     currentThumb: -1,
-    value: this.props.value
+    currentMove: 0,
   };
 
   constructor(props: PropsT) {
@@ -50,13 +57,10 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
 
   onMouseLeave = (e: SyntheticEvent<HTMLInputElement>) => {};
 
-  onChange = (
-    e: SyntheticEvent<HTMLInputElement>,
-    type: ChangeActionT,
-  ) => {
-  };
+  onChange = (e: SyntheticEvent<HTMLInputElement>, type: ChangeActionT) => {};
 
   componentDidMount() {
+    /* eslint-disable-next-line react/no-find-dom-node */
     this.domNode = findDOMNode(this);
     this.addDocumentMouseEvents();
   }
@@ -66,31 +70,40 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
     this.removeDocumentEvents();
   }
 
-  onMouseDown = (e, thumbIndex) => {
+  onMouseDown = (e: MouseEvent, thumbIndex: number) => {
     this.setState({
       isThumbMoving: true,
       currentThumb: thumbIndex,
     });
   };
 
-  onMouseUp = e => {
+  onMouseUp = (e: MouseEvent) => {
     if (this.state.isThumbMoving) {
       this.setState({
         isThumbMoving: false,
         currentThumb: -1,
+        currentMove: 0,
       });
     }
   };
 
-  onMouseMove = e => {
+  onMouseMove = (e: MouseEvent) => {
     if (this.state.isThumbMoving) {
-      this.onMove(e.movementX);
+      this.onMove(e);
     }
   };
 
   addDocumentMouseEvents() {
-    this.onMouseMoveListener = document.addEventListener('mousemove', this.onMouseMove);
-    this.onMouseUpListener = document.addEventListener('mouseup', this.onMouseUp);
+    if (__BROWSER__) {
+      this.onMouseMoveListener = document.addEventListener(
+        'mousemove',
+        this.onMouseMove,
+      );
+      this.onMouseUpListener = document.addEventListener(
+        'mouseup',
+        this.onMouseUp,
+      );
+    }
   }
 
   removeDocumentEvents() {
@@ -99,8 +112,7 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
   }
 
   render() {
-    const {overrides, range} = this.props;
-    const {value, currentThumb} = this.state;
+    const {overrides = {}, range, value} = this.props;
     const {component: Root, props: rootProps} = getOverrideObject(
       overrides.Root,
       StyledRoot,
@@ -121,13 +133,7 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
       overrides.TickBar,
       StyledTickBar,
     );
-    const sharedProps = {
-      $value: value,
-      $range: range,
-      $max: range[range.length - 1],
-      $min: range[0],
-      $currentThumb: currentThumb,
-    };
+    const sharedProps = this.getSharedProps();
     return (
       <Root {...rootProps} {...sharedProps}>
         <Axis {...axisProps} {...sharedProps}>
@@ -143,7 +149,7 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
         </Axis>
         <TickBar {...tickBarProps}>
           {range.map((tick, $index) => (
-            <Tick key={$index} $index={$index}{...tickProps} {...sharedProps} >
+            <Tick key={$index} $index={$index} {...tickProps} {...sharedProps}>
               {tick}
             </Tick>
           ))}
@@ -152,18 +158,54 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
     );
   }
 
-  onMove(move) {
-    const value = this.state.value.slice();
-    const {range} = this.props;
-    const $max = range[range.length - 1];
-    const $min = range[0];
-    const axisSizeInPixels = parseInt(window.getComputedStyle(this.domNode).width);
+  onMove(e: MouseEvent) {
+    const {currentThumb, currentMove} = this.state;
+    const move = currentMove + e.movementX;
+    const {$value, $range, $max, $min} = this.getSharedProps();
+    const value = $value.slice();
+    let {onChange, step} = this.props;
+    const axisSizeInPixels = parseInt(
+      window.getComputedStyle(this.domNode).width,
+    );
     const axisSize = $max - $min;
-    const scaledMove = (axisSize * move) / axisSizeInPixels;
-    let newThumbValue = value[this.state.currentThumb] + scaledMove;
-    newThumbValue = newThumbValue > $max ? $max : (newThumbValue < $min ? $min : newThumbValue);
-    value[this.state.currentThumb] = newThumbValue;
-    this.setState({value});
+    step = step ? Slider.scale(step, axisSize, axisSizeInPixels) : step;
+    if ($range.length <= 2) {
+      const scaledStep = step ? (move >= 0 ? step : -step) : move;
+      if (Math.abs(move) - Math.abs(scaledStep) >= 0) {
+        const scaledMove = Slider.scale(scaledStep, axisSizeInPixels, axisSize);
+        const max = !currentThumb ? value[1] : $max;
+        const min = currentThumb ? value[0] : $min;
+        value[currentThumb] = Slider.clampIt(
+          value[currentThumb] + scaledMove,
+          max,
+          min,
+        );
+        this.setState({currentMove: 0});
+      } else {
+        this.setState({currentMove: move});
+      }
+    }
+    onChange(e, {type: STATE_CHANGE_TYPE.value, value});
+  }
+
+  getSharedProps() {
+    const {range, value} = this.props;
+    const {currentThumb} = this.state;
+    return {
+      $value: value,
+      $range: range,
+      $max: range[range.length - 1],
+      $min: range[0],
+      $currentThumb: currentThumb,
+    };
+  }
+
+  static clampIt(value: number, max: number, min: number) {
+    return Math.max(min, Math.min(value, max));
+  }
+
+  static scale(x: number, distanceX: number, distanceY: number) {
+    return (x * distanceY) / distanceX;
   }
 }
 
