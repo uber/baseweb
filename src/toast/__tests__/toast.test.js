@@ -106,6 +106,7 @@ describe('Toast', () => {
     expect(props.onClose).not.toHaveBeenCalled();
 
     jest.runAllTimers();
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 600);
     expect(wrapper.instance().state.isAnimating).toBe(false);
     expect(props.onClose).toHaveBeenCalled();
   });

@@ -10,12 +10,9 @@ import {styled} from '../styles';
 import {Toast, KIND} from './index';
 import {Button, KIND as ButtonKind, SIZE} from '../button';
 
+import examples from './examples-list';
+
 export const suite = 'Toast Test Suite';
-export const tests = {
-  SIMPLE_EXAMPLE: 'Toast notifications',
-  DISMISSABLE_EXAMPLE: 'Auto dismissable toasts',
-  OVERRIDES_EXAMPLE: 'Toasts with overrides',
-};
 
 const Centered = styled('div', {
   position: 'relative',
@@ -138,7 +135,7 @@ class NotificationExample extends React.Component<{}, {toasts: []}> {
 }
 
 export default {
-  [tests.SIMPLE_EXAMPLE]: function Story1() {
+  [examples.SIMPLE_EXAMPLE]: function Story1() {
     return (
       <Centered>
         <Toast>Default info notification</Toast>
@@ -169,14 +166,14 @@ export default {
       </Centered>
     );
   },
-  [tests.DISMISSABLE_EXAMPLE]: function Story1() {
+  [examples.DISMISSABLE_EXAMPLE]: function Story1() {
     return (
       <Centered>
         <NotificationExample />
       </Centered>
     );
   },
-  [tests.OVERRIDES_EXAMPLE]: function Story1() {
+  [examples.OVERRIDES_EXAMPLE]: function Story1() {
     return (
       <Centered>
         <Toast
