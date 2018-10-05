@@ -23,6 +23,8 @@ import {thumbnail as thumbnailImg, header as headerImg} from './images';
 
 import type {CardsPropsT} from './types';
 
+import examples from './examples-list';
+
 const cardWidth = '328px';
 const placeholderTitle = 'Card Title Entry';
 const placeholderText =
@@ -47,8 +49,6 @@ Card.defaultProps = {
   hasThumbnail,
   overrides: {},
 };
-
-import examples from './examples-list';
 
 export default {
   [examples.TEXT_ONLY]: function Story1() {
