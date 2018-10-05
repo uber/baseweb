@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component styled components StyledBody - basic render: StyledBody has correct default styles 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.primary500",
+  "borderRadius": "$theme.borders.radius200",
+  "boxShadow": "$theme.lighting.shadow600",
+  "color": "$theme.colors.white",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "height": "auto",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "marginBottom": "$theme.sizing.scale600",
+  "marginTop": "$theme.sizing.scale600",
+  "opacity": 1,
+  "paddingBottom": "$theme.sizing.scale600",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale600",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "opacity, height",
+  "transitionTimingFunction": "$theme.animation.easeInOutCurve",
+  "width": "288px",
+}
+`;
+
+exports[`Component styled components StyledCloseIcon - basic render: StyledSvg has correct default styles 1`] = `
+Object {
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "float": "right",
+  "height": "$theme.sizing.scale800",
+  "width": "$theme.sizing.scale800",
+}
+`;
