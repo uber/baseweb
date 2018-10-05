@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/prefer-default-export */
-import DEFAULT_THEME from '../themes/light-theme';
+import {LightTheme} from '../themes';
 
 export const STYLE = {
-  primary: DEFAULT_THEME.colors.primary400,
-  warning: DEFAULT_THEME.colors.warning400,
-  positive: DEFAULT_THEME.colors.positive400,
-  negative: DEFAULT_THEME.colors.negative400,
+  primary: LightTheme.colors.primary400,
+  warning: LightTheme.colors.warning400,
+  positive: LightTheme.colors.positive400,
+  negative: LightTheme.colors.negative400,
 };
 
 /* eslint-enable import/prefer-default-export */

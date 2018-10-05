@@ -5,4 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {default as LightTheme} from './light-theme';
+import createTheme from './creator';
+import {primitives as lightThemePrimitives} from './light-theme';
+
+export const LightTheme = createTheme(lightThemePrimitives);
+
+export const LightThemeMove = createTheme({
+  ...lightThemePrimitives,
+  primaryFontFamily:
+    'UberMove, "Open Sans", "Helvetica Neue", Helvetica, sans-serif',
+});
