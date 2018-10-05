@@ -46,7 +46,8 @@ export default function Hello() {
 
 ## Docs
 
-[Docs by Storybook](https://baseui.netlify.com/)
+* [Creating custom themes](src/themes/README.md)
+* [Docs by Storybook](https://baseui.netlify.com/)
 
 ## Contributing
 

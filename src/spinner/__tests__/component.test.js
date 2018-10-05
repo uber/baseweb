@@ -29,9 +29,7 @@ describe('Spinner', () => {
 
   test('component overrides', () => {
     const overrides = {
-      Svg: jest
-        .fn()
-        .mockImplementation(({children}) => <span>{children}</span>),
+      Svg: jest.fn().mockImplementation(({children}) => <svg>{children}</svg>),
     };
     const wrapper = mount(
       // $FlowFixMe

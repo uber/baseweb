@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "React implementation of uber design components platform.",
   "keywords": [
     "react",
@@ -33,7 +33,7 @@
     "e2e:build": "webpack --config webpack.e2e.config.js --mode=production",
     "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "nightwatch --filter e2e.js",
-    "e2e:test:ci": "nightwatch --filter e2e.js --env chrome-mac,chrome-windows,iPhone-X",
+    "e2e:test:ci": "nightwatch --filter e2e.js --env chrome-mac,chrome-windows,iPhone-X --retries 2",
     "prepublish": "npm run build",
     "license": "license-check-and-add"
   },

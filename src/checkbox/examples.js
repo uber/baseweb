@@ -19,7 +19,7 @@ import {
   Checkbox as StatelessCheckbox,
 } from './index';
 
-import ExampleList from './examples-list';
+import examples from './examples-list';
 
 const onChange = e => {
   // eslint-disable-next-line no-console
@@ -109,10 +109,10 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
 }
 
 export default {
-  [ExampleList.SIMPLE_EXAMPLE]: () => {
+  [examples.SIMPLE_EXAMPLE]: () => {
     return <Checkbox onChange={onChange}>click me</Checkbox>;
   },
-  [ExampleList.MULTILINE]: () => {
+  [examples.MULTILINE]: () => {
     return (
       <Checkbox onChange={onChange}>
         It started as a simple idea: What if you could request a ride from your
@@ -124,17 +124,17 @@ export default {
       </Checkbox>
     );
   },
-  [ExampleList.WITH_ERROR]: () => {
+  [examples.WITH_ERROR]: () => {
     return (
       <Checkbox onChange={onChange} isError={true}>
         Checkbox with an isError
       </Checkbox>
     );
   },
-  [ExampleList.INDETERMINATE]: () => {
+  [examples.INDETERMINATE]: () => {
     return <GroupList />;
   },
-  [ExampleList.DISABLED]: () => {
+  [examples.DISABLED]: () => {
     return (
       <div>
         <Checkbox onChange={onChange} disabled>
@@ -152,21 +152,21 @@ export default {
       </div>
     );
   },
-  [ExampleList.LEFT_ALIGN]: () => {
+  [examples.LEFT_ALIGN]: () => {
     return (
       <Checkbox onChange={onChange} labelPlacement="left">
         Label on the left
       </Checkbox>
     );
   },
-  [ExampleList.BOTTOM_ALIGN]: () => {
+  [examples.BOTTOM_ALIGN]: () => {
     return (
       <Checkbox onChange={onChange} labelPlacement="bottom">
         Label on the bottom
       </Checkbox>
     );
   },
-  [ExampleList.STYLES_OVERRIDES]: () => {
+  [examples.STYLES_OVERRIDES]: () => {
     return (
       <Checkbox
         onChange={onChange}
@@ -200,7 +200,7 @@ export default {
       </Checkbox>
     );
   },
-  [ExampleList.COMPONENTS_OVERRIDES]: () => {
+  [examples.COMPONENTS_OVERRIDES]: () => {
     const customLabel = () => {
       const crab =
         'data:image/svg+xml;charset=US-ASCII, <svg xmlns="http://www.w3.org/2000/svg" viewBox="1.5 113.9 256 256"><path fill="#9E2610" d="M72.1 296.8s-31.8 11.7-37.9 20.5c0 0 3.5-21.3 30.9-32.7l7 12.2zM84.2 307.5s-21.9 22.8-23.4 32.7c0 0-5.8-19.3 12.5-40.1l10.9 7.4zM68.3 278.8s-34 2.4-43.3 9.1c0 0 12.3-19.5 42.3-22.8l1 13.7zM185.4 295s31.8 11.7 37.9 20.5c0 0-3.5-21.3-30.9-32.7l-7 12.2z"/><path fill="#D62D0E" d="M50.5 223.5S13 205.5 41 161c0 0 9-19.5 38-16.5L53.5 205l46-32.8s12.5 24.5-11 42.2c0 0-13.8 10.2-20.8 9 0 0 4.5 11 12 16.2l3.5 3.2-9.5 11c.1.2-20.7-15.3-23.2-30.3z"/><path fill="#9E2610" d="M173.3 305.6s21.9 22.8 23.4 32.7c0 0 5.8-19.3-12.5-40.1l-10.9 7.4zM189.2 276.9s34 2.4 43.3 9.1c0 0-12.3-19.5-42.3-22.8l-1 13.7z"/><path fill="#D62D0E" d="M207.9 223.5s37.5-18 9.5-62.5c0 0-9-19.5-38-16.5l25.5 60.5-46-32.8s-12.5 24.5 11 42.2c0 0 13.8 10.2 20.8 9 0 0-4.5 11-12 16.2l-3.5 3.2 9.5 11c0 .2 20.7-15.3 23.2-30.3z"/><path fill="#D62D0E" d="M127.8 212s44-5.2 65.2 57.8c0 0 11.8 44.5-62.2 48.5 0 0-70.2 1.2-66.2-43.8-.1 0 6.6-54 63.2-62.5z"/><circle fill="#FFF" cx="103.8" cy="265.1" r="23.5"/><circle fill="#FFF" cx="153.6" cy="264.1" r="23.5"/><circle cx="105.2" cy="263.8" r="14.8"/><circle cx="152.2" cy="262.5" r="14.8"/><ellipse transform="rotate(-45.37 157.15 256.57)" fill="#FFF" cx="157.1" cy="256.6" rx="4.7" ry="7.2"/><ellipse transform="rotate(-45.37 110.35 257.456)" fill="#FFF" cx="110.3" cy="257.4" rx="4.7" ry="7.2"/><path d="M78.5 290s12.7 20 51.6 19.5c0 0 34.2 1.5 49.2-19.5 0 0-15.8 17.5-49.2 17.2 0 0-36.1.3-51.6-17.2z"/></svg>';
@@ -229,7 +229,7 @@ export default {
       </Checkbox>
     );
   },
-  [ExampleList.EXTRA_PROPS]: () => {
+  [examples.EXTRA_PROPS]: () => {
     function withProps(Component: React.ComponentType<*>, customProps: {}) {
       return (props: {}) => <Component {...customProps} {...props} />;
     }
@@ -245,7 +245,7 @@ export default {
       </Checkbox>
     );
   },
-  [ExampleList.WITH_FOCUS]: () => {
+  [examples.WITH_FOCUS]: () => {
     const inputRef = React.createRef();
     let isFocused = true;
     return (
