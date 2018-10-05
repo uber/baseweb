@@ -75,18 +75,15 @@ export function toObjectOverride<T>(
 }
 
 /**
- * Get a convenient override object that will always have {component, props}
+ * Get a convenient override array that will always have [component, props]
  */
-export function getOverrideObject<T>(
+export function getOverrides<T>(
   override: ?OverrideT<T>,
   defaultComponent: React.ComponentType<T>,
-): {
-  component: React.ComponentType<T>,
-  props: {},
-} {
+): [React.ComponentType<T>, {}] {
   const component = getOverride(override) || defaultComponent;
   const props = getOverrideProps(override);
-  return {component, props};
+  return [component, props];
 }
 
 /**
