@@ -11,18 +11,18 @@ import {
   EndEnhancer as StyledEndEnhancer,
 } from './styled-components';
 import {getSharedProps} from './utils';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 import {KIND, SHAPE, SIZE} from './constants';
 
 import type {ButtonPropsT} from './types';
 
 export default function ButtonInternals(props: ButtonPropsT) {
   const {children, overrides, startEnhancer, endEnhancer} = props;
-  const {
-    component: StartEnhancer,
-    props: startEnhancerProps,
-  } = getOverrideObject(overrides.StartEnhancer, StyledStartEnhancer);
-  const {component: EndEnhancer, props: endEnhancerProps} = getOverrideObject(
+  const [StartEnhancer, startEnhancerProps] = getOverrides(
+    overrides.StartEnhancer,
+    StyledStartEnhancer,
+  );
+  const [EndEnhancer, endEnhancerProps] = getOverrides(
     overrides.EndEnhancer,
     StyledEndEnhancer,
   );

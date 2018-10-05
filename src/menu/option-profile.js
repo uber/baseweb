@@ -10,7 +10,7 @@ import {
   ProfileSubtitle as StyledProfileSubtitle,
   ProfileBody as StyledProfileBody,
 } from './styled-components';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 // Types
 import type {OptionProfilePropsT} from './types';
 
@@ -22,37 +22,31 @@ export default function OptionProfile({
   overrides = {},
   ...restProps
 }: OptionProfilePropsT) {
-  const {
-    component: ListItemProfile,
-    props: listItemProfileProps,
-  } = getOverrideObject(overrides.ListItemProfile, StyledListItemProfile);
-  const {
-    component: ProfileImgContainer,
-    props: profileImgContainerProps,
-  } = getOverrideObject(
+  const [ListItemProfile, listItemProfileProps] = getOverrides(
+    overrides.ListItemProfile,
+    StyledListItemProfile,
+  );
+  const [ProfileImgContainer, profileImgContainerProps] = getOverrides(
     overrides.ProfileImgContainer,
     StyledProfileImgContainer,
   );
-  const {component: ProfileImg, props: profileImgProps} = getOverrideObject(
+  const [ProfileImg, profileImgProps] = getOverrides(
     overrides.ProfileImg,
     StyledProfileImg,
   );
-  const {
-    component: ProfileLabelsContainer,
-    props: profileLabelsContainerProps,
-  } = getOverrideObject(
+  const [ProfileLabelsContainer, profileLabelsContainerProps] = getOverrides(
     overrides.ProfileLabelsContainer,
     StyledProfileLabelsContainer,
   );
-  const {component: ProfileTitle, props: profileTitleProps} = getOverrideObject(
+  const [ProfileTitle, profileTitleProps] = getOverrides(
     overrides.ProfileTitle,
     StyledProfileTitle,
   );
-  const {
-    component: ProfileSubtitle,
-    props: profileSubtitleProps,
-  } = getOverrideObject(overrides.ProfileSubtitle, StyledProfileSubtitle);
-  const {component: ProfileBody, props: profileBodyProps} = getOverrideObject(
+  const [ProfileSubtitle, profileSubtitleProps] = getOverrides(
+    overrides.ProfileSubtitle,
+    StyledProfileSubtitle,
+  );
+  const [ProfileBody, profileBodyProps] = getOverrides(
     overrides.ProfileBody,
     StyledProfileBody,
   );
