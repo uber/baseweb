@@ -17,7 +17,6 @@ export const Root = styled('div', props => {
 
 export const Axis = styled('div', props => {
   const {$theme} = props;
-  const {} = $theme;
   let background = 'linear-gradient(to right';
   const fillColor = '#1B6DE0';
   const emptyColor = '#CCCCCC';
@@ -48,14 +47,10 @@ export const Axis = styled('div', props => {
 });
 
 export const Tick = styled('div', props => {
-  const {$theme} = props;
-  const {} = $theme;
   return {};
 });
 
 export const TickBar = styled('div', props => {
-  const {$theme} = props;
-  const {} = $theme;
   return {
     display: 'flex',
     justifyContent: 'space-between',
@@ -65,12 +60,19 @@ export const TickBar = styled('div', props => {
 });
 
 export const Thumb = styled('div', props => {
-  const {$theme, $value, $max, $index, $currentThumb} = props;
+  const {$value, $max, $index, $currentThumb} = props;
   const offset = Math.round(($value[$index] / $max) * 100);
   const isRange = $value.length > 1;
   const $isActive = $index === $currentThumb;
   return {
-    ...getToggleCheckMarkStyles({...props, ...{$isActive, $isStart: true}}),
+    ...getToggleCheckMarkStyles({
+      ...props,
+      ...{
+        $isActive,
+        $isStart: isRange && $index === 0,
+        $isEnd: isRange && $index === 1,
+      },
+    }),
     backgroundColor: null,
     position: 'relative',
     top: '-10px',

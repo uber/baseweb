@@ -7,7 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {OverrideT} from '../helpers/overrides';
-import {} from './constants';
+import {STATE_CHANGE_TYPE} from './constants';
+
+export type ChangeActionT = $Values<typeof STATE_CHANGE_TYPE>;
+
+export type ValueT = Array<*>;
+export type ParamsT = {
+  value: ValueT,
+  type: ChangeActionT,
+};
 
 export type OverridesT = {
   Root?: OverrideT<*>,
@@ -18,15 +26,16 @@ export type OverridesT = {
 };
 
 export type PropsT = {
-  value: Array<*>,
+  value: ValueT,
   range: Array<*>,
+  step?: number,
   overrides?: OverridesT,
   tabIndex: number,
   error: boolean,
   autoFocus: boolean,
   disabled?: boolean,
   $theme?: *,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange: (e: MouseEvent, params: ParamsT) => void,
   onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseDown: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -36,7 +45,7 @@ export type PropsT = {
 };
 
 export type StateT = {
-  value?: Array<*>,
+  value?: ValueT,
 };
 
 export type StateReducerT = (
@@ -45,6 +54,12 @@ export type StateReducerT = (
   currentState: StateT,
   event: SyntheticEvent<HTMLInputElement>,
 ) => StateT;
+
+export type StatelessStateT = {
+  isThumbMoving: boolean,
+  currentThumb: number,
+  currentMove: number,
+};
 
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
@@ -61,7 +76,7 @@ export type StatefulContainerPropsT = {
 
 export type StatefulSliderPropsT = {
   overrides?: OverridesT,
-  value?: Array<*>,
+  value?: ValueT,
   initialState?: StateT,
   autoFocus?: boolean,
   onChange?: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,

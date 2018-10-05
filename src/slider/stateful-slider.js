@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import StatefulSliderContainer from './stateful-slider-container';
 import Slider from './slider';
+import type {StatefulSliderPropsT} from './types';
 
-export default function StatefulSlider(props) {
+export default function StatefulSlider(props: StatefulSliderPropsT) {
   return (
     <StatefulSliderContainer {...props}>
-      {(childrenProps) => <Slider {...childrenProps} />}
+      {childrenProps => <Slider {...childrenProps} />}
     </StatefulSliderContainer>
   );
 }

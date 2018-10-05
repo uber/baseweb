@@ -21,8 +21,7 @@ class StatefulSliderContainer extends React.Component<
   StateT,
 > {
   static defaultProps = {
-    initialState: {
-    },
+    initialState: {},
     stateReducer: defaultStateReducer,
     onChange: () => {},
     onMouseEnter: () => {},
@@ -62,8 +61,9 @@ class StatefulSliderContainer extends React.Component<
   internalSetState = (
     type: ChangeActionT,
     e: SyntheticInputEvent<HTMLInputElement>,
+    {value}: ParamsT,
   ) => {
-    const nextState = {};
+    const nextState = {value};
     const {stateReducer} = this.props;
     const newState = stateReducer(type, nextState, this.state, e);
     this.setState(newState);
@@ -76,13 +76,7 @@ class StatefulSliderContainer extends React.Component<
       stateReducer, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
-    const {
-      onChange,
-      onMouseEnter,
-      onMouseLeave,
-      onFocus,
-      onBlur,
-    } = this;
+    const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;
     return children({
       ...rest,
       ...this.state,
