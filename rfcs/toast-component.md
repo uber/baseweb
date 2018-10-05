@@ -26,22 +26,22 @@ export default () => {
         onClose={()=>{console.log('Toast notification was dismissed.')}}
         autoHideDuration={5000}
         overrides={{
-          Body: props => <CustomContainer>{props.children}</CustomContainer>,
+          Body: props => <CustomContainer {...props} />,
         }}
       >
       This a dismissable info notification that is hidden after 5 seconds automatically.
       </Toast>
       <Toast
         closeable={false}
-        kind={KIND.error}
+        kind={KIND.positive}
       >
       {({dismiss}) => {
         return (
           <div>
-            This is an error notification with an action button
+            This is a success notification with an action button
             <button onClick={() => {
-              dismiss();
               console.log('Action button clicked');
+              dismiss();
             }}>
               Take action
             </button>
@@ -57,11 +57,9 @@ export default () => {
 ## Exports
 
 * `Toast`
-* `StyledRoot`
 * `StyledBody`
-* `StyledCloseButton`
+* `StyledSvg`
 * `KIND`
-* `PLACEMENT`
 
 ## `Toast` API
 
@@ -69,15 +67,21 @@ export default () => {
   Toast notification content. The children-as-function receives a `dissmiss` method that can be called to dismiss the notification and can be used as a handler for an action inside the toast content
 * `closeable: boolean` - Optional. Defaults to true
   When set to true a close button is displayed and the notification can be dismissed by a user
-* `kind: 'info' | 'success' | 'warning' | 'error'` - Optional. Defaults to 'info'
+* `kind: 'info' | 'positive' | 'warning' | 'negative'` - Optional. Defaults to 'info'
   Defines the type of notification
 * `onClose: function` - Optional
   A callback function called when a notification is dismissed
-* `overrides: {Root, Body, CloseButton}` - Optional
+  `onBlur: function` - Optional
+  A callback function called when the notification's Body element gets a `blur` event
+  `onFocus: function` - Optional
+  A callback function called when the notification's Body element gets a `focus` event
+  `onMouseEnter: function` - Optional
+  A callback function called when the notification's Body element gets a `mouseenter` event
+  `onMouseLeave: function` - Optional
+  A callback function called when the notification's Body element gets a `mouseleave` event
+* `overrides: {Body, Svg}` - Optional
   Overrides for presentational components. See "Presentational Components Props API" below.
   * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
-* `placement: 'inline' | 'topLeft' | 'top' | 'topRight' | 'bottomRight' | 'bottom' | 'bottomLeft'` - Optional. Defaults to 'top'
-  Position of a toast notification relative to the browser window. If set to 'inline' a notitication is positioned according to a normal flow of the document
 * `autoHideDuration: number` - Optional. Defaults to 0
   The number of milliseconds to wait before automatically dismissing a notification. This behavior is disabled when the value is set to 0
 
@@ -91,23 +95,13 @@ These properties are passed to every presentational (styled) component that is e
 ## KIND Constant
 
 * `info` - Generally used for messages with an informational context
-* `success` - Generally used as a confirmation of a succesful action or operation  
+* `positive` - Generally used as a confirmation of a succesful action or operation  
 * `warning` - Generally used for messages with an warning context
-* `error` - Generally used as a notification of an error happened as a result of an action or operation
-
-## PLACEMENT Constant
-
-* `inline` - positioned according to a normal flow of the document
-* `topLeft` - positioned relative to the browser window
-* `top` - positioned relative to the browser window
-* `topRight` - positioned relative to the browser window
-* `bottomRight` - positioned relative to the browser window
-* `bottom` - positioned relative to the browser window
-* `bottomLeft` - positioned relative to the browser window
+* `negative` - Generally used as a notification of an error happened as a result of an action or operation
 
 ## Dependencies
 
-Does this component depend on any 3rd party packages or other internal components?
+* none
 
 ## Accessibility
 
