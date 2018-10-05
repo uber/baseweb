@@ -10,7 +10,7 @@ import * as React from 'react';
 import {select as selectKnob} from '@storybook/addon-knobs';
 import {Button} from '../button';
 import {Input} from '../input';
-import ExampleList from './examples-list';
+import examples from './examples-list';
 
 import {styled} from '../styles';
 import {
@@ -85,7 +85,7 @@ const sizeKnob = () =>
   );
 
 export default {
-  [ExampleList.SIMPLE_EXAMPLE]: function Story1() {
+  [examples.SIMPLE_EXAMPLE]: function Story1() {
     return (
       <Centered>
         <ModalStateContainer isInitiallyOpen>
@@ -112,7 +112,7 @@ export default {
       </Centered>
     );
   },
-  [ExampleList.SCROLLING_EXAMPLE]: function Story2() {
+  [examples.SCROLLING_EXAMPLE]: function Story2() {
     return (
       <Centered>
         <ModalStateContainer isInitiallyOpen>
@@ -151,7 +151,7 @@ export default {
       </Centered>
     );
   },
-  [ExampleList.CLOSEABLE_EXAMPLE]: function Story3() {
+  [examples.CLOSEABLE_EXAMPLE]: function Story3() {
     return (
       <Centered>
         <ModalStateContainer isInitiallyOpen>
@@ -189,7 +189,7 @@ export default {
       </Centered>
     );
   },
-  [ExampleList.MOUNT_NODE_EXAMPLE]: function Story3() {
+  [examples.MOUNT_NODE_EXAMPLE]: function Story3() {
     class CustomMountNodeExample extends React.Component<
       {},
       {mounted: boolean},
@@ -252,7 +252,7 @@ export default {
     }
     return <CustomMountNodeExample />;
   },
-  [ExampleList.STYLE_OVERRIDES]: function Story1() {
+  [examples.STYLE_OVERRIDES]: function Story1() {
     return (
       <Centered>
         <ModalStateContainer isInitiallyOpen>
