@@ -67,7 +67,6 @@ export default function OptionProfile({
             />
           ) : (
             // Or just render the entire component user specified
-            // TODO: need better way of checking if valid React component
             <ItemImg {...profileImgProps} />
           ))}
       </ProfileImgContainer>
