@@ -17,50 +17,71 @@ import {getOverrides} from '../helpers/overrides';
 
 import type {ButtonPropsT} from './types';
 
-export default function Button(props: ButtonPropsT) {
-  const {
-    overrides,
-    size,
-    kind,
-    shape,
-    isLoading,
-    // Removing from restProps
-    startEnhancer,
-    endEnhancer,
-    children,
-    ...restProps
-  } = props;
-  // Get overrides
-  const [BaseButton, baseButtonProps] = getOverrides(
-    overrides.BaseButton,
-    StyledBaseButton,
-  );
-  const [LoadingSpinner, loadingSpinnerProps] = getOverrides(
-    overrides.LoadingSpinner,
-    StyledLoadingSpinner,
-  );
-  const [LoadingSpinnerContainer, loadingSpinnerContainerProps] = getOverrides(
-    overrides.LoadingSpinnerContainer,
-    StyledLoadingSpinnerContainer,
-  );
-  const sharedProps = getSharedProps(props);
-  return (
-    <BaseButton {...sharedProps} {...restProps} {...baseButtonProps}>
-      {isLoading ? (
-        <React.Fragment>
-          {/* This is not meant to be overridable by users */}
-          <div style={{opacity: 0, display: 'flex'}}>
-            <ButtonInternals {...props} />
-          </div>
-          <LoadingSpinnerContainer {...loadingSpinnerContainerProps}>
-            <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
-          </LoadingSpinnerContainer>
-        </React.Fragment>
-      ) : (
-        <ButtonInternals {...props} />
-      )}
-    </BaseButton>
-  );
-}
+export default class Button extends React.Component<ButtonPropsT> {
+  static defaultProps = {
+    ...ButtonInternals.defaultProps,
+  };
 
-Button.defaultProps = {...ButtonInternals.defaultProps};
+  internalOnClick = (...args: *) => {
+    const {isLoading, onClick} = this.props;
+    if (isLoading) {
+      return;
+    }
+    onClick && onClick(args);
+  };
+
+  render() {
+    const {
+      overrides,
+      size,
+      kind,
+      shape,
+      isLoading,
+      // Removing from restProps
+      startEnhancer,
+      endEnhancer,
+      children,
+      ...restProps
+    } = this.props;
+    // Get overrides
+    const [BaseButton, baseButtonProps] = getOverrides(
+      overrides.BaseButton,
+      StyledBaseButton,
+    );
+    const [LoadingSpinner, loadingSpinnerProps] = getOverrides(
+      overrides.LoadingSpinner,
+      StyledLoadingSpinner,
+    );
+    const [
+      LoadingSpinnerContainer,
+      loadingSpinnerContainerProps,
+    ] = getOverrides(
+      overrides.LoadingSpinnerContainer,
+      StyledLoadingSpinnerContainer,
+    );
+    const sharedProps = getSharedProps(this.props);
+    return (
+      <BaseButton
+        {...sharedProps}
+        {...restProps}
+        {...baseButtonProps}
+        // Applies last to override passed in onClick
+        onClick={this.internalOnClick}
+      >
+        {isLoading ? (
+          <React.Fragment>
+            {/* This is not meant to be overridable by users */}
+            <div style={{opacity: 0, display: 'flex'}}>
+              <ButtonInternals {...this.props} />
+            </div>
+            <LoadingSpinnerContainer {...loadingSpinnerContainerProps}>
+              <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
+            </LoadingSpinnerContainer>
+          </React.Fragment>
+        ) : (
+          <ButtonInternals {...this.props} />
+        )}
+      </BaseButton>
+    );
+  }
+}
