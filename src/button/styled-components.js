@@ -21,7 +21,6 @@ export const BaseButton = styled(
     ...($size === SIZE.compact
       ? $theme.typography.font200
       : $theme.typography.font300),
-    pointerEvents: $isLoading ? 'none' : 'initial',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
