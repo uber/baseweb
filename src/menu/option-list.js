@@ -3,7 +3,7 @@ import * as React from 'react';
 // Components
 import {ListItem as StyledListItem} from './styled-components';
 import {OPTION_LIST_SIZE} from './constants';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 // Types
 import type {OptionListPropsT} from './types';
 
@@ -14,7 +14,7 @@ export default function OptionList({
   overrides,
   ...restProps
 }: OptionListPropsT) {
-  const {component: ListItem, props: listItemProps} = getOverrideObject(
+  const [ListItem, listItemProps] = getOverrides(
     overrides.ListItem,
     StyledListItem,
   );

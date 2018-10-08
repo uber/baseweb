@@ -10,7 +10,7 @@ import * as React from 'react';
 import {List as StyledList} from './styled-components';
 import OptionList from './option-list';
 import {getSharedProps} from './utils';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 // Types
 import type {StatelessMenuPropsT} from './types';
 
@@ -20,14 +20,8 @@ export default function Menu({
   rootRef = React.createRef(),
   overrides = {},
 }: StatelessMenuPropsT) {
-  const {component: List, props: listProps} = getOverrideObject(
-    overrides.List,
-    StyledList,
-  );
-  const {component: Option, props: optionProps} = getOverrideObject(
-    overrides.Option,
-    OptionList,
-  );
+  const [List, listProps] = getOverrides(overrides.List, StyledList);
+  const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
   return (
     <List $ref={rootRef} {...listProps}>
       {items.map((item, index) => {

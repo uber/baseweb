@@ -13,7 +13,7 @@ import {
 } from './styled-components';
 import {getSharedProps} from './utils';
 import ButtonInternals from './button-internals';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 
 import type {ButtonPropsT} from './types';
 
@@ -31,18 +31,15 @@ export default function Button(props: ButtonPropsT) {
     ...restProps
   } = props;
   // Get overrides
-  const {component: BaseButton, props: baseButtonProps} = getOverrideObject(
+  const [BaseButton, baseButtonProps] = getOverrides(
     overrides.BaseButton,
     StyledBaseButton,
   );
-  const {
-    component: LoadingSpinner,
-    props: loadingSpinnerProps,
-  } = getOverrideObject(overrides.LoadingSpinner, StyledLoadingSpinner);
-  const {
-    component: LoadingSpinnerContainer,
-    props: loadingSpinnerContainerProps,
-  } = getOverrideObject(
+  const [LoadingSpinner, loadingSpinnerProps] = getOverrides(
+    overrides.LoadingSpinner,
+    StyledLoadingSpinner,
+  );
+  const [LoadingSpinnerContainer, loadingSpinnerContainerProps] = getOverrides(
     overrides.LoadingSpinnerContainer,
     StyledLoadingSpinnerContainer,
   );
