@@ -138,7 +138,7 @@ export default () => {
   How to position radio buttons in the group. Default is `vertical`
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the radio itself. Default is `right`
-* `onChange: ({event}) => void`:
+* `onChange: ({event, value}) => void`:
   handler for when selected radio changes. evt.target.value should be used to figure out which radio is selected.
 * `onMouseEnter: ({event}) => void`:
   handler for mouseenter events, passed to each individual radio option.

@@ -148,7 +148,7 @@ export default () => {
 * `options: Array<Object> | func(query?: string) => Promise<Array<Object>>`:
   All Options in dropdown. Should be provided for Select and Search mode equally. Every option object has `id: string` and `label: string|Object`. Label is defaulted to display for option in dropdown, otherwise see `getOptionLabel` method. Optional `disabled: boolean` for option to be disabled from selection.
   For async load of options it should be a function method, which returns Promise, resolved with new options. Function can be provided with text input `query` if it is present in component.
-  `WARNINNG:` options as a function is only for client-side calls.
+  `WARNING:` options as a function is only for client-side calls.
 * `error: ?boolean`:
   Whether the control should be in an error state. Default is `false`
 * `multiple: ?boolean`:
@@ -177,7 +177,7 @@ export default () => {
   * `SelectComponentIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
   * `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
   * `SelectSpinner: ?React.ComponentType` component for dropdown spinner if async options are loading
-* `onChange: func({event, params: Object})`:
+* `onChange: func({event, type, selectedOptions})`:
   handler for events on trigger element when option are changing selection.  `params` has `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
 * `onTextInputChange: func({event, value})`:
   handler for events on trigger element when text of search input (in Search mode has changed).
@@ -202,7 +202,7 @@ export default () => {
   * `currentState` - current full state of the component
   * `params` may contain `id` and `label` of selected option and `selectedOptions` array of all of selected, as well as new `textValue` set in input.
 * `children: func` should return `Select` instance with standard or customized inner elements.
-* `onChange: func({event, params: Object})`:
+* `onChange: func({event, type, selectedOptions})`:
   handler for events on trigger element when option are changing selection.  `params` has `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
 * `onTextInputChange: func({event, value})`:
   handler for events on trigger element when text of search input (in Search mode has changed).
