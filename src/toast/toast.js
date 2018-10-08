@@ -9,7 +9,7 @@ import * as React from 'react';
 import {
   getOverride,
   getOverrideProps,
-  getOverrideObject,
+  getOverrides,
   mergeOverrides,
 } from '../helpers/overrides';
 import {Delete as DeleteAltIcon} from '../icon';
@@ -138,7 +138,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
     const Body = getOverride(BodyOverride) || StyledBody;
 
-    const {component: CloseIcon, props: closeIconProps} = getOverrideObject(
+    const [CloseIcon, closeIconProps] = getOverrides(
       // $FlowFixMe
       CloseIconOverride,
       StyledCloseIcon,

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 import type {PropsT} from './types';
 import {
   Action as StyledAction,
@@ -35,15 +35,9 @@ class Tag extends React.Component<PropsT, {}> {
       onActionClick,
       color,
     } = this.props;
-    const {component: Root, props: rootProps} = getOverrideObject(
-      overrides.Root,
-      StyledRoot,
-    );
-    const {component: Action, props: actionProps} = getOverrideObject(
-      overrides.Action,
-      StyledAction,
-    );
-    const {component: ActionIcon, props: actionIconProps} = getOverrideObject(
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const [Action, actionProps] = getOverrides(overrides.Action, StyledAction);
+    const [ActionIcon, actionIconProps] = getOverrides(
       overrides.ActionIcon,
       StyledActionIcon,
     );

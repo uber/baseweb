@@ -19,33 +19,27 @@ import {ICON} from './constants';
 import {StatefulMenu} from '../menu';
 import {Spinner} from '../spinner';
 import type {DropDownPropsT} from './types';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 
 export default function SelectDropDown(props: DropDownPropsT) {
   const {overrides = {}} = props;
-  const {
-    component: SelectComponentIcon,
-    props: selectComponentIconProps,
-  } = getOverrideObject(
+  const [SelectComponentIcon, selectComponentIconProps] = getOverrides(
     overrides.SelectComponentIcon,
     StyledSelectComponentIcon,
   );
-  const {component: DropDown, props: dropDownProps} = getOverrideObject(
+  const [DropDown, dropDownProps] = getOverrides(
     overrides.DropDown,
     StyledDropDown,
   );
-  const DropDownItem = getOverrideObject(
+  const [DropDownItem] = getOverrides(
     overrides.DropDownItem,
     StyledDropDownItem,
   );
-  const {component: Option, props: optionProps} = getOverrideObject(
-    overrides.Option,
-    StyledOption,
+  const [Option, optionProps] = getOverrides(overrides.Option, StyledOption);
+  const [SelectSpinner, selectSpinnerProps] = getOverrides(
+    overrides.SelectSpinner,
+    StyledSelectSpinner,
   );
-  const {
-    component: SelectSpinner,
-    props: selectSpinnerProps,
-  } = getOverrideObject(overrides.SelectSpinner, StyledSelectSpinner);
   const {
     options = [],
     getOptionLabel,
