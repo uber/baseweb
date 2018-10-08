@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {goToUrl, assertVisuals} = require('../../e2e/helpers');
 
 const suite = 'Checkbox Test Suite';
 
@@ -18,22 +19,31 @@ const selectors = {
   radioMain: '[data-name="radioMain"] label input[type="checkbox"]',
 };
 
-module.exports = {
-  afterEach: function(client, done) {
-    client.notifySauceLabs(done);
-  },
-  [scenarios.INDETERMINATE]: function(client) {
+describe('The checkbox component', () => {
+  afterEach((browser, done) => {
+    browser.notifySauceLabs(done);
+  });
+
+  after((browser, done) => {
+    browser.end(() => done());
+  });
+
+  it('can switch states', browser => {
     goToUrl({
       suite,
       test: scenarios.INDETERMINATE,
-      client,
+      browser,
     })
       .initAccessibility()
       .waitForElementVisible('body', 1000)
       .click(selectors.radioOne)
       .click(selectors.radioTwo)
       .assert.accessibility('html', {})
-      .assert.attributeEquals(selectors.radioMain, 'checked', 'true')
-      .end();
-  },
-};
+      .assert.attributeEquals(selectors.radioMain, 'checked', 'true');
+
+    assertVisuals({
+      browser,
+      id: scenarios.INDETERMINATE,
+    });
+  });
+});
