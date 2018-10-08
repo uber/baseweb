@@ -19,27 +19,22 @@ class Tag extends React.Component<PropsT, {}> {
   static defaultProps = {
     overrides: {},
     onActionClick: () => {},
-    backgroundColor: undefined,
-    color: undefined,
     disabled: false,
-    hoverBackgroundColor: undefined,
     isFocused: false,
     isHovered: false,
-    tagType: 'primary',
+    kind: 'primary',
   };
 
   render() {
     const {
       overrides = {},
-      backgroundColor,
+      color,
       disabled,
-      hoverBackgroundColor,
       isFocused,
       isHovered,
       children,
+      kind,
       onActionClick,
-      color,
-      tagType,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Action, actionProps] = getOverrides(overrides.Action, StyledAction);
@@ -53,13 +48,11 @@ class Tag extends React.Component<PropsT, {}> {
           onClick: e => onActionClick(e, children),
         };
     const sharedProps: SharedPropsT = {
-      $backgroundColor: backgroundColor,
       $color: color,
       $disabled: disabled,
       $isFocused: isFocused,
       $isHovered: isHovered,
-      $hoverBackgroundColor: hoverBackgroundColor,
-      $tagType: tagType,
+      $kind: kind,
     };
     return (
       <Root {...sharedProps} {...rootProps}>

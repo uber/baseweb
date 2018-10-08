@@ -7,8 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {OverrideT} from '../helpers/overrides';
+import {COLOR_STYLE_KEYS} from './constants';
 
-export type TagTypesT = 'primary' | 'warning' | 'positive' | 'negative';
+// export type TagKindT =
+//   | 'primary'
+//   | 'warning'
+//   | 'positive'
+//   | 'negative'
+//   | 'custom';
+
+export const TagKind = Object.freeze({...COLOR_STYLE_KEYS, custom: null});
+
+export type TagKindT = $Keys<typeof TagKind>;
 
 export type OverridesT = {
   Root?: OverrideT<*>,
@@ -21,11 +31,9 @@ export type PropsT = {
   disabled?: boolean,
   isFocused?: boolean,
   isHovered?: boolean,
-  tagType?: TagTypesT,
-  backgroundColor?: string | ((obj: SharedPropsT) => string),
+  kind?: TagKindT,
   children?: React$Node,
   color?: string,
-  hoverBackgroundColor?: string | ((obj: SharedPropsT) => string),
   $theme?: *,
   onActionClick: (
     e: SyntheticEvent<HTMLInputElement>,
@@ -34,13 +42,11 @@ export type PropsT = {
 };
 
 export type SharedPropsT = {
-  $backgroundColor?: string | ((obj: SharedPropsT) => string),
   $color?: string,
   $disabled?: boolean,
   $isActive?: boolean,
   $isFocused?: boolean,
   $isHovered?: boolean,
-  $hoverBackgroundColor?: string | ((obj: SharedPropsT) => string),
-  $tagType?: string,
+  $kind?: string,
   $theme?: *,
 };

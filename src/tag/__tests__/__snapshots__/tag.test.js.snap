@@ -5,15 +5,15 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   disabled={false}
   isFocused={false}
   isHovered={false}
+  kind="primary"
   onActionClick={[MockFunction]}
   overrides={Object {}}
-  tagType="primary"
 >
   <MockStyledComponent
     $disabled={false}
     $isFocused={false}
     $isHovered={false}
-    $tagType="primary"
+    $kind="primary"
   >
     <span
       styled-component="true"
@@ -23,7 +23,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
         $disabled={false}
         $isFocused={false}
         $isHovered={false}
-        $tagType="primary"
+        $kind="primary"
         onClick={[Function]}
       >
         <div

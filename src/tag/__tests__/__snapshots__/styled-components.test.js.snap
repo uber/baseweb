@@ -3,7 +3,7 @@
 exports[`Tag styled components StyledAction : StyledAction has correct styles when  1`] = `
 Object {
   ":hover": Object {
-    "backgroundColor": "rgba(0, 0, 0, 0.2)",
+    "backgroundColor": null,
   },
   "alignItems": "center",
   "borderBottomRightRadius": "2px",
@@ -33,14 +33,14 @@ Object {
 exports[`Tag styled components StyledRoot : StyledRoot has correct styles when  1`] = `
 Object {
   ":hover": Object {
-    "backgroundColor": "rgba(0, 0, 0, 0.2)",
+    "backgroundColor": null,
   },
   "alignItems": "center",
-  "backgroundColor": "rgba(0, 0, 0, 0.06)",
-  "borderColor": "#000",
+  "backgroundColor": null,
+  "borderColor": undefined,
   "borderRadius": "$theme.borders.radius100",
   "borderWidth": "1px",
-  "color": "#000",
+  "color": undefined,
   "cursor": "auto",
   "display": "inline-flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
@@ -63,11 +63,11 @@ Object {
     "backgroundColor": null,
   },
   "alignItems": "center",
-  "backgroundColor": "rgba(0, 0, 0, 0.06)",
-  "borderColor": "#000",
+  "backgroundColor": null,
+  "borderColor": undefined,
   "borderRadius": "$theme.borders.radius100",
   "borderWidth": "1px",
-  "color": "#000",
+  "color": undefined,
   "cursor": "not-allowed",
   "display": "inline-flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
@@ -87,14 +87,14 @@ Object {
 exports[`Tag styled components StyledRoot : StyledRoot has correct styles when $isActive 1`] = `
 Object {
   ":hover": Object {
-    "backgroundColor": "rgba(0, 0, 0, 0.2)",
+    "backgroundColor": null,
   },
   "alignItems": "center",
-  "backgroundColor": "rgba(0, 0, 0, 0.2)",
-  "borderColor": "#000",
+  "backgroundColor": null,
+  "borderColor": undefined,
   "borderRadius": "$theme.borders.radius100",
   "borderWidth": "1px",
-  "color": "#000",
+  "color": undefined,
   "cursor": "auto",
   "display": "inline-flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
@@ -114,14 +114,14 @@ Object {
 exports[`Tag styled components StyledRoot : StyledRoot has correct styles when $isFocused 1`] = `
 Object {
   ":hover": Object {
-    "backgroundColor": "rgba(0, 0, 0, 0.2)",
+    "backgroundColor": null,
   },
   "alignItems": "center",
-  "backgroundColor": "rgba(0, 0, 0, 0.2)",
-  "borderColor": "#000",
+  "backgroundColor": null,
+  "borderColor": undefined,
   "borderRadius": "$theme.borders.radius100",
   "borderWidth": "1px",
-  "color": "#000",
+  "color": undefined,
   "cursor": "auto",
   "display": "inline-flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
