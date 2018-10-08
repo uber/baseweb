@@ -7,22 +7,35 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {COLOR_STYLE_KEYS} from './constants';
 import {styled, hexToRgb, type ThemeT} from '../styles/index';
+import type {SharedPropsT} from './types';
+
+export function getBackgroundColor(props: SharedPropsT) {
+  const {$color, $isActive, $isFocused, $tagType, $theme} = props;
+  const color = getColor($theme, $tagType, $color);
+  return hexToRgb(color, $isFocused || $isActive ? '0.2' : '0.06');
+}
 
 export function getColor(
-  $theme: ThemeT,
-  $color: string,
-  defaultColor: string = '#000',
+  $theme?: ThemeT,
+  $tagType?: string = COLOR_STYLE_KEYS.primary,
+  $color?: string,
+  defaultColor?: string = '#000',
 ) {
   let themeColor;
-  if ($theme && $theme.colors && $theme.colors[COLOR_STYLE_KEYS.primary]) {
-    themeColor = $theme.colors[COLOR_STYLE_KEYS.primary];
+  if ($theme && $theme.colors && $theme.colors[COLOR_STYLE_KEYS[$tagType]]) {
+    themeColor = $theme.colors[COLOR_STYLE_KEYS[$tagType]];
   }
   return $color || themeColor || defaultColor;
 }
 
+export function getHoverBackgroundColor(props: SharedPropsT) {
+  const {$color, $disabled, $tagType, $theme} = props;
+  const color = getColor($theme, $tagType, $color);
+  return $disabled ? null : hexToRgb(color, '0.2');
+}
+
 export const Action = styled('div', props => {
-  const {$color, $disabled, $theme} = props;
-  const color = getColor($theme, $color);
+  const {$hoverBackgroundColor = getHoverBackgroundColor, $disabled} = props;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -32,7 +45,10 @@ export const Action = styled('div', props => {
     marginLeft: '8px',
     cursor: $disabled ? 'not-allowed' : 'pointer',
     ':hover': {
-      backgroundColor: $disabled ? null : hexToRgb(color, '0.2'),
+      backgroundColor:
+        typeof $hoverBackgroundColor === 'function'
+          ? $hoverBackgroundColor(props)
+          : $hoverBackgroundColor,
     },
   };
 });
@@ -42,12 +58,19 @@ export const ActionIcon = styled('svg', () => {
 });
 
 export const Root = styled('span', props => {
-  const {$color, $disabled, $isActive, $isFocused, $theme} = props;
+  const {
+    $backgroundColor = getBackgroundColor,
+    $color,
+    $disabled,
+    $hoverBackgroundColor = getHoverBackgroundColor,
+    $tagType,
+    $theme,
+  } = props;
   const {
     sizing: {scale800, scale100, scale300},
     typography: {font200},
   } = $theme;
-  const color = getColor($theme, $color);
+  const color = getColor($theme, $tagType, $color);
   return {
     ...font200,
     display: 'inline-flex',
@@ -67,9 +90,15 @@ export const Root = styled('span', props => {
       ? $theme.borders.radius100
       : '0px',
     cursor: $disabled ? 'not-allowed' : 'auto',
-    backgroundColor: hexToRgb(color, $isFocused || $isActive ? '0.2' : '0.06'),
+    backgroundColor:
+      typeof $backgroundColor === 'function'
+        ? $backgroundColor(props)
+        : $backgroundColor,
     ':hover': {
-      backgroundColor: $disabled ? null : hexToRgb(color, '0.2'),
+      backgroundColor:
+        typeof $hoverBackgroundColor === 'function'
+          ? $hoverBackgroundColor(props)
+          : $hoverBackgroundColor,
     },
   };
 });

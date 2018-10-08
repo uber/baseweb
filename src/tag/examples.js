@@ -27,7 +27,7 @@ const colorIcons = {
 };
 
 //$FlowFixMe
-const tagStyleKeys: Array<string> = Object.values(COLOR_STYLE_KEYS);
+const tagStyleKeys: Array<string> = Object.keys(COLOR_STYLE_KEYS);
 
 export default {
   [tests.ALL_BASIC_COLORS]: () => {
@@ -45,23 +45,48 @@ export default {
           >
             Default Color
           </Tag>
-          {tagStyleKeys.map(colorKey => (
-            <ThemeContext.Consumer key={colorKey}>
-              {({colors}) => (
-                <Tag
-                  color={colors[colorKey]}
-                  onActionClick={(e, tag) => {
-                    if (typeof tag === 'string') {
-                      // eslint-disable-next-line no-console
-                      console.log('Tag is clicked:' + tag);
-                    }
-                  }}
-                >
-                  Color {colors[colorKey]}
-                </Tag>
-              )}
-            </ThemeContext.Consumer>
+          {tagStyleKeys.map(tagType => (
+            <Tag
+              key={tagType}
+              tagType={tagType}
+              onActionClick={(e, tag) => {
+                if (typeof tag === 'string') {
+                  // eslint-disable-next-line no-console
+                  console.log('Tag is clicked:' + tag);
+                }
+              }}
+            >
+              tagType {tagType}
+            </Tag>
           ))}
+          <Tag
+            key="NamedColorPurple"
+            hoverBackgroundColor="mediumpurple"
+            backgroundColor="rebeccapurple"
+            color="white"
+            onActionClick={(e, tag) => {
+              if (typeof tag === 'string') {
+                // eslint-disable-next-line no-console
+                console.log('Tag is clicked:' + tag);
+              }
+            }}
+          >
+            Named Colors
+          </Tag>
+          <Tag
+            key="NamedColorPurple"
+            hoverBackgroundColor="rgba(102, 51, 153, 0.2)"
+            backgroundColor="rgba(102, 51, 153, 0.06)"
+            color="rgba(102, 51, 153, 1)"
+            onActionClick={(e, tag) => {
+              if (typeof tag === 'string') {
+                // eslint-disable-next-line no-console
+                console.log('Tag is clicked:' + tag);
+              }
+            }}
+          >
+            RGBA Colors
+          </Tag>
         </div>
       </React.Fragment>
     );
