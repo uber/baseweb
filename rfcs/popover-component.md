@@ -77,9 +77,9 @@ export default () => {
   * `type` - state change type
   * `changes` - a new state changes that will be set
   * `currentState` - current full state of the component
-* `onOpen: () => {}`:
+* `onOpen: ({event}) => void`:
   event handler when popover is shown
-* `onClose: () => {}`:
+* `onClose: ({event}) => void`:
   event handler when popover is hidden
 * `placement: 'auto' | 'topLeft' | 'top' | 'topRight' | 'rightTop' | 'right' | 'rightBottom' | 'bottomRight' | 'bottom' | 'bottomLeft' | 'leftTop' | 'left' | 'leftBottom'`:
   How to position the popover relative to the target. Defaults to 'auto'.
@@ -112,15 +112,15 @@ export default () => {
   Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned)
 * `showArrow: boolean`:
   Whether or not to show the arrow pointing from the popover to the trigger. Defaults to false.
-* `onClick: func`:
+* `onClick: ({event}) => void`:
   handler for events on trigger element
-* `onMouseEnter: func`:
+* `onMouseEnter: ({event}) => void`:
   handler for events on trigger element
-* `onMouseLeave: func`:
+* `onMouseLeave: ({event}) => void`:
   handler for events on trigger element
-* `onClickOutside: func`:
+* `onClickOutside: ({event}) => void`:
   handler for clicks outside the anchor/popover elements
-* `onEsc: func`:
+* `onEsc: ({event}) => void`:
   handler for 'Escape' keypress events
 
 ## Presentational components props API

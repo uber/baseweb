@@ -89,6 +89,7 @@ Rough DOM composition:
   Show loading button style and spinner
 * `...rest`
   Passed to BaseButton as props. These can include `accesskey`, `disabled`, `formtarget`, `type`, `value` and more.
+* `onClick: func({event})` - Optional
 
 ## Presentational components props API
 

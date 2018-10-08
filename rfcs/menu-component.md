@@ -104,7 +104,7 @@ export default () => (
   Used to set initial state for the component. All the component's state can be controlled via props as well.
 * `stateReducer: (changeType: string, changes: Object, currentState: Object) => Object`
   State reducer to intercept state changes and return new internal state
-* `onItemSelect: (selectedItem: ?Object) => any`
+* `onItemSelect: ({event, selectedItem: ?Object}) => any`
 
 ## Render Props API
 

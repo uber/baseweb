@@ -69,15 +69,15 @@ export default () => {
   When set to true a close button is displayed and the notification can be dismissed by a user
 * `kind: 'info' | 'positive' | 'warning' | 'negative'` - Optional. Defaults to 'info'
   Defines the type of notification
-* `onClose: function` - Optional
+* `onClose: func({event})` - Optional
   A callback function called when a notification is dismissed
-  `onBlur: function` - Optional
+  `onBlur: func({event})` - Optional
   A callback function called when the notification's Body element gets a `blur` event
-  `onFocus: function` - Optional
+  `onFocus: func({event})` - Optional
   A callback function called when the notification's Body element gets a `focus` event
-  `onMouseEnter: function` - Optional
+  `onMouseEnter: func({event})` - Optional
   A callback function called when the notification's Body element gets a `mouseenter` event
-  `onMouseLeave: function` - Optional
+  `onMouseLeave: func({event})` - Optional
   A callback function called when the notification's Body element gets a `mouseleave` event
 * `overrides: {Body, Svg}` - Optional
   Overrides for presentational components. See "Presentational Components Props API" below.
@@ -95,7 +95,7 @@ These properties are passed to every presentational (styled) component that is e
 ## KIND Constant
 
 * `info` - Generally used for messages with an informational context
-* `positive` - Generally used as a confirmation of a succesful action or operation  
+* `positive` - Generally used as a confirmation of a succesful action or operation
 * `warning` - Generally used for messages with an warning context
 * `negative` - Generally used as a notification of an error happened as a result of an action or operation
 

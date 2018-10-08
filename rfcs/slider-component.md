@@ -65,13 +65,13 @@ export default () => {
 * `step: number` - Optional
   If `range` contains only min and max points (2 elements) step is to shift thumb every time user moves it left or right. If `step` in place `value` for each `Point` should be of primitive type
 * `disabled: boolean`:
-  Disable control from being changed  
+  Disable control from being changed
 * `overrides: {Root: (props: {[string]: any}) => React$Node, Axis: (props: {[string]: any}) => React$Node, StyledTick: (props: {[string]: any}) => React$Node, Thumb: (props: {[string]: any}) => React$Node}`
   * `Root` container element to render.
   * `Axis` is the range line element to render.
   * `Tick` to render a tick(label) for min, max and optional points on axis and on top of `Thumb`
   * `Thumb` to render a thumb sliding over axis.
-* `onChange: func(event, value)` - Optional
+* `onChange: func({event, value})` - Optional
   handler for events on trigger element, each time thumbs change selection, which is passed in `value`
 
 ## `StatefulSlider` API
@@ -89,8 +89,8 @@ export default () => {
 * `step: number` - Optional
   If `range` contains only min and max points (2 elements) step is to shift thumb every time user moves it left or right. If `step` in place `value` for each `Point` should be of primitive type
 * `disabled: boolean`:
-  Disable control from being changed  
-* `onChange: func(event, value)` - Optional
+  Disable control from being changed
+* `onChange: func({event, value})` - Optional
   handler for events on trigger element, each time thumbs change selection, which is passed in `value`
 
 ## Presentational components props API
