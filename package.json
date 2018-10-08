@@ -81,7 +81,7 @@
     "geckodriver": "^1.11.0",
     "husky": "^1.0.0",
     "jest": "^23.3.0",
-    "jest-enzyme": "^6.0.2",
+    "jest-enzyme": "^7.0.0",
     "license-check-and-add": "^2.3.6",
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
