@@ -13,4 +13,10 @@ export const COLOR_STYLE_KEYS = {
   negative: 'negative400',
 };
 
+export const KIND = Object.keys(COLOR_STYLE_KEYS).map(key => {
+  return {
+    key: key,
+  };
+});
+
 /* eslint-enable import/prefer-default-export */
