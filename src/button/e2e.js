@@ -14,10 +14,6 @@ const {goToUrl, assertVisuals} = require('../../e2e/helpers');
 const suite = 'Button Test Suite';
 
 describe('The button component', () => {
-  afterEach((browser, done) => {
-    browser.notifySauceLabs(done);
-  });
-
   after((browser, done) => {
     browser.end(() => done());
   });
