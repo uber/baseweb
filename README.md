@@ -4,8 +4,6 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/gergelyke.svg)](https://saucelabs.com/u/gergelyke)
 
-**Currently baseui is under active development, and may not be ready for production use.**
-
 [![Build status](https://badge.buildkite.com/92a7500cd98f619621c4801833d8b358c2fd79efc9b98f1b98.svg?branch=master)](https://buildkite.com/uberopensource/baseui)
 
 `baseui` is a design system comprised of modern, responsive, living components.
