@@ -177,7 +177,7 @@ export default () => {
   * `SelectComponentIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
   * `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
   * `SelectSpinner: ?React.ComponentType` component for dropdown spinner if async options are loading
-* `onChange: func({event, type, selectedOptions})`:
+* `onChange: func({event, type, selectedOptions, option})`:
   handler for events on trigger element when option are changing selection.  `params` has `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
 * `onTextInputChange: func({event, value})`:
   handler for events on trigger element when text of search input (in Search mode has changed).
@@ -202,7 +202,7 @@ export default () => {
   * `currentState` - current full state of the component
   * `params` may contain `id` and `label` of selected option and `selectedOptions` array of all of selected, as well as new `textValue` set in input.
 * `children: func` should return `Select` instance with standard or customized inner elements.
-* `onChange: func({event, type, selectedOptions})`:
+* `onChange: func({event, type, selectedOptions, option})`:
   handler for events on trigger element when option are changing selection.  `params` has `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
 * `onTextInputChange: func({event, value})`:
   handler for events on trigger element when text of search input (in Search mode has changed).
