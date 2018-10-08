@@ -73,8 +73,12 @@ export default () => {
   * `nextState` - a new state value to be set
   * `currentState` - current state value
   * `stateToSet` - a return value that the state will be updated with
-* `onChange: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
+* `onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void` - Optional
   onChange event handler.
+* `onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => void` - Optional
+  onBlur event handler.
+* `onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void` - Optional
+  onFocus event handler.
 
 ## Input component API
 
@@ -125,11 +129,11 @@ export default () => {
   Defines styles for inputs that are grouped with other controls.
 * `size: 'default' | 'compact'`
   Defines the size of an input control.
-* `onChange: Function` - Optional
+* `onChange: SyntheticInputEvent` - Optional
   onChange event handler.
-* `onFocus: Function` - Optional
+* `onFocus: SyntheticFocusEvent` - Optional
   onFocus event handler.
-* `onBlur: Function` - Optional
+* `onBlur: SyntheticFocusEvent` - Optional
   onBlur event handler.
 
 ## Presentational components props API
