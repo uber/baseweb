@@ -67,7 +67,7 @@ class App extends React.Component {
   Controls whether the modal is visible or not
 * `closeable: boolean` - Optional, Defaults to `true`
   Whether the modal should be closeable by the user (either via escape, backdrop click, etc). You can set this to `false` if your modal has an action that the user _must_ take before closing.
-* `onClose: (source: CloseSource) => void` - Optional
+* `onClose: ({source: CloseSource}) => void` - Optional
   A callback that is invoked when the modal will close. Callback is passed a constant identifying what triggered the close.
 * `size: SIZE.{default|full|auto}|string|number`, Defaults to SIZE.default
   Controls the size of the modal (primarily width). Can be a SIZE constant or css `width` property value.

@@ -99,16 +99,6 @@ export default () => {
   How to position radio buttons in the group. Default is `vertical`
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the radio itself. Default is `right`
-* `onChange: (evt) => {}`:
-  handler for when selected radio changes. evt.target.value should be used to figure out which radio is selected.
-* `onMouseEnter: (evt) => {}`:
-  handler for mouseenter events, passed to each individual radio option.
-* `onMouseLeave: (evt) => {}`:
-  handler for mouseleave events, passed to each individual radio option.
-* `onFocus: (evt) => {}`:
-  handler for focus events, passed to each individual radio option.
-* `onBlur: (evt) => {}`:
-  handler for blur events, passed to each individual radio option.
 
 ## `StatefulRadioGroupContainer` API
 
@@ -138,16 +128,6 @@ export default () => {
   How to position radio buttons in the group. Default is `vertical`
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the radio itself. Default is `right`
-* `onChange: (evt) => {}`:
-  handler for when selected radio changes. evt.target.value should be used to figure out which radio is selected.
-* `onMouseEnter: (evt) => {}`:
-  handler for mouseenter events, passed to each individual radio option.
-* `onMouseLeave: (evt) => {}`:
-  handler for mouseleave events, passed to each individual radio option.
-* `onFocus: (evt) => {}`:
-  handler for focus events, passed to each individual radio option.
-* `onBlur: (evt) => {}`:
-  handler for blur events, passed to each individual radio option.
 
 ## `Radio` API
 

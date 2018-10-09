@@ -112,16 +112,6 @@ export default () => {
   * `Input` may replace original functionality of checkbox. If provided should follow the same interface and logic or may break the whole component
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
-* `onChange: func`:
-  handler for events on trigger element
-* `onMouseEnter: func`:
-  handler for events on trigger element
-* `onMouseLeave: func`:
-  handler for events on trigger element
-* `onFocus: func`:
-  handler for events on trigger element
-* `onBlur: func`:
-  handler for events on trigger element
 
 ## `StatefulCheckboxContainer` API
 
@@ -138,16 +128,6 @@ export default () => {
   Disable control from being changed
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
-* `onChange: func`:
-  handler for events on trigger element
-* `onMouseEnter: func`:
-  handler for events on trigger element
-* `onMouseLeave: func`:
-  handler for events on trigger element
-* `onFocus: func`:
-  handler for events on trigger element
-* `onBlur: func`:
-  handler for events on trigger element
 
 ## `Label` API
 

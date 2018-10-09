@@ -59,8 +59,8 @@ export default () => {
 
 * `current: type` - Optional, Defaults to 0
   Defines the current active step index
-* `onClick: (index) => {}` - Optional
-  A callback that is invoked when a Step component gets a click event  
+* `onClick: ({index}) => {}` - Optional
+  A callback that is invoked when a Step component gets a click event
 * `orientation: ORIENTATION.horizontal | ORIENTATION.vertical` - Optional, Defaults to `ORIENTATION.vertical`
   Defines the layout flow direction
 * `overrides: {Root, Step, StepConnector, StepTitle}` - Optional

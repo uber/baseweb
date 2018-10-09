@@ -38,7 +38,7 @@ export default () => <StatefulPagination numPages={6} />;
   Callback for prev button click
 * `onNextClick: (event) => void` - Optional
   Callback for next button click
-* `onPageChange: (nextPage, prevPage) => void` - Optional
+* `onPageChange: ({nextPage, prevPage}) => void` - Optional
   Callback for when page changes
 
 ## StatefulContainer API
