@@ -21,7 +21,7 @@ import {Tag as StyledTag} from '../tag';
 import {ICON, TYPE, STATE_CHANGE_TYPE} from './constants';
 import SelectDropDown from './dropdown';
 import type {OptionT, PropsT, StatelessStateT} from './types';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 import {KEY_STRINGS} from '../menu/constants';
 
 class Select extends React.Component<PropsT, StatelessStateT> {
@@ -177,10 +177,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   render() {
     const {overrides = {}} = this.props;
-    const {component: Root, props: rootProps} = getOverrideObject(
-      overrides.Root,
-      StyledRoot,
-    );
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     return (
       <Root {...rootProps}>
         {this.props.type === TYPE.search ? this.getSearch() : this.getSelect()}
@@ -191,13 +188,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getSelect() {
     const {
-      Root: {component: Root, props: rootProps},
-      Input: {component: Input, props: inputProps},
-      SelectComponentIcon: {
-        component: SelectComponentIcon,
-        props: selectComponentIconProps,
-      },
-      InputContainer: {component: InputContainer, props: inputContainerProps},
+      Root: [Root, rootProps],
+      Input: [Input, inputProps],
+      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
+      InputContainer: [InputContainer, inputContainerProps],
     } = this.getSubComponents();
     const {placeholder, disabled} = this.props;
     const {selectedOptions} = this.state;
@@ -244,12 +238,9 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getSearch() {
     const {
-      InputContainer: {component: InputContainer, props: inputContainerProps},
-      Input: {component: Input, props: inputProps},
-      SelectComponentIcon: {
-        component: SelectComponentIcon,
-        props: selectComponentIconProps,
-      },
+      InputContainer: [InputContainer, inputContainerProps],
+      Input: [Input, inputProps],
+      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
     } = this.getSubComponents();
     const {placeholder, error, disabled} = this.props;
     const {textValue} = this.state;
@@ -293,15 +284,9 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getMultipleSelections() {
     const {
-      SelectComponentIcon: {
-        component: SelectComponentIcon,
-        props: selectComponentIconProps,
-      },
-      Tag: {component: Tag, props: tagProps},
-      SingleSelection: {
-        component: SingleSelection,
-        props: singleSelectionProps,
-      },
+      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
+      Tag: [Tag, tagProps],
+      SingleSelection: [SingleSelection, singleSelectionProps],
     } = this.getSubComponents();
     const {type, disabled} = this.props;
     const {selectedOptions} = this.state;
@@ -443,18 +428,18 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   getSubComponents() {
     const {overrides = {}} = this.props;
     return {
-      Input: getOverrideObject(overrides.Input, StyledInput),
-      Tag: getOverrideObject(overrides.Tag, StyledTag),
-      Root: getOverrideObject(overrides.Root, StyledRoot),
-      SelectComponentIcon: getOverrideObject(
+      Input: getOverrides(overrides.Input, StyledInput),
+      Tag: getOverrides(overrides.Tag, StyledTag),
+      Root: getOverrides(overrides.Root, StyledRoot),
+      SelectComponentIcon: getOverrides(
         overrides.SelectComponentIcon,
         StyledSelectComponentIcon,
       ),
-      SingleSelection: getOverrideObject(
+      SingleSelection: getOverrides(
         overrides.SingleSelection,
         StyledSingleSelection,
       ),
-      InputContainer: getOverrideObject(
+      InputContainer: getOverrides(
         overrides.InputContainer,
         StyledInputContainer,
       ),

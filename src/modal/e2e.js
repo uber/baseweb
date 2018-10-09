@@ -20,10 +20,6 @@ const selectors = {
 };
 
 describe('The modal component', () => {
-  afterEach((browser, done) => {
-    browser.notifySauceLabs(done);
-  });
-
   after((browser, done) => {
     browser.end(() => done());
   });
