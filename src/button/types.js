@@ -26,6 +26,7 @@ export type ButtonPropsT = {
   startEnhancer?: (*) => React$Node | React$Node,
   endEnhancer?: (*) => React$Node | React$Node,
   children?: React$Node,
+  onClick?: (SyntheticEvent<HTMLButtonElement>) => void,
 };
 
 export type SharedStylePropsT = {
