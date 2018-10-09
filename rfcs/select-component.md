@@ -179,6 +179,16 @@ export default () => {
   * `SelectSpinner: ?React.ComponentType` component for dropdown spinner if async options are loading
 * `onSelect: func({event: SyntheticInputEvent, type, option, selectedOptions})`:
   handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
+* `onChange: func`:
+  event handler for the input element
+* `onMouseEnter: func`:
+  event handler for the input element
+* `onMouseLeave: func`:
+  event handler for the input element
+* `onFocus: func`:
+  event handler for the input element
+* `onBlur: func`:
+  event handler for the input element
 
 ## `StatefulSelectContainer` API
 
@@ -194,3 +204,13 @@ export default () => {
 * `children: func` should return `Select` instance with standard or customized inner elements.
 * `onSelect: func({event: SyntheticInputEvent, type, option, selectedOptions})`:
   handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed, current `Option` with `id` and `label` `label` of selected\unselected option and `selectedOptions` array of all of selected.
+* `onChange: func`:
+  event handler for the input element
+* `onMouseEnter: func`:
+  event handler for the input element
+* `onMouseLeave: func`:
+  event handler for the input element
+* `onFocus: func`:
+  event handler for the input element
+* `onBlur: func`:
+  event handler for the input element

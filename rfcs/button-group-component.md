@@ -71,6 +71,10 @@ Same as `{Button} from baseui/button`, with the additional property:
   Defines the shape of the buttons in the button group.
 * `kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
   Defines the kind (purpose) of the buttons in the button group.
+* `onChange: func` - Optinal:
+  Called when a toggleable Button is selected
+* `onClick: func` - Optional:
+  Called with the click event
 
 ## `StatefulButtonGroup` API
 
