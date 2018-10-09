@@ -22,12 +22,12 @@ export default class Button extends React.Component<ButtonPropsT> {
     ...ButtonInternals.defaultProps,
   };
 
-  internalOnClick = (...args: *) => {
+  internalOnClick = (event: SyntheticEvent<HTMLButtonElement>) => {
     const {isLoading, onClick} = this.props;
     if (isLoading) {
       return;
     }
-    onClick && onClick(args);
+    onClick && onClick({event});
   };
 
   render() {

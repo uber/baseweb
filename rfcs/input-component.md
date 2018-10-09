@@ -12,7 +12,7 @@ export default () => {
   return
     <StatefulInput
       value={props.name}
-      onChange={evt => props.setName(evt.target.value)}
+      onChange={({value}) => props.setName(value)}
     />;
 };
 ```
@@ -73,7 +73,7 @@ export default () => {
   * `nextState` - a new state value to be set
   * `currentState` - current state value
   * `stateToSet` - a return value that the state will be updated with
-* `onChange: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
+* `onChange: ({event, value}) => void` - Optional
   onChange event handler.
 
 ## Input component API
@@ -125,11 +125,11 @@ export default () => {
   Defines styles for inputs that are grouped with other controls.
 * `size: 'default' | 'compact'`
   Defines the size of an input control.
-* `onChange: Function` - Optional
+* `onChange: ({event, value}) => void` - Optional
   onChange event handler.
-* `onFocus: Function` - Optional
+* `onFocus: ({event}) => void` - Optional
   onFocus event handler.
-* `onBlur: Function` - Optional
+* `onBlur: ({event}) => void` - Optional
   onBlur event handler.
 
 ## Presentational components props API

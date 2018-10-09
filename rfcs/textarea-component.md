@@ -66,7 +66,7 @@ export default () => {
   * `nextState` - a new state value to be set
   * `currentState` - current state value
   * `stateToSet` - a return value that the state will be updated with
-* `onChange: (e: SyntheticEvent<HTMLElement>) => void` - Optional
+* `onChange: ({event, value}) => void` - Optional
   onChange event handler.
 
 ## Textarea component API
@@ -89,11 +89,11 @@ export default () => {
     A textarea container, no styles applied to it by default.
   * `Input: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
     A styled textarea element.
-* `onChange: Function` - Optional
+* `onChange: func({event, value})` - Optional
   onChange event handler.
-* `onFocus: Function` - Optional
+* `onFocus: func({event})` - Optional
   onFocus event handler.
-* `onBlur: Function` - Optional
+* `onBlur: func({event})` - Optional
   onBlur event handler.
 * `placeholder: string` - Optional
   -Placeholder value.

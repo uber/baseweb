@@ -26,6 +26,14 @@ describe('Button Component', () => {
     expect(component.find(EndEnhancer)).toExist();
   });
 
+  test('onClick gets called with {event}', () => {
+    const onClick = jest.fn();
+    const component = mount(<Button onClick={onClick} />);
+
+    component.simulate('click');
+    expect(onClick.mock.calls[0][0]).toHaveProperty('event');
+  });
+
   test('renders with components overrides', () => {
     const NewStartEnhancer = () => <div />;
 

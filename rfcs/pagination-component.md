@@ -34,11 +34,11 @@ export default () => <StatefulPagination numPages={6} />;
     `{prevButton: 'Prev', nextButton: 'Next', preposition: 'of'}`
 * `overrides: {PrevButton, NextButton, DropdownContainer, DropdownMenu, DropdownButton}` - Optional
   Presentational override props, all are `React.ComponentType<*> | {component, props, style}`
-* `onPrevClick: (event) => void` - Optional
+* `onPrevClick: ({event}) => void` - Optional
   Callback for prev button click
-* `onNextClick: (event) => void` - Optional
+* `onNextClick: ({event}) => void` - Optional
   Callback for next button click
-* `onPageChange: (nextPage, prevPage) => void` - Optional
+* `onPageChange: ({nextPage, prevPage}) => void` - Optional
   Callback for when page changes
 
 ## StatefulContainer API

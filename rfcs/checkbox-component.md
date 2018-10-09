@@ -12,7 +12,7 @@ export default () => {
   return
     <StatefulCheckbox
       checked={props.isEnabled}
-      onChange={evt => props.setEnabled(evt.target.checked)}>
+      onChange={({checked}) => props.setEnabled(checked)}>
         Enabled
     </StatefulCheckbox>;
 };
@@ -112,15 +112,15 @@ export default () => {
   * `Input` may replace original functionality of checkbox. If provided should follow the same interface and logic or may break the whole component
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
-* `onChange: func`:
+* `onChange: func({event, checked})`:
   handler for events on trigger element
-* `onMouseEnter: func`:
+* `onMouseEnter: func({event})`:
   handler for events on trigger element
-* `onMouseLeave: func`:
+* `onMouseLeave: func({event})`:
   handler for events on trigger element
-* `onFocus: func`:
+* `onFocus: func({event})`:
   handler for events on trigger element
-* `onBlur: func`:
+* `onBlur: func({event})`:
   handler for events on trigger element
 
 ## `StatefulCheckboxContainer` API
@@ -138,15 +138,15 @@ export default () => {
   Disable control from being changed
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the checkbox itself. Default is `right`
-* `onChange: func`:
+* `onChange: func({event, checked})`:
   handler for events on trigger element
-* `onMouseEnter: func`:
+* `onMouseEnter: func({event})`:
   handler for events on trigger element
-* `onMouseLeave: func`:
+* `onMouseLeave: func({event})`:
   handler for events on trigger element
-* `onFocus: func`:
+* `onFocus: func({event})`:
   handler for events on trigger element
-* `onBlur: func`:
+* `onBlur: func({event})`:
   handler for events on trigger element
 
 ## `Label` API

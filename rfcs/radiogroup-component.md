@@ -99,15 +99,15 @@ export default () => {
   How to position radio buttons in the group. Default is `vertical`
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the radio itself. Default is `right`
-* `onChange: (evt) => {}`:
-  handler for when selected radio changes. evt.target.value should be used to figure out which radio is selected.
-* `onMouseEnter: (evt) => {}`:
+* `onChange: ({event, value}) => void`:
+  handler for when selected radio changes
+* `onMouseEnter: ({event}) => void`:
   handler for mouseenter events, passed to each individual radio option.
-* `onMouseLeave: (evt) => {}`:
+* `onMouseLeave: ({event}) => void`:
   handler for mouseleave events, passed to each individual radio option.
-* `onFocus: (evt) => {}`:
+* `onFocus: ({event}) => void`:
   handler for focus events, passed to each individual radio option.
-* `onBlur: (evt) => {}`:
+* `onBlur: ({event}) => void`:
   handler for blur events, passed to each individual radio option.
 
 ## `StatefulRadioGroupContainer` API
@@ -138,15 +138,15 @@ export default () => {
   How to position radio buttons in the group. Default is `vertical`
 * `labelPlacement: 'top' | 'right' | 'bottom' | 'left'`:
   How to position the label relative to the radio itself. Default is `right`
-* `onChange: (evt) => {}`:
+* `onChange: ({event, value}) => void`:
   handler for when selected radio changes. evt.target.value should be used to figure out which radio is selected.
-* `onMouseEnter: (evt) => {}`:
+* `onMouseEnter: ({event}) => void`:
   handler for mouseenter events, passed to each individual radio option.
-* `onMouseLeave: (evt) => {}`:
+* `onMouseLeave: ({event}) => void`:
   handler for mouseleave events, passed to each individual radio option.
-* `onFocus: (evt) => {}`:
+* `onFocus: ({event}) => void`:
   handler for focus events, passed to each individual radio option.
-* `onBlur: (evt) => {}`:
+* `onBlur: ({event}) => void`:
   handler for blur events, passed to each individual radio option.
 
 ## `Radio` API
