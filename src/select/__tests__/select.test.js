@@ -10,7 +10,6 @@ import {mount, shallow} from 'enzyme';
 import {
   Select,
   StyledSelectComponentIcon,
-  SelectDropDown,
   StyledInput,
   StyledOption,
 } from '../index';
@@ -70,20 +69,6 @@ describe('Stateless select', function() {
     },
   );
 
-  test('should apply initial select options if they are missing in options array', function() {
-    const initialSelectedOptions = [
-      {
-        id: '123',
-        label: 'label for 123',
-      },
-    ];
-    allProps.selectedOptions = initialSelectedOptions;
-    allProps.type = TYPE.select;
-    wrapper = shallow(<Select {...allProps} />);
-    const instance = wrapper.instance();
-    expect(instance.state.selectedOptions).toEqual(initialSelectedOptions);
-  });
-
   describe('events', function() {
     let documentMock,
       instance,
@@ -128,6 +113,7 @@ describe('Stateless select', function() {
         },
       );
     });
+
     test('should close dropdown if clicked outside of select component', function() {
       wrapper.unmount();
       wrapper = mount(<Select {...allProps} />);
@@ -139,74 +125,18 @@ describe('Stateless select', function() {
       expect(instance.state.isDropDownOpen).toBeFalsy();
     });
 
-    describe('On change action', function() {
-      let id = '2';
-      let label = 'label for 2';
-      let textValue = 'some value';
-      const selectedOption = {
-        id,
-        label,
-      };
-      beforeEach(function() {
-        const options = [
-          {
-            id: '1',
-            label: 'label for 1',
-          },
-          {
-            id,
-            label,
-          },
-          {
-            id: '3',
-            label: 'label for 3',
-          },
-          {
-            id: '4',
-            label: 'label for 4',
-          },
-        ];
-        allProps.type = TYPE.search;
-        allProps.options = options;
-        allProps.onChange = jest.fn();
-        allProps.onTextInputChange = jest.fn();
-        wrapper = mount(<Select {...allProps} />);
-      });
-
-      test.each([
-        [
-          STATE_CHANGE_TYPE.select,
-          {option: selectedOption, selectedOptions: [{id, label}]},
-        ],
-        [STATE_CHANGE_TYPE.unselect, {selectedOptions: []}],
-      ])(
-        'should set update of state if change action is %s',
-        (type, expectedResult) => {
-          const e = {
-            target: {
-              value: textValue,
-            },
-          };
-          const event =
-            type === STATE_CHANGE_TYPE.unselect
-              ? [e, undefined, true]
-              : [e, selectedOption];
-          wrapper.instance().onChange(...event);
-          expect(allProps.onChange).toHaveBeenCalledWith(
-            e,
-            Object.assign({}, expectedResult, {type}),
-          );
+    test('should call onTextInputChange when input value changes', function() {
+      let textValue = 'test';
+      allProps.type = TYPE.search;
+      allProps.onTextInputChange = jest.fn();
+      wrapper = mount(<Select {...allProps} />);
+      const e = {
+        target: {
+          value: textValue,
         },
-      );
-      test('should change input value and call update of options', function() {
-        const e = {
-          target: {
-            value: textValue,
-          },
-        };
-        wrapper.instance().onTextInputChange(e);
-        expect(allProps.onTextInputChange).toHaveBeenCalledWith(e);
-      });
+      };
+      wrapper.instance().onTextInputChange(e);
+      expect(allProps.onTextInputChange).toHaveBeenCalledWith(e);
     });
   });
 
@@ -242,9 +172,12 @@ describe('Stateless select', function() {
 
     test('should remove selected tag from selected options if X button is clicked', function() {
       clearIcon = wrapper.find(StyledAction);
-      expect(wrapper.instance().state.selectedOptions).toEqual(selectedOptions);
       clearIcon.first().simulate('click');
-      expect(wrapper.instance().state.selectedOptions).toEqual([]);
+      expect(allProps.onChange.mock.calls[0][1]).toEqual({
+        type: STATE_CHANGE_TYPE.unselect,
+        option: allProps.selectedOptions[0],
+        selectedOptions: [],
+      });
     });
 
     test('should should clear all selected tags when Clear All clicked', function() {
@@ -255,11 +188,15 @@ describe('Stateless select', function() {
       clearIcon = clearIcon.filterWhere(
         comp => comp.props().$type === ICON.clearAll,
       );
-      expect(wrapper.instance().state.selectedOptions).toEqual(options);
       clearIcon.first().simulate('click');
-      expect(wrapper.instance().state.selectedOptions).toEqual([]);
+
+      expect(allProps.onChange.mock.calls[0][1]).toEqual({
+        type: STATE_CHANGE_TYPE.unselect,
+        selectedOptions: [],
+      });
     });
   });
+
   describe('Search mode', function() {
     test('should call text input change method when change of input happened', function() {
       allProps = Object.assign({}, allProps, {
@@ -377,7 +314,36 @@ describe('Stateless select', function() {
       wrapper.update();
       expect(wrapper.find(StyledOption).length).toBe(2);
     });
+
+    test('backspace should delete last selected option in multiple mode', () => {
+      const options = [
+        {id: 'red', label: 'Red'},
+        {id: 'green', label: 'Green'},
+        {id: 'blue', label: 'Blue'},
+      ];
+      allProps = {
+        ...allProps,
+        onChange: jest.fn(),
+        type: TYPE.search,
+        multiple: true,
+        options,
+        selectedOptions: options.slice(0, 2),
+      };
+      wrapper = mount(<Select {...allProps} />);
+
+      expect(wrapper.find(StyledAction).length).toBe(2);
+
+      wrapper.find('input').simulate('keydown', {key: KEY_STRINGS.Backspace});
+
+      expect(allProps.onChange).toHaveBeenCalledTimes(1);
+      expect(allProps.onChange.mock.calls[0][1]).toEqual({
+        type: STATE_CHANGE_TYPE.unselect,
+        option: options[1],
+        selectedOptions: [options[0]],
+      });
+    });
   });
+
   describe('Select mode', function() {
     test('should toggle dropdown if input is clicked', function(done) {
       allProps = Object.assign({}, allProps, {
@@ -406,48 +372,31 @@ describe('Stateless select', function() {
           {isDropDownOpen: mode === TYPE.select},
         ],
         [KEY_STRINGS.Escape, 'close dropdown', {isDropDownOpen: false}],
-        [
-          KEY_STRINGS.Backspace,
-          'remove last selected tag in multiple mode',
-          {selectedOptions: []},
-        ],
-      ])(
-        'when pressed key "%s" should %s',
-        async (hotKey, result, newState) => {
-          allProps.selectedOptions = [
+      ])('when pressed key "%s" should %s', (hotKey, result, newState) => {
+        allProps.selectedOptions = [
+          {
+            id: '123',
+            label: 'label for 123',
+          },
+        ];
+        allProps = Object.assign({}, allProps, {
+          type: mode,
+          multiple: true,
+          options: [
             {
-              id: '123',
-              label: 'label for 123',
+              id: '1',
+              label: 'foo1',
             },
-          ];
-          allProps = Object.assign({}, allProps, {
-            type: mode,
-            multiple: true,
-            options: [
-              {
-                id: '1',
-                label: 'foo1',
-              },
-            ],
-          });
-          wrapper = mount(<Select {...allProps} />);
-          let input;
-          if (hotKey !== KEY_STRINGS.Enter) {
-            input = wrapper
-              .find(StyledInput)
-              .first()
-              .find('input');
-          } else {
-            input = wrapper
-              .find(SelectDropDown)
-              .first()
-              .find('li')
-              .first();
-          }
-          input.simulate('keydown', {key: hotKey});
-          await expect(wrapper.instance().state).toMatchObject(newState);
-        },
-      );
+          ],
+        });
+        wrapper = mount(<Select {...allProps} />);
+        const input = wrapper
+          .find(StyledInput)
+          .first()
+          .find('input');
+        input.simulate('keydown', {key: hotKey});
+        expect(wrapper.instance().state).toMatchObject(newState);
+      });
     },
   );
 });

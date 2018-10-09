@@ -43,12 +43,12 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     multiple: false,
     tabIndex: 0,
     textValue: '',
+    type: TYPE.select,
   };
 
   state = {
     filteredOptions: null,
     textValue: '',
-    selectedOptions: this.props.selectedOptions,
     isDropDownOpen: false,
     options: [],
     optionsLoaded: false,
@@ -104,57 +104,61 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     });
   };
 
-  onChange = (
-    e: SyntheticEvent<HTMLInputElement>,
+  onClearAll = (e: SyntheticEvent<HTMLElement>) => {
+    this.props.onChange(e, {
+      type: STATE_CHANGE_TYPE.unselect,
+      selectedOptions: [],
+    });
+  };
+
+  onSelect = (
+    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
     pendingOption?: OptionT = {
       id: '',
       label: '',
     },
-    isClearAll?: boolean,
   ) => {
-    const multiple = this.isMultiple();
-    let selectedOptions;
-    if (isClearAll) {
-      // clear all
-      selectedOptions = [];
-      this.setState({selectedOptions: selectedOptions});
+    const {multiple, selectedOptions} = this.props;
+
+    const selected = selectedOptions.find(tag => tag.id === pendingOption.id);
+    const isSelect = !selected;
+    if (isSelect) {
+      // select
+      this.props.onChange(e, {
+        type: STATE_CHANGE_TYPE.select,
+        option: pendingOption,
+        selectedOptions: multiple
+          ? selectedOptions.concat([pendingOption])
+          : [pendingOption],
+      });
+    } else if (multiple) {
+      // unselect (only possible for multi-select)
       this.props.onChange(e, {
         type: STATE_CHANGE_TYPE.unselect,
-        selectedOptions,
-      });
-    } else {
-      const selected = this.state.selectedOptions.find(
-        tag => tag.id === pendingOption.id,
-      );
-      const isSelect = !selected;
-      if (isSelect) {
-        // select
-        selectedOptions = multiple ? this.state.selectedOptions.slice() : [];
-        selectedOptions = selectedOptions.concat([pendingOption]);
-        this.setState({selectedOptions: selectedOptions});
-        if (this.props.type === TYPE.select && !multiple) {
-          this.setState({isDropDownOpen: false});
-        }
-        this.props.onChange(e, {
-          type: STATE_CHANGE_TYPE.select,
-          option: pendingOption,
-          selectedOptions,
-        });
-      } else if (multiple) {
-        // unselect
-        selectedOptions = this.state.selectedOptions.filter(
+        option: pendingOption,
+        selectedOptions: selectedOptions.filter(
           selectedOption => selectedOption.id !== (selected || {}).id,
-        );
-        this.setState({
-          selectedOptions: selectedOptions,
-        });
-        this.props.onChange(e, {
-          type: STATE_CHANGE_TYPE.unselect,
-          option: pendingOption,
-          selectedOptions,
-        });
-      }
+        ),
+      });
     }
+
+    // Always close single-select dropdown after toggling selection
+    if (this.props.type === TYPE.select && !multiple) {
+      this.setState({isDropDownOpen: false});
+    }
+  };
+
+  onRemoveTag = (
+    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
+    option: OptionT,
+  ) => {
+    this.props.onChange(e, {
+      type: STATE_CHANGE_TYPE.unselect,
+      option,
+      selectedOptions: this.props.selectedOptions.filter(
+        selectedOption => selectedOption.id !== option.id,
+      ),
+    });
   };
 
   loadOptions(query?: string): Promise<void> {
@@ -193,8 +197,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
       InputContainer: [InputContainer, inputContainerProps],
     } = this.getSubComponents();
-    const {placeholder, disabled} = this.props;
-    const {selectedOptions} = this.state;
+    const {placeholder, disabled, selectedOptions} = this.props;
     const events = disabled
       ? {
           onClickCapture: e => e.stopPropagation(),
@@ -268,7 +271,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
           After: () => (
             <SelectComponentIcon
               $disabled={disabled}
-              onClick={e => this.onChange(e, undefined, true)}
+              onClick={this.onClearAll}
               $type={ICON.clearAll}
               src={
                 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z" fill="#999999"/></svg>'
@@ -288,8 +291,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       Tag: [Tag, tagProps],
       SingleSelection: [SingleSelection, singleSelectionProps],
     } = this.getSubComponents();
-    const {type, disabled} = this.props;
-    const {selectedOptions} = this.state;
+    const {type, disabled, selectedOptions} = this.props;
     const multiple = this.isMultiple();
     return (
       <React.Fragment>
@@ -309,11 +311,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
                 disabled={disabled}
                 key={option.id}
                 onActionClick={e => {
-                  this.setState({
-                    selectedOptions: this.state.selectedOptions.filter(
-                      selectedOption => selectedOption.id !== option.id,
-                    ),
-                  });
+                  this.onRemoveTag(e, option);
                   e.stopPropagation();
                 }}
                 {...tagProps}
@@ -335,9 +333,9 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   }
 
   getDropDown() {
-    const {overrides, type, rows} = this.props;
+    const {overrides, type, rows, selectedOptions} = this.props;
     const options = this.getOptions();
-    const {isDropDownOpen, selectedOptions, optionsLoaded} = this.state;
+    const {isDropDownOpen, optionsLoaded} = this.state;
     const dropDownProps = {
       rows,
       type,
@@ -347,7 +345,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       isDropDownOpen,
       selectedOptions,
       getOptionLabel: this.getOptionLabel.bind(this),
-      onChange: this.onChange.bind(this),
+      onChange: this.onSelect.bind(this),
       onItemSelect: (option, e) => this.handledHotKeys(e, option),
     };
     return <SelectDropDown {...dropDownProps} />;
@@ -389,10 +387,12 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   }
 
   handledHotKeys(
-    // $FlowFixMe
-    e: SyntheticEvent<EventTarget> | KeyboardEvent,
+    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
     option?: ?OptionT,
   ) {
+    if (!e.key) {
+      return;
+    }
     switch (e.key) {
       case KEY_STRINGS.ArrowDown:
       case KEY_STRINGS.Space:
@@ -411,14 +411,15 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         return true;
       case KEY_STRINGS.Enter:
         if (option) {
-          this.onChange(e, option);
+          this.onSelect(e, option);
         }
         return;
       case KEY_STRINGS.Backspace:
         if (this.isMultiple() && !this.state.textValue) {
-          const selectedOptions = this.state.selectedOptions.slice();
-          selectedOptions.pop();
-          this.setState({selectedOptions});
+          const {selectedOptions} = this.props;
+          if (selectedOptions.length) {
+            this.onRemoveTag(e, selectedOptions[selectedOptions.length - 1]);
+          }
           return true;
         }
         return;

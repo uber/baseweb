@@ -34,7 +34,7 @@ export type RootRefT = React$ElementRef<*>;
 
 export type OnItemSelectFnT = (
   item: ItemT,
-  event: SyntheticEvent<> | KeyboardEvent,
+  event: SyntheticEvent<HTMLElement> | KeyboardEvent,
 ) => mixed;
 
 export type ProfileOverridesT = {
