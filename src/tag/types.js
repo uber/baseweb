@@ -9,13 +9,6 @@ LICENSE file in the root directory of this source tree.
 import type {OverrideT} from '../helpers/overrides';
 import {COLOR_STYLE_KEYS} from './constants';
 
-// export type TagKindT =
-//   | 'primary'
-//   | 'warning'
-//   | 'positive'
-//   | 'negative'
-//   | 'custom';
-
 export const TagKind = Object.freeze({...COLOR_STYLE_KEYS, custom: null});
 
 export type TagKindT = $Keys<typeof TagKind>;

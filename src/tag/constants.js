@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import type {TagKindT} from './types';
+
 export const COLOR_STYLE_KEYS = {
   primary: 'primary400',
   warning: 'warning400',
@@ -13,10 +15,10 @@ export const COLOR_STYLE_KEYS = {
   negative: 'negative400',
 };
 
-export const KIND = Object.keys(COLOR_STYLE_KEYS).map(key => {
-  return {
-    key: key,
-  };
-});
-
-/* eslint-enable import/prefer-default-export */
+export const KIND: {[TagKindT]: string} = Object.keys({
+  ...COLOR_STYLE_KEYS,
+  custom: null,
+}).reduce((kindMap, key) => {
+  kindMap[key] = key;
+  return kindMap;
+}, {});

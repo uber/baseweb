@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 // Styled elements
-import {Tag, COLOR_STYLE_KEYS, StyledRoot} from './index';
+import {Tag, KIND, StyledRoot} from './index';
 import {withStyle} from 'styletron-react';
 import type {TagKindT} from './types';
 
@@ -26,7 +26,7 @@ const colorIcons = {
   '#ef0335': `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEZElEQVRYhb2UXUhbZxzGX3ppylo9S6L5PJrEr0ST5sukSUwKlXghwWWFMtjF9FYYAy/sVegOtA22MZ3rRdttQlPpREKZtdBtQluEYG0C6ya6YCuhVWiDUpQ28/LZjedLT+zojH94eP/vc97/+/w4Bw4hgir4/ZdW/P7VFb8fFdJqwe+/RKTquc+3+LK3F5tDQ/jn/PmKaHNoCC97e/Hc51sUhec9nviLSATvBwaw3d2N7VOnKqPubrwfGMCLSAR5jyfOASx0dKwV+/tRCgWxFezEnNOBX23WA9Wc04GtYCdKoSCK/f1Y6OhY4wCeuV1Y7zqNd8FOzIeC2MhmcdC1kc1iPhTEu2An1rtO45nbBQ4g53RgM+DHZsBfkXAhBJuTczp4gHmHHW/9Prz1+yQHtVotGIYBADAMA4qiPhqCzZl32HmAjN2GdZ8X6z6v5BDDMNBqtQAAl8uFvr6+jwZgczJ2Gw8wa7Wi6PWg6PVIDhWLRVAUhXQ6DZlMhmKxiHg8DoqiQFEU4vE4AEAmk3Ezwl50107OrNXKAzxst+C1x43XHndZ8mg0CpPJhGg0CgAwmUyIxWKIxWLc25HL5dx5YS8sNudhu4UHmLGYseZ2Yc3tKguQz+dB0zQymQwAgKZp7hnbS3m7i82ZsZh5gAfmFrxyOfDK5SgLAABms3nfvtxzYbE5D8wtPMD91mYUnHYUnPZ9Adxu/hN1dXUhmUwimUwiEAhwzxmGQU9Pj+issNic+63NPMBUcyNW7Das2G37AoRCIa5PpVIIh8MIh8NIpVIAgEgkgnA4jMHBQdFZYbE5U82NPMDdJhOWT1ixfMKKUi63L8T/qVIux+XcbTLxAJONBuRtbcjb2rAcOIlS7uD/hqVcFsuBk1zOZKOBB5gwGrDUbjlUTRgFAOOGeiy0tR6qxg31PMCtBhp/Wlr26Kd6/R5JnZGa/ZBuNdA8wBitwx+tTXskVVJnpGY/pDFaxwPc1GuQazGVFQDkWky4ITjH9gCQqtfihl7DefeMNLe/Z6Ql77yp1/AA17VqPG0ylhUA0brb21pa4t7Q0yYjsskEt88mE5J3XteqeYBrmjrMNTaUFQDRuttb/f47LH75hchLed1Ied2iGaGuaep4gFF1LTKm+rICIFr/iycsqTtH1bU8wIhKiVmDvqwAcOs0rcW4TiXyftap8QutEXmPzp7Bo7NnkP78M8k7R1RKHuBKnQLTtAaPG3SSAsCt0/1f4e/JCZH3148/4PdvvhZ5TxKX8SRxmfOEmqY1uFKn4AGGFfI3t9W1eEhrJAWAWwFge21V5LF71itcHeH2hasje+67ra7FsEL+hgNIKKnRYZUSU1oVZvTqimpKq8KwSomEkhpl848QQqouKKpXLipqMKaSI61R4jdd3YEqrVFiTCXHRUUNLiiqVwghVTvZpIoQYiCEWM7VHLvDUMc3vv20GpUQQx3fOFdz7A4hxLKTWSUCIIS0H5JEAEd2mqOEkE8OSUfZT/AvpLZs7lVi3lIAAAAASUVORK5CYII=`,
 };
 
-const tagStyleKeys: Array<TagKindT> = Object.keys(COLOR_STYLE_KEYS);
+const tagStyleKinds: Array<TagKindT> = Object.keys(KIND);
 
 export default {
   [tests.ALL_BASIC_COLORS]: () => {
@@ -44,10 +44,11 @@ export default {
           >
             Default Color
           </Tag>
-          {tagStyleKeys.map(kind => (
+          {tagStyleKinds.map(kind => (
             <Tag
               key={kind}
               kind={kind}
+              color={kind === 'custom' ? '#748ecc' : undefined}
               onActionClick={(e, tag) => {
                 if (typeof tag === 'string') {
                   // eslint-disable-next-line no-console
@@ -124,7 +125,7 @@ export default {
     return (
       <React.Fragment>
         <div style={{width: '200px'}}>
-          {tagStyleKeys.map(kind => (
+          {tagStyleKinds.map(kind => (
             <Tag
               disabled={true}
               key={kind}

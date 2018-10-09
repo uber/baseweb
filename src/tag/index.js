@@ -12,4 +12,4 @@ export {
   Action as StyledAction,
   ActionIcon as StyledActionIcon,
 } from './styled-components';
-export {COLOR_STYLE_KEYS} from './constants';
+export {COLOR_STYLE_KEYS, KIND} from './constants';
