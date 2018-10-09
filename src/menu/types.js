@@ -32,10 +32,10 @@ export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
 
 export type RootRefT = React$ElementRef<*>;
 
-export type OnItemSelectFnT = (
-  item: ItemT,
-  event: SyntheticEvent<> | KeyboardEvent,
-) => mixed;
+export type OnItemSelectFnT = ({
+  selectedItem: ItemT,
+  event?: SyntheticEvent<> | KeyboardEvent,
+}) => mixed;
 
 export type ProfileOverridesT = {
   List?: OverrideT<*>,

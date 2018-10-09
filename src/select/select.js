@@ -348,7 +348,8 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       selectedOptions,
       getOptionLabel: this.getOptionLabel.bind(this),
       onChange: this.onChange.bind(this),
-      onItemSelect: (option, e) => this.handledHotKeys(e, option),
+      onItemSelect: ({selectedItem, event}) =>
+        this.handledHotKeys(event, selectedItem),
     };
     return <SelectDropDown {...dropDownProps} />;
   }
