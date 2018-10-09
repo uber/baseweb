@@ -5,14 +5,20 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* eslint-disable import/prefer-default-export */
-import {LightTheme} from '../themes';
 
-export const STYLE = {
-  primary: LightTheme.colors.primary400,
-  warning: LightTheme.colors.warning400,
-  positive: LightTheme.colors.positive400,
-  negative: LightTheme.colors.negative400,
+import type {TagKindT} from './types';
+
+export const COLOR_STYLE_KEYS = {
+  primary: 'primary400',
+  warning: 'warning400',
+  positive: 'positive400',
+  negative: 'negative400',
 };
 
-/* eslint-enable import/prefer-default-export */
+export const KIND: {[TagKindT]: string} = Object.keys({
+  ...COLOR_STYLE_KEYS,
+  custom: null,
+}).reduce((kindMap, key) => {
+  kindMap[key] = key;
+  return kindMap;
+}, {});

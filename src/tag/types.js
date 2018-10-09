@@ -7,6 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {OverrideT} from '../helpers/overrides';
+import {COLOR_STYLE_KEYS} from './constants';
+
+export const TagKind = Object.freeze({...COLOR_STYLE_KEYS, custom: null});
+
+export type TagKindT = $Keys<typeof TagKind>;
 
 export type OverridesT = {
   Root?: OverrideT<*>,
@@ -19,6 +24,7 @@ export type PropsT = {
   disabled?: boolean,
   isFocused?: boolean,
   isHovered?: boolean,
+  kind?: TagKindT,
   children?: React$Node,
   color?: string,
   $theme?: *,
@@ -26,4 +32,14 @@ export type PropsT = {
     e: SyntheticEvent<HTMLInputElement>,
     children?: React$Node,
   ) => void,
+};
+
+export type SharedPropsT = {
+  $color?: string,
+  $disabled?: boolean,
+  $isActive?: boolean,
+  $isFocused?: boolean,
+  $isHovered?: boolean,
+  $kind?: string,
+  $theme?: *,
 };
