@@ -13,6 +13,7 @@ import {
   StyledInput,
   StyledOption,
 } from '../index';
+import {StyledListItem} from '../../menu';
 import {STATE_CHANGE_TYPE, TYPE, ICON} from '../constants';
 import {StyledAction} from '../../tag';
 import {KEY_STRINGS} from '../../menu/constants';
@@ -267,6 +268,56 @@ describe('Stateless select', function() {
       expect(wrapper.find(StyledOption)).toHaveLength(0);
     });
 
+    test('should support select and deselect', async () => {
+      allProps = Object.assign({}, allProps, {
+        type: TYPE.search,
+        multiple: true,
+        options: [
+          {id: 'red', label: 'Red'},
+          {id: 'green', label: 'Green'},
+          {id: 'blue', label: 'Blue'},
+        ],
+      });
+      wrapper = mount(<Select {...allProps} />);
+      let input = wrapper
+        .find(StyledInput)
+        .first()
+        .find('input');
+
+      // Type some characters to get items to show
+      input.props().onChange({target: {value: 'e'}});
+      await sleep(1);
+      wrapper.update();
+
+      let renderOptions = wrapper.find(StyledListItem);
+      let selected = [];
+
+      // Test a sequence of select/deselects
+      [
+        {index: 0, type: STATE_CHANGE_TYPE.select},
+        {index: 2, type: STATE_CHANGE_TYPE.select},
+        {index: 0, type: STATE_CHANGE_TYPE.unselect},
+      ].forEach(event => {
+        // Click the specific option
+        renderOptions.at(event.index).simulate('click');
+
+        const toggledOption = allProps.options[event.index];
+        if (event.type === STATE_CHANGE_TYPE.select) {
+          selected.push(toggledOption);
+        } else {
+          selected = selected.filter(o => o.id !== toggledOption.id);
+        }
+
+        expect(allProps.onChange).toHaveBeenLastCalledWith(expect.anything(), {
+          type: event.type,
+          option: toggledOption,
+          selectedOptions: selected,
+        });
+
+        wrapper.setProps({selectedOptions: selected});
+      });
+    });
+
     test('should support custom filter option', async function() {
       allProps = Object.assign({}, allProps, {
         type: TYPE.search,
@@ -345,7 +396,7 @@ describe('Stateless select', function() {
   });
 
   describe('Select mode', function() {
-    test('should toggle dropdown if input is clicked', function(done) {
+    test('should toggle dropdown if input is clicked', function() {
       allProps = Object.assign({}, allProps, {
         type: TYPE.select,
       });
@@ -356,7 +407,26 @@ describe('Stateless select', function() {
         .first()
         .simulate('click');
       expect(wrapper.instance().state.isDropDownOpen).toBeTruthy();
-      done();
+    });
+
+    test('should support single select', () => {
+      allProps.options = [{id: 'red', label: 'Red'}];
+      wrapper = mount(<Select {...allProps} />);
+      wrapper
+        .find(StyledInput)
+        .first()
+        .simulate('click');
+
+      wrapper
+        .find(StyledListItem)
+        .at(0)
+        .simulate('click');
+
+      expect(allProps.onChange).toHaveBeenLastCalledWith(expect.anything(), {
+        type: STATE_CHANGE_TYPE.select,
+        option: allProps.options[0],
+        selectedOptions: [allProps.options[0]],
+      });
     });
   });
 
