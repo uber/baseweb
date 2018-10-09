@@ -13,27 +13,28 @@ import {
   Root as StyledRoot,
   ActionIcon as StyledActionIcon,
 } from './styled-components';
-import {STYLE} from './constants';
+import type {SharedPropsT} from './types';
 
 class Tag extends React.Component<PropsT, {}> {
   static defaultProps = {
     overrides: {},
     onActionClick: () => {},
-    color: STYLE.primary,
     disabled: false,
     isFocused: false,
     isHovered: false,
+    kind: 'primary',
   };
 
   render() {
     const {
       overrides = {},
+      color,
       disabled,
       isFocused,
       isHovered,
       children,
+      kind,
       onActionClick,
-      color,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Action, actionProps] = getOverrides(overrides.Action, StyledAction);
@@ -41,17 +42,18 @@ class Tag extends React.Component<PropsT, {}> {
       overrides.ActionIcon,
       StyledActionIcon,
     );
-    const sharedProps = {
-      $isFocused: isFocused,
-      $isHovered: isHovered,
-      $disabled: disabled,
-      $color: color,
-    };
     const events = disabled
       ? {}
       : {
           onClick: e => onActionClick(e, children),
         };
+    const sharedProps: SharedPropsT = {
+      $color: color,
+      $disabled: disabled,
+      $isFocused: isFocused,
+      $isHovered: isHovered,
+      $kind: kind,
+    };
     return (
       <Root {...sharedProps} {...rootProps}>
         {children}
@@ -68,7 +70,7 @@ class Tag extends React.Component<PropsT, {}> {
               fillRule="evenodd"
               clipRule="evenodd"
               d="M0.861278 0.862254C1.12163 0.601905 1.54374 0.601905 1.80409 0.862254L3.99935 3.05752L6.19461 0.862254C6.45496 0.601905 6.87707 0.601905 7.13742 0.862254C7.39777 1.1226 7.39777 1.54471 7.13742 1.80506L4.94216 4.00033L7.13742 6.19559C7.39777 6.45594 7.39777 6.87805 7.13742 7.1384C6.87707 7.39875 6.45496 7.39875 6.19461 7.1384L3.99935 4.94313L1.80409 7.1384C1.54374 7.39875 1.12163 7.39875 0.861278 7.1384C0.600928 6.87805 0.600928 6.45594 0.861278 6.19559L3.05654 4.00033L0.861278 1.80506C0.600928 1.54471 0.600928 1.1226 0.861278 0.862254Z"
-              fill={color}
+              fill="currentColor"
             />
           </ActionIcon>
         </Action>
