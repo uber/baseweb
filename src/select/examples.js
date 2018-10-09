@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable no-console*/
 
 import * as React from 'react';
-// Styled elements
 import {StatefulSelect, TYPE} from './index';
 import {STATE_CHANGE_TYPE} from './constants';
 import COLORS from './examples-colors';

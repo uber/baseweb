@@ -66,7 +66,10 @@ export type PropsT = {
   getSelectedOptionLabel?: OptionT => React$Node,
   $theme?: *,
   onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange: (
+    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
+    params: ParamsT,
+  ) => void,
   onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseDown: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -77,7 +80,6 @@ export type PropsT = {
 
 export type StatelessStateT = {
   textValue: string,
-  selectedOptions: Array<OptionT>,
   isDropDownOpen: boolean,
   filteredOptions?: ?Array<OptionT>,
   options: Array<OptionT>,
