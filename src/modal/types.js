@@ -37,7 +37,9 @@ export type ModalPropsT = {
   closeable: boolean,
   isOpen: boolean,
   mountNode?: HTMLElement,
-  onClose?: (source?: CloseSourceT) => void,
+  onClose?: ({
+    closeSource?: CloseSourceT,
+  }) => void,
   overrides: OverridesT,
   role: RolePropT,
   size: SizePropT,

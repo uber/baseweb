@@ -149,7 +149,9 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   close(source?: CloseSourceT) {
     // If there's no source, it just means the isOpen prop changed. No need to call onClose.
     if (this.props.onClose && source) {
-      this.props.onClose(source);
+      this.props.onClose({
+        closeSource: source,
+      });
     }
     this.removeDomEvents();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
