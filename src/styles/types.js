@@ -201,7 +201,7 @@ type ZIndexT = {
   modal: number,
 };
 
-export type ThemeT = {
+export type ThemeT = {|
   colors: ColorsT,
   typography: TypographyT,
   sizing: SizingT,
@@ -209,4 +209,4 @@ export type ThemeT = {
   animation: AnimationT,
   borders: BordersT,
   zIndex: ZIndexT,
-};
+|};
