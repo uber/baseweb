@@ -6,5 +6,5 @@ module.exports = {
   storybookConfigDir: '.storybook-move',
   apiKey: process.env.SCREENER_API_KEY,
   resolution: '1024x768',
-  baseBranch: 'master'
+  baseBranch: 'master',
 };

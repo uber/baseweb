@@ -4678,7 +4678,6 @@ flatten@^1.0.2:
 flow-bin@^0.83.0:
   version "0.83.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.83.0.tgz#fd26f5f95758d7701264b3f9a1e1a3d4cbcab1a9"
-  integrity sha512-1K83EL/U9Gh0BaXPKkZe6TRizSmNSKx9Wuws1c8gh7DJEwiburtCxYT+4o7in1+GnNEm3CZWnbnVV8n9HMpiDA==
 
 flow-copy-source@^2.0.2:
   version "2.0.2"
@@ -7677,9 +7676,9 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
-"ngrok@github:screener-io/ngrok":
-  version "2.2.24"
-  resolved "https://codeload.github.com/screener-io/ngrok/tar.gz/ca2e459b401722ae8c033491aaacaf87125cd238"
+ngrok@screener-io/ngrok:
+  version "2.2.27"
+  resolved "https://codeload.github.com/screener-io/ngrok/tar.gz/70a1a7d80d35931b97ddc3cde985599daac1ab68"
   dependencies:
     "@types/node" "^8.0.19"
     async "^2.3.0"
