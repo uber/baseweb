@@ -19,6 +19,8 @@ export type SharedStylePropsArgT = {
   $closeable: boolean,
   $isHidden: boolean,
   $isAnimating: boolean,
+  // styled function wrapper related
+  $style?: ?{},
 };
 
 export type SharedStylePropsT = SharedStylePropsArgT & {
@@ -63,24 +65,18 @@ export type ToastPropsT = {
   key: React.Key,
 };
 
-export type ToastPropsAltT = {
-  autoHideDuration?: number,
-  children?: ChildrenT | ComponentRenderPropT,
-  closeable?: boolean,
-  kind?: KindTypeT,
-  onClose?: () => void,
-  onBlur?: (e: Event) => void,
-  onFocus?: (e: Event) => void,
-  onMouseEnter?: (e: Event) => void,
-  onMouseLeave?: (e: Event) => void,
-  overrides?: OverridesT,
-  key?: React.Key,
+export type ToasterOverridesT = {
+  Root?: OverrideT<ToasterSharedStylePropsArgT>,
+  ToastBody?: OverrideT<SharedStylePropsArgT>,
+  ToastCloseIcon?: OverrideT<SharedStylePropsArgT>,
 };
 
 export type ToasterPropsT = {
+  overrides: ToasterOverridesT,
   placement: PlacementTypeT,
-  children?: ?ChildrenT,
+  usePortal: boolean,
 };
 export type ToasterStateT = {
-  toasts: Array<ToastPropsT>,
+  isMounted: boolean,
+  toasts: Array<$Shape<ToastPropsT> & {key: React.Key}>,
 };

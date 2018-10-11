@@ -102,7 +102,7 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
       : '0px',
     boxShadow: $theme.lighting.shadow600,
     opacity: $isHidden ? 0 : 1,
-    transitionProperty: 'opacity, backgroundColor',
+    transitionProperty: 'all',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeInOutCurve,
   };

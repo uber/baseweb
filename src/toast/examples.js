@@ -9,7 +9,7 @@ import * as React from 'react';
 import {styled} from '../styles';
 import {Toast, toaster, KIND, PLACEMENT} from './index';
 import {Button, KIND as ButtonKind, SIZE} from '../button';
-import type {ToastPropsT} from './types';
+import type {ToastPropsT, KindTypeT} from './types';
 
 import examples from './examples-list';
 
@@ -55,16 +55,16 @@ class ToasterExample extends React.Component<{}, {toasts: []}> {
     };
   }
 
-  add = props => () => {
+  add = (kind: KindTypeT, props) => () => {
     // $FlowFixMe
-    const toastProps: ToastPropsT = this.getToastProps(props);
-    toaster.show(toastProps);
+    const {children, ...toastProps}: ToastPropsT = this.getToastProps(props);
+    toaster[kind](children, toastProps);
   };
 
-  addInfo = this.add({});
-  addPositive = this.add({kind: KIND.positive});
-  addWarning = this.add({kind: KIND.warning});
-  addNegative = this.add({kind: KIND.negative});
+  addInfo = this.add(KIND.info);
+  addPositive = this.add(KIND.positive);
+  addWarning = this.add(KIND.warning);
+  addNegative = this.add(KIND.negative);
 
   render() {
     return (
@@ -117,15 +117,10 @@ class ToasterAdvancedExample extends React.Component<{}, {cleared: boolean}> {
   }
 
   addNotifications() {
-    toaster.show('Info notification');
-    toaster.show({
-      children: 'Positive notification',
-      kind: KIND.positive,
-    });
-    this.keyToUpdate = toaster.show({
-      children: 'Warning notification',
-      kind: KIND.warning,
-    });
+    toaster.info('Info notification', {closeable: false});
+    toaster.positive(<span>Positive notification</span>);
+    // $FlowFixMe
+    this.keyToUpdate = toaster.warning('Warning notification');
   }
 
   render() {
@@ -158,18 +153,17 @@ class ToasterAdvancedExample extends React.Component<{}, {cleared: boolean}> {
             Clear all
           </Button>
         </Space>
-        {this.state.cleared ? (
-          <Space>
-            <Button
-              onClick={() => {
-                this.addNotifications();
-                this.setState({cleared: false});
-              }}
-            >
-              Add toasts
-            </Button>
-          </Space>
-        ) : null}
+        <Space>
+          <Button
+            disabled={!this.state.cleared}
+            onClick={() => {
+              this.addNotifications();
+              this.setState({cleared: false});
+            }}
+          >
+            Add toasts
+          </Button>
+        </Space>
       </div>
     );
   }

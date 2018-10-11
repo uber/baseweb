@@ -1,24 +1,34 @@
 // @flow
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import {PLACEMENT} from './constants';
-import {Root} from './styled-components';
+import ReactDOM from 'react-dom';
+import {getOverrides, mergeOverrides} from '../helpers/overrides';
+import {KIND, PLACEMENT} from './constants';
+import {
+  Root as StyledRoot,
+  Body as StyledBody,
+  CloseIconSvg as StyledCloseIcon,
+} from './styled-components';
 import Toast from './toast';
-import type {
-  ToasterPropsT,
+import type {ToasterPropsT, ToasterStateT, ToastPropsT} from './types';
+
+let toasterRef: ?React.ElementRef<typeof Toaster> = null;
+
+function toasterRefCallback(ref: ?React.ElementRef<typeof Toaster>): void {
+  toasterRef = ref;
+}
+
+class ToasterComponent extends React.Component<
+  $Shape<ToasterPropsT>,
   ToasterStateT,
-  ToastPropsT,
-  ToastPropsAltT,
-} from './types';
-
-let toasterRef: React.Ref<typeof Toaster> = React.createRef();
-
-class ToasterComponent extends React.Component<ToasterPropsT, ToasterStateT> {
-  static defaultProps = {
+> {
+  static defaultProps: ToasterPropsT = {
     placement: PLACEMENT.top,
+    usePortal: true,
+    overrides: {},
   };
 
   state = {
+    isMounted: false,
     toasts: [],
   };
 
@@ -26,53 +36,27 @@ class ToasterComponent extends React.Component<ToasterPropsT, ToasterStateT> {
 
   toastId: number = 0;
 
-  onClose = (key: React.Key) => {
-    delete this.dismissHandlers[key];
-    this.setState(({toasts}) => ({
-      toasts: toasts.filter(t => {
-        return !(t.key === key);
-      }),
-    }));
-  };
+  componentDidMount() {
+    this.setState({isMounted: true});
+  }
 
-  getOnCloseHandler = (key: React.Key, onClose: () => void) => {
-    return () => {
-      this.onClose(key);
-      typeof onClose === 'function' && onClose();
-    };
-  };
-
-  getToastProps = (props: string | ToastPropsT): ToastPropsAltT => {
+  getToastProps = (
+    props: ToastPropsT,
+  ): $Shape<ToastPropsT> & {key: React.Key} => {
     const key: React.Key = props.key || `toast-${this.toastId++}`;
-    if (typeof props === 'string') {
-      return {children: props, key};
-    }
     return {...props, key};
   };
 
-  renderToast = (toastProps: ToastPropsT): React.Node => {
-    const {onClose, children, key, ...rest} = toastProps;
-    return (
-      <Toast {...rest} key={key} onClose={this.getOnCloseHandler(key, onClose)}>
-        {({dismiss}) => {
-          this.dismissHandlers[key] = dismiss;
-          return children;
-        }}
-      </Toast>
-    );
-  };
-
-  show = (props: string | ToastPropsT): React.Key => {
+  show = (props: $Shape<ToastPropsT> = {}): React.Key => {
     const toastProps = this.getToastProps(props);
     this.setState(({toasts}) => {
-      // const newList = [...toasts];
-      toasts.unshift(toastProps);
+      toasts.push(toastProps);
       return {toasts};
     });
     return toastProps.key;
   };
 
-  update = (key: React.Key, props: string | ToastPropsT): void => {
+  update = (key: React.Key, props: ToastPropsT): void => {
     this.setState(({toasts}) => {
       toasts.forEach((t, index, arr) => {
         if (t.key === key) {
@@ -101,6 +85,54 @@ class ToasterComponent extends React.Component<ToasterPropsT, ToasterStateT> {
     key === undefined ? this.clearAll() : this.dismiss(key);
   };
 
+  internalOnClose = (key: React.Key) => {
+    delete this.dismissHandlers[key];
+    this.setState(({toasts}) => ({
+      toasts: toasts.filter(t => {
+        return !(t.key === key);
+      }),
+    }));
+  };
+
+  getOnCloseHandler = (key: React.Key, onClose: ?() => void) => {
+    return () => {
+      this.internalOnClose(key);
+      typeof onClose === 'function' && onClose();
+    };
+  };
+
+  renderToast = (toastProps: ToastPropsT & {key: React.Key}): React.Node => {
+    const {onClose, children, key, ...rest} = toastProps;
+
+    const {
+      ToastBody: BodyOverride,
+      ToastCloseIcon: CloseIconOverride,
+    } = this.props.overrides;
+    const globalToastOverrides = mergeOverrides(
+      {Body: StyledBody, CloseIcon: StyledCloseIcon},
+      // $FlowFixMe
+      {Body: BodyOverride, CloseIcon: CloseIconOverride},
+    );
+    const toastOverrides = mergeOverrides(
+      globalToastOverrides,
+      toastProps.overrides,
+    );
+
+    return (
+      <Toast
+        {...rest}
+        overrides={toastOverrides}
+        key={key}
+        onClose={this.getOnCloseHandler(key, onClose)}
+      >
+        {({dismiss}) => {
+          this.dismissHandlers[key] = dismiss;
+          return children;
+        }}
+      </Toast>
+    );
+  };
+
   getSharedProps = () => {
     const {placement} = this.props;
     return {
@@ -110,50 +142,106 @@ class ToasterComponent extends React.Component<ToasterPropsT, ToasterStateT> {
 
   render = () => {
     const sharedProps = this.getSharedProps();
-    // Only render on the browser (portals aren't supported server-side)
-    if (__BROWSER__) {
-      return ReactDOM.createPortal(
-        <Root {...sharedProps}>
-          {this.props.children}
-          {this.state.toasts.map(this.renderToast)}
-        </Root>,
-        // $FlowFixMe
-        document.body,
-      );
+
+    const {Root: RootOverride} = this.props.overrides;
+    // $FlowFixMe
+    const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
+
+    const toastsLength = this.state.toasts.length;
+    const toastsToRender = [];
+    // render the toasts from the newest at the start
+    // to the oldest at the end
+    // eslint-disable-next-line for-direction
+    for (let i = toastsLength - 1; i >= 0; i--) {
+      toastsToRender.push(this.renderToast(this.state.toasts[i]));
+    }
+
+    const root = (
+      <Root {...sharedProps} {...rootProps}>
+        {toastsToRender}
+      </Root>
+    );
+    if (this.state.isMounted) {
+      // Only render on the browser (portals aren't supported server-side)
+      if (this.props.usePortal) {
+        if (__BROWSER__) {
+          return ReactDOM.createPortal(
+            root,
+            // $FlowFixMe
+            document.body,
+          );
+        }
+      } else {
+        return root;
+      }
     }
     return null;
   };
 }
 
-export const Toaster = ToasterComponent;
-
-export default {
-  create: function create(props?: ToasterPropsT): React.Node {
-    return <ToasterComponent {...props} ref={toasterRef} />;
+const toaster = {
+  getRef: function(): ?React.ElementRef<typeof Toaster> {
+    return toasterRef;
   },
-  show: (props: string | ToastPropsAltT): ?React.Key => {
-    if (toasterRef.current) {
-      return toasterRef.current.show(props);
-    } else if (__DEV__) {
-      // eslint-disable-next-line no-console
-      console.error('No toaster created yet');
-    }
-    return null;
+  create: function create(props?: $Shape<ToasterPropsT>): React.Node {
+    return <ToasterComponent {...props} ref={toasterRefCallback} />;
   },
-  update: (key: React.Key, props: string | ToastPropsAltT): void => {
-    if (toasterRef.current) {
-      toasterRef.current.update(key, props);
+  show: function(
+    children: React.Node,
+    props: $Shape<ToastPropsT> = {},
+  ): ?React.Key {
+    // toasts can not be added until Toaster is mounted
+    // no SSR for the `toaster.show()`
+    const toasterInstance = this.getRef();
+    if (toasterInstance) {
+      return toasterInstance.show({children, ...props});
     } else if (__DEV__) {
-      // eslint-disable-next-line no-console
-      console.error('No toaster created yet');
+      throw new Error('Can not add any toasts until Toaster is mounted!');
     }
   },
-  clear: (key?: React.Key): void => {
-    if (toasterRef.current) {
-      toasterRef.current.clear(key);
+  info: function(
+    children: React.Node,
+    props: $Shape<ToastPropsT> = {},
+  ): ?React.Key {
+    return this.show(children, {...props, kind: KIND.info});
+  },
+  positive: function(
+    children: React.Node,
+    props: $Shape<ToastPropsT> = {},
+  ): ?React.Key {
+    return this.show(children, {...props, kind: KIND.positive});
+  },
+  warning: function(
+    children: React.Node,
+    props: $Shape<ToastPropsT> = {},
+  ): ?React.Key {
+    return this.show(children, {...props, kind: KIND.warning});
+  },
+  negative: function(
+    children: React.Node,
+    props: $Shape<ToastPropsT> = {},
+  ): ?React.Key {
+    return this.show(children, {...props, kind: KIND.negative});
+  },
+  update: function(key: React.Key, props: $Shape<ToastPropsT>): void {
+    const toasterInstance = this.getRef();
+    if (toasterInstance) {
+      toasterInstance.update(key, props);
     } else if (__DEV__) {
       // eslint-disable-next-line no-console
-      console.error('No toaster created yet');
+      console.error('No Toaster is mounted yet.');
+    }
+  },
+  clear: function(key?: ?React.Key): void {
+    const toasterInstance = this.getRef();
+    if (toasterInstance) {
+      toasterInstance.clear(key);
+    } else if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.error('No Toaster is mounted yet.');
     }
   },
 };
+
+export const Toaster = ToasterComponent;
+export default toaster;
