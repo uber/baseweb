@@ -2,6 +2,13 @@
 import deepMerge from '../deep-merge';
 
 describe('deepMerge', () => {
+  let consoleError;
+  beforeEach(function() {
+    consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+  afterEach(function() {
+    consoleError.mockRestore();
+  });
   test('performs deep merge on target', () => {
     const target = {foo: {bar: {baz: true, quux: true}}};
     const source = {foo: {bar: {baz: false}}};
@@ -16,5 +23,27 @@ describe('deepMerge', () => {
     const source2 = {foo: 3, quux: 4};
     const ret = deepMerge({}, target, source1, source2);
     expect(ret).toEqual({foo: 3, bar: 2, baz: 3, quux: 4});
+  });
+
+  test('should forcefully merge very right source for heavy objects to avoid stack overflow and possible circular dependency', () => {
+    const target = {foo: 1, bar: 2};
+    const source1 = {foo: 2, baz: 3};
+    const source2 = {
+      foo: 3,
+      quux: {
+        quaz: {
+          puuz: {
+            gearz: {
+              guanz: {marz: {breez: {fleez: {looz: {weerz: {poolz: {}}}}}}},
+            },
+          },
+        },
+      },
+    };
+    const ret = deepMerge({}, target, source1, source2);
+    expect(ret).toEqual({bar: 2, baz: 3, ...source2});
+    expect(consoleError).toHaveBeenCalledWith(
+      `Object force-merged to target to avoid stack overflow`,
+    );
   });
 });
