@@ -43,7 +43,7 @@ steps:
     agents:
       queue: workers
   - name: ':screener:'
-    command: yarn storybook:screener
+    command: yarn storybook:screener:ci
     plugins:
       'docker-compose':
         run: baseui
