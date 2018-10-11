@@ -20,7 +20,7 @@
     "storybook": "start-storybook -p 6006",
     "storybook:move": "start-storybook -c .storybook-move -p 6006",
     "build-storybook": "build-storybook -o docs && build-storybook -c .storybook-move -o docs/move",
-    "storybook:screener": "screener-storybook --conf screener.config.js",
+    "storybook:screener": "screener-storybook --conf screener.config.js --debug",
     "precommit": "pretty-quick --staged && yarn run test",
     "prebuild": "rimraf dist",
     "build:copy-files": "cp package.json dist/package.json && cp README.md dist/README.md",
