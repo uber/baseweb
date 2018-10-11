@@ -7676,17 +7676,6 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
-ngrok@screener-io/ngrok:
-  version "2.2.27"
-  resolved "https://codeload.github.com/screener-io/ngrok/tar.gz/70a1a7d80d35931b97ddc3cde985599daac1ab68"
-  dependencies:
-    "@types/node" "^8.0.19"
-    async "^2.3.0"
-    decompress-zip "^0.3.0"
-    lock "^0.1.2"
-    request "^2.55.0"
-    uuid "^3.0.0"
-
 nice-try@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
@@ -9885,9 +9874,20 @@ schema-utils@^0.4.0, schema-utils@^0.4.4, schema-utils@^0.4.5:
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
 
-screener-runner@^0.10.18:
-  version "0.10.18"
-  resolved "https://registry.yarnpkg.com/screener-runner/-/screener-runner-0.10.18.tgz#57cc190af262d5f36c64f89d040698a2e6f3d662"
+"screener-ngrok@github:screener-io/screener-ngrok":
+  version "2.2.27"
+  resolved "https://codeload.github.com/screener-io/screener-ngrok/tar.gz/6e8d96a9f8c34009d8c4df693a30f278702e1fc5"
+  dependencies:
+    "@types/node" "^8.0.19"
+    async "^2.3.0"
+    decompress-zip "^0.3.0"
+    lock "^0.1.2"
+    request "^2.55.0"
+    uuid "^3.0.0"
+
+screener-runner@^0.10.19:
+  version "0.10.19"
+  resolved "https://registry.yarnpkg.com/screener-runner/-/screener-runner-0.10.19.tgz#f0f4f002f7165698136e070b578bc1cba91bfd03"
   dependencies:
     bluebird "~3.4.6"
     colors "~1.1.2"
@@ -9897,14 +9897,14 @@ screener-runner@^0.10.18:
     http-proxy "~1.16.2"
     joi "~9.2.0"
     lodash "~4.17.5"
-    ngrok screener-io/ngrok
     portfinder "~1.0.10"
     request "~2.87.0"
     requestretry "~2.0.2"
+    screener-ngrok screener-io/screener-ngrok
 
-screener-storybook@^0.15.3:
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/screener-storybook/-/screener-storybook-0.15.3.tgz#d3f772f9825ab0376a654c7bfdcd72384bc1fbb3"
+screener-storybook@^0.15.4:
+  version "0.15.4"
+  resolved "https://registry.yarnpkg.com/screener-storybook/-/screener-storybook-0.15.4.tgz#91a5778027efd60948056b91be4735f032b41d68"
   dependencies:
     bluebird "~3.4.6"
     colors "~1.1.2"
@@ -9918,7 +9918,7 @@ screener-storybook@^0.15.3:
     react-dom "^16.0.0"
     request "^2.87.0"
     requestretry "~1.12.2"
-    screener-runner "^0.10.18"
+    screener-runner "^0.10.19"
 
 select@^1.1.2:
   version "1.1.2"
