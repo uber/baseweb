@@ -61,7 +61,8 @@ describe('Button Component', () => {
     expect(props.onClick.mock.calls.length).toBe(0);
 
     component.setProps({isLoading: false});
-    component.instance().internalOnClick();
+    component.instance().internalOnClick('arg1');
     expect(props.onClick.mock.calls.length).toBe(1);
+    expect(props.onClick.mock.calls[0][0]).toBe('arg1');
   });
 });

@@ -27,7 +27,7 @@ export default class Button extends React.Component<ButtonPropsT> {
     if (isLoading) {
       return;
     }
-    onClick && onClick(args);
+    onClick && onClick(...args);
   };
 
   render() {
