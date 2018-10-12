@@ -50,6 +50,18 @@ describe('Button Component', () => {
     expect(component.find(LoadingSpinner)).toExist();
   });
 
+  test('onClick called with event', () => {
+    const onClick = jest.fn();
+    const component = mount(<Button onClick={onClick} />);
+    component.simulate('click', {
+      target: 'foo',
+    });
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick.mock.calls[0][0]).toMatchObject({
+      target: 'foo',
+    });
+  });
+
   test('internalOnClick prevents external onClick while loading', () => {
     const props = {
       onClick: jest.fn(),
