@@ -19,7 +19,10 @@ type StyledPropsT = {
 export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   position: 'relative',
   margin: 0,
-  padding: 0,
+  paddingTop: $theme.sizing.scale300,
+  paddingBottom: $theme.sizing.scale300,
+  paddingLeft: 0,
+  paddingRight: 0,
   background: $theme.colors.white,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
@@ -58,12 +61,6 @@ export const ListItem = styled(
       $size === OPTION_LIST_SIZE.compact
         ? $theme.sizing.scale900
         : $theme.sizing.scale600,
-    ':first-child': {
-      marginTop: $theme.sizing.scale300,
-    },
-    ':last-child': {
-      marginBottom: $theme.sizing.scale300,
-    },
   }),
 );
 
@@ -81,12 +78,6 @@ export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   transitionTimingFunction: $theme.animation.easeOutCurve,
   ':hover': {
     backgroundColor: $theme.colors.mono300,
-  },
-  ':first-child': {
-    marginTop: $theme.sizing.scale300,
-  },
-  ':last-child': {
-    marginBottom: $theme.sizing.scale300,
   },
 }));
 

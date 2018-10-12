@@ -134,6 +134,8 @@ export type DropDownPropsT = {
   isDropDownOpen: boolean,
   optionsLoaded: boolean,
   type: string,
+  itemRef: Array<{current: ?HTMLElement}>,
+  dropDownRef: {current: ?HTMLElement},
   getOptionLabel: OptionT => React$Node,
   onItemSelect: OnItemSelectFnT,
   onChange: (e: SyntheticEvent<HTMLInputElement>, option: OptionT) => void,
