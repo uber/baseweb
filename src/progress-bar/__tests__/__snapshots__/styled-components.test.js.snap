@@ -1,18 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProgressBar styled components Test % function MockStyledComponent() {
-      var _ref;
-
-      var _temp, _this, _ret;
-
-      _classCallCheck(this, MockStyledComponent);
-
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MockStyledComponent.__proto__ || Object.getPrototypeOf(MockStyledComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
-    } StyledBar StyledBar: StyledBar has correct styles 1`] = `
+exports[`ProgressBar styled components Test StyledBar StyledBar: StyledBar has correct styles 1`] = `
 Object {
   "backgroundColor": "$theme.colors.mono400",
   "borderRadius": "$theme.sizing.scale0",
@@ -24,19 +12,7 @@ Object {
 }
 `;
 
-exports[`ProgressBar styled components Test % function MockStyledComponent() {
-      var _ref;
-
-      var _temp, _this, _ret;
-
-      _classCallCheck(this, MockStyledComponent);
-
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MockStyledComponent.__proto__ || Object.getPrototypeOf(MockStyledComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
-    } StyledBarProgress StyledBarProgress: StyledBarProgress has correct styles 1`] = `
+exports[`ProgressBar styled components Test StyledBarProgress StyledBarProgress: StyledBarProgress has correct styles 1`] = `
 Object {
   "backgroundColor": "$theme.colors.primary400",
   "borderRadius": "$theme.sizing.scale0",
@@ -46,19 +22,7 @@ Object {
 }
 `;
 
-exports[`ProgressBar styled components Test % function MockStyledComponent() {
-      var _ref;
-
-      var _temp, _this, _ret;
-
-      _classCallCheck(this, MockStyledComponent);
-
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MockStyledComponent.__proto__ || Object.getPrototypeOf(MockStyledComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
-    } StyledLabel StyledLabel: StyledLabel has correct styles 1`] = `
+exports[`ProgressBar styled components Test StyledLabel StyledLabel: StyledLabel has correct styles 1`] = `
 Object {
   "color": "$theme.colors.mono700",
   "fontFamily": "$theme.typography.font250.fontFamily",
@@ -69,19 +33,7 @@ Object {
 }
 `;
 
-exports[`ProgressBar styled components Test % function MockStyledComponent() {
-      var _ref;
-
-      var _temp, _this, _ret;
-
-      _classCallCheck(this, MockStyledComponent);
-
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MockStyledComponent.__proto__ || Object.getPrototypeOf(MockStyledComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _temp), _possibleConstructorReturn(_this, _ret);
-    } StyledRoot StyledRoot: StyledRoot has correct styles 1`] = `
+exports[`ProgressBar styled components Test StyledRoot StyledRoot: StyledRoot has correct styles 1`] = `
 Object {
   "width": "100%",
 }
