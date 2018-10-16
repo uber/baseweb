@@ -1910,7 +1910,7 @@ babel-plugin-transform-es2015-modules-amd@^6.22.0, babel-plugin-transform-es2015
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-plugin-transform-es2015-modules-commonjs@^6.23.0, babel-plugin-transform-es2015-modules-commonjs@^6.24.1, babel-plugin-transform-es2015-modules-commonjs@^6.26.0:
+babel-plugin-transform-es2015-modules-commonjs@^6.23.0, babel-plugin-transform-es2015-modules-commonjs@^6.24.1:
   version "6.26.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-modules-commonjs/-/babel-plugin-transform-es2015-modules-commonjs-6.26.2.tgz#58a793863a9e7ca870bdc5a881117ffac27db6f3"
   integrity sha512-CV9ROOHEdrjcwhIaJNBGMBCodN+1cfkwtM1SbUHmvyy35KGT7fohbpOxkE2uLz1o6odKK2Ck/tz47z+VqQfi9Q==
@@ -7963,6 +7963,11 @@ lodash.throttle@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
+lodash.toarray@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
+  integrity sha1-JMS/zWsvuji/0FlNsRedjptlZWE=
+
 lodash.topairs@4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.topairs/-/lodash.topairs-4.3.0.tgz#3b6deaa37d60fb116713c46c5f17ea190ec48d64"
@@ -8121,6 +8126,14 @@ markdown-loader@^2.0.2:
     loader-utils "^1.1.0"
     marked "^0.3.9"
 
+markdown-loader@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-loader/-/markdown-loader-4.0.0.tgz#502eb94f5db1673beb1721bed82dac9e1d333b9a"
+  integrity sha512-9BCm8iyLF4AVYtjtybOTg8cTcpWYKsDGWWhsc7XaJlXQiddo3ztbZxLPJ28pmCxFI1BlMkT1wDVav1chPjTpdA==
+  dependencies:
+    loader-utils "^1.1.0"
+    marked "^0.5.0"
+
 markdownlint-cli@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/markdownlint-cli/-/markdownlint-cli-0.13.0.tgz#af1d29e5d8b434256c451c81b87dff1c218844cb"
@@ -8148,6 +8161,11 @@ marked@^0.3.9:
   version "0.3.19"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
   integrity sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg==
+
+marked@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.5.1.tgz#062f43b88b02ee80901e8e8d8e6a620ddb3aa752"
+  integrity sha512-iUkBZegCZou4AdwbKTwSW/lNDcz5OuRSl3qdcl31Ia0B2QPG0Jn+tKblh/9/eP9/6+4h27vpoh8wel/vQOV0vw==
 
 marksy@^6.0.3:
   version "6.0.3"
@@ -8670,6 +8688,13 @@ node-dir@^0.1.10:
   integrity sha1-X1Zl2TNRM1yqvvjxxVRRbPXx5OU=
   dependencies:
     minimatch "^3.0.2"
+
+node-emoji@1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.8.1.tgz#6eec6bfb07421e2148c75c6bba72421f8530a826"
+  integrity sha512-+ktMAh1Jwas+TnGodfCfjUbJKoANqPaJFN0z0iqh41eqD8dvguNzcitVSBSVK1pidz0AqGbLKcoVuVLRVZ/aVg==
+  dependencies:
+    lodash.toarray "^4.4.0"
 
 node-fetch@^1.0.1:
   version "1.7.3"
@@ -11574,13 +11599,16 @@ stealthy-require@^1.1.0:
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
-storybook-readme@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/storybook-readme/-/storybook-readme-3.3.0.tgz#605940345051d31d80759b022f358cf19b0b4491"
-  integrity sha512-SxaprEbFxEcRwXLPWKvL8uD3/NL41qTabKtLpI7O4v6UMbgRMg3IqWkOBJazxNtKOlEw7i4CTY76OZ7jOqU0WA==
+storybook-readme@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/storybook-readme/-/storybook-readme-4.0.0.tgz#5b2b3319ff0f0cbdc856c15e49589e4ab257833b"
+  integrity sha512-UPMFE3MKK0kkUS2h5caJb93ifWtgF6mjHCkUV9k5wJQmw+6J4IrlbqFYvglnamfFLTJYSrfyEj4zs/62v00sPQ==
   dependencies:
-    babel-plugin-transform-es2015-modules-commonjs "^6.26.0"
+    html-loader "^0.5.5"
     lodash "^4.17.4"
+    markdown-loader "^4.0.0"
+    marked "^0.5.0"
+    node-emoji "1.8.1"
     prismjs "^1.9.0"
     string-raw "^1.0.1"
 
