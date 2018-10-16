@@ -12,11 +12,11 @@ import {StyledRoot, StyledBar, StyledBarProgress, StyledLabel} from '../index';
 describe('ProgressBar styled components', () => {
   // $FlowFixMe
   describe.each([
-    [StyledRoot, 'StyledRoot'],
-    [StyledBar, 'StyledBar'],
-    [StyledBarProgress, 'StyledBarProgress'],
-    [StyledLabel, 'StyledLabel'],
-  ])('Test %% %s', (Component, compName) => {
+    ['StyledRoot', StyledRoot],
+    ['StyledBar', StyledBar],
+    ['StyledBarProgress', StyledBarProgress],
+    ['StyledLabel', StyledLabel],
+  ])('Test %s', (compName, Component) => {
     test(compName, () => {
       const props = {
         $value: 40,
