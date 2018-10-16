@@ -202,25 +202,25 @@ const toaster = {
   info: function(
     children: React.Node,
     props: $Shape<ToastPropsT> = {},
-  ): ?React.Key {
+  ): React.Key {
     return this.show(children, {...props, kind: KIND.info});
   },
   positive: function(
     children: React.Node,
     props: $Shape<ToastPropsT> = {},
-  ): ?React.Key {
+  ): React.Key {
     return this.show(children, {...props, kind: KIND.positive});
   },
   warning: function(
     children: React.Node,
     props: $Shape<ToastPropsT> = {},
-  ): ?React.Key {
+  ): React.Key {
     return this.show(children, {...props, kind: KIND.warning});
   },
   negative: function(
     children: React.Node,
     props: $Shape<ToastPropsT> = {},
-  ): ?React.Key {
+  ): React.Key {
     return this.show(children, {...props, kind: KIND.negative});
   },
   update: function(key: React.Key, props: $Shape<ToastPropsT>): void {

@@ -9,7 +9,7 @@ import * as React from 'react';
 import {styled} from '../styles';
 import {Toast, toaster, KIND, PLACEMENT} from './index';
 import {Button, KIND as ButtonKind, SIZE} from '../button';
-import type {ToastPropsT, KindTypeT} from './types';
+import type {KindTypeT} from './types';
 
 import examples from './examples-list';
 
@@ -56,8 +56,10 @@ class ToasterExample extends React.Component<{}, {toasts: []}> {
   }
 
   add = (kind: KindTypeT, props) => () => {
-    // $FlowFixMe
-    const {children, ...toastProps}: ToastPropsT = this.getToastProps(props);
+    const {
+      children,
+      ...toastProps
+    }: {children: React.Node} = this.getToastProps(props);
     toaster[kind](children, toastProps);
   };
 
@@ -119,7 +121,6 @@ class ToasterAdvancedExample extends React.Component<{}, {cleared: boolean}> {
   addNotifications() {
     toaster.info('Info notification', {closeable: false});
     toaster.positive(<span>Positive notification</span>);
-    // $FlowFixMe
     this.keyToUpdate = toaster.warning('Warning notification');
   }
 
