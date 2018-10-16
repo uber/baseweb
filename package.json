@@ -71,7 +71,7 @@
     "eslint": "^5.0.1",
     "eslint-config-uber-universal-stage-3": "^3.0.0",
     "eslint-plugin-cup": "^2.0.0",
-    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-flowtype": "^3.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^3.0.0",
