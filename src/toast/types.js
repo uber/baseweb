@@ -16,13 +16,22 @@ export type PlacementTypeT = $Keys<typeof PLACEMENT>;
 
 export type SharedStylePropsArgT = {
   $kind: KindTypeT,
-  $placement: PlacementTypeT,
   $closeable: boolean,
   $isHidden: boolean,
   $isAnimating: boolean,
+  // styled function wrapper related
+  $style?: ?{},
 };
 
 export type SharedStylePropsT = SharedStylePropsArgT & {
+  $theme: ThemeT,
+};
+
+export type ToasterSharedStylePropsArgT = {
+  $placement: PlacementTypeT,
+};
+
+export type ToasterSharedStylePropsT = ToasterSharedStylePropsArgT & {
   $theme: ThemeT,
 };
 
@@ -47,11 +56,27 @@ export type ToastPropsT = {
   children: ChildrenT | ComponentRenderPropT,
   closeable: boolean,
   kind: KindTypeT,
-  placement: PlacementTypeT,
   onClose: () => void,
   onBlur: (e: Event) => void,
   onFocus: (e: Event) => void,
   onMouseEnter: (e: Event) => void,
   onMouseLeave: (e: Event) => void,
   overrides: OverridesT,
+  key: React.Key,
+};
+
+export type ToasterOverridesT = {
+  Root?: OverrideT<ToasterSharedStylePropsArgT>,
+  ToastBody?: OverrideT<SharedStylePropsArgT>,
+  ToastCloseIcon?: OverrideT<SharedStylePropsArgT>,
+};
+
+export type ToasterPropsT = {
+  overrides: ToasterOverridesT,
+  placement: PlacementTypeT,
+  usePortal: boolean,
+};
+export type ToasterStateT = {
+  isMounted: boolean,
+  toasts: Array<$Shape<ToastPropsT> & {key: React.Key}>,
 };

@@ -13,7 +13,6 @@ export const KIND = {
 };
 
 export const PLACEMENT = {
-  inline: 'inline',
   topLeft: 'topLeft',
   top: 'top',
   topRight: 'topRight',
