@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {styled} from '../styles';
-import {Toast, KIND} from './index';
+import {Toast, toaster, KIND, PLACEMENT} from './index';
 import {Button, KIND as ButtonKind, SIZE} from '../button';
+import type {KindTypeT} from './types';
 
 import examples from './examples-list';
 
@@ -41,51 +42,31 @@ const getBtnStyle = color => ({$theme}) => {
   };
 };
 
-class NotificationExample extends React.Component<{}, {toasts: []}> {
-  state = {
-    toasts: [],
-  };
-  toastId = 0;
-
+class ToasterExample extends React.Component<{}, {toasts: []}> {
   getToastProps(props) {
-    const toastId = this.toastId++;
     return {
-      key: toastId,
-      autoHideDuration: 4000,
-      onClose: this.getOnCloseHandler(toastId),
+      onClose: () => {
+        // eslint-disable-next-line no-console
+        console.log('Toast dismissed');
+      },
+      autoHideDuration: 5000,
       children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       ...props,
     };
   }
 
-  add = props => () => {
-    const toastProps = this.getToastProps(props);
-    this.setState(state => {
-      const toasts = [...state.toasts];
-      toasts.unshift(toastProps);
-      return {toasts};
-    });
+  add = (kind: KindTypeT, props) => () => {
+    const {
+      children,
+      ...toastProps
+    }: {children: React.Node} = this.getToastProps(props);
+    toaster[kind](children, toastProps);
   };
 
-  addInfo = this.add({});
-  addPositive = this.add({kind: KIND.positive});
-  addWarning = this.add({kind: KIND.warning});
-  addNegative = this.add({kind: KIND.negative});
-
-  dismiss = (key: number) => {
-    this.setState(({toasts}) => ({
-      // $FlowFixMe
-      toasts: toasts.filter(t => {
-        return !(t.key === key);
-      }),
-    }));
-  };
-
-  getOnCloseHandler(key) {
-    return () => {
-      this.dismiss(key);
-    };
-  }
+  addInfo = this.add(KIND.info);
+  addPositive = this.add(KIND.positive);
+  addWarning = this.add(KIND.warning);
+  addNegative = this.add(KIND.negative);
 
   render() {
     return (
@@ -124,11 +105,66 @@ class NotificationExample extends React.Component<{}, {toasts: []}> {
         >
           Negative toast
         </Button>
-        <Centered>
-          {this.state.toasts.map((toastOptions, index) => {
-            return <Toast key={index} {...toastOptions} />;
-          })}
-        </Centered>
+      </div>
+    );
+  }
+}
+
+class ToasterAdvancedExample extends React.Component<{}, {cleared: boolean}> {
+  keyToUpdate: React.Key;
+  state = {cleared: false};
+
+  componentDidMount() {
+    this.addNotifications();
+  }
+
+  addNotifications() {
+    toaster.info('Info notification', {closeable: false});
+    toaster.positive(<span>Positive notification</span>);
+    this.keyToUpdate = toaster.warning('Warning notification');
+  }
+
+  render() {
+    return (
+      <div>
+        <Space>
+          <Button
+            onClick={() => {
+              const kind = {
+                '0': KIND.info,
+                '1': KIND.positive,
+                '2': KIND.warning,
+              }[Math.floor(Math.random() * Math.floor(3))];
+              toaster.update(this.keyToUpdate, {
+                kind,
+                children: `Updated ${kind} notification`,
+              });
+            }}
+          >
+            Update to random
+          </Button>
+        </Space>
+        <Space>
+          <Button
+            onClick={() => {
+              toaster.clear();
+              this.setState({cleared: true});
+            }}
+          >
+            Clear all
+          </Button>
+        </Space>
+        <Space>
+          <Button
+            disabled={!this.state.cleared}
+            onClick={() => {
+              this.addNotifications();
+              this.setState({cleared: false});
+            }}
+          >
+            Add toasts
+          </Button>
+        </Space>
       </div>
     );
   }
@@ -166,14 +202,23 @@ export default {
       </Centered>
     );
   },
-  [examples.DISMISSABLE_EXAMPLE]: function Story1() {
+  [examples.TOASTER_EXAMPLE]: function Story2() {
     return (
       <Centered>
-        <NotificationExample />
+        {toaster.create({placement: PLACEMENT.bottomRight})}
+        <ToasterExample />
       </Centered>
     );
   },
-  [examples.OVERRIDES_EXAMPLE]: function Story1() {
+  [examples.TOASTER_ADVANCED_EXAMPLE]: function Story2() {
+    return (
+      <Centered>
+        {toaster.create({placement: PLACEMENT.bottom})}
+        <ToasterAdvancedExample />
+      </Centered>
+    );
+  },
+  [examples.OVERRIDES_EXAMPLE]: function Story3() {
     return (
       <Centered>
         <Toast
