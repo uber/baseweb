@@ -7,21 +7,18 @@ Object {
   "boxShadow": "$theme.lighting.shadow600",
   "margin": 0,
   "overflow": "auto",
-  "padding": 0,
+  "paddingBottom": "$theme.sizing.scale300",
+  "paddingLeft": 0,
+  "paddingRight": 0,
+  "paddingTop": "$theme.sizing.scale300",
   "position": "relative",
 }
 `;
 
 exports[`Menu Styled Components ListItem - basic render: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
-  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.mono300",
-  },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
   },
   "color": "$theme.colors.black",
   "cursor": "pointer",
@@ -43,14 +40,8 @@ Object {
 
 exports[`Menu Styled Components ListItem - compact: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
-  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.mono300",
-  },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
   },
   "color": "$theme.colors.black",
   "cursor": "pointer",
@@ -72,14 +63,8 @@ Object {
 
 exports[`Menu Styled Components ListItem - highlighted render: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
-  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.mono300",
-  },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
   },
   "color": "$theme.colors.primary",
   "cursor": "pointer",
@@ -101,14 +86,8 @@ Object {
 
 exports[`Menu Styled Components ListItemProfile - basic render: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
-  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.mono300",
-  },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
   },
   "alignItems": "center",
   "cursor": "pointer",

@@ -107,18 +107,19 @@ export const SelectComponentIcon = styled('img', props => {
   }
 });
 
-export const DropDown = styled(MenuList, ({$theme, $isOpen, $type, $rows}) => ({
-  height: $rows ? parseInt($theme.sizing.scale600) * $rows + 'px' : null,
-  overflowY: $rows ? 'scroll' : null,
-  display: !$isOpen ? 'none' : null,
-  top: $type === TYPE.select ? $theme.sizing.scale600 : null,
-  width: `calc(100% - ${$theme.sizing.scale600})`,
-  left: $theme.sizing.scale300,
-  position: 'absolute',
-  listStyle: 'none',
-  borderRadius: $theme.sizing.scale300,
-  boxShadow: $theme.lighting.shadow600,
-}));
+export const DropDown = styled(MenuList, ({$theme, $isOpen, $type, $rows}) => {
+  return {
+    overflowY: $rows ? 'scroll' : null,
+    display: !$isOpen ? 'none' : null,
+    top: $type === TYPE.select ? $theme.sizing.scale600 : null,
+    width: `calc(100% - ${$theme.sizing.scale600})`,
+    left: $theme.sizing.scale300,
+    position: 'absolute',
+    listStyle: 'none',
+    borderRadius: $theme.sizing.scale300,
+    boxShadow: $theme.lighting.shadow600,
+  };
+});
 
 export const DropDownItem = styled(MenuListItem, ({$theme}) => ({
   // TODO(#185): revisit after Menu gets condensed styles

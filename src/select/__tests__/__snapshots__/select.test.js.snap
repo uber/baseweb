@@ -200,8 +200,14 @@ exports[`Stateless select should render component in search mode and false for m
         </MockStyledComponent>
       </Input>
       <SelectDropDown
+        dropDownRef={
+          Object {
+            "current": null,
+          }
+        }
         getOptionLabel={[Function]}
         isDropDownOpen={false}
+        itemRef={Array []}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -417,8 +423,14 @@ exports[`Stateless select should render component in search mode and true for mu
         </MockStyledComponent>
       </Input>
       <SelectDropDown
+        dropDownRef={
+          Object {
+            "current": null,
+          }
+        }
         getOptionLabel={[Function]}
         isDropDownOpen={false}
+        itemRef={Array []}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -621,8 +633,14 @@ exports[`Stateless select should render component in select mode and false for m
         </Input>
       </div>
       <SelectDropDown
+        dropDownRef={
+          Object {
+            "current": null,
+          }
+        }
         getOptionLabel={[Function]}
         isDropDownOpen={false}
+        itemRef={Array []}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -825,8 +843,14 @@ exports[`Stateless select should render component in select mode and true for mu
         </Input>
       </div>
       <SelectDropDown
+        dropDownRef={
+          Object {
+            "current": null,
+          }
+        }
         getOptionLabel={[Function]}
         isDropDownOpen={false}
+        itemRef={Array []}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
