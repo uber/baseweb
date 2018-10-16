@@ -60,7 +60,7 @@ export type PropsT = {
   type?: string,
   disabled?: boolean,
   filterable: boolean,
-  filterOption: (OptionT, string) => boolean,
+  filterOption?: (OptionT, string) => boolean,
   placeholder?: string,
   getOptionLabel?: OptionT => React$Node,
   getSelectedOptionLabel?: OptionT => React$Node,
