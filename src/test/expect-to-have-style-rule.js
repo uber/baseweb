@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* eslint-disable flowtype/no-weak-types */
 
 import {ReactWrapper} from 'enzyme';
 
@@ -33,6 +32,7 @@ const getStyles = received => {
 };
 
 const toHaveStyleRule: JestMatcher = function _toHaveStyleRule(
+  /* eslint-disable-next-line flowtype/no-weak-types */
   actual: mixed,
   ...args
 ) {

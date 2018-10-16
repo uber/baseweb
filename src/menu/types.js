@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* eslint-disable flowtype/no-weak-types */
 
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides';
@@ -37,6 +36,7 @@ export type RootRefT = React$ElementRef<*>;
 export type OnItemSelectFnT = (
   item: ItemT,
   event: SyntheticEvent<HTMLElement> | KeyboardEvent,
+  /* eslint-disable-next-line flowtype/no-weak-types */
 ) => mixed;
 
 export type ProfileOverridesT = {

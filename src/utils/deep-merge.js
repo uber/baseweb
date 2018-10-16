@@ -1,5 +1,4 @@
 // @flow
-/* eslint-disable flowtype/no-weak-types */
 
 export default function deepMerge(
   target?: ?{},
@@ -25,6 +24,7 @@ export default function deepMerge(
   return target;
 }
 
+/* eslint-disable-next-line flowtype/no-weak-types */
 function isCloneable(obj: mixed) {
   return Array.isArray(obj) || {}.toString.call(obj) == '[object Object]';
 }
