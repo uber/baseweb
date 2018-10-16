@@ -6,18 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {
-  getOverride,
-  getOverrideProps,
-  getOverrides,
-  mergeOverrides,
-} from '../helpers/overrides';
+import {getOverrides, mergeOverrides} from '../helpers/overrides';
 import {Delete as DeleteAltIcon} from '../icon';
 import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
 } from './styled-components';
-import {KIND, PLACEMENT} from './constants';
+import {KIND} from './constants';
 
 import type {
   ToastPropsT,
@@ -31,7 +26,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     autoHideDuration: 0,
     closeable: true,
     kind: KIND.info,
-    placement: PLACEMENT.inline,
     // Do we need a separate handler for
     // when a notification dismisses automatically
     onClose: () => {},
@@ -47,7 +41,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
   state = {
     isAnimating: false,
-    isHidden: false,
+    isHidden: true,
   };
 
   componentDidMount() {
@@ -77,7 +71,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   }
 
   animateIn = () => {
-    this.setState({isAnimating: true});
+    this.setState({isHidden: false, isAnimating: true});
   };
 
   animateOut = (callback: () => void = () => {}) => {
@@ -98,30 +92,29 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
   onFocus = (e: Event) => {
     this.clearTimeout();
-    this.props.onFocus(e);
+    typeof this.props.onFocus === 'function' && this.props.onFocus(e);
   };
 
   onMouseEnter = (e: Event) => {
     this.clearTimeout();
-    this.props.onMouseEnter(e);
+    typeof this.props.onMouseEnter === 'function' && this.props.onMouseEnter(e);
   };
 
   onBlur = (e: Event) => {
     this.startTimeout();
-    this.props.onBlur(e);
+    typeof this.props.onBlur === 'function' && this.props.onBlur(e);
   };
 
   onMouseLeave = (e: Event) => {
     this.startTimeout();
-    this.props.onMouseLeave(e);
+    typeof this.props.onMouseLeave === 'function' && this.props.onMouseLeave(e);
   };
 
-  getSharedProps(): SharedStylePropsArgT {
-    const {kind, placement, closeable} = this.props;
+  getSharedProps(): $Shape<SharedStylePropsArgT> {
+    const {kind, closeable} = this.props;
     const {isHidden, isAnimating} = this.state;
     return {
       $kind: kind,
-      $placement: placement,
       $closeable: closeable,
       $isHidden: isHidden,
       $isAnimating: isAnimating,
@@ -132,15 +125,19 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     const {children, closeable} = this.props;
     const {isAnimating, isHidden} = this.state;
     const {
+      // $FlowFixMe
       Body: BodyOverride,
+      // $FlowFixMe
       CloseIcon: CloseIconOverride,
     } = this.props.overrides;
 
-    const Body = getOverride(BodyOverride) || StyledBody;
+    // $FlowFixMe
+    const [Body, bodyProps] = getOverrides(BodyOverride, StyledBody);
 
     const [CloseIcon, closeIconProps] = getOverrides(
       // $FlowFixMe
       CloseIconOverride,
+      // $FlowFixMe
       StyledCloseIcon,
     );
 
@@ -160,7 +157,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
         tabIndex={0}
         role="alert"
         {...sharedProps}
-        {...getOverrideProps(BodyOverride)}
+        {...bodyProps}
         // the properties below have to go after overrides
         onBlur={this.onBlur}
         onFocus={this.onFocus}

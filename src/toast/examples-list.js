@@ -3,6 +3,7 @@
 
 module.exports = {
   SIMPLE_EXAMPLE: 'Toast notifications',
-  DISMISSABLE_EXAMPLE: 'Auto dismissable toasts',
+  TOASTER_EXAMPLE: 'Toaster example',
+  TOASTER_ADVANCED_EXAMPLE: "Toaster's update and clear example",
   OVERRIDES_EXAMPLE: 'Toasts with overrides',
 };
