@@ -49,7 +49,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
     onChange,
     onItemSelect,
     type,
-    rows,
+    maxDropdownHeight,
   } = props;
   return isDropDownOpen ? (
     <StatefulMenu
@@ -65,8 +65,8 @@ export default function SelectDropDown(props: DropDownPropsT) {
       overrides={{
         List: {
           component: DropDown,
+          style: {maxHeight: maxDropdownHeight},
           props: {
-            $rows: rows,
             $type: type,
             $isOpen: isDropDownOpen,
             ...dropDownProps,
