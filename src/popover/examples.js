@@ -84,6 +84,7 @@ export default {
           content={popoverContent}
           dismissOnEsc={knobDismissOnEsc()}
           dismissOnClickOutside={knobDismissOnClickOutside()}
+          accessibilityType={'tooltip'}
         >
           <Button>Press Me</Button>
         </StatefulPopover>
@@ -98,6 +99,7 @@ export default {
           content={popoverContent}
           onMouseEnterDelay={knobOnMouseEnterDelay()}
           onMouseLeaveDelay={knobOnMouseLeaveDelay()}
+          accessibilityType={'tooltip'}
         >
           <Button>Hover Me</Button>
         </StatefulPopover>
