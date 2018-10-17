@@ -61,23 +61,21 @@ describe('Select styled components', () => {
   });
 
   describe('StyledDropDown', () => {
-    test.each([
-      ['', ''],
-      ['$rows', 3],
-      ['$type', TYPE.select],
-      ['$isOpen', true],
-    ])('', (prop, value) => {
-      const props = {};
-      props[prop] = value;
-      const component = shallow(
-        <StyledDropDown {...props}>
-          <div />
-        </StyledDropDown>,
-      );
-      expect(component.instance().getStyles()).toMatchSnapshot(
-        'StyledDropDown has correct styles when ' + prop + ' is ' + value,
-      );
-    });
+    test.each([['', ''], ['$type', TYPE.select], ['$isOpen', true]])(
+      '',
+      (prop, value) => {
+        const props = {};
+        props[prop] = value;
+        const component = shallow(
+          <StyledDropDown {...props}>
+            <div />
+          </StyledDropDown>,
+        );
+        expect(component.instance().getStyles()).toMatchSnapshot(
+          `StyledDropDown has correct styles when ${prop} is ${value}`,
+        );
+      },
+    );
   });
 
   describe('StyledDropDownItem', function() {
