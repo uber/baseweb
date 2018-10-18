@@ -10,13 +10,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 // Styled elements
 import {StatefulSlider as Slider} from './index';
-
+import tests from './examples-list';
 export const suite = 'Slider Test Suite';
-export const tests = {
-  AS_SIMPLE_SLIDER: 'Simple slider example',
-  AS_SIMPLE_RANGE_SLIDER: 'Simple range slider',
-  AS_RANGE_SLIDER_WITH_MANY_TICKS: 'Range slider with many ticks',
-};
 
 export default {
   [tests.AS_SIMPLE_SLIDER]: () => {
@@ -38,6 +33,17 @@ export default {
         }}
       >
         <Slider value={[25, 60]} range={[0, 100]} />
+      </div>
+    );
+  },
+  [tests.AS_SIMPLE_RANGE_SLIDER_WITH_STEP]: () => {
+    return (
+      <div
+        style={{
+          width: '300px',
+        }}
+      >
+        <Slider value={[20, 70]} step={20} range={[0, 100]} />
       </div>
     );
   },
