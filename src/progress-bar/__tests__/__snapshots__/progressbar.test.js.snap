@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stateless progress bar should render component: Component has correct render 1`] = `
+<ProgressBar
+  getProgressLabel={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          75,
+          100,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  overrides={Object {}}
+  showLabel={true}
+  successValue={100}
+  value={75}
+>
+  <MockStyledComponent
+    $successValue={100}
+    $value={75}
+    role="progressbar"
+  >
+    <div
+      role="progressbar"
+      styled-component="true"
+    >
+      <MockStyledComponent
+        $successValue={100}
+        $value={75}
+      >
+        <div
+          styled-component="true"
+        >
+          <MockStyledComponent
+            $successValue={100}
+            $value={75}
+          >
+            <div
+              styled-component="true"
+            />
+          </MockStyledComponent>
+        </div>
+      </MockStyledComponent>
+      <MockStyledComponent
+        $successValue={100}
+        $value={75}
+      >
+        <div
+          styled-component="true"
+        />
+      </MockStyledComponent>
+    </div>
+  </MockStyledComponent>
+</ProgressBar>
+`;

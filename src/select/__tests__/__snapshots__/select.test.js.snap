@@ -5,6 +5,7 @@ exports[`Stateless select should render component in search mode and false for m
   autoFocus={false}
   error={false}
   filterable={false}
+  maxDropdownHeight="900px"
   multiple={false}
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
@@ -202,6 +203,7 @@ exports[`Stateless select should render component in search mode and false for m
       <SelectDropDown
         getOptionLabel={[Function]}
         isDropDownOpen={false}
+        maxDropdownHeight="90vh"
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -222,6 +224,7 @@ exports[`Stateless select should render component in search mode and true for mu
   autoFocus={false}
   error={false}
   filterable={false}
+  maxDropdownHeight="900px"
   multiple={true}
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
@@ -419,6 +422,7 @@ exports[`Stateless select should render component in search mode and true for mu
       <SelectDropDown
         getOptionLabel={[Function]}
         isDropDownOpen={false}
+        maxDropdownHeight="90vh"
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -439,6 +443,7 @@ exports[`Stateless select should render component in select mode and false for m
   autoFocus={false}
   error={false}
   filterable={false}
+  maxDropdownHeight="900px"
   multiple={false}
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
@@ -623,6 +628,7 @@ exports[`Stateless select should render component in select mode and false for m
       <SelectDropDown
         getOptionLabel={[Function]}
         isDropDownOpen={false}
+        maxDropdownHeight="90vh"
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -643,6 +649,7 @@ exports[`Stateless select should render component in select mode and true for mu
   autoFocus={false}
   error={false}
   filterable={false}
+  maxDropdownHeight="900px"
   multiple={true}
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
@@ -827,6 +834,7 @@ exports[`Stateless select should render component in select mode and true for mu
       <SelectDropDown
         getOptionLabel={[Function]}
         isDropDownOpen={false}
+        maxDropdownHeight="90vh"
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}

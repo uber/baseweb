@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* global document */
+/* global window */
 import * as React from 'react';
 import {findDOMNode} from 'react-dom';
 import {
@@ -41,6 +42,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     autoFocus: false,
     filterable: false,
     multiple: false,
+    maxDropdownHeight: '900px',
     tabIndex: 0,
     textValue: '',
     type: TYPE.select,
@@ -333,12 +335,21 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   }
 
   getDropDown() {
-    const {overrides, type, rows, selectedOptions} = this.props;
+    const {overrides, type, selectedOptions} = this.props;
+    let maxDropdownHeight = this.props.maxDropdownHeight;
+    if (
+      __BROWSER__ &&
+      maxDropdownHeight.slice(-2) === 'px' &&
+      parseInt(maxDropdownHeight) > window.innerHeight
+    ) {
+      // only for pixel-sized maxDropdownHeight
+      maxDropdownHeight = '90vh';
+    }
     const options = this.getOptions();
     const {isDropDownOpen, optionsLoaded} = this.state;
     const dropDownProps = {
-      rows,
       type,
+      maxDropdownHeight,
       options,
       overrides,
       optionsLoaded,

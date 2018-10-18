@@ -107,9 +107,8 @@ export const SelectComponentIcon = styled('img', props => {
   }
 });
 
-export const DropDown = styled(MenuList, ({$theme, $isOpen, $type, $rows}) => ({
-  height: $rows ? parseInt($theme.sizing.scale600) * $rows + 'px' : null,
-  overflowY: $rows ? 'scroll' : null,
+export const DropDown = styled(MenuList, ({$theme, $isOpen, $type}) => ({
+  overflowY: 'scroll',
   display: !$isOpen ? 'none' : null,
   top: $type === TYPE.select ? $theme.sizing.scale600 : null,
   width: `calc(100% - ${$theme.sizing.scale600})`,

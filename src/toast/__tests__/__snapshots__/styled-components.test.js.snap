@@ -18,8 +18,9 @@ Object {
   "paddingLeft": "$theme.sizing.scale600",
   "paddingRight": "$theme.sizing.scale600",
   "paddingTop": "$theme.sizing.scale600",
+  "pointerEvents": "auto",
   "transitionDuration": "$theme.animation.timing100",
-  "transitionProperty": "opacity, height",
+  "transitionProperty": "all",
   "transitionTimingFunction": "$theme.animation.easeInOutCurve",
   "width": "288px",
 }

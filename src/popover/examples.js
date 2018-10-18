@@ -18,6 +18,8 @@ import {
   StyledPadding as StyledPopoverPadding,
 } from './index';
 
+import examples from './examples-list';
+
 function popoverContent() {
   return (
     <StyledPopoverPadding>
@@ -65,20 +67,8 @@ const knobOnMouseLeaveDelay: any = (defaultValue = 200) =>
   number('onMouseLeaveDelay', defaultValue, {range: true, min: 0, max: 1000});
 /* eslint-enable flowtype/no-weak-types */
 
-export const suite = 'Popover Test Suite';
-export const tests = {
-  SIMPLE_EXAMPLE: 'stateless popover',
-  WITH_CLICK: 'stateful popover (click)',
-  WITH_HOVER: 'stateful popover (hover)',
-  PLACEMENTS: 'popover placements',
-  ARROW: 'popover w/ arrow',
-  CLOSE_CALLBACK: 'Popover close callback',
-  CLIPPING: 'Popover clipping avoidance',
-  STYLE_OVERRIDES: 'Popover style overrides',
-};
-
 export default {
-  [tests.SIMPLE_EXAMPLE]: function Story1() {
+  [examples.SIMPLE_EXAMPLE]: function Story1() {
     return (
       <Centered>
         <Popover isOpen={knobIsOpen()} content={popoverContent}>
@@ -87,20 +77,21 @@ export default {
       </Centered>
     );
   },
-  [tests.WITH_CLICK]: function Story2() {
+  [examples.WITH_CLICK]: function Story2() {
     return (
       <Centered>
         <StatefulPopover
           content={popoverContent}
           dismissOnEsc={knobDismissOnEsc()}
           dismissOnClickOutside={knobDismissOnClickOutside()}
+          accessibilityType={'tooltip'}
         >
           <Button>Press Me</Button>
         </StatefulPopover>
       </Centered>
     );
   },
-  [tests.WITH_HOVER]: function Story3() {
+  [examples.WITH_HOVER]: function Story3() {
     return (
       <Centered>
         <StatefulPopover
@@ -108,13 +99,14 @@ export default {
           content={popoverContent}
           onMouseEnterDelay={knobOnMouseEnterDelay()}
           onMouseLeaveDelay={knobOnMouseLeaveDelay()}
+          accessibilityType={'tooltip'}
         >
           <Button>Hover Me</Button>
         </StatefulPopover>
       </Centered>
     );
   },
-  [tests.PLACEMENTS]: function Story4() {
+  [examples.PLACEMENTS]: function Story4() {
     return (
       <Centered>
         <Grid>
@@ -215,7 +207,7 @@ export default {
       </Centered>
     );
   },
-  [tests.ARROW]: function Story5() {
+  [examples.ARROW]: function Story5() {
     return (
       <Centered>
         <StatefulPopover
@@ -229,7 +221,7 @@ export default {
       </Centered>
     );
   },
-  [tests.CLOSE_CALLBACK]: function Story6() {
+  [examples.CLOSE_CALLBACK]: function Story6() {
     return (
       <Centered>
         <StatefulPopover
@@ -249,7 +241,7 @@ export default {
       </Centered>
     );
   },
-  [tests.CLIPPING]: function Story7() {
+  [examples.CLIPPING]: function Story7() {
     return (
       <Centered>
         <div style={{width: '300px', height: '300px', overflow: 'auto'}}>
@@ -280,7 +272,7 @@ export default {
       </Centered>
     );
   },
-  [tests.STYLE_OVERRIDES]: function Story8() {
+  [examples.STYLE_OVERRIDES]: function Story8() {
     const hue = number('Color', 100, {range: true, min: 0, max: 360});
     const hsl = `hsl(${hue}, 40%, 40%)`;
 

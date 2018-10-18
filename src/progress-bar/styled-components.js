@@ -16,7 +16,10 @@ export const Bar = styled('div', props => {
   const {$theme} = props;
   const {colors, sizing, borders} = $theme;
   return {
-    margin: sizing.scale500,
+    marginLeft: sizing.scale500,
+    marginRight: sizing.scale500,
+    marginTop: sizing.scale500,
+    marginBottom: sizing.scale500,
     borderRadius: borders.useRoundedCorners ? sizing.scale0 : '0',
     backgroundColor: colors.mono400,
     height: '4px',

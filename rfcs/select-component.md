@@ -143,8 +143,6 @@ export default () => {
   Current selected options. Every option object has `id: string` and `label: string|Object`. Label is defaulted to display for selected option, otherwise see `getSelectedOptionLabel` method
 * `placeholder: ?string`:
   Placeholder text if nothing is selected. Default is `Choose one...`
-* `rows: ?number`:
-  Represents maximum visible length of options, all other will be scrolled. If not defined, all options will be visible.
 * `options: Array<Object> | func(query?: string) => Promise<Array<Object>>`:
   All Options in dropdown. Should be provided for Select and Search mode equally. Every option object has `id: string` and `label: string|Object`. Label is defaulted to display for option in dropdown, otherwise see `getOptionLabel` method. Optional `disabled: boolean` for option to be disabled from selection.
   For async load of options it should be a function method, which returns Promise, resolved with new options. Function can be provided with text input `query` if it is present in component.
@@ -153,6 +151,8 @@ export default () => {
   Whether the control should be in an error state. Default is `false`
 * `multiple: ?boolean`:
   Sets if multiple choices are allowed in Select component. Default is `false`
+* `maxDropdownHeight: ?string`:
+    Sets max height of DropDown list. Default is `900px` or `90%`
 * `filterable?: boolean`:
   Sets if options should be filtered when the input changes. It works only in Search mode. If your option labels aren't strings, or you need custom filtering logic, use the `filterOption` prop. Custom keyDown handler is still called if provided. Default is `false`
 * `filterOption?: (option: Object, query: String) => boolean`:

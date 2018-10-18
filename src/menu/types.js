@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides';
 import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants';
@@ -32,10 +33,11 @@ export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
 
 export type RootRefT = React$ElementRef<*>;
 
-export type OnItemSelectFnT = ({
-  selectedItem: ItemT,
-  event?: SyntheticEvent<HTMLElement> | KeyboardEvent,
-}) => mixed;
+export type OnItemSelectFnT = (
+  item: ItemT,
+  event: SyntheticEvent<HTMLElement> | KeyboardEvent,
+  /* eslint-disable-next-line flowtype/no-weak-types */
+) => mixed;
 
 export type ProfileOverridesT = {
   List?: OverrideT<*>,
