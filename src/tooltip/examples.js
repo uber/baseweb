@@ -10,6 +10,8 @@ import {styled} from '../styles';
 import {Button} from '../button';
 import {StatefulTooltip, TRIGGER_TYPE, PLACEMENT} from './index';
 
+import examples from './examples-list';
+
 const Centered = styled('div', {
   position: 'relative',
   display: 'flex',
@@ -50,216 +52,183 @@ const GridItem = styled('div', ({row, col}) => ({
   textAlign: 'center',
 }));
 
-export default [
-  {
-    description: 'Tooltip',
-    example() {
-      return (
-        <Centered>
-          <div style={{maxWidth: '360px'}}>
-            You can use tooltips in many places, including inline text{' '}
-            <StatefulTooltip content="Tooltips display short messages.">
-              <FakeLink tabIndex="0">such as this</FakeLink>
-            </StatefulTooltip>
-            . Tooltips are essentially just a Popover with a few style tweaks,
-            so you can use all the features that Popover supports.
-          </div>
-        </Centered>
-      );
-    },
+export default {
+  [examples.SIMPLE_EXAMPLE]: function Story1() {
+    return (
+      <Centered>
+        <div style={{maxWidth: '360px'}}>
+          You can use tooltips in many places, including inline text{' '}
+          <StatefulTooltip content="Tooltips display short messages.">
+            <FakeLink tabIndex="0">such as this</FakeLink>
+          </StatefulTooltip>
+          . Tooltips are essentially just a Popover with a few style tweaks, so
+          you can use all the features that Popover supports.
+        </div>
+      </Centered>
+    );
   },
-  {
-    description: 'Tooltip multiline',
-    example() {
-      return (
-        <Centered>
-          <div>
-            <StatefulTooltip
-              content="Tooltips don't have a maximum width by default, but you can set one easily through the overrides prop. The default typography styles make multi-line text look great."
-              overrides={{Inner: {style: {maxWidth: '200px'}}}}
-            >
-              <FakeLink tabIndex="0">Hover Me</FakeLink>
-            </StatefulTooltip>
-          </div>
-        </Centered>
-      );
-    },
-  },
-  {
-    description: 'Tooltip complex content',
-    example() {
-      return (
-        <Centered>
-          <div>
-            <StatefulTooltip
-              content={
-                <div>
-                  <Paragraph>
-                    Tooltips also support rendering arbitrary content.
-                  </Paragraph>
-                  <Paragraph>
-                    This in includes paragraphs,{' '}
-                    <Anchor
-                      href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      links
-                    </Anchor>
-                    , and any other markup.
-                  </Paragraph>
-                </div>
-              }
-              overrides={{Inner: {style: {maxWidth: '200px'}}}}
-            >
-              <FakeLink tabIndex="0">Hover Me</FakeLink>
-            </StatefulTooltip>
-          </div>
-        </Centered>
-      );
-    },
-  },
-  {
-    description: 'Tooltip via click',
-    example() {
-      return (
-        <Centered>
-          <div>
-            <StatefulTooltip
-              triggerType={TRIGGER_TYPE.click}
-              content="Bonjour!"
-            >
-              <Button>Click Me</Button>
-            </StatefulTooltip>
-          </div>
-        </Centered>
-      );
-    },
-  },
-  {
-    description: 'Tooltip placements',
-    example() {
-      let sharedProps = {
-        triggerType: TRIGGER_TYPE.click,
-        content: 'Bonjour!',
-      };
-      return (
-        <Centered>
-          <Grid>
-            <GridItem row={1} col={2}>
-              <StatefulTooltip {...sharedProps} placement={PLACEMENT.topLeft}>
-                <Button>TL</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={1} col={3}>
-              <StatefulTooltip {...sharedProps} placement={PLACEMENT.top}>
-                <Button>Top</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={1} col={4}>
-              <StatefulTooltip {...sharedProps} placement={PLACEMENT.topRight}>
-                <Button>TR</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={2} col={1}>
-              <StatefulTooltip {...sharedProps} placement={PLACEMENT.leftTop}>
-                <Button>LT</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={3} col={1}>
-              <StatefulTooltip {...sharedProps} placement={PLACEMENT.left}>
-                <Button>Left</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={4} col={1}>
-              <StatefulTooltip
-                {...sharedProps}
-                placement={PLACEMENT.leftBottom}
-              >
-                <Button>LB</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={5} col={2}>
-              <StatefulTooltip
-                {...sharedProps}
-                placement={PLACEMENT.bottomLeft}
-              >
-                <Button>BL</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={5} col={3}>
-              <StatefulTooltip {...sharedProps} placement={PLACEMENT.bottom}>
-                <Button>Bottom</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={5} col={4}>
-              <StatefulTooltip
-                {...sharedProps}
-                placement={PLACEMENT.bottomRight}
-              >
-                <Button>BR</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={2} col={5}>
-              <StatefulTooltip {...sharedProps} placement={PLACEMENT.rightTop}>
-                <Button>RT</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={3} col={5}>
-              <StatefulTooltip {...sharedProps} placement={PLACEMENT.right}>
-                <Button>Right</Button>
-              </StatefulTooltip>
-            </GridItem>
-            <GridItem row={4} col={5}>
-              <StatefulTooltip
-                {...sharedProps}
-                placement={PLACEMENT.rightBottom}
-              >
-                <Button>RB</Button>
-              </StatefulTooltip>
-            </GridItem>
-          </Grid>
-        </Centered>
-      );
-    },
-  },
-  {
-    description: 'Tooltip style overrides',
-    example() {
-      return (
-        <Centered>
+  [examples.MULTILINE]: function Story2() {
+    return (
+      <Centered>
+        <div>
           <StatefulTooltip
-            initialState={{isOpen: true}}
-            showArrow
-            overrides={{
-              Arrow: {
-                style: {
-                  backgroundColor: 'lavender',
-                },
-              },
-              Body: {
-                style: {
-                  backgroundColor: 'lavender',
-                  borderRadius: 0,
-                },
-              },
-              Inner: {
-                style: {
-                  backgroundColor: 'lavender',
-                  borderRadius: 0,
-                  color: '#8181a0',
-                  fontSize: '28px',
-                  lineHeight: 1.2,
-                  fontStyle: 'italic',
-                },
-              },
-            }}
-            content="Bonjour!"
+            content="Tooltips don't have a maximum width by default, but you can set one easily through the overrides prop. The default typography styles make multi-line text look great."
+            overrides={{Inner: {style: {maxWidth: '200px'}}}}
           >
             <FakeLink tabIndex="0">Hover Me</FakeLink>
           </StatefulTooltip>
-        </Centered>
-      );
-    },
+        </div>
+      </Centered>
+    );
   },
-];
+  [examples.COMPLEX_CONTENT]: function Story3() {
+    return (
+      <Centered>
+        <div>
+          <StatefulTooltip
+            content={
+              <div>
+                <Paragraph>
+                  Tooltips also support rendering arbitrary content.
+                </Paragraph>
+                <Paragraph>
+                  This in includes paragraphs,{' '}
+                  <Anchor
+                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    links
+                  </Anchor>
+                  , and any other markup.
+                </Paragraph>
+              </div>
+            }
+            overrides={{Inner: {style: {maxWidth: '200px'}}}}
+          >
+            <FakeLink tabIndex="0">Hover Me</FakeLink>
+          </StatefulTooltip>
+        </div>
+      </Centered>
+    );
+  },
+  [examples.VIA_CLICK]: function Story4() {
+    return (
+      <Centered>
+        <div>
+          <StatefulTooltip triggerType={TRIGGER_TYPE.click} content="Bonjour!">
+            <Button>Click Me</Button>
+          </StatefulTooltip>
+        </div>
+      </Centered>
+    );
+  },
+  [examples.PLACEMENTS]: function Story5() {
+    let sharedProps = {
+      triggerType: TRIGGER_TYPE.click,
+      content: 'Bonjour!',
+    };
+    return (
+      <Centered>
+        <Grid>
+          <GridItem row={1} col={2}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.topLeft}>
+              <Button>TL</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={1} col={3}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.top}>
+              <Button>Top</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={1} col={4}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.topRight}>
+              <Button>TR</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={2} col={1}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.leftTop}>
+              <Button>LT</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={3} col={1}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.left}>
+              <Button>Left</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={4} col={1}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.leftBottom}>
+              <Button>LB</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={5} col={2}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.bottomLeft}>
+              <Button>BL</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={5} col={3}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.bottom}>
+              <Button>Bottom</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={5} col={4}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.bottomRight}>
+              <Button>BR</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={2} col={5}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.rightTop}>
+              <Button>RT</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={3} col={5}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.right}>
+              <Button>Right</Button>
+            </StatefulTooltip>
+          </GridItem>
+          <GridItem row={4} col={5}>
+            <StatefulTooltip {...sharedProps} placement={PLACEMENT.rightBottom}>
+              <Button>RB</Button>
+            </StatefulTooltip>
+          </GridItem>
+        </Grid>
+      </Centered>
+    );
+  },
+  [examples.STYLE_OVERRIDES]: function Story6() {
+    return (
+      <Centered>
+        <StatefulTooltip
+          initialState={{isOpen: true}}
+          showArrow
+          overrides={{
+            Arrow: {
+              style: {
+                backgroundColor: 'lavender',
+              },
+            },
+            Body: {
+              style: {
+                backgroundColor: 'lavender',
+                borderRadius: 0,
+              },
+            },
+            Inner: {
+              style: {
+                backgroundColor: 'lavender',
+                borderRadius: 0,
+                color: '#8181a0',
+                fontSize: '28px',
+                lineHeight: 1.2,
+                fontStyle: 'italic',
+              },
+            },
+          }}
+          content="Bonjour!"
+        >
+          <FakeLink tabIndex="0">Hover Me</FakeLink>
+        </StatefulTooltip>
+      </Centered>
+    );
+  },
+};
