@@ -7,11 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {OverrideT} from '../helpers/overrides';
-import {} from './constants';
-
+import {STATE_CHANGE_TYPE} from './constants';
+import * as React from 'react';
+export type ChangeActionT = $Values<typeof STATE_CHANGE_TYPE>;
+export type ParamsT = {
+  value: Array<number>,
+};
 export type OverridesT = {
   Root?: OverrideT<*>,
   Axis?: OverrideT<*>,
+  AxisRange?: OverrideT<*>,
   Tick?: OverrideT<*>,
   TickBar?: OverrideT<*>,
   Thumb?: OverrideT<*>,
@@ -20,23 +25,38 @@ export type OverridesT = {
 export type PropsT = {
   value: Array<number>,
   range: Array<number>,
+  step?: number,
   overrides?: OverridesT,
   tabIndex: number,
   error: boolean,
   autoFocus: boolean,
   disabled?: boolean,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange: ({
+    event: SyntheticEvent<HTMLElement> | MouseEvent,
+    ...ParamsT,
+  }) => void,
+  onAxisClick: ({event: SyntheticEvent<HTMLElement> | MouseEvent}) => void,
+  onMouseUp: ({event: SyntheticEvent<HTMLElement> | MouseEvent}) => void,
+  onMouseMove: ({event: SyntheticEvent<HTMLElement> | MouseEvent}) => void,
+  onMouseDown: ({event: SyntheticEvent<HTMLElement> | MouseEvent}) => void,
 };
 
 export type StateT = {
   value?: Array<number>,
 };
 
+export type StatelessStateT = {
+  isThumbMoving: boolean,
+  currentThumb: number,
+  currentMove: number,
+  thumbRefs: Array<{current: ?React.ElementRef<*>}>,
+};
+
 export type StateReducerT = (
   stateType: string,
   nextState: StateT,
   currentState: StateT,
-  event: SyntheticEvent<HTMLInputElement>,
+  event: SyntheticEvent<HTMLElement>,
 ) => StateT;
 
 export type StatefulContainerPropsT = {
@@ -44,7 +64,7 @@ export type StatefulContainerPropsT = {
   children?: (*) => React$Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange: ({event: SyntheticEvent<HTMLElement>, ...ParamsT}) => void,
   autoFocus?: boolean,
 };
 
@@ -53,5 +73,5 @@ export type StatefulSliderPropsT = {
   value?: Array<number>,
   initialState?: StateT,
   autoFocus?: boolean,
-  onChange?: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange?: ({event: SyntheticEvent<HTMLElement>, ...ParamsT}) => void,
 };

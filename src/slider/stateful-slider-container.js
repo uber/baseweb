@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
+import {STATE_CHANGE_TYPE} from './constants';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
@@ -24,45 +25,24 @@ class StatefulSliderContainer extends React.Component<
     initialState: {},
     stateReducer: defaultStateReducer,
     onChange: () => {},
-    onMouseEnter: () => {},
-    onMouseLeave: () => {},
-    onFocus: () => {},
-    onBlur: () => {},
   };
 
   state = {...this.props.initialState};
 
-  onChange = (e: SyntheticInputEvent<HTMLInputElement>, params: ParamsT) => {
-    this.internalSetState(params.type, e, params);
+  onChange = (config: {event: *, params: ParamsT}) => {
+    const {event, ...params} = config;
+    //$FlowFixMe
+    this.internalSetState(STATE_CHANGE_TYPE.value, event, params);
     const {onChange} = this.props;
-    return onChange(e, params);
-  };
-
-  onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onMouseEnter} = this.props;
-    onMouseEnter && onMouseEnter(e);
-  };
-
-  onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onMouseLeave} = this.props;
-    onMouseLeave && onMouseLeave(e);
-  };
-
-  onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onFocus} = this.props;
-    onFocus && onFocus(e);
-  };
-
-  onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onBlur} = this.props;
-    onBlur && onBlur(e);
+    return onChange({event, ...params});
   };
 
   internalSetState = (
     type: ChangeActionT,
     e: SyntheticInputEvent<HTMLInputElement>,
+    {value}: ParamsT,
   ) => {
-    const nextState = {};
+    const nextState = {value};
     const {stateReducer} = this.props;
     const newState = stateReducer(type, nextState, this.state, e);
     this.setState(newState);
@@ -75,15 +55,11 @@ class StatefulSliderContainer extends React.Component<
       stateReducer, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
-    const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;
+    const {onChange} = this;
     return children({
       ...rest,
       ...this.state,
       onChange,
-      onMouseEnter,
-      onMouseLeave,
-      onFocus,
-      onBlur,
     });
   }
 }
