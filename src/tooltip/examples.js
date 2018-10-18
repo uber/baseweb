@@ -58,7 +58,10 @@ export default {
       <Centered>
         <div style={{maxWidth: '360px'}}>
           You can use tooltips in many places, including inline text{' '}
-          <StatefulTooltip content="Tooltips display short messages.">
+          <StatefulTooltip
+            accessibilityType={'tooltip'}
+            content="Tooltips display short messages."
+          >
             <FakeLink tabIndex="0">such as this</FakeLink>
           </StatefulTooltip>
           . Tooltips are essentially just a Popover with a few style tweaks, so
