@@ -174,10 +174,11 @@ describe('Stateless select', function() {
     test('should remove selected tag from selected options if X button is clicked', function() {
       clearIcon = wrapper.find(StyledAction);
       clearIcon.first().simulate('click');
-      expect(allProps.onChange.mock.calls[0][1]).toEqual({
+      expect(allProps.onChange.mock.calls[0][0]).toEqual({
         type: STATE_CHANGE_TYPE.unselect,
         option: allProps.selectedOptions[0],
         selectedOptions: [],
+        event: expect.anything(),
       });
     });
 
@@ -191,9 +192,10 @@ describe('Stateless select', function() {
       );
       clearIcon.first().simulate('click');
 
-      expect(allProps.onChange.mock.calls[0][1]).toEqual({
+      expect(allProps.onChange.mock.calls[0][0]).toEqual({
         type: STATE_CHANGE_TYPE.unselect,
         selectedOptions: [],
+        event: expect.anything(),
       });
     });
   });
@@ -308,10 +310,11 @@ describe('Stateless select', function() {
           selected = selected.filter(o => o.id !== toggledOption.id);
         }
 
-        expect(allProps.onChange).toHaveBeenLastCalledWith(expect.anything(), {
+        expect(allProps.onChange).toHaveBeenLastCalledWith({
           type: event.type,
           option: toggledOption,
           selectedOptions: selected,
+          event: expect.anything(),
         });
 
         wrapper.setProps({selectedOptions: selected});
@@ -387,10 +390,11 @@ describe('Stateless select', function() {
       wrapper.find('input').simulate('keydown', {key: KEY_STRINGS.Backspace});
 
       expect(allProps.onChange).toHaveBeenCalledTimes(1);
-      expect(allProps.onChange.mock.calls[0][1]).toEqual({
+      expect(allProps.onChange.mock.calls[0][0]).toEqual({
         type: STATE_CHANGE_TYPE.unselect,
         option: options[1],
         selectedOptions: [options[0]],
+        event: expect.anything(),
       });
     });
   });
@@ -422,10 +426,11 @@ describe('Stateless select', function() {
         .at(0)
         .simulate('click');
 
-      expect(allProps.onChange).toHaveBeenLastCalledWith(expect.anything(), {
+      expect(allProps.onChange).toHaveBeenLastCalledWith({
         type: STATE_CHANGE_TYPE.select,
         option: allProps.options[0],
         selectedOptions: [allProps.options[0]],
+        event: expect.anything(),
       });
     });
   });

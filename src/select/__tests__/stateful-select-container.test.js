@@ -82,8 +82,11 @@ describe('Stateful Select Container', function() {
       'should call state reducer to apply new state for %s event with %s type',
       (eventHandler, type, newState) => {
         const handler = instance[eventHandler];
-        const params = Object.assign({}, newState, {type});
-        handler(event, params);
+        const params = Object.assign({}, newState, {type}, {event});
+        handler({
+          ...params,
+          event,
+        });
         expect(stateReducerMock).toHaveBeenCalledWith(
           type,
           newState,
@@ -91,7 +94,10 @@ describe('Stateful Select Container', function() {
           event,
           params,
         );
-        expect(events[eventHandler]).toHaveBeenCalledWith(event, params);
+        expect(events[eventHandler]).toHaveBeenCalledWith({
+          ...params,
+          event: expect.anything(),
+        });
       },
     );
 
