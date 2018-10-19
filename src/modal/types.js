@@ -67,7 +67,7 @@ export type SharedStylePropsArgT = {
   $as?: string,
   // styled function wrapper related
   $style?: ?{},
-  // TODO: Get this to work without 'any'
+  // TODO(#406): Get this to work without 'any'
   /* eslint-disable-next-line flowtype/no-weak-types */
   $ref?: React.Ref<any>,
 };
