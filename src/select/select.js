@@ -356,8 +356,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       isDropDownOpen,
       selectedOptions,
       getOptionLabel: this.getOptionLabel.bind(this),
-      onItemSelect: ({selectedItem, event}) =>
-        this.handledHotKeys(event, selectedItem),
+      onItemSelect: ({item, event}) => this.handledHotKeys(event, item),
       onChange: this.onSelect.bind(this),
     };
     return <SelectDropDown {...dropDownProps} />;
@@ -399,10 +398,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   }
 
   handledHotKeys(
-    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
+    e?: SyntheticEvent<HTMLElement> | KeyboardEvent,
     option?: ?OptionT,
   ) {
-    if (!e.key) {
+    if (!e || !e.key) {
       return;
     }
     switch (e.key) {

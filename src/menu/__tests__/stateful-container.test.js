@@ -98,7 +98,7 @@ describe('Menu StatefulContainer', () => {
     });
     props.onClick();
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
-      selectedItem: item,
+      item,
     });
   });
 
@@ -171,7 +171,7 @@ describe('Menu StatefulContainer', () => {
     component.instance().onKeyDown(event);
     expect(mockItemSelect.mock.calls[0]).toEqual([
       {
-        selectedItem: mockItems[0],
+        item: mockItems[0],
         event,
       },
     ]);
