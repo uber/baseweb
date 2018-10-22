@@ -14,5 +14,7 @@ export {
   Axis as StyledAxis,
   Tick as StyledTick,
   Thumb as StyledThumb,
+  TickBar as StyledTickBar,
+  AxisRange as StyledAxisRange,
 } from './styled-components';
 export {} from './constants';
