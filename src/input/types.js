@@ -10,8 +10,6 @@ import type {OverrideT} from '../helpers/overrides';
 import type {ThemeT} from '../styles';
 import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants';
 
-type SyntheticEventT = SyntheticEvent<HTMLElement>;
-
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 
 export type SizeT = $Keys<typeof SIZE>;
@@ -65,9 +63,9 @@ export type BaseInputPropsT = {
   id: string,
   name: string,
   inputRef: {current: ?React.ElementRef<'input'>},
-  onBlur: (e: SyntheticEventT) => void,
-  onChange: (e: SyntheticEventT) => void,
-  onFocus: (e: SyntheticEventT) => void,
+  onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
   overrides: BaseInputComponentsT,
   placeholder: string,
   required: boolean,
@@ -82,15 +80,15 @@ export type InputPropsT = {
   overrides: InputComponentsT,
   startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
   endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
-  onFocus: (e: SyntheticEventT) => void,
-  onBlur: (e: SyntheticEventT) => void,
+  onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
+  onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
 };
 
 export type StatefulContainerPropsT = {
   children: (props: PropsT) => React.Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
-  onChange: (e: SyntheticEventT) => void,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
 type OmitPropsT = {
