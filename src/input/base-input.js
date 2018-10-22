@@ -15,7 +15,10 @@ import {
   Input as StyledInput,
 } from './styled-components';
 
-class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
+class BaseInput<T: EventTarget> extends React.Component<
+  BaseInputPropsT<T>,
+  InternalStateT,
+> {
   static defaultProps = {
     adjoined: ADJOINED.none,
     autoFocus: false,
@@ -44,12 +47,12 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
     }
   }
 
-  onFocus = (e: SyntheticEvent<HTMLElement>) => {
+  onFocus = (e: SyntheticFocusEvent<T>) => {
     this.setState({isFocused: true});
     this.props.onFocus(e);
   };
 
-  onBlur = (e: SyntheticEvent<HTMLElement>) => {
+  onBlur = (e: SyntheticFocusEvent<T>) => {
     this.setState({isFocused: false});
     this.props.onBlur(e);
   };
