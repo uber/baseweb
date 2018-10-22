@@ -31,7 +31,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
     overrides.DropDown,
     StyledDropDown,
   );
-  const [DropDownItem] = getOverrides(
+  const [DropDownItem, dropDownItemProps] = getOverrides(
     overrides.DropDownItem,
     StyledDropDownItem,
   );
@@ -50,6 +50,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
     onItemSelect,
     type,
     maxDropdownHeight,
+    multiple,
   } = props;
   return isDropDownOpen ? (
     <StatefulMenu
@@ -67,6 +68,8 @@ export default function SelectDropDown(props: DropDownPropsT) {
           component: DropDown,
           style: {maxHeight: maxDropdownHeight},
           props: {
+            role: 'listbox',
+            'aria-multiselectable': multiple,
             $type: type,
             $isOpen: isDropDownOpen,
             ...dropDownProps,
@@ -75,7 +78,10 @@ export default function SelectDropDown(props: DropDownPropsT) {
         Option: {
           props: {
             overrides: {
-              ListItem: DropDownItem,
+              ListItem: {
+                component: DropDownItem,
+                props: dropDownItemProps,
+              },
             },
             /* eslint-disable-next-line react/display-name*/
             getItemLabel: option => {
@@ -84,6 +90,8 @@ export default function SelectDropDown(props: DropDownPropsT) {
               );
               return optionsLoaded ? (
                 <Option
+                  aria-readonly={option.disabled}
+                  aria-selected={!!$selected}
                   disabled={option.disabled}
                   $selected={$selected}
                   key={option.id}

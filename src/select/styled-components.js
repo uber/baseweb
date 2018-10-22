@@ -152,3 +152,7 @@ export const SelectSpinner = styled('div', () => {
     paddingLeft: '50%',
   };
 });
+
+export const SelectionContainer = styled('div', props => {
+  return {};
+});

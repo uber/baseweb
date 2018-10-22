@@ -43,6 +43,7 @@ import {
   StyledSelectComponentIcon,
   StyledDropDown,
   StyledOption,
+  StyledSelectionContainer,
   ICON,
   OPTIONS,
   TYPE,
@@ -177,6 +178,7 @@ export default () => {
   * `SelectComponentIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
   * `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
   * `SelectSpinner: ?React.ComponentType` component for dropdown spinner if async options are loading
+  * `SelectionContainer: ?React.ComponentType` component for the wrapper around selected options\tags
 * `onChange: func({event: SyntheticInputEvent, type, option, selectedOptions})`:
   handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
 * `onTextInputChange: func`:
