@@ -143,7 +143,7 @@ function getToggleThumbColor(props) {
 const getToggleCheckMarkStyles = props => {
   const {$checked, $theme, $disabled} = props;
   const {animation, colors} = $theme;
-  const backgroundColor = $disabled ? colors.mono500 : 'white';
+  const backgroundColor = $disabled ? colors.mono500 : colors.white;
   const toggleThumbColor = getToggleThumbColor(props);
   const toggleSVG =
     `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d)"><rect x="4" y="3" width="24" height="24" rx="4" fill="` +
