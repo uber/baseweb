@@ -35,9 +35,9 @@ export type PaginationPropsT = {
   currentPage: number,
   labels: LabelsT,
   overrides?: OverridesT,
-  onPrevClick?: (event: *) => *,
-  onNextClick?: (event: *) => *,
-  onPageChange?: (nextPage: number, prevPage: number) => *,
+  onPrevClick?: ({event: *}) => *,
+  onNextClick?: ({event: *}) => *,
+  onPageChange?: ({nextPage: number, prevPage: number}) => *,
 };
 
 export type PaginationStateT = {

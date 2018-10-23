@@ -112,7 +112,7 @@ export default class MenuStatefulContainer extends React.Component<
     const {items, onItemSelect} = this.props;
     const {highlightedIndex} = this.state;
     if (items[highlightedIndex] && onItemSelect) {
-      onItemSelect(items[highlightedIndex], event);
+      onItemSelect({item: items[highlightedIndex], event});
     }
   }
 
@@ -121,7 +121,7 @@ export default class MenuStatefulContainer extends React.Component<
     const {onItemSelect, getRequiredItemProps} = this.props;
     let onClickHandler;
     if (onItemSelect) {
-      onClickHandler = onItemSelect.bind(null, item);
+      onClickHandler = onItemSelect.bind(null, {item});
     }
     // Create and store ref or re-use
     let itemRef = this.refList[index];

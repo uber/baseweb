@@ -63,21 +63,23 @@ export default class Pagination extends React.PureComponent<
     const {onPageChange, currentPage} = this.props;
     const page = item.label;
     if (page !== currentPage) {
-      onPageChange && onPageChange(page, currentPage);
+      onPageChange && onPageChange({nextPage: page, prevPage: currentPage});
       this.onDropdownButtonClick();
     }
   };
 
-  onPrevClick = (...args: *) => {
+  onPrevClick = (event: SyntheticEvent<>) => {
     const {currentPage, onPageChange, onPrevClick} = this.props;
-    onPageChange && onPageChange(currentPage - 1, currentPage);
-    onPrevClick && onPrevClick(args);
+    onPageChange &&
+      onPageChange({nextPage: currentPage - 1, prevPage: currentPage});
+    onPrevClick && onPrevClick({event});
   };
 
-  onNextClick = (...args: *) => {
+  onNextClick = (event: SyntheticEvent<>) => {
     const {currentPage, onPageChange, onNextClick} = this.props;
-    onPageChange && onPageChange(currentPage + 1, currentPage);
-    onNextClick && onNextClick(args);
+    onPageChange &&
+      onPageChange({nextPage: currentPage + 1, prevPage: currentPage});
+    onNextClick && onNextClick({event});
   };
 
   onDropdownButtonClick = () => {

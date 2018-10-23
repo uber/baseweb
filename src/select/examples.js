@@ -30,17 +30,19 @@ const onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
   console.log('Text has changed to:' + e.target.value);
 };
 
-const onChange = (e, {type, option = emptyOption}) => {
+const onChange = ({event, type, option = emptyOption}) => {
   if (type === STATE_CHANGE_TYPE.select) {
     // eslint-disable-next-line no-console
     console.log('Selected option:' + option.id);
   }
 };
 
-const onChangeMultiSelect = (
-  e,
-  {type, option = emptyOption, selectedOptions},
-) => {
+const onChangeMultiSelect = ({
+  event,
+  type,
+  option = emptyOption,
+  selectedOptions,
+}) => {
   switch (type) {
     case STATE_CHANGE_TYPE.select:
       // eslint-disable-next-line no-console

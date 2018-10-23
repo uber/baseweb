@@ -89,7 +89,9 @@ describe('Modal', () => {
     wrapper.find(StyledClose).simulate('click');
 
     expect(onClose).toHaveBeenCalledTimes(1);
-    expect(onClose).toHaveBeenLastCalledWith(CLOSE_SOURCE.closeButton);
+    expect(onClose).toHaveBeenLastCalledWith({
+      closeSource: CLOSE_SOURCE.closeButton,
+    });
   });
 
   test('backdrop triggers close', () => {
@@ -102,7 +104,9 @@ describe('Modal', () => {
 
     wrapper.find(StyledBackdrop).simulate('click');
     expect(onClose).toHaveBeenCalledTimes(1);
-    expect(onClose).toHaveBeenLastCalledWith(CLOSE_SOURCE.backdrop);
+    expect(onClose).toHaveBeenLastCalledWith({
+      closeSource: CLOSE_SOURCE.backdrop,
+    });
   });
 
   test('disable closeable', () => {

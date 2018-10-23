@@ -168,7 +168,7 @@ export default () => {
 * `required: boolean`:
   Mark control as required
 * `tabindex: number`:
-  The start offset of tabindex to navigate through component. Default is `0`.  
+  The start offset of tabindex to navigate through component. Default is `0`.
 * `overrides: {}`
   * `DropDown: ?React.ComponentType` component to use for dropdown list
   * `Option: ?React.ComponentType` component to use for options in dropdown list
@@ -177,18 +177,18 @@ export default () => {
   * `SelectComponentIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
   * `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
   * `SelectSpinner: ?React.ComponentType` component for dropdown spinner if async options are loading
-* `onChange: func(e: SyntheticInputEvent, params: Object)`:
-  handler for events on trigger element when option are changing selection.  `params` has `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
-* `onTextInputChange: func(e: SyntheticInputEvent)`:
-  handler for events on trigger element when text of search input (in Search mode has changed).
+* `onChange: func({event: SyntheticInputEvent, type, option, selectedOptions})`:
+  handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
+* `onTextInputChange: func`:
+  event handler for the input element
 * `onMouseEnter: func`:
-  handler for events on trigger element
+  event handler for the input element
 * `onMouseLeave: func`:
-  handler for events on trigger element
+  event handler for the input element
 * `onFocus: func`:
-  handler for events on trigger element
+  event handler for the input element
 * `onBlur: func`:
-  handler for events on trigger element
+  event handler for the input element
 
 ## `StatefulSelectContainer` API
 
@@ -202,15 +202,15 @@ export default () => {
   * `currentState` - current full state of the component
   * `params` may contain `id` and `label` of selected option and `selectedOptions` array of all of selected, as well as new `textValue` set in input.
 * `children: func` should return `Select` instance with standard or customized inner elements.
-* `onChange: func(e: SyntheticInputEvent, params: Object)`:
-  handler for events on trigger element when option are changing selection.  `params` has `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
-* `onTextInputChange: func(e: SyntheticInputEvent)`:
-  handler for events on trigger element when text of search input (in Search mode has changed).
+* `onChange: func({event: SyntheticInputEvent, type, option, selectedOptions})`:
+  handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed, current `Option` with `id` and `label` `label` of selected\unselected option and `selectedOptions` array of all of selected.
+* `onTextInputChange: func`:
+  event handler for the input element
 * `onMouseEnter: func`:
-  handler for events on trigger element
+  event handler for the input element
 * `onMouseLeave: func`:
-  handler for events on trigger element
+  event handler for the input element
 * `onFocus: func`:
-  handler for events on trigger element
+  event handler for the input element
 * `onBlur: func`:
-  handler for events on trigger element
+  event handler for the input element

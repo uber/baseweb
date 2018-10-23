@@ -26,6 +26,14 @@ export type ParamsT = {
   type: ChangeActionT,
 };
 
+export type OnChangeParamsT = {
+  event: SyntheticEvent<HTMLElement> | KeyboardEvent,
+  option?: OptionT,
+  selectedOptions?: Array<OptionT>,
+  textValue?: string,
+  type: ChangeActionT,
+};
+
 export type OverridesT = {
   Root?: OverrideT<*>,
   Input?: OverrideT<*>,
@@ -66,10 +74,7 @@ export type PropsT = {
   getSelectedOptionLabel?: OptionT => React$Node,
   $theme?: *,
   onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onChange: (
-    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
-    params: ParamsT,
-  ) => void,
+  onChange: (params: OnChangeParamsT) => void,
   onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseDown: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -95,7 +100,7 @@ export type StateReducerT = (
   stateType: string,
   nextState: StateT,
   currentState: StateT,
-  event: SyntheticEvent<HTMLInputElement>,
+  event: SyntheticEvent<HTMLElement> | KeyboardEvent,
   params: ParamsT,
 ) => StateT;
 
@@ -105,7 +110,7 @@ export type StatefulContainerPropsT = {
   initialState?: StateT,
   stateReducer: StateReducerT,
   onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange: (params: OnChangeParamsT) => void,
   onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -119,7 +124,7 @@ export type StatefulSelectPropsT = {
   initialState?: StateT,
   autoFocus?: boolean,
   onTextInputChange?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onChange?: (e: SyntheticEvent<HTMLInputElement>, params: ParamsT) => void,
+  onChange: (params: OnChangeParamsT) => void,
   onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
   onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void,
