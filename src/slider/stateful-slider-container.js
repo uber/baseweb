@@ -32,7 +32,7 @@ class StatefulSliderContainer extends React.Component<
   onChange = (config: {event: *, params: ParamsT}) => {
     const {event, ...params} = config;
     //$FlowFixMe
-    this.internalSetState(STATE_CHANGE_TYPE.value, event, params);
+    this.internalSetState(STATE_CHANGE_TYPE.change, event, params);
     const {onChange} = this.props;
     return onChange({event, ...params});
   };
@@ -50,7 +50,7 @@ class StatefulSliderContainer extends React.Component<
 
   render() {
     const {
-      children = (childProps: {}) => null, // eslint-disable-line no-unused-vars
+      children,
       initialState, // eslint-disable-line no-unused-vars
       stateReducer, // eslint-disable-line no-unused-vars
       ...rest

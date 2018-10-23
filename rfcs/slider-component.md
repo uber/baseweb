@@ -50,7 +50,7 @@ export default () => {
 
 * `Slider`
 * `StatefulSlider`
-* `StatefulSliderContainer`
+* `StatefulContainer`
 * `StyledRoot`
 * `StyledAxis`
 * `StyledTick`
