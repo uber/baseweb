@@ -1,7 +1,7 @@
 // @flow
 
 export const STATE_CHANGE_TYPE = {
-  value: 'value',
+  change: 'change',
 };
 
 export const thumbWidth = 32;
