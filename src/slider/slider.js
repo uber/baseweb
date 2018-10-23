@@ -23,15 +23,14 @@ import {getOverrides} from '../helpers/overrides';
 
 class Slider extends React.Component<PropsT, StatelessStateT> {
   domNode: ?Element | Text;
-  onMouseUpListener: ?MouseEventHandler;
-  onMouseMoveListener: ?MouseEventHandler;
+
   static defaultProps = {
     overrides: {},
     onChange: () => {},
     onAxisClick: () => {},
-    onMouseDown: () => {},
+    onThumbDown: () => {},
     onMouseMove: () => {},
-    onMouseUp: () => {},
+    onThumbUp: () => {},
     error: false,
     autoFocus: false,
     tabIndex: 0,
@@ -51,42 +50,34 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
   }
 
   componentWillUnmount() {
-    this.removeDocumentEvents();
+    this.removeDocumentMouseEvents();
   }
 
-  onMouseDown = (event: MouseEvent, thumbIndex: number) => {
-    this.setState(
-      {
-        isThumbMoving: true,
-        currentThumb: thumbIndex,
-      },
-      () =>
-        this.props.onMouseDown({
-          event,
-          currentThumb: thumbIndex,
-          isThumbMoving: true,
-        }),
-    );
+  onThumbDown = (event: MouseEvent, thumbIndex: number) => {
+    this.setState({
+      isThumbMoving: true,
+      currentThumb: thumbIndex,
+    });
+    this.props.onThumbDown({
+      event,
+      currentThumb: thumbIndex,
+      isThumbMoving: true,
+    });
   };
 
-  onMouseUp = (event: MouseEvent) => {
+  onThumbUp = (event: MouseEvent) => {
     const {isThumbMoving} = this.state;
     if (isThumbMoving) {
-      this.setState(
-        {
-          isThumbMoving: false,
-          currentThumb: -1,
-          currentMove: 0,
-        },
-        () =>
-          this.props.onMouseUp({
-            event,
-            isThumbMoving: this.state.isThumbMoving,
-          }),
-      );
-    } else {
-      this.props.onMouseUp({event, isThumbMoving});
+      this.setState({
+        isThumbMoving: false,
+        currentThumb: -1,
+        currentMove: 0,
+      });
     }
+    this.props.onThumbUp({
+      event,
+      isThumbMoving,
+    });
   };
 
   onMouseMove = (event: MouseEvent) => {
@@ -99,37 +90,35 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
 
   addDocumentMouseEvents() {
     if (__BROWSER__) {
-      this.onMouseMoveListener = document.addEventListener(
-        'mousemove',
-        this.onMouseMove,
-      );
-      this.onMouseUpListener = document.addEventListener(
-        'mouseup',
-        this.onMouseUp,
-      );
+      document.addEventListener('mousemove', this.onMouseMove);
+      document.addEventListener('mouseup', this.onThumbUp);
     }
   }
 
-  removeDocumentEvents() {
-    this.onMouseMoveListener && this.onMouseMoveListener.remove();
-    this.onMouseUpListener && this.onMouseUpListener.remove();
+  removeDocumentMouseEvents() {
+    document.removeEventListener('mousemove', this.onMouseMove);
+    document.removeEventListener('mouseup', this.onThumbUp);
   }
 
   onMove(movementX: number, event: SyntheticEvent<HTMLElement> | MouseEvent) {
     const {currentThumb, currentMove} = this.state;
     let {onChange, step} = this.props;
     const {$value, $max, $min, $isRange} = this.getSharedProps();
+    // add mouse move in pixels to already recorded move in progress
     const newMove = currentMove + movementX;
+    // get move direction factor based on sign of new move
     const moveDirection = newMove / Math.abs(newMove);
     const value = $value.slice();
     const axisSizeInPixels = parseInt(
       window.getComputedStyle(this.domNode).width,
     );
     const axisSize = $max - $min;
+    // scale step to be measured in pixels
     step = step ? Slider.scale(step, axisSize, axisSizeInPixels) : step;
     const scaledStep = step ? moveDirection * step : newMove;
     const isMoveThresholdPasssed =
       Math.abs(newMove) - Math.abs(scaledStep) >= 0;
+    // if move detected is larger than step we can move to the next tick
     if (isMoveThresholdPasssed) {
       const scaledMove = Slider.scale(scaledStep, axisSizeInPixels, axisSize);
       // clamp max and min to avoid overlapping and cross of each other
@@ -211,7 +200,7 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
                 $ref={thumbRefs[$index]}
                 key={$index}
                 $index={$index}
-                onMouseDown={e => this.onMouseDown(e, $index)}
+                onMouseDown={e => this.onThumbDown(e, $index)}
                 {...sharedProps}
                 {...thumbProps}
               />
