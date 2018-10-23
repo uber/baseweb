@@ -25,7 +25,7 @@ export const Axis = styled('div', props => {
     marginRight: sizing.scale400,
     marginLeft: sizing.scale400,
     borderRadius: $theme.borders.useRoundedCorners ? borders.radius100 : '0px',
-    background: colors.mono400,
+    backgroundColor: colors.mono400,
     height: sizing.scale100,
   };
 });
@@ -43,11 +43,11 @@ export const AxisRange = styled('div', props => {
   }
   const value =
     $isRange && $index ? $value[$index] - $value[$index - 1] : $value[$index];
-  const $successValue = $max - $min;
-  const width = `${(value / $successValue) * 100}%`;
+  const totalRangeValue = $max - $min;
+  const width = `${(value / totalRangeValue) * 100}%`;
   const offset =
     $isRange && $index
-      ? `${($value[$index - 1] / $successValue) * 100}%`
+      ? `${($value[$index - 1] / totalRangeValue) * 100}%`
       : null;
   return {
     borderRadius: borders.useRoundedCorners ? sizing.scale0 : '0',
@@ -91,7 +91,7 @@ export const Thumb = styled('div', props => {
   const $isActive = $index === $currentThumb;
   const offset = Math.round(($value[$index] / $max) * 100);
   const {animation, colors, sizing} = $theme;
-  const backgroundColor = $disabled ? colors.mono500 : 'white';
+  const backgroundColor = $disabled ? colors.mono500 : colors.white;
   const thumbColor = getThumbColor({...props, $isActive});
   let toggleSVG = '';
   const $isStart = $isRange && $index % 2 === 0;
@@ -115,7 +115,7 @@ export const Thumb = styled('div', props => {
     top: '-14px',
     cursor: 'pointer',
     zIndex: '1',
-    left: offset + '%',
+    left: `${offset}%`,
     marginLeft: $isRange ? '-8px' : $index % 2 ? '-32px' : '-16px',
     ':before': {
       position: 'absolute',

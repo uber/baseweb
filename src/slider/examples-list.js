@@ -11,4 +11,5 @@ module.exports = {
   AS_SIMPLE_RANGE_SLIDER: 'Simple range slider',
   AS_SIMPLE_RANGE_SLIDER_WITH_STEP: 'Simple range slider with step=20',
   AS_RANGE_SLIDER_WITH_MANY_TICKS: 'Range slider with many ticks',
+  AS_SLIDER_WITH_OVERRIDES: 'Slider with override of Axis and Thumb',
 };

@@ -42,7 +42,7 @@ export type PropsT = {
 };
 
 export type StateT = {
-  value?: Array<number>,
+  value: Array<number>,
 };
 
 export type StatelessStateT = {
@@ -61,7 +61,7 @@ export type StateReducerT = (
 
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
-  children?: (*) => React$Node,
+  children: (*) => React$Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
   onChange: ({event: SyntheticEvent<HTMLElement>, ...ParamsT}) => void,
@@ -70,8 +70,7 @@ export type StatefulContainerPropsT = {
 
 export type StatefulSliderPropsT = {
   overrides?: OverridesT,
-  value?: Array<number>,
-  initialState?: StateT,
+  initialState: StateT,
   autoFocus?: boolean,
   onChange?: ({event: SyntheticEvent<HTMLElement>, ...ParamsT}) => void,
 };
