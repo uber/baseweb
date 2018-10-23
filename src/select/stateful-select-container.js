@@ -10,8 +10,7 @@ import type {
   StatefulContainerPropsT,
   StateReducerT,
   StateT,
-  ParamsT,
-  ChangeActionT,
+  OnChangeParamsT,
 } from './types';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
@@ -35,10 +34,10 @@ class StatefulSelectContainer extends React.Component<
 
   state = {...this.props.initialState};
 
-  onChange = (e: SyntheticInputEvent<HTMLInputElement>, params: ParamsT) => {
-    this.internalSetState(params.type, e, params);
+  onChange = (params: OnChangeParamsT) => {
+    this.internalSetState(params);
     const {onChange} = this.props;
-    return onChange(e, params);
+    return onChange(params);
   };
 
   onTextInputChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -66,16 +65,18 @@ class StatefulSelectContainer extends React.Component<
     onBlur && onBlur(e);
   };
 
-  internalSetState = (
-    type: ChangeActionT,
-    e: SyntheticInputEvent<HTMLInputElement>,
-    params: ParamsT,
-  ) => {
+  internalSetState = (params: OnChangeParamsT) => {
     const nextState = {
       selectedOptions: params.selectedOptions,
     };
     const {stateReducer} = this.props;
-    const newState = stateReducer(type, nextState, this.state, e, params);
+    const newState = stateReducer(
+      params.type,
+      nextState,
+      this.state,
+      params.event,
+      params,
+    );
     this.setState(newState);
   };
 

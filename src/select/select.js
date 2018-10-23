@@ -106,15 +106,16 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     });
   };
 
-  onClearAll = (e: SyntheticEvent<HTMLElement>) => {
-    this.props.onChange(e, {
+  onClearAll = (event: SyntheticEvent<HTMLElement>) => {
+    this.props.onChange({
+      event,
       type: STATE_CHANGE_TYPE.unselect,
       selectedOptions: [],
     });
   };
 
   onSelect = (
-    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
+    event: SyntheticEvent<HTMLElement> | KeyboardEvent,
     pendingOption?: OptionT = {
       id: '',
       label: '',
@@ -126,7 +127,8 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     const isSelect = !selected;
     if (isSelect) {
       // select
-      this.props.onChange(e, {
+      this.props.onChange({
+        event,
         type: STATE_CHANGE_TYPE.select,
         option: pendingOption,
         selectedOptions: multiple
@@ -135,7 +137,8 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       });
     } else if (multiple) {
       // unselect (only possible for multi-select)
-      this.props.onChange(e, {
+      this.props.onChange({
+        event,
         type: STATE_CHANGE_TYPE.unselect,
         option: pendingOption,
         selectedOptions: selectedOptions.filter(
@@ -151,10 +154,11 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   };
 
   onRemoveTag = (
-    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
+    event: SyntheticEvent<HTMLElement> | KeyboardEvent,
     option: OptionT,
   ) => {
-    this.props.onChange(e, {
+    this.props.onChange({
+      event,
       type: STATE_CHANGE_TYPE.unselect,
       option,
       selectedOptions: this.props.selectedOptions.filter(
@@ -356,8 +360,8 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       isDropDownOpen,
       selectedOptions,
       getOptionLabel: this.getOptionLabel.bind(this),
+      onItemSelect: ({item, event}) => this.handledHotKeys(event, item),
       onChange: this.onSelect.bind(this),
-      onItemSelect: (option, e) => this.handledHotKeys(e, option),
     };
     return <SelectDropDown {...dropDownProps} />;
   }
@@ -398,10 +402,10 @@ class Select extends React.Component<PropsT, StatelessStateT> {
   }
 
   handledHotKeys(
-    e: SyntheticEvent<HTMLElement> | KeyboardEvent,
+    e?: SyntheticEvent<HTMLElement> | KeyboardEvent,
     option?: ?OptionT,
   ) {
-    if (!e.key) {
+    if (!e || !e.key) {
       return;
     }
     switch (e.key) {

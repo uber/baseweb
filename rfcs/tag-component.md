@@ -32,7 +32,7 @@ export default () => {
   return (
     <div>
       <Tag
-        onActionClick={(event, children) => {}}
+        onActionClick={({event, children}) => {}}
         disabled={false}
         overrides={{
           Root: CustomRoot,
@@ -63,5 +63,5 @@ export default () => {
 * `overrides: {Root: (props: {[string]: any}) => React$Node, Action: (props: {[string]: any}) => React$Node}`
   * Custom `Action` button.
   * `Root` wrapper element for the whole tag control to apply styles
-* `onActionClick: func((evt, children) => void)`:
+* `onActionClick: func(({event, children}) => void)`:
   handler for events on Action button element (default is Cross). `children` provides which actual Tag was clicked

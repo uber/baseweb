@@ -97,7 +97,9 @@ describe('Menu StatefulContainer', () => {
       'aria-activedescendant': false,
     });
     props.onClick();
-    expect(mockItemSelect.mock.calls[0][0]).toEqual(item);
+    expect(mockItemSelect.mock.calls[0][0]).toEqual({
+      item,
+    });
   });
 
   test('getRequiredItemProps returns correct props for active child', () => {
@@ -167,6 +169,11 @@ describe('Menu StatefulContainer', () => {
       highlightedIndex: 0,
     });
     component.instance().onKeyDown(event);
-    expect(mockItemSelect.mock.calls[0]).toEqual([mockItems[0], event]);
+    expect(mockItemSelect.mock.calls[0]).toEqual([
+      {
+        item: mockItems[0],
+        event,
+      },
+    ]);
   });
 });

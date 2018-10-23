@@ -81,7 +81,7 @@ export default () => {
   * `Toggle` is the expand\collapse button for each accordion item.
   * `Title` to render for each accordion item.
   * `Content` to render for each accordion item.
-* `onToggle: func(event, index, isExpanded)` - Optional
+* `onToggle: func({event, index, isExpanded})` - Optional
   handler for events on trigger element. `index` indicates number of accordion item toggled. `isExpanded` boolean to show if accordion item expands or collapses.
 
 ## `StatefulAccordion` API
@@ -102,7 +102,7 @@ export default () => {
   If set to true, it will exclusively expand only one accordion item. So next accordion item to be expanded right after current is collapsed. Default is `'false`
 * `disabled: boolean` - Optional
   Disable control from being changed
-* `onToggle: func(event, index, isExpanded)` - Optional
+* `onToggle: func({event, index, isExpanded})` - Optional
   handler for events on trigger element. `index` indicates number of accordion item toggled. `isExpanded` boolean to show if accordion item expands or collapses.
 
 ## `AccordionItem` API

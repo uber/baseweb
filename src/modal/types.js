@@ -37,7 +37,9 @@ export type ModalPropsT = {
   closeable: boolean,
   isOpen: boolean,
   mountNode?: HTMLElement,
-  onClose?: (source?: CloseSourceT) => void,
+  onClose?: ({
+    closeSource?: CloseSourceT,
+  }) => void,
   overrides: OverridesT,
   role: RolePropT,
   size: SizePropT,
@@ -65,7 +67,7 @@ export type SharedStylePropsArgT = {
   $as?: string,
   // styled function wrapper related
   $style?: ?{},
-  // TODO: Get this to work without 'any'
+  // TODO(#406): Get this to work without 'any'
   /* eslint-disable-next-line flowtype/no-weak-types */
   $ref?: React.Ref<any>,
 };

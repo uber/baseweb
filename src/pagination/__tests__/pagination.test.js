@@ -98,8 +98,10 @@ describe('Pagination Stateless', () => {
       .first()
       .simulate('click');
     expect(props.onPageChange.mock.calls[0]).toEqual([
-      props.currentPage - 1,
-      props.currentPage,
+      {
+        nextPage: props.currentPage - 1,
+        prevPage: props.currentPage,
+      },
     ]);
     expect(props.onPrevClick.mock.calls.length).toBe(1);
   });
@@ -116,8 +118,10 @@ describe('Pagination Stateless', () => {
       .last()
       .simulate('click');
     expect(props.onPageChange.mock.calls[0]).toEqual([
-      props.currentPage + 1,
-      props.currentPage,
+      {
+        nextPage: props.currentPage + 1,
+        prevPage: props.currentPage,
+      },
     ]);
     expect(props.onNextClick.mock.calls.length).toBe(1);
   });
@@ -140,6 +144,11 @@ describe('Pagination Stateless', () => {
     const component = mount(<Pagination {...props} />);
     component.instance().onDropdownButtonClick = jest.fn();
     component.instance().onMenuItemSelect({label: 3});
-    expect(props.onPageChange.mock.calls[0]).toEqual([3, 2]);
+    expect(props.onPageChange.mock.calls[0]).toEqual([
+      {
+        nextPage: 3,
+        prevPage: 2,
+      },
+    ]);
   });
 });
