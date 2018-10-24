@@ -46,6 +46,7 @@ export type OverridesT = {
   DropDownItem?: OverrideT<*>,
   SingleSelection?: OverrideT<*>,
   SelectSpinner?: OverrideT<*>,
+  SelectionContainer?: OverrideT<*>,
 };
 
 export type OverridesDropDownT = {
@@ -135,6 +136,7 @@ export type DropDownPropsT = {
   overrides?: OverridesDropDownT,
   options: Array<OptionT>,
   selectedOptions: Array<OptionT>,
+  multiple: boolean,
   isDropDownOpen: boolean,
   optionsLoaded: boolean,
   type: string,

@@ -20,5 +20,6 @@ export {
   Option as StyledOption,
   DropDownItem as StyledDropDownItem,
   SelectSpinner as StyledSelectSpinner,
+  SelectionContainer as StyledSelectionContainer,
 } from './styled-components';
 export {ICON, OPTIONS, TYPE} from './constants';

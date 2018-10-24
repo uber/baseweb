@@ -42,7 +42,10 @@ exports[`Stateless select should render component in search mode and false for m
             "Input": Object {
               "component": [Function],
               "props": Object {
+                "aria-autocomplete": "list",
+                "aria-expanded": false,
                 "onKeyDown": [Function],
+                "role": "combobox",
                 "tabIndex": 0,
               },
             },
@@ -88,7 +91,10 @@ exports[`Stateless select should render component in search mode and false for m
                   "Input": Object {
                     "component": [Function],
                     "props": Object {
+                      "aria-autocomplete": "list",
+                      "aria-expanded": false,
                       "onKeyDown": [Function],
+                      "role": "combobox",
                       "tabIndex": 0,
                     },
                   },
@@ -124,13 +130,22 @@ exports[`Stateless select should render component in search mode and false for m
                     $size="default"
                   >
                     <MockStyledComponent
-                      $type="loop"
-                      src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
+                      role="list"
                     >
-                      <img
-                        src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
+                      <div
+                        role="list"
                         styled-component="true"
-                      />
+                      >
+                        <MockStyledComponent
+                          $type="loop"
+                          src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
+                        >
+                          <img
+                            src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
+                            styled-component="true"
+                          />
+                        </MockStyledComponent>
+                      </div>
                     </MockStyledComponent>
                   </Before>
                   <MockStyledComponent
@@ -145,6 +160,8 @@ exports[`Stateless select should render component in search mode and false for m
                     }
                     $required={false}
                     $size="default"
+                    aria-autocomplete="list"
+                    aria-expanded={false}
                     aria-invalid={false}
                     aria-required={false}
                     disabled={false}
@@ -154,11 +171,14 @@ exports[`Stateless select should render component in search mode and false for m
                     onFocus={[Function]}
                     onKeyDown={[Function]}
                     placeholder=""
+                    role="combobox"
                     tabIndex={0}
                     type="text"
                     value=""
                   >
                     <input
+                      aria-autocomplete="list"
+                      aria-expanded={false}
                       aria-invalid={false}
                       aria-required={false}
                       disabled={false}
@@ -168,6 +188,7 @@ exports[`Stateless select should render component in search mode and false for m
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       placeholder=""
+                      role="combobox"
                       styled-component="true"
                       tabIndex={0}
                       type="text"
@@ -204,6 +225,7 @@ exports[`Stateless select should render component in search mode and false for m
         getOptionLabel={[Function]}
         isDropDownOpen={false}
         maxDropdownHeight="90vh"
+        multiple={true}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -261,7 +283,10 @@ exports[`Stateless select should render component in search mode and true for mu
             "Input": Object {
               "component": [Function],
               "props": Object {
+                "aria-autocomplete": "list",
+                "aria-expanded": false,
                 "onKeyDown": [Function],
+                "role": "combobox",
                 "tabIndex": 0,
               },
             },
@@ -307,7 +332,10 @@ exports[`Stateless select should render component in search mode and true for mu
                   "Input": Object {
                     "component": [Function],
                     "props": Object {
+                      "aria-autocomplete": "list",
+                      "aria-expanded": false,
                       "onKeyDown": [Function],
+                      "role": "combobox",
                       "tabIndex": 0,
                     },
                   },
@@ -343,13 +371,22 @@ exports[`Stateless select should render component in search mode and true for mu
                     $size="default"
                   >
                     <MockStyledComponent
-                      $type="loop"
-                      src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
+                      role="list"
                     >
-                      <img
-                        src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
+                      <div
+                        role="list"
                         styled-component="true"
-                      />
+                      >
+                        <MockStyledComponent
+                          $type="loop"
+                          src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
+                        >
+                          <img
+                            src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
+                            styled-component="true"
+                          />
+                        </MockStyledComponent>
+                      </div>
                     </MockStyledComponent>
                   </Before>
                   <MockStyledComponent
@@ -364,6 +401,8 @@ exports[`Stateless select should render component in search mode and true for mu
                     }
                     $required={false}
                     $size="default"
+                    aria-autocomplete="list"
+                    aria-expanded={false}
                     aria-invalid={false}
                     aria-required={false}
                     disabled={false}
@@ -373,11 +412,14 @@ exports[`Stateless select should render component in search mode and true for mu
                     onFocus={[Function]}
                     onKeyDown={[Function]}
                     placeholder=""
+                    role="combobox"
                     tabIndex={0}
                     type="text"
                     value=""
                   >
                     <input
+                      aria-autocomplete="list"
+                      aria-expanded={false}
                       aria-invalid={false}
                       aria-required={false}
                       disabled={false}
@@ -387,6 +429,7 @@ exports[`Stateless select should render component in search mode and true for mu
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       placeholder=""
+                      role="combobox"
                       styled-component="true"
                       tabIndex={0}
                       type="text"
@@ -423,6 +466,7 @@ exports[`Stateless select should render component in search mode and true for mu
         getOptionLabel={[Function]}
         isDropDownOpen={false}
         maxDropdownHeight="90vh"
+        multiple={true}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -483,7 +527,11 @@ exports[`Stateless select should render component in select mode and false for m
               "Before": [Function],
               "Input": Object {
                 "component": [Function],
-                "props": Object {},
+                "props": Object {
+                  "aria-autocomplete": "none",
+                  "aria-expanded": false,
+                  "role": "combobox",
+                },
               },
               "InputContainer": Object {
                 "component": [Function],
@@ -529,7 +577,11 @@ exports[`Stateless select should render component in select mode and false for m
                     "Before": [Function],
                     "Input": Object {
                       "component": [Function],
-                      "props": Object {},
+                      "props": Object {
+                        "aria-autocomplete": "none",
+                        "aria-expanded": false,
+                        "role": "combobox",
+                      },
                     },
                     "InputContainer": Object {
                       "component": [Function],
@@ -564,7 +616,16 @@ exports[`Stateless select should render component in select mode and false for m
                       $isFocused={false}
                       $required={false}
                       $size="default"
-                    />
+                    >
+                      <MockStyledComponent
+                        role="list"
+                      >
+                        <div
+                          role="list"
+                          styled-component="true"
+                        />
+                      </MockStyledComponent>
+                    </Before>
                     <MockStyledComponent
                       $adjoined="none"
                       $disabled={true}
@@ -577,6 +638,8 @@ exports[`Stateless select should render component in select mode and false for m
                       }
                       $required={false}
                       $size="default"
+                      aria-autocomplete="none"
+                      aria-expanded={false}
                       aria-invalid={false}
                       aria-required={false}
                       disabled={true}
@@ -585,9 +648,12 @@ exports[`Stateless select should render component in select mode and false for m
                       onChange={[Function]}
                       onFocus={[Function]}
                       placeholder=""
+                      role="combobox"
                       type="text"
                     >
                       <input
+                        aria-autocomplete="none"
+                        aria-expanded={false}
                         aria-invalid={false}
                         aria-required={false}
                         disabled={true}
@@ -596,6 +662,7 @@ exports[`Stateless select should render component in select mode and false for m
                         onChange={[Function]}
                         onFocus={[Function]}
                         placeholder=""
+                        role="combobox"
                         styled-component="true"
                         type="text"
                       />
@@ -629,6 +696,7 @@ exports[`Stateless select should render component in select mode and false for m
         getOptionLabel={[Function]}
         isDropDownOpen={false}
         maxDropdownHeight="90vh"
+        multiple={false}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
@@ -689,7 +757,11 @@ exports[`Stateless select should render component in select mode and true for mu
               "Before": [Function],
               "Input": Object {
                 "component": [Function],
-                "props": Object {},
+                "props": Object {
+                  "aria-autocomplete": "none",
+                  "aria-expanded": false,
+                  "role": "combobox",
+                },
               },
               "InputContainer": Object {
                 "component": [Function],
@@ -735,7 +807,11 @@ exports[`Stateless select should render component in select mode and true for mu
                     "Before": [Function],
                     "Input": Object {
                       "component": [Function],
-                      "props": Object {},
+                      "props": Object {
+                        "aria-autocomplete": "none",
+                        "aria-expanded": false,
+                        "role": "combobox",
+                      },
                     },
                     "InputContainer": Object {
                       "component": [Function],
@@ -770,7 +846,16 @@ exports[`Stateless select should render component in select mode and true for mu
                       $isFocused={false}
                       $required={false}
                       $size="default"
-                    />
+                    >
+                      <MockStyledComponent
+                        role="list"
+                      >
+                        <div
+                          role="list"
+                          styled-component="true"
+                        />
+                      </MockStyledComponent>
+                    </Before>
                     <MockStyledComponent
                       $adjoined="none"
                       $disabled={true}
@@ -783,6 +868,8 @@ exports[`Stateless select should render component in select mode and true for mu
                       }
                       $required={false}
                       $size="default"
+                      aria-autocomplete="none"
+                      aria-expanded={false}
                       aria-invalid={false}
                       aria-required={false}
                       disabled={true}
@@ -791,9 +878,12 @@ exports[`Stateless select should render component in select mode and true for mu
                       onChange={[Function]}
                       onFocus={[Function]}
                       placeholder=""
+                      role="combobox"
                       type="text"
                     >
                       <input
+                        aria-autocomplete="none"
+                        aria-expanded={false}
                         aria-invalid={false}
                         aria-required={false}
                         disabled={true}
@@ -802,6 +892,7 @@ exports[`Stateless select should render component in select mode and true for mu
                         onChange={[Function]}
                         onFocus={[Function]}
                         placeholder=""
+                        role="combobox"
                         styled-component="true"
                         type="text"
                       />
@@ -835,6 +926,7 @@ exports[`Stateless select should render component in select mode and true for mu
         getOptionLabel={[Function]}
         isDropDownOpen={false}
         maxDropdownHeight="90vh"
+        multiple={true}
         onChange={[Function]}
         onItemSelect={[Function]}
         options={Array []}
