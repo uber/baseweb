@@ -10,7 +10,11 @@ import {Button, KIND} from 'baseui/button';
 
 export default () => {
   return
-    <Button onClick={() => console.log('clicked')} kind={KIND.primary}>
+    <Button 
+      onClick={() => console.log('clicked')} 
+      kind={KIND.primary} 
+      type="submit"
+    >
       Submit
     </Button>
 }
