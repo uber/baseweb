@@ -11,7 +11,7 @@ import {SIZE} from '../input/constants';
 import type {OverrideT} from '../helpers/overrides';
 import type {ThemeT} from '../styles/types';
 
-type SyntheticTextareaEvent = SyntheticEvent<HTMLElement>;
+type SyntheticTextareaEvent = SyntheticEvent<HTMLTextAreaElement>;
 
 export type SizeT = $Keys<typeof SIZE>;
 
@@ -25,7 +25,7 @@ export type TextareaComponentsT = {
 };
 
 export type TextareaPropsT = {
-  ...BaseInputPropsT,
+  ...BaseInputPropsT<HTMLTextAreaElement>,
   components?: TextareaComponentsT,
   rows?: number,
 };
