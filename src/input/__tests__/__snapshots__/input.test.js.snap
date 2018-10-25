@@ -27,7 +27,14 @@ Object {
   "$required": false,
   "$size": "default",
   "children": Array [
-    null,
+    <NullComponent
+      $adjoined="right"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $required={false}
+      $size="default"
+    />,
     <MockStyledComponent
       $adjoined="right"
       $disabled={false}
@@ -50,7 +57,14 @@ Object {
       placeholder=""
       type="text"
     />,
-    null,
+    <NullComponent
+      $adjoined="right"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $required={false}
+      $size="default"
+    />,
   ],
 }
 `;
@@ -64,7 +78,14 @@ Object {
   "$required": false,
   "$size": "default",
   "children": Array [
-    null,
+    <NullComponent
+      $adjoined="both"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $required={false}
+      $size="default"
+    />,
     <MockStyledComponent
       $adjoined="both"
       $disabled={false}
@@ -87,7 +108,14 @@ Object {
       placeholder=""
       type="text"
     />,
-    null,
+    <NullComponent
+      $adjoined="both"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $required={false}
+      $size="default"
+    />,
   ],
 }
 `;
@@ -101,7 +129,14 @@ Object {
   "$required": false,
   "$size": "default",
   "children": Array [
-    null,
+    <NullComponent
+      $adjoined="left"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $required={false}
+      $size="default"
+    />,
     <MockStyledComponent
       $adjoined="left"
       $disabled={false}
@@ -124,7 +159,14 @@ Object {
       placeholder=""
       type="text"
     />,
-    null,
+    <NullComponent
+      $adjoined="left"
+      $disabled={false}
+      $error={false}
+      $isFocused={false}
+      $required={false}
+      $size="default"
+    />,
   ],
 }
 `;

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 import type {InputPropsT, InternalStateT, AdjoinedT} from './types';
 import {getSharedProps} from './utils';
 import BaseInput from './base-input';
@@ -58,19 +58,24 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
       EndEnhancer: EndEnhancerOverride,
     } = this.props.overrides;
 
-    const Root = getOverride(RootOverride) || StyledRoot;
-    const StartEnhancer =
-      getOverride(StartEnhancerOverride) || StyledInputEnhancer;
-    const EndEnhancer = getOverride(EndEnhancerOverride) || StyledInputEnhancer;
+    const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
+    const [StartEnhancer, startEnhancerProps] = getOverrides(
+      StartEnhancerOverride,
+      StyledInputEnhancer,
+    );
+    const [EndEnhancer, endEnhancerProps] = getOverrides(
+      EndEnhancerOverride,
+      StyledInputEnhancer,
+    );
 
     const sharedProps = getSharedProps(this.props, this.state);
 
     return (
-      <Root {...getOverrideProps(RootOverride)} {...sharedProps}>
+      <Root {...sharedProps} {...rootProps}>
         {startEnhancer && (
           <StartEnhancer
-            {...getOverrideProps(StartEnhancerOverride)}
             {...sharedProps}
+            {...startEnhancerProps}
             $position={ENHANCER_POSITION.start}
           >
             {typeof startEnhancer === 'function'
@@ -86,8 +91,8 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
         />
         {endEnhancer && (
           <EndEnhancer
-            {...getOverrideProps(EndEnhancerOverride)}
             {...sharedProps}
+            {...endEnhancerProps}
             $position={ENHANCER_POSITION.end}
           >
             {typeof endEnhancer === 'function'
