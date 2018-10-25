@@ -16,14 +16,7 @@ import COLORS from './examples-colors';
 const emptyOption = {id: '', label: ''};
 
 export const suite = 'Select Test Suite';
-export const tests = {
-  SELECT: 'Select',
-  SELECT_DISABLED_OPTIONS: 'Select Disabled Options',
-  SELECT_SEARCH: 'Select Search',
-  MULTI_SELECT: 'Multi-Select',
-  MULTI_SELECT_SEARCH: 'Multi-Select Search',
-  MULTI_SELECT_CUSTOM_LABELS: 'Multi-Select Custom Labels',
-};
+import tests from './examples-list';
 
 const onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
   //$FlowFixMe
