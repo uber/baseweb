@@ -15,12 +15,10 @@
     "lint:code": "eslint ./",
     "lint:markdown": "markdownlint -c ./.markdownlint.json rfcs README.md",
     "lint": "yarn lint:code && yarn lint:markdown",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
     "storybook:move": "start-storybook -c .storybook-move -p 6006",
     "build-storybook": "build-storybook -o docs && build-storybook -c .storybook-move -o docs/move",
-    "precommit": "pretty-quick --staged && yarn run test",
     "prebuild": "rimraf dist",
     "build:copy-files": "cp package.json dist/package.json && cp README.md dist/README.md",
     "build:copy-flow-files": "./scripts/flow-copy-src.js",
@@ -133,5 +131,11 @@
       ".js"
     ],
     "insert_license": true
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS",
+      "pre-commit": "pretty-quick --staged && yarn run test"
+    }
   }
 }
