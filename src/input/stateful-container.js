@@ -16,8 +16,8 @@ import type {
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulContainer extends React.Component<
-  StatefulContainerPropsT,
+class StatefulContainer<T: EventTarget> extends React.Component<
+  StatefulContainerPropsT<T>,
   StateT,
 > {
   static defaultProps = {
@@ -31,17 +31,20 @@ class StatefulContainer extends React.Component<
     ...this.props.initialState,
   };
 
-  onChange = (e: SyntheticEvent<HTMLElement>) => {
+  onChange = (e: SyntheticInputEvent<T>) => {
     this.stateReducer(STATE_CHANGE_TYPE.change, e);
     this.props.onChange(e);
   };
 
-  stateReducer = (type: StateTypeT, e: SyntheticEvent<HTMLElement>) => {
+  stateReducer = <T: EventTarget>(
+    type: StateTypeT,
+    e: SyntheticInputEvent<T>,
+  ) => {
     let nextState = {};
     if (
       type === STATE_CHANGE_TYPE.change &&
       // eslint-disable-next-line cup/no-undef
-      e.target instanceof window.HTMLElement
+      e.target instanceof window.HTMLInputElement
     ) {
       nextState = {value: e.target.value};
     }

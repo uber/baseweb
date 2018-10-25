@@ -10,8 +10,6 @@ import type {OverrideT} from '../helpers/overrides';
 import type {ThemeT} from '../styles';
 import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants';
 
-type SyntheticEventT = SyntheticEvent<HTMLElement>;
-
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 
 export type SizeT = $Keys<typeof SIZE>;
@@ -57,7 +55,7 @@ export type InputComponentsT = BaseInputComponentsT & {
   EndEnhancer?: OverrideT<*>,
 };
 
-export type BaseInputPropsT = {
+export type BaseInputPropsT<T> = {
   adjoined: AdjoinedT,
   autoFocus: boolean,
   disabled: boolean,
@@ -65,9 +63,9 @@ export type BaseInputPropsT = {
   id: string,
   name: string,
   inputRef: {current: ?React.ElementRef<'input'>},
-  onBlur: (e: SyntheticEventT) => void,
-  onChange: (e: SyntheticEventT) => void,
-  onFocus: (e: SyntheticEventT) => void,
+  onBlur: (e: SyntheticFocusEvent<T>) => void,
+  onChange: (e: SyntheticInputEvent<T>) => void,
+  onFocus: (e: SyntheticFocusEvent<T>) => void,
   overrides: BaseInputComponentsT,
   placeholder: string,
   required: boolean,
@@ -78,19 +76,19 @@ export type BaseInputPropsT = {
 };
 
 export type InputPropsT = {
-  ...BaseInputPropsT,
+  ...BaseInputPropsT<HTMLInputElement>,
   overrides: InputComponentsT,
   startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
   endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
-  onFocus: (e: SyntheticEventT) => void,
-  onBlur: (e: SyntheticEventT) => void,
+  onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
+  onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
 };
 
-export type StatefulContainerPropsT = {
+export type StatefulContainerPropsT<T> = {
   children: (props: PropsT) => React.Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
-  onChange: (e: SyntheticEventT) => void,
+  onChange: (e: SyntheticInputEvent<T>) => void,
 };
 
 type OmitPropsT = {
@@ -98,7 +96,7 @@ type OmitPropsT = {
   children: ?(props: *) => React.Node,
 };
 
-type FullStPropsT = InputPropsT & StatefulContainerPropsT;
+type FullStPropsT = InputPropsT & StatefulContainerPropsT<HTMLInputElement>;
 
 type StInputPropsDiffT = $Diff<FullStPropsT, OmitPropsT>;
 
