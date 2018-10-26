@@ -53,11 +53,11 @@ describe('Pagination StatefulContainer', () => {
   test('onPageChange called if and only if page has changed', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     const instance = component.instance();
-    instance.onPageChange(5);
+    instance.onPageChange({nextPage: 5});
     expect(component.state('currentPage')).toBe(5);
     expect(mockOnPageChangeFn.mock.calls.length).toBe(1);
     // Invoke again with same page
-    instance.onPageChange(5);
+    instance.onPageChange({nextPage: 5});
     expect(mockOnPageChangeFn.mock.calls.length).toBe(1);
   });
 

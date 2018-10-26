@@ -21,6 +21,7 @@ import {
 import {ArrowLeft, ArrowRight, ArrowDown} from './icons';
 import {getOverrides} from '../helpers/overrides';
 import type {PaginationPropsT, PaginationStateT} from './types';
+import type {OnItemSelectFnT} from '../menu/types';
 
 type MenuItemT = {
   label: number,
@@ -59,7 +60,7 @@ export default class Pagination extends React.PureComponent<
     return menuOptions;
   });
 
-  onMenuItemSelect = (item: MenuItemT) => {
+  onMenuItemSelect: OnItemSelectFnT = ({item}) => {
     const {onPageChange, currentPage} = this.props;
     const page = item.label;
     if (page !== currentPage) {
