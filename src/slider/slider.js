@@ -27,10 +27,6 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
   static defaultProps = {
     overrides: {},
     onChange: () => {},
-    onAxisClick: () => {},
-    onThumbDown: () => {},
-    onMouseMove: () => {},
-    onThumbUp: () => {},
     error: false,
     autoFocus: false,
     tabIndex: 0,
@@ -55,11 +51,6 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
       isThumbMoving: true,
       currentThumb: thumbIndex,
     });
-    this.props.onThumbDown({
-      event,
-      currentThumb: thumbIndex,
-      isThumbMoving: true,
-    });
   };
 
   onThumbUp = (event: MouseEvent) => {
@@ -71,10 +62,6 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
         currentMove: 0,
       });
     }
-    this.props.onThumbUp({
-      event,
-      isThumbMoving,
-    });
     document.removeEventListener('mousemove', this.onMouseMove);
     document.removeEventListener('mouseup', this.onThumbUp);
   };
@@ -84,7 +71,6 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
     if (isThumbMoving) {
       this.onMove(event.movementX, event);
     }
-    this.props.onMouseMove({event, isThumbMoving});
   };
 
   onMove(movementX: number, event: SyntheticEvent<HTMLElement> | MouseEvent) {
@@ -125,7 +111,7 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
   }
 
   onAxisClick(e: MouseEvent) {
-    const {value, onAxisClick} = this.props;
+    const {value} = this.props;
     const {thumbRefs} = this.state;
     // only for one thumb feature
     //$FlowFixMe
@@ -138,7 +124,6 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
         this.onMove(xPos, e);
       });
     }
-    onAxisClick({event: e});
   }
 
   getSharedProps() {

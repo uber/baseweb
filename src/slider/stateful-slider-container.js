@@ -29,7 +29,7 @@ class StatefulSliderContainer extends React.Component<
 
   state = {...this.props.initialState};
 
-  onChange = (config: {event: *, params: ParamsT}) => {
+  onChange = (config: {event: *, value: Array<number>}) => {
     const {event, ...params} = config;
     //$FlowFixMe
     this.internalSetState(STATE_CHANGE_TYPE.change, event, params);

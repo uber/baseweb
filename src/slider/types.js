@@ -35,10 +35,6 @@ export type PropsT = {
     event: SyntheticEvent<HTMLElement> | MouseEvent,
     ...ParamsT,
   }) => void,
-  onAxisClick: ({event: SyntheticEvent<HTMLElement> | MouseEvent}) => void,
-  onThumbUp: ({event: SyntheticEvent<HTMLElement> | MouseEvent}) => void,
-  onMouseMove: ({event: SyntheticEvent<HTMLElement> | MouseEvent}) => void,
-  onThumbDown: ({event: SyntheticEvent<HTMLElement> | MouseEvent}) => void,
 };
 
 export type StateT = {
