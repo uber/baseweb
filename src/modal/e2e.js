@@ -31,12 +31,12 @@ describe('The modal component', () => {
       browser,
     })
       .initAccessibility()
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible(selectors.closeButton)
       // close modal to start fresh
       .click(selectors.closeButton)
-      .waitForElementNotPresent(selectors.closeButton, 1000)
+      .waitForElementNotPresent(selectors.closeButton)
       .click(selectors.openModal)
-      .waitForElementPresent(selectors.dialog, 1000)
+      .waitForElementPresent(selectors.dialog)
       // dialog should be the focused element
       .assert.hasFocus(selectors.dialog)
       .assert.accessibility('html', {
@@ -48,7 +48,7 @@ describe('The modal component', () => {
       })
       // close again
       .click(selectors.closeButton)
-      .waitForElementNotPresent(selectors.closeButton, 1000)
+      .waitForElementNotPresent(selectors.closeButton)
       // open button should be in focus
       .assert.hasFocus(selectors.openModal);
   });

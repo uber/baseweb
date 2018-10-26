@@ -26,7 +26,7 @@ describe('The card component', () => {
         browser,
       })
         .initAccessibility()
-        .waitForElementVisible('body', 1000)
+        .waitForElementVisible('body')
         .assert.accessibility('html', {
           rules: {
             'image-alt': {

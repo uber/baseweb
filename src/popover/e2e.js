@@ -29,7 +29,7 @@ describe('The popover component', () => {
       browser,
     })
       .initAccessibility()
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible('button')
       .assert.accessibility('html', {});
   });
 
@@ -39,11 +39,11 @@ describe('The popover component', () => {
       test: scenarios.WITH_HOVER,
       browser,
     })
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible('button')
       .moveToElement('button', 10, 10)
-      .waitForElementPresent(selectors.tooltip, 1000)
+      .waitForElementPresent(selectors.tooltip)
       .moveToElement('body', 10, 10)
-      .waitForElementNotPresent(selectors.tooltip, 1000);
+      .waitForElementNotPresent(selectors.tooltip);
   });
 
   it('opened popover can be closed with ESC', browser => {
@@ -52,10 +52,10 @@ describe('The popover component', () => {
       test: scenarios.WITH_CLICK,
       browser,
     })
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible('button')
       .click('button')
-      .waitForElementPresent(selectors.tooltip, 1000)
+      .waitForElementPresent(selectors.tooltip)
       .keys('\uE00C')
-      .waitForElementNotPresent(selectors.tooltip, 1000);
+      .waitForElementNotPresent(selectors.tooltip);
   });
 });
