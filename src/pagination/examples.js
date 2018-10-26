@@ -44,6 +44,11 @@ export default {
               kind: KIND.secondary,
             },
           },
+          DropdownMenu: {
+            style: {
+              top: '100px',
+            },
+          },
         }}
       />
     );
