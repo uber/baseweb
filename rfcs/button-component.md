@@ -8,24 +8,22 @@
 import * as React from 'react';
 import {Button, KIND} from 'baseui/button';
 
-export default () => {
-  return
-    <Button onClick={() => console.log('clicked')} kind={KIND.primary}>
-      Submit
-    </Button>
-}
+export default () => (
+  <Button
+    onClick={() => console.log('clicked')}
+    kind={KIND.primary}
+    type="submit"
+  >
+    Submit
+  </Button>
+);
 ```
 
 ### Advanced usage
 
 ```javascript
 import * as React from 'react';
-import {
-  Button,
-  SIZE,
-  KIND,
-  SHAPE,
-} from 'baseui/button';
+import {Button, SIZE, KIND, SHAPE} from 'baseui/button';
 
 export default () => (
   <Button
@@ -42,6 +40,7 @@ export default () => (
 
 Rough DOM composition:
 
+```text
 +-------------------------------------------------------------------+
 | BaseButton (display: flex; justifyContent: space-between)         |
 | +-----------------+-----------------------+---------------------+ |
@@ -52,6 +51,7 @@ Rough DOM composition:
 | |                 |                       |                     | |
 | +-----------------+-----------------------+---------------------+ |
 +-------------------------------------------------------------------+
+```
 
 ## Exports
 

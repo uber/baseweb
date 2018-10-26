@@ -133,6 +133,7 @@ export type OptionListPropsT = {
   overrides: {
     ListItem?: OverrideT<*>,
   },
+  $isHighlighted?: boolean,
 };
 
 export type OptionProfilePropsT = {
