@@ -31,7 +31,7 @@ describe('The checkbox component', () => {
       browser,
     })
       .initAccessibility()
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible(selectors.radioOne)
       .click(selectors.radioOne)
       .click(selectors.radioTwo)
       .assert.accessibility('html', {})

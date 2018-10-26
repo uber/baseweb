@@ -29,7 +29,7 @@ describe('The tooltip component', () => {
       browser,
     })
       .initAccessibility()
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible('body')
       .moveToElement('span', 10, 10)
       .assert.accessibility('html', {});
   });
@@ -40,10 +40,10 @@ describe('The tooltip component', () => {
       test: scenarios.SIMPLE_EXAMPLE,
       browser,
     })
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible('body')
       .moveToElement('span', 10, 10)
-      .waitForElementPresent(selectors.tooltip, 1000)
+      .waitForElementPresent(selectors.tooltip)
       .moveToElement('body', 10, 10)
-      .waitForElementNotPresent(selectors.tooltip, 1000);
+      .waitForElementNotPresent(selectors.tooltip);
   });
 });

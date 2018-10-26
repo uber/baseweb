@@ -25,7 +25,7 @@ describe('The button component', () => {
       browser,
     })
       .initAccessibility()
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible('button')
       .assert.accessibility('html', {});
 
     assertVisuals({
