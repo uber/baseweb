@@ -37,9 +37,9 @@ describe('The select component', () => {
       test: scenarios.SELECT,
       browser,
     })
-      .waitForElementVisible(selectors.selectInput, 1000)
+      .waitForElementVisible(selectors.selectInput)
       .click(selectors.selectInput)
-      .waitForElementPresent(selectors.selectDropDown, 1000);
+      .waitForElementPresent(selectors.selectDropDown);
   });
 
   it('opened dropdown can be closed with ESC', browser => {
@@ -48,11 +48,11 @@ describe('The select component', () => {
       test: scenarios.SELECT,
       browser,
     })
-      .waitForElementVisible(selectors.selectInput, 1000)
+      .waitForElementVisible(selectors.selectInput)
       .click(selectors.selectInput)
-      .waitForElementPresent(selectors.selectDropDown, 1000)
+      .waitForElementPresent(selectors.selectDropDown)
       .keys('\uE00C')
-      .waitForElementNotPresent(selectors.selectDropDown, 1000);
+      .waitForElementNotPresent(selectors.selectDropDown);
   });
 
   it('selects option when clicked in dropdown', browser => {
@@ -61,13 +61,13 @@ describe('The select component', () => {
       test: scenarios.SELECT,
       browser,
     })
-      .waitForElementVisible(selectors.selectInput, 1000)
+      .waitForElementVisible(selectors.selectInput)
       .click(selectors.selectInput)
-      .waitForElementPresent(selectors.selectDropDown, 1000)
+      .waitForElementPresent(selectors.selectDropDown)
       .click(
         `${selectors.selectDropDown} ${selectors.dropDownOption}:first-child`,
       )
-      .waitForElementNotPresent(selectors.selectDropDown, 1000)
+      .waitForElementNotPresent(selectors.selectDropDown)
       .getText(
         `${selectors.selectedList} ${selectors.selectedOption}:first-child`,
         function(result) {
@@ -82,16 +82,16 @@ describe('The select component', () => {
       test: scenarios.MULTI_SELECT,
       browser,
     })
-      .waitForElementVisible(selectors.selectInput, 1000)
+      .waitForElementVisible(selectors.selectInput)
       .click(selectors.selectInput)
-      .waitForElementPresent(selectors.selectDropDown, 1000)
+      .waitForElementPresent(selectors.selectDropDown)
       .click(
         `${selectors.selectDropDown} ${selectors.dropDownOption}:first-child`,
       )
       .click(
         `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(3)`,
       )
-      .waitForElementPresent(selectors.selectDropDown, 1000);
+      .waitForElementPresent(selectors.selectDropDown);
   });
 
   it('doesnt allow to click and select disabled options', browser => {
@@ -100,13 +100,13 @@ describe('The select component', () => {
       test: scenarios.SELECT_DISABLED_OPTIONS,
       browser,
     })
-      .waitForElementVisible(selectors.selectInput, 1000)
+      .waitForElementVisible(selectors.selectInput)
       .click(selectors.selectInput)
-      .waitForElementPresent(selectors.selectDropDown, 1000)
+      .waitForElementPresent(selectors.selectDropDown)
       .click(
         `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(2)`,
       )
-      .waitForElementPresent(selectors.selectDropDown, 1000)
+      .waitForElementPresent(selectors.selectDropDown)
       .getText(selectors.selectedList, function(result) {
         this.assert.equal(result.value, '');
       });
@@ -118,15 +118,14 @@ describe('The select component', () => {
       test: scenarios.MULTI_SELECT_SEARCH,
       browser,
     })
-      .waitForElementVisible(selectors.selectInput, 1000)
+      .waitForElementVisible(selectors.selectInput)
       .setValue(selectors.selectInput, 'dark', () => {
         browser
-          .waitForElementPresent(selectors.selectDropDown, 100)
+          .waitForElementPresent(selectors.selectDropDown)
           .waitForElementPresent(
             `${selectors.selectDropDown} ${
               selectors.dropDownOption
             }:nth-child(2)`,
-            1000,
           )
           .click(
             `${selectors.selectDropDown} ${
