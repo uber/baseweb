@@ -46,14 +46,11 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
   componentDidMount() {
     /* eslint-disable-next-line react/no-find-dom-node */
     this.domNode = findDOMNode(this);
-    this.addDocumentMouseEvents();
-  }
-
-  componentWillUnmount() {
-    this.removeDocumentMouseEvents();
   }
 
   onThumbDown = (event: MouseEvent, thumbIndex: number) => {
+    document.addEventListener('mousemove', this.onMouseMove);
+    document.addEventListener('mouseup', this.onThumbUp);
     this.setState({
       isThumbMoving: true,
       currentThumb: thumbIndex,
@@ -78,6 +75,8 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
       event,
       isThumbMoving,
     });
+    document.removeEventListener('mousemove', this.onMouseMove);
+    document.removeEventListener('mouseup', this.onThumbUp);
   };
 
   onMouseMove = (event: MouseEvent) => {
@@ -87,18 +86,6 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
     }
     this.props.onMouseMove({event, isThumbMoving});
   };
-
-  addDocumentMouseEvents() {
-    if (__BROWSER__) {
-      document.addEventListener('mousemove', this.onMouseMove);
-      document.addEventListener('mouseup', this.onThumbUp);
-    }
-  }
-
-  removeDocumentMouseEvents() {
-    document.removeEventListener('mousemove', this.onMouseMove);
-    document.removeEventListener('mouseup', this.onThumbUp);
-  }
 
   onMove(movementX: number, event: SyntheticEvent<HTMLElement> | MouseEvent) {
     const {currentThumb, currentMove} = this.state;
