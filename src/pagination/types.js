@@ -14,6 +14,12 @@ export type LabelsT = {
   preposition?: string,
 };
 
+export type CallbacksT = {
+  onPrevClick?: ({event: *}) => *,
+  onNextClick?: ({event: *}) => *,
+  onPageChange?: ({nextPage: number, prevPage: number}) => *,
+};
+
 export type StateReducerFnT = (
   changeType: $Keys<typeof STATE_CHANGE_TYPE>,
   changes: StatefulContainerStateT,
@@ -30,29 +36,23 @@ export type OverridesT = {
   DropdownMenu?: OverrideT<*>,
 };
 
-export type PaginationPropsT = {
+export type PaginationPropsT = CallbacksT & {
   numPages: number,
   currentPage: number,
   labels: LabelsT,
   overrides?: OverridesT,
-  onPrevClick?: ({event: *}) => *,
-  onNextClick?: ({event: *}) => *,
-  onPageChange?: ({nextPage: number, prevPage: number}) => *,
 };
 
 export type PaginationStateT = {
   isMenuOpen: boolean,
 };
 
-export type StatefulPaginationPropsT = {
+export type StatefulPaginationPropsT = CallbacksT & {
   numPages: number,
   labels: LabelsT,
   stateReducer?: StateReducerFnT,
   initialState?: StatefulContainerStateT,
   overrides?: OverridesT,
-  onPageChange?: (nextPage: number, prevPage: number) => *,
-  onPrevClick?: (event: *) => *,
-  onNextClick?: (event: *) => *,
 };
 
 export type StatefulContainerPropsT = {
@@ -60,7 +60,7 @@ export type StatefulContainerPropsT = {
   numPages: number,
   stateReducer?: StateReducerFnT,
   initialState?: StatefulContainerStateT,
-  onPageChange?: (nextPage: number, prevPage: number) => *,
+  onPageChange?: $PropertyType<CallbacksT, 'onPageChange'>,
 };
 
 export type StatefulContainerStateT = {

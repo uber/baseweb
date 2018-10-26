@@ -59,7 +59,7 @@ export default class Pagination extends React.PureComponent<
     return menuOptions;
   });
 
-  onMenuItemSelect = (item: MenuItemT) => {
+  onMenuItemSelect = ({item}: {item: MenuItemT}) => {
     const {onPageChange, currentPage} = this.props;
     const page = item.label;
     if (page !== currentPage) {
