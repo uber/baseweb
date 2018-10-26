@@ -166,7 +166,15 @@ export default class Pagination extends React.PureComponent<
               initialState={{
                 highlightedIndex: Math.max(currentPage - 1, 0),
               }}
-              overrides={{List: StyledDropdownMenu}}
+              overrides={{
+                List: {
+                  component: StyledDropdownMenu,
+                  // Access $style manually because it has gone through transformation
+                  // from the override helper function already
+                  // $FlowFixMe
+                  style: dropdownMenuProps.$style,
+                },
+              }}
               {...dropdownMenuProps}
             />
           )}
