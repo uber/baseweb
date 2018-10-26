@@ -23,7 +23,7 @@ export default function OptionList({
   };
   return (
     <ListItem {...sharedProps} {...restProps} {...listItemProps}>
-      {getItemLabel(item)}
+      {getItemLabel({isHighlighted: restProps.$isHighlighted, ...item})}
     </ListItem>
   );
 }
