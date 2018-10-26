@@ -159,7 +159,7 @@ export default () => {
 * `filterOption?: (option: Object, query: String) => boolean`:
   Custom method to filter whether an option should be displayed in the menu. Defaults to a simple lower-case string match.
 * `getOptionLabel?: (option: Object) => React$Node`:
-  Lets you control what label is rendered for the specified option. The default behavior returns `option.label`.
+  Lets you control what label is rendered for the specified option. Provides all option data and `isHighlighted` property indicating if it is highlighted(but not focused) in dropdown. The default behavior returns `option.label`.
 * `getSelectedOptionLabel?: (option: Object) => React$Node`:
   Lets you control what label is rendered for the selected option. If not specified, defaults to `getOptionLabel`.
 * `autoFocus: boolean`:
