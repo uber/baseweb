@@ -143,7 +143,7 @@ describe('Pagination Stateless', () => {
     };
     const component = mount(<Pagination {...props} />);
     component.instance().onDropdownButtonClick = jest.fn();
-    component.instance().onMenuItemSelect({label: 3});
+    component.instance().onMenuItemSelect({item: {label: 3}});
     expect(props.onPageChange.mock.calls[0]).toEqual([
       {
         nextPage: 3,
