@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl, assertVisuals} = require('../../e2e/helpers');
+const {goToUrl} = require('../../e2e/helpers');
 
 const suite = 'Card Test Suite';
 
@@ -34,11 +34,6 @@ describe('The card component', () => {
             },
           },
         });
-
-      assertVisuals({
-        browser,
-        id: scenarios[scenario],
-      });
     });
   });
 });

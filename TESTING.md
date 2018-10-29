@@ -32,15 +32,3 @@ yarn localtunnel --port 8000
 # grab this url, and launch in a new terminal:
 E2E_LAUNCH_URL=the_localltunnel_url SAUCE_ACCESS_KEY=your_key SAUCE_USERNAME=your_username yarn e2e:test:ci
 ```
-
-## Updating screenshots
-
-In a new terminal window start the tests using:
-
-```sh
-yarn e2e:build && yarn e2e:serve
-yarn localtunnel --port 8000
-
-# grab this url, and launch in a new terminal:
-VRT_OVERRIDE=true E2E_LAUNCH_URL=the_localltunnel_url SAUCE_ACCESS_KEY=your_key SAUCE_USERNAME=your_username yarn e2e:test:ci
-```
