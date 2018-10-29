@@ -149,7 +149,9 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   close(source?: CloseSourceT) {
     // If there's no source, it just means the isOpen prop changed. No need to call onClose.
     if (this.props.onClose && source) {
-      this.props.onClose(source);
+      this.props.onClose({
+        closeSource: source,
+      });
     }
     this.removeDomEvents();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
@@ -187,7 +189,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     });
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children: React.Node}> {
+  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
     const {animate, isOpen, size, role, closeable} = this.props;
     return {
       $animate: animate,
@@ -251,7 +253,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
     return (
       <Root
-        role={role}
         $ref={this.getRef('Root')}
         {...sharedProps}
         {...getOverrideProps(RootOverride)}
@@ -273,11 +274,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
               'true'
             }
-            role={
-              // Adding role="document" to dialogs in modals is recommended
-              // https://github.com/twbs/bootstrap/issues/15875
-              'document'
-            }
+            role={role}
             $ref={this.getRef('Dialog')}
             {...sharedProps}
             {...getOverrideProps(DialogOverride)}

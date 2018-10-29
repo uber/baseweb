@@ -10,6 +10,7 @@ import * as React from 'react';
 import {select as selectKnob} from '@storybook/addon-knobs';
 import {Button} from '../button';
 import {Input} from '../input';
+import examples from './examples-list';
 
 import {styled} from '../styles';
 import {
@@ -82,15 +83,6 @@ const sizeKnob = () =>
     [SIZE.default, SIZE.full, SIZE.auto, '800px', '50vw'],
     'default',
   );
-
-export const suite = 'Modal Test Suite';
-export const examples = {
-  SIMPLE_EXAMPLE: 'Modal',
-  SCROLLING_EXAMPLE: 'Modal with long content',
-  CLOSEABLE_EXAMPLE: 'Modal non-closeable',
-  MOUNT_NODE_EXAMPLE: 'Modal custom mount node',
-  STYLE_OVERRIDES: 'Modal with style overrides',
-};
 
 export default {
   [examples.SIMPLE_EXAMPLE]: function Story1() {

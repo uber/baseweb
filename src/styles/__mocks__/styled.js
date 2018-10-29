@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import LIGHT_THEME from '../../themes/light-theme';
+import {LightTheme} from '../../themes';
 import createMockTheme from '../../test/create-mock-theme';
 
 type ObjOrFnT = {} | (({}) => {});
@@ -15,7 +15,7 @@ type PropsT = {$style?: ObjOrFnT};
 
 type StateT = {styles?: {}};
 
-const MOCK_THEME = createMockTheme(LIGHT_THEME);
+const MOCK_THEME = createMockTheme(LightTheme);
 
 function styled(Base: string, objOrFn?: ObjOrFnT = {}) {
   return class MockStyledComponent extends React.Component<PropsT, StateT> {

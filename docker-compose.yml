@@ -2,7 +2,7 @@ version: '2.1'
 services:
   # to run selenium with chrome locally
   chrome-standalone:
-    image: selenium/standalone-chrome:latest@sha256:b3cd083132dc390a9f623223b45db66a44b043c2ba1e962b85a2004f67bc0831
+    image: selenium/standalone-chrome:latest@sha256:86bcb597e3baf77854bc4ec85242d16cec36bc51bead08da45e9b8abc15b9704
     network_mode: 'host'
     restart: always
     ports:
@@ -71,7 +71,7 @@ services:
   # this spins up a server that serves the html/js/css for the e2e tests
   e2e-server:
     build: .
-    command: node e2e/serve.js
+    command: yarn e2e:serve
     expose:
       - 8080
     ports:

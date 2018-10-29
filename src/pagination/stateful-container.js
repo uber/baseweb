@@ -38,12 +38,14 @@ export default class PaginationStatefulContainer extends React.Component<
     }
   }
 
-  onPageChange = (newPage: number) => {
+  onPageChange: $PropertyType<StatefulContainerPropsT, 'onPageChange'> = ({
+    nextPage,
+  }) => {
     const {numPages, onPageChange} = this.props;
     const {currentPage} = this.state;
-    const clamped = clamp(newPage, 1, numPages);
+    const clamped = clamp(nextPage, 1, numPages);
     if (clamped !== currentPage) {
-      onPageChange && onPageChange(clamped, currentPage);
+      onPageChange && onPageChange({nextPage: clamped, prevPage: currentPage});
       this.internalSetState(STATE_CHANGE_TYPE.changePage, {
         currentPage: clamped,
       });

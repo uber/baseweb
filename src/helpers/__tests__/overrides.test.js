@@ -12,7 +12,7 @@ import {
   toObjectOverride,
   mergeOverrides,
   mergeOverride,
-  getOverrideObject,
+  getOverrides,
 } from '../overrides';
 
 function getMockComponent<T>(): React.ComponentType<T> {
@@ -137,22 +137,22 @@ describe('Helpers - Overrides', () => {
     });
   });
 
-  test('getOverrideObject', () => {
+  test('getOverrides', () => {
     const DefaultComponent = getMockComponent();
     const OverrideComponent = getMockComponent();
 
-    expect(getOverrideObject(null, DefaultComponent)).toEqual({
-      component: DefaultComponent,
-      props: {},
-    });
+    expect(getOverrides(null, DefaultComponent)).toEqual([
+      DefaultComponent,
+      {},
+    ]);
 
-    expect(getOverrideObject(OverrideComponent, DefaultComponent)).toEqual({
-      component: OverrideComponent,
-      props: {},
-    });
+    expect(getOverrides(OverrideComponent, DefaultComponent)).toEqual([
+      OverrideComponent,
+      {},
+    ]);
 
     expect(
-      getOverrideObject(
+      getOverrides(
         {
           component: OverrideComponent,
           props: {
@@ -164,14 +164,14 @@ describe('Helpers - Overrides', () => {
         },
         DefaultComponent,
       ),
-    ).toEqual({
-      component: OverrideComponent,
-      props: {
+    ).toEqual([
+      OverrideComponent,
+      {
         custom: 'prop',
         $style: {
           cursor: 'pointer',
         },
       },
-    });
+    ]);
   });
 });

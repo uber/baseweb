@@ -8,9 +8,11 @@ stats.html
 storybook-static
 coverage
 /e2e/dist/index.js
-docs
 .vscode
 .idea
 *.sublime-project
 *.sublime-workspace
 .fusion
+reports
+vrt/latest
+vrt/diff

@@ -59,16 +59,10 @@ export const ListItem = styled(
         ? $theme.sizing.scale900
         : $theme.sizing.scale600,
     ':first-child': {
-      paddingTop:
-        $size === OPTION_LIST_SIZE.compact
-          ? $theme.sizing.scale500
-          : $theme.sizing.scale600,
+      marginTop: $theme.sizing.scale300,
     },
     ':last-child': {
-      paddingBottom:
-        $size === OPTION_LIST_SIZE.compact
-          ? $theme.sizing.scale500
-          : $theme.sizing.scale600,
+      marginBottom: $theme.sizing.scale300,
     },
   }),
 );
@@ -89,10 +83,10 @@ export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
     backgroundColor: $theme.colors.mono300,
   },
   ':first-child': {
-    paddingTop: $theme.sizing.scale800,
+    marginTop: $theme.sizing.scale300,
   },
   ':last-child': {
-    paddingBottom: $theme.sizing.scale800,
+    marginBottom: $theme.sizing.scale300,
   },
 }));
 

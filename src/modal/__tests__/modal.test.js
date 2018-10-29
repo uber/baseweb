@@ -18,7 +18,6 @@ import {
   StyledBackdrop,
   StyledClose,
   StyledDialog,
-  StyledRoot,
   CLOSE_SOURCE,
 } from '../index';
 
@@ -90,7 +89,9 @@ describe('Modal', () => {
     wrapper.find(StyledClose).simulate('click');
 
     expect(onClose).toHaveBeenCalledTimes(1);
-    expect(onClose).toHaveBeenLastCalledWith(CLOSE_SOURCE.closeButton);
+    expect(onClose).toHaveBeenLastCalledWith({
+      closeSource: CLOSE_SOURCE.closeButton,
+    });
   });
 
   test('backdrop triggers close', () => {
@@ -103,7 +104,9 @@ describe('Modal', () => {
 
     wrapper.find(StyledBackdrop).simulate('click');
     expect(onClose).toHaveBeenCalledTimes(1);
-    expect(onClose).toHaveBeenLastCalledWith(CLOSE_SOURCE.backdrop);
+    expect(onClose).toHaveBeenLastCalledWith({
+      closeSource: CLOSE_SOURCE.backdrop,
+    });
   });
 
   test('disable closeable', () => {
@@ -161,7 +164,6 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    expect(wrapper.find(StyledRoot)).toHaveProp('role', 'mycustomrole');
-    expect(wrapper.find(StyledDialog)).toHaveProp('role', 'document');
+    expect(wrapper.find(StyledDialog)).toHaveProp('role', 'mycustomrole');
   });
 });

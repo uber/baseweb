@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 import type {BaseInputPropsT, InternalStateT} from './types';
 import {getSharedProps} from './utils';
 import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants';
@@ -15,7 +15,12 @@ import {
   Input as StyledInput,
 } from './styled-components';
 
-class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
+const NullComponent = () => null;
+
+class BaseInput<T: EventTarget> extends React.Component<
+  BaseInputPropsT<T>,
+  InternalStateT,
+> {
   static defaultProps = {
     adjoined: ADJOINED.none,
     autoFocus: false,
@@ -44,12 +49,12 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
     }
   }
 
-  onFocus = (e: SyntheticEvent<HTMLElement>) => {
+  onFocus = (e: SyntheticFocusEvent<T>) => {
     this.setState({isFocused: true});
     this.props.onFocus(e);
   };
 
-  onBlur = (e: SyntheticEvent<HTMLElement>) => {
+  onBlur = (e: SyntheticFocusEvent<T>) => {
     this.setState({isFocused: false});
     this.props.onBlur(e);
   };
@@ -99,30 +104,20 @@ class BaseInput extends React.Component<BaseInputPropsT, InternalStateT> {
 
     const sharedProps = getSharedProps(this.props, this.state);
 
-    const InputContainer =
-      getOverride(InputContainerOverride) || StyledInputContainer;
-    const Input = getOverride(InputOverride) || StyledInput;
-    const Before = getOverride(BeforeOverride) || null;
-    const After = getOverride(AfterOverride) || null;
-
+    const [InputContainer, inputContainerProps] = getOverrides(
+      InputContainerOverride,
+      StyledInputContainer,
+    );
+    const [Input, inputProps] = getOverrides(InputOverride, StyledInput);
+    const [Before, beforeProps] = getOverrides(BeforeOverride, NullComponent);
+    const [After, afterProps] = getOverrides(AfterOverride, NullComponent);
     return (
-      <InputContainer
-        {...getOverrideProps(InputContainerOverride)}
-        {...sharedProps}
-      >
-        {Before ? (
-          <Before {...getOverrideProps(BeforeOverride)} {...sharedProps} />
-        ) : null}
-        <Input
-          {...getOverrideProps(InputOverride)}
-          {...this.getInputProps()}
-          {...sharedProps}
-        >
+      <InputContainer {...sharedProps} {...inputContainerProps}>
+        <Before {...sharedProps} {...beforeProps} />
+        <Input {...sharedProps} {...this.getInputProps()} {...inputProps}>
           {type === CUSTOM_INPUT_TYPE.textarea ? value : null}
         </Input>
-        {After ? (
-          <After {...getOverrideProps(AfterOverride)} {...sharedProps} />
-        ) : null}
+        <After {...sharedProps} {...afterProps} />
       </InputContainer>
     );
   }

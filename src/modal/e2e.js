@@ -4,56 +4,52 @@ Copyright (c) 2018 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-// @flow
+/* eslint-env node */
+/* eslint-disable flowtype/require-valid-file-annotation */
+/* global after */
 
-import * as webdriver from 'selenium-webdriver';
-import e2e from '../e2e-test-utils';
-import {suite, examples} from './examples';
+const scenarios = require('./examples-list');
+const {goToUrl} = require('../../e2e/helpers');
 
-const {run, goToUrl} = e2e;
-const {By, until} = webdriver;
+const suite = 'Modal Test Suite';
 
-run((driver, browser) => {
-  describe(suite, function() {
-    test('Focus handled correctly', async function() {
-      await goToUrl(driver, suite, examples.SIMPLE_EXAMPLE);
+const selectors = {
+  closeButton: 'button[aria-label="Close"]',
+  openModal: '.open-modal-button',
+  dialog: '[role="dialog"]',
+};
 
-      // Close modal to start fresh
-      let closeButton = await driver.findElement(
-        By.css('button[aria-label="Close"]'),
-      );
-      closeButton.click();
+describe('The modal component', () => {
+  after((browser, done) => {
+    browser.end(() => done());
+  });
 
-      // Wait for dialog to close
-      await driver.wait(until.stalenessOf(closeButton));
-
-      // Open modal
-      let openModalButton = await driver.findElement(
-        By.css('.open-modal-button'),
-      );
-      openModalButton.click();
-
-      // Wait for dialog to open
-      await driver.wait(until.elementLocated(By.css('[role="document"]')));
-
-      // Dialog should be focused
-      const dialog = await driver.findElement(By.css('[role="document"]'));
-      let focused = await driver.switchTo().activeElement();
-      expect(await dialog.getId()).toBe(await focused.getId());
-
-      // Close modal again
-      closeButton = await driver.findElement(
-        By.css('button[aria-label="Close"]'),
-      );
-      closeButton.click();
-
-      // Wait for dialog to close
-      await driver.wait(until.stalenessOf(closeButton));
-
-      // Focus should have transitioned back to button
-      openModalButton = await driver.findElement(By.css('.open-modal-button'));
-      focused = await driver.switchTo().activeElement();
-      expect(await openModalButton.getId()).toBe(await focused.getId());
-    });
+  it('handles focus changes properly', browser => {
+    goToUrl({
+      suite,
+      test: scenarios.SIMPLE_EXAMPLE,
+      browser,
+    })
+      .initAccessibility()
+      .waitForElementVisible(selectors.closeButton)
+      // close modal to start fresh
+      .click(selectors.closeButton)
+      .waitForElementNotPresent(selectors.closeButton)
+      .click(selectors.openModal)
+      .waitForElementPresent(selectors.dialog)
+      // dialog should be the focused element
+      .assert.hasFocus(selectors.dialog)
+      .assert.accessibility('html', {
+        rules: {
+          'color-contrast': {
+            enabled: false,
+          },
+        },
+      })
+      // close again
+      .click(selectors.closeButton)
+      .waitForElementNotPresent(selectors.closeButton)
+      // open button should be in focus
+      .assert.hasFocus(selectors.openModal);
   });
 });

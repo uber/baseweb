@@ -52,13 +52,13 @@ export default () => {
   Defines if the control is disabled
 * `multi: boolean` - Optional, Defaults to `false`
   Defines if multiple files can be selected
-* `onChange: function` - Optional
+* `onChange: function({file, event})` - Optional
   A function called when a file is selected
-* `onError: function` - Optional, Defaults to `false`
+* `onError: function({error})` - Optional, Defaults to `false`
   A function called when a file upload failed
-* `onFileUploaded: function` - Optional
+* `onFileUploaded: function({file, event})` - Optional
   A function called when file is done uploading. It's not called if autoUpload is set to `false`
-* `onFileRemove: function` - Optional
+* `onFileRemove: function({file, event})` - Optional
   A function called on a remove file action
 `overrides: {Root, ContentContainer, FileDragAndDrop, FileSelectButton, Input}` - Optional
   Overrides for presentational components. See "Presentational Components Props API" below.

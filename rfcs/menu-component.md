@@ -9,7 +9,7 @@ import {StatefulMenu} from 'baseui/menu';
 
 const ITEMS = [{label: 'item1'}];
 
-function onItemSelect(item) {...}
+function onItemSelect({item}) {...}
 
 export default () => (
   <StatefulMenu items={ITEMS} onItemSelect={onItemSelect} />
@@ -30,7 +30,7 @@ const PROFILE_ITEMS = [{
   imgUrl: 'someImgUrl',
 }]
 
-function onItemSelect(item) {...}
+function onItemSelect({item}) {...}
 
 export default () => (
   <StatefulMenu
@@ -104,7 +104,7 @@ export default () => (
   Used to set initial state for the component. All the component's state can be controlled via props as well.
 * `stateReducer: (changeType: string, changes: Object, currentState: Object) => Object`
   State reducer to intercept state changes and return new internal state
-* `onItemSelect: (selectedItem: ?Object) => any`
+* `onItemSelect: ({item: ?Object}) => any`
 
 ## Render Props API
 

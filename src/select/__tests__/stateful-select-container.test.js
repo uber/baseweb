@@ -58,13 +58,10 @@ describe('Stateful Select Container', function() {
         label: 'label for 123',
       },
     ];
-    let textValue = 'some good value';
     let events, stateReducerMock, instance, event;
     event = {target: {checked: true}};
     const handlers = [
       ['onChange', STATE_CHANGE_TYPE.select, {selectedOptions}],
-      ['onChange', STATE_CHANGE_TYPE.clearAll, {selectedOptions: []}],
-      ['onChange', STATE_CHANGE_TYPE.keyDown, {textValue}],
     ];
     beforeEach(function() {
       events = {
@@ -85,8 +82,11 @@ describe('Stateful Select Container', function() {
       'should call state reducer to apply new state for %s event with %s type',
       (eventHandler, type, newState) => {
         const handler = instance[eventHandler];
-        const params = Object.assign({}, newState, {type});
-        handler(event, params);
+        const params = Object.assign({}, newState, {type}, {event});
+        handler({
+          ...params,
+          event,
+        });
         expect(stateReducerMock).toHaveBeenCalledWith(
           type,
           newState,
@@ -94,7 +94,10 @@ describe('Stateful Select Container', function() {
           event,
           params,
         );
-        expect(events[eventHandler]).toHaveBeenCalledWith(event, params);
+        expect(events[eventHandler]).toHaveBeenCalledWith({
+          ...params,
+          event: expect.anything(),
+        });
       },
     );
 

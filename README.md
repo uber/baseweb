@@ -1,10 +1,8 @@
 # BASE UI
 
-[![Join Slack](https://img.shields.io/badge/Join%20us%20on-Slack-e01563.svg)](https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA)
+[![Join Slack](https://img.shields.io/badge/Join%20us%20on-Slack-e01563.svg)](https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA) [![We are hiring](https://img.shields.io/badge/We%20are%20hiring-Join%20us!-blue.svg)](https://www.uber.com/careers/list/40899)
 
-[![We are hiring](https://img.shields.io/badge/We%20are%20hiring-Join%20us!-blue.svg)](https://www.uber.com/careers/list/40899)
-
-**Currently baseui is under active development, and may not be ready for production use.**
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/gergelyke.svg)](https://saucelabs.com/u/gergelyke)
 
 [![Build status](https://badge.buildkite.com/92a7500cd98f619621c4801833d8b358c2fd79efc9b98f1b98.svg?branch=master)](https://buildkite.com/uberopensource/baseui)
 
@@ -46,7 +44,9 @@ export default function Hello() {
 
 ## Docs
 
-[Docs by Storybook](https://baseui.netlify.com/)
+* [Creating custom themes](src/themes/README.md)
+* [Event handler usage](docs/event-handler.md)
+* [Docs by Storybook](https://baseui.netlify.com/)
 
 ## Contributing
 

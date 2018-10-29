@@ -15,9 +15,11 @@ export {
   Input as StyledInput,
   InputContainer as StyledInputContainer,
   SingleSelection as StyledSingleSelection,
-  SearchIcon as StyledSearchIcon,
+  SelectComponentIcon as StyledSelectComponentIcon,
   DropDown as StyledDropDown,
   Option as StyledOption,
   DropDownItem as StyledDropDownItem,
+  SelectSpinner as StyledSelectSpinner,
+  SelectionContainer as StyledSelectionContainer,
 } from './styled-components';
 export {ICON, OPTIONS, TYPE} from './constants';

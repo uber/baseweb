@@ -19,8 +19,9 @@ import {
   DropdownButton as StyledDropdownButton,
 } from './styled-components';
 import {ArrowLeft, ArrowRight, ArrowDown} from './icons';
-import {getOverrideObject} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides';
 import type {PaginationPropsT, PaginationStateT} from './types';
+import type {OnItemSelectFnT} from '../menu/types';
 
 type MenuItemT = {
   label: number,
@@ -59,25 +60,27 @@ export default class Pagination extends React.PureComponent<
     return menuOptions;
   });
 
-  onMenuItemSelect = (item: MenuItemT) => {
+  onMenuItemSelect: OnItemSelectFnT = ({item}) => {
     const {onPageChange, currentPage} = this.props;
     const page = item.label;
     if (page !== currentPage) {
-      onPageChange && onPageChange(page, currentPage);
+      onPageChange && onPageChange({nextPage: page, prevPage: currentPage});
       this.onDropdownButtonClick();
     }
   };
 
-  onPrevClick = (...args: *) => {
+  onPrevClick = (event: SyntheticEvent<>) => {
     const {currentPage, onPageChange, onPrevClick} = this.props;
-    onPageChange && onPageChange(currentPage - 1, currentPage);
-    onPrevClick && onPrevClick(args);
+    onPageChange &&
+      onPageChange({nextPage: currentPage - 1, prevPage: currentPage});
+    onPrevClick && onPrevClick({event});
   };
 
-  onNextClick = (...args: *) => {
+  onNextClick = (event: SyntheticEvent<>) => {
     const {currentPage, onPageChange, onNextClick} = this.props;
-    onPageChange && onPageChange(currentPage + 1, currentPage);
-    onNextClick && onNextClick(args);
+    onPageChange &&
+      onPageChange({nextPage: currentPage + 1, prevPage: currentPage});
+    onNextClick && onNextClick({event});
   };
 
   onDropdownButtonClick = () => {
@@ -99,34 +102,31 @@ export default class Pagination extends React.PureComponent<
     const {overrides = {}, currentPage, labels, numPages} = this.props;
     const {isMenuOpen} = this.state;
 
-    const {component: Root, props: rootProps} = getOverrideObject(
-      overrides.Root,
-      StyledRoot,
-    );
-    const {component: PrevButton, props: prevButtonProps} = getOverrideObject(
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const [PrevButton, prevButtonProps] = getOverrides(
       overrides.PrevButton,
       StyledBaseButton,
     );
-    const {component: NextButton, props: nextButtonProps} = getOverrideObject(
+    const [NextButton, nextButtonProps] = getOverrides(
       overrides.NextButton,
       StyledBaseButton,
     );
-    const {component: MaxLabel, props: maxLabelProps} = getOverrideObject(
+    const [MaxLabel, maxLabelProps] = getOverrides(
       overrides.MaxLabel,
       StyledMaxLabel,
     );
-    const {
-      component: DropdownContainer,
-      props: dropdownContainerProps,
-    } = getOverrideObject(overrides.DropdownContainer, StyledDropdownContainer);
-    const {
-      component: DropdownButton,
-      props: dropdownButtonProps,
-    } = getOverrideObject(overrides.DropdownButton, StyledDropdownButton);
-    const {
-      component: DropdownMenu,
-      props: dropdownMenuProps,
-    } = getOverrideObject(overrides.DropdownMenu, Menu);
+    const [DropdownContainer, dropdownContainerProps] = getOverrides(
+      overrides.DropdownContainer,
+      StyledDropdownContainer,
+    );
+    const [DropdownButton, dropdownButtonProps] = getOverrides(
+      overrides.DropdownButton,
+      StyledDropdownButton,
+    );
+    const [DropdownMenu, dropdownMenuProps] = getOverrides(
+      overrides.DropdownMenu,
+      Menu,
+    );
 
     const options = this.getMenuOptions(numPages);
 
@@ -166,7 +166,15 @@ export default class Pagination extends React.PureComponent<
               initialState={{
                 highlightedIndex: Math.max(currentPage - 1, 0),
               }}
-              overrides={{List: StyledDropdownMenu}}
+              overrides={{
+                List: {
+                  component: StyledDropdownMenu,
+                  // Access $style manually because it has gone through transformation
+                  // from the override helper function already
+                  // $FlowFixMe
+                  style: dropdownMenuProps.$style,
+                },
+              }}
               {...dropdownMenuProps}
             />
           )}

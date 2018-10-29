@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* global document */
+/* global window */
 import * as React from 'react';
 import {findDOMNode} from 'react-dom';
 import {
@@ -13,21 +14,16 @@ import {
   Input as StyledInput,
   InputContainer as StyledInputContainer,
   SingleSelection as StyledSingleSelection,
-  SearchIcon as StyledSearchIcon,
+  SelectComponentIcon as StyledSelectComponentIcon,
+  SelectionContainer as StyledSelectionContainer,
 } from './styled-components';
 
 import {Input as InputComponent} from '../input';
 import {Tag as StyledTag} from '../tag';
 import {ICON, TYPE, STATE_CHANGE_TYPE} from './constants';
 import SelectDropDown from './dropdown';
-import type {
-  LabelT,
-  OptionT,
-  PropsT,
-  StatelessStateT,
-  ChangeActionT,
-} from './types';
-import {getOverride} from '../helpers/overrides';
+import type {OptionT, PropsT, StatelessStateT} from './types';
+import {getOverrides} from '../helpers/overrides';
 import {KEY_STRINGS} from '../menu/constants';
 
 class Select extends React.Component<PropsT, StatelessStateT> {
@@ -35,6 +31,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     overrides: {},
     selectedOptions: [],
     options: [],
+    onTextInputChange: () => {},
     onChange: () => {},
     onBlur: () => {},
     onFocus: () => {},
@@ -46,38 +43,22 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     autoFocus: false,
     filterable: false,
     multiple: false,
+    maxDropdownHeight: '900px',
     tabIndex: 0,
     textValue: '',
-    filterOption: (option: OptionT, query: string) => {
-      return (
-        typeof option.label === 'string' &&
-        option.label.toLowerCase().indexOf(query.toLowerCase()) >= 0
-      );
-    },
+    type: TYPE.select,
   };
 
   state = {
     filteredOptions: null,
-    textValue: this.props.textValue,
-    selectedOptions: this.props.selectedOptions,
+    textValue: '',
     isDropDownOpen: false,
+    options: [],
+    optionsLoaded: false,
   };
 
   constructor(props: PropsT) {
     super(props);
-    if (props.type === TYPE.select) {
-      const {selectedOptions} = this.state;
-      const options = this.getOptions();
-      selectedOptions.forEach(selectedOption => {
-        // selected option is not in all options and needs to be added on top
-        if (!options.find(selected => selected.id === selectedOption.id)) {
-          options.unshift({
-            id: selectedOption.id,
-            label: this.getOptionLabel(selectedOption),
-          });
-        }
-      });
-    }
   }
 
   componentDidMount() {
@@ -105,85 +86,111 @@ class Select extends React.Component<PropsT, StatelessStateT> {
     }
   };
 
-  onFocus = (e: SyntheticEvent<HTMLInputElement>) => {};
+  onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    // $FlowFixMe
+    const newTextValue = e.target.value;
+    this.setState({
+      textValue: newTextValue,
+    });
+    this.props.onTextInputChange(e);
+    this.openDropDown(newTextValue, () => {
+      if (this.props.filterable) {
+        let filteredOptions = this.state.options.filter(option =>
+          this.filterOption(option, newTextValue),
+        );
+        // reset filtered options for new search
+        if (!filteredOptions.length) {
+          filteredOptions = newTextValue ? [] : null;
+        }
+        this.setState({filteredOptions});
+      }
+    });
+  };
 
-  onBlur = (e: SyntheticEvent<HTMLInputElement>) => {};
+  onClearAll = (event: SyntheticEvent<HTMLElement>) => {
+    this.props.onChange({
+      event,
+      type: STATE_CHANGE_TYPE.unselect,
+      selectedOptions: [],
+    });
+  };
 
-  onMouseEnter = (e: SyntheticEvent<HTMLInputElement>) => {};
-
-  onMouseLeave = (e: SyntheticEvent<HTMLInputElement>) => {};
-
-  onChange = (
-    e: SyntheticEvent<HTMLInputElement>,
-    type: ChangeActionT,
-    id?: string = '',
-    label?: LabelT,
+  onSelect = (
+    event: SyntheticEvent<HTMLElement> | KeyboardEvent,
+    pendingOption?: OptionT = {
+      id: '',
+      label: '',
+    },
   ) => {
-    const multiple = this.isMultiple();
-    const selected = this.state.selectedOptions.find(tag => tag.id === id);
-    let selectedOptions;
-    switch (type) {
-      case STATE_CHANGE_TYPE.select:
-        if (!selected) {
-          selectedOptions = multiple ? this.state.selectedOptions.slice() : [];
-          selectedOptions.push({id, label});
-          this.setState({selectedOptions: selectedOptions});
-          if (this.props.type === TYPE.select && !multiple) {
-            this.setState({isDropDownOpen: false});
-          }
-          this.props.onChange(e, {type: type, id, label, selectedOptions});
-        } else if (multiple) {
-          selectedOptions = this.state.selectedOptions.filter(
-            selectedOption => selectedOption.id !== selected.id,
-          );
-          this.setState({
-            selectedOptions: selectedOptions,
-          });
-          this.props.onChange(e, {
-            type: STATE_CHANGE_TYPE.unselect,
-            id,
-            label,
-            selectedOptions,
-          });
-        }
-        break;
-      case STATE_CHANGE_TYPE.clearAll: {
-        const selectedOptions = [];
-        this.setState({selectedOptions: selectedOptions});
-        this.props.onChange(e, {type: type, selectedOptions});
-        break;
-      }
-      case STATE_CHANGE_TYPE.keyDown: {
-        if (!this.handledHotKeys(e)) {
-          // $FlowFixMe
-          const newTextValue = e.target.value;
-          this.setState({textValue: newTextValue});
-          if (this.props.filterable) {
-            let filteredOptions = this.props.options.filter(option =>
-              this.props.filterOption(option, newTextValue),
-            );
-            // reset filtered options for new search
-            if (!filteredOptions.length) {
-              filteredOptions = newTextValue ? [] : null;
-            }
-            this.setState({filteredOptions});
-          }
-          this.setState({isDropDownOpen: true});
-          this.props.onChange(e, {type: type, textValue: newTextValue});
-        }
-      }
+    const {multiple, selectedOptions} = this.props;
+
+    const selected = selectedOptions.find(tag => tag.id === pendingOption.id);
+    const isSelect = !selected;
+    if (isSelect) {
+      // select
+      this.props.onChange({
+        event,
+        type: STATE_CHANGE_TYPE.select,
+        option: pendingOption,
+        selectedOptions: multiple
+          ? selectedOptions.concat([pendingOption])
+          : [pendingOption],
+      });
+    } else if (multiple) {
+      // unselect (only possible for multi-select)
+      this.props.onChange({
+        event,
+        type: STATE_CHANGE_TYPE.unselect,
+        option: pendingOption,
+        selectedOptions: selectedOptions.filter(
+          selectedOption => selectedOption.id !== (selected || {}).id,
+        ),
+      });
+    }
+
+    // Always close single-select dropdown after toggling selection
+    if (this.props.type === TYPE.select && !multiple) {
+      this.setState({isDropDownOpen: false});
     }
   };
 
+  onRemoveTag = (
+    event: SyntheticEvent<HTMLElement> | KeyboardEvent,
+    option: OptionT,
+  ) => {
+    this.props.onChange({
+      event,
+      type: STATE_CHANGE_TYPE.unselect,
+      option,
+      selectedOptions: this.props.selectedOptions.filter(
+        selectedOption => selectedOption.id !== option.id,
+      ),
+    });
+  };
+
+  loadOptions(query?: string): Promise<void> {
+    return new Promise(resolve => {
+      const {options} = this.props;
+      this.setState({optionsLoaded: false});
+      if (typeof options === 'function') {
+        options(query).then(loadedOptions => {
+          this.setState({options: loadedOptions, optionsLoaded: true}, resolve);
+        });
+      } else {
+        this.setState({options, optionsLoaded: true}, resolve);
+      }
+    });
+  }
+
   getOptions() {
-    return this.state.filteredOptions || this.props.options || [];
+    return this.state.filteredOptions || this.state.options || [];
   }
 
   render() {
-    const {overrides: {Root: RootOverride} = {}} = this.props;
-    const Root = getOverride(RootOverride) || StyledRoot;
+    const {overrides = {}} = this.props;
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     return (
-      <Root>
+      <Root {...rootProps}>
         {this.props.type === TYPE.search ? this.getSearch() : this.getSelect()}
         {this.getDropDown()}
       </Root>
@@ -192,37 +199,50 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getSelect() {
     const {
-      overrides: {
-        Root: RootOverride,
-        Input: InputOverride,
-        SearchIcon: SearchIconOverride,
-      } = {},
-    } = this.props;
-    const Root = getOverride(RootOverride) || StyledRoot;
-    const Input = getOverride(InputOverride) || StyledInput;
-    const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {placeholder} = this.props;
-    const {selectedOptions} = this.state;
+      Root: [Root, rootProps],
+      Input: [Input, inputProps],
+      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
+      InputContainer: [InputContainer, inputContainerProps],
+    } = this.getSubComponents();
+    const {placeholder, disabled, selectedOptions} = this.props;
+    const events = disabled
+      ? {
+          onClickCapture: e => e.stopPropagation(),
+        }
+      : {
+          onKeyDown: e => this.handledHotKeys(e),
+          onClick: () => {
+            const newValue = !this.state.isDropDownOpen;
+            newValue
+              ? this.openDropDown()
+              : this.setState({isDropDownOpen: newValue});
+          },
+        };
     return (
-      <div
-        tabIndex={this.props.tabIndex}
-        onKeyDown={e => this.handledHotKeys(e)}
-        onClick={() => {
-          this.setState({isDropDownOpen: !this.state.isDropDownOpen});
-        }}
-      >
+      <div tabIndex={this.props.tabIndex} {...events}>
         <InputComponent
           disabled={true}
           placeholder={!selectedOptions.length ? placeholder : ''}
           overrides={{
-            Root: Root,
-            Input: Input,
+            Root: {component: Root, props: rootProps},
+            Input: {
+              component: Input,
+              props: {
+                ...this.getAccessibilityProps(),
+                ...inputProps,
+              },
+            },
+            InputContainer: {
+              component: InputContainer,
+              props: inputContainerProps,
+            },
             After: () => (
-              <SearchIcon
+              <SelectComponentIcon
                 $type={ICON.select}
                 src={
                   'data:image/svg+xml;utf8,<svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.29289 5.29289L0.853553 0.853553C0.538571 0.538571 0.761654 0 1.20711 0H10.7929C11.2383 0 11.4614 0.538571 11.1464 0.853554L6.70711 5.29289C6.31658 5.68342 5.68342 5.68342 5.29289 5.29289Z" transform="translate(12) scale(-1 1)" fill="#666666"/></svg>'
                 }
+                {...selectComponentIconProps}
               />
             ),
             Before: () => this.getMultipleSelections(),
@@ -234,17 +254,11 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getSearch() {
     const {
-      overrides: {
-        Input: InputOverride,
-        InputContainer: InputContainerOverride,
-        SearchIcon: SearchIconOverride,
-      } = {},
-    } = this.props;
-    const Input = getOverride(InputOverride) || StyledInput;
-    const InputContainer =
-      getOverride(InputContainerOverride) || StyledInputContainer;
-    const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {placeholder, error} = this.props;
+      InputContainer: [InputContainer, inputContainerProps],
+      Input: [Input, inputProps],
+      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
+    } = this.getSubComponents();
+    const {placeholder, error, disabled} = this.props;
     const {textValue} = this.state;
     return (
       <InputComponent
@@ -252,26 +266,31 @@ class Select extends React.Component<PropsT, StatelessStateT> {
         placeholder={placeholder}
         value={textValue}
         //$FlowFixMe
-        onChange={(e: SyntheticInputEvent<HTMLElement>) =>
-          this.setState({textValue: e.target.value})
-        }
+        onChange={this.onTextInputChange}
         overrides={{
           Input: {
             props: {
+              ...this.getAccessibilityProps(),
               tabIndex: this.props.tabIndex,
               // onKeyDown happens before onChange to avoid race condition in set of value and hot keys processing
-              onKeyDown: e => this.onChange(e, STATE_CHANGE_TYPE.keyDown),
+              onKeyDown: e => this.handledHotKeys(e),
+              ...inputProps,
             },
             component: Input,
           },
-          InputContainer: InputContainer,
+          InputContainer: {
+            component: InputContainer,
+            props: inputContainerProps,
+          },
           After: () => (
-            <SearchIcon
-              onClick={e => this.onChange(e, STATE_CHANGE_TYPE.clearAll)}
+            <SelectComponentIcon
+              $disabled={disabled}
+              onClick={this.onClearAll}
               $type={ICON.clearAll}
               src={
                 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z" fill="#999999"/></svg>'
               }
+              {...selectComponentIconProps}
             />
           ),
           Before: () => this.getMultipleSelections(),
@@ -282,63 +301,79 @@ class Select extends React.Component<PropsT, StatelessStateT> {
 
   getMultipleSelections() {
     const {
-      overrides: {Tag: TagOverride, SearchIcon: SearchIconOverride} = {},
-      type,
-    } = this.props;
-    const Tag = getOverride(TagOverride) || StyledTag;
-    const SearchIcon = getOverride(SearchIconOverride) || StyledSearchIcon;
-    const {selectedOptions} = this.state;
+      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
+      Tag: [Tag, tagProps],
+      SingleSelection: [SingleSelection, singleSelectionProps],
+      SelectionContainer: [SelectionContainer, selectionContainerProps],
+    } = this.getSubComponents();
+    const {type, disabled, selectedOptions} = this.props;
     const multiple = this.isMultiple();
     return (
-      <React.Fragment>
+      <SelectionContainer role="list" {...selectionContainerProps}>
         {type === TYPE.search && (
-          <SearchIcon
+          <SelectComponentIcon
             $type={ICON.loop}
             src={
               'data:image/svg+xml;utf8,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z" transform="translate(1 1)" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round"/></svg>'
             }
+            {...selectComponentIconProps}
           />
         )}
         {selectedOptions.map(
           option =>
             multiple ? (
               <Tag
+                overrides={{Root: {props: {role: 'listitem'}}}}
+                disabled={disabled}
                 key={option.id}
                 onActionClick={e => {
-                  this.setState({
-                    selectedOptions: this.state.selectedOptions.filter(
-                      selectedOption => selectedOption.id !== option.id,
-                    ),
-                  });
+                  this.onRemoveTag(e, option);
                   e.stopPropagation();
                 }}
+                {...tagProps}
               >
                 {this.getSelectedOptionLabel(option)}
               </Tag>
             ) : (
-              <StyledSingleSelection key={option.id}>
+              <SingleSelection
+                role="listitem"
+                key={option.id}
+                $disabled={disabled}
+                {...singleSelectionProps}
+              >
                 {this.getSelectedOptionLabel(option)}
-              </StyledSingleSelection>
+              </SingleSelection>
             ),
         )}
-      </React.Fragment>
+      </SelectionContainer>
     );
   }
 
   getDropDown() {
-    const {overrides, type, rows} = this.props;
+    const {overrides, type, selectedOptions} = this.props;
+    let maxDropdownHeight = this.props.maxDropdownHeight;
+    if (
+      __BROWSER__ &&
+      maxDropdownHeight.slice(-2) === 'px' &&
+      parseInt(maxDropdownHeight) > window.innerHeight
+    ) {
+      // only for pixel-sized maxDropdownHeight
+      maxDropdownHeight = '90vh';
+    }
     const options = this.getOptions();
-    const {isDropDownOpen, selectedOptions} = this.state;
+    const {isDropDownOpen, optionsLoaded} = this.state;
     const dropDownProps = {
-      rows,
       type,
+      maxDropdownHeight,
       options,
       overrides,
+      multiple: this.isMultiple(),
+      optionsLoaded,
       isDropDownOpen,
       selectedOptions,
       getOptionLabel: this.getOptionLabel.bind(this),
-      onChange: this.onChange.bind(this),
-      onItemSelect: (option, e) => this.handledHotKeys(e, option),
+      onItemSelect: ({item, event}) => this.handledHotKeys(event, item),
+      onChange: this.onSelect.bind(this),
     };
     return <SelectDropDown {...dropDownProps} />;
   }
@@ -355,43 +390,102 @@ class Select extends React.Component<PropsT, StatelessStateT> {
       : this.getOptionLabel(option);
   }
 
+  filterOption(option: OptionT, query: string) {
+    if (this.props.filterOption) {
+      return this.props.filterOption(option, query);
+    }
+
+    const label = this.getOptionLabel(option);
+    return (
+      typeof label === 'string' &&
+      label.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
   isMultiple() {
     const {type, multiple} = this.props;
     return type === TYPE.search ? true : multiple;
   }
 
+  openDropDown(newTextValue?: string, callback?: () => void) {
+    this.setState({isDropDownOpen: true}, () => {
+      this.loadOptions(newTextValue).then(callback);
+    });
+  }
+
   handledHotKeys(
-    // $FlowFixMe
-    e: SyntheticEvent<EventTarget> | KeyboardEvent,
+    e?: SyntheticEvent<HTMLElement> | KeyboardEvent,
     option?: ?OptionT,
   ) {
+    if (!e || !e.key) {
+      return;
+    }
     switch (e.key) {
       case KEY_STRINGS.ArrowDown:
       case KEY_STRINGS.Space:
         if (e.key === KEY_STRINGS.Space && this.props.type === TYPE.search) {
           return;
         }
-        this.setState({isDropDownOpen: true});
-        e.preventDefault();
-        e.stopPropagation();
-        return true;
+        if (!this.state.isDropDownOpen) {
+          this.openDropDown();
+          e.preventDefault();
+          e.stopPropagation();
+          return true;
+        }
+        return;
       case KEY_STRINGS.Escape:
         this.setState({isDropDownOpen: false});
         return true;
       case KEY_STRINGS.Enter:
         if (option) {
-          this.onChange(e, STATE_CHANGE_TYPE.select, option.id, option.label);
+          this.onSelect(e, option);
         }
         return;
       case KEY_STRINGS.Backspace:
         if (this.isMultiple() && !this.state.textValue) {
-          const selectedOptions = this.state.selectedOptions.slice();
-          selectedOptions.pop();
-          this.setState({selectedOptions});
+          const {selectedOptions} = this.props;
+          if (selectedOptions.length) {
+            this.onRemoveTag(e, selectedOptions[selectedOptions.length - 1]);
+          }
           return true;
         }
         return;
     }
+  }
+
+  getSubComponents() {
+    const {overrides = {}} = this.props;
+    return {
+      Input: getOverrides(overrides.Input, StyledInput),
+      Tag: getOverrides(overrides.Tag, StyledTag),
+      Root: getOverrides(overrides.Root, StyledRoot),
+      SelectionContainer: getOverrides(
+        overrides.SelectionContainer,
+        StyledSelectionContainer,
+      ),
+      SelectComponentIcon: getOverrides(
+        overrides.SelectComponentIcon,
+        StyledSelectComponentIcon,
+      ),
+      SingleSelection: getOverrides(
+        overrides.SingleSelection,
+        StyledSingleSelection,
+      ),
+      InputContainer: getOverrides(
+        overrides.InputContainer,
+        StyledInputContainer,
+      ),
+    };
+  }
+
+  getAccessibilityProps() {
+    const {type} = this.props;
+    const {isDropDownOpen} = this.state;
+    return {
+      role: 'combobox',
+      'aria-autocomplete': type === TYPE.search ? 'list' : 'none',
+      'aria-expanded': isDropDownOpen,
+    };
   }
 }
 
