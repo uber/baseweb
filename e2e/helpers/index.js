@@ -16,19 +16,8 @@ function formatFileName(testName) {
   return testName.toLowerCase().replace(/ /g, '-');
 }
 
-function assertVisuals({browser, id}) {
-  const fileName = formatFileName(id);
-
-  if (browser.options.desiredCapabilities.isVrt) {
-    browser
-      .resizeWindow(1024, 768)
-      .assert.screenshotIdenticalToBaseline(fileName);
-  }
-}
-
 module.exports = {
   getUrl,
   goToUrl,
   formatFileName,
-  assertVisuals,
 };

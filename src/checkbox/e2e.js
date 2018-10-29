@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl, assertVisuals} = require('../../e2e/helpers');
+const {goToUrl} = require('../../e2e/helpers');
 
 const suite = 'Checkbox Test Suite';
 
@@ -36,10 +36,5 @@ describe('The checkbox component', () => {
       .click(selectors.radioTwo)
       .assert.accessibility('html', {})
       .assert.attributeEquals(selectors.radioMain, 'checked', 'true');
-
-    assertVisuals({
-      browser,
-      id: scenarios.INDETERMINATE,
-    });
   });
 });

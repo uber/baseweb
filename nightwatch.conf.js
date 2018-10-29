@@ -18,9 +18,6 @@ const environments = {
       browserName: 'chrome',
       platform: 'macOS 10.12',
       extendedDebugging: true,
-      // Disables the visual tests temporarily to unblock pending PRs
-      // This probably needs screenshots to be updated?
-      // isVrt: true,
       ...buildSettings,
     },
   },
@@ -54,9 +51,6 @@ const sauceLabsBaseConfig = {
   access_key: '${SAUCE_ACCESS_KEY}',
   globals: {
     waitForConditionTimeout: 10000,
-    visual_regression_settings: {
-      prompt: !!process.env.VRT_OVERRIDE,
-    },
   },
   desiredCapabilities: {
     'tunnel-identifier': JOB_IDENTIFIER,
@@ -81,11 +75,9 @@ module.exports = {
   custom_assertions_path: [
     resolve(__dirname, 'e2e/assertions'),
     resolve(__dirname, 'node_modules/nightwatch-accessibility/assertions'),
-    resolve(__dirname, 'node_modules/@gergelyke/nightwatch-vrt/assertions'),
   ],
   custom_commands_path: [
     resolve(__dirname, 'node_modules/nightwatch-accessibility/commands'),
-    resolve(__dirname, 'node_modules/@gergelyke/nightwatch-vrt/commands'),
   ],
 
   selenium: {

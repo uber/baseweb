@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl, assertVisuals} = require('../../e2e/helpers');
+const {goToUrl} = require('../../e2e/helpers');
 
 const suite = 'Button Test Suite';
 
@@ -27,10 +27,5 @@ describe('The button component', () => {
       .initAccessibility()
       .waitForElementVisible('button')
       .assert.accessibility('html', {});
-
-    assertVisuals({
-      browser,
-      id: scenarios.BUTTON_WITH_ENHANCERS,
-    });
   });
 });
