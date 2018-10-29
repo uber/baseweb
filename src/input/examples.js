@@ -126,6 +126,7 @@ export default {
           endEnhancer=".com"
           size={SIZE.compact}
           placeholder="Initially focused input"
+          overrides={{Input: {props: {'data-test': 'e2e'}}}}
         />
         <br />
         <Input
