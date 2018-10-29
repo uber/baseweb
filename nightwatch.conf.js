@@ -47,11 +47,11 @@ const environments = {
 
 const sauceLabsBaseConfig = {
   launch_url: process.env.E2E_LAUNCH_URL || 'http://localhost:8080',
-  selenium_port: 80,
-  selenium_host: 'ondemand.saucelabs.com',
+  'webdriver.port': 80,
+  'webdriver.host': 'ondemand.saucelabs.com',
   silent: true,
-  username: '${SAUCE_USERNAME}',
-  access_key: '${SAUCE_ACCESS_KEY}',
+  'webdriver.username': '${SAUCE_USERNAME}',
+  'webdriver.access_key': '${SAUCE_ACCESS_KEY}',
   globals: {
     waitForConditionTimeout: 10000,
     visual_regression_settings: {
@@ -104,8 +104,8 @@ module.exports = {
   test_settings: {
     default: {
       launch_url: process.env.E2E_LAUNCH_URL || 'http://localhost:8080',
-      selenium_port: 4444,
-      selenium_host: 'localhost',
+      'webdriver.port': 4444,
+      'webdriver.host': 'localhost',
       silent: true,
       desiredCapabilities: {
         browserName: 'chrome',

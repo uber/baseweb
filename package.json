@@ -83,7 +83,7 @@
     "license-check-and-add": "^2.3.6",
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
-    "nightwatch": "^0.9.21",
+    "nightwatch": "^1.0.11",
     "nightwatch-accessibility": "^1.6.0",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.4.1",
