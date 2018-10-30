@@ -93,8 +93,8 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     paddingRight: $theme.sizing.scale600,
     paddingBottom: $theme.sizing.scale600,
     paddingLeft: $theme.sizing.scale600,
-    marginTop: $theme.sizing.scale600,
-    marginBottom: $theme.sizing.scale600,
+    marginTop: $theme.sizing.scale300,
+    marginBottom: $theme.sizing.scale300,
     backgroundColor:
       getBackgroundColor($kind, $theme) || $theme.colors.primary500,
     borderRadius: $theme.borders.useRoundedCorners
