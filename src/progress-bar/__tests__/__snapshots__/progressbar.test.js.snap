@@ -2,24 +2,9 @@
 
 exports[`Stateless progress bar should render component: Component has correct render 1`] = `
 <ProgressBar
-  getProgressLabel={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          75,
-          100,
-        ],
-      ],
-      "results": Array [
-        Object {
-          "isThrow": false,
-          "value": undefined,
-        },
-      ],
-    }
-  }
+  getProgressLabel={[MockFunction]}
   overrides={Object {}}
-  showLabel={true}
+  showLabel={false}
   successValue={100}
   value={75}
 >
@@ -48,14 +33,6 @@ exports[`Stateless progress bar should render component: Component has correct r
             />
           </MockStyledComponent>
         </div>
-      </MockStyledComponent>
-      <MockStyledComponent
-        $successValue={100}
-        $value={75}
-      >
-        <div
-          styled-component="true"
-        />
       </MockStyledComponent>
     </div>
   </MockStyledComponent>

@@ -37,11 +37,11 @@ describe('Stateless progress bar', function() {
     expect(wrapper).toMatchSnapshot('Component has correct render');
   });
 
-  test('should not render label', function() {
-    allProps.showLabel = false;
+  test('should render label', function() {
+    allProps.showLabel = true;
     wrapper = mount(<ProgressBar {...allProps} />);
     const label = wrapper.find(StyledLabel);
-    expect(label.length).toBe(0);
+    expect(label.length).toBe(1);
   });
 
   test.each([['BarProgress'], ['Label'], ['Bar'], ['Root']])(
@@ -51,6 +51,7 @@ describe('Stateless progress bar', function() {
       allProps.overrides = {
         [subcomponentName]: Subcomponent,
       };
+      allProps.showLabel = true;
       wrapper = mount(<ProgressBar {...allProps} />);
       const instance = wrapper.find(Subcomponent);
       expect(instance.length).toBe(1);
@@ -60,6 +61,7 @@ describe('Stateless progress bar', function() {
   describe('Custom progress label', function() {
     const customData = 'data-custom-label-for-progress-bar';
     beforeEach(function() {
+      allProps.showLabel = true;
       allProps.getProgressLabel = jest
         .fn()
         .mockImplementation(() => <div {...{[customData]: true}} />);

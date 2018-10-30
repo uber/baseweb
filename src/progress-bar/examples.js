@@ -14,7 +14,7 @@ export const tests = {
   SIMPLE_EXAMPLE: 'ProgressBar component',
   STYLE_PROPS_OVERRIDES: 'ProgressBar style and props overrides',
   CUSTOM_SUCCESS_VALUE: 'ProgressBar with custom success value of 2000',
-  SIMPLE_EXAMPLE_WITH_HIDDEN_LABEL: 'ProgressBar with hidden label',
+  SIMPLE_EXAMPLE_WITH_LABEL: 'ProgressBar with label',
 };
 let updateProgress;
 
@@ -31,7 +31,7 @@ class ProgressBarContainer extends React.Component<
   static defaultProps = {
     value: 0,
     successValue: 100,
-    showLabel: true,
+    showLabel: false,
     overrides: {},
   };
   state = {value: this.props.value};
@@ -88,8 +88,8 @@ export default {
       />
     );
   },
-  [tests.SIMPLE_EXAMPLE_WITH_HIDDEN_LABEL]: function Story3() {
-    return <ProgressBarContainer showLabel={false} />;
+  [tests.SIMPLE_EXAMPLE_WITH_LABEL]: function Story3() {
+    return <ProgressBarContainer showLabel={true} />;
   },
   [tests.STYLE_PROPS_OVERRIDES]: function Story4() {
     return (

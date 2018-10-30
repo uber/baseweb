@@ -23,7 +23,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     successValue: 100,
     value: 0,
     overrides: {},
-    showLabel: true,
+    showLabel: false,
   };
 
   render() {
