@@ -11,11 +11,7 @@ import Pagination from './pagination';
 import {KIND} from '../button';
 
 export const suite = 'Pagination Test Suite';
-export const examples = {
-  STATEFUL_PAGINATION: 'Stateful Pagination',
-  STATELESS_PAGINATION: 'Stateless Pagination',
-  PAGINATION_OVERRIDE: 'With Overrides',
-};
+import examples from './examples-list';
 
 export default {
   [examples.STATEFUL_PAGINATION]: function Story1() {
