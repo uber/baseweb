@@ -25,7 +25,7 @@ export type OverridesT = {
 export type PropsT = {
   value: Array<number>,
   range: Array<number>,
-  step?: number,
+  step?: ?number,
   overrides?: OverridesT,
   tabIndex: number,
   error: boolean,
