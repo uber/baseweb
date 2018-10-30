@@ -8,39 +8,58 @@ Delete this line and any sections, exports, props, etc below where applicable.
 
 ```javascript
 import * as React from 'react';
-import {Foo} from 'baseui/foo';
-
-export default () => <Foo prop={true} />;
-```
-
-### Advanced usage
 
 ```javascript
 import * as React from 'react';
-import {Foo} from 'baseui/foo';
+import {Table, Thead, TheadTr, Th, Tbody, Tr, Td} from 'baseui/table';
 
 export default () => {
-  return
-    <Foo
-      prop={true}
-      onMagic={()=>{console.log('some magic happened')}}
-      overrides={{
-        Bar: props => <CustomBar>Click me</CustomBar>,
-      }}
-    />;
+  return (
+    <Table>
+      <Thead>
+          <TheadTr>
+            <Th>Item</Th>
+            <Th>Item</Th>
+            <Th>Item</Th>
+            <Th>Cost</Th>
+          </TheadTr>
+       </Thead>
+      <Tbody>
+        <Tr>
+          <Td>
+            <a href={''}>{'Link Item'}</a>
+          </Td>
+          <Td>Item</Td>
+          <Td>Item</Td>
+          <Td>Item</Td>
+          <Td>0.00</Td>
+        </Tr>
+        <Tr>
+          <Td>
+            <a href={''}>{'Link Item'}</a>
+          </Td>
+          <Td>Item</Td>
+          <Td>Item</Td>
+          <Td>Item</Td>
+          <Td>0.00</Td>
+        </Tr>
+      </Tbody>
+    </Table>
+ );
 }
 ```
 
 ## Exports
 
-* `Foo`
-* `StatefulFoo`
-* `StatefulContainer`
-* `StyledRoot`
-* `StyledBody`
-* `CONSTANT`
+* `Table`
+* `Tbody`
+* `Td`
+* `Th`
+* `Thead`
+* `TheadTr`
+* `Tr`
 
-## `Foo` API
+## `Table` API
 
 * `prop: type` - Optional|Required
   Description of prop
@@ -49,7 +68,43 @@ export default () => {
 * `prop: type` - Optional|Required
   Description of prop
 
-## `StatefulFoo` API
+## `Tbody` API
+
+* `prop: type` - Optional|Required
+  Description of prop
+* `prop: type` - Optional|Required
+  Description of prop
+* `prop: type` - Optional|Required
+  Description of prop
+
+## `Td` API
+
+* `prop: type` - Optional|Required
+  Description of prop
+* `prop: type` - Optional|Required
+  Description of prop
+* `prop: type` - Optional|Required
+  Description of prop
+
+## `Th` API
+
+* `prop: type` - Optional|Required
+  Description of prop
+* `prop: type` - Optional|Required
+  Description of prop
+* `prop: type` - Optional|Required
+  Description of prop
+
+## `Thead` API
+
+* `prop: type` - Optional|Required
+  Description of prop
+* `prop: type` - Optional|Required
+  Description of prop
+* `prop: type` - Optional|Required
+  Description of prop
+
+## `TheadTr` API
 
 * `prop: type` - Optional|Required
   Description of prop
