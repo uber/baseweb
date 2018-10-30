@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stateless slider should render slider component: Component has correctly rendered 1`] = `
+<Slider
+  autoFocus={false}
+  error={false}
+  onChange={[MockFunction]}
+  overrides={Object {}}
+  range={
+    Array [
+      0,
+      100,
+    ]
+  }
+  step={0}
+  tabIndex={0}
+  value={
+    Array [
+      60,
+    ]
+  }
+>
+  <MockStyledComponent
+    $currentThumb={-1}
+    $isRange={false}
+    $max={100}
+    $min={0}
+    $range={
+      Array [
+        0,
+        100,
+      ]
+    }
+    $value={
+      Array [
+        60,
+      ]
+    }
+    onClick={[Function]}
+  >
+    <div
+      onClick={[Function]}
+      styled-component="true"
+    >
+      <MockStyledComponent
+        $currentThumb={-1}
+        $isRange={false}
+        $max={100}
+        $min={0}
+        $range={
+          Array [
+            0,
+            100,
+          ]
+        }
+        $value={
+          Array [
+            60,
+          ]
+        }
+      >
+        <div
+          styled-component="true"
+        >
+          <MockStyledComponent
+            $currentThumb={-1}
+            $index={0}
+            $isRange={false}
+            $max={100}
+            $min={0}
+            $range={
+              Array [
+                0,
+                100,
+              ]
+            }
+            $value={
+              Array [
+                60,
+              ]
+            }
+          >
+            <div
+              styled-component="true"
+            />
+          </MockStyledComponent>
+          <MockStyledComponent
+            $currentThumb={-1}
+            $index={0}
+            $isRange={false}
+            $max={100}
+            $min={0}
+            $range={
+              Array [
+                0,
+                100,
+              ]
+            }
+            $ref={
+              Object {
+                "current": null,
+              }
+            }
+            $value={
+              Array [
+                60,
+              ]
+            }
+            key="0"
+            onMouseDown={[Function]}
+          >
+            <div
+              onMouseDown={[Function]}
+              styled-component="true"
+            />
+          </MockStyledComponent>
+        </div>
+      </MockStyledComponent>
+      <MockStyledComponent
+        $currentThumb={-1}
+        $isRange={false}
+        $max={100}
+        $min={0}
+        $range={
+          Array [
+            0,
+            100,
+          ]
+        }
+        $value={
+          Array [
+            60,
+          ]
+        }
+      >
+        <div
+          styled-component="true"
+        >
+          <MockStyledComponent
+            $currentThumb={-1}
+            $index={0}
+            $isRange={false}
+            $max={100}
+            $min={0}
+            $range={
+              Array [
+                0,
+                100,
+              ]
+            }
+            $value={
+              Array [
+                60,
+              ]
+            }
+            key="0"
+          >
+            <div
+              styled-component="true"
+            >
+              0
+            </div>
+          </MockStyledComponent>
+          <MockStyledComponent
+            $currentThumb={-1}
+            $index={1}
+            $isRange={false}
+            $max={100}
+            $min={0}
+            $range={
+              Array [
+                0,
+                100,
+              ]
+            }
+            $value={
+              Array [
+                60,
+              ]
+            }
+            key="1"
+          >
+            <div
+              styled-component="true"
+            >
+              100
+            </div>
+          </MockStyledComponent>
+        </div>
+      </MockStyledComponent>
+    </div>
+  </MockStyledComponent>
+</Slider>
+`;
