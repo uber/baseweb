@@ -16,3 +16,4 @@ coverage
 reports
 vrt/latest
 vrt/diff
+.cache
