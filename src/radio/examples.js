@@ -11,7 +11,6 @@ import * as React from 'react';
 import {withStyle} from 'styletron-react';
 import {StyledRadio, StyledLabel, StatefulRadioGroup} from './index';
 
-export const suite = 'Radio Group Test Suite';
 import examples from './examples-list';
 
 export default {
