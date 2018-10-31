@@ -12,19 +12,10 @@ import {withStyle} from 'styletron-react';
 import {StyledRadio, StyledLabel, StatefulRadioGroup} from './index';
 
 export const suite = 'Radio Group Test Suite';
-export const tests = {
-  SIMPLE_EXAMPLE: 'Radio Group example',
-  WITH_ERROR: 'RadioGroup with an error',
-  DISABLED: 'RadioGroup disabled',
-  HORIZONTAL_ALIGN: 'RadioGroup horizontal',
-  VERTICAL_ALIGN: 'RadioGroup vertical',
-  STYLES_OVERRIDES: 'RadioGroup with style overrides',
-  COMPONENTS_OVERRIDES: 'RadioGroup with override components',
-  EXTRA_PROPS: 'RadioGroup with extra props',
-};
+import examples from './examples-list';
 
 export default {
-  [tests.SIMPLE_EXAMPLE]: () => {
+  [examples.SIMPLE_EXAMPLE]: () => {
     return (
       <StatefulRadioGroup initialState={{value: '2'}}>
         <StyledRadio value="1">First</StyledRadio>
@@ -33,7 +24,7 @@ export default {
       </StatefulRadioGroup>
     );
   },
-  [tests.HORIZONTAL_ALIGN]: () => {
+  [examples.HORIZONTAL_ALIGN]: () => {
     return (
       <StatefulRadioGroup align="horizontal" initialState={{value: '3'}}>
         <StyledRadio value="1">First</StyledRadio>
@@ -42,7 +33,7 @@ export default {
       </StatefulRadioGroup>
     );
   },
-  [tests.COMPONENTS_OVERRIDES]: () => {
+  [examples.COMPONENTS_OVERRIDES]: () => {
     const overrides = {
       Label: (props: {$value: string}) => (
         <div>Custom Label for value {props.$value}</div>
@@ -56,7 +47,7 @@ export default {
       </StatefulRadioGroup>
     );
   },
-  [tests.STYLES_OVERRIDES]: () => {
+  [examples.STYLES_OVERRIDES]: () => {
     const overrides = {
       RadioMark: {
         style: {borderColor: 'red'},
@@ -76,7 +67,7 @@ export default {
       </StatefulRadioGroup>
     );
   },
-  [tests.WITH_ERROR]: () => {
+  [examples.WITH_ERROR]: () => {
     return (
       <StatefulRadioGroup isError={true} initialState={{value: '3'}}>
         <StyledRadio value="1">First</StyledRadio>
