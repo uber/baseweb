@@ -1,6 +1,6 @@
 # Block Component
 
-One of the most common needs when building web apps is creating layout elements that have certain layout and typography styles. 
+One of the most common needs when building web apps is creating layout elements that have certain layout and typography styles.
 
 For more traditional apps that use global stylesheets, many of the popular CSS frameworks have helper classes to quickly create styled elements (see [Bootstrap](https://getbootstrap.com/docs/4.1/utilities/sizing/), [Tachyons](http://tachyons.io/docs/layout/spacing/)). Uber's superfine css framework also had this and it was used very widely–just search something like `push-large` in sourcegraph.
 
@@ -40,18 +40,19 @@ The above example might turn into:
 ```
 
 Props would be exposed for:
-- Changing base element
-- Spacing (margin/padding)
-- Typography (color, font, font-size, font-style, etc)
-- Display, Position, Flexbox
-- Box shadows
-- `$style` prop for further style overrides
 
-[Pinterest's Gestalt has a similar Box component](https://pinterest.github.io/gestalt/#/Box), and [other](http://mineral-ui.com/components/text) [frameworks](https://evergreen.surge.sh/components/typography) have Text components that focus primarily on quick typography helpers. The [jsxstyle](https://github.com/jsxstyle/jsxstyle) css-in-js library uses this pattern as well. I've also created similar helper components internally at Uber and they've been helpful. 
+* Changing base element
+* Spacing (margin/padding)
+* Typography (color, font, font-size, font-style, etc)
+* Display, Position, Flexbox
+* Box shadows
+* `$style` prop for further style overrides
+
+[Pinterest's Gestalt has a similar Box component](https://pinterest.github.io/gestalt/#/Box), and [other](http://mineral-ui.com/components/text) [frameworks](https://evergreen.surge.sh/components/typography) have Text components that focus primarily on quick typography helpers. The [jsxstyle](https://github.com/jsxstyle/jsxstyle) css-in-js library uses this pattern as well. I've also created similar helper components internally at Uber and they've been helpful.
 
 > **Note** that we would likely _not_ use this component internally to build other baseui components. It's primarily a helper component for customers when building their apps.
 
-### Why not separate `Spacing`,  `Color`, `Text`, `Shadow` etc components?
+### Why not separate `Spacing`,  `Color`, `Text`, `Shadow` etc components
 
 The reality is you often want to apply multiple of these concerns to one element, but instead you'd end up with something like this:
 
@@ -70,8 +71,9 @@ Combining most things into a single `Block` component allows you to keep things 
 ### Downsides
 
 It seems like there are two primary downsides here:
-- **Styles cluttering your markup** This is the price of being able to conveniently define things inline–one could argue the tradeoff is worth it here.
-- **Performance** This component would need to convert its props into a style object during render, which in theory may be slower than `styled('div', ...)` with a static object. It's hard to say whether this would be a problem in practice, and there are probably ways to optimize this if needed like memoization or a babel transform.
+
+* **Styles cluttering your markup** This is the price of being able to conveniently define things inline–one could argue the tradeoff is worth it here.
+* **Performance** This component would need to convert its props into a style object during render, which in theory may be slower than `styled('div', ...)` with a static object. It's hard to say whether this would be a problem in practice, and there are probably ways to optimize this if needed like memoization or a babel transform.
 
 ---
 
