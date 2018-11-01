@@ -62,16 +62,10 @@ const TextareaWithProps = withProps(StyledTextarea, {
   'data-test': 'test',
 });
 
-export const tests = {
-  SIMPLE_EXAMPLE: 'Controlled and uncontrolled textarea',
-  SIZE_EXAMPLE: 'Textarea size',
-  STATE_EXAMPLE: 'Textarea state',
-  OVERRIDES_EXAMPLE: 'Textarea with style overrides and extra props passed',
-  REF_EXAMPLE: 'Textarea with a ref',
-};
+import examples from './examples-list';
 
 export default {
-  [tests.SIMPLE_EXAMPLE]: function Story1() {
+  [examples.SIMPLE_EXAMPLE]: function Story1() {
     return (
       <React.Fragment>
         <ControlledTextarea placeholder="Controlled textarea" />
@@ -83,7 +77,7 @@ export default {
       </React.Fragment>
     );
   },
-  [tests.SIMPLE_EXAMPLE]: function Story2() {
+  [examples.SIMPLE_EXAMPLE]: function Story2() {
     return (
       <React.Fragment>
         <Textarea placeholder="Default textarea" />
@@ -92,7 +86,7 @@ export default {
       </React.Fragment>
     );
   },
-  [tests.STATE_EXAMPLE]: function Story3() {
+  [examples.STATE_EXAMPLE]: function Story3() {
     return (
       <React.Fragment>
         <Textarea size={SIZE.compact} placeholder="Placeholder" />
@@ -114,7 +108,7 @@ export default {
       </React.Fragment>
     );
   },
-  [tests.OVERRIDES_EXAMPLE]: function Story4() {
+  [examples.OVERRIDES_EXAMPLE]: function Story4() {
     return (
       <React.Fragment>
         <Textarea
@@ -133,7 +127,7 @@ export default {
       </React.Fragment>
     );
   },
-  [tests.REF_EXAMPLE]: function Story5() {
+  [examples.REF_EXAMPLE]: function Story5() {
     const inputRef: {current: ?React.ElementRef<'input'>} = React.createRef();
     return (
       <React.Fragment>
