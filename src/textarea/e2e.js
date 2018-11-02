@@ -7,7 +7,7 @@ const {goToUrl} = require('../../e2e/helpers');
 const suite = 'Textarea Test Suite';
 
 const selectors = {
-  input: 'input[data-test="e2e"]',
+  input: 'textarea[data-test]',
 };
 
 describe('The textarea component', () => {
@@ -18,7 +18,7 @@ describe('The textarea component', () => {
   it('passes basic a11y tests', browser => {
     goToUrl({
       suite,
-      test: scenarios.STATE_EXAMPLE,
+      test: scenarios.OVERRIDES_EXAMPLE,
       browser,
     })
       .initAccessibility()
@@ -29,6 +29,20 @@ describe('The textarea component', () => {
             enabled: false,
           },
         },
+      });
+  });
+
+  it('displays the entered value', browser => {
+    const text = 'woooo, base ui!';
+    goToUrl({
+      suite,
+      test: scenarios.OVERRIDES_EXAMPLE,
+      browser,
+    })
+      .waitForElementVisible(selectors.input)
+      .setValue(selectors.input, text)
+      .getValue(selectors.input, function(result) {
+        this.assert.equal(result.value, text);
       });
   });
 });
