@@ -8,6 +8,46 @@ Delete this line and any sections, exports, props, etc below where applicable.
 
 ```javascript
 import * as React from 'react';
+import {Table} from 'baseui/table';
+const data = {
+    {
+        id: 1,
+        firstName: 'John'
+        lastName: 'Smith'
+    },
+    {
+            id: 1,
+            firstName: 'Lois'
+            lastName: 'Lane'
+    }
+};
+const columns = {
+    {
+        name: 'Employee ID'
+        attribute: 'id'
+    },
+    {
+        name: 'First'
+        attribute: 'firstName'
+    },
+    {
+        name: 'Last'
+        attribute: 'lastName'
+    },
+    {
+        name: 'Full Name'
+        render: (rowData) => {
+            const {firstName, lastName} = rowData;
+            return (
+                <span>
+                    `${firstName} ${lastName}`
+                </span>
+            );
+        }
+    }
+};
+export default () => <Table>;
+
 
 ```javascript
 import * as React from 'react';
@@ -37,16 +77,16 @@ export default () => {
         <Tr>
           <Td>
             <a href={''}>{'Link Item'}</a>
-          </Td>
-          <Td>Item</Td>
-          <Td>Item</Td>
-          <Td>Item</Td>
-          <Td>0.00</Td>
-        </Tr>
-      </Tbody>
-    </Table>
- );
-}
+           </Td>
+           <Td>Item</Td>
+           <Td>Item</Td>
+           <Td>Item</Td>
+           <Td>0.00</Td>
+         </Tr>
+       </Tbody>
+     </Table>
+  );
+ }
 ```
 
 ## Exports
@@ -61,11 +101,17 @@ export default () => {
 
 ## `Table` API
 
-* `prop: type` - Optional|Required
+type ColumnMetaType = {
+    name: string,
+    attribute: string
+} | {
+   name: string,
+   render: <T>(<T>, index, Array<T>) => $ReactNode
+};
+
+* `data:Array<T>` - Optional|Required
   Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
+* `columns<ColumnMetaType>: type` - Optional|Required
   Description of prop
 
 ## `Tbody` API
