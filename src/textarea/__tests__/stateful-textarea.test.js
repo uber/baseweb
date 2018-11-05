@@ -6,28 +6,46 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {shallow} from 'enzyme';
-import StatefulTextarea from '../stateful-textarea';
-import {Textarea} from '../styled-components';
-describe('Textarea', () => {
-  test('StatefulTextarea - basic render', () => {
+import {shallow, mount} from 'enzyme';
+import {StyledTextarea, StatefulTextarea, StatefulContainer} from '../index';
+describe('StatefulTextarea', () => {
+  test('basic render', () => {
     const props = {
       onChange: jest.fn(),
       overrides: {
         Input: function CustomTextarea(props) {
           return (
             <span>
-              <Textarea {...props} />
+              <StyledTextarea {...props} />
             </span>
           );
         },
       },
     };
-
     const component = shallow(<StatefulTextarea {...props} />);
-
     expect(component).toMatchSnapshot('renders <StatefulContainer/>');
-
     expect(component.dive()).toMatchSnapshot('renders <Textarea/> as a child');
+  });
+
+  test('onChange handling and state updates', () => {
+    const props = {
+      onChange: jest.fn(),
+      stateReducer: jest
+        .fn()
+        .mockImplementation((type, nextState) => nextState),
+    };
+    const newValue = 'new value';
+    const event = {target: {value: newValue}};
+    const component = mount(<StatefulTextarea {...props} />);
+    const renderedStatefulContainer = component.find(StatefulContainer).first();
+    const statefulContainerInstance = renderedStatefulContainer.instance();
+    expect(statefulContainerInstance.state.value).toEqual('');
+    statefulContainerInstance.onChange(event);
+    expect(props.stateReducer).toHaveBeenCalledWith(
+      'change',
+      {value: newValue},
+      {value: ''},
+    );
+    expect(statefulContainerInstance.state.value).toEqual(newValue);
   });
 });

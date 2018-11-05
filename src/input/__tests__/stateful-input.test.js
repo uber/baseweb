@@ -6,26 +6,47 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {shallow} from 'enzyme';
-import {StatefulInput, StyledInput} from '../index';
+import {shallow, mount} from 'enzyme';
+import {StatefulInput, StyledInput, StatefulContainer} from '../index';
 
-test('StatefulInput - basic render', () => {
-  const props = {
-    onChange: jest.fn(),
-    overrides: {
-      Input: function CustomInput(props) {
-        return (
-          <span>
-            <StyledInput {...props} />
-          </span>
-        );
+describe('', () => {
+  test('basic render', () => {
+    const props = {
+      onChange: jest.fn(),
+      overrides: {
+        Input: function CustomInput(props) {
+          return (
+            <span>
+              <StyledInput {...props} />
+            </span>
+          );
+        },
       },
-    },
-  };
+    };
+    const component = shallow(<StatefulInput {...props} />);
+    expect(component).toMatchSnapshot('renders <StatefulContainer/>');
+    expect(component.dive()).toMatchSnapshot('renders <Input/> as a child');
+  });
 
-  const component = shallow(<StatefulInput {...props} />);
-
-  expect(component).toMatchSnapshot('renders <StatefulContainer/>');
-
-  expect(component.dive()).toMatchSnapshot('renders <Input/> as a child');
+  test('onChange handling and state updates', () => {
+    const props = {
+      onChange: jest.fn(),
+      stateReducer: jest
+        .fn()
+        .mockImplementation((type, nextState) => nextState),
+    };
+    const newValue = 'new value';
+    const event = {target: {value: newValue}};
+    const component = mount(<StatefulInput {...props} />);
+    const renderedStatefulContainer = component.find(StatefulContainer).first();
+    const statefulContainerInstance = renderedStatefulContainer.instance();
+    expect(statefulContainerInstance.state.value).toEqual('');
+    statefulContainerInstance.onChange(event);
+    expect(props.stateReducer).toHaveBeenCalledWith(
+      'change',
+      {value: newValue},
+      {value: ''},
+    );
+    expect(statefulContainerInstance.state.value).toEqual(newValue);
+  });
 });

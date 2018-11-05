@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StatefulInput - basic render: renders <Input/> as a child 1`] = `
+exports[`basic render: renders <Input/> as a child 1`] = `
 <Input
   autoFocus={false}
   disabled={false}
@@ -22,7 +22,7 @@ exports[`StatefulInput - basic render: renders <Input/> as a child 1`] = `
 />
 `;
 
-exports[`StatefulInput - basic render: renders <StatefulContainer/> 1`] = `
+exports[`basic render: renders <StatefulContainer/> 1`] = `
 <StatefulContainer
   initialState={Object {}}
   onChange={[MockFunction]}
