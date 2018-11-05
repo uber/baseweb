@@ -13,7 +13,7 @@
 Add `baseui` and it's peer dependencies to your project:
 
 ```bash
-# using yarn 
+# using yarn
 yarn add baseui styletron-react styletron-react-core styletron-standard styletron-engine-atomic
 
 # using npm
