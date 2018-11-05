@@ -43,6 +43,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   animateOutTimer: ?TimeoutID;
   animateStartTimer: ?AnimationFrameID;
   lastFocus: ?HTMLElement = null;
+  lastMountNodeOverflowStyle: ?string = null;
   _refs: {[string]: ElementRefT} = {};
 
   state = {
@@ -56,6 +57,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
   componentWillUnmount() {
     this.removeDomEvents();
+    this.resetMountNodeScroll();
     this.clearTimers();
   }
 
@@ -67,9 +69,9 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       (isOpen && this.state.mounted && !prevState.mounted)
     ) {
       if (isOpen) {
-        this.open();
+        this.didOpen();
       } else {
-        this.close();
+        this.didClose();
       }
     }
   }
@@ -83,6 +85,21 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   removeDomEvents() {
     if (__BROWSER__) {
       document.removeEventListener('keyup', this.onDocumentKeyPress);
+    }
+  }
+
+  disableMountNodeScroll() {
+    const mountNode = this.getMountNode();
+    this.lastMountNodeOverflowStyle = mountNode.style.overflow || '';
+    mountNode.style.overflow = 'hidden';
+  }
+
+  resetMountNodeScroll() {
+    const mountNode = this.getMountNode();
+    const lastStyle = this.lastMountNodeOverflowStyle;
+    if (mountNode && lastStyle !== null) {
+      mountNode.style.overflow = lastStyle || '';
+      this.lastMountNodeOverflowStyle = null;
     }
   }
 
@@ -100,18 +117,18 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       return;
     }
 
-    this.close(CLOSE_SOURCE.escape);
+    this.triggerClose(CLOSE_SOURCE.escape);
   };
 
   onBackdropClick = () => {
     if (!this.props.closeable) {
       return;
     }
-    this.close(CLOSE_SOURCE.backdrop);
+    this.triggerClose(CLOSE_SOURCE.backdrop);
   };
 
   onCloseClick = () => {
-    this.close(CLOSE_SOURCE.closeButton);
+    this.triggerClose(CLOSE_SOURCE.closeButton);
   };
 
   clearTimers() {
@@ -124,7 +141,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   }
 
-  open() {
+  didOpen() {
     // Store last focused item (we'll return focus after closing for a11y)
     this.captureLastFocus();
     this.autoFocus();
@@ -138,7 +155,9 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
     // Clear any existing timers (like previous animateOutTimer)
     this.clearTimers();
+
     this.addDomEvents();
+    this.disableMountNodeScroll();
 
     // eslint-disable-next-line cup/no-undef
     this.animateStartTimer = requestAnimationFrame(() => {
@@ -146,16 +165,20 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     });
   }
 
-  close(source?: CloseSourceT) {
+  didClose() {
+    this.removeDomEvents();
+    this.resetMountNodeScroll();
+    this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
+    this.restoreLastFocus();
+  }
+
+  triggerClose(source?: CloseSourceT) {
     // If there's no source, it just means the isOpen prop changed. No need to call onClose.
     if (this.props.onClose && source) {
       this.props.onClose({
         closeSource: source,
       });
     }
-    this.removeDomEvents();
-    this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
-    this.restoreLastFocus();
   }
 
   captureLastFocus = () => {
