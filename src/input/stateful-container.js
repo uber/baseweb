@@ -32,20 +32,16 @@ class StatefulContainer<T: EventTarget> extends React.Component<
   };
 
   onChange = (e: SyntheticInputEvent<T>) => {
-    this.stateReducer(STATE_CHANGE_TYPE.change, e);
+    this.internalSetState(STATE_CHANGE_TYPE.change, e);
     this.props.onChange(e);
   };
 
-  stateReducer = <T: EventTarget>(
+  internalSetState = <T: EventTarget>(
     type: StateTypeT,
     e: SyntheticInputEvent<T>,
   ) => {
     let nextState = {};
-    if (
-      type === STATE_CHANGE_TYPE.change &&
-      // eslint-disable-next-line cup/no-undef
-      e.target instanceof window.HTMLInputElement
-    ) {
+    if (type === STATE_CHANGE_TYPE.change) {
       nextState = {value: e.target.value};
     }
     const newState = this.props.stateReducer(type, nextState, this.state);

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Textarea StatefulTextarea - basic render: renders <StatefulContainer/> 1`] = `
+exports[`StatefulTextarea basic render: renders <StatefulContainer/> 1`] = `
 <StatefulContainer
   initialState={Object {}}
   onChange={[MockFunction]}
@@ -13,7 +13,7 @@ exports[`Textarea StatefulTextarea - basic render: renders <StatefulContainer/> 
 />
 `;
 
-exports[`Textarea StatefulTextarea - basic render: renders <Textarea/> as a child 1`] = `
+exports[`StatefulTextarea basic render: renders <Textarea/> as a child 1`] = `
 <Textarea
   autoFocus={false}
   disabled={false}
