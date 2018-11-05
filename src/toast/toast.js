@@ -167,6 +167,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
         {closeable ? (
           <DeleteAltIcon
             onClick={this.dismiss}
+            title="Close"
             {...sharedProps}
             {...closeIconProps}
             overrides={closeIconOverrides}
