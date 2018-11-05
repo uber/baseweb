@@ -122,6 +122,22 @@ describe('Modal', () => {
     expect(onClose).not.toHaveBeenCalled();
   });
 
+  test('prevents scroll on mount node', () => {
+    const onClose = jest.fn();
+    wrapper = mount(
+      <Modal onClose={onClose}>
+        <ModalBody>Modal Body</ModalBody>
+      </Modal>,
+    );
+
+    const body = ((document.body: any): HTMLBodyElement);
+    expect(body.style.overflow).toBe('');
+    wrapper.setProps({isOpen: true});
+    expect(body.style.overflow).toBe('hidden');
+    wrapper.setProps({isOpen: false});
+    expect(body.style.overflow).toBe('');
+  });
+
   test('override components', () => {
     const mock = () =>
       jest.fn().mockImplementation(({children}) => <div>{children}</div>);
