@@ -13,5 +13,5 @@ export const LightTheme = createTheme(lightThemePrimitives);
 export const LightThemeMove = createTheme({
   ...lightThemePrimitives,
   primaryFontFamily:
-    'UberMove, "Open Sans", "Helvetica Neue", Helvetica, sans-serif',
+    'UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif',
 });
