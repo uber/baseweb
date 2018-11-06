@@ -19,7 +19,7 @@ Represents control to render tabular data.
 ## Usage
 
 ### Basic usage
-Render static tabular data.
+#### Render static tabular data.
 ```javascript
 import * as React from 'react';
 import {Table} from 'baseui/table';
@@ -60,11 +60,184 @@ const columns = {
         }
     }
 };
-export default () => <Table data={data} columns={columns}>;
+export default () => <Table data={data} columns={columns}/>;
 ```
 
-### Overriding Table Styles
+#### Styled Components
+```
+const CustomTd = styled(Td, props => ({
+  textColor: 'red',
+}));
+
+export default () => (
+ <Table
+    data={data}
+    columns={columns}
+    overrides={{ Td: CustomTd }}
+ />
+);
+```
+
+#### Sort
+
+```javascript
+const columns = [{
+  title: 'Name',
+  dataIndex: 'name',
+  sorter: (a, b) => a.name.length - b.name.length,
+}, {
+  title: 'Age',
+  dataIndex: 'age',
+  defaultSortOrder: 'descend',
+  sorter: (a, b) => a.age - b.age,
+}, {
+  title: 'Address',
+  dataIndex: 'address',
+  sorter: (a, b) => a.address.length - b.address.length,
+}];
+
+const data = [{
+  key: '1',
+  name: 'Sarah Brown',
+  age: 32,
+  address: 'New York No. 1 Anywhere',
+}, {
+  key: '2',
+  name: 'Jane Smith',
+  age: 42,
+  address: 'London No. 1 Anywhere',
+}, {
+  key: '3',
+  name: 'Joe Black',
+  age: 32,
+  address: 'Sidney No. 1 Anywhere',
+}, {
+  key: '4',
+  name: 'Jane Red',
+  age: 32,
+  address: 'London No. 2 Anywhere',
+}];
+
+export default = () => <Table columns={columns} dataSource={data}/>,
+```
+
+#### Custom Table Rendering
+There may be a case where more complex layouts are needed,
+such as columns that with colSpan > 1 and/or rowspan > 1
+```
+export default() => {
+    <Table
+     render: (dataSource, columns) => {
+        return (<Tbody>
+          <Thead>
+            <TheadTr>
+              <Th>Item</Th>
+              <Th>Item</Th>
+              <Th>0.0000</Th>
+              <Th>Item</Th>
+            </TheadTr>
+          </Thead>
+          <Tbody>
+            <Tr>
+              <Th rowSpan={3}>Item</Th>
+              <Td>Item</Td>
+              <Td>0.0788</Td>
+              <Td>Item</Td>
+            </Tr>
+            <Tr>
+              <Td>Item</Td>
+              <Td>3.0210</Td>
+              <Td>Item</Td>
+            </Tr>
+            <Tr>
+              <Td>Item</Td>
+              <Td>4.0797</Td>
+              <Td>Item</Td>
+            </Tr>
+            <Tr>
+              <Th rowSpan={2}>Item</Th>
+              <Td>Item</Td>
+              <Td>0.0640</Td>
+              <Td>Item</Td>
+            </Tr>
+            <Tr>
+              <Td>Item</Td>
+              <Td isNumerical={true}>1.0117</Td>
+              <Td>Item</Td>
+            </Tr>
+          </Tbody>
+       );
+     }
+    />
+}
+```
+
+### Advanced Usages
+
+#### Remote Data
 Paginate data from a remote backend.
+
+```javascript
+import * as React from 'react';
+import {Table} from 'baseui/table';
+import {Pagination} from 'baseui/pagination';
+
+const columns = {
+    {
+        title: 'Employee ID'
+        dataIndex: 'id'
+    },
+    {
+        title: 'First'
+        dataIndex: 'firstName'
+    },
+    {
+        title: 'Last'
+        dataIndex: 'lastName'
+    },
+    {
+        title: 'Full Name'
+        render: (rowData) => {
+            const {firstName, lastName} = rowData;
+            return (
+                <span>
+                    `${firstName} ${lastName}`
+                </span>
+            );
+        }
+    }
+};
+
+class TableWithPagination extends React.Component {
+    state = {
+        currentPage: 1,
+        pageSize: 10,
+        data: [],
+        numPages: 0
+    };
+    fetch = (pageNumber, pageSize) => {
+        // logic to fetch data based on page number
+        // `currentPage` and `data` and `numPages` will be updated here.
+    }
+    componentDidMount = () => {
+        const {currentPage, pageSize} = this.state;
+        this.fetch(currentPage, pageSize);
+    }
+    onPageChange = (nextPage, prevPage) => {
+        const {pageSize} = this.state;
+        this.fetch(nextPage, pageSize);
+    }
+    render = () => {
+         return (
+             <Table
+                columns={columns}
+                dataSource={this.state.data}
+             />
+             <Pagination currentPage={this.state.currentPage} numPages={this.state.numPages} onPageChange={this.onPageChange}/>
+         );
+    }
+}
+```
 
 
 ## Exports
@@ -84,6 +257,8 @@ Paginate data from a remote backend.
   Description of prop
 * `columns: Column` - Required
   Description of prop
+* `render: (dataSource, columns) => $ReactNode` - Optional
+    Custom render table body.
 * `overrides - Object:` - Optional
 
 * `overrides(continued):`
@@ -94,15 +269,14 @@ Paginate data from a remote backend.
   * `Td` - A data cell in the table. Corresponds with the `td` html element.
   * `Tr` - A data row that contains `Td` components.
 
-## `Table` API
-
 
 ## `Column` API
 One of the Table columns prop for describing the table's columns, Column has the same API.
-* `title: string` - Required
-* `dataIndex: string` - Optional
-  Description of prop
-* `render: <T>(<T>, index, Array<T>) => $ReactNode` - Optional.	Renderer of the table cell. The return value should be a ReactNode, or an object for
+* `title: string` - Required. Title of the column to display in the header.
+* `dataIndex: string` - Optional. Attribute at which to index the row data.
+* `render: <T>(<T>, index, Array<T>) => $ReactNode` - Optional.	Renderer of the table cell. The return value should be a ReactNode.
+* `sorter:Function`- Optional  Sort function for [local sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+* `defaultSortOrder:'ascend'|'descend'`: Only to be declared on one of the columns, this will be define the default sort on the initial set of data.
 
 ## Presentation Components
 
