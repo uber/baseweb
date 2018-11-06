@@ -4,6 +4,7 @@ Represents control to render tabular data.
 
 ## Features
 - Sorting
+- Basic mobile responsiveness (overflow scrollbar)
 
 
 ## Unsupported
@@ -15,6 +16,7 @@ Represents control to render tabular data.
 - Hoverable row styling
 - Multi-column sort
 - Row headers
+- Expandable Row
 
 ## Usage
 
