@@ -1,11 +1,25 @@
-# Foo Component
+# Table Component
 
-Delete this line and any sections, exports, props, etc below where applicable.
+Represents control to render tabular data.
+
+## Features
+- Sorting
+
+
+## Unsupported
+- Pagination
+- Filtering
+- Fixed Header
+- Fixed Column
+- Striped Tables
+- Hoverable row styling
+- Multi-column sort
+- Row headers
 
 ## Usage
 
 ### Basic usage
-
+Render static tabular data.
 ```javascript
 import * as React from 'react';
 import {Table} from 'baseui/table';
@@ -23,19 +37,19 @@ const data = {
 };
 const columns = {
     {
-        name: 'Employee ID'
-        attribute: 'id'
+        title: 'Employee ID'
+        dataIndex: 'id'
     },
     {
-        name: 'First'
-        attribute: 'firstName'
+        title: 'First'
+        dataIndex: 'firstName'
     },
     {
-        name: 'Last'
-        attribute: 'lastName'
+        title: 'Last'
+        dataIndex: 'lastName'
     },
     {
-        name: 'Full Name'
+        title: 'Full Name'
         render: (rowData) => {
             const {firstName, lastName} = rowData;
             return (
@@ -46,132 +60,86 @@ const columns = {
         }
     }
 };
-export default () => <Table>;
-
-
-```javascript
-import * as React from 'react';
-import {Table, Thead, TheadTr, Th, Tbody, Tr, Td} from 'baseui/table';
-
-export default () => {
-  return (
-    <Table>
-      <Thead>
-          <TheadTr>
-            <Th>Item</Th>
-            <Th>Item</Th>
-            <Th>Item</Th>
-            <Th>Cost</Th>
-          </TheadTr>
-       </Thead>
-      <Tbody>
-        <Tr>
-          <Td>
-            <a href={''}>{'Link Item'}</a>
-          </Td>
-          <Td>Item</Td>
-          <Td>Item</Td>
-          <Td>Item</Td>
-          <Td>0.00</Td>
-        </Tr>
-        <Tr>
-          <Td>
-            <a href={''}>{'Link Item'}</a>
-           </Td>
-           <Td>Item</Td>
-           <Td>Item</Td>
-           <Td>Item</Td>
-           <Td>0.00</Td>
-         </Tr>
-       </Tbody>
-     </Table>
-  );
- }
+export default () => <Table data={data} columns={columns}>;
 ```
+
+### Overriding Table Styles
+Paginate data from a remote backend.
+
 
 ## Exports
 
 * `Table`
+* `StatefulTable`
 * `Tbody`
-* `Td`
-* `Th`
 * `Thead`
 * `TheadTr`
+* `Td`
+* `Th`
 * `Tr`
 
 ## `Table` API
 
-type ColumnMetaType = {
-    name: string,
-    attribute: string
-} | {
-   name: string,
-   render: <T>(<T>, index, Array<T>) => $ReactNode
-};
+* `data:Array<T>` - Required
+  Description of prop
+* `columns: Column` - Required
+  Description of prop
+* `overrides - Object:` - Optional
 
-* `data:Array<T>` - Optional|Required
-  Description of prop
-* `columns<ColumnMetaType>: type` - Optional|Required
-  Description of prop
+* `overrides(continued):`
+  * `Tbody` - Body of the table. Corresponds.
+  * `Thead` - Container for the table header related elements.
+  * `TheadTr` - A header row. `Tr` for the `Thead` element.
+  * `Th` - A header cell. Corresponds with the `th` html element.
+  * `Td` - A data cell in the table. Corresponds with the `td` html element.
+  * `Tr` - A data row that contains `Td` components.
 
-## `Tbody` API
+## `Table` API
 
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
 
-## `Td` API
+## `Column` API
+One of the Table columns prop for describing the table's columns, Column has the same API.
+* `title: string` - Required
+* `dataIndex: string` - Optional
+  Description of prop
+* `render: <T>(<T>, index, Array<T>) => $ReactNode` - Optional.	Renderer of the table cell. The return value should be a ReactNode, or an object for
 
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
+## Presentation Components
 
-## `Th` API
+### `Tbody` API
+Please refer to the [tbody DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody)
 
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
+### `Thead` API
+Please refer to the [thead DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead)
 
-## `Thead` API
+### `TheadTr` API
+Please refer to the [tr DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
 
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
+### `Td` API
+Please refer to the [td DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td)
 
-## `TheadTr` API
+### `Th` API
+Please refer to the [th DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th)
 
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
-* `prop: type` - Optional|Required
-  Description of prop
+### `Tr` API
+Please refer to the [th DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
 
-## Presentational components props API
 
-These properties are passed to every presentational (styled) component that is exported:
-
-* `$prop: type`
-* `$prop: type`
-* `$prop: type`
-
-## Dependencies
+### Dependencies
 
 Does this component depend on any 3rd party packages or other internal components?
 
 ## Accessibility
 
 How can this component be used via keyboard controls?
+No keyboard shortcuts will be enabled.
+
 What are the accessibility best practices for this component (aria-\*, role, etc.)
+
+We are making the assuming that in most use cases, a [table with one header](https://www.w3.org/WAI/tutorials/tables/one-header/)
+will be rendered.
+
+The [W3 guideline for table states](https://www.w3.org/WAI/tutorials/tables/):
+> Header cells must be marked up with `<th>`, and data cells with `<td>` to make tables accessible. For more complex tables, explicit associations may be needed using `scope`, `id`, and `headers` attributes.
+
+If support for rendering `th` in a data cell is added, use the `scope` attribute to [associate the data cells with the appropriate headers](https://webaim.org/techniques/tables/data#th)
