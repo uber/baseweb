@@ -16,7 +16,7 @@ export const Body = styled('div', ({$theme}) => {
 export const Contents = styled('div', ({$theme}) => {
   const {sizing} = $theme;
   return {
-    margin: sizing.scale600,
+    margin: sizing.scale800,
   };
 });
 
