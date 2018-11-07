@@ -267,6 +267,7 @@ export default function createTheme(
       radius100: '2px',
       radius200: '4px',
       radius300: '8px',
+      radius400: '12px',
       useRoundedCorners: true,
     },
     animation: {
