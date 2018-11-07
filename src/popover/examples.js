@@ -54,6 +54,10 @@ const GridItem = styled('div', ({row, col}) => ({
   textAlign: 'center',
 }));
 
+const Content = styled('div', {
+  paddingBottom: '24px',
+});
+
 /* eslint-disable flowtype/no-weak-types */
 const knobIsOpen = (defaultValue = true) => boolean('isOpen', defaultValue);
 const knobDismissOnEsc = (defaultValue = true) =>
@@ -228,10 +232,10 @@ export default {
           initialState={{isOpen: true}}
           content={({close}) => (
             <StyledPopoverPadding $style={{maxWidth: '300px', lineHeight: 1.5}}>
-              <div>
+              <Content>
                 content render prop is passed a <code>close()</code> callback so
                 it you can manually trigger popover close from within
-              </div>
+              </Content>
               <Button onClick={close}>Dismiss</Button>
             </StyledPopoverPadding>
           )}
