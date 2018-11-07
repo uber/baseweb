@@ -80,7 +80,7 @@ const ValueWrapper = styled('div', {
 
 const InputReplacement = props => {
   return (
-    <ValueWrapper>
+    <ValueWrapper style={{alignItems: 'center'}}>
       {[
         'tag 1 to search',
         'tag 2 to search',

@@ -34,14 +34,18 @@ export function getHoverBackgroundColor(props: SharedPropsT) {
   return $disabled ? null : hexToRgb(color, '0.2');
 }
 
-export const Action = styled('div', props => {
-  const {$disabled} = props;
+export const Action = styled('span', props => {
+  const {$disabled, $theme} = props;
   return {
     display: 'flex',
     alignItems: 'center',
-    padding: '12px',
-    borderTopRightRadius: '2px',
-    borderBottomRightRadius: '2px',
+    padding: '8px',
+    borderBottomRightRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius400
+      : '0px',
+    borderTopRightRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius400
+      : '0px',
     marginLeft: '8px',
     cursor: $disabled ? 'not-allowed' : 'pointer',
     ':hover': {
@@ -57,7 +61,7 @@ export const ActionIcon = styled('svg', () => {
 export const Root = styled('span', props => {
   const {$color, $disabled, $kind, $theme} = props;
   const {
-    sizing: {scale800, scale100, scale300},
+    sizing: {scale800, scale100, scale500},
     typography: {font200},
   } = $theme;
   const color = getColor($theme, $kind, $color);
@@ -67,17 +71,18 @@ export const Root = styled('span', props => {
     height: scale800,
     fontWeight: 'bold',
     margin: '5px',
+    boxSizing: 'border-box',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingTop: scale100,
     paddingBottom: scale100,
-    paddingLeft: scale300,
+    paddingLeft: scale500,
     borderWidth: '1px',
     borderColor: color,
     color: color,
     opacity: $disabled ? '.56' : null,
     borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius100
+      ? $theme.borders.radius400
       : '0px',
     cursor: $disabled ? 'not-allowed' : 'auto',
     backgroundColor: getBackgroundColor(props),
