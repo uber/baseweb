@@ -119,6 +119,7 @@ type TypographyT = {
   font300: Font,
   font350: Font,
   font400: Font,
+  font425: Font,
   font450: Font,
   font500: Font,
   font600: Font,
