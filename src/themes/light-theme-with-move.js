@@ -11,6 +11,9 @@ import {primitives as lightThemePrimitives} from './light-theme-primitives';
 const primaryFontFamily =
   'UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif';
 
+const secondaryFontFamily =
+  'UberMove, UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif';
+
 export const LightThemeMove = createTheme(
   {
     ...lightThemePrimitives,
@@ -91,7 +94,7 @@ export const LightThemeMove = createTheme(
         lineHeight: '96px',
       },
       font1000: {
-        fontFamily: primaryFontFamily,
+        fontFamily: secondaryFontFamily,
         fontSize: '96px',
         fontWeight: 'normal',
         lineHeight: '116px',
