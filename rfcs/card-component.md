@@ -16,10 +16,11 @@ Props based usage:
 ```javascript
 import * as React from 'react';
 import {Card} from 'baseui/card';
+import {StyledLink} from 'baseui/link';
 
 export default () => (
   <Card
-   action={<a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>}
+   action={<StyledLink href="#">Link to a Place</StyledLink>}
    thumbnail="thumbnail_image.png"
    overrides={{
      Thumbnail: {
@@ -48,7 +49,7 @@ export default () => (
     <StyledTitle $hasThumbnail={true}>Card title goes here</StyledTitle>
     <StyledBody>Card body contents go here.</StyledBody>
     <StyledAction>
-      <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
+      <StyledLink href="#">Link to a Place</StyledLink>
     </StyledAction>
   </Card>
 );

@@ -15,6 +15,8 @@ import {
   hasThumbnail,
 } from './';
 
+import {StyledLink as StyledActionLink} from '../link';
+
 import {Button} from '../button';
 
 import {mergeOverrides} from '../helpers/overrides';
@@ -70,7 +72,7 @@ export default {
       <Card headerImage={headerImg} title={placeholderTitle}>
         <StyledBody>{placeholderText}</StyledBody>
         <StyledAction>
-          <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
+          <StyledActionLink href="#">Link to a Place</StyledActionLink>
         </StyledAction>
       </Card>
     );
@@ -91,7 +93,7 @@ export default {
         <StyledTitle>{placeholderTitle}</StyledTitle>
         <StyledBody>{placeholderText}</StyledBody>
         <StyledAction>
-          <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
+          <StyledActionLink href="#">Link to a Place</StyledActionLink>
         </StyledAction>
       </Card>
     );
@@ -133,7 +135,7 @@ export default {
       <Card thumbnail={thumbnailImg} title={placeholderTitle}>
         <StyledBody>{placeholderText}</StyledBody>
         <StyledAction>
-          <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
+          <StyledActionLink href="#">Link to a Place</StyledActionLink>
         </StyledAction>
       </Card>
     );
