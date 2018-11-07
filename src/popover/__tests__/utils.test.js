@@ -124,16 +124,16 @@ describe('Popover utils', () => {
     test('getPopoverMarginStyles should return correct margins without arrow', () => {
       const showArrow = false;
       expect(getPopoverMarginStyles(showArrow, 'topLeft')).toEqual({
-        marginBottom: '8px',
+        marginBottom: '24px',
       });
       expect(getPopoverMarginStyles(showArrow, 'top')).toEqual({
-        marginBottom: '8px',
+        marginBottom: '24px',
       });
       expect(getPopoverMarginStyles(showArrow, 'right')).toEqual({
-        marginLeft: '8px',
+        marginLeft: '24px',
       });
       expect(getPopoverMarginStyles(showArrow, 'bottomLeft')).toEqual({
-        marginTop: '8px',
+        marginTop: '24px',
       });
     });
     test('getPopoverMarginStyles should return correct margins with arrow', () => {
