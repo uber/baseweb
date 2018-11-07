@@ -4,15 +4,6 @@ import {styled} from '../styles/index';
 
 export const Action = styled('div', () => ({}));
 
-export const ActionLink = styled('a', ({$theme}) => {
-  const {colors, typography} = $theme;
-  return {
-    color: colors.primary400,
-    ...typography.font450,
-    textDecoration: 'none',
-  };
-});
-
 export const Body = styled('div', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {

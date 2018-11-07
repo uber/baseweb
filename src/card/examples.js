@@ -9,12 +9,13 @@ import React from 'react';
 import {
   Card as BaseCard,
   StyledAction,
-  StyledActionLink,
   StyledBody,
   StyledThumbnail,
   StyledTitle,
   hasThumbnail,
 } from './';
+
+import {StyledLink as StyledActionLink} from '../link';
 
 import {Button} from '../button';
 
