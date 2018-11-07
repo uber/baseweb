@@ -35,13 +35,17 @@ export function getHoverBackgroundColor(props: SharedPropsT) {
 }
 
 export const Action = styled('div', props => {
-  const {$disabled} = props;
+  const {$disabled, $theme} = props;
   return {
     display: 'flex',
     alignItems: 'center',
     padding: '12px',
-    borderTopRightRadius: '2px',
-    borderBottomRightRadius: '2px',
+    borderBottomRightRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius400
+      : '0px',
+    borderTopRightRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius400
+      : '0px',
     marginLeft: '8px',
     cursor: $disabled ? 'not-allowed' : 'pointer',
     ':hover': {
@@ -77,7 +81,7 @@ export const Root = styled('span', props => {
     color: color,
     opacity: $disabled ? '.56' : null,
     borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius100
+      ? $theme.borders.radius400
       : '0px',
     cursor: $disabled ? 'not-allowed' : 'auto',
     backgroundColor: getBackgroundColor(props),
