@@ -4,6 +4,15 @@ import {styled} from '../styles/index';
 
 export const Action = styled('div', () => ({}));
 
+export const ActionLink = styled('a', ({$theme}) => {
+  const {colors, typography} = $theme;
+  return {
+    color: colors.primary400,
+    ...typography.font450,
+    textDecoration: 'none',
+  };
+});
+
 export const Body = styled('div', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
@@ -16,7 +25,7 @@ export const Body = styled('div', ({$theme}) => {
 export const Contents = styled('div', ({$theme}) => {
   const {sizing} = $theme;
   return {
-    margin: sizing.scale600,
+    margin: sizing.scale800,
   };
 });
 

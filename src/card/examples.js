@@ -9,6 +9,7 @@ import React from 'react';
 import {
   Card as BaseCard,
   StyledAction,
+  StyledActionLink,
   StyledBody,
   StyledThumbnail,
   StyledTitle,
@@ -70,7 +71,7 @@ export default {
       <Card headerImage={headerImg} title={placeholderTitle}>
         <StyledBody>{placeholderText}</StyledBody>
         <StyledAction>
-          <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
+          <StyledActionLink href="#">Link to a Place</StyledActionLink>
         </StyledAction>
       </Card>
     );
@@ -91,7 +92,7 @@ export default {
         <StyledTitle>{placeholderTitle}</StyledTitle>
         <StyledBody>{placeholderText}</StyledBody>
         <StyledAction>
-          <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
+          <StyledActionLink href="#">Link to a Place</StyledActionLink>
         </StyledAction>
       </Card>
     );
@@ -133,7 +134,7 @@ export default {
       <Card thumbnail={thumbnailImg} title={placeholderTitle}>
         <StyledBody>{placeholderText}</StyledBody>
         <StyledAction>
-          <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>
+          <StyledActionLink href="#">Link to a Place</StyledActionLink>
         </StyledAction>
       </Card>
     );

@@ -4,6 +4,7 @@ export {default as Card, hasThumbnail} from './card';
 
 export {
   Action as StyledAction,
+  ActionLink as StyledActionLink,
   Body as StyledBody,
   Contents as StyledContents,
   HeaderImage as StyledHeaderImage,
