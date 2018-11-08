@@ -181,7 +181,7 @@ export default {
               <React.Fragment>
                 Info notification with no close button and children as a
                 function.
-                <Centered>
+                <div>
                   <Space>
                     <Button
                       onClick={dismiss}
@@ -191,7 +191,7 @@ export default {
                       Click to dismiss
                     </Button>
                   </Space>
-                </Centered>
+                </div>
               </React.Fragment>
             );
           }}
