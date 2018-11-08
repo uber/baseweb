@@ -23,3 +23,4 @@ export {
   SIZE,
   CUSTOM_INPUT_TYPE,
 } from './constants';
+export * from './types';

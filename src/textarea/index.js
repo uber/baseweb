@@ -14,3 +14,4 @@ export {
   Textarea as StyledTextarea,
 } from './styled-components';
 export {STATE_CHANGE_TYPE, SIZE} from './constants';
+export * from './types';
