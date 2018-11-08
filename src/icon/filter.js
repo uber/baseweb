@@ -14,9 +14,20 @@ import type {IconPropsT} from './types';
 export default function Filter(props: IconPropsT) {
   return (
     <Icon title="Filter" viewBox="0 0 24 24" {...props}>
-      <rect x="7" y="11" width="10" height="2" rx="1" />
-      <rect x="4" y="7" width="16" height="2" rx="1" />
-      <rect x="10" y="15" width="4" height="2" rx="1" />
+      <g
+        transform="matrix(
+    1 0
+    0 1
+    1 4
+  )"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M 22 0 L 0 0 L 0 3 L 22 3 L 22 0 Z M 18 7 L 4 7 L 4 10 L 18 10 L 18 7 Z M 8 14 L 14 14 L 14 17 L 8 17 L 8 14 Z"
+          fill="currentColor"
+        />
+      </g>
     </Icon>
   );
 }
