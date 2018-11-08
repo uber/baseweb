@@ -1,6 +1,11 @@
 module.exports = {
   parser: 'babel-eslint',
-  plugins: ['flowtype', 'eslint-plugin-react', 'eslint-plugin-import'],
+  plugins: [
+    'flowtype',
+    'eslint-plugin-react',
+    'eslint-plugin-import',
+    'header',
+  ],
   env: {
     jest: true,
   },
@@ -29,6 +34,7 @@ module.exports = {
     ],
     'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
     'import/prefer-default-export': ['off'],
+    'header/header': [2, 'LICENSE-HEAD'],
   },
   overrides: [
     {
