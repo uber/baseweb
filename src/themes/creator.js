@@ -208,6 +208,7 @@ export default function createTheme(
       scale300: '8px',
       scale400: '10px',
       scale500: '12px',
+      scale550: '14px',
       scale600: '16px',
       scale700: '20px',
       scale800: '24px',
