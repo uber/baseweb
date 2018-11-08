@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'Delete';
+
 export default function Delete(props: IconPropsT) {
   return (
     <Icon title="Delete" viewBox="0 0 24 24" {...props}>

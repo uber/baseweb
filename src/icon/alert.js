@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'Alert';
+
 export default function Alert(props: IconPropsT) {
   return (
     <Icon title="Alert" viewBox="0 0 24 24" {...props}>

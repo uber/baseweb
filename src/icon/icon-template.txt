@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = '%%ICON_NAME%%';
+
 export default function %%ICON_NAME%%(props: IconPropsT) {
   return (
     <Icon %%ICON_PROPS%% {...props}>

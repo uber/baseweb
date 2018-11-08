@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'TriangleLeft';
+
 export default function TriangleLeft(props: IconPropsT) {
   return (
     <Icon title="Triangle Left" viewBox="0 0 24 24" {...props}>

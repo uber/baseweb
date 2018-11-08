@@ -93,6 +93,7 @@ async function generateNewIcons() {
 
     let result = iconTemplate
       .replace('%%ICON_NAME%%', componentName)
+      .replace('%%ICON_NAME%%', componentName)
       .replace('%%ICON_PROPS%%', iconProps.join(' '))
       .replace('%%ICON_PATH%%', reactify(svgFileContents));
 

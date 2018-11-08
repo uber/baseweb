@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'ArrowDown';
+
 export default function ArrowDown(props: IconPropsT) {
   return (
     <Icon title="Arrow Down" viewBox="0 0 24 24" {...props}>

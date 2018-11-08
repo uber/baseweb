@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'Spinner';
+
 export default function Spinner(props: IconPropsT) {
   return (
     <Icon title="Spinner" viewBox="0 0 24 24" {...props}>

@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'ChevronRight';
+
 export default function ChevronRight(props: IconPropsT) {
   return (
     <Icon title="Chevron Right" viewBox="0 0 24 24" {...props}>

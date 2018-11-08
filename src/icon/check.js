@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'Check';
+
 export default function Check(props: IconPropsT) {
   return (
     <Icon title="Check" viewBox="0 0 24 24" {...props}>

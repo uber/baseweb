@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'CheckIndeterminate';
+
 export default function CheckIndeterminate(props: IconPropsT) {
   return (
     <Icon title="Check Indeterminate" viewBox="0 0 24 24" {...props}>

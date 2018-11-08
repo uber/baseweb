@@ -11,6 +11,8 @@ import * as React from 'react';
 import Icon from './icon';
 import type {IconPropsT} from './types';
 
+export const name = 'Menu';
+
 export default function Menu(props: IconPropsT) {
   return (
     <Icon title="Menu" viewBox="0 0 24 24" {...props}>
