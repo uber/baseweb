@@ -15,3 +15,4 @@ export const LightThemeMove = createTheme({
   primaryFontFamily:
     'UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif',
 });
+export * from './types';

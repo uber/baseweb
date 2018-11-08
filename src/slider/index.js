@@ -17,3 +17,4 @@ export {
   TickBar as StyledTickBar,
   AxisRange as StyledAxisRange,
 } from './styled-components';
+export * from './types';

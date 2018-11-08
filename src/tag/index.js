@@ -13,3 +13,4 @@ export {
   ActionIcon as StyledActionIcon,
 } from './styled-components';
 export {COLOR_STYLE_KEYS, KIND} from './constants';
+export * from './types';
