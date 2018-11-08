@@ -18,3 +18,4 @@ export {
   RadioGroupRoot as StyledRadioGroupRoot,
 } from './styled-components';
 export {default as StyledRadio} from './radio';
+export * from './types';
