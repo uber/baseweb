@@ -181,17 +181,15 @@ export default {
               <React.Fragment>
                 Info notification with no close button and children as a
                 function.
-                <Centered>
-                  <Space>
-                    <Button
-                      onClick={dismiss}
-                      kind={ButtonKind.secondary}
-                      size={SIZE.compact}
-                    >
-                      Click to dismiss
-                    </Button>
-                  </Space>
-                </Centered>
+                <div>
+                  <Button
+                    onClick={dismiss}
+                    kind={ButtonKind.secondary}
+                    size={SIZE.compact}
+                  >
+                    Click to dismiss
+                  </Button>
+                </div>
               </React.Fragment>
             );
           }}
