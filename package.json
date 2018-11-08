@@ -136,7 +136,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e $GIT_PARAMS",
-      "pre-commit": "pretty-quick --staged && yarn run test"
+      "pre-commit": "pretty-quick --staged"
     }
   }
 }
