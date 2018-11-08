@@ -16,8 +16,8 @@ Object {
   "cursor": "wait",
   "display": "inline-block",
   "fill": "$theme.colors.primary400",
-  "height": "$theme.sizing.scale800",
-  "width": "$theme.sizing.scale800",
+  "height": "$theme.sizing.scale600",
+  "width": "$theme.sizing.scale600",
 }
 `;
 
@@ -37,8 +37,8 @@ Object {
   "cursor": "wait",
   "display": "inline-block",
   "fill": "$theme.colors.primary400",
-  "height": "$theme.sizing.scale800",
-  "width": "$theme.sizing.scale800",
+  "height": "$theme.sizing.scale600",
+  "width": "$theme.sizing.scale600",
 }
 `;
 
@@ -58,7 +58,7 @@ Object {
   "cursor": "wait",
   "display": "inline-block",
   "fill": "$theme.colors.primary400",
-  "height": "$theme.sizing.scale800",
-  "width": "$theme.sizing.scale800",
+  "height": "$theme.sizing.scale600",
+  "width": "$theme.sizing.scale600",
 }
 `;

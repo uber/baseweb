@@ -19,8 +19,8 @@ export const BaseButton = styled(
   ({$theme, $size, $kind, $shape, $isLoading}: StylePropsT) => ({
     position: 'relative',
     ...($size === SIZE.compact
-      ? $theme.typography.font200
-      : $theme.typography.font300),
+      ? $theme.typography.font250
+      : $theme.typography.font350),
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
