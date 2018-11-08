@@ -84,6 +84,7 @@
     "eslint-config-uber-universal-stage-3": "^3.0.0",
     "eslint-plugin-cup": "^2.0.0",
     "eslint-plugin-flowtype": "^3.0.0",
+    "eslint-plugin-header": "^2.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^3.0.0",
@@ -94,7 +95,6 @@
     "husky": "^1.0.0",
     "jest": "^23.3.0",
     "jest-enzyme": "^7.0.0",
-    "license-check-and-add": "^2.3.6",
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
     "nightwatch": "^0.9.21",
@@ -132,19 +132,6 @@
     "node": ">=8.11.0",
     "npm": ">=5.6.0",
     "yarn": ">=1.5.1"
-  },
-  "license-check-and-add-config": {
-    "folder": ".",
-    "license": "LICENSE-HEAD",
-    "exact_paths_method": "INCLUDE",
-    "exact_paths": [
-      "src"
-    ],
-    "file_type_method": "INCLUDE",
-    "file_types": [
-      ".js"
-    ],
-    "insert_license": true
   },
   "husky": {
     "hooks": {
