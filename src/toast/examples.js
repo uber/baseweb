@@ -229,7 +229,7 @@ export default {
             },
             CloseIcon: {
               props: {
-                title: 'Close',
+                title: 'Dismiss',
               },
               style: {
                 backgroundColor: '#fff',
