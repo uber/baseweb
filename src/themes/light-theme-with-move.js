@@ -51,49 +51,49 @@ export const LightThemeMove = createTheme(
         fontWeight: 'normal',
         lineHeight: '24px',
       },
-      font425: {
+      font450: {
         fontFamily: primaryFontFamily,
         fontSize: '16px',
         fontWeight: 'bold',
         lineHeight: '24px',
       },
-      font450: {
+      font500: {
         fontFamily: primaryFontFamily,
         fontSize: '20px',
         fontWeight: 'bold',
         lineHeight: '28px',
       },
-      font500: {
+      font600: {
         fontFamily: primaryFontFamily,
         fontSize: '24px',
         fontWeight: 'bold',
         lineHeight: '36px',
       },
-      font600: {
+      font700: {
         fontFamily: primaryFontFamily,
         fontSize: '32px',
         fontWeight: 'bold',
         lineHeight: '48px',
       },
-      font700: {
+      font800: {
         fontFamily: primaryFontFamily,
         fontSize: '40px',
         fontWeight: 'bold',
         lineHeight: '56px',
       },
-      font800: {
+      font900: {
         fontFamily: primaryFontFamily,
         fontSize: '52px',
         fontWeight: 'bold',
         lineHeight: '68px',
       },
-      font900: {
+      font1000: {
         fontFamily: primaryFontFamily,
         fontSize: '72px',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         lineHeight: '96px',
       },
-      font1000: {
+      font1100: {
         fontFamily: secondaryFontFamily,
         fontSize: '96px',
         fontWeight: 'normal',
