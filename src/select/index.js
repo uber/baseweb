@@ -23,3 +23,4 @@ export {
   SelectionContainer as StyledSelectionContainer,
 } from './styled-components';
 export {ICON, OPTIONS, TYPE} from './constants';
+export * from './types';
