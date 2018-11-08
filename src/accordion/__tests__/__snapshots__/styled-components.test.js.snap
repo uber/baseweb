@@ -253,10 +253,10 @@ Object {
   "cursor": "not-allowed",
   "display": "inline-block",
   "fill": "$theme.colors.mono600",
-  "height": "$theme.sizing.scale800",
+  "height": "$theme.sizing.scale600",
   "position": "absolute",
   "right": "12px",
-  "width": "$theme.sizing.scale800",
+  "width": "$theme.sizing.scale600",
 }
 `;
 
@@ -265,10 +265,10 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "$theme.colors.mono600",
-  "height": "$theme.sizing.scale800",
+  "height": "$theme.sizing.scale600",
   "position": "absolute",
   "right": "12px",
-  "width": "$theme.sizing.scale800",
+  "width": "$theme.sizing.scale600",
 }
 `;
 
@@ -277,10 +277,10 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "$theme.colors.mono600",
-  "height": "$theme.sizing.scale800",
+  "height": "$theme.sizing.scale600",
   "position": "absolute",
   "right": "12px",
-  "width": "$theme.sizing.scale800",
+  "width": "$theme.sizing.scale600",
 }
 `;
 
@@ -289,9 +289,9 @@ Object {
   "cursor": "not-allowed",
   "display": "inline-block",
   "fill": "$theme.colors.mono600",
-  "height": "$theme.sizing.scale800",
+  "height": "$theme.sizing.scale600",
   "position": "absolute",
   "right": "12px",
-  "width": "$theme.sizing.scale800",
+  "width": "$theme.sizing.scale600",
 }
 `;

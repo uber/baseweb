@@ -4,7 +4,7 @@ exports[`Icon styled components Svg has correct default styles: Svg basic render
 Object {
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "$theme.sizing.scale800",
-  "width": "$theme.sizing.scale800",
+  "height": "$theme.sizing.scale600",
+  "width": "$theme.sizing.scale600",
 }
 `;

@@ -16,7 +16,7 @@ export function getSvgStyles({$theme, $size, $color}: StyledComponentParamsT) {
       $size = `${$size}px`;
     }
   } else {
-    $size = $theme.sizing.scale800;
+    $size = $theme.sizing.scale600;
   }
   return {
     display: 'inline-block',
