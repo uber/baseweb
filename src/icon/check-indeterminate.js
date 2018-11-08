@@ -14,11 +14,20 @@ import type {IconPropsT} from './types';
 export default function CheckIndeterminate(props: IconPropsT) {
   return (
     <Icon title="Check Indeterminate" viewBox="0 0 24 24" {...props}>
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
-      />
+      <g
+        transform="matrix(
+      1 0
+      0 1
+      1 10.5
+    )"
+      >
+        <path
+          fillRule="nonzero"
+          clipRule="nonzero"
+          d="M 22 0 L 0 0 L 0 3 L 22 3 L 22 0 Z"
+          fill="currentColor"
+        />
+      </g>
     </Icon>
   );
 }

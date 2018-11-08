@@ -33,7 +33,8 @@
     "e2e:test": "nightwatch --filter e2e.js",
     "e2e:test:ci": "nightwatch --filter e2e.js --env chrome-mac,chrome-windows --retries 2",
     "prepublish": "npm run build",
-    "license": "license-check-and-add"
+    "license": "license-check-and-add",
+    "icon:generate": "./src/icon/build-icons.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

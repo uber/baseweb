@@ -6,22 +6,22 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env node*/
-import fs from 'fs';
-import path from 'path';
-import prettier from 'prettier';
+const fs = require('fs');
+const path = require('path');
+const prettier = require('prettier');
 
-function capitalize(str: string): string {
+function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function pascalCase(str: string): string {
+function pascalCase(str) {
   return str
     .split('-')
     .map(capitalize)
     .join('');
 }
 
-function titleCase(str: string): string {
+function titleCase(str) {
   return str
     .split('-')
     .map(capitalize)
@@ -29,7 +29,7 @@ function titleCase(str: string): string {
 }
 
 // transform svg string to properly styled jsx
-function reactify(svgString: string): string {
+function reactify(svgString) {
   return svgString
     .replace(/<\/?svg[^>]*>/gm, '')
     .replace(/^\s*\n/gm, '')
