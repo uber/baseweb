@@ -154,5 +154,7 @@ export const SelectSpinner = styled('div', () => {
 });
 
 export const SelectionContainer = styled('div', props => {
-  return {};
+  return {
+    lineHeight: '12px',
+  };
 });
