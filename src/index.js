@@ -9,3 +9,5 @@ export {styled, ThemeProvider} from './styles';
 export {LightTheme} from './themes';
 export {withProps} from './helpers';
 export {mergeOverrides} from './helpers/overrides';
+export type {PrimitivesT} from './themes/types';
+export type {ThemeT} from './styles/types';

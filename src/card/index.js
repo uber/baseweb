@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* @flow */
 
 export {default as Card, hasThumbnail} from './card';
-
 export {
   Action as StyledAction,
   Body as StyledBody,
@@ -18,3 +17,4 @@ export {
   Title as StyledTitle,
   Root as StyledWrapper,
 } from './styled-components';
+export * from './types';
