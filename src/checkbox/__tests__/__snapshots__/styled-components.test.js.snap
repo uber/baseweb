@@ -512,7 +512,7 @@ Object {
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
-  "lineHeight": "$theme.typography.font350.lineHeight",
+  "lineHeight": "24px",
   "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -525,7 +525,7 @@ Object {
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
-  "lineHeight": "$theme.typography.font350.lineHeight",
+  "lineHeight": "24px",
   "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -538,7 +538,7 @@ Object {
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
-  "lineHeight": "$theme.typography.font350.lineHeight",
+  "lineHeight": "24px",
   "padding": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -551,7 +551,7 @@ Object {
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
-  "lineHeight": "$theme.typography.font350.lineHeight",
+  "lineHeight": "24px",
   "paddingBottom": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -564,7 +564,7 @@ Object {
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
-  "lineHeight": "$theme.typography.font350.lineHeight",
+  "lineHeight": "24px",
   "paddingLeft": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -577,7 +577,7 @@ Object {
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
-  "lineHeight": "$theme.typography.font350.lineHeight",
+  "lineHeight": "24px",
   "paddingRight": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
@@ -590,7 +590,7 @@ Object {
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
-  "lineHeight": "$theme.typography.font350.lineHeight",
+  "lineHeight": "24px",
   "paddingTop": "$theme.sizing.scale200",
   "verticalAlign": "middle",
 }
