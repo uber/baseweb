@@ -16,11 +16,7 @@ const PricingPageHero = styled('div', {
 const PricingPageHeroText = styled('h2', {
   margin: '10px',
 });
-
-// ... and many more
 ```
-
----
 
 ## Proposal
 
@@ -38,19 +34,6 @@ The above example might turn into:
   {/* ... etc */}
 </Block>
 ```
-
-Props would be exposed for:
-
-* Changing base element
-* Spacing (margin/padding)
-* Typography (color, font, font-size, font-style, etc)
-* Display, Position, Flexbox
-* Box shadows
-* `$style` prop for further style overrides
-
-[Pinterest's Gestalt has a similar Box component](https://pinterest.github.io/gestalt/#/Box), and [other](http://mineral-ui.com/components/text) [frameworks](https://evergreen.surge.sh/components/typography) have Text components that focus primarily on quick typography helpers. The [jsxstyle](https://github.com/jsxstyle/jsxstyle) css-in-js library uses this pattern as well. I've also created similar helper components internally at Uber and they've been helpful.
-
-> **Note** that we would likely _not_ use this component internally to build other baseui components. It's primarily a helper component for customers when building their apps.
 
 ### `Block` API
 
@@ -105,6 +88,12 @@ Props would be exposed for:
 * `right: string` - Optional
 * `bottom: string` - Optional
 
+## Motivation
+
+[Pinterest's Gestalt has a similar Box component](https://pinterest.github.io/gestalt/#/Box), and [other](http://mineral-ui.com/components/text) [frameworks](https://evergreen.surge.sh/components/typography) have Text components that focus primarily on quick typography helpers. The [jsxstyle](https://github.com/jsxstyle/jsxstyle) css-in-js library uses this pattern as well. I've also created similar helper components internally at Uber and they've been helpful.
+
+> **Note** that we would likely _not_ use this component internally to build other baseui components. It's primarily a helper component for customers when building their apps.
+
 ### Why not separate `Spacing`,  `Color`, `Text`, `Shadow` etc components
 
 The reality is you often want to apply multiple of these concerns to one element, but instead you'd end up with something like this:
@@ -117,6 +106,6 @@ The reality is you often want to apply multiple of these concerns to one element
 </Shadow>
 ```
 
-Having multiple elements can complicate things like layout (flexbox children, etc), as well as just needlessly increasing the amount of DOM the client has to deal with.
+Having multiple elements can complicate things like layout, as well as just needlessly increasing the amount of DOM the client has to deal with.
 
 Combining most things into a single `Block` component allows you to keep things as a single element, and generally has less cognitive overload due to fewer react elements. (maybe there's a happy middle-ground though, for example a `Block` and `Text` component?)

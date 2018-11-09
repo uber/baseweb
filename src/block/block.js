@@ -19,7 +19,7 @@ function Block({
   alignContent,
   alignItems,
   alignSelf,
-  direction,
+  flexDirection,
   display,
   flex,
   justifyContent,
@@ -42,7 +42,7 @@ function Block({
   paddingRight,
   paddingBottom,
   paddingLeft,
-  wrap,
+  flexWrap,
   left,
   top,
   right,
@@ -57,7 +57,7 @@ function Block({
       $alignContent={alignContent}
       $alignItems={alignItems}
       $alignSelf={alignSelf}
-      $direction={direction}
+      $flexDirection={flexDirection}
       $display={display}
       $flex={flex}
       $justifyContent={justifyContent}
@@ -80,7 +80,7 @@ function Block({
       $paddingRight={paddingRight}
       $paddingBottom={paddingBottom}
       $paddingLeft={paddingLeft}
-      $wrap={wrap}
+      $flexWrap={flexWrap}
       $left={left}
       $top={top}
       $right={right}
@@ -102,7 +102,7 @@ Block.defaultProps = {
   justifyContent: 'start',
   position: 'static',
   overflow: 'visible',
-  wrap: false,
+  flexWrap: false,
 };
 
 export default Block;

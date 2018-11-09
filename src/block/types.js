@@ -7,19 +7,19 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import type {Node} from 'react';
+import type {Node, ElementType} from 'react';
 import type {ThemeT} from '../styles/types';
 
 export type BlockPropsT = {
   children?: Node,
-  as?: string | Node,
+  as?: ElementType,
   $style?: ?{},
   color?: string,
   font?: string,
   alignContent?: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch',
   alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch',
   alignSelf?: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch',
-  direction?: 'row' | 'column',
+  flexDirection?: 'row' | 'column',
   display?: 'none' | 'flex' | 'block' | 'inline-block',
   flex?: 'grow' | 'shrink' | 'none',
   justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around',
@@ -42,7 +42,7 @@ export type BlockPropsT = {
   paddingRight?: string,
   paddingBottom?: string,
   paddingLeft?: string,
-  wrap?: boolean,
+  flexWrap?: boolean,
   left?: string,
   top?: string,
   right?: string,
@@ -51,13 +51,13 @@ export type BlockPropsT = {
 
 export type StyledBlockPropsT = {
   $theme: ThemeT,
-  $as?: string,
+  $as?: ElementType,
   $color?: string,
   $font?: string,
   $alignContent?: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch',
   $alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch',
   $alignSelf?: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch',
-  $direction?: 'row' | 'column',
+  $flexDirection?: 'row' | 'column',
   $display?: 'none' | 'flex' | 'block' | 'inline-block',
   $flex?: 'grow' | 'shrink' | 'none',
   $justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around',
@@ -80,7 +80,7 @@ export type StyledBlockPropsT = {
   $paddingRight?: string,
   $paddingBottom?: string,
   $paddingLeft?: string,
-  $wrap?: boolean,
+  $flexWrap?: boolean,
   $left?: string,
   $top?: string,
   $right?: string,

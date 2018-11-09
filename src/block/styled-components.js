@@ -20,7 +20,7 @@ export const StyledBlock = styled(
     $alignContent,
     $alignItems,
     $alignSelf,
-    $direction,
+    $flexDirection,
     $display,
     $flex,
     $justifyContent,
@@ -43,7 +43,7 @@ export const StyledBlock = styled(
     $paddingRight,
     $paddingBottom,
     $paddingLeft,
-    $wrap,
+    $flexWrap,
     $left,
     $top,
     $right,
@@ -78,8 +78,8 @@ export const StyledBlock = styled(
       styles.alignSelf = $alignSelf;
     }
 
-    if ($direction) {
-      styles.direction = $direction;
+    if ($flexDirection) {
+      styles.flexDirection = $flexDirection;
     }
 
     if ($display) {
@@ -174,7 +174,7 @@ export const StyledBlock = styled(
       styles.paddingLeft = sizing[$paddingLeft] || $paddingLeft;
     }
 
-    if ($wrap) {
+    if ($flexWrap) {
       styles.flexWrap = 'wrap';
     }
 

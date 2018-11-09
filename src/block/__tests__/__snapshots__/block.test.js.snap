@@ -9,10 +9,10 @@ exports[`Block renders correctly 1`] = `
   color="primary200"
   display="block"
   flex="shrink"
+  flexWrap={false}
   justifyContent="start"
   overflow="visible"
   position="static"
-  wrap={false}
 >
   <MockStyledComponent
     $alignContent="stretch"
@@ -22,10 +22,10 @@ exports[`Block renders correctly 1`] = `
     $color="primary200"
     $display="block"
     $flex="shrink"
+    $flexWrap={false}
     $justifyContent="start"
     $overflow="visible"
     $position="static"
-    $wrap={false}
   >
     <div
       styled-component="true"
