@@ -19,6 +19,9 @@
     "storybook": "start-storybook -p 6006",
     "storybook:move": "start-storybook -c .storybook-move -p 6006",
     "build-storybook": "build-storybook -o docs && build-storybook -c .storybook-move -o docs/move",
+    "storybook:screener": "screener-storybook --conf screener.config.js",
+    "storybook:screener:ngrok": "node ./node_modules/screener-ngrok/postinstall.js",
+    "storybook:screener:ci": "yarn storybook:screener:ngrok && yarn storybook:screener",
     "prebuild": "rimraf dist",
     "build:copy-files": "cp package.json dist/package.json && cp README.md dist/README.md",
     "build:copy-flow-files": "./scripts/flow-copy-src.js",
@@ -120,6 +123,7 @@
   "dependencies": {
     "memoize-one": "^4.0.2",
     "popper.js": "^1.14.3",
+    "screener-storybook": "^0.16.1",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "peerDependencies": {
