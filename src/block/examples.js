@@ -41,14 +41,16 @@ export default {
       900,
       1000,
     ];
-    const elements = [];
 
-    for (const size of sizes) {
+    return sizes.map(size => {
       const fontString = `font${size}`;
-      elements.push(<Block font={fontString}>{fontString}</Block>);
-    }
 
-    return elements;
+      return (
+        <Block key={size} font={fontString}>
+          {fontString}
+        </Block>
+      );
+    });
   },
   [examples.FLEXBOX]: function Story4() {
     const elements = [];
