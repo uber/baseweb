@@ -7,7 +7,7 @@ outlined here
 ## Define your primitives
 
 Primitives are used to define the colors and fonts for the components. An example for
-primitives can be found in the [light theme](https://github.com/uber-web/baseui/blob/master/src/themes/light-theme.js).
+primitives can be found in the [light theme primitives](https://github.com/uber-web/baseui/blob/master/src/themes/light-theme-primitives.js).
 
 ## Define any additional theme overrides
 
@@ -21,7 +21,7 @@ In practice, you can define your custom theme using this approach:
 ```js
 import createTheme from 'baseui/themes/creator'
 
-import {primitives} from 'baseui/themes/light-theme';
+import {primitives} from 'baseui/themes/light-theme-primitives';
 
 const yourTheme = createTheme({
   ...primitives,
