@@ -26,6 +26,7 @@ Object {
           },
         }
       }
+      size={16}
       title="Expand"
     />,
   ],
