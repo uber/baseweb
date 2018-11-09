@@ -11,6 +11,9 @@ Object {
   "onBlur": [Function],
   "onChange": [MockFunction],
   "onFocus": [Function],
+  "onKeyDown": [Function],
+  "onKeyPress": [Function],
+  "onKeyUp": [Function],
   "placeholder": "Placeholder",
   "rows": 3,
   "styled-component": "true",
@@ -32,6 +35,9 @@ Object {
   "onBlur": [MockFunction],
   "onChange": [MockFunction],
   "onFocus": [MockFunction],
+  "onKeyDown": [Function],
+  "onKeyPress": [Function],
+  "onKeyUp": [Function],
   "overrides": Object {
     "Input": Object {
       "component": [Function],
@@ -62,6 +68,9 @@ Object {
   "onBlur": [MockFunction],
   "onChange": [MockFunction],
   "onFocus": [MockFunction],
+  "onKeyDown": [Function],
+  "onKeyPress": [Function],
+  "onKeyUp": [Function],
   "overrides": Object {
     "Input": Object {
       "component": [Function],

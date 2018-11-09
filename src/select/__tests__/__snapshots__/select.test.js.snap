@@ -84,6 +84,9 @@ exports[`Stateless select should render component in search mode and false for m
               onBlur={[Function]}
               onChange={[Function]}
               onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyPress={[Function]}
+              onKeyUp={[Function]}
               overrides={
                 Object {
                   "After": [Function],
@@ -170,6 +173,8 @@ exports[`Stateless select should render component in search mode and false for m
                     onChange={[Function]}
                     onFocus={[Function]}
                     onKeyDown={[Function]}
+                    onKeyPress={[Function]}
+                    onKeyUp={[Function]}
                     placeholder=""
                     role="combobox"
                     tabIndex={0}
@@ -187,6 +192,8 @@ exports[`Stateless select should render component in search mode and false for m
                       onChange={[Function]}
                       onFocus={[Function]}
                       onKeyDown={[Function]}
+                      onKeyPress={[Function]}
+                      onKeyUp={[Function]}
                       placeholder=""
                       role="combobox"
                       styled-component="true"
@@ -325,6 +332,9 @@ exports[`Stateless select should render component in search mode and true for mu
               onBlur={[Function]}
               onChange={[Function]}
               onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyPress={[Function]}
+              onKeyUp={[Function]}
               overrides={
                 Object {
                   "After": [Function],
@@ -411,6 +421,8 @@ exports[`Stateless select should render component in search mode and true for mu
                     onChange={[Function]}
                     onFocus={[Function]}
                     onKeyDown={[Function]}
+                    onKeyPress={[Function]}
+                    onKeyUp={[Function]}
                     placeholder=""
                     role="combobox"
                     tabIndex={0}
@@ -428,6 +440,8 @@ exports[`Stateless select should render component in search mode and true for mu
                       onChange={[Function]}
                       onFocus={[Function]}
                       onKeyDown={[Function]}
+                      onKeyPress={[Function]}
+                      onKeyUp={[Function]}
                       placeholder=""
                       role="combobox"
                       styled-component="true"
@@ -571,6 +585,9 @@ exports[`Stateless select should render component in select mode and false for m
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
                 overrides={
                   Object {
                     "After": [Function],
@@ -647,6 +664,9 @@ exports[`Stateless select should render component in select mode and false for m
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onKeyPress={[Function]}
+                      onKeyUp={[Function]}
                       placeholder=""
                       role="combobox"
                       type="text"
@@ -661,6 +681,9 @@ exports[`Stateless select should render component in select mode and false for m
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
                         placeholder=""
                         role="combobox"
                         styled-component="true"
@@ -801,6 +824,9 @@ exports[`Stateless select should render component in select mode and true for mu
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
                 overrides={
                   Object {
                     "After": [Function],
@@ -877,6 +903,9 @@ exports[`Stateless select should render component in select mode and true for mu
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onKeyPress={[Function]}
+                      onKeyUp={[Function]}
                       placeholder=""
                       role="combobox"
                       type="text"
@@ -891,6 +920,9 @@ exports[`Stateless select should render component in select mode and true for mu
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
                         placeholder=""
                         role="combobox"
                         styled-component="true"

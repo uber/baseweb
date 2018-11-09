@@ -11,6 +11,9 @@ Object {
   "onBlur": [Function],
   "onChange": [MockFunction],
   "onFocus": [Function],
+  "onKeyDown": [MockFunction],
+  "onKeyPress": [MockFunction],
+  "onKeyUp": [MockFunction],
   "placeholder": "Placeholder",
   "styled-component": "true",
   "type": "text",
@@ -54,6 +57,9 @@ Object {
       onBlur={[Function]}
       onChange={[MockFunction]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
       placeholder=""
       type="text"
     />,
@@ -105,6 +111,9 @@ Object {
       onBlur={[Function]}
       onChange={[MockFunction]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
       placeholder=""
       type="text"
     />,
@@ -156,6 +165,9 @@ Object {
       onBlur={[Function]}
       onChange={[MockFunction]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
       placeholder=""
       type="text"
     />,
