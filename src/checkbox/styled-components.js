@@ -235,6 +235,7 @@ export const Label = styled('div', props => {
     ...getLabelPadding(props),
     color: getLabelColor(props),
     ...typography.font350,
+    lineHeight: '24px',
   };
 });
 // tricky style for focus event cause display: none doesn't work
