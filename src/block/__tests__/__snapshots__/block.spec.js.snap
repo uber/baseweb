@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Block renders correctly 1`] = `
+<Block
+  alignContent="stretch"
+  alignItems="stretch"
+  alignSelf="stretch"
+  as="div"
+  color="primary200"
+  display="block"
+  flex="shrink"
+  justifyContent="start"
+  overflow="visible"
+  position="static"
+  wrap={false}
+>
+  <MockStyledComponent
+    $alignContent="stretch"
+    $alignItems="stretch"
+    $alignSelf="stretch"
+    $as="div"
+    $color="primary200"
+    $display="block"
+    $flex="shrink"
+    $justifyContent="start"
+    $overflow="visible"
+    $position="static"
+    $wrap={false}
+  >
+    <div
+      styled-component="true"
+    >
+      test
+    </div>
+  </MockStyledComponent>
+</Block>
+`;

@@ -51,20 +51,36 @@ export default {
     return elements;
   },
   [examples.FLEXBOX]: function Story4() {
+    const elements = [];
+
+    for (let x = 0; x < 25; x++) {
+      elements.push(
+        <Block
+          key={x}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          width="200px"
+          height="200px"
+          margin="scale200"
+          font="font400"
+          color="primary"
+          $style={{border: 'grey solid 2px'}}
+        >
+          Positioned with flexbox
+        </Block>,
+      );
+    }
+
     return (
       <Block
-        color="primary"
-        font="font500"
-        position="fixed"
         display="flex"
-        justifyContent="center"
-        alignItems="center"
-        top="0"
-        bottom="0"
-        left="0"
-        right="0"
+        direction="column"
+        padding="scale3200"
+        $style={{border: 'grey solid 4px'}}
+        wrap
       >
-        Centered with flexbox
+        {elements}
       </Block>
     );
   },

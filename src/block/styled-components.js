@@ -24,6 +24,7 @@ export const StyledBlock = styled(
     $display,
     $flex,
     $justifyContent,
+    $justifySelf,
     $position,
     $width,
     $minWidth,
@@ -91,6 +92,10 @@ export const StyledBlock = styled(
 
     if ($justifyContent) {
       styles.justifyContent = $justifyContent;
+    }
+
+    if ($justifySelf) {
+      styles.justifySelf = $justifySelf;
     }
 
     if ($position) {

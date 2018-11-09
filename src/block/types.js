@@ -12,7 +12,7 @@ import type {ThemeT} from '../styles/types';
 
 export type BlockPropsT = {
   children?: Node,
-  as?: string,
+  as?: string | Node,
   $style?: ?{},
   color?: string,
   font?: string,
@@ -23,6 +23,7 @@ export type BlockPropsT = {
   display?: 'none' | 'flex' | 'block' | 'inline-block',
   flex?: 'grow' | 'shrink' | 'none',
   justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around',
+  justifySelf?: string,
   position?: 'static' | 'absolute' | 'relative' | 'fixed',
   width?: string,
   minWidth?: string,
@@ -60,6 +61,7 @@ export type StyledBlockPropsT = {
   $display?: 'none' | 'flex' | 'block' | 'inline-block',
   $flex?: 'grow' | 'shrink' | 'none',
   $justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around',
+  $justifySelf?: string,
   $position?: 'static' | 'absolute' | 'relative' | 'fixed',
   $width?: string,
   $minWidth?: string,

@@ -8,13 +8,13 @@ The move to CSS-in-JS sort of eliminates these classes in favor of encapsulating
 
 ```js
 const PricingPageHero = styled('div', {
-  margin: '10px 15px',
+  margin: '10px',
   color: '#ccc',
   display: 'flex',
 });
 
 const PricingPageHeroText = styled('h2', {
-  margin: '10px 0',
+  margin: '10px',
 });
 
 // ... and many more
@@ -31,7 +31,7 @@ The `Block` component is a helper component that lets you write these common les
 The above example might turn into:
 
 ```js
-<Block marginSides="scale200" marginEnds="scale150" color="grey200" display="flex" flexDirection="column">
+<Block margin="scale200" color="primary200" display="flex" flexDirection="column">
   <Block as="h2" margin="scale150" justifySelf="left">
     Simple Pricing
   </Block>
@@ -52,6 +52,59 @@ Props would be exposed for:
 
 > **Note** that we would likely _not_ use this component internally to build other baseui components. It's primarily a helper component for customers when building their apps.
 
+### `Block` API
+
+* `children: (props: Props) => React.Node` - Optional
+* `as: string | React.Node` - Optional
+  * Modifies the base element used to render the block
+* `$style: Object` - Optional
+  * Applies provided styles to Styletron
+* `color: String` - Optional
+  * Accepts all themeable color properties (`primary200`, etc.)
+* `font: String` - Optional
+  * Accepts all themeable font properties (`font200`, etc.)
+* `alignContent: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch'` - Optional
+* `alignItems: 'start' | 'end' | 'center' | 'baseline' | 'stretch'` - Optional
+* `alignSelf: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch'` - Optional
+* `direction: 'row' | 'column'` - Optional
+* `display: 'none' | 'flex' | 'block' | 'inline-block'` - Optional
+* `flex: 'grow' | 'shrink' | 'none'` - Optional
+* `justifyContent: 'start' | 'end' | 'center' | 'between' | 'around'` - Optional
+* `justifySelf: string` - Optional
+* `position: 'static' | 'absolute' | 'relative' | 'fixed'` - Optional
+* `width: string` - Optional
+* `minWidth: string` - Optional
+* `maxWidth: string` - Optional
+* `height: string` - Optional
+* `minHeight: string` - Optional
+* `maxHeight: string` - Optional
+* `overflow: 'visible' | 'hidden' | 'scroll' | 'scrollX' | 'scrollY' | 'auto'` - Optional
+* `margin: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `marginTop: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `marginRight: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `marginBottom: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `marginLeft: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `padding: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `paddingTop: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `paddingRight: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `paddingBottom: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `paddingLeft: string` - Optional
+  * Accepts all themeable sizing properties (`scale100`, etc.)
+* `wrap: boolean` - Optional
+* `left: string` - Optional
+* `top: string` - Optional
+* `right: string` - Optional
+* `bottom: string` - Optional
+
 ### Why not separate `Spacing`,  `Color`, `Text`, `Shadow` etc components
 
 The reality is you often want to apply multiple of these concerns to one element, but instead you'd end up with something like this:
@@ -67,14 +120,3 @@ The reality is you often want to apply multiple of these concerns to one element
 Having multiple elements can complicate things like layout (flexbox children, etc), as well as just needlessly increasing the amount of DOM the client has to deal with.
 
 Combining most things into a single `Block` component allows you to keep things as a single element, and generally has less cognitive overload due to fewer react elements. (maybe there's a happy middle-ground though, for example a `Block` and `Text` component?)
-
-### Downsides
-
-It seems like there are two primary downsides here:
-
-* **Styles cluttering your markup** This is the price of being able to conveniently define things inline–one could argue the tradeoff is worth it here.
-* **Performance** This component would need to convert its props into a style object during render, which in theory may be slower than `styled('div', ...)` with a static object. It's hard to say whether this would be a problem in practice, and there are probably ways to optimize this if needed like memoization or a babel transform.
-
----
-
-It'd be great to get peoples reactions to this – would a component like this be helpful? are there any other benefits or downsides?

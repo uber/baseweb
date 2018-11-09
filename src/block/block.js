@@ -23,6 +23,7 @@ function Block({
   display,
   flex,
   justifyContent,
+  justifySelf,
   position,
   width,
   minWidth,
@@ -60,6 +61,7 @@ function Block({
       $display={display}
       $flex={flex}
       $justifyContent={justifyContent}
+      $justifySelf={justifySelf}
       $position={position}
       $width={width}
       $minWidth={minWidth}
