@@ -162,8 +162,8 @@ export const StyledBlock = styled(
       styles.paddingTop = sizing[$paddingTop] || $paddingTop;
     }
 
-    if ($marginRight) {
-      styles.paddingRight = sizing[$marginRight] || $marginRight;
+    if ($paddingRight) {
+      styles.paddingRight = sizing[$paddingRight] || $paddingRight;
     }
 
     if ($paddingBottom) {
