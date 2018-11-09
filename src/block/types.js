@@ -42,6 +42,10 @@ export type BlockPropsT = {
   paddingBottom?: string,
   paddingLeft?: string,
   wrap?: boolean,
+  left?: string,
+  top?: string,
+  right?: string,
+  bottom?: string,
 };
 
 export type StyledBlockPropsT = {
@@ -75,4 +79,8 @@ export type StyledBlockPropsT = {
   $paddingBottom?: string,
   $paddingLeft?: string,
   $wrap?: boolean,
+  $left?: string,
+  $top?: string,
+  $right?: string,
+  $bottom?: string,
 };

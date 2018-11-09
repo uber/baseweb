@@ -42,6 +42,10 @@ function Block({
   paddingBottom,
   paddingLeft,
   wrap,
+  left,
+  top,
+  right,
+  bottom,
   ...other
 }: BlockPropsT) {
   return (
@@ -75,6 +79,10 @@ function Block({
       $paddingBottom={paddingBottom}
       $paddingLeft={paddingLeft}
       $wrap={wrap}
+      $left={left}
+      $top={top}
+      $right={right}
+      $bottom={bottom}
       {...other}
     >
       {children}

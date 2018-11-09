@@ -50,15 +50,19 @@ export default {
 
     return elements;
   },
-  [examples.FLEXBOX]: function Story3() {
+  [examples.FLEXBOX]: function Story4() {
     return (
       <Block
         color="primary"
         font="font500"
-        height="500px"
+        position="fixed"
         display="flex"
-        alignItems="center"
         justifyContent="center"
+        alignItems="center"
+        top="0"
+        bottom="0"
+        left="0"
+        right="0"
       >
         Centered with flexbox
       </Block>

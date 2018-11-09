@@ -10,6 +10,6 @@ LICENSE file in the root directory of this source tree.
 
 module.exports = {
   DEFAULT: 'Themable colors',
-  FONTS: 'Themable fonts',
-  FLEXBOX: 'Flexbox positioning and scaling',
+  FONTS: 'Themable typography styles',
+  FLEXBOX: 'Flexbox positioning',
 };

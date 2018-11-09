@@ -43,6 +43,10 @@ export const StyledBlock = styled(
     $paddingBottom,
     $paddingLeft,
     $wrap,
+    $left,
+    $top,
+    $right,
+    $bottom,
     ...other
   }: StyledBlockPropsT) => {
     const {colors, typography, sizing} = $theme;
@@ -167,6 +171,22 @@ export const StyledBlock = styled(
 
     if ($wrap) {
       styles.flexWrap = 'wrap';
+    }
+
+    if ($left) {
+      styles.left = $left;
+    }
+
+    if ($top) {
+      styles.top = $top;
+    }
+
+    if ($right) {
+      styles.right = $right;
+    }
+
+    if ($bottom) {
+      styles.bottom = $bottom;
     }
 
     return styles;
