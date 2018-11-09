@@ -250,9 +250,10 @@ exports[`Accordion styled components Basic render: StyledRoot has correct styles
 
 exports[`Accordion styled components Basic render: StyledToggleIcon has correct styles when expanded and disabled is set to true 1`] = `
 Object {
+  "color": "$theme.colors.mono600",
   "cursor": "not-allowed",
   "display": "inline-block",
-  "fill": "$theme.colors.mono600",
+  "fill": "currentColor",
   "height": "$theme.sizing.scale600",
   "position": "absolute",
   "right": "12px",
@@ -262,9 +263,10 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledToggleIcon has correct styles when expanded is set to false 1`] = `
 Object {
+  "color": "$theme.colors.mono600",
   "cursor": "pointer",
   "display": "inline-block",
-  "fill": "$theme.colors.mono600",
+  "fill": "currentColor",
   "height": "$theme.sizing.scale600",
   "position": "absolute",
   "right": "12px",
@@ -274,9 +276,10 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledToggleIcon has correct styles when expanded is set to true 1`] = `
 Object {
+  "color": "$theme.colors.mono600",
   "cursor": "pointer",
   "display": "inline-block",
-  "fill": "$theme.colors.mono600",
+  "fill": "currentColor",
   "height": "$theme.sizing.scale600",
   "position": "absolute",
   "right": "12px",
@@ -286,9 +289,10 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledToggleIcon has correct styles when not expanded and disabled is set to true 1`] = `
 Object {
+  "color": "$theme.colors.mono600",
   "cursor": "not-allowed",
   "display": "inline-block",
-  "fill": "$theme.colors.mono600",
+  "fill": "currentColor",
   "height": "$theme.sizing.scale600",
   "position": "absolute",
   "right": "12px",

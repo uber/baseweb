@@ -104,6 +104,7 @@ class ExpansionPanel extends React.Component<PanelPropsT> {
         >
           {title}
           <ToggleIconComponent
+            size={16}
             title={expanded ? 'Collapse' : 'Expand'}
             {...sharedProps}
             {...toggleIconProps}
