@@ -47,8 +47,12 @@ const panelOverrides = {
     },
     style: {
       backgroundColor: '#916cb2',
-      fill: '#fff',
+      color: '#fff',
       borderRadius: '50%',
+      paddingTop: '5px',
+      paddingBottom: '5px',
+      paddingLeft: '5px',
+      paddingRight: '5px',
     },
   },
 };
