@@ -66,63 +66,63 @@ export const StyledBlock = styled(
       styles.lineHeight = font.lineHeight;
     }
 
-    if ($alignContent) {
+    if ($alignContent !== undefined) {
       styles.alignContent = $alignContent;
     }
 
-    if ($alignItems) {
+    if ($alignItems !== undefined) {
       styles.alignItems = $alignItems;
     }
 
-    if ($alignSelf) {
+    if ($alignSelf !== undefined) {
       styles.alignSelf = $alignSelf;
     }
 
-    if ($flexDirection) {
+    if ($flexDirection !== undefined) {
       styles.flexDirection = $flexDirection;
     }
 
-    if ($display) {
+    if ($display !== undefined) {
       styles.display = $display;
     }
 
-    if ($flex) {
+    if ($flex !== undefined) {
       styles.flex = $flex;
     }
 
-    if ($justifyContent) {
+    if ($justifyContent !== undefined) {
       styles.justifyContent = $justifyContent;
     }
 
-    if ($justifySelf) {
+    if ($justifySelf !== undefined) {
       styles.justifySelf = $justifySelf;
     }
 
-    if ($position) {
+    if ($position !== undefined) {
       styles.position = $position;
     }
 
-    if ($width) {
+    if ($width !== undefined) {
       styles.width = $width;
     }
 
-    if ($minWidth) {
+    if ($minWidth !== undefined) {
       styles.minWidth = $minWidth;
     }
 
-    if ($maxWidth) {
+    if ($maxWidth !== undefined) {
       styles.maxWidth = $maxWidth;
     }
 
-    if ($height) {
+    if ($height !== undefined) {
       styles.height = $height;
     }
 
-    if ($minHeight) {
+    if ($minHeight !== undefined) {
       styles.minHeight = $minHeight;
     }
 
-    if ($maxHeight) {
+    if ($maxHeight !== undefined) {
       styles.maxHeight = $maxHeight;
     }
 
@@ -134,63 +134,63 @@ export const StyledBlock = styled(
       styles.overflow = $overflow;
     }
 
-    if ($margin) {
+    if ($margin !== undefined) {
       styles.margin = sizing[$margin] || $margin;
     }
 
-    if ($marginTop) {
+    if ($marginTop !== undefined) {
       styles.marginTop = sizing[$marginTop] || $marginTop;
     }
 
-    if ($marginRight) {
+    if ($marginRight !== undefined) {
       styles.marginRight = sizing[$marginRight] || $marginRight;
     }
 
-    if ($marginBottom) {
+    if ($marginBottom !== undefined) {
       styles.marginBottom = sizing[$marginBottom] || $marginBottom;
     }
 
-    if ($marginLeft) {
+    if ($marginLeft !== undefined) {
       styles.marginLeft = sizing[$marginLeft] || $marginLeft;
     }
 
-    if ($padding) {
+    if ($padding !== undefined) {
       styles.padding = sizing[$padding] || $padding;
     }
 
-    if ($paddingTop) {
+    if ($paddingTop !== undefined) {
       styles.paddingTop = sizing[$paddingTop] || $paddingTop;
     }
 
-    if ($paddingRight) {
+    if ($paddingRight !== undefined) {
       styles.paddingRight = sizing[$paddingRight] || $paddingRight;
     }
 
-    if ($paddingBottom) {
+    if ($paddingBottom !== undefined) {
       styles.paddingBottom = sizing[$paddingBottom] || $paddingBottom;
     }
 
-    if ($paddingLeft) {
+    if ($paddingLeft !== undefined) {
       styles.paddingLeft = sizing[$paddingLeft] || $paddingLeft;
     }
 
-    if ($flexWrap) {
+    if ($flexWrap !== undefined) {
       styles.flexWrap = 'wrap';
     }
 
-    if ($left) {
+    if ($left !== undefined) {
       styles.left = $left;
     }
 
-    if ($top) {
+    if ($top !== undefined) {
       styles.top = $top;
     }
 
-    if ($right) {
+    if ($right !== undefined) {
       styles.right = $right;
     }
 
-    if ($bottom) {
+    if ($bottom !== undefined) {
       styles.bottom = $bottom;
     }
 

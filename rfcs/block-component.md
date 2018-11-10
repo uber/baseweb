@@ -43,7 +43,7 @@ All other props are spread onto the base element.
 * `as: string | React.Node` - Optional
   * Modifies the base element used to render the block
 * `overrides: {Block}` - Optional
-  * `Block: ReactComponent` - Optional
+  * Block: {style: {} | () => {}} - Optional
 * `color: String` - Optional
   * Accepts all themeable color properties (`primary200`, etc.)
 * `font: String` - Optional
