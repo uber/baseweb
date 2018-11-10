@@ -10,10 +10,12 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import type {BlockPropsT} from './types';
 import {StyledBlock} from './styled-components';
+import {getOverrides} from '../helpers/overrides';
 
 function Block({
   children,
   as,
+  overrides,
   color,
   font,
   alignContent,
@@ -49,8 +51,13 @@ function Block({
   bottom,
   ...other
 }: BlockPropsT) {
+  const [BaseBlock, baseBlockProps] = getOverrides(
+    overrides.Block,
+    StyledBlock,
+  );
+
   return (
-    <StyledBlock
+    <BaseBlock
       $as={as}
       $color={color}
       $font={font}
@@ -86,23 +93,16 @@ function Block({
       $right={right}
       $bottom={bottom}
       {...other}
+      {...baseBlockProps}
     >
       {children}
-    </StyledBlock>
+    </BaseBlock>
   );
 }
 
 Block.defaultProps = {
+  overrides: {},
   as: 'div',
-  alignContent: 'stretch',
-  alignItems: 'stretch',
-  alignSelf: 'stretch',
-  display: 'block',
-  flex: 'shrink',
-  justifyContent: 'start',
-  position: 'static',
-  overflow: 'visible',
-  flexWrap: false,
 };
 
 export default Block;

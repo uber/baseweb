@@ -9,11 +9,16 @@ LICENSE file in the root directory of this source tree.
 
 import type {Node, ElementType} from 'react';
 import type {ThemeT} from '../styles/types';
+import type {OverrideT} from '../helpers/overrides';
+
+export type OverridesT = {
+  Block?: OverrideT<*>,
+};
 
 export type BlockPropsT = {
   children?: Node,
   as?: ElementType,
-  $style?: ?{},
+  overrides?: OverridesT,
   color?: string,
   font?: string,
   alignContent?: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch',

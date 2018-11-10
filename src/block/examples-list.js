@@ -12,4 +12,5 @@ module.exports = {
   DEFAULT: 'Themable colors',
   FONTS: 'Themable typography styles',
   FLEXBOX: 'Flexbox layout',
+  OVERRIDES: 'Applying styles via overrides',
 };

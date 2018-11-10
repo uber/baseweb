@@ -80,9 +80,24 @@ export default {
         direction="column"
         padding="scale3200"
         $style={{border: 'grey solid 4px'}}
-        wrap
+        flexWrap
       >
         {elements}
+      </Block>
+    );
+  },
+  [examples.OVERRIDES]: function Story5() {
+    return (
+      <Block
+        as="h2"
+        font="font500"
+        overrides={{
+          Block: {
+            style: {color: 'red'},
+          },
+        }}
+      >
+        These styles are provided by styletron
       </Block>
     );
   },

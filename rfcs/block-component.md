@@ -40,8 +40,8 @@ The above example might turn into:
 * `children: (props: Props) => React.Node` - Optional
 * `as: string | React.Node` - Optional
   * Modifies the base element used to render the block
-* `$style: Object` - Optional
-  * Applies provided styles to Styletron
+* `overrides: {Block}` - Optional
+  * `Block: ReactComponent` - Optional
 * `color: String` - Optional
   * Accepts all themeable color properties (`primary200`, etc.)
 * `font: String` - Optional
@@ -49,7 +49,7 @@ The above example might turn into:
 * `alignContent: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch'` - Optional
 * `alignItems: 'start' | 'end' | 'center' | 'baseline' | 'stretch'` - Optional
 * `alignSelf: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch'` - Optional
-* `direction: 'row' | 'column'` - Optional
+* `flexDirection: 'row' | 'column'` - Optional
 * `display: 'none' | 'flex' | 'block' | 'inline-block'` - Optional
 * `flex: 'grow' | 'shrink' | 'none'` - Optional
 * `justifyContent: 'start' | 'end' | 'center' | 'between' | 'around'` - Optional
@@ -82,7 +82,7 @@ The above example might turn into:
   * Accepts all themeable sizing properties (`scale100`, etc.)
 * `paddingLeft: string` - Optional
   * Accepts all themeable sizing properties (`scale100`, etc.)
-* `wrap: boolean` - Optional
+* `flexWrap: boolean` - Optional
 * `left: string` - Optional
 * `top: string` - Optional
 * `right: string` - Optional
