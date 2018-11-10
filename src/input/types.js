@@ -64,7 +64,7 @@ export type BaseInputPropsT<T> = {
   name: string,
   inputRef: {current: ?React.ElementRef<'input'>},
   onBlur: (e: SyntheticFocusEvent<T>) => void,
-  onChange: (e: SyntheticInputEvent<T>) => void,
+  onChange?: (e: SyntheticInputEvent<T>) => void,
   onKeyDown?: (e: SyntheticInputEvent<T>) => void,
   onKeyPress?: (e: SyntheticInputEvent<T>) => void,
   onKeyUp?: (e: SyntheticInputEvent<T>) => void,
