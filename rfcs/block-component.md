@@ -37,6 +37,8 @@ The above example might turn into:
 
 ### `Block` API
 
+All other props are spread onto the base element.
+
 * `children: (props: Props) => React.Node` - Optional
 * `as: string | React.Node` - Optional
   * Modifies the base element used to render the block
