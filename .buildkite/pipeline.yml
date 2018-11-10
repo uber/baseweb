@@ -42,6 +42,13 @@ steps:
         run: baseui
     agents:
       queue: workers
+  - name: ':screener:'
+    command: yarn storybook:screener:ci
+    plugins:
+      'docker-compose':
+        run: baseui
+    agents:
+      queue: workers
   - name: ':saucelabs: :selenium:'
     command: yarn e2e:test:ci
     plugins:
