@@ -116,7 +116,7 @@ export default () => {
         multiple={true}
         onChange={this.onChange}
         overrides={{
-          Option: props => <CustomOption>Select {props.children}</CustomOption>,
+          Option: CustomOption,
         }}
       />
     </React.Fragment>

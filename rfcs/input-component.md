@@ -13,6 +13,11 @@ export default () => {
     <StatefulInput
       value={props.name}
       onChange={evt => props.setName(evt.target.value)}
+      onKeyDown={evt => {
+        if (evt.key === 'Enter') {
+          props.setName('');
+        }
+      }}
     />;
 };
 ```
@@ -75,6 +80,12 @@ export default () => {
   * `stateToSet` - a return value that the state will be updated with
 * `onChange: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
   onChange event handler.
+* `onKeyDown: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
+  onKeyDown event handler.
+* `onKeyPress: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
+  onKeyPress event handler.
+* `onKeyUp: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
+  onKeyUp event handler.
 
 ## Input component API
 
@@ -127,6 +138,12 @@ export default () => {
   Defines the size of an input control.
 * `onChange: Function` - Optional
   onChange event handler.
+* `onKeyDown: Function` - Optional
+  onKeyDown event handler.
+* `onKeyPress: Function` - Optional
+  onKeyPress event handler.
+* `onKeyUp: Function` - Optional
+  onKeyUp event handler.
 * `onFocus: Function` - Optional
   onFocus event handler.
 * `onBlur: Function` - Optional

@@ -109,6 +109,9 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'chrome',
       },
+      globals: {
+        waitForConditionTimeout: 10000,
+      },
     },
     ...sauceLabsEnvironments,
   },

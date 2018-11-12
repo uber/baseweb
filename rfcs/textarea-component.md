@@ -68,6 +68,12 @@ export default () => {
   * `stateToSet` - a return value that the state will be updated with
 * `onChange: (e: SyntheticEvent<HTMLElement>) => void` - Optional
   onChange event handler.
+* `onKeyDown: (e: SyntheticEvent<HTMLElement>) => void` - Optional
+  onKeyDown event handler.
+* `onKeyPress: (e: SyntheticEvent<HTMLElement>) => void` - Optional
+  onKeyPress event handler.
+* `onKeyUp: (e: SyntheticEvent<HTMLElement>) => void` - Optional
+  onKeyUp event handler.
 
 ## Textarea component API
 
@@ -91,6 +97,12 @@ export default () => {
     A styled textarea element.
 * `onChange: Function` - Optional
   onChange event handler.
+* `onKeyDown: Function` - Optional
+  onKeyDown event handler.
+* `onKeyPress: Function` - Optional
+  onKeyPress event handler.
+* `onKeyUp: Function` - Optional
+  onKeyUp event handler.
 * `onFocus: Function` - Optional
   onFocus event handler.
 * `onBlur: Function` - Optional

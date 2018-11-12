@@ -25,7 +25,7 @@ export default () => {
       action={url}
       onChange={(file)=>{console.log(`File ${file.name} have been selected`)}}
       overrides={{
-        FileSelect: props => <CustomButton>Click me</CustomButton>,
+        FileSelect: CustomButton,
       }}
     />;
 }
