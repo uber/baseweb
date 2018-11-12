@@ -26,7 +26,7 @@ export default () => {
         onClose={()=>{console.log('Toast notification was dismissed.')}}
         autoHideDuration={5000}
         overrides={{
-          Body: props => <CustomContainer {...props} />,
+          Body: CustomContainer,
         }}
       >
       This a dismissable info notification that is hidden after 5 seconds automatically.
@@ -98,7 +98,7 @@ These properties are passed to every Toast's presentational (styled) component t
 ## KIND Constant
 
 * `info` - Generally used for messages with an informational context
-* `positive` - Generally used as a confirmation of a succesful action or operation  
+* `positive` - Generally used as a confirmation of a succesful action or operation
 * `warning` - Generally used for messages with an warning context
 * `negative` - Generally used as a notification of an error happened as a result of an action or operation
 
