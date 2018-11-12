@@ -13,6 +13,7 @@ import StatefulMenu from './stateful-menu';
 
 import OptionProfile from './option-profile';
 import {OPTION_LIST_SIZE} from './constants';
+import examples from './examples-list';
 
 function CloudComponent() {
   return (
@@ -63,15 +64,6 @@ const PROFILE_ITEMS = [
   {...profileItem, imgUrl: null},
   {...profileItem, imgUrl: CloudComponent},
 ];
-
-export const suite = 'Menu Test Suite';
-export const examples = {
-  MENU: 'Stateless Menu',
-  MENU_COMPACT: 'Stateless Menu Compact',
-  MENU_PROFILE: 'Stateless Menu Profile',
-  MENU_STATEFUL: 'Stateful Menu with Keybindings',
-  MENU_PROFILE_STATEFUL: 'Stateful Menu Profile with Keybindings',
-};
 
 export default {
   [examples.MENU]: function Story1() {
