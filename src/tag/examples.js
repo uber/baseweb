@@ -12,14 +12,7 @@ import * as React from 'react';
 import {Tag, KIND, StyledRoot} from './index';
 import {withStyle} from 'styletron-react';
 import type {TagKindT} from './types';
-
-export const suite = 'Tag Test Suite';
-export const tests = {
-  ALL_BASIC_COLORS: 'All basic colors',
-  WITH_CUSTOM_COLORS: 'With custom colors',
-  WITH_CUSTOM_COMPONENTS: 'With custom components',
-  DISABLED: 'Disabled',
-};
+import tests from './examples-list';
 
 const colorIcons = {
   '#05dc12': `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC8ElEQVRYhb2TS08aYRhGPzdd9A+4bFfua4ziBauhGgxRUcBxwCJFjHhlLKK1ar2ARI0ViLFGjcUoIqhIWwsxJsa0SfsD2j/CvtWni6rfFKZMZhSf5KyYk/fABEKuZhqOc+xwLMW6Ysgpw7GUaTjOEf7YoRjHOA9gGjmC3XuCgaUzOALnd8rA0hns3hOYRo7AOA/ADsVoRItzP2V0HWIwcI7e+VN0TCXwYuL4TumYSqB3/hSDgXMYXYdoce6nbgL0XAQ2dxLWySTax45zinUyCZs7CT0XwU2AzhGGzXOC568/3Qs2zwl0jjANaOoPwTx+jLbRj7dCNxBBnS2Iksa3GfCfM48fo6k/RAO0fdswvvpwK9Qd79E9FsXG3ncILf15bd82DWjo2ULrSFw2jf1hrO99Ezx8vXSnoWeLBtTbg2BcR7JxzSeyHgeQ4dTbgzRA07UJw9CRbNbD2b89gAxH07VJA+o6N6BzxmRzcXn5z7Ffvy+w+/kH3rz7+l+nrnODBqhta2h+eSgboU2sfMnqqG1rNKDWugotdyAboYk5tdZVGlBjWUGDY18ShZqFG4TG/7xQs5Dh11hWaICqfRn1A1FJSF26r2pfpgHV5gA0/RFJSF26X20O0ICqNj/qeiOSkLp0v6rNTwMqjUtQ9+xJItvS/5ahxM8Mv9K4RAOU7CJqu8OyEZqYo2QXaUA5s4Bn9l3ZCE3MKWcWaECpYQ6qrpBshCbmlBrmaIBC70V1545shCbmKPReGlDc7MFT245shCbmFDd7aEBRkxsl7JpshCbmFDW5eX9D1gvzTEI2QhNzKlneK1Ays2BG47IRmpijZGZpQEWLG1oudG8BWi6EihbeK6honb1QWfz3FqCy+FHeOntxfT9PafIFywzTUFl80HI7OQvQcjtQWXwoM0xDafIFCSF5hBDygBCSr9DPREv17stS3SRyit59qdDNRAkh+Ve3yUNCSAEh5Mk9U3B1++8vQAh5xONxjuDfyCeEPPgDoeJfSvwdT7oAAAAASUVORK5CYII=`,
