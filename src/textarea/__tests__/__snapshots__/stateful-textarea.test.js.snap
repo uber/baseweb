@@ -27,6 +27,9 @@ exports[`StatefulTextarea basic render: renders <Textarea/> as a child 1`] = `
   onBlur={[Function]}
   onChange={[Function]}
   onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyPress={[Function]}
+  onKeyUp={[Function]}
   overrides={
     Object {
       "Input": [Function],
