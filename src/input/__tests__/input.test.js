@@ -16,6 +16,9 @@ test('Input - basic functionality', () => {
     onFocus: jest.fn(),
     onBlur: jest.fn(),
     onChange: jest.fn(),
+    onKeyDown: jest.fn(),
+    onKeyPress: jest.fn(),
+    onKeyUp: jest.fn(),
   };
 
   const wrapper = mount(<Input {...props} />);
@@ -39,6 +42,18 @@ test('Input - basic functionality', () => {
   // onChange handler from props is called
   renderedInput.simulate('change');
   expect(props.onChange).toBeCalled();
+
+  // onKeyDown handler from props is called
+  renderedInput.simulate('keyDown', {keyCode: 40});
+  expect(props.onKeyDown).toBeCalled();
+
+  // onKeyPress handler from props is called
+  renderedInput.simulate('keyPress', {keyCode: 40});
+  expect(props.onKeyPress).toBeCalled();
+
+  // onKeyUp handler from props is called
+  renderedInput.simulate('keyUp', {keyCode: 40});
+  expect(props.onKeyUp).toBeCalled();
 });
 
 test('Input - renders enhancers', () => {
