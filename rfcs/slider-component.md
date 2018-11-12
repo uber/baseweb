@@ -21,6 +21,12 @@ export default () => <Slider range={[
 ```javascript
 import * as React from 'react';
 import {StatefulSlider} from 'baseui/slider';
+import {styled} from 'styletron-react';
+
+const CustomThumb = styled('div', {
+  color: 'red',
+  borderRadius: '5px',
+});
 
 export default () => {
   return <StatefulSlider
@@ -37,10 +43,7 @@ export default () => {
     }}
     onChange={(event, value)=>{console.log(value)}}
     overrides={{
-      Thumb: props => <div style={{
-        color: 'red',
-        borderRadius: '5px',
-      }}></div>,
+      Thumb: CustomThumb,
     }}
     />
 }
