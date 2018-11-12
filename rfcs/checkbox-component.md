@@ -60,8 +60,8 @@ export default () => {
             <CustomCheckbox
               {...childrenProps}
               overrides={{
-                Label: <CustomLabel>Click me</CustomLabel>,
-                Checkmark: props => <CustomCheckmark {...props} />,
+                Label: CustomLabel,
+                Checkmark: CustomCheckmark,
               }}
             />
           );

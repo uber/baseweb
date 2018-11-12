@@ -45,9 +45,8 @@ export default () => {
         <Radio
           value="First"
           overrides={{
-            Root: props => <div>Some custom root</div>,
-            Label: props => <CustomLabel>Click me</CustomLabel>,
-            RadioMark: props => <CustomRadioMark {...props} />,
+            Label: CustomLabel,
+            RadioMark: CustomRadioMark,
           }}
         >
           First choice
@@ -55,9 +54,8 @@ export default () => {
         <Radio
           value="Second"
           overrides={{
-            Root: props => <div>Some custom root</div>,
-            Label: props => <CustomLabel>Click me</CustomLabel>,
-            RadioMark: props => <CustomRadioMark {...props} />,
+            Label: CustomLabel,
+            RadioMark: CustomRadioMark,
           }}
         >
           Second choice
