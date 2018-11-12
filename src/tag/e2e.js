@@ -30,6 +30,12 @@ describe.only('The Tag component', () => {
     })
       .initAccessibility()
       .waitForElementVisible(selectors.tags)
-      .assert.accessibility('html', {});
+      .assert.accessibility('html', {
+        rules: {
+          'color-contrast': {
+            enabled: false,
+          },
+        },
+      });
   });
 });
