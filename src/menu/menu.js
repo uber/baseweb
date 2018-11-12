@@ -23,7 +23,7 @@ export default function Menu({
   const [List, listProps] = getOverrides(overrides.List, StyledList);
   const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
   return (
-    <List $ref={rootRef} {...listProps}>
+    <List role="listbox" $ref={rootRef} {...listProps}>
       {items.map((item, index) => {
         const requiredProps = getRequiredItemProps(item, index);
         return (
