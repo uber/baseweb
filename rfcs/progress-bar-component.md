@@ -25,7 +25,7 @@ export default () => {
       value={value}
       getProgressLabel={(value) => `${value}% Loaded`}
       overrides={{
-        Label: props => <CustomLabel>{props.children}</CustomLabel>,
+        Label: CustomLabel,
       }}
     />;
 }

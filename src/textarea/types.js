@@ -35,6 +35,9 @@ export type StatefulContainerPropsT = {
   initialState?: StateT,
   stateReducer?: StateReducerT,
   onChange?: (e: SyntheticTextareaEvent) => void,
+  onKeyDown?: (e: SyntheticTextareaEvent) => void,
+  onKeyPress?: (e: SyntheticTextareaEvent) => void,
+  onKeyUp?: (e: SyntheticTextareaEvent) => void,
 };
 
 type OmitPropsT = {

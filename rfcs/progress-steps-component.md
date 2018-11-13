@@ -29,8 +29,8 @@ import {ProgressSteps, StyledNumberedStep} from 'baseui/progress-steps';
 
 export default () => {
   const overrides ={
-    Step: props => <StyledNumberedStep {...props}/>,
-    StepTitle: props => <CustomTitle {...props} />,
+    Step: StyledNumberedStep
+    StepTitle: CustomTitle,
   };
   return
     <ProgressSteps
