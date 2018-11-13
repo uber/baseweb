@@ -71,9 +71,9 @@ export function fromPopperPlacement(
 /**
  * Splits something like 'topLeft' to ['top', 'left'] for easier usage
  */
-export function splitPlacement(placement: PopoverPlacementT) {
+export function splitPlacement(placement: PopoverPlacementT): string[] {
   const matches = placement.match(/^([a-z]+)([A-Z][a-z]+)?/) || [];
-  return matches
+  return (matches: string[])
     .slice(1, 3)
     .filter(Boolean)
     .map(s => s.toLowerCase());

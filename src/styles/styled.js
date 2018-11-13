@@ -22,7 +22,7 @@ const wrapper = StyledComponent =>
 
 const baseStyled = createStyled({wrapper, getInitialStyle, driver});
 
-// TODO: Need a flow expert to help remove this 'any' type
+// TODO(#495): Need a flow expert to help remove this 'any' type
 // eslint-disable-next-line flowtype/no-weak-types
 export default function styledWrapper(...args: any) {
   // If user is trying to style a styled component
@@ -35,6 +35,8 @@ export default function styledWrapper(...args: any) {
   // Ex: <StyledDiv $style={{color: 'red'}} />
   // Issue for supporting this natively in styletron:
   // https://github.com/rtsao/styletron/issues/221
+
+  // $FlowFixMe
   return withStyleDeep(styleFn(...args), (props: {$style?: ?{}}) => {
     const {$style} = props;
     if (typeof $style === 'function') {
