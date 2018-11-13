@@ -28,9 +28,7 @@ function loadStories() {
 }
 
 // this should be first decorator to avoid extra code to be parsed here
-addDecorator(story => {
-  return withInfo()(story)({});
-});
+addDecorator(withInfo);
 
 addDecorator(withKnobs);
 addDecorator(checkA11y);
