@@ -19,12 +19,10 @@ To learn more about what you can override, check out the [creator](https://githu
 In practice, you can define your custom theme using this approach:
 
 ```js
-import createTheme from 'baseui/themes/creator'
-
-import {primitives} from 'baseui/themes/light-theme-primitives';
+import {createTheme, lightThemePrimitives} from 'baseui'
 
 const yourTheme = createTheme({
-  ...primitives,
+  ...lightThemePrimitives,
   // add all the properties here you'd like to override from the light theme primitives
   primaryFontFamily: '"Comic Sans MS", cursive, sans-serif'
 }, {

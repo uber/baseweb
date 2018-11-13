@@ -6,7 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {styled, ThemeProvider} from './styles';
-export {LightTheme} from './themes';
+export {
+  createTheme,
+  lightThemePrimitives,
+  LightTheme,
+  LightThemeMove,
+} from './themes';
 export {withProps} from './helpers';
 export {mergeOverrides} from './helpers/overrides';
 export type {PrimitivesT} from './themes/types';
