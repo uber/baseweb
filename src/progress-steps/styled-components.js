@@ -1,0 +1,156 @@
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+// @flow
+
+import {styled} from '../styles/index';
+import type {
+  StyledProgressStepsPropsT,
+  StyledStepPropsT,
+  StyledIconPropsT,
+  StyledInnerIconPropsT,
+  StyledContentPropsT,
+  StyledContentTitlePropsT,
+  StyledContentTailPropsT,
+  StyledContentDescriptionPropsT,
+} from './types';
+
+export const StyledProgressSteps = styled(
+  'div',
+  ({$theme}: StyledProgressStepsPropsT) => {
+    return {
+      padding: $theme.sizing.scale300,
+    };
+  },
+);
+
+export const StyledStep = styled('div', ({$theme}: StyledStepPropsT) => {
+  return {
+    position: 'relative',
+    overflow: 'visible',
+  };
+});
+
+export const StyledIcon = styled(
+  'div',
+  ({$theme, $isActive, $isCompleted, $disabled}: StyledIconPropsT) => {
+    let currentColor = $theme.colors.mono400;
+    let size = $theme.sizing.scale300;
+    let marginTop = $theme.sizing.scale400;
+    let marginRight = $theme.sizing.scale500;
+    let marginLeft = $theme.sizing.scale100;
+
+    if ($isCompleted) {
+      currentColor = $theme.colors.primary400;
+    } else if ($isActive) {
+      currentColor = $theme.colors.primary100;
+    }
+
+    if ($isActive) {
+      size = $theme.sizing.scale600;
+      marginTop = $theme.sizing.scale300;
+      marginLeft = 0;
+      marginRight = $theme.sizing.scale300;
+    }
+
+    return {
+      marginRight,
+      marginLeft,
+      marginTop,
+      width: size,
+      height: size,
+      lineHeight: size,
+      borderRadius: size,
+      backgroundColor: currentColor,
+      float: 'left',
+      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    };
+  },
+);
+
+export const StyledInnerIcon = styled(
+  'div',
+  ({$theme}: StyledInnerIconPropsT) => {
+    return {
+      width: $theme.sizing.scale100,
+      height: $theme.sizing.scale100,
+      lineHeight: $theme.sizing.scale100,
+      borderRadius: $theme.sizing.scale100,
+      backgroundColor: $theme.colors.primary400,
+      textAlign: 'center',
+    };
+  },
+);
+
+export const StyledContent = styled('div', ({$theme}: StyledContentPropsT) => {
+  return {
+    overflow: 'hidden',
+  };
+});
+
+export const StyledContentTitle = styled(
+  'div',
+  ({$theme, $isActive}: StyledContentTitlePropsT) => {
+    let color = $theme.colors.mono700;
+    let font = $theme.typography.font400;
+
+    if ($isActive) {
+      color = $theme.colors.mono1000;
+      font = $theme.typography.font450;
+    }
+
+    return {
+      fontFamily: font.fontFamily,
+      fontSize: font.fontSize,
+      fontWeight: font.fontWeight,
+      lineHeight: font.lineHeight,
+      color,
+    };
+  },
+);
+
+export const StyledContentTail = styled(
+  'div',
+  ({$theme, $isActive, $isCompleted, $disabled}: StyledContentTailPropsT) => {
+    let currentColor = $theme.colors.mono400;
+
+    if ($isCompleted) {
+      currentColor = $theme.colors.primary400;
+    }
+
+    return {
+      position: 'absolute',
+      left: '7px',
+      top: 0,
+      height: '100%',
+      zIndex: -1,
+      paddingBottom: '0px',
+      width: $theme.sizing.scale0,
+      paddingTop: $theme.sizing.scale600,
+      ':after': {
+        content: '""',
+        display: 'inline-block',
+        height: '100%',
+        width: '100%',
+        backgroundColor: currentColor,
+      },
+    };
+  },
+);
+
+export const StyledContentDescription = styled(
+  'div',
+  ({$theme}: StyledContentDescriptionPropsT) => {
+    return {
+      paddingTop: $theme.sizing.scale100,
+      paddingBottom: $theme.sizing.scale100,
+    };
+  },
+);
