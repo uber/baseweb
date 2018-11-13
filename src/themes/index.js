@@ -11,6 +11,6 @@ import {LightThemeMove} from './light-theme-with-move';
 
 export const LightTheme = createTheme(lightThemePrimitives);
 
-export {LightThemeMove};
+export {createTheme, LightThemeMove, lightThemePrimitives};
 
 export * from './types';
