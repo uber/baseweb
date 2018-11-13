@@ -29,6 +29,7 @@ function ProgressSteps({
         isLast: index === numChildren - 1,
         isCompleted: index < current,
         isActive: index === current,
+        step: index + 1,
       }: StepPropsT),
     );
   });

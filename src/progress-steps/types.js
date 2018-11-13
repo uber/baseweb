@@ -84,3 +84,44 @@ export type StyledContentTailPropsT = {
 export type StyledContentDescriptionPropsT = {
   $theme: ThemeT,
 };
+
+export type NumberedStepOverridesT = {
+  Root?: OverrideT<*>,
+  Icon?: OverrideT<*>,
+  InnerIcon?: OverrideT<*>,
+  Tail?: OverrideT<*>,
+  Content?: OverrideT<*>,
+  Title?: OverrideT<*>,
+  Description?: OverrideT<*>,
+};
+
+export type NumberedStepPropsT = {
+  title?: string,
+  isCompleted: boolean,
+  isActive: boolean,
+  isLast: boolean,
+  overrides?: NumberedStepOverridesT,
+  children?: React.Node,
+  step?: number,
+};
+
+export type StyledNumberIconPropsT = {
+  $theme: ThemeT,
+  $isActive: boolean,
+  $isCompleted: boolean,
+  $disabled: boolean,
+};
+
+export type StyledNumberContentTailPropsT = {
+  $theme: ThemeT,
+  $isActive: boolean,
+  $isCompleted: boolean,
+  $disabled: boolean,
+};
+
+export type StyledNumberStepPropsT = {
+  $theme: ThemeT,
+  $isActive: boolean,
+  $isCompleted: boolean,
+  $disabled: boolean,
+};

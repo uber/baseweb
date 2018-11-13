@@ -1,0 +1,81 @@
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+
+// @flow
+
+import * as React from 'react';
+import {getOverrides} from '../helpers/overrides';
+import {
+  StyledNumberStep,
+  StyledNumberIcon,
+  StyledContent,
+  StyledContentTitle,
+  StyledNumberContentTail,
+  StyledContentDescription,
+} from './styled-components';
+import StyledCheckIcon from '../icon/check';
+
+import type {NumberedStepPropsT} from './types';
+
+function NumberedStep({
+  overrides = {},
+  isCompleted,
+  isActive,
+  isLast,
+  title,
+  step,
+  children,
+}: NumberedStepPropsT) {
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledNumberStep);
+  const [Icon, iconProps] = getOverrides(overrides.Icon, StyledNumberIcon);
+  const [Tail, tailProps] = getOverrides(
+    overrides.Tail,
+    StyledNumberContentTail,
+  );
+  const [Content, contentProps] = getOverrides(
+    overrides.Content,
+    StyledContent,
+  );
+  const [Title, titleProps] = getOverrides(overrides.Title, StyledContentTitle);
+  const [Description, descriptionProps] = getOverrides(
+    overrides.Description,
+    StyledContentDescription,
+  );
+  const [CheckIcon, checkIconProps] = getOverrides(
+    overrides.Icon,
+    StyledCheckIcon,
+  );
+
+  return (
+    <Root {...rootProps}>
+      <Icon $isCompleted={isCompleted} $isActive={isActive} {...iconProps}>
+        {!isCompleted && <span>{step}</span>}
+        {isCompleted && <CheckIcon size={12} {...checkIconProps} />}
+      </Icon>
+      {!isLast && (
+        <Tail $isCompleted={isCompleted} $isActive={isActive} {...tailProps} />
+      )}
+      <Content $isActive={isActive} {...contentProps}>
+        <Title $isActive={isActive} {...titleProps}>
+          {title}
+        </Title>
+        {isActive &&
+          React.Children.count(children) > 0 && (
+            <Description {...descriptionProps}>{children}</Description>
+          )}
+      </Content>
+    </Root>
+  );
+}
+
+NumberedStep.defaultProps = {
+  isCompleted: false,
+  isActive: false,
+  isLast: false,
+};
+
+export default NumberedStep;

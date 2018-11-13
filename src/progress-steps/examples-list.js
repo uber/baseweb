@@ -11,5 +11,4 @@ LICENSE file in the root directory of this source tree.
 module.exports = {
   DEFAULT: 'Dots example',
   NUMBERED: 'Numbered example',
-  EXPANDED: 'Expanded example',
 };

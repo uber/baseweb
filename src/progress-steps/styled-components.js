@@ -17,6 +17,9 @@ import type {
   StyledContentTitlePropsT,
   StyledContentTailPropsT,
   StyledContentDescriptionPropsT,
+  StyledNumberIconPropsT,
+  StyledNumberContentTailPropsT,
+  StyledNumberStepPropsT,
 } from './types';
 
 export const StyledProgressSteps = styled(
@@ -151,6 +154,97 @@ export const StyledContentDescription = styled(
     return {
       paddingTop: $theme.sizing.scale100,
       paddingBottom: $theme.sizing.scale100,
+    };
+  },
+);
+
+export const StyledNumberStep = styled(
+  'div',
+  ({$theme}: StyledNumberStepPropsT) => {
+    return {
+      position: 'relative',
+      overflow: 'visible',
+      minHeight: $theme.sizing.scale1200,
+    };
+  },
+);
+
+export const StyledNumberIcon = styled(
+  'div',
+  ({$theme, $isActive, $isCompleted, $disabled}: StyledNumberIconPropsT) => {
+    let backgroundColor = $theme.colors.mono400;
+    let color = $theme.colors.primary400;
+    let size = $theme.sizing.scale800;
+    let marginTop = $theme.sizing.scale0;
+    let marginRight = $theme.sizing.scale300;
+    let font = $theme.typography.font350;
+    // let marginLeft = $theme.sizing.scale100;
+
+    if ($isCompleted) {
+      backgroundColor = $theme.colors.primary400;
+      color = $theme.colors.mono100;
+    } else if ($isActive) {
+      backgroundColor = $theme.colors.primary100;
+    }
+
+    // if ($isActive) {
+    //   size = $theme.sizing.scale600;
+    //   marginTop = $theme.sizing.scale300;
+    //   marginLeft = 0;
+    //   marginRight = $theme.sizing.scale300;
+    // }
+
+    return {
+      marginRight,
+      marginTop,
+      width: size,
+      height: size,
+      borderRadius: size,
+      backgroundColor,
+      color,
+      float: 'left',
+      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontFamily: font.fontFamily,
+      fontSize: font.fontSize,
+      fontWeight: font.fontWeight,
+      lineHeight: font.lineHeight,
+    };
+  },
+);
+
+export const StyledNumberContentTail = styled(
+  'div',
+  ({
+    $theme,
+    $isActive,
+    $isCompleted,
+    $disabled,
+  }: StyledNumberContentTailPropsT) => {
+    let currentColor = $theme.colors.mono400;
+
+    if ($isCompleted) {
+      currentColor = $theme.colors.primary400;
+    }
+
+    return {
+      position: 'absolute',
+      left: '11px',
+      top: 0,
+      height: '100%',
+      zIndex: -1,
+      paddingBottom: '0px',
+      width: $theme.sizing.scale0,
+      paddingTop: $theme.sizing.scale600,
+      ':after': {
+        content: '""',
+        display: 'inline-block',
+        height: '100%',
+        width: '100%',
+        backgroundColor: currentColor,
+      },
     };
   },
 );
