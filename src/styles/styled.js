@@ -35,6 +35,8 @@ export default function styledWrapper(...args: any) {
   // Ex: <StyledDiv $style={{color: 'red'}} />
   // Issue for supporting this natively in styletron:
   // https://github.com/rtsao/styletron/issues/221
+
+  // $FlowFixMe
   return withStyleDeep(styleFn(...args), (props: {$style?: ?{}}) => {
     const {$style} = props;
     if (typeof $style === 'function') {

@@ -25,9 +25,8 @@ export type OverridesT<T> = {
 /**
  * Given an override argument, returns the component implementation override if it exists
  */
-export function getOverride<T>(
-  override: ?OverrideT<T>,
-): ?React.ComponentType<T> {
+// eslint-disable-next-line flowtype/no-weak-types
+export function getOverride(override: any): any {
   // Check if override is OverrideObjectT
   if (override && typeof override === 'object') {
     // Remove this 'any' once this flow issue is fixed:
@@ -77,14 +76,16 @@ export function toObjectOverride<T>(
 /**
  * Get a convenient override array that will always have [component, props]
  */
-export function getOverrides<T>(
-  override: ?OverrideT<T>,
-  defaultComponent: React.ComponentType<T>,
-): [React.ComponentType<T>, {}] {
+/* eslint-disable flowtype/no-weak-types */
+export function getOverrides(
+  override: any,
+  defaultComponent: React.ComponentType<any>,
+): [React.ComponentType<any>, {}] {
   const component = getOverride(override) || defaultComponent;
   const props = getOverrideProps(override);
   return [component, props];
 }
+/* eslint-enable flowtype/no-weak-types */
 
 /**
  * Merges two overrides objects – this is useful if you want to inject your own

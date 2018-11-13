@@ -52,7 +52,7 @@ export default class Pagination extends React.PureComponent<
     }
   };
 
-  getMenuOptions = memoize(numPages => {
+  getMenuOptions = memoize((numPages: number) => {
     const menuOptions = [];
     for (let i = 1; i <= numPages; i++) {
       menuOptions.push(({label: i}: MenuItemT));
