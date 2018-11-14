@@ -18,7 +18,6 @@ function ProgressSteps({
   children,
 }: ProgressStepsPropsT) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledProgressSteps);
-
   const numChildren = React.Children.count(children);
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (!child) return;

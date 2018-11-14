@@ -32,7 +32,7 @@ export type StepOverridesT = {
 };
 
 export type StepPropsT = {
-  title?: string,
+  title?: React.Node,
   isCompleted: boolean,
   isActive: boolean,
   isLast: boolean,

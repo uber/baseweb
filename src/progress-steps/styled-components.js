@@ -178,7 +178,6 @@ export const StyledNumberIcon = styled(
     let marginTop = $theme.sizing.scale0;
     let marginRight = $theme.sizing.scale300;
     let font = $theme.typography.font350;
-    // let marginLeft = $theme.sizing.scale100;
 
     if ($isCompleted) {
       backgroundColor = $theme.colors.primary400;
@@ -186,13 +185,6 @@ export const StyledNumberIcon = styled(
     } else if ($isActive) {
       backgroundColor = $theme.colors.primary100;
     }
-
-    // if ($isActive) {
-    //   size = $theme.sizing.scale600;
-    //   marginTop = $theme.sizing.scale300;
-    //   marginLeft = 0;
-    //   marginRight = $theme.sizing.scale300;
-    // }
 
     return {
       marginRight,
