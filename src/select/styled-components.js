@@ -41,10 +41,18 @@ export const Input = styled('input', props => {
 });
 
 export const InputContainer = styled('div', props => {
-  const {$theme} = props;
+  const {$theme, $isFocused} = props;
   const {
+    colors: {primary400, mono200},
     sizing: {scale300},
   } = $theme;
+  const color = $isFocused
+    ? {
+        borderColor: primary400,
+      }
+    : {
+        borderColor: mono200,
+      };
   return {
     ...getInputContainerStyles({...props, $size: SIZE.default}),
     flexWrap: 'wrap',
@@ -54,7 +62,7 @@ export const InputContainer = styled('div', props => {
     paddingBottom: '0',
     alignItems: 'center',
     position: 'relative',
-    border: 'none',
+    ...color,
   };
 });
 
@@ -75,21 +83,16 @@ export const SingleSelection = styled('span', props => {
 export const SelectComponentIcon = styled('img', props => {
   const {$theme, $disabled} = props;
   const {
-    sizing: {scale300, scale600, scale500},
+    sizing: {scale300, scale500},
   } = $theme;
   switch (props.$type) {
     case ICON.clearAll:
       return {
         marginLeft: 'auto',
-        position: 'absolute',
-        right: scale600,
         cursor: $disabled ? 'not-allowed' : 'pointer',
       };
     case ICON.select:
       return {
-        top: '50%',
-        position: 'absolute',
-        right: scale600,
         marginRight: scale500,
       };
     case ICON.selected:
@@ -108,7 +111,7 @@ export const SelectComponentIcon = styled('img', props => {
 export const DropDown = styled(MenuList, ({$theme, $isOpen, $type}) => ({
   overflowY: 'scroll',
   display: !$isOpen ? 'none' : null,
-  top: $type === TYPE.select ? $theme.sizing.scale600 : null,
+  top: $type === TYPE.select ? $theme.sizing.scale600 : $theme.sizing.scale1200,
   width: `calc(100% - ${$theme.sizing.scale600})`,
   left: $theme.sizing.scale300,
   position: 'absolute',
@@ -154,5 +157,7 @@ export const SelectSpinner = styled('div', () => {
 export const SelectionContainer = styled('div', props => {
   return {
     lineHeight: '12px',
+    display: 'flex',
+    justifyContent: 'center',
   };
 });
