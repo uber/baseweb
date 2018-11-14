@@ -9,7 +9,7 @@ Object {
   "listStyle": "none",
   "overflowY": "scroll",
   "position": "absolute",
-  "top": null,
+  "top": "$theme.sizing.scale1200",
   "width": "calc(100% - $theme.sizing.scale600)",
 }
 `;
@@ -23,7 +23,7 @@ Object {
   "listStyle": "none",
   "overflowY": "scroll",
   "position": "absolute",
-  "top": null,
+  "top": "$theme.sizing.scale1200",
   "width": "calc(100% - $theme.sizing.scale600)",
 }
 `;
@@ -79,7 +79,7 @@ exports[`Select styled components StyledInputContainer InputContainer: StyledInp
 Object {
   "alignItems": "center",
   "backgroundColor": "$theme.colors.mono200",
-  "borderColor": "$theme.colors.mono700",
+  "borderColor": "$theme.colors.mono200",
   "borderRadius": undefined,
   "borderStyle": "solid",
   "borderWidth": "1px",
@@ -141,8 +141,6 @@ exports[`Select styled components StyledSelectComponentIcon : StyledSelectCompon
 Object {
   "cursor": "pointer",
   "marginLeft": "auto",
-  "position": "absolute",
-  "right": "$theme.sizing.scale600",
 }
 `;
 
@@ -155,9 +153,6 @@ Object {
 exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is select 1`] = `
 Object {
   "marginRight": "$theme.sizing.scale500",
-  "position": "absolute",
-  "right": "$theme.sizing.scale600",
-  "top": "50%",
 }
 `;
 
