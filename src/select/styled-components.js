@@ -41,18 +41,22 @@ export const Input = styled('input', props => {
 });
 
 export const InputContainer = styled('div', props => {
-  const {$theme, $isFocused} = props;
+  const {$theme, $isFocused, $error} = props;
   const {
-    colors: {primary400, mono200},
+    colors: {primary400, mono200, negative50},
     sizing: {scale300},
   } = $theme;
-  const color = $isFocused
-    ? {
-        borderColor: primary400,
-      }
-    : {
-        borderColor: mono200,
-      };
+
+  const border = {
+    borderColor: mono200,
+  };
+
+  if ($isFocused) {
+    border.borderColor = primary400;
+  } else if ($error) {
+    border.borderColor = negative50;
+  }
+
   return {
     ...getInputContainerStyles({...props, $size: SIZE.default}),
     flexWrap: 'wrap',
@@ -62,7 +66,7 @@ export const InputContainer = styled('div', props => {
     paddingBottom: '0',
     alignItems: 'center',
     position: 'relative',
-    ...color,
+    ...border,
   };
 });
 
