@@ -22,6 +22,7 @@ const SpacedButton = styled(Button, ({$theme}: {$theme: ThemeT}) => ({
 
 type DefaultExampleComponentPropsT = {
   isNumber: boolean,
+  isOverriden: boolean,
 };
 
 type DefaultExampleComponentStateT = {
@@ -34,23 +35,44 @@ class DefaultExampleComponent extends React.Component<
 > {
   static defaultProps = {
     isNumber: false,
+    isOverriden: false,
   };
 
-  constructor(...props) {
-    super(...props);
-
-    this.state = {
-      current: 0,
-    };
-  }
+  state = {
+    current: 0,
+  };
 
   render() {
-    const {isNumber} = this.props;
+    const {isNumber, isOverriden} = this.props;
     const GenericStep = isNumber ? NumberedStep : Step;
+
+    const overrideProps = isOverriden
+      ? {
+          overrides: {
+            Icon: {
+              style: {backgroundColor: 'red'},
+            },
+            InnerIcon: {
+              style: {backgroundColor: 'red'},
+            },
+            Tail: {
+              style: {
+                ':after': {
+                  content: '""',
+                  display: 'inline-block',
+                  height: '100%',
+                  width: '100%',
+                  backgroundColor: 'red',
+                },
+              },
+            },
+          },
+        }
+      : {};
 
     return (
       <ProgressSteps current={this.state.current}>
-        <GenericStep title="Create Account" isCompleted>
+        <GenericStep title="Create Account" {...overrideProps}>
           <div>Here is some step content</div>
           <div>
             <SpacedButton disabled>Previous</SpacedButton>
@@ -59,7 +81,7 @@ class DefaultExampleComponent extends React.Component<
             </SpacedButton>
           </div>
         </GenericStep>
-        <GenericStep title="Verify Payment" isCompleted>
+        <GenericStep title="Verify Payment" {...overrideProps}>
           <div>
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem
             accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
@@ -76,7 +98,7 @@ class DefaultExampleComponent extends React.Component<
             </SpacedButton>
           </div>
         </GenericStep>
-        <GenericStep title="Add Payment Method" isActive>
+        <GenericStep title="Add Payment Method" {...overrideProps}>
           <div>Here is some step content</div>
           <div>
             <SpacedButton onClick={() => this.setState({current: 1})}>
@@ -96,5 +118,8 @@ export default {
   },
   [examples.NUMBERED]: function Story2() {
     return <DefaultExampleComponent isNumber />;
+  },
+  [examples.OVERRIDES]: function Story3() {
+    return <DefaultExampleComponent isOverriden />;
   },
 };

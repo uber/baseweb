@@ -46,16 +46,19 @@ function Step({
     StyledContentDescription,
   );
 
+  const sharedProps = {
+    $isCompleted: isCompleted,
+    $isActive: isActive,
+  };
+
   return (
     <Root {...rootProps}>
-      <Icon $isCompleted={isCompleted} $isActive={isActive} {...iconProps}>
+      <Icon {...sharedProps} {...iconProps}>
         {isActive && <InnerIcon {...innerIconProps} />}
       </Icon>
-      {!isLast && (
-        <Tail $isCompleted={isCompleted} $isActive={isActive} {...tailProps} />
-      )}
-      <Content $isActive={isActive} {...contentProps}>
-        <Title $isActive={isActive} {...titleProps}>
+      {!isLast && <Tail {...sharedProps} {...tailProps} />}
+      <Content {...sharedProps} {...contentProps}>
+        <Title {...sharedProps} {...titleProps}>
           {title}
         </Title>
         {isActive &&

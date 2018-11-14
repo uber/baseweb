@@ -50,17 +50,20 @@ function NumberedStep({
     StyledCheckIcon,
   );
 
+  const sharedProps = {
+    $isCompleted: isCompleted,
+    $isActive: isActive,
+  };
+
   return (
     <Root {...rootProps}>
-      <Icon $isCompleted={isCompleted} $isActive={isActive} {...iconProps}>
+      <Icon {...sharedProps} {...iconProps}>
         {!isCompleted && <span>{step}</span>}
         {isCompleted && <CheckIcon size={12} {...checkIconProps} />}
       </Icon>
-      {!isLast && (
-        <Tail $isCompleted={isCompleted} $isActive={isActive} {...tailProps} />
-      )}
-      <Content $isActive={isActive} {...contentProps}>
-        <Title $isActive={isActive} {...titleProps}>
+      {!isLast && <Tail {...sharedProps} {...tailProps} />}
+      <Content {...sharedProps} {...contentProps}>
+        <Title {...sharedProps} {...titleProps}>
           {title}
         </Title>
         {isActive &&

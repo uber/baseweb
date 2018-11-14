@@ -48,41 +48,6 @@ export type StyledStepPropsT = {
   $theme: ThemeT,
   $isActive: boolean,
   $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledIconPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledInnerIconPropsT = {
-  $theme: ThemeT,
-};
-
-export type StyledContentPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-};
-
-export type StyledContentTitlePropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledContentTailPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledContentDescriptionPropsT = {
-  $theme: ThemeT,
 };
 
 export type NumberedStepOverridesT = {
@@ -102,7 +67,7 @@ export type NumberedStepPropsT = {
   isLast: boolean,
   overrides?: NumberedStepOverridesT,
   children?: Node,
-  step?: number,
+  step?: Node,
 };
 
 export type StyledNumberIconPropsT = {

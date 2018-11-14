@@ -11,12 +11,6 @@ import {styled} from '../styles/index';
 import type {
   StyledProgressStepsPropsT,
   StyledStepPropsT,
-  StyledIconPropsT,
-  StyledInnerIconPropsT,
-  StyledContentPropsT,
-  StyledContentTitlePropsT,
-  StyledContentTailPropsT,
-  StyledContentDescriptionPropsT,
   StyledNumberIconPropsT,
   StyledNumberContentTailPropsT,
   StyledNumberStepPropsT,
@@ -26,7 +20,8 @@ export const StyledProgressSteps = styled(
   'div',
   ({$theme}: StyledProgressStepsPropsT) => {
     return {
-      padding: $theme.sizing.scale300,
+      paddingTop: $theme.sizing.scale300,
+      paddingBottom: $theme.sizing.scale300,
     };
   },
 );
@@ -40,7 +35,7 @@ export const StyledStep = styled('div', ({$theme}: StyledStepPropsT) => {
 
 export const StyledIcon = styled(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}: StyledIconPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}: StyledStepPropsT) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
     let marginTop = $theme.sizing.scale400;
@@ -78,21 +73,18 @@ export const StyledIcon = styled(
   },
 );
 
-export const StyledInnerIcon = styled(
-  'div',
-  ({$theme}: StyledInnerIconPropsT) => {
-    return {
-      width: $theme.sizing.scale100,
-      height: $theme.sizing.scale100,
-      lineHeight: $theme.sizing.scale100,
-      borderRadius: $theme.sizing.scale100,
-      backgroundColor: $theme.colors.primary400,
-      textAlign: 'center',
-    };
-  },
-);
+export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
+  return {
+    width: $theme.sizing.scale100,
+    height: $theme.sizing.scale100,
+    lineHeight: $theme.sizing.scale100,
+    borderRadius: $theme.sizing.scale100,
+    backgroundColor: $theme.colors.primary400,
+    textAlign: 'center',
+  };
+});
 
-export const StyledContent = styled('div', ({$theme}: StyledContentPropsT) => {
+export const StyledContent = styled('div', ({$theme}: StyledStepPropsT) => {
   return {
     overflow: 'hidden',
   };
@@ -100,7 +92,7 @@ export const StyledContent = styled('div', ({$theme}: StyledContentPropsT) => {
 
 export const StyledContentTitle = styled(
   'div',
-  ({$theme, $isActive}: StyledContentTitlePropsT) => {
+  ({$theme, $isActive}: StyledStepPropsT) => {
     let color = $theme.colors.mono700;
     let font = $theme.typography.font400;
 
@@ -110,10 +102,7 @@ export const StyledContentTitle = styled(
     }
 
     return {
-      fontFamily: font.fontFamily,
-      fontSize: font.fontSize,
-      fontWeight: font.fontWeight,
-      lineHeight: font.lineHeight,
+      ...font,
       color,
     };
   },
@@ -121,7 +110,7 @@ export const StyledContentTitle = styled(
 
 export const StyledContentTail = styled(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}: StyledContentTailPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}: StyledStepPropsT) => {
     let currentColor = $theme.colors.mono400;
 
     if ($isCompleted) {
@@ -150,7 +139,7 @@ export const StyledContentTail = styled(
 
 export const StyledContentDescription = styled(
   'div',
-  ({$theme}: StyledContentDescriptionPropsT) => {
+  ({$theme}: StyledStepPropsT) => {
     return {
       paddingTop: $theme.sizing.scale100,
       paddingBottom: $theme.sizing.scale100,
@@ -199,10 +188,7 @@ export const StyledNumberIcon = styled(
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      fontFamily: font.fontFamily,
-      fontSize: font.fontSize,
-      fontWeight: font.fontWeight,
-      lineHeight: font.lineHeight,
+      ...font,
     };
   },
 );

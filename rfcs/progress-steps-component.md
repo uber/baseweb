@@ -8,7 +8,7 @@ Progress steps are used for multi-step flows where indicating the number of step
 
 ```javascript
 import * as React from 'react';
-import {ProgressSteps} from 'baseui/progress-steps';
+import {ProgressSteps, Step} from 'baseui/progress-steps';
 
 export default () => {
   return (
@@ -28,7 +28,7 @@ export default () => {
 
 ```javascript
 import * as React from 'react';
-import {ProgressSteps} from 'baseui/progress-steps';
+import {ProgressSteps, NumberedStep} from 'baseui/progress-steps';
 
 export default () => {
   return (
@@ -83,3 +83,11 @@ export default () => {
   Overrides for presentational components. See "Presentational Components Props API" below.
   * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
 * `children: (props: Props) => React.Node` - Optional
+
+## Presentational components props API
+
+These properties are passed to every presentational (styled) component that is exported:
+
+* `$theme: theme`
+* `$isActive: boolean`
+* `$isCompleted: boolean`
