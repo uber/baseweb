@@ -12,12 +12,13 @@ import {ProgressSteps, Step, NumberedStep} from './';
 import examples from './examples-list';
 import {Button} from '../button';
 import {styled} from '../styles/index';
+import type {ThemeT} from '../styles/types';
 
-const SpacedButton = styled(Button, {
-  marginLeft: '6px',
-  marginRight: '6px',
-  marginTop: '6px',
-});
+const SpacedButton = styled(Button, ({$theme}: {$theme: ThemeT}) => ({
+  marginLeft: $theme.sizing.scale200,
+  marginRight: $theme.sizing.scale200,
+  marginTop: $theme.sizing.scale200,
+}));
 
 type DefaultExampleComponentPropsT = {
   isNumber: boolean,

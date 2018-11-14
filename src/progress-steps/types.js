@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// import type {Node, ElementType} from 'react';
+import type {Node} from 'react';
 import type {ThemeT} from '../styles/types';
 import type {OverrideT} from '../helpers/overrides';
 
@@ -17,7 +17,7 @@ export type PropgressStepsOverridesT = {
 
 export type ProgressStepsPropsT = {
   overrides?: PropgressStepsOverridesT,
-  children?: React.Node,
+  children?: Node,
   current: number,
 };
 
@@ -32,12 +32,12 @@ export type StepOverridesT = {
 };
 
 export type StepPropsT = {
-  title?: React.Node,
+  title?: Node,
   isCompleted: boolean,
   isActive: boolean,
   isLast: boolean,
   overrides?: StepOverridesT,
-  children?: React.Node,
+  children?: Node,
 };
 
 export type StyledProgressStepsPropsT = {
@@ -101,7 +101,7 @@ export type NumberedStepPropsT = {
   isActive: boolean,
   isLast: boolean,
   overrides?: NumberedStepOverridesT,
-  children?: React.Node,
+  children?: Node,
   step?: number,
 };
 
