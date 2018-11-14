@@ -240,7 +240,7 @@ class Select extends React.Component<PropsT, StatelessStateT> {
               <SelectComponentIcon
                 $type={ICON.select}
                 src={
-                  'data:image/svg+xml;utf8,<svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.29289 5.29289L0.853553 0.853553C0.538571 0.538571 0.761654 0 1.20711 0H10.7929C11.2383 0 11.4614 0.538571 11.1464 0.853554L6.70711 5.29289C6.31658 5.68342 5.68342 5.68342 5.29289 5.29289Z" transform="translate(12) scale(-1 1)" fill="#666666"/></svg>'
+                  'data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(1 0 0 1 2 6.899993896484375)"><path fill-rule="nonzero" clip-rule="nonzero" d="M 20 0 L 20 3.8000030517578125 L 10 11.5 L 0 3.8000030517578125 L 0 0 L 10 7.70001220703125 L 20 0 Z" fill="currentColor"/></g></svg>'
                 }
                 {...selectComponentIconProps}
               />
