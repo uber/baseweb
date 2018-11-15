@@ -15,6 +15,7 @@ import {
   SIZE,
   ADJOINED,
 } from '../index';
+import {createTheme, lightThemePrimitives} from '../../themes';
 import {ENHANCER_POSITION} from '../constants';
 
 test('Input - StyledRoot - basic render', () => {
@@ -105,6 +106,14 @@ test('Input - StyledInputContainer - basic render', () => {
   });
   expect(component.instance().getStyles()).toMatchSnapshot(
     'StyledInputContainer has correct styles when disabled',
+  );
+  component.setProps({
+    $theme: createTheme(lightThemePrimitives, {
+      borders: {useRoundedCorners: false},
+    }),
+  });
+  expect(component.instance().getStyles()).toMatchSnapshot(
+    'StyledInputContainer has correct styles when useRoundedCorners is false',
   );
 });
 
