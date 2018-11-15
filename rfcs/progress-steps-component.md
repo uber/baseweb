@@ -8,37 +8,39 @@ Progress steps are used for multi-step flows where indicating the number of step
 
 ```javascript
 import * as React from 'react';
-import {ProgressSteps} from 'baseui/progress-steps';
+import {ProgressSteps, Step} from 'baseui/progress-steps';
 
 export default () => {
   return (
-    <ProgressSteps current={2}>
-      <Step title="Step 1" />
-      <Step title="Step 2" />
-      <Step title="Step 3" />
-    </ProgressSteps>
+    <ProgressSteps current={1}>
+        <Step title="Create Account">
+          Example content
+        </Step>
+        <Step title="Add Users">
+          Example content
+        </Step>
+      </ProgressSteps>
   );
 }
 ```
 
-### Advanced usage
+### Numbered Step Usage
 
 ```javascript
 import * as React from 'react';
-import {ProgressSteps, StyledNumberedStep} from 'baseui/progress-steps';
+import {ProgressSteps, NumberedStep} from 'baseui/progress-steps';
 
 export default () => {
-  const overrides ={
-    Step: StyledNumberedStep
-    StepTitle: CustomTitle,
-  };
-  return
-    <ProgressSteps
-      onClick={(idx)=>{console.log(`step ${idx} is clicked`)}}
-    >
-      <Step title="Step 1" overrides={overrides} />
-      <Step title="Step 2"  overrides={overrides}>Some subtitle here</Step>
-    </ProgressSteps>;
+  return (
+    <ProgressSteps current={1}>
+      <NumberedStep title="Create Account">
+        Example content
+      </NumberedStep>
+      <NumberedStep title="Add Users">
+        Example content
+      </NumberedStep>
+    </ProgressSteps>
+  );
 }
 ```
 
@@ -46,45 +48,46 @@ export default () => {
 
 * `ProgressSteps`
 * `Step`
-* `StyledRoot`
-* `StyledDefaultStep`
-* `StyledNumberedStep`
-* `StyledStepConnector`
-* `StyledStepTitle`
-* `StyledStepSubtitle`
-* `StyledStepText`
-* `ORIENTATION`
+* `NumberedStep`
+* `StyledProgressSteps`
+* `StyledStep`
+* `StyledIcon`
+* `StyledInnerIcon`
+* `StyledContent`
+* `StyledContentTitle`
+* `StyledContentTail`
+* `StyledContentDescription`
+* `StyledNumberStep`
+* `StyledNumberIcon`
+* `StyledNumberContentTail`
 
 ## `ProgressSteps` API
 
-* `current: type` - Optional, Defaults to 0
+* `current: number` - Optional, Defaults to 0
   Defines the current active step index
-* `onClick: ({index}) => {}` - Optional
-  A callback that is invoked when a Step component gets a click event
-* `orientation: ORIENTATION.horizontal | ORIENTATION.vertical` - Optional, Defaults to `ORIENTATION.vertical`
-  Defines the layout flow direction
-* `overrides: {Root, Step, StepConnector, StepTitle}` - Optional
+* `overrides: {Root}` - Optional
   Overrides for presentational components. See "Presentational Components Props API" below.
   * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
 
-## `Step` API
+## `Step` and `NumberedStep` API
 
-* `disabled: boolean` - Optional
-  Defines if the step is disabled
+* `title: React.Node` - Optional
+  The title of the Step
 * `isActive: boolean` - Optional
   Defines if the step is currently active
 * `isCompleted: boolean` - Optional
   Defines if the step is completed
+* `isLast: boolean` - Optional
+  Defines if the step is the last item displayed
+* `overrides: {Root, Icon, InnerIcon, Tail, Content, Title, Description}` - Optional
+  Overrides for presentational components. See "Presentational Components Props API" below.
+  * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
+* `children: (props: Props) => React.Node` - Optional
 
 ## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported:
 
+* `$theme: theme`
 * `$isActive: boolean`
 * `$isCompleted: boolean`
-* `$orientation: ORIENTATION.horizontal | ORIENTATION.vertical`
-* `$theme: theme`
-
-## Dependencies
-
-Does this component depend on any 3rd party packages or other internal components?
