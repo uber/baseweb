@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 module.exports = {
-  DEFAULT: 'Dots example',
-  NUMBERED: 'Numbered example',
-  OVERRIDES: 'Overrides example',
+  DEFAULT: 'Progress step dots example',
+  NUMBERED: 'Progress step numbered example',
+  OVERRIDES: 'Progress step overrides example',
 };
