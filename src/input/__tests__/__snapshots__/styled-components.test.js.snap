@@ -228,6 +228,28 @@ Object {
 }
 `;
 
+exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct styles when useRoundedCorners is false 1`] = `
+Object {
+  "backgroundColor": "#F0F0F0",
+  "borderColor": "#F0F0F0",
+  "borderRadius": "0px",
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0 2px 6px transparent",
+  "boxSizing": "border-box",
+  "color": "#B3B3B3",
+  "display": "flex",
+  "fontFamily": "\\"Helvetica Neue\\", arial, sans-serif",
+  "fontSize": "12px",
+  "fontWeight": "normal",
+  "lineHeight": "20px",
+  "transitionDuration": "0.25s",
+  "transitionProperty": "border, boxShadow, backgroundColor",
+  "transitionTimingFunction": "cubic-bezier(.2, .8, .4, 1)",
+  "width": "100%",
+}
+`;
+
 exports[`Input - StyledInputEnhancer - basic render: StyledInputEnhancer has correct styles when compact and end position 1`] = `
 Object {
   "backgroundColor": "$theme.colors.mono400",
