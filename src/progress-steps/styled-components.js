@@ -38,7 +38,7 @@ export const StyledIcon = styled(
   ({$theme, $isActive, $isCompleted, $disabled}: StyledStepPropsT) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
-    let marginTop = $theme.sizing.scale400;
+    let marginTop = $theme.sizing.scale300;
     let marginRight = $theme.sizing.scale500;
     let marginLeft = $theme.sizing.scale100;
 
@@ -50,7 +50,7 @@ export const StyledIcon = styled(
 
     if ($isActive) {
       size = $theme.sizing.scale600;
-      marginTop = $theme.sizing.scale300;
+      marginTop = $theme.sizing.scale200;
       marginLeft = 0;
       marginRight = $theme.sizing.scale300;
     }

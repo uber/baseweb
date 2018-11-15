@@ -11,6 +11,7 @@ import React from 'react';
 import {ProgressSteps, Step, NumberedStep} from './';
 import examples from './examples-list';
 import {Button} from '../button';
+import {Block} from '../block';
 import {styled} from '../styles/index';
 import type {ThemeT} from '../styles/types';
 
@@ -73,39 +74,45 @@ class DefaultExampleComponent extends React.Component<
     return (
       <ProgressSteps current={this.state.current}>
         <GenericStep title="Create Account" {...overrideProps}>
-          <div>Here is some step content</div>
-          <div>
-            <SpacedButton disabled>Previous</SpacedButton>
-            <SpacedButton onClick={() => this.setState({current: 1})}>
-              Next
-            </SpacedButton>
-          </div>
+          <Block font="font400">
+            <div>Here is some step content</div>
+            <div>
+              <SpacedButton disabled>Previous</SpacedButton>
+              <SpacedButton onClick={() => this.setState({current: 1})}>
+                Next
+              </SpacedButton>
+            </div>
+          </Block>
         </GenericStep>
         <GenericStep title="Verify Payment" {...overrideProps}>
-          <div>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-            aspernatur aut odit aut fugit...
-          </div>
-          <div>
-            <SpacedButton onClick={() => this.setState({current: 0})}>
-              Previous
-            </SpacedButton>
-            <SpacedButton onClick={() => this.setState({current: 2})}>
-              Next
-            </SpacedButton>
-          </div>
+          <Block font="font400">
+            <div>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore veritatis et quasi architecto beatae vitae
+              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit...
+            </div>
+            <div>
+              <SpacedButton onClick={() => this.setState({current: 0})}>
+                Previous
+              </SpacedButton>
+              <SpacedButton onClick={() => this.setState({current: 2})}>
+                Next
+              </SpacedButton>
+            </div>
+          </Block>
         </GenericStep>
         <GenericStep title="Add Payment Method" {...overrideProps}>
-          <div>Here is some step content</div>
-          <div>
-            <SpacedButton onClick={() => this.setState({current: 1})}>
-              Previous
-            </SpacedButton>
-            <SpacedButton disabled>Next</SpacedButton>
-          </div>
+          <Block font="font400">
+            <div>Here is some step content</div>
+            <div>
+              <SpacedButton onClick={() => this.setState({current: 1})}>
+                Previous
+              </SpacedButton>
+              <SpacedButton disabled>Next</SpacedButton>
+            </div>
+          </Block>
         </GenericStep>
       </ProgressSteps>
     );
