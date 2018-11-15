@@ -25,7 +25,12 @@ export const BaseButton = styled(
     alignItems: 'center',
     justifyContent: 'center',
     border: 'none',
-    borderRadius: $shape === SHAPE.round ? '50%' : $theme.borders.radius200,
+    borderRadius:
+      $shape === SHAPE.round
+        ? '50%'
+        : $theme.borders.useRoundedCorners
+          ? $theme.borders.radius200
+          : '0px',
     textDecoration: 'none',
     outline: 'none',
     WebkitAppearance: 'none',

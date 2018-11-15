@@ -85,7 +85,7 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
     $error,
     $disabled,
     $size,
-    $theme: {colors, sizing, typography, animation},
+    $theme: {colors, sizing, typography, animation, borders},
   } = props;
   return {
     ...getFont($size, typography),
@@ -109,7 +109,9 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
         : $isFocused
           ? colors.primary400
           : colors.mono200,
-    borderRadius: getBorderRadius($adjoined, sizing.scale100),
+    borderRadius: borders.useRoundedCorners
+      ? getBorderRadius($adjoined, sizing.scale100)
+      : '0px',
     boxShadow: `0 2px 6px ${
       $disabled
         ? 'transparent'
