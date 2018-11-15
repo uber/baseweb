@@ -52,7 +52,7 @@ function Step({
   };
 
   return (
-    <Root {...rootProps}>
+    <Root {...sharedProps} {...rootProps}>
       <Icon {...sharedProps} {...iconProps}>
         {isActive && <InnerIcon {...innerIconProps} />}
       </Icon>

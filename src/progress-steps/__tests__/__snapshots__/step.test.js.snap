@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Step applies isActive prop correctly 1`] = `
-<MockStyledComponent>
+<MockStyledComponent
+  $isActive={true}
+  $isCompleted={false}
+>
   <MockStyledComponent
     $isActive={true}
     $isCompleted={false}
@@ -25,7 +28,10 @@ exports[`Step applies isActive prop correctly 1`] = `
 `;
 
 exports[`Step applies isCompleted prop correctly 1`] = `
-<MockStyledComponent>
+<MockStyledComponent
+  $isActive={false}
+  $isCompleted={true}
+>
   <MockStyledComponent
     $isActive={false}
     $isCompleted={true}
@@ -47,7 +53,10 @@ exports[`Step applies isCompleted prop correctly 1`] = `
 `;
 
 exports[`Step applies isLast prop correctly 1`] = `
-<MockStyledComponent>
+<MockStyledComponent
+  $isActive={false}
+  $isCompleted={false}
+>
   <MockStyledComponent
     $isActive={false}
     $isCompleted={false}
@@ -65,7 +74,10 @@ exports[`Step applies isLast prop correctly 1`] = `
 `;
 
 exports[`Step applies title prop correctly 1`] = `
-<MockStyledComponent>
+<MockStyledComponent
+  $isActive={false}
+  $isCompleted={false}
+>
   <MockStyledComponent
     $isActive={false}
     $isCompleted={false}
@@ -89,7 +101,10 @@ exports[`Step applies title prop correctly 1`] = `
 `;
 
 exports[`Step renders children correctly if isActive is provided 1`] = `
-<MockStyledComponent>
+<MockStyledComponent
+  $isActive={true}
+  $isCompleted={false}
+>
   <MockStyledComponent
     $isActive={true}
     $isCompleted={false}
