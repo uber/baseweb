@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {LightTheme} from '../../themes';
+import {LightTheme, createTheme, lightThemePrimitives} from '../../themes';
 import {
   BaseButton,
   StartEnhancer,
@@ -73,6 +73,14 @@ describe('Button Styled Components', () => {
       title: `BaseButton - basic render`,
       component: BaseButton,
     });
+  });
+
+  test(`BaseButton - respects useRoundedCorners`, () => {
+    let theme = createTheme(lightThemePrimitives, {
+      borders: {useRoundedCorners: false},
+    });
+    const rendered = shallow(<BaseButton $theme={theme}>Test</BaseButton>);
+    expect(rendered.instance().getStyles().borderRadius).toMatch('0px');
   });
 
   makeTest({

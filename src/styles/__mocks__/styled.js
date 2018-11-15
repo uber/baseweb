@@ -8,10 +8,14 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {LightTheme} from '../../themes';
 import createMockTheme from '../../test/create-mock-theme';
+import type {ThemeT} from '../../styles/types';
 
 type ObjOrFnT = {} | (({}) => {});
 
-type PropsT = {$style?: ObjOrFnT};
+type PropsT = {
+  $style?: ObjOrFnT,
+  $theme?: ThemeT,
+};
 
 type StateT = {styles?: {}};
 
@@ -21,10 +25,14 @@ function styled(Base: string, objOrFn?: ObjOrFnT = {}) {
   return class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
+    static defaultProps = {
+      $theme: MOCK_THEME,
+    };
+
     state = {};
 
     static getDerivedStateFromProps(props: PropsT) {
-      const styleFnArg = {...props, $theme: MOCK_THEME};
+      const styleFnArg = {...props};
 
       let styles =
         typeof objOrFn === 'function' ? objOrFn(styleFnArg) : objOrFn;
