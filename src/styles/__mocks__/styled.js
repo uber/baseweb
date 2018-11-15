@@ -25,14 +25,14 @@ function styled(Base: string, objOrFn?: ObjOrFnT = {}) {
   return class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
-    static defaultProps = {
-      $theme: MOCK_THEME,
-    };
-
     state = {};
 
     static getDerivedStateFromProps(props: PropsT) {
-      const styleFnArg = {...props};
+      const styleFnArg = {
+        ...props,
+        // If we use defaultProps, $theme unnecessarily ends up in snapshots
+        $theme: props.$theme || MOCK_THEME,
+      };
 
       let styles =
         typeof objOrFn === 'function' ? objOrFn(styleFnArg) : objOrFn;
