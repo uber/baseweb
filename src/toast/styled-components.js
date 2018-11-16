@@ -82,12 +82,12 @@ export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
 });
 
 export const Body = styled('div', (props: SharedStylePropsT) => {
-  const {$isHidden, $isAnimating, $kind, $theme} = props;
+  const {$isVisible, $kind, $theme} = props;
   return {
     ...$theme.typography.font300,
     pointerEvents: 'auto',
     color: $theme.colors.white,
-    height: $isHidden && !$isAnimating ? 0 : 'auto',
+    height: 'auto',
     width: '288px',
     paddingTop: $theme.sizing.scale600,
     paddingRight: $theme.sizing.scale600,
@@ -101,7 +101,7 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
       ? $theme.borders.radius200
       : '0px',
     boxShadow: $theme.lighting.shadow600,
-    opacity: $isHidden ? 0 : 1,
+    opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeInOutCurve,

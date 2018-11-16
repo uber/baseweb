@@ -147,7 +147,7 @@ class ToasterComponent extends React.Component<
     };
   };
 
-  render = () => {
+  render() {
     const sharedProps = this.getSharedProps();
 
     const {Root: RootOverride} = this.props.overrides;
@@ -183,7 +183,7 @@ class ToasterComponent extends React.Component<
       }
     }
     return null;
-  };
+  }
 }
 
 const toaster = {

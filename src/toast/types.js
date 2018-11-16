@@ -17,8 +17,8 @@ export type PlacementTypeT = $Keys<typeof PLACEMENT>;
 export type SharedStylePropsArgT = {
   $kind: KindTypeT,
   $closeable: boolean,
-  $isHidden: boolean,
-  $isAnimating: boolean,
+  $isRendered: boolean,
+  $isVisible: boolean,
   // styled function wrapper related
   $style?: ?{},
 };
@@ -47,8 +47,8 @@ export type ChildT = React.Node;
 export type ChildrenT = React.ChildrenArray<ChildT>;
 
 export type ToastPrivateStateT = {
-  isAnimating: boolean,
-  isHidden: boolean,
+  isVisible: boolean,
+  isRendered: boolean,
 };
 
 export type ToastPropsT = {
