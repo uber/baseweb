@@ -143,8 +143,7 @@ export const StyledContentDescription = styled(
   'div',
   ({$theme}: StyledStepPropsT) => {
     return {
-      paddingTop: $theme.sizing.scale100,
-      paddingBottom: $theme.sizing.scale100,
+      marginBottom: $theme.sizing.scale800,
     };
   },
 );
@@ -155,7 +154,6 @@ export const StyledNumberStep = styled(
     return {
       position: 'relative',
       overflow: 'visible',
-      minHeight: $theme.sizing.scale1200,
     };
   },
 );
