@@ -24,6 +24,7 @@ const req = require.context(
 );
 function loadStories() {
   require('../src/welcome.stories.js');
+  require('../docs/pages/pages.js');
   req.keys().forEach(filename => req(filename));
 }
 
