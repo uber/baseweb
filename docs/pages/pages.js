@@ -11,6 +11,9 @@ import {storiesOf} from '@storybook/react';
 import ReactMarkdown from 'react-markdown';
 import FrontMatter from 'front-matter';
 
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import {vs} from 'react-syntax-highlighter/dist/styles/hljs';
+
 import Welcome from './welcome.md';
 import GettingStarted from './getting-started.md';
 
@@ -34,11 +37,19 @@ const Anchor = styled('a', ({$theme}) => ({
   color: $theme.colors.primary,
 }));
 
+const Code = code => {
+  return (
+    <SyntaxHighlighter language={code.language} style={vs}>
+      {code.value}
+    </SyntaxHighlighter>
+  );
+};
+
 parsedDocs.forEach(doc => {
   storiesOf(doc.attributes.category).add(doc.attributes.page, () => {
     return (
       <ReactMarkdown
-        renderers={{root: Root, p: P, link: Anchor}}
+        renderers={{root: Root, p: P, link: Anchor, code: Code}}
         source={doc.body}
       />
     );
