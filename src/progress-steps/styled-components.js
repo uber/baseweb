@@ -143,7 +143,7 @@ export const StyledContentDescription = styled(
   'div',
   ({$theme}: StyledStepPropsT) => {
     return {
-      marginBottom: $theme.sizing.scale800,
+      marginBottom: $theme.sizing.scale700,
     };
   },
 );
