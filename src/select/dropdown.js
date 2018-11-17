@@ -43,58 +43,56 @@ export default function SelectDropDown(props: DropDownPropsT) {
   const {
     options = [],
     getOptionLabel,
-    isDropDownOpen,
-    optionsLoaded,
-    selectedOptions,
-    onChange,
+    isLoading,
+    value,
     onItemSelect,
     type,
     maxDropdownHeight,
-    multiple,
+    multi,
+    valueKey,
+    labelKey,
   } = props;
-  return isDropDownOpen ? (
+  return (
     <StatefulMenu
       getRequiredItemProps={(option, index) => {
-        return option.disabled
-          ? {
-              onClickCapture: e => e.stopPropagation(),
-            }
-          : {
-              onClick: e => onChange(e, option),
-            };
+        return {};
       }}
       overrides={{
         List: {
-          component: DropDown,
-          style: {maxHeight: maxDropdownHeight},
+          // component: DropDown,
+          style: {
+            maxHeight: maxDropdownHeight,
+            margin: '8px 8px 0',
+          },
           props: {
             role: 'listbox',
-            'aria-multiselectable': multiple,
-            $type: type,
-            $isOpen: isDropDownOpen,
-            ...dropDownProps,
+            'aria-multiselectable': multi,
+            // ...dropDownProps,
           },
         },
         Option: {
           props: {
-            overrides: {
-              ListItem: {
-                component: DropDownItem,
-                props: dropDownItemProps,
-              },
-            },
+            // overrides: {
+            //   ListItem: {
+            //     component: DropDownItem,
+            //     props: dropDownItemProps,
+            //   },
+            // },
             /* eslint-disable-next-line react/display-name*/
             getItemLabel: option => {
-              const $selected = selectedOptions.find(
-                selected => selected.id === option.id,
+              const $selected = value.find(
+                selected => selected && selected[valueKey] === option[valueKey],
               );
-              return optionsLoaded ? (
+              const sharedProps = {
+                $selected,
+                $disabled: option.disabled,
+              };
+              return !isLoading ? (
                 <Option
                   aria-readonly={option.disabled}
                   aria-selected={!!$selected}
-                  disabled={option.disabled}
-                  $selected={$selected}
                   key={option.id}
+                  {...sharedProps}
                   {...optionProps}
                 >
                   {$selected && (
@@ -103,6 +101,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
                       src={
                         'data:image/svg+xml;utf8,<svg width="10" height="9" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6L4 9L10 1" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
                       }
+                      {...sharedProps}
                       {...selectComponentIconProps}
                     />
                   )}
@@ -118,9 +117,7 @@ export default function SelectDropDown(props: DropDownPropsT) {
         },
       }}
       onItemSelect={onItemSelect}
-      items={optionsLoaded ? options : [{}]}
+      items={options}
     />
-  ) : (
-    <div />
   );
 }

@@ -12,40 +12,18 @@ import * as React from 'react';
 import {StatefulSelect, TYPE} from './index';
 import {STATE_CHANGE_TYPE} from './constants';
 import COLORS from './examples-colors';
-
-const emptyOption = {id: '', label: ''};
-
-export const suite = 'Select Test Suite';
 import tests from './examples-list';
 
+export const suite = 'Select Test Suite';
+
 const onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
-  //$FlowFixMe
+  // eslint-disable-next-line no-console
   console.log('Text has changed to:' + e.target.value);
 };
 
-const onChange = ({event, type, option = emptyOption}) => {
-  if (type === STATE_CHANGE_TYPE.select) {
-    // eslint-disable-next-line no-console
-    console.log('Selected option:' + option.id);
-  }
-};
-
-const onChangeMultiSelect = ({
-  event,
-  type,
-  option = emptyOption,
-  selectedOptions,
-}) => {
-  switch (type) {
-    case STATE_CHANGE_TYPE.select:
-      // eslint-disable-next-line no-console
-      console.log('Selected id:' + option.id);
-      break;
-    case STATE_CHANGE_TYPE.unselect:
-      // eslint-disable-next-line no-console
-      console.log('Unselected id:' + option.id);
-      break;
-  }
+const onChange = (...args) => {
+  // eslint-disable-next-line no-console
+  console.log('Selected option: ', ...args);
 };
 
 export default {
@@ -54,7 +32,7 @@ export default {
       <StatefulSelect
         options={COLORS}
         getOptionLabel={option => option.id}
-        rows={10}
+        maxDropdownHeight="300px"
         placeholder="Choose a color"
         onChange={onChange}
       />
@@ -66,20 +44,20 @@ export default {
         options={[
           {
             id: 'red',
-            label: 'Red',
+            color: 'Red',
           },
           {
             id: 'orange',
-            label: 'Orange',
+            color: 'Orange',
             disabled: true,
           },
           {
             id: 'green',
-            label: 'Green',
+            color: 'Green',
           },
           {
             id: 'blue',
-            label: 'Blue',
+            color: 'Blue',
             disabled: true,
           },
         ]}
@@ -91,13 +69,20 @@ export default {
   [tests.MULTI_SELECT]: () => {
     return (
       <StatefulSelect
+        placeholder="Select options"
         options={COLORS}
         getOptionLabel={option => option.id}
-        multiple
+        multi
+        // value={[COLORS[0], COLORS[1], COLORS[3]]}
         initialState={{
-          selectedOptions: [COLORS[1], COLORS[3]],
+          value: [COLORS[0], COLORS[1], COLORS[3]],
         }}
         onChange={onChange}
+        valueKey={'color'}
+        labelKey={'id'}
+        onChange={args => {
+          console.log('value: ', args);
+        }}
       />
     );
   },
@@ -105,20 +90,19 @@ export default {
     return (
       <StatefulSelect
         type={TYPE.search}
-        options={() =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve(COLORS);
-            }, 1000);
-          })
-        }
+        options={COLORS}
         getOptionLabel={option => option.id}
         rows={8}
-        multiple
+        multi
         filterable
         placeholder="Start searching"
-        onTextInputChange={onTextInputChange}
-        onChange={onChangeMultiSelect}
+        onInputChange={onTextInputChange}
+        onChange={onChange}
+        valueKey={'color'}
+        labelKey={'id'}
+        onChange={(...args) => {
+          console.log('value: ', ...args);
+        }}
       />
     );
   },
@@ -157,12 +141,12 @@ export default {
         )}
         getSelectedOptionLabel={option => <CustomOptionLabel option={option} />}
         initialState={{
-          selectedOptions: [COLORS[2]],
+          value: [COLORS[2]],
         }}
         rows={8}
         multiple
-        onTextInputChange={onTextInputChange}
-        onChange={onChangeMultiSelect}
+        onInputChange={onTextInputChange}
+        onChange={onChange}
       />
     );
   },

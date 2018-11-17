@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 export const OPTIONS = {
   single: 'single',
-  multiple: 'multiple',
+  multi: 'multi',
 };
 
 export const TYPE = {
@@ -25,5 +25,5 @@ export const ICON = {
 
 export const STATE_CHANGE_TYPE = {
   select: 'select',
-  unselect: 'unselect',
+  remove: 'remove',
 };

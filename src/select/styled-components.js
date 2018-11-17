@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index';
 import {ICON, TYPE} from './constants';
-
+import {getSvgStyles} from '../icon/styled-components';
 import {SIZE} from '../input';
 import {
   getInputStyles,
@@ -18,6 +18,30 @@ import {
   List as MenuList,
   ListItem as MenuListItem,
 } from '../menu/styled-components';
+
+function getFont(size = SIZE.default, typography) {
+  return {
+    [SIZE.default]: typography.font300,
+    [SIZE.compact]: typography.font200,
+  }[size];
+}
+
+function getControlPadding(size = SIZE.default, sizing) {
+  return {
+    [SIZE.default]: {
+      paddingTop: sizing.scale400,
+      paddingBottom: sizing.scale400,
+      paddingLeft: sizing.scale500,
+      paddingRight: sizing.scale500,
+    },
+    [SIZE.compact]: {
+      paddingTop: sizing.scale200,
+      paddingBottom: sizing.scale200,
+      paddingLeft: sizing.scale500,
+      paddingRight: sizing.scale500,
+    },
+  }[size];
+}
 
 export const Root = styled('div', props => {
   return {
@@ -130,7 +154,7 @@ export const DropDownItem = styled(MenuListItem, ({$theme}) => ({
 }));
 
 export const Option = styled('div', props => {
-  const {$selected, disabled, $theme} = props;
+  const {$selected, $disabled, $theme} = props;
   const {
     colors: {mono700, primary400},
   } = $theme;
@@ -145,9 +169,9 @@ export const Option = styled('div', props => {
       };
   return {
     ':hover': {
-      cursor: disabled ? 'not-allowed' : 'pointer',
+      cursor: $disabled ? 'not-allowed' : 'pointer',
     },
-    color: disabled ? mono700 : $selected ? primary400 : null,
+    color: $disabled ? mono700 : $selected ? primary400 : null,
     ...padding,
   };
 });
@@ -163,5 +187,214 @@ export const SelectionContainer = styled('div', props => {
     lineHeight: '12px',
     display: 'flex',
     justifyContent: 'center',
+  };
+});
+
+export const SelectRoot = styled('div', props => {
+  const {
+    $theme: {typography},
+    $size,
+  } = props;
+  return {
+    ...getFont($size, typography),
+    boxSizing: 'border-box',
+  };
+});
+
+export const SelectWrapper = styled('div', props => {
+  const {
+    $disabled,
+    $error,
+    $isFocused,
+    $isOpen,
+    $isPseudoFocused,
+    $required,
+    $size,
+    $type,
+    $searchable,
+    $theme: {typography, colors, sizing, animation, borders},
+  } = props;
+  return {
+    // outline: 'none',
+    overflow: 'hidden',
+    position: 'relative',
+    color: $disabled ? colors.mono600 : colors.mono1000,
+    boxSizing: 'border-box',
+    display: 'flex',
+    width: '100%',
+    cursor: $disabled
+      ? 'not-allowed'
+      : $searchable || $type === TYPE.search
+        ? 'text'
+        : 'ponter',
+    backgroundColor: $disabled
+      ? colors.mono300
+      : $isFocused || $isPseudoFocused
+        ? colors.mono100
+        : $error
+          ? colors.negative50
+          : colors.mono200,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: $disabled
+      ? colors.mono300
+      : $error
+        ? colors.negative400
+        : $isFocused || $isPseudoFocused
+          ? colors.primary400
+          : colors.mono200,
+    borderRadius: borders.useRoundedCorners ? sizing.scale100 : '0',
+    boxShadow: `0 2px 6px ${
+      $disabled
+        ? 'transparent'
+        : $isFocused || $isPseudoFocused
+          ? $error
+            ? colors.shadowError
+            : colors.shadowFocus
+          : 'transparent'
+    }`,
+    transitionProperty: 'border, boxShadow, backgroundColor',
+    transitionDuration: animation.timing100,
+    transitionTimingFunction: animation.easeOutCurve,
+  };
+});
+
+export const SelectValueWrapper = styled('span', props => {
+  const {
+    $size,
+    $theme: {sizing},
+  } = props;
+  return {
+    boxSizing: 'border-box',
+    display: 'inline-block',
+    paddingLeft: '16px',
+    paddingRight: '42px',
+    paddingTop: '8px',
+    paddingBottom: '8px',
+    ...getControlPadding($size, sizing),
+  };
+});
+
+export const SelectPlaceholder = styled('div', props => {
+  const {
+    $disabled,
+    $size,
+    $theme: {colors, sizing},
+  } = props;
+  return {
+    position: 'absolute',
+    top: '0',
+    bottom: '0',
+    right: '0',
+    left: '0',
+    display: 'flex',
+    alignItems: 'center',
+    color: $disabled ? colors.mono600 : colors.mono700,
+    maxWidth: '100%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    ...getControlPadding($size, sizing),
+  };
+});
+
+export const SelectValue = styled('div', props => {
+  const {
+    $disabled,
+    $size,
+    $theme: {colors, sizing},
+  } = props;
+  return {
+    boxSizing: 'border-box',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    height: '100%',
+    ...getControlPadding($size, sizing),
+  };
+});
+
+export const SelectInputWrapper = styled('div', props => {
+  const {
+    $theme: {sizing},
+    $size,
+  } = props;
+  return {
+    boxSizing: 'border-box',
+    display: 'inline-block',
+    // width: '5px',
+    width: 'auto',
+    background: 'transparent',
+    border: 'none',
+    boxShadow: 'none',
+    outline: 'none',
+    marginTop: '0',
+    marginBottom: '0',
+    marginLeft: '0',
+    marginRight: '0',
+  };
+});
+
+export const SelectInput = styled('input', props => {
+  const {
+    $theme: {typography, sizing},
+    $size,
+    $disabled,
+    $searchable,
+  } = props;
+  return {
+    ...getFont($size, typography),
+    boxSizing: 'border-box',
+    // width: '5px',
+    width: $disabled || !$searchable ? '1px' : 'auto',
+    maxWidth: '100%',
+    background: 'transparent',
+    border: 'none',
+    boxShadow: 'none',
+    display: 'inline-block',
+    outline: 'none',
+    marginTop: '0',
+    marginBottom: '0',
+    marginLeft: '0',
+    marginRight: '0',
+    paddingTop: '0',
+    paddingBottom: '0',
+    paddingLeft: '0',
+    paddingRight: '0',
+  };
+});
+
+export const SelectArrow = styled('span', props => ({}));
+
+export const SelectNoResults = styled('div', props => ({}));
+
+export const SelectArrowIcon = styled('svg', props => {
+  const {
+    $theme: {colors},
+    $disabled,
+  } = props;
+  return {
+    ...getSvgStyles(props),
+    color: $disabled ? colors.mono600 : colors.mono800,
+    cursor: $disabled ? 'not-allowed' : 'pointer',
+    position: 'absolute',
+    right: '12px',
+    display: 'inline-block',
+    height: '100%',
+  };
+});
+
+export const SelectClearIcon = styled('svg', props => {
+  const {
+    $theme: {colors},
+  } = props;
+  return {
+    ...getSvgStyles(props),
+    color: colors.mono800,
+    cursor: 'pointer',
+    position: 'absolute',
+    right: '28px',
+    display: 'inline-block',
+    height: '100%',
   };
 });
