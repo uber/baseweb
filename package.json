@@ -8,8 +8,8 @@
     "baseui"
   ],
   "license": "MIT",
-  "main": "baseui.js",
-  "module": "baseui.es.js",
+  "main": "index.js",
+  "module": "index.es.js",
   "repository": "uber-web/baseui",
   "scripts": {
     "lint:code": "eslint ./",
