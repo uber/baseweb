@@ -37,17 +37,11 @@ describe('Component styled components', () => {
       '$theme.colors.negative500',
     );
 
-    component.setProps({$isHidden: false, $isAnimating: false});
-    expect(component.instance().getStyles().height).toEqual('auto');
+    component.setProps({$isVisible: false});
+    expect(component.instance().getStyles().opacity).toEqual(0);
+
+    component.setProps({$isVisible: true});
     expect(component.instance().getStyles().opacity).toEqual(1);
-
-    component.setProps({$isHidden: true, $isAnimating: true});
-    expect(component.instance().getStyles().height).toEqual('auto');
-    expect(component.instance().getStyles().opacity).toEqual(0);
-
-    component.setProps({$isHidden: true, $isAnimating: false});
-    expect(component.instance().getStyles().height).toEqual(0);
-    expect(component.instance().getStyles().opacity).toEqual(0);
   });
   test('StyledCloseIcon - basic render', () => {
     const component = shallow(<StyledCloseIcon $prop={false} />);

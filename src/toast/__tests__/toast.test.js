@@ -16,8 +16,8 @@ describe('Toast', () => {
   test('basic functionality', () => {
     const wrapper = mount(<Toast>Notification</Toast>);
 
-    expect(wrapper.instance().state.isHidden).toBe(false);
-    expect(wrapper.instance().state.isAnimating).toBe(true);
+    expect(wrapper.instance().state.isRendered).toBe(true);
+    expect(wrapper.instance().state.isVisible).toBe(false);
 
     expect(wrapper.find(StyledBody).first()).toExist();
     expect(wrapper.find(StyledCloseIcon).first()).toExist();
@@ -31,8 +31,8 @@ describe('Toast', () => {
     expect(renderedRoot).toExist();
     expect(renderedRoot.props().$kind).toBe(KIND.info);
     expect(renderedRoot.props().$closeable).toBe(true);
-    expect(renderedRoot.props().$isHidden).toBe(false);
-    expect(renderedRoot.props().$isAnimating).toBe(true);
+    expect(renderedRoot.props().$isRendered).toBe(true);
+    expect(renderedRoot.props().$isVisible).toBe(false);
 
     // pass new kind value set to KIND.positive
     // and closeable set to false
@@ -101,13 +101,13 @@ describe('Toast', () => {
 
     closeButton.simulate('click');
 
-    expect(wrapper.instance().state.isHidden).toBe(true);
-    expect(wrapper.instance().state.isAnimating).toBe(true);
+    expect(wrapper.instance().state.isRendered).toBe(true);
+    expect(wrapper.instance().state.isVisible).toBe(false);
     expect(props.onClose).not.toHaveBeenCalled();
 
     jest.runAllTimers();
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 600);
-    expect(wrapper.instance().state.isAnimating).toBe(false);
+    expect(wrapper.instance().state.isRendered).toBe(false);
     expect(props.onClose).toHaveBeenCalled();
   });
 
