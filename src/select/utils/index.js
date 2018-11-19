@@ -5,12 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export const stringifyValue = value =>
-  typeof value === 'string'
-    ? value
-    : (value !== null && JSON.stringify(value)) || '';
+import type {PropsT, SelectStateT} from '../types';
 
-export const shouldShowValue = (state, props) => {
+export const shouldShowValue = (state: SelectStateT, props: $Shape<PropsT>) => {
   const {inputValue, isPseudoFocused, isFocused} = state;
   const {onSelectResetsInput} = props;
   if (!inputValue) return true;
@@ -23,7 +20,11 @@ export const shouldShowValue = (state, props) => {
   return false;
 };
 
-export const shouldShowPlaceholder = (state, props, isOpen) => {
+export const shouldShowPlaceholder = (
+  state: SelectStateT,
+  props: $Shape<PropsT>,
+  isOpen: boolean,
+) => {
   const {inputValue, isPseudoFocused, isFocused} = state;
   const {onSelectResetsInput} = props;
 
@@ -33,7 +34,11 @@ export const shouldShowPlaceholder = (state, props, isOpen) => {
   );
 };
 
-export const expandValue = (value, props) => {
+export const expandValue = (
+  // eslint-disable-next-line flowtype/no-weak-types
+  value: string | number | boolean | {[string]: any},
+  props: $Shape<PropsT>,
+) => {
   const valueType = typeof value;
   if (
     valueType !== 'string' &&
@@ -44,6 +49,8 @@ export const expandValue = (value, props) => {
   let {options, valueKey} = props;
   if (!options) return;
   for (let i = 0; i < options.length; i++) {
-    if (String(options[i][valueKey]) === String(value)) return options[i];
+    if (String(options[i][valueKey]) === String(value)) {
+      return options[i];
+    }
   }
 };

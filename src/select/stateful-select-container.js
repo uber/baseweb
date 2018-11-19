@@ -30,7 +30,6 @@ class StatefulSelectContainer extends React.Component<
   state = {...this.props.initialState};
 
   onChange = (params: OnChangeParamsT) => {
-    console.log('STATEFUL', params);
     this.internalSetState(params);
     this.props.onChange(params);
   };

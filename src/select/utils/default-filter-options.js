@@ -4,7 +4,8 @@ Copyright (c) 2018 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-
+// @flow
+import {ValueT} from '../types';
 const trim = str => str.replace(/^\s+|\s+$/g, '');
 
 const isValid = value => {
@@ -12,6 +13,7 @@ const isValid = value => {
 };
 
 const defaultProps = {
+  filterOption: null,
   ignoreCase: true,
   labelKey: 'label',
   matchPos: 'any',
@@ -20,7 +22,12 @@ const defaultProps = {
   valueKey: 'value',
 };
 
-const filterOptions = (options, filterValue, excludeOptions, newProps) => {
+const filterOptions = (
+  options: ValueT,
+  filterValue: string,
+  excludeOptions: ValueT,
+  newProps: $Shape<typeof defaultProps>,
+) => {
   const props = {
     ...defaultProps,
     ...newProps,

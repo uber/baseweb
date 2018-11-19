@@ -12,64 +12,65 @@ import type {OnItemSelectFnT} from '../menu/types';
 
 export type ChangeActionT = $Values<typeof STATE_CHANGE_TYPE>;
 
-export type LabelT = *;
 export type OptionT = {
-  id: string,
-  label: LabelT,
+  id?: string,
+  label?: React.Node,
   disabled?: boolean,
+  clearableValue?: boolean,
 };
 
-export type ParamsT = {
-  option?: OptionT,
-  selectedOptions?: Array<OptionT>,
-  textValue?: string,
-  type: ChangeActionT,
-};
+export type ValueT = Array<OptionT> | $Shape<OptionT>;
+
+// export type ParamsT = {
+//   option?: OptionT,
+//   selectedOptions?: Array<OptionT>,
+//   textValue?: string,
+//   type: ChangeActionT,
+// };
 
 export type OnChangeParamsT = {
-  event: SyntheticEvent<HTMLElement> | KeyboardEvent,
-  option?: OptionT,
-  selectedOptions?: Array<OptionT>,
-  textValue?: string,
   type: ChangeActionT,
+  value: ValueT,
+  option?: OptionT,
 };
 
 export type OverridesT = {
   Root?: OverrideT<*>,
-  Input?: OverrideT<*>,
-  SelectComponentIcon?: OverrideT<*>,
+  ControlContainer?: OverrideT<*>,
+  Placeholder?: OverrideT<*>,
+  ValueContainer?: OverrideT<*>,
+  SingleValue?: OverrideT<*>,
+  MultiValue?: OverrideT<*>,
   InputContainer?: OverrideT<*>,
-  Tag?: OverrideT<*>,
-  Option?: OverrideT<*>,
+  Input?: OverrideT<*>,
+  SelectArrow?: OverrideT<*>,
+  ClearIcon?: OverrideT<*>,
+  LoadingIndicator?: OverrideT<*>,
   DropDown?: OverrideT<*>,
-  SelectComponentIcon?: OverrideT<*>,
-  DropDownItem?: OverrideT<*>,
-  SingleSelection?: OverrideT<*>,
-  SelectSpinner?: OverrideT<*>,
-  SelectionContainer?: OverrideT<*>,
+  DropDownOption?: OverrideT<*>,
+  OptionValue?: OverrideT<*>,
 };
 
 export type OverridesDropDownT = {
-  Option?: OverrideT<*>,
   DropDown?: OverrideT<*>,
-  SelectComponentIcon?: OverrideT<*>,
-  DropDownItem?: OverrideT<*>,
-  SelectSpinner?: OverrideT<*>,
+  DropDownOption?: OverrideT<*>,
+  OptionValue?: OverrideT<*>,
 };
 
 export type PropsT = {
-  options: Array<OptionT> | ((query?: *) => Promise<Array<OptionT>>),
+  autoFocus: boolean,
+  options: Array<OptionT>,
   overrides?: OverridesT,
   selectedOptions: Array<OptionT>,
   tabIndex: number,
   multiple: boolean,
   maxDropdownHeight: string,
   error: boolean,
-  autoFocus: boolean,
   type?: string,
   disabled?: boolean,
   filterable: boolean,
   filterOption?: (OptionT, string) => boolean,
+  onSelectResetsInput: boolean,
   placeholder?: string,
   getOptionLabel?: OptionT => React$Node,
   getSelectedOptionLabel?: OptionT => React$Node,
@@ -84,30 +85,26 @@ export type PropsT = {
   onBlur: (e: SyntheticEvent<HTMLInputElement>) => void,
 };
 
-export type StatelessStateT = {
-  textValue: string,
-  isDropDownOpen: boolean,
-  filteredOptions?: ?Array<OptionT>,
-  options: Array<OptionT>,
-  optionsLoaded: boolean,
+export type SelectStateT = {
+  inputValue: string,
+  isFocused: boolean,
+  isOpen: boolean,
+  isPseudoFocused: boolean,
 };
 
 export type StateT = {
-  textValue?: string,
-  selectedOptions?: Array<OptionT>,
+  value?: Array<OptionT>,
 };
 
 export type StateReducerT = (
   stateType: string,
   nextState: StateT,
   currentState: StateT,
-  event: SyntheticEvent<HTMLElement> | KeyboardEvent,
-  params: ParamsT,
 ) => StateT;
 
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
-  children?: (*) => React$Node,
+  children: (*) => React$Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
   onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
@@ -133,15 +130,24 @@ export type StatefulSelectPropsT = {
 };
 
 export type DropDownPropsT = {
-  overrides?: OverridesDropDownT,
-  options: Array<OptionT>,
-  selectedOptions: Array<OptionT>,
-  multiple: boolean,
-  isDropDownOpen: boolean,
-  optionsLoaded: boolean,
-  type: string,
-  maxDropdownHeight: string,
   getOptionLabel: OptionT => React$Node,
+  isLoading: boolean,
+  labelKey: string,
+  maxDropdownHeight: string,
+  multi: boolean,
   onItemSelect: OnItemSelectFnT,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, option: OptionT) => void,
+  options: Array<OptionT>,
+  optionsLoaded: boolean,
+  overrides?: OverridesDropDownT,
+  selectedOptions: Array<OptionT>,
+  type: string,
+};
+
+export type AutosizeInputPropsT = {
+  value: string,
+  inputRef: () => void,
+};
+
+export type AutosizeInputPropsT = {
+  inputWidth: number,
 };

@@ -19,6 +19,7 @@ export default function OptionList({
   getItemLabel,
   size,
   overrides,
+  $isHighlighted,
   ...restProps
 }: OptionListPropsT) {
   const [ListItem, listItemProps] = getOverrides(
@@ -27,10 +28,11 @@ export default function OptionList({
   );
   const sharedProps = {
     $size: size,
+    $isHighlighted,
   };
   return (
     <ListItem {...sharedProps} {...restProps} {...listItemProps}>
-      {getItemLabel({isHighlighted: restProps.$isHighlighted, ...item})}
+      {getItemLabel({isHighlighted: $isHighlighted, ...item})}
     </ListItem>
   );
 }

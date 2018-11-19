@@ -6,18 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index';
-import {ICON, TYPE} from './constants';
+import {TYPE} from './constants';
 import {getSvgStyles} from '../icon/styled-components';
 import {SIZE} from '../input';
-import {
-  getInputStyles,
-  getInputContainerStyles,
-} from '../input/styled-components';
-
-import {
-  List as MenuList,
-  ListItem as MenuListItem,
-} from '../menu/styled-components';
 
 function getFont(size = SIZE.default, typography) {
   return {
@@ -26,171 +17,42 @@ function getFont(size = SIZE.default, typography) {
   }[size];
 }
 
-function getControlPadding(size = SIZE.default, sizing) {
+function getControlPadding(size = SIZE.default, sizing, type) {
   return {
     [SIZE.default]: {
       paddingTop: sizing.scale400,
       paddingBottom: sizing.scale400,
-      paddingLeft: sizing.scale500,
-      paddingRight: sizing.scale500,
+      paddingLeft: type === TYPE.search ? sizing.scale1000 : sizing.scale500,
+      paddingRight: type === TYPE.select ? sizing.scale1000 : sizing.scale800,
     },
     [SIZE.compact]: {
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
-      paddingLeft: sizing.scale500,
-      paddingRight: sizing.scale500,
+      paddingLeft: type === TYPE.search ? sizing.scale1000 : sizing.scale500,
+      paddingRight: type === TYPE.select ? sizing.scale1000 : sizing.scale800,
     },
   }[size];
 }
 
-export const Root = styled('div', props => {
-  return {
-    position: 'relative',
-  };
-});
-
-export const Input = styled('input', props => {
-  const {$theme} = props;
+export const StyledOptionContent = styled('div', props => {
+  const {$isHighlighted, $selected, $disabled, $theme} = props;
   const {
-    sizing: {scale300},
+    colors: {mono700, primary400, black},
   } = $theme;
-  return {
-    ...getInputStyles({...props, $size: SIZE.default}),
-    cursor: 'pointer',
-    width: 'auto',
-    flexGrow: '1',
-    paddingTop: scale300,
-    paddingBottom: scale300,
-  };
-});
-
-export const InputContainer = styled('div', props => {
-  const {$theme, $isFocused, $error} = props;
-  const {
-    colors: {primary400, mono200, negative50},
-    sizing: {scale300},
-  } = $theme;
-
-  const border = {
-    borderColor: mono200,
-  };
-
-  if ($isFocused) {
-    border.borderColor = primary400;
-  } else if ($error) {
-    border.borderColor = negative50;
-  }
-
-  return {
-    ...getInputContainerStyles({...props, $size: SIZE.default}),
-    flexWrap: 'wrap',
-    paddingLeft: scale300,
-    paddingRight: scale300,
-    paddingTop: '0',
-    paddingBottom: '0',
-    alignItems: 'center',
-    position: 'relative',
-    ...border,
-  };
-});
-
-export const SingleSelection = styled('span', props => {
-  const {$theme, $disabled} = props;
-  const {
-    colors: {mono1000},
-  } = $theme;
-  return {
-    ...getInputStyles({...props, $size: SIZE.default, $disabled: true}),
-    cursor: $disabled ? 'not-allowed' : 'pointer',
-    width: 'auto',
-    flexGrow: '1',
-    color: mono1000,
-  };
-});
-
-export const SelectComponentIcon = styled('img', props => {
-  const {$theme, $disabled} = props;
-  const {
-    sizing: {scale300, scale500},
-  } = $theme;
-  switch (props.$type) {
-    case ICON.clearAll:
-      return {
-        marginLeft: 'auto',
-        cursor: $disabled ? 'not-allowed' : 'pointer',
-      };
-    case ICON.select:
-      return {
-        marginRight: scale500,
-      };
-    case ICON.selected:
-      return {
-        paddingRight: scale300,
-      };
-    case ICON.loop:
-      return {
-        paddingLeft: scale300,
-      };
-    default:
-      return {};
-  }
-});
-
-export const DropDown = styled(MenuList, ({$theme, $isOpen, $type}) => ({
-  overflowY: 'scroll',
-  display: !$isOpen ? 'none' : null,
-  top: $type === TYPE.select ? $theme.sizing.scale600 : $theme.sizing.scale1200,
-  width: `calc(100% - ${$theme.sizing.scale600})`,
-  left: $theme.sizing.scale300,
-  position: 'absolute',
-  listStyle: 'none',
-  borderRadius: $theme.sizing.scale300,
-  boxShadow: $theme.lighting.shadow600,
-}));
-
-export const DropDownItem = styled(MenuListItem, ({$theme}) => ({
-  // TODO(#185): revisit after Menu gets condensed styles
-  lineHeight: $theme.sizing.scale600,
-}));
-
-export const Option = styled('div', props => {
-  const {$selected, $disabled, $theme} = props;
-  const {
-    colors: {mono700, primary400},
-  } = $theme;
-  const padding = $selected
-    ? {
-        paddingRight: '0px',
-        paddingLeft: '0px',
-      }
-    : {
-        paddingRight: '18px',
-        paddingLeft: '18px',
-      };
   return {
     ':hover': {
       cursor: $disabled ? 'not-allowed' : 'pointer',
     },
-    color: $disabled ? mono700 : $selected ? primary400 : null,
-    ...padding,
+    color: $disabled
+      ? mono700
+      : $selected || $isHighlighted
+        ? primary400
+        : black,
+    fontWeight: $selected ? 'bold' : 'normal',
   };
 });
 
-export const SelectSpinner = styled('div', () => {
-  return {
-    paddingLeft: '50%',
-  };
-});
-
-export const SelectionContainer = styled('div', props => {
-  return {
-    lineHeight: '12px',
-    display: 'flex',
-    justifyContent: 'center',
-  };
-});
-
-export const SelectRoot = styled('div', props => {
+export const StyledRoot = styled('div', props => {
   const {
     $theme: {typography},
     $size,
@@ -201,21 +63,17 @@ export const SelectRoot = styled('div', props => {
   };
 });
 
-export const SelectWrapper = styled('div', props => {
+export const StyledControlContainer = styled('div', props => {
   const {
     $disabled,
     $error,
     $isFocused,
-    $isOpen,
     $isPseudoFocused,
-    $required,
-    $size,
     $type,
     $searchable,
-    $theme: {typography, colors, sizing, animation, borders},
+    $theme: {colors, sizing, animation, borders},
   } = props;
   return {
-    // outline: 'none',
     overflow: 'hidden',
     position: 'relative',
     color: $disabled ? colors.mono600 : colors.mono1000,
@@ -226,7 +84,7 @@ export const SelectWrapper = styled('div', props => {
       ? 'not-allowed'
       : $searchable || $type === TYPE.search
         ? 'text'
-        : 'ponter',
+        : 'pointer',
     backgroundColor: $disabled
       ? colors.mono300
       : $isFocused || $isPseudoFocused
@@ -259,26 +117,24 @@ export const SelectWrapper = styled('div', props => {
   };
 });
 
-export const SelectValueWrapper = styled('span', props => {
+export const StyledValueContainer = styled('span', props => {
   const {
+    $type,
     $size,
     $theme: {sizing},
   } = props;
   return {
     boxSizing: 'border-box',
     display: 'inline-block',
-    paddingLeft: '16px',
-    paddingRight: '42px',
-    paddingTop: '8px',
-    paddingBottom: '8px',
-    ...getControlPadding($size, sizing),
+    ...getControlPadding($size, sizing, $type),
   };
 });
 
-export const SelectPlaceholder = styled('div', props => {
+export const StyledPlaceholder = styled('div', props => {
   const {
     $disabled,
     $size,
+    $type,
     $theme: {colors, sizing},
   } = props;
   return {
@@ -294,15 +150,15 @@ export const SelectPlaceholder = styled('div', props => {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    ...getControlPadding($size, sizing),
+    ...getControlPadding($size, sizing, $type),
   };
 });
 
-export const SelectValue = styled('div', props => {
+export const StyledSingleValue = styled('div', props => {
   const {
-    $disabled,
     $size,
-    $theme: {colors, sizing},
+    $type,
+    $theme: {sizing},
   } = props;
   return {
     boxSizing: 'border-box',
@@ -310,20 +166,18 @@ export const SelectValue = styled('div', props => {
     top: '0',
     left: '0',
     height: '100%',
-    ...getControlPadding($size, sizing),
+    whiteSpace: 'nowrap',
+    maxWidth: '100%',
+    ...getControlPadding($size, sizing, $type),
   };
 });
 
-export const SelectInputWrapper = styled('div', props => {
-  const {
-    $theme: {sizing},
-    $size,
-  } = props;
+export const StyledInputContainer = styled('div', props => {
   return {
     boxSizing: 'border-box',
+    position: 'relative',
     display: 'inline-block',
-    // width: '5px',
-    width: 'auto',
+    maxWidth: '100%',
     background: 'transparent',
     border: 'none',
     boxShadow: 'none',
@@ -335,18 +189,18 @@ export const SelectInputWrapper = styled('div', props => {
   };
 });
 
-export const SelectInput = styled('input', props => {
+export const StyledInput = styled('input', props => {
   const {
-    $theme: {typography, sizing},
+    $theme: {typography},
     $size,
     $disabled,
     $searchable,
+    $width,
   } = props;
   return {
     ...getFont($size, typography),
-    boxSizing: 'border-box',
-    // width: '5px',
-    width: $disabled || !$searchable ? '1px' : 'auto',
+    boxSizing: 'content-box',
+    width: $disabled || !$searchable ? '1px' : $width || 'auto',
     maxWidth: '100%',
     background: 'transparent',
     border: 'none',
@@ -364,17 +218,23 @@ export const SelectInput = styled('input', props => {
   };
 });
 
-export const SelectArrow = styled('span', props => ({}));
+export const StyledInputSizer = styled('div', {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  visibility: 'hidden',
+  height: 0,
+  overflow: 'scroll',
+  whiteSpace: 'pre',
+});
 
-export const SelectNoResults = styled('div', props => ({}));
-
-export const SelectArrowIcon = styled('svg', props => {
+export const StyledSelectArrow = styled('svg', props => {
   const {
     $theme: {colors},
     $disabled,
   } = props;
   return {
-    ...getSvgStyles(props),
+    ...getSvgStyles({...props, $size: null}),
     color: $disabled ? colors.mono600 : colors.mono800,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
@@ -384,16 +244,33 @@ export const SelectArrowIcon = styled('svg', props => {
   };
 });
 
-export const SelectClearIcon = styled('svg', props => {
+export const StyledClearIcon = styled('svg', props => {
   const {
+    $type,
     $theme: {colors},
   } = props;
   return {
-    ...getSvgStyles(props),
+    ...getSvgStyles({...props, $size: null}),
     color: colors.mono800,
     cursor: 'pointer',
     position: 'absolute',
-    right: '28px',
+    right: $type !== 'select' ? '14px' : '30px',
+    display: 'inline-block',
+    height: '100%',
+  };
+});
+
+export const StyledSearchIcon = styled('svg', props => {
+  const {
+    $disabled,
+    $theme: {colors},
+  } = props;
+  return {
+    ...getSvgStyles({...props, $size: null}),
+    color: $disabled ? colors.mono600 : colors.mono700,
+    cursor: 'pointer',
+    position: 'absolute',
+    left: '12px',
     display: 'inline-block',
     height: '100%',
   };
