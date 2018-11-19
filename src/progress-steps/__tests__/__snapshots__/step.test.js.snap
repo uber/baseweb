@@ -23,6 +23,7 @@ exports[`Step applies isActive prop correctly 1`] = `
       $isActive={true}
       $isCompleted={false}
     />
+    <MockStyledComponent />
   </MockStyledComponent>
 </MockStyledComponent>
 `;
@@ -48,6 +49,7 @@ exports[`Step applies isCompleted prop correctly 1`] = `
       $isActive={false}
       $isCompleted={true}
     />
+    <MockStyledComponent />
   </MockStyledComponent>
 </MockStyledComponent>
 `;
@@ -69,6 +71,7 @@ exports[`Step applies isLast prop correctly 1`] = `
       $isActive={false}
       $isCompleted={false}
     />
+    <MockStyledComponent />
   </MockStyledComponent>
 </MockStyledComponent>
 `;
@@ -96,6 +99,7 @@ exports[`Step applies title prop correctly 1`] = `
     >
       Test Title
     </MockStyledComponent>
+    <MockStyledComponent />
   </MockStyledComponent>
 </MockStyledComponent>
 `;

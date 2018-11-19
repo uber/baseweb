@@ -38,22 +38,24 @@ export const StyledIcon = styled(
   ({$theme, $isActive, $isCompleted, $disabled}: StyledStepPropsT) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
-    let marginTop = $theme.sizing.scale300;
     let marginRight = $theme.sizing.scale500;
     let marginLeft = $theme.sizing.scale100;
+    let font = $theme.typography.font400;
 
     if ($isCompleted) {
       currentColor = $theme.colors.primary400;
     } else if ($isActive) {
+      font = $theme.typography.font450;
       currentColor = $theme.colors.primary100;
     }
 
     if ($isActive) {
       size = $theme.sizing.scale600;
-      marginTop = $theme.sizing.scale200;
       marginLeft = 0;
       marginRight = $theme.sizing.scale300;
     }
+
+    const marginTop = `calc((${font.lineHeight} - ${size}) / 2)`;
 
     return {
       marginRight,
@@ -141,8 +143,7 @@ export const StyledContentDescription = styled(
   'div',
   ({$theme}: StyledStepPropsT) => {
     return {
-      paddingTop: $theme.sizing.scale100,
-      paddingBottom: $theme.sizing.scale100,
+      marginBottom: $theme.sizing.scale700,
     };
   },
 );
@@ -153,7 +154,6 @@ export const StyledNumberStep = styled(
     return {
       position: 'relative',
       overflow: 'visible',
-      minHeight: $theme.sizing.scale1200,
     };
   },
 );
@@ -164,16 +164,19 @@ export const StyledNumberIcon = styled(
     let backgroundColor = $theme.colors.mono400;
     let color = $theme.colors.primary400;
     let size = $theme.sizing.scale800;
-    let marginTop = $theme.sizing.scale0;
     let marginRight = $theme.sizing.scale300;
     let font = $theme.typography.font350;
+    let titleFont = $theme.typography.font400;
 
     if ($isCompleted) {
       backgroundColor = $theme.colors.primary400;
       color = $theme.colors.mono100;
     } else if ($isActive) {
+      titleFont = $theme.typography.font450;
       backgroundColor = $theme.colors.primary100;
     }
+
+    const marginTop = `calc((${titleFont.lineHeight} - ${size}) / 2)`;
 
     return {
       marginRight,
