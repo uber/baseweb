@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 import FormControl from '../form-control';
-import {Label, Caption} from '../styled-components';
+import {Label, Caption, ControlContainer} from '../styled-components';
 import {Input} from '../../input';
 import {Textarea} from '../../textarea';
 import {Checkbox} from '../../checkbox';
@@ -245,5 +245,50 @@ test('Renders label and caption for the RadioGroup component', () => {
     $error: undefined,
     $required: true,
     children: 'Caption test',
+  });
+});
+
+describe('FormControl - overrides', () => {
+  test('Renders control container override', () => {
+    const ControlContainerOverride = () => (
+      <ControlContainer className="override" />
+    );
+    const formControlOverrides = {
+      ControlContainer: ControlContainerOverride,
+    };
+    const rendered = mount(
+      <FormControl overrides={formControlOverrides}>
+        <Input />
+      </FormControl>,
+    );
+    expect(
+      rendered.contains(<ControlContainer className="override" />),
+    ).toEqual(true);
+  });
+
+  test('Renders label override', () => {
+    const LabelOverride = () => <Label className="override" />;
+    const formControlOverrides = {
+      Label: LabelOverride,
+    };
+    const rendered = mount(
+      <FormControl overrides={formControlOverrides} label="Label test">
+        <Input />
+      </FormControl>,
+    );
+    expect(rendered.contains(<Label className="override" />)).toEqual(true);
+  });
+
+  test('Renders caption override', () => {
+    const CaptionOverride = () => <Caption className="override" />;
+    const formControlOverrides = {
+      Caption: CaptionOverride,
+    };
+    const rendered = mount(
+      <FormControl overrides={formControlOverrides} caption="Caption test">
+        <Input />
+      </FormControl>,
+    );
+    expect(rendered.contains(<Caption className="override" />)).toEqual(true);
   });
 });

@@ -36,7 +36,11 @@ export default class FormControl extends React.Component<FormControlPropsT> {
 
   render() {
     const {
-      overrides: {Label: LabelOverride, Caption: CaptionOverride},
+      overrides: {
+        Label: LabelOverride,
+        Caption: CaptionOverride,
+        ControlContainer: ControlContainerOverride,
+      },
       label,
       caption,
       error,
@@ -48,6 +52,8 @@ export default class FormControl extends React.Component<FormControlPropsT> {
     sharedProps.$error = this.props.error || sharedProps.$error;
     const Label = getOverride(LabelOverride) || StyledLabel;
     const Caption = getOverride(CaptionOverride) || StyledCaption;
+    const ControlContainer =
+      getOverride(ControlContainerOverride) || StyledControlContainer;
 
     return (
       <React.Fragment>
@@ -60,7 +66,10 @@ export default class FormControl extends React.Component<FormControlPropsT> {
             {typeof label === 'function' ? label(sharedProps) : label}
           </Label>
         )}
-        <StyledControlContainer>
+        <ControlContainer
+          {...sharedProps}
+          {...getOverrideProps(ControlContainerOverride)}
+        >
           {children}
           {(caption || error) && (
             <Caption {...sharedProps} {...getOverrideProps(CaptionOverride)}>
@@ -73,7 +82,7 @@ export default class FormControl extends React.Component<FormControlPropsT> {
                   : caption}
             </Caption>
           )}
-        </StyledControlContainer>
+        </ControlContainer>
       </React.Fragment>
     );
   }
