@@ -61,10 +61,7 @@ function Step({
         <Title {...sharedProps} {...titleProps}>
           {title}
         </Title>
-        {isActive &&
-          React.Children.count(children) > 0 && (
-            <Description {...descriptionProps}>{children}</Description>
-          )}
+        <Description {...descriptionProps}>{isActive && children}</Description>
       </Content>
     </Root>
   );
