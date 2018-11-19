@@ -37,11 +37,12 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   };
 
   autoHideTimeout: ?TimeoutID;
+  animateInTimer: ?TimeoutID;
   animateOutCompleteTimer: ?TimeoutID;
 
   state = {
-    isAnimating: false,
-    isHidden: true,
+    isVisible: false,
+    isRendered: true,
   };
 
   componentDidMount() {
@@ -63,7 +64,11 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   }
 
   clearTimeout() {
-    [this.autoHideTimeout, this.animateOutCompleteTimer].forEach(timerId => {
+    [
+      this.autoHideTimeout,
+      this.animateInTimer,
+      this.animateOutCompleteTimer,
+    ].forEach(timerId => {
       if (timerId) {
         clearTimeout(timerId);
       }
@@ -71,23 +76,23 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   }
 
   animateIn = () => {
-    this.setState({isHidden: false, isAnimating: true});
+    // Defer to next event loop
+    this.animateInTimer = setTimeout(() => {
+      this.setState({isVisible: true});
+    }, 0);
   };
 
   animateOut = (callback: () => void = () => {}) => {
-    this.setState({isAnimating: true});
+    this.setState({isVisible: false});
     // Remove the toast from the DOM after animation finishes
     this.animateOutCompleteTimer = setTimeout(() => {
-      this.setState({isAnimating: false});
+      this.setState({isRendered: false});
       callback();
     }, 600);
   };
 
   dismiss = () => {
     this.animateOut(this.props.onClose);
-    this.setState({
-      isHidden: true,
-    });
   };
 
   onFocus = (e: Event) => {
@@ -112,18 +117,18 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
   getSharedProps(): $Shape<SharedStylePropsArgT> {
     const {kind, closeable} = this.props;
-    const {isHidden, isAnimating} = this.state;
+    const {isRendered, isVisible} = this.state;
     return {
       $kind: kind,
       $closeable: closeable,
-      $isHidden: isHidden,
-      $isAnimating: isAnimating,
+      $isRendered: isRendered,
+      $isVisible: isVisible,
     };
   }
 
   render() {
     const {children, closeable} = this.props;
-    const {isAnimating, isHidden} = this.state;
+    const {isRendered} = this.state;
     const {
       // $FlowFixMe
       Body: BodyOverride,
@@ -149,7 +154,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
     const sharedProps = this.getSharedProps();
 
-    if (isHidden && !isAnimating) {
+    if (!isRendered) {
       return null;
     }
     return (

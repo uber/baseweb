@@ -13,7 +13,7 @@ Object {
   "lineHeight": "$theme.typography.font300.lineHeight",
   "marginBottom": "$theme.sizing.scale300",
   "marginTop": "$theme.sizing.scale300",
-  "opacity": 1,
+  "opacity": 0,
   "paddingBottom": "$theme.sizing.scale600",
   "paddingLeft": "$theme.sizing.scale600",
   "paddingRight": "$theme.sizing.scale600",
