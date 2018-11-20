@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {styled} from '../styles';
-import {Toast, toaster, KIND, PLACEMENT} from './index';
+import {Toast, toaster, ToasterContainer, KIND, PLACEMENT} from './index';
 import {Button, KIND as ButtonKind, SIZE} from '../button';
 import type {KindTypeT} from './types';
 
@@ -205,7 +205,7 @@ export default {
   [examples.TOASTER_EXAMPLE]: function Story2() {
     return (
       <Centered>
-        {toaster.create({placement: PLACEMENT.bottomRight})}
+        <ToasterContainer placement={PLACEMENT.bottomRight} />
         <ToasterExample />
       </Centered>
     );
@@ -213,7 +213,7 @@ export default {
   [examples.TOASTER_ADVANCED_EXAMPLE]: function Story2() {
     return (
       <Centered>
-        {toaster.create({placement: PLACEMENT.bottom})}
+        <ToasterContainer placement={PLACEMENT.bottom} />
         <ToasterAdvancedExample />
       </Centered>
     );

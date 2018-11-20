@@ -13,7 +13,7 @@ import {
   KIND,
   PLACEMENT,
   toaster,
-  Toaster,
+  ToasterContainer,
   Toast,
   StyledRoot,
   StyledBody,
@@ -47,15 +47,15 @@ describe('toaster', () => {
     ReactDOM.createPortal = originalCreatePortal;
   });
 
-  test('toaster.create', () => {
-    wrapper = mount(toaster.create());
-    const renderedToaster = wrapper.find(Toaster).first();
+  test('ToasterContainer', () => {
+    wrapper = mount(<ToasterContainer />);
+    const renderedToaster = wrapper.find(ToasterContainer).first();
     expect(renderedToaster.instance().state.isMounted).toBe(true);
     expect(renderedToaster.instance().state.toasts.length).toEqual(0);
     expect(wrapper.find(StyledRoot).first()).toExist();
   });
 
-  describe('toaster.create props', () => {
+  describe('ToasterContainer props', () => {
     test.each(
       Object.keys(PLACEMENT).map(pl => {
         return [pl];
@@ -64,10 +64,10 @@ describe('toaster', () => {
       '%s placement is passed to the Toaster and StyledRoot component',
       placement => {
         const props = {placement};
-        wrapper = mount(toaster.create(props));
+        wrapper = mount(<ToasterContainer {...props} />);
         expect(
           wrapper
-            .find(Toaster)
+            .find(ToasterContainer)
             .first()
             .props().placement,
         ).toEqual(placement);
@@ -81,10 +81,10 @@ describe('toaster', () => {
     );
 
     test('portal is created when usePortal is set to true', () => {
-      wrapper = mount(toaster.create());
+      wrapper = mount(<ToasterContainer />);
       expect(
         wrapper
-          .find(Toaster)
+          .find(ToasterContainer)
           .first()
           .props().usePortal,
       ).toBe(true);
@@ -92,10 +92,10 @@ describe('toaster', () => {
     });
 
     test('portal is not created when usePortal is set to false', () => {
-      wrapper = mount(toaster.create({usePortal: false}));
+      wrapper = mount(<ToasterContainer usePortal={false} />);
       expect(
         wrapper
-          .find(Toaster)
+          .find(ToasterContainer)
           .first()
           .props().usePortal,
       ).toBe(false);
@@ -117,8 +117,8 @@ describe('toaster', () => {
           .mockImplementation(({children}) => <svg>{children}</svg>),
       };
       // $FlowFixMe
-      wrapper = mount(toaster.create({overrides}));
-      const renderedToaster = wrapper.find(Toaster).first();
+      wrapper = mount(<ToasterContainer overrides={overrides} />);
+      const renderedToaster = wrapper.find(ToasterContainer).first();
       toaster.getRef = jest.fn().mockReturnValue(renderedToaster.instance());
       toaster.show('Toast message');
       wrapper.update();
@@ -148,9 +148,9 @@ describe('toaster', () => {
         ToastBody: StyledBody,
         ToastCloseIcon: StyledCloseIcon,
       };
-      wrapper = mount(toaster.create({overrides}));
+      wrapper = mount(<ToasterContainer overrides={overrides} />);
 
-      const renderedToaster = wrapper.find(Toaster).first();
+      const renderedToaster = wrapper.find(ToasterContainer).first();
       toaster.getRef = jest.fn().mockReturnValue(renderedToaster.instance());
       toaster.show('Toast message');
       wrapper.update();
@@ -172,8 +172,8 @@ describe('toaster', () => {
     let renderedToaster;
 
     beforeEach(() => {
-      wrapper = mount(toaster.create());
-      renderedToaster = wrapper.find(Toaster).first();
+      wrapper = mount(<ToasterContainer />);
+      renderedToaster = wrapper.find(ToasterContainer).first();
       toaster.getRef = jest.fn().mockReturnValue(renderedToaster.instance());
     });
 
