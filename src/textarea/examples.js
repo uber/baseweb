@@ -90,6 +90,9 @@ export default {
       <React.Fragment>
         <Textarea size={SIZE.compact} placeholder="Placeholder" />
         <br />
+        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+        <Textarea size={SIZE.compact} placeholder="Focused" autoFocus />
+        <br />
         <Textarea
           initialState={{value: 'uber'}}
           size={SIZE.compact}
