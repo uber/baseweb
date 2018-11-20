@@ -128,7 +128,6 @@ export default {
         <br />
         <Input
           initialState={{value: 'uber'}}
-          autoFocus
           startEnhancer="@"
           endEnhancer=".com"
           size={SIZE.compact}
@@ -245,7 +244,6 @@ export default {
       <React.Fragment>
         <Input
           overrides={{InputContainer: {component: RootWithStyle}}}
-          autoFocus
           placeholder="Input with a custom InputContainer override"
         />
         <br />

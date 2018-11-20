@@ -263,7 +263,7 @@ export default {
             }
           }}
         />
-        <Checkbox onChange={onChange} inputRef={inputRef} autoFocus={isFocused}>
+        <Checkbox onChange={onChange} inputRef={inputRef}>
           Focused checkbox
         </Checkbox>
       </div>

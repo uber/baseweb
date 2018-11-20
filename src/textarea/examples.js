@@ -92,7 +92,6 @@ export default {
         <br />
         <Textarea
           initialState={{value: 'uber'}}
-          autoFocus
           size={SIZE.compact}
           placeholder="Placeholder"
         />
@@ -111,7 +110,6 @@ export default {
     return (
       <React.Fragment>
         <Textarea
-          autoFocus
           overrides={{Input: TextareaWithStyle}}
           placeholder="With style overrides on the textarea element"
         />

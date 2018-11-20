@@ -5,6 +5,7 @@ module.exports = {
     'eslint-plugin-react',
     'eslint-plugin-import',
     'header',
+    'jsx-a11y',
   ],
   env: {
     jest: true,
@@ -13,6 +14,7 @@ module.exports = {
     'plugin:flowtype/recommended',
     'plugin:react/recommended',
     require.resolve('eslint-config-uber-universal-stage-3'),
+    'plugin:jsx-a11y/recommended',
   ],
   rules: {
     // Enforce flow file declarations
