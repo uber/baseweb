@@ -12,7 +12,7 @@ import {header as headerImg, thumbnail as thumbnailImg} from '../images';
 
 test('Card - basic functionality', () => {
   const props = {
-    action: <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>,
+    action: <a href="#test">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>,
     headerImage: headerImg,
     thumbnail: thumbnailImg,
     title: 'Card title',
@@ -26,7 +26,7 @@ test('Card - basic functionality', () => {
 
 test('Card - no images', () => {
   const props = {
-    action: <a href="#">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>,
+    action: <a href="#test">Link to a Place&nbsp;&nbsp;&nbsp;&gt;</a>,
     title: 'Card title',
   };
 

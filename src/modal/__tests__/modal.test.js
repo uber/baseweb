@@ -175,6 +175,7 @@ describe('Modal', () => {
 
   test('role', () => {
     wrapper = mount(
+      // eslint-disable-next-line jsx-a11y/aria-role
       <Modal role="mycustomrole" isOpen>
         <ModalBody>Modal Body</ModalBody>
       </Modal>,

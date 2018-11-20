@@ -44,8 +44,12 @@ const Examples = [
 const createError = ({suite, test}) => {
   return (
     <div style={{background: 'red', padding: '10px'}}>
-      <h1>Test or suite was not found 🤭</h1>
-
+      <h1>
+        Test or suite was not found{' '}
+        <span role="img" aria-label="Face With Hand Over Mouth">
+          🤭
+        </span>
+      </h1>
       <p>
         Suite: {suite} | Test: {test}
       </p>

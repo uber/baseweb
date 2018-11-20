@@ -107,7 +107,7 @@ export default {
                 })),
               }}
             >
-              Color {color} <img src={icon} />
+              Color {color} <img src={icon} alt={`${color} color swatch`} />
             </Tag>
           ))}
         </div>
