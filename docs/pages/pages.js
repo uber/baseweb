@@ -46,7 +46,7 @@ const Code = code => {
 };
 
 parsedDocs.forEach(doc => {
-  storiesOf(doc.attributes.category).add(doc.attributes.page, () => {
+  storiesOf(doc.attributes.category, module).add(doc.attributes.page, () => {
     return (
       <ReactMarkdown
         renderers={{root: Root, p: P, link: Anchor, code: Code}}
