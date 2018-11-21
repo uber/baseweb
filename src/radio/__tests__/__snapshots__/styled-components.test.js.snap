@@ -112,7 +112,7 @@ Object {
 }
 `;
 
-exports[`RadioGroup styled components StyledRadioMark : has correct styles when  1`] = `
+exports[`RadioGroup styled components StyledRadioMarkInner : has correct styles when  1`] = `
 Object {
   ":active": Object {
     "backgroundColor": "$theme.colors.mono400",
@@ -120,29 +120,16 @@ Object {
   ":hover": Object {
     "backgroundColor": "$theme.colors.mono400",
   },
-  "backgroundColor": "transparent",
-  "backgroundImage": null,
-  "backgroundPosition": "center",
-  "backgroundRepeat": "no-repeat",
-  "borderColor": "$theme.colors.mono700",
+  "backgroundColor": "white",
   "borderRadius": "50%",
-  "borderStyle": "solid",
-  "borderWidth": "$theme.sizing.scale0",
-  "display": "inline-block",
-  "flex": "0 0 auto",
   "height": "$theme.sizing.scale600",
-  "marginBottom": "$theme.sizing.scale200",
-  "marginLeft": "$theme.sizing.scale200",
-  "marginRight": "$theme.sizing.scale200",
-  "marginTop": "$theme.sizing.scale200",
   "transitionDuration": "$theme.animation.timing100",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
-  "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
 `;
 
-exports[`RadioGroup styled components StyledRadioMark : has correct styles when $isError 1`] = `
+exports[`RadioGroup styled components StyledRadioMarkInner : has correct styles when $isError 1`] = `
 Object {
   ":active": Object {
     "backgroundColor": null,
@@ -150,29 +137,16 @@ Object {
   ":hover": Object {
     "backgroundColor": null,
   },
-  "backgroundColor": "transparent",
-  "backgroundImage": null,
-  "backgroundPosition": "center",
-  "backgroundRepeat": "no-repeat",
-  "borderColor": "$theme.colors.negative400",
+  "backgroundColor": "white",
   "borderRadius": "50%",
-  "borderStyle": "solid",
-  "borderWidth": "$theme.sizing.scale0",
-  "display": "inline-block",
-  "flex": "0 0 auto",
   "height": "$theme.sizing.scale600",
-  "marginBottom": "$theme.sizing.scale200",
-  "marginLeft": "$theme.sizing.scale200",
-  "marginRight": "$theme.sizing.scale200",
-  "marginTop": "$theme.sizing.scale200",
   "transitionDuration": "$theme.animation.timing100",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
-  "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
 `;
 
-exports[`RadioGroup styled components StyledRadioMark : has correct styles when $isFocused 1`] = `
+exports[`RadioGroup styled components StyledRadioMarkInner : has correct styles when $isFocused 1`] = `
 Object {
   ":active": Object {
     "backgroundColor": "$theme.colors.mono500",
@@ -180,29 +154,16 @@ Object {
   ":hover": Object {
     "backgroundColor": "$theme.colors.mono500",
   },
-  "backgroundColor": "transparent",
-  "backgroundImage": null,
-  "backgroundPosition": "center",
-  "backgroundRepeat": "no-repeat",
-  "borderColor": "$theme.colors.mono700",
+  "backgroundColor": "white",
   "borderRadius": "50%",
-  "borderStyle": "solid",
-  "borderWidth": "$theme.sizing.scale0",
-  "display": "inline-block",
-  "flex": "0 0 auto",
   "height": "$theme.sizing.scale600",
-  "marginBottom": "$theme.sizing.scale200",
-  "marginLeft": "$theme.sizing.scale200",
-  "marginRight": "$theme.sizing.scale200",
-  "marginTop": "$theme.sizing.scale200",
   "transitionDuration": "$theme.animation.timing100",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
-  "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
 `;
 
-exports[`RadioGroup styled components StyledRadioMark : has correct styles when checked 1`] = `
+exports[`RadioGroup styled components StyledRadioMarkInner : has correct styles when checked 1`] = `
 Object {
   ":active": Object {
     "backgroundColor": "$theme.colors.mono400",
@@ -210,29 +171,16 @@ Object {
   ":hover": Object {
     "backgroundColor": "$theme.colors.mono400",
   },
-  "backgroundColor": "transparent",
-  "backgroundImage": null,
-  "backgroundPosition": "center",
-  "backgroundRepeat": "no-repeat",
-  "borderColor": "$theme.colors.mono700",
+  "backgroundColor": "white",
   "borderRadius": "50%",
-  "borderStyle": "solid",
-  "borderWidth": "$theme.sizing.scale0",
-  "display": "inline-block",
-  "flex": "0 0 auto",
   "height": "$theme.sizing.scale600",
-  "marginBottom": "$theme.sizing.scale200",
-  "marginLeft": "$theme.sizing.scale200",
-  "marginRight": "$theme.sizing.scale200",
-  "marginTop": "$theme.sizing.scale200",
   "transitionDuration": "$theme.animation.timing100",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
-  "verticalAlign": "middle",
   "width": "$theme.sizing.scale600",
 }
 `;
 
-exports[`RadioGroup styled components StyledRadioMark : has correct styles when disabled 1`] = `
+exports[`RadioGroup styled components StyledRadioMarkInner : has correct styles when disabled 1`] = `
 Object {
   ":active": Object {
     "backgroundColor": "$theme.colors.mono400",
@@ -240,25 +188,29 @@ Object {
   ":hover": Object {
     "backgroundColor": "$theme.colors.mono400",
   },
-  "backgroundColor": "transparent",
-  "backgroundImage": null,
-  "backgroundPosition": "center",
-  "backgroundRepeat": "no-repeat",
-  "borderColor": "$theme.colors.mono700",
+  "backgroundColor": "white",
   "borderRadius": "50%",
-  "borderStyle": "solid",
-  "borderWidth": "$theme.sizing.scale0",
-  "display": "inline-block",
-  "flex": "0 0 auto",
   "height": "$theme.sizing.scale600",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`RadioGroup styled components StyledRadioMarkOuter : StyledRadioMarkOuter has correct styles 1`] = `
+Object {
+  "alignItems": "center",
+  "backgroundColor": "$theme.colors.mono700",
+  "borderRadius": "50%",
+  "display": "flex",
+  "height": "$theme.sizing.scale700",
+  "justifyContent": "center",
   "marginBottom": "$theme.sizing.scale200",
   "marginLeft": "$theme.sizing.scale200",
   "marginRight": "$theme.sizing.scale200",
   "marginTop": "$theme.sizing.scale200",
-  "transitionDuration": "$theme.animation.timing100",
-  "transitionTimingFunction": "$theme.animation.easeOutCurve",
   "verticalAlign": "middle",
-  "width": "$theme.sizing.scale600",
+  "width": "$theme.sizing.scale700",
 }
 `;
 
