@@ -205,7 +205,10 @@ Object {
   "display": "flex",
   "height": "$theme.sizing.scale700",
   "justifyContent": "center",
-  "margin": "$theme.sizing.scale200",
+  "marginBottom": "$theme.sizing.scale200",
+  "marginLeft": "$theme.sizing.scale200",
+  "marginRight": "$theme.sizing.scale200",
+  "marginTop": "$theme.sizing.scale200",
   "verticalAlign": "middle",
   "width": "$theme.sizing.scale700",
 }

@@ -95,7 +95,10 @@ export const RadioMarkOuter = styled('div', props => {
     display: 'flex',
     height: sizing.scale700,
     justifyContent: 'center',
-    margin: sizing.scale200,
+    marginTop: sizing.scale200,
+    marginRight: sizing.scale200,
+    marginBottom: sizing.scale200,
+    marginLeft: sizing.scale200,
     verticalAlign: 'middle',
     width: sizing.scale700,
   };
