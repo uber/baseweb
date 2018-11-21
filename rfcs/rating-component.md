@@ -32,7 +32,7 @@ class EmoticonExample extends React.Component {
       <Rating
         kind={KIND.EMOTICON}
         value={this.state.rating}
-        onChange={value => {
+        onChange={({value}) => {
           this.setState({ rating: value });
         }} />
     );
@@ -45,10 +45,10 @@ export default EmoticonExample;
 ## Exports
 
 * `Rating`
+* `StatefulContainer`
 * `StyledRoot`
 * `StyledStar`
 * `StyledEmoticon`
-* `StatefulContainer`
 * `STATE_CHANGE_TYPE`
 * `KIND`
 
@@ -58,12 +58,26 @@ export default EmoticonExample;
   The type of `Rating` to display
 * `value: number` - Optional
   The current rating value
-* `onChange: () => value` - Optional
+* `onChange: ({value}) => void` - Optional
   Callback that returns a newly selected value
 * `overrides: {}` - Optional
   * `Root: ?React.ComponentType` component to use for root Rating styling
   * `Star: ?React.ComponentType` component to use for star ratings
   * `Emoticon: ?React.ComponentType` component to use for emoticon ratings
+
+## `StatefulContainer` API
+
+* `children: (props: Props) => React.Node` - Required
+* `initialState: {value: number}` - Optional
+  Initial state of an uncontrolled input component. - `value` - an initial rating value
+* `stateReducer: (type: 'change', nextState: {}, currentState: {}, e: Event) => stateToSet: {}` - Optional
+  A state change handler.
+  * `type` - a state change type
+  * `nextState` - a new state value to be set
+  * `currentState` - current state value
+  * `stateToSet` - a return value that the state will be updated with
+* `onChange: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
+  onChange event handler.
 
 ## Presentational components props API
 
