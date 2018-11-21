@@ -2,8 +2,8 @@
 
 The `Rating` component includes two main types:
 
-- `STAR` (default)
-- `EMOTICON`
+* `STAR` (default)
+* `EMOTICON`
 
 ## Usage
 
@@ -75,8 +75,8 @@ export default EmoticonExample;
 
 This component will use the `[role="radiogroup"]` attribute with the following attributes for each individual rating item:
 
-- `[role="radio"]`
-- `[tabindex=0]`
-- `[aria-setsize=5]` - total number of elements within the Rating
-- `[aria-checked]` - if the rating is active
-- `[aria-posinset]` - position within the Rating
+* `[role="radio"]`
+* `[tabindex=0]`
+* `[aria-setsize=5]` - total number of elements within the Rating
+* `[aria-checked]` - if the rating is active
+* `[aria-posinset]` - position within the Rating
