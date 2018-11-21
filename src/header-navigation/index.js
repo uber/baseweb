@@ -9,8 +9,8 @@ export {default as HeaderNavigation} from './header-navigation';
 // Styled elements
 export {
   Root as StyledRoot,
-  NavigationItem,
-  NavigationList,
+  NavigationItem as StyledNavigationItem,
+  NavigationList as StyledNavigationList,
 } from './styled-components';
 export {ALIGN} from './constants';
 export * from './types';

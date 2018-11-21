@@ -16,7 +16,12 @@ import {styled} from '../styles';
 import COLORS from '../select/examples-colors';
 import {HamburgerIcon} from './examples-icons';
 
-import {HeaderNavigation, ALIGN, NavigationItem, NavigationList} from './index';
+import {
+  HeaderNavigation,
+  ALIGN,
+  StyledNavigationItem as NavigationItem,
+  StyledNavigationList as NavigationList,
+} from './index';
 import tests from './examples-list';
 import {TYPE} from '../select';
 
@@ -26,13 +31,33 @@ const Link = withProps(
   })),
   {tabIndex: '0'},
 );
+// $FlowFixMe
+Link.displayName = 'Link';
+
 const Hamburger = styled('div', props => ({
   lineHeight: 'initial',
 }));
+Hamburger.displayName = 'Hamburger';
+
+const StyledHamburgerIcon = styled('span', props => ({
+  ':after': {
+    content: `url('data:image/svg+xml;utf8,${HamburgerIcon(
+      props.$theme.colors.foreground,
+    )}');`,
+  },
+}));
+
 let ITEMS = [];
 for (let i = 0; i < 100; i++) {
   ITEMS.push({label: `Item ${i}`});
 }
+const options = {
+  options: COLORS,
+  labelKey: 'id',
+  valueKey: 'color',
+  placeholder: 'Choose a color',
+  maxDropdownHeight: '300px',
+};
 class MenuContainer extends React.Component<
   {isOpen: boolean, align: string},
   {isOpen: boolean},
@@ -66,7 +91,7 @@ class MenuContainer extends React.Component<
           }}
           onClick={() => this.toggleMenu()}
         >
-          {HamburgerIcon()}
+          <StyledHamburgerIcon />
         </Hamburger>
         {this.state.isOpen && (
           <Menu
@@ -94,14 +119,14 @@ export default {
       <React.Fragment>
         <div style={{marginTop: '50px'}} />
         <HeaderNavigation>
-          <NavigationList $align={ALIGN.left}>
+          <NavigationList align={ALIGN.left}>
             <NavigationItem>
               <MenuContainer />
             </NavigationItem>
             <NavigationItem>Uber</NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.center} />
-          <NavigationList $align={ALIGN.right}>
+          <NavigationList align={ALIGN.center} />
+          <NavigationList align={ALIGN.right}>
             <NavigationItem>
               <Link>Tab Link One</Link>
             </NavigationItem>
@@ -112,7 +137,7 @@ export default {
               <Link>Tab Link Three</Link>
             </NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.right}>
+          <NavigationList align={ALIGN.right}>
             <NavigationItem>
               <Button>Get started</Button>
             </NavigationItem>
@@ -126,7 +151,7 @@ export default {
       <React.Fragment>
         <div style={{marginTop: '50px'}} />
         <HeaderNavigation>
-          <NavigationList $align={ALIGN.center}>
+          <NavigationList align={ALIGN.center}>
             <NavigationItem>
               <Link>Tab Link One</Link>
             </NavigationItem>
@@ -137,7 +162,7 @@ export default {
               <Link>Tab Link Three</Link>
             </NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.right}>
+          <NavigationList align={ALIGN.right}>
             <NavigationItem>Uber</NavigationItem>
             <NavigationItem>
               <MenuContainer align={ALIGN.right} />
@@ -154,13 +179,13 @@ export default {
         <HeaderNavigation
           overrides={{Root: {style: {backgroundColor: 'lightblue'}}}}
         >
-          <NavigationList $align={ALIGN.left}>
+          <NavigationList align={ALIGN.left}>
             <NavigationItem>
               <MenuContainer />
             </NavigationItem>
             <NavigationItem>Uber</NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.right}>
+          <NavigationList align={ALIGN.right}>
             <NavigationItem>
               <Link>Tab Link One</Link>
             </NavigationItem>
@@ -171,7 +196,7 @@ export default {
               <Link>Tab Link Three</Link>
             </NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.right}>
+          <NavigationList align={ALIGN.right}>
             <NavigationItem>
               <Button>Get started</Button>
             </NavigationItem>
@@ -185,13 +210,13 @@ export default {
       <React.Fragment>
         <div style={{marginTop: '50px'}} />
         <HeaderNavigation>
-          <NavigationList $align={ALIGN.left}>
+          <NavigationList align={ALIGN.left}>
             <NavigationItem>
               <MenuContainer />
             </NavigationItem>
             <NavigationItem>Uber</NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.center}>
+          <NavigationList align={ALIGN.center}>
             <NavigationItem>
               <Link>Tab Link One</Link>
             </NavigationItem>
@@ -202,22 +227,15 @@ export default {
               <Link>Tab Link Three</Link>
             </NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.right}>
-            <NavigationItem>
+          <NavigationList align={ALIGN.right}>
+            <NavigationItem style={{width: '300px'}}>
               <Search
+                {...options}
                 type={TYPE.search}
-                options={() =>
-                  new Promise(resolve => {
-                    setTimeout(() => {
-                      resolve(COLORS);
-                    }, 1000);
-                  })
-                }
-                getOptionLabel={option => option.id}
+                getOptionLabel={props => props.option.id}
                 onChange={() => {}}
                 rows={8}
-                multiple
-                filterable
+                multi
               />
             </NavigationItem>
           </NavigationList>
@@ -230,10 +248,10 @@ export default {
       <React.Fragment>
         <div style={{marginTop: '50px'}} />
         <HeaderNavigation>
-          <NavigationList $align={ALIGN.left}>
+          <NavigationList align={ALIGN.left}>
             <NavigationItem>Uber</NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.center}>
+          <NavigationList align={ALIGN.center}>
             <NavigationItem>
               <Link>Centered Tab Link One</Link>
             </NavigationItem>
@@ -244,12 +262,12 @@ export default {
               <Link>Centered Tab Link Three</Link>
             </NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.right}>
+          <NavigationList align={ALIGN.right}>
             <NavigationItem>
               <Link>Right Aligned Link</Link>
             </NavigationItem>
           </NavigationList>
-          <NavigationList $align={ALIGN.right}>
+          <NavigationList align={ALIGN.right}>
             <NavigationItem>
               <Button>Get started</Button>
             </NavigationItem>
