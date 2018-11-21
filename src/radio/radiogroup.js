@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 
-import {default as StyledRadioMark} from './radiomark';
+import StyledRadioMark from './radiomark';
 import {
   RadioGroupRoot as StyledRadioGroupRoot,
   Label as StyledLabel,
