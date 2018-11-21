@@ -62,4 +62,4 @@ These properties are passed to every presentational (styled) component that is e
 
 ## Accessibility
 
-Top level `alt` prop will be set on the `<img>` element.
+Top level `name` prop will be set on the `<img>` element as its `alt` attribute.
