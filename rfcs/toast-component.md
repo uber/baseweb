@@ -98,14 +98,14 @@ These properties are passed to every Toast's presentational (styled) component t
 ## KIND Constant
 
 * `info` - Generally used for messages with an informational context
-* `positive` - Generally used as a confirmation of a succesful action or operation
+* `positive` - Generally used as a confirmation of a successful action or operation
 * `warning` - Generally used for messages with an warning context
 * `negative` - Generally used as a notification of an error happened as a result of an action or operation
 
-## `Toaster` API
+## `ToasterContainer` API
 
 * `placement: 'inline' | 'topLeft' | 'top' | 'topRight' | 'bottomRight' | 'bottom' | 'bottomLeft'` - Optional. Defaults to 'top'
-  Position of a toast notification ontainer relative to the browser window
+  Position of a toast notification container relative to the browser window
 * `usePortal: boolean` - Optional. Defaults to `true`
   Defines if the portal is used to append a container to the `body` element. In both cases the container is positioned `fixed`
 * `overrides: {Root, ToastBody, ToastCloseIcon}` - Optional
@@ -129,20 +129,18 @@ These properties are passed to every presentational (styled) component of a Toas
 * `bottom` - defines position of toasts relative to the browser window
 * `bottomLeft` - defines position of toasts relative to the browser window
 
-## toaster API
+## `toaster` API
 
-* `create: (props?: $Shape<ToasterPropsT>): React.Node => {}`
-  Creates a Toaster container component. There is only one `toaster` can be created on a page.
 * `show: (children: React.Node, props: $Shape<ToastPropsT>): ?React.Key => {}`
-  Creates a Toast and renders it in the Toaster container. `toaster.show()` can only be called on the client side. `toaster.create()` must be called first and the Toaster must be mounted before any `toaster.show()` call
+  Creates a Toast and renders it in the `ToasterContainer`. `toaster.show()` can only be called on the client side. `<ToasterContainer />` must be mounted before any `toaster.show()` call
 * `info: (children: React.Nade, props: $Shape<ToastPropsT>): ?React.Key => {}`
-  Creates a `KIND.info` type Toast and renders it in the Toaster container. `toaster.info()` can only be called on the client side. `toaster.create()` must be called first and the Toaster must be mounted before any `toaster.info()` call
+  Creates a `KIND.info` type Toast and renders it in the `ToasterContainer`. `toaster.info()` can only be called on the client side. `ToasterContainer` must be mounted before any `toaster.info()` call
 * `positive: (children: React.Nade, props: $Shape<ToastPropsT>): ?React.Key => {}`
-  Creates a `KIND.positive` type Toast and renders it in the Toaster container. `toaster.positive()` can only be called on the client side. `toaster.create()` must be called first and the Toaster must be mounted before any `toaster.positive()` call
+  Creates a `KIND.positive` type Toast and renders it in the `ToasterContainer`. `toaster.positive()` can only be called on the client side. `ToasterContainer` must be mounted before any `toaster.positive()` call
 * `warning: (children: React.Nade, props: $Shape<ToastPropsT>): ?React.Key => {}`
-  Creates a `KIND.warning` type Toast and renders it in the Toaster container. `toaster.warning()` can only be called on the client side. `toaster.create()` must be called first and the Toaster must be mounted before any `toaster.warning()` call
+  Creates a `KIND.warning` type Toast and renders it in the `ToasterContainer`. `toaster.warning()` can only be called on the client side. `ToasterContainer` must be mounted before any `toaster.warning()` call
 * `negative: (children: React.Nade, props: $Shape<ToastPropsT>): ?React.Key => {}`
-  Creates a `KIND.negative` type Toast and renders it in the Toaster container. `toaster.negative()` can only be called on the client side. `toaster.create()` must be called first and the Toaster must be mounted before any `toaster.negative()` call
+  Creates a `KIND.negative` type Toast and renders it in the `ToasterContainer`. `toaster.negative()` can only be called on the client side. `ToasterContainer` must be mounted before any `toaster.negative()` call
 * `update: (key: React.Key, props: $Shape<ToastPropsT>): void => {}`
   Updated an earlier created Toast.
 * `clear: (key?: React.Key): void => {}`,
@@ -156,4 +154,4 @@ These properties are passed to every presentational (styled) component of a Toas
 
 * Toast notification container element will have `role="alert"` set on it
 * When multiple alerts are displayed and positioned relative to the browser window they won't overlap but displayed in a column way, latest notifications are displayed at the initial position of a chosen placement
-* When a notification is set to be dissmissed automatically after a provided `autoHideDuration` time hovering or focusing the notification will prevend the notification from disappearing and reset the timeout to the initial `autoHideDuration` value
+* When a notification is set to be dismissed automatically after a provided `autoHideDuration` time hovering or focusing the notification will prevent the notification from disappearing and reset the timeout to the initial `autoHideDuration` value
