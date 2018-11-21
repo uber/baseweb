@@ -21,13 +21,6 @@ export type OptionT = {
 
 export type ValueT = Array<OptionT> | $Shape<OptionT>;
 
-// export type ParamsT = {
-//   option?: OptionT,
-//   selectedOptions?: Array<OptionT>,
-//   textValue?: string,
-//   type: ChangeActionT,
-// };
-
 export type OnChangeParamsT = {
   type: ChangeActionT,
   value: ValueT,
@@ -146,8 +139,4 @@ export type DropDownPropsT = {
 export type AutosizeInputPropsT = {
   value: string,
   inputRef: () => void,
-};
-
-export type AutosizeInputPropsT = {
-  inputWidth: number,
 };

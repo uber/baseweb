@@ -22,7 +22,7 @@ import MultiValue from './multi-value';
 import SelectDropDown from './dropdown';
 import defaultFilterOptions from './utils/default-filter-options';
 import {shouldShowValue, shouldShowPlaceholder, expandValue} from './utils';
-import {TYPE, STATE_CHANGE_TYPE} from './constants';
+import {TYPE, STATE_CHANGE_TYPE, SIZE} from './constants';
 import {getOverrides} from '../helpers/overrides';
 import {Spinner} from '../spinner';
 import {
@@ -54,7 +54,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
     filterOutSelected: true,
     getOptionLabel: null,
     getValueLabel: null,
-    id: '',
     isLoading: false,
     labelKey: 'label',
     maxDropdownHeight: '900px',
@@ -75,7 +74,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     placeholder: 'Select...',
     required: false,
     searchable: true,
-    query: '',
+    size: SIZE.default,
     type: TYPE.select,
     value: [],
     valueKey: 'id',
@@ -507,7 +506,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       return;
     }
     event.preventDefault();
-    this.setValue(this.getResetValue());
+    this.setValue(this.getResetValue(), null, STATE_CHANGE_TYPE.clear);
     this.setState(
       {
         inputValue: '',

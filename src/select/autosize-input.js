@@ -15,11 +15,10 @@ export default class AutosizeInput extends React.Component<
   AutosizeInputStateT,
 > {
   mounted: boolean;
-  input: ?HTMLInputElement;
   sizer: ?HTMLElement;
 
   static defaultProps = {
-    inputRef: undefined,
+    inputRef: React.createRef(),
     value: '',
   };
   state = {
@@ -38,12 +37,6 @@ export default class AutosizeInput extends React.Component<
   componentWillUnmount() {
     this.mounted = false;
   }
-  inputRef = (el: ?HTMLInputElement) => {
-    this.input = el;
-    if (typeof this.props.inputRef === 'function') {
-      this.props.inputRef(el);
-    }
-  };
   sizerRef = (el: ?HTMLElement) => {
     this.sizer = el;
   };
@@ -77,7 +70,7 @@ export default class AutosizeInput extends React.Component<
     };
     return (
       <React.Fragment>
-        <Input {...componentInputProps} $ref={this.inputRef} {...inputProps} />
+        <Input {...componentInputProps} $ref={inputRef} {...inputProps} />
         {/* a hidden helper element to calculate the size os the input */}
         <StyledInputSizer $ref={this.sizerRef}>{sizerValue}</StyledInputSizer>
       </React.Fragment>

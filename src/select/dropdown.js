@@ -43,7 +43,7 @@ export default class SelectDropDown extends React.Component<DropDownPropsT> {
 
     let $selected;
     if (Array.isArray(value)) {
-      $selected = value.find(
+      $selected = !!value.find(
         selected => selected && selected[valueKey] === option[valueKey],
       );
     } else {
@@ -58,7 +58,7 @@ export default class SelectDropDown extends React.Component<DropDownPropsT> {
     return (
       <OptionContent
         aria-readonly={option.disabled}
-        aria-selected={!!$selected}
+        aria-selected={$selected}
         key={option[valueKey]}
         {...this.getSharedProps()}
         {...optionSharedProps}
@@ -95,7 +95,6 @@ export default class SelectDropDown extends React.Component<DropDownPropsT> {
                 marginRight: sizing.scale300,
               }),
               props: {
-                role: 'listbox',
                 'aria-multiselectable': multi,
               },
             },

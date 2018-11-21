@@ -5,28 +5,48 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* eslint-disable react/display-name*/
-/* eslint-disable no-console*/
-
 import * as React from 'react';
+import {action} from '@storybook/addon-actions';
+import {boolean, radios} from '@storybook/addon-knobs';
 import {StatefulSelect, TYPE} from './index';
-import {STATE_CHANGE_TYPE} from './constants';
+import {SIZE} from './constants';
 import {styled} from '../styles/index';
-import {SIZE} from '../input';
 import COLORS from './examples-colors';
 import tests from './examples-list';
 
-export const suite = 'Select Test Suite';
+const size = (defaultValue = SIZE.default) =>
+  radios('size', {default: SIZE.default, compact: SIZE.compact}, defaultValue);
+const type = (defaultValue = TYPE.select) =>
+  radios('type', {default: TYPE.select, compact: TYPE.search}, defaultValue);
+const backspaceRemoves = (defaultValue = true) =>
+  boolean('backspaceRemoves', defaultValue);
+const clearable = (defaultValue = true) => boolean('clearable', defaultValue);
+const closeOnSelect = (defaultValue = true) =>
+  boolean('closeOnSelect', defaultValue);
+const deleteRemoves = (defaultValue = true) =>
+  boolean('deleteRemoves', defaultValue);
+const disabled = (defaultValue = false) => boolean('disabled', defaultValue);
+const error = (defaultValue = false) => boolean('error', defaultValue);
+const escapeClearsValue = (defaultValue = true) =>
+  boolean('escapeClearsValue', defaultValue);
+const filterOutSelected = (defaultValue = true) =>
+  boolean('filterOutSelected', defaultValue);
+const isLoading = (defaultValue = false) => boolean('isLoading', defaultValue);
+const multi = (defaultValue = false) => boolean('multi', defaultValue);
+const onBlurResetsInput = (defaultValue = true) =>
+  boolean('onBlurResetsInput', defaultValue);
+const onCloseResetsInput = (defaultValue = true) =>
+  boolean('onCloseResetsInput', defaultValue);
+const onSelectResetsInput = (defaultValue = true) =>
+  boolean('onSelectResetsInput', defaultValue);
+const openOnClick = (defaultValue = true) =>
+  boolean('openOnClick', defaultValue);
+const required = (defaultValue = true) => boolean('required', defaultValue);
+const searchable = (defaultValue = true) => boolean('searchable', defaultValue);
 
-const onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
-  // eslint-disable-next-line no-console
-  console.log('Text has changed to:' + e.target.value);
-};
+const onInputChange = action('search query change');
 
-const onChange = (...args) => {
-  // eslint-disable-next-line no-console
-  console.log('Selected option: ', ...args);
-};
+const onChange = action('select change');
 
 const CustomValueWrapper = styled('span', {
   display: 'inline-flex',
@@ -42,7 +62,7 @@ const CustomValueColor = styled('span', ({$color}) => ({
 }));
 function CustomOptionLabel({
   option,
-  showRawColor = false,
+  showColor = false,
 }: {
   option: {id: string, color: string},
   showColor?: boolean,
@@ -51,7 +71,7 @@ function CustomOptionLabel({
     <CustomValueWrapper>
       {option.color ? <CustomValueColor $color={option.color} /> : null}
       {option.id}
-      {showRawColor && ` (${option.color})`}
+      {showColor && ` (${option.color})`}
     </CustomValueWrapper>
   );
 }
@@ -62,41 +82,40 @@ const options = {
   valueKey: 'color',
   onChange: onChange,
   placeholder: 'Choose a color',
+  maxDropdownHeight: '300px',
 };
 
 export default {
-  [tests.SELECT_NO_SEARCH]: () => {
+  [tests.SELECT]: function Story1() {
     return (
       <StatefulSelect
         {...options}
-        options={[
-          {
-            id: 'red',
-            color: 'Red',
-          },
-          {
-            id: 'orange',
-            color: 'Orange',
-            disabled: true,
-          },
-          {
-            id: 'green',
-            color: 'Green',
-          },
-          {
-            id: 'blue',
-            color: 'Blue',
-            disabled: true,
-          },
-        ]}
-        searchable={false}
+        {...{
+          backspaceRemoves: backspaceRemoves(),
+          clearable: clearable(),
+          closeOnSelect: closeOnSelect(),
+          deleteRemoves: deleteRemoves(),
+          disabled: disabled(),
+          error: error(),
+          escapeClearsValue: escapeClearsValue(),
+          filterOutSelected: filterOutSelected(),
+          isLoading: isLoading(),
+          multi: multi(),
+          onBlurResetsInput: onBlurResetsInput(),
+          onCloseResetsInput: onCloseResetsInput(),
+          onSelectResetsInput: onSelectResetsInput(),
+          openOnClick: openOnClick(),
+          required: required(),
+          searchable: searchable(),
+          size: size(),
+          type: type(),
+        }}
+        placeholder="Check out the `KNOBS` tab to toggle some props"
+        autoFocus
       />
     );
   },
-  [tests.SELECT]: () => {
-    return <StatefulSelect {...options} maxDropdownHeight="300px" />;
-  },
-  [tests.SELECT_MULTI]: () => {
+  [tests.SELECT_MULTI]: function Story2() {
     return (
       <StatefulSelect
         {...options}
@@ -108,28 +127,28 @@ export default {
       />
     );
   },
-  [tests.SINGLE_SELECT_SEARCH]: () => {
+  [tests.SINGLE_SELECT_SEARCH]: function Story3() {
     return (
       <StatefulSelect
         {...options}
         placeholder="Start searching"
         type={TYPE.search}
-        onInputChange={onTextInputChange}
+        onInputChange={onInputChange}
       />
     );
   },
-  [tests.MULTI_SELECT_SEARCH]: () => {
+  [tests.MULTI_SELECT_SEARCH]: function Story4() {
     return (
       <StatefulSelect
         {...options}
         placeholder="Start searching"
         type={TYPE.search}
         multi
-        onInputChange={onTextInputChange}
+        onInputChange={onInputChange}
       />
     );
   },
-  [tests.MULTI_SELECT_CUSTOM_LABELS]: () => {
+  [tests.MULTI_SELECT_CUSTOM_LABELS]: function Story5() {
     return (
       <StatefulSelect
         {...options}
@@ -138,95 +157,12 @@ export default {
         }}
         type={TYPE.search}
         multi
-        onInputChange={onTextInputChange}
+        onInputChange={onInputChange}
         getOptionLabel={({option}) => (
-          <CustomOptionLabel option={option} showRawColor />
+          <CustomOptionLabel option={option} showColor />
         )}
         getValueLabel={({option}) => <CustomOptionLabel option={option} />}
       />
-    );
-  },
-  [tests.SELECT_STATE]: () => {
-    return (
-      <React.Fragment>
-        <StatefulSelect
-          {...options}
-          placeholder="Autofocused compact search field"
-          size={SIZE.compact}
-          autoFocus
-          type={TYPE.search}
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          placeholder="Compact select control"
-          searchable={false}
-          size={SIZE.compact}
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          placeholder="Compact multi select search field"
-          size={SIZE.compact}
-          multi
-          type={TYPE.search}
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          placeholder="Search with an error state"
-          size={SIZE.compact}
-          error
-          multi
-          type={TYPE.search}
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          placeholder="Select with an error state"
-          size={SIZE.compact}
-          error
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          placeholder="Disabled search"
-          initialState={{
-            value: [COLORS[2]],
-          }}
-          size={SIZE.compact}
-          disabled
-          type={TYPE.search}
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          placeholder="Disabled empty select"
-          size={SIZE.compact}
-          disabled
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          placeholder="Disabled select"
-          initialState={{
-            value: COLORS[2],
-          }}
-          size={SIZE.compact}
-          disabled
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          placeholder="Disabled multi select"
-          initialState={{
-            value: [COLORS[2]],
-          }}
-          size={SIZE.compact}
-          disabled
-          multi
-        />
-      </React.Fragment>
     );
   },
 };

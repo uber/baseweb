@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index';
 import {TYPE} from './constants';
 import {getSvgStyles} from '../icon/styled-components';
-import {SIZE} from '../input';
+import {SIZE} from './constants';
 
 function getFont(size = SIZE.default, typography) {
   return {
@@ -40,9 +40,7 @@ export const StyledOptionContent = styled('div', props => {
     colors: {mono700, primary400, black},
   } = $theme;
   return {
-    ':hover': {
-      cursor: $disabled ? 'not-allowed' : 'pointer',
-    },
+    cursor: $disabled ? 'not-allowed' : 'pointer',
     color: $disabled
       ? mono700
       : $selected || $isHighlighted
@@ -252,6 +250,22 @@ export const StyledClearIcon = styled('svg', props => {
   return {
     ...getSvgStyles({...props, $size: null}),
     color: colors.mono800,
+    cursor: 'pointer',
+    position: 'absolute',
+    right: $type !== 'select' ? '14px' : '30px',
+    display: 'inline-block',
+    height: '100%',
+  };
+});
+
+export const StyledLoadingIcon = styled('svg', props => {
+  const {
+    $type,
+    $theme: {colors},
+  } = props;
+  return {
+    ...getSvgStyles({...props, $size: null}),
+    color: colors.primary,
     cursor: 'pointer',
     position: 'absolute',
     right: $type !== 'select' ? '14px' : '30px',

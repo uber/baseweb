@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+export {SIZE} from '../input';
+
 export const TYPE = {
   select: 'select',
   search: 'search',
@@ -14,4 +16,5 @@ export const TYPE = {
 export const STATE_CHANGE_TYPE = {
   select: 'select',
   remove: 'remove',
+  clear: 'clear',
 };
