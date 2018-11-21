@@ -12,10 +12,12 @@ export {default as RadioGroup} from './radiogroup';
 // Styled elements
 export {
   Root as StyledRoot,
-  RadioMark as StyledRadioMark,
   Label as StyledLabel,
   Input as StyledInput,
+  RadioMarkInner as StyledRadioMarkInner,
+  RadioMarkOuter as StyledRadioMarkOuter,
   RadioGroupRoot as StyledRadioGroupRoot,
 } from './styled-components';
+export {default as StyledRadioMark} from './radiomark';
 export {default as StyledRadio} from './radio';
 export * from './types';

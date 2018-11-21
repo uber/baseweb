@@ -10,7 +10,8 @@ import {shallow} from 'enzyme';
 import {
   StyledRoot,
   StyledLabel,
-  StyledRadioMark,
+  StyledRadioMarkInner,
+  StyledRadioMarkOuter,
   StyledInput,
   StyledRadioGroupRoot,
 } from '../index';
@@ -67,22 +68,35 @@ describe('RadioGroup styled components', () => {
     });
   });
 
-  describe('StyledRadioMark', () => {
+  describe('StyledRadioMarkInner', () => {
     test.each([[''], ['disabled'], ['$isFocused'], ['checked'], ['$isError']])(
       '',
       prop => {
         const props = {};
         props[prop] = true;
         const component = shallow(
-          <StyledRadioMark {...props}>
+          <StyledRadioMarkInner {...props}>
             <div />
-          </StyledRadioMark>,
+          </StyledRadioMarkInner>,
         );
         expect(component.instance().getStyles()).toMatchSnapshot(
           'has correct styles when ' + prop,
         );
       },
     );
+  });
+
+  describe('StyledRadioMarkOuter', function() {
+    test('', () => {
+      const component = shallow(
+        <StyledRadioMarkOuter>
+          <div />
+        </StyledRadioMarkOuter>,
+      );
+      expect(component.instance().getStyles()).toMatchSnapshot(
+        'StyledRadioMarkOuter has correct styles',
+      );
+    });
   });
 
   describe('StyledInput', function() {
@@ -97,6 +111,7 @@ describe('RadioGroup styled components', () => {
       );
     });
   });
+
   describe('StyledRoot', function() {
     test('', () => {
       const component = shallow(
@@ -108,6 +123,7 @@ describe('RadioGroup styled components', () => {
         'StyledRoot has correct styles',
       );
     });
+
     test.each([['top'], ['bottom'], ['left'], ['right']])('', prop => {
       const props = {
         $labelPlacement: prop,
