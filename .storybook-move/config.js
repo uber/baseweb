@@ -1,6 +1,6 @@
 import React from 'react';
 import {configure, addDecorator} from '@storybook/react';
-import {setOptions} from '@storybook/addon-options';
+import {withOptions} from '@storybook/addon-options';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../src/styles';
@@ -9,7 +9,7 @@ import {withInfo} from '@storybook/addon-info';
 import {checkA11y} from '@storybook/addon-a11y';
 import {withKnobs} from '@storybook/addon-knobs';
 
-setOptions({
+withOptions({
   name: 'baseui',
   url: 'https://github.com/uber-web/baseui',
 });
@@ -23,7 +23,6 @@ const req = require.context(
   /^((?!template-component\/).)*.stories.js$/,
 );
 function loadStories() {
-  require('../src/welcome.stories.js');
   require('../docs/pages/pages.js');
   req.keys().forEach(filename => req(filename));
 }

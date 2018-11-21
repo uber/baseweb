@@ -16,23 +16,24 @@ import {
   CloseIconSvg as StyledCloseIcon,
 } from './styled-components';
 import Toast from './toast';
-import type {ToasterPropsT, ToasterStateT, ToastPropsT} from './types';
+import type {ToasterPropsT, ToasterContainerStateT, ToastPropsT} from './types';
 
-let toasterRef: ?React.ElementRef<typeof Toaster> = null;
+let toasterRef: ?React.ElementRef<typeof ToasterContainer> = null;
 
-function toasterRefCallback(ref: ?React.ElementRef<typeof Toaster>): void {
-  toasterRef = ref;
-}
-
-class ToasterComponent extends React.Component<
+export class ToasterContainer extends React.Component<
   $Shape<ToasterPropsT>,
-  ToasterStateT,
+  ToasterContainerStateT,
 > {
   static defaultProps: ToasterPropsT = {
     placement: PLACEMENT.top,
     usePortal: true,
     overrides: {},
   };
+
+  constructor(props: ToasterPropsT) {
+    super(props);
+    toasterRef = this;
+  }
 
   state = {
     isMounted: false,
@@ -187,11 +188,8 @@ class ToasterComponent extends React.Component<
 }
 
 const toaster = {
-  getRef: function(): ?React.ElementRef<typeof Toaster> {
+  getRef: function(): ?React.ElementRef<typeof ToasterContainer> {
     return toasterRef;
-  },
-  create: function create(props?: $Shape<ToasterPropsT>): React.Node {
-    return <ToasterComponent {...props} ref={toasterRefCallback} />;
   },
   show: function(
     children: React.Node,
@@ -236,7 +234,7 @@ const toaster = {
       toasterInstance.update(key, props);
     } else if (__DEV__) {
       // eslint-disable-next-line no-console
-      console.error('No Toaster is mounted yet.');
+      console.error('No ToasterContainer is mounted yet.');
     }
   },
   clear: function(key?: ?React.Key): void {
@@ -245,10 +243,9 @@ const toaster = {
       toasterInstance.clear(key);
     } else if (__DEV__) {
       // eslint-disable-next-line no-console
-      console.error('No Toaster is mounted yet.');
+      console.error('No ToasterContainer is mounted yet.');
     }
   },
 };
 
-export const Toaster = ToasterComponent;
 export default toaster;
