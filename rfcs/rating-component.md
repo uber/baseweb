@@ -60,6 +60,10 @@ export default EmoticonExample;
   The current rating value
 * `onChange: () => value` - Optional
   Callback that returns a newly selected value
+* `overrides: {}` - Optional
+  * `Root: ?React.ComponentType` component to use for root Rating styling
+  * `Star: ?React.ComponentType` component to use for star ratings
+  * `Emoticon: ?React.ComponentType` component to use for emoticon ratings
 
 ## Presentational components props API
 
