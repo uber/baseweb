@@ -76,7 +76,7 @@ export type ToasterPropsT = {
   placement: PlacementTypeT,
   usePortal: boolean,
 };
-export type ToasterStateT = {
+export type ToasterContainerStateT = {
   isMounted: boolean,
   toasts: Array<$Shape<ToastPropsT> & {key: React.Key}>,
 };

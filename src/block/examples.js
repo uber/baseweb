@@ -19,7 +19,11 @@ export default {
     for (const color of colors) {
       for (let x = 100; x <= 700; x += 100) {
         const colorString = `${color}${x}`;
-        elements.push(<Block color={colorString}>{colorString}</Block>);
+        elements.push(
+          <Block color={colorString} key={colorString}>
+            {colorString}
+          </Block>,
+        );
       }
     }
 
