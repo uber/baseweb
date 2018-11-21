@@ -10,7 +10,7 @@ import React from 'react';
 
 import {RadioMarkOuter, RadioMarkInner} from './styled-components';
 
-function StyledRadioMark(props: *) {
+function RadioMark(props: *) {
   return (
     <RadioMarkOuter {...props}>
       <RadioMarkInner {...props} />
@@ -18,4 +18,4 @@ function StyledRadioMark(props: *) {
   );
 }
 
-export default StyledRadioMark;
+export default RadioMark;
