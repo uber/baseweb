@@ -17,7 +17,7 @@ import tests from './examples-list';
 const size = (defaultValue = SIZE.default) =>
   radios('size', {default: SIZE.default, compact: SIZE.compact}, defaultValue);
 const type = (defaultValue = TYPE.select) =>
-  radios('type', {default: TYPE.select, compact: TYPE.search}, defaultValue);
+  radios('type', {select: TYPE.select, search: TYPE.search}, defaultValue);
 const backspaceRemoves = (defaultValue = true) =>
   boolean('backspaceRemoves', defaultValue);
 const clearable = (defaultValue = true) => boolean('clearable', defaultValue);
@@ -64,7 +64,8 @@ function CustomOptionLabel({
   option,
   showColor = false,
 }: {
-  option: {id: string, color: string},
+  // eslint-disable-next-line flowtype/no-weak-types
+  option: any,
   showColor?: boolean,
 }) {
   return (
@@ -88,31 +89,40 @@ const options = {
 export default {
   [tests.SELECT]: function Story1() {
     return (
-      <StatefulSelect
-        {...options}
-        {...{
-          backspaceRemoves: backspaceRemoves(),
-          clearable: clearable(),
-          closeOnSelect: closeOnSelect(),
-          deleteRemoves: deleteRemoves(),
-          disabled: disabled(),
-          error: error(),
-          escapeClearsValue: escapeClearsValue(),
-          filterOutSelected: filterOutSelected(),
-          isLoading: isLoading(),
-          multi: multi(),
-          onBlurResetsInput: onBlurResetsInput(),
-          onCloseResetsInput: onCloseResetsInput(),
-          onSelectResetsInput: onSelectResetsInput(),
-          openOnClick: openOnClick(),
-          required: required(),
-          searchable: searchable(),
-          size: size(),
-          type: type(),
-        }}
-        placeholder="Check out the `KNOBS` tab to toggle some props"
-        autoFocus
-      />
+      <div style={{margin: '50px'}}>
+        <StatefulSelect
+          {...options}
+          {...{
+            backspaceRemoves: backspaceRemoves(),
+            clearable: clearable(),
+            closeOnSelect: closeOnSelect(),
+            deleteRemoves: deleteRemoves(),
+            disabled: disabled(),
+            error: error(),
+            escapeClearsValue: escapeClearsValue(),
+            filterOutSelected: filterOutSelected(),
+            isLoading: isLoading(),
+            multi: multi(),
+            onBlurResetsInput: onBlurResetsInput(),
+            onCloseResetsInput: onCloseResetsInput(),
+            onSelectResetsInput: onSelectResetsInput(),
+            openOnClick: openOnClick(),
+            required: required(),
+            searchable: searchable(),
+            size: size(),
+            type: type(),
+          }}
+          placeholder="Check out the `KNOBS` tab to toggle some props"
+          autoFocus={false}
+        />
+        <br />
+        <StatefulSelect
+          {...options}
+          searchable={false}
+          size={'compact'}
+          placeholder="Placeholder"
+        />
+      </div>
     );
   },
   [tests.SELECT_MULTI]: function Story2() {

@@ -37,7 +37,7 @@ export default class SelectDropDown extends React.Component<DropDownPropsT> {
     const {getOptionLabel, overrides = {}, value, valueKey} = this.props;
 
     const [OptionContent, optionContentProps] = getOverrides(
-      overrides.OptionContent,
+      overrides.OptionContent || {},
       StyledOptionContent,
     );
 
@@ -110,8 +110,8 @@ export default class SelectDropDown extends React.Component<DropDownPropsT> {
             },
           },
           {
-            List: overrides.DropDown,
-            Option: overrides.DropDownOption,
+            List: overrides.DropDown || {},
+            Option: overrides.DropDownOption || {},
           },
         )}
       />

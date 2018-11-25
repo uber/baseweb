@@ -5,14 +5,27 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {ValueT} from '../types';
 const trim = str => str.replace(/^\s+|\s+$/g, '');
 
 const isValid = value => {
   return typeof value !== 'undefined' && value !== null && value !== '';
 };
 
-const defaultProps = {
+// eslint-disable-next-line flowtype/no-weak-types
+type OptionT = {[string]: any};
+type ValueT = Array<OptionT>;
+
+type defaultPropsT = {
+  filterOption: ?(option: OptionT, filterValue: string) => boolean,
+  ignoreCase: boolean,
+  labelKey: string,
+  matchPos: 'any' | 'start',
+  matchProp: 'any' | 'label' | 'value',
+  trimFilter: boolean,
+  valueKey: string,
+};
+
+const defaultProps: defaultPropsT = {
   filterOption: null,
   ignoreCase: true,
   labelKey: 'label',
@@ -25,8 +38,8 @@ const defaultProps = {
 const filterOptions = (
   options: ValueT,
   filterValue: string,
-  excludeOptions: ValueT,
-  newProps: $Shape<typeof defaultProps>,
+  excludeOptions: ?ValueT,
+  newProps: $Shape<defaultPropsT> | typeof undefined,
 ) => {
   const props = {
     ...defaultProps,
@@ -44,6 +57,7 @@ const filterOptions = (
   if (excludeOptions)
     excludeOptions = excludeOptions.map(i => i[props.valueKey]);
 
+  // $FlowFixMe
   return options.filter(option => {
     if (excludeOptions && excludeOptions.indexOf(option[props.valueKey]) > -1)
       return false;
@@ -64,10 +78,8 @@ const filterOptions = (
     let labelTest = hasLabel ? String(label) : null;
 
     if (props.ignoreCase) {
-      if (valueTest && props.matchProp !== 'label')
-        valueTest = valueTest.toLowerCase();
-      if (labelTest && props.matchProp !== 'value')
-        labelTest = labelTest.toLowerCase();
+      valueTest = valueTest ? valueTest.toLowerCase() : valueTest;
+      labelTest = labelTest ? labelTest.toLowerCase() : labelTest;
     }
 
     return props.matchPos === 'start'

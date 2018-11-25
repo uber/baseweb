@@ -14,15 +14,15 @@ import {
   StyledInputContainer,
   StyledSelectArrow,
   StyledClearIcon,
+  getLoadingIconStyles,
   StyledSearchIcon,
 } from './styled-components';
 import AutosizeInput from './autosize-input';
 import Value from './value';
 import MultiValue from './multi-value';
 import SelectDropDown from './dropdown';
-import defaultFilterOptions from './utils/default-filter-options';
 import {shouldShowValue, shouldShowPlaceholder, expandValue} from './utils';
-import {TYPE, STATE_CHANGE_TYPE, SIZE} from './constants';
+import {TYPE, STATE_CHANGE_TYPE} from './constants';
 import {getOverrides} from '../helpers/overrides';
 import {Spinner} from '../spinner';
 import {
@@ -30,6 +30,7 @@ import {
   TriangleDown as TriangleDownIcon,
   Search as SearchIconComponent,
 } from '../icon';
+import defaultProps from './default-props';
 
 import type {
   PropsT,
@@ -40,45 +41,7 @@ import type {
 } from './types';
 
 class Select extends React.Component<PropsT, SelectStateT> {
-  static defaultProps = {
-    autoFocus: false,
-    backspaceRemoves: true,
-    clearable: true,
-    closeOnSelect: true,
-    deleteRemoves: true,
-    disabled: false,
-    error: false,
-    escapeClearsValue: true,
-    filterOptions: defaultFilterOptions,
-    // can omit this prop in favor of filterOptions customization when needed
-    filterOutSelected: true,
-    getOptionLabel: null,
-    getValueLabel: null,
-    isLoading: false,
-    labelKey: 'label',
-    maxDropdownHeight: '900px',
-    multi: false,
-    noResultsMsg: 'No results found',
-    onBlur: () => {},
-    onBlurResetsInput: true,
-    onChange: () => {},
-    onFocus: () => {},
-    onInputChange: () => {},
-    onCloseResetsInput: true,
-    onSelectResetsInput: true,
-    onOpen: null,
-    onClose: null,
-    openOnClick: true,
-    options: [],
-    overrides: {},
-    placeholder: 'Select...',
-    required: false,
-    searchable: true,
-    size: SIZE.default,
-    type: TYPE.select,
-    value: [],
-    valueKey: 'id',
-  };
+  static defaultProps = defaultProps;
 
   wrapper: ?HTMLElement;
   input: ?HTMLInputElement;
@@ -124,7 +87,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   handleTouchOutside = (event: Event) => {
-    // handle touch outside on ios to dismiss menu
+    // Handle touch outside on ios to dismiss menu
     // $FlowFixMe
     if (this.wrapper && !this.wrapper.contains(event.target)) {
       this.closeMenu();
@@ -147,28 +110,28 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleTouchEnd = (event: Event) => {
-    // Check if the view is being dragged, In this case
+    // Check if the view is being dragged. In this case
     // we don't want to fire the click event (because the user only wants to scroll)
     if (this.dragging) return;
     // Fire the mouse events
-    this.handleMouseDown(event);
+    this.handleClick(event);
   };
 
   handleTouchEndClearValue = (event: Event) => {
-    // Check if the view is being dragged, In this case
+    // Check if the view is being dragged. In this case
     // we don't want to fire the click event (because the user only wants to scroll)
     if (this.dragging) return;
     // Clear the value
     this.clearValue(event);
   };
 
-  handleMouseDown = (event: Event) => {
-    // if the event was triggered by a mousedown and not the primary
+  handleClick = (event: Event) => {
+    // If the event was triggered by a mouse click and not the primary
     // button, or if the component is disabled, ignore it
     if (
       this.props.disabled ||
       // $FlowFixMe
-      (event.type === 'mousedown' && event.button !== 0)
+      (event.type === 'click' && event.button !== 0)
     ) {
       return;
     }
@@ -185,9 +148,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
       }
       return;
     }
-
     event.preventDefault();
-    // for the non-searchable select, toggle the menu
+    // For the non-searchable select, toggle the menu
     if (!this.props.searchable) {
       // This code means that if a select is searchable,
       // onClick the options menu will not appear, only on
@@ -222,13 +184,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  handleMouseDownOnArrow = (event: Event) => {
-    // if the event was triggered by a mousedown and not the primary
+  handleClickOnArrow = (event: Event) => {
+    // if the event was triggered by a mouse click and not the primary
     // button, or if the component is disabled, ignore it.
     if (
       this.props.disabled ||
       // $FlowFixMe
-      (event.type === 'mousedown' && event.button !== 0)
+      (event.type === 'click' && event.button !== 0)
     ) {
       return;
     }
@@ -238,7 +200,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       event.preventDefault();
       this.closeMenu();
     } else {
-      // If the menu isn't open, let the event bubble to the main handleMouseDown
+      // If the menu isn't open, let the event bubble to the main handleClick
       this.setState({
         isOpen: true,
       });
@@ -260,7 +222,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  handleInputFocus = (event: Event) => {
+  handleInputFocus = (event: SyntheticEvent<HTMLElement>) => {
     if (this.props.disabled) return;
 
     let toOpen =
@@ -281,7 +243,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleInputBlur = (event: Event) => {
+  handleInputBlur = (event: SyntheticEvent<HTMLElement>) => {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
@@ -395,33 +357,25 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  getOptionLabel = ({option}: OptionT) => {
+  getOptionLabel = ({option}: {option: OptionT}): React.Node => {
     return option[this.props.labelKey];
   };
 
   /**
-   * Turns a value into an array from the given options
+   * Extends the value into an array from the given options
    */
   getValueArray(value: ValueT): Array<OptionT> {
-    if (this.props.multi) {
-      if (!Array.isArray(value)) {
-        if (value === null || value === undefined) return [];
-        value = [value];
-      }
-      return value.map(value => expandValue(value, this.props));
+    if (!Array.isArray(value)) {
+      if (value === null || value === undefined) return [];
+      value = [value];
     }
-    if (Array.isArray(value)) {
-      return value.map(value => expandValue(value, this.props));
-    } else {
-      const expandedValue = expandValue(value, this.props);
-      return expandedValue ? [expandedValue] : [];
-    }
+    return value.map(value => expandValue(value, this.props));
   }
 
-  setValue(value: ValueT, option: OptionT, type: ChangeActionT) {
+  setValue(value: ValueT, option: ?OptionT, type: ChangeActionT) {
     if (this.props.onChange) {
       this.props.onChange({
-        value: Array.isArray(value) ? value : [value],
+        value,
         option,
         type,
       });
@@ -444,7 +398,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           isOpen: !this.props.closeOnSelect,
         },
         () => {
-          const valueArray = this.getValueArray(this.props.value);
+          const valueArray = this.props.value;
           if (
             valueArray.some(
               i => i[this.props.valueKey] === item[this.props.valueKey],
@@ -464,45 +418,45 @@ class Select extends React.Component<PropsT, SelectStateT> {
           isPseudoFocused: this.state.isFocused,
         },
         () => {
-          this.setValue(item, item, STATE_CHANGE_TYPE.select);
+          this.setValue([item], item, STATE_CHANGE_TYPE.select);
         },
       );
     }
   };
 
-  addValue = (value: OptionT) => {
-    const valueArray = this.getValueArray(this.props.value);
-    this.setValue(valueArray.concat(value), value, STATE_CHANGE_TYPE.select);
+  addValue = (item: OptionT) => {
+    const valueArray = [...this.props.value];
+    this.setValue(valueArray.concat(item), item, STATE_CHANGE_TYPE.select);
   };
 
   popValue = () => {
     if (this.props.multi) {
-      const valueArray = this.getValueArray(this.props.value);
-      const valueArrayLength = valueArray.length;
-      if (!valueArrayLength) return;
-      if (valueArray[valueArrayLength - 1].clearableValue === false) return;
+      const valueArray = [...this.props.value];
+      const valueLength = valueArray.length;
+      if (!valueLength) return;
+      if (valueArray[valueLength - 1].clearableValue === false) return;
       const item = valueArray.pop();
       this.setValue(valueArray, item, STATE_CHANGE_TYPE.remove);
     }
   };
 
-  removeValue = (value: OptionT) => {
-    let valueArray = this.getValueArray(this.props.value);
+  removeValue = (item: OptionT) => {
+    const valueArray = [...this.props.value];
     this.setValue(
       valueArray.filter(
-        i => i[this.props.valueKey] !== value[this.props.valueKey],
+        i => i[this.props.valueKey] !== item[this.props.valueKey],
       ),
-      value,
+      item,
       STATE_CHANGE_TYPE.remove,
     );
     this.focus();
   };
 
   clearValue = (event: Event) => {
-    // if the event was triggered by a mousedown and not the primary
+    // if the event was triggered by a mouse click and not the primary
     // button, ignore it.
     // $FlowFixMe
-    if (event && event.type === 'mousedown' && event.button !== 0) {
+    if (event && event.type === 'click' && event.button !== 0) {
       return;
     }
     event.preventDefault();
@@ -517,12 +471,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.focusAfterClear = true;
   };
 
-  getResetValue() {
-    if (this.props.multi) {
-      return [];
-    } else {
-      return null;
-    }
+  getResetValue(): ValueT {
+    // Clear all except not clearable values
+    return this.props.value.filter(item => {
+      return item.clearableValue === false;
+    });
   }
 
   renderLoading() {
@@ -534,11 +487,19 @@ class Select extends React.Component<PropsT, SelectStateT> {
       Spinner,
     );
     return (
-      <LoadingIndicator size={16} {...sharedProps} {...loadingIndicatorProps} />
+      <LoadingIndicator
+        size={16}
+        overrides={{Svg: {style: getLoadingIconStyles}}}
+        {...sharedProps}
+        {...loadingIndicatorProps}
+      />
     );
   }
 
-  renderValue(valueArray, isOpen) {
+  renderValue(
+    valueArray: ValueT,
+    isOpen: boolean,
+  ): React.Node | Array<React.Node> {
     const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getOptionLabel;
@@ -546,7 +507,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       overrides.Placeholder,
       StyledPlaceholder,
     );
-    if (Array.isArray && (!valueArray.length || !valueArray[0])) {
+    if (!valueArray.length) {
       const showPlaceholder = shouldShowPlaceholder(
         this.state,
         this.props,
@@ -572,6 +533,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             disabled={disabled}
             overrides={{MultiValue: overrides.MultiValue}}
             {...sharedProps}
+            $disabled={disabled}
           >
             {renderLabel({option: value, index: i})}
           </MultiValue>
@@ -591,7 +553,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  renderInput(valueArray: ValueT) {
+  renderInput() {
     const {overrides = {}} = this.props;
     const [InputContainer, inputContainerProps] = getOverrides(
       overrides.InputContainer,
@@ -601,17 +563,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const isOpen = this.state.isOpen;
     let value = this.state.inputValue;
     if (value && !this.props.onSelectResetsInput && !this.state.isFocused) {
-      // it hides input value when it is not focused and was not reset on select
+      // It hides input value when it is not focused and was not reset on select
       value = '';
     }
 
     const inputProps = {
       'aria-expanded': isOpen,
       'aria-haspopup': isOpen,
-      // Do we need the below props in a top-level API?
-      // 'aria-label': this.props['aria-label'],
-      // 'aria-describedby': this.props['aria-describedby'],
-      // 'aria-labelledby': this.props['aria-labelledby'],
+      'aria-label': this.props['aria-label'],
+      'aria-describedby': this.props['aria-describedby'],
+      'aria-labelledby': this.props['aria-labelledby'],
       inputRef: ref => (this.input = ref),
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
@@ -626,9 +587,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
         <InputContainer
           aria-expanded={isOpen}
           aria-disabled={this.props.disabled}
-          // Same here
-          // aria-label={this.props['aria-label']}
-          // aria-labelledby={this.props['aria-labelledby']}
+          aria-label={this.props['aria-label']}
+          aria-labelledby={this.props['aria-labelledby']}
           onBlur={this.handleInputBlur}
           onFocus={this.handleInputFocus}
           $ref={ref => (this.input = ref)}
@@ -648,11 +608,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   renderClear() {
     const sharedProps = this.getSharedProps();
-    const valueArray = this.getValueArray(this.props.value);
+    const value = this.props.value;
     if (
       !this.props.clearable ||
-      !valueArray.length ||
-      !valueArray[0] ||
+      !value ||
+      !value.length ||
       this.props.disabled ||
       this.props.isLoading
     )
@@ -668,7 +628,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         size={16}
         title={ariaLabel}
         aria-label={ariaLabel}
-        onMouseDown={this.clearValue}
+        onClick={this.clearValue}
         onTouchEnd={this.handleTouchEndClearValue}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
@@ -693,7 +653,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       <SelectArrow
         size={16}
         title={'open'}
-        onMouseDown={this.handleMouseDownOnArrow}
+        onClick={this.handleClickOnArrow}
         overrides={{Svg: StyledSelectArrow}}
         {...sharedProps}
         {...selectArrowProps}
@@ -715,7 +675,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       <SearchIcon
         size={16}
         title={'search'}
-        onMouseDown={this.handleMouseDownOnArrow}
+        onClick={this.handleClickOnArrow}
         overrides={{Svg: StyledSearchIcon}}
         {...sharedProps}
         {...searchIconProps}
@@ -723,7 +683,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     );
   }
 
-  filterOptions(excludeOptions: ValueT) {
+  filterOptions(excludeOptions: ?ValueT) {
     const filterValue = this.state.inputValue;
     const options = this.props.options || [];
     if (this.props.filterOptions) {
@@ -746,9 +706,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
       multi,
       noResultsMsg,
       overrides,
+      required,
+      searchable,
       size,
       type,
-      value = [],
       valueKey,
     } = this.props;
     const dropDownProps = {
@@ -758,12 +719,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
       labelKey,
       maxDropdownHeight,
       multi,
-      options,
       onItemSelect: this.selectValue,
+      options,
       overrides,
+      required,
+      searchable,
       size,
       type,
-      value,
+      value: valueArray,
       valueKey,
     };
     if (options && options.length) {
@@ -825,14 +788,20 @@ class Select extends React.Component<PropsT, SelectStateT> {
       multi && filterOutSelected ? valueArray : null,
     );
     let isOpen = this.state.isOpen;
-    if (multi && !options.length && valueArray.length && !this.state.inputValue)
+    if (
+      multi &&
+      !options.length &&
+      valueArray.length &&
+      !this.state.inputValue
+    ) {
       isOpen = false;
+    }
     sharedProps.$isOpen = isOpen;
     return (
       <Root $ref={ref => (this.wrapper = ref)} {...sharedProps} {...rootProps}>
         <ControlContainer
           onKeyDown={this.handleKeyDown}
-          onMouseDown={this.handleMouseDown}
+          onClick={this.handleClick}
           onTouchEnd={this.handleTouchEnd}
           onTouchMove={this.handleTouchMove}
           onTouchStart={this.handleTouchStart}
@@ -842,7 +811,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           {type === TYPE.search ? this.renderSearch() : null}
           <ValueContainer {...sharedProps} {...valueContainerProps}>
             {this.renderValue(valueArray, isOpen)}
-            {this.renderInput(valueArray)}
+            {this.renderInput()}
           </ValueContainer>
           {this.renderLoading()}
           {this.renderClear()}

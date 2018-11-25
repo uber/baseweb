@@ -21,6 +21,7 @@ module.exports = {
     'flowtype/require-valid-file-annotation': ['error', 'always'],
     'flowtype/no-weak-types': ['error'],
     'react/jsx-filename-extension': 0,
+    'react/prop-types': 0,
     // Enforces imports of external modules to be declared in the package.json
     'import/no-extraneous-dependencies': [
       'error',

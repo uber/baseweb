@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import StatefulContainer from './stateful-select-container';
 import Select from './select';
+import defaultProps from './default-props';
 import type {PropsT, StatefulSelectPropsT} from './types';
 
 export default function StatefulSelect(props: StatefulSelectPropsT) {
@@ -17,3 +18,5 @@ export default function StatefulSelect(props: StatefulSelectPropsT) {
     </StatefulContainer>
   );
 }
+
+StatefulSelect.defaultProps = defaultProps;

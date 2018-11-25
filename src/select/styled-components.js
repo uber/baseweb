@@ -9,6 +9,7 @@ import {styled} from '../styles/index';
 import {TYPE} from './constants';
 import {getSvgStyles} from '../icon/styled-components';
 import {SIZE} from './constants';
+import type {SharedStylePropsT} from './types';
 
 function getFont(size = SIZE.default, typography) {
   return {
@@ -121,10 +122,11 @@ export const StyledValueContainer = styled('span', props => {
     $size,
     $theme: {sizing},
   } = props;
+  const padding = getControlPadding($size, sizing, $type);
   return {
     boxSizing: 'border-box',
     display: 'inline-block',
-    ...getControlPadding($size, sizing, $type),
+    paddingLeft: $type === TYPE.search ? padding.paddingLeft : 0,
   };
 });
 
@@ -171,8 +173,15 @@ export const StyledSingleValue = styled('div', props => {
 });
 
 export const StyledInputContainer = styled('div', props => {
+  const {
+    $size,
+    $type,
+    $searchable,
+    $theme: {sizing, typography},
+  } = props;
+  const padding = getControlPadding($size, sizing, $type);
+  const font = getFont($size, typography);
   return {
-    boxSizing: 'border-box',
     position: 'relative',
     display: 'inline-block',
     maxWidth: '100%',
@@ -184,6 +193,10 @@ export const StyledInputContainer = styled('div', props => {
     marginBottom: '0',
     marginLeft: '0',
     marginRight: '0',
+    ...padding,
+    paddingLeft: $type === TYPE.search ? '0' : padding.paddingLeft,
+    height: !$searchable ? font.lineHeight : 'auto',
+    boxSizing: 'content-box',
   };
 });
 
@@ -226,13 +239,11 @@ export const StyledInputSizer = styled('div', {
   whiteSpace: 'pre',
 });
 
-export const StyledSelectArrow = styled('svg', props => {
-  const {
-    $theme: {colors},
-    $disabled,
-  } = props;
+export const StyledSelectArrow = styled('svg', (props: SharedStylePropsT) => {
+  const {$theme, $disabled} = props;
+  const {colors} = $theme;
   return {
-    ...getSvgStyles({...props, $size: null}),
+    ...getSvgStyles({$theme}),
     color: $disabled ? colors.mono600 : colors.mono800,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
@@ -242,13 +253,11 @@ export const StyledSelectArrow = styled('svg', props => {
   };
 });
 
-export const StyledClearIcon = styled('svg', props => {
-  const {
-    $type,
-    $theme: {colors},
-  } = props;
+export const StyledClearIcon = styled('svg', (props: SharedStylePropsT) => {
+  const {$type, $theme} = props;
+  const {colors} = $theme;
   return {
-    ...getSvgStyles({...props, $size: null}),
+    ...getSvgStyles({$theme}),
     color: colors.mono800,
     cursor: 'pointer',
     position: 'absolute',
@@ -258,34 +267,30 @@ export const StyledClearIcon = styled('svg', props => {
   };
 });
 
-export const StyledLoadingIcon = styled('svg', props => {
-  const {
-    $type,
-    $theme: {colors},
-  } = props;
+export const getLoadingIconStyles = (props: SharedStylePropsT) => {
+  const {$type, $theme} = props;
+  const {colors} = $theme;
   return {
-    ...getSvgStyles({...props, $size: null}),
-    color: colors.primary,
-    cursor: 'pointer',
+    ...getSvgStyles({$theme}),
+    color: colors.mono800,
     position: 'absolute',
     right: $type !== 'select' ? '14px' : '30px',
     display: 'inline-block',
     height: '100%',
   };
-});
+};
 
-export const StyledSearchIcon = styled('svg', props => {
-  const {
-    $disabled,
-    $theme: {colors},
-  } = props;
+export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
+  const {$disabled, $theme} = props;
+  const {colors} = $theme;
   return {
-    ...getSvgStyles({...props, $size: null}),
+    ...getSvgStyles({$theme}),
     color: $disabled ? colors.mono600 : colors.mono700,
-    cursor: 'pointer',
+    cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
     left: '12px',
     display: 'inline-block',
     height: '100%',
+    zIndex: 1,
   };
 });

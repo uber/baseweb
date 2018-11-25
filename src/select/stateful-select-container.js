@@ -23,8 +23,9 @@ class StatefulSelectContainer extends React.Component<
     initialState: {
       value: [],
     },
-    stateReducer: defaultStateReducer,
     onChange: () => {},
+    overrides: {},
+    stateReducer: defaultStateReducer,
   };
 
   state = {...this.props.initialState};
@@ -36,7 +37,7 @@ class StatefulSelectContainer extends React.Component<
 
   internalSetState = (params: OnChangeParamsT) => {
     const {stateReducer} = this.props;
-    const nextState = {value: params.value};
+    const nextState: StateT = {value: params.value};
     this.setState(stateReducer(params.type, nextState, this.state));
   };
 
@@ -47,6 +48,7 @@ class StatefulSelectContainer extends React.Component<
       stateReducer, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
+    // $FlowFixMe
     return children({
       ...rest,
       ...this.state,

@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {PropsT, SelectStateT} from '../types';
+import type {PropsT, OptionT, SelectStateT} from '../types';
 
 export const shouldShowValue = (state: SelectStateT, props: $Shape<PropsT>) => {
   const {inputValue, isPseudoFocused, isFocused} = state;
@@ -36,21 +36,15 @@ export const shouldShowPlaceholder = (
 
 export const expandValue = (
   // eslint-disable-next-line flowtype/no-weak-types
-  value: string | number | boolean | {[string]: any},
+  value: OptionT,
   props: $Shape<PropsT>,
-) => {
-  const valueType = typeof value;
-  if (
-    valueType !== 'string' &&
-    valueType !== 'number' &&
-    valueType !== 'boolean'
-  )
-    return value;
+): OptionT => {
   let {options, valueKey} = props;
-  if (!options) return;
+  if (!options) return value;
   for (let i = 0; i < options.length; i++) {
-    if (String(options[i][valueKey]) === String(value)) {
+    if (String(options[i][valueKey]) === String(value[valueKey])) {
       return options[i];
     }
   }
+  return value;
 };

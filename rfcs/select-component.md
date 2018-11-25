@@ -107,8 +107,8 @@ export default () => {
 ## Exports
 
 * `StatefulSelect`
-* `StatefulSelectContainer`
 * `Select`
+* `StatefulSelectContainer`
 * `StyledRoot`
 * `StyledControlContainer`
 * `StyledValueContainer`
@@ -122,7 +122,13 @@ export default () => {
 * `StyledSearchIcon`
 * `StyledOptionContent`
 
-## `Select` and `StatefulSelect` API
+
+##  `StatefulSelect` API
+
+* All properties of the StatefulContainer except `children`
+* All properties of the `Select` except `value`
+
+## `Select` API
 
 * `autoFocus: boolean` - Optional. Defaults to `false`
   Defines if select element is focused on the first mount
@@ -144,7 +150,7 @@ export default () => {
   A custom method to filter options to be displayed in the dropdown
 * `filterOutSelected: boolean` - Optional. Defaults to `true`
   Defines if currently selected options are filtered out in the dropdown options
-* `getOptionLabel: ({option: {}}) => React.Node` - Optional. Defaults to return a `labelKey` value
+* `getOptionLabel: ({option: {}) => React.Node` - Optional. Defaults to return a `labelKey` value
   A custom method to get a display value for a dropdown option
 * `getValueLabel: ({option: {}}) => React.Node` - Optional. Defaults to return a `labelKey` value
   A custom method to get a display value for a selected option
@@ -180,7 +186,7 @@ export default () => {
   Defines if the dropdown opens on a click event on the select
 * `options: Array<{}>` - Optional.  Defaults to `[]`
   Options to be displayed in the dropdown. If an option has a `disabled` prop value set to `true` it will be rendered as a disabled option in the dropdown
-* `overrides: {Root, ControlContainer, Placeholder, ValueContainer, SingleValue, MultiValue, InputContainer, Input, SelectArrow, ClearIcon, LoadingIndicator, DropDown, DropDownOption, OptionValue}` - Optional.
+* `overrides: {Root, ControlContainer, Placeholder, ValueContainer, SingleValue, MultiValue, InputContainer, Input, SelectArrow, ClearIcon, LoadingIndicator, SearchIcon, DropDown, DropDownOption, OptionContent}` - Optional.
   Overrides for presentational components. See "Presentational Components Props API" below.
   * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
 * `placeholder: React.Node` - Optional. Defaults to `'Select...'`
@@ -191,36 +197,28 @@ export default () => {
   Defines if the search functionality id enabled
 * `type: TYPE.search | TYPE.select` - Optional. Defaults to `TYPE.select`
   Defines type of the component to be in select or search mode. When set to `TYPE.search` the searh icon if rendered on the left and the select arrow icon is not rendered.
-* `value: {} | Array<{}>` - Optional. Defaults to `[]`
+* `value: Array<{}>` - Optional. Defaults to `[]`
   A current selected value(s). If a selected value has a `clearableValue` prop set to `true` it will be rendered as a disabled selected option that can't be cleared
 * `valueKey: string` - Optional. Defaults to `'id'`
   Defines an option key for a default key value
 
-* `overrides: {}`
-  * `DropDown: ?React.ComponentType` component to use for dropdown list
-  * `Option: ?React.ComponentType` component to use for options in dropdown list
-  * `Root: ?React.ComponentType` component to use for most top of the select component
-  * `Input: ?React.ComponentType` component for Input showing current selected value(s). See `Input` Control of this framework for reference to override it's functionality.
-  * `SelectComponentIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
-  * `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
-  * `SelectSpinner: ?React.ComponentType` component for dropdown spinner if async options are loading
-  * `SelectionContainer: ?React.ComponentType` component for the wrapper around selected options\tags
-
 ## `StatefulSelectContainer` API
 
-* `initialState: {}`
+* `initialState: {value: Array<{}>}` - Optional.Defaults to `{value: []}`
   Initial state of an uncontrolled select component.
-  * `value: {} | Array<{}>` - an initial set of selected options. 
+  * `value` - an initial set of selected options.
 * `stateReducer: (type: text, nextState: {}, currentState: {}) => nextState`
   A state change handler.
   * `type` - state change type
   * `nextState` - a new state changes that will be set
   * `currentState` - current full state of the component
-* `children: func` should return `Select` instance with standard or customized inner elements.
+* `children: func` - Required
+  Children function that returns `Select` instance with default or customized inner elements.
 * `onChange: ({type, option, value}) => void`:
   handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed - `STATE_CHANGE_TYPE.select | STATE_CHANGE_TYPE.remove | STATE_CHANGE_TYPE.clear`. `option` that is beeing added or removed - `Object`. And `value` is the current select value icluding/exluding the currently selected/removed option.
 
 ## Presentational components API
+
 These properties are passed to every presentational (styled) component that is exported:
 
 * `$disabled: boolean`
@@ -239,7 +237,6 @@ These properties are passed to every presentational (styled) component that is e
 
 * `$selected: boolean` - is passed to the `OptionContent` element only
 * `$isHighlighted: boolean` - is passed to the `OptionContent` element only
-  `getOptionLabel` receives `{$selected: boolean, $isHighlighted: boolean}` as a value of the `optionState` prop of its first argumens
 
 ## TYPE Constant
 
@@ -248,6 +245,6 @@ These properties are passed to every presentational (styled) component that is e
 
 ## STATE_CHANGE_TYPE Constant
 
-* `select` - event type when a new option is selected 
+* `select` - event type when a new option is selected
 * `remove` - event type when an previously selected option is removed
 * `clear` - event type when a select value is cleared
