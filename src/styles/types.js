@@ -107,6 +107,12 @@ export type ColorsT = {
   linkVisited: string,
   linkHover: string,
 
+  // Lists
+  listHeaderFill: string,
+  listBodyFill: string,
+  listIconFill: string,
+  listBorder: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,

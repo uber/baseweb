@@ -18,7 +18,7 @@ function getBorderColor(props) {
   } else if ($isError) {
     return colors.negative400;
   } else {
-    return colors.mono700;
+    return colors.border;
   }
 }
 

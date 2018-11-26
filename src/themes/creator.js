@@ -120,6 +120,12 @@ export default function createTheme(
       // Shadow
       shadowFocus: 'rgba(39, 110, 241, 0.32)',
       shadowError: 'rgba(229, 73, 55, 0.32)',
+
+      // List
+      listHeaderFill: '#ffffff',
+      listBodyFill: primitives.mono200,
+      listIconFill: primitives.mono500,
+      listBorder: primitives.mono500,
     },
     typography: {
       font100: {
