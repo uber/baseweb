@@ -17,7 +17,7 @@ const selectors = {
   tags: 'span',
 };
 
-describe.only('The Tag component', () => {
+describe('The Tag component', () => {
   after((browser, done) => {
     browser.end(() => done());
   });
