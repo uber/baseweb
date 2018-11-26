@@ -72,7 +72,7 @@ export default class AutosizeInput extends React.Component<
     return (
       <React.Fragment>
         <Input {...componentInputProps} $ref={inputRef} {...inputProps} />
-        {/* a hidden helper element to calculate the size os the input */}
+        {/* a hidden helper element to calculate the size of the input */}
         <StyledInputSizer $ref={this.sizerRef}>{sizerValue}</StyledInputSizer>
       </React.Fragment>
     );

@@ -11,9 +11,9 @@ import type {ThemeT} from '../styles/types';
 import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants';
 import type {OnItemSelectFnT} from '../menu/types';
 
-export type ChangeActionT = $Values<typeof STATE_CHANGE_TYPE>;
-export type SizeT = $Values<typeof SIZE>;
-export type TypeT = $Values<typeof TYPE>;
+export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
+export type SizeT = $Keys<typeof SIZE>;
+export type TypeT = $Keys<typeof TYPE>;
 
 export type OptionT = $Shape<{
   id?: string,

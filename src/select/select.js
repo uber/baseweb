@@ -572,6 +572,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       'aria-label': this.props['aria-label'],
       'aria-describedby': this.props['aria-describedby'],
       'aria-labelledby': this.props['aria-labelledby'],
+      'aria-autocomplete': 'list',
       inputRef: ref => (this.input = ref),
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
@@ -808,7 +809,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           {...controlContainerProps}
         >
           {type === TYPE.search ? this.renderSearch() : null}
-          <ValueContainer {...sharedProps} {...valueContainerProps}>
+          <ValueContainer role="list" {...sharedProps} {...valueContainerProps}>
             {this.renderValue(valueArray, isOpen)}
             {this.renderInput()}
           </ValueContainer>

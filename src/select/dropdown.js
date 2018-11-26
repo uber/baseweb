@@ -74,7 +74,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
   };
 
   render() {
-    // TODO: Add no-results and loading states to menu
+    // TODO(#185) Add no-results and loading states to menu
     const {
       maxDropdownHeight,
       multi,
@@ -105,7 +105,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
             Option: {
               props: {
                 getItemLabel: this.getItemLabel,
-                // TODO: figure out why the onClick handler is not
+                // figure out why the onClick handler is not
                 // triggered without this temporary fix
                 onMouseDown: this.onMouseDown,
               },

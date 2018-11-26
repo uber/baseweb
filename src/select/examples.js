@@ -44,9 +44,11 @@ const openOnClick = (defaultValue = true) =>
 const required = (defaultValue = true) => boolean('required', defaultValue);
 const searchable = (defaultValue = true) => boolean('searchable', defaultValue);
 
-const onInputChange = action('search query change');
-
-const onChange = action('select change');
+const onChange = (...args) => {
+  // eslint-disable-next-line no-console
+  console.log(...args);
+};
+const onChangeAction = action('select change');
 
 const CustomValueWrapper = styled('span', {
   display: 'inline-flex',
@@ -86,43 +88,39 @@ const options = {
   maxDropdownHeight: '300px',
 };
 
+const optionsWithDisabled = [...COLORS];
+optionsWithDisabled[1] = {...optionsWithDisabled[1], disabled: true};
+
 export default {
   [tests.SELECT]: function Story1() {
     return (
-      <div style={{margin: '50px'}}>
-        <StatefulSelect
-          {...options}
-          {...{
-            backspaceRemoves: backspaceRemoves(),
-            clearable: clearable(),
-            closeOnSelect: closeOnSelect(),
-            deleteRemoves: deleteRemoves(),
-            disabled: disabled(),
-            error: error(),
-            escapeClearsValue: escapeClearsValue(),
-            filterOutSelected: filterOutSelected(),
-            isLoading: isLoading(),
-            multi: multi(),
-            onBlurResetsInput: onBlurResetsInput(),
-            onCloseResetsInput: onCloseResetsInput(),
-            onSelectResetsInput: onSelectResetsInput(),
-            openOnClick: openOnClick(),
-            required: required(),
-            searchable: searchable(),
-            size: size(),
-            type: type(),
-          }}
-          placeholder="Check out the `KNOBS` tab to toggle some props"
-          autoFocus={false}
-        />
-        <br />
-        <StatefulSelect
-          {...options}
-          searchable={false}
-          size={'compact'}
-          placeholder="Placeholder"
-        />
-      </div>
+      <StatefulSelect
+        {...options}
+        {...{
+          backspaceRemoves: backspaceRemoves(),
+          clearable: clearable(),
+          closeOnSelect: closeOnSelect(),
+          deleteRemoves: deleteRemoves(),
+          disabled: disabled(),
+          error: error(),
+          escapeClearsValue: escapeClearsValue(),
+          filterOutSelected: filterOutSelected(),
+          isLoading: isLoading(),
+          multi: multi(),
+          onBlurResetsInput: onBlurResetsInput(),
+          onCloseResetsInput: onCloseResetsInput(),
+          onSelectResetsInput: onSelectResetsInput(),
+          openOnClick: openOnClick(),
+          required: required(),
+          searchable: searchable(),
+          size: size(),
+          type: type(),
+        }}
+        onChange={onChangeAction}
+        placeholder="Check out the `KNOBS` tab to toggle some props"
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={false}
+      />
     );
   },
   [tests.SELECT_MULTI]: function Story2() {
@@ -132,8 +130,10 @@ export default {
         initialState={{
           value: [{...COLORS[0], clearableValue: false}, COLORS[1], COLORS[3]],
         }}
+        closeOnSelect={false}
         clearable={false}
         multi
+        onChange={onChange}
       />
     );
   },
@@ -141,9 +141,10 @@ export default {
     return (
       <StatefulSelect
         {...options}
+        options={optionsWithDisabled}
         placeholder="Start searching"
         type={TYPE.search}
-        onInputChange={onInputChange}
+        onChange={onChange}
       />
     );
   },
@@ -154,7 +155,7 @@ export default {
         placeholder="Start searching"
         type={TYPE.search}
         multi
-        onInputChange={onInputChange}
+        onChange={onChange}
       />
     );
   },
@@ -167,7 +168,7 @@ export default {
         }}
         type={TYPE.search}
         multi
-        onInputChange={onInputChange}
+        onChange={onChange}
         getOptionLabel={({option}) => (
           <CustomOptionLabel option={option} showColor />
         )}
