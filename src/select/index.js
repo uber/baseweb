@@ -9,7 +9,7 @@ export {default as Select} from './select';
 export {default as SingleValue} from './value';
 export {default as MultiValue} from './multi-value';
 export {default as AutosizeInput} from './autosize-input';
-export {default as SelectDropDown} from './dropdown';
+export {default as SelectDropdown} from './dropdown';
 export {default as StatefulSelect} from './stateful-select';
 export {default as StatefulSelectContainer} from './stateful-select-container';
 // Styled elements

@@ -2,12 +2,18 @@
 
 exports[`Menu Styled Components List - basic render: correct styles 1`] = `
 Object {
-  "background": "$theme.colors.backgroundAlt",
+  "backgroundColor": "$theme.colors.white",
   "borderRadius": "$theme.borders.radius300",
   "boxShadow": "$theme.lighting.shadow600",
-  "margin": 0,
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
   "overflow": "auto",
-  "padding": 0,
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
   "position": "relative",
 }
 `;
@@ -18,12 +24,13 @@ Object {
     "marginTop": "$theme.sizing.scale300",
   },
   ":hover": Object {
-    "backgroundColor": "$theme.colors.menuFillHover",
+    "backgroundColor": "$theme.colors.mono300",
   },
   ":last-child": Object {
     "marginBottom": "$theme.sizing.scale300",
   },
-  "color": "$theme.colors.foreground",
+  "backgroundColor": "transparent",
+  "color": "$theme.colors.black",
   "cursor": "pointer",
   "display": "block",
   "fontFamily": "$theme.typography.font300.fontFamily",
@@ -47,12 +54,13 @@ Object {
     "marginTop": "$theme.sizing.scale300",
   },
   ":hover": Object {
-    "backgroundColor": "$theme.colors.menuFillHover",
+    "backgroundColor": "$theme.colors.mono300",
   },
   ":last-child": Object {
     "marginBottom": "$theme.sizing.scale300",
   },
-  "color": "$theme.colors.foreground",
+  "backgroundColor": "transparent",
+  "color": "$theme.colors.black",
   "cursor": "pointer",
   "display": "block",
   "fontFamily": "$theme.typography.font200.fontFamily",
@@ -76,11 +84,12 @@ Object {
     "marginTop": "$theme.sizing.scale300",
   },
   ":hover": Object {
-    "backgroundColor": "$theme.colors.menuFillHover",
+    "backgroundColor": "$theme.colors.mono300",
   },
   ":last-child": Object {
     "marginBottom": "$theme.sizing.scale300",
   },
+  "backgroundColor": "$theme.colors.mono300",
   "color": "$theme.colors.primary",
   "cursor": "pointer",
   "display": "block",
@@ -105,7 +114,7 @@ Object {
     "marginTop": "$theme.sizing.scale300",
   },
   ":hover": Object {
-    "backgroundColor": "$theme.colors.menuFillHover",
+    "backgroundColor": "$theme.colors.mono300",
   },
   ":last-child": Object {
     "marginBottom": "$theme.sizing.scale300",
@@ -126,12 +135,15 @@ Object {
 
 exports[`Menu Styled Components ProfileBody - basic render: correct styles 1`] = `
 Object {
-  "color": "$theme.colors.foregroundAlt",
+  "color": "$theme.colors.mono800",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
   "fontWeight": "$theme.typography.font200.fontWeight",
   "lineHeight": "$theme.typography.font200.lineHeight",
-  "margin": 0,
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
 }
 `;
 
@@ -164,22 +176,28 @@ Object {
 
 exports[`Menu Styled Components ProfileSubtitle - basic render: correct styles 1`] = `
 Object {
-  "color": "$theme.colors.foreground",
+  "color": "$theme.colors.black",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
   "lineHeight": "$theme.typography.font300.lineHeight",
-  "margin": 0,
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
 }
 `;
 
 exports[`Menu Styled Components ProfileTitle - basic render: correct styles 1`] = `
 Object {
-  "color": "$theme.colors.foreground",
+  "color": "$theme.colors.black",
   "fontFamily": "$theme.typography.font450.fontFamily",
   "fontSize": "$theme.typography.font450.fontSize",
   "fontWeight": "$theme.typography.font450.fontWeight",
   "lineHeight": "$theme.typography.font450.lineHeight",
-  "margin": 0,
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
 }
 `;

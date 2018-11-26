@@ -88,7 +88,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     this.animateOutCompleteTimer = setTimeout(() => {
       this.setState({isRendered: false});
       callback();
-    }, 1000);
+    }, 600);
   };
 
   dismiss = () => {

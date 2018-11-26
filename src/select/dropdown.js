@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {StyledOptionContent} from './styled-components';
 import {StatefulMenu} from '../menu';
-import type {DropDownPropsT} from './types';
+import type {DropdownPropsT} from './types';
 import {getOverrides, mergeOverrides} from '../helpers/overrides';
 
-export default class SelectDropDown extends React.Component<DropDownPropsT> {
+export default class SelectDropdown extends React.Component<DropdownPropsT> {
   getSharedProps() {
     const {
       error,
@@ -37,7 +37,7 @@ export default class SelectDropDown extends React.Component<DropDownPropsT> {
     const {getOptionLabel, overrides = {}, value, valueKey} = this.props;
 
     const [OptionContent, optionContentProps] = getOverrides(
-      overrides.OptionContent || {},
+      overrides.OptionContent,
       StyledOptionContent,
     );
 
@@ -67,6 +67,10 @@ export default class SelectDropDown extends React.Component<DropDownPropsT> {
         {getOptionLabel({option, optionState: optionSharedProps})}
       </OptionContent>
     );
+  };
+
+  onMouseDown = (e: Event) => {
+    e.preventDefault();
   };
 
   render() {
@@ -103,15 +107,13 @@ export default class SelectDropDown extends React.Component<DropDownPropsT> {
                 getItemLabel: this.getItemLabel,
                 // TODO: figure out why the onClick handler is not
                 // triggered without this temporary fix
-                onMouseDown: e => {
-                  e.preventDefault();
-                },
+                onMouseDown: this.onMouseDown,
               },
             },
           },
           {
-            List: overrides.DropDown || {},
-            Option: overrides.DropDownOption || {},
+            List: overrides.Dropdown || {},
+            Option: overrides.DropdownOption || {},
           },
         )}
       />

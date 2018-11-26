@@ -6,72 +6,83 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {shallow} from 'enzyme';
-import {StyledDropDown} from '../index';
+import {mount} from 'enzyme';
+import SelectDropdown from '../dropdown';
+import {SIZE, TYPE} from '../constants';
+import {StatefulMenu} from '../../menu';
 
-describe('Stateless Select Dropdown', function() {
-  let wrapper,
-    events = {};
-  let allProps: any = {},
-    mockFn;
-  let options = [
-      {
-        id: '1',
-        label: 'label for 1',
-      },
-      {
-        id: '2',
-        label: 'label for 2',
-      },
-      {
-        id: '3',
-        label: 'label for 3',
-      },
-      {
-        id: '4',
-        label: 'label for 4',
-      },
-    ],
-    getOptionLabel = jest.fn(() => <div>test label</div>),
-    isDropDownOpen = true,
-    selectedOptions,
-    onChange,
-    type,
-    rows;
+jest.mock('../../menu');
+
+describe('SelectDropdown', function() {
+  let wrapper;
+  let props = {};
+  const options = [{id: '1', label: 'label1'}, {id: '2', label: 'label2'}];
+  const value = [{id: '1', label: 'label1'}];
 
   beforeEach(function() {
-    mockFn = jest.fn();
-    events = {
-      onChange: mockFn,
-    };
-    allProps = {
-      ...events,
+    props = {
+      value,
+      valueKey: 'id',
+      labelKey: 'label',
+      size: SIZE.default,
       options,
-      getOptionLabel,
-      isDropDownOpen,
-      selectedOptions,
-      onChange,
-      type,
-      rows,
+      onItemSelect: jest.fn(),
+      getOptionLabel: jest.fn(({option}) => <span>option.label</span>),
+      maxDropdownHeight: '1000px',
+      overrides: {},
+      error: false,
+      isLoading: false,
+      multi: false,
+      required: false,
+      searchable: true,
+      type: TYPE.select,
     };
+    wrapper = mount(<SelectDropdown {...props} />);
   });
 
   afterEach(function() {
-    jest.restoreAllMocks();
     wrapper && wrapper.unmount();
   });
 
-  test.each([[options, true], [[], true], [options, false]])(
-    'should render component with options %s and drondown open is %s',
-    (options, isDropDownOpen) => {
-      allProps = Object.assign({}, allProps, {options, isDropDownOpen});
-      wrapper = shallow(<StyledDropDown {...allProps} />);
-      expect(wrapper).toMatchSnapshot(
-        'Component has correct render with options length ' +
-          options.length +
-          ' and dropdown open is %s ' +
-          isDropDownOpen,
-      );
-    },
-  );
+  afterAll(function() {
+    jest.restoreAllMocks();
+  });
+
+  test('renders StatefulMenu', function() {
+    // $FlowFixMe
+    const menuProps = StatefulMenu.mock.calls[0][0];
+    expect(StatefulMenu).toHaveBeenCalled();
+    expect(menuProps).toMatchObject({
+      onItemSelect: props.onItemSelect,
+      items: props.options,
+      size: props.size,
+    });
+    expect(menuProps.overrides).toMatchSnapshot(
+      'Passes correct overrides to the StatefulMenu',
+    );
+  });
+
+  test('getItemLabel is passed to a menu Option', function() {
+    // $FlowFixMe
+    const menuProps = StatefulMenu.mock.calls[1][0];
+    expect(menuProps.overrides.Option.props.getItemLabel).toEqual(
+      wrapper.instance().getItemLabel,
+    );
+  });
+
+  test('passes correct props to OptionContent', function() {
+    const renderedOption = wrapper.instance().getItemLabel(options[1]);
+    expect(renderedOption.props.$selected).toEqual(false);
+    expect(renderedOption.props).toMatchSnapshot(
+      'OptionContent gets correct props when an option is not selected',
+    );
+  });
+
+  test('passes correct props to OptionContent for a selected item', function() {
+    const renderedOption = wrapper.instance().getItemLabel(options[0]);
+    expect(renderedOption.props.$selected).toEqual(true);
+    expect(renderedOption.props).toMatchSnapshot(
+      'OptionContent gets correct props when an option is selected',
+    );
+  });
 });

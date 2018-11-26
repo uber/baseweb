@@ -20,7 +20,7 @@ import {
 import AutosizeInput from './autosize-input';
 import Value from './value';
 import MultiValue from './multi-value';
-import SelectDropDown from './dropdown';
+import SelectDropdown from './dropdown';
 import {shouldShowValue, shouldShowPlaceholder, expandValue} from './utils';
 import {TYPE, STATE_CHANGE_TYPE} from './constants';
 import {getOverrides} from '../helpers/overrides';
@@ -225,8 +225,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   handleInputFocus = (event: SyntheticEvent<HTMLElement>) => {
     if (this.props.disabled) return;
 
-    let toOpen =
-      this.state.isOpen || this.openAfterFocus || this.props.openOnFocus;
+    let toOpen = this.state.isOpen || this.openAfterFocus;
     //if focus happens after clear values, don't open dropdown yet.
     toOpen = this.focusAfterClear ? false : toOpen;
 
@@ -499,7 +498,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   renderValue(
     valueArray: ValueT,
     isOpen: boolean,
-  ): React.Node | Array<React.Node> {
+  ): ?React.Node | Array<?React.Node> {
     const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getOptionLabel;
@@ -712,7 +711,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       type,
       valueKey,
     } = this.props;
-    const dropDownProps = {
+    const dropdownProps = {
       error,
       getOptionLabel: getOptionLabel || this.getOptionLabel,
       isLoading,
@@ -730,14 +729,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
       valueKey,
     };
     if (options && options.length) {
-      return <SelectDropDown {...dropDownProps} />;
+      return <SelectDropdown {...dropdownProps} />;
     } else if (noResultsMsg) {
       const noResults = {
         [valueKey]: 'NO_RESULTS_FOUND',
         [labelKey]: noResultsMsg,
         disabled: true,
       };
-      return <SelectDropDown {...dropDownProps} options={[noResults]} />;
+      return <SelectDropdown {...dropdownProps} options={[noResults]} />;
     } else {
       return null;
     }

@@ -43,14 +43,14 @@ export type OverridesT = {
   ClearIcon?: OverrideT<*>,
   LoadingIndicator?: OverrideT<*>,
   SearchIcon?: OverrideT<*>,
-  DropDown?: OverrideT<*>,
-  DropDownOption?: OverrideT<*>,
+  Dropdown?: OverrideT<*>,
+  DropdownOption?: OverrideT<*>,
   OptionContent?: OverrideT<*>,
 };
 
-export type OverridesDropDownT = {
-  DropDown?: OverrideT<*>,
-  DropDownOption?: OverrideT<*>,
+export type OverridesDropdownT = {
+  Dropdown?: OverrideT<*>,
+  DropdownOption?: OverrideT<*>,
   OptionContent?: OverrideT<*>,
 };
 
@@ -133,7 +133,7 @@ export type StatefulSelectPropsT = PropsT & {
   onChange?: (params: OnChangeParamsT) => void,
 };
 
-export type DropDownPropsT = {
+export type DropdownPropsT = {
   error: boolean,
   getOptionLabel: ({option: OptionT}) => React.Node,
   isLoading: boolean,
@@ -142,7 +142,7 @@ export type DropDownPropsT = {
   multi: boolean,
   onItemSelect: OnItemSelectFnT,
   options: ValueT,
-  overrides?: OverridesDropDownT,
+  overrides?: OverridesDropdownT,
   required: boolean,
   searchable: boolean,
   size: SizeT,

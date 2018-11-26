@@ -20,6 +20,7 @@ export default class AutosizeInput extends React.Component<
   static defaultProps = {
     inputRef: React.createRef(),
     value: '',
+    overrides: {},
   };
   state = {
     inputWidth: 5,

@@ -122,8 +122,7 @@ export default () => {
 * `StyledSearchIcon`
 * `StyledOptionContent`
 
-
-##  `StatefulSelect` API
+## `StatefulSelect` API
 
 * All properties of the StatefulContainer except `children`
 * All properties of the `Select` except `value`
