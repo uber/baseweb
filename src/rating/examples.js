@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Rating, KIND} from './';
+import type {StyledRatingItemPropsT} from './';
 import examples from './examples-list';
 
 type ExampleState = {
@@ -40,6 +41,45 @@ export default {
         return (
           <Rating
             kind={KIND.emoticon}
+            value={this.state.value}
+            onChange={({value}) => this.setState({value})}
+          />
+        );
+      }
+    }
+
+    return <Example />;
+  },
+  [examples.OVERRIDES]: function Story2() {
+    const CustomRatingItem = ({
+      $index,
+      $isActive,
+      $isSelected,
+      ...props
+    }: StyledRatingItemPropsT) => (
+      <div
+        {...props}
+        style={{
+          display: 'inline-block',
+          marginRight: 8,
+          color: $isSelected ? 'blue' : $isActive && 'red',
+        }}
+      >
+        {$index}
+      </div>
+    );
+
+    class Example extends React.Component<{}, ExampleState> {
+      state = {};
+
+      render() {
+        return (
+          <Rating
+            overrides={{
+              Star: {
+                component: CustomRatingItem,
+              },
+            }}
             value={this.state.value}
             onChange={({value}) => this.setState({value})}
           />
