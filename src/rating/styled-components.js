@@ -23,7 +23,7 @@ export const StyledRoot = styled('ul', ({$theme}: StyledRootPropsT) => {
 
 export const StyledStar = styled(
   'li',
-  ({$theme, $isActive, $isSelected, $index}: StyledRatingItemPropsT) => {
+  ({$theme, $isActive, $isSelected}: StyledRatingItemPropsT) => {
     let starStroke = $theme.colors.mono500;
     let starFill = $theme.colors.mono300;
 
@@ -62,7 +62,7 @@ export const StyledStar = styled(
 
 export const StyledEmoticon = styled(
   'li',
-  ({$theme, $isActive, $isSelected, $index}: StyledRatingItemPropsT) => {
+  ({$theme, $isActive, $isSelected, $index = 1}: StyledRatingItemPropsT) => {
     let emoticonFill = $theme.colors.mono500;
 
     if ($isActive) {
