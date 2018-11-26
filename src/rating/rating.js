@@ -24,8 +24,19 @@ class Rating extends React.Component<RatingPropsT, RatingStateT> {
 
   state = {};
 
+  selectItem = (value: number) => {
+    const {onChange} = this.props;
+
+    onChange && onChange({value});
+    this.setState({previewIndex: undefined});
+  };
+
+  updatePreview = (previewIndex?: number) => {
+    this.setState({previewIndex});
+  };
+
   renderRatingContents = () => {
-    const {overrides = {}, value = -1, onChange} = this.props;
+    const {overrides = {}, value = -1} = this.props;
     const {previewIndex} = this.state;
 
     const [Star, starProps] = getOverrides(overrides.Star, StyledStar);
@@ -53,28 +64,16 @@ class Rating extends React.Component<RatingPropsT, RatingStateT> {
             previewIndex !== undefined ? x <= previewIndex : x <= value
           }
           $isSelected={x === previewIndex}
-          onClick={() => {
-            onChange && onChange({value: x});
-            this.setState({previewIndex: undefined});
-          }}
+          onClick={() => this.selectItem(x)}
           onKeyDown={e => {
             if (e.keyCode === SPACE_KEY_CODE || e.keyCode === ENTER_KEY_CODE) {
-              onChange && onChange({value: x});
-              this.setState({previewIndex: undefined});
+              this.selectItem(x);
             }
           }}
-          onFocus={() => {
-            this.setState({previewIndex: x});
-          }}
-          onMouseOver={() => {
-            this.setState({previewIndex: x});
-          }}
-          onMouseLeave={() => {
-            this.setState({previewIndex: undefined});
-          }}
-          onBlur={() => {
-            this.setState({previewIndex: undefined});
-          }}
+          onFocus={() => this.updatePreview(x)}
+          onMouseOver={() => this.updatePreview(x)}
+          onMouseLeave={() => this.updatePreview(undefined)}
+          onBlur={() => this.updatePreview(undefined)}
           {...overrideProps}
         />,
       );
