@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 import createTheme from './creator';
 import {primitives} from './dark-theme-primitives';
 
+const WHITE = '#FFFFFF';
+
 export const DarkTheme = createTheme(
   {
     ...primitives,
@@ -62,6 +64,17 @@ export const DarkTheme = createTheme(
       listBodyFill: primitives.mono700,
       listIconFill: primitives.mono100,
       listBorder: primitives.mono500,
+
+      // Tick
+      tickFill: 'transparent',
+      tickFillHover: primitives.mono200,
+      tickFillActive: primitives.mono300,
+      tickFillSelected: primitives.primary400,
+      tickFillSelectedHover: primitives.primary500,
+      tickFillSelectedHoverActive: primitives.primary600,
+      tickFillDisabled: primitives.mono600,
+      tickBorder: primitives.mono400,
+      tickMarkFill: WHITE,
     },
   },
 );

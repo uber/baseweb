@@ -113,6 +113,17 @@ export type ColorsT = {
   listIconFill: string,
   listBorder: string,
 
+  // Ticks
+  tickFill: string,
+  tickFillHover: string,
+  tickFillActive: string,
+  tickFillSelected: string,
+  tickFillSelectedHover: string,
+  tickFillSelectedHoverActive: string,
+  tickFillDisabled: string,
+  tickBorder: string,
+  tickMarkFill: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,

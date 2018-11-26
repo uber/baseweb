@@ -10,6 +10,8 @@ import type {ThemeT} from '../styles/types';
 import type {PrimitivesT} from './types';
 import deepMerge from '../utils/deep-merge';
 
+const WHITE = '#FFFFFF';
+
 export default function createTheme(
   primitives: PrimitivesT,
   overrides?: {},
@@ -122,10 +124,21 @@ export default function createTheme(
       shadowError: 'rgba(229, 73, 55, 0.32)',
 
       // List
-      listHeaderFill: '#ffffff',
+      listHeaderFill: WHITE,
       listBodyFill: primitives.mono200,
       listIconFill: primitives.mono500,
       listBorder: primitives.mono500,
+
+      // Tick
+      tickFill: 'transparent',
+      tickFillHover: primitives.mono400,
+      tickFillActive: primitives.mono500,
+      tickFillSelected: primitives.primary400,
+      tickFillSelectedHover: primitives.primary500,
+      tickFillSelectedHoverActive: primitives.primary600,
+      tickFillDisabled: primitives.mono400,
+      tickBorder: primitives.mono700,
+      tickMarkFill: WHITE,
     },
     typography: {
       font100: {

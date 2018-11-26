@@ -18,7 +18,7 @@ function getBorderColor(props) {
   } else if ($isError) {
     return colors.negative400;
   } else {
-    return colors.border;
+    return colors.tickBorder;
   }
 }
 
@@ -87,13 +87,13 @@ function getBackgroundColor(props) {
 function getCheckBackgroundColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.mono600 : colors.mono100;
+  return $disabled ? colors.mono600 : colors.tickMarkFill;
 }
 
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.mono600 : colors.mono1000;
+  return $disabled ? colors.foregroundAlt : colors.foreground;
 }
 
 export const Root = styled('label', props => {
@@ -143,7 +143,7 @@ function getToggleThumbColor(props) {
 const getToggleCheckMarkStyles = props => {
   const {$checked, $theme, $disabled} = props;
   const {animation, colors} = $theme;
-  const backgroundColor = $disabled ? colors.mono500 : colors.white;
+  const backgroundColor = $disabled ? colors.mono500 : colors.backgroundColor;
   const toggleThumbColor = getToggleThumbColor(props);
   const toggleSVG =
     `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23filter0_d)"><rect x="4" y="3" width="24" height="24" rx="4" fill="` +
