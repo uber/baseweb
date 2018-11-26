@@ -28,6 +28,7 @@ function getLabelPadding(props) {
     [paddingSide]: scale200,
   };
 }
+
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
@@ -57,12 +58,10 @@ export const Root = styled('label', props => {
   };
 });
 
-export const RadioMark = styled('span', props => {
+export const RadioMarkInner = styled('div', props => {
   const {$checked, $disabled, $theme, $isFocused, $isError} = props;
-  const {colors, animation} = $theme;
-  const {
-    sizing: {scale0, scale100, scale300, scale600},
-  } = $theme;
+  const {animation, colors, sizing} = $theme;
+
   const activeStyle = {
     backgroundColor:
       $checked || $isError
@@ -73,28 +72,35 @@ export const RadioMark = styled('span', props => {
             ? colors.mono400
             : null,
   };
+
   return {
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
     borderRadius: '50%',
-    borderWidth: $checked ? scale300 : scale0,
-    width: $checked ? scale100 : scale600,
-    height: $checked ? scale100 : scale600,
-    backgroundImage: null,
-    flex: '0 0 auto',
+    height: $checked ? sizing.scale100 : sizing.scale600,
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
-    borderStyle: 'solid',
-    borderColor: getBorderColor(props),
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    marginTop: $theme.sizing.scale200,
-    marginBottom: $theme.sizing.scale200,
-    marginLeft: $theme.sizing.scale200,
-    marginRight: $theme.sizing.scale200,
+    width: $checked ? sizing.scale100 : sizing.scale600,
     ':hover': activeStyle,
     ':active': activeStyle,
+  };
+});
+
+export const RadioMarkOuter = styled('div', props => {
+  const {sizing} = props.$theme;
+
+  return {
+    alignItems: 'center',
+    backgroundColor: getBorderColor(props),
+    borderRadius: '50%',
+    display: 'flex',
+    height: sizing.scale700,
+    justifyContent: 'center',
+    marginTop: sizing.scale200,
+    marginRight: sizing.scale200,
+    marginBottom: sizing.scale200,
+    marginLeft: sizing.scale200,
+    verticalAlign: 'middle',
+    width: sizing.scale700,
   };
 });
 
@@ -109,6 +115,7 @@ export const Label = styled('div', props => {
     ...typography.font400,
   };
 });
+
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
   opacity: 0,
