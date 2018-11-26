@@ -83,7 +83,9 @@ export default EmoticonExample;
 
 ### `StyledStar` and `StyledEmoticon`
 
-* `$isActive: boolean`
+* `$isActive: boolean` - whether the current item is active
+* `$isSelected: boolean` - whether the current item is hovered/selected
+* `$index: number` - the current index of the item
 
 ## Accessibility
 
