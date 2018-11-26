@@ -25,7 +25,6 @@ export default () => (
     }}
     size="scale1000"
     src="https://img-may-not-exist.jpg"
-    srcFallback="https://my-fallback-img.jpg"
   />
 );
 ```
@@ -46,12 +45,10 @@ export default () => (
   Defines the width of the image. Should be an option from the $theme.sizing list otherwise, will use default.
 * `src: string` - Required
   Image to display.
-* `srcFallback: string` - Optional
-  Image to display if the primary image fails to load.
 
 ## `StatefulAvatarContainer` API
 
-* All props of a `Avatar` component.
+* All props of a `Avatar` component. Handles displaying fallback color if provided src image fails to load.
 
 ## Presentational components props API
 
