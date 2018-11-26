@@ -24,15 +24,14 @@ describe('StyledComponents', () => {
       expect(component.instance().getStyles()).toMatchSnapshot();
     });
 
-    it('displays correct styles if $isActive', () => {
-      const component = shallow(<StyledStar $isActive />);
-      expect(component.instance().getStyles()).toMatchSnapshot();
-    });
-
-    it('displays correct styles if $isSelected', () => {
-      const component = shallow(<StyledStar $isSelected />);
-      expect(component.instance().getStyles()).toMatchSnapshot();
-    });
+    it.each([['$isActive'], ['$isSelected']])(
+      'displays correct styling with state %s',
+      stateProp => {
+        const props = {[`${stateProp}`]: true};
+        const component = shallow(<StyledStar {...props} />);
+        expect(component.instance().getStyles()).toMatchSnapshot();
+      },
+    );
   });
 
   describe('StyledEmoticon', () => {
@@ -41,23 +40,23 @@ describe('StyledComponents', () => {
       expect(component.instance().getStyles()).toMatchSnapshot();
     });
 
-    it('displays correct styles if $isActive', () => {
-      const component = shallow(<StyledEmoticon $isActive $index={1} />);
-      expect(component.instance().getStyles()).toMatchSnapshot();
-    });
-
-    it('displays correct styles if $isSelected', () => {
-      const component = shallow(<StyledEmoticon $isSelected $index={1} />);
-      expect(component.instance().getStyles()).toMatchSnapshot();
-    });
+    it.each([['$isActive'], ['$isSelected']])(
+      'displays correct styling with state %s',
+      stateProp => {
+        const props = {[`${stateProp}`]: true, $index: 1};
+        const component = shallow(<StyledEmoticon {...props} />);
+        expect(component.instance().getStyles()).toMatchSnapshot();
+      },
+    );
 
     describe('EmoticonStates', () => {
-      it('displays correct SVG icon for each $index', () => {
-        for (let x = 1; x <= 5; x++) {
-          const component = shallow(<StyledEmoticon $index={x} />);
+      it.each([[1], [2], [3], [4], [5]])(
+        'displays correct SVG icon with $index=%d',
+        $index => {
+          const component = shallow(<StyledEmoticon $index={$index} />);
           expect(component.instance().getStyles()).toMatchSnapshot();
-        }
-      });
+        },
+      );
     });
   });
 });
