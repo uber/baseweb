@@ -80,8 +80,8 @@ export default function createTheme(
 
       // Background
       background: primitives.mono100,
-      backgroundAlt: primitives.mono800,
-      backgroundInv: primitives.mono100,
+      backgroundAlt: primitives.mono100,
+      backgroundInv: primitives.mono1000,
 
       // Foreground
       foreground: primitives.mono1000,
@@ -139,6 +139,25 @@ export default function createTheme(
       tickFillDisabled: primitives.mono400,
       tickBorder: primitives.mono700,
       tickMarkFill: WHITE,
+
+      // Slider
+      sliderTrackFill: primitives.mono600,
+      sliderTrackFillHover: primitives.mono700,
+      sliderTrackFillActive: primitives.mono800,
+      sliderTrackFillSelected: primitives.primary400,
+      sliderTrackFillSelectedHover: primitives.primary500,
+      sliderTrackFillSelectedActive: primitives.primary600,
+      sliderTrackFillDisabled: primitives.mono600,
+      sliderHandleFill: WHITE,
+      sliderHandleFillHover: WHITE,
+      sliderHandleFillActive: WHITE,
+      sliderHandleFillSelected: WHITE,
+      sliderHandleFillSelectedHover: WHITE,
+      sliderHandleFillSelectedActive: WHITE,
+      sliderHandleFillDisabled: primitives.mono500,
+      sliderBorder: primitives.mono500,
+      sliderBorderHover: primitives.primary400,
+      sliderBorderDisabled: primitives.mono600,
     },
     typography: {
       font100: {

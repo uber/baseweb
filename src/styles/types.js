@@ -124,6 +124,25 @@ export type ColorsT = {
   tickBorder: string,
   tickMarkFill: string,
 
+  // Slider
+  sliderTrackFill: string,
+  sliderTrackFillHover: string,
+  sliderTrackFillActive: string,
+  sliderTrackFillSelected: string,
+  sliderTrackFillSelectedHover: string,
+  sliderTrackFillSelectedActive: string,
+  sliderTrackFillDisabled: string,
+  sliderHandleFill: string,
+  sliderHandleFillHover: string,
+  sliderHandleFillActive: string,
+  sliderHandleFillSelected: string,
+  sliderHandleFillSelectedHover: string,
+  sliderHandleFillSelectedActive: string,
+  sliderHandleFillDisabled: string,
+  sliderBorder: string,
+  sliderBorderHover: string,
+  sliderBorderDisabled: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,
