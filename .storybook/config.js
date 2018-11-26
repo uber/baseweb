@@ -4,7 +4,7 @@ import {withOptions} from '@storybook/addon-options';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../src/styles';
-import {DarkTheme} from '../src/themes';
+import {LightTheme} from '../src/themes';
 import {withInfo} from '@storybook/addon-info';
 import {checkA11y} from '@storybook/addon-a11y';
 import {withKnobs} from '@storybook/addon-knobs';
@@ -37,7 +37,7 @@ addDecorator(checkA11y);
 addDecorator(story => {
   return (
     <StyletronProvider value={engine}>
-      <ThemeProvider theme={DarkTheme}>{story()}</ThemeProvider>
+      <ThemeProvider theme={LightTheme}>{story()}</ThemeProvider>
     </StyletronProvider>
   );
 });
