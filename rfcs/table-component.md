@@ -3,26 +3,30 @@
 Represents control to render tabular data.
 
 ## Features
-- Sorting
-- Basic mobile responsiveness (overflow scrollbar)
 
+* Sorting
+* Basic mobile responsiveness (overflow scrollbar)
 
 ## Unsupported
-- Pagination
-- Filtering
-- Fixed Header
-- Fixed Column
-- Striped Tables
-- Hoverable row styling
-- Multi-column sort
-- Row headers
-- Expandable Row
+
+* Pagination
+* Filtering
+* Fixed Header
+* Fixed Column
+* Striped Tables
+* Hoverable row styling
+* Multi-column sort
+* Row headers
+* Expandable Row
 
 ## Usage
 
 ### Basic usage
-#### Render static tabular data.
+
+#### Render static tabular data
+
 ```javascript
+
 import * as React from 'react';
 import {Table} from 'baseui/table';
 const data = {
@@ -66,7 +70,9 @@ export default () => <Table data={data} columns={columns}/>;
 ```
 
 #### Styled Components
-```
+
+```javascript
+
 const CustomTd = styled(Td, props => ({
   textColor: 'red',
 }));
@@ -124,9 +130,12 @@ export default = () => <Table columns={columns} dataSource={data}/>,
 ```
 
 #### Custom Table Rendering
+
 There may be a case where more complex layouts are needed,
 such as columns that with colSpan > 1 and/or rowspan > 1
-```
+
+```javascript
+
 export default() => {
     <Table
      render: (dataSource, columns) => {
@@ -177,6 +186,7 @@ export default() => {
 ### Advanced Usages
 
 #### Remote Data
+
 Paginate data from a remote backend.
 
 ```javascript
@@ -241,7 +251,6 @@ class TableWithPagination extends React.Component {
 }
 ```
 
-
 ## Exports
 
 * `Table`
@@ -270,35 +279,41 @@ class TableWithPagination extends React.Component {
   * `Td` - A data cell in the table. Corresponds with the `td` html element.
   * `Tr` - A data row that contains `Td` components.
 
-
 ## `Column` API
+
 One of the Table columns prop for describing the table's columns, Column has the same API.
+
 * `title: string` - Required. Title of the column to display in the header.
 * `dataIndex: string` - Optional. Attribute at which to index the row data.
-* `render: <T>(<T>, index, Array<T>) => $ReactNode` - Optional.	Renderer of the table cell. The return value should be a ReactNode.
+* `render: <T>(<T>, index, Array<T>) => $ReactNode` - Optional. Renderer of the table cell. The return value should be a ReactNode.
 * `sorter:Function`- Optional  Sort function for [local sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 * `defaultSortOrder:'ascend'|'descend'`: Only to be declared on one of the columns, this will be define the default sort on the initial set of data.
 
 ## Presentation Components
 
 ### `Tbody` API
+
 Please refer to the [tbody DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody)
 
 ### `Thead` API
+
 Please refer to the [thead DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead)
 
 ### `TheadTr` API
+
 Please refer to the [tr DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
 
 ### `Td` API
+
 Please refer to the [td DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td)
 
 ### `Th` API
+
 Please refer to the [th DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th)
 
 ### `Tr` API
-Please refer to the [th DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
 
+Please refer to the [th DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
 
 ### Dependencies
 
