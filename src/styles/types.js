@@ -143,6 +143,12 @@ export type ColorsT = {
   sliderBorderHover: string,
   sliderBorderDisabled: string,
 
+  // Input
+  inputFill: string,
+  inputFillError: string,
+  inputFillDisabled: string,
+  inputTextDisabled: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,

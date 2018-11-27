@@ -158,6 +158,12 @@ export default function createTheme(
       sliderBorder: primitives.mono500,
       sliderBorderHover: primitives.primary400,
       sliderBorderDisabled: primitives.mono600,
+
+      // Inputs
+      inputFill: primitives.mono200,
+      inputFillError: primitives.negative50,
+      inputFillDisabled: primitives.mono300,
+      inputTextDisabled: primitives.mono600,
     },
     typography: {
       font100: {

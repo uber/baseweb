@@ -94,6 +94,12 @@ export const DarkTheme = createTheme(
       sliderBorder: WHITE,
       sliderBorderHover: WHITE,
       sliderBorderDisabled: primitives.mono400,
+
+      // Input
+      inputFill: primitives.mono600,
+      inputFillError: primitives.mono600,
+      inputFillDisabled: primitives.mono700,
+      inputTextDisabled: primitives.mono500,
     },
   },
 );
