@@ -164,6 +164,9 @@ export default function createTheme(
       inputFillError: primitives.negative50,
       inputFillDisabled: primitives.mono300,
       inputTextDisabled: primitives.mono600,
+
+      // Menu
+      menuFillHover: primitives.mono300,
     },
     typography: {
       font100: {

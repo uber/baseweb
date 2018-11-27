@@ -149,6 +149,9 @@ export type ColorsT = {
   inputFillDisabled: string,
   inputTextDisabled: string,
 
+  // Menu
+  menuFillHover: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,

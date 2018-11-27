@@ -100,6 +100,9 @@ export const DarkTheme = createTheme(
       inputFillError: primitives.mono600,
       inputFillDisabled: primitives.mono700,
       inputTextDisabled: primitives.mono500,
+
+      // Menu
+      menuFillHover: primitives.mono600,
     },
   },
 );
