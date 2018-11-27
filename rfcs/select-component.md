@@ -121,6 +121,9 @@ export default () => {
 * `StyledClearIcon`
 * `StyledSearchIcon`
 * `StyledOptionContent`
+* `SIZE`
+* `TYPE`
+* `STATE_CHANGE_TYPE`
 
 ## `StatefulSelect` API
 
@@ -145,7 +148,7 @@ export default () => {
   Defines if the control if in error state
 * `escapeClearsValue: boolean` - Optional. Defaults to `true`
   Defines if the value is cleared when escape is pressed and the dropdown is closed
-* `filterOptions: (options: Array<{}>, filterValue: string, excludeOptions: {} | Array<{}>) => options: Array<{}>` - Optional. Defaults to `filterOptions` that excludes selected options for multi select
+* `filterOptions: (options: Array<{}>, filterValue: string, excludeOptions: Array<{}>) => options: Array<{}>` - Optional. Defaults to `filterOptions` that excludes selected options for multi select
   A custom method to filter options to be displayed in the dropdown
 * `filterOutSelected: boolean` - Optional. Defaults to `true`
   Defines if currently selected options are filtered out in the dropdown options
@@ -163,15 +166,15 @@ export default () => {
   Defines if multiple options can be selected
 * `noResultsMsg: React.Node` - Optional. Defaults to `'No results found'`
   Message to be displayed if no options is found for a search query
-* `onBlur: () => {}` - Optional
+* `onBlur: (e) => {}` - Optional
   onBlur event handler
 * `onBlurResetsInput: boolean` - Optional. Defaults to `true`
   Defines if the input value is reset to an empty string when a blur event happens on the select
-* `onChange: () => {}` - Optional
+* `onChange: ({value: Array<Object>, option: ?Object, type: $Keys<typeof STATE_CHANGE_TYPE>}) => {}` - Optional
   onChange handler of the select to be called when a value is changed
-* `onFocus: () => {}` - Optional
+* `onFocus: (e) => {}` - Optional
   onFocus event handler
-* `onInputChange: () => {}` - Optional
+* `onInputChange: (e) => {}` - Optional
   onChange handler for an underlying input element to be called when a search query value is changed
 * `onCloseResetsInput: true` - Optional. Defaults to `true`
   Defines if the input value is reset to an empty string when dropdown is closed

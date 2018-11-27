@@ -123,7 +123,7 @@ export default {
       />
     );
   },
-  [tests.SELECT_MULTI]: function Story2() {
+  [tests.MULTI_SELECT]: function Story2() {
     return (
       <StatefulSelect
         {...options}

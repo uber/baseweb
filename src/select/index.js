@@ -28,5 +28,5 @@ export {
   StyledOptionContent,
 } from './styled-components';
 export {default as filterOptions} from './utils/default-filter-options';
-export {TYPE, STATE_CHANGE_TYPE} from './constants';
+export {SIZE, TYPE, STATE_CHANGE_TYPE} from './constants';
 export * from './types';

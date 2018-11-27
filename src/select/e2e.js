@@ -74,7 +74,7 @@ describe('The select component', () => {
   it('does not close dropdown after multiple selections were made', browser => {
     goToUrl({
       suite,
-      test: scenarios.SELECT_MULTI,
+      test: scenarios.MULTI_SELECT,
       browser,
     })
       .waitForElementVisible(selectors.selectInput)
