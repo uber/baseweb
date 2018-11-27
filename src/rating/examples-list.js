@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 module.exports = {
   DEFAULT: 'Rating stars',
+  CUSTOM_STARS: 'Rating with 10 stars',
   EMOTICON: 'Rating emoticons',
   OVERRIDES: 'Rating overrides customization',
 };

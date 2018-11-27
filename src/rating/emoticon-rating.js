@@ -8,18 +8,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {KIND} from './constants';
-import type {RatingPropsT, RatingStateT} from './types';
-import {StyledRoot, StyledStar, StyledEmoticon} from './styled-components';
+import type {EmoticonRatingPropsT, RatingStateT} from './types';
+import {StyledRoot, StyledEmoticon} from './styled-components';
 import {getOverrides} from '../helpers/overrides';
 
 const ENTER_KEY_CODE = 13;
 const SPACE_KEY_CODE = 32;
 
-class Rating extends React.Component<RatingPropsT, RatingStateT> {
+class EmoticonRating extends React.Component<
+  EmoticonRatingPropsT,
+  RatingStateT,
+> {
   static defaultProps = {
     overrides: {},
-    kind: KIND.star,
   };
 
   state = {};
@@ -36,40 +37,29 @@ class Rating extends React.Component<RatingPropsT, RatingStateT> {
   };
 
   renderRatingContents = () => {
-    const {overrides = {}, value = -1, kind} = this.props;
+    const {overrides = {}, value = -1} = this.props;
     const {previewIndex} = this.state;
 
-    const [Star, starProps] = getOverrides(overrides.Star, StyledStar);
     const [Emoticon, emoticonProps] = getOverrides(
-      overrides.Emoticon,
+      overrides.Item,
       StyledEmoticon,
     );
 
     const ratings = [];
-    const RatingItem = kind === KIND.star ? Star : Emoticon;
-    const overrideProps = kind === KIND.star ? starProps : emoticonProps;
 
     for (let x = 1; x <= 5; x++) {
-      let isChecked = x <= value;
-      let isActive =
-        previewIndex !== undefined ? x <= previewIndex : x <= value;
-
-      if (kind !== KIND.star) {
-        isChecked = x === value;
-        isActive =
-          previewIndex !== undefined ? x === previewIndex : x === value;
-      }
-
       ratings.push(
-        <RatingItem
+        <Emoticon
           key={x}
           role="radio"
           tabIndex={0}
           aria-setsize={5}
-          aria-checked={isChecked}
+          aria-checked={x === value}
           aria-posinset={x}
           $index={x}
-          $isActive={isActive}
+          $isActive={
+            previewIndex !== undefined ? x === previewIndex : x === value
+          }
           $isSelected={x === previewIndex}
           onClick={() => this.selectItem(x)}
           onKeyDown={e => {
@@ -81,7 +71,7 @@ class Rating extends React.Component<RatingPropsT, RatingStateT> {
           onMouseOver={() => this.updatePreview(x)}
           onMouseLeave={() => this.updatePreview(undefined)}
           onBlur={() => this.updatePreview(undefined)}
-          {...overrideProps}
+          {...emoticonProps}
         />,
       );
     }
@@ -101,4 +91,4 @@ class Rating extends React.Component<RatingPropsT, RatingStateT> {
   }
 }
 
-export default Rating;
+export default EmoticonRating;

@@ -8,19 +8,21 @@ LICENSE file in the root directory of this source tree.
 
 import type {ThemeT} from '../styles/types';
 import type {OverrideT} from '../helpers/overrides';
-import {KIND} from './constants';
 
 export type RatingOverridesT = {
   Root?: OverrideT<*>,
-  Star?: OverrideT<*>,
-  Emoticon?: OverrideT<*>,
+  Item?: OverrideT<*>,
 };
 
-export type RatingKindT = $Keys<typeof KIND>;
-
-export type RatingPropsT = {
+export type StarRatingPropsT = {
   overrides?: RatingOverridesT,
-  kind: RatingKindT,
+  value?: number,
+  numItems: number,
+  onChange?: ({value: number}) => void,
+};
+
+export type EmoticonRatingPropsT = {
+  overrides?: RatingOverridesT,
   value?: number,
   onChange?: ({value: number}) => void,
 };

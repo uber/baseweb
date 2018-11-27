@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Rating, KIND} from './';
+import {StarRating, EmoticonRating} from './';
 import type {StyledRatingItemPropsT} from './';
 import examples from './examples-list';
 import {styled} from '../styles/index';
@@ -24,7 +24,7 @@ export default {
 
       render() {
         return (
-          <Rating
+          <StarRating
             value={this.state.value}
             onChange={({value}) => this.setState({value})}
           />
@@ -34,14 +34,14 @@ export default {
 
     return <Example />;
   },
-  [examples.EMOTICON]: function Story2() {
+  [examples.CUSTOM_STARS]: function Story2() {
     class Example extends React.Component<{}, ExampleState> {
       state = {};
 
       render() {
         return (
-          <Rating
-            kind={KIND.emoticon}
+          <StarRating
+            numItems={10}
             value={this.state.value}
             onChange={({value}) => this.setState({value})}
           />
@@ -51,7 +51,23 @@ export default {
 
     return <Example />;
   },
-  [examples.OVERRIDES]: function Story3() {
+  [examples.EMOTICON]: function Story3() {
+    class Example extends React.Component<{}, ExampleState> {
+      state = {};
+
+      render() {
+        return (
+          <EmoticonRating
+            value={this.state.value}
+            onChange={({value}) => this.setState({value})}
+          />
+        );
+      }
+    }
+
+    return <Example />;
+  },
+  [examples.OVERRIDES]: function Story4() {
     const StyledCustomItem = styled('li', ({$isSelected, $isActive}) => {
       return {
         display: 'inline-block',
@@ -69,7 +85,7 @@ export default {
 
       render() {
         return (
-          <Rating
+          <StarRating
             overrides={{
               Star: {
                 component: CustomRatingItem,

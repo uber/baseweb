@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export {default as Rating} from './rating';
-export * from './constants';
+export {default as StarRating} from './star-rating';
+export {default as EmoticonRating} from './emoticon-rating';
 export * from './styled-components';
 export * from './types';

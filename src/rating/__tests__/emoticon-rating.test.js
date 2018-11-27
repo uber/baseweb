@@ -9,14 +9,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Rating} from '../';
+import {EmoticonRating} from '..';
 
-describe('Rating', () => {
+describe('EmoticonRating', () => {
   let example, onChangeSpy;
 
   beforeEach(() => {
     onChangeSpy = jest.fn();
-    example = shallow(<Rating value={2} onChange={onChangeSpy} />);
+    example = shallow(<EmoticonRating value={2} onChange={onChangeSpy} />);
   });
 
   describe('Root', () => {
