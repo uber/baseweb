@@ -37,6 +37,6 @@ export const DropdownMenu = styled(StyledList, ({$theme}) => ({
 }));
 
 export const DropdownButton = styled(StyledBaseButton, ({$theme}) => ({
-  color: $theme.colors.black,
+  color: $theme.colors.foreground,
   minWidth: `calc(${$theme.sizing.scale1600} + ${$theme.sizing.scale400})`,
 }));
