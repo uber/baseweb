@@ -15,7 +15,7 @@ export const Body = styled('div', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     marginBottom: sizing.scale600,
-    color: colors.foreground,
+    color: colors.foregroundAlt,
     ...typography.font400,
   };
 });
