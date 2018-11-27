@@ -102,7 +102,7 @@
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
     "nightwatch": "^0.9.21",
-    "nightwatch-accessibility": "^1.6.0",
+    "nightwatch-accessibility": "^1.7.1",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.4.1",
     "react": "^16.4.0",
