@@ -18,7 +18,7 @@ describe('The button component', () => {
     browser.end(() => done());
   });
 
-  it('passes basic a11y tests', browser => {
+  xit('passes basic a11y tests', browser => {
     goToUrl({
       suite,
       test: scenarios.BUTTON_WITH_ENHANCERS,
