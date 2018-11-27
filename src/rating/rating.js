@@ -36,7 +36,7 @@ class Rating extends React.Component<RatingPropsT, RatingStateT> {
   };
 
   renderRatingContents = () => {
-    const {overrides = {}, value = -1} = this.props;
+    const {overrides = {}, value = -1, kind} = this.props;
     const {previewIndex} = this.state;
 
     const [Star, starProps] = getOverrides(overrides.Star, StyledStar);
@@ -46,23 +46,30 @@ class Rating extends React.Component<RatingPropsT, RatingStateT> {
     );
 
     const ratings = [];
-    const RatingItem = this.props.kind === KIND.star ? Star : Emoticon;
-    const overrideProps =
-      this.props.kind === KIND.star ? starProps : emoticonProps;
+    const RatingItem = kind === KIND.star ? Star : Emoticon;
+    const overrideProps = kind === KIND.star ? starProps : emoticonProps;
 
     for (let x = 1; x <= 5; x++) {
+      let isChecked = x <= value;
+      let isActive =
+        previewIndex !== undefined ? x <= previewIndex : x <= value;
+
+      if (kind !== KIND.star) {
+        isChecked = x === value;
+        isActive =
+          previewIndex !== undefined ? x === previewIndex : x === value;
+      }
+
       ratings.push(
         <RatingItem
           key={x}
           role="radio"
           tabIndex={0}
           aria-setsize={5}
-          aria-checked={x <= value}
+          aria-checked={isChecked}
           aria-posinset={x}
           $index={x}
-          $isActive={
-            previewIndex !== undefined ? x <= previewIndex : x <= value
-          }
+          $isActive={isActive}
           $isSelected={x === previewIndex}
           onClick={() => this.selectItem(x)}
           onKeyDown={e => {

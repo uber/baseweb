@@ -11,6 +11,7 @@ import React from 'react';
 import {Rating, KIND} from './';
 import type {StyledRatingItemPropsT} from './';
 import examples from './examples-list';
+import {styled} from '../styles/index';
 
 type ExampleState = {
   value?: number,
@@ -50,23 +51,17 @@ export default {
 
     return <Example />;
   },
-  [examples.OVERRIDES]: function Story2() {
-    const CustomRatingItem = ({
-      $index,
-      $isActive,
-      $isSelected,
-      ...props
-    }: StyledRatingItemPropsT) => (
-      <div
-        {...props}
-        style={{
-          display: 'inline-block',
-          marginRight: 8,
-          color: $isSelected ? 'blue' : $isActive && 'red',
-        }}
-      >
-        {$index}
-      </div>
+  [examples.OVERRIDES]: function Story3() {
+    const StyledCustomItem = styled('li', ({$isSelected, $isActive}) => {
+      return {
+        display: 'inline-block',
+        marginRight: 8,
+        color: $isSelected ? 'blue' : $isActive ? 'red' : '',
+      };
+    });
+
+    const CustomRatingItem = ({$index, ...props}: StyledRatingItemPropsT) => (
+      <StyledCustomItem {...props}>{$index}</StyledCustomItem>
     );
 
     class Example extends React.Component<{}, ExampleState> {
