@@ -11,7 +11,7 @@ import {styled} from '../../../../src/styles';
 import {LightTheme} from '../../../../src/themes';
 import {Block} from '../../../../src/block';
 
-const StyledLightingBox = styled('div', ({$theme, $boxShadow = ''}) => {
+const StyledTypographyBox = styled('div', ({$theme, $boxShadow = ''}) => {
   return {
     marginTop: $theme.sizing.scale200,
     height: $theme.sizing.scale4800,
@@ -27,7 +27,7 @@ function LightingPreview({name, boxShadow}) {
       <Block font="font400">
         {name} ({boxShadow})
       </Block>
-      <StyledLightingBox $boxShadow={boxShadow} />
+      <StyledTypographyBox $boxShadow={boxShadow} />
     </Block>
   );
 }
