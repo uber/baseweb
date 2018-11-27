@@ -16,6 +16,7 @@ import {vs} from 'react-syntax-highlighter/dist/styles/hljs';
 
 import Welcome from './welcome.md';
 import GettingStarted from './getting-started.md';
+import ThemingPage from './theming';
 
 import {styled} from '../../src/styles';
 
@@ -54,4 +55,8 @@ parsedDocs.forEach(doc => {
       />
     );
   });
+});
+
+storiesOf('Introduction', module).add('Themable values', () => {
+  return <ThemingPage />;
 });
