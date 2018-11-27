@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 
 import React from 'react';
-import {Block} from '../../../src/block';
-import {styled} from '../../../src/styles';
+import {Block} from '../../../../src/block';
+import {styled} from '../../../../src/styles';
 
 export function Header({children}) {
   return (

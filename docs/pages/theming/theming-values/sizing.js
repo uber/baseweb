@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Header, ExampleWrapper} from './common';
-import {styled} from '../../../src/styles';
-import {LightTheme} from '../../../src/themes';
-import {Block} from '../../../src/block';
+import {styled} from '../../../../src/styles';
+import {LightTheme} from '../../../../src/themes';
+import {Block} from '../../../../src/block';
 
 const StyledSizeBox = styled('div', ({$size, $theme}) => {
   return {
@@ -58,7 +58,7 @@ function Sizing() {
       <Header>Sizing</Header>
       <ExampleWrapper>
         {Object.keys(sizing).map(sizeKey => (
-          <SizePreview name={sizeKey} size={sizing[sizeKey]} />
+          <SizePreview key={sizeKey} name={sizeKey} size={sizing[sizeKey]} />
         ))}
       </ExampleWrapper>
     </div>

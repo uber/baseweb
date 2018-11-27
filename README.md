@@ -50,7 +50,7 @@ export default function Hello() {
 
 ## Docs
 
-* [Creating custom themes](src/themes/README.md)
+* [Creating custom themes](docs/pages/theming/custom-themes.md)
 * [Event handler usage](docs/event-handlers.md)
 * [Docs by Storybook](https://baseui.netlify.com/)
 

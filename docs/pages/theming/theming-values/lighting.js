@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Header, ExampleWrapper} from './common';
-import {styled} from '../../../src/styles';
-import {LightTheme} from '../../../src/themes';
-import {Block} from '../../../src/block';
+import {styled} from '../../../../src/styles';
+import {LightTheme} from '../../../../src/themes';
+import {Block} from '../../../../src/block';
 
 const StyledLightingBox = styled('div', ({$theme, $boxShadow = ''}) => {
   return {
@@ -53,6 +53,7 @@ function Lighting() {
       <ExampleWrapper>
         {Object.keys(lighting).map(lightingKey => (
           <LightingPreview
+            key={lightingKey}
             name={lightingKey}
             boxShadow={lighting[lightingKey]}
           />

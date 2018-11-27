@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 
 import React from 'react';
-import {styled} from '../../../src/styles';
+import {styled} from '../../../../src/styles';
 import {Header, ExampleWrapper} from './common';
-import {LightTheme} from '../../../src/themes';
+import {LightTheme} from '../../../../src/themes';
 
 const StyledColorWrapper = styled(
   'div',
