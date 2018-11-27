@@ -24,7 +24,7 @@ describe('The checkbox component', () => {
     browser.end(() => done());
   });
 
-  it('can switch states', browser => {
+  xit('can switch states', browser => {
     goToUrl({
       suite,
       test: scenarios.INDETERMINATE,

@@ -22,7 +22,7 @@ describe.only('The Tag component', () => {
     browser.end(() => done());
   });
 
-  it('passes basic accessiblity tests', browser => {
+  xit('passes basic accessiblity tests', browser => {
     goToUrl({
       suite,
       test: scenarios.ALL_BASIC_COLORS,
