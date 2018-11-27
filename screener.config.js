@@ -17,6 +17,7 @@ const Modal = require('./src/modal/examples-list');
 const Pagination = require('./src/pagination/examples-list');
 const Popover = require('./src/popover/examples-list');
 const Radio = require('./src/radio/examples-list');
+const Rating = require('./src/rating/examples-list');
 const Select = require('./src/select/examples-list');
 const Slider = require('./src/slider/examples-list');
 const Textarea = require('./src/textarea/examples-list');
@@ -45,6 +46,8 @@ module.exports = {
     new RegExp(Pagination.STATEFUL_PAGINATION),
     new RegExp(Popover.SIMPLE_EXAMPLE),
     new RegExp(Radio.SIMPLE_EXAMPLE),
+    new RegExp(Rating.DEFAULT),
+    new RegExp(Rating.EMOTICON),
     new RegExp(Select.MULTI_SELECT),
     new RegExp(Slider.AS_SIMPLE_RANGE_SLIDER),
     new RegExp(Textarea.STATE_EXAMPLE),
