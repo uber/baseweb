@@ -21,6 +21,7 @@ export function getSvgStyles({$theme, $size, $color}: StyledComponentParamsT) {
   return {
     display: 'inline-block',
     fill: $color || 'currentColor',
+    color: $color || 'currentColor',
     height: $size,
     width: $size,
   };

@@ -2,6 +2,7 @@
 
 exports[`Icon styled components Svg has correct default styles: Svg basic render 1`] = `
 Object {
+  "color": "currentColor",
   "display": "inline-block",
   "fill": "currentColor",
   "height": "$theme.sizing.scale600",
