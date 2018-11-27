@@ -87,7 +87,7 @@ export default {
         return (
           <StarRating
             overrides={{
-              Star: {
+              Item: {
                 component: CustomRatingItem,
               },
             }}
