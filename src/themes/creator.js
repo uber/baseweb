@@ -332,6 +332,21 @@ export default function createTheme(
     tooltip: {
       backgroundColor: primitives.mono900,
     },
+    grid: {
+      base0: '4px',
+      base320: '4px',
+      base360: '4px',
+      base375: '4px',
+      base414: '4px',
+      base600: '6px',
+      base720: '6px',
+      base768: '6px',
+      base1024: '8px',
+      base1280: '8px',
+      base1366: '8px',
+      base1440: '10px',
+      base1920: '12px',
+    },
   };
 
   // to remove the flowfixme, we have to make deepMerge accept a ThemeT

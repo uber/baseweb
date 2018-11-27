@@ -246,6 +246,22 @@ export type ZIndexT = {
   modal: number,
 };
 
+export type GridT = {
+  base0: string,
+  base320: string,
+  base360: string,
+  base375: string,
+  base414: string,
+  base600: string,
+  base720: string,
+  base768: string,
+  base1024: string,
+  base1280: string,
+  base1366: string,
+  base1440: string,
+  base1920: string,
+};
+
 export type ThemeT = {|
   colors: ColorsT,
   typography: TypographyT,
@@ -254,4 +270,5 @@ export type ThemeT = {|
   animation: AnimationT,
   borders: BordersT,
   zIndex: ZIndexT,
+  grid: GridT,
 |};
