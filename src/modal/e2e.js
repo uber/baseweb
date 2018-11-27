@@ -24,7 +24,7 @@ describe('The modal component', () => {
     browser.end(() => done());
   });
 
-  it('handles focus changes properly', browser => {
+  xit('handles focus changes properly', browser => {
     goToUrl({
       suite,
       test: scenarios.SIMPLE_EXAMPLE,
