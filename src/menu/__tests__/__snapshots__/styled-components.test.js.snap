@@ -126,7 +126,7 @@ Object {
 
 exports[`Menu Styled Components ProfileBody - basic render: correct styles 1`] = `
 Object {
-  "color": "$theme.colors.foreground",
+  "color": "$theme.colors.foregroundAlt",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
   "fontWeight": "$theme.typography.font200.fontWeight",
