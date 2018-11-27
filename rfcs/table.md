@@ -245,7 +245,6 @@ class TableWithPagination extends React.Component {
 ## Exports
 
 * `Table`
-* `StatefulTable`
 * `Tbody`
 * `Thead`
 * `TheadTr`
