@@ -28,6 +28,7 @@ Object {
 
 exports[`Component styled components StyledCloseIcon - basic render: StyledSvg has correct default styles 1`] = `
 Object {
+  "color": "currentColor",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
