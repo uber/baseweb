@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar styled components default properties: StyledAvatar has expected default styles 1`] = `
+Object {
+  "borderRadius": "50%",
+  "display": "block",
+  "height": "$theme.sizing.scale1000",
+  "width": "$theme.sizing.scale1000",
+}
+`;
+
+exports[`Avatar styled components default properties: StyledRoot has expected default styles 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.mono400",
+  "borderRadius": "50%",
+  "display": "inline-block",
+  "height": null,
+  "width": null,
+}
+`;
+
+exports[`Avatar styled components non-default size: StyledAvatar has expected default styles 1`] = `
+Object {
+  "borderRadius": "50%",
+  "display": "block",
+  "height": "$theme.sizing.scale1200",
+  "width": "$theme.sizing.scale1200",
+}
+`;
+
+exports[`Avatar styled components non-default size: StyledRoot has expected default styles 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.mono400",
+  "borderRadius": "50%",
+  "display": "inline-block",
+  "height": null,
+  "width": null,
+}
+`;
