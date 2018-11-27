@@ -24,6 +24,11 @@ describe('EmoticonRating', () => {
       expect(example).toHaveProp('tabIndex', 0);
       expect(example).toHaveProp('role', 'radiogroup');
     });
+
+    it('removes previewIndex if mouse leaves', () => {
+      example.simulate('mouseLeave');
+      expect(example).toHaveState('previewIndex', undefined);
+    });
   });
 
   describe('RatingItem', () => {
@@ -64,11 +69,6 @@ describe('EmoticonRating', () => {
     it('updates previewIndex if item is moused over', () => {
       example.childAt(3).simulate('mouseOver');
       expect(example).toHaveState('previewIndex', 4);
-    });
-
-    it('removes previewIndex if mouse leaves item', () => {
-      example.childAt(3).simulate('mouseLeave');
-      expect(example).toHaveState('previewIndex', undefined);
     });
 
     it('removes previewIndex if item is blured', () => {

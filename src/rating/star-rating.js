@@ -11,9 +11,7 @@ import React from 'react';
 import type {StarRatingPropsT, RatingStateT} from './types';
 import {StyledRoot, StyledStar} from './styled-components';
 import {getOverrides} from '../helpers/overrides';
-
-const ENTER_KEY_CODE = 13;
-const SPACE_KEY_CODE = 32;
+import {ENTER_KEY_CODE, SPACE_KEY_CODE} from './utils';
 
 class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   static defaultProps = {
@@ -64,7 +62,6 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           }}
           onFocus={() => this.updatePreview(x)}
           onMouseOver={() => this.updatePreview(x)}
-          onMouseLeave={() => this.updatePreview(undefined)}
           onBlur={() => this.updatePreview(undefined)}
           {...starProps}
         />,
@@ -79,7 +76,13 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
     return (
-      <Root tabIndex={0} role="radiogroup" {...rootProps}>
+      <Root
+        tabIndex={0}
+        role="radiogroup"
+        onBlur={() => this.updatePreview(undefined)}
+        onMouseLeave={() => this.updatePreview(undefined)}
+        {...rootProps}
+      >
         {this.renderRatingContents()}
       </Root>
     );
