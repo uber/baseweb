@@ -126,5 +126,5 @@ export const ProfileSubtitle = styled('p', ({$theme}) => ({
 export const ProfileBody = styled('p', ({$theme}) => ({
   ...$theme.typography.font200,
   margin: 0,
-  color: $theme.colors.foreground,
+  color: $theme.colors.foregroundAlt,
 }));
