@@ -17,12 +17,12 @@ const selectors = {
   tags: 'span',
 };
 
-describe.only('The Tag component', () => {
+describe('The Tag component', () => {
   after((browser, done) => {
     browser.end(() => done());
   });
 
-  it('passes basic accessiblity tests', browser => {
+  xit('passes basic accessiblity tests', browser => {
     goToUrl({
       suite,
       test: scenarios.ALL_BASIC_COLORS,

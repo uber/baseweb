@@ -1,9 +1,9 @@
-# Rating Component
+# Rating Components
 
-The `Rating` component includes two main types:
+The `Rating` pattern includes 2 main components:
 
-* `STAR` (default)
-* `EMOTICON`
+* `StarRating` - custom number of items
+* `EmoticonRating` - fixed number of items
 
 ## Usage
 
@@ -11,16 +11,16 @@ The `Rating` component includes two main types:
 
 ```javascript
 import * as React from 'react';
-import {Rating} from 'baseui/rating';
+import {StarRating} from 'baseui/rating';
 
-export default () => <Rating />;
+export default () => <StarRating />;
 ```
 
 ### Advanced usage (Emoticon)
 
 ```javascript
 import * as React from 'react';
-import {Rating, KIND} from 'baseui/rating';
+import {EmoticonRating} from 'baseui/rating';
 
 class EmoticonExample extends React.Component {
   state = {
@@ -29,8 +29,7 @@ class EmoticonExample extends React.Component {
 
   render() {
     return (
-      <Rating
-        kind={KIND.EMOTICON}
+      <EmoticonRating
         value={this.state.rating}
         onChange={({value}) => {
           this.setState({ rating: value });
@@ -44,40 +43,33 @@ export default EmoticonExample;
 
 ## Exports
 
-* `Rating`
-* `StatefulContainer`
+* `StarRating`
+* `EmoticonRating`
 * `StyledRoot`
 * `StyledStar`
 * `StyledEmoticon`
-* `STATE_CHANGE_TYPE`
-* `KIND`
 
-## `Rating` API
+## `StarRating` API
 
-* `kind: KIND` - Optional
-  The type of `Rating` to display
+* `value: number` - Optional
+  The current rating value
+* `numItems: number` - Optional
+  The total number of items to display
+* `onChange: ({value}) => void` - Optional
+  Callback that returns a newly selected value
+* `overrides: {}` - Optional
+  * `Root: ?React.ComponentType` component to use for root Rating styling
+  * `Item: ?React.ComponentType` component to use for star ratings
+
+## `EmoticonRating` API
+
 * `value: number` - Optional
   The current rating value
 * `onChange: ({value}) => void` - Optional
   Callback that returns a newly selected value
 * `overrides: {}` - Optional
   * `Root: ?React.ComponentType` component to use for root Rating styling
-  * `Star: ?React.ComponentType` component to use for star ratings
-  * `Emoticon: ?React.ComponentType` component to use for emoticon ratings
-
-## `StatefulContainer` API
-
-* `children: (props: Props) => React.Node` - Required
-* `initialState: {value: number}` - Optional
-  Initial state of an uncontrolled input component. - `value` - an initial rating value
-* `stateReducer: (type: 'change', nextState: {}, currentState: {}, e: Event) => stateToSet: {}` - Optional
-  A state change handler.
-  * `type` - a state change type
-  * `nextState` - a new state value to be set
-  * `currentState` - current state value
-  * `stateToSet` - a return value that the state will be updated with
-* `onChange: (e: SyntheticEvent<HTMLInputElement>) => void` - Optional
-  onChange event handler.
+  * `Item: ?React.ComponentType` component to use for star ratings
 
 ## Presentational components props API
 

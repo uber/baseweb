@@ -19,7 +19,7 @@ describe('The card component', () => {
   });
 
   Object.keys(scenarios).forEach(scenario => {
-    it(`passes basic a11y tests for ${scenario}`, browser => {
+    xit(`passes basic a11y tests for ${scenario}`, browser => {
       goToUrl({
         suite,
         test: scenarios[scenario],
