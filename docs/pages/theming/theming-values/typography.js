@@ -21,17 +21,6 @@ const StyledTypographyBox = styled('div', ({$theme, $boxShadow = ''}) => {
   };
 });
 
-function LightingPreview({name, boxShadow}) {
-  return (
-    <Block width="250px" margin="scale800">
-      <Block font="font400">
-        {name} ({boxShadow})
-      </Block>
-      <StyledTypographyBox $boxShadow={boxShadow} />
-    </Block>
-  );
-}
-
 function TypographyPreview({font}) {
   return (
     <Block margin="scale800">
