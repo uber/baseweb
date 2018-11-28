@@ -14,19 +14,22 @@ import FrontMatter from 'front-matter';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {vs} from 'react-syntax-highlighter/dist/styles/hljs';
 
-import Welcome from './welcome.md';
-import GettingStarted from './getting-started.md';
+import Welcome from './introduction/welcome.md';
+import GettingStarted from './introduction/getting-started.md';
+
+import ThemingValues from './theming/theming-values';
+import CustomThemes from './theming/custom-themes.md';
 
 import {styled} from '../../src/styles';
 
-const docs = [Welcome, GettingStarted];
+const docs = [Welcome, GettingStarted, CustomThemes];
 
 const parsedDocs = docs.map(doc => FrontMatter(doc));
 
 const Root = styled('div', ({$theme}) => ({
   padding: $theme.sizing.scale800,
-  width: '600px',
-  maxWidth: '500px',
+  width: '100%',
+  maxWidth: '700px',
 }));
 
 const P = styled('p', ({$theme}) => ({
@@ -54,4 +57,8 @@ parsedDocs.forEach(doc => {
       />
     );
   });
+});
+
+storiesOf('Theming', module).add('Theming values', () => {
+  return <ThemingValues />;
 });
