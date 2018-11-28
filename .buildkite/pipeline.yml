@@ -51,6 +51,8 @@ steps:
       queue: workers
   - name: ':saucelabs: :selenium:'
     command: yarn e2e:test:ci
+    concurrency_group: saucelabs
+    concurrency: 2
     plugins:
       'docker-compose':
         run: e2e-test
