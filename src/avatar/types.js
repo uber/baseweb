@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {SizingT, ThemeT} from '../styles/types';
+import type {ThemeT} from '../styles/types';
 import type {OverrideT} from '../helpers/overrides';
 
 export type StylePropsT = {|
@@ -27,6 +27,6 @@ export type StateT = {|
 export type PropsT = {|
   name: string,
   overrides?: OverridesT<StylePropsT>,
-  size?: $Keys<SizingT>,
+  size?: string,
   src: string,
 |};

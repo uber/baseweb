@@ -45,7 +45,7 @@ export default () => (
   * Root?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}
     Component to use for containing element. displays if image fails to load.
 * `size: string` - Optional. Defaults to `scale1000`
-  Defines the width/height of the image. Must be an option from the $theme.sizing list otherwise, will use default.
+  Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
 * `src: string` - Required
   Image to display.
 
@@ -56,7 +56,7 @@ These properties are passed to every presentational (styled) component that is e
 * `$didImageFailToLoad: boolean`
   Sets root element width/height if image fails to load.
 * `$size: string`
-  Sets img width. Provided value should map to an option in $theme.sizing. If not found, defaults to `scale1000`.
+  Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
 
 ## Accessibility
 

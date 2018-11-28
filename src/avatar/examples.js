@@ -23,7 +23,7 @@ export default {
   [examples.AVATAR_EXAMPLE]: function AvatarStory() {
     return (
       <Row>
-        {['scale800', 'scale1000', 'scale1200', 'scale1400'].map(
+        {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map(
           (size, index) => (
             <Avatar
               name={`user name # ${index}`}
@@ -40,7 +40,7 @@ export default {
   [examples.AVATAR_ERROR]: function AvatarErrorStory() {
     return (
       <Row>
-        {['scale800', 'scale1000', 'scale1200', 'scale1400'].map(
+        {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map(
           (size, index) => (
             <Avatar
               name={`user name # ${index}`}

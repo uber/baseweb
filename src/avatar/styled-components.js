@@ -14,7 +14,7 @@ function getSize(props: StylePropsT) {
 
   const defaultSize = $theme.sizing.scale1000;
   const size = $size || defaultSize;
-  return $theme.sizing[size] || defaultSize;
+  return $theme.sizing[size] || size;
 }
 
 export const Avatar = styled('img', (props: StylePropsT) => {
