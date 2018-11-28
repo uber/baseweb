@@ -2,7 +2,7 @@
 
 exports[`Modal styled components ModalBody - basic render: ModalBody has correct styles 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
@@ -34,7 +34,7 @@ Object {
 
 exports[`Modal styled components ModalHeader - basic render: ModalHeader has correct styles 1`] = `
 Object {
-  "color": "$theme.colors.black",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font500.fontFamily",
   "fontSize": "$theme.typography.font500.fontSize",
   "fontWeight": "$theme.typography.font500.fontWeight",
@@ -90,7 +90,7 @@ Object {
   ":focus": Object {
     "outline": "none",
   },
-  "backgroundColor": "$theme.colors.background",
+  "backgroundColor": "$theme.colors.backgroundAlt",
   "borderRadius": "$theme.borders.radius200",
   "margin": "$theme.sizing.scale600",
   "maxWidth": "100%",

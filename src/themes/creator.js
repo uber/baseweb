@@ -10,6 +10,8 @@ import type {ThemeT} from '../styles/types';
 import type {PrimitivesT} from './types';
 import deepMerge from '../utils/deep-merge';
 
+const WHITE = '#FFFFFF';
+
 export default function createTheme(
   primitives: PrimitivesT,
   overrides?: {},
@@ -78,8 +80,8 @@ export default function createTheme(
 
       // Background
       background: primitives.mono100,
-      backgroundAlt: primitives.mono800,
-      backgroundInv: primitives.mono100,
+      backgroundAlt: primitives.mono100,
+      backgroundInv: primitives.mono1000,
 
       // Foreground
       foreground: primitives.mono1000,
@@ -120,6 +122,51 @@ export default function createTheme(
       // Shadow
       shadowFocus: 'rgba(39, 110, 241, 0.32)',
       shadowError: 'rgba(229, 73, 55, 0.32)',
+
+      // List
+      listHeaderFill: WHITE,
+      listBodyFill: primitives.mono200,
+      listIconFill: primitives.mono500,
+      listBorder: primitives.mono500,
+
+      // Tick
+      tickFill: 'transparent',
+      tickFillHover: primitives.mono400,
+      tickFillActive: primitives.mono500,
+      tickFillSelected: primitives.primary400,
+      tickFillSelectedHover: primitives.primary500,
+      tickFillSelectedHoverActive: primitives.primary600,
+      tickFillDisabled: primitives.mono400,
+      tickBorder: primitives.mono700,
+      tickMarkFill: WHITE,
+
+      // Slider
+      sliderTrackFill: primitives.mono600,
+      sliderTrackFillHover: primitives.mono700,
+      sliderTrackFillActive: primitives.mono800,
+      sliderTrackFillSelected: primitives.primary400,
+      sliderTrackFillSelectedHover: primitives.primary500,
+      sliderTrackFillSelectedActive: primitives.primary600,
+      sliderTrackFillDisabled: primitives.mono600,
+      sliderHandleFill: WHITE,
+      sliderHandleFillHover: WHITE,
+      sliderHandleFillActive: WHITE,
+      sliderHandleFillSelected: WHITE,
+      sliderHandleFillSelectedHover: WHITE,
+      sliderHandleFillSelectedActive: WHITE,
+      sliderHandleFillDisabled: primitives.mono500,
+      sliderBorder: primitives.mono500,
+      sliderBorderHover: primitives.primary400,
+      sliderBorderDisabled: primitives.mono600,
+
+      // Inputs
+      inputFill: primitives.mono200,
+      inputFillError: primitives.negative50,
+      inputFillDisabled: primitives.mono300,
+      inputTextDisabled: primitives.mono600,
+
+      // Menu
+      menuFillHover: primitives.mono300,
     },
     typography: {
       font100: {

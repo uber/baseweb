@@ -28,9 +28,9 @@ export const Header = styled('h3', (props: SharedStylePropsT) => {
   } = props;
   return {
     ...typography.font450,
-    color: colors.black,
+    color: colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'pointer',
-    backgroudColor: colors.white,
+    background: colors.listHeaderFill,
     paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,
     paddingLeft: sizing.scale700,
@@ -43,8 +43,11 @@ export const Header = styled('h3', (props: SharedStylePropsT) => {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
+    ':hover': {
+      color: colors.linkHover,
+    },
     ':focus': {
-      backgroudColor: colors.mono400,
+      backgroudColor: colors.background,
     },
   };
 });
@@ -53,7 +56,7 @@ export const ToggleIcon = styled('svg', props => {
   const {$theme, $disabled, $color} = props;
   return {
     ...getSvgStyles(props),
-    color: $color || $theme.colors.mono600,
+    color: $color || $theme.colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
     right: '12px',
@@ -67,7 +70,8 @@ export const Content = styled('div', (props: SharedStylePropsT) => {
   } = props;
   return {
     ...typography.font300,
-    backgroundColor: colors.mono200,
+    backgroundColor: colors.background,
+    color: colors.foreground,
     paddingTop: $expanded ? sizing.scale800 : 0,
     paddingBottom: $expanded ? sizing.scale1000 : 0,
     paddingLeft: sizing.scale800,
@@ -76,7 +80,7 @@ export const Content = styled('div', (props: SharedStylePropsT) => {
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
-    borderBottom: $expanded ? `1px solid ${colors.mono500}` : 'none',
+    borderBottom: $expanded ? `1px solid ${colors.border}` : 'none',
     boxSizing: 'border-box',
     height: $expanded ? 'auto' : '0',
     maxHeight: $expanded ? '100%' : '0',

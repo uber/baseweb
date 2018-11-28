@@ -32,7 +32,7 @@ function getLabelPadding(props) {
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.mono600 : colors.mono1000;
+  return $disabled ? colors.foregroundAlt : colors.foreground;
 }
 
 export const RadioGroupRoot = styled('div', props => {

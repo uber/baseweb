@@ -2,7 +2,7 @@
 
 exports[`FormControl - Label and Caption for controls StyledCaption - basic render: StyledCaption has correct default styles 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
   "fontWeight": "$theme.typography.font200.fontWeight",
@@ -20,7 +20,7 @@ Object {
 
 exports[`FormControl - Label and Caption for controls StyledCaption - basic render: StyledCaption has correct styles when compact and error is boolean 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
   "fontWeight": "$theme.typography.font200.fontWeight",
@@ -56,7 +56,7 @@ Object {
 
 exports[`FormControl - Label and Caption for controls StyledLabel - basic render: StyledLabel has correct default styles 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "cursor": "auto",
   "display": "block",
   "fontFamily": "$theme.typography.font350.fontFamily",
@@ -76,7 +76,7 @@ Object {
 
 exports[`FormControl - Label and Caption for controls StyledLabel - basic render: StyledLabel has correct styles when compact and disabled 1`] = `
 Object {
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "not-allowed",
   "display": "block",
   "fontFamily": "$theme.typography.font350.fontFamily",
