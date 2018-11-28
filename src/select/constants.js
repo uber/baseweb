@@ -23,7 +23,7 @@ export const ICON = {
   loop: 'loop',
 };
 
-export const STATE_CHANGE_TYPE = {
+export const STATE_CHANGE_TYPE = Object.freeze({
   select: 'select',
   unselect: 'unselect',
-};
+});
