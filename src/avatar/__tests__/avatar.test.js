@@ -32,9 +32,9 @@ describe('Avatar', () => {
       <Avatar name="user name" src="invalid-img-src.png" />,
     );
 
-    expect(wrapper.find('img')).toHaveLength(1);
+    expect(wrapper.find('img')).toExist();
     triggerLoadError(wrapper);
-    expect(wrapper.find('img')).toHaveLength(0);
+    expect(wrapper.find('img')).not.toExist();
   });
 
   it('applies expected accessibility attributes to root by default', () => {

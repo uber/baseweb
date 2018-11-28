@@ -11,13 +11,13 @@ import {styled} from '../styles';
 import {Avatar} from './index';
 import examples from './examples-list';
 
-const Row = styled('div', {
+const Row = styled('div', props => ({
   width: '400px',
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'flex-end',
-  marginTop: '56px',
-});
+  marginTop: props.$theme.sizing.scale1400,
+}));
 
 export default {
   [examples.AVATAR_EXAMPLE]: function AvatarStory() {
@@ -58,25 +58,21 @@ export default {
     const borderOverrides = {
       Root: {
         style: ({$theme}) => ({
-          borderStyle: 'solid',
-          borderWidth: '3px',
-          borderColor: $theme.colors.mono600,
+          ...$theme.borders.border500,
         }),
       },
     };
 
     const squaredOverrides = {
       Avatar: {
-        style: {
-          borderRadius: '0px',
-        },
+        style: ({$theme}) => ({
+          borderRadius: $theme.borders.radius100,
+        }),
       },
       Root: {
         style: ({$theme}) => ({
-          borderRadius: '4px',
-          borderStyle: 'solid',
-          borderWidth: '3px',
-          borderColor: $theme.colors.mono600,
+          borderRadius: $theme.borders.radius100,
+          ...$theme.borders.border500,
         }),
       },
     };
