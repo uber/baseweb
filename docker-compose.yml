@@ -1,4 +1,4 @@
-version: '2.1'
+version: '2.3'
 services:
   # to run selenium with chrome locally
   chrome-standalone:
@@ -59,6 +59,7 @@ services:
       interval: 5s
       timeout: 5m
       retries: 10
+      start_period: 30s
 
   # docker-compose run does not wait on healthchecks, so proxy using this service
   sauce-tunnel-healthy:
