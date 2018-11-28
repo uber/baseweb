@@ -40,8 +40,10 @@ export default () => (
 * `name: string` - Required
   Defines an alternative text description of the image.
 * `overrides: {}` - Optional
-  * `Avatar: ?React.ComponentType` component to use for Avatar image styling.
-  * `Root: ?React.ComponentType` component to use for containing element. displays if image fails to load.
+  * Avatar?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}
+    Component to use for Avatar image styling.
+  * Root?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}
+    Component to use for containing element. displays if image fails to load.
 * `size: string` - Optional. Defaults to `scale1000`
   Defines the width/height of the image. Must be an option from the $theme.sizing list otherwise, will use default.
 * `src: string` - Required
