@@ -39,7 +39,10 @@ export const Action = styled('span', props => {
   return {
     display: 'flex',
     alignItems: 'center',
-    padding: '8px',
+    paddingTop: '8px',
+    paddingBottom: '8px',
+    paddingLeft: '8px',
+    paddingRight: '8px',
     borderBottomRightRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
       : '0px',
@@ -70,7 +73,10 @@ export const Root = styled('span', props => {
     display: 'inline-flex',
     height: scale800,
     fontWeight: 'bold',
-    margin: '5px',
+    marginTop: '5px',
+    marginBottom: '5px',
+    marginLeft: '5px',
+    marginRight: '5px',
     boxSizing: 'border-box',
     alignItems: 'center',
     justifyContent: 'space-between',

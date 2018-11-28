@@ -21,89 +21,38 @@ class StatefulSelectContainer extends React.Component<
 > {
   static defaultProps = {
     initialState: {
-      selectedOptions: [],
+      value: [],
     },
-    stateReducer: defaultStateReducer,
-    onTextInputChange: () => {},
     onChange: () => {},
-    onMouseEnter: () => {},
-    onMouseLeave: () => {},
-    onFocus: () => {},
-    onBlur: () => {},
+    overrides: {},
+    stateReducer: defaultStateReducer,
   };
 
   state = {...this.props.initialState};
 
   onChange = (params: OnChangeParamsT) => {
     this.internalSetState(params);
-    const {onChange} = this.props;
-    return onChange(params);
-  };
-
-  onTextInputChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onTextInputChange} = this.props;
-    onTextInputChange && onTextInputChange(e);
-  };
-
-  onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onMouseEnter} = this.props;
-    onMouseEnter && onMouseEnter(e);
-  };
-
-  onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onMouseLeave} = this.props;
-    onMouseLeave && onMouseLeave(e);
-  };
-
-  onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onFocus} = this.props;
-    onFocus && onFocus(e);
-  };
-
-  onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const {onBlur} = this.props;
-    onBlur && onBlur(e);
+    this.props.onChange(params);
   };
 
   internalSetState = (params: OnChangeParamsT) => {
-    const nextState = {
-      selectedOptions: params.selectedOptions,
-    };
     const {stateReducer} = this.props;
-    const newState = stateReducer(
-      params.type,
-      nextState,
-      this.state,
-      params.event,
-      params,
-    );
-    this.setState(newState);
+    const nextState: StateT = {value: params.value};
+    this.setState(stateReducer(params.type, nextState, this.state));
   };
 
   render() {
     const {
-      children = (childProps: {}) => null, // eslint-disable-line no-unused-vars
+      children,
       initialState, // eslint-disable-line no-unused-vars
       stateReducer, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
-    const {
-      onChange,
-      onTextInputChange,
-      onMouseEnter,
-      onMouseLeave,
-      onFocus,
-      onBlur,
-    } = this;
+    // $FlowFixMe
     return children({
       ...rest,
       ...this.state,
-      onChange,
-      onTextInputChange,
-      onMouseEnter,
-      onMouseLeave,
-      onFocus,
-      onBlur,
+      onChange: this.onChange,
     });
   }
 }

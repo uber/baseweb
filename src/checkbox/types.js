@@ -10,7 +10,7 @@ import type {OverrideT} from '../helpers/overrides';
 import {STYLE_TYPE} from './constants';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
-export type StyleTypeT = $Values<typeof STYLE_TYPE>;
+export type StyleTypeT = $Keys<typeof STYLE_TYPE>;
 
 export type OverridesT = {
   Checkmark?: OverrideT<*>,
