@@ -573,6 +573,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
       'aria-describedby': this.props['aria-describedby'],
       'aria-labelledby': this.props['aria-labelledby'],
       'aria-autocomplete': 'list',
+      'aria-disabled': this.props.disabled || null,
+      disabled: this.props.disabled || null,
       inputRef: ref => (this.input = ref),
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
@@ -582,7 +584,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       role: 'combobox',
       value,
     };
-    if (this.props.disabled || !this.props.searchable) {
+    if (!this.props.searchable) {
       return (
         <InputContainer
           aria-expanded={isOpen}

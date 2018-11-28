@@ -248,10 +248,12 @@ exports[`Select component renders component in search mode and false for multipl
                     $type="search"
                     aria-autocomplete="list"
                     aria-describedby={null}
+                    aria-disabled={null}
                     aria-expanded={false}
                     aria-haspopup={false}
                     aria-label={null}
                     aria-labelledby={null}
+                    disabled={null}
                     inputRef={[Function]}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -281,10 +283,12 @@ exports[`Select component renders component in search mode and false for multipl
                       $width="5px"
                       aria-autocomplete="list"
                       aria-describedby={null}
+                      aria-disabled={null}
                       aria-expanded={false}
                       aria-haspopup={false}
                       aria-label={null}
                       aria-labelledby={null}
+                      disabled={null}
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -295,10 +299,12 @@ exports[`Select component renders component in search mode and false for multipl
                       <input
                         aria-autocomplete="list"
                         aria-describedby={null}
+                        aria-disabled={null}
                         aria-expanded={false}
                         aria-haspopup={false}
                         aria-label={null}
                         aria-labelledby={null}
+                        disabled={null}
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -575,10 +581,12 @@ exports[`Select component renders component in search mode and true for multiple
                     $type="search"
                     aria-autocomplete="list"
                     aria-describedby={null}
+                    aria-disabled={null}
                     aria-expanded={false}
                     aria-haspopup={false}
                     aria-label={null}
                     aria-labelledby={null}
+                    disabled={null}
                     inputRef={[Function]}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -608,10 +616,12 @@ exports[`Select component renders component in search mode and true for multiple
                       $width="5px"
                       aria-autocomplete="list"
                       aria-describedby={null}
+                      aria-disabled={null}
                       aria-expanded={false}
                       aria-haspopup={false}
                       aria-label={null}
                       aria-labelledby={null}
+                      disabled={null}
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -622,10 +632,12 @@ exports[`Select component renders component in search mode and true for multiple
                       <input
                         aria-autocomplete="list"
                         aria-describedby={null}
+                        aria-disabled={null}
                         aria-expanded={false}
                         aria-haspopup={false}
                         aria-label={null}
                         aria-labelledby={null}
+                        disabled={null}
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -822,10 +834,12 @@ exports[`Select component renders component in select mode and false for multipl
                     $type="select"
                     aria-autocomplete="list"
                     aria-describedby={null}
+                    aria-disabled={null}
                     aria-expanded={false}
                     aria-haspopup={false}
                     aria-label={null}
                     aria-labelledby={null}
+                    disabled={null}
                     inputRef={[Function]}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -855,10 +869,12 @@ exports[`Select component renders component in select mode and false for multipl
                       $width="5px"
                       aria-autocomplete="list"
                       aria-describedby={null}
+                      aria-disabled={null}
                       aria-expanded={false}
                       aria-haspopup={false}
                       aria-label={null}
                       aria-labelledby={null}
+                      disabled={null}
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -869,10 +885,12 @@ exports[`Select component renders component in select mode and false for multipl
                       <input
                         aria-autocomplete="list"
                         aria-describedby={null}
+                        aria-disabled={null}
                         aria-expanded={false}
                         aria-haspopup={false}
                         aria-label={null}
                         aria-labelledby={null}
+                        disabled={null}
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -1142,10 +1160,12 @@ exports[`Select component renders component in select mode and true for multiple
                     $type="select"
                     aria-autocomplete="list"
                     aria-describedby={null}
+                    aria-disabled={null}
                     aria-expanded={false}
                     aria-haspopup={false}
                     aria-label={null}
                     aria-labelledby={null}
+                    disabled={null}
                     inputRef={[Function]}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -1175,10 +1195,12 @@ exports[`Select component renders component in select mode and true for multiple
                       $width="5px"
                       aria-autocomplete="list"
                       aria-describedby={null}
+                      aria-disabled={null}
                       aria-expanded={false}
                       aria-haspopup={false}
                       aria-label={null}
                       aria-labelledby={null}
+                      disabled={null}
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -1189,10 +1211,12 @@ exports[`Select component renders component in select mode and true for multiple
                       <input
                         aria-autocomplete="list"
                         aria-describedby={null}
+                        aria-disabled={null}
                         aria-expanded={false}
                         aria-haspopup={false}
                         aria-label={null}
                         aria-labelledby={null}
+                        disabled={null}
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
