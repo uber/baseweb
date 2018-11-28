@@ -56,7 +56,7 @@ export const Root = styled('div', props => {
   } = props;
   return {
     ...getFont($size, typography),
-    color: colors.mono1000,
+    color: colors.foreground,
     display: 'flex',
     width: '100%',
   };
@@ -70,10 +70,10 @@ export const InputEnhancer = styled('div', props => {
   } = props;
   return {
     ...getFont($size, typography),
-    color: colors.mono900,
+    color: colors.foreground,
     display: 'flex',
     ...getInputPadding($size, sizing),
-    backgroundColor: colors.mono400,
+    backgroundColor: colors.inputFill,
     borderRadius: getDecoratorBorderRadius($position, sizing.scale100),
   };
 });
@@ -89,26 +89,26 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
   } = props;
   return {
     ...getFont($size, typography),
-    color: $disabled ? colors.mono600 : colors.mono1000,
+    color: $disabled ? colors.inputTextDisabled : colors.foreground,
     boxSizing: 'border-box',
     display: 'flex',
     width: '100%',
     backgroundColor: $disabled
-      ? colors.mono300
+      ? colors.inputFillDisabled
       : $isFocused
-        ? colors.mono100
+        ? colors.background
         : $error
-          ? colors.negative50
-          : colors.mono200,
+          ? colors.inputFillError
+          : colors.inputFill,
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: $disabled
-      ? colors.mono300
+      ? colors.inputFillDisabled
       : $error
         ? colors.negative400
         : $isFocused
           ? colors.primary400
-          : colors.mono200,
+          : colors.inputFill,
     borderRadius: borders.useRoundedCorners
       ? getBorderRadius($adjoined, sizing.scale100)
       : '0px',
@@ -138,7 +138,7 @@ export const getInputStyles = (props: SharedPropsT) => {
   } = props;
   return {
     ...getFont($size, typography),
-    color: $disabled ? colors.mono600 : colors.mono1000,
+    color: $disabled ? colors.foregroundAlt : colors.foreground,
     caretColor: $error ? colors.negative400 : colors.primary,
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
@@ -150,7 +150,7 @@ export const getInputStyles = (props: SharedPropsT) => {
     maxWidth: '100%',
     cursor: $disabled ? 'not-allowed' : 'text',
     '::placeholder': {
-      color: $disabled ? colors.mono600 : colors.mono700,
+      color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     },
   };
 };

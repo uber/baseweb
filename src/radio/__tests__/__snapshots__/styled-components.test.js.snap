@@ -12,7 +12,7 @@ Object {
 
 exports[`RadioGroup styled components StyledLabel : has correct styles when  1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
@@ -24,7 +24,7 @@ Object {
 
 exports[`RadioGroup styled components StyledLabel : has correct styles when $isError 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
@@ -36,7 +36,7 @@ Object {
 
 exports[`RadioGroup styled components StyledLabel : has correct styles when disabled 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
@@ -48,7 +48,7 @@ Object {
 
 exports[`RadioGroup styled components StyledLabel Label: StyledLabel has correct styles when set to bottom 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
@@ -60,7 +60,7 @@ Object {
 
 exports[`RadioGroup styled components StyledLabel Label: StyledLabel has correct styles when set to left 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
@@ -72,7 +72,7 @@ Object {
 
 exports[`RadioGroup styled components StyledLabel Label: StyledLabel has correct styles when set to right 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
@@ -84,7 +84,7 @@ Object {
 
 exports[`RadioGroup styled components StyledLabel Label: StyledLabel has correct styles when set to top 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
