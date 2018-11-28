@@ -6,7 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {StyledOptionContent} from './styled-components';
+import {
+  StyledDropdownContainer,
+  StyledOptionContent,
+} from './styled-components';
 import {StatefulMenu} from '../menu';
 import type {DropdownPropsT} from './types';
 import {getOverrides, mergeOverrides} from '../helpers/overrides';
@@ -83,40 +86,42 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       overrides = {},
       size,
     } = this.props;
+    const [DropdownContainer, dropdownContainerProps] = getOverrides(
+      overrides.DropdownContainer,
+      StyledDropdownContainer,
+    );
     return (
-      <StatefulMenu
-        onItemSelect={onItemSelect}
-        items={options}
-        size={size}
-        overrides={mergeOverrides(
-          {
-            List: {
-              style: ({$theme: {sizing}}) => ({
-                maxHeight: maxDropdownHeight,
-                marginTop: sizing.scale300,
-                marginBottom: '0',
-                marginLeft: sizing.scale300,
-                marginRight: sizing.scale300,
-              }),
-              props: {
-                'aria-multiselectable': multi,
+      <DropdownContainer {...this.getSharedProps()} {...dropdownContainerProps}>
+        <StatefulMenu
+          onItemSelect={onItemSelect}
+          items={options}
+          size={size}
+          overrides={mergeOverrides(
+            {
+              List: {
+                style: ({$theme: {sizing}}) => ({
+                  maxHeight: maxDropdownHeight,
+                }),
+                props: {
+                  'aria-multiselectable': multi,
+                },
+              },
+              Option: {
+                props: {
+                  getItemLabel: this.getItemLabel,
+                  // figure out why the onClick handler is not
+                  // triggered without this temporary fix
+                  onMouseDown: this.onMouseDown,
+                },
               },
             },
-            Option: {
-              props: {
-                getItemLabel: this.getItemLabel,
-                // figure out why the onClick handler is not
-                // triggered without this temporary fix
-                onMouseDown: this.onMouseDown,
-              },
+            {
+              List: overrides.Dropdown || {},
+              Option: overrides.DropdownOption || {},
             },
-          },
-          {
-            List: overrides.Dropdown || {},
-            Option: overrides.DropdownOption || {},
-          },
-        )}
-      />
+          )}
+        />
+      </DropdownContainer>
     );
   }
 }

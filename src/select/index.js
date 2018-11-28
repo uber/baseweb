@@ -25,6 +25,7 @@ export {
   StyledSelectArrow,
   StyledClearIcon,
   StyledSearchIcon,
+  StyledDropdownContainer,
   StyledOptionContent,
 } from './styled-components';
 export {default as filterOptions} from './utils/default-filter-options';
