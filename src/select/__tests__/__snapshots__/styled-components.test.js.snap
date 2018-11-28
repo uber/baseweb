@@ -51,14 +51,14 @@ Object {
 exports[`Select styled components StyledInput Input: StyledInput has correct styles 1`] = `
 Object {
   "::placeholder": Object {
-    "color": "$theme.colors.mono700",
+    "color": "$theme.colors.foregroundAlt",
   },
   "backgroundColor": "transparent",
   "borderStyle": "none",
   "borderWidth": "0",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "flexGrow": "1",
   "fontFamily": "$theme.typography.font300.fontFamily",
@@ -78,14 +78,14 @@ Object {
 exports[`Select styled components StyledInputContainer InputContainer: StyledInputContainer has correct styles 1`] = `
 Object {
   "alignItems": "center",
-  "backgroundColor": "$theme.colors.mono200",
+  "backgroundColor": "$theme.colors.inputFill",
   "borderColor": "$theme.colors.mono200",
   "borderRadius": undefined,
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "flexWrap": "wrap",
   "fontFamily": "$theme.typography.font300.fontFamily",

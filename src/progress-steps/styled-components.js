@@ -95,11 +95,11 @@ export const StyledContent = styled('div', ({$theme}: StyledStepPropsT) => {
 export const StyledContentTitle = styled(
   'div',
   ({$theme, $isActive}: StyledStepPropsT) => {
-    let color = $theme.colors.mono700;
+    let color = $theme.colors.foregroundAlt;
     let font = $theme.typography.font400;
 
     if ($isActive) {
-      color = $theme.colors.mono1000;
+      color = $theme.colors.foreground;
       font = $theme.typography.font450;
     }
 

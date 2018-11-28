@@ -107,6 +107,51 @@ export type ColorsT = {
   linkVisited: string,
   linkHover: string,
 
+  // Lists
+  listHeaderFill: string,
+  listBodyFill: string,
+  listIconFill: string,
+  listBorder: string,
+
+  // Ticks
+  tickFill: string,
+  tickFillHover: string,
+  tickFillActive: string,
+  tickFillSelected: string,
+  tickFillSelectedHover: string,
+  tickFillSelectedHoverActive: string,
+  tickFillDisabled: string,
+  tickBorder: string,
+  tickMarkFill: string,
+
+  // Slider
+  sliderTrackFill: string,
+  sliderTrackFillHover: string,
+  sliderTrackFillActive: string,
+  sliderTrackFillSelected: string,
+  sliderTrackFillSelectedHover: string,
+  sliderTrackFillSelectedActive: string,
+  sliderTrackFillDisabled: string,
+  sliderHandleFill: string,
+  sliderHandleFillHover: string,
+  sliderHandleFillActive: string,
+  sliderHandleFillSelected: string,
+  sliderHandleFillSelectedHover: string,
+  sliderHandleFillSelectedActive: string,
+  sliderHandleFillDisabled: string,
+  sliderBorder: string,
+  sliderBorderHover: string,
+  sliderBorderDisabled: string,
+
+  // Input
+  inputFill: string,
+  inputFillError: string,
+  inputFillDisabled: string,
+  inputTextDisabled: string,
+
+  // Menu
+  menuFillHover: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,
