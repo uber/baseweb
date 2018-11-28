@@ -2,7 +2,7 @@
 
 exports[`Select styled components Basic render: StyledClearIcon has correct default styles 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -15,7 +15,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledClearIcon has correct styles for the SIZE.compact 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -28,7 +28,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledClearIcon has correct styles for the TYPE.search 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -41,7 +41,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledClearIcon has correct styles for the disabled state 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -54,14 +54,14 @@ Object {
 
 exports[`Select styled components Basic render: StyledControlContainer has correct default styles 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono200",
-  "borderColor": "$theme.colors.mono200",
+  "backgroundColor": "$theme.colors.inputFill",
+  "borderColor": "$theme.colors.inputFill",
   "borderRadius": "$theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "flex",
   "overflow": "hidden",
@@ -75,14 +75,14 @@ Object {
 
 exports[`Select styled components Basic render: StyledControlContainer has correct styles for the SIZE.compact 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono200",
-  "borderColor": "$theme.colors.mono200",
+  "backgroundColor": "$theme.colors.inputFill",
+  "borderColor": "$theme.colors.inputFill",
   "borderRadius": "$theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "flex",
   "overflow": "hidden",
@@ -96,14 +96,14 @@ Object {
 
 exports[`Select styled components Basic render: StyledControlContainer has correct styles for the TYPE.search 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono200",
-  "borderColor": "$theme.colors.mono200",
+  "backgroundColor": "$theme.colors.inputFill",
+  "borderColor": "$theme.colors.inputFill",
   "borderRadius": "$theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "cursor": "text",
   "display": "flex",
   "overflow": "hidden",
@@ -117,14 +117,14 @@ Object {
 
 exports[`Select styled components Basic render: StyledControlContainer has correct styles for the disabled state 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono300",
-  "borderColor": "$theme.colors.mono300",
+  "backgroundColor": "$theme.colors.inputFillDisabled",
+  "borderColor": "$theme.colors.inputFillDisabled",
   "borderRadius": "$theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.inputTextDisabled",
   "cursor": "not-allowed",
   "display": "flex",
   "overflow": "hidden",
@@ -374,7 +374,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledOptionContent has correct default styles 1`] = `
 Object {
-  "color": "$theme.colors.black",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "fontWeight": "normal",
 }
@@ -382,7 +382,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledOptionContent has correct styles for the SIZE.compact 1`] = `
 Object {
-  "color": "$theme.colors.black",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "fontWeight": "normal",
 }
@@ -390,7 +390,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledOptionContent has correct styles for the TYPE.search 1`] = `
 Object {
-  "color": "$theme.colors.black",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "fontWeight": "normal",
 }
@@ -398,7 +398,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledOptionContent has correct styles for the disabled state 1`] = `
 Object {
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "not-allowed",
   "fontWeight": "normal",
 }
@@ -408,7 +408,7 @@ exports[`Select styled components Basic render: StyledPlaceholder has correct de
 Object {
   "alignItems": "center",
   "bottom": "0",
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.foregroundAlt",
   "display": "flex",
   "left": "0",
   "maxWidth": "100%",
@@ -429,7 +429,7 @@ exports[`Select styled components Basic render: StyledPlaceholder has correct st
 Object {
   "alignItems": "center",
   "bottom": "0",
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.foregroundAlt",
   "display": "flex",
   "left": "0",
   "maxWidth": "100%",
@@ -450,7 +450,7 @@ exports[`Select styled components Basic render: StyledPlaceholder has correct st
 Object {
   "alignItems": "center",
   "bottom": "0",
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.foregroundAlt",
   "display": "flex",
   "left": "0",
   "maxWidth": "100%",
@@ -471,7 +471,7 @@ exports[`Select styled components Basic render: StyledPlaceholder has correct st
 Object {
   "alignItems": "center",
   "bottom": "0",
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.inputFillDisabled",
   "display": "flex",
   "left": "0",
   "maxWidth": "100%",
@@ -530,7 +530,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledSearchIcon has correct default styles 1`] = `
 Object {
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -544,7 +544,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledSearchIcon has correct styles for the SIZE.compact 1`] = `
 Object {
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -558,7 +558,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledSearchIcon has correct styles for the TYPE.search 1`] = `
 Object {
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -572,7 +572,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledSearchIcon has correct styles for the disabled state 1`] = `
 Object {
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.inputTextDisabled",
   "cursor": "not-allowed",
   "display": "inline-block",
   "fill": "currentColor",
@@ -586,7 +586,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledSelectArrow has correct default styles 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -599,7 +599,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledSelectArrow has correct styles for the SIZE.compact 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -612,7 +612,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledSelectArrow has correct styles for the TYPE.search 1`] = `
 Object {
-  "color": "$theme.colors.mono800",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -625,7 +625,7 @@ Object {
 
 exports[`Select styled components Basic render: StyledSelectArrow has correct styles for the disabled state 1`] = `
 Object {
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.inputTextDisabled",
   "cursor": "not-allowed",
   "display": "inline-block",
   "fill": "currentColor",
