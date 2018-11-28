@@ -89,7 +89,7 @@ export const Dialog = styled('div', (props: SharedStylePropsT) => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
   return {
     position: 'relative',
-    backgroundColor: $theme.colors.background,
+    backgroundColor: $theme.colors.backgroundAlt,
     borderRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius200
       : '0px',
@@ -149,7 +149,7 @@ export const Close = styled('button', (props: SharedStylePropsT) => {
 
 export const ModalHeader = styled('div', ({$theme}: StyledComponentPropT) => ({
   ...$theme.typography.font500,
-  color: $theme.colors.black,
+  color: $theme.colors.foreground,
   marginTop: $theme.sizing.scale900,
   marginBottom: $theme.sizing.scale600,
   marginLeft: $theme.sizing.scale800,
@@ -159,7 +159,7 @@ export const ModalHeader = styled('div', ({$theme}: StyledComponentPropT) => ({
 
 export const ModalBody = styled('div', ({$theme}: StyledComponentPropT) => ({
   ...$theme.typography.font300,
-  color: $theme.colors.mono800,
+  color: $theme.colors.foregroundAlt,
   marginTop: $theme.sizing.scale600,
   marginLeft: $theme.sizing.scale800,
   marginRight: $theme.sizing.scale800,

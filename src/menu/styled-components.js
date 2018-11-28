@@ -20,7 +20,7 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   position: 'relative',
   margin: 0,
   padding: 0,
-  background: $theme.colors.white,
+  background: $theme.colors.backgroundAlt,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
   overflow: 'auto',
@@ -34,13 +34,13 @@ export const ListItem = styled(
       : $theme.typography.font300),
     position: 'relative',
     display: 'block',
-    color: $isHighlighted ? $theme.colors.primary : $theme.colors.black,
+    color: $isHighlighted ? $theme.colors.primary : $theme.colors.foreground,
     cursor: 'pointer',
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,
     ':hover': {
-      backgroundColor: $theme.colors.mono300,
+      backgroundColor: $theme.colors.menuFillHover,
     },
     paddingTop:
       $size === OPTION_LIST_SIZE.compact
@@ -80,7 +80,7 @@ export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   transitionDuration: $theme.animation.timing100,
   transitionTimingFunction: $theme.animation.easeOutCurve,
   ':hover': {
-    backgroundColor: $theme.colors.mono300,
+    backgroundColor: $theme.colors.menuFillHover,
   },
   ':first-child': {
     marginTop: $theme.sizing.scale300,
@@ -113,18 +113,18 @@ export const ProfileLabelsContainer = styled('div', ({$theme}) => ({
 
 export const ProfileTitle = styled('h6', ({$theme}) => ({
   ...$theme.typography.font450,
-  color: $theme.colors.black,
+  color: $theme.colors.foreground,
   margin: 0,
 }));
 
 export const ProfileSubtitle = styled('p', ({$theme}) => ({
   ...$theme.typography.font300,
-  color: $theme.colors.black,
+  color: $theme.colors.foreground,
   margin: 0,
 }));
 
 export const ProfileBody = styled('p', ({$theme}) => ({
   ...$theme.typography.font200,
   margin: 0,
-  color: $theme.colors.mono800,
+  color: $theme.colors.foregroundAlt,
 }));
