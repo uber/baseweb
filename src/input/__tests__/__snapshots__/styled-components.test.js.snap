@@ -3,14 +3,14 @@
 exports[`Input - StyledInput - basic render: StyledInput has correct default styles 1`] = `
 Object {
   "::placeholder": Object {
-    "color": "$theme.colors.mono700",
+    "color": "$theme.colors.foregroundAlt",
   },
   "backgroundColor": "transparent",
   "borderStyle": "none",
   "borderWidth": "0",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "cursor": "text",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
@@ -29,14 +29,14 @@ Object {
 exports[`Input - StyledInput - basic render: StyledInput has correct styles when compact and disabled 1`] = `
 Object {
   "::placeholder": Object {
-    "color": "$theme.colors.mono600",
+    "color": "$theme.colors.inputTextDisabled",
   },
   "backgroundColor": "transparent",
   "borderStyle": "none",
   "borderWidth": "0",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.foregroundAlt",
   "cursor": "not-allowed",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
@@ -54,14 +54,14 @@ Object {
 
 exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct default styles 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono200",
-  "borderColor": "$theme.colors.mono200",
+  "backgroundColor": "$theme.colors.inputFill",
+  "borderColor": "$theme.colors.inputFill",
   "borderRadius": "$theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
@@ -76,14 +76,14 @@ Object {
 
 exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct styles when compact 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono100",
+  "backgroundColor": "$theme.colors.background",
   "borderColor": "$theme.colors.primary400",
   "borderRadius": "$theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px $theme.colors.shadowFocus",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
@@ -98,14 +98,14 @@ Object {
 
 exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct styles when disabled 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono300",
-  "borderColor": "$theme.colors.mono300",
+  "backgroundColor": "$theme.colors.inputFillDisabled",
+  "borderColor": "$theme.colors.inputFillDisabled",
   "borderRadius": "0",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.inputTextDisabled",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
@@ -120,14 +120,14 @@ Object {
 
 exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct styles when error 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono100",
+  "backgroundColor": "$theme.colors.background",
   "borderColor": "$theme.colors.negative400",
   "borderRadius": "0",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px $theme.colors.shadowError",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
@@ -142,14 +142,14 @@ Object {
 
 exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct styles when focused 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono100",
+  "backgroundColor": "$theme.colors.background",
   "borderColor": "$theme.colors.primary400",
   "borderRadius": "$theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px $theme.colors.shadowFocus",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
@@ -164,14 +164,14 @@ Object {
 
 exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct styles when has end enhancer 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono100",
+  "backgroundColor": "$theme.colors.background",
   "borderColor": "$theme.colors.primary400",
   "borderRadius": "$theme.sizing.scale100 0 0 $theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px $theme.colors.shadowFocus",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
@@ -186,14 +186,14 @@ Object {
 
 exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct styles when has start and end enhancers 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono100",
+  "backgroundColor": "$theme.colors.background",
   "borderColor": "$theme.colors.primary400",
   "borderRadius": "0",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px $theme.colors.shadowFocus",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
@@ -208,14 +208,14 @@ Object {
 
 exports[`Input - StyledInputContainer - basic render: StyledInputContainer has correct styles when has start enhancer 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono100",
+  "backgroundColor": "$theme.colors.background",
   "borderColor": "$theme.colors.primary400",
   "borderRadius": "0 $theme.sizing.scale100 $theme.sizing.scale100 0",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px $theme.colors.shadowFocus",
   "boxSizing": "border-box",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
@@ -252,9 +252,9 @@ Object {
 
 exports[`Input - StyledInputEnhancer - basic render: StyledInputEnhancer has correct styles when compact and end position 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono400",
+  "backgroundColor": "$theme.colors.inputFill",
   "borderRadius": "0 $theme.sizing.scale100 $theme.sizing.scale100 0",
-  "color": "$theme.colors.mono900",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
@@ -269,9 +269,9 @@ Object {
 
 exports[`Input - StyledInputEnhancer - basic render: StyledInputEnhancer has correct styles when default size and start position 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono400",
+  "backgroundColor": "$theme.colors.inputFill",
   "borderRadius": "$theme.sizing.scale100 0 0 $theme.sizing.scale100",
-  "color": "$theme.colors.mono900",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
@@ -286,7 +286,7 @@ Object {
 
 exports[`Input - StyledRoot - basic render: StyledRoot has correct default styles 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
@@ -298,7 +298,7 @@ Object {
 
 exports[`Input - StyledRoot - basic render: StyledRoot has correct styles when compact 1`] = `
 Object {
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",

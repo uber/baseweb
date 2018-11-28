@@ -56,6 +56,7 @@ exports[`Tooltip styled components StyledInner - basic render: StyledInner has c
 Object {
   "backgroundColor": "$theme.tooltip.backgroundColor",
   "borderRadius": "$theme.borders.radius200",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font200.fontFamily",
   "fontSize": "$theme.typography.font200.fontSize",
   "fontWeight": "$theme.typography.font200.fontWeight",

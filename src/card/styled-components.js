@@ -15,7 +15,7 @@ export const Body = styled('div', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     marginBottom: sizing.scale600,
-    color: colors.mono800,
+    color: colors.foregroundAlt,
     ...typography.font400,
   };
 });
@@ -38,11 +38,12 @@ export const HeaderImage = styled('img', ({$theme}) => {
 });
 
 export const Root = styled('div', ({$theme}) => {
-  const {borders, lighting} = $theme;
+  const {borders, lighting, colors} = $theme;
   return {
     ...borders.border300,
     boxShadow: lighting.shadow400,
     borderRadius: borders.radius200,
+    backgroundColor: colors.backgroundAlt,
   };
 });
 
@@ -65,7 +66,7 @@ export const Title = styled('h1', ({$hasThumbnail, $theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     ...typography.font600,
-    color: colors.black,
+    color: colors.foreground,
     fontSize: $hasThumbnail ? sizing.scale600 : sizing.scale700,
     fontWeight: 500,
     margin: `0 0 ${sizing.scale300} 0`,

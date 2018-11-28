@@ -2,7 +2,7 @@
 
 exports[`Popover styled components StyledArrow - basic render: StyledArrow has correct styles 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.background",
+  "backgroundColor": "$theme.colors.backgroundAlt",
   "boxShadow": "$theme.lighting.shadow600",
   "height": "9px",
   "left": "10px",
@@ -52,8 +52,9 @@ Object {
 
 exports[`Popover styled components StyledInner - basic render: StyledInner has correct styles 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.background",
+  "backgroundColor": "$theme.colors.backgroundAlt",
   "borderRadius": "$theme.borders.radius300",
+  "color": "$theme.colors.foreground",
   "position": "relative",
   "zIndex": 2,
 }

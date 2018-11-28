@@ -61,7 +61,7 @@ export const Body = styled('div', getBodyStyles);
 export function getArrowStyles(props: SharedStylePropsT) {
   const {$arrowOffset, $placement, $theme} = props;
   return {
-    backgroundColor: $theme.colors.background,
+    backgroundColor: $theme.colors.backgroundAlt,
     boxShadow: $theme.lighting.shadow600,
     width: `${ARROW_WIDTH}px`,
     height: `${ARROW_WIDTH}px`,
@@ -82,7 +82,8 @@ export const Arrow = styled('div', getArrowStyles);
  */
 export function getInnerStyles({$theme}: SharedStylePropsT) {
   return {
-    backgroundColor: $theme.colors.background,
+    backgroundColor: $theme.colors.backgroundAlt,
+    color: $theme.colors.foreground,
     borderRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius300
       : '0px',

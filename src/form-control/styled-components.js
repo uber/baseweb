@@ -16,7 +16,7 @@ export const Label = styled('label', props => {
   return {
     ...typography.font350,
     fontWeight: 500,
-    color: $disabled ? colors.mono700 : colors.mono1000,
+    color: $disabled ? colors.foregroundAlt : colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'auto',
     display: 'block',
     paddingTop: '0',
@@ -40,7 +40,7 @@ export const Caption = styled('div', props => {
     color:
       $error && typeof $error !== 'boolean'
         ? colors.negative400
-        : colors.mono800,
+        : colors.foregroundAlt,
     paddingTop: '0',
     paddingRight: '0',
     paddingBottom: '0',
