@@ -120,6 +120,7 @@ export default () => {
 * `StyledSelectArrow`
 * `StyledClearIcon`
 * `StyledSearchIcon`
+* `StyledDropdownContainer`
 * `StyledOptionContent`
 * `SIZE`
 * `TYPE`
@@ -188,7 +189,7 @@ export default () => {
   Defines if the dropdown opens on a click event on the select
 * `options: Array<{}>` - Optional.  Defaults to `[]`
   Options to be displayed in the dropdown. If an option has a `disabled` prop value set to `true` it will be rendered as a disabled option in the dropdown
-* `overrides: {Root, ControlContainer, Placeholder, ValueContainer, SingleValue, MultiValue, InputContainer, Input, SelectArrow, ClearIcon, LoadingIndicator, SearchIcon, DropDown, DropDownOption, OptionContent}` - Optional.
+* `overrides: {Root, ControlContainer, Placeholder, ValueContainer, SingleValue, MultiValue, InputContainer, Input, SelectArrow, ClearIcon, LoadingIndicator, SearchIcon, DropdownContainer, Dropdown, DropdownOption, OptionContent}` - Optional.
   Overrides for presentational components. See "Presentational Components Props API" below.
   * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
 * `placeholder: React.Node` - Optional. Defaults to `'Select...'`
