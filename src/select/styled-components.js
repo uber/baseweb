@@ -35,6 +35,23 @@ function getControlPadding(size = SIZE.default, sizing, type) {
   }[size];
 }
 
+export const StyledDropdownContainer = styled('div', props => {
+  const {
+    $theme: {sizing},
+  } = props;
+  return {
+    boxSizing: 'border-box',
+    position: 'absolute',
+    width: '100%',
+    zIndex: 1,
+    marginTop: sizing.scale300,
+    paddingTop: '0',
+    paddingBottom: '0',
+    paddingLeft: sizing.scale300,
+    paddingRight: sizing.scale300,
+  };
+});
+
 export const StyledOptionContent = styled('div', props => {
   const {$isHighlighted, $selected, $disabled, $theme} = props;
   const {
