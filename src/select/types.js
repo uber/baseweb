@@ -7,141 +7,179 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {OverrideT} from '../helpers/overrides';
-import {STATE_CHANGE_TYPE} from './constants';
+import type {ThemeT} from '../styles/types';
+import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants';
 import type {OnItemSelectFnT} from '../menu/types';
 
-export type ChangeActionT = $Values<typeof STATE_CHANGE_TYPE>;
+export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
+export type SizeT = $Keys<typeof SIZE>;
+export type TypeT = $Keys<typeof TYPE>;
 
-export type LabelT = *;
-export type OptionT = {
-  id: string,
-  label: LabelT,
+export type OptionT = $Shape<{
+  id?: string,
+  label?: React.Node,
   disabled?: boolean,
-};
+  clearableValue?: boolean,
+}>;
 
-export type ParamsT = {
-  option?: OptionT,
-  selectedOptions?: Array<OptionT>,
-  textValue?: string,
-  type: ChangeActionT,
-};
+export type ValueT = Array<OptionT>;
 
 export type OnChangeParamsT = {
-  event: SyntheticEvent<HTMLElement> | KeyboardEvent,
-  option?: OptionT,
-  selectedOptions?: Array<OptionT>,
-  textValue?: string,
+  value: ValueT,
+  option: ?OptionT,
   type: ChangeActionT,
 };
 
 export type OverridesT = {
   Root?: OverrideT<*>,
-  Input?: OverrideT<*>,
-  SelectComponentIcon?: OverrideT<*>,
+  ControlContainer?: OverrideT<*>,
+  Placeholder?: OverrideT<*>,
+  ValueContainer?: OverrideT<*>,
+  SingleValue?: OverrideT<*>,
+  MultiValue?: OverrideT<*>,
   InputContainer?: OverrideT<*>,
-  Tag?: OverrideT<*>,
-  Option?: OverrideT<*>,
-  DropDown?: OverrideT<*>,
-  SelectComponentIcon?: OverrideT<*>,
-  DropDownItem?: OverrideT<*>,
-  SingleSelection?: OverrideT<*>,
-  SelectSpinner?: OverrideT<*>,
-  SelectionContainer?: OverrideT<*>,
+  Input?: OverrideT<*>,
+  SelectArrow?: OverrideT<*>,
+  ClearIcon?: OverrideT<*>,
+  LoadingIndicator?: OverrideT<*>,
+  SearchIcon?: OverrideT<*>,
+  Dropdown?: OverrideT<*>,
+  DropdownOption?: OverrideT<*>,
+  OptionContent?: OverrideT<*>,
 };
 
-export type OverridesDropDownT = {
-  Option?: OverrideT<*>,
-  DropDown?: OverrideT<*>,
-  SelectComponentIcon?: OverrideT<*>,
-  DropDownItem?: OverrideT<*>,
-  SelectSpinner?: OverrideT<*>,
+export type OverridesDropdownT = {
+  Dropdown?: OverrideT<*>,
+  DropdownOption?: OverrideT<*>,
+  OptionContent?: OverrideT<*>,
 };
 
 export type PropsT = {
-  options: Array<OptionT> | ((query?: *) => Promise<Array<OptionT>>),
-  overrides?: OverridesT,
-  selectedOptions: Array<OptionT>,
-  tabIndex: number,
-  multiple: boolean,
-  maxDropdownHeight: string,
+  'aria-label': ?string,
+  'aria-describedby': ?string,
+  'aria-labelledby': ?string,
+  autoFocus: false,
+  backspaceRemoves: boolean,
+  clearable: boolean,
+  closeOnSelect: boolean,
+  deleteRemoves: boolean,
+  disabled: boolean,
   error: boolean,
-  autoFocus: boolean,
-  type?: string,
-  disabled?: boolean,
-  filterable: boolean,
-  filterOption?: (OptionT, string) => boolean,
-  placeholder?: string,
-  getOptionLabel?: OptionT => React$Node,
-  getSelectedOptionLabel?: OptionT => React$Node,
-  $theme?: *,
-  onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
+  escapeClearsValue: boolean,
+  filterOptions: ?(
+    options: ValueT,
+    filterValue: string,
+    excludeOptions: ?ValueT,
+    {valueKey: string, labelKey: string},
+  ) => ValueT,
+  filterOutSelected: boolean,
+  getOptionLabel: ?({option: OptionT}) => React.Node,
+  getValueLabel: ?({option: OptionT}) => React.Node,
+  isLoading: boolean,
+  labelKey: string,
+  maxDropdownHeight: string,
+  multi: boolean,
+  noResultsMsg: React.Node,
+  onBlur: (e: SyntheticEvent<HTMLElement>) => void,
+  onBlurResetsInput: boolean,
   onChange: (params: OnChangeParamsT) => void,
-  onMouseEnter: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseLeave: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseDown: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseUp: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onFocus: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onBlur: (e: SyntheticEvent<HTMLInputElement>) => void,
+  onFocus: (e: SyntheticEvent<HTMLElement>) => void,
+  onInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
+  onCloseResetsInput: boolean,
+  onSelectResetsInput: boolean,
+  onOpen: ?() => void,
+  onClose: ?() => void,
+  openOnClick: boolean,
+  options: ?Array<OptionT>,
+  overrides: OverridesT,
+  placeholder: React.Node,
+  required: boolean,
+  searchable: boolean,
+  size: SizeT,
+  type: TypeT,
+  value: ValueT,
+  valueKey: string,
 };
 
-export type StatelessStateT = {
-  textValue: string,
-  isDropDownOpen: boolean,
-  filteredOptions?: ?Array<OptionT>,
-  options: Array<OptionT>,
-  optionsLoaded: boolean,
+export type SelectStateT = {
+  inputValue: string,
+  isFocused: boolean,
+  isOpen: boolean,
+  isPseudoFocused: boolean,
 };
 
 export type StateT = {
-  textValue?: string,
-  selectedOptions?: Array<OptionT>,
+  value: ValueT,
 };
 
 export type StateReducerT = (
   stateType: string,
   nextState: StateT,
   currentState: StateT,
-  event: SyntheticEvent<HTMLElement> | KeyboardEvent,
-  params: ParamsT,
 ) => StateT;
 
 export type StatefulContainerPropsT = {
-  overrides?: OverridesT,
-  children?: (*) => React$Node,
-  initialState?: StateT,
+  overrides: OverridesT,
+  children: PropsT => React$Node,
+  initialState: StateT,
   stateReducer: StateReducerT,
-  onTextInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
   onChange: (params: OnChangeParamsT) => void,
-  onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  autoFocus?: boolean,
 };
 
-export type StatefulSelectPropsT = {
+export type StatefulSelectPropsT = PropsT & {
   overrides?: OverridesT,
-  options?: Array<OptionT> | ((query?: string) => Promise<Array<OptionT>>),
   initialState?: StateT,
-  autoFocus?: boolean,
-  onTextInputChange?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onChange: (params: OnChangeParamsT) => void,
-  onMouseEnter?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onMouseLeave?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onFocus?: (e: SyntheticEvent<HTMLInputElement>) => void,
-  onBlur?: (e: SyntheticEvent<HTMLInputElement>) => void,
+  stateReducer?: StateReducerT,
+  onChange?: (params: OnChangeParamsT) => void,
 };
 
-export type DropDownPropsT = {
-  overrides?: OverridesDropDownT,
-  options: Array<OptionT>,
-  selectedOptions: Array<OptionT>,
-  multiple: boolean,
-  isDropDownOpen: boolean,
-  optionsLoaded: boolean,
-  type: string,
+export type DropdownPropsT = {
+  error: boolean,
+  getOptionLabel: ({option: OptionT}) => React.Node,
+  isLoading: boolean,
+  labelKey: string,
   maxDropdownHeight: string,
-  getOptionLabel: OptionT => React$Node,
+  multi: boolean,
   onItemSelect: OnItemSelectFnT,
-  onChange: (e: SyntheticEvent<HTMLInputElement>, option: OptionT) => void,
+  options: ValueT,
+  overrides?: OverridesDropdownT,
+  required: boolean,
+  searchable: boolean,
+  size: SizeT,
+  type: TypeT,
+  value: ValueT,
+  valueKey: string,
+};
+
+export type AutosizeInputOverridesT = {
+  Input?: OverrideT<*>,
+};
+
+export type AutosizeInputPropsT = {
+  value: string,
+  defaultValue?: string,
+  inputRef: () => void,
+  overrides: AutosizeInputOverridesT,
+};
+
+export type AutosizeInputStateT = {
+  inputWidth: number,
+};
+
+export type SharedStylePropsArgT = {
+  $disabled: boolean,
+  $error: boolean,
+  $isFocused: boolean,
+  $isLoading: boolean,
+  $isOpen: boolean,
+  $isPseudoFocused: boolean,
+  $multi: boolean,
+  $required: boolean,
+  $searchable: boolean,
+  $size: SizeT,
+  $type: TypeT,
+};
+
+export type SharedStylePropsT = SharedStylePropsArgT & {
+  $theme: ThemeT,
 };

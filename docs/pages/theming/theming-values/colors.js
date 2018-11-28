@@ -121,6 +121,11 @@ function Colors() {
     mono1000: {color: LightTheme.colors.mono1000, dark: false},
   };
 
+  const ratingColors = {
+    rating200: {color: LightTheme.colors.rating200, dark: true},
+    rating400: {color: LightTheme.colors.rating400, dark: true},
+  };
+
   return (
     <div>
       <Header>Colors</Header>
@@ -130,6 +135,7 @@ function Colors() {
         <ColorPreview colors={warningColors} />
         <ColorPreview colors={positiveColors} />
         <ColorPreview colors={monoColors} />
+        <ColorPreview colors={ratingColors} />
       </ExampleWrapper>
     </div>
   );

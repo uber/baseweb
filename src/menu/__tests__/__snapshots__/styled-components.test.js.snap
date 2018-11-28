@@ -2,12 +2,18 @@
 
 exports[`Menu Styled Components List - basic render: correct styles 1`] = `
 Object {
-  "background": "$theme.colors.backgroundAlt",
+  "backgroundColor": "$theme.colors.backgroundAlt",
   "borderRadius": "$theme.borders.radius300",
   "boxShadow": "$theme.lighting.shadow600",
-  "margin": 0,
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
   "overflow": "auto",
-  "padding": 0,
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
   "position": "relative",
 }
 `;
@@ -23,6 +29,7 @@ Object {
   ":last-child": Object {
     "marginBottom": "$theme.sizing.scale300",
   },
+  "backgroundColor": "transparent",
   "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "block",
@@ -52,6 +59,7 @@ Object {
   ":last-child": Object {
     "marginBottom": "$theme.sizing.scale300",
   },
+  "backgroundColor": "transparent",
   "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "block",
@@ -81,6 +89,7 @@ Object {
   ":last-child": Object {
     "marginBottom": "$theme.sizing.scale300",
   },
+  "backgroundColor": "$theme.colors.mono300",
   "color": "$theme.colors.primary",
   "cursor": "pointer",
   "display": "block",
@@ -131,7 +140,10 @@ Object {
   "fontSize": "$theme.typography.font200.fontSize",
   "fontWeight": "$theme.typography.font200.fontWeight",
   "lineHeight": "$theme.typography.font200.lineHeight",
-  "margin": 0,
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
 }
 `;
 
@@ -169,7 +181,10 @@ Object {
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
   "lineHeight": "$theme.typography.font300.lineHeight",
-  "margin": 0,
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
 }
 `;
 
@@ -180,6 +195,9 @@ Object {
   "fontSize": "$theme.typography.font450.fontSize",
   "fontWeight": "$theme.typography.font450.fontWeight",
   "lineHeight": "$theme.typography.font450.lineHeight",
-  "margin": 0,
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
 }
 `;

@@ -24,7 +24,7 @@ export default () => {
     <StatefulSelect
       options={options}
       placeholder="Start typing to select a destination"
-      onChange={() => {console.log('selected value changed')}}
+      onChange={({value, option, type}) => {console.log('selected value changed')}}
     />
 };
 ```
@@ -37,89 +37,69 @@ import {
   StatefulSelect,
   Select,
   StyledRoot,
-  StyledInput,
+  StyledValueContainer,
   StyledInputContainer,
-  StyledTag,
-  StyledSelectComponentIcon,
-  StyledDropDown,
-  StyledOption,
-  StyledSelectionContainer,
-  ICON,
-  OPTIONS,
+  StyledInput,
+  StyledSingleValue,
+  StyledSelectArrow,
+  StyledOptionContent,
   TYPE,
 } from 'baseui/select';
 
 import {withStyle} from 'styletron-react';
 
-const CustomOption = withStyle(StyledOption, {
+const CustomOption = withStyle(StyledOptionContent, {
   textColor: 'red',
 });
 
 export default () => {
-  const options = textQuery => {
-    return new Promise(resolve => {
-      if (!textQuery) {
-        resolve([
-            {
-              id: '1',
-              label: {
-                text: 'First',
-                imgSrc: '1.jpg',
-              },
-            },
-            {
-              id: '2',
-              disabled: true,
-              label: {
-                text: 'Second',
-                imgSrc: '2.jpg',
-              },
-            },
-          ])
-      } else {
-          fetch(url)
-          .then((resp) => resp.json())
-          .then(resolve);
-      }
-    });
-  };
+  const options = [
+    {
+      id: '1',
+      label: {
+        text: 'First',
+        imgSrc: '1.jpg',
+      },
+    },
+    {
+      id: '2',
+      disabled: true,
+      label: {
+        text: 'Second',
+        imgSrc: '2.jpg',
+      },
+    },
+  ];
   return (
-    <React.Fragment>
-      <StatefulSelect
-        options={options}
-        initialState={{
-          selectedOptions: [
-            {
-              id: '3',
-              label: {
-                text: 'Third',
-                imgSrc: '3.jpg',
-              },
+    <StatefulSelect
+      options={options}
+      initialState={{
+        value: [
+          {
+            id: '3',
+            label: {
+              text: 'Third',
+              imgSrc: '3.jpg',
             },
-          ],
-        }}
-        getOptionLabel={option => (
-          <span>
-            <img
-              style={{
-                borderRadius: '50%',
-                height: '75px',
-              }}
-              src={option.label.imgSrc}
-            />
-            {option.label.text}
-          </span>
-        )}
-        label="Select option..."
-        placeholder="Choose one..."
-        type={TYPE.select}
-        multiple={true}
-        onChange={this.onChange}
-        overrides={{
-          Option: CustomOption,
-        }}
-      />
-    </React.Fragment>
+          },
+        ],
+      }}
+      getOptionLabel={option => (
+        <span>
+          <img
+            src={option.label.imgSrc}
+          />
+          {option.label.text}
+        </span>
+      )}
+      placeholder="Choose one..."
+      type={TYPE.search}
+      multi
+      onChange={this.onChange}
+      overrides={{
+        OptionValue: CustomOption,
+      }}
+    />
   );
 };
 ```
@@ -127,92 +107,146 @@ export default () => {
 ## Exports
 
 * `StatefulSelect`
-* `StatefulSelectContainer`
 * `Select`
-* `StyledSelectInput`
-* `StyledOption`
-* `StyledDropDown`
-* `StyledLabel`
-* `StyledHint`
-* `StyledSelectSpinner`
+* `StatefulSelectContainer`
+* `StyledRoot`
+* `StyledControlContainer`
+* `StyledValueContainer`
+* `StyledPlaceholder`
+* `StyledSingleValue`
+* `StyledInputContainer`
+* `StyledInput`
+* `StyledInputSizer`
+* `StyledSelectArrow`
+* `StyledClearIcon`
+* `StyledSearchIcon`
+* `StyledOptionContent`
+* `SIZE`
+* `TYPE`
+* `STATE_CHANGE_TYPE`
 
-## `Select` and `StatefulSelect` API
+## `StatefulSelect` API
 
-* `type: TYPE.search | TYPE.select`:
-  type of component to be in select or search mode (with lookup input)
-* `selectedOptions: Array<Object>`:
-  Current selected options. Every option object has `id: string` and `label: string|Object`. Label is defaulted to display for selected option, otherwise see `getSelectedOptionLabel` method
-* `placeholder: ?string`:
-  Placeholder text if nothing is selected. Default is `Choose one...`
-* `options: Array<Object> | func(query?: string) => Promise<Array<Object>>`:
-  All Options in dropdown. Should be provided for Select and Search mode equally. Every option object has `id: string` and `label: string|Object`. Label is defaulted to display for option in dropdown, otherwise see `getOptionLabel` method. Optional `disabled: boolean` for option to be disabled from selection.
-  For async load of options it should be a function method, which returns Promise, resolved with new options. Function can be provided with text input `query` if it is present in component.
-  `WARNINNG:` options as a function is only for client-side calls.
-* `error: ?boolean`:
-  Whether the control should be in an error state. Default is `false`
-* `multiple: ?boolean`:
-  Sets if multiple choices are allowed in Select component. Default is `false`
-* `maxDropdownHeight: ?string`:
-    Sets max height of DropDown list. Default is `900px` or `90%`
-* `filterable?: boolean`:
-  Sets if options should be filtered when the input changes. It works only in Search mode. If your option labels aren't strings, or you need custom filtering logic, use the `filterOption` prop. Custom keyDown handler is still called if provided. Default is `false`
-* `filterOption?: (option: Object, query: String) => boolean`:
-  Custom method to filter whether an option should be displayed in the menu. Defaults to a simple lower-case string match.
-* `getOptionLabel?: (option: Object) => React$Node`:
-  Lets you control what label is rendered for the specified option. Provides all option data and `isHighlighted` property indicating if it is highlighted(but not focused) in dropdown. The default behavior returns `option.label`.
-* `getSelectedOptionLabel?: (option: Object) => React$Node`:
-  Lets you control what label is rendered for the selected option. If not specified, defaults to `getOptionLabel`.
-* `autoFocus: boolean`:
-  Make the control focused (active). Default is `false`
-* `disabled: boolean`:
-  Disable control from being changed
-* `required: boolean`:
-  Mark control as required
-* `tabindex: number`:
-  The start offset of tabindex to navigate through component. Default is `0`.
-* `overrides: {}`
-  * `DropDown: ?React.ComponentType` component to use for dropdown list
-  * `Option: ?React.ComponentType` component to use for options in dropdown list
-  * `Root: ?React.ComponentType` component to use for most top of the select component
-  * `Input: ?React.ComponentType` component for Input showing current selected value(s). See `Input` Control of this framework for reference to override it's functionality.
-  * `SelectComponentIcon: ?React.ComponentType` component for all icons appearing in Select component. It's provided `$type: ICON.loop | ICON.clearTag | ICON.clearAll | ICON.selected` to setup corresponding icon of Select component
-  * `Tag: ?React.ComponentType` component for selected options Tags shown in Input for multiple mode selection
-  * `SelectSpinner: ?React.ComponentType` component for dropdown spinner if async options are loading
-  * `SelectionContainer: ?React.ComponentType` component for the wrapper around selected options\tags
-* `onChange: func({event: SyntheticInputEvent, type, option, selectedOptions})`:
-  handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed, current `Option` with `id` and `label` of selected\unselected option and `selectedOptions` array of all of selected.
-* `onTextInputChange: func`:
-  event handler for the input element
-* `onMouseEnter: func`:
-  event handler for the input element
-* `onMouseLeave: func`:
-  event handler for the input element
-* `onFocus: func`:
-  event handler for the input element
-* `onBlur: func`:
-  event handler for the input element
+* All properties of the StatefulContainer except `children`
+* All properties of the `Select` except `value`
+
+## `Select` API
+
+* `autoFocus: boolean` - Optional. Defaults to `false`
+  Defines if select element is focused on the first mount
+* `backspaceRemoves: boolean` - Optional. Defaults to `true`
+  Defines if options can be removed by pressing backspace
+* `clearable: boolean` - Optional. Defaults to `true`
+  Defines if the select value can be cleared. If true a clear icon is rendered when a value is set
+* `closeOnSelect: boolean` - Optional. Defaults to `true`
+  Defines if the menu closes after a selection if made
+* `deleteRemoves: boolean` - Optional. Defaults to `true`
+  Defines if options can be removed by pressing backspace
+* `disabled: boolean` - Optional. Defaults to `false`
+  Defines if the control is disabled
+* `error: boolean` - Optional. Defaults to `false`
+  Defines if the control if in error state
+* `escapeClearsValue: boolean` - Optional. Defaults to `true`
+  Defines if the value is cleared when escape is pressed and the dropdown is closed
+* `filterOptions: (options: Array<{}>, filterValue: string, excludeOptions: Array<{}>) => options: Array<{}>` - Optional. Defaults to `filterOptions` that excludes selected options for multi select
+  A custom method to filter options to be displayed in the dropdown
+* `filterOutSelected: boolean` - Optional. Defaults to `true`
+  Defines if currently selected options are filtered out in the dropdown options
+* `getOptionLabel: ({option: {}) => React.Node` - Optional. Defaults to return a `labelKey` value
+  A custom method to get a display value for a dropdown option
+* `getValueLabel: ({option: {}}) => React.Node` - Optional. Defaults to return a `labelKey` value
+  A custom method to get a display value for a selected option
+* `isLoading: boolean` - Optional. Defaults to `false`
+  Defines if the select if in a loading (async) state
+* `labelKey: string` - Optional. Defaults to `'label'`
+  Defines an option key for a default label value
+* `maxDropdownHeight: string` - Optional. Defaults to `900px`
+  Sets max height of the dropdown list
+* `multi: boolean` - Optional. Defaults to `false`
+  Defines if multiple options can be selected
+* `noResultsMsg: React.Node` - Optional. Defaults to `'No results found'`
+  Message to be displayed if no options is found for a search query
+* `onBlur: (e) => {}` - Optional
+  onBlur event handler
+* `onBlurResetsInput: boolean` - Optional. Defaults to `true`
+  Defines if the input value is reset to an empty string when a blur event happens on the select
+* `onChange: ({value: Array<Object>, option: ?Object, type: $Keys<typeof STATE_CHANGE_TYPE>}) => {}` - Optional
+  onChange handler of the select to be called when a value is changed
+* `onFocus: (e) => {}` - Optional
+  onFocus event handler
+* `onInputChange: (e) => {}` - Optional
+  onChange handler for an underlying input element to be called when a search query value is changed
+* `onCloseResetsInput: true` - Optional. Defaults to `true`
+  Defines if the input value is reset to an empty string when dropdown is closed
+* `onSelectResetsInput: true` - Optional. Defaults to `true`
+  Defines if the input value is reset to an empty string when a selection is made
+* `onOpen: null` - Optional. Defaults to `null`
+  A function that is called when the dropdown opens
+* `onClose: null` - Optional. Defaults to `null`
+  A function that is called when the dropdown closes
+* `openOnClick: true` - Optional. Defaults to `true`
+  Defines if the dropdown opens on a click event on the select
+* `options: Array<{}>` - Optional.  Defaults to `[]`
+  Options to be displayed in the dropdown. If an option has a `disabled` prop value set to `true` it will be rendered as a disabled option in the dropdown
+* `overrides: {Root, ControlContainer, Placeholder, ValueContainer, SingleValue, MultiValue, InputContainer, Input, SelectArrow, ClearIcon, LoadingIndicator, SearchIcon, DropDown, DropDownOption, OptionContent}` - Optional.
+  Overrides for presentational components. See "Presentational Components Props API" below.
+  * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
+* `placeholder: React.Node` - Optional. Defaults to `'Select...'`
+  Sets the placeholder
+* `required: boolean` - Optional. Defaults to `false`
+  Defines if the select field is required to have a selection
+* `searchable: boolean` - Optional. Defaults to `true`
+  Defines if the search functionality id enabled
+* `type: TYPE.search | TYPE.select` - Optional. Defaults to `TYPE.select`
+  Defines type of the component to be in select or search mode. When set to `TYPE.search` the searh icon if rendered on the left and the select arrow icon is not rendered.
+* `value: Array<{}>` - Optional. Defaults to `[]`
+  A current selected value(s). If a selected value has a `clearableValue` prop set to `true` it will be rendered as a disabled selected option that can't be cleared
+* `valueKey: string` - Optional. Defaults to `'id'`
+  Defines an option key for a default key value
 
 ## `StatefulSelectContainer` API
 
-* `initialState: {}`
-  Initial state of an uncontrolled popover component.
-  * `selectedOptions` - an initial set of selected options. They are prepended to all Options array if not found there.
-* `stateReducer: (type: text, nextState: {}, currentState: {}, e: any, params: Object) => nextState`
+* `initialState: {value: Array<{}>}` - Optional.Defaults to `{value: []}`
+  Initial state of an uncontrolled select component.
+  * `value` - an initial set of selected options.
+* `stateReducer: (type: text, nextState: {}, currentState: {}) => nextState`
   A state change handler.
   * `type` - state change type
   * `nextState` - a new state changes that will be set
   * `currentState` - current full state of the component
-  * `params` may contain `id` and `label` of selected option and `selectedOptions` array of all of selected, as well as new `textValue` set in input.
-* `children: func` should return `Select` instance with standard or customized inner elements.
-* `onChange: func({event: SyntheticInputEvent, type, option, selectedOptions})`:
-  handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed, current `Option` with `id` and `label` `label` of selected\unselected option and `selectedOptions` array of all of selected.
-* `onTextInputChange: func`:
-  event handler for the input element
-* `onMouseEnter: func`:
-  event handler for the input element
-* `onMouseLeave: func`:
-  event handler for the input element
-* `onFocus: func`:
-  event handler for the input element
-* `onBlur: func`:
-  event handler for the input element
+* `children: func` - Required
+  Children function that returns `Select` instance with default or customized inner elements.
+* `onChange: ({type, option, value}) => void`:
+  handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed - `STATE_CHANGE_TYPE.select | STATE_CHANGE_TYPE.remove | STATE_CHANGE_TYPE.clear`. `option` that is beeing added or removed - `Object`. And `value` is the current select value icluding/exluding the currently selected/removed option.
+
+## Presentational components API
+
+These properties are passed to every presentational (styled) component that is exported:
+
+* `$disabled: boolean`
+* `$error: boolean`
+* `$isFocused: boolean`
+* `$isLoading: boolean`
+* `$isOpen: boolean`
+* `$isPseudoFocused: boolean`
+* `$multi: boolean`
+* `$required: boolean`
+* `$searchable: boolean`
+* `$size: SIZE.default | SIZE.compact`
+* `$type: TYPE.select | TYPE.search`
+
+* `$width: string` - is passed to the `Input` element only
+
+* `$selected: boolean` - is passed to the `OptionContent` element only
+* `$isHighlighted: boolean` - is passed to the `OptionContent` element only
+
+## TYPE Constant
+
+* `select`
+* `search`
+
+## STATE_CHANGE_TYPE Constant
+
+* `select` - event type when a new option is selected
+* `remove` - event type when an previously selected option is removed
+* `clear` - event type when a select value is cleared

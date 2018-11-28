@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import type {OverrideT} from '../helpers/overrides';
 import {STATE_CHANGE_TYPE} from './constants';
 import * as React from 'react';
-export type ChangeActionT = $Values<typeof STATE_CHANGE_TYPE>;
+export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type ParamsT = {
   value: Array<number>,
 };

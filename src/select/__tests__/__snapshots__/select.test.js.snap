@@ -1,974 +1,1294 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Stateless select should render component in search mode and false for multiple choice: Component has correct render in search mode and mutiple choice equal false 1`] = `
+exports[`Select component renders component in search mode and false for multiple choice: Component has correct render in search mode and mutiple choice equals false 1`] = `
 <Select
+  aria-describedby={null}
+  aria-label={null}
+  aria-labelledby={null}
   autoFocus={false}
+  backspaceRemoves={true}
+  clearable={true}
+  closeOnSelect={true}
+  deleteRemoves={true}
+  disabled={false}
   error={false}
-  filterable={false}
+  escapeClearsValue={true}
+  filterOptions={[Function]}
+  filterOutSelected={true}
+  getOptionLabel={null}
+  getValueLabel={null}
+  isLoading={false}
+  labelKey="label"
   maxDropdownHeight="900px"
+  multi={false}
   multiple={false}
+  noResultsMsg="No results found"
   onBlur={[MockFunction]}
+  onBlurResetsInput={true}
   onChange={[MockFunction]}
+  onClose={null}
+  onCloseResetsInput={true}
   onFocus={[MockFunction]}
-  onMouseDown={[Function]}
-  onMouseEnter={[MockFunction]}
-  onMouseLeave={[MockFunction]}
-  onMouseUp={[Function]}
-  onTextInputChange={[MockFunction]}
-  options={Array []}
+  onInputChange={[MockFunction]}
+  onOpen={null}
+  onSelectResetsInput={true}
+  openOnClick={true}
+  options={
+    Array [
+      Object {
+        "id": "id1",
+        "label": "label1",
+      },
+      Object {
+        "id": "id2",
+        "label": "label2",
+      },
+      Object {
+        "id": "id3",
+        "label": "bel3",
+      },
+    ]
+  }
   overrides={Object {}}
-  selectedOptions={Array []}
-  tabIndex={0}
-  textValue=""
+  placeholder="Select..."
+  required={false}
+  searchable={true}
+  size="default"
   type="search"
+  value={Array []}
+  valueKey="id"
 >
-  <MockStyledComponent>
+  <MockStyledComponent
+    $disabled={false}
+    $error={false}
+    $isFocused={false}
+    $isLoading={false}
+    $isOpen={false}
+    $isPseudoFocused={false}
+    $multi={false}
+    $ref={[Function]}
+    $required={false}
+    $searchable={true}
+    $size="default"
+    $type="search"
+  >
     <div
       styled-component="true"
     >
-      <Input
-        autoFocus={false}
-        disabled={false}
-        endEnhancer={null}
-        error={false}
-        name=""
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        overrides={
-          Object {
-            "After": [Function],
-            "Before": [Function],
-            "Input": Object {
-              "component": [Function],
-              "props": Object {
-                "aria-autocomplete": "list",
-                "aria-expanded": false,
-                "onKeyDown": [Function],
-                "role": "combobox",
-                "tabIndex": 0,
-              },
-            },
-            "InputContainer": Object {
-              "component": [Function],
-              "props": Object {},
-            },
-          }
-        }
-        required={false}
-        size="default"
-        startEnhancer={null}
-        value=""
+      <MockStyledComponent
+        $disabled={false}
+        $error={false}
+        $isFocused={false}
+        $isLoading={false}
+        $isOpen={false}
+        $isPseudoFocused={false}
+        $multi={false}
+        $required={false}
+        $searchable={true}
+        $size="default"
+        $type="search"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
-        <MockStyledComponent
-          $disabled={false}
-          $error={false}
-          $isFocused={false}
-          $required={false}
-          $size="default"
+        <div
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          styled-component="true"
         >
-          <div
-            styled-component="true"
-          >
-            <BaseInput
-              adjoined="none"
-              autoFocus={false}
-              disabled={false}
-              error={false}
-              inputRef={
-                Object {
-                  "current": null,
-                }
+          <Search
+            $disabled={false}
+            $error={false}
+            $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
+            $required={false}
+            $searchable={true}
+            $size="default"
+            $type="search"
+            onClick={[Function]}
+            overrides={
+              Object {
+                "Svg": [Function],
               }
-              name=""
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyPress={[Function]}
-              onKeyUp={[Function]}
+            }
+            size={16}
+            title="search"
+          >
+            <Icon
+              $disabled={false}
+              $error={false}
+              $isFocused={false}
+              $isLoading={false}
+              $isOpen={false}
+              $isPseudoFocused={false}
+              $multi={false}
+              $required={false}
+              $searchable={true}
+              $size="default"
+              $type="search"
+              onClick={[Function]}
               overrides={
                 Object {
-                  "After": [Function],
-                  "Before": [Function],
-                  "Input": Object {
-                    "component": [Function],
-                    "props": Object {
-                      "aria-autocomplete": "list",
-                      "aria-expanded": false,
-                      "onKeyDown": [Function],
-                      "role": "combobox",
-                      "tabIndex": 0,
-                    },
-                  },
-                  "InputContainer": Object {
-                    "component": [Function],
-                    "props": Object {},
-                  },
+                  "Svg": [Function],
                 }
               }
-              placeholder=""
-              required={false}
-              size="default"
-              type="text"
-              value=""
+              size={16}
+              title="search"
+              viewBox="0 0 24 24"
             >
               <MockStyledComponent
-                $adjoined="none"
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
                 $required={false}
+                $searchable={true}
                 $size="default"
+                $type="search"
+                onClick={[Function]}
+                viewBox="0 0 24 24"
+              >
+                <svg
+                  onClick={[Function]}
+                  styled-component="true"
+                  viewBox="0 0 24 24"
+                >
+                  <title>
+                    search
+                  </title>
+                  <g
+                    transform="matrix( 1 0 0 1 1 0.899993896484375 )"
+                  >
+                    <path
+                      clipRule="nonzero"
+                      d="M 21.60009765625 19.500030517578125 L 17.2001953125 15.100006103515625 C 18.300195693969727 13.500005722045898 19 11.600030899047852 19 9.500030517578125 C 19 4.300030708312988 14.699999809265137 0 9.5 0 C 4.300000190734863 0 0 4.300030708312988 0 9.500030517578125 C 0 14.700030326843262 4.300000190734863 19.000030517578125 9.5 19.000030517578125 C 11.600000381469727 19.000030517578125 13.500097274780273 18.29998207092285 15.10009765625 17.199981689453125 L 19.5 21.600006103515625 L 21.60009765625 19.500030517578125 Z M 3 9.600006103515625 C 3 6.000006198883057 5.900000095367432 3.100006103515625 9.5 3.100006103515625 C 13.100000381469727 3.100006103515625 16 6.000006198883057 16 9.600006103515625 C 16 13.200006484985352 13.100000381469727 16.100006103515625 9.5 16.100006103515625 C 5.900000095367432 16.100006103515625 3 13.200006484985352 3 9.600006103515625 Z"
+                      fill="currentColor"
+                      fillRule="nonzero"
+                    />
+                  </g>
+                </svg>
+              </MockStyledComponent>
+            </Icon>
+          </Search>
+          <MockStyledComponent
+            $disabled={false}
+            $error={false}
+            $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
+            $required={false}
+            $searchable={true}
+            $size="default"
+            $type="search"
+            role="list"
+          >
+            <span
+              role="list"
+              styled-component="true"
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="search"
               >
                 <div
                   styled-component="true"
                 >
-                  <Before
-                    $adjoined="none"
-                    $disabled={false}
-                    $error={false}
-                    $isFocused={false}
-                    $required={false}
-                    $size="default"
-                  >
-                    <MockStyledComponent
-                      role="list"
-                    >
-                      <div
-                        role="list"
-                        styled-component="true"
-                      >
-                        <MockStyledComponent
-                          $type="loop"
-                          src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
-                        >
-                          <img
-                            src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
-                            styled-component="true"
-                          />
-                        </MockStyledComponent>
-                      </div>
-                    </MockStyledComponent>
-                  </Before>
-                  <MockStyledComponent
-                    $adjoined="none"
-                    $disabled={false}
-                    $error={false}
-                    $isFocused={false}
-                    $ref={
-                      Object {
-                        "current": null,
-                      }
-                    }
-                    $required={false}
-                    $size="default"
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    aria-invalid={false}
-                    aria-required={false}
-                    disabled={false}
-                    name=""
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onKeyPress={[Function]}
-                    onKeyUp={[Function]}
-                    placeholder=""
-                    role="combobox"
-                    tabIndex={0}
-                    type="text"
-                    value=""
-                  >
-                    <input
-                      aria-autocomplete="list"
-                      aria-expanded={false}
-                      aria-invalid={false}
-                      aria-required={false}
-                      disabled={false}
-                      name=""
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onKeyPress={[Function]}
-                      onKeyUp={[Function]}
-                      placeholder=""
-                      role="combobox"
-                      styled-component="true"
-                      tabIndex={0}
-                      type="text"
-                      value=""
-                    />
-                  </MockStyledComponent>
-                  <After
-                    $adjoined="none"
-                    $disabled={false}
-                    $error={false}
-                    $isFocused={false}
-                    $required={false}
-                    $size="default"
-                  >
-                    <MockStyledComponent
-                      $type="clear_all"
-                      onClick={[Function]}
-                      src="data:image/svg+xml;utf8,<svg width=\\"16\\" height=\\"16\\" viewBox=\\"0 0 16 16\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path fill-rule=\\"evenodd\\" clip-rule=\\"evenodd\\" d=\\"M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z\\" fill=\\"#999999\\"/></svg>"
-                    >
-                      <img
-                        onClick={[Function]}
-                        src="data:image/svg+xml;utf8,<svg width=\\"16\\" height=\\"16\\" viewBox=\\"0 0 16 16\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path fill-rule=\\"evenodd\\" clip-rule=\\"evenodd\\" d=\\"M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z\\" fill=\\"#999999\\"/></svg>"
-                        styled-component="true"
-                      />
-                    </MockStyledComponent>
-                  </After>
+                  Select...
                 </div>
               </MockStyledComponent>
-            </BaseInput>
-          </div>
-        </MockStyledComponent>
-      </Input>
-      <SelectDropDown
-        getOptionLabel={[Function]}
-        isDropDownOpen={false}
-        maxDropdownHeight="90vh"
-        multiple={true}
-        onChange={[Function]}
-        onItemSelect={[Function]}
-        options={Array []}
-        optionsLoaded={false}
-        overrides={Object {}}
-        selectedOptions={Array []}
-        type="search"
-      >
-        <div />
-      </SelectDropDown>
-    </div>
-  </MockStyledComponent>
-</Select>
-`;
-
-exports[`Stateless select should render component in search mode and true for multiple choice: Component has correct render in search mode and mutiple choice equal true 1`] = `
-<Select
-  autoFocus={false}
-  error={false}
-  filterable={false}
-  maxDropdownHeight="900px"
-  multiple={true}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  onFocus={[MockFunction]}
-  onMouseDown={[Function]}
-  onMouseEnter={[MockFunction]}
-  onMouseLeave={[MockFunction]}
-  onMouseUp={[Function]}
-  onTextInputChange={[MockFunction]}
-  options={Array []}
-  overrides={Object {}}
-  selectedOptions={Array []}
-  tabIndex={0}
-  textValue=""
-  type="search"
->
-  <MockStyledComponent>
-    <div
-      styled-component="true"
-    >
-      <Input
-        autoFocus={false}
-        disabled={false}
-        endEnhancer={null}
-        error={false}
-        name=""
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        overrides={
-          Object {
-            "After": [Function],
-            "Before": [Function],
-            "Input": Object {
-              "component": [Function],
-              "props": Object {
-                "aria-autocomplete": "list",
-                "aria-expanded": false,
-                "onKeyDown": [Function],
-                "role": "combobox",
-                "tabIndex": 0,
-              },
-            },
-            "InputContainer": Object {
-              "component": [Function],
-              "props": Object {},
-            },
-          }
-        }
-        required={false}
-        size="default"
-        startEnhancer={null}
-        value=""
-      >
-        <MockStyledComponent
-          $disabled={false}
-          $error={false}
-          $isFocused={false}
-          $required={false}
-          $size="default"
-        >
-          <div
-            styled-component="true"
-          >
-            <BaseInput
-              adjoined="none"
-              autoFocus={false}
-              disabled={false}
-              error={false}
-              inputRef={
-                Object {
-                  "current": null,
-                }
-              }
-              name=""
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyPress={[Function]}
-              onKeyUp={[Function]}
-              overrides={
-                Object {
-                  "After": [Function],
-                  "Before": [Function],
-                  "Input": Object {
-                    "component": [Function],
-                    "props": Object {
-                      "aria-autocomplete": "list",
-                      "aria-expanded": false,
-                      "onKeyDown": [Function],
-                      "role": "combobox",
-                      "tabIndex": 0,
-                    },
-                  },
-                  "InputContainer": Object {
-                    "component": [Function],
-                    "props": Object {},
-                  },
-                }
-              }
-              placeholder=""
-              required={false}
-              size="default"
-              type="text"
-              value=""
-            >
               <MockStyledComponent
-                $adjoined="none"
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
                 $required={false}
+                $searchable={true}
                 $size="default"
+                $type="search"
               >
                 <div
                   styled-component="true"
                 >
-                  <Before
-                    $adjoined="none"
+                  <AutosizeInput
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
+                    $isLoading={false}
+                    $isOpen={false}
+                    $isPseudoFocused={false}
+                    $multi={false}
                     $required={false}
+                    $searchable={true}
                     $size="default"
-                  >
-                    <MockStyledComponent
-                      role="list"
-                    >
-                      <div
-                        role="list"
-                        styled-component="true"
-                      >
-                        <MockStyledComponent
-                          $type="loop"
-                          src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
-                        >
-                          <img
-                            src="data:image/svg+xml;utf8,<svg width=\\"15\\" height=\\"15\\" viewBox=\\"0 0 15 15\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z\\" transform=\\"translate(1 1)\\" stroke=\\"#1B6DE0\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\"/></svg>"
-                            styled-component="true"
-                          />
-                        </MockStyledComponent>
-                      </div>
-                    </MockStyledComponent>
-                  </Before>
-                  <MockStyledComponent
-                    $adjoined="none"
-                    $disabled={false}
-                    $error={false}
-                    $isFocused={false}
-                    $ref={
-                      Object {
-                        "current": null,
-                      }
-                    }
-                    $required={false}
-                    $size="default"
+                    $type="search"
                     aria-autocomplete="list"
+                    aria-describedby={null}
                     aria-expanded={false}
-                    aria-invalid={false}
-                    aria-required={false}
-                    disabled={false}
-                    name=""
+                    aria-haspopup={false}
+                    aria-label={null}
+                    aria-labelledby={null}
+                    inputRef={[Function]}
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onKeyPress={[Function]}
-                    onKeyUp={[Function]}
-                    placeholder=""
+                    overrides={
+                      Object {
+                        "Input": undefined,
+                      }
+                    }
+                    required={false}
                     role="combobox"
-                    tabIndex={0}
-                    type="text"
                     value=""
                   >
-                    <input
+                    <MockStyledComponent
+                      $disabled={false}
+                      $error={false}
+                      $isFocused={false}
+                      $isLoading={false}
+                      $isOpen={false}
+                      $isPseudoFocused={false}
+                      $multi={false}
+                      $ref={[Function]}
+                      $required={false}
+                      $searchable={true}
+                      $size="default"
+                      $type="search"
+                      $width="5px"
                       aria-autocomplete="list"
+                      aria-describedby={null}
                       aria-expanded={false}
-                      aria-invalid={false}
-                      aria-required={false}
-                      disabled={false}
-                      name=""
+                      aria-haspopup={false}
+                      aria-label={null}
+                      aria-labelledby={null}
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onKeyPress={[Function]}
-                      onKeyUp={[Function]}
-                      placeholder=""
+                      required={false}
                       role="combobox"
-                      styled-component="true"
-                      tabIndex={0}
-                      type="text"
                       value=""
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        aria-describedby={null}
+                        aria-expanded={false}
+                        aria-haspopup={false}
+                        aria-label={null}
+                        aria-labelledby={null}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        required={false}
+                        role="combobox"
+                        styled-component="true"
+                        value=""
+                      />
+                    </MockStyledComponent>
+                    <MockStyledComponent
+                      $ref={[Function]}
+                    >
+                      <div
+                        styled-component="true"
+                      />
+                    </MockStyledComponent>
+                  </AutosizeInput>
+                </div>
+              </MockStyledComponent>
+            </span>
+          </MockStyledComponent>
+        </div>
+      </MockStyledComponent>
+    </div>
+  </MockStyledComponent>
+</Select>
+`;
+
+exports[`Select component renders component in search mode and true for multiple choice: Component has correct render in search mode and mutiple choice equals true 1`] = `
+<Select
+  aria-describedby={null}
+  aria-label={null}
+  aria-labelledby={null}
+  autoFocus={false}
+  backspaceRemoves={true}
+  clearable={true}
+  closeOnSelect={true}
+  deleteRemoves={true}
+  disabled={false}
+  error={false}
+  escapeClearsValue={true}
+  filterOptions={[Function]}
+  filterOutSelected={true}
+  getOptionLabel={null}
+  getValueLabel={null}
+  isLoading={false}
+  labelKey="label"
+  maxDropdownHeight="900px"
+  multi={false}
+  multiple={true}
+  noResultsMsg="No results found"
+  onBlur={[MockFunction]}
+  onBlurResetsInput={true}
+  onChange={[MockFunction]}
+  onClose={null}
+  onCloseResetsInput={true}
+  onFocus={[MockFunction]}
+  onInputChange={[MockFunction]}
+  onOpen={null}
+  onSelectResetsInput={true}
+  openOnClick={true}
+  options={
+    Array [
+      Object {
+        "id": "id1",
+        "label": "label1",
+      },
+      Object {
+        "id": "id2",
+        "label": "label2",
+      },
+      Object {
+        "id": "id3",
+        "label": "bel3",
+      },
+    ]
+  }
+  overrides={Object {}}
+  placeholder="Select..."
+  required={false}
+  searchable={true}
+  size="default"
+  type="search"
+  value={Array []}
+  valueKey="id"
+>
+  <MockStyledComponent
+    $disabled={false}
+    $error={false}
+    $isFocused={false}
+    $isLoading={false}
+    $isOpen={false}
+    $isPseudoFocused={false}
+    $multi={false}
+    $ref={[Function]}
+    $required={false}
+    $searchable={true}
+    $size="default"
+    $type="search"
+  >
+    <div
+      styled-component="true"
+    >
+      <MockStyledComponent
+        $disabled={false}
+        $error={false}
+        $isFocused={false}
+        $isLoading={false}
+        $isOpen={false}
+        $isPseudoFocused={false}
+        $multi={false}
+        $required={false}
+        $searchable={true}
+        $size="default"
+        $type="search"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          styled-component="true"
+        >
+          <Search
+            $disabled={false}
+            $error={false}
+            $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
+            $required={false}
+            $searchable={true}
+            $size="default"
+            $type="search"
+            onClick={[Function]}
+            overrides={
+              Object {
+                "Svg": [Function],
+              }
+            }
+            size={16}
+            title="search"
+          >
+            <Icon
+              $disabled={false}
+              $error={false}
+              $isFocused={false}
+              $isLoading={false}
+              $isOpen={false}
+              $isPseudoFocused={false}
+              $multi={false}
+              $required={false}
+              $searchable={true}
+              $size="default"
+              $type="search"
+              onClick={[Function]}
+              overrides={
+                Object {
+                  "Svg": [Function],
+                }
+              }
+              size={16}
+              title="search"
+              viewBox="0 0 24 24"
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="search"
+                onClick={[Function]}
+                viewBox="0 0 24 24"
+              >
+                <svg
+                  onClick={[Function]}
+                  styled-component="true"
+                  viewBox="0 0 24 24"
+                >
+                  <title>
+                    search
+                  </title>
+                  <g
+                    transform="matrix( 1 0 0 1 1 0.899993896484375 )"
+                  >
+                    <path
+                      clipRule="nonzero"
+                      d="M 21.60009765625 19.500030517578125 L 17.2001953125 15.100006103515625 C 18.300195693969727 13.500005722045898 19 11.600030899047852 19 9.500030517578125 C 19 4.300030708312988 14.699999809265137 0 9.5 0 C 4.300000190734863 0 0 4.300030708312988 0 9.500030517578125 C 0 14.700030326843262 4.300000190734863 19.000030517578125 9.5 19.000030517578125 C 11.600000381469727 19.000030517578125 13.500097274780273 18.29998207092285 15.10009765625 17.199981689453125 L 19.5 21.600006103515625 L 21.60009765625 19.500030517578125 Z M 3 9.600006103515625 C 3 6.000006198883057 5.900000095367432 3.100006103515625 9.5 3.100006103515625 C 13.100000381469727 3.100006103515625 16 6.000006198883057 16 9.600006103515625 C 16 13.200006484985352 13.100000381469727 16.100006103515625 9.5 16.100006103515625 C 5.900000095367432 16.100006103515625 3 13.200006484985352 3 9.600006103515625 Z"
+                      fill="currentColor"
+                      fillRule="nonzero"
                     />
-                  </MockStyledComponent>
-                  <After
-                    $adjoined="none"
+                  </g>
+                </svg>
+              </MockStyledComponent>
+            </Icon>
+          </Search>
+          <MockStyledComponent
+            $disabled={false}
+            $error={false}
+            $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
+            $required={false}
+            $searchable={true}
+            $size="default"
+            $type="search"
+            role="list"
+          >
+            <span
+              role="list"
+              styled-component="true"
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="search"
+              >
+                <div
+                  styled-component="true"
+                >
+                  Select...
+                </div>
+              </MockStyledComponent>
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="search"
+              >
+                <div
+                  styled-component="true"
+                >
+                  <AutosizeInput
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
+                    $isLoading={false}
+                    $isOpen={false}
+                    $isPseudoFocused={false}
+                    $multi={false}
                     $required={false}
+                    $searchable={true}
                     $size="default"
+                    $type="search"
+                    aria-autocomplete="list"
+                    aria-describedby={null}
+                    aria-expanded={false}
+                    aria-haspopup={false}
+                    aria-label={null}
+                    aria-labelledby={null}
+                    inputRef={[Function]}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    overrides={
+                      Object {
+                        "Input": undefined,
+                      }
+                    }
+                    required={false}
+                    role="combobox"
+                    value=""
                   >
                     <MockStyledComponent
-                      $type="clear_all"
-                      onClick={[Function]}
-                      src="data:image/svg+xml;utf8,<svg width=\\"16\\" height=\\"16\\" viewBox=\\"0 0 16 16\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path fill-rule=\\"evenodd\\" clip-rule=\\"evenodd\\" d=\\"M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z\\" fill=\\"#999999\\"/></svg>"
+                      $disabled={false}
+                      $error={false}
+                      $isFocused={false}
+                      $isLoading={false}
+                      $isOpen={false}
+                      $isPseudoFocused={false}
+                      $multi={false}
+                      $ref={[Function]}
+                      $required={false}
+                      $searchable={true}
+                      $size="default"
+                      $type="search"
+                      $width="5px"
+                      aria-autocomplete="list"
+                      aria-describedby={null}
+                      aria-expanded={false}
+                      aria-haspopup={false}
+                      aria-label={null}
+                      aria-labelledby={null}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      role="combobox"
+                      value=""
                     >
-                      <img
-                        onClick={[Function]}
-                        src="data:image/svg+xml;utf8,<svg width=\\"16\\" height=\\"16\\" viewBox=\\"0 0 16 16\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path fill-rule=\\"evenodd\\" clip-rule=\\"evenodd\\" d=\\"M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z\\" fill=\\"#999999\\"/></svg>"
+                      <input
+                        aria-autocomplete="list"
+                        aria-describedby={null}
+                        aria-expanded={false}
+                        aria-haspopup={false}
+                        aria-label={null}
+                        aria-labelledby={null}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        required={false}
+                        role="combobox"
+                        styled-component="true"
+                        value=""
+                      />
+                    </MockStyledComponent>
+                    <MockStyledComponent
+                      $ref={[Function]}
+                    >
+                      <div
                         styled-component="true"
                       />
                     </MockStyledComponent>
-                  </After>
+                  </AutosizeInput>
                 </div>
               </MockStyledComponent>
-            </BaseInput>
-          </div>
-        </MockStyledComponent>
-      </Input>
-      <SelectDropDown
-        getOptionLabel={[Function]}
-        isDropDownOpen={false}
-        maxDropdownHeight="90vh"
-        multiple={true}
-        onChange={[Function]}
-        onItemSelect={[Function]}
-        options={Array []}
-        optionsLoaded={false}
-        overrides={Object {}}
-        selectedOptions={Array []}
-        type="search"
-      >
-        <div />
-      </SelectDropDown>
+            </span>
+          </MockStyledComponent>
+        </div>
+      </MockStyledComponent>
     </div>
   </MockStyledComponent>
 </Select>
 `;
 
-exports[`Stateless select should render component in select mode and false for multiple choice: Component has correct render in select mode and mutiple choice equal false 1`] = `
+exports[`Select component renders component in select mode and false for multiple choice: Component has correct render in select mode and mutiple choice equals false 1`] = `
 <Select
+  aria-describedby={null}
+  aria-label={null}
+  aria-labelledby={null}
   autoFocus={false}
+  backspaceRemoves={true}
+  clearable={true}
+  closeOnSelect={true}
+  deleteRemoves={true}
+  disabled={false}
   error={false}
-  filterable={false}
+  escapeClearsValue={true}
+  filterOptions={[Function]}
+  filterOutSelected={true}
+  getOptionLabel={null}
+  getValueLabel={null}
+  isLoading={false}
+  labelKey="label"
   maxDropdownHeight="900px"
+  multi={false}
   multiple={false}
+  noResultsMsg="No results found"
   onBlur={[MockFunction]}
+  onBlurResetsInput={true}
   onChange={[MockFunction]}
+  onClose={null}
+  onCloseResetsInput={true}
   onFocus={[MockFunction]}
-  onMouseDown={[Function]}
-  onMouseEnter={[MockFunction]}
-  onMouseLeave={[MockFunction]}
-  onMouseUp={[Function]}
-  onTextInputChange={[MockFunction]}
-  options={Array []}
+  onInputChange={[MockFunction]}
+  onOpen={null}
+  onSelectResetsInput={true}
+  openOnClick={true}
+  options={
+    Array [
+      Object {
+        "id": "id1",
+        "label": "label1",
+      },
+      Object {
+        "id": "id2",
+        "label": "label2",
+      },
+      Object {
+        "id": "id3",
+        "label": "bel3",
+      },
+    ]
+  }
   overrides={Object {}}
-  selectedOptions={Array []}
-  tabIndex={0}
-  textValue=""
+  placeholder="Select..."
+  required={false}
+  searchable={true}
+  size="default"
   type="select"
+  value={Array []}
+  valueKey="id"
 >
-  <MockStyledComponent>
+  <MockStyledComponent
+    $disabled={false}
+    $error={false}
+    $isFocused={false}
+    $isLoading={false}
+    $isOpen={false}
+    $isPseudoFocused={false}
+    $multi={false}
+    $ref={[Function]}
+    $required={false}
+    $searchable={true}
+    $size="default"
+    $type="select"
+  >
     <div
       styled-component="true"
     >
-      <div
+      <MockStyledComponent
+        $disabled={false}
+        $error={false}
+        $isFocused={false}
+        $isLoading={false}
+        $isOpen={false}
+        $isPseudoFocused={false}
+        $multi={false}
+        $required={false}
+        $searchable={true}
+        $size="default"
+        $type="select"
         onClick={[Function]}
         onKeyDown={[Function]}
-        tabIndex={0}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
-        <Input
-          autoFocus={false}
-          disabled={true}
-          endEnhancer={null}
-          error={false}
-          name=""
-          onBlur={[Function]}
-          onFocus={[Function]}
-          overrides={
-            Object {
-              "After": [Function],
-              "Before": [Function],
-              "Input": Object {
-                "component": [Function],
-                "props": Object {
-                  "aria-autocomplete": "none",
-                  "aria-expanded": false,
-                  "role": "combobox",
-                },
-              },
-              "InputContainer": Object {
-                "component": [Function],
-                "props": Object {},
-              },
-              "Root": Object {
-                "component": [Function],
-                "props": Object {},
-              },
-            }
-          }
-          required={false}
-          size="default"
-          startEnhancer={null}
+        <div
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          styled-component="true"
         >
           <MockStyledComponent
-            $disabled={true}
+            $disabled={false}
             $error={false}
             $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
             $required={false}
+            $searchable={true}
             $size="default"
+            $type="select"
+            role="list"
           >
-            <div
+            <span
+              role="list"
               styled-component="true"
             >
-              <BaseInput
-                adjoined="none"
-                autoFocus={false}
-                disabled={true}
-                error={false}
-                inputRef={
-                  Object {
-                    "current": null,
-                  }
-                }
-                name=""
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyPress={[Function]}
-                onKeyUp={[Function]}
-                overrides={
-                  Object {
-                    "After": [Function],
-                    "Before": [Function],
-                    "Input": Object {
-                      "component": [Function],
-                      "props": Object {
-                        "aria-autocomplete": "none",
-                        "aria-expanded": false,
-                        "role": "combobox",
-                      },
-                    },
-                    "InputContainer": Object {
-                      "component": [Function],
-                      "props": Object {},
-                    },
-                    "Root": Object {
-                      "component": [Function],
-                      "props": Object {},
-                    },
-                  }
-                }
-                placeholder=""
-                required={false}
-                size="default"
-                type="text"
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="select"
               >
-                <MockStyledComponent
-                  $adjoined="none"
-                  $disabled={true}
-                  $error={false}
-                  $isFocused={false}
-                  $required={false}
-                  $size="default"
+                <div
+                  styled-component="true"
                 >
-                  <div
-                    styled-component="true"
-                  >
-                    <Before
-                      $adjoined="none"
-                      $disabled={true}
-                      $error={false}
-                      $isFocused={false}
-                      $required={false}
-                      $size="default"
-                    >
-                      <MockStyledComponent
-                        role="list"
-                      >
-                        <div
-                          role="list"
-                          styled-component="true"
-                        />
-                      </MockStyledComponent>
-                    </Before>
-                    <MockStyledComponent
-                      $adjoined="none"
-                      $disabled={true}
-                      $error={false}
-                      $isFocused={false}
-                      $ref={
-                        Object {
-                          "current": null,
-                        }
+                  Select...
+                </div>
+              </MockStyledComponent>
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="select"
+              >
+                <div
+                  styled-component="true"
+                >
+                  <AutosizeInput
+                    $disabled={false}
+                    $error={false}
+                    $isFocused={false}
+                    $isLoading={false}
+                    $isOpen={false}
+                    $isPseudoFocused={false}
+                    $multi={false}
+                    $required={false}
+                    $searchable={true}
+                    $size="default"
+                    $type="select"
+                    aria-autocomplete="list"
+                    aria-describedby={null}
+                    aria-expanded={false}
+                    aria-haspopup={false}
+                    aria-label={null}
+                    aria-labelledby={null}
+                    inputRef={[Function]}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    overrides={
+                      Object {
+                        "Input": undefined,
                       }
+                    }
+                    required={false}
+                    role="combobox"
+                    value=""
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $error={false}
+                      $isFocused={false}
+                      $isLoading={false}
+                      $isOpen={false}
+                      $isPseudoFocused={false}
+                      $multi={false}
+                      $ref={[Function]}
                       $required={false}
+                      $searchable={true}
                       $size="default"
-                      aria-autocomplete="none"
+                      $type="select"
+                      $width="5px"
+                      aria-autocomplete="list"
+                      aria-describedby={null}
                       aria-expanded={false}
-                      aria-invalid={false}
-                      aria-required={false}
-                      disabled={true}
-                      name=""
+                      aria-haspopup={false}
+                      aria-label={null}
+                      aria-labelledby={null}
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onKeyPress={[Function]}
-                      onKeyUp={[Function]}
-                      placeholder=""
+                      required={false}
                       role="combobox"
-                      type="text"
+                      value=""
                     >
                       <input
-                        aria-autocomplete="none"
+                        aria-autocomplete="list"
+                        aria-describedby={null}
                         aria-expanded={false}
-                        aria-invalid={false}
-                        aria-required={false}
-                        disabled={true}
-                        name=""
+                        aria-haspopup={false}
+                        aria-label={null}
+                        aria-labelledby={null}
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        onKeyPress={[Function]}
-                        onKeyUp={[Function]}
-                        placeholder=""
+                        required={false}
                         role="combobox"
                         styled-component="true"
-                        type="text"
+                        value=""
                       />
                     </MockStyledComponent>
-                    <After
-                      $adjoined="none"
-                      $disabled={true}
-                      $error={false}
-                      $isFocused={false}
-                      $required={false}
-                      $size="default"
+                    <MockStyledComponent
+                      $ref={[Function]}
                     >
-                      <MockStyledComponent
-                        $type="select"
-                        src="data:image/svg+xml;utf8,<svg width=\\"12\\" height=\\"12\\" viewBox=\\"0 0 24 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><g transform=\\"matrix(1 0 0 1 2 6.899993896484375)\\"><path fill-rule=\\"nonzero\\" clip-rule=\\"nonzero\\" d=\\"M 20 0 L 20 3.8000030517578125 L 10 11.5 L 0 3.8000030517578125 L 0 0 L 10 7.70001220703125 L 20 0 Z\\" fill=\\"currentColor\\"/></g></svg>"
-                      >
-                        <img
-                          src="data:image/svg+xml;utf8,<svg width=\\"12\\" height=\\"12\\" viewBox=\\"0 0 24 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><g transform=\\"matrix(1 0 0 1 2 6.899993896484375)\\"><path fill-rule=\\"nonzero\\" clip-rule=\\"nonzero\\" d=\\"M 20 0 L 20 3.8000030517578125 L 10 11.5 L 0 3.8000030517578125 L 0 0 L 10 7.70001220703125 L 20 0 Z\\" fill=\\"currentColor\\"/></g></svg>"
-                          styled-component="true"
-                        />
-                      </MockStyledComponent>
-                    </After>
-                  </div>
-                </MockStyledComponent>
-              </BaseInput>
-            </div>
+                      <div
+                        styled-component="true"
+                      />
+                    </MockStyledComponent>
+                  </AutosizeInput>
+                </div>
+              </MockStyledComponent>
+            </span>
           </MockStyledComponent>
-        </Input>
-      </div>
-      <SelectDropDown
-        getOptionLabel={[Function]}
-        isDropDownOpen={false}
-        maxDropdownHeight="90vh"
-        multiple={false}
-        onChange={[Function]}
-        onItemSelect={[Function]}
-        options={Array []}
-        optionsLoaded={false}
-        overrides={Object {}}
-        selectedOptions={Array []}
-        type="select"
-      >
-        <div />
-      </SelectDropDown>
+          <TriangleDown
+            $disabled={false}
+            $error={false}
+            $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
+            $required={false}
+            $searchable={true}
+            $size="default"
+            $type="select"
+            onClick={[Function]}
+            overrides={
+              Object {
+                "Svg": [Function],
+              }
+            }
+            size={16}
+            title="open"
+          >
+            <Icon
+              $disabled={false}
+              $error={false}
+              $isFocused={false}
+              $isLoading={false}
+              $isOpen={false}
+              $isPseudoFocused={false}
+              $multi={false}
+              $required={false}
+              $searchable={true}
+              $size="default"
+              $type="select"
+              onClick={[Function]}
+              overrides={
+                Object {
+                  "Svg": [Function],
+                }
+              }
+              size={16}
+              title="open"
+              viewBox="0 0 24 24"
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="select"
+                onClick={[Function]}
+                viewBox="0 0 24 24"
+              >
+                <svg
+                  onClick={[Function]}
+                  styled-component="true"
+                  viewBox="0 0 24 24"
+                >
+                  <title>
+                    open
+                  </title>
+                  <path
+                    d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
+                  />
+                </svg>
+              </MockStyledComponent>
+            </Icon>
+          </TriangleDown>
+        </div>
+      </MockStyledComponent>
     </div>
   </MockStyledComponent>
 </Select>
 `;
 
-exports[`Stateless select should render component in select mode and true for multiple choice: Component has correct render in select mode and mutiple choice equal true 1`] = `
+exports[`Select component renders component in select mode and true for multiple choice: Component has correct render in select mode and mutiple choice equals true 1`] = `
 <Select
+  aria-describedby={null}
+  aria-label={null}
+  aria-labelledby={null}
   autoFocus={false}
+  backspaceRemoves={true}
+  clearable={true}
+  closeOnSelect={true}
+  deleteRemoves={true}
+  disabled={false}
   error={false}
-  filterable={false}
+  escapeClearsValue={true}
+  filterOptions={[Function]}
+  filterOutSelected={true}
+  getOptionLabel={null}
+  getValueLabel={null}
+  isLoading={false}
+  labelKey="label"
   maxDropdownHeight="900px"
+  multi={false}
   multiple={true}
+  noResultsMsg="No results found"
   onBlur={[MockFunction]}
+  onBlurResetsInput={true}
   onChange={[MockFunction]}
+  onClose={null}
+  onCloseResetsInput={true}
   onFocus={[MockFunction]}
-  onMouseDown={[Function]}
-  onMouseEnter={[MockFunction]}
-  onMouseLeave={[MockFunction]}
-  onMouseUp={[Function]}
-  onTextInputChange={[MockFunction]}
-  options={Array []}
+  onInputChange={[MockFunction]}
+  onOpen={null}
+  onSelectResetsInput={true}
+  openOnClick={true}
+  options={
+    Array [
+      Object {
+        "id": "id1",
+        "label": "label1",
+      },
+      Object {
+        "id": "id2",
+        "label": "label2",
+      },
+      Object {
+        "id": "id3",
+        "label": "bel3",
+      },
+    ]
+  }
   overrides={Object {}}
-  selectedOptions={Array []}
-  tabIndex={0}
-  textValue=""
+  placeholder="Select..."
+  required={false}
+  searchable={true}
+  size="default"
   type="select"
+  value={Array []}
+  valueKey="id"
 >
-  <MockStyledComponent>
+  <MockStyledComponent
+    $disabled={false}
+    $error={false}
+    $isFocused={false}
+    $isLoading={false}
+    $isOpen={false}
+    $isPseudoFocused={false}
+    $multi={false}
+    $ref={[Function]}
+    $required={false}
+    $searchable={true}
+    $size="default"
+    $type="select"
+  >
     <div
       styled-component="true"
     >
-      <div
+      <MockStyledComponent
+        $disabled={false}
+        $error={false}
+        $isFocused={false}
+        $isLoading={false}
+        $isOpen={false}
+        $isPseudoFocused={false}
+        $multi={false}
+        $required={false}
+        $searchable={true}
+        $size="default"
+        $type="select"
         onClick={[Function]}
         onKeyDown={[Function]}
-        tabIndex={0}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
       >
-        <Input
-          autoFocus={false}
-          disabled={true}
-          endEnhancer={null}
-          error={false}
-          name=""
-          onBlur={[Function]}
-          onFocus={[Function]}
-          overrides={
-            Object {
-              "After": [Function],
-              "Before": [Function],
-              "Input": Object {
-                "component": [Function],
-                "props": Object {
-                  "aria-autocomplete": "none",
-                  "aria-expanded": false,
-                  "role": "combobox",
-                },
-              },
-              "InputContainer": Object {
-                "component": [Function],
-                "props": Object {},
-              },
-              "Root": Object {
-                "component": [Function],
-                "props": Object {},
-              },
-            }
-          }
-          required={false}
-          size="default"
-          startEnhancer={null}
+        <div
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          styled-component="true"
         >
           <MockStyledComponent
-            $disabled={true}
+            $disabled={false}
             $error={false}
             $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
             $required={false}
+            $searchable={true}
             $size="default"
+            $type="select"
+            role="list"
           >
-            <div
+            <span
+              role="list"
               styled-component="true"
             >
-              <BaseInput
-                adjoined="none"
-                autoFocus={false}
-                disabled={true}
-                error={false}
-                inputRef={
-                  Object {
-                    "current": null,
-                  }
-                }
-                name=""
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyPress={[Function]}
-                onKeyUp={[Function]}
-                overrides={
-                  Object {
-                    "After": [Function],
-                    "Before": [Function],
-                    "Input": Object {
-                      "component": [Function],
-                      "props": Object {
-                        "aria-autocomplete": "none",
-                        "aria-expanded": false,
-                        "role": "combobox",
-                      },
-                    },
-                    "InputContainer": Object {
-                      "component": [Function],
-                      "props": Object {},
-                    },
-                    "Root": Object {
-                      "component": [Function],
-                      "props": Object {},
-                    },
-                  }
-                }
-                placeholder=""
-                required={false}
-                size="default"
-                type="text"
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="select"
               >
-                <MockStyledComponent
-                  $adjoined="none"
-                  $disabled={true}
-                  $error={false}
-                  $isFocused={false}
-                  $required={false}
-                  $size="default"
+                <div
+                  styled-component="true"
                 >
-                  <div
-                    styled-component="true"
-                  >
-                    <Before
-                      $adjoined="none"
-                      $disabled={true}
-                      $error={false}
-                      $isFocused={false}
-                      $required={false}
-                      $size="default"
-                    >
-                      <MockStyledComponent
-                        role="list"
-                      >
-                        <div
-                          role="list"
-                          styled-component="true"
-                        />
-                      </MockStyledComponent>
-                    </Before>
-                    <MockStyledComponent
-                      $adjoined="none"
-                      $disabled={true}
-                      $error={false}
-                      $isFocused={false}
-                      $ref={
-                        Object {
-                          "current": null,
-                        }
+                  Select...
+                </div>
+              </MockStyledComponent>
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="select"
+              >
+                <div
+                  styled-component="true"
+                >
+                  <AutosizeInput
+                    $disabled={false}
+                    $error={false}
+                    $isFocused={false}
+                    $isLoading={false}
+                    $isOpen={false}
+                    $isPseudoFocused={false}
+                    $multi={false}
+                    $required={false}
+                    $searchable={true}
+                    $size="default"
+                    $type="select"
+                    aria-autocomplete="list"
+                    aria-describedby={null}
+                    aria-expanded={false}
+                    aria-haspopup={false}
+                    aria-label={null}
+                    aria-labelledby={null}
+                    inputRef={[Function]}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    overrides={
+                      Object {
+                        "Input": undefined,
                       }
+                    }
+                    required={false}
+                    role="combobox"
+                    value=""
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $error={false}
+                      $isFocused={false}
+                      $isLoading={false}
+                      $isOpen={false}
+                      $isPseudoFocused={false}
+                      $multi={false}
+                      $ref={[Function]}
                       $required={false}
+                      $searchable={true}
                       $size="default"
-                      aria-autocomplete="none"
+                      $type="select"
+                      $width="5px"
+                      aria-autocomplete="list"
+                      aria-describedby={null}
                       aria-expanded={false}
-                      aria-invalid={false}
-                      aria-required={false}
-                      disabled={true}
-                      name=""
+                      aria-haspopup={false}
+                      aria-label={null}
+                      aria-labelledby={null}
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onKeyPress={[Function]}
-                      onKeyUp={[Function]}
-                      placeholder=""
+                      required={false}
                       role="combobox"
-                      type="text"
+                      value=""
                     >
                       <input
-                        aria-autocomplete="none"
+                        aria-autocomplete="list"
+                        aria-describedby={null}
                         aria-expanded={false}
-                        aria-invalid={false}
-                        aria-required={false}
-                        disabled={true}
-                        name=""
+                        aria-haspopup={false}
+                        aria-label={null}
+                        aria-labelledby={null}
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        onKeyPress={[Function]}
-                        onKeyUp={[Function]}
-                        placeholder=""
+                        required={false}
                         role="combobox"
                         styled-component="true"
-                        type="text"
+                        value=""
                       />
                     </MockStyledComponent>
-                    <After
-                      $adjoined="none"
-                      $disabled={true}
-                      $error={false}
-                      $isFocused={false}
-                      $required={false}
-                      $size="default"
+                    <MockStyledComponent
+                      $ref={[Function]}
                     >
-                      <MockStyledComponent
-                        $type="select"
-                        src="data:image/svg+xml;utf8,<svg width=\\"12\\" height=\\"12\\" viewBox=\\"0 0 24 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><g transform=\\"matrix(1 0 0 1 2 6.899993896484375)\\"><path fill-rule=\\"nonzero\\" clip-rule=\\"nonzero\\" d=\\"M 20 0 L 20 3.8000030517578125 L 10 11.5 L 0 3.8000030517578125 L 0 0 L 10 7.70001220703125 L 20 0 Z\\" fill=\\"currentColor\\"/></g></svg>"
-                      >
-                        <img
-                          src="data:image/svg+xml;utf8,<svg width=\\"12\\" height=\\"12\\" viewBox=\\"0 0 24 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><g transform=\\"matrix(1 0 0 1 2 6.899993896484375)\\"><path fill-rule=\\"nonzero\\" clip-rule=\\"nonzero\\" d=\\"M 20 0 L 20 3.8000030517578125 L 10 11.5 L 0 3.8000030517578125 L 0 0 L 10 7.70001220703125 L 20 0 Z\\" fill=\\"currentColor\\"/></g></svg>"
-                          styled-component="true"
-                        />
-                      </MockStyledComponent>
-                    </After>
-                  </div>
-                </MockStyledComponent>
-              </BaseInput>
-            </div>
+                      <div
+                        styled-component="true"
+                      />
+                    </MockStyledComponent>
+                  </AutosizeInput>
+                </div>
+              </MockStyledComponent>
+            </span>
           </MockStyledComponent>
-        </Input>
-      </div>
-      <SelectDropDown
-        getOptionLabel={[Function]}
-        isDropDownOpen={false}
-        maxDropdownHeight="90vh"
-        multiple={true}
-        onChange={[Function]}
-        onItemSelect={[Function]}
-        options={Array []}
-        optionsLoaded={false}
-        overrides={Object {}}
-        selectedOptions={Array []}
-        type="select"
-      >
-        <div />
-      </SelectDropDown>
+          <TriangleDown
+            $disabled={false}
+            $error={false}
+            $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
+            $required={false}
+            $searchable={true}
+            $size="default"
+            $type="select"
+            onClick={[Function]}
+            overrides={
+              Object {
+                "Svg": [Function],
+              }
+            }
+            size={16}
+            title="open"
+          >
+            <Icon
+              $disabled={false}
+              $error={false}
+              $isFocused={false}
+              $isLoading={false}
+              $isOpen={false}
+              $isPseudoFocused={false}
+              $multi={false}
+              $required={false}
+              $searchable={true}
+              $size="default"
+              $type="select"
+              onClick={[Function]}
+              overrides={
+                Object {
+                  "Svg": [Function],
+                }
+              }
+              size={16}
+              title="open"
+              viewBox="0 0 24 24"
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $error={false}
+                $isFocused={false}
+                $isLoading={false}
+                $isOpen={false}
+                $isPseudoFocused={false}
+                $multi={false}
+                $required={false}
+                $searchable={true}
+                $size="default"
+                $type="select"
+                onClick={[Function]}
+                viewBox="0 0 24 24"
+              >
+                <svg
+                  onClick={[Function]}
+                  styled-component="true"
+                  viewBox="0 0 24 24"
+                >
+                  <title>
+                    open
+                  </title>
+                  <path
+                    d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
+                  />
+                </svg>
+              </MockStyledComponent>
+            </Icon>
+          </TriangleDown>
+        </div>
+      </MockStyledComponent>
     </div>
   </MockStyledComponent>
 </Select>
