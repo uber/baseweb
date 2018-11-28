@@ -20,7 +20,9 @@ type ExampleState = {
 export default {
   [examples.DEFAULT]: function Story1() {
     class Example extends React.Component<{}, ExampleState> {
-      state = {};
+      state = {
+        value: 3,
+      };
 
       render() {
         return (
@@ -36,7 +38,9 @@ export default {
   },
   [examples.CUSTOM_STARS]: function Story2() {
     class Example extends React.Component<{}, ExampleState> {
-      state = {};
+      state = {
+        value: 5,
+      };
 
       render() {
         return (
@@ -53,7 +57,9 @@ export default {
   },
   [examples.EMOTICON]: function Story3() {
     class Example extends React.Component<{}, ExampleState> {
-      state = {};
+      state = {
+        value: 3,
+      };
 
       render() {
         return (
