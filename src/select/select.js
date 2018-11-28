@@ -5,487 +5,821 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* global document */
-/* global window */
 import * as React from 'react';
-import {findDOMNode} from 'react-dom';
 import {
-  Root as StyledRoot,
-  Input as StyledInput,
-  InputContainer as StyledInputContainer,
-  SingleSelection as StyledSingleSelection,
-  SelectComponentIcon as StyledSelectComponentIcon,
-  SelectionContainer as StyledSelectionContainer,
+  StyledRoot,
+  StyledControlContainer,
+  StyledPlaceholder,
+  StyledValueContainer,
+  StyledInputContainer,
+  StyledSelectArrow,
+  StyledClearIcon,
+  getLoadingIconStyles,
+  StyledSearchIcon,
 } from './styled-components';
-
-import {Input as InputComponent} from '../input';
-import {Tag as StyledTag} from '../tag';
-import {ICON, TYPE, STATE_CHANGE_TYPE} from './constants';
-import SelectDropDown from './dropdown';
-import type {OptionT, PropsT, StatelessStateT} from './types';
+import AutosizeInput from './autosize-input';
+import Value from './value';
+import MultiValue from './multi-value';
+import SelectDropdown from './dropdown';
+import {shouldShowValue, shouldShowPlaceholder, expandValue} from './utils';
+import {TYPE, STATE_CHANGE_TYPE} from './constants';
 import {getOverrides} from '../helpers/overrides';
-import {KEY_STRINGS} from '../menu/constants';
+import {Spinner} from '../spinner';
+import {
+  Delete as DeleteIcon,
+  TriangleDown as TriangleDownIcon,
+  Search as SearchIconComponent,
+} from '../icon';
+import defaultProps from './default-props';
 
-class Select extends React.Component<PropsT, StatelessStateT> {
-  static defaultProps = {
-    overrides: {},
-    selectedOptions: [],
-    options: [],
-    onTextInputChange: () => {},
-    onChange: () => {},
-    onBlur: () => {},
-    onFocus: () => {},
-    onMouseEnter: () => {},
-    onMouseLeave: () => {},
-    onMouseDown: () => {},
-    onMouseUp: () => {},
-    error: false,
-    autoFocus: false,
-    filterable: false,
-    multiple: false,
-    maxDropdownHeight: '900px',
-    tabIndex: 0,
-    textValue: '',
-    type: TYPE.select,
-  };
+import type {
+  PropsT,
+  SelectStateT,
+  ValueT,
+  OptionT,
+  ChangeActionT,
+} from './types';
+
+class Select extends React.Component<PropsT, SelectStateT> {
+  static defaultProps = defaultProps;
+
+  wrapper: ?HTMLElement;
+  input: ?HTMLInputElement;
+  dragging: boolean;
+  focusAfterClear: boolean;
+  openAfterFocus: boolean;
 
   state = {
-    filteredOptions: null,
-    textValue: '',
-    isDropDownOpen: false,
-    options: [],
-    optionsLoaded: false,
+    inputValue: '',
+    isFocused: false,
+    isOpen: false,
+    isPseudoFocused: false,
   };
 
-  constructor(props: PropsT) {
-    super(props);
+  componentDidMount() {
+    if (this.props.autoFocus) {
+      this.focus();
+    }
   }
 
-  componentDidMount() {
-    if (__BROWSER__) {
-      document.addEventListener('click', this.handleClickEvent, {
-        capture: true,
-      });
+  componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
+    if (prevState.isOpen !== this.state.isOpen) {
+      this.toggleTouchOutsideEvent(this.state.isOpen);
+      const handler = this.state.isOpen
+        ? this.props.onOpen
+        : this.props.onClose;
+      handler && handler();
     }
   }
 
   componentWillUnmount() {
+    this.toggleTouchOutsideEvent(false);
+  }
+
+  toggleTouchOutsideEvent(enabled: boolean) {
     if (__BROWSER__) {
-      document.removeEventListener('click', this.handleClickEvent, {
-        capture: true,
-      });
-    }
-  }
-
-  handleClickEvent = (event: MouseEvent) => {
-    // eslint-disable-next-line react/no-find-dom-node
-    const el = findDOMNode(this);
-    /* eslint-disable-next-line flowtype/no-weak-types */
-    if (el && !el.contains((event.target: any))) {
-      this.setState({isDropDownOpen: false});
-    }
-  };
-
-  onTextInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    // $FlowFixMe
-    const newTextValue = e.target.value;
-    this.setState({
-      textValue: newTextValue,
-    });
-    this.props.onTextInputChange(e);
-    this.openDropDown(newTextValue, () => {
-      if (this.props.filterable) {
-        let filteredOptions = this.state.options.filter(option =>
-          this.filterOption(option, newTextValue),
-        );
-        // reset filtered options for new search
-        if (!filteredOptions.length) {
-          filteredOptions = newTextValue ? [] : null;
-        }
-        this.setState({filteredOptions});
-      }
-    });
-  };
-
-  onClearAll = (event: SyntheticEvent<HTMLElement>) => {
-    this.props.onChange({
-      event,
-      type: STATE_CHANGE_TYPE.unselect,
-      selectedOptions: [],
-    });
-  };
-
-  onSelect = (
-    event: SyntheticEvent<HTMLElement> | KeyboardEvent,
-    pendingOption?: OptionT = {
-      id: '',
-      label: '',
-    },
-  ) => {
-    const {multiple, selectedOptions} = this.props;
-
-    const selected = selectedOptions.find(tag => tag.id === pendingOption.id);
-    const isSelect = !selected;
-    if (isSelect) {
-      // select
-      this.props.onChange({
-        event,
-        type: STATE_CHANGE_TYPE.select,
-        option: pendingOption,
-        selectedOptions: multiple
-          ? selectedOptions.concat([pendingOption])
-          : [pendingOption],
-      });
-    } else if (multiple) {
-      // unselect (only possible for multi-select)
-      this.props.onChange({
-        event,
-        type: STATE_CHANGE_TYPE.unselect,
-        option: pendingOption,
-        selectedOptions: selectedOptions.filter(
-          selectedOption => selectedOption.id !== (selected || {}).id,
-        ),
-      });
-    }
-
-    // Always close single-select dropdown after toggling selection
-    if (this.props.type === TYPE.select && !multiple) {
-      this.setState({isDropDownOpen: false});
-    }
-  };
-
-  onRemoveTag = (
-    event: SyntheticEvent<HTMLElement> | KeyboardEvent,
-    option: OptionT,
-  ) => {
-    this.props.onChange({
-      event,
-      type: STATE_CHANGE_TYPE.unselect,
-      option,
-      selectedOptions: this.props.selectedOptions.filter(
-        selectedOption => selectedOption.id !== option.id,
-      ),
-    });
-  };
-
-  loadOptions(query?: string): Promise<void> {
-    return new Promise(resolve => {
-      const {options} = this.props;
-      this.setState({optionsLoaded: false});
-      if (typeof options === 'function') {
-        options(query).then(loadedOptions => {
-          this.setState({options: loadedOptions, optionsLoaded: true}, resolve);
-        });
+      if (enabled) {
+        document.addEventListener('touchstart', this.handleTouchOutside);
       } else {
-        this.setState({options, optionsLoaded: true}, resolve);
+        document.removeEventListener('touchstart', this.handleTouchOutside);
       }
+    }
+  }
+
+  handleTouchOutside = (event: Event) => {
+    // Handle touch outside on ios to dismiss menu
+    // $FlowFixMe
+    if (this.wrapper && !this.wrapper.contains(event.target)) {
+      this.closeMenu();
+    }
+  };
+
+  focus() {
+    if (!this.input) return;
+    this.input.focus();
+  }
+
+  handleTouchMove = () => {
+    // Set a flag that the view is being dragged
+    this.dragging = true;
+  };
+
+  handleTouchStart = () => {
+    // Set a flag that the view is not being dragged
+    this.dragging = false;
+  };
+
+  handleTouchEnd = (event: Event) => {
+    // Check if the view is being dragged. In this case
+    // we don't want to fire the click event (because the user only wants to scroll)
+    if (this.dragging) return;
+    // Fire the mouse events
+    this.handleClick(event);
+  };
+
+  handleTouchEndClearValue = (event: Event) => {
+    // Check if the view is being dragged. In this case
+    // we don't want to fire the click event (because the user only wants to scroll)
+    if (this.dragging) return;
+    // Clear the value
+    this.clearValue(event);
+  };
+
+  handleClick = (event: Event) => {
+    // If the event was triggered by a mouse click and not the primary
+    // button, or if the component is disabled, ignore it
+    if (
+      this.props.disabled ||
+      // $FlowFixMe
+      (event.type === 'click' && event.button !== 0)
+    ) {
+      return;
+    }
+    // $FlowFixMe
+    if (event.target.tagName === 'INPUT') {
+      if (!this.state.isFocused) {
+        this.openAfterFocus = this.props.openOnClick;
+        this.focus();
+      } else if (!this.state.isOpen) {
+        this.setState({
+          isOpen: true,
+          isPseudoFocused: false,
+        });
+      }
+      return;
+    }
+    event.preventDefault();
+    // For the non-searchable select, toggle the menu
+    if (!this.props.searchable) {
+      // This code means that if a select is searchable,
+      // onClick the options menu will not appear, only on
+      // subsequent click will it open.
+      this.focus();
+      return this.setState({
+        isOpen: !this.state.isOpen,
+      });
+    }
+    if (this.state.isFocused) {
+      // On iOS, we can get into a state where we think the input is
+      // focused but it isn't really, since iOS ignores programmatic
+      // calls to input.focus() that weren't triggered by a click event.
+      // Call focus() again here to be safe.
+      this.focus();
+      let toOpen = true;
+      // clears the value so that the cursor will be at the end of input when the component re-renders
+      if (this.input) this.input.value = '';
+      if (this.focusAfterClear) {
+        toOpen = false;
+        this.focusAfterClear = false;
+      }
+      // if the input is focused, ensure the menu is open
+      this.setState({
+        isOpen: toOpen,
+        isPseudoFocused: false,
+      });
+    } else {
+      // otherwise, focus the input and open the menu
+      this.openAfterFocus = this.props.openOnClick;
+      this.focus();
+    }
+  };
+
+  handleClickOnArrow = (event: Event) => {
+    // if the event was triggered by a mouse click and not the primary
+    // button, or if the component is disabled, ignore it.
+    if (
+      this.props.disabled ||
+      // $FlowFixMe
+      (event.type === 'click' && event.button !== 0)
+    ) {
+      return;
+    }
+    if (this.state.isOpen) {
+      // prevent default event handlers
+      event.stopPropagation();
+      event.preventDefault();
+      this.closeMenu();
+    } else {
+      // If the menu isn't open, let the event bubble to the main handleClick
+      this.setState({
+        isOpen: true,
+      });
+    }
+  };
+
+  closeMenu() {
+    if (this.props.onCloseResetsInput) {
+      this.setState({
+        inputValue: '',
+        isOpen: false,
+        isPseudoFocused: this.state.isFocused && !this.props.multi,
+      });
+    } else {
+      this.setState({
+        isOpen: false,
+        isPseudoFocused: this.state.isFocused && !this.props.multi,
+      });
+    }
+  }
+
+  handleInputFocus = (event: SyntheticEvent<HTMLElement>) => {
+    if (this.props.disabled) return;
+
+    let toOpen = this.state.isOpen || this.openAfterFocus;
+    //if focus happens after clear values, don't open dropdown yet.
+    toOpen = this.focusAfterClear ? false : toOpen;
+
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
+
+    this.setState({
+      isFocused: true,
+      isOpen: !!toOpen,
+    });
+
+    this.focusAfterClear = false;
+    this.openAfterFocus = false;
+  };
+
+  handleInputBlur = (event: SyntheticEvent<HTMLElement>) => {
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+    const onBlurredState = {
+      isFocused: false,
+      isOpen: false,
+      isPseudoFocused: false,
+    };
+    if (this.props.onBlurResetsInput) {
+      // $FlowFixMe
+      onBlurredState.inputValue = '';
+    }
+    this.setState(onBlurredState);
+  };
+
+  handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    let newInputValue = event.target.value;
+    this.setState({
+      inputValue: newInputValue,
+      isOpen: true,
+      isPseudoFocused: false,
+    });
+    if (this.props.onInputChange) {
+      this.props.onInputChange(event);
+    }
+  };
+
+  handleKeyDown = (event: KeyboardEvent) => {
+    if (this.props.disabled) return;
+    switch (event.keyCode) {
+      case 8: // backspace
+        if (!this.state.inputValue && this.props.backspaceRemoves) {
+          event.preventDefault();
+          this.popValue();
+        }
+        break;
+      case 13: // enter
+        event.preventDefault();
+        event.stopPropagation();
+        if (!this.state.isOpen) {
+          this.setState({isOpen: true});
+        }
+        break;
+      case 27: // escape
+        event.preventDefault();
+        if (this.state.isOpen) {
+          this.closeMenu();
+          event.stopPropagation();
+        } else if (this.props.clearable && this.props.escapeClearsValue) {
+          this.clearValue(event);
+          event.stopPropagation();
+        }
+        break;
+      case 32: // space
+        if (this.props.searchable) {
+          break;
+        }
+        event.preventDefault();
+        if (!this.state.isOpen) {
+          this.setState({isOpen: true});
+        }
+        break;
+      case 38: // up
+        event.preventDefault();
+        if (!this.state.isOpen) {
+          this.setState({isOpen: true});
+        }
+        break;
+      case 40: // down
+        event.preventDefault();
+        if (!this.state.isOpen) {
+          this.setState({isOpen: true});
+        }
+        break;
+      case 33: // page up
+        event.preventDefault();
+        if (!this.state.isOpen) {
+          this.setState({isOpen: true});
+        }
+        break;
+      case 34: // page down
+        event.preventDefault();
+        if (!this.state.isOpen) {
+          this.setState({isOpen: true});
+        }
+        break;
+      case 35: // end key
+        if (event.shiftKey) {
+          break;
+        }
+        event.preventDefault();
+        if (!this.state.isOpen) {
+          this.setState({isOpen: true});
+        }
+        break;
+      case 36: // home key
+        if (event.shiftKey) {
+          break;
+        }
+        event.preventDefault();
+        if (!this.state.isOpen) {
+          this.setState({isOpen: true});
+        }
+        break;
+      case 46: // delete
+        if (!this.state.inputValue && this.props.deleteRemoves) {
+          event.preventDefault();
+          this.popValue();
+        }
+        break;
+    }
+  };
+
+  getOptionLabel = ({option}: {option: OptionT}): React.Node => {
+    return option[this.props.labelKey];
+  };
+
+  /**
+   * Extends the value into an array from the given options
+   */
+  getValueArray(value: ValueT): Array<OptionT> {
+    if (!Array.isArray(value)) {
+      if (value === null || value === undefined) return [];
+      value = [value];
+    }
+    return value.map(value => expandValue(value, this.props));
+  }
+
+  setValue(value: ValueT, option: ?OptionT, type: ChangeActionT) {
+    if (this.props.onChange) {
+      this.props.onChange({
+        value,
+        option,
+        type,
+      });
+    }
+  }
+
+  selectValue = ({item}: {item: OptionT}) => {
+    if (item.disabled) {
+      return;
+    }
+    // NOTE: we add/set the value in a callback to make sure the
+    // input value is empty to avoid styling issues in Chrome
+    const updatedValue = this.props.onSelectResetsInput
+      ? ''
+      : this.state.inputValue;
+    if (this.props.multi) {
+      this.setState(
+        {
+          inputValue: updatedValue,
+          isOpen: !this.props.closeOnSelect,
+        },
+        () => {
+          const valueArray = this.props.value;
+          if (
+            valueArray.some(
+              i => i[this.props.valueKey] === item[this.props.valueKey],
+            )
+          ) {
+            this.removeValue(item);
+          } else {
+            this.addValue(item);
+          }
+        },
+      );
+    } else {
+      this.setState(
+        {
+          inputValue: updatedValue,
+          isOpen: !this.props.closeOnSelect,
+          isPseudoFocused: this.state.isFocused,
+        },
+        () => {
+          this.setValue([item], item, STATE_CHANGE_TYPE.select);
+        },
+      );
+    }
+  };
+
+  addValue = (item: OptionT) => {
+    const valueArray = [...this.props.value];
+    this.setValue(valueArray.concat(item), item, STATE_CHANGE_TYPE.select);
+  };
+
+  popValue = () => {
+    if (this.props.multi) {
+      const valueArray = [...this.props.value];
+      const valueLength = valueArray.length;
+      if (!valueLength) return;
+      if (valueArray[valueLength - 1].clearableValue === false) return;
+      const item = valueArray.pop();
+      this.setValue(valueArray, item, STATE_CHANGE_TYPE.remove);
+    }
+  };
+
+  removeValue = (item: OptionT) => {
+    const valueArray = [...this.props.value];
+    this.setValue(
+      valueArray.filter(
+        i => i[this.props.valueKey] !== item[this.props.valueKey],
+      ),
+      item,
+      STATE_CHANGE_TYPE.remove,
+    );
+    this.focus();
+  };
+
+  clearValue = (event: Event) => {
+    // if the event was triggered by a mouse click and not the primary
+    // button, ignore it.
+    // $FlowFixMe
+    if (event && event.type === 'click' && event.button !== 0) {
+      return;
+    }
+    event.preventDefault();
+    this.setValue(this.getResetValue(), null, STATE_CHANGE_TYPE.clear);
+    this.setState(
+      {
+        inputValue: '',
+        isOpen: false,
+      },
+      this.focus,
+    );
+    this.focusAfterClear = true;
+  };
+
+  getResetValue(): ValueT {
+    // Clear all except not clearable values
+    return this.props.value.filter(item => {
+      return item.clearableValue === false;
     });
   }
 
-  getOptions() {
-    return this.state.filteredOptions || this.state.options || [];
-  }
-
-  render() {
+  renderLoading() {
+    if (!this.props.isLoading) return;
+    const sharedProps = this.getSharedProps();
     const {overrides = {}} = this.props;
-    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    return (
-      <Root {...rootProps}>
-        {this.props.type === TYPE.search ? this.getSearch() : this.getSelect()}
-        {this.getDropDown()}
-      </Root>
+    const [LoadingIndicator, loadingIndicatorProps] = getOverrides(
+      overrides.LoadingIndicator,
+      Spinner,
     );
-  }
-
-  getSelect() {
-    const {
-      Root: [Root, rootProps],
-      Input: [Input, inputProps],
-      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
-      InputContainer: [InputContainer, inputContainerProps],
-    } = this.getSubComponents();
-    const {placeholder, disabled, selectedOptions} = this.props;
-    const events = disabled
-      ? {
-          onClickCapture: e => e.stopPropagation(),
-        }
-      : {
-          onKeyDown: e => this.handledHotKeys(e),
-          onClick: () => {
-            const newValue = !this.state.isDropDownOpen;
-            newValue
-              ? this.openDropDown()
-              : this.setState({isDropDownOpen: newValue});
-          },
-        };
     return (
-      <div tabIndex={this.props.tabIndex} {...events}>
-        <InputComponent
-          disabled={true}
-          placeholder={!selectedOptions.length ? placeholder : ''}
-          overrides={{
-            Root: {component: Root, props: rootProps},
-            Input: {
-              component: Input,
-              props: {
-                ...this.getAccessibilityProps(),
-                ...inputProps,
-              },
-            },
-            InputContainer: {
-              component: InputContainer,
-              props: inputContainerProps,
-            },
-            After: () => (
-              <SelectComponentIcon
-                $type={ICON.select}
-                src={
-                  'data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(1 0 0 1 2 6.899993896484375)"><path fill-rule="nonzero" clip-rule="nonzero" d="M 20 0 L 20 3.8000030517578125 L 10 11.5 L 0 3.8000030517578125 L 0 0 L 10 7.70001220703125 L 20 0 Z" fill="currentColor"/></g></svg>'
-                }
-                {...selectComponentIconProps}
-              />
-            ),
-            Before: () => this.getMultipleSelections(),
-          }}
-        />
-      </div>
-    );
-  }
-
-  getSearch() {
-    const {
-      InputContainer: [InputContainer, inputContainerProps],
-      Input: [Input, inputProps],
-      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
-    } = this.getSubComponents();
-    const {placeholder, error, disabled} = this.props;
-    const {textValue} = this.state;
-    return (
-      <InputComponent
-        error={!!error}
-        placeholder={placeholder}
-        value={textValue}
-        //$FlowFixMe
-        onChange={this.onTextInputChange}
-        overrides={{
-          Input: {
-            props: {
-              ...this.getAccessibilityProps(),
-              tabIndex: this.props.tabIndex,
-              // onKeyDown happens before onChange to avoid race condition in set of value and hot keys processing
-              onKeyDown: e => this.handledHotKeys(e),
-              ...inputProps,
-            },
-            component: Input,
-          },
-          InputContainer: {
-            component: InputContainer,
-            props: inputContainerProps,
-          },
-          After: () => (
-            <SelectComponentIcon
-              $disabled={disabled}
-              onClick={this.onClearAll}
-              $type={ICON.clearAll}
-              src={
-                'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58173 0 0 3.58173 0 8C0 12.4183 3.58173 16 8 16ZM6.03033 4.96967C5.73743 4.67679 5.26257 4.67679 4.96967 4.96967C4.67676 5.26257 4.67676 5.73743 4.96967 6.03033L6.93933 8L4.96967 9.96967C4.67676 10.2626 4.67676 10.7374 4.96967 11.0303C5.26257 11.3232 5.73743 11.3232 6.03033 11.0303L8 9.06067L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06067 8L11.0303 6.03033C11.3232 5.73743 11.3232 5.26257 11.0303 4.96967C10.7374 4.67679 10.2626 4.67679 9.96967 4.96967L8 6.93933L6.03033 4.96967Z" fill="#999999"/></svg>'
-              }
-              {...selectComponentIconProps}
-            />
-          ),
-          Before: () => this.getMultipleSelections(),
-        }}
+      <LoadingIndicator
+        size={16}
+        overrides={{Svg: {style: getLoadingIconStyles}}}
+        {...sharedProps}
+        {...loadingIndicatorProps}
       />
     );
   }
 
-  getMultipleSelections() {
-    const {
-      SelectComponentIcon: [SelectComponentIcon, selectComponentIconProps],
-      Tag: [Tag, tagProps],
-      SingleSelection: [SingleSelection, singleSelectionProps],
-      SelectionContainer: [SelectionContainer, selectionContainerProps],
-    } = this.getSubComponents();
-    const {type, disabled, selectedOptions} = this.props;
-    const multiple = this.isMultiple();
+  renderValue(
+    valueArray: ValueT,
+    isOpen: boolean,
+  ): ?React.Node | Array<?React.Node> {
+    const {overrides = {}} = this.props;
+    const sharedProps = this.getSharedProps();
+    const renderLabel = this.props.getValueLabel || this.getOptionLabel;
+    const [Placeholder, placeholderProps] = getOverrides(
+      overrides.Placeholder,
+      StyledPlaceholder,
+    );
+    if (!valueArray.length) {
+      const showPlaceholder = shouldShowPlaceholder(
+        this.state,
+        this.props,
+        isOpen,
+      );
+      return showPlaceholder ? (
+        <Placeholder {...sharedProps} {...placeholderProps}>
+          {this.props.placeholder}
+        </Placeholder>
+      ) : null;
+    }
+    if (this.props.multi) {
+      return valueArray.map((value, i) => {
+        const disabled =
+          sharedProps.$disabled || value.clearableValue === false;
+        return (
+          <MultiValue
+            value={value}
+            key={`value-${i}-${value[this.props.valueKey]}`}
+            removeValue={() => {
+              this.removeValue(value);
+            }}
+            disabled={disabled}
+            overrides={{MultiValue: overrides.MultiValue}}
+            {...sharedProps}
+            $disabled={disabled}
+          >
+            {renderLabel({option: value, index: i})}
+          </MultiValue>
+        );
+      });
+    } else if (shouldShowValue(this.state, this.props)) {
+      return (
+        <Value
+          value={valueArray[0]}
+          disabled={this.props.disabled}
+          overrides={{SingleValue: overrides.SingleValue}}
+          {...sharedProps}
+        >
+          {renderLabel({option: valueArray[0]})}
+        </Value>
+      );
+    }
+  }
+
+  renderInput() {
+    const {overrides = {}} = this.props;
+    const [InputContainer, inputContainerProps] = getOverrides(
+      overrides.InputContainer,
+      StyledInputContainer,
+    );
+    const sharedProps = this.getSharedProps();
+    const isOpen = this.state.isOpen;
+    let value = this.state.inputValue;
+    if (value && !this.props.onSelectResetsInput && !this.state.isFocused) {
+      // It hides input value when it is not focused and was not reset on select
+      value = '';
+    }
+
+    const inputProps = {
+      'aria-expanded': isOpen,
+      'aria-haspopup': isOpen,
+      'aria-label': this.props['aria-label'],
+      'aria-describedby': this.props['aria-describedby'],
+      'aria-labelledby': this.props['aria-labelledby'],
+      'aria-autocomplete': 'list',
+      inputRef: ref => (this.input = ref),
+      onBlur: this.handleInputBlur,
+      onChange: this.handleInputChange,
+      onFocus: this.handleInputFocus,
+      overrides: {Input: overrides.Input},
+      required: this.props.required,
+      role: 'combobox',
+      value,
+    };
+    if (this.props.disabled || !this.props.searchable) {
+      return (
+        <InputContainer
+          aria-expanded={isOpen}
+          aria-disabled={this.props.disabled}
+          aria-label={this.props['aria-label']}
+          aria-labelledby={this.props['aria-labelledby']}
+          onBlur={this.handleInputBlur}
+          onFocus={this.handleInputFocus}
+          $ref={ref => (this.input = ref)}
+          role="combobox"
+          tabIndex={0}
+          {...sharedProps}
+          {...inputContainerProps}
+        />
+      );
+    }
     return (
-      <SelectionContainer role="list" {...selectionContainerProps}>
-        {type === TYPE.search && (
-          <SelectComponentIcon
-            $type={ICON.loop}
-            src={
-              'data:image/svg+xml;utf8,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 9L13 13M10 5C10 7.76142 7.76142 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.76142 0 10 2.23858 10 5Z" transform="translate(1 1)" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round"/></svg>'
-            }
-            {...selectComponentIconProps}
-          />
-        )}
-        {selectedOptions.map(
-          option =>
-            multiple ? (
-              <Tag
-                overrides={{Root: {props: {role: 'listitem'}}}}
-                disabled={disabled}
-                key={option.id}
-                onActionClick={e => {
-                  this.onRemoveTag(e, option);
-                  e.stopPropagation();
-                }}
-                {...tagProps}
-              >
-                {this.getSelectedOptionLabel(option)}
-              </Tag>
-            ) : (
-              <SingleSelection
-                role="listitem"
-                key={option.id}
-                $disabled={disabled}
-                {...singleSelectionProps}
-              >
-                {this.getSelectedOptionLabel(option)}
-              </SingleSelection>
-            ),
-        )}
-      </SelectionContainer>
+      <InputContainer {...sharedProps} {...inputContainerProps}>
+        <AutosizeInput {...sharedProps} {...inputProps} />
+      </InputContainer>
     );
   }
 
-  getDropDown() {
-    const {overrides, type, selectedOptions} = this.props;
-    let maxDropdownHeight = this.props.maxDropdownHeight;
+  renderClear() {
+    const sharedProps = this.getSharedProps();
+    const value = this.props.value;
     if (
-      __BROWSER__ &&
-      maxDropdownHeight.slice(-2) === 'px' &&
-      parseInt(maxDropdownHeight) > window.innerHeight
-    ) {
-      // only for pixel-sized maxDropdownHeight
-      maxDropdownHeight = '90vh';
+      !this.props.clearable ||
+      !value ||
+      !value.length ||
+      this.props.disabled ||
+      this.props.isLoading
+    )
+      return;
+    const {overrides = {}} = this.props;
+    const [ClearIcon, clearIconProps] = getOverrides(
+      overrides.ClearIcon,
+      DeleteIcon,
+    );
+    const ariaLabel = this.props.multi ? 'Clear all' : 'Clear value';
+    return (
+      <ClearIcon
+        size={16}
+        title={ariaLabel}
+        aria-label={ariaLabel}
+        onClick={this.clearValue}
+        onTouchEnd={this.handleTouchEndClearValue}
+        onTouchMove={this.handleTouchMove}
+        onTouchStart={this.handleTouchStart}
+        overrides={{Svg: StyledClearIcon}}
+        {...sharedProps}
+        {...clearIconProps}
+      />
+    );
+  }
+
+  renderArrow() {
+    if (this.props.type !== TYPE.select) {
+      return null;
     }
-    const options = this.getOptions();
-    const {isDropDownOpen, optionsLoaded} = this.state;
-    const dropDownProps = {
-      type,
+    const {overrides = {}} = this.props;
+    const [SelectArrow, selectArrowProps] = getOverrides(
+      overrides.SelectArrow,
+      TriangleDownIcon,
+    );
+    const sharedProps = this.getSharedProps();
+    return (
+      <SelectArrow
+        size={16}
+        title={'open'}
+        onClick={this.handleClickOnArrow}
+        overrides={{Svg: StyledSelectArrow}}
+        {...sharedProps}
+        {...selectArrowProps}
+      />
+    );
+  }
+
+  renderSearch() {
+    if (this.props.type !== TYPE.search) {
+      return null;
+    }
+    const {overrides = {}} = this.props;
+    const [SearchIcon, searchIconProps] = getOverrides(
+      overrides.SearchIcon,
+      SearchIconComponent,
+    );
+    const sharedProps = this.getSharedProps();
+    return (
+      <SearchIcon
+        size={16}
+        title={'search'}
+        onClick={this.handleClickOnArrow}
+        overrides={{Svg: StyledSearchIcon}}
+        {...sharedProps}
+        {...searchIconProps}
+      />
+    );
+  }
+
+  filterOptions(excludeOptions: ?ValueT) {
+    const filterValue = this.state.inputValue;
+    const options = this.props.options || [];
+    if (this.props.filterOptions) {
+      return this.props.filterOptions(options, filterValue, excludeOptions, {
+        valueKey: this.props.valueKey,
+        labelKey: this.props.labelKey,
+      });
+    } else {
+      return options;
+    }
+  }
+
+  renderMenu(options: Array<OptionT>, valueArray: ValueT) {
+    const {
+      error,
+      getOptionLabel,
+      isLoading,
+      labelKey,
       maxDropdownHeight,
+      multi,
+      noResultsMsg,
+      overrides,
+      required,
+      searchable,
+      size,
+      type,
+      valueKey,
+    } = this.props;
+    const dropdownProps = {
+      error,
+      getOptionLabel: getOptionLabel || this.getOptionLabel,
+      isLoading,
+      labelKey,
+      maxDropdownHeight,
+      multi,
+      onItemSelect: this.selectValue,
       options,
       overrides,
-      multiple: this.isMultiple(),
-      optionsLoaded,
-      isDropDownOpen,
-      selectedOptions,
-      getOptionLabel: this.getOptionLabel.bind(this),
-      onItemSelect: ({item, event}) => this.handledHotKeys(event, item),
-      onChange: this.onSelect.bind(this),
+      required,
+      searchable,
+      size,
+      type,
+      value: valueArray,
+      valueKey,
     };
-    return <SelectDropDown {...dropDownProps} />;
-  }
-
-  getOptionLabel(option: OptionT) {
-    const {getOptionLabel} = this.props;
-    return getOptionLabel ? getOptionLabel(option) : option.label;
-  }
-
-  getSelectedOptionLabel(option: OptionT) {
-    const {getSelectedOptionLabel} = this.props;
-    return getSelectedOptionLabel
-      ? getSelectedOptionLabel(option)
-      : this.getOptionLabel(option);
-  }
-
-  filterOption(option: OptionT, query: string) {
-    if (this.props.filterOption) {
-      return this.props.filterOption(option, query);
+    if (options && options.length) {
+      return <SelectDropdown {...dropdownProps} />;
+    } else if (noResultsMsg) {
+      const noResults = {
+        [valueKey]: 'NO_RESULTS_FOUND',
+        [labelKey]: noResultsMsg,
+        disabled: true,
+      };
+      return <SelectDropdown {...dropdownProps} options={[noResults]} />;
+    } else {
+      return null;
     }
+  }
 
-    const label = this.getOptionLabel(option);
-    return (
-      typeof label === 'string' &&
-      label.toLowerCase().includes(query.toLowerCase())
+  getSharedProps() {
+    const {
+      disabled,
+      error,
+      isLoading,
+      multi,
+      required,
+      size,
+      searchable,
+      type,
+    } = this.props;
+    const {isOpen, isFocused, isPseudoFocused} = this.state;
+    return {
+      $disabled: disabled,
+      $error: error,
+      $isFocused: isFocused,
+      $isLoading: isLoading,
+      $isOpen: isOpen,
+      $isPseudoFocused: isPseudoFocused,
+      $multi: multi,
+      $required: required,
+      $searchable: searchable,
+      $size: size,
+      $type: type,
+    };
+  }
+
+  render() {
+    const {overrides = {}, type, multi, value, filterOutSelected} = this.props;
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const [ControlContainer, controlContainerProps] = getOverrides(
+      overrides.ControlContainer,
+      StyledControlContainer,
     );
-  }
+    const [ValueContainer, valueContainerProps] = getOverrides(
+      overrides.ValueContainer,
+      StyledValueContainer,
+    );
+    const sharedProps = this.getSharedProps();
 
-  isMultiple() {
-    const {type, multiple} = this.props;
-    return type === TYPE.search ? true : multiple;
-  }
-
-  openDropDown(newTextValue?: string, callback?: () => void) {
-    this.setState({isDropDownOpen: true}, () => {
-      this.loadOptions(newTextValue).then(callback);
-    });
-  }
-
-  handledHotKeys(
-    e?: SyntheticEvent<HTMLElement> | KeyboardEvent,
-    option?: ?OptionT,
-  ) {
-    if (!e || !e.key) {
-      return;
+    const valueArray = this.getValueArray(value);
+    const options = this.filterOptions(
+      multi && filterOutSelected ? valueArray : null,
+    );
+    let isOpen = this.state.isOpen;
+    if (
+      multi &&
+      !options.length &&
+      valueArray.length &&
+      !this.state.inputValue
+    ) {
+      isOpen = false;
     }
-    switch (e.key) {
-      case KEY_STRINGS.ArrowDown:
-      case KEY_STRINGS.Space:
-        if (e.key === KEY_STRINGS.Space && this.props.type === TYPE.search) {
-          return;
-        }
-        if (!this.state.isDropDownOpen) {
-          this.openDropDown();
-          e.preventDefault();
-          e.stopPropagation();
-          return true;
-        }
-        return;
-      case KEY_STRINGS.Escape:
-        this.setState({isDropDownOpen: false});
-        return true;
-      case KEY_STRINGS.Enter:
-        if (option) {
-          this.onSelect(e, option);
-        }
-        return;
-      case KEY_STRINGS.Backspace:
-        if (this.isMultiple() && !this.state.textValue) {
-          const {selectedOptions} = this.props;
-          if (selectedOptions.length) {
-            this.onRemoveTag(e, selectedOptions[selectedOptions.length - 1]);
-          }
-          return true;
-        }
-        return;
-    }
-  }
-
-  getSubComponents() {
-    const {overrides = {}} = this.props;
-    return {
-      Input: getOverrides(overrides.Input, StyledInput),
-      Tag: getOverrides(overrides.Tag, StyledTag),
-      Root: getOverrides(overrides.Root, StyledRoot),
-      SelectionContainer: getOverrides(
-        overrides.SelectionContainer,
-        StyledSelectionContainer,
-      ),
-      SelectComponentIcon: getOverrides(
-        overrides.SelectComponentIcon,
-        StyledSelectComponentIcon,
-      ),
-      SingleSelection: getOverrides(
-        overrides.SingleSelection,
-        StyledSingleSelection,
-      ),
-      InputContainer: getOverrides(
-        overrides.InputContainer,
-        StyledInputContainer,
-      ),
-    };
-  }
-
-  getAccessibilityProps() {
-    const {type} = this.props;
-    const {isDropDownOpen} = this.state;
-    return {
-      role: 'combobox',
-      'aria-autocomplete': type === TYPE.search ? 'list' : 'none',
-      'aria-expanded': isDropDownOpen,
-    };
+    sharedProps.$isOpen = isOpen;
+    return (
+      <Root $ref={ref => (this.wrapper = ref)} {...sharedProps} {...rootProps}>
+        <ControlContainer
+          onKeyDown={this.handleKeyDown}
+          onClick={this.handleClick}
+          onTouchEnd={this.handleTouchEnd}
+          onTouchMove={this.handleTouchMove}
+          onTouchStart={this.handleTouchStart}
+          {...sharedProps}
+          {...controlContainerProps}
+        >
+          {type === TYPE.search ? this.renderSearch() : null}
+          <ValueContainer role="list" {...sharedProps} {...valueContainerProps}>
+            {this.renderValue(valueArray, isOpen)}
+            {this.renderInput()}
+          </ValueContainer>
+          {this.renderLoading()}
+          {this.renderClear()}
+          {type === TYPE.select ? this.renderArrow() : null}
+        </ControlContainer>
+        {isOpen ? this.renderMenu(options, valueArray) : null}
+      </Root>
+    );
   }
 }
 

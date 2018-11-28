@@ -7,73 +7,91 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
+import {
+  StatefulSelect,
+  StatefulSelectContainer,
+  StyledRoot,
+  StyledControlContainer,
+  StyledValueContainer,
+  StyledPlaceholder,
+  StyledSingleValue,
+  StyledInputContainer,
+  StyledInput,
+  StyledInputSizer,
+  StyledSelectArrow,
+  StyledClearIcon,
+  StyledSearchIcon,
+  StyledOptionContent,
+} from '../index';
+import Select from '../select.js';
 
-describe('Stateful checkbox', function() {
-  let allProps: any, wrapper;
+jest.mock('../select');
 
-  beforeEach(function() {
-    allProps = {};
-    jest.mock('../select', () => jest.fn(() => <div>test</div>));
-  });
+describe('Stateful select', function() {
+  let wrapper = null;
 
   afterEach(function() {
-    jest.restoreAllMocks();
     wrapper && wrapper.unmount();
   });
 
-  test('should provide default styled components to render', function() {
-    const {
-      StyledRoot,
-      StyledInput,
-      StyledInputContainer,
-      StyledSelectComponentIcon,
-      StyledDropDown,
-      StyledOption,
-      StyledDropDownItem,
-      StatefulSelect,
-    } = require('../index');
+  afterAll(function() {
+    jest.restoreAllMocks();
+  });
 
-    const {Tag} = require('../../tag');
-    allProps.overrides = {
-      Root: StyledRoot,
-      Input: StyledInput,
-      InputContainer: StyledInputContainer,
-      Tag: Tag,
-      SelectComponentIcon: StyledSelectComponentIcon,
-      DropDown: StyledDropDown,
-      Option: StyledOption,
-      DropDownItem: StyledDropDownItem,
+  test('should provide default styled components to render', function() {
+    const props = {
+      overrides: {
+        Root: StyledRoot,
+        ControlContainer: StyledControlContainer,
+        ValueContainer: StyledValueContainer,
+        Placeholder: StyledPlaceholder,
+        SingleValue: StyledSingleValue,
+        MultiValue: function MultiValueComponent({children}) {
+          return <div>{children}</div>;
+        },
+        InputContainer: StyledInputContainer,
+        Input: StyledInput,
+        InputSizer: StyledInputSizer,
+        SelectArrow: StyledSelectArrow,
+        ClearIcon: StyledClearIcon,
+        SearchIcon: StyledSearchIcon,
+        OptionContent: StyledOptionContent,
+      },
     };
-    const checkbox: any = require('../select');
-    wrapper = mount(<StatefulSelect {...allProps} />);
-    const {overrides} = checkbox.mock.calls[0][0];
-    expect(overrides).toEqual({
-      Root: StyledRoot,
-      Input: StyledInput,
-      InputContainer: StyledInputContainer,
-      Tag: Tag,
-      SelectComponentIcon: StyledSelectComponentIcon,
-      DropDown: StyledDropDown,
-      Option: StyledOption,
-      DropDownItem: StyledDropDownItem,
+    wrapper = mount(<StatefulSelect {...props} />);
+    // $FlowFixMe
+    const {overrides} = Select.mock.calls[0][0];
+    expect(overrides).toEqual(props.overrides);
+    expect(Select).toHaveBeenCalled();
+  });
+
+  test('should pass value and other props to stateless select', function() {
+    const props = {
+      initialState: {
+        value: [{id: 'id'}],
+      },
+      onChange: jest.fn(),
+      multi: true,
+    };
+    wrapper = mount(<StatefulSelect {...props} />);
+    const renderedContainer = wrapper.find(StatefulSelectContainer).first();
+    // $FlowFixMe
+    const selectProps = Select.mock.calls[1][0];
+    expect(selectProps).toMatchObject({
+      value: props.initialState.value,
+      multi: props.multi,
+      onChange: renderedContainer.instance().onChange,
     });
   });
 
-  test('should pass all the other props to stateless select', function() {
-    const otherProps = {
-      someProp: 'some other props',
-      autoFocus: false,
+  test('should call onChange from props', function() {
+    const props = {
+      onChange: jest.fn(),
     };
-    allProps = {...allProps, ...otherProps};
-    const {StatefulSelect} = require('../index');
-    const select: any = require('../select');
-    wrapper = mount(<StatefulSelect {...allProps} />);
-    // eslint-disable-next-line no-unused-vars
-    const {overrides, ...rest} = select.mock.calls[1][0];
-    expect(rest).toMatchObject({
-      someProp: 'some other props',
-      selectedOptions: [],
-      autoFocus: false,
-    });
+    wrapper = mount(<StatefulSelect {...props} />);
+    const renderedContainer = wrapper.find(StatefulSelectContainer).first();
+    const params = {value: ''};
+    renderedContainer.instance().onChange(params);
+    expect(props.onChange).toHaveBeenCalledWith(params);
   });
 });

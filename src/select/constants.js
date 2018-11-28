@@ -6,24 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export const OPTIONS = {
-  single: 'single',
-  multiple: 'multiple',
-};
+export {SIZE} from '../input';
 
 export const TYPE = {
   select: 'select',
   search: 'search',
 };
 
-export const ICON = {
-  clearAll: 'clear_all',
-  select: 'select',
-  selected: 'selected',
-  loop: 'loop',
-};
-
 export const STATE_CHANGE_TYPE = {
   select: 'select',
-  unselect: 'unselect',
+  remove: 'remove',
+  clear: 'clear',
 };

@@ -1,101 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Select styled components StyledDropDown : StyledDropDown has correct styles when  is  1`] = `
+exports[`Select styled components Basic render: StyledClearIcon has correct default styles 1`] = `
 Object {
-  "borderRadius": "$theme.sizing.scale300",
-  "boxShadow": "$theme.lighting.shadow600",
-  "display": "none",
-  "left": "$theme.sizing.scale300",
-  "listStyle": "none",
-  "overflowY": "scroll",
-  "position": "absolute",
-  "top": "$theme.sizing.scale1200",
-  "width": "calc(100% - $theme.sizing.scale600)",
-}
-`;
-
-exports[`Select styled components StyledDropDown : StyledDropDown has correct styles when $isOpen is true 1`] = `
-Object {
-  "borderRadius": "$theme.sizing.scale300",
-  "boxShadow": "$theme.lighting.shadow600",
-  "display": null,
-  "left": "$theme.sizing.scale300",
-  "listStyle": "none",
-  "overflowY": "scroll",
-  "position": "absolute",
-  "top": "$theme.sizing.scale1200",
-  "width": "calc(100% - $theme.sizing.scale600)",
-}
-`;
-
-exports[`Select styled components StyledDropDown : StyledDropDown has correct styles when $type is select 1`] = `
-Object {
-  "borderRadius": "$theme.sizing.scale300",
-  "boxShadow": "$theme.lighting.shadow600",
-  "display": "none",
-  "left": "$theme.sizing.scale300",
-  "listStyle": "none",
-  "overflowY": "scroll",
-  "position": "absolute",
-  "top": "$theme.sizing.scale600",
-  "width": "calc(100% - $theme.sizing.scale600)",
-}
-`;
-
-exports[`Select styled components StyledDropDownItem DropDownItem: StyledDropDownItem has correct styles 1`] = `
-Object {
-  "lineHeight": "$theme.sizing.scale600",
-}
-`;
-
-exports[`Select styled components StyledInput Input: StyledInput has correct styles 1`] = `
-Object {
-  "::placeholder": Object {
-    "color": "$theme.colors.foregroundAlt",
-  },
-  "backgroundColor": "transparent",
-  "borderStyle": "none",
-  "borderWidth": "0",
-  "boxSizing": "border-box",
-  "caretColor": "$theme.colors.primary",
-  "color": "$theme.colors.foreground",
+  "color": "$theme.colors.mono800",
   "cursor": "pointer",
-  "flexGrow": "1",
-  "fontFamily": "$theme.typography.font300.fontFamily",
-  "fontSize": "$theme.typography.font300.fontSize",
-  "fontWeight": "$theme.typography.font300.fontWeight",
-  "lineHeight": "$theme.typography.font300.lineHeight",
-  "maxWidth": "100%",
-  "outline": "none",
-  "paddingBottom": "$theme.sizing.scale300",
-  "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale500",
-  "paddingTop": "$theme.sizing.scale300",
-  "width": "auto",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "position": "absolute",
+  "right": "14px",
+  "width": "$theme.sizing.scale600",
 }
 `;
 
-exports[`Select styled components StyledInputContainer InputContainer: StyledInputContainer has correct styles 1`] = `
+exports[`Select styled components Basic render: StyledClearIcon has correct styles for the SIZE.compact 1`] = `
 Object {
-  "alignItems": "center",
-  "backgroundColor": "$theme.colors.inputFill",
+  "color": "$theme.colors.mono800",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "position": "absolute",
+  "right": "14px",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Select styled components Basic render: StyledClearIcon has correct styles for the TYPE.search 1`] = `
+Object {
+  "color": "$theme.colors.mono800",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "position": "absolute",
+  "right": "14px",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Select styled components Basic render: StyledClearIcon has correct styles for the disabled state 1`] = `
+Object {
+  "color": "$theme.colors.mono800",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "position": "absolute",
+  "right": "14px",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Select styled components Basic render: StyledControlContainer has correct default styles 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.mono200",
   "borderColor": "$theme.colors.mono200",
-  "borderRadius": undefined,
+  "borderRadius": "$theme.sizing.scale100",
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
-  "color": "$theme.colors.foreground",
+  "color": "$theme.colors.mono1000",
+  "cursor": "pointer",
   "display": "flex",
-  "flexWrap": "wrap",
-  "fontFamily": "$theme.typography.font300.fontFamily",
-  "fontSize": "$theme.typography.font300.fontSize",
-  "fontWeight": "$theme.typography.font300.fontWeight",
-  "lineHeight": "$theme.typography.font300.lineHeight",
-  "paddingBottom": "0",
-  "paddingLeft": "$theme.sizing.scale300",
-  "paddingRight": "$theme.sizing.scale300",
-  "paddingTop": "0",
+  "overflow": "hidden",
   "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "border, boxShadow, backgroundColor",
@@ -104,60 +73,669 @@ Object {
 }
 `;
 
-exports[`Select styled components StyledOption : StyledOption has correct styles when  1`] = `
+exports[`Select styled components Basic render: StyledControlContainer has correct styles for the SIZE.compact 1`] = `
 Object {
-  ":hover": Object {
-    "cursor": "pointer",
-  },
-  "color": null,
-  "paddingLeft": "18px",
-  "paddingRight": "18px",
-}
-`;
-
-exports[`Select styled components StyledOption : StyledOption has correct styles when $selected 1`] = `
-Object {
-  ":hover": Object {
-    "cursor": "pointer",
-  },
-  "color": "$theme.colors.primary400",
-  "paddingLeft": "0px",
-  "paddingRight": "0px",
-}
-`;
-
-exports[`Select styled components StyledOption : StyledOption has correct styles when disabled 1`] = `
-Object {
-  ":hover": Object {
-    "cursor": "not-allowed",
-  },
-  "color": "$theme.colors.mono700",
-  "paddingLeft": "18px",
-  "paddingRight": "18px",
-}
-`;
-
-exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is clear_all 1`] = `
-Object {
+  "backgroundColor": "$theme.colors.mono200",
+  "borderColor": "$theme.colors.mono200",
+  "borderRadius": "$theme.sizing.scale100",
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0 2px 6px transparent",
+  "boxSizing": "border-box",
+  "color": "$theme.colors.mono1000",
   "cursor": "pointer",
-  "marginLeft": "auto",
+  "display": "flex",
+  "overflow": "hidden",
+  "position": "relative",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "border, boxShadow, backgroundColor",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+  "width": "100%",
 }
 `;
 
-exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is loop 1`] = `
+exports[`Select styled components Basic render: StyledControlContainer has correct styles for the TYPE.search 1`] = `
 Object {
-  "paddingLeft": "$theme.sizing.scale300",
+  "backgroundColor": "$theme.colors.mono200",
+  "borderColor": "$theme.colors.mono200",
+  "borderRadius": "$theme.sizing.scale100",
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0 2px 6px transparent",
+  "boxSizing": "border-box",
+  "color": "$theme.colors.mono1000",
+  "cursor": "text",
+  "display": "flex",
+  "overflow": "hidden",
+  "position": "relative",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "border, boxShadow, backgroundColor",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+  "width": "100%",
 }
 `;
 
-exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is select 1`] = `
+exports[`Select styled components Basic render: StyledControlContainer has correct styles for the disabled state 1`] = `
 Object {
-  "marginRight": "$theme.sizing.scale500",
+  "backgroundColor": "$theme.colors.mono300",
+  "borderColor": "$theme.colors.mono300",
+  "borderRadius": "$theme.sizing.scale100",
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0 2px 6px transparent",
+  "boxSizing": "border-box",
+  "color": "$theme.colors.mono600",
+  "cursor": "not-allowed",
+  "display": "flex",
+  "overflow": "hidden",
+  "position": "relative",
+  "transitionDuration": "$theme.animation.timing100",
+  "transitionProperty": "border, boxShadow, backgroundColor",
+  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+  "width": "100%",
 }
 `;
 
-exports[`Select styled components StyledSelectComponentIcon : StyledSelectComponentIcon has correct styles when type is selected 1`] = `
+exports[`Select styled components Basic render: StyledInput has correct default styles 1`] = `
 Object {
-  "paddingRight": "$theme.sizing.scale300",
+  "background": "transparent",
+  "border": "none",
+  "boxShadow": "none",
+  "boxSizing": "content-box",
+  "display": "inline-block",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
+  "maxWidth": "100%",
+  "outline": "none",
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
+  "width": "1px",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInput has correct styles for the SIZE.compact 1`] = `
+Object {
+  "background": "transparent",
+  "border": "none",
+  "boxShadow": "none",
+  "boxSizing": "content-box",
+  "display": "inline-block",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "$theme.typography.font200.fontWeight",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
+  "maxWidth": "100%",
+  "outline": "none",
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
+  "width": "1px",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInput has correct styles for the TYPE.search 1`] = `
+Object {
+  "background": "transparent",
+  "border": "none",
+  "boxShadow": "none",
+  "boxSizing": "content-box",
+  "display": "inline-block",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
+  "maxWidth": "100%",
+  "outline": "none",
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
+  "width": "1px",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInput has correct styles for the disabled state 1`] = `
+Object {
+  "background": "transparent",
+  "border": "none",
+  "boxShadow": "none",
+  "boxSizing": "content-box",
+  "display": "inline-block",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
+  "maxWidth": "100%",
+  "outline": "none",
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
+  "width": "1px",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInputContainer has correct default styles 1`] = `
+Object {
+  "background": "transparent",
+  "border": "none",
+  "boxShadow": "none",
+  "boxSizing": "content-box",
+  "display": "inline-block",
+  "height": "$theme.typography.font300.lineHeight",
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
+  "maxWidth": "100%",
+  "outline": "none",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "relative",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInputContainer has correct styles for the SIZE.compact 1`] = `
+Object {
+  "background": "transparent",
+  "border": "none",
+  "boxShadow": "none",
+  "boxSizing": "content-box",
+  "display": "inline-block",
+  "height": "$theme.typography.font200.lineHeight",
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
+  "maxWidth": "100%",
+  "outline": "none",
+  "paddingBottom": "$theme.sizing.scale200",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale200",
+  "position": "relative",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInputContainer has correct styles for the TYPE.search 1`] = `
+Object {
+  "background": "transparent",
+  "border": "none",
+  "boxShadow": "none",
+  "boxSizing": "content-box",
+  "display": "inline-block",
+  "height": "$theme.typography.font300.lineHeight",
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
+  "maxWidth": "100%",
+  "outline": "none",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "0",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "relative",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInputContainer has correct styles for the disabled state 1`] = `
+Object {
+  "background": "transparent",
+  "border": "none",
+  "boxShadow": "none",
+  "boxSizing": "content-box",
+  "display": "inline-block",
+  "height": "$theme.typography.font300.lineHeight",
+  "marginBottom": "0",
+  "marginLeft": "0",
+  "marginRight": "0",
+  "marginTop": "0",
+  "maxWidth": "100%",
+  "outline": "none",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "relative",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInputSizer has correct default styles 1`] = `
+Object {
+  "height": 0,
+  "left": 0,
+  "overflow": "scroll",
+  "position": "absolute",
+  "top": 0,
+  "visibility": "hidden",
+  "whiteSpace": "pre",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInputSizer has correct styles for the SIZE.compact 1`] = `
+Object {
+  "height": 0,
+  "left": 0,
+  "overflow": "scroll",
+  "position": "absolute",
+  "top": 0,
+  "visibility": "hidden",
+  "whiteSpace": "pre",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInputSizer has correct styles for the TYPE.search 1`] = `
+Object {
+  "height": 0,
+  "left": 0,
+  "overflow": "scroll",
+  "position": "absolute",
+  "top": 0,
+  "visibility": "hidden",
+  "whiteSpace": "pre",
+}
+`;
+
+exports[`Select styled components Basic render: StyledInputSizer has correct styles for the disabled state 1`] = `
+Object {
+  "height": 0,
+  "left": 0,
+  "overflow": "scroll",
+  "position": "absolute",
+  "top": 0,
+  "visibility": "hidden",
+  "whiteSpace": "pre",
+}
+`;
+
+exports[`Select styled components Basic render: StyledOptionContent has correct default styles 1`] = `
+Object {
+  "color": "$theme.colors.black",
+  "cursor": "pointer",
+  "fontWeight": "normal",
+}
+`;
+
+exports[`Select styled components Basic render: StyledOptionContent has correct styles for the SIZE.compact 1`] = `
+Object {
+  "color": "$theme.colors.black",
+  "cursor": "pointer",
+  "fontWeight": "normal",
+}
+`;
+
+exports[`Select styled components Basic render: StyledOptionContent has correct styles for the TYPE.search 1`] = `
+Object {
+  "color": "$theme.colors.black",
+  "cursor": "pointer",
+  "fontWeight": "normal",
+}
+`;
+
+exports[`Select styled components Basic render: StyledOptionContent has correct styles for the disabled state 1`] = `
+Object {
+  "color": "$theme.colors.mono700",
+  "cursor": "not-allowed",
+  "fontWeight": "normal",
+}
+`;
+
+exports[`Select styled components Basic render: StyledPlaceholder has correct default styles 1`] = `
+Object {
+  "alignItems": "center",
+  "bottom": "0",
+  "color": "$theme.colors.mono700",
+  "display": "flex",
+  "left": "0",
+  "maxWidth": "100%",
+  "overflow": "hidden",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "absolute",
+  "right": "0",
+  "textOverflow": "ellipsis",
+  "top": "0",
+  "whiteSpace": "nowrap",
+}
+`;
+
+exports[`Select styled components Basic render: StyledPlaceholder has correct styles for the SIZE.compact 1`] = `
+Object {
+  "alignItems": "center",
+  "bottom": "0",
+  "color": "$theme.colors.mono700",
+  "display": "flex",
+  "left": "0",
+  "maxWidth": "100%",
+  "overflow": "hidden",
+  "paddingBottom": "$theme.sizing.scale200",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale200",
+  "position": "absolute",
+  "right": "0",
+  "textOverflow": "ellipsis",
+  "top": "0",
+  "whiteSpace": "nowrap",
+}
+`;
+
+exports[`Select styled components Basic render: StyledPlaceholder has correct styles for the TYPE.search 1`] = `
+Object {
+  "alignItems": "center",
+  "bottom": "0",
+  "color": "$theme.colors.mono700",
+  "display": "flex",
+  "left": "0",
+  "maxWidth": "100%",
+  "overflow": "hidden",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale1000",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "absolute",
+  "right": "0",
+  "textOverflow": "ellipsis",
+  "top": "0",
+  "whiteSpace": "nowrap",
+}
+`;
+
+exports[`Select styled components Basic render: StyledPlaceholder has correct styles for the disabled state 1`] = `
+Object {
+  "alignItems": "center",
+  "bottom": "0",
+  "color": "$theme.colors.mono600",
+  "display": "flex",
+  "left": "0",
+  "maxWidth": "100%",
+  "overflow": "hidden",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "absolute",
+  "right": "0",
+  "textOverflow": "ellipsis",
+  "top": "0",
+  "whiteSpace": "nowrap",
+}
+`;
+
+exports[`Select styled components Basic render: StyledRoot has correct default styles 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+}
+`;
+
+exports[`Select styled components Basic render: StyledRoot has correct styles for the SIZE.compact 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "$theme.typography.font200.fontWeight",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+}
+`;
+
+exports[`Select styled components Basic render: StyledRoot has correct styles for the TYPE.search 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+}
+`;
+
+exports[`Select styled components Basic render: StyledRoot has correct styles for the disabled state 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+}
+`;
+
+exports[`Select styled components Basic render: StyledSearchIcon has correct default styles 1`] = `
+Object {
+  "color": "$theme.colors.mono700",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "left": "12px",
+  "position": "absolute",
+  "width": "$theme.sizing.scale600",
+  "zIndex": 1,
+}
+`;
+
+exports[`Select styled components Basic render: StyledSearchIcon has correct styles for the SIZE.compact 1`] = `
+Object {
+  "color": "$theme.colors.mono700",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "left": "12px",
+  "position": "absolute",
+  "width": "$theme.sizing.scale600",
+  "zIndex": 1,
+}
+`;
+
+exports[`Select styled components Basic render: StyledSearchIcon has correct styles for the TYPE.search 1`] = `
+Object {
+  "color": "$theme.colors.mono700",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "left": "12px",
+  "position": "absolute",
+  "width": "$theme.sizing.scale600",
+  "zIndex": 1,
+}
+`;
+
+exports[`Select styled components Basic render: StyledSearchIcon has correct styles for the disabled state 1`] = `
+Object {
+  "color": "$theme.colors.mono600",
+  "cursor": "not-allowed",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "left": "12px",
+  "position": "absolute",
+  "width": "$theme.sizing.scale600",
+  "zIndex": 1,
+}
+`;
+
+exports[`Select styled components Basic render: StyledSelectArrow has correct default styles 1`] = `
+Object {
+  "color": "$theme.colors.mono800",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "position": "absolute",
+  "right": "12px",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Select styled components Basic render: StyledSelectArrow has correct styles for the SIZE.compact 1`] = `
+Object {
+  "color": "$theme.colors.mono800",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "position": "absolute",
+  "right": "12px",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Select styled components Basic render: StyledSelectArrow has correct styles for the TYPE.search 1`] = `
+Object {
+  "color": "$theme.colors.mono800",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "position": "absolute",
+  "right": "12px",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Select styled components Basic render: StyledSelectArrow has correct styles for the disabled state 1`] = `
+Object {
+  "color": "$theme.colors.mono600",
+  "cursor": "not-allowed",
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "100%",
+  "position": "absolute",
+  "right": "12px",
+  "width": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Select styled components Basic render: StyledSingleValue has correct default styles 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "height": "100%",
+  "left": "0",
+  "maxWidth": "100%",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "absolute",
+  "top": "0",
+  "whiteSpace": "nowrap",
+}
+`;
+
+exports[`Select styled components Basic render: StyledSingleValue has correct styles for the SIZE.compact 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "height": "100%",
+  "left": "0",
+  "maxWidth": "100%",
+  "paddingBottom": "$theme.sizing.scale200",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale200",
+  "position": "absolute",
+  "top": "0",
+  "whiteSpace": "nowrap",
+}
+`;
+
+exports[`Select styled components Basic render: StyledSingleValue has correct styles for the TYPE.search 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "height": "100%",
+  "left": "0",
+  "maxWidth": "100%",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale1000",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "absolute",
+  "top": "0",
+  "whiteSpace": "nowrap",
+}
+`;
+
+exports[`Select styled components Basic render: StyledSingleValue has correct styles for the disabled state 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "height": "100%",
+  "left": "0",
+  "maxWidth": "100%",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale800",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "absolute",
+  "top": "0",
+  "whiteSpace": "nowrap",
+}
+`;
+
+exports[`Select styled components Basic render: StyledValueContainer has correct default styles 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "display": "inline-block",
+  "paddingLeft": 0,
+}
+`;
+
+exports[`Select styled components Basic render: StyledValueContainer has correct styles for the SIZE.compact 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "display": "inline-block",
+  "paddingLeft": 0,
+}
+`;
+
+exports[`Select styled components Basic render: StyledValueContainer has correct styles for the TYPE.search 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "display": "inline-block",
+  "paddingLeft": "$theme.sizing.scale1000",
+}
+`;
+
+exports[`Select styled components Basic render: StyledValueContainer has correct styles for the disabled state 1`] = `
+Object {
+  "boxSizing": "border-box",
+  "display": "inline-block",
+  "paddingLeft": 0,
+}
+`;
+
+exports[`Select styled components StyledOptionContent styles: StyledOptionContent has correct styles when selected 1`] = `
+Object {
+  "color": "$theme.colors.primary400",
+  "cursor": "pointer",
+  "fontWeight": "bold",
 }
 `;

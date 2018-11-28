@@ -9,10 +9,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 module.exports = {
-  SELECT: 'Select',
-  SELECT_DISABLED_OPTIONS: 'Select Disabled Options',
-  SELECT_SEARCH: 'Select Search',
-  MULTI_SELECT: 'Multi-Select',
-  MULTI_SELECT_SEARCH: 'Multi-Select Search',
-  MULTI_SELECT_CUSTOM_LABELS: 'Multi-Select Custom Labels',
+  SELECT: 'Select playground',
+  MULTI_SELECT: 'Multi select',
+  SINGLE_SELECT_SEARCH: 'Single select search',
+  MULTI_SELECT_SEARCH: 'Multi select search',
+  MULTI_SELECT_CUSTOM_LABELS: 'Multi select search with custom labels',
 };

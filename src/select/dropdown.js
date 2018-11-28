@@ -6,121 +6,117 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {
-  SelectComponentIcon as StyledSelectComponentIcon,
-  DropDown as StyledDropDown,
-  DropDownItem as StyledDropDownItem,
-  Option as StyledOption,
-  SelectSpinner as StyledSelectSpinner,
-} from './styled-components';
-
-import {ICON} from './constants';
-
+import {StyledOptionContent} from './styled-components';
 import {StatefulMenu} from '../menu';
-import {Spinner} from '../spinner';
-import type {DropDownPropsT} from './types';
-import {getOverrides} from '../helpers/overrides';
+import type {DropdownPropsT} from './types';
+import {getOverrides, mergeOverrides} from '../helpers/overrides';
 
-export default function SelectDropDown(props: DropDownPropsT) {
-  const {overrides = {}} = props;
-  const [SelectComponentIcon, selectComponentIconProps] = getOverrides(
-    overrides.SelectComponentIcon,
-    StyledSelectComponentIcon,
-  );
-  const [DropDown, dropDownProps] = getOverrides(
-    overrides.DropDown,
-    StyledDropDown,
-  );
-  const [DropDownItem, dropDownItemProps] = getOverrides(
-    overrides.DropDownItem,
-    StyledDropDownItem,
-  );
-  const [Option, optionProps] = getOverrides(overrides.Option, StyledOption);
-  const [SelectSpinner, selectSpinnerProps] = getOverrides(
-    overrides.SelectSpinner,
-    StyledSelectSpinner,
-  );
-  const {
-    options = [],
-    getOptionLabel,
-    isDropDownOpen,
-    optionsLoaded,
-    selectedOptions,
-    onChange,
-    onItemSelect,
-    type,
-    maxDropdownHeight,
-    multiple,
-  } = props;
-  return isDropDownOpen ? (
-    <StatefulMenu
-      getRequiredItemProps={(option, index) => {
-        return option.disabled
-          ? {
-              onClickCapture: e => e.stopPropagation(),
-            }
-          : {
-              onClick: e => onChange(e, option),
-            };
-      }}
-      overrides={{
-        List: {
-          component: DropDown,
-          style: {maxHeight: maxDropdownHeight},
-          props: {
-            role: 'listbox',
-            'aria-multiselectable': multiple,
-            $type: type,
-            $isOpen: isDropDownOpen,
-            ...dropDownProps,
-          },
-        },
-        Option: {
-          props: {
-            overrides: {
-              ListItem: {
-                component: DropDownItem,
-                props: dropDownItemProps,
+export default class SelectDropdown extends React.Component<DropdownPropsT> {
+  getSharedProps() {
+    const {
+      error,
+      isLoading,
+      multi,
+      required,
+      size,
+      searchable,
+      type,
+    } = this.props;
+    return {
+      $error: error,
+      $isLoading: isLoading,
+      $multi: multi,
+      $required: required,
+      $searchable: searchable,
+      $size: size,
+      $type: type,
+    };
+  }
+  // eslint-disable-next-line flowtype/no-weak-types
+  getItemLabel = (option: {[string]: any}) => {
+    const {getOptionLabel, overrides = {}, value, valueKey} = this.props;
+
+    const [OptionContent, optionContentProps] = getOverrides(
+      overrides.OptionContent,
+      StyledOptionContent,
+    );
+
+    let $selected;
+    if (Array.isArray(value)) {
+      $selected = !!value.find(
+        selected => selected && selected[valueKey] === option[valueKey],
+      );
+    } else {
+      $selected = value[valueKey] === option[valueKey];
+    }
+
+    const optionSharedProps = {
+      $selected,
+      $disabled: option.disabled,
+      $isHighlighted: option.isHighlighted,
+    };
+    return (
+      <OptionContent
+        aria-readonly={option.disabled}
+        aria-selected={$selected}
+        key={option[valueKey]}
+        {...this.getSharedProps()}
+        {...optionSharedProps}
+        {...optionContentProps}
+      >
+        {getOptionLabel({option, optionState: optionSharedProps})}
+      </OptionContent>
+    );
+  };
+
+  onMouseDown = (e: Event) => {
+    e.preventDefault();
+  };
+
+  render() {
+    // TODO(#185) Add no-results and loading states to menu
+    const {
+      maxDropdownHeight,
+      multi,
+      onItemSelect,
+      options = [],
+      overrides = {},
+      size,
+    } = this.props;
+    return (
+      <StatefulMenu
+        onItemSelect={onItemSelect}
+        items={options}
+        size={size}
+        overrides={mergeOverrides(
+          {
+            List: {
+              style: ({$theme: {sizing}}) => ({
+                maxHeight: maxDropdownHeight,
+                marginTop: sizing.scale300,
+                marginBottom: '0',
+                marginLeft: sizing.scale300,
+                marginRight: sizing.scale300,
+              }),
+              props: {
+                'aria-multiselectable': multi,
               },
             },
-            /* eslint-disable-next-line react/display-name*/
-            getItemLabel: option => {
-              const $selected = selectedOptions.find(
-                selected => selected.id === option.id,
-              );
-              return optionsLoaded ? (
-                <Option
-                  aria-readonly={option.disabled}
-                  aria-selected={!!$selected}
-                  disabled={option.disabled}
-                  $selected={$selected}
-                  key={option.id}
-                  {...optionProps}
-                >
-                  {$selected && (
-                    <SelectComponentIcon
-                      $type={ICON.selected}
-                      src={
-                        'data:image/svg+xml;utf8,<svg width="10" height="9" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6L4 9L10 1" stroke="#1B6DE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-                      }
-                      {...selectComponentIconProps}
-                    />
-                  )}
-                  {getOptionLabel(option)}
-                </Option>
-              ) : (
-                <SelectSpinner {...selectSpinnerProps}>
-                  <Spinner size={22} />
-                </SelectSpinner>
-              );
+            Option: {
+              props: {
+                getItemLabel: this.getItemLabel,
+                // figure out why the onClick handler is not
+                // triggered without this temporary fix
+                onMouseDown: this.onMouseDown,
+              },
             },
           },
-        },
-      }}
-      onItemSelect={onItemSelect}
-      items={optionsLoaded ? options : [{}]}
-    />
-  ) : (
-    <div />
-  );
+          {
+            List: overrides.Dropdown || {},
+            Option: overrides.DropdownOption || {},
+          },
+        )}
+      />
+    );
+  }
 }

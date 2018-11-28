@@ -6,21 +6,27 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as Select} from './select';
-export {default as SelectDropDown} from './dropdown';
+export {default as SingleValue} from './value';
+export {default as MultiValue} from './multi-value';
+export {default as AutosizeInput} from './autosize-input';
+export {default as SelectDropdown} from './dropdown';
 export {default as StatefulSelect} from './stateful-select';
 export {default as StatefulSelectContainer} from './stateful-select-container';
 // Styled elements
 export {
-  Root as StyledRoot,
-  Input as StyledInput,
-  InputContainer as StyledInputContainer,
-  SingleSelection as StyledSingleSelection,
-  SelectComponentIcon as StyledSelectComponentIcon,
-  DropDown as StyledDropDown,
-  Option as StyledOption,
-  DropDownItem as StyledDropDownItem,
-  SelectSpinner as StyledSelectSpinner,
-  SelectionContainer as StyledSelectionContainer,
+  StyledRoot,
+  StyledControlContainer,
+  StyledValueContainer,
+  StyledPlaceholder,
+  StyledSingleValue,
+  StyledInputContainer,
+  StyledInput,
+  StyledInputSizer,
+  StyledSelectArrow,
+  StyledClearIcon,
+  StyledSearchIcon,
+  StyledOptionContent,
 } from './styled-components';
-export {ICON, OPTIONS, TYPE} from './constants';
+export {default as filterOptions} from './utils/default-filter-options';
+export {SIZE, TYPE, STATE_CHANGE_TYPE} from './constants';
 export * from './types';
