@@ -3,17 +3,17 @@
 exports[`Textarea Textarea element - basic render: Textarea has correct default styles 1`] = `
 Object {
   "::placeholder": Object {
-    "color": "$theme.colors.mono700",
+    "color": "$theme.colors.foregroundAlt",
   },
-  "backgroundColor": "$theme.colors.mono200",
-  "borderColor": "$theme.colors.mono200",
+  "backgroundColor": "$theme.colors.inputFill",
+  "borderColor": "$theme.colors.inputFill",
   "borderRadius": undefined,
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
-  "color": "$theme.colors.mono1000",
+  "color": "$theme.colors.foreground",
   "cursor": "text",
   "display": "flex",
   "fontFamily": "$theme.typography.font300.fontFamily",
@@ -36,17 +36,17 @@ Object {
 exports[`Textarea Textarea element - basic render: Textarea has correct styles when compact and disabled 1`] = `
 Object {
   "::placeholder": Object {
-    "color": "$theme.colors.mono600",
+    "color": "$theme.colors.inputTextDisabled",
   },
-  "backgroundColor": "$theme.colors.mono300",
-  "borderColor": "$theme.colors.mono300",
+  "backgroundColor": "$theme.colors.inputFillDisabled",
+  "borderColor": "$theme.colors.inputFillDisabled",
   "borderRadius": undefined,
   "borderStyle": "solid",
   "borderWidth": "1px",
   "boxShadow": "0 2px 6px transparent",
   "boxSizing": "border-box",
   "caretColor": "$theme.colors.primary",
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.inputTextDisabled",
   "cursor": "not-allowed",
   "display": "flex",
   "fontFamily": "$theme.typography.font200.fontFamily",

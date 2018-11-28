@@ -2,9 +2,10 @@
 
 exports[`Accordion styled components Basic render: StyledContent has correct styles when expanded and disabled is set to true 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono200",
-  "borderBottom": "1px solid $theme.colors.mono500",
+  "backgroundColor": "$theme.colors.background",
+  "borderBottom": "1px solid $theme.colors.border",
   "boxSizing": "border-box",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
@@ -29,9 +30,10 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledContent has correct styles when expanded is set to false 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono200",
+  "backgroundColor": "$theme.colors.background",
   "borderBottom": "none",
   "boxSizing": "border-box",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
@@ -56,9 +58,10 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledContent has correct styles when expanded is set to true 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono200",
-  "borderBottom": "1px solid $theme.colors.mono500",
+  "backgroundColor": "$theme.colors.background",
+  "borderBottom": "1px solid $theme.colors.border",
   "boxSizing": "border-box",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
@@ -83,9 +86,10 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledContent has correct styles when not expanded and disabled is set to true 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.mono200",
+  "backgroundColor": "$theme.colors.background",
   "borderBottom": "none",
   "boxSizing": "border-box",
+  "color": "$theme.colors.foreground",
   "fontFamily": "$theme.typography.font300.fontFamily",
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
@@ -111,12 +115,15 @@ Object {
 exports[`Accordion styled components Basic render: StyledHeader has correct styles when expanded and disabled is set to true 1`] = `
 Object {
   ":focus": Object {
-    "backgroudColor": "$theme.colors.mono400",
+    "backgroudColor": "$theme.colors.background",
+  },
+  ":hover": Object {
+    "color": "$theme.colors.linkHover",
   },
   "alignItems": "center",
-  "backgroudColor": "$theme.colors.white",
+  "background": "$theme.colors.listHeaderFill",
   "borderBottom": "1px solid $theme.colors.mono500",
-  "color": "$theme.colors.black",
+  "color": "$theme.colors.foreground",
   "cursor": "not-allowed",
   "display": "flex",
   "fontFamily": "$theme.typography.font450.fontFamily",
@@ -138,12 +145,15 @@ Object {
 exports[`Accordion styled components Basic render: StyledHeader has correct styles when expanded is set to false 1`] = `
 Object {
   ":focus": Object {
-    "backgroudColor": "$theme.colors.mono400",
+    "backgroudColor": "$theme.colors.background",
+  },
+  ":hover": Object {
+    "color": "$theme.colors.linkHover",
   },
   "alignItems": "center",
-  "backgroudColor": "$theme.colors.white",
+  "background": "$theme.colors.listHeaderFill",
   "borderBottom": "1px solid $theme.colors.mono400",
-  "color": "$theme.colors.black",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "flex",
   "fontFamily": "$theme.typography.font450.fontFamily",
@@ -165,12 +175,15 @@ Object {
 exports[`Accordion styled components Basic render: StyledHeader has correct styles when expanded is set to true 1`] = `
 Object {
   ":focus": Object {
-    "backgroudColor": "$theme.colors.mono400",
+    "backgroudColor": "$theme.colors.background",
+  },
+  ":hover": Object {
+    "color": "$theme.colors.linkHover",
   },
   "alignItems": "center",
-  "backgroudColor": "$theme.colors.white",
+  "background": "$theme.colors.listHeaderFill",
   "borderBottom": "1px solid $theme.colors.mono500",
-  "color": "$theme.colors.black",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "flex",
   "fontFamily": "$theme.typography.font450.fontFamily",
@@ -192,12 +205,15 @@ Object {
 exports[`Accordion styled components Basic render: StyledHeader has correct styles when not expanded and disabled is set to true 1`] = `
 Object {
   ":focus": Object {
-    "backgroudColor": "$theme.colors.mono400",
+    "backgroudColor": "$theme.colors.background",
+  },
+  ":hover": Object {
+    "color": "$theme.colors.linkHover",
   },
   "alignItems": "center",
-  "backgroudColor": "$theme.colors.white",
+  "background": "$theme.colors.listHeaderFill",
   "borderBottom": "1px solid $theme.colors.mono400",
-  "color": "$theme.colors.black",
+  "color": "$theme.colors.foreground",
   "cursor": "not-allowed",
   "display": "flex",
   "fontFamily": "$theme.typography.font450.fontFamily",
@@ -250,7 +266,7 @@ exports[`Accordion styled components Basic render: StyledRoot has correct styles
 
 exports[`Accordion styled components Basic render: StyledToggleIcon has correct styles when expanded and disabled is set to true 1`] = `
 Object {
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.foreground",
   "cursor": "not-allowed",
   "display": "inline-block",
   "fill": "currentColor",
@@ -263,7 +279,7 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledToggleIcon has correct styles when expanded is set to false 1`] = `
 Object {
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -276,7 +292,7 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledToggleIcon has correct styles when expanded is set to true 1`] = `
 Object {
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
@@ -289,7 +305,7 @@ Object {
 
 exports[`Accordion styled components Basic render: StyledToggleIcon has correct styles when not expanded and disabled is set to true 1`] = `
 Object {
-  "color": "$theme.colors.mono600",
+  "color": "$theme.colors.foreground",
   "cursor": "not-allowed",
   "display": "inline-block",
   "fill": "currentColor",
