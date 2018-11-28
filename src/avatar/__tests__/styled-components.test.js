@@ -26,7 +26,14 @@ describe('Avatar styled components', () => {
   test.each(styledComponents)('non-default size', (Component, name) => {
     const component = shallow(<Component $size="scale1200" />);
     expect(component.instance().getStyles()).toMatchSnapshot(
-      `${name} has expected default styles`,
+      `${name} has expected styles with non-default size`,
+    );
+  });
+
+  it('StyledRoot failure state', () => {
+    const component = shallow(<StyledRoot $didImageFailToLoad />);
+    expect(component.instance().getStyles()).toMatchSnapshot(
+      'StyledRoot has expected failure state styles',
     );
   });
 });

@@ -37,13 +37,20 @@ describe('Avatar', () => {
     expect(wrapper.find('img')).toHaveLength(0);
   });
 
-  it('applies expected accessibility attributes if image fails to load', () => {
+  it('applies expected accessibility attributes to root by default', () => {
     const name = 'user name';
     const wrapper = mount(<Avatar name={name} src="invalid-img-src.png" />);
     const rootNode = wrapper.childAt(0).getDOMNode();
 
     expect(rootNode.getAttribute('aria-label')).toBeNull();
     expect(rootNode.getAttribute('role')).toBeNull();
+  });
+
+  it('applies expected accessibility attributes to root if image fails to load', () => {
+    const name = 'user name';
+    const wrapper = mount(<Avatar name={name} src="invalid-img-src.png" />);
+    const rootNode = wrapper.childAt(0).getDOMNode();
+
     triggerLoadError(wrapper);
     expect(rootNode.getAttribute('aria-label')).toBe(name);
     expect(rootNode.getAttribute('role')).toBe('img');

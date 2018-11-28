@@ -22,6 +22,7 @@ export const Avatar = styled('img', (props: StylePropsT) => {
 
   return {
     borderRadius: '50%',
+    boxSizing: 'border-box',
     display: 'block',
     height: themedSize,
     width: themedSize,
@@ -35,6 +36,7 @@ export const Root = styled('div', (props: StylePropsT) => {
   return {
     backgroundColor: props.$theme.colors.mono400,
     borderRadius: '50%',
+    boxSizing: 'border-box',
     display: 'inline-block',
 
     // image previously set the root height/width
