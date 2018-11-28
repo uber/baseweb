@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Multi Value component renders MultiValue: passes corect props to an underlying component 1`] = `
+Object {
+  "children": "test",
+  "onActionClick": [MockFunction],
+  "overrides": Object {
+    "Root": Object {
+      "style": Object {
+        "marginBottom": "0",
+        "marginRight": "0",
+      },
+    },
+  },
+}
+`;

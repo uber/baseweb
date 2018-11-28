@@ -18,9 +18,15 @@ type StyledPropsT = {
 
 export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   position: 'relative',
-  margin: 0,
-  padding: 0,
-  background: $theme.colors.backgroundAlt,
+  marginTop: '0',
+  marginBottom: '0',
+  marginLeft: '0',
+  marginRight: '0',
+  paddingTop: '0',
+  paddingBottom: '0',
+  paddingLeft: '0',
+  paddingRight: '0',
+  backgroundColor: $theme.colors.backgroundAlt,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
   overflow: 'auto',
@@ -36,6 +42,7 @@ export const ListItem = styled(
     display: 'block',
     color: $isHighlighted ? $theme.colors.primary : $theme.colors.foreground,
     cursor: 'pointer',
+    backgroundColor: $isHighlighted ? $theme.colors.mono300 : 'transparent',
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,
@@ -114,17 +121,26 @@ export const ProfileLabelsContainer = styled('div', ({$theme}) => ({
 export const ProfileTitle = styled('h6', ({$theme}) => ({
   ...$theme.typography.font450,
   color: $theme.colors.foreground,
-  margin: 0,
+  marginTop: '0',
+  marginBottom: '0',
+  marginLeft: '0',
+  marginRight: '0',
 }));
 
 export const ProfileSubtitle = styled('p', ({$theme}) => ({
   ...$theme.typography.font300,
   color: $theme.colors.foreground,
-  margin: 0,
+  marginTop: '0',
+  marginBottom: '0',
+  marginLeft: '0',
+  marginRight: '0',
 }));
 
 export const ProfileBody = styled('p', ({$theme}) => ({
   ...$theme.typography.font200,
-  margin: 0,
   color: $theme.colors.foregroundAlt,
+  marginTop: '0',
+  marginBottom: '0',
+  marginLeft: '0',
+  marginRight: '0',
 }));
