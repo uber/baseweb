@@ -35,18 +35,35 @@ function getControlPadding(size = SIZE.default, sizing, type) {
   }[size];
 }
 
+export const StyledDropdownContainer = styled('div', props => {
+  const {
+    $theme: {sizing},
+  } = props;
+  return {
+    boxSizing: 'border-box',
+    position: 'absolute',
+    width: '100%',
+    zIndex: 1,
+    marginTop: sizing.scale300,
+    paddingTop: '0',
+    paddingBottom: '0',
+    paddingLeft: sizing.scale300,
+    paddingRight: sizing.scale300,
+  };
+});
+
 export const StyledOptionContent = styled('div', props => {
   const {$isHighlighted, $selected, $disabled, $theme} = props;
   const {
-    colors: {mono700, primary400, black},
+    colors: {foregroundAlt, primary400, foreground},
   } = $theme;
   return {
     cursor: $disabled ? 'not-allowed' : 'pointer',
     color: $disabled
-      ? mono700
+      ? foregroundAlt
       : $selected || $isHighlighted
         ? primary400
-        : black,
+        : foreground,
     fontWeight: $selected ? 'bold' : 'normal',
   };
 });
@@ -75,7 +92,7 @@ export const StyledControlContainer = styled('div', props => {
   return {
     overflow: 'hidden',
     position: 'relative',
-    color: $disabled ? colors.mono600 : colors.mono1000,
+    color: $disabled ? colors.inputTextDisabled : colors.foreground,
     boxSizing: 'border-box',
     display: 'flex',
     width: '100%',
@@ -85,21 +102,21 @@ export const StyledControlContainer = styled('div', props => {
         ? 'text'
         : 'pointer',
     backgroundColor: $disabled
-      ? colors.mono300
+      ? colors.inputFillDisabled
       : $isFocused || $isPseudoFocused
-        ? colors.mono100
+        ? colors.background
         : $error
           ? colors.negative50
-          : colors.mono200,
+          : colors.inputFill,
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: $disabled
-      ? colors.mono300
+      ? colors.inputFillDisabled
       : $error
         ? colors.negative400
         : $isFocused || $isPseudoFocused
           ? colors.primary400
-          : colors.mono200,
+          : colors.inputFill,
     borderRadius: borders.useRoundedCorners ? sizing.scale100 : '0',
     boxShadow: `0 2px 6px ${
       $disabled
@@ -145,7 +162,7 @@ export const StyledPlaceholder = styled('div', props => {
     left: '0',
     display: 'flex',
     alignItems: 'center',
-    color: $disabled ? colors.mono600 : colors.mono700,
+    color: $disabled ? colors.inputFillDisabled : colors.foregroundAlt,
     maxWidth: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -244,7 +261,7 @@ export const StyledSelectArrow = styled('svg', (props: SharedStylePropsT) => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: $disabled ? colors.mono600 : colors.mono800,
+    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
     right: '12px',
@@ -258,7 +275,7 @@ export const StyledClearIcon = styled('svg', (props: SharedStylePropsT) => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: colors.mono800,
+    color: colors.foregroundAlt,
     cursor: 'pointer',
     position: 'absolute',
     right: $type !== 'select' ? '14px' : '30px',
@@ -272,7 +289,7 @@ export const getLoadingIconStyles = (props: SharedStylePropsT) => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: colors.mono800,
+    color: colors.foregroundAlt,
     position: 'absolute',
     right: $type !== 'select' ? '14px' : '30px',
     display: 'inline-block',
@@ -285,7 +302,7 @@ export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: $disabled ? colors.mono600 : colors.mono700,
+    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
     left: '12px',

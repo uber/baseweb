@@ -17,11 +17,15 @@ withOptions({
 
 setOptions({
   theme: {
-    ...themes.normal,
-    mainFill: '#141414',
-    mainBackground: '#1F1F1F',
-    mainTextColor: '#CCCCCC',
-    dimmedTextColor: '#CCCCCC',
+    ...themes.dark,
+    mainFill: DarkTheme.colors.mono800,
+    mainBackground: DarkTheme.colors.mono700,
+    mainTextColor: DarkTheme.colors.mono100,
+    dimmedTextColor: DarkTheme.colors.mono100,
+    highlightColor: DarkTheme.colors.primary,
+    successColor: DarkTheme.colors.positive,
+    warningColor: DarkTheme.colors.warning,
+    failColor: DarkTheme.colors.negative,
   },
 });
 
