@@ -1,6 +1,7 @@
 import React from 'react';
 import {configure, addDecorator} from '@storybook/react';
-import {withOptions} from '@storybook/addon-options';
+import {themes} from '@storybook/components';
+import {withOptions, setOptions} from '@storybook/addon-options';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../src/styles';
@@ -12,6 +13,16 @@ import {withKnobs} from '@storybook/addon-knobs';
 withOptions({
   name: 'baseui',
   url: 'https://github.com/uber-web/baseui',
+});
+
+setOptions({
+  theme: {
+    ...themes.normal,
+    highlightColor: LightTheme.colors.primary,
+    successColor: LightTheme.colors.positive,
+    warningColor: LightTheme.colors.warning,
+    failColor: LightTheme.colors.negative,
+  },
 });
 
 const engine = new Styletron();
