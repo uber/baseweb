@@ -86,7 +86,7 @@ export type PropsT = {
   onBlurResetsInput: boolean,
   onChange: (params: OnChangeParamsT) => void,
   onFocus: (e: SyntheticEvent<HTMLElement>) => void,
-  onInputChange: (e: SyntheticEvent<HTMLInputElement>) => void,
+  onInputChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onCloseResetsInput: boolean,
   onSelectResetsInput: boolean,
   onOpen: ?() => void,
