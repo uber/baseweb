@@ -62,7 +62,7 @@ export type BaseInputPropsT<T> = {
   error: boolean,
   id: string,
   name: string,
-  inputRef: {current: ?React.ElementRef<'input'>},
+  inputRef: {current: ?HTMLInputElement},
   onBlur: (e: SyntheticFocusEvent<T>) => void,
   onChange?: (e: SyntheticInputEvent<T>) => void,
   onKeyDown?: (e: SyntheticInputEvent<T>) => void,
