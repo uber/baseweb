@@ -18,9 +18,7 @@ const selectors = {
   selectDropDown: '[role="listbox"]',
   dropDownOption: '[role="option"]',
   selectedList: '[role="list"]',
-  selectedOption: '[role="listitem"]',
   searchType: '[aria-autocomplete="list"]',
-  selectType: '[aria-autocomplete="none"]',
   expandedDropDown: '[aria-expanded="true"]',
 };
 
@@ -58,7 +56,7 @@ describe('The select component', () => {
   it('selects option when clicked in dropdown', browser => {
     goToUrl({
       suite,
-      test: scenarios.SELECT,
+      test: scenarios.SINGLE_SELECT_SEARCH,
       browser,
     })
       .waitForElementVisible(selectors.selectInput)
@@ -68,15 +66,12 @@ describe('The select component', () => {
         `${selectors.selectDropDown} ${selectors.dropDownOption}:first-child`,
       )
       .waitForElementNotPresent(selectors.selectDropDown)
-      .getText(
-        `${selectors.selectedList} ${selectors.selectedOption}:first-child`,
-        function(result) {
-          this.assert.equal(result.value, 'AliceBlue');
-        },
-      );
+      .getText(`${selectors.selectedList}`, function(result) {
+        this.assert.equal(result.value, 'AliceBlue');
+      });
   });
 
-  it('doesnt close dropdown after multiple selections were made', browser => {
+  it('does not close dropdown after multiple selections were made', browser => {
     goToUrl({
       suite,
       test: scenarios.MULTI_SELECT,
@@ -97,7 +92,7 @@ describe('The select component', () => {
   it('doesnt allow to click and select disabled options', browser => {
     goToUrl({
       suite,
-      test: scenarios.SELECT_DISABLED_OPTIONS,
+      test: scenarios.SINGLE_SELECT_SEARCH,
       browser,
     })
       .waitForElementVisible(selectors.selectInput)
@@ -108,7 +103,8 @@ describe('The select component', () => {
       )
       .waitForElementPresent(selectors.selectDropDown)
       .getText(selectors.selectedList, function(result) {
-        this.assert.equal(result.value, '');
+        // Placeholder is displayed
+        this.assert.equal(result.value, 'Start searching');
       });
   });
 
@@ -119,6 +115,7 @@ describe('The select component', () => {
       browser,
     })
       .waitForElementVisible(selectors.selectInput)
+      .click(selectors.selectInput)
       .setValue(selectors.selectInput, 'dark', () => {
         browser
           .waitForElementPresent(selectors.selectDropDown)

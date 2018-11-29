@@ -76,6 +76,10 @@ export default function createTheme(
       mono1000: primitives.mono1000,
       black: primitives.mono1000,
 
+      // Rating Palette,
+      rating200: primitives.rating200,
+      rating400: primitives.rating400,
+
       // Semantic Colors
 
       // Background

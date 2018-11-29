@@ -1,66 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Stateless Select Dropdown should render component with options  and drondown open is true: Component has correct render with options length 0 and dropdown open is %s true 1`] = `
-<MockStyledComponent
-  getOptionLabel={[MockFunction]}
-  isDropDownOpen={true}
-  options={Array []}
-  styled-component="true"
-/>
+exports[`SelectDropdown passes correct props to OptionContent for a selected item: OptionContent gets correct props when an option is selected 1`] = `
+Object {
+  "$disabled": undefined,
+  "$error": false,
+  "$isHighlighted": undefined,
+  "$isLoading": false,
+  "$multi": false,
+  "$required": false,
+  "$searchable": true,
+  "$selected": true,
+  "$size": "default",
+  "$type": "select",
+  "aria-readonly": undefined,
+  "aria-selected": true,
+  "children": <span>
+    option.label
+  </span>,
+}
 `;
 
-exports[`Stateless Select Dropdown should render component with options [object Object],[object Object],[object Object],[object Object] and drondown open is false: Component has correct render with options length 4 and dropdown open is %s false 1`] = `
-<MockStyledComponent
-  getOptionLabel={[MockFunction]}
-  isDropDownOpen={false}
-  options={
-    Array [
-      Object {
-        "id": "1",
-        "label": "label for 1",
-      },
-      Object {
-        "id": "2",
-        "label": "label for 2",
-      },
-      Object {
-        "id": "3",
-        "label": "label for 3",
-      },
-      Object {
-        "id": "4",
-        "label": "label for 4",
-      },
-    ]
-  }
-  styled-component="true"
-/>
+exports[`SelectDropdown passes correct props to OptionContent: OptionContent gets correct props when an option is not selected 1`] = `
+Object {
+  "$disabled": undefined,
+  "$error": false,
+  "$isHighlighted": undefined,
+  "$isLoading": false,
+  "$multi": false,
+  "$required": false,
+  "$searchable": true,
+  "$selected": false,
+  "$size": "default",
+  "$type": "select",
+  "aria-readonly": undefined,
+  "aria-selected": false,
+  "children": <span>
+    option.label
+  </span>,
+}
 `;
 
-exports[`Stateless Select Dropdown should render component with options [object Object],[object Object],[object Object],[object Object] and drondown open is true: Component has correct render with options length 4 and dropdown open is %s true 1`] = `
-<MockStyledComponent
-  getOptionLabel={[MockFunction]}
-  isDropDownOpen={true}
-  options={
-    Array [
-      Object {
-        "id": "1",
-        "label": "label for 1",
-      },
-      Object {
-        "id": "2",
-        "label": "label for 2",
-      },
-      Object {
-        "id": "3",
-        "label": "label for 3",
-      },
-      Object {
-        "id": "4",
-        "label": "label for 4",
-      },
-    ]
-  }
-  styled-component="true"
-/>
+exports[`SelectDropdown renders StatefulMenu: Passes correct overrides to the StatefulMenu 1`] = `
+Object {
+  "List": Object {
+    "props": Object {
+      "aria-multiselectable": false,
+    },
+    "style": [Function],
+  },
+  "Option": Object {
+    "props": Object {
+      "getItemLabel": [Function],
+      "onMouseDown": [Function],
+    },
+  },
+}
 `;
