@@ -104,5 +104,8 @@ export const DarkTheme = createTheme(
       // Menu
       menuFillHover: primitives.mono600,
     },
+    tooltip: {
+      backgroundColor: primitives.mono200,
+    },
   },
 );
