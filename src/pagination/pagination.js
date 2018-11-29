@@ -42,7 +42,7 @@ export default class Pagination extends React.PureComponent<
 
   state = {isMenuOpen: false};
 
-  dropdownContainerRef = (React.createRef(): {current: null | HTMLDivElement});
+  dropdownContainerRef = (React.createRef(): {current: ?HTMLDivElement});
 
   onPageClick = (event: MouseEvent) => {
     const el: ?HTMLDivElement = this.dropdownContainerRef.current;

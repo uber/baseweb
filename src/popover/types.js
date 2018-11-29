@@ -176,4 +176,4 @@ export type AnchorPropsT = {
   tabIndex?: '0',
 };
 
-export type PopoverCreateRefT = {current: null | *};
+export type PopoverCreateRefT = {current: *};
