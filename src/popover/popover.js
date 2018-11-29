@@ -45,9 +45,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   onMouseLeaveTimer: ?TimeoutID;
   generatedId: string = '';
   popper: ?Popper;
-  anchorRef = React.createRef();
-  popperRef = React.createRef();
-  arrowRef = React.createRef();
+  anchorRef = (React.createRef(): {current: *});
+  popperRef = (React.createRef(): {current: *});
+  arrowRef = (React.createRef(): {current: *});
   /* eslint-enable react/sort-comp */
 
   /**
