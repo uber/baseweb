@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 const Accordion = require('./src/accordion/examples-list');
 const Button = require('./src/button/examples-list');
+const Breadcrumbs = require('./src/breadcrumbs/examples-list');
 const Card = require('./src/card/examples-list');
 const Checkbox = require('./src/checkbox/examples-list');
 const Input = require('./src/input/examples-list');
@@ -34,6 +35,7 @@ module.exports = {
     new RegExp(`${Accordion.ACCORDION_EXAMPLE}$`),
     new RegExp(Button.BUTTON_COMPACT_WITH_ENHANCERS),
     new RegExp(Button.BUTTON_WITH_ENHANCERS),
+    new RegExp(Breadcrumbs.DEFAULT),
     new RegExp(Card.TEXT_IMAGE_LINK),
     new RegExp(Card.TEXT_ONLY),
     new RegExp(Checkbox.SIMPLE_EXAMPLE),

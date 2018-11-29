@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StyledComponents StyledIcon displays correct styles by default 1`] = `
+Object {
+  "verticalAlign": "text-bottom",
+}
+`;
+
+exports[`StyledComponents StyledRoot displays correct styles by default 1`] = `
+Object {
+  "color": "$theme.colors.mono900",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": "$theme.typography.font350.fontWeight",
+  "lineHeight": "$theme.typography.font350.lineHeight",
+}
+`;
+
+exports[`StyledComponents StyledSeparator displays correct styles by default 1`] = `
+Object {
+  "color": "$theme.colors.mono700",
+  "display": "inline-block",
+  "marginLeft": "$theme.sizing.scale300",
+  "marginRight": "$theme.sizing.scale300",
+}
+`;
