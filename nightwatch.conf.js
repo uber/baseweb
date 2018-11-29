@@ -57,7 +57,7 @@ const sauceLabsBaseConfig = {
   username: '${SAUCE_USERNAME}',
   access_key: '${SAUCE_ACCESS_KEY}',
   globals: {
-    waitForConditionTimeout: 10000,
+    waitForConditionTimeout: 20000,
   },
   desiredCapabilities: {
     'tunnel-identifier': JOB_IDENTIFIER,
