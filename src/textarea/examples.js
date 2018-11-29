@@ -128,7 +128,7 @@ export default {
     );
   },
   [examples.REF_EXAMPLE]: function Story5() {
-    const inputRef: {current: ?React.ElementRef<'input'>} = React.createRef();
+    const inputRef = (React.createRef(): {current: ?HTMLInputElement});
     return (
       <React.Fragment>
         <Textarea inputRef={inputRef} placeholder="With textarea input ref" />
