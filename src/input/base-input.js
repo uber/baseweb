@@ -27,7 +27,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     disabled: false,
     error: false,
     name: '',
-    inputRef: React.createRef<HTMLInputElement>(),
+    inputRef: (React.createRef(): {current: null | HTMLInputElement}),
     onBlur: () => {},
     onChange: () => {},
     onKeyDown: () => {},

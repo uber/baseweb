@@ -264,7 +264,7 @@ export default {
     );
   },
   [examples.REF_EXAMPLE]: function Story8() {
-    const inputRef = React.createRef<HTMLInputElement>();
+    const inputRef = (React.createRef(): {current: null | HTMLInputElement});
     return (
       <React.Fragment>
         <Input inputRef={inputRef} placeholder="With input ref" />

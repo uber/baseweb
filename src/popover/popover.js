@@ -28,6 +28,7 @@ import defaultProps from './default-props';
 import type {
   AnchorPropsT,
   ChildT,
+  PopoverCreateRefT,
   PopoverPropsT,
   PopoverPrivateStateT,
   PopperDataObjectT,
@@ -45,9 +46,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   onMouseLeaveTimer: ?TimeoutID;
   generatedId: string = '';
   popper: ?Popper;
-  anchorRef = React.createRef<*>();
-  popperRef = React.createRef<*>();
-  arrowRef = React.createRef<*>();
+  anchorRef = (React.createRef(): PopoverCreateRefT);
+  popperRef = (React.createRef(): PopoverCreateRefT);
+  arrowRef = (React.createRef(): PopoverCreateRefT);
   /* eslint-enable react/sort-comp */
 
   /**

@@ -186,3 +186,5 @@ export type AnchorPropsT = {
   /* eslint-enable flowtype/no-weak-types */
   tabIndex?: '0',
 };
+
+export type PopoverCreateRefT = {current: null | *};
