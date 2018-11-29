@@ -160,6 +160,16 @@ export type ColorsT = {
   // Menu
   menuFillHover: string,
 
+  // Notification
+  notificationPrimaryBackground: string,
+  notificationPrimaryText: string,
+  notificationWarningBackground: string,
+  notificationWarningText: string,
+  notificationSuccessBackground: string,
+  notificationSuccessText: string,
+  notificationErrorBackground: string,
+  notificationErrorText: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,

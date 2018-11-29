@@ -175,6 +175,16 @@ export default function createTheme(
 
       // Menu
       menuFillHover: primitives.mono300,
+
+      // Notification
+      notificationPrimaryBackground: primitives.primary50,
+      notificationPrimaryText: primitives.primary400,
+      notificationWarningBackground: primitives.warning50,
+      notificationWarningText: primitives.warning400,
+      notificationSuccessBackground: primitives.positive50,
+      notificationSuccessText: primitives.positive400,
+      notificationErrorBackground: primitives.negative50,
+      notificationErrorText: primitives.negative400,
     },
     typography: {
       font100: {

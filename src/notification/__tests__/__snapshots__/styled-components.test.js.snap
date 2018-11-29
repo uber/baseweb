@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StyledComponents StyledRoot displays correct styles for error notification 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.notificationErrorBackground",
+  "borderRadius": "$theme.borders.radius200",
+  "color": "$theme.colors.notificationErrorText",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": "$theme.typography.font350.fontWeight",
+  "lineHeight": "$theme.typography.font350.lineHeight",
+  "paddingBottom": "$theme.sizing.scale600",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale600",
+}
+`;
+
+exports[`StyledComponents StyledRoot displays correct styles for primary notification 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.notificationPrimaryBackground",
+  "borderRadius": "$theme.borders.radius200",
+  "color": "$theme.colors.notificationPrimaryText",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": "$theme.typography.font350.fontWeight",
+  "lineHeight": "$theme.typography.font350.lineHeight",
+  "paddingBottom": "$theme.sizing.scale600",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale600",
+}
+`;
+
+exports[`StyledComponents StyledRoot displays correct styles for success notification 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.notificationSuccessBackground",
+  "borderRadius": "$theme.borders.radius200",
+  "color": "$theme.colors.notificationSuccessText",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": "$theme.typography.font350.fontWeight",
+  "lineHeight": "$theme.typography.font350.lineHeight",
+  "paddingBottom": "$theme.sizing.scale600",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale600",
+}
+`;
+
+exports[`StyledComponents StyledRoot displays correct styles for warning notification 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.notificationWarningBackground",
+  "borderRadius": "$theme.borders.radius200",
+  "color": "$theme.colors.notificationWarningText",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": "$theme.typography.font350.fontWeight",
+  "lineHeight": "$theme.typography.font350.lineHeight",
+  "paddingBottom": "$theme.sizing.scale600",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale600",
+}
+`;
