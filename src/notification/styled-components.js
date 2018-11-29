@@ -12,18 +12,24 @@ import type {StyledRootPropsT} from './types';
 import {KIND} from './constants';
 
 export const StyledRoot = styled('div', ({$theme, $kind}: StyledRootPropsT) => {
-  let color = $theme.colors.notificationPrimaryText;
-  let backgroundColor = $theme.colors.notificationPrimaryBackground;
+  let color, backgroundColor;
 
-  if ($kind === KIND.success) {
-    color = $theme.colors.notificationSuccessText;
-    backgroundColor = $theme.colors.notificationSuccessBackground;
-  } else if ($kind === KIND.warning) {
-    color = $theme.colors.notificationWarningText;
-    backgroundColor = $theme.colors.notificationWarningBackground;
-  } else if ($kind === KIND.error) {
-    color = $theme.colors.notificationErrorText;
-    backgroundColor = $theme.colors.notificationErrorBackground;
+  switch ($kind) {
+    case KIND.success:
+      color = $theme.colors.notificationSuccessText;
+      backgroundColor = $theme.colors.notificationSuccessBackground;
+      break;
+    case KIND.warning:
+      color = $theme.colors.notificationWarningText;
+      backgroundColor = $theme.colors.notificationWarningBackground;
+      break;
+    case KIND.error:
+      color = $theme.colors.notificationErrorText;
+      backgroundColor = $theme.colors.notificationErrorBackground;
+      break;
+    default:
+      color = $theme.colors.notificationPrimaryText;
+      backgroundColor = $theme.colors.notificationPrimaryBackground;
   }
 
   return {

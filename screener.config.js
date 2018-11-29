@@ -15,6 +15,7 @@ const Card = require('./src/card/examples-list');
 const Checkbox = require('./src/checkbox/examples-list');
 const Input = require('./src/input/examples-list');
 const Modal = require('./src/modal/examples-list');
+const Notification = require('./src/notification/examples-list');
 const Pagination = require('./src/pagination/examples-list');
 const Popover = require('./src/popover/examples-list');
 const Radio = require('./src/radio/examples-list');
@@ -45,6 +46,10 @@ module.exports = {
     new RegExp(Input.VALUE_EXAMPLE),
     /Stateless Menu/,
     new RegExp(`${Modal.SIMPLE_EXAMPLE}$`),
+    new RegExp(Notification.DEFAULT),
+    new RegExp(Notification.SUCCESS),
+    new RegExp(Notification.WARNING),
+    new RegExp(Notification.ERROR),
     new RegExp(Pagination.STATEFUL_PAGINATION),
     new RegExp(Popover.SIMPLE_EXAMPLE),
     new RegExp(Radio.SIMPLE_EXAMPLE),

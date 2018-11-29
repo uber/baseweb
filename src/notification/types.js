@@ -19,10 +19,10 @@ export type OverridesT = {
 export type NotifcationPropsT = {
   children?: Node,
   overrides?: OverridesT,
-  kind: $Keys<typeof KIND>,
+  kind: $Values<typeof KIND>,
 };
 
 export type StyledRootPropsT = {
   $theme: ThemeT,
-  $kind: $Keys<typeof KIND>,
+  $kind: $Values<typeof KIND>,
 };

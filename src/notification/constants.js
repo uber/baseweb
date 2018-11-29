@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export const KIND = {
+export const KIND = Object.freeze({
   primary: 'primary',
   success: 'success',
   warning: 'warning',
   error: 'error',
-};
+});
