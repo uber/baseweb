@@ -18,6 +18,7 @@ import Welcome from './introduction/welcome.md';
 import GettingStarted from './introduction/getting-started.md';
 
 import ThemingValues from './theming/theming-values';
+import Playground from './playground';
 import CustomThemes from './theming/custom-themes.md';
 
 import {styled} from '../../src/styles';
@@ -61,4 +62,8 @@ parsedDocs.forEach(doc => {
 
 storiesOf('Theming', module).add('Theming values', () => {
   return <ThemingValues />;
+});
+
+storiesOf('Playground', module).add('Codesandbox', () => {
+  return <Playground />;
 });
