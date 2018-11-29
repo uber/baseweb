@@ -8,7 +8,7 @@ Object {
 
 exports[`StyledComponents StyledRoot displays correct styles by default 1`] = `
 Object {
-  "color": "$theme.colors.mono900",
+  "color": "$theme.colors.breadcrumbsText",
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
@@ -18,7 +18,7 @@ Object {
 
 exports[`StyledComponents StyledSeparator displays correct styles by default 1`] = `
 Object {
-  "color": "$theme.colors.mono700",
+  "color": "$theme.colors.breadcrumbsSeparatorFill",
   "display": "inline-block",
   "marginLeft": "$theme.sizing.scale300",
   "marginRight": "$theme.sizing.scale300",

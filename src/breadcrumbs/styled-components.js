@@ -13,7 +13,7 @@ import {ChevronRight} from '../icon';
 
 export const StyledRoot = styled('nav', ({$theme}: StyledRootPropsT) => {
   return {
-    color: $theme.colors.mono900,
+    color: $theme.colors.breadcrumbsText,
     ...$theme.typography.font350,
   };
 });
@@ -21,7 +21,7 @@ export const StyledRoot = styled('nav', ({$theme}: StyledRootPropsT) => {
 export const StyledSeparator = styled('div', ({$theme}: StyledSeparatorT) => {
   return {
     display: 'inline-block',
-    color: $theme.colors.mono700,
+    color: $theme.colors.breadcrumbsSeparatorFill,
     marginLeft: $theme.sizing.scale300,
     marginRight: $theme.sizing.scale300,
   };
