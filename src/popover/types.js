@@ -175,5 +175,3 @@ export type AnchorPropsT = {
   $ref?: React.Ref<*>,
   tabIndex?: '0',
 };
-
-export type PopoverCreateRefT = {current: *};
