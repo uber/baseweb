@@ -42,7 +42,7 @@ export const StyledStar = styled(
     let starFill = $theme.colors.mono300;
 
     if ($isActive) {
-      starStroke = starFill = $theme.colors.warning300;
+      starStroke = starFill = $theme.colors.rating400;
     }
 
     const styles = {
@@ -82,7 +82,7 @@ export const StyledEmoticon = styled(
     let emoticonFill = $theme.colors.mono500;
 
     if ($isActive) {
-      emoticonFill = $theme.colors.warning200;
+      emoticonFill = $theme.colors.rating200;
     }
 
     const ratingIcons = [

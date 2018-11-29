@@ -40,23 +40,25 @@ export default () => (
 * `name: string` - Required
   Defines an alternative text description of the image.
 * `overrides: {}` - Optional
-  * `Avatar: ?React.ComponentType` component to use for Avatar image styling
+  * `Avatar?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}`
+    Component to use for Avatar image styling.
+  * `Root?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}`
+    Component to use for containing element. displays if image fails to load.
 * `size: string` - Optional. Defaults to `scale1000`
-  Defines the width of the image. Should be an option from the $theme.sizing list otherwise, will use default.
+  Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
 * `src: string` - Required
   Image to display.
-
-## `StatefulAvatarContainer` API
-
-* All props of a `Avatar` component. Handles displaying fallback color if provided src image fails to load.
 
 ## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported:
 
+* `$didImageFailToLoad: boolean`
+  Sets root element width/height if image fails to load.
 * `$size: string`
-  Sets img width. Provided value should map to an option in $theme.sizing. If not found, defaults to `scale1000`.
+  Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
 
 ## Accessibility
 
 Top level `name` prop will be set on the `<img>` element as its `alt` attribute.
+If src fails to load, applies `aria-label` with provided name and `role` with 'img' to root div element.

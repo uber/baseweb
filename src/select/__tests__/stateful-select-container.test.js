@@ -9,105 +9,75 @@ import React from 'react';
 import {mount} from 'enzyme';
 import {StatefulSelectContainer} from '../index';
 import {STATE_CHANGE_TYPE} from '../constants';
-import type {StateReducerT} from '../types';
 
-describe('Stateful Select Container', function() {
-  let allProps: any, childFn;
+describe('StatefulSelectContainer', function() {
   let wrapper;
+  let props = {};
 
   beforeEach(function() {
-    const stateReducer: StateReducerT = (type, nextState) => nextState;
-    childFn = jest.fn(() => <div>test</div>);
-    allProps = {
-      children: childFn,
-      initialState: {},
-      stateReducer: stateReducer,
-      prop1: 'some other propq',
+    props = {
+      children: jest.fn(() => <div>test</div>),
+      initialState: {value: [{id: 'id', label: 'label'}]},
+      stateReducer: jest.fn(),
+      overrides: {},
+      onChange: jest.fn(),
     };
+    wrapper = mount(<StatefulSelectContainer {...props} />);
   });
 
   afterEach(function() {
-    jest.restoreAllMocks();
     wrapper && wrapper.unmount();
   });
 
-  test('should correctly render', function() {
-    wrapper = mount(<StatefulSelectContainer {...allProps} />);
-    expect(wrapper).toMatchSnapshot('Component has correct render ');
+  test('renders correctly', function() {
+    expect(wrapper).toMatchSnapshot(
+      'StatefulSelectContainer has correct render',
+    );
   });
 
-  test('should provide all needed props to children render func', function() {
-    wrapper = mount(<StatefulSelectContainer {...allProps} />);
-    const actualProps = childFn.mock.calls[0][0];
+  test('provides props to children render func', function() {
+    const actualProps = props.children.mock.calls[0][0];
     expect(actualProps).toMatchObject({
-      prop1: allProps.prop1,
+      value: props.initialState.value,
+      overrides: props.overrides,
+      onChange: wrapper.instance().onChange,
     });
   });
 
-  test('should provide initial state as part of state', function() {
-    allProps.initialState = {prop3: 'some initial state'};
-    wrapper = mount(<StatefulSelectContainer {...allProps} />);
-    const actualProps = childFn.mock.calls[0][0];
-    expect(actualProps).toMatchObject(allProps.initialState);
+  test('sets initial state correctly', function() {
+    expect(wrapper.state()).toMatchObject(props.initialState);
   });
 
-  describe('Events', function() {
-    let selectedOptions = [
-      {
-        id: '123',
-        label: 'label for 123',
-      },
-    ];
-    let events, stateReducerMock, instance, event;
-    event = {target: {checked: true}};
-    const handlers = [
-      ['onChange', STATE_CHANGE_TYPE.select, {selectedOptions}],
-    ];
-    beforeEach(function() {
-      events = {
-        onChange: jest.fn(),
-        onMouseEnter: jest.fn(),
-        onMouseLeave: jest.fn(),
-        onFocus: jest.fn(),
-        onBlur: jest.fn(),
-      };
-      allProps = {...allProps, ...events};
-      stateReducerMock = jest.fn();
-      allProps.stateReducer = stateReducerMock;
-      wrapper = mount(<StatefulSelectContainer {...allProps} />);
-      instance = wrapper.instance();
-    });
-
-    test.each(handlers)(
-      'should call state reducer to apply new state for %s event with %s type',
-      (eventHandler, type, newState) => {
-        const handler = instance[eventHandler];
-        const params = Object.assign({}, newState, {type}, {event});
-        handler({
-          ...params,
-          event,
-        });
-        expect(stateReducerMock).toHaveBeenCalledWith(
-          type,
-          newState,
-          {},
-          event,
-          params,
-        );
-        expect(events[eventHandler]).toHaveBeenCalledWith({
-          ...params,
-          event: expect.anything(),
-        });
-      },
+  test('calls stateReducer on every change', function() {
+    const newValue = {id: 'id2', label: 'label2'};
+    const params = {
+      value: [...props.initialState.value, newValue],
+      option: newValue,
+      type: STATE_CHANGE_TYPE.select,
+    };
+    const newStateValue = [newValue];
+    props.stateReducer.mockImplementation(() => ({
+      value: newStateValue,
+    }));
+    wrapper.instance().onChange(params);
+    expect(props.stateReducer).toHaveBeenCalledWith(
+      params.type,
+      {value: params.value},
+      props.initialState,
     );
+    expect(wrapper.state().value).toEqual(newStateValue);
+  });
 
-    test.each([['onMouseEnter'], ['onMouseLeave'], ['onFocus'], ['onBlur']])(
-      'should call handler for %s event if it is present',
-      eventHandler => {
-        const handler = instance[eventHandler];
-        handler(event);
-        expect(events[eventHandler]).toHaveBeenCalledWith(event);
-      },
-    );
+  test('calls onChange handler with correct params', function() {
+    const newValue = {id: 'id2', label: 'label2'};
+    const params = {
+      value: [...props.initialState.value, newValue],
+      option: newValue,
+      type: STATE_CHANGE_TYPE.select,
+    };
+    props.stateReducer.mockImplementation((type, nextState) => nextState);
+    wrapper.instance().onChange(params);
+    expect(props.onChange).toHaveBeenCalledWith(params);
+    expect(wrapper.state().value).toEqual(params.value);
   });
 });

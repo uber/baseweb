@@ -64,6 +64,10 @@ export type ColorsT = {
   mono1000: string,
   black: string,
 
+  // Rating Palette
+  rating200: string,
+  rating400: string,
+
   // Semantic Colors
 
   // Background
