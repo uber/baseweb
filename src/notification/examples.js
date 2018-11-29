@@ -32,7 +32,7 @@ export default {
   [examples.ERROR]: function Story4() {
     return (
       <Notification kind={KIND.error}>
-        This is a warning notification
+        This is an error notification
       </Notification>
     );
   },
