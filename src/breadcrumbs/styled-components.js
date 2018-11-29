@@ -14,7 +14,7 @@ import {ChevronRight} from '../icon';
 export const StyledRoot = styled('nav', ({$theme}: StyledRootPropsT) => {
   return {
     color: $theme.colors.breadcrumbsText,
-    ...$theme.typography.font350,
+    ...$theme.typography.font450,
   };
 });
 
