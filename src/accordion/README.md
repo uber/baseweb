@@ -74,42 +74,27 @@ export default () => {
 ## `Accordion` API
 
 * `accordion: boolean` - Optional. Default is `true`.
-
-  Determines how many panels may be expanded at a time. If set to `true` it will collapse a
-  current panel when a new panel is expanded. If set to `false` more than one panel may be
-  expanded at a time.
-
+  * Determines how many panels may be expanded at a time. If set to `true` it will collapse a
+    current panel when a new panel is expanded. If set to `false` more than one panel may be
+    expanded at a time.
 * `children: Array<Panel>` - Required.
-
-  Accordion expandable items. See `Panel` API below for reference.
-
+  * Accordion expandable items. See `Panel` API below for reference.
   * Note: `expanded` property on `Panel`s provided as children will be ignored. This is handled
-  by the `Accordian` component implicitly.
-
-* `initialState: {expanded: Array<string>}` - Optional. Default is `{expanded: []}`
-
-  Defines the initial component state. Use this prop to render the `Accordian` with one or more
-  panels initially expanded. See 'Advanced Usage' code sample above for an example.
-
-* `disabled: boolean` - Optional. Default is `false`
-
-  If set to `true` all its children panels will be disabled from toggling
-
-* `overrides: {}` - Optional.
-
-  See 'Presentational Components Props API' section below for type reference for presentational
-  override components.
-
+    by the `Accordian` component implicitly.
+* `initialState: {expanded: Array<string>}` - Optional. Default is `{expanded: []}`.
+  * Defines the initial component state. Use this prop to render the `Accordian` with one or more
+    panels initially expanded. See 'Advanced Usage' code sample above for an example.
+* `disabled: boolean` - Optional. Default is `false`.
+  * If set to `true` all its children panels will be disabled from toggling
+* `overrides: {Root}` - Optional.
+  * See 'Presentational Components Props API' section below for type reference for presentational
+    override components.
   * `Root: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-
 * `onChange: ({expanded: Array<string>})` - Optional. Default is `() => {}`.
-
-  Handler called each time a panel is toggled. `expanded` prop is an array of `Panel` keys that
-  are currently expanded.
-
+  * Handler called each time a panel is toggled. `expanded` prop is an array of `Panel` keys that
+    are currently expanded.
 * `stateReducer: (type: string, nextState: {expanded: Array<string>}, currentState: {expanded: Array<string>}) => stateToSet: {expanded: Array<string>}` - Optional.
-
-  Handler called each time the component state changes. Used to override default state-change functionality.
+  * Handler called each time the component state changes. Used to override default state-change functionality.
   * `type` - A state change type. See [constants.js](./constants.js) for available types.
   * `nextState` -  The next state value to be set.
   * `currentState` - Current state value.
@@ -120,48 +105,29 @@ export default () => {
 Represents content and title of each accordion item
 
 * `title: React$Node` - Required.
-
-  Title of an accordion panel.
-
+  * Title of an accordion panel.
 * `children: React$Node` - Required.
-
-  Content visible when `Panel` is expanded.
-
+  * Content visible when `Panel` is expanded.
 * `expanded: boolean` - Optional. Default is `false`.
-
-  Defines if the panel is expanded. If set to `true` the panel is rendered expanded.
-
+  * Defines if the panel is expanded. If set to `true` the panel is rendered expanded.
   * Note: `expanded` property on `Panel`s provided as `Accordion` children will be ignored. This
-  is handled by the `Accordian` component implicitly.
-
-* `disabled: boolean` - Optional. Defaults to the `disabled` value provided by the parent
-`Accordion` component.
-
-  Determines if the panel is disabled. When explicitly set on `Panel` it will override the disabled
-  prop that comes from the `Accordion` component.
-
+    is handled by the `Accordian` component implicitly.
+* `disabled: boolean` - Optional.
+  * Defaults to the `disabled` value provided by the parent `Accordion` component.
+  * Determines if the panel is disabled. When explicitly set on `Panel` it will override the disabled
+    prop that comes from the `Accordion` component.
 * `key: string` - Optional. Defaults to the child index.
-
-  The key of a `Panel`. Used to maintain list of expanded panels. Must be unique across children
-  of the `Accordion`.
-
+  * The key of a `Panel`. Used to maintain list of expanded panels. Must be unique across children
+    of the `Accordion`.
 * `onChange: ({expanded: boolean}) => {}` - Optional.
-
-  Handler for individual `Panel` change events.
-
+  * Handler for individual `Panel` change events.
 * `onClick: (event: Event) => {}` - Optional.
-
-  Handler for the `Header`'s click events.
-
+  * Handler for the `Header`'s click events.
 * `onKeyDown: (event: KeyboardEvent) => {}` - Optional.
-
-  Handler for the `Header`'s keyDown events.
-
+  * Handler for the `Header`'s keyDown events.
 * `overrides: {PanelContainer, Header, ToggleIcon, Content}` - Optional.
-
-  See 'Presentational Components Props API' section below for type reference for presentational
-  override components.
-
+  * See 'Presentational Components Props API' section below for type reference for presentational
+    override components.
   * `[PanelContainer]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
   * `[Header]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
   * `[Content]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
@@ -169,13 +135,12 @@ Represents content and title of each accordion item
 
 ## `StatefulPanel` API
 
-* All props of a `Panel` component except for `expanded`.
+All props of the `Panel` component except for `expanded`.
 
 * `initialState: {expanded: boolean}` - Optional.
   Initial state of a stateful panel component. `expanded` prop indicates if the panel is initially expanded. If set to `true` the panel will be expanded initially
-
 * `stateReducer: (type: string, nextState: {expanded: boolean}, currentState: {expanded: boolean}) => stateToSet: {expanded: boolean}` - Optional.
-  A state change handler.
+  * A state change handler.
   * `type` - state change type
   * `nextState` - a new state changes that will be set
   * `currentState` - current state of the component
@@ -186,12 +151,11 @@ Represents content and title of each accordion item
 These properties are passed to every presentational (styled) component that is exported:
 
 * `$disabled: boolean`
-
-  Passed to `Accordion`'s `Root` element as well as all presentational elements on a `Panel` component and indicates if a component is currently disabled
-
+  * Passed to `Accordion`'s `Root` element as well as all presentational elements on a `Panel`
+    component and indicates if a component is currently disabled.
 * `$expanded: boolean`
-
-  Passed to all presentational elements of a `Panel` component and indicates if a panel is currently expanded
+  * Passed to all presentational elements of a `Panel` component and indicates if a panel is
+    currently expanded.
 
 ## STATE_CHANGE_TYPE Constant
 
@@ -200,7 +164,10 @@ These properties are passed to every presentational (styled) component that is e
 ## Accessibility
 
 * `tab`, `shift + tab` - to switch between panels.
-* `Space` or `Enter` - when focus is on the accordion panel header it will toggle (expand or collapse) the currently focused panel.
+* `Space` or `Enter` - when focus is on the accordion panel header it will toggle (expand or
+  collapse) the currently focused panel.
 * `aria-expanded`, `aria-disabled` are applied to the header element of a panel component.
-* Accessibility best practices for this component (`aria-expanded`, `aria-controls`, `aria-disabled`, `aria-level`, `role=presentation` for all component, `role=heading` and `role=region` for title and content of each accordion item).
+* Accessibility best practices for this component (`aria-expanded`, `aria-controls`,
+  `aria-disabled`, `aria-level`, `role=presentation` for all component, `role=heading` and
+  `role=region` for title and content of each accordion item).
 * See [w3 spec for accordion best practices](w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html).
