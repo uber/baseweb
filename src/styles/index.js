@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as styled} from './styled';
+export {default as asPrimaryExport} from './as-primary-export-hoc';
 export {hexToRgb} from './util';
 export {default as ThemeProvider} from './theme-provider';
 export type {ThemeT} from './types';

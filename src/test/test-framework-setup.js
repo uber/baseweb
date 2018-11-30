@@ -11,4 +11,5 @@ import toHaveStyleRule from './expect-to-have-style-rule';
 expect.extend({toHaveStyleRule});
 
 jest.mock('../styles/styled.js');
+jest.mock('../styles/as-primary-export-hoc');
 jest.mock('../utils/get-bui-id.js');
