@@ -10,6 +10,7 @@ import {TYPE} from './constants';
 import {getSvgStyles} from '../icon/styled-components';
 import {SIZE} from './constants';
 import type {SharedStylePropsT} from './types';
+import {ellipsisText} from '../styles/util';
 
 function getFont(size = SIZE.default, typography) {
   return {
@@ -33,16 +34,6 @@ function getControlPadding(size = SIZE.default, sizing, type) {
       paddingRight: type === TYPE.select ? sizing.scale1000 : sizing.scale800,
     },
   }[size];
-}
-
-function ellipsisText() {
-  return {
-    maxWidth: '100%',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    wordWrap: 'normal',
-  };
 }
 
 export const StyledDropdownContainer = styled('div', props => {
@@ -196,7 +187,7 @@ export const StyledSingleValue = styled('div', props => {
     whiteSpace: 'nowrap',
     maxWidth: '100%',
     ...getControlPadding($size, sizing, $type),
-    ...ellipsisText(),
+    ...ellipsisText,
   };
 });
 
