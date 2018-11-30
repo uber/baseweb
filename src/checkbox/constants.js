@@ -11,9 +11,9 @@ export const STATE_TYPE = {
   change: 'CHANGE',
 };
 
-export const STYLE_TYPE = {
+export const STYLE_TYPE = Object.freeze({
   default: 'default',
   toggle: 'toggle',
-};
+});
 
 /* eslint-enable import/prefer-default-export */
