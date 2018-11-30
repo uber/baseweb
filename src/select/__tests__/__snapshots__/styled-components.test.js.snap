@@ -642,13 +642,16 @@ Object {
   "height": "100%",
   "left": "0",
   "maxWidth": "100%",
+  "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale500",
   "paddingRight": "$theme.sizing.scale800",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
+  "textOverflow": "ellipsis",
   "top": "0",
   "whiteSpace": "nowrap",
+  "wordWrap": "normal",
 }
 `;
 
@@ -658,13 +661,16 @@ Object {
   "height": "100%",
   "left": "0",
   "maxWidth": "100%",
+  "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale200",
   "paddingLeft": "$theme.sizing.scale500",
   "paddingRight": "$theme.sizing.scale800",
   "paddingTop": "$theme.sizing.scale200",
   "position": "absolute",
+  "textOverflow": "ellipsis",
   "top": "0",
   "whiteSpace": "nowrap",
+  "wordWrap": "normal",
 }
 `;
 
@@ -674,13 +680,16 @@ Object {
   "height": "100%",
   "left": "0",
   "maxWidth": "100%",
+  "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale1000",
   "paddingRight": "$theme.sizing.scale800",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
+  "textOverflow": "ellipsis",
   "top": "0",
   "whiteSpace": "nowrap",
+  "wordWrap": "normal",
 }
 `;
 
@@ -690,13 +699,16 @@ Object {
   "height": "100%",
   "left": "0",
   "maxWidth": "100%",
+  "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale500",
   "paddingRight": "$theme.sizing.scale800",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
+  "textOverflow": "ellipsis",
   "top": "0",
   "whiteSpace": "nowrap",
+  "wordWrap": "normal",
 }
 `;
 

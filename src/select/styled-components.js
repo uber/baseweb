@@ -10,6 +10,7 @@ import {TYPE} from './constants';
 import {getSvgStyles} from '../icon/styled-components';
 import {SIZE} from './constants';
 import type {SharedStylePropsT} from './types';
+import {ellipsisText} from '../styles/util';
 
 function getFont(size = SIZE.default, typography) {
   return {
@@ -186,6 +187,7 @@ export const StyledSingleValue = styled('div', props => {
     whiteSpace: 'nowrap',
     maxWidth: '100%',
     ...getControlPadding($size, sizing, $type),
+    ...ellipsisText,
   };
 });
 
