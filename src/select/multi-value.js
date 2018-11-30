@@ -18,8 +18,10 @@ export default function MultiValue(props: any) {
       overrides={{
         Root: {
           style: {
-            marginRight: '0',
-            marginBottom: '0',
+            marginRight: '2px',
+            marginBottom: '2px',
+            marginLeft: '2px',
+            marginTop: '2px',
           },
         },
       }}

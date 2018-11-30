@@ -7,8 +7,10 @@ Object {
   "overrides": Object {
     "Root": Object {
       "style": Object {
-        "marginBottom": "0",
-        "marginRight": "0",
+        "marginBottom": "2px",
+        "marginLeft": "2px",
+        "marginRight": "2px",
+        "marginTop": "2px",
       },
     },
   },
