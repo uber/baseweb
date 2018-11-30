@@ -35,6 +35,16 @@ function getControlPadding(size = SIZE.default, sizing, type) {
   }[size];
 }
 
+function ellipsisText() {
+  return {
+    maxWidth: '100%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    wordWrap: 'normal',
+  };
+}
+
 export const StyledDropdownContainer = styled('div', props => {
   const {
     $theme: {sizing},
@@ -186,6 +196,7 @@ export const StyledSingleValue = styled('div', props => {
     whiteSpace: 'nowrap',
     maxWidth: '100%',
     ...getControlPadding($size, sizing, $type),
+    ...ellipsisText(),
   };
 });
 
