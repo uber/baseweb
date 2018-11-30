@@ -60,6 +60,8 @@ export default () => {
 * `StyledBody`
 * `StyledSvg`
 * `KIND`
+* `TYPE`
+* `PLACEMENT`
 
 ## `Toast` API
 
@@ -67,7 +69,9 @@ export default () => {
   Toast notification content. The children-as-function receives a `dissmiss` method that can be called to dismiss the notification and can be used as a handler for an action inside the toast content
 * `closeable: boolean` - Optional. Defaults to true
   When set to true a close button is displayed and the notification can be dismissed by a user
-* `kind: 'info' | 'positive' | 'warning' | 'negative'` - Optional. Defaults to 'info'
+* `kind: KIND.info | KIND.positive | KIND.warning | KIND.negative` - Optional. Defaults to 'info'
+  Defines the notification kind
+* `notificationType: TYPE.toast | TYPE.inline` - Optional. Defaults to `TYPE.toast`
   Defines the type of notification
 * `onClose: function` - Optional
   A callback function called when a notification is dismissed
@@ -90,6 +94,7 @@ export default () => {
 These properties are passed to every Toast's presentational (styled) component that is exported:
 
 * `$kind: KindTypeT`
+* `$type: NotificationTypeT`
 * `$closeable: boolean`,
 * `$isHidden: boolean`,
 * `$isAnimating: boolean`,
@@ -104,11 +109,11 @@ These properties are passed to every Toast's presentational (styled) component t
 
 ## `ToasterContainer` API
 
-* `placement: 'inline' | 'topLeft' | 'top' | 'topRight' | 'bottomRight' | 'bottom' | 'bottomLeft'` - Optional. Defaults to 'top'
+* `placement: PLACEMENT.inline | PLACEMENT.topLeft | PLACEMENT.top | PLACEMENT.topRight | PLACEMENT.bottomRight | PLACEMENT.bottom | PLACEMENT.bottomLeft` - Optional. Defaults to 'top'
   Position of a toast notification container relative to the browser window
 * `usePortal: boolean` - Optional. Defaults to `true`
   Defines if the portal is used to append a container to the `body` element. In both cases the container is positioned `fixed`
-* `overrides: {Root, ToastBody, ToastCloseIcon}` - Optional
+* `overrides: {Root, Body, CloseIcon}` - Optional
   Overrides for presentational components. See "Presentational Components Props API" below.
   * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
 * `autoHideDuration: number` - Optional. Defaults to 0
