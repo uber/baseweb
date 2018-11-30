@@ -7,16 +7,35 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles';
 import {getSvgStyles} from '../icon/styled-components';
-import {KIND, PLACEMENT} from './constants';
+import {KIND, TYPE, PLACEMENT} from './constants';
 import type {
   SharedStylePropsT,
   ToasterSharedStylePropsT,
   KindTypeT,
+  NotificationTypeT,
   PlacementTypeT,
 } from './types';
 import type {ThemeT} from '../styles/types';
 
-function getBackgroundColor(kind: KindTypeT, theme: ThemeT) {
+function getBackgroundColor(
+  kind: KindTypeT,
+  type: NotificationTypeT,
+  theme: ThemeT,
+) {
+  const isInline = type === TYPE.inline;
+  return {
+    [KIND.info]: isInline ? theme.colors.primary50 : theme.colors.primary500,
+    [KIND.positive]: isInline
+      ? theme.colors.positive50
+      : theme.colors.positive500,
+    [KIND.warning]: isInline ? theme.colors.warning50 : theme.colors.warning500,
+    [KIND.negative]: isInline
+      ? theme.colors.negative50
+      : theme.colors.negative500,
+  }[kind];
+}
+
+function getFontColor(kind: KindTypeT, theme: ThemeT) {
   return {
     [KIND.info]: theme.colors.primary500,
     [KIND.positive]: theme.colors.positive500,
@@ -82,11 +101,12 @@ export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
 });
 
 export const Body = styled('div', (props: SharedStylePropsT) => {
-  const {$isVisible, $kind, $theme} = props;
+  const {$isVisible, $kind, $type, $theme} = props;
+  const isInline = $type === TYPE.inline;
   return {
     ...$theme.typography.font300,
     pointerEvents: 'auto',
-    color: $theme.colors.white,
+    color: isInline ? getFontColor($kind, $theme) : $theme.colors.white,
     height: 'auto',
     width: '288px',
     paddingTop: $theme.sizing.scale600,
@@ -96,11 +116,11 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     marginTop: $theme.sizing.scale300,
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
-      getBackgroundColor($kind, $theme) || $theme.colors.primary500,
+      getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
     borderRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius200
       : '0px',
-    boxShadow: $theme.lighting.shadow600,
+    boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',
     transitionDuration: $theme.animation.timing100,

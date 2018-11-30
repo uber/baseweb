@@ -5,15 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {default as toaster, ToasterContainer} from './toaster';
-export {default as Toast} from './toast';
-// Constants
-export {KIND, TYPE, PLACEMENT} from './constants';
+export {default as HeaderNavigation} from './header-navigation';
 // Styled elements
 export {
   Root as StyledRoot,
-  Body as StyledBody,
-  CloseIconSvg as StyledCloseIcon,
+  NavigationItem as StyledNavigationItem,
+  NavigationList as StyledNavigationList,
 } from './styled-components';
-// Flow
+export {ALIGN} from './constants';
 export * from './types';
