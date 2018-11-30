@@ -14,7 +14,7 @@ import {getOverrides} from '../helpers/overrides';
 
 function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
   const numChildren = Children.count(children);
-  const mappedChildren = [];
+  const childrenWithSeparators = [];
 
   const [Root, baseRootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Icon, baseIconProps] = getOverrides(overrides.Icon, StyledIcon);
@@ -24,10 +24,10 @@ function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
   );
 
   Children.forEach(children, (child, index) => {
-    mappedChildren.push(child);
+    childrenWithSeparators.push(child);
 
     if (index !== numChildren - 1) {
-      mappedChildren.push(
+      childrenWithSeparators.push(
         <Separator {...baseSeparatorProps} key={index}>
           <Icon {...baseIconProps} />
         </Separator>,
@@ -37,7 +37,7 @@ function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
 
   return (
     <Root aria-label="Breadcrumbs navigation" {...baseRootProps}>
-      {mappedChildren}
+      {childrenWithSeparators}
     </Root>
   );
 }
