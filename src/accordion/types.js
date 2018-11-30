@@ -12,7 +12,7 @@ import type {OverrideT} from '../helpers/overrides';
 import {STATE_CHANGE_TYPE} from './constants';
 
 export type AccordionStateT = {
-  expanded: Array<string>,
+  expanded: Array<React.Key>,
 };
 
 export type PanelStateT = {
@@ -44,13 +44,13 @@ export type PanelOverridesT<T> = {
   Content?: OverrideT<T>,
 };
 
-export type ChildT = React.Node;
-
-export type ChildrenT = React.ChildrenArray<ChildT>;
-
 export type OnChangeHandlerT = ({expanded: boolean}) => void;
 
-export type AccordionOnChangeHandlerT = ({expanded: Array<string>}) => void;
+export type AccordionOnChangeHandlerT = ({
+  expanded: Array<React.Key>,
+}) => void;
+
+type ChildrenT = React.ChildrenArray<React.Element<*>>;
 
 export type AccordionPropsT = {
   accordion?: boolean,
@@ -65,10 +65,10 @@ export type AccordionPropsT = {
 };
 
 export type PanelPropsT = {
-  children: ChildrenT,
+  children: React.Node,
   disabled?: boolean,
   expanded?: boolean,
-  key?: string,
+  key?: React.Key,
   onChange?: OnChangeHandlerT,
   onClick?: (e: Event) => void,
   onKeyDown?: (e: KeyboardEvent) => void,
@@ -78,7 +78,7 @@ export type PanelPropsT = {
 
 // Props for panel stateful container
 export type StatefulPanelContainerPropsT = {
-  children: (props: $Diff<PanelPropsT, {children: ChildrenT}>) => React.Node,
+  children: (props: $Diff<PanelPropsT, {children: React.Node}>) => React.Node,
   initialState?: PanelStateT,
   onChange?: OnChangeHandlerT,
   stateReducer: PanelStateReducerT,
@@ -87,7 +87,10 @@ export type StatefulPanelContainerPropsT = {
 // Props for stateful panel
 export type StatefulPanelPropsT = $Diff<
   StatefulPanelContainerPropsT,
-  {children: (props: PanelPropsT) => React.Node},
+  {
+    children: (props: PanelPropsT) => React.Node,
+    stateReducer: PanelStateReducerT,
+  },
 > &
   PanelPropsT;
 
