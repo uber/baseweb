@@ -36,7 +36,10 @@ export const NavigationItem = styled('div', props => {
   };
 });
 
-export const NavigationList = asPrimaryExport(
+export const NavigationList: React.ComponentType<{
+  align: string,
+  children: React$Node,
+}> = asPrimaryExport(
   styled('div', props => {
     const {$align, $theme} = props;
     const {
