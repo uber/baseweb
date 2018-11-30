@@ -106,6 +106,10 @@ export type ColorsT = {
   buttonDisabledFill: string,
   buttonDisabledText: string,
 
+  // Breadcrumbs
+  breadcrumbsText: string,
+  breadcrumbsSeparatorFill: string,
+
   // Links
   linkText: string,
   linkVisited: string,

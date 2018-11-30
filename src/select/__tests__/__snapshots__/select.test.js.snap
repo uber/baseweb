@@ -59,6 +59,7 @@ exports[`Select component renders component in search mode and false for multipl
   valueKey="id"
 >
   <MockStyledComponent
+    $clearable={true}
     $disabled={false}
     $error={false}
     $isFocused={false}
@@ -76,6 +77,7 @@ exports[`Select component renders component in search mode and false for multipl
       styled-component="true"
     >
       <MockStyledComponent
+        $clearable={true}
         $disabled={false}
         $error={false}
         $isFocused={false}
@@ -102,6 +104,7 @@ exports[`Select component renders component in search mode and false for multipl
           styled-component="true"
         >
           <Search
+            $clearable={true}
             $disabled={false}
             $error={false}
             $isFocused={false}
@@ -123,6 +126,7 @@ exports[`Select component renders component in search mode and false for multipl
             title="search"
           >
             <Icon
+              $clearable={true}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -145,6 +149,7 @@ exports[`Select component renders component in search mode and false for multipl
               viewBox="0 0 24 24"
             >
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -182,6 +187,7 @@ exports[`Select component renders component in search mode and false for multipl
             </Icon>
           </Search>
           <MockStyledComponent
+            $clearable={true}
             $disabled={false}
             $error={false}
             $isFocused={false}
@@ -200,6 +206,7 @@ exports[`Select component renders component in search mode and false for multipl
               styled-component="true"
             >
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -219,6 +226,7 @@ exports[`Select component renders component in search mode and false for multipl
                 </div>
               </MockStyledComponent>
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -235,6 +243,7 @@ exports[`Select component renders component in search mode and false for multipl
                   styled-component="true"
                 >
                   <AutosizeInput
+                    $clearable={true}
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
@@ -268,6 +277,7 @@ exports[`Select component renders component in search mode and false for multipl
                     value=""
                   >
                     <MockStyledComponent
+                      $clearable={true}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -325,6 +335,24 @@ exports[`Select component renders component in search mode and false for multipl
                 </div>
               </MockStyledComponent>
             </span>
+          </MockStyledComponent>
+          <MockStyledComponent
+            $clearable={true}
+            $disabled={false}
+            $error={false}
+            $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
+            $required={false}
+            $searchable={true}
+            $size="default"
+            $type="search"
+          >
+            <div
+              styled-component="true"
+            />
           </MockStyledComponent>
         </div>
       </MockStyledComponent>
@@ -392,6 +420,7 @@ exports[`Select component renders component in search mode and true for multiple
   valueKey="id"
 >
   <MockStyledComponent
+    $clearable={true}
     $disabled={false}
     $error={false}
     $isFocused={false}
@@ -409,6 +438,7 @@ exports[`Select component renders component in search mode and true for multiple
       styled-component="true"
     >
       <MockStyledComponent
+        $clearable={true}
         $disabled={false}
         $error={false}
         $isFocused={false}
@@ -435,6 +465,7 @@ exports[`Select component renders component in search mode and true for multiple
           styled-component="true"
         >
           <Search
+            $clearable={true}
             $disabled={false}
             $error={false}
             $isFocused={false}
@@ -456,6 +487,7 @@ exports[`Select component renders component in search mode and true for multiple
             title="search"
           >
             <Icon
+              $clearable={true}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -478,6 +510,7 @@ exports[`Select component renders component in search mode and true for multiple
               viewBox="0 0 24 24"
             >
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -515,6 +548,7 @@ exports[`Select component renders component in search mode and true for multiple
             </Icon>
           </Search>
           <MockStyledComponent
+            $clearable={true}
             $disabled={false}
             $error={false}
             $isFocused={false}
@@ -533,6 +567,7 @@ exports[`Select component renders component in search mode and true for multiple
               styled-component="true"
             >
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -552,6 +587,7 @@ exports[`Select component renders component in search mode and true for multiple
                 </div>
               </MockStyledComponent>
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -568,6 +604,7 @@ exports[`Select component renders component in search mode and true for multiple
                   styled-component="true"
                 >
                   <AutosizeInput
+                    $clearable={true}
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
@@ -601,6 +638,7 @@ exports[`Select component renders component in search mode and true for multiple
                     value=""
                   >
                     <MockStyledComponent
+                      $clearable={true}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -658,6 +696,24 @@ exports[`Select component renders component in search mode and true for multiple
                 </div>
               </MockStyledComponent>
             </span>
+          </MockStyledComponent>
+          <MockStyledComponent
+            $clearable={true}
+            $disabled={false}
+            $error={false}
+            $isFocused={false}
+            $isLoading={false}
+            $isOpen={false}
+            $isPseudoFocused={false}
+            $multi={false}
+            $required={false}
+            $searchable={true}
+            $size="default"
+            $type="search"
+          >
+            <div
+              styled-component="true"
+            />
           </MockStyledComponent>
         </div>
       </MockStyledComponent>
@@ -725,6 +781,7 @@ exports[`Select component renders component in select mode and false for multipl
   valueKey="id"
 >
   <MockStyledComponent
+    $clearable={true}
     $disabled={false}
     $error={false}
     $isFocused={false}
@@ -742,6 +799,7 @@ exports[`Select component renders component in select mode and false for multipl
       styled-component="true"
     >
       <MockStyledComponent
+        $clearable={true}
         $disabled={false}
         $error={false}
         $isFocused={false}
@@ -768,6 +826,7 @@ exports[`Select component renders component in select mode and false for multipl
           styled-component="true"
         >
           <MockStyledComponent
+            $clearable={true}
             $disabled={false}
             $error={false}
             $isFocused={false}
@@ -786,6 +845,7 @@ exports[`Select component renders component in select mode and false for multipl
               styled-component="true"
             >
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -805,6 +865,7 @@ exports[`Select component renders component in select mode and false for multipl
                 </div>
               </MockStyledComponent>
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -821,6 +882,7 @@ exports[`Select component renders component in select mode and false for multipl
                   styled-component="true"
                 >
                   <AutosizeInput
+                    $clearable={true}
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
@@ -854,6 +916,7 @@ exports[`Select component renders component in select mode and false for multipl
                     value=""
                   >
                     <MockStyledComponent
+                      $clearable={true}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -912,7 +975,8 @@ exports[`Select component renders component in select mode and false for multipl
               </MockStyledComponent>
             </span>
           </MockStyledComponent>
-          <TriangleDown
+          <MockStyledComponent
+            $clearable={true}
             $disabled={false}
             $error={false}
             $isFocused={false}
@@ -924,38 +988,12 @@ exports[`Select component renders component in select mode and false for multipl
             $searchable={true}
             $size="default"
             $type="select"
-            onClick={[Function]}
-            overrides={
-              Object {
-                "Svg": [Function],
-              }
-            }
-            size={16}
-            title="open"
           >
-            <Icon
-              $disabled={false}
-              $error={false}
-              $isFocused={false}
-              $isLoading={false}
-              $isOpen={false}
-              $isPseudoFocused={false}
-              $multi={false}
-              $required={false}
-              $searchable={true}
-              $size="default"
-              $type="select"
-              onClick={[Function]}
-              overrides={
-                Object {
-                  "Svg": [Function],
-                }
-              }
-              size={16}
-              title="open"
-              viewBox="0 0 24 24"
+            <div
+              styled-component="true"
             >
-              <MockStyledComponent
+              <TriangleDown
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -968,23 +1006,70 @@ exports[`Select component renders component in select mode and false for multipl
                 $size="default"
                 $type="select"
                 onClick={[Function]}
-                viewBox="0 0 24 24"
+                overrides={
+                  Object {
+                    "Svg": [Function],
+                  }
+                }
+                size={16}
+                title="open"
               >
-                <svg
+                <Icon
+                  $clearable={true}
+                  $disabled={false}
+                  $error={false}
+                  $isFocused={false}
+                  $isLoading={false}
+                  $isOpen={false}
+                  $isPseudoFocused={false}
+                  $multi={false}
+                  $required={false}
+                  $searchable={true}
+                  $size="default"
+                  $type="select"
                   onClick={[Function]}
-                  styled-component="true"
+                  overrides={
+                    Object {
+                      "Svg": [Function],
+                    }
+                  }
+                  size={16}
+                  title="open"
                   viewBox="0 0 24 24"
                 >
-                  <title>
-                    open
-                  </title>
-                  <path
-                    d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
-                  />
-                </svg>
-              </MockStyledComponent>
-            </Icon>
-          </TriangleDown>
+                  <MockStyledComponent
+                    $clearable={true}
+                    $disabled={false}
+                    $error={false}
+                    $isFocused={false}
+                    $isLoading={false}
+                    $isOpen={false}
+                    $isPseudoFocused={false}
+                    $multi={false}
+                    $required={false}
+                    $searchable={true}
+                    $size="default"
+                    $type="select"
+                    onClick={[Function]}
+                    viewBox="0 0 24 24"
+                  >
+                    <svg
+                      onClick={[Function]}
+                      styled-component="true"
+                      viewBox="0 0 24 24"
+                    >
+                      <title>
+                        open
+                      </title>
+                      <path
+                        d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
+                      />
+                    </svg>
+                  </MockStyledComponent>
+                </Icon>
+              </TriangleDown>
+            </div>
+          </MockStyledComponent>
         </div>
       </MockStyledComponent>
     </div>
@@ -1051,6 +1136,7 @@ exports[`Select component renders component in select mode and true for multiple
   valueKey="id"
 >
   <MockStyledComponent
+    $clearable={true}
     $disabled={false}
     $error={false}
     $isFocused={false}
@@ -1068,6 +1154,7 @@ exports[`Select component renders component in select mode and true for multiple
       styled-component="true"
     >
       <MockStyledComponent
+        $clearable={true}
         $disabled={false}
         $error={false}
         $isFocused={false}
@@ -1094,6 +1181,7 @@ exports[`Select component renders component in select mode and true for multiple
           styled-component="true"
         >
           <MockStyledComponent
+            $clearable={true}
             $disabled={false}
             $error={false}
             $isFocused={false}
@@ -1112,6 +1200,7 @@ exports[`Select component renders component in select mode and true for multiple
               styled-component="true"
             >
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -1131,6 +1220,7 @@ exports[`Select component renders component in select mode and true for multiple
                 </div>
               </MockStyledComponent>
               <MockStyledComponent
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -1147,6 +1237,7 @@ exports[`Select component renders component in select mode and true for multiple
                   styled-component="true"
                 >
                   <AutosizeInput
+                    $clearable={true}
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
@@ -1180,6 +1271,7 @@ exports[`Select component renders component in select mode and true for multiple
                     value=""
                   >
                     <MockStyledComponent
+                      $clearable={true}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -1238,7 +1330,8 @@ exports[`Select component renders component in select mode and true for multiple
               </MockStyledComponent>
             </span>
           </MockStyledComponent>
-          <TriangleDown
+          <MockStyledComponent
+            $clearable={true}
             $disabled={false}
             $error={false}
             $isFocused={false}
@@ -1250,38 +1343,12 @@ exports[`Select component renders component in select mode and true for multiple
             $searchable={true}
             $size="default"
             $type="select"
-            onClick={[Function]}
-            overrides={
-              Object {
-                "Svg": [Function],
-              }
-            }
-            size={16}
-            title="open"
           >
-            <Icon
-              $disabled={false}
-              $error={false}
-              $isFocused={false}
-              $isLoading={false}
-              $isOpen={false}
-              $isPseudoFocused={false}
-              $multi={false}
-              $required={false}
-              $searchable={true}
-              $size="default"
-              $type="select"
-              onClick={[Function]}
-              overrides={
-                Object {
-                  "Svg": [Function],
-                }
-              }
-              size={16}
-              title="open"
-              viewBox="0 0 24 24"
+            <div
+              styled-component="true"
             >
-              <MockStyledComponent
+              <TriangleDown
+                $clearable={true}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -1294,23 +1361,70 @@ exports[`Select component renders component in select mode and true for multiple
                 $size="default"
                 $type="select"
                 onClick={[Function]}
-                viewBox="0 0 24 24"
+                overrides={
+                  Object {
+                    "Svg": [Function],
+                  }
+                }
+                size={16}
+                title="open"
               >
-                <svg
+                <Icon
+                  $clearable={true}
+                  $disabled={false}
+                  $error={false}
+                  $isFocused={false}
+                  $isLoading={false}
+                  $isOpen={false}
+                  $isPseudoFocused={false}
+                  $multi={false}
+                  $required={false}
+                  $searchable={true}
+                  $size="default"
+                  $type="select"
                   onClick={[Function]}
-                  styled-component="true"
+                  overrides={
+                    Object {
+                      "Svg": [Function],
+                    }
+                  }
+                  size={16}
+                  title="open"
                   viewBox="0 0 24 24"
                 >
-                  <title>
-                    open
-                  </title>
-                  <path
-                    d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
-                  />
-                </svg>
-              </MockStyledComponent>
-            </Icon>
-          </TriangleDown>
+                  <MockStyledComponent
+                    $clearable={true}
+                    $disabled={false}
+                    $error={false}
+                    $isFocused={false}
+                    $isLoading={false}
+                    $isOpen={false}
+                    $isPseudoFocused={false}
+                    $multi={false}
+                    $required={false}
+                    $searchable={true}
+                    $size="default"
+                    $type="select"
+                    onClick={[Function]}
+                    viewBox="0 0 24 24"
+                  >
+                    <svg
+                      onClick={[Function]}
+                      styled-component="true"
+                      viewBox="0 0 24 24"
+                    >
+                      <title>
+                        open
+                      </title>
+                      <path
+                        d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
+                      />
+                    </svg>
+                  </MockStyledComponent>
+                </Icon>
+              </TriangleDown>
+            </div>
+          </MockStyledComponent>
         </div>
       </MockStyledComponent>
     </div>

@@ -54,6 +54,10 @@ export const DarkTheme = createTheme(
       buttonDisabledFill: primitives.mono700,
       buttonDisabledText: primitives.mono500,
 
+      // Breadcrumbs
+      breadcrumbsText: primitives.mono100,
+      breadcrumbsSeparatorFill: primitives.mono200,
+
       // Links
       linkText: primitives.primary300,
       linkVisited: primitives.primary300,
