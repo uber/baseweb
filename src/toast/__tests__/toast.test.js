@@ -8,13 +8,27 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {Toast, StyledBody, StyledCloseIcon, KIND} from '../index';
+import {Toast, StyledBody, StyledCloseIcon, KIND, TYPE} from '../index';
 
 jest.useFakeTimers();
 
 describe('Toast', () => {
-  test('basic functionality', () => {
+  test('basic inline functionality', () => {
     const wrapper = mount(<Toast>Notification</Toast>);
+
+    expect(wrapper.instance().state.isRendered).toBe(true);
+    expect(wrapper.instance().state.isVisible).toBe(false);
+
+    expect(wrapper.find(StyledBody).first()).toExist();
+    expect(wrapper.find(StyledCloseIcon).first()).not.toExist();
+  });
+
+  test('basic toast functionality', () => {
+    const props = {
+      notificationType: TYPE.toast,
+      closeable: true,
+    };
+    const wrapper = mount(<Toast {...props}>Notification</Toast>);
 
     expect(wrapper.instance().state.isRendered).toBe(true);
     expect(wrapper.instance().state.isVisible).toBe(false);
@@ -25,7 +39,11 @@ describe('Toast', () => {
 
   test('Body component props', () => {
     let renderedRoot;
-    const wrapper = mount(<Toast>Notification</Toast>);
+    const props = {
+      notificationType: TYPE.toast,
+      closeable: true,
+    };
+    const wrapper = mount(<Toast {...props}>Notification</Toast>);
 
     renderedRoot = wrapper.find(StyledBody).first();
     expect(renderedRoot).toExist();
@@ -54,7 +72,11 @@ describe('Toast', () => {
 
   test('close icon rendering', () => {
     let renderedCloseButton;
-    const wrapper = mount(<Toast>Notification</Toast>);
+    const props = {
+      notificationType: TYPE.toast,
+      closeable: true,
+    };
+    const wrapper = mount(<Toast {...props}>Notification</Toast>);
 
     renderedCloseButton = wrapper.find(StyledCloseIcon).first();
     expect(renderedCloseButton).toExist();
@@ -67,7 +89,11 @@ describe('Toast', () => {
 
   test('close icon props', () => {
     let renderedCloseButton;
-    const wrapper = mount(<Toast>Notification</Toast>);
+    const props = {
+      notificationType: TYPE.toast,
+      closeable: true,
+    };
+    const wrapper = mount(<Toast {...props}>Notification</Toast>);
 
     renderedCloseButton = wrapper.find(StyledCloseIcon).first();
     expect(renderedCloseButton.props().onClick).toBe(
@@ -93,6 +119,8 @@ describe('Toast', () => {
 
   test('onClose handler', () => {
     const props = {
+      notificationType: TYPE.toast,
+      closeable: true,
       onClose: jest.fn(),
     };
     const wrapper = mount(<Toast {...props}>Notification</Toast>);
@@ -187,7 +215,9 @@ describe('Toast', () => {
 
     const wrapper = mount(
       // $FlowFixMe
-      <Toast overrides={overrides}>Notification</Toast>,
+      <Toast notificationType={TYPE.toast} closeable overrides={overrides}>
+        Notification
+      </Toast>,
     );
 
     const bodyOverride = wrapper.find(overrides.Body);

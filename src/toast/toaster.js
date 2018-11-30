@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {getOverrides, mergeOverrides} from '../helpers/overrides';
-import {KIND, PLACEMENT} from './constants';
+import {KIND, TYPE, PLACEMENT} from './constants';
 import {
   Root as StyledRoot,
   Body as StyledBody,
@@ -128,6 +128,8 @@ export class ToasterContainer extends React.Component<
 
     return (
       <Toast
+        notificationType={TYPE.toast}
+        closeable={true}
         {...rest}
         overrides={toastOverrides}
         key={key}

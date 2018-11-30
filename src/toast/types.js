@@ -9,13 +9,15 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {ThemeT} from '../styles/types';
 import type {OverrideT} from '../helpers/overrides';
-import {KIND, PLACEMENT} from './constants';
+import {KIND, TYPE, PLACEMENT} from './constants';
 
-export type KindTypeT = $Keys<typeof KIND>;
-export type PlacementTypeT = $Keys<typeof PLACEMENT>;
+export type KindTypeT = $Values<typeof KIND>;
+export type NotificationTypeT = $Values<typeof TYPE>;
+export type PlacementTypeT = $Values<typeof PLACEMENT>;
 
 export type SharedStylePropsArgT = {
   $kind: KindTypeT,
+  $type: NotificationTypeT,
   $closeable: boolean,
   $isRendered: boolean,
   $isVisible: boolean,
@@ -56,6 +58,7 @@ export type ToastPropsT = {
   children: ChildrenT | ComponentRenderPropT,
   closeable: boolean,
   kind: KindTypeT,
+  notificationType: NotificationTypeT,
   onClose: () => void,
   onBlur: (e: Event) => void,
   onFocus: (e: Event) => void,

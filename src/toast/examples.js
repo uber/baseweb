@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {styled} from '../styles';
-import {Toast, toaster, ToasterContainer, KIND, PLACEMENT} from './index';
+import {Toast, toaster, ToasterContainer, KIND, TYPE, PLACEMENT} from './index';
 import {Button, KIND as ButtonKind, SIZE} from '../button';
 import type {KindTypeT} from './types';
 
@@ -171,11 +171,25 @@ class ToasterAdvancedExample extends React.Component<{}, {cleared: boolean}> {
 }
 
 export default {
-  [examples.SIMPLE_EXAMPLE]: function Story1() {
+  [examples.INLINE_EXAMPLE]: function Story1() {
     return (
       <Centered>
         <Toast>Default info notification</Toast>
-        <Toast closeable={false}>
+        <Toast kind={KIND.positive}>Positive notification</Toast>
+        <Toast kind={KIND.warning}>Warning notification</Toast>
+        <Toast kind={KIND.negative}>Negative notification</Toast>
+      </Centered>
+    );
+  },
+  [examples.TOAST_EXAMPLE]: function Story1() {
+    const props = {
+      notificationType: TYPE.toast,
+      closeable: true,
+    };
+    return (
+      <Centered>
+        <Toast {...props}>Default info notification</Toast>
+        <Toast {...props} closeable={false}>
           {({dismiss}) => {
             return (
               <React.Fragment>
@@ -196,9 +210,15 @@ export default {
             );
           }}
         </Toast>
-        <Toast kind={KIND.positive}>Positive notification</Toast>
-        <Toast kind={KIND.warning}>Warning notification</Toast>
-        <Toast kind={KIND.negative}>Negative notification</Toast>
+        <Toast {...props} kind={KIND.positive}>
+          Positive notification
+        </Toast>
+        <Toast {...props} kind={KIND.warning}>
+          Warning notification
+        </Toast>
+        <Toast {...props} kind={KIND.negative}>
+          Negative notification
+        </Toast>
       </Centered>
     );
   },
@@ -219,9 +239,14 @@ export default {
     );
   },
   [examples.OVERRIDES_EXAMPLE]: function Story3() {
+    const props = {
+      notificationType: TYPE.toast,
+      closeable: true,
+    };
     return (
       <Centered>
         <Toast
+          {...props}
           overrides={{
             Body: {
               style: {
@@ -237,6 +262,10 @@ export default {
                 backgroundColor: '#fff',
                 color: '#000',
                 borderRadius: '50%',
+                paddingTop: '5px',
+                paddingBottom: '5px',
+                paddingLeft: '5px',
+                paddingRight: '5px',
               },
             },
           }}
