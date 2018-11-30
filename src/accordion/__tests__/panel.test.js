@@ -50,7 +50,6 @@ describe('Panel', () => {
       onClick: jest.fn(),
       title: 'title',
     };
-    // $FlowFixMe
     const wrapper = mount(<Panel {...props}>Content</Panel>);
     const header = wrapper.find(StyledHeader);
     header.simulate('click');
