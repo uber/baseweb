@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {StarRating, EmoticonRating} from './';
-import type {StyledRatingItemPropsT} from './';
-import examples from './examples-list';
-import {styled} from '../styles/index';
+import {StarRating, EmoticonRating} from './index.js';
+import type {StyledRatingItemPropsT} from './index.js';
+import examples from './examples-list.js';
+import {styled} from '../styles/index.js';
 
 type ExampleState = {
   value?: number,

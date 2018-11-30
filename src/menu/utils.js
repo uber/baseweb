@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable import/prefer-default-export */
 import smoothscroll from 'smoothscroll-polyfill';
-import {SHARED_PROPS_MAPPER} from './constants';
+import {SHARED_PROPS_MAPPER} from './constants.js';
 
 if (__BROWSER__) {
   smoothscroll.polyfill();

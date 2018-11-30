@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index';
-import {TYPE} from './constants';
-import {getSvgStyles} from '../icon/styled-components';
-import {SIZE} from './constants';
-import type {SharedStylePropsT} from './types';
+import {styled} from '../styles/index.js';
+import {TYPE} from './constants.js';
+import {getSvgStyles} from '../icon/styled-components.js';
+import {SIZE} from './constants.js';
+import type {SharedStylePropsT} from './types.js';
 
 function getFont(size = SIZE.default, typography) {
   return {

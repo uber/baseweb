@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {Slider, StyledThumb} from '../index';
+import {Slider, StyledThumb} from '../index.js';
 
 /* global document */
 /* global window */

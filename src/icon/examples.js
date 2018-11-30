@@ -11,9 +11,9 @@ import {
   select as selectKnob,
 } from '@storybook/addon-knobs';
 
-import {styled} from '../styles';
-import {Button, KIND} from '../button';
-import * as Icons from './icon-exports';
+import {styled} from '../styles/index.js';
+import {Button, KIND} from '../button/index.js';
+import * as Icons from './icon-exports.js';
 
 const Centered = styled('div', {
   position: 'relative',

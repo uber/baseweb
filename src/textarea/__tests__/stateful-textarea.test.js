@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import {StyledTextarea, StatefulTextarea, StatefulContainer} from '../index';
+import {StyledTextarea, StatefulTextarea, StatefulContainer} from '../index.js';
 describe('StatefulTextarea', () => {
   test('basic render', () => {
     const props = {

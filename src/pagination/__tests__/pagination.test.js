@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 import React from 'react';
 import {mount} from 'enzyme';
-import * as StyledComponents from '../styled-components';
-import {Button} from '../../button';
-import Pagination from '../pagination';
+import * as StyledComponents from '../styled-components.js';
+import {Button} from '../../button/index.js';
+import Pagination from '../pagination.js';
 
 const originalAddEventListener = document.addEventListener;
 const originalRemoveEventListener = document.removeEventListener;

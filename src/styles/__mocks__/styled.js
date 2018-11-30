@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {LightTheme} from '../../themes';
-import createMockTheme from '../../test/create-mock-theme';
-import type {ThemeT} from '../../styles/types';
+import {LightTheme} from '../../themes/index.js';
+import createMockTheme from '../../test/create-mock-theme.js';
+import type {ThemeT} from '../../styles/types.js';
 
 type ObjOrFnT = {} | (({}) => {});
 

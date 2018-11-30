@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import ProgressSteps from '../progress-steps';
-import Step from '../step';
+import ProgressSteps from '../progress-steps.js';
+import Step from '../step.js';
 
 let example;
 

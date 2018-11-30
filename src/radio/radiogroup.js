@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 
-import StyledRadioMark from './radiomark';
+import StyledRadioMark from './radiomark.js';
 import {
   RadioGroupRoot as StyledRadioGroupRoot,
   Label as StyledLabel,
   Input as StyledInput,
   Root as StyledRoot,
-} from './styled-components';
-import type {PropsT, DefaultPropsT, StatelessStateT} from './types';
+} from './styled-components.js';
+import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
 
 class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {

@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {thumbWidth} from './constants';
+import {thumbWidth} from './constants.js';
 export function startThumbIcon(backgroundColor: string, thumbColor: string) {
   return `<svg width="20" height="32" viewBox="0 0 20 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23filter0_d)"><path d="M4 7C4 4.79086 5.79086 3 8 3H15C15.5523 3 16 3.44772 16 4V26C16 26.5523 15.5523 27 15 27H8C5.79086 27 4 25.2091 4 23V7Z" fill="${encodeURIComponent(
     backgroundColor,

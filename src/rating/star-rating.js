@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import type {StarRatingPropsT, RatingStateT} from './types';
-import {StyledRoot, StyledStar} from './styled-components';
-import {getOverrides} from '../helpers/overrides';
-import {ENTER_KEY_CODE, SPACE_KEY_CODE} from './utils';
+import type {StarRatingPropsT, RatingStateT} from './types.js';
+import {StyledRoot, StyledStar} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
+import {ENTER_KEY_CODE, SPACE_KEY_CODE} from './utils.js';
 
 class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   static defaultProps = {

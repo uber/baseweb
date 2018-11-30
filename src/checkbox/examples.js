@@ -17,9 +17,9 @@ import {
   StyledCheckmark,
   StyledInput,
   Checkbox as StatelessCheckbox,
-} from './index';
+} from './index.js';
 
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 const onChange = e => {
   // eslint-disable-next-line no-console

@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {OverrideT} from '../helpers/overrides';
-import {STATE_CHANGE_TYPE} from './constants';
+import type {OverrideT} from '../helpers/overrides.js';
+import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type LabelsT = {
   prevButton?: string,

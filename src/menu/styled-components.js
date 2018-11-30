@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles';
-import {OPTION_LIST_SIZE} from './constants';
+import {styled} from '../styles/index.js';
+import {OPTION_LIST_SIZE} from './constants.js';
 
-import type {ThemeT} from '../styles';
+import type {ThemeT} from '../styles/index.js';
 
 type StyledPropsT = {
   $theme: ThemeT,

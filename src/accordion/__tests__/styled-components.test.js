@@ -13,7 +13,7 @@ import {
   StyledHeader,
   StyledToggleIcon,
   StyledContent,
-} from '../index';
+} from '../index.js';
 
 const styledComponents = [
   [StyledRoot, 'StyledRoot'],

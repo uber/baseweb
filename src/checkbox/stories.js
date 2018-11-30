@@ -10,8 +10,8 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
 import CheckboxReadme from '../../rfcs/checkbox-component.md';
-import examples from './examples';
-import examplesToggle from './examples-toggle';
+import examples from './examples.js';
+import examplesToggle from './examples-toggle.js';
 
 //$FlowFixMe
 

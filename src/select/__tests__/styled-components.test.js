@@ -20,8 +20,8 @@ import {
   StyledClearIcon,
   StyledSearchIcon,
   StyledOptionContent,
-} from '../index';
-import {TYPE, SIZE} from '../constants';
+} from '../index.js';
+import {TYPE, SIZE} from '../constants.js';
 
 const styledComponents = [
   [StyledRoot, 'StyledRoot'],

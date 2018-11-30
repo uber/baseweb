@@ -11,7 +11,7 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
 import FormControlReadme from '../../rfcs/form-control-component.md';
-import examples from './examples';
+import examples from './examples.js';
 
 //$FlowFixMe
 

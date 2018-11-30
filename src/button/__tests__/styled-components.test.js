@@ -7,15 +7,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {LightTheme, createTheme, lightThemePrimitives} from '../../themes';
+import {
+  LightTheme,
+  createTheme,
+  lightThemePrimitives,
+} from '../../themes/index.js';
 import {
   BaseButton,
   StartEnhancer,
   EndEnhancer,
   getStyleForKind,
   getStyleForShape,
-} from '../styled-components';
-import {KIND, SIZE, SHAPE} from '../constants';
+} from '../styled-components.js';
+import {KIND, SIZE, SHAPE} from '../constants.js';
 
 function makeTest({
   title,

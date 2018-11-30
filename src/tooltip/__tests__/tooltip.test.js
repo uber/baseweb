@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {Popover} from '../../popover';
+import {Popover} from '../../popover/index.js';
 import {
   Tooltip,
   StyledArrow,
@@ -15,8 +15,8 @@ import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
   TRIGGER_TYPE,
-} from '../index';
-import baseDefaultProps from '../default-props';
+} from '../index.js';
+import baseDefaultProps from '../default-props.js';
 
 describe('Tooltip', () => {
   test('basic render', () => {

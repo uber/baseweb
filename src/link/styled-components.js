@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index';
+import {styled} from '../styles/index.js';
 
 export const Link = styled('a', ({$theme}) => {
   const {colors, typography} = $theme;

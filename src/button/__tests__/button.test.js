@@ -7,8 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {StartEnhancer, EndEnhancer, LoadingSpinner} from '../styled-components';
-import Button from '../button';
+import {
+  StartEnhancer,
+  EndEnhancer,
+  LoadingSpinner,
+} from '../styled-components.js';
+import Button from '../button.js';
 
 describe('Button Component', () => {
   test('basic render', () => {

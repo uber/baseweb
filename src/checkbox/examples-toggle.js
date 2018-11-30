@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable react/display-name*/
 
 import * as React from 'react';
-import {StatefulCheckbox as Checkbox, STYLE_TYPE} from './index';
+import {StatefulCheckbox as Checkbox, STYLE_TYPE} from './index.js';
 
 const onChange = e => {
   // eslint-disable-next-line no-console

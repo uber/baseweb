@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledSvg} from '../index';
+import {StyledSvg} from '../index.js';
 
 describe('Spinner styled components', () => {
   test('StyledSvg - basic render', () => {

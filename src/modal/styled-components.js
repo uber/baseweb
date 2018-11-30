@@ -5,9 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles';
-import {SIZE, SIZE_WIDTHS} from './constants';
-import type {SharedStylePropsT, SizePropT, StyledComponentPropT} from './types';
+import {styled} from '../styles/index.js';
+import {SIZE, SIZE_WIDTHS} from './constants.js';
+import type {
+  SharedStylePropsT,
+  SizePropT,
+  StyledComponentPropT,
+} from './types.js';
 
 function getSizeStyles($size: SizePropT) {
   const styles: {

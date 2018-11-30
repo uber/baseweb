@@ -10,7 +10,7 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
 import RadioGroupReadme from '../../rfcs/radiogroup-component.md';
-import examples from './examples';
+import examples from './examples.js';
 
 //$FlowFixMe
 

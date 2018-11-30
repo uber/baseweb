@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {PropsT, OptionT, SelectStateT} from '../types';
+import type {PropsT, OptionT, SelectStateT} from '../types.js';
 
 export const shouldShowValue = (state: SelectStateT, props: $Shape<PropsT>) => {
   const {inputValue, isPseudoFocused, isFocused} = state;

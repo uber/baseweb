@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {OverrideT} from '../helpers/overrides';
-import type {ThemeT} from '../styles/types';
-import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants';
-import type {OnItemSelectFnT} from '../menu/types';
+import type {OverrideT} from '../helpers/overrides.js';
+import type {ThemeT} from '../styles/types.js';
+import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants.js';
+import type {OnItemSelectFnT} from '../menu/types.js';
 
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;

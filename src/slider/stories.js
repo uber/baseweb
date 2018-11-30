@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 
 // Styled elements
-import examples from './examples';
+import examples from './examples.js';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
 import SliderReadme from '../../rfcs/slider-component.md';

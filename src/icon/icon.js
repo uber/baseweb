@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides';
-import {Svg as StyledSvg} from './styled-components';
-import type {IconPropsT} from './types';
+import {getOverrides} from '../helpers/overrides.js';
+import {Svg as StyledSvg} from './styled-components.js';
+import type {IconPropsT} from './types.js';
 
 export default function Icon(props: IconPropsT) {
   const {children, title, overrides = {}, size, color, ...restProps} = props;

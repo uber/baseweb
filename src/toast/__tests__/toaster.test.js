@@ -18,7 +18,7 @@ import {
   StyledRoot,
   StyledBody,
   StyledCloseIcon,
-} from '../index';
+} from '../index.js';
 
 // Mock React 16 portals
 const originalCreatePortal = ReactDOM.createPortal;

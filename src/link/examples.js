@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {StyledLink} from './';
+import {StyledLink} from './index.js';
 
 export default {
   'Default Link': function Story1() {

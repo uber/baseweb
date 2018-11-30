@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles';
-import {getSvgStyles} from '../icon/styled-components';
-import type {SharedStylePropsT} from './types';
+import {styled} from '../styles/index.js';
+import {getSvgStyles} from '../icon/styled-components.js';
+import type {SharedStylePropsT} from './types.js';
 
 /**
  * Main component container element

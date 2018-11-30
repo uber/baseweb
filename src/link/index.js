@@ -6,4 +6,4 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 // Styled elements
-export {Link as StyledLink} from './styled-components';
+export {Link as StyledLink} from './styled-components.js';

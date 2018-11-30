@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {shallow} from 'enzyme';
-import {Svg} from '../styled-components';
+import {Svg} from '../styled-components.js';
 
 describe('Icon styled components', () => {
   test('Svg has correct default styles', () => {

@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {OverrideT} from '../helpers/overrides';
-import {COLOR_STYLE_KEYS} from './constants';
+import type {OverrideT} from '../helpers/overrides.js';
+import {COLOR_STYLE_KEYS} from './constants.js';
 
 export const TagKind = Object.freeze({...COLOR_STYLE_KEYS, custom: null});
 

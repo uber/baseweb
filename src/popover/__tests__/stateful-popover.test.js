@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from '../index';
+import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from '../index.js';
 
 describe('StatefulPopover', () => {
   test('basic render', () => {

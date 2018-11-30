@@ -10,20 +10,20 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 import Popper from 'popper.js';
-import {getOverride, getOverrideProps} from '../helpers/overrides';
-import getBuiId from '../utils/get-bui-id';
-import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants';
+import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import getBuiId from '../utils/get-bui-id.js';
+import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants.js';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
   Inner as StyledInner,
-} from './styled-components';
+} from './styled-components.js';
 import {
   toPopperPlacement,
   fromPopperPlacement,
   parsePopperOffset,
-} from './utils';
-import defaultProps from './default-props';
+} from './utils.js';
+import defaultProps from './default-props.js';
 
 import type {
   AnchorPropsT,
@@ -32,7 +32,7 @@ import type {
   PopoverPrivateStateT,
   PopperDataObjectT,
   SharedStylePropsArgT,
-} from './types';
+} from './types.js';
 
 class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   static defaultProps: $Shape<PopoverPropsT> = defaultProps;

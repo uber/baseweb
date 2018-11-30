@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles';
-import {ADJOINED, SIZE, ENHANCER_POSITION} from './constants';
-import type {SharedPropsT} from './types';
+import {styled} from '../styles/index.js';
+import {ADJOINED, SIZE, ENHANCER_POSITION} from './constants.js';
+import type {SharedPropsT} from './types.js';
 
 function getInputPadding(size, sizing) {
   return {

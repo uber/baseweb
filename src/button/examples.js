@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles';
-import Button from './button';
-import {SIZE, KIND, SHAPE} from './constants';
+import {styled} from '../styles/index.js';
+import Button from './button.js';
+import {SIZE, KIND, SHAPE} from './constants.js';
 
 function CloudComponent() {
   return (
@@ -205,7 +205,7 @@ class MainButtonStory extends React.Component<*, StateT> {
   }
 }
 
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 export default {
   [examples.BUTTON]: function Story1() {

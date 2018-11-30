@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import StatefulContainer from './stateful-container';
-import Input from './input';
-import type {StatefulInputPropsT} from './types';
+import StatefulContainer from './stateful-container.js';
+import Input from './input.js';
+import type {StatefulInputPropsT} from './types.js';
 
 export default function StatefulInput(props: StatefulInputPropsT) {
   return (

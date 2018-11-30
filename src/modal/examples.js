@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 import * as React from 'react';
 import {select as selectKnob} from '@storybook/addon-knobs';
-import {Button} from '../button';
-import {Input} from '../input';
-import examples from './examples-list';
+import {Button} from '../button/index.js';
+import {Input} from '../input/index.js';
+import examples from './examples-list.js';
 
-import {styled} from '../styles';
+import {styled} from '../styles/index.js';
 import {
   SIZE,
   Modal,
@@ -20,7 +20,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalButton,
-} from './index';
+} from './index.js';
 
 const Centered = styled('div', {
   position: 'relative',

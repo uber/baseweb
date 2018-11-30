@@ -5,16 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles';
-import {getSvgStyles} from '../icon/styled-components';
-import {KIND, PLACEMENT} from './constants';
+import {styled} from '../styles/index.js';
+import {getSvgStyles} from '../icon/styled-components.js';
+import {KIND, PLACEMENT} from './constants.js';
 import type {
   SharedStylePropsT,
   ToasterSharedStylePropsT,
   KindTypeT,
   PlacementTypeT,
-} from './types';
-import type {ThemeT} from '../styles/types';
+} from './types.js';
+import type {ThemeT} from '../styles/types.js';
 
 function getBackgroundColor(kind: KindTypeT, theme: ThemeT) {
   return {

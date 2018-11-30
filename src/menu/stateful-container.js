@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 // Files
-import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants';
-import {scrollItemIntoView} from './utils';
+import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants.js';
+import {scrollItemIntoView} from './utils.js';
 // Types
 import type {
   StatefulContainerPropsT,
@@ -17,7 +17,7 @@ import type {
   RootRefT,
   RenderPropsT,
   StateReducerFnT,
-} from './types';
+} from './types.js';
 
 export default class MenuStatefulContainer extends React.Component<
   StatefulContainerPropsT,

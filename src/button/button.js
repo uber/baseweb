@@ -10,12 +10,12 @@ import {
   BaseButton as StyledBaseButton,
   LoadingSpinner as StyledLoadingSpinner,
   LoadingSpinnerContainer as StyledLoadingSpinnerContainer,
-} from './styled-components';
-import {getSharedProps} from './utils';
-import ButtonInternals from './button-internals';
-import {getOverrides} from '../helpers/overrides';
+} from './styled-components.js';
+import {getSharedProps} from './utils.js';
+import ButtonInternals from './button-internals.js';
+import {getOverrides} from '../helpers/overrides.js';
 
-import type {ButtonPropsT} from './types';
+import type {ButtonPropsT} from './types.js';
 
 export default class Button extends React.Component<ButtonPropsT> {
   static defaultProps = {

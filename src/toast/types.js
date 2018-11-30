@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types';
-import type {OverrideT} from '../helpers/overrides';
-import {KIND, PLACEMENT} from './constants';
+import type {ThemeT} from '../styles/types.js';
+import type {OverrideT} from '../helpers/overrides.js';
+import {KIND, PLACEMENT} from './constants.js';
 
 export type KindTypeT = $Keys<typeof KIND>;
 export type PlacementTypeT = $Keys<typeof PLACEMENT>;

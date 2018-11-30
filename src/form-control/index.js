@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-export {default as FormControl} from './form-control';
+export {default as FormControl} from './form-control.js';
 export {
   Label as StyledLabel,
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
-} from './styled-components';
-export * from './types';
+} from './styled-components.js';
+export * from './types.js';

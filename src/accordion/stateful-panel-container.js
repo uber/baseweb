@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_CHANGE_TYPE} from './constants';
+import {STATE_CHANGE_TYPE} from './constants.js';
 import type {
   PanelStateT,
   StatefulPanelContainerPropsT,
   PanelStateReducerT,
   StateChangeTypeT,
   OnChangeHandlerT,
-} from './types';
+} from './types.js';
 
 const defaultStateReducer: PanelStateReducerT = (type, nextState) => nextState;
 

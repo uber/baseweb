@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import {styled} from '../styles';
+import {styled} from '../styles/index.js';
 
 export const Label = styled('label', props => {
   const {

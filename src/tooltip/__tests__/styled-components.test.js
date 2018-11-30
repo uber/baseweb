@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledBody, StyledInner, StyledArrow} from '../index';
+import {StyledBody, StyledInner, StyledArrow} from '../index.js';
 
 describe('Tooltip styled components', () => {
   test('StyledBody - basic render', () => {

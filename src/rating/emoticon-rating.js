@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import type {EmoticonRatingPropsT, RatingStateT} from './types';
-import {StyledRoot, StyledEmoticon} from './styled-components';
-import {getOverrides} from '../helpers/overrides';
-import {ENTER_KEY_CODE, SPACE_KEY_CODE} from './utils';
+import type {EmoticonRatingPropsT, RatingStateT} from './types.js';
+import {StyledRoot, StyledEmoticon} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
+import {ENTER_KEY_CODE, SPACE_KEY_CODE} from './utils.js';
 
 class EmoticonRating extends React.Component<
   EmoticonRatingPropsT,

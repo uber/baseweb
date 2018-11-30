@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index';
+import {styled} from '../styles/index.js';
 import type {
   StyledProgressStepsPropsT,
   StyledStepPropsT,
   StyledNumberIconPropsT,
   StyledNumberContentTailPropsT,
   StyledNumberStepPropsT,
-} from './types';
+} from './types.js';
 
 export const StyledProgressSteps = styled(
   'div',

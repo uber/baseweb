@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides';
+import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
   Root?: OverrideT<*>,

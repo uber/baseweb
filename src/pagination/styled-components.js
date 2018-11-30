@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles';
-import {StyledList} from '../menu';
-import {StyledBaseButton} from '../button';
+import {styled} from '../styles/index.js';
+import {StyledList} from '../menu/index.js';
+import {StyledBaseButton} from '../button/index.js';
 
 export const Root = styled('div', {
   display: 'flex',
