@@ -27,7 +27,7 @@ export type OverridesT = {
   Close?: OverrideT<SharedStylePropsArgT>,
 };
 
-export type ElementRefT = {current: null | React.ElementRef<'div'>};
+export type ElementRefT = {current: ?React.ElementRef<'div'>};
 
 // Props shared by all flavors of modal
 export type ModalPropsT = {
