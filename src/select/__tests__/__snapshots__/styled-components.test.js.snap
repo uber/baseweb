@@ -6,9 +6,7 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "100%",
-  "position": "absolute",
-  "right": "14px",
+  "height": "$theme.sizing.scale600",
   "width": "$theme.sizing.scale600",
 }
 `;
@@ -19,9 +17,7 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "100%",
-  "position": "absolute",
-  "right": "14px",
+  "height": "$theme.sizing.scale600",
   "width": "$theme.sizing.scale600",
 }
 `;
@@ -32,9 +28,7 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "100%",
-  "position": "absolute",
-  "right": "14px",
+  "height": "$theme.sizing.scale600",
   "width": "$theme.sizing.scale600",
 }
 `;
@@ -45,9 +39,7 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "100%",
-  "position": "absolute",
-  "right": "14px",
+  "height": "$theme.sizing.scale600",
   "width": "$theme.sizing.scale600",
 }
 `;
@@ -64,8 +56,8 @@ Object {
   "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "flex",
+  "justifyContent": "space-between",
   "overflow": "hidden",
-  "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "border, boxShadow, backgroundColor",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
@@ -85,8 +77,8 @@ Object {
   "color": "$theme.colors.foreground",
   "cursor": "pointer",
   "display": "flex",
+  "justifyContent": "space-between",
   "overflow": "hidden",
-  "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "border, boxShadow, backgroundColor",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
@@ -106,8 +98,8 @@ Object {
   "color": "$theme.colors.foreground",
   "cursor": "text",
   "display": "flex",
+  "justifyContent": "space-between",
   "overflow": "hidden",
-  "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "border, boxShadow, backgroundColor",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
@@ -127,8 +119,8 @@ Object {
   "color": "$theme.colors.inputTextDisabled",
   "cursor": "not-allowed",
   "display": "flex",
+  "justifyContent": "space-between",
   "overflow": "hidden",
-  "position": "relative",
   "transitionDuration": "$theme.animation.timing100",
   "transitionProperty": "border, boxShadow, backgroundColor",
   "transitionTimingFunction": "$theme.animation.easeOutCurve",
@@ -241,7 +233,6 @@ Object {
   "background": "transparent",
   "border": "none",
   "boxShadow": "none",
-  "boxSizing": "content-box",
   "display": "inline-block",
   "height": "$theme.typography.font300.lineHeight",
   "marginBottom": "0",
@@ -250,10 +241,10 @@ Object {
   "marginTop": "0",
   "maxWidth": "100%",
   "outline": "none",
-  "paddingBottom": "$theme.sizing.scale400",
-  "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
-  "paddingTop": "$theme.sizing.scale400",
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
   "position": "relative",
 }
 `;
@@ -263,7 +254,6 @@ Object {
   "background": "transparent",
   "border": "none",
   "boxShadow": "none",
-  "boxSizing": "content-box",
   "display": "inline-block",
   "height": "$theme.typography.font200.lineHeight",
   "marginBottom": "0",
@@ -272,10 +262,10 @@ Object {
   "marginTop": "0",
   "maxWidth": "100%",
   "outline": "none",
-  "paddingBottom": "$theme.sizing.scale200",
-  "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
-  "paddingTop": "$theme.sizing.scale200",
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
   "position": "relative",
 }
 `;
@@ -285,7 +275,6 @@ Object {
   "background": "transparent",
   "border": "none",
   "boxShadow": "none",
-  "boxSizing": "content-box",
   "display": "inline-block",
   "height": "$theme.typography.font300.lineHeight",
   "marginBottom": "0",
@@ -294,10 +283,10 @@ Object {
   "marginTop": "0",
   "maxWidth": "100%",
   "outline": "none",
-  "paddingBottom": "$theme.sizing.scale400",
+  "paddingBottom": "0",
   "paddingLeft": "0",
-  "paddingRight": "$theme.sizing.scale800",
-  "paddingTop": "$theme.sizing.scale400",
+  "paddingRight": "0",
+  "paddingTop": "0",
   "position": "relative",
 }
 `;
@@ -307,7 +296,6 @@ Object {
   "background": "transparent",
   "border": "none",
   "boxShadow": "none",
-  "boxSizing": "content-box",
   "display": "inline-block",
   "height": "$theme.typography.font300.lineHeight",
   "marginBottom": "0",
@@ -316,10 +304,10 @@ Object {
   "marginTop": "0",
   "maxWidth": "100%",
   "outline": "none",
-  "paddingBottom": "$theme.sizing.scale400",
-  "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
-  "paddingTop": "$theme.sizing.scale400",
+  "paddingBottom": "0",
+  "paddingLeft": "0",
+  "paddingRight": "0",
+  "paddingTop": "0",
   "position": "relative",
 }
 `;
@@ -406,16 +394,14 @@ Object {
 
 exports[`Select styled components Basic render: StyledPlaceholder has correct default styles 1`] = `
 Object {
-  "alignItems": "center",
   "bottom": "0",
   "color": "$theme.colors.foregroundAlt",
-  "display": "flex",
   "left": "0",
   "maxWidth": "100%",
   "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
+  "paddingRight": "0",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
   "right": "0",
@@ -427,16 +413,14 @@ Object {
 
 exports[`Select styled components Basic render: StyledPlaceholder has correct styles for the SIZE.compact 1`] = `
 Object {
-  "alignItems": "center",
   "bottom": "0",
   "color": "$theme.colors.foregroundAlt",
-  "display": "flex",
   "left": "0",
   "maxWidth": "100%",
   "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale200",
   "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
+  "paddingRight": "0",
   "paddingTop": "$theme.sizing.scale200",
   "position": "absolute",
   "right": "0",
@@ -448,16 +432,14 @@ Object {
 
 exports[`Select styled components Basic render: StyledPlaceholder has correct styles for the TYPE.search 1`] = `
 Object {
-  "alignItems": "center",
   "bottom": "0",
   "color": "$theme.colors.foregroundAlt",
-  "display": "flex",
   "left": "0",
   "maxWidth": "100%",
   "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale1000",
-  "paddingRight": "$theme.sizing.scale800",
+  "paddingRight": "0",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
   "right": "0",
@@ -469,16 +451,14 @@ Object {
 
 exports[`Select styled components Basic render: StyledPlaceholder has correct styles for the disabled state 1`] = `
 Object {
-  "alignItems": "center",
   "bottom": "0",
-  "color": "$theme.colors.inputFillDisabled",
-  "display": "flex",
+  "color": "$theme.colors.inputTextDisabled",
   "left": "0",
   "maxWidth": "100%",
   "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
+  "paddingRight": "0",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
   "right": "0",
@@ -495,6 +475,7 @@ Object {
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
   "lineHeight": "$theme.typography.font300.lineHeight",
+  "position": "relative",
 }
 `;
 
@@ -505,6 +486,7 @@ Object {
   "fontSize": "$theme.typography.font200.fontSize",
   "fontWeight": "$theme.typography.font200.fontWeight",
   "lineHeight": "$theme.typography.font200.lineHeight",
+  "position": "relative",
 }
 `;
 
@@ -515,6 +497,7 @@ Object {
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
   "lineHeight": "$theme.typography.font300.lineHeight",
+  "position": "relative",
 }
 `;
 
@@ -525,6 +508,7 @@ Object {
   "fontSize": "$theme.typography.font300.fontSize",
   "fontWeight": "$theme.typography.font300.fontWeight",
   "lineHeight": "$theme.typography.font300.lineHeight",
+  "position": "relative",
 }
 `;
 
@@ -535,7 +519,7 @@ Object {
   "display": "inline-block",
   "fill": "currentColor",
   "height": "100%",
-  "left": "12px",
+  "left": "$theme.sizing.scale500",
   "position": "absolute",
   "width": "$theme.sizing.scale600",
   "zIndex": 1,
@@ -549,7 +533,7 @@ Object {
   "display": "inline-block",
   "fill": "currentColor",
   "height": "100%",
-  "left": "12px",
+  "left": "$theme.sizing.scale500",
   "position": "absolute",
   "width": "$theme.sizing.scale600",
   "zIndex": 1,
@@ -563,7 +547,7 @@ Object {
   "display": "inline-block",
   "fill": "currentColor",
   "height": "100%",
-  "left": "12px",
+  "left": "$theme.sizing.scale500",
   "position": "absolute",
   "width": "$theme.sizing.scale600",
   "zIndex": 1,
@@ -577,7 +561,7 @@ Object {
   "display": "inline-block",
   "fill": "currentColor",
   "height": "100%",
-  "left": "12px",
+  "left": "$theme.sizing.scale500",
   "position": "absolute",
   "width": "$theme.sizing.scale600",
   "zIndex": 1,
@@ -590,9 +574,7 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "100%",
-  "position": "absolute",
-  "right": "12px",
+  "height": "$theme.sizing.scale600",
   "width": "$theme.sizing.scale600",
 }
 `;
@@ -603,9 +585,7 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "100%",
-  "position": "absolute",
-  "right": "12px",
+  "height": "$theme.sizing.scale600",
   "width": "$theme.sizing.scale600",
 }
 `;
@@ -616,9 +596,7 @@ Object {
   "cursor": "pointer",
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "100%",
-  "position": "absolute",
-  "right": "12px",
+  "height": "$theme.sizing.scale600",
   "width": "$theme.sizing.scale600",
 }
 `;
@@ -629,9 +607,7 @@ Object {
   "cursor": "not-allowed",
   "display": "inline-block",
   "fill": "currentColor",
-  "height": "100%",
-  "position": "absolute",
-  "right": "12px",
+  "height": "$theme.sizing.scale600",
   "width": "$theme.sizing.scale600",
 }
 `;
@@ -641,11 +617,12 @@ Object {
   "boxSizing": "border-box",
   "height": "100%",
   "left": "0",
+  "lineHeight": "$theme.typography.font300.lineHeight",
   "maxWidth": "100%",
   "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
+  "paddingRight": "0",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
   "textOverflow": "ellipsis",
@@ -660,11 +637,12 @@ Object {
   "boxSizing": "border-box",
   "height": "100%",
   "left": "0",
+  "lineHeight": "$theme.typography.font200.lineHeight",
   "maxWidth": "100%",
   "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale200",
   "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
+  "paddingRight": "0",
   "paddingTop": "$theme.sizing.scale200",
   "position": "absolute",
   "textOverflow": "ellipsis",
@@ -679,11 +657,12 @@ Object {
   "boxSizing": "border-box",
   "height": "100%",
   "left": "0",
+  "lineHeight": "$theme.typography.font300.lineHeight",
   "maxWidth": "100%",
   "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale1000",
-  "paddingRight": "$theme.sizing.scale800",
+  "paddingRight": "0",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
   "textOverflow": "ellipsis",
@@ -698,11 +677,12 @@ Object {
   "boxSizing": "border-box",
   "height": "100%",
   "left": "0",
+  "lineHeight": "$theme.typography.font300.lineHeight",
   "maxWidth": "100%",
   "overflow": "hidden",
   "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale500",
-  "paddingRight": "$theme.sizing.scale800",
+  "paddingRight": "0",
   "paddingTop": "$theme.sizing.scale400",
   "position": "absolute",
   "textOverflow": "ellipsis",
@@ -714,33 +694,73 @@ Object {
 
 exports[`Select styled components Basic render: StyledValueContainer has correct default styles 1`] = `
 Object {
+  "alignItems": "center",
   "boxSizing": "border-box",
-  "display": "inline-block",
-  "paddingLeft": 0,
+  "display": "flex",
+  "flexBasis": "0%",
+  "flexGrow": 1,
+  "flexShrink": 1,
+  "flexWrap": "wrap",
+  "overflow": "hidden",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "0",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "relative",
 }
 `;
 
 exports[`Select styled components Basic render: StyledValueContainer has correct styles for the SIZE.compact 1`] = `
 Object {
+  "alignItems": "center",
   "boxSizing": "border-box",
-  "display": "inline-block",
-  "paddingLeft": 0,
+  "display": "flex",
+  "flexBasis": "0%",
+  "flexGrow": 1,
+  "flexShrink": 1,
+  "flexWrap": "wrap",
+  "overflow": "hidden",
+  "paddingBottom": "$theme.sizing.scale200",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "0",
+  "paddingTop": "$theme.sizing.scale200",
+  "position": "relative",
 }
 `;
 
 exports[`Select styled components Basic render: StyledValueContainer has correct styles for the TYPE.search 1`] = `
 Object {
+  "alignItems": "center",
   "boxSizing": "border-box",
-  "display": "inline-block",
+  "display": "flex",
+  "flexBasis": "0%",
+  "flexGrow": 1,
+  "flexShrink": 1,
+  "flexWrap": "wrap",
+  "overflow": "hidden",
+  "paddingBottom": "$theme.sizing.scale400",
   "paddingLeft": "$theme.sizing.scale1000",
+  "paddingRight": "0",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "relative",
 }
 `;
 
 exports[`Select styled components Basic render: StyledValueContainer has correct styles for the disabled state 1`] = `
 Object {
+  "alignItems": "center",
   "boxSizing": "border-box",
-  "display": "inline-block",
-  "paddingLeft": 0,
+  "display": "flex",
+  "flexBasis": "0%",
+  "flexGrow": 1,
+  "flexShrink": 1,
+  "flexWrap": "wrap",
+  "overflow": "hidden",
+  "paddingBottom": "$theme.sizing.scale400",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "0",
+  "paddingTop": "$theme.sizing.scale400",
+  "position": "relative",
 }
 `;
 
