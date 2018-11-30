@@ -24,9 +24,9 @@ import type {OverridesT} from '../icon';
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: $Shape<ToastPropsT> = {
     autoHideDuration: 0,
-    closeable: false,
+    closeable: true,
     kind: KIND.info,
-    notificationType: TYPE.inline,
+    notificationType: TYPE.toast,
     // Do we need a separate handler for
     // when a notification dismisses automatically
     onClose: () => {},

@@ -9,8 +9,5 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 module.exports = {
-  TOAST_EXAMPLE: 'Toast notifications',
-  TOASTER_EXAMPLE: 'Toaster example',
-  TOASTER_ADVANCED_EXAMPLE: "Toaster's update and clear example",
-  OVERRIDES_EXAMPLE: 'Toasts with overrides',
+  NOTIFICATION_EXAMPLE: 'Inline notifications',
 };
