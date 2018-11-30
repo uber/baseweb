@@ -15,12 +15,12 @@ export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;
 export type TypeT = $Keys<typeof TYPE>;
 
-export type OptionT = $Shape<{
+export type OptionT = {
   id?: string,
   label?: React.Node,
   disabled?: boolean,
   clearableValue?: boolean,
-}>;
+};
 
 export type ValueT = Array<OptionT>;
 
