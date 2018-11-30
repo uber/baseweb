@@ -70,7 +70,7 @@ export default class Accordion extends React.Component<
     // eslint-disable-next-line flowtype/no-weak-types
     const newChildren = React.Children.map(children, (child: any, index) => {
       if (!child) return;
-      // If there is no key provide, use the panel order as default key
+      // If there is no key provided, use the panel order as default key
       // $FlowFixMe
       const key = child.key || String(index);
       let isExpanded = false;
