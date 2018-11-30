@@ -17,12 +17,12 @@ export default function MultiValue(props: any) {
     <MultiValue
       overrides={{
         Root: {
-          style: {
-            marginRight: '2px',
-            marginBottom: '2px',
-            marginLeft: '2px',
-            marginTop: '2px',
-          },
+          style: ({$theme: {sizing}}) => ({
+            marginRight: sizing.scale0,
+            marginBottom: sizing.scale0,
+            marginLeft: sizing.scale0,
+            marginTop: sizing.scale0,
+          }),
         },
       }}
       onActionClick={removeValue}

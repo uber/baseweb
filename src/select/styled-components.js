@@ -18,7 +18,7 @@ function getFont(size = SIZE.default, typography) {
   }[size];
 }
 
-function getControlPadding(props) {
+function getControlPadding(props, emptyValue) {
   const {
     $theme: {sizing},
     $size = SIZE.default,
@@ -29,21 +29,32 @@ function getControlPadding(props) {
   const paddingLeft = isSearch ? sizing.scale1000 : sizing.scale500;
   return {
     [SIZE.default]: {
-      // -2px based on the multi value component (Tag) top and bottom margin
-      paddingTop: $multi ? `calc(${sizing.scale400} - 2px)` : sizing.scale400,
-      paddingBottom: $multi
-        ? `calc(${sizing.scale400} - 2px)`
-        : sizing.scale400,
+      // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
+      paddingTop:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale400} - ${sizing.scale0})`
+          : sizing.scale400,
+      paddingBottom:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale400} - ${sizing.scale0})`
+          : sizing.scale400,
       paddingLeft,
       paddingRight: '0',
     },
     [SIZE.compact]: {
-      // -2px based on the multi value component (Tag) top and bottom margin
-      paddingTop: $multi ? `calc(${sizing.scale200} - 2px)` : sizing.scale200,
-      paddingBottom: $multi
-        ? `calc(${sizing.scale200} - 2px)`
-        : sizing.scale200,
-      paddingLeft: $multi ? `calc(${paddingLeft} - 5px)` : paddingLeft,
+      // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
+      paddingTop:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+          : sizing.scale200,
+      paddingBottom:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+          : sizing.scale200,
+      paddingLeft:
+        $multi && !emptyValue
+          ? `calc(${paddingLeft} - ${sizing.scale0})`
+          : paddingLeft,
       paddingRight: '0',
     },
   }[$size];
@@ -158,7 +169,9 @@ export const StyledValueContainer = styled(
     return {
       boxSizing: 'border-box',
       position: 'relative',
-      flex: '1 1 0%',
+      flexGrow: 1,
+      flexShrink: 1,
+      flexBasis: '0%',
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
@@ -168,7 +181,7 @@ export const StyledValueContainer = styled(
   },
 );
 
-export const StyledPlaceholder = styled('div', props => {
+export const StyledPlaceholder = styled('div', (props: SharedStylePropsT) => {
   const {
     $disabled,
     $theme: {colors},
@@ -184,7 +197,7 @@ export const StyledPlaceholder = styled('div', props => {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    ...getControlPadding(props),
+    ...getControlPadding(props, true),
   };
 });
 
@@ -213,7 +226,7 @@ export const StyledInputContainer = styled('div', props => {
     $multi,
     $size,
     $searchable,
-    $theme: {typography},
+    $theme: {typography, sizing},
   } = props;
   const font = getFont($size, typography);
   return {
@@ -228,9 +241,9 @@ export const StyledInputContainer = styled('div', props => {
     marginBottom: '0',
     marginLeft: '0',
     marginRight: '0',
-    // 2px to match the multi value component (Tag) top and bottom margin
-    paddingTop: $multi ? '2px' : '0',
-    paddingBottom: $multi ? '2px' : '0',
+    // sizing.scale0 to match the multi value component (Tag) top and bottom margin
+    paddingTop: $multi ? sizing.scale0 : '0',
+    paddingBottom: $multi ? sizing.scale0 : '0',
     paddingLeft: '0',
     paddingRight: '0',
     height: !$searchable ? font.lineHeight : 'auto',
