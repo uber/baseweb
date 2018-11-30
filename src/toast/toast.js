@@ -12,7 +12,7 @@ import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
 } from './styled-components';
-import {KIND} from './constants';
+import {KIND, TYPE} from './constants';
 
 import type {
   ToastPropsT,
@@ -26,6 +26,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     autoHideDuration: 0,
     closeable: true,
     kind: KIND.info,
+    notificationType: TYPE.toast,
     // Do we need a separate handler for
     // when a notification dismisses automatically
     onClose: () => {},
@@ -116,10 +117,11 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   };
 
   getSharedProps(): $Shape<SharedStylePropsArgT> {
-    const {kind, closeable} = this.props;
+    const {kind, notificationType, closeable} = this.props;
     const {isRendered, isVisible} = this.state;
     return {
       $kind: kind,
+      $type: notificationType,
       $closeable: closeable,
       $isRendered: isRendered,
       $isVisible: isVisible,
