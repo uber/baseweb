@@ -12,7 +12,7 @@ import {withReadme} from 'storybook-readme';
 
 import examples from './examples';
 //$FlowFixMe
-import CardReadme from '../../rfcs/card-component.md';
+import CardReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Card', module)

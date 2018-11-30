@@ -128,10 +128,10 @@ Represents content and title of each accordion item
 * `overrides: {PanelContainer, Header, ToggleIcon, Content}` - Optional.
   * See 'Presentational Components Props API' section below for type reference for presentational
     override components.
-  * `[PanelContainer]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `[Header]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `[Content]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `[ToggleIcon]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+  * `PanelContainer: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+  * `Header: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+  * `Content: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+  * `ToggleIcon: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
 
 ## `StatefulPanel` API
 
