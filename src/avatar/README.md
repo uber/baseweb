@@ -38,38 +38,24 @@ export default () => (
 ## `Avatar` API
 
 * `name: string` - Required.
-
-  Defines an alternative text description of the image.
-
+  * Defines an alternative text description of the image.
 * `overrides: {Avatar, Root}` - Optional
-
   * `Avatar?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}` - Optional.
-
-    Component to use for Avatar image styling.
-
+    * Component to use for Avatar image styling.
   * `Root?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}` - Optional.
-
-    Component to use for containing element. Displays if image fails to load.
-
+    * Component to use for containing element. Displays if image fails to load.
 * `size: string` - Optional. Defaults to `scale1000`.
-
-  Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
-
+  * Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
 * `src: string` - Required.
-
-  Image to display.
+  * Image to display.
 
 ## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported:
-
 * `$didImageFailToLoad: boolean`
-
-  Sets root element width/height if image fails to load.
-
+  * Sets root element width/height if image fails to load.
 * `$size: string`
-
-  Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
+  * Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
 
 ## Accessibility
 
