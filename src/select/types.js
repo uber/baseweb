@@ -39,6 +39,7 @@ export type OverridesT = {
   MultiValue?: OverrideT<*>,
   InputContainer?: OverrideT<*>,
   Input?: OverrideT<*>,
+  IconsContainer?: OverrideT<*>,
   SelectArrow?: OverrideT<*>,
   ClearIcon?: OverrideT<*>,
   LoadingIndicator?: OverrideT<*>,
@@ -169,6 +170,7 @@ export type AutosizeInputStateT = {
 };
 
 export type SharedStylePropsArgT = {
+  $clearable: boolean,
   $disabled: boolean,
   $error: boolean,
   $isFocused: boolean,
