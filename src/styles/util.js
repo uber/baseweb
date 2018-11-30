@@ -18,3 +18,10 @@ export function hexToRgb(hex: string = '', alpha: string = '1') {
       )}, ${alpha})`
     : null;
 }
+
+export const ellipsisText = {
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  wordWrap: 'normal',
+};
