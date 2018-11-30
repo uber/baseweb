@@ -24,23 +24,27 @@ function getBackgroundColor(
 ) {
   const isInline = type === TYPE.inline;
   return {
-    [KIND.info]: isInline ? theme.colors.primary50 : theme.colors.primary500,
+    [KIND.info]: isInline
+      ? theme.colors.notificationPrimaryBackground
+      : theme.colors.toastPrimaryBackground,
     [KIND.positive]: isInline
-      ? theme.colors.positive50
-      : theme.colors.positive500,
-    [KIND.warning]: isInline ? theme.colors.warning50 : theme.colors.warning500,
+      ? theme.colors.notificationPositiveBackground
+      : theme.colors.toastPositiveBackground,
+    [KIND.warning]: isInline
+      ? theme.colors.notificationWarningBackground
+      : theme.colors.toastWarningBackground,
     [KIND.negative]: isInline
-      ? theme.colors.negative50
-      : theme.colors.negative500,
+      ? theme.colors.notificationNegativeBackground
+      : theme.colors.toastNegativeBackground,
   }[kind];
 }
 
 function getFontColor(kind: KindTypeT, theme: ThemeT) {
   return {
-    [KIND.info]: theme.colors.primary500,
-    [KIND.positive]: theme.colors.positive500,
-    [KIND.warning]: theme.colors.warning500,
-    [KIND.negative]: theme.colors.negative500,
+    [KIND.info]: theme.colors.notificationPrimaryText,
+    [KIND.positive]: theme.colors.notificationPositiveText,
+    [KIND.warning]: theme.colors.notificationWarningText,
+    [KIND.negative]: theme.colors.notificationNegativeText,
   }[kind];
 }
 
@@ -106,7 +110,7 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
   return {
     ...$theme.typography.font300,
     pointerEvents: 'auto',
-    color: isInline ? getFontColor($kind, $theme) : $theme.colors.white,
+    color: isInline ? getFontColor($kind, $theme) : $theme.colors.toastText,
     height: 'auto',
     width: '288px',
     paddingTop: $theme.sizing.scale600,
