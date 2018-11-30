@@ -118,6 +118,10 @@ export default function createTheme(
       buttonDisabledFill: primitives.mono300,
       buttonDisabledText: primitives.mono600,
 
+      // Breadcrumbs
+      breadcrumbsText: primitives.mono900,
+      breadcrumbsSeparatorFill: primitives.mono700,
+
       // Links
       linkText: primitives.primary400,
       linkVisited: primitives.primary500,
