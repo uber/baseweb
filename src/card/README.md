@@ -73,14 +73,15 @@ export default () => (
 ## `Card` API
 
 * `action: React.Node` - Optional.
-  * Contents of the `StyledAction` component.
+  * Contents to be rendered at the bottom of the `Card`. Used to organize UI which enables user
+    action.
 * `children: React.Node` - Optional.
-  * Contents of the `StyledBody` component.
+  * Content to be rendered within the `Card` body.
 * `hasThumbnail: ({+thumbnail?: string}) => boolean` - Optional.
   * Function that takes `Card` props and returns a boolean that represents if a thumbnail will be
   rendered.
 * `headerImage: string` - Optional.
-  * `src` of the `StyledHeaderImage` component.
+  * Image `src` to be positioned at the top of the `Card`.
 * `overrides: {Action, Body, Contents, HeaderImage, Root, Thumbnail, Title}` - Optional.
   * `Action: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
   * `Body: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
@@ -90,9 +91,9 @@ export default () => (
   * `Thumbnail: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
   * `Title: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
 * `thumbnail: string` - Optional.
-  * `src` of the `StyledThumbnail` component.
+  * Image `src` that by default is rendered to the side of children content.
 * `title: React.Node` - Optional.
-  * Contents of the `StyledTitle` component.
+  * Content to render above the body content.
 
 ## Accessibility
 
