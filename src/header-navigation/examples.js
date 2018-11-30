@@ -47,6 +47,10 @@ const StyledHamburgerIcon = styled('span', props => ({
   },
 }));
 
+const ExtraStyledNavigationList = styled(NavigationList, props => ({
+  backgroundColor: 'red',
+}));
+
 let ITEMS = [];
 for (let i = 0; i < 100; i++) {
   ITEMS.push({label: `Item ${i}`});
@@ -262,6 +266,39 @@ export default {
               <Link>Centered Tab Link Three</Link>
             </NavigationItem>
           </NavigationList>
+          <NavigationList align={ALIGN.right}>
+            <NavigationItem>
+              <Link>Right Aligned Link</Link>
+            </NavigationItem>
+          </NavigationList>
+          <NavigationList align={ALIGN.right}>
+            <NavigationItem>
+              <Button>Get started</Button>
+            </NavigationItem>
+          </NavigationList>
+        </HeaderNavigation>
+      </React.Fragment>
+    );
+  },
+  [tests.HEADER_NAVIGATION_STYLED_NAV_LIST]: () => {
+    return (
+      <React.Fragment>
+        <div style={{marginTop: '50px'}} />
+        <HeaderNavigation>
+          <ExtraStyledNavigationList align={ALIGN.left}>
+            <NavigationItem>Uber</NavigationItem>
+          </ExtraStyledNavigationList>
+          <ExtraStyledNavigationList align={ALIGN.center}>
+            <NavigationItem>
+              <Link>Centered Tab Link One</Link>
+            </NavigationItem>
+            <NavigationItem>
+              <Link>Centered Tab Link Two</Link>
+            </NavigationItem>
+            <NavigationItem>
+              <Link>Centered Tab Link Three</Link>
+            </NavigationItem>
+          </ExtraStyledNavigationList>
           <NavigationList align={ALIGN.right}>
             <NavigationItem>
               <Link>Right Aligned Link</Link>

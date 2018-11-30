@@ -7,6 +7,24 @@ Object {
 }
 `;
 
+exports[`Header Navigation styled components NavigationList NavigationList: NavigationList has correct styles when set to align center 1`] = `
+Array [
+  "align",
+]
+`;
+
+exports[`Header Navigation styled components NavigationList NavigationList: NavigationList has correct styles when set to align flex-end 1`] = `
+Array [
+  "align",
+]
+`;
+
+exports[`Header Navigation styled components NavigationList NavigationList: NavigationList has correct styles when set to align flex-start 1`] = `
+Array [
+  "align",
+]
+`;
+
 exports[`Header Navigation styled components StyledRoot Root: StyledRoot has correct styles 1`] = `
 Object {
   "borderBottom": "1px solid $theme.colors.border",

@@ -28,7 +28,7 @@ describe('Header Navigation styled components', () => {
     });
   });
   describe('NavigationList', function() {
-    xtest('NavigationList', () => {
+    test('NavigationList', () => {
       const component = mount(
         <StyledNavigationList>
           <div />
