@@ -112,6 +112,7 @@
     "react-syntax-highlighter": "^10.0.1",
     "rimraf": "^2.6.2",
     "saucelabs": "^1.5.0",
+    "screener-storybook": "^0.16.2",
     "selenium-server-standalone-jar": "^3.14.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
     "static-server": "^2.2.1",
@@ -126,7 +127,6 @@
   "dependencies": {
     "memoize-one": "^4.0.2",
     "popper.js": "^1.14.3",
-    "screener-storybook": "^0.16.1",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "peerDependencies": {
