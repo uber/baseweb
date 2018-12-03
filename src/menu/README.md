@@ -154,6 +154,20 @@ export default () => (
   * `ProfileSubtitle?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `ProfileBody?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 
+## Presentational components props API
+
+These properties are passed to every presentational (styled) component that is exported.
+
+`StyledList`, `StyledListItem`, `StyledListItemProfile`, `StyledProfileImgContainer`,
+`StyledProfileImg`, `StyledProfileLabelContainer`, `StyledProfileTitle`, `StyledProfileSubtitle`,
+`StyledProfileBody`
+
+* `$isHighlighted?: boolean = false`
+  * Renders UI in 'highlighted' state.
+* `$size?: $Values<OPTION_LIST_SIZE> = OPTION_LIST_SIZE.default`
+  * Renders UI in defined scale.
+* `$theme: theme`
+
 ## Accessibility
 
 ### Keybindings
