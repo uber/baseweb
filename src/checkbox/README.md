@@ -114,6 +114,7 @@ export default () => {
   Indicates a 'half' state for the checkmark. In this case, `checked` is ignored.
 * `overrides: {Root, Checkmark, Label, Input} = {}`
   * `Label: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+    * Customized the label element.
   * `Checkmark: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
     * Customizes the checkmark element. Note: If used, many handlers may not work.
   * `Root: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.

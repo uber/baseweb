@@ -10,13 +10,13 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides';
 
 export type FormControlPropsT = {
+  caption: ?(React.Node | ((props: {}) => React.Node)),
+  children: React.Node,
+  error: boolean | React.Node | ((props: {}) => React.Node),
+  label: ?(React.Node | ((props: {}) => React.Node)),
   overrides: {
     Label?: OverrideT<*>,
     Caption?: OverrideT<*>,
     ControlContainer?: OverrideT<*>,
   },
-  label: ?(React.Node | ((props: {}) => React.Node)),
-  caption: ?(React.Node | ((props: {}) => React.Node)),
-  error: boolean | React.Node | ((props: {}) => React.Node),
-  children: React.Node,
 };
