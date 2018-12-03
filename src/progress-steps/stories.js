@@ -12,8 +12,8 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
 import examples from './examples';
-//$FlowFixMe
-import ProgressStepsREADME from '../../rfcs/progress-steps-component.md';
+
+import ProgressStepsREADME from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('ProgressSteps', module)
