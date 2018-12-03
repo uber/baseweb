@@ -1,135 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Step applies isActive prop correctly 1`] = `
-<MockStyledComponent
+<StyledStep
   $isActive={true}
   $isCompleted={false}
 >
-  <MockStyledComponent
+  <StyledIcon
     $isActive={true}
     $isCompleted={false}
   >
-    <MockStyledComponent />
-  </MockStyledComponent>
-  <MockStyledComponent
+    <StyledInnerIcon />
+  </StyledIcon>
+  <StyledContentTail
     $isActive={true}
     $isCompleted={false}
   />
-  <MockStyledComponent
+  <StyledContent
     $isActive={true}
     $isCompleted={false}
   >
-    <MockStyledComponent
+    <StyledContentTitle
       $isActive={true}
       $isCompleted={false}
     />
-    <MockStyledComponent />
-  </MockStyledComponent>
-</MockStyledComponent>
+    <StyledContentDescription />
+  </StyledContent>
+</StyledStep>
 `;
 
 exports[`Step applies isCompleted prop correctly 1`] = `
-<MockStyledComponent
+<StyledStep
   $isActive={false}
   $isCompleted={true}
 >
-  <MockStyledComponent
+  <StyledIcon
     $isActive={false}
     $isCompleted={true}
   />
-  <MockStyledComponent
+  <StyledContentTail
     $isActive={false}
     $isCompleted={true}
   />
-  <MockStyledComponent
+  <StyledContent
     $isActive={false}
     $isCompleted={true}
   >
-    <MockStyledComponent
+    <StyledContentTitle
       $isActive={false}
       $isCompleted={true}
     />
-    <MockStyledComponent />
-  </MockStyledComponent>
-</MockStyledComponent>
+    <StyledContentDescription />
+  </StyledContent>
+</StyledStep>
 `;
 
 exports[`Step applies isLast prop correctly 1`] = `
-<MockStyledComponent
+<StyledStep
   $isActive={false}
   $isCompleted={false}
 >
-  <MockStyledComponent
+  <StyledIcon
     $isActive={false}
     $isCompleted={false}
   />
-  <MockStyledComponent
+  <StyledContent
     $isActive={false}
     $isCompleted={false}
   >
-    <MockStyledComponent
+    <StyledContentTitle
       $isActive={false}
       $isCompleted={false}
     />
-    <MockStyledComponent />
-  </MockStyledComponent>
-</MockStyledComponent>
+    <StyledContentDescription />
+  </StyledContent>
+</StyledStep>
 `;
 
 exports[`Step applies title prop correctly 1`] = `
-<MockStyledComponent
+<StyledStep
   $isActive={false}
   $isCompleted={false}
 >
-  <MockStyledComponent
+  <StyledIcon
     $isActive={false}
     $isCompleted={false}
   />
-  <MockStyledComponent
+  <StyledContentTail
     $isActive={false}
     $isCompleted={false}
   />
-  <MockStyledComponent
+  <StyledContent
     $isActive={false}
     $isCompleted={false}
   >
-    <MockStyledComponent
+    <StyledContentTitle
       $isActive={false}
       $isCompleted={false}
     >
       Test Title
-    </MockStyledComponent>
-    <MockStyledComponent />
-  </MockStyledComponent>
-</MockStyledComponent>
+    </StyledContentTitle>
+    <StyledContentDescription />
+  </StyledContent>
+</StyledStep>
 `;
 
 exports[`Step renders children correctly if isActive is provided 1`] = `
-<MockStyledComponent
+<StyledStep
   $isActive={true}
   $isCompleted={false}
 >
-  <MockStyledComponent
+  <StyledIcon
     $isActive={true}
     $isCompleted={false}
   >
-    <MockStyledComponent />
-  </MockStyledComponent>
-  <MockStyledComponent
+    <StyledInnerIcon />
+  </StyledIcon>
+  <StyledContentTail
     $isActive={true}
     $isCompleted={false}
   />
-  <MockStyledComponent
+  <StyledContent
     $isActive={true}
     $isCompleted={false}
   >
-    <MockStyledComponent
+    <StyledContentTitle
       $isActive={true}
       $isCompleted={false}
     />
-    <MockStyledComponent>
+    <StyledContentDescription>
       Content
-    </MockStyledComponent>
-  </MockStyledComponent>
-</MockStyledComponent>
+    </StyledContentDescription>
+  </StyledContent>
+</StyledStep>
 `;

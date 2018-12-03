@@ -14,7 +14,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
     is-portal="true"
     key="portal"
   >
-    <MockStyledComponent
+    <StyledBackdrop
       $animate={true}
       $closeable={true}
       $isOpen={true}
@@ -44,7 +44,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
             styled-component="true"
           />
         </MockStyledComponent>
-        <MockStyledComponent
+        <StyledDialogContainer
           $animate={true}
           $closeable={true}
           $isOpen={true}
@@ -55,7 +55,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
           <div
             styled-component="true"
           >
-            <MockStyledComponent
+            <StyledDialog
               $animate={true}
               $closeable={true}
               $isOpen={true}
@@ -77,7 +77,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                 styled-component="true"
                 tabIndex="-1"
               >
-                <MockStyledComponent
+                <StyledClose
                   $animate={true}
                   $closeable={true}
                   $isOpen={true}
@@ -112,34 +112,34 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                       </svg>
                     </CloseIcon>
                   </button>
-                </MockStyledComponent>
-                <MockStyledComponent>
+                </StyledClose>
+                <ModalHeader>
                   <div
                     styled-component="true"
                   >
                     Hello world
                   </div>
-                </MockStyledComponent>
-                <MockStyledComponent>
+                </ModalHeader>
+                <ModalBody>
                   <div
                     styled-component="true"
                   >
                     Modal Body
                   </div>
-                </MockStyledComponent>
-                <MockStyledComponent>
+                </ModalBody>
+                <ModalFooter>
                   <div
                     styled-component="true"
                   >
                     Footer
                   </div>
-                </MockStyledComponent>
+                </ModalFooter>
               </div>
-            </MockStyledComponent>
+            </StyledDialog>
           </div>
-        </MockStyledComponent>
+        </StyledDialogContainer>
       </div>
-    </MockStyledComponent>
+    </StyledBackdrop>
   </div>
 </Modal>
 `;
