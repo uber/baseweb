@@ -113,13 +113,13 @@ export default () => {
 * `isIndeterminate?: boolean = false`
   Indicates a 'half' state for the checkmark. In this case, `checked` is ignored.
 * `overrides?: {Root, Checkmark, Label, Input} = {}`
-  * `Label: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+  * `Label?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * Customized the label element.
-  * `Checkmark: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+  * `Checkmark?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * Customizes the checkmark element. Note: If used, many handlers may not work.
-  * `Root: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * Wrapper element for the whole checkbox control including label.
-  * `Input: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+  * `Input?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * Replaces default functionality of checkbox. If provided, must maintain the same interface
       and logic or may break the whole component.
 * `labelPlacement?: 'top' | 'right' | 'bottom' | 'left' = 'right'`
