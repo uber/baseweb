@@ -14,6 +14,7 @@ export const Root = styled('div', props => {
     position: 'relative',
   };
 });
+Root.displayName = 'StyledRoot';
 
 export const Axis = styled('div', props => {
   const {$theme} = props;
@@ -29,6 +30,7 @@ export const Axis = styled('div', props => {
     height: sizing.scale100,
   };
 });
+Axis.displayName = 'StyledAxis';
 
 export const AxisRange = styled('div', props => {
   const {$max, $min, $index, $isRange, $value, $theme} = props;
@@ -59,10 +61,12 @@ export const AxisRange = styled('div', props => {
     width: width,
   };
 });
+AxisRange.displayName = 'StyledAxisRange';
 
 export const Tick = styled('div', props => {
   return {};
 });
+Tick.displayName = 'StyledTick';
 
 export const TickBar = styled('div', props => {
   const {$theme} = props;
@@ -77,6 +81,7 @@ export const TickBar = styled('div', props => {
     marginLeft: sizing.scale400,
   };
 });
+TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled('div', props => {
   const {
@@ -127,6 +132,7 @@ export const Thumb = styled('div', props => {
     },
   };
 });
+Thumb.displayName = 'StyledThumb';
 
 function getThumbColor(props) {
   const {
