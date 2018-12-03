@@ -18,9 +18,9 @@ export {
 } from './styled-components';
 
 export {
-  STATE_CHANGE_TYPE,
   ADJOINED,
-  SIZE,
   CUSTOM_INPUT_TYPE,
+  SIZE,
+  STATE_CHANGE_TYPE,
 } from './constants';
 export * from './types';

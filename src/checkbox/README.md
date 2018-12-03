@@ -127,13 +127,13 @@ export default () => {
 * `onChange?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
   * Handler for change events on trigger element.
 * `onMouseEnter?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
-  handler for mouseenter events on trigger element.
+  * handler for mouseenter events on trigger element.
 * `onMouseLeave?: func = () => {}`:
-  handler for mouseleave events on trigger element.
+  * handler for mouseleave events on trigger element.
 * `onFocus?: func = () => {}`:
-  handler for focus events on trigger element.
+  * handler for focus events on trigger element.
 * `onBlur?: func = () => {}`:
-  handler for blur events on trigger element.
+  * handler for blur events on trigger element.
 
 ## `StatefulCheckboxContainer` API
 
