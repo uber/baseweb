@@ -153,22 +153,6 @@ These properties are passed to every presentational (styled) component that is e
 
 `StyledRoot`, `StyledInputEnhancer`, `StyledInputContainer`, `StyledInput`
 
-* `$checked?: boolean = false`
-  * Renders UI in 'checked' state.
-
-* `$adjoined?: 'none' | 'left' | 'right' | 'both' = 'none'`
-* `$disabled?: boolean = false`
-* `$error?: boolean = false`
-* `$isFocused?: boolean = false`
-* `$required?: boolean = false`
-* `$size?: 'default' | 'compact' = 'default'`
-* `$theme: theme`
-
-
-## Presentational components props API
-
-Next properties are passed to every presentational (styled) component that input is composed of:
-
 * `$adjoined: 'none' | 'left' | 'right' | 'both' = 'none'`
   * Defines styles for inputs that are grouped with other controls.
 * `$disabled: boolean`
