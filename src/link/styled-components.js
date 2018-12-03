@@ -16,3 +16,5 @@ export const Link = styled('a', ({$theme}) => {
     textDecoration: 'none',
   };
 });
+
+Link.displayName = 'StyledLink';

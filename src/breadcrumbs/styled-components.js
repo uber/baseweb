@@ -17,6 +17,7 @@ export const StyledRoot = styled('nav', ({$theme}: StyledRootPropsT) => {
     ...$theme.typography.font450,
   };
 });
+StyledRoot.displayName = 'StyledRoot';
 
 export const StyledSeparator = styled('div', ({$theme}: StyledSeparatorT) => {
   return {
@@ -26,9 +27,11 @@ export const StyledSeparator = styled('div', ({$theme}: StyledSeparatorT) => {
     marginRight: $theme.sizing.scale300,
   };
 });
+StyledSeparator.displayName = 'StyledSeparator';
 
 export const StyledIcon = styled(ChevronRight, () => {
   return {
     verticalAlign: 'text-bottom',
   };
 });
+StyledIcon.displayName = 'StyledIcon';

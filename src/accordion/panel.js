@@ -20,7 +20,7 @@ import {
 
 import type {PanelPropsT, SharedStylePropsArgT} from './types';
 
-class ExpansionPanel extends React.Component<PanelPropsT> {
+class Panel extends React.Component<PanelPropsT> {
   static defaultProps = {
     disabled: false,
     expanded: false,
@@ -120,4 +120,4 @@ class ExpansionPanel extends React.Component<PanelPropsT> {
   }
 }
 
-export default ExpansionPanel;
+export default Panel;

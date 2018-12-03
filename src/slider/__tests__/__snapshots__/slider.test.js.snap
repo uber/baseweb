@@ -20,7 +20,7 @@ exports[`Stateless slider should render slider component: Component has correctl
     ]
   }
 >
-  <MockStyledComponent
+  <StyledRoot
     $currentThumb={-1}
     $isRange={false}
     $max={100}
@@ -42,7 +42,7 @@ exports[`Stateless slider should render slider component: Component has correctl
       onClick={[Function]}
       styled-component="true"
     >
-      <MockStyledComponent
+      <StyledAxis
         $currentThumb={-1}
         $isRange={false}
         $max={100}
@@ -62,7 +62,7 @@ exports[`Stateless slider should render slider component: Component has correctl
         <div
           styled-component="true"
         >
-          <MockStyledComponent
+          <StyledAxisRange
             $currentThumb={-1}
             $index={0}
             $isRange={false}
@@ -83,8 +83,8 @@ exports[`Stateless slider should render slider component: Component has correctl
             <div
               styled-component="true"
             />
-          </MockStyledComponent>
-          <MockStyledComponent
+          </StyledAxisRange>
+          <StyledThumb
             $currentThumb={-1}
             $index={0}
             $isRange={false}
@@ -113,10 +113,10 @@ exports[`Stateless slider should render slider component: Component has correctl
               onMouseDown={[Function]}
               styled-component="true"
             />
-          </MockStyledComponent>
+          </StyledThumb>
         </div>
-      </MockStyledComponent>
-      <MockStyledComponent
+      </StyledAxis>
+      <StyledTickBar
         $currentThumb={-1}
         $isRange={false}
         $max={100}
@@ -136,7 +136,7 @@ exports[`Stateless slider should render slider component: Component has correctl
         <div
           styled-component="true"
         >
-          <MockStyledComponent
+          <StyledTick
             $currentThumb={-1}
             $index={0}
             $isRange={false}
@@ -160,8 +160,8 @@ exports[`Stateless slider should render slider component: Component has correctl
             >
               0
             </div>
-          </MockStyledComponent>
-          <MockStyledComponent
+          </StyledTick>
+          <StyledTick
             $currentThumb={-1}
             $index={1}
             $isRange={false}
@@ -185,10 +185,10 @@ exports[`Stateless slider should render slider component: Component has correctl
             >
               100
             </div>
-          </MockStyledComponent>
+          </StyledTick>
         </div>
-      </MockStyledComponent>
+      </StyledTickBar>
     </div>
-  </MockStyledComponent>
+  </StyledRoot>
 </Slider>
 `;
