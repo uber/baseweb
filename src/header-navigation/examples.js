@@ -236,7 +236,7 @@ export default {
               <Search
                 {...options}
                 type={TYPE.search}
-                getOptionLabel={props => props.option.id}
+                getOptionLabel={props => props.option.id || null}
                 onChange={() => {}}
                 rows={8}
                 multi
