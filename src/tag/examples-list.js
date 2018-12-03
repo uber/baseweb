@@ -10,6 +10,5 @@ LICENSE file in the root directory of this source tree.
 module.exports = {
   ALL_BASIC_COLORS: 'All basic colors',
   WITH_CUSTOM_COLORS: 'With custom colors',
-  WITH_CUSTOM_COMPONENTS: 'With custom components',
   DISABLED: 'Disabled',
 };
