@@ -10,8 +10,7 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
-//$FlowFixMe
-import ProgressBarReadme from '../../rfcs/progress-bar-component.md';
+import ProgressBarReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('ProgressBar', module)

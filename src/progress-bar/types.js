@@ -16,7 +16,6 @@ export type OverridesT = {
 };
 
 export type ProgressBarPropsT = {
-  children?: React.Node,
   getProgressLabel: (value: number, successValue: number) => React.Node,
   value: number,
   successValue: number,
