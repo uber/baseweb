@@ -39,18 +39,18 @@ export default () => {
 
 ## `FormControl` API
 
-* `label: React$Node | () => React$Node = null`
+* `label?: React$Node | () => React$Node = null`
   * A label rendered above the input field.
-* `Caption: React$Node | () => React$Node = null`
+* `caption?: React$Node | () => React$Node = null`
   * A caption rendered below the input field.
-* `overrides: {Label, Caption, ControlContainer}` - Optional
+* `overrides?: {Label, Caption, ControlContainer}` - Optional
   * `Label: {props: {}, style: {}, component: ReactComponent}` - Optional.
     * Customizes the label element.
   * `Caption: {props: {}, style: {}, component: ReactComponent}` - Optional.
     * Customizes the caption element.
   * `ControlContainer: {props: {}, style: {}, component: ReactComponent}` - Optional.
     * Customizes the container element.
-* `error: React$Node | () => React$Node = null`
+* `error?: React$Node | () => React$Node = null`
   * Error state of the input. If an error prop passed it will be rendered in place of caption as an error message.
 
 ## Presentational components props API
@@ -59,7 +59,7 @@ These properties are passed to every presentational (styled) component that is e
 
 `StyledLabel`, `StyledCaption`, `StyledControlContainer`
 
-* `$disabled: boolean = false`
-* `$error: boolean | React$Node = false`
-* `$required: boolean = false`
+* `$disabled?: boolean = false`
+* `$error?: boolean | React$Node = false`
+* `$required?: boolean = false`
 * `$theme: theme`
