@@ -112,6 +112,7 @@ export const Root = styled('label', props => {
     userSelect: 'none',
   };
 });
+Root.displayName = 'StyledRoot';
 
 function getToggleThumbColor(props) {
   const {
@@ -228,6 +229,7 @@ export const Checkmark = styled('span', props => {
     ? getToggleCheckMarkStyles(props)
     : getDefaultCheckMarkStyles(props);
 });
+Checkmark.displayName = 'StyledCheckmark';
 
 export const Label = styled('div', props => {
   const {$theme, $checkmarkType} = props;
@@ -241,6 +243,8 @@ export const Label = styled('div', props => {
     lineHeight: '24px',
   };
 });
+Label.displayName = 'StyledLabel';
+
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
   opacity: 0,
@@ -250,3 +254,4 @@ export const Input = styled('input', {
   margin: 0,
   padding: 0,
 });
+Input.displayName = 'StyledInput';

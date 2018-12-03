@@ -61,6 +61,7 @@ export const Root = styled('div', props => {
     width: '100%',
   };
 });
+Root.displayName = 'StyledRoot';
 
 export const InputEnhancer = styled('div', props => {
   const {
@@ -77,6 +78,7 @@ export const InputEnhancer = styled('div', props => {
     borderRadius: getDecoratorBorderRadius($position, sizing.scale100),
   };
 });
+InputEnhancer.displayName = 'StyledInputEnhancer';
 
 export const getInputContainerStyles = (props: SharedPropsT) => {
   const {
@@ -128,6 +130,7 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
 };
 
 export const InputContainer = styled('div', getInputContainerStyles);
+InputContainer.displayName = 'StyledInputContainer';
 
 export const getInputStyles = (props: SharedPropsT) => {
   const {
@@ -156,3 +159,4 @@ export const getInputStyles = (props: SharedPropsT) => {
 };
 
 export const Input = styled('input', getInputStyles);
+Input.displayName = 'StyledInput';

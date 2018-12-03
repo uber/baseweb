@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index';
 
 export const Action = styled('div', () => ({}));
+Action.displayName = 'StyledAction';
 
 export const Body = styled('div', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
@@ -19,6 +20,7 @@ export const Body = styled('div', ({$theme}) => {
     ...typography.font400,
   };
 });
+Body.displayName = 'StyledBody';
 
 export const Contents = styled('div', ({$theme}) => {
   const {sizing} = $theme;
@@ -26,6 +28,7 @@ export const Contents = styled('div', ({$theme}) => {
     margin: sizing.scale800,
   };
 });
+Contents.displayName = 'StyledContents';
 
 export const HeaderImage = styled('img', ({$theme}) => {
   const {borders} = $theme;
@@ -36,6 +39,7 @@ export const HeaderImage = styled('img', ({$theme}) => {
     maxWidth: '100%',
   };
 });
+HeaderImage.displayName = 'StyledHeaderImage';
 
 export const Root = styled('div', ({$theme}) => {
   const {borders, lighting, colors} = $theme;
@@ -46,6 +50,7 @@ export const Root = styled('div', ({$theme}) => {
     backgroundColor: colors.backgroundAlt,
   };
 });
+Root.displayName = 'StyledWrapper';
 
 export const Thumbnail = styled('img', props => {
   const {
@@ -61,6 +66,7 @@ export const Thumbnail = styled('img', props => {
     margin: `0 0 ${sizing.scale500} ${sizing.scale500}`,
   };
 });
+Thumbnail.displayName = 'StyledThumbnail';
 
 export const Title = styled('h1', ({$hasThumbnail, $theme}) => {
   const {colors, sizing, typography} = $theme;
@@ -73,3 +79,4 @@ export const Title = styled('h1', ({$hasThumbnail, $theme}) => {
     padding: 0,
   };
 });
+Title.displayName = 'StyledTitle';

@@ -30,3 +30,4 @@ export function getSvgStyles({$theme, $size, $color}: StyledComponentParamsT) {
 }
 
 export const Svg = styled('svg', getSvgStyles);
+Svg.displayName = 'StyledSvg';

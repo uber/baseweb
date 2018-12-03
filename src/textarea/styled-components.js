@@ -12,6 +12,7 @@ import {
 } from '../input/styled-components';
 
 export const TextareaContainer = styled('div', props => {});
+TextareaContainer.displayName = 'StyledTextareaContainer';
 
 export const Textarea = styled('textarea', props => {
   return {
@@ -19,3 +20,4 @@ export const Textarea = styled('textarea', props => {
     ...getInputContainerStyles(props),
   };
 });
+Textarea.displayName = 'StyledTextarea';

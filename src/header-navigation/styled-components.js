@@ -24,6 +24,7 @@ export const Root = styled('nav', props => {
     borderBottom: `1px solid ${border}`,
   };
 });
+Root.displayName = 'StyledRoot';
 
 export const NavigationItem = styled('div', props => {
   const {$theme} = props;
@@ -35,6 +36,7 @@ export const NavigationItem = styled('div', props => {
     paddingLeft: scale800,
   };
 });
+NavigationItem.displayName = 'StyledNavigationItem';
 
 export const NavigationList: React.ComponentType<{
   align: string,
@@ -62,3 +64,4 @@ export const NavigationList: React.ComponentType<{
   }),
   ['align'],
 ): React.ComponentType<*>);
+NavigationList.displayName = 'StyledNavigationList';

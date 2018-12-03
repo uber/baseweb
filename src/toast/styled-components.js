@@ -103,6 +103,7 @@ export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
     ...getPlacement($placement),
   };
 });
+Root.displayName = 'StyledRoot';
 
 export const Body = styled('div', (props: SharedStylePropsT) => {
   const {$isVisible, $kind, $type, $theme} = props;
@@ -131,6 +132,7 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     transitionTimingFunction: $theme.animation.easeInOutCurve,
   };
 });
+Body.displayName = 'StyledBody';
 
 /**
  * DeleteAlt icon overrides
@@ -142,3 +144,4 @@ export const CloseIconSvg = styled('svg', props => {
     float: 'right',
   };
 });
+CloseIconSvg.displayName = 'StyledCloseIconSvg';
