@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 /*global module */
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
-import examples from './examples';
 
-//$FlowFixMe
-import TextareaReadme from '../../rfcs/textarea-component.md';
+import TextareaReadme from './README.md';
+
+import examples from './examples';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Textarea', module)
