@@ -11,9 +11,9 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
+import RatingREADME from './README.md';
+
 import examples from './examples';
-//$FlowFixMe
-import RatingREADME from '../../rfcs/rating-component.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Rating', module)
