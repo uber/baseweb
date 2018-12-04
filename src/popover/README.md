@@ -82,9 +82,9 @@ export default () => {
   * Event handler when popover is hidden.
 * `placement: $Values<PLACEMENT> = PLACEMENT.auto`:
   * How to position the popover relative to the target.
-* `content: React$Node | Function`:
+* `content: React.Node | Function`:
   * Content to render within the popover when it's shown.
-* `children: React$Node`:
+* `children: React.Node`:
   * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
 * `onMouseEnterDelay?: number = 200`:
   * Number of milliseconds to wait before showing the popover after mousing enters the trigger elment (for triggerType `hover`).
@@ -105,9 +105,9 @@ export default () => {
   * Whether or not to show the popover.
 * `placement?: $Values<PLACEMENT> = PLACEMENT.auto`:
   * How to position the popover relative to the target.
-* `content: React$Node | Function`:
+* `content: React.Node | Function`:
   * Content to render within the popover when it's shown.
-* `children: React$Node`:
+* `children: React.Node`:
   * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
 * `showArrow?: boolean = false`:
   * Whether or not to show the arrow pointing from the popover to the trigger.

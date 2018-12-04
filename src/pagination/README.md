@@ -46,7 +46,7 @@ export default () => <StatefulPagination numPages={6} />;
 
 ## `StatefulContainer` API
 
-* `children: ({currentPage: number, onPageChange: number}) => React$Node`
+* `children: ({currentPage: number, onPageChange: number}) => React.Node`
 * `numPages: number`
   * Max number of pages.
 * `stateReducer?: (changeType: $Values<STATE_CHANGE_TYPE>, changes: {currentPage: number}, {currentPage: number}) => {currentPage: number}`

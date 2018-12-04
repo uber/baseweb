@@ -69,7 +69,7 @@ export default () => {
 
 ## `StatefulContainer` API
 
-* `children: (props: Props) => React$Node`
+* `children: (props: Props) => React.Node`
 * `initialState: {value: string} = {value: ''}`
   * Initial state of an uncontrolled input component.
     * `value` - an initial input value.
@@ -99,9 +99,9 @@ export default () => {
   * `Input?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `After?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `EndEnhancer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-* `startEnhancer?: React$Node | Function = null`
+* `startEnhancer?: React.Node | Function = null`
   * An input helper rendered before and attached to the input field.
-* `endEnhancer: React$Node | Function = null`
+* `endEnhancer: React.Node | Function = null`
   An input helper rendered after and attached to the input field.
 
 ## `BaseInput` API

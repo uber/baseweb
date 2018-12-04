@@ -67,7 +67,7 @@ export default () => {
 
 ## `Toast` API
 
-* `children: React$Node | ({dismiss}) => React.node` - Required
+* `children: React.Node | ({dismiss}) => React.node` - Required
   * Toast notification content. The children-as-function receives a `dissmiss` method that can be called
     to dismiss the notification and can be used as a handler for an action inside the toast content.
 * `closeable?: boolean = true`

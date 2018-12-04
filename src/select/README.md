@@ -154,9 +154,9 @@ export default () => {
   * Defaults to `filterOptions` that excludes selected options for multi select. A custom method to filter options to be displayed in the dropdown.
 * `filterOutSelected?: boolean = true`
   * Defines if currently selected options are filtered out in the dropdown options.
-* `getOptionLabel?: ({option: {}) => React$Node = option => option[props.labelKey]`
+* `getOptionLabel?: ({option: {}) => React.Node = option => option[props.labelKey]`
   * A custom method to get a display value for a dropdown option.
-* `getValueLabel?: ({option: {}}) => React$Node = null`
+* `getValueLabel?: ({option: {}}) => React.Node = null`
   * A custom method to get a display value for a selected option.
 * `isLoading?: boolean = false`
   * Defines if the select if in a loading (async) state.
@@ -166,7 +166,7 @@ export default () => {
   * Sets max height of the dropdown list.
 * `multi?: boolean = false`
   * Defines if multiple options can be selected.
-* `noResultsMsg?: React$Node = 'No results found'`
+* `noResultsMsg?: React.Node = 'No results found'`
   * Message to be displayed if no options is found for a search query.
 * `onBlur?: (event: SyntheticEvent<HTMLElement>) => {}`
   * Handler for blur events on input element.
@@ -208,7 +208,7 @@ export default () => {
   * `Dropdown?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `DropdownOption?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `OptionContent?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-* `placeholder?: React$Node = 'Select...'`
+* `placeholder?: React.Node = 'Select...'`
   * Sets the placeholder.
 * `required?: boolean = false`
   * Defines if the select field is required to have a selection.
@@ -231,7 +231,7 @@ export default () => {
     * `type` - state change type
     * `nextState` - a new state changes that will be set
     * `currentState` - current full state of the component
-* `children: ({onChange, overrides}) => React$Node`
+* `children: ({onChange, overrides}) => React.Node`
   * Children function that returns `Select` instance with default or customized inner elements.
 * `onChange: ({type, option, value}) => void`:
   * handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed - `STATE_CHANGE_TYPE.select | STATE_CHANGE_TYPE.remove | STATE_CHANGE_TYPE.clear`. `option` that is beeing added or removed - `Object`. And `value` is the current select value including/excluding the currently selected/removed option.

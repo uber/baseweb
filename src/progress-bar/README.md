@@ -41,7 +41,7 @@ export default () => {
 
 ## `ProgressBar` API
 
-* `getProgressLabel?: (value, successValue) => React$Node`
+* `getProgressLabel?: (value, successValue) => React.Node`
   * The function that returns a progress bar label to display.
 * `overrides?: {Root, Bar, BarProgress, Label} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`

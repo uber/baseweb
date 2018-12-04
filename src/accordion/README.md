@@ -104,9 +104,9 @@ export default () => {
 
 Represents content and title of each accordion item
 
-* `title: React$Node`
+* `title: React.Node`
   * Title of an accordion panel.
-* `children: React$Node`
+* `children: React.Node`
   * Content visible when `Panel` is expanded.
 * `expanded?: boolean false`
   * Defines if the panel is expanded. If set to `true` the panel is rendered expanded.

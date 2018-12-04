@@ -90,7 +90,7 @@ export default () => {
   * Set to be focused (active) on selected\checked radio.
 * `disabled?: boolean = false`:
   * Disabled all radio group from being changed. To disable some of radios provide disabled flag in each of them.
-* `children: Array<React$Node>`
+* `children: Array<React.Node>`
   * As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package.
 * `required?: boolean = false`:
   * Set if the control is required to be checked.
@@ -119,7 +119,7 @@ export default () => {
   * `type` - state change type
   * `nextState` - a new state changes that will be set
   * `currentState` - current full state of the component
-* `children: ({autoFocus?: boolean, overrides?: {}, onChange: SyntheticInputEvent<HTMLInputEvent>}) => React$Node`
+* `children: ({autoFocus?: boolean, overrides?: {}, onChange: SyntheticInputEvent<HTMLInputEvent>}) => React.Node`
   * should return `RadioGroup` instance with standard or customized inner elements. It makes sense only for `StatefulRadioGroupContainer` and is ignored by `StatefulRadioGroup`
 * `disabled?: boolean = false`:
 * `name?: string = <random string>`:
@@ -130,7 +130,7 @@ export default () => {
   * Set to be focused (active) on selected\checked radio.
 * `disabled?: boolean = false`:
   * Disabled all radio group from being changed. To disable some of radios provide disabled flag in each of them.
-* `children: Array<React$Node>`
+* `children: Array<React.Node>`
   * As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package.
 * `required?: boolean = false`:
   * Set if the control is required to be checked.
@@ -155,7 +155,7 @@ export default () => {
 
 * `checked?: boolean = false`:
   * Check or uncheck the control.
-* `children: React$Node = ''`:
+* `children: React.Node = ''`:
   * Component or String value for label of checkbox.
 * `disabled?: boolean = false`:
   * Disable control from being changed.

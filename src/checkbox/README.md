@@ -102,7 +102,7 @@ export default () => {
   Focus the checkbox on initial render.
 * `checkmarkType?: $Values<STYLE_TYPE> = STYLE_TYPE.default`
   * the style to be applied to a checkmark.
-* `children?: React$Node = ''`
+* `children?: React.Node = ''`
   * Component or String value for label of checkbox.
 * `disabled?: boolean = false`
   * Disable the checkbox from being changed.
