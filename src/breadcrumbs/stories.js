@@ -11,9 +11,8 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
+import BreadcrumbsREADME from './README.md';
 import examples from './examples';
-//$FlowFixMe
-import BreadcrumbsREADME from '../../rfcs/breadcrumbs-component.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Breadcrumbs', module)
