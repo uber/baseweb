@@ -6,7 +6,7 @@
 
 ```javascript
 import * as React from 'react';
-import {HeaderNavigation, NavigationItem, NavigationList} from 'baseui/header-navigation';
+import {HeaderNavigation, StyledNavigationItem as NavigationItem, StyledNavigationList as NavigationList} from 'baseui/header-navigation';
 import {Button, KIND} from 'baseui/button';
 
 export default () => <HeaderNavigation>
@@ -25,7 +25,7 @@ export default () => <HeaderNavigation>
 
 ```javascript
 import * as React from 'react';
-import {HeaderNavigation, NavigationItem, NavigationList} from 'baseui/header-navigation';
+import {HeaderNavigation, StyledNavigationItem as NavigationItem, StyledNavigationList as NavigationList} from 'baseui/header-navigation';
 import {Button, KIND} from 'baseui/button';
 import {StatefulMenu as Menu} from 'baseui/menu';
 const ITEMS = [{label: 'menu item 1'}, {label: 'menu item 2'}];
@@ -54,8 +54,8 @@ export default (props) => <HeaderNavigation
 ## Exports
 
 * `HeaderNavigation`
-* `NavigationItem`
-* `NavigationList`
+* `StyledNavigationItem`
+* `StyledNavigationList`
 * `StyledRoot`
 * `ALIGN`
 
@@ -64,14 +64,14 @@ export default (props) => <HeaderNavigation
 * `children: React$Node` - Required.
   All the children of header navigation. It accepts any components, but it is useful to use `NavigationList` and `NavigationItem` to align and follow style guides.
   
-## `NavigationList` API
+## `StyledNavigationList` API
 
 * `align: ALIGN.right | ALIGN.left | ALIGN.center` - Optional.
   Alignment of elements inside of navigation list
 * `children: React$Node` - Required.
   All the children of NavigationList.  
   
-## `NavigationItem` API
+## `StyledNavigationItem` API
 
 * `children: React$Node` - Required.
   All the children of NavigationItem.

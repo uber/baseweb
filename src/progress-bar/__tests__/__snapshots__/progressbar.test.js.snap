@@ -17,23 +17,23 @@ exports[`Stateless progress bar should render component: Component has correct r
       role="progressbar"
       styled-component="true"
     >
-      <MockStyledComponent
+      <StyledBar
         $successValue={100}
         $value={75}
       >
         <div
           styled-component="true"
         >
-          <MockStyledComponent
+          <StyledBarProgress
             $successValue={100}
             $value={75}
           >
             <div
               styled-component="true"
             />
-          </MockStyledComponent>
+          </StyledBarProgress>
         </div>
-      </MockStyledComponent>
+      </StyledBar>
     </div>
   </MockStyledComponent>
 </ProgressBar>

@@ -9948,9 +9948,9 @@ screener-ngrok@2.2.27:
     request "^2.55.0"
     uuid "^3.0.0"
 
-screener-runner@^0.10.21:
-  version "0.10.21"
-  resolved "https://registry.yarnpkg.com/screener-runner/-/screener-runner-0.10.21.tgz#67799a858102c35af6cccb940eb7f921e5b4af32"
+screener-runner@^0.10.22:
+  version "0.10.22"
+  resolved "https://registry.yarnpkg.com/screener-runner/-/screener-runner-0.10.22.tgz#53e655570a6679314ce25c64ac72cebf64b7a8bd"
   dependencies:
     bluebird "~3.4.6"
     colors "~1.1.2"
@@ -9965,9 +9965,9 @@ screener-runner@^0.10.21:
     requestretry "~2.0.2"
     screener-ngrok "2.2.27"
 
-screener-storybook@^0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/screener-storybook/-/screener-storybook-0.16.1.tgz#8825c2a52d721e70608a984cee42d7422784f7eb"
+screener-storybook@^0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/screener-storybook/-/screener-storybook-0.16.2.tgz#3c64e71e8f006331c81742dbbc414be8ddc67c51"
   dependencies:
     bluebird "~3.4.6"
     colors "~1.1.2"
@@ -9981,7 +9981,7 @@ screener-storybook@^0.16.1:
     react-dom "^16.0.0"
     request "^2.87.0"
     requestretry "~1.12.2"
-    screener-runner "^0.10.21"
+    screener-runner "^0.10.22"
     semver "~5.6.0"
 
 select@^1.1.2:

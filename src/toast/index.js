@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 export {default as toaster, ToasterContainer} from './toaster';
 export {default as Toast} from './toast';
 // Constants
-export {KIND, PLACEMENT} from './constants';
+export {KIND, TYPE, PLACEMENT} from './constants';
 // Styled elements
 export {
   Root as StyledRoot,

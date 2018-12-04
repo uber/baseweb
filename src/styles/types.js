@@ -106,6 +106,10 @@ export type ColorsT = {
   buttonDisabledFill: string,
   buttonDisabledText: string,
 
+  // Breadcrumbs
+  breadcrumbsText: string,
+  breadcrumbsSeparatorFill: string,
+
   // Links
   linkText: string,
   linkVisited: string,
@@ -153,12 +157,29 @@ export type ColorsT = {
   inputFillDisabled: string,
   inputTextDisabled: string,
 
+  // Notification
+  notificationPrimaryBackground: string,
+  notificationPrimaryText: string,
+  notificationPositiveBackground: string,
+  notificationPositiveText: string,
+  notificationWarningBackground: string,
+  notificationWarningText: string,
+  notificationNegativeBackground: string,
+  notificationNegativeText: string,
+
   // Menu
   menuFillHover: string,
 
   // Shadow
   shadowFocus: string,
   shadowError: string,
+
+  // Toast
+  toastText: string,
+  toastPrimaryBackground: string,
+  toastPositiveBackground: string,
+  toastWarningBackground: string,
+  toastNegativeBackground: string,
 };
 
 export type TypographyT = {

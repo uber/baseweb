@@ -6,10 +6,7 @@ Object {
   "onActionClick": [MockFunction],
   "overrides": Object {
     "Root": Object {
-      "style": Object {
-        "marginBottom": "0",
-        "marginRight": "0",
-      },
+      "style": [Function],
     },
   },
 }

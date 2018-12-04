@@ -65,7 +65,6 @@ export default {
     return (
       <Centered>
         <Accordion>
-          {/* $FlowFixMe */}
           <Panel title="Accordion panel 1">{content}</Panel>
           <Panel title="Accordion panel 2">{content}</Panel>
           <Panel title="Accordion panel 3">{content}</Panel>
@@ -77,7 +76,6 @@ export default {
     return (
       <Centered>
         <Accordion initialState={{expanded: ['panel-1']}}>
-          {/* $FlowFixMe */}
           <Panel
             key="panel-1"
             title="Accordion panel 1"
@@ -98,7 +96,6 @@ export default {
   [examples.SINGLE_STATEFUL_PANEL]: function Story3() {
     return (
       <Centered>
-        {/* $FlowFixMe */}
         <StatefulPanel title="Expandable panel">{content}</StatefulPanel>
       </Centered>
     );

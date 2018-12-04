@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-
+import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides';
 import type {ThemeT} from '../styles/types';
 import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants';
@@ -15,12 +15,12 @@ export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;
 export type TypeT = $Keys<typeof TYPE>;
 
-export type OptionT = $Shape<{
+export type OptionT = {
   id?: string,
   label?: React.Node,
   disabled?: boolean,
   clearableValue?: boolean,
-}>;
+};
 
 export type ValueT = Array<OptionT>;
 
@@ -39,6 +39,7 @@ export type OverridesT = {
   MultiValue?: OverrideT<*>,
   InputContainer?: OverrideT<*>,
   Input?: OverrideT<*>,
+  IconsContainer?: OverrideT<*>,
   SelectArrow?: OverrideT<*>,
   ClearIcon?: OverrideT<*>,
   LoadingIndicator?: OverrideT<*>,
@@ -169,6 +170,7 @@ export type AutosizeInputStateT = {
 };
 
 export type SharedStylePropsArgT = {
+  $clearable: boolean,
   $disabled: boolean,
   $error: boolean,
   $isFocused: boolean,

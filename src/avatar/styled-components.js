@@ -28,6 +28,7 @@ export const Avatar = styled('img', (props: StylePropsT) => {
     width: themedSize,
   };
 });
+Avatar.displayName = 'StyledAvatar';
 
 export const Root = styled('div', (props: StylePropsT) => {
   const {$didImageFailToLoad} = props;
@@ -45,3 +46,4 @@ export const Root = styled('div', (props: StylePropsT) => {
     width: $didImageFailToLoad ? themedSize : null,
   };
 });
+Root.displayName = 'StyledRoot';

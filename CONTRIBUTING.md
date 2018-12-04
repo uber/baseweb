@@ -1,8 +1,20 @@
+---
+category: Contributing
+page: Getting started
+---
+
 # Contributing to baseui
 
 ## Getting started
 
 1. Clone the repo locally and run `yarn` to install dependencies from npm.
+
+```bash
+git clone git@github.com:uber-web/baseui.git
+cd baseui
+yarn
+```
+
 2. To start a website to develop against, run `yarn storybook`.
 3. Each component maintains an `examples.js` file. Edit or add to that file to see changes to the storybook.
 4. To unit test your changes run `yarn test` or `yarn test --watch` to continously run the relevant tests.
@@ -18,6 +30,7 @@ This document helps you navigate the process.
 
 2.  Once your RFC PR is approved, start implementing the component
 
+- You can find the component template in `src/template-component`
 - To make the review process fast, please try to send small PRs, if you can
 - All T0D0s in the code have to have a corresponding issue created. Refer to the created issue in the T0D0s following the format `// TOD0(#44): Something`
 

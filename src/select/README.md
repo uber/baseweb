@@ -117,6 +117,7 @@ export default () => {
 * `StyledInputContainer`
 * `StyledInput`
 * `StyledInputSizer`
+* `StyledIconsContainer`
 * `StyledSelectArrow`
 * `StyledClearIcon`
 * `StyledSearchIcon`
@@ -135,11 +136,11 @@ export default () => {
 
 * `autoFocus?: boolean = false`
   * Defines if select element is focused on the first mount.
-* `backspaceRemoves?: boolean = false`
+* `backspaceRemoves?: boolean = true`
   * Defines if options can be removed by pressing backspace.
 * `clearable?: boolean = true`
   * Defines if the select value can be cleared. If true a clear icon is rendered when a value is set.
-* `closeOnSelect?: boolean = false`
+* `closeOnSelect?: boolean = true`
   * Defines if the menu closes after a selection if made.
 * `deleteRemoves?: boolean = true`
   * Defines if options can be removed by pressing backspace.
@@ -179,7 +180,7 @@ export default () => {
   * change handler for an underlying input element to be called when a search query value is changed.
 * `onCloseResetsInput?: boolean = true`
   * Defines if the input value is reset to an empty string when dropdown is closed.
-* `onSelectResetsInput?: boolean = false`
+* `onSelectResetsInput?: boolean = true`
   * Defines if the input value is reset to an empty string when a selection is made.
 * `onOpen?: () => void = null`
   * A function that is called when the dropdown opens.
@@ -189,7 +190,7 @@ export default () => {
   * Defines if the dropdown opens on a click event on the select.
 * `options?: Array<{}> = []`
   * Options to be displayed in the dropdown. If an option has a `disabled` prop value set to `true` it will be rendered as a disabled option in the dropdown.
-* `overrides?: {Root, ControlContainer, Placeholder, ValueContainer, SingleValue, MultiValue, InputContainer, Input, SelectArrow, ClearIcon, LoadingIndicator, SearchIcon, DropdownContainer, Dropdown, DropdownOption, OptionContent} = {}`
+* `overrides?: {Root, ControlContainer, Placeholder, ValueContainer, SingleValue, MultiValue, InputContainer, Input, IconsContainer, SelectArrow, ClearIcon, LoadingIndicator, SearchIcon, DropdownContainer, Dropdown, DropdownOption, OptionContent} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `ControlContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Placeholder?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
@@ -198,6 +199,7 @@ export default () => {
   * `MultiValue?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `InputContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Input?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `IconsContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `SelectArrow?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `ClearIcon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `LoadingIndocator?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
@@ -234,22 +236,6 @@ export default () => {
 * `onChange: ({type, option, value}) => void`:
   * handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed - `STATE_CHANGE_TYPE.select | STATE_CHANGE_TYPE.remove | STATE_CHANGE_TYPE.clear`. `option` that is beeing added or removed - `Object`. And `value` is the current select value including/excluding the currently selected/removed option.
 
-## `SIZE` Constant
-
-* `default`
-* `compact`
-
-## `TYPE` Constant
-
-* `select`
-* `search`
-
-## `STATE_CHANGE_TYPE` Constant
-
-* `select` - event type when a new option is selected
-* `remove` - event type when an previously selected option is removed
-* `clear` - event type when a select value is cleared
-
 ## Presentational components API
 
 These properties are passed to every presentational (styled) component that is exported:
@@ -268,10 +254,26 @@ These properties are passed to every presentational (styled) component that is e
 * `$multi: boolean`
 * `$required: boolean`
 * `$searchable: boolean`
-* `$size: SIZE.default | SIZE.compact`
-* `$type: TYPE.select | TYPE.search`
+* `$size: $Values<SIZE>`
+* `$type: $Values<TYPE>`
 
 * `$width: string` - is passed to the `Input` element only
 
 * `$selected: boolean` - is passed to the `OptionContent` element only
 * `$isHighlighted: boolean` - is passed to the `OptionContent` element only
+
+## `SIZE` Constant
+
+* `default`
+* `compact`
+
+## `TYPE` Constant
+
+* `select`
+* `search`
+
+## `STATE_CHANGE_TYPE` Constant
+
+* `select` - event type when a new option is selected
+* `remove` - event type when an previously selected option is removed
+* `clear` - event type when a select value is cleared

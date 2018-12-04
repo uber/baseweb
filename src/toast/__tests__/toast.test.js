@@ -13,7 +13,7 @@ import {Toast, StyledBody, StyledCloseIcon, KIND} from '../index';
 jest.useFakeTimers();
 
 describe('Toast', () => {
-  test('basic functionality', () => {
+  test('basic toast functionality', () => {
     const wrapper = mount(<Toast>Notification</Toast>);
 
     expect(wrapper.instance().state.isRendered).toBe(true);
