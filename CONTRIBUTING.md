@@ -1,8 +1,20 @@
+---
+category: Contributing
+page: Getting started
+---
+
 # Contributing to baseui
 
 ## Getting started
 
 1. Clone the repo locally and run `yarn` to install dependencies from npm.
+
+```bash
+git clone git@github.com:uber-web/baseui.git
+cd baseui
+yarn
+```
+
 2. To start a website to develop against, run `yarn storybook`.
 3. Each component maintains an `examples.js` file. Edit or add to that file to see changes to the storybook.
 4. To unit test your changes run `yarn test` or `yarn test --watch` to continously run the relevant tests.
