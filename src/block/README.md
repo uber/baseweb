@@ -39,56 +39,56 @@ The above example might turn into:
 
 All other props are spread onto the base element.
 
-* `children: (props: Props) => React.Node` - Optional.
-* `as: string | React.Node` - Optional.
+* `children?: (props: Props) => React.Node = undefined`
+* `as?: string | React.Node = 'div'`
   * Modifies the base element used to render the block.
-* `overrides: {Block}` - Optional.
-  * Block: {style: {} | () => {}} - Optional.
-* `color: String` - Optional.
+* `overrides?: {Block} = {}`
+  * `Block?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+* `color?: string`
   * Accepts all themeable color properties (`primary200`, etc.).
-* `font: String` - Optional.
+* `font?: string`
   * Accepts all themeable font properties (`font200`, etc.).
-* `alignContent: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch'` - Optional.
-* `alignItems: 'start' | 'end' | 'center' | 'baseline' | 'stretch'` - Optional.
-* `alignSelf: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch'` - Optional.
-* `flexDirection: 'row' | 'column'` - Optional.
-* `display: 'none' | 'flex' | 'block' | 'inline-block'` - Optional.
-* `flex: 'grow' | 'shrink' | 'none'` - Optional.
-* `justifyContent: 'start' | 'end' | 'center' | 'between' | 'around'` - Optional.
-* `justifySelf: string` - Optional.
-* `position: 'static' | 'absolute' | 'relative' | 'fixed'` - Optional.
-* `width: string` - Optional.
-* `minWidth: string` - Optional.
-* `maxWidth: string` - Optional.
-* `height: string` - Optional.
-* `minHeight: string` - Optional.
-* `maxHeight: string` - Optional.
-* `overflow: 'visible' | 'hidden' | 'scroll' | 'scrollX' | 'scrollY' | 'auto'` - Optional.
-* `margin: string` - Optional.
+* `alignContent?: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch'`
+* `alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch'`
+* `alignSelf?: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch'`
+* `flexDirection?: 'row' | 'column'`
+* `display?: 'none' | 'flex' | 'block' | 'inline-block'`
+* `flex?: 'grow' | 'shrink' | 'none'`
+* `justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around'`
+* `justifySelf?: string`
+* `position?: 'static' | 'absolute' | 'relative' | 'fixed'`
+* `width?: string`
+* `minWidth?: string`
+* `maxWidth?: string`
+* `height?: string`
+* `minHeight?: string`
+* `maxHeight?: string`
+* `overflow?: 'visible' | 'hidden' | 'scroll' | 'scrollX' | 'scrollY' | 'auto'`
+* `margin?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `marginTop: string` - Optional.
+* `marginTop?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `marginRight: string` - Optional.
+* `marginRight?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `marginBottom: string` - Optional.
+* `marginBottom?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `marginLeft: string` - Optional.
+* `marginLeft?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `padding: string` - Optional.
+* `padding?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `paddingTop: string` - Optional.
+* `paddingTop?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `paddingRight: string` - Optional.
+* `paddingRight?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `paddingBottom: string` - Optional.
+* `paddingBottom?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `paddingLeft: string` - Optional.
+* `paddingLeft?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
-* `flexWrap: boolean` - Optional.
-* `left: string` - Optional.
-* `top: string` - Optional.
-* `right: string` - Optional.
-* `bottom: string` - Optional.
+* `flexWrap?: boolean`
+* `left?: string`
+* `top?: string`
+* `right?: string`
+* `bottom?: string`
 
 ## Motivation
 

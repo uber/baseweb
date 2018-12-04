@@ -12,8 +12,6 @@ import {withReadme} from 'storybook-readme';
 import RadioGroupReadme from './README.md';
 import examples from './examples';
 
-//$FlowFixMe
-
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('RadioGroup', module)
     .addDecorator(withReadme(RadioGroupReadme))

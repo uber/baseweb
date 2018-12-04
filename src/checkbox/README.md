@@ -85,14 +85,14 @@ export default () => {
   * Use this component if you'd like state to be managed by the component.
 * `StatefulCheckboxContainer`
   * Use this component to wrap your own custom UI that can behave like a checkbox.
-* `STATE_TYPE`
-  * State change types used by `StatefulCheckboxContainer`'s `stateReducer`.
-* `STYLE_TYPE`
-  * Used to display UI as a toggle switch or checkmark.
 * `StyledRoot`
 * `StyledCheckmark`
 * `StyledLabel`
 * `StyledInput`
+* `STATE_TYPE`
+  * State change types used by `StatefulCheckboxContainer`'s `stateReducer`.
+* `STYLE_TYPE`
+  * Used to display UI as a toggle switch or checkmark.
 
 ## `Checkbox` API
 
@@ -189,3 +189,12 @@ These properties are passed to every presentational (styled) component that is e
 * `$labelPlacement?: 'top' | 'right' | 'bottom' | 'left' = 'right'`
   * Determines label position in relation to input element.
 * `$theme: theme`
+
+## STATE_TYPE Constant
+
+* `change`
+
+## STYLE_TYPE Constant
+
+* `default`
+* `toggle`

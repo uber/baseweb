@@ -103,7 +103,7 @@ export default () => (
 * `items: Array<any>`
   * List of menu items.
 * `getRequiredItemProps: (item: any, index: number) => ({key: string, id: string}) = () => {}`
- *  Function to get props for each rendered item. This will have some defaults needed for keyboard
+  * Function to get props for each rendered item. This will have some defaults needed for keyboard
     bindings to work properly. Every rendered item should call this. This is a function to ensure
     that it is used.
 * `highlightedIndex?: number = null`
@@ -168,9 +168,24 @@ These properties are passed to every presentational (styled) component that is e
   * Renders UI in defined scale.
 * `$theme: theme`
 
+## `KEY_STRINGS` Constant
+
+* `moveUp`
+* `moveDown`
+
+## `STATE_CHANGE_TYPES` Constant
+
+* `ArrowUp`
+* `ArrowDown`
+* `Enter`
+* `Space`
+* `Escape`
+* `Backspace`
+
 ## Accessibility
 
 ### Keybindings
+
 * `KeyDown / KeyUp`
   * Will cycle down / up the menu list, highlighting items as needed
 * `Enter`

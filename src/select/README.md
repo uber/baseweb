@@ -234,6 +234,11 @@ export default () => {
 * `onChange: ({type, option, value}) => void`:
   * handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed - `STATE_CHANGE_TYPE.select | STATE_CHANGE_TYPE.remove | STATE_CHANGE_TYPE.clear`. `option` that is beeing added or removed - `Object`. And `value` is the current select value including/excluding the currently selected/removed option.
 
+## `SIZE` Constant
+
+* `default`
+* `compact`
+
 ## `TYPE` Constant
 
 * `select`

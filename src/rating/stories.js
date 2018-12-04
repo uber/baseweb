@@ -12,7 +12,6 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
 import RatingREADME from './README.md';
-
 import examples from './examples';
 
 Object.entries(examples).forEach(([description, example]) =>

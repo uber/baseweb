@@ -143,6 +143,38 @@ These properties are passed to every presentational (styled) component that is e
 * `$ref: React.Ref<*>`
   * React ref for the popover element (should be passed down to dom element).
 
+## `ACCESSIBILITY_TYPE` Constant
+
+* `none`
+* `menu`
+* `tooltip`
+
+## `PLACEMENT` Constant
+
+* `auto`
+* `topLeft`
+* `top`
+* `topRight`
+* `rightTop`
+* `right`
+* `rightBottom`
+* `bottomRight`
+* `bottom`
+* `bottomLeft`
+* `leftBottom`
+* `left`
+* `leftTop`
+
+## `TRIGGER_TYPE` Constant
+
+* `click`
+* `hover`
+
+## `STATE_CHANGE_TYPE` Constant
+
+* `open`
+* `close`
+
 ## Implementation Details
 
 ### Dependencies

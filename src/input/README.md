@@ -166,3 +166,23 @@ These properties are passed to every presentational (styled) component that is e
 * `$size: 'default' | 'compact'`
   * Renders UI in provided size.
 * `$theme: theme`
+
+## `STATE_CHANGE_TYPE` Constant
+
+* `change`
+
+## `CUSTOM_INPUT_TYPE` Constant
+
+* `textarea`
+
+## `ADJOINED` Constant
+
+* `none`
+* `left`
+* `right`
+* `both`
+
+## `SIZE` Constant
+
+* `default`
+* `compact`

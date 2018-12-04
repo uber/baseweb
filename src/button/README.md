@@ -56,48 +56,71 @@ Rough DOM composition:
 ## Exports
 
 * `Button`
-* `StyledButton`
+* `StyledBaseButton`
 * `StyledStartEnhancer`
 * `StyledEndEnhancer`
-* `StyledLoadingSpinnerContainer`
 * `StyledLoadingSpinner`
+* `StyledLoadingSpinnerContainer`
 * `KIND`
 * `SIZE`
 * `SHAPE`
 
 ## `Button` API
 
-* `children: (props: Props) => React.Node | React.Node` - Required.
+* `children: (props: Props) => React.Node | React.Node`
   * This can be an SVG icon as well.
-* `startEnhancer: node | function` - Optional.
+* `startEnhancer?: (props: Props) => React.Node | React.Node = null`
   * A helper rendered at the start of the button.
-* `endEnhancer: node | function` - Optional.
+* `endEnhancer?: (props: Props) => React.Node | React.Node = null`
   * A helper rendered at the end of the button.
-* `disabled: boolean` - Optional.
+* `disabled?: boolean = false`
   * Defines if the button disabled.
-* `overrides: {BaseButton, StartEnhancer, EndEnhancer}` - Optional.
-  * `BaseButton: ReactComponent` - Optional.
-  * `StartEnhancer: ReactComponent` - Optional.
-  * `EndEnhancer: ReactComponent` - Optional.
-* `size: 'default' | 'compact'` - Optional. Default is `default`.
+* `overrides: {BaseButton, StartEnhancer, EndEnhancer} = {}`
+  * `BaseButton?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `StartEnhancer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `EndEnhancer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `LoadingSpinnerContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `LoadingSpinner?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+* `size?: $Values<SIZE> = SIZE.default`
   * Defines the size of a button.
-* `shape: 'default' | 'round' | 'square'` - Optional. Default is `default`.
+* `shape?: $Values<SHAPE> = SHAPE.default`
   * Defines the shape of a button.
-* `kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'` - Optional. Default is `primary`.
+* `kind?: $Values<KIND> = KIND.primary`
   * Defines the kind (purpose) of a button
-* `isLoading: boolean` - Optional. Default is `false`.
+* `isLoading?: boolean = false`
   * Show loading button style and spinner.
 * `...rest`
-  * Passed to BaseButton as props. These can include `accesskey`, `disabled`, `formtarget`, `type`, `value` and more.
+  * Passed to BaseButton as props. These can include `accesskey`, `formtarget`, `type`, `value` and more.
 
 ## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported:
 
-* `$size: 'default' | 'compact'`
-* `$shape: 'default' | 'round' | 'square'`
-* `$kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
+`StyledBaseButton`, `StyledStartEnhancer`, `StyledEndEnhancer`, `StyledLoadingSpinner`,
+`StyledLoadingSpinnerContainer`
+
+* `$size?: $Values<SIZE> = SIZE.default`
+* `$shape?: $Values<SHAPE> = SHAPE.default`
+* `$kind?: $Values<KIND> = KIND.primary`
 * `$theme: theme`
+
+## `KIND` Constant
+
+* `primary`
+* `secondary`
+* `tertiary`
+* `minimal`
+
+## `SIZE` Constant
+
+* `default`
+* `compact`
+
+## `SHAPE` Constant
+
+* `default`
+* `round`
+* `square`
 
 ## Accessibility
 

@@ -59,6 +59,7 @@ class App extends React.Component {
 * `StyledClose`
 * `SIZE`
 * `ROLE`
+* `CLOSE_SOURCE`
 
 ## `Modal` API
 
@@ -113,6 +114,23 @@ These properties are passed to every presentational (styled) component that is e
 * `$closeable: boolean`
   * Defines if the modal can be closed.
 * `$theme: theme`
+
+## `SIZE` Constant
+
+* `default`
+* `full`
+* `auto`
+
+## `ROLE` Constant
+
+* `dialog`
+* `alertdialog`
+
+## `CLOSE_SOURCE` Constant
+
+* `closeButton`
+* `backdrop`
+* `escape`
 
 ### Key Design Decisions
 

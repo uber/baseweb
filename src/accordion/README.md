@@ -73,7 +73,7 @@ export default () => {
 
 ## `Accordion` API
 
-* `accordion: boolean` - Optional. Default is `true`.
+* `accordion?: boolean = true`
   * Determines how many panels may be expanded at a time. If set to `true` it will collapse a
     current panel when a new panel is expanded. If set to `false` more than one panel may be
     expanded at a time.
@@ -104,51 +104,51 @@ export default () => {
 
 Represents content and title of each accordion item
 
-* `title: React$Node` - Required.
+* `title: React$Node`
   * Title of an accordion panel.
-* `children: React$Node` - Required.
+* `children: React$Node`
   * Content visible when `Panel` is expanded.
-* `expanded: boolean` - Optional. Default is `false`.
+* `expanded?: boolean false`
   * Defines if the panel is expanded. If set to `true` the panel is rendered expanded.
   * Note: `expanded` property on `Panel`s provided as `Accordion` children will be ignored. This
     is handled by the `Accordian` component implicitly.
-* `disabled: boolean` - Optional.
+* `disabled?: boolean = false`
   * Defaults to the `disabled` value provided by the parent `Accordion` component.
   * Determines if the panel is disabled. When explicitly set on `Panel` it will override the disabled
     prop that comes from the `Accordion` component.
-* `key: string` - Optional. Defaults to the child index.
+* `key?: string = <child index>`
   * The key of a `Panel`. Used to maintain list of expanded panels. Must be unique across children
     of the `Accordion`.
-* `onChange: ({expanded: boolean}) => {}` - Optional.
+* `onChange: ({expanded: boolean}) => {} = () => {}`
   * Handler for individual `Panel` change events.
-* `onClick: (event: Event) => {}` - Optional.
+* `onClick?: (event: Event) => {} = () => {}`
   * Handler for the `Header`'s click events.
-* `onKeyDown: (event: KeyboardEvent) => {}` - Optional.
+* `onKeyDown?: (event: KeyboardEvent) => {} => () => {}`
   * Handler for the `Header`'s keyDown events.
-* `overrides: {PanelContainer, Header, ToggleIcon, Content}` - Optional.
-  * See 'Presentational Components Props API' section below for type reference for presentational
-    override components.
-  * `PanelContainer: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `Header: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `Content: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `ToggleIcon: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+* `overrides?: {PanelContainer, Header, ToggleIcon, Content} = {}`
+  * `PanelContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Header?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Content?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `ToggleIcon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 
 ## `StatefulPanel` API
 
 All props of the `Panel` component except for `expanded`.
 
-* `initialState: {expanded: boolean}` - Optional.
-  Initial state of a stateful panel component. `expanded` prop indicates if the panel is initially expanded. If set to `true` the panel will be expanded initially
-* `stateReducer: (type: string, nextState: {expanded: boolean}, currentState: {expanded: boolean}) => stateToSet: {expanded: boolean}` - Optional.
+* `initialState?: {expanded: boolean} = {expanded: false}`
+  * Initial state of a stateful panel component. `expanded` prop indicates if the panel is initially expanded. If set to `true` the panel will be expanded initially
+* `stateReducer?: (type: string, nextState: {expanded: boolean}, currentState: {expanded: boolean}) => stateToSet: {expanded: boolean}` - Optional.
   * A state change handler.
-  * `type` - state change type
-  * `nextState` - a new state changes that will be set
-  * `currentState` - current state of the component
-  * `stateToSet` - a return value that the state will be updated with
+    * `type` - state change type
+    * `nextState` - a new state changes that will be set
+    * `currentState` - current state of the component
+    * `stateToSet` - a return value that the state will be updated with
 
 ## Presentational components props API
 
-These properties are passed to every presentational (styled) component that is exported:
+These properties are passed to every presentational (styled) component that is exported.
+
+`StyledRoot`, `StyledPanelContainer`, `StyledHeader`, `StyledContent`, `StyledToggleIcon`
 
 * `$disabled: boolean`
   * Passed to `Accordion`'s `Root` element as well as all presentational elements on a `Panel`
@@ -157,7 +157,7 @@ These properties are passed to every presentational (styled) component that is e
   * Passed to all presentational elements of a `Panel` component and indicates if a panel is
     currently expanded.
 
-## STATE_CHANGE_TYPE Constant
+## `STATE_CHANGE_TYPE` Constant
 
 * `expand` - Used for the expanded state type change
 

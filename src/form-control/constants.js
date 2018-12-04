@@ -11,4 +11,5 @@ export const STYLETRON_PROP_MAPPER = {
   disabled: true,
   error: true,
   required: true,
+  size: true,
 };

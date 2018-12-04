@@ -72,6 +72,10 @@ export default () => <StatefulPagination numPages={6} />;
 * `onNextClick: (event: SyntheticEvent<>) => void` - Optional
   * Callback for next button click.
 
+## `STATE_CHANGE_TYPE` Constant
+
+* `changePage`
+
 ### Accessibility
 
 How can this component be used via keyboard controls?

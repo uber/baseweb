@@ -11,9 +11,9 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
-import examples from './examples';
-//$FlowFixMe
 import BlockREADME from './README.md';
+
+import examples from './examples';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Block', module)

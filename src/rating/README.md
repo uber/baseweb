@@ -75,7 +75,6 @@ export default EmoticonExample;
   * `Item?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * Component to use for emoticon ratings.
 
-
 ## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported.

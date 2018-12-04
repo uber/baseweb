@@ -41,42 +41,42 @@ export default () => <Button endEnhancer={() => <Upload />}>Upload</Button>;
 
 ## Exports
 
-- `Icon` (Base Icon component used by other exports below)
-- `StyledSvg` (Default element used to render svg)
-- `Alert`
-- `ArrowDown`
-- `ArrowLeft`
-- `ArrowRight`
-- `ArrowUp`
-- `Check`
-- `CheckIndeterminate`
-- `ChevronLeft`
-- `ChevronRight`
-- `Delete`
-- `DeleteAlt`
-- `Filter`
-- `Grab`
-- `Menu`
-- `Overflow`
-- `Plus`
-- `Search`
-- `Spinner`
-- `TriangleDown`
-- `TriangleLeft`
-- `TriangleRight`
-- `TriangleUp`
-- `Upload`
+* `Icon` (Base Icon component used by other exports below)
+* `StyledSvg` (Default element used to render svg)
+* `Alert`
+* `ArrowDown`
+* `ArrowLeft`
+* `ArrowRight`
+* `ArrowUp`
+* `Check`
+* `CheckIndeterminate`
+* `ChevronLeft`
+* `ChevronRight`
+* `Delete`
+* `DeleteAlt`
+* `Filter`
+* `Grab`
+* `Menu`
+* `Overflow`
+* `Plus`
+* `Search`
+* `Spinner`
+* `TriangleDown`
+* `TriangleLeft`
+* `TriangleRight`
+* `TriangleUp`
+* `Upload`
 
 ## `Icon` API
 
-- `size?: number | string = 'scale500'`
+* `size?: number | string = 'scale500'`
   * Size of element, will be passed to the svg width/height style. Can also be a value included in
   baseui `theme.sizing` like `scale500`.
-- `color?: string = 'currentColor'`
+* `color?: string = 'currentColor'`
   * Color of icon, will be used as svg fill
-- `title?: string = null`
+* `title?: string = null`
   * Allows you to set the SVG `<title>` label, which is used for accessibility
-- `overrides?: {Svg} = {}`
+* `overrides?: {Svg} = {}`
   * `Svg: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
 
 ## Presentational components props API

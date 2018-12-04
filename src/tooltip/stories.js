@@ -9,9 +9,8 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
-import TooltipReadme from './README.md';
-
 import examples from './examples';
+import TooltipReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Tooltip', module)

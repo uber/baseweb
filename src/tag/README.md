@@ -51,6 +51,8 @@ export default () => {
 * `Tag`
 * `StyledRoot`
 * `StyledAction`
+* `COLOR_STYLE_KEYS`
+* `KIND`
 
 ## `Tag` API
 
@@ -67,3 +69,18 @@ export default () => {
     * Element rendered to the right of child content.
 * `onActionClick: (event: SyntheticEvent<HTMLElement>, children: React$Node) => void = () => {}`:
   * Handler for events on Action button element. `children` provides which Tag was clicked.
+
+## `COLOR_STYLE_KEYS` Constant
+
+* `primary`
+* `warning`
+* `positive`
+* `negative`
+
+## `KIND` Constant
+
+* `primary`
+* `warning`
+* `positive`
+* `negative`
+* `custom`

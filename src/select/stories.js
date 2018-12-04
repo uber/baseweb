@@ -10,7 +10,6 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
 import SelectReadme from './README.md';
-
 import examples from './examples';
 
 Object.entries(examples).forEach(([description, example]) =>

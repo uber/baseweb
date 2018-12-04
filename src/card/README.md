@@ -72,24 +72,24 @@ export default () => (
 
 ## `Card` API
 
-* `action: React.Node` - Optional.
+* `action?: React.Node = undefined`
   * Contents to be rendered at the bottom of the `Card`. Used to organize UI which enables user
     action.
-* `children: React.Node` - Optional.
+* `children?: React.Node = undefined`
   * Content to be rendered within the `Card` body.
-* `hasThumbnail: ({+thumbnail?: string}) => boolean` - Optional.
+* `hasThumbnail?: ({+thumbnail?: string}) => boolean = () => false`
   * Function that takes `Card` props and returns a boolean that represents if a thumbnail will be
   rendered.
-* `headerImage: string` - Optional.
+* `headerImage?: string = undefined`
   * Image `src` to be positioned at the top of the `Card`.
-* `overrides: {Action, Body, Contents, HeaderImage, Root, Thumbnail, Title}` - Optional.
-  * `Action: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `Body: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `Contents: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `HeaderImage: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `Root: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `Thumbnail: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-  * `Title: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
+* `overrides?: {Action, Body, Contents, HeaderImage, Root, Thumbnail, Title} = {}`
+  * `Action?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Body: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Contents: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `HeaderImage: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Root: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Thumbnail: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Title: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 * `thumbnail: string` - Optional.
   * Image `src` that by default is rendered to the side of children content.
 * `title: React.Node` - Optional.
