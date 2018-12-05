@@ -12,7 +12,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 //$FlowFixMe
-import AvatarReadme from '../../rfcs/avatar-component.md';
+import AvatarReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Avatar', module)

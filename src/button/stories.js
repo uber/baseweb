@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 // $FlowFixMe
-import ButtonReadme from '../../rfcs/button-component.md';
+import ButtonReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Button', module)
