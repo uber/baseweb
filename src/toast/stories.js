@@ -8,10 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* global module */
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
-import examples from './examples';
 
-//$FlowFixMe
 import ToastReadme from '../../rfcs/toast-component.md';
+import examples from './examples';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Toast', module)
