@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
-import examples from './examples';
+import examples from './examples.js';
 //$FlowFixMe
 import BreadcrumbsREADME from '../../rfcs/breadcrumbs-component.md';
 

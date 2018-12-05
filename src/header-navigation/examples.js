@@ -8,22 +8,23 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable react/display-name*/
 
 import * as React from 'react';
-import {withProps} from '../helpers';
-import {Button} from '../button';
-import {StatefulMenu as Menu, KEY_STRINGS} from '../menu';
-import {StatefulSelect as Search} from '../select';
-import {styled} from '../styles';
-import COLORS from '../select/examples-colors';
-import {HamburgerIcon} from './examples-icons';
+
+import {withProps} from '../helpers/index.js';
+import {Button} from '../button/index.js';
+import {StatefulMenu as Menu, KEY_STRINGS} from '../menu/index.js';
+import {StatefulSelect as Search} from '../select/index.js';
+import {styled} from '../styles/index.js';
+import COLORS from '../select/examples-colors.json';
+import {HamburgerIcon} from './examples-icons.js';
 
 import {
   HeaderNavigation,
   ALIGN,
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
-} from './index';
-import tests from './examples-list';
-import {TYPE} from '../select';
+} from './index.js';
+import tests from './examples-list.js';
+import {TYPE} from '../select/index.js';
 
 const Link = withProps(
   styled('a', props => ({

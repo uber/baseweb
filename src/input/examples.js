@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {withStyle} from 'styletron-react';
+
 import {styled} from '../styles/index.js';
 import {
   Input as ControlledInput,

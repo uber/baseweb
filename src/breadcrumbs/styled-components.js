@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index';
-import type {StyledRootPropsT, StyledSeparatorT} from './types';
-import {ChevronRight} from '../icon';
+import {styled} from '../styles/index.js';
+import type {StyledRootPropsT, StyledSeparatorT} from './types.js';
+import {ChevronRight} from '../icon/index.js';
 
 export const StyledRoot = styled('nav', ({$theme}: StyledRootPropsT) => {
   return {
