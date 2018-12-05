@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import FormControlReadme from '../../rfcs/form-control-component.md';
+import FormControlReadme from './README.md';
 import examples from './examples';
 
 //$FlowFixMe
