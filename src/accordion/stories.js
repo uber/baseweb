@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 //$FlowFixMe
-import AccordionReadme from '../../rfcs/accordion-component.md';
+import AccordionReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Accordion', module)
