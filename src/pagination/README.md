@@ -1,5 +1,7 @@
 # Pagination Component
 
+Component used to navigate between pages.
+
 ## Usage
 
 ### Basic usage
