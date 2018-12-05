@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 // $FlowFixMe
-import IconReadme from '../../rfcs/icon-component.md';
+import IconReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Icon', module)
