@@ -69,97 +69,111 @@ export default () => {
 
 ## `StatefulContainer` API
 
-* `initialState: {isOpen: boolean}`
-  Initial state of an uncontrolled popover component.
-  * `isOpen` - an initial isOpen state
-* `stateReducer: (type: open|close, nextState: {}, currentState: {}, e: any) => nextState`
+* `initialState?: {isOpen: boolean} = {isOpen: false}`
+  * Initial state of an uncontrolled popover component.
+* `stateReducer?: (type: open|close, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
   * `changes` - a new state changes that will be set
   * `currentState` - current full state of the component
-* `onOpen: () => {}`:
-  event handler when popover is shown
-* `onClose: () => {}`:
-  event handler when popover is hidden
-* `placement: 'auto' | 'topLeft' | 'top' | 'topRight' | 'rightTop' | 'right' | 'rightBottom' | 'bottomRight' | 'bottom' | 'bottomLeft' | 'leftTop' | 'left' | 'leftBottom'`:
-  How to position the popover relative to the target. Defaults to 'auto'.
-* `content: node | func`:
-  Content to render within the popover when it's shown. Required.
-* `children: node`:
-  Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned)
-* `onMouseEnterDelay: number`:
-  Number of milliseconds to wait before showing the popover after mousing enters the trigger elment (for triggerType `hover`). Defaults to 0.
-* `onMouseLeaveDelay: number`:
-  Number of milliseconds to wait before hiding the popover after the mouse leaves the trigger element (for triggerType `hover`). Defaults to 200.
-* `showArrow: boolean`:
-  Whether or not to show the arrow pointing from the popover to the trigger. Defaults to false.
-* `dismissOnClickOutside: boolean`:
-  Whether to hide the popover when the user clicks anywhere outside the trigger/popover. Defaults to true.
-* `dismissOnEsc: boolean`:
-  Whether to hide the popover when the user presses the escape key. Defaults to true.
-* `triggerType: 'click' | 'hover'`:
-  Whether to toggle the popover when trigger is clicked or hovered. Defaults to 'click'.
+* `onOpen?: () => {}`:
+  * Event handler when popover is shown.
+* `onClose?: () => {}`:
+  * Event handler when popover is hidden.
+* `placement: $Values<PLACEMENT> = PLACEMENT.auto`:
+  * How to position the popover relative to the target.
+* `content: React.Node | Function`:
+  * Content to render within the popover when it's shown.
+* `children: React.Node`:
+  * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
+* `onMouseEnterDelay?: number = 200`:
+  * Number of milliseconds to wait before showing the popover after mousing enters the trigger elment (for triggerType `hover`).
+* `onMouseLeaveDelay?: number = 200`:
+  * Number of milliseconds to wait before hiding the popover after the mouse leaves the trigger element (for triggerType `hover`).
+* `showArrow?: boolean = false`:
+  * Whether or not to show the arrow pointing from the popover to the trigger.
+* `dismissOnClickOutside?: boolean = true`:
+  * Whether to hide the popover when the user clicks anywhere outside the trigger/popover.
+* `dismissOnEsc?: boolean = true`:
+  * Whether to hide the popover when the user presses the escape key.
+* `triggerType?: 'click' | 'hover' = 'click'`:
+  * Whether to toggle the popover when trigger is clicked or hovered.
 
 ## `Popover` API
 
-* `isOpen: boolean`:
-  Whether or not to show the popover
-* `placement: 'auto' | 'topLeft' | 'top' | 'topRight' | 'rightTop' | 'right' | 'rightBottom' | 'bottomRight' | 'bottom' | 'bottomLeft' | 'leftTop' | 'left' | 'leftBottom'`:
-  How to position the popover relative to the target. Defaults to 'auto'.
-* `content: node | func`:
-  Content to render within the popover when it's shown. Required.
-* `children: node`:
-  Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned)
-* `showArrow: boolean`:
-  Whether or not to show the arrow pointing from the popover to the trigger. Defaults to false.
-* `onClick: func`:
-  handler for events on trigger element
-* `onMouseEnter: func`:
-  handler for events on trigger element
-* `onMouseLeave: func`:
-  handler for events on trigger element
-* `onClickOutside: func`:
-  handler for clicks outside the anchor/popover elements
-* `onEsc: func`:
-  handler for 'Escape' keypress events
+* `isOpen?: boolean = false`:
+  * Whether or not to show the popover.
+* `placement?: $Values<PLACEMENT> = PLACEMENT.auto`:
+  * How to position the popover relative to the target.
+* `content: React.Node | Function`:
+  * Content to render within the popover when it's shown.
+* `children: React.Node`:
+  * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
+* `showArrow?: boolean = false`:
+  * Whether or not to show the arrow pointing from the popover to the trigger.
+* `onClick: Event => void = null`:
+  * Handler for click events on trigger element.
+* `onMouseEnter: () => void = null`:
+  * Handler for mouseenter events on trigger element.
+* `onMouseLeave: () => void = null`:
+  * Handler for mouseleave events on trigger element.
+* `onClickOutside: () => void = null`:
+  * Handler for clicks outside the anchor/popover elements.
+* `onEsc: () => void = null`:
+  * Handler for 'Escape' keypress events.
 
 ## Presentational components props API
 
-### `Body`
+These properties are passed to every presentational (styled) component that is exported.
 
-Main popover container component that gets positioned next to the anchor:
+`StyledBody`, `StyledArrow`, `StyledInner`, `StyledPadding`
 
-* `$isOpen`: Propagated from the parent
-* `$iAnimating`: `true` if the popover should currently be animating in or out.
-* `$arrowOffset`: Object of numeric top/left pixel positions to offset arrow
-* `$popoverOffset`: Object of numeric top/left pixel positions to offset popover
-* `$showArrow`: Propagated from the parent
-* `$placement`: Runtime placement (may differ from placement prop if popover would have overflowed viewport)
-* `$ref`: React ref for the popover element (should be passed down to dom element)
-* `onMouseEnter`: Callback used for triggerType = 'hover' to prevent popover from hiding when mouse leaves anchor
-* `onMouseLeave`: Callback used for triggerType = 'hover' to hide popover
+* `$isOpen: boolean`
+  * Propagated from the parent.
+* `$iAnimating: boolean`
+  * `true` if the popover should currently be animating in or out.
+* `$arrowOffset: {top: number, left: number}`
+  * Object of numeric top/left pixel positions to offset arrow.
+* `$popoverOffset: {top?: number | null, left?: number | null}`
+  * Object of numeric top/left pixel positions to offset popover.
+* `$showArrow: boolean`
+  * Propagated from the parent.
+* `$placement: $Values<PLACEMENT>`
+  * Runtime placement (may differ from placement prop if popover would have overflowed viewport).
+* `$ref: React.Ref<*>`
+  * React ref for the popover element (should be passed down to dom element).
 
-### `Arrow`
+## `ACCESSIBILITY_TYPE` Constant
 
-* `$isOpen`: Propagated from the parent
-* `$iAnimating`: `true` if the popover should currently be animating in or out.
-* `$arrowOffset`: Object of numeric top/left pixel positions to offset arrow
-* `$popoverOffset`: Object of numeric top/left pixel positions to offset popover
-* `$showArrow`: Propagated from the parent
-* `$placement`: Runtime placement (may differ from placement prop if popover would have overflowed viewport)
-* `$ref`: React ref for the arrow element (should be passed down to dom element)
+* `none`
+* `menu`
+* `tooltip`
 
-### `Inner`
+## `PLACEMENT` Constant
 
-Element that holds all the content.
+* `auto`
+* `topLeft`
+* `top`
+* `topRight`
+* `rightTop`
+* `right`
+* `rightBottom`
+* `bottomRight`
+* `bottom`
+* `bottomLeft`
+* `leftBottom`
+* `left`
+* `leftTop`
 
-No props
+## `TRIGGER_TYPE` Constant
 
-### `Padding`
+* `click`
+* `hover`
 
-Not used internally, just a helper customers can wrap their content in to add some default padding.
+## `STATE_CHANGE_TYPE` Constant
 
-No props
+* `open`
+* `close`
 
 ## Implementation Details
 
@@ -229,8 +243,6 @@ export default () => (
   </StatefulPopover>
 )
 ```
-
-However it honestly seems like the render prop approach is a better API in this case.
 
 ### Default styles
 
