@@ -12,8 +12,7 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
 import examples from './examples.js';
-//$FlowFixMe
-import BlockREADME from '../../rfcs/block-component.md';
+import BlockREADME from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Block', module)

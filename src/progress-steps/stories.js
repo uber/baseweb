@@ -11,9 +11,8 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
-import examples from './examples.js';
-//$FlowFixMe
-import ProgressStepsREADME from '../../rfcs/progress-steps-component.md';
+import examples from './examples';
+import ProgressStepsREADME from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('ProgressSteps', module)

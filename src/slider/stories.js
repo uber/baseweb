@@ -7,12 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global module */
 import {storiesOf} from '@storybook/react';
-
-// Styled elements
-import examples from './examples.js';
 import {withReadme} from 'storybook-readme';
-//$FlowFixMe
-import SliderReadme from '../../rfcs/slider-component.md';
+
+import examples from './examples';
+import SliderReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Slider', module)

@@ -44,68 +44,47 @@ class App extends React.Component {
 ## Exports
 
 * `Modal`
+* `ModalButton`
+  * ModalButton is just a normal Base UI button with margin already applied. See `Button` docs for available props and usage.
 * `ModalHeader`
+  * Styled component with spacing / typography
 * `ModalBody`
+  * Styled component with the correct spacing
 * `ModalFooter`
+  * Styled component with spacing and top border
 * `StyledRoot`
 * `StyledBackdrop`
-* `StyledDialogContainer`
 * `StyledDialog`
-* `StyledHeader`
-* `StyledBody`
-* `StyledFooter`
-* `StyledFooterAction`
+* `StyledDialogContainer`
 * `StyledClose`
 * `SIZE`
 * `ROLE`
+* `CLOSE_SOURCE`
 
 ## `Modal` API
 
-* `children: React.node | () => React.node` - Required
-  Modal content. The children-as-function API may be preferable for performance reasons (wont render until opened)
-* `isOpen: boolean` - Required
-  Controls whether the modal is visible or not
-* `closeable: boolean` - Optional, Defaults to `true`
-  Whether the modal should be closeable by the user (either via escape, backdrop click, etc). You can set this to `false` if your modal has an action that the user _must_ take before closing.
-* `onClose: ({source: CloseSource}) => void` - Optional
-  A callback that is invoked when the modal will close. Callback is passed a constant identifying what triggered the close.
-* `size: SIZE.{default|full|auto}|string|number`, Defaults to SIZE.default
-  Controls the size of the modal (primarily width). Can be a SIZE constant or css `width` property value.
-* `role: 'dialog'|'alertdialog'|string` - Optional, Defaults to 'dialog'
-  Which accessibility role this modal should have
-* `mountNode: HTMLElement` - Optional, Defaults to document.body
-  Where to mount the modal
-* `autofocus: boolean`, Defaults to true
-  Set to false if modal shouldn't autofocus on its content. Moving focus into a newly opened modal is important for accessibility purposes. If you set this to false, you should manually trigger focus on another element in the modal.
-* `overrides: {Root, Backdrop, Dialog, DialogContainer, Close}` - Optional
-  Overrides for presentational components. See "Presentational Components Props API" below.
-  * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
-
-## `ModalHeader` API
-
-ModalHeader is just a styled component with spacing / typography
-
-* `$style: () => {} | {}` - Optional
-  Style overrides object or function
-
-## `ModalBody` API
-
-ModalBody is just a styled component with the correct spacing
-
-* `$style: () => {} | {}` - Optional
-  Style overrides object or function
-
-## `ModalFooter` API
-
-ModalBody is just a styled component with spacing and top border
-
-* `$style: () => {} | {}` - Optional
-  Style overrides object or function
-
-## `ModalButton` API
-
-ModalButton is just a normal BaseUI button with margin already applied
-See `Button` docs for available props and usage.
+* `children: React.node | () => React.node`
+  * Modal content. The children-as-function API may be preferable for performance reasons (wont render until opened)
+* `isOpen: boolean`
+  * Controls whether the modal is visible or not
+* `closeable?: boolean = false`
+  * Whether the modal should be closeable by the user (either via escape, backdrop click, etc). You can set this to `false` if your modal has an action that the user _must_ take before closing.
+* `onClose?: ({source: CloseSource}) => void = () => {}`
+  * A callback that is invoked when the modal will close. Callback is passed a constant identifying what triggered the close.
+* `size?: SIZE.{default|full|auto}|string|number = SIZE.default`
+  * Controls the size of the modal (primarily width). Can be a SIZE constant or css `width` property value.
+* `role?: 'dialog'|'alertdialog'|string = 'dialog'`
+  * Which accessibility role this modal should have.
+* `mountNode?: HTMLElement = document.body`
+  * Where to mount the modal
+* `autofocus?: boolean = true`
+  * Set to false if modal shouldn't autofocus on its content. Moving focus into a newly opened modal is important for accessibility purposes. If you set this to false, you should manually trigger focus on another element in the modal.
+* `overrides?: {Root, Backdrop, Dialog, DialogContainer, Close} = {}`
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Backdrop?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Dialog?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `DialogContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Close?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 
 ## SIZE Constant
 
@@ -120,17 +99,38 @@ See `Button` docs for available props and usage.
 * `escape`
 * `backdrop`
 
-## Presentational Components Props API
+## Presentational components props API
 
-Next properties are passed to every presentational (styled) component
+These properties are passed to every presentational (styled) component that is exported:
+
+`StyledRoot`, `StyledBackdrop`, `StyledDialog`, `StyledDialogContainer`, `StyledClose`
 
 * `$isOpen: boolean`
+  * If true, renders the modal to the page.
 * `$size: string|number`
+  * Defines modal size.
 * `$role: string`
+  * Dialog or alert dialog, used for a11y.
 * `$closeable: boolean`
+  * Defines if the modal can be closed.
 * `$theme: theme`
 
-More props likely TBA as development continues
+## `SIZE` Constant
+
+* `default`
+* `full`
+* `auto`
+
+## `ROLE` Constant
+
+* `dialog`
+* `alertdialog`
+
+## `CLOSE_SOURCE` Constant
+
+* `closeButton`
+* `backdrop`
+* `escape`
 
 ### Key Design Decisions
 

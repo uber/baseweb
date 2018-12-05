@@ -9,11 +9,9 @@ LICENSE file in the root directory of this source tree.
 /* global module */
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
-//$FlowFixMe
-import FormControlReadme from '../../rfcs/form-control-component.md';
-import examples from './examples.js';
 
-//$FlowFixMe
+import FormControlReadme from './README.md';
+import examples from './examples';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Form control', module)

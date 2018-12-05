@@ -10,8 +10,7 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 import examples from './examples.js';
 
-//$FlowFixMe
-import ToastReadme from '../../rfcs/toast-component.md';
+import ToastReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Toast', module)
