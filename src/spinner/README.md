@@ -42,12 +42,23 @@ export default () => {
 
 ## `Spinner` API
 
-* `size: number|string` - Optional, Defaults to 44
-  The size of the circle. Is passed to the underlying svg width/height style. Can also be a baseui `theme.sizing` constant like `scale500`
-* `color: string` - Optional, Defaults to `theme.primary`
-  The color to be used for the spinner. Is used as an svg fill for the underlying svg icon
-* `title: string` - Optional, Defaults to `'Loading'`
-  Sets the SVG `<title>` label, which is used for accessibility
+* `size?: number|string = 44`
+  * The size of the circle. Is passed to the underlying svg width/height style. Can also be a baseui
+    `theme.sizing` constant like `scale500`.
+* `color?: string = theme.colors.primary`
+  * The color to be used for the spinner. Is used as an svg fill for the underlying svg icon.
+* `title?: string = 'Loading'`
+  * Sets the SVG `<title>` label, which is used for accessibility.
+
+ ## Presentational components props API
+
+ These properties are passed to every presentational (styled) component that is exported.
+
+ `StyledSvg`
+
+ * `$size: number | string`
+  * Size of svg element.
+* `$theme: theme`
 
 ## Accessibility
 
