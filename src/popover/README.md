@@ -244,8 +244,6 @@ export default () => (
 )
 ```
 
-However it seems like the render prop approach is a better API in this case.
-
 ### Default styles
 
 The popover element will have zero padding by default. There are many valid use cases for both padded and non-padded popovers, so I'd argue that starting with zero padding and also exporting an optional `StyledPadding` is a better solution than forcing users to use a style override API to reset padding to zero.
