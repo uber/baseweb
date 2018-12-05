@@ -13,7 +13,7 @@ import {withReadme} from 'storybook-readme';
 
 import examples from './examples';
 //$FlowFixMe
-import BreadcrumbsREADME from '../../rfcs/breadcrumbs-component.md';
+import BreadcrumbsREADME from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Breadcrumbs', module)
