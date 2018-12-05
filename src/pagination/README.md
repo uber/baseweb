@@ -69,9 +69,9 @@ export default () => <StatefulPagination numPages={6} />;
   * `DropdownContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `DropdownMenu?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `DropdownButton?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-* `onPrevClick: (event: SyntheticEvent<>) => void` - Optional
+* `onPrevClick?: (event: SyntheticEvent<>) => void = () => {}`
   * Callback for prev button click.
-* `onNextClick: (event: SyntheticEvent<>) => void` - Optional
+* `onNextClick?: (event: SyntheticEvent<>) => void = () => {}`
   * Callback for next button click.
 
 ## `STATE_CHANGE_TYPE` Constant

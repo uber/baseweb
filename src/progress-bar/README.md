@@ -52,7 +52,7 @@ export default () => {
   * A custom completion value.
 * `showLabel?: boolean = false`
   * If set to false, label is hidden and `getProgressLabel` is ignored.
-* `value: number` - Required
+* `value: number` - Required.
   * The value between `0` and `100 | successValue` of the progress indicator.
 
 ## Presentational components props API
