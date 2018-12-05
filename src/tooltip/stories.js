@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 //$FlowFixMe
-import TooltipReadme from '../../rfcs/tooltip-component.md';
+import TooltipReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Tooltip', module)
