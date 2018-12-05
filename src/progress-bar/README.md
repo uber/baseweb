@@ -41,29 +41,29 @@ export default () => {
 
 ## `ProgressBar` API
 
-* `getProgressLabel: (value, successValue) => node` - Optional
-  The function that returns a progress bar label to display
-* `overrides: {Root, Bar, BarProgress, Label}` - Optional
-  Overrides for presentational components. See "Presentational Components Props API" below.
-  * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
-* `successValue: number` - Optional, Defaults to 100
-  A custom completion value
-* `showLabel: boolean` - Optional. Default is `false`
-  If set to false, label is hidden and `getProgressLabel` is ignored.
+* `getProgressLabel?: (value, successValue) => React.Node`
+  * The function that returns a progress bar label to display.
+* `overrides?: {Root, Bar, BarProgress, Label} = {}`
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Bar?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `BarProgress?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Label?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+* `successValue?: number = 100`
+  * A custom completion value.
+* `showLabel?: boolean = false`
+  * If set to false, label is hidden and `getProgressLabel` is ignored.
 * `value: number` - Required
-  The value between `0` and `100 | successValue` of the progress indicator.
+  * The value between `0` and `100 | successValue` of the progress indicator.
 
 ## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported:
 
+`StyledRoot`, `StyledBar`, `StyledBarProgress`, `StyledLabel`
+
 * `$successValue: number`
 * `$value: number`
 * `$theme: theme`
-
-## Dependencies
-
-Does this component depend on any 3rd party packages or other internal components?
 
 ## Accessibility
 
