@@ -699,7 +699,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  renderMenu(options: Array<OptionT>, valueArray: ValueT) {
+  renderMenu(options: ValueT, valueArray: ValueT) {
     const {
       error,
       getOptionLabel,
