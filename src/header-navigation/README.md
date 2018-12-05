@@ -61,22 +61,28 @@ export default (props) => <HeaderNavigation
 
 ## `HeaderNavigation` API
 
-* `children: React$Node` - Required.
-  All the children of header navigation. It accepts any components, but it is useful to use `NavigationList` and `NavigationItem` to align and follow style guides.
-  
+* `children: React.Node`
+  * All the children of header navigation. It accepts any components, but it is useful to use `NavigationList` and `NavigationItem` to align and follow style guides.
+
 ## `StyledNavigationList` API
 
-* `align: ALIGN.right | ALIGN.left | ALIGN.center` - Optional.
-  Alignment of elements inside of navigation list
-* `children: React$Node` - Required.
-  All the children of NavigationList.  
-  
+* `align: $Values<ALIGN> = undefined`
+  * Alignment of elements inside of navigation list.
+* `children: React.Node` - Required.
+  * All the children of NavigationList.
+
 ## `StyledNavigationItem` API
 
-* `children: React$Node` - Required.
-  All the children of NavigationItem.
+* `children: React.Node`
+  * All the children of NavigationItem.
+
+## `ALIGN` Constant
+
+* `right`
+* `left`
+* `center`
 
 ## Accessibility
 
-Use `nav` tag for root element.
-Use `role="navigation"`
+* Use `nav` tag for root element.
+* Use `role="navigation"`
