@@ -63,31 +63,39 @@ export default () => {
 
 ## `ProgressSteps` API
 
-* `current: number` - Optional, Defaults to 0
-  Defines the current active step index
-* `overrides: {Root}` - Optional
-  Overrides for presentational components. See "Presentational Components Props API" below.
-  * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
+* `current?: number = 0`
+  * Defines the current active step index.
+* `overrides: {Root} = {}`
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 
 ## `Step` and `NumberedStep` API
 
-* `title: React.Node` - Optional
-  The title of the Step
-* `isActive: boolean` - Optional
-  Defines if the step is currently active
-* `isCompleted: boolean` - Optional
-  Defines if the step is completed
-* `isLast: boolean` - Optional
-  Defines if the step is the last item displayed
-* `overrides: {Root, Icon, InnerIcon, Tail, Content, Title, Description}` - Optional
-  Overrides for presentational components. See "Presentational Components Props API" below.
-  * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
-* `children: (props: Props) => React.Node` - Optional
+* `title?: React.Node = null`
+  * The title of the Step.
+* `isActive?: boolean = false`
+  * Defines if the step is currently active.
+* `isCompleted?: boolean = false`
+  * Defines if the step is completed.
+* `isLast?: boolean = false`
+  * Defines if the step is the last item displayed.
+* `overrides?: {Root, Icon, InnerIcon, Tail, Content, Title, Description} = {}`
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Icon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `InnerIcon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Tail?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Content?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Title?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Description?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+* `children?: (props: Props) => React.Node = null`
 
 ## Presentational components props API
 
+`StyledProgressSteps`, `StyledStep`, `StyledIcon`, `StyledInnerIcon`, `StyledContent`,
+`StyledContentTitle`, `StyledContentTail`, `StyledContentDescription` `StyledNumberStep`,
+`StyledNumberIcon`, `StyledNumberContentTail`
+
 These properties are passed to every presentational (styled) component that is exported:
 
-* `$theme: theme`
 * `$isActive: boolean`
 * `$isCompleted: boolean`
+* `$theme: theme`
