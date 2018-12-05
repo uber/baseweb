@@ -11,7 +11,7 @@ import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
 
 export type ItemT = *;
-export type ItemsT = Array<ItemT>;
+export type ItemsT = $ReadOnlyArray<ItemT>;
 
 export type GetItemLabelFnT = (item: ItemT) => React$Node;
 
