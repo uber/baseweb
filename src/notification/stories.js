@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 //$FlowFixMe
-import NotificationReadme from '../../rfcs/notification-component.md';
+import NotificationReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Notification', module)

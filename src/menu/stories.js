@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 // $FlowFixMe
-import MenuReadme from '../../rfcs/menu-component.md';
+import MenuReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Menu', module)
