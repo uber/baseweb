@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 // $FlowFixMe
-import ModalReadme from '../../rfcs/modal-component.md';
+import ModalReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Modal', module)
