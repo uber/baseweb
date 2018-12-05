@@ -63,12 +63,12 @@ export default () => {
 
 ## `Slider` API
 
-* `range: Array<Point>`
+* `range: Array<Point>` - Required.
   * All points present on slider axis. First and last point represent min and max
     value. Each `Point` can be a value itself (for primitive type) or if `Point` is
     `Object` it should have `value` and `label`. If more than 2 elements are present
     in array, they represent all ticks on axis and `step` property is ignored.
-* `value: Point | Array<Point>`
+* `value: Point | Array<Point>` - Required.
   * Selected points chosen on axis. It can be a single point (one thumb) or 2 points array (range thumbs).
 * `step?: number`
   * If `range` contains only min and max points (2 elements) step is to shift thumb every time user moves it left or right. If `step` in place `value` for each `Point` should be of primitive type.
@@ -93,13 +93,13 @@ export default () => {
 * `initialState?: {value?: Point | Array<Point>} = {}`
   * Initial state of an uncontrolled slider component.
     * `value` - an initial state of selected points on axis. It can be a single point (one thumb) or 2 points array (range thumbs).
-* `stateReducer: (type: string, nextState: {}, currentState: {}, event: SyntheticInputEvent<HTMLInputEvent>) => nextState`
+* `stateReducer?: (type: string, nextState: {}, currentState: {}, event: SyntheticInputEvent<HTMLInputEvent>) => nextState`
   * A state change handler.
     * `type` - state change type
     * `nextState` - a new state changes that will be set
     * `currentState` - current full state of the component
     * `event` - html input event from slider position change
-* `range: {Array<Point>}`
+* `range: {Array<Point>}` - Required.
   * All points present on slider axis. First and last point represent min and max value. Each `Point` can be
     a value itself (for primitive type) or if `Point` is `Object` it should have `value` and `label`. If more
     than 2 elements are present in array, they represent all ticks on axis and `step` property is ignored.

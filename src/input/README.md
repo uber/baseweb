@@ -69,7 +69,7 @@ export default () => {
 
 ## `StatefulContainer` API
 
-* `children: (props: Props) => React.Node`
+* `children: (props: Props) => React.Node` - Required.
 * `initialState: {value: string} = {value: ''}`
   * Initial state of an uncontrolled input component.
     * `value` - an initial input value.

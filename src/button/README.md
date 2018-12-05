@@ -67,7 +67,7 @@ Rough DOM composition:
 
 ## `Button` API
 
-* `children: (props: Props) => React.Node | React.Node`
+* `children?: (props: Props) => React.Node | React.Node = null`
   * This can be an SVG icon as well.
 * `startEnhancer?: (props: Props) => React.Node | React.Node = null`
   * A helper rendered at the start of the button.
@@ -75,7 +75,7 @@ Rough DOM composition:
   * A helper rendered at the end of the button.
 * `disabled?: boolean = false`
   * Defines if the button disabled.
-* `overrides: {BaseButton, StartEnhancer, EndEnhancer} = {}`
+* `overrides?: {BaseButton, StartEnhancer, EndEnhancer} = {}`
   * `BaseButton?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `StartEnhancer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `EndEnhancer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`

@@ -102,9 +102,9 @@ export default () => (
 
 ## `Menu` API
 
-* `items: Array<any>`
+* `items: Array<any>` - Required.
   * List of menu items.
-* `getRequiredItemProps: (item: any, index: number) => ({key: string, id: string}) = () => {}`
+* `getRequiredItemProps: (item: any, index: number) => ({key: string, id: string}) = () => {}` - Required.
   * Function to get props for each rendered item. This will have some defaults needed for keyboard
     bindings to work properly. Every rendered item should call this. This is a function to ensure
     that it is used.
@@ -118,19 +118,19 @@ export default () => (
 
 ## `StatefulContainer` API
 
-* `items: Array<any>`
+* `items: Array<any>` - Required.
   * List of items.
 * `initialState?: {highlightedIndex: number} = {highlightedIndex: -1}`
   * Initial state of an uncontrolled popover component.
     * `highlightedIndex` - Determines which menu item should render highlighted.
-* `stateReducer: (changeType: $Values<STATE_CHANGE_TYPES>, changes: {highlightedIndex: number}, currentState: {highlightedIndex: number}) => {highlightedIndex: number}`
+* `stateReducer?: (changeType: $Values<STATE_CHANGE_TYPES>, changes: {highlightedIndex: number}, currentState: {highlightedIndex: number}) => {highlightedIndex: number}`
   * State reducer to intercept state changes and return new internal state
-* `onItemSelect: ({item: ?Object}, event: KeyboardEvent) => void`
-* `children: Function = ({items: Array<any>, highlightedIndex: number, rootRef: React$ElementRef<*>, getRequiredItemProps: (item: Object) => ({key: string, id: string})}) => React.Node`
+* `onItemSelect?: ({item: ?Object}, event: KeyboardEvent) => void = () => {}`
+* `children?: Function = ({items: Array<any>, highlightedIndex: number, rootRef: React$ElementRef<*>, getRequiredItemProps: (item: Object) => ({key: string, id: string})}) => React.Node`
 
 ## `OptionList` API
 
-* `item: any`
+* `item: any` - Required.
   * Item to parse and render.
 * `getItemLabel: (item: any) => string = (item) => item.label || ''`
   * Function used to get the string label for each item.
@@ -139,13 +139,13 @@ export default () => (
 
 ## `OptionProfile` API
 
-* `item: any`
+* `item: any` - Required.
   * Item to parse and render.
-* `getProfileItemLabels: (item: any) => ({title?: string, subtitle?: string, body?: string})`
+* `getProfileItemLabels: (item: any) => ({title?: string, subtitle?: string, body?: string})` - Required.
   * Returns an object of three strings for the profile item.
-* `getProfileItemImg: (item: Object) => string | React.ComponentType<*>`
+* `getProfileItemImg: (item: Object) => string | React.ComponentType<*>` - Required.
   * Returns either an image source url, or a full React component to render as the image.
-* `getProfileItemImgText: (item: Object) => string`
+* `getProfileItemImgText: (item: Object) => string` - Required.
   * Returns the alt text for the image
 * `overrides?: {ListItemProfile, ProfileImgContainer, ProfileImg, ProfileLabelsContainer, ProfileTitle, ProfileSubtitle, ProfileBody} = {}`
   * `ListItemProfile?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
