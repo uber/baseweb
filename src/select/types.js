@@ -15,14 +15,14 @@ export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;
 export type TypeT = $Keys<typeof TYPE>;
 
-export type OptionT = {
+export type OptionT = $ReadOnly<{
   id?: string,
   label?: React.Node,
   disabled?: boolean,
   clearableValue?: boolean,
-};
+}>;
 
-export type ValueT = Array<OptionT>;
+export type ValueT = $ReadOnlyArray<OptionT>;
 
 export type OnChangeParamsT = {
   value: ValueT,
@@ -93,7 +93,7 @@ export type PropsT = {
   onOpen: ?() => void,
   onClose: ?() => void,
   openOnClick: boolean,
-  options: ?Array<OptionT>,
+  options: ?ValueT,
   overrides: OverridesT,
   placeholder: React.Node,
   required: boolean,
