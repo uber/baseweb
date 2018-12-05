@@ -83,32 +83,32 @@ export default () => {
   * Accordion expandable items. See `Panel` API below for reference.
   * Note: `expanded` property on `Panel`s provided as children will be ignored. This is handled
     by the `Accordian` component implicitly.
-* `initialState: {expanded: Array<string>}` - Optional. Default is `{expanded: []}`.
+* `initialState?: {expanded: Array<string>} = {expanded: []}`
   * Defines the initial component state. Use this prop to render the `Accordian` with one or more
     panels initially expanded. See 'Advanced Usage' code sample above for an example.
-* `disabled: boolean` - Optional. Default is `false`.
-  * If set to `true` all its children panels will be disabled from toggling
-* `overrides: {Root}` - Optional.
+* `disabled?: boolean = false`
+  * If set to `true` all its children panels will be disabled from toggling.
+* `overrides?: {Root} = {}`
   * See 'Presentational Components Props API' section below for type reference for presentational
     override components.
-  * `Root: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional.
-* `onChange: ({expanded: Array<string>})` - Optional. Default is `() => {}`.
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+* `onChange?: ({expanded: Array<string>}) = () => {}`
   * Handler called each time a panel is toggled. `expanded` prop is an array of `Panel` keys that
     are currently expanded.
-* `stateReducer: (type: string, nextState: {expanded: Array<string>}, currentState: {expanded: Array<string>}) => stateToSet: {expanded: Array<string>}` - Optional.
+* `stateReducer?: (type: string, nextState: {expanded: Array<string>}, currentState: {expanded: Array<string>}) => stateToSet: {expanded: Array<string>}`
   * Handler called each time the component state changes. Used to override default state-change functionality.
-  * `type` - A state change type. See [constants.js](./constants.js) for available types.
-  * `nextState` -  The next state value to be set.
-  * `currentState` - Current state value.
-  * `stateToSet` - A return value that the state will be updated with.
+    * `type` - A state change type. See [constants.js](./constants.js) for available types.
+    * `nextState` -  The next state value to be set.
+    * `currentState` - Current state value.
+    * `stateToSet` - A return value that the state will be updated with.
 
 ## `Panel` API
 
 Represents content and title of each accordion item
 
-* `title: React.Node`
+* `title: React.Node` - Required.
   * Title of an accordion panel.
-* `children: React.Node`
+* `children: React.Node` - Required.
   * Content visible when `Panel` is expanded.
 * `expanded?: boolean false`
   * Defines if the panel is expanded. If set to `true` the panel is rendered expanded.
@@ -121,7 +121,7 @@ Represents content and title of each accordion item
 * `key?: string = <child index>`
   * The key of a `Panel`. Used to maintain list of expanded panels. Must be unique across children
     of the `Accordion`.
-* `onChange: ({expanded: boolean}) => {} = () => {}`
+* `onChange?: ({expanded: boolean}) => {} = () => {}`
   * Handler for individual `Panel` change events.
 * `onClick?: (event: Event) => {} = () => {}`
   * Handler for the `Header`'s click events.
@@ -139,7 +139,7 @@ All props of the `Panel` component except for `expanded`.
 
 * `initialState?: {expanded: boolean} = {expanded: false}`
   * Initial state of a stateful panel component. `expanded` prop indicates if the panel is initially expanded. If set to `true` the panel will be expanded initially
-* `stateReducer?: (type: string, nextState: {expanded: boolean}, currentState: {expanded: boolean}) => stateToSet: {expanded: boolean}` - Optional.
+* `stateReducer?: (type: string, nextState: {expanded: boolean}, currentState: {expanded: boolean}) => stateToSet: {expanded: boolean}`
   * A state change handler.
     * `type` - state change type
     * `nextState` - a new state changes that will be set
