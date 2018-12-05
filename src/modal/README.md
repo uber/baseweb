@@ -45,7 +45,7 @@ class App extends React.Component {
 
 * `Modal`
 * `ModalButton`
-  * ModalButton is just a normal BaseUI button with margin already applied. See `Button` docs for available props and usage.
+  * ModalButton is just a normal Base UI button with margin already applied. See `Button` docs for available props and usage.
 * `ModalHeader`
   * Styled component with spacing / typography
 * `ModalBody`
