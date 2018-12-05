@@ -12,7 +12,7 @@ import {storiesOf} from '@storybook/react';
 import examples from './examples';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import HeaderNavigationReadme from '../../rfcs/header-navigation-component.md';
+import HeaderNavigationReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Header Navigation', module)
