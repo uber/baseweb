@@ -58,7 +58,7 @@ export default () => {
 
 * `color?: $Values<KIND> | string = '#000'`:
   * The color theme to be applied to a Tag. Default is `KIND.primary`.
-* `children: React.Node`:
+* `children: React.Node`: - Required.
   * Component or String value for label of tag. Default is empty string.
 * `disabled?: boolean = false`:
   * Disable control from being changed.
@@ -67,7 +67,7 @@ export default () => {
     * Wrapper element for the whole tag control to apply styles.
   * `Action?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * Element rendered to the right of child content.
-* `onActionClick: (event: SyntheticEvent<HTMLElement>, children: React.Node) => void = () => {}`:
+* `onActionClick?: (event: SyntheticEvent<HTMLElement>, children: React.Node) => void = () => {}`:
   * Handler for events on Action button element. `children` provides which Tag was clicked.
 
 ## `COLOR_STYLE_KEYS` Constant

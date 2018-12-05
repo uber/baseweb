@@ -44,7 +44,7 @@ export default () => {
 
 * `optionalProp?: string = 'default value'`
   * Description of optional prop.
-* `requiredProp: number`
+* `requiredProp: number` - Required.
   * Description of required prop.
 * `overrides?: {Root, Body} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
@@ -56,7 +56,7 @@ export default () => {
 
 * `optionalProp?: string = 'default value'`
   * Description of optional prop.
-* `requiredProp: number`
+* `requiredProp: number` - Required.
   * Description of required prop.
 * `overrides?: {Root, Body} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`

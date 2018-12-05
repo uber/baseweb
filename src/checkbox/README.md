@@ -148,7 +148,7 @@ export default () => {
     * `type` - State change type.
     * `nextState` - A new state, provided by component transition, that will be set.
     * `currentState` - Current state of the component.
-* `children: Function = ({checked: boolean, isIndeterminate: boolean, onChange, onMouseEnter, onMouseLeave, onFocus, onBlur}) => React.Node`
+* `children: Function = ({checked: boolean, isIndeterminate: boolean, onChange, onMouseEnter, onMouseLeave, onFocus, onBlur}) => React.Node` - Required.
   * should return `Checkbox` instance with standard or customized inner elements. It makes sense only for
     `StatefulCheckboxContainer` and is ignored by `StatefulCheckbox`
 * `disabled?: boolean = false`

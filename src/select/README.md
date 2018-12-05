@@ -223,17 +223,17 @@ export default () => {
 
 ## `StatefulSelectContainer` API
 
-* `initialState: {value: Array<{}> = []}`
+* `initialState?: {value: Array<{}> = []}`
   * Initial state of an uncontrolled select component.
     * `value` - an initial set of selected options.
-* `stateReducer: (type: text, nextState: {}, currentState: {}) => nextState`
+* `stateReducer?: (type: text, nextState: {}, currentState: {}) => nextState`
   * A state change handler.
     * `type` - state change type
     * `nextState` - a new state changes that will be set
     * `currentState` - current full state of the component
-* `children: ({onChange, overrides}) => React.Node`
+* `children: ({onChange, overrides}) => React.Node` - Required.
   * Children function that returns `Select` instance with default or customized inner elements.
-* `onChange: ({type, option, value}) => void`:
+* `onChange?: ({type, option, value}) => void = () => {}`:
   * handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed - `STATE_CHANGE_TYPE.select | STATE_CHANGE_TYPE.remove | STATE_CHANGE_TYPE.clear`. `option` that is beeing added or removed - `Object`. And `value` is the current select value including/excluding the currently selected/removed option.
 
 ## Presentational components API
