@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 //$FlowFixMe
-import ComponentReadme from '../../rfcs/templates/component.md';
+import ComponentReadme from './README';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Component', module)
