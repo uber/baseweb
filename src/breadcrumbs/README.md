@@ -29,13 +29,13 @@ export default () => (
 
 ## `Breadcrumbs` API
 
-* `overrides: {}` - Optional
-  * `Root?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}`
-    Component to use for Root container styling.
-  * `Separator?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}`
-    Component to use for separating element.
-  * `Icon?: React.ComponentType | {props: {}, style: {}, component: React.ComponentType}`
-    Component to use for the separator icon.
+* `overrides?: {Root, Separator, Icon} = {}`
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * Component to use for Root container styling.
+  * `Separator?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * Component to use for separating element.
+  * `Icon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * Component to use for the separator icon.
 
 ## Accessibility
 
