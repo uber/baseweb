@@ -1,5 +1,13 @@
 # Tooltip Component
 
+The tooltip component is essentially a more opinionated `Popover`. Implementation-wise it will just be a thin wrapper around a `Popover` with some defaults:
+
+* Darker theme (see Base UI docs)
+* `triggerType` default to `'hover'`
+* Adds padding to your content by default
+
+Accordingly, the RFC below will direct you to refer back to `src/popover/README.md` in many places.
+
 ## Usage
 
 ### Basic usage
@@ -40,14 +48,6 @@ export default () => (
 );
 ```
 
-The tooltip component is essentially a more opinionated `Popover`. Implementation-wise it will just be a thin wrapper around a `Popover` with some defaults:
-
-* Darker theme (see Base UI docs)
-* `triggerType` default to `'hover'`
-* Adds padding to your content by default
-
-Accordingly, the RFC below will direct you to refer back to `popover-component.md` in many places.
-
 ## Exports
 
 * `StatefulTooltip`
@@ -56,21 +56,25 @@ Accordingly, the RFC below will direct you to refer back to `popover-component.m
 * `StyledTooltipArrow`
 * `StyledTooltipBody`
 * `StyledTooltipInner`
+* `ACCESSIBILITY_TYPE`
+* `PLACEMENT`
+* `TRIGGER_TYPE`
+* `STATE_CHANGE_TYPE`
 
 ## `StatefulTooltip` API
 
-Same props as `StatefulPopover` (see popover-component.md)
+Same props as `StatefulPopover` (see `src/popover/README.md`)
 
 ## `Tooltip` API
 
-Same props as `Popover` (see popover-component.md)
+Same props as `Popover` (see `src/popover/README.md`)
 
-## Implementation Details
+## `StatefulContainer` API
 
-See popover-component.md
+Same props as `Popover` `StatefulContainer` (see `src/popover/README.md`)
 
 ## Accessibility
 
-See popover-component.md
+See `src/popover/README.md`
 
 If users passes a string as their content we can maybe also add that as a `title` or similar A11Y attribute on the trigger (if one isn't present already)
