@@ -12,7 +12,6 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
 import examples from './examples';
-//$FlowFixMe
 import BreadcrumbsREADME from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
