@@ -51,33 +51,42 @@ export default EmoticonExample;
 
 ## `StarRating` API
 
-* `value: number` - Optional
-  The current rating value
-* `numItems: number` - Optional
-  The total number of items to display
-* `onChange: ({value}) => void` - Optional
-  Callback that returns a newly selected value
-* `overrides: {}` - Optional
-  * `Root: ?React.ComponentType` component to use for root Rating styling
-  * `Item: ?React.ComponentType` component to use for star ratings
+* `value?: number = -1`
+  * The current rating value.
+* `numItems?: number = 5`
+  * The total number of items to display.
+* `onChange?: ({value}) => void = () => {}`
+  * Callback that returns a newly selected value.
+* `overrides?: {Root, Item} = {}`
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * Component to use for root Rating styling.
+  * `Item?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * Component to use for star ratings.
 
 ## `EmoticonRating` API
 
-* `value: number` - Optional
-  The current rating value
-* `onChange: ({value}) => void` - Optional
-  Callback that returns a newly selected value
-* `overrides: {}` - Optional
-  * `Root: ?React.ComponentType` component to use for root Rating styling
-  * `Item: ?React.ComponentType` component to use for star ratings
+* `value?: number = -1`
+  * The current rating value.
+* `onChange?: ({value}) => void = () => {}`
+  * Callback that returns a newly selected value.
+* `overrides?: {Root, Item} = {}`
+  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * Component to use for root Rating styling.
+  * `Item?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * Component to use for emoticon ratings.
 
 ## Presentational components props API
 
-### `StyledStar` and `StyledEmoticon`
+These properties are passed to every presentational (styled) component that is exported.
 
-* `$isActive: boolean` - whether the current item is active
-* `$isSelected: boolean` - whether the current item is hovered/selected
-* `$index: number` - the current index of the item
+`StyledStar`, `StyledEmoticon`
+
+* `$isActive?: boolean = false`
+  * Whether the current item is active.
+* `$isSelected?: boolean = false`
+  * Whether the current item is hovered/selected.
+* `$index: number`
+  * The current index of the item.
 
 ## Accessibility
 
