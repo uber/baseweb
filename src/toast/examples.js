@@ -171,11 +171,11 @@ class ToasterAdvancedExample extends React.Component<{}, {cleared: boolean}> {
 }
 
 export default {
-  [examples.SIMPLE_EXAMPLE]: function Story1() {
+  [examples.TOAST_EXAMPLE]: function Story1() {
     return (
       <Centered>
         <Toast>Default info notification</Toast>
-        <Toast closeable={false}>
+        <Toast>
           {({dismiss}) => {
             return (
               <React.Fragment>
@@ -237,6 +237,10 @@ export default {
                 backgroundColor: '#fff',
                 color: '#000',
                 borderRadius: '50%',
+                paddingTop: '5px',
+                paddingBottom: '5px',
+                paddingLeft: '5px',
+                paddingRight: '5px',
               },
             },
           }}

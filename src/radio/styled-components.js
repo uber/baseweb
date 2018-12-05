@@ -44,6 +44,7 @@ export const RadioGroupRoot = styled('div', props => {
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
+RadioGroupRoot.displayName = 'StyledRadioGroupRoot';
 
 export const Root = styled('label', props => {
   const {$disabled, $labelPlacement} = props;
@@ -57,6 +58,7 @@ export const Root = styled('label', props => {
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
+Root.displayName = 'StyledRoot';
 
 export const RadioMarkInner = styled('div', props => {
   const {$checked, $disabled, $theme, $isFocused, $isError} = props;
@@ -84,6 +86,7 @@ export const RadioMarkInner = styled('div', props => {
     ':active': activeStyle,
   };
 });
+RadioMarkInner.displayName = 'StyledRadioMarkInner';
 
 export const RadioMarkOuter = styled('div', props => {
   const {sizing} = props.$theme;
@@ -103,6 +106,7 @@ export const RadioMarkOuter = styled('div', props => {
     width: sizing.scale700,
   };
 });
+RadioMarkOuter.displayName = 'StyledRadioMarkOuter';
 
 export const Label = styled('div', props => {
   const {
@@ -115,6 +119,7 @@ export const Label = styled('div', props => {
     ...typography.font400,
   };
 });
+Label.displayName = 'StyledLabel';
 
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
@@ -124,3 +129,4 @@ export const Input = styled('input', {
   margin: 0,
   padding: 0,
 });
+Input.displayName = 'StyledInput';

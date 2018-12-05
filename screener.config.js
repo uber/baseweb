@@ -10,10 +10,12 @@ LICENSE file in the root directory of this source tree.
 
 const Accordion = require('./src/accordion/examples-list');
 const Button = require('./src/button/examples-list');
+const Breadcrumbs = require('./src/breadcrumbs/examples-list');
 const Card = require('./src/card/examples-list');
 const Checkbox = require('./src/checkbox/examples-list');
 const Input = require('./src/input/examples-list');
 const Modal = require('./src/modal/examples-list');
+const Notification = require('./src/notification/examples-list');
 const Pagination = require('./src/pagination/examples-list');
 const Popover = require('./src/popover/examples-list');
 const Radio = require('./src/radio/examples-list');
@@ -34,6 +36,7 @@ module.exports = {
     new RegExp(`${Accordion.ACCORDION_EXAMPLE}$`),
     new RegExp(Button.BUTTON_COMPACT_WITH_ENHANCERS),
     new RegExp(Button.BUTTON_WITH_ENHANCERS),
+    new RegExp(Breadcrumbs.DEFAULT),
     new RegExp(Card.TEXT_IMAGE_LINK),
     new RegExp(Card.TEXT_ONLY),
     new RegExp(Checkbox.SIMPLE_EXAMPLE),
@@ -43,6 +46,7 @@ module.exports = {
     new RegExp(Input.VALUE_EXAMPLE),
     /Stateless Menu/,
     new RegExp(`${Modal.SIMPLE_EXAMPLE}$`),
+    new RegExp(Notification.NOTIFICATION_EXAMPLE),
     new RegExp(Pagination.STATEFUL_PAGINATION),
     new RegExp(Popover.SIMPLE_EXAMPLE),
     new RegExp(Radio.SIMPLE_EXAMPLE),
@@ -51,7 +55,7 @@ module.exports = {
     new RegExp(Select.MULTI_SELECT),
     new RegExp(Slider.AS_SIMPLE_RANGE_SLIDER),
     new RegExp(Textarea.STATE_EXAMPLE),
-    new RegExp(Toast.SIMPLE_EXAMPLE),
+    new RegExp(Toast.TOAST_EXAMPLE),
     new RegExp(ProgressStep.DEFAULT),
   ],
   failureExitCode: 0,

@@ -56,10 +56,12 @@ export const Action = styled('span', props => {
     },
   };
 });
+Action.displayName = 'StyledAction';
 
 export const ActionIcon = styled('svg', () => {
   return {};
 });
+ActionIcon.displayName = 'StyledActionIcon';
 
 export const Root = styled('span', props => {
   const {$color, $disabled, $kind, $theme} = props;
@@ -97,3 +99,4 @@ export const Root = styled('span', props => {
     },
   };
 });
+Root.displayName = 'StyledRoot';

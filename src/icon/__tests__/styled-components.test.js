@@ -28,4 +28,11 @@ describe('Icon styled components', () => {
     expect(styles).toHaveProperty('width', '$theme.sizing.scale400');
     expect(styles).toHaveProperty('height', '$theme.sizing.scale400');
   });
+
+  test('Svg handles default size', () => {
+    const wrapper = shallow(<Svg $size="default" />);
+    const styles = wrapper.instance().getStyles();
+    expect(styles).toHaveProperty('width', '$theme.sizing.scale600');
+    expect(styles).toHaveProperty('height', '$theme.sizing.scale600');
+  });
 });

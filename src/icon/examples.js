@@ -99,7 +99,7 @@ export default {
             const Icon = Icons[key];
             return (
               <ButtonContainer key={key}>
-                <Button kind={buttonKind} endEnhancer={() => <Icon />}>
+                <Button kind={buttonKind} endEnhancer={Icon}>
                   {Icon.name}
                 </Button>
               </ButtonContainer>

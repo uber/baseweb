@@ -51,6 +51,7 @@ export const Root = styled('div', (props: SharedStylePropsT) => {
     pointerEvents: $isOpen ? 'auto' : 'none',
   };
 });
+Root.displayName = 'StyledRoot';
 
 export const Backdrop = styled('div', (props: SharedStylePropsT) => {
   const {$animate, $isOpen, $isVisible, $theme} = props;
@@ -76,6 +77,7 @@ export const Backdrop = styled('div', (props: SharedStylePropsT) => {
       : null),
   };
 });
+Root.displayName = 'StyledBackdrop';
 
 export const DialogContainer = styled('div', (props: SharedStylePropsT) => {
   return {
@@ -88,6 +90,7 @@ export const DialogContainer = styled('div', (props: SharedStylePropsT) => {
     userSelect: 'none',
   };
 });
+DialogContainer.displayName = 'StyledDialogContainer';
 
 export const Dialog = styled('div', (props: SharedStylePropsT) => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
@@ -122,6 +125,7 @@ export const Dialog = styled('div', (props: SharedStylePropsT) => {
     },
   };
 });
+Dialog.displayName = 'StyledDialog';
 
 export const Close = styled('button', (props: SharedStylePropsT) => {
   const {$theme} = props;
@@ -150,6 +154,7 @@ export const Close = styled('button', (props: SharedStylePropsT) => {
     },
   };
 });
+Close.displayName = 'StyledClose';
 
 export const ModalHeader = styled('div', ({$theme}: StyledComponentPropT) => ({
   ...$theme.typography.font500,
@@ -160,6 +165,7 @@ export const ModalHeader = styled('div', ({$theme}: StyledComponentPropT) => ({
   // Slightly more margin than left side to leave room for close button
   marginRight: $theme.sizing.scale900,
 }));
+ModalHeader.displayName = 'ModalHeader';
 
 export const ModalBody = styled('div', ({$theme}: StyledComponentPropT) => ({
   ...$theme.typography.font300,
@@ -169,6 +175,7 @@ export const ModalBody = styled('div', ({$theme}: StyledComponentPropT) => ({
   marginRight: $theme.sizing.scale800,
   marginBottom: $theme.sizing.scale700,
 }));
+ModalBody.displayName = 'ModalBody';
 
 export const ModalFooter = styled('div', ({$theme}: StyledComponentPropT) => ({
   ...$theme.typography.font300,
@@ -182,3 +189,4 @@ export const ModalFooter = styled('div', ({$theme}: StyledComponentPropT) => ({
   borderTopStyle: 'solid',
   borderTopColor: $theme.colors.mono400,
 }));
+ModalFooter.displayName = 'ModalFooter';

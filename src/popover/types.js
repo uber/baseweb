@@ -47,14 +47,7 @@ export type OverridesT = {
 };
 
 // Basically React.Node minus React.Portal and Iterable
-export type ChildT =
-  | void
-  | null
-  | boolean
-  | number
-  | string
-  // eslint-disable-next-line flowtype/no-weak-types
-  | React.Element<any>;
+export type ChildT = void | null | boolean | number | string | React.Element<*>;
 
 export type ChildrenT = React.ChildrenArray<ChildT>;
 
@@ -154,13 +147,12 @@ export type SharedStylePropsArgT = {
   $placement: PopoverPlacementT,
   $showArrow: boolean,
   children?: React.Node,
+
   // Styletron stuff
   $as?: string,
   // styled function wrapper related
   $style?: ?{},
-  // TODO: Get this to work without 'any'
-  /* eslint-disable-next-line flowtype/no-weak-types */
-  $ref?: React.Ref<any>,
+  $ref?: React.Ref<*>,
 };
 
 export type SharedStylePropsT = SharedStylePropsArgT & {
@@ -179,10 +171,7 @@ export type AnchorPropsT = {
   onFocus?: () => void,
   onMouseEnter?: (e: Event) => void,
   onMouseLeave?: (e: Event) => void,
-  /* eslint-disable flowtype/no-weak-types */
-  // TODO: Get this to work without 'any'
-  ref?: React.Ref<any>,
-  $ref?: React.Ref<any>,
-  /* eslint-enable flowtype/no-weak-types */
+  ref?: React.Ref<*>,
+  $ref?: React.Ref<*>,
   tabIndex?: '0',
 };

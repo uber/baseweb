@@ -5,23 +5,47 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
-import {KIND, PLACEMENT} from './constants.js';
+import {KIND, PLACEMENT, TYPE} from './constants.js';
 import type {
   SharedStylePropsT,
   ToasterSharedStylePropsT,
   KindTypeT,
+  NotificationTypeT,
   PlacementTypeT,
 } from './types.js';
 import type {ThemeT} from '../styles/types.js';
 
-function getBackgroundColor(kind: KindTypeT, theme: ThemeT) {
+function getBackgroundColor(
+  kind: KindTypeT,
+  type: NotificationTypeT,
+  theme: ThemeT,
+) {
+  const isInline = type === TYPE.inline;
   return {
-    [KIND.info]: theme.colors.primary500,
-    [KIND.positive]: theme.colors.positive500,
-    [KIND.warning]: theme.colors.warning500,
-    [KIND.negative]: theme.colors.negative500,
+    [KIND.info]: isInline
+      ? theme.colors.notificationPrimaryBackground
+      : theme.colors.toastPrimaryBackground,
+    [KIND.positive]: isInline
+      ? theme.colors.notificationPositiveBackground
+      : theme.colors.toastPositiveBackground,
+    [KIND.warning]: isInline
+      ? theme.colors.notificationWarningBackground
+      : theme.colors.toastWarningBackground,
+    [KIND.negative]: isInline
+      ? theme.colors.notificationNegativeBackground
+      : theme.colors.toastNegativeBackground,
+  }[kind];
+}
+
+function getFontColor(kind: KindTypeT, theme: ThemeT) {
+  return {
+    [KIND.info]: theme.colors.notificationPrimaryText,
+    [KIND.positive]: theme.colors.notificationPositiveText,
+    [KIND.warning]: theme.colors.notificationWarningText,
+    [KIND.negative]: theme.colors.notificationNegativeText,
   }[kind];
 }
 
@@ -80,13 +104,15 @@ export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
     ...getPlacement($placement),
   };
 });
+Root.displayName = 'StyledRoot';
 
 export const Body = styled('div', (props: SharedStylePropsT) => {
-  const {$isVisible, $kind, $theme} = props;
+  const {$isVisible, $kind, $type, $theme} = props;
+  const isInline = $type === TYPE.inline;
   return {
     ...$theme.typography.font300,
     pointerEvents: 'auto',
-    color: $theme.colors.white,
+    color: isInline ? getFontColor($kind, $theme) : $theme.colors.toastText,
     height: 'auto',
     width: '288px',
     paddingTop: $theme.sizing.scale600,
@@ -96,17 +122,18 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     marginTop: $theme.sizing.scale300,
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
-      getBackgroundColor($kind, $theme) || $theme.colors.primary500,
+      getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
     borderRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius200
       : '0px',
-    boxShadow: $theme.lighting.shadow600,
+    boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeInOutCurve,
   };
 });
+Body.displayName = 'StyledBody';
 
 /**
  * DeleteAlt icon overrides
@@ -118,3 +145,4 @@ export const CloseIconSvg = styled('svg', props => {
     float: 'right',
   };
 });
+CloseIconSvg.displayName = 'StyledCloseIconSvg';

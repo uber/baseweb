@@ -10,6 +10,7 @@ import {TYPE} from './constants.js';
 import {getSvgStyles} from '../icon/styled-components.js';
 import {SIZE} from './constants.js';
 import type {SharedStylePropsT} from './types.js';
+import {ellipsisText} from '../styles/util.js';
 
 function getFont(size = SIZE.default, typography) {
   return {
@@ -18,21 +19,46 @@ function getFont(size = SIZE.default, typography) {
   }[size];
 }
 
-function getControlPadding(size = SIZE.default, sizing, type) {
+function getControlPadding(props, emptyValue) {
+  const {
+    $theme: {sizing},
+    $size = SIZE.default,
+    $type,
+    $multi,
+  } = props;
+  const isSearch = $type === TYPE.search;
+  const paddingLeft = isSearch ? sizing.scale1000 : sizing.scale500;
   return {
     [SIZE.default]: {
-      paddingTop: sizing.scale400,
-      paddingBottom: sizing.scale400,
-      paddingLeft: type === TYPE.search ? sizing.scale1000 : sizing.scale500,
-      paddingRight: type === TYPE.select ? sizing.scale1000 : sizing.scale800,
+      // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
+      paddingTop:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale400} - ${sizing.scale0})`
+          : sizing.scale400,
+      paddingBottom:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale400} - ${sizing.scale0})`
+          : sizing.scale400,
+      paddingLeft,
+      paddingRight: '0',
     },
     [SIZE.compact]: {
-      paddingTop: sizing.scale200,
-      paddingBottom: sizing.scale200,
-      paddingLeft: type === TYPE.search ? sizing.scale1000 : sizing.scale500,
-      paddingRight: type === TYPE.select ? sizing.scale1000 : sizing.scale800,
+      // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
+      paddingTop:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+          : sizing.scale200,
+      paddingBottom:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+          : sizing.scale200,
+      paddingLeft:
+        $multi && !emptyValue
+          ? `calc(${paddingLeft} - ${sizing.scale0})`
+          : paddingLeft,
+      paddingRight: '0',
     },
-  }[size];
+  }[$size];
 }
 
 export const StyledDropdownContainer = styled('div', props => {
@@ -51,6 +77,7 @@ export const StyledDropdownContainer = styled('div', props => {
     paddingRight: sizing.scale300,
   };
 });
+StyledDropdownContainer.displayName = 'StyledDropdownContainer';
 
 export const StyledOptionContent = styled('div', props => {
   const {$isHighlighted, $selected, $disabled, $theme} = props;
@@ -67,8 +94,9 @@ export const StyledOptionContent = styled('div', props => {
     fontWeight: $selected ? 'bold' : 'normal',
   };
 });
+StyledOptionContent.displayName = 'StyledOptionContent';
 
-export const StyledRoot = styled('div', props => {
+export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
   const {
     $theme: {typography},
     $size,
@@ -76,83 +104,93 @@ export const StyledRoot = styled('div', props => {
   return {
     ...getFont($size, typography),
     boxSizing: 'border-box',
-  };
-});
-
-export const StyledControlContainer = styled('div', props => {
-  const {
-    $disabled,
-    $error,
-    $isFocused,
-    $isPseudoFocused,
-    $type,
-    $searchable,
-    $theme: {colors, sizing, animation, borders},
-  } = props;
-  return {
-    overflow: 'hidden',
     position: 'relative',
-    color: $disabled ? colors.inputTextDisabled : colors.foreground,
-    boxSizing: 'border-box',
-    display: 'flex',
-    width: '100%',
-    cursor: $disabled
-      ? 'not-allowed'
-      : $searchable || $type === TYPE.search
-        ? 'text'
-        : 'pointer',
-    backgroundColor: $disabled
-      ? colors.inputFillDisabled
-      : $isFocused || $isPseudoFocused
-        ? colors.background
+  };
+});
+StyledRoot.displayName = 'StyledRoot';
+
+export const StyledControlContainer = styled(
+  'div',
+  (props: SharedStylePropsT) => {
+    const {
+      $disabled,
+      $error,
+      $isFocused,
+      $isPseudoFocused,
+      $type,
+      $searchable,
+      $theme: {colors, sizing, animation, borders},
+    } = props;
+    return {
+      boxSizing: 'border-box',
+      overflow: 'hidden',
+      width: '100%',
+      color: $disabled ? colors.inputTextDisabled : colors.foreground,
+      display: 'flex',
+      justifyContent: 'space-between',
+      cursor: $disabled
+        ? 'not-allowed'
+        : $searchable || $type === TYPE.search
+          ? 'text'
+          : 'pointer',
+      backgroundColor: $disabled
+        ? colors.inputFillDisabled
+        : $isFocused || $isPseudoFocused
+          ? colors.background
+          : $error
+            ? colors.negative50
+            : colors.inputFill,
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: $disabled
+        ? colors.inputFillDisabled
         : $error
-          ? colors.negative50
-          : colors.inputFill,
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: $disabled
-      ? colors.inputFillDisabled
-      : $error
-        ? colors.negative400
-        : $isFocused || $isPseudoFocused
-          ? colors.primary400
-          : colors.inputFill,
-    borderRadius: borders.useRoundedCorners ? sizing.scale100 : '0',
-    boxShadow: `0 2px 6px ${
-      $disabled
-        ? 'transparent'
-        : $isFocused || $isPseudoFocused
-          ? $error
-            ? colors.shadowError
-            : colors.shadowFocus
-          : 'transparent'
-    }`,
-    transitionProperty: 'border, boxShadow, backgroundColor',
-    transitionDuration: animation.timing100,
-    transitionTimingFunction: animation.easeOutCurve,
-  };
-});
+          ? colors.negative400
+          : $isFocused || $isPseudoFocused
+            ? colors.primary400
+            : colors.inputFill,
+      borderRadius: borders.useRoundedCorners ? sizing.scale100 : '0',
+      boxShadow: `0 2px 6px ${
+        $disabled
+          ? 'transparent'
+          : $isFocused || $isPseudoFocused
+            ? $error
+              ? colors.shadowError
+              : colors.shadowFocus
+            : 'transparent'
+      }`,
+      transitionProperty: 'border, boxShadow, backgroundColor',
+      transitionDuration: animation.timing100,
+      transitionTimingFunction: animation.easeOutCurve,
+    };
+  },
+);
+StyledControlContainer.displayName = 'StyledControlContainer';
 
-export const StyledValueContainer = styled('span', props => {
-  const {
-    $type,
-    $size,
-    $theme: {sizing},
-  } = props;
-  const padding = getControlPadding($size, sizing, $type);
-  return {
-    boxSizing: 'border-box',
-    display: 'inline-block',
-    paddingLeft: $type === TYPE.search ? padding.paddingLeft : 0,
-  };
-});
+export const StyledValueContainer = styled(
+  'span',
+  (props: SharedStylePropsT) => {
+    const padding = getControlPadding(props);
+    return {
+      boxSizing: 'border-box',
+      position: 'relative',
+      flexGrow: 1,
+      flexShrink: 1,
+      flexBasis: '0%',
+      display: 'flex',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      overflow: 'hidden',
+      ...padding,
+    };
+  },
+);
+StyledValueContainer.displayName = 'StyledValueContainer';
 
-export const StyledPlaceholder = styled('div', props => {
+export const StyledPlaceholder = styled('div', (props: SharedStylePropsT) => {
   const {
     $disabled,
-    $size,
-    $type,
-    $theme: {colors, sizing},
+    $theme: {colors},
   } = props;
   return {
     position: 'absolute',
@@ -160,43 +198,44 @@ export const StyledPlaceholder = styled('div', props => {
     bottom: '0',
     right: '0',
     left: '0',
-    display: 'flex',
-    alignItems: 'center',
-    color: $disabled ? colors.inputFillDisabled : colors.foregroundAlt,
+    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     maxWidth: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    ...getControlPadding($size, sizing, $type),
+    ...getControlPadding(props, true),
   };
 });
+StyledPlaceholder.displayName = 'StyledPlaceholder';
 
-export const StyledSingleValue = styled('div', props => {
+export const StyledSingleValue = styled('div', (props: SharedStylePropsT) => {
   const {
+    $searchable,
     $size,
-    $type,
-    $theme: {sizing},
+    $theme: {typography},
   } = props;
+  const font = getFont($size, typography);
   return {
+    lineHeight: !$searchable ? font.lineHeight : 'inherit',
     boxSizing: 'border-box',
     position: 'absolute',
     top: '0',
     left: '0',
     height: '100%',
-    whiteSpace: 'nowrap',
     maxWidth: '100%',
-    ...getControlPadding($size, sizing, $type),
+    ...ellipsisText,
+    ...getControlPadding(props),
   };
 });
+StyledSingleValue.displayName = 'StyledSingleValue';
 
 export const StyledInputContainer = styled('div', props => {
   const {
+    $multi,
     $size,
-    $type,
     $searchable,
-    $theme: {sizing, typography},
+    $theme: {typography, sizing},
   } = props;
-  const padding = getControlPadding($size, sizing, $type);
   const font = getFont($size, typography);
   return {
     position: 'relative',
@@ -210,41 +249,48 @@ export const StyledInputContainer = styled('div', props => {
     marginBottom: '0',
     marginLeft: '0',
     marginRight: '0',
-    ...padding,
-    paddingLeft: $type === TYPE.search ? '0' : padding.paddingLeft,
-    height: !$searchable ? font.lineHeight : 'auto',
-    boxSizing: 'content-box',
-  };
-});
-
-export const StyledInput = styled('input', props => {
-  const {
-    $theme: {typography},
-    $size,
-    $disabled,
-    $searchable,
-    $width,
-  } = props;
-  return {
-    ...getFont($size, typography),
-    boxSizing: 'content-box',
-    width: $disabled || !$searchable ? '1px' : $width || 'auto',
-    maxWidth: '100%',
-    background: 'transparent',
-    border: 'none',
-    boxShadow: 'none',
-    display: 'inline-block',
-    outline: 'none',
-    marginTop: '0',
-    marginBottom: '0',
-    marginLeft: '0',
-    marginRight: '0',
-    paddingTop: '0',
-    paddingBottom: '0',
+    // sizing.scale0 to match the multi value component (Tag) top and bottom margin
+    paddingTop: $multi ? sizing.scale0 : '0',
+    paddingBottom: $multi ? sizing.scale0 : '0',
     paddingLeft: '0',
     paddingRight: '0',
+    height: !$searchable ? font.lineHeight : 'auto',
   };
 });
+StyledInputContainer.displayName = 'StyledInputContainer';
+
+export const StyledInput = styled(
+  'input',
+  (props: SharedStylePropsT & {$width: string}) => {
+    const {
+      $theme: {typography},
+      $size,
+      $disabled,
+      $searchable,
+      $width,
+    } = props;
+    return {
+      ...getFont($size, typography),
+      boxSizing: 'content-box',
+      width: $disabled || !$searchable ? '1px' : $width || '100%',
+      maxWidth: '100%',
+      background: 'transparent',
+      border: 'none',
+      boxShadow: 'none',
+      display: 'inline-block',
+      outline: 'none',
+      marginTop: '0',
+      marginBottom: '0',
+      marginLeft: '0',
+      marginRight: '0',
+      paddingTop: '0',
+      paddingBottom: '0',
+      paddingLeft: '0',
+      paddingRight: '0',
+    };
+  },
+);
+StyledInput.displayName = 'StyledInput';
 
 export const StyledInputSizer = styled('div', {
   position: 'absolute',
@@ -255,6 +301,20 @@ export const StyledInputSizer = styled('div', {
   overflow: 'scroll',
   whiteSpace: 'pre',
 });
+StyledInputSizer.displayName = 'StyledInputSizer';
+
+export const StyledIconsContainer = styled('div', ({$theme: {sizing}}) => {
+  return {
+    boxSizing: 'border-box',
+    position: 'relative',
+    display: 'flex',
+    flexShrink: 0,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    paddingRight: sizing.scale500,
+  };
+});
+StyledIconsContainer.displayName = 'StyledIconsContainer';
 
 export const StyledSelectArrow = styled('svg', (props: SharedStylePropsT) => {
   const {$theme, $disabled} = props;
@@ -263,51 +323,42 @@ export const StyledSelectArrow = styled('svg', (props: SharedStylePropsT) => {
     ...getSvgStyles({$theme}),
     color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     cursor: $disabled ? 'not-allowed' : 'pointer',
-    position: 'absolute',
-    right: '12px',
-    display: 'inline-block',
-    height: '100%',
   };
 });
+StyledSelectArrow.displayName = 'StyledSelectArrow';
 
 export const StyledClearIcon = styled('svg', (props: SharedStylePropsT) => {
-  const {$type, $theme} = props;
+  const {$theme} = props;
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
     color: colors.foregroundAlt,
     cursor: 'pointer',
-    position: 'absolute',
-    right: $type !== 'select' ? '14px' : '30px',
-    display: 'inline-block',
-    height: '100%',
   };
 });
+StyledClearIcon.displayName = 'StyledClearIcon';
 
 export const getLoadingIconStyles = (props: SharedStylePropsT) => {
-  const {$type, $theme} = props;
+  const {$theme} = props;
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
     color: colors.foregroundAlt,
-    position: 'absolute',
-    right: $type !== 'select' ? '14px' : '30px',
-    display: 'inline-block',
-    height: '100%',
   };
 };
 
 export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
   const {$disabled, $theme} = props;
-  const {colors} = $theme;
+  const {colors, sizing} = $theme;
   return {
     ...getSvgStyles({$theme}),
     color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
-    left: '12px',
+    left: sizing.scale500,
     display: 'inline-block',
     height: '100%',
     zIndex: 1,
   };
 });
+StyledSearchIcon.displayName = 'StyledSearchIcon';

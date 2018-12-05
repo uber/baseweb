@@ -18,3 +18,4 @@ export const Root = styled('div', (props: SharedStylePropsT) => {
     cursor: 'pointer',
   };
 });
+Root.displayName = 'StyledRoot';

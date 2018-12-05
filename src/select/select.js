@@ -12,6 +12,7 @@ import {
   StyledPlaceholder,
   StyledValueContainer,
   StyledInputContainer,
+  StyledIconsContainer,
   StyledSelectArrow,
   StyledClearIcon,
   getLoadingIconStyles,
@@ -751,6 +752,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   getSharedProps() {
     const {
+      clearable,
       disabled,
       error,
       isLoading,
@@ -762,6 +764,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     } = this.props;
     const {isOpen, isFocused, isPseudoFocused} = this.state;
     return {
+      $clearable: clearable,
       $disabled: disabled,
       $error: error,
       $isFocused: isFocused,
@@ -786,6 +789,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const [ValueContainer, valueContainerProps] = getOverrides(
       overrides.ValueContainer,
       StyledValueContainer,
+    );
+    const [IconsContainer, iconsContainerProps] = getOverrides(
+      overrides.IconsContainer,
+      StyledIconsContainer,
     );
     const sharedProps = this.getSharedProps();
 
@@ -819,9 +826,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
             {this.renderValue(valueArray, isOpen)}
             {this.renderInput()}
           </ValueContainer>
-          {this.renderLoading()}
-          {this.renderClear()}
-          {type === TYPE.select ? this.renderArrow() : null}
+          <IconsContainer {...sharedProps} {...iconsContainerProps}>
+            {this.renderLoading()}
+            {this.renderClear()}
+            {type === TYPE.select ? this.renderArrow() : null}
+          </IconsContainer>
         </ControlContainer>
         {isOpen ? this.renderMenu(options, valueArray) : null}
       </Root>

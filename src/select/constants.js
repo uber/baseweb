@@ -13,8 +13,8 @@ export const TYPE = {
   search: 'search',
 };
 
-export const STATE_CHANGE_TYPE = {
+export const STATE_CHANGE_TYPE = Object.freeze({
   select: 'select',
   remove: 'remove',
   clear: 'clear',
-};
+});

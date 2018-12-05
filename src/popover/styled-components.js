@@ -54,6 +54,7 @@ export function getBodyStyles(props: SharedStylePropsT) {
 }
 
 export const Body = styled('div', getBodyStyles);
+Body.displayName = 'StyledBody';
 
 /**
  * Arrow shown between the popover and the anchor element
@@ -73,6 +74,7 @@ export function getArrowStyles(props: SharedStylePropsT) {
 }
 
 export const Arrow = styled('div', getArrowStyles);
+Arrow.displayName = 'StyledArrow';
 
 /**
  * Extra div that holds the popover content. This extra element
@@ -93,6 +95,7 @@ export function getInnerStyles({$theme}: SharedStylePropsT) {
 }
 
 export const Inner = styled('div', getInnerStyles);
+Inner.displayName = 'StyledInner';
 
 /**
  * A drop-in component that provides the recommended padding
@@ -102,3 +105,4 @@ export const Inner = styled('div', getInnerStyles);
 export const Padding = styled('div', {
   padding: '12px',
 });
+Padding.displayName = 'StyledPadding';

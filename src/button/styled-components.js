@@ -49,16 +49,19 @@ export const BaseButton = styled(
     ...getStyleForKind({$theme, $kind, $isLoading}),
   }),
 );
+BaseButton.displayName = 'StyledBaseButton';
 
 export const EndEnhancer = styled('div', ({$theme}: StylePropsT) => ({
   display: 'flex',
   marginLeft: $theme.sizing.scale500,
 }));
+EndEnhancer.displayName = 'StyledEndEnhancer';
 
 export const StartEnhancer = styled('div', ({$theme}: StylePropsT) => ({
   display: 'flex',
   marginRight: $theme.sizing.scale500,
 }));
+StartEnhancer.displayName = 'StyledStartEnhancer';
 
 export const LoadingSpinnerContainer = styled('div', {
   // To center within parent
@@ -67,6 +70,7 @@ export const LoadingSpinnerContainer = styled('div', {
   top: '50%',
   transform: 'translate(-50%, -50%)',
 });
+LoadingSpinnerContainer.displayName = 'StyledLoadingSpinnerContainer';
 
 export const LoadingSpinner = styled(
   'div',
@@ -100,6 +104,7 @@ export const LoadingSpinner = styled(
     };
   },
 );
+LoadingSpinner.displayName = 'StyledLoadingSpinner';
 
 export function getLoadingSpinnerColors({
   $theme,
