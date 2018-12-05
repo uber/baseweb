@@ -65,7 +65,7 @@ export default () => {
 
 * `current?: number = 0`
   * Defines the current active step index.
-* `overrides: {Root} = {}`
+* `overrides?: {Root} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 
 ## `Step` and `NumberedStep` API

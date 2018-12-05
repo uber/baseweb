@@ -90,9 +90,9 @@ export default () => (
   * `Root: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Thumbnail: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Title: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-* `thumbnail: string` - Optional.
+* `thumbnail?: string = null`
   * Image `src` that by default is rendered to the side of children content.
-* `title: React.Node` - Optional.
+* `title?: React.Node = null`
   * Content to render above the body content.
 
 ## Accessibility

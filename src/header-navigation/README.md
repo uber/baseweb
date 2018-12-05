@@ -61,19 +61,19 @@ export default (props) => <HeaderNavigation
 
 ## `HeaderNavigation` API
 
-* `children: React.Node`
+* `children?: React.Node = null`
   * All the children of header navigation. It accepts any components, but it is useful to use `NavigationList` and `NavigationItem` to align and follow style guides.
 
 ## `StyledNavigationList` API
 
 * `align: $Values<ALIGN> = undefined`
   * Alignment of elements inside of navigation list.
-* `children: React.Node` - Required.
+* `children?: React.Node = null`
   * All the children of NavigationList.
 
 ## `StyledNavigationItem` API
 
-* `children: React.Node`
+* `children?: React.Node = null`
   * All the children of NavigationItem.
 
 ## `ALIGN` Constant

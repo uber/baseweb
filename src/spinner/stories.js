@@ -10,7 +10,7 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
-import SpinnerReadme from '../../rfcs/spinner-component.md';
+import SpinnerReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Spinner', module)
