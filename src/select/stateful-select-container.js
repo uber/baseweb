@@ -13,11 +13,11 @@ import type {
   OnChangeParamsT,
 } from './types';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+const defaultStateReducer: StateReducerT<> = (type, nextState) => nextState;
 
 class StatefulSelectContainer extends React.Component<
-  StatefulContainerPropsT,
-  StateT,
+  StatefulContainerPropsT<>,
+  StateT<>,
 > {
   static defaultProps = {
     initialState: {
@@ -30,14 +30,14 @@ class StatefulSelectContainer extends React.Component<
 
   state = {...this.props.initialState};
 
-  onChange = (params: OnChangeParamsT) => {
+  onChange = (params: OnChangeParamsT<>) => {
     this.internalSetState(params);
     this.props.onChange(params);
   };
 
-  internalSetState = (params: OnChangeParamsT) => {
+  internalSetState = (params: OnChangeParamsT<>) => {
     const {stateReducer} = this.props;
-    const nextState: StateT = {value: params.value};
+    const nextState: StateT<> = {value: params.value};
     this.setState(stateReducer(params.type, nextState, this.state));
   };
 

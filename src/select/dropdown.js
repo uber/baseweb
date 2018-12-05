@@ -14,7 +14,7 @@ import {StatefulMenu} from '../menu';
 import type {DropdownPropsT} from './types';
 import {getOverrides, mergeOverrides} from '../helpers/overrides';
 
-export default class SelectDropdown extends React.Component<DropdownPropsT> {
+export default class SelectDropdown extends React.Component<DropdownPropsT<>> {
   getSharedProps() {
     const {
       error,

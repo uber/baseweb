@@ -7,7 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {PropsT, OptionT, SelectStateT} from '../types';
 
-export const shouldShowValue = (state: SelectStateT, props: $Shape<PropsT>) => {
+export const shouldShowValue = (
+  state: SelectStateT,
+  props: $Shape<PropsT<>>,
+) => {
   const {inputValue, isPseudoFocused, isFocused} = state;
   const {onSelectResetsInput} = props;
   if (!inputValue) return true;
@@ -22,7 +25,7 @@ export const shouldShowValue = (state: SelectStateT, props: $Shape<PropsT>) => {
 
 export const shouldShowPlaceholder = (
   state: SelectStateT,
-  props: $Shape<PropsT>,
+  props: $Shape<PropsT<>>,
   isOpen: boolean,
 ) => {
   const {inputValue, isPseudoFocused, isFocused} = state;
@@ -36,9 +39,9 @@ export const shouldShowPlaceholder = (
 
 export const expandValue = (
   // eslint-disable-next-line flowtype/no-weak-types
-  value: OptionT,
-  props: $Shape<PropsT>,
-): OptionT => {
+  value: OptionT<>,
+  props: $Shape<PropsT<>>,
+): OptionT<> => {
   let {options, valueKey} = props;
   if (!options) return value;
   for (let i = 0; i < options.length; i++) {

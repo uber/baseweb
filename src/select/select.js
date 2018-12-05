@@ -41,7 +41,7 @@ import type {
   ChangeActionT,
 } from './types';
 
-class Select extends React.Component<PropsT, SelectStateT> {
+class Select extends React.Component<PropsT<>, SelectStateT> {
   static defaultProps = defaultProps;
 
   wrapper: ?HTMLElement;
@@ -63,7 +63,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
+  componentDidUpdate(prevProps: PropsT<>, prevState: SelectStateT) {
     if (prevState.isOpen !== this.state.isOpen) {
       this.toggleTouchOutsideEvent(this.state.isOpen);
       const handler = this.state.isOpen
@@ -357,14 +357,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  getOptionLabel = ({option}: {option: OptionT}): React.Node => {
+  getOptionLabel = ({option}: {option: OptionT<>}): React.Node => {
     return option[this.props.labelKey];
   };
 
   /**
    * Extends the value into an array from the given options
    */
-  getValueArray(value: ValueT): Array<OptionT> {
+  getValueArray(value: ValueT<>): Array<OptionT<>> {
     if (!Array.isArray(value)) {
       if (value === null || value === undefined) return [];
       value = [value];
@@ -372,7 +372,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     return value.map(value => expandValue(value, this.props));
   }
 
-  setValue(value: ValueT, option: ?OptionT, type: ChangeActionT) {
+  setValue(value: ValueT<>, option: ?OptionT<>, type: ChangeActionT) {
     if (this.props.onChange) {
       this.props.onChange({
         value,
@@ -382,7 +382,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  selectValue = ({item}: {item: OptionT}) => {
+  selectValue = ({item}: {item: OptionT<>}) => {
     if (item.disabled) {
       return;
     }
@@ -424,7 +424,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  addValue = (item: OptionT) => {
+  addValue = (item: OptionT<>) => {
     const valueArray = [...this.props.value];
     this.setValue(valueArray.concat(item), item, STATE_CHANGE_TYPE.select);
   };
@@ -440,7 +440,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  removeValue = (item: OptionT) => {
+  removeValue = (item: OptionT<>) => {
     const valueArray = [...this.props.value];
     this.setValue(
       valueArray.filter(
@@ -471,7 +471,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.focusAfterClear = true;
   };
 
-  getResetValue(): ValueT {
+  getResetValue(): ValueT<> {
     // Clear all except not clearable values
     return this.props.value.filter(item => {
       return item.clearableValue === false;
@@ -497,7 +497,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   renderValue(
-    valueArray: ValueT,
+    valueArray: ValueT<>,
     isOpen: boolean,
   ): ?React.Node | Array<?React.Node> {
     const {overrides = {}} = this.props;
@@ -686,7 +686,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     );
   }
 
-  filterOptions(excludeOptions: ?ValueT) {
+  filterOptions(excludeOptions: ?ValueT<>) {
     const filterValue = this.state.inputValue;
     const options = this.props.options || [];
     if (this.props.filterOptions) {
@@ -699,7 +699,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  renderMenu(options: Array<OptionT>, valueArray: ValueT) {
+  renderMenu(options: Array<OptionT<>>, valueArray: ValueT<>) {
     const {
       error,
       getOptionLabel,

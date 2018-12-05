@@ -15,18 +15,21 @@ export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;
 export type TypeT = $Keys<typeof TYPE>;
 
-export type OptionT = {
+type DefaultPassedOptionT = {};
+
+export type OptionT<T = DefaultPassedOptionT> = {
   id?: string,
   label?: React.Node,
   disabled?: boolean,
   clearableValue?: boolean,
+  ...T,
 };
 
-export type ValueT = Array<OptionT>;
+export type ValueT<T = DefaultPassedOptionT> = Array<OptionT<T>>;
 
-export type OnChangeParamsT = {
-  value: ValueT,
-  option: ?OptionT,
+export type OnChangeParamsT<T = DefaultPassedOptionT> = {
+  value: ValueT<T>,
+  option: ?OptionT<T>,
   type: ChangeActionT,
 };
 
@@ -57,7 +60,7 @@ export type OverridesDropdownT = {
   OptionContent?: OverrideT<*>,
 };
 
-export type PropsT = {
+export type PropsT<T = DefaultPassedOptionT> = {
   'aria-label': ?string,
   'aria-describedby': ?string,
   'aria-labelledby': ?string,
@@ -70,14 +73,14 @@ export type PropsT = {
   error: boolean,
   escapeClearsValue: boolean,
   filterOptions: ?(
-    options: ValueT,
+    options: ValueT<T>,
     filterValue: string,
-    excludeOptions: ?ValueT,
+    excludeOptions: ?ValueT<T>,
     {valueKey: string, labelKey: string},
-  ) => ValueT,
+  ) => ValueT<T>,
   filterOutSelected: boolean,
-  getOptionLabel: ?({option: OptionT}) => React.Node,
-  getValueLabel: ?({option: OptionT}) => React.Node,
+  getOptionLabel: ?({option: OptionT<T>}) => React.Node,
+  getValueLabel: ?({option: OptionT<T>}) => React.Node,
   isLoading: boolean,
   labelKey: string,
   maxDropdownHeight: string,
@@ -85,7 +88,7 @@ export type PropsT = {
   noResultsMsg: React.Node,
   onBlur: (e: SyntheticEvent<HTMLElement>) => void,
   onBlurResetsInput: boolean,
-  onChange: (params: OnChangeParamsT) => void,
+  onChange: (params: OnChangeParamsT<T>) => void,
   onFocus: (e: SyntheticEvent<HTMLElement>) => void,
   onInputChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onCloseResetsInput: boolean,
@@ -93,14 +96,14 @@ export type PropsT = {
   onOpen: ?() => void,
   onClose: ?() => void,
   openOnClick: boolean,
-  options: ?Array<OptionT>,
+  options: ?Array<OptionT<T>>,
   overrides: OverridesT,
   placeholder: React.Node,
   required: boolean,
   searchable: boolean,
   size: SizeT,
   type: TypeT,
-  value: ValueT,
+  value: ValueT<T>,
   valueKey: string,
 };
 
@@ -111,46 +114,46 @@ export type SelectStateT = {
   isPseudoFocused: boolean,
 };
 
-export type StateT = {
-  value: ValueT,
+export type StateT<T = DefaultPassedOptionT> = {
+  value: ValueT<T>,
 };
 
-export type StateReducerT = (
+export type StateReducerT<T = DefaultPassedOptionT> = (
   stateType: string,
-  nextState: StateT,
-  currentState: StateT,
-) => StateT;
+  nextState: StateT<T>,
+  currentState: StateT<T>,
+) => StateT<T>;
 
-export type StatefulContainerPropsT = {
+export type StatefulContainerPropsT<T = DefaultPassedOptionT> = {
   overrides: OverridesT,
-  children: PropsT => React$Node,
-  initialState: StateT,
-  stateReducer: StateReducerT,
-  onChange: (params: OnChangeParamsT) => void,
+  children: (PropsT<T>) => React$Node,
+  initialState: StateT<T>,
+  stateReducer: StateReducerT<T>,
+  onChange: (params: OnChangeParamsT<T>) => void,
 };
 
-export type StatefulSelectPropsT = PropsT & {
+export type StatefulSelectPropsT<T = DefaultPassedOptionT> = PropsT<T> & {
   overrides?: OverridesT,
-  initialState?: StateT,
-  stateReducer?: StateReducerT,
-  onChange?: (params: OnChangeParamsT) => void,
+  initialState?: StateT<T>,
+  stateReducer?: StateReducerT<T>,
+  onChange?: (params: OnChangeParamsT<T>) => void,
 };
 
-export type DropdownPropsT = {
+export type DropdownPropsT<T = DefaultPassedOptionT> = {
   error: boolean,
-  getOptionLabel: ({option: OptionT}) => React.Node,
+  getOptionLabel: ({option: OptionT<T>}) => React.Node,
   isLoading: boolean,
   labelKey: string,
   maxDropdownHeight: string,
   multi: boolean,
   onItemSelect: OnItemSelectFnT,
-  options: ValueT,
+  options: ValueT<T>,
   overrides?: OverridesDropdownT,
   required: boolean,
   searchable: boolean,
   size: SizeT,
   type: TypeT,
-  value: ValueT,
+  value: ValueT<T>,
   valueKey: string,
 };
 

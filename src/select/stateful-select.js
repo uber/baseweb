@@ -11,10 +11,10 @@ import Select from './select';
 import defaultProps from './default-props';
 import type {PropsT, StatefulSelectPropsT} from './types';
 
-export default function StatefulSelect(props: StatefulSelectPropsT) {
+export default function StatefulSelect(props: StatefulSelectPropsT<>) {
   return (
     <StatefulContainer {...props}>
-      {(childrenProps: PropsT) => <Select {...childrenProps} />}
+      {(childrenProps: PropsT<>) => <Select {...childrenProps} />}
     </StatefulContainer>
   );
 }
