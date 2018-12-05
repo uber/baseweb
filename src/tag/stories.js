@@ -12,7 +12,7 @@ import {storiesOf} from '@storybook/react';
 import examples from './examples';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import SelectReadme from '../../rfcs/tag-component.md';
+import SelectReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Tag', module)
