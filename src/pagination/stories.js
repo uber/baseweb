@@ -11,7 +11,7 @@ import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
 // $FlowFixMe
-import PaginationReadme from '../../rfcs/pagination-component.md';
+import PaginationReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Pagination', module)
