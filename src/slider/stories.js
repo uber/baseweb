@@ -12,7 +12,7 @@ import {storiesOf} from '@storybook/react';
 import examples from './examples';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import SliderReadme from '../../rfcs/slider-component.md';
+import SliderReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Slider', module)
