@@ -10,7 +10,6 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
-//$FlowFixMe
 import TextareaReadme from '../../rfcs/textarea-component.md';
 
 Object.entries(examples).forEach(([description, example]) =>

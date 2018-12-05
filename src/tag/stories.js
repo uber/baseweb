@@ -7,11 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global module */
 import {storiesOf} from '@storybook/react';
-
-// Styled elements
-import examples from './examples';
 import {withReadme} from 'storybook-readme';
-//$FlowFixMe
+
+import examples from './examples';
 import SelectReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
