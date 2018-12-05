@@ -60,26 +60,9 @@ import {withStyle} from 'styletron-react';
 
 ## Stateful container API (imported from `baseui/input`)
 
-* `children?: (props: Props) => React.Node = null`
-* `initialState?: {value: string} = {value: ''}`
-  * Initial state of an uncontrolled textarea component.
-    * `value` - an initial textarea value.
-* `stateReducer?: (type: 'change', nextState: {}, currentState: {}, e: Event) => stateToSet: {}`
-  * A state change handler.
-    * `type` - a state change type
-    * `nextState` - a new state value to be set
-    * `currentState` - current state value
-    * `stateToSet` - a return value that the state will be updated with
-* `onChange?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
-  * handler for change events on input element.
-* `onKeyDown?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
-  * handler for keydown events on input element.
-* `onKeyPress?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
-  * handler for keypress events on input element.
-* `onKeyUp?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
-  * handler for keyup events on input element.
+* See documentation in [input component](../input/README.md)
 
- ## Textarea component API
+## Textarea component API
 
 * `autoFocus?: boolean = false`
   * If `true` the textarea will be focused on the first mount.
