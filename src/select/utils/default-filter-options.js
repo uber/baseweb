@@ -5,15 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import type {OptionT, ValueT} from '../types';
+
 const trim = str => str.replace(/^\s+|\s+$/g, '');
 
 const isValid = value => {
   return typeof value !== 'undefined' && value !== null && value !== '';
 };
-
-// eslint-disable-next-line flowtype/no-weak-types
-type OptionT = {[string]: any};
-type ValueT = Array<OptionT>;
 
 type defaultPropsT = {
   filterOption: ?(option: OptionT, filterValue: string) => boolean,
@@ -41,6 +39,8 @@ const filterOptions = (
   excludeOptions: ?ValueT,
   newProps: $Shape<defaultPropsT> | typeof undefined,
 ) => {
+  let internalExcludeOptions = excludeOptions;
+
   const props = {
     ...defaultProps,
     ...newProps,
@@ -55,11 +55,14 @@ const filterOptions = (
   }
 
   if (excludeOptions)
-    excludeOptions = excludeOptions.map(i => i[props.valueKey]);
+    internalExcludeOptions = excludeOptions.map(i => i[props.valueKey]);
 
   // $FlowFixMe
   return options.filter(option => {
-    if (excludeOptions && excludeOptions.indexOf(option[props.valueKey]) > -1)
+    if (
+      internalExcludeOptions &&
+      internalExcludeOptions.indexOf(option[props.valueKey]) > -1
+    )
       return false;
     if (props.filterOption)
       return props.filterOption.call(undefined, option, filterValue);
