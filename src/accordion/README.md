@@ -1,5 +1,7 @@
 # Accordion Component
 
+A list of items that can be expanded to show more information about the topic.
+
 ## Usage
 
 ### Basic usage
