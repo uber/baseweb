@@ -42,6 +42,7 @@ import {withStyle} from 'styletron-react';
   );
 };
 ```
+
 ## Exports
 
 * `Textarea`
@@ -59,15 +60,16 @@ import {withStyle} from 'styletron-react';
 
 ## Stateful container API (imported from `baseui/input`)
 
-* `children: (props: Props) => React.Node`
-* `initialState?: {value: string}`
-  * Initial state of an uncontrolled textarea component. - `value` - an initial textarea value.
+* `children?: (props: Props) => React.Node = null`
+* `initialState?: {value: string} = {value: ''}`
+  * Initial state of an uncontrolled textarea component.
+    * `value` - an initial textarea value.
 * `stateReducer?: (type: 'change', nextState: {}, currentState: {}, e: Event) => stateToSet: {}`
-  A state change handler.
-  * `type` - a state change type
-  * `nextState` - a new state value to be set
-  * `currentState` - current state value
-  * `stateToSet` - a return value that the state will be updated with
+  * A state change handler.
+    * `type` - a state change type
+    * `nextState` - a new state value to be set
+    * `currentState` - current state value
+    * `stateToSet` - a return value that the state will be updated with
 * `onChange?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
   * handler for change events on input element.
 * `onKeyDown?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
@@ -76,8 +78,10 @@ import {withStyle} from 'styletron-react';
   * handler for keypress events on input element.
 * `onKeyUp?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
   * handler for keyup events on input element.
+
  ## Textarea component API
- * `autoFocus?: boolean = false`
+
+* `autoFocus?: boolean = false`
   * If `true` the textarea will be focused on the first mount.
 * `disabled?: boolean = false`
   * Defines if the field is disabled.
@@ -89,7 +93,7 @@ import {withStyle} from 'styletron-react';
   * A ref to access an textarea element.
 * `name?: string = ''`
   * Name attribute value.
-* `overrides: {InputContainer, Input}` - Optional
+* `overrides?: {InputContainer, Input} = {}`
   * `InputContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * A textarea container, no styles applied to it by default.
   * `Input?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
