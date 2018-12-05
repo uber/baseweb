@@ -14,5 +14,6 @@ storybook-static
 [lints]
 
 [options]
+module.name_mapper.extension='md' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'
 
 [strict]
