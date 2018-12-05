@@ -10,7 +10,7 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 import examples from './examples';
 
-import TextareaReadme from '../../rfcs/textarea-component.md';
+import TextareaReadme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Textarea', module)
