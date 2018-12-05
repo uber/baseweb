@@ -63,9 +63,9 @@ class App extends React.Component {
 
 ## `Modal` API
 
-* `children: React.node | () => React.node`
+* `children?: React.node | () => React.node = null`
   * Modal content. The children-as-function API may be preferable for performance reasons (wont render until opened)
-* `isOpen: boolean`
+* `isOpen: boolean` - Required.
   * Controls whether the modal is visible or not
 * `closeable?: boolean = false`
   * Whether the modal should be closeable by the user (either via escape, backdrop click, etc). You can set this to `false` if your modal has an action that the user _must_ take before closing.
@@ -85,19 +85,6 @@ class App extends React.Component {
   * `Dialog?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `DialogContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Close?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-
-## SIZE Constant
-
-* `compact` - 400px width
-* `default` - 550px width
-* `full` - Span full viewport, minus some margin
-* `auto` - Based on content width
-
-## CLOSE_SOURCE Constant
-
-* `close_button`
-* `escape`
-* `backdrop`
 
 ## Presentational components props API
 

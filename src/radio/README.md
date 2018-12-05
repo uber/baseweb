@@ -115,53 +115,53 @@ export default () => {
 
 ## `StatefulRadioGroupContainer` API
 
-* `initialState: {value?: string} = {}`
-* `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
-  A state change handler.
-  * `type` - state change type
-  * `nextState` - a new state changes that will be set
-  * `currentState` - current full state of the component
-* `children: ({autoFocus?: boolean, overrides?: {}, onChange: SyntheticInputEvent<HTMLInputEvent>}) => React.Node`
+* `initialState?: {value?: string} = {}`
+* `stateReducer?: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
+  * A state change handler.
+    * `type` - state change type
+    * `nextState` - a new state changes that will be set
+    * `currentState` - current full state of the component
+* `children: ({autoFocus?: boolean, overrides?: {}, onChange: SyntheticInputEvent<HTMLInputEvent>}) => React.Node` - Required.
   * should return `RadioGroup` instance with standard or customized inner elements. It makes sense only for `StatefulRadioGroupContainer` and is ignored by `StatefulRadioGroup`
-* `disabled?: boolean = false`:
-* `name?: string = <random string>`:
+* `disabled?: boolean = false`
+* `name?: string = <random string>`
   * String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string
-* `value?: string = undefined`:
+* `value?: string = undefined`
   * The value of radio button, which is preselected.
-* `autoFocus?: boolean = false`:
+* `autoFocus?: boolean = false`
   * Set to be focused (active) on selected\checked radio.
-* `disabled?: boolean = false`:
+* `disabled?: boolean = false`
   * Disabled all radio group from being changed. To disable some of radios provide disabled flag in each of them.
 * `children: Array<React.Node>`
   * As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package.
-* `required?: boolean = false`:
+* `required?: boolean = false`
   * Set if the control is required to be checked.
-* `isError?: boolean = false`:
+* `isError?: boolean = false`
   * Sets radio group into error state.
-* `align: 'vertical' | 'horizontal' = 'vertical'`:
+* `align: 'vertical' | 'horizontal' = 'vertical'`
   * How to position radio buttons in the group.
-* `labelPlacement: 'top' | 'right' | 'bottom' | 'left' = 'right'`:
+* `labelPlacement: 'top' | 'right' | 'bottom' | 'left' = 'right'`
   * How to position the label relative to the radio itself.
 * `onChange?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
   * Handler for change events on trigger element.
 * `onMouseEnter?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
   * handler for mouseenter events on trigger element.
-* `onMouseLeave?: func = () => {}`:
+* `onMouseLeave?: func = () => {}`
   * handler for mouseleave events on trigger element.
-* `onFocus?: func = () => {}`:
+* `onFocus?: func = () => {}`
   * handler for focus events on trigger element.
-* `onBlur?: func = () => {}`:
+* `onBlur?: func = () => {}`
   * handler for blur events on trigger element.
 
 ## `Radio` API
 
-* `checked?: boolean = false`:
+* `checked?: boolean = false`
   * Check or uncheck the control.
-* `children: React.Node = ''`:
+* `children?: React.Node = ''`
   * Component or String value for label of checkbox.
-* `disabled?: boolean = false`:
+* `disabled?: boolean = false`
   * Disable control from being changed.
-* `isError?: boolean = false`:
+* `isError?: boolean = false`
   * Sets control into isError state.
 * `overrides?: {Root, Checkmark, Label, Input} = {}`
   * `Label?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`

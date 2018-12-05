@@ -38,7 +38,7 @@ export default () => (
 
 ## `Avatar` API
 
-* `name: string`
+* `name: string` - Required.
   * Defines an alternative text description of the image.
 * `overrides?: {Avatar, Root} = {}`
   * `Avatar?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
@@ -47,7 +47,7 @@ export default () => (
     * Component to use for containing element. Displays if image fails to load.
 * `size?: string = 'scale1000'`
   * Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width.
-* `src: string`
+* `src: string` - Required.
   * Image to display.
 
 ## Presentational components props API

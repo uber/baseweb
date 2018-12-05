@@ -76,50 +76,50 @@ export default () => {
   * `type` - state change type
   * `changes` - a new state changes that will be set
   * `currentState` - current full state of the component
-* `onOpen?: () => {}`:
+* `onOpen?: () => {}`
   * Event handler when popover is shown.
-* `onClose?: () => {}`:
+* `onClose?: () => {}`
   * Event handler when popover is hidden.
-* `placement: $Values<PLACEMENT> = PLACEMENT.auto`:
+* `placement?: $Values<PLACEMENT> = PLACEMENT.auto`
   * How to position the popover relative to the target.
-* `content: React.Node | Function`:
+* `content?: React.Node | () => React.Node = null`
   * Content to render within the popover when it's shown.
-* `children: React.Node`:
+* `children: React.Node` - Required.
   * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
-* `onMouseEnterDelay?: number = 200`:
+* `onMouseEnterDelay?: number = 200`
   * Number of milliseconds to wait before showing the popover after mousing enters the trigger elment (for triggerType `hover`).
-* `onMouseLeaveDelay?: number = 200`:
+* `onMouseLeaveDelay?: number = 200`
   * Number of milliseconds to wait before hiding the popover after the mouse leaves the trigger element (for triggerType `hover`).
-* `showArrow?: boolean = false`:
+* `showArrow?: boolean = false`
   * Whether or not to show the arrow pointing from the popover to the trigger.
-* `dismissOnClickOutside?: boolean = true`:
+* `dismissOnClickOutside?: boolean = true`
   * Whether to hide the popover when the user clicks anywhere outside the trigger/popover.
-* `dismissOnEsc?: boolean = true`:
+* `dismissOnEsc?: boolean = true`
   * Whether to hide the popover when the user presses the escape key.
-* `triggerType?: 'click' | 'hover' = 'click'`:
+* `triggerType?: 'click' | 'hover' = 'click'`
   * Whether to toggle the popover when trigger is clicked or hovered.
 
 ## `Popover` API
 
-* `isOpen?: boolean = false`:
+* `isOpen?: boolean = false`
   * Whether or not to show the popover.
-* `placement?: $Values<PLACEMENT> = PLACEMENT.auto`:
+* `placement?: $Values<PLACEMENT> = PLACEMENT.auto`
   * How to position the popover relative to the target.
-* `content: React.Node | Function`:
+* `content?: React.Node | () => React.Node = null`
   * Content to render within the popover when it's shown.
-* `children: React.Node`:
+* `children: React.Node` - Required.
   * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
-* `showArrow?: boolean = false`:
+* `showArrow?: boolean = false`
   * Whether or not to show the arrow pointing from the popover to the trigger.
-* `onClick: Event => void = null`:
+* `onClick: Event => void = null`
   * Handler for click events on trigger element.
-* `onMouseEnter: () => void = null`:
+* `onMouseEnter: () => void = null`
   * Handler for mouseenter events on trigger element.
-* `onMouseLeave: () => void = null`:
+* `onMouseLeave: () => void = null`
   * Handler for mouseleave events on trigger element.
-* `onClickOutside: () => void = null`:
+* `onClickOutside: () => void = null`
   * Handler for clicks outside the anchor/popover elements.
-* `onEsc: () => void = null`:
+* `onEsc: () => void = null`
   * Handler for 'Escape' keypress events.
 
 ## Presentational components props API
