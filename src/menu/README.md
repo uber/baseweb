@@ -1,5 +1,7 @@
 # Menu
 
+Displays a list of selectable items.
+
 ## Usage
 
 ### Basic Usage
