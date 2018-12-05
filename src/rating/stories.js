@@ -13,7 +13,7 @@ import {withReadme} from 'storybook-readme';
 
 import examples from './examples';
 //$FlowFixMe
-import RatingREADME from '../../rfcs/rating-component.md';
+import RatingREADME from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Rating', module)
