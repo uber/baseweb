@@ -72,11 +72,11 @@ export default () => {
     to dismiss the notification and can be used as a handler for an action inside the toast content.
 * `closeable?: boolean = true`
   * When set to true a close button is displayed and the notification can be dismissed by a user.
-* `kind: $Values<KIND> = KIND.info`
+* `kind?: $Values<KIND> = KIND.info`
   * Defines the type of notification.
 * `onClose?: () => void = () => {}`
   * A callback function called when a notification is dismissed.
-* `onBlur: (e: Event) => void = () => {}`
+* `onBlur?: (e: Event) => void = () => {}`
   * A callback function called when the notification's Body element gets a `blur` event.
 * `onFocus?: (e: Event) => void = () => {}`
   * A callback function called when the notification's Body element gets a `focus` event.
