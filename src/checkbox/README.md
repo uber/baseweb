@@ -1,5 +1,7 @@
 # Checkbox Component
 
+A checkbox control that is used for selecting multiple options from a set.
+
 ## Usage
 
 ### Basic usage
