@@ -8,11 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* global module */
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
-//$FlowFixMe
+
 import RadioGroupReadme from './README.md';
 import examples from './examples';
-
-//$FlowFixMe
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('RadioGroup', module)
