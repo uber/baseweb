@@ -1,5 +1,7 @@
 # RadioGroup Component
 
+A radio control that is used to select a single option from set.
+
 ## Usage
 
 ### Basic usage
