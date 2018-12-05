@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 //$FlowFixMe
-import CheckboxReadme from '../../rfcs/checkbox-component.md';
+import CheckboxReadme from './README.md';
 import examples from './examples';
 import examplesToggle from './examples-toggle';
 
