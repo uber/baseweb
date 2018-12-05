@@ -8,12 +8,10 @@ LICENSE file in the root directory of this source tree.
 /* global module */
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
-//$FlowFixMe
+
 import CheckboxReadme from './README.md';
 import examples from './examples';
 import examplesToggle from './examples-toggle';
-
-//$FlowFixMe
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Checkbox', module)
