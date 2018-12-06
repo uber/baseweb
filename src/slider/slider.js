@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {findDOMNode} from 'react-dom';
-import {thumbWidth} from './constants';
-import type {StatelessStateT, PropsT} from './types';
+import {thumbWidth} from './constants.js';
+import type {StatelessStateT, PropsT} from './types.js';
 import {
   Root as StyledRoot,
   Axis as StyledAxis,
@@ -16,8 +16,8 @@ import {
   Tick as StyledTick,
   TickBar as StyledTickBar,
   Thumb as StyledThumb,
-} from './styled-components';
-import {getOverrides} from '../helpers/overrides';
+} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 /* global document */
 /* global window */
 

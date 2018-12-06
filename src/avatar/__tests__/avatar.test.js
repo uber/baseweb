@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 
-import {Avatar} from '../index';
+import {Avatar} from '../index.js';
 
 // manually trigger src load error. jsdom will not fire a load event
 // https://github.com/jsdom/jsdom/issues/1816#issuecomment-310106280

@@ -14,8 +14,8 @@ import {
   ProfileTitle,
   ProfileSubtitle,
   ProfileBody,
-} from '../styled-components';
-import OptionProfile from '../option-profile';
+} from '../styled-components.js';
+import OptionProfile from '../option-profile.js';
 
 const mockItem = {
   title: 'David Smith',

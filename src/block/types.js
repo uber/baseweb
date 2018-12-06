@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {Node, ElementType} from 'react';
-import type {ThemeT} from '../styles/types';
-import type {OverrideT} from '../helpers/overrides';
+import type {ThemeT} from '../styles/types.js';
+import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
   Block?: OverrideT<*>,

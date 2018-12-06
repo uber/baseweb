@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Block} from './';
-import examples from './examples-list';
+import {Block} from './index.js';
+import examples from './examples-list.js';
 
 export default {
   [examples.DEFAULT]: function Story1() {

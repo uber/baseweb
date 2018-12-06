@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types';
-import type {OverrideT} from '../helpers/overrides';
+import type {ThemeT} from '../styles/types.js';
+import type {OverrideT} from '../helpers/overrides.js';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
   STATE_CHANGE_TYPE,
   TRIGGER_TYPE,
-} from './constants';
+} from './constants.js';
 
 export type PopoverPlacementT = $Keys<typeof PLACEMENT>;
 

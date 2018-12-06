@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* @flow */
 
-import {styled} from '../styles/index';
+import {styled} from '../styles/index.js';
 
 export const Action = styled('div', () => ({}));
 Action.displayName = 'StyledAction';

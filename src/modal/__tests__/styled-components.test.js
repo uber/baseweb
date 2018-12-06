@@ -17,7 +17,7 @@ import {
   ModalFooter,
   ModalBody,
   SIZE,
-} from '../index';
+} from '../index.js';
 
 describe('Modal styled components', () => {
   // Basic tests with static styles first

@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {styled} from '../styles';
-import {Avatar} from './index';
-import examples from './examples-list';
+import {styled} from '../styles/index.js';
+import {Avatar} from './index.js';
+import examples from './examples-list.js';
 
 const Row = styled('div', props => ({
   width: '400px',

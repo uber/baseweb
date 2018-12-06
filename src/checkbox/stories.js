@@ -10,8 +10,8 @@ import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
 
 import CheckboxReadme from './README.md';
-import examples from './examples';
-import examplesToggle from './examples-toggle';
+import examples from './examples.js';
+import examplesToggle from './examples-toggle.js';
 
 Object.entries(examples).forEach(([description, example]) =>
   storiesOf('Checkbox', module)

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {Input, StyledInputContainer} from '../index';
+import {Input, StyledInputContainer} from '../index.js';
 
 test('Input - basic functionality', () => {
   const props = {

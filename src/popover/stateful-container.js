@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {TRIGGER_TYPE, STATE_CHANGE_TYPE} from './constants';
-import baseDefaultProps from './default-props';
+import {TRIGGER_TYPE, STATE_CHANGE_TYPE} from './constants.js';
+import baseDefaultProps from './default-props.js';
 import type {
   PopoverPropsWithoutChildrenT,
   StateT,
   StatefulPopoverContainerPropsT,
   StateChangeTypeT,
   StateReducerT,
-} from './types';
+} from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 

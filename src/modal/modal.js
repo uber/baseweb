@@ -9,17 +9,17 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-import {getOverride, getOverrideProps} from '../helpers/overrides';
-import {SIZE, ROLE, CLOSE_SOURCE} from './constants';
-import {ownerDocument} from './utils';
+import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
+import {ownerDocument} from './utils.js';
 import {
   Root as StyledRoot,
   Backdrop as StyledBackdrop,
   Dialog as StyledDialog,
   DialogContainer as StyledDialogContainer,
   Close as StyledClose,
-} from './styled-components';
-import {CloseIcon} from './close-icon';
+} from './styled-components.js';
+import {CloseIcon} from './close-icon.js';
 
 import type {
   ModalPropsT,
@@ -27,7 +27,7 @@ import type {
   SharedStylePropsArgT,
   CloseSourceT,
   ElementRefT,
-} from './types';
+} from './types.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {

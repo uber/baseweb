@@ -15,7 +15,7 @@ import {
   StyledCheckmark,
   StyledInput,
   Checkbox as StatelessCheckbox,
-} from '../index';
+} from '../index.js';
 
 describe('Stateless checkbox', function() {
   let wrapper,

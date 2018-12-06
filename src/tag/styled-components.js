@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {COLOR_STYLE_KEYS} from './constants';
-import {styled, hexToRgb, type ThemeT} from '../styles/index';
-import type {SharedPropsT} from './types';
+import {COLOR_STYLE_KEYS} from './constants.js';
+import {styled, hexToRgb, type ThemeT} from '../styles/index.js';
+import type {SharedPropsT} from './types.js';
 
 export function getBackgroundColor(props: SharedPropsT) {
   const {$color, $isActive, $isFocused, $kind, $theme} = props;

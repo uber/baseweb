@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* global module */
 import {storiesOf} from '@storybook/react';
 import {withReadme} from 'storybook-readme';
-import examples from './examples';
+import examples from './examples.js';
 
 import ModalReadme from './README.md';
 

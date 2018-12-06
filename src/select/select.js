@@ -17,21 +17,25 @@ import {
   StyledClearIcon,
   getLoadingIconStyles,
   StyledSearchIcon,
-} from './styled-components';
-import AutosizeInput from './autosize-input';
-import Value from './value';
-import MultiValue from './multi-value';
-import SelectDropdown from './dropdown';
-import {shouldShowValue, shouldShowPlaceholder, expandValue} from './utils';
-import {TYPE, STATE_CHANGE_TYPE} from './constants';
-import {getOverrides} from '../helpers/overrides';
-import {Spinner} from '../spinner';
+} from './styled-components.js';
+import AutosizeInput from './autosize-input.js';
+import Value from './value.js';
+import MultiValue from './multi-value.js';
+import SelectDropdown from './dropdown.js';
+import {
+  shouldShowValue,
+  shouldShowPlaceholder,
+  expandValue,
+} from './utils/index.js';
+import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
+import {getOverrides} from '../helpers/overrides.js';
+import {Spinner} from '../spinner/index.js';
 import {
   Delete as DeleteIcon,
   TriangleDown as TriangleDownIcon,
   Search as SearchIconComponent,
-} from '../icon';
-import defaultProps from './default-props';
+} from '../icon/index.js';
+import defaultProps from './default-props.js';
 
 import type {
   PropsT,
@@ -39,7 +43,7 @@ import type {
   ValueT,
   OptionT,
   ChangeActionT,
-} from './types';
+} from './types.js';
 
 class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;

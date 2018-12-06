@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides';
-import type {BaseInputPropsT, InternalStateT} from './types';
-import {getSharedProps} from './utils';
-import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants';
+import {getOverrides} from '../helpers/overrides.js';
+import type {BaseInputPropsT, InternalStateT} from './types.js';
+import {getSharedProps} from './utils.js';
+import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants.js';
 import {
   InputContainer as StyledInputContainer,
   Input as StyledInput,
-} from './styled-components';
+} from './styled-components.js';
 
 const NullComponent = () => null;
 

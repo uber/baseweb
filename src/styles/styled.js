@@ -9,7 +9,7 @@ import * as React from 'react';
 import {createStyled, withStyleDeep} from 'styletron-react-core';
 import {driver, getInitialStyle} from 'styletron-standard';
 
-import {ThemeContext} from './theme-provider';
+import {ThemeContext} from './theme-provider.js';
 
 const wrapper = StyledComponent =>
   function withThemeHOC(props) {

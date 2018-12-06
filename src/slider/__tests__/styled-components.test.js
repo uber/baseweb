@@ -14,7 +14,7 @@ import {
   StyledThumb,
   StyledTickBar,
   StyledAxisRange,
-} from '../index';
+} from '../index.js';
 
 describe('Slider styled components', () => {
   describe('StyledRoot', function() {

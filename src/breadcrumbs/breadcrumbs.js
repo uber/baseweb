@@ -8,9 +8,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React, {Children} from 'react';
-import type {BreadcrumbsPropsT} from './types';
-import {StyledRoot, StyledSeparator, StyledIcon} from './styled-components';
-import {getOverrides} from '../helpers/overrides';
+
+import type {BreadcrumbsPropsT} from './types.js';
+import {StyledRoot, StyledSeparator, StyledIcon} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 
 function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
   const numChildren = Children.count(children);

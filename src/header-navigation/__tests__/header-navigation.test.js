@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {styled} from '../../styles';
-import {HeaderNavigation} from '../index';
+
+import {styled} from '../../styles/index.js';
+import {HeaderNavigation} from '../index.js';
 
 describe('Stateless header navigation', function() {
   let wrapper, children;

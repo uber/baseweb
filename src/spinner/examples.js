@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles';
-import {Spinner} from './index';
+import {styled} from '../styles/index.js';
+import {Spinner} from './index.js';
 
 export const suite = 'Spinner Test Suite';
 export const tests = {

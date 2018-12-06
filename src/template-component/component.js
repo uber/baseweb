@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides';
-import {Root as StyledRoot} from './styled-components';
+import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {Root as StyledRoot} from './styled-components.js';
 
-import type {ComponentPropsT, SharedStylePropsArgT} from './types';
+import type {ComponentPropsT, SharedStylePropsArgT} from './types.js';
 
 class Component extends React.Component<ComponentPropsT> {
   static defaultProps: $Shape<ComponentPropsT> = {

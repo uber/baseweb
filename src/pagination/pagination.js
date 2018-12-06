@@ -9,19 +9,19 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
-import {Button, StyledBaseButton, KIND} from '../button';
-import {StatefulMenu as Menu} from '../menu';
+import {Button, StyledBaseButton, KIND} from '../button/index.js';
+import {StatefulMenu as Menu} from '../menu/index.js';
 import {
   Root as StyledRoot,
   MaxLabel as StyledMaxLabel,
   DropdownContainer as StyledDropdownContainer,
   DropdownMenu as StyledDropdownMenu,
   DropdownButton as StyledDropdownButton,
-} from './styled-components';
-import {ArrowLeft, ArrowRight, ArrowDown} from './icons';
-import {getOverrides} from '../helpers/overrides';
-import type {PaginationPropsT, PaginationStateT} from './types';
-import type {OnItemSelectFnT} from '../menu/types';
+} from './styled-components.js';
+import {ArrowLeft, ArrowRight, ArrowDown} from './icons.js';
+import {getOverrides} from '../helpers/overrides.js';
+import type {PaginationPropsT, PaginationStateT} from './types.js';
+import type {OnItemSelectFnT} from '../menu/types.js';
 
 type MenuItemT = {
   label: number,

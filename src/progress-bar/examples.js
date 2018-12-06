@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles';
-import {ProgressBar} from './index';
+import {styled} from '../styles/index.js';
+import {ProgressBar} from './index.js';
 
 export const suite = 'ProgressBar Test Suite';
 export const tests = {

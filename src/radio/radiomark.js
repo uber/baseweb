@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {RadioMarkOuter, RadioMarkInner} from './styled-components';
+import {RadioMarkOuter, RadioMarkInner} from './styled-components.js';
 
 function RadioMark(props: *) {
   return (

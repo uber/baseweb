@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import StatefulContainer from './stateful-tooltip-container';
-import Tooltip from './tooltip';
-import type {StatefulTooltipPropsT} from './types';
+import StatefulContainer from './stateful-tooltip-container.js';
+import Tooltip from './tooltip.js';
+import type {StatefulTooltipPropsT} from './types.js';
 
 function StatefulTooltip(props: StatefulTooltipPropsT) {
   const {children, ...restProps} = props;

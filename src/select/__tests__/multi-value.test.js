@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import MultiValue from '../multi-value';
-import {Tag} from '../../tag';
+import MultiValue from '../multi-value.js';
+import {Tag} from '../../tag/index.js';
 
 describe('Multi Value component', function() {
   test('renders Tag by default', function() {

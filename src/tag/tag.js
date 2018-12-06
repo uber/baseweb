@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {getOverrides} from '../helpers/overrides';
-import type {PropsT} from './types';
+import {getOverrides} from '../helpers/overrides.js';
+import type {PropsT} from './types.js';
 import {
   Action as StyledAction,
   Root as StyledRoot,
   ActionIcon as StyledActionIcon,
-} from './styled-components';
-import type {SharedPropsT} from './types';
+} from './styled-components.js';
+import type {SharedPropsT} from './types.js';
 
 class Tag extends React.Component<PropsT, {}> {
   static defaultProps = {

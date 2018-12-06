@@ -8,10 +8,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import type {ThemeT} from '../styles/types';
-import {StyledLink} from '../link';
-import {Breadcrumbs} from './';
-import examples from './examples-list';
+
+import type {ThemeT} from '../styles/types.js';
+import {StyledLink} from '../link/index.js';
+import {Breadcrumbs} from './index.js';
+import examples from './examples-list.js';
 
 export default {
   [examples.DEFAULT]: function Story1() {

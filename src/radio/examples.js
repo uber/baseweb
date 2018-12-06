@@ -9,10 +9,10 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable react/display-name*/
 import * as React from 'react';
 import {withStyle} from 'styletron-react';
-import {StyledRadio, StyledLabel, StatefulRadioGroup} from './index';
+import {StyledRadio, StyledLabel, StatefulRadioGroup} from './index.js';
 
 export const suite = 'Radio Group Test Suite';
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 export default {
   [examples.SIMPLE_EXAMPLE]: () => {

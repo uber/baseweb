@@ -14,7 +14,7 @@ import {
   StyledRadioMarkOuter,
   StyledInput,
   StyledRadioGroupRoot,
-} from '../index';
+} from '../index.js';
 
 describe('RadioGroup styled components', () => {
   describe('StyledLabel', () => {

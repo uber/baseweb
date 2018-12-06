@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {ProgressSteps, Step, NumberedStep} from './';
-import examples from './examples-list';
-import {Button} from '../button';
-import {Block} from '../block';
-import {styled} from '../styles/index';
-import type {ThemeT} from '../styles/types';
+import {ProgressSteps, Step, NumberedStep} from './index.js';
+import examples from './examples-list.js';
+import {Button} from '../button/index.js';
+import {Block} from '../block/index.js';
+import {styled} from '../styles/index.js';
+import type {ThemeT} from '../styles/types.js';
 
 const SpacedButton = styled(Button, ({$theme}: {$theme: ThemeT}) => ({
   marginLeft: $theme.sizing.scale200,

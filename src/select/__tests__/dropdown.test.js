@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import SelectDropdown from '../dropdown';
-import {SIZE, TYPE} from '../constants';
-import {StatefulMenu} from '../../menu';
+import SelectDropdown from '../dropdown.js';
+import {SIZE, TYPE} from '../constants.js';
+import {StatefulMenu} from '../../menu/index.js';
 
 jest.mock('../../menu');
 

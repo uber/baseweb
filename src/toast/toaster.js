@@ -8,15 +8,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {getOverrides, mergeOverrides} from '../helpers/overrides';
-import {KIND, PLACEMENT} from './constants';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {KIND, PLACEMENT} from './constants.js';
 import {
   Root as StyledRoot,
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
-} from './styled-components';
-import Toast from './toast';
-import type {ToasterPropsT, ToasterContainerStateT, ToastPropsT} from './types';
+} from './styled-components.js';
+import Toast from './toast.js';
+import type {
+  ToasterPropsT,
+  ToasterContainerStateT,
+  ToastPropsT,
+} from './types.js';
 
 let toasterRef: ?React.ElementRef<typeof ToasterContainer> = null;
 

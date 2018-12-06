@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {styled} from '../styles';
-import {FormControl, StyledLabel} from './';
-import {StatefulInput as Input, SIZE} from '../input';
-import {StatefulTextarea as Textarea} from '../textarea';
-import {StatefulCheckbox as Checkbox} from '../checkbox';
-import {StatefulRadioGroup as RadioGroup, StyledRadio} from '../radio';
+import {styled} from '../styles/index.js';
+import {FormControl, StyledLabel} from './index.js';
+import {StatefulInput as Input, SIZE} from '../input/index.js';
+import {StatefulTextarea as Textarea} from '../textarea/index.js';
+import {StatefulCheckbox as Checkbox} from '../checkbox/index.js';
+import {StatefulRadioGroup as RadioGroup, StyledRadio} from '../radio/index.js';
 
 const InputIcon = styled('span', props => {
   return {

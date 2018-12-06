@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {TagKindT} from './types';
+import type {TagKindT} from './types.js';
 
 export const COLOR_STYLE_KEYS = {
   primary: 'primary400',

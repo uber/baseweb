@@ -9,10 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 // Styled elements
-import {Tag, KIND, StyledRoot} from './index';
+import {Tag, KIND, StyledRoot} from './index.js';
 import {withStyle} from 'styletron-react';
-import type {TagKindT} from './types';
-import tests from './examples-list';
+import type {TagKindT} from './types.js';
+import tests from './examples-list.js';
 
 const tagStyleKinds: Array<TagKindT> = Object.keys(KIND);
 

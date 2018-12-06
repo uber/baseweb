@@ -11,7 +11,7 @@ import {shallow} from 'enzyme';
 import {
   Label as StyledLabel,
   Caption as StyledCaption,
-} from '../styled-components';
+} from '../styled-components.js';
 
 describe('FormControl - Label and Caption for controls', () => {
   test('StyledLabel - basic render', () => {

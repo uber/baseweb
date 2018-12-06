@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledRoot} from '../index';
+import {StyledRoot} from '../index.js';
 
 describe('Component styled components', () => {
   test('StyledRoot - basic render', () => {

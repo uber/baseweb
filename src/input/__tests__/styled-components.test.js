@@ -14,9 +14,9 @@ import {
   StyledInput,
   SIZE,
   ADJOINED,
-} from '../index';
-import {createTheme, lightThemePrimitives} from '../../themes';
-import {ENHANCER_POSITION} from '../constants';
+} from '../index.js';
+import {createTheme, lightThemePrimitives} from '../../themes/index.js';
+import {ENHANCER_POSITION} from '../constants.js';
 
 test('Input - StyledRoot - basic render', () => {
   const component = shallow(

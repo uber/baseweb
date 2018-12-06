@@ -8,8 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {Notification} from '../index';
-import {Toast, StyledBody, StyledCloseIcon} from '../../toast';
+
+import {Notification} from '../index.js';
+import {Toast, StyledBody, StyledCloseIcon} from '../../toast/index.js';
 
 jest.useFakeTimers();
 
