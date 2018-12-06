@@ -22,11 +22,8 @@ Component to render tabular data.
 
 ### Basic usage
 
-#### Render static tabular data
-
 ```javascript
-
-import * as React from 'react';
+import React from 'react';
 import {Table} from 'baseui/table';
 
 const data = [
@@ -46,73 +43,60 @@ const columns = {
   {
     title: 'Last',
     dataIndex: 3,
-  },
-  {
-    title: 'Full Name'
-    render: (rowData) => {
-      const {firstName, lastName} = rowData;
-      return (
-        <span>
-        `${firstName} ${lastName}`
-        </span>
-      );
-    }
   }
 };
 
 export default () => <Table data={data} columns={columns}/>;
 ```
 
-#### Sort
+#### Advanced Usage
 
 ```javascript
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  sorter: (a, b) => a.name.length - b.name.length,
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-  defaultSortOrder: 'descend',
-  sorter: (a, b) => a.age - b.age,
-}, {
-  title: 'Address',
-  dataIndex: 'address',
-  sorter: (a, b) => a.address.length - b.address.length,
-}];
+import React from 'react';
+import {Table} from 'baseui/table';
 
-const data = [{
-  key: '1',
-  name: 'Sarah Brown',
-  age: 32,
-  address: 'New York No. 1 Anywhere',
-}, {
-  key: '2',
-  name: 'Jane Smith',
-  age: 42,
-  address: 'London No. 1 Anywhere',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Anywhere',
-}, {
-  key: '4',
-  name: 'Jane Red',
-  age: 32,
-  address: 'London No. 2 Anywhere',
-}];
+const data = [
+  ['1', 'Sarah', 'Brown', 31, 'New York No. 1 Anywhere'],
+  ['2', 'Jane', 'Smith', 32, 'San Francisco No. 1 Anywhere'],
+  ['3', 'Joe', 'Black', 33, 'Sydney No. 1 Anywhere'],
+  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
+];
 
-export default = () => <Table columns={columns} dataSource={data}/>,
+const columns = [
+  {
+    title: 'Name',
+    sortComparator: (a, b) => {
+      return a[2] - b[2]; // sorts by last name
+    },
+    render: (rowData) => {
+      const [id, firstName, lastName] = rowData;
+      return (
+        <span>
+          `${firstName} ${lastName}`
+        </span>
+      );
+    }
+  },
+  {
+    title: 'Age',
+    dataIndex: 3,
+  },
+  {
+    title: 'Address',
+    dataIndex: 4,
+    sortComparator: (a, b) => a[4].length - b[4].length,
+  }
+];
+
+export default = () => <Table columns={columns} data={data}/>,
 ```
-
+<!--
 #### Custom Table Rendering
 
 There may be a case where more complex layouts are needed,
 such as columns that with colSpan > 1 and/or rowspan > 1
 
 ```javascript
-
 export default() => {
     <Table
      render: (dataSource, columns) => {
@@ -158,7 +142,7 @@ export default() => {
      }
     />
 }
-```
+``` -->
 
 ### Advanced Usages
 
@@ -266,31 +250,10 @@ One of the Table columns prop for describing the table's columns, Column has the
 * `sorter:Function`- Optional  Sort function for [local sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 * `defaultSortOrder:'ascend'|'descend'`: Only to be declared on one of the columns, this will be define the default sort on the initial set of data.
 
-## Presentation Components
+## `SORT_DIRECTION` Constant
 
-### `Tbody` API
-
-Please refer to the [tbody DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody)
-
-### `Thead` API
-
-Please refer to the [thead DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead)
-
-### `TheadTr` API
-
-Please refer to the [tr DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
-
-### `Td` API
-
-Please refer to the [td DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td)
-
-### `Th` API
-
-Please refer to the [th DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th)
-
-### `Tr` API
-
-Please refer to the [th DOM API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
+* `ASC`
+* `DESC`
 
 ### Dependencies
 
@@ -298,11 +261,11 @@ Please refer to the [th DOM API](https://developer.mozilla.org/en-US/docs/Web/HT
 
 ## Accessibility
 
-How can this component be used via keyboard controls?
+#### How can this component be used via keyboard controls?
 
 No keyboard shortcuts will be enabled.
 
-What are the accessibility best practices for this component (aria-\*, role, etc.)
+#### What are the accessibility best practices for this component (aria-\*, role, etc.)
 
 We are making the assuming that in most use cases, a [table with one header](https://www.w3.org/WAI/tutorials/tables/one-header/)
 will be rendered.
