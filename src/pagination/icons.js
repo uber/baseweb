@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {LightTheme} from '../themes';
+import {LightTheme} from '../themes/index.js';
 
 /**
  * Ideally the content of this file should be replaced with official icons when they are available

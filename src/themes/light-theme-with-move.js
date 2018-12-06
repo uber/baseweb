@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import createTheme from './creator';
-import {primitives as lightThemePrimitives} from './light-theme-primitives';
+import createTheme from './creator.js';
+import {primitives as lightThemePrimitives} from './light-theme-primitives.js';
 
 const primaryFontFamily =
   'UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif';

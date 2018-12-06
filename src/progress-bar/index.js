@@ -5,13 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {default as ProgressBar} from './progressbar';
+export {default as ProgressBar} from './progressbar.js';
 // Styled elements
 export {
   Root as StyledRoot,
   Bar as StyledBar,
   BarProgress as StyledBarProgress,
   Label as StyledLabel,
-} from './styled-components';
+} from './styled-components.js';
 // Flow
-export * from './types';
+export * from './types.js';

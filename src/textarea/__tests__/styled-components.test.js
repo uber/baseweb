@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {TextareaContainer, Textarea} from '../styled-components';
-import {SIZE} from '../../input';
+import {TextareaContainer, Textarea} from '../styled-components.js';
+import {SIZE} from '../../input/index.js';
 describe('Textarea', () => {
   test('TextareaContainer - basic render', () => {
     const component = shallow(

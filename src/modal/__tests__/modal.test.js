@@ -19,7 +19,7 @@ import {
   StyledClose,
   StyledDialog,
   CLOSE_SOURCE,
-} from '../index';
+} from '../index.js';
 
 jest.useFakeTimers();
 

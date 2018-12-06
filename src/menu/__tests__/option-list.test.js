@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {ListItem} from '../styled-components';
-import OptionList from '../option-list';
+import {ListItem} from '../styled-components.js';
+import OptionList from '../option-list.js';
 
 const mockItem = {label: 'item1'};
 

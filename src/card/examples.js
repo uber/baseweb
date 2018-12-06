@@ -13,19 +13,19 @@ import {
   StyledThumbnail,
   StyledTitle,
   hasThumbnail,
-} from './';
+} from './index.js';
 
-import {StyledLink as StyledActionLink} from '../link';
+import {StyledLink as StyledActionLink} from '../link/index.js';
 
-import {Button} from '../button';
+import {Button} from '../button/index.js';
 
-import {mergeOverrides} from '../helpers/overrides';
+import {mergeOverrides} from '../helpers/overrides.js';
 
-import {thumbnail as thumbnailImg, header as headerImg} from './images';
+import {thumbnail as thumbnailImg, header as headerImg} from './images.js';
 
-import type {CardsPropsT} from './types';
+import type {CardsPropsT} from './types.js';
 
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 const cardWidth = '328px';
 const placeholderTitle = 'Card Title Entry';

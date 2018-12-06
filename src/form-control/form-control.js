@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides';
-import {STYLETRON_PROP_MAPPER} from './constants';
+import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {STYLETRON_PROP_MAPPER} from './constants.js';
 import {
   Label as StyledLabel,
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
-} from './styled-components';
-import type {FormControlPropsT} from './types';
+} from './styled-components.js';
+import type {FormControlPropsT} from './types.js';
 
 function getSharedProps(props: {}, mapper: {}) {
   return Object.keys(props).reduce((newProps, propName) => {

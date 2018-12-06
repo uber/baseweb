@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulContainer, STATE_CHANGE_TYPE} from '../index';
+import {StatefulContainer, STATE_CHANGE_TYPE} from '../index.js';
 
 test('StatefulContainer - basic render', () => {
   const props = {

@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {StatefulSelectContainer} from '../index';
-import {STATE_CHANGE_TYPE} from '../constants';
+import {StatefulSelectContainer} from '../index.js';
+import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('StatefulSelectContainer', function() {
   let wrapper;

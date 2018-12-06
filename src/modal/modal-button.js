@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Button} from '../button';
-import type {ButtonPropsT} from '../button/types';
-import {mergeOverrides} from '../helpers/overrides';
+import {Button} from '../button/index.js';
+import type {ButtonPropsT} from '../button/types.js';
+import {mergeOverrides} from '../helpers/overrides.js';
 
 // ModalButtons should have some margin pre-applied
 const overrides = {

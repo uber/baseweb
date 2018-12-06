@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import AutosizeInput from '../autosize-input';
-import {StyledInput, StyledInputSizer} from '../styled-components';
+import AutosizeInput from '../autosize-input.js';
+import {StyledInput, StyledInputSizer} from '../styled-components.js';
 
 describe('AutosizeInput component', function() {
   const props = {value: 'test', id: 'test-id'};

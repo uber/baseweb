@@ -8,17 +8,17 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {boolean, number} from '@storybook/addon-knobs';
 
-import {Button} from '../button';
-import {styled} from '../styles';
+import {Button} from '../button/index.js';
+import {styled} from '../styles/index.js';
 import {
   PLACEMENT,
   TRIGGER_TYPE,
   Popover,
   StatefulPopover,
   StyledPadding as StyledPopoverPadding,
-} from './index';
+} from './index.js';
 
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 function popoverContent() {
   return (

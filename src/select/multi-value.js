@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides';
-import {Tag} from '../tag';
+import {getOverrides} from '../helpers/overrides.js';
+import {Tag} from '../tag/index.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 export default function MultiValue(props: any) {

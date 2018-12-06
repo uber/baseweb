@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export {default as Breadcrumbs} from './breadcrumbs';
-export * from './styled-components';
-export * from './types';
+export {default as Breadcrumbs} from './breadcrumbs.js';
+export * from './styled-components.js';
+export * from './types.js';

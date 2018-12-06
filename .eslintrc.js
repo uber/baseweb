@@ -25,8 +25,9 @@ module.exports = {
     // Enforces imports of external modules to be declared in the package.json
     'import/no-extraneous-dependencies': [
       'error',
-      {optionalDependencies: false},
+      {optionalDependencies: false, devDependencies: true},
     ],
+    'import/extensions': ['error', 'always', {ignorePackages: true}],
     'prettier/prettier': [
       'error',
       {
@@ -35,7 +36,6 @@ module.exports = {
         bracketSpacing: false,
       },
     ],
-    'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
     'import/prefer-default-export': ['off'],
     'header/header': [2, 'LICENSE-HEAD'],
   },

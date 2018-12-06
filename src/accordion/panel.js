@@ -6,19 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides, mergeOverrides} from '../helpers/overrides';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {
   Plus as PlusIcon,
   CheckIndeterminate as CheckIndeterminateIcon,
-} from '../icon';
+} from '../icon/index.js';
 import {
   PanelContainer as StyledPanelContainer,
   Header as StyledHeader,
   Content as StyledContent,
   ToggleIcon as StyledToggleIcon,
-} from './styled-components';
+} from './styled-components.js';
 
-import type {PanelPropsT, SharedStylePropsArgT} from './types';
+import type {PanelPropsT, SharedStylePropsArgT} from './types.js';
 
 class Panel extends React.Component<PanelPropsT> {
   static defaultProps = {

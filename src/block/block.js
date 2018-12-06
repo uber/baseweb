@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import type {BlockPropsT} from './types';
-import {StyledBlock} from './styled-components';
-import {getOverrides} from '../helpers/overrides';
+import type {BlockPropsT} from './types.js';
+import {StyledBlock} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 
 function Block({
   children,

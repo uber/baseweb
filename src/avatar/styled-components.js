@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles';
-import type {StylePropsT} from './types';
+import {styled} from '../styles/index.js';
+import type {StylePropsT} from './types.js';
 
 function getSize(props: StylePropsT) {
   const {$size, $theme} = props;

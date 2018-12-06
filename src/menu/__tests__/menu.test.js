@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {List} from '../styled-components';
-import OptionList from '../option-list';
-import Menu from '../menu';
+import {List} from '../styled-components.js';
+import OptionList from '../option-list.js';
+import Menu from '../menu.js';
 
 const mockItems = [{label: 'item1'}, {label: 'item2'}];
 

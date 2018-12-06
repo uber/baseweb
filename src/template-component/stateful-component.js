@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import StatefulContainer from './stateful-container';
-import Component from './component';
-import type {StatefulComponentPropsT} from './types';
+import StatefulContainer from './stateful-container.js';
+import Component from './component.js';
+import type {StatefulComponentPropsT} from './types.js';
 
 function StatefulComponent(props: StatefulComponentPropsT) {
   const {children, ...restProps} = props;

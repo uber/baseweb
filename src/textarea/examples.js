@@ -7,15 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {withStyle} from 'styletron-react';
-import {styled} from '../styles';
-import {withProps} from '../helpers';
+import {styled} from '../styles/index.js';
+import {withProps} from '../helpers/index.js';
 import {
   StatefulTextarea as Textarea,
   Textarea as ControlledTextarea,
   StyledTextarea,
   SIZE,
-} from './index';
-import examples from './examples-list';
+} from './index.js';
+import examples from './examples-list.js';
 
 const Button = styled('button', ({$theme}) => {
   return {

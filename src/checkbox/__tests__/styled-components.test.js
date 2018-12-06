@@ -7,7 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledRoot, StyledLabel, StyledCheckmark, StyledInput} from '../index';
+import {
+  StyledRoot,
+  StyledLabel,
+  StyledCheckmark,
+  StyledInput,
+} from '../index.js';
 
 describe('Checkbox styled components', () => {
   describe('StyledLabel', () => {

@@ -10,12 +10,12 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import tests from './tests';
+import tests from './tests.js';
 
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
-import {LightTheme} from '../src/themes';
-import {ThemeProvider} from '../src/styles';
+import {LightTheme} from '../src/themes/index.js';
+import {ThemeProvider} from '../src/styles/index.js';
 
 window.E2E_TEST = true;
 const engine = new Styletron();

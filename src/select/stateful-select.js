@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import StatefulContainer from './stateful-select-container';
-import Select from './select';
-import defaultProps from './default-props';
-import type {PropsT, StatefulSelectPropsT} from './types';
+import StatefulContainer from './stateful-select-container.js';
+import Select from './select.js';
+import defaultProps from './default-props.js';
+import type {PropsT, StatefulSelectPropsT} from './types.js';
 
 export default function StatefulSelect(props: StatefulSelectPropsT) {
   return (

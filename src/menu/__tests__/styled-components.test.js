@@ -17,8 +17,8 @@ import {
   ProfileSubtitle,
   ProfileImgContainer,
   ProfileLabelsContainer,
-} from '../styled-components';
-import {OPTION_LIST_SIZE} from '../constants';
+} from '../styled-components.js';
+import {OPTION_LIST_SIZE} from '../constants.js';
 
 function makeTest({
   title,

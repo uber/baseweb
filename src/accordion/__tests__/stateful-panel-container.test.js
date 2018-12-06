@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulPanelContainer, STATE_CHANGE_TYPE} from '../index';
+import {StatefulPanelContainer, STATE_CHANGE_TYPE} from '../index.js';
 
 describe('StatefulPanelContainer', () => {
   test('basic render', () => {

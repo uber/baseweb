@@ -8,7 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledRoot, StyledSeparator, StyledIcon} from '../styled-components';
+
+import {StyledRoot, StyledSeparator, StyledIcon} from '../styled-components.js';
 
 describe('StyledComponents', () => {
   describe('StyledRoot', () => {

@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 // Styled elements
-import {StatefulSlider as Slider} from './index';
-import tests from './examples-list';
+import {StatefulSlider as Slider} from './index.js';
+import tests from './examples-list.js';
 export const suite = 'Slider Test Suite';
 
 export default {

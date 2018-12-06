@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles';
-import {STYLE_TYPE} from './constants';
+import {styled} from '../styles/index.js';
+import {STYLE_TYPE} from './constants.js';
 
 function getBorderColor(props) {
   const {$disabled, $checked, $isError, $isIndeterminate, $theme} = props;

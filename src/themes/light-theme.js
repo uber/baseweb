@@ -6,6 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {primitives} from './light-theme-primitives';
+import {primitives} from './light-theme-primitives.js';
 
 export {primitives};

@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {action} from '@storybook/addon-actions';
 
-import Menu from './menu';
-import StatefulMenu from './stateful-menu';
+import Menu from './menu.js';
+import StatefulMenu from './stateful-menu.js';
 
-import OptionProfile from './option-profile';
-import {OPTION_LIST_SIZE} from './constants';
-import examples from './examples-list';
+import OptionProfile from './option-profile.js';
+import {OPTION_LIST_SIZE} from './constants.js';
+import examples from './examples-list.js';
 
 function CloudComponent() {
   return (

@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles';
-import {Component, StatefulComponent, StyledRoot} from './index';
+import {styled} from '../styles/index.js';
+import {Component, StatefulComponent, StyledRoot} from './index.js';
 
 export const suite = 'Component Test Suite';
 export const tests = {

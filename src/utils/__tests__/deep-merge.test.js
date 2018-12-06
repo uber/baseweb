@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import deepMerge from '../deep-merge';
+import deepMerge from '../deep-merge.js';
 
 describe('deepMerge', () => {
   test('performs deep merge on target', () => {

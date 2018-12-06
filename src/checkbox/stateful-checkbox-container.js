@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {STATE_TYPE} from './constants';
+import {STATE_TYPE} from './constants.js';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
   DefaultStatefulPropsT,
   StateT,
-} from './types';
+} from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 

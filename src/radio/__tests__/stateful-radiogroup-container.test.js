@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {STATE_TYPE} from '../constants';
+import {STATE_TYPE} from '../constants.js';
 
-import {StatefulContainer} from '../index';
-import type {StateReducerT} from '../types';
+import {StatefulContainer} from '../index.js';
+import type {StateReducerT} from '../types.js';
 
 describe('Stateful container', function() {
   let allProps: any, childFn;

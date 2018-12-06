@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides';
-import type {ThemeT} from '../styles';
-import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants';
+import type {OverrideT} from '../helpers/overrides.js';
+import type {ThemeT} from '../styles/index.js';
+import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants.js';
 
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 

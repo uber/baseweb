@@ -5,13 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {default as StatefulMenu} from './stateful-menu';
-export {default as StatefulContainer} from './stateful-container';
-export {default as OptionList} from './option-list';
-export {default as OptionProfile} from './option-profile';
-export {default as Menu} from './menu';
+export {default as StatefulMenu} from './stateful-menu.js';
+export {default as StatefulContainer} from './stateful-container.js';
+export {default as OptionList} from './option-list.js';
+export {default as OptionProfile} from './option-profile.js';
+export {default as Menu} from './menu.js';
 // Constants
-export {KEY_STRINGS, STATE_CHANGE_TYPES} from './constants';
+export {KEY_STRINGS, STATE_CHANGE_TYPES} from './constants.js';
 // Styled elements
 export {
   List as StyledList,
@@ -23,6 +23,6 @@ export {
   ProfileTitle as StyledProfileTitle,
   ProfileSubtitle as StyledProfileSubtitle,
   ProfileBody as StyledProfileBody,
-} from './styled-components';
+} from './styled-components.js';
 // Flow
-export * from './types';
+export * from './types.js';
