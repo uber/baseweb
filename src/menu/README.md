@@ -123,7 +123,7 @@ export default () => (
 * `initialState?: {highlightedIndex: number} = {highlightedIndex: -1}`
   * Initial state of an uncontrolled popover component.
     * `highlightedIndex` - Determines which menu item should render highlighted.
-* `stateReducer?: (changeType: $Values<STATE_CHANGE_TYPES>, changes: {highlightedIndex: number}, currentState: {highlightedIndex: number}) => {highlightedIndex: number}`
+* `stateReducer?: (changeType: STATE_CHANGE_TYPES[string], changes: {highlightedIndex: number}, currentState: {highlightedIndex: number}) => {highlightedIndex: number}`
   * State reducer to intercept state changes and return new internal state
 * `onItemSelect?: ({item: ?Object}, event: KeyboardEvent) => void = () => {}`
 * `children?: Function = ({items: Array<any>, highlightedIndex: number, rootRef: React$ElementRef<*>, getRequiredItemProps: (item: Object) => ({key: string, id: string})}) => React.Node`
@@ -166,7 +166,7 @@ These properties are passed to every presentational (styled) component that is e
 
 * `$isHighlighted?: boolean = false`
   * Renders UI in 'highlighted' state.
-* `$size?: $Values<OPTION_LIST_SIZE> = OPTION_LIST_SIZE.default`
+* `$size?: OPTION_LIST_SIZE[string] = OPTION_LIST_SIZE.default`
   * Renders UI in defined scale.
 * `$theme: theme`
 

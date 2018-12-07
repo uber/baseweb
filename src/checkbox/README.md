@@ -102,7 +102,7 @@ export default () => {
   * Check or uncheck the control.
 * `autoFocus?: boolean = false`
   Focus the checkbox on initial render.
-* `checkmarkType?: $Values<STYLE_TYPE> = STYLE_TYPE.default`
+* `checkmarkType?: STYLE_TYPE[string] = STYLE_TYPE.default`
   * the style to be applied to a checkmark.
 * `children?: React.Node = ''`
   * Component or String value for label of checkbox.
@@ -143,7 +143,7 @@ export default () => {
   * Initial state of an uncontrolled popover component.
     * `checked` - an initial checked state. Check or uncheck the control.
     * `isIndeterminate` - an initial indeterminate state. `checked` takes precedence over this value.
-* `stateReducer?: (type: $Values<STATE_TYPE>, nextState: {}, currentState: {}, e: SyntheticInputEvent<HTMLInputElement>) => nextState`
+* `stateReducer?: (type: STATE_TYPE[string], nextState: {}, currentState: {}, e: SyntheticInputEvent<HTMLInputElement>) => nextState`
   * A state change handler. Used to override default state transitions.
     * `type` - State change type.
     * `nextState` - A new state, provided by component transition, that will be set.
@@ -174,7 +174,7 @@ These properties are passed to every presentational (styled) component that is e
 
 * `$checked?: boolean = false`
   * Renders UI in 'checked' state.
-* `$checkmarkType?: $Values<STYLE_TYPE> = STYLE_TYPE.default`
+* `$checkmarkType?: STYLE_TYPE[string] = STYLE_TYPE.default`
   * Renders UI as checkmark or toggle switch.
 * `$disabled?: boolean = false`
   * Renders UI in 'disabled' state.
