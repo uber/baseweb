@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {mount} from 'enzyme';
-import Block from '../block';
+import Block from '../block.js';
 
 function retrieveStyles(element: React.Node) {
   return mount(element)

@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles';
-import {ARROW_WIDTH} from './constants';
+import {styled} from '../styles/index.js';
+import {ARROW_WIDTH} from './constants.js';
 import {
   getPopoverMarginStyles,
   getArrowPositionStyles,
   getStartPosition,
   getEndPosition,
-} from './utils';
-import type {SharedStylePropsT} from './types';
+} from './utils.js';
+import type {SharedStylePropsT} from './types.js';
 
 /**
  * Main popover container element that gets positioned next to the anchor

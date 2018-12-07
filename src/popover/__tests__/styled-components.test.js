@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledBody, StyledInner, StyledArrow, StyledPadding} from '../index';
+import {StyledBody, StyledInner, StyledArrow, StyledPadding} from '../index.js';
 
 describe('Popover styled components', () => {
   test('StyledBody - basic render', () => {

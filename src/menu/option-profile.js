@@ -16,10 +16,10 @@ import {
   ProfileTitle as StyledProfileTitle,
   ProfileSubtitle as StyledProfileSubtitle,
   ProfileBody as StyledProfileBody,
-} from './styled-components';
-import {getOverrides} from '../helpers/overrides';
+} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 // Types
-import type {OptionProfilePropsT} from './types';
+import type {OptionProfilePropsT} from './types.js';
 
 export default function OptionProfile({
   item,

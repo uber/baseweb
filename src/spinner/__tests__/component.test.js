@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {mount} from 'enzyme';
-import {Spinner} from '../index';
-import {Spinner as SpinnerIcon} from '../../icon';
+import {Spinner} from '../index.js';
+import {Spinner as SpinnerIcon} from '../../icon/index.js';
 
 describe('Spinner', () => {
   test('renders spinner icon', () => {

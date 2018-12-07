@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index';
-import type {Font} from '../styles/types';
-import type {StyledBlockPropsT} from './types';
+import {styled} from '../styles/index.js';
+import type {Font} from '../styles/types.js';
+import type {StyledBlockPropsT} from './types.js';
 
 export const StyledBlock = styled(
   'div',

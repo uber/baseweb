@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 // Components
-import {List as StyledList} from './styled-components';
-import OptionList from './option-list';
-import {getSharedProps} from './utils';
-import {getOverrides} from '../helpers/overrides';
+import {List as StyledList} from './styled-components.js';
+import OptionList from './option-list.js';
+import {getSharedProps} from './utils.js';
+import {getOverrides} from '../helpers/overrides.js';
 // Types
-import type {StatelessMenuPropsT} from './types';
+import type {StatelessMenuPropsT} from './types.js';
 
 export default function Menu({
   items,

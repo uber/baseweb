@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as Utils from '../utils';
+import * as Utils from '../utils.js';
 
 describe('Menu Utils - getSharedProps', () => {
   test('successfully maps', () => {

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* @flow */
 
-export {default as Card, hasThumbnail} from './card';
+export {default as Card, hasThumbnail} from './card.js';
 export {
   Action as StyledAction,
   Body as StyledBody,
@@ -16,5 +16,5 @@ export {
   Thumbnail as StyledThumbnail,
   Title as StyledTitle,
   Root as StyledWrapper,
-} from './styled-components';
-export * from './types';
+} from './styled-components.js';
+export * from './types.js';

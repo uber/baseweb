@@ -19,7 +19,7 @@ import {
   parsePopperOffset,
   splitPlacement,
   toPopperPlacement,
-} from '../utils';
+} from '../utils.js';
 
 describe('Popover utils', () => {
   describe('getOppositePosition', () => {

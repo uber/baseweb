@@ -13,7 +13,7 @@ import {
   mergeOverrides,
   mergeOverride,
   getOverrides,
-} from '../overrides';
+} from '../overrides.js';
 
 function getMockComponent<T>(): React.ComponentType<T> {
   const mock: React.ComponentType<T> = () => null;

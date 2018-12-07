@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
 
-import Menu from './menu';
-import StatefulContainer from './stateful-container';
+import Menu from './menu.js';
+import StatefulContainer from './stateful-container.js';
 
-import type {StatefulMenuPropsT} from './types';
+import type {StatefulMenuPropsT} from './types.js';
 
 export default class StatefulMenu extends React.PureComponent<
   StatefulMenuPropsT,

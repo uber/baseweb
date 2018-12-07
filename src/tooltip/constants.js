@@ -10,4 +10,4 @@ export {
   PLACEMENT,
   TRIGGER_TYPE,
   STATE_CHANGE_TYPE,
-} from '../popover';
+} from '../popover/index.js';

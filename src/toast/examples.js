@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles';
-import {Toast, toaster, ToasterContainer, KIND, PLACEMENT} from './index';
-import {Button, KIND as ButtonKind, SIZE} from '../button';
-import type {KindTypeT} from './types';
+import {styled} from '../styles/index.js';
+import {Toast, toaster, ToasterContainer, KIND, PLACEMENT} from './index.js';
+import {Button, KIND as ButtonKind, SIZE} from '../button/index.js';
+import type {KindTypeT} from './types.js';
 
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 export const suite = 'Toast Test Suite';
 

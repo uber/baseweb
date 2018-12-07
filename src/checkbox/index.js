@@ -6,18 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {default as StatefulCheckbox} from './stateful-checkbox';
-export {default as StatefulContainer} from './stateful-checkbox-container';
-export {default as Checkbox} from './checkbox';
+export {default as StatefulCheckbox} from './stateful-checkbox.js';
+export {default as StatefulContainer} from './stateful-checkbox-container.js';
+export {default as Checkbox} from './checkbox.js';
 // Styled elements
 export {
   Root as StyledRoot,
   Checkmark as StyledCheckmark,
   Label as StyledLabel,
   Input as StyledInput,
-} from './styled-components';
+} from './styled-components.js';
 
-export {STATE_TYPE, STYLE_TYPE} from './constants';
+export {STATE_TYPE, STYLE_TYPE} from './constants.js';
 
 // Flow
-export * from './types';
+export * from './types.js';

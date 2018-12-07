@@ -202,7 +202,7 @@ export default () => {
   * `IconsContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `SelectArrow?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `ClearIcon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-  * `LoadingIndocator?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `LoadingIndicator?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `SearchIcon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `DropdownContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Dropdown?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`

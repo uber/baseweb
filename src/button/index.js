@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {default as Button} from './button';
+export {default as Button} from './button.js';
 // Constants
-export {KIND, SIZE, SHAPE} from './constants';
+export {KIND, SIZE, SHAPE} from './constants.js';
 // Styled elements
 export {
   BaseButton as StyledBaseButton,
@@ -15,6 +15,6 @@ export {
   EndEnhancer as StyledEndEnhancer,
   LoadingSpinner as StyledLoadingSpinner,
   LoadingSpinnerContainer as StyledLoadingSpinnerContainer,
-} from './styled-components';
+} from './styled-components.js';
 // Types
-export * from './types';
+export * from './types.js';

@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {getOverrides} from '../helpers/overrides';
-import type {PropsT} from './types';
-import {Root as StyledRoot} from './styled-components';
+
+import {getOverrides} from '../helpers/overrides.js';
+import type {PropsT} from './types.js';
+import {Root as StyledRoot} from './styled-components.js';
 
 class HeaderNavigation extends React.Component<PropsT, {}> {
   static defaultProps = {

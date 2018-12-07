@@ -11,7 +11,7 @@ import type {
   StateReducerT,
   StateT,
   OnChangeParamsT,
-} from './types';
+} from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 

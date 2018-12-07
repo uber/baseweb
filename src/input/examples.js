@@ -8,19 +8,20 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {withStyle} from 'styletron-react';
-import {styled} from '../styles';
+
+import {styled} from '../styles/index.js';
 import {
   Input as ControlledInput,
   StatefulInput as Input,
   StyledInput,
   StyledInputContainer,
   SIZE,
-} from './index';
-import {Tag} from '../tag';
-import {Button} from '../button';
-import {DeleteAlt} from '../icon';
+} from './index.js';
+import {Tag} from '../tag/index.js';
+import {Button} from '../button/index.js';
+import {DeleteAlt} from '../icon/index.js';
 
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 const InputIcon = styled('span', props => {
   return {

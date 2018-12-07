@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import Textarea from '../textarea';
-import {Textarea as StyledTextarea} from '../styled-components';
-import {BaseInput} from '../../input';
+import Textarea from '../textarea.js';
+import {Textarea as StyledTextarea} from '../styled-components.js';
+import {BaseInput} from '../../input/index.js';
 
 describe('Textarea', () => {
   test('Basic functionality', () => {

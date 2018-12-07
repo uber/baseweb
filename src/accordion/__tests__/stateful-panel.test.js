@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {StatefulPanel, StatefulPanelContainer, Panel} from '../index';
+import {StatefulPanel, StatefulPanelContainer, Panel} from '../index.js';
 
 describe('StatefulPanel', () => {
   test('basic render', () => {

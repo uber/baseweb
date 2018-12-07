@@ -6,20 +6,20 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides, mergeOverrides} from '../helpers/overrides';
-import {Delete as DeleteAltIcon} from '../icon';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {Delete as DeleteAltIcon} from '../icon/index.js';
 import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
-} from './styled-components';
-import {KIND, TYPE} from './constants';
+} from './styled-components.js';
+import {KIND, TYPE} from './constants.js';
 
 import type {
   ToastPropsT,
   ToastPrivateStateT,
   SharedStylePropsArgT,
-} from './types';
-import type {OverridesT} from '../icon';
+} from './types.js';
+import type {OverridesT} from '../icon/index.js';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: $Shape<ToastPropsT> = {

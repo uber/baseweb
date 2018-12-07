@@ -23,7 +23,7 @@ import type {
   StatefulPopoverContainerPropsT as StatefulTooltipContainerPropsT,
   StateReducerT,
   TriggerTypeT,
-} from '../popover/types';
+} from '../popover/types.js';
 
 export type {
   AccessibilityTypeT,

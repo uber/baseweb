@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import StatefulPagination from './stateful-pagination';
-import Pagination from './pagination';
-import {KIND} from '../button';
+import StatefulPagination from './stateful-pagination.js';
+import Pagination from './pagination.js';
+import {KIND} from '../button/index.js';
 
 export const suite = 'Pagination Test Suite';
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 export default {
   [examples.STATEFUL_PAGINATION]: function Story1() {

@@ -7,12 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow, mount} from 'enzyme';
+
 import {
   StyledRoot,
   StyledNavigationList,
   StyledNavigationItem,
   ALIGN,
-} from '../index';
+} from '../index.js';
 
 describe('Header Navigation styled components', () => {
   describe('StyledRoot', function() {

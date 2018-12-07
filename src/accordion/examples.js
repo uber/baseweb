@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles';
-import {Accordion, Panel, StatefulPanel} from './index';
-import examples from './examples-list';
+import {styled} from '../styles/index.js';
+import {Accordion, Panel, StatefulPanel} from './index.js';
+import examples from './examples-list.js';
 
 export const suite = 'Component Test Suite';
 

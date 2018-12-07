@@ -8,10 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {getOverrides} from '../helpers/overrides';
+import {getOverrides} from '../helpers/overrides.js';
 
-import {Avatar as StyledAvatar, Root as StyledRoot} from './styled-components';
-import type {PropsT, StateT} from './types';
+import {
+  Avatar as StyledAvatar,
+  Root as StyledRoot,
+} from './styled-components.js';
+import type {PropsT, StateT} from './types.js';
 
 export default class Avatar extends React.Component<PropsT, StateT> {
   static defaultProps: $Shape<PropsT> = {

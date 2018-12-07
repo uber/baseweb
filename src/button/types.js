@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {KIND, SIZE, SHAPE} from './constants';
-import type {OverrideT} from '../helpers/overrides';
+import {KIND, SIZE, SHAPE} from './constants.js';
+import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
   BaseButton?: OverrideT<*>,

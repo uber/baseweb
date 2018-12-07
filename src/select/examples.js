@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {action} from '@storybook/addon-actions';
 import {boolean, radios} from '@storybook/addon-knobs';
-import {StatefulSelect, TYPE} from './index';
-import {SIZE} from './constants';
-import {styled} from '../styles/index';
-import COLORS from './examples-colors';
-import tests from './examples-list';
+import {StatefulSelect, TYPE} from './index.js';
+import {SIZE} from './constants.js';
+import {styled} from '../styles/index.js';
+import COLORS from './examples-colors.json';
+import tests from './examples-list.js';
 
 const size = (defaultValue = SIZE.default) =>
   radios('size', {default: SIZE.default, compact: SIZE.compact}, defaultValue);

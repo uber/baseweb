@@ -9,20 +9,20 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import React from 'react';
-import Button from '../src/button/examples';
-import Card from '../src/card/examples';
-import Checkbox from '../src/checkbox/examples';
-import FormControl from '../src/form-control/examples';
-import Input from '../src/input/examples';
-import Menu from '../src/menu/examples';
-import Modal from '../src/modal/examples';
-import Pagination from '../src/pagination/examples';
-import Popover from '../src/popover/examples';
-import Radio from '../src/radio/examples';
-import Select from '../src/select/examples';
-import Tag from '../src/tag/examples';
-import Textarea from '../src/textarea/examples';
-import Tooltip from '../src/tooltip/examples';
+import Button from '../src/button/examples.js';
+import Card from '../src/card/examples.js';
+import Checkbox from '../src/checkbox/examples.js';
+import FormControl from '../src/form-control/examples.js';
+import Input from '../src/input/examples.js';
+import Menu from '../src/menu/examples.js';
+import Modal from '../src/modal/examples.js';
+import Pagination from '../src/pagination/examples.js';
+import Popover from '../src/popover/examples.js';
+import Radio from '../src/radio/examples.js';
+import Select from '../src/select/examples.js';
+import Tag from '../src/tag/examples.js';
+import Textarea from '../src/textarea/examples.js';
+import Tooltip from '../src/tooltip/examples.js';
 
 const Examples = [
   Button,

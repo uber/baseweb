@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import NumberedStep from '../numbered-step';
+import NumberedStep from '../numbered-step.js';
 
 describe('NumberedStep', () => {
   it('applies isCompleted prop correctly', () => {

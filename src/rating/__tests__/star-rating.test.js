@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import {StarRating} from '..';
+import {StarRating} from '../index.js';
 
 describe('StarRating', () => {
   let example, onChangeSpy;

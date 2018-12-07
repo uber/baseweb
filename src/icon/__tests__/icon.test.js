@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {shallow} from 'enzyme';
-import {Icon} from '../index';
-import {Svg} from '../styled-components';
-import * as Icons from '../icon-exports';
+import {Icon} from '../index.js';
+import {Svg} from '../styled-components.js';
+import * as Icons from '../icon-exports.js';
 
 describe('Icon', () => {
   test('renders an icon with viewbox and title', () => {

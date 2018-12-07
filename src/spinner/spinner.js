@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mergeOverrides} from '../helpers/overrides';
-import {Spinner as SpinnerIcon} from '../icon';
-import {Svg as StyledSvg} from './styled-components';
+import {mergeOverrides} from '../helpers/overrides.js';
+import {Spinner as SpinnerIcon} from '../icon/index.js';
+import {Svg as StyledSvg} from './styled-components.js';
 
-import type {SpinnerPropsT} from './types';
+import type {SpinnerPropsT} from './types.js';
 
 class Spinner extends React.Component<SpinnerPropsT> {
   static defaultProps: $Shape<SpinnerPropsT> = {

@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {OverrideT} from '../helpers/overrides';
-import {STYLE_TYPE} from './constants';
+import type {OverrideT} from '../helpers/overrides.js';
+import {STYLE_TYPE} from './constants.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type StyleTypeT = $Keys<typeof STYLE_TYPE>;

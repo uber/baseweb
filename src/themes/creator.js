@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {ThemeT} from '../styles/types';
-import type {PrimitivesT} from './types';
-import deepMerge from '../utils/deep-merge';
+import type {ThemeT} from '../styles/types.js';
+import type {PrimitivesT} from './types.js';
+import deepMerge from '../utils/deep-merge.js';
 
 const WHITE = '#FFFFFF';
 

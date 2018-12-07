@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulContainer as StatefulPopoverContainer} from '../../popover';
+import {StatefulContainer as StatefulPopoverContainer} from '../../popover/index.js';
 import {
   StatefulContainer as StatefulTooltipContainer,
   PLACEMENT,
   TRIGGER_TYPE,
-} from '../index';
-import baseDefaultProps from '../default-props';
+} from '../index.js';
+import baseDefaultProps from '../default-props.js';
 
 describe('StatefulTooltipContainer', () => {
   test('basic render', () => {

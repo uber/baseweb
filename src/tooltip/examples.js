@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {styled} from '../styles';
-import {Button} from '../button';
-import {StatefulTooltip, TRIGGER_TYPE, PLACEMENT} from './index';
+import {styled} from '../styles/index.js';
+import {Button} from '../button/index.js';
+import {StatefulTooltip, TRIGGER_TYPE, PLACEMENT} from './index.js';
 
-import examples from './examples-list';
+import examples from './examples-list.js';
 
 const Centered = styled('div', {
   position: 'relative',

@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledLink} from '../../link';
-import {Breadcrumbs} from '../';
+import {StyledLink} from '../../link/index.js';
+import {Breadcrumbs} from '../index.js';
 
 describe('Breadcrumbs', () => {
   it('applies correct accessibility attributes to root element', () => {

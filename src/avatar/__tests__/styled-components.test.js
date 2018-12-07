@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledAvatar, StyledRoot} from '../index';
+import {StyledAvatar, StyledRoot} from '../index.js';
 
 describe('Avatar styled components', () => {
   const styledComponents = [
