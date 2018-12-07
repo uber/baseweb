@@ -52,7 +52,7 @@ All other props are spread onto the base element.
 * `alignItems?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items)`
 * `alignSelf?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self)`
 * `flexDirection?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction)`
-* `display?: 'none' | 'flex' | 'block' | 'inline-block'`
+* `display?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/display)`
 * `flex?: string`
 * `justifyContent?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content)`
 * `justifySelf?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self)`
