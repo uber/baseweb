@@ -54,7 +54,7 @@ All other props are spread onto the base element.
 * `flexDirection?: 'row' | 'column'`
 * `display?: 'none' | 'flex' | 'block' | 'inline-block'`
 * `flex?: 'grow' | 'shrink' | 'none'`
-* `justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around'`
+* `justifyContent?: 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'left' | 'right' | 'normal' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch' | 'safe center' | 'unsafe center' | 'inherit' | 'initial' | 'unset'`
 * `justifySelf?: string`
 * `position?: 'static' | 'absolute' | 'relative' | 'fixed'`
 * `width?: string`
