@@ -66,7 +66,7 @@ export default (props) => <HeaderNavigation
 
 ## `StyledNavigationList` API
 
-* `align: $Values<ALIGN> = undefined`
+* `align: ALIGN[string] = undefined`
   * Alignment of elements inside of navigation list.
 * `children?: React.Node = null`
   * All the children of NavigationList.

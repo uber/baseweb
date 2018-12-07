@@ -24,7 +24,7 @@ This document helps you navigate the process.
 
 ## Contributing new components
 
-1.  Write a mini-RFC on the component you'd like to add, and send a PR. You can find [examples here](https://github.com/uber-web/baseui/tree/master/rfcs).
+1.  Write a mini-RFC on the component you'd like to add, and send a PR. You can find [an example here](https://github.com/uber-web/baseui/tree/master/src/template-component/README.md).
 
 - It is ok, if your new component just implements the features you need, we may extend that later
 
