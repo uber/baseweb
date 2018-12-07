@@ -56,7 +56,7 @@ export default () => {
 
 ## `Tag` API
 
-* `color?: $Values<KIND> | string = '#000'`:
+* `color?: KIND[string] | string = '#000'`:
   * The color theme to be applied to a Tag. Default is `KIND.primary`.
 * `children: React.Node`: - Required.
   * Component or String value for label of tag. Default is empty string.

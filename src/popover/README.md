@@ -80,7 +80,7 @@ export default () => {
   * Event handler when popover is shown.
 * `onClose?: () => {}`
   * Event handler when popover is hidden.
-* `placement?: $Values<PLACEMENT> = PLACEMENT.auto`
+* `placement?: PLACEMENT[string] = PLACEMENT.auto`
   * How to position the popover relative to the target.
 * `content?: React.Node | () => React.Node = null`
   * Content to render within the popover when it's shown.
@@ -103,7 +103,7 @@ export default () => {
 
 * `isOpen?: boolean = false`
   * Whether or not to show the popover.
-* `placement?: $Values<PLACEMENT> = PLACEMENT.auto`
+* `placement?: PLACEMENT[string] = PLACEMENT.auto`
   * How to position the popover relative to the target.
 * `content?: React.Node | () => React.Node = null`
   * Content to render within the popover when it's shown.
@@ -138,7 +138,7 @@ These properties are passed to every presentational (styled) component that is e
   * Object of numeric top/left pixel positions to offset popover.
 * `$showArrow: boolean`
   * Propagated from the parent.
-* `$placement: $Values<PLACEMENT>`
+* `$placement: PLACEMENT[string]`
   * Runtime placement (may differ from placement prop if popover would have overflowed viewport).
 * `$ref: React.Ref<*>`
   * React ref for the popover element (should be passed down to dom element).
