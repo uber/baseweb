@@ -48,22 +48,22 @@ All other props are spread onto the base element.
   * Accepts all themeable color properties (`primary200`, etc.).
 * `font?: string`
   * Accepts all themeable font properties (`font200`, etc.).
-* `alignContent?: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch'`
-* `alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch'`
-* `alignSelf?: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch'`
-* `flexDirection?: 'row' | 'column'`
+* `alignContent?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content)`
+* `alignItems?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items)`
+* `alignSelf?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self)`
+* `flexDirection?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction)`
 * `display?: 'none' | 'flex' | 'block' | 'inline-block'`
-* `flex?: 'grow' | 'shrink' | 'none'`
-* `justifyContent?: 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'left' | 'right' | 'normal' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch' | 'safe center' | 'unsafe center' | 'inherit' | 'initial' | 'unset'`
-* `justifySelf?: string`
-* `position?: 'static' | 'absolute' | 'relative' | 'fixed'`
+* `flex?: string`
+* `justifyContent?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content)`
+* `justifySelf?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self)`
+* `position?: 'static' | 'absolute' | 'relative' | 'fixed' | 'sticky'`
 * `width?: string`
 * `minWidth?: string`
 * `maxWidth?: string`
 * `height?: string`
 * `minHeight?: string`
 * `maxHeight?: string`
-* `overflow?: 'visible' | 'hidden' | 'scroll' | 'scrollX' | 'scrollY' | 'auto'`
+* `overflow?: 'visible' | 'hidden' | 'scroll' | 'scrollX' | 'scrollY' | 'auto' | 'inherit' | 'initial' | 'unset'`
 * `margin?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
 * `marginTop?: string`
