@@ -214,7 +214,7 @@ export default () => {
   * Defines if the select field is required to have a selection.
 * `searchable?: boolean = true`
   * Defines if the search functionality id enabled.
-* `type?: $Values<TYPE> = TYPE.select`
+* `type?: TYPE[string] = TYPE.select`
   * Defines type of the component to be in select or search mode. When set to `TYPE.search` the searh icon if rendered on the left and the select arrow icon is not rendered.
 * `value?: Array<{}> = []`
   * A current selected value(s). If a selected value has a `clearableValue` prop set to `true` it will be rendered as a disabled selected option that can't be cleared.
@@ -254,8 +254,8 @@ These properties are passed to every presentational (styled) component that is e
 * `$multi: boolean`
 * `$required: boolean`
 * `$searchable: boolean`
-* `$size: $Values<SIZE>`
-* `$type: $Values<TYPE>`
+* `$size: SIZE[string]`
+* `$type: TYPE[string]`
 
 * `$width: string` - is passed to the `Input` element only
 

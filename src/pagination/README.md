@@ -51,7 +51,7 @@ export default () => <StatefulPagination numPages={6} />;
 * `children: ({currentPage: number, onPageChange: number}) => React.Node`
 * `numPages: number`
   * Max number of pages.
-* `stateReducer?: (changeType: $Values<STATE_CHANGE_TYPE>, changes: {currentPage: number}, {currentPage: number}) => {currentPage: number}`
+* `stateReducer?: (changeType: STATE_CHANGE_TYPE[string], changes: {currentPage: number}, {currentPage: number}) => {currentPage: number}`
   * State reducer function.
 * `initialState?: {currentPage: number} = {currentPage: 1}`
   * The initial state.

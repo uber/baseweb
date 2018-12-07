@@ -73,7 +73,7 @@ export default () => {
 * `initialState: {value: string} = {value: ''}`
   * Initial state of an uncontrolled input component.
     * `value` - an initial input value.
-* `stateReducer: (type: $Values<STATE_CHANGE_TYPE>', nextState: {}, currentState: {}, e: SyntheticEvent<HTMLInputElement>) => stateToSet: {}` - Optional
+* `stateReducer: (type: STATE_CHANGE_TYPE[string]', nextState: {}, currentState: {}, e: SyntheticEvent<HTMLInputElement>) => stateToSet: {}` - Optional
   * A state change handler. Used to override default state transitions.
     * `type` - A state change type.
     * `nextState` - A new state value to be set.

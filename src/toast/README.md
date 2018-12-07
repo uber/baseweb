@@ -72,7 +72,7 @@ export default () => {
     to dismiss the notification and can be used as a handler for an action inside the toast content.
 * `closeable?: boolean = true`
   * When set to true a close button is displayed and the notification can be dismissed by a user.
-* `kind?: $Values<KIND> = KIND.info`
+* `kind?: KIND[string] = KIND.info`
   * Defines the type of notification.
 * `onClose?: () => void = () => {}`
   * A callback function called when a notification is dismissed.
@@ -93,7 +93,7 @@ export default () => {
 
 ## `ToasterContainer` API
 
-* `placement?: $Values<PLACEMENT> = PLACEMENT.top`
+* `placement?: PLACEMENT[string] = PLACEMENT.top`
   * Position of a toast notification container relative to the browser window.
 * `usePortal?: boolean = true`
   * Defines if the portal is used to append a container to the `body` element. In both cases the container
@@ -150,8 +150,8 @@ These properties are passed to every presentational (styled) component of a Toas
 
 `StyledRoot`, `StyledBody`, `StyledCloseIcon`
 
-* `$kind: $Values<KIND>`
-* `$placement: $Values<PLACEMENT>`
+* `$kind: KIND[string]`
+* `$placement: PLACEMENT[string]`
 * `$theme: theme`
 
 ## Accessibility

@@ -69,7 +69,7 @@ export default () => {
 * `initialState?: {stateField: boolean} = {stateField: false}`
   * Initial state of stateful container component.
     * `stateField` - a value to maintain this components state.
-* `stateReducer?: (type: $Values<CONSTANT>, nextState: {}, currentState: {}) => nextState`
+* `stateReducer?: (type: CONSTANT[string], nextState: {}, currentState: {}) => nextState`
   * A state change handler. Used to override default state transitions.
     * `type` - State change type.
     * `nextState` - A new state, provided by component transition, that will be set.
