@@ -81,11 +81,11 @@ Rough DOM composition:
   * `EndEnhancer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `LoadingSpinnerContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `LoadingSpinner?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-* `size?: $Values<SIZE> = SIZE.default`
+* `size?: SIZE[string] = SIZE.default`
   * Defines the size of a button.
-* `shape?: $Values<SHAPE> = SHAPE.default`
+* `shape?: SHAPE[string] = SHAPE.default`
   * Defines the shape of a button.
-* `kind?: $Values<KIND> = KIND.primary`
+* `kind?: KIND[string] = KIND.primary`
   * Defines the kind (purpose) of a button
 * `isLoading?: boolean = false`
   * Show loading button style and spinner.
@@ -99,9 +99,9 @@ These properties are passed to every presentational (styled) component that is e
 `StyledBaseButton`, `StyledStartEnhancer`, `StyledEndEnhancer`, `StyledLoadingSpinner`,
 `StyledLoadingSpinnerContainer`
 
-* `$size?: $Values<SIZE> = SIZE.default`
-* `$shape?: $Values<SHAPE> = SHAPE.default`
-* `$kind?: $Values<KIND> = KIND.primary`
+* `$size?: SIZE[string] = SIZE.default`
+* `$shape?: SHAPE[string] = SHAPE.default`
+* `$kind?: KIND[string] = KIND.primary`
 * `$theme: theme`
 
 ## `KIND` Constant
