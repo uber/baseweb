@@ -126,6 +126,16 @@ type DisplayT =
   | 'initial'
   | 'unset';
 
+type GridAutoFlowT =
+  | 'row'
+  | 'column'
+  | 'dense'
+  | 'row dense'
+  | 'column dense'
+  | 'inherit'
+  | 'initial'
+  | 'unset';
+
 type JustifyContentT =
   | 'center'
   | 'start'
@@ -140,6 +150,32 @@ type JustifyContentT =
   | 'stretch'
   | 'safe center'
   | 'unsafe center'
+  | 'inherit'
+  | 'initial'
+  | 'unset';
+
+type JustifyItemsT =
+  /* Basic keywords */
+  | 'auto'
+  | 'normal'
+  | 'stretch'
+  | 'center'
+  | 'start'
+  | 'end'
+  | 'flex-start'
+  | 'flex-end'
+  | 'self-start'
+  | 'self-end'
+  | 'left'
+  | 'right'
+  | 'baseline'
+  | 'first baseline'
+  | 'last baseline'
+  | 'safe center'
+  | 'unsafe center'
+  | 'legacy right'
+  | 'legacy left'
+  | 'legacy center'
   | 'inherit'
   | 'initial'
   | 'unset';
@@ -191,7 +227,25 @@ export type BlockPropsT = {
   flexDirection?: FlexDirectionT,
   display?: DisplayT,
   flex?: string,
+  grid?: string,
+  gridArea?: string,
+  gridAutoColumns?: string,
+  gridAutoFlow?: GridAutoFlowT,
+  gridAutoRows?: string,
+  gridColumn?: string,
+  gridColumnEnd?: string,
+  gridColumnGap?: string,
+  gridColumnStart?: string,
+  gridGap?: string,
+  gridRow?: string,
+  gridRowStart?: string,
+  gridRowEnd?: string,
+  gridTemplate?: string,
+  gridTemplateAreas?: string,
+  gridTemplateColumns?: string,
+  gridTemplateRows?: string,
   justifyContent?: JustifyContentT,
+  justifyItems?: JustifyItemsT,
   justifySelf?: JustifySelfT,
   position?: PositionT,
   width?: string,
@@ -211,6 +265,9 @@ export type BlockPropsT = {
   paddingRight?: string,
   paddingBottom?: string,
   paddingLeft?: string,
+  placeContent?: string,
+  placeItems?: string,
+  placeSelf?: string,
   flexWrap?: boolean,
   left?: string,
   top?: string,
@@ -229,7 +286,25 @@ export type StyledBlockPropsT = {
   $flexDirection?: FlexDirectionT,
   $display?: DisplayT,
   $flex?: string,
+  $grid?: string,
+  $gridArea?: string,
+  $gridAutoColumns?: string,
+  $gridAutoFlow?: GridAutoFlowT,
+  $gridAutoRows?: string,
+  $gridColumn?: string,
+  $gridColumnEnd?: string,
+  $gridColumnGap?: string,
+  $gridColumnStart?: string,
+  $gridGap?: string,
+  $gridRow?: string,
+  $gridRowStart?: string,
+  $gridRowEnd?: string,
+  $gridTemplate?: string,
+  $gridTemplateAreas?: string,
+  $gridTemplateColumns?: string,
+  $gridTemplateRows?: string,
   $justifyContent?: JustifyContentT,
+  $justifyItems?: JustifyItemsT,
   $justifySelf?: JustifySelfT,
   $position?: PositionT,
   $width?: string,
@@ -249,6 +324,9 @@ export type StyledBlockPropsT = {
   $paddingRight?: string,
   $paddingBottom?: string,
   $paddingLeft?: string,
+  $placeContent?: string,
+  $placeItems?: string,
+  $placeSelf?: string,
   $flexWrap?: boolean,
   $left?: string,
   $top?: string,
