@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 
-import {FileUploader, StyledAcceptedFile} from '../index.js';
+import {FileUploader} from '../index.js';
 
 describe('FileUploader', () => {
   it('applies expected accessibility attributes to button', () => {
