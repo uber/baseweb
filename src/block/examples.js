@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Block} from './index.js';
 import examples from './examples-list.js';
+import {styled} from '../styles/index.js';
 
 export default {
   [examples.DEFAULT]: function Story1() {
@@ -87,6 +88,32 @@ export default {
         flexWrap
       >
         {elements}
+      </Block>
+    );
+  },
+  [examples.GRID]: function Story4() {
+    const Inner = styled('div', ({$theme}) => ({
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: $theme.colors.mono300,
+      border: `1px solid ${$theme.colors.mono900}`,
+      height: '50px',
+      width: '50px',
+    }));
+    return (
+      <Block
+        display="grid"
+        gridTemplateColumns="repeat(3,1fr)"
+        justifyItems="center"
+        gridGap="scale1000"
+      >
+        <Inner>1</Inner>
+        <Inner>2</Inner>
+        <Inner>3</Inner>
+        <Inner>4</Inner>
+        <Inner>5</Inner>
+        <Inner>6</Inner>
       </Block>
     );
   },

@@ -54,7 +54,25 @@ All other props are spread onto the base element.
 * `flexDirection?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction)`
 * `display?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/display)`
 * `flex?: string`
+* `grid?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid)`
+* `gridArea?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area)`
+* `gridAutoColumns?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns)`
+* `gridAutoFlow?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow)`
+* `gridAutoRows?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows)`
+* `gridColumn?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column)`
+* `gridColumnEnd?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end)`
+* `gridColumnGap?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-gap)`
+* `gridColumnStart?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start)`
+* `gridGap?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap)`
+* `gridRow?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row)`
+* `gridRowStart?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start)`
+* `gridRowEnd?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end)`
+* `gridTemplate?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template)`
+* `gridTemplateAreas?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas)`
+* `gridTemplateColumns?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)`
+* `gridTemplateRows?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows)`
 * `justifyContent?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content)`
+* `justifyItems?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items)`
 * `justifySelf?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self)`
 * `position?: 'static' | 'absolute' | 'relative' | 'fixed' | 'sticky'`
 * `width?: string`
@@ -84,6 +102,9 @@ All other props are spread onto the base element.
   * Accepts all themeable sizing properties (`scale100`, etc.).
 * `paddingLeft?: string`
   * Accepts all themeable sizing properties (`scale100`, etc.).
+* `placeContent?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/place-content)`
+* `placeItems?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/place-items)`
+* `placeSelf?: [available values](https://developer.mozilla.org/en-US/docs/Web/CSS/place-self)`
 * `flexWrap?: boolean`
 * `left?: string`
 * `top?: string`

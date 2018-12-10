@@ -77,11 +77,147 @@ describe('Block', () => {
     });
   });
 
+  it('renders grid style if provided', () => {
+    expect(
+      retrieveStyles(<Block grid="100px / 200px">test</Block>),
+    ).toMatchObject({
+      grid: '100px / 200px',
+    });
+  });
+
+  it('renders gridArea style if provided', () => {
+    expect(retrieveStyles(<Block gridArea="auto">test</Block>)).toMatchObject({
+      gridArea: 'auto',
+    });
+  });
+
+  it('renders gridAutoColumns style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridAutoColumns="min-content">test</Block>),
+    ).toMatchObject({
+      gridAutoColumns: 'min-content',
+    });
+  });
+
+  it('renders gridAutoFlow style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridAutoFlow="row dense">test</Block>),
+    ).toMatchObject({
+      gridAutoFlow: 'row dense',
+    });
+  });
+
+  it('renders gridAutoRows style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridAutoRows="20cm">test</Block>),
+    ).toMatchObject({
+      gridAutoRows: '20cm',
+    });
+  });
+
+  it('renders gridColumn style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridColumn="1 / 3">test</Block>),
+    ).toMatchObject({
+      gridColumn: '1 / 3',
+    });
+  });
+
+  it('renders gridColumnEnd style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridColumnEnd="span 3">test</Block>),
+    ).toMatchObject({
+      gridColumnEnd: 'span 3',
+    });
+  });
+
+  it('renders gridColumnGap style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridColumnGap="scale800">test</Block>),
+    ).toMatchObject({
+      gridColumnGap: '$theme.sizing.scale800',
+    });
+  });
+
+  it('renders gridColumnStart style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridColumnStart="span 2">test</Block>),
+    ).toMatchObject({
+      gridColumnStart: 'span 2',
+    });
+  });
+
+  it('renders gridGap style if provided', () => {
+    expect(retrieveStyles(<Block gridGap="50px">test</Block>)).toMatchObject({
+      gridGap: '50px',
+    });
+  });
+
+  it('renders gridRow style if provided', () => {
+    expect(retrieveStyles(<Block gridRow="1">test</Block>)).toMatchObject({
+      gridRow: '1',
+    });
+  });
+
+  it('renders gridRowStart style if provided', () => {
+    expect(retrieveStyles(<Block gridRowStart="-1">test</Block>)).toMatchObject(
+      {
+        gridRowStart: '-1',
+      },
+    );
+  });
+
+  it('renders gridRowEnd style if provided', () => {
+    expect(retrieveStyles(<Block gridRowEnd="2">test</Block>)).toMatchObject({
+      gridRowEnd: '2',
+    });
+  });
+
+  it('renders gridTemplate style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridTemplate="1fr / 1fr">test</Block>),
+    ).toMatchObject({
+      gridTemplate: '1fr / 1fr',
+    });
+  });
+
+  it('renders gridTemplateAreas style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridTemplateAreas="inherit">test</Block>),
+    ).toMatchObject({
+      gridTemplateAreas: 'inherit',
+    });
+  });
+
+  it('renders gridTemplateColumns style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridTemplateColumns="1fr 60px">test</Block>),
+    ).toMatchObject({
+      gridTemplateColumns: '1fr 60px',
+    });
+  });
+
+  it('renders gridTemplateRows style if provided', () => {
+    expect(
+      retrieveStyles(<Block gridTemplateRows="auto">test</Block>),
+    ).toMatchObject({
+      gridTemplateRows: 'auto',
+    });
+  });
+
   it('renders justifyContent style if provided', () => {
     expect(
       retrieveStyles(<Block justifyContent="start">test</Block>),
     ).toMatchObject({
       justifyContent: 'start',
+    });
+  });
+
+  it('renders justifyItems style if provided', () => {
+    expect(
+      retrieveStyles(<Block justifyItems="center">test</Block>),
+    ).toMatchObject({
+      justifyItems: 'center',
     });
   });
 
@@ -252,6 +388,30 @@ describe('Block', () => {
       retrieveStyles(<Block paddingLeft="scale200">test</Block>),
     ).toMatchObject({
       paddingLeft: '$theme.sizing.scale200',
+    });
+  });
+
+  it('renders placeContent style if provided', () => {
+    expect(
+      retrieveStyles(<Block placeContent="end center">test</Block>),
+    ).toMatchObject({
+      placeContent: 'end center',
+    });
+  });
+
+  it('renders placeItems style if provided', () => {
+    expect(
+      retrieveStyles(<Block placeItems="end center">test</Block>),
+    ).toMatchObject({
+      placeItems: 'end center',
+    });
+  });
+
+  it('renders placeSelf style if provided', () => {
+    expect(
+      retrieveStyles(<Block placeSelf="center start">test</Block>),
+    ).toMatchObject({
+      placeSelf: 'center start',
     });
   });
 
