@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
-export const FileDragAndDrop = styled('div', (props: StylePropsT) => {
+export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
   return {
     alignItems: 'center',
     backgroundColor: props.$theme.colors.fileUploaderBackgroundColor,
@@ -31,19 +31,19 @@ export const FileDragAndDrop = styled('div', (props: StylePropsT) => {
   };
 });
 
-export const ContentMessage = styled('div', (props: StylePropsT) => ({
+export const StyledContentMessage = styled('div', (props: StylePropsT) => ({
   ...props.$theme.typography.font450,
 }));
 
-export const ContentSeparator = styled('div', (props: StylePropsT) => ({
+export const StyledContentSeparator = styled('div', (props: StylePropsT) => ({
   ...props.$theme.typography.font450,
   color: props.$theme.colors.fileUploaderSeparatorColor,
 }));
 
-export const Root = styled('div');
-export const FilesList = styled('ul');
-export const HiddenInput = styled('input');
-export const AcceptedFile = styled('li');
-export const RejectedFile = styled('li', (props: StylePropsT) => ({
+export const StyledRoot = styled('div');
+export const StyledFilesList = styled('ul');
+export const StyledHiddenInput = styled('input');
+export const StyledAcceptedFile = styled('li');
+export const StyledRejectedFile = styled('li', (props: StylePropsT) => ({
   color: props.$theme.colors.negative400,
 }));

@@ -11,17 +11,18 @@ import Dropzone from 'react-dropzone';
 
 import {Block} from '../block/index.js';
 import {Button, KIND} from '../button/index.js';
-import {
-  Root,
-  FileDragAndDrop,
-  ContentMessage,
-  ContentSeparator,
-  FilesList,
-  AcceptedFile,
-  RejectedFile,
-  HiddenInput,
-} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 
+import {
+  StyledRoot,
+  StyledFileDragAndDrop,
+  StyledContentMessage,
+  StyledContentSeparator,
+  StyledFilesList,
+  StyledAcceptedFile,
+  StyledRejectedFile,
+  StyledHiddenInput,
+} from './styled-components.js';
 import type {PropsT} from './types.js';
 
 function prependStyleProps(styleProps) {
@@ -31,7 +32,47 @@ function prependStyleProps(styleProps) {
   }, {});
 }
 
+function makeOverride(Override, Source) {
+  return function(props) {
+    const [Overrided, overrideProps] = getOverrides(Override, Source);
+    return <Overrided {...props} {...overrideProps} />;
+  };
+}
+
+function makeOverrides(overrides = {}) {
+  return {
+    Root: makeOverride(overrides.Root, StyledRoot),
+    FileDragAndDrop: makeOverride(
+      overrides.FileDragAndDrop,
+      StyledFileDragAndDrop,
+    ),
+    ContentMessage: makeOverride(
+      overrides.ContentMessage,
+      StyledContentMessage,
+    ),
+    ContentSeparator: makeOverride(
+      overrides.ContentSeparator,
+      StyledContentSeparator,
+    ),
+    FilesList: makeOverride(overrides.FilesList, StyledFilesList),
+    AcceptedFile: makeOverride(overrides.AcceptedFile, StyledAcceptedFile),
+    RejectedFile: makeOverride(overrides.RejectedFile, StyledRejectedFile),
+    HiddenInput: makeOverride(overrides.HiddenInput, StyledHiddenInput),
+  };
+}
+
 function FileUploader(props: PropsT) {
+  const {
+    Root,
+    FileDragAndDrop,
+    ContentMessage,
+    ContentSeparator,
+    FilesList,
+    AcceptedFile,
+    RejectedFile,
+    HiddenInput,
+  } = makeOverrides(props.overrides);
+
   return (
     <Dropzone {...props}>
       {renderProps => {
@@ -101,6 +142,7 @@ function FileUploader(props: PropsT) {
 
 FileUploader.defaultProps = {
   disableClick: true,
+  overrides: {},
 };
 
 export default FileUploader;

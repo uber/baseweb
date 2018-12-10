@@ -10,14 +10,14 @@ export {default as FileUploader} from './file-uploader.js';
 
 // Styled elements
 export {
-  Root as StyledRoot,
-  FileDragAndDrop as StyledFileDragAndDrop,
-  ContentMessage as StyledContentMessage,
-  ContentSeparator as StyledContentSeparator,
-  FilesList as StyledFilesList,
-  AcceptedFile as StyledAcceptedFile,
-  RejectedFile as StyledRejectedFile,
-  HiddenInput as StyledHiddenInput,
+  StyledRoot,
+  StyledFileDragAndDrop,
+  StyledContentMessage,
+  StyledContentSeparator,
+  StyledFilesList,
+  StyledAcceptedFile,
+  StyledRejectedFile,
+  StyledHiddenInput,
 } from './styled-components.js';
 
 // Flow

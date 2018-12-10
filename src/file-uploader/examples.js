@@ -25,4 +25,30 @@ export default {
   [examples.FILE_UPLOADER_DISABLED]: function FileUploaderDisabled() {
     return <FileUploader disabled />;
   },
+
+  [examples.FILE_UPLOADER_OVERRIDES]: function FileUploaderOverrides() {
+    return (
+      <FileUploader
+        overrides={{
+          FileDragAndDrop: {
+            style: props => ({
+              borderColor: props.$isDragActive
+                ? props.$theme.colors.positive
+                : props.$theme.colors.warning,
+            }),
+          },
+          ContentMessage: {
+            style: props => ({
+              color: props.$theme.colors.warning,
+            }),
+          },
+          ContentSeparator: {
+            style: props => ({
+              color: props.$theme.colors.warning,
+            }),
+          },
+        }}
+      />
+    );
+  },
 };

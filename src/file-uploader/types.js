@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
@@ -21,31 +19,22 @@ export type StylePropsT = {|
 |};
 
 export type OverridesT<T> = {|
-  FileDragAndDrop: OverrideT<T>,
+  Root?: OverrideT<T>,
+  FileDragAndDrop?: OverrideT<T>,
+  ContentMessage?: OverrideT<T>,
+  ContentSeparator?: OverrideT<T>,
+  FilesList?: OverrideT<T>,
+  HiddenInput?: OverrideT<T>,
+  AcceptedFile?: OverrideT<T>,
+  RejectedFile?: OverrideT<T>,
 |};
 
-type DropFilesEventHandlerT = (
-  accepted: File[],
-  rejected: File[],
-  event: SyntheticDragEvent<HTMLElement>,
-) => mixed;
-
-type DropFileEventHandlerT = (
-  acceptedOrRejected: File[],
-  event: SyntheticDragEvent<HTMLElement>,
-) => mixed;
-
 export type PropsT = {|
+  // react-dropzone: https://github.com/react-dropzone/react-dropzone/blob/master/typings/react-dropzone.d.ts
   accept?: string | string[],
   disableClick?: boolean,
   disabled?: boolean,
-  getDataTransferItems?: (
-    event:
-      | SyntheticDragEvent<HTMLElement>
-      | SyntheticInputEvent<HTMLInputElement>
-      | SyntheticDragEvent<*>
-      | SyntheticEvent<*>,
-  ) => Promise<Array<File | DataTransferItem>>,
+  getDataTransferItems?: GetDataTransferItemsT,
   maxSize?: number,
   minSize?: number,
   multiple?: boolean,
@@ -63,4 +52,26 @@ export type PropsT = {|
   onDropRejected?: DropFileEventHandlerT,
   onFileDialogCancel?: () => mixed,
   preventDropOnDocument?: boolean,
+
+  // baseui
+  overrides?: OverridesT<StylePropsT>,
 |};
+
+type DropFilesEventHandlerT = (
+  accepted: File[],
+  rejected: File[],
+  event: SyntheticDragEvent<HTMLElement>,
+) => mixed;
+
+type DropFileEventHandlerT = (
+  acceptedOrRejected: File[],
+  event: SyntheticDragEvent<HTMLElement>,
+) => mixed;
+
+type GetDataTransferItemsT = (
+  event:
+    | SyntheticDragEvent<HTMLElement>
+    | SyntheticInputEvent<HTMLInputElement>
+    | SyntheticDragEvent<*>
+    | SyntheticEvent<*>,
+) => Promise<Array<File | DataTransferItem>>;
