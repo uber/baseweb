@@ -68,10 +68,11 @@ type DropFileEventHandlerT = (
   event: SyntheticDragEvent<HTMLElement>,
 ) => mixed;
 
+type DataTransferEventT =
+  | SyntheticDragEvent<HTMLElement>
+  | SyntheticInputEvent<HTMLInputElement>
+  | SyntheticDragEvent<*>
+  | SyntheticEvent<*>;
 type GetDataTransferItemsT = (
-  event:
-    | SyntheticDragEvent<HTMLElement>
-    | SyntheticInputEvent<HTMLInputElement>
-    | SyntheticDragEvent<*>
-    | SyntheticEvent<*>,
+  event: DataTransferEventT,
 ) => Promise<Array<File | DataTransferItem>>;
