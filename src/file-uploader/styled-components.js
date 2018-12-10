@@ -15,10 +15,6 @@ export const Root = styled('div', (props: StylePropsT) => {
   };
 });
 
-export const ContentContainer = styled('div', (props: StylePropsT) => {
-  return {};
-});
-
 export const FileDragAndDrop = styled('div', (props: StylePropsT) => {
   return {
     backgroundColor: props.$theme.colors.mono200,
@@ -48,7 +44,7 @@ export const FileSelectButton = styled('button', (props: StylePropsT) => {
   };
 });
 
-export const Input = styled('input', {
+export const HiddenInput = styled('input', {
   opacity: 0,
   width: 0,
   height: 0,

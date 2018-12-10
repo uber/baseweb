@@ -30,8 +30,6 @@ export type OverridesT<T> = {|
 
 export type PropsT = {|
   accept?: string,
-  action?: string | (() => string),
-  autoUpload?: boolean,
   disabled?: boolean,
   multi?: boolean,
   onChange?: ({
@@ -39,10 +37,6 @@ export type PropsT = {|
     rejectedFiles: File[],
     event: SyntheticEvent<HTMLElement>,
   }) => void,
-  onError?: ({error: Error}) => void,
   onFileRemove?: ({file: File, event: InputEventT}) => void,
-  onFileUploadSuccess?: (file: File) => void,
-  onFileUploadFailure?: (file: File) => void,
   overrides?: OverridesT<StylePropsT>,
-  request?: {data: {} | Function, headers: {}},
 |};

@@ -11,10 +11,9 @@ export {default as FileUploader} from './file-uploader.js';
 // Styled elements
 export {
   Root as StyledRoot,
-  ContentContainer as StyledContentContainer,
   FileDragAndDrop as StyledFileDragAndDrop,
   FileSelectButton as StyledSelectButton,
-  Input as StyledInput,
+  HiddenInput as StyledHiddenInput,
 } from './styled-components.js';
 
 // Flow
