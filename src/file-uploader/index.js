@@ -12,6 +12,8 @@ export {default as FileUploader} from './file-uploader.js';
 export {
   Root as StyledRoot,
   FileDragAndDrop as StyledFileDragAndDrop,
+  ContentMessage as StyledContentMessage,
+  ContentSeparator as StyledContentSeparator,
   FilesList as StyledFilesList,
   AcceptedFile as StyledAcceptedFile,
   RejectedFile as StyledRejectedFile,

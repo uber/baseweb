@@ -122,6 +122,12 @@ export default function createTheme(
       breadcrumbsText: primitives.mono900,
       breadcrumbsSeparatorFill: primitives.mono700,
 
+      // FileUploader
+      fileUploaderBackgroundColor: primitives.mono200,
+      fileUploaderBorderColorActive: primitives.primary400,
+      fileUploaderBorderColorDefault: primitives.mono500,
+      fileUploaderSeparatorColor: primitives.mono600,
+
       // Links
       linkText: primitives.primary400,
       linkVisited: primitives.primary500,

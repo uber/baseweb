@@ -12,10 +12,10 @@ import type {StylePropsT} from './types.js';
 export const FileDragAndDrop = styled('div', (props: StylePropsT) => {
   return {
     alignItems: 'center',
-    backgroundColor: props.$theme.colors.mono200,
+    backgroundColor: props.$theme.colors.fileUploaderBackgroundColor,
     borderColor: props.$isDragActive
-      ? props.$theme.colors.primary400
-      : props.$theme.colors.mono500,
+      ? props.$theme.colors.fileUploaderBorderColorActive
+      : props.$theme.colors.fileUploaderBorderColorDefault,
 
     borderStyle: 'dashed',
     borderRadius: props.$theme.borders.radius200,
@@ -30,6 +30,15 @@ export const FileDragAndDrop = styled('div', (props: StylePropsT) => {
     width: '100%',
   };
 });
+
+export const ContentMessage = styled('div', (props: StylePropsT) => ({
+  ...props.$theme.typography.font450,
+}));
+
+export const ContentSeparator = styled('div', (props: StylePropsT) => ({
+  ...props.$theme.typography.font450,
+  color: props.$theme.colors.fileUploaderSeparatorColor,
+}));
 
 export const Root = styled('div');
 export const FilesList = styled('ul');

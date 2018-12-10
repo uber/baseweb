@@ -14,6 +14,8 @@ import {Button, KIND} from '../button/index.js';
 import {
   Root,
   FileDragAndDrop,
+  ContentMessage,
+  ContentSeparator,
   FilesList,
   AcceptedFile,
   RejectedFile,
@@ -53,10 +55,11 @@ function FileUploader(props: PropsT) {
               {...getRootProps({refKey: '$ref'})}
               {...prefixedStyledProps}
             >
-              <Block font="font450">Drop files here to upload</Block>
-              <Block font="font450" color="mono600">
-                or
-              </Block>
+              <ContentMessage {...prefixedStyledProps}>
+                Drop files here to upload
+              </ContentMessage>
+
+              <ContentSeparator {...prefixedStyledProps}>or</ContentSeparator>
 
               <Button
                 aria-controls="fileupload"
@@ -65,17 +68,23 @@ function FileUploader(props: PropsT) {
                 onClick={open}
                 overrides={{BaseButton: {style: {outline: null}}}}
                 role="button"
+                {...prefixedStyledProps}
               >
                 Browse files
               </Button>
             </FileDragAndDrop>
 
-            <FilesList>
+            <FilesList {...prefixedStyledProps}>
               {acceptedFiles.map(file => (
-                <AcceptedFile key={file.name}>{file.name}</AcceptedFile>
+                <AcceptedFile key={file.name} {...prefixedStyledProps}>
+                  {file.name}
+                </AcceptedFile>
               ))}
+
               {rejectedFiles.map(file => (
-                <RejectedFile key={file.name}>{file.name}</RejectedFile>
+                <RejectedFile key={file.name} {...prefixedStyledProps}>
+                  {file.name}
+                </RejectedFile>
               ))}
             </FilesList>
 

@@ -72,6 +72,8 @@ export default () => (
 * `FileUploader`
 * `StyledRoot`
 * `StyledFileDragAndDrop`
+* `StyledContentMessage`
+* `StyledContentSeparator`
 * `StyledFilesList`
 * `StyledAcceptedFile`
 * `StyledRejectedFile`
@@ -83,6 +85,8 @@ export default () => (
 * `overrides?: {Root, ContentContainer, FileDragAndDrop, FileSelectButton, Input} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `FileDragAndDrop?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `ContentMessage?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `ContentSeparator?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `FilesList?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `AcceptedFile?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `RejectedFile?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
@@ -90,7 +94,10 @@ export default () => (
 
 ## Presentational components props API
 
-These properties are passed to every presentational (styled) component that is exported:
+These properties are passed to every presentational (styled) component that is exported.
+
+`StyledRoot`, `StyledFileDragAndDrop`, `StyledContentMessage`, `StyledContentSeparator`, `StyledFilesList`,
+`StyledAcceptedFile`, `StyledRejectedFile`, `StyledHiddenInput`
 
 * `$isDisabled: boolean`
 * `$isDragActive: boolean`
