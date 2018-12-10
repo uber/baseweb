@@ -14,11 +14,15 @@ import {FileUploader} from './index.js';
 import examples from './examples-list.js';
 
 export default {
-  [examples.FILE_UPLOADER_EXAMPLE]: function AvatarStory() {
+  [examples.FILE_UPLOADER_EXAMPLE]: function FileUploaderBasic() {
     return <FileUploader />;
   },
 
-  [examples.FILE_UPLOADER_ACCEPT]: function AvatarStory() {
+  [examples.FILE_UPLOADER_ACCEPT]: function FileUploaderAccept() {
     return <FileUploader accept=".jpeg" />;
+  },
+
+  [examples.FILE_UPLOADER_DISABLED]: function FileUploaderDisabled() {
+    return <FileUploader disabled />;
   },
 };

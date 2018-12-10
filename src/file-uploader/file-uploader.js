@@ -7,57 +7,91 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import checkFileType from 'attr-accept';
+import Dropzone from 'react-dropzone';
 
 import {Block} from '../block/index.js';
+import {Button, KIND} from '../button/index.js';
 import {
   Root,
   FileDragAndDrop,
-  FileSelectButton,
+  FilesList,
+  AcceptedFile,
+  RejectedFile,
   HiddenInput,
 } from './styled-components.js';
 
-import StatefulContainer from './stateful-container.js';
-
 import type {PropsT} from './types.js';
 
-export default class FileUploader extends React.Component<PropsT, any> {
-  render() {
-    return (
-      <StatefulContainer accept={this.props.accept} multi={this.props.multi}>
-        {({
+function prependStyleProps(styleProps) {
+  return Object.keys(styleProps).reduce((nextStyleProps, currentKey) => {
+    nextStyleProps[`$${currentKey}`] = styleProps[currentKey];
+    return nextStyleProps;
+  }, {});
+}
+
+function FileUploader(props: PropsT) {
+  return (
+    <Dropzone {...props}>
+      {renderProps => {
+        const {
+          acceptedFiles,
           getRootProps,
           getInputProps,
-          open,
-          acceptedFiles,
           rejectedFiles,
-          sharedStyles,
-        }) => (
+          open,
+          ...styleProps
+        } = renderProps;
+
+        const prefixedStyledProps = prependStyleProps({
+          ...styleProps,
+          isDisabled: props.disabled,
+        });
+
+        return (
           <Root>
-            <FileDragAndDrop {...getRootProps()} {...sharedStyles}>
+            <FileDragAndDrop
+              {...getRootProps({refKey: '$ref'})}
+              {...prefixedStyledProps}
+            >
               <Block font="font450">Drop files here to upload</Block>
               <Block font="font450" color="mono600">
                 or
               </Block>
-              <FileSelectButton onClick={open}>Browse files</FileSelectButton>
-              <HiddenInput {...getInputProps()} />
+
+              <Button
+                aria-controls="fileupload"
+                disabled={props.disabled}
+                kind={KIND.minimal}
+                onClick={open}
+                overrides={{BaseButton: {style: {outline: null}}}}
+                role="button"
+              >
+                Browse files
+              </Button>
             </FileDragAndDrop>
 
-            <Block as="ul">
+            <FilesList>
               {acceptedFiles.map(file => (
-                <Block as="li" key={file.name}>
-                  {file.name}
-                </Block>
+                <AcceptedFile key={file.name}>{file.name}</AcceptedFile>
               ))}
               {rejectedFiles.map(file => (
-                <Block as="li" color="negative400" key={file.name}>
-                  {file.name}
-                </Block>
+                <RejectedFile key={file.name}>{file.name}</RejectedFile>
               ))}
-            </Block>
+            </FilesList>
+
+            <HiddenInput
+              {...getInputProps({refKey: '$ref'})}
+              {...prefixedStyledProps}
+            />
           </Root>
-        )}
-      </StatefulContainer>
-    );
-  }
+        );
+      }}
+    </Dropzone>
+  );
 }
+
+FileUploader.defaultProps = {
+  disableClick: true,
+};
+
+export default FileUploader;

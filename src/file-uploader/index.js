@@ -12,7 +12,9 @@ export {default as FileUploader} from './file-uploader.js';
 export {
   Root as StyledRoot,
   FileDragAndDrop as StyledFileDragAndDrop,
-  FileSelectButton as StyledSelectButton,
+  FilesList as StyledFilesList,
+  AcceptedFile as StyledAcceptedFile,
+  RejectedFile as StyledRejectedFile,
   HiddenInput as StyledHiddenInput,
 } from './styled-components.js';
 

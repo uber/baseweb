@@ -9,14 +9,9 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
-export const Root = styled('div', (props: StylePropsT) => {
-  return {
-    textAlign: 'center',
-  };
-});
-
 export const FileDragAndDrop = styled('div', (props: StylePropsT) => {
   return {
+    alignItems: 'center',
     backgroundColor: props.$theme.colors.mono200,
     borderColor: props.$isDragActive
       ? props.$theme.colors.primary400
@@ -26,29 +21,20 @@ export const FileDragAndDrop = styled('div', (props: StylePropsT) => {
     borderRadius: props.$theme.borders.radius200,
     borderWidth: props.$theme.sizing.scale0,
     boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
     paddingTop: props.$theme.sizing.scale900,
     paddingRight: props.$theme.sizing.scale800,
     paddingBottom: props.$theme.sizing.scale900,
     paddingLeft: props.$theme.sizing.scale800,
+    width: '100%',
   };
 });
 
-export const FileSelectButton = styled('button', (props: StylePropsT) => {
-  return {
-    ...props.$theme.typography.font350,
-    backgroundColor: 'transparent',
-    border: 'none',
-    color: props.$theme.colors.primary400,
-    cursor: 'pointer',
-    marginTop: props.$theme.sizing.scale100,
-  };
-});
-
-export const HiddenInput = styled('input', {
-  opacity: 0,
-  width: 0,
-  height: 0,
-  overflow: 'hidden',
-  margin: 0,
-  padding: 0,
-});
+export const Root = styled('div');
+export const FilesList = styled('ul');
+export const HiddenInput = styled('input');
+export const AcceptedFile = styled('li');
+export const RejectedFile = styled('li', (props: StylePropsT) => ({
+  color: props.$theme.colors.negative400,
+}));

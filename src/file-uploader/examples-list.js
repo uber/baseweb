@@ -10,4 +10,5 @@ LICENSE file in the root directory of this source tree.
 module.exports = {
   FILE_UPLOADER_EXAMPLE: 'File Uploader',
   FILE_UPLOADER_ACCEPT: 'Custom accept value',
+  FILE_UPLOADER_DISABLED: 'Disabled',
 };
