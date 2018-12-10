@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
-import {Block} from '../block/index.js';
 import {Button, KIND} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 
@@ -33,10 +32,13 @@ function prependStyleProps(styleProps) {
 }
 
 function makeOverride(Override, Source) {
-  return function(props) {
+  const OverridedComponent = props => {
     const [Overrided, overrideProps] = getOverrides(Override, Source);
     return <Overrided {...props} {...overrideProps} />;
   };
+
+  OverridedComponent.displayName = Source.displayName;
+  return OverridedComponent;
 }
 
 function makeOverrides(overrides = {}) {
