@@ -13,7 +13,7 @@
   "repository": "uber-web/baseui",
   "scripts": {
     "lint:code": "eslint ./",
-    "lint:markdown": "markdownlint -c ./.markdownlint.json rfcs README.md",
+    "lint:markdown": "markdownlint -c ./.markdownlint.json proposals README.md",
     "lint": "yarn lint:code && yarn lint:markdown",
     "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
@@ -134,8 +134,7 @@
     "react": ">= 16.4.0 < 17",
     "react-dom": ">= 16.4.0 < 17",
     "styletron-react": "^4.3.6",
-    "styletron-react-core": "^1.3.3",
-    "styletron-standard": "^1.0.7"
+    "styletron-react-core": "^1.3.3"
   },
   "engines": {
     "node": ">=8.11.0",

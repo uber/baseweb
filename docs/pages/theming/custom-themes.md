@@ -24,6 +24,8 @@ All themable values are available within components that provide the `overrides`
 />
 ```
 
+To learn more on how overrides work, check out [Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646) article.
+
 ## Creating a custom theme
 
 ### Define your primitives

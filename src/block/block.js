@@ -24,7 +24,25 @@ function Block({
   flexDirection,
   display,
   flex,
+  grid,
+  gridArea,
+  gridAutoColumns,
+  gridAutoFlow,
+  gridAutoRows,
+  gridColumn,
+  gridColumnEnd,
+  gridColumnGap,
+  gridColumnStart,
+  gridGap,
+  gridRow,
+  gridRowStart,
+  gridRowEnd,
+  gridTemplate,
+  gridTemplateAreas,
+  gridTemplateColumns,
+  gridTemplateRows,
   justifyContent,
+  justifyItems,
   justifySelf,
   position,
   width,
@@ -44,6 +62,9 @@ function Block({
   paddingRight,
   paddingBottom,
   paddingLeft,
+  placeContent,
+  placeItems,
+  placeSelf,
   flexWrap,
   left,
   top,
@@ -69,7 +90,25 @@ function Block({
       $flexDirection={flexDirection}
       $display={display}
       $flex={flex}
+      $grid={grid}
+      $gridArea={gridArea}
+      $gridAutoColumns={gridAutoColumns}
+      $gridAutoFlow={gridAutoFlow}
+      $gridAutoRows={gridAutoRows}
+      $gridColumn={gridColumn}
+      $gridColumnEnd={gridColumnEnd}
+      $gridColumnGap={gridColumnGap}
+      $gridColumnStart={gridColumnStart}
+      $gridGap={gridGap}
+      $gridRow={gridRow}
+      $gridRowStart={gridRowStart}
+      $gridRowEnd={gridRowEnd}
+      $gridTemplate={gridTemplate}
+      $gridTemplateAreas={gridTemplateAreas}
+      $gridTemplateColumns={gridTemplateColumns}
+      $gridTemplateRows={gridTemplateRows}
       $justifyContent={justifyContent}
+      $justifyItems={justifyItems}
       $justifySelf={justifySelf}
       $position={position}
       $width={width}
@@ -89,6 +128,9 @@ function Block({
       $paddingRight={paddingRight}
       $paddingBottom={paddingBottom}
       $paddingLeft={paddingLeft}
+      $placeContent={placeContent}
+      $placeItems={placeItems}
+      $placeSelf={placeSelf}
       $flexWrap={flexWrap}
       $left={left}
       $top={top}
