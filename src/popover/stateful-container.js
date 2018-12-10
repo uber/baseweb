@@ -74,12 +74,18 @@ class StatefulContainer extends React.Component<
     this.internalSetState(STATE_CHANGE_TYPE.open, {
       isOpen: true,
     });
+    if (this.props.onOpen) {
+      this.props.onOpen();
+    }
   }
 
   close() {
     this.internalSetState(STATE_CHANGE_TYPE.close, {
       isOpen: false,
     });
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   }
 
   internalSetState(type: StateChangeTypeT, changes: StateT) {
