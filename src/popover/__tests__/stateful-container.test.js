@@ -233,6 +233,29 @@ describe('StatefulPopoverContainer', () => {
     expect(component).toHaveState('isOpen', true);
   });
 
+  test('onOpen/onClose callbacks', () => {
+    const props = {
+      onOpen: jest.fn(),
+      onClose: jest.fn(),
+    };
+    const children = jest.fn();
+
+    const component = shallow(
+      <StatefulContainer {...props}>{children}</StatefulContainer>,
+    );
+
+    component.instance().onMouseEnter();
+    expect(props.onOpen).toHaveBeenCalledTimes(1);
+    expect(props.onClose).toHaveBeenCalledTimes(0);
+
+    props.onOpen.mockClear();
+    props.onClose.mockClear();
+
+    component.instance().onMouseLeave();
+    expect(props.onOpen).toHaveBeenCalledTimes(0);
+    expect(props.onClose).toHaveBeenCalledTimes(1);
+  });
+
   test('null stateReducer', () => {
     const props = {
       content: jest.fn(),
