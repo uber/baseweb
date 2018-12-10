@@ -116,7 +116,7 @@ export const StyledBlock = styled(
     }
 
     if ($gridArea !== undefined) {
-      styles.gridArea = $grid;
+      styles.gridArea = $gridArea;
     }
 
     if ($gridAutoColumns !== undefined) {
@@ -140,7 +140,7 @@ export const StyledBlock = styled(
     }
 
     if ($gridColumnGap !== undefined) {
-      styles.gridColumnGap = $gridColumnGap;
+      styles.gridColumnGap = sizing[$gridColumnGap] || $gridColumnGap;
     }
 
     if ($gridColumnStart !== undefined) {
@@ -148,7 +148,7 @@ export const StyledBlock = styled(
     }
 
     if ($gridGap !== undefined) {
-      styles.gridGap = $gridGap;
+      styles.gridGap = sizing[$gridGap] || $gridGap;
     }
 
     if ($gridRow !== undefined) {

@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Block} from './index.js';
 import examples from './examples-list.js';
-import {styled} from '../styles';
+import {styled} from '../styles/index.js';
 
 export default {
   [examples.DEFAULT]: function Story1() {
@@ -106,6 +106,7 @@ export default {
         display="grid"
         gridTemplateColumns="repeat(3,1fr)"
         justifyItems="center"
+        gridGap="scale1000"
       >
         <Inner>1</Inner>
         <Inner>2</Inner>
