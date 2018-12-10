@@ -8,8 +8,6 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {styled} from '../styles/index.js';
-
 import {FileUploader} from './index.js';
 import examples from './examples-list.js';
 
