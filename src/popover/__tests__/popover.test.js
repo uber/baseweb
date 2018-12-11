@@ -75,7 +75,7 @@ describe('Popover', () => {
     // Should render single button child to begin
     expect(wrapper.children().length).toBe(1);
     const renderedButton = wrapper.childAt(0);
-    expect(renderedButton).toHaveTagName('button');
+    expect(renderedButton).toHaveDisplayName('button');
     expect(renderedButton).toHaveText('Click me');
 
     // Test click handling (and hover events ignored)
@@ -89,7 +89,7 @@ describe('Popover', () => {
 
     // Should now have the portal as the second child
     expect(wrapper.children().length).toBe(2);
-    expect(wrapper.childAt(0)).toHaveTagName('button');
+    expect(wrapper.childAt(0)).toHaveDisplayName('button');
     const portal = wrapper.childAt(1);
     expect(portal).toMatchSelector('[is-portal]');
 
@@ -153,7 +153,7 @@ describe('Popover', () => {
 
     // Test click handling (and hover events ignored)
     const renderedButton = wrapper.childAt(0);
-    expect(renderedButton).toHaveTagName('button');
+    expect(renderedButton).toHaveDisplayName('button');
     renderedButton.simulate('mouseenter');
     jest.runAllTimers();
     expect(onMouseEnter).toBeCalled();
@@ -210,7 +210,7 @@ describe('Popover', () => {
     );
 
     const anchor = wrapper.childAt(0);
-    expect(anchor).toHaveTagName('span');
+    expect(anchor).toHaveDisplayName('span');
     expect(anchor).toHaveText('Hover me');
 
     anchor.simulate('click');

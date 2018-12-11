@@ -16,6 +16,7 @@ import {vs} from 'react-syntax-highlighter/dist/styles/hljs';
 
 import Welcome from './introduction/welcome.md';
 import GettingStarted from './introduction/getting-started.md';
+import VersioningPolicy from './introduction/versioning.md';
 
 import ThemingValues from './theming/theming-values';
 import Playground from './playground';
@@ -24,7 +25,13 @@ import Contributing from '../../CONTRIBUTING.md';
 
 import {styled} from '../../src/styles';
 
-const docs = [Welcome, GettingStarted, Contributing, CustomThemes];
+const docs = [
+  Welcome,
+  GettingStarted,
+  VersioningPolicy,
+  Contributing,
+  CustomThemes,
+];
 
 const parsedDocs = docs.map(doc => FrontMatter(doc));
 

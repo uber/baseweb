@@ -23,7 +23,25 @@ export const StyledBlock = styled(
     $flexDirection,
     $display,
     $flex,
+    $grid,
+    $gridArea,
+    $gridAutoColumns,
+    $gridAutoFlow,
+    $gridAutoRows,
+    $gridColumn,
+    $gridColumnEnd,
+    $gridColumnGap,
+    $gridColumnStart,
+    $gridGap,
+    $gridRow,
+    $gridRowStart,
+    $gridRowEnd,
+    $gridTemplate,
+    $gridTemplateAreas,
+    $gridTemplateColumns,
+    $gridTemplateRows,
     $justifyContent,
+    $justifyItems,
     $justifySelf,
     $position,
     $width,
@@ -43,6 +61,9 @@ export const StyledBlock = styled(
     $paddingRight,
     $paddingBottom,
     $paddingLeft,
+    $placeContent,
+    $placeItems,
+    $placeSelf,
     $flexWrap,
     $left,
     $top,
@@ -90,8 +111,80 @@ export const StyledBlock = styled(
       styles.flex = $flex;
     }
 
+    if ($grid !== undefined) {
+      styles.grid = $grid;
+    }
+
+    if ($gridArea !== undefined) {
+      styles.gridArea = $gridArea;
+    }
+
+    if ($gridAutoColumns !== undefined) {
+      styles.gridAutoColumns = $gridAutoColumns;
+    }
+
+    if ($gridAutoFlow !== undefined) {
+      styles.gridAutoFlow = $gridAutoFlow;
+    }
+
+    if ($gridAutoRows !== undefined) {
+      styles.gridAutoRows = $gridAutoRows;
+    }
+
+    if ($gridColumn !== undefined) {
+      styles.gridColumn = $gridColumn;
+    }
+
+    if ($gridColumnEnd !== undefined) {
+      styles.gridColumnEnd = $gridColumnEnd;
+    }
+
+    if ($gridColumnGap !== undefined) {
+      styles.gridColumnGap = sizing[$gridColumnGap] || $gridColumnGap;
+    }
+
+    if ($gridColumnStart !== undefined) {
+      styles.gridColumnStart = $gridColumnStart;
+    }
+
+    if ($gridGap !== undefined) {
+      styles.gridGap = sizing[$gridGap] || $gridGap;
+    }
+
+    if ($gridRow !== undefined) {
+      styles.gridRow = $gridRow;
+    }
+
+    if ($gridRowStart !== undefined) {
+      styles.gridRowStart = $gridRowStart;
+    }
+
+    if ($gridRowEnd !== undefined) {
+      styles.gridRowEnd = $gridRowEnd;
+    }
+
+    if ($gridTemplate !== undefined) {
+      styles.gridTemplate = $gridTemplate;
+    }
+
+    if ($gridTemplateAreas !== undefined) {
+      styles.gridTemplateAreas = $gridTemplateAreas;
+    }
+
+    if ($gridTemplateColumns !== undefined) {
+      styles.gridTemplateColumns = $gridTemplateColumns;
+    }
+
+    if ($gridTemplateRows !== undefined) {
+      styles.gridTemplateRows = $gridTemplateRows;
+    }
+
     if ($justifyContent !== undefined) {
       styles.justifyContent = $justifyContent;
+    }
+
+    if ($justifyItems !== undefined) {
+      styles.justifyItems = $justifyItems;
     }
 
     if ($justifySelf !== undefined) {
@@ -172,6 +265,18 @@ export const StyledBlock = styled(
 
     if ($paddingLeft !== undefined) {
       styles.paddingLeft = sizing[$paddingLeft] || $paddingLeft;
+    }
+
+    if ($placeContent !== undefined) {
+      styles.placeContent = $placeContent;
+    }
+
+    if ($placeItems !== undefined) {
+      styles.placeItems = $placeItems;
+    }
+
+    if ($placeSelf !== undefined) {
+      styles.placeSelf = $placeSelf;
     }
 
     if ($flexWrap !== undefined) {
