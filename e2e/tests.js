@@ -12,6 +12,7 @@ import React from 'react';
 import Button from '../src/button/examples.js';
 import Card from '../src/card/examples.js';
 import Checkbox from '../src/checkbox/examples.js';
+import FileUploader from '../src/file-uploader/examples.js';
 import FormControl from '../src/form-control/examples.js';
 import Input from '../src/input/examples.js';
 import Menu from '../src/menu/examples.js';
@@ -28,6 +29,7 @@ const Examples = [
   Button,
   Card,
   Checkbox,
+  FileUploader,
   FormControl,
   Input,
   Modal,

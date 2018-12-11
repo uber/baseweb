@@ -19,7 +19,8 @@ module.exports = {
   rules: {
     // Enforce flow file declarations
     'flowtype/require-valid-file-annotation': ['error', 'always'],
-    'flowtype/no-weak-types': ['error'],
+    // allow mixed type: https://github.com/uber-web/baseui/issues/626
+    'flowtype/no-weak-types': ['error', {mixed: false}],
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     // Enforces imports of external modules to be declared in the package.json

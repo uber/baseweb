@@ -58,6 +58,12 @@ export const DarkTheme = createTheme(
       breadcrumbsText: primitives.mono100,
       breadcrumbsSeparatorFill: primitives.mono200,
 
+      // FileUploader
+      fileUploaderBackgroundColor: primitives.mono700,
+      fileUploaderBorderColorActive: primitives.primary400,
+      fileUploaderBorderColorDefault: primitives.mono500,
+      fileUploaderSeparatorColor: primitives.mono100,
+
       // Links
       linkText: primitives.primary300,
       linkVisited: primitives.primary300,

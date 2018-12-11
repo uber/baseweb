@@ -13,6 +13,7 @@ const Button = require('./src/button/examples-list');
 const Breadcrumbs = require('./src/breadcrumbs/examples-list');
 const Card = require('./src/card/examples-list');
 const Checkbox = require('./src/checkbox/examples-list');
+const FileUploader = require('./src/file-uploader/examples-list');
 const Input = require('./src/input/examples-list');
 const Modal = require('./src/modal/examples-list');
 const Notification = require('./src/notification/examples-list');
@@ -42,6 +43,7 @@ module.exports = {
     new RegExp(Checkbox.SIMPLE_EXAMPLE),
     /Checkbox as toggle example/,
     /Icons in Button/,
+    new RegExp(`${FileUploader.FILE_UPLOADER_EXAMPLE}$`),
     new RegExp(Input.SIMPLE_EXAMPLE),
     new RegExp(Input.VALUE_EXAMPLE),
     /Stateless Menu/,

@@ -127,6 +127,7 @@
   "dependencies": {
     "memoize-one": "^4.0.2",
     "popper.js": "^1.14.3",
+    "react-dropzone": "^8.0.0",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "peerDependencies": {
