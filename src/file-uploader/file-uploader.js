@@ -63,7 +63,7 @@ function makeOverrides(overrides = {}) {
   };
 }
 
-function FileUploader(props: PropsT) {
+function Unstable_FileUploader(props: PropsT) {
   const {
     Root,
     FileDragAndDrop,
@@ -142,9 +142,9 @@ function FileUploader(props: PropsT) {
   );
 }
 
-FileUploader.defaultProps = {
+Unstable_FileUploader.defaultProps = {
   disableClick: true,
   overrides: {},
 };
 
-export default FileUploader;
+export default Unstable_FileUploader;

@@ -8,25 +8,25 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {FileUploader} from './index.js';
+import {Unstable_FileUploader} from './index.js';
 import examples from './examples-list.js';
 
 export default {
   [examples.FILE_UPLOADER_EXAMPLE]: function FileUploaderBasic() {
-    return <FileUploader />;
+    return <Unstable_FileUploader />;
   },
 
   [examples.FILE_UPLOADER_ACCEPT]: function FileUploaderAccept() {
-    return <FileUploader accept=".jpeg" />;
+    return <Unstable_FileUploader accept=".jpeg" />;
   },
 
   [examples.FILE_UPLOADER_DISABLED]: function FileUploaderDisabled() {
-    return <FileUploader disabled />;
+    return <Unstable_FileUploader disabled />;
   },
 
   [examples.FILE_UPLOADER_OVERRIDES]: function FileUploaderOverrides() {
     return (
-      <FileUploader
+      <Unstable_FileUploader
         overrides={{
           FileDragAndDrop: {
             style: props => ({

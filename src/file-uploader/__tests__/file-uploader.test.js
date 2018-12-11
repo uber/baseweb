@@ -9,11 +9,11 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 
-import {FileUploader} from '../index.js';
+import {Unstable_FileUploader} from '../index.js';
 
 describe('FileUploader', () => {
   it('applies expected accessibility attributes to button', () => {
-    const wrapper = mount(<FileUploader />);
+    const wrapper = mount(<Unstable_FileUploader />);
     const button = wrapper.find('button').getDOMNode();
 
     expect(button.getAttribute('aria-controls')).toBe('fileupload');
