@@ -93,7 +93,7 @@ function Unstable_FileUploader(props: PropsT) {
         });
 
         return (
-          <Root>
+          <Root {...prefixedStyledProps}>
             <FileDragAndDrop
               {...getRootProps({refKey: '$ref'})}
               {...prefixedStyledProps}

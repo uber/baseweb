@@ -18,11 +18,14 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
       : props.$theme.colors.fileUploaderBorderColorDefault,
 
     borderStyle: 'dashed',
-    borderRadius: props.$theme.borders.radius200,
+    borderRadius: props.$theme.borders.useRoundedCorners
+      ? props.$theme.borders.radius200
+      : null,
     borderWidth: props.$theme.sizing.scale0,
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
+    outline: props.$isDisabled ? 'none' : null,
     paddingTop: props.$theme.sizing.scale900,
     paddingRight: props.$theme.sizing.scale800,
     paddingBottom: props.$theme.sizing.scale900,
@@ -38,12 +41,13 @@ export const StyledContentMessage = styled('div', (props: StylePropsT) => ({
 StyledContentMessage.displayName = 'StyledContentMessage';
 
 export const StyledContentSeparator = styled('div', (props: StylePropsT) => ({
-  ...props.$theme.typography.font450,
   color: props.$theme.colors.fileUploaderSeparatorColor,
 }));
 StyledContentSeparator.displayName = 'StyledContentSeparator';
 
-export const StyledRoot = styled('div');
+export const StyledRoot = styled('div', (props: StylePropsT) => ({
+  ...props.$theme.typography.font450,
+}));
 StyledRoot.displayName = 'StyledRoot';
 
 export const StyledFilesList = styled('ul');
