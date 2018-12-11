@@ -142,7 +142,7 @@ class TableWithPagination extends React.Component {
     return (
         <Table
           columns={columns}
-          dataSource={this.state.data}
+          data={this.state.data}
         />
         <Pagination currentPage={this.state.currentPage} numPages={this.state.numPages} onPageChange={this.onPageChange}/>
     );
