@@ -29,6 +29,7 @@ const Examples = [
   Button,
   Card,
   Checkbox,
+  FileUploader,
   FormControl,
   Input,
   Modal,
