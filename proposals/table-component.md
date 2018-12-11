@@ -206,11 +206,11 @@ One of the Table columns prop for describing the table's columns, Column has the
 
 ## Accessibility
 
-#### How can this component be used via keyboard controls?
+### How can this component be used via keyboard controls
 
 No keyboard shortcuts will be enabled.
 
-#### What are the accessibility best practices for this component (aria-\*, role, etc.)
+### What are the accessibility best practices for this component (aria-\*, role, etc.)
 
 We are making the assuming that in most use cases, a [table with one header](https://www.w3.org/WAI/tutorials/tables/one-header/)
 will be rendered.
