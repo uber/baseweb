@@ -129,7 +129,6 @@ class BaseInput<T: EventTarget> extends React.Component<
             {...sharedProps}
             {...this.getInputProps()}
             {...inputPropsFromOverride}
-            value={value}
           >
             {value}
           </Input>
