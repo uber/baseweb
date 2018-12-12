@@ -5,8 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 import React from 'react';
 import {mount} from 'enzyme';
+
 import {Input, StyledInputContainer} from '../index.js';
 
 test('Input - basic functionality', () => {
@@ -38,10 +40,6 @@ test('Input - basic functionality', () => {
   renderedInput.simulate('blur');
   expect(props.onBlur).toBeCalled();
   expect(wrapper).toHaveState('isFocused', false);
-
-  // onChange handler from props is called
-  renderedInput.simulate('change');
-  expect(props.onChange).toBeCalled();
 
   // onKeyDown handler from props is called
   renderedInput.simulate('keyDown', {keyCode: 40});

@@ -33,9 +33,6 @@ test('BaseInput - basic functionality', () => {
   expect(renderedInput).toExist();
   expect(renderedInput.props()).toMatchSnapshot('Base input has correct props');
 
-  expect(renderedInput.props().onFocus).toEqual(wrapper.instance().onFocus);
-  expect(renderedInput.props().onBlur).toEqual(wrapper.instance().onBlur);
-
   const renderedBefore = wrapper.find(props.overrides.Before);
   expect(renderedBefore).toHaveLength(1);
   expect(renderedBefore.props()).toMatchSnapshot('Before gets correct props');
@@ -53,10 +50,6 @@ test('BaseInput - basic functionality', () => {
   renderedInput.simulate('blur');
   expect(props.onBlur).toBeCalled();
   expect(wrapper).toHaveState('isFocused', false);
-
-  // onChange handler from props is called
-  renderedInput.simulate('change');
-  expect(props.onChange).toBeCalled();
 
   // onKeyDown handler from props is called
   renderedInput.simulate('keyDown', {keyCode: 40});
