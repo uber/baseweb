@@ -31,7 +31,6 @@ Object {
   "inputRef": Object {
     "current": null,
   },
-  "maskChar": " ",
   "name": "",
   "onBlur": [MockFunction],
   "onChange": [MockFunction],
@@ -65,7 +64,6 @@ Object {
   "inputRef": Object {
     "current": null,
   },
-  "maskChar": " ",
   "name": "",
   "onBlur": [MockFunction],
   "onChange": [MockFunction],

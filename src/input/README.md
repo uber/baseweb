@@ -88,7 +88,7 @@ export default () => {
 * `onKeyUp?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
   * handler for keyup events on input element.
 
-## `InputComponent` API
+## `Input` API
 
 * All properties of the BaseInput except `adjoined`
 * `overrides?: {Root, StartEnhancer, InputContainer, Input, Before, After, EndEnhancer} = {}`
@@ -104,6 +104,15 @@ export default () => {
 * `endEnhancer: React.Node | Function = null`
   An input helper rendered after and attached to the input field.
 
+## `MaskedInput` API
+
+* This component is used to format user input rendering.
+* Maintains all properties of the `Input` component
+* `mask?: string = null`
+  * See pattern examples [here](https://github.com/sanniassin/react-input-mask).
+* `maskChar?: string = ' '`
+  * Character to render for unfilled mask element.
+
 ## `BaseInput` API
 
 * `overrides?: {InputContainer, Input, Before, After} = {}`
@@ -114,10 +123,6 @@ export default () => {
   * Id attribute value to be added to the input element and as a label's `for` attribute value.
 * `name?: string = ''`
   * Name attribute value.
-* `mask?: string = null`
-  * Formats user input for display. See pattern examples [here](https://github.com/sanniassin/react-input-mask).
-* `maskChar?: string = ' '`
-  * Character to render for unfilled mask element.
 * `required?: boolean = false`
   * Indicates if the input is required and sets `aria-required` attribute.
 * `type?: string = 'text'`

@@ -4,14 +4,20 @@ exports[`Input - basic functionality: input has correct props 1`] = `
 Object {
   "aria-invalid": false,
   "aria-required": false,
+  "children": null,
+  "disabled": false,
   "id": undefined,
   "name": "",
+  "onBlur": [Function],
+  "onChange": [MockFunction],
+  "onFocus": [Function],
   "onKeyDown": [MockFunction],
   "onKeyPress": [MockFunction],
   "onKeyUp": [MockFunction],
   "placeholder": "Placeholder",
   "styled-component": "true",
   "type": "text",
+  "value": "input value",
 }
 `;
 
@@ -46,7 +52,11 @@ Object {
       $size="default"
       aria-invalid={false}
       aria-required={false}
+      disabled={false}
       name=""
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyPress={[Function]}
       onKeyUp={[Function]}
@@ -62,8 +72,6 @@ Object {
       $size="default"
     />,
   ],
-  "onBlur": [Function],
-  "onFocus": [Function],
 }
 `;
 
@@ -98,7 +106,11 @@ Object {
       $size="default"
       aria-invalid={false}
       aria-required={false}
+      disabled={false}
       name=""
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyPress={[Function]}
       onKeyUp={[Function]}
@@ -114,8 +126,6 @@ Object {
       $size="default"
     />,
   ],
-  "onBlur": [Function],
-  "onFocus": [Function],
 }
 `;
 
@@ -150,7 +160,11 @@ Object {
       $size="default"
       aria-invalid={false}
       aria-required={false}
+      disabled={false}
       name=""
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyPress={[Function]}
       onKeyUp={[Function]}
@@ -166,7 +180,5 @@ Object {
       $size="default"
     />,
   ],
-  "onBlur": [Function],
-  "onFocus": [Function],
 }
 `;

@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import InputMask from 'react-input-mask';
 
 import {getOverrides} from '../helpers/overrides.js';
 
@@ -30,7 +29,6 @@ class BaseInput<T: EventTarget> extends React.Component<
     autoFocus: false,
     disabled: false,
     error: false,
-    maskChar: ' ',
     name: '',
     inputRef: (React.createRef(): {current: ?HTMLInputElement}),
     onBlur: () => {},
@@ -106,53 +104,34 @@ class BaseInput<T: EventTarget> extends React.Component<
   };
 
   render() {
-    const {overrides = {}, mask, maskChar, type, value} = this.props;
+    const {
+      value,
+      type,
+      overrides: {
+        InputContainer: InputContainerOverride,
+        Input: InputOverride,
+        Before: BeforeOverride,
+        After: AfterOverride,
+      },
+    } = this.props;
 
     const sharedProps = getSharedProps(this.props, this.state);
 
     const [InputContainer, inputContainerProps] = getOverrides(
-      overrides.InputContainer,
+      InputContainerOverride,
       StyledInputContainer,
     );
-    const [Input, inputPropsFromOverride] = getOverrides(
-      overrides.Input,
-      StyledInput,
-    );
-    const [Before, beforeProps] = getOverrides(overrides.Before, NullComponent);
-    const [After, afterProps] = getOverrides(overrides.After, NullComponent);
-
-    if (type === CUSTOM_INPUT_TYPE.textarea) {
-      return (
-        <InputContainer {...sharedProps} {...inputContainerProps}>
-          <Before {...sharedProps} {...beforeProps} />
-          <Input
-            {...sharedProps}
-            {...this.getInputProps()}
-            {...inputPropsFromOverride}
-          >
-            {value}
-          </Input>
-          <After {...sharedProps} {...afterProps} />
-        </InputContainer>
-      );
-    }
-
+    const [Input, inputProps] = getOverrides(InputOverride, StyledInput);
+    const [Before, beforeProps] = getOverrides(BeforeOverride, NullComponent);
+    const [After, afterProps] = getOverrides(AfterOverride, NullComponent);
     return (
-      <InputMask mask={mask} maskChar={maskChar} {...this.getInputProps()}>
-        {inputProps => {
-          return (
-            <InputContainer {...sharedProps} {...inputContainerProps}>
-              <Before {...sharedProps} {...beforeProps} />
-              <Input
-                {...sharedProps}
-                {...inputProps}
-                {...inputPropsFromOverride}
-              />
-              <After {...sharedProps} {...afterProps} />
-            </InputContainer>
-          );
-        }}
-      </InputMask>
+      <InputContainer {...sharedProps} {...inputContainerProps}>
+        <Before {...sharedProps} {...beforeProps} />
+        <Input {...sharedProps} {...this.getInputProps()} {...inputProps}>
+          {type === CUSTOM_INPUT_TYPE.textarea ? value : null}
+        </Input>
+        <After {...sharedProps} {...afterProps} />
+      </InputContainer>
     );
   }
 }

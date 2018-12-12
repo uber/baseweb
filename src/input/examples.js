@@ -12,6 +12,7 @@ import {withStyle} from 'styletron-react';
 import {styled} from '../styles/index.js';
 import {
   Input as ControlledInput,
+  MaskedInput,
   StatefulInput as Input,
   StyledInput,
   StyledInputContainer,
@@ -247,7 +248,11 @@ export default {
   },
 
   [examples.MASK_EXAMPLE]: function maskExample() {
-    return <Input placeholder="Phone number" mask="(999) 999-9999" />;
+    return (
+      <React.Fragment>
+        <MaskedInput placeholder="Phone number" mask="(999) 999-9999" />
+      </React.Fragment>
+    );
   },
 
   [examples.OVERRIDES_EXAMPLE]: function overrideExample() {

@@ -9,6 +9,7 @@ export {default as StatefulInput} from './stateful-input.js';
 export {default as StatefulContainer} from './stateful-container.js';
 export {default as Input} from './input.js';
 export {default as BaseInput} from './base-input.js';
+export {default as MaskedInput} from './masked-input.js';
 // Styled elements
 export {
   Root as StyledRoot,

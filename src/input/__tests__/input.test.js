@@ -41,6 +41,10 @@ test('Input - basic functionality', () => {
   expect(props.onBlur).toBeCalled();
   expect(wrapper).toHaveState('isFocused', false);
 
+  // onChange handler from props is called
+  renderedInput.simulate('change');
+  expect(props.onChange).toBeCalled();
+
   // onKeyDown handler from props is called
   renderedInput.simulate('keyDown', {keyCode: 40});
   expect(props.onKeyDown).toBeCalled();
