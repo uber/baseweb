@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import {StarRating} from '../index.js';
 
 describe('StarRating', () => {
@@ -81,6 +81,16 @@ describe('StarRating', () => {
     it('removes previewIndex if item is blured', () => {
       example.childAt(3).simulate('blur');
       expect(example).toHaveState('previewIndex', undefined);
+    });
+  });
+
+  describe('Mount', () => {
+    it('renders 5 stars by default', () => {
+      const mountedStarRating = mount(
+        <StarRating value={2} onChange={onChangeSpy} />,
+      );
+
+      expect(mountedStarRating.find('li')).toHaveLength(5);
     });
   });
 });
