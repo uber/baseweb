@@ -247,12 +247,7 @@ export default {
   },
 
   [examples.MASK_EXAMPLE]: function maskExample() {
-    return (
-      <React.Fragment>
-        <Input placeholder="Enter date" mask="99/99/9999" />
-        <Input placeholder="Phone number" mask="(999) 999-9999" />
-      </React.Fragment>
-    );
+    return <Input placeholder="Phone number" mask="(999) 999-9999" />;
   },
 
   [examples.OVERRIDES_EXAMPLE]: function overrideExample() {
