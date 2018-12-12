@@ -114,6 +114,10 @@ export default () => {
   * Id attribute value to be added to the input element and as a label's `for` attribute value.
 * `name?: string = ''`
   * Name attribute value.
+* `mask?: string = null`
+  * Formats user input for display. See pattern examples [here](https://github.com/sanniassin/react-input-mask).
+* `maskChar?: string = ' '`
+  * Character to render for unfilled mask element.
 * `required?: boolean = false`
   * Indicates if the input is required and sets `aria-required` attribute.
 * `type?: string = 'text'`
@@ -186,3 +190,7 @@ These properties are passed to every presentational (styled) component that is e
 
 * `default`
 * `compact`
+
+## Dependencies
+
+[react-input-mask](https://github.com/sanniassin/react-input-mask)
