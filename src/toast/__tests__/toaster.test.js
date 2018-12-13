@@ -185,8 +185,8 @@ describe('toaster', () => {
       function getKey() {
         return `test-toast-${toastCounter++}`;
       }
-      const MockNode1 = jest.fn().mockImplementation(() => 'Toast 1');
-      const MockNode2 = jest.fn().mockImplementation(() => 'Toast 2');
+      const MockNode1 = (jest.fn().mockImplementation(() => 'Toast 1'): any);
+      const MockNode2 = (jest.fn().mockImplementation(() => 'Toast 2'): any);
       const props1 = {key: getKey(), children: <MockNode1 />};
       const props2 = {key: getKey(), children: <MockNode2 />};
 
@@ -225,7 +225,9 @@ describe('toaster', () => {
       // test toast is updated
       const updateSpy = jest.spyOn(toasterInstance, 'update');
 
-      const MockNode3 = jest.fn().mockImplementation(() => 'Toast updated');
+      const MockNode3 = (jest
+        .fn()
+        .mockImplementation(() => 'Toast updated'): any);
       const updatedProps = {
         children: <MockNode3 />,
         kind: KIND.positive,
