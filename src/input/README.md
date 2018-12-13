@@ -88,7 +88,7 @@ export default () => {
 * `onKeyUp?: (e: SyntheticEvent<HTMLInputElement>) => void = () => {}`
   * handler for keyup events on input element.
 
-## `InputComponent` API
+## `Input` API
 
 * All properties of the BaseInput except `adjoined`
 * `overrides?: {Root, StartEnhancer, InputContainer, Input, Before, After, EndEnhancer} = {}`
@@ -103,6 +103,15 @@ export default () => {
   * An input helper rendered before and attached to the input field.
 * `endEnhancer: React.Node | Function = null`
   An input helper rendered after and attached to the input field.
+
+## `MaskedInput` API
+
+* This component is used to format user input rendering.
+* Maintains all properties of the `Input` component
+* `mask?: string = null`
+  * See pattern examples [here](https://github.com/sanniassin/react-input-mask).
+* `maskChar?: string = ' '`
+  * Character to render for unfilled mask element.
 
 ## `BaseInput` API
 
@@ -186,3 +195,7 @@ These properties are passed to every presentational (styled) component that is e
 
 * `default`
 * `compact`
+
+## Dependencies
+
+[react-input-mask](https://github.com/sanniassin/react-input-mask)

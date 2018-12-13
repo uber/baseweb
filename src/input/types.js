@@ -49,7 +49,8 @@ export type BaseInputComponentsT = {
   After?: OverrideT<*>,
 };
 
-export type InputComponentsT = BaseInputComponentsT & {
+export type InputComponentsT = {
+  ...BaseInputComponentsT,
   Root?: OverrideT<*>,
   StartEnhancer?: OverrideT<*>,
   EndEnhancer?: OverrideT<*>,
@@ -61,8 +62,8 @@ export type BaseInputPropsT<T> = {
   disabled: boolean,
   error: boolean,
   id: string,
-  name: string,
   inputRef: {current: ?HTMLInputElement},
+  name: string,
   onBlur: (e: SyntheticFocusEvent<T>) => void,
   onChange?: (e: SyntheticInputEvent<T>) => void,
   onKeyDown?: (e: SyntheticInputEvent<T>) => void,
