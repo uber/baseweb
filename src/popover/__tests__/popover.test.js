@@ -221,7 +221,7 @@ describe('Popover', () => {
     const onClick = jest.fn();
     const content = <strong>Hello world</strong>;
 
-    const CustomComponent = jest.fn();
+    const CustomComponent = (jest.fn(): any);
     CustomComponent.mockReturnValue(<span>Hover Me</span>);
 
     wrapper = mount(
