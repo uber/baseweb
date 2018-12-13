@@ -71,9 +71,8 @@ Thumbnail.displayName = 'StyledThumbnail';
 export const Title = styled('h1', ({$hasThumbnail, $theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
-    ...typography.font600,
+    ...typography.font500,
     color: colors.foreground,
-    fontSize: $hasThumbnail ? sizing.scale600 : sizing.scale700,
     fontWeight: 500,
     margin: `0 0 ${sizing.scale300} 0`,
     padding: 0,

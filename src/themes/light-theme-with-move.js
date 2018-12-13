@@ -30,7 +30,7 @@ export const LightThemeMove = createTheme(
       font250: {
         fontFamily: primaryFontFamily,
         fontSize: '12px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '20px',
       },
       font300: {
@@ -42,7 +42,7 @@ export const LightThemeMove = createTheme(
       font350: {
         fontFamily: primaryFontFamily,
         fontSize: '14px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '20px',
       },
       font400: {
@@ -54,37 +54,37 @@ export const LightThemeMove = createTheme(
       font450: {
         fontFamily: primaryFontFamily,
         fontSize: '16px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '24px',
       },
       font500: {
         fontFamily: primaryFontFamily,
         fontSize: '20px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '28px',
       },
       font600: {
         fontFamily: primaryFontFamily,
         fontSize: '24px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '36px',
       },
       font700: {
         fontFamily: primaryFontFamily,
         fontSize: '32px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '48px',
       },
       font800: {
         fontFamily: primaryFontFamily,
         fontSize: '40px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '56px',
       },
       font900: {
         fontFamily: primaryFontFamily,
         fontSize: '52px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '68px',
       },
       font1000: {
