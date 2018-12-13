@@ -9,10 +9,10 @@ import createTheme from './creator.js';
 import {primitives as lightThemePrimitives} from './light-theme-primitives.js';
 
 const primaryFontFamily =
-  'UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif';
+  'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif';
 
 const secondaryFontFamily =
-  'UberMove, UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif';
+  'UberMove, UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif';
 
 export const LightThemeMove = createTheme(
   {
