@@ -24,9 +24,7 @@ export default class StatefulButtonGroup extends React.Component<
     };
   }
 
-  onChange = (event: SyntheticEvent<HTMLButtonElement>, value: number) => {
-    const index = Array.isArray(value) ? value[0] : value;
-
+  onChange = (event: SyntheticEvent<HTMLButtonElement>, index: number) => {
     if (this.props.mode === MODE.radio) {
       if (
         this.state.selected.length === 0 ||
