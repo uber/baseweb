@@ -34,7 +34,6 @@ export type PropsT = {|
   disabled?: boolean,
   kind?: $Values<typeof KIND>,
   mode?: $Values<typeof MODE>,
-  onChange?: ChangeHandlerT,
   onClick?: ClickHandlerT,
   overrides?: OverridesT<StylePropsT>,
   selected?: number | Array<number>,
@@ -51,7 +50,6 @@ export type StatefulContainerPropsT = {|
   ...PropsT,
   children: (props: {
     ...StatefulContainerPropsT,
-    onChange: ChangeHandlerT,
     onClick: ClickHandlerT,
     selected: number | Array<number>,
   }) => React.Node,
@@ -70,11 +68,6 @@ export type ButtonPropsT = {
 };
 
 // general
-type ChangeHandlerT = (
-  event: SyntheticEvent<HTMLButtonElement>,
-  value: number,
-) => mixed;
-
 type ClickHandlerT = (
   event: SyntheticEvent<HTMLButtonElement>,
   index: number,

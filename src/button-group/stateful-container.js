@@ -24,7 +24,7 @@ export default class StatefulButtonGroup extends React.Component<
     };
   }
 
-  onChange = (event: SyntheticEvent<HTMLButtonElement>, index: number) => {
+  onClick = (event: SyntheticEvent<HTMLButtonElement>, index: number) => {
     if (this.props.mode === MODE.radio) {
       if (
         this.state.selected.length === 0 ||
@@ -46,12 +46,6 @@ export default class StatefulButtonGroup extends React.Component<
       }
     }
 
-    if (this.props.onChange) {
-      this.props.onChange(event, index);
-    }
-  };
-
-  onClick = (event: SyntheticEvent<HTMLButtonElement>, index: number) => {
     if (this.props.onClick) {
       this.props.onClick(event, index);
     }
@@ -60,7 +54,6 @@ export default class StatefulButtonGroup extends React.Component<
   render() {
     return this.props.children({
       ...this.props,
-      onChange: this.onChange,
       onClick: this.onClick,
       selected: this.state.selected,
     });

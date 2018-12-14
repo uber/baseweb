@@ -50,10 +50,6 @@ export default function ButtonGroup(props: PropsT) {
             if (props.onClick) {
               props.onClick(event, index);
             }
-
-            if (props.onChange) {
-              props.onChange(event, index);
-            }
           },
           selected: isSelected(props.selected, index),
           shape: props.shape,
@@ -68,7 +64,6 @@ ButtonGroup.defaultProps = {
   ariaLabel: 'button group',
   disabled: false,
   kind: KIND.secondary,
-  onChange: () => {},
   onClick: () => {},
   shape: SHAPE.default,
   size: SIZE.default,

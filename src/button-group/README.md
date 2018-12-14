@@ -71,8 +71,6 @@ Same as `{Button} from baseui/button`, with the additional property:
   * Defines the shape of the buttons in the button group.
 * `kind?: 'primary' | 'secondary' | 'tertiary' | 'minimal' = 'secondary'`
   * Defines the kind (purpose) of the buttons in the button group.
-* `onChange?: (event: SyntheticEvent<HTMLButtonElement>, index: number) => mixed`
-  * Called when a toggleable Button is selected.
 * `onClick?: (event: Event) => mixed`
   * Called with the click event.
 
