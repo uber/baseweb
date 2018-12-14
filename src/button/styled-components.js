@@ -14,6 +14,25 @@ type StylePropsT = SharedStylePropsT & {
   $theme: ThemeT,
 };
 
+function getBorderRadii({$shape, $theme}: StylePropsT) {
+  let value = '0px';
+
+  if ($shape === SHAPE.round) {
+    value = '50%';
+  }
+
+  if ($theme.borders.useRoundedCorners) {
+    value = $theme.borders.radius200;
+  }
+
+  return {
+    borderTopRightRadius: value,
+    borderBottomRightRadius: value,
+    borderTopLeftRadius: value,
+    borderBottomLeftRadius: value,
+  };
+}
+
 export const BaseButton = styled(
   'button',
   ({$theme, $size, $kind, $shape, $isLoading}: StylePropsT) => ({
@@ -25,12 +44,7 @@ export const BaseButton = styled(
     alignItems: 'center',
     justifyContent: 'center',
     border: 'none',
-    borderRadius:
-      $shape === SHAPE.round
-        ? '50%'
-        : $theme.borders.useRoundedCorners
-          ? $theme.borders.radius200
-          : '0px',
+    ...getBorderRadii({$shape, $theme}),
     textDecoration: 'none',
     outline: 'none',
     WebkitAppearance: 'none',

@@ -27,8 +27,9 @@ import {Button, ButtonGroup} from 'baseui/button-group';
 export default () => {
   return
     <ButtonGroup
-      defaultChecked={[0, 1]}
-      mode="checkbox">
+      selected={[0, 1]}
+      mode="checkbox"
+    >
       <Button>Bold</Button>
       <Button>Italic</Button>
       <Button>Underline</Button>
@@ -46,41 +47,40 @@ export default () => {
 ## `Button` API
 
 Same as `{Button} from baseui/button`, with the additional property:
-
 * `selected: boolean` - Optional:
-  Defines if the button is in a selected state. Defaults to `false`.
+  * Defines if the button is in a selected state. Defaults to `false`.
 
 ## `ButtonGroup` API
 
 * `children: (props: Props) => React.Node` - Required
-  This can be an SVG icon as well.
-* `ariaLabel: string` - Optional:
-  Accessible label
-* `mode: string` - Optional:
-  Use the `mode` prop to render toggleable Buttons:
-  * the value `radio` will cause Buttons to behave like radio buttons,
-  * the value `checkbox` will cause Buttons to behave like checkboxes.
-* `checked: number | Array<number>` - Optional
-  Index or array of indices of the selected Button(s).
-  Primarily for use with controlled components with a `mode` prop defined.
-* `disabled: boolean` - Optional:
-  Defines if the button group disabled.
-* `size: 'default' | 'compact'`
-  Defines the size of the buttons in the button group.
-* `shape: 'default' | 'round' | 'square'`
-  Defines the shape of the buttons in the button group.
-* `kind: 'primary' | 'secondary' | 'tertiary' | 'minimal'`
-  Defines the kind (purpose) of the buttons in the button group.
-* `onChange: func` - Optinal:
-  Called when a toggleable Button is selected
-* `onClick: func` - Optional:
-  Called with the click event
+  * This can be an SVG icon as well.
+* `ariaLabel?: string`
+  * Accessible label
+* `mode?: string`
+  * Use the `mode` prop to render toggleable Buttons:
+    * the value `radio` will cause Buttons to behave like radio buttons,
+    * the value `checkbox` will cause Buttons to behave like checkboxes.
+* `selected?: number | Array<number>`
+  * Index or array of indices of the selected Button(s).
+  * Primarily for use with controlled components with a `mode` prop defined.
+* `disabled?: boolean`
+  * Defines if the button group disabled.
+* `size?: 'default' | 'compact' = 'default'`
+  * Defines the size of the buttons in the button group.
+* `shape?: 'default' | 'round' | 'square' = 'default'`
+  * Defines the shape of the buttons in the button group.
+* `kind?: 'primary' | 'secondary' | 'tertiary' | 'minimal' = 'secondary'`
+  * Defines the kind (purpose) of the buttons in the button group.
+* `onChange?: (event: SyntheticEvent<HTMLButtonElement>, index: number) => mixed`
+  * Called when a toggleable Button is selected.
+* `onClick?: (event: Event) => mixed`
+  * Called with the click event.
 
 ## `StatefulButtonGroup` API
 
 Extends the `ButtonGroup` API with this additional props:
 
-* `initialState: {checked: number | Array<number>}`
+* `initialState: {selected: number | Array<number>}`
   Index or array of indices of the selected Button(s).
   Primarily for use with uncontrolled components with a `mode` prop defined.
 
