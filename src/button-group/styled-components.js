@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {withStyle} from 'styletron-react';
-
 import {
   StyledBaseButton as StyledGenericButton,
   KIND,
@@ -31,9 +29,7 @@ function getBackgroundColor({$kind, $selected, $theme}: StylePropsT) {
   }
 }
 
-// unsure why the flow annotation is required compared to other uses of `withStyle`.
-// it should ultimately maintain the same resulting type as the input.
-export const StyledButton = (withStyle(
+export const StyledButton = styled(
   StyledGenericButton,
   (props: StylePropsT) => {
     const style = {};
@@ -57,7 +53,7 @@ export const StyledButton = (withStyle(
 
     return style;
   },
-): typeof StyledGenericButton);
+);
 StyledButton.displayName = 'StyledButton';
 
 export const StyledRoot = styled('div', {

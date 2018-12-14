@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup styled components default styled: StyledButton has expected default styles 1`] = `
+Object {
+  "borderBottomLeftRadius": 0,
+  "borderBottomRightRadius": 0,
+  "borderTopLeftRadius": 0,
+  "borderTopRightRadius": 0,
+}
+`;
+
+exports[`ButtonGroup styled components default styled: StyledRoot has expected default styles 1`] = `
+Object {
+  "display": "flex",
+}
+`;
+
+exports[`ButtonGroup styled components first: StyledButton has expected styles when first element in group 1`] = `
+Object {
+  "borderBottomRightRadius": 0,
+  "borderTopRightRadius": 0,
+}
+`;
+
+exports[`ButtonGroup styled components first: StyledRoot has expected styles when first element in group 1`] = `
+Object {
+  "display": "flex",
+}
+`;
+
+exports[`ButtonGroup styled components last: StyledButton has expected styles when last element in group 1`] = `
+Object {
+  "borderBottomLeftRadius": 0,
+  "borderTopLeftRadius": 0,
+}
+`;
+
+exports[`ButtonGroup styled components last: StyledRoot has expected styles when last element in group 1`] = `
+Object {
+  "display": "flex",
+}
+`;
+
+exports[`ButtonGroup styled components selected: StyledButton has expected styles when selected 1`] = `
+Object {
+  "backgroundColor": null,
+  "borderBottomLeftRadius": 0,
+  "borderBottomRightRadius": 0,
+  "borderTopLeftRadius": 0,
+  "borderTopRightRadius": 0,
+}
+`;
+
+exports[`ButtonGroup styled components selected: StyledRoot has expected styles when selected 1`] = `
+Object {
+  "display": "flex",
+}
+`;
