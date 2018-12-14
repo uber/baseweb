@@ -2,13 +2,15 @@ import React from 'react';
 import {configure, addDecorator} from '@storybook/react';
 import {themes} from '@storybook/components';
 import {withOptions, setOptions} from '@storybook/addon-options';
-import {Provider as StyletronProvider} from 'styletron-react';
-import {Client as Styletron} from 'styletron-engine-atomic';
-import {ThemeProvider} from '../src/styles';
-import {DarkTheme} from '../src/themes';
 import {withInfo} from '@storybook/addon-info';
 import {checkA11y} from '@storybook/addon-a11y';
 import {withKnobs} from '@storybook/addon-knobs';
+import {Provider as StyletronProvider} from 'styletron-react';
+import {Client as Styletron} from 'styletron-engine-atomic';
+
+import loadStories from '../.storybook-base/loadStories.js';
+import {ThemeProvider} from '../src/styles';
+import {DarkTheme} from '../src/themes';
 
 withOptions({
   name: 'baseui',
@@ -30,17 +32,6 @@ setOptions({
 });
 
 const engine = new Styletron();
-
-// automatically import all files ending in *.stories.js
-const req = require.context(
-  '../src',
-  true,
-  /^((?!template-component\/).)*.stories.js$/,
-);
-function loadStories() {
-  require('../docs/pages/pages.js');
-  req.keys().forEach(filename => req(filename));
-}
 
 // this should be first decorator to avoid extra code to be parsed here
 addDecorator(withInfo);
