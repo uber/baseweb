@@ -222,25 +222,25 @@ export default function createTheme(
         fontFamily: primitives.primaryFontFamily,
         fontSize: '14px',
         fontWeight: 'normal',
-        lineHeight: '24px',
+        lineHeight: '20px',
       },
       font350: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '14px',
         fontWeight: 'bold',
-        lineHeight: '24px',
+        lineHeight: '20px',
       },
       font400: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '16px',
         fontWeight: 'normal',
-        lineHeight: '28px',
+        lineHeight: '24px',
       },
       font450: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '16px',
         fontWeight: 'bold',
-        lineHeight: '28px',
+        lineHeight: '24px',
       },
       font500: {
         fontFamily: primitives.primaryFontFamily,
@@ -256,27 +256,33 @@ export default function createTheme(
       },
       font700: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '28px',
-        fontWeight: 'bold',
-        lineHeight: '40px',
-      },
-      font800: {
-        fontFamily: primitives.primaryFontFamily,
         fontSize: '32px',
         fontWeight: 'bold',
         lineHeight: '48px',
       },
-      font900: {
+      font800: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '40px',
         fontWeight: 'bold',
         lineHeight: '56px',
       },
+      font900: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '52px',
+        fontWeight: 'bold',
+        lineHeight: '68px',
+      },
       font1000: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '56px',
+        fontSize: '72px',
         fontWeight: 'normal',
-        lineHeight: '80px',
+        lineHeight: '96px',
+      },
+      font1100: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '96px',
+        fontWeight: 'normal',
+        lineHeight: '116px',
       },
     },
     sizing: {

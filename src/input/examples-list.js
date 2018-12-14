@@ -15,6 +15,7 @@ module.exports = {
   ENHANCERS_EXAMPLE: 'Input enhancers',
   BEFORE_AFTER_EXAMPLE: 'Input with Before and After',
   VALUE_EXAMPLE: 'Input with tags',
+  MASK_EXAMPLE: 'Input with mask',
   OVERRIDES_EXAMPLE: 'Input with a with overrides',
   REF_EXAMPLE: 'Input with a ref',
 };

@@ -5,15 +5,18 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
-import type {BaseInputPropsT, InternalStateT} from './types.js';
-import {getSharedProps} from './utils.js';
+
 import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants.js';
 import {
   InputContainer as StyledInputContainer,
   Input as StyledInput,
 } from './styled-components.js';
+import type {BaseInputPropsT, InternalStateT} from './types.js';
+import {getSharedProps} from './utils.js';
 
 const NullComponent = () => null;
 
@@ -67,18 +70,19 @@ class BaseInput<T: EventTarget> extends React.Component<
       disabled,
       error,
       id,
-      name,
       inputRef,
+      name,
       onChange,
       onKeyDown,
       onKeyPress,
       onKeyUp,
       placeholder,
       required,
+      rows,
       type,
       value,
-      rows,
     } = this.props;
+
     return {
       $ref: inputRef,
       'aria-invalid': !!error,
@@ -86,12 +90,12 @@ class BaseInput<T: EventTarget> extends React.Component<
       disabled,
       id,
       name,
+      onBlur: this.onBlur,
       onChange,
+      onFocus: this.onFocus,
       onKeyDown,
       onKeyPress,
       onKeyUp,
-      onFocus: this.onFocus,
-      onBlur: this.onBlur,
       placeholder,
       type,
       value,

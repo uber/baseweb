@@ -67,14 +67,13 @@ export const Root = styled('span', props => {
   const {$color, $disabled, $kind, $theme} = props;
   const {
     sizing: {scale800, scale100, scale500},
-    typography: {font200},
+    typography: {font250},
   } = $theme;
   const color = getColor($theme, $kind, $color);
   return {
-    ...font200,
+    ...font250,
     display: 'inline-flex',
     height: scale800,
-    fontWeight: 'bold',
     marginTop: '5px',
     marginBottom: '5px',
     marginLeft: '5px',
