@@ -14,20 +14,9 @@ import type {IconPropsT} from './types.js';
 export default function Menu(props: IconPropsT) {
   return (
     <Icon title="Menu" viewBox="0 0 24 24" {...props}>
-      <g
-        transform="matrix(
-    1 0
-    0 1
-    1 3
-  )"
-      >
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M 22 0 L 0 0 L 0 3 L 22 3 L 22 0 Z M 22 7 L 0 7 L 0 10 L 22 10 L 22 7 Z M 0 14 L 22 14 L 22 17 L 0 17 L 0 14 Z"
-          fill="currentColor"
-        />
-      </g>
+      <rect x="4" y="11" width="16" height="2" rx="1" />
+      <rect x="4" y="5" width="16" height="2" rx="1" />
+      <rect x="4" y="17" width="16" height="2" rx="1" />
     </Icon>
   );
 }
