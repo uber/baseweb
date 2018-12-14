@@ -43,6 +43,10 @@ export default function ButtonGroup(props: PropsT) {
           kind: props.kind,
           last: index === props.children.length - 1,
           onClick: event => {
+            if (props.disabled) {
+              return;
+            }
+
             if (child.props.onClick) {
               child.props.onClick(event);
             }
