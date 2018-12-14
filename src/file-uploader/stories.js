@@ -14,7 +14,7 @@ import readme from './README.md';
 import examples from './examples.js';
 
 Object.entries(examples).forEach(([description, example]) =>
-  storiesOf('File Uploader', module)
+  storiesOf('Unstable_FileUploader', module)
     .addDecorator(withReadme(readme))
     // $FlowFixMe
     .add(description, example),
