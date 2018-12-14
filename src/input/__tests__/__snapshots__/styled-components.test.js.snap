@@ -239,7 +239,7 @@ Object {
   "boxSizing": "border-box",
   "color": "#B3B3B3",
   "display": "flex",
-  "fontFamily": "system-ui, \\"Helvetica Neue\\", arial, sans-serif",
+  "fontFamily": "system-ui, \\"Helvetica Neue\\", Helvetica, Arial, sans-serif",
   "fontSize": "12px",
   "fontWeight": "normal",
   "lineHeight": "20px",
