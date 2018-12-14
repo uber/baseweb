@@ -18,6 +18,7 @@ import type {ThemeT} from '../styles/index.js';
 
 import {MODE} from './constants.js';
 
+// styled-components
 export type StylePropsT = {
   ...GenericStylePropsT,
   $first: boolean,
@@ -26,29 +27,55 @@ export type StylePropsT = {
   $theme: ThemeT,
 };
 
-export type OverridesT<T> = {
-  Root?: OverrideT<T>,
-};
-
-export type PropsT = {
+// button-group
+export type PropsT = {|
   ariaLabel?: string,
   children: Array<React.Node>,
   disabled?: boolean,
   kind?: $Values<typeof KIND>,
   mode?: $Values<typeof MODE>,
-  // todo, properly type this
-  // should onChange accept the button index? or something else?
-  onChange?: (value: ?number | Array<number>) => mixed,
-  onClick?: (event: SyntheticEvent<HTMLButtonElement>, index: number) => mixed,
+  onChange?: ChangeHandlerT,
+  onClick?: ClickHandlerT,
   overrides?: OverridesT<StylePropsT>,
   selected?: number | Array<number>,
   shape?: $Values<typeof SHAPE>,
   size?: $Values<typeof SIZE>,
+|};
+
+type OverridesT<T> = {
+  Root?: OverrideT<T>,
 };
 
+// stateful-container
+export type StatefulContainerPropsT = {|
+  ...PropsT,
+  children: (props: {
+    ...StatefulContainerPropsT,
+    onChange: ChangeHandlerT,
+    onClick: ClickHandlerT,
+    selected: number | Array<number>,
+  }) => React.Node,
+|};
+
+export type StateT = {
+  selected: Array<number>,
+};
+
+// button
 export type ButtonPropsT = {
   ...GenericButtonPropsT,
   first?: boolean,
   last?: boolean,
   selected?: boolean,
 };
+
+// general
+type ChangeHandlerT = (
+  event: SyntheticEvent<HTMLButtonElement>,
+  value: number,
+) => mixed;
+
+type ClickHandlerT = (
+  event: SyntheticEvent<HTMLButtonElement>,
+  index: number,
+) => mixed;

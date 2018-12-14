@@ -11,7 +11,6 @@ import {withStyle} from 'styletron-react';
 import {
   StyledBaseButton as StyledGenericButton,
   KIND,
-  SHAPE,
 } from '../button/index.js';
 import {styled} from '../styles/index.js';
 

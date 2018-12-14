@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Button, ButtonGroup} from './index.js';
+import {Button, StatefulButtonGroup} from './index.js';
 
 import examples from './examples-list.js';
 
@@ -15,29 +15,29 @@ export default {
   [examples.BUTTON_GROUP]: function SimpleStory() {
     return (
       <React.Fragment>
-        <ButtonGroup>
+        <StatefulButtonGroup>
           <Button>Label</Button>
           <Button>Label</Button>
           <Button>Label</Button>
-        </ButtonGroup>
+        </StatefulButtonGroup>
         <br />
-        <ButtonGroup kind="primary" mode="radio">
+        <StatefulButtonGroup kind="primary" mode="radio">
           <Button>Label</Button>
           <Button>Label</Button>
           <Button>Label</Button>
-        </ButtonGroup>
+        </StatefulButtonGroup>
         <br />
-        <ButtonGroup kind="tertiary" mode="checkbox">
+        <StatefulButtonGroup kind="tertiary" mode="checkbox">
           <Button>Label</Button>
           <Button>Label</Button>
           <Button>Label</Button>
-        </ButtonGroup>
+        </StatefulButtonGroup>
         <br />
-        <ButtonGroup kind="minimal" mode="checkbox">
+        <StatefulButtonGroup kind="minimal" mode="checkbox">
           <Button>Label</Button>
           <Button>Label</Button>
           <Button>Label</Button>
-        </ButtonGroup>
+        </StatefulButtonGroup>
       </React.Fragment>
     );
   },
