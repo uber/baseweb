@@ -30,6 +30,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     minDate: null,
     onMonthChange: () => {},
     onYearChange: () => {},
+    setActiveState: () => {},
   };
 
   handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
@@ -60,7 +61,13 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     if (allPrevDaysDisabled) {
       clickHandler = null;
     }
-    return <ArrowLeft role="button" onClick={clickHandler} />;
+    return (
+      <ArrowLeft
+        role="button"
+        onClick={clickHandler}
+        overrides={{Svg: {style: {cursor: 'pointer'}}}}
+      />
+    );
   };
 
   renderNextMonthButton = () => {
@@ -72,7 +79,13 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     if (allNextDaysDisabled) {
       clickHandler = null;
     }
-    return <ArrowRight role="button" onClick={clickHandler} />;
+    return (
+      <ArrowRight
+        role="button"
+        onClick={clickHandler}
+        overrides={{Svg: {style: {cursor: 'pointer'}}}}
+      />
+    );
   };
 
   getSelectOverrides({width}: {width: string}) {
@@ -122,6 +135,14 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     };
   }
 
+  setActive = () => {
+    this.props.setActiveState(true);
+  };
+
+  setInactive = () => {
+    this.props.setActiveState(false);
+  };
+
   renderMonthDropdown() {
     const monthOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(M => ({
       id: M,
@@ -129,7 +150,9 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     }));
     return (
       <Select
-        overrides={this.getSelectOverrides({width: '100px'})}
+        onOpen={this.setInactive}
+        onClose={this.setActive}
+        overrides={this.getSelectOverrides({width: '115px'})}
         clearable={false}
         value={[{id: getMonth(this.props.date)}]}
         maxDropdownHeight={'300px'}
@@ -150,6 +173,8 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     }
     return (
       <Select
+        onOpen={this.setInactive}
+        onClose={this.setActive}
         overrides={this.getSelectOverrides({width: '80px'})}
         clearable={false}
         value={[{id: getYear(this.props.date)}]}

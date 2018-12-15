@@ -10,6 +10,7 @@ export const ISO_FORMAT = 'YYYY-MM-DD';
 export const ISO_MONTH_FORMAT = 'YYYY-MM';
 
 export const STATE_CHANGE_TYPE = Object.freeze({
+  change: 'change',
   moveUp: 'moveUp',
   moveDown: 'moveDown',
   moveLeft: 'moveLeft',

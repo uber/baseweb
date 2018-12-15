@@ -51,6 +51,7 @@ export default class Calendar extends React.Component<
     onSelect: () => {},
     peekNextMonth: false,
     selected: null,
+    setActiveState: () => {},
   };
 
   constructor(props: CalendarPropsT) {

@@ -78,7 +78,7 @@ export {subDays, subWeeks, subMonths, subYears};
 
 export {isBefore, isAfter};
 
-export function isSameYear(date1: Date, date2: Date) {
+export function isSameYear(date1: ?Date, date2: ?Date) {
   if (date1 && date2) {
     return dfIsSameYear(date1, date2);
   } else {
@@ -86,7 +86,7 @@ export function isSameYear(date1: Date, date2: Date) {
   }
 }
 
-export function isSameMonth(date1: Date, date2: Date) {
+export function isSameMonth(date1: ?Date, date2: ?Date) {
   if (date1 && date2) {
     return dfIsSameMonth(date1, date2);
   } else {

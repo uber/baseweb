@@ -8,13 +8,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulContainer from './stateful-container.js';
 import Component from './calendar.js';
-import type {StatefulContainerPropsT} from './types.js';
+import type {StatefulDatepickerPropsT} from './types.js';
 
-function StatefulComponent(props: StatefulContainerPropsT) {
-  const {children, ...restProps} = props;
+function StatefulComponent(props: StatefulDatepickerPropsT) {
   return (
-    <StatefulContainer {...restProps}>
-      {componentProps => <Component {...componentProps}>{children}</Component>}
+    <StatefulContainer {...props}>
+      {componentProps => <Component {...componentProps} />}
     </StatefulContainer>
   );
 }

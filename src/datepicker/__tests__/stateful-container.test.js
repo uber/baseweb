@@ -42,7 +42,7 @@ describe('StatefulComponentContainer', () => {
     const handlers = [
       ['onDayMouseOver', true],
       ['onDayMouseLeave', true],
-      ['onSelect', false],
+      ['onSelect', true],
     ];
 
     test.each(handlers)('Event handlers', (handler, replaced) => {
@@ -84,11 +84,11 @@ describe('StatefulComponentContainer', () => {
     });
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
-    expect(props.stateReducer).toHaveBeenLastCalledWith(
+    expect(props.stateReducer.mock.calls[0][0]).toEqual(
       STATE_CHANGE_TYPE.moveUp,
-      stateUpdated,
-      state,
     );
+    expect(props.stateReducer.mock.calls[0][1]).toEqual(stateUpdated);
+    expect(props.stateReducer.mock.calls[0][2]).toMatchObject(state);
     expect(component).toHaveState('highlightedDate', state.highlightedDate);
   });
 });

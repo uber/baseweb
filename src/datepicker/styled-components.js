@@ -89,7 +89,7 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
   } = props;
   return {
     boxSizing: 'border-box',
-    cursor: 'pointer',
+    cursor: $disabled ? 'default' : 'pointer',
     display: 'inline-block',
     width: sizing.scale1000,
     height: sizing.scale1000,

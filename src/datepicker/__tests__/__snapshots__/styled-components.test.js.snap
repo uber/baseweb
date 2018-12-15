@@ -86,7 +86,7 @@ Object {
   "borderRadius": "$theme.borders.radius200",
   "boxSizing": "border-box",
   "color": "$theme.colors.mono600",
-  "cursor": "pointer",
+  "cursor": "default",
   "display": "inline-block",
   "height": "$theme.sizing.scale1000",
   "lineHeight": "$theme.sizing.scale800",

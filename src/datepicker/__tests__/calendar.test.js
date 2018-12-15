@@ -17,7 +17,7 @@ import {
 } from '../index.js';
 
 describe('Component', () => {
-  test('basic click functionality', () => {
+  test('basic render', () => {
     const onSelect = jest.fn();
     const wrapper = mount(<Calendar onSelect={onSelect} />);
 
