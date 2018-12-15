@@ -11,6 +11,8 @@ export {default as ButtonGroup} from './button-group.js';
 export {default as StatefulButtonGroup} from './stateful-button-group.js';
 export {default as StatefulContainer} from './stateful-container.js';
 
+export {MODE} from './constants.js';
+
 // Styled elements
 export {StyledButton, StyledRoot} from './styled-components.js';
 
