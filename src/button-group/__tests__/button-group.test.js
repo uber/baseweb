@@ -9,14 +9,14 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {ButtonGroup} from '../index.js';
+import {ButtonGroup, Button} from '../index.js';
 
 function buildSimpleWrapper(props = {}) {
   return shallow(
     <ButtonGroup {...props}>
-      <div />
-      <div />
-      <div />
+      <Button />
+      <Button />
+      <Button />
     </ButtonGroup>,
   );
 }
@@ -88,8 +88,8 @@ describe('ButtonGroup', () => {
     const childHandler = jest.fn();
     const wrapper = shallow(
       <ButtonGroup onClick={parentHandler}>
-        <div onClick={childHandler} />
-        <div />
+        <button onClick={childHandler} />
+        <button />
       </ButtonGroup>,
     );
 

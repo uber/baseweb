@@ -14,7 +14,7 @@ import {StatefulContainer} from '../index.js';
 describe('ButtonGroup StatefulContainer', () => {
   it('provides expected props to children render function', () => {
     const children = jest.fn(() => <div>children</div>);
-    const wrapper = mount(<StatefulContainer>{children}</StatefulContainer>);
+    mount(<StatefulContainer>{children}</StatefulContainer>);
 
     const actual = children.mock.calls[0][0];
     expect(actual).toHaveProperty('onClick');
