@@ -53,7 +53,7 @@ class ControlledButtonGroup extends React.Component<*, *> {
         </Block>
 
         <Block paddingTop="scale800">
-          The 'Bold' option has been selected {this.state.boldClickCount} times
+          The Bold option has been selected {this.state.boldClickCount} times
         </Block>
       </React.Fragment>
     );
