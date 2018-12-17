@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import * as React from 'react';
 import {styled, asPrimaryExport} from '../styles/index.js';
 import {ALIGN} from './index.js';
 
@@ -39,8 +40,8 @@ export const NavigationItem = styled('div', props => {
 NavigationItem.displayName = 'StyledNavigationItem';
 
 export const NavigationList: React.ComponentType<{
-  align: string,
-  children: React$Node,
+  align?: string,
+  children?: React.Node,
 }> = (asPrimaryExport(
   styled('div', props => {
     const {$align, $theme} = props;
