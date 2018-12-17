@@ -133,6 +133,8 @@ class TableWithPagination extends React.Component {
   * Matrix data to be rendered within the table.
 * `estimatedRowSize?: number = 40px`
   * Passed to `react-virtualized`. Used to estimate table height.
+* `isLoading?: boolean = false`
+  * If true, renders loading indicator.
 * `overrides?: {Root, Head, HeadCell, Body, Row, Cell} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * Wraps the set of elements.
