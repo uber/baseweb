@@ -36,7 +36,6 @@ const data = [
 export default = () => <Table columns={['Name', 'Age', 'Address']} data={data}/>,
 ```
 
-
 ### Advanced Usage
 
 #### Custom rendering
