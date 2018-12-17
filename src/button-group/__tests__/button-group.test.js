@@ -105,6 +105,18 @@ describe('ButtonGroup', () => {
     expect(childHandler).toHaveBeenCalledTimes(1);
   });
 
+  it('does not clobber disabled prop on child element', () => {
+    const wrapper = shallow(
+      <ButtonGroup>
+        <button disabled />
+        <button />
+      </ButtonGroup>,
+    );
+
+    const child = wrapper.children().first();
+    expect(child).toHaveProp('disabled', true);
+  });
+
   it('if disabled, click events do not call provided handler', () => {
     const handler = jest.fn();
     const wrapper = buildSimpleWrapper({disabled: true, onClick: handler});

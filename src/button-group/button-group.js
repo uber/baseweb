@@ -38,7 +38,7 @@ export default function ButtonGroup(props: PropsT) {
         }
 
         return React.cloneElement(child, {
-          disabled: props.disabled,
+          disabled: props.disabled ? true : child.props.disabled,
           first: index === 0,
           kind: props.kind,
           last: index === props.children.length - 1,
