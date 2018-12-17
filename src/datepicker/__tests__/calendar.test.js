@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 import {
-  Calendar,
+  Unstable_Calendar as Calendar,
   StyledRoot,
   StyledMonth,
   StyledWeek,

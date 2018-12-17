@@ -6,7 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Datepicker, StatefulDatepicker} from './index.js';
+import {
+  Unstable_Calendar as Datepicker,
+  Unstable_StatefulDatepicker as StatefulDatepicker,
+} from './index.js';
 import {StatefulPopover} from '../popover/index.js';
 // import {Input} from '../input/index.js';
 import {Button} from '../button/index.js';

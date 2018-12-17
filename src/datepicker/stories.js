@@ -14,7 +14,7 @@ import examples from './examples.js';
 import Readme from './README.md';
 
 Object.entries(examples).forEach(([description, example]) =>
-  storiesOf('Datepicker', module)
+  storiesOf('Unstable_Datepicker', module)
     .addDecorator(withReadme(Readme))
     // $FlowFixMe
     .add(description, example),

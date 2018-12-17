@@ -7,7 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {StatefulDatepicker, Calendar} from '../index.js';
+import {
+  Unstable_StatefulDatepicker as StatefulDatepicker,
+  Unstable_Calendar as Calendar,
+} from '../index.js';
 
 describe('StatefulDatepicker', () => {
   test('basic render', () => {
