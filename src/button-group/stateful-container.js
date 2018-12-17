@@ -8,21 +8,56 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {MODE} from './constants.js';
+import {MODE, STATE_CHANGE_TYPE} from './constants.js';
 
 import type {StatefulContainerPropsT, StateT} from './types.js';
 
-export default class StatefulButtonGroup extends React.Component<
+// handles the case where selected = 0
+function isSelectedDefined(selected) {
+  return Array.isArray(selected) || typeof selected === 'number';
+}
+
+function defaultStateReducer(
+  type: $Values<typeof STATE_CHANGE_TYPE>,
+  nextState: StateT,
+  currentState: StateT,
+) {
+  return nextState;
+}
+
+export default class StatefulContainer extends React.Component<
   StatefulContainerPropsT,
   StateT,
 > {
+  static defaultProps = {
+    initialState: {selected: []},
+    stateReducer: defaultStateReducer,
+  };
+
   constructor(props: StatefulContainerPropsT) {
     super(props);
 
+    const {initialState = {}} = props;
+    const {selected = []} = initialState;
+
     this.state = {
-      selected: props.selected ? [].concat(props.selected) : [],
+      selected: isSelectedDefined(selected) ? [].concat(selected) : [],
     };
   }
+
+  changeState = (nextState: StateT) => {
+    if (this.props.stateReducer) {
+      this.setState(
+        this.props.stateReducer(
+          STATE_CHANGE_TYPE.change,
+          nextState,
+          this.state,
+        ),
+      );
+    } else {
+      this.setState(nextState);
+    }
+  };
 
   onClick = (event: SyntheticEvent<HTMLButtonElement>, index: number) => {
     if (this.props.mode === MODE.radio) {
@@ -30,17 +65,17 @@ export default class StatefulButtonGroup extends React.Component<
         this.state.selected.length === 0 ||
         this.state.selected[0] !== index
       ) {
-        this.setState({selected: [index]});
+        this.changeState({selected: [index]});
       } else {
-        this.setState({selected: []});
+        this.changeState({selected: []});
       }
     }
 
     if (this.props.mode === MODE.checkbox) {
       if (!this.state.selected.includes(index)) {
-        this.setState({selected: [...this.state.selected, index]});
+        this.changeState({selected: [...this.state.selected, index]});
       } else {
-        this.setState({
+        this.changeState({
           selected: this.state.selected.filter(value => value !== index),
         });
       }
@@ -52,8 +87,9 @@ export default class StatefulButtonGroup extends React.Component<
   };
 
   render() {
+    const {initialState, stateReducer, ...props} = this.props;
     return this.props.children({
-      ...this.props,
+      ...props,
       onClick: this.onClick,
       selected: this.state.selected,
     });

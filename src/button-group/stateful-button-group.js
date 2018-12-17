@@ -10,12 +10,12 @@ import React from 'react';
 
 import ButtonGroup from './button-group.js';
 import StatefulContainer from './stateful-container.js';
-import type {PropsT} from './types.js';
+import type {StatefulPropsT} from './types.js';
 
-export default function StatefulButtonGroup(props: PropsT) {
-  const {children, ...restProps} = props;
+export default function StatefulButtonGroup(props: StatefulPropsT) {
+  const {children, initialState, ...restProps} = props;
   return (
-    <StatefulContainer {...restProps}>
+    <StatefulContainer initialState={initialState} {...restProps}>
       {({...containerProps}) => (
         <ButtonGroup {...containerProps}>{props.children}</ButtonGroup>
       )}

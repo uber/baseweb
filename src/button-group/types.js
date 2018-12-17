@@ -16,7 +16,7 @@ import type {
 import type {OverrideT} from '../helpers/overrides.js';
 import type {ThemeT} from '../styles/index.js';
 
-import {MODE} from './constants.js';
+import {MODE, STATE_CHANGE_TYPE} from './constants.js';
 
 // styled-components
 export type StylePropsT = {
@@ -45,11 +45,22 @@ type OverridesT<T> = {
   Root?: OverrideT<T>,
 };
 
+// stateful-group
+// eslint-disable-next-line flowtype/generic-spacing
+export type StatefulPropsT = $Diff<
+  {|
+    ...PropsT,
+    initialState?: {selected: number | Array<number>},
+    stateReducer?: StateReducerT,
+  |},
+  {selected: mixed}, // excluded from type definition
+>;
+
 // stateful-container
 export type StatefulContainerPropsT = {|
-  ...PropsT,
+  ...StatefulPropsT,
   children: (props: {
-    ...StatefulContainerPropsT,
+    ...$Diff<PropsT, {children: mixed}>,
     onClick: ClickHandlerT,
     selected: number | Array<number>,
   }) => React.Node,
@@ -58,6 +69,12 @@ export type StatefulContainerPropsT = {|
 export type StateT = {
   selected: Array<number>,
 };
+
+export type StateReducerT = (
+  stateType: $Values<typeof STATE_CHANGE_TYPE>,
+  nextState: StateT,
+  currentState: StateT,
+) => StateT;
 
 // button
 export type ButtonPropsT = {

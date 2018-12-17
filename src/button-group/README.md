@@ -68,6 +68,7 @@ export default class MyCustomLogic extends React.Component {
 * `StyledButton`
 * `StyledRoot`
 * `MODE`
+* `STATE_CHANGE_TYPE`
 
 ## `Button` API
 
@@ -108,11 +109,19 @@ Same as `{Button} from baseui/button`, with additional properties:
 
 ## `StatefulButtonGroup` API
 
-* Maintains same API as `ButtonGroup`.
+* Maintains same API as `ButtonGroup` except:
+* Does not include `selected` prop.
+* `initialState?: {selected: number | Array<number>} = {selected: []}`
+  * Sets the initial selected items. Relevant if `mode` is set.
+* `stateReducer?: (type: STATE_CHANGE_TYPE[string], nextState: {}, currentState: {}) => nextState`
+  * A state change handler. Used to override default state transitions.
+    * `type` - State change type.
+    * `nextState` - A new state, provided by component transition, that will be set.
+    * `currentState` - Current state of the component.
 
 ## `StatefulContainer` API
 
-* Maintains same API as `ButtonGroup` except:
+* Maintains same API as `StatefulButtonGroup` except:
 * `children: (props: { onClick: (event: Event, index: number), selected: number | Array<number>}) => React.Node` - Required.
 
 ## Presentational components props API
@@ -130,3 +139,7 @@ These properties are passed to every presentational (styled) component that is e
 
 * `checkbox`
 * `radio`
+
+## `STATE_CHANGE_TYPE` Constant
+
+* `change`

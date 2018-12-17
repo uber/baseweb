@@ -93,7 +93,7 @@ export default {
 
   [examples.RADIO_MODE]: function RadioStory() {
     return (
-      <StatefulButtonGroup mode="radio">
+      <StatefulButtonGroup mode="radio" initialState={{selected: 0}}>
         <Button>Label</Button>
         <Button>Label</Button>
       </StatefulButtonGroup>
@@ -102,7 +102,11 @@ export default {
 
   [examples.CHECKBOX_MODE]: function CheckboxStory() {
     return (
-      <StatefulButtonGroup mode="checkbox" kind="secondary">
+      <StatefulButtonGroup
+        mode="checkbox"
+        kind="secondary"
+        initialState={{selected: [0, 1]}}
+      >
         <Button>Label</Button>
         <Button>Label</Button>
         <Button>Label</Button>

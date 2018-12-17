@@ -74,6 +74,28 @@ describe('StatefulButtonGroup', () => {
       expectSelectedValueAtIndex(wrapper, first, false);
       expectSelectedValueAtIndex(wrapper, last, true);
     });
+
+    it('sets initial selected', () => {
+      const wrapper = buildSimpleWrapper({
+        mode: MODE.radio,
+        initialState: {selected: 0},
+      });
+      expectSelectedValueAtIndex(wrapper, 0, true);
+      expectSelectedValueAtIndex(wrapper, 1, false);
+      expectSelectedValueAtIndex(wrapper, 2, false);
+    });
+
+    it('handles provided state reducer', () => {
+      const wrapper = buildSimpleWrapper({
+        mode: MODE.radio,
+        // always sets the first child selected
+        stateReducer: () => ({selected: [0]}),
+      });
+
+      expectSelectedValueAtIndex(wrapper, 0, false);
+      clickChildAtIndex(wrapper, 2);
+      expectSelectedValueAtIndex(wrapper, 0, true);
+    });
   });
 
   describe('checkbox mode', () => {
@@ -102,6 +124,28 @@ describe('StatefulButtonGroup', () => {
       clickChildAtIndex(wrapper, last);
       expectSelectedValueAtIndex(wrapper, first, true);
       expectSelectedValueAtIndex(wrapper, last, true);
+    });
+
+    it('sets initial selected', () => {
+      const wrapper = buildSimpleWrapper({
+        mode: MODE.checkbox,
+        initialState: {selected: [0, 1]},
+      });
+      expectSelectedValueAtIndex(wrapper, 0, true);
+      expectSelectedValueAtIndex(wrapper, 1, true);
+      expectSelectedValueAtIndex(wrapper, 2, false);
+    });
+
+    it('handles provided state reducer', () => {
+      const wrapper = buildSimpleWrapper({
+        mode: MODE.checkbox,
+        // always sets the first child selected
+        stateReducer: () => ({selected: [0]}),
+      });
+
+      expectSelectedValueAtIndex(wrapper, 0, false);
+      clickChildAtIndex(wrapper, 2);
+      expectSelectedValueAtIndex(wrapper, 0, true);
     });
   });
 });
