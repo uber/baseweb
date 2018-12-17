@@ -59,5 +59,6 @@ export const primitives: PrimitivesT = {
   rating200: '#FFE1A5',
   rating400: '#FFC043',
 
-  primaryFontFamily: '"Helvetica Neue", arial, sans-serif',
+  primaryFontFamily:
+    'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
 };

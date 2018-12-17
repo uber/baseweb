@@ -12,7 +12,7 @@ function getBorderColor(props) {
   const {$disabled, $checked, $isError, $isIndeterminate, $theme} = props;
   const {colors} = $theme;
   if ($disabled) {
-    return colors.mono300;
+    return colors.tickFillDisabled;
   } else if ($checked || $isIndeterminate) {
     return 'transparent';
   } else if ($isError) {

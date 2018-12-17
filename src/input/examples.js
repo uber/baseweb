@@ -12,6 +12,7 @@ import {withStyle} from 'styletron-react';
 import {styled} from '../styles/index.js';
 import {
   Input as ControlledInput,
+  MaskedInput,
   StatefulInput as Input,
   StyledInput,
   StyledInputContainer,
@@ -104,7 +105,7 @@ const InputReplacement = props => {
 };
 
 export default {
-  [examples.SIMPLE_EXAMPLE]: function Story1() {
+  [examples.SIMPLE_EXAMPLE]: function simpleExample() {
     return (
       <React.Fragment>
         <ControlledInput placeholder="Controlled input" />
@@ -113,7 +114,8 @@ export default {
       </React.Fragment>
     );
   },
-  [examples.SIZE_EXAMPLE]: function Story2() {
+
+  [examples.SIZE_EXAMPLE]: function sizeExample() {
     return (
       <React.Fragment>
         <Input placeholder="Default input" />
@@ -122,7 +124,8 @@ export default {
       </React.Fragment>
     );
   },
-  [examples.STATE_EXAMPLE]: function Story3() {
+
+  [examples.STATE_EXAMPLE]: function stateExample() {
     return (
       <React.Fragment>
         <Input size={SIZE.compact} placeholder="Default input" />
@@ -162,7 +165,8 @@ export default {
       </React.Fragment>
     );
   },
-  [examples.ENHANCERS_EXAMPLE]: function Story4() {
+
+  [examples.ENHANCERS_EXAMPLE]: function enhancersExample() {
     return (
       <React.Fragment>
         <Input startEnhancer="@" placeholder="Input with a startEnhancer" />
@@ -193,7 +197,8 @@ export default {
       </React.Fragment>
     );
   },
-  [examples.BEFORE_AFTER_EXAMPLE]: function Story5() {
+
+  [examples.BEFORE_AFTER_EXAMPLE]: function beforeAfterExample() {
     return (
       <React.Fragment>
         <Input
@@ -216,7 +221,8 @@ export default {
       </React.Fragment>
     );
   },
-  [examples.VALUE_EXAMPLE]: function Story6() {
+
+  [examples.VALUE_EXAMPLE]: function valueExample() {
     return (
       <Input
         placeholder="Input with search tags"
@@ -240,7 +246,16 @@ export default {
       />
     );
   },
-  [examples.OVERRIDES_EXAMPLE]: function Story7() {
+
+  [examples.MASK_EXAMPLE]: function maskExample() {
+    return (
+      <React.Fragment>
+        <MaskedInput placeholder="Phone number" mask="(999) 999-9999" />
+      </React.Fragment>
+    );
+  },
+
+  [examples.OVERRIDES_EXAMPLE]: function overrideExample() {
     return (
       <React.Fragment>
         <Input
@@ -264,7 +279,8 @@ export default {
       </React.Fragment>
     );
   },
-  [examples.REF_EXAMPLE]: function Story8() {
+
+  [examples.REF_EXAMPLE]: function refExample() {
     const inputRef = (React.createRef(): {current: ?HTMLInputElement});
     return (
       <React.Fragment>

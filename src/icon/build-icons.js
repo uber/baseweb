@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node*/
-
 const fs = require('fs');
 const path = require('path');
 const prettier = require('prettier');

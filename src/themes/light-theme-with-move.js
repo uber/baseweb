@@ -9,10 +9,10 @@ import createTheme from './creator.js';
 import {primitives as lightThemePrimitives} from './light-theme-primitives.js';
 
 const primaryFontFamily =
-  'UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif';
+  'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif';
 
 const secondaryFontFamily =
-  'UberMove, UberMoveText, "Open Sans", "Helvetica Neue", Helvetica, sans-serif';
+  'UberMove, UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif';
 
 export const LightThemeMove = createTheme(
   {
@@ -21,83 +21,32 @@ export const LightThemeMove = createTheme(
   },
   {
     typography: {
-      font200: {
-        fontFamily: primaryFontFamily,
-        fontSize: '12px',
-        fontWeight: 'normal',
-        lineHeight: '20px',
-      },
       font250: {
-        fontFamily: primaryFontFamily,
-        fontSize: '12px',
-        fontWeight: 'bold',
-        lineHeight: '20px',
-      },
-      font300: {
-        fontFamily: primaryFontFamily,
-        fontSize: '14px',
-        fontWeight: 'normal',
-        lineHeight: '20px',
+        fontWeight: 500,
       },
       font350: {
-        fontFamily: primaryFontFamily,
-        fontSize: '14px',
-        fontWeight: 'bold',
-        lineHeight: '20px',
-      },
-      font400: {
-        fontFamily: primaryFontFamily,
-        fontSize: '16px',
-        fontWeight: 'normal',
-        lineHeight: '24px',
+        fontWeight: 500,
       },
       font450: {
-        fontFamily: primaryFontFamily,
-        fontSize: '16px',
-        fontWeight: 'bold',
-        lineHeight: '24px',
+        fontWeight: 500,
       },
       font500: {
-        fontFamily: primaryFontFamily,
-        fontSize: '20px',
-        fontWeight: 'bold',
-        lineHeight: '28px',
+        fontWeight: 500,
       },
       font600: {
-        fontFamily: primaryFontFamily,
-        fontSize: '24px',
-        fontWeight: 'bold',
-        lineHeight: '36px',
+        fontWeight: 500,
       },
       font700: {
-        fontFamily: primaryFontFamily,
-        fontSize: '32px',
-        fontWeight: 'bold',
-        lineHeight: '48px',
+        fontWeight: 500,
       },
       font800: {
-        fontFamily: primaryFontFamily,
-        fontSize: '40px',
-        fontWeight: 'bold',
-        lineHeight: '56px',
+        fontWeight: 500,
       },
       font900: {
-        fontFamily: primaryFontFamily,
-        fontSize: '52px',
-        fontWeight: 'bold',
-        lineHeight: '68px',
-      },
-      font1000: {
-        fontFamily: primaryFontFamily,
-        fontSize: '72px',
-        fontWeight: 'normal',
-        lineHeight: '96px',
+        fontWeight: 500,
       },
       font1100: {
         fontFamily: secondaryFontFamily,
-        fontSize: '96px',
-        fontWeight: 'normal',
-        lineHeight: '116px',
       },
     },
   },

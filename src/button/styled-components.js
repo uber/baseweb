@@ -20,7 +20,7 @@ export const BaseButton = styled(
     position: 'relative',
     ...($size === SIZE.compact
       ? $theme.typography.font250
-      : $theme.typography.font350),
+      : $theme.typography.font450),
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',

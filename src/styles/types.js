@@ -110,6 +110,12 @@ export type ColorsT = {
   breadcrumbsText: string,
   breadcrumbsSeparatorFill: string,
 
+  // FileUploader
+  fileUploaderBackgroundColor: string,
+  fileUploaderBorderColorActive: string,
+  fileUploaderBorderColorDefault: string,
+  fileUploaderSeparatorColor: string,
+
   // Links
   linkText: string,
   linkVisited: string,
