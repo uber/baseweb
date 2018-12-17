@@ -27,93 +27,59 @@ import React from 'react';
 import {Table} from 'baseui/table';
 
 const data = [
-  [1, 'John', 'Smith'],
-  [2, 'Lois', 'Lane'],
-];
-
-const columns = {
-  {
-    title: 'Employee ID',
-    dataIndex: 1,
-  },
-  {
-    title: 'First',
-    dataIndex: 2,
-  },
-  {
-    title: 'Last',
-    dataIndex: 3,
-  }
-};
-
-export default () => <Table data={data} columns={columns}/>;
-```
-
-### Advanced Usage
-
-#### Sorting and custom rendering
-
-```javascript
-import React from 'react';
-import {Table, StyledCell} from 'baseui/table';
-
-const data = [
   ['1', 'Sarah', 'Brown', 31, 'New York No. 1 Anywhere'],
   ['2', 'Jane', 'Smith', 32, 'San Francisco No. 1 Anywhere'],
   ['3', 'Joe', 'Black', 33, 'Sydney No. 1 Anywhere'],
   ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
+].map(row => [`${row[1] row[2]}`, row[3], row[4]]); // selects data to display
+
+export default = () => <Table columns={['Name', 'Age', 'Address']} data={data}/>,
+```
+
+
+### Advanced Usage
+
+#### Custom rendering
+
+```javascript
+import {
+  StyledRoot
+  StyledHead
+  StyledHeadCell
+  StyledBody
+  StyledRow
+  StyledCell
+} from 'baseui/table';
+
+const data = [
+  [1, 'John', 'Smith'],
+  [2, 'Lois', 'Lane'],
 ];
 
-const columns = [
-  {
-    title: 'Name',
-    sortComparator: (a, b) => {
-      return a[2] - b[2]; // sorts by last name
-    },
-    render: (rowData) => {
-      const [id, firstName, lastName] = rowData;
-      return (
-        <StyledCell>
-          `${firstName} ${lastName}`
-        </StyledCell>
-        );
-    }
-  },
-  {
-    title: 'Age',
-    dataIndex: 3,
-  },
-  {
-    title: 'Address',
-    dataIndex: 4,
-    sortComparator: (a, b) => a[4].length - b[4].length,
-  }
-];
-
-export default = () => <Table columns={columns} data={data}/>,
+export default () => (
+  <StyledRoot>
+    <StyledHead>
+      <StyledHeadCell>Employee ID</StyledHeadCell>
+      <StyledHeadCell>First Name</StyledHeadCell>
+      <StyledHeadCell>Last Name</StyledHeadCell>
+    </StyledHead>
+    <StyledBody>
+      {data.map(row => (
+        <StyledRow>
+          {row.map(data => <StyledCell>{data}</StyledCell>)}
+        </StyledRow>
+      ))}
+    </StyledBody>
+  </StyledRoot>
+);
 ```
 
 #### Remote data and pagination
 
 ```javascript
-import * as React from 'react';
+import React from 'react';
 import {Table} from 'baseui/table';
 import {Pagination} from 'baseui/pagination';
-
-const columns = {
-  {
-    title: 'Employee ID',
-    dataIndex: 1,
-  },
-  {
-    title: 'First',
-    dataIndex: 2,
-  },
-  {
-    title: 'Last',
-    dataIndex: 3,
-  }
-};
 
 class TableWithPagination extends React.Component {
   state = {
@@ -141,8 +107,8 @@ class TableWithPagination extends React.Component {
   render = () => {
     return (
         <Table
-          columns={columns}
-          data={this.state.data}
+          columns={['Employee ID', 'First', 'Last']}
+          data={this.state.data.map(employee => [employee.id, employee.firstName, employee.lastName])}
         />
         <Pagination currentPage={this.state.currentPage} numPages={this.state.numPages} onPageChange={this.onPageChange}/>
     );
@@ -162,8 +128,8 @@ class TableWithPagination extends React.Component {
 
 ## `Table` API
 
-* `columns: Array<{title: string, dataIndex: number, render?: (rowData: Array<any>) => React.Node, sortComparator?: (a: Array<any>, b: Array<any>) => number}>` - Required
-  * Describes how the column of data sorts and corresponding cells render.
+* `columns: Array<string>` - Required
+  * Describes the column titles.
 * `data: Array<Array<any>>` - Required
   * Matrix data to be rendered within the table.
 * `estimatedRowSize?: number = 40px`
@@ -183,19 +149,6 @@ class TableWithPagination extends React.Component {
     * A data row that contains `Td` components.
 * `useDynamicRowHeight?: boolean = false`
   * Dynamically measure row heights, if size of rendered data is unknown.
-
-## `Column` API
-
-One of the Table columns prop for describing the table's columns, Column has the same API.
-
-* `title: string` - Required.
-  * Title of the column to display in the header.
-* `dataIndex?: number`
-  * Attribute at which to index the row data. Must provide a `sortComparator` or column may not be sorted.
-* `render: <T>(<T>, index, Array<T>) => $ReactNode`
-  * Customize the cells for this column.
-* `sortComparator?: (a: Array<any>, b: Array<any>`
-  * Defaults to [local sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) at provided `dataIndex`.
 
 ## Dependencies
 
