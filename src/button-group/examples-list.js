@@ -10,4 +10,8 @@ LICENSE file in the root directory of this source tree.
 
 module.exports = {
   BUTTON_GROUP: 'Button Group',
+  RADIO_MODE: 'Radio Mode',
+  CHECKBOX_MODE: 'Checkbox Mode',
+  DISABLED: 'Disabled',
+  CONTROLLED: 'Controlled Group',
 };

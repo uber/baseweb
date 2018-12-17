@@ -67,7 +67,7 @@ export default function ButtonGroup(props: PropsT) {
 ButtonGroup.defaultProps = {
   ariaLabel: 'button group',
   disabled: false,
-  kind: KIND.secondary,
+  kind: KIND.primary,
   onClick: () => {},
   shape: SHAPE.default,
   size: SIZE.default,
