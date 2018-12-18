@@ -9,13 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {shallow} from 'enzyme';
 
-import {StyledButton, StyledRoot} from '../index.js';
+import {StyledRoot} from '../index.js';
 
 describe('ButtonGroup styled components', () => {
-  const styledComponents = [
-    [StyledButton, 'StyledButton'],
-    [StyledRoot, 'StyledRoot'],
-  ];
+  const styledComponents = [[StyledRoot, 'StyledRoot']];
 
   test.each(styledComponents)('default styled', (Component, name) => {
     const component = shallow(<Component />);
@@ -35,13 +32,6 @@ describe('ButtonGroup styled components', () => {
     const component = shallow(<Component $last />);
     expect(component.instance().getStyles()).toMatchSnapshot(
       `${name} has expected styles when last element in group`,
-    );
-  });
-
-  test.each(styledComponents)('selected', (Component, name) => {
-    const component = shallow(<Component $selected />);
-    expect(component.instance().getStyles()).toMatchSnapshot(
-      `${name} has expected styles when selected`,
     );
   });
 });

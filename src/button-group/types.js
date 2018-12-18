@@ -9,10 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {KIND, SIZE, SHAPE} from '../button/index.js';
-import type {
-  SharedStylePropsT as GenericStylePropsT,
-  ButtonPropsT as GenericButtonPropsT,
-} from '../button/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {ThemeT} from '../styles/index.js';
 
@@ -20,10 +16,6 @@ import {MODE, STATE_CHANGE_TYPE} from './constants.js';
 
 // styled-components
 export type StylePropsT = {
-  ...GenericStylePropsT,
-  $first: boolean,
-  $last: boolean,
-  $selected: boolean,
   $theme: ThemeT,
 };
 
@@ -75,14 +67,6 @@ export type StateReducerT = (
   nextState: StateT,
   currentState: StateT,
 ) => StateT;
-
-// button
-export type ButtonPropsT = {
-  ...GenericButtonPropsT,
-  first?: boolean,
-  last?: boolean,
-  selected?: boolean,
-};
 
 // general
 type ClickHandlerT = (

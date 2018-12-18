@@ -26,6 +26,29 @@ function isSelected(selected, index) {
   return selected === index;
 }
 
+function getBorderRadii(index, length) {
+  if (index === 0) {
+    return {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    };
+  }
+
+  if (index === length - 1) {
+    return {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    };
+  }
+
+  return {
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  };
+}
+
 export default function ButtonGroup(props: PropsT) {
   const {overrides = {}} = props;
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -39,9 +62,8 @@ export default function ButtonGroup(props: PropsT) {
 
         return React.cloneElement(child, {
           disabled: props.disabled ? true : child.props.disabled,
-          first: index === 0,
+          isSelected: isSelected(props.selected, index),
           kind: props.kind,
-          last: index === props.children.length - 1,
           onClick: event => {
             if (props.disabled) {
               return;
@@ -55,7 +77,10 @@ export default function ButtonGroup(props: PropsT) {
               props.onClick(event, index);
             }
           },
-          selected: isSelected(props.selected, index),
+          overrides: {
+            BaseButton: {style: getBorderRadii(index, props.children.length)},
+            ...child.props.overrides,
+          },
           shape: props.shape,
           size: props.size,
         });

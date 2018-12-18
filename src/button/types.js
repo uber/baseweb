@@ -17,22 +17,24 @@ export type OverridesT = {
 };
 
 export type ButtonPropsT = {
-  overrides: OverridesT,
-  size: $Keys<typeof SIZE>,
-  kind: $Keys<typeof KIND>,
-  shape: $Keys<typeof SHAPE>,
-  isLoading: boolean,
-  disabled: boolean,
-  startEnhancer?: (*) => React$Node | React$Node,
-  endEnhancer?: (*) => React$Node | React$Node,
   children?: React$Node,
+  disabled: boolean,
+  endEnhancer?: (*) => React$Node | React$Node,
+  isLoading: boolean,
+  isSelected?: boolean,
+  kind: $Keys<typeof KIND>,
   onClick?: (SyntheticEvent<HTMLButtonElement>) => void,
+  overrides: OverridesT,
+  shape: $Keys<typeof SHAPE>,
+  size: $Keys<typeof SIZE>,
+  startEnhancer?: (*) => React$Node | React$Node,
 };
 
 export type SharedStylePropsT = {
-  $size?: $Keys<typeof SIZE>,
   $kind?: $Keys<typeof KIND>,
+  $isSelected?: boolean,
   $shape?: $Keys<typeof SHAPE>,
+  $size?: $Keys<typeof SIZE>,
   $isLoading?: boolean,
   $disabled?: boolean,
 };

@@ -9,7 +9,9 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {ButtonGroup, Button} from '../index.js';
+import {Button} from '../../button/index.js';
+
+import {ButtonGroup} from '../index.js';
 
 function buildSimpleWrapper(props = {}) {
   return shallow(
@@ -22,27 +24,6 @@ function buildSimpleWrapper(props = {}) {
 }
 
 describe('ButtonGroup', () => {
-  it('applies correct posiiton props to first child element', () => {
-    const wrapper = buildSimpleWrapper();
-    const first = wrapper.children().first();
-    expect(first).toHaveProp('first', true);
-    expect(first).toHaveProp('last', false);
-  });
-
-  it('applies correct position props to middle child element', () => {
-    const wrapper = buildSimpleWrapper();
-    const middle = wrapper.childAt(1);
-    expect(middle).toHaveProp('first', false);
-    expect(middle).toHaveProp('last', false);
-  });
-
-  it('applies correct position props to last child element', () => {
-    const wrapper = buildSimpleWrapper();
-    const last = wrapper.children().last();
-    expect(last).toHaveProp('first', false);
-    expect(last).toHaveProp('last', true);
-  });
-
   it('propogates kind to children', () => {
     const kind = 'tertiary';
     const wrapper = buildSimpleWrapper({kind});
@@ -128,14 +109,14 @@ describe('ButtonGroup', () => {
   it('sets no children as selected if selected prop is null value', () => {
     const wrapper = buildSimpleWrapper({selected: null});
     wrapper.children().forEach(child => {
-      expect(child).toHaveProp('selected', false);
+      expect(child).toHaveProp('isSelected', false);
     });
   });
 
   it('sets no children as selected if selected prop is empty array', () => {
     const wrapper = buildSimpleWrapper({selected: []});
     wrapper.children().forEach(child => {
-      expect(child).toHaveProp('selected', false);
+      expect(child).toHaveProp('isSelected', false);
     });
   });
 
@@ -143,7 +124,7 @@ describe('ButtonGroup', () => {
     const selectedIndex = 2;
     const wrapper = buildSimpleWrapper({selected: selectedIndex});
     wrapper.children().forEach((child, index) => {
-      expect(child).toHaveProp('selected', selectedIndex === index);
+      expect(child).toHaveProp('isSelected', selectedIndex === index);
     });
   });
 
@@ -151,7 +132,7 @@ describe('ButtonGroup', () => {
     const selectedIndicies = [0, 2];
     const wrapper = buildSimpleWrapper({selected: selectedIndicies});
     wrapper.children().forEach((child, index) => {
-      expect(child).toHaveProp('selected', selectedIndicies.includes(index));
+      expect(child).toHaveProp('isSelected', selectedIndicies.includes(index));
     });
   });
 });

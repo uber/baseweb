@@ -61,24 +61,12 @@ export default class MyCustomLogic extends React.Component {
 
 ## Exports
 
-* `Button`
 * `ButtonGroup`
 * `StatefulButtonGroup`
 * `StatefulContainer`
-* `StyledButton`
 * `StyledRoot`
 * `MODE`
 * `STATE_CHANGE_TYPE`
-
-## `Button` API
-
-Same as `{Button} from baseui/button`, with additional properties:
-* `first?: boolean = false`
-  * Removes right corner radii from button.
-* `last?: boolean = false`
-  * Removes left corner radii from button.
-* `selected?: boolean = false`
-  * Defines if the button is in a selected state.
 
 ## `ButtonGroup` API
 
@@ -123,17 +111,6 @@ Same as `{Button} from baseui/button`, with additional properties:
 
 * Maintains same API as `StatefulButtonGroup` except:
 * `children: (props: { onClick: (event: Event, index: number), selected: number | Array<number>}) => React.Node` - Required.
-
-## Presentational components props API
-
-These properties are passed to every presentational (styled) component that is exported:
-
-`StyledButton`, `StyledRoot`
-
-* Maintains same API as `{StyledButton} from baseui/button` with additional properties:
-* `$first?: boolean = false`
-* `$last?: boolean = false`
-* `$selected?: boolean = false`
 
 ## `MODE` Constant
 

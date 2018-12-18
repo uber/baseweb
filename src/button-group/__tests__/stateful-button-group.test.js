@@ -9,7 +9,9 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 
-import {StatefulButtonGroup, Button, MODE} from '../index.js';
+import {Button} from '../../button/index.js';
+
+import {StatefulButtonGroup, MODE} from '../index.js';
 
 function buildSimpleWrapper(props = {}) {
   return mount(
@@ -28,7 +30,7 @@ function clickChildAtIndex(wrapper, index) {
 
 function expectSelectedValueAtIndex(wrapper, index, value) {
   const childAtIndex = wrapper.find('div').childAt(index);
-  expect(childAtIndex).toHaveProp('selected', value);
+  expect(childAtIndex).toHaveProp('isSelected', value);
 }
 
 describe('StatefulButtonGroup', () => {

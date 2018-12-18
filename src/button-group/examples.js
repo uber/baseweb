@@ -9,9 +9,10 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {Block} from '../block/index.js';
+import {Button} from '../button/index.js';
 import Upload from '../icon/upload.js';
 
-import {Button, ButtonGroup, StatefulButtonGroup} from './index.js';
+import {ButtonGroup, StatefulButtonGroup} from './index.js';
 import examples from './examples-list.js';
 
 class ControlledButtonGroup extends React.Component<*, *> {
