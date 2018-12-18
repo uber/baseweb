@@ -65,11 +65,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (this.props.autoFocus) {
       this.focus();
     }
+    if (__BROWSER__) {
+      document.addEventListener('click', this.handleClickOutside);
+    }
   }
-
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
     if (prevState.isOpen !== this.state.isOpen) {
-      this.toggleOutsideEvent(this.state.isOpen);
+      this.toggleTouchOutsideEvent(this.state.isOpen);
       const handler = this.state.isOpen
         ? this.props.onOpen
         : this.props.onClose;
@@ -78,17 +80,18 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   componentWillUnmount() {
-    this.toggleOutsideEvent(false);
+    this.toggleTouchOutsideEvent(false);
+    if (__BROWSER__) {
+      document.removeEventListener('click', this.handleClickOutside);
+    }
   }
 
-  toggleOutsideEvent(enabled: boolean) {
+  toggleTouchOutsideEvent(enabled: boolean) {
     if (__BROWSER__) {
       if (enabled) {
         document.addEventListener('touchstart', this.handleTouchOutside);
-        document.addEventListener('click', this.handleClickOutside);
       } else {
         document.removeEventListener('touchstart', this.handleTouchOutside);
-        document.removeEventListener('click', this.handleClickOutside);
       }
     }
   }
@@ -133,8 +136,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleClickOutside = (event: Event) => {
+    const isFocused = this.state.isFocused || this.state.isPseudoFocused;
     // $FlowFixMe
-    if (this.wrapper && !this.wrapper.contains(event.target)) {
+    if (isFocused && this.wrapper && !this.wrapper.contains(event.target)) {
       this.handleInputBlur(event);
     }
   };
