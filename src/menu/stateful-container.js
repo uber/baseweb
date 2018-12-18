@@ -43,6 +43,13 @@ export default class MenuStatefulContainer extends React.Component<
     if (__BROWSER__) {
       // TODO(#185): perhaps only bind event listener on focus
       document.addEventListener('keydown', this.onKeyDown);
+      this.state.highlightedIndex > -1 &&
+        scrollItemIntoView({
+          node: this.refList[this.state.highlightedIndex],
+          parentNode: this.rootRef,
+          isFirst: this.state.highlightedIndex === 0,
+          isLast: this.state.highlightedIndex === this.props.items.length - 1,
+        });
     }
   }
 
