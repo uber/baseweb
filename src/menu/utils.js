@@ -46,6 +46,7 @@ export function scrollItemIntoView({
 }) {
   const nodeDOM = node.current;
   const parentNodeDOM = parentNode.current;
+  if (!nodeDOM) return;
   const nodeRect = nodeDOM.getBoundingClientRect();
   const parentNodeRect = parentNodeDOM.getBoundingClientRect();
   // while scrolling down, if element is below view
