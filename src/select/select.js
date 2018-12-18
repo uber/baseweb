@@ -69,7 +69,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
     if (prevState.isOpen !== this.state.isOpen) {
-      this.toggleTouchOutsideEvent(this.state.isOpen);
+      this.toggleOutsideEvent(this.state.isOpen);
       const handler = this.state.isOpen
         ? this.props.onOpen
         : this.props.onClose;
@@ -78,15 +78,17 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   componentWillUnmount() {
-    this.toggleTouchOutsideEvent(false);
+    this.toggleOutsideEvent(false);
   }
 
-  toggleTouchOutsideEvent(enabled: boolean) {
+  toggleOutsideEvent(enabled: boolean) {
     if (__BROWSER__) {
       if (enabled) {
         document.addEventListener('touchstart', this.handleTouchOutside);
+        document.addEventListener('click', this.handleClickOutside);
       } else {
         document.removeEventListener('touchstart', this.handleTouchOutside);
+        document.removeEventListener('click', this.handleClickOutside);
       }
     }
   }
@@ -130,6 +132,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.clearValue(event);
   };
 
+  handleClickOutside = (event: Event) => {
+    // $FlowFixMe
+    if (this.wrapper && !this.wrapper.contains(event.target)) {
+      this.handleInputBlur(event);
+    }
+  };
+
   handleClick = (event: Event) => {
     // If the event was triggered by a mouse click and not the primary
     // button, or if the component is disabled, ignore it
@@ -170,7 +179,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       // calls to input.focus() that weren't triggered by a click event.
       // Call focus() again here to be safe.
       this.focus();
-      let toOpen = true;
+      let toOpen = !this.state.isOpen;
       // clears the value so that the cursor will be at the end of input when the component re-renders
       if (this.input) this.input.value = '';
       if (this.focusAfterClear) {
@@ -247,7 +256,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleInputBlur = (event: SyntheticEvent<HTMLElement>) => {
+  handleInputBlur = (event: Event) => {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
@@ -581,7 +590,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       'aria-disabled': this.props.disabled || null,
       disabled: this.props.disabled || null,
       inputRef: ref => (this.input = ref),
-      onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
       overrides: {Input: overrides.Input},
@@ -596,7 +604,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-disabled={this.props.disabled}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
-          onBlur={this.handleInputBlur}
           onFocus={this.handleInputFocus}
           $ref={ref => (this.input = ref)}
           role="combobox"

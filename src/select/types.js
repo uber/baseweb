@@ -85,7 +85,7 @@ export type PropsT = {
   maxDropdownHeight: string,
   multi: boolean,
   noResultsMsg: React.Node,
-  onBlur: (e: SyntheticEvent<HTMLElement>) => void,
+  onBlur: (e: Event) => void,
   onBlurResetsInput: boolean,
   onChange: (params: OnChangeParamsT) => void,
   onFocus: (e: SyntheticEvent<HTMLElement>) => void,

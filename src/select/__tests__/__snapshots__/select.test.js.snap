@@ -259,7 +259,6 @@ exports[`Select component renders component in search mode and false for multipl
                     aria-labelledby={null}
                     disabled={null}
                     inputRef={[Function]}
-                    onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
                     overrides={
@@ -294,7 +293,6 @@ exports[`Select component renders component in search mode and false for multipl
                       aria-label={null}
                       aria-labelledby={null}
                       disabled={null}
-                      onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
                       required={false}
@@ -310,7 +308,6 @@ exports[`Select component renders component in search mode and false for multipl
                         aria-label={null}
                         aria-labelledby={null}
                         disabled={null}
-                        onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
                         required={false}
@@ -615,7 +612,6 @@ exports[`Select component renders component in search mode and true for multiple
                     aria-labelledby={null}
                     disabled={null}
                     inputRef={[Function]}
-                    onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
                     overrides={
@@ -650,7 +646,6 @@ exports[`Select component renders component in search mode and true for multiple
                       aria-label={null}
                       aria-labelledby={null}
                       disabled={null}
-                      onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
                       required={false}
@@ -666,7 +661,6 @@ exports[`Select component renders component in search mode and true for multiple
                         aria-label={null}
                         aria-labelledby={null}
                         disabled={null}
-                        onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
                         required={false}
@@ -893,7 +887,6 @@ exports[`Select component renders component in select mode and false for multipl
                     aria-labelledby={null}
                     disabled={null}
                     inputRef={[Function]}
-                    onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
                     overrides={
@@ -928,7 +921,6 @@ exports[`Select component renders component in select mode and false for multipl
                       aria-label={null}
                       aria-labelledby={null}
                       disabled={null}
-                      onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
                       required={false}
@@ -944,7 +936,6 @@ exports[`Select component renders component in select mode and false for multipl
                         aria-label={null}
                         aria-labelledby={null}
                         disabled={null}
-                        onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
                         required={false}
@@ -1248,7 +1239,6 @@ exports[`Select component renders component in select mode and true for multiple
                     aria-labelledby={null}
                     disabled={null}
                     inputRef={[Function]}
-                    onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
                     overrides={
@@ -1283,7 +1273,6 @@ exports[`Select component renders component in select mode and true for multiple
                       aria-label={null}
                       aria-labelledby={null}
                       disabled={null}
-                      onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
                       required={false}
@@ -1299,7 +1288,6 @@ exports[`Select component renders component in select mode and true for multiple
                         aria-label={null}
                         aria-labelledby={null}
                         disabled={null}
-                        onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
                         required={false}
