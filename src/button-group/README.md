@@ -7,8 +7,9 @@ Groups a collection of buttons together. Can also operate as a radio group or ch
 ### Basic usage
 
 ```javascript
-import * as React from 'react';
-import {Button, StatefulButtonGroup} from 'baseui/button-group';
+import React from 'react';
+import {Button} from 'baseui/button';
+import {StatefulButtonGroup} from 'baseui/button-group';
 
 export default () => {
   return
@@ -23,8 +24,9 @@ export default () => {
 ### Advanced usage
 
 ```javascript
-import * as React from 'react';
-import {Button, ButtonGroup} from 'baseui/button-group';
+import React from 'react';
+import {Button} from 'baseui/button';
+import {ButtonGroup} from 'baseui/button-group';
 
 export default class MyCustomLogic extends React.Component {
   state = {selected: [0, 1]};
