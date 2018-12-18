@@ -8,7 +8,7 @@ Represents control to work and pick date, time value or a range of values
 
 ```javascript
 import * as React from 'react';
-import {DatePicker} from 'baseui/datepicker';
+import {Unstable_StatefulCalendar as DatePicker} from 'baseui/datepicker';
 
 export default () => <DatePicker />;
 ```
@@ -17,7 +17,7 @@ export default () => <DatePicker />;
 
 ```javascript
 import * as React from 'react';
-import {DatePicker} from 'baseui/datepicker';
+import {Unstable_StatefulCalendar as DatePicker} from 'baseui/datepicker';
 
 export default () => {
   return <DatePicker
@@ -44,7 +44,7 @@ export default () => {
 * `StyledWeek`
 * `StyledDay`
 
-## `Calendar` API
+## `Unstable_Calendar` API
 
   * `excludeDates?: ?Array<Date> = null`
     * A list of dates to disable.
@@ -81,7 +81,7 @@ export default () => {
   * `setActiveState?: boolean => void = null`
     * A helper handler for disabling a keyboard navigation and keyboard selection through the calendar dates while navigation through the month or year select controls.
 
-## `StatefulDatepicker` API
+## `Unstable_StatefulCalendar` API
 
 * All props of `Calendar` component except of `selected`.
 * `initialState: {}`

@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {default as Unstable_StatefulDatepicker} from './stateful-calendar.js';
+export {default as Unstable_StatefulCalendar} from './stateful-calendar.js';
 export {default as StatefulContainer} from './stateful-container.js';
 export {default as Unstable_Calendar} from './calendar.js';
 
