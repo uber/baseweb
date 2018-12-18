@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {StyledDay} from './styled-components.js';
 import {getDay, getMonth, getDate, isSameDay} from './utils/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 import type {DayPropsT, DayStateT} from './types.js';
 
 export default class Day extends React.Component<DayPropsT, DayStateT> {
@@ -20,6 +21,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     onSelect: () => {},
     onMouseOver: () => {},
     onMouseLeave: () => {},
+    overrides: {},
     peekNextMonth: true,
     selected: false,
     // pseudoSelected: false,
@@ -113,23 +115,29 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   render() {
-    const {date, peekNextMonth} = this.props;
+    const {date, peekNextMonth, overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
+    const [Day, dayProps] = getOverrides(overrides.Day, StyledDay);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
-      <StyledDay />
+      <Day />
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-      <StyledDay
-        onClick={this.onClick}
-        onMouseOver={this.onMouseOver}
-        onMouseLeave={this.onMouseLeave}
+      <Day
         aria-label={`day-${getDate(date)}`}
         role="option"
         tabIndex={this.props.selected ? '0' : '-1'}
         {...sharedProps}
+        {...dayProps}
+        // Adding event handlers after customers overrides in order to
+        // make sure the components functions as expected
+        // We can extract the handlers from props overrides
+        // and call it along with internal handlers by creating an inline handler
+        onClick={this.onClick}
+        onMouseOver={this.onMouseOver}
+        onMouseLeave={this.onMouseLeave}
       >
         {getDate(date)}
-      </StyledDay>
+      </Day>
     );
   }
 }
