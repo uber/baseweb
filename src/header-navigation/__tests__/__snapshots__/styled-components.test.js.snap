@@ -28,7 +28,6 @@ Array [
 exports[`Header Navigation styled components StyledRoot Root: StyledRoot has correct styles 1`] = `
 Object {
   "borderBottom": "1px solid $theme.colors.border",
-  "cursor": "pointer",
   "display": "flex",
   "fontFamily": "$theme.typography.font400.fontFamily",
   "fontSize": "$theme.typography.font400.fontSize",
