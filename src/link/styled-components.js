@@ -14,6 +14,14 @@ export const Link = styled('a', ({$theme}) => {
     color: colors.primary400,
     ...typography.font450,
     textDecoration: 'none',
+    transition: `color ${$theme.animation.timing100}
+      ${$theme.animation.easeOutCurve}`,
+    ':hover': {
+      color: $theme.colors.primary500,
+    },
+    ':active': {
+      color: $theme.colors.primary600,
+    },
   };
 });
 
