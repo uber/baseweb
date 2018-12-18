@@ -172,16 +172,13 @@ describe('Toast', () => {
   });
 
   test('component overrides', () => {
+    const Override = ({children}) => <span>{children}</span>;
     const overrides = {
-      Body: jest
-        .fn()
-        .mockImplementation(({children}) => <span>{children}</span>),
+      Body: Override,
       CloseIcon: {
         props: {size: '54px'},
         style: {color: 'red'},
-        component: jest
-          .fn()
-          .mockImplementation(({children}) => <svg>{children}</svg>),
+        component: Override,
       },
     };
 
