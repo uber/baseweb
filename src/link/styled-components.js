@@ -9,18 +9,19 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 
 export const Link = styled('a', ({$theme}) => {
-  const {colors, typography} = $theme;
+  const {colors, typography, animation} = $theme;
   return {
     color: colors.primary400,
     ...typography.font450,
     textDecoration: 'none',
-    transition: `color ${$theme.animation.timing100}
-      ${$theme.animation.easeOutCurve}`,
+    transitionProperty: 'color',
+    transitionDuration: animation.timing100,
+    transitionTimingFunction: animation.easeOutCurve,
     ':hover': {
-      color: $theme.colors.primary500,
+      color: colors.primary500,
     },
     ':active': {
-      color: $theme.colors.primary600,
+      color: colors.primary600,
     },
   };
 });
