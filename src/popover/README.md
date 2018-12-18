@@ -121,6 +121,10 @@ export default () => {
   * Handler for clicks outside the anchor/popover elements.
 * `onEsc: () => void = null`
   * Handler for 'Escape' keypress events.
+* `overrides?: {Arrow, Body, Inner} = {}`
+  * `Arrow?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Body?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Inner?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 
 ## Presentational components props API
 
