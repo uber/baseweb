@@ -65,9 +65,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (this.props.autoFocus) {
       this.focus();
     }
-    if (__BROWSER__) {
-      document.addEventListener('click', this.handleClickOutside);
-    }
   }
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
     if (prevState.isOpen !== this.state.isOpen) {
@@ -76,6 +73,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
         ? this.props.onOpen
         : this.props.onClose;
       handler && handler();
+    }
+    if (prevState.isFocused !== this.state.isFocused && this.state.isFocused) {
+      if (__BROWSER__) {
+        document.addEventListener('click', this.handleClickOutside);
+      }
     }
   }
 
@@ -303,6 +305,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
         if (!this.state.isOpen) {
           this.setState({isOpen: true});
         }
+        break;
+      case 9: // tab
+        this.setState(prevState => ({
+          isPseudoFocused: false,
+          isFocused: false,
+          isOpen: false,
+          inputValue: this.props.onCloseResetsInput ? '' : prevState.inputValue,
+        }));
         break;
       case 27: // escape
         event.preventDefault();
