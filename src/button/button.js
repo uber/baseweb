@@ -37,6 +37,7 @@ export default class Button extends React.Component<ButtonPropsT> {
       kind,
       shape,
       isLoading,
+      isSelected,
       // Removing from restProps
       startEnhancer,
       endEnhancer,

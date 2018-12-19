@@ -18,7 +18,6 @@ export const Root = styled('nav', props => {
   } = $theme;
   return {
     ...font400,
-    cursor: 'pointer',
     display: 'flex',
     paddingBottom: scale500,
     paddingTop: scale500,
