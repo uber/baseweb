@@ -84,7 +84,14 @@ describe('Button Styled Components', () => {
       borders: {useRoundedCorners: false},
     });
     const rendered = shallow(<BaseButton $theme={theme}>Test</BaseButton>);
-    expect(rendered.instance().getStyles().borderRadius).toMatch('0px');
+    expect(rendered.instance().getStyles().borderBottomLeftRadius).toMatch(
+      '0px',
+    );
+    expect(rendered.instance().getStyles().borderBottomRightRadius).toMatch(
+      '0px',
+    );
+    expect(rendered.instance().getStyles().borderTopLeftRadius).toMatch('0px');
+    expect(rendered.instance().getStyles().borderTopRightRadius).toMatch('0px');
   });
 
   makeTest({

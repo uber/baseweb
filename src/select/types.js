@@ -18,7 +18,7 @@ export type SizeT = $Keys<typeof SIZE>;
 export type TypeT = $Keys<typeof TYPE>;
 
 export type OptionT = $ReadOnly<{
-  id?: string,
+  id?: string | number,
   label?: React.Node,
   disabled?: boolean,
   clearableValue?: boolean,

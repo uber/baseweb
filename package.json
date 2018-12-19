@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "5.3.2",
+  "version": "5.3.3",
   "description": "React implementation of uber design components platform.",
   "keywords": [
     "react",
@@ -93,7 +93,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.10.0",
-    "flow-bin": "^0.88.0",
+    "flow-bin": "^0.89.0",
     "flow-copy-source": "^2.0.2",
     "front-matter": "^3.0.1",
     "geckodriver": "^1.11.0",
@@ -124,6 +124,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
+    "date-fns": "2.0.0-alpha.25",
     "memoize-one": "^4.0.2",
     "popper.js": "^1.14.3",
     "react-dropzone": "^8.0.0",
