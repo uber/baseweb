@@ -38,7 +38,8 @@
     "e2e:test:ci": "nightwatch --filter e2e.js --env chrome-mac,chrome-windows --retries 2",
     "prepublish": "npm run build",
     "icon:generate": "./src/icon/build-icons.js",
-    "documentation:dev": "next documentation-site"
+    "documentation:dev": "yarn build:es2015 && next documentation-site",
+    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o beta"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -104,6 +105,7 @@
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
     "next": "^7.0.2",
+    "next-plugin-transpile-modules": "^1.0.0",
     "nightwatch": "^0.9.21",
     "nightwatch-accessibility": "^1.7.1",
     "prettier": "^1.14.3",
