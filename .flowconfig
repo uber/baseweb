@@ -5,6 +5,7 @@ storybook-static
 .*/node_modules/.*[^(package)]\.json$
 .*/node_modules/npmconf/.*
 .*examples/fusion/.*
+documentation-site/.next/.*
 
 [include]
 ./src/
