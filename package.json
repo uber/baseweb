@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "5.3.3",
+  "version": "5.4.0",
   "description": "React implementation of uber design components platform.",
   "keywords": [
     "react",
@@ -37,7 +37,9 @@
     "e2e:test": "nightwatch --filter e2e.js",
     "e2e:test:ci": "nightwatch --filter e2e.js --env chrome-mac,chrome-windows --retries 2",
     "prepublish": "npm run build",
-    "icon:generate": "./src/icon/build-icons.js"
+    "icon:generate": "./src/icon/build-icons.js",
+    "documentation:dev": "yarn build:es2015 && next documentation-site",
+    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o beta"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -93,7 +95,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.10.0",
-    "flow-bin": "^0.88.0",
+    "flow-bin": "^0.89.0",
     "flow-copy-source": "^2.0.2",
     "front-matter": "^3.0.1",
     "geckodriver": "^1.11.0",
@@ -102,6 +104,7 @@
     "jest-enzyme": "^7.0.0",
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
+    "next": "^7.0.2",
     "nightwatch": "^0.9.21",
     "nightwatch-accessibility": "^1.7.1",
     "prettier": "^1.14.3",

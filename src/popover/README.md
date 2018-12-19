@@ -11,14 +11,12 @@ import {StatefulPopover} from 'baseui/popover';
 export default () => {
   const popoverContent = <div>Hello world</div>;
   return (
-    <React.Fragment>
-      <StatefulPopover
-        placement="topLeft"
-        content={popoverContent}
-      >
-        <span>Click me!</span>
-      </StatefulPopover>
-    </React.Fragment>
+    <StatefulPopover
+      placement="topLeft"
+      content={popoverContent}
+    >
+      <span>Click me!</span>
+    </StatefulPopover>
   );
 };
 ```
@@ -28,27 +26,27 @@ export default () => {
 ```javascript
 import * as React from 'react';
 import {StatefulPopover, StyledBody} from 'baseui/popover';
-import {withStyle} from 'styletron-react';
-
-const CustomPopoverBody = withStyle(StyledBody, {
-  borderColor: 'red',
-});
 
 export default () => {
   const popoverContent = <div>Hello world</div>;
   return (
-    <React.Fragment>
-      <StatefulPopover
-        placement="topLeft"
-        content={popoverContent}
-        triggerType="hover"
-        overrides={{
-          Body: CustomPopoverBody,
-        }}
-      >
-        <span>Hover me!</span>
-      </StatefulPopover>
-    </React.Fragment>
+    <StatefulPopover
+      placement="topLeft"
+      triggerType="hover"
+      content={({close}) => (
+        <div>
+          <h2>Hello world</h2>
+          <button onClick={close}>Close</button>
+        </div>
+      )}
+      overrides={{
+        Body: {
+          style: {borderColor: 'red'},
+        },
+      }}
+    >
+      <span>Hover me!</span>
+    </StatefulPopover>
   );
 };
 ```
@@ -67,11 +65,25 @@ export default () => {
 * `TRIGGER_TYPE`
 * `STATE_CHANGE_TYPE`
 
-## `StatefulContainer` API
+## `StatefulPopover` API
 
+* `placement?: PLACEMENT[string] = PLACEMENT.auto`
+  * How to position the popover relative to the target.
+* `content?: React.Node | ({close: () => void}) => React.Node = null`
+  * Content to render within the popover when it's shown.
+* `children: React.Node` - Required.
+  * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
+* `triggerType?: TRIGGER_TYPE[string] = TRIGGER_TYPE.click`
+  * Whether to toggle the popover when trigger is clicked or hovered.
+* `showArrow?: boolean = false`
+  * Whether or not to show the arrow pointing from the popover to the trigger.
+* `dismissOnClickOutside?: boolean = true`
+  * Whether to hide the popover when the user clicks anywhere outside the trigger/popover.
+* `dismissOnEsc?: boolean = true`
+  * Whether to hide the popover when the user presses the escape key.
 * `initialState?: {isOpen: boolean} = {isOpen: false}`
   * Initial state of an uncontrolled popover component.
-* `stateReducer?: (type: open|close, nextState: {}, currentState: {}, e: any) => nextState`
+* `stateReducer?: (type: STATE_CHANGE_TYPE, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type
   * `changes` - a new state changes that will be set
@@ -80,24 +92,16 @@ export default () => {
   * Event handler when popover is shown.
 * `onClose?: () => {}`
   * Event handler when popover is hidden.
-* `placement?: PLACEMENT[string] = PLACEMENT.auto`
-  * How to position the popover relative to the target.
-* `content?: React.Node | () => React.Node = null`
-  * Content to render within the popover when it's shown.
-* `children: React.Node` - Required.
-  * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
 * `onMouseEnterDelay?: number = 200`
   * Number of milliseconds to wait before showing the popover after mousing enters the trigger elment (for triggerType `hover`).
 * `onMouseLeaveDelay?: number = 200`
   * Number of milliseconds to wait before hiding the popover after the mouse leaves the trigger element (for triggerType `hover`).
-* `showArrow?: boolean = false`
-  * Whether or not to show the arrow pointing from the popover to the trigger.
-* `dismissOnClickOutside?: boolean = true`
-  * Whether to hide the popover when the user clicks anywhere outside the trigger/popover.
-* `dismissOnEsc?: boolean = true`
-  * Whether to hide the popover when the user presses the escape key.
-* `triggerType?: 'click' | 'hover' = 'click'`
-  * Whether to toggle the popover when trigger is clicked or hovered.
+* `accessibilityType?: ACCESSIBILITY_TYPE[string] = ACCESSIBILITY_TYPE.menu`
+  * Controls how this popover behaves for screen readers and other assistive devices. See the A11Y section at the bottom of this document for more details.
+* `overrides?: {Arrow, Body, Inner} = {}`
+  * `Arrow?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Body?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Inner?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 
 ## `Popover` API
 
@@ -109,6 +113,8 @@ export default () => {
   * Content to render within the popover when it's shown.
 * `children: React.Node` - Required.
   * Content that should trigger the popover to be shown (also acts as the anchor against which the popover will be positioned).
+* `triggerType?: TRIGGER_TYPE[string] = TRIGGER_TYPE.click`
+  * Whether to toggle the popover when trigger is clicked or hovered.
 * `showArrow?: boolean = false`
   * Whether or not to show the arrow pointing from the popover to the trigger.
 * `onClick: Event => void = null`
@@ -117,14 +123,35 @@ export default () => {
   * Handler for mouseenter events on trigger element.
 * `onMouseLeave: () => void = null`
   * Handler for mouseleave events on trigger element.
+* `onFocus: () => void = null`
+  * Handler for focus events on trigger element.
+* `onBlur: () => void = null`
+  * Handler for blur events on trigger element.
 * `onClickOutside: () => void = null`
   * Handler for clicks outside the anchor/popover elements.
 * `onEsc: () => void = null`
   * Handler for 'Escape' keypress events.
+* `onMouseEnterDelay?: number = 200`
+  * Number of milliseconds to wait before showing the popover after mousing enters the trigger elment (for triggerType `hover`).
+* `onMouseLeaveDelay?: number = 200`
+  * Number of milliseconds to wait before hiding the popover after the mouse leaves the trigger element (for triggerType `hover`).
+* `accessibilityType?: ACCESSIBILITY_TYPE[string] = ACCESSIBILITY_TYPE.menu`
+  * Controls how this popover behaves for screen readers and other assistive devices. See the A11Y section at the bottom of this document for more details.
 * `overrides?: {Arrow, Body, Inner} = {}`
   * `Arrow?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Body?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Inner?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+
+## `StatefulContainer` API
+
+Useful if you want the same behavior as a popover with your own rendering behavior. Supports same props as `StatefulPopover` with one change:
+
+* `children: (popoverProps) => React.Node` - Required
+  * The function passed as children will receive the props that would normally be passed to `Popover`, but you can use them to render whatever content you'd like.
+
+## `StyledPadding` API
+
+This is just a regular utility styled component that allows you to easily add padding in your popover.
 
 ## Presentational components props API
 
@@ -250,9 +277,9 @@ export default () => (
 
 ### Default styles
 
-The popover element will have zero padding by default. There are many valid use cases for both padded and non-padded popovers, so I'd argue that starting with zero padding and also exporting an optional `StyledPadding` is a better solution than forcing users to use a style override API to reset padding to zero.
+The popover element has zero padding by default. There are many valid use cases for both padded and non-padded popovers, so we've chosen to start with zero padding and provide an optional `StyledPadding` instead of forcing users to override styles and reset padding to zero.
 
-When used as a tooltip, it will have padding by default.
+When using the `Tooltip` component, padding is added by default.
 
 ## Accessibility
 
@@ -277,12 +304,12 @@ When `accessibilityType` is set to `none`, nothing will be added so the user can
 
 If we find other common use cases we can add different `accessibilityType`s over time.
 
-More fun reading:
-[Long-standing Bootstrap popover accessibility issue](https://github.com/twbs/bootstrap/issues/18618)
-[Stack Overflow: what can aria-haspopup be used for?](https://stackoverflow.com/questions/20380488/accessibility-what-can-aria-haspopup-be-used-for)
-[Level Access: Expanding the use of aria-haspopup](https://www.levelaccess.com/expanding-the-use-of-the-aria-haspopup-property/)
-[Why aria-controls is supposedly bad](http://www.heydonworks.com/article/aria-controls-is-poop)
-[Using the aria-owns attribute](https://tink.uk/using-the-aria-owns-attribute/)
-[W3 wai-aria menu button example](https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html)
-[W3 wai-aria role="tooltip"](https://www.w3.org/TR/wai-aria-1.1/#tooltip)
-[W3 wai-aria role="dialog"](https://www.w3.org/TR/wai-aria-1.1/#dialog)
+More reading on popover accessibility:
+* [Long-standing Bootstrap popover accessibility issue](https://github.com/twbs/bootstrap/issues/18618)
+* [Stack Overflow: what can aria-haspopup be used for?](https://stackoverflow.com/questions/20380488/accessibility-what-can-aria-haspopup-be-used-for)
+* [Level Access: Expanding the use of aria-haspopup](https://www.levelaccess.com/expanding-the-use-of-the-aria-haspopup-property/)
+* [Why aria-controls is supposedly bad](http://www.heydonworks.com/article/aria-controls-is-poop)
+* [Using the aria-owns attribute](https://tink.uk/using-the-aria-owns-attribute/)
+* [W3 wai-aria menu button example](https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html)
+* [W3 wai-aria role="tooltip"](https://www.w3.org/TR/wai-aria-1.1/#tooltip)
+* [W3 wai-aria role="dialog"](https://www.w3.org/TR/wai-aria-1.1/#dialog)
