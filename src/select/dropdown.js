@@ -101,7 +101,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
             highlightedIndex:
               Array.isArray(value) && value.length === 1
                 ? options.findIndex(opt => opt.id === value[0].id)
-                : -1,
+                : 0,
           }}
           overrides={mergeOverrides(
             {
