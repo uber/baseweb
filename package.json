@@ -105,7 +105,6 @@
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
     "next": "^7.0.2",
-    "next-plugin-transpile-modules": "^1.0.0",
     "nightwatch": "^0.9.21",
     "nightwatch-accessibility": "^1.7.1",
     "prettier": "^1.14.3",
