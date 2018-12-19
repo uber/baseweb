@@ -71,6 +71,7 @@ class BaseInput<T: EventTarget> extends React.Component<
       error,
       id,
       inputRef,
+      $ref,
       name,
       onChange,
       onKeyDown,
@@ -84,7 +85,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     } = this.props;
 
     return {
-      $ref: inputRef,
+      $ref: $ref || inputRef,
       'aria-invalid': !!error,
       'aria-required': required,
       disabled,
