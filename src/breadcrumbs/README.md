@@ -9,7 +9,7 @@ The `Breadcrumbs` component is used to display links to the parent pages of the 
 ```javascript
 import * as React from 'react';
 import {Breadcrumbs} from 'baseui/breadcrumbs';
-import {Link} from 'baseui/link';
+import {StyledLink as Link} from 'baseui/link';
 
 export default () => (
   <Breadcrumbs>
