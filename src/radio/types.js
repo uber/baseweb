@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import * as React from 'react';
+
 import type {OverrideT} from '../helpers/overrides.js';
 import type {ThemeT} from '../styles/types.js';
 
@@ -29,7 +31,7 @@ export type DefaultPropsT = {
 
 export type PropsT = {
   overrides?: OverridesT,
-  children?: Array<React$Node>,
+  children?: Array<React.Node>,
   value?: string,
   disabled?: boolean,
   required?: boolean,
@@ -61,14 +63,14 @@ export type StatelessStateT = {};
 
 export type DefaultStatefulPropsT = {
   initialState: StateT,
-  children?: Array<React$Node>,
+  children?: (props: PropsT) => React.Node,
   stateReducer: StateReducerT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
-  children?: (props: PropsT) => React$Node,
+  children?: (props: PropsT) => React.Node,
   initialState?: StateT,
   stateReducer: StateReducerT,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -77,7 +79,7 @@ export type StatefulContainerPropsT = {
 
 export type StatefulRadioGroupPropsT = {
   overrides?: OverridesT,
-  children?: Array<React$Node>,
+  children?: Array<React.Node>,
   initialState?: StateT,
   autoFocus?: boolean,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
