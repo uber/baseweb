@@ -83,9 +83,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   componentWillUnmount() {
     this.toggleTouchOutsideEvent(false);
-    if (__BROWSER__) {
-      document.removeEventListener('click', this.handleClickOutside);
-    }
   }
 
   toggleTouchOutsideEvent(enabled: boolean) {
@@ -276,6 +273,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
       onBlurredState.inputValue = '';
     }
     this.setState(onBlurredState);
+    if (__BROWSER__) {
+      document.removeEventListener('click', this.handleClickOutside);
+    }
   };
 
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
