@@ -209,6 +209,7 @@ export function getEffectiveMaxDate({maxDate, includeDates}: CalendarPropsT) {
     // $FlowFixMe
     return max(maxDates);
   } else if (includeDates) {
+    // $FlowFixMe
     return max(includeDates);
   } else {
     return maxDate;

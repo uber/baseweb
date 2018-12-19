@@ -15,8 +15,8 @@ import {
   getOverrides,
 } from '../overrides.js';
 
-function getMockComponent<T>(): React.ComponentType<T> {
-  const mock: React.ComponentType<T> = () => null;
+function getMockComponent(): React.ComponentType<*> {
+  const mock: React.ComponentType<*> = () => null;
   return mock;
 }
 

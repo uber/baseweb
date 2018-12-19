@@ -172,23 +172,18 @@ describe('Toast', () => {
   });
 
   test('component overrides', () => {
+    const Override = ({children}) => <span>{children}</span>;
     const overrides = {
-      Body: jest
-        .fn()
-        .mockImplementation(({children}) => <span>{children}</span>),
+      Body: jest.fn().mockImplementation(Override),
       CloseIcon: {
         props: {size: '54px'},
         style: {color: 'red'},
-        component: jest
-          .fn()
-          .mockImplementation(({children}) => <svg>{children}</svg>),
+        component: Override,
       },
     };
 
-    const wrapper = mount(
-      // $FlowFixMe
-      <Toast overrides={overrides}>Notification</Toast>,
-    );
+    // $FlowFixMe
+    const wrapper = mount(<Toast overrides={overrides}>Notification</Toast>);
 
     const bodyOverride = wrapper.find(overrides.Body);
     expect(bodyOverride).toHaveLength(1);

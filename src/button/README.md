@@ -89,6 +89,8 @@ Rough DOM composition:
   * Defines the kind (purpose) of a button
 * `isLoading?: boolean = false`
   * Show loading button style and spinner.
+* `isSelected?: boolean = false`
+  * Indicates that the button is selected. Changes background color.
 * `...rest`
   * Passed to BaseButton as props. These can include `accesskey`, `formtarget`, `type`, `value` and more.
 

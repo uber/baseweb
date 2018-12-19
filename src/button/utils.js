@@ -8,17 +8,19 @@ LICENSE file in the root directory of this source tree.
 import type {ButtonPropsT} from './types.js';
 
 export function getSharedProps({
-  kind,
-  size,
-  shape,
-  isLoading,
   disabled,
+  isLoading,
+  isSelected,
+  kind,
+  shape,
+  size,
 }: ButtonPropsT) {
   return {
-    $size: size,
+    $disabled: disabled,
+    $isLoading: isLoading,
+    $isSelected: isSelected,
     $kind: kind,
     $shape: shape,
-    $isLoading: isLoading,
-    $disabled: disabled,
+    $size: size,
   };
 }
