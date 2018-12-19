@@ -27,7 +27,6 @@ import defaultProps from './default-props.js';
 
 import type {
   AnchorPropsT,
-  ChildT,
   PopoverPropsT,
   PopoverPrivateStateT,
   PopperDataObjectT,
@@ -387,7 +386,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
   getAnchorFromChildren() {
     const {children} = this.props;
-    const childArray: Array<ChildT> = React.Children.toArray(children);
+    const childArray = React.Children.toArray(children);
     if (childArray.length !== 1) {
       // eslint-disable-next-line no-console
       console.error(
