@@ -22,7 +22,7 @@ class StatefulSliderContainer extends React.Component<
   StateT,
 > {
   static defaultProps = {
-    initialState: {},
+    initialState: {value: []},
     stateReducer: defaultStateReducer,
     onChange: () => {},
   };
