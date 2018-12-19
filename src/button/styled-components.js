@@ -14,9 +14,28 @@ type StylePropsT = SharedStylePropsT & {
   $theme: ThemeT,
 };
 
+function getBorderRadii({$shape, $theme}: StylePropsT) {
+  let value = '0px';
+
+  if ($shape === SHAPE.round) {
+    value = '50%';
+  }
+
+  if ($theme.borders.useRoundedCorners) {
+    value = $theme.borders.radius200;
+  }
+
+  return {
+    borderTopRightRadius: value,
+    borderBottomRightRadius: value,
+    borderTopLeftRadius: value,
+    borderBottomLeftRadius: value,
+  };
+}
+
 export const BaseButton = styled(
   'button',
-  ({$theme, $size, $kind, $shape, $isLoading}: StylePropsT) => ({
+  ({$theme, $size, $kind, $shape, $isLoading, $isSelected}: StylePropsT) => ({
     position: 'relative',
     ...($size === SIZE.compact
       ? $theme.typography.font250
@@ -25,12 +44,7 @@ export const BaseButton = styled(
     alignItems: 'center',
     justifyContent: 'center',
     border: 'none',
-    borderRadius:
-      $shape === SHAPE.round
-        ? '50%'
-        : $theme.borders.useRoundedCorners
-          ? $theme.borders.radius200
-          : '0px',
+    ...getBorderRadii({$shape, $theme}),
     textDecoration: 'none',
     outline: 'none',
     WebkitAppearance: 'none',
@@ -46,7 +60,7 @@ export const BaseButton = styled(
     // Padding For Shape and Size
     ...getStyleForShape({$theme, $shape, $size}),
     // Kind style override
-    ...getStyleForKind({$theme, $kind, $isLoading}),
+    ...getStyleForKind({$theme, $kind, $isLoading, $isSelected}),
   }),
 );
 BaseButton.displayName = 'StyledBaseButton';
@@ -163,12 +177,19 @@ export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
   }
 }
 
-export function getStyleForKind({$theme, $kind, $isLoading}: StylePropsT) {
+export function getStyleForKind({
+  $theme,
+  $isLoading,
+  $isSelected,
+  $kind,
+}: StylePropsT) {
   switch ($kind) {
     case KIND.primary:
       return {
         color: $theme.colors.buttonPrimaryText,
-        backgroundColor: $theme.colors.buttonPrimaryFill,
+        backgroundColor: $isSelected
+          ? $theme.colors.buttonPrimaryHover
+          : $theme.colors.buttonPrimaryFill,
         ':hover:enabled': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonPrimaryActive
@@ -186,7 +207,9 @@ export function getStyleForKind({$theme, $kind, $isLoading}: StylePropsT) {
     case KIND.secondary:
       return {
         color: $theme.colors.buttonSecondaryText,
-        backgroundColor: $theme.colors.buttonSecondaryFill,
+        backgroundColor: $isSelected
+          ? $theme.colors.buttonSecondaryHover
+          : $theme.colors.buttonSecondaryFill,
         ':hover:enabled': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonSecondaryActive
@@ -204,7 +227,9 @@ export function getStyleForKind({$theme, $kind, $isLoading}: StylePropsT) {
     case KIND.tertiary:
       return {
         color: $theme.colors.buttonTertiaryText,
-        backgroundColor: $theme.colors.buttonTertiaryFill,
+        backgroundColor: $isSelected
+          ? $theme.colors.buttonTertiaryHover
+          : $theme.colors.buttonTertiaryFill,
         ':hover:enabled': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonTertiaryActive
@@ -222,7 +247,9 @@ export function getStyleForKind({$theme, $kind, $isLoading}: StylePropsT) {
     case KIND.minimal:
       return {
         color: $theme.colors.buttonMinimalText,
-        backgroundColor: $theme.colors.buttonMinimalFill,
+        backgroundColor: $isSelected
+          ? $theme.colors.buttonMinimalHover
+          : $theme.colors.buttonMinimalFill,
         ':hover:enabled': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonMinimalActive
