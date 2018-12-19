@@ -1,12 +1,12 @@
 # Tooltip Component
 
-The tooltip component is essentially a more opinionated `Popover`. Implementation-wise it will just be a thin wrapper around a `Popover` with some defaults:
+The tooltip component is essentially a more opinionated `Popover`. Implementation-wise it is just a thin wrapper around a `Popover` with some defaults:
 
 * Darker theme (see Base UI docs)
 * `triggerType` default to `'hover'`
 * Adds padding to your content by default
 
-Accordingly, the RFC below will direct you to refer back to `src/popover/README.md` in many places.
+Accordingly, the docs below will direct you to `src/popover/README.md` in many places.
 
 ## Usage
 
@@ -27,12 +27,7 @@ export default () => (
 
 ```javascript
 import * as React from 'react';
-import {StatefulTooltip, StyledTooltip} from 'baseui/tooltip';
-import {withStyle} from 'styletron-react';
-
-const BigOlTooltip = withStyle(StyledTooltip, {
-  width: '500px',
-});
+import {StatefulTooltip} from 'baseui/tooltip';
 
 export default () => (
   <StatefulTooltip
