@@ -17,6 +17,7 @@ export default function getStyletron() {
     styletron = new Styletron();
   } else if (!styletron) {
     const Styletron = require('styletron-engine-atomic').Client;
+    // eslint-disable-next-line
     const styleElements = document.getElementsByClassName(
       '_styletron_hydrate_',
     );

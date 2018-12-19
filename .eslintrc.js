@@ -48,7 +48,7 @@ module.exports = {
       },
     },
     {
-      files: ['documentation-site'],
+      files: ['documentation-site/**/*.js'],
       rules: {
         'import/extensions': 'off',
         'react/display-name': 'off',
