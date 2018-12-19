@@ -71,4 +71,16 @@ describe('Select component', function() {
       value: [],
     });
   });
+
+  test('highlights the found item by default', function() {
+    wrapper = mount(<Select {...props} />);
+    const e = {target: {value: 'label1'}};
+    wrapper.instance().handleInputChange(e);
+    expect(
+      wrapper
+        .render()
+        .find('ul')
+        .html(),
+    ).toMatch(/aria-activedescendant="true"/);
+  });
 });
