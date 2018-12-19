@@ -14,9 +14,9 @@ import type {PropsT, StatefulRadioGroupPropsT} from './types.js';
 // Styled elements
 
 const StatefulRadioGroup = function(props: StatefulRadioGroupPropsT) {
-  const {children} = props;
+  const {children, ...restProps} = props;
   return (
-    <StatefulContainer {...props}>
+    <StatefulContainer {...restProps}>
       {(childrenProps: PropsT) => (
         <RadioGroup {...childrenProps}>{children}</RadioGroup>
       )}

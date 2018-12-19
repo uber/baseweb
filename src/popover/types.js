@@ -46,9 +46,8 @@ export type OverridesT = {
   Inner?: OverrideT<SharedStylePropsArgT>,
 };
 
-// Basically React.Node minus React.Portal and Iterable
-export type ChildT = void | null | boolean | number | string | React.Element<*>;
-
+// re-exports to maintain same public interface
+export type ChildT = React.Node;
 export type ChildrenT = React.ChildrenArray<ChildT>;
 
 // Props shared by all flavors of popover
@@ -65,7 +64,7 @@ export type BasePopoverPropsT = {
 
 // Props for stateless render logic
 export type PopoverPropsT = BasePopoverPropsT & {
-  children: ChildrenT,
+  children: React.Node,
   content: React.Node | ContentRenderPropT,
   isOpen: boolean,
   onBlur?: () => void,
@@ -79,7 +78,7 @@ export type PopoverPropsT = BasePopoverPropsT & {
 
 // Props for stateful wrapper
 export type StatefulPopoverPropsT = BasePopoverPropsT & {
-  children: ChildrenT,
+  children: React.Node,
   content: React.Node | StatefulContentRenderPropT,
   dismissOnClickOutside: boolean,
   dismissOnEsc: boolean,
@@ -92,14 +91,14 @@ export type StatefulPopoverPropsT = BasePopoverPropsT & {
 // Props for state container
 export type StatefulPopoverContainerPropsT = $Diff<
   StatefulPopoverPropsT,
-  {children: ChildrenT},
+  {children: React.Node},
 > & {
-  children: (props: $Diff<PopoverPropsT, {children: ChildrenT}>) => React.Node,
+  children: (props: $Diff<PopoverPropsT, {children: React.Node}>) => React.Node,
 };
 
 export type PopoverPropsWithoutChildrenT = $Diff<
   PopoverPropsT,
-  {children: ChildrenT},
+  {children: React.Node},
 >;
 
 export type OffsetT = {
