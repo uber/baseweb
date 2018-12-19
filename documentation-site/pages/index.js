@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import React from 'react';
 import {Card, StyledTitle, StyledBody} from 'baseui/card';
 
 export default function Hello() {
