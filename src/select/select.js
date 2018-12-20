@@ -53,6 +53,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   dragging: boolean;
   focusAfterClear: boolean;
   openAfterFocus: boolean;
+  isValueJustSelected: boolean;
 
   state = {
     inputValue: '',
@@ -135,6 +136,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleClickOutside = (event: Event) => {
+    if (this.isValueJustSelected) {
+      this.isValueJustSelected = false;
+      return;
+    }
     const isFocused = this.state.isFocused || this.state.isPseudoFocused;
     // $FlowFixMe
     if (isFocused && this.wrapper && !this.wrapper.contains(event.target)) {
@@ -410,6 +415,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   selectValue = ({item}: {item: OptionT}) => {
+    // NOTE: we check this is in handleClickOutside to not count
+    // menu clicks as outside clicks
+    this.isValueJustSelected = true;
     if (item.disabled) {
       return;
     }
