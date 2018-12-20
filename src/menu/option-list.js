@@ -4,18 +4,20 @@ Copyright (c) 2018 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-
 // @flow
+
 import * as React from 'react';
-// Components
-import {ListItem as StyledListItem} from './styled-components.js';
-import {OPTION_LIST_SIZE} from './constants.js';
+
 import {getOverrides} from '../helpers/overrides.js';
-// Types
+
+import {OPTION_LIST_SIZE} from './constants.js';
+import MaybeChildMenu from './maybe-child-menu.js';
+import {ListItem as StyledListItem} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
 export default function OptionList({
   item,
+  getChildMenu,
   getItemLabel,
   size,
   overrides,
@@ -30,10 +32,13 @@ export default function OptionList({
     $size: size,
     $isHighlighted,
   };
+
   return (
-    <ListItem {...sharedProps} {...restProps} {...listItemProps}>
-      {getItemLabel({isHighlighted: $isHighlighted, ...item})}
-    </ListItem>
+    <MaybeChildMenu getChildMenu={getChildMenu} item={item}>
+      <ListItem {...sharedProps} {...restProps} {...listItemProps}>
+        {getItemLabel({isHighlighted: $isHighlighted, ...item})}
+      </ListItem>
+    </MaybeChildMenu>
   );
 }
 

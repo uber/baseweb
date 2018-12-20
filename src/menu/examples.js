@@ -184,4 +184,26 @@ export default {
       />
     );
   },
+
+  [examples.CHILD_MENU]: function ChildMenuStory() {
+    return (
+      <StatefulMenu
+        items={ITEMS}
+        overrides={{
+          List: {style: {width: '200px'}},
+          Option: {
+            props: {
+              getChildMenu: () => (
+                <StatefulMenu
+                  overrides={{List: {style: {width: '200px'}}}}
+                  items={ITEMS}
+                  ignoreKeyControls
+                />
+              ),
+            },
+          },
+        }}
+      />
+    );
+  },
 };
