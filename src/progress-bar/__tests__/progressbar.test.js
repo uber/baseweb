@@ -45,7 +45,7 @@ describe('Stateless progress bar', function() {
   });
 
   test.each([['BarProgress'], ['Label'], ['Bar'], ['Root']])(
-    'should render overriden subcomponent %s',
+    'should render overridden subcomponent %s',
     subcomponentName => {
       const Subcomponent = styled('div', () => ({}));
       allProps.overrides = {

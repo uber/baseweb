@@ -55,7 +55,7 @@ describe('Stateful slider', function() {
 
   test('should pass all the other props to stateless slider', function() {
     const otherProps = {
-      someProp: 'some other slider props',
+      someProp: 'some other slider prop',
     };
     allProps = {...allProps, ...otherProps};
     const {StatefulSlider} = require('../index');
@@ -64,7 +64,7 @@ describe('Stateful slider', function() {
     // eslint-disable-next-line no-unused-vars
     const {overrides, ...rest} = slider.mock.calls[1][0];
     expect(rest).toMatchObject({
-      someProp: 'some other slider props',
+      someProp: 'some other slider prop',
     });
   });
 });

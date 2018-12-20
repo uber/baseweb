@@ -22,7 +22,7 @@ describe('Stateful Slider Container', function() {
       children: childFn,
       initialState: {},
       stateReducer: stateReducer,
-      prop1: 'some other slider propq',
+      prop1: 'some other slider prop',
     };
   });
 

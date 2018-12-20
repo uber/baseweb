@@ -48,9 +48,9 @@ export default () => {
   * Description of required prop.
 * `overrides?: {Root, Body} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * Desciption of override element.
+    * Description of override element.
   * `Body?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * Desciption of override element.
+    * Description of override element.
 
 ## `StatefulFoo` API
 
@@ -60,9 +60,9 @@ export default () => {
   * Description of required prop.
 * `overrides?: {Root, Body} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * Desciption of override element.
+    * Description of override element.
   * `Body?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * Desciption of override element.
+    * Description of override element.
 
 ## `StatefulFooContainer` API
 

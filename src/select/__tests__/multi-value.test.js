@@ -30,7 +30,7 @@ describe('Multi Value component', function() {
     const passedProps = mock.mock.calls[0][0];
     expect(passedProps.onActionClick).toEqual(props.removeValue);
     expect(passedProps).toMatchSnapshot(
-      'passes corect props to an underlying component',
+      'passes correct props to an underlying component',
     );
   });
 });

@@ -11,12 +11,12 @@ import type {Node} from 'react';
 import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
-export type PropgressStepsOverridesT = {
+export type ProgressStepsOverridesT = {
   Root?: OverrideT<*>,
 };
 
 export type ProgressStepsPropsT = {
-  overrides?: PropgressStepsOverridesT,
+  overrides?: ProgressStepsOverridesT,
   children?: Node,
   current: number,
 };

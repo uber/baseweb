@@ -93,7 +93,7 @@ export default () => {
 * `onClose?: () => {}`
   * Event handler when popover is hidden.
 * `onMouseEnterDelay?: number = 200`
-  * Number of milliseconds to wait before showing the popover after mousing enters the trigger elment (for triggerType `hover`).
+  * Number of milliseconds to wait before showing the popover after mousing enters the trigger element (for triggerType `hover`).
 * `onMouseLeaveDelay?: number = 200`
   * Number of milliseconds to wait before hiding the popover after the mouse leaves the trigger element (for triggerType `hover`).
 * `accessibilityType?: ACCESSIBILITY_TYPE[string] = ACCESSIBILITY_TYPE.menu`
@@ -132,7 +132,7 @@ export default () => {
 * `onEsc: () => void = null`
   * Handler for 'Escape' keypress events.
 * `onMouseEnterDelay?: number = 200`
-  * Number of milliseconds to wait before showing the popover after mousing enters the trigger elment (for triggerType `hover`).
+  * Number of milliseconds to wait before showing the popover after mousing enters the trigger element (for triggerType `hover`).
 * `onMouseLeaveDelay?: number = 200`
   * Number of milliseconds to wait before hiding the popover after the mouse leaves the trigger element (for triggerType `hover`).
 * `accessibilityType?: ACCESSIBILITY_TYPE[string] = ACCESSIBILITY_TYPE.menu`
@@ -226,7 +226,7 @@ The design in this RFC is based on #2 (`cloneElement`) as it seems like the solu
 
 ### Portals
 
-For reiable rendering we need to append the popover to the body (instead of in the DOM where the popover is rendered). We will use [React 16's portals](https://reactjs.org/docs/portals.html) for this.
+For reliable rendering we need to append the popover to the body (instead of in the DOM where the popover is rendered). We will use [React 16's portals](https://reactjs.org/docs/portals.html) for this.
 
 ### Manually triggering close event
 
@@ -244,7 +244,7 @@ Imagine a simple "Share" popover:
   </StatefulPopover>
 ```
 
-Let's say we want the popover to close after the user clicks "Copy". In theory we could use the non-stateful `<Popover>` component and manage the state oursevles, passing the `isOpen` prop accordingly. However this complicates things signicantly for the user – they may have to handle keyboard controls, on-click-outside, esc, etc on their own to properly set the `isOpen` prop.
+Let's say we want the popover to close after the user clicks "Copy". In theory we could use the non-stateful `<Popover>` component and manage the state ourselves, passing the `isOpen` prop accordingly. However this complicates things significantly for the user – they may have to handle keyboard controls, on-click-outside, esc, etc on their own to properly set the `isOpen` prop.
 
 A better approach is probably to accept `content` as a render prop that receives a `close` method:
 

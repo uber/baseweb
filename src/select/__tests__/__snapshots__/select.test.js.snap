@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Select component renders component in search mode and false for multiple choice: Component has correct render in search mode and mutiple choice equals false 1`] = `
+exports[`Select component renders component in search mode and false for multiple choice: Component has correct render in search mode and multiple choice equals false 1`] = `
 <Select
   aria-describedby={null}
   aria-label={null}
@@ -356,7 +356,7 @@ exports[`Select component renders component in search mode and false for multipl
 </Select>
 `;
 
-exports[`Select component renders component in search mode and true for multiple choice: Component has correct render in search mode and mutiple choice equals true 1`] = `
+exports[`Select component renders component in search mode and true for multiple choice: Component has correct render in search mode and multiple choice equals true 1`] = `
 <Select
   aria-describedby={null}
   aria-label={null}
@@ -712,7 +712,7 @@ exports[`Select component renders component in search mode and true for multiple
 </Select>
 `;
 
-exports[`Select component renders component in select mode and false for multiple choice: Component has correct render in select mode and mutiple choice equals false 1`] = `
+exports[`Select component renders component in select mode and false for multiple choice: Component has correct render in select mode and multiple choice equals false 1`] = `
 <Select
   aria-describedby={null}
   aria-label={null}
@@ -1067,7 +1067,7 @@ exports[`Select component renders component in select mode and false for multipl
 </Select>
 `;
 
-exports[`Select component renders component in select mode and true for multiple choice: Component has correct render in select mode and mutiple choice equals true 1`] = `
+exports[`Select component renders component in select mode and true for multiple choice: Component has correct render in select mode and multiple choice equals true 1`] = `
 <Select
   aria-describedby={null}
   aria-label={null}

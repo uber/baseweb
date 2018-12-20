@@ -48,7 +48,7 @@ describe('Select component', function() {
       expect(wrapper).toMatchSnapshot(
         'Component has correct render in ' +
           type +
-          ' mode and mutiple choice equals ' +
+          ' mode and multiple choice equals ' +
           multiple,
       );
     },
