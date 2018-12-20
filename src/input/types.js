@@ -62,6 +62,7 @@ export type BaseInputPropsT<T> = {
   disabled: boolean,
   error: boolean,
   id: string,
+  $ref: {current: ?HTMLInputElement},
   inputRef: {current: ?HTMLInputElement},
   name: string,
   onBlur: (e: SyntheticFocusEvent<T>) => void,

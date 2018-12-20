@@ -8,7 +8,8 @@ LICENSE file in the root directory of this source tree.
 export {default as Unstable_StatefulCalendar} from './stateful-calendar.js';
 export {default as StatefulContainer} from './stateful-container.js';
 export {default as Unstable_Calendar} from './calendar.js';
-
+// Utils functions
+export {formatDate} from './utils/index.js';
 // Constants
 export {STATE_CHANGE_TYPE} from './constants.js';
 // Styled elements

@@ -49,10 +49,11 @@ export default function ButtonInternals(props: ButtonPropsT) {
 }
 
 ButtonInternals.defaultProps = {
-  overrides: {},
-  size: SIZE.default,
-  kind: KIND.primary,
-  shape: SHAPE.default,
-  isLoading: false,
   disabled: false,
+  isLoading: false,
+  isSelected: false,
+  kind: KIND.primary,
+  overrides: {},
+  shape: SHAPE.default,
+  size: SIZE.default,
 };
