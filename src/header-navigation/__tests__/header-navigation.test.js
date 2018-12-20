@@ -31,7 +31,7 @@ describe('Stateless header navigation', function() {
     expect(wrapper).toMatchSnapshot('Component has correct render');
   });
 
-  test('should replace overriden root', function() {
+  test('should replace overridden root', function() {
     const newRoot = styled('div', {color: 'red'});
     allProps.overrides = {Root: newRoot};
     wrapper = mount(

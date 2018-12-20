@@ -115,6 +115,6 @@ test('BaseInput - inputRef from props', () => {
   const wrapper = mount(<BaseInput {...props} />);
   // Is focused when mount
   expect(wrapper).toHaveState('isFocused', true);
-  // ref's focus methos is called
+  // ref's focus method is called
   expect(focus).toBeCalled();
 });

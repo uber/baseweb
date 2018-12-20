@@ -23,7 +23,7 @@ const SpacedButton = styled(Button, ({$theme}: {$theme: ThemeT}) => ({
 
 type DefaultExampleComponentPropsT = {
   isNumber: boolean,
-  isOverriden: boolean,
+  isOverridden: boolean,
 };
 
 type DefaultExampleComponentStateT = {
@@ -36,7 +36,7 @@ class DefaultExampleComponent extends React.Component<
 > {
   static defaultProps = {
     isNumber: false,
-    isOverriden: false,
+    isOverridden: false,
   };
 
   state = {
@@ -44,10 +44,10 @@ class DefaultExampleComponent extends React.Component<
   };
 
   render() {
-    const {isNumber, isOverriden} = this.props;
+    const {isNumber, isOverridden} = this.props;
     const GenericStep = isNumber ? NumberedStep : Step;
 
-    const overrideProps = isOverriden
+    const overrideProps = isOverridden
       ? {
           overrides: {
             Icon: {
@@ -127,6 +127,6 @@ export default {
     return <DefaultExampleComponent isNumber />;
   },
   [examples.OVERRIDES]: function Story3() {
-    return <DefaultExampleComponent isOverriden />;
+    return <DefaultExampleComponent isOverridden />;
   },
 };

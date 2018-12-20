@@ -22,7 +22,7 @@ class App extends React.Component {
         >
           {({close}) => (
             <>
-              <ModalHeader>Whatsup!</ModalHeader>
+              <ModalHeader>What’s up!</ModalHeader>
               <ModalBody>This is a modal</ModalBody>
               <ModalFooter>
                 <ModalButton kind="tertiary" onClick={close}>
@@ -123,7 +123,7 @@ These properties are passed to every presentational (styled) component that is e
 
 * Modal content will not render server side. This is because portals don't exist server-side, and realistically your page shouldn't be loading with a modal open.
 
-### Accesibility
+### Accessibility
 
 Good read on [dialogs here](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html).
 
@@ -137,7 +137,7 @@ Good read on [dialogs here](https://www.w3.org/TR/wai-aria-practices/examples/di
 * Focus should ideally be transitioned back to last focused element upon closing
 * If a ModalTitle child is found, apply an id to the ModalTitle and set aria-labeledby on the dialog
 * Customer can use overrides to apply extra aria props to specific elements if needed
-* Support mutliple modals via an overlay manager
+* Support multiple modals via an overlay manager
 
 ### Possible Future Props
 

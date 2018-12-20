@@ -48,7 +48,7 @@ describe('Stateful checkbox', function() {
 
   test('should pass all the other props to stateless checkbox', function() {
     const otherProps = {
-      someProp: 'some other props',
+      someProp: 'some other prop',
       autoFocus: false,
     };
     allProps = {...allProps, ...otherProps};
@@ -58,7 +58,7 @@ describe('Stateful checkbox', function() {
     // eslint-disable-next-line no-unused-vars
     const {overrides, ...rest} = checkbox.mock.calls[1][0];
     expect(rest).toMatchObject({
-      someProp: 'some other props',
+      someProp: 'some other prop',
       checked: false,
       autoFocus: false,
       isIndeterminate: false,

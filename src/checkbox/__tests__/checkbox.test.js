@@ -105,7 +105,7 @@ describe('Stateless checkbox', function() {
   );
 
   test.each([['Root'], ['Label'], ['Checkmark'], ['Input']])(
-    'should default to standart subcomponent for %s',
+    'should default to standard subcomponent for %s',
     subcomponent => {
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const expectedProps = {
@@ -122,7 +122,7 @@ describe('Stateless checkbox', function() {
   test('should show label text in label', function() {
     const mockComp = jest.fn(() => <div>test</div>);
     overrides.Label = mockComp;
-    allProps.children = 'super-puper label';
+    allProps.children = 'super-duper label';
     wrapper = mount(<StatelessCheckbox {...allProps} />);
     expect(mockComp.mock.calls[0][0].children).toEqual(allProps.children);
   });
@@ -132,7 +132,7 @@ describe('Stateless checkbox', function() {
     (labelPlacement, index) => {
       const mockComp = jest.fn(() => <div>test</div>);
       overrides.Root = mockComp;
-      allProps.children = 'super-puper label';
+      allProps.children = 'super-duper label';
       allProps.labelPlacement = labelPlacement;
       wrapper = mount(<StatelessCheckbox {...allProps} />);
       const subComp = mockComp.mock.calls[0][0].children[index];
