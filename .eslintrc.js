@@ -47,5 +47,12 @@ module.exports = {
         'flowtype/no-weak-types': 'off',
       },
     },
+    {
+      files: ['documentation-site/**/*.js'],
+      rules: {
+        'import/extensions': 'off',
+        'react/display-name': 'off',
+      },
+    },
   ],
 };
