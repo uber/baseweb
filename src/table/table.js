@@ -1,0 +1,56 @@
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+import * as React from 'react';
+
+import {getOverrides} from '../helpers/overrides.js';
+import {
+  Root as StyledRoot,
+  Head as StyledHead,
+  HeadCell as StyledHeadCell,
+  Body as StyledBody,
+  Row as StyledRow,
+  Cell as StyledCell,
+} from './styled-components.js';
+
+import type {TablePropsT} from './types.js';
+
+export default function Table(props: TablePropsT) {
+  const {overrides = {}, ...restProps} = props;
+
+  const [Root, RootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Head, HeadProps] = getOverrides(overrides.Head, StyledHead);
+  const [HeadCell, HeadCellProps] = getOverrides(
+    overrides.HeadCell,
+    StyledHeadCell,
+  );
+  const [Body, BodyProps] = getOverrides(overrides.Body, StyledBody);
+  const [Row, RowProps] = getOverrides(overrides.Row, StyledRow);
+  const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
+
+  return (
+    <Root {...restProps} {...RootProps}>
+      <Head {...HeadProps}>
+        <HeadCell {...HeadCellProps} />
+      </Head>
+      <Body {...BodyProps}>
+        <Row {...RowProps}>
+          <Cell {...CellProps} />
+        </Row>
+      </Body>
+    </Root>
+  );
+}
+
+Table.defaultProps = {
+  columns: [],
+  data: [[]],
+  estimatedRowSize: 40,
+  isLoading: false,
+  useDynamicRowHeight: false,
+};
