@@ -20,7 +20,9 @@ import {
   setYear,
   subMonths,
 } from './utils/index.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
+import type {SharedStylePropsT} from '../select/types.js';
 
 export default class CalendarHeader extends React.Component<HeaderPropsT> {
   static defaultProps = {
@@ -30,6 +32,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     minDate: null,
     onMonthChange: () => {},
     onYearChange: () => {},
+    overrides: {},
     setActiveState: () => {},
   };
 
@@ -49,41 +52,79 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     this.props.onMonthChange({date: subMonths(this.props.date, 1)});
   };
 
+  setActive = () => {
+    this.props.setActiveState(true);
+  };
+
+  setInactive = () => {
+    this.props.setActiveState(false);
+  };
+
   renderPreviousMonthButton = () => {
-    const allPrevDaysDisabled = monthDisabledBefore(
-      this.props.date,
-      this.props,
-    );
+    const {date, overrides = {}} = this.props;
+    const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
+
     if (allPrevDaysDisabled) {
       return;
     }
+
+    const [PrevButton, prevButtonProps] = getOverrides(
+      overrides.PrevButton,
+      ArrowLeft,
+    );
     let clickHandler = this.decreaseMonth;
     if (allPrevDaysDisabled) {
       clickHandler = null;
     }
     return (
-      <ArrowLeft
+      <PrevButton
         role="button"
-        onClick={clickHandler}
         overrides={{Svg: {style: {cursor: 'pointer'}}}}
+        {...prevButtonProps}
+        // Adding internal click handler last that means no custom click handler
+        // can be added throught props overrides unless passing a component
+        // replacement that handles internal handler an then calls its custom one
+        // What we can do here is extract an onClick handler from `nextButtonProps`
+        // and call it along with `this.increaseMonth` withing a handler that is created
+        // on render
+        onClick={clickHandler}
       />
     );
   };
 
   renderNextMonthButton = () => {
-    const allNextDaysDisabled = monthDisabledAfter(this.props.date, this.props);
+    const {date, overrides = {}} = this.props;
+    const allNextDaysDisabled = monthDisabledAfter(date, this.props);
+
     if (allNextDaysDisabled) {
       return;
     }
+
+    const [NextButton, nextButtonProps] = getOverrides(
+      overrides.NextButton,
+      ArrowRight,
+    );
     let clickHandler = this.increaseMonth;
+    // The other option is to always provide a click handler and let customers
+    // override its functionality based on the `$allPrevDaysDisabled` prop
+    // in a custom NextButton component override
+    // Their options would be to render `null` or not apply the components handler
+    // on click or do nothing
     if (allNextDaysDisabled) {
       clickHandler = null;
     }
     return (
-      <ArrowRight
+      <NextButton
         role="button"
-        onClick={clickHandler}
         overrides={{Svg: {style: {cursor: 'pointer'}}}}
+        {...nextButtonProps}
+        // Adding internal click handler last that means no custom click handler
+        // can be added throught props overrides unless passing a component
+        // replacement that handles internal handler an then calls its custom one
+        // What we can do here is extract an onClick handler from `nextButtonProps`
+        // and call it along with `this.increaseMonth` withing a handler that is created
+        // on render
+        onClick={clickHandler}
       />
     );
   };
@@ -91,7 +132,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
   getSelectOverrides({width}: {width: string}) {
     return {
       ControlContainer: {
-        style: props => {
+        style: (props: SharedStylePropsT) => {
           const {
             $isFocused,
             $isPseudoFocused,
@@ -99,10 +140,12 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
           } = props;
           return {
             width,
-            backgroundColor: colors.primary,
+            backgroundColor:
+              $isFocused || $isPseudoFocused
+                ? colors.primary500
+                : colors.primary,
             color: colors.white,
-            borderColor:
-              $isFocused || $isPseudoFocused ? colors.white : colors.primary,
+            borderColor: 'transparent',
           };
         },
       },
@@ -112,12 +155,12 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         },
       },
       SelectArrow: {
-        style: ({$theme: {colors}}) => ({
+        style: ({$theme: {colors}}: SharedStylePropsT) => ({
           color: 'inherit',
         }),
       },
       ValueContainer: {
-        style: ({$theme: {sizing}}) => ({
+        style: ({$theme: {sizing}}: SharedStylePropsT) => ({
           paddingTop: '0',
           paddingBottom: '0',
           paddingLeft: sizing.scale200,
@@ -125,7 +168,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         }),
       },
       SingleValue: {
-        style: ({$theme: {sizing}}) => ({
+        style: ({$theme: {sizing}}: SharedStylePropsT) => ({
           paddingTop: '0',
           paddingBottom: '0',
           paddingLeft: sizing.scale200,
@@ -135,66 +178,93 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     };
   }
 
-  setActive = () => {
-    this.props.setActiveState(true);
-  };
-
-  setInactive = () => {
-    this.props.setActiveState(false);
-  };
-
   renderMonthDropdown() {
+    const {date, locale, overrides = {}} = this.props;
+    const [MonthSelect, monthSelectProps] = getOverrides(
+      overrides.MonthSelect,
+      Select,
+    );
+    const selectOverrides = mergeOverrides(
+      this.getSelectOverrides({width: '115px'}),
+      // $FlowFixMe
+      monthSelectProps && monthSelectProps.overrides,
+    );
     const monthOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(M => ({
       id: M,
-      label: getMonthInLocale(M, this.props.locale),
+      label: getMonthInLocale(M, locale),
     }));
     return (
-      <Select
-        onOpen={this.setInactive}
-        onClose={this.setActive}
-        overrides={this.getSelectOverrides({width: '115px'})}
+      <MonthSelect
         clearable={false}
-        value={[{id: getMonth(this.props.date)}]}
+        value={[{id: getMonth(date)}]}
         maxDropdownHeight={'300px'}
-        // $FlowFixMe
-        onChange={this.handleMonthChange}
         options={monthOptions}
         searchable={false}
+        {...monthSelectProps}
+        // Adding event handlers after customers overrides in order to
+        // make sure the components functions as expected
+        // We can extract the handlers from props overrides
+        // and call it along with internal handlers by creating an inline handler
+        onOpen={this.setInactive}
+        onClose={this.setActive}
+        onChange={this.handleMonthChange}
+        // internal and incoming overrides are merged above
+        overrides={selectOverrides}
       />
     );
   }
 
   renderYearDropdown() {
-    const minYear = this.props.minDate ? getYear(this.props.minDate) : 1900;
-    const maxYear = this.props.maxDate ? getYear(this.props.maxDate) : 2100;
+    const {date, minDate, maxDate, overrides = {}} = this.props;
+    const [YearSelect, yearSelectProps] = getOverrides(
+      overrides.YearSelect,
+      Select,
+    );
+    const selectOverrides = mergeOverrides(
+      this.getSelectOverrides({width: '80px'}),
+      // $FlowFixMe
+      yearSelectProps && yearSelectProps.overrides,
+    );
+    const maxYear = maxDate ? getYear(maxDate) : 2100;
+    const minYear = minDate ? getYear(minDate) : 1900;
     const yearOptions = [];
     for (let i = minYear; i <= maxYear; i++) {
       yearOptions.push({id: i, label: i});
     }
     return (
-      <Select
-        onOpen={this.setInactive}
-        onClose={this.setActive}
-        overrides={this.getSelectOverrides({width: '80px'})}
+      <YearSelect
         clearable={false}
-        value={[{id: getYear(this.props.date)}]}
+        value={[{id: getYear(date)}]}
         maxDropdownHeight={'300px'}
-        // $FlowFixMe
-        onChange={this.handleYearChange}
         options={yearOptions}
         searchable={false}
+        {...yearSelectProps}
+        // Adding event handlers after customers overrides in order to
+        // make sure the components functions as expected
+        // We can extract the handlers from props overrides
+        // and call it along with internal handlers by creating an inline handler
+        onOpen={this.setInactive}
+        onClose={this.setActive}
+        onChange={this.handleYearChange}
+        // internal and incoming overrides are merged above
+        overrides={selectOverrides}
       />
     );
   }
 
   render() {
+    const {overrides = {}} = this.props;
+    const [CalendarHeader, calendarHeaderProps] = getOverrides(
+      overrides.CalendarHeader,
+      StyledHeader,
+    );
     return (
-      <StyledHeader>
+      <CalendarHeader {...calendarHeaderProps}>
         {this.renderPreviousMonthButton()}
         {this.renderMonthDropdown()}
         {this.renderYearDropdown()}
         {this.renderNextMonthButton()}
-      </StyledHeader>
+      </CalendarHeader>
     );
   }
 }
