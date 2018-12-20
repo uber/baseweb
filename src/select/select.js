@@ -53,6 +53,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   dragging: boolean;
   focusAfterClear: boolean;
   openAfterFocus: boolean;
+  isValueJustSelected: boolean;
 
   state = {
     inputValue: '',
@@ -66,7 +67,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.focus();
     }
   }
-
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
     if (prevState.isOpen !== this.state.isOpen) {
       this.toggleTouchOutsideEvent(this.state.isOpen);
@@ -74,6 +74,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
         ? this.props.onOpen
         : this.props.onClose;
       handler && handler();
+    }
+    if (prevState.isFocused !== this.state.isFocused && this.state.isFocused) {
+      if (__BROWSER__) {
+        document.addEventListener('click', this.handleClickOutside);
+      }
     }
   }
 
@@ -130,6 +135,18 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.clearValue(event);
   };
 
+  handleClickOutside = (event: Event) => {
+    if (this.isValueJustSelected) {
+      this.isValueJustSelected = false;
+      return;
+    }
+    const isFocused = this.state.isFocused || this.state.isPseudoFocused;
+    // $FlowFixMe
+    if (isFocused && this.wrapper && !this.wrapper.contains(event.target)) {
+      this.handleInputBlur(event);
+    }
+  };
+
   handleClick = (event: Event) => {
     // If the event was triggered by a mouse click and not the primary
     // button, or if the component is disabled, ignore it
@@ -170,7 +187,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       // calls to input.focus() that weren't triggered by a click event.
       // Call focus() again here to be safe.
       this.focus();
-      let toOpen = true;
+      let toOpen = !this.state.isOpen;
       // clears the value so that the cursor will be at the end of input when the component re-renders
       if (this.input) this.input.value = '';
       if (this.focusAfterClear) {
@@ -247,7 +264,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleInputBlur = (event: SyntheticEvent<HTMLElement>) => {
+  handleInputBlur = (event: Event) => {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
@@ -261,6 +278,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
       onBlurredState.inputValue = '';
     }
     this.setState(onBlurredState);
+    if (__BROWSER__) {
+      document.removeEventListener('click', this.handleClickOutside);
+    }
   };
 
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -290,6 +310,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
         if (!this.state.isOpen) {
           this.setState({isOpen: true});
         }
+        break;
+      case 9: // tab
+        this.setState(prevState => ({
+          isPseudoFocused: false,
+          isFocused: false,
+          isOpen: false,
+          inputValue: this.props.onCloseResetsInput ? '' : prevState.inputValue,
+        }));
         break;
       case 27: // escape
         event.preventDefault();
@@ -387,6 +415,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   selectValue = ({item}: {item: OptionT}) => {
+    // NOTE: we check this is in handleClickOutside to not count
+    // menu clicks as outside clicks
+    this.isValueJustSelected = true;
     if (item.disabled) {
       return;
     }
@@ -581,7 +612,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       'aria-disabled': this.props.disabled || null,
       disabled: this.props.disabled || null,
       inputRef: ref => (this.input = ref),
-      onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
       overrides: {Input: overrides.Input},
@@ -596,7 +626,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-disabled={this.props.disabled}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
-          onBlur={this.handleInputBlur}
           onFocus={this.handleInputFocus}
           $ref={ref => (this.input = ref)}
           role="combobox"
