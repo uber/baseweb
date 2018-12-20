@@ -11,6 +11,5 @@ module.exports = {
   SIMPLE_EXAMPLE: 'Stateless datepicker',
   STATEFUL_EXAMPLE: 'Stateful datepicker',
   STATEFUL_IN_POPOVER: 'Stateful datepicker in a popover',
-  STYLE_PROPS_OVERRIDES: 'Style and props overrides',
-  STYLED_COMPONENT_OVERRIDES: 'Styled components overrides',
+  WITH_OVERRIDES: 'Datepicker with overrides',
 };

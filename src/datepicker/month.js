@@ -17,6 +17,7 @@ import {
   getMonth,
   addWeeks,
 } from './utils/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 import type {MonthPropsT} from './types.js';
 
 const defaultProps = {
@@ -32,6 +33,7 @@ const defaultProps = {
   onDayClick: () => {},
   onDayMouseOver: () => {},
   onDayMouseLeave: () => {},
+  overrides: {},
   peekNextMonth: false,
   selected: null,
 };
@@ -72,6 +74,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
           onDayMouseOver={this.props.onDayMouseOver}
           onDayMouseLeave={this.props.onDayMouseLeave}
           onSelect={this.props.onSelect}
+          overrides={this.props.overrides}
           peekNextMonth={this.props.peekNextMonth}
           selected={this.props.selected}
         />,
@@ -85,13 +88,16 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
   };
 
   render() {
+    const {overrides = {}} = this.props;
+    const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
     return (
-      <StyledMonth
+      <Month
         role="listbox"
         aria-label={`month-${formatDate(this.props.date, 'YYYY-MM')}`}
+        {...monthProps}
       >
         {this.renderWeeks()}
-      </StyledMonth>
+      </Month>
     );
   }
 }

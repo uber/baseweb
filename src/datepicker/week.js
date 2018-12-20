@@ -15,6 +15,7 @@ import {
   isSameDay,
 } from './utils/index.js';
 import {WEEKDAYS} from './constants.js';
+import {getOverrides} from '../helpers/overrides.js';
 import type {WeekPropsT} from './types.js';
 
 export default class Week extends React.Component<WeekPropsT> {
@@ -25,6 +26,7 @@ export default class Week extends React.Component<WeekPropsT> {
     onDayMouseOver: () => {},
     onDayMouseLeave: () => {},
     onSelect: () => {},
+    overrides: {},
     peekNextMonth: false,
   };
 
@@ -54,6 +56,7 @@ export default class Week extends React.Component<WeekPropsT> {
             onClick={this.props.onDayClick}
             onMouseOver={this.props.onDayMouseOver}
             onMouseLeave={this.props.onDayMouseLeave}
+            overrides={this.props.overrides}
             peekNextMonth={this.props.peekNextMonth}
             selected={isSameDay(day, this.props.selected)}
           />
@@ -63,6 +66,8 @@ export default class Week extends React.Component<WeekPropsT> {
   };
 
   render() {
-    return <StyledWeek>{this.renderDays()}</StyledWeek>;
+    const {overrides = {}} = this.props;
+    const [Week, weekProps] = getOverrides(overrides.Week, StyledWeek);
+    return <Week {...weekProps}>{this.renderDays()}</Week>;
   }
 }

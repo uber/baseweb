@@ -27,6 +27,7 @@ import {
   getEffectiveMaxDate,
 } from './utils/index.js';
 import {WEEKDAYS} from './constants.js';
+import {getOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT} from './types.js';
 
 export default class Calendar extends React.Component<
@@ -49,6 +50,7 @@ export default class Calendar extends React.Component<
     onMonthChange: () => {},
     onYearChange: () => {},
     onSelect: () => {},
+    overrides: {},
     peekNextMonth: false,
     selected: null,
     setActiveState: () => {},
@@ -128,30 +130,43 @@ export default class Calendar extends React.Component<
   };
 
   renderMonthHeader = (date: Date = this.state.date, order: number) => {
-    const {locale} = this.props;
+    const {locale, overrides = {}} = this.props;
     const startOfWeek = getStartOfWeek(date, locale);
+    const [MonthHeader, monthHeaderProps] = getOverrides(
+      overrides.MonthHeader,
+      StyledMonthHeader,
+    );
+    const [WeekdayHeader, weekdayHeaderProps] = getOverrides(
+      overrides.WeekdayHeader,
+      StyledDay,
+    );
     return (
-      <StyledMonthHeader>
+      <MonthHeader {...monthHeaderProps}>
         {WEEKDAYS.map(offset => {
           const day = addDays(startOfWeek, offset);
           return (
-            <StyledDay $disabled key={offset}>
+            <WeekdayHeader $disabled key={offset} {...weekdayHeaderProps}>
               {getWeekdayMinInLocale(day, locale)}
-            </StyledDay>
+            </WeekdayHeader>
           );
         })}
-      </StyledMonthHeader>
+      </MonthHeader>
     );
   };
 
   renderMonths = () => {
-    var monthList = [];
-    for (var i = 0; i < this.props.monthsShown; ++i) {
-      var monthDate = addMonths(this.state.date, i);
-      var monthKey = `month-${i}`;
+    const {overrides = {}} = this.props;
+    const monthList = [];
+    const [CalendarContainer, calendarContainerProps] = getOverrides(
+      overrides.CalendarContainer,
+      StyledCalendarContainer,
+    );
+    for (let i = 0; i < this.props.monthsShown; ++i) {
+      const monthDate = addMonths(this.state.date, i);
+      const monthKey = `month-${i}`;
       monthList.push(this.renderCalendarHeader(monthDate, i));
       monthList.push(
-        <StyledCalendarContainer key={monthKey}>
+        <CalendarContainer key={monthKey} {...calendarContainerProps}>
           {this.renderMonthHeader(monthDate, i)}
           <Month
             date={monthDate}
@@ -168,16 +183,19 @@ export default class Calendar extends React.Component<
             onDayMouseOver={this.props.onDayMouseOver}
             onDayMouseLeave={this.props.onDayMouseLeave}
             onSelect={this.props.onSelect}
+            overrides={overrides}
             selected={this.props.selected}
             peekNextMonth={this.props.peekNextMonth}
           />
-        </StyledCalendarContainer>,
+        </CalendarContainer>,
       );
     }
     return monthList;
   };
 
   render() {
-    return <StyledRoot>{this.renderMonths()}</StyledRoot>;
+    const {overrides = {}} = this.props;
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    return <Root {...rootProps}>{this.renderMonths()}</Root>;
   }
 }

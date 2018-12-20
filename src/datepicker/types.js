@@ -8,10 +8,26 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type {ThemeT} from '../styles/types.js';
+import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
+
+export type DatepickerOverridesT<T> = {
+  Root?: OverrideT<T>,
+  CalendarContainer?: OverrideT<T>,
+  CalendarHeader?: OverrideT<T>,
+  PrevButton?: OverrideT<T>,
+  NextButton?: OverrideT<T>,
+  MonthSelect?: OverrideT<T>,
+  YearSelect?: OverrideT<T>,
+  MonthHeader?: OverrideT<T>,
+  WeekdayHeader?: OverrideT<T>,
+  Month?: OverrideT<T>,
+  Week?: OverrideT<T>,
+  Day?: OverrideT<T>,
+};
 
 export type DayPropsT = {
   disabled: boolean,
@@ -25,6 +41,7 @@ export type DayPropsT = {
   onClick: ({event: Event, date: Date}) => void,
   onMouseOver: ({event: Event, date: Date}) => void,
   onMouseLeave: ({event: Event, date: Date}) => void,
+  overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
   selected: boolean,
 };
@@ -49,6 +66,7 @@ export type WeekPropsT = {
   onDayMouseOver: ({date: Date, event: Event}) => void,
   onDayMouseLeave: ({date: Date, event: Event}) => void,
   onSelect: ({date: Date}) => void,
+  overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
   selected: ?Date,
 };
@@ -71,6 +89,7 @@ export type CalendarPropsT = {
   onMonthChange: ({date: Date}) => void,
   onYearChange: ({date: Date}) => void,
   onSelect: ({date: Date}) => void,
+  overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
   selected: ?Date,
   setActiveState: boolean => void,
