@@ -4,7 +4,7 @@ exports[`Stateful Slider Container should correctly render: Component has correc
 <StatefulSliderContainer
   initialState={Object {}}
   onChange={[Function]}
-  prop1="some other slider propq"
+  prop1="some other slider prop"
   stateReducer={[Function]}
 >
   <div>

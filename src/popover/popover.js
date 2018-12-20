@@ -299,11 +299,11 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return this.props.triggerType === TRIGGER_TYPE.hover;
   }
 
-  isAccessiblityTypeMenu() {
+  isAccessibilityTypeMenu() {
     return this.props.accessibilityType === ACCESSIBILITY_TYPE.menu;
   }
 
-  isAccessiblityTypeTooltip() {
+  isAccessibilityTypeTooltip() {
     return this.props.accessibilityType === ACCESSIBILITY_TYPE.tooltip;
   }
 
@@ -328,14 +328,14 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
     const anchorId = this.getAnchorIdAttr();
     const popoverId = this.getPopoverIdAttr();
-    if (this.isAccessiblityTypeMenu()) {
+    if (this.isAccessibilityTypeMenu()) {
       anchorProps['aria-haspopup'] = 'true';
       anchorProps['aria-expanded'] = isOpen ? 'true' : 'false';
       const relationAttr = this.isClickTrigger()
         ? 'aria-controls'
         : 'aria-owns';
       anchorProps[relationAttr] = isOpen ? popoverId : null;
-    } else if (this.isAccessiblityTypeTooltip()) {
+    } else if (this.isAccessibilityTypeTooltip()) {
       anchorProps.id = anchorId;
       anchorProps['aria-describedby'] = isOpen ? popoverId : null;
     }
@@ -357,9 +357,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const bodyProps = {};
 
     const popoverId = this.getPopoverIdAttr();
-    if (this.isAccessiblityTypeMenu()) {
+    if (this.isAccessibilityTypeMenu()) {
       bodyProps.id = popoverId;
-    } else if (this.isAccessiblityTypeTooltip()) {
+    } else if (this.isAccessibilityTypeTooltip()) {
       bodyProps.id = popoverId;
       bodyProps.role = 'tooltip';
     }

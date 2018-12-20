@@ -47,7 +47,7 @@ export const Header = styled('h3', (props: SharedStylePropsT) => {
       color: colors.linkHover,
     },
     ':focus': {
-      backgroudColor: colors.background,
+      backgroundColor: colors.background,
     },
   };
 });

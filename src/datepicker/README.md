@@ -61,7 +61,7 @@ export default () => {
   * `minDate?: ?Date = null`
     * A min date that is selectable.
   * `monthsShown?: number = 1` (not supported yet)
-    * A number of monthes rendered in the calendar.
+    * A number of months rendered in the calendar.
   * `onDayClick?: ({date: Date, event: Event}) => void`
     * Day's `click` event handler.
   * `onDayMouseOver?: ({date: Date, event: Event}) => void`
@@ -105,7 +105,7 @@ These properties are passed to the day presentational (styled) component:
 * `$isHovered: boolean`
   * Defines if the day is hovered
 * `$isHighlighted: boolean`
-  * Defines if the day is highlilghted
+  * Defines if the day is highlighted
 * `$selected: boolean`
   * Defines if the day is selected
 * `$today: boolean`

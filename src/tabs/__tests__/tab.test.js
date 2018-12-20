@@ -47,7 +47,7 @@ describe('Tab', () => {
     expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 
-  test('onSelect and onKeydwon are called on a Enter keydown event', () => {
+  test('onSelect and onKeydown are called on a Enter keydown event', () => {
     const props = {
       onSelect: jest.fn(),
       onKeyDown: jest.fn(),
