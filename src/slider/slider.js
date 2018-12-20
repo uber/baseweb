@@ -89,10 +89,9 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
     // scale step to be measured in pixels
     step = step ? Slider.scale(step, axisSize, axisSizeInPixels) : step;
     const scaledStep = step ? moveDirection * step : newMove;
-    const isMoveThresholdPasssed =
-      Math.abs(newMove) - Math.abs(scaledStep) >= 0;
+    const isMoveThresholdPassed = Math.abs(newMove) - Math.abs(scaledStep) >= 0;
     // if move detected is larger than step we can move to the next tick
-    if (isMoveThresholdPasssed) {
+    if (isMoveThresholdPassed) {
       const scaledMove = Slider.scale(scaledStep, axisSizeInPixels, axisSize);
       // clamp max and min to avoid overlapping and cross of each other
       const max = !currentThumb && $isRange ? value[1] : $max;

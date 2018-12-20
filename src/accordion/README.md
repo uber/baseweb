@@ -48,7 +48,7 @@ export default () => {
   return (
     <div>
       <Accordion
-        onChange={({expanded}) => {console.log('Accordian ' + expanded[0] + ' is expanded')}}
+        onChange={({expanded}) => {console.log('Accordion ' + expanded[0] + ' is expanded')}}
         initialState={{expanded: ['2']}
       >
           <Panel key="1" title="First title" overrides={overrides}><div>First content</div></Panel>
@@ -82,9 +82,9 @@ export default () => {
 * `children: Array<Panel>` - Required.
   * Accordion expandable items. See `Panel` API below for reference.
   * Note: `expanded` property on `Panel`s provided as children will be ignored. This is handled
-    by the `Accordian` component implicitly.
+    by the `Accordion` component implicitly.
 * `initialState?: {expanded: Array<string>} = {expanded: []}`
-  * Defines the initial component state. Use this prop to render the `Accordian` with one or more
+  * Defines the initial component state. Use this prop to render the `Accordion` with one or more
     panels initially expanded. See 'Advanced Usage' code sample above for an example.
 * `disabled?: boolean = false`
   * If set to `true` all its children panels will be disabled from toggling.
@@ -113,7 +113,7 @@ Represents content and title of each accordion item
 * `expanded?: boolean false`
   * Defines if the panel is expanded. If set to `true` the panel is rendered expanded.
   * Note: `expanded` property on `Panel`s provided as `Accordion` children will be ignored. This
-    is handled by the `Accordian` component implicitly.
+    is handled by the `Accordion` component implicitly.
 * `disabled?: boolean = false`
   * Defaults to the `disabled` value provided by the parent `Accordion` component.
   * Determines if the panel is disabled. When explicitly set on `Panel` it will override the disabled

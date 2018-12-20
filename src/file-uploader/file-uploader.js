@@ -32,13 +32,13 @@ function prependStyleProps(styleProps) {
 }
 
 function makeOverride(Override, Source) {
-  const OverridedComponent = props => {
-    const [Overrided, overrideProps] = getOverrides(Override, Source);
-    return <Overrided {...props} {...overrideProps} />;
+  const OverriddenComponent = props => {
+    const [Overridden, overrideProps] = getOverrides(Override, Source);
+    return <Overridden {...props} {...overrideProps} />;
   };
 
-  OverridedComponent.displayName = Source.displayName;
-  return OverridedComponent;
+  OverriddenComponent.displayName = Source.displayName;
+  return OverriddenComponent;
 }
 
 function makeOverrides(overrides = {}) {

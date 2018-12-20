@@ -29,7 +29,7 @@ export default () => {
           Body: CustomContainer,
         }}
       >
-      This a dismissable info notification that is hidden after 5 seconds automatically.
+      This a dismissible info notification that is hidden after 5 seconds automatically.
       </Toast>
       <Toast
         closeable={false}

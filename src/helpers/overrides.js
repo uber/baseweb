@@ -131,7 +131,7 @@ export function mergeOverride<T>(
 /**
  * Since style overrides can be an object *or* a function, we need to handle
  * the case that one of them is a function. We do this by returning a new
- * function that deep emrges the result of each style override
+ * function that deep merges the result of each style override
  */
 function mergeStyleOverrides(target: StyleOverrideT, source: StyleOverrideT) {
   // Simple case of both objects
