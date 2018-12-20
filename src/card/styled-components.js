@@ -17,7 +17,7 @@ export const Body = styled('div', ({$theme}) => {
   return {
     marginBottom: sizing.scale600,
     color: colors.foregroundAlt,
-    ...typography.font400,
+    ...typography.font300,
   };
 });
 Body.displayName = 'StyledBody';
