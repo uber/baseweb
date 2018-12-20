@@ -63,6 +63,11 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
   renderPreviousMonthButton = () => {
     const {date, overrides = {}} = this.props;
     const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
+
+    if (allPrevDaysDisabled) {
+      return;
+    }
+
     const [PrevButton, prevButtonProps] = getOverrides(
       overrides.PrevButton,
       ArrowLeft,
@@ -75,7 +80,6 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
       <PrevButton
         role="button"
         overrides={{Svg: {style: {cursor: 'pointer'}}}}
-        $allPrevDaysDisabled={allPrevDaysDisabled}
         {...prevButtonProps}
         // Adding internal click handler last that means no custom click handler
         // can be added throught props overrides unless passing a component
@@ -91,6 +95,11 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
   renderNextMonthButton = () => {
     const {date, overrides = {}} = this.props;
     const allNextDaysDisabled = monthDisabledAfter(date, this.props);
+
+    if (allNextDaysDisabled) {
+      return;
+    }
+
     const [NextButton, nextButtonProps] = getOverrides(
       overrides.NextButton,
       ArrowRight,
@@ -108,7 +117,6 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
       <NextButton
         role="button"
         overrides={{Svg: {style: {cursor: 'pointer'}}}}
-        $allNextDaysDisabled={allNextDaysDisabled}
         {...nextButtonProps}
         // Adding internal click handler last that means no custom click handler
         // can be added throught props overrides unless passing a component
@@ -132,10 +140,12 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
           } = props;
           return {
             width,
-            backgroundColor: colors.primary,
+            backgroundColor:
+              $isFocused || $isPseudoFocused
+                ? colors.primary500
+                : colors.primary,
             color: colors.white,
-            borderColor:
-              $isFocused || $isPseudoFocused ? colors.white : colors.primary,
+            borderColor: 'transparent',
           };
         },
       },
