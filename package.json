@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "storybook:move": "start-storybook -c .storybook-move -p 6006",
     "storybook:dark": "start-storybook -c .storybook-dark -p 6006",
-    "build-storybook": "build-storybook -o docs && build-storybook -c .storybook-move -o docs/move && build-storybook -c .storybook-dark -o docs/dark",
+    "build-storybook": "build-storybook -o public && build-storybook -c .storybook-move -o public/move && build-storybook -c .storybook-dark -o public/dark",
     "storybook:screener": "screener-storybook --conf screener.config.js",
     "storybook:screener:ngrok": "node ./node_modules/screener-ngrok/postinstall.js",
     "storybook:screener:ci": "yarn storybook:screener:ngrok && yarn storybook:screener",
@@ -39,7 +39,7 @@
     "prepublish": "npm run build",
     "icon:generate": "./src/icon/build-icons.js",
     "documentation:dev": "yarn build:es2015 && next documentation-site",
-    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o beta"
+    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public/beta"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

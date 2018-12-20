@@ -9,9 +9,9 @@ Base UI ships by default with the `Light` theme. We understand that in some case
 you want to change the look and feel of the components. To do so, follow the steps
 outlined here
 
-## Using themable values in component overrides
+## Using themeable values in component overrides
 
-All themable values are available within components that provide the `overrides` prop.
+All themeable values are available within components that provide the `overrides` prop.
 
 ```jsx
 <Input
@@ -20,7 +20,7 @@ All themable values are available within components that provide the `overrides`
       style: ({$theme}) => ({color: $theme.colors.primary}),
     },
   }}
-  placeholder="Custom input that uses themable values"
+  placeholder="Custom input that uses themeable values"
 />
 ```
 

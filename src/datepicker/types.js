@@ -92,12 +92,12 @@ export type SharedStylePropsT = {
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type CalendarStateT = {
-  // indicates a hightlighted date on hover and keyboard navigation
+  // indicates a highlighted date on hover and keyboard navigation
   highlightedDate?: ?Date,
-  // used to disable keyboars navigation when a month or year select
+  // used to disable keyboard navigation when a month or year select
   // dropdown is opened
   isActive?: boolean,
-  // last remembered hightlighted date to restore
+  // last remembered highlighted date to restore
   // when keyboard navigating after a mouse moved off the cal and reset
   // highlightedDate value
   lastHighlightedDate?: Date,

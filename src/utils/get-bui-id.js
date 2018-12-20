@@ -14,7 +14,7 @@ LICENSE file in the root directory of this source tree.
  * ids when possible.
  *
  * Generating unique IDs that match across server/client renders
- * is a hard probablem that doesn't have any perfect solutions
+ * is a hard problem that doesn't have any perfect solutions
  * currently [1] [2]. UUIDs/Math.random will never match, whereas
  * auto-incrementing IDs may work if server and client render
  * exactly the same DOM, so that's what we'll use here. If this

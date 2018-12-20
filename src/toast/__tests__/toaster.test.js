@@ -334,7 +334,7 @@ describe('toaster', () => {
       expect(wrapper.find(Toast).length).toEqual(0);
     });
 
-    test('toast is cleared and onClose is called when it is dissmissed by a user', () => {
+    test('toast is cleared and onClose is called when it is dismissed by a user', () => {
       const toasterInstance = renderedToaster.instance();
       const onClose = jest.fn();
       toaster.show('Toast message', {onClose});

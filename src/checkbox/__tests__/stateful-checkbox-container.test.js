@@ -23,7 +23,7 @@ describe('Stateful container', function() {
       children: childFn,
       initialState: {},
       stateReducer: stateReducer,
-      prop1: 'some other propq',
+      prop1: 'some other prop',
     };
   });
 

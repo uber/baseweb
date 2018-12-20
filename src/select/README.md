@@ -215,7 +215,7 @@ export default () => {
 * `searchable?: boolean = true`
   * Defines if the search functionality id enabled.
 * `type?: TYPE[string] = TYPE.select`
-  * Defines type of the component to be in select or search mode. When set to `TYPE.search` the searh icon if rendered on the left and the select arrow icon is not rendered.
+  * Defines type of the component to be in select or search mode. When set to `TYPE.search` the search icon if rendered on the left and the select arrow icon is not rendered.
 * `value?: Array<{}> = []`
   * A current selected value(s). If a selected value has a `clearableValue` prop set to `true` it will be rendered as a disabled selected option that can't be cleared.
 * `valueKey?: string = 'id'`
@@ -234,7 +234,7 @@ export default () => {
 * `children: ({onChange, overrides}) => React.Node` - Required.
   * Children function that returns `Select` instance with default or customized inner elements.
 * `onChange?: ({type, option, value}) => void = () => {}`:
-  * handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed - `STATE_CHANGE_TYPE.select | STATE_CHANGE_TYPE.remove | STATE_CHANGE_TYPE.clear`. `option` that is beeing added or removed - `Object`. And `value` is the current select value including/excluding the currently selected/removed option.
+  * handler for events on trigger element when option are changing selection.  The `type` indicating which action is performed - `STATE_CHANGE_TYPE.select | STATE_CHANGE_TYPE.remove | STATE_CHANGE_TYPE.clear`. `option` that is being added or removed - `Object`. And `value` is the current select value including/excluding the currently selected/removed option.
 
 ## Presentational components API
 
