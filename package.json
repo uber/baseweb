@@ -129,6 +129,7 @@
   "dependencies": {
     "date-fns": "2.0.0-alpha.26",
     "memoize-one": "^5.0.0",
+    "next-images": "^1.0.3",
     "popper.js": "^1.14.3",
     "react-dropzone": "^8.0.0",
     "react-input-mask": "^2.0.4",
