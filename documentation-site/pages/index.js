@@ -8,13 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import {Card, StyledTitle, StyledBody} from 'baseui/card';
+
+import Layout from '../components/layout';
 
 export default function Hello() {
-  return (
-    <Card>
-      <StyledTitle>Hello from Base UI</StyledTitle>
-      <StyledBody>Lorem ipsum...</StyledBody>
-    </Card>
-  );
+  return <Layout>content</Layout>;
 }
