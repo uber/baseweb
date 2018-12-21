@@ -120,6 +120,7 @@ class StatefulContainer extends React.Component<
       accessibilityType,
       dismissOnClickOutside,
       dismissOnEsc,
+      ignoreBoundary,
       overrides,
       onMouseEnterDelay,
       onMouseLeaveDelay,
@@ -130,6 +131,7 @@ class StatefulContainer extends React.Component<
 
     const popoverProps: PopoverPropsWithoutChildrenT = {
       accessibilityType,
+      ignoreBoundary,
       isOpen: this.state.isOpen,
       overrides,
       content: this.renderContent,
