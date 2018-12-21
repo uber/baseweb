@@ -21,7 +21,7 @@ import {
 import type {TablePropsT} from './types.js';
 
 export default function Table(props: TablePropsT) {
-  const {overrides = {}, ...restProps} = props;
+  const {overrides = {}, columns, data: rows, ...restProps} = props;
 
   const [Root, RootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Head, HeadProps] = getOverrides(overrides.Head, StyledHead);
@@ -36,12 +36,28 @@ export default function Table(props: TablePropsT) {
   return (
     <Root {...restProps} {...RootProps}>
       <Head {...HeadProps}>
-        <HeadCell {...HeadCellProps} />
+        {columns.map((column, index) => {
+          return (
+            <HeadCell key={index} {...HeadCellProps}>
+              {column}
+            </HeadCell>
+          );
+        })}
       </Head>
       <Body {...BodyProps}>
-        <Row {...RowProps}>
-          <Cell {...CellProps} />
-        </Row>
+        {rows.map((row, i) => {
+          return (
+            <Row key={i} {...RowProps}>
+              {row.map((cell, j) => {
+                return (
+                  <Cell key={j} {...CellProps}>
+                    {cell}
+                  </Cell>
+                );
+              })}
+            </Row>
+          );
+        })}
       </Body>
     </Root>
   );
