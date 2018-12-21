@@ -105,6 +105,7 @@
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
     "next": "^7.0.2",
+    "next-images": "^1.0.3",
     "nightwatch": "^0.9.21",
     "nightwatch-accessibility": "^1.7.1",
     "prettier": "^1.14.3",
@@ -129,7 +130,6 @@
   "dependencies": {
     "date-fns": "2.0.0-alpha.26",
     "memoize-one": "^5.0.0",
-    "next-images": "^1.0.3",
     "popper.js": "^1.14.3",
     "react-dropzone": "^8.0.0",
     "react-input-mask": "^2.0.4",
