@@ -34,7 +34,7 @@ export default function Table(props: TablePropsT) {
   const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
 
   return (
-    <Root {...restProps} {...RootProps}>
+    <Root cellspacing="0" {...restProps} {...RootProps}>
       <Head {...HeadProps}>
         {columns.map((column, index) => {
           return (
