@@ -9,11 +9,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Popover, StatefulPopover} from '../popover';
+import {StatefulPopover} from '../popover/index.js';
 
 type PropsT = {
   children: React.Node,
-  getChildMenu: (item: *) => React.Node,
+  getChildMenu: ?(item: *) => React.Node,
   item: *,
 };
 
@@ -25,6 +25,9 @@ export default function MaybeChildMenu(props: PropsT) {
   return (
     <StatefulPopover
       content={props.getChildMenu(props.item)}
+      ignoreBoundary
+      onMouseEnterDelay={100}
+      onMouseLeaveDelay={100}
       placement="rightTop"
       triggerType="hover"
     >

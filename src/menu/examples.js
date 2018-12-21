@@ -186,20 +186,41 @@ export default {
   },
 
   [examples.CHILD_MENU]: function ChildMenuStory() {
-    return (
-      <StatefulMenu
+    const SecondMenu = () => (
+      <Menu
         items={ITEMS}
         overrides={{
           List: {style: {width: '200px'}},
+          Option: {props: {getChildMenu: ThirdMenu}},
+        }}
+        rootRef={React.createRef()}
+      />
+    );
+
+    const ThirdMenu = () => (
+      <Menu
+        items={ITEMS}
+        overrides={{List: {style: {width: '200px'}}}}
+        rootRef={React.createRef()}
+      />
+    );
+
+    return (
+      <StatefulMenu
+        items={PROFILE_ITEMS}
+        overrides={{
+          List: {style: {width: '350px', overflow: 'auto'}},
           Option: {
+            component: OptionProfile,
             props: {
-              getChildMenu: () => (
-                <StatefulMenu
-                  overrides={{List: {style: {width: '200px'}}}}
-                  items={ITEMS}
-                  ignoreKeyControls
-                />
-              ),
+              getProfileItemLabels: ({title, subtitle, body}) => ({
+                title,
+                subtitle,
+                body,
+              }),
+              getProfileItemImg: item => item.imgUrl,
+              getProfileItemImgText: item => item.title,
+              getChildMenu: SecondMenu,
             },
           },
         }}

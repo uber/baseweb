@@ -110,10 +110,12 @@ export type MenuProfilePropsT = {
 };
 
 export type SharedStatelessPropsT = {
-  items: ItemsT,
-  rootRef: RootRefT,
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   highlightedIndex?: number,
+  items: ItemsT,
+  onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  rootRef: RootRefT,
 };
 
 export type StatefulMenuPropsT = StatefulContainerPropsT & MenuPropsT;
@@ -139,6 +141,7 @@ export type OptionListPropsT = {
 
 export type OptionProfilePropsT = {
   item: ItemT,
+  getChildMenu?: (item: ItemT) => React.Node,
   getProfileItemLabels: GetProfileItemLabelsFnT,
   getProfileItemImg: GetProfileItemImgFnT,
   getProfileItemImgText: GetProfileItemImgTextFnT,

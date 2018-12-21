@@ -150,10 +150,10 @@ export default class MenuStatefulContainer extends React.Component<
     const {children, items} = this.props;
     return children(
       ({
+        getRequiredItemProps: this.getRequiredItemProps,
         highlightedIndex,
         items,
         rootRef: this.rootRef,
-        getRequiredItemProps: this.getRequiredItemProps,
       }: RenderPropsT),
     );
   }
