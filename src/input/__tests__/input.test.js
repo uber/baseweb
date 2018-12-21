@@ -68,7 +68,7 @@ test('Input - renders enhancers', () => {
   const wrapper = mount(<Input {...props} />);
   expect(wrapper).toHaveState('isFocused', false);
 
-  // Renders input and exhancers
+  // Renders input and enhancers
   const renderedInput = wrapper.find(StyledInputContainer).first();
   expect(renderedInput).toExist();
   expect(renderedInput.props()).toMatchSnapshot(

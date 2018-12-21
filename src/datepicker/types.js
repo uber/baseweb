@@ -8,10 +8,26 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type {ThemeT} from '../styles/types.js';
+import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
+
+export type DatepickerOverridesT<T> = {
+  Root?: OverrideT<T>,
+  CalendarContainer?: OverrideT<T>,
+  CalendarHeader?: OverrideT<T>,
+  PrevButton?: OverrideT<T>,
+  NextButton?: OverrideT<T>,
+  MonthSelect?: OverrideT<T>,
+  YearSelect?: OverrideT<T>,
+  MonthHeader?: OverrideT<T>,
+  WeekdayHeader?: OverrideT<T>,
+  Month?: OverrideT<T>,
+  Week?: OverrideT<T>,
+  Day?: OverrideT<T>,
+};
 
 export type DayPropsT = {
   disabled: boolean,
@@ -25,6 +41,7 @@ export type DayPropsT = {
   onClick: ({event: Event, date: Date}) => void,
   onMouseOver: ({event: Event, date: Date}) => void,
   onMouseLeave: ({event: Event, date: Date}) => void,
+  overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
   selected: boolean,
 };
@@ -49,6 +66,7 @@ export type WeekPropsT = {
   onDayMouseOver: ({date: Date, event: Event}) => void,
   onDayMouseLeave: ({date: Date, event: Event}) => void,
   onSelect: ({date: Date}) => void,
+  overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
   selected: ?Date,
 };
@@ -71,6 +89,7 @@ export type CalendarPropsT = {
   onMonthChange: ({date: Date}) => void,
   onYearChange: ({date: Date}) => void,
   onSelect: ({date: Date}) => void,
+  overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
   selected: ?Date,
   setActiveState: boolean => void,
@@ -92,12 +111,12 @@ export type SharedStylePropsT = {
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type CalendarStateT = {
-  // indicates a hightlighted date on hover and keyboard navigation
+  // indicates a highlighted date on hover and keyboard navigation
   highlightedDate?: ?Date,
-  // used to disable keyboars navigation when a month or year select
+  // used to disable keyboard navigation when a month or year select
   // dropdown is opened
   isActive?: boolean,
-  // last remembered hightlighted date to restore
+  // last remembered highlighted date to restore
   // when keyboard navigating after a mouse moved off the cal and reset
   // highlightedDate value
   lastHighlightedDate?: Date,

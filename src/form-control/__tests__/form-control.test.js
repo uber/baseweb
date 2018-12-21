@@ -169,7 +169,7 @@ describe('FormControl - Label and Caption for controls', () => {
     expect(caption).toHaveText('Error test');
   });
 
-  test('Renders label and caption for the Teaxtarea component', () => {
+  test('Renders label and caption for the Textarea component', () => {
     const rendered = mount(
       <FormControl label="Label test" caption="Caption test">
         <Textarea required />

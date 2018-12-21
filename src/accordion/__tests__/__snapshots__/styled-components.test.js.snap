@@ -115,7 +115,7 @@ Object {
 exports[`Accordion styled components Basic render: StyledHeader has correct styles when expanded and disabled is set to true 1`] = `
 Object {
   ":focus": Object {
-    "backgroudColor": "$theme.colors.background",
+    "backgroundColor": "$theme.colors.background",
   },
   ":hover": Object {
     "color": "$theme.colors.linkHover",
@@ -145,7 +145,7 @@ Object {
 exports[`Accordion styled components Basic render: StyledHeader has correct styles when expanded is set to false 1`] = `
 Object {
   ":focus": Object {
-    "backgroudColor": "$theme.colors.background",
+    "backgroundColor": "$theme.colors.background",
   },
   ":hover": Object {
     "color": "$theme.colors.linkHover",
@@ -175,7 +175,7 @@ Object {
 exports[`Accordion styled components Basic render: StyledHeader has correct styles when expanded is set to true 1`] = `
 Object {
   ":focus": Object {
-    "backgroudColor": "$theme.colors.background",
+    "backgroundColor": "$theme.colors.background",
   },
   ":hover": Object {
     "color": "$theme.colors.linkHover",
@@ -205,7 +205,7 @@ Object {
 exports[`Accordion styled components Basic render: StyledHeader has correct styles when not expanded and disabled is set to true 1`] = `
 Object {
   ":focus": Object {
-    "backgroudColor": "$theme.colors.background",
+    "backgroundColor": "$theme.colors.background",
   },
   ":hover": Object {
     "color": "$theme.colors.linkHover",

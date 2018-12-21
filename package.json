@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "5.4.0",
+  "version": "5.4.1",
   "description": "React implementation of uber design components platform.",
   "keywords": [
     "react",
@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "storybook:move": "start-storybook -c .storybook-move -p 6006",
     "storybook:dark": "start-storybook -c .storybook-dark -p 6006",
-    "build-storybook": "build-storybook -o docs && build-storybook -c .storybook-move -o docs/move && build-storybook -c .storybook-dark -o docs/dark",
+    "build-storybook": "build-storybook -o public && build-storybook -c .storybook-move -o public/move && build-storybook -c .storybook-dark -o public/dark",
     "storybook:screener": "screener-storybook --conf screener.config.js",
     "storybook:screener:ngrok": "node ./node_modules/screener-ngrok/postinstall.js",
     "storybook:screener:ci": "yarn storybook:screener:ngrok && yarn storybook:screener",
@@ -39,7 +39,7 @@
     "prepublish": "npm run build",
     "icon:generate": "./src/icon/build-icons.js",
     "documentation:dev": "yarn build:es2015 && next documentation-site",
-    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o beta"
+    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public/beta"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -127,8 +127,8 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "date-fns": "2.0.0-alpha.25",
-    "memoize-one": "^4.0.2",
+    "date-fns": "2.0.0-alpha.26",
+    "memoize-one": "^5.0.0",
     "popper.js": "^1.14.3",
     "react-dropzone": "^8.0.0",
     "react-input-mask": "^2.0.4",
@@ -137,7 +137,7 @@
   "peerDependencies": {
     "react": ">= 16.4.0 < 17",
     "react-dom": ">= 16.4.0 < 17",
-    "styletron-react": "^4.4.3"
+    "styletron-react": "^4.4.4"
   },
   "engines": {
     "node": ">=8.11.0",

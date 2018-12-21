@@ -71,7 +71,7 @@ describe('EmoticonRating', () => {
       expect(example).toHaveState('previewIndex', 4);
     });
 
-    it('removes previewIndex if item is blured', () => {
+    it('removes previewIndex if item is blurred', () => {
       example.childAt(3).simulate('blur');
       expect(example).toHaveState('previewIndex', undefined);
     });

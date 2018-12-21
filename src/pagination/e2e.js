@@ -24,7 +24,7 @@ describe('The pagination component', () => {
     browser.end(() => done());
   });
 
-  xit('passes basic accessiblity tests', browser => {
+  xit('passes basic accessibility tests', browser => {
     goToUrl({
       suite,
       test: scenarios.STATEFUL_PAGINATION,

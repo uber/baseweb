@@ -5089,10 +5089,10 @@ data-urls@^1.0.0:
     whatwg-mimetype "^2.0.0"
     whatwg-url "^6.4.0"
 
-date-fns@2.0.0-alpha.25:
-  version "2.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.25.tgz#651a5d1f59a01af6cf0371e39b2ae29df5d521ee"
-  integrity sha512-iQzJkHF0L4wah9Ae9PkvwemwFz6qmRLuNZcghmvf2t+ptLs1qXzONLiGtjmPQzL6+JpC01JjlTopY2AEy4NFAg==
+date-fns@2.0.0-alpha.26:
+  version "2.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.26.tgz#e46afd73a2b50e0359446309ee7cb631d7467227"
+  integrity sha512-UAptCZ53MVimUFR8MXTyHED51AVGIqFlBfWgiS/KIoSYiJGrWScx4PYQVNSWfK2Js+43OlokCW1ttnexBTJ5Bg==
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -9392,10 +9392,10 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-memoize-one@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-4.0.2.tgz#3fb8db695aa14ab9c0f1644e1585a8806adc1aee"
-  integrity sha512-ucx2DmXTeZTsS4GPPUZCbULAN7kdPT1G+H49Y34JjbQ5ESc6OGhVxKvb1iKhr9v19ZB9OtnHwNnhUnNR/7Wteg==
+memoize-one@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.0.0.tgz#d55007dffefb8de7546659a1722a5d42e128286e"
+  integrity sha512-7g0+ejkOaI9w5x6LvQwmj68kUj6rxROywPSCqmclG/HBacmFnZqhVscQ8kovkn9FBCNJmOz6SY42+jnvZzDWdw==
 
 memory-fs@^0.3.0:
   version "0.3.0"

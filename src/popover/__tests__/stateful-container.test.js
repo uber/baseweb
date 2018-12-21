@@ -268,7 +268,7 @@ describe('StatefulPopoverContainer', () => {
       <StatefulContainer {...props}>{children}</StatefulContainer>,
     );
 
-    // null state reducer shouldnt break component
+    // null state reducer shouldn't break component
     component.instance().onClick();
     expect(component).toHaveState('isOpen', true);
   });

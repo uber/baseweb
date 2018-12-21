@@ -24,7 +24,7 @@ function buildSimpleWrapper(props = {}) {
 }
 
 describe('ButtonGroup', () => {
-  it('propogates kind to children', () => {
+  it('propagates kind to children', () => {
     const kind = 'tertiary';
     const wrapper = buildSimpleWrapper({kind});
     wrapper.children().forEach(child => {
@@ -32,7 +32,7 @@ describe('ButtonGroup', () => {
     });
   });
 
-  it('propogates shape to children', () => {
+  it('propagates shape to children', () => {
     const shape = 'round';
     const wrapper = buildSimpleWrapper({shape});
     wrapper.children().forEach(child => {
@@ -40,7 +40,7 @@ describe('ButtonGroup', () => {
     });
   });
 
-  it('propogates size to children', () => {
+  it('propagates size to children', () => {
     const size = 'compact';
     const wrapper = buildSimpleWrapper({size});
     wrapper.children().forEach(child => {
@@ -48,7 +48,7 @@ describe('ButtonGroup', () => {
     });
   });
 
-  it('propogates disabled to children', () => {
+  it('propagates disabled to children', () => {
     const wrapper = buildSimpleWrapper({disabled: true});
     wrapper.children().forEach(child => {
       expect(child).toHaveProp('disabled', true);
@@ -129,10 +129,10 @@ describe('ButtonGroup', () => {
   });
 
   it('sets appropriate child as selected if selected prop is an array', () => {
-    const selectedIndicies = [0, 2];
-    const wrapper = buildSimpleWrapper({selected: selectedIndicies});
+    const selectedIndices = [0, 2];
+    const wrapper = buildSimpleWrapper({selected: selectedIndices});
     wrapper.children().forEach((child, index) => {
-      expect(child).toHaveProp('isSelected', selectedIndicies.includes(index));
+      expect(child).toHaveProp('isSelected', selectedIndices.includes(index));
     });
   });
 });
