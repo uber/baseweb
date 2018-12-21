@@ -10,7 +10,7 @@ import {LightTheme} from '../themes/index.js';
 
 import type {ThemeT} from './types.js';
 
-export const ThemeContext: React.Context<ThemeT> = React.createContext(
+export const ThemeContext: React.createContext<ThemeT> = React.createContext(
   LightTheme,
 );
 
