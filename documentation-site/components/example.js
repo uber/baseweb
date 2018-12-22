@@ -17,12 +17,10 @@ import Check from 'baseui/icon/check';
 import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
-const EXAMPLE_ROOT = '/static/examples/';
-
 const Link = styled(StyledLink, {cursor: 'pointer'});
 
 function getSourcePath(path: string): string {
-  return EXAMPLE_ROOT + path;
+  return process.env.EXAMPLE_ROOT + path;
 }
 
 const index = `
