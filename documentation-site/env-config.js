@@ -1,4 +1,4 @@
-const prod = process.env.NODE_ENV === 'production';
+const prod = process.env.BUILD_ENV === 'production';
 
 module.exports = {
   'process.env.EXAMPLE_ROOT': prod
