@@ -9844,6 +9844,14 @@ netmask@~1.0.4:
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
   integrity sha1-ICl+idhvb2QA8lDZ9Pa0wZRfzTU=
 
+next-images@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/next-images/-/next-images-1.0.3.tgz#d766ac036b2d54d9d10a4539eeecacb39c9e24d5"
+  integrity sha512-yZNljIWgCd6CZpn2Rn6bC1DoSfmkqelk4Fw0d1QgoyuH7DT9IA2kJIVaEiESxOjN6mAUI5fFi12i++GcrgK8uA==
+  dependencies:
+    file-loader "^2.0.0"
+    url-loader "^1.1.2"
+
 next@^7.0.2:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/next/-/next-7.0.2.tgz#5ff6b3f0e6cf03ce539d5779a55dc1f8fb1759d7"
