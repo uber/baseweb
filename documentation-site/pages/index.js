@@ -11,12 +11,12 @@ import React from 'react';
 import Example from '../components/example';
 import Layout from '../components/layout';
 
-import Input from '../static/examples/input/example.js';
+import Input from 'examples/input/example.js';
 
 export default function Hello() {
   return (
     <Layout>
-      <Example title="Basic usage" path="input/example.js">
+      <Example title="Basic usage" path="examples/input/example.js">
         <Input />
       </Example>
     </Layout>

@@ -16,6 +16,7 @@ const isProd = process.env.BUILD_ENV === 'production';
 module.exports = withImages({
   webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
     config.resolve.alias.baseui = resolve(__dirname, '../dist');
+    config.resolve.alias.examples = resolve(__dirname, 'static/examples');
     return config;
   },
   assetPrefix: isProd ? '/beta' : '',

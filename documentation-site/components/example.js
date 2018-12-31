@@ -5,12 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* global fetch process */
 
 import * as React from 'react';
 import CodeSandboxer from 'react-codesandboxer';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-import {Button, KIND, SIZE} from 'baseui/button';
+import {Button, KIND} from 'baseui/button';
 import {Card} from 'baseui/card';
 import {Block} from 'baseui/block';
 import Check from 'baseui/icon/check';
@@ -18,10 +19,6 @@ import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
 const Link = styled(StyledLink, {cursor: 'pointer'});
-
-function getSourcePath(path: string): string {
-  return process.env.EXAMPLE_ROOT + path;
-}
 
 const index = `
 import React from "react";
@@ -47,13 +44,8 @@ ReactDOM.render(
 );
 `;
 
-async function fetchSource(path: string): string {
-  const res = await fetch(EXAMPLE_ROOT + path);
-  return res.text();
-}
-
-function Source(props: {children: React.Node}) {
-  if (!props.children) return null;
+function Source(props: {children: ?React.Node}) {
+  if (!props.children || typeof props.children !== 'string') return null;
 
   return (
     <Block
@@ -72,7 +64,7 @@ function Source(props: {children: React.Node}) {
 
 type PropsT = {
   children: React.Node,
-  path: string,
+  path: string, // required to fetch the uncompiled source code
   title: string,
 };
 
@@ -88,7 +80,8 @@ class Example extends React.Component<PropsT, StateT> {
   };
 
   async componentDidMount() {
-    const res = await fetch(getSourcePath(this.props.path));
+    const sourcePath = `${String(process.env.STATIC_ROOT)}${this.props.path}`;
+    const res = await fetch(sourcePath);
     const source = await res.text();
     this.setState({source});
   }
@@ -104,9 +97,7 @@ class Example extends React.Component<PropsT, StateT> {
       <Card
         overrides={{
           Root: {style: {minWidth: '776px'}},
-          Contents: {
-            style: {margin: 0},
-          },
+          Contents: {style: {margin: 0}},
         }}
       >
         <Block
@@ -122,14 +113,16 @@ class Example extends React.Component<PropsT, StateT> {
             {this.props.title}
           </Block>
           <CopyToClipboard onCopy={this.handleCopy} text={this.state.source}>
-            <Button
-              kind={KIND.secondary}
-              endEnhancer={
-                this.state.isCopied ? <Check size="scale800" /> : null
-              }
-            >
-              Copy to clipboard
-            </Button>
+            {this.state.isCopied ? (
+              <Button
+                kind={KIND.secondary}
+                endEnhancer={() => <Check size="scale800" />}
+              >
+                Copied to clipboard
+              </Button>
+            ) : (
+              <Button kind={KIND.secondary}>Copy to clipboard</Button>
+            )}
           </CopyToClipboard>
         </Block>
 
@@ -153,6 +146,7 @@ class Example extends React.Component<PropsT, StateT> {
 
         <Block paddingLeft="scale800">
           <CodeSandboxer
+            // asdf
             examplePath="/"
             example={this.state.source}
             name={this.props.title}
