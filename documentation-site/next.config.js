@@ -9,13 +9,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const {resolve} = require('path');
+const withImages = require('next-images');
 
 const isProd = process.env.BUILD_ENV === 'production';
 
-module.exports = {
+module.exports = withImages({
   webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
     config.resolve.alias.baseui = resolve(__dirname, '../dist');
     return config;
   },
   assetPrefix: isProd ? '/beta' : '',
-};
+});
