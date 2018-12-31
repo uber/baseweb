@@ -84,12 +84,6 @@ export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   ':hover': {
     backgroundColor: $theme.colors.menuFillHover,
   },
-  ':first-child': {
-    marginTop: $theme.sizing.scale300,
-  },
-  ':last-child': {
-    marginBottom: $theme.sizing.scale300,
-  },
 }));
 ListItemProfile.displayName = 'StyledListItemProfile';
 
