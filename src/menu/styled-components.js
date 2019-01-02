@@ -43,7 +43,9 @@ export const ListItem = styled(
     display: 'block',
     color: $isHighlighted ? $theme.colors.primary : $theme.colors.foreground,
     cursor: 'pointer',
-    backgroundColor: $isHighlighted ? $theme.colors.mono300 : 'transparent',
+    backgroundColor: $isHighlighted
+      ? $theme.colors.menuFillHover
+      : 'transparent',
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,

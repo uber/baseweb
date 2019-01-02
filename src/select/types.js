@@ -49,13 +49,16 @@ export type OverridesT = {
   DropdownContainer?: OverrideT<*>,
   Dropdown?: OverrideT<*>,
   DropdownOption?: OverrideT<*>,
+  DropdownListItem?: OverrideT<*>,
   OptionContent?: OverrideT<*>,
 };
 
 export type OverridesDropdownT = {
   DropdownContainer?: OverrideT<*>,
   Dropdown?: OverrideT<*>,
+  // Not a styled component
   DropdownOption?: OverrideT<*>,
+  DropdownListItem?: OverrideT<*>,
   OptionContent?: OverrideT<*>,
 };
 

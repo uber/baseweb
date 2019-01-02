@@ -17,6 +17,7 @@ import {vs} from 'react-syntax-highlighter/dist/styles/hljs';
 import Welcome from './introduction/welcome.md';
 import GettingStarted from './introduction/getting-started.md';
 import VersioningPolicy from './introduction/versioning.md';
+import BrowserSupport from './introduction/browser-support.md';
 
 import Props, {Prop} from 'pretty-proptypes';
 
@@ -31,6 +32,7 @@ const docs = [
   Welcome,
   GettingStarted,
   VersioningPolicy,
+  BrowserSupport,
   Contributing,
   CustomThemes,
 ];
