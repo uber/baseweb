@@ -49,15 +49,11 @@ function Source(props: {children: ?React.Node}) {
 
   return (
     <Block
+      as="pre"
       padding="scale800"
       overrides={{Block: {style: {fontFamily: 'courier'}}}}
     >
-      {props.children
-        .trim()
-        .split('\n')
-        .map((line, index) => (
-          <Block key={index}>{line ? line : <br />}</Block>
-        ))}
+      {props.children}
     </Block>
   );
 }
@@ -96,7 +92,12 @@ class Example extends React.Component<PropsT, StateT> {
     return (
       <Card
         overrides={{
-          Root: {style: {minWidth: '776px'}},
+          Root: {
+            style: ({$theme}) => ({
+              maxWidth: '776px',
+              marginBottom: $theme.sizing.scale1200,
+            }),
+          },
           Contents: {style: {margin: 0}},
         }}
       >
