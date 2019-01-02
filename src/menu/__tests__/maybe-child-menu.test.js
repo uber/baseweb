@@ -26,7 +26,7 @@ describe('MaybeChildMenu', () => {
         .name(),
     ).toBe('div');
   });
-  it('renders popover if getChildMenu is not provided', () => {
+  it('renders popover if getChildMenu is provided', () => {
     const wrapper = mount(
       <MaybeChildMenu
         getChildMenu={() => <button>child menu</button>}
