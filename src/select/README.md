@@ -207,6 +207,9 @@ export default () => {
   * `DropdownContainer?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Dropdown?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `DropdownOption?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * DropdownOption is an override for the Option component of the Menu. Option component is **not a styled  element** but a react component that is replaceable, for example with a profile like option, and accepts overrides for rendered elements. See Menu component API for more details. Since it's not a styled element/component it can't be restyled neither it accepts style overrides, but it accepts props that are passed down to rendered ListItem styled element or can be replaced completely, for example with the `OptionProfile` provided in the menu component.
+  * `DropdownListItem?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+    * Is a styled element that is rendered by the default dropdown list option 
   * `OptionContent?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 * `placeholder?: React.Node = 'Select...'`
   * Sets the placeholder.
