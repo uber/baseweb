@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {styled, LightTheme} from 'baseui';
+import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
 
@@ -133,7 +134,7 @@ function Colors() {
   };
 
   return (
-    <div>
+    <Block font="font300">
       <Header>Colors</Header>
       <ExampleWrapper>
         <ColorPreview colors={primaryColors} />
@@ -143,7 +144,7 @@ function Colors() {
         <ColorPreview colors={monoColors} />
         <ColorPreview colors={ratingColors} />
       </ExampleWrapper>
-    </div>
+    </Block>
   );
 }
 
