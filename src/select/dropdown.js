@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   StyledDropdownContainer,
+  StyledDropdown,
+  StyledDropdownListItem,
   StyledOptionContent,
 } from './styled-components.js';
 import {StatefulMenu} from '../menu/index.js';
@@ -91,6 +93,10 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       overrides.DropdownContainer,
       StyledDropdownContainer,
     );
+    const [ListItem, listItemProps] = getOverrides(
+      overrides.DropdownListItem,
+      StyledDropdownListItem,
+    );
     return (
       <DropdownContainer {...this.getSharedProps()} {...dropdownContainerProps}>
         <StatefulMenu
@@ -106,10 +112,9 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
           overrides={mergeOverrides(
             {
               List: {
-                style: ({$theme: {sizing}}) => ({
-                  maxHeight: maxDropdownHeight,
-                }),
+                component: StyledDropdown,
                 props: {
+                  $maxHeight: maxDropdownHeight,
                   'aria-multiselectable': multi,
                 },
               },
@@ -119,6 +124,16 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                   // figure out why the onClick handler is not
                   // triggered without this temporary fix
                   onMouseDown: this.onMouseDown,
+                  overrides: {
+                    ListItem: {
+                      component: ListItem,
+                      props: listItemProps,
+                      // slightly a hacky way to handle the list item style overrides
+                      // since the menu component doesn't provide a top level overrides for it
+                      // $FlowFixMe
+                      style: listItemProps.$style,
+                    },
+                  },
                 },
               },
             },
