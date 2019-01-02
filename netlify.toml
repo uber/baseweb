@@ -1,2 +1,5 @@
 [build]
   publish = "public/"
+
+[build.environment]
+  WEBSITE_ENV = "production"

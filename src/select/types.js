@@ -60,6 +60,7 @@ export type OverridesDropdownT = {
 };
 
 export type PropsT = {
+  /** The url or path which the breadcrumb should act as a link to. */
   'aria-label': ?string,
   'aria-describedby': ?string,
   'aria-labelledby': ?string,

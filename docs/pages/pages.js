@@ -18,6 +18,8 @@ import Welcome from './introduction/welcome.md';
 import GettingStarted from './introduction/getting-started.md';
 import VersioningPolicy from './introduction/versioning.md';
 
+import Props, {Prop} from 'pretty-proptypes';
+
 import ThemingValues from './theming/theming-values';
 import Playground from './playground';
 import CustomThemes from './theming/custom-themes.md';
@@ -74,4 +76,15 @@ storiesOf('Theming', module).add('Theming values', () => {
 
 storiesOf('Playground', module).add('Codesandbox', () => {
   return <Playground />;
+});
+
+storiesOf('Props', module).add('testing', () => {
+  // const Props = require('!!extract-react-types-loader!../../src/select/select.js');
+
+  return (
+    <Props
+      heading="Select"
+      props={require('!!extract-react-types-loader!../../src/select/select.js')}
+    />
+  );
 });

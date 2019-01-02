@@ -129,8 +129,10 @@
   },
   "dependencies": {
     "date-fns": "2.0.0-alpha.26",
+    "extract-react-types-loader": "^0.3.0",
     "memoize-one": "^5.0.0",
     "popper.js": "^1.14.3",
+    "pretty-proptypes": "^0.5.0",
     "react-dropzone": "^8.0.0",
     "react-input-mask": "^2.0.4",
     "smoothscroll-polyfill": "^0.4.3"
