@@ -18,6 +18,8 @@ import {
   Cell as StyledCell,
 } from './styled-components.js';
 
+import {AutoSizer, Column} from 'react-virtualized';
+
 import type {TablePropsT} from './types.js';
 
 export default function Table(props: TablePropsT) {
@@ -33,33 +35,91 @@ export default function Table(props: TablePropsT) {
   const [Row, RowProps] = getOverrides(overrides.Row, StyledRow);
   const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
 
-  return (
-    <Root cellspacing="0" {...restProps} {...RootProps}>
-      <Head {...HeadProps}>
-        {columns.map((column, index) => {
-          return (
-            <HeadCell key={index} {...HeadCellProps}>
-              {column}
-            </HeadCell>
-          );
-        })}
+  function rowGetter({index}) {
+    return rows[index];
+  }
+
+  function headerRowRenderer({columns, style}) {
+    return (
+      <Head style={style} {...HeadProps}>
+        {columns}
       </Head>
-      <Body {...BodyProps}>
-        {rows.map((row, i) => {
-          return (
-            <Row key={i} {...RowProps}>
-              {row.map((cell, j) => {
-                return (
-                  <Cell key={j} {...CellProps}>
-                    {cell}
-                  </Cell>
-                );
-              })}
-            </Row>
-          );
-        })}
-      </Body>
-    </Root>
+    );
+  }
+
+  function rowRenderer({
+    className,
+    columns,
+    index,
+    key,
+    onRowClick,
+    onRowDoubleClick,
+    onRowMouseOut,
+    onRowMouseOver,
+    onRowRightClick,
+    rowData,
+    style,
+  }) {
+    return (
+      <Row key={key} role="row" style={style} {...RowProps}>
+        {columns}
+      </Row>
+    );
+  }
+
+  function renderHeaderCell({dataKey, label}) {
+    return (
+      <HeadCell key={dataKey} {...HeadCellProps}>
+        {label}
+      </HeadCell>
+    );
+  }
+
+  function cellRenderer({
+    cellData,
+    columnData,
+    columnIndex,
+    dataKey,
+    isScrolling,
+    rowData,
+    rowIndex,
+  }) {
+    return <Cell {...CellProps}>{cellData}</Cell>;
+  }
+
+  return (
+    <AutoSizer>
+      {({width, height}) => (
+        <Root
+          rowGetter={rowGetter}
+          headerHeight={40}
+          headerRowRenderer={headerRowRenderer}
+          rowRenderer={rowRenderer}
+          width={width}
+          height={height}
+          rowCount={rows.length}
+          rowHeight={40}
+          {...restProps}
+          {...RootProps}
+        >
+          {columns.map((column, index) => {
+            return (
+              <Column
+                key={index}
+                headerRenderer={renderHeaderCell}
+                label={column}
+                flexGrow={1}
+                columnData={Object.assign({}, rows[index])}
+                cellDataGetter={({rowData}) => rowData[index]}
+                cellRenderer={cellRenderer}
+                dataKey={index}
+                width={150}
+              />
+            );
+          })}
+        </Root>
+      )}
+    </AutoSizer>
   );
 }
 

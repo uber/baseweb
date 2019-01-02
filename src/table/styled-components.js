@@ -8,10 +8,12 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
 
+import {Table} from 'react-virtualized';
+
 /**
  * Main component container element
  */
-export const Root = styled('table', ({$theme}: SharedStylePropsT) => {
+export const Root = styled(Table, ({$theme}: SharedStylePropsT) => {
   const {borders} = $theme;
   return {
     ...borders.border400,
@@ -20,42 +22,48 @@ export const Root = styled('table', ({$theme}: SharedStylePropsT) => {
   };
 });
 
-export const Head = styled('thead', ({$theme}: SharedStylePropsT) => {
+export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
   const {lighting, borders} = $theme;
   return {
     textAlign: 'left',
     boxShadow: lighting.shadow400,
     borderTopRightRadius: borders.radius200,
     borderTopLeftRadius: borders.radius200,
+    display: 'flex',
+    flexDirection: 'row',
   };
 });
 
-export const HeadCell = styled('th', ({$theme}: SharedStylePropsT) => {
+export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
   const {borders, sizing, typography} = $theme;
   return {
-    padding: `${sizing.scale550} ${sizing.scale0} ${sizing.scale550} ${
-      sizing.scale600
-    }`,
-    ...typography.font350,
-    boxSizing: 'border-box',
-    height: sizing.scale1200,
-    width: sizing.scale1200,
-    ...borders.border300,
-    borderLeft: 'none',
-    borderTop: 'none',
-    borderBottom: 'none',
-    ':last-child': {
-      border: 'none',
-    },
+    // padding: `${sizing.scale550} ${sizing.scale0} ${sizing.scale550} ${
+    //   sizing.scale600
+    // }`,
+    // ...typography.font350,
+    // boxSizing: 'border-box',
+    // height: sizing.scale1200,
+    // width: sizing.scale1200,
+    // ...borders.border300,
+    // borderLeft: 'none',
+    // borderTop: 'none',
+    // borderBottom: 'none',
+    // ':last-child': {
+    //   border: 'none',
+    // },
   };
 });
 export const Body = styled('tbody', (props: SharedStylePropsT) => {
   return {};
 });
-export const Row = styled('tr', (props: SharedStylePropsT) => {
-  return {};
+export const Row = styled('div', (props: SharedStylePropsT) => {
+  return {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  };
 });
-export const Cell = styled('td', ({$theme}: SharedStylePropsT) => {
+export const Cell = styled('div', ({$theme}: SharedStylePropsT) => {
   const {sizing, typography} = $theme;
   return {
     ...typography.font300,

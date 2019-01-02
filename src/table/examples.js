@@ -31,6 +31,10 @@ const ControlledTable = (props: TablePropsT) => {
 
 export default {
   [examples.TABLE]: function TableStory() {
-    return <ControlledTable columns={['Name', 'Age', 'Address']} data={data} />;
+    return (
+      <div style={{height: '100vh', width: '100%'}}>
+        <ControlledTable columns={['Name', 'Age', 'Address']} data={data} />
+      </div>
+    );
   },
 };
