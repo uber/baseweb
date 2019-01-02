@@ -89,7 +89,7 @@ Object {
   ":last-child": Object {
     "marginBottom": "$theme.sizing.scale300",
   },
-  "backgroundColor": "$theme.colors.mono300",
+  "backgroundColor": "$theme.colors.menuFillHover",
   "color": "$theme.colors.primary",
   "cursor": "pointer",
   "display": "block",

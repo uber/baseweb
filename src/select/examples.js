@@ -173,6 +173,18 @@ export default {
           <CustomOptionLabel option={option} showColor />
         )}
         getValueLabel={({option}) => <CustomOptionLabel option={option} />}
+        overrides={{
+          DropdownListItem: {
+            style: ({$theme, $isHighlighted}) => ({
+              backgroundColor: $isHighlighted
+                ? $theme.colors.primary50
+                : 'transparent',
+              ':hover': {
+                backgroundColor: $theme.colors.primary50,
+              },
+            }),
+          },
+        }}
       />
     );
   },

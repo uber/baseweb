@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {TYPE} from './constants.js';
 import {getSvgStyles} from '../icon/styled-components.js';
+import {StyledList, StyledListItem} from '../menu/index.js';
 import {SIZE} from './constants.js';
 import type {SharedStylePropsT} from './types.js';
 import {ellipsisText} from '../styles/util.js';
@@ -78,6 +79,16 @@ export const StyledDropdownContainer = styled('div', props => {
   };
 });
 StyledDropdownContainer.displayName = 'StyledDropdownContainer';
+
+export const StyledDropdown = styled(StyledList, props => {
+  const {$maxHeight} = props;
+  return {
+    maxHeight: $maxHeight,
+  };
+});
+StyledDropdown.displayName = 'StyledDropdown';
+
+export const StyledDropdownListItem = StyledListItem;
 
 export const StyledOptionContent = styled('div', props => {
   const {$isHighlighted, $selected, $disabled, $theme} = props;
