@@ -161,7 +161,7 @@ class Example extends React.Component<PropsT, StateT> {
             providedFiles={{'index.js': {content: index}}}
             template="create-react-app"
           >
-             {() => <Link>Open in CodeSandbox</Link>}
+            {() => <Link>Open in CodeSandbox</Link>}
           </CodeSandboxer>
         </Block>
       </Card>
