@@ -70,7 +70,7 @@ Object {
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
   },
-  "backgroundColor": "$theme.colors.mono300",
+  "backgroundColor": "$theme.colors.menuFillHover",
   "color": "$theme.colors.primary",
   "cursor": "pointer",
   "display": "block",
