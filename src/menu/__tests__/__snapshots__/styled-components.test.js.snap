@@ -91,14 +91,8 @@ Object {
 
 exports[`Menu Styled Components ListItemProfile - basic render: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
-  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
-  },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
   },
   "alignItems": "center",
   "cursor": "pointer",
