@@ -146,7 +146,6 @@ class Example extends React.Component<PropsT, StateT> {
 
         <Block paddingLeft="scale800">
           <CodeSandboxer
-            // asdf
             examplePath="/"
             example={this.state.source}
             name={this.props.title}
