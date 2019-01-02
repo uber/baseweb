@@ -43,15 +43,23 @@ Object {
 exports[`SelectDropdown renders StatefulMenu: Passes correct overrides to the StatefulMenu 1`] = `
 Object {
   "List": Object {
+    "component": [Function],
     "props": Object {
+      "$maxHeight": "1000px",
       "aria-multiselectable": false,
     },
-    "style": [Function],
   },
   "Option": Object {
     "props": Object {
       "getItemLabel": [Function],
       "onMouseDown": [Function],
+      "overrides": Object {
+        "ListItem": Object {
+          "component": [MockFunction],
+          "props": Object {},
+          "style": undefined,
+        },
+      },
     },
   },
 }

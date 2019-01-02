@@ -28,6 +28,8 @@ export {
   StyledClearIcon,
   StyledSearchIcon,
   StyledDropdownContainer,
+  StyledDropdown,
+  StyledDropdownListItem,
   StyledOptionContent,
 } from './styled-components.js';
 export {default as filterOptions} from './utils/default-filter-options.js';
