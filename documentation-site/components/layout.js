@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import {MDXProvider} from '@mdx-js/tag';
+import Link from 'next/link';
 
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
@@ -17,6 +19,7 @@ import {
 } from 'baseui/header-navigation';
 import {StatefulSelect, TYPE} from 'baseui/select';
 
+import MarkdownElements from './markdown-elements';
 import Logo from '../images/Logo.png';
 
 type PropsT = {
@@ -37,7 +40,15 @@ export default (props: PropsT) => (
     >
       <NavigationList align={ALIGN.left}>
         <Block display="flex" alignItems="center">
-          <Block as="img" height="29.25px" src={Logo} width="101px" />
+          <Link href="/" prefetch>
+            <Block
+              as="img"
+              height="29.25px"
+              src={Logo}
+              width="101px"
+              overrides={{Block: {style: {cursor: 'pointer'}}}}
+            />
+          </Link>
           <Block marginLeft="scale1600" width="288px">
             <StatefulSelect
               options={[]}
@@ -49,7 +60,9 @@ export default (props: PropsT) => (
       </NavigationList>
       <NavigationList align={ALIGN.center} />
       <NavigationList align={ALIGN.right}>
-        <Button>Get Started</Button>
+        <Link href="/getting-started" prefetch>
+          <Button>Get Started</Button>
+        </Link>
       </NavigationList>
     </HeaderNavigation>
 
@@ -61,6 +74,7 @@ export default (props: PropsT) => (
 
       <Block
         paddingLeft="scale900"
+        width="100%"
         overrides={{
           Block: {
             style: ({$theme}) => ({
@@ -69,7 +83,9 @@ export default (props: PropsT) => (
           },
         }}
       >
-        {props.children}
+        <MDXProvider components={MarkdownElements}>
+          {props.children}
+        </MDXProvider>
       </Block>
     </Block>
   </React.Fragment>
