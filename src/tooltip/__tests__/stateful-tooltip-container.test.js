@@ -47,6 +47,7 @@ describe('StatefulTooltipContainer', () => {
       children,
       dismissOnClickOutside: true,
       dismissOnEsc: true,
+      ignoreBoundary: false,
     });
   });
 });

@@ -13,7 +13,7 @@ import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
 export type ItemT = *;
 export type ItemsT = $ReadOnlyArray<ItemT>;
 
-export type GetItemLabelFnT = (item: ItemT) => React$Node;
+export type GetItemLabelFnT = (item: ItemT) => React.Node;
 
 export type GetProfileItemLabelsFnT = (
   item: ItemT,
@@ -110,10 +110,12 @@ export type MenuProfilePropsT = {
 };
 
 export type SharedStatelessPropsT = {
-  items: ItemsT,
-  rootRef: RootRefT,
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   highlightedIndex?: number,
+  items: ItemsT,
+  onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  rootRef: RootRefT,
 };
 
 export type StatefulMenuPropsT = StatefulContainerPropsT & MenuPropsT;
@@ -129,6 +131,7 @@ export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
 export type OptionListPropsT = {
   item: ItemT,
   getItemLabel: GetItemLabelFnT,
+  getChildMenu?: (item: ItemT) => React.Node,
   size: $Keys<typeof OPTION_LIST_SIZE>,
   overrides: {
     ListItem?: OverrideT<*>,
@@ -138,6 +141,7 @@ export type OptionListPropsT = {
 
 export type OptionProfilePropsT = {
   item: ItemT,
+  getChildMenu?: (item: ItemT) => React.Node,
   getProfileItemLabels: GetProfileItemLabelsFnT,
   getProfileItemImg: GetProfileItemImgFnT,
   getProfileItemImgText: GetProfileItemImgTextFnT,

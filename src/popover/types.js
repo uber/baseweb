@@ -54,6 +54,7 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 export type BasePopoverPropsT = {
   accessibilityType?: AccessibilityTypeT,
   id?: string,
+  ignoreBoundary?: boolean,
   onMouseEnterDelay?: number,
   onMouseLeaveDelay?: number,
   overrides?: OverridesT,
