@@ -12,6 +12,7 @@ import {
   toObjectOverride,
   mergeOverrides,
   mergeOverride,
+  mergeStyleOverrides,
   getOverrides,
 } from '../overrides.js';
 
@@ -135,6 +136,37 @@ describe('Helpers - Overrides', () => {
       color: 'blue',
       textTransform: 'uppercase',
     });
+  });
+
+  test('mergeStyleOverrides', () => {
+    const overrideObject1 = {color: 'red', textTransform: 'uppercase'};
+    const overrideObject2 = {color: 'blue'};
+    const overrideFunction1 = () => overrideObject1;
+    const overrideFunction2 = () => overrideObject2;
+    const expectedResult = {
+      color: 'blue',
+      textTransform: 'uppercase',
+    };
+
+    const result1 = mergeStyleOverrides(overrideObject1, overrideObject2);
+    const result2 = mergeStyleOverrides(overrideObject1, overrideFunction2);
+    const result3 = mergeStyleOverrides(overrideFunction1, overrideObject2);
+    const result4 = mergeStyleOverrides(overrideFunction1, overrideFunction2);
+
+    expect(typeof result1).toBe('object');
+    expect(result1).toEqual(expectedResult);
+
+    expect(typeof result2).toBe('function');
+    // $FlowFixMe result should be a function here
+    expect(result2()).toEqual(expectedResult);
+
+    expect(typeof result3).toBe('function');
+    // $FlowFixMe result should be a function here
+    expect(result3()).toEqual(expectedResult);
+
+    expect(typeof result4).toBe('function');
+    // $FlowFixMe result should be a function here
+    expect(result4()).toEqual(expectedResult);
   });
 
   test('getOverrides', () => {
