@@ -31,7 +31,6 @@ const docs = [
   GettingStarted,
   VersioningPolicy,
   BrowserSupport,
-  Contributing,
   CustomThemes,
 ];
 
@@ -68,6 +67,10 @@ parsedDocs.forEach(doc => {
       />
     );
   });
+});
+
+storiesOf('Contributing', module).add('Getting started', () => {
+  return <Contributing />;
 });
 
 storiesOf('Theming', module).add('Theming values', () => {

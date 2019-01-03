@@ -10,14 +10,19 @@ LICENSE file in the root directory of this source tree.
 
 const {resolve} = require('path');
 const withImages = require('next-images');
+const withMDX = require('@zeit/next-mdx')({
+  extension: /\.mdx?$/,
+});
 
 const isProd = process.env.BUILD_ENV === 'production';
 
-module.exports = withImages({
-  webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
-    config.resolve.alias.baseui = resolve(__dirname, '../dist');
-    config.resolve.alias.examples = resolve(__dirname, 'static/examples');
-    return config;
-  },
-  assetPrefix: isProd ? '/beta' : '',
-});
+module.exports = withMDX(
+  withImages({
+    webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
+      config.resolve.alias.baseui = resolve(__dirname, '../dist');
+      return config;
+    },
+    assetPrefix: isProd ? '/beta' : '',
+    pageExtensions: ['js', 'jsx', 'mdx'],
+  }),
+);
