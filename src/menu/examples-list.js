@@ -13,4 +13,5 @@ module.exports = {
   MENU_PROFILE: 'Stateless Menu Profile',
   MENU_STATEFUL: 'Stateful Menu with Keybindings',
   MENU_PROFILE_STATEFUL: 'Stateful Menu Profile with Keybindings',
+  CHILD_MENU: 'Child Menu Hover',
 };
