@@ -6,4 +6,5 @@ coverage
 docs
 webpack.e2e.config.js
 documentation-site/.next
+documentation-site/static/examples
 public
