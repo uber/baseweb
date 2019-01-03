@@ -4,6 +4,7 @@ exports[`StatefulPopover basic render: renders <Popover/> as child to container 
 <Popover
   accessibilityType="menu"
   content={[Function]}
+  ignoreBoundary={false}
   isOpen={true}
   onBlur={[Function]}
   onClickOutside={[Function]}
@@ -34,6 +35,7 @@ exports[`StatefulPopover basic render: renders <StatefulContainer/> 1`] = `
   content={[MockFunction]}
   dismissOnClickOutside={true}
   dismissOnEsc={true}
+  ignoreBoundary={false}
   initialState={
     Object {
       "isOpen": true,
