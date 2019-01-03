@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 // Components
+import MaybeChildMenu from './maybe-child-menu.js';
 import {
   ListItemProfile as StyledListItemProfile,
   ProfileImgContainer as StyledProfileImgContainer,
@@ -23,6 +24,7 @@ import type {OptionProfilePropsT} from './types.js';
 
 export default function OptionProfile({
   item,
+  getChildMenu,
   getProfileItemLabels,
   getProfileItemImg,
   getProfileItemImgText,
@@ -62,30 +64,32 @@ export default function OptionProfile({
   const {title, subtitle, body} = getProfileItemLabels(item);
 
   return (
-    <ListItemProfile {...restProps} {...listItemProfileProps}>
-      <ProfileImgContainer {...profileImgContainerProps}>
-        {ItemImg &&
-          (typeof ItemImg === 'string' ? (
-            // Render img src string wrapped with image component
-            <ProfileImg
-              src={ItemImg}
-              alt={getProfileItemImgText(item)}
-              {...profileImgProps}
-            />
-          ) : (
-            // Or just render the entire component user specified
-            <ItemImg {...profileImgProps} />
-          ))}
-      </ProfileImgContainer>
-      <ProfileLabelsContainer {...profileLabelsContainerProps}>
-        {title && <ProfileTitle {...profileTitleProps}>{title}</ProfileTitle>}
-        {subtitle && (
-          <ProfileSubtitle {...profileSubtitleProps}>
-            {subtitle}
-          </ProfileSubtitle>
-        )}
-        {body && <ProfileBody {...profileBodyProps}>{body}</ProfileBody>}
-      </ProfileLabelsContainer>
-    </ListItemProfile>
+    <MaybeChildMenu getChildMenu={getChildMenu} item={item}>
+      <ListItemProfile {...restProps} {...listItemProfileProps}>
+        <ProfileImgContainer {...profileImgContainerProps}>
+          {ItemImg &&
+            (typeof ItemImg === 'string' ? (
+              // Render img src string wrapped with image component
+              <ProfileImg
+                src={ItemImg}
+                alt={getProfileItemImgText(item)}
+                {...profileImgProps}
+              />
+            ) : (
+              // Or just render the entire component user specified
+              <ItemImg {...profileImgProps} />
+            ))}
+        </ProfileImgContainer>
+        <ProfileLabelsContainer {...profileLabelsContainerProps}>
+          {title && <ProfileTitle {...profileTitleProps}>{title}</ProfileTitle>}
+          {subtitle && (
+            <ProfileSubtitle {...profileSubtitleProps}>
+              {subtitle}
+            </ProfileSubtitle>
+          )}
+          {body && <ProfileBody {...profileBodyProps}>{body}</ProfileBody>}
+        </ProfileLabelsContainer>
+      </ListItemProfile>
+    </MaybeChildMenu>
   );
 }

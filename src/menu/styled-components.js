@@ -22,14 +22,13 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   marginBottom: '0',
   marginLeft: '0',
   marginRight: '0',
-  paddingTop: '0',
-  paddingBottom: '0',
+  paddingTop: $theme.sizing.scale300,
+  paddingBottom: $theme.sizing.scale300,
   paddingLeft: '0',
   paddingRight: '0',
   backgroundColor: $theme.colors.backgroundAlt,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
-  overflow: 'auto',
 }));
 List.displayName = 'StyledList';
 
@@ -68,12 +67,6 @@ export const ListItem = styled(
       $size === OPTION_LIST_SIZE.compact
         ? $theme.sizing.scale900
         : $theme.sizing.scale600,
-    ':first-child': {
-      marginTop: $theme.sizing.scale300,
-    },
-    ':last-child': {
-      marginBottom: $theme.sizing.scale300,
-    },
   }),
 );
 ListItem.displayName = 'StyledListItem';
@@ -92,12 +85,6 @@ export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   transitionTimingFunction: $theme.animation.easeOutCurve,
   ':hover': {
     backgroundColor: $theme.colors.menuFillHover,
-  },
-  ':first-child': {
-    marginTop: $theme.sizing.scale300,
-  },
-  ':last-child': {
-    marginBottom: $theme.sizing.scale300,
   },
 }));
 ListItemProfile.displayName = 'StyledListItemProfile';

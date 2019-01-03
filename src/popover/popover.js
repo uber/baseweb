@@ -141,6 +141,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
           fn: this.onPopperUpdate,
           order: 900,
         },
+        preventOverflow: {enabled: !this.props.ignoreBoundary},
       },
     });
   }
