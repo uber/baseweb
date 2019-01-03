@@ -144,7 +144,6 @@ export default {
             style: {
               height: '150px',
               width: '350px',
-              overflow: 'auto',
             },
           },
           Option: {
