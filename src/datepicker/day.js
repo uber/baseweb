@@ -74,8 +74,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   onClick = (event: Event) => {
     const {date, disabled} = this.props;
     if (!disabled) {
-      this.props.onSelect({date});
       this.props.onClick({event, date});
+      this.props.onSelect({date});
     }
   };
 
