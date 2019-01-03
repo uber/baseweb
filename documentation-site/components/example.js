@@ -147,7 +147,6 @@ class Example extends React.Component<PropsT, StateT> {
 
         <Block paddingLeft="scale800">
           <CodeSandboxer
-            // asdf
             examplePath="/"
             example={this.state.source}
             name={this.props.title}
@@ -163,7 +162,7 @@ class Example extends React.Component<PropsT, StateT> {
             providedFiles={{'index.js': {content: index}}}
             template="create-react-app"
           >
-            {() => <Link>open in code sandbox</Link>}
+            {() => <Link>Open in CodeSandbox</Link>}
           </CodeSandboxer>
         </Block>
       </Card>
