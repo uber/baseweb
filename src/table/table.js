@@ -92,7 +92,7 @@ export default function Table(props: TablePropsT) {
       {({width, height}) => (
         <Root
           rowGetter={rowGetter}
-          headerHeight={40}
+          headerHeight={48}
           headerRowRenderer={headerRowRenderer}
           rowRenderer={rowRenderer}
           width={width}

@@ -15,11 +15,7 @@ import {Table} from 'react-virtualized';
  */
 export const Root = styled(Table, ({$theme}: SharedStylePropsT) => {
   const {borders} = $theme;
-  return {
-    ...borders.border400,
-    borderCollapse: 'separate',
-    borderRadius: borders.radius200,
-  };
+  return {};
 });
 
 export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
@@ -31,26 +27,27 @@ export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
     borderTopLeftRadius: borders.radius200,
     display: 'flex',
     flexDirection: 'row',
+    ...borders.border400,
   };
 });
 
 export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
   const {borders, sizing, typography} = $theme;
   return {
-    // padding: `${sizing.scale550} ${sizing.scale0} ${sizing.scale550} ${
-    //   sizing.scale600
-    // }`,
-    // ...typography.font350,
-    // boxSizing: 'border-box',
-    // height: sizing.scale1200,
-    // width: sizing.scale1200,
-    // ...borders.border300,
-    // borderLeft: 'none',
-    // borderTop: 'none',
-    // borderBottom: 'none',
-    // ':last-child': {
-    //   border: 'none',
-    // },
+    padding: `${sizing.scale500} ${sizing.scale0} ${sizing.scale500} ${
+      sizing.scale600
+    }`,
+    ...typography.font350,
+    boxSizing: 'border-box',
+    height: '100%',
+    width: '100%',
+    ...borders.border300,
+    borderLeft: 'none',
+    borderTop: 'none',
+    borderBottom: 'none',
+    ':last-child': {
+      border: 'none',
+    },
   };
 });
 export const Body = styled('tbody', (props: SharedStylePropsT) => {
