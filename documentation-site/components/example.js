@@ -49,15 +49,11 @@ function Source(props: {children: ?React.Node}) {
 
   return (
     <Block
+      as="pre"
       padding="scale800"
       overrides={{Block: {style: {fontFamily: 'courier'}}}}
     >
-      {props.children
-        .trim()
-        .split('\n')
-        .map((line, index) => (
-          <Block key={index}>{line ? line : <br />}</Block>
-        ))}
+      {props.children}
     </Block>
   );
 }
@@ -70,12 +66,14 @@ type PropsT = {
 
 type StateT = {
   isCopied: boolean,
+  isSourceOpen: boolean,
   source: ?string,
 };
 
 class Example extends React.Component<PropsT, StateT> {
   state = {
     isCopied: false,
+    isSourceOpen: false,
     source: null,
   };
 
@@ -96,7 +94,12 @@ class Example extends React.Component<PropsT, StateT> {
     return (
       <Card
         overrides={{
-          Root: {style: {minWidth: '776px'}},
+          Root: {
+            style: ({$theme}) => ({
+              maxWidth: '776px',
+              marginBottom: $theme.sizing.scale1200,
+            }),
+          },
           Contents: {style: {margin: 0}},
         }}
       >
@@ -112,18 +115,37 @@ class Example extends React.Component<PropsT, StateT> {
           <Block as="span" font="font500" color="mono1000">
             {this.props.title}
           </Block>
-          <CopyToClipboard onCopy={this.handleCopy} text={this.state.source}>
-            {this.state.isCopied ? (
-              <Button
-                kind={KIND.secondary}
-                endEnhancer={() => <Check size="scale800" />}
-              >
-                Copied to clipboard
-              </Button>
-            ) : (
-              <Button kind={KIND.secondary}>Copy to clipboard</Button>
+          <Block display="flex" alignItems="center">
+            {this.state.isSourceOpen && (
+              <Block marginRight="scale400">
+                <CopyToClipboard
+                  onCopy={this.handleCopy}
+                  text={this.state.source}
+                >
+                  {this.state.isCopied ? (
+                    <Button
+                      kind={KIND.secondary}
+                      endEnhancer={() => <Check size="scale800" />}
+                    >
+                      Copied to clipboard
+                    </Button>
+                  ) : (
+                    <Button kind={KIND.secondary}>Copy to clipboard</Button>
+                  )}
+                </CopyToClipboard>
+              </Block>
             )}
-          </CopyToClipboard>
+            <Button
+              kind={KIND.secondary}
+              onClick={() =>
+                this.setState(prevState => ({
+                  isSourceOpen: !prevState.isSourceOpen,
+                }))
+              }
+            >
+              {this.state.isSourceOpen ? 'Hide' : 'Show'} Source
+            </Button>
+          </Block>
         </Block>
 
         <Block
@@ -132,7 +154,9 @@ class Example extends React.Component<PropsT, StateT> {
             Block: {
               style: ({$theme}) => ({
                 borderTop: `1px solid ${$theme.colors.border}`,
-                borderBottom: `1px solid ${$theme.colors.border}`,
+                borderBottom: this.state.isSourceOpen
+                  ? `1px solid ${$theme.colors.border}`
+                  : null,
               }),
             },
           }}
@@ -140,30 +164,34 @@ class Example extends React.Component<PropsT, StateT> {
           {this.props.children}
         </Block>
 
-        <Block>
-          <Source>{this.state.source}</Source>
-        </Block>
+        {this.state.isSourceOpen && (
+          <React.Fragment>
+            <Block>
+              <Source>{this.state.source}</Source>
+            </Block>
 
-        <Block paddingLeft="scale800">
-          <CodeSandboxer
-            examplePath="/"
-            example={this.state.source}
-            name={this.props.title}
-            dependencies={{
-              baseui: '5.1.0',
-              react: '16.5.2',
-              'react-dom': '16.5.2',
-              'react-scripts': '2.0.3',
-              'styletron-engine-atomic': '1.0.9',
-              'styletron-react': '4.3.6',
-              'styletron-react-core': '1.3.3',
-            }}
-            providedFiles={{'index.js': {content: index}}}
-            template="create-react-app"
-          >
-            {() => <Link>Open in CodeSandbox</Link>}
-          </CodeSandboxer>
-        </Block>
+            <Block paddingLeft="scale800">
+              <CodeSandboxer
+                examplePath="/"
+                example={this.state.source}
+                name={this.props.title}
+                dependencies={{
+                  baseui: '5.1.0',
+                  react: '16.5.2',
+                  'react-dom': '16.5.2',
+                  'react-scripts': '2.0.3',
+                  'styletron-engine-atomic': '1.0.9',
+                  'styletron-react': '4.3.6',
+                  'styletron-react-core': '1.3.3',
+                }}
+                providedFiles={{'index.js': {content: index}}}
+                template="create-react-app"
+              >
+                {() => <Link>Open in CodeSandbox</Link>}
+              </CodeSandboxer>
+            </Block>
+          </React.Fragment>
+        )}
       </Card>
     );
   }

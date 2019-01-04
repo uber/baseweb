@@ -67,14 +67,14 @@ export default (props: PropsT) => (
       </NavigationList>
     </HeaderNavigation>
 
-    <Block display="flex" flex="1" paddingTop="scale500">
+    <Block display="flex" paddingTop="scale500">
       <Block display="flex" marginLeft="scale800" marginRight="scale800">
         <Sidebar />
       </Block>
 
       <Block
+        flex="2"
         paddingLeft="scale900"
-        width="100%"
         overrides={{
           Block: {
             style: ({$theme}) => ({

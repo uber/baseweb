@@ -55,25 +55,34 @@ const SubNavigation = props => {
   const {routes = []} = props;
   return routes.map(route => {
     return (
-      <ListItem font="font300" key={route.path} as="li">
-        <NavigationLink path={route.path} text={route.text} />
-      </ListItem>
+      <React.Fragment key={route.text}>
+        <ListItem font={props.routeFont} key={route.path} as="li">
+          {route.path ? (
+            <NavigationLink path={route.path} text={route.text} />
+          ) : (
+            route.text
+          )}
+        </ListItem>
+        <List>
+          <SubNavigation routes={route.children} routeFont="font300" />
+        </List>
+      </React.Fragment>
     );
   });
 };
 
 export default () => (
-  <List as="ul" font="font350">
+  <List as="ul" font="font450">
     {Routes.map(route => {
       return (
-        <React.Fragment key={route.path}>
+        <React.Fragment key={route.text}>
           {route.path ? (
             <NavigationLink path={route.path} text={route.text} />
           ) : (
             route.text
           )}
           <List>
-            <SubNavigation routes={route.children} />
+            <SubNavigation routes={route.children} routeFont="font350" />
           </List>
         </React.Fragment>
       );
