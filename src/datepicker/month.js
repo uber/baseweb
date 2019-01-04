@@ -65,6 +65,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
           highlightedDate={this.props.highlightedDate}
           highlightDates={this.props.highlightDates}
           includeDates={this.props.includeDates}
+          isRange={this.props.isRange}
           key={i}
           locale={this.props.locale}
           minDate={this.props.minDate}

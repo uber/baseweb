@@ -84,6 +84,8 @@ export type CalendarPropsT = {
   highlightedDate: ?Date,
   /** A list of selectable dates. */
   includeDates: ?Array<Date>,
+  /** Defines if a range of dates can be selected. */
+  isRange: boolean,
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
   locale: ?LocaleT,
   /** A max date that is selectable. */
@@ -108,7 +110,7 @@ export type CalendarPropsT = {
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth: boolean,
   /** Currently selected date. */
-  selected: ?Date,
+  selected: ?Date | Array<Date>,
   /** A helper handler for disabling a keyboard navigation and keyboard selection through the calendar dates while navigation through the month or year select controls. */
   setActiveState: boolean => void,
 };

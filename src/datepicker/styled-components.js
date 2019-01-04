@@ -72,9 +72,13 @@ export const StyledMonth = styled('div', (props: SharedStylePropsT) => {
 });
 
 export const StyledWeek = styled('div', (props: SharedStylePropsT) => {
+  const {
+    $theme: {sizing},
+  } = props;
   return {
     whiteSpace: 'no-wrap',
     display: 'flex',
+    marginBottom: sizing.scale100,
   };
 });
 
@@ -85,6 +89,8 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
     $outsideMonth,
     $disabled,
     $selected,
+    $pseudoHighlighted,
+    $pseudoSelected,
     $theme: {colors, sizing, borders},
   } = props;
   return {
@@ -110,9 +116,30 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
         : 'inherit',
     backgroundColor: $selected
       ? colors.primary
-      : $isHovered || $isHighlighted
+      : $isHovered || $isHighlighted || $pseudoHighlighted || $pseudoSelected
         ? colors.primary100
         : 'transparent',
-    borderRadius: borders.useRoundedCorners ? borders.radius200 : '0px',
+    borderRadius:
+      !$isHighlighted && ($pseudoHighlighted || $pseudoSelected)
+        ? '0px'
+        : borders.useRoundedCorners
+          ? borders.radius200
+          : '0px',
+    ':first-child': {
+      borderRadius:
+        !$isHighlighted &&
+        ($pseudoHighlighted || $pseudoSelected) &&
+        borders.useRoundedCorners
+          ? `${borders.radius200} 0 0 ${borders.radius200}`
+          : '0px',
+    },
+    ':last-child': {
+      borderRadius:
+        !$isHighlighted &&
+        ($pseudoHighlighted || $pseudoSelected) &&
+        borders.useRoundedCorners
+          ? `0 ${borders.radius200} ${borders.radius200} 0`
+          : '0px',
+    },
   };
 });

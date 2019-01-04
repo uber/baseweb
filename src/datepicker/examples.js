@@ -27,15 +27,26 @@ class DatepickerWithInput extends React.Component<
 > {
   state = {
     isOpen: false,
-    value: null,
+    value: this.props.value || null,
     formattedValue: '',
   };
 
+  formatDate(date) {
+    if (this.props.isRange) {
+      return date.map(day => formatDate(day, 'YYYY/MM/dd')).join(' - ');
+    }
+    return formatDate(date, 'YYYY/MM/dd');
+  }
+
   onChange = ({date}) => {
+    let isOpen = false;
+    if (this.props.isRange && date.length < 2) {
+      isOpen = true;
+    }
     this.setState({
       value: date,
-      formattedValue: formatDate(date, 'YYYY/MM/dd'),
-      isOpen: false,
+      formattedValue: this.formatDate(date),
+      isOpen,
     });
   };
 
@@ -62,6 +73,7 @@ class DatepickerWithInput extends React.Component<
         content={
           <StatefulDatepicker
             initialState={{value: this.state.value}}
+            isRange={this.props.isRange}
             onSelect={this.onChange}
           />
         }
@@ -69,7 +81,7 @@ class DatepickerWithInput extends React.Component<
         <Input
           value={this.state.formattedValue}
           onFocus={this.open}
-          onBlur={this.close}
+          // onBlur={this.close}
           // Change the on key event types in Input
           // $FlowFixMe
           onKeyDown={this.handleKeyDown}
@@ -89,6 +101,9 @@ export default {
   },
   [tests.STATEFUL_IN_POPOVER]: function Story3() {
     return <DatepickerWithInput />;
+  },
+  [tests.STATEFUL_RANGE_IN_POPOVER]: function Story3() {
+    return <DatepickerWithInput isRange value={[]} />;
   },
 
   [tests.WITH_OVERRIDES]: function Story3() {
