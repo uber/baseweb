@@ -20,6 +20,7 @@ import {
 import {StatefulSelect, TYPE} from 'baseui/select';
 
 import MarkdownElements from './markdown-elements';
+import Sidebar from './sidebar';
 import Logo from '../images/Logo.png';
 
 type PropsT = {
@@ -67,9 +68,8 @@ export default (props: PropsT) => (
     </HeaderNavigation>
 
     <Block display="flex" flex="1" paddingTop="scale500">
-      <Block display="flex" marginLeft="scale800" maxWidth="170px">
-        navbar. this component will include the list of components and links to
-        doc pages.
+      <Block display="flex" marginLeft="scale800" marginRight="scale800">
+        <Sidebar />
       </Block>
 
       <Block
