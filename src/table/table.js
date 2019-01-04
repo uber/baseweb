@@ -18,12 +18,25 @@ import {
   Cell as StyledCell,
 } from './styled-components.js';
 
-import {AutoSizer, Column} from 'react-virtualized';
+import {
+  AutoSizer,
+  Table as VTable,
+  Column,
+  CellMeasurer,
+  CellMeasurerCache,
+} from 'react-virtualized';
 
 import type {TablePropsT} from './types.js';
 
 export default function Table(props: TablePropsT) {
-  const {overrides = {}, columns, data: rows, ...restProps} = props;
+  const {
+    overrides = {},
+    columns,
+    data: rows,
+    estimatedRowSize,
+    useDynamicRowHeight,
+    ...restProps
+  } = props;
 
   const [Root, RootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Head, HeadProps] = getOverrides(overrides.Head, StyledHead);
@@ -34,6 +47,13 @@ export default function Table(props: TablePropsT) {
   const [Body, BodyProps] = getOverrides(overrides.Body, StyledBody);
   const [Row, RowProps] = getOverrides(overrides.Row, StyledRow);
   const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
+
+  const cache = new CellMeasurerCache({
+    defaultWidth: 100,
+    defaultHeight: estimatedRowSize,
+    minWidth: 75,
+    fixedWidth: true,
+  });
 
   function rowGetter({index}) {
     return rows[index];
@@ -75,48 +95,74 @@ export default function Table(props: TablePropsT) {
     );
   }
 
-  function cellRenderer({
-    cellData,
-    columnData,
-    columnIndex,
-    dataKey,
-    isScrolling,
-    rowData,
-    rowIndex,
-  }) {
-    return <Cell {...CellProps}>{cellData}</Cell>;
+  function cellRenderer({columnIndex, key, parent, rowIndex, style}) {
+    if (useDynamicRowHeight) {
+      return (
+        <CellMeasurer
+          cache={cache}
+          columnIndex={columnIndex}
+          key={key}
+          parent={parent}
+          rowIndex={rowIndex}
+        >
+          <Cell
+            style={{
+              ...style,
+              // height: 35,
+              // whiteSpace: 'nowrap',
+            }}
+            {...CellProps}
+          >
+            {rows[rowIndex][columnIndex]}
+          </Cell>
+        </CellMeasurer>
+      );
+    }
+
+    return (
+      <Cell
+        style={{
+          ...style,
+        }}
+        {...CellProps}
+      >
+        {rows[rowIndex][columnIndex]}
+      </Cell>
+    );
   }
 
   return (
     <AutoSizer>
       {({width, height}) => (
-        <Root
-          rowGetter={rowGetter}
-          headerHeight={48}
-          headerRowRenderer={headerRowRenderer}
-          rowRenderer={rowRenderer}
-          width={width}
-          height={height}
-          rowCount={rows.length}
-          rowHeight={40}
-          {...restProps}
-          {...RootProps}
-        >
-          {columns.map((column, index) => {
-            return (
-              <Column
-                key={index}
-                headerRenderer={renderHeaderCell}
-                label={column}
-                flexGrow={1}
-                columnData={Object.assign({}, rows[index])}
-                cellDataGetter={({rowData}) => rowData[index]}
-                cellRenderer={cellRenderer}
-                dataKey={index}
-                width={150}
-              />
-            );
-          })}
+        <Root style={{width: width, height: height}}>
+          <VTable
+            rowGetter={rowGetter}
+            headerHeight={48}
+            headerRowRenderer={headerRowRenderer}
+            rowRenderer={rowRenderer}
+            width={width}
+            height={height}
+            rowCount={rows.length}
+            rowHeight={useDynamicRowHeight ? cache.rowHeight : estimatedRowSize}
+            {...restProps}
+            {...RootProps}
+          >
+            {columns.map((column, index) => {
+              return (
+                <Column
+                  key={index}
+                  headerRenderer={renderHeaderCell}
+                  label={column}
+                  flexGrow={1}
+                  columnData={Object.assign({}, rows[index])}
+                  cellDataGetter={({rowData}) => rowData[index]}
+                  cellRenderer={cellRenderer}
+                  dataKey={index}
+                  width={150}
+                />
+              );
+            })}
+          </VTable>
         </Root>
       )}
     </AutoSizer>

@@ -21,7 +21,13 @@ const data = [
   ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
   ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
   ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
-  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
+  [
+    '4',
+    'Jane',
+    'Red',
+    34,
+    'London No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 Anywhere',
+  ],
 ].map(row => [`${row[1]} ${row[2]}`, row[3], row[4]]); // selects data to display
 
 const ControlledTable = (props: TablePropsT) => {
@@ -32,8 +38,12 @@ const ControlledTable = (props: TablePropsT) => {
 export default {
   [examples.TABLE]: function TableStory() {
     return (
-      <div style={{height: '100vh', width: '100%'}}>
-        <ControlledTable columns={['Name', 'Age', 'Address']} data={data} />
+      <div style={{height: '400px', width: '100%'}}>
+        <ControlledTable
+          useDynamicRowHeight
+          columns={['Name', 'Age', 'Address']}
+          data={data}
+        />
       </div>
     );
   },

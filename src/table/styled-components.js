@@ -8,14 +8,15 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
 
-import {Table} from 'react-virtualized';
-
 /**
  * Main component container element
  */
-export const Root = styled(Table, ({$theme}: SharedStylePropsT) => {
+export const Root = styled('div', ({$theme}: SharedStylePropsT) => {
   const {borders} = $theme;
-  return {};
+  return {
+    ...borders.border300,
+    borderRadius: borders.radius200,
+  };
 });
 
 export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
@@ -23,11 +24,11 @@ export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     textAlign: 'left',
     boxShadow: lighting.shadow400,
-    borderTopRightRadius: borders.radius200,
-    borderTopLeftRadius: borders.radius200,
+    // borderTopRightRadius: borders.radius200,
+    // borderTopLeftRadius: borders.radius200,
     display: 'flex',
     flexDirection: 'row',
-    ...borders.border400,
+    // ...borders.border400,
   };
 });
 
@@ -41,13 +42,13 @@ export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
     boxSizing: 'border-box',
     height: '100%',
     width: '100%',
-    ...borders.border300,
+    ...borders.border400,
     borderLeft: 'none',
     borderTop: 'none',
     borderBottom: 'none',
-    ':last-child': {
-      border: 'none',
-    },
+    // ':last-child': {
+    //   border: 'none',
+    // },
   };
 });
 export const Body = styled('tbody', (props: SharedStylePropsT) => {
