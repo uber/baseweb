@@ -131,6 +131,8 @@ export default {
         <Input size={SIZE.compact} placeholder="Default input" />
         <br />
         <Input
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus={true}
           initialState={{value: 'uber'}}
           startEnhancer="@"
           endEnhancer=".com"
