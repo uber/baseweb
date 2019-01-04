@@ -73,7 +73,7 @@ export default (props: PropsT) => (
       </Block>
 
       <Block
-        flex={2}
+        flex="2"
         paddingLeft="scale900"
         overrides={{
           Block: {
