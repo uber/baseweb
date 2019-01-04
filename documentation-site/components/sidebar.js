@@ -29,16 +29,22 @@ const ListItem = styled(Block, ({$theme}) => ({
   paddingLeft: $theme.sizing.scale400,
 }));
 
-const StlyedLink = styled('a', ({$theme}) => ({
+const StyledLink = styled('a', ({$theme}) => ({
   textDecoration: 'none',
   cursor: 'pointer',
+  ':visited': {
+    color: $theme.colors.black,
+  },
+  ':hover': {
+    color: $theme.colors.primary,
+  },
 }));
 
 const NavigationLink = props => {
   return (
     <Block paddingBottom="scale300">
-      <Link href={props.path} prefetch>
-        <StlyedLink>{props.text}</StlyedLink>
+      <Link passHref={true} href={props.path} prefetch>
+        <StyledLink tabindex="0">{props.text}</StyledLink>
       </Link>
     </Block>
   );

@@ -8,10 +8,11 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
+const {resolve} = require('path');
 const isProd = process.env.BUILD_ENV === 'production';
 const prefix = isProd ? '/beta' : '';
 
-const getPath = path => `${prefix}${path}`;
+const getPath = path => resolve(prefix, path);
 
 const routes = [
   {
