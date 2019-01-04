@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
+import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
@@ -65,3 +66,5 @@ An input enables a person to type in text information.
 <Example title="Focus with a ref" path="examples/input/focus.js">
   <Focus />
 </Example>
+
+<API heading="Input API" api={require('!!extract-react-types-loader!../../../src/input/input.js')}/>
