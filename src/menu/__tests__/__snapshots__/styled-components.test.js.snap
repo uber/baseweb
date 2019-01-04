@@ -9,6 +9,7 @@ Object {
   "marginLeft": "0",
   "marginRight": "0",
   "marginTop": "0",
+  "overflow": "auto",
   "paddingBottom": "$theme.sizing.scale300",
   "paddingLeft": "0",
   "paddingRight": "0",
