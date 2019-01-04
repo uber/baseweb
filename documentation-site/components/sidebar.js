@@ -14,6 +14,18 @@ import Link from 'next/link';
 
 import Routes from '../routes';
 
+const levelToPadding = {
+  1: 'scale400',
+  2: 'scale600',
+  3: 'scale800',
+};
+
+const levelToFont = {
+  1: 'font450',
+  2: 'font400',
+  3: 'font300',
+};
+
 const List = styled(Block, ({$theme}) => ({
   position: 'relative',
   marginTop: '0',
@@ -23,10 +35,6 @@ const List = styled(Block, ({$theme}) => ({
   paddingLeft: '0',
   paddingRight: '0',
   listStyle: 'none',
-}));
-
-const ListItem = styled(Block, ({$theme}) => ({
-  paddingLeft: $theme.sizing.scale400,
 }));
 
 const StyledLink = styled('a', ({$theme}) => ({
@@ -51,41 +59,32 @@ const NavigationLink = props => {
   );
 };
 
-const SubNavigation = props => {
-  const {routes = []} = props;
-  return routes.map(route => {
-    return (
-      <React.Fragment key={route.text}>
-        <ListItem font={props.routeFont} key={route.path} as="li">
-          {route.path ? (
-            <NavigationLink path={route.path} text={route.text} />
-          ) : (
-            route.text
-          )}
-        </ListItem>
-        <List>
-          <SubNavigation routes={route.children} routeFont="font300" />
-        </List>
-      </React.Fragment>
-    );
-  });
+const NavigationItem = props => {
+  const {route, level = 1} = props;
+  return (
+    <Block font={levelToFont[level]} paddingLeft={levelToPadding[level]}>
+      {route.path ? (
+        <NavigationLink path={route.path} text={route.text} />
+      ) : (
+        route.text
+      )}
+      {route.children
+        ? route.children.map((childRoute, index) => {
+            return (
+              <React.Fragment key={index}>
+                <NavigationItem level={level + 1} route={childRoute} />
+              </React.Fragment>
+            );
+          })
+        : null}
+    </Block>
+  );
 };
 
 export default () => (
-  <List as="ul" font="font450">
-    {Routes.map(route => {
-      return (
-        <React.Fragment key={route.text}>
-          {route.path ? (
-            <NavigationLink path={route.path} text={route.text} />
-          ) : (
-            route.text
-          )}
-          <List>
-            <SubNavigation routes={route.children} routeFont="font350" />
-          </List>
-        </React.Fragment>
-      );
+  <List as="ul">
+    {Routes.map((route, index) => {
+      return <NavigationItem key={index} route={route} />;
     })}
   </List>
 );
