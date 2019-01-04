@@ -46,9 +46,6 @@ export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
     borderLeft: 'none',
     borderTop: 'none',
     borderBottom: 'none',
-    // ':last-child': {
-    //   border: 'none',
-    // },
   };
 });
 export const Body = styled('tbody', (props: SharedStylePropsT) => {

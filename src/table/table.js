@@ -13,7 +13,6 @@ import {
   Root as StyledRoot,
   Head as StyledHead,
   HeadCell as StyledHeadCell,
-  Body as StyledBody,
   Row as StyledRow,
   Cell as StyledCell,
 } from './styled-components.js';
@@ -44,7 +43,6 @@ export default function Table(props: TablePropsT) {
     overrides.HeadCell,
     StyledHeadCell,
   );
-  const [Body, BodyProps] = getOverrides(overrides.Body, StyledBody);
   const [Row, RowProps] = getOverrides(overrides.Row, StyledRow);
   const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
 
@@ -64,6 +62,14 @@ export default function Table(props: TablePropsT) {
       <Head style={style} {...HeadProps}>
         {columns}
       </Head>
+    );
+  }
+
+  function renderHeaderCell({dataKey, label}) {
+    return (
+      <HeadCell key={dataKey} {...HeadCellProps}>
+        {label}
+      </HeadCell>
     );
   }
 
@@ -87,37 +93,8 @@ export default function Table(props: TablePropsT) {
     );
   }
 
-  function renderHeaderCell({dataKey, label}) {
-    return (
-      <HeadCell key={dataKey} {...HeadCellProps}>
-        {label}
-      </HeadCell>
-    );
-  }
-
   function cellRenderer({columnIndex, key, parent, rowIndex, style}) {
-    if (useDynamicRowHeight) {
-      return (
-        <CellMeasurer
-          cache={cache}
-          columnIndex={columnIndex}
-          key={key}
-          parent={parent}
-          rowIndex={rowIndex}
-        >
-          <Cell
-            style={{
-              ...style,
-            }}
-            {...CellProps}
-          >
-            {rows[rowIndex][columnIndex]}
-          </Cell>
-        </CellMeasurer>
-      );
-    }
-
-    return (
+    const cell = (
       <Cell
         style={{
           ...style,
@@ -127,6 +104,21 @@ export default function Table(props: TablePropsT) {
         {rows[rowIndex][columnIndex]}
       </Cell>
     );
+    if (useDynamicRowHeight) {
+      return (
+        <CellMeasurer
+          cache={cache}
+          columnIndex={columnIndex}
+          key={key}
+          parent={parent}
+          rowIndex={rowIndex}
+        >
+          {cell}
+        </CellMeasurer>
+      );
+    }
+
+    return cell;
   }
 
   return (
