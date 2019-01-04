@@ -29,6 +29,7 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   backgroundColor: $theme.colors.backgroundAlt,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
+  overflow: 'auto',
 }));
 List.displayName = 'StyledList';
 
