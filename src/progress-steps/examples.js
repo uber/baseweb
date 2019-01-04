@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import Screener, {Steps} from 'screener-storybook/src/screener.js';
+
 import {ProgressSteps, Step, NumberedStep} from './index.js';
 import examples from './examples-list.js';
 import {Button} from '../button/index.js';
@@ -121,7 +123,19 @@ class DefaultExampleComponent extends React.Component<
 
 export default {
   [examples.DEFAULT]: function Story1() {
-    return <DefaultExampleComponent />;
+    const selector = 'button:enabled';
+
+    return (
+      <Screener
+        steps={new Steps()
+          .wait(selector)
+          .click(selector)
+          .snapshot('progress step next step triggered')
+          .end()}
+      >
+        <DefaultExampleComponent />
+      </Screener>
+    );
   },
   [examples.NUMBERED]: function Story2() {
     return <DefaultExampleComponent isNumber />;
