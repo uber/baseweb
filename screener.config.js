@@ -57,6 +57,7 @@ module.exports = {
     new RegExp(Rating.DEFAULT),
     new RegExp(Rating.EMOTICON),
     new RegExp(Select.MULTI_SELECT),
+    new RegExp(Select.SINGLE_SELECT_SEARCH),
     new RegExp(Slider.AS_SIMPLE_RANGE_SLIDER),
     new RegExp(Textarea.STATE_EXAMPLE),
     new RegExp(Toast.TOAST_EXAMPLE),
