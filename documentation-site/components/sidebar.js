@@ -32,6 +32,7 @@ const ListItem = styled(Block, ({$theme}) => ({
 const StyledLink = styled('a', ({$theme}) => ({
   textDecoration: 'none',
   cursor: 'pointer',
+  color: $theme.colors.black,
   ':visited': {
     color: $theme.colors.black,
   },
@@ -44,7 +45,7 @@ const NavigationLink = props => {
   return (
     <Block paddingBottom="scale300">
       <Link passHref={true} href={props.path} prefetch>
-        <StyledLink tabindex="0">{props.text}</StyledLink>
+        <StyledLink tabIndex="0">{props.text}</StyledLink>
       </Link>
     </Block>
   );
