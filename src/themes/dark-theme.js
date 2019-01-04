@@ -107,6 +107,7 @@ export const DarkTheme = createTheme(
 
       // Input
       inputFill: primitives.mono600,
+      inputFillEnhancer: primitives.mono500,
       inputFillError: primitives.mono600,
       inputFillDisabled: primitives.mono700,
       inputTextDisabled: primitives.mono500,
