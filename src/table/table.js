@@ -108,8 +108,6 @@ export default function Table(props: TablePropsT) {
           <Cell
             style={{
               ...style,
-              // height: 35,
-              // whiteSpace: 'nowrap',
             }}
             {...CellProps}
           >

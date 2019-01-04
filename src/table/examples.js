@@ -15,19 +15,19 @@ const data = [
   ['1', 'Sarah', 'Brown', 31, 'New York No. 1 Anywhere'],
   ['2', 'Jane', 'Smith', 32, 'San Francisco No. 1 Anywhere'],
   ['3', 'Joe', 'Black', 33, 'Sydney No. 1 Anywhere'],
-  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
-  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
-  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
-  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
-  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
-  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
   [
     '4',
     'Jane',
     'Red',
     34,
-    'London No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 AnywhereLondon No. 1 Anywhere',
+    'London No. 1 Anywhere London No. 1 Anywhere London No. 1 Anywhere London No. 1 Anywhere London No. 1 Anywhere London No. 1 Anywhere London No. 1 Anywhere',
   ],
+  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
+  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
+  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
+  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
+  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
+  ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
 ].map(row => [`${row[1]} ${row[2]}`, row[3], row[4]]); // selects data to display
 
 const ControlledTable = (props: TablePropsT) => {
