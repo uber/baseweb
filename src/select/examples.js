@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {action} from '@storybook/addon-actions';
 import {boolean, radios} from '@storybook/addon-knobs';
+import Screener, {Steps} from 'screener-storybook/src/screener.js';
+
 import {StatefulSelect, TYPE} from './index.js';
 import {SIZE} from './constants.js';
 import {styled} from '../styles/index.js';
@@ -138,14 +140,23 @@ export default {
     );
   },
   [tests.SINGLE_SELECT_SEARCH]: function Story3() {
+    const selector = '[role="list"] div';
     return (
-      <StatefulSelect
-        {...options}
-        options={optionsWithDisabled}
-        placeholder="Start searching"
-        type={TYPE.search}
-        onChange={onChange}
-      />
+      <Screener
+        steps={new Steps()
+          .wait(selector)
+          .click(selector)
+          .snapshot('select open state')
+          .end()}
+      >
+        <StatefulSelect
+          {...options}
+          options={optionsWithDisabled}
+          placeholder="Start searching"
+          type={TYPE.search}
+          onChange={onChange}
+        />
+      </Screener>
     );
   },
   [tests.MULTI_SELECT_SEARCH]: function Story4() {
