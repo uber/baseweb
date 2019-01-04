@@ -9,6 +9,11 @@ LICENSE file in the root directory of this source tree.
 
 const prod = process.env.BUILD_ENV === 'production';
 
+// set production env for exact-react-types-loader
+if (prod) {
+  process.env.WEBSITE_ENV = 'production';
+}
+
 module.exports = {
   'process.env.STATIC_ROOT': prod ? '/beta/static/' : '/static/',
 };
