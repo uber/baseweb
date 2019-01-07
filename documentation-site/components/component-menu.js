@@ -35,7 +35,7 @@ function Column(props) {
   );
 }
 
-const categories = Routes.find(r => r.text === 'Components');
+const categories = Routes.find(r => r.components);
 export default () => (
   <StatefulPopover
     placement="bottom"
