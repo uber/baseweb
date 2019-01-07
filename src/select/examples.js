@@ -9,8 +9,9 @@ import * as React from 'react';
 import {action} from '@storybook/addon-actions';
 import {boolean, radios} from '@storybook/addon-knobs';
 import Screener, {Steps} from 'screener-storybook/src/screener.js';
+import List from 'react-virtualized/dist/commonjs/List'; // eslint-disable-line import/extensions
 
-import {StatefulSelect, TYPE} from './index.js';
+import {StatefulSelect, StyledDropdownListItem, TYPE} from './index.js';
 import {SIZE} from './constants.js';
 import {styled} from '../styles/index.js';
 import COLORS from './examples-colors.json';
@@ -196,6 +197,47 @@ export default {
             }),
           },
         }}
+      />
+    );
+  },
+
+  [tests.LONG_LIST]: function LongListStory() {
+    const ListItem = styled(StyledDropdownListItem, {
+      paddingTop: 0,
+      paddingBottom: 0,
+      display: 'flex',
+      alignItems: 'center',
+    });
+
+    function VirtualList(props) {
+      return (
+        <div ref={props.$ref}>
+          <List
+            role={props.role}
+            height={500}
+            rowCount={props.children.length}
+            rowHeight={36}
+            rowRenderer={({index, key, style}) => {
+              return (
+                <ListItem
+                  key={key}
+                  style={style}
+                  {...props.children[index].props}
+                >
+                  {props.children[index].props.item.id}
+                </ListItem>
+              );
+            }}
+            width={500}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <StatefulSelect
+        {...options}
+        overrides={{Dropdown: {component: VirtualList}}}
       />
     );
   },

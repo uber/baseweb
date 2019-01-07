@@ -6,11 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import List from 'react-virtualized/dist/commonjs/List'; // eslint-disable-line import/extensions
 import {action} from '@storybook/addon-actions';
 
 import Menu from './menu.js';
 import StatefulMenu from './stateful-menu.js';
 
+import OptionList from './option-list.js';
 import OptionProfile from './option-profile.js';
 import {OPTION_LIST_SIZE} from './constants.js';
 import examples from './examples-list.js';
@@ -223,6 +225,50 @@ export default {
             },
           },
         }}
+      />
+    );
+  },
+
+  [examples.LONG_LIST]: function LongListStory() {
+    const items = [...new Array(1500)].map((_, index) => ({
+      label: `item number: ${index + 1}`,
+    }));
+
+    function VirtualList(props) {
+      return (
+        <div ref={props.$ref}>
+          <List
+            role={props.role}
+            height={500}
+            rowCount={props.children.length}
+            rowHeight={36}
+            rowRenderer={({index, key, style}) => (
+              <OptionList
+                key={key}
+                style={style}
+                {...props.children[index].props}
+                overrides={{
+                  ListItem: {
+                    style: {
+                      paddingTop: 0,
+                      paddingBottom: 0,
+                      display: 'flex',
+                      alignItems: 'center',
+                    },
+                  },
+                }}
+              />
+            )}
+            width={200}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <StatefulMenu
+        items={items}
+        overrides={{List: {component: VirtualList}}}
       />
     );
   },
