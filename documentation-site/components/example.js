@@ -51,7 +51,9 @@ function Source(props: {children: ?React.Node}) {
     <Block
       as="pre"
       padding="scale800"
-      overrides={{Block: {style: {fontFamily: 'courier'}}}}
+      overrides={{
+        Block: {style: {fontFamily: 'courier', whiteSpace: 'pre-wrap'}},
+      }}
     >
       {props.children}
     </Block>
