@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import Screener, {Steps} from 'screener-storybook/src/screener.js';
+
 import {StarRating, EmoticonRating} from './index.js';
 import type {StyledRatingItemPropsT} from './index.js';
 import examples from './examples-list.js';
@@ -19,6 +21,7 @@ type ExampleState = {
 
 export default {
   [examples.DEFAULT]: function Story1() {
+    const selector = 'li:nth-child(5)';
     class Example extends React.Component<{}, ExampleState> {
       state = {
         value: 3,
@@ -26,10 +29,18 @@ export default {
 
       render() {
         return (
-          <StarRating
-            value={this.state.value}
-            onChange={({value}) => this.setState({value})}
-          />
+          <Screener
+            steps={new Steps()
+              .wait(selector)
+              .click(selector)
+              .snapshot('rating five star selected')
+              .end()}
+          >
+            <StarRating
+              value={this.state.value}
+              onChange={({value}) => this.setState({value})}
+            />
+          </Screener>
         );
       }
     }
