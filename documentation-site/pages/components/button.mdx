@@ -1,0 +1,43 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import BasicButton from 'examples/button/basic.js';
+import BasicButtonCompact from 'examples/button/basic-compact.js';
+import WithEnchancer from 'examples/button/with-enchancers.js';
+
+export default Layout;
+
+# Button
+
+Buttons enable users to commit a change, or complete steps in a task.
+
+## When to use
+
+When a person:
+
+* submits a form,
+* starts a new task / action.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/button/basic.js">
+  <BasicButton />
+</Example>
+
+<Example title="Basic Usage - Compact" path="examples/button/basic-compact.js">
+  <BasicButtonCompact />
+</Example>
+
+<Example title="With Enchancers" path="examples/button/with-enchancers.js">
+  <WithEnchancer />
+</Example>
+
+<API heading="Button API" api={require('!!extract-react-types-loader!../../../src/button/button.js')}/>

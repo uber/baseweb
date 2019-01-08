@@ -14,12 +14,19 @@ import {
 import {getSharedProps} from './utils.js';
 import ButtonInternals from './button-internals.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {KIND, SHAPE, SIZE} from './constants.js';
 
 import type {ButtonPropsT} from './types.js';
 
 export default class Button extends React.Component<ButtonPropsT> {
   static defaultProps = {
-    ...ButtonInternals.defaultProps,
+    disabled: false,
+    isLoading: false,
+    isSelected: false,
+    kind: KIND.primary,
+    overrides: {},
+    shape: SHAPE.default,
+    size: SIZE.default,
   };
 
   internalOnClick = (...args: *) => {
