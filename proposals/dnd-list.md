@@ -6,7 +6,7 @@
 
 ```js
 import * as React from 'react';
-import {StatefulList, Item} from 'baseui/dnd-list';
+import {StatefulList} from 'baseui/dnd-list';
 
 export default () =>
   <StatefulList
@@ -99,7 +99,18 @@ These properties are passed to presentational (styled) components that are expor
 
 `Space` - to drag (focus) or drop an item
 
+`Esc` - to cancel the move
+
 `Arrow Up`, `Arrow Down` - move focused item
+
+Example usage:
+
+```
+tab to item
+space to begin item drag
+arrow up/down to change position
+space to end item drag
+```
 
 `aria-live`, `aria-describedby` are applied to items.
 
