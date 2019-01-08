@@ -14,4 +14,5 @@ module.exports = {
   SINGLE_SELECT_SEARCH: 'Single select search',
   MULTI_SELECT_SEARCH: 'Multi select search',
   MULTI_SELECT_CUSTOM_LABELS: 'Multi select search with custom labels',
+  LONG_LIST: 'Select with Many Options',
 };
