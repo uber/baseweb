@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import deepMerge from '../utils/deep-merge.js';
 
-type StyleOverrideT = {} | (({}) => ?{});
+export type StyleOverrideT = {} | (({}) => ?{});
 
 export type OverrideObjectT<T> = {|
   component?: ?React.ComponentType<T>,
@@ -133,7 +133,10 @@ export function mergeOverride<T>(
  * the case that one of them is a function. We do this by returning a new
  * function that deep merges the result of each style override
  */
-function mergeStyleOverrides(target: StyleOverrideT, source: StyleOverrideT) {
+export function mergeStyleOverrides(
+  target: StyleOverrideT,
+  source: StyleOverrideT,
+): StyleOverrideT {
   // Simple case of both objects
   if (typeof target === 'object' && typeof source === 'object') {
     return deepMerge({}, target, source);

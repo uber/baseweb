@@ -175,6 +175,7 @@ export default function createTheme(
 
       // Inputs
       inputFill: primitives.mono200,
+      inputFillEnhancer: primitives.mono400,
       inputFillError: primitives.negative50,
       inputFillDisabled: primitives.mono300,
       inputTextDisabled: primitives.mono600,

@@ -19,7 +19,9 @@ import {
 } from 'baseui/header-navigation';
 import {StatefulSelect, TYPE} from 'baseui/select';
 
+import ComponentMenu from './component-menu';
 import MarkdownElements from './markdown-elements';
+import Sidebar from './sidebar';
 import Logo from '../images/Logo.png';
 
 type PropsT = {
@@ -60,21 +62,23 @@ export default (props: PropsT) => (
       </NavigationList>
       <NavigationList align={ALIGN.center} />
       <NavigationList align={ALIGN.right}>
+        <Block display="flex" marginRight="scale800">
+          <ComponentMenu />
+        </Block>
         <Link href="/getting-started" prefetch>
           <Button>Get Started</Button>
         </Link>
       </NavigationList>
     </HeaderNavigation>
 
-    <Block display="flex" flex="1" paddingTop="scale500">
-      <Block display="flex" marginLeft="scale800" maxWidth="170px">
-        navbar. this component will include the list of components and links to
-        doc pages.
+    <Block display="flex" paddingTop="scale500">
+      <Block display="flex" marginLeft="scale800" marginRight="scale800">
+        <Sidebar />
       </Block>
 
       <Block
+        flex="2"
         paddingLeft="scale900"
-        width="100%"
         overrides={{
           Block: {
             style: ({$theme}) => ({

@@ -20,6 +20,7 @@ module.exports = withMDX(
   withImages({
     webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
       config.resolve.alias.baseui = resolve(__dirname, '../dist');
+      config.resolve.alias.examples = resolve(__dirname, 'static/examples');
       return config;
     },
     assetPrefix: isProd ? '/beta' : '',
