@@ -56,7 +56,7 @@ export default () =>
 
 ## `List` API
 
-* `items: Array<string>` - Required.
+* `items: Array<React.Node>` - Required.
   List items.
 * `overrides: {Root, Item, DragHandle, CloseHandle}` - Optional.
   Overrides for presentational components. See "Presentational Components Props API" below
@@ -66,18 +66,17 @@ export default () =>
 
 ## `StatefulList` API
 
-* `initialState: {items: Array<string>}` - Required.
+* `initialState: {items: Array<React.Node>}` - Required.
   Initial state of the component where `items` are list items.
 * `overrides: {Root, List, Item, DragHandle, CloseHandle}` - Optional.
   Overrides for presentational components. See "Presentational Components Props API" below
   * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
-* `onChange: ({newState: Array<string>, oldIndex: number, newIndex: number})` - Optional.
+* `onChange: ({newState: Array<React.Node>, oldIndex: number, newIndex: number})` - Optional.
   onChange handler that is called every time an item is moved or removed (newIndex = -1).
-* `stateReducer: (type: string, oldIndex: number, newIndex: number, currentState: {items: Array<string>}) => stateToSet: {items: Array<string>}` - Optional. Useful when you want to replace default array-move logic.
+* `stateReducer: (type: string, nextState: {items: Array<React.Node>}, currentState: {items: Array<React.Node>}) => stateToSet: {items: Array<React.Node>}` - Optional.
   A state change handler.
   * `type` - a state change type
-  * `oldIndex` - an original item index
-  * `newIndex` - a new item index (after being moved or removed when -1)
+  * `nextState` - a new state value to be set
   * `currentState` - current state value
   * `stateToSet` - a return value that the state will be updated with
 
