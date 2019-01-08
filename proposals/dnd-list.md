@@ -105,7 +105,7 @@ These properties are passed to presentational (styled) components that are expor
 
 Example usage:
 
-```
+```text
 tab to item
 space to begin item drag
 arrow up/down to change position
