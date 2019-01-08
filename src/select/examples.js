@@ -10,6 +10,9 @@ import {action} from '@storybook/addon-actions';
 import {boolean, radios} from '@storybook/addon-knobs';
 import Screener, {Steps} from 'screener-storybook/src/screener.js';
 import List from 'react-virtualized/dist/commonjs/List'; // eslint-disable-line import/extensions
+import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'; // eslint-disable-line import/extensions
+
+import {StyledList} from '../menu/index.js';
 
 import {StatefulSelect, StyledDropdownListItem, TYPE} from './index.js';
 import {SIZE} from './constants.js';
@@ -209,28 +212,34 @@ export default {
       alignItems: 'center',
     });
 
+    const Container = styled(StyledList, {height: '500px'});
+
     function VirtualList(props) {
       return (
-        <div ref={props.$ref}>
-          <List
-            role={props.role}
-            height={500}
-            rowCount={props.children.length}
-            rowHeight={36}
-            rowRenderer={({index, key, style}) => {
-              return (
-                <ListItem
-                  key={key}
-                  style={style}
-                  {...props.children[index].props}
-                >
-                  {props.children[index].props.item.id}
-                </ListItem>
-              );
-            }}
-            width={500}
-          />
-        </div>
+        <Container $ref={props.$ref}>
+          <AutoSizer>
+            {({width}) => (
+              <List
+                role={props.role}
+                height={500}
+                width={width}
+                rowCount={props.children.length}
+                rowHeight={36}
+                rowRenderer={({index, key, style}) => {
+                  return (
+                    <ListItem
+                      key={key}
+                      style={style}
+                      {...props.children[index].props}
+                    >
+                      {props.children[index].props.item.id}
+                    </ListItem>
+                  );
+                }}
+              />
+            )}
+          </AutoSizer>
+        </Container>
       );
     }
 
