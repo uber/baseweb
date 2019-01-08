@@ -12,6 +12,7 @@ import {Block} from 'baseui/block';
 import {styled} from 'baseui';
 import Link from 'next/link';
 
+import NavLink from './nav-link';
 import Routes from '../routes';
 
 const levelToPadding = {
@@ -37,23 +38,11 @@ const List = styled(Block, ({$theme}) => ({
   listStyle: 'none',
 }));
 
-const StyledLink = styled('a', ({$theme}) => ({
-  textDecoration: 'none',
-  cursor: 'pointer',
-  color: $theme.colors.black,
-  ':visited': {
-    color: $theme.colors.black,
-  },
-  ':hover': {
-    color: $theme.colors.primary,
-  },
-}));
-
 const NavigationLink = props => {
   return (
     <Block paddingBottom="scale300">
       <Link passHref={true} href={props.path} prefetch>
-        <StyledLink tabIndex="0">{props.text}</StyledLink>
+        <NavLink tabIndex="0">{props.text}</NavLink>
       </Link>
     </Block>
   );

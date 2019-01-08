@@ -40,6 +40,7 @@ const routes = [
     ],
   },
   {
+    components: true,
     text: 'Components',
     children: [
       {

@@ -19,6 +19,7 @@ import {
 } from 'baseui/header-navigation';
 import {StatefulSelect, TYPE} from 'baseui/select';
 
+import ComponentMenu from './component-menu';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import Logo from '../images/Logo.png';
@@ -61,6 +62,9 @@ export default (props: PropsT) => (
       </NavigationList>
       <NavigationList align={ALIGN.center} />
       <NavigationList align={ALIGN.right}>
+        <Block display="flex" marginRight="scale800">
+          <ComponentMenu />
+        </Block>
         <Link href="/getting-started" prefetch>
           <Button>Get Started</Button>
         </Link>
