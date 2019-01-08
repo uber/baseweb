@@ -21,7 +21,7 @@ type ExampleState = {
 
 export default {
   [examples.DEFAULT]: function Story1() {
-    const selector = '[aria-posinset="5"]';
+    const selector = 'li:nth-child(5)';
     class Example extends React.Component<{}, ExampleState> {
       state = {
         value: 3,
