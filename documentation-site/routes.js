@@ -44,11 +44,15 @@ const routes = [
     text: 'Components',
     children: [
       {
-        text: 'Data Entry',
+        text: 'Basic Inputs',
         children: [
           {
             text: 'Input',
             path: getPath('/components/input'),
+          },
+          {
+            text: 'Button',
+            path: getPath('/components/button'),
           },
         ],
       },
