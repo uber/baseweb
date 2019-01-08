@@ -74,7 +74,7 @@ export const InputEnhancer = styled('div', props => {
     color: colors.foreground,
     display: 'flex',
     ...getInputPadding($size, sizing),
-    backgroundColor: colors.inputFill,
+    backgroundColor: colors.inputFillEnhancer,
     borderRadius: getDecoratorBorderRadius($position, sizing.scale100),
   };
 });

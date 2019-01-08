@@ -39,6 +39,21 @@ const routes = [
       },
     ],
   },
+  {
+    components: true,
+    text: 'Components',
+    children: [
+      {
+        text: 'Data Entry',
+        children: [
+          {
+            text: 'Input',
+            path: getPath('/components/input'),
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export default routes;
