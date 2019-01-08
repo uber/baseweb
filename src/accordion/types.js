@@ -53,32 +53,53 @@ export type AccordionOnChangeHandlerT = ({
 type ChildrenT = React.ChildrenArray<React.Element<*>>;
 
 export type AccordionPropsT = {
+  /** Determines how many panels may be expanded at a time. If set to
+   * true it will collapse a current panel when a new panel is expanded.
+   * If set to false more than one panel may be expanded at a time. */
   accordion?: boolean,
+  /** Accordion expandable items. See Panel API below for reference. */
   children: ChildrenT,
+  /** If set to true all its children panels will be disabled from toggling. */
   disabled?: boolean,
   initialState?: AccordionStateT,
+  /** Handler called each time a panel is toggled. expanded prop is an array
+   * of Panel keys that are currently expanded. */
   onChange?: AccordionOnChangeHandlerT,
   overrides?: AccordionOverridesT<
     $Diff<SharedStylePropsArgT, {$expanded?: ?boolean}>,
   >,
+  /** Handler called each time the component state changes.
+   * Used to override default state-change functionality. */
   stateReducer: StateReducerT,
 };
 
 export type PanelPropsT = {
+  /** The content visible when Panel is expanded. */
   children: React.Node,
+  /** Defaults to the disabled value provided by the parent Accordion component. */
   disabled?: boolean,
+  /** Defines if the panel is expanded. If set to true the panel is rendered expanded. */
   expanded?: boolean,
+  /** The key of a Panel. Used to maintain list of expanded panels.
+   * Must be unique across children of the Accordion. */
   key?: React.Key,
+  /** Handler for individual Panel change events. */
   onChange?: OnChangeHandlerT,
+  /** Handler for the Header's click events. */
   onClick?: (e: Event) => void,
+  /** Handler for the Header's keyDown events. */
   onKeyDown?: (e: KeyboardEvent) => void,
   overrides?: PanelOverridesT<SharedStylePropsArgT>,
+  /** The title of an accordion panel. */
   title?: React.Node,
 };
 
 // Props for panel stateful container
 export type StatefulPanelContainerPropsT = {
   children: (props: $Diff<PanelPropsT, {children: React.Node}>) => React.Node,
+  /** Initial state of a stateful panel component.
+   * The expanded prop indicates if the panel is initially expanded.
+   * If set to true the panel will be expanded initially */
   initialState?: PanelStateT,
   onChange?: OnChangeHandlerT,
   stateReducer: PanelStateReducerT,

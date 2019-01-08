@@ -1,0 +1,35 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import BasicAccordion from 'examples/accordion/basic.js';
+import StatefulAccordion from 'examples/accordion/stateful.js';
+
+export default Layout;
+
+# Accordion
+
+A design structure to organize and hide content, so as not to overwhelm the user.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/accordion/basic.js">
+  <BasicAccordion />
+</Example>
+
+<Example title="Stateful Accordion" path="examples/accordion/stateful.js">
+  <StatefulAccordion />
+</Example>
+
+<API heading="Accordion API" api={require('!!extract-react-types-loader!../../../src/accordion/accordion.js')}/>
+
+<API heading="Panel API" api={require('!!extract-react-types-loader!../../../src/accordion/panel.js')}/>
+
+<API heading="Stateful Panel API" api={require('!!extract-react-types-loader!../../../src/accordion/stateful-panel.js')}/>
