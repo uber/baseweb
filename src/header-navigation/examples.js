@@ -73,7 +73,6 @@ class MenuContainer extends React.Component<
   };
   state = {
     isOpen: this.props.isOpen,
-    z,
   };
   toggleMenu() {
     this.setState({

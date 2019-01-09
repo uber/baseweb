@@ -58,6 +58,12 @@ const routes = [
       },
       {
         text: 'Navigation',
+        children: [
+          {
+            text: 'Header navigation',
+            path: getPath('/components/header-navigation'),
+          },
+        ],
       },
       {
         text: 'Content',
