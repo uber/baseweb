@@ -63,6 +63,10 @@ const routes = [
             text: 'Header navigation',
             path: getPath('/components/header-navigation'),
           },
+          {
+            text: 'Tab',
+            path: getPath('/components/tabs'),
+          },
         ],
       },
       {
