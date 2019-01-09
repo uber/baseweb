@@ -24,13 +24,14 @@ function Column(props) {
       <Block font="font350" paddingBottom="scale400">
         {props.text}
       </Block>
-      {props.components.map((component, index) => (
-        <Block key={index} font="font300" paddingBottom="scale300">
-          <Link passHref={true} href={component.path} prefetch>
-            <NavLink tabIndex="0">{component.text}</NavLink>
-          </Link>
-        </Block>
-      ))}
+      {props.components &&
+        props.components.map((component, index) => (
+          <Block key={index} font="font300" paddingBottom="scale300">
+            <Link passHref={true} href={component.path} prefetch>
+              <NavLink tabIndex="0">{component.text}</NavLink>
+            </Link>
+          </Block>
+        ))}
     </Block>
   );
 }

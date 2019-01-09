@@ -56,6 +56,24 @@ const routes = [
           },
         ],
       },
+      {
+        text: 'Navigation',
+      },
+      {
+        text: 'Content',
+        children: [
+          {
+            text: 'Accordion',
+            path: getPath('/components/accordion'),
+          },
+        ],
+      },
+      {
+        text: 'Progress',
+      },
+      {
+        text: 'Surfaces',
+      },
     ],
   },
 ];
