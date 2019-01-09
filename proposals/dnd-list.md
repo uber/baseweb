@@ -68,6 +68,7 @@ export default () =>
 
 * `initialState: {items: Array<React.Node>}` - Required.
   Initial state of the component where `items` are list items.
+* `removable: boolean` - Optional. Should be list items removable.
 * `overrides: {Root, List, Item, DragHandle, CloseHandle}` - Optional.
   Overrides for presentational components. See "Presentational Components Props API" below
   * `[ComponentName]: ReactComponent | {props: {}, style: {}, component: ReactComponent}` - Optional
@@ -94,18 +95,19 @@ These properties are passed to presentational (styled) components that are expor
 
 ## Accessibility
 
-`tab`, `shift + tab` - to move focus between tabs.
+`tab` - to focus the List component
 
 `Space` - to drag (focus) or drop an item
 
 `Esc` - to cancel the move
 
-`Arrow Up`, `Arrow Down` - move focused item
+`Arrow Up`, `Arrow Down` - selecting / moving items
 
 Example usage:
 
 ```text
-tab to item
+tab to focust the list component
+arrow up/down to select item
 space to begin item drag
 arrow up/down to change position
 space to end item drag
