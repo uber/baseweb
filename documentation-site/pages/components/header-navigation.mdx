@@ -1,0 +1,30 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import BasicHeader from 'examples/header-navigation/basic.js';
+import WithSearch from 'examples/header-navigation/with-search.js';
+
+export default Layout;
+
+# Header navigation
+
+## Examples
+
+<Example title="Basic Usage" path="examples/header-navigation/basic.js">
+  <BasicHeader />
+</Example>
+
+<Example title="Header Navigation with Search" path="examples/header-navigation/with-search.js">
+  <WithSearch />
+</Example>
+
+<API heading="HeaderNavigation API" api={require('!!extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}/>
+
