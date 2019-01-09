@@ -83,7 +83,13 @@ const routes = [
         ],
       },
       {
-        text: 'Progress',
+        text: 'Progress & Validation',
+        children: [
+          {
+            text: 'Toast',
+            path: getPath('/components/toast'),
+          },
+        ],
       },
       {
         text: 'Surfaces',
