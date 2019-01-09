@@ -67,6 +67,10 @@ const routes = [
             text: 'Tab',
             path: getPath('/components/tabs'),
           },
+          {
+            text: 'Breadcrumbs',
+            path: getPath('/components/breadcrumbs'),
+          },
         ],
       },
       {
