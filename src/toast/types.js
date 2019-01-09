@@ -55,11 +55,20 @@ export type ToastPrivateStateT = {
 };
 
 export type ToastPropsT = {
+  /** The number of milliseconds to wait before automatically dismissing a
+   * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
+  /** Toast notification content. The children-as-function
+   *  receives a dissmiss method that can be called to
+   * dismiss the notification and can be used as a
+   * handler for an action inside the toast content. */
   children: ChildrenT | ComponentRenderPropT,
+  /** When set to true a close button is displayed and the notification can be dismissed by a user. */
   closeable: boolean,
+  /** Defines the type of notification. */
   kind: KindTypeT,
   notificationType: NotificationTypeT,
+  /** A callback function called when a notification is dismissed. */
   onClose: () => void,
   onBlur: (e: Event) => void,
   onFocus: (e: Event) => void,
