@@ -94,13 +94,17 @@ export function getPlacement(placement: PlacementTypeT) {
  * Main component container element
  */
 export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
-  const {$placement} = props;
+  const {$placement, $theme} = props;
   return {
     pointerEvents: 'none',
     position: 'fixed',
     right: 0,
     left: 0,
     display: 'flex',
+    marginTop: $theme.sizing.scale300,
+    marginBottom: $theme.sizing.scale300,
+    marginLeft: $theme.sizing.scale600,
+    marginRight: $theme.sizing.scale600,
     ...getPlacement($placement),
   };
 });
