@@ -102,6 +102,10 @@ const routes = [
             text: 'Card',
             path: getPath('/components/card'),
           },
+          {
+            text: 'Modal',
+            path: getPath('/components/modal'),
+          },
         ],
       },
     ],
