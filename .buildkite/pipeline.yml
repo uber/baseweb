@@ -42,6 +42,11 @@ steps:
         run: baseui
     agents:
       queue: workers
+  - name: ':netlify:'
+    branches: 'v*.*.*'
+    command: curl -X POST -d {} https://api.netlify.com/build_hooks/${NETLIFY_BUILD_HOOK_ID}
+    agents:
+      queue: workers
   - name: ':screener:'
     command: yarn storybook:screener:ci
     plugins:
