@@ -14,6 +14,7 @@ export const STATE_CHANGE_TYPES = {
 
 // Dict of props to prepend $ to pass thru to styletron
 export const SHARED_PROPS_MAPPER = {
+  disabled: true,
   ref: true,
   isHighlighted: true,
 };

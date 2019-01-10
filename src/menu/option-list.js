@@ -29,7 +29,6 @@ export default function OptionList({
     StyledListItem,
   );
   const sharedProps = {
-    $disabled: item.disabled,
     $size: size,
     $isHighlighted,
   };
@@ -44,7 +43,6 @@ export default function OptionList({
 }
 
 OptionList.defaultProps = {
-  disabled: false,
   getItemLabel: (item: *) => (item ? item.label : ''),
   size: OPTION_LIST_SIZE.default,
   overrides: {},

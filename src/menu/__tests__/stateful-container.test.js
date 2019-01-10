@@ -107,6 +107,7 @@ describe('Menu StatefulContainer', () => {
     const item = mockItems[1];
     const props = component.instance().getRequiredItemProps(item, 1);
     expect(props).toEqual({
+      disabled: true,
       ref: React.createRef(),
       isHighlighted: false,
       'aria-activedescendant': false,
