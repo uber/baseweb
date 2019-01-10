@@ -93,6 +93,12 @@ const routes = [
       },
       {
         text: 'Surfaces',
+        children: [
+          {
+            text: 'Card',
+            path: getPath('/components/card'),
+          },
+        ],
       },
     ],
   },
