@@ -37,6 +37,10 @@ const routes = [
         text: 'Theming values',
         path: getPath('/theming-values'),
       },
+      {
+        text: 'Understanding Overrides',
+        path: getPath('/understanding-overrides'),
+      },
     ],
   },
   {
@@ -83,10 +87,26 @@ const routes = [
         ],
       },
       {
-        text: 'Progress',
+        text: 'Progress & Validation',
+        children: [
+          {
+            text: 'Toast',
+            path: getPath('/components/toast'),
+          },
+        ],
       },
       {
         text: 'Surfaces',
+        children: [
+          {
+            text: 'Card',
+            path: getPath('/components/card'),
+          },
+          {
+            text: 'Modal',
+            path: getPath('/components/modal'),
+          },
+        ],
       },
     ],
   },

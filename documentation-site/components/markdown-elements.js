@@ -44,7 +44,7 @@ const Heading = (props: Props) => (
 const ListItem = (props: Props) => <Paragraph>- {props.children}</Paragraph>;
 
 const Paragraph = (props: Props) => (
-  <Block as="p" font="font300">
+  <Block as="p" font="font300" style={{maxWidth: '50em', lineHeight: '2.0em'}}>
     {props.children}
   </Block>
 );

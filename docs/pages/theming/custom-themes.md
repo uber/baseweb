@@ -9,23 +9,6 @@ Base UI ships by default with the `Light` theme. We understand that in some case
 you want to change the look and feel of the components. To do so, follow the steps
 outlined here
 
-## Using themeable values in component overrides
-
-All themeable values are available within components that provide the `overrides` prop.
-
-```jsx
-<Input
-  overrides={{
-    Input: {
-      style: ({$theme}) => ({color: $theme.colors.primary}),
-    },
-  }}
-  placeholder="Custom input that uses themeable values"
-/>
-```
-
-To learn more on how overrides work, check out [Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646) article.
-
 ## Creating a custom theme
 
 ### Define your primitives

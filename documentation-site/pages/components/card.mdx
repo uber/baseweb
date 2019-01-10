@@ -1,0 +1,34 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import CardBasic from 'examples/card/basic.js';
+import CardWithImageCta from 'examples/card/image-cta.js';
+import CardWithThumbnailCta from 'examples/card/thumbnail-cta.js';
+
+export default Layout;
+
+# Card
+
+## Examples
+
+<Example title="Card Basic Usage" path="examples/card/basic.js">
+  <CardBasic />
+</Example>
+
+<Example title="Card With Image and CTA" path="examples/card/image-cta.js">
+  <CardWithImageCta />
+</Example>
+
+<Example title="Card With Thumbnail and CTA" path="examples/card/thumbnail-cta.js">
+  <CardWithThumbnailCta />
+</Example>
+
+<API heading="Card API" api={require('!!extract-react-types-loader!../../../src/card/card.js')}/>
