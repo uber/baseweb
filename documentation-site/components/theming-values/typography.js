@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {LightTheme, styled} from 'baseui';
+import {LightTheme} from 'baseui';
 import {Block} from 'baseui/block';
 
 import {Header} from './common';
