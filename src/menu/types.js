@@ -129,6 +129,7 @@ export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
   MenuProfilePropsT;
 
 export type OptionListPropsT = {
+  disabled: boolean,
   item: ItemT,
   getItemLabel: GetItemLabelFnT,
   getChildMenu?: (item: ItemT) => React.Node,

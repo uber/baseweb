@@ -43,7 +43,7 @@ function CloudComponent() {
 const ITEMS = [
   {label: 'Item One'},
   {label: 'Item Two'},
-  {label: 'Item Three'},
+  {disabled: true, label: 'Item Three'},
   {label: 'Item Four'},
   {label: 'Item Five'},
   {label: 'Item Six'},
