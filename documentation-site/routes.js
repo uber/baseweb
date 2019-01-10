@@ -37,6 +37,10 @@ const routes = [
         text: 'Theming values',
         path: getPath('/theming-values'),
       },
+      {
+        text: 'Understanding Overrides',
+        path: getPath('/understanding-overrides'),
+      },
     ],
   },
   {
