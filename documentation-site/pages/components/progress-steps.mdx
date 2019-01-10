@@ -1,0 +1,34 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import ProgressStepsDotted from 'examples/progress-steps/dotted';
+import ProgressStepsNumbered from 'examples/progress-steps/numbered';
+
+export default Layout;
+
+# Progress steps
+
+## Examples
+
+<Example title="Progress Steps Dotted Usage" path="examples/progress-steps/dotted.js">
+  <ProgressStepsDotted />
+</Example>
+
+<Example title="Progress Steps Numbered Usage" path="examples/progress-steps/numbered.js">
+  <ProgressStepsNumbered />
+</Example>
+
+<API heading="ProgressSteps API" api={require('!!extract-react-types-loader!../../../src/progress-steps/progress-steps.js')}/>
+
+<API heading="NumberedStep API" api={require('!!extract-react-types-loader!../../../src/progress-steps/numbered-step.js')}/>
+
+<API heading="Step API" api={require('!!extract-react-types-loader!../../../src/progress-steps/step.js')}/>
+
