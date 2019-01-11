@@ -7,28 +7,24 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulContainer, STATE_CHANGE_TYPE} from '../index.js';
+import {NavigationContainer, STATE_CHANGE_TYPE} from '../index.js';
 
-describe('StatefulComponentContainer', () => {
+describe('NavigationContainer', () => {
   test('basic render', () => {
     const props = {
-      initialState: {
-        value: new Date(),
-      },
+      highlightedDate: new Date(),
       onSelect: jest.fn(),
       stateReducer: jest.fn(),
     };
     const children = jest.fn();
 
-    shallow(<StatefulContainer {...props}>{children}</StatefulContainer>);
+    shallow(<NavigationContainer {...props}>{children}</NavigationContainer>);
     expect(children).toHaveBeenCalledTimes(1);
   });
 
   describe('Children function receives correct props', () => {
     const props = {
-      initialState: {
-        value: new Date(2019, 2, 10),
-      },
+      highlightedDate: new Date(),
       stateReducer: jest.fn(),
       onSelect: jest.fn(),
       onDayMouseOver: jest.fn(),
@@ -37,11 +33,11 @@ describe('StatefulComponentContainer', () => {
     const children = jest.fn();
     const eArgs = {date: new Date(), event: {}};
     const component = shallow(
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
+      <NavigationContainer {...props}>{children}</NavigationContainer>,
     );
     const handlers = [
-      ['onDayMouseOver', false],
-      ['onDayMouseLeave', false],
+      ['onDayMouseOver', true],
+      ['onDayMouseLeave', true],
       ['onSelect', true],
     ];
 
@@ -64,30 +60,29 @@ describe('StatefulComponentContainer', () => {
 
   test('stateReducer', () => {
     const props = {
-      initialState: {
-        value: new Date(2016, 2, 10),
-      },
+      highlightedDate: new Date(2010, 6, 8),
       stateReducer: jest.fn(),
     };
     const children = jest.fn();
-    const newDate = {date: new Date(2018, 2, 10)};
-    const state = {value: newDate.date};
-    const stateUpdated = {value: new Date(2019, 2, 10)};
+    const state = {highlightedDate: new Date(2010, 6, 8)};
+    const stateUpdated = {highlightedDate: new Date(2010, 6, 1)};
 
     const component = shallow(
-      <StatefulContainer {...props}>{children}</StatefulContainer>,
+      <NavigationContainer {...props}>{children}</NavigationContainer>,
     );
-    props.stateReducer.mockReturnValueOnce(stateUpdated);
-    component.instance().onSelect(newDate);
+    props.stateReducer.mockReturnValueOnce(state);
+    component.instance().onKeyDown({
+      key: 'ArrowUp',
+      preventDefault: () => {},
+      stopPropagation: () => {},
+    });
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer.mock.calls[0][0]).toEqual(
-      STATE_CHANGE_TYPE.change,
+      STATE_CHANGE_TYPE.moveUp,
     );
-    expect(props.stateReducer.mock.calls[0][1]).toEqual(state);
-    expect(props.stateReducer.mock.calls[0][2]).toMatchObject({
-      value: props.initialState.value,
-    });
-    expect(component).toHaveState('value', stateUpdated.value);
+    expect(props.stateReducer.mock.calls[0][1]).toEqual(stateUpdated);
+    expect(props.stateReducer.mock.calls[0][2]).toMatchObject(state);
+    expect(component).toHaveState('highlightedDate', state.highlightedDate);
   });
 });
