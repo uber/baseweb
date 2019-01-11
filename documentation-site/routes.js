@@ -59,6 +59,10 @@ const routes = [
             path: getPath('/components/button-group'),
           },
           {
+            text: 'Checkbox',
+            path: getPath('/components/checkbox'),
+          },
+          {
             text: 'Input',
             path: getPath('/components/input'),
           },
