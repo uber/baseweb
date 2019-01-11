@@ -20,6 +20,9 @@ Object {
 
 exports[`Menu Styled Components ListItem - basic render: correct styles 1`] = `
 Object {
+  ":focus": Object {
+    "outline": "none",
+  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
   },
@@ -44,6 +47,9 @@ Object {
 
 exports[`Menu Styled Components ListItem - compact: correct styles 1`] = `
 Object {
+  ":focus": Object {
+    "outline": "none",
+  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
   },
@@ -68,6 +74,9 @@ Object {
 
 exports[`Menu Styled Components ListItem - highlighted render: correct styles 1`] = `
 Object {
+  ":focus": Object {
+    "outline": "none",
+  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
   },

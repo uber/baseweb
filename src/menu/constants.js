@@ -7,12 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export const STATE_CHANGE_TYPES = {
+  click: 'click',
   moveUp: 'moveUp',
   moveDown: 'moveDown',
 };
 
 // Dict of props to prepend $ to pass thru to styletron
 export const SHARED_PROPS_MAPPER = {
+  disabled: true,
   ref: true,
   isHighlighted: true,
 };
