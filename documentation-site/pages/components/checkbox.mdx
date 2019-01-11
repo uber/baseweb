@@ -1,0 +1,88 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/checkbox/basic.js';
+import Multiline from 'examples/checkbox/multiline.js';
+import Error from 'examples/checkbox/error.js';
+import Indeterminate from 'examples/checkbox/indeterminate.js';
+import Disabled from 'examples/checkbox/disabled.js';
+import Alignment from 'examples/checkbox/alignment.js';
+import Overrides from 'examples/checkbox/overrides.js';
+import ComponentOverrides from 'examples/checkbox/component-overrides.js';
+import Focus from 'examples/checkbox/focus.js';
+
+export default Layout;
+
+# Checkbox
+
+Allows users to make a selection of available options, or toggle options on/off.
+
+### When to use
+
+- When a collection of options share context.
+- When a user wants to toggle an option on/off.
+- When a user wants to select multiple options.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/checkbox/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Multiline" path="examples/checkbox/multiline.js">
+  <Multiline />
+</Example>
+
+<Example title="Error" path="examples/checkbox/error.js">
+  <Error />
+</Example>
+
+<Example title="Indeterminate" path="examples/checkbox/indeterminate.js">
+  <Indeterminate />
+</Example>
+
+<Example title="Disabled" path="examples/checkbox/disabled.js">
+  <Disabled />
+</Example>
+
+<Example title="Alignment" path="examples/checkbox/alignment.js">
+  <Alignment />
+</Example>
+
+<Example title="Overrides" path="examples/checkbox/overrides.js">
+  <Overrides />
+</Example>
+
+<Example
+  title="Component Overrides"
+  path="examples/checkbox/component-overrides.js"
+>
+  <ComponentOverrides />
+</Example>
+
+<Example title="Focus with button" path="examples/checkbox/focus.js">
+  <Focus />
+</Example>
+
+<API
+  heading="Checkbox API"
+  api={require('!!extract-react-types-loader!../../../src/checkbox/checkbox.js')}
+/>
+
+<API
+  heading="Stateful Checkbox API"
+  api={require('!!extract-react-types-loader!../../../src/checkbox/stateful-checkbox.js')}
+/>
+
+<API
+  heading="Stateful Checkbox Container API"
+  api={require('!!extract-react-types-loader!../../../src/checkbox/stateful-checkbox-container.js')}
+/>
