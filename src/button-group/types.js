@@ -21,15 +21,35 @@ export type StylePropsT = {
 
 // button-group
 export type PropsT = {|
+  /** Accessible label. */
   ariaLabel?: string,
+  /** Set of more than one `Button` components */
   children: Array<React.Node>,
+  /** Defines if the button group is disabled. */
   disabled?: boolean,
+  /** Defines the kind (purpose) of the buttons in the button group. */
   kind?: $Values<typeof KIND>,
+  /**
+   * Use the `mode` prop to render toggleable Buttons:
+   * the value `radio` will cause Buttons to behave like radio buttons,
+   * the value `checkbox` will cause Buttons to behave like checkboxes.
+   */
   mode?: $Values<typeof MODE>,
+  /**
+   * Called with click events from children. If a child button has its
+   * own click handler, the local handler will be called first, then
+   * this handler will trigger.
+   */
   onClick?: ClickHandlerT,
   overrides?: OverridesT<StylePropsT>,
+  /**
+   * Index or array of indices of the selected Button(s).
+   * Primarily for use with controlled components with a `mode` prop defined.
+   */
   selected?: number | Array<number>,
+  /** Defines the shape of the buttons in the button group. */
   shape?: $Values<typeof SHAPE>,
+  /** Defines the size of the buttons in the button group. */
   size?: $Values<typeof SIZE>,
 |};
 
