@@ -99,7 +99,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.10.0",
     "extract-react-types-loader": "^0.3.0",
-    "flow-bin": "^0.89.0",
+    "flow-bin": "^0.90.0",
     "flow-copy-source": "^2.0.2",
     "front-matter": "^3.0.1",
     "geckodriver": "^1.11.0",
