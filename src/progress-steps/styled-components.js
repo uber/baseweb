@@ -224,6 +224,7 @@ export const StyledNumberContentTail = styled(
       left: '11px',
       top: 0,
       height: '100%',
+      marginTop: '5px',
       paddingBottom: '0px',
       width: $theme.sizing.scale0,
       paddingTop: $theme.sizing.scale600,
