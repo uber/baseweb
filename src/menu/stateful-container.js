@@ -118,7 +118,11 @@ export default class MenuStatefulContainer extends React.Component<
   handleEnterKey(event: KeyboardEvent) {
     const {items, onItemSelect} = this.props;
     const {highlightedIndex} = this.state;
-    if (items[highlightedIndex] && onItemSelect) {
+    if (
+      items[highlightedIndex] &&
+      onItemSelect &&
+      !items[highlightedIndex].disabled
+    ) {
       onItemSelect({item: items[highlightedIndex], event});
     }
   }
@@ -127,8 +131,13 @@ export default class MenuStatefulContainer extends React.Component<
     const {highlightedIndex} = this.state;
     const {onItemSelect, getRequiredItemProps} = this.props;
     let onClickHandler;
-    if (onItemSelect) {
-      onClickHandler = onItemSelect.bind(null, {item});
+    if (onItemSelect && !item.disabled) {
+      onClickHandler = () => {
+        onItemSelect({item});
+        this.internalSetState(STATE_CHANGE_TYPES.click, {
+          highlightedIndex: index,
+        });
+      };
     }
     // Create and store ref or re-use
     let itemRef = this.refList[index];
@@ -137,6 +146,7 @@ export default class MenuStatefulContainer extends React.Component<
       this.refList[index] = itemRef;
     }
     return {
+      disabled: item.disabled,
       ref: itemRef,
       isHighlighted: highlightedIndex === index,
       onClick: onClickHandler,

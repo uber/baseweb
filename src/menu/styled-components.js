@@ -11,6 +11,7 @@ import {OPTION_LIST_SIZE} from './constants.js';
 import type {ThemeT} from '../styles/index.js';
 
 type StyledPropsT = {
+  $disabled?: boolean,
   $theme: ThemeT,
   $isHighlighted?: boolean,
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
@@ -35,14 +36,18 @@ List.displayName = 'StyledList';
 
 export const ListItem = styled(
   'li',
-  ({$theme, $isHighlighted, $size}: StyledPropsT) => ({
+  ({$disabled, $theme, $isHighlighted, $size}: StyledPropsT) => ({
     ...($size === OPTION_LIST_SIZE.compact
       ? $theme.typography.font200
       : $theme.typography.font300),
     position: 'relative',
     display: 'block',
-    color: $isHighlighted ? $theme.colors.primary : $theme.colors.foreground,
-    cursor: 'pointer',
+    color: $disabled
+      ? $theme.colors.foregroundAlt
+      : $isHighlighted
+        ? $theme.colors.primary
+        : $theme.colors.foreground,
+    cursor: $disabled ? 'not-allowed' : 'pointer',
     backgroundColor: $isHighlighted
       ? $theme.colors.menuFillHover
       : 'transparent',
@@ -68,6 +73,9 @@ export const ListItem = styled(
       $size === OPTION_LIST_SIZE.compact
         ? $theme.sizing.scale900
         : $theme.sizing.scale600,
+    ':focus': {
+      outline: 'none',
+    },
   }),
 );
 ListItem.displayName = 'StyledListItem';
