@@ -25,8 +25,11 @@ export type StateT = {|
 |};
 
 export type PropsT = {|
+  /** Defines an alternative text description of the image. */
   name: string,
   overrides?: OverridesT<StylePropsT>,
+  /** Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width. */
   size?: string,
+  /** Image to display. */
   src: string,
 |};
