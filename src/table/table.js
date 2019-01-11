@@ -20,9 +20,10 @@ import {
 
 import {
   AutoSizer,
-  Table as VTable,
+  ScrollSync,
   CellMeasurer,
   CellMeasurerCache,
+  defaultCellRangeRenderer,
 } from 'react-virtualized';
 
 import type {TablePropsT} from './types.js';
@@ -54,51 +55,24 @@ export default function Table(props: TablePropsT) {
     fixedWidth: true,
   });
 
-  function rowGetter({index}) {
-    return rows[index];
-  }
-
-  function headerRowRenderer({columns, style}) {
-    return (
-      <Head style={style} {...HeadProps}>
-        {columns}
-      </Head>
-    );
-  }
-
   function renderHeaderCell({columnIndex, key, parent, rowIndex, style}) {
-    console.log(columns[columnIndex], columnIndex);
     return (
       <HeadCell
         style={{
           ...style,
         }}
-        {...CellProps}
+        {...HeadCellProps}
       >
         {columns[columnIndex]}
       </HeadCell>
     );
   }
 
-  // function rowRenderer({
-  //   className,
-  //   columns,
-  //   index,
-  //   key,
-  //   onRowClick,
-  //   onRowDoubleClick,
-  //   onRowMouseOut,
-  //   onRowMouseOver,
-  //   onRowRightClick,
-  //   rowData,
-  //   style,
-  // }) {
-  //   return (
-  //     <Row key={key} role="row" style={style} {...RowProps}>
-  //       {columns}
-  //     </Row>
-  //   );
-  // }
+  function cellRangeRenderer(props) {
+    const children = defaultCellRangeRenderer(props);
+    children.push(<div>My custom overlay</div>);
+    return children;
+  }
 
   function cellRenderer({columnIndex, key, parent, rowIndex, style}) {
     const cell = (
@@ -132,53 +106,46 @@ export default function Table(props: TablePropsT) {
     <AutoSizer>
       {({width, height}) => (
         <Root style={{width: width, height: height}}>
-          <Head
-            columnCount={columns.length}
-            columnWidth={400}
-            height={48}
-            rowCount={1}
-            width={width}
-            rowHeight={48}
-            cellRenderer={renderHeaderCell}
-          />
-          <Body
-            cellRenderer={cellRenderer}
-            columnCount={columns.length}
-            columnWidth={400}
-            height={height - 48}
-            rowCount={rows.length}
-            rowHeight={useDynamicRowHeight ? cache.rowHeight : estimatedRowSize}
-            width={width}
-          />
-
-          {/* <VTable
-            rowGetter={rowGetter}
-            headerHeight={48}
-            headerRowRenderer={headerRowRenderer}
-            rowRenderer={rowRenderer}
-            width={width}
-            height={height}
-            rowCount={rows.length}
-            rowHeight={useDynamicRowHeight ? cache.rowHeight : estimatedRowSize}
-            {...restProps}
-            {...RootProps}
-          >
-            {columns.map((column, index) => {
-              return (
-                <Column
-                  key={index}
-                  headerRenderer={renderHeaderCell}
-                  label={column}
-                  flexGrow={1}
-                  columnData={Object.assign({}, rows[index])}
-                  cellDataGetter={({rowData}) => rowData[index]}
-                  cellRenderer={cellRenderer}
-                  dataKey={index}
-                  width={150}
+          <ScrollSync>
+            {({
+              clientHeight,
+              clientWidth,
+              onScroll,
+              scrollHeight,
+              scrollLeft,
+              scrollTop,
+              scrollWidth,
+            }) => (
+              <React.Fragment>
+                <Head
+                  {...HeadProps}
+                  columnCount={columns.length}
+                  columnWidth={400}
+                  height={48}
+                  rowCount={1}
+                  width={width}
+                  scrollLeft={scrollLeft}
+                  rowHeight={48}
+                  cellRenderer={renderHeaderCell}
+                  style={{overflow: 'hidden'}}
                 />
-              );
-            })}
-          </VTable> */}
+                <Body
+                  {...BodyProps}
+                  onScroll={onScroll}
+                  cellRangeRenderer={cellRangeRenderer}
+                  cellRenderer={cellRenderer}
+                  columnCount={columns.length}
+                  columnWidth={400}
+                  height={height - 48}
+                  rowCount={rows.length}
+                  rowHeight={
+                    useDynamicRowHeight ? cache.rowHeight : estimatedRowSize
+                  }
+                  width={width}
+                />
+              </React.Fragment>
+            )}
+          </ScrollSync>
         </Root>
       )}
     </AutoSizer>

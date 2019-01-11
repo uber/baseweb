@@ -38,7 +38,7 @@ const ControlledTable = (props: TablePropsT) => {
 export default {
   [examples.TABLE]: function TableStory() {
     return (
-      <div style={{height: '400px', width: '100%'}}>
+      <div style={{height: '400px', width: '600px'}}>
         <ControlledTable
           useDynamicRowHeight
           columns={['Name', 'Age', 'Address']}

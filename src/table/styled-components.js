@@ -27,8 +27,8 @@ export const Head = styled(Grid, ({$theme}: SharedStylePropsT) => {
     boxShadow: lighting.shadow400,
     // borderTopRightRadius: borders.radius200,
     // borderTopLeftRadius: borders.radius200,
-    display: 'flex',
-    flexDirection: 'row',
+    // display: 'flex',
+    // flexDirection: 'row',
     // ...borders.border400,
   };
 });
