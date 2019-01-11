@@ -111,6 +111,10 @@ export type SharedStylePropsT = {
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type CalendarStateT = {
+  value?: ?Date,
+};
+
+export type NavigationContainerStateT = {
   // indicates a highlighted date on hover and keyboard navigation
   highlightedDate?: ?Date,
   // used to disable keyboard navigation when a month or year select
@@ -120,7 +124,6 @@ export type CalendarStateT = {
   // when keyboard navigating after a mouse moved off the cal and reset
   // highlightedDate value
   lastHighlightedDate?: Date,
-  value?: ?Date,
 };
 
 export type StateReducerT = (
@@ -129,13 +132,27 @@ export type StateReducerT = (
   currentState: CalendarStateT,
 ) => CalendarStateT;
 
+export type NavigationContainerStateReducerT = (
+  stateType: StateChangeTypeT,
+  nextState: NavigationContainerStateT,
+  currentState: NavigationContainerStateT,
+) => NavigationContainerStateT;
+
 export type StatefulContainerPropsT = {
   children: CalendarPropsT => React.Node,
   initialState: CalendarStateT,
   stateReducer: StateReducerT,
+  onSelect: ({date: Date}) => void,
+};
+
+export type NavigationContainerPropsT = {
+  children: CalendarPropsT => React.Node,
+  highlightedDate?: ?Date,
   onDayMouseOver: (params: {date: Date, event: Event}) => void,
   onDayMouseLeave: (params: {date: Date, event: Event}) => void,
   onSelect: ({date: Date}) => void,
+  selected?: ?Date,
+  stateReducer: NavigationContainerStateReducerT,
 };
 
 export type StatefulDatepickerPropsT = $Diff<
