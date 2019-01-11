@@ -84,6 +84,10 @@ const routes = [
             text: 'Accordion',
             path: getPath('/components/accordion'),
           },
+          {
+            text: 'Avatar',
+            path: getPath('/components/avatar'),
+          },
         ],
       },
       {
