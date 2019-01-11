@@ -66,46 +66,82 @@ export type PropsT = {
   'aria-label': ?string,
   'aria-describedby': ?string,
   'aria-labelledby': ?string,
+  /** Defines if select element is focused on the first mount. */
   autoFocus: false,
+  /** Defines if options can be removed by pressing backspace. */
   backspaceRemoves: boolean,
+  /** Defines if the select value can be cleared. If true a clear icon is rendered when a value is set. */
   clearable: boolean,
+  /** Defines if the menu closes after a selection if made. */
   closeOnSelect: boolean,
+  /** Defines if options can be removed by pressing backspace. */
   deleteRemoves: boolean,
+  /** Defines if the control is disabled. */
   disabled: boolean,
+  /** Defines if the control if in error state. */
   error: boolean,
+  /** Defines if the value is cleared when escape is pressed and the dropdown is closed. */
   escapeClearsValue: boolean,
+  /** Defaults to filterOptions that excludes selected options for
+   * multi select. A custom method to filter options to be displayed in the dropdown. */
   filterOptions: ?(
     options: ValueT,
     filterValue: string,
     excludeOptions: ?ValueT,
     {valueKey: string, labelKey: string},
   ) => ValueT,
+  /** Defines if currently selected options are filtered out in the dropdown options. */
   filterOutSelected: boolean,
+  /** A custom method to get a display value for a dropdown option. */
   getOptionLabel: ?({option: OptionT}) => React.Node,
+  /** A custom method to get a display value for a selected option. */
   getValueLabel: ?({option: OptionT}) => React.Node,
+  /** Defines if the select if in a loading (async) state. */
   isLoading: boolean,
+  /** Defines an option key for a default label value. */
   labelKey: string,
+  /** Sets max height of the dropdown list. */
   maxDropdownHeight: string,
+  /** Defines if multiple options can be selected. */
   multi: boolean,
+  /** Message to be displayed if no options is found for a search query. */
   noResultsMsg: React.Node,
   onBlur: (e: Event) => void,
+  /** Defines if the input value is reset to an empty string when a blur event happens on the select. */
   onBlurResetsInput: boolean,
+  /** change handler of the select to be called when a value is changed. */
   onChange: (params: OnChangeParamsT) => void,
   onFocus: (e: SyntheticEvent<HTMLElement>) => void,
   onInputChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  /** Defines if the input value is reset to an empty string when dropdown is closed. */
   onCloseResetsInput: boolean,
+  /** Defines if the input value is reset to an empty string when a selection is made. */
   onSelectResetsInput: boolean,
+  /** A function that is called when the dropdown opens. */
   onOpen: ?() => void,
+  /** A function that is called when the dropdown closes. */
   onClose: ?() => void,
+  /** Defines if the dropdown opens on a click event on the select. */
   openOnClick: boolean,
+  /** Options to be displayed in the dropdown. If an option has a
+   * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
   options: ?ValueT,
   overrides: OverridesT,
+  /** Sets the placeholder. */
   placeholder: React.Node,
+  /** Defines if the select field is required to have a selection. */
   required: boolean,
+  /** Defines if the search functionality id enabled. */
   searchable: boolean,
   size: SizeT,
+  /** Defines type of the component to be in select or search mode.
+   * When set to TYPE.search the search icon if rendered on the
+   * left and the select arrow icon is not rendered. */
   type: TypeT,
+  /** A current selected value(s). If a selected value has a clearableValue
+   * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value: ValueT,
+  /** Defines an option key for a default key value. */
   valueKey: string,
 };
 

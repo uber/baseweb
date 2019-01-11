@@ -99,6 +99,15 @@ const routes = [
         ],
       },
       {
+        text: 'Pickers',
+        children: [
+          {
+            text: 'Select',
+            path: getPath('/components/select'),
+          },
+        ],
+      },
+      {
         text: 'Progress & Validation',
         children: [
           {
@@ -129,7 +138,7 @@ const routes = [
         children: [
           {
             text: 'Block',
-            path: getPath('/components/bloc'),
+            path: getPath('/components/block'),
           },
         ],
       },
