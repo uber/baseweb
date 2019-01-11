@@ -64,6 +64,7 @@ module.exports = {
     new RegExp(Textarea.STATE_EXAMPLE),
     new RegExp(Toast.TOAST_EXAMPLE),
     new RegExp(ProgressStep.DEFAULT),
+    new RegExp(ProgressStep.NUMBERED),
   ],
   failureExitCode: 0,
 };
