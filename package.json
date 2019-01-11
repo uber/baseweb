@@ -136,7 +136,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "date-fns": "2.0.0-alpha.26",
+    "date-fns": "2.0.0-alpha.27",
     "memoize-one": "^5.0.0",
     "popper.js": "^1.14.3",
     "react-dropzone": "^8.0.0",
