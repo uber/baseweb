@@ -11,7 +11,7 @@ import {
   Unstable_StatefulCalendar as StatefulDatepicker,
   formatDate,
 } from './index.js';
-import {Popover} from '../popover/index.js';
+import {Popover, PLACEMENT} from '../popover/index.js';
 import {Input} from '../input/index.js';
 import tests from './examples-list.js';
 
@@ -56,9 +56,15 @@ class DatepickerWithInput extends React.Component<
   render() {
     return (
       <Popover
+        placement={PLACEMENT.bottom}
         isOpen={this.state.isOpen}
         onEsc={this.close}
-        content={<StatefulDatepicker onSelect={this.onChange} />}
+        content={
+          <StatefulDatepicker
+            initialState={{value: this.state.value}}
+            onSelect={this.onChange}
+          />
+        }
       >
         <Input
           value={this.state.formattedValue}
