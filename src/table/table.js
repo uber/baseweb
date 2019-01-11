@@ -13,6 +13,7 @@ import {
   Root as StyledRoot,
   Head as StyledHead,
   HeadCell as StyledHeadCell,
+  Body as StyledBody,
   Row as StyledRow,
   Cell as StyledCell,
 } from './styled-components.js';
@@ -20,7 +21,6 @@ import {
 import {
   AutoSizer,
   Table as VTable,
-  Column,
   CellMeasurer,
   CellMeasurerCache,
 } from 'react-virtualized';
@@ -43,6 +43,7 @@ export default function Table(props: TablePropsT) {
     overrides.HeadCell,
     StyledHeadCell,
   );
+  const [Body, BodyProps] = getOverrides(overrides.Body, StyledBody);
   const [Row, RowProps] = getOverrides(overrides.Row, StyledRow);
   const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
 
@@ -65,33 +66,39 @@ export default function Table(props: TablePropsT) {
     );
   }
 
-  function renderHeaderCell({dataKey, label}) {
+  function renderHeaderCell({columnIndex, key, parent, rowIndex, style}) {
+    console.log(columns[columnIndex], columnIndex);
     return (
-      <HeadCell key={dataKey} {...HeadCellProps}>
-        {label}
+      <HeadCell
+        style={{
+          ...style,
+        }}
+        {...CellProps}
+      >
+        {columns[columnIndex]}
       </HeadCell>
     );
   }
 
-  function rowRenderer({
-    className,
-    columns,
-    index,
-    key,
-    onRowClick,
-    onRowDoubleClick,
-    onRowMouseOut,
-    onRowMouseOver,
-    onRowRightClick,
-    rowData,
-    style,
-  }) {
-    return (
-      <Row key={key} role="row" style={style} {...RowProps}>
-        {columns}
-      </Row>
-    );
-  }
+  // function rowRenderer({
+  //   className,
+  //   columns,
+  //   index,
+  //   key,
+  //   onRowClick,
+  //   onRowDoubleClick,
+  //   onRowMouseOut,
+  //   onRowMouseOver,
+  //   onRowRightClick,
+  //   rowData,
+  //   style,
+  // }) {
+  //   return (
+  //     <Row key={key} role="row" style={style} {...RowProps}>
+  //       {columns}
+  //     </Row>
+  //   );
+  // }
 
   function cellRenderer({columnIndex, key, parent, rowIndex, style}) {
     const cell = (
@@ -125,7 +132,26 @@ export default function Table(props: TablePropsT) {
     <AutoSizer>
       {({width, height}) => (
         <Root style={{width: width, height: height}}>
-          <VTable
+          <Head
+            columnCount={columns.length}
+            columnWidth={400}
+            height={48}
+            rowCount={1}
+            width={width}
+            rowHeight={48}
+            cellRenderer={renderHeaderCell}
+          />
+          <Body
+            cellRenderer={cellRenderer}
+            columnCount={columns.length}
+            columnWidth={400}
+            height={height - 48}
+            rowCount={rows.length}
+            rowHeight={useDynamicRowHeight ? cache.rowHeight : estimatedRowSize}
+            width={width}
+          />
+
+          {/* <VTable
             rowGetter={rowGetter}
             headerHeight={48}
             headerRowRenderer={headerRowRenderer}
@@ -152,7 +178,7 @@ export default function Table(props: TablePropsT) {
                 />
               );
             })}
-          </VTable>
+          </VTable> */}
         </Root>
       )}
     </AutoSizer>

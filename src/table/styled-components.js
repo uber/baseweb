@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
+import {Grid} from 'react-virtualized';
 
 /**
  * Main component container element
@@ -19,7 +20,7 @@ export const Root = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
-export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
+export const Head = styled(Grid, ({$theme}: SharedStylePropsT) => {
   const {lighting, borders} = $theme;
   return {
     textAlign: 'left',
@@ -48,7 +49,7 @@ export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
     borderBottom: 'none',
   };
 });
-export const Body = styled('tbody', (props: SharedStylePropsT) => {
+export const Body = styled(Grid, (props: SharedStylePropsT) => {
   return {};
 });
 export const Row = styled('div', (props: SharedStylePropsT) => {
