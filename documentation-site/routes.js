@@ -125,7 +125,7 @@ const routes = [
         children: [
           {
             text: 'Block',
-            path: getPath('/components/bloc'),
+            path: getPath('/components/block'),
           },
         ],
       },
