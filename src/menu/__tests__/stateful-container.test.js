@@ -14,7 +14,7 @@ import {scrollItemIntoView} from '../utils.js';
 
 jest.mock('../utils');
 
-const mockItems = [{label: 'item1'}, {label: 'item2'}];
+const mockItems = [{label: 'item1'}, {disabled: true, label: 'item2'}];
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockItemSelect = jest.fn();
 
@@ -102,6 +102,18 @@ describe('Menu StatefulContainer', () => {
     });
   });
 
+  test('getRequiredItemProps returns correct props for disabled item', () => {
+    const component = mount(<StatefulContainer {...getSharedProps()} />);
+    const item = mockItems[1];
+    const props = component.instance().getRequiredItemProps(item, 1);
+    expect(props).toEqual({
+      disabled: true,
+      ref: React.createRef(),
+      isHighlighted: false,
+      'aria-activedescendant': false,
+    });
+  });
+
   test('getRequiredItemProps returns correct props for active child', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     component.setState({
@@ -175,5 +187,11 @@ describe('Menu StatefulContainer', () => {
         event,
       },
     ]);
+
+    component.setState({
+      highlightedIndex: 1,
+    });
+    component.instance().onKeyDown(event);
+    expect(mockItemSelect.mock.calls.length).toBe(1);
   });
 });
