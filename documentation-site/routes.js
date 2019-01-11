@@ -55,6 +55,10 @@ const routes = [
             path: getPath('/components/button'),
           },
           {
+            text: 'ButtonGroup',
+            path: getPath('/components/button-group'),
+          },
+          {
             text: 'Checkbox',
             path: getPath('/components/checkbox'),
           },
@@ -88,6 +92,19 @@ const routes = [
             text: 'Accordion',
             path: getPath('/components/accordion'),
           },
+          {
+            text: 'Avatar',
+            path: getPath('/components/avatar'),
+          },
+        ],
+      },
+      {
+        text: 'Pickers',
+        children: [
+          {
+            text: 'Select',
+            path: getPath('/components/select'),
+          },
         ],
       },
       {
@@ -113,6 +130,15 @@ const routes = [
           {
             text: 'Modal',
             path: getPath('/components/modal'),
+          },
+        ],
+      },
+      {
+        text: 'Utility',
+        children: [
+          {
+            text: 'Block',
+            path: getPath('/components/block'),
           },
         ],
       },
