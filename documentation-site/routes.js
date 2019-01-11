@@ -55,6 +55,10 @@ const routes = [
             path: getPath('/components/button'),
           },
           {
+            text: 'ButtonGroup',
+            path: getPath('/components/button-group'),
+          },
+          {
             text: 'Input',
             path: getPath('/components/input'),
           },
@@ -88,6 +92,10 @@ const routes = [
             text: 'Accordion',
             path: getPath('/components/accordion'),
           },
+          {
+            text: 'Avatar',
+            path: getPath('/components/avatar'),
+          },
         ],
       },
       {
@@ -113,6 +121,15 @@ const routes = [
           {
             text: 'Modal',
             path: getPath('/components/modal'),
+          },
+        ],
+      },
+      {
+        text: 'Utility',
+        children: [
+          {
+            text: 'Block',
+            path: getPath('/components/bloc'),
           },
         ],
       },

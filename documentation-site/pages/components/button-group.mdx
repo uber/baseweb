@@ -1,0 +1,64 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/button-group/basic.js';
+import RadioMode from 'examples/button-group/radio-mode.js';
+import CheckboxMode from 'examples/button-group/checkbox-mode.js';
+import Disabled from 'examples/button-group/disabled.js';
+import Controlled from 'examples/button-group/controlled.js';
+
+export default Layout;
+
+# ButtonGroup
+
+Groups a collection of similar actions together.
+
+### When to use
+
+- If you need to emphasize context of similar actions.
+- If a single option or multiple options of the set may be selected.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/button-group/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Radio Mode" path="examples/button-group/radio-mode.js">
+  <RadioMode />
+</Example>
+
+<Example title="Checkbox Mode" path="examples/button-group/checkbox-mode.js">
+  <CheckboxMode />
+</Example>
+
+<Example title="Disabled Buttons" path="examples/button-group/disabled.js">
+  <Disabled />
+</Example>
+
+<Example title="Controlled Example" path="examples/button-group/controlled.js">
+  <Controlled />
+</Example>
+
+<API
+  heading="ButtonGroup API"
+  api={require('!!extract-react-types-loader!../../../src/button-group/button-group.js')}
+/>
+
+<API
+  heading="Stateful ButtonGroup API"
+  api={require('!!extract-react-types-loader!../../../src/button-group/stateful-button-group.js')}
+/>
+
+<API
+  heading="Stateful Container API"
+  api={require('!!extract-react-types-loader!../../../src/button-group/stateful-container.js')}
+/>
