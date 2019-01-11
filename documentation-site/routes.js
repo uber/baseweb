@@ -62,6 +62,10 @@ const routes = [
             text: 'Input',
             path: getPath('/components/input'),
           },
+          {
+            text: 'Textarea',
+            path: getPath('/components/textarea'),
+          },
         ],
       },
       {
