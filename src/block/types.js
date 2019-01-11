@@ -217,35 +217,62 @@ type OverflowT =
 
 export type BlockPropsT = {
   children?: Node,
+  /** Modifies the base element used to render the block. */
   as?: ElementType,
   overrides?: OverridesT,
   color?: string,
+  /** Accepts all themeable color properties (`primary200`, etc.). */
   font?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
   alignContent?: AlignContentT,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items */
   alignItems?: AlignItemsT,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-self */
   alignSelf?: AlignSelfT,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction */
   flexDirection?: FlexDirectionT,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/display */
   display?: DisplayT,
   flex?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid */
   grid?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area */
   gridArea?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns */
   gridAutoColumns?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow */
   gridAutoFlow?: GridAutoFlowT,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows */
   gridAutoRows?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column */
   gridColumn?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end */
   gridColumnEnd?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-gap */
   gridColumnGap?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start */
   gridColumnStart?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap */
   gridGap?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row */
   gridRow?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start */
   gridRowStart?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end */
   gridRowEnd?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template */
   gridTemplate?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas */
   gridTemplateAreas?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns */
   gridTemplateColumns?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
   gridTemplateRows?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
   justifyContent?: JustifyContentT,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items */
   justifyItems?: JustifyItemsT,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self */
   justifySelf?: JustifySelfT,
   position?: PositionT,
   width?: string,
@@ -265,8 +292,11 @@ export type BlockPropsT = {
   paddingRight?: string,
   paddingBottom?: string,
   paddingLeft?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-content */
   placeContent?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-items */
   placeItems?: string,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-self */
   placeSelf?: string,
   flexWrap?: boolean,
   left?: string,

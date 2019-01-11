@@ -88,6 +88,10 @@ const routes = [
             text: 'Accordion',
             path: getPath('/components/accordion'),
           },
+          {
+            text: 'Avatar',
+            path: getPath('/components/avatar'),
+          },
         ],
       },
       {
@@ -113,6 +117,15 @@ const routes = [
           {
             text: 'Modal',
             path: getPath('/components/modal'),
+          },
+        ],
+      },
+      {
+        text: 'Utility',
+        children: [
+          {
+            text: 'Block',
+            path: getPath('/components/bloc'),
           },
         ],
       },
