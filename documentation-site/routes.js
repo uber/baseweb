@@ -55,6 +55,10 @@ const routes = [
             path: getPath('/components/button'),
           },
           {
+            text: 'ButtonGroup',
+            path: getPath('/components/button-group'),
+          },
+          {
             text: 'Input',
             path: getPath('/components/input'),
           },
