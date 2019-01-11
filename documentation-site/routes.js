@@ -55,6 +55,10 @@ const routes = [
             path: getPath('/components/button'),
           },
           {
+            text: 'Checkbox',
+            path: getPath('/components/checkbox'),
+          },
+          {
             text: 'Input',
             path: getPath('/components/input'),
           },
