@@ -51,12 +51,12 @@ const routes = [
         text: 'Basic Inputs',
         children: [
           {
-            text: 'Input',
-            path: getPath('/components/input'),
-          },
-          {
             text: 'Button',
             path: getPath('/components/button'),
+          },
+          {
+            text: 'Input',
+            path: getPath('/components/input'),
           },
         ],
       },
@@ -64,16 +64,16 @@ const routes = [
         text: 'Navigation',
         children: [
           {
+            text: 'Breadcrumbs',
+            path: getPath('/components/breadcrumbs'),
+          },
+          {
             text: 'Header navigation',
             path: getPath('/components/header-navigation'),
           },
           {
             text: 'Tab',
             path: getPath('/components/tabs'),
-          },
-          {
-            text: 'Breadcrumbs',
-            path: getPath('/components/breadcrumbs'),
           },
         ],
       },
@@ -89,6 +89,10 @@ const routes = [
       {
         text: 'Progress & Validation',
         children: [
+          {
+            text: 'Progress steps',
+            path: getPath('/components/progress-steps'),
+          },
           {
             text: 'Toast',
             path: getPath('/components/toast'),
