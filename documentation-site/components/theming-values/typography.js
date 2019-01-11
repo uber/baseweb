@@ -8,16 +8,22 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
+import {LightTheme} from 'baseui';
 import {Block} from 'baseui/block';
 
 import {Header} from './common';
 
 function TypographyPreview({font}) {
+  const {fontSize, fontWeight, lineHeight} = LightTheme.typography[font];
+
   return (
     <Block margin="scale800">
       <Block font="font400">{font}</Block>
       <Block font={font}>
         We ignite opportunity by setting the world in motion.
+      </Block>
+      <Block font="font100">
+        {`(font-size: ${fontSize}, font-weight: ${fontWeight}, line-height: ${lineHeight})`}
       </Block>
     </Block>
   );
