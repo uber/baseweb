@@ -112,6 +112,15 @@ const routes = [
           },
         ],
       },
+      {
+        text: 'Utility',
+        children: [
+          {
+            text: 'Block',
+            path: getPath('/components/bloc'),
+          },
+        ],
+      },
     ],
   },
 ];
