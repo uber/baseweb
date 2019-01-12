@@ -21,15 +21,10 @@ export const Root = styled('div', ({$theme}: SharedStylePropsT) => {
 });
 
 export const Head = styled(Grid, ({$theme}: SharedStylePropsT) => {
-  const {lighting, borders} = $theme;
+  const {lighting} = $theme;
   return {
     textAlign: 'left',
     boxShadow: lighting.shadow400,
-    // borderTopRightRadius: borders.radius200,
-    // borderTopLeftRadius: borders.radius200,
-    // display: 'flex',
-    // flexDirection: 'row',
-    // ...borders.border400,
   };
 });
 

@@ -45,7 +45,7 @@ export default function Table(props: TablePropsT) {
     StyledHeadCell,
   );
   const [Body, BodyProps] = getOverrides(overrides.Body, StyledBody);
-  const [Row, RowProps] = getOverrides(overrides.Row, StyledRow);
+  // const [Row, RowProps] = getOverrides(overrides.Row, StyledRow);
   const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
 
   const cache = new CellMeasurerCache({
@@ -68,11 +68,23 @@ export default function Table(props: TablePropsT) {
     );
   }
 
-  function cellRangeRenderer(props) {
-    const children = defaultCellRangeRenderer(props);
-    children.push(<div>My custom overlay</div>);
-    return children;
-  }
+  // function cellRangeRenderer(props) {
+  //   const children = defaultCellRangeRenderer(props);
+  //   const outputRows = [];
+  //   for (let i = 0; i < rows.length; i++) {
+  //     const r = [];
+  //     for (let j = 0; j < columns.length; j++) {
+  //       r.push(children[i * columns.length + j]);
+  //     }
+  //     outputRows.push(r);
+  //   }
+
+  //   let out = outputRows.map((row, ind) => {
+  //     return <Row key={ind}>{row}</Row>;
+  //   });
+
+  //   return out;
+  // }
 
   function cellRenderer({columnIndex, key, parent, rowIndex, style}) {
     const cell = (
@@ -105,7 +117,7 @@ export default function Table(props: TablePropsT) {
   return (
     <AutoSizer>
       {({width, height}) => (
-        <Root style={{width: width, height: height}}>
+        <Root {...RootProps} style={{width: width, height: height}}>
           <ScrollSync>
             {({
               clientHeight,
@@ -132,7 +144,7 @@ export default function Table(props: TablePropsT) {
                 <Body
                   {...BodyProps}
                   onScroll={onScroll}
-                  cellRangeRenderer={cellRangeRenderer}
+                  // cellRangeRenderer={cellRangeRenderer}
                   cellRenderer={cellRenderer}
                   columnCount={columns.length}
                   columnWidth={400}
