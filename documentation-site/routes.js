@@ -100,6 +100,10 @@ const routes = [
             text: 'Avatar',
             path: getPath('/components/avatar'),
           },
+          {
+            text: 'Icon',
+            path: getPath('/components/icon'),
+          },
         ],
       },
       {
