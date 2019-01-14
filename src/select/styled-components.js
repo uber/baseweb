@@ -369,7 +369,6 @@ export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
     left: sizing.scale500,
     display: 'inline-block',
     height: '100%',
-    zIndex: 1,
   };
 });
 StyledSearchIcon.displayName = 'StyledSearchIcon';
