@@ -33,8 +33,11 @@ export type StyledComponentParamsT = StyledComponentArgsT & {
 
 export type IconPropsT = {
   children?: React.Node,
+  /** Size of element, will be passed to the svg width/height style. Can also be a value included in */
   size?: SizeT,
+  /** Color of icon, will be used as svg fill */
   color?: ColorT,
+  /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string,
   overrides?: OverridesT,
 };
