@@ -8,22 +8,18 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import App, {Container} from 'next/app';
-
-import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, ThemeProvider} from 'baseui';
+import App, {Container} from 'next/app';
+import {Provider as StyletronProvider} from 'styletron-react';
 
-import getStyletron from '../helpers/styletron';
-import Head from '../components/meta';
+import {styletron} from '../helpers/styletron';
 
 export default class MyApp extends App {
   render() {
     const {Component, pageProps} = this.props;
-
     return (
       <Container>
-        <Head />
-        <StyletronProvider value={getStyletron()}>
+        <StyletronProvider value={styletron}>
           <ThemeProvider theme={LightTheme}>
             <Component {...pageProps} />
           </ThemeProvider>

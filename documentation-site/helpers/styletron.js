@@ -6,28 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* global document */
 
-const isServer = typeof window === 'undefined';
+import {Client, Server} from 'styletron-engine-atomic';
 
-let styletron;
+export const isServer = typeof window === 'undefined';
 
-export default function getStyletron() {
-  if (isServer && !styletron) {
-    const Styletron = require('styletron-engine-atomic').Server;
-    styletron = new Styletron();
-  } else if (!styletron) {
-    const Styletron = require('styletron-engine-atomic').Client;
-    // eslint-disable-next-line
-    const styleElements = document.getElementsByClassName(
-      '_styletron_hydrate_',
-    );
-    styletron = new Styletron(styleElements);
-  }
-  return styletron;
-}
+const getHydrate = () => document.getElementsByClassName('_styletron_hydrate_');
 
-export function flush() {
-  const _styletron = styletron;
-  styletron = null;
-  return _styletron;
-}
+export const styletron = isServer
+  ? new Server()
+  : new Client({hydrate: getHydrate()});
