@@ -18,7 +18,7 @@ export default () => (
       content="initial-scale=1.0, width=device-width"
       key="viewport"
     />
-    <style jsx global>{`
+    <style>{`
       body {
         margin: 0;
       }
