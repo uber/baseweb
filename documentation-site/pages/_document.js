@@ -5,6 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
+/* eslint-disable flowtype/require-valid-file-annotation */
+
+import React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
 import {Provider as StyletronProvider} from 'styletron-react';
 
@@ -23,7 +26,7 @@ export default class MyDocument extends Document {
   }
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           {this.props.stylesheets.map((sheet, i) => (
             <style
