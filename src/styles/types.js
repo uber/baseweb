@@ -206,9 +206,9 @@ export type TypographyT = {
 
 export type Font = {
   fontFamily: string,
-  fontWeight: string,
+  fontWeight: string | number,
   fontSize: string,
-  lineHeight: string,
+  lineHeight: string | number,
 };
 
 export type SizingT = {
