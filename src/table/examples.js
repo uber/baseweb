@@ -11,7 +11,7 @@ import {Table} from './index.js';
 import examples from './examples-list.js';
 import type {TablePropsT} from './types.js';
 
-const data = [
+let data = [
   ['1', 'Sarah', 'Brown', 31, 'New York No. 1 Anywhere'],
   ['2', 'Jane', 'Smith', 32, 'San Francisco No. 1 Anywhere'],
   ['3', 'Joe', 'Black', 33, 'Sydney No. 1 Anywhere'],
@@ -30,6 +30,9 @@ const data = [
   ['4', 'Jane', 'Red', 34, 'London No. 1 Anywhere'],
 ].map(row => [`${row[1]} ${row[2]}`, row[3], row[4]]); // selects data to display
 
+for (let i = 0; i < 5; i++) {
+  data = data.concat(data);
+}
 const ControlledTable = (props: TablePropsT) => {
   const {overrides, ...otherProps} = props;
   return <Table {...otherProps} overrides={overrides} />;
@@ -38,7 +41,7 @@ const ControlledTable = (props: TablePropsT) => {
 export default {
   [examples.TABLE]: function TableStory() {
     return (
-      <div style={{height: '400px', width: '600px'}}>
+      <div style={{height: '400px', width: '800px'}}>
         <ControlledTable
           useDynamicRowHeight
           columns={['Name', 'Age', 'Address']}

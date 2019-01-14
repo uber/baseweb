@@ -16,6 +16,7 @@ import {
   Body as StyledBody,
   Row as StyledRow,
   Cell as StyledCell,
+  Loading as StyledLoading,
 } from './styled-components.js';
 
 import {
@@ -35,6 +36,7 @@ export default function Table(props: TablePropsT) {
     data: rows,
     estimatedRowSize,
     useDynamicRowHeight,
+    isLoading,
     ...restProps
   } = props;
 
@@ -49,7 +51,7 @@ export default function Table(props: TablePropsT) {
   const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
 
   const cache = new CellMeasurerCache({
-    defaultWidth: 100,
+    defaultWidth: 150,
     defaultHeight: estimatedRowSize,
     minWidth: 75,
     fixedWidth: true,
@@ -61,6 +63,7 @@ export default function Table(props: TablePropsT) {
         style={{
           ...style,
         }}
+        key={key}
         {...HeadCellProps}
       >
         {columns[columnIndex]}
@@ -92,6 +95,7 @@ export default function Table(props: TablePropsT) {
         style={{
           ...style,
         }}
+        key={key}
         {...CellProps}
       >
         {rows[rowIndex][columnIndex]}
@@ -117,7 +121,11 @@ export default function Table(props: TablePropsT) {
   return (
     <AutoSizer>
       {({width, height}) => (
-        <Root {...RootProps} style={{width: width, height: height}}>
+        <Root
+          {...RootProps}
+          {...restProps}
+          style={{width: width, height: height}}
+        >
           <ScrollSync>
             {({
               clientHeight,
@@ -132,7 +140,7 @@ export default function Table(props: TablePropsT) {
                 <Head
                   {...HeadProps}
                   columnCount={columns.length}
-                  columnWidth={400}
+                  columnWidth={width / columns.length}
                   height={48}
                   rowCount={1}
                   width={width}
@@ -141,20 +149,26 @@ export default function Table(props: TablePropsT) {
                   cellRenderer={renderHeaderCell}
                   style={{overflow: 'hidden'}}
                 />
-                <Body
-                  {...BodyProps}
-                  onScroll={onScroll}
-                  // cellRangeRenderer={cellRangeRenderer}
-                  cellRenderer={cellRenderer}
-                  columnCount={columns.length}
-                  columnWidth={400}
-                  height={height - 48}
-                  rowCount={rows.length}
-                  rowHeight={
-                    useDynamicRowHeight ? cache.rowHeight : estimatedRowSize
-                  }
-                  width={width}
-                />
+                {isLoading ? (
+                  <StyledLoading style={{width, height: height - 48}}>
+                    <span>Loading</span>
+                  </StyledLoading>
+                ) : (
+                  <Body
+                    {...BodyProps}
+                    onScroll={onScroll}
+                    // cellRangeRenderer={cellRangeRenderer}
+                    cellRenderer={cellRenderer}
+                    columnCount={columns.length}
+                    columnWidth={width / columns.length}
+                    height={height - 48}
+                    rowCount={rows.length}
+                    rowHeight={
+                      useDynamicRowHeight ? cache.rowHeight : estimatedRowSize
+                    }
+                    width={width}
+                  />
+                )}
               </React.Fragment>
             )}
           </ScrollSync>

@@ -62,3 +62,13 @@ export const Cell = styled('div', ({$theme}: SharedStylePropsT) => {
     boxSizing: 'border-box',
   };
 });
+
+export const Loading = styled('div', ({$theme}: SharedStylePropsT) => {
+  const {typography} = $theme;
+  return {
+    ...typography.font300,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+});
