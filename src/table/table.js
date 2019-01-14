@@ -14,7 +14,6 @@ import {
   Head as StyledHead,
   HeadCell as StyledHeadCell,
   Body as StyledBody,
-  Row as StyledRow,
   Cell as StyledCell,
   Loading as StyledLoading,
 } from './styled-components.js';
@@ -24,7 +23,6 @@ import {
   ScrollSync,
   CellMeasurer,
   CellMeasurerCache,
-  defaultCellRangeRenderer,
 } from 'react-virtualized';
 
 import type {TablePropsT} from './types.js';
@@ -47,7 +45,6 @@ export default function Table(props: TablePropsT) {
     StyledHeadCell,
   );
   const [Body, BodyProps] = getOverrides(overrides.Body, StyledBody);
-  // const [Row, RowProps] = getOverrides(overrides.Row, StyledRow);
   const [Cell, CellProps] = getOverrides(overrides.Cell, StyledCell);
 
   const cache = new CellMeasurerCache({
@@ -70,24 +67,6 @@ export default function Table(props: TablePropsT) {
       </HeadCell>
     );
   }
-
-  // function cellRangeRenderer(props) {
-  //   const children = defaultCellRangeRenderer(props);
-  //   const outputRows = [];
-  //   for (let i = 0; i < rows.length; i++) {
-  //     const r = [];
-  //     for (let j = 0; j < columns.length; j++) {
-  //       r.push(children[i * columns.length + j]);
-  //     }
-  //     outputRows.push(r);
-  //   }
-
-  //   let out = outputRows.map((row, ind) => {
-  //     return <Row key={ind}>{row}</Row>;
-  //   });
-
-  //   return out;
-  // }
 
   function cellRenderer({columnIndex, key, parent, rowIndex, style}) {
     const cell = (
@@ -157,7 +136,6 @@ export default function Table(props: TablePropsT) {
                   <Body
                     {...BodyProps}
                     onScroll={onScroll}
-                    // cellRangeRenderer={cellRangeRenderer}
                     cellRenderer={cellRenderer}
                     columnCount={columns.length}
                     columnWidth={width / columns.length}

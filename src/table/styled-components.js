@@ -47,19 +47,13 @@ export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
 export const Body = styled(Grid, (props: SharedStylePropsT) => {
   return {};
 });
-export const Row = styled('div', (props: SharedStylePropsT) => {
-  return {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  };
-});
 export const Cell = styled('div', ({$theme}: SharedStylePropsT) => {
   const {sizing, typography} = $theme;
   return {
     ...typography.font300,
     padding: `${sizing.scale300} ${sizing.scale600}`,
     boxSizing: 'border-box',
+    overflow: 'auto',
   };
 });
 
