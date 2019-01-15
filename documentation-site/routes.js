@@ -106,6 +106,10 @@ const routes = [
         text: 'Pickers',
         children: [
           {
+            text: 'Menu',
+            path: getPath('/components/menu'),
+          },
+          {
             text: 'Select',
             path: getPath('/components/select'),
           },

@@ -1,0 +1,83 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/menu/basic.js';
+import Compact from 'examples/menu/compact.js';
+import Profile from 'examples/menu/profile.js';
+import Stateful from 'examples/menu/stateful.js';
+import Child from 'examples/menu/child.js';
+import VirtualList from 'examples/menu/virtual-list.js';
+
+export default Layout;
+
+# Menu
+
+Renders a list of elements.
+
+### When to use
+
+- When you want to display a navigational list.
+- When you want to display a list of actions.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/menu/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Compact Menu Items" path="examples/menu/compact.js">
+  <Compact />
+</Example>
+
+<Example title="Profile Menu" path="examples/menu/profile.js">
+  <Profile />
+</Example>
+
+<Example title="Stateful Menu" path="examples/menu/stateful.js">
+  <Stateful />
+</Example>
+
+<Example title="Child Menu" path="examples/menu/child.js">
+  <Child />
+</Example>
+
+<Example
+  title="Long Items List"
+  path="examples/menu/virtual-list.js"
+  additionalPackages={{'react-virtualized': '^9.21.0'}}
+>
+  <VirtualList />
+</Example>
+
+<API
+  heading="Menu API"
+  api={require('!!extract-react-types-loader!../../../src/menu/menu.js')}
+/>
+
+<API
+  heading="Stateful Menu API"
+  api={require('!!extract-react-types-loader!../../../src/menu/stateful-menu.js')}
+/>
+
+<API
+  heading="Stateful Container API"
+  api={require('!!extract-react-types-loader!../../../src/menu/stateful-container.js')}
+/>
+
+<API
+  heading="Menu Item Api"
+  api={require('!!extract-react-types-loader!../../../src/menu/option-list.js')}
+/>
+
+<API
+  heading="Profile Menu Item Api"
+  api={require('!!extract-react-types-loader!../../../src/menu/option-profile.js')}
+/>
