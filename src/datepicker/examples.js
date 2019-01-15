@@ -14,6 +14,7 @@ import {
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {Input} from '../input/index.js';
 import tests from './examples-list.js';
+import {highlight} from 'lowlight';
 
 export const suite = 'Component Test Suite';
 
@@ -105,7 +106,6 @@ export default {
   [tests.STATEFUL_RANGE_IN_POPOVER]: function Story3() {
     return <DatepickerWithInput isRange value={[]} />;
   },
-
   [tests.WITH_OVERRIDES]: function Story3() {
     const selectOverrides = {
       ControlContainer: {

@@ -160,7 +160,15 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     const {date} = this.props;
     const $isHighlighted = isSameDay(date, this.props.highlightedDate);
     const $selected = this.isSelected(date);
+    const $hasRangeHighlighted =
+      this.props.isRange &&
+      this.props.value.length === 1 &&
+      this.props.highlightedDate &&
+      !isSameDay(this.props.value[0], this.props.highlightedDate)
+        ? true
+        : false;
     return {
+      $date: date,
       $disabled: this.props.disabled,
       $endDate:
         (this.props.isRange &&
@@ -169,6 +177,14 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         false,
       $isHovered: this.state.isHovered,
       $isHighlighted,
+      $isRange: this.props.isRange,
+      $hasRangeHighlighted,
+      $hasRangeOnRight:
+        $hasRangeHighlighted &&
+        isAfter(this.props.highlightedDate, this.props.value[0]),
+      $hasRangeSelected: this.props.value.length === 2,
+      $highlightedDate: this.props.highlightedDate,
+      $peekNextMonth: this.props.peekNextMonth,
       $pseudoHighlighted:
         this.props.isRange && !$isHighlighted && !$selected
           ? this.isPseudoHighlighted()
@@ -180,8 +196,6 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         this.props.isRange && $selected
           ? isSameDay(date, this.props.value[0])
           : false,
-      $today: isSameDay(date, new Date()),
-      $weekend: this.isWeekend(),
       $outsideMonth: this.isOutsideMonth(),
     };
   }

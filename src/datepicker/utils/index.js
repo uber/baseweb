@@ -15,6 +15,7 @@ import differenceInCalendarMonths from 'date-fns/differenceInCalendarMonths';
 import dfIsSameDay from 'date-fns/isSameDay';
 import dfIsSameMonth from 'date-fns/isSameMonth';
 import dfIsSameYear from 'date-fns/isSameYear';
+import endOfMonth from 'date-fns/endOfMonth';
 import format from 'date-fns/format';
 import getDay from 'date-fns/getDay';
 import getDate from 'date-fns/getDate';
@@ -64,6 +65,10 @@ export function getStartOfMonth(date: Date) {
   return startOfMonth(date);
 }
 
+export function getEndOfMonth(date: Date) {
+  return endOfMonth(date);
+}
+
 // ** Date Math **
 
 // *** Addition ***
@@ -104,6 +109,14 @@ export function isSameDay(date1: ?Date, date2: ?Date) {
 
 export function isDayInRange(day: Date, startDate: Date, endDate: Date) {
   return isWithinInterval(day, {start: startDate, end: endDate});
+}
+
+export function isStartOfMonth(date: ?Date) {
+  return isSameDay(date, getStartOfMonth(date));
+}
+
+export function isEndOfMonth(date: ?Date) {
+  return isSameDay(date, getEndOfMonth(date));
 }
 
 // ** Date Localization **
