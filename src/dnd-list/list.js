@@ -11,6 +11,9 @@ import {
   Root as StyledRoot,
   List as StyledList,
   Item as StyledItem,
+  DragHandle as StyledDragHandle,
+  CloseHandle as StyledCloseHandle,
+  Label as StyledLabel,
 } from './styled-components.js';
 import {List as MovableList} from 'react-movable';
 import Grab from '../icon/grab.js';
@@ -30,16 +33,22 @@ class StatelessList extends React.Component<ListPropsT> {
   }
 
   render() {
-    const {overrides = {}, items, onChange} = this.props;
+    const {overrides = {}, items, onChange, removable} = this.props;
     const {
       Root: RootOverride,
       List: ListOverride,
       Item: ItemOverride,
+      DragHandle: DragHandleOverride,
+      CloseHandle: CloseHandleOverride,
+      Label: LabelOverride,
     } = overrides;
 
     const Root = getOverride(RootOverride) || StyledRoot;
     const List = getOverride(ListOverride) || StyledList;
     const Item = getOverride(ItemOverride) || StyledItem;
+    const DragHandle = getOverride(DragHandleOverride) || StyledDragHandle;
+    const CloseHandle = getOverride(CloseHandleOverride) || StyledCloseHandle;
+    const Label = getOverride(LabelOverride) || StyledLabel;
     const sharedProps = this.getSharedProps();
 
     return (
@@ -56,7 +65,7 @@ class StatelessList extends React.Component<ListPropsT> {
               {children}
             </List>
           )}
-          renderItem={({value, props, isDragged, isSelected}) => (
+          renderItem={({value, props, isDragged, isSelected, index}) => (
             <Item
               $isDragged={isDragged}
               $isSelected={isSelected}
@@ -70,9 +79,21 @@ class StatelessList extends React.Component<ListPropsT> {
               onWheel={props.onWheel}
               style={{...props.style, display: 'flex'}}
             >
-              <Grab size={24} color="#CCC" style={{marginRight: '1em'}} />
-              <div style={{textAlign: 'left', flexGrow: 1}}>{value}</div>
-              <Delete size={24} color="#CCC" />
+              <DragHandle>
+                <Grab size={24} color="#CCC" />
+              </DragHandle>
+              <Label>{value}</Label>
+              {removable && (
+                <CloseHandle
+                  onMouseDown={e => e.stopPropagation()}
+                  onTouchStart={e => e.stopPropagation()}
+                  onClick={() =>
+                    onChange && onChange({oldIndex: index, newIndex: -1})
+                  }
+                >
+                  <Delete size={24} color="#CCC" />
+                </CloseHandle>
+              )}
             </Item>
           )}
         />

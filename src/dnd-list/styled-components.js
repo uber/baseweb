@@ -55,3 +55,35 @@ export const Item = styled('li', (props: SharedStylePropsT) => {
   };
 });
 List.displayName = 'StyledItem';
+
+export const DragHandle = styled('div', () => {
+  return {
+    marginRight: '1em',
+    width: '24px',
+    display: 'flex',
+    alignItems: 'center',
+  };
+});
+DragHandle.displayName = 'StyledDragHandle';
+
+export const CloseHandle = styled('button', () => {
+  return {
+    border: 'none',
+    padding: 0,
+    overflow: 'visible',
+    cursor: 'pointer',
+    background: 'transparent',
+    marginLeft: '1em',
+    width: '24px',
+    display: 'flex',
+    alignItems: 'center',
+  };
+});
+CloseHandle.displayName = 'StyledCloseHandle';
+
+export const Label = styled('div', () => {
+  return {
+    flexGrow: 1,
+  };
+});
+Label.displayName = 'StyledLabel';

@@ -29,6 +29,9 @@ export type OverridesT = {
   Root?: OverrideT<SharedStylePropsT>,
   List?: OverrideT<SharedStylePropsT>,
   Item?: OverrideT<SharedStylePropsT>,
+  DragHandle?: OverrideT<SharedStylePropsT>,
+  CloseHandle?: OverrideT<SharedStylePropsT>,
+  Label?: OverrideT<SharedStylePropsT>,
 };
 
 export type ChildT = React.Node;
@@ -39,6 +42,7 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 export type ListPropsT = {
   prop?: boolean,
   onClick?: () => void,
+  removable?: boolean,
   overrides?: OverridesT,
   items?: Array<React.Node>,
   onChange?: ({oldIndex: number, newIndex: number}) => void,
@@ -47,6 +51,12 @@ export type ListPropsT = {
 // Props for stateful component
 export type StatefulListPropsT = ListPropsT & {
   initialState?: StateT,
+  removable?: boolean,
+  onChange?: ({
+    newState: Array<React.Node>,
+    oldIndex: number,
+    newIndex: number,
+  }) => void,
   stateReducer?: StateReducerT,
 };
 

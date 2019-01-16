@@ -12,7 +12,7 @@ import type {
   StateChangeTypeT,
   StateReducerT,
 } from './types.js';
-import {arrayMove} from 'react-movable';
+import {arrayMove, arrayRemove} from 'react-movable';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
@@ -31,7 +31,10 @@ class StatefulListContainer extends React.Component<
   };
 
   onChange = ({oldIndex, newIndex}: {oldIndex: number, newIndex: number}) => {
-    const newItemsState = arrayMove(this.state.items, oldIndex, newIndex);
+    const newItemsState =
+      newIndex === -1
+        ? arrayRemove(this.state.items, oldIndex)
+        : arrayMove(this.state.items, oldIndex, newIndex);
     if (typeof this.props.onChange === 'function') {
       this.props.onChange({newState: newItemsState, oldIndex, newIndex});
     }
