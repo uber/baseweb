@@ -27,6 +27,8 @@ export type ComponentRenderPropT = (props: {}) => React.Node;
 
 export type OverridesT = {
   Root?: OverrideT<SharedStylePropsT>,
+  List?: OverrideT<SharedStylePropsT>,
+  Item?: OverrideT<SharedStylePropsT>,
 };
 
 export type ChildT = React.Node;
@@ -34,35 +36,33 @@ export type ChildT = React.Node;
 export type ChildrenT = React.ChildrenArray<ChildT>;
 
 // Props shared by all flavors of component
-export type ComponentPropsT = {
-  children: ChildrenT,
+export type ListPropsT = {
   prop?: boolean,
   onClick?: () => void,
   overrides?: OverridesT,
-  items: Array<React.Node>,
-  onChange: ({oldIndex: number, newIndex: number}) => void,
+  items?: Array<React.Node>,
+  onChange?: ({oldIndex: number, newIndex: number}) => void,
 };
 
 // Props for stateful component
-export type StatefulComponentPropsT = ComponentPropsT & {
-  children: ChildrenT,
+export type StatefulListPropsT = ListPropsT & {
   initialState?: StateT,
   stateReducer?: StateReducerT,
 };
 
 // Props for stateful container
 export type StatefulComponentContainerPropsT = $Diff<
-  StatefulComponentPropsT,
+  StatefulListPropsT,
   {children: ChildrenT},
 > & {
   initialState?: StateT,
-  children: (
-    props: $Diff<ComponentPropsT, {children: ChildrenT}>,
-  ) => React.Node,
+  children: (props: $Diff<ListPropsT, {children: ChildrenT}>) => React.Node,
 };
 
 export type SharedStylePropsArgT = {
-  $prop: ?boolean,
+  $isDragged: boolean,
+  $isSelected: boolean,
+  $style: CSSStyleSheet,
 };
 
 export type SharedStylePropsT = SharedStylePropsArgT & {

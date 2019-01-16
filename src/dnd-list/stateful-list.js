@@ -8,13 +8,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import StatefulListContainer from './stateful-list-container.js';
 import List from './list.js';
-import type {StatefulComponentPropsT} from './types.js';
+import type {StatefulListPropsT} from './types.js';
 
-function StatefulList(props: StatefulComponentPropsT) {
-  const {children, ...restProps} = props;
+function StatefulList(props: StatefulListPropsT) {
   return (
-    <StatefulListContainer {...restProps}>
-      {componentProps => <List {...componentProps}>{children}</List>}
+    <StatefulListContainer {...props}>
+      {componentProps => <List {...componentProps} />}
     </StatefulListContainer>
   );
 }
