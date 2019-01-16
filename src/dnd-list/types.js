@@ -12,7 +12,7 @@ import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type StateT = {
-  prop: boolean,
+  items: Array<React.Node>,
 };
 
 export type StateChangeTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
@@ -39,6 +39,8 @@ export type ComponentPropsT = {
   prop?: boolean,
   onClick?: () => void,
   overrides?: OverridesT,
+  items: Array<React.Node>,
+  onChange: ({oldIndex: number, newIndex: number}) => void,
 };
 
 // Props for stateful component

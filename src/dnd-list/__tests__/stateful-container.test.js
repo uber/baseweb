@@ -72,7 +72,7 @@ describe('StatefulComponentContainer', () => {
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer).toHaveBeenLastCalledWith(
-      STATE_CHANGE_TYPE.click,
+      STATE_CHANGE_TYPE.change,
       {prop: false},
       {prop: true},
     );

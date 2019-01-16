@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
+import {List} from 'react-movable';
 
 import type {ComponentPropsT, SharedStylePropsArgT} from './types.js';
 
@@ -25,7 +26,7 @@ class StatelessList extends React.Component<ComponentPropsT> {
   }
 
   render() {
-    const {overrides = {}, children} = this.props;
+    const {overrides = {}, items, onChange} = this.props;
     const {Root: RootOverride} = overrides;
 
     const Root = getOverride(RootOverride) || StyledRoot;
@@ -37,7 +38,38 @@ class StatelessList extends React.Component<ComponentPropsT> {
         {...sharedProps}
         {...getOverrideProps(RootOverride)}
       >
-        {children}
+        <List
+          values={items}
+          onChange={onChange}
+          renderList={({children, props, isDragged}) => (
+            <ul
+              {...props}
+              style={{padding: 0, cursor: isDragged ? 'grabbing' : undefined}}
+            >
+              {children}
+            </ul>
+          )}
+          renderItem={({value, props, isDragged, isSelected}) => (
+            <li
+              {...props}
+              style={{
+                ...props.style,
+                padding: '1.5em',
+                margin: '0.5em 0em',
+                listStyleType: 'none',
+                cursor: isDragged ? 'grabbing' : 'grab',
+                border: '2px solid #CCC',
+                boxShadow: '3px 3px #AAA',
+                color: '#333',
+                borderRadius: '5px',
+                fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+                backgroundColor: isDragged || isSelected ? '#EEE' : '#FFF',
+              }}
+            >
+              {value}
+            </li>
+          )}
+        />
       </Root>
     );
   }

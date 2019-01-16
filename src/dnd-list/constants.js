@@ -7,5 +7,5 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export const STATE_CHANGE_TYPE = {
-  click: 'click',
+  change: 'change',
 };

@@ -33,10 +33,20 @@ const CustomRoot = ({children, ...rest}: {children?: React.Node}) => {
 
 export default {
   [tests.SIMPLE_EXAMPLE]: function Story1() {
-    return <List>List</List>;
+    return (
+      <List
+        items={['Item 1', 'Item 2', 'Item 3']}
+        onChange={console.log} // eslint-disable-line no-console
+      />
+    );
   },
   [tests.STATEFUL_EXAMPLE]: function Story2() {
-    return <StatefulList>List</StatefulList>;
+    return (
+      <StatefulList
+        initialState={{items: ['Item 1', 'Item 2', 'Item 3']}}
+        onChange={console.log} // eslint-disable-line no-console
+      />
+    );
   },
   [tests.STYLE_PROPS_OVERRIDES]: function Story3() {
     return (

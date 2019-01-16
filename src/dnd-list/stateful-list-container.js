@@ -12,6 +12,7 @@ import type {
   StateChangeTypeT,
   StateReducerT,
 } from './types.js';
+import {arrayMove} from 'react-movable';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
@@ -20,20 +21,21 @@ class StatefulListContainer extends React.Component<
   StateT,
 > {
   static defaultProps: $Shape<StatefulComponentContainerPropsT> = {
-    initialState: {prop: true},
+    initialState: {items: []},
     stateReducer: defaultStateReducer,
   };
 
   state = {
-    prop: true,
+    items: [],
     ...this.props.initialState,
   };
 
-  onClick = (...args: []) => {
-    if (typeof this.props.onClick === 'function') {
-      this.props.onClick(...args);
+  onChange = ({oldIndex, newIndex}: {oldIndex: number, newIndex: number}) => {
+    const newItemsState = arrayMove(this.state.items, oldIndex, newIndex);
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange({newState: newItemsState, oldIndex, newIndex});
     }
-    this.internalSetState('click', {prop: !this.state.prop});
+    this.internalSetState('change', {items: newItemsState});
   };
 
   internalSetState(type: StateChangeTypeT, changes: StateT) {
@@ -51,7 +53,7 @@ class StatefulListContainer extends React.Component<
     return this.props.children({
       ...rest,
       ...this.state,
-      onClick: this.onClick,
+      onChange: this.onChange,
     });
   }
 }
