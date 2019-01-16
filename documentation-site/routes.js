@@ -123,6 +123,10 @@ const routes = [
         text: 'Progress & Validation',
         children: [
           {
+            text: 'Notification',
+            path: getPath('/components/notification'),
+          },
+          {
             text: 'Progress steps',
             path: getPath('/components/progress-steps'),
           },
