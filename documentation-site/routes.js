@@ -100,6 +100,10 @@ const routes = [
             text: 'Avatar',
             path: getPath('/components/avatar'),
           },
+          {
+            text: 'Icon',
+            path: getPath('/components/icon'),
+          },
         ],
       },
       {
@@ -118,6 +122,10 @@ const routes = [
       {
         text: 'Progress & Validation',
         children: [
+          {
+            text: 'Notification',
+            path: getPath('/components/notification'),
+          },
           {
             text: 'Progress steps',
             path: getPath('/components/progress-steps'),
