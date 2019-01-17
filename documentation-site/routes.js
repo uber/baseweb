@@ -127,6 +127,10 @@ const routes = [
             path: getPath('/components/progress-steps'),
           },
           {
+            text: 'Spinner',
+            path: getPath('/components/spinner'),
+          },
+          {
             text: 'Toast',
             path: getPath('/components/toast'),
           },
