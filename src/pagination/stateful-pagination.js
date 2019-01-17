@@ -33,6 +33,14 @@ export default function StatefulPagination({
 }
 
 StatefulPagination.defaultProps = {
-  ...StatefulContainer.defaultProps,
-  ...Pagination.defaultProps,
+  initialState: {
+    currentPage: 1,
+  },
+  stateReducer: (changeType: *, changes: *) => changes,
+  labels: {
+    prevButton: 'Prev',
+    nextButton: 'Next',
+    preposition: 'of',
+  },
+  overrides: {},
 };
