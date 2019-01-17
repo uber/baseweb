@@ -37,7 +37,6 @@ export default class Calendar extends React.Component<
   static defaultProps = {
     excludeDates: null,
     filterDate: null,
-    highlightDates: null,
     highlightedDate: null,
     includeDates: null,
     isRange: false,
@@ -75,8 +74,10 @@ export default class Calendar extends React.Component<
     }
   }
 
-  getSingleDate(value) {
-    if (this.props.isRange) {
+  getSingleDate(value: ?Date | Array<Date>): ?Date {
+    // need to check this.props.isRange but flow would complain
+    // at the return value in the else clause
+    if (Array.isArray(value)) {
       return value[0] || null;
     }
     return value;
@@ -176,7 +177,6 @@ export default class Calendar extends React.Component<
             date={monthDate}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
-            highlightDates={this.props.highlightDates}
             highlightedDate={this.props.highlightedDate}
             includeDates={this.props.includeDates}
             isRange={this.props.isRange}

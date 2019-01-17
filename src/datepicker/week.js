@@ -40,7 +40,6 @@ export default class Week extends React.Component<WeekPropsT> {
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.props.highlightedDate}
-            highlightDates={this.props.highlightDates}
             includeDates={this.props.includeDates}
             isRange={this.props.isRange}
             key={offset}

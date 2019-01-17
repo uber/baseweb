@@ -70,10 +70,10 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     }
   }
 
-  onSelect(selectedDate) {
+  onSelect(selectedDate: Date) {
     const {isRange, value} = this.props;
     let date;
-    if (isRange) {
+    if (Array.isArray(value) && isRange) {
       if (!value.length || value.length > 1) {
         date = [selectedDate];
       } else if (isAfter(selectedDate, value[0])) {
@@ -88,6 +88,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   onKeyDown = (event: KeyboardEvent) => {
+    console.log('keyDown');
     const {isHighlighted, date, disabled} = this.props;
     if (event.key === 'Enter' && isHighlighted && !disabled) {
       event.preventDefault();
@@ -126,20 +127,19 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   };
 
   isSelected() {
-    if (this.props.isRange) {
-      return (
-        isSameDay(this.props.date, this.props.value[0]) ||
-        isSameDay(this.props.date, this.props.value[1])
-      );
+    const {value, date} = this.props;
+    if (Array.isArray(value)) {
+      return isSameDay(date, value[0]) || isSameDay(date, value[1]);
     } else {
-      return isSameDay(this.props.date, this.props.value);
+      return isSameDay(date, value);
     }
   }
 
   // calculated for range case only
   isPseudoSelected() {
     const {date, value} = this.props;
-    if (value.length > 1) {
+    // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
+    if (Array.isArray(value) && value.length > 1) {
       return isDayInRange(date, value[0], value[1]);
     }
   }
@@ -147,7 +147,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   // calculated for range case only
   isPseudoHighlighted() {
     const {date, value, highlightedDate} = this.props;
-    if (highlightedDate && value[0] && !value[1]) {
+    // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
+    if (Array.isArray(value) && highlightedDate && value[0] && !value[1]) {
       if (isAfter(highlightedDate, value[0])) {
         return isDayInRange(date, value[0], highlightedDate);
       } else {
@@ -157,33 +158,34 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   getSharedProps() {
-    const {date} = this.props;
-    const $isHighlighted = isSameDay(date, this.props.highlightedDate);
-    const $selected = this.isSelected(date);
+    const {date, value, highlightedDate, isRange} = this.props;
+    const $isHighlighted = isSameDay(date, highlightedDate);
+    const $selected = this.isSelected();
     const $hasRangeHighlighted =
-      this.props.isRange &&
-      this.props.value.length === 1 &&
-      this.props.highlightedDate &&
-      !isSameDay(this.props.value[0], this.props.highlightedDate)
+      Array.isArray(value) &&
+      isRange &&
+      value.length === 1 &&
+      highlightedDate &&
+      !isSameDay(value[0], highlightedDate)
         ? true
         : false;
     return {
       $date: date,
       $disabled: this.props.disabled,
       $endDate:
-        (this.props.isRange &&
+        (Array.isArray(value) &&
+          this.props.isRange &&
           $selected &&
-          isSameDay(date, this.props.value[1])) ||
+          isSameDay(date, value[1])) ||
         false,
       $isHovered: this.state.isHovered,
       $isHighlighted,
       $isRange: this.props.isRange,
       $hasRangeHighlighted,
       $hasRangeOnRight:
-        $hasRangeHighlighted &&
-        isAfter(this.props.highlightedDate, this.props.value[0]),
-      $hasRangeSelected: this.props.value.length === 2,
-      $highlightedDate: this.props.highlightedDate,
+        $hasRangeHighlighted && isAfter(highlightedDate, value[0]),
+      $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
+      $highlightedDate: highlightedDate,
       $peekNextMonth: this.props.peekNextMonth,
       $pseudoHighlighted:
         this.props.isRange && !$isHighlighted && !$selected
@@ -193,7 +195,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         this.props.isRange && !$selected ? this.isPseudoSelected() : false,
       $selected,
       $startDate:
-        this.props.isRange && $selected
+        Array.isArray(this.props.value) && this.props.isRange && $selected
           ? isSameDay(date, this.props.value[0])
           : false,
       $outsideMonth: this.isOutsideMonth(),

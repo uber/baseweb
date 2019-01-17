@@ -14,15 +14,15 @@ import {
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {Input} from '../input/index.js';
 import tests from './examples-list.js';
-import {highlight} from 'lowlight';
+import type {StatefulDatepickerPropsT, CalendarPropsT} from './types.js';
 
 export const suite = 'Component Test Suite';
 
 class DatepickerWithInput extends React.Component<
-  {},
+  StatefulDatepickerPropsT & CalendarPropsT & {value: ?Date | Array<Date>},
   {
     isOpen: boolean,
-    value: ?Date,
+    value: ?Date | Array<Date>,
     formattedValue: string,
   },
 > {
@@ -34,6 +34,7 @@ class DatepickerWithInput extends React.Component<
 
   formatDate(date) {
     if (this.props.isRange) {
+      // $FlowFixMe
       return date.map(day => formatDate(day, 'YYYY/MM/dd')).join(' - ');
     }
     return formatDate(date, 'YYYY/MM/dd');
@@ -41,7 +42,7 @@ class DatepickerWithInput extends React.Component<
 
   onChange = ({date}) => {
     let isOpen = false;
-    if (this.props.isRange && date.length < 2) {
+    if (Array.isArray(date) && this.props.isRange && date.length < 2) {
       isOpen = true;
     }
     this.setState({
