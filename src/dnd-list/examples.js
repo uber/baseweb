@@ -19,6 +19,7 @@ export const tests = {
   VARYING_HEIGHTS_EXAMPLE: 'Varying heights',
   CUSTOM_DRAG_HANDLE_EXAMPLE: 'Custom drag handle',
   STATELESS_LIST_EXAMPLE: 'Stateless list',
+  OVERRIDE_LABEL_EXAMPLE: 'Override label',
 };
 
 const List = (props: ListPropsT) => {
@@ -121,6 +122,24 @@ export default {
     return (
       <List
         items={['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6']}
+        onChange={console.log} // eslint-disable-line no-console
+      />
+    );
+  },
+  [tests.OVERRIDE_LABEL_EXAMPLE]: function Story6() {
+    return (
+      <StatefulList
+        initialState={{
+          items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'],
+        }}
+        overrides={{
+          Label: {
+            style: ({$isDragged}) => ({
+              fontSize: $isDragged ? '20px' : null,
+              color: $isDragged ? 'darkred' : null,
+            }),
+          },
+        }}
         onChange={console.log} // eslint-disable-line no-console
       />
     );

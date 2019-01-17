@@ -72,7 +72,7 @@ export type StatefulComponentContainerPropsT = $Diff<
 export type SharedStylePropsArgT = {
   $isDragged: boolean,
   $isSelected: boolean,
-  $style: CSSStyleSheet,
+  $isRemovable: boolean,
 };
 
 export type SharedStylePropsT = SharedStylePropsArgT & {

@@ -27,11 +27,6 @@ class StatelessList extends React.Component<ListPropsT> {
     onClick: () => {},
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    //const {prop} = this.props;
-    return {};
-  }
-
   render() {
     const {overrides = {}, items, onChange, removable} = this.props;
     const {
@@ -42,60 +37,77 @@ class StatelessList extends React.Component<ListPropsT> {
       CloseHandle: CloseHandleOverride,
       Label: LabelOverride,
     } = overrides;
-
     const Root = getOverride(RootOverride) || StyledRoot;
     const List = getOverride(ListOverride) || StyledList;
     const Item = getOverride(ItemOverride) || StyledItem;
     const DragHandle = getOverride(DragHandleOverride) || StyledDragHandle;
     const CloseHandle = getOverride(CloseHandleOverride) || StyledCloseHandle;
     const Label = getOverride(LabelOverride) || StyledLabel;
-    const sharedProps = this.getSharedProps();
-
+    const isRemovable = this.props.removable || false;
     return (
       <Root
+        $isRemovable={isRemovable}
         onClick={this.props.onClick}
-        {...sharedProps}
         {...getOverrideProps(RootOverride)}
       >
         <MovableList
           values={items}
           onChange={onChange}
           renderList={({children, props, isDragged}) => (
-            <List $isDragged={isDragged} $ref={props.ref}>
+            <List
+              $isRemovable={isRemovable}
+              $isDragged={isDragged}
+              $ref={props.ref}
+              {...getOverrideProps(ListOverride)}
+            >
               {children}
             </List>
           )}
-          renderItem={({value, props, isDragged, isSelected, index}) => (
-            <Item
-              $isDragged={isDragged}
-              $isSelected={isSelected}
-              $ref={props.ref}
-              key={props.key}
-              tabIndex={props.tabIndex}
-              aria-roledescription={props['aria-roledescription']}
-              onKeyDown={props.onKeyDown}
-              onMouseDown={props.onMouseDown}
-              onTouchStart={props.onTouchStart}
-              onWheel={props.onWheel}
-              style={{...props.style, display: 'flex'}}
-            >
-              <DragHandle>
-                <Grab size={24} color="#CCC" />
-              </DragHandle>
-              <Label>{value}</Label>
-              {removable && (
-                <CloseHandle
-                  onMouseDown={e => e.stopPropagation()}
-                  onTouchStart={e => e.stopPropagation()}
-                  onClick={() =>
-                    onChange && onChange({oldIndex: index, newIndex: -1})
-                  }
+          renderItem={({value, props, isDragged, isSelected, index}) => {
+            const sharedProps: SharedStylePropsArgT = {
+              $isRemovable: this.props.removable || false,
+              $isDragged: isDragged,
+              $isSelected: isSelected,
+            };
+            return (
+              <Item
+                {...sharedProps}
+                $ref={props.ref}
+                key={props.key}
+                tabIndex={props.tabIndex}
+                aria-roledescription={props['aria-roledescription']}
+                onKeyDown={props.onKeyDown}
+                onMouseDown={props.onMouseDown}
+                onTouchStart={props.onTouchStart}
+                onWheel={props.onWheel}
+                {...getOverrideProps(ItemOverride)}
+                style={{...props.style, display: 'flex'}}
+              >
+                <DragHandle
+                  {...sharedProps}
+                  {...getOverrideProps(DragHandleOverride)}
                 >
-                  <Delete size={24} color="#CCC" />
-                </CloseHandle>
-              )}
-            </Item>
-          )}
+                  <Grab size={24} color="#CCC" />
+                </DragHandle>
+                <Label {...sharedProps} {...getOverrideProps(LabelOverride)}>
+                  {value}
+                </Label>
+                {removable && (
+                  <CloseHandle
+                    {...sharedProps}
+                    onMouseDown={e => e.stopPropagation()}
+                    onTouchStart={e => e.stopPropagation()}
+                    onClick={() =>
+                      onChange && onChange({oldIndex: index, newIndex: -1})
+                    }
+                    {...getOverrideProps(CloseHandleOverride)}
+                  >
+                    <Delete size={24} color="#CCC" />
+                  </CloseHandle>
+                )}
+              </Item>
+            );
+          }}
         />
       </Root>
     );

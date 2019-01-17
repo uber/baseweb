@@ -11,6 +11,13 @@ export {default as List} from './list.js';
 // Constants
 export {STATE_CHANGE_TYPE} from './constants.js';
 // Styled elements
-export {Root as StyledRoot} from './styled-components.js';
+export {
+  Root as StyledRoot,
+  List as StyledList,
+  Item as StyledItem,
+  DragHandle as StyledDragHandle,
+  CloseHandle as StyledCloseHandle,
+  Label as StyledLabel,
+} from './styled-components.js';
 // Flow
 export * from './types.js';
