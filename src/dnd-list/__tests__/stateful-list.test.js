@@ -14,20 +14,17 @@ describe('StatefulList', () => {
     function CustomRoot() {
       return <span />;
     }
-
     const props = {
       overrides: {
         Root: CustomRoot,
       },
       initialState: {
-        prop: false,
+        items: ['Item 1', 'Item 2'],
       },
-      onClick: jest.fn(),
+      onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
-
     const component = shallow(<StatefulList {...props} />);
-
     expect(component.props()).toMatchObject(props);
   });
 });

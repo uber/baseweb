@@ -9,7 +9,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {StatefulListContainer, STATE_CHANGE_TYPE} from '../index.js';
 
-describe('StatefulComponentContainer', () => {
+describe('StatefulListContainer', () => {
   test('basic render', () => {
     const props = {
       overrides: {
@@ -18,27 +18,29 @@ describe('StatefulComponentContainer', () => {
         },
       },
       initialState: {
-        prop: false,
+        items: ['Item 1', 'Item 2'],
       },
-      onClick: jest.fn(),
+      onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
     const children = jest.fn();
-
     shallow(
       <StatefulListContainer {...props}>{children}</StatefulListContainer>,
     );
-
     expect(children).toHaveBeenCalledTimes(1);
   });
 
-  test('children function receives onClick handler', () => {
+  test('children function receives onChange handler', () => {
     const props = {
-      onClick: jest.fn(),
+      onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
     const children = jest.fn();
-    const event = {};
+    const event = {
+      newIndex: undefined,
+      newState: [undefined],
+      oldIndex: undefined,
+    };
 
     const component = shallow(
       <StatefulListContainer {...props}>{children}</StatefulListContainer>,
@@ -46,19 +48,22 @@ describe('StatefulComponentContainer', () => {
 
     expect(children).toHaveBeenCalledTimes(1);
 
-    // onClick is passed to children function
-    const childrenOnClickProp = children.mock.calls[0][0].onClick;
-    expect(childrenOnClickProp).toBe(component.instance().onClick);
-    expect(childrenOnClickProp).not.toBe(props.onClick);
+    // onChange is passed to children function
+    const childrenOnChangeProp = children.mock.calls[0][0].onChange;
+    expect(childrenOnChangeProp).toBe(component.instance().onChange);
+    expect(childrenOnChangeProp).not.toBe(props.onChange);
 
-    // user's onClick handler is called
-    childrenOnClickProp(event);
-    expect(props.onClick).toHaveBeenCalledTimes(1);
-    expect(props.onClick).toHaveBeenLastCalledWith(event);
+    // user's onChange handler is called
+    childrenOnChangeProp(event);
+    expect(props.onChange).toHaveBeenCalledTimes(1);
+    expect(props.onChange).toHaveBeenLastCalledWith(event);
   });
 
   test('stateReducer', () => {
     const props = {
+      initialState: {
+        items: ['Item 1', 'Item 2'],
+      },
       stateReducer: jest.fn(),
     };
     const children = jest.fn();
@@ -67,16 +72,16 @@ describe('StatefulComponentContainer', () => {
       <StatefulListContainer {...props}>{children}</StatefulListContainer>,
     );
 
-    props.stateReducer.mockReturnValueOnce({prop: true});
-    component.instance().onClick();
+    props.stateReducer.mockReturnValueOnce({items: ['Item 2', 'Item 1']});
+    component.instance().onChange({oldIndex: 0, newIndex: 1});
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer).toHaveBeenLastCalledWith(
       STATE_CHANGE_TYPE.change,
-      {prop: false},
-      {prop: true},
+      {items: ['Item 2', 'Item 1']},
+      {items: ['Item 1', 'Item 2']},
     );
-    expect(component).toHaveState('prop', true);
+    expect(component).toHaveState('items', ['Item 2', 'Item 1']);
   });
 
   test('null stateReducer', () => {
@@ -84,13 +89,11 @@ describe('StatefulComponentContainer', () => {
       stateReducer: null,
     };
     const children = jest.fn();
-
     const component = shallow(
       <StatefulListContainer {...props}>{children}</StatefulListContainer>,
     );
-
     // null state reducer shouldn't break component
-    component.instance().onClick();
-    expect(component).toHaveState('prop', false);
+    component.instance().onChange({oldIndex: 0, newIndex: 0});
+    expect(component).toHaveState('items', [undefined]);
   });
 });
