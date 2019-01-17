@@ -121,7 +121,7 @@ export default () => (
 * `items: Array<any>` - Required.
   * List of items.
 * `initialState?: {highlightedIndex: number} = {highlightedIndex: -1}`
-  * Initial state of an uncontrolled popover component.
+  * Initial state of the stateful menu.
     * `highlightedIndex` - Determines which menu item should render highlighted.
 * `stateReducer?: (changeType: STATE_CHANGE_TYPES[string], changes: {highlightedIndex: number}, currentState: {highlightedIndex: number}) => {highlightedIndex: number}`
   * State reducer to intercept state changes and return new internal state
