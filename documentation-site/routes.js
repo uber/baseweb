@@ -67,6 +67,10 @@ const routes = [
             path: getPath('/components/input'),
           },
           {
+            text: 'Radio',
+            path: getPath('/components/radio'),
+          },
+          {
             text: 'Textarea',
             path: getPath('/components/textarea'),
           },
