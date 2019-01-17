@@ -1,0 +1,79 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Stateless from 'examples/popover/stateless.js';
+import StatefulClick from 'examples/popover/stateful-click.js';
+import StatefulHover from 'examples/popover/stateful-hover.js';
+import Placements from 'examples/popover/placements.js';
+import WithArrow from 'examples/popover/with-arrow.js';
+import Dismiss from 'examples/popover/dismiss.js';
+import Clipping from 'examples/popover/clipping.js';
+import Overrides from 'examples/popover/overrides.js';
+
+export default Layout;
+
+# Popover
+
+Displays contextual information on user click or hover.
+
+### When to use
+
+- Describe the difference between visually similar elements.
+- Hide information that's irrelevant once the user if familiar with the UI.
+
+## Examples
+
+<Example title="Stateless Popover" path="examples/popover/stateless.js">
+  <Stateless />
+</Example>
+
+<Example title="Open on Click" path="examples/popover/stateful-click.js">
+  <StatefulClick />
+</Example>
+
+<Example title="Open on Hover" path="examples/popover/stateful-hover.js">
+  <StatefulHover />
+</Example>
+
+<Example title="Available Placements" path="examples/popover/placements.js">
+  <Placements />
+</Example>
+
+<Example title="With Arrow" path="examples/popover/with-arrow.js">
+  <WithArrow />
+</Example>
+
+<Example title="Close from Content" path="examples/popover/dismiss.js">
+  <Dismiss />
+</Example>
+
+<Example title="Clipping Avoidance" path="examples/popover/clipping.js">
+  <Clipping />
+</Example>
+
+<Example title="Overrides" path="examples/popover/overrides.js">
+  <Overrides />
+</Example>
+
+<API
+  heading="Popover API"
+  api={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
+/>
+
+<API
+  heading="Stateful Popover API"
+  api={require('!!extract-react-types-loader!../../../src/popover/stateful-popover.js')}
+/>
+
+<API
+  heading="Stateful Container API"
+  api={require('!!extract-react-types-loader!../../../src/popover/stateful-container.js')}
+/>
