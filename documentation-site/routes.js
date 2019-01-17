@@ -135,6 +135,10 @@ const routes = [
             path: getPath('/components/notification'),
           },
           {
+            text: 'ProgressBar',
+            path: getPath('/components/progress-bar'),
+          },
+          {
             text: 'Progress steps',
             path: getPath('/components/progress-steps'),
           },
@@ -158,6 +162,10 @@ const routes = [
           {
             text: 'Modal',
             path: getPath('/components/modal'),
+          },
+          {
+            text: 'Popover',
+            path: getPath('/components/popover'),
           },
         ],
       },
