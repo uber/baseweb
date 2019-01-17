@@ -155,6 +155,10 @@ const routes = [
             text: 'Modal',
             path: getPath('/components/modal'),
           },
+          {
+            text: 'Popover',
+            path: getPath('/components/popover'),
+          },
         ],
       },
       {
