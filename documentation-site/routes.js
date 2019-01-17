@@ -131,6 +131,10 @@ const routes = [
             path: getPath('/components/notification'),
           },
           {
+            text: 'ProgressBar',
+            path: getPath('/components/progress-bar'),
+          },
+          {
             text: 'Progress steps',
             path: getPath('/components/progress-steps'),
           },
