@@ -18,6 +18,8 @@ import Check from 'baseui/icon/check';
 import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
+import {version} from '../../package.json';
+
 const Link = styled(StyledLink, {cursor: 'pointer'});
 
 const index = `
@@ -61,6 +63,7 @@ function Source(props: {children: ?React.Node}) {
 }
 
 type PropsT = {
+  additionalPackages: {[string]: string},
   children: React.Node,
   path: string, // required to fetch the uncompiled source code
   title: string,
@@ -73,6 +76,7 @@ type StateT = {
 };
 
 class Example extends React.Component<PropsT, StateT> {
+  static defaultProps = {additionalPackages: {}};
   state = {
     isCopied: false,
     isSourceOpen: false,
@@ -178,13 +182,13 @@ class Example extends React.Component<PropsT, StateT> {
                 example={this.state.source}
                 name={this.props.title}
                 dependencies={{
-                  baseui: '5.1.0',
+                  baseui: version,
                   react: '16.5.2',
                   'react-dom': '16.5.2',
                   'react-scripts': '2.0.3',
                   'styletron-engine-atomic': '1.0.9',
-                  'styletron-react': '4.3.6',
-                  'styletron-react-core': '1.3.3',
+                  'styletron-react': '4.4.4',
+                  ...this.props.additionalPackages,
                 }}
                 providedFiles={{'index.js': {content: index}}}
                 template="create-react-app"
