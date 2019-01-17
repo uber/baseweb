@@ -114,6 +114,10 @@ const routes = [
         text: 'Pickers',
         children: [
           {
+            text: 'Menu',
+            path: getPath('/components/menu'),
+          },
+          {
             text: 'Select',
             path: getPath('/components/select'),
           },
@@ -129,6 +133,10 @@ const routes = [
           {
             text: 'Progress steps',
             path: getPath('/components/progress-steps'),
+          },
+          {
+            text: 'Spinner',
+            path: getPath('/components/spinner'),
           },
           {
             text: 'Toast',
