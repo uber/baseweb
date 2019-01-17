@@ -15,8 +15,11 @@ export type LabelsT = {
 };
 
 export type CallbacksT = {
+  /** Callback for prev button click. */
   onPrevClick?: ({event: *}) => *,
+  /** Callback for next button click. */
   onNextClick?: ({event: *}) => *,
+  /** Callback for when page changes. */
   onPageChange?: ({nextPage: number, prevPage: number}) => *,
 };
 
@@ -37,8 +40,11 @@ export type OverridesT = {
 };
 
 export type PaginationPropsT = CallbacksT & {
+  /** Max number of pages. */
   numPages: number,
+  /** The current page. */
   currentPage: number,
+  /** Set of labels to use for the buttons and preposition. */
   labels: LabelsT,
   overrides?: OverridesT,
 };
@@ -48,9 +54,13 @@ export type PaginationStateT = {
 };
 
 export type StatefulPaginationPropsT = CallbacksT & {
+  /** Max number of pages. */
   numPages: number,
+  /** Set of labels to use for the buttons and preposition. */
   labels: LabelsT,
+  /** Reducer function to manipulate internal state updates. */
   stateReducer?: StateReducerFnT,
+  /** Initial state populated into the component */
   initialState?: StatefulContainerStateT,
   overrides?: OverridesT,
 };
@@ -58,8 +68,11 @@ export type StatefulPaginationPropsT = CallbacksT & {
 export type StatefulContainerPropsT = {
   children: *,
   numPages: number,
+  /** Reducer function to manipulate internal state updates. */
   stateReducer?: StateReducerFnT,
+  /** Initial state populated into the component */
   initialState?: StatefulContainerStateT,
+  /** Callback for when page changes. */
   onPageChange?: $PropertyType<CallbacksT, 'onPageChange'>,
 };
 
