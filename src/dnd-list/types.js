@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
@@ -26,12 +25,12 @@ export type StateReducerT = (
 export type ComponentRenderPropT = (props: {}) => React.Node;
 
 export type OverridesT = {
-  Root?: OverrideT<SharedStylePropsT>,
-  List?: OverrideT<SharedStylePropsT>,
-  Item?: OverrideT<SharedStylePropsT>,
-  DragHandle?: OverrideT<SharedStylePropsT>,
-  CloseHandle?: OverrideT<SharedStylePropsT>,
-  Label?: OverrideT<SharedStylePropsT>,
+  Root?: OverrideT<SharedStylePropsArgT>,
+  List?: OverrideT<SharedStylePropsArgT>,
+  Item?: OverrideT<SharedStylePropsArgT>,
+  DragHandle?: OverrideT<SharedStylePropsArgT>,
+  CloseHandle?: OverrideT<SharedStylePropsArgT>,
+  Label?: OverrideT<SharedStylePropsArgT>,
 };
 
 export type ChildT = React.Node;
@@ -40,24 +39,30 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 
 // Props shared by all flavors of component
 export type ListPropsT = {
-  prop?: boolean,
-  onClick?: () => void,
+  /** Set if the list items should be removable */
   removable?: boolean,
-  overrides?: OverridesT,
-  items?: Array<React.Node>,
+  /** Items (labels) to be rendered */
+  items: Array<React.Node>,
+  /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
   onChange?: ({oldIndex: number, newIndex: number}) => void,
+  overrides?: OverridesT,
 };
 
 // Props for stateful component
-export type StatefulListPropsT = ListPropsT & {
+export type StatefulListPropsT = {
+  /** Initial state populated into the component */
   initialState?: StateT,
+  /** Reducer function to manipulate internal state updates. */
+  stateReducer?: StateReducerT,
+  /** Set if the list items should be removable */
   removable?: boolean,
-  onChange?: ({
+  /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
+  onChange?: (params: {
     newState: Array<React.Node>,
     oldIndex: number,
     newIndex: number,
   }) => void,
-  stateReducer?: StateReducerT,
+  overrides?: OverridesT,
 };
 
 // Props for stateful container
@@ -73,8 +78,4 @@ export type SharedStylePropsArgT = {
   $isDragged: boolean,
   $isSelected: boolean,
   $isRemovable: boolean,
-};
-
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
 };

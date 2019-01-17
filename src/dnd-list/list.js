@@ -23,8 +23,8 @@ import type {ListPropsT, SharedStylePropsArgT} from './types.js';
 
 class StatelessList extends React.Component<ListPropsT> {
   static defaultProps: $Shape<ListPropsT> = {
-    prop: true,
-    onClick: () => {},
+    items: [],
+    onChange: () => {},
   };
 
   render() {
@@ -45,11 +45,7 @@ class StatelessList extends React.Component<ListPropsT> {
     const Label = getOverride(LabelOverride) || StyledLabel;
     const isRemovable = this.props.removable || false;
     return (
-      <Root
-        $isRemovable={isRemovable}
-        onClick={this.props.onClick}
-        {...getOverrideProps(RootOverride)}
-      >
+      <Root $isRemovable={isRemovable} {...getOverrideProps(RootOverride)}>
         <MovableList
           values={items}
           onChange={onChange}

@@ -12018,10 +12018,10 @@ react-modal@^3.6.1:
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
 
-react-movable@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/react-movable/-/react-movable-0.0.2.tgz#372f36e414ecabfc071ed089672671528cc2e24d"
-  integrity sha512-FiYfQnl0r5Es7VzbZsBrDsPhrgHaEsC/rdZ1IZ3XqjfELVLuQ7xDCPHPEA+Tz4+z/JXCbpNbbWwFyRoZ+0d5rQ==
+react-movable@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-movable/-/react-movable-0.0.3.tgz#10e3a4381421e54ac7969322085260141769b109"
+  integrity sha512-a+VI5lEnx13C3y9p3tv/SSZQ4Dlpvc2k+0snI2qFtg+zpEKqp0kiwujQoRwKq/26JTlzQVG0CcQvUTWOPtGaMg==
 
 react-node-resolver@^1.0.1:
   version "1.0.1"

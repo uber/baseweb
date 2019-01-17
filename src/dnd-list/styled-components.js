@@ -6,13 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import type {SharedStylePropsT} from './types.js';
+import type {ThemeT} from '../styles/index.js';
+import type {SharedStylePropsArgT} from './types.js';
+type StylePropsT = SharedStylePropsArgT & {
+  $theme: ThemeT,
+};
 
 /**
  * Main component container element
  */
-export const Root = styled('div', (props: SharedStylePropsT) => {
-  const {$theme} = props;
+export const Root = styled('div', ({$theme}: StylePropsT) => {
   return {
     color: $theme.colors.mono1000,
     width: '100%',
@@ -20,8 +23,7 @@ export const Root = styled('div', (props: SharedStylePropsT) => {
 });
 Root.displayName = 'StyledRoot';
 
-export const List = styled('ul', (props: SharedStylePropsT) => {
-  const {$isDragged} = props;
+export const List = styled('ul', ({$isDragged}: StylePropsT) => {
   return {
     padding: 0,
     cursor: $isDragged ? 'grabbing' : null,
@@ -29,31 +31,33 @@ export const List = styled('ul', (props: SharedStylePropsT) => {
 });
 List.displayName = 'StyledList';
 
-export const Item = styled('li', (props: SharedStylePropsT) => {
-  const {$isDragged, $isSelected, $theme} = props;
-  return {
-    ':hover':
-      !$isDragged && !$isSelected
-        ? {
-            border: `2px solid ${$theme.colors.primary100}`,
-            color: $theme.colors.primary,
-          }
-        : {},
-    padding: '1em',
-    margin: 0,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    listStyleType: 'none',
-    cursor: $isDragged ? 'grabbing' : 'grab',
-    backgroundColor: $theme.colors.mono100,
-    boxShadow: $isDragged ? '0px 2px 6px rgba(39, 110, 241, 0.32)' : null,
-    border:
-      $isDragged || $isSelected
-        ? `2px solid ${$theme.colors.primary}`
-        : '2px solid transparent',
-  };
-});
+export const Item = styled(
+  'li',
+  ({$isDragged, $isSelected, $theme}: StylePropsT) => {
+    return {
+      ':hover':
+        !$isDragged && !$isSelected
+          ? {
+              border: `2px solid ${$theme.colors.primary100}`,
+              color: $theme.colors.primary,
+            }
+          : {},
+      padding: '1em',
+      margin: 0,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      listStyleType: 'none',
+      cursor: $isDragged ? 'grabbing' : 'grab',
+      backgroundColor: $theme.colors.mono100,
+      boxShadow: $isDragged ? '0px 2px 6px rgba(39, 110, 241, 0.32)' : null,
+      border:
+        $isDragged || $isSelected
+          ? `2px solid ${$theme.colors.primary}`
+          : '2px solid transparent',
+    };
+  },
+);
 List.displayName = 'StyledItem';
 
 export const DragHandle = styled('div', () => {
