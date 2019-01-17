@@ -17,9 +17,13 @@ export type OverridesT = {
 
 export type ProgressBarPropsT = {
   children?: React.Node,
+  /** The function that returns a progress bar label to display. */
   getProgressLabel: (value: number, successValue: number) => React.Node,
+  /** The value between `0` and `100 | successValue` of the progress indicator. */
   value: number,
+  /** A custom completion value. */
   successValue: number,
+  /** If set to false, label is hidden and `getProgressLabel` is ignored. */
   showLabel: boolean,
   overrides?: OverridesT,
 };

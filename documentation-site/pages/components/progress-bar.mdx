@@ -1,0 +1,52 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/progress-bar/basic.js';
+import WithLabel from 'examples/progress-bar/with-label.js';
+import CustomLabel from 'examples/progress-bar/custom-label.js';
+import SuccessValue from 'examples/progress-bar/success-value.js';
+import Overrides from 'examples/progress-bar/overrides.js';
+
+export default Layout;
+
+# ProgressBar
+
+Indicates a wait time for deterministic actions.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/progress-bar/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Visible Label" path="examples/progress-bar/with-label.js">
+  <WithLabel />
+</Example>
+
+<Example title="Custom Label" path="examples/progress-bar/custom-label.js">
+  <CustomLabel />
+</Example>
+
+<Example
+  title="Alternate Success Value"
+  path="examples/progress-bar/success-value.js"
+>
+  <SuccessValue />
+</Example>
+
+<Example title="Overrides" path="examples/progress-bar/overrides.js">
+  <Overrides />
+</Example>
+
+<API
+  heading="ProgressBar API"
+  api={require('!!extract-react-types-loader!../../../src/progress-bar/progressbar.js')}
+/>
