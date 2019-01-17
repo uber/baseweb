@@ -1,4 +1,4 @@
 import React from 'react';
 import {Spinner} from 'baseui/spinner';
 
-export default () => <Spinner />;
+export default () => <Spinner size={96} />;
