@@ -84,6 +84,10 @@ const routes = [
             path: getPath('/components/header-navigation'),
           },
           {
+            text: 'Pagination',
+            path: getPath('/components/pagination'),
+          },
+          {
             text: 'Tab',
             path: getPath('/components/tabs'),
           },
