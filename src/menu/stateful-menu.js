@@ -11,14 +11,24 @@ import * as React from 'react';
 import Menu from './menu.js';
 import StatefulContainer from './stateful-container.js';
 
-import type {StatefulMenuPropsT} from './types.js';
+import type {StatefulMenuPropsT, StateReducerFnT} from './types.js';
 
 export default class StatefulMenu extends React.PureComponent<
   StatefulMenuPropsT,
 > {
   static defaultProps = {
     // Mostly to satisfy flow
-    ...StatefulContainer.defaultProps,
+    initialState: {
+      // We start the index at -1 to indicate that no highlighting exists initially
+      highlightedIndex: -1,
+    },
+    stateReducer: (
+      changeType: ?$PropertyType<StateReducerFnT, 'changeType'>,
+      changes: $PropertyType<StateReducerFnT, 'changes'>,
+    ) => changes,
+    onItemSelect: () => {},
+    getRequiredItemProps: () => ({}),
+    children: () => null,
     overrides: {},
   };
 
