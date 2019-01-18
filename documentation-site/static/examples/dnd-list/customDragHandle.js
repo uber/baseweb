@@ -26,6 +26,6 @@ export default () => (
     overrides={{
       DragHandle: CustomDragHandle,
     }}
-    onChange={console.log} // eslint-disable-line no-console
+    onChange={console.log}
   />
 );

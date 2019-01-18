@@ -14,15 +14,13 @@ export type StateT = {
   items: Array<React.Node>,
 };
 
-export type StateChangeTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
+export type StateChangeTypeT = $Values<typeof STATE_CHANGE_TYPE>;
 
 export type StateReducerT = (
   stateChangeType: StateChangeTypeT,
   nextState: StateT,
   currentState: StateT,
 ) => StateT;
-
-export type ComponentRenderPropT = (props: {}) => React.Node;
 
 export type OverridesT = {
   Root?: OverrideT<SharedStylePropsArgT>,
@@ -33,23 +31,21 @@ export type OverridesT = {
   Label?: OverrideT<SharedStylePropsArgT>,
 };
 
-export type ChildT = React.Node;
-
-export type ChildrenT = React.ChildrenArray<ChildT>;
+type ChildrenT = Array<React.Node>;
 
 // Props shared by all flavors of component
-export type ListPropsT = {
+export type ListPropsT = {|
   /** Set if the list items should be removable */
   removable?: boolean,
   /** Items (labels) to be rendered */
   items: Array<React.Node>,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
-  onChange?: ({oldIndex: number, newIndex: number}) => void,
+  onChange?: ({oldIndex: number, newIndex: number}) => mixed,
   overrides?: OverridesT,
-};
+|};
 
 // Props for stateful component
-export type StatefulListPropsT = {
+export type StatefulListPropsT = {|
   /** Initial state populated into the component */
   initialState?: StateT,
   /** Reducer function to manipulate internal state updates. */
@@ -61,9 +57,9 @@ export type StatefulListPropsT = {
     newState: Array<React.Node>,
     oldIndex: number,
     newIndex: number,
-  }) => void,
+  }) => mixed,
   overrides?: OverridesT,
-};
+|};
 
 // Props for stateful container
 export type StatefulComponentContainerPropsT = $Diff<

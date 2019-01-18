@@ -60,34 +60,28 @@ export const Item = styled(
 );
 List.displayName = 'StyledItem';
 
-export const DragHandle = styled('div', () => {
-  return {
-    marginRight: '1em',
-    width: '24px',
-    display: 'flex',
-    alignItems: 'center',
-  };
+export const DragHandle = styled('div', {
+  marginRight: '1em',
+  width: '24px',
+  display: 'flex',
+  alignItems: 'center',
 });
 DragHandle.displayName = 'StyledDragHandle';
 
-export const CloseHandle = styled('button', () => {
-  return {
-    border: 'none',
-    padding: 0,
-    overflow: 'visible',
-    cursor: 'pointer',
-    background: 'transparent',
-    marginLeft: '1em',
-    width: '24px',
-    display: 'flex',
-    alignItems: 'center',
-  };
+export const CloseHandle = styled('button', {
+  border: 'none',
+  padding: 0,
+  overflow: 'visible',
+  cursor: 'pointer',
+  background: 'transparent',
+  marginLeft: '1em',
+  width: '24px',
+  display: 'flex',
+  alignItems: 'center',
 });
 CloseHandle.displayName = 'StyledCloseHandle';
 
-export const Label = styled('div', () => {
-  return {
-    flexGrow: 1,
-  };
+export const Label = styled('div', {
+  flexGrow: 1,
 });
 Label.displayName = 'StyledLabel';

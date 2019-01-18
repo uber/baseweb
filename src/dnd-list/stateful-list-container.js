@@ -55,7 +55,7 @@ class StatefulListContainer extends React.Component<
 
     return this.props.children({
       ...rest,
-      ...this.state,
+      items: this.state.items,
       onChange: this.onChange,
     });
   }

@@ -14,6 +14,6 @@ export default () => (
         }),
       },
     }}
-    onChange={console.log} // eslint-disable-line no-console
+    onChange={console.log}
   />
 );

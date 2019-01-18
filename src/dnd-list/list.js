@@ -61,7 +61,7 @@ class StatelessList extends React.Component<ListPropsT> {
           )}
           renderItem={({value, props, isDragged, isSelected, index}) => {
             const sharedProps: SharedStylePropsArgT = {
-              $isRemovable: this.props.removable || false,
+              $isRemovable: isRemovable,
               $isDragged: isDragged,
               $isSelected: isSelected,
             };
