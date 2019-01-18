@@ -37,28 +37,41 @@ export type TabOverridesT<T> = {
 export type OnChangeHandlerT = ({activeKey: React.Key}) => void;
 
 export type TabsPropsT = {
+  /** An array of TabPanel items. */
   children: React.ChildrenArray<React.Element<typeof TabPanel>>,
+  /**  Key of the the tab to be selected. */
   activeKey: React.Key,
+  /** If set to true all its tabs will be disabled */
   disabled?: boolean,
+  /** Change handler that is called every time a new tab is selected */
   onChange?: OnChangeHandlerT,
+  /** Sets the orientation of the Tab component */
   orientation?: $Values<typeof ORIENTATION>,
   overrides?: TabsOverridesT<$Diff<SharedStylePropsArgT, {$active?: ?boolean}>>,
 };
 
 export type StatefulTabsPropsT = $Diff<TabsPropsT, {activeKey: React.Key}> & {
+  /**  Initial state of the component */
   initialState?: StatefulTabsStateT,
+  /**  A state change handler. */
   stateReducer: StateReducerT,
 };
 
 export type TabPanelPropsT = {
   children: React.ChildrenArray<React.Node>,
+  /** Sets the tab to disabled */
   disabled?: boolean,
   active?: boolean,
+  /**  Unique key for the tab. Defaults to the child index. */
   key?: React.Key,
+  /** onClick handler for the Tab element */
   onClick?: (e: Event) => void,
+  /** onKeyDown handler for the Tab element */
   onKeyDown?: (e: KeyboardEvent) => void,
+  /** onSelect handler for the Tab element */
   onSelect?: () => void,
   overrides?: TabOverridesT<SharedStylePropsArgT>,
+  /** Title of the Tab to be shown in the Tab bar */
   title?: React.Node,
 };
 

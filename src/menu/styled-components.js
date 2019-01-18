@@ -11,6 +11,7 @@ import {OPTION_LIST_SIZE} from './constants.js';
 import type {ThemeT} from '../styles/index.js';
 
 type StyledPropsT = {
+  $disabled?: boolean,
   $theme: ThemeT,
   $isHighlighted?: boolean,
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
@@ -22,8 +23,8 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   marginBottom: '0',
   marginLeft: '0',
   marginRight: '0',
-  paddingTop: '0',
-  paddingBottom: '0',
+  paddingTop: $theme.sizing.scale300,
+  paddingBottom: $theme.sizing.scale300,
   paddingLeft: '0',
   paddingRight: '0',
   backgroundColor: $theme.colors.backgroundAlt,
@@ -35,15 +36,21 @@ List.displayName = 'StyledList';
 
 export const ListItem = styled(
   'li',
-  ({$theme, $isHighlighted, $size}: StyledPropsT) => ({
+  ({$disabled, $theme, $isHighlighted, $size}: StyledPropsT) => ({
     ...($size === OPTION_LIST_SIZE.compact
       ? $theme.typography.font200
       : $theme.typography.font300),
     position: 'relative',
     display: 'block',
-    color: $isHighlighted ? $theme.colors.primary : $theme.colors.foreground,
-    cursor: 'pointer',
-    backgroundColor: $isHighlighted ? $theme.colors.mono300 : 'transparent',
+    color: $disabled
+      ? $theme.colors.foregroundAlt
+      : $isHighlighted
+        ? $theme.colors.primary
+        : $theme.colors.foreground,
+    cursor: $disabled ? 'not-allowed' : 'pointer',
+    backgroundColor: $isHighlighted
+      ? $theme.colors.menuFillHover
+      : 'transparent',
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,
@@ -66,11 +73,8 @@ export const ListItem = styled(
       $size === OPTION_LIST_SIZE.compact
         ? $theme.sizing.scale900
         : $theme.sizing.scale600,
-    ':first-child': {
-      marginTop: $theme.sizing.scale300,
-    },
-    ':last-child': {
-      marginBottom: $theme.sizing.scale300,
+    ':focus': {
+      outline: 'none',
     },
   }),
 );
@@ -90,12 +94,6 @@ export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   transitionTimingFunction: $theme.animation.easeOutCurve,
   ':hover': {
     backgroundColor: $theme.colors.menuFillHover,
-  },
-  ':first-child': {
-    marginTop: $theme.sizing.scale300,
-  },
-  ':last-child': {
-    marginBottom: $theme.sizing.scale300,
   },
 }));
 ListItemProfile.displayName = 'StyledListItemProfile';

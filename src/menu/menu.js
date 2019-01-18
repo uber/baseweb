@@ -15,10 +15,10 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {StatelessMenuPropsT} from './types.js';
 
 export default function Menu({
-  items,
   getRequiredItemProps = (item, index) => ({}),
-  rootRef = React.createRef(),
+  items,
   overrides = {},
+  rootRef = React.createRef(),
 }: StatelessMenuPropsT) {
   const [List, listProps] = getOverrides(overrides.List, StyledList);
   const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
@@ -28,11 +28,10 @@ export default function Menu({
         const requiredProps = getRequiredItemProps(item, index);
         return (
           <Option
-            key={index}
             item={item}
+            key={index}
             role="option"
-            // Allows tab focus into first element
-            tabIndex={index === 0 ? 0 : -1}
+            tabIndex={index === 0 ? 0 : -1} // Allows tab focus into first element
             {...getSharedProps(requiredProps)}
             {...optionProps}
           />

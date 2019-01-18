@@ -1,0 +1,48 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/tag/basic.js';
+import Kinds from 'examples/tag/kinds.js';
+import CustomColor from 'examples/tag/custom-color.js';
+import Disabled from 'examples/tag/disabled.js';
+
+export default Layout;
+
+# Tag
+
+Compact UI to display a collection of consice information.
+
+### When to use
+
+- When displaying a list of tags.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/tag/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Available Kinds" path="examples/tag/kinds.js">
+  <Kinds />
+</Example>
+
+<Example title="Custom Color" path="examples/tag/custom-color.js">
+  <CustomColor />
+</Example>
+
+<Example title="Disabled" path="examples/tag/disabled.js">
+  <Disabled />
+</Example>
+
+<API
+  heading="Tag API"
+  api={require('!!extract-react-types-loader!../../../src/tag/tag.js')}
+/>

@@ -31,17 +31,32 @@ export type ElementRefT = {current: ?React.ElementRef<'div'>};
 
 // Props shared by all flavors of modal
 export type ModalPropsT = {
+  /** Sets whether the Modal should be displayed by easing in and out */
   animate: boolean,
+  /** Set to false if modal shouldn't autofocus on its content.
+   *  Moving focus into a newly opened modal is important for accessibility purposes.
+   *  If you set this to false, you should manually trigger focus on another element in the modal. */
   autofocus: boolean,
+  /** Modal content. The children-as-function API may be preferable
+   * for performance reasons (wont render until opened) */
   children?: React.Node | (() => React.Node),
+  /** Whether the modal should be closeable by the user
+   *  (either via escape, backdrop click, etc). You can set this to
+   * false if your modal has an action that the user must take before closing.*/
   closeable: boolean,
   isOpen: boolean,
+  /** Where to mount the modal */
   mountNode?: HTMLElement,
+  /** A callback that is invoked when the modal will close.
+   * Callback is passed a constant identifying what triggered the close. */
   onClose?: ({
     closeSource?: CloseSourceT,
   }) => void,
   overrides: OverridesT,
+  /** Which accessibility role this modal should have. */
   role: RolePropT,
+  /** Controls the size of the modal (primarily width).
+   * Can be a SIZE constant or css width property value. */
   size: SizePropT,
 };
 

@@ -1,0 +1,34 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import SpinnerBasic from 'examples/spinner/basic.js';
+import SpinnerWithSize from 'examples/spinner/with-size.js';
+import SpinnerWithOverrides from 'examples/spinner/with-overrides.js';
+
+export default Layout;
+
+# Spinner
+
+## Examples
+
+<Example title="Spinner Basic Usage" path="examples/spinner/basic.js">
+  <SpinnerBasic />
+</Example>
+
+<Example title="Spinner Changed Size" path="examples/spinner/with-size.js">
+  <SpinnerWithSize />
+</Example>
+
+<Example title="Spinner With Overrides" path="examples/spinner/with-overrides.js">
+  <SpinnerWithOverrides />
+</Example>
+
+<API heading="Spinner API" api={require('!!extract-react-types-loader!../../../src/spinner/spinner.js')}/>

@@ -19,14 +19,21 @@ export type OverridesT = {
 export type ButtonPropsT = {
   children?: React$Node,
   disabled: boolean,
+  /** A helper rendered at the end of the button. */
   endEnhancer?: (*) => React$Node | React$Node,
+  /** Show loading button style and spinner. */
   isLoading: boolean,
+  /** Indicates that the button is selected */
   isSelected?: boolean,
+  /** Defines the kind (purpose) of a button */
   kind: $Keys<typeof KIND>,
   onClick?: (SyntheticEvent<HTMLButtonElement>) => void,
   overrides: OverridesT,
+  /** Defines the shape of the button */
   shape: $Keys<typeof SHAPE>,
+  /** Defines the size of the button */
   size: $Keys<typeof SIZE>,
+  /** A helper rendered at the start of the button. */
   startEnhancer?: (*) => React$Node | React$Node,
 };
 

@@ -8,7 +8,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {action} from '@storybook/addon-actions';
 import {boolean, radios} from '@storybook/addon-knobs';
-import {StatefulSelect, TYPE} from './index.js';
+import Screener, {Steps} from 'screener-storybook/src/screener.js';
+import List from 'react-virtualized/dist/commonjs/List'; // eslint-disable-line import/extensions
+import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'; // eslint-disable-line import/extensions
+
+import {StyledList} from '../menu/index.js';
+
+import {StatefulSelect, StyledDropdownListItem, TYPE} from './index.js';
 import {SIZE} from './constants.js';
 import {styled} from '../styles/index.js';
 import COLORS from './examples-colors.json';
@@ -138,14 +144,23 @@ export default {
     );
   },
   [tests.SINGLE_SELECT_SEARCH]: function Story3() {
+    const selector = '[role="list"] div';
     return (
-      <StatefulSelect
-        {...options}
-        options={optionsWithDisabled}
-        placeholder="Start searching"
-        type={TYPE.search}
-        onChange={onChange}
-      />
+      <Screener
+        steps={new Steps()
+          .wait(selector)
+          .click(selector)
+          .snapshot('select open state')
+          .end()}
+      >
+        <StatefulSelect
+          {...options}
+          options={optionsWithDisabled}
+          placeholder="Start searching"
+          type={TYPE.search}
+          onChange={onChange}
+        />
+      </Screener>
     );
   },
   [tests.MULTI_SELECT_SEARCH]: function Story4() {
@@ -173,6 +188,65 @@ export default {
           <CustomOptionLabel option={option} showColor />
         )}
         getValueLabel={({option}) => <CustomOptionLabel option={option} />}
+        overrides={{
+          DropdownListItem: {
+            style: ({$theme, $isHighlighted}) => ({
+              backgroundColor: $isHighlighted
+                ? $theme.colors.primary50
+                : 'transparent',
+              ':hover': {
+                backgroundColor: $theme.colors.primary50,
+              },
+            }),
+          },
+        }}
+      />
+    );
+  },
+
+  [tests.LONG_LIST]: function LongListStory() {
+    const ListItem = styled(StyledDropdownListItem, {
+      paddingTop: 0,
+      paddingBottom: 0,
+      display: 'flex',
+      alignItems: 'center',
+    });
+
+    const Container = styled(StyledList, {height: '500px'});
+
+    function VirtualList(props) {
+      return (
+        <Container $ref={props.$ref}>
+          <AutoSizer>
+            {({width}) => (
+              <List
+                role={props.role}
+                height={500}
+                width={width}
+                rowCount={props.children.length}
+                rowHeight={36}
+                rowRenderer={({index, key, style}) => {
+                  return (
+                    <ListItem
+                      key={key}
+                      style={style}
+                      {...props.children[index].props}
+                    >
+                      {props.children[index].props.item.id}
+                    </ListItem>
+                  );
+                }}
+              />
+            )}
+          </AutoSizer>
+        </Container>
+      );
+    }
+
+    return (
+      <StatefulSelect
+        {...options}
+        overrides={{Dropdown: {component: VirtualList}}}
       />
     );
   },

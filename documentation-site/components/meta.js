@@ -18,5 +18,10 @@ export default () => (
       content="initial-scale=1.0, width=device-width"
       key="viewport"
     />
+    <style>{`
+      body {
+        margin: 0;
+      }
+    `}</style>
   </Head>
 );

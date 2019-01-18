@@ -13,7 +13,7 @@ describe('StatefulComponentContainer', () => {
   test('basic render', () => {
     const props = {
       initialState: {
-        highlightedDate: new Date(),
+        value: new Date(),
       },
       onSelect: jest.fn(),
       stateReducer: jest.fn(),
@@ -27,7 +27,7 @@ describe('StatefulComponentContainer', () => {
   describe('Children function receives correct props', () => {
     const props = {
       initialState: {
-        highlightedDate: new Date(),
+        value: new Date(2019, 2, 10),
       },
       stateReducer: jest.fn(),
       onSelect: jest.fn(),
@@ -40,8 +40,8 @@ describe('StatefulComponentContainer', () => {
       <StatefulContainer {...props}>{children}</StatefulContainer>,
     );
     const handlers = [
-      ['onDayMouseOver', true],
-      ['onDayMouseLeave', true],
+      ['onDayMouseOver', false],
+      ['onDayMouseLeave', false],
       ['onSelect', true],
     ];
 
@@ -65,30 +65,29 @@ describe('StatefulComponentContainer', () => {
   test('stateReducer', () => {
     const props = {
       initialState: {
-        highlightedDate: new Date(2010, 6, 8),
+        value: new Date(2016, 2, 10),
       },
       stateReducer: jest.fn(),
     };
     const children = jest.fn();
-    const state = {highlightedDate: new Date(2010, 6, 8)};
-    const stateUpdated = {highlightedDate: new Date(2010, 6, 1)};
+    const newDate = {date: new Date(2018, 2, 10)};
+    const state = {value: newDate.date};
+    const stateUpdated = {value: new Date(2019, 2, 10)};
 
     const component = shallow(
       <StatefulContainer {...props}>{children}</StatefulContainer>,
     );
-    props.stateReducer.mockReturnValueOnce(state);
-    component.instance().onKeyDown({
-      key: 'ArrowUp',
-      preventDefault: () => {},
-      stopPropagation: () => {},
-    });
+    props.stateReducer.mockReturnValueOnce(stateUpdated);
+    component.instance().onSelect(newDate);
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer.mock.calls[0][0]).toEqual(
-      STATE_CHANGE_TYPE.moveUp,
+      STATE_CHANGE_TYPE.change,
     );
-    expect(props.stateReducer.mock.calls[0][1]).toEqual(stateUpdated);
-    expect(props.stateReducer.mock.calls[0][2]).toMatchObject(state);
-    expect(component).toHaveState('highlightedDate', state.highlightedDate);
+    expect(props.stateReducer.mock.calls[0][1]).toEqual(state);
+    expect(props.stateReducer.mock.calls[0][2]).toMatchObject({
+      value: props.initialState.value,
+    });
+    expect(component).toHaveState('value', stateUpdated.value);
   });
 });

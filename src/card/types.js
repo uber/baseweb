@@ -19,11 +19,17 @@ export type CardComponentsT = {
 };
 
 export type CardsPropsT = {
+  /** Contents to be rendered at the bottom of the Card. Used to organize UI which enables user action. */
   +action?: Node,
+  /** Content to be rendered within the Card body. */
   +children?: Node,
+  /** Function that takes Card props and returns a boolean that represents if a thumbnail will be rendered. */
   +hasThumbnail: ({+thumbnail?: string}) => boolean,
+  /** Image src to be positioned at the top of the Card. */
   +headerImage?: string,
   +overrides: CardComponentsT,
+  /** Image src that by default is rendered to the side of children content. */
   +thumbnail?: string,
+  /** Content to render above the body content. */
   +title?: Node,
 };

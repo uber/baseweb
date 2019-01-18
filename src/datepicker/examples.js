@@ -11,7 +11,7 @@ import {
   Unstable_StatefulCalendar as StatefulDatepicker,
   formatDate,
 } from './index.js';
-import {Popover} from '../popover/index.js';
+import {Popover, PLACEMENT} from '../popover/index.js';
 import {Input} from '../input/index.js';
 import tests from './examples-list.js';
 
@@ -56,9 +56,15 @@ class DatepickerWithInput extends React.Component<
   render() {
     return (
       <Popover
+        placement={PLACEMENT.bottom}
         isOpen={this.state.isOpen}
         onEsc={this.close}
-        content={<StatefulDatepicker onSelect={this.onChange} />}
+        content={
+          <StatefulDatepicker
+            initialState={{value: this.state.value}}
+            onSelect={this.onChange}
+          />
+        }
       >
         <Input
           value={this.state.formattedValue}
@@ -83,5 +89,52 @@ export default {
   },
   [tests.STATEFUL_IN_POPOVER]: function Story3() {
     return <DatepickerWithInput />;
+  },
+
+  [tests.WITH_OVERRIDES]: function Story3() {
+    const selectOverrides = {
+      ControlContainer: {
+        style: ({$theme, $isFocused, $isPseudoFocused}) => ({
+          backgroundColor:
+            $isFocused || $isPseudoFocused
+              ? $theme.colors.positive500
+              : $theme.colors.positive,
+        }),
+      },
+      OptionContent: {
+        style: ({$theme, $isHighlighted}) => ({
+          color: $isHighlighted
+            ? $theme.colors.positive
+            : $theme.colors.foreground,
+        }),
+      },
+    };
+    return (
+      <StatefulDatepicker
+        initialState={{value: new Date()}}
+        overrides={{
+          CalendarHeader: {
+            style: ({$theme}) => ({
+              backgroundColor: $theme.colors.positive,
+            }),
+          },
+          MonthSelect: {
+            props: {overrides: selectOverrides},
+          },
+          YearSelect: {
+            props: {overrides: selectOverrides},
+          },
+          Day: {
+            style: ({$theme, $selected, $isHovered, $isHighlighted}) => ({
+              backgroundColor: $selected
+                ? $theme.colors.positive
+                : $isHovered || $isHighlighted
+                  ? $theme.colors.positive100
+                  : 'transparent',
+            }),
+          },
+        }}
+      />
+    );
   },
 };

@@ -1,6 +1,6 @@
 ---
-category: Contributing
-page: Getting started
+category: Introduction
+page: Contributing
 ---
 
 # Contributing to baseui

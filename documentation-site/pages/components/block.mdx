@@ -1,0 +1,57 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/block/basic.js';
+import Fonts from 'examples/block/fonts.js';
+import Flexbox from 'examples/block/flexbox.js';
+import Grid from 'examples/block/grid.js';
+import Override from 'examples/block/override.js';
+
+export default Layout;
+
+# Block
+
+The `Block` component is a helper component that lets you write these common less-reusable elements more succinctly inline.
+
+One of the most common needs when building web apps is creating layout elements that have certain layout and typography styles.
+
+For more traditional apps that use global stylesheets, many of the popular CSS frameworks have helper classes to quickly create
+styled elements (see [Bootstrap](https://getbootstrap.com/docs/4.1/utilities/sizing/), [Tachyons](http://tachyons.io/docs/layout/spacing/)).
+Uber's superfine css framework also had this and it was used very widely–just search something like `push-large` in sourcegraph.
+
+The move to CSS-in-JS sort of eliminates these classes in favor of encapsulating styles within components. This is a generally a good thing because it promotes reusability, however the reality is that there are dozens or hundreds of different layout/spacing/typography combinations in any app, and there's not always a clear semantic meaning or potential for reuse. In practice you end up just defining and naming a bunch of things at the top of the file:
+
+## Examples
+
+<Example title="Basic Usage" path="examples/block/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Font Customization" path="examples/block/fonts.js">
+  <Fonts />
+</Example>
+
+<Example title="Flexbox" path="examples/block/flexbox.js">
+  <Flexbox />
+</Example>
+
+<Example title="Grid" path="examples/block/grid.js">
+  <Grid />
+</Example>
+
+<Example title="Overrides" path="examples/block/override.js">
+  <Override />
+</Example>
+
+<API
+  heading="Block API"
+  api={require('!!extract-react-types-loader!../../../src/block/block.js')}
+/>
