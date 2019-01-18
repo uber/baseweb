@@ -67,6 +67,10 @@ const routes = [
             path: getPath('/components/input'),
           },
           {
+            text: 'Slider',
+            path: getPath('/components/slider'),
+          },
+          {
             text: 'Radio',
             path: getPath('/components/radio'),
           },
@@ -116,6 +120,10 @@ const routes = [
             text: 'Icon',
             path: getPath('/components/icon'),
           },
+          {
+            text: 'Tag',
+            path: getPath('/components/tag'),
+          },
         ],
       },
       {
@@ -124,6 +132,10 @@ const routes = [
           {
             text: 'Menu',
             path: getPath('/components/menu'),
+          },
+          {
+            text: 'Rating',
+            path: getPath('/components/rating'),
           },
           {
             text: 'Select',
@@ -170,6 +182,10 @@ const routes = [
           {
             text: 'Popover',
             path: getPath('/components/popover'),
+          },
+          {
+            text: 'Tooltip',
+            path: getPath('/components/tooltip'),
           },
         ],
       },
