@@ -122,6 +122,10 @@ const routes = [
             path: getPath('/components/menu'),
           },
           {
+            text: 'Rating',
+            path: getPath('/components/rating'),
+          },
+          {
             text: 'Select',
             path: getPath('/components/select'),
           },

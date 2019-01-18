@@ -1,0 +1,37 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Star from 'examples/rating/star.js';
+import Emoticon from 'examples/rating/emoticon.js';
+
+export default Layout;
+
+# Rating
+
+## Examples
+
+<Example title="Star Rating" path="examples/rating/star.js">
+  <Star />
+</Example>
+
+<Example title="Emoticon Rating" path="examples/rating/emoticon.js">
+  <Emoticon />
+</Example>
+
+<API
+  heading="Star Rating API"
+  api={require('!!extract-react-types-loader!../../../src/rating/star-rating.js')}
+/>
+
+<API
+  heading="Emotion Rating API"
+  api={require('!!extract-react-types-loader!../../../src/rating/emoticon-rating.js')}
+/>
