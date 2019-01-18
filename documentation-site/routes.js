@@ -71,6 +71,10 @@ const routes = [
             path: getPath('/components/slider'),
           },
           {
+            text: 'Radio',
+            path: getPath('/components/radio'),
+          },
+          {
             text: 'Textarea',
             path: getPath('/components/textarea'),
           },

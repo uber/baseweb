@@ -1,0 +1,68 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/radio/basic.js';
+import Stateful from 'examples/radio/stateful.js';
+import HorizontalAlign from 'examples/radio/horizontal-align.js';
+import Error from 'examples/radio/error.js';
+import Overrides from 'examples/radio/overrides.js';
+
+export default Layout;
+
+# Radio
+
+Select a single option from a set.
+
+### When to use
+
+- When the user should see all available options.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/radio/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Stateful RadioGroup" path="examples/radio/stateful.js">
+  <Stateful />
+</Example>
+
+<Example title="Horizontal Align" path="examples/radio/horizontal-align.js">
+  <HorizontalAlign />
+</Example>
+
+<Example title="Error State" path="examples/radio/error.js">
+  <Error />
+</Example>
+
+<Example title="Overrides" path="examples/radio/overrides.js">
+  <Overrides />
+</Example>
+
+<API
+  heading="Radio API"
+  api={require('!!extract-react-types-loader!../../../src/radio/radio.js')}
+/>
+
+<API
+  heading="RadioGroup API"
+  api={require('!!extract-react-types-loader!../../../src/radio/radiogroup.js')}
+/>
+
+<API
+  heading="StatefulRadioGroup API"
+  api={require('!!extract-react-types-loader!../../../src/radio/stateful-radiogroup.js')}
+/>
+
+<API
+  heading="StatefulRadioGroupContainer API"
+  api={require('!!extract-react-types-loader!../../../src/radio/stateful-radiogroup-container.js')}
+/>
