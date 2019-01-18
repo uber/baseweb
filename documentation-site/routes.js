@@ -112,6 +112,10 @@ const routes = [
             text: 'Icon',
             path: getPath('/components/icon'),
           },
+          {
+            text: 'Tag',
+            path: getPath('/components/tag'),
+          },
         ],
       },
       {
