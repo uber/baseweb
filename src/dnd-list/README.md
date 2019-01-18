@@ -19,8 +19,7 @@ export default () =>
 
 ```js
 import * as React from 'react';
-import {List} from 'baseui/dnd-list';
-import {arrayMove} from 'react-movable';
+import {List, arrayMove} from 'baseui/dnd-list';
 
 export default class App extends React.Component {
   state = {
@@ -74,6 +73,8 @@ export default () =>
 * `StyledCloseHandle`
 * `StyledLabel`
 * `STATE_CHANGE_TYPE`
+* `arrayMove`
+* `arrayRemove`
 
 ## `List` API
 

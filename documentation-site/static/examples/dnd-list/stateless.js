@@ -1,6 +1,5 @@
 import React from 'react';
-import {List} from 'baseui/dnd-list';
-import {arrayMove} from 'react-movable';
+import {List, arrayMove} from 'baseui/dnd-list';
 
 export default class Example extends React.Component {
   state = {
