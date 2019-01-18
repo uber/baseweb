@@ -52,40 +52,71 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 
 // Props shared by all flavors of popover
 export type BasePopoverPropsT = {
+  /** Controls how this popover behaves for screen readers and other assistive devices.
+   * See the A11Y section at the bottom of this document for more details.
+   */
   accessibilityType?: AccessibilityTypeT,
   id?: string,
+  /** If true, popover element will not avoid element boundaries. */
   ignoreBoundary?: boolean,
+  /** Number of milliseconds to wait before showing the popover after mouse enters the trigger element (for triggerType `hover`). */
   onMouseEnterDelay?: number,
+  /** Number of milliseconds to wait before showing the popover after mouse leaves the trigger element (for triggerType `hover`). */
   onMouseLeaveDelay?: number,
   overrides?: OverridesT,
+  /** How to position the popover relative to the target. */
   placement: PopoverPlacementT,
+  /** Whether or not to show the arrow pointing from the popover to the trigger. */
   showArrow?: boolean,
+  /** Whether to toggle the popover when trigger is clicked or hovered. */
   triggerType: TriggerTypeT,
 };
 
 // Props for stateless render logic
 export type PopoverPropsT = BasePopoverPropsT & {
+  /** Content that should trigger the popover to be shown (also acts as the anchor against
+   * which the popover will be positioned).
+   */
   children: React.Node,
+  /** Content to render within the popover when it's shown. */
   content: React.Node | ContentRenderPropT,
+  /** Whether or not to show the popover. */
   isOpen: boolean,
+  /** Handler for blur events on trigger element. */
   onBlur?: () => void,
+  /** Handler for click events on trigger element. */
   onClick?: (e: Event) => void,
+  /** Handler for clicks outside the anchor/popover elements. */
   onClickOutside?: () => void,
+  /** Handler for click events on trigger element. */
   onEsc?: () => void,
+  /** Handler for 'Esc' keypress events */
   onFocus?: () => void,
+  /** Handler for mouseenter events on trigger element. */
   onMouseEnter?: () => void,
+  /** Handler for mouseleave events on trigger element. */
   onMouseLeave?: () => void,
 };
 
 // Props for stateful wrapper
 export type StatefulPopoverPropsT = BasePopoverPropsT & {
+  /** Content that should trigger the popover to be shown (also acts as the anchor against
+   * which the popover will be positioned).
+   */
   children: React.Node,
+  /** Content to render within the popover when it's shown. */
   content: React.Node | StatefulContentRenderPropT,
+  /** Whether to hide the popover when the user clicks anywhere outside the trigger/popover. */
   dismissOnClickOutside: boolean,
+  /** Whether to hide the popover when the user presses the escape key. */
   dismissOnEsc: boolean,
+  /** Initial state populated into the component */
   initialState?: StateT,
+  /** Event handler when popover is hidden. */
   onClose?: () => void,
+  /** Event handler when popover is shown. */
   onOpen?: () => void,
+  /** Reducer function to manipulate internal state updates. */
   stateReducer?: StateReducerT,
 };
 

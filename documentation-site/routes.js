@@ -67,6 +67,10 @@ const routes = [
             path: getPath('/components/input'),
           },
           {
+            text: 'Radio',
+            path: getPath('/components/radio'),
+          },
+          {
             text: 'Textarea',
             path: getPath('/components/textarea'),
           },
@@ -82,6 +86,10 @@ const routes = [
           {
             text: 'Header navigation',
             path: getPath('/components/header-navigation'),
+          },
+          {
+            text: 'Pagination',
+            path: getPath('/components/pagination'),
           },
           {
             text: 'Tab',
@@ -114,6 +122,10 @@ const routes = [
         text: 'Pickers',
         children: [
           {
+            text: 'Menu',
+            path: getPath('/components/menu'),
+          },
+          {
             text: 'Select',
             path: getPath('/components/select'),
           },
@@ -127,8 +139,16 @@ const routes = [
             path: getPath('/components/notification'),
           },
           {
+            text: 'ProgressBar',
+            path: getPath('/components/progress-bar'),
+          },
+          {
             text: 'Progress steps',
             path: getPath('/components/progress-steps'),
+          },
+          {
+            text: 'Spinner',
+            path: getPath('/components/spinner'),
           },
           {
             text: 'Toast',
@@ -146,6 +166,10 @@ const routes = [
           {
             text: 'Modal',
             path: getPath('/components/modal'),
+          },
+          {
+            text: 'Popover',
+            path: getPath('/components/popover'),
           },
         ],
       },
