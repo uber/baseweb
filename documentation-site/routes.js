@@ -113,6 +113,10 @@ const routes = [
             path: getPath('/components/avatar'),
           },
           {
+            text: 'Drag and Drop List',
+            path: getPath('/components/dnd-list'),
+          },
+          {
             text: 'Icon',
             path: getPath('/components/icon'),
           },
