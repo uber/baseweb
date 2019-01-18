@@ -42,12 +42,12 @@ export const Item = styled(
               color: $theme.colors.primary,
             }
           : {},
-      padding: '1em',
+      padding: $theme.sizing.scale600,
       margin: 0,
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      listStyleType: 'none',
+      listStyle: 'none',
       cursor: $isDragged ? 'grabbing' : 'grab',
       backgroundColor: $theme.colors.mono100,
       boxShadow: $isDragged ? '0px 2px 6px rgba(39, 110, 241, 0.32)' : null,
@@ -60,28 +60,33 @@ export const Item = styled(
 );
 List.displayName = 'StyledItem';
 
-export const DragHandle = styled('div', {
-  marginRight: '1em',
-  width: '24px',
+export const DragHandle = styled('div', ({$theme}) => ({
+  marginRight: $theme.sizing.scale600,
+  marginLeft: 0,
+  padding: 0,
+  width: $theme.sizing.scale800,
   display: 'flex',
   alignItems: 'center',
-});
+}));
 DragHandle.displayName = 'StyledDragHandle';
 
-export const CloseHandle = styled('button', {
+export const CloseHandle = styled('button', ({$theme}) => ({
   border: 'none',
   padding: 0,
   overflow: 'visible',
   cursor: 'pointer',
   background: 'transparent',
-  marginLeft: '1em',
-  width: '24px',
+  marginLeft: $theme.sizing.scale600,
+  width: $theme.sizing.scale800,
   display: 'flex',
   alignItems: 'center',
-});
+}));
 CloseHandle.displayName = 'StyledCloseHandle';
 
-export const Label = styled('div', {
+export const Label = styled('div', ({$theme}) => ({
   flexGrow: 1,
-});
+  marginLeft: 0,
+  padding: 0,
+  ...$theme.typography.font400,
+}));
 Label.displayName = 'StyledLabel';

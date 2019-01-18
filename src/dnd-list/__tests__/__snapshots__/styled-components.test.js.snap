@@ -7,10 +7,10 @@ Object {
   "border": "none",
   "cursor": "pointer",
   "display": "flex",
-  "marginLeft": "1em",
+  "marginLeft": "$theme.sizing.scale600",
   "overflow": "visible",
   "padding": 0,
-  "width": "24px",
+  "width": "$theme.sizing.scale800",
 }
 `;
 
@@ -18,8 +18,10 @@ exports[`Component styled components StyledDragHandle - basic render: StyledDrag
 Object {
   "alignItems": "center",
   "display": "flex",
-  "marginRight": "1em",
-  "width": "24px",
+  "marginLeft": 0,
+  "marginRight": "$theme.sizing.scale600",
+  "padding": 0,
+  "width": "$theme.sizing.scale800",
 }
 `;
 
@@ -36,9 +38,9 @@ Object {
   "cursor": "grab",
   "display": "flex",
   "justifyContent": "space-between",
-  "listStyleType": "none",
+  "listStyle": "none",
   "margin": 0,
-  "padding": "1em",
+  "padding": "$theme.sizing.scale600",
 }
 `;
 
@@ -52,9 +54,9 @@ Object {
   "cursor": "grabbing",
   "display": "flex",
   "justifyContent": "space-between",
-  "listStyleType": "none",
+  "listStyle": "none",
   "margin": 0,
-  "padding": "1em",
+  "padding": "$theme.sizing.scale600",
 }
 `;
 
@@ -68,15 +70,21 @@ Object {
   "cursor": "grab",
   "display": "flex",
   "justifyContent": "space-between",
-  "listStyleType": "none",
+  "listStyle": "none",
   "margin": 0,
-  "padding": "1em",
+  "padding": "$theme.sizing.scale600",
 }
 `;
 
 exports[`Component styled components StyledLabel - basic render: StyledLabel has correct styles 1`] = `
 Object {
   "flexGrow": 1,
+  "fontFamily": "$theme.typography.font400.fontFamily",
+  "fontSize": "$theme.typography.font400.fontSize",
+  "fontWeight": "$theme.typography.font400.fontWeight",
+  "lineHeight": "$theme.typography.font400.lineHeight",
+  "marginLeft": 0,
+  "padding": 0,
 }
 `;
 
