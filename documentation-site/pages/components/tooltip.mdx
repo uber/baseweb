@@ -1,0 +1,37 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Stateful from 'examples/tooltip/stateful.js';
+import StatefulComplexContent from 'examples/tooltip/stateful-complex-content.js';
+
+export default Layout;
+
+# Tooltip
+
+Tooltips provide additional information upon hover or click. They often include
+contextual helper text to guide the user through the experience or provide more detail.
+Tooltips in Base have no arrow indicator and can be placed around any point of an object.
+Motion helps to reinforce its origin position.
+
+## Examples
+
+<Example title="Stateful Tooltip" path="examples/tooltip/stateful.js">
+  <Stateful />
+</Example>
+
+<Example title="Stateful Tooltip with Complex Content" path="examples/tooltip/stateful-complex-content.js">
+  <StatefulComplexContent />
+</Example>
+
+<API
+  heading="Stateful Tooltip API"
+  api={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
+/>

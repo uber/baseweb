@@ -179,6 +179,10 @@ const routes = [
             text: 'Popover',
             path: getPath('/components/popover'),
           },
+          {
+            text: 'Tooltip',
+            path: getPath('/components/tooltip'),
+          },
         ],
       },
       {
