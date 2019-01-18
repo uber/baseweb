@@ -83,17 +83,4 @@ describe('StatefulListContainer', () => {
     );
     expect(component).toHaveState('items', ['Item 2', 'Item 1']);
   });
-
-  test('null stateReducer', () => {
-    const props = {
-      stateReducer: null,
-    };
-    const children = jest.fn();
-    const component = shallow(
-      <StatefulListContainer {...props}>{children}</StatefulListContainer>,
-    );
-    // null state reducer shouldn't break component
-    component.instance().onChange({oldIndex: 0, newIndex: 0});
-    expect(component).toHaveState('items', [undefined]);
-  });
 });

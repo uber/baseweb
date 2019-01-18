@@ -23,6 +23,7 @@ class StatefulListContainer extends React.Component<
   static defaultProps: $Shape<StatefulComponentContainerPropsT> = {
     initialState: {items: []},
     stateReducer: defaultStateReducer,
+    onChange: () => {},
   };
 
   state = {
@@ -35,18 +36,12 @@ class StatefulListContainer extends React.Component<
       newIndex === -1
         ? arrayRemove(this.state.items, oldIndex)
         : arrayMove(this.state.items, oldIndex, newIndex);
-    if (typeof this.props.onChange === 'function') {
-      this.props.onChange({newState: newItemsState, oldIndex, newIndex});
-    }
+    this.props.onChange({newState: newItemsState, oldIndex, newIndex});
     this.internalSetState('change', {items: newItemsState});
   };
 
   internalSetState(type: StateChangeTypeT, changes: StateT) {
     const {stateReducer} = this.props;
-    if (typeof stateReducer !== 'function') {
-      this.setState(changes);
-      return;
-    }
     this.setState(prevState => stateReducer(type, changes, prevState));
   }
 

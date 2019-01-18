@@ -3,13 +3,16 @@
 exports[`Component styled components StyledCloseHandle - basic render: StyledCloseHandle has correct styles 1`] = `
 Object {
   "alignItems": "center",
-  "background": "transparent",
+  "backgroundColor": "transparent",
   "border": "none",
   "cursor": "pointer",
   "display": "flex",
   "marginLeft": "$theme.sizing.scale600",
   "overflow": "visible",
-  "padding": 0,
+  "paddingBottom": 0,
+  "paddingLeft": 0,
+  "paddingRight": 0,
+  "paddingTop": 0,
   "width": "$theme.sizing.scale800",
 }
 `;
@@ -18,9 +21,7 @@ exports[`Component styled components StyledDragHandle - basic render: StyledDrag
 Object {
   "alignItems": "center",
   "display": "flex",
-  "marginLeft": 0,
   "marginRight": "$theme.sizing.scale600",
-  "padding": 0,
   "width": "$theme.sizing.scale800",
 }
 `;
@@ -28,19 +29,43 @@ Object {
 exports[`Component styled components StyledItem - basic render: StyledItem has correct styles 1`] = `
 Object {
   ":hover": Object {
-    "border": "2px solid $theme.colors.primary100",
+    "borderBottomColor": "$theme.colors.primary100",
+    "borderBottomStyle": "solid",
+    "borderBottomWidth": "2px",
+    "borderLeftColor": "$theme.colors.primary100",
+    "borderLeftStyle": "solid",
+    "borderLeftWidth": "2px",
+    "borderRightColor": "$theme.colors.primary100",
+    "borderRightStyle": "solid",
+    "borderRightWidth": "2px",
+    "borderTopColor": "$theme.colors.primary100",
+    "borderTopStyle": "solid",
+    "borderTopWidth": "2px",
     "color": "$theme.colors.primary",
   },
   "alignItems": "center",
   "backgroundColor": "$theme.colors.mono100",
-  "border": "2px solid transparent",
+  "borderBottomColor": "transparent",
+  "borderBottomStyle": "solid",
+  "borderBottomWidth": "2px",
+  "borderLeftColor": "transparent",
+  "borderLeftStyle": "solid",
+  "borderLeftWidth": "2px",
+  "borderRightColor": "transparent",
+  "borderRightStyle": "solid",
+  "borderRightWidth": "2px",
+  "borderTopColor": "transparent",
+  "borderTopStyle": "solid",
+  "borderTopWidth": "2px",
   "boxShadow": null,
   "cursor": "grab",
   "display": "flex",
   "justifyContent": "space-between",
   "listStyle": "none",
-  "margin": 0,
-  "padding": "$theme.sizing.scale600",
+  "paddingBottom": "$theme.sizing.scale600",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale600",
 }
 `;
 
@@ -49,14 +74,27 @@ Object {
   ":hover": Object {},
   "alignItems": "center",
   "backgroundColor": "$theme.colors.mono100",
-  "border": "2px solid $theme.colors.primary",
+  "borderBottomColor": "$theme.colors.primary",
+  "borderBottomStyle": "solid",
+  "borderBottomWidth": "2px",
+  "borderLeftColor": "$theme.colors.primary",
+  "borderLeftStyle": "solid",
+  "borderLeftWidth": "2px",
+  "borderRightColor": "$theme.colors.primary",
+  "borderRightStyle": "solid",
+  "borderRightWidth": "2px",
+  "borderTopColor": "$theme.colors.primary",
+  "borderTopStyle": "solid",
+  "borderTopWidth": "2px",
   "boxShadow": "0px 2px 6px rgba(39, 110, 241, 0.32)",
   "cursor": "grabbing",
   "display": "flex",
   "justifyContent": "space-between",
   "listStyle": "none",
-  "margin": 0,
-  "padding": "$theme.sizing.scale600",
+  "paddingBottom": "$theme.sizing.scale600",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale600",
 }
 `;
 
@@ -65,14 +103,27 @@ Object {
   ":hover": Object {},
   "alignItems": "center",
   "backgroundColor": "$theme.colors.mono100",
-  "border": "2px solid $theme.colors.primary",
+  "borderBottomColor": "$theme.colors.primary",
+  "borderBottomStyle": "solid",
+  "borderBottomWidth": "2px",
+  "borderLeftColor": "$theme.colors.primary",
+  "borderLeftStyle": "solid",
+  "borderLeftWidth": "2px",
+  "borderRightColor": "$theme.colors.primary",
+  "borderRightStyle": "solid",
+  "borderRightWidth": "2px",
+  "borderTopColor": "$theme.colors.primary",
+  "borderTopStyle": "solid",
+  "borderTopWidth": "2px",
   "boxShadow": null,
   "cursor": "grab",
   "display": "flex",
   "justifyContent": "space-between",
   "listStyle": "none",
-  "margin": 0,
-  "padding": "$theme.sizing.scale600",
+  "paddingBottom": "$theme.sizing.scale600",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale600",
 }
 `;
 
@@ -83,22 +134,20 @@ Object {
   "fontSize": "$theme.typography.font400.fontSize",
   "fontWeight": "$theme.typography.font400.fontWeight",
   "lineHeight": "$theme.typography.font400.lineHeight",
-  "marginLeft": 0,
-  "padding": 0,
 }
 `;
 
 exports[`Component styled components StyledList - basic render: StyledList has correct styles 1`] = `
 Object {
   "cursor": null,
-  "padding": 0,
+  "paddingLeft": 0,
 }
 `;
 
 exports[`Component styled components StyledList - dragging is active: StyledList has correct styles when dragging is active 1`] = `
 Object {
   "cursor": "grabbing",
-  "padding": 0,
+  "paddingLeft": 0,
 }
 `;
 

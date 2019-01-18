@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {
   Root as StyledRoot,
   List as StyledList,
@@ -37,15 +37,21 @@ class StatelessList extends React.Component<ListPropsT> {
       CloseHandle: CloseHandleOverride,
       Label: LabelOverride,
     } = overrides;
-    const Root = getOverride(RootOverride) || StyledRoot;
-    const List = getOverride(ListOverride) || StyledList;
-    const Item = getOverride(ItemOverride) || StyledItem;
-    const DragHandle = getOverride(DragHandleOverride) || StyledDragHandle;
-    const CloseHandle = getOverride(CloseHandleOverride) || StyledCloseHandle;
-    const Label = getOverride(LabelOverride) || StyledLabel;
+    const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
+    const [List, listProps] = getOverrides(ListOverride, StyledList);
+    const [Item, itemProps] = getOverrides(ItemOverride, StyledItem);
+    const [DragHandle, dragHandleProps] = getOverrides(
+      DragHandleOverride,
+      StyledDragHandle,
+    );
+    const [CloseHandle, closeHandleProps] = getOverrides(
+      CloseHandleOverride,
+      StyledCloseHandle,
+    );
+    const [Label, labelProps] = getOverrides(LabelOverride, StyledLabel);
     const isRemovable = this.props.removable || false;
     return (
-      <Root $isRemovable={isRemovable} {...getOverrideProps(RootOverride)}>
+      <Root $isRemovable={isRemovable} {...rootProps}>
         <MovableList
           values={items}
           onChange={onChange}
@@ -54,7 +60,7 @@ class StatelessList extends React.Component<ListPropsT> {
               $isRemovable={isRemovable}
               $isDragged={isDragged}
               $ref={props.ref}
-              {...getOverrideProps(ListOverride)}
+              {...listProps}
             >
               {children}
             </List>
@@ -76,16 +82,13 @@ class StatelessList extends React.Component<ListPropsT> {
                 onMouseDown={props.onMouseDown}
                 onTouchStart={props.onTouchStart}
                 onWheel={props.onWheel}
-                {...getOverrideProps(ItemOverride)}
+                {...itemProps}
                 style={{...props.style, display: 'flex'}}
               >
-                <DragHandle
-                  {...sharedProps}
-                  {...getOverrideProps(DragHandleOverride)}
-                >
+                <DragHandle {...sharedProps} {...dragHandleProps}>
                   <Grab size={24} color="#CCC" />
                 </DragHandle>
-                <Label {...sharedProps} {...getOverrideProps(LabelOverride)}>
+                <Label {...sharedProps} {...labelProps}>
                   {value}
                 </Label>
                 {removable && (
@@ -96,7 +99,7 @@ class StatelessList extends React.Component<ListPropsT> {
                     onClick={() =>
                       onChange && onChange({oldIndex: index, newIndex: -1})
                     }
-                    {...getOverrideProps(CloseHandleOverride)}
+                    {...closeHandleProps}
                   >
                     <Delete size={24} color="#CCC" />
                   </CloseHandle>
