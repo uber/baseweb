@@ -67,6 +67,10 @@ const routes = [
             path: getPath('/components/input'),
           },
           {
+            text: 'Slider',
+            path: getPath('/components/slider'),
+          },
+          {
             text: 'Radio',
             path: getPath('/components/radio'),
           },
@@ -124,6 +128,10 @@ const routes = [
           {
             text: 'Menu',
             path: getPath('/components/menu'),
+          },
+          {
+            text: 'Rating',
+            path: getPath('/components/rating'),
           },
           {
             text: 'Select',

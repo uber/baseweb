@@ -1,0 +1,64 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/slider/basic.js';
+import Stateful from 'examples/slider/stateful.js';
+import Range from 'examples/slider/range.js';
+import Step from 'examples/slider/step.js';
+import Ticks from 'examples/slider/ticks.js';
+import Overrides from 'examples/slider/overrides.js';
+
+export default Layout;
+
+# Slider
+
+Control input with sliding axis to choose a single value or range between min and max values.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/slider/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Stateful Component" path="examples/slider/stateful.js">
+  <Stateful />
+</Example>
+
+<Example title="Range Slider" path="examples/slider/range.js">
+  <Range />
+</Example>
+
+<Example title="Step Slider" path="examples/slider/step.js">
+  <Step />
+</Example>
+
+<Example title="Multi Ticks" path="examples/slider/ticks.js">
+  <Ticks />
+</Example>
+
+<Example title="Overrides" path="examples/slider/overrides.js">
+  <Overrides />
+</Example>
+
+<API
+  heading="Slider API"
+  api={require('!!extract-react-types-loader!../../../src/slider/slider.js')}
+/>
+
+<API
+  heading="Stateful Slider API"
+  api={require('!!extract-react-types-loader!../../../src/slider/stateful-slider.js')}
+/>
+
+<API
+  heading="Stateful Slider Container API"
+  api={require('!!extract-react-types-loader!../../../src/slider/stateful-slider-container.js')}
+/>
