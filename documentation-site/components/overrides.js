@@ -61,10 +61,10 @@ class Overrides extends React.Component {
         [overrideName]: withDescription(
           component[current],
           () => {
-            this.onMouseEnter(overrideName);
+            this.onOverrideMouseEnter(overrideName);
           },
           () => {
-            this.onMouseLeave(overrideName);
+            this.onOverrideMouseLeave(overrideName);
           },
         ),
       };
@@ -75,11 +75,11 @@ class Overrides extends React.Component {
     this.styledExports = styledExports;
   }
 
-  onMouseEnter(overrideName) {
+  onOverrideMouseEnter(overrideName) {
     this.setState({hoveredOverride: overrideName});
   }
 
-  onMouseLeave() {
+  onOverrideMouseLeave() {
     this.setState({hoveredOverride: null});
   }
 
@@ -113,7 +113,7 @@ class Overrides extends React.Component {
           <Block marginTop="scale300">
             To learn more about how overrides work, check out the{' '}
             <Link passHref={true} href={getPath('/understanding-overrides')}>
-              Understanding Overrides
+              <a>Understanding Overrides</a>
             </Link>{' '}
             page.
           </Block>
