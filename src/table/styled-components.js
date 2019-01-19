@@ -7,60 +7,70 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
-import {Grid} from 'react-virtualized';
 
-/**
- * Main component container element
- */
 export const Root = styled('div', ({$theme}: SharedStylePropsT) => {
-  const {borders} = $theme;
   return {
-    ...borders.border300,
-    borderRadius: borders.radius200,
+    ...$theme.borders.border300,
+    borderRadius: $theme.borders.radius200,
+    height: '100%',
+    width: '100%',
+    overflowY: 'auto',
   };
 });
 
-export const Head = styled(Grid, ({$theme}: SharedStylePropsT) => {
-  const {lighting} = $theme;
+export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
-    textAlign: 'left',
-    boxShadow: lighting.shadow400,
+    backgroundColor: $theme.colors.white,
+    // TODO: need to add a var in theme for this
+    // required so that the shadow does not extend to left/right
+    boxShadow: '0 1px 4px -1px hsla(0, 0%, 0%, 0.16)',
+    display: 'flex',
+    flexGrow: 0,
+    position: 'sticky',
+    top: 0,
   };
 });
 
 export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
-  const {borders, sizing, typography} = $theme;
   return {
-    padding: `${sizing.scale500} ${sizing.scale0} ${sizing.scale500} ${
-      sizing.scale600
-    }`,
-    ...typography.font350,
-    boxSizing: 'border-box',
-    height: '100%',
-    width: '100%',
-    ...borders.border400,
-    borderLeft: 'none',
+    ...$theme.typography.font350,
+    ...$theme.borders.border300,
     borderTop: 'none',
     borderBottom: 'none',
+    borderLeft: 'none',
+    paddingTop: $theme.sizing.scale500,
+    paddingRight: 0,
+    paddingBottom: $theme.sizing.scale500,
+    paddingLeft: $theme.sizing.scale600,
+    width: '100%',
+    ':last-of-type': {
+      borderRight: 'none',
+    },
   };
 });
-export const Body = styled(Grid, (props: SharedStylePropsT) => {
-  return {};
-});
+
+export const Body = styled('div', {});
+
+export const Row = styled('div', ({$theme}) => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
 export const Cell = styled('div', ({$theme}: SharedStylePropsT) => {
-  const {sizing, typography} = $theme;
   return {
-    ...typography.font300,
-    padding: `${sizing.scale300} ${sizing.scale600}`,
-    boxSizing: 'border-box',
-    overflow: 'auto',
+    ...$theme.typography.font300,
+    display: 'flex',
+    flex: 1,
+    paddingTop: $theme.sizing.scale300,
+    paddingRight: $theme.sizing.scale600,
+    paddingBottom: $theme.sizing.scale300,
+    paddingLeft: $theme.sizing.scale600,
   };
 });
 
 export const Loading = styled('div', ({$theme}: SharedStylePropsT) => {
-  const {typography} = $theme;
   return {
-    ...typography.font300,
+    ...$theme.typography.font300,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
