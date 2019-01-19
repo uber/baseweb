@@ -11,7 +11,7 @@ import {MDXProvider} from '@mdx-js/tag';
 import Link from 'next/link';
 
 import {Block} from 'baseui/block';
-import {Button} from 'baseui/button';
+import {Button, KIND as ButtonKind} from 'baseui/button';
 import {
   HeaderNavigation,
   StyledNavigationList as NavigationList,
@@ -68,6 +68,9 @@ export default (props: PropsT) => (
         <Link href="/getting-started" prefetch>
           <Button>Get Started</Button>
         </Link>
+        <Block $as="a" href="/legacy" marginLeft="scale800">
+          <Button kind={ButtonKind.tertiary}>Storybook (legacy)</Button>
+        </Block>
       </NavigationList>
     </HeaderNavigation>
 
