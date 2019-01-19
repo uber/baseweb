@@ -113,7 +113,9 @@ class Overrides extends React.Component {
           <Block marginTop="scale300">
             To learn more about how overrides work, check out the{' '}
             <Link passHref={true} href={getPath('/understanding-overrides')}>
-              <a>Understanding Overrides</a>
+              <Block $as="a" font="font350">
+                Understanding Overrides
+              </Block>
             </Link>{' '}
             page.
           </Block>
