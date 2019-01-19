@@ -113,8 +113,16 @@ const routes = [
             path: getPath('/components/avatar'),
           },
           {
+            text: 'Drag and Drop List',
+            path: getPath('/components/dnd-list'),
+          },
+          {
             text: 'Icon',
             path: getPath('/components/icon'),
+          },
+          {
+            text: 'Tag',
+            path: getPath('/components/tag'),
           },
         ],
       },
@@ -174,6 +182,10 @@ const routes = [
           {
             text: 'Popover',
             path: getPath('/components/popover'),
+          },
+          {
+            text: 'Tooltip',
+            path: getPath('/components/tooltip'),
           },
         ],
       },

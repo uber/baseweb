@@ -21,17 +21,21 @@ export type OverridesT = {
 
 export type PropsT = {
   overrides?: OverridesT,
+  /** Disable control from being changed. */
   disabled?: boolean,
   isFocused?: boolean,
   isHovered?: boolean,
   kind?: TagKindT,
+  /** Component or String value for label of tag. Default is empty string. */
   children?: React$Node,
+  /** The color theme to be applied to a Tag. Default is `KIND.primary`. */
   color?: string,
-  $theme?: *,
+  /** Handler for events on Action button element. `children` provides which Tag was clicked. */
   onActionClick: (
     e: SyntheticEvent<HTMLInputElement>,
     children?: React$Node,
   ) => void,
+  $theme?: *,
 };
 
 export type SharedPropsT = {
