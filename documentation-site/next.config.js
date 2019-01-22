@@ -23,7 +23,6 @@ module.exports = withMDX(
       config.resolve.alias.examples = resolve(__dirname, 'static/examples');
       return config;
     },
-    assetPrefix: isProd ? '/beta' : '',
     pageExtensions: ['js', 'jsx', 'mdx'],
   }),
 );
