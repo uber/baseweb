@@ -25,7 +25,6 @@ One of the most common needs when building web apps is creating layout elements 
 
 For more traditional apps that use global stylesheets, many of the popular CSS frameworks have helper classes to quickly create
 styled elements (see [Bootstrap](https://getbootstrap.com/docs/4.1/utilities/sizing/), [Tachyons](http://tachyons.io/docs/layout/spacing/)).
-Uber's superfine css framework also had this and it was used very widely–just search something like `push-large` in sourcegraph.
 
 The move to CSS-in-JS sort of eliminates these classes in favor of encapsulating styles within components. This is a generally a good thing because it promotes reusability, however the reality is that there are dozens or hundreds of different layout/spacing/typography combinations in any app, and there's not always a clear semantic meaning or potential for reuse. In practice you end up just defining and naming a bunch of things at the top of the file:
 
