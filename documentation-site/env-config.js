@@ -15,5 +15,5 @@ if (prod) {
 }
 
 module.exports = {
-  'process.env.STATIC_ROOT': prod ? '/beta/static/' : '/static/',
+  'process.env.STATIC_ROOT': '/static/',
 };
