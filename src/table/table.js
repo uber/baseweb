@@ -15,7 +15,7 @@ import {
   Body as StyledBody,
   Row as StyledRow,
   Cell as StyledCell,
-  Loading as StyledLoading,
+  // Loading as StyledLoading,
 } from './styled-components.js';
 
 import type {TablePropsT} from './types.js';
@@ -31,16 +31,16 @@ export default class Table extends React.Component<TablePropsT> {
     return (
       <StyledRoot>
         <StyledHead>
-          {this.props.columns.map(column => (
-            <StyledHeadCell>{column}</StyledHeadCell>
+          {this.props.columns.map((column, index) => (
+            <StyledHeadCell key={index}>{column}</StyledHeadCell>
           ))}
         </StyledHead>
 
         <StyledBody>
-          {this.props.data.map(row => (
-            <StyledRow>
-              {row.map(cell => (
-                <StyledCell>{cell}</StyledCell>
+          {this.props.data.map((row, index) => (
+            <StyledRow key={index}>
+              {row.map((cell, cellIndex) => (
+                <StyledCell key={cellIndex}>{cell}</StyledCell>
               ))}
             </StyledRow>
           ))}

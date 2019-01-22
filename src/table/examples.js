@@ -14,8 +14,14 @@ import {
   CellMeasurerCache,
 } from 'react-virtualized/dist/commonjs/CellMeasurer'; // eslint-disable-line import/extensions
 
-import {Table} from './index.js';
-import {Root, Head, HeadCell, Body, Row, Cell} from './styled-components.js';
+import {
+  Table,
+  StyledRoot,
+  StyledHead,
+  StyledHeadCell,
+  StyledRow,
+  StyledCell,
+} from './index.js';
 import examples from './examples-list.js';
 
 let data = [
@@ -48,12 +54,12 @@ const cache = new CellMeasurerCache({
 
 function Virtual(props) {
   return (
-    <Root>
-      <Head>
-        {props.columns.map(column => (
-          <HeadCell>{column}</HeadCell>
+    <StyledRoot>
+      <StyledHead>
+        {props.columns.map((column, index) => (
+          <StyledHeadCell key={index}>{column}</StyledHeadCell>
         ))}
-      </Head>
+      </StyledHead>
       <AutoSizer>
         {({width, height}) => (
           <List
@@ -70,17 +76,17 @@ function Virtual(props) {
                 parent={parent}
                 rowIndex={index}
               >
-                <Row key={key} style={style}>
-                  {props.data[index].map(cell => (
-                    <Cell>{cell}</Cell>
+                <StyledRow key={key} style={style}>
+                  {props.data[index].map((cell, index) => (
+                    <StyledCell key={index}>{cell}</StyledCell>
                   ))}
-                </Row>
+                </StyledRow>
               </CellMeasurer>
             )}
           />
         )}
       </AutoSizer>
-    </Root>
+    </StyledRoot>
   );
 }
 
@@ -93,9 +99,11 @@ export default {
     );
   },
 
-  virtual: () => (
-    <div style={{height: '500px', width: '800px', marginTop: '48px'}}>
-      <Virtual columns={['Name', 'Age', 'Address']} data={DATA} />
-    </div>
-  ),
+  virtual: function VirtualStory() {
+    return (
+      <div style={{height: '500px', width: '800px', marginTop: '48px'}}>
+        <Virtual columns={['Name', 'Age', 'Address']} data={DATA} />
+      </div>
+    );
+  },
 };
