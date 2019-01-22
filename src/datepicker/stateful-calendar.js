@@ -23,6 +23,10 @@ function StatefulComponent(props: StatefulDatepickerPropsT) {
   );
 }
 
-StatefulComponent.defaultProps = StatefulContainer.defaultProps;
+StatefulComponent.defaultProps = {
+  initialState: {value: null},
+  stateReducer: (type, nextState) => nextState,
+  onSelect: () => {},
+};
 
 export default StatefulComponent;

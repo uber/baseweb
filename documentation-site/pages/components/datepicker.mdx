@@ -1,0 +1,38 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import DatepickerBasic from 'examples/datepicker/basic.js';
+import DatepickerInPopover from 'examples/datepicker/in-popover.js';
+import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
+
+export default Layout;
+
+# Datepicker
+
+A simple and reusable component to work with or select a date or a range of dates. Please note that component is currently under development and marked as Unstable that means it may change without a notice.
+
+## Examples
+
+<Example title="Datepicker" path="examples/datepicker/basic.js">
+  <DatepickerBasic />
+</Example>
+
+<Example title="Datepicker in a popover" path="examples/datepicker/in-popover.js">
+  <DatepickerInPopover />
+</Example>
+
+<Example title="Datepicker with overrides" path="examples/datepicker/with-overrides.js">
+  <DatepickerWithOverrides />
+</Example>
+
+<API heading="Datepicker API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/calendar.js')}/>
+
+<API heading="Stateful Datepicker API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/stateful-calendar.js')}/>
