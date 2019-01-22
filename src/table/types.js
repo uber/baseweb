@@ -14,6 +14,7 @@ export type TablePropsT = {|
   columns: Array<string>,
   // eslint-disable-next-line flowtype/no-weak-types
   data: Array<Array<React.Node>>,
+  horizontalScrollWidth?: string,
   isLoading?: boolean,
 |};
 

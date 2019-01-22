@@ -18,6 +18,17 @@ export const Root = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
+export const Content = styled(
+  'div',
+  ({
+    $horizontalScrollWidth,
+  }: SharedStylePropsT & {$horizontalScrollWidth: string}) => {
+    return {
+      width: $horizontalScrollWidth ? $horizontalScrollWidth : '100%',
+    };
+  },
+);
+
 export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     backgroundColor: $theme.colors.tableHeadBackgroundColor,

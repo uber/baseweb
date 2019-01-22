@@ -106,4 +106,18 @@ export default {
       </div>
     );
   },
+
+  horizontalScroll: function Horizontal() {
+    return (
+      <div style={{height: '500px', maxWidth: '1200px', marginTop: '48px'}}>
+        <Table
+          columns={[...new Array(10)].map(() => 'Column Name')}
+          data={[...new Array(20)].map(() =>
+            [...new Array(10)].map(() => 'Cell Data'),
+          )}
+          horizontalScrollWidth="2200px"
+        />
+      </div>
+    );
+  },
 };

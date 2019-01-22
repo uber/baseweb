@@ -10,6 +10,7 @@ import React from 'react';
 
 import {
   Root as StyledRoot,
+  Content as StyledContent,
   Head as StyledHead,
   HeadCell as StyledHeadCell,
   Body as StyledBody,
@@ -30,21 +31,25 @@ export default class Table extends React.Component<TablePropsT> {
   render() {
     return (
       <StyledRoot>
-        <StyledHead>
-          {this.props.columns.map((column, index) => (
-            <StyledHeadCell key={index}>{column}</StyledHeadCell>
-          ))}
-        </StyledHead>
+        <StyledContent
+          $horizontalScrollWidth={this.props.horizontalScrollWidth}
+        >
+          <StyledHead>
+            {this.props.columns.map((column, index) => (
+              <StyledHeadCell key={index}>{column}</StyledHeadCell>
+            ))}
+          </StyledHead>
 
-        <StyledBody>
-          {this.props.data.map((row, index) => (
-            <StyledRow key={index}>
-              {row.map((cell, cellIndex) => (
-                <StyledCell key={cellIndex}>{cell}</StyledCell>
-              ))}
-            </StyledRow>
-          ))}
-        </StyledBody>
+          <StyledBody>
+            {this.props.data.map((row, index) => (
+              <StyledRow key={index}>
+                {row.map((cell, cellIndex) => (
+                  <StyledCell key={cellIndex}>{cell}</StyledCell>
+                ))}
+              </StyledRow>
+            ))}
+          </StyledBody>
+        </StyledContent>
       </StyledRoot>
     );
   }
