@@ -31,9 +31,7 @@ export default class Table extends React.Component<TablePropsT> {
   render() {
     return (
       <StyledRoot>
-        <StyledContent
-          $horizontalScrollWidth={this.props.horizontalScrollWidth}
-        >
+        <StyledContent $width={this.props.horizontalScrollWidth}>
           <StyledHead>
             {this.props.columns.map((column, index) => (
               <StyledHeadCell key={index}>{column}</StyledHeadCell>

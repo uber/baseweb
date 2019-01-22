@@ -9,6 +9,7 @@ export {default as Table} from './table.js';
 // Styled elements
 export {
   Root as StyledRoot,
+  Content as StyledContent,
   Head as StyledHead,
   HeadCell as StyledHeadCell,
   Body as StyledBody,

@@ -17,6 +17,7 @@ import {
 import {
   Table,
   StyledRoot,
+  StyledContent,
   StyledHead,
   StyledHeadCell,
   StyledRow,
@@ -52,40 +53,43 @@ const cache = new CellMeasurerCache({
   defaultHeight: 36,
 });
 
-function Virtual(props) {
+// eslint-disable-next-line flowtype/no-weak-types
+function Virtual(props: any) {
   return (
     <StyledRoot>
-      <StyledHead>
-        {props.columns.map((column, index) => (
-          <StyledHeadCell key={index}>{column}</StyledHeadCell>
-        ))}
-      </StyledHead>
-      <AutoSizer>
-        {({width, height}) => (
-          <List
-            height={height - 60}
-            width={width}
-            rowCount={props.data.length}
-            rowHeight={cache.rowHeight}
-            deferredMeasurementCache={cache}
-            rowRenderer={({index, key, parent, style}) => (
-              <CellMeasurer
-                cache={cache}
-                columnIndex={0}
-                key={key}
-                parent={parent}
-                rowIndex={index}
-              >
-                <StyledRow key={key} style={style}>
-                  {props.data[index].map((cell, index) => (
-                    <StyledCell key={index}>{cell}</StyledCell>
-                  ))}
-                </StyledRow>
-              </CellMeasurer>
-            )}
-          />
-        )}
-      </AutoSizer>
+      <StyledContent $width={props.width + 'px'}>
+        <StyledHead>
+          {props.columns.map((column, index) => (
+            <StyledHeadCell key={index}>{column}</StyledHeadCell>
+          ))}
+        </StyledHead>
+        <AutoSizer>
+          {({width, height}) => (
+            <List
+              height={height - 60}
+              width={props.width || width}
+              rowCount={props.data.length}
+              rowHeight={cache.rowHeight}
+              deferredMeasurementCache={cache}
+              rowRenderer={({index, key, parent, style}) => (
+                <CellMeasurer
+                  cache={cache}
+                  columnIndex={0}
+                  key={key}
+                  parent={parent}
+                  rowIndex={index}
+                >
+                  <StyledRow key={key} style={style}>
+                    {props.data[index].map((cell, index) => (
+                      <StyledCell key={index}>{cell}</StyledCell>
+                    ))}
+                  </StyledRow>
+                </CellMeasurer>
+              )}
+            />
+          )}
+        </AutoSizer>
+      </StyledContent>
     </StyledRoot>
   );
 }
@@ -103,6 +107,18 @@ export default {
     return (
       <div style={{height: '500px', width: '800px', marginTop: '48px'}}>
         <Virtual columns={['Name', 'Age', 'Address']} data={DATA} />
+      </div>
+    );
+  },
+
+  virtualHorizontalScroll: function VirtualHorizontalStory() {
+    return (
+      <div style={{height: '500px', width: '800px', marginTop: '48px'}}>
+        <Virtual
+          columns={['Name', 'Age', 'Address']}
+          data={DATA}
+          width={2200}
+        />
       </div>
     );
   },

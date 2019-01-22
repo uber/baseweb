@@ -18,16 +18,17 @@ export const Root = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
-export const Content = styled(
-  'div',
-  ({
-    $horizontalScrollWidth,
-  }: SharedStylePropsT & {$horizontalScrollWidth: string}) => {
-    return {
-      width: $horizontalScrollWidth ? $horizontalScrollWidth : '100%',
-    };
-  },
-);
+type ContentProps = {
+  ...SharedStylePropsT,
+  $height: string,
+  $width: string,
+};
+export const Content = styled('div', ({$height, $width}: ContentProps) => {
+  return {
+    height: $height ? $height : '100%',
+    width: $width ? $width : '100%',
+  };
+});
 
 export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
