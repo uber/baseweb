@@ -9,6 +9,10 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import List from 'react-virtualized/dist/commonjs/List'; // eslint-disable-line import/extensions
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'; // eslint-disable-line import/extensions
+import {
+  CellMeasurer,
+  CellMeasurerCache,
+} from 'react-virtualized/dist/commonjs/CellMeasurer'; // eslint-disable-line import/extensions
 
 import {Table} from './index.js';
 import {Root, Head, HeadCell, Body, Row, Cell} from './styled-components.js';
@@ -38,36 +42,46 @@ const DATA = data
   .concat(data)
   .concat(data);
 
-class Virtual extends React.Component<any> {
-  render() {
-    return (
+const cache = new CellMeasurerCache({
+  defaultHeight: 36,
+});
+
+function Virtual(props) {
+  return (
+    <Root>
+      <Head>
+        {props.columns.map(column => (
+          <HeadCell>{column}</HeadCell>
+        ))}
+      </Head>
       <AutoSizer>
         {({width, height}) => (
-          <Root>
-            <Head>
-              {this.props.columns.map(column => (
-                <HeadCell>{column}</HeadCell>
-              ))}
-            </Head>
-
-            <List
-              height={height}
-              width={width}
-              rowCount={this.props.data.length}
-              rowHeight={40}
-              rowRenderer={({index, key, style}) => (
+          <List
+            height={height - 48}
+            width={width}
+            rowCount={props.data.length}
+            rowHeight={cache.rowHeight}
+            deferredMeasurementCache={cache}
+            rowRenderer={({index, key, parent, style}) => (
+              <CellMeasurer
+                cache={cache}
+                columnIndex={0}
+                key={key}
+                parent={parent}
+                rowIndex={index}
+              >
                 <Row key={key} style={style}>
-                  {this.props.data[index].map(cell => (
+                  {props.data[index].map(cell => (
                     <Cell>{cell}</Cell>
                   ))}
                 </Row>
-              )}
-            />
-          </Root>
+              </CellMeasurer>
+            )}
+          />
         )}
       </AutoSizer>
-    );
-  }
+    </Root>
+  );
 }
 
 export default {
