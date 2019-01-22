@@ -82,13 +82,82 @@ export const StyledWeek = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-function getBorderRadius(left, right) {
+type BorderRadiusT = {
+  borderTopLeftRadius: string | number,
+  borderBottomLeftRadius: string | number,
+  borderTopRightRadius: string | number,
+  borderBottomRightRadius: string | number,
+};
+
+function getBorderRadius(left, right): BorderRadiusT {
   return {
     borderTopLeftRadius: left,
     borderBottomLeftRadius: left,
     borderTopRightRadius: right,
     borderBottomRightRadius: right,
   };
+}
+
+export function calculateBorderRadius(
+  props: SharedStylePropsT,
+): ?BorderRadiusT {
+  const {
+    $isHighlighted,
+    $pseudoHighlighted,
+    $pseudoSelected,
+    $selected,
+    $startDate,
+    $isRange,
+    $hasRangeHighlighted,
+    $hasRangeOnRight,
+    $hasRangeSelected,
+    $theme: {borders},
+  } = props;
+  if (borders.useRoundedCorners) {
+    if ($selected) {
+      if (!$isRange) {
+        return getBorderRadius(borders.radius200, borders.radius200);
+      } else {
+        if ($hasRangeSelected) {
+          return $startDate
+            ? getBorderRadius(borders.radius200, 0)
+            : getBorderRadius(0, borders.radius200);
+        } else {
+          if ($hasRangeHighlighted) {
+            return $hasRangeOnRight
+              ? getBorderRadius(borders.radius200, 0)
+              : getBorderRadius(0, borders.radius200);
+          } else {
+            return getBorderRadius(borders.radius200, borders.radius200);
+          }
+        }
+      }
+    } else {
+      if (!$isHighlighted && ($pseudoHighlighted || $pseudoSelected)) {
+        return getBorderRadius(0, 0);
+      } else {
+        if ($isHighlighted) {
+          if (!$isRange) {
+            return getBorderRadius(borders.radius200, borders.radius200);
+          } else if ($hasRangeHighlighted) {
+            return $hasRangeOnRight
+              ? getBorderRadius(0, borders.radius200)
+              : getBorderRadius(borders.radius200, 0);
+          } else {
+            return $pseudoSelected
+              ? getBorderRadius(0, 0)
+              : getBorderRadius(borders.radius200, borders.radius200);
+          }
+        } else {
+          return !$pseudoSelected
+            ? getBorderRadius(borders.radius200, borders.radius200)
+            : null;
+        }
+      }
+    }
+  } else {
+    return getBorderRadius(0, 0);
+  }
 }
 
 export const StyledDay = styled('div', (props: SharedStylePropsT) => {
@@ -100,11 +169,6 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
     $pseudoHighlighted,
     $pseudoSelected,
     $selected,
-    $startDate,
-    $isRange,
-    $hasRangeHighlighted,
-    $hasRangeOnRight,
-    $hasRangeSelected,
     $theme: {colors, sizing, borders},
   } = props;
   return {
@@ -134,34 +198,7 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
       : $isHovered || $isHighlighted || $pseudoHighlighted || $pseudoSelected
         ? colors.primary100
         : 'transparent',
-    ...(borders.useRoundedCorners
-      ? $selected
-        ? !$isRange
-          ? getBorderRadius(borders.radius200, borders.radius200)
-          : $hasRangeSelected
-            ? $startDate
-              ? getBorderRadius(borders.radius200, 0)
-              : getBorderRadius(0, borders.radius200)
-            : $hasRangeHighlighted
-              ? $hasRangeOnRight
-                ? getBorderRadius(borders.radius200, 0)
-                : getBorderRadius(0, borders.radius200)
-              : getBorderRadius(borders.radius200, borders.radius200)
-        : !$isHighlighted && ($pseudoHighlighted || $pseudoSelected)
-          ? getBorderRadius(0, 0)
-          : $isHighlighted
-            ? !$isRange
-              ? getBorderRadius(borders.radius200, borders.radius200)
-              : $hasRangeHighlighted
-                ? $hasRangeOnRight
-                  ? getBorderRadius(0, borders.radius200)
-                  : getBorderRadius(borders.radius200, 0)
-                : $pseudoSelected
-                  ? getBorderRadius(0, 0)
-                  : getBorderRadius(borders.radius200, borders.radius200)
-            : !$pseudoSelected &&
-              getBorderRadius(borders.radius200, borders.radius200)
-      : getBorderRadius(0, 0)),
+    ...calculateBorderRadius(props),
     ':first-child': {
       ...(borders.useRoundedCorners
         ? {

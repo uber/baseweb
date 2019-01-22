@@ -75,14 +75,15 @@ class NavigationContainer extends React.Component<
     }
   };
 
-  getSingleDate(value) {
-    if (this.props.isRange) {
+  getSingleDate(value: ?Date | Array<Date>): ?Date {
+    if (Array.isArray(value)) {
       return value[0] || null;
+    } else {
+      return value;
     }
-    return value;
   }
 
-  onSelect = (data: {date: Date}) => {
+  onSelect = (data: {date: Date | Array<Date>}) => {
     if (this.state.isActive) {
       this.props.onSelect(data);
     }

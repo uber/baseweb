@@ -14,18 +14,28 @@ import {
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {Input} from '../input/index.js';
 import tests from './examples-list.js';
-import type {StatefulDatepickerPropsT, CalendarPropsT} from './types.js';
 
 export const suite = 'Component Test Suite';
 
+type ExamplePropsT = {
+  isRange: boolean,
+  value: ?Date | Array<Date>,
+};
+
+type ExampleStateT = {
+  isOpen: boolean,
+  value: ?Date | Array<Date>,
+  formattedValue: string,
+};
+
 class DatepickerWithInput extends React.Component<
-  StatefulDatepickerPropsT & CalendarPropsT & {value: ?Date | Array<Date>},
-  {
-    isOpen: boolean,
-    value: ?Date | Array<Date>,
-    formattedValue: string,
-  },
+  ExamplePropsT,
+  ExampleStateT,
 > {
+  static defaultProps = {
+    isRange: false,
+    value: null,
+  };
   state = {
     isOpen: false,
     value: this.props.value || null,

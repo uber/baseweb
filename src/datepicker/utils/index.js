@@ -111,11 +111,11 @@ export function isDayInRange(day: Date, startDate: Date, endDate: Date) {
   return isWithinInterval(day, {start: startDate, end: endDate});
 }
 
-export function isStartOfMonth(date: ?Date) {
+export function isStartOfMonth(date: Date) {
   return isSameDay(date, getStartOfMonth(date));
 }
 
-export function isEndOfMonth(date: ?Date) {
+export function isEndOfMonth(date: Date) {
   return isSameDay(date, getEndOfMonth(date));
 }
 

@@ -88,7 +88,6 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   onKeyDown = (event: KeyboardEvent) => {
-    console.log('keyDown');
     const {isHighlighted, date, disabled} = this.props;
     if (event.key === 'Enter' && isHighlighted && !disabled) {
       event.preventDefault();
@@ -183,7 +182,10 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       $isRange: this.props.isRange,
       $hasRangeHighlighted,
       $hasRangeOnRight:
-        $hasRangeHighlighted && isAfter(highlightedDate, value[0]),
+        Array.isArray(value) &&
+        $hasRangeHighlighted &&
+        (highlightedDate && value[0]) &&
+        isAfter(highlightedDate, value[0]),
       $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
       $highlightedDate: highlightedDate,
       $peekNextMonth: this.props.peekNextMonth,
