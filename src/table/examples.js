@@ -57,7 +57,7 @@ function Virtual(props) {
       <AutoSizer>
         {({width, height}) => (
           <List
-            height={height - 48}
+            height={height - 60}
             width={width}
             rowCount={props.data.length}
             rowHeight={cache.rowHeight}
