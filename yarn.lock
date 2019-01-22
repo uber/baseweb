@@ -2554,6 +2554,11 @@ acorn@^5.6.2:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.2.tgz#91fa871883485d06708800318404e72bfb26dcc5"
   integrity sha512-cJrKCNcr2kv8dlDnbw+JPUGjHZzo4myaxOLmpOX8a+rgX94YeTcTMv/LFJUSByRpc+i4GgVnnhLxvMu/2Y+rqw==
 
+add-px-to-style@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/add-px-to-style/-/add-px-to-style-1.0.0.tgz#d0c135441fa8014a8137904531096f67f28f263a"
+  integrity sha1-0ME1RB+oAUqBN5BFMQlvZ/KPJjo=
+
 address@1.0.3, address@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
@@ -4776,6 +4781,11 @@ chownr@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.0.1.tgz#e2a75042a9551908bebd25b8523d5f9769d79181"
   integrity sha1-4qdQQqlVGQi+vSW4Uj1fl2nXkYE=
+
+chroma-js@^1.3.4:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-1.4.1.tgz#eb2d9c4d1ff24616be84b35119f4d26f8205f134"
+  integrity sha512-jTwQiT859RTFN/vIf7s+Vl/Z2LcMrvMv3WUFmd/4u76AdlFC0NTNgqEEFPcRiHmAswPsMiQEDZLM8vX8qXpZNQ==
 
 chrome-trace-event@^1.0.0:
   version "1.0.0"
@@ -10382,6 +10392,15 @@ nan@^2.9.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
   integrity sha512-bAdJv7fBLhWC+/Bls0Oza+mvTaNQtP+1RyhhhvD95pgUJz6XM5IzgmxOkItJ9tkoCiplvAnXI1tNmmUD/eScyA==
 
+nano-style@^1.0.0-20:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/nano-style/-/nano-style-1.0.0.tgz#608bc0613bf0af5d966a59d5dbb8b55bf6bd62a9"
+  integrity sha512-3qp938DVT1XbpJ538GMTcBD56V8Dmp0H56pGtF9UYAmUkVIF+JJRSKmDrk30zVE/84ocLrwH7Q6nb1lQya7hag==
+  dependencies:
+    objss "^1.0.3"
+    prop-types "^15.6.0"
+    stylis "^3.3.2"
+
 nanoid@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-1.2.1.tgz#922bf6c10e35f7b208993768dad643577c907adf"
@@ -10872,6 +10891,13 @@ object.values@^1.0.4:
     es-abstract "^1.6.1"
     function-bind "^1.1.0"
     has "^1.0.1"
+
+objss@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/objss/-/objss-1.0.3.tgz#d8b7dc09c94942a15249cb6a090557363fe61bc3"
+  integrity sha1-2LfcCclJQqFSSctqCQVXNj/mG8M=
+  dependencies:
+    add-px-to-style "^1.0.0"
 
 on-finished@~2.3.0:
   version "2.3.0"
@@ -12117,6 +12143,16 @@ react-virtualized@^9.21.0:
     loose-envify "^1.3.0"
     prop-types "^15.6.0"
     react-lifecycles-compat "^3.0.4"
+
+react-x-ray@^1.0.0-4:
+  version "1.0.0-4"
+  resolved "https://registry.yarnpkg.com/react-x-ray/-/react-x-ray-1.0.0-4.tgz#2c98bb4e1d64cff5e5e5611de5aaf16392e091a4"
+  integrity sha512-tELK7YW/8q4QVu6PNglRBYNh56hmkDRt7BLf/shOQBklvrMcDFB1/f8mI6RT/HuPtYAPp6jrwZUfUHg0Jvccyg==
+  dependencies:
+    chroma-js "^1.3.4"
+    nano-style "^1.0.0-20"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 react@^16.0.0:
   version "16.6.1"
@@ -13747,7 +13783,7 @@ stylis@3.5.3:
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.3.tgz#99fdc46afba6af4deff570825994181a5e6ce546"
   integrity sha512-TxU0aAscJghF9I3V9q601xcK3Uw1JbXvpsBGj/HULqexKOKlOEzzlIpLFRbKkCK990ccuxfXUqmPbIIo7Fq/cQ==
 
-stylis@^3.5.0:
+stylis@^3.3.2, stylis@^3.5.0:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.4.tgz#f665f25f5e299cf3d64654ab949a57c768b73fbe"
   integrity sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q==
