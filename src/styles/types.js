@@ -180,6 +180,10 @@ export type ColorsT = {
   shadowFocus: string,
   shadowError: string,
 
+  // Table
+  tableHeadShadow: string,
+  tableHeadBackgroundColor: string,
+
   // Toast
   toastText: string,
   toastPrimaryBackground: string,

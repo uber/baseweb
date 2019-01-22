@@ -20,10 +20,8 @@ export const Root = styled('div', ({$theme}: SharedStylePropsT) => {
 
 export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
-    backgroundColor: $theme.colors.white,
-    // TODO: need to add a var in theme for this
-    // required so that the shadow does not extend to left/right
-    boxShadow: '0 1px 4px -1px hsla(0, 0%, 0%, 0.16)',
+    backgroundColor: $theme.colors.tableHeadBackgroundColor,
+    boxShadow: $theme.colors.tableHeadShadow,
     display: 'flex',
     flexGrow: 0,
     position: 'sticky',

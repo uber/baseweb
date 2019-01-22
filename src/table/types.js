@@ -9,26 +9,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {ThemeT} from '../styles/types.js';
-import type {OverrideT} from '../helpers/overrides.js';
 
-export type TablePropsT = {
+export type TablePropsT = {|
   columns: Array<string>,
   // eslint-disable-next-line flowtype/no-weak-types
   data: Array<Array<React.Node>>,
-  estimatedRowSize?: number,
   isLoading?: boolean,
-  // overrides?: OverridesT,
-  useDynamicRowHeight?: boolean,
-};
-
-// export type OverridesT = {
-//   Root?: OverrideT<*>,
-//   Head?: OverrideT<*>,
-//   HeadCell?: OverrideT<*>,
-//   Body?: OverrideT<*>,
-//   Row?: OverrideT<*>,
-//   Cell?: OverrideT<*>,
-// };
+|};
 
 export type SharedStylePropsT = {|
   $theme: ThemeT,

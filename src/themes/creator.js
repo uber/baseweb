@@ -193,6 +193,10 @@ export default function createTheme(
       notificationNegativeBackground: primitives.negative50,
       notificationNegativeText: primitives.negative500,
 
+      // Table
+      tableHeadBackgroundColor: primitives.mono100,
+      tableHeadShadow: '0 1px 4px -1px hsla(0, 0%, 0%, 0.16)',
+
       // Toast
       toastText: WHITE,
       toastPrimaryBackground: primitives.primary500,
