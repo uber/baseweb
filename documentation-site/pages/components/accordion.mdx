@@ -8,9 +8,13 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Overrides from '../../components/overrides';
 
 import BasicAccordion from 'examples/accordion/basic.js';
 import StatefulAccordion from 'examples/accordion/stateful.js';
+
+import * as AccordionExports from 'baseui/accordion';
+import {Accordion, Panel} from 'baseui/accordion';
 
 export default Layout;
 
@@ -27,6 +31,19 @@ A design structure to organize and hide content, so as not to overwhelm the user
 <Example title="Accordion as a Stateful Component" path="examples/accordion/stateful.js">
   <StatefulAccordion />
 </Example>
+
+## Overrides
+
+<Overrides component={AccordionExports} Example={(props) => {
+  const content = 'Some sample content';
+  return (
+    <Accordion overrides={props.overrides}>
+      <Panel overrides={props.overrides} title="Accordion panel 1">{content}</Panel>
+      <Panel overrides={props.overrides} title="Accordion panel 2">{content}</Panel>
+      <Panel overrides={props.overrides} title="Accordion panel 3">{content}</Panel>
+    </Accordion>
+  );
+}}/>
 
 <API heading="Accordion API" api={require('!!extract-react-types-loader!../../../src/accordion/accordion.js')}/>
 
