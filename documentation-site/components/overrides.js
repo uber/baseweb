@@ -13,8 +13,6 @@ import {Block} from 'baseui/block';
 import {Card, StyledBody} from 'baseui/card';
 import Link from 'next/link';
 
-import {getPath} from '../routes';
-
 function isStyledExport(exportName) {
   return exportName.startsWith('Styled');
 }
@@ -112,7 +110,7 @@ class Overrides extends React.Component {
           </XRay>
           <Block marginTop="scale300">
             To learn more about how overrides work, check out the{' '}
-            <Link passHref={true} href={getPath('/understanding-overrides')}>
+            <Link passHref={true} href={'/understanding-overrides'}>
               <Block $as="a" font="font350">
                 Understanding Overrides
               </Block>

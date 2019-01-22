@@ -14,8 +14,6 @@ const withMDX = require('@zeit/next-mdx')({
   extension: /\.mdx?$/,
 });
 
-const isProd = process.env.BUILD_ENV === 'production';
-
 module.exports = withMDX(
   withImages({
     webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
@@ -23,7 +21,6 @@ module.exports = withMDX(
       config.resolve.alias.examples = resolve(__dirname, 'static/examples');
       return config;
     },
-    assetPrefix: isProd ? '/beta' : '',
     pageExtensions: ['js', 'jsx', 'mdx'],
   }),
 );
