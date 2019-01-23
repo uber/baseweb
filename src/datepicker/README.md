@@ -73,7 +73,7 @@ export default () => {
   * `onYearChange?: ({date: Date}) => void`
     * Event handler that is called when the current rendered month's year is changed.
   * `onSelect?: ({date: Date}) => void`
-    * * Event handler that is called when a new date is selected.
+    * Event handler that is called when a new date is selected.
   * `peekNextMonth?: boolean = false`
     * Defines if dates outside of the range of the current month are displayed.
   * `selected?: ?Date = null`
@@ -89,7 +89,7 @@ export default () => {
   * `value: ?Date = null`
     * Selected `Date`. If `isRange` is set, `value` is an array of 2 values.
   * `highlightedDate: ?Date = initialState.value || new Date()`
-    * 
+    * indicates an initially highlighted date
 * `stateReducer: (type: text, nextState: {}, currentState: {}, e: any) => nextState`
   A state change handler.
   * `type` - state change type

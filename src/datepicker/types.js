@@ -74,24 +74,42 @@ export type WeekPropsT = {
 export type MonthPropsT = WeekPropsT;
 
 export type CalendarPropsT = {
+  /** A list of dates to disable. */
   excludeDates: ?Array<Date>,
+  /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate: ?(day: Date) => boolean,
+  /** A date to highlight on an initial render when the selected value is not set. */
   highlightDates: ?Array<Date>,
+  /** Indicates a highlighted date on hover and keyboard navigation */
   highlightedDate: ?Date,
+  /** A list of selectable dates. */
   includeDates: ?Array<Date>,
+  /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
   locale: ?LocaleT,
+  /** A max date that is selectable. */
   maxDate: ?Date,
+  /** A min date that is selectable. */
   minDate: ?Date,
+  /** A number of months rendered in the calendar. */
   monthsShown: number,
+  /** Day's `click` event handler. */
   onDayClick: ({date: Date, event: Event}) => void,
+  /** Day's `mouseover` event handler. */
   onDayMouseOver: ({date: Date, event: Event}) => void,
+  /** Day's `mouseleave` event handler. */
   onDayMouseLeave: ({date: Date, event: Event}) => void,
+  /** Event handler that is called when the current rendered month is changed. */
   onMonthChange: ({date: Date}) => void,
+  /** Event handler that is called when the current rendered month's year is changed. */
   onYearChange: ({date: Date}) => void,
+  /** Event handler that is called when a new date is selected. */
   onSelect: ({date: Date}) => void,
   overrides?: DatepickerOverridesT<{}>,
+  /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth: boolean,
+  /** Currently selected date. */
   selected: ?Date,
+  /** A helper handler for disabling a keyboard navigation and keyboard selection through the calendar dates while navigation through the month or year select controls. */
   setActiveState: boolean => void,
 };
 
@@ -111,6 +129,7 @@ export type SharedStylePropsT = {
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type CalendarStateT = {
+  /** Selected `Date`. If `isRange` is set, `value` is an array of 2 values. */
   value?: ?Date,
 };
 
@@ -140,17 +159,24 @@ export type NavigationContainerStateReducerT = (
 
 export type StatefulContainerPropsT = {
   children: CalendarPropsT => React.Node,
+  /** Initial state of an uncontrolled datepicker component. */
   initialState: CalendarStateT,
+  /** A state change handler. */
   stateReducer: StateReducerT,
+  /** Event handler that is called when a new date is selected. */
   onSelect: ({date: Date}) => void,
 };
 
 export type NavigationContainerPropsT = {
   children: CalendarPropsT => React.Node,
   highlightedDate?: ?Date,
+  /** Day's `mouseover` event handler. */
   onDayMouseOver: (params: {date: Date, event: Event}) => void,
+  /** Day's `mouseleave` event handler. */
   onDayMouseLeave: (params: {date: Date, event: Event}) => void,
+  /** Event handler that is called when a new date is selected. */
   onSelect: ({date: Date}) => void,
+  /** Selected `Date`. If `isRange` is set, `value` is an array of 2 values. */
   selected?: ?Date,
   stateReducer: NavigationContainerStateReducerT,
 };
