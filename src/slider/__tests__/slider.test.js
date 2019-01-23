@@ -17,13 +17,8 @@ const originalDocumentRemoveListener = document.removeEventListener;
 
 describe('Stateless slider', function() {
   let wrapper;
-  let allProps: {
-      range: Array<number>,
-      value: Array<number>,
-      step: ?number,
-      onChange: () => void,
-    },
-    mockFn;
+  let allProps;
+  let mockFn;
 
   beforeAll(function() {
     //$FlowFixMe
@@ -59,6 +54,20 @@ describe('Stateless slider', function() {
   it('should render slider component', function() {
     wrapper = mount(<Slider {...allProps} />);
     expect(wrapper).toMatchSnapshot('Component has correctly rendered');
+  });
+
+  it('renders correct labels when provided with object range items', () => {
+    const minLabel = 'Bad';
+    const maxLabel = 'Good';
+    wrapper = mount(
+      <Slider
+        {...allProps}
+        range={[{value: 0, label: minLabel}, {value: 100, label: maxLabel}]}
+      />,
+    );
+
+    expect(wrapper.find(`div[children="${minLabel}"]`)).toExist();
+    expect(wrapper.find(`div[children="${maxLabel}"]`)).toExist();
   });
 
   describe('events', function() {
