@@ -76,10 +76,6 @@ const routes = [
             text: 'FormControl',
             path: '/components/form-control',
           },
-          {
-            text: 'Unstable File Uploader',
-            path: '/components/file-uploader',
-          },
         ],
       },
       {
@@ -144,13 +140,12 @@ const routes = [
             path: '/components/select',
           },
           {
-<<<<<<< HEAD
             text: 'Unstable Datepicker',
             path: '/components/datepicker',
-=======
+          },
+          {
             text: 'Unstable File Uploader',
             path: '/components/file-uploader',
->>>>>>> feat(docs): move file uploader to pickers
           },
         ],
       },
