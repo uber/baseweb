@@ -7,7 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {StyledDay} from './styled-components.js';
-import {getDay, getMonth, getDate, isSameDay} from './utils/index.js';
+import {
+  getDay,
+  getMonth,
+  getDate,
+  isSameDay,
+  isDayInRange,
+  isAfter,
+} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {DayPropsT, DayStateT} from './types.js';
 
@@ -16,6 +23,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     disabled: false,
     date: new Date(),
     isHighlighted: false,
+    isRange: false,
     month: new Date().getMonth(),
     onClick: () => {},
     onSelect: () => {},
@@ -23,8 +31,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     onMouseLeave: () => {},
     overrides: {},
     peekNextMonth: true,
-    selected: false,
-    // pseudoSelected: false,
+    value: null,
   };
 
   state = {
@@ -63,11 +70,28 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     }
   }
 
+  onSelect(selectedDate: Date) {
+    const {isRange, value} = this.props;
+    let date;
+    if (Array.isArray(value) && isRange) {
+      if (!value.length || value.length > 1) {
+        date = [selectedDate];
+      } else if (isAfter(selectedDate, value[0])) {
+        date = [value[0], selectedDate];
+      } else {
+        date = [selectedDate, value[0]];
+      }
+    } else {
+      date = selectedDate;
+    }
+    this.props.onSelect({date});
+  }
+
   onKeyDown = (event: KeyboardEvent) => {
-    const {isHighlighted, date, disabled, onSelect} = this.props;
+    const {isHighlighted, date, disabled} = this.props;
     if (event.key === 'Enter' && isHighlighted && !disabled) {
       event.preventDefault();
-      onSelect({date});
+      this.onSelect(date);
     }
   };
 
@@ -75,7 +99,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     const {date, disabled} = this.props;
     if (!disabled) {
       this.props.onClick({event, date});
-      this.props.onSelect({date});
+      this.onSelect(date);
     }
   };
 
@@ -101,15 +125,81 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     );
   };
 
+  isSelected() {
+    const {value, date} = this.props;
+    if (Array.isArray(value)) {
+      return isSameDay(date, value[0]) || isSameDay(date, value[1]);
+    } else {
+      return isSameDay(date, value);
+    }
+  }
+
+  // calculated for range case only
+  isPseudoSelected() {
+    const {date, value} = this.props;
+    // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
+    if (Array.isArray(value) && value.length > 1) {
+      return isDayInRange(date, value[0], value[1]);
+    }
+  }
+
+  // calculated for range case only
+  isPseudoHighlighted() {
+    const {date, value, highlightedDate} = this.props;
+    // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
+    if (Array.isArray(value) && highlightedDate && value[0] && !value[1]) {
+      if (isAfter(highlightedDate, value[0])) {
+        return isDayInRange(date, value[0], highlightedDate);
+      } else {
+        return isDayInRange(date, highlightedDate, value[0]);
+      }
+    }
+  }
+
   getSharedProps() {
+    const {date, value, highlightedDate, isRange, isHighlighted} = this.props;
+    const $isHighlighted = isHighlighted;
+    const $selected = this.isSelected();
+    const $hasRangeHighlighted =
+      Array.isArray(value) &&
+      isRange &&
+      value.length === 1 &&
+      highlightedDate &&
+      !isSameDay(value[0], highlightedDate)
+        ? true
+        : false;
     return {
+      $date: date,
       $disabled: this.props.disabled,
+      $endDate:
+        (Array.isArray(value) &&
+          this.props.isRange &&
+          $selected &&
+          isSameDay(date, value[1])) ||
+        false,
       $isHovered: this.state.isHovered,
-      $isHighlighted: this.props.isHighlighted,
-      // $pseudoSelected: this.props.pseudoSelected,
-      $selected: this.props.selected,
-      $today: isSameDay(this.props.date, new Date()),
-      $weekend: this.isWeekend(),
+      $isHighlighted,
+      $isRange: this.props.isRange,
+      $hasRangeHighlighted,
+      $hasRangeOnRight:
+        Array.isArray(value) &&
+        $hasRangeHighlighted &&
+        (highlightedDate && value[0]) &&
+        isAfter(highlightedDate, value[0]),
+      $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
+      $highlightedDate: highlightedDate,
+      $peekNextMonth: this.props.peekNextMonth,
+      $pseudoHighlighted:
+        this.props.isRange && !$isHighlighted && !$selected
+          ? this.isPseudoHighlighted()
+          : false,
+      $pseudoSelected:
+        this.props.isRange && !$selected ? this.isPseudoSelected() : false,
+      $selected,
+      $startDate:
+        Array.isArray(this.props.value) && this.props.isRange && $selected
+          ? isSameDay(date, this.props.value[0])
+          : false,
       $outsideMonth: this.isOutsideMonth(),
     };
   }
@@ -125,7 +215,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       <Day
         aria-label={`day-${getDate(date)}`}
         role="option"
-        tabIndex={this.props.selected ? '0' : '-1'}
+        tabIndex={sharedProps.$selected ? '0' : '-1'}
         {...sharedProps}
         {...dayProps}
         // Adding event handlers after customers overrides in order to

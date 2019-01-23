@@ -32,18 +32,21 @@ export type DatepickerOverridesT<T> = {
 export type DayPropsT = {
   disabled: boolean,
   date: Date,
-  // highlightDates: Array<Date>,
+  filterDate: ?(day: Date) => boolean,
+  highlightedDate: ?Date,
+  includeDates: ?Array<Date>,
   isHighlighted: boolean,
+  isRange: boolean,
   maxDate: ?Date,
   minDate: ?Date,
   month: ?number,
-  onSelect: ({date: Date}) => void,
-  onClick: ({event: Event, date: Date}) => void,
-  onMouseOver: ({event: Event, date: Date}) => void,
-  onMouseLeave: ({event: Event, date: Date}) => void,
+  onSelect: ({date: Date | Array<Date>}) => mixed,
+  onClick: ({event: Event, date: Date}) => mixed,
+  onMouseOver: ({event: Event, date: Date}) => mixed,
+  onMouseLeave: ({event: Event, date: Date}) => mixed,
   overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
-  selected: boolean,
+  value: ?Date | Array<Date>,
 };
 
 export type DayStateT = {
@@ -54,21 +57,21 @@ export type WeekPropsT = {
   date: Date,
   excludeDates: ?Array<Date>,
   filterDate: ?(day: Date) => boolean,
-  highlightDates: ?Array<Date>,
   // highlighted while keyboard navigating or hovered
   highlightedDate: ?Date,
   includeDates: ?Array<Date>,
+  isRange: boolean,
   locale: ?LocaleT,
   maxDate: ?Date,
   minDate: ?Date,
   month: ?number,
-  onDayClick: ({date: Date, event: Event}) => void,
-  onDayMouseOver: ({date: Date, event: Event}) => void,
-  onDayMouseLeave: ({date: Date, event: Event}) => void,
-  onSelect: ({date: Date}) => void,
+  onDayClick: ({date: Date, event: Event}) => mixed,
+  onDayMouseOver: ({date: Date, event: Event}) => mixed,
+  onDayMouseLeave: ({date: Date, event: Event}) => mixed,
+  onSelect: ({date: Date | Array<Date>}) => mixed,
   overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
-  selected: ?Date,
+  selected: ?Date | Array<Date>,
 };
 
 export type MonthPropsT = WeekPropsT;
@@ -78,12 +81,12 @@ export type CalendarPropsT = {
   excludeDates: ?Array<Date>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate: ?(day: Date) => boolean,
-  /** A date to highlight on an initial render when the selected value is not set. */
-  highlightDates: ?Array<Date>,
   /** Indicates a highlighted date on hover and keyboard navigation */
   highlightedDate: ?Date,
   /** A list of selectable dates. */
   includeDates: ?Array<Date>,
+  /** Defines if a range of dates can be selected. */
+  isRange: boolean,
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
   locale: ?LocaleT,
   /** A max date that is selectable. */
@@ -93,24 +96,24 @@ export type CalendarPropsT = {
   /** A number of months rendered in the calendar. */
   monthsShown: number,
   /** Day's `click` event handler. */
-  onDayClick: ({date: Date, event: Event}) => void,
+  onDayClick: ({date: Date, event: Event}) => mixed,
   /** Day's `mouseover` event handler. */
-  onDayMouseOver: ({date: Date, event: Event}) => void,
+  onDayMouseOver: ({date: Date, event: Event}) => mixed,
   /** Day's `mouseleave` event handler. */
-  onDayMouseLeave: ({date: Date, event: Event}) => void,
+  onDayMouseLeave: ({date: Date, event: Event}) => mixed,
   /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange: ({date: Date}) => void,
+  onMonthChange: ({date: Date}) => mixed,
   /** Event handler that is called when the current rendered month's year is changed. */
-  onYearChange: ({date: Date}) => void,
+  onYearChange: ({date: Date}) => mixed,
   /** Event handler that is called when a new date is selected. */
-  onSelect: ({date: Date}) => void,
+  onSelect: ({date: Date | Array<Date>}) => mixed,
   overrides?: DatepickerOverridesT<{}>,
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth: boolean,
   /** Currently selected date. */
-  selected: ?Date,
+  selected: ?Date | Array<Date>,
   /** A helper handler for disabling a keyboard navigation and keyboard selection through the calendar dates while navigation through the month or year select controls. */
-  setActiveState: boolean => void,
+  setActiveState: boolean => mixed,
 };
 
 export type HeaderPropsT = CalendarPropsT & {
@@ -118,11 +121,19 @@ export type HeaderPropsT = CalendarPropsT & {
 };
 
 export type SharedStylePropsT = {
+  $date: Date,
   $disabled: boolean,
   $isHighlighted: boolean,
   $isHovered: boolean,
   $outsideMonth: boolean,
+  $pseudoHighlighted: boolean,
+  $pseudoSelected: boolean,
   $selected: boolean,
+  $startDate: boolean,
+  $isRange: boolean,
+  $hasRangeHighlighted: boolean,
+  $hasRangeOnRight: boolean,
+  $hasRangeSelected: boolean,
   $theme: ThemeT,
 };
 
@@ -130,7 +141,7 @@ export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type CalendarStateT = {
   /** Selected `Date`. If `isRange` is set, `value` is an array of 2 values. */
-  value?: ?Date,
+  value?: ?Date | Array<Date>,
 };
 
 export type NavigationContainerStateT = {
@@ -164,20 +175,23 @@ export type StatefulContainerPropsT = {
   /** A state change handler. */
   stateReducer: StateReducerT,
   /** Event handler that is called when a new date is selected. */
-  onSelect: ({date: Date}) => void,
+  onSelect: ({date: Date}) => mixed,
 };
 
 export type NavigationContainerPropsT = {
   children: CalendarPropsT => React.Node,
+  isRange?: boolean,
   highlightedDate?: ?Date,
   /** Day's `mouseover` event handler. */
-  onDayMouseOver: (params: {date: Date, event: Event}) => void,
+  onDayMouseOver: (params: {date: Date, event: Event}) => mixed,
   /** Day's `mouseleave` event handler. */
-  onDayMouseLeave: (params: {date: Date, event: Event}) => void,
-  /** Event handler that is called when a new date is selected. */
-  onSelect: ({date: Date}) => void,
-  /** Selected `Date`. If `isRange` is set, `value` is an array of 2 values. */
+  onDayMouseLeave: (params: {date: Date, event: Event}) => mixed,
+  onSelect: ({date: Date}) => mixed,
   selected?: ?Date,
+  /** Event handler that is called when a new date is selected. */
+  onSelect: ({date: Date | Array<Date>}) => mixed,
+  /** Selected `Date`. If `isRange` is set, `value` is an array of 2 values. */
+  selected?: ?Date | Array<Date>,
   stateReducer: NavigationContainerStateReducerT,
 };
 
