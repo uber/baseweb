@@ -11,8 +11,19 @@ Object {
 
 exports[`Component styled components Basic render: StyledDay has correct styles 1`] = `
 Object {
+  ":first-child": Object {
+    "borderBottomLeftRadius": "$theme.borders.radius200",
+    "borderTopLeftRadius": "$theme.borders.radius200",
+  },
+  ":last-child": Object {
+    "borderBottomRightRadius": "$theme.borders.radius200",
+    "borderTopRightRadius": "$theme.borders.radius200",
+  },
   "backgroundColor": "transparent",
-  "borderRadius": "$theme.borders.radius200",
+  "borderBottomLeftRadius": "$theme.borders.radius200",
+  "borderBottomRightRadius": "$theme.borders.radius200",
+  "borderTopLeftRadius": "$theme.borders.radius200",
+  "borderTopRightRadius": "$theme.borders.radius200",
   "boxSizing": "border-box",
   "color": "inherit",
   "cursor": "pointer",
@@ -27,6 +38,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale200",
   "paddingRight": "$theme.sizing.scale200",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textAlign": "center",
   "width": "$theme.sizing.scale1000",
 }
@@ -76,14 +88,26 @@ Object {
 exports[`Component styled components Basic render: StyledWeek has correct styles 1`] = `
 Object {
   "display": "flex",
+  "marginBottom": "$theme.sizing.scale100",
   "whiteSpace": "no-wrap",
 }
 `;
 
 exports[`Component styled components Prop based styles: StyledDay has correct styles when $disabled is set to true 1`] = `
 Object {
+  ":first-child": Object {
+    "borderBottomLeftRadius": "$theme.borders.radius200",
+    "borderTopLeftRadius": "$theme.borders.radius200",
+  },
+  ":last-child": Object {
+    "borderBottomRightRadius": "$theme.borders.radius200",
+    "borderTopRightRadius": "$theme.borders.radius200",
+  },
   "backgroundColor": "transparent",
-  "borderRadius": "$theme.borders.radius200",
+  "borderBottomLeftRadius": "$theme.borders.radius200",
+  "borderBottomRightRadius": "$theme.borders.radius200",
+  "borderTopLeftRadius": "$theme.borders.radius200",
+  "borderTopRightRadius": "$theme.borders.radius200",
   "boxSizing": "border-box",
   "color": "$theme.colors.mono600",
   "cursor": "default",
@@ -98,6 +122,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale200",
   "paddingRight": "$theme.sizing.scale200",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textAlign": "center",
   "width": "$theme.sizing.scale1000",
 }
@@ -105,8 +130,19 @@ Object {
 
 exports[`Component styled components Prop based styles: StyledDay has correct styles when $isHighlighted is set to true 1`] = `
 Object {
+  ":first-child": Object {
+    "borderBottomLeftRadius": "$theme.borders.radius200",
+    "borderTopLeftRadius": "$theme.borders.radius200",
+  },
+  ":last-child": Object {
+    "borderBottomRightRadius": "$theme.borders.radius200",
+    "borderTopRightRadius": "$theme.borders.radius200",
+  },
   "backgroundColor": "$theme.colors.primary100",
-  "borderRadius": "$theme.borders.radius200",
+  "borderBottomLeftRadius": "$theme.borders.radius200",
+  "borderBottomRightRadius": "$theme.borders.radius200",
+  "borderTopLeftRadius": "$theme.borders.radius200",
+  "borderTopRightRadius": "$theme.borders.radius200",
   "boxSizing": "border-box",
   "color": "inherit",
   "cursor": "pointer",
@@ -121,6 +157,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale200",
   "paddingRight": "$theme.sizing.scale200",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textAlign": "center",
   "width": "$theme.sizing.scale1000",
 }
@@ -128,8 +165,19 @@ Object {
 
 exports[`Component styled components Prop based styles: StyledDay has correct styles when $isHovered is set to true 1`] = `
 Object {
+  ":first-child": Object {
+    "borderBottomLeftRadius": "$theme.borders.radius200",
+    "borderTopLeftRadius": "$theme.borders.radius200",
+  },
+  ":last-child": Object {
+    "borderBottomRightRadius": "$theme.borders.radius200",
+    "borderTopRightRadius": "$theme.borders.radius200",
+  },
   "backgroundColor": "$theme.colors.primary100",
-  "borderRadius": "$theme.borders.radius200",
+  "borderBottomLeftRadius": "$theme.borders.radius200",
+  "borderBottomRightRadius": "$theme.borders.radius200",
+  "borderTopLeftRadius": "$theme.borders.radius200",
+  "borderTopRightRadius": "$theme.borders.radius200",
   "boxSizing": "border-box",
   "color": "inherit",
   "cursor": "pointer",
@@ -144,6 +192,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale200",
   "paddingRight": "$theme.sizing.scale200",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textAlign": "center",
   "width": "$theme.sizing.scale1000",
 }
@@ -151,8 +200,19 @@ Object {
 
 exports[`Component styled components Prop based styles: StyledDay has correct styles when $outsideMonth is set to true 1`] = `
 Object {
+  ":first-child": Object {
+    "borderBottomLeftRadius": "$theme.borders.radius200",
+    "borderTopLeftRadius": "$theme.borders.radius200",
+  },
+  ":last-child": Object {
+    "borderBottomRightRadius": "$theme.borders.radius200",
+    "borderTopRightRadius": "$theme.borders.radius200",
+  },
   "backgroundColor": "transparent",
-  "borderRadius": "$theme.borders.radius200",
+  "borderBottomLeftRadius": "$theme.borders.radius200",
+  "borderBottomRightRadius": "$theme.borders.radius200",
+  "borderTopLeftRadius": "$theme.borders.radius200",
+  "borderTopRightRadius": "$theme.borders.radius200",
   "boxSizing": "border-box",
   "color": "$theme.colors.mono600",
   "cursor": "pointer",
@@ -167,6 +227,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale200",
   "paddingRight": "$theme.sizing.scale200",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textAlign": "center",
   "width": "$theme.sizing.scale1000",
 }
@@ -174,8 +235,19 @@ Object {
 
 exports[`Component styled components Prop based styles: StyledDay has correct styles when $selected is set to true 1`] = `
 Object {
+  ":first-child": Object {
+    "borderBottomLeftRadius": "$theme.borders.radius200",
+    "borderTopLeftRadius": "$theme.borders.radius200",
+  },
+  ":last-child": Object {
+    "borderBottomRightRadius": "$theme.borders.radius200",
+    "borderTopRightRadius": "$theme.borders.radius200",
+  },
   "backgroundColor": "$theme.colors.primary",
-  "borderRadius": "$theme.borders.radius200",
+  "borderBottomLeftRadius": "$theme.borders.radius200",
+  "borderBottomRightRadius": "$theme.borders.radius200",
+  "borderTopLeftRadius": "$theme.borders.radius200",
+  "borderTopRightRadius": "$theme.borders.radius200",
   "boxSizing": "border-box",
   "color": "$theme.colors.white",
   "cursor": "pointer",
@@ -190,6 +262,7 @@ Object {
   "paddingLeft": "$theme.sizing.scale200",
   "paddingRight": "$theme.sizing.scale200",
   "paddingTop": "$theme.sizing.scale300",
+  "position": "relative",
   "textAlign": "center",
   "width": "$theme.sizing.scale1000",
 }

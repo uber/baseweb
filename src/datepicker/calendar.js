@@ -37,9 +37,9 @@ export default class Calendar extends React.Component<
   static defaultProps = {
     excludeDates: null,
     filterDate: null,
-    highlightDates: null,
     highlightedDate: null,
     includeDates: null,
+    isRange: false,
     locale: null,
     maxDate: null,
     minDate: null,
@@ -74,12 +74,21 @@ export default class Calendar extends React.Component<
     }
   }
 
+  getSingleDate(value: ?Date | Array<Date>): ?Date {
+    // need to check this.props.isRange but flow would complain
+    // at the return value in the else clause
+    if (Array.isArray(value)) {
+      return value[0] || null;
+    }
+    return value;
+  }
+
   getDateInView = (): Date => {
     const {highlightedDate, selected} = this.props;
     const minDate = getEffectiveMinDate(this.props);
     const maxDate = getEffectiveMaxDate(this.props);
     const current = new Date();
-    const initialDate = selected || highlightedDate;
+    const initialDate = this.getSingleDate(selected) || highlightedDate;
     if (initialDate) {
       return initialDate;
     } else {
@@ -90,10 +99,6 @@ export default class Calendar extends React.Component<
       }
     }
     return current;
-  };
-
-  handleDayClick = ({date, event}: {date: Date, event: Event}) => {
-    this.props.onSelect({date});
   };
 
   handleMonthChange = (date: Date) => {
@@ -172,9 +177,9 @@ export default class Calendar extends React.Component<
             date={monthDate}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
-            highlightDates={this.props.highlightDates}
             highlightedDate={this.props.highlightedDate}
             includeDates={this.props.includeDates}
+            isRange={this.props.isRange}
             locale={this.props.locale}
             maxDate={this.props.maxDate}
             minDate={this.props.minDate}

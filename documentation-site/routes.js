@@ -72,6 +72,10 @@ const routes = [
             text: 'Textarea',
             path: '/components/textarea',
           },
+          {
+            text: 'Unstable Datepicker',
+            path: '/components/datepicker',
+          },
         ],
       },
       {

@@ -44,9 +44,10 @@ export default class Week extends React.Component<WeekPropsT> {
             disabled={isDayDisabled(day, this.props)}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
-            highlightDates={this.props.highlightDates}
-            includeDates={this.props.includeDates}
+            highlightedDate={this.props.highlightedDate}
             isHighlighted={isSameDay(day, this.props.highlightedDate)}
+            includeDates={this.props.includeDates}
+            isRange={this.props.isRange}
             key={offset}
             locale={this.props.locale}
             minDate={this.props.minDate}
@@ -58,7 +59,7 @@ export default class Week extends React.Component<WeekPropsT> {
             onMouseLeave={this.props.onDayMouseLeave}
             overrides={this.props.overrides}
             peekNextMonth={this.props.peekNextMonth}
-            selected={isSameDay(day, this.props.selected)}
+            value={this.props.selected}
           />
         );
       }),
