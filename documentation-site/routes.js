@@ -143,6 +143,10 @@ const routes = [
             text: 'Unstable Datepicker',
             path: '/components/datepicker',
           },
+          {
+            text: 'Unstable File Uploader',
+            path: '/components/file-uploader',
+          },
         ],
       },
       {

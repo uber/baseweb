@@ -24,6 +24,7 @@ Object {
   "position": "absolute",
   "right": 0,
   "top": "auto",
+  "zIndex": 1,
 }
 `;
 
