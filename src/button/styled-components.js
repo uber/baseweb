@@ -19,9 +19,7 @@ function getBorderRadii({$shape, $theme}: StylePropsT) {
 
   if ($shape === SHAPE.round) {
     value = '50%';
-  }
-
-  if ($theme.borders.useRoundedCorners) {
+  } else if ($theme.borders.useRoundedCorners) {
     value = $theme.borders.radius200;
   }
 
