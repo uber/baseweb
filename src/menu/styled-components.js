@@ -32,7 +32,6 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   boxShadow: $theme.lighting.shadow600,
   overflow: 'auto',
 }));
-List.displayName = 'StyledList';
 
 export const ListItem = styled(
   'li',
@@ -78,7 +77,6 @@ export const ListItem = styled(
     },
   }),
 );
-ListItem.displayName = 'StyledListItem';
 
 export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   position: 'relative',
@@ -96,7 +94,6 @@ export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
     backgroundColor: $theme.colors.menuFillHover,
   },
 }));
-ListItemProfile.displayName = 'StyledListItemProfile';
 
 export const ProfileImgContainer = styled('div', {
   width: '60px',
@@ -105,14 +102,12 @@ export const ProfileImgContainer = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
 });
-ProfileImgContainer.displayName = 'StyledProfileImgContainer';
 
 export const ProfileImg = styled('img', {
   width: '100%',
   height: '100%',
   borderRadius: '50%',
 });
-ProfileImg.displayName = 'StyledProfileImg';
 
 export const ProfileLabelsContainer = styled('div', ({$theme}) => ({
   marginLeft: $theme.sizing.scale600,
@@ -120,7 +115,6 @@ export const ProfileLabelsContainer = styled('div', ({$theme}) => ({
   display: 'flex',
   flexDirection: 'column',
 }));
-ProfileLabelsContainer.displayName = 'StyledProfileLabelsContainer';
 
 export const ProfileTitle = styled('h6', ({$theme}) => ({
   ...$theme.typography.font450,
@@ -130,7 +124,6 @@ export const ProfileTitle = styled('h6', ({$theme}) => ({
   marginLeft: '0',
   marginRight: '0',
 }));
-ProfileTitle.displayName = 'StyledProfileTitle';
 
 export const ProfileSubtitle = styled('p', ({$theme}) => ({
   ...$theme.typography.font300,
@@ -140,7 +133,6 @@ export const ProfileSubtitle = styled('p', ({$theme}) => ({
   marginLeft: '0',
   marginRight: '0',
 }));
-ProfileSubtitle.displayName = 'StyledProfileSubtitle';
 
 export const ProfileBody = styled('p', ({$theme}) => ({
   ...$theme.typography.font200,
@@ -150,4 +142,3 @@ export const ProfileBody = styled('p', ({$theme}) => ({
   marginLeft: '0',
   marginRight: '0',
 }));
-ProfileBody.displayName = 'StyledProfileBody';

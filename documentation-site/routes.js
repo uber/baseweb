@@ -73,8 +73,8 @@ const routes = [
             path: '/components/textarea',
           },
           {
-            text: 'Unstable Datepicker',
-            path: '/components/datepicker',
+            text: 'FormControl',
+            path: '/components/form-control',
           },
         ],
       },
@@ -138,6 +138,10 @@ const routes = [
           {
             text: 'Select',
             path: '/components/select',
+          },
+          {
+            text: 'Unstable Datepicker',
+            path: '/components/datepicker',
           },
         ],
       },

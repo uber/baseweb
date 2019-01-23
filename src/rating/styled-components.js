@@ -34,7 +34,6 @@ export const StyledRoot = styled('ul', ({$theme}: StyledRootPropsT) => {
     },
   };
 });
-StyledRoot.displayName = 'StyledRoot';
 
 export const StyledStar = styled(
   'li',
@@ -76,7 +75,6 @@ export const StyledStar = styled(
     return styles;
   },
 );
-StyledStar.displayName = 'StyledStar';
 
 export const StyledEmoticon = styled(
   'li',
@@ -123,4 +121,3 @@ export const StyledEmoticon = styled(
     return styles;
   },
 );
-StyledEmoticon.displayName = 'StyledEmoticon';

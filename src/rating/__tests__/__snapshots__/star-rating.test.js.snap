@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StarRating RatingItem applies correct props if item is active 1`] = `
-<StyledStar
+<MockStyledComponent
   $index={1}
   $isActive={true}
   $isSelected={false}
@@ -20,7 +20,7 @@ exports[`StarRating RatingItem applies correct props if item is active 1`] = `
 `;
 
 exports[`StarRating RatingItem applies correct props if item is selected 1`] = `
-<StyledStar
+<MockStyledComponent
   $index={2}
   $isActive={true}
   $isSelected={true}
