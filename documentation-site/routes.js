@@ -74,7 +74,7 @@ const routes = [
           },
           {
             text: 'Unstable Datepicker',
-            path: getPath('/components/datepicker'),
+            path: '/components/datepicker',
           },
         ],
       },

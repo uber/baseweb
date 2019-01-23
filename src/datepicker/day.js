@@ -157,8 +157,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   getSharedProps() {
-    const {date, value, highlightedDate, isRange} = this.props;
-    const $isHighlighted = isSameDay(date, highlightedDate);
+    const {date, value, highlightedDate, isRange, isHighlighted} = this.props;
+    const $isHighlighted = isHighlighted;
     const $selected = this.isSelected();
     const $hasRangeHighlighted =
       Array.isArray(value) &&

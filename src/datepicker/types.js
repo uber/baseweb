@@ -175,7 +175,7 @@ export type StatefulContainerPropsT = {
   /** A state change handler. */
   stateReducer: StateReducerT,
   /** Event handler that is called when a new date is selected. */
-  onSelect: ({date: Date}) => void,
+  onSelect: ({date: Date}) => mixed,
 };
 
 export type NavigationContainerPropsT = {
@@ -183,10 +183,10 @@ export type NavigationContainerPropsT = {
   isRange?: boolean,
   highlightedDate?: ?Date,
   /** Day's `mouseover` event handler. */
-  onDayMouseOver: (params: {date: Date, event: Event}) => void,
+  onDayMouseOver: (params: {date: Date, event: Event}) => mixed,
   /** Day's `mouseleave` event handler. */
-  onDayMouseLeave: (params: {date: Date, event: Event}) => void,
-  onSelect: ({date: Date}) => void,
+  onDayMouseLeave: (params: {date: Date, event: Event}) => mixed,
+  onSelect: ({date: Date}) => mixed,
   selected?: ?Date,
   /** Event handler that is called when a new date is selected. */
   onSelect: ({date: Date | Array<Date>}) => mixed,

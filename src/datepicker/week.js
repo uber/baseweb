@@ -8,7 +8,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Day from './day.js';
 import {StyledWeek} from './styled-components.js';
-import {getStartOfWeek, addDays, isDayDisabled} from './utils/index.js';
+import {
+  getStartOfWeek,
+  addDays,
+  isDayDisabled,
+  isSameDay,
+} from './utils/index.js';
 import {WEEKDAYS} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {WeekPropsT} from './types.js';
@@ -40,6 +45,7 @@ export default class Week extends React.Component<WeekPropsT> {
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.props.highlightedDate}
+            isHighlighted={isSameDay(day, this.props.highlightedDate)}
             includeDates={this.props.includeDates}
             isRange={this.props.isRange}
             key={offset}
