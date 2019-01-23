@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "storybook:move": "start-storybook -c .storybook-move -p 6006",
     "storybook:dark": "start-storybook -c .storybook-dark -p 6006",
-    "build-storybook": "build-storybook -o public && build-storybook -c .storybook-move -o public/move && build-storybook -c .storybook-dark -o public/dark",
+    "build-storybook": "build-storybook -o public/legacy && build-storybook -c .storybook-move -o public/legacy-move && build-storybook -c .storybook-dark -o public/legacy-dark",
     "storybook:screener": "screener-storybook --conf screener.config.js",
     "storybook:screener:ngrok": "node ./node_modules/screener-ngrok/postinstall.js",
     "storybook:screener:ci": "yarn storybook:screener:ngrok && yarn storybook:screener",
@@ -39,7 +39,7 @@
     "prepublish": "npm run build",
     "icon:generate": "./src/icon/build-icons.js",
     "documentation:dev": "yarn build:es2015 && next documentation-site",
-    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public/beta"
+    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -77,6 +77,7 @@
     "@storybook/addon-viewport": "^4.0.0",
     "@storybook/addons": "^4.0.0",
     "@storybook/react": "^4.0.0",
+    "@uber-web-ui/extract-react-types-loader": "^1.0.0",
     "@zeit/next-mdx": "^1.2.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.0",
@@ -99,8 +100,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.10.0",
-    "extract-react-types-loader": "^0.3.0",
-    "flow-bin": "^0.90.0",
+    "flow-bin": "^0.91.0",
     "flow-copy-source": "^2.0.2",
     "front-matter": "^3.0.1",
     "geckodriver": "^1.11.0",
@@ -123,6 +123,7 @@
     "react-markdown": "^4.0.3",
     "react-syntax-highlighter": "^10.0.1",
     "react-virtualized": "^9.21.0",
+    "react-x-ray": "^1.0.0-4",
     "rimraf": "^2.6.2",
     "saucelabs": "^1.5.0",
     "screener-storybook": "^0.16.2",
@@ -142,6 +143,7 @@
     "popper.js": "^1.14.3",
     "react-dropzone": "^8.0.0",
     "react-input-mask": "^2.0.4",
+    "react-movable": "^0.3.0",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "peerDependencies": {

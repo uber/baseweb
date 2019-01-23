@@ -8,38 +8,32 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-const {join} = require('path');
-const isProd = process.env.BUILD_ENV === 'production';
-const prefix = isProd ? '/beta' : '';
-
-const getPath = path => join(prefix, path);
-
 const routes = [
   {
     text: 'Getting started',
-    path: getPath('/getting-started'),
+    path: '/getting-started',
     children: [
       {
         text: 'Playground',
-        path: getPath('/playground'),
+        path: '/playground',
       },
       {
         text: 'Versioning policy',
-        path: getPath('/versioning-policy'),
+        path: '/versioning-policy',
       },
     ],
   },
   {
     text: 'Theming',
-    path: getPath('/custom-themes'),
+    path: '/custom-themes',
     children: [
       {
         text: 'Theming values',
-        path: getPath('/theming-values'),
+        path: '/theming-values',
       },
       {
         text: 'Understanding Overrides',
-        path: getPath('/understanding-overrides'),
+        path: '/understanding-overrides',
       },
     ],
   },
@@ -52,23 +46,31 @@ const routes = [
         children: [
           {
             text: 'Button',
-            path: getPath('/components/button'),
+            path: '/components/button',
           },
           {
             text: 'ButtonGroup',
-            path: getPath('/components/button-group'),
+            path: '/components/button-group',
           },
           {
             text: 'Checkbox',
-            path: getPath('/components/checkbox'),
+            path: '/components/checkbox',
           },
           {
             text: 'Input',
-            path: getPath('/components/input'),
+            path: '/components/input',
+          },
+          {
+            text: 'Slider',
+            path: '/components/slider',
+          },
+          {
+            text: 'Radio',
+            path: '/components/radio',
           },
           {
             text: 'Textarea',
-            path: getPath('/components/textarea'),
+            path: '/components/textarea',
           },
         ],
       },
@@ -77,15 +79,19 @@ const routes = [
         children: [
           {
             text: 'Breadcrumbs',
-            path: getPath('/components/breadcrumbs'),
+            path: '/components/breadcrumbs',
           },
           {
             text: 'Header navigation',
-            path: getPath('/components/header-navigation'),
+            path: '/components/header-navigation',
+          },
+          {
+            text: 'Pagination',
+            path: '/components/pagination',
           },
           {
             text: 'Tab',
-            path: getPath('/components/tabs'),
+            path: '/components/tabs',
           },
         ],
       },
@@ -94,15 +100,23 @@ const routes = [
         children: [
           {
             text: 'Accordion',
-            path: getPath('/components/accordion'),
+            path: '/components/accordion',
           },
           {
             text: 'Avatar',
-            path: getPath('/components/avatar'),
+            path: '/components/avatar',
+          },
+          {
+            text: 'Drag and Drop List',
+            path: '/components/dnd-list',
           },
           {
             text: 'Icon',
-            path: getPath('/components/icon'),
+            path: '/components/icon',
+          },
+          {
+            text: 'Tag',
+            path: '/components/tag',
           },
         ],
       },
@@ -110,8 +124,16 @@ const routes = [
         text: 'Pickers',
         children: [
           {
+            text: 'Menu',
+            path: '/components/menu',
+          },
+          {
+            text: 'Rating',
+            path: '/components/rating',
+          },
+          {
             text: 'Select',
-            path: getPath('/components/select'),
+            path: '/components/select',
           },
         ],
       },
@@ -119,12 +141,24 @@ const routes = [
         text: 'Progress & Validation',
         children: [
           {
+            text: 'Notification',
+            path: '/components/notification',
+          },
+          {
+            text: 'ProgressBar',
+            path: '/components/progress-bar',
+          },
+          {
             text: 'Progress steps',
-            path: getPath('/components/progress-steps'),
+            path: '/components/progress-steps',
+          },
+          {
+            text: 'Spinner',
+            path: '/components/spinner',
           },
           {
             text: 'Toast',
-            path: getPath('/components/toast'),
+            path: '/components/toast',
           },
         ],
       },
@@ -133,11 +167,19 @@ const routes = [
         children: [
           {
             text: 'Card',
-            path: getPath('/components/card'),
+            path: '/components/card',
           },
           {
             text: 'Modal',
-            path: getPath('/components/modal'),
+            path: '/components/modal',
+          },
+          {
+            text: 'Popover',
+            path: '/components/popover',
+          },
+          {
+            text: 'Tooltip',
+            path: '/components/tooltip',
           },
         ],
       },
@@ -146,7 +188,7 @@ const routes = [
         children: [
           {
             text: 'Block',
-            path: getPath('/components/block'),
+            path: '/components/block',
           },
         ],
       },

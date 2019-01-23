@@ -32,6 +32,7 @@ const docs = [
   VersioningPolicy,
   BrowserSupport,
   CustomThemes,
+  Contributing,
 ];
 
 const parsedDocs = docs.map(doc => FrontMatter(doc));
@@ -67,10 +68,6 @@ parsedDocs.forEach(doc => {
       />
     );
   });
-});
-
-storiesOf('Contributing', module).add('Getting started', () => {
-  return <Contributing />;
 });
 
 storiesOf('Theming', module).add('Theming values', () => {

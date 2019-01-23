@@ -18,6 +18,7 @@ import Alignment from 'examples/checkbox/alignment.js';
 import Overrides from 'examples/checkbox/overrides.js';
 import ComponentOverrides from 'examples/checkbox/component-overrides.js';
 import Focus from 'examples/checkbox/focus.js';
+import Toggle from 'examples/checkbox/toggle.js';
 
 export default Layout;
 
@@ -72,17 +73,21 @@ Allows users to make a selection of available options, or toggle options on/off.
   <Focus />
 </Example>
 
+<Example title="Toggle checkmark type" path="examples/checkbox/toggle.js">
+  <Toggle />
+</Example>
+
 <API
   heading="Checkbox API"
-  api={require('!!extract-react-types-loader!../../../src/checkbox/checkbox.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/checkbox.js')}
 />
 
 <API
   heading="Stateful Checkbox API"
-  api={require('!!extract-react-types-loader!../../../src/checkbox/stateful-checkbox.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/stateful-checkbox.js')}
 />
 
 <API
   heading="Stateful Checkbox Container API"
-  api={require('!!extract-react-types-loader!../../../src/checkbox/stateful-checkbox-container.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/stateful-checkbox-container.js')}
 />

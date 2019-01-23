@@ -16,14 +16,19 @@ export type RatingOverridesT = {
 
 export type StarRatingPropsT = {
   overrides?: RatingOverridesT,
+  /** The current rating value. */
   value?: number,
+  /** The total number of items to display. */
   numItems: number,
+  /** Callback that's called with the newly selected value. */
   onChange?: ({value: number}) => void,
 };
 
 export type EmoticonRatingPropsT = {
   overrides?: RatingOverridesT,
+  /** The current rating value. */
   value?: number,
+  /** Callback that's called with the newly selected value. */
   onChange?: ({value: number}) => void,
 };
 

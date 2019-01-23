@@ -87,11 +87,19 @@ export type RenderPropsT = StatefulContainerStateT & {
  */
 
 export type StatefulContainerPropsT = {
+  /** List of menu items. */
   items: ItemsT,
+  /** Initial state of the stateful menu. */
   initialState: StatefulContainerStateT,
+  /** State reducer to intercept state changes and return new internal state */
   stateReducer: StateReducerFnT,
+  /** Function to get props for each rendered item. This will have some defaults needed for keyboard
+   * bindings to work properly. Every rendered item should call this.
+   */
   getRequiredItemProps: GetRequiredItemPropsFnT,
+  /** Callback executed on menu item clicks. */
   onItemSelect: OnItemSelectFnT,
+  /** Child as function pattern. */
   children: RenderPropsT => React.Node,
 };
 
@@ -103,18 +111,27 @@ export type MenuPropsT = {
 };
 
 export type MenuProfilePropsT = {
+  /** Returns an object consisting of title, subtitle, and body to render menu item */
   getProfileItemLabels: GetProfileItemLabelsFnT,
+  /** Returns either an image source url, or a full React component to render as the image. */
   getProfileItemImg: GetProfileItemImgFnT,
+  /** Returns the alt text for the image */
   getProfileItemImgText: GetProfileItemImgTextFnT,
   overrides?: ProfileOverridesT,
 };
 
 export type SharedStatelessPropsT = {
+  /** Function to get props for each rendered item. This will have some defaults needed for keyboard
+   * bindings to work properly. Every rendered item should call this.
+   */
   getRequiredItemProps?: GetRequiredItemPropsFnT,
+  /** Index of highlighted menu item. */
   highlightedIndex?: number,
+  /** List of menu items. */
   items: ItemsT,
   onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
+  /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef: RootRefT,
 };
 
@@ -129,21 +146,31 @@ export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
   MenuProfilePropsT;
 
 export type OptionListPropsT = {
+  /** Item to parse and render. */
   item: ItemT,
+  /** Function used to get the string label for each item. */
   getItemLabel: GetItemLabelFnT,
+  /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
   getChildMenu?: (item: ItemT) => React.Node,
+  /** Renders UI in defined scale. */
   size: $Keys<typeof OPTION_LIST_SIZE>,
   overrides: {
     ListItem?: OverrideT<*>,
   },
+  /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,
 };
 
 export type OptionProfilePropsT = {
+  /** Item to parse and render. */
   item: ItemT,
+  /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
   getChildMenu?: (item: ItemT) => React.Node,
+  /** Returns an object consisting of title, subtitle, and body to render menu item */
   getProfileItemLabels: GetProfileItemLabelsFnT,
+  /** Returns either an image source url, or a full React component to render as the image. */
   getProfileItemImg: GetProfileItemImgFnT,
+  /** Returns the alt text for the image */
   getProfileItemImgText: GetProfileItemImgTextFnT,
   overrides?: {
     ListItemProfile?: OverrideT<*>,
