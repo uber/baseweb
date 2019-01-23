@@ -16,6 +16,9 @@ type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/
 
 export type DatepickerOverridesT<T> = {
   Root?: OverrideT<T>,
+  QuickSelectContainer?: OverrideT<T>,
+  QuickSelectLabel?: OverrideT<T>,
+  QuickSelectButtons?: OverrideT<T>,
   CalendarContainer?: OverrideT<T>,
   CalendarHeader?: OverrideT<T>,
   PrevButton?: OverrideT<T>,
@@ -79,6 +82,8 @@ export type MonthPropsT = WeekPropsT;
 export type CalendarPropsT = {
   /** A list of dates to disable. */
   excludeDates: ?Array<Date>,
+  /** Display a set of buttons for quickly choosing date ranges. isRange must be true as well. */
+  enableQuickSelect?: boolean,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate: ?(day: Date) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */

@@ -11,6 +11,7 @@ import Layout from '../../components/layout';
 
 import DatepickerBasic from 'examples/datepicker/basic.js';
 import DatepickerInPopover from 'examples/datepicker/in-popover.js';
+import DatepickerQuickSelect from 'examples/datepicker/quick-select.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
 
 export default Layout;
@@ -25,14 +26,33 @@ A simple and reusable component to work with or select a date or a range of date
   <DatepickerBasic />
 </Example>
 
-<Example title="Datepicker in a popover" path="examples/datepicker/in-popover.js">
+<Example
+  title="Datepicker in a popover"
+  path="examples/datepicker/in-popover.js"
+>
   <DatepickerInPopover />
 </Example>
 
-<Example title="Datepicker with overrides" path="examples/datepicker/with-overrides.js">
+<Example
+  title="Datepicker with quick select actions"
+  path="examples/datepicker/quick-select.js"
+>
+  <DatepickerQuickSelect />
+</Example>
+
+<Example
+  title="Datepicker with overrides"
+  path="examples/datepicker/with-overrides.js"
+>
   <DatepickerWithOverrides />
 </Example>
 
-<API heading="Datepicker API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/calendar.js')}/>
+<API
+  heading="Datepicker API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/calendar.js')}
+/>
 
-<API heading="Stateful Datepicker API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/stateful-calendar.js')}/>
+<API
+  heading="Stateful Datepicker API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/stateful-calendar.js')}
+/>
