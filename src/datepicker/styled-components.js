@@ -40,6 +40,31 @@ export const StyledCalendarContainer = styled(
   },
 );
 
+export const StyledQuickSelectContainer = styled(
+  'div',
+  (props: SharedStylePropsT) => ({
+    maxWidth: '296px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: props.$theme.sizing.scale600,
+  }),
+);
+
+export const StyledQuickSelectLabel = styled(
+  'div',
+  (props: SharedStylePropsT) => ({
+    ...props.$theme.typography.font300,
+    color: props.$theme.colors.mono800,
+    marginBottom: props.$theme.sizing.scale600,
+    textAlign: 'left',
+  }),
+);
+
+export const StyledQuickSelectButtons = styled('div', {
+  display: 'flex',
+  flexWrap: 'wrap',
+});
+
 export const StyledHeader = styled('div', (props: SharedStylePropsT) => {
   const {
     $theme: {colors, sizing, borders},
