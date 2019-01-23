@@ -33,33 +33,25 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
     width: '100%',
   };
 });
-StyledFileDragAndDrop.displayName = 'StyledFileDragAndDrop';
 
 export const StyledContentMessage = styled('div', (props: StylePropsT) => ({
   ...props.$theme.typography.font450,
 }));
-StyledContentMessage.displayName = 'StyledContentMessage';
 
 export const StyledContentSeparator = styled('div', (props: StylePropsT) => ({
   color: props.$theme.colors.fileUploaderSeparatorColor,
 }));
-StyledContentSeparator.displayName = 'StyledContentSeparator';
 
 export const StyledRoot = styled('div', (props: StylePropsT) => ({
   ...props.$theme.typography.font450,
 }));
-StyledRoot.displayName = 'StyledRoot';
 
 export const StyledFilesList = styled('ul');
-StyledFilesList.displayName = 'StyledFilesList';
 
 export const StyledHiddenInput = styled('input');
-StyledHiddenInput.displayName = 'StyledHiddenInput';
 
 export const StyledAcceptedFile = styled('li');
-StyledAcceptedFile.displayName = 'StyledAcceptedFile';
 
 export const StyledRejectedFile = styled('li', (props: StylePropsT) => ({
   color: props.$theme.colors.negative400,
 }));
-StyledRejectedFile.displayName = 'StyledRejectedFile';
