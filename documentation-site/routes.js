@@ -76,6 +76,10 @@ const routes = [
             text: 'FormControl',
             path: '/components/form-control',
           },
+          {
+            text: 'Unstable File Uploader',
+            path: '/components/file-uploader',
+          },
         ],
       },
       {
@@ -197,15 +201,6 @@ const routes = [
           {
             text: 'Block',
             path: '/components/block',
-          },
-        ],
-      },
-      {
-        text: 'Unstable',
-        children: [
-          {
-            text: 'File Uploader',
-            path: '/components/file-uploader',
           },
         ],
       },
