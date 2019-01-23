@@ -4,7 +4,7 @@ exports[`Stateless header navigation should render component: Component has corr
 <HeaderNavigation
   overrides={Object {}}
 >
-  <StyledRoot
+  <MockStyledComponent
     role="navigation"
   >
     <nav
@@ -13,6 +13,6 @@ exports[`Stateless header navigation should render component: Component has corr
     >
       Some tag
     </nav>
-  </StyledRoot>
+  </MockStyledComponent>
 </HeaderNavigation>
 `;

@@ -78,7 +78,6 @@ export const StyledDropdownContainer = styled('div', props => {
     paddingRight: sizing.scale300,
   };
 });
-StyledDropdownContainer.displayName = 'StyledDropdownContainer';
 
 export const StyledDropdown = styled(StyledList, props => {
   const {$maxHeight} = props;
@@ -86,7 +85,6 @@ export const StyledDropdown = styled(StyledList, props => {
     maxHeight: $maxHeight,
   };
 });
-StyledDropdown.displayName = 'StyledDropdown';
 
 export const StyledDropdownListItem = StyledListItem;
 
@@ -105,7 +103,6 @@ export const StyledOptionContent = styled('div', props => {
     fontWeight: $selected ? 'bold' : 'normal',
   };
 });
-StyledOptionContent.displayName = 'StyledOptionContent';
 
 export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
   const {
@@ -118,7 +115,6 @@ export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
     position: 'relative',
   };
 });
-StyledRoot.displayName = 'StyledRoot';
 
 export const StyledControlContainer = styled(
   'div',
@@ -176,7 +172,6 @@ export const StyledControlContainer = styled(
     };
   },
 );
-StyledControlContainer.displayName = 'StyledControlContainer';
 
 export const StyledValueContainer = styled(
   'span',
@@ -196,7 +191,6 @@ export const StyledValueContainer = styled(
     };
   },
 );
-StyledValueContainer.displayName = 'StyledValueContainer';
 
 export const StyledPlaceholder = styled('div', (props: SharedStylePropsT) => {
   const {
@@ -217,7 +211,6 @@ export const StyledPlaceholder = styled('div', (props: SharedStylePropsT) => {
     ...getControlPadding(props, true),
   };
 });
-StyledPlaceholder.displayName = 'StyledPlaceholder';
 
 export const StyledSingleValue = styled('div', (props: SharedStylePropsT) => {
   const {
@@ -238,7 +231,6 @@ export const StyledSingleValue = styled('div', (props: SharedStylePropsT) => {
     ...getControlPadding(props),
   };
 });
-StyledSingleValue.displayName = 'StyledSingleValue';
 
 export const StyledInputContainer = styled('div', props => {
   const {
@@ -268,7 +260,6 @@ export const StyledInputContainer = styled('div', props => {
     height: !$searchable ? font.lineHeight : 'auto',
   };
 });
-StyledInputContainer.displayName = 'StyledInputContainer';
 
 export const StyledInput = styled(
   'input',
@@ -301,7 +292,6 @@ export const StyledInput = styled(
     };
   },
 );
-StyledInput.displayName = 'StyledInput';
 
 export const StyledInputSizer = styled('div', {
   position: 'absolute',
@@ -312,7 +302,6 @@ export const StyledInputSizer = styled('div', {
   overflow: 'scroll',
   whiteSpace: 'pre',
 });
-StyledInputSizer.displayName = 'StyledInputSizer';
 
 export const StyledIconsContainer = styled('div', ({$theme: {sizing}}) => {
   return {
@@ -325,7 +314,6 @@ export const StyledIconsContainer = styled('div', ({$theme: {sizing}}) => {
     paddingRight: sizing.scale500,
   };
 });
-StyledIconsContainer.displayName = 'StyledIconsContainer';
 
 export const StyledSelectArrow = styled('svg', (props: SharedStylePropsT) => {
   const {$theme, $disabled} = props;
@@ -336,7 +324,6 @@ export const StyledSelectArrow = styled('svg', (props: SharedStylePropsT) => {
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
-StyledSelectArrow.displayName = 'StyledSelectArrow';
 
 export const StyledClearIcon = styled('svg', (props: SharedStylePropsT) => {
   const {$theme} = props;
@@ -347,7 +334,6 @@ export const StyledClearIcon = styled('svg', (props: SharedStylePropsT) => {
     cursor: 'pointer',
   };
 });
-StyledClearIcon.displayName = 'StyledClearIcon';
 
 export const getLoadingIconStyles = (props: SharedStylePropsT) => {
   const {$theme} = props;
@@ -371,4 +357,3 @@ export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
     height: '100%',
   };
 });
-StyledSearchIcon.displayName = 'StyledSearchIcon';

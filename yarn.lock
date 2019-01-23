@@ -3997,6 +3997,11 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
+babel-plugin-transform-styletron-display-name@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-styletron-display-name/-/babel-plugin-transform-styletron-display-name-1.1.0.tgz#ad4bcf31674f94bc9ede27c3d67cd6c53bcd144c"
+  integrity sha512-XiFZF+LGfTPa1eLsORlJSKE9sKXHGNgTscd7+bhN66e3kxrpevpsnxHRJnV2AAzJKYVNn0/hz+4jeLzvG1AfMg==
+
 babel-plugin-transform-undefined-to-void@^6.9.4:
   version "6.9.4"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-undefined-to-void/-/babel-plugin-transform-undefined-to-void-6.9.4.tgz#be241ca81404030678b748717322b89d0c8fe280"

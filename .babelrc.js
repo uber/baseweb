@@ -10,6 +10,7 @@ module.exports = {
   ],
   plugins: [
     './babel/cup.js',
+    ['babel-plugin-transform-styletron-display-name', {importSources: 'any'}],
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-logical-assignment-operators',
     ['@babel/plugin-proposal-optional-chaining', {loose: false}],
