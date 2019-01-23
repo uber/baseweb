@@ -117,6 +117,9 @@ export default {
   [tests.STATEFUL_RANGE_IN_POPOVER]: function Story3() {
     return <DatepickerWithInput isRange value={[]} />;
   },
+  [tests.STATEFUL_RANGE_QUICK_SELECT]: function QuickSelect() {
+    return <StatefulDatepicker isRange enableQuickSelect />;
+  },
   [tests.WITH_OVERRIDES]: function Story3() {
     const selectOverrides = {
       ControlContainer: {

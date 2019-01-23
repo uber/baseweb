@@ -6,11 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
+import {Button, KIND} from '../button/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
 import {
   StyledRoot,
   StyledCalendarContainer,
+  StyledQuickSelectContainer,
+  StyledQuickSelectButtons,
+  StyledQuickSelectLabel,
   StyledMonthHeader,
   StyledDay,
 } from './styled-components.js';
@@ -25,6 +29,9 @@ import {
   isSameDay,
   getEffectiveMinDate,
   getEffectiveMaxDate,
+  subWeeks,
+  subMonths,
+  subYears,
 } from './utils/index.js';
 import {WEEKDAYS} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -198,9 +205,97 @@ export default class Calendar extends React.Component<
     return monthList;
   };
 
+  renderQuickSelect = () => {
+    const {overrides = {}} = this.props;
+    const [QuickSelectContainer, quickSelectContainerProps] = getOverrides(
+      overrides.QuickSelectContainer,
+      StyledQuickSelectContainer,
+    );
+    const [QuickSelectLabel, quickSelectLabelProps] = getOverrides(
+      overrides.QuickSelectLabel,
+      StyledQuickSelectLabel,
+    );
+    const [QuickSelectButtons, quickSelectButtonsProps] = getOverrides(
+      overrides.QuickSelectButtons,
+      StyledQuickSelectButtons,
+    );
+
+    if (!this.props.isRange || !this.props.enableQuickSelect) {
+      return null;
+    }
+
+    const NOW = new Date();
+    const QUICK_SELECT_ACTIONS = [
+      {
+        label: 'Past Week',
+        beginDate: subWeeks(NOW, 1),
+      },
+      {
+        label: 'Past Month',
+        beginDate: subMonths(NOW, 1),
+      },
+      {
+        label: 'Past 3 Months',
+        beginDate: subMonths(NOW, 3),
+      },
+      {
+        label: 'Past 6 Months',
+        beginDate: subMonths(NOW, 6),
+      },
+      {
+        label: 'Past Year',
+        beginDate: subYears(NOW, 1),
+      },
+      {
+        label: 'Past 2 Years',
+        beginDate: subYears(NOW, 2),
+      },
+    ];
+
+    return (
+      <QuickSelectContainer {...quickSelectContainerProps}>
+        <QuickSelectLabel {...quickSelectLabelProps}>
+          Quick Select
+        </QuickSelectLabel>
+        <QuickSelectButtons {...quickSelectButtonsProps}>
+          {QUICK_SELECT_ACTIONS.map(({label, beginDate}) => (
+            <Button
+              key={label}
+              kind={KIND.tertiary}
+              onClick={() => {
+                this.props.onSelect({date: [beginDate, NOW]});
+              }}
+              overrides={{
+                BaseButton: {
+                  style: {
+                    flexBasis: 0,
+                    flexGrow: 1,
+                    marginBottom: '8px',
+                    minWidth: '142px',
+                    ':nth-of-type(odd)': {
+                      marginRight: '8px',
+                    },
+                  },
+                },
+              }}
+            >
+              {label}
+            </Button>
+          ))}
+        </QuickSelectButtons>
+      </QuickSelectContainer>
+    );
+  };
+
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    return <Root {...rootProps}>{this.renderMonths()}</Root>;
+
+    return (
+      <Root {...rootProps}>
+        {this.renderMonths()}
+        {this.renderQuickSelect()}
+      </Root>
+    );
   }
 }

@@ -71,6 +71,34 @@ Object {
 }
 `;
 
+exports[`Component styled components Basic render: StyledQuickSelectButtons has correct styles 1`] = `
+Object {
+  "display": "flex",
+  "flexWrap": "wrap",
+}
+`;
+
+exports[`Component styled components Basic render: StyledQuickSelectContainer has correct styles 1`] = `
+Object {
+  "marginBottom": "$theme.sizing.scale600",
+  "marginLeft": "auto",
+  "marginRight": "auto",
+  "maxWidth": "296px",
+}
+`;
+
+exports[`Component styled components Basic render: StyledQuickSelectLabel has correct styles 1`] = `
+Object {
+  "color": "$theme.colors.mono800",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "marginBottom": "$theme.sizing.scale600",
+  "textAlign": "left",
+}
+`;
+
 exports[`Component styled components Basic render: StyledRoot has correct styles 1`] = `
 Object {
   "backgroundColor": "$theme.colors.white",
