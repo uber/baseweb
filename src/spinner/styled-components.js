@@ -32,4 +32,3 @@ export const Svg = styled('svg', props => {
     animationTimingFunction: 'linear',
   };
 });
-Svg.displayName = 'StyledSvg';

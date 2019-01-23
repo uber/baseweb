@@ -25,5 +25,3 @@ export const Link = styled('a', ({$theme}) => {
     },
   };
 });
-
-Link.displayName = 'StyledLink';

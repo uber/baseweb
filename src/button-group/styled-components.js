@@ -9,4 +9,3 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 
 export const StyledRoot = styled('div', {display: 'flex'});
-StyledRoot.displayName = 'StyledRoot';
