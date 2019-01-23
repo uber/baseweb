@@ -25,7 +25,6 @@ export const Bar = styled('div', props => {
     height: '4px',
   };
 });
-Bar.displayName = 'StyledBar';
 
 export const BarProgress = styled('div', props => {
   const {$theme, $value, $successValue} = props;
@@ -39,7 +38,6 @@ export const BarProgress = styled('div', props => {
     height: '100%',
   };
 });
-BarProgress.displayName = 'StyledBarProgress';
 
 export const Label = styled('div', props => {
   return {
@@ -48,4 +46,3 @@ export const Label = styled('div', props => {
     color: props.$theme.colors.mono700,
   };
 });
-Label.displayName = 'StyledLabel';

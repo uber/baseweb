@@ -9,7 +9,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   onActionClick={[MockFunction]}
   overrides={Object {}}
 >
-  <StyledRoot
+  <MockStyledComponent
     $disabled={false}
     $isFocused={false}
     $isHovered={false}
@@ -19,7 +19,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
       styled-component="true"
     >
       Some tag
-      <StyledAction
+      <MockStyledComponent
         $disabled={false}
         $isFocused={false}
         $isHovered={false}
@@ -30,7 +30,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           onClick={[Function]}
           styled-component="true"
         >
-          <StyledActionIcon
+          <MockStyledComponent
             fill="none"
             height="8"
             viewBox="0 0 8 8"
@@ -52,10 +52,10 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                 fillRule="evenodd"
               />
             </svg>
-          </StyledActionIcon>
+          </MockStyledComponent>
         </span>
-      </StyledAction>
+      </MockStyledComponent>
     </span>
-  </StyledRoot>
+  </MockStyledComponent>
 </Tag>
 `;

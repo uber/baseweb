@@ -13,21 +13,18 @@ export const Root = styled('div', {
   display: 'flex',
   alignItems: 'center',
 });
-Root.displayName = 'StyledRoot';
 
 export const MaxLabel = styled('span', ({$theme}) => ({
   ...$theme.typography.font300,
   marginLeft: $theme.sizing.scale300,
   marginRight: $theme.sizing.scale600,
 }));
-MaxLabel.displayName = 'StyledMaxLabel';
 
 export const DropdownContainer = styled('div', ({$theme}) => ({
   position: 'relative',
   marginLeft: $theme.sizing.scale600,
   marginRight: $theme.sizing.scale300,
 }));
-DropdownContainer.displayName = 'StyledDropdownContainer';
 
 export const DropdownMenu = styled(StyledList, ({$theme}) => ({
   position: 'absolute',
@@ -38,10 +35,8 @@ export const DropdownMenu = styled(StyledList, ({$theme}) => ({
   left: 0,
   right: 0,
 }));
-DropdownMenu.displayName = 'StyledDropdownMenu';
 
 export const DropdownButton = styled(StyledBaseButton, ({$theme}) => ({
   color: $theme.colors.foreground,
   minWidth: `calc(${$theme.sizing.scale1600} + ${$theme.sizing.scale400})`,
 }));
-DropdownButton.displayName = 'StyledDropdownButton';

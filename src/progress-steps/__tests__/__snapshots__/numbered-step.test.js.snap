@@ -1,143 +1,143 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NumberedStep applies isActive prop correctly 1`] = `
-<StyledNumberStep
+<MockStyledComponent
   $isActive={true}
   $isCompleted={false}
 >
-  <StyledNumberIcon
+  <MockStyledComponent
     $isActive={true}
     $isCompleted={false}
   >
     <span />
-  </StyledNumberIcon>
-  <StyledNumberContentTail
+  </MockStyledComponent>
+  <MockStyledComponent
     $isActive={true}
     $isCompleted={false}
   />
-  <StyledContent
+  <MockStyledComponent
     $isActive={true}
     $isCompleted={false}
   >
-    <StyledContentTitle
+    <MockStyledComponent
       $isActive={true}
       $isCompleted={false}
     />
-    <StyledContentDescription />
-  </StyledContent>
-</StyledNumberStep>
+    <MockStyledComponent />
+  </MockStyledComponent>
+</MockStyledComponent>
 `;
 
 exports[`NumberedStep applies isCompleted prop correctly 1`] = `
-<StyledNumberStep
+<MockStyledComponent
   $isActive={false}
   $isCompleted={true}
 >
-  <StyledNumberIcon
+  <MockStyledComponent
     $isActive={false}
     $isCompleted={true}
   >
     <Check
       size={12}
     />
-  </StyledNumberIcon>
-  <StyledNumberContentTail
+  </MockStyledComponent>
+  <MockStyledComponent
     $isActive={false}
     $isCompleted={true}
   />
-  <StyledContent
+  <MockStyledComponent
     $isActive={false}
     $isCompleted={true}
   >
-    <StyledContentTitle
+    <MockStyledComponent
       $isActive={false}
       $isCompleted={true}
     />
-    <StyledContentDescription />
-  </StyledContent>
-</StyledNumberStep>
+    <MockStyledComponent />
+  </MockStyledComponent>
+</MockStyledComponent>
 `;
 
 exports[`NumberedStep applies isLast prop correctly 1`] = `
-<StyledNumberStep
+<MockStyledComponent
   $isActive={false}
   $isCompleted={false}
 >
-  <StyledNumberIcon
+  <MockStyledComponent
     $isActive={false}
     $isCompleted={false}
   >
     <span />
-  </StyledNumberIcon>
-  <StyledContent
+  </MockStyledComponent>
+  <MockStyledComponent
     $isActive={false}
     $isCompleted={false}
   >
-    <StyledContentTitle
+    <MockStyledComponent
       $isActive={false}
       $isCompleted={false}
     />
-    <StyledContentDescription />
-  </StyledContent>
-</StyledNumberStep>
+    <MockStyledComponent />
+  </MockStyledComponent>
+</MockStyledComponent>
 `;
 
 exports[`NumberedStep applies title prop correctly 1`] = `
-<StyledNumberStep
+<MockStyledComponent
   $isActive={false}
   $isCompleted={false}
 >
-  <StyledNumberIcon
+  <MockStyledComponent
     $isActive={false}
     $isCompleted={false}
   >
     <span />
-  </StyledNumberIcon>
-  <StyledNumberContentTail
+  </MockStyledComponent>
+  <MockStyledComponent
     $isActive={false}
     $isCompleted={false}
   />
-  <StyledContent
+  <MockStyledComponent
     $isActive={false}
     $isCompleted={false}
   >
-    <StyledContentTitle
+    <MockStyledComponent
       $isActive={false}
       $isCompleted={false}
     >
       Test Title
-    </StyledContentTitle>
-    <StyledContentDescription />
-  </StyledContent>
-</StyledNumberStep>
+    </MockStyledComponent>
+    <MockStyledComponent />
+  </MockStyledComponent>
+</MockStyledComponent>
 `;
 
 exports[`NumberedStep renders children correctly if isActive is provided 1`] = `
-<StyledNumberStep
+<MockStyledComponent
   $isActive={true}
   $isCompleted={false}
 >
-  <StyledNumberIcon
+  <MockStyledComponent
     $isActive={true}
     $isCompleted={false}
   >
     <span />
-  </StyledNumberIcon>
-  <StyledNumberContentTail
+  </MockStyledComponent>
+  <MockStyledComponent
     $isActive={true}
     $isCompleted={false}
   />
-  <StyledContent
+  <MockStyledComponent
     $isActive={true}
     $isCompleted={false}
   >
-    <StyledContentTitle
+    <MockStyledComponent
       $isActive={true}
       $isCompleted={false}
     />
-    <StyledContentDescription>
+    <MockStyledComponent>
       Content
-    </StyledContentDescription>
-  </StyledContent>
-</StyledNumberStep>
+    </MockStyledComponent>
+  </MockStyledComponent>
+</MockStyledComponent>
 `;
