@@ -46,7 +46,7 @@ export const StyledQuickSelectContainer = styled(
     maxWidth: '296px',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: '16px',
+    marginBottom: props.$theme.sizing.scale600,
   }),
 );
 
@@ -55,18 +55,15 @@ export const StyledQuickSelectLabel = styled(
   (props: SharedStylePropsT) => ({
     ...props.$theme.typography.font300,
     color: props.$theme.colors.mono800,
-    marginBottom: '16px',
+    marginBottom: props.$theme.sizing.scale600,
     textAlign: 'left',
   }),
 );
 
-export const StyledQuickSelectButtons = styled(
-  'div',
-  (props: SharedStylePropsT) => ({
-    display: 'flex',
-    flexWrap: 'wrap',
-  }),
-);
+export const StyledQuickSelectButtons = styled('div', {
+  display: 'flex',
+  flexWrap: 'wrap',
+});
 
 export const StyledHeader = styled('div', (props: SharedStylePropsT) => {
   const {
