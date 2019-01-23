@@ -200,6 +200,15 @@ const routes = [
           },
         ],
       },
+      {
+        text: 'Unstable',
+        children: [
+          {
+            text: 'File Uploader',
+            path: '/components/file-uploader',
+          },
+        ],
+      },
     ],
   },
 ];
