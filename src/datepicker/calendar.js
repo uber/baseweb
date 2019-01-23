@@ -261,7 +261,7 @@ export default class Calendar extends React.Component<
           {QUICK_SELECT_ACTIONS.map(({label, beginDate}) => (
             <Button
               key={label}
-              kind={KIND.secondary}
+              kind={KIND.tertiary}
               onClick={() => {
                 this.props.onSelect({date: [beginDate, NOW]});
               }}
