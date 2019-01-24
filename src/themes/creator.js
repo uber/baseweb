@@ -113,7 +113,7 @@ export default function createTheme(
       buttonTertiaryText: primitives.primary400,
       buttonTertiaryHover: primitives.mono400,
       buttonTertiaryActive: primitives.mono500,
-      // button $seleected only applies to tertiary variant.
+      // button $selected only applies to tertiary variant.
       buttonTertiarySelectedFill: primitives.primary400,
       buttonTertiarySelectedText: primitives.mono100,
 
