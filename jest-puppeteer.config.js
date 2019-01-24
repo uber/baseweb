@@ -8,9 +8,15 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+let headless = true;
+
+if (process.env.PUPPETEER_HEADLESS) {
+  headless = process.env.PUPPETEER_HEADLESS === 'false' ? false : true;
+}
+
 module.exports = {
   launch: {
-    headless: process.env.PUPPETEER_HEADLESS !== 'false',
+    headless,
     slowMo: process.env.PUPPETEER_SLOWMO, // slow down tests with slowMo ms
   },
   browserContext: 'default',

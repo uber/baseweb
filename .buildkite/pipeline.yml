@@ -54,6 +54,9 @@ steps:
     plugins:
       'docker-compose':
         run: baseui
+        pull:
+          - e2e-server
+          - e2e-server-healthy
     agents:
       queue: workers
   - name: ':saucelabs: :selenium:'
