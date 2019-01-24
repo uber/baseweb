@@ -19,6 +19,7 @@ import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
 import {version} from '../../package.json';
+import GithubLogo from './github-logo';
 
 const Link = styled(StyledLink, {cursor: 'pointer'});
 
@@ -123,7 +124,7 @@ class Example extends React.Component<PropsT, StateT> {
           </Block>
           <Block display="flex" alignItems="center">
             {this.state.isSourceOpen && (
-              <Block marginRight="scale400">
+              <Block marginRight="scale600">
                 <CopyToClipboard
                   onCopy={this.handleCopy}
                   text={this.state.source}
@@ -151,6 +152,28 @@ class Example extends React.Component<PropsT, StateT> {
             >
               {this.state.isSourceOpen ? 'Hide' : 'Show'} Source
             </Button>
+            <Block
+              $as="a"
+              href={`https://github.com/uber-web/baseui/tree/master/documentation-site/static/${
+                this.props.path
+              }`}
+              marginLeft="scale600"
+              marginRight="scale200"
+              $style={{textDecoration: 'none'}}
+              target="_blank"
+            >
+              <Button
+                kind={KIND.secondary}
+                overrides={{
+                  EndEnhancer: {
+                    style: {
+                      marginLeft: 0,
+                    },
+                  },
+                }}
+                endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
+              />
+            </Block>
           </Block>
         </Block>
 
