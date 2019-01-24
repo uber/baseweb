@@ -32,7 +32,7 @@ import {Row, Column} from '@uber/layout-align';
 * `Row`
 * `Column`
 
-## `Button` API
+## `Row` & `Column`API
 
 * `items: string`
 
