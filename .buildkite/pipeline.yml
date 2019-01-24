@@ -49,6 +49,16 @@ steps:
         run: baseui
     agents:
       queue: workers
+  - name: ':puppeteer:'
+    command: yarn e2e:puppeteer:ci
+    plugins:
+      'docker-compose':
+        run: e2e-test-puppeteer
+        pull:
+          - e2e-server
+          - e2e-server-healthy
+    agents:
+      queue: workers
   - name: ':saucelabs: :selenium:'
     command: yarn e2e:test:ci
     concurrency_group: saucelabs
