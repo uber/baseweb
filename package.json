@@ -129,7 +129,6 @@
     "react-virtualized": "^9.21.0",
     "react-x-ray": "^1.0.0-4",
     "rimraf": "^2.6.2",
-    "saucelabs": "^1.5.0",
     "screener-storybook": "^0.16.2",
     "selenium-server-standalone-jar": "^3.14.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
