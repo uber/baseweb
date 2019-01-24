@@ -6,14 +6,14 @@ import {ButtonGroup} from 'baseui/button-group';
 export default () => (
   <React.Fragment>
     <Block paddingBottom="scale200">All disabled</Block>
-    <ButtonGroup disabled kind="minimal">
+    <ButtonGroup disabled>
       <Button>Label</Button>
       <Button>Label</Button>
       <Button>Label</Button>
     </ButtonGroup>
     <br />
     <Block paddingBottom="scale200">Single disabled</Block>
-    <ButtonGroup kind="minimal">
+    <ButtonGroup>
       <Button disabled>Label</Button>
       <Button>Label</Button>
       <Button>Label</Button>

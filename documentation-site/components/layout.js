@@ -23,6 +23,7 @@ import ComponentMenu from './component-menu';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import Logo from '../images/Logo.png';
+import GithubLogo from './github-logo';
 
 type PropsT = {
   children: React.Node,
@@ -62,14 +63,30 @@ export default (props: PropsT) => (
       </NavigationList>
       <NavigationList align={ALIGN.center} />
       <NavigationList align={ALIGN.right}>
-        <Block display="flex" marginRight="scale800">
-          <ComponentMenu />
+        <ComponentMenu />
+        <Block
+          $as="a"
+          href="https://github.com/uber-web/baseui"
+          marginLeft="scale600"
+          $style={{textDecoration: 'none'}}
+          target="_blank"
+        >
+          <Button
+            kind={ButtonKind.secondary}
+            overrides={{
+              EndEnhancer: {
+                style: {
+                  marginLeft: 0,
+                },
+              },
+            }}
+            endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
+          />
         </Block>
-        <Link href="/getting-started" prefetch>
-          <Button>Get Started</Button>
-        </Link>
-        <Block $as="a" href="/legacy" marginLeft="scale800">
-          <Button kind={ButtonKind.tertiary}>Storybook (legacy)</Button>
+        <Block marginLeft="scale600">
+          <Link href="/getting-started" prefetch>
+            <Button>Get Started</Button>
+          </Link>
         </Block>
       </NavigationList>
     </HeaderNavigation>

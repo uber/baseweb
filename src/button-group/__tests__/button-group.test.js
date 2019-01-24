@@ -128,6 +128,14 @@ describe('ButtonGroup', () => {
     });
   });
 
+  it('sets appropriate child as selected if selected prop is zero', () => {
+    const selectedIndex = 0;
+    const wrapper = buildSimpleWrapper({selected: selectedIndex});
+    wrapper.children().forEach((child, index) => {
+      expect(child).toHaveProp('isSelected', selectedIndex === index);
+    });
+  });
+
   it('sets appropriate child as selected if selected prop is an array', () => {
     const selectedIndices = [0, 2];
     const wrapper = buildSimpleWrapper({selected: selectedIndices});

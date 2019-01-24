@@ -15,7 +15,7 @@ import {StyledRoot} from './styled-components.js';
 import type {PropsT} from './types.js';
 
 function isSelected(selected, index) {
-  if (!selected) {
+  if (!Array.isArray(selected) && typeof selected !== 'number') {
     return false;
   }
 
@@ -52,6 +52,17 @@ function getBorderRadii(index, length) {
 export default function ButtonGroup(props: PropsT) {
   const {overrides = {}} = props;
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+
+  if (__DEV__) {
+    if (props.kind !== KIND.tertiary) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `ButtonGroup kind prop will no longer be supported in future major versions of base ui
+         because only a single color variant is supported in designs. Please update your code
+         to remove the kind prop.`,
+      );
+    }
+  }
 
   return (
     <Root aria-label={props.ariaLabel} {...rootProps}>
@@ -92,7 +103,7 @@ export default function ButtonGroup(props: PropsT) {
 ButtonGroup.defaultProps = {
   ariaLabel: 'button group',
   disabled: false,
-  kind: KIND.primary,
+  kind: KIND.tertiary,
   onClick: () => {},
   shape: SHAPE.default,
   size: SIZE.default,
