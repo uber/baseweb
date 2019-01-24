@@ -152,28 +152,6 @@ class Example extends React.Component<PropsT, StateT> {
             >
               {this.state.isSourceOpen ? 'Hide' : 'Show'} Source
             </Button>
-            <Block
-              $as="a"
-              href={`https://github.com/uber-web/baseui/tree/master/documentation-site/static/${
-                this.props.path
-              }`}
-              marginLeft="scale600"
-              marginRight="scale200"
-              $style={{textDecoration: 'none'}}
-              target="_blank"
-            >
-              <Button
-                kind={KIND.secondary}
-                overrides={{
-                  EndEnhancer: {
-                    style: {
-                      marginLeft: 0,
-                    },
-                  },
-                }}
-                endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
-              />
-            </Block>
           </Block>
         </Block>
 
@@ -199,7 +177,7 @@ class Example extends React.Component<PropsT, StateT> {
               <Source>{this.state.source}</Source>
             </Block>
 
-            <Block paddingLeft="scale800">
+            <Block paddingLeft="scale800" display="flex" alignItems="center">
               <CodeSandboxer
                 examplePath="/"
                 example={this.state.source}
@@ -218,6 +196,20 @@ class Example extends React.Component<PropsT, StateT> {
               >
                 {() => <Link>Open in CodeSandbox</Link>}
               </CodeSandboxer>
+              <Block
+                $as="a"
+                href={`https://github.com/uber-web/baseui/tree/master/documentation-site/static/${
+                  this.props.path
+                }`}
+                marginLeft="scale600"
+                marginRight="scale200"
+                $style={{textDecoration: 'none'}}
+                target="_blank"
+                display="flex"
+                alignItems="center"
+              >
+                <GithubLogo size={18} color="#276EF1" />
+              </Block>
             </Block>
           </React.Fragment>
         )}

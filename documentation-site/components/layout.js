@@ -73,10 +73,15 @@ export default (props: PropsT) => (
         >
           <Button
             kind={ButtonKind.secondary}
-            endEnhancer={() => <GithubLogo size={22} color="#276EF1" />}
-          >
-            GitHub
-          </Button>
+            overrides={{
+              EndEnhancer: {
+                style: {
+                  marginLeft: 0,
+                },
+              },
+            }}
+            endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
+          />
         </Block>
         <Block marginLeft="scale600">
           <Link href="/getting-started" prefetch>
