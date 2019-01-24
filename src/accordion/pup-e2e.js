@@ -8,12 +8,28 @@ LICENSE file in the root directory of this source tree.
 /*eslint-env node*/
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-describe('Google', () => {
+const {getPuppeteerUrl} = require('../../e2e/helpers');
+
+const scenarios = require('./examples-list');
+const suite = 'Accordion Test Suite';
+
+describe(suite, () => {
   beforeAll(async () => {
-    await page.goto('https://google.com');
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.ACCORDION_EXAMPLE,
+      }),
+    );
   });
 
-  it('should display "google" text on page', async () => {
-    await expect(page).toMatch('google');
+  it('expands once the title is clicked', async () => {
+    await page.click('[aria-expanded=false]');
+    // header changed
+    await page.waitForSelector('[aria-expanded=true]');
+    // content appeared
+    await expect(page).toMatchElement('h3 + div', {
+      text: 'Praesent condimentum',
+    });
   });
 });

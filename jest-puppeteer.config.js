@@ -10,11 +10,11 @@ LICENSE file in the root directory of this source tree.
 
 module.exports = {
   launch: {
-    headless:
-      process.env.PUPPETEER_IS_HEADLESS !== undefined
-        ? process.env.PUPPETEER_IS_HEADLESS
-        : true,
-    slowMo: process.PUPPETEER_SLOWMO, // slow down tests with slowMo ms
+    headless: process.env.PUPPETEER_HEADLESS !== 'false',
+    slowMo: process.env.PUPPETEER_SLOWMO, // slow down tests with slowMo ms
   },
   browserContext: 'default',
+  tests: {
+    url: process.env.PUPPETEER_TARGET_URL || 'http://localhost:8080',
+  },
 };
