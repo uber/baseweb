@@ -36,6 +36,7 @@ module.exports = {
   baseBranch: 'master',
   includeRules: [
     new RegExp(`${Accordion.ACCORDION_EXAMPLE}$`),
+    new RegExp(Button.BUTTON),
     new RegExp(Button.BUTTON_COMPACT_WITH_ENHANCERS),
     new RegExp(Button.BUTTON_WITH_ENHANCERS),
     new RegExp(`${ButtonGroup.BUTTON_GROUP}$`),
