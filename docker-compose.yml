@@ -96,6 +96,23 @@ services:
         condition: service_healthy
 
   # running the e2e tests in ci
+  e2e-test-puppeteer:
+    build: .
+    network_mode: 'host'
+    depends_on:
+      - e2e-server-healthy
+    environment:
+      - CODECOV_TOKEN
+      - CI=true
+      - BUILDKITE
+      - BUILDKITE_BRANCH
+      - BUILDKITE_BUILD_NUMBER
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_URL
+      - BUILDKITE_PROJECT_SLUG
+      - BUILDKITE_COMMIT
+
+  # running the e2e tests in ci
   e2e-test:
     build: .
     network_mode: 'host'
