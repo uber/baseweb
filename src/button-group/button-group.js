@@ -15,7 +15,7 @@ import {StyledRoot} from './styled-components.js';
 import type {PropsT} from './types.js';
 
 function isSelected(selected, index) {
-  if (!selected) {
+  if (!Array.isArray(selected) && typeof selected !== 'number') {
     return false;
   }
 
