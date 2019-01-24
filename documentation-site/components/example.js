@@ -19,7 +19,6 @@ import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
 import {version} from '../../package.json';
-import GithubLogo from './github-logo';
 
 const Link = styled(StyledLink, {cursor: 'pointer'});
 
