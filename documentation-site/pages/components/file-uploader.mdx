@@ -1,0 +1,60 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import FileUploaderBasic from 'examples/file-uploader/basic.js';
+import FileUploaderCustomAcceptValue from 'examples/file-uploader/custom-accept-value.js';
+import FileUploaderDisabled from 'examples/file-uploader/disabled.js';
+import FileUploaderOverrides from 'examples/file-uploader/overrides.js';
+
+export default Layout;
+
+# File Uploader
+
+Creates a dropzone for file uploads.
+
+### When to use
+
+- Enable file(s) upload through drag and drop or the system _Browse files_ dialog.
+
+## Examples
+
+<Example
+  title="File Uploader Basic Usage"
+  path="examples/file-uploader/basic.js"
+>
+  <FileUploaderBasic />
+</Example>
+
+<Example
+  title="File Uploader Custom Accept Value"
+  path="examples/file-uploader/custom-accept-value.js"
+>
+  <FileUploaderCustomAcceptValue />
+</Example>
+
+<Example
+  title="File Uploader Disabled"
+  path="examples/file-uploader/disabled.js"
+>
+  <FileUploaderDisabled />
+</Example>
+
+<Example
+  title="File Uploader Overrides"
+  path="examples/file-uploader/overrides.js"
+>
+  <FileUploaderOverrides />
+</Example>
+
+<API
+  heading="File Uploader API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/file-uploader/file-uploader.js')}
+/>
