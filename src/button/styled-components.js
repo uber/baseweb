@@ -218,25 +218,30 @@ export function getStyleForKind({
         },
       };
     case KIND.tertiary:
-      return {
-        color: $theme.colors.buttonTertiaryText,
-        backgroundColor: $isSelected
-          ? $theme.colors.buttonTertiaryHover
-          : $theme.colors.buttonTertiaryFill,
-        ':hover:enabled': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
-        ':focus:enabled': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
-        ':active:enabled': {
-          backgroundColor: $theme.colors.buttonTertiaryActive,
-        },
-      };
+      if ($isSelected) {
+        return {
+          color: $theme.colors.buttonTertiarySelectedText,
+          backgroundColor: $theme.colors.buttonTertiarySelectedFill,
+        };
+      } else {
+        return {
+          color: $theme.colors.buttonTertiaryText,
+          backgroundColor: $theme.colors.buttonTertiaryFill,
+          ':hover:enabled': {
+            backgroundColor: $isLoading
+              ? $theme.colors.buttonTertiaryActive
+              : $theme.colors.buttonTertiaryHover,
+          },
+          ':focus:enabled': {
+            backgroundColor: $isLoading
+              ? $theme.colors.buttonTertiaryActive
+              : $theme.colors.buttonTertiaryHover,
+          },
+          ':active:enabled': {
+            backgroundColor: $theme.colors.buttonTertiaryActive,
+          },
+        };
+      }
     case KIND.minimal:
       return {
         color: $theme.colors.buttonMinimalText,
