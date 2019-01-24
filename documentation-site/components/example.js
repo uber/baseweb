@@ -123,7 +123,7 @@ class Example extends React.Component<PropsT, StateT> {
           </Block>
           <Block display="flex" alignItems="center">
             {this.state.isSourceOpen && (
-              <Block marginRight="scale400">
+              <Block marginRight="scale600">
                 <CopyToClipboard
                   onCopy={this.handleCopy}
                   text={this.state.source}
@@ -176,7 +176,7 @@ class Example extends React.Component<PropsT, StateT> {
               <Source>{this.state.source}</Source>
             </Block>
 
-            <Block paddingLeft="scale800">
+            <Block paddingLeft="scale800" display="flex" alignItems="center">
               <CodeSandboxer
                 examplePath="/"
                 example={this.state.source}

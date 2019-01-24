@@ -21,6 +21,10 @@ const routes = [
         text: 'Versioning policy',
         path: '/versioning-policy',
       },
+      {
+        text: 'Storybook (legacy)',
+        path: '/legacy',
+      },
     ],
   },
   {
