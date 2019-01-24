@@ -65,13 +65,13 @@ export default {
   [examples.BUTTON_GROUP]: function SimpleStory() {
     return (
       <React.Fragment>
-        <ButtonGroup kind="tertiary">
+        <ButtonGroup>
           <Button>Label</Button>
           <Button>Label</Button>
           <Button>Label</Button>
         </ButtonGroup>
         <br />
-        <ButtonGroup kind="tertiary">
+        <ButtonGroup>
           <Button>
             <Upload size={24} />
           </Button>
@@ -83,7 +83,7 @@ export default {
           </Button>
         </ButtonGroup>
         <br />
-        <ButtonGroup kind="tertiary">
+        <ButtonGroup>
           <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
           <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
           <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
@@ -103,11 +103,7 @@ export default {
 
   [examples.CHECKBOX_MODE]: function CheckboxStory() {
     return (
-      <StatefulButtonGroup
-        mode="checkbox"
-        kind="secondary"
-        initialState={{selected: [0, 1]}}
-      >
+      <StatefulButtonGroup mode="checkbox" initialState={{selected: [0, 1]}}>
         <Button>Label</Button>
         <Button>Label</Button>
         <Button>Label</Button>
@@ -119,14 +115,14 @@ export default {
     return (
       <React.Fragment>
         <Block paddingBottom="scale200">All disabled</Block>
-        <ButtonGroup disabled kind="minimal">
+        <ButtonGroup disabled>
           <Button>Label</Button>
           <Button>Label</Button>
           <Button>Label</Button>
         </ButtonGroup>
         <br />
         <Block paddingBottom="scale200">Single disabled</Block>
-        <ButtonGroup kind="minimal">
+        <ButtonGroup>
           <Button disabled>Label</Button>
           <Button>Label</Button>
           <Button>Label</Button>

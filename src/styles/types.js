@@ -99,6 +99,8 @@ export type ColorsT = {
   buttonTertiaryText: string,
   buttonTertiaryHover: string,
   buttonTertiaryActive: string,
+  buttonTertiarySelectedText: string,
+  buttonTertiarySelectedFill: string,
   buttonMinimalFill: string,
   buttonMinimalText: string,
   buttonMinimalHover: string,
