@@ -8,10 +8,20 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
+const config = require('../../jest-puppeteer.config.js');
+
 function getUrl({launchUrl, suite, test}) {
   return `${launchUrl}?suite=${encodeURIComponent(
     suite,
   )}&test=${encodeURIComponent(test)}`;
+}
+
+function getPuppeteerUrl({suite, test}) {
+  return getUrl({
+    launchUrl: config.tests.url,
+    suite,
+    test,
+  });
 }
 
 function goToUrl({suite, test, browser}) {
@@ -24,6 +34,7 @@ function formatFileName(testName) {
 }
 
 module.exports = {
+  getPuppeteerUrl,
   getUrl,
   goToUrl,
   formatFileName,
