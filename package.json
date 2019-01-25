@@ -125,7 +125,7 @@
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.4.0",
     "react-markdown": "^4.0.3",
-    "react-syntax-highlighter": "^10.0.1",
+    "react-syntax-highlighter": "^10.1.2",
     "react-virtualized": "^9.21.0",
     "react-x-ray": "^1.0.0-4",
     "rimraf": "^2.6.2",

@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import CodeSandboxer from 'react-codesandboxer';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
 import {Button, KIND} from 'baseui/button';
 import {Card} from 'baseui/card';
 import {Block} from 'baseui/block';
@@ -19,6 +18,7 @@ import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
 import {version} from '../../package.json';
+import Code from './code';
 
 const Link = styled(StyledLink, {cursor: 'pointer'});
 
@@ -48,18 +48,7 @@ ReactDOM.render(
 
 function Source(props: {children: ?React.Node}) {
   if (!props.children || typeof props.children !== 'string') return null;
-
-  return (
-    <Block
-      as="pre"
-      padding="scale800"
-      overrides={{
-        Block: {style: {fontFamily: 'courier', whiteSpace: 'pre-wrap'}},
-      }}
-    >
-      {props.children}
-    </Block>
-  );
+  return <Code>{props.children}</Code>;
 }
 
 type PropsT = {
@@ -122,25 +111,6 @@ class Example extends React.Component<PropsT, StateT> {
             {this.props.title}
           </Block>
           <Block display="flex" alignItems="center">
-            {this.state.isSourceOpen && (
-              <Block marginRight="scale600">
-                <CopyToClipboard
-                  onCopy={this.handleCopy}
-                  text={this.state.source}
-                >
-                  {this.state.isCopied ? (
-                    <Button
-                      kind={KIND.secondary}
-                      endEnhancer={() => <Check size="scale800" />}
-                    >
-                      Copied to clipboard
-                    </Button>
-                  ) : (
-                    <Button kind={KIND.secondary}>Copy to clipboard</Button>
-                  )}
-                </CopyToClipboard>
-              </Block>
-            )}
             <Button
               kind={KIND.secondary}
               onClick={() =>
@@ -171,12 +141,32 @@ class Example extends React.Component<PropsT, StateT> {
         </Block>
 
         {this.state.isSourceOpen && (
-          <React.Fragment>
-            <Block>
+          <Block margin="scale800">
+            <Block overflow="scrollX">
               <Source>{this.state.source}</Source>
             </Block>
-
-            <Block paddingLeft="scale800" display="flex" alignItems="center">
+            <Block
+              display="flex"
+              justifyContent="flex-end"
+              marginTop="scale400"
+            >
+              <Block marginRight="scale600">
+                <CopyToClipboard
+                  onCopy={this.handleCopy}
+                  text={this.state.source}
+                >
+                  {this.state.isCopied ? (
+                    <Button
+                      kind={KIND.tertiary}
+                      endEnhancer={() => <Check size="scale800" />}
+                    >
+                      Copied to clipboard
+                    </Button>
+                  ) : (
+                    <Button kind={KIND.tertiary}>Copy to clipboard</Button>
+                  )}
+                </CopyToClipboard>
+              </Block>
               <CodeSandboxer
                 examplePath="/"
                 example={this.state.source}
@@ -193,10 +183,14 @@ class Example extends React.Component<PropsT, StateT> {
                 providedFiles={{'index.js': {content: index}}}
                 template="create-react-app"
               >
-                {() => <Link>Open in CodeSandbox</Link>}
+                {() => (
+                  <Link>
+                    <Button kind={KIND.tertiary}>Edit on CodeSandbox</Button>
+                  </Link>
+                )}
               </CodeSandboxer>
             </Block>
-          </React.Fragment>
+          </Block>
         )}
       </Card>
     );
