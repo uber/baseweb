@@ -36,11 +36,19 @@ export default class MyDocument extends Document {
               key={i}
             />
           ))}
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
+          />
         </Head>
         <Meta />
         <body>
           <Main />
           <NextScript />
+          <script
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
+          />
         </body>
       </html>
     );
