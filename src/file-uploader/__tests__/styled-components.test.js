@@ -11,24 +11,18 @@ import {shallow} from 'enzyme';
 import {
   StyledFileDragAndDrop,
   StyledContentMessage,
-  StyledContentSeparator,
+  StyledErrorMessage,
   StyledRoot,
-  StyledFilesList,
   StyledHiddenInput,
-  StyledAcceptedFile,
-  StyledRejectedFile,
 } from '../index.js';
 
 describe('FileUploader styled components', () => {
   const styledComponents = [
     [StyledFileDragAndDrop, 'StyledFileDragAndDrop'],
     [StyledContentMessage, 'StyledContentMessage'],
-    [StyledContentSeparator, 'StyledContentSeparator'],
+    [StyledErrorMessage, 'StyledErrorMessage'],
     [StyledRoot, 'StyledRoot'],
-    [StyledFilesList, 'StyledFilesList'],
     [StyledHiddenInput, 'StyledHiddenInput'],
-    [StyledAcceptedFile, 'StyledAcceptedFile'],
-    [StyledRejectedFile, 'StyledRejectedFile'],
   ];
 
   test.each(styledComponents)('default properties', (Component, name) => {
@@ -70,6 +64,13 @@ describe('FileUploader styled components', () => {
     const component = shallow(<Component $isFocused />);
     expect(component.instance().getStyles()).toMatchSnapshot(
       `${name} has expected styles when focused`,
+    );
+  });
+
+  test.each(styledComponents)('afterFileDrop', (Component, name) => {
+    const component = shallow(<Component $afterFileDrop />);
+    expect(component.instance().getStyles()).toMatchSnapshot(
+      `${name} has expected styles when after files are dropped`,
     );
   });
 });

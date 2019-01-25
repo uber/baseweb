@@ -131,9 +131,10 @@ export default function createTheme(
 
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,
+      fileUploaderBackgroundColorActive: primitives.primary50,
       fileUploaderBorderColorActive: primitives.primary400,
       fileUploaderBorderColorDefault: primitives.mono500,
-      fileUploaderSeparatorColor: primitives.mono600,
+      fileUploaderMessageColor: primitives.mono600,
 
       // Links
       linkText: primitives.primary400,

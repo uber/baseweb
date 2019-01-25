@@ -11,15 +11,13 @@ import Dropzone from 'react-dropzone';
 
 import {Button, KIND} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {ProgressBar} from '../progress-bar/index.js';
 
 import {
   StyledRoot,
   StyledFileDragAndDrop,
   StyledContentMessage,
-  StyledContentSeparator,
-  StyledFilesList,
-  StyledAcceptedFile,
-  StyledRejectedFile,
+  StyledErrorMessage,
   StyledHiddenInput,
 } from './styled-components.js';
 import type {PropsT} from './types.js';
@@ -52,13 +50,7 @@ function makeOverrides(overrides = {}) {
       overrides.ContentMessage,
       StyledContentMessage,
     ),
-    ContentSeparator: makeOverride(
-      overrides.ContentSeparator,
-      StyledContentSeparator,
-    ),
-    FilesList: makeOverride(overrides.FilesList, StyledFilesList),
-    AcceptedFile: makeOverride(overrides.AcceptedFile, StyledAcceptedFile),
-    RejectedFile: makeOverride(overrides.RejectedFile, StyledRejectedFile),
+    ErrorMessage: makeOverride(overrides.ErrorMessage, StyledErrorMessage),
     HiddenInput: makeOverride(overrides.HiddenInput, StyledHiddenInput),
   };
 }
@@ -68,28 +60,25 @@ function Unstable_FileUploader(props: PropsT) {
     Root,
     FileDragAndDrop,
     ContentMessage,
-    ContentSeparator,
-    FilesList,
-    AcceptedFile,
-    RejectedFile,
+    ErrorMessage,
     HiddenInput,
   } = makeOverrides(props.overrides);
 
+  const afterFileDrop = !!(
+    props.progressAmount ||
+    props.progressMessage ||
+    props.errorMessage
+  );
+
   return (
-    <Dropzone {...props}>
+    <Dropzone {...props} disabled={props.disabled || afterFileDrop}>
       {renderProps => {
-        const {
-          acceptedFiles,
-          getRootProps,
-          getInputProps,
-          rejectedFiles,
-          open,
-          ...styleProps
-        } = renderProps;
+        const {getRootProps, getInputProps, open, ...styleProps} = renderProps;
 
         const prefixedStyledProps = prependStyleProps({
           ...styleProps,
           isDisabled: props.disabled,
+          afterFileDrop,
         });
 
         return (
@@ -98,38 +87,91 @@ function Unstable_FileUploader(props: PropsT) {
               {...getRootProps({refKey: '$ref'})}
               {...prefixedStyledProps}
             >
-              <ContentMessage {...prefixedStyledProps}>
-                Drop files here to upload
-              </ContentMessage>
+              {!afterFileDrop && (
+                <React.Fragment>
+                  <ContentMessage {...prefixedStyledProps}>
+                    Drop files here to upload
+                  </ContentMessage>
+                  <ContentMessage {...prefixedStyledProps}>or</ContentMessage>
 
-              <ContentSeparator {...prefixedStyledProps}>or</ContentSeparator>
+                  <Button
+                    aria-controls="fileupload"
+                    disabled={props.disabled}
+                    kind={KIND.minimal}
+                    onClick={open}
+                    overrides={{
+                      BaseButton: {
+                        style: {outline: null, fontWeight: 'normal'},
+                      },
+                    }}
+                    role="button"
+                    {...prefixedStyledProps}
+                  >
+                    Browse files
+                  </Button>
+                </React.Fragment>
+              )}
 
-              <Button
-                aria-controls="fileupload"
-                disabled={props.disabled}
-                kind={KIND.minimal}
-                onClick={open}
-                overrides={{BaseButton: {style: {outline: null}}}}
-                role="button"
-                {...prefixedStyledProps}
-              >
-                Browse files
-              </Button>
+              {afterFileDrop && (
+                <React.Fragment>
+                  {!!props.progressAmount && (
+                    <ProgressBar
+                      value={props.progressAmount}
+                      overrides={{
+                        BarProgress: {
+                          style: ({$theme}) => ({
+                            backgroundColor: props.errorMessage
+                              ? $theme.colors.negative
+                              : $theme.colors.primary,
+                          }),
+                        },
+                      }}
+                    />
+                  )}
+
+                  {(props.errorMessage || props.progressMessage) &&
+                  props.errorMessage ? (
+                    <ErrorMessage>{props.errorMessage}</ErrorMessage>
+                  ) : (
+                    <ContentMessage>{props.progressMessage}</ContentMessage>
+                  )}
+
+                  {props.errorMessage ? (
+                    <Button
+                      kind={KIND.minimal}
+                      onClick={() => {
+                        props.onRetry && props.onRetry();
+                      }}
+                      overrides={{
+                        BaseButton: {
+                          style: {outline: null, fontWeight: 'normal'},
+                        },
+                      }}
+                    >
+                      Retry Upload
+                    </Button>
+                  ) : (
+                    <Button
+                      kind={KIND.minimal}
+                      onClick={() => {
+                        props.onCancel && props.onCancel();
+                      }}
+                      overrides={{
+                        BaseButton: {
+                          style: ({$theme}) => ({
+                            outline: null,
+                            fontWeight: 'normal',
+                            color: $theme.colors.negative,
+                          }),
+                        },
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  )}
+                </React.Fragment>
+              )}
             </FileDragAndDrop>
-
-            <FilesList {...prefixedStyledProps}>
-              {acceptedFiles.map(file => (
-                <AcceptedFile key={file.name} {...prefixedStyledProps}>
-                  {file.name}
-                </AcceptedFile>
-              ))}
-
-              {rejectedFiles.map(file => (
-                <RejectedFile key={file.name} {...prefixedStyledProps}>
-                  {file.name}
-                </RejectedFile>
-              ))}
-            </FilesList>
 
             <HiddenInput
               {...getInputProps({refKey: '$ref'})}
