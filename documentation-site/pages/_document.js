@@ -28,6 +28,10 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
+          <script
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
+          />
           {this.props.stylesheets.map((sheet, i) => (
             <style
               className="_styletron_hydrate_"
@@ -45,10 +49,6 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script
-            type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
-          />
         </body>
       </html>
     );
