@@ -50,7 +50,7 @@ steps:
     agents:
       queue: workers
   - name: ':puppeteer:'
-    command: yarn e2e:puppeteer:ci
+    command: yarn e2e:test:ci
     plugins:
       'docker-compose':
         run: e2e-test
