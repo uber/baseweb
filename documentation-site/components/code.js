@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
-import {coy} from 'react-syntax-highlighter/dist/styles/prism';
 
 type PropsT = {
   children: string,
@@ -15,7 +14,7 @@ type PropsT = {
 };
 
 const Code = (props: PropsT) => (
-  <SyntaxHighlighter language={props.language} style={coy}>
+  <SyntaxHighlighter language={props.language} useInlineStyles={false}>
     {props.children}
   </SyntaxHighlighter>
 );
