@@ -54,7 +54,11 @@ export default () => (
       </Card>
     )}
   >
-    <Button kind={KIND.secondary} endEnhancer={() => <TriangleDown />}>
+    <Button
+      kind={KIND.secondary}
+      endEnhancer={() => <TriangleDown />}
+      $style={{height: '40px'}}
+    >
       Components
     </Button>
   </StatefulPopover>

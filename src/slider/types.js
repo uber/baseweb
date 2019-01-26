@@ -6,9 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import * as React from 'react';
+
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
-import * as React from 'react';
+
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type ParamsT = {
   value: Array<number>,
@@ -30,7 +32,7 @@ export type PropsT = {
    * `Object` it should have `value` and `label`. If more than 2 elements are present
    * in array, they represent all ticks on axis and `step` property is ignored.
    */
-  range: Array<number>,
+  range: Array<number | {value: number, label: React.Node}>,
   /** If `range` contains only min and max points (2 elements) step is to shift thumb
    * every time user moves it left or right. If `step` in place `value` for each `Point`
    * should be of primitive type.

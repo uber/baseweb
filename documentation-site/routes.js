@@ -21,6 +21,10 @@ const routes = [
         text: 'Versioning policy',
         path: '/versioning-policy',
       },
+      {
+        text: 'Storybook (legacy)',
+        path: '/legacy',
+      },
     ],
   },
   {
@@ -142,6 +146,10 @@ const routes = [
           {
             text: 'Unstable Datepicker',
             path: '/components/datepicker',
+          },
+          {
+            text: 'Unstable File Uploader',
+            path: '/components/file-uploader',
           },
         ],
       },

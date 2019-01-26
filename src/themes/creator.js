@@ -103,18 +103,25 @@ export default function createTheme(
       buttonPrimaryText: primitives.mono100, // white
       buttonPrimaryHover: primitives.primary500,
       buttonPrimaryActive: primitives.primary600,
+
       buttonSecondaryFill: primitives.primary50,
       buttonSecondaryText: primitives.primary400,
       buttonSecondaryHover: primitives.primary100,
       buttonSecondaryActive: primitives.primary200,
+
       buttonTertiaryFill: primitives.mono200,
       buttonTertiaryText: primitives.primary400,
       buttonTertiaryHover: primitives.mono400,
       buttonTertiaryActive: primitives.mono500,
+      // button $selected only applies to tertiary variant.
+      buttonTertiarySelectedFill: primitives.primary400,
+      buttonTertiarySelectedText: primitives.mono100,
+
       buttonMinimalFill: 'transparent',
       buttonMinimalText: primitives.primary400,
       buttonMinimalHover: primitives.mono200,
       buttonMinimalActive: primitives.mono400,
+
       buttonDisabledFill: primitives.mono300,
       buttonDisabledText: primitives.mono600,
 

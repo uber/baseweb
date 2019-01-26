@@ -9,6 +9,9 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {
   StyledRoot,
+  StyledQuickSelectContainer,
+  StyledQuickSelectLabel,
+  StyledQuickSelectButtons,
   StyledCalendarContainer,
   StyledHeader,
   StyledMonthHeader,
@@ -20,6 +23,9 @@ import {calculateBorderRadius as calcRadius} from '../styled-components.js';
 
 const styledComponents = [
   [StyledRoot, 'StyledRoot'],
+  [StyledQuickSelectContainer, 'StyledQuickSelectContainer'],
+  [StyledQuickSelectLabel, 'StyledQuickSelectLabel'],
+  [StyledQuickSelectButtons, 'StyledQuickSelectButtons'],
   [StyledCalendarContainer, 'StyledCalendarContainer'],
   [StyledHeader, 'StyledHeader'],
   [StyledMonthHeader, 'StyledMonthHeader'],

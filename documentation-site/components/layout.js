@@ -17,12 +17,13 @@ import {
   StyledNavigationList as NavigationList,
   ALIGN,
 } from 'baseui/header-navigation';
-import {StatefulSelect, TYPE} from 'baseui/select';
 
 import ComponentMenu from './component-menu';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import Logo from '../images/Logo.png';
+import GithubLogo from './github-logo';
+import Search from './search';
 
 type PropsT = {
   children: React.Node,
@@ -51,25 +52,37 @@ export default (props: PropsT) => (
               overrides={{Block: {style: {cursor: 'pointer'}}}}
             />
           </Link>
-          <Block marginLeft="scale1600" width="288px">
-            <StatefulSelect
-              options={[]}
-              placeholder="Search"
-              type={TYPE.search}
-            />
-          </Block>
         </Block>
       </NavigationList>
       <NavigationList align={ALIGN.center} />
       <NavigationList align={ALIGN.right}>
-        <Block display="flex" marginRight="scale800">
+        <Search />
+        <Block marginLeft="scale600">
           <ComponentMenu />
         </Block>
-        <Link href="/getting-started" prefetch>
-          <Button>Get Started</Button>
-        </Link>
-        <Block $as="a" href="/legacy" marginLeft="scale800">
-          <Button kind={ButtonKind.tertiary}>Storybook (legacy)</Button>
+        <Block
+          $as="a"
+          href="https://github.com/uber-web/baseui"
+          marginLeft="scale600"
+          $style={{textDecoration: 'none'}}
+          target="_blank"
+        >
+          <Button
+            kind={ButtonKind.secondary}
+            overrides={{
+              EndEnhancer: {
+                style: {
+                  marginLeft: 0,
+                },
+              },
+            }}
+            endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
+          />
+        </Block>
+        <Block marginLeft="scale600">
+          <Link href="/getting-started" prefetch>
+            <Button>Get Started</Button>
+          </Link>
         </Block>
       </NavigationList>
     </HeaderNavigation>
