@@ -10,17 +10,24 @@ LICENSE file in the root directory of this source tree.
 
 const {resolve} = require('path');
 const withImages = require('next-images');
+const rehypePrism = require('@mapbox/rehype-prism');
 const withMDX = require('@zeit/next-mdx')({
   extension: /\.mdx?$/,
+  options: {
+    hastPlugins: [rehypePrism],
+  },
 });
+const withCSS = require('@zeit/next-css');
 
-module.exports = withMDX(
-  withImages({
-    webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
-      config.resolve.alias.baseui = resolve(__dirname, '../dist');
-      config.resolve.alias.examples = resolve(__dirname, 'static/examples');
-      return config;
-    },
-    pageExtensions: ['js', 'jsx', 'mdx'],
-  }),
+module.exports = withCSS(
+  withMDX(
+    withImages({
+      webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
+        config.resolve.alias.baseui = resolve(__dirname, '../dist');
+        config.resolve.alias.examples = resolve(__dirname, 'static/examples');
+        return config;
+      },
+      pageExtensions: ['js', 'jsx', 'mdx'],
+    }),
+  ),
 );

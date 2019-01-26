@@ -16,10 +16,16 @@ Add `baseui` and it's peer dependencies to your project:
 ```bash
 # using yarn
 yarn add baseui styletron-react styletron-react-core styletron-standard styletron-engine-atomic
+```
 
+```bash
 # using npm
 npm install baseui styletron-react styletron-react-core styletron-standard styletron-engine-atomic
 ```
+
+[Styletron](https://github.com/styletron/styletron) is a toolkit for component-oriented styling, part of the CSS in JS family. Base UI uses
+Styletron to style all the elements. In order to use Base UI, you need to do a small setup and wrap the root of your
+application with `StyletronProvider` and `ThemeProvider` components:
 
 ```javascript
 import {Client as Styletron} from 'styletron-engine-atomic';

@@ -13,6 +13,7 @@ import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
 
 import {styletron} from '../helpers/styletron';
+import '../prism-coy.css';
 
 export default class MyApp extends App {
   render() {
