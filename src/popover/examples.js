@@ -75,7 +75,11 @@ export default {
   [examples.SIMPLE_EXAMPLE]: function Story1() {
     return (
       <Centered>
-        <Popover isOpen={knobIsOpen()} content={popoverContent}>
+        <Popover
+          accessibilityType={'tooltip'}
+          isOpen={knobIsOpen()}
+          content={popoverContent}
+        >
           <Button>Open</Button>
         </Popover>
       </Centered>
