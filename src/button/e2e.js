@@ -23,8 +23,8 @@ describe(suite, () => {
   });
 
   it('passes basic a11y tests', async () => {
+    await page.waitFor('button');
     const accessibilityReport = await analyzeAccessibility(page);
-
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });
