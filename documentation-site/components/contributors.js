@@ -13,20 +13,16 @@ import {Block} from 'baseui/block';
 
 const isUser = user => user.type === 'User';
 
-class Contributors extends React.Component {
-  state = {contributors: []};
-  async componentDidMount() {
-    const res = await fetch(
-      'https://api.github.com/repos/uber-web/baseui/contributors',
-    );
-    const contributors = await res.json();
-    this.setState({contributors});
+function Contributors(props) {
+  if (!props.contributors.length) {
+    return null;
   }
 
-  render() {
-    return (
+  return (
+    <Block>
+      <Block font="font450">Thank you to our contributors:</Block>
       <Block display="flex" flexWrap="wrap" maxWidth="768px">
-        {this.state.contributors.filter(isUser).map(contributor => (
+        {props.contributors.filter(isUser).map(contributor => (
           <Block
             as="a"
             href={contributor.html_url}
@@ -53,8 +49,8 @@ class Contributors extends React.Component {
           </Block>
         ))}
       </Block>
-    );
-  }
+    </Block>
+  );
 }
 
 export default Contributors;
