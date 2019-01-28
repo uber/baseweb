@@ -6,36 +6,24 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Tag Test Suite';
 
-const selectors = {
-  tags: 'span',
-};
-
-describe('The Tag component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
+describe(suite, () => {
+  beforeAll(async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.ALL_BASIC_COLORS,
+      }),
+    );
   });
 
-  xit('passes basic accessibility tests', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.ALL_BASIC_COLORS,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible(selectors.tags)
-      .assert.accessibility('html', {
-        rules: {
-          'color-contrast': {
-            enabled: false,
-          },
-        },
-      });
+  it('passes basic a11y tests', async () => {
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });
