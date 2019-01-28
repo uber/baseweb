@@ -348,7 +348,8 @@ export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
   const {$disabled, $theme} = props;
   const {colors, sizing} = $theme;
   return {
-    ...getSvgStyles({$theme}),
+    // $FlowFixMe
+    ...getSvgStyles(props),
     color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',

@@ -21,7 +21,7 @@ export default function Icon(props: IconPropsT) {
   const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);
 
   return (
-    <Svg {...sharedProps} {...restProps} {...overrideProps}>
+    <Svg {...restProps} {...sharedProps} {...overrideProps}>
       {title ? <title>{title}</title> : null}
       {children}
     </Svg>
