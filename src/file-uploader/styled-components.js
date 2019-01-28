@@ -12,12 +12,13 @@ import type {StylePropsT} from './types.js';
 export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
   return {
     alignItems: 'center',
-    backgroundColor: props.$theme.colors.fileUploaderBackgroundColor,
+    backgroundColor: props.$isDragActive
+      ? props.$theme.colors.fileUploaderBackgroundColorActive
+      : props.$theme.colors.fileUploaderBackgroundColor,
     borderColor: props.$isDragActive
       ? props.$theme.colors.fileUploaderBorderColorActive
       : props.$theme.colors.fileUploaderBorderColorDefault,
-
-    borderStyle: 'dashed',
+    borderStyle: props.$afterFileDrop ? 'none' : 'dashed',
     borderRadius: props.$theme.borders.useRoundedCorners
       ? props.$theme.borders.radius200
       : null,
@@ -35,23 +36,17 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
 });
 
 export const StyledContentMessage = styled('div', (props: StylePropsT) => ({
-  ...props.$theme.typography.font450,
+  ...props.$theme.typography.font400,
 }));
 
-export const StyledContentSeparator = styled('div', (props: StylePropsT) => ({
-  color: props.$theme.colors.fileUploaderSeparatorColor,
+export const StyledErrorMessage = styled('div', (props: StylePropsT) => ({
+  ...props.$theme.typography.font400,
+  color: props.$theme.colors.negative,
 }));
 
 export const StyledRoot = styled('div', (props: StylePropsT) => ({
-  ...props.$theme.typography.font450,
+  ...props.$theme.typography.font400,
+  color: props.$theme.colors.fileUploaderMessageColor,
 }));
-
-export const StyledFilesList = styled('ul');
 
 export const StyledHiddenInput = styled('input');
-
-export const StyledAcceptedFile = styled('li');
-
-export const StyledRejectedFile = styled('li', (props: StylePropsT) => ({
-  color: props.$theme.colors.negative400,
-}));
