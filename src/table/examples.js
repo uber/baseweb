@@ -58,7 +58,7 @@ function Virtual(props: any) {
   return (
     <StyledTable>
       <StyledContent $width={props.width + 'px'}>
-        <StyledHead>
+        <StyledHead $width={props.width + 'px'}>
           {props.columns.map((column, index) => (
             <StyledHeadCell key={index}>{column}</StyledHeadCell>
           ))}
@@ -128,7 +128,7 @@ export default {
       <div style={{height: '500px', maxWidth: '1200px', marginTop: '48px'}}>
         <Table
           columns={[...new Array(10)].map(() => 'Column Name')}
-          data={[...new Array(20)].map(() =>
+          data={[...new Array(40)].map(() =>
             [...new Array(10)].map(() => 'Cell Data'),
           )}
           horizontalScrollWidth="2200px"

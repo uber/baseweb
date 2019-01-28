@@ -18,19 +18,19 @@ export const Table = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
-type ContentProps = {
+type HorizontalStyleProps = {
   ...SharedStylePropsT,
-  $height: string,
-  $width: string,
+  $width?: string,
 };
-export const Content = styled('div', ({$height, $width}: ContentProps) => {
+
+export const Content = styled('div', ({$width}: HorizontalStyleProps) => {
   return {
-    height: $height ? $height : '100%',
+    height: '100%',
     width: $width ? $width : '100%',
   };
 });
 
-export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
+export const Head = styled('div', ({$theme, $width}: HorizontalStyleProps) => {
   return {
     backgroundColor: $theme.colors.tableHeadBackgroundColor,
     boxShadow: $theme.lighting.shadow400,
@@ -38,6 +38,7 @@ export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
     flexGrow: 0,
     position: 'sticky',
     top: 0,
+    width: $width ? $width : '100%',
   };
 });
 
@@ -75,14 +76,5 @@ export const Cell = styled('div', ({$theme}: SharedStylePropsT) => {
     paddingRight: $theme.sizing.scale600,
     paddingBottom: $theme.sizing.scale300,
     paddingLeft: $theme.sizing.scale600,
-  };
-});
-
-export const Loading = styled('div', ({$theme}: SharedStylePropsT) => {
-  return {
-    ...$theme.typography.font300,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   };
 });
