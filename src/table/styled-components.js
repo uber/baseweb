@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
 
-export const Root = styled('div', ({$theme}: SharedStylePropsT) => {
+export const Table = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.borders.border300,
     borderRadius: $theme.borders.radius200,

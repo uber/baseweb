@@ -16,7 +16,7 @@ import {
 
 import {
   Table,
-  StyledRoot,
+  StyledTable,
   StyledContent,
   StyledHead,
   StyledHeadCell,
@@ -56,7 +56,7 @@ const cache = new CellMeasurerCache({
 // eslint-disable-next-line flowtype/no-weak-types
 function Virtual(props: any) {
   return (
-    <StyledRoot>
+    <StyledTable>
       <StyledContent $width={props.width + 'px'}>
         <StyledHead>
           {props.columns.map((column, index) => (
@@ -90,7 +90,7 @@ function Virtual(props: any) {
           )}
         </AutoSizer>
       </StyledContent>
-    </StyledRoot>
+    </StyledTable>
   );
 }
 

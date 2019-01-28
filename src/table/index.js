@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 export {default as Table} from './table.js';
 // Styled elements
 export {
-  Root as StyledRoot,
+  Table as StyledTable,
   Content as StyledContent,
   Head as StyledHead,
   HeadCell as StyledHeadCell,

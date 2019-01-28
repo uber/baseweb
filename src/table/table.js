@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {
-  Root as StyledRoot,
+  Table as StyledTable,
   Content as StyledContent,
   Head as StyledHead,
   HeadCell as StyledHeadCell,
@@ -30,7 +30,7 @@ export default class Table extends React.Component<TablePropsT> {
 
   render() {
     return (
-      <StyledRoot>
+      <StyledTable>
         <StyledContent $width={this.props.horizontalScrollWidth}>
           <StyledHead>
             {this.props.columns.map((column, index) => (
@@ -48,7 +48,7 @@ export default class Table extends React.Component<TablePropsT> {
             ))}
           </StyledBody>
         </StyledContent>
-      </StyledRoot>
+      </StyledTable>
     );
   }
 }

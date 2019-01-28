@@ -42,7 +42,7 @@ export default = () => <Table columns={['Name', 'Age', 'Address']} data={data}/>
 
 ```javascript
 import {
-  StyledRoot
+  StyledTable
   StyledHead
   StyledHeadCell
   StyledBody
@@ -56,7 +56,7 @@ const data = [
 ];
 
 export default () => (
-  <StyledRoot>
+  <StyledTable>
     <StyledHead>
       <StyledHeadCell>Employee ID</StyledHeadCell>
       <StyledHeadCell>First Name</StyledHeadCell>
@@ -69,7 +69,7 @@ export default () => (
         </StyledRow>
       ))}
     </StyledBody>
-  </StyledRoot>
+  </StyledTable>
 );
 ```
 
@@ -118,7 +118,7 @@ class TableWithPagination extends React.Component {
 ## Exports
 
 * `Table`
-* `StyledRoot`
+* `StyledTable`
 * `StyledHead`
 * `StyledHeadCell`
 * `StyledBody`
