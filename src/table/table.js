@@ -30,19 +30,27 @@ export default class Table extends React.Component<TablePropsT> {
 
   render() {
     return (
-      <StyledTable>
+      <StyledTable
+        role="grid"
+        aria-colcount={this.props.columns.length}
+        aria-rowcount={this.props.data.length}
+      >
         <StyledContent $width={this.props.horizontalScrollWidth}>
-          <StyledHead>
+          <StyledHead role="row">
             {this.props.columns.map((column, index) => (
-              <StyledHeadCell key={index}>{column}</StyledHeadCell>
+              <StyledHeadCell role="columnheader" key={index}>
+                {column}
+              </StyledHeadCell>
             ))}
           </StyledHead>
 
-          <StyledBody>
+          <StyledBody role="rowgroup">
             {this.props.data.map((row, index) => (
-              <StyledRow key={index}>
+              <StyledRow key={index} role="row">
                 {row.map((cell, cellIndex) => (
-                  <StyledCell key={cellIndex}>{cell}</StyledCell>
+                  <StyledCell key={cellIndex} role="gridcell">
+                    {cell}
+                  </StyledCell>
                 ))}
               </StyledRow>
             ))}
