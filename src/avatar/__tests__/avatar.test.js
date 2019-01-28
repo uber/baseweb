@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 
-import {Avatar} from '../index.js';
+import {Avatar, StyledInitials} from '../index.js';
 
 // manually trigger src load error. jsdom will not fire a load event
 // https://github.com/jsdom/jsdom/issues/1816#issuecomment-310106280
@@ -54,5 +54,29 @@ describe('Avatar', () => {
     triggerLoadError(wrapper);
     expect(rootNode.getAttribute('aria-label')).toBe(name);
     expect(rootNode.getAttribute('role')).toBe('img');
+  });
+
+  it('renders user first 2 initials when image fails to load', () => {
+    const name = 'user name';
+    const wrapper = mount(<Avatar name={name} src="invalid-img-src.png" />);
+
+    triggerLoadError(wrapper);
+    expect(wrapper.find(StyledInitials).text()).toBe('UN');
+  });
+
+  it('only renders 2 initials if more names exist when image fails to load', () => {
+    const name = 'user name surname';
+    const wrapper = mount(<Avatar name={name} src="invalid-img-src.png" />);
+
+    triggerLoadError(wrapper);
+    expect(wrapper.find(StyledInitials).text()).toBe('UN');
+  });
+
+  it('only renders 1 initial if one name exists when image fails to load', () => {
+    const name = 'user';
+    const wrapper = mount(<Avatar name={name} src="invalid-img-src.png" />);
+
+    triggerLoadError(wrapper);
+    expect(wrapper.find(StyledInitials).text()).toBe('U');
   });
 });
