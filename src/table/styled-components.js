@@ -33,7 +33,7 @@ export const Content = styled('div', ({$height, $width}: ContentProps) => {
 export const Head = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     backgroundColor: $theme.colors.tableHeadBackgroundColor,
-    boxShadow: $theme.colors.tableHeadShadow,
+    boxShadow: $theme.lighting.shadow400,
     display: 'flex',
     flexGrow: 0,
     position: 'sticky',

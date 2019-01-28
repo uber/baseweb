@@ -11,8 +11,7 @@ import * as React from 'react';
 import type {ThemeT} from '../styles/types.js';
 
 export type TablePropsT = {|
-  columns: Array<string>,
-  // eslint-disable-next-line flowtype/no-weak-types
+  columns: Array<string | React.Node>,
   data: Array<Array<React.Node>>,
   horizontalScrollWidth?: string,
   isLoading?: boolean,
