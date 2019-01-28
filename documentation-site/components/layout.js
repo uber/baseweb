@@ -17,13 +17,13 @@ import {
   StyledNavigationList as NavigationList,
   ALIGN,
 } from 'baseui/header-navigation';
-import {StatefulSelect, TYPE} from 'baseui/select';
 
 import ComponentMenu from './component-menu';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import Logo from '../images/Logo.png';
 import GithubLogo from './github-logo';
+import Search from './search';
 
 type PropsT = {
   children: React.Node,
@@ -52,18 +52,14 @@ export default (props: PropsT) => (
               overrides={{Block: {style: {cursor: 'pointer'}}}}
             />
           </Link>
-          <Block marginLeft="scale1600" width="288px">
-            <StatefulSelect
-              options={[]}
-              placeholder="Search"
-              type={TYPE.search}
-            />
-          </Block>
         </Block>
       </NavigationList>
       <NavigationList align={ALIGN.center} />
       <NavigationList align={ALIGN.right}>
-        <ComponentMenu />
+        <Search />
+        <Block marginLeft="scale600">
+          <ComponentMenu />
+        </Block>
         <Block
           $as="a"
           href="https://github.com/uber-web/baseui"
