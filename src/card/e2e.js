@@ -6,34 +6,34 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Card Test Suite';
 
-describe('The card component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
-  });
+describe(suite, () => {
+  const scenariosList = Object.keys(scenarios);
 
-  Object.keys(scenarios).forEach(scenario => {
-    xit(`passes basic a11y tests for ${scenario}`, browser => {
-      goToUrl({
-        suite,
-        test: scenarios[scenario],
-        browser,
-      })
-        .initAccessibility()
-        .waitForElementVisible('body')
-        .assert.accessibility('html', {
-          rules: {
-            'image-alt': {
-              enabled: false,
-            },
+  for (let i = 0; i < scenariosList.length; i++) {
+    it(`passes basic a11y tests for ${scenariosList[i]}`, async () => {
+      const page = await browser.newPage();
+      await page.goto(
+        getPuppeteerUrl({
+          suite,
+          test: scenarios[scenariosList[i]],
+        }),
+      );
+
+      const accessibilityReport = await analyzeAccessibility(page, {
+        rules: [
+          {
+            id: 'image-alt',
+            enabled: false,
           },
-        });
+        ],
+      });
+      expect(accessibilityReport).toHaveNoAccessibilityIssues();
     });
-  });
+  }
 });

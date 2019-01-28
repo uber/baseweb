@@ -6,10 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Tooltip Test Suite';
 
@@ -17,33 +16,21 @@ const selectors = {
   tooltip: '[role="tooltip"]',
 };
 
-describe('The tooltip component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
+describe(suite, () => {
+  beforeAll(async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.SIMPLE_EXAMPLE,
+      }),
+    );
   });
 
-  xit('passes basic a11y tests', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.SIMPLE_EXAMPLE,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible('body')
-      .moveToElement('span', 10, 10)
-      .assert.accessibility('html', {});
-  });
-
-  it('hover opens the popover', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.SIMPLE_EXAMPLE,
-      browser,
-    })
-      .waitForElementVisible('body')
-      .moveToElement('span', 10, 10)
-      .waitForElementPresent(selectors.tooltip)
-      .moveToElement('body', 10, 10)
-      .waitForElementNotPresent(selectors.tooltip);
+  it('passes basic a11y tests when hovered', async () => {
+    await page.waitFor('span');
+    await page.hover('span');
+    await page.waitFor(selectors.tooltip);
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
+/* global document */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Modal Test Suite';
 
@@ -19,37 +19,45 @@ const selectors = {
   dialog: '[role="dialog"]',
 };
 
-describe('The modal component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
-  });
+describe(suite, () => {
+  it('handles focus changes properly', async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.SIMPLE_EXAMPLE,
+      }),
+    );
+    await page.waitFor(selectors.closeButton);
+    // close modal to start fresh
+    await page.click(selectors.closeButton);
+    await page.waitFor(selectors.closeButton, {
+      hidden: true,
+    });
+    await page.click(selectors.openModal);
+    await page.waitFor(selectors.dialog);
 
-  xit('handles focus changes properly', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.SIMPLE_EXAMPLE,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible(selectors.closeButton)
-      // close modal to start fresh
-      .click(selectors.closeButton)
-      .waitForElementNotPresent(selectors.closeButton)
-      .click(selectors.openModal)
-      .waitForElementPresent(selectors.dialog)
-      // dialog should be the focused element
-      .assert.hasFocus(selectors.dialog)
-      .assert.accessibility('html', {
-        rules: {
-          'color-contrast': {
-            enabled: false,
-          },
-        },
-      })
-      // close again
-      .click(selectors.closeButton)
-      .waitForElementNotPresent(selectors.closeButton)
-      // open button should be in focus
-      .assert.hasFocus(selectors.openModal);
+    const dialogIsFocused = await page.$eval(
+      selectors.dialog,
+      dialog => dialog === document.activeElement,
+    );
+
+    // dialog should be the focused element
+    expect(dialogIsFocused).toBe(true);
+
+    // dialog should be accessible
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+
+    // close again
+    await page.click(selectors.closeButton);
+    await page.waitFor(selectors.closeButton, {
+      hidden: true,
+    });
+
+    const openIsFocused = await page.$eval(
+      selectors.openModal,
+      button => button === document.activeElement,
+    );
+    expect(openIsFocused).toBe(true);
   });
 });

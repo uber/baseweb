@@ -6,10 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {analyzeAccessibility, getPuppeteerUrl} = require('../../e2e/helpers');
 
 const suite = 'Popover Test Suite';
 
@@ -17,45 +16,48 @@ const selectors = {
   tooltip: '[role="tooltip"]',
 };
 
-describe('The popover component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
+describe(suite, () => {
+  it('passes basic a11y tests', async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.SIMPLE_EXAMPLE,
+      }),
+    );
+    await page.waitFor(selectors.tooltip);
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  xit('passes basic a11y tests', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.SIMPLE_EXAMPLE,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible('button')
-      .assert.accessibility('html', {});
+  it('hover opens the popover', async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.WITH_HOVER,
+      }),
+    );
+    await page.waitFor('button');
+    await page.hover('button');
+    await page.waitFor(selectors.tooltip);
+    await page.mouse.move(0, 0);
+    await page.waitFor(selectors.tooltip, {
+      hidden: true,
+    });
   });
 
-  it('hover opens the popover', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.WITH_HOVER,
-      browser,
-    })
-      .waitForElementVisible('button')
-      .moveToElement('button', 10, 10)
-      .waitForElementPresent(selectors.tooltip)
-      .moveToElement('body', 10, 10)
-      .waitForElementNotPresent(selectors.tooltip);
-  });
-
-  it('opened popover can be closed with ESC', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.WITH_CLICK,
-      browser,
-    })
-      .waitForElementVisible('button')
-      .click('button')
-      .waitForElementPresent(selectors.tooltip)
-      .keys('\uE00C')
-      .waitForElementNotPresent(selectors.tooltip);
+  it('opened popover can be closed with ESC', async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.WITH_CLICK,
+      }),
+    );
+    await page.waitFor('button');
+    await page.click('button');
+    await page.waitFor(selectors.tooltip);
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.tooltip, {
+      hidden: true,
+    });
   });
 });
