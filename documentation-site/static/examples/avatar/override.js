@@ -26,7 +26,7 @@ export default () => {
 
   return (
     <React.Fragment>
-      <Block>
+      <Block display="flex" alignItems="center">
         <Avatar
           overrides={borderOverrides}
           name="user name #1"
@@ -36,12 +36,12 @@ export default () => {
 
         <Avatar
           overrides={borderOverrides}
-          name="user name #2"
+          name="beyonce knowles"
           size="scale1400"
           src="https://not-a-real-image.png"
         />
       </Block>
-      <Block>
+      <Block display="flex" alignItems="center">
         <Avatar
           overrides={squaredOverrides}
           name="user name #3"
@@ -51,7 +51,7 @@ export default () => {
 
         <Avatar
           overrides={squaredOverrides}
-          name="user name #4"
+          name="beyonce knowles"
           size="scale1400"
           src="https://not-a-real-image.png"
         />
