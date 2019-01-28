@@ -11,5 +11,5 @@ LICENSE file in the root directory of this source tree.
 module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   preset: 'jest-puppeteer',
-  testRegex: './*\\pup-e2e\\.js$', //only for now, will be changed back to e2e.js
+  testRegex: './*\\e2e\\.js$', //only for now, will be changed back to e2e.js
 };

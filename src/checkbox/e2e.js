@@ -6,10 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Checkbox Test Suite';
 
@@ -19,22 +18,28 @@ const selectors = {
   radioMain: '[data-name="radioMain"] label input[type="checkbox"]',
 };
 
-describe('The checkbox component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
+describe(suite, () => {
+  beforeAll(async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.INDETERMINATE,
+      }),
+    );
   });
 
-  xit('can switch states', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.INDETERMINATE,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible(selectors.radioOne)
-      .click(selectors.radioOne)
-      .click(selectors.radioTwo)
-      .assert.accessibility('html', {})
-      .assert.attributeEquals(selectors.radioMain, 'checked', 'true');
+  it('can switch states', async () => {
+    await page.waitFor(selectors.radioOne);
+    await page.click(selectors.radioOne);
+    await page.click(selectors.radioTwo);
+
+    const checked = await page.$eval(
+      selectors.radioMain,
+      input => input.checked,
+    );
+    expect(checked).toBe(true);
+
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

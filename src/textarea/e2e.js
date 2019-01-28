@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
+
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Textarea Test Suite';
 
@@ -17,49 +17,42 @@ const selectors = {
   input: 'textarea[placeholder="Uncontrolled textarea"]',
 };
 
-describe('The textarea component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
+describe(suite, () => {
+  beforeAll(async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.SIMPLE_EXAMPLE,
+      }),
+    );
   });
 
-  xit('passes basic a11y tests', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.SIMPLE_EXAMPLE,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible(selectors.input)
-      .assert.accessibility('html', {
-        rules: {
-          label: {
-            enabled: false,
-          },
+  it('passes basic a11y tests', async () => {
+    await page.waitFor(selectors.input);
+    const accessibilityReport = await analyzeAccessibility(page, {
+      rules: [
+        {
+          id: 'label',
+          enabled: false,
         },
-      });
+      ],
+    });
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('preset value is displayed', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.SIMPLE_EXAMPLE,
-      browser,
-    })
-      .waitForElementVisible(selectors.input)
-      .getValue(selectors.input, function(result) {
-        this.assert.equal(result.value, 'initial value');
-      });
+  it('preset value is displayed', async () => {
+    await page.waitFor(selectors.input);
+
+    const value = await page.$eval(selectors.input, input => input.value);
+    expect(value).toBe('initial value');
   });
-  it('entered value is displayed', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.SIMPLE_EXAMPLE,
-      browser,
-    })
-      .waitForElementVisible(selectors.input)
-      .setValue(selectors.input, ' updated')
-      .getValue(selectors.input, function(result) {
-        this.assert.equal(result.value, 'initial value updated');
-      });
+
+  it('entered value is displayed', async () => {
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.keyboard.type('!');
+
+    const value = await page.$eval(selectors.input, input => input.value);
+    expect(value).toBe('initial value!');
   });
 });
