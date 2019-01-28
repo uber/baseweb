@@ -62,9 +62,10 @@ export const DarkTheme = createTheme(
 
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono700,
+      fileUploaderBackgroundColorActive: primitives.mono600,
       fileUploaderBorderColorActive: primitives.primary400,
       fileUploaderBorderColorDefault: primitives.mono500,
-      fileUploaderSeparatorColor: primitives.mono100,
+      fileUploaderMessageColor: primitives.mono100,
 
       // Links
       linkText: primitives.primary300,

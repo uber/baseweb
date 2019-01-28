@@ -13,10 +13,7 @@ export {
   StyledRoot,
   StyledFileDragAndDrop,
   StyledContentMessage,
-  StyledContentSeparator,
-  StyledFilesList,
-  StyledAcceptedFile,
-  StyledRejectedFile,
+  StyledErrorMessage,
   StyledHiddenInput,
 } from './styled-components.js';
 

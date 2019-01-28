@@ -10,6 +10,7 @@ import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type StylePropsT = {|
+  $afterFileDrop: boolean,
   $isDisabled: boolean,
   $isDragActive: boolean,
   $isDragAccept: boolean,
@@ -23,10 +24,9 @@ export type OverridesT<T> = {|
   FileDragAndDrop?: OverrideT<T>,
   ContentMessage?: OverrideT<T>,
   ContentSeparator?: OverrideT<T>,
-  FilesList?: OverrideT<T>,
   HiddenInput?: OverrideT<T>,
-  AcceptedFile?: OverrideT<T>,
-  RejectedFile?: OverrideT<T>,
+  ProgressMessage?: OverrideT<T>,
+  ErrorMessage?: OverrideT<T>,
 |};
 
 export type PropsT = {|
@@ -54,7 +54,12 @@ export type PropsT = {|
   preventDropOnDocument?: boolean,
 
   // baseui
+  errorMessage?: string,
+  onCancel?: () => mixed,
+  onRetry?: () => mixed,
   overrides?: OverridesT<StylePropsT>,
+  progressAmount?: number,
+  progressMessage?: string,
 |};
 
 type DropFilesEventHandlerT = (
