@@ -7,30 +7,29 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
+
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Menu Test Suite';
 
 const selectors = {
   menu: '[role="main"]',
-  firstItem: '[role="main"] li:first-child',
 };
 
-describe('The menu component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
+describe(suite, () => {
+  beforeAll(async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.MENU,
+      }),
+    );
   });
 
-  xit('passes basic a11y tests', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.MENU,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible(selectors.menu)
-      .assert.accessibility('html', {});
+  it('passes basic a11y tests', async () => {
+    await page.waitFor(selectors.menu);
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });
