@@ -80,7 +80,7 @@ export default (props: PropsT) => (
           />
         </Block>
         <Block marginLeft="scale600">
-          <Link href="/getting-started" prefetch>
+          <Link href="/getting-started/installation" prefetch>
             <Button>Get Started</Button>
           </Link>
         </Block>
