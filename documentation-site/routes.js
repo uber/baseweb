@@ -138,7 +138,7 @@ const routes = [
           },
           {
             text: 'Table',
-            path: getPath('/components/table'),
+            path: '/components/table',
           },
         ],
       },
