@@ -132,6 +132,10 @@ const routes = [
             text: 'Tag',
             path: '/components/tag',
           },
+          {
+            text: 'Typography',
+            path: '/components/typography',
+          },
         ],
       },
       {

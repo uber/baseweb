@@ -16,16 +16,30 @@ export default Layout;
 
 # Toast
 
+Toasts can be dismissed and sit on top of a view in various position options - top/right, top/center,
+top/left, bottom/right, bottom/center, bottom/left. Toasts are intended to provide feedback to a user
+and self-dismiss after a short time with an option to self-dismiss. Each toast can be colored to fit
+it’s status type of neutral, positive, warning and alert.
+
 ## Examples
 
 <Example title="Toaster Basic Usage" path="examples/toast/basic.js">
   <ToastBasic />
 </Example>
 
-<Example title="Toast Notification Basic Usage" path="examples/toast/toast-notification.js">
+<Example
+  title="Toast Notification Basic Usage"
+  path="examples/toast/toast-notification.js"
+>
   <ToastNotification />
 </Example>
 
-<API heading="Toaster API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/toast/toaster.js')}/>
+<API
+  heading="Toaster API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/toast/toaster.js')}
+/>
 
-<API heading="Toast API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/toast/toast.js')}/>
+<API
+  heading="Toast API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/toast/toast.js')}
+/>
