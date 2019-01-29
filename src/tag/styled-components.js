@@ -68,8 +68,13 @@ export const Root = styled('span', props => {
     typography: {font250},
   } = $theme;
   const color = getColor($theme, $kind, $color);
+  const paddingRightIfNotCloseable = props.$closeable
+    ? {}
+    : {paddingRight: scale500};
+
   return {
     ...font250,
+    ...paddingRightIfNotCloseable,
     display: 'inline-flex',
     height: scale800,
     marginTop: '5px',

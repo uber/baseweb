@@ -2,6 +2,7 @@
 
 exports[`Stateless tag should render component: Component has correct render 1`] = `
 <Tag
+  closeable={true}
   disabled={false}
   isFocused={false}
   isHovered={false}
@@ -10,6 +11,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   overrides={Object {}}
 >
   <MockStyledComponent
+    $closeable={true}
     $disabled={false}
     $isFocused={false}
     $isHovered={false}
@@ -20,6 +22,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     >
       Some tag
       <MockStyledComponent
+        $closeable={true}
         $disabled={false}
         $isFocused={false}
         $isHovered={false}
