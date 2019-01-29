@@ -108,6 +108,7 @@
     "front-matter": "^3.0.1",
     "geckodriver": "^1.11.0",
     "husky": "^1.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "jest": "^23.3.0",
     "jest-enzyme": "^7.0.0",
     "jest-matcher-utils": "^24.0.0",

@@ -16,4 +16,5 @@ if (prod) {
 
 module.exports = {
   'process.env.STATIC_ROOT': '/static/',
+  'process.env.GITHUB_AUTH_TOKEN': process.env.GITHUB_AUTH_TOKEN || '',
 };
