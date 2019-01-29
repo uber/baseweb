@@ -136,6 +136,10 @@ const routes = [
             text: 'Typography',
             path: '/components/typography',
           },
+          {
+            text: 'Table',
+            path: '/components/table',
+          },
         ],
       },
       {
