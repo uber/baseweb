@@ -44,7 +44,7 @@ class Overrides extends React.Component {
         <StyledBody>
           <Block as="p" font="font400">
             Additionally, you can{' '}
-            <Link passHref={true} href={'/understanding-overrides'}>
+            <Link passHref={true} href={'/theming/understanding-overrides'}>
               fully customize
             </Link>{' '}
             any part of the <strong>{name}</strong> through the{' '}
