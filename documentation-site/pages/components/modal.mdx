@@ -17,10 +17,26 @@ export default Layout;
 
 A design structure to organize and hide content, so as not to overwhelm the user.
 
+Modals provide an opportunity to display content, focused actions or alerts while maintaining the
+context of an existing view. This limits workflow interruptions and allows for focused
+communication and user interactions. There are two types of modals in Base – default and alert.
+Each modal share the same anatomy of a header, footer, and shaded background overlay.
+
+Standard modals are basic containers with a close “X” and the ability the dismiss by clicking outside
+of the modal bounds. The primary action button is a primary system color, complimented by a grey
+cancel action.
+
+The alert modal is to intended to focus the user on an urgent message that requires deliberate
+action. By contrast to standard modals, alert modals have no close “X”, nor do they allow for out
+of bounds dismissal. The primary action is always a system red with a grey cancel action.
+
 ## Examples
 
 <Example title="Modal With Button Trigger" path="examples/modal/basic.js">
   <ModalBasic />
 </Example>
 
-<API heading="Modal API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/modal/modal.js')}/>
+<API
+  heading="Modal API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/modal/modal.js')}
+/>
