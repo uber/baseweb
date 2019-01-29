@@ -16,6 +16,10 @@ import VaryingHeights from 'examples/dnd-list/varyingHeights.js';
 import CustomDragHandle from 'examples/dnd-list/customDragHandle.js';
 import OverrideLabel from 'examples/dnd-list/overrideLabel.js';
 
+import Overrides from '../../components/overrides';
+import {StatefulList} from 'baseui/dnd-list';
+import * as ListExports from 'baseui/dnd-list';
+
 export default Layout;
 
 # Drag and Drop List
@@ -54,6 +58,20 @@ Allows users to create vertically sortable lists supporting drag and drop, touch
 <Example title="Override Label" path="examples/dnd-list/overrideLabel.js">
   <OverrideLabel />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Drag and Drop List"
+  component={ListExports}
+  renderExample={props => (
+    <StatefulList
+      removable
+      initialState={{items: ['Item 1', 'Item 2', 'Item 3', 'Item 4']}}
+      overrides={props.overrides}
+    />
+  )}
+/>
 
 <API
   heading="List API"
