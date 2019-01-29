@@ -1,0 +1,63 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/table/basic.js';
+import VerticalScroll from 'examples/table/vertical-scroll.js';
+import HorizontalScroll from 'examples/table/horizontal-scroll.js';
+import Virtual from 'examples/table/virtual.js';
+import VirtualHorizontal from 'examples/table/virtual-horizontal-scroll.js';
+
+export default Layout;
+
+# Table
+
+Display larger amounts of information in a scannable UI.
+
+## Examples
+
+<Example title="Basic Usage" path="examples/table/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Vertical Scroll" path="examples/table/vertical-scroll.js">
+  <VerticalScroll />
+</Example>
+
+<Example title="Horizontal Scroll" path="examples/table/horizontal-scroll.js">
+  <HorizontalScroll />
+</Example>
+
+### Virtualized Table Examples
+
+If your product requires infinite scroll functionality rather than pagination, take a look at the
+examples below for how to integrate `react-virtualized` with the table component. Base UI does not
+contain `react-virtualized` internally. You will need to install it yourself.
+
+<Example
+  title="Virtualized Table Body"
+  path="examples/table/virtual.js"
+  additionalPackages={{'react-virtualized': '^9.21.0'}}
+>
+  <Virtual />
+</Example>
+
+<Example
+  title="Virtualized Horizontal Scroll"
+  path="examples/table/virtual-horizontal-scroll.js"
+  additionalPackages={{'react-virtualized': '^9.21.0'}}
+>
+  <VirtualHorizontal />
+</Example>
+
+<API
+  heading="Table API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/table/table.js')}
+/>
