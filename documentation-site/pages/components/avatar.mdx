@@ -13,6 +13,10 @@ import Sizes from 'examples/avatar/sizes.js';
 import Error from 'examples/avatar/error.js';
 import Override from 'examples/avatar/override.js';
 
+import Overrides from '../../components/overrides';
+import {Avatar} from 'baseui/avatar';
+import * as AvatarExports from 'baseui/avatar';
+
 export default Layout;
 
 # Avatar
@@ -37,6 +41,21 @@ Adds additional visual information about a user.
 <Example title="Example Overrides" path="examples/avatar/override.js">
   <Override />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Avatar"
+  component={AvatarExports}
+  renderExample={props => (
+    <Avatar
+      overrides={props.overrides}
+      name="user name #1"
+      size="scale1400"
+      src="https://api.adorable.io/avatars/285/11@adorable.io.png"
+    />
+  )}
+/>
 
 <API
   heading="Avatar API"
