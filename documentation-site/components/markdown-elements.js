@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Block} from 'baseui/block';
-import {StyledLink} from 'baseui/link';
 
 type Props = {
   children: React.Node,
@@ -52,7 +51,6 @@ const Paragraph = (props: Props) => (
 const UnorderedList = (props: Props) => <Block>{props.children}</Block>;
 
 export default {
-  a: StyledLink,
   code: Code,
   h1: Title,
   h2: SubTitle,
