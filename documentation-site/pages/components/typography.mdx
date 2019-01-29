@@ -1,0 +1,43 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Heading from 'examples/typography/heading.js';
+import Text from 'examples/typography/text.js';
+import Display from 'examples/typography/display.js';
+
+export default Layout;
+
+# Typography
+
+A set of heading and text block components for an out-of-the-box path to the BaseUI font standard.
+
+### When to use
+
+- Use the drop-in typhography components for titles and text blocks in an app.
+
+## Examples
+
+<Example title="Headings" path="examples/typography/heading.js">
+  <Heading />
+</Example>
+
+<Example title="Text Blocks" path="examples/typography/text.js">
+  <Text />
+</Example>
+
+<Example title="Display Block" path="examples/typography/display.js">
+  <Display />
+</Example>
+
+<API
+  heading="Typography API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/typography/index.js')}
+/>
