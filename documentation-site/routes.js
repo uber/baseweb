@@ -28,23 +28,22 @@ const routes = [
         text: 'Versioning policy',
         path: '/getting-started/versioning-policy',
       },
-      {
-        text: 'Supported platforms',
-        path: '/getting-started/supported-platforms',
-      },
     ],
   },
   {
     text: 'Theming',
-    path: '/custom-themes',
     children: [
       {
+        text: 'Intro to Theming',
+        path: '/theming/custom-themes',
+      },
+      {
         text: 'Theming values',
-        path: '/theming-values',
+        path: '/theming/theming-values',
       },
       {
         text: 'Understanding Overrides',
-        path: '/understanding-overrides',
+        path: '/theming/understanding-overrides',
       },
     ],
   },
