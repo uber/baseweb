@@ -11,123 +11,66 @@ import Block from '../block/block.js';
 import type {BlockPropsT} from '../block/types.js';
 
 // Captions - aka Caption, CaptionLabel
-export function Caption1(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block font="font200" {...otherProps}>
-      {children}
-    </Block>
-  );
-}
+export const Caption1 = (props: BlockPropsT) => (
+  <Block font="font200" {...props} />
+);
 
-export function Caption2(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block font="font250" {...otherProps}>
-      {children}
-    </Block>
-  );
-}
+export const Caption2 = (props: BlockPropsT) => (
+  <Block font="font250" {...props} />
+);
 
 // Display
-export function Display(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block font="font1100" {...otherProps}>
-      {children}
-    </Block>
-  );
-}
+export const Display = (props: BlockPropsT) => (
+  <Block font="font1100" {...props} />
+);
 
 // Headings
 export function H1(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block as="h1" font="font1000" {...otherProps}>
-      {children}
-    </Block>
-  );
+  const as = props.as || 'h1';
+  return <Block as={as} font="font1000" {...props} />;
 }
 
 export function H2(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block as="h2" font="font900" {...otherProps}>
-      {children}
-    </Block>
-  );
+  const as = props.as || 'h2';
+  return <Block as={as} font="font900" {...props} />;
 }
 
 export function H3(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block as="h3" font="font800" {...otherProps}>
-      {children}
-    </Block>
-  );
+  const as = props.as || 'h3';
+  return <Block as={as} font="font800" {...props} />;
 }
 
 export function H4(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block as="h4" font="font700" {...otherProps}>
-      {children}
-    </Block>
-  );
+  const as = props.as || 'h4';
+  return <Block as={as} font="font700" {...props} />;
 }
 
 export function H5(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block as="h5" font="font600" {...otherProps}>
-      {children}
-    </Block>
-  );
+  const as = props.as || 'h5';
+  return <Block as={as} font="font600" {...props} />;
 }
 
 export function H6(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block as="h6" font="font500" {...otherProps}>
-      {children}
-    </Block>
-  );
+  const as = props.as || 'h6';
+  return <Block as={as} font="font500" {...props} />;
 }
 
-// Labels - aka Label1, Label2 - should they be *50 which is bold or *00?
-export function Label1(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block font="font350" {...otherProps}>
-      {children}
-    </Block>
-  );
-}
+// Labels - aka Label1, Label2
+export const Label1 = (props: BlockPropsT) => (
+  <Block font="font350" {...props} />
+);
 
-export function Label2(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block font="font450" {...otherProps}>
-      {children}
-    </Block>
-  );
-}
+export const Label2 = (props: BlockPropsT) => (
+  <Block font="font450" {...props} />
+);
 
 // Paragraphs - Paragraph1, Paragraph2
 export function Paragraph1(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block as="p" font="font300" {...otherProps}>
-      {children}
-    </Block>
-  );
+  const as = props.as || 'p';
+  return <Block as={as} font="font300" {...props} />;
 }
 
 export function Paragraph2(props: BlockPropsT) {
-  const {children, ...otherProps} = props;
-  return (
-    <Block as="p" font="font400" {...otherProps}>
-      {children}
-    </Block>
-  );
+  const as = props.as || 'p';
+  return <Block as={as} font="font400" {...props} />;
 }
