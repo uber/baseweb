@@ -17,6 +17,11 @@ export default Layout;
 
 # Card
 
+Cards are a self-contained unit of information, usually as part of a feed or series of similar
+content. Cards have a dynamic range of modifiers that allow text-only, text and illustration,
+and photography. All cards have an option to include text links or buttons as a primary action.
+The entire card can become an active click-target.
+
 ## Examples
 
 <Example title="Card Basic Usage" path="examples/card/basic.js">
@@ -27,8 +32,14 @@ export default Layout;
   <CardWithImageCta />
 </Example>
 
-<Example title="Card With Thumbnail and CTA" path="examples/card/thumbnail-cta.js">
+<Example
+  title="Card With Thumbnail and CTA"
+  path="examples/card/thumbnail-cta.js"
+>
   <CardWithThumbnailCta />
 </Example>
 
-<API heading="Card API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/card/card.js')}/>
+<API
+  heading="Card API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/card/card.js')}
+/>

@@ -17,14 +17,26 @@ export default Layout;
 
 # Button
 
-Buttons enable users to commit a change, or complete steps in a task.
+Buttons provide cues for actions and events. These fundamental components allow users to process actions or navigate an experience.
 
 ## When to use
 
 When a person:
 
-* submits a form,
-* starts a new task / action.
+- submits a form,
+- starts a new task / action.
+
+The Button component has 4 different `kind` variants: `primary`, `secondary`, `tertiary`, and `minimal`.
+
+**Primary** buttons are intended to be used as the leading trigger or cue of action. Primary buttons are
+bold with a dominant color background and white text/icons. These are to be used sparingly as the
+sole action of a view. Primary buttons can be accompanied by secondary button to balance action hierarchy.
+
+**Secondary** buttons should be used in combination with a primary button as a way to create action hierarchy.
+Secondary buttons are subdued in value with the primary color text to compliment the primary buttons.
+
+**Tertiary** buttons can used as a substitute for a secondary buttons, but should never take the role of a
+primary button action. As the name implies, it’s offered to supplement to create variation within an experience.
 
 ## Examples
 
@@ -32,12 +44,21 @@ When a person:
   <BasicButton />
 </Example>
 
-<Example title="Button Basic Usage - Compact" path="examples/button/basic-compact.js">
+<Example
+  title="Button Basic Usage - Compact"
+  path="examples/button/basic-compact.js"
+>
   <BasicButtonCompact />
 </Example>
 
-<Example title="Button With Enchancers" path="examples/button/with-enchancers.js">
+<Example
+  title="Button With Enchancers"
+  path="examples/button/with-enchancers.js"
+>
   <WithEnchancer />
 </Example>
 
-<API heading="Button API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button/button.js')}/>
+<API
+  heading="Button API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button/button.js')}
+/>
