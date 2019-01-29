@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import Layout from '../components/layout';
-import Colors from '../components/theming-values/colors';
-import Sizing from '../components/theming-values/sizing';
-import Lighting from '../components/theming-values/lighting';
-import Typography from '../components/theming-values/typography';
+import Layout from '../../components/layout';
+import Colors from '../../components/theming-values/colors';
+import Sizing from '../../components/theming-values/sizing';
+import Lighting from '../../components/theming-values/lighting';
+import Typography from '../../components/theming-values/typography';
 
 function ThemingPage() {
   return (
