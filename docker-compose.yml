@@ -27,48 +27,6 @@ services:
       - BUILDKITE_COMMIT
       - SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub
 
-  # so tests can run against localhost
-  sauce-tunnel:
-    image: henrrich/docker-sauce-connect:latest@sha256:9921657d1a3db8832f868ab25491363756abae52025a8d5af888aadc42ed31e9
-    restart: always
-    expose:
-      - 4445
-    ports:
-      - 4445
-    network_mode: 'host'
-    command:
-      [
-        '-u',
-        '${SAUCE_USERNAME}',
-        '-k',
-        '${SAUCE_ACCESS_KEY}',
-        '-i',
-        '${BUILDKITE_BUILD_NUMBER}',
-        '-p',
-      ]
-    environment:
-      - SAUCE_USERNAME
-      - SAUCE_ACCESS_KEY
-      - BUILDKITE_BUILD_NUMBER
-    healthcheck:
-      test:
-        [
-          'CMD-SHELL',
-          'grep -R "Sauce Connect is up" /tmp/sc-${BUILDKITE_BUILD_NUMBER}.log || exit 1',
-        ]
-      interval: 5s
-      timeout: 5m
-      retries: 10
-      start_period: 30s
-
-  # docker-compose run does not wait on healthchecks, so proxy using this service
-  sauce-tunnel-healthy:
-    build: .
-    network_mode: 'host'
-    depends_on:
-      sauce-tunnel:
-        condition: service_healthy
-
   # this spins up a server that serves the html/js/css for the e2e tests
   e2e-server:
     build: .
@@ -96,29 +54,11 @@ services:
         condition: service_healthy
 
   # running the e2e tests in ci
-  e2e-test-puppeteer:
-    build: .
-    network_mode: 'host'
-    depends_on:
-      - e2e-server-healthy
-    environment:
-      - CODECOV_TOKEN
-      - CI=true
-      - BUILDKITE
-      - BUILDKITE_BRANCH
-      - BUILDKITE_BUILD_NUMBER
-      - BUILDKITE_JOB_ID
-      - BUILDKITE_BUILD_URL
-      - BUILDKITE_PROJECT_SLUG
-      - BUILDKITE_COMMIT
-
-  # running the e2e tests in ci
   e2e-test:
     build: .
     network_mode: 'host'
     depends_on:
       - e2e-server-healthy
-      - sauce-tunnel-healthy
     environment:
       - CODECOV_TOKEN
       - CI=true
@@ -129,8 +69,6 @@ services:
       - BUILDKITE_BUILD_URL
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
-      - SAUCE_USERNAME
-      - SAUCE_ACCESS_KEY
 
   baseui:
     build: .

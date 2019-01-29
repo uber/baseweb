@@ -21,6 +21,8 @@ export type OverridesT = {
 
 export type PropsT = {
   overrides?: OverridesT,
+  /** Include or exclude the "x" button and click action. */
+  closeable?: boolean,
   /** Disable control from being changed. */
   disabled?: boolean,
   isFocused?: boolean,
@@ -39,6 +41,7 @@ export type PropsT = {
 };
 
 export type SharedPropsT = {
+  $closeable?: boolean,
   $color?: string,
   $disabled?: boolean,
   $isActive?: boolean,

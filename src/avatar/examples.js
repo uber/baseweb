@@ -43,7 +43,7 @@ export default {
         {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map(
           (size, index) => (
             <Avatar
-              name={`user name # ${index}`}
+              name={`username`}
               size={size}
               src="https://not-a-real-image.png"
               key={size}
@@ -82,14 +82,14 @@ export default {
         <Row>
           <Avatar
             overrides={borderOverrides}
-            name="user name #1"
+            name="Beyonce Knowles #1"
             size="scale1400"
             src="https://api.adorable.io/avatars/285/11@adorable.io.png"
           />
 
           <Avatar
             overrides={borderOverrides}
-            name="user name #2"
+            name="Beyonce Knowles #2"
             size="scale1400"
             src="https://not-a-real-image.png"
           />
@@ -98,14 +98,14 @@ export default {
         <Row>
           <Avatar
             overrides={squaredOverrides}
-            name="user name #3"
+            name="Beyonce Knowles #3"
             size="scale1400"
             src="https://api.adorable.io/avatars/285/12@adorable.io.png"
           />
 
           <Avatar
             overrides={squaredOverrides}
-            name="user name #4"
+            name="Beyonce Knowles #4"
             size="scale1400"
             src="https://not-a-real-image.png"
           />

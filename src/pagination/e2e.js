@@ -6,10 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Pagination Test Suite';
 
@@ -19,60 +18,65 @@ const selectors = {
   dropDownButton: 'button[data-test="dropdown-button"]',
 };
 
-describe('The pagination component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
+describe(suite, () => {
+  beforeAll(async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.STATEFUL_PAGINATION,
+      }),
+    );
   });
 
-  xit('passes basic accessibility tests', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.STATEFUL_PAGINATION,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible(selectors.prevButton)
-      .assert.accessibility('html', {
-        rules: {
-          'color-contrast': {
-            enabled: false,
-          },
-          'image-alt': {
-            enabled: false,
-          },
-        },
-      });
+  it('passes basic accessibility tests', async () => {
+    await page.waitFor(selectors.prevButton);
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('can be navigated using the prev and next buttons', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.STATEFUL_PAGINATION,
-      browser,
-    });
-
+  it('can be navigated using the prev and next buttons', async () => {
+    await page.waitFor(selectors.prevButton);
     // assert initial state
-    browser.expect.element(selectors.dropDownButton).text.to.equal(1);
+    const initalValue = await page.$eval(
+      selectors.dropDownButton,
+      input => input.textContent,
+    );
+    expect(initalValue).toBe('1');
+
     // paginate to the next page
-    browser.click(selectors.nextButton);
-    browser.expect.element(selectors.dropDownButton).text.to.equal(2);
+    await page.click(selectors.nextButton);
+    let value = await page.$eval(
+      selectors.dropDownButton,
+      input => input.textContent,
+    );
+    expect(value).toBe('2');
+
     // paginate to the previous page
-    browser.click(selectors.prevButton);
-    browser.expect.element(selectors.dropDownButton).text.to.equal(1);
+    await page.click(selectors.prevButton);
+    value = await page.$eval(
+      selectors.dropDownButton,
+      input => input.textContent,
+    );
+    expect(value).toBe('1');
   });
 
-  it('can be navigated using the dropdown menu', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.STATEFUL_PAGINATION,
-      browser,
-    });
-
+  it('can be navigated using the dropdown menu', async () => {
+    await page.waitFor(selectors.prevButton);
     // assert initial state
-    browser.expect.element(selectors.dropDownButton).text.to.equal(1);
+    const initalValue = await page.$eval(
+      selectors.dropDownButton,
+      input => input.textContent,
+    );
+    expect(initalValue).toBe('1');
+
     // paginate using the dropdown menu
-    browser.click(selectors.dropDownButton);
-    browser.click('ul li:nth-child(3)');
-    browser.expect.element(selectors.dropDownButton).text.to.equal(3);
+    await page.click(selectors.dropDownButton);
+    await page.click('ul li:nth-child(3)');
+
+    let value = await page.$eval(
+      selectors.dropDownButton,
+      input => input.textContent,
+    );
+    expect(value).toBe('3');
   });
 });

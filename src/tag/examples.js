@@ -102,4 +102,22 @@ export default {
       </React.Fragment>
     );
   },
+  [tests.UNCLOSEABLE]: () => {
+    return (
+      <React.Fragment>
+        <div style={{width: '200px'}}>
+          {tagStyleKinds.map(kind => (
+            <Tag
+              key={kind}
+              kind={kind}
+              color={kind === 'custom' ? '#748ecc' : undefined}
+              closeable={false}
+            >
+              kind {kind}
+            </Tag>
+          ))}
+        </div>
+      </React.Fragment>
+    );
+  },
 };

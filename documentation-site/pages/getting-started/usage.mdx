@@ -5,26 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Layout from '../components/layout';
+import Layout from '../../components/layout';
 
 export default Layout;
 
-# Getting started with Base UI
+# Base UI Quickstart
 
-Add `baseui` and it's peer dependencies to your project:
-
-```bash
-# using yarn
-yarn add baseui styletron-react styletron-react-core styletron-standard styletron-engine-atomic
-```
-
-```bash
-# using npm
-npm install baseui styletron-react styletron-react-core styletron-standard styletron-engine-atomic
-```
-
-[Styletron](https://github.com/styletron/styletron) is a toolkit for component-oriented styling, part of the CSS in JS family. Base UI uses
-Styletron to style all the elements. In order to use Base UI, you need to do a small setup and wrap the root of your
+In order to use Base UI, you need to do a small setup and wrap the root of your
 application with `StyletronProvider` and `ThemeProvider` components:
 
 ```javascript
@@ -54,3 +41,20 @@ export default function Hello() {
   );
 }
 ```
+
+<iframe
+  title="codesandbox"
+  src="https://codesandbox.io/embed/18qzmnz88q"
+  style={{
+    width: '100%',
+    height: '700px',
+    border: 0,
+    borderRadius: '4px',
+    overflow: 'hidden',
+  }}
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+/>
+
+## Next steps
+
+To learn how to build more complex applications using Base UI, please continue in the [Learn](/getting-started/learn) section.
