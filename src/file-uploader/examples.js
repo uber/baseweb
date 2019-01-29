@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+/* eslint-disable no-console */
+
 import * as React from 'react';
 
 import {Unstable_FileUploader} from './index.js';
@@ -13,7 +15,28 @@ import examples from './examples-list.js';
 
 export default {
   [examples.FILE_UPLOADER_EXAMPLE]: function FileUploaderBasic() {
-    return <Unstable_FileUploader />;
+    return (
+      <React.Fragment>
+        <Unstable_FileUploader />
+
+        <br />
+        <Unstable_FileUploader
+          progressAmount={40}
+          progressMessage="Uploading... 8.24 of 45.08MB"
+          onCancel={() => console.log('cancel')}
+          onRetry={() => console.log('retry')}
+        />
+
+        <br />
+        <Unstable_FileUploader
+          progressAmount={40}
+          progressMessage="Uploading... 8.24 of 45.08MB"
+          errorMessage="Upload failed... connection was lost."
+          onCancel={() => console.log('cancel')}
+          onRetry={() => console.log('retry')}
+        />
+      </React.Fragment>
+    );
   },
 
   [examples.FILE_UPLOADER_ACCEPT]: function FileUploaderAccept() {

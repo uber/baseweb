@@ -12,9 +12,19 @@ import {getOverrides} from '../helpers/overrides.js';
 
 import {
   Avatar as StyledAvatar,
+  Initials as StyledInitials,
   Root as StyledRoot,
 } from './styled-components.js';
 import type {PropsT, StateT} from './types.js';
+
+function getInitials(name) {
+  const words = name.split(' ');
+  const initials = words.map(word => word[0]);
+  return initials
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+}
 
 export default class Avatar extends React.Component<PropsT, StateT> {
   static defaultProps: $Shape<PropsT> = {
@@ -32,6 +42,10 @@ export default class Avatar extends React.Component<PropsT, StateT> {
     const {didImageFailToLoad} = this.state;
     const {name, overrides = {}, size, src} = this.props;
     const [Avatar, avatarProps] = getOverrides(overrides.Avatar, StyledAvatar);
+    const [Initials, initialsProps] = getOverrides(
+      overrides.Initials,
+      StyledInitials,
+    );
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
     return (
@@ -42,7 +56,9 @@ export default class Avatar extends React.Component<PropsT, StateT> {
         $size={size}
         {...rootProps}
       >
-        {!didImageFailToLoad && (
+        {didImageFailToLoad ? (
+          <Initials {...initialsProps}>{getInitials(name)}</Initials>
+        ) : (
           <Avatar
             alt={name}
             onError={this.handleError}

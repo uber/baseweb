@@ -17,6 +17,7 @@ export type StylePropsT = {|
 
 export type OverridesT<T> = {|
   Avatar?: OverrideT<T>,
+  Initials?: OverrideT<T>,
   Root?: OverrideT<T>,
 |};
 
