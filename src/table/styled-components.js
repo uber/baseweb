@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
 
-export const Table = styled('div', ({$theme}: SharedStylePropsT) => {
+export const StyledTable = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.borders.border300,
     borderRadius: $theme.borders.radius200,
@@ -23,26 +23,29 @@ type HorizontalStyleProps = {
   $width?: string,
 };
 
-export const Content = styled('div', ({$width}: HorizontalStyleProps) => {
+export const StyledContent = styled('div', ({$width}: HorizontalStyleProps) => {
   return {
     height: '100%',
     width: $width ? $width : '100%',
   };
 });
 
-export const Head = styled('div', ({$theme, $width}: HorizontalStyleProps) => {
-  return {
-    backgroundColor: $theme.colors.tableHeadBackgroundColor,
-    boxShadow: $theme.lighting.shadow400,
-    display: 'flex',
-    flexGrow: 0,
-    position: 'sticky',
-    top: 0,
-    width: $width ? $width : '100%',
-  };
-});
+export const StyledHead = styled(
+  'div',
+  ({$theme, $width}: HorizontalStyleProps) => {
+    return {
+      backgroundColor: $theme.colors.tableHeadBackgroundColor,
+      boxShadow: $theme.lighting.shadow400,
+      display: 'flex',
+      flexGrow: 0,
+      position: 'sticky',
+      top: 0,
+      width: $width ? $width : '100%',
+    };
+  },
+);
 
-export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
+export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.typography.font350,
     ...$theme.borders.border300,
@@ -60,14 +63,14 @@ export const HeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
-export const Body = styled('div', {});
+export const StyledBody = styled('div', {});
 
-export const Row = styled('div', ({$theme}) => ({
+export const StyledRow = styled('div', ({$theme}) => ({
   display: 'flex',
   alignItems: 'center',
 }));
 
-export const Cell = styled('div', ({$theme}: SharedStylePropsT) => {
+export const StyledCell = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.typography.font300,
     display: 'flex',

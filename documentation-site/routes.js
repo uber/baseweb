@@ -120,6 +120,10 @@ const routes = [
             text: 'Tag',
             path: getPath('/components/tag'),
           },
+          {
+            text: 'Table',
+            path: getPath('/components/table'),
+          },
         ],
       },
       {

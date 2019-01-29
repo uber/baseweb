@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 export {default as Table} from './table.js';
 // Styled elements
 export {
-  Table as StyledTable,
-  Content as StyledContent,
-  Head as StyledHead,
-  HeadCell as StyledHeadCell,
-  Body as StyledBody,
-  Row as StyledRow,
-  Cell as StyledCell,
+  StyledTable,
+  StyledContent,
+  StyledHead,
+  StyledHeadCell,
+  StyledBody,
+  StyledRow,
+  StyledCell,
 } from './styled-components.js';
 // Flow
 export * from './types.js';
