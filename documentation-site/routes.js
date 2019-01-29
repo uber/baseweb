@@ -11,19 +11,26 @@ LICENSE file in the root directory of this source tree.
 const routes = [
   {
     text: 'Getting started',
-    path: '/getting-started',
     children: [
       {
-        text: 'Playground',
-        path: '/playground',
+        text: 'Installation',
+        path: '/getting-started/installation',
+      },
+      {
+        text: 'Usage',
+        path: '/getting-started/usage',
+      },
+      {
+        text: 'Learn',
+        path: '/getting-started/learn',
       },
       {
         text: 'Versioning policy',
-        path: '/versioning-policy',
+        path: '/getting-started/versioning-policy',
       },
       {
-        text: 'Storybook (legacy)',
-        path: '/legacy',
+        text: 'Supported platforms',
+        path: '/getting-started/supported-platforms',
       },
     ],
   },
