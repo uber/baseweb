@@ -13,6 +13,7 @@ import Basic from 'examples/tag/basic.js';
 import Kinds from 'examples/tag/kinds.js';
 import CustomColor from 'examples/tag/custom-color.js';
 import Disabled from 'examples/tag/disabled.js';
+import Uncloseable from 'examples/tag/uncloseable.js';
 
 export default Layout;
 
@@ -42,7 +43,11 @@ Compact UI to display a collection of consice information.
   <Disabled />
 </Example>
 
+<Example title="Uncloseable" path="examples/tag/uncloseable.js">
+  <Uncloseable />
+</Example>
+
 <API
   heading="Tag API"
-  api={require('!!extract-react-types-loader!../../../src/tag/tag.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tag/tag.js')}
 />

@@ -38,7 +38,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <StyledInput
+    <MockStyledComponent
       $adjoined="right"
       $disabled={false}
       $error={false}
@@ -92,7 +92,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <StyledInput
+    <MockStyledComponent
       $adjoined="both"
       $disabled={false}
       $error={false}
@@ -146,7 +146,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <StyledInput
+    <MockStyledComponent
       $adjoined="left"
       $disabled={false}
       $error={false}

@@ -12,12 +12,13 @@ import type {StylePropsT} from './types.js';
 export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
   return {
     alignItems: 'center',
-    backgroundColor: props.$theme.colors.fileUploaderBackgroundColor,
+    backgroundColor: props.$isDragActive
+      ? props.$theme.colors.fileUploaderBackgroundColorActive
+      : props.$theme.colors.fileUploaderBackgroundColor,
     borderColor: props.$isDragActive
       ? props.$theme.colors.fileUploaderBorderColorActive
       : props.$theme.colors.fileUploaderBorderColorDefault,
-
-    borderStyle: 'dashed',
+    borderStyle: props.$afterFileDrop ? 'none' : 'dashed',
     borderRadius: props.$theme.borders.useRoundedCorners
       ? props.$theme.borders.radius200
       : null,
@@ -33,33 +34,19 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
     width: '100%',
   };
 });
-StyledFileDragAndDrop.displayName = 'StyledFileDragAndDrop';
 
 export const StyledContentMessage = styled('div', (props: StylePropsT) => ({
-  ...props.$theme.typography.font450,
+  ...props.$theme.typography.font400,
 }));
-StyledContentMessage.displayName = 'StyledContentMessage';
 
-export const StyledContentSeparator = styled('div', (props: StylePropsT) => ({
-  color: props.$theme.colors.fileUploaderSeparatorColor,
+export const StyledErrorMessage = styled('div', (props: StylePropsT) => ({
+  ...props.$theme.typography.font400,
+  color: props.$theme.colors.negative,
 }));
-StyledContentSeparator.displayName = 'StyledContentSeparator';
 
 export const StyledRoot = styled('div', (props: StylePropsT) => ({
-  ...props.$theme.typography.font450,
+  ...props.$theme.typography.font400,
+  color: props.$theme.colors.fileUploaderMessageColor,
 }));
-StyledRoot.displayName = 'StyledRoot';
-
-export const StyledFilesList = styled('ul');
-StyledFilesList.displayName = 'StyledFilesList';
 
 export const StyledHiddenInput = styled('input');
-StyledHiddenInput.displayName = 'StyledHiddenInput';
-
-export const StyledAcceptedFile = styled('li');
-StyledAcceptedFile.displayName = 'StyledAcceptedFile';
-
-export const StyledRejectedFile = styled('li', (props: StylePropsT) => ({
-  color: props.$theme.colors.negative400,
-}));
-StyledRejectedFile.displayName = 'StyledRejectedFile';

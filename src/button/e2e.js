@@ -6,26 +6,25 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global after */
 
 const scenarios = require('./examples-list');
-const {goToUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const suite = 'Button Test Suite';
 
-describe('The button component', () => {
-  after((browser, done) => {
-    browser.end(() => done());
+describe(suite, () => {
+  beforeAll(async () => {
+    await page.goto(
+      getPuppeteerUrl({
+        suite,
+        test: scenarios.BUTTON_WITH_ENHANCERS,
+      }),
+    );
   });
 
-  xit('passes basic a11y tests', browser => {
-    goToUrl({
-      suite,
-      test: scenarios.BUTTON_WITH_ENHANCERS,
-      browser,
-    })
-      .initAccessibility()
-      .waitForElementVisible('button')
-      .assert.accessibility('html', {});
+  it('passes basic a11y tests', async () => {
+    await page.waitFor('button');
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });

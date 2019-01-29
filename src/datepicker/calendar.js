@@ -6,11 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
+import {Button, KIND} from '../button/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
 import {
   StyledRoot,
   StyledCalendarContainer,
+  StyledQuickSelectContainer,
+  StyledQuickSelectButtons,
+  StyledQuickSelectLabel,
   StyledMonthHeader,
   StyledDay,
 } from './styled-components.js';
@@ -25,6 +29,9 @@ import {
   isSameDay,
   getEffectiveMinDate,
   getEffectiveMaxDate,
+  subWeeks,
+  subMonths,
+  subYears,
 } from './utils/index.js';
 import {WEEKDAYS} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -37,9 +44,9 @@ export default class Calendar extends React.Component<
   static defaultProps = {
     excludeDates: null,
     filterDate: null,
-    highlightDates: null,
     highlightedDate: null,
     includeDates: null,
+    isRange: false,
     locale: null,
     maxDate: null,
     minDate: null,
@@ -74,12 +81,21 @@ export default class Calendar extends React.Component<
     }
   }
 
+  getSingleDate(value: ?Date | Array<Date>): ?Date {
+    // need to check this.props.isRange but flow would complain
+    // at the return value in the else clause
+    if (Array.isArray(value)) {
+      return value[0] || null;
+    }
+    return value;
+  }
+
   getDateInView = (): Date => {
     const {highlightedDate, selected} = this.props;
     const minDate = getEffectiveMinDate(this.props);
     const maxDate = getEffectiveMaxDate(this.props);
     const current = new Date();
-    const initialDate = selected || highlightedDate;
+    const initialDate = this.getSingleDate(selected) || highlightedDate;
     if (initialDate) {
       return initialDate;
     } else {
@@ -90,10 +106,6 @@ export default class Calendar extends React.Component<
       }
     }
     return current;
-  };
-
-  handleDayClick = ({date, event}: {date: Date, event: Event}) => {
-    this.props.onSelect({date});
   };
 
   handleMonthChange = (date: Date) => {
@@ -172,9 +184,9 @@ export default class Calendar extends React.Component<
             date={monthDate}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
-            highlightDates={this.props.highlightDates}
             highlightedDate={this.props.highlightedDate}
             includeDates={this.props.includeDates}
+            isRange={this.props.isRange}
             locale={this.props.locale}
             maxDate={this.props.maxDate}
             minDate={this.props.minDate}
@@ -193,9 +205,97 @@ export default class Calendar extends React.Component<
     return monthList;
   };
 
+  renderQuickSelect = () => {
+    const {overrides = {}} = this.props;
+    const [QuickSelectContainer, quickSelectContainerProps] = getOverrides(
+      overrides.QuickSelectContainer,
+      StyledQuickSelectContainer,
+    );
+    const [QuickSelectLabel, quickSelectLabelProps] = getOverrides(
+      overrides.QuickSelectLabel,
+      StyledQuickSelectLabel,
+    );
+    const [QuickSelectButtons, quickSelectButtonsProps] = getOverrides(
+      overrides.QuickSelectButtons,
+      StyledQuickSelectButtons,
+    );
+
+    if (!this.props.isRange || !this.props.enableQuickSelect) {
+      return null;
+    }
+
+    const NOW = new Date();
+    const QUICK_SELECT_ACTIONS = [
+      {
+        label: 'Past Week',
+        beginDate: subWeeks(NOW, 1),
+      },
+      {
+        label: 'Past Month',
+        beginDate: subMonths(NOW, 1),
+      },
+      {
+        label: 'Past 3 Months',
+        beginDate: subMonths(NOW, 3),
+      },
+      {
+        label: 'Past 6 Months',
+        beginDate: subMonths(NOW, 6),
+      },
+      {
+        label: 'Past Year',
+        beginDate: subYears(NOW, 1),
+      },
+      {
+        label: 'Past 2 Years',
+        beginDate: subYears(NOW, 2),
+      },
+    ];
+
+    return (
+      <QuickSelectContainer {...quickSelectContainerProps}>
+        <QuickSelectLabel {...quickSelectLabelProps}>
+          Quick Select
+        </QuickSelectLabel>
+        <QuickSelectButtons {...quickSelectButtonsProps}>
+          {QUICK_SELECT_ACTIONS.map(({label, beginDate}) => (
+            <Button
+              key={label}
+              kind={KIND.tertiary}
+              onClick={() => {
+                this.props.onSelect({date: [beginDate, NOW]});
+              }}
+              overrides={{
+                BaseButton: {
+                  style: {
+                    flexBasis: 0,
+                    flexGrow: 1,
+                    marginBottom: '8px',
+                    minWidth: '142px',
+                    ':nth-of-type(odd)': {
+                      marginRight: '8px',
+                    },
+                  },
+                },
+              }}
+            >
+              {label}
+            </Button>
+          ))}
+        </QuickSelectButtons>
+      </QuickSelectContainer>
+    );
+  };
+
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    return <Root {...rootProps}>{this.renderMonths()}</Root>;
+
+    return (
+      <Root {...rootProps}>
+        {this.renderMonths()}
+        {this.renderQuickSelect()}
+      </Root>
+    );
   }
 }

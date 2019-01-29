@@ -29,7 +29,6 @@ export const Label = styled('label', props => {
     marginLeft: '0',
   };
 });
-Label.displayName = 'StyledLabel';
 
 export const Caption = styled('div', props => {
   const {
@@ -52,7 +51,6 @@ export const Caption = styled('div', props => {
     marginLeft: '0',
   };
 });
-Caption.displayName = 'StyledCaption';
 
 export const ControlContainer = styled('div', props => {
   const {
@@ -62,4 +60,3 @@ export const ControlContainer = styled('div', props => {
     marginBottom: sizing.scale600,
   };
 });
-ControlContainer.displayName = 'StyledControlContainer';

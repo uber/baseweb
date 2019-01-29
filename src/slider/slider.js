@@ -21,6 +21,21 @@ import {getOverrides} from '../helpers/overrides.js';
 /* global document */
 /* global window */
 
+function getTickValue(tick: number | {value: number}): number {
+  if (typeof tick === 'object') {
+    return tick.value;
+  }
+
+  return tick;
+}
+
+function getTickLabel(tick: number | {label: React.Node}): React.Node {
+  if (typeof tick === 'object') {
+    return tick.label;
+  }
+  return tick;
+}
+
 class Slider extends React.Component<PropsT, StatelessStateT> {
   domNode: ?Element | Text;
 
@@ -131,8 +146,8 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
     return {
       $value: value,
       $range: range,
-      $max: range[range.length - 1],
-      $min: range[0],
+      $max: getTickValue(range[range.length - 1]),
+      $min: getTickValue(range[0]),
       $currentThumb: currentThumb,
       $isRange: value.length % 2 === 0,
     };
@@ -181,7 +196,7 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
         <TickBar {...sharedProps} {...tickBarProps}>
           {range.map((tick, $index) => (
             <Tick key={$index} $index={$index} {...sharedProps} {...tickProps}>
-              {tick}
+              {getTickLabel(tick)}
             </Tick>
           ))}
         </TickBar>

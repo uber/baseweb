@@ -36,6 +36,24 @@ export default {
       </div>
     );
   },
+  [tests.LABELED_RANGE_SLIDER]: () => {
+    return (
+      <div
+        style={{
+          width: '300px',
+        }}
+      >
+        <Slider
+          initialState={{value: [50]}}
+          range={[
+            {value: 0, label: 'Bad'},
+            {value: 50, label: 'Better'},
+            {value: 100, label: 'Best'},
+          ]}
+        />
+      </div>
+    );
+  },
   [tests.AS_SIMPLE_RANGE_SLIDER_WITH_STEP]: () => {
     return (
       <div

@@ -11,8 +11,10 @@ import React from 'react';
 import {LightTheme, ThemeProvider} from 'baseui';
 import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
+import {Block} from 'baseui/block';
 
 import {styletron} from '../helpers/styletron';
+import '../prism-coy.css';
 
 export default class MyApp extends App {
   render() {
@@ -22,6 +24,7 @@ export default class MyApp extends App {
         <StyletronProvider value={styletron}>
           <ThemeProvider theme={LightTheme}>
             <Component {...pageProps} />
+            <Block marginBottom="scale4800" />
           </ThemeProvider>
         </StyletronProvider>
       </Container>

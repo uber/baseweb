@@ -99,6 +99,8 @@ export type ColorsT = {
   buttonTertiaryText: string,
   buttonTertiaryHover: string,
   buttonTertiaryActive: string,
+  buttonTertiarySelectedText: string,
+  buttonTertiarySelectedFill: string,
   buttonMinimalFill: string,
   buttonMinimalText: string,
   buttonMinimalHover: string,
@@ -112,9 +114,10 @@ export type ColorsT = {
 
   // FileUploader
   fileUploaderBackgroundColor: string,
+  fileUploaderBackgroundColorActive: string,
   fileUploaderBorderColorActive: string,
   fileUploaderBorderColorDefault: string,
-  fileUploaderSeparatorColor: string,
+  fileUploaderMessageColor: string,
 
   // Links
   linkText: string,

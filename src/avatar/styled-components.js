@@ -28,14 +28,22 @@ export const Avatar = styled('img', (props: StylePropsT) => {
     width: themedSize,
   };
 });
-Avatar.displayName = 'StyledAvatar';
+
+export const Initials = styled('div', (props: StylePropsT) => ({
+  ...props.$theme.typography.font400,
+  color: props.$theme.colors.mono100,
+  alignItems: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+  height: '100%',
+}));
 
 export const Root = styled('div', (props: StylePropsT) => {
   const {$didImageFailToLoad} = props;
   const themedSize = getSize(props);
 
   return {
-    backgroundColor: props.$theme.colors.mono400,
+    backgroundColor: props.$theme.colors.primary,
     borderRadius: '50%',
     boxSizing: 'border-box',
     display: 'inline-block',
@@ -46,4 +54,3 @@ export const Root = styled('div', (props: StylePropsT) => {
     width: $didImageFailToLoad ? themedSize : null,
   };
 });
-Root.displayName = 'StyledRoot';

@@ -5,13 +5,13 @@ import Upload from 'baseui/icon/upload.js';
 
 export default () => (
   <React.Fragment>
-    <ButtonGroup kind="tertiary">
+    <ButtonGroup>
       <Button>Label</Button>
       <Button>Label</Button>
       <Button>Label</Button>
     </ButtonGroup>
     <br />
-    <ButtonGroup kind="tertiary">
+    <ButtonGroup>
       <Button>
         <Upload size={24} />
       </Button>
@@ -23,7 +23,7 @@ export default () => (
       </Button>
     </ButtonGroup>
     <br />
-    <ButtonGroup kind="tertiary">
+    <ButtonGroup>
       <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
       <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
       <Button startEnhancer={() => <Upload size={24} />}>Label</Button>

@@ -17,8 +17,8 @@ import Routes from '../routes';
 
 const levelToPadding = {
   1: 'scale400',
-  2: 'scale600',
-  3: 'scale800',
+  2: 'scale500',
+  3: 'scale600',
 };
 
 const levelToFont = {
@@ -40,7 +40,7 @@ const List = styled(Block, ({$theme}) => ({
 
 const NavigationLink = props => {
   return (
-    <Block paddingBottom="scale300">
+    <Block>
       <Link passHref={true} href={props.path} prefetch>
         <NavLink tabIndex="0">{props.text}</NavLink>
       </Link>
@@ -49,9 +49,14 @@ const NavigationLink = props => {
 };
 
 const NavigationItem = props => {
-  const {route, level = 1} = props;
+  const {route, index, level = 1} = props;
   return (
-    <Block font={levelToFont[level]} paddingLeft={levelToPadding[level]}>
+    <Block
+      font={levelToFont[level]}
+      paddingLeft={levelToPadding[level]}
+      paddingBottom={level !== 3 ? 'scale100' : 0}
+      paddingTop={index === 0 && level === 3 ? 'scale100' : 0}
+    >
       {route.path ? (
         <NavigationLink path={route.path} text={route.text} />
       ) : (
@@ -61,7 +66,11 @@ const NavigationItem = props => {
         ? route.children.map((childRoute, index) => {
             return (
               <React.Fragment key={index}>
-                <NavigationItem level={level + 1} route={childRoute} />
+                <NavigationItem
+                  level={level + 1}
+                  route={childRoute}
+                  index={index}
+                />
               </React.Fragment>
             );
           })
@@ -73,7 +82,7 @@ const NavigationItem = props => {
 export default () => (
   <List as="ul">
     {Routes.map((route, index) => {
-      return <NavigationItem key={index} route={route} />;
+      return <NavigationItem key={index} route={route} index={index} />;
     })}
   </List>
 );

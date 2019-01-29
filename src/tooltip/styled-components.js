@@ -35,7 +35,6 @@ export const Body = styled('div', props => ({
   transitionProperty: 'opacity',
   transform: getEndPosition(props.$popoverOffset),
 }));
-Body.displayName = 'StyledBody';
 
 export const Inner = styled('div', props => ({
   ...getInnerStyles(props),
@@ -48,10 +47,8 @@ export const Inner = styled('div', props => ({
   ...props.$theme.typography.font250,
   color: props.$theme.colors.background,
 }));
-Inner.displayName = 'StyledInner';
 
 export const Arrow = styled('div', props => ({
   ...getArrowStyles(props),
   backgroundColor: props.$theme.tooltip.backgroundColor,
 }));
-Arrow.displayName = 'StyledArrow';
