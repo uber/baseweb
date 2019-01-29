@@ -80,7 +80,9 @@ function Card(props: CardsPropsT) {
           </Title>
         )}
         <Body {...getOverrideProps(BodyOverride)}>{children}</Body>
-        {action && <Action>{action}</Action>}
+        {action && (
+          <Action {...getOverrideProps(ActionOverride)}>{action}</Action>
+        )}
       </Contents>
     </Root>
   );

@@ -15,6 +15,6 @@ export {
   HeaderImage as StyledHeaderImage,
   Thumbnail as StyledThumbnail,
   Title as StyledTitle,
-  Root as StyledWrapper,
+  Root as StyledRoot,
 } from './styled-components.js';
 export * from './types.js';
