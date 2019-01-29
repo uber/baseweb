@@ -62,6 +62,8 @@ export default () => {
   * Component or String value for label of tag. Default is empty string.
 * `disabled?: boolean = false`:
   * Disable control from being changed.
+* `closeable?: boolean = true`:
+  * Include "x" button and click action in the tag.
 * `overrides?: {Root, Action} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
     * Wrapper element for the whole tag control to apply styles.

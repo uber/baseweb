@@ -63,6 +63,7 @@ Object {
   "opacity": null,
   "paddingBottom": "$theme.sizing.scale100",
   "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale500",
   "paddingTop": "$theme.sizing.scale100",
 }
 `;
@@ -94,6 +95,7 @@ Object {
   "opacity": ".56",
   "paddingBottom": "$theme.sizing.scale100",
   "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale500",
   "paddingTop": "$theme.sizing.scale100",
 }
 `;
@@ -125,6 +127,7 @@ Object {
   "opacity": null,
   "paddingBottom": "$theme.sizing.scale100",
   "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale500",
   "paddingTop": "$theme.sizing.scale100",
 }
 `;
@@ -156,6 +159,7 @@ Object {
   "opacity": null,
   "paddingBottom": "$theme.sizing.scale100",
   "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale500",
   "paddingTop": "$theme.sizing.scale100",
 }
 `;

@@ -11,4 +11,5 @@ module.exports = {
   ALL_BASIC_COLORS: 'All basic colors',
   WITH_CUSTOM_COLORS: 'With custom colors',
   DISABLED: 'Disabled',
+  UNCLOSEABLE: 'Uncloseable',
 };
