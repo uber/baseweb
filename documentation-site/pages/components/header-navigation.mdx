@@ -46,6 +46,7 @@ export default Layout;
 <Overrides
   name="Header Navigation"
   component={HeadernavigationExports}
+  blacklisted={['NavigationItem', 'NavigationList']}
   renderExample={props => (
     <HeaderNavigation overrides={props.overrides}>
       <NavigationList align={ALIGN.left}>

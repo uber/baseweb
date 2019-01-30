@@ -16,12 +16,13 @@ import Link from 'next/link';
 const isStyledExport = exportName => exportName.startsWith('Styled');
 const getOverrideName = exportName => exportName.replace('Styled', '');
 const getOverrides = (component, blacklisted, whitelisted) => {
-  if (whitelisted) return whitelisted;
+  if (whitelisted) return whitelisted.sort();
   return component
     ? Object.keys(component)
         .filter(isStyledExport)
         .map(getOverrideName)
         .filter(key => !blacklisted.includes(key))
+        .sort()
     : [];
 };
 

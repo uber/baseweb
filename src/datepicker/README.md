@@ -38,7 +38,7 @@ export default () => {
 * `StatefulContainer`
 * `StyledRoot`
 * `StyledCalendarContainer`
-* `StyledHeader`
+* `StyledCalendarHeader`
 * `StyledMonthHeader`
 * `StyledMonth`
 * `StyledWeek`
