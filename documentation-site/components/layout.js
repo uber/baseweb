@@ -23,6 +23,7 @@ import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import Logo from '../images/Logo.png';
 import GithubLogo from './github-logo';
+import SlackLogo from './slack-logo';
 import Search from './search';
 
 type PropsT = {
@@ -77,6 +78,25 @@ export default (props: PropsT) => (
               },
             }}
             endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
+          />
+        </Block>
+        <Block
+          $as="a"
+          href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
+          marginLeft="scale600"
+          $style={{textDecoration: 'none'}}
+          target="_blank"
+        >
+          <Button
+            kind={ButtonKind.secondary}
+            overrides={{
+              EndEnhancer: {
+                style: {
+                  marginLeft: 0,
+                },
+              },
+            }}
+            endEnhancer={() => <SlackLogo size={24} color="#276EF1" />}
           />
         </Block>
         <Block marginLeft="scale600">
