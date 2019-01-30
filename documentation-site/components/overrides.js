@@ -15,11 +15,13 @@ import Link from 'next/link';
 
 const isStyledExport = exportName => exportName.startsWith('Styled');
 const getOverrideName = exportName => exportName.replace('Styled', '');
-const getOverrides = (component, blacklisted = []) =>
-  Object.keys(component)
-    .filter(isStyledExport)
-    .map(getOverrideName)
-    .filter(key => !blacklisted.includes(key));
+const getOverrides = (component, blacklisted) =>
+  component
+    ? Object.keys(component)
+        .filter(isStyledExport)
+        .map(getOverrideName)
+        .filter(key => !blacklisted.includes(key))
+    : [];
 
 class Overrides extends React.Component {
   constructor(props) {
@@ -82,5 +84,9 @@ class Overrides extends React.Component {
     );
   }
 }
+
+Overrides.defaultProps = {
+  blacklisted: [],
+};
 
 export default Overrides;

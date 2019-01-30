@@ -16,7 +16,12 @@ import Placements from 'examples/popover/placements.js';
 import WithArrow from 'examples/popover/with-arrow.js';
 import Dismiss from 'examples/popover/dismiss.js';
 import Clipping from 'examples/popover/clipping.js';
-import Overrides from 'examples/popover/overrides.js';
+import Customization from 'examples/popover/overrides.js';
+
+import Overrides from '../../components/overrides';
+import {Popover, PLACEMENT} from 'baseui/popover';
+import * as PopoverExports from 'baseui/popover';
+import {Block} from 'baseui/block';
 
 export default Layout;
 
@@ -64,8 +69,29 @@ structured content and imagery/illustration. It’s usage depends on the context
 </Example>
 
 <Example title="Overrides" path="examples/popover/overrides.js">
-  <Overrides />
+  <Customization />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Popover"
+  blacklisted={['Padding']}
+  component={PopoverExports}
+  renderExample={props => (
+    <Popover
+      isOpen
+      content={<Block padding="scale500">hello world</Block>}
+      showArrow
+      placement={PLACEMENT.right}
+      overrides={props.overrides}
+    >
+      <Block as="span" padding="scale500">
+        always open
+      </Block>
+    </Popover>
+  )}
+/>
 
 <API
   heading="Popover API"
