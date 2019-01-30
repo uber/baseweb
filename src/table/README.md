@@ -42,12 +42,13 @@ export default = () => <Table columns={['Name', 'Age', 'Address']} data={data}/>
 
 ```javascript
 import {
-  StyledTable
-  StyledHead
-  StyledHeadCell
-  StyledBody
-  StyledRow
-  StyledCell
+  StyledTable,
+  StyledContent,
+  StyledHead,
+  StyledHeadCell,
+  StyledBody,
+  StyledRow,
+  StyledCell,
 } from 'baseui/table';
 
 const data = [
@@ -57,18 +58,20 @@ const data = [
 
 export default () => (
   <StyledTable>
-    <StyledHead>
-      <StyledHeadCell>Employee ID</StyledHeadCell>
-      <StyledHeadCell>First Name</StyledHeadCell>
-      <StyledHeadCell>Last Name</StyledHeadCell>
-    </StyledHead>
-    <StyledBody>
-      {data.map(row => (
-        <StyledRow>
-          {row.map(data => <StyledCell>{data}</StyledCell>)}
-        </StyledRow>
-      ))}
-    </StyledBody>
+    <StyledContent>
+      <StyledHead>
+        <StyledHeadCell>Employee ID</StyledHeadCell>
+        <StyledHeadCell>First Name</StyledHeadCell>
+        <StyledHeadCell>Last Name</StyledHeadCell>
+      </StyledHead>
+      <StyledBody>
+        {data.map(row => (
+          <StyledRow>
+            {row.map(data => <StyledCell>{data}</StyledCell>)}
+          </StyledRow>
+        ))}
+      </StyledBody>
+    </StyledContent>
   </StyledTable>
 );
 ```
@@ -119,6 +122,7 @@ class TableWithPagination extends React.Component {
 
 * `Table`
 * `StyledTable`
+* `StyledContent`
 * `StyledHead`
 * `StyledHeadCell`
 * `StyledBody`
@@ -131,32 +135,8 @@ class TableWithPagination extends React.Component {
   * Describes the column titles.
 * `data: Array<Array<any>>` - Required
   * Matrix data to be rendered within the table.
-* `estimatedRowSize?: number = 40px`
-  * Passed to `react-virtualized`. Used to estimate table height.
 * `isLoading?: boolean = false`
   * If true, renders loading indicator.
-* `overrides?: {Root, Head, HeadCell, Body, Row, Cell} = {}`
-  * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * Wraps the set of elements.
-  * `Head?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * Container for the table header related elements.
-  * `HeadCell?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * A header row. `Tr` for the `Thead` element.
-  * `Body?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * A header cell. Corresponds with the `th` html element.
-  * `Row?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * A data cell in the table. Corresponds with the `td` html element.
-  * `Cell?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * A data row that contains `Td` components.
-* `useDynamicRowHeight?: boolean = false`
-  * Dynamically measure row heights, if size of rendered data is unknown.
-
-## Dependencies
-
-* [react-virtualized](https://bvaughn.github.io/react-virtualized/#/components/List)
-  * leveraging several features from the package:
-  * [autosizer](https://bvaughn.github.io/react-virtualized/#/components/AutoSizer) so that the table fills available height/width.
-  * [cellmeasurer](https://bvaughn.github.io/react-virtualized/#/components/CellMeasurer) so that row heights can be programmatically generated.
 
 ## Accessibility
 
