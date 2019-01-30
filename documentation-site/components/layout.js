@@ -25,6 +25,7 @@ import Logo from '../images/Logo.png';
 import GithubLogo from './github-logo';
 import SlackLogo from './slack-logo';
 import Search from './search';
+import {version} from '../../package.json';
 
 type PropsT = {
   children: React.Node,
@@ -53,6 +54,7 @@ export default (props: PropsT) => (
               overrides={{Block: {style: {cursor: 'pointer'}}}}
             />
           </Link>
+          <Block marginLeft="scale600">{version}</Block>
         </Block>
       </NavigationList>
       <NavigationList align={ALIGN.center} />
