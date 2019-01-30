@@ -44,7 +44,7 @@ steps:
       queue: workers
   - name: ':now:'
     branches: 'v*.*.*'
-    command: yarn documentation:build && yarn now --team=baseui --token=${ZEIT_NOW_TOKEN}
+    command: yarn documentation:build && yarn now --team=baseui --token=${ZEIT_NOW_TOKEN} && yarn now alias --team=baseui --token=${ZEIT_NOW_TOKEN}
     agents:
       queue: workers
   - name: ':screener:'
