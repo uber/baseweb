@@ -117,6 +117,7 @@
     "markdownlint-cli": "^0.13.0",
     "next": "^7.0.2",
     "next-images": "^1.0.3",
+    "now": "^13.1.2",
     "prettier": "^1.14.3",
     "pretty-proptypes": "^0.5.0",
     "pretty-quick": "^1.4.1",
