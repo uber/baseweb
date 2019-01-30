@@ -42,6 +42,11 @@ steps:
         run: baseui
     agents:
       queue: workers
+  - name: ':now:'
+    branches: 'v*.*.*'
+    command: yarn documentation:build && yarn now --team=baseui --token=${ZEIT_NOW_TOKEN}
+    agents:
+      queue: workers
   - name: ':screener:'
     command: yarn storybook:screener:ci
     plugins:
