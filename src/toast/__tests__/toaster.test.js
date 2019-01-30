@@ -360,4 +360,68 @@ describe('toaster', () => {
       expect(wrapper.find(Toast).length).toEqual(0);
     });
   });
+
+  describe('ToasterContainer autoHideDuration', () => {
+    let renderedToaster;
+
+    beforeEach(() => {
+      wrapper = mount(<ToasterContainer autoHideDuration={100} />);
+      renderedToaster = wrapper.find(ToasterContainer).first();
+      toaster.getRef = jest.fn().mockReturnValue(renderedToaster.instance());
+    });
+
+    test('info, positive, warning, negative methods receives autoHideDuration from ToastContainer', () => {
+      // The testing strategy is to instatiate ToasterContainer with autoHideDuration=100
+      // Then call the 4 different toaster regularly
+      // Then call 1 toaster.negative with an overriding autoHideDuration=3500
+      //
+      // Expected outcome:
+      // Initially, there should be a total of 5 Toasts
+      // After jest timers get advanced by 1000, there should be 1 Toast remaining
+      // After jest timers get advanced by 3000, there should be 0 Toast remaining
+      const toasterInstance = renderedToaster.instance();
+      let counter = 0;
+      ['info', 'positive', 'warning', 'negative'].forEach(method => {
+        const children = `${method} toast`;
+        toaster[method](children);
+        counter++;
+        const toastsLength = toasterInstance.state.toasts.length;
+        expect(toastsLength).toEqual(counter);
+        expect(toasterInstance.state.toasts[toastsLength - 1]).toMatchObject({
+          key: `toast-${counter - 1}`,
+          children,
+          kind: KIND[method],
+        });
+      });
+
+      toaster.negative('custom autoHideDuration', {
+        autoHideDuration: 3500,
+      });
+
+      // verify all toasts rendered
+      jest.advanceTimersByTime(100);
+      wrapper.update();
+      expect(wrapper.find(Toast).length).toEqual(5);
+      // verify oldest toasts are rendered last in the tree
+      expect(
+        wrapper
+          .find(Toast)
+          .last()
+          .props(),
+      ).toMatchObject({
+        kind: KIND.info,
+      });
+
+      jest.advanceTimersByTime(1000);
+
+      // verify there's one remaining toast rendered
+      wrapper.update();
+      expect(wrapper.find(Toast).length).toEqual(1);
+
+      // verify there's no remaining toasts rendered
+      jest.advanceTimersByTime(3000);
+      wrapper.update();
+      expect(wrapper.find(Toast).length).toEqual(0);
+    });
+  });
 });
