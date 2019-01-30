@@ -26,7 +26,9 @@ function Contributors(props: {contributors: Contributor[]}) {
 
   return (
     <Block>
-      <Block font="font450">Thank you to our contributors:</Block>
+      <Block marginBottom="scale800" font="font450">
+        Thank you to our contributors:
+      </Block>
       <Block display="flex" flexWrap maxWidth="768px">
         {props.contributors.filter(isUser).map(contributor => (
           <Block
