@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "builds": [{"src": "public/**", "use": "@now/static"}],
+  "name": "baseui-documentation",
+  "routes": [{"src": "/(.*)", "dest": "public/$1"}]
+}
