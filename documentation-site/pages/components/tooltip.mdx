@@ -12,6 +12,11 @@ import Layout from '../../components/layout';
 import Stateful from 'examples/tooltip/stateful.js';
 import StatefulComplexContent from 'examples/tooltip/stateful-complex-content.js';
 
+import Overrides from '../../components/overrides';
+import {StatefulTooltip} from 'baseui/tooltip';
+import * as TooltipExports from 'baseui/tooltip';
+import {styled} from 'baseui';
+
 export default Layout;
 
 # Tooltip
@@ -33,6 +38,29 @@ Motion helps to reinforce its origin position.
 >
   <StatefulComplexContent />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Tooltip"
+  component={TooltipExports}
+  renderExample={props => {
+    const FakeLink = styled('span', props => ({
+      borderBottom: `1px dotted ${props.$theme.colors.primary500}`,
+      color: props.$theme.colors.primary500,
+    }));
+    return (
+      <StatefulTooltip
+        accessibilityType={'tooltip'}
+        content="Tooltips display short messages."
+        showArrow
+        overrides={props.overrides}
+      >
+        <FakeLink tabIndex="0">hover over me</FakeLink>
+      </StatefulTooltip>
+    );
+  }}
+/>
 
 <API
   heading="Stateful Tooltip API"
