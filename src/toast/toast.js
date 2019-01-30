@@ -132,19 +132,14 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     const {children, closeable} = this.props;
     const {isRendered} = this.state;
     const {
-      // $FlowFixMe
       Body: BodyOverride,
-      // $FlowFixMe
       CloseIcon: CloseIconOverride,
     } = this.props.overrides;
 
-    // $FlowFixMe
     const [Body, bodyProps] = getOverrides(BodyOverride, StyledBody);
 
     const [CloseIcon, closeIconProps] = getOverrides(
-      // $FlowFixMe
       CloseIconOverride,
-      // $FlowFixMe
       StyledCloseIcon,
     );
 

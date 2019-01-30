@@ -15,22 +15,23 @@ import Link from 'next/link';
 
 const isStyledExport = exportName => exportName.startsWith('Styled');
 const getOverrideName = exportName => exportName.replace('Styled', '');
-const getOverrides = component =>
+const getOverrides = (component, blacklisted = []) =>
   Object.keys(component)
     .filter(isStyledExport)
-    .map(getOverrideName);
+    .map(getOverrideName)
+    .filter(key => !blacklisted.includes(key));
 
 class Overrides extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // select the first export by default
-      highlighted: getOverrides(props.component)[0],
+      highlighted: getOverrides(props.component, props.blacklisted)[0],
     };
   }
   render() {
     const {component, renderExample, name} = this.props;
-    const overrides = getOverrides(component);
+    const overrides = getOverrides(component, this.props.blacklisted);
     return (
       <Card
         overrides={{

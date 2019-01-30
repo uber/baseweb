@@ -169,10 +169,7 @@ export default {
                   <div style={{marginTop: '12px'}}>
                     <Input
                       value={value}
-                      onChange={
-                        // $FlowFixMe
-                        evt => setState({value: evt.target.value})
-                      }
+                      onChange={evt => setState({value: evt.target.value})}
                       placeholder="Enter password"
                     />
                   </div>

@@ -12,9 +12,13 @@ import Layout from '../../components/layout';
 import Basic from 'examples/notification/basic.js';
 import Kinds from 'examples/notification/kinds.js';
 import Closeable from 'examples/notification/closeable.js';
-import Overrides from 'examples/notification/overrides.js';
+import Customization from 'examples/notification/overrides.js';
 import CustomDismiss from 'examples/notification/custom-dismiss.js';
 import FullWidth from 'examples/notification/full-width.js';
+
+import Overrides from '../../components/overrides';
+import {Notification} from 'baseui/notification';
+import * as NotificationExports from 'baseui/toast';
 
 export default Layout;
 
@@ -48,12 +52,25 @@ notifications do not self-dismiss and have the option to include a close “X”
 </Example>
 
 <Example title="Overrides" path="examples/notification/overrides.js">
-  <Overrides />
+  <Customization />
 </Example>
 
 <Example title="Custom Dismiss" path="examples/notification/custom-dismiss.js">
   <CustomDismiss />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Notification"
+  component={NotificationExports}
+  blacklisted={['Root']}
+  renderExample={props => (
+    <Notification overrides={props.overrides} closeable>
+      Default info notification
+    </Notification>
+  )}
+/>
 
 <API
   heading="Notification API"
