@@ -12,6 +12,10 @@ import Layout from '../../components/layout';
 import ToastBasic from 'examples/toast/basic.js';
 import ToastNotification from 'examples/toast/toast-notification.js';
 
+import Overrides from '../../components/overrides';
+import {Toast} from 'baseui/toast';
+import * as ToastExports from 'baseui/toast';
+
 export default Layout;
 
 # Toast
@@ -33,6 +37,14 @@ it’s status type of neutral, positive, warning and alert.
 >
   <ToastNotification />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Toast"
+  component={ToastExports}
+  renderExample={props => <Toast overrides={props.overrides}>Toast</Toast>}
+/>
 
 <API
   heading="Toaster API"
