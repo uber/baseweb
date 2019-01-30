@@ -9,7 +9,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {
   StyledRoot,
-  StyledInputEnhancer,
+  StyledStartEnhancer as StyledInputEnhancer,
   StyledInputContainer,
   StyledInput,
   SIZE,
