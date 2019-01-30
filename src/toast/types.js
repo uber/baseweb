@@ -88,6 +88,9 @@ export type ToasterPropsT = {
   overrides: ToasterOverridesT,
   placement: PlacementTypeT,
   usePortal: boolean,
+  /** The number of milliseconds to wait before automatically dismissing a
+   * notification. This behavior is disabled when the value is set to 0.*/
+  autoHideDuration: number,
 };
 export type ToasterContainerStateT = {
   isMounted: boolean,
