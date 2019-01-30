@@ -13,6 +13,10 @@ import SpinnerBasic from 'examples/spinner/basic.js';
 import SpinnerWithSize from 'examples/spinner/with-size.js';
 import SpinnerWithOverrides from 'examples/spinner/with-overrides.js';
 
+import Overrides from '../../components/overrides';
+import {Spinner} from 'baseui/spinner';
+import * as SpinnerExports from 'baseui/spinner';
+
 export default Layout;
 
 # Spinner
@@ -35,6 +39,14 @@ Spinners provide a visual cue that an action is processing awaiting a course of 
 >
   <SpinnerWithOverrides />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Spinner"
+  component={SpinnerExports}
+  renderExample={props => <Spinner overrides={props.overrides} />}
+/>
 
 <API
   heading="Spinner API"
