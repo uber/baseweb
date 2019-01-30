@@ -18,6 +18,10 @@ export const DarkTheme = createTheme(
     colors: {
       // Semantic Colors
 
+      // Font Color
+      colorPrimary: primitives.mono100,
+      colorSecondary: primitives.mono200,
+
       // Background
       background: primitives.mono800,
       backgroundAlt: primitives.mono700,

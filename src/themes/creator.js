@@ -82,6 +82,10 @@ export default function createTheme(
 
       // Semantic Colors
 
+      // Font Color
+      colorPrimary: primitives.mono1000,
+      colorSecondary: primitives.mono800,
+
       // Background
       background: primitives.mono100,
       backgroundAlt: primitives.mono100,
