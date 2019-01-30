@@ -9,6 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Block} from 'baseui/block';
+import {Button} from 'baseui/button';
+import {H4, H6} from 'baseui/typography';
+import {Card, StyledBody, StyledAction} from 'baseui/card';
 import fetch from 'isomorphic-fetch';
 
 import Layout from '../components/layout';
@@ -22,47 +25,66 @@ type Contributor = {
   type: 'Bot' | 'User',
 };
 
+const cardOverrides = {
+  Root: {
+    style: ({$theme}) => ({
+      marginLeft: $theme.sizing.scale500,
+      marginRight: $theme.sizing.scale500,
+      marginBottom: $theme.sizing.scale500,
+      width: '350px',
+    }),
+  },
+};
+
 const Index = (props: {contributors: Contributor[]}) => (
   <Layout>
-    <Markdown.h1>Welcome</Markdown.h1>
+    <H4>Base UI React Components</H4>
     <Markdown.p>
       Base UI is a foundation, a basis for initiating, evolving, and unifying
-      web products across Uber.
+      web products. The system is designed to be fully responsive and device
+      agnostic providing designers and developers with a unique catalog of
+      components.
     </Markdown.p>
 
-    <Markdown.p>
-      The system is designed to be fully responsive and device agnostic
-      providing designers with a unique catalog of components.
-    </Markdown.p>
-    <a href="https://github.com/uber-web/baseui">
-      <img
-        alt="base ui repository"
-        src="https://img.shields.io/badge/Source%20Code-On%20GitHub-blue.svg"
-      />
-    </a>
-    <a href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA">
-      <img
-        alt="base ui slack"
-        src="https://img.shields.io/badge/Join%20us%20on-Slack-e01563.svg"
-      />
-    </a>
-    <a href="https://buildkite.com/uberopensource/baseui">
-      <img
-        alt="base ui buildkite"
-        src="https://badge.buildkite.com/92a7500cd98f619621c4801833d8b358c2fd79efc9b98f1b98.svg?branch=master"
-      />
-    </a>
-    <Markdown.p>
-      To get started with Base UI, read through the{' '}
-      <Block as="span" font="font350">
-        Introduction
-      </Block>{' '}
-      and{' '}
-      <Block as="span" font="font350">
-        Theming
-      </Block>{' '}
-      section by selecting them in the sidebar menu.
-    </Markdown.p>
+    <H6>Getting started with Base UI</H6>
+
+    <Block display="flex" flexWrap>
+      <Card title="Installing Base UI" overrides={cardOverrides}>
+        <StyledBody>
+          Base UI is distributed as an npm package. As Base UI is built on top
+          of a CSS-in-JS engine, all you need is the dependencies from npm. Let
+          {"'"}s add Base UI to your project!
+        </StyledBody>
+        <StyledAction>
+          <Block
+            $as="a"
+            href="/getting-started/installation"
+            $style={{textDecoration: 'none'}}
+          >
+            <Button style={{width: '100%'}}>Install Base UI</Button>
+          </Block>
+        </StyledAction>
+      </Card>
+
+      <Card title="Learning Base UI" overrides={cardOverrides}>
+        <StyledBody>
+          Probably the best way to learn Base UI is by start building an
+          application using it. On this page, you
+          {"'"}
+          ll with a simple and a more complex app built using Base UI.
+        </StyledBody>
+        <StyledAction>
+          <Block
+            $as="a"
+            href="/getting-started/learn"
+            $style={{textDecoration: 'none'}}
+          >
+            <Button style={{width: '100%'}}>Learn more</Button>
+          </Block>
+        </StyledAction>
+      </Card>
+    </Block>
+
     <Contributors contributors={props.contributors} />
   </Layout>
 );
