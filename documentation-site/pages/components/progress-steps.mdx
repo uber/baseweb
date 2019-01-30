@@ -12,6 +12,10 @@ import Layout from '../../components/layout';
 import ProgressStepsDotted from 'examples/progress-steps/dotted';
 import ProgressStepsNumbered from 'examples/progress-steps/numbered';
 
+import Overrides from '../../components/overrides';
+import {ProgressSteps, Step, NumberedStep} from 'baseui/progress-steps';
+import * as ProgressstepsExports from 'baseui/progress-steps';
+
 export default Layout;
 
 # Progress steps
@@ -34,6 +38,29 @@ list type provides the user with a sense of awareness around progress and the st
 >
   <ProgressStepsNumbered />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Progress Steps"
+  component={ProgressstepsExports}
+  renderExample={props => (
+    <React.Fragment>
+      <ProgressSteps current={0} overrides={props.overrides}>
+        <Step title="Step 1" overrides={props.overrides}>
+          Step content
+        </Step>
+        <Step title="Step 2" overrides={props.overrides} />
+      </ProgressSteps>
+      <ProgressSteps current={1} overrides={props.overrides}>
+        <NumberedStep title="Numbered Step 1" overrides={props.overrides} />
+        <NumberedStep title="Numbered Step 2" overrides={props.overrides}>
+          Step content
+        </NumberedStep>
+      </ProgressSteps>
+    </React.Fragment>
+  )}
+/>
 
 <API
   heading="ProgressSteps API"

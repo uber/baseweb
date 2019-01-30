@@ -30,23 +30,32 @@ function NumberedStep({
   step,
   children,
 }: NumberedStepPropsT) {
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledNumberStep);
-  const [Icon, iconProps] = getOverrides(overrides.Icon, StyledNumberIcon);
+  const [Root, rootProps] = getOverrides(
+    overrides.NumberStep,
+    StyledNumberStep,
+  );
+  const [Icon, iconProps] = getOverrides(
+    overrides.NumberIcon,
+    StyledNumberIcon,
+  );
   const [Tail, tailProps] = getOverrides(
-    overrides.Tail,
+    overrides.NumberContentTail,
     StyledNumberContentTail,
   );
   const [Content, contentProps] = getOverrides(
     overrides.Content,
     StyledContent,
   );
-  const [Title, titleProps] = getOverrides(overrides.Title, StyledContentTitle);
+  const [Title, titleProps] = getOverrides(
+    overrides.ContentTitle,
+    StyledContentTitle,
+  );
   const [Description, descriptionProps] = getOverrides(
-    overrides.Description,
+    overrides.ContentDescription,
     StyledContentDescription,
   );
   const [CheckIcon, checkIconProps] = getOverrides(
-    overrides.Icon,
+    overrides.CheckIcon,
     StyledCheckIcon,
   );
 

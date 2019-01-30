@@ -11,12 +11,12 @@ import type {Node} from 'react';
 import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
-export type ProgressStepsOverridesT = {
+export type RootOverridesT = {
   Root?: OverrideT<*>,
 };
 
-export type ProgressStepsPropsT = {
-  overrides?: ProgressStepsOverridesT,
+export type RootPropsT = {
+  overrides?: RootOverridesT,
   children?: Node,
   /** Defines the current active step index. */
   current: number,
@@ -24,12 +24,13 @@ export type ProgressStepsPropsT = {
 
 export type StepOverridesT = {
   Root?: OverrideT<*>,
+  Step?: OverrideT<*>,
   Icon?: OverrideT<*>,
   InnerIcon?: OverrideT<*>,
-  Tail?: OverrideT<*>,
+  ContentTail?: OverrideT<*>,
   Content?: OverrideT<*>,
-  Title?: OverrideT<*>,
-  Description?: OverrideT<*>,
+  ContentTitle?: OverrideT<*>,
+  ContentDescription?: OverrideT<*>,
 };
 
 export type StepPropsT = {
@@ -45,7 +46,7 @@ export type StepPropsT = {
   children?: Node,
 };
 
-export type StyledProgressStepsPropsT = {
+export type StyledRootPropsT = {
   $theme: ThemeT,
 };
 
@@ -56,13 +57,14 @@ export type StyledStepPropsT = {
 };
 
 export type NumberedStepOverridesT = {
-  Root?: OverrideT<*>,
-  Icon?: OverrideT<*>,
+  NumberStep?: OverrideT<*>,
+  CheckIcon?: OverrideT<*>,
+  NumberIcon?: OverrideT<*>,
   InnerIcon?: OverrideT<*>,
-  Tail?: OverrideT<*>,
+  NumberContentTail?: OverrideT<*>,
   Content?: OverrideT<*>,
-  Title?: OverrideT<*>,
-  Description?: OverrideT<*>,
+  ContentTitle?: OverrideT<*>,
+  ContentDescription?: OverrideT<*>,
 };
 
 export type NumberedStepPropsT = {
