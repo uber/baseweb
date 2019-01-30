@@ -38,7 +38,7 @@ const cardOverrides = {
 
 const Index = (props: {contributors: Contributor[]}) => (
   <Layout>
-    <H4>React components that implement the Base UI Design Language.</H4>
+    <H4>Base UI React Components</H4>
     <Markdown.p>
       Base UI is a foundation, a basis for initiating, evolving, and unifying
       web products. The system is designed to be fully responsive and device
