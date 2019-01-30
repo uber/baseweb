@@ -11,6 +11,11 @@ import Layout from '../../components/layout';
 
 import Basic from 'examples/form-control/basic.js';
 
+import Overrides from '../../components/overrides';
+import {FormControl} from 'baseui/form-control';
+import {StatefulInput} from 'baseui/input';
+import * as FormcontrolExports from 'baseui/form-control';
+
 export default Layout;
 
 # Form control
@@ -22,6 +27,22 @@ The `FormControl` component adds a label and caption for its child control. If a
 <Example title="Basic Usage" path="examples/form-control/basic.js">
   <Basic />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Form Control"
+  component={FormcontrolExports}
+  renderExample={props => (
+    <FormControl
+      label="Input label"
+      caption="Input caption"
+      overrides={props.overrides}
+    >
+      <StatefulInput />
+    </FormControl>
+  )}
+/>
 
 <API
   heading="FormControl API"
