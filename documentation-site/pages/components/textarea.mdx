@@ -12,6 +12,10 @@ import Layout from '../../components/layout';
 import TextareaBasic from 'examples/textarea/basic.js';
 import TextareaRef from 'examples/textarea/ref.js';
 
+import Overrides from '../../components/overrides';
+import {StatefulTextarea as Textarea, SIZE} from 'baseui/textarea';
+import * as TextareaExports from 'baseui/textarea';
+
 export default Layout;
 
 # Textarea
@@ -26,4 +30,22 @@ export default Layout;
   <TextareaRef />
 </Example>
 
-<API heading="Textarea API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/textarea/textarea.js')}/>
+## Overrides
+
+<Overrides
+  name="Textarea"
+  component={TextareaExports}
+  whitelisted={['InputContainer', 'Input']}
+  renderExample={props => (
+    <Textarea
+      size={SIZE.compact}
+      placeholder="Placeholder"
+      overrides={props.overrides}
+    />
+  )}
+/>
+
+<API
+  heading="Textarea API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/textarea/textarea.js')}
+/>
