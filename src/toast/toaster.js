@@ -32,6 +32,7 @@ export class ToasterContainer extends React.Component<
     placement: PLACEMENT.top,
     usePortal: true,
     overrides: {},
+    autoHideDuration: 0,
   };
 
   constructor(props: ToasterPropsT) {
@@ -55,8 +56,9 @@ export class ToasterContainer extends React.Component<
   getToastProps = (
     props: ToastPropsT,
   ): $Shape<ToastPropsT> & {key: React.Key} => {
+    const {autoHideDuration} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
-    return {...props, key};
+    return {autoHideDuration, ...props, key};
   };
 
   show = (props: $Shape<ToastPropsT> = {}): React.Key => {

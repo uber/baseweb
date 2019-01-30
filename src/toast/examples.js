@@ -105,6 +105,19 @@ class ToasterExample extends React.Component<{}, {toasts: []}> {
         >
           Negative toast
         </Button>
+        <Space />
+        <Button
+          onClick={() => {
+            toaster.positive('hi');
+          }}
+          overrides={{
+            BaseButton: {
+              style: getBtnStyle('positive'),
+            },
+          }}
+        >
+          Use ToasterContainer autoHideDuration
+        </Button>
       </div>
     );
   }
@@ -205,7 +218,10 @@ export default {
   [examples.TOASTER_EXAMPLE]: function Story2() {
     return (
       <Centered>
-        <ToasterContainer placement={PLACEMENT.bottomRight} />
+        <ToasterContainer
+          placement={PLACEMENT.bottomRight}
+          autoHideDuration={500}
+        />
         <ToasterExample />
       </Centered>
     );
