@@ -13,7 +13,11 @@ import Basic from 'examples/progress-bar/basic.js';
 import WithLabel from 'examples/progress-bar/with-label.js';
 import CustomLabel from 'examples/progress-bar/custom-label.js';
 import SuccessValue from 'examples/progress-bar/success-value.js';
-import Overrides from 'examples/progress-bar/overrides.js';
+import Customization from 'examples/progress-bar/overrides.js';
+
+import Overrides from '../../components/overrides';
+import {ProgressBar} from 'baseui/progress-bar';
+import * as ProgressbarExports from 'baseui/progress-bar';
 
 export default Layout;
 
@@ -43,8 +47,23 @@ Indicates a wait time for deterministic actions- either within an experience flo
 </Example>
 
 <Example title="Overrides" path="examples/progress-bar/overrides.js">
-  <Overrides />
+  <Customization />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="ProgressBar"
+  component={ProgressbarExports}
+  renderExample={props => (
+    <ProgressBar
+      value={60}
+      successValue={100}
+      showLabel
+      overrides={props.overrides}
+    />
+  )}
+/>
 
 <API
   heading="ProgressBar API"
