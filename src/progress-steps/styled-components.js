@@ -9,19 +9,22 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 import type {
-  StyledRootPropsT,
+  StyledProgressStepsPropsT,
   StyledStepPropsT,
   StyledNumberIconPropsT,
   StyledNumberContentTailPropsT,
   StyledNumberStepPropsT,
 } from './types.js';
 
-export const StyledRoot = styled('div', ({$theme}: StyledRootPropsT) => {
-  return {
-    paddingTop: $theme.sizing.scale300,
-    paddingBottom: $theme.sizing.scale300,
-  };
-});
+export const StyledProgressSteps = styled(
+  'div',
+  ({$theme}: StyledProgressStepsPropsT) => {
+    return {
+      paddingTop: $theme.sizing.scale300,
+      paddingBottom: $theme.sizing.scale300,
+    };
+  },
+);
 
 export const StyledStep = styled('div', ({$theme}: StyledStepPropsT) => {
   return {

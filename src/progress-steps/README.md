@@ -49,7 +49,7 @@ export default () => {
 * `ProgressSteps`
 * `Step`
 * `NumberedStep`
-* `StyledRoot`
+* `StyledProgressSteps`
 * `StyledStep`
 * `StyledIcon`
 * `StyledInnerIcon`
@@ -80,21 +80,17 @@ export default () => {
   * Defines if the step is the last item displayed.
 * `overrides?: {Root, Icon, InnerIcon, Tail, Content, Title, Description} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-  * `Step?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Icon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `InnerIcon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-  * `ContentTail?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Tail?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Content?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-  * `ContentTitle?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-  * `ContentDescription?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-  * `NumberStep?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-  * `NumberIcon?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-  * `NumberContentTail?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Title?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `Description?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
 * `children?: (props: Props) => React.Node = null`
 
 ## Presentational components props API
 
-`StyledRoot`, `StyledStep`, `StyledIcon`, `StyledInnerIcon`, `StyledContent`,
+`StyledProgressSteps`, `StyledStep`, `StyledIcon`, `StyledInnerIcon`, `StyledContent`,
 `StyledContentTitle`, `StyledContentTail`, `StyledContentDescription` `StyledNumberStep`,
 `StyledNumberIcon`, `StyledNumberContentTail`
 

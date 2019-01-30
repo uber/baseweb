@@ -29,26 +29,20 @@ function Step({
   title,
   children,
 }: StepPropsT) {
-  const [Root, rootProps] = getOverrides(overrides.Step, StyledStep);
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);
   const [Icon, iconProps] = getOverrides(overrides.Icon, StyledIcon);
   const [InnerIcon, innerIconProps] = getOverrides(
     overrides.InnerIcon,
     StyledInnerIcon,
   );
-  const [Tail, tailProps] = getOverrides(
-    overrides.ContentTail,
-    StyledContentTail,
-  );
+  const [Tail, tailProps] = getOverrides(overrides.Tail, StyledContentTail);
   const [Content, contentProps] = getOverrides(
     overrides.Content,
     StyledContent,
   );
-  const [Title, titleProps] = getOverrides(
-    overrides.ContentTitle,
-    StyledContentTitle,
-  );
+  const [Title, titleProps] = getOverrides(overrides.Title, StyledContentTitle);
   const [Description, descriptionProps] = getOverrides(
-    overrides.ContentDescription,
+    overrides.Description,
     StyledContentDescription,
   );
 
