@@ -71,7 +71,7 @@ const Index = (props: {contributors: Contributor[]}) => (
           Probably the best way to learn Base UI is by start building an
           application using it. On this page, you
           {"'"}
-          ll with a simple and a more complex app built using Base UI.
+          ll find a simple and a more complex app built using Base UI.
         </StyledBody>
         <StyledAction>
           <Block
