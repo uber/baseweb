@@ -85,17 +85,6 @@ const Index = (props: {contributors: Contributor[]}) => (
       </Card>
     </Block>
 
-    <Markdown.p>
-      To get started with Base UI, read through the{' '}
-      <Block as="span" font="font350">
-        Introduction
-      </Block>{' '}
-      and{' '}
-      <Block as="span" font="font350">
-        Theming
-      </Block>{' '}
-      section by selecting them in the sidebar menu.
-    </Markdown.p>
     <Contributors contributors={props.contributors} />
   </Layout>
 );
