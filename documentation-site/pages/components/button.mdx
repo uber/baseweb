@@ -11,7 +11,15 @@ import Layout from '../../components/layout';
 
 import BasicButton from 'examples/button/basic.js';
 import BasicButtonCompact from 'examples/button/basic-compact.js';
-import WithEnchancer from 'examples/button/with-enchancers.js';
+import WithEnhancer from 'examples/button/with-enhancers.js';
+import States from 'examples/button/states.js';
+import Shapes from 'examples/button/shapes.js';
+
+import Overrides from '../../components/overrides';
+import {Button, KIND} from 'baseui/button';
+import * as ButtonExports from 'baseui/button';
+import Upload from 'baseui/icon/upload';
+import ArrowRight from 'baseui/icon/arrow-right';
 
 export default Layout;
 
@@ -44,19 +52,45 @@ primary button action. As the name implies, it’s offered to supplement to crea
   <BasicButton />
 </Example>
 
-<Example
-  title="Button Basic Usage - Compact"
-  path="examples/button/basic-compact.js"
->
+<Example title="Button Sizes" path="examples/button/basic-compact.js">
   <BasicButtonCompact />
 </Example>
 
-<Example
-  title="Button With Enchancers"
-  path="examples/button/with-enchancers.js"
->
-  <WithEnchancer />
+<Example title="Button Enhancers" path="examples/button/with-enhancers.js">
+  <WithEnhancer />
 </Example>
+
+<Example title="Button States" path="examples/button/states.js">
+  <States />
+</Example>
+
+<Example title="Button Shapes" path="examples/button/shapes.js">
+  <Shapes />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="Button"
+  component={ButtonExports}
+  renderExample={props => (
+    <React.Fragment>
+      <p>
+        <Button
+          startEnhancer={() => <ArrowRight size={24} />}
+          endEnhancer={() => <Upload size={24} />}
+          kind={KIND.secondary}
+          overrides={props.overrides}
+        >
+          Label
+        </Button>
+      </p>
+      <Button isLoading kind={KIND.secondary} overrides={props.overrides}>
+        Loading
+      </Button>
+    </React.Fragment>
+  )}
+/>
 
 <API
   heading="Button API"

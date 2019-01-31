@@ -12,6 +12,11 @@ import Layout from '../../components/layout';
 import Star from 'examples/rating/star.js';
 import Emoticon from 'examples/rating/emoticon.js';
 
+import Overrides from '../../components/overrides';
+import {EmoticonRating, StarRating} from 'baseui/rating';
+import {Block} from 'baseui/block';
+import * as RatingExports from 'baseui/rating';
+
 export default Layout;
 
 # Rating
@@ -31,6 +36,22 @@ stars indicate a performance rating from one to five.
 <Example title="Emoticon Rating" path="examples/rating/emoticon.js">
   <Emoticon />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Rating"
+  component={RatingExports}
+  whitelisted={['Root', 'Item']}
+  renderExample={props => (
+    <React.Fragment>
+      <EmoticonRating value={2} overrides={props.overrides} />
+      <Block marginTop="scale600">
+        <StarRating value={3} overrides={props.overrides} />
+      </Block>
+    </React.Fragment>
+  )}
+/>
 
 <API
   heading="Star Rating API"

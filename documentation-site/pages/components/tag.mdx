@@ -15,6 +15,10 @@ import CustomColor from 'examples/tag/custom-color.js';
 import Disabled from 'examples/tag/disabled.js';
 import Uncloseable from 'examples/tag/uncloseable.js';
 
+import Overrides from '../../components/overrides';
+import {Tag} from 'baseui/tag';
+import * as TagExports from 'baseui/tag';
+
 export default Layout;
 
 # Tag
@@ -46,6 +50,14 @@ Compact UI to display a collection of consice information.
 <Example title="Uncloseable" path="examples/tag/uncloseable.js">
   <Uncloseable />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Tag"
+  component={TagExports}
+  renderExample={props => <Tag overrides={props.overrides}>Tag</Tag>}
+/>
 
 <API
   heading="Tag API"

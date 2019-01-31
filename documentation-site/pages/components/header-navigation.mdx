@@ -12,19 +12,56 @@ import Layout from '../../components/layout';
 import BasicHeader from 'examples/header-navigation/basic.js';
 import WithSearch from 'examples/header-navigation/with-search.js';
 
+import Overrides from '../../components/overrides';
+import {
+  HeaderNavigation,
+  ALIGN,
+  StyledNavigationItem as NavigationItem,
+  StyledNavigationList as NavigationList,
+} from 'baseui/header-navigation';
+import * as HeadernavigationExports from 'baseui/header-navigation';
+
 export default Layout;
 
 # Header navigation
 
 ## Examples
 
-<Example title="Header Navigation Basic Usage" path="examples/header-navigation/basic.js">
+<Example
+  title="Header Navigation Basic Usage"
+  path="examples/header-navigation/basic.js"
+>
   <BasicHeader />
 </Example>
 
-<Example title="Header Navigation with Search" path="examples/header-navigation/with-search.js">
+<Example
+  title="Header Navigation with Search"
+  path="examples/header-navigation/with-search.js"
+>
   <WithSearch />
 </Example>
 
-<API heading="HeaderNavigation API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}/>
+## Overrides
 
+<Overrides
+  name="Header Navigation"
+  component={HeadernavigationExports}
+  blacklisted={['NavigationItem', 'NavigationList']}
+  renderExample={props => (
+    <HeaderNavigation overrides={props.overrides}>
+      <NavigationList align={ALIGN.left}>
+        <NavigationItem>Uber</NavigationItem>
+      </NavigationList>
+      <NavigationList align={ALIGN.center} />
+      <NavigationList align={ALIGN.right}>
+        <NavigationItem>Tab One</NavigationItem>
+        <NavigationItem>Tab Two</NavigationItem>
+      </NavigationList>
+    </HeaderNavigation>
+  )}
+/>
+
+<API
+  heading="HeaderNavigation API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}
+/>

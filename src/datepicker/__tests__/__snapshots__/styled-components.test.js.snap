@@ -44,7 +44,7 @@ Object {
 }
 `;
 
-exports[`Component styled components Basic render: StyledHeader has correct styles 1`] = `
+exports[`Component styled components Basic render: StyledCalendarHeader has correct styles 1`] = `
 Object {
   "alignItems": "center",
   "backgroundColor": "$theme.colors.primary",

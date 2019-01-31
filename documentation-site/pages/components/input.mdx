@@ -16,8 +16,12 @@ import AvailableStates from 'examples/input/available-states.js';
 import Enhancers from 'examples/input/enhancers.js';
 import BeforeAfter from 'examples/input/before-after.js';
 import Mask from 'examples/input/mask.js';
-import Overrides from 'examples/input/overrides.js';
+import Customization from 'examples/input/overrides.js';
 import Focus from 'examples/input/focus.js';
+
+import Overrides from '../../components/overrides';
+import {StatefulInput} from 'baseui/input';
+import * as InputExports from 'baseui/input';
 
 export default Layout;
 
@@ -35,7 +39,10 @@ An input enables a person to type in text information.
   <BasicControlled />
 </Example>
 
-<Example title="Input as an Uncontrolled Component" path="examples/input/basic-uncontrolled.js">
+<Example
+  title="Input as an Uncontrolled Component"
+  path="examples/input/basic-uncontrolled.js"
+>
   <BasicUncontrolled />
 </Example>
 
@@ -43,7 +50,10 @@ An input enables a person to type in text information.
   <CompactSize />
 </Example>
 
-<Example title="Input with all Available States" path="examples/input/available-states.js">
+<Example
+  title="Input with all Available States"
+  path="examples/input/available-states.js"
+>
   <AvailableStates />
 </Example>
 
@@ -51,7 +61,10 @@ An input enables a person to type in text information.
   <Enhancers />
 </Example>
 
-<Example title="Input with Before and After Overrides" path="examples/input/before-after.js">
+<Example
+  title="Input with Before and After Overrides"
+  path="examples/input/before-after.js"
+>
   <BeforeAfter />
 </Example>
 
@@ -60,11 +73,27 @@ An input enables a person to type in text information.
 </Example>
 
 <Example title="Input with Overrides" path="examples/input/overrides.js">
-  <Overrides />
+  <Customization />
 </Example>
 
 <Example title="Input Focus with a ref" path="examples/input/focus.js">
   <Focus />
 </Example>
 
-<API heading="Input API" api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/input/input.js')}/>
+<Overrides
+  name="Input"
+  component={InputExports}
+  renderExample={props => (
+    <StatefulInput
+      overrides={props.overrides}
+      startEnhancer="$"
+      endEnhancer=".00"
+      placeholder="Price"
+    />
+  )}
+/>
+
+<API
+  heading="Input API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/input/input.js')}
+/>

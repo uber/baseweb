@@ -250,7 +250,7 @@ Object {
 }
 `;
 
-exports[`Input - StyledInputEnhancer - basic render: StyledInputEnhancer has correct styles when compact and end position 1`] = `
+exports[`Input - StyledStartEnhancer - basic render: StyledStartEnhancer has correct styles when compact and end position 1`] = `
 Object {
   "backgroundColor": "$theme.colors.inputFillEnhancer",
   "borderRadius": "0 $theme.sizing.scale100 $theme.sizing.scale100 0",
@@ -267,7 +267,7 @@ Object {
 }
 `;
 
-exports[`Input - StyledInputEnhancer - basic render: StyledInputEnhancer has correct styles when default size and start position 1`] = `
+exports[`Input - StyledStartEnhancer - basic render: StyledStartEnhancer has correct styles when default size and start position 1`] = `
 Object {
   "backgroundColor": "$theme.colors.inputFillEnhancer",
   "borderRadius": "$theme.sizing.scale100 0 0 $theme.sizing.scale100",

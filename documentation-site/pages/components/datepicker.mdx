@@ -14,6 +14,10 @@ import DatepickerInPopover from 'examples/datepicker/in-popover.js';
 import DatepickerQuickSelect from 'examples/datepicker/quick-select.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
 
+import Overrides from '../../components/overrides';
+import {Unstable_StatefulCalendar} from 'baseui/datepicker';
+import * as DatepickerExports from 'baseui/datepicker';
+
 export default Layout;
 
 # Datepicker
@@ -46,6 +50,21 @@ A simple and reusable component to work with or select a date or a range of date
 >
   <DatepickerWithOverrides />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Datepicker"
+  component={DatepickerExports}
+  renderExample={props => (
+    <Unstable_StatefulCalendar
+      initialState={{value: new Date()}}
+      isRange
+      enableQuickSelect
+      overrides={props.overrides}
+    />
+  )}
+/>
 
 <API
   heading="Datepicker API"
