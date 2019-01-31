@@ -1,10 +1,21 @@
 import React from 'react';
 import {Button, SHAPE} from 'baseui/button';
+import Upload from 'baseui/icon/upload';
 
 export default () => (
   <React.Fragment>
-    <Button shape={SHAPE.default}>Default shape</Button>
-    <Button shape={SHAPE.square}>Square shape</Button>
-    <Button shape={SHAPE.round}>Round shape</Button>
+    <p>
+      <Button shape={SHAPE.default}>Default shape</Button>
+    </p>
+    <p>
+      <Button shape={SHAPE.square}>
+        <Upload />
+      </Button>
+    </p>
+    <p>
+      <Button shape={SHAPE.round}>
+        <Upload />
+      </Button>
+    </p>
   </React.Fragment>
 );
