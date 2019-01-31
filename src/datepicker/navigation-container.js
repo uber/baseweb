@@ -35,18 +35,18 @@ class NavigationContainer extends React.Component<
     stateReducer: defaultStateReducer,
     onDayMouseOver: () => {},
     onDayMouseLeave: () => {},
-    onSelect: () => {},
+    onChange: () => {},
   };
 
   state = {
     highlightedDate:
       this.props.highlightedDate ||
-      this.getSingleDate(this.props.selected) ||
+      this.getSingleDate(this.props.value) ||
       new Date(),
     isActive: true,
     lastHighlightedDate:
       this.props.highlightedDate ||
-      this.getSingleDate(this.props.selected) ||
+      this.getSingleDate(this.props.value) ||
       new Date(),
   };
 
@@ -83,9 +83,9 @@ class NavigationContainer extends React.Component<
     }
   }
 
-  onSelect = (data: {date: Date | Array<Date>}) => {
+  onChange = (data: {date: ?Date | Array<Date>}) => {
     if (this.state.isActive) {
-      this.props.onSelect(data);
+      this.props.onChange(data);
     }
   };
 
@@ -117,7 +117,7 @@ class NavigationContainer extends React.Component<
 
   onDayMouseLeave = (data: {event: Event, date: Date}) => {
     const {date} = data;
-    const {stateReducer, selected: value} = this.props;
+    const {stateReducer, value} = this.props;
     const selected = this.getSingleDate(value);
     const inSameMonth = isSameMonth(selected, date);
     const inSameYear = isSameYear(selected, date);
@@ -190,7 +190,7 @@ class NavigationContainer extends React.Component<
       highlightedDate: this.state.highlightedDate,
       onDayMouseOver: this.onDayMouseOver,
       onDayMouseLeave: this.onDayMouseLeave,
-      onSelect: this.onSelect,
+      onChange: this.onChange,
       setActiveState: this.setActiveState,
     });
   }

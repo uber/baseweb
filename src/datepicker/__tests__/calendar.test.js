@@ -19,8 +19,8 @@ import {
 
 describe('Component', () => {
   test('basic render', () => {
-    const onSelect = jest.fn();
-    const wrapper = mount(<Calendar onSelect={onSelect} />);
+    const onChange = jest.fn();
+    const wrapper = mount(<Calendar onChange={onChange} />);
 
     expect(wrapper.find(StyledRoot).first()).toExist();
     expect(wrapper.find(StyledMonth).first()).toExist();

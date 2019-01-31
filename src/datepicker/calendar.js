@@ -56,10 +56,10 @@ export default class Calendar extends React.Component<
     onDayMouseLeave: () => {},
     onMonthChange: () => {},
     onYearChange: () => {},
-    onSelect: () => {},
+    onChange: () => {},
     overrides: {},
     peekNextMonth: false,
-    selected: null,
+    value: null,
     setActiveState: () => {},
   };
 
@@ -91,11 +91,11 @@ export default class Calendar extends React.Component<
   }
 
   getDateInView = (): Date => {
-    const {highlightedDate, selected} = this.props;
+    const {highlightedDate, value} = this.props;
     const minDate = getEffectiveMinDate(this.props);
     const maxDate = getEffectiveMaxDate(this.props);
     const current = new Date();
-    const initialDate = this.getSingleDate(selected) || highlightedDate;
+    const initialDate = this.getSingleDate(value) || highlightedDate;
     if (initialDate) {
       return initialDate;
     } else {
@@ -194,9 +194,9 @@ export default class Calendar extends React.Component<
             onDayClick={this.props.onDayClick}
             onDayMouseOver={this.props.onDayMouseOver}
             onDayMouseLeave={this.props.onDayMouseLeave}
-            onSelect={this.props.onSelect}
+            onChange={this.props.onChange}
             overrides={overrides}
-            selected={this.props.selected}
+            value={this.props.value}
             peekNextMonth={this.props.peekNextMonth}
           />
         </CalendarContainer>,
@@ -263,7 +263,7 @@ export default class Calendar extends React.Component<
               key={label}
               kind={KIND.tertiary}
               onClick={() => {
-                this.props.onSelect({date: [beginDate, NOW]});
+                this.props.onChange({date: [beginDate, NOW]});
               }}
               overrides={{
                 BaseButton: {
