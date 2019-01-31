@@ -159,6 +159,7 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
       if (overflow === 'scrollX') {
         return 'scroll';
       }
+      return null;
     },
   });
   styles.apply({
@@ -168,6 +169,7 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
       if (overflow === 'scrollY') {
         return 'scroll';
       }
+      return null;
     },
   });
   styles.apply({
@@ -177,6 +179,7 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
       if (overflow !== 'scrollX' && overflow !== 'scrollY') {
         return overflow;
       }
+      return null;
     },
   });
 
