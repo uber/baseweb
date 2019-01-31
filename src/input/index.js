@@ -13,6 +13,7 @@ export {default as MaskedInput} from './masked-input.js';
 // Styled elements
 export {
   Root as StyledRoot,
+  InputEnhancer as StyledInputEnhancer,
   InputEnhancer as StyledStartEnhancer,
   InputEnhancer as StyledEndEnhancer,
   InputContainer as StyledInputContainer,
