@@ -26,7 +26,7 @@ function build(breakpoints: BreakpointsT) {
 
   return {
     apply: ({property, transform = x => x, value}: ApplyParams) => {
-      if (value == null) {
+      if (value === null || value === undefined) {
         return;
       }
 
@@ -38,14 +38,14 @@ function build(breakpoints: BreakpointsT) {
             return;
           }
 
-          const mediaQuery = mediaQueries[index];
+          const mediaQuery = mediaQueries[index - 1];
           if (!styles[mediaQuery]) {
             styles[mediaQuery] = {};
           }
 
           styles[mediaQuery][property] = transform(v);
         });
-      } else if (value != null) {
+      } else {
         styles[property] = transform(value);
       }
     },

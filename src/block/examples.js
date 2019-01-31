@@ -122,14 +122,13 @@ export default {
     return (
       <>
         <Block
-          font={['font100', 'font300', 'font600']}
-          margin={['0px', 'scale600', 'scale1200']}
-          height={['100px', '200px', '400px']}
+          color={['blue', 'green', 'red', 'pink']}
+          height={['100px', '200px', '300px', '400px']}
           overrides={{
             Block: {
               style: ({$theme}) => ({
                 ...$theme.borders.border300,
-                backgroundColor: $theme.colors.primary,
+                backgroundColor: $theme.colors.warning,
               }),
             },
           }}
@@ -138,8 +137,6 @@ export default {
         </Block>
 
         <Block
-          font={['font100', 'font300']}
-          margin={['0px', 'scale600']}
           height={['100px', '200px']}
           overrides={{
             Block: {
@@ -150,7 +147,7 @@ export default {
             },
           }}
         >
-          Responsive
+          Responsive with less than 4 values provided
         </Block>
       </>
     );

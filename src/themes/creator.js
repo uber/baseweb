@@ -18,7 +18,7 @@ export default function createTheme(
 ): ThemeT {
   const theme = {
     breakpoints: {
-      small: 0,
+      small: 320,
       medium: 600,
       large: 1280,
     },

@@ -456,13 +456,18 @@ describe('Block', () => {
   it('applies expected styles if responsive array is provided', () => {
     expect(
       retrieveStyles(
-        <Block marginLeft={['scale100', 'scale200', 'scale300']}>test</Block>,
+        <Block marginLeft={['scale100', 'scale200', 'scale300', 'scale400']}>
+          test
+        </Block>,
       ),
     ).toMatchObject({
       '@media screen and (min-width: $theme.breakpoints.largepx)': {
-        marginLeft: '$theme.sizing.scale300',
+        marginLeft: '$theme.sizing.scale400',
       },
       '@media screen and (min-width: $theme.breakpoints.mediumpx)': {
+        marginLeft: '$theme.sizing.scale300',
+      },
+      '@media screen and (min-width: $theme.breakpoints.smallpx)': {
         marginLeft: '$theme.sizing.scale200',
       },
       marginLeft: '$theme.sizing.scale100',
@@ -473,7 +478,7 @@ describe('Block', () => {
     expect(
       retrieveStyles(<Block marginLeft={['scale100', 'scale200']}>test</Block>),
     ).toMatchObject({
-      '@media screen and (min-width: $theme.breakpoints.mediumpx)': {
+      '@media screen and (min-width: $theme.breakpoints.smallpx)': {
         marginLeft: '$theme.sizing.scale200',
       },
       marginLeft: '$theme.sizing.scale100',
