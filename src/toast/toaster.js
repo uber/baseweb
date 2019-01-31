@@ -158,7 +158,6 @@ export class ToasterContainer extends React.Component<
     const sharedProps = this.getSharedProps();
 
     const {Root: RootOverride} = this.props.overrides;
-    // $FlowFixMe
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
 
     const toastsLength = this.state.toasts.length;

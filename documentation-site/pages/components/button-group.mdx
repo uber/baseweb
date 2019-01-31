@@ -15,6 +15,11 @@ import CheckboxMode from 'examples/button-group/checkbox-mode.js';
 import Disabled from 'examples/button-group/disabled.js';
 import Controlled from 'examples/button-group/controlled.js';
 
+import Overrides from '../../components/overrides';
+import {Button} from 'baseui/button';
+import {ButtonGroup} from 'baseui/button-group';
+import * as ButtonGroupExports from 'baseui/button-group';
+
 export default Layout;
 
 # ButtonGroup
@@ -47,6 +52,20 @@ Groups a collection of similar actions together.
 <Example title="Controlled Example" path="examples/button-group/controlled.js">
   <Controlled />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="ButtonGroup"
+  component={ButtonGroupExports}
+  renderExample={props => (
+    <ButtonGroup overrides={props.overrides}>
+      <Button>Label</Button>
+      <Button>Label</Button>
+      <Button>Label</Button>
+    </ButtonGroup>
+  )}
+/>
 
 <API
   heading="ButtonGroup API"

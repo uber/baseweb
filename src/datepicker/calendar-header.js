@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {ArrowLeft, ArrowRight} from '../icon/index.js';
 import {Select} from '../select/index.js';
-import {StyledHeader} from './styled-components.js';
+import {StyledCalendarHeader} from './styled-components.js';
 import {
   addMonths,
   getMonth,
@@ -258,7 +258,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     const {overrides = {}} = this.props;
     const [CalendarHeader, calendarHeaderProps] = getOverrides(
       overrides.CalendarHeader,
-      StyledHeader,
+      StyledCalendarHeader,
     );
     return (
       <CalendarHeader {...calendarHeaderProps}>

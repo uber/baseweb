@@ -15,10 +15,14 @@ import Error from 'examples/checkbox/error.js';
 import Indeterminate from 'examples/checkbox/indeterminate.js';
 import Disabled from 'examples/checkbox/disabled.js';
 import Alignment from 'examples/checkbox/alignment.js';
-import Overrides from 'examples/checkbox/overrides.js';
+import Customization from 'examples/checkbox/overrides.js';
 import ComponentOverrides from 'examples/checkbox/component-overrides.js';
 import Focus from 'examples/checkbox/focus.js';
 import Toggle from 'examples/checkbox/toggle.js';
+
+import Overrides from '../../components/overrides';
+import {StatefulCheckbox} from 'baseui/checkbox';
+import * as CheckboxExports from 'baseui/checkbox';
 
 export default Layout;
 
@@ -63,7 +67,7 @@ options. When engaged (on), Base UI toggles are colored and when disengaged (off
 </Example>
 
 <Example title="Overrides" path="examples/checkbox/overrides.js">
-  <Overrides />
+  <Customization />
 </Example>
 
 <Example
@@ -80,6 +84,18 @@ options. When engaged (on), Base UI toggles are colored and when disengaged (off
 <Example title="Toggle checkmark type" path="examples/checkbox/toggle.js">
   <Toggle />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="Checkbox"
+  component={CheckboxExports}
+  renderExample={props => (
+    <StatefulCheckbox onChange={console.log} overrides={props.overrides}>
+      Label
+    </StatefulCheckbox>
+  )}
+/>
 
 <API
   heading="Checkbox API"
