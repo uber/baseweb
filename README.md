@@ -8,7 +8,7 @@
 
 ## Usage
 
-Add `baseui` and it's peer dependencies to your project:
+Add `baseui` and its peer dependencies to your project:
 
 ```bash
 # using yarn
