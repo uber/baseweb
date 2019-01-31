@@ -38,6 +38,7 @@
     "e2e:test:ci": "yarn add puppeteer && jest -c jest.e2e.config.js",
     "prepublish": "npm run build",
     "icon:generate": "./src/icon/build-icons.js",
+    "now": "now",
     "documentation:dev": "yarn build:es2015 && next documentation-site",
     "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public"
   },
