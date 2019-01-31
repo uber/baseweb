@@ -257,6 +257,7 @@ exports[`Select component renders component in search mode and false for multipl
                     aria-haspopup={false}
                     aria-label={null}
                     aria-labelledby={null}
+                    aria-required={null}
                     disabled={null}
                     inputRef={[Function]}
                     onChange={[Function]}
@@ -266,7 +267,7 @@ exports[`Select component renders component in search mode and false for multipl
                         "Input": undefined,
                       }
                     }
-                    required={false}
+                    required={null}
                     role="combobox"
                     value=""
                   >
@@ -292,10 +293,11 @@ exports[`Select component renders component in search mode and false for multipl
                       aria-haspopup={false}
                       aria-label={null}
                       aria-labelledby={null}
+                      aria-required={null}
                       disabled={null}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      required={false}
+                      required={null}
                       role="combobox"
                       value=""
                     >
@@ -307,10 +309,11 @@ exports[`Select component renders component in search mode and false for multipl
                         aria-haspopup={false}
                         aria-label={null}
                         aria-labelledby={null}
+                        aria-required={null}
                         disabled={null}
                         onChange={[Function]}
                         onFocus={[Function]}
-                        required={false}
+                        required={null}
                         role="combobox"
                         styled-component="true"
                         value=""
@@ -610,6 +613,7 @@ exports[`Select component renders component in search mode and true for multiple
                     aria-haspopup={false}
                     aria-label={null}
                     aria-labelledby={null}
+                    aria-required={null}
                     disabled={null}
                     inputRef={[Function]}
                     onChange={[Function]}
@@ -619,7 +623,7 @@ exports[`Select component renders component in search mode and true for multiple
                         "Input": undefined,
                       }
                     }
-                    required={false}
+                    required={null}
                     role="combobox"
                     value=""
                   >
@@ -645,10 +649,11 @@ exports[`Select component renders component in search mode and true for multiple
                       aria-haspopup={false}
                       aria-label={null}
                       aria-labelledby={null}
+                      aria-required={null}
                       disabled={null}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      required={false}
+                      required={null}
                       role="combobox"
                       value=""
                     >
@@ -660,10 +665,11 @@ exports[`Select component renders component in search mode and true for multiple
                         aria-haspopup={false}
                         aria-label={null}
                         aria-labelledby={null}
+                        aria-required={null}
                         disabled={null}
                         onChange={[Function]}
                         onFocus={[Function]}
-                        required={false}
+                        required={null}
                         role="combobox"
                         styled-component="true"
                         value=""
@@ -885,6 +891,7 @@ exports[`Select component renders component in select mode and false for multipl
                     aria-haspopup={false}
                     aria-label={null}
                     aria-labelledby={null}
+                    aria-required={null}
                     disabled={null}
                     inputRef={[Function]}
                     onChange={[Function]}
@@ -894,7 +901,7 @@ exports[`Select component renders component in select mode and false for multipl
                         "Input": undefined,
                       }
                     }
-                    required={false}
+                    required={null}
                     role="combobox"
                     value=""
                   >
@@ -920,10 +927,11 @@ exports[`Select component renders component in select mode and false for multipl
                       aria-haspopup={false}
                       aria-label={null}
                       aria-labelledby={null}
+                      aria-required={null}
                       disabled={null}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      required={false}
+                      required={null}
                       role="combobox"
                       value=""
                     >
@@ -935,10 +943,11 @@ exports[`Select component renders component in select mode and false for multipl
                         aria-haspopup={false}
                         aria-label={null}
                         aria-labelledby={null}
+                        aria-required={null}
                         disabled={null}
                         onChange={[Function]}
                         onFocus={[Function]}
-                        required={false}
+                        required={null}
                         role="combobox"
                         styled-component="true"
                         value=""
@@ -1237,6 +1246,7 @@ exports[`Select component renders component in select mode and true for multiple
                     aria-haspopup={false}
                     aria-label={null}
                     aria-labelledby={null}
+                    aria-required={null}
                     disabled={null}
                     inputRef={[Function]}
                     onChange={[Function]}
@@ -1246,7 +1256,7 @@ exports[`Select component renders component in select mode and true for multiple
                         "Input": undefined,
                       }
                     }
-                    required={false}
+                    required={null}
                     role="combobox"
                     value=""
                   >
@@ -1272,10 +1282,11 @@ exports[`Select component renders component in select mode and true for multiple
                       aria-haspopup={false}
                       aria-label={null}
                       aria-labelledby={null}
+                      aria-required={null}
                       disabled={null}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      required={false}
+                      required={null}
                       role="combobox"
                       value=""
                     >
@@ -1287,10 +1298,11 @@ exports[`Select component renders component in select mode and true for multiple
                         aria-haspopup={false}
                         aria-label={null}
                         aria-labelledby={null}
+                        aria-required={null}
                         disabled={null}
                         onChange={[Function]}
                         onFocus={[Function]}
-                        required={false}
+                        required={null}
                         role="combobox"
                         styled-component="true"
                         value=""
