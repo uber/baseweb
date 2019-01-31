@@ -31,6 +31,7 @@ export default function Menu({
             item={item}
             key={index}
             role="option"
+            overrides={overrides}
             tabIndex={index === 0 ? 0 : -1} // Allows tab focus into first element
             {...getSharedProps(requiredProps)}
             {...optionProps}

@@ -65,24 +65,27 @@ export const StyledQuickSelectButtons = styled('div', {
   flexWrap: 'wrap',
 });
 
-export const StyledHeader = styled('div', (props: SharedStylePropsT) => {
-  const {
-    $theme: {colors, sizing, borders},
-  } = props;
-  const borderRadius = borders.useRoundedCorners ? borders.radius200 : '0px';
-  return {
-    color: colors.white,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: sizing.scale500,
-    paddingBottom: sizing.scale500,
-    paddingLeft: sizing.scale600,
-    paddingRight: sizing.scale600,
-    backgroundColor: colors.primary,
-    borderRadius: `${borderRadius} ${borderRadius} 0 0`,
-  };
-});
+export const StyledCalendarHeader = styled(
+  'div',
+  (props: SharedStylePropsT) => {
+    const {
+      $theme: {colors, sizing, borders},
+    } = props;
+    const borderRadius = borders.useRoundedCorners ? borders.radius200 : '0px';
+    return {
+      color: colors.white,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingTop: sizing.scale500,
+      paddingBottom: sizing.scale500,
+      paddingLeft: sizing.scale600,
+      paddingRight: sizing.scale600,
+      backgroundColor: colors.primary,
+      borderRadius: `${borderRadius} ${borderRadius} 0 0`,
+    };
+  },
+);
 
 export const StyledMonthHeader = styled('div', (props: SharedStylePropsT) => {
   return {

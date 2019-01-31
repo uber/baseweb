@@ -15,7 +15,11 @@ import Range from 'examples/slider/range.js';
 import RangeLabel from 'examples/slider/range-label.js';
 import Step from 'examples/slider/step.js';
 import Ticks from 'examples/slider/ticks.js';
-import Overrides from 'examples/slider/overrides.js';
+import Customization from 'examples/slider/overrides.js';
+
+import Overrides from '../../components/overrides';
+import {Slider} from 'baseui/slider';
+import * as SliderExports from 'baseui/slider';
 
 export default Layout;
 
@@ -56,8 +60,16 @@ Each slider has a primary control handle that cues user interaction.
 </Example>
 
 <Example title="Overrides" path="examples/slider/overrides.js">
-  <Overrides />
+  <Customization />
 </Example>
+
+<Overrides
+  name="Slider"
+  component={SliderExports}
+  renderExample={props => (
+    <Slider value={[60]} range={[0, 100]} overrides={props.overrides} />
+  )}
+/>
 
 <API
   heading="Slider API"

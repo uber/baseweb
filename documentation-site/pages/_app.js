@@ -24,7 +24,7 @@ export default class MyApp extends App {
         <StyletronProvider value={styletron}>
           <ThemeProvider theme={LightTheme}>
             <Component {...pageProps} />
-            <Block marginBottom="scale4800" />
+            <Block marginBottom="300px" />
           </ThemeProvider>
         </StyletronProvider>
       </Container>

@@ -14,6 +14,10 @@ import FileUploaderError from 'examples/file-uploader/error.js';
 import FileUploaderDisabled from 'examples/file-uploader/disabled.js';
 import FileUploaderOverrides from 'examples/file-uploader/overrides.js';
 
+import Overrides from '../../components/overrides';
+import OverridesExample from 'examples/file-uploader/_overrides_component.js';
+import * as FileuploaderExports from 'baseui/file-uploader';
+
 export default Layout;
 
 # File Uploader
@@ -50,6 +54,14 @@ Creates a dropzone for file uploads.
 >
   <FileUploaderOverrides />
 </Example>
+
+## Overrides
+
+<Overrides
+  name="File Uploader"
+  component={FileuploaderExports}
+  renderExample={props => <OverridesExample overrides={props.overrides} />}
+/>
 
 <API
   heading="File Uploader API"
