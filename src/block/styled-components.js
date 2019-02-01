@@ -8,297 +8,246 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {styled} from '../styles/index.js';
-import type {Font} from '../styles/types.js';
+import type {BreakpointsT} from '../styles/types.js';
 import type {StyledBlockPropsT} from './types.js';
 
-export const StyledBlock = styled(
-  'div',
-  ({
-    $theme,
-    $color,
-    $font,
-    $alignContent,
-    $alignItems,
-    $alignSelf,
-    $flexDirection,
-    $display,
-    $flex,
-    $grid,
-    $gridArea,
-    $gridAutoColumns,
-    $gridAutoFlow,
-    $gridAutoRows,
-    $gridColumn,
-    $gridColumnEnd,
-    $gridColumnGap,
-    $gridColumnStart,
-    $gridGap,
-    $gridRow,
-    $gridRowStart,
-    $gridRowEnd,
-    $gridTemplate,
-    $gridTemplateAreas,
-    $gridTemplateColumns,
-    $gridTemplateRows,
-    $justifyContent,
-    $justifyItems,
-    $justifySelf,
-    $position,
-    $width,
-    $minWidth,
-    $maxWidth,
-    $height,
-    $minHeight,
-    $maxHeight,
-    $overflow,
-    $margin,
-    $marginTop,
-    $marginRight,
-    $marginBottom,
-    $marginLeft,
-    $padding,
-    $paddingTop,
-    $paddingRight,
-    $paddingBottom,
-    $paddingLeft,
-    $placeContent,
-    $placeItems,
-    $placeSelf,
-    $flexWrap,
-    $left,
-    $top,
-    $right,
-    $bottom,
-    ...other
-  }: StyledBlockPropsT) => {
-    const {colors, typography, sizing} = $theme;
+type ApplyParams = {
+  property: string,
+  value?: * | Array<*>,
+  // eslint-disable-next-line flowtype/no-weak-types
+  transform?: Function,
+};
 
-    let styles = {};
+function build(breakpoints: BreakpointsT) {
+  const styles = {};
+  const mediaQueries = Object.keys(breakpoints).map(
+    size => `@media screen and (min-width: ${breakpoints[size]}px)`,
+  );
 
-    if ($color !== undefined) {
-      styles.color = colors[$color] || $color;
-    }
+  return {
+    apply: ({property, transform = x => x, value}: ApplyParams) => {
+      if (value === null || value === undefined) {
+        return;
+      }
 
-    if ($font !== undefined) {
-      const font: Font = typography[$font];
-      styles.fontFamily = font.fontFamily;
-      styles.fontWeight = font.fontWeight;
-      styles.fontSize = font.fontSize;
-      styles.lineHeight = font.lineHeight;
-    }
+      if (Array.isArray(value)) {
+        value.forEach((v, index) => {
+          // Do not create a media query for the smallest breakpoint.
+          if (index === 0) {
+            styles[property] = transform(v);
+            return;
+          }
 
-    if ($alignContent !== undefined) {
-      styles.alignContent = $alignContent;
-    }
+          const mediaQuery = mediaQueries[index - 1];
+          if (!styles[mediaQuery]) {
+            styles[mediaQuery] = {};
+          }
 
-    if ($alignItems !== undefined) {
-      styles.alignItems = $alignItems;
-    }
+          styles[mediaQuery][property] = transform(v);
+        });
+      } else {
+        styles[property] = transform(value);
+      }
+    },
+    value: () => styles,
+  };
+}
 
-    if ($alignSelf !== undefined) {
-      styles.alignSelf = $alignSelf;
-    }
+export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
+  const {breakpoints, colors, typography, sizing} = props.$theme;
 
-    if ($flexDirection !== undefined) {
-      styles.flexDirection = $flexDirection;
-    }
+  const get = (obj, key) => obj[key];
+  const getScale = size => sizing[size] || size;
 
-    if ($display !== undefined) {
-      styles.display = $display;
-    }
+  const styles = build(breakpoints);
+  styles.apply({
+    property: 'color',
+    value: get(props, '$color'),
+    transform: color => colors[color] || color,
+  });
 
-    if ($flex !== undefined) {
-      styles.flex = $flex;
-    }
+  styles.apply({
+    property: 'fontFamily',
+    value: get(props, '$font'),
+    transform: font => typography[font].fontFamily,
+  });
+  styles.apply({
+    property: 'fontWeight',
+    value: get(props, '$font'),
+    transform: font => typography[font].fontWeight,
+  });
+  styles.apply({
+    property: 'fontSize',
+    value: get(props, '$font'),
+    transform: font => typography[font].fontSize,
+  });
+  styles.apply({
+    property: 'lineHeight',
+    value: get(props, '$font'),
+    transform: font => typography[font].lineHeight,
+  });
 
-    if ($grid !== undefined) {
-      styles.grid = $grid;
-    }
+  styles.apply({property: 'alignContent', value: get(props, '$alignContent')});
+  styles.apply({property: 'alignItems', value: get(props, '$alignItems')});
+  styles.apply({property: 'alignSelf', value: get(props, '$alignSelf')});
+  styles.apply({property: 'display', value: get(props, '$display')});
+  styles.apply({property: 'flex', value: get(props, '$flex')});
+  styles.apply({
+    property: 'flexDirection',
+    value: get(props, '$flexDirection'),
+  });
+  styles.apply({property: 'grid', value: get(props, '$grid')});
+  styles.apply({property: 'gridArea', value: get(props, '$gridArea')});
+  styles.apply({
+    property: 'gridAutoColumns',
+    value: get(props, '$gridAutoColumns'),
+  });
+  styles.apply({property: 'gridAutoFlow', value: get(props, '$gridAutoFlow')});
+  styles.apply({property: 'gridAutoRows', value: get(props, '$gridAutoRows')});
+  styles.apply({property: 'gridColumn', value: get(props, '$gridColumn')});
+  styles.apply({
+    property: 'gridColumnEnd',
+    value: get(props, '$gridColumnEnd'),
+  });
+  styles.apply({
+    property: 'gridColumnGap',
+    value: get(props, '$gridColumnGap'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'gridColumnStart',
+    value: get(props, '$gridColumnStart'),
+  });
+  styles.apply({
+    property: 'gridGap',
+    value: get(props, '$gridGap'),
+    transform: getScale,
+  });
+  styles.apply({property: 'gridRow', value: get(props, '$gridRow')});
+  styles.apply({property: 'gridRowStart', value: get(props, '$gridRowStart')});
+  styles.apply({property: 'gridRowEnd', value: get(props, '$gridRowEnd')});
+  styles.apply({property: 'gridTemplate', value: get(props, '$gridTemplate')});
+  styles.apply({
+    property: 'gridTemplateAreas',
+    value: get(props, '$gridTemplateAreas'),
+  });
+  styles.apply({
+    property: 'gridTemplateColumns',
+    value: get(props, '$gridTemplateColumns'),
+  });
+  styles.apply({
+    property: 'gridTemplateRows',
+    value: get(props, '$gridTemplateRows'),
+  });
+  styles.apply({
+    property: 'justifyContent',
+    value: get(props, '$justifyContent'),
+  });
+  styles.apply({property: 'justifyItems', value: get(props, '$justifyItems')});
+  styles.apply({property: 'justifySelf', value: get(props, '$justifySelf')});
+  styles.apply({property: 'position', value: get(props, '$position')});
+  styles.apply({property: 'width', value: get(props, '$width')});
+  styles.apply({property: 'minWidth', value: get(props, '$minWidth')});
+  styles.apply({property: 'maxWidth', value: get(props, '$maxWidth')});
+  styles.apply({property: 'height', value: get(props, '$height')});
+  styles.apply({property: 'minHeight', value: get(props, '$minHeight')});
+  styles.apply({property: 'maxHeight', value: get(props, '$maxHeight')});
+  styles.apply({
+    property: 'overflowX',
+    value: get(props, '$overflow'),
+    transform: overflow => {
+      if (overflow === 'scrollX') {
+        return 'scroll';
+      }
+      return null;
+    },
+  });
+  styles.apply({
+    property: 'overflowY',
+    value: get(props, '$overflow'),
+    transform: overflow => {
+      if (overflow === 'scrollY') {
+        return 'scroll';
+      }
+      return null;
+    },
+  });
+  styles.apply({
+    property: 'overflow',
+    value: get(props, '$overflow'),
+    transform: overflow => {
+      if (overflow !== 'scrollX' && overflow !== 'scrollY') {
+        return overflow;
+      }
+      return null;
+    },
+  });
 
-    if ($gridArea !== undefined) {
-      styles.gridArea = $gridArea;
-    }
+  styles.apply({
+    property: 'margin',
+    value: get(props, '$margin'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'marginTop',
+    value: get(props, '$marginTop'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'marginRight',
+    value: get(props, '$marginRight'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'marginBottom',
+    value: get(props, '$marginBottom'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'marginLeft',
+    value: get(props, '$marginLeft'),
+    transform: getScale,
+  });
 
-    if ($gridAutoColumns !== undefined) {
-      styles.gridAutoColumns = $gridAutoColumns;
-    }
+  styles.apply({
+    property: 'padding',
+    value: get(props, '$padding'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'paddingTop',
+    value: get(props, '$paddingTop'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'paddingRight',
+    value: get(props, '$paddingRight'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'paddingBottom',
+    value: get(props, '$paddingBottom'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'paddingLeft',
+    value: get(props, '$paddingLeft'),
+    transform: getScale,
+  });
 
-    if ($gridAutoFlow !== undefined) {
-      styles.gridAutoFlow = $gridAutoFlow;
-    }
+  styles.apply({property: 'placeContent', value: get(props, '$placeContent')});
+  styles.apply({property: 'placeItems', value: get(props, '$placeItems')});
+  styles.apply({property: 'placeSelf', value: get(props, '$placeSelf')});
+  styles.apply({
+    property: 'flexWrap',
+    value: get(props, '$flexWrap'),
+    transform: () => 'wrap',
+  });
 
-    if ($gridAutoRows !== undefined) {
-      styles.gridAutoRows = $gridAutoRows;
-    }
+  styles.apply({property: 'top', value: get(props, '$top')});
+  styles.apply({property: 'right', value: get(props, '$right')});
+  styles.apply({property: 'left', value: get(props, '$left')});
+  styles.apply({property: 'bottom', value: get(props, '$bottom')});
 
-    if ($gridColumn !== undefined) {
-      styles.gridColumn = $gridColumn;
-    }
-
-    if ($gridColumnEnd !== undefined) {
-      styles.gridColumnEnd = $gridColumnEnd;
-    }
-
-    if ($gridColumnGap !== undefined) {
-      styles.gridColumnGap = sizing[$gridColumnGap] || $gridColumnGap;
-    }
-
-    if ($gridColumnStart !== undefined) {
-      styles.gridColumnStart = $gridColumnStart;
-    }
-
-    if ($gridGap !== undefined) {
-      styles.gridGap = sizing[$gridGap] || $gridGap;
-    }
-
-    if ($gridRow !== undefined) {
-      styles.gridRow = $gridRow;
-    }
-
-    if ($gridRowStart !== undefined) {
-      styles.gridRowStart = $gridRowStart;
-    }
-
-    if ($gridRowEnd !== undefined) {
-      styles.gridRowEnd = $gridRowEnd;
-    }
-
-    if ($gridTemplate !== undefined) {
-      styles.gridTemplate = $gridTemplate;
-    }
-
-    if ($gridTemplateAreas !== undefined) {
-      styles.gridTemplateAreas = $gridTemplateAreas;
-    }
-
-    if ($gridTemplateColumns !== undefined) {
-      styles.gridTemplateColumns = $gridTemplateColumns;
-    }
-
-    if ($gridTemplateRows !== undefined) {
-      styles.gridTemplateRows = $gridTemplateRows;
-    }
-
-    if ($justifyContent !== undefined) {
-      styles.justifyContent = $justifyContent;
-    }
-
-    if ($justifyItems !== undefined) {
-      styles.justifyItems = $justifyItems;
-    }
-
-    if ($justifySelf !== undefined) {
-      styles.justifySelf = $justifySelf;
-    }
-
-    if ($position !== undefined) {
-      styles.position = $position;
-    }
-
-    if ($width !== undefined) {
-      styles.width = $width;
-    }
-
-    if ($minWidth !== undefined) {
-      styles.minWidth = $minWidth;
-    }
-
-    if ($maxWidth !== undefined) {
-      styles.maxWidth = $maxWidth;
-    }
-
-    if ($height !== undefined) {
-      styles.height = $height;
-    }
-
-    if ($minHeight !== undefined) {
-      styles.minHeight = $minHeight;
-    }
-
-    if ($maxHeight !== undefined) {
-      styles.maxHeight = $maxHeight;
-    }
-
-    if ($overflow === 'scrollX') {
-      styles.overflowX = 'scroll';
-    } else if ($overflow === 'scrollY') {
-      styles.overflowY = 'scroll';
-    } else if ($overflow !== undefined) {
-      styles.overflow = $overflow;
-    }
-
-    if ($margin !== undefined) {
-      styles.margin = sizing[$margin] || $margin;
-    }
-
-    if ($marginTop !== undefined) {
-      styles.marginTop = sizing[$marginTop] || $marginTop;
-    }
-
-    if ($marginRight !== undefined) {
-      styles.marginRight = sizing[$marginRight] || $marginRight;
-    }
-
-    if ($marginBottom !== undefined) {
-      styles.marginBottom = sizing[$marginBottom] || $marginBottom;
-    }
-
-    if ($marginLeft !== undefined) {
-      styles.marginLeft = sizing[$marginLeft] || $marginLeft;
-    }
-
-    if ($padding !== undefined) {
-      styles.padding = sizing[$padding] || $padding;
-    }
-
-    if ($paddingTop !== undefined) {
-      styles.paddingTop = sizing[$paddingTop] || $paddingTop;
-    }
-
-    if ($paddingRight !== undefined) {
-      styles.paddingRight = sizing[$paddingRight] || $paddingRight;
-    }
-
-    if ($paddingBottom !== undefined) {
-      styles.paddingBottom = sizing[$paddingBottom] || $paddingBottom;
-    }
-
-    if ($paddingLeft !== undefined) {
-      styles.paddingLeft = sizing[$paddingLeft] || $paddingLeft;
-    }
-
-    if ($placeContent !== undefined) {
-      styles.placeContent = $placeContent;
-    }
-
-    if ($placeItems !== undefined) {
-      styles.placeItems = $placeItems;
-    }
-
-    if ($placeSelf !== undefined) {
-      styles.placeSelf = $placeSelf;
-    }
-
-    if ($flexWrap !== undefined) {
-      styles.flexWrap = 'wrap';
-    }
-
-    if ($left !== undefined) {
-      styles.left = $left;
-    }
-
-    if ($top !== undefined) {
-      styles.top = $top;
-    }
-
-    if ($right !== undefined) {
-      styles.right = $right;
-    }
-
-    if ($bottom !== undefined) {
-      styles.bottom = $bottom;
-    }
-
-    return styles;
-  },
-);
+  return styles.value();
+});

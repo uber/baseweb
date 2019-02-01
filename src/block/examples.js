@@ -117,6 +117,42 @@ export default {
       </Block>
     );
   },
+
+  breakpoints: function BreakpointsStory() {
+    return (
+      <>
+        <Block
+          color={['blue', 'green', 'red', 'pink']}
+          height={['100px', '200px', '300px', '400px']}
+          overrides={{
+            Block: {
+              style: ({$theme}) => ({
+                ...$theme.borders.border300,
+                backgroundColor: $theme.colors.warning,
+              }),
+            },
+          }}
+        >
+          Responsive
+        </Block>
+
+        <Block
+          height={['100px', '200px']}
+          overrides={{
+            Block: {
+              style: ({$theme}) => ({
+                ...$theme.borders.border300,
+                backgroundColor: $theme.colors.primary,
+              }),
+            },
+          }}
+        >
+          Responsive with less than 4 values provided
+        </Block>
+      </>
+    );
+  },
+
   [examples.OVERRIDES]: function Story5() {
     return (
       <Block
