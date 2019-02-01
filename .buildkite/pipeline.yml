@@ -43,6 +43,7 @@ steps:
     agents:
       queue: workers
   - name: ':now:'
+    branches: 'master'
     command: ./scripts/now-deploy.sh
     plugins:
       'docker-compose':
