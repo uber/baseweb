@@ -72,7 +72,6 @@ function Block({
   bottom,
   ...other
 }: BlockPropsT) {
-  // $FlowFixMe
   const [BaseBlock, baseBlockProps] = getOverrides(
     // $FlowFixMe
     overrides.Block,
