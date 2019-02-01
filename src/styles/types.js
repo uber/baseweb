@@ -5,6 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
+export type BreakpointsT = {
+  small: number,
+  medium: number,
+  large: number,
+};
+
 export type ColorsT = {
   // Primary Palette
   primary50: string,
@@ -284,6 +291,7 @@ export type ZIndexT = {
 };
 
 export type ThemeT = {|
+  breakpoints: BreakpointsT,
   colors: ColorsT,
   typography: TypographyT,
   sizing: SizingT,

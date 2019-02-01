@@ -17,6 +17,12 @@ export default function createTheme(
   overrides?: {},
 ): ThemeT {
   const theme = {
+    breakpoints: {
+      small: 320,
+      medium: 600,
+      large: 1280,
+    },
+
     colors: {
       // Primary Palette
       primary50: primitives.primary50,
