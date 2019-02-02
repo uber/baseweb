@@ -31,8 +31,6 @@ Object {
   "boxShadow": "$theme.lighting.shadow400",
   "display": "flex",
   "flexGrow": 0,
-  "position": "sticky",
-  "top": 0,
   "width": "1000px",
   "zIndex": 1,
 }
@@ -112,8 +110,6 @@ Object {
   "boxShadow": "$theme.lighting.shadow400",
   "display": "flex",
   "flexGrow": 0,
-  "position": "sticky",
-  "top": 0,
   "width": "100%",
   "zIndex": 1,
 }

@@ -34,8 +34,6 @@ export const StyledHead = styled(
       boxShadow: $theme.lighting.shadow400,
       display: 'flex',
       flexGrow: 0,
-      position: 'sticky',
-      top: 0,
       width: $width ? $width : '100%',
       zIndex: 1,
     };
