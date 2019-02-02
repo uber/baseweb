@@ -19,6 +19,7 @@ import {styled} from 'baseui/styles';
 
 import {version} from '../../package.json';
 import Code from './code';
+import {trackEvent} from '../helpers/ga';
 
 const Link = styled(StyledLink, {cursor: 'pointer'});
 
@@ -113,11 +114,12 @@ class Example extends React.Component<PropsT, StateT> {
           <Block display="flex" alignItems="center">
             <Button
               kind={KIND.secondary}
-              onClick={() =>
+              onClick={() => {
                 this.setState(prevState => ({
                   isSourceOpen: !prevState.isSourceOpen,
-                }))
-              }
+                }));
+                trackEvent('show_source', this.props.title);
+              }}
             >
               {this.state.isSourceOpen ? 'Hide' : 'Show'} Source
             </Button>
@@ -152,7 +154,10 @@ class Example extends React.Component<PropsT, StateT> {
             >
               <Block marginRight="scale600">
                 <CopyToClipboard
-                  onCopy={this.handleCopy}
+                  onCopy={() => {
+                    this.handleCopy();
+                    trackEvent('copy_to_clipboard', this.props.title);
+                  }}
                   text={this.state.source}
                 >
                   {this.state.isCopied ? (
@@ -171,6 +176,12 @@ class Example extends React.Component<PropsT, StateT> {
                 examplePath="/"
                 example={this.state.source}
                 name={this.props.title}
+                afterDeploy={() => {
+                  trackEvent('codesandbox_deployed', this.props.title);
+                }}
+                afterDeployError={() => {
+                  trackEvent('codesandbox_deployed_error', this.props.title);
+                }}
                 dependencies={{
                   baseui: version,
                   react: '16.5.2',
