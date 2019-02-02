@@ -13,6 +13,7 @@ import {Card} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
 import TriangleDown from 'baseui/icon/triangle-down';
 import {StatefulPopover} from 'baseui/popover';
+import {trackEvent} from '../helpers/ga';
 
 import NavLink from './nav-link';
 
@@ -40,6 +41,7 @@ const categories = Routes.find(r => r.components);
 export default () => (
   <StatefulPopover
     placement="bottom"
+    onOpen={() => trackEvent('component_top_popover', 'open')}
     content={({close}) => (
       <Card>
         <Block display="flex">

@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {styled} from 'baseui/styles';
 import {default as SearchIcon} from 'baseui/icon/search';
+import {trackEvent} from '../helpers/ga';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';
 
@@ -79,6 +80,7 @@ class DocSearch extends React.Component<{}, State> {
           type="search"
           placeholder="Search documentation"
           aria-label="Search documentation"
+          onChange={e => trackEvent('algolia_search', e.target.value)}
         />
       </React.Fragment>
     ) : null;
