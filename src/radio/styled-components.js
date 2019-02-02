@@ -101,6 +101,7 @@ export const RadioMarkOuter = styled('div', props => {
     marginLeft: sizing.scale200,
     verticalAlign: 'middle',
     width: sizing.scale700,
+    flexShrink: 0,
   };
 });
 
