@@ -44,6 +44,8 @@ const cache = new CellMeasurerCache({
   defaultHeight: 36,
 });
 
+const FullHeight = styled('div', {height: '100%'});
+
 export default () => (
   <Container>
     <StyledTable
@@ -51,18 +53,19 @@ export default () => (
       aria-colcount={COLUMNS.length}
       aria-rowcount={DATA.length}
     >
-      <StyledContent>
-        <StyledHead role="row">
-          {COLUMNS.map((column, index) => (
-            <StyledHeadCell role="columnheader" key={index}>
-              {column}
-            </StyledHeadCell>
-          ))}
-        </StyledHead>
+      <StyledHead role="row">
+        {COLUMNS.map((column, index) => (
+          <StyledHeadCell role="columnheader" key={index}>
+            {column}
+          </StyledHeadCell>
+        ))}
+      </StyledHead>
+
+      <FullHeight>
         <AutoSizer>
           {({width, height}) => (
             <List
-              height={height - 60}
+              height={height}
               width={width}
               rowCount={DATA.length}
               rowHeight={cache.rowHeight}
@@ -87,7 +90,7 @@ export default () => (
             />
           )}
         </AutoSizer>
-      </StyledContent>
+      </FullHeight>
     </StyledTable>
   </Container>
 );
