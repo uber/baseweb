@@ -77,10 +77,13 @@ class DefaultExampleComponent extends React.Component<
       <ProgressSteps current={this.state.current}>
         <GenericStep title="Create Account" {...overrideProps}>
           <Block font="font400">
-            <div>Here is some step content</div>
+            <div data-e2e="content-1">Here is some step content</div>
             <div>
               <SpacedButton disabled>Previous</SpacedButton>
-              <SpacedButton onClick={() => this.setState({current: 1})}>
+              <SpacedButton
+                data-e2e="button-next"
+                onClick={() => this.setState({current: 1})}
+              >
                 Next
               </SpacedButton>
             </div>
@@ -88,7 +91,7 @@ class DefaultExampleComponent extends React.Component<
         </GenericStep>
         <GenericStep title="Verify Payment" {...overrideProps}>
           <Block font="font400">
-            <div>
+            <div data-e2e="content-2">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
               quae ab illo inventore veritatis et quasi architecto beatae vitae
@@ -96,7 +99,10 @@ class DefaultExampleComponent extends React.Component<
               aspernatur aut odit aut fugit...
             </div>
             <div>
-              <SpacedButton onClick={() => this.setState({current: 0})}>
+              <SpacedButton
+                data-e2e="button-previous"
+                onClick={() => this.setState({current: 0})}
+              >
                 Previous
               </SpacedButton>
               <SpacedButton onClick={() => this.setState({current: 2})}>
@@ -107,7 +113,7 @@ class DefaultExampleComponent extends React.Component<
         </GenericStep>
         <GenericStep title="Add Payment Method" {...overrideProps}>
           <Block font="font400">
-            <div>Here is some step content</div>
+            <div data-e2e="content-3">Here is some step content</div>
             <div>
               <SpacedButton onClick={() => this.setState({current: 1})}>
                 Previous

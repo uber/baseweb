@@ -21,6 +21,7 @@ import Menu from '../src/menu/examples.js';
 import Modal from '../src/modal/examples.js';
 import Pagination from '../src/pagination/examples.js';
 import Popover from '../src/popover/examples.js';
+import ProgressSteps from '../src/progress-steps/examples.js';
 import Radio from '../src/radio/examples.js';
 import Select from '../src/select/examples.js';
 import Tabs from '../src/tabs/examples.js';
@@ -41,6 +42,7 @@ const Examples = [
   Menu,
   Pagination,
   Popover,
+  ProgressSteps,
   Radio,
   Select,
   Tabs,
