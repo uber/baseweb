@@ -12,9 +12,10 @@ export const StyledTable = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.borders.border300,
     borderRadius: $theme.borders.radius200,
+    display: 'flex',
+    flexDirection: 'column',
     height: '100%',
-    width: '100%',
-    overflowY: 'auto',
+    overflowX: 'scroll',
   };
 });
 
@@ -23,12 +24,7 @@ type HorizontalStyleProps = {
   $width?: string,
 };
 
-export const StyledContent = styled('div', ({$width}: HorizontalStyleProps) => {
-  return {
-    height: '100%',
-    width: $width ? $width : '100%',
-  };
-});
+export const StyledContent = styled('div');
 
 export const StyledHead = styled(
   'div',
@@ -38,9 +34,8 @@ export const StyledHead = styled(
       boxShadow: $theme.lighting.shadow400,
       display: 'flex',
       flexGrow: 0,
-      position: 'sticky',
-      top: 0,
       width: $width ? $width : '100%',
+      zIndex: 1,
     };
   },
 );
@@ -63,7 +58,13 @@ export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
-export const StyledBody = styled('div', {});
+export const StyledBody = styled('div', ({$width}: HorizontalStyleProps) => {
+  return {
+    width: $width ? $width : '100%',
+    overflowY: 'scroll',
+    flex: 1,
+  };
+});
 
 export const StyledRow = styled('div', ({$theme}) => ({
   display: 'flex',

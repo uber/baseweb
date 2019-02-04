@@ -36,7 +36,7 @@ const DATA = [
 
 const COLUMNS = ['Name', 'Age', 'Address'];
 
-const WIDTH = '1000px';
+const WIDTH = 1000;
 
 const Container = styled('div', {
   height: '500px',
@@ -46,6 +46,8 @@ const cache = new CellMeasurerCache({
   defaultHeight: 36,
 });
 
+const FullHeight = styled('div', {height: '100%'});
+
 export default () => (
   <Container>
     <StyledTable
@@ -53,19 +55,20 @@ export default () => (
       aria-colcount={COLUMNS.length}
       aria-rowcount={DATA.length}
     >
-      <StyledContent $width={WIDTH}>
-        <StyledHead role="row" $width={WIDTH}>
-          {COLUMNS.map((column, index) => (
-            <StyledHeadCell role="columnheader" key={index}>
-              {column}
-            </StyledHeadCell>
-          ))}
-        </StyledHead>
+      <StyledHead role="row" $width={`${WIDTH}px`}>
+        {COLUMNS.map((column, index) => (
+          <StyledHeadCell role="columnheader" key={index}>
+            {column}
+          </StyledHeadCell>
+        ))}
+      </StyledHead>
+
+      <FullHeight>
         <AutoSizer>
           {({height, width}) => (
             <List
-              height={height - 60}
-              width={width}
+              height={height}
+              width={WIDTH}
               rowCount={DATA.length}
               rowHeight={cache.rowHeight}
               deferredMeasurementCache={cache}
@@ -89,7 +92,7 @@ export default () => (
             />
           )}
         </AutoSizer>
-      </StyledContent>
+      </FullHeight>
     </StyledTable>
   </Container>
 );

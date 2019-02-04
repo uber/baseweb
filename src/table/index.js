@@ -9,7 +9,7 @@ export {default as Table} from './table.js';
 // Styled elements
 export {
   StyledTable,
-  StyledContent,
+  StyledContent, // remove StyledContent in the next major version
   StyledHead,
   StyledHeadCell,
   StyledBody,

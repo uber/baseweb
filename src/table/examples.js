@@ -14,10 +14,10 @@ import {
   CellMeasurerCache,
 } from 'react-virtualized/dist/commonjs/CellMeasurer'; // eslint-disable-line import/extensions
 
+import {styled} from '../styles/index.js';
 import {
   Table,
   StyledTable,
-  StyledContent,
   StyledHead,
   StyledHeadCell,
   StyledRow,
@@ -53,20 +53,23 @@ const cache = new CellMeasurerCache({
   defaultHeight: 36,
 });
 
+const FullHeight = styled('div', {height: '100%'});
+
 // eslint-disable-next-line flowtype/no-weak-types
 function Virtual(props: any) {
   return (
     <StyledTable>
-      <StyledContent $width={props.width + 'px'}>
-        <StyledHead $width={props.width + 'px'}>
-          {props.columns.map((column, index) => (
-            <StyledHeadCell key={index}>{column}</StyledHeadCell>
-          ))}
-        </StyledHead>
+      <StyledHead $width={props.width + 'px'}>
+        {props.columns.map((column, index) => (
+          <StyledHeadCell key={index}>{column}</StyledHeadCell>
+        ))}
+      </StyledHead>
+
+      <FullHeight>
         <AutoSizer>
           {({width, height}) => (
             <List
-              height={height - 60}
+              height={height}
               width={props.width || width}
               rowCount={props.data.length}
               rowHeight={cache.rowHeight}
@@ -89,7 +92,7 @@ function Virtual(props: any) {
             />
           )}
         </AutoSizer>
-      </StyledContent>
+      </FullHeight>
     </StyledTable>
   );
 }
@@ -99,6 +102,14 @@ export default {
     return (
       <div style={{height: '400px', width: '800px', marginTop: '48px'}}>
         <Table columns={['Name', 'Age', 'Address']} data={DATA} />
+      </div>
+    );
+  },
+
+  fewRows: function FewRows() {
+    return (
+      <div style={{height: '400px', width: '800px', marginTop: '48px'}}>
+        <Table columns={['Name', 'Age', 'Address']} data={DATA.slice(0, 4)} />
       </div>
     );
   },
