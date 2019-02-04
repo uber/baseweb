@@ -2,6 +2,7 @@
 
 set -e
 
+apt-get update
 apt-get install -y jq
 
 this_commit=$(echo $BUILDKITE_COMMIT | tr -d '"')
