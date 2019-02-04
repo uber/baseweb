@@ -14,9 +14,15 @@ import {
   CellMeasurerCache,
 } from 'react-virtualized/dist/commonjs/CellMeasurer'; // eslint-disable-line import/extensions
 
+import {Checkbox} from '../checkbox/index.js';
+
 import {
+  Filter,
   Table,
+
+  // styled components
   StyledTable,
+  StyledBody,
   StyledContent,
   StyledHead,
   StyledHeadCell,
@@ -94,6 +100,103 @@ function Virtual(props: any) {
   );
 }
 
+// eslint-disable-next-line flowtype/no-weak-types
+const FilterCheckbox = (props: any) => (
+  <Checkbox
+    checked={props.checked}
+    onChange={props.onChange}
+    overrides={{
+      Root: {
+        style: ({$theme}) => ({
+          alignItems: 'center',
+          marginTop: $theme.sizing.scale400,
+          marginBottom: $theme.sizing.scale400,
+        }),
+      },
+      Checkmark: {style: {marginLeft: 0}},
+      Label: {
+        style: ({$theme}) => ({
+          ...$theme.typography.font300,
+        }),
+      },
+    }}
+  >
+    {props.children}
+  </Checkbox>
+);
+
+// eslint-disable-next-line flowtype/no-weak-types
+class FilterTable extends React.Component<any, any> {
+  state = {
+    filters: [],
+  };
+
+  // eslint-disable-next-line flowtype/no-weak-types
+  FILTER_FUNCTIONS: Function[] = [...new Array(10)].map((_, i) => (row: any) =>
+    row[0] % (i + 1) === 0,
+  );
+
+  onFilter = (index: number) => {
+    const isActive = !!this.state.filters[index];
+
+    const filters = [...this.state.filters];
+    if (isActive) {
+      filters[index] = null;
+    } else {
+      filters[index] = this.FILTER_FUNCTIONS[index];
+    }
+    this.setState({filters});
+  };
+
+  handleReset = () => this.setState({filters: []});
+  handleSelectAll = () => this.setState({filters: this.FILTER_FUNCTIONS});
+
+  render() {
+    const filteredData = this.state.filters
+      .filter(Boolean)
+      .reduce((data, filter) => data.filter(filter), this.props.data);
+
+    return (
+      <div style={{height: '600px', width: '800px', marginTop: '48px'}}>
+        <StyledTable>
+          <StyledHead>
+            <StyledHeadCell>
+              Number
+              <Filter
+                active={!!this.state.filters.length}
+                onReset={this.handleReset}
+                onSelectAll={this.handleSelectAll}
+              >
+                {this.FILTER_FUNCTIONS.map((_, index) => (
+                  <FilterCheckbox
+                    key={index}
+                    checked={!!this.state.filters[index]}
+                    onChange={() => this.onFilter(index)}
+                  >
+                    {`Divisible by ${index + 1}`}
+                  </FilterCheckbox>
+                ))}
+              </Filter>
+            </StyledHeadCell>
+            <StyledHeadCell>Title</StyledHeadCell>
+          </StyledHead>
+          <StyledContent>
+            <StyledBody>
+              {filteredData.map((row, index) => (
+                <StyledRow key={index}>
+                  {row.map((cell, cellIndex) => (
+                    <StyledCell key={cellIndex}>{cell}</StyledCell>
+                  ))}
+                </StyledRow>
+              ))}
+            </StyledBody>
+          </StyledContent>
+        </StyledTable>
+      </div>
+    );
+  }
+}
+
 export default {
   [examples.TABLE]: function TableStory() {
     return (
@@ -135,5 +238,10 @@ export default {
         />
       </div>
     );
+  },
+
+  filter: function FilterStory() {
+    const FILTER_DATA = [...new Array(100)].map((_, i) => [i, 'row title']);
+    return <FilterTable data={FILTER_DATA} />;
   },
 };

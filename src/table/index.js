@@ -6,10 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as Table} from './table.js';
+export {default as Filter} from './filter.js';
 // Styled elements
 export {
   StyledTable,
   StyledContent,
+  StyledFilterContent,
+  StyledFilterHeading,
+  StyledFilterFooter,
   StyledHead,
   StyledHeadCell,
   StyledBody,
