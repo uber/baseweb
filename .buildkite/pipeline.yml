@@ -43,8 +43,11 @@ steps:
     agents:
       queue: workers
   - name: ':now:'
-    branches: 'v*.*.*'
-    command: yarn documentation:build && yarn now --team=baseui --token=${ZEIT_NOW_TOKEN} && yarn now alias --team=baseui --token=${ZEIT_NOW_TOKEN}
+    branches: 'master'
+    command: ./scripts/now-deploy.sh
+    plugins:
+      'docker-compose':
+        run: baseui
     agents:
       queue: workers
   - name: ':screener:'

@@ -13,6 +13,7 @@ import {Provider as StyletronProvider} from 'styletron-react';
 
 import Meta from '../components/meta';
 import {styletron} from '../helpers/styletron';
+import {GA_ID} from '../helpers/ga';
 
 export default class MyDocument extends Document {
   static getInitialProps(props) {
@@ -22,8 +23,22 @@ export default class MyDocument extends Document {
       </StyletronProvider>
     ));
     const stylesheets = styletron.getStylesheets() || [];
-    return {...page, stylesheets};
+    // eslint-disable-next-line cup/no-undef
+    const isProduction = process.env.NODE_ENV === 'production';
+    return {...page, stylesheets, isProduction};
   }
+
+  setGoogleTags() {
+    return {
+      __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${GA_ID}');
+      `,
+    };
+  }
+
   render() {
     return (
       <html lang="en">
@@ -49,6 +64,15 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          {this.props.isProduction && (
+            <React.Fragment>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              />
+              <script dangerouslySetInnerHTML={this.setGoogleTags()} />
+            </React.Fragment>
+          )}
         </body>
       </html>
     );

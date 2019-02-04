@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import Accordion from '../src/accordion/examples.js';
+import Breadcrumbs from '../src/breadcrumbs/examples.js';
 import Button from '../src/button/examples.js';
 import Card from '../src/card/examples.js';
 import Checkbox from '../src/checkbox/examples.js';
@@ -22,12 +23,14 @@ import Pagination from '../src/pagination/examples.js';
 import Popover from '../src/popover/examples.js';
 import Radio from '../src/radio/examples.js';
 import Select from '../src/select/examples.js';
+import Tabs from '../src/tabs/examples.js';
 import Tag from '../src/tag/examples.js';
 import Textarea from '../src/textarea/examples.js';
 import Tooltip from '../src/tooltip/examples.js';
 
 const Examples = [
   Accordion,
+  Breadcrumbs,
   Button,
   Card,
   Checkbox,
@@ -40,6 +43,7 @@ const Examples = [
   Popover,
   Radio,
   Select,
+  Tabs,
   Tag,
   Textarea,
   Tooltip,

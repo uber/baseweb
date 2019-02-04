@@ -12,6 +12,7 @@ import {Block} from 'baseui/block';
 import {Card, StyledBody} from 'baseui/card';
 import {StyledRadio, RadioGroup} from 'baseui/radio';
 import Link from 'next/link';
+import {trackEvent} from '../helpers/ga';
 
 const isStyledExport = exportName => exportName.startsWith('Styled');
 const getOverrideName = exportName => exportName.replace('Styled', '');
@@ -70,7 +71,10 @@ class Overrides extends React.Component {
           <RadioGroup
             name="highlight an override"
             value={this.state.highlighted}
-            onChange={e => this.setState({highlighted: e.target.value})}
+            onChange={e => {
+              this.setState({highlighted: e.target.value});
+              trackEvent('overrides_inspector', `${name}:${e.target.value}`);
+            }}
           >
             {overrides.map(override => (
               <StyledRadio key={override} value={override}>
