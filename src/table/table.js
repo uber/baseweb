@@ -10,7 +10,6 @@ import React from 'react';
 
 import {
   StyledTable,
-  StyledContent,
   StyledHead,
   StyledHeadCell,
   StyledBody,
@@ -41,19 +40,18 @@ export default class Table extends React.Component<TablePropsT> {
             </StyledHeadCell>
           ))}
         </StyledHead>
-        <StyledContent $width={this.props.horizontalScrollWidth}>
-          <StyledBody role="rowgroup">
-            {this.props.data.map((row, index) => (
-              <StyledRow key={index} role="row">
-                {row.map((cell, cellIndex) => (
-                  <StyledCell key={cellIndex} role="gridcell">
-                    {cell}
-                  </StyledCell>
-                ))}
-              </StyledRow>
-            ))}
-          </StyledBody>
-        </StyledContent>
+
+        <StyledBody role="rowgroup" $width={this.props.horizontalScrollWidth}>
+          {this.props.data.map((row, index) => (
+            <StyledRow key={index} role="row">
+              {row.map((cell, cellIndex) => (
+                <StyledCell key={cellIndex} role="gridcell">
+                  {cell}
+                </StyledCell>
+              ))}
+            </StyledRow>
+          ))}
+        </StyledBody>
       </StyledTable>
     );
   }

@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Table styled components $width property: StyledBody has expected styles when $width property defined 1`] = `Object {}`;
+exports[`Table styled components $width property: StyledBody has expected styles when $width property defined 1`] = `
+Object {
+  "flex": 1,
+  "overflowY": "scroll",
+  "width": "1000px",
+}
+`;
 
 exports[`Table styled components $width property: StyledCell has expected styles when $width property defined 1`] = `
 Object {
@@ -17,12 +23,7 @@ Object {
 }
 `;
 
-exports[`Table styled components $width property: StyledContent has expected styles when $width property defined 1`] = `
-Object {
-  "height": "100%",
-  "width": "1000px",
-}
-`;
+exports[`Table styled components $width property: StyledContent has expected styles when $width property defined 1`] = `Object {}`;
 
 exports[`Table styled components $width property: StyledHead has expected styles when $width property defined 1`] = `
 Object {
@@ -30,9 +31,8 @@ Object {
   "boxShadow": "$theme.lighting.shadow400",
   "display": "flex",
   "flexGrow": 0,
-  "position": "sticky",
-  "top": 0,
   "width": "1000px",
+  "zIndex": 1,
 }
 `;
 
@@ -72,13 +72,20 @@ Object {
   "borderRadius": "$theme.borders.radius200",
   "borderStyle": "$theme.borders.border300.borderStyle",
   "borderWidth": "$theme.borders.border300.borderWidth",
+  "display": "flex",
+  "flexDirection": "column",
   "height": "100%",
-  "overflowY": "auto",
-  "width": "100%",
+  "overflowX": "scroll",
 }
 `;
 
-exports[`Table styled components default properties: StyledBody has expected default styles 1`] = `Object {}`;
+exports[`Table styled components default properties: StyledBody has expected default styles 1`] = `
+Object {
+  "flex": 1,
+  "overflowY": "scroll",
+  "width": "100%",
+}
+`;
 
 exports[`Table styled components default properties: StyledCell has expected default styles 1`] = `
 Object {
@@ -95,12 +102,7 @@ Object {
 }
 `;
 
-exports[`Table styled components default properties: StyledContent has expected default styles 1`] = `
-Object {
-  "height": "100%",
-  "width": "100%",
-}
-`;
+exports[`Table styled components default properties: StyledContent has expected default styles 1`] = `Object {}`;
 
 exports[`Table styled components default properties: StyledHead has expected default styles 1`] = `
 Object {
@@ -108,9 +110,8 @@ Object {
   "boxShadow": "$theme.lighting.shadow400",
   "display": "flex",
   "flexGrow": 0,
-  "position": "sticky",
-  "top": 0,
   "width": "100%",
+  "zIndex": 1,
 }
 `;
 
@@ -150,8 +151,9 @@ Object {
   "borderRadius": "$theme.borders.radius200",
   "borderStyle": "$theme.borders.border300.borderStyle",
   "borderWidth": "$theme.borders.border300.borderWidth",
+  "display": "flex",
+  "flexDirection": "column",
   "height": "100%",
-  "overflowY": "auto",
-  "width": "100%",
+  "overflowX": "scroll",
 }
 `;
