@@ -108,7 +108,21 @@ class Example extends React.Component<PropsT, StateT> {
           paddingBottom="scale600"
           paddingLeft="scale800"
         >
-          <Block as="span" font="font500" color="mono1000">
+          <Block
+            overrides={{
+              Block: {
+                style: {
+                  textTransform: 'lowercase',
+                  ':first-letter': {
+                    textTransform: 'uppercase',
+                  },
+                },
+              },
+            }}
+            as="span"
+            font="font500"
+            color="mono1000"
+          >
             {this.props.title}
           </Block>
           <Block display="flex" alignItems="center">
