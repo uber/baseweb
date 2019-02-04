@@ -8,13 +8,16 @@ LICENSE file in the root directory of this source tree.
 /*eslint-env node*/
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {getPuppeteerUrl} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
 
 const scenarios = require('./examples-list');
 const suite = 'Accordion Test Suite';
 
+const collapsed = '[aria-expanded=false]';
+const expanded = '[aria-expanded=true]';
+
 describe(suite, () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     await page.goto(
       getPuppeteerUrl({
         suite,
@@ -23,13 +26,28 @@ describe(suite, () => {
     );
   });
 
+  it('passes basic a11y tests', async () => {
+    await page.waitFor('div');
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+  });
+
   it('expands once the title is clicked', async () => {
-    await page.click('[aria-expanded=false]');
-    // header changed
-    await page.waitForSelector('[aria-expanded=true]');
-    // content appeared
-    await expect(page).toMatchElement('h3 + div', {
+    await page.click(collapsed);
+    await page.waitForSelector(expanded);
+    await expect(page).toMatchElement('div', {
       text: 'Praesent condimentum',
     });
+  });
+
+  it('collapses once expanded title is clicked', async () => {
+    const initialCount = await page.$$eval(collapsed, panels => panels.length);
+
+    await page.click(collapsed);
+    await page.waitForSelector(expanded);
+
+    await page.click(expanded);
+    const count = await page.$$eval(collapsed, panels => panels.length);
+    expect(count).toBe(initialCount);
   });
 });
