@@ -389,7 +389,20 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  getOptionLabel = ({option}: {option: OptionT}): React.Node => {
+  getOptionLabel = ({
+    option,
+  }: {
+    option: OptionT,
+    optionState: {
+      $selected: boolean,
+      $disabled: boolean,
+      $isHighlighted: boolean,
+    },
+  }): React.Node => {
+    return option[this.props.labelKey];
+  };
+
+  getValueLabel = ({option}: {option: OptionT}): React.Node => {
     return option[this.props.labelKey];
   };
 
@@ -537,7 +550,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   ): ?React.Node | Array<?React.Node> {
     const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
-    const renderLabel = this.props.getValueLabel || this.getOptionLabel;
+    const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const [Placeholder, placeholderProps] = getOverrides(
       overrides.Placeholder,
       StyledPlaceholder,
