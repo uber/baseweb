@@ -10,9 +10,6 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import FileUploader from '../src/file-uploader/examples.js';
-import FormControl from '../src/form-control/examples.js';
-import Input from '../src/input/examples.js';
 import Menu from '../src/menu/examples.js';
 import Modal from '../src/modal/examples.js';
 import Pagination from '../src/pagination/examples.js';
@@ -28,9 +25,6 @@ import Tooltip from '../src/tooltip/examples.js';
 import scenarios from '../src/**/*.scenario.js';
 
 const Examples = [
-  FileUploader,
-  FormControl,
-  Input,
   Modal,
   Menu,
   Pagination,
