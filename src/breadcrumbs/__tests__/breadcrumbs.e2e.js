@@ -8,23 +8,13 @@ LICENSE file in the root directory of this source tree.
 /*eslint-env node*/
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
 
-const scenarios = require('./examples-list');
-const suite = 'Breadcrumbs Test Suite';
-
-describe(suite, () => {
-  beforeAll(async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.DEFAULT,
-      }),
-    );
-  });
-
+describe('breadcrumbs', () => {
   it('passes basic a11y tests', async () => {
+    await page.goto(getPuppeteerUrl({name: 'breadcrumbs'}));
     await page.waitFor('a');
+
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
