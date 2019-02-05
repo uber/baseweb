@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import Button from '../src/button/examples.js';
 import Card from '../src/card/examples.js';
 import Checkbox from '../src/checkbox/examples.js';
 import FileUploader from '../src/file-uploader/examples.js';
@@ -31,7 +30,6 @@ import Tooltip from '../src/tooltip/examples.js';
 import scenarios from '../src/**/*.scenario.js';
 
 const Examples = [
-  Button,
   Card,
   Checkbox,
   FileUploader,
