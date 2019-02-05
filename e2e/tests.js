@@ -27,6 +27,7 @@ import Select from '../src/select/examples.js';
 import Tabs from '../src/tabs/examples.js';
 import Tag from '../src/tag/examples.js';
 import Textarea from '../src/textarea/examples.js';
+import Toast from '../src/toast/examples.js';
 import Tooltip from '../src/tooltip/examples.js';
 
 const Examples = [
@@ -48,6 +49,7 @@ const Examples = [
   Tabs,
   Tag,
   Textarea,
+  Toast,
   Tooltip,
 ];
 
