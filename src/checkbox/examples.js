@@ -58,7 +58,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
     const isIndeterminate = unchecked > 0 && unchecked < checkboxes.length;
     return (
       <div>
-        <div {...(window.E2E_TEST ? {'data-name': 'radioMain'} : null)}>
+        <div>
           <StatelessCheckbox
             components={{}}
             onChange={e => {
@@ -72,7 +72,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
           </StatelessCheckbox>
         </div>
         <div style={{padding: 30}}>
-          <div {...(window.E2E_TEST ? {'data-name': 'radioSub1'} : null)}>
+          <div>
             <StatelessCheckbox
               overrides={{
                 Root: StyledRoot,
@@ -90,7 +90,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
               First subcheckbox
             </StatelessCheckbox>
           </div>
-          <div {...(window.E2E_TEST ? {'data-name': 'radioSub2'} : null)}>
+          <div>
             <StatelessCheckbox
               checked={checkboxes[1]}
               onChange={e => {

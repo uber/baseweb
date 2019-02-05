@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import Checkbox from '../src/checkbox/examples.js';
 import FileUploader from '../src/file-uploader/examples.js';
 import FormControl from '../src/form-control/examples.js';
 import Input from '../src/input/examples.js';
@@ -29,7 +28,6 @@ import Tooltip from '../src/tooltip/examples.js';
 import scenarios from '../src/**/*.scenario.js';
 
 const Examples = [
-  Checkbox,
   FileUploader,
   FormControl,
   Input,
