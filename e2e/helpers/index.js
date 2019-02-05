@@ -20,27 +20,22 @@ const appDirectory = realpathSync(process.cwd());
 
 const resolvePath = relativePath => resolve(appDirectory, relativePath);
 
-function getUrl({launchUrl, suite, test}) {
-  return `${launchUrl}?suite=${encodeURIComponent(
-    suite,
-  )}&test=${encodeURIComponent(test)}`;
+function getUrl({launchUrl, name, suite, test}) {
+  const query = [[name, 'name'], [suite, 'suite'], [test, 'test']]
+    .filter(([value]) => Boolean(value))
+    .map(([value, key]) => `${key}=${encodeURIComponent(value)}`)
+    .join('&');
+
+  return `${launchUrl}?${query}`;
 }
 
-function getPuppeteerUrl({suite, test}) {
+function getPuppeteerUrl({name, suite, test}) {
   return getUrl({
     launchUrl: config.tests.url,
+    name,
     suite,
     test,
   });
-}
-
-function goToUrl({suite, test, browser}) {
-  const url = getUrl({launchUrl: browser.launchUrl, suite, test});
-  return browser.url(url);
-}
-
-function formatFileName(testName) {
-  return testName.toLowerCase().replace(/ /g, '-');
 }
 
 async function analyzeAccessibility(page, options = {rules: []}) {
@@ -139,9 +134,6 @@ expect.extend({
 });
 
 module.exports = {
-  getPuppeteerUrl,
-  getUrl,
-  goToUrl,
-  formatFileName,
   analyzeAccessibility,
+  getPuppeteerUrl,
 };
