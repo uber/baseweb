@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import React from 'react';
-import Accordion from '../src/accordion/examples.js';
 import Breadcrumbs from '../src/breadcrumbs/examples.js';
 import Button from '../src/button/examples.js';
 import Card from '../src/card/examples.js';
@@ -32,7 +31,6 @@ import Tooltip from '../src/tooltip/examples.js';
 import scenarios from '../src/**/*.scenario.js';
 
 const Examples = [
-  Accordion,
   Breadcrumbs,
   Button,
   Card,
