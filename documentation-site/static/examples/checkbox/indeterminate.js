@@ -2,7 +2,7 @@ import React from 'react';
 import {Block} from 'baseui/block';
 import {Checkbox} from 'baseui/checkbox';
 
-class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
+class GroupList extends React.Component {
   state = {checkboxes: [false, false]};
 
   render() {
