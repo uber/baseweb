@@ -80,7 +80,7 @@ const createError = ({name, suite, test}) => {
           <p>Name: {name}</p>
           <p>
             If you see this error message, double check your scenario file to
-            ensure that you've specified the correct 'name' export.
+            ensure that you have specified the correct name export.
           </p>
         </React.Fragment>
       )}
