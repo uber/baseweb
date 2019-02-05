@@ -93,7 +93,14 @@ export type PropsT = {
   /** Defines if currently selected options are filtered out in the dropdown options. */
   filterOutSelected: boolean,
   /** A custom method to get a display value for a dropdown option. */
-  getOptionLabel: ?({option: OptionT}) => React.Node,
+  getOptionLabel: ?({
+    option: OptionT,
+    optionState: {
+      $selected: boolean,
+      $disabled: boolean,
+      $isHighlighted: boolean,
+    },
+  }) => React.Node,
   /** A custom method to get a display value for a selected option. */
   getValueLabel: ?({option: OptionT}) => React.Node,
   /** Defines if the select if in a loading (async) state. */
@@ -179,7 +186,14 @@ export type StatefulSelectPropsT = PropsT & {
 
 export type DropdownPropsT = {
   error: boolean,
-  getOptionLabel: ({option: OptionT}) => React.Node,
+  getOptionLabel: ({
+    option: OptionT,
+    optionState: {
+      $selected: boolean,
+      $disabled: boolean,
+      $isHighlighted: boolean,
+    },
+  }) => React.Node,
   isLoading: boolean,
   labelKey: string,
   maxDropdownHeight: string,
