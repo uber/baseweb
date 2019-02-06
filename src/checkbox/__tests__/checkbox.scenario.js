@@ -1,8 +1,19 @@
-import React from 'react';
-import {Block} from 'baseui/block';
-import {Checkbox} from 'baseui/checkbox';
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
 
-class GroupList extends React.Component {
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+import React from 'react';
+
+import {Block} from '../../block/index.js';
+import {Checkbox} from '../index.js';
+
+export const name = 'checkbox';
+
+class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
   state = {checkboxes: [false, false]};
 
   render() {
@@ -19,6 +30,7 @@ class GroupList extends React.Component {
           }}
           isIndeterminate={isIndeterminate}
           checked={allChecked}
+          overrides={{Root: {props: {'data-name': 'parent'}}}}
         >
           Indeterminate checkbox if not all subcheckboxes are checked
         </Checkbox>
@@ -30,6 +42,7 @@ class GroupList extends React.Component {
               nextCheckboxes[0] = e.target.checked;
               this.setState({checkboxes: nextCheckboxes});
             }}
+            overrides={{Root: {props: {'data-name': 'child1'}}}}
           >
             First subcheckbox
           </Checkbox>
@@ -40,6 +53,7 @@ class GroupList extends React.Component {
               nextCheckboxes[1] = e.target.checked;
               this.setState({checkboxes: nextCheckboxes});
             }}
+            overrides={{Root: {props: {'data-name': 'child2'}}}}
           >
             Second subcheckbox
           </Checkbox>
@@ -49,4 +63,4 @@ class GroupList extends React.Component {
   }
 }
 
-export default GroupList;
+export const component = () => <GroupList />;

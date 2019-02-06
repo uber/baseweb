@@ -15,16 +15,7 @@ import examples from './examples-list.js';
 
 export default {
   [examples.STATEFUL_PAGINATION]: function Story1() {
-    return (
-      <StatefulPagination
-        overrides={{
-          NextButton: {props: {'data-test': 'next-button'}},
-          PrevButton: {props: {'data-test': 'prev-button'}},
-          DropdownButton: {props: {'data-test': 'dropdown-button'}},
-        }}
-        numPages={10}
-      />
-    );
+    return <StatefulPagination numPages={10} />;
   },
   [examples.STATELESS_PAGINATION]: function Story2() {
     return <Pagination numPages={18} currentPage={4} />;
