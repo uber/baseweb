@@ -35,6 +35,13 @@ export default {
           onCancel={() => console.log('cancel')}
           onRetry={() => console.log('retry')}
         />
+
+        <br />
+        <Unstable_FileUploader
+          progressMessage="Uploading... hang tight."
+          onCancel={() => console.log('cancel')}
+          onRetry={() => console.log('retry')}
+        />
       </React.Fragment>
     );
   },
