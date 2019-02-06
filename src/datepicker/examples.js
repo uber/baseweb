@@ -11,31 +11,54 @@ import {
   Unstable_StatefulCalendar as StatefulDatepicker,
   formatDate,
 } from './index.js';
-import {Popover} from '../popover/index.js';
+import {Popover, PLACEMENT} from '../popover/index.js';
 import {Input} from '../input/index.js';
 import tests from './examples-list.js';
 
 export const suite = 'Component Test Suite';
 
+type ExamplePropsT = {
+  isRange: boolean,
+  value: ?Date | Array<Date>,
+};
+
+type ExampleStateT = {
+  isOpen: boolean,
+  value: ?Date | Array<Date>,
+  formattedValue: string,
+};
+
 class DatepickerWithInput extends React.Component<
-  {},
-  {
-    isOpen: boolean,
-    value: ?Date,
-    formattedValue: string,
-  },
+  ExamplePropsT,
+  ExampleStateT,
 > {
+  static defaultProps = {
+    isRange: false,
+    value: null,
+  };
   state = {
     isOpen: false,
-    value: null,
+    value: this.props.value || null,
     formattedValue: '',
   };
 
+  formatDate(date) {
+    if (this.props.isRange) {
+      // $FlowFixMe
+      return date.map(day => formatDate(day, 'YYYY/MM/dd')).join(' - ');
+    }
+    return formatDate(date, 'YYYY/MM/dd');
+  }
+
   onChange = ({date}) => {
+    let isOpen = false;
+    if (Array.isArray(date) && this.props.isRange && date.length < 2) {
+      isOpen = true;
+    }
     this.setState({
       value: date,
-      formattedValue: formatDate(date, 'YYYY/MM/dd'),
-      isOpen: false,
+      formattedValue: this.formatDate(date),
+      isOpen,
     });
   };
 
@@ -56,14 +79,21 @@ class DatepickerWithInput extends React.Component<
   render() {
     return (
       <Popover
+        placement={PLACEMENT.bottom}
         isOpen={this.state.isOpen}
         onEsc={this.close}
-        content={<StatefulDatepicker onSelect={this.onChange} />}
+        content={
+          <StatefulDatepicker
+            initialState={{value: this.state.value}}
+            isRange={this.props.isRange}
+            onSelect={this.onChange}
+          />
+        }
       >
         <Input
           value={this.state.formattedValue}
           onFocus={this.open}
-          onBlur={this.close}
+          // onBlur={this.close}
           // Change the on key event types in Input
           // $FlowFixMe
           onKeyDown={this.handleKeyDown}
@@ -84,7 +114,12 @@ export default {
   [tests.STATEFUL_IN_POPOVER]: function Story3() {
     return <DatepickerWithInput />;
   },
-
+  [tests.STATEFUL_RANGE_IN_POPOVER]: function Story3() {
+    return <DatepickerWithInput isRange value={[]} />;
+  },
+  [tests.STATEFUL_RANGE_QUICK_SELECT]: function QuickSelect() {
+    return <StatefulDatepicker isRange enableQuickSelect />;
+  },
   [tests.WITH_OVERRIDES]: function Story3() {
     const selectOverrides = {
       ControlContainer: {

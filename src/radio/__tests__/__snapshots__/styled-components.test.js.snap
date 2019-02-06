@@ -203,6 +203,7 @@ Object {
   "backgroundColor": "$theme.colors.mono700",
   "borderRadius": "50%",
   "display": "flex",
+  "flexShrink": 0,
   "height": "$theme.sizing.scale700",
   "justifyContent": "center",
   "marginBottom": "$theme.sizing.scale200",

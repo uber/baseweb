@@ -94,17 +94,20 @@ export function getPlacement(placement: PlacementTypeT) {
  * Main component container element
  */
 export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
-  const {$placement} = props;
+  const {$placement, $theme} = props;
   return {
     pointerEvents: 'none',
     position: 'fixed',
     right: 0,
     left: 0,
     display: 'flex',
+    marginTop: $theme.sizing.scale300,
+    marginBottom: $theme.sizing.scale300,
+    marginLeft: $theme.sizing.scale600,
+    marginRight: $theme.sizing.scale600,
     ...getPlacement($placement),
   };
 });
-Root.displayName = 'StyledRoot';
 
 export const Body = styled('div', (props: SharedStylePropsT) => {
   const {$isVisible, $kind, $type, $theme} = props;
@@ -133,7 +136,6 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     transitionTimingFunction: $theme.animation.easeInOutCurve,
   };
 });
-Body.displayName = 'StyledBody';
 
 /**
  * DeleteAlt icon overrides
@@ -145,4 +147,3 @@ export const CloseIconSvg = styled('svg', props => {
     float: 'right',
   };
 });
-CloseIconSvg.displayName = 'StyledCloseIconSvg';

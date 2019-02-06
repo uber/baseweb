@@ -1,0 +1,73 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+import Overrides from '../../components/overrides';
+import BasicAccordion from 'examples/accordion/basic.js';
+import StatefulAccordion from 'examples/accordion/stateful.js';
+
+import * as AccordionExports from 'baseui/accordion';
+import {Accordion, Panel} from 'baseui/accordion';
+
+export default Layout;
+
+# Accordion
+
+Accordions display a list of high-level options that can expand/contract to reveal more detailed information.
+
+## Examples
+
+<Example title="Accordion basic usage" path="examples/accordion/basic.js">
+  <BasicAccordion />
+</Example>
+
+<Example
+  title="Accordion as a stateful component"
+  path="examples/accordion/stateful.js"
+>
+  <StatefulAccordion />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="Accordion"
+  component={AccordionExports}
+  renderExample={props => {
+    const content = 'Some sample content';
+    return (
+      <Accordion overrides={props.overrides}>
+        <Panel overrides={props.overrides} title="Accordion panel 1">
+          {content}
+        </Panel>
+        <Panel overrides={props.overrides} title="Accordion panel 2">
+          {content}
+        </Panel>
+        <Panel overrides={props.overrides} title="Accordion panel 3">
+          {content}
+        </Panel>
+      </Accordion>
+    );
+  }}
+/>
+
+<API
+  heading="Accordion API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/accordion/accordion.js')}
+/>
+
+<API
+  heading="Panel API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/accordion/panel.js')}
+/>
+
+<API
+  heading="Stateful Panel API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/accordion/stateful-panel.js')}
+/>

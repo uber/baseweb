@@ -389,7 +389,20 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  getOptionLabel = ({option}: {option: OptionT}): React.Node => {
+  getOptionLabel = ({
+    option,
+  }: {
+    option: OptionT,
+    optionState: {
+      $selected: boolean,
+      $disabled: boolean,
+      $isHighlighted: boolean,
+    },
+  }): React.Node => {
+    return option[this.props.labelKey];
+  };
+
+  getValueLabel = ({option}: {option: OptionT}): React.Node => {
     return option[this.props.labelKey];
   };
 
@@ -537,7 +550,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   ): ?React.Node | Array<?React.Node> {
     const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
-    const renderLabel = this.props.getValueLabel || this.getOptionLabel;
+    const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const [Placeholder, placeholderProps] = getOverrides(
       overrides.Placeholder,
       StyledPlaceholder,
@@ -610,12 +623,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
       'aria-labelledby': this.props['aria-labelledby'],
       'aria-autocomplete': 'list',
       'aria-disabled': this.props.disabled || null,
+      'aria-required': this.props.required || null,
       disabled: this.props.disabled || null,
       inputRef: ref => (this.input = ref),
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
       overrides: {Input: overrides.Input},
-      required: this.props.required,
+      required: (this.props.required && !this.props.value.length) || null,
       role: 'combobox',
       value,
     };
@@ -626,6 +640,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-disabled={this.props.disabled}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
+          aria-required={this.props.required || null}
           onFocus={this.handleInputFocus}
           $ref={ref => (this.input = ref)}
           role="combobox"

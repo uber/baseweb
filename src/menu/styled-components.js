@@ -11,6 +11,7 @@ import {OPTION_LIST_SIZE} from './constants.js';
 import type {ThemeT} from '../styles/index.js';
 
 type StyledPropsT = {
+  $disabled?: boolean,
   $theme: ThemeT,
   $isHighlighted?: boolean,
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
@@ -22,8 +23,8 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   marginBottom: '0',
   marginLeft: '0',
   marginRight: '0',
-  paddingTop: '0',
-  paddingBottom: '0',
+  paddingTop: $theme.sizing.scale300,
+  paddingBottom: $theme.sizing.scale300,
   paddingLeft: '0',
   paddingRight: '0',
   backgroundColor: $theme.colors.backgroundAlt,
@@ -31,19 +32,24 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   boxShadow: $theme.lighting.shadow600,
   overflow: 'auto',
 }));
-List.displayName = 'StyledList';
 
 export const ListItem = styled(
   'li',
-  ({$theme, $isHighlighted, $size}: StyledPropsT) => ({
+  ({$disabled, $theme, $isHighlighted, $size}: StyledPropsT) => ({
     ...($size === OPTION_LIST_SIZE.compact
       ? $theme.typography.font200
       : $theme.typography.font300),
     position: 'relative',
     display: 'block',
-    color: $isHighlighted ? $theme.colors.primary : $theme.colors.foreground,
-    cursor: 'pointer',
-    backgroundColor: $isHighlighted ? $theme.colors.mono300 : 'transparent',
+    color: $disabled
+      ? $theme.colors.foregroundAlt
+      : $isHighlighted
+        ? $theme.colors.primary
+        : $theme.colors.foreground,
+    cursor: $disabled ? 'not-allowed' : 'pointer',
+    backgroundColor: $isHighlighted
+      ? $theme.colors.menuFillHover
+      : 'transparent',
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,
@@ -66,15 +72,11 @@ export const ListItem = styled(
       $size === OPTION_LIST_SIZE.compact
         ? $theme.sizing.scale900
         : $theme.sizing.scale600,
-    ':first-child': {
-      marginTop: $theme.sizing.scale300,
-    },
-    ':last-child': {
-      marginBottom: $theme.sizing.scale300,
+    ':focus': {
+      outline: 'none',
     },
   }),
 );
-ListItem.displayName = 'StyledListItem';
 
 export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   position: 'relative',
@@ -91,14 +93,7 @@ export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   ':hover': {
     backgroundColor: $theme.colors.menuFillHover,
   },
-  ':first-child': {
-    marginTop: $theme.sizing.scale300,
-  },
-  ':last-child': {
-    marginBottom: $theme.sizing.scale300,
-  },
 }));
-ListItemProfile.displayName = 'StyledListItemProfile';
 
 export const ProfileImgContainer = styled('div', {
   width: '60px',
@@ -107,14 +102,12 @@ export const ProfileImgContainer = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
 });
-ProfileImgContainer.displayName = 'StyledProfileImgContainer';
 
 export const ProfileImg = styled('img', {
   width: '100%',
   height: '100%',
   borderRadius: '50%',
 });
-ProfileImg.displayName = 'StyledProfileImg';
 
 export const ProfileLabelsContainer = styled('div', ({$theme}) => ({
   marginLeft: $theme.sizing.scale600,
@@ -122,7 +115,6 @@ export const ProfileLabelsContainer = styled('div', ({$theme}) => ({
   display: 'flex',
   flexDirection: 'column',
 }));
-ProfileLabelsContainer.displayName = 'StyledProfileLabelsContainer';
 
 export const ProfileTitle = styled('h6', ({$theme}) => ({
   ...$theme.typography.font450,
@@ -132,7 +124,6 @@ export const ProfileTitle = styled('h6', ({$theme}) => ({
   marginLeft: '0',
   marginRight: '0',
 }));
-ProfileTitle.displayName = 'StyledProfileTitle';
 
 export const ProfileSubtitle = styled('p', ({$theme}) => ({
   ...$theme.typography.font300,
@@ -142,7 +133,6 @@ export const ProfileSubtitle = styled('p', ({$theme}) => ({
   marginLeft: '0',
   marginRight: '0',
 }));
-ProfileSubtitle.displayName = 'StyledProfileSubtitle';
 
 export const ProfileBody = styled('p', ({$theme}) => ({
   ...$theme.typography.font200,
@@ -152,4 +142,3 @@ export const ProfileBody = styled('p', ({$theme}) => ({
   marginLeft: '0',
   marginRight: '0',
 }));
-ProfileBody.displayName = 'StyledProfileBody';

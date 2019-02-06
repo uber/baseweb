@@ -11,5 +11,7 @@ module.exports = {
   SIMPLE_EXAMPLE: 'Stateless datepicker',
   STATEFUL_EXAMPLE: 'Stateful datepicker',
   STATEFUL_IN_POPOVER: 'Stateful datepicker in a popover',
+  STATEFUL_RANGE_IN_POPOVER: 'Stateful range datepicker in a popover',
+  STATEFUL_RANGE_QUICK_SELECT: 'Stateful range datepicker with quick select',
   WITH_OVERRIDES: 'Datepicker with overrides',
 };

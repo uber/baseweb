@@ -25,7 +25,6 @@ export const StyledProgressSteps = styled(
     };
   },
 );
-StyledProgressSteps.displayName = 'StyledProgressSteps';
 
 export const StyledStep = styled('div', ({$theme}: StyledStepPropsT) => {
   return {
@@ -33,7 +32,6 @@ export const StyledStep = styled('div', ({$theme}: StyledStepPropsT) => {
     overflow: 'visible',
   };
 });
-StyledStep.displayName = 'StyledStep';
 
 export const StyledIcon = styled(
   'div',
@@ -76,7 +74,6 @@ export const StyledIcon = styled(
     };
   },
 );
-StyledIcon.displayName = 'StyledIcon';
 
 export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
   return {
@@ -88,14 +85,12 @@ export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
     textAlign: 'center',
   };
 });
-StyledInnerIcon.displayName = 'StyledInnerIcon';
 
 export const StyledContent = styled('div', ({$theme}: StyledStepPropsT) => {
   return {
     overflow: 'hidden',
   };
 });
-StyledContent.displayName = 'StyledContent';
 
 export const StyledContentTitle = styled(
   'div',
@@ -114,7 +109,6 @@ export const StyledContentTitle = styled(
     };
   },
 );
-StyledContentTitle.displayName = 'StyledContentTitle';
 
 export const StyledContentTail = styled(
   'div',
@@ -130,7 +124,6 @@ export const StyledContentTail = styled(
       left: '7px',
       top: 0,
       height: '100%',
-      zIndex: -1,
       paddingBottom: '0px',
       width: $theme.sizing.scale0,
       paddingTop: $theme.sizing.scale600,
@@ -144,7 +137,6 @@ export const StyledContentTail = styled(
     };
   },
 );
-StyledContentTail.displayName = 'StyledContentTail';
 
 export const StyledContentDescription = styled(
   'div',
@@ -154,7 +146,6 @@ export const StyledContentDescription = styled(
     };
   },
 );
-StyledContentDescription.displayName = 'StyledContentDescription';
 
 export const StyledNumberStep = styled(
   'div',
@@ -165,7 +156,6 @@ export const StyledNumberStep = styled(
     };
   },
 );
-StyledNumberStep.displayName = 'StyledNumberStep';
 
 export const StyledNumberIcon = styled(
   'div',
@@ -204,7 +194,6 @@ export const StyledNumberIcon = styled(
     };
   },
 );
-StyledNumberIcon.displayName = 'StyledNumberIcon';
 
 export const StyledNumberContentTail = styled(
   'div',
@@ -225,7 +214,7 @@ export const StyledNumberContentTail = styled(
       left: '11px',
       top: 0,
       height: '100%',
-      zIndex: -1,
+      marginTop: '5px',
       paddingBottom: '0px',
       width: $theme.sizing.scale0,
       paddingTop: $theme.sizing.scale600,
@@ -239,4 +228,3 @@ export const StyledNumberContentTail = styled(
     };
   },
 );
-StyledNumberContentTail.displayName = 'StyledNumberContentTail';

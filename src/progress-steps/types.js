@@ -18,6 +18,7 @@ export type ProgressStepsOverridesT = {
 export type ProgressStepsPropsT = {
   overrides?: ProgressStepsOverridesT,
   children?: Node,
+  /** Defines the current active step index. */
   current: number,
 };
 
@@ -32,9 +33,13 @@ export type StepOverridesT = {
 };
 
 export type StepPropsT = {
+  /** The title of the Step. */
   title?: Node,
+  /** Defines if the step is completed. */
   isCompleted: boolean,
+  /** Defines if the step is currently active. */
   isActive: boolean,
+  /** Defines if the step is the last item displayed. */
   isLast: boolean,
   overrides?: StepOverridesT,
   children?: Node,
@@ -61,12 +66,17 @@ export type NumberedStepOverridesT = {
 };
 
 export type NumberedStepPropsT = {
+  /** The title of the Step. */
   title?: string,
+  /** Defines if the step is completed. */
   isCompleted: boolean,
+  /** Defines if the step is currently active. */
   isActive: boolean,
+  /** Defines if the step is the last item displayed. */
   isLast: boolean,
   overrides?: NumberedStepOverridesT,
   children?: Node,
+  /** The number displayed as the step number */
   step?: Node,
 };
 

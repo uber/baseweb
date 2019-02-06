@@ -1,0 +1,73 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import TabBasic from 'examples/tabs/basic.js';
+import TabVertical from 'examples/tabs/vertical.js';
+import TabControlled from 'examples/tabs/controlled.js';
+
+import Overrides from '../../components/overrides';
+import {StatefulTabs, TabPanel} from 'baseui/tabs';
+import * as TabsExports from 'baseui/tabs';
+
+export default Layout;
+
+# Tab
+
+The Tab component is used for navigating frequently accessed, but distinct categories.
+
+## Examples
+
+<Example title="Tab Basic Usage" path="examples/tabs/basic.js">
+  <TabBasic />
+</Example>
+
+<Example title="Tab Vertical Usage" path="examples/tabs/vertical.js">
+  <TabVertical />
+</Example>
+
+<Example title="Tab Controlled Usage" path="examples/tabs/controlled.js">
+  <TabControlled />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="Tabs"
+  component={TabsExports}
+  renderExample={props => (
+    <StatefulTabs activeKey="1" overrides={props.overrides}>
+      <TabPanel overrides={props.overrides} title="Tab Link 1">
+        Tab 1 content
+      </TabPanel>
+      <TabPanel overrides={props.overrides} title="Tab Link 2">
+        Tab 2 content
+      </TabPanel>
+      <TabPanel overrides={props.overrides} title="Tab Link 3">
+        Tab 3 content
+      </TabPanel>
+    </StatefulTabs>
+  )}
+/>
+
+<API
+  heading="Tabs API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/tabs.js')}
+/>
+
+<API
+  heading="StatefulTabs API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/stateful-tabs.js')}
+/>
+
+<API
+  heading="TabPanel API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/tab-panel.js')}
+/>

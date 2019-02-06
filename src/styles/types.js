@@ -5,6 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
+export type BreakpointsT = {
+  small: number,
+  medium: number,
+  large: number,
+};
+
 export type ColorsT = {
   // Primary Palette
   primary50: string,
@@ -99,6 +106,8 @@ export type ColorsT = {
   buttonTertiaryText: string,
   buttonTertiaryHover: string,
   buttonTertiaryActive: string,
+  buttonTertiarySelectedText: string,
+  buttonTertiarySelectedFill: string,
   buttonMinimalFill: string,
   buttonMinimalText: string,
   buttonMinimalHover: string,
@@ -112,9 +121,10 @@ export type ColorsT = {
 
   // FileUploader
   fileUploaderBackgroundColor: string,
+  fileUploaderBackgroundColorActive: string,
   fileUploaderBorderColorActive: string,
   fileUploaderBorderColorDefault: string,
-  fileUploaderSeparatorColor: string,
+  fileUploaderMessageColor: string,
 
   // Links
   linkText: string,
@@ -180,6 +190,9 @@ export type ColorsT = {
   shadowFocus: string,
   shadowError: string,
 
+  // Table
+  tableHeadBackgroundColor: string,
+
   // Toast
   toastText: string,
   toastPrimaryBackground: string,
@@ -206,9 +219,9 @@ export type TypographyT = {
 
 export type Font = {
   fontFamily: string,
-  fontWeight: string,
+  fontWeight: string | number,
   fontSize: string,
-  lineHeight: string,
+  lineHeight: string | number,
 };
 
 export type SizingT = {
@@ -278,6 +291,7 @@ export type ZIndexT = {
 };
 
 export type ThemeT = {|
+  breakpoints: BreakpointsT,
   colors: ColorsT,
   typography: TypographyT,
   sizing: SizingT,

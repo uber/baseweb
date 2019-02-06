@@ -1,0 +1,98 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import BasicButton from 'examples/button/basic.js';
+import BasicButtonCompact from 'examples/button/basic-compact.js';
+import WithEnhancer from 'examples/button/with-enhancers.js';
+import States from 'examples/button/states.js';
+import Shapes from 'examples/button/shapes.js';
+
+import Overrides from '../../components/overrides';
+import {Button, KIND} from 'baseui/button';
+import * as ButtonExports from 'baseui/button';
+import Upload from 'baseui/icon/upload';
+import ArrowRight from 'baseui/icon/arrow-right';
+
+export default Layout;
+
+# Button
+
+Buttons provide cues for actions and events. These fundamental components allow users to process actions or navigate an experience.
+
+## When to use
+
+When a person:
+
+- submits a form,
+- starts a new task / action.
+
+The Button component has 4 different `kind` variants: `primary`, `secondary`, `tertiary`, and `minimal`.
+
+**Primary** buttons are intended to be used as the leading trigger or cue of action. Primary buttons are
+bold with a dominant color background and white text/icons. These are to be used sparingly as the
+sole action of a view. Primary buttons can be accompanied by secondary button to balance action hierarchy.
+
+**Secondary** buttons should be used in combination with a primary button as a way to create action hierarchy.
+Secondary buttons are subdued in value with the primary color text to compliment the primary buttons.
+
+**Tertiary** buttons can used as a substitute for a secondary buttons, but should never take the role of a
+primary button action. As the name implies, it’s offered to supplement to create variation within an experience.
+
+## Examples
+
+<Example title="Button basic usage" path="examples/button/basic.js">
+  <BasicButton />
+</Example>
+
+<Example title="Button sizes" path="examples/button/basic-compact.js">
+  <BasicButtonCompact />
+</Example>
+
+<Example title="Button with enhancers" path="examples/button/with-enhancers.js">
+  <WithEnhancer />
+</Example>
+
+<Example title="Button states" path="examples/button/states.js">
+  <States />
+</Example>
+
+<Example title="Button shapes" path="examples/button/shapes.js">
+  <Shapes />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="Button"
+  component={ButtonExports}
+  renderExample={props => (
+    <React.Fragment>
+      <p>
+        <Button
+          startEnhancer={() => <ArrowRight size={24} />}
+          endEnhancer={() => <Upload size={24} />}
+          kind={KIND.secondary}
+          overrides={props.overrides}
+        >
+          Label
+        </Button>
+      </p>
+      <Button isLoading kind={KIND.secondary} overrides={props.overrides}>
+        Loading
+      </Button>
+    </React.Fragment>
+  )}
+/>
+
+<API
+  heading="Button API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button/button.js')}
+/>

@@ -1,0 +1,113 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/checkbox/basic.js';
+import Multiline from 'examples/checkbox/multiline.js';
+import Error from 'examples/checkbox/error.js';
+import Indeterminate from 'examples/checkbox/indeterminate.js';
+import Disabled from 'examples/checkbox/disabled.js';
+import Alignment from 'examples/checkbox/alignment.js';
+import Customization from 'examples/checkbox/overrides.js';
+import ComponentOverrides from 'examples/checkbox/component-overrides.js';
+import Focus from 'examples/checkbox/focus.js';
+import Toggle from 'examples/checkbox/toggle.js';
+
+import Overrides from '../../components/overrides';
+import {StatefulCheckbox} from 'baseui/checkbox';
+import * as CheckboxExports from 'baseui/checkbox';
+
+export default Layout;
+
+# Checkbox
+
+Checkboxes are used to provide users with multiple options for selection in a series of options.
+
+When used as a toggle they allow the user to make a binary choice usually (but not limited) in
+the form of a yes/no or on/off suggestion. Toggles are often used in product settings or as filter
+options. When engaged (on), Base UI toggles are colored and when disengaged (off) they’re grey.
+
+### When to use
+
+- When a collection of options share context.
+- When a user wants to toggle an option on/off.
+- When a user wants to select multiple options.
+
+## Examples
+
+<Example title="Checkbox basic usage" path="examples/checkbox/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Checkbox multiline example" path="examples/checkbox/multiline.js">
+  <Multiline />
+</Example>
+
+<Example title="Checkbox with error" path="examples/checkbox/error.js">
+  <Error />
+</Example>
+
+<Example title="Checkbox indeterminate state" path="examples/checkbox/indeterminate.js">
+  <Indeterminate />
+</Example>
+
+<Example title="Checkbox disabled example" path="examples/checkbox/disabled.js">
+  <Disabled />
+</Example>
+
+<Example title="Checkbox alignment example" path="examples/checkbox/alignment.js">
+  <Alignment />
+</Example>
+
+<Example title="Checkbox with overrides" path="examples/checkbox/overrides.js">
+  <Customization />
+</Example>
+
+<Example
+  title="Checkbox with component overrides"
+  path="examples/checkbox/component-overrides.js"
+>
+  <ComponentOverrides />
+</Example>
+
+<Example title="Checkbox focus with button" path="examples/checkbox/focus.js">
+  <Focus />
+</Example>
+
+<Example title="Checkbox as a toggle" path="examples/checkbox/toggle.js">
+  <Toggle />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="Checkbox"
+  component={CheckboxExports}
+  renderExample={props => (
+    <StatefulCheckbox onChange={console.log} overrides={props.overrides}>
+      Label
+    </StatefulCheckbox>
+  )}
+/>
+
+<API
+  heading="Checkbox API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/checkbox.js')}
+/>
+
+<API
+  heading="Stateful Checkbox API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/stateful-checkbox.js')}
+/>
+
+<API
+  heading="Stateful Checkbox Container API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/stateful-checkbox-container.js')}
+/>

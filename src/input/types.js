@@ -17,6 +17,7 @@ export type SizeT = $Keys<typeof SIZE>;
 export type StateTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
 
 export type InternalStateT = {
+  /** Renders UI in 'focus' state */
   isFocused?: boolean,
 };
 
@@ -31,11 +32,17 @@ export type StateReducerT = (
 ) => StateT;
 
 export type SharedPropsT = {
+  /** Renders UI in 'focus' state */
   $isFocused: boolean,
+  /** Renders UI in 'disabled' state */
   $disabled: boolean,
+  /** Renders UI in 'error' state */
   $error: boolean,
+  /** Defines styles for inputs that are grouped with other controls. */
   $adjoined: AdjoinedT,
+  /** Renders UI in provided size. */
   $size: SizeT,
+  /** Renders UI in 'required' state */
   $required: boolean,
   $theme: ThemeT,
 };
@@ -57,12 +64,18 @@ export type InputComponentsT = {
 };
 
 export type BaseInputPropsT<T> = {
+  /** Defines styles for inputs that are grouped with other controls. */
   adjoined: AdjoinedT,
+  /** If true the input will be focused on the first mount. */
   autoFocus: boolean,
+  /** Renders UI in 'disabled' state. */
   disabled: boolean,
+  /** Renders UI in 'error' state. */
   error: boolean,
+  /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id: string,
   $ref: {current: ?HTMLInputElement},
+  /** A ref to access an input element. */
   inputRef: {current: ?HTMLInputElement},
   name: string,
   onBlur: (e: SyntheticFocusEvent<T>) => void,
@@ -73,9 +86,13 @@ export type BaseInputPropsT<T> = {
   onFocus: (e: SyntheticFocusEvent<T>) => void,
   overrides: BaseInputComponentsT,
   placeholder: string,
+  /** Renders UI in 'required' state. */
   required: boolean,
+  /** Renders UI in provided size. */
   size: SizeT,
+  /** Input type attribute. */
   type: string,
+  /** Input value attribute. */
   value?: string,
   rows?: number,
 };
@@ -83,7 +100,9 @@ export type BaseInputPropsT<T> = {
 export type InputPropsT = {
   ...BaseInputPropsT<HTMLInputElement>,
   overrides: InputComponentsT,
+  /** An input helper rendered before and attached to the input field. */
   startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  /** An input helper rendered after and attached to the input field. */
   endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
   onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
   onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
@@ -91,7 +110,9 @@ export type InputPropsT = {
 
 export type StatefulContainerPropsT<T> = {
   children: (props: PropsT) => React.Node,
+  /** Initial state of an uncontrolled input component. */
   initialState?: StateT,
+  /** A state change handler. Used to override default state transitions. */
   stateReducer: StateReducerT,
   onChange: (e: SyntheticInputEvent<T>) => void,
 };

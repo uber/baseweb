@@ -20,7 +20,7 @@ export const PanelContainer = styled('div', (props: SharedStylePropsT) => {
   return {width: '100%'};
 });
 
-export const Header = styled('h3', (props: SharedStylePropsT) => {
+export const Header = styled('div', (props: SharedStylePropsT) => {
   const {
     $disabled,
     $expanded,

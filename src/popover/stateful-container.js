@@ -6,8 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {TRIGGER_TYPE, STATE_CHANGE_TYPE} from './constants.js';
-import baseDefaultProps from './default-props.js';
+import {
+  ACCESSIBILITY_TYPE,
+  PLACEMENT,
+  STATE_CHANGE_TYPE,
+  TRIGGER_TYPE,
+} from './constants.js';
 import type {
   PopoverPropsWithoutChildrenT,
   StateT,
@@ -23,7 +27,14 @@ class StatefulContainer extends React.Component<
   StateT,
 > {
   static defaultProps: $Shape<StatefulPopoverContainerPropsT> = {
-    ...baseDefaultProps,
+    accessibilityType: ACCESSIBILITY_TYPE.menu,
+    ignoreBoundary: false,
+    overrides: {},
+    onMouseEnterDelay: 200,
+    onMouseLeaveDelay: 200,
+    placement: PLACEMENT.auto,
+    showArrow: false,
+    triggerType: TRIGGER_TYPE.click,
     dismissOnClickOutside: true,
     dismissOnEsc: true,
     stateReducer: defaultStateReducer,
@@ -120,6 +131,7 @@ class StatefulContainer extends React.Component<
       accessibilityType,
       dismissOnClickOutside,
       dismissOnEsc,
+      ignoreBoundary,
       overrides,
       onMouseEnterDelay,
       onMouseLeaveDelay,
@@ -130,6 +142,7 @@ class StatefulContainer extends React.Component<
 
     const popoverProps: PopoverPropsWithoutChildrenT = {
       accessibilityType,
+      ignoreBoundary,
       isOpen: this.state.isOpen,
       overrides,
       content: this.renderContent,

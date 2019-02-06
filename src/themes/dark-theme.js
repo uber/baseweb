@@ -18,6 +18,10 @@ export const DarkTheme = createTheme(
     colors: {
       // Semantic Colors
 
+      // Font Color
+      colorPrimary: primitives.mono100,
+      colorSecondary: primitives.mono200,
+
       // Background
       background: primitives.mono800,
       backgroundAlt: primitives.mono700,
@@ -47,6 +51,8 @@ export const DarkTheme = createTheme(
       buttonTertiaryText: primitives.mono100,
       buttonTertiaryHover: primitives.mono600,
       buttonTertiaryActive: primitives.mono500,
+      buttonTertiarySelectedText: primitives.mono100,
+      buttonTertiarySelectedFill: primitives.primary400,
       buttonMinimalFill: 'transparent',
       buttonMinimalText: primitives.primary400,
       buttonMinimalHover: primitives.mono600,
@@ -60,9 +66,10 @@ export const DarkTheme = createTheme(
 
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono700,
+      fileUploaderBackgroundColorActive: primitives.mono600,
       fileUploaderBorderColorActive: primitives.primary400,
       fileUploaderBorderColorDefault: primitives.mono500,
-      fileUploaderSeparatorColor: primitives.mono100,
+      fileUploaderMessageColor: primitives.mono100,
 
       // Links
       linkText: primitives.primary300,
@@ -107,6 +114,7 @@ export const DarkTheme = createTheme(
 
       // Input
       inputFill: primitives.mono600,
+      inputFillEnhancer: primitives.mono500,
       inputFillError: primitives.mono600,
       inputFillDisabled: primitives.mono700,
       inputTextDisabled: primitives.mono500,

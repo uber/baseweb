@@ -2,7 +2,7 @@ version: '2.3'
 services:
   # to run selenium with chrome locally
   chrome-standalone:
-    image: selenium/standalone-chrome:latest@sha256:0d1847a44c5e21df5891426dd1c054d4a3b51d0688791903f809bddd76595e65
+    image: selenium/standalone-chrome:latest@sha256:da91acc1e0c63d5d7bfebc3d1e31652787c6227543d39d6df433837a0e81583a
     network_mode: 'host'
     restart: always
     ports:
@@ -26,48 +26,6 @@ services:
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
       - SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub
-
-  # so tests can run against localhost
-  sauce-tunnel:
-    image: henrrich/docker-sauce-connect:latest@sha256:9921657d1a3db8832f868ab25491363756abae52025a8d5af888aadc42ed31e9
-    restart: always
-    expose:
-      - 4445
-    ports:
-      - 4445
-    network_mode: 'host'
-    command:
-      [
-        '-u',
-        '${SAUCE_USERNAME}',
-        '-k',
-        '${SAUCE_ACCESS_KEY}',
-        '-i',
-        '${BUILDKITE_BUILD_NUMBER}',
-        '-p',
-      ]
-    environment:
-      - SAUCE_USERNAME
-      - SAUCE_ACCESS_KEY
-      - BUILDKITE_BUILD_NUMBER
-    healthcheck:
-      test:
-        [
-          'CMD-SHELL',
-          'grep -R "Sauce Connect is up" /tmp/sc-${BUILDKITE_BUILD_NUMBER}.log || exit 1',
-        ]
-      interval: 5s
-      timeout: 5m
-      retries: 10
-      start_period: 30s
-
-  # docker-compose run does not wait on healthchecks, so proxy using this service
-  sauce-tunnel-healthy:
-    build: .
-    network_mode: 'host'
-    depends_on:
-      sauce-tunnel:
-        condition: service_healthy
 
   # this spins up a server that serves the html/js/css for the e2e tests
   e2e-server:
@@ -101,7 +59,6 @@ services:
     network_mode: 'host'
     depends_on:
       - e2e-server-healthy
-      - sauce-tunnel-healthy
     environment:
       - CODECOV_TOKEN
       - CI=true
@@ -112,8 +69,6 @@ services:
       - BUILDKITE_BUILD_URL
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
-      - SAUCE_USERNAME
-      - SAUCE_ACCESS_KEY
 
   baseui:
     build: .
@@ -127,4 +82,6 @@ services:
       - BUILDKITE_BUILD_URL
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
+      - GITHUB_AUTH_TOKEN
       - SCREENER_API_KEY
+      - ZEIT_NOW_TOKEN

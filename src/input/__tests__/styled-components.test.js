@@ -9,7 +9,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {
   StyledRoot,
-  StyledInputEnhancer,
+  StyledStartEnhancer,
   StyledInputContainer,
   StyledInput,
   SIZE,
@@ -35,24 +35,24 @@ test('Input - StyledRoot - basic render', () => {
   );
 });
 
-test('Input - StyledInputEnhancer - basic render', () => {
+test('Input - StyledStartEnhancer - basic render', () => {
   const component = shallow(
-    <StyledInputEnhancer
+    <StyledStartEnhancer
       $size={SIZE.default}
       $position={ENHANCER_POSITION.start}
     >
       <span />
-    </StyledInputEnhancer>,
+    </StyledStartEnhancer>,
   );
   expect(component.instance().getStyles()).toMatchSnapshot(
-    'StyledInputEnhancer has correct styles when default size and start position',
+    'StyledStartEnhancer has correct styles when default size and start position',
   );
   component.setProps({
     $size: SIZE.compact,
     $position: ENHANCER_POSITION.end,
   });
   expect(component.instance().getStyles()).toMatchSnapshot(
-    'StyledInputEnhancer has correct styles when compact and end position',
+    'StyledStartEnhancer has correct styles when compact and end position',
   );
 });
 

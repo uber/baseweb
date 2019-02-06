@@ -19,9 +19,7 @@ function getBorderRadii({$shape, $theme}: StylePropsT) {
 
   if ($shape === SHAPE.round) {
     value = '50%';
-  }
-
-  if ($theme.borders.useRoundedCorners) {
+  } else if ($theme.borders.useRoundedCorners) {
     value = $theme.borders.radius200;
   }
 
@@ -63,19 +61,16 @@ export const BaseButton = styled(
     ...getStyleForKind({$theme, $kind, $isLoading, $isSelected}),
   }),
 );
-BaseButton.displayName = 'StyledBaseButton';
 
 export const EndEnhancer = styled('div', ({$theme}: StylePropsT) => ({
   display: 'flex',
   marginLeft: $theme.sizing.scale500,
 }));
-EndEnhancer.displayName = 'StyledEndEnhancer';
 
 export const StartEnhancer = styled('div', ({$theme}: StylePropsT) => ({
   display: 'flex',
   marginRight: $theme.sizing.scale500,
 }));
-StartEnhancer.displayName = 'StyledStartEnhancer';
 
 export const LoadingSpinnerContainer = styled('div', {
   // To center within parent
@@ -84,7 +79,6 @@ export const LoadingSpinnerContainer = styled('div', {
   top: '50%',
   transform: 'translate(-50%, -50%)',
 });
-LoadingSpinnerContainer.displayName = 'StyledLoadingSpinnerContainer';
 
 export const LoadingSpinner = styled(
   'div',
@@ -118,7 +112,6 @@ export const LoadingSpinner = styled(
     };
   },
 );
-LoadingSpinner.displayName = 'StyledLoadingSpinner';
 
 export function getLoadingSpinnerColors({
   $theme,
@@ -225,25 +218,30 @@ export function getStyleForKind({
         },
       };
     case KIND.tertiary:
-      return {
-        color: $theme.colors.buttonTertiaryText,
-        backgroundColor: $isSelected
-          ? $theme.colors.buttonTertiaryHover
-          : $theme.colors.buttonTertiaryFill,
-        ':hover:enabled': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
-        ':focus:enabled': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
-        ':active:enabled': {
-          backgroundColor: $theme.colors.buttonTertiaryActive,
-        },
-      };
+      if ($isSelected) {
+        return {
+          color: $theme.colors.buttonTertiarySelectedText,
+          backgroundColor: $theme.colors.buttonTertiarySelectedFill,
+        };
+      } else {
+        return {
+          color: $theme.colors.buttonTertiaryText,
+          backgroundColor: $theme.colors.buttonTertiaryFill,
+          ':hover:enabled': {
+            backgroundColor: $isLoading
+              ? $theme.colors.buttonTertiaryActive
+              : $theme.colors.buttonTertiaryHover,
+          },
+          ':focus:enabled': {
+            backgroundColor: $isLoading
+              ? $theme.colors.buttonTertiaryActive
+              : $theme.colors.buttonTertiaryHover,
+          },
+          ':active:enabled': {
+            backgroundColor: $theme.colors.buttonTertiaryActive,
+          },
+        };
+      }
     case KIND.minimal:
       return {
         color: $theme.colors.buttonMinimalText,

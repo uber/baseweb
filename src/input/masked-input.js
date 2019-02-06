@@ -15,7 +15,9 @@ import type {InputPropsT} from './types.js';
 
 type PropsT = {
   ...InputPropsT,
+  /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
   mask?: string,
+  /** Character to render for unfilled mask element. */
   maskChar?: string,
 };
 

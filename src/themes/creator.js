@@ -17,6 +17,12 @@ export default function createTheme(
   overrides?: {},
 ): ThemeT {
   const theme = {
+    breakpoints: {
+      small: 320,
+      medium: 600,
+      large: 1280,
+    },
+
     colors: {
       // Primary Palette
       primary50: primitives.primary50,
@@ -82,6 +88,10 @@ export default function createTheme(
 
       // Semantic Colors
 
+      // Font Color
+      colorPrimary: primitives.mono1000,
+      colorSecondary: primitives.mono800,
+
       // Background
       background: primitives.mono100,
       backgroundAlt: primitives.mono100,
@@ -103,18 +113,25 @@ export default function createTheme(
       buttonPrimaryText: primitives.mono100, // white
       buttonPrimaryHover: primitives.primary500,
       buttonPrimaryActive: primitives.primary600,
+
       buttonSecondaryFill: primitives.primary50,
       buttonSecondaryText: primitives.primary400,
       buttonSecondaryHover: primitives.primary100,
       buttonSecondaryActive: primitives.primary200,
+
       buttonTertiaryFill: primitives.mono200,
       buttonTertiaryText: primitives.primary400,
       buttonTertiaryHover: primitives.mono400,
       buttonTertiaryActive: primitives.mono500,
+      // button $selected only applies to tertiary variant.
+      buttonTertiarySelectedFill: primitives.primary400,
+      buttonTertiarySelectedText: primitives.mono100,
+
       buttonMinimalFill: 'transparent',
       buttonMinimalText: primitives.primary400,
       buttonMinimalHover: primitives.mono200,
       buttonMinimalActive: primitives.mono400,
+
       buttonDisabledFill: primitives.mono300,
       buttonDisabledText: primitives.mono600,
 
@@ -124,9 +141,10 @@ export default function createTheme(
 
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,
+      fileUploaderBackgroundColorActive: primitives.primary50,
       fileUploaderBorderColorActive: primitives.primary400,
       fileUploaderBorderColorDefault: primitives.mono500,
-      fileUploaderSeparatorColor: primitives.mono600,
+      fileUploaderMessageColor: primitives.mono600,
 
       // Links
       linkText: primitives.primary400,
@@ -175,6 +193,7 @@ export default function createTheme(
 
       // Inputs
       inputFill: primitives.mono200,
+      inputFillEnhancer: primitives.mono400,
       inputFillError: primitives.negative50,
       inputFillDisabled: primitives.mono300,
       inputTextDisabled: primitives.mono600,
@@ -191,6 +210,9 @@ export default function createTheme(
       notificationWarningText: primitives.warning500,
       notificationNegativeBackground: primitives.negative50,
       notificationNegativeText: primitives.negative500,
+
+      // Table
+      tableHeadBackgroundColor: primitives.mono100,
 
       // Toast
       toastText: WHITE,

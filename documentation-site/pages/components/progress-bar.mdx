@@ -1,0 +1,71 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Basic from 'examples/progress-bar/basic.js';
+import WithLabel from 'examples/progress-bar/with-label.js';
+import CustomLabel from 'examples/progress-bar/custom-label.js';
+import SuccessValue from 'examples/progress-bar/success-value.js';
+import Customization from 'examples/progress-bar/overrides.js';
+
+import Overrides from '../../components/overrides';
+import {ProgressBar} from 'baseui/progress-bar';
+import * as ProgressbarExports from 'baseui/progress-bar';
+
+export default Layout;
+
+# ProgressBar
+
+Indicates a wait time for deterministic actions- either within an experience flow or loading data.
+
+## Examples
+
+<Example title="Progress bar Basic Usage" path="examples/progress-bar/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Progress bar with Visible Label" path="examples/progress-bar/with-label.js">
+  <WithLabel />
+</Example>
+
+<Example title="Progress bar with Custom Label" path="examples/progress-bar/custom-label.js">
+  <CustomLabel />
+</Example>
+
+<Example
+  title="Progress bar with Alternate Success Value"
+  path="examples/progress-bar/success-value.js"
+>
+  <SuccessValue />
+</Example>
+
+<Example title="Progress bar with Overrides" path="examples/progress-bar/overrides.js">
+  <Customization />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="ProgressBar"
+  component={ProgressbarExports}
+  renderExample={props => (
+    <ProgressBar
+      value={60}
+      successValue={100}
+      showLabel
+      overrides={props.overrides}
+    />
+  )}
+/>
+
+<API
+  heading="ProgressBar API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/progress-bar/progressbar.js')}
+/>

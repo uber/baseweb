@@ -1,0 +1,109 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Stateless from 'examples/popover/stateless.js';
+import StatefulClick from 'examples/popover/stateful-click.js';
+import StatefulHover from 'examples/popover/stateful-hover.js';
+import Placements from 'examples/popover/placements.js';
+import WithArrow from 'examples/popover/with-arrow.js';
+import Dismiss from 'examples/popover/dismiss.js';
+import Clipping from 'examples/popover/clipping.js';
+import Customization from 'examples/popover/overrides.js';
+
+import Overrides from '../../components/overrides';
+import {Popover, PLACEMENT} from 'baseui/popover';
+import * as PopoverExports from 'baseui/popover';
+import {Block} from 'baseui/block';
+
+export default Layout;
+
+# Popover
+
+Popovers provide the container and styles to overlay menus, tooltips, controls or text. They’re
+visually represented as a layer above other components and objects in a view, and float above a
+content view after being triggered by a click-event (or hover) such as a button, link, menu or
+icon. Popovers can contain range of content from simple text strings to inputs, or lightly
+structured content and imagery/illustration. It’s usage depends on the context.
+
+### When to use
+
+- Describe the difference between visually similar elements.
+- Hide information that's irrelevant once the user if familiar with the UI.
+
+## Examples
+
+<Example title="Popover stateless example" path="examples/popover/stateless.js">
+  <Stateless />
+</Example>
+
+<Example title="Popover opens on Click" path="examples/popover/stateful-click.js">
+  <StatefulClick />
+</Example>
+
+<Example title="Popover Opens on Hover" path="examples/popover/stateful-hover.js">
+  <StatefulHover />
+</Example>
+
+<Example title="Popover Available Placements" path="examples/popover/placements.js">
+  <Placements />
+</Example>
+
+<Example title="Popover With Arrow" path="examples/popover/with-arrow.js">
+  <WithArrow />
+</Example>
+
+<Example title="Popover Close from Content" path="examples/popover/dismiss.js">
+  <Dismiss />
+</Example>
+
+<Example title="Clipping Avoidance" path="examples/popover/clipping.js">
+  <Clipping />
+</Example>
+
+<Example title="Popover with Overrides" path="examples/popover/overrides.js">
+  <Customization />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="Popover"
+  blacklisted={['Padding']}
+  component={PopoverExports}
+  renderExample={props => (
+    <Popover
+      isOpen
+      content={<Block padding="scale500">hello world</Block>}
+      showArrow
+      placement={PLACEMENT.right}
+      overrides={props.overrides}
+    >
+      <Block as="span" padding="scale500">
+        always open
+      </Block>
+    </Popover>
+  )}
+/>
+
+<API
+  heading="Popover API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/popover.js')}
+/>
+
+<API
+  heading="Stateful Popover API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/stateful-popover.js')}
+/>
+
+<API
+  heading="Stateful Container API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/stateful-container.js')}
+/>

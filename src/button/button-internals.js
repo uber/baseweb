@@ -12,7 +12,6 @@ import {
 } from './styled-components.js';
 import {getSharedProps} from './utils.js';
 import {getOverrides} from '../helpers/overrides.js';
-import {KIND, SHAPE, SIZE} from './constants.js';
 
 import type {ButtonPropsT} from './types.js';
 
@@ -47,13 +46,3 @@ export default function ButtonInternals(props: ButtonPropsT) {
     </React.Fragment>
   );
 }
-
-ButtonInternals.defaultProps = {
-  disabled: false,
-  isLoading: false,
-  isSelected: false,
-  kind: KIND.primary,
-  overrides: {},
-  shape: SHAPE.default,
-  size: SIZE.default,
-};

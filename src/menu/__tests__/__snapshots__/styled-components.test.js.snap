@@ -10,24 +10,21 @@ Object {
   "marginRight": "0",
   "marginTop": "0",
   "overflow": "auto",
-  "paddingBottom": "0",
+  "paddingBottom": "$theme.sizing.scale300",
   "paddingLeft": "0",
   "paddingRight": "0",
-  "paddingTop": "0",
+  "paddingTop": "$theme.sizing.scale300",
   "position": "relative",
 }
 `;
 
 exports[`Menu Styled Components ListItem - basic render: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
+  ":focus": Object {
+    "outline": "none",
   },
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
-  },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
   },
   "backgroundColor": "transparent",
   "color": "$theme.colors.foreground",
@@ -50,14 +47,11 @@ Object {
 
 exports[`Menu Styled Components ListItem - compact: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
+  ":focus": Object {
+    "outline": "none",
   },
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
-  },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
   },
   "backgroundColor": "transparent",
   "color": "$theme.colors.foreground",
@@ -80,16 +74,13 @@ Object {
 
 exports[`Menu Styled Components ListItem - highlighted render: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
+  ":focus": Object {
+    "outline": "none",
   },
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
   },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
-  },
-  "backgroundColor": "$theme.colors.mono300",
+  "backgroundColor": "$theme.colors.menuFillHover",
   "color": "$theme.colors.primary",
   "cursor": "pointer",
   "display": "block",
@@ -110,14 +101,8 @@ Object {
 
 exports[`Menu Styled Components ListItemProfile - basic render: correct styles 1`] = `
 Object {
-  ":first-child": Object {
-    "marginTop": "$theme.sizing.scale300",
-  },
   ":hover": Object {
     "backgroundColor": "$theme.colors.menuFillHover",
-  },
-  ":last-child": Object {
-    "marginBottom": "$theme.sizing.scale300",
   },
   "alignItems": "center",
   "cursor": "pointer",

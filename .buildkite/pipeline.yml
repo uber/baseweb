@@ -42,6 +42,14 @@ steps:
         run: baseui
     agents:
       queue: workers
+  - name: ':now:'
+    branches: 'master'
+    command: ./scripts/now-deploy.sh
+    plugins:
+      'docker-compose':
+        run: baseui
+    agents:
+      queue: workers
   - name: ':screener:'
     command: yarn storybook:screener:ci
     plugins:
@@ -49,17 +57,13 @@ steps:
         run: baseui
     agents:
       queue: workers
-  - name: ':saucelabs: :selenium:'
+  - name: ':puppeteer:'
     command: yarn e2e:test:ci
-    concurrency_group: saucelabs
-    concurrency: 2
     plugins:
       'docker-compose':
         run: e2e-test
         pull:
           - e2e-server
           - e2e-server-healthy
-          - sauce-tunnel
-          - sauce-tunnel-healthy
     agents:
       queue: workers

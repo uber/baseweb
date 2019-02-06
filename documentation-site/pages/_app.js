@@ -8,24 +8,30 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import App, {Container} from 'next/app';
-
-import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, ThemeProvider} from 'baseui';
+import App, {Container} from 'next/app';
+import {Provider as StyletronProvider} from 'styletron-react';
+import {Block} from 'baseui/block';
+import Router from 'next/router';
 
-import getStyletron from '../helpers/styletron';
-import Head from '../components/meta';
+import {styletron} from '../helpers/styletron';
+import {trackPageView} from '../helpers/ga';
+import '../prism-coy.css';
 
 export default class MyApp extends App {
+  componentDidMount() {
+    Router.onRouteChangeComplete = url => {
+      trackPageView(url);
+    };
+  }
   render() {
     const {Component, pageProps} = this.props;
-
     return (
       <Container>
-        <Head />
-        <StyletronProvider value={getStyletron()}>
+        <StyletronProvider value={styletron}>
           <ThemeProvider theme={LightTheme}>
             <Component {...pageProps} />
+            <Block marginBottom="300px" />
           </ThemeProvider>
         </StyletronProvider>
       </Container>
