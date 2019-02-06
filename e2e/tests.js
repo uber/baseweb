@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import Modal from '../src/modal/examples.js';
 import Pagination from '../src/pagination/examples.js';
 import Popover from '../src/popover/examples.js';
 import ProgressSteps from '../src/progress-steps/examples.js';
@@ -24,7 +23,6 @@ import Tooltip from '../src/tooltip/examples.js';
 import scenarios from '../src/**/*.scenario.js';
 
 const Examples = [
-  Modal,
   Pagination,
   Popover,
   ProgressSteps,
