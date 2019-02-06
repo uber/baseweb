@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import Popover from '../src/popover/examples.js';
 import ProgressSteps from '../src/progress-steps/examples.js';
 import Radio from '../src/radio/examples.js';
 import Select from '../src/select/examples.js';
@@ -21,16 +20,7 @@ import Tooltip from '../src/tooltip/examples.js';
 
 import scenarios from '../src/**/*.scenario.js';
 
-const Examples = [
-  Popover,
-  ProgressSteps,
-  Radio,
-  Select,
-  Tabs,
-  Tag,
-  Textarea,
-  Tooltip,
-];
+const Examples = [ProgressSteps, Radio, Select, Tabs, Tag, Textarea, Tooltip];
 
 const createError = ({name, suite, test}) => {
   return (
@@ -58,8 +48,8 @@ const createError = ({name, suite, test}) => {
         <React.Fragment>
           <p>Name: {name}</p>
           <p>
-            If you see this error message, double check your scenario file to
-            ensure that you have specified the correct name export.
+            If you see this error message, double check your scenario file and
+            test to ensure that you have specified the correct name export.
           </p>
         </React.Fragment>
       )}
