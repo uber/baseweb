@@ -39,7 +39,7 @@ describe('FileUploader', () => {
     expect(progressMessage.text()).toBe(message);
   });
 
-  it('renders spineer if progressMessage provided', () => {
+  it('renders spinner if progressMessage provided', () => {
     const wrapper = mount(
       <Unstable_FileUploader progressMessage="uploading..." />,
     );
