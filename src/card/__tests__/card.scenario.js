@@ -14,7 +14,6 @@ import {
   StyledBody,
   StyledThumbnail,
   StyledTitle,
-  hasThumbnail,
 } from '../index.js';
 import {Button} from '../../button/index.js';
 
