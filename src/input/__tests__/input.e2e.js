@@ -8,26 +8,15 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const scenarios = require('./examples-list');
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
-
-const suite = 'Input Test Suite';
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input[data-test="e2e"]',
 };
 
-describe(suite, () => {
-  beforeAll(async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.STATE_EXAMPLE,
-      }),
-    );
-  });
-
+describe('input', () => {
   it('passes basic a11y tests', async () => {
+    await mount(page, 'input');
     await page.waitFor(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
@@ -41,12 +30,14 @@ describe(suite, () => {
   });
 
   it('preset value is displayed', async () => {
+    await mount(page, 'input');
     await page.waitFor(selectors.input);
     const value = await page.$eval(selectors.input, input => input.value);
     expect(value).toBe('uber');
   });
 
   it('entered value is displayed', async () => {
+    await mount(page, 'input');
     await page.waitFor(selectors.input);
 
     await page.keyboard.type('_good');

@@ -7,10 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const scenarios = require('./examples-list');
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
-
-const suite = 'Pagination Test Suite';
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   prevButton: 'button[data-test="prev-button"]',
@@ -18,23 +15,16 @@ const selectors = {
   dropDownButton: 'button[data-test="dropdown-button"]',
 };
 
-describe(suite, () => {
-  beforeAll(async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.STATEFUL_PAGINATION,
-      }),
-    );
-  });
-
+describe('pagination', () => {
   it('passes basic accessibility tests', async () => {
+    await mount(page, 'pagination');
     await page.waitFor(selectors.prevButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be navigated using the prev and next buttons', async () => {
+    await mount(page, 'pagination');
     await page.waitFor(selectors.prevButton);
     // assert initial state
     const initalValue = await page.$eval(
@@ -61,6 +51,7 @@ describe(suite, () => {
   });
 
   it('can be navigated using the dropdown menu', async () => {
+    await mount(page, 'pagination');
     await page.waitFor(selectors.prevButton);
     // assert initial state
     const initalValue = await page.$eval(

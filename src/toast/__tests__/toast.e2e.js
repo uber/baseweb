@@ -8,36 +8,23 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const scenarios = require('./examples-list');
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
-
-const suite = 'Toast Test Suite';
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   toast: '[role="alert"]',
   dismiss: 'svg',
 };
 
-describe(suite, () => {
+describe('toast', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.TOAST_EXAMPLE,
-      }),
-    );
+    await mount(page, 'toast');
     await page.waitFor(selectors.toast);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('the close icon removes the notification', async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.TOAST_EXAMPLE,
-      }),
-    );
+    await mount(page, 'toast');
     await page.waitFor(selectors.toast);
 
     const originalNumberOfAlerts = await page.$$eval(
@@ -61,12 +48,7 @@ describe(suite, () => {
   });
 
   it('opens a notifaction', async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.TOASTER_EXAMPLE,
-      }),
-    );
+    await mount(page, 'toaster');
     await page.waitFor('button');
     await page.click('button');
 

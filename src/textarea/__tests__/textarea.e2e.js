@@ -8,27 +8,16 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const scenarios = require('./examples-list');
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
-
-const suite = 'Textarea Test Suite';
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
-  input: 'textarea[placeholder="Uncontrolled textarea"]',
+  textarea: 'textarea',
 };
 
-describe(suite, () => {
-  beforeAll(async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.SIMPLE_EXAMPLE,
-      }),
-    );
-  });
-
+describe('textarea', () => {
   it('passes basic a11y tests', async () => {
-    await page.waitFor(selectors.input);
+    await mount(page, 'textarea');
+    await page.waitFor(selectors.textarea);
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
         {
@@ -41,18 +30,20 @@ describe(suite, () => {
   });
 
   it('preset value is displayed', async () => {
-    await page.waitFor(selectors.input);
+    await mount(page, 'textarea');
+    await page.waitFor(selectors.textarea);
 
-    const value = await page.$eval(selectors.input, input => input.value);
+    const value = await page.$eval(selectors.textarea, input => input.value);
     expect(value).toBe('initial value');
   });
 
   it('entered value is displayed', async () => {
-    await page.waitFor(selectors.input);
-    await page.click(selectors.input);
+    await mount(page, 'textarea');
+    await page.waitFor(selectors.textarea);
+    await page.click(selectors.textarea);
     await page.keyboard.type('!');
 
-    const value = await page.$eval(selectors.input, input => input.value);
+    const value = await page.$eval(selectors.textarea, input => input.value);
     expect(value).toBe('initial value!');
   });
 });

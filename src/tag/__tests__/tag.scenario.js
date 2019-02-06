@@ -1,0 +1,28 @@
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+import React from 'react';
+
+import {Tag, KIND} from '../index.js';
+
+export const name = 'tag';
+
+export const component = () => (
+  <React.Fragment>
+    <Tag key="default">Default Color</Tag>
+    {Object.keys(KIND).map(kind => (
+      <Tag
+        key={kind}
+        kind={kind}
+        color={kind === 'custom' ? '#748ecc' : undefined}
+      >
+        kind {kind}
+      </Tag>
+    ))}
+  </React.Fragment>
+);

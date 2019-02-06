@@ -7,26 +7,15 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const scenarios = require('./examples-list');
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
-
-const suite = 'Tooltip Test Suite';
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   tooltip: '[role="tooltip"]',
 };
 
-describe(suite, () => {
-  beforeAll(async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.SIMPLE_EXAMPLE,
-      }),
-    );
-  });
-
+describe('tooltip', () => {
   it('passes basic a11y tests when hovered', async () => {
+    await mount(page, 'tooltip');
     await page.waitFor('span');
     await page.hover('span');
     await page.waitFor(selectors.tooltip);
