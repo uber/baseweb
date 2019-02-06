@@ -18,14 +18,14 @@ const selectors = {
 
 describe('progress steps', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl({name: 'progress-steps'}));
+    await page.goto(getPuppeteerUrl('progress-steps'));
     await page.waitFor(selectors.nextButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be moved to the next step, and back too', async () => {
-    await page.goto(getPuppeteerUrl({name: 'progress-steps'}));
+    await page.goto(getPuppeteerUrl('progress-steps'));
     await page.waitFor(selectors.nextButton);
 
     // verifies that the first content block is visible

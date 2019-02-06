@@ -18,7 +18,7 @@ const selectors = {
 
 describe('modal', () => {
   it('handles focus changes properly', async () => {
-    await page.goto(getPuppeteerUrl({name: 'modal'}));
+    await page.goto(getPuppeteerUrl('modal'));
     await page.waitFor(selectors.closeButton);
     // close modal to start fresh
     await page.click(selectors.closeButton);

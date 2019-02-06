@@ -15,21 +15,21 @@ const expanded = '[aria-expanded=true]';
 
 describe('accordion', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl({name: 'accordion'}));
+    await page.goto(getPuppeteerUrl('accordion'));
     await page.waitFor('div');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('expands once the title is clicked', async () => {
-    await page.goto(getPuppeteerUrl({name: 'accordion'}));
+    await page.goto(getPuppeteerUrl('accordion'));
     await page.click(collapsed);
     await page.waitForSelector(expanded);
     await expect(page).toMatchElement('div', {text: 'panel 1'});
   });
 
   it('collapses once expanded title is clicked', async () => {
-    await page.goto(getPuppeteerUrl({name: 'accordion'}));
+    await page.goto(getPuppeteerUrl('accordion'));
 
     const initialCount = await page.$$eval(collapsed, panels => panels.length);
 

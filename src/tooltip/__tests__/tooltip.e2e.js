@@ -15,7 +15,7 @@ const selectors = {
 
 describe('tooltip', () => {
   it('passes basic a11y tests when hovered', async () => {
-    await page.goto(getPuppeteerUrl({name: 'tooltip'}));
+    await page.goto(getPuppeteerUrl('tooltip'));
     await page.waitFor('span');
     await page.hover('span');
     await page.waitFor(selectors.tooltip);

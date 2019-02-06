@@ -11,14 +11,14 @@ const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('tabs', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl({name: 'tabs'}));
+    await page.goto(getPuppeteerUrl('tabs'));
     await page.waitFor('[role="tab"]');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('changes content on tab click', async () => {
-    await page.goto(getPuppeteerUrl({name: 'tabs'}));
+    await page.goto(getPuppeteerUrl('tabs'));
     await page.waitFor('[role="tab"]');
 
     // verifiy initial state, tab 0 is visible, tab 1 and 2 are hidden

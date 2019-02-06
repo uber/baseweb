@@ -11,7 +11,7 @@ const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('button', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl({name: 'button'}));
+    await page.goto(getPuppeteerUrl('button'));
     await page.waitFor('button');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();

@@ -25,20 +25,20 @@ const optionAtPosition = position =>
 
 describe('select', () => {
   xit(`passes basic a11y tests`, async () => {
-    await page.goto(getPuppeteerUrl({name: 'select'}));
+    await page.goto(getPuppeteerUrl('select'));
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('opens dropdown menu when click on select input', async () => {
-    await page.goto(getPuppeteerUrl({name: 'select'}));
+    await page.goto(getPuppeteerUrl('select'));
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
   });
 
   it('opened dropdown can be closed with ESC', async () => {
-    await page.goto(getPuppeteerUrl({name: 'select'}));
+    await page.goto(getPuppeteerUrl('select'));
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
@@ -49,7 +49,7 @@ describe('select', () => {
   });
 
   it('selects option when clicked in dropdown', async () => {
-    await page.goto(getPuppeteerUrl({name: 'select-search-single'}));
+    await page.goto(getPuppeteerUrl('select-search-single'));
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
@@ -66,7 +66,7 @@ describe('select', () => {
   });
 
   it('doesnt allow to click and select disabled options', async () => {
-    await page.goto(getPuppeteerUrl({name: 'select-search-single'}));
+    await page.goto(getPuppeteerUrl('select-search-single'));
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
@@ -80,7 +80,7 @@ describe('select', () => {
   });
 
   it('does not close dropdown after multiple selections were made', async () => {
-    await page.goto(getPuppeteerUrl({name: 'select-search-multi'}));
+    await page.goto(getPuppeteerUrl('select-search-multi'));
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
@@ -90,7 +90,7 @@ describe('select', () => {
   });
 
   it('selects options when search input successful with results', async () => {
-    await page.goto(getPuppeteerUrl({name: 'select-search-multi'}));
+    await page.goto(getPuppeteerUrl('select-search-multi'));
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.type(selectors.selectInput, 'dark');

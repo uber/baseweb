@@ -20,8 +20,8 @@ const appDirectory = realpathSync(process.cwd());
 
 const resolvePath = relativePath => resolve(appDirectory, relativePath);
 
-function getUrl({launchUrl, name, suite, test}) {
-  const query = [[name, 'name'], [suite, 'suite'], [test, 'test']]
+function getUrl({launchUrl, name}) {
+  const query = [[name, 'name']]
     .filter(([value]) => Boolean(value))
     .map(([value, key]) => `${key}=${encodeURIComponent(value)}`)
     .join('&');
@@ -29,12 +29,10 @@ function getUrl({launchUrl, name, suite, test}) {
   return `${launchUrl}?${query}`;
 }
 
-function getPuppeteerUrl({name, suite, test}) {
+function getPuppeteerUrl(name) {
   return getUrl({
     launchUrl: config.tests.url,
     name,
-    suite,
-    test,
   });
 }
 

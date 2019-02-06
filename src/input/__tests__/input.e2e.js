@@ -16,7 +16,7 @@ const selectors = {
 
 describe('input', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl({name: 'input'}));
+    await page.goto(getPuppeteerUrl('input'));
     await page.waitFor(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
@@ -30,14 +30,14 @@ describe('input', () => {
   });
 
   it('preset value is displayed', async () => {
-    await page.goto(getPuppeteerUrl({name: 'input'}));
+    await page.goto(getPuppeteerUrl('input'));
     await page.waitFor(selectors.input);
     const value = await page.$eval(selectors.input, input => input.value);
     expect(value).toBe('uber');
   });
 
   it('entered value is displayed', async () => {
-    await page.goto(getPuppeteerUrl({name: 'input'}));
+    await page.goto(getPuppeteerUrl('input'));
     await page.waitFor(selectors.input);
 
     await page.keyboard.type('_good');

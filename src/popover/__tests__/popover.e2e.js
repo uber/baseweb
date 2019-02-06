@@ -15,14 +15,14 @@ const selectors = {
 
 describe('popover', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl({name: 'popover'}));
+    await page.goto(getPuppeteerUrl('popover'));
     await page.waitFor(selectors.tooltip);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('hover opens the popover', async () => {
-    await page.goto(getPuppeteerUrl({name: 'popover-hover'}));
+    await page.goto(getPuppeteerUrl('popover-hover'));
     await page.waitFor('button');
     await page.hover('button');
     await page.waitFor(selectors.tooltip);
@@ -31,7 +31,7 @@ describe('popover', () => {
   });
 
   it('opened popover can be closed with ESC', async () => {
-    await page.goto(getPuppeteerUrl({name: 'popover-click'}));
+    await page.goto(getPuppeteerUrl('popover-click'));
     await page.waitFor('button');
     await page.click('button');
     await page.waitFor(selectors.tooltip);
