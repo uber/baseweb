@@ -10,11 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import Tooltip from '../src/tooltip/examples.js';
-
 import scenarios from '../src/**/*.scenario.js';
-
-const Examples = [Tooltip];
 
 const createError = ({name, suite, test}) => {
   return (
@@ -64,28 +60,4 @@ export default function showTestcase() {
 
     return <div>{scenario.component()}</div>;
   }
-
-  const suite = urlParams.get('suite');
-  const test = urlParams.get('test');
-  if (!suite || !test) {
-    return createError({suite, test});
-  }
-
-  const Component = Examples.find(currentExample => {
-    return currentExample[test];
-  });
-
-  const example = Component[test];
-
-  if (!example) {
-    return createError({suite, test});
-  }
-
-  const description = escape(test);
-
-  return (
-    <div key={`example${description}`} id={description}>
-      {example()}
-    </div>
-  );
 }
