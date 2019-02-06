@@ -7,22 +7,11 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const scenarios = require('./examples-list');
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
+const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
 
-const suite = 'Tag Test Suite';
-
-describe(suite, () => {
-  beforeAll(async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.ALL_BASIC_COLORS,
-      }),
-    );
-  });
-
+describe('tag', () => {
   it('passes basic a11y tests', async () => {
+    await page.goto(getPuppeteerUrl({name: 'tag'}));
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

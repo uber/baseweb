@@ -10,13 +10,12 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import Tag from '../src/tag/examples.js';
 import Textarea from '../src/textarea/examples.js';
 import Tooltip from '../src/tooltip/examples.js';
 
 import scenarios from '../src/**/*.scenario.js';
 
-const Examples = [Tag, Textarea, Tooltip];
+const Examples = [Textarea, Tooltip];
 
 const createError = ({name, suite, test}) => {
   return (
