@@ -67,7 +67,7 @@ export type PropsT = {
   'aria-describedby': ?string,
   'aria-labelledby': ?string,
   /** Defines if select element is focused on the first mount. */
-  autoFocus: false,
+  autoFocus: boolean,
   /** Defines if options can be removed by pressing backspace. */
   backspaceRemoves: boolean,
   /** Defines if the select value can be cleared. If true a clear icon is rendered when a value is set. */
