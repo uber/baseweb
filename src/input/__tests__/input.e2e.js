@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input[data-test="e2e"]',
@@ -16,7 +16,7 @@ const selectors = {
 
 describe('input', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl('input'));
+    await mount(page, 'input');
     await page.waitFor(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
@@ -30,14 +30,14 @@ describe('input', () => {
   });
 
   it('preset value is displayed', async () => {
-    await page.goto(getPuppeteerUrl('input'));
+    await mount(page, 'input');
     await page.waitFor(selectors.input);
     const value = await page.$eval(selectors.input, input => input.value);
     expect(value).toBe('uber');
   });
 
   it('entered value is displayed', async () => {
-    await page.goto(getPuppeteerUrl('input'));
+    await mount(page, 'input');
     await page.waitFor(selectors.input);
 
     await page.keyboard.type('_good');

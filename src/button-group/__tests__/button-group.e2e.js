@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 /*eslint-env node*/
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('button-group', () => {
   it('radio mode passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl('button-group-radio'));
+    await mount(page, 'button-group-radio');
     await page.waitFor('div');
     await page.click('button');
 
@@ -21,7 +21,7 @@ describe('button-group', () => {
   });
 
   it('checkbox mode passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl('button-group-checkbox'));
+    await mount(page, 'button-group-checkbox');
     await page.waitFor('div');
     await page.click('button');
 

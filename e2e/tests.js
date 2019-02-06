@@ -12,52 +12,42 @@ import React from 'react';
 
 import scenarios from '../src/**/*.scenario.js';
 
-const createError = ({name, suite, test}) => {
-  return (
-    <div style={{background: 'red', padding: '10px'}}>
-      <h1>
-        Test or suite was not found{' '}
-        <span role="img" aria-label="Face With Hand Over Mouth">
-          🤭
-        </span>
-      </h1>
+const nameCounts = scenarios.reduce((map, s) => {
+  if (!map[s.name]) {
+    map[s.name] = 1;
+  } else {
+    map[s.name]++;
+  }
+  return map;
+}, {});
 
-      {(suite || test) && (
-        <React.Fragment>
-          <p>
-            Suite: {suite} | Test: {test}
-          </p>
-          <p>
-            If you see this error message, check the following: component you
-            are testing to the file e2e/tests.js.
-          </p>
-        </React.Fragment>
-      )}
+const collisions = Object.entries(nameCounts).filter(([_, count]) => count > 1);
+if (collisions.length >= 1) {
+  console.error(`Found colliding scenario name(s): ${collisions
+    .map(([name]) => name)
+    .join(', ')}. Double check your scenario file name export.
+  `);
+}
 
-      {!!name && (
-        <React.Fragment>
-          <p>Name: {name}</p>
-          <p>
-            If you see this error message, double check your scenario file and
-            test to ensure that you have specified the correct name export.
-          </p>
-        </React.Fragment>
-      )}
-    </div>
-  );
-};
+const A11yFail = props => <div role={props.message} />;
 
 export default function showTestcase() {
   // needs polyfill for IE
   const urlParams = new URLSearchParams(window.location.search);
   const name = urlParams.get('name');
 
-  if (name) {
-    const scenario = scenarios.find(s => s.name === name);
-    if (!scenario) {
-      return createError({name});
-    }
-
-    return <div>{scenario.component()}</div>;
+  if (!name) {
+    const message = 'No scenario name provided.';
+    console.error(message);
+    return <A11yFail message={message} />;
   }
+
+  const scenario = scenarios.find(s => s.name === name);
+  if (!scenario) {
+    const message = `No scenario found with the name: '${name}.'`;
+    console.error(message);
+    return <A11yFail message={message} />;
+  }
+
+  return <div>{scenario.component()}</div>;
 }

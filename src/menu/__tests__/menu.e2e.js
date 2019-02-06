@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('menu', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl('menu'));
+    await mount(page, 'menu');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

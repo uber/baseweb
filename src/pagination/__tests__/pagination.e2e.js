@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   prevButton: 'button[data-test="prev-button"]',
@@ -17,14 +17,14 @@ const selectors = {
 
 describe('pagination', () => {
   it('passes basic accessibility tests', async () => {
-    await page.goto(getPuppeteerUrl('pagination'));
+    await mount(page, 'pagination');
     await page.waitFor(selectors.prevButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be navigated using the prev and next buttons', async () => {
-    await page.goto(getPuppeteerUrl('pagination'));
+    await mount(page, 'pagination');
     await page.waitFor(selectors.prevButton);
     // assert initial state
     const initalValue = await page.$eval(
@@ -51,7 +51,7 @@ describe('pagination', () => {
   });
 
   it('can be navigated using the dropdown menu', async () => {
-    await page.goto(getPuppeteerUrl('pagination'));
+    await mount(page, 'pagination');
     await page.waitFor(selectors.prevButton);
     // assert initial state
     const initalValue = await page.$eval(

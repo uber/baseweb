@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   nextButton: '[data-e2e=button-next]',
@@ -18,14 +18,14 @@ const selectors = {
 
 describe('progress steps', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl('progress-steps'));
+    await mount(page, 'progress-steps');
     await page.waitFor(selectors.nextButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be moved to the next step, and back too', async () => {
-    await page.goto(getPuppeteerUrl('progress-steps'));
+    await mount(page, 'progress-steps');
     await page.waitFor(selectors.nextButton);
 
     // verifies that the first content block is visible

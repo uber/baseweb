@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../../e2e/helpers');
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const parentCheckbox = '[data-name="parent"] input[type="checkbox"]';
 const childLabel1 = '[data-name="child1"]';
@@ -15,13 +15,13 @@ const childLabel2 = '[data-name="child2"]';
 
 describe('checkbox', () => {
   it(`passes basic a11y tests`, async () => {
-    await page.goto(getPuppeteerUrl('checkbox'));
+    await mount(page, 'checkbox');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can switch states', async () => {
-    await page.goto(getPuppeteerUrl('checkbox'));
+    await mount(page, 'checkbox');
     await page.waitFor(childLabel1);
 
     await page.click(childLabel1);

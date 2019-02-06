@@ -36,6 +36,17 @@ function getPuppeteerUrl(name) {
   });
 }
 
+async function mount(page, scenarioName) {
+  // replicate console events into terminal
+  page.on('console', msg => {
+    for (let i = 0; i < msg.args().length; ++i) {
+      console.log(`${msg.args()[i]}`);
+    }
+  });
+
+  await page.goto(getPuppeteerUrl(scenarioName));
+}
+
 async function analyzeAccessibility(page, options = {rules: []}) {
   // Inject the axe script in our page
   await page.addScriptTag({path: resolvePath(PATH_TO_AXE)});
@@ -133,5 +144,5 @@ expect.extend({
 
 module.exports = {
   analyzeAccessibility,
-  getPuppeteerUrl,
+  mount,
 };

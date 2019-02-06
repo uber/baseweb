@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {analyzeAccessibility, getPuppeteerUrl} = require('../../../e2e/helpers');
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   tooltip: '[role="tooltip"]',
@@ -15,14 +15,14 @@ const selectors = {
 
 describe('popover', () => {
   it('passes basic a11y tests', async () => {
-    await page.goto(getPuppeteerUrl('popover'));
+    await mount(page, 'popover');
     await page.waitFor(selectors.tooltip);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('hover opens the popover', async () => {
-    await page.goto(getPuppeteerUrl('popover-hover'));
+    await mount(page, 'popover-hover');
     await page.waitFor('button');
     await page.hover('button');
     await page.waitFor(selectors.tooltip);
@@ -31,7 +31,7 @@ describe('popover', () => {
   });
 
   it('opened popover can be closed with ESC', async () => {
-    await page.goto(getPuppeteerUrl('popover-click'));
+    await mount(page, 'popover-click');
     await page.waitFor('button');
     await page.click('button');
     await page.waitFor(selectors.tooltip);
