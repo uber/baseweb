@@ -17,6 +17,6 @@ export const component = () => (
     accessibilityType={'tooltip'}
     content="Tooltips display short messages."
   >
-    <span tabIndex="0">such as this</span>
+    <span>such as this</span>
   </StatefulTooltip>
 );

@@ -40,6 +40,7 @@ async function mount(page, scenarioName) {
   // replicate console events into terminal
   page.on('console', msg => {
     for (let i = 0; i < msg.args().length; ++i) {
+      // eslint-disable-next-line no-console
       console.log(`${msg.args()[i]}`);
     }
   });
