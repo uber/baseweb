@@ -128,10 +128,13 @@ export default class Datepicker extends React.Component<
 
   render() {
     const {overrides = {}} = this.props;
-    const [InputC, inputProps] = getOverrides(overrides.Input, Input);
-    const [PopoverC, popoverProps] = getOverrides(overrides.Popover, Popover);
+    const [InputComponent, inputProps] = getOverrides(overrides.Input, Input);
+    const [PopoverComponent, popoverProps] = getOverrides(
+      overrides.Popover,
+      Popover,
+    );
     return (
-      <PopoverC
+      <PopoverComponent
         placement={PLACEMENT.bottom}
         isOpen={this.state.isOpen}
         onClickOutside={this.close}
@@ -149,7 +152,7 @@ export default class Datepicker extends React.Component<
         }
         {...popoverProps}
       >
-        <InputC
+        <InputComponent
           value={this.formatDisplayValue(this.props.value)}
           onFocus={this.open}
           onBlur={this.handleInputBlur}
@@ -157,7 +160,7 @@ export default class Datepicker extends React.Component<
           placeholder={this.props.placeholder}
           {...inputProps}
         />
-      </PopoverC>
+      </PopoverComponent>
     );
   }
 }

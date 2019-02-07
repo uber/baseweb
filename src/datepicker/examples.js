@@ -38,8 +38,6 @@ export default {
         <StatefulDatepicker isRange initialState={{value: []}} />
         <div style={{marginTop: '150px'}} />
         <StatefulDatepicker isRange initialState={{value: []}} />
-        <div style={{marginTop: '150px'}} />
-        <StatefulDatepicker isRange initialState={{value: []}} />
       </div>
     );
   },
@@ -73,6 +71,14 @@ export default {
         }),
       },
     };
+    const arrowBtnOverrides = ({$theme}) => ({
+      ':focus': {
+        backgroundColor: $theme.colors.positive500,
+        borderRadius: $theme.borders.useRoundedCorners
+          ? $theme.sizing.scale100
+          : 0,
+      },
+    });
     return (
       <StatefulCalendar
         initialState={{value: new Date()}}
@@ -87,6 +93,12 @@ export default {
           },
           YearSelect: {
             props: {overrides: selectOverrides},
+          },
+          PrevButton: {
+            style: arrowBtnOverrides,
+          },
+          NextButton: {
+            style: arrowBtnOverrides,
           },
           Day: {
             style: ({$theme, $selected, $isHovered, $isHighlighted}) => ({

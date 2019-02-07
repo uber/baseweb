@@ -88,9 +88,7 @@ class NavigationContainer extends React.Component<
   }
 
   onChange = (data: {date: ?Date | Array<Date>}) => {
-    if (this.state.isActive) {
-      this.props.onChange(data);
-    }
+    this.props.onChange(data);
   };
 
   onMonthChange = (data: {date: Date}) => {
