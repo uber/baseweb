@@ -11,6 +11,7 @@ export {default as Filter} from './filter.js';
 export {
   StyledTable,
   StyledContent, // remove StyledContent in the next major version
+  StyledFilterButton,
   StyledFilterContent,
   StyledFilterHeading,
   StyledFilterFooter,

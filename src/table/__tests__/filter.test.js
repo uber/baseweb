@@ -10,8 +10,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 
 import {Button} from '../../button/index.js';
-import FilterIcon from '../../icon/filter.js';
-import {Filter, StyledFilterContent} from '../index.js';
+import {Filter, StyledFilterButton, StyledFilterContent} from '../index.js';
 
 describe('Table-Filter', () => {
   it('does not display filter content by default', () => {
@@ -23,7 +22,7 @@ describe('Table-Filter', () => {
   it('displays filter content on click', () => {
     const children = 'hello';
     const wrapper = mount(<Filter>{children}</Filter>);
-    const icon = wrapper.find(FilterIcon);
+    const icon = wrapper.find(StyledFilterButton);
     icon.simulate('click');
 
     const content = wrapper.find(StyledFilterContent);
@@ -33,7 +32,7 @@ describe('Table-Filter', () => {
 
   it('does not display filter content if disabled', () => {
     const wrapper = mount(<Filter disabled>hello</Filter>);
-    const icon = wrapper.find(FilterIcon);
+    const icon = wrapper.find(StyledFilterButton);
     icon.simulate('click');
 
     const content = wrapper.find(StyledFilterContent);
@@ -43,7 +42,7 @@ describe('Table-Filter', () => {
   it('calls provided onSelectAll handler', () => {
     const spy = jest.fn();
     const wrapper = mount(<Filter onSelectAll={spy}>hello</Filter>);
-    const icon = wrapper.find(FilterIcon);
+    const icon = wrapper.find(StyledFilterButton);
     icon.simulate('click');
 
     const button = wrapper.find(Button).at(0);
@@ -55,7 +54,7 @@ describe('Table-Filter', () => {
   it('calls provided onReset handler', () => {
     const spy = jest.fn();
     const wrapper = mount(<Filter onReset={spy}>hello</Filter>);
-    const icon = wrapper.find(FilterIcon);
+    const icon = wrapper.find(StyledFilterButton);
     icon.simulate('click');
 
     const button = wrapper.find(Button).at(1);

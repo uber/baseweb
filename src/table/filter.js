@@ -13,6 +13,7 @@ import FilterIcon from '../icon/filter.js';
 import {StatefulPopover} from '../popover/index.js';
 
 import {
+  StyledFilterButton,
   StyledFilterContent,
   StyledFilterHeading,
   StyledFilterFooter,
@@ -78,20 +79,22 @@ export default function Filter(props: FilterProps) {
         </React.Fragment>
       }
     >
-      <FilterIcon
-        overrides={{
-          Svg: {
-            style: ({$theme}) => ({
-              color: getIconColor($theme),
-              ':hover': {
-                color: getIconHoverColor($theme),
-                cursor: props.disabled ? null : 'pointer',
-              },
-            }),
-          },
-        }}
-        size={18}
-      />
+      <StyledFilterButton>
+        <FilterIcon
+          overrides={{
+            Svg: {
+              style: ({$theme}) => ({
+                color: getIconColor($theme),
+                ':hover': {
+                  color: getIconHoverColor($theme),
+                  cursor: props.disabled ? null : 'pointer',
+                },
+              }),
+            },
+          }}
+          size={18}
+        />
+      </StyledFilterButton>
     </StatefulPopover>
   );
 }

@@ -25,6 +25,13 @@ Object {
 
 exports[`Table styled components $width property: StyledContent has expected styles when $width property defined 1`] = `Object {}`;
 
+exports[`Table styled components $width property: StyledFilterButton has expected styles when $width property defined 1`] = `
+Object {
+  "border": "none",
+  "padding": "none",
+}
+`;
+
 exports[`Table styled components $width property: StyledFilterContent has expected styles when $width property defined 1`] = `
 Object {
   "maxHeight": "196px",
@@ -145,6 +152,13 @@ Object {
 `;
 
 exports[`Table styled components default properties: StyledContent has expected default styles 1`] = `Object {}`;
+
+exports[`Table styled components default properties: StyledFilterButton has expected default styles 1`] = `
+Object {
+  "border": "none",
+  "padding": "none",
+}
+`;
 
 exports[`Table styled components default properties: StyledFilterContent has expected default styles 1`] = `
 Object {

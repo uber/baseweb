@@ -85,6 +85,11 @@ export const StyledCell = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
+export const StyledFilterButton = styled('button', {
+  border: 'none',
+  padding: 'none',
+});
+
 export const StyledFilterContent = styled('div', ({$theme}) => ({
   maxHeight: '196px',
   paddingRight: $theme.sizing.scale600,
