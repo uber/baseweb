@@ -16,6 +16,9 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
+  StyledFilterContent,
+  StyledFilterHeading,
+  StyledFilterFooter,
 } from '../index.js';
 
 describe('Table styled components', () => {
@@ -27,6 +30,9 @@ describe('Table styled components', () => {
     [StyledBody, 'StyledBody'],
     [StyledRow, 'StyledRow'],
     [StyledCell, 'StyledCell'],
+    [StyledFilterContent, 'StyledFilterContent'],
+    [StyledFilterHeading, 'StyledFilterHeading'],
+    [StyledFilterFooter, 'StyledFilterFooter'],
   ];
 
   test.each(styledComponents)('default properties', (Component, name) => {
