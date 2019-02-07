@@ -20,27 +20,32 @@ const appDirectory = realpathSync(process.cwd());
 
 const resolvePath = relativePath => resolve(appDirectory, relativePath);
 
-function getUrl({launchUrl, suite, test}) {
-  return `${launchUrl}?suite=${encodeURIComponent(
-    suite,
-  )}&test=${encodeURIComponent(test)}`;
+function getUrl({launchUrl, name}) {
+  const query = [[name, 'name']]
+    .filter(([value]) => Boolean(value))
+    .map(([value, key]) => `${key}=${encodeURIComponent(value)}`)
+    .join('&');
+
+  return `${launchUrl}?${query}`;
 }
 
-function getPuppeteerUrl({suite, test}) {
+function getPuppeteerUrl(name) {
   return getUrl({
     launchUrl: config.tests.url,
-    suite,
-    test,
+    name,
   });
 }
 
-function goToUrl({suite, test, browser}) {
-  const url = getUrl({launchUrl: browser.launchUrl, suite, test});
-  return browser.url(url);
-}
+async function mount(page, scenarioName) {
+  // replicate console events into terminal
+  page.on('console', msg => {
+    for (let i = 0; i < msg.args().length; ++i) {
+      // eslint-disable-next-line no-console
+      console.log(`${msg.args()[i]}`);
+    }
+  });
 
-function formatFileName(testName) {
-  return testName.toLowerCase().replace(/ /g, '-');
+  await page.goto(getPuppeteerUrl(scenarioName));
 }
 
 async function analyzeAccessibility(page, options = {rules: []}) {
@@ -139,9 +144,6 @@ expect.extend({
 });
 
 module.exports = {
-  getPuppeteerUrl,
-  getUrl,
-  goToUrl,
-  formatFileName,
   analyzeAccessibility,
+  mount,
 };

@@ -8,10 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* global document */
 
-const scenarios = require('./examples-list');
-const {getPuppeteerUrl, analyzeAccessibility} = require('../../e2e/helpers');
-
-const suite = 'Modal Test Suite';
+const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   closeButton: 'button[aria-label="Close"]',
@@ -19,14 +16,9 @@ const selectors = {
   dialog: '[role="dialog"]',
 };
 
-describe(suite, () => {
+describe('modal', () => {
   it('handles focus changes properly', async () => {
-    await page.goto(
-      getPuppeteerUrl({
-        suite,
-        test: scenarios.SIMPLE_EXAMPLE,
-      }),
-    );
+    await mount(page, 'modal');
     await page.waitFor(selectors.closeButton);
     // close modal to start fresh
     await page.click(selectors.closeButton);
