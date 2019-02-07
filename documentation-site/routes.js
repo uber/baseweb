@@ -28,6 +28,10 @@ const routes = [
         text: 'Versioning policy',
         path: '/getting-started/versioning-policy',
       },
+      {
+        text: 'Comparison with other component libraries',
+        path: '/getting-started/comparison',
+      },
     ],
   },
   {
