@@ -31,6 +31,15 @@ describe('Table-Filter', () => {
     expect(content.text()).toBe(children);
   });
 
+  it('does not display filter content if disabled', () => {
+    const wrapper = mount(<Filter disabled>hello</Filter>);
+    const icon = wrapper.find(FilterIcon);
+    icon.simulate('click');
+
+    const content = wrapper.find(StyledFilterContent);
+    expect(content).not.toExist();
+  });
+
   it('calls provided onSelectAll handler', () => {
     const spy = jest.fn();
     const wrapper = mount(<Filter onSelectAll={spy}>hello</Filter>);

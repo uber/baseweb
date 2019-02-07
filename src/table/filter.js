@@ -44,6 +44,12 @@ export default function Filter(props: FilterProps) {
 
   return (
     <StatefulPopover
+      stateReducer={(_, nextState) => {
+        if (props.disabled) {
+          return {...nextState, isOpen: false};
+        }
+        return nextState;
+      }}
       content={
         <React.Fragment>
           <StyledFilterHeading>Filter Column</StyledFilterHeading>
