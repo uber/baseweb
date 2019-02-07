@@ -9,9 +9,11 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
+import {Block} from '../block/index.js';
 import {Button, KIND} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ProgressBar} from '../progress-bar/index.js';
+import {Spinner} from '../spinner/index.js';
 
 import {
   StyledRoot,
@@ -114,7 +116,13 @@ function Unstable_FileUploader(props: PropsT) {
 
               {afterFileDrop && (
                 <React.Fragment>
-                  {!!props.progressAmount && (
+                  {/**
+                   * Below checks typeof value to ensure if progressAmount = 0 we will
+                   * render the progress bar rather than the spinner. Providing a number
+                   * value implies that we expect to have some progress percent in the
+                   * future. We do not want to flash the spinner in this case.
+                   */}
+                  {typeof props.progressAmount === 'number' ? (
                     <ProgressBar
                       value={props.progressAmount}
                       overrides={{
@@ -127,15 +135,21 @@ function Unstable_FileUploader(props: PropsT) {
                         },
                       }}
                     />
+                  ) : (
+                    <Block marginBottom="scale300">
+                      <Spinner size={40} />
+                    </Block>
                   )}
-
                   {(props.errorMessage || props.progressMessage) &&
                   props.errorMessage ? (
-                    <ErrorMessage>{props.errorMessage}</ErrorMessage>
+                    <ErrorMessage {...prefixedStyledProps}>
+                      {props.errorMessage}
+                    </ErrorMessage>
                   ) : (
-                    <ContentMessage>{props.progressMessage}</ContentMessage>
+                    <ContentMessage {...prefixedStyledProps}>
+                      {props.progressMessage}
+                    </ContentMessage>
                   )}
-
                   {props.errorMessage ? (
                     <Button
                       kind={KIND.minimal}
@@ -158,11 +172,7 @@ function Unstable_FileUploader(props: PropsT) {
                       }}
                       overrides={{
                         BaseButton: {
-                          style: ({$theme}) => ({
-                            outline: null,
-                            fontWeight: 'normal',
-                            color: $theme.colors.negative,
-                          }),
+                          style: {outline: null, fontWeight: 'normal'},
                         },
                       }}
                     >
