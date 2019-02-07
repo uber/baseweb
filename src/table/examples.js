@@ -160,7 +160,7 @@ class FilterTable extends React.Component<any, any> {
             <StyledHeadCell>
               Number
               <Filter
-                active={!!this.state.filters.length}
+                active={!!this.state.filters.filter(Boolean).length}
                 onReset={this.handleReset}
                 onSelectAll={this.handleSelectAll}
               >
