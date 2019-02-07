@@ -116,7 +116,13 @@ function Unstable_FileUploader(props: PropsT) {
 
               {afterFileDrop && (
                 <React.Fragment>
-                  {props.progressAmount ? (
+                  {/**
+                   * Below checks typeof value to ensure if progressAmount = 0 we will
+                   * render the progress bar rather than the spinner. Providing a number
+                   * value implies that we expect to have some progress percent in the
+                   * future. We do not want to flash the spinner in this case.
+                   */}
+                  {typeof props.progressAmount === 'number' ? (
                     <ProgressBar
                       value={props.progressAmount}
                       overrides={{
@@ -134,7 +140,6 @@ function Unstable_FileUploader(props: PropsT) {
                       <Spinner size={40} />
                     </Block>
                   )}
-
                   {(props.errorMessage || props.progressMessage) &&
                   props.errorMessage ? (
                     <ErrorMessage {...prefixedStyledProps}>
@@ -145,7 +150,6 @@ function Unstable_FileUploader(props: PropsT) {
                       {props.progressMessage}
                     </ContentMessage>
                   )}
-
                   {props.errorMessage ? (
                     <Button
                       kind={KIND.minimal}

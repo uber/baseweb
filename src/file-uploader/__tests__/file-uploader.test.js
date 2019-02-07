@@ -47,6 +47,20 @@ describe('FileUploader', () => {
     expect(spinner).toHaveLength(1);
   });
 
+  it('does not render spinner if progressAmount is zero, render progress bar', () => {
+    const wrapper = mount(
+      <Unstable_FileUploader
+        progressMessage="uploading..."
+        progressAmount={0}
+      />,
+    );
+    const spinner = wrapper.find(Spinner);
+    expect(spinner).toHaveLength(0);
+
+    const progressBar = wrapper.find('ProgressBar');
+    expect(progressBar).toHaveLength(1);
+  });
+
   it('does not render progress bar if progressAmount not provided', () => {
     const wrapper = mount(
       <Unstable_FileUploader progressMessage="uploading..." />,
