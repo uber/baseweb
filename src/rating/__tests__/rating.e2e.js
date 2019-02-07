@@ -44,8 +44,9 @@ describe('Rating', () => {
     );
     expect(highlightedEmoticons).toBe(1);
 
-    const indexOfHighlihted = await page.$eval(selectors.checked, star =>
-      star.getAttribute('aria-posinset'),
+    const indexOfHighlihted = await page.$eval(
+      selectors.checked,
+      star => +star.getAttribute('aria-posinset'),
     );
     expect(indexOfHighlihted).toBe(3);
   });
