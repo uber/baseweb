@@ -17,6 +17,14 @@ export type TablePropsT = {|
   isLoading?: boolean,
 |};
 
+export type FilterProps = {|
+  active?: boolean,
+  children: React.Node,
+  disabled?: boolean,
+  onReset?: () => mixed,
+  onSelectAll?: () => mixed,
+|};
+
 export type SharedStylePropsT = {|
   $theme: ThemeT,
 |};

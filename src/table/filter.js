@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Button, KIND, SIZE} from '../button/index.js';
-import Filter from '../icon/filter.js';
+import FilterIcon from '../icon/filter.js';
 import {StatefulPopover} from '../popover/index.js';
 
 import {
@@ -17,16 +17,9 @@ import {
   StyledFilterHeading,
   StyledFilterFooter,
 } from './index.js';
+import type {FilterProps} from './types.js';
 
-type Props = {
-  active?: boolean,
-  children: React.Node,
-  disabled?: boolean,
-  onReset?: () => mixed,
-  onSelectAll?: () => mixed,
-};
-
-export default (props: Props) => {
+export default function Filter(props: FilterProps) {
   const {onSelectAll = () => {}, onReset = () => {}} = props;
 
   function getIconColor(theme) {
@@ -53,7 +46,7 @@ export default (props: Props) => {
     <StatefulPopover
       content={
         <React.Fragment>
-          <StyledFilterHeading>Filter Column by:</StyledFilterHeading>
+          <StyledFilterHeading>Filter Column</StyledFilterHeading>
           <StyledFilterContent>{props.children}</StyledFilterContent>
           <StyledFilterFooter>
             <Button
@@ -79,7 +72,7 @@ export default (props: Props) => {
         </React.Fragment>
       }
     >
-      <Filter
+      <FilterIcon
         overrides={{
           Svg: {
             style: ({$theme}) => ({
@@ -95,4 +88,4 @@ export default (props: Props) => {
       />
     </StatefulPopover>
   );
-};
+}
