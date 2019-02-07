@@ -29,7 +29,9 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
     outline: props.$isDisabled ? 'none' : null,
     paddingTop: props.$theme.sizing.scale900,
     paddingRight: props.$theme.sizing.scale800,
-    paddingBottom: props.$theme.sizing.scale900,
+    paddingBottom: props.$afterFileDrop
+      ? props.$theme.sizing.scale300
+      : props.$theme.sizing.scale900,
     paddingLeft: props.$theme.sizing.scale800,
     width: '100%',
   };
@@ -37,11 +39,14 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
 
 export const StyledContentMessage = styled('div', (props: StylePropsT) => ({
   ...props.$theme.typography.font400,
+  color: props.$afterFileDrop ? props.$theme.colors.mono800 : null,
+  marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
 }));
 
 export const StyledErrorMessage = styled('div', (props: StylePropsT) => ({
   ...props.$theme.typography.font400,
   color: props.$theme.colors.negative,
+  marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
 }));
 
 export const StyledRoot = styled('div', (props: StylePropsT) => ({
