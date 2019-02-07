@@ -36,14 +36,17 @@ class NavigationContainer extends React.Component<
     onDayMouseOver: () => {},
     onDayMouseLeave: () => {},
     onChange: () => {},
+    trapTabbing: false,
   };
+
+  root: ?HTMLElement;
 
   state = {
     highlightedDate:
       this.props.highlightedDate ||
       this.getSingleDate(this.props.value) ||
       new Date(),
-    isActive: true,
+    isActive: false,
     lastHighlightedDate:
       this.props.highlightedDate ||
       this.getSingleDate(this.props.value) ||
@@ -52,22 +55,23 @@ class NavigationContainer extends React.Component<
 
   componentDidMount() {
     if (__BROWSER__) {
-      if (this.state.isActive) {
-        document.addEventListener('keydown', this.onKeyDown);
+      if (this.props.trapTabbing) {
+        document.addEventListener('keydown', this.handleTabbing);
       }
     }
   }
 
   componentWillUnmount() {
     if (__BROWSER__) {
-      if (this.state.isActive) {
-        document.removeEventListener('keydown', this.onKeyDown);
+      if (this.props.trapTabbing) {
+        document.removeEventListener('keydown', this.handleTabbing);
       }
     }
   }
 
-  setActiveState = (isActive: boolean) => {
+  setActiveState = (isActive: boolean, {root}: {root: ?HTMLElement}) => {
     if (__BROWSER__) {
+      this.root = root;
       const method = isActive ? 'addEventListener' : 'removeEventListener';
       // $FlowFixMe
       document[method]('keydown', this.onKeyDown);
@@ -89,6 +93,22 @@ class NavigationContainer extends React.Component<
     }
   };
 
+  onMonthChange = (data: {date: Date}) => {
+    const {date} = data;
+    this.setHighlightedDate(date);
+    if (this.props.onMonthChange) {
+      this.props.onMonthChange(data);
+    }
+  };
+
+  onYearChange = (data: {date: Date}) => {
+    const {date} = data;
+    this.setHighlightedDate(date);
+    if (this.props.onYearChange) {
+      this.props.onYearChange(data);
+    }
+  };
+
   onKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'ArrowUp':
@@ -99,6 +119,35 @@ class NavigationContainer extends React.Component<
         event.preventDefault();
         event.stopPropagation();
         break;
+    }
+  };
+
+  handleTabbing = (event: KeyboardEvent) => {
+    if (__BROWSER__) {
+      if (event.keyCode === 9) {
+        const activeElm = document.activeElement;
+        // need to look for any tabindex >= 0 and ideally for not disabled
+        // focusable by default elements like input, button, etc.
+        const focusable = this.root
+          ? this.root.querySelectorAll('[tabindex="0"]')
+          : null;
+        const length = focusable ? focusable.length : 0;
+        if (event.shiftKey) {
+          if (focusable && activeElm === focusable[0]) {
+            // without this setTimeout it skips the last element on the tab
+            setTimeout(() => {
+              focusable[length - 1].focus();
+            }, 0);
+          }
+        } else {
+          if (focusable && activeElm === focusable[length - 1]) {
+            // without this setTimeout it skips the first element on the shift+tab
+            setTimeout(() => {
+              focusable[0].focus();
+            }, 0);
+          }
+        }
+      }
     }
   };
 
@@ -117,12 +166,15 @@ class NavigationContainer extends React.Component<
 
   onDayMouseLeave = (data: {event: Event, date: Date}) => {
     const {date} = data;
+    this.setHighlightedDate(date);
+    this.props.onDayMouseLeave(data);
+  };
+
+  setHighlightedDate(date: Date) {
     const {stateReducer, value} = this.props;
     const selected = this.getSingleDate(value);
-    const inSameMonth = isSameMonth(selected, date);
-    const inSameYear = isSameYear(selected, date);
     let nextState;
-    if (selected && inSameMonth && inSameYear) {
+    if (selected && isSameMonth(selected, date) && isSameYear(selected, date)) {
       nextState = {highlightedDate: selected};
     } else {
       nextState = {
@@ -133,8 +185,7 @@ class NavigationContainer extends React.Component<
     this.setState(prevState =>
       stateReducer(STATE_CHANGE_TYPE.mouseLeave, nextState, prevState),
     );
-    this.props.onDayMouseLeave(data);
-  };
+  }
 
   handleArrowKey(key: string) {
     const {highlightedDate: oldDate, lastHighlightedDate} = this.state;
@@ -191,6 +242,8 @@ class NavigationContainer extends React.Component<
       onDayMouseOver: this.onDayMouseOver,
       onDayMouseLeave: this.onDayMouseLeave,
       onChange: this.onChange,
+      onMonthChange: this.onMonthChange,
+      onYearChange: this.onYearChange,
       setActiveState: this.setActiveState,
     });
   }

@@ -24,10 +24,24 @@ export default {
     return <StatefulCalendar />;
   },
   [tests.STATEFUL_IN_POPOVER]: function Story3() {
-    return <StatefulDatepicker />;
+    return (
+      <div>
+        <StatefulDatepicker />
+        <br />
+        <StatefulDatepicker />
+      </div>
+    );
   },
   [tests.STATEFUL_RANGE_IN_POPOVER]: function Story3() {
-    return <StatefulDatepicker isRange initialState={{value: []}} />;
+    return (
+      <div>
+        <StatefulDatepicker isRange initialState={{value: []}} />
+        <div style={{marginTop: '150px'}} />
+        <StatefulDatepicker isRange initialState={{value: []}} />
+        <div style={{marginTop: '150px'}} />
+        <StatefulDatepicker isRange initialState={{value: []}} />
+      </div>
+    );
   },
   [tests.STATEFUL_RANGE_QUICK_SELECT]: function QuickSelect() {
     return <StatefulCalendar isRange enableQuickSelect />;

@@ -16,7 +16,12 @@ import type {DatepickerPropsT} from './types.js';
 
 export default class Datepicker extends React.Component<
   DatepickerPropsT,
-  {isOpen: boolean},
+  {
+    calendarFocused: boolean,
+    isOpen: boolean,
+    isPseudoFocused: boolean,
+    lastActiveElm: ?HTMLElement,
+  },
 > {
   static defaultProps = {
     formatDisplayValue: null,
@@ -30,17 +35,28 @@ export default class Datepicker extends React.Component<
   calendar: ?HTMLElement;
 
   state = {
+    calendarFocused: false,
     isOpen: false,
+    isPseudoFocused: false,
+    lastActiveElm: null,
   };
 
   onChange = (data: {date: ?Date | Array<Date>}) => {
     const {date} = data;
     let isOpen = false;
+    let isPseudoFocused = false;
+    let calendarFocused = false;
     if (Array.isArray(date) && this.props.isRange && date.length < 2) {
       isOpen = true;
+      isPseudoFocused = true;
+      calendarFocused = null;
+    } else if (this.state.lastActiveElm) {
+      this.state.lastActiveElm.focus();
     }
     this.setState({
       isOpen,
+      isPseudoFocused,
+      ...(calendarFocused === null ? {} : {calendarFocused}),
     });
     this.props.onChange(data);
   };
@@ -61,16 +77,52 @@ export default class Datepicker extends React.Component<
   }
 
   open = () => {
-    this.setState({isOpen: true});
+    // console.log('input Focus');
+    this.setState({
+      isOpen: true,
+      isPseudoFocused: true,
+    });
   };
 
   close = () => {
-    this.setState({isOpen: false});
+    const isPseudoFocused = false;
+    this.setState({
+      isOpen: false,
+      isPseudoFocused,
+      calendarFocused: false,
+    });
+  };
+
+  handleEsc = () => {
+    if (this.state.lastActiveElm) {
+      this.state.lastActiveElm.focus();
+    }
+    this.close();
+  };
+
+  handleInputBlur = () => {
+    if (!this.state.isPseudoFocused) {
+      this.close();
+    }
   };
 
   handleKeyDown = (event: KeyboardEvent) => {
     if (!this.state.isOpen && event.keyCode === 40) {
       this.open();
+    } else if (this.state.isOpen && event.key === 'ArrowDown') {
+      this.focusCalendar();
+    } else if (this.state.isOpen && event.keyCode === 9) {
+      this.close();
+    }
+  };
+
+  focusCalendar = () => {
+    if (__BROWSER__) {
+      const lastActiveElm = document.activeElement;
+      this.setState({
+        calendarFocused: true,
+        lastActiveElm,
+      });
     }
   };
 
@@ -82,10 +134,13 @@ export default class Datepicker extends React.Component<
       <PopoverC
         placement={PLACEMENT.bottom}
         isOpen={this.state.isOpen}
-        onEsc={this.close}
+        onClickOutside={this.close}
+        onEsc={this.handleEsc}
         content={
           <NavigationContainer
+            trapTabbing={true}
             value={this.props.value}
+            calFocusedInitially={this.state.calendarFocused}
             {...this.props}
             onChange={this.onChange}
           >
@@ -97,6 +152,7 @@ export default class Datepicker extends React.Component<
         <InputC
           value={this.formatDisplayValue(this.props.value)}
           onFocus={this.open}
+          onBlur={this.handleInputBlur}
           onKeyDown={this.handleKeyDown}
           placeholder={this.props.placeholder}
           {...inputProps}

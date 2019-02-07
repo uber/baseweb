@@ -24,7 +24,9 @@ export type DatepickerOverridesT<T> = {
   CalendarContainer?: OverrideT<T>,
   CalendarHeader?: OverrideT<T>,
   PrevButton?: OverrideT<T>,
+  PrevButtonIcon?: OverrideT<T>,
   NextButton?: OverrideT<T>,
+  NextButtonIcon?: OverrideT<T>,
   MonthSelect?: OverrideT<T>,
   YearSelect?: OverrideT<T>,
   MonthHeader?: OverrideT<T>,
@@ -86,6 +88,8 @@ export type WeekPropsT = {
 export type MonthPropsT = WeekPropsT;
 
 export type CalendarPropsT = {
+  /** Defines if the calendar is set to be focused on an initial render. */
+  calFocusedInitially: boolean,
   /** A list of dates to disable. */
   excludeDates: ?Array<Date>,
   /** Display a set of buttons for quickly choosing date ranges. isRange must be true as well. */
@@ -124,7 +128,7 @@ export type CalendarPropsT = {
   /** Currently selected date. */
   value: ?Date | Array<Date>,
   /** A helper handler for disabling a keyboard navigation and keyboard selection through the calendar dates while navigation through the month or year select controls. */
-  setActiveState: boolean => mixed,
+  setActiveState: (boolean, ?{root: ?HTMLElement}) => mixed,
 };
 
 export type HeaderPropsT = CalendarPropsT & {
@@ -208,9 +212,14 @@ export type NavigationContainerPropsT = {
   onDayMouseLeave: (params: {date: Date, event: Event}) => mixed,
   /** Event handler that is called when a new date is selected. */
   onChange: onChangeT,
+  /** Event handler that is called when the current rendered month is changed. */
+  onMonthChange?: ({date: Date}) => mixed,
+  /** Event handler that is called when the current rendered year is changed. */
+  onYearChange?: ({date: Date}) => mixed,
   /** Selected `Date`. If `isRange` is set, `value` is an array of 2 values. */
   value?: ?Date | Array<Date>,
   stateReducer: NavigationContainerStateReducerT,
+  trapTabbing: boolean,
 };
 
 export type StatefulDatepickerPropsT<T> = $Diff<

@@ -215,7 +215,6 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       <Day
         aria-label={`day-${getDate(date)}`}
         role="option"
-        tabIndex={sharedProps.$selected ? '0' : '-1'}
         {...sharedProps}
         {...dayProps}
         // Adding event handlers after customers overrides in order to

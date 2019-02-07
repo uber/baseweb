@@ -42,7 +42,9 @@ describe('Datepicker', () => {
 
     // isOpen state value is passed to Popover
     expect(renderedPopover.props().isOpen).toEqual(component.state().isOpen);
-    expect(renderedPopover.props().onEsc).toEqual(component.instance().close);
+    expect(renderedPopover.props().onEsc).toEqual(
+      component.instance().handleEsc,
+    );
   });
 
   test('popover content renders calendar', () => {
