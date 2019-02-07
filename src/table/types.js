@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import type {OverrideT} from '../helpers/overrides.js';
 import type {ThemeT} from '../styles/types.js';
 
 export type TablePropsT = {|
@@ -34,6 +35,12 @@ export type FilterProps = {|
   onReset?: () => mixed,
   /** Callback for when the 'select all' button is clicked. */
   onSelectAll?: () => mixed,
+  overrides?: {
+    MenuButton: OverrideT<*>,
+    Content: OverrideT<*>,
+    Heading: OverrideT<*>,
+    Footer: OverrideT<*>,
+  },
 |};
 
 export type SharedStylePropsT = {|

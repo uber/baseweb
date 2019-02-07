@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Button, KIND, SIZE} from '../button/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 import FilterIcon from '../icon/filter.js';
 import {StatefulPopover} from '../popover/index.js';
 
@@ -20,8 +21,23 @@ import {
 } from './index.js';
 import type {FilterProps} from './types.js';
 
+function makeOverride(Override, Source) {
+  const OverriddenComponent = props => {
+    const [Overridden, overrideProps] = getOverrides(Override, Source);
+    return <Overridden {...props} {...overrideProps} />;
+  };
+
+  OverriddenComponent.displayName = Source.displayName;
+  return OverriddenComponent;
+}
+
 export default function Filter(props: FilterProps) {
-  const {onSelectAll = () => {}, onReset = () => {}} = props;
+  const {onSelectAll = () => {}, onReset = () => {}, overrides = {}} = props;
+
+  const MenuButton = makeOverride(overrides.MenuButton, StyledFilterButton);
+  const Content = makeOverride(overrides.Content, StyledFilterContent);
+  const Heading = makeOverride(overrides.Heading, StyledFilterHeading);
+  const Footer = makeOverride(overrides.Footer, StyledFilterFooter);
 
   function getIconColor(theme) {
     if (props.disabled) {
@@ -53,9 +69,9 @@ export default function Filter(props: FilterProps) {
       }}
       content={
         <React.Fragment>
-          <StyledFilterHeading>Filter Column</StyledFilterHeading>
-          <StyledFilterContent>{props.children}</StyledFilterContent>
-          <StyledFilterFooter>
+          <Heading>Filter Column</Heading>
+          <Content>{props.children}</Content>
+          <Footer>
             <Button
               kind={KIND.minimal}
               size={SIZE.compact}
@@ -75,11 +91,11 @@ export default function Filter(props: FilterProps) {
             >
               Reset
             </Button>
-          </StyledFilterFooter>
+          </Footer>
         </React.Fragment>
       }
     >
-      <StyledFilterButton>
+      <MenuButton>
         <FilterIcon
           overrides={{
             Svg: {
@@ -94,7 +110,7 @@ export default function Filter(props: FilterProps) {
           }}
           size={18}
         />
-      </StyledFilterButton>
+      </MenuButton>
     </StatefulPopover>
   );
 }
