@@ -14,6 +14,7 @@ import {
   StyledContentMessage,
   StyledErrorMessage,
 } from '../index.js';
+import {Spinner} from '../../spinner/index.js';
 
 describe('FileUploader', () => {
   it('applies expected accessibility attributes to button', () => {
@@ -36,6 +37,28 @@ describe('FileUploader', () => {
     const progressMessage = wrapper.find(StyledContentMessage);
     expect(progressMessage).toHaveLength(1);
     expect(progressMessage.text()).toBe(message);
+  });
+
+  it('renders spinner if progressMessage provided', () => {
+    const wrapper = mount(
+      <Unstable_FileUploader progressMessage="uploading..." />,
+    );
+    const spinner = wrapper.find(Spinner);
+    expect(spinner).toHaveLength(1);
+  });
+
+  it('does not render spinner if progressAmount is zero, render progress bar', () => {
+    const wrapper = mount(
+      <Unstable_FileUploader
+        progressMessage="uploading..."
+        progressAmount={0}
+      />,
+    );
+    const spinner = wrapper.find(Spinner);
+    expect(spinner).toHaveLength(0);
+
+    const progressBar = wrapper.find('ProgressBar');
+    expect(progressBar).toHaveLength(1);
   });
 
   it('does not render progress bar if progressAmount not provided', () => {
