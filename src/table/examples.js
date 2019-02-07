@@ -111,17 +111,11 @@ const FilterCheckbox = (props: any) => (
     overrides={{
       Root: {
         style: ({$theme}) => ({
-          alignItems: 'center',
           marginTop: $theme.sizing.scale400,
           marginBottom: $theme.sizing.scale400,
         }),
       },
       Checkmark: {style: {marginLeft: 0}},
-      Label: {
-        style: ({$theme}) => ({
-          ...$theme.typography.font300,
-        }),
-      },
     }}
   >
     {props.children}
