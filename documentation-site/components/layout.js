@@ -121,6 +121,7 @@ export default (props: PropsT) => (
           Block: {
             style: ({$theme}) => ({
               borderLeft: `1px solid ${$theme.colors.border}`,
+              maxWidth: '40rem',
             }),
           },
         }}
