@@ -36,7 +36,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   render() {
     const {
       ariaLabel,
-      ariaLabeledBy,
+      ariaLabelledBy,
       name,
       children,
       labelPlacement,
