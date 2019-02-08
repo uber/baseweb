@@ -12041,10 +12041,10 @@ react-node-resolver@^1.0.1:
   resolved "https://registry.yarnpkg.com/react-node-resolver/-/react-node-resolver-1.0.1.tgz#1798a729c0e218bf2f0e8ddf79c550d4af61d83a"
   integrity sha1-F5inKcDiGL8vDo3fecVQ1K9h2Do=
 
-react-range@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.0.1.tgz#0a1b4d85cb52fdd2c5e07835b6754cf49e815624"
-  integrity sha512-c0po5jKidmNDBH5MRrQQ78Wxn4pa+LP2dAfcxmYXgGe+mH+Bco0HJgKpZSbWUJykjGr1mkEATFJpLeMHafskDQ==
+react-range@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.0.2.tgz#5bf11962b4df9bbdd881f25d2ea936ede10225e5"
+  integrity sha512-L/XCrGwzCrvn8VPU6zVrU/CKvNSx+s9VVbDUgudrsWE9Mw9xjeLyyYo+e/ArOYgRDR0iu7LksxljrBBt8BS5NA==
 
 react-reconciler@^0.7.0:
   version "0.7.0"
