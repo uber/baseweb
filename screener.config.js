@@ -30,7 +30,7 @@ const ProgressStep = require('./src/progress-steps/examples-list');
 
 module.exports = {
   projectRepo: 'uber-web/baseui',
-  storybookConfigDir: '.storybook-move',
+  storybookConfigDir: '.storybook',
   apiKey: process.env.SCREENER_API_KEY,
   resolution: '1024x768',
   baseBranch: 'master',
