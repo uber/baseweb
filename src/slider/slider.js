@@ -96,7 +96,7 @@ class Slider extends React.Component<PropsT> {
               </InnerTrack>
             </Track>
           )}
-          renderThumb={({props, value, index}) => (
+          renderThumb={({props, value, index, isDragged}) => (
             <Thumb
               {...props}
               $isLeft={this.props.value.length === 2 && index === 0}
@@ -107,7 +107,7 @@ class Slider extends React.Component<PropsT> {
               {...thumbProps}
             >
               <ThumbValue {...thumbValueProps}>{value}</ThumbValue>
-              <InnerThumb {...innerThumbProps} />
+              <InnerThumb {...innerThumbProps} $isDragged={isDragged} />
             </Thumb>
           )}
         />

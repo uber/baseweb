@@ -35,8 +35,8 @@ export const InnerTrack = styled('div', props => {
       values: $value,
       colors:
         $value.length === 1
-          ? [colors.primary, colors.mono300]
-          : [colors.mono300, colors.primary, colors.mono300],
+          ? [colors.primary, colors.mono400]
+          : [colors.mono400, colors.primary, colors.mono400],
       min: $min,
       max: $max,
     }),
@@ -90,12 +90,12 @@ export const Thumb = styled('div', props => {
 Thumb.displayName = 'StyledThumb';
 
 export const InnerThumb = styled('div', props => {
-  const {$theme, $isHovered} = props;
+  const {$theme, $isDragged} = props;
   return {
     height: '8px',
     width: '2px',
     borderRadius: '2px',
-    backgroundColor: $isHovered ? $theme.colors.primary : $theme.colors.mono600,
+    backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
   };
 });
 InnerThumb.displayName = 'StyledInnerThumb';
