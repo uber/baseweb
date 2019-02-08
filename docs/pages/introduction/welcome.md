@@ -16,5 +16,4 @@ To get started with Base UI, read through the **Introduction** and **Theming** s
 
 If you are interested in different themes, check out the:
 
-- [Dark theme](https://baseui.design/legacy-dark)
 - [Light theme](https://baseui.design/legacy)
