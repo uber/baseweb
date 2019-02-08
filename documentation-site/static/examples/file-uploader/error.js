@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Unstable_FileUploader} from 'baseui/file-uploader';
+import {FileUploader} from 'baseui/file-uploader';
 
 export default class Uploader extends React.Component {
   state = {
@@ -35,7 +35,7 @@ export default class Uploader extends React.Component {
 
   render() {
     return (
-      <Unstable_FileUploader
+      <FileUploader
         errorMessage={this.state.errorMessage}
         onCancel={this.reset}
         onDrop={this.handleDrop}

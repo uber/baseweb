@@ -42,6 +42,7 @@ export default class Calendar extends React.Component<
   {date: Date},
 > {
   static defaultProps = {
+    calFocusedInitially: false,
     excludeDates: null,
     filterDate: null,
     highlightedDate: null,
@@ -56,18 +57,27 @@ export default class Calendar extends React.Component<
     onDayMouseLeave: () => {},
     onMonthChange: () => {},
     onYearChange: () => {},
-    onSelect: () => {},
+    onChange: () => {},
     overrides: {},
     peekNextMonth: false,
-    selected: null,
+    value: null,
     setActiveState: () => {},
   };
+
+  root: ?HTMLElement;
+  calendar: ?HTMLElement;
 
   constructor(props: CalendarPropsT) {
     super(props);
     this.state = {
       date: this.getDateInView(),
     };
+  }
+
+  componentDidMount() {
+    if (this.props.calFocusedInitially) {
+      this.focusCalendar();
+    }
   }
 
   componentDidUpdate(prevProps: CalendarPropsT) {
@@ -78,6 +88,12 @@ export default class Calendar extends React.Component<
       this.setState({
         date: this.props.highlightedDate,
       });
+    }
+    if (
+      this.props.calFocusedInitially &&
+      this.props.calFocusedInitially !== prevProps.calFocusedInitially
+    ) {
+      this.focusCalendar();
     }
   }
 
@@ -91,11 +107,11 @@ export default class Calendar extends React.Component<
   }
 
   getDateInView = (): Date => {
-    const {highlightedDate, selected} = this.props;
+    const {highlightedDate, value} = this.props;
     const minDate = getEffectiveMinDate(this.props);
     const maxDate = getEffectiveMaxDate(this.props);
     const current = new Date();
-    const initialDate = this.getSingleDate(selected) || highlightedDate;
+    const initialDate = this.getSingleDate(value) || highlightedDate;
     if (initialDate) {
       return initialDate;
     } else {
@@ -166,6 +182,24 @@ export default class Calendar extends React.Component<
     );
   };
 
+  setActive = () => {
+    // console.log('setActive CALLLED');
+    this.props.setActiveState(true, {root: this.root});
+  };
+
+  setInactive = () => {
+    this.props.setActiveState(false, {
+      calendar: this.calendar,
+      root: this.root,
+    });
+  };
+
+  focusCalendar = () => {
+    if (this.calendar) {
+      this.calendar.focus();
+    }
+  };
+
   renderMonths = () => {
     const {overrides = {}} = this.props;
     const monthList = [];
@@ -178,7 +212,16 @@ export default class Calendar extends React.Component<
       const monthKey = `month-${i}`;
       monthList.push(this.renderCalendarHeader(monthDate, i));
       monthList.push(
-        <CalendarContainer key={monthKey} {...calendarContainerProps}>
+        <CalendarContainer
+          key={monthKey}
+          tabIndex={0}
+          onFocus={this.setActive}
+          onBlur={this.setInactive}
+          $ref={calendar => {
+            this.calendar = calendar;
+          }}
+          {...calendarContainerProps}
+        >
           {this.renderMonthHeader(monthDate, i)}
           <Month
             date={monthDate}
@@ -194,9 +237,9 @@ export default class Calendar extends React.Component<
             onDayClick={this.props.onDayClick}
             onDayMouseOver={this.props.onDayMouseOver}
             onDayMouseLeave={this.props.onDayMouseLeave}
-            onSelect={this.props.onSelect}
+            onChange={this.props.onChange}
             overrides={overrides}
-            selected={this.props.selected}
+            value={this.props.value}
             peekNextMonth={this.props.peekNextMonth}
           />
         </CalendarContainer>,
@@ -261,9 +304,10 @@ export default class Calendar extends React.Component<
           {QUICK_SELECT_ACTIONS.map(({label, beginDate}) => (
             <Button
               key={label}
+              tabIndex={0}
               kind={KIND.tertiary}
               onClick={() => {
-                this.props.onSelect({date: [beginDate, NOW]});
+                this.props.onChange({date: [beginDate, NOW]});
               }}
               overrides={{
                 BaseButton: {
@@ -292,7 +336,12 @@ export default class Calendar extends React.Component<
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
     return (
-      <Root {...rootProps}>
+      <Root
+        $ref={root => {
+          this.root = root;
+        }}
+        {...rootProps}
+      >
         {this.renderMonths()}
         {this.renderQuickSelect()}
       </Root>
