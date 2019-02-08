@@ -8,7 +8,18 @@ import {withKnobs} from '@storybook/addon-knobs';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 
-import loadStories from '../.storybook-base/loadStories.js';
+// automatically import all files ending in *.stories.js
+const req = require.context(
+  '../src',
+  true,
+  /^((?!template-component\/).)*.stories.js$/,
+);
+
+export default function loadStories() {
+  require('../docs/pages/pages.js');
+  req.keys().forEach(filename => req(filename));
+}
+
 import {ThemeProvider} from '../src/styles';
 import {LightTheme} from '../src/themes';
 

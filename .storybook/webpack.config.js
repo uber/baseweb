@@ -1,1 +1,5 @@
-module.exports = require('../.storybook-base/webpack.config');
+module.exports = {
+  optimization: {
+    minimize: false,
+  },
+};
