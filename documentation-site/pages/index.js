@@ -28,10 +28,9 @@ type Contributor = {
 const cardOverrides = {
   Root: {
     style: ({$theme}) => ({
-      marginLeft: $theme.sizing.scale500,
       marginRight: $theme.sizing.scale500,
       marginBottom: $theme.sizing.scale500,
-      width: '350px',
+      width: '340px',
     }),
   },
 };
