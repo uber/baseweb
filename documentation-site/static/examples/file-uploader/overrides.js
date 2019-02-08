@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Unstable_FileUploader} from 'baseui/file-uploader';
+import {FileUploader} from 'baseui/file-uploader';
 
 export default class Uploader extends React.Component {
   state = {progressAmount: 0};
@@ -29,7 +29,7 @@ export default class Uploader extends React.Component {
 
   render() {
     return (
-      <Unstable_FileUploader
+      <FileUploader
         onCancel={this.reset}
         onDrop={this.handleDrop}
         progressAmount={this.state.progressAmount}
