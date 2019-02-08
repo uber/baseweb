@@ -80,7 +80,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
       <StyledRadioGroupRoot
         role="radiogroup"
         aria-label={ariaLabel}
-        aria-labeledby={ariaLabeledBy}
+        aria-labelledby={ariaLabeledBy}
         $align={align}
         {...sharedProps}
       >

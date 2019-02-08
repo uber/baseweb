@@ -39,7 +39,7 @@ export type PropsT = {
    * Establishes a relationship between the radio group and its label. Screen readers use this
    * attribute to catalog the object on a page so that users can navigate between them.
    */
-  ariaLabeledBy?: string,
+  ariaLabelledBy?: string,
   overrides?: OverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
   children?: Array<React.Node>,
