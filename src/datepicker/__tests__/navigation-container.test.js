@@ -13,7 +13,7 @@ describe('NavigationContainer', () => {
   test('basic render', () => {
     const props = {
       highlightedDate: new Date(),
-      onSelect: jest.fn(),
+      onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
     const children = jest.fn();
@@ -26,7 +26,7 @@ describe('NavigationContainer', () => {
     const props = {
       highlightedDate: new Date(),
       stateReducer: jest.fn(),
-      onSelect: jest.fn(),
+      onChange: jest.fn(),
       onDayMouseOver: jest.fn(),
       onDayMouseLeave: jest.fn(),
     };
@@ -38,7 +38,7 @@ describe('NavigationContainer', () => {
     const handlers = [
       ['onDayMouseOver', true],
       ['onDayMouseLeave', true],
-      ['onSelect', true],
+      ['onChange', true],
     ];
 
     test.each(handlers)('Event handlers', (handler, replaced) => {

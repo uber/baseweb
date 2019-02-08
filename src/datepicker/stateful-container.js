@@ -8,7 +8,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {STATE_CHANGE_TYPE} from './constants.js';
 import type {
-  CalendarStateT,
+  CalendarPropsT,
+  ContainerStateT,
+  DatepickerPropsT,
   StatefulContainerPropsT,
   StateChangeTypeT,
   StateReducerT,
@@ -17,13 +19,13 @@ import type {
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 class StatefulContainer extends React.Component<
-  StatefulContainerPropsT,
-  CalendarStateT,
+  StatefulContainerPropsT<CalendarPropsT | DatepickerPropsT>,
+  ContainerStateT,
 > {
   static defaultProps = {
     initialState: {value: null},
     stateReducer: defaultStateReducer,
-    onSelect: () => {},
+    onChange: () => {},
   };
 
   state = {
@@ -33,13 +35,15 @@ class StatefulContainer extends React.Component<
     ...this.props.initialState,
   };
 
-  onSelect = (data: {date: Date}) => {
+  onChange = (data: {date: ?Date | Array<Date>}) => {
     const {date} = data;
     this.internalSetState(STATE_CHANGE_TYPE.change, {value: date});
-    this.props.onSelect(data);
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(data);
+    }
   };
 
-  internalSetState(type: StateChangeTypeT, changes: CalendarStateT) {
+  internalSetState(type: StateChangeTypeT, changes: ContainerStateT) {
     const {stateReducer} = this.props;
     this.setState(prevState => stateReducer(type, changes, prevState));
   }
@@ -49,8 +53,8 @@ class StatefulContainer extends React.Component<
     // $FlowFixMe
     return this.props.children({
       ...rest,
-      selected: this.state.value,
-      onSelect: this.onSelect,
+      value: this.state.value,
+      onChange: this.onChange,
     });
   }
 }
