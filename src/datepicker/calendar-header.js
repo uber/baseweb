@@ -8,7 +8,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {ArrowLeft, ArrowRight} from '../icon/index.js';
 import {Select} from '../select/index.js';
-import {StyledCalendarHeader} from './styled-components.js';
+import {
+  StyledCalendarHeader,
+  StyledPrevButton,
+  StyledNextButton,
+} from './styled-components.js';
 import {
   addMonths,
   getMonth,
@@ -23,6 +27,10 @@ import {
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {SharedStylePropsT} from '../select/types.js';
+
+const navBtnStyle = ({$theme}) => ({
+  cursor: 'pointer',
+});
 
 export default class CalendarHeader extends React.Component<HeaderPropsT> {
   static defaultProps = {
@@ -70,6 +78,10 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
 
     const [PrevButton, prevButtonProps] = getOverrides(
       overrides.PrevButton,
+      StyledPrevButton,
+    );
+    const [PrevButtonIcon, prevButtonIconProps] = getOverrides(
+      overrides.PrevButtonIcon,
       ArrowLeft,
     );
     let clickHandler = this.decreaseMonth;
@@ -78,18 +90,20 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     }
     return (
       <PrevButton
-        role="button"
+        aria-label="Previous month"
         tabIndex={0}
-        overrides={{Svg: {style: {cursor: 'pointer'}}}}
-        {...prevButtonProps}
-        // Adding internal click handler last that means no custom click handler
-        // can be added throught props overrides unless passing a component
-        // replacement that handles internal handler an then calls its custom one
-        // What we can do here is extract an onClick handler from `nextButtonProps`
-        // and call it along with `this.increaseMonth` withing a handler that is created
-        // on render
         onClick={clickHandler}
-      />
+        {...prevButtonProps}
+      >
+        <PrevButtonIcon
+          overrides={{
+            Svg: {
+              style: navBtnStyle,
+            },
+          }}
+          {...prevButtonIconProps}
+        />
+      </PrevButton>
     );
   };
 
@@ -103,8 +117,13 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
 
     const [NextButton, nextButtonProps] = getOverrides(
       overrides.NextButton,
+      StyledNextButton,
+    );
+    const [NextButtonIcon, nextButtonIconProps] = getOverrides(
+      overrides.NextButtonIcon,
       ArrowRight,
     );
+
     let clickHandler = this.increaseMonth;
     // The other option is to always provide a click handler and let customers
     // override its functionality based on the `$allPrevDaysDisabled` prop
@@ -116,18 +135,16 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     }
     return (
       <NextButton
-        role="button"
+        aria-label="Next month"
         tabIndex={0}
-        overrides={{Svg: {style: {cursor: 'pointer'}}}}
-        {...nextButtonProps}
-        // Adding internal click handler last that means no custom click handler
-        // can be added throught props overrides unless passing a component
-        // replacement that handles internal handler an then calls its custom one
-        // What we can do here is extract an onClick handler from `nextButtonProps`
-        // and call it along with `this.increaseMonth` withing a handler that is created
-        // on render
         onClick={clickHandler}
-      />
+        {...nextButtonProps}
+      >
+        <NextButtonIcon
+          overrides={{Svg: {style: navBtnStyle}}}
+          {...nextButtonIconProps}
+        />
+      </NextButton>
     );
   };
 
@@ -207,8 +224,8 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         // make sure the components functions as expected
         // We can extract the handlers from props overrides
         // and call it along with internal handlers by creating an inline handler
-        onOpen={this.setInactive}
-        onClose={this.setActive}
+        // onOpen={this.setInactive}
+        // onClose={this.setActive}
         onChange={this.handleMonthChange}
         // internal and incoming overrides are merged above
         overrides={selectOverrides}
@@ -245,8 +262,8 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         // make sure the components functions as expected
         // We can extract the handlers from props overrides
         // and call it along with internal handlers by creating an inline handler
-        onOpen={this.setInactive}
-        onClose={this.setActive}
+        // onOpen={this.setInactive}
+        // onClose={this.setActive}
         onChange={this.handleYearChange}
         // internal and incoming overrides are merged above
         overrides={selectOverrides}

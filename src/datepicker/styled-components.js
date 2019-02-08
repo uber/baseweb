@@ -93,6 +93,31 @@ export const StyledMonthHeader = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
+function getArrowBtnStyle({$theme}: SharedStylePropsT) {
+  return {
+    boxSizing: 'border-box',
+    height: '22px',
+    color: $theme.colors.white,
+    backgroundColor: 'transparent',
+    borderWidth: '0',
+    paddingTop: '3px',
+    paddingBottom: '3px',
+    paddingLeft: '3px',
+    paddingRight: '3px',
+    outline: 'none',
+    ':focus': {
+      backgroundColor: $theme.colors.primary500,
+      borderRadius: $theme.borders.useRoundedCorners
+        ? $theme.sizing.scale100
+        : 0,
+    },
+  };
+}
+
+export const StyledPrevButton = styled('button', getArrowBtnStyle);
+
+export const StyledNextButton = styled('button', getArrowBtnStyle);
+
 export const StyledMonth = styled('div', (props: SharedStylePropsT) => {
   return {
     display: 'inline-block',
@@ -222,10 +247,16 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
         ? colors.mono600
         : 'inherit',
     backgroundColor: $selected
-      ? colors.primary
-      : $isHovered || $isHighlighted || $pseudoHighlighted || $pseudoSelected
-        ? colors.primary100
-        : 'transparent',
+      ? $isHighlighted
+        ? colors.primary500
+        : colors.primary
+      : $pseudoSelected
+        ? $isHighlighted
+          ? colors.primary200
+          : colors.primary100
+        : $isHovered || $isHighlighted || $pseudoHighlighted
+          ? colors.primary100
+          : 'transparent',
     ...calculateBorderRadius(props),
     ':first-child': {
       ...(borders.useRoundedCorners

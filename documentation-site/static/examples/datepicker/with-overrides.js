@@ -17,6 +17,13 @@ const selectOverrides = {
   },
 };
 
+const arrowBtnOverrides = ({$theme}) => ({
+  ':focus': {
+    backgroundColor: $theme.colors.positive500,
+    borderRadius: $theme.borders.useRoundedCorners ? $theme.sizing.scale100 : 0,
+  },
+});
+
 export default () => (
   <Unstable_StatefulCalendar
     initialState={{value: new Date()}}
@@ -31,6 +38,12 @@ export default () => (
       },
       YearSelect: {
         props: {overrides: selectOverrides},
+      },
+      PrevButton: {
+        style: arrowBtnOverrides,
+      },
+      NextButton: {
+        style: arrowBtnOverrides,
       },
       Day: {
         style: ({$theme, $selected, $isHovered, $isHighlighted}) => ({
