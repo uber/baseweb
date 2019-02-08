@@ -24,8 +24,14 @@ import {getOverrides} from '../helpers/overrides.js';
 // values.length should not be bigger than two
 // because our design doesn't support more than
 // two thumbs
-const limitValues = (values: number[]): number[] =>
-  values.length > 2 ? values.slice(0, 2) : values;
+const limitValues = (values: number[]) => {
+  if (values.length > 2 || values.length === 0) {
+    throw new Error(
+      'the values prop represents positions of thumbs, so its length can be only one or two',
+    );
+  }
+  return values;
+};
 
 class Slider extends React.Component<PropsT> {
   static defaultProps = {
