@@ -150,6 +150,10 @@ const routes = [
         text: 'Pickers',
         children: [
           {
+            text: 'File Uploader',
+            path: '/components/file-uploader',
+          },
+          {
             text: 'Menu',
             path: '/components/menu',
           },
@@ -164,10 +168,6 @@ const routes = [
           {
             text: 'Unstable Datepicker',
             path: '/components/datepicker',
-          },
-          {
-            text: 'Unstable File Uploader',
-            path: '/components/file-uploader',
           },
         ],
       },

@@ -13,7 +13,7 @@ const req = require.context(
 );
 
 function isUnstable(filename) {
-  const unstableComponents = ['file-uploader', 'datepicker'];
+  const unstableComponents = ['datepicker'];
   return unstableComponents.some(c => filename.includes(c));
 }
 
