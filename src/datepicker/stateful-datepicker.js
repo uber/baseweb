@@ -7,18 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import StatefulContainer from './stateful-container.js';
-import NavigationContainer from './navigation-container.js';
-import Calendar from './calendar.js';
-import type {CalendarPropsT, StatefulDatepickerPropsT} from './types.js';
+import Datepicker from './datepicker.js';
+import type {StatefulDatepickerPropsT, DatepickerPropsT} from './types.js';
 
-function StatefulComponent(props: StatefulDatepickerPropsT<CalendarPropsT>) {
+function StatefulComponent(props: StatefulDatepickerPropsT<DatepickerPropsT>) {
   return (
     <StatefulContainer {...props}>
-      {extendedProps => (
-        <NavigationContainer {...extendedProps}>
-          {componentProps => <Calendar {...componentProps} />}
-        </NavigationContainer>
-      )}
+      {extendedProps => <Datepicker {...extendedProps} />}
     </StatefulContainer>
   );
 }
@@ -26,7 +21,7 @@ function StatefulComponent(props: StatefulDatepickerPropsT<CalendarPropsT>) {
 StatefulComponent.defaultProps = {
   initialState: {value: null},
   stateReducer: (type, nextState) => nextState,
-  onSelect: () => {},
+  onChange: () => {},
 };
 
 export default StatefulComponent;

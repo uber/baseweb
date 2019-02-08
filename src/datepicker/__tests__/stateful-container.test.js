@@ -15,7 +15,7 @@ describe('StatefulComponentContainer', () => {
       initialState: {
         value: new Date(),
       },
-      onSelect: jest.fn(),
+      onChange: jest.fn(),
       stateReducer: jest.fn(),
     };
     const children = jest.fn();
@@ -30,7 +30,7 @@ describe('StatefulComponentContainer', () => {
         value: new Date(2019, 2, 10),
       },
       stateReducer: jest.fn(),
-      onSelect: jest.fn(),
+      onChange: jest.fn(),
       onDayMouseOver: jest.fn(),
       onDayMouseLeave: jest.fn(),
     };
@@ -42,7 +42,7 @@ describe('StatefulComponentContainer', () => {
     const handlers = [
       ['onDayMouseOver', false],
       ['onDayMouseLeave', false],
-      ['onSelect', true],
+      ['onChange', true],
     ];
 
     test.each(handlers)('Event handlers', (handler, replaced) => {
@@ -78,7 +78,7 @@ describe('StatefulComponentContainer', () => {
       <StatefulContainer {...props}>{children}</StatefulContainer>,
     );
     props.stateReducer.mockReturnValueOnce(stateUpdated);
-    component.instance().onSelect(newDate);
+    component.instance().onChange(newDate);
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer.mock.calls[0][0]).toEqual(
