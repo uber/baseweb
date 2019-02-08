@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Unstable_FileUploader} from 'baseui/file-uploader';
+import {FileUploader} from 'baseui/file-uploader';
 import {Block} from 'baseui/block';
 
 export default class Uploader extends React.Component {
@@ -32,7 +32,7 @@ export default class Uploader extends React.Component {
     return (
       <React.Fragment>
         <Block marginBottom="scale600">
-          <Unstable_FileUploader
+          <FileUploader
             onCancel={this.reset}
             onDrop={this.handleDrop}
             progressAmount={this.state.progressAmount}
@@ -43,7 +43,7 @@ export default class Uploader extends React.Component {
             overrides={this.props.overrides}
           />
         </Block>
-        <Unstable_FileUploader
+        <FileUploader
           onCancel={this.reset}
           onDrop={this.handleDrop}
           progressAmount={this.state.progressAmount}
