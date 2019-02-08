@@ -35,7 +35,7 @@ const defaultProps = {
   onDayMouseLeave: () => {},
   overrides: {},
   peekNextMonth: false,
-  selected: null,
+  value: null,
 };
 
 export default class CalendarMonth extends React.Component<MonthPropsT> {
@@ -73,10 +73,10 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
           onDayClick={this.props.onDayClick}
           onDayMouseOver={this.props.onDayMouseOver}
           onDayMouseLeave={this.props.onDayMouseLeave}
-          onSelect={this.props.onSelect}
+          onChange={this.props.onChange}
           overrides={this.props.overrides}
           peekNextMonth={this.props.peekNextMonth}
-          selected={this.props.selected}
+          value={this.props.value}
         />,
       );
       i++;

@@ -28,6 +28,10 @@ const routes = [
         text: 'Versioning policy',
         path: '/getting-started/versioning-policy',
       },
+      {
+        text: 'Comparison with other component libraries',
+        path: '/getting-started/comparison',
+      },
     ],
   },
   {
@@ -146,6 +150,10 @@ const routes = [
         text: 'Pickers',
         children: [
           {
+            text: 'File Uploader',
+            path: '/components/file-uploader',
+          },
+          {
             text: 'Menu',
             path: '/components/menu',
           },
@@ -160,10 +168,6 @@ const routes = [
           {
             text: 'Unstable Datepicker',
             path: '/components/datepicker',
-          },
-          {
-            text: 'Unstable File Uploader',
-            path: '/components/file-uploader',
           },
         ],
       },

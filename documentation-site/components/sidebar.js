@@ -36,6 +36,7 @@ const List = styled(Block, ({$theme}) => ({
   paddingLeft: '0',
   paddingRight: '0',
   listStyle: 'none',
+  maxWidth: '200px',
 }));
 
 const NavigationLink = props => {

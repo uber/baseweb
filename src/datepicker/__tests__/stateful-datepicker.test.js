@@ -8,22 +8,21 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 import {
-  Unstable_StatefulCalendar as StatefulCalendar,
-  Unstable_Calendar as Calendar,
+  Unstable_Datepicker as Datepicker,
+  Unstable_StatefulDatepicker,
 } from '../index.js';
 
-describe('StatefulCalendar', () => {
+describe('StatefulDatepicker', () => {
   test('basic render', () => {
     const props = {
       initialState: {
-        highlightedDate: new Date(),
+        value: new Date(),
       },
       onChange: jest.fn(),
-      stateReducer: jest.fn(),
     };
 
-    const component = mount(<StatefulCalendar {...props} />);
-    const renderedCalendar = component.find(Calendar);
-    expect(renderedCalendar).toExist();
+    const component = mount(<Unstable_StatefulDatepicker {...props} />);
+    const renderedDatepicker = component.find(Datepicker);
+    expect(renderedDatepicker).toExist();
   });
 });

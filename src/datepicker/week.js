@@ -25,7 +25,7 @@ export default class Week extends React.Component<WeekPropsT> {
     onDayClick: () => {},
     onDayMouseOver: () => {},
     onDayMouseLeave: () => {},
-    onSelect: () => {},
+    onChange: () => {},
     overrides: {},
     peekNextMonth: false,
   };
@@ -53,13 +53,13 @@ export default class Week extends React.Component<WeekPropsT> {
             minDate={this.props.minDate}
             maxDate={this.props.maxDate}
             month={this.props.month}
-            onSelect={this.props.onSelect}
+            onSelect={this.props.onChange}
             onClick={this.props.onDayClick}
             onMouseOver={this.props.onDayMouseOver}
             onMouseLeave={this.props.onDayMouseLeave}
             overrides={this.props.overrides}
             peekNextMonth={this.props.peekNextMonth}
-            value={this.props.selected}
+            value={this.props.value}
           />
         );
       }),
