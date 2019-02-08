@@ -2,21 +2,30 @@ import React from 'react';
 import {Slider} from 'baseui/slider';
 
 export default class Basic extends React.Component {
-  state = {value: [4]};
+  state = {values: [70]};
 
   render() {
     return (
       <Slider
-        value={this.state.value}
-        range={[0, 10]}
-        onChange={({value}) => this.setState({value})}
+        values={this.state.values}
+        onChange={({values}) => this.setState({values})}
         overrides={{
-          Axis: {
-            style: ({$theme}) => ({background: $theme.colors.mono700}),
-          },
-          AxisRange: {
-            style: ({$theme}) => ({background: $theme.colors.mono1000}),
-          },
+          Thumb: ({$values, $thumbIndex}) => (
+            <div
+              style={{
+                height: '36px',
+                width: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '36px',
+                border: '3px solid #ccc',
+                backgroundColor: '#fff',
+              }}
+            >
+              {$values[$thumbIndex]}
+            </div>
+          ),
         }}
       />
     );

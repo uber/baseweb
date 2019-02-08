@@ -11,10 +11,9 @@ import Layout from '../../components/layout';
 
 import Basic from 'examples/slider/basic.js';
 import Stateful from 'examples/slider/stateful.js';
+import Disabled from 'examples/slider/disabled.js';
 import Range from 'examples/slider/range.js';
-import RangeLabel from 'examples/slider/range-label.js';
-import Step from 'examples/slider/step.js';
-import Ticks from 'examples/slider/ticks.js';
+import StepMinMax from 'examples/slider/step-min-max.js';
 import Customization from 'examples/slider/overrides.js';
 
 import Overrides from '../../components/overrides';
@@ -36,27 +35,26 @@ Each slider has a primary control handle that cues user interaction.
   <Basic />
 </Example>
 
-<Example title="Slider as a Stateful Component" path="examples/slider/stateful.js">
+<Example
+  title="Slider as a Stateful Component"
+  path="examples/slider/stateful.js"
+>
   <Stateful />
 </Example>
 
-<Example title="Slider Range example" path="examples/slider/range.js">
+<Example title="Slider Range" path="examples/slider/range.js">
   <Range />
 </Example>
 
+<Example title="Disabled Slider" path="examples/slider/disabled.js">
+  <Disabled />
+</Example>
+
 <Example
-  title="Slider with custom labels"
-  path="examples/slider/range-label.js"
+  title="Custom min, max and step"
+  path="examples/slider/step-min-max.js"
 >
-  <RangeLabel />
-</Example>
-
-<Example title="Slider as a stepped slider" path="examples/slider/step.js">
-  <Step />
-</Example>
-
-<Example title="Slider with Multiple Ticks" path="examples/slider/ticks.js">
-  <Ticks />
+  <StepMinMax />
 </Example>
 
 <Example title="Slider with Overrides" path="examples/slider/overrides.js">
@@ -67,7 +65,7 @@ Each slider has a primary control handle that cues user interaction.
   name="Slider"
   component={SliderExports}
   renderExample={props => (
-    <Slider value={[60]} range={[0, 100]} overrides={props.overrides} />
+    <Slider values={[25, 75]} overrides={props.overrides} />
   )}
 />
 

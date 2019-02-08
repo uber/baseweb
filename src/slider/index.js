@@ -13,9 +13,9 @@ export {
   Root as StyledRoot,
   Track as StyledTrack,
   InnerTrack as StyledInnerTrack,
-  Tick as StyledTick,
   Thumb as StyledThumb,
   InnerThumb as StyledInnerThumb,
+  Tick as StyledTick,
   TickBar as StyledTickBar,
 } from './styled-components.js';
 export * from './types.js';
