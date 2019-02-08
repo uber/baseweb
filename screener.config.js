@@ -38,7 +38,6 @@ module.exports = {
     new RegExp(Button.BUTTON_COMPACT_WITH_ENHANCERS),
     new RegExp(Button.BUTTON_WITH_ENHANCERS),
     new RegExp(`${ButtonGroup.BUTTON_GROUP}$`),
-    new RegExp(Breadcrumbs.DEFAULT),
     new RegExp(Card.TEXT_IMAGE_LINK),
     new RegExp(Card.TEXT_ONLY),
     new RegExp(Checkbox.SIMPLE_EXAMPLE),
