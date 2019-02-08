@@ -21,34 +21,35 @@ import {
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
-// function getTickValue(tick: number | {value: number}): number {
-//   if (typeof tick === 'object') {
-//     return tick.value;
-//   }
-//   return tick;
-// }
-
-function getTickLabel(tick: number | {label: React.Node}): React.Node {
-  if (typeof tick === 'object') {
-    return tick.label;
-  }
-  return tick;
-}
-
 class Slider extends React.Component<PropsT> {
   static defaultProps = {
     overrides: {},
     onChange: () => {},
-    error: false,
-    tabIndex: 0,
+    min: 0,
+    max: 100,
+    step: 1,
   };
 
   getSharedProps() {
-    return {};
+    return {
+      $disabled: this.props.disabled,
+      $step: this.props.step,
+      $min: this.props.min,
+      $max: this.props.max,
+      $values: this.props.values,
+    };
   }
 
   render() {
-    const {overrides = {}, range, value, step, onChange} = this.props;
+    const {
+      overrides = {},
+      min,
+      max,
+      values,
+      step,
+      onChange,
+      disabled,
+    } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Track, trackProps] = getOverrides(overrides.Track, StyledTrack);
     const [InnerTrack, innerTrackProps] = getOverrides(
@@ -74,22 +75,24 @@ class Slider extends React.Component<PropsT> {
       <Root {...sharedProps} {...rootProps}>
         <Range
           step={step}
-          min={range[0]}
-          max={range[1]}
-          values={value}
-          onChange={value => onChange({value})}
-          renderTrack={({props, children}) => (
+          min={min}
+          max={max}
+          values={values}
+          disabled={disabled}
+          onChange={values => onChange({values})}
+          renderTrack={({props, children, isDragged}) => (
             <Track
               onMouseDown={props.onMouseDown}
               onTouchStart={props.onTouchStart}
+              $isDragged={isDragged}
               style={props.style}
+              {...sharedProps}
               {...trackProps}
             >
               <InnerTrack
+                $isDragged={isDragged}
                 $ref={props.ref}
-                $value={value}
-                $min={range[0]}
-                $max={range[1]}
+                {...sharedProps}
                 {...innerTrackProps}
               >
                 {children}
@@ -99,24 +102,38 @@ class Slider extends React.Component<PropsT> {
           renderThumb={({props, value, index, isDragged}) => (
             <Thumb
               {...props}
-              $isLeft={this.props.value.length === 2 && index === 0}
-              $isRight={this.props.value.length === 2 && index === 1}
+              $thumbIndex={index}
+              $isDragged={isDragged}
               style={{
                 ...props.style,
               }}
+              {...sharedProps}
               {...thumbProps}
             >
-              <ThumbValue {...thumbValueProps}>{value}</ThumbValue>
-              <InnerThumb {...innerThumbProps} $isDragged={isDragged} />
+              <ThumbValue
+                $thumbIndex={index}
+                $isDragged={isDragged}
+                {...sharedProps}
+                {...thumbValueProps}
+              >
+                {value}
+              </ThumbValue>
+              <InnerThumb
+                $thumbIndex={index}
+                $isDragged={isDragged}
+                {...sharedProps}
+                {...innerThumbProps}
+              />
             </Thumb>
           )}
         />
         <TickBar {...sharedProps} {...tickBarProps}>
-          {range.map((tick, $index) => (
-            <Tick key={$index} $index={$index} {...sharedProps} {...tickProps}>
-              {getTickLabel(tick)}
-            </Tick>
-          ))}
+          <Tick {...sharedProps} {...tickProps}>
+            {min}
+          </Tick>
+          <Tick {...sharedProps} {...tickProps}>
+            {max}
+          </Tick>
         </TickBar>
       </Root>
     );

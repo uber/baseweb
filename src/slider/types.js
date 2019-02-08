@@ -6,14 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type ParamsT = {
-  value: Array<number>,
+  values: Array<number>,
 };
 export type OverridesT = {
   Root?: OverrideT<*>,
@@ -27,18 +25,13 @@ export type OverridesT = {
 };
 
 export type PropsT = {
-  /** Selected points chosen on axis. It can be a single point (one thumb) or 2 points array (range thumbs). */
-  value: Array<number>,
-  /** All points present on slider axis. First and last point represent min and max
-   * value. Each `Point` can be a value itself (for primitive type) or if `Point` is
-   * `Object` it should have `value` and `label`. If more than 2 elements are present
-   * in array, they represent all ticks on axis and `step` property is ignored.
-   */
-  range: Array<number | {value: number, label: React.Node}>,
-  /** If `range` contains only min and max points (2 elements) step is to shift thumb
-   * every time user moves it left or right. If `step` in place `value` for each `Point`
-   * should be of primitive type.
-   */
+  /** Position of the thumbs. It can be a single point (one thumb) or 2 points array (range thumbs). */
+  values: Array<number>,
+  /** The minimum allowed value of the slider. Should not be bigger than max. */
+  min: number,
+  /** The maximum allowed value of the slider. Should not be smaller than min. */
+  max: number,
+  /** The granularity the slider can step through values. Default step is 1. */
   step?: ?number,
   overrides?: OverridesT,
   /** Disable control from being changed. */
@@ -50,7 +43,7 @@ export type PropsT = {
 };
 
 export type StateT = {
-  value: Array<number>,
+  values: Array<number>,
 };
 
 export type StateReducerT = (

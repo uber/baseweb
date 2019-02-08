@@ -14,7 +14,7 @@ export const Root = styled('div', props => {
 Root.displayName = 'StyledRoot';
 
 export const Track = styled('div', props => {
-  const {$theme} = props;
+  const {$theme, $disabled} = props;
   const {sizing} = $theme;
   return {
     paddingTop: sizing.scale1000,
@@ -22,21 +22,26 @@ export const Track = styled('div', props => {
     paddingRight: sizing.scale600,
     paddingLeft: sizing.scale600,
     display: 'flex',
+    cursor: $disabled ? 'not-allowed !important' : 'inherit',
   };
 });
 Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled('div', props => {
-  const {$theme, $value, $min, $max} = props;
+  const {$theme, $values, $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
   return {
     borderRadius: $theme.borders.useRoundedCorners ? borders.radius100 : '0px',
     background: getTrackBackground({
-      values: $value,
+      values: $values,
       colors:
-        $value.length === 1
-          ? [colors.primary, colors.mono400]
-          : [colors.mono400, colors.primary, colors.mono400],
+        $values.length === 1
+          ? [$disabled ? colors.mono600 : colors.primary, colors.mono400]
+          : [
+              colors.mono400,
+              $disabled ? colors.mono600 : colors.primary,
+              colors.mono400,
+            ],
       min: $min,
       max: $max,
     }),
@@ -69,14 +74,16 @@ export const TickBar = styled('div', props => {
 TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled('div', props => {
-  const {$theme, $isLeft, $isRight} = props;
+  const {$theme, $values, $thumbIndex} = props;
+  const isLeft = $values.length === 2 && $thumbIndex === 0;
+  const isRight = $values.length === 2 && $thumbIndex === 1;
   return {
     height: '24px',
-    width: $isLeft || $isRight ? '12px' : '24px',
-    borderTopLeftRadius: $isRight ? '1px' : '4px',
-    borderTopRightRadius: $isLeft ? '1px' : '4px',
-    borderBottomLeftRadius: $isRight ? '1px' : '4px',
-    borderBottomRightRadius: $isLeft ? '1px' : '4px',
+    width: isLeft || isRight ? '12px' : '24px',
+    borderTopLeftRadius: isRight ? '1px' : '4px',
+    borderTopRightRadius: isLeft ? '1px' : '4px',
+    borderBottomLeftRadius: isRight ? '1px' : '4px',
+    borderBottomRightRadius: isLeft ? '1px' : '4px',
     backgroundColor: $theme.colors.mono100,
     display: 'flex',
     justifyContent: 'center',

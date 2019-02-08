@@ -45,7 +45,7 @@ describe('Slider styled components', () => {
   describe('StyledInnerTrack', function() {
     test('StyledInnerTrack', () => {
       const component = shallow(
-        <StyledInnerTrack>
+        <StyledInnerTrack $values={[50]}>
           <div />
         </StyledInnerTrack>,
       );
@@ -56,9 +56,25 @@ describe('Slider styled components', () => {
   });
   describe('StyledThumb', function() {
     test('StyledThumb', () => {
-      const component = shallow(<StyledThumb />);
+      const component = shallow(<StyledThumb $values={[50]} $thumbIndex={0} />);
       expect(component.instance().getStyles()).toMatchSnapshot(
         'StyledThumb has correct styles',
+      );
+    });
+    test('StyledThumb left', () => {
+      const component = shallow(
+        <StyledThumb $values={[50, 70]} $thumbIndex={0} />,
+      );
+      expect(component.instance().getStyles()).toMatchSnapshot(
+        'StyledThumb left range has correct styles',
+      );
+    });
+    test('StyledThumb right', () => {
+      const component = shallow(
+        <StyledThumb $values={[50, 70]} $thumbIndex={1} />,
+      );
+      expect(component.instance().getStyles()).toMatchSnapshot(
+        'StyledThumb right range has correct styles',
       );
     });
   });
