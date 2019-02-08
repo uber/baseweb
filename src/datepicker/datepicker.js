@@ -110,6 +110,8 @@ export default class Datepicker extends React.Component<
     if (!this.state.isOpen && event.keyCode === 40) {
       this.open();
     } else if (this.state.isOpen && event.key === 'ArrowDown') {
+      // next line prevents the page jump on the initial arrowDown
+      event.preventDefault();
       this.focusCalendar();
     } else if (this.state.isOpen && event.keyCode === 9) {
       this.close();

@@ -132,17 +132,13 @@ class NavigationContainer extends React.Component<
         const length = focusable ? focusable.length : 0;
         if (event.shiftKey) {
           if (focusable && activeElm === focusable[0]) {
-            // without this setTimeout it skips the last element on the tab
-            setTimeout(() => {
-              focusable[length - 1].focus();
-            }, 0);
+            event.preventDefault();
+            focusable[length - 1].focus();
           }
         } else {
           if (focusable && activeElm === focusable[length - 1]) {
-            // without this setTimeout it skips the first element on the shift+tab
-            setTimeout(() => {
-              focusable[0].focus();
-            }, 0);
+            event.preventDefault();
+            focusable[0].focus();
           }
         }
       }
