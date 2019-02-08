@@ -29,21 +29,16 @@ class StatefulSliderContainer extends React.Component<
 
   state = {...this.props.initialState};
 
-  onChange = (config: {event: *, value: Array<number>}) => {
-    const {event, ...params} = config;
-    this.internalSetState(STATE_CHANGE_TYPE.change, event, params);
+  onChange = (params: {value: Array<number>}) => {
+    this.internalSetState(STATE_CHANGE_TYPE.change, params);
     const {onChange} = this.props;
-    return onChange({event, ...params});
+    return onChange({...params});
   };
 
-  internalSetState = (
-    type: ChangeActionT,
-    e: SyntheticInputEvent<HTMLInputElement>,
-    {value}: ParamsT,
-  ) => {
+  internalSetState = (type: ChangeActionT, {value}: ParamsT) => {
     const nextState = {value};
     const {stateReducer} = this.props;
-    const newState = stateReducer(type, nextState, this.state, e);
+    const newState = stateReducer(type, nextState, this.state);
     this.setState(newState);
   };
 

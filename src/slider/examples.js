@@ -18,10 +18,10 @@ export default {
     return (
       <div
         style={{
-          width: '300px',
+          maxWidth: '300px',
         }}
       >
-        <Slider initialState={{value: [60]}} range={[0, 100]} />
+        <Slider initialState={{value: [50]}} range={[0, 100]} />
       </div>
     );
   },

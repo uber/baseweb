@@ -17,11 +17,13 @@ export type ParamsT = {
 };
 export type OverridesT = {
   Root?: OverrideT<*>,
-  Axis?: OverrideT<*>,
-  AxisRange?: OverrideT<*>,
+  Track?: OverrideT<*>,
+  InnerTrack?: OverrideT<*>,
   Tick?: OverrideT<*>,
   TickBar?: OverrideT<*>,
   Thumb?: OverrideT<*>,
+  InnerThumb?: OverrideT<*>,
+  ThumbValue?: OverrideT<*>,
 };
 
 export type PropsT = {
@@ -39,15 +41,10 @@ export type PropsT = {
    */
   step?: ?number,
   overrides?: OverridesT,
-  tabIndex: number,
-  error: boolean,
-  /** Focuses the element on render. */
-  autoFocus: boolean,
   /** Disable control from being changed. */
   disabled?: boolean,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange: ({
-    event: SyntheticEvent<HTMLElement> | MouseEvent,
     ...ParamsT,
   }) => void,
 };
@@ -56,18 +53,10 @@ export type StateT = {
   value: Array<number>,
 };
 
-export type StatelessStateT = {
-  isThumbMoving: boolean,
-  currentThumb: number,
-  currentMove: number,
-  thumbRefs: Array<{current: ?React.ElementRef<*>}>,
-};
-
 export type StateReducerT = (
   stateType: string,
   nextState: StateT,
   currentState: StateT,
-  event: SyntheticEvent<HTMLElement>,
 ) => StateT;
 
 export type StatefulContainerPropsT = {
@@ -78,17 +67,13 @@ export type StatefulContainerPropsT = {
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducerT,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange: ({event: SyntheticEvent<HTMLElement>, ...ParamsT}) => void,
-  /** Focuses the element on render. */
-  autoFocus?: boolean,
+  onChange: ({...ParamsT}) => void,
 };
 
 export type StatefulSliderPropsT = {
   overrides?: OverridesT,
   /** Initial state populated into the component */
   initialState: StateT,
-  /** Focuses the element on render. */
-  autoFocus?: boolean,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange?: ({event: SyntheticEvent<HTMLElement>, ...ParamsT}) => void,
+  onChange?: ({...ParamsT}) => void,
 };

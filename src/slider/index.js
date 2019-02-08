@@ -11,10 +11,11 @@ export {default as StatefulContainer} from './stateful-slider-container.js';
 // Styled elements
 export {
   Root as StyledRoot,
-  Axis as StyledAxis,
+  Track as StyledTrack,
+  InnerTrack as StyledInnerTrack,
   Tick as StyledTick,
   Thumb as StyledThumb,
+  InnerThumb as StyledInnerThumb,
   TickBar as StyledTickBar,
-  AxisRange as StyledAxisRange,
 } from './styled-components.js';
 export * from './types.js';

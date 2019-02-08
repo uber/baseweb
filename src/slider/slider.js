@@ -5,29 +5,28 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 import * as React from 'react';
-import {findDOMNode} from 'react-dom';
-import {thumbWidth} from './constants.js';
-import type {StatelessStateT, PropsT} from './types.js';
+import {Range} from 'react-range';
+import type {PropsT} from './types.js';
 import {
   Root as StyledRoot,
-  Axis as StyledAxis,
-  AxisRange as StyledAxisRange,
+  Track as StyledTrack,
+  InnerTrack as StyledInnerTrack,
   Tick as StyledTick,
   TickBar as StyledTickBar,
   Thumb as StyledThumb,
+  InnerThumb as StyledInnerThumb,
+  ThumbValue as StyledThumbValue,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
-/* global document */
-/* global window */
 
-function getTickValue(tick: number | {value: number}): number {
-  if (typeof tick === 'object') {
-    return tick.value;
-  }
-
-  return tick;
-}
+// function getTickValue(tick: number | {value: number}): number {
+//   if (typeof tick === 'object') {
+//     return tick.value;
+//   }
+//   return tick;
+// }
 
 function getTickLabel(tick: number | {label: React.Node}): React.Node {
   if (typeof tick === 'object') {
@@ -36,140 +35,35 @@ function getTickLabel(tick: number | {label: React.Node}): React.Node {
   return tick;
 }
 
-class Slider extends React.Component<PropsT, StatelessStateT> {
-  domNode: ?Element | Text;
-
+class Slider extends React.Component<PropsT> {
   static defaultProps = {
     overrides: {},
     onChange: () => {},
     error: false,
-    autoFocus: false,
     tabIndex: 0,
   };
 
-  state = {
-    isThumbMoving: false,
-    currentThumb: -1,
-    currentMove: 0,
-    thumbRefs: this.props.value.map(() => React.createRef()),
-  };
-
-  componentDidMount() {
-    /* eslint-disable-next-line react/no-find-dom-node */
-    this.domNode = findDOMNode(this);
-  }
-
-  onThumbDown = (event: MouseEvent, thumbIndex: number) => {
-    document.addEventListener('mousemove', this.onMouseMove);
-    document.addEventListener('mouseup', this.onThumbUp);
-    this.setState({
-      isThumbMoving: true,
-      currentThumb: thumbIndex,
-    });
-  };
-
-  onThumbUp = (event: MouseEvent) => {
-    const {isThumbMoving} = this.state;
-    if (isThumbMoving) {
-      this.setState({
-        isThumbMoving: false,
-        currentThumb: -1,
-        currentMove: 0,
-      });
-    }
-    document.removeEventListener('mousemove', this.onMouseMove);
-    document.removeEventListener('mouseup', this.onThumbUp);
-  };
-
-  onMouseMove = (event: MouseEvent) => {
-    const {isThumbMoving} = this.state;
-    if (isThumbMoving) {
-      this.onMove(event.movementX, event);
-    }
-  };
-
-  onMove(movementX: number, event: SyntheticEvent<HTMLElement> | MouseEvent) {
-    const {currentThumb, currentMove} = this.state;
-    let {onChange, step} = this.props;
-    const {$value, $max, $min, $isRange} = this.getSharedProps();
-    // add mouse move in pixels to already recorded move in progress
-    const newMove = currentMove + movementX;
-    // get move direction factor based on sign of new move
-    const moveDirection = newMove / Math.abs(newMove);
-    const value = $value.slice();
-    const axisSizeInPixels = parseInt(
-      window.getComputedStyle(this.domNode).width,
-    );
-    const axisSize = $max - $min;
-    // scale step to be measured in pixels
-    step = step ? Slider.scale(step, axisSize, axisSizeInPixels) : step;
-    const scaledStep = step ? moveDirection * step : newMove;
-    const isMoveThresholdPassed = Math.abs(newMove) - Math.abs(scaledStep) >= 0;
-    // if move detected is larger than step we can move to the next tick
-    if (isMoveThresholdPassed) {
-      const scaledMove = Slider.scale(scaledStep, axisSizeInPixels, axisSize);
-      // clamp max and min to avoid overlapping and cross of each other
-      const max = !currentThumb && $isRange ? value[1] : $max;
-      const min = currentThumb && $isRange ? value[0] : $min;
-      value[currentThumb] = Slider.clampIt(
-        value[currentThumb] + scaledMove,
-        max,
-        min,
-      );
-      this.setState({currentMove: 0});
-    } else {
-      // proceed to track the newMove of mouse
-      this.setState({currentMove: newMove});
-    }
-    onChange({event, value});
-  }
-
-  onAxisClick(e: MouseEvent) {
-    const {value} = this.props;
-    const {thumbRefs} = this.state;
-    // only for one thumb feature
-    //$FlowFixMe
-    if (value.length === 1 && e.currentTarget.parentNode) {
-      const thumb = thumbRefs[0].current;
-      const axisOffset = e.clientX - e.currentTarget.parentNode.offsetLeft;
-      //$FlowFixMe
-      const xPos = axisOffset - thumb.offsetLeft - thumbWidth;
-      this.setState({currentThumb: 0}, () => {
-        this.onMove(xPos, e);
-      });
-    }
-  }
-
   getSharedProps() {
-    const {range, value} = this.props;
-    const {currentThumb} = this.state;
-    return {
-      $value: value,
-      $range: range,
-      $max: getTickValue(range[range.length - 1]),
-      $min: getTickValue(range[0]),
-      $currentThumb: currentThumb,
-      $isRange: value.length % 2 === 0,
-    };
-  }
-
-  static clampIt(value: number, max: number, min: number) {
-    return Math.max(min, Math.min(value, max));
-  }
-  static scale(x: number, distanceX: number, distanceY: number) {
-    return (x * distanceY) / distanceX;
+    return {};
   }
 
   render() {
-    const {overrides = {}, range, value} = this.props;
-    const {thumbRefs} = this.state;
+    const {overrides = {}, range, value, step, onChange} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    const [Axis, axisProps] = getOverrides(overrides.Axis, StyledAxis);
-    const [AxisRange, axisRangeProps] = getOverrides(
-      overrides.AxisRange,
-      StyledAxisRange,
+    const [Track, trackProps] = getOverrides(overrides.Track, StyledTrack);
+    const [InnerTrack, innerTrackProps] = getOverrides(
+      overrides.InnerTrack,
+      StyledInnerTrack,
     );
     const [Thumb, thumbProps] = getOverrides(overrides.Thumb, StyledThumb);
+    const [InnerThumb, innerThumbProps] = getOverrides(
+      overrides.InnerThumb,
+      StyledInnerThumb,
+    );
+    const [ThumbValue, thumbValueProps] = getOverrides(
+      overrides.ThumbValue,
+      StyledThumbValue,
+    );
     const [Tick, tickProps] = getOverrides(overrides.Tick, StyledTick);
     const [TickBar, tickBarProps] = getOverrides(
       overrides.TickBar,
@@ -177,22 +71,46 @@ class Slider extends React.Component<PropsT, StatelessStateT> {
     );
     const sharedProps = this.getSharedProps();
     return (
-      <Root {...sharedProps} onClick={e => this.onAxisClick(e)} {...rootProps}>
-        <Axis {...sharedProps} {...axisProps}>
-          {value.map((thumb, $index) => (
-            <React.Fragment key={$index}>
-              <AxisRange $index={$index} {...sharedProps} {...axisRangeProps} />
-              <Thumb
-                $ref={thumbRefs[$index]}
-                key={$index}
-                $index={$index}
-                onMouseDown={e => this.onThumbDown(e, $index)}
-                {...sharedProps}
-                {...thumbProps}
-              />
-            </React.Fragment>
-          ))}
-        </Axis>
+      <Root {...sharedProps} {...rootProps}>
+        <Range
+          step={step}
+          min={range[0]}
+          max={range[1]}
+          values={value}
+          onChange={value => onChange({value})}
+          renderTrack={({props, children}) => (
+            <Track
+              onMouseDown={props.onMouseDown}
+              onTouchStart={props.onTouchStart}
+              style={props.style}
+              {...trackProps}
+            >
+              <InnerTrack
+                $ref={props.ref}
+                $value={value}
+                $min={range[0]}
+                $max={range[1]}
+                {...innerTrackProps}
+              >
+                {children}
+              </InnerTrack>
+            </Track>
+          )}
+          renderThumb={({props, value, index}) => (
+            <Thumb
+              {...props}
+              $isLeft={this.props.value.length === 2 && index === 0}
+              $isRight={this.props.value.length === 2 && index === 1}
+              style={{
+                ...props.style,
+              }}
+              {...thumbProps}
+            >
+              <ThumbValue {...thumbValueProps}>{value}</ThumbValue>
+              <InnerThumb {...innerThumbProps} />
+            </Thumb>
+          )}
+        />
         <TickBar {...sharedProps} {...tickBarProps}>
           {range.map((tick, $index) => (
             <Tick key={$index} $index={$index} {...sharedProps} {...tickProps}>
