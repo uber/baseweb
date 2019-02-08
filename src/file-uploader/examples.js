@@ -10,17 +10,17 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Unstable_FileUploader} from './index.js';
+import {FileUploader} from './index.js';
 import examples from './examples-list.js';
 
 export default {
   [examples.FILE_UPLOADER_EXAMPLE]: function FileUploaderBasic() {
     return (
       <React.Fragment>
-        <Unstable_FileUploader />
+        <FileUploader />
 
         <br />
-        <Unstable_FileUploader
+        <FileUploader
           progressAmount={40}
           progressMessage="Uploading... 8.24 of 45.08MB"
           onCancel={() => console.log('cancel')}
@@ -28,7 +28,7 @@ export default {
         />
 
         <br />
-        <Unstable_FileUploader
+        <FileUploader
           progressAmount={40}
           progressMessage="Uploading... 8.24 of 45.08MB"
           errorMessage="Upload failed... connection was lost."
@@ -37,7 +37,7 @@ export default {
         />
 
         <br />
-        <Unstable_FileUploader
+        <FileUploader
           progressMessage="Uploading... hang tight."
           onCancel={() => console.log('cancel')}
           onRetry={() => console.log('retry')}
@@ -47,16 +47,16 @@ export default {
   },
 
   [examples.FILE_UPLOADER_ACCEPT]: function FileUploaderAccept() {
-    return <Unstable_FileUploader accept=".jpeg" />;
+    return <FileUploader accept=".jpeg" />;
   },
 
   [examples.FILE_UPLOADER_DISABLED]: function FileUploaderDisabled() {
-    return <Unstable_FileUploader disabled />;
+    return <FileUploader disabled />;
   },
 
   [examples.FILE_UPLOADER_OVERRIDES]: function FileUploaderOverrides() {
     return (
-      <Unstable_FileUploader
+      <FileUploader
         overrides={{
           FileDragAndDrop: {
             style: props => ({

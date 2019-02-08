@@ -8,10 +8,10 @@ A component to upload a selected or dragged file or multiple files.
 
 ```javascript
 import React from 'react';
-import {Unstable_FileUploader} from 'baseui/file-uploader';
+import {FileUploader} from 'baseui/file-uploader';
 
 export default () => (
-  <Unstable_FileUploader
+  <FileUploader
     onDrop={(acceptedFiles, rejectedFiles)=>{
       // Do something with the files.
     }}
@@ -23,10 +23,10 @@ export default () => (
 
 ```javascript
 import React from 'react';
-import {Unstable_FileUploader} from 'baseui/file-uploader';
+import {FileUploader} from 'baseui/file-uploader';
 
 export default () => (
-  <Unstable_FileUploader
+  <FileUploader
     onDrop={(acceptedFiles, rejectedFiles)=>{
       // Do something with the files.
     }}
@@ -69,7 +69,7 @@ export default () => (
 
 ## Exports
 
-* `Unstable_FileUploader`
+* `FileUploader`
 * `StyledRoot`
 * `StyledFileDragAndDrop`
 * `StyledContentMessage`
@@ -79,7 +79,7 @@ export default () => (
 * `StyledRejectedFile`
 * `StyledHiddenInput`
 
-## `Unstable_FileUploader` API
+## `FileUploader` API
 * This component aligns to the api provided by [`react-dropzone`](https://react-dropzone.netlify.com/). Please
   refer to their documentation.
 * `overrides?: {Root, ContentContainer, FileDragAndDrop, FileSelectButton, Input} = {}`
