@@ -12,16 +12,7 @@ const req = require.context(
   /^((?!template-component\/).)*.stories.js$/,
 );
 
-function isUnstable(filename) {
-  const unstableComponents = ['datepicker'];
-  return unstableComponents.some(c => filename.includes(c));
-}
-
 export default function loadStories() {
   require('../docs/pages/pages.js');
-
-  const stable = req.keys().filter(c => !isUnstable(c));
-  const unstable = req.keys().filter(isUnstable);
-
-  stable.concat(unstable).forEach(filename => req(filename));
+  req.keys().forEach(filename => req(filename));
 }
