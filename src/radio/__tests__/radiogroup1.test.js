@@ -51,7 +51,7 @@ describe('Stateless radiogroup', function() {
         StyledInput,
         RadioGroup,
         StyledRadio,
-      } = require('./index');
+      } = require('../index');
       const mockComp: any = jest.fn(() => <div>{subcomponent}</div>);
       overrides = {
         Root: StyledRoot,
