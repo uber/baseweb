@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const Button = require('./src/button/examples-list');
 const ButtonGroup = require('./src/button-group/examples-list');
 const Breadcrumbs = require('./src/breadcrumbs/examples-list');
 const Card = require('./src/card/examples-list');
@@ -34,9 +33,6 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   includeRules: [
-    new RegExp(Button.BUTTON),
-    new RegExp(Button.BUTTON_COMPACT_WITH_ENHANCERS),
-    new RegExp(Button.BUTTON_WITH_ENHANCERS),
     new RegExp(`${ButtonGroup.BUTTON_GROUP}$`),
     new RegExp(Card.TEXT_IMAGE_LINK),
     new RegExp(Card.TEXT_ONLY),
