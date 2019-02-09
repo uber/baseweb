@@ -30,8 +30,6 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   includeRules: [
-    new RegExp(Checkbox.SIMPLE_EXAMPLE),
-    /Checkbox as toggle example/,
     /Icons in Button/,
     new RegExp(`${FileUploader.FILE_UPLOADER_EXAMPLE}$`),
     new RegExp(Input.SIZE_EXAMPLE),
