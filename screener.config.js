@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const Card = require('./src/card/examples-list');
 const Checkbox = require('./src/checkbox/examples-list');
 const FileUploader = require('./src/file-uploader/examples-list');
 const Input = require('./src/input/examples-list');
@@ -31,8 +30,6 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   includeRules: [
-    new RegExp(Card.TEXT_IMAGE_LINK),
-    new RegExp(Card.TEXT_ONLY),
     new RegExp(Checkbox.SIMPLE_EXAMPLE),
     /Checkbox as toggle example/,
     /Icons in Button/,
