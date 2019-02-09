@@ -91,7 +91,6 @@ class Slider extends React.Component<PropsT> {
               onMouseDown={props.onMouseDown}
               onTouchStart={props.onTouchStart}
               $isDragged={isDragged}
-              style={props.style}
               {...sharedProps}
               {...trackProps}
             >

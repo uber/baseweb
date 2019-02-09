@@ -33,7 +33,7 @@ describe('Slider styled components', () => {
   describe('StyledTrack', function() {
     test('StyledTrack', () => {
       const component = shallow(
-        <StyledTrack>
+        <StyledTrack $values={[10, 20]}>
           <div />
         </StyledTrack>,
       );

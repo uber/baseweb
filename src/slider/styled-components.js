@@ -14,15 +14,23 @@ export const Root = styled('div', props => {
 Root.displayName = 'StyledRoot';
 
 export const Track = styled('div', props => {
-  const {$theme, $disabled} = props;
+  const {$theme, $values, $disabled, $isDragged} = props;
   const {sizing} = $theme;
+  let cursor = 'inherit';
+  if ($disabled) {
+    cursor = 'not-allowed';
+  } else if ($isDragged) {
+    cursor = 'grabbing';
+  } else if ($values.length === 1) {
+    cursor = 'pointer';
+  }
   return {
     paddingTop: sizing.scale1000,
     paddingBottom: sizing.scale600,
     paddingRight: sizing.scale600,
     paddingLeft: sizing.scale600,
     display: 'flex',
-    cursor: $disabled ? 'not-allowed !important' : 'inherit',
+    cursor,
   };
 });
 Track.displayName = 'StyledTrack';
@@ -48,6 +56,7 @@ export const InnerTrack = styled('div', props => {
     height: sizing.scale100,
     width: '100%',
     alignSelf: 'center',
+    cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
 InnerTrack.displayName = 'StyledInnerTrack';
@@ -74,7 +83,7 @@ export const TickBar = styled('div', props => {
 TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled('div', props => {
-  const {$theme, $values, $thumbIndex} = props;
+  const {$theme, $values, $thumbIndex, $disabled} = props;
   const isLeft = $values.length === 2 && $thumbIndex === 0;
   const isRight = $values.length === 2 && $thumbIndex === 1;
   return {
@@ -92,6 +101,7 @@ export const Thumb = styled('div', props => {
     borderStyle: 'solid',
     borderColor: $theme.colors.mono400,
     boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.12)',
+    cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
 Thumb.displayName = 'StyledThumb';
