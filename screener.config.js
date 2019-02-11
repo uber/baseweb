@@ -28,7 +28,6 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   includeRules: [
-    /Icons in Button/,
     new RegExp(Input.SIZE_EXAMPLE),
     new RegExp(Input.STATE_EXAMPLE),
     new RegExp(Input.ENHANCERS_EXAMPLE),
