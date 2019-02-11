@@ -79,8 +79,6 @@ class StatelessList extends React.Component<ListPropsT> {
                 tabIndex={props.tabIndex}
                 aria-roledescription={props['aria-roledescription']}
                 onKeyDown={props.onKeyDown}
-                onMouseDown={props.onMouseDown}
-                onTouchStart={props.onTouchStart}
                 onWheel={props.onWheel}
                 {...itemProps}
                 style={{...props.style, display: 'flex'}}
@@ -94,10 +92,12 @@ class StatelessList extends React.Component<ListPropsT> {
                 {removable && (
                   <CloseHandle
                     {...sharedProps}
-                    onMouseDown={e => e.stopPropagation()}
-                    onTouchStart={e => e.stopPropagation()}
                     onClick={() =>
-                      onChange && onChange({oldIndex: index, newIndex: -1})
+                      onChange &&
+                      onChange({
+                        oldIndex: typeof index !== 'undefined' ? index : 0,
+                        newIndex: -1,
+                      })
                     }
                     {...closeHandleProps}
                   >
