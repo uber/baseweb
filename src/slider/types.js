@@ -32,7 +32,7 @@ export type PropsT = {
   /** The maximum allowed value of the slider. Should not be smaller than min. */
   max: number,
   /** The granularity the slider can step through value. Default step is 1. */
-  step?: ?number,
+  step: number,
   overrides?: OverridesT,
   /** Disable control from being changed. */
   disabled?: boolean,
@@ -55,8 +55,11 @@ export type StateReducerT = (
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
   children: (*) => React$Node,
+  min: number,
+  max: number,
+  step: number,
   /** Initial state populated into the component */
-  initialState?: StateT,
+  initialState: StateT,
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducerT,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
@@ -66,7 +69,10 @@ export type StatefulContainerPropsT = {
 export type StatefulSliderPropsT = {
   overrides?: OverridesT,
   /** Initial state populated into the component */
-  initialState: StateT,
+  initialState?: StateT,
+  min?: number,
+  max?: number,
+  step?: number,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange?: ({...ParamsT}) => void,
 };

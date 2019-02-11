@@ -21,7 +21,7 @@ export default {
           maxWidth: '500px',
         }}
       >
-        <Slider initialState={{value: [50]}} />
+        <Slider />
       </div>
     );
   },
