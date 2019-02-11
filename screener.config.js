@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const Popover = require('./src/popover/examples-list');
 const Radio = require('./src/radio/examples-list');
 const Rating = require('./src/rating/examples-list');
 const Select = require('./src/select/examples-list');
@@ -24,7 +23,6 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   includeRules: [
-    new RegExp(Popover.SIMPLE_EXAMPLE),
     new RegExp(Radio.SIMPLE_EXAMPLE),
     new RegExp(Rating.DEFAULT),
     new RegExp(Rating.EMOTICON),
