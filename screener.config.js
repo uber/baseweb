@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const FileUploader = require('./src/file-uploader/examples-list');
 const Input = require('./src/input/examples-list');
 const Modal = require('./src/modal/examples-list');
 const Notification = require('./src/notification/examples-list');
@@ -30,7 +29,6 @@ module.exports = {
   baseBranch: 'master',
   includeRules: [
     /Icons in Button/,
-    new RegExp(`${FileUploader.FILE_UPLOADER_EXAMPLE}$`),
     new RegExp(Input.SIZE_EXAMPLE),
     new RegExp(Input.STATE_EXAMPLE),
     new RegExp(Input.ENHANCERS_EXAMPLE),
