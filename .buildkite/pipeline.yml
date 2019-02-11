@@ -66,4 +66,4 @@ steps:
           - e2e-server
           - e2e-server-healthy
     agents:
-      queue: workers
+      queue: builders
