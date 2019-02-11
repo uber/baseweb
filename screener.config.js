@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const Rating = require('./src/rating/examples-list');
 const Select = require('./src/select/examples-list');
 const Slider = require('./src/slider/examples-list');
 const Textarea = require('./src/textarea/examples-list');
@@ -21,8 +20,6 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   includeRules: [
-    new RegExp(Rating.DEFAULT),
-    new RegExp(Rating.EMOTICON),
     new RegExp(Select.MULTI_SELECT),
     new RegExp(Select.SINGLE_SELECT_SEARCH),
     new RegExp(Slider.AS_SIMPLE_RANGE_SLIDER),
