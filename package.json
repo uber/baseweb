@@ -39,7 +39,8 @@
     "icon:generate": "./src/icon/build-icons.js",
     "now": "now",
     "documentation:dev": "yarn build:es2015 && next documentation-site",
-    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public"
+    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public",
+    "documentation:watch": "nodemon --watch src --exec yarn documentation:dev"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -110,6 +111,7 @@
     "markdownlint-cli": "^0.13.0",
     "next": "^7.0.2",
     "next-images": "^1.0.3",
+    "nodemon": "^1.18.10",
     "now": "^13.1.2",
     "prettier": "^1.14.3",
     "pretty-proptypes": "^0.5.0",
