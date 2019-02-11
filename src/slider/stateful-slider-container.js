@@ -40,8 +40,7 @@ class StatefulSliderContainer extends React.Component<
 
   onChange = (params: {value: Array<number>}) => {
     this.internalSetState(STATE_CHANGE_TYPE.change, params);
-    const {onChange} = this.props;
-    return onChange({...params});
+    return this.props.onChange({...params});
   };
 
   internalSetState = (type: ChangeActionT, {value}: ParamsT) => {
@@ -58,11 +57,10 @@ class StatefulSliderContainer extends React.Component<
       stateReducer, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
-    const {onChange} = this;
     return children({
       ...rest,
       ...this.state,
-      onChange,
+      onChange: this.onChange,
     });
   }
 }

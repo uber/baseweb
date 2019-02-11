@@ -121,7 +121,7 @@ export const ThumbValue = styled('div', props => {
   const {$theme} = props;
   return {
     position: 'absolute',
-    top: '-24px',
+    top: `-${$theme.sizing.scale800}`,
     ...$theme.typography.font300,
     backgroundColor: 'transparent',
   };

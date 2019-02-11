@@ -68,22 +68,20 @@ export default {
         <Slider
           initialState={{value: [50]}}
           overrides={{
-            Thumb: ({$value, $thumbIndex}) => (
-              <div
-                style={{
-                  height: '36px',
-                  width: '36px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '36px',
-                  border: '3px solid #ccc',
-                  backgroundColor: '#fff',
-                }}
-              >
-                {$value[$thumbIndex]}
-              </div>
-            ),
+            InnerThumb: ({$value, $thumbIndex}) => $value[$thumbIndex],
+            ThumbValue: () => null,
+            Thumb: {
+              style: ({$value, $thumbIndex, $min, $max}) => ({
+                height: '36px',
+                width: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '36px',
+                border: '3px solid #ccc',
+                backgroundColor: '#fff',
+              }),
+            },
           }}
         />
       </div>

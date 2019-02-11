@@ -14,10 +14,11 @@ import Stateful from 'examples/slider/stateful.js';
 import Disabled from 'examples/slider/disabled.js';
 import Range from 'examples/slider/range.js';
 import StepMinMax from 'examples/slider/step-min-max.js';
+import CustomTicks from 'examples/slider/custom-ticks.js';
 import Customization from 'examples/slider/overrides.js';
 
 import Overrides from '../../components/overrides';
-import {Slider} from 'baseui/slider';
+import {StatefulSlider as Slider} from 'baseui/slider';
 import * as SliderExports from 'baseui/slider';
 
 export default Layout;
@@ -28,6 +29,25 @@ Control input with sliding axis to choose a single value or range between min an
 
 There are two slider options in Base that allow users to select a single value or a range.
 Each slider has a primary control handle that cues user interaction.
+
+## Accessibility
+
+Slider sets these attributes:
+
+- `role="slider"`
+- `aria-valuemin`
+- `aria-valuemax`
+- `aria-valuenow`
+
+Thumbs can be focused and **controlled by the keyboard**:
+
+- `tab` and `shift+tab` to focus thumbs
+- `arrow up` or `arrow right` or `k` to increase the thumb value by one step
+- `arrow down` or `arrow left` or `j` to decrease the thumb value by one step
+- `page up` to increase the thumb value by ten steps
+- `page down` to decrease the thumb value by ten steps
+
+The component is also **optimized for iOS and Android devices**.
 
 ## Examples
 
@@ -57,6 +77,13 @@ Each slider has a primary control handle that cues user interaction.
   <StepMinMax />
 </Example>
 
+<Example
+  title="Slider with custom ticks"
+  path="examples/slider/custom-ticks.js"
+>
+  <CustomTicks />
+</Example>
+
 <Example title="Slider with Overrides" path="examples/slider/overrides.js">
   <Customization />
 </Example>
@@ -65,7 +92,7 @@ Each slider has a primary control handle that cues user interaction.
   name="Slider"
   component={SliderExports}
   renderExample={props => (
-    <Slider values={[25, 75]} overrides={props.overrides} />
+    <Slider initialState={{value: [25, 75]}} overrides={props.overrides} />
   )}
 />
 
