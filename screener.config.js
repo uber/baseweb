@@ -27,7 +27,6 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   includeRules: [
-    /Stateless Menu/,
     new RegExp(`${Modal.SIMPLE_EXAMPLE}$`),
     new RegExp(Notification.NOTIFICATION_EXAMPLE),
     new RegExp(Pagination.STATEFUL_PAGINATION),

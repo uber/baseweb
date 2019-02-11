@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Menu} from '../index.js';
+import {StatefulMenu} from '../index.js';
 
 export const name = 'menu';
 
@@ -28,7 +28,7 @@ const ITEMS = [
 ];
 
 export const component = () => (
-  <Menu
+  <StatefulMenu
     items={ITEMS}
     rootRef={React.createRef()}
     overrides={{
