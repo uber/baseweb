@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulInput, SIZE} from '../index.js';
+import {StatefulInput} from '../index.js';
 import {Block} from '../../block/index.js';
 import Search from '../../icon/search.js';
 
@@ -18,6 +18,7 @@ export const component = () => (
   <React.Fragment>
     <StatefulInput
       overrides={{
+        // eslint-disable-next-line react/display-name
         Before: () => (
           <Block display="flex" alignItems="center" paddingLeft="scale500">
             <Search size="16px" />
@@ -30,6 +31,7 @@ export const component = () => (
     <br />
     <StatefulInput
       overrides={{
+        // eslint-disable-next-line react/display-name
         After: () => (
           <Block display="flex" alignItems="center" paddingRight="scale500">
             <Search size="16px" />
