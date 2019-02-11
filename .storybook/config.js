@@ -16,7 +16,6 @@ const req = require.context(
 );
 
 export default function loadStories() {
-  require('../docs/pages/pages.js');
   req.keys().forEach(filename => req(filename));
 }
 
