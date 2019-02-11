@@ -14,7 +14,6 @@ const Select = require('./src/select/examples-list');
 const Slider = require('./src/slider/examples-list');
 const Textarea = require('./src/textarea/examples-list');
 const Toast = require('./src/toast/examples-list');
-const ProgressStep = require('./src/progress-steps/examples-list');
 
 module.exports = {
   projectRepo: 'uber-web/baseui',
@@ -31,8 +30,6 @@ module.exports = {
     new RegExp(Slider.AS_SIMPLE_RANGE_SLIDER),
     new RegExp(Textarea.STATE_EXAMPLE),
     new RegExp(Toast.TOAST_EXAMPLE),
-    new RegExp(ProgressStep.DEFAULT),
-    new RegExp(ProgressStep.NUMBERED),
   ],
   failureExitCode: 0,
 };
