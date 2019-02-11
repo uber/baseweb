@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const Checkbox = require('./src/checkbox/examples-list');
 const FileUploader = require('./src/file-uploader/examples-list');
 const Input = require('./src/input/examples-list');
 const Modal = require('./src/modal/examples-list');
