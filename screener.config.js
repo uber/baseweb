@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const Input = require('./src/input/examples-list');
 const Modal = require('./src/modal/examples-list');
 const Notification = require('./src/notification/examples-list');
 const Pagination = require('./src/pagination/examples-list');
@@ -28,10 +27,6 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   includeRules: [
-    new RegExp(Input.SIZE_EXAMPLE),
-    new RegExp(Input.STATE_EXAMPLE),
-    new RegExp(Input.ENHANCERS_EXAMPLE),
-    new RegExp(Input.BEFORE_AFTER_EXAMPLE),
     /Stateless Menu/,
     new RegExp(`${Modal.SIMPLE_EXAMPLE}$`),
     new RegExp(Notification.NOTIFICATION_EXAMPLE),
