@@ -2,12 +2,12 @@ import React from 'react';
 import {Slider} from 'baseui/slider';
 
 export default class Basic extends React.Component {
-  state = {values: [60]};
+  state = {value: [60]};
   render() {
     return (
       <Slider
-        values={this.state.values}
-        onChange={({values}) => this.setState({values})}
+        value={this.state.value}
+        onChange={({value}) => this.setState({value})}
       />
     );
   }

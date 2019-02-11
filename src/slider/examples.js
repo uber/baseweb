@@ -21,7 +21,7 @@ export default {
           maxWidth: '500px',
         }}
       >
-        <Slider initialState={{values: [50]}} />
+        <Slider initialState={{value: [50]}} />
       </div>
     );
   },
@@ -32,7 +32,7 @@ export default {
           maxWidth: '500px',
         }}
       >
-        <Slider initialState={{values: [25, 60]}} />
+        <Slider initialState={{value: [25, 60]}} />
       </div>
     );
   },
@@ -43,7 +43,7 @@ export default {
           maxWidth: '500px',
         }}
       >
-        <Slider initialState={{values: [50]}} disabled />
+        <Slider initialState={{value: [50]}} disabled />
       </div>
     );
   },
@@ -54,7 +54,7 @@ export default {
           maxWidth: '500px',
         }}
       >
-        <Slider initialState={{values: [0]}} step={5} min={-300} max={300} />
+        <Slider initialState={{value: [0]}} step={5} min={-300} max={300} />
       </div>
     );
   },
@@ -66,9 +66,9 @@ export default {
         }}
       >
         <Slider
-          initialState={{values: [50]}}
+          initialState={{value: [50]}}
           overrides={{
-            Thumb: ({$values, $thumbIndex}) => (
+            Thumb: ({$value, $thumbIndex}) => (
               <div
                 style={{
                   height: '36px',
@@ -81,7 +81,7 @@ export default {
                   backgroundColor: '#fff',
                 }}
               >
-                {$values[$thumbIndex]}
+                {$value[$thumbIndex]}
               </div>
             ),
           }}

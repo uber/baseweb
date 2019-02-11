@@ -44,24 +44,24 @@ describe('Stateful Slider Container', function() {
   });
 
   test('should provide initial state as part of state', function() {
-    allProps.initialState = {values: [30, 80]};
+    allProps.initialState = {value: [30, 80]};
     wrapper = shallow(<StatefulSliderContainer {...allProps} />);
     const actualProps = childFn.mock.calls[0][0];
     expect(actualProps).toMatchObject(allProps.initialState);
   });
 
   test('stateReducer', () => {
-    allProps.initialState = {values: [50, 80]};
+    allProps.initialState = {value: [50, 80]};
     allProps.stateReducer = jest.fn();
     const component = shallow(<StatefulSliderContainer {...allProps} />);
-    allProps.stateReducer.mockReturnValueOnce({values: [60, 80]});
-    component.instance().onChange({values: [60, 80]});
+    allProps.stateReducer.mockReturnValueOnce({value: [60, 80]});
+    component.instance().onChange({value: [60, 80]});
     expect(allProps.stateReducer).toHaveBeenCalledTimes(1);
     expect(allProps.stateReducer).toHaveBeenLastCalledWith(
       STATE_CHANGE_TYPE.change,
-      {values: [60, 80]},
-      {values: [50, 80]},
+      {value: [60, 80]},
+      {value: [50, 80]},
     );
-    expect(component).toHaveState('values', [60, 80]);
+    expect(component).toHaveState('value', [60, 80]);
   });
 });

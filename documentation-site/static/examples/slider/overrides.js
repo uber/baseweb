@@ -2,15 +2,15 @@ import React from 'react';
 import {Slider} from 'baseui/slider';
 
 export default class Basic extends React.Component {
-  state = {values: [70]};
+  state = {value: [70]};
 
   render() {
     return (
       <Slider
-        values={this.state.values}
-        onChange={({values}) => this.setState({values})}
+        value={this.state.value}
+        onChange={({value}) => this.setState({value})}
         overrides={{
-          Thumb: ({$values, $thumbIndex}) => (
+          Thumb: ({$value, $thumbIndex}) => (
             <div
               style={{
                 height: '36px',
@@ -23,7 +23,7 @@ export default class Basic extends React.Component {
                 backgroundColor: '#fff',
               }}
             >
-              {$values[$thumbIndex]}
+              {$value[$thumbIndex]}
             </div>
           ),
         }}

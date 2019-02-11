@@ -21,16 +21,16 @@ import {
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
-// values.length should not be bigger than two
+// value.length should not be bigger than two
 // because our design doesn't support more than
 // two thumbs
-const limitValues = (values: number[]) => {
-  if (values.length > 2 || values.length === 0) {
+const limitvalue = (value: number[]) => {
+  if (value.length > 2 || value.length === 0) {
     throw new Error(
-      'the values prop represents positions of thumbs, so its length can be only one or two',
+      'the value prop represents positions of thumbs, so its length can be only one or two',
     );
   }
-  return values;
+  return value;
 };
 
 class Slider extends React.Component<PropsT> {
@@ -43,19 +43,19 @@ class Slider extends React.Component<PropsT> {
   };
 
   getSharedProps() {
-    const {disabled, step, min, max, values}: PropsT = this.props;
+    const {disabled, step, min, max, value}: PropsT = this.props;
     return {
       $disabled: disabled,
       $step: step,
       $min: min,
       $max: max,
-      $values: limitValues(values),
+      $value: limitvalue(value),
     };
   }
 
   render() {
     const {overrides = {}, min, max, step, onChange, disabled} = this.props;
-    const values = limitValues(this.props.values);
+    const value = limitvalue(this.props.value);
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Track, trackProps] = getOverrides(overrides.Track, StyledTrack);
     const [InnerTrack, innerTrackProps] = getOverrides(
@@ -83,9 +83,9 @@ class Slider extends React.Component<PropsT> {
           step={step}
           min={min}
           max={max}
-          values={values}
+          values={value}
           disabled={disabled}
-          onChange={values => onChange({values})}
+          onChange={value => onChange({value})}
           renderTrack={({props, children, isDragged}) => (
             <Track
               onMouseDown={props.onMouseDown}

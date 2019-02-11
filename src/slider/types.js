@@ -11,7 +11,7 @@ import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type ParamsT = {
-  values: Array<number>,
+  value: Array<number>,
 };
 export type OverridesT = {
   Root?: OverrideT<*>,
@@ -26,12 +26,12 @@ export type OverridesT = {
 
 export type PropsT = {
   /** Position of the thumbs. It can be a single point (one thumb) or 2 points array (range thumbs). */
-  values: Array<number>,
+  value: Array<number>,
   /** The minimum allowed value of the slider. Should not be bigger than max. */
   min: number,
   /** The maximum allowed value of the slider. Should not be smaller than min. */
   max: number,
-  /** The granularity the slider can step through values. Default step is 1. */
+  /** The granularity the slider can step through value. Default step is 1. */
   step?: ?number,
   overrides?: OverridesT,
   /** Disable control from being changed. */
@@ -43,7 +43,7 @@ export type PropsT = {
 };
 
 export type StateT = {
-  values: Array<number>,
+  value: Array<number>,
 };
 
 export type StateReducerT = (

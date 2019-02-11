@@ -1,6 +1,6 @@
 # Slider Component
 
-Represents control with sliding axis to choose a single value or range between min and max values.
+Represents control with sliding axis to choose a single value or range between min and max value.
 
 ## Usage
 
@@ -10,7 +10,7 @@ Represents control with sliding axis to choose a single value or range between m
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
 
-export default () => <Slider values={[50]} />;
+export default () => <Slider value={[50]} />;
 ```
 
 ### Advanced usage
@@ -30,8 +30,8 @@ export default () => {
     min={-100}
     max={100}
     step={5}
-    initialState={{values: [-20, 20]}}
-    onChange={({values}) => {console.log((values)}}
+    initialState={{value: [-20, 20]}}
+    onChange={({value}) => {console.log((value)}}
     overrides={{
       Thumb: CustomThumb,
     }}
@@ -54,7 +54,7 @@ export default () => {
 
 ## `Slider` API
 
-* `values: Array<number>` - Required.
+* `value: Array<number>` - Required.
   * Selected points chosen on axis. It can be a single point (one thumb) or 2 points array (range thumbs).
 * `step?: number`,
 * `min?: number`,
@@ -68,14 +68,14 @@ export default () => {
   * `TickBar?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `Thumb?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
   * `InnerThumb?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-* `onChange?: ({values}) => void = () => {}`
+* `onChange?: ({value}) => void = () => {}`
   * Handler for events on trigger element, each time thumbs change selection, which is passed in `value`.
 
 ## `StatefulSlider` API
 
 * `initialState?: {value?: Point | Array<Point>} = {}`
   * Initial state of an uncontrolled slider component.
-    * `values` - an initial state of selected points on axis. It can be a single point (one thumb) or 2 points array (range thumbs).
+    * `value` - an initial state of selected points on axis. It can be a single point (one thumb) or 2 points array (range thumbs).
 * `stateReducer?: (type: string, nextState: {}, currentState: {}, event: SyntheticInputEvent<HTMLInputEvent>) => nextState`
   * A state change handler.
     * `type` - state change type
@@ -86,7 +86,7 @@ export default () => {
 * `max?: number`
 * `disabled?: boolean = false`:
   * Disable control from being changed.
-* `onChange?: ({values}) => void = () => {}`
+* `onChange?: ({value}) => void = () => {}`
 
 ## Presentational components props API
 
