@@ -152,7 +152,7 @@
     "popper.js": "^1.14.3",
     "react-dropzone": "^8.0.0",
     "react-input-mask": "^2.0.4",
-    "react-movable": "^1.0.1",
+    "react-movable": "^2.0.1",
     "react-range": "^1.0.4",
     "smoothscroll-polyfill": "^0.4.3"
   },
