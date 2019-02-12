@@ -1,14 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Stateful Slider Container should correctly render: Component has correct render  1`] = `
-<StatefulSliderContainer
-  initialState={Object {}}
-  onChange={[Function]}
-  prop1="some other slider prop"
-  stateReducer={[Function]}
->
-  <div>
-    test
-  </div>
-</StatefulSliderContainer>
+<div>
+  test
+</div>
 `;

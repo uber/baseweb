@@ -11,14 +11,14 @@ import Layout from '../../components/layout';
 
 import Basic from 'examples/slider/basic.js';
 import Stateful from 'examples/slider/stateful.js';
+import Disabled from 'examples/slider/disabled.js';
 import Range from 'examples/slider/range.js';
-import RangeLabel from 'examples/slider/range-label.js';
-import Step from 'examples/slider/step.js';
-import Ticks from 'examples/slider/ticks.js';
+import StepMinMax from 'examples/slider/step-min-max.js';
+import CustomTicks from 'examples/slider/custom-ticks.js';
 import Customization from 'examples/slider/overrides.js';
 
 import Overrides from '../../components/overrides';
-import {Slider} from 'baseui/slider';
+import {StatefulSlider as Slider} from 'baseui/slider';
 import * as SliderExports from 'baseui/slider';
 
 export default Layout;
@@ -30,33 +30,58 @@ Control input with sliding axis to choose a single value or range between min an
 There are two slider options in Base that allow users to select a single value or a range.
 Each slider has a primary control handle that cues user interaction.
 
+## Accessibility
+
+Slider sets these attributes:
+
+- `role="slider"`
+- `aria-valuemin`
+- `aria-valuemax`
+- `aria-valuenow`
+
+Thumbs can be focused and **controlled by the keyboard**:
+
+- `tab` and `shift+tab` to focus thumbs
+- `arrow up` or `arrow right` or `k` to increase the thumb value by one step
+- `arrow down` or `arrow left` or `j` to decrease the thumb value by one step
+- `page up` to increase the thumb value by ten steps
+- `page down` to decrease the thumb value by ten steps
+
+The component is also **optimized for iOS and Android devices**.
+
 ## Examples
 
 <Example title="Slider Basic Usage" path="examples/slider/basic.js">
   <Basic />
 </Example>
 
-<Example title="Slider as a Stateful Component" path="examples/slider/stateful.js">
+<Example
+  title="Slider as a Stateful Component"
+  path="examples/slider/stateful.js"
+>
   <Stateful />
 </Example>
 
-<Example title="Slider Range example" path="examples/slider/range.js">
+<Example title="Slider Range" path="examples/slider/range.js">
   <Range />
 </Example>
 
+<Example title="Disabled Slider" path="examples/slider/disabled.js">
+  <Disabled />
+</Example>
+
 <Example
-  title="Slider with custom labels"
-  path="examples/slider/range-label.js"
+  title="Custom min, max and step"
+  path="examples/slider/step-min-max.js"
 >
-  <RangeLabel />
+  <StepMinMax />
 </Example>
 
-<Example title="Slider as a stepped slider" path="examples/slider/step.js">
-  <Step />
-</Example>
-
-<Example title="Slider with Multiple Ticks" path="examples/slider/ticks.js">
-  <Ticks />
+<Example
+  title="Slider with custom ticks"
+  path="examples/slider/custom-ticks.js"
+>
+  <CustomTicks />
 </Example>
 
 <Example title="Slider with Overrides" path="examples/slider/overrides.js">
@@ -67,7 +92,7 @@ Each slider has a primary control handle that cues user interaction.
   name="Slider"
   component={SliderExports}
   renderExample={props => (
-    <Slider value={[60]} range={[0, 100]} overrides={props.overrides} />
+    <Slider initialState={{value: [25, 75]}} overrides={props.overrides} />
   )}
 />
 
