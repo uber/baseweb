@@ -35,7 +35,7 @@ export type PropsT = {
   step: number,
   overrides?: OverridesT,
   /** Disable control from being changed. */
-  disabled?: boolean,
+  disabled: boolean,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange: ({
     ...ParamsT,
