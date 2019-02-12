@@ -121,6 +121,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     this.popper = new Popper(this.anchorRef.current, this.popperRef.current, {
       // Recommended placement (popper may ignore if it causes a viewport overflow, etc)
       placement: toPopperPlacement(placement),
+      eventsEnabled: this.props.eventsEnabled,
       modifiers: {
         // Passing the arrow ref will measure the arrow when calculating styles
         arrow: {

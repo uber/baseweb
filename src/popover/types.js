@@ -57,6 +57,8 @@ export type BasePopoverPropsT = {
    */
   accessibilityType?: AccessibilityTypeT,
   id?: string,
+  /** Whether events (resize, scroll) are enabled. Defaults to true. */
+  eventsEnabled?: boolean,
   /** If true, popover element will not avoid element boundaries. */
   ignoreBoundary?: boolean,
   /** Number of milliseconds to wait before showing the popover after mouse enters the trigger element (for triggerType `hover`). */

@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Button, KIND, SIZE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import FilterIcon from '../icon/filter.js';
-import {StatefulPopover} from '../popover/index.js';
+import {StatefulPopover, PLACEMENT} from '../popover/index.js';
 
 import {
   StyledFilterButton,
@@ -61,6 +61,8 @@ export default function Filter(props: FilterProps) {
 
   return (
     <StatefulPopover
+      eventsEnabled={false}
+      placement={PLACEMENT.bottom}
       stateReducer={(_, nextState) => {
         if (props.disabled) {
           return {...nextState, isOpen: false};
