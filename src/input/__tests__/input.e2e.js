@@ -18,14 +18,7 @@ describe('input', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'input');
     await page.waitFor(selectors.input);
-    const accessibilityReport = await analyzeAccessibility(page, {
-      rules: [
-        {
-          id: 'label',
-          enabled: false,
-        },
-      ],
-    });
+    const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
