@@ -40,7 +40,7 @@ export type ListPropsT = {|
   /** Items (labels) to be rendered */
   items: Array<React.Node>,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
-  onChange?: ({oldIndex: number, newIndex: number}) => mixed,
+  onChange: ({oldIndex: number, newIndex: number}) => mixed,
   overrides?: OverridesT,
 |};
 

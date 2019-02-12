@@ -30,21 +30,40 @@ Allows users to create vertically sortable lists supporting drag and drop, touch
 
 - When a user wants to change a collection order.
 
+### Accessibility
+
+- `tab` and `shift+tab` to focus items
+- `space` to `lift` or drop the item
+- `j` or `arrow down` to move the lifted item down
+- `k` or `arrow up` to move the lifted item up
+- `escape` to cancel the lift and return the item to its initial position
+
+This component also supports iOS and Android browsers and screen readers.
+
 ## Examples
 
 <Example title="Drag and Drop basic usage" path="examples/dnd-list/basic.js">
   <Basic />
 </Example>
 
-<Example title="Drag and Drop stateless usage" path="examples/dnd-list/stateless.js">
+<Example
+  title="Drag and Drop stateless usage"
+  path="examples/dnd-list/stateless.js"
+>
   <Stateless />
 </Example>
 
-<Example title="Drag and Drop with removable items" path="examples/dnd-list/removable.js">
+<Example
+  title="Drag and Drop with removable items"
+  path="examples/dnd-list/removable.js"
+>
   <Removable />
 </Example>
 
-<Example title="Drag and Drop with varying heights" path="examples/dnd-list/varyingHeights.js">
+<Example
+  title="Drag and Drop with varying heights"
+  path="examples/dnd-list/varyingHeights.js"
+>
   <VaryingHeights />
 </Example>
 
@@ -55,7 +74,10 @@ Allows users to create vertically sortable lists supporting drag and drop, touch
   <CustomDragHandle />
 </Example>
 
-<Example title="Drag and Drop with label override" path="examples/dnd-list/overrideLabel.js">
+<Example
+  title="Drag and Drop with label override"
+  path="examples/dnd-list/overrideLabel.js"
+>
   <OverrideLabel />
 </Example>
 
