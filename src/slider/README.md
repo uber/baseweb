@@ -1,6 +1,6 @@
 # Slider Component
 
-Represents control with sliding axis to choose a single value or range between min and max values.
+Represents control with sliding axis to choose a single value or range between min and max value.
 
 ## Usage
 
@@ -10,10 +10,7 @@ Represents control with sliding axis to choose a single value or range between m
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
 
-export default () => <Slider range={[
-  {value: 0, label: '0, min'},
-  {value: 100, label: '100, max'}
-]} />;
+export default () => <Slider value={[50]} />;
 ```
 
 ### Advanced usage
@@ -30,22 +27,15 @@ const CustomThumb = styled('div', {
 
 export default () => {
   return <StatefulSlider
-    range={[
-      {value: 0, label: '0, min'},
-      {value: 20, label: '20'},
-      {value: 40, label: '40'},
-      {value: 60, label: '60'},
-      {value: 80, label: '80'},
-      {value: 100, label: '100, max'}
-    ]}
-    initialState={{
-      value: [{value: 20, label: '20'}, {value: 40, label: '40'}]
-    }}
-    onChange={(event, value)=>{console.log(value)}}
+    min={-100}
+    max={100}
+    step={5}
+    initialState={{value: [-20, 20]}}
+    onChange={({value}) => {console.log((value)}}
     overrides={{
       Thumb: CustomThumb,
     }}
-    />
+  />
 }
 ```
 
@@ -55,37 +45,30 @@ export default () => {
 * `StatefulSlider`
 * `StatefulContainer`
 * `StyledRoot`
-* `StyledAxis`
+* `StyledTrack`
+* `StyledInnerTrack`
 * `StyledTick`
 * `StyledTickBar`
 * `StyledThumb`
-* `StyledAxisRange`
+* `StyledInnerThumb`
 
 ## `Slider` API
 
-* `range: Array<Point>` - Required.
-  * All points present on slider axis. First and last point represent min and max
-    value. Each `Point` can be a value itself (for primitive type) or if `Point` is
-    `Object` it should have `value` and `label`. If more than 2 elements are present
-    in array, they represent all ticks on axis and `step` property is ignored.
-* `value: Point | Array<Point>` - Required.
+* `value: Array<number>` - Required.
   * Selected points chosen on axis. It can be a single point (one thumb) or 2 points array (range thumbs).
-* `step?: number`
-  * If `range` contains only min and max points (2 elements) step is to shift thumb every time user moves it left or right. If `step` in place `value` for each `Point` should be of primitive type.
+* `step?: number`,
+* `min?: number`,
+* `max?: number`,
 * `disabled?: boolean = false`
-  * Disable control from being changed.
 * `overrides?: {Root, Axis, StyledTick, Thumb} = {}`
   * `Root?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * Container element to render.
-  * `Axis?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * Is the range line element to render.
+  * `Track?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+  * `InnerTrack?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`  
   * `Tick?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * To render a tick(label) for min, max and optional points on axis and on top of `Thumb`
   * `TickBar?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * To render a ticks container for min, max and optional points.
   * `Thumb?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
-    * To render a thumb sliding over axis.
-* `onChange?: ({event, value}) => void = () => {}`
+  * `InnerThumb?: ReactComponent | {props: {}, style: {}, component: ReactComponent}`
+* `onChange?: ({value}) => void = () => {}`
   * Handler for events on trigger element, each time thumbs change selection, which is passed in `value`.
 
 ## `StatefulSlider` API
@@ -98,35 +81,29 @@ export default () => {
     * `type` - state change type
     * `nextState` - a new state changes that will be set
     * `currentState` - current full state of the component
-    * `event` - html input event from slider position change
-* `range: {Array<Point>}` - Required.
-  * All points present on slider axis. First and last point represent min and max value. Each `Point` can be
-    a value itself (for primitive type) or if `Point` is `Object` it should have `value` and `label`. If more
-    than 2 elements are present in array, they represent all ticks on axis and `step` property is ignored.
 * `step?: number`
-  * If `range` contains only min and max points (2 elements) step is to shift thumb every time user moves it
-    left or right. If `step` in place `value` for each `Point` should be of primitive type.
+* `min?: number`
+* `max?: number`
 * `disabled?: boolean = false`:
   * Disable control from being changed.
-* `onChange?: ({event, value}) => void = () => {}`
-  * Handler for events on trigger element, each time thumbs change selection, which is passed in `value`.
+* `onChange?: ({value}) => void = () => {}`
 
 ## Presentational components props API
 
 These properties are passed to every presentational (styled) component that is exported:
 
-`StyledRoot`, `StyledAxis`, `StyledTick`, `StyledThumb`, `StyledTickBar`, `StyledAxisRange`
+`StyledRoot`, `StyledTrack`, , `StyledInnerTrack`, `StyledTick`, `StyledThumb`, `StyledInnerThumb`, `StyledTickBar`, `StyledAxisRange`
 
 * `$disabled: boolean`
   * Disable control from being changed.
-* `$isHovered: boolean`
-  * If component is hovered.
-* `$isActive: boolean`
-  * If component is active.
+* `$min: number`
+* `$max: number`
+* `$step: number`
+* `$isDragged: boolean`
 * `$thumbIndex: number`
-  * For `Thumb` only. Index of thumb, which is rendered (0 for first thumb and 1 for second thumb).
+  * For `Thumb` and `InnerThumb` only. Index of thumb, which is rendered (0 for first thumb and 1 for second thumb).
 
 ## Accessibility
 
 Should support keyboard hotkeys: `tab` - to switch between thumbs, `left` and `bottom` to decrease value of thumb, `right` and `up` to increase thumb value on axis
-Accessibility best practices for this component (`aria-valuenow`, `aria-valuetext`, `aria-valuemin`, `aria-valuemax`, `role=slider`)
+Accessibility best practices for this component (`aria-valuenow`, `aria-valuemin`, `aria-valuemax`, `role=slider`)

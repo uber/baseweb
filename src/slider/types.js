@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
@@ -17,37 +15,29 @@ export type ParamsT = {
 };
 export type OverridesT = {
   Root?: OverrideT<*>,
-  Axis?: OverrideT<*>,
-  AxisRange?: OverrideT<*>,
+  Track?: OverrideT<*>,
+  InnerTrack?: OverrideT<*>,
   Tick?: OverrideT<*>,
   TickBar?: OverrideT<*>,
   Thumb?: OverrideT<*>,
+  InnerThumb?: OverrideT<*>,
+  ThumbValue?: OverrideT<*>,
 };
 
 export type PropsT = {
-  /** Selected points chosen on axis. It can be a single point (one thumb) or 2 points array (range thumbs). */
+  /** Position of the thumbs. It can be a single point (one thumb) or 2 points array (range thumbs). */
   value: Array<number>,
-  /** All points present on slider axis. First and last point represent min and max
-   * value. Each `Point` can be a value itself (for primitive type) or if `Point` is
-   * `Object` it should have `value` and `label`. If more than 2 elements are present
-   * in array, they represent all ticks on axis and `step` property is ignored.
-   */
-  range: Array<number | {value: number, label: React.Node}>,
-  /** If `range` contains only min and max points (2 elements) step is to shift thumb
-   * every time user moves it left or right. If `step` in place `value` for each `Point`
-   * should be of primitive type.
-   */
-  step?: ?number,
+  /** The minimum allowed value of the slider. Should not be bigger than max. */
+  min: number,
+  /** The maximum allowed value of the slider. Should not be smaller than min. */
+  max: number,
+  /** The granularity the slider can step through value. Default step is 1. */
+  step: number,
   overrides?: OverridesT,
-  tabIndex: number,
-  error: boolean,
-  /** Focuses the element on render. */
-  autoFocus: boolean,
   /** Disable control from being changed. */
-  disabled?: boolean,
+  disabled: boolean,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange: ({
-    event: SyntheticEvent<HTMLElement> | MouseEvent,
     ...ParamsT,
   }) => void,
 };
@@ -56,39 +46,33 @@ export type StateT = {
   value: Array<number>,
 };
 
-export type StatelessStateT = {
-  isThumbMoving: boolean,
-  currentThumb: number,
-  currentMove: number,
-  thumbRefs: Array<{current: ?React.ElementRef<*>}>,
-};
-
 export type StateReducerT = (
   stateType: string,
   nextState: StateT,
   currentState: StateT,
-  event: SyntheticEvent<HTMLElement>,
 ) => StateT;
 
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
   children: (*) => React$Node,
+  min: number,
+  max: number,
+  step: number,
   /** Initial state populated into the component */
-  initialState?: StateT,
+  initialState: StateT,
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducerT,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange: ({event: SyntheticEvent<HTMLElement>, ...ParamsT}) => void,
-  /** Focuses the element on render. */
-  autoFocus?: boolean,
+  onChange: ({...ParamsT}) => void,
 };
 
 export type StatefulSliderPropsT = {
   overrides?: OverridesT,
   /** Initial state populated into the component */
-  initialState: StateT,
-  /** Focuses the element on render. */
-  autoFocus?: boolean,
+  initialState?: StateT,
+  min?: number,
+  max?: number,
+  step?: number,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange?: ({event: SyntheticEvent<HTMLElement>, ...ParamsT}) => void,
+  onChange?: ({...ParamsT}) => void,
 };
