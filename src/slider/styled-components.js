@@ -6,65 +6,65 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {startThumbIcon, endThumbIcon, singleThumbIcon} from './icons.js';
+import {getTrackBackground} from 'react-range';
 
 export const Root = styled('div', props => {
-  return {
-    paddingTop: '1px',
-    position: 'relative',
-  };
+  return {};
 });
 Root.displayName = 'StyledRoot';
 
-export const Axis = styled('div', props => {
-  const {$theme} = props;
-  const {colors, borders, sizing} = $theme;
-  return {
-    position: 'relative',
-    marginTop: sizing.scale900,
-    marginBottom: sizing.scale900,
-    marginRight: sizing.scale400,
-    marginLeft: sizing.scale400,
-    borderRadius: $theme.borders.useRoundedCorners ? borders.radius100 : '0px',
-    backgroundColor: colors.mono400,
-    height: sizing.scale100,
-  };
-});
-Axis.displayName = 'StyledAxis';
-
-export const AxisRange = styled('div', props => {
-  const {$max, $min, $index, $isRange, $value, $theme} = props;
-  const {colors, borders, sizing} = $theme;
-  const fillColor = colors.primary400;
-  const emptyColor = colors.mono400;
-  let barColor;
-  if ($isRange) {
-    barColor = $index % 2 === 0 ? emptyColor : fillColor;
-  } else {
-    barColor = $index % 2 === 0 ? fillColor : emptyColor;
+export const Track = styled('div', props => {
+  const {$theme, $value, $disabled, $isDragged} = props;
+  const {sizing} = $theme;
+  let cursor = 'inherit';
+  if ($disabled) {
+    cursor = 'not-allowed';
+  } else if ($isDragged) {
+    cursor = 'grabbing';
+  } else if ($value.length === 1) {
+    cursor = 'pointer';
   }
-  const value =
-    $isRange && $index ? $value[$index] - $value[$index - 1] : $value[$index];
-  const totalRangeValue = $max - $min;
-  const width = `${(value / totalRangeValue) * 100}%`;
-  const offset =
-    $isRange && $index
-      ? `${($value[$index - 1] / totalRangeValue) * 100}%`
-      : null;
   return {
-    borderRadius: borders.useRoundedCorners ? sizing.scale0 : '0',
-    height: '100%',
-    position: 'absolute',
-    top: '0',
-    marginLeft: offset,
-    backgroundColor: barColor,
-    width: width,
+    paddingTop: sizing.scale1000,
+    paddingBottom: sizing.scale600,
+    paddingRight: sizing.scale600,
+    paddingLeft: sizing.scale600,
+    display: 'flex',
+    cursor,
   };
 });
-AxisRange.displayName = 'StyledAxisRange';
+Track.displayName = 'StyledTrack';
+
+export const InnerTrack = styled('div', props => {
+  const {$theme, $value, $min, $max, $disabled} = props;
+  const {colors, borders, sizing} = $theme;
+  return {
+    borderRadius: $theme.borders.useRoundedCorners ? borders.radius100 : '0px',
+    background: getTrackBackground({
+      values: $value,
+      colors:
+        $value.length === 1
+          ? [$disabled ? colors.mono600 : colors.primary, colors.mono400]
+          : [
+              colors.mono400,
+              $disabled ? colors.mono600 : colors.primary,
+              colors.mono400,
+            ],
+      min: $min,
+      max: $max,
+    }),
+    height: sizing.scale100,
+    width: '100%',
+    alignSelf: 'center',
+    cursor: $disabled ? 'not-allowed' : 'inherit',
+  };
+});
+InnerTrack.displayName = 'StyledInnerTrack';
 
 export const Tick = styled('div', props => {
-  return {};
+  return {
+    ...props.$theme.typography.font300,
+  };
 });
 Tick.displayName = 'StyledTick';
 
@@ -75,88 +75,55 @@ export const TickBar = styled('div', props => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: sizing.scale400,
-    marginBottom: sizing.scale400,
-    marginRight: sizing.scale400,
-    marginLeft: sizing.scale400,
+    paddingRight: sizing.scale600,
+    paddingLeft: sizing.scale600,
+    paddingBottom: sizing.scale400,
   };
 });
 TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled('div', props => {
-  const {
-    $theme,
-    $value,
-    $max,
-    $index,
-    $currentThumb,
-    $disabled,
-    $isRange,
-  } = props;
-  const $isActive = $index === $currentThumb;
-  const offset = Math.round(($value[$index] / $max) * 100);
-  const {animation, colors, sizing} = $theme;
-  const backgroundColor = $disabled ? colors.mono500 : colors.white;
-  const thumbColor = getThumbColor({...props, $isActive});
-  let toggleSVG = '';
-  const $isStart = $isRange && $index % 2 === 0;
-  const $isEnd = $isRange && $index % 2 !== 0;
-  if ($isStart) {
-    toggleSVG = startThumbIcon(backgroundColor, thumbColor);
-  } else if ($isEnd) {
-    toggleSVG = endThumbIcon(backgroundColor, thumbColor);
-  } else {
-    toggleSVG = singleThumbIcon(backgroundColor, thumbColor);
-  }
+  const {$theme, $value, $thumbIndex, $disabled} = props;
+  const isLeft = $value.length === 2 && $thumbIndex === 0;
+  const isRight = $value.length === 2 && $thumbIndex === 1;
   return {
-    transitionDuration: animation.timing100,
-    transitionTimingFunction: animation.easeOutCurve,
-    transitionProperty: 'background-color',
-    ':after': {
-      position: 'absolute',
-      content: `url('data:image/svg+xml;utf8,${toggleSVG}')`,
-    },
-    position: 'relative',
-    top: '-14px',
-    cursor: 'pointer',
-    zIndex: '1',
-    left: `${offset}%`,
-    marginLeft: $isRange ? '-8px' : $index % 2 ? '-32px' : '-16px',
-    ':before': {
-      position: 'absolute',
-      content: `"${Math.round($value[$index])}"`,
-      top: '-14px',
-      marginLeft: sizing.scale100,
-      width: sizing.scale600,
-      height: sizing.scale600,
-    },
+    height: '24px',
+    width: isLeft || isRight ? '12px' : '24px',
+    borderTopLeftRadius: isRight ? '1px' : '4px',
+    borderTopRightRadius: isLeft ? '1px' : '4px',
+    borderBottomLeftRadius: isRight ? '1px' : '4px',
+    borderBottomRightRadius: isLeft ? '1px' : '4px',
+    backgroundColor: $theme.colors.mono100,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: $theme.colors.mono400,
+    boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.12)',
+    cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
 Thumb.displayName = 'StyledThumb';
 
-function getThumbColor(props) {
-  const {
-    $disabled,
-    $isFocused,
-    $isError,
-    $isHovered,
-    $isActive,
-    $theme,
-  } = props;
-  const {colors} = $theme;
-  if ($disabled) {
-    return colors.mono600;
-  } else if ($isActive || $isFocused || $isHovered) {
-    return colors.primary400;
-  } else if ($isError) {
-    if ($isActive || $isFocused) {
-      return colors.negative200;
-    } else if ($isHovered) {
-      return colors.negative100;
-    } else {
-      return colors.negative50;
-    }
-  } else {
-    return colors.mono600;
-  }
-}
+export const InnerThumb = styled('div', props => {
+  const {$theme, $isDragged} = props;
+  return {
+    height: '8px',
+    width: '2px',
+    borderRadius: '2px',
+    backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
+  };
+});
+InnerThumb.displayName = 'StyledInnerThumb';
+
+export const ThumbValue = styled('div', props => {
+  const {$theme} = props;
+  return {
+    position: 'absolute',
+    top: `-${$theme.sizing.scale800}`,
+    ...$theme.typography.font300,
+    backgroundColor: 'transparent',
+  };
+});
+ThumbValue.displayName = 'StyledThumbValue';

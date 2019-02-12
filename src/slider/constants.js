@@ -10,5 +10,3 @@ LICENSE file in the root directory of this source tree.
 export const STATE_CHANGE_TYPE = Object.freeze({
   change: 'change',
 });
-
-export const thumbWidth = 32;

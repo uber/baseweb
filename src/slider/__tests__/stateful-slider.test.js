@@ -24,32 +24,35 @@ describe('Stateful slider', function() {
   test('should provide default styled components to render', function() {
     const {
       StyledRoot,
-      StyledAxis,
+      StyledTrack,
+      StyledInnerTrack,
       StyledTick,
       StyledThumb,
+      StyledInnerThumb,
       StyledTickBar,
-      StyledAxisRange,
       StatefulSlider,
     } = require('../index');
 
     allProps.overrides = {
       Root: StyledRoot,
-      Axis: StyledAxis,
+      Track: StyledTrack,
+      InnerTrack: StyledInnerTrack,
       Tick: StyledTick,
       Thumb: StyledThumb,
+      InnerThumb: StyledInnerThumb,
       TickBar: StyledTickBar,
-      AxisRange: StyledAxisRange,
     };
     const slider: any = require('../slider');
     wrapper = mount(<StatefulSlider {...allProps} />);
     const {overrides} = slider.mock.calls[0][0];
     expect(overrides).toEqual({
       Root: StyledRoot,
-      Axis: StyledAxis,
+      Track: StyledTrack,
+      InnerTrack: StyledInnerTrack,
       Tick: StyledTick,
       Thumb: StyledThumb,
+      InnerThumb: StyledInnerThumb,
       TickBar: StyledTickBar,
-      AxisRange: StyledAxisRange,
     });
   });
 

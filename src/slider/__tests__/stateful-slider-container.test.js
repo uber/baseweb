@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import {StatefulContainer as StatefulSliderContainer} from '../index.js';
 import {STATE_CHANGE_TYPE} from '../constants.js';
 import type {StateReducerT} from '../types.js';
@@ -28,16 +28,15 @@ describe('Stateful Slider Container', function() {
 
   afterEach(function() {
     jest.restoreAllMocks();
-    wrapper && wrapper.unmount();
   });
 
   test('should correctly render', function() {
-    wrapper = mount(<StatefulSliderContainer {...allProps} />);
+    wrapper = shallow(<StatefulSliderContainer {...allProps} />);
     expect(wrapper).toMatchSnapshot('Component has correct render ');
   });
 
-  test('should provide all needed props to children render func', function() {
-    wrapper = mount(<StatefulSliderContainer {...allProps} />);
+  test('should provide all needed props to children renders func', function() {
+    wrapper = shallow(<StatefulSliderContainer {...allProps} />);
     const actualProps = childFn.mock.calls[0][0];
     expect(actualProps).toMatchObject({
       prop1: allProps.prop1,
@@ -46,41 +45,23 @@ describe('Stateful Slider Container', function() {
 
   test('should provide initial state as part of state', function() {
     allProps.initialState = {value: [30, 80]};
-    wrapper = mount(<StatefulSliderContainer {...allProps} />);
+    wrapper = shallow(<StatefulSliderContainer {...allProps} />);
     const actualProps = childFn.mock.calls[0][0];
     expect(actualProps).toMatchObject(allProps.initialState);
   });
 
-  describe('Events', function() {
-    let value = [40];
-    let events, stateReducerMock, instance, event;
-    event = {target: {}};
-    const handlers = [['onChange', STATE_CHANGE_TYPE.change, {value}]];
-    beforeEach(function() {
-      events = {
-        onChange: jest.fn(),
-      };
-      allProps = {...allProps, ...events};
-      stateReducerMock = jest.fn();
-      allProps.stateReducer = stateReducerMock;
-      wrapper = mount(<StatefulSliderContainer {...allProps} />);
-      instance = wrapper.instance();
-    });
-
-    test.each(handlers)(
-      'should call state reducer to apply new state for %s event with %s type',
-      (eventHandler, type, newState) => {
-        const handler = instance[eventHandler];
-        const params = {...newState};
-        handler({event, ...params});
-        expect(stateReducerMock).toHaveBeenCalledWith(
-          type,
-          newState,
-          {},
-          event,
-        );
-        expect(events[eventHandler]).toHaveBeenCalledWith({event, ...params});
-      },
+  test('stateReducer', () => {
+    allProps.initialState = {value: [50, 80]};
+    allProps.stateReducer = jest.fn();
+    const component = shallow(<StatefulSliderContainer {...allProps} />);
+    allProps.stateReducer.mockReturnValueOnce({value: [60, 80]});
+    component.instance().onChange({value: [60, 80]});
+    expect(allProps.stateReducer).toHaveBeenCalledTimes(1);
+    expect(allProps.stateReducer).toHaveBeenLastCalledWith(
+      STATE_CHANGE_TYPE.change,
+      {value: [60, 80]},
+      {value: [50, 80]},
     );
+    expect(component).toHaveState('value', [60, 80]);
   });
 });

@@ -14,13 +14,7 @@ type Props = {
   children: React.Node,
 };
 
-const Code = (props: Props) => (
-  <Paragraph>
-    <Block overrides={{Block: {style: {fontFamily: 'courier'}}}}>
-      {props.children}
-    </Block>
-  </Paragraph>
-);
+const Code = (props: Props) => <Block>{props.children}</Block>;
 
 const Title = (props: Props) => (
   <Block as="h1" font="font700">
@@ -40,15 +34,19 @@ const Heading = (props: Props) => (
   </Block>
 );
 
-const ListItem = (props: Props) => <Paragraph>- {props.children}</Paragraph>;
-
-const Paragraph = (props: Props) => (
-  <Block as="p" font="font300" style={{maxWidth: '50em', lineHeight: '2.0em'}}>
+const ListItem = (props: Props) => (
+  <Block as="li" font="font400" style={{maxWidth: '50em'}}>
     {props.children}
   </Block>
 );
 
-const UnorderedList = (props: Props) => <Block>{props.children}</Block>;
+const Paragraph = (props: Props) => (
+  <Block as="p" font="font400" style={{maxWidth: '50em'}}>
+    {props.children}
+  </Block>
+);
+
+const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
 export default {
   code: Code,
