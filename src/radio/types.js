@@ -30,6 +30,16 @@ export type DefaultPropsT = {
 };
 
 export type PropsT = {
+  /**
+   * Used to define a string that labels the radio group. Use this prop if the label is not
+   * visible on screen. If the label is visible, use the 'aria-labeledby' prop instead.
+   */
+  ariaLabel?: string,
+  /**
+   * Establishes a relationship between the radio group and its label. Screen readers use this
+   * attribute to catalog the object on a page so that users can navigate between them.
+   */
+  ariaLabelledBy?: string,
   overrides?: OverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
   children?: Array<React.Node>,

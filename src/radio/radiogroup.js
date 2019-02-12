@@ -35,6 +35,8 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
 
   render() {
     const {
+      ariaLabel,
+      ariaLabelledBy,
       name,
       children,
       labelPlacement,
@@ -44,24 +46,20 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
       required,
       overrides = {},
     } = this.props;
-    const events = {
-      onChange: this.props.onChange,
-      onMouseEnter: this.props.onMouseEnter,
-      onMouseLeave: this.props.onMouseLeave,
-      onFocus: this.props.onFocus,
-      onBlur: this.props.onBlur,
-    };
+
     const sharedProps = {
       $isError: isError,
       $required: required,
       $disabled: disabled,
     };
+
     const {
       Root = StyledRoot,
       RadioMark = StyledRadioMark,
       Label = StyledLabel,
       Input = StyledInput,
     } = overrides;
+
     const childrenProps = {
       name,
       isError,
@@ -70,11 +68,22 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
       labelPlacement,
       type: 'radio',
       overrides: {Root, Checkmark: RadioMark, Label, Input},
+      onChange: this.props.onChange,
+      onMouseEnter: this.props.onMouseEnter,
+      onMouseLeave: this.props.onMouseLeave,
+      onFocus: this.props.onFocus,
+      onBlur: this.props.onBlur,
       ...sharedProps,
-      ...events,
     };
+
     return (
-      <StyledRadioGroupRoot $align={align} {...sharedProps}>
+      <StyledRadioGroupRoot
+        role="radiogroup"
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        $align={align}
+        {...sharedProps}
+      >
         {React.Children.map(children, child => {
           if (!React.isValidElement(child)) {
             return null;

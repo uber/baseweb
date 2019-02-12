@@ -9,8 +9,7 @@ LICENSE file in the root directory of this source tree.
 module.exports = {
   AS_SIMPLE_SLIDER: 'Simple slider example',
   AS_SIMPLE_RANGE_SLIDER: 'Simple range slider',
-  LABELED_RANGE_SLIDER: 'Labeled range slider',
-  AS_SIMPLE_RANGE_SLIDER_WITH_STEP: 'Simple range slider with step=20',
-  AS_RANGE_SLIDER_WITH_MANY_TICKS: 'Range slider with many ticks',
-  AS_SLIDER_WITH_OVERRIDES: 'Slider with override of Axis and Thumb',
+  AS_DISABLED: 'Disabled',
+  AS_CUSTOM_RANGE_AND_STEP: 'Custom range and step',
+  AS_SLIDER_WITH_OVERRIDES: 'Slider with Thumb override',
 };

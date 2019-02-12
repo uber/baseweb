@@ -24,8 +24,6 @@ type HorizontalStyleProps = {
   $width?: string,
 };
 
-export const StyledContent = styled('div');
-
 export const StyledHead = styled(
   'div',
   ({$theme, $width}: HorizontalStyleProps) => {

@@ -23,8 +23,6 @@ Object {
 }
 `;
 
-exports[`Table styled components $width property: StyledContent has expected styles when $width property defined 1`] = `Object {}`;
-
 exports[`Table styled components $width property: StyledFilterButton has expected styles when $width property defined 1`] = `
 Object {
   "border": "none",
@@ -150,8 +148,6 @@ Object {
   "paddingTop": "$theme.sizing.scale300",
 }
 `;
-
-exports[`Table styled components default properties: StyledContent has expected default styles 1`] = `Object {}`;
 
 exports[`Table styled components default properties: StyledFilterButton has expected default styles 1`] = `
 Object {

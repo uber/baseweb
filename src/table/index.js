@@ -10,7 +10,6 @@ export {default as Filter} from './filter.js';
 // Styled elements
 export {
   StyledTable,
-  StyledContent, // remove StyledContent in the next major version
   StyledFilterButton,
   StyledFilterContent,
   StyledFilterHeading,

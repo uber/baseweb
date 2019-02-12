@@ -10,6 +10,7 @@ code[class*='language-'],
 pre[class*='language-'] {
   color: black;
   background: none;
+  font-size: 0.875rem;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   text-align: left;
   white-space: pre;
@@ -31,10 +32,10 @@ pre[class*='language-'] {
 /* Code blocks */
 pre[class*='language-'] {
   position: relative;
-  margin: 0.5em 0;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
   overflow: scroll;
-  max-width: 45em;
-  padding: 0 0 0 1.5em;
+  padding: 1em 1em 1em 1.5em;
   border-left: 5px solid #f6ba8b;
 }
 pre[class*='language-'] > code {

@@ -10,7 +10,6 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {
   StyledTable,
-  StyledContent,
   StyledHead,
   StyledHeadCell,
   StyledBody,
@@ -25,7 +24,6 @@ import {
 describe('Table styled components', () => {
   const styledComponents = [
     [StyledTable, 'StyledTable'],
-    [StyledContent, 'StyledContent'],
     [StyledHead, 'StyledHead'],
     [StyledHeadCell, 'StyledHeadCell'],
     [StyledBody, 'StyledBody'],
