@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {KIND, SIZE, SHAPE} from '../button/index.js';
+import {SIZE, SHAPE} from '../button/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {ThemeT} from '../styles/index.js';
 
@@ -27,8 +27,6 @@ export type PropsT = {|
   children: Array<React.Node>,
   /** Defines if the button group is disabled. */
   disabled?: boolean,
-  /** Defines the kind (purpose) of the buttons in the button group. */
-  kind?: $Values<typeof KIND>,
   /**
    * Use the `mode` prop to render toggleable Buttons:
    * the value `radio` will cause Buttons to behave like radio buttons,
