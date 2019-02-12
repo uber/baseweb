@@ -7,17 +7,6 @@ import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../src/styles';
 import {LightTheme} from '../src/themes';
 
-// automatically import all files ending in *.stories.js
-const req = require.context(
-  '../src',
-  true,
-  /^((?!template-component\/).)*.stories.js$/,
-);
-
-export default function loadStories() {
-  req.keys().forEach(filename => req(filename));
-}
-
 // Add providers for theme and styletron
 const engine = new Styletron();
 addDecorator(story => {
@@ -28,4 +17,4 @@ addDecorator(story => {
   );
 });
 
-configure(loadStories, module);
+configure(() => require('./load-stories.js'), module);

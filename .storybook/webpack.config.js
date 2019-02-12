@@ -11,7 +11,7 @@ module.exports = {
         test: /\.js$/,
         enforce: 'pre',
         loader: 'import-glob',
-        include: path.resolve(__dirname, '../src'),
+        include: [path.resolve(__dirname)],
       },
     ],
   },

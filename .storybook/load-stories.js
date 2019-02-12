@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import {storiesOf} from '@storybook/react';
 
-import scenarios from './*.scenario.js';
+import scenarios from '../src/**/*.scenario.js';
 
 scenarios.reduce(
   (stories, scenario) => stories.add(scenario.name, scenario.component),
-  storiesOf('Tag', module),
+  storiesOf('baseui', module),
 );
