@@ -144,7 +144,7 @@ export default {
     );
   },
   [tests.SINGLE_SELECT_SEARCH]: function Story3() {
-    const selector = '[role="list"] div';
+    const selector = '[role="combobox"]';
     return (
       <Screener
         steps={new Steps()
