@@ -11,6 +11,7 @@ export {
   Root as StyledRoot,
   Action as StyledAction,
   ActionIcon as StyledActionIcon,
+  Text as StyledText,
 } from './styled-components.js';
 export {COLOR_STYLE_KEYS, KIND} from './constants.js';
 export * from './types.js';

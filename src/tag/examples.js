@@ -47,6 +47,7 @@ export default {
               kind {kind}
             </Tag>
           ))}
+          <Tag>Default Color with long value</Tag>
         </div>
       </React.Fragment>
     );
