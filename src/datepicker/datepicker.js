@@ -24,11 +24,15 @@ export default class Datepicker extends React.Component<
   },
 > {
   static defaultProps = {
+    'aria-label': null,
+    'aria-labelledby': null,
+    disabled: false,
     formatDisplayValue: null,
     formatString: 'YYYY/MM/dd',
     onChange: () => {},
     overrides: {},
     placeholder: 'YYYY/MM/DD',
+    required: false,
     value: null,
   };
 
@@ -77,7 +81,6 @@ export default class Datepicker extends React.Component<
   }
 
   open = () => {
-    // console.log('input Focus');
     this.setState({
       isOpen: true,
       isPseudoFocused: true,
@@ -155,11 +158,17 @@ export default class Datepicker extends React.Component<
         {...popoverProps}
       >
         <InputComponent
+          aria-disabled={this.props.disabled}
+          aria-label={this.props['aria-label']}
+          aria-labelledby={this.props['aria-labelledby']}
+          aria-required={this.props.required || null}
+          disabled={this.props.disabled}
           value={this.formatDisplayValue(this.props.value)}
           onFocus={this.open}
           onBlur={this.handleInputBlur}
           onKeyDown={this.handleKeyDown}
           placeholder={this.props.placeholder}
+          required={this.props.required}
           {...inputProps}
         />
       </PopoverComponent>
