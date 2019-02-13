@@ -13,7 +13,7 @@ const selectors = {
   selectInput: '[role="combobox"]',
   selectDropDown: '[role="listbox"]',
   dropDownOption: '[role="option"]',
-  selectedList: '[role="list"]',
+  selectedList: '[data-id="selected"]',
   searchType: '[aria-autocomplete="list"]',
   expandedDropDown: '[aria-expanded="true"]',
 };
@@ -24,7 +24,7 @@ const optionAtPosition = position =>
   }:nth-child(${position})`;
 
 describe('select', () => {
-  xit(`passes basic a11y tests`, async () => {
+  it(`passes basic a11y tests`, async () => {
     await mount(page, 'select');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();

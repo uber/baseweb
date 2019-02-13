@@ -19,7 +19,6 @@ describe('Single Value component', function() {
     expect(renderedStyledComponent.props()).toMatchObject({
       'aria-selected': 'true',
       children: 'test',
-      role: 'option',
     });
   });
 
@@ -32,7 +31,6 @@ describe('Single Value component', function() {
     expect(passedProps).toMatchObject({
       'aria-selected': 'true',
       children: 'test',
-      role: 'option',
     });
   });
 });

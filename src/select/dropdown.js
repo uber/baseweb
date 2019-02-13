@@ -98,7 +98,11 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       StyledDropdownListItem,
     );
     return (
-      <DropdownContainer {...this.getSharedProps()} {...dropdownContainerProps}>
+      <DropdownContainer
+        role="listbox"
+        {...this.getSharedProps()}
+        {...dropdownContainerProps}
+      >
         <StatefulMenu
           onItemSelect={onItemSelect}
           items={options}

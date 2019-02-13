@@ -194,10 +194,8 @@ exports[`Select component renders component in search mode and false for multipl
             $searchable={true}
             $size="default"
             $type="search"
-            role="list"
           >
             <span
-              role="list"
               styled-component="true"
             >
               <MockStyledComponent
@@ -550,10 +548,8 @@ exports[`Select component renders component in search mode and true for multiple
             $searchable={true}
             $size="default"
             $type="search"
-            role="list"
           >
             <span
-              role="list"
               styled-component="true"
             >
               <MockStyledComponent
@@ -828,10 +824,8 @@ exports[`Select component renders component in select mode and false for multipl
             $searchable={true}
             $size="default"
             $type="select"
-            role="list"
           >
             <span
-              role="list"
               styled-component="true"
             >
               <MockStyledComponent
@@ -1183,10 +1177,8 @@ exports[`Select component renders component in select mode and true for multiple
             $searchable={true}
             $size="default"
             $type="select"
-            role="list"
           >
             <span
-              role="list"
               styled-component="true"
             >
               <MockStyledComponent
