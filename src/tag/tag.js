@@ -12,6 +12,7 @@ import {
   Action as StyledAction,
   Root as StyledRoot,
   ActionIcon as StyledActionIcon,
+  Text as StyledText,
 } from './styled-components.js';
 import type {SharedPropsT} from './types.js';
 
@@ -59,7 +60,7 @@ class Tag extends React.Component<PropsT, {}> {
     };
     return (
       <Root {...sharedProps} {...rootProps}>
-        {children}
+        <StyledText>{children}</StyledText>
         {closeable ? (
           <Action {...sharedProps} {...actionProps} {...events}>
             <ActionIcon
