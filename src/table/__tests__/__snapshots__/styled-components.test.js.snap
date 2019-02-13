@@ -23,8 +23,6 @@ Object {
 }
 `;
 
-exports[`Table styled components $width property: StyledContent has expected styles when $width property defined 1`] = `Object {}`;
-
 exports[`Table styled components $width property: StyledHead has expected styles when $width property defined 1`] = `
 Object {
   "backgroundColor": "$theme.colors.tableHeadBackgroundColor",
@@ -101,8 +99,6 @@ Object {
   "paddingTop": "$theme.sizing.scale300",
 }
 `;
-
-exports[`Table styled components default properties: StyledContent has expected default styles 1`] = `Object {}`;
 
 exports[`Table styled components default properties: StyledHead has expected default styles 1`] = `
 Object {

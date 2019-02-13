@@ -53,17 +53,6 @@ export default function ButtonGroup(props: PropsT) {
   const {overrides = {}} = props;
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
-  if (__DEV__) {
-    if (props.kind !== KIND.tertiary) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `ButtonGroup kind prop will no longer be supported in future major versions of base ui
-         because only a single color variant is supported in designs. Please update your code
-         to remove the kind prop.`,
-      );
-    }
-  }
-
   return (
     <Root aria-label={props.ariaLabel} {...rootProps}>
       {React.Children.map(props.children, (child, index) => {
@@ -74,7 +63,7 @@ export default function ButtonGroup(props: PropsT) {
         return React.cloneElement(child, {
           disabled: props.disabled ? true : child.props.disabled,
           isSelected: isSelected(props.selected, index),
-          kind: props.kind,
+          kind: KIND.tertiary,
           onClick: event => {
             if (props.disabled) {
               return;
@@ -103,7 +92,6 @@ export default function ButtonGroup(props: PropsT) {
 ButtonGroup.defaultProps = {
   ariaLabel: 'button group',
   disabled: false,
-  kind: KIND.tertiary,
   onClick: () => {},
   shape: SHAPE.default,
   size: SIZE.default,

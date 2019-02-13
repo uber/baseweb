@@ -3,6 +3,8 @@
 exports[`Input - basic functionality: input has correct props 1`] = `
 Object {
   "aria-invalid": false,
+  "aria-label": null,
+  "aria-labelledby": null,
   "aria-required": false,
   "children": null,
   "disabled": false,
@@ -51,6 +53,8 @@ Object {
       $required={false}
       $size="default"
       aria-invalid={false}
+      aria-label={null}
+      aria-labelledby={null}
       aria-required={false}
       disabled={false}
       name=""
@@ -105,6 +109,8 @@ Object {
       $required={false}
       $size="default"
       aria-invalid={false}
+      aria-label={null}
+      aria-labelledby={null}
       aria-required={false}
       disabled={false}
       name=""
@@ -159,6 +165,8 @@ Object {
       $required={false}
       $size="default"
       aria-invalid={false}
+      aria-label={null}
+      aria-labelledby={null}
       aria-required={false}
       disabled={false}
       name=""

@@ -64,6 +64,10 @@ export type InputComponentsT = {
 };
 
 export type BaseInputPropsT<T> = {
+  /** Sets aria-label attribute. */
+  'aria-label': ?string,
+  /** Sets aria-labelledby attribute. */
+  'aria-labelledby': ?string,
   /** Defines styles for inputs that are grouped with other controls. */
   adjoined: AdjoinedT,
   /** If true the input will be focused on the first mount. */

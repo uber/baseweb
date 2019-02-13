@@ -615,24 +615,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       value = '';
     }
 
-    const inputProps = {
-      'aria-expanded': isOpen,
-      'aria-haspopup': isOpen,
-      'aria-label': this.props['aria-label'],
-      'aria-describedby': this.props['aria-describedby'],
-      'aria-labelledby': this.props['aria-labelledby'],
-      'aria-autocomplete': 'list',
-      'aria-disabled': this.props.disabled || null,
-      'aria-required': this.props.required || null,
-      disabled: this.props.disabled || null,
-      inputRef: ref => (this.input = ref),
-      onChange: this.handleInputChange,
-      onFocus: this.handleInputFocus,
-      overrides: {Input: overrides.Input},
-      required: (this.props.required && !this.props.value.length) || null,
-      role: 'combobox',
-      value,
-    };
     if (!this.props.searchable) {
       return (
         <InputContainer
@@ -643,7 +625,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-required={this.props.required || null}
           onFocus={this.handleInputFocus}
           $ref={ref => (this.input = ref)}
-          role="combobox"
           tabIndex={0}
           {...sharedProps}
           {...inputContainerProps}
@@ -652,7 +633,25 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     return (
       <InputContainer {...sharedProps} {...inputContainerProps}>
-        <AutosizeInput {...sharedProps} {...inputProps} />
+        <AutosizeInput
+          aria-autocomplete="list"
+          aria-describedby={this.props['aria-describedby']}
+          aria-disabled={this.props.disabled || null}
+          aria-expanded={isOpen}
+          aria-haspopup={isOpen}
+          aria-label={this.props['aria-label']}
+          aria-labelledby={this.props['aria-labelledby']}
+          aria-required={this.props.required || null}
+          disabled={this.props.disabled || null}
+          inputRef={ref => (this.input = ref)}
+          onChange={this.handleInputChange}
+          onFocus={this.handleInputFocus}
+          overrides={{Input: overrides.Input}}
+          required={(this.props.required && !this.props.value.length) || null}
+          role="combobox"
+          value={value}
+          {...sharedProps}
+        />
       </InputContainer>
     );
   }
@@ -866,7 +865,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           {...controlContainerProps}
         >
           {type === TYPE.search ? this.renderSearch() : null}
-          <ValueContainer role="list" {...sharedProps} {...valueContainerProps}>
+          <ValueContainer {...sharedProps} {...valueContainerProps}>
             {this.renderValue(valueArray, isOpen)}
             {this.renderInput()}
           </ValueContainer>
