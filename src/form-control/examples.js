@@ -12,7 +12,7 @@ import {FormControl, StyledLabel} from './index.js';
 import {StatefulInput as Input, SIZE} from '../input/index.js';
 import {StatefulTextarea as Textarea} from '../textarea/index.js';
 import {StatefulCheckbox as Checkbox} from '../checkbox/index.js';
-import {StatefulRadioGroup as RadioGroup, StyledRadio} from '../radio/index.js';
+import {StatefulRadioGroup as RadioGroup, Radio} from '../radio/index.js';
 
 const InputIcon = styled('span', props => {
   return {
@@ -88,9 +88,9 @@ export default {
         </FormControl>
         <FormControl label="RadioGroup label" caption="RadioGroup caption">
           <RadioGroup>
-            <StyledRadio value="red">Red</StyledRadio>
-            <StyledRadio value="green">Green</StyledRadio>
-            <StyledRadio value="blue">Blue</StyledRadio>
+            <Radio value="red">Red</Radio>
+            <Radio value="green">Green</Radio>
+            <Radio value="blue">Blue</Radio>
           </RadioGroup>
         </FormControl>
       </div>

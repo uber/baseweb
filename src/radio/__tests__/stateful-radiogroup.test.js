@@ -21,7 +21,7 @@ describe('Stateful radiogroup', function() {
   });
 
   test('should provide overrides components to render', function() {
-    jest.mock('../radio', () => jest.fn(() => <div>test</div>));
+    jest.mock('../styled-radio', () => jest.fn(() => <div>test</div>));
     const {
       StyledRoot,
       StyledLabel,
@@ -36,7 +36,7 @@ describe('Stateful radiogroup', function() {
       RadioMark: StyledRadioMark,
       Input: StyledInput,
     };
-    const radio: any = require('../radio');
+    const radio: any = require('../styled-radio');
     wrapper = mount(
       <StatefulRadioGroup {...allProps}>
         <StyledRadio value="1">First</StyledRadio>

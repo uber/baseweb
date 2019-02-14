@@ -16,7 +16,7 @@ import Error from 'examples/radio/error.js';
 import Customization from 'examples/radio/overrides.js';
 
 import Overrides from '../../components/overrides';
-import {StyledRadio, StatefulRadioGroup} from 'baseui/radio';
+import {Radio, StatefulRadioGroup} from 'baseui/radio';
 import * as RadioExports from 'baseui/radio';
 
 export default Layout;
@@ -39,7 +39,10 @@ Radios are used when only one choice may be selected in a series of options.
   <Stateful />
 </Example>
 
-<Example title="Radio with Horizontal Align" path="examples/radio/horizontal-align.js">
+<Example
+  title="Radio with Horizontal Align"
+  path="examples/radio/horizontal-align.js"
+>
   <HorizontalAlign />
 </Example>
 
@@ -56,22 +59,29 @@ Radios are used when only one choice may be selected in a series of options.
 <Overrides
   name="Radio"
   component={RadioExports}
-  whitelisted={['Root', 'RadioMark', 'Label', 'Input']}
+  whitelisted={[
+    'Root',
+    'RadioMarkInner',
+    'RadioMarkOuter',
+    'Label',
+    'Input',
+    'RadioGroupRoot',
+  ]}
   renderExample={props => (
     <StatefulRadioGroup
-      overrides={props.overrides}
+      overrides={{RadioGroupRoot: props.overrides.RadioGroupRoot}}
       name="choose one option"
       initialState={{value: '2'}}
     >
-      <StyledRadio overrides={props.overrides} value="1">
+      <Radio overrides={props.overrides} value="1">
         First
-      </StyledRadio>
-      <StyledRadio overrides={props.overrides} value="2">
+      </Radio>
+      <Radio overrides={props.overrides} value="2">
         Second
-      </StyledRadio>
-      <StyledRadio overrides={props.overrides} value="3">
+      </Radio>
+      <Radio overrides={props.overrides} value="3">
         Third
-      </StyledRadio>
+      </Radio>
     </StatefulRadioGroup>
   )}
 />
