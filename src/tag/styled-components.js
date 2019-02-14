@@ -61,6 +61,15 @@ export const ActionIcon = styled('svg', () => {
   return {};
 });
 
+export const Text = styled('span', props => {
+  return {
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    maxWidth: props.$theme.sizing.scale3200,
+  };
+});
+
 export const Root = styled('span', props => {
   const {$color, $disabled, $kind, $theme} = props;
   const {

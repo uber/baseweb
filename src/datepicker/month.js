@@ -92,7 +92,8 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
     return (
       <Month
-        role="listbox"
+        role="grid"
+        aria-multiselectable={this.props.isRange || null}
         aria-label={`month-${formatDate(this.props.date, 'YYYY-MM')}`}
         {...monthProps}
       >

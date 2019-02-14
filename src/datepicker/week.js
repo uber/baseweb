@@ -69,6 +69,10 @@ export default class Week extends React.Component<WeekPropsT> {
   render() {
     const {overrides = {}} = this.props;
     const [Week, weekProps] = getOverrides(overrides.Week, StyledWeek);
-    return <Week {...weekProps}>{this.renderDays()}</Week>;
+    return (
+      <Week role="row" {...weekProps}>
+        {this.renderDays()}
+      </Week>
+    );
   }
 }

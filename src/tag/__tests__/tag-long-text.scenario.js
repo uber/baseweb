@@ -8,16 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulSlider} from '../index.js';
+import {Tag} from '../index.js';
 
-export const name = 'slider';
+export const name = 'tag-long-text';
 
-export const component = () => (
-  <div
-    style={{
-      maxWidth: '500px',
-    }}
-  >
-    <StatefulSlider />
-  </div>
-);
+export const component = () => <Tag>Default Color with long text</Tag>;
