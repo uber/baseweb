@@ -194,6 +194,14 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
           paddingRight: '0',
         }),
       },
+      DropdownContainer: {
+        style: {
+          paddingTop: '0',
+          paddingBottom: '0',
+          paddingLeft: '0',
+          paddingRight: '0',
+        },
+      },
     };
   }
 
