@@ -48,6 +48,7 @@ export type DayPropsT = {
   includeDates: ?Array<Date>,
   isHighlighted: boolean,
   isRange: boolean,
+  locale: ?LocaleT,
   maxDate: ?Date,
   minDate: ?Date,
   month: ?number,
@@ -136,7 +137,11 @@ export type HeaderPropsT = CalendarPropsT & {
 };
 
 export type DatepickerPropsT = CalendarPropsT & {
+  'aria-label': ?string,
+  'aria-labelledby': ?string,
+  disabled: boolean,
   placeholder: string,
+  required: boolean,
   formatDisplayValue: ?(
     date: ?Date | Array<Date>,
     formatString: string,

@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulCheckbox} from '../index.js';
+import {FileUploader} from '../index.js';
 
-export const name = 'checkbox';
+export const name = 'file-uploader';
 
-export const component = () => <StatefulCheckbox>click me</StatefulCheckbox>;
+export const component = () => <FileUploader />;

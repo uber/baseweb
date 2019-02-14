@@ -15,13 +15,13 @@ const childLabel2 = '[data-name="child2"]';
 
 describe('checkbox', () => {
   it(`passes basic a11y tests`, async () => {
-    await mount(page, 'checkbox');
+    await mount(page, 'checkbox-indeterminite');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can switch states', async () => {
-    await mount(page, 'checkbox');
+    await mount(page, 'checkbox-indeterminite');
     await page.waitFor(childLabel1);
 
     await page.click(childLabel1);

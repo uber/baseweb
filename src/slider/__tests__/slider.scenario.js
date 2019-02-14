@@ -8,8 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulCheckbox} from '../index.js';
+import {StatefulSlider} from '../index.js';
 
-export const name = 'checkbox';
+export const name = 'slider';
 
-export const component = () => <StatefulCheckbox>click me</StatefulCheckbox>;
+export const component = () => (
+  <div
+    style={{
+      maxWidth: '500px',
+    }}
+  >
+    <StatefulSlider />
+  </div>
+);

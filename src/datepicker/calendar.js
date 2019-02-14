@@ -19,16 +19,16 @@ import {
   StyledDay,
 } from './styled-components.js';
 import {
-  getMonth,
-  addMonths,
-  getStartOfWeek,
   addDays,
-  isBefore,
-  isAfter,
+  addMonths,
+  getMonth,
   getWeekdayMinInLocale,
-  isSameDay,
   getEffectiveMinDate,
   getEffectiveMaxDate,
+  getStartOfWeek,
+  isAfter,
+  isBefore,
+  isSameDay,
   subWeeks,
   subMonths,
   subYears,
@@ -71,6 +71,7 @@ export default class Calendar extends React.Component<
     super(props);
     this.state = {
       date: this.getDateInView(),
+      voiceoverText: '',
     };
   }
 
@@ -183,7 +184,6 @@ export default class Calendar extends React.Component<
   };
 
   setActive = () => {
-    // console.log('setActive CALLLED');
     this.props.setActiveState(true, {root: this.root});
   };
 

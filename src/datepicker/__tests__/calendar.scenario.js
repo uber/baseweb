@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
-import {StatefulCheckbox} from '../index.js';
+import {Unstable_Calendar as Calendar} from '../index.js';
 
-export const name = 'checkbox';
+export const name = 'calendar';
 
-export const component = () => <StatefulCheckbox>click me</StatefulCheckbox>;
+export const component = () => <Calendar />;
