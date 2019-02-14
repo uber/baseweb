@@ -108,7 +108,7 @@
     "jest-puppeteer": "^3.9.0",
     "localtunnel": "^1.9.1",
     "markdownlint-cli": "^0.13.0",
-    "next": "^7.0.2",
+    "next": "^8.0.1",
     "next-images": "^1.0.3",
     "now": "^13.1.2",
     "prettier": "^1.14.3",
