@@ -85,7 +85,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
             onMouseEnter: this.props.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,
             // will need to remove overrides pass-through on next major version
-            overrides: this.props.overrides,
+            overrides: {...this.props.overrides, ...child.props.overrides},
           });
         })}
       </RadioGroupRoot>
