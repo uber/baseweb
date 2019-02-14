@@ -25,7 +25,7 @@ const InputReplacement = ({tags, removeTag, ...rest}) => {
 };
 
 class TagSelect extends React.Component {
-  state = {value: '', tags: []};
+  state = {value: '', tags: ['hello']};
   ref = React.createRef();
 
   componentDidMount() {
