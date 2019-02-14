@@ -19,6 +19,9 @@ const selectors = {
   day4: '[aria-label="Monday, April 1st 2019"]',
   leftArrow: '[aria-label="Previous month"]',
   rightArrow: '[aria-label="Next month"]',
+  monthSelect: '[data-id="monthSelect"]',
+  yearSelect: '[data-id="yearSelect"]',
+  selectDropdown: 'ul[role="listbox"]',
 };
 
 describe('Datepicker', () => {
@@ -141,5 +144,49 @@ describe('Datepicker', () => {
       hidden: true,
     });
     await page.waitFor(selectors.day4);
+  });
+
+  it('updates the calendar when a year selected from the dropdown', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor('[aria-label="Sunday, March 10th 2019"]');
+    await page.click(selectors.yearSelect);
+    const dropdown = `${selectors.yearSelect} ${selectors.selectDropdown}`;
+    await page.waitFor(dropdown);
+
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === '2018';
+      });
+      option.click();
+      return option;
+    });
+    await page.waitFor(dropdown, {hidden: true});
+    await page.waitFor(selectors.calendar);
+    await page.waitFor('[aria-label="Saturday, March 10th 2018"]');
+  });
+
+  it('updates the calendar when a month selected from the dropdown', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor('[aria-label="Sunday, March 10th 2019"]');
+    await page.click(selectors.monthSelect);
+    const dropdown = `${selectors.monthSelect} ${selectors.selectDropdown}`;
+    await page.waitFor(dropdown);
+
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'July';
+      });
+      option.click();
+      return option;
+    });
+    await page.waitFor(dropdown, {hidden: true});
+    await page.waitFor(selectors.calendar);
+    await page.waitFor('[aria-label="Monday, July 1st 2019"]');
   });
 });
