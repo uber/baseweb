@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulCheckbox} from '../index.js';
+import {StyledLink} from '../index.js';
 
-export const name = 'checkbox';
+export const name = 'link';
 
-export const component = () => <StatefulCheckbox>click me</StatefulCheckbox>;
+export const component = () => <StyledLink href="#">I am a Link!</StyledLink>;

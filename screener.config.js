@@ -8,64 +8,11 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const Accordion = require('./src/accordion/examples-list');
-const Button = require('./src/button/examples-list');
-const ButtonGroup = require('./src/button-group/examples-list');
-const Breadcrumbs = require('./src/breadcrumbs/examples-list');
-const Card = require('./src/card/examples-list');
-const Checkbox = require('./src/checkbox/examples-list');
-const FileUploader = require('./src/file-uploader/examples-list');
-const Input = require('./src/input/examples-list');
-const Modal = require('./src/modal/examples-list');
-const Notification = require('./src/notification/examples-list');
-const Pagination = require('./src/pagination/examples-list');
-const Popover = require('./src/popover/examples-list');
-const Radio = require('./src/radio/examples-list');
-const Rating = require('./src/rating/examples-list');
-const Select = require('./src/select/examples-list');
-const Slider = require('./src/slider/examples-list');
-const Textarea = require('./src/textarea/examples-list');
-const Toast = require('./src/toast/examples-list');
-const ProgressStep = require('./src/progress-steps/examples-list');
-
 module.exports = {
   projectRepo: 'uber-web/baseui',
-  storybookConfigDir: '.storybook-move',
+  storybookConfigDir: '.storybook',
   apiKey: process.env.SCREENER_API_KEY,
   resolution: '1024x768',
   baseBranch: 'master',
-  includeRules: [
-    new RegExp(`${Accordion.ACCORDION_EXAMPLE}$`),
-    new RegExp(Button.BUTTON),
-    new RegExp(Button.BUTTON_COMPACT_WITH_ENHANCERS),
-    new RegExp(Button.BUTTON_WITH_ENHANCERS),
-    new RegExp(`${ButtonGroup.BUTTON_GROUP}$`),
-    new RegExp(Breadcrumbs.DEFAULT),
-    new RegExp(Card.TEXT_IMAGE_LINK),
-    new RegExp(Card.TEXT_ONLY),
-    new RegExp(Checkbox.SIMPLE_EXAMPLE),
-    /Checkbox as toggle example/,
-    /Icons in Button/,
-    new RegExp(`${FileUploader.FILE_UPLOADER_EXAMPLE}$`),
-    new RegExp(Input.SIZE_EXAMPLE),
-    new RegExp(Input.STATE_EXAMPLE),
-    new RegExp(Input.ENHANCERS_EXAMPLE),
-    new RegExp(Input.BEFORE_AFTER_EXAMPLE),
-    /Stateless Menu/,
-    new RegExp(`${Modal.SIMPLE_EXAMPLE}$`),
-    new RegExp(Notification.NOTIFICATION_EXAMPLE),
-    new RegExp(Pagination.STATEFUL_PAGINATION),
-    new RegExp(Popover.SIMPLE_EXAMPLE),
-    new RegExp(Radio.SIMPLE_EXAMPLE),
-    new RegExp(Rating.DEFAULT),
-    new RegExp(Rating.EMOTICON),
-    new RegExp(Select.MULTI_SELECT),
-    new RegExp(Select.SINGLE_SELECT_SEARCH),
-    new RegExp(Slider.AS_SIMPLE_RANGE_SLIDER),
-    new RegExp(Textarea.STATE_EXAMPLE),
-    new RegExp(Toast.TOAST_EXAMPLE),
-    new RegExp(ProgressStep.DEFAULT),
-    new RegExp(ProgressStep.NUMBERED),
-  ],
   failureExitCode: 0,
 };
