@@ -7,13 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 
-import StyledRadioMark from './radiomark.js';
-import {
-  RadioGroupRoot as StyledRadioGroupRoot,
-  Label as StyledLabel,
-  Input as StyledInput,
-  Root as StyledRoot,
-} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
+
+import {RadioGroupRoot as StyledRadioGroupRoot} from './styled-components.js';
 import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
 
 class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
@@ -31,70 +27,68 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     onMouseLeave: () => {},
     onFocus: () => {},
     onBlur: () => {},
+    overrides: {},
   };
 
   render() {
-    const {
-      ariaLabel,
-      ariaLabelledBy,
-      name,
-      children,
-      labelPlacement,
-      isError,
-      disabled,
-      align,
-      required,
-      overrides = {},
-    } = this.props;
+    const {overrides = {}} = this.props;
+    const [RadioGroupRoot, radioGroupRootProps] = getOverrides(
+      overrides.RadioGroupRoot,
+      StyledRadioGroupRoot,
+    );
 
-    const sharedProps = {
-      $isError: isError,
-      $required: required,
-      $disabled: disabled,
-    };
+    if (__DEV__) {
+      if (this.props.ariaLabel || this.props.ariaLabelledBy) {
+        // eslint-disable-next-line no-console
+        console.error(`The props ariaLabel and ariaLabelledBy will be deprecated in the next major
+          version update. Please use aria-label and aria-labelledby instead.
+        `);
+      }
 
-    const {
-      Root = StyledRoot,
-      RadioMark = StyledRadioMark,
-      Label = StyledLabel,
-      Input = StyledInput,
-    } = overrides;
-
-    const childrenProps = {
-      name,
-      isError,
-      disabled,
-      required,
-      labelPlacement,
-      type: 'radio',
-      overrides: {Root, Checkmark: RadioMark, Label, Input},
-      onChange: this.props.onChange,
-      onMouseEnter: this.props.onMouseEnter,
-      onMouseLeave: this.props.onMouseLeave,
-      onFocus: this.props.onFocus,
-      onBlur: this.props.onBlur,
-      ...sharedProps,
-    };
+      const overrideKeys = Object.keys(overrides);
+      if (overrideKeys.length && !overrideKeys.includes('RadioGroupRoot')) {
+        // eslint-disable-next-line no-console
+        console.warn(`All overrides beside 'RadioGroupRoot' will be deprecated in the next major version update.
+          Pass other overrides to the 'Radio' children instead.
+        `);
+      }
+    }
 
     return (
-      <StyledRadioGroupRoot
+      <RadioGroupRoot
         role="radiogroup"
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        $align={align}
-        {...sharedProps}
+        aria-label={this.props.ariaLabel || this.props['aria-label']}
+        aria-labelledby={
+          this.props.ariaLabelledBy || this.props['aria-labelledby']
+        }
+        $align={this.props.align}
+        $disabled={this.props.disabled}
+        $isError={this.props.isError}
+        $required={this.props.required}
+        {...radioGroupRootProps}
       >
-        {React.Children.map(children, child => {
+        {React.Children.map(this.props.children, child => {
           if (!React.isValidElement(child)) {
             return null;
           }
+
           return React.cloneElement(child, {
-            ...childrenProps,
+            autoFocus: this.props.autoFocus,
             checked: this.props.value === child.props.value,
             disabled: this.props.disabled || child.props.disabled,
+            isError: this.props.isError,
+            labelPlacement: this.props.labelPlacement,
+            name: this.props.name,
+            onBlur: this.props.onBlur,
+            onChange: this.props.onChange,
+            onFocus: this.props.onFocus,
+            onMouseEnter: this.props.onMouseEnter,
+            onMouseLeave: this.props.onMouseLeave,
+            // will need to remove overrides pass-through on next major version
+            overrides: {...this.props.overrides, ...child.props.overrides},
           });
         })}
-      </StyledRadioGroupRoot>
+      </RadioGroupRoot>
     );
   }
 }
