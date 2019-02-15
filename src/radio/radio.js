@@ -142,7 +142,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
         </RadioMarkOuter>
         <Input
           aria-invalid={this.props.isError || null}
-          aria-required={this.props.isError || null}
+          aria-required={this.props.required || null}
           checked={this.props.checked}
           disabled={this.props.disabled}
           name={this.props.name}
