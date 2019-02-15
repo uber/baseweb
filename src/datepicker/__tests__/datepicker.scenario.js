@@ -16,5 +16,13 @@ export const component = () => (
   <StatefulDatepicker
     aria-label="Select a date"
     highlightedDate={new Date('March 10, 2019')}
+    overrides={{
+      MonthSelect: {
+        props: {overrides: {Root: {props: {'data-id': 'monthSelect'}}}},
+      },
+      YearSelect: {
+        props: {overrides: {Root: {props: {'data-id': 'yearSelect'}}}},
+      },
+    }}
   />
 );
