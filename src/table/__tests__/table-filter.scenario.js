@@ -37,6 +37,7 @@ const FilterCheckbox = props => (
   </Checkbox>
 );
 
+// eslint-disable-next-line flowtype/no-weak-types
 class FilterTable extends React.Component<any, any> {
   state = {
     filters: [],
