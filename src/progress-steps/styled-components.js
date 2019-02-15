@@ -89,7 +89,6 @@ export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
 export const StyledContent = styled('div', ({$theme}: StyledStepPropsT) => {
   return {
     marginLeft: $theme.sizing.scale900,
-    paddingBottom: $theme.sizing.scale100,
   };
 });
 
@@ -131,7 +130,7 @@ export const StyledContentTail = styled(
       ':after': {
         content: '""',
         display: 'inline-block',
-        height: '100%',
+        height: 'calc(100% + 14px)',
         width: '100%',
         backgroundColor: currentColor,
       },
