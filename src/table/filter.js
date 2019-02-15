@@ -18,7 +18,8 @@ import {
   StyledFilterContent,
   StyledFilterHeading,
   StyledFilterFooter,
-} from './index.js';
+} from './styled-components.js';
+import TrapFocus from './trap-focus.js';
 import type {FilterProps} from './types.js';
 
 function makeOverride(Override, Source) {
@@ -70,7 +71,7 @@ export default function Filter(props: FilterProps) {
         return nextState;
       }}
       content={
-        <React.Fragment>
+        <TrapFocus>
           <Heading>Filter Column</Heading>
           <Content>{props.children}</Content>
           <Footer>
@@ -94,7 +95,7 @@ export default function Filter(props: FilterProps) {
               Reset
             </Button>
           </Footer>
-        </React.Fragment>
+        </TrapFocus>
       }
     >
       <MenuButton>
