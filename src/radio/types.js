@@ -111,19 +111,19 @@ export type RadioPropsT = {
   /** Passed to the input element name attribute */
   name?: string,
   /** handler for blur events on trigger element. */
-  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** handler for focus events on trigger element. */
-  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mousedown events on trigger element. */
-  onMouseDown?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseDown?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseup events on trigger element. */
-  onMouseUp?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseUp?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   overrides?: OverridesT,
   /** Marks the checkbox as required. */
   required?: boolean,
