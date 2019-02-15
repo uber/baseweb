@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Block} from 'baseui/block';
 import {Card, StyledBody} from 'baseui/card';
-import {StyledRadio, RadioGroup} from 'baseui/radio';
+import {Radio, RadioGroup} from 'baseui/radio';
 import Link from 'next/link';
 import {trackEvent} from '../helpers/ga';
 
@@ -77,9 +77,9 @@ class Overrides extends React.Component {
             }}
           >
             {overrides.map(override => (
-              <StyledRadio key={override} value={override}>
+              <Radio key={override} value={override}>
                 {override}
-              </StyledRadio>
+              </Radio>
             ))}
           </RadioGroup>
           <Block marginTop="scale900">

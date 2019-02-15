@@ -3,7 +3,7 @@ import {FormControl} from 'baseui/form-control';
 import {StatefulInput, SIZE} from 'baseui/input';
 import {StatefulTextarea} from 'baseui/textarea';
 import {StatefulCheckbox} from 'baseui/checkbox';
-import {StatefulRadioGroup, StyledRadio} from 'baseui/radio';
+import {StatefulRadioGroup, Radio} from 'baseui/radio';
 
 export default () => (
   <React.Fragment>
@@ -18,9 +18,9 @@ export default () => (
     </FormControl>
     <FormControl label="RadioGroup label" caption="RadioGroup caption">
       <StatefulRadioGroup>
-        <StyledRadio value="red">Red</StyledRadio>
-        <StyledRadio value="green">Green</StyledRadio>
-        <StyledRadio value="blue">Blue</StyledRadio>
+        <Radio value="red">Red</Radio>
+        <Radio value="green">Green</Radio>
+        <Radio value="blue">Blue</Radio>
       </StatefulRadioGroup>
     </FormControl>
   </React.Fragment>
