@@ -13,7 +13,7 @@ import {Label, Caption, ControlContainer} from '../styled-components.js';
 import {Input} from '../../input/index.js';
 import {Textarea} from '../../textarea/index.js';
 import {Checkbox} from '../../checkbox/index.js';
-import {RadioGroup, StyledRadio} from '../../radio/index.js';
+import {RadioGroup, Radio} from '../../radio/index.js';
 
 describe('FormControl - Label and Caption for controls', () => {
   test('Renders label, caption, and error for the Input component', () => {
@@ -224,9 +224,9 @@ test('Renders label and caption for the RadioGroup component', () => {
   const rendered = mount(
     <FormControl label="Label test" caption="Caption test">
       <RadioGroup required>
-        <StyledRadio value="1">First</StyledRadio>
-        <StyledRadio value="2">Second</StyledRadio>
-        <StyledRadio value="3">Third</StyledRadio>
+        <Radio value="1">First</Radio>
+        <Radio value="2">Second</Radio>
+        <Radio value="3">Third</Radio>
       </RadioGroup>
     </FormControl>,
   );

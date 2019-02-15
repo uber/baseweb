@@ -11,6 +11,15 @@ import React from 'react';
 import {RadioMarkOuter, RadioMarkInner} from './styled-components.js';
 
 function RadioMark(props: *) {
+  if (__DEV__) {
+    // eslint-disable-next-line no-console
+    console.warn(`This StyledRadioMark component will be deprecated in the next major version. Please
+      update your code to use the 'StyledRadioInner' and 'StyledRadioOuter' instead. If you
+      are using the 'StyledRadio' component, replace that with the 'Radio' component and this warning
+      should go away. See examples at https://baseui.design/components/radio/.
+    `);
+  }
+
   return (
     <RadioMarkOuter {...props}>
       <RadioMarkInner {...props} />
