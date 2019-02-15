@@ -88,7 +88,8 @@ export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
 
 export const StyledContent = styled('div', ({$theme}: StyledStepPropsT) => {
   return {
-    overflow: 'hidden',
+    marginLeft: $theme.sizing.scale900,
+    paddingBottom: $theme.sizing.scale100,
   };
 });
 
