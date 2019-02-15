@@ -13,7 +13,7 @@ import {StatefulRadioGroup, Radio} from '../index.js';
 export const name = 'radio';
 
 export const component = () => (
-  <StatefulRadioGroup initialState={{value: '2'}} ariaLabel="choose item">
+  <StatefulRadioGroup initialState={{value: '2'}} aria-label="choose item">
     <Radio value="1">First</Radio>
     <Radio value="2">Second</Radio>
     <Radio value="3">Third</Radio>
