@@ -29,6 +29,10 @@ const routes = [
         path: '/getting-started/versioning-policy',
       },
       {
+        text: 'Supported platforms',
+        path: '/getting-started/supported-platforms',
+      },
+      {
         text: 'Comparison with other component libraries',
         path: '/getting-started/comparison',
       },
