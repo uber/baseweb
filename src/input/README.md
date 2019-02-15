@@ -145,11 +145,11 @@ export default () => {
   * Defines the size of an input control.
 * `onChange?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
   * Handler for change events on input element.
-* `onKeyDown?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
+* `onKeyDown?: (<SyntheticKeyboardEvent<HTMLInputElement>) => void = () => {}`
   * Handler for keydown events on input element.
-* `onKeyPress?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
+* `onKeyPress?: (<SyntheticKeyboardEvent<HTMLInputElement>) => void = () => {}`
   * Handler for keypress events on input element.
-* `onKeyUp?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
+* `onKeyUp?: (<SyntheticKeyboardEvent<HTMLInputElement>) => void = () => {}`
   * Handler for keyup events on input element.
 * `onFocus?: (<SyntheticInputEvent<HTMLInputElement>) => void = () => {}`
   * Handler for focus events on input element.
