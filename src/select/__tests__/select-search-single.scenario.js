@@ -22,6 +22,7 @@ export const component = () => (
       {id: 'Azure', color: '#F0FFFF'},
       {id: 'Beige', color: '#F5F5DC'},
     ]}
+    overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
     labelKey="id"
     valueKey="color"
     type={TYPE.search}

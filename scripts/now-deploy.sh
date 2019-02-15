@@ -9,6 +9,9 @@ this_commit=$(echo $BUILDKITE_COMMIT | tr -d '"')
 tags=$(curl https://api.github.com/repos/uber-web/baseui/git/refs/tags?access_token=${GITHUB_AUTH_TOKEN})
 latest_tagged_commit=$(echo $tags | jq '.[-1].object.sha' | tr -d '"')
 
+echo this commit: $this_commit
+echo latest tagged commit: $latest_tagged_commit
+
 if [ "$this_commit" = "$latest_tagged_commit" ]; then
   echo current commit matches latest tagged commit
   echo deploying to now...

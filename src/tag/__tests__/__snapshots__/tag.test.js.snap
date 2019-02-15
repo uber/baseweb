@@ -20,7 +20,13 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     <span
       styled-component="true"
     >
-      Some tag
+      <MockStyledComponent>
+        <span
+          styled-component="true"
+        >
+          Some tag
+        </span>
+      </MockStyledComponent>
       <MockStyledComponent
         $closeable={true}
         $disabled={false}

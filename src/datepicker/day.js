@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {StyledDay} from './styled-components.js';
 import {
+  formatDate,
   getDay,
   getMonth,
   getDate,
@@ -213,8 +214,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <Day
-        aria-label={`day-${getDate(date)}`}
-        role="option"
+        aria-label={formatDate(date, 'EEEE, MMMM do YYYY', this.props.locale)}
+        role="cell"
         {...sharedProps}
         {...dayProps}
         // Adding event handlers after customers overrides in order to

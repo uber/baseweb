@@ -17,12 +17,7 @@ export default function Value(props: any) {
     StyledSingleValue,
   );
   return (
-    <SingleValue
-      role="option"
-      aria-selected="true"
-      {...rest}
-      {...singleValueProps}
-    >
+    <SingleValue aria-selected="true" {...rest} {...singleValueProps}>
       {props.children}
     </SingleValue>
   );

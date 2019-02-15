@@ -91,9 +91,6 @@ export default class MyCustomLogic extends React.Component {
 * `shape?: SHAPE[string] = 'default'`
   * Reference [`SHAPE` constant](https://github.com/uber-web/baseui/blob/master/src/button/constants.js)
   * Defines the shape of the buttons in the button group.
-* `kind?: KIND[string] = 'secondary'`
-  * Reference [`KIND` constant](https://github.com/uber-web/baseui/blob/master/src/button/constants.js)
-  * Defines the kind (purpose) of the buttons in the button group.
 * `onClick?: (event: Event, index: number) => mixed`
   * Called with click events from children. If a child button has its own click handler, the local handler will be called first, then this handler will trigger.
 

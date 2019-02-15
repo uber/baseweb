@@ -24,6 +24,7 @@ export const component = () => (
       {id: 'DarkBlue', color: '#00008B'},
       {id: 'DarkCyan', color: '#008B8B'},
     ]}
+    overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
     closeOnSelect={false}
     labelKey="id"
     multi
