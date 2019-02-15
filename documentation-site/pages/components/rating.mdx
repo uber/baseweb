@@ -27,6 +27,16 @@ Like star ratings, there five options.
 **Star ratings** are to be used to collect feedback from a user’s experience with a product. The
 stars indicate a performance rating from one to five.
 
+### Accessibility
+
+This component uses the `[role="radiogroup"]` attribute with the following attributes for each individual rating item:
+
+- `[role="radio"]`
+- `[tabindex=0]`
+- `[aria-setsize=5]` - total number of elements within the Rating
+- `[aria-checked]` - if the rating is active
+- `[aria-posinset]` - position within the Rating
+
 ## Examples
 
 <Example title="Rating with stars" path="examples/rating/star.js">
