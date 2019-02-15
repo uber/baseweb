@@ -13,8 +13,8 @@ import {Radio, StatefulRadioGroup} from 'baseui/radio';
 export default () => {
   return
     <StatefulRadioGroup>
-      <StyledRadio value="first">First</Radio>
-      <StyledRadio value="second">Second</Radio>
+      <Radio value="first">First</Radio>
+      <Radio value="second">Second</Radio>
     </StatefulRadioGroup>;
 };
 ```
@@ -44,7 +44,7 @@ export default () => {
         onMouseEnter={this.onRadioGroupHover}
         onChange={this.onRadioGroupChange}
       >
-        <StyledRadio
+        <Radio
           value="First"
           overrides={{
             Label: CustomLabel,
@@ -52,8 +52,8 @@ export default () => {
           }}
         >
           First choice
-        </StyledRadio>
-        <StyledRadio
+        </Radio>
+        <Radio
           value="Second"
           overrides={{
             Label: CustomLabel,
@@ -61,7 +61,7 @@ export default () => {
           }}
         >
           Second choice
-        </StyledRadio>
+        </Radio>
       </StatefulRadioGroup>
     </div>
   );

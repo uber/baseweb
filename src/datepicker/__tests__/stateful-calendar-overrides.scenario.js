@@ -37,7 +37,7 @@ const arrowBtnOverrides = ({$theme}) => ({
 
 export const component = () => (
   <StatefulCalendar
-    initialState={{value: new Date()}}
+    initialState={{value: new Date('2019-02-14T10:00:00Z')}}
     overrides={{
       CalendarHeader: {
         style: ({$theme}) => ({

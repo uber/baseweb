@@ -18,6 +18,7 @@ export {
   RadioMarkOuter as StyledRadioMarkOuter,
   RadioGroupRoot as StyledRadioGroupRoot,
 } from './styled-components.js';
+export {default as Radio} from './radio.js';
 export {default as StyledRadioMark} from './radiomark.js';
-export {default as StyledRadio} from './radio.js';
+export {default as StyledRadio} from './styled-radio.js';
 export * from './types.js';

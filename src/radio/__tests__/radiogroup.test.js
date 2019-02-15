@@ -5,70 +5,52 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 import React from 'react';
-import {mount} from 'enzyme';
+import {shallow} from 'enzyme';
 
-describe('Stateless radiogroup', function() {
-  let wrapper,
-    events = {};
-  let allProps: any = {},
-    overrides,
-    isError,
-    mockFn;
+import {RadioGroup, Radio} from '../index.js';
 
-  beforeEach(function() {
-    mockFn = jest.fn();
-    isError = false;
-    events = {
-      onChange: mockFn,
-      onMouseEnter: mockFn,
-      onMouseLeave: mockFn,
-      onFocus: mockFn,
-      onBlur: mockFn,
-    };
-    allProps = {
-      ...events,
-      labelPlacement: 'left',
-      isError: isError,
-      autoFocus: false,
-      disabled: false,
-      checked: false,
-    };
-  });
-
-  afterEach(function() {
-    jest.restoreAllMocks();
-    wrapper && wrapper.unmount();
-  });
-
-  test('should check only radio button, which equals to selected value', function() {
-    jest.mock('../radio', () => jest.fn(() => <div>test</div>));
-    const {
-      StyledRoot,
-      StyledLabel,
-      StyledRadioMark,
-      StyledInput,
-      RadioGroup,
-      StyledRadio,
-    } = require('../index');
-    allProps.value = '2';
-    allProps.overrides = overrides;
-    overrides = {
-      Root: StyledRoot,
-      RadioMark: StyledRadioMark,
-      Label: StyledLabel,
-      Input: StyledInput,
-    };
-    wrapper = mount(
-      <RadioGroup {...allProps}>
-        <StyledRadio value="1">First</StyledRadio>
-        <StyledRadio value="2">Second</StyledRadio>
-        <StyledRadio value="3">Third</StyledRadio>
+describe('radio-group', () => {
+  it('sets expected child radio checked', () => {
+    const wrapper = shallow(
+      <RadioGroup value="3">
+        <Radio value="1" />
+        <Radio value="2" />
+        <Radio value="3" />
       </RadioGroup>,
     );
-    const radio: any = require('../radio');
-    expect(radio.mock.calls[0][0].checked).toBeFalsy();
-    expect(radio.mock.calls[1][0].checked).toBeTruthy();
-    expect(radio.mock.calls[2][0].checked).toBeFalsy();
+
+    wrapper.children().forEach((child, index) => {
+      expect(child).toHaveProp('checked', index === 2);
+    });
+  });
+
+  it('disables children if disabled', () => {
+    const wrapper = shallow(
+      <RadioGroup disabled>
+        <Radio />
+        <Radio />
+        <Radio />
+      </RadioGroup>,
+    );
+
+    wrapper.children().forEach(child => {
+      expect(child).toHaveProp('disabled', true);
+    });
+  });
+
+  it('disabled prop on children take priority', () => {
+    const wrapper = shallow(
+      <RadioGroup disabled={false}>
+        <Radio disabled />
+        <Radio />
+        <Radio />
+      </RadioGroup>,
+    );
+
+    wrapper.children().forEach((child, index) => {
+      expect(child).toHaveProp('disabled', index === 0);
+    });
   });
 });

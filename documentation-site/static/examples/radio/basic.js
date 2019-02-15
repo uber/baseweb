@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyledRadio, RadioGroup} from 'baseui/radio';
+import {Radio, RadioGroup} from 'baseui/radio';
 
 export default class Stateless extends React.Component {
   state = {value: null};
@@ -10,9 +10,9 @@ export default class Stateless extends React.Component {
         onChange={e => this.setState({value: e.target.value})}
         value={this.state.value}
       >
-        <StyledRadio value="1">First</StyledRadio>
-        <StyledRadio value="2">Second</StyledRadio>
-        <StyledRadio value="3">Third</StyledRadio>
+        <Radio value="1">First</Radio>
+        <Radio value="2">Second</Radio>
+        <Radio value="3">Third</Radio>
       </RadioGroup>
     );
   }
