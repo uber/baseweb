@@ -40,6 +40,9 @@ export default (props: PropsT) => (
             paddingLeft: $theme.sizing.scale800,
             paddingRight: $theme.sizing.scale800,
           }),
+          props: {
+            'data-crawler': 'exclude',
+          },
         },
       }}
     >
