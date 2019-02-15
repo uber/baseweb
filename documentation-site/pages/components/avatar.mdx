@@ -29,6 +29,11 @@ Adds additional visual information about a user.
 - When you want to show a user's image along contextual information.
 - When you want to attribute an action to a user.
 
+### Accessibility
+
+- Top level `name` prop will be set on the `<img>` element as its `alt` attribute.
+- If src fails to load, applies `aria-label` with provided name and `role` with 'img' to root div element.
+
 ## Examples
 
 <Example title="Avatar with available sizes" path="examples/avatar/sizes.js">
@@ -39,7 +44,10 @@ Adds additional visual information about a user.
   <Error />
 </Example>
 
-<Example title="Avatar with example overrides" path="examples/avatar/override.js">
+<Example
+  title="Avatar with example overrides"
+  path="examples/avatar/override.js"
+>
   <Override />
 </Example>
 
