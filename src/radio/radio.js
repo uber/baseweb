@@ -62,7 +62,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: false, isActive: false});
+    this.setState({isHovered: false});
     this.props.onMouseLeave && this.props.onMouseLeave(e);
   };
 
