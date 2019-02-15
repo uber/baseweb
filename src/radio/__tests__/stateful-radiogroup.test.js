@@ -5,51 +5,30 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 import React from 'react';
 import {mount} from 'enzyme';
 
-describe('Stateful radiogroup', function() {
-  let allProps: any, wrapper;
+import {StatefulRadioGroup, Radio} from '../index.js';
 
-  beforeEach(function() {
-    allProps = {};
-  });
-
-  afterEach(function() {
-    jest.restoreAllMocks();
-    wrapper && wrapper.unmount();
-  });
-
-  test('should provide overrides components to render', function() {
-    jest.mock('../radio', () => jest.fn(() => <div>test</div>));
-    const {
-      StyledRoot,
-      StyledLabel,
-      StyledRadioMark,
-      StyledInput,
-      StyledRadio,
-      StatefulRadioGroup,
-    } = require('../index');
-    allProps.overrides = {
-      Root: StyledRoot,
-      Label: StyledLabel,
-      RadioMark: StyledRadioMark,
-      Input: StyledInput,
-    };
-    const radio: any = require('../radio');
-    wrapper = mount(
-      <StatefulRadioGroup {...allProps}>
-        <StyledRadio value="1">First</StyledRadio>
-        <StyledRadio value="2">Second</StyledRadio>
-        <StyledRadio value="3">Third</StyledRadio>
+describe('radio-group', () => {
+  it('sets clicked child checked', () => {
+    const wrapper = mount(
+      <StatefulRadioGroup>
+        <Radio value="1">one</Radio>
+        <Radio value="2">two</Radio>
+        <Radio value="3">three</Radio>
       </StatefulRadioGroup>,
     );
-    const {overrides} = radio.mock.calls[0][0];
-    expect(overrides).toEqual({
-      Root: StyledRoot,
-      Checkmark: StyledRadioMark,
-      Label: StyledLabel,
-      Input: StyledInput,
+
+    const group = wrapper.find('div[role="radiogroup"]');
+    const inputs = wrapper.find('input[type="radio"]');
+
+    group.children().forEach((child, index) => {
+      expect(child).toHaveProp('checked', false);
     });
+
+    inputs.at(0).simulate('change');
+    expect(inputs.at(0).getDOMNode()).toHaveProperty('checked', true);
   });
 });
