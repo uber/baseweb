@@ -13,5 +13,5 @@ import {Unstable_StatefulCalendar as StatefulCalendar} from '../index.js';
 export const name = 'Stateful calendar';
 
 export const component = () => (
-  <StatefulCalendar highlightedDate={new Date('2018-02-14T10:00:00Z')} />
+  <StatefulCalendar highlightedDate={new Date('2019-02-14T10:00:00Z')} />
 );

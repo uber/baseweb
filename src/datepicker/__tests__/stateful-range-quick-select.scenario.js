@@ -16,6 +16,6 @@ export const component = () => (
   <StatefulCalendar
     isRange
     enableQuickSelect
-    highlightedDate={new Date('2018-02-14T10:00:00Z')}
+    highlightedDate={new Date('2019-02-14T10:00:00Z')}
   />
 );

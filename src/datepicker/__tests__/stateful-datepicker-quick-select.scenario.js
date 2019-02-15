@@ -13,7 +13,7 @@ import {addDays} from '../utils/index.js';
 
 export const name = 'Stateful datepicker quick select';
 
-const now = new Date('2018-02-14T10:00:00Z');
+const now = new Date('2019-02-14T10:00:00Z');
 
 export const component = () => (
   <StatefulDatepicker
