@@ -12,4 +12,10 @@ import {Unstable_StatefulCalendar as StatefulCalendar} from '../index.js';
 
 export const name = 'Stateful range quick select';
 
-export const component = () => <StatefulCalendar isRange enableQuickSelect />;
+export const component = () => (
+  <StatefulCalendar
+    isRange
+    enableQuickSelect
+    highlightedDate={new Date('2019-02-14T10:00:00Z')}
+  />
+);
