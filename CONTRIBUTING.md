@@ -15,9 +15,8 @@ cd baseui
 yarn
 ```
 
-2. To start a website to develop against, run `yarn storybook`.
-3. Each component maintains an `examples.js` file. Edit or add to that file to see changes to the storybook.
-4. To unit test your changes run `yarn test` or `yarn test --watch` to continuously run the relevant tests.
+2. To start a website to develop against, run `yarn documentation:dev`.
+3. To unit test your changes run `yarn test` or `yarn test --watch` to continuously run the relevant tests.
 
 Do you miss a component? Would you like to extend the featureset of a component?
 This document helps you navigate the process.
