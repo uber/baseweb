@@ -11,7 +11,7 @@ import React from 'react';
 import {FormControl} from '../index.js';
 import {StatefulCheckbox} from '../../checkbox/index.js';
 import {StatefulInput, SIZE} from '../../input/index.js';
-import {StatefulRadioGroup, StyledRadio} from '../../radio/index.js';
+import {StatefulRadioGroup, Radio} from '../../radio/index.js';
 import {StatefulTextarea} from '../../textarea/index.js';
 
 export const name = 'form-control';
@@ -29,9 +29,9 @@ export const component = () => (
     </FormControl>
     <FormControl label="RadioGroup label" caption="RadioGroup caption">
       <StatefulRadioGroup>
-        <StyledRadio value="red">Red</StyledRadio>
-        <StyledRadio value="green">Green</StyledRadio>
-        <StyledRadio value="blue">Blue</StyledRadio>
+        <Radio value="red">Red</Radio>
+        <Radio value="green">Green</Radio>
+        <Radio value="blue">Blue</Radio>
       </StatefulRadioGroup>
     </FormControl>
   </div>
