@@ -15,4 +15,16 @@ module.exports = {
   resolution: '1024x768',
   baseBranch: 'master',
   failureExitCode: 0,
+  browsers: [
+    {
+      browserName: 'chrome',
+    },
+    {
+      browserName: 'firefox',
+    },
+    {
+      browserName: 'internet explorer',
+      version: '11',
+    },
+  ],
 };
