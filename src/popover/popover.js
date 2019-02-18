@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* global document */
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
@@ -403,6 +404,16 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return childArray[0];
   }
 
+  getMountNode(): HTMLElement {
+    const {mountNode} = this.props;
+    if (mountNode) {
+      return mountNode;
+    }
+    // Flow thinks body could be null (cast through any)
+    // eslint-disable-next-line flowtype/no-weak-types
+    return ((document.body: any): HTMLBodyElement);
+  }
+
   renderAnchor() {
     const anchor = this.getAnchorFromChildren();
     if (!anchor) {
@@ -476,9 +487,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         this.state.isMounted &&
         (this.props.isOpen || this.state.isAnimating)
       ) {
+        const mountNode = this.getMountNode();
         rendered.push(
           // $FlowFixMe
-          ReactDOM.createPortal(this.renderPopover(), document.body),
+          ReactDOM.createPortal(this.renderPopover(), mountNode),
         );
       }
     }
