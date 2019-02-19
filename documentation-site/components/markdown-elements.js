@@ -9,28 +9,29 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Block} from 'baseui/block';
+import Anchor from './anchor';
 
 type Props = {
-  children: React.Node,
+  children: string,
 };
 
 const Code = (props: Props) => <Block>{props.children}</Block>;
 
 const Title = (props: Props) => (
   <Block as="h1" font="font700">
-    {props.children}
+    <Anchor>{props.children}</Anchor>
   </Block>
 );
 
 const SubTitle = (props: Props) => (
   <Block as="h2" font="font600">
-    {props.children}
+    <Anchor>{props.children}</Anchor>
   </Block>
 );
 
 const Heading = (props: Props) => (
   <Block as="h3" font="font500">
-    {props.children}
+    <Anchor>{props.children}</Anchor>
   </Block>
 );
 
