@@ -45,13 +45,31 @@ export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
     borderTop: 'none',
     borderBottom: 'none',
     borderLeft: 'none',
+    display: 'flex',
+    justifyContent: 'space-between',
     paddingTop: $theme.sizing.scale500,
-    paddingRight: 0,
+    paddingRight: $theme.sizing.scale600,
     paddingBottom: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale600,
     width: '100%',
     ':last-of-type': {
       borderRight: 'none',
+    },
+  };
+});
+
+export const StyledSortableLabel = styled('button', ({$theme}) => {
+  return {
+    ...$theme.typography.font350,
+    alignItems: 'center',
+    border: 'none',
+    display: 'flex',
+    padding: 0,
+    ':hover:enabled': {
+      cursor: 'pointer',
+    },
+    ':disabled': {
+      color: $theme.colors.mono500,
     },
   };
 });
