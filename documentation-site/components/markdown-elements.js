@@ -12,7 +12,7 @@ import {Block} from 'baseui/block';
 import Anchor from './anchor';
 
 type Props = {
-  children: React.Node,
+  children: string,
 };
 
 const Code = (props: Props) => <Block>{props.children}</Block>;

@@ -10,6 +10,10 @@ import * as React from 'react';
 
 import {Block} from 'baseui/block';
 
+type Props = {
+  children: string,
+};
+
 const Anchor = (props: Props) => {
   const anchorValue = props.children.replace(/\s+/g, '-').toLowerCase();
   return (
