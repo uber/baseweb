@@ -130,7 +130,7 @@ export const StyledContentTail = styled(
       ':after': {
         content: '""',
         display: 'inline-block',
-        height: 'calc(100% + 14px)',
+        height: `calc(100% + ${$theme.sizing.scale500})`,
         width: '100%',
         backgroundColor: currentColor,
       },
