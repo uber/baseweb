@@ -81,7 +81,7 @@ const NavigationItem = props => {
 };
 
 export default () => (
-  <List data-crawler={'exclude'} as="ul">
+  <List as="ul">
     {Routes.map((route, index) => {
       return <NavigationItem key={index} route={route} index={index} />;
     })}
