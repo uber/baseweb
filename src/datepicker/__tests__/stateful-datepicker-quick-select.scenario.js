@@ -13,10 +13,14 @@ import {addDays} from '../utils/index.js';
 
 export const name = 'Stateful datepicker quick select';
 
+const now = new Date('2019-02-14T10:00:00Z');
+
 export const component = () => (
   <StatefulDatepicker
     isRange
-    initialState={{value: [new Date(), addDays(new Date(), 3)]}}
+    initialState={{
+      value: [now, addDays(now, 3)],
+    }}
     enableQuickSelect
   />
 );

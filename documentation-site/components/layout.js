@@ -123,6 +123,9 @@ export default (props: PropsT) => (
               borderLeft: `1px solid ${$theme.colors.border}`,
               maxWidth: '45rem',
             }),
+            props: {
+              id: 'docSearch-content',
+            },
           },
         }}
       >

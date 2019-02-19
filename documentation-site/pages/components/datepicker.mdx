@@ -24,6 +24,14 @@ export default Layout;
 
 A simple and reusable component to work with or select a date or a range of dates. Please note that component is currently under development and marked as Unstable that means it may change without a notice.
 
+### Accessibility
+
+- Supports keyboard hotkeys: `tab` - to switch between inputs, arrows, month\year select and day grid. `escape` to close datepicker dropdown.
+- When month and year selects focused, `up` and `down` causes dropdown to open and move to value, `enter` and `space` to choose selected year or month.
+- When day grid is focused, `left`, `down` `right` and `up` to move through the grid days. `Enter` to pick date.
+- When left or right arrow is focused, `enter` causes the same as click on this arrow.
+- Accessibility best practices for this component (`aria-valuenow`, `aria-valuetext`, `aria-valuemin`, `aria-valuemax`, `role=datepicker`).
+
 ## Examples
 
 <Example title="Datepicker" path="examples/datepicker/basic.js">
