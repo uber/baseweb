@@ -89,6 +89,9 @@ export const StyledFilterButton = styled('button', {
 });
 
 export const StyledFilterContent = styled('div', ({$theme}) => ({
+  ...$theme.borders.border300,
+  borderRight: 'none',
+  borderLeft: 'none',
   maxHeight: '196px',
   paddingRight: $theme.sizing.scale600,
   paddingLeft: $theme.sizing.scale600,
@@ -97,17 +100,15 @@ export const StyledFilterContent = styled('div', ({$theme}) => ({
 
 export const StyledFilterHeading = styled('div', ({$theme}) => ({
   ...$theme.typography.font350,
-  paddingTop: $theme.sizing.scale800,
+  color: $theme.colors.mono700,
+  paddingTop: $theme.sizing.scale500,
   paddingRight: $theme.sizing.scale600,
-  paddingBottom: $theme.sizing.scale300,
+  paddingBottom: $theme.sizing.scale500,
   paddingLeft: $theme.sizing.scale600,
 }));
 
 export const StyledFilterFooter = styled('div', ({$theme}) => ({
-  ...$theme.borders.border300,
-  borderRight: 'none',
-  borderBottom: 'none',
-  borderLeft: 'none',
+  backgroundColor: $theme.colors.mono200,
   paddingTop: $theme.sizing.scale300,
   paddingRight: $theme.sizing.scale100,
   paddingBottom: $theme.sizing.scale300,
