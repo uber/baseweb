@@ -17,6 +17,7 @@ import Check from 'baseui/icon/check';
 import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
+import Anchor from './anchor';
 import {version} from '../../package.json';
 import Code from './code';
 import {trackEvent} from '../helpers/ga';
@@ -123,7 +124,7 @@ class Example extends React.Component<PropsT, StateT> {
             font="font500"
             color="mono1000"
           >
-            {this.props.title}
+            <Anchor>{this.props.title}</Anchor>
           </Block>
           <Block display="flex" alignItems="center">
             <Button

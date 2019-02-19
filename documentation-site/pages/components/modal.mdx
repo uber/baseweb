@@ -30,6 +30,16 @@ The alert modal is to intended to focus the user on an urgent message that requi
 action. By contrast to standard modals, alert modals have no close “X”, nor do they allow for out
 of bounds dismissal. The primary action is always a system red with a grey cancel action.
 
+### Accessibility
+
+- Upon opening, focus will be transferred to the dialog itself (unless `autofocus` is set to false)
+- Dialog element has `aria-modal="true"`
+- Explicitly exposes a `role` prop to control whether `dialog` or `alertdialog` is used.
+- `Tab` key moves between focusable items (form inputs, footer buttons, etc). User should not be able to tab to items outside of modal – lucky for us most modern browsers seem to enforce this by default now for role dialog or aria-modal.
+- `Escape` key closes the modal
+- Click on backdrop (anywhere outside dialog) hides modal.
+- Background is not be scrollable while modal is open (position: fixed).
+
 ## Examples
 
 <Example title="Modal With Button Trigger" path="examples/modal/basic.js">

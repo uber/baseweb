@@ -40,9 +40,6 @@ export default (props: PropsT) => (
             paddingLeft: $theme.sizing.scale800,
             paddingRight: $theme.sizing.scale800,
           }),
-          props: {
-            'data-crawler': 'exclude',
-          },
         },
       }}
     >
@@ -126,6 +123,9 @@ export default (props: PropsT) => (
               borderLeft: `1px solid ${$theme.colors.border}`,
               maxWidth: '45rem',
             }),
+            props: {
+              id: 'docSearch-content',
+            },
           },
         }}
       >
