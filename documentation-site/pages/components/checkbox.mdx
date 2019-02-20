@@ -21,7 +21,8 @@ import Focus from 'examples/checkbox/focus.js';
 import Toggle from 'examples/checkbox/toggle.js';
 
 import Overrides from '../../components/overrides';
-import {StatefulCheckbox} from 'baseui/checkbox';
+import {Block} from 'baseui/block';
+import {StatefulCheckbox, STYLE_TYPE} from 'baseui/checkbox';
 import * as CheckboxExports from 'baseui/checkbox';
 
 export default Layout;
@@ -46,7 +47,10 @@ options. When engaged (on), Base UI toggles are colored and when disengaged (off
   <Basic />
 </Example>
 
-<Example title="Checkbox multiline example" path="examples/checkbox/multiline.js">
+<Example
+  title="Checkbox multiline example"
+  path="examples/checkbox/multiline.js"
+>
   <Multiline />
 </Example>
 
@@ -54,7 +58,10 @@ options. When engaged (on), Base UI toggles are colored and when disengaged (off
   <Error />
 </Example>
 
-<Example title="Checkbox indeterminate state" path="examples/checkbox/indeterminate.js">
+<Example
+  title="Checkbox indeterminate state"
+  path="examples/checkbox/indeterminate.js"
+>
   <Indeterminate />
 </Example>
 
@@ -62,7 +69,10 @@ options. When engaged (on), Base UI toggles are colored and when disengaged (off
   <Disabled />
 </Example>
 
-<Example title="Checkbox alignment example" path="examples/checkbox/alignment.js">
+<Example
+  title="Checkbox alignment example"
+  path="examples/checkbox/alignment.js"
+>
   <Alignment />
 </Example>
 
@@ -91,9 +101,18 @@ options. When engaged (on), Base UI toggles are colored and when disengaged (off
   name="Checkbox"
   component={CheckboxExports}
   renderExample={props => (
-    <StatefulCheckbox onChange={console.log} overrides={props.overrides}>
-      Label
-    </StatefulCheckbox>
+    <Block width="200px" marginTop="scale400">
+      <StatefulCheckbox onChange={console.log} overrides={props.overrides}>
+        Check Label
+      </StatefulCheckbox>
+      <br />
+      <StatefulCheckbox
+        checkmarkType={STYLE_TYPE.toggle}
+        overrides={props.overrides}
+      >
+        Toggle Label
+      </StatefulCheckbox>
+    </Block>
   )}
 />
 
