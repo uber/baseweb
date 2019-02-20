@@ -664,3 +664,44 @@ Object {
   "userSelect": "none",
 }
 `;
+
+exports[`Checkbox styled components StyledToggle StyledToggle snap: StyledToggle has correct default styles 1`] = `
+Object {
+  "alignItems": "center",
+  "backgroundColor": "$theme.colors.mono100",
+  "borderColor": "$theme.borders.border300.borderColor",
+  "borderRadius": "$theme.borders.radius200",
+  "borderStyle": "$theme.borders.border300.borderStyle",
+  "borderWidth": "$theme.borders.border300.borderWidth",
+  "boxShadow": "$theme.lighting.shadow400",
+  "display": "flex",
+  "height": "$theme.sizing.scale800",
+  "justifyContent": "center",
+  "width": "$theme.sizing.scale800",
+}
+`;
+
+exports[`Checkbox styled components StyledToggleInner StyledToggleInner snap: StyledToggleInner has correct default styles 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.mono600",
+  "borderRadius": "$theme.borders.radius100",
+  "height": "$theme.sizing.scale300",
+  "width": "$theme.sizing.scale0",
+}
+`;
+
+exports[`Checkbox styled components StyledToggleTrack StyledToggleTrack snap: StyledToggleTrack has correct default styles 1`] = `
+Object {
+  "alignItems": "center",
+  "backgroundColor": "$theme.colors.tickFill",
+  "borderRadius": "$theme.borders.radius200",
+  "display": "flex",
+  "height": "$theme.sizing.scale600",
+  "justifyContent": "flex-start",
+  "marginBottom": "$theme.sizing.scale100",
+  "marginLeft": "$theme.sizing.scale100",
+  "marginRight": "$theme.sizing.scale100",
+  "marginTop": "$theme.sizing.scale100",
+  "width": "$theme.sizing.scale1000",
+}
+`;
