@@ -115,6 +115,32 @@ export const Checkmark = styled('span', props => {
     ? $theme.colors.mono600
     : $theme.colors.tickMarkFill;
 
+  const indeterminate = encodeURIComponent(`
+    <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line
+      x1="1"
+      y1="-1"
+      x2="11"
+      y2="-1"
+      transform="translate(0 2)"
+      stroke="${tickColor}"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+    </svg>
+  `);
+
+  const check = encodeURIComponent(`
+    <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z"
+        fill="${tickColor}"
+      />
+    </svg>
+  `);
+
   return {
     flex: '0 0 auto',
     transitionDuration: animation.timing100,
@@ -133,13 +159,9 @@ export const Checkmark = styled('span', props => {
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
-      ? `url('data:image/svg+xml;utf8,<svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="-1" x2="11" y2="-1" transform="translate(0 2)" stroke="${encodeURIComponent(
-          tickColor,
-        )}" stroke-width="2" stroke-linecap="round"/></svg>');`
+      ? `url('data:image/svg+xml;charset=utf8,${indeterminate}');`
       : $checked
-        ? `url('data:image/svg+xml;utf8,<svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z" fill="${encodeURIComponent(
-            tickColor,
-          )}"/></svg>');`
+        ? `url('data:image/svg+xml;charset=utf8,${check}');`
         : null,
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
