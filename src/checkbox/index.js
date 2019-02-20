@@ -15,6 +15,9 @@ export {
   Checkmark as StyledCheckmark,
   Label as StyledLabel,
   Input as StyledInput,
+  Toggle as StyledToggle,
+  ToggleInner as StyledToggleInner,
+  ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
 
 export {STATE_TYPE, STYLE_TYPE} from './constants.js';
