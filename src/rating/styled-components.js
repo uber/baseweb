@@ -66,7 +66,7 @@ export const StyledStar = styled(
       ':after': {
         transition: `all ${$theme.animation.timing400}`,
         content:
-          `url('data:image/svg+xml;utf8,` +
+          `url('data:image/svg+xml;charset=utf8,` +
           starSVG(starFill, starStroke) +
           `')`,
       },
@@ -114,7 +114,9 @@ export const StyledEmoticon = styled(
       ':after': {
         transition: `all ${$theme.animation.timing400}`,
         content:
-          `url('data:image/svg+xml;utf8,` + ratingIcons[$index - 1] + `')`,
+          `url('data:image/svg+xml;charset=utf8,` +
+          ratingIcons[$index - 1] +
+          `')`,
       },
     };
 
