@@ -55,6 +55,21 @@ export default (props: PropsT) => (
             />
           </Link>
           <Block marginLeft="scale600">{version}</Block>
+          <Block
+            overrides={{
+              Block: {
+                style: {
+                  color: 'inherit',
+                  fontStyle: 'italic',
+                },
+              },
+            }}
+            target="_blank"
+            as="a"
+            href="https://github.com/uber-web/baseui/releases"
+          >
+            (Changelog)
+          </Block>
         </Block>
       </NavigationList>
       <NavigationList align={ALIGN.center} />
