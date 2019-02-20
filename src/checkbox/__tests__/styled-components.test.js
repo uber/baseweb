@@ -12,6 +12,9 @@ import {
   StyledLabel,
   StyledCheckmark,
   StyledInput,
+  StyledToggle,
+  StyledToggleInner,
+  StyledToggleTrack,
 } from '../index.js';
 
 describe('Checkbox styled components', () => {
@@ -119,6 +122,33 @@ describe('Checkbox styled components', () => {
       );
       expect(component.instance().getStyles()).toMatchSnapshot(
         'has correct styles when label is placed' + prop,
+      );
+    });
+  });
+
+  describe('StyledToggle', () => {
+    test('StyledToggle snap', () => {
+      const component = shallow(<StyledToggle />);
+      expect(component.instance().getStyles()).toMatchSnapshot(
+        'StyledToggle has correct default styles',
+      );
+    });
+  });
+
+  describe('StyledToggleInner', () => {
+    test('StyledToggleInner snap', () => {
+      const component = shallow(<StyledToggleInner />);
+      expect(component.instance().getStyles()).toMatchSnapshot(
+        'StyledToggleInner has correct default styles',
+      );
+    });
+  });
+
+  describe('StyledToggleTrack', () => {
+    test('StyledToggleTrack snap', () => {
+      const component = shallow(<StyledToggleTrack />);
+      expect(component.instance().getStyles()).toMatchSnapshot(
+        'StyledToggleTrack has correct default styles',
       );
     });
   });
