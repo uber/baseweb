@@ -127,8 +127,6 @@
     "recursive-readdir": "^2.2.2",
     "rimraf": "^2.6.2",
     "screener-storybook": "^0.16.2",
-    "selenium-server-standalone-jar": "^3.14.0",
-    "selenium-webdriver": "^4.0.0-alpha.1",
     "static-server": "^2.2.1",
     "styletron-engine-atomic": "^1.0.5",
     "styletron-react": "^4.4.4",
