@@ -84,12 +84,6 @@ function getBackgroundColor(props) {
   }
 }
 
-function getCheckBackgroundColor(props) {
-  const {$disabled, $theme} = props;
-  const {colors} = $theme;
-  return $disabled ? colors.mono600 : colors.tickMarkFill;
-}
-
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
@@ -113,79 +107,40 @@ export const Root = styled('label', props => {
   };
 });
 
-function getToggleThumbColor(props) {
-  const {
-    $disabled,
-    $isFocused,
-    $isError,
-    $isHovered,
-    $isActive,
-    $theme,
-  } = props;
-  const {colors} = $theme;
-  if ($disabled) {
-    return colors.sliderBorderDisabled;
-  } else if ($isActive || $isFocused || $isHovered) {
-    return colors.sliderBorderHover;
-  } else if ($isError) {
-    if ($isActive || $isFocused) {
-      return colors.negative200;
-    } else if ($isHovered) {
-      return colors.negative100;
-    } else {
-      return colors.negative50;
-    }
-  } else {
-    return colors.sliderBorder;
-  }
-}
-
-const getToggleCheckMarkStyles = props => {
-  const {$checked, $theme, $disabled} = props;
-  const {animation, colors} = $theme;
-  const backgroundColor = $disabled
-    ? colors.sliderHandleFillDisabled
-    : colors.sliderHandleFill;
-  const toggleThumbColor = getToggleThumbColor(props);
-  const toggleSVG =
-    `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23filter0_d)"><rect x="4" y="3" width="24" height="24" rx="4" fill="` +
-    `${encodeURIComponent(backgroundColor)}` +
-    `"/><rect width="2" height="8"  x="15" y="11" rx="1" fill="` +
-    `${encodeURIComponent(toggleThumbColor)}` +
-    `"/></g><defs><filter id="filter0_d" x="0" y="0" width="32" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="1"/><feGaussianBlur stdDeviation="2"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.32 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/></filter></defs></svg>`;
-  return {
-    position: 'relative',
-    flex: '0 0 auto',
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius200
-      : null,
-    display: 'inline-block',
-    backgroundColor: getBackgroundColor(props),
-    transitionDuration: animation.timing100,
-    transitionTimingFunction: animation.easeOutCurve,
-    transitionProperty: 'background-color',
-    width: '40px',
-    height: '16px',
-    marginTop: '4px',
-    marginBottom: '4px',
-    marginLeft: '4px',
-    marginRight: '4px',
-    ':after': {
-      position: 'absolute',
-      top: '-8px',
-      transitionProperty: 'margin-left',
-      transitionDuration: animation.timing400,
-      transitionTimingFunction: animation.easeOutCurve,
-      marginLeft: $checked ? '16px' : '-4px',
-      content: `url('data:image/svg+xml;utf8,` + toggleSVG + `')`,
-      color: 'black',
-    },
-  };
-};
-
-const getDefaultCheckMarkStyles = props => {
-  const {$checked, $isIndeterminate, $theme} = props;
+export const Checkmark = styled('span', props => {
+  const {$checked, $disabled, $isIndeterminate, $theme} = props;
   const {sizing, animation} = $theme;
+
+  const tickColor = $disabled
+    ? $theme.colors.mono600
+    : $theme.colors.tickMarkFill;
+
+  const indeterminate = encodeURIComponent(`
+    <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line
+      x1="1"
+      y1="-1"
+      x2="11"
+      y2="-1"
+      transform="translate(0 2)"
+      stroke="${tickColor}"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+    </svg>
+  `);
+
+  const check = encodeURIComponent(`
+    <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z"
+        fill="${tickColor}"
+      />
+    </svg>
+  `);
+
   return {
     flex: '0 0 auto',
     transitionDuration: animation.timing100,
@@ -204,13 +159,9 @@ const getDefaultCheckMarkStyles = props => {
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
-      ? `url('data:image/svg+xml;utf8,<svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="-1" x2="11" y2="-1" transform="translate(0 2)" stroke="${encodeURIComponent(
-          getCheckBackgroundColor(props),
-        )}" stroke-width="2" stroke-linecap="round"/></svg>');`
+      ? `url('data:image/svg+xml;charset=utf8,${indeterminate}');`
       : $checked
-        ? `url('data:image/svg+xml;utf8,<svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z" fill="${encodeURIComponent(
-            getCheckBackgroundColor(props),
-          )}"/></svg>');`
+        ? `url('data:image/svg+xml;charset=utf8,${check}');`
         : null,
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
@@ -220,13 +171,6 @@ const getDefaultCheckMarkStyles = props => {
     marginLeft: $theme.sizing.scale200,
     marginRight: $theme.sizing.scale200,
   };
-};
-
-export const Checkmark = styled('span', props => {
-  const {$checkmarkType} = props;
-  return $checkmarkType === STYLE_TYPE.toggle
-    ? getToggleCheckMarkStyles(props)
-    : getDefaultCheckMarkStyles(props);
 });
 
 export const Label = styled('div', props => {
@@ -251,3 +195,50 @@ export const Input = styled('input', {
   margin: 0,
   padding: 0,
 });
+
+export const Toggle = styled('div', props => ({
+  ...props.$theme.borders.border300,
+  alignItems: 'center',
+  backgroundColor: props.$theme.colors.mono100,
+  borderRadius: props.$theme.borders.useRoundedCorners
+    ? props.$theme.borders.radius200
+    : null,
+  boxShadow: props.$theme.lighting.shadow400,
+  display: 'flex',
+  justifyContent: 'center',
+  height: props.$theme.sizing.scale800,
+  width: props.$theme.sizing.scale800,
+}));
+
+export const ToggleInner = styled('div', props => {
+  function backgroundColor($theme) {
+    if (props.$disabled) return props.$theme.colors.mono400;
+    if (props.$isActive) return props.$theme.colors.primary500;
+    if (props.$isHovered || props.$checked) return props.$theme.colors.primary;
+
+    return props.$theme.colors.mono600;
+  }
+
+  return {
+    height: props.$theme.sizing.scale300,
+    width: props.$theme.sizing.scale0,
+    borderRadius: props.$theme.borders.radius100,
+    backgroundColor: backgroundColor(),
+  };
+});
+
+export const ToggleTrack = styled('div', props => ({
+  alignItems: 'center',
+  backgroundColor: getBackgroundColor(props),
+  borderRadius: props.$theme.borders.useRoundedCorners
+    ? props.$theme.borders.radius200
+    : null,
+  display: 'flex',
+  height: props.$theme.sizing.scale600,
+  justifyContent: props.$checked ? 'flex-end' : 'flex-start',
+  marginTop: props.$theme.sizing.scale100,
+  marginBottom: props.$theme.sizing.scale100,
+  marginLeft: props.$theme.sizing.scale100,
+  marginRight: props.$theme.sizing.scale100,
+  width: props.$theme.sizing.scale1000,
+}));

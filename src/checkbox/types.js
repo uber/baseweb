@@ -17,6 +17,9 @@ export type OverridesT = {
   Label?: OverrideT<*>,
   Root?: OverrideT<*>,
   Input?: OverrideT<*>,
+  Toggle?: OverrideT<*>,
+  ToggleInner?: OverrideT<*>,
+  ToggleTrack?: OverrideT<*>,
 };
 
 export type DefaultPropsT = {
