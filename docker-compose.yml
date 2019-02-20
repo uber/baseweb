@@ -1,32 +1,5 @@
 version: '2.3'
 services:
-  # to run selenium with chrome locally
-  chrome-standalone:
-    image: selenium/standalone-chrome:latest@sha256:da91acc1e0c63d5d7bfebc3d1e31652787c6227543d39d6df433837a0e81583a
-    network_mode: 'host'
-    restart: always
-    ports:
-      - '4444:4444'
-
-  e2e-test-chrome:
-    build: .
-    network_mode: 'host'
-    depends_on:
-      - chrome-standalone
-      - e2e-server-healthy
-    command: yarn e2e:test
-    environment:
-      - CODECOV_TOKEN
-      - CI=true
-      - BUILDKITE
-      - BUILDKITE_BRANCH
-      - BUILDKITE_BUILD_NUMBER
-      - BUILDKITE_JOB_ID
-      - BUILDKITE_BUILD_URL
-      - BUILDKITE_PROJECT_SLUG
-      - BUILDKITE_COMMIT
-      - SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub
-
   # this spins up a server that serves the html/js/css for the e2e tests
   e2e-server:
     build: .
