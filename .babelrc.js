@@ -18,10 +18,20 @@ module.exports = {
     ['@babel/plugin-proposal-nullish-coalescing-operator', {loose: false}],
     '@babel/plugin-proposal-do-expressions',
     '@babel/plugin-proposal-class-properties',
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: false,
+        helpers: false,
+        regenerator: true,
+        useESModules: false,
+      },
+    ],
   ],
   env: {
     test: {
       plugins: [['./babel/cup.js']],
     },
   },
+  ignore: ['./babel/cup.js'],
 };

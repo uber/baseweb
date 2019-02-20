@@ -12,4 +12,5 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/dist/', './babel/cup.js'],
   preset: 'jest-puppeteer',
   testRegex: './*\\e2e\\.js$', //only for now, will be changed back to e2e.js
+  transformIgnorePatterns: ['./babel/cup.js'],
 };
