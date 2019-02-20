@@ -9032,10 +9032,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-kind2string@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/kind2string/-/kind2string-0.5.1.tgz#d4e7ec66316d1ecd5350cb86c70324b1c2e270e3"
-  integrity sha512-5Dqfq9mqaBzwi4GwDJT8u+bkEWJT//2CixBJzzQXTiFZF0AzCXl5m9AJC0zQiJaaIz6Je/D4GtTXBMTDOWjCVA==
+kind2string@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/kind2string/-/kind2string-0.5.2.tgz#09b2e88824170dbe757b2b1cc26b90eca9204b3a"
+  integrity sha512-DEqWiharo5k0/zTVERIzbbhwEOVp6bEhB5fwiFXPRBgQt01e5ys8BOd9XJRbdJsMNkxdpmoJROUvXL1NfA5PVw==
 
 klaw@^1.0.0:
   version "1.3.1"
@@ -11055,13 +11055,13 @@ pretty-format@^24.0.0:
     ansi-regex "^4.0.0"
     ansi-styles "^3.2.0"
 
-pretty-proptypes@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/pretty-proptypes/-/pretty-proptypes-0.5.0.tgz#160c9b44ba61a5a64b3efff4c1021da4bfc0ebed"
-  integrity sha512-QrbUdK2diP/O8xwtU5fjpeQzUX045uu64j+lSofi8n6yZIPbp8ZP/KOjeTEQpMBKrQXkbC9dAFJhy9VAPdHF8A==
+pretty-proptypes@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/pretty-proptypes/-/pretty-proptypes-0.6.0.tgz#70cfb8a7525818662aa47dd0dd627ea05c82ac0c"
+  integrity sha512-swOLy+8rVLR+XcJVCu9+D8mkm0bFj9NaZT3F9WojL6kNQeIpGVmziRZ4buwuJ8K0FmL+WnDBIZPHqBs8UOK1gQ==
   dependencies:
     emotion "^9.1.1"
-    kind2string "^0.5.1"
+    kind2string "^0.5.2"
     react-markings "^1.2.0"
 
 pretty-quick@^1.4.1:
