@@ -122,7 +122,7 @@
     "rimraf": "^2.6.2",
     "screener-storybook": "^0.16.2",
     "static-server": "^2.2.1",
-    "styletron-engine-atomic": "^1.0.5",
+    "styletron-engine-atomic": "^1.0.13",
     "styletron-react": "^4.4.4",
     "styletron-standard": "^2.0.1",
     "webpack": "^4.17.1",
