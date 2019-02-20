@@ -13193,13 +13193,13 @@ styled-jsx@3.2.1:
     stylis "3.5.4"
     stylis-rule-sheet "0.0.10"
 
-styletron-engine-atomic@^1.0.5:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/styletron-engine-atomic/-/styletron-engine-atomic-1.0.8.tgz#97f0abef84a4b15a9c70c64571db67eb68e06042"
-  integrity sha1-l/Cr74SksVqccMZFcdtn62jgYEI=
+styletron-engine-atomic@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/styletron-engine-atomic/-/styletron-engine-atomic-1.0.13.tgz#0c53ec9c39fe153a7359f747ee677d54737cec10"
+  integrity sha512-aN1FKxEZwGwVoHtm9us/LxCKhe/hSQScu+4fZhc9jWa9S3ZX91L1vybrAHqsRYdLgtfmtCwJwfzuX1Nwm0/bxw==
   dependencies:
     inline-style-prefixer "^4.0.0"
-    styletron-standard "^1.0.6"
+    styletron-standard "^2.0.1"
 
 styletron-react@^4.4.4:
   version "4.4.4"
@@ -13209,13 +13209,6 @@ styletron-react@^4.4.4:
     create-react-context "^0.2.2"
     prop-types "^15.6.0"
     styletron-standard "^2.0.1"
-
-styletron-standard@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/styletron-standard/-/styletron-standard-1.0.6.tgz#f38a21d888ccee143a7c263e86d525f1eef2df7d"
-  integrity sha1-84oh2IjM7hQ6fCY+htUl8e7y330=
-  dependencies:
-    inline-style-prefixer "^4.0.0"
 
 styletron-standard@^2.0.1:
   version "2.0.1"
