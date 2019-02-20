@@ -78,7 +78,7 @@ Object {
       ],
       "results": Array [
         Object {
-          "isThrow": false,
+          "type": "return",
           "value": <span />,
         },
       ],
@@ -99,7 +99,7 @@ Object {
       ],
       "results": Array [
         Object {
-          "isThrow": false,
+          "type": "return",
           "value": <span />,
         },
       ],
