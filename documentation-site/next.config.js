@@ -25,6 +25,22 @@ module.exports = withCSS(
       webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
         config.resolve.alias.baseui = resolve(__dirname, '../dist');
         config.resolve.alias.examples = resolve(__dirname, 'static/examples');
+
+        // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
+        const originalEntry = config.entry;
+        config.entry = async () => {
+          const entries = await originalEntry();
+
+          if (
+            entries['main.js'] &&
+            !entries['main.js'].includes('./helpers/polyfills.js')
+          ) {
+            entries['main.js'].unshift('./helpers/polyfills.js');
+          }
+
+          return entries;
+        };
+
         return config;
       },
       pageExtensions: ['js', 'jsx', 'mdx'],
