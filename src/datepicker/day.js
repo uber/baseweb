@@ -40,35 +40,51 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   };
 
   componentDidMount() {
-    if (this.props.isHighlighted) {
-      if (__BROWSER__) {
-        document.addEventListener('keydown', this.onKeyDown);
+    // if (this.props.isHighlighted) {
+    //   if (__BROWSER__) {
+    //     document.addEventListener('keydown', this.onKeyDown);
+    //   }
+    // }
+    if (this.dayBtn && this.props.isFocused) {
+      if (
+        this.props.isHighlighted ||
+        (!this.props.highlightedDate && this.isSelected())
+      ) {
+        this.dayBtn.focus();
       }
     }
   }
 
   componentDidUpdate(prevProps: DayPropsT) {
-    if (
-      this.props.isHighlighted &&
-      this.props.isHighlighted !== prevProps.isHighlighted
-    ) {
-      if (__BROWSER__) {
-        document.addEventListener('keydown', this.onKeyDown);
-      }
-    } else if (
-      !this.props.isHighlighted &&
-      this.props.isHighlighted !== prevProps.isHighlighted
-    ) {
-      if (__BROWSER__) {
-        document.removeEventListener('keydown', this.onKeyDown);
+    if (this.dayBtn && this.props.isFocused) {
+      if (
+        this.props.isHighlighted ||
+        (!this.props.highlightedDate && this.isSelected())
+      ) {
+        this.dayBtn.focus();
       }
     }
+    // if (
+    //   this.props.isHighlighted &&
+    //   this.props.isHighlighted !== prevProps.isHighlighted
+    // ) {
+    //   if (__BROWSER__) {
+    //     document.addEventListener('keydown', this.onKeyDown);
+    //   }
+    // } else if (
+    //   !this.props.isHighlighted &&
+    //   this.props.isHighlighted !== prevProps.isHighlighted
+    // ) {
+    //   if (__BROWSER__) {
+    //     document.removeEventListener('keydown', this.onKeyDown);
+    //   }
+    // }
   }
 
   componentWillUnmount() {
-    if (__BROWSER__) {
-      document.removeEventListener('keydown', this.onKeyDown);
-    }
+    // if (__BROWSER__) {
+    //   document.removeEventListener('keydown', this.onKeyDown);
+    // }
   }
 
   onSelect(selectedDate: Date) {
@@ -214,15 +230,29 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <Day
-        aria-label={formatDate(date, 'EEEE, MMMM do YYYY', this.props.locale)}
-        role="cell"
+        aria-label={`${sharedProps.$selected ? 'Selected' : ''} ${
+          sharedProps.$disabled ? 'Not available' : 'Available'
+        } ${formatDate(date, 'EEEE, MMMM do YYYY', this.props.locale)}`}
+        $ref={dayBtn => {
+          this.dayBtn = dayBtn;
+        }}
+        role="button"
+        tabIndex={
+          this.props.isHighlighted ||
+          (!this.props.highlightedDate && this.isSelected())
+            ? '0'
+            : '-1'
+        }
         {...sharedProps}
         {...dayProps}
         // Adding event handlers after customers overrides in order to
         // make sure the components functions as expected
         // We can extract the handlers from props overrides
         // and call it along with internal handlers by creating an inline handler
+        onBlur={this.props.onBlur}
+        onFocus={this.props.onFocus}
         onClick={this.onClick}
+        onKeyDown={this.onKeyDown}
         onMouseOver={this.onMouseOver}
         onMouseLeave={this.onMouseLeave}
       >

@@ -47,6 +47,7 @@ export default class Week extends React.Component<WeekPropsT> {
             highlightedDate={this.props.highlightedDate}
             isHighlighted={isSameDay(day, this.props.highlightedDate)}
             includeDates={this.props.includeDates}
+            isFocused={this.props.isFocused}
             isRange={this.props.isRange}
             key={offset}
             locale={this.props.locale}
@@ -54,6 +55,8 @@ export default class Week extends React.Component<WeekPropsT> {
             maxDate={this.props.maxDate}
             month={this.props.month}
             onSelect={this.props.onChange}
+            onBlur={this.props.onDayBlur}
+            onFocus={this.props.onDayFocus}
             onClick={this.props.onDayClick}
             onMouseOver={this.props.onDayMouseOver}
             onMouseLeave={this.props.onDayMouseLeave}

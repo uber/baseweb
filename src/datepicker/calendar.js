@@ -22,6 +22,7 @@ import {
   addDays,
   addMonths,
   getMonth,
+  addWeeks,
   getWeekdayMinInLocale,
   getEffectiveMinDate,
   getEffectiveMaxDate,
@@ -29,6 +30,9 @@ import {
   isAfter,
   isBefore,
   isSameDay,
+  isSameMonth,
+  isSameYear,
+  subDays,
   subWeeks,
   subMonths,
   subYears,
@@ -61,7 +65,8 @@ export default class Calendar extends React.Component<
     overrides: {},
     peekNextMonth: false,
     value: null,
-    setActiveState: () => {},
+    // setActiveState: () => {},
+    trapTabbing: false,
   };
 
   root: ?HTMLElement;
@@ -70,8 +75,18 @@ export default class Calendar extends React.Component<
   constructor(props: CalendarPropsT) {
     super(props);
     this.state = {
+      highlightedDate:
+        this.props.highlightedDate ||
+        this.getSingleDate(this.props.value) ||
+        new Date(),
+      isFocused: false,
+      lastHighlightedDate:
+        this.props.highlightedDate ||
+        this.getSingleDate(this.props.value) ||
+        new Date(),
+      // highlightedDate: this.props.highlightedDate,
+      // lastHighlightedDate: this.props.highlightedDate,
       date: this.getDateInView(),
-      voiceoverText: '',
     };
   }
 
@@ -79,6 +94,11 @@ export default class Calendar extends React.Component<
     if (this.props.calFocusedInitially) {
       this.focusCalendar();
     }
+    // if (__BROWSER__) {
+    //   if (this.props.trapTabbing) {
+    //     document.addEventListener('keydown', this.handleTabbing);
+    //   }
+    // }
   }
 
   componentDidUpdate(prevProps: CalendarPropsT) {
@@ -97,6 +117,14 @@ export default class Calendar extends React.Component<
       this.focusCalendar();
     }
   }
+
+  // componentWillUnmount() {
+  //   if (__BROWSER__) {
+  //     if (this.props.trapTabbing) {
+  //       document.removeEventListener('keydown', this.handleTabbing);
+  //     }
+  //   }
+  // }
 
   getSingleDate(value: ?Date | Array<Date>): ?Date {
     // need to check this.props.isRange but flow would complain
@@ -126,12 +154,14 @@ export default class Calendar extends React.Component<
   };
 
   handleMonthChange = (date: Date) => {
+    this.setHighlightedDate(date);
     if (this.props.onMonthChange) {
       this.props.onMonthChange({date});
     }
   };
 
   handleYearChange = (date: Date) => {
+    this.setHighlightedDate(date);
     if (this.props.onYearChange) {
       this.props.onYearChange({date});
     }
@@ -170,7 +200,7 @@ export default class Calendar extends React.Component<
       StyledDay,
     );
     return (
-      <MonthHeader {...monthHeaderProps}>
+      <MonthHeader role="presentation" {...monthHeaderProps}>
         {WEEKDAYS.map(offset => {
           const day = addDays(startOfWeek, offset);
           return (
@@ -183,22 +213,140 @@ export default class Calendar extends React.Component<
     );
   };
 
-  setActive = () => {
-    this.props.setActiveState(true, {root: this.root});
-  };
-
-  setInactive = () => {
-    this.props.setActiveState(false, {
-      calendar: this.calendar,
-      root: this.root,
-    });
-  };
-
-  focusCalendar = () => {
-    if (this.calendar) {
-      this.calendar.focus();
+  onKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowUp':
+      case 'ArrowDown':
+      case 'ArrowLeft':
+      case 'ArrowRight':
+        this.handleArrowKey(event.key);
+        event.preventDefault();
+        event.stopPropagation();
+        break;
     }
   };
+
+  handleArrowKey = (key: string) => {
+    const {highlightedDate: oldDate, lastHighlightedDate} = this.state;
+    let highlightedDate = oldDate ? oldDate : null;
+    // let stateChangeType = null;
+    switch (key) {
+      case 'ArrowLeft':
+        // adding `new Date()` as the last option to satisfy Fow
+        highlightedDate = subDays(
+          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+          1,
+        );
+        // stateChangeType = STATE_CHANGE_TYPE.moveLeft;
+        break;
+      case 'ArrowRight':
+        highlightedDate = addDays(
+          // adding `new Date()` as the last option to satisfy Fow
+          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+          1,
+        );
+        // stateChangeType = STATE_CHANGE_TYPE.moveRight;
+        break;
+      case 'ArrowUp':
+        highlightedDate = subWeeks(
+          // adding `new Date()` as the last option to satisfy Fow
+          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+          1,
+        );
+        // stateChangeType = STATE_CHANGE_TYPE.moveUp;
+        break;
+      case 'ArrowDown':
+        highlightedDate = addWeeks(
+          // adding `new Date()` as the last option to satisfy Fow
+          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+          1,
+        );
+        // stateChangeType = STATE_CHANGE_TYPE.moveDown;
+        break;
+    }
+    this.setState({highlightedDate, date: highlightedDate});
+  };
+
+  // setActive = () => {
+  //   this.props.setActiveState(true, {root: this.root});
+  // };
+
+  // setInactive = () => {
+  //   this.props.setActiveState(false, {
+  //     calendar: this.calendar,
+  //     root: this.root,
+  //   });
+  // };
+
+  focusCalendar = () => {
+    if (!this.state.isFocused) {
+      this.setState({isFocused: true});
+    }
+    // if (this.calendar) {
+    //   this.calendar.focus();
+    // }
+  };
+
+  blurCalendar = () => {
+    if (__BROWSER__) {
+      const activeElm = document.activeElement;
+      if (this.calendar && !this.calendar.contains(activeElm)) {
+        this.setState({isFocused: false});
+      }
+    }
+  };
+
+  handleTabbing = (event: KeyboardEvent) => {
+    if (__BROWSER__) {
+      if (event.keyCode === 9) {
+        const activeElm = document.activeElement;
+        // need to look for any tabindex >= 0 and ideally for not disabled
+        // focusable by default elements like input, button, etc.
+        const focusable = this.root
+          ? this.root.querySelectorAll('[tabindex="0"]')
+          : null;
+        const length = focusable ? focusable.length : 0;
+        if (event.shiftKey) {
+          if (focusable && activeElm === focusable[0]) {
+            event.preventDefault();
+            focusable[length - 1].focus();
+          }
+        } else {
+          if (focusable && activeElm === focusable[length - 1]) {
+            event.preventDefault();
+            focusable[0].focus();
+          }
+        }
+      }
+    }
+  };
+
+  onDayMouseOver = (data: {event: Event, date: Date}) => {
+    const {date} = data;
+    this.setState({highlightedDate: date});
+    this.props.onDayMouseOver(data);
+  };
+
+  onDayMouseLeave = (data: {event: Event, date: Date}) => {
+    const {date} = data;
+    this.setHighlightedDate(date);
+    this.props.onDayMouseLeave(data);
+  };
+
+  setHighlightedDate(date: Date) {
+    const {value} = this.props;
+    const selected = this.getSingleDate(value);
+    let nextState;
+    if (selected && isSameMonth(selected, date) && isSameYear(selected, date)) {
+      nextState = {highlightedDate: selected};
+    } else {
+      nextState = {
+        lastHighlightedDate: date,
+        highlightedDate: date,
+      };
+    }
+    this.setState(nextState);
+  }
 
   renderMonths = () => {
     const {overrides = {}} = this.props;
@@ -214,12 +362,13 @@ export default class Calendar extends React.Component<
       monthList.push(
         <CalendarContainer
           key={monthKey}
-          tabIndex={0}
-          onFocus={this.setActive}
-          onBlur={this.setInactive}
+          tabIndex={-1}
+          // onFocus={this.setActive}
+          // onBlur={this.setInactive}
           $ref={calendar => {
             this.calendar = calendar;
           }}
+          onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
         >
           {this.renderMonthHeader(monthDate, i)}
@@ -227,16 +376,19 @@ export default class Calendar extends React.Component<
             date={monthDate}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
-            highlightedDate={this.props.highlightedDate}
+            highlightedDate={this.state.highlightedDate}
             includeDates={this.props.includeDates}
+            isFocused={this.state.isFocused}
             isRange={this.props.isRange}
             locale={this.props.locale}
             maxDate={this.props.maxDate}
             minDate={this.props.minDate}
             month={getMonth(this.state.date)}
+            onDayBlur={this.blurCalendar}
+            onDayFocus={this.focusCalendar}
             onDayClick={this.props.onDayClick}
-            onDayMouseOver={this.props.onDayMouseOver}
-            onDayMouseLeave={this.props.onDayMouseLeave}
+            onDayMouseOver={this.onDayMouseOver}
+            onDayMouseLeave={this.onDayMouseLeave}
             onChange={this.props.onChange}
             overrides={overrides}
             value={this.props.value}
@@ -340,10 +492,31 @@ export default class Calendar extends React.Component<
         $ref={root => {
           this.root = root;
         }}
+        role="application"
+        aria-label="calendar"
+        onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
         {...rootProps}
       >
         {this.renderMonths()}
         {this.renderQuickSelect()}
+        {/* <div
+          aria-live="assertive"
+          role="log"
+          aria-atomic="true"
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            margin: '-1px',
+            border: '0px',
+            padding: '0px',
+            overflow: 'hidden',
+            clip: 'react(0px, 0px, 0px, 0px)',
+            clipPath: 'inset(100%)',
+          }}
+        >
+          {this.state.liveText}
+        </div> */}
       </Root>
     );
   }

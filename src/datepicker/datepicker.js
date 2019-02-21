@@ -24,8 +24,10 @@ export default class Datepicker extends React.Component<
   },
 > {
   static defaultProps = {
-    'aria-label': null,
+    'aria-label': 'Select a date',
     'aria-labelledby': null,
+    'aria-describedby':
+      'Press the down arrow key to interact with the calendar and select a date.',
     disabled: false,
     formatDisplayValue: null,
     formatString: 'YYYY/MM/dd',
@@ -139,39 +141,59 @@ export default class Datepicker extends React.Component<
       Popover,
     );
     return (
-      <PopoverComponent
-        placement={PLACEMENT.bottom}
-        isOpen={this.state.isOpen}
-        onClickOutside={this.close}
-        onEsc={this.handleEsc}
-        content={
-          <NavigationContainer
-            trapTabbing={true}
-            value={this.props.value}
-            calFocusedInitially={this.state.calendarFocused}
-            {...this.props}
-            onChange={this.onChange}
-          >
-            {childrenProps => <Calendar {...childrenProps} />}
-          </NavigationContainer>
-        }
-        {...popoverProps}
-      >
-        <InputComponent
-          aria-disabled={this.props.disabled}
-          aria-label={this.props['aria-label']}
-          aria-labelledby={this.props['aria-labelledby']}
-          aria-required={this.props.required || null}
-          disabled={this.props.disabled}
-          value={this.formatDisplayValue(this.props.value)}
-          onFocus={this.open}
-          onBlur={this.handleInputBlur}
-          onKeyDown={this.handleKeyDown}
-          placeholder={this.props.placeholder}
-          required={this.props.required}
-          {...inputProps}
-        />
-      </PopoverComponent>
+      <React.Fragment>
+        <PopoverComponent
+          placement={PLACEMENT.bottom}
+          isOpen={this.state.isOpen}
+          onClickOutside={this.close}
+          onEsc={this.handleEsc}
+          content={
+            <NavigationContainer
+              trapTabbing={true}
+              value={this.props.value}
+              calFocusedInitially={this.state.calendarFocused}
+              {...this.props}
+              onChange={this.onChange}
+            >
+              {childrenProps => <Calendar {...childrenProps} />}
+            </NavigationContainer>
+          }
+          {...popoverProps}
+        >
+          <InputComponent
+            aria-disabled={this.props.disabled}
+            aria-label={this.props['aria-label']}
+            aria-labelledby={this.props['aria-labelledby']}
+            aria-describedby="test"
+            aria-required={this.props.required || null}
+            disabled={this.props.disabled}
+            value={this.formatDisplayValue(this.props.value)}
+            onFocus={this.open}
+            onBlur={this.handleInputBlur}
+            onKeyDown={this.handleKeyDown}
+            placeholder={this.props.placeholder}
+            required={this.props.required}
+            {...inputProps}
+          />
+        </PopoverComponent>
+        <p
+          id="datepicker--screenreader--message--input"
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            margin: '-1px',
+            border: '0px',
+            padding: '0px',
+            overflow: 'hidden',
+            clip: 'react(0px, 0px, 0px, 0px)',
+            clipPath: 'inset(100%)',
+          }}
+        >
+          Press the down arrow key to interact with the calendar and select a
+          date.
+        </p>
+      </React.Fragment>
     );
   }
 }

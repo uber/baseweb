@@ -64,12 +64,15 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
           filterDate={this.props.filterDate}
           highlightedDate={this.props.highlightedDate}
           includeDates={this.props.includeDates}
+          isFocused={this.props.isFocused}
           isRange={this.props.isRange}
           key={i}
           locale={this.props.locale}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           month={getMonth(this.props.date)}
+          onDayBlur={this.props.onDayBlur}
+          onDayFocus={this.props.onDayFocus}
           onDayClick={this.props.onDayClick}
           onDayMouseOver={this.props.onDayMouseOver}
           onDayMouseLeave={this.props.onDayMouseLeave}

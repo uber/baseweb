@@ -70,13 +70,13 @@ class NavigationContainer extends React.Component<
   }
 
   setActiveState = (isActive: boolean, {root}: {root: ?HTMLElement}) => {
-    if (__BROWSER__) {
-      this.root = root;
-      const method = isActive ? 'addEventListener' : 'removeEventListener';
-      // $FlowFixMe
-      document[method]('keydown', this.onKeyDown);
-      this.internalSetState(null, {isActive});
-    }
+    // if (__BROWSER__) {
+    //   this.root = root;
+    //   const method = isActive ? 'addEventListener' : 'removeEventListener';
+    //   // $FlowFixMe
+    //   document[method]('keydown', this.onKeyDown);
+    //   this.internalSetState(null, {isActive});
+    // }
   };
 
   getSingleDate(value: ?Date | Array<Date>): ?Date {
@@ -87,9 +87,9 @@ class NavigationContainer extends React.Component<
     }
   }
 
-  onChange = (data: {date: ?Date | Array<Date>}) => {
-    this.props.onChange(data);
-  };
+  // onChange = (data: {date: ?Date | Array<Date>}) => {
+  //   this.props.onChange(data);
+  // };
 
   onMonthChange = (data: {date: Date}) => {
     const {date} = data;
@@ -107,18 +107,18 @@ class NavigationContainer extends React.Component<
     }
   };
 
-  onKeyDown = (event: KeyboardEvent) => {
-    switch (event.key) {
-      case 'ArrowUp':
-      case 'ArrowDown':
-      case 'ArrowLeft':
-      case 'ArrowRight':
-        this.handleArrowKey(event.key);
-        event.preventDefault();
-        event.stopPropagation();
-        break;
-    }
-  };
+  // onKeyDown = (event: KeyboardEvent) => {
+  //   switch (event.key) {
+  //     case 'ArrowUp':
+  //     case 'ArrowDown':
+  //     case 'ArrowLeft':
+  //     case 'ArrowRight':
+  //       this.handleArrowKey(event.key);
+  //       event.preventDefault();
+  //       event.stopPropagation();
+  //       break;
+  //   }
+  // };
 
   handleTabbing = (event: KeyboardEvent) => {
     if (__BROWSER__) {
@@ -181,46 +181,46 @@ class NavigationContainer extends React.Component<
     );
   }
 
-  handleArrowKey(key: string) {
-    const {highlightedDate: oldDate, lastHighlightedDate} = this.state;
-    let highlightedDate = oldDate ? oldDate : null;
-    let stateChangeType = null;
-    switch (key) {
-      case 'ArrowLeft':
-        // adding `new Date()` as the last option to satisfy Fow
-        highlightedDate = subDays(
-          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
-          1,
-        );
-        stateChangeType = STATE_CHANGE_TYPE.moveLeft;
-        break;
-      case 'ArrowRight':
-        highlightedDate = addDays(
-          // adding `new Date()` as the last option to satisfy Fow
-          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
-          1,
-        );
-        stateChangeType = STATE_CHANGE_TYPE.moveRight;
-        break;
-      case 'ArrowUp':
-        highlightedDate = subWeeks(
-          // adding `new Date()` as the last option to satisfy Fow
-          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
-          1,
-        );
-        stateChangeType = STATE_CHANGE_TYPE.moveUp;
-        break;
-      case 'ArrowDown':
-        highlightedDate = addWeeks(
-          // adding `new Date()` as the last option to satisfy Fow
-          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
-          1,
-        );
-        stateChangeType = STATE_CHANGE_TYPE.moveDown;
-        break;
-    }
-    this.internalSetState(stateChangeType, {highlightedDate});
-  }
+  // handleArrowKey(key: string) {
+  //   const {highlightedDate: oldDate, lastHighlightedDate} = this.state;
+  //   let highlightedDate = oldDate ? oldDate : null;
+  //   let stateChangeType = null;
+  //   switch (key) {
+  //     case 'ArrowLeft':
+  //       // adding `new Date()` as the last option to satisfy Fow
+  //       highlightedDate = subDays(
+  //         highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+  //         1,
+  //       );
+  //       stateChangeType = STATE_CHANGE_TYPE.moveLeft;
+  //       break;
+  //     case 'ArrowRight':
+  //       highlightedDate = addDays(
+  //         // adding `new Date()` as the last option to satisfy Fow
+  //         highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+  //         1,
+  //       );
+  //       stateChangeType = STATE_CHANGE_TYPE.moveRight;
+  //       break;
+  //     case 'ArrowUp':
+  //       highlightedDate = subWeeks(
+  //         // adding `new Date()` as the last option to satisfy Fow
+  //         highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+  //         1,
+  //       );
+  //       stateChangeType = STATE_CHANGE_TYPE.moveUp;
+  //       break;
+  //     case 'ArrowDown':
+  //       highlightedDate = addWeeks(
+  //         // adding `new Date()` as the last option to satisfy Fow
+  //         highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+  //         1,
+  //       );
+  //       stateChangeType = STATE_CHANGE_TYPE.moveDown;
+  //       break;
+  //   }
+  //   this.internalSetState(stateChangeType, {highlightedDate});
+  // }
 
   internalSetState(type: StateChangeTypeT, changes: NavigationContainerStateT) {
     const {stateReducer} = this.props;
@@ -235,7 +235,7 @@ class NavigationContainer extends React.Component<
       highlightedDate: this.state.highlightedDate,
       onDayMouseOver: this.onDayMouseOver,
       onDayMouseLeave: this.onDayMouseLeave,
-      onChange: this.onChange,
+      // onChange: this.onChange,
       onMonthChange: this.onMonthChange,
       onYearChange: this.onYearChange,
       setActiveState: this.setActiveState,
