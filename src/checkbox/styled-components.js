@@ -23,13 +23,19 @@ function getBorderColor(props) {
 }
 
 function getLabelPadding(props) {
+  const oppositeDirections = {
+    top: 'Bottom',
+    bottom: 'Top',
+    left: 'Right',
+    right: 'Left',
+  };
   const {$labelPlacement = '', $theme} = props;
+  if (!oppositeDirections[$labelPlacement]) return {};
+  const paddingDirection = oppositeDirections[$labelPlacement];
   const {sizing} = $theme;
-  const {scale200} = sizing;
-  const paddingSide =
-    'padding' + $labelPlacement.replace(/^\w/, c => c.toUpperCase());
+  const {scale300} = sizing;
   return {
-    [paddingSide]: scale200,
+    [`padding${paddingDirection}`]: scale300,
   };
 }
 
@@ -168,8 +174,8 @@ export const Checkmark = styled('span', props => {
     backgroundPosition: 'center',
     marginTop: $theme.sizing.scale0,
     marginBottom: $theme.sizing.scale0,
-    marginLeft: $theme.sizing.scale200,
-    marginRight: $theme.sizing.scale200,
+    marginLeft: $theme.sizing.scale0,
+    marginRight: $theme.sizing.scale0,
   };
 });
 
