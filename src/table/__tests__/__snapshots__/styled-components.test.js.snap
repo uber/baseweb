@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Table styled components $width property: StyledAction has expected styles when $width property defined 1`] = `
+Object {
+  ":hover:enabled": Object {
+    "cursor": "pointer",
+  },
+  "border": "none",
+  "color": "$theme.colors.primary",
+  "marginLeft": "$theme.sizing.scale100",
+  "marginRight": "$theme.sizing.scale100",
+  "paddingBottom": 0,
+  "paddingLeft": 0,
+  "paddingRight": 0,
+  "paddingTop": 0,
+}
+`;
+
 exports[`Table styled components $width property: StyledBody has expected styles when $width property defined 1`] = `
 Object {
   "flex": 1,
@@ -74,6 +90,22 @@ Object {
   "flexDirection": "column",
   "height": "100%",
   "overflowX": "scroll",
+}
+`;
+
+exports[`Table styled components default properties: StyledAction has expected default styles 1`] = `
+Object {
+  ":hover:enabled": Object {
+    "cursor": "pointer",
+  },
+  "border": "none",
+  "color": "$theme.colors.primary",
+  "marginLeft": "$theme.sizing.scale100",
+  "marginRight": "$theme.sizing.scale100",
+  "paddingBottom": 0,
+  "paddingLeft": 0,
+  "paddingRight": 0,
+  "paddingTop": 0,
 }
 `;
 
