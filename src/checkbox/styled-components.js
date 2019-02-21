@@ -24,12 +24,26 @@ function getBorderColor(props) {
 
 function getLabelPadding(props) {
   const {$labelPlacement = '', $theme} = props;
+  let paddingDirection;
+  switch ($labelPlacement) {
+    case 'top':
+      paddingDirection = 'Bottom';
+      break;
+    case 'bottom':
+      paddingDirection = 'Top';
+      break;
+    case 'left':
+      paddingDirection = 'Right';
+      break;
+    default:
+    case 'right':
+      paddingDirection = 'Left';
+      break;
+  }
   const {sizing} = $theme;
-  const {scale200} = sizing;
-  const paddingSide =
-    'padding' + $labelPlacement.replace(/^\w/, c => c.toUpperCase());
+  const {scale300} = sizing;
   return {
-    [paddingSide]: scale200,
+    [`padding${paddingDirection}`]: scale300,
   };
 }
 
@@ -168,8 +182,8 @@ export const Checkmark = styled('span', props => {
     backgroundPosition: 'center',
     marginTop: $theme.sizing.scale0,
     marginBottom: $theme.sizing.scale0,
-    marginLeft: $theme.sizing.scale200,
-    marginRight: $theme.sizing.scale200,
+    marginLeft: $theme.sizing.scale0,
+    marginRight: $theme.sizing.scale0,
   };
 });
 
@@ -194,6 +208,7 @@ export const Input = styled('input', {
   overflow: 'hidden',
   margin: 0,
   padding: 0,
+  position: 'absolute',
 });
 
 export const Toggle = styled('div', props => ({
