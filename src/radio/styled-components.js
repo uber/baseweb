@@ -140,4 +140,5 @@ export const Input = styled('input', {
   overflow: 'hidden',
   margin: 0,
   padding: 0,
+  position: 'absolute',
 });

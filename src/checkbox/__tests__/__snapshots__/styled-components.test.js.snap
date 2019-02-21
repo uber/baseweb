@@ -520,6 +520,7 @@ Object {
   "opacity": 0,
   "overflow": "hidden",
   "padding": 0,
+  "position": "absolute",
   "width": 0,
 }
 `;
