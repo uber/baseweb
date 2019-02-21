@@ -32,12 +32,12 @@ function getLabelPadding(props) {
     case 'bottom':
       paddingDirection = 'Top';
       break;
+    case 'left':
+      paddingDirection = 'Right';
+      break;
+    default:
     case 'right':
       paddingDirection = 'Left';
-      break;
-    case 'left':
-    default:
-      paddingDirection = 'Right';
       break;
   }
   const {sizing} = $theme;
