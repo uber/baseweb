@@ -39,11 +39,11 @@ import {
 } from './utils/index.js';
 import {WEEKDAYS} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
-import type {CalendarPropsT} from './types.js';
+import type {CalendarPropsT, CalendarInternalState} from './types.js';
 
 export default class Calendar extends React.Component<
   CalendarPropsT,
-  {date: Date},
+  CalendarInternalState,
 > {
   static defaultProps = {
     calFocusedInitially: false,
@@ -65,7 +65,6 @@ export default class Calendar extends React.Component<
     overrides: {},
     peekNextMonth: false,
     value: null,
-    // setActiveState: () => {},
     trapTabbing: false,
   };
 
@@ -80,12 +79,6 @@ export default class Calendar extends React.Component<
         this.getSingleDate(this.props.value) ||
         new Date(),
       isFocused: false,
-      lastHighlightedDate:
-        this.props.highlightedDate ||
-        this.getSingleDate(this.props.value) ||
-        new Date(),
-      // highlightedDate: this.props.highlightedDate,
-      // lastHighlightedDate: this.props.highlightedDate,
       date: this.getDateInView(),
     };
   }
@@ -94,11 +87,6 @@ export default class Calendar extends React.Component<
     if (this.props.calFocusedInitially) {
       this.focusCalendar();
     }
-    // if (__BROWSER__) {
-    //   if (this.props.trapTabbing) {
-    //     document.addEventListener('keydown', this.handleTabbing);
-    //   }
-    // }
   }
 
   componentDidUpdate(prevProps: CalendarPropsT) {
@@ -117,14 +105,6 @@ export default class Calendar extends React.Component<
       this.focusCalendar();
     }
   }
-
-  // componentWillUnmount() {
-  //   if (__BROWSER__) {
-  //     if (this.props.trapTabbing) {
-  //       document.removeEventListener('keydown', this.handleTabbing);
-  //     }
-  //   }
-  // }
 
   getSingleDate(value: ?Date | Array<Date>): ?Date {
     // need to check this.props.isRange but flow would complain
@@ -227,64 +207,45 @@ export default class Calendar extends React.Component<
   };
 
   handleArrowKey = (key: string) => {
-    const {highlightedDate: oldDate, lastHighlightedDate} = this.state;
-    let highlightedDate = oldDate ? oldDate : null;
-    // let stateChangeType = null;
+    const {highlightedDate: oldDate} = this.state;
+    let highlightedDate = oldDate;
     switch (key) {
       case 'ArrowLeft':
-        // adding `new Date()` as the last option to satisfy Fow
+        // adding `new Date()` as the last option to satisfy Flow
         highlightedDate = subDays(
-          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+          highlightedDate ? highlightedDate : new Date(),
           1,
         );
-        // stateChangeType = STATE_CHANGE_TYPE.moveLeft;
         break;
       case 'ArrowRight':
         highlightedDate = addDays(
-          // adding `new Date()` as the last option to satisfy Fow
-          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
           1,
         );
-        // stateChangeType = STATE_CHANGE_TYPE.moveRight;
         break;
       case 'ArrowUp':
         highlightedDate = subWeeks(
-          // adding `new Date()` as the last option to satisfy Fow
-          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
           1,
         );
-        // stateChangeType = STATE_CHANGE_TYPE.moveUp;
         break;
       case 'ArrowDown':
         highlightedDate = addWeeks(
-          // adding `new Date()` as the last option to satisfy Fow
-          highlightedDate ? highlightedDate : lastHighlightedDate || new Date(),
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
           1,
         );
-        // stateChangeType = STATE_CHANGE_TYPE.moveDown;
         break;
     }
     this.setState({highlightedDate, date: highlightedDate});
   };
 
-  // setActive = () => {
-  //   this.props.setActiveState(true, {root: this.root});
-  // };
-
-  // setInactive = () => {
-  //   this.props.setActiveState(false, {
-  //     calendar: this.calendar,
-  //     root: this.root,
-  //   });
-  // };
-
   focusCalendar = () => {
     if (!this.state.isFocused) {
       this.setState({isFocused: true});
     }
-    // if (this.calendar) {
-    //   this.calendar.focus();
-    // }
   };
 
   blurCalendar = () => {
@@ -341,7 +302,6 @@ export default class Calendar extends React.Component<
       nextState = {highlightedDate: selected};
     } else {
       nextState = {
-        lastHighlightedDate: date,
         highlightedDate: date,
       };
     }
@@ -362,9 +322,6 @@ export default class Calendar extends React.Component<
       monthList.push(
         <CalendarContainer
           key={monthKey}
-          tabIndex={-1}
-          // onFocus={this.setActive}
-          // onBlur={this.setInactive}
           $ref={calendar => {
             this.calendar = calendar;
           }}
@@ -499,24 +456,6 @@ export default class Calendar extends React.Component<
       >
         {this.renderMonths()}
         {this.renderQuickSelect()}
-        {/* <div
-          aria-live="assertive"
-          role="log"
-          aria-atomic="true"
-          style={{
-            position: 'absolute',
-            width: '1px',
-            height: '1px',
-            margin: '-1px',
-            border: '0px',
-            padding: '0px',
-            overflow: 'hidden',
-            clip: 'react(0px, 0px, 0px, 0px)',
-            clipPath: 'inset(100%)',
-          }}
-        >
-          {this.state.liveText}
-        </div> */}
       </Root>
     );
   }

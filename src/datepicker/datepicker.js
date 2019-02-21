@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Input} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
-import NavigationContainer from './navigation-container.js';
 import Calendar from './calendar.js';
 import {formatDate} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -26,8 +25,7 @@ export default class Datepicker extends React.Component<
   static defaultProps = {
     'aria-label': 'Select a date',
     'aria-labelledby': null,
-    'aria-describedby':
-      'Press the down arrow key to interact with the calendar and select a date.',
+    'aria-describedby': 'datepicker--screenreader--message--input',
     disabled: false,
     formatDisplayValue: null,
     formatString: 'YYYY/MM/dd',
@@ -148,15 +146,13 @@ export default class Datepicker extends React.Component<
           onClickOutside={this.close}
           onEsc={this.handleEsc}
           content={
-            <NavigationContainer
+            <Calendar
+              calFocusedInitially={this.state.calendarFocused}
               trapTabbing={true}
               value={this.props.value}
-              calFocusedInitially={this.state.calendarFocused}
               {...this.props}
               onChange={this.onChange}
-            >
-              {childrenProps => <Calendar {...childrenProps} />}
-            </NavigationContainer>
+            />
           }
           {...popoverProps}
         >
@@ -164,7 +160,7 @@ export default class Datepicker extends React.Component<
             aria-disabled={this.props.disabled}
             aria-label={this.props['aria-label']}
             aria-labelledby={this.props['aria-labelledby']}
-            aria-describedby="test"
+            aria-describedby={this.props['aria-describedby']}
             aria-required={this.props.required || null}
             disabled={this.props.disabled}
             value={this.formatDisplayValue(this.props.value)}
@@ -191,7 +187,7 @@ export default class Datepicker extends React.Component<
           }}
         >
           Press the down arrow key to interact with the calendar and select a
-          date.
+          date. Press the escape button to close the calendar.
         </p>
       </React.Fragment>
     );

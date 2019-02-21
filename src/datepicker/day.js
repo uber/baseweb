@@ -35,56 +35,32 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     value: null,
   };
 
+  dayElm: ?HTMLElement;
+
   state = {
     isHovered: false,
   };
 
   componentDidMount() {
-    // if (this.props.isHighlighted) {
-    //   if (__BROWSER__) {
-    //     document.addEventListener('keydown', this.onKeyDown);
-    //   }
-    // }
-    if (this.dayBtn && this.props.isFocused) {
+    if (this.dayElm && this.props.isFocused) {
       if (
         this.props.isHighlighted ||
         (!this.props.highlightedDate && this.isSelected())
       ) {
-        this.dayBtn.focus();
+        this.dayElm.focus();
       }
     }
   }
 
   componentDidUpdate(prevProps: DayPropsT) {
-    if (this.dayBtn && this.props.isFocused) {
+    if (this.dayElm && this.props.isFocused) {
       if (
         this.props.isHighlighted ||
         (!this.props.highlightedDate && this.isSelected())
       ) {
-        this.dayBtn.focus();
+        this.dayElm.focus();
       }
     }
-    // if (
-    //   this.props.isHighlighted &&
-    //   this.props.isHighlighted !== prevProps.isHighlighted
-    // ) {
-    //   if (__BROWSER__) {
-    //     document.addEventListener('keydown', this.onKeyDown);
-    //   }
-    // } else if (
-    //   !this.props.isHighlighted &&
-    //   this.props.isHighlighted !== prevProps.isHighlighted
-    // ) {
-    //   if (__BROWSER__) {
-    //     document.removeEventListener('keydown', this.onKeyDown);
-    //   }
-    // }
-  }
-
-  componentWillUnmount() {
-    // if (__BROWSER__) {
-    //   document.removeEventListener('keydown', this.onKeyDown);
-    // }
   }
 
   onSelect(selectedDate: Date) {
@@ -221,6 +197,28 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     };
   }
 
+  getAriaLabel(sharedProps: {
+    $disabled: boolean,
+    $isRange: boolean,
+    $selected: boolean,
+    $startDate: boolean,
+  }) {
+    const {date, locale} = this.props;
+    return `${
+      sharedProps.$selected
+        ? sharedProps.$isRange
+          ? sharedProps.$startDate
+            ? 'Selected start date.'
+            : 'Selected end date.'
+          : 'Selected.'
+        : sharedProps.$disabled
+          ? 'Not available.'
+          : 'Choose'
+    } ${formatDate(date, 'EEEE, MMMM do YYYY', locale)}. ${
+      !sharedProps.$disabled ? "It's available." : ''
+    }`;
+  }
+
   render() {
     const {date, peekNextMonth, overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
@@ -230,11 +228,9 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <Day
-        aria-label={`${sharedProps.$selected ? 'Selected' : ''} ${
-          sharedProps.$disabled ? 'Not available' : 'Available'
-        } ${formatDate(date, 'EEEE, MMMM do YYYY', this.props.locale)}`}
-        $ref={dayBtn => {
-          this.dayBtn = dayBtn;
+        aria-label={this.getAriaLabel(sharedProps)}
+        $ref={dayElm => {
+          this.dayElm = dayElm;
         }}
         role="button"
         tabIndex={

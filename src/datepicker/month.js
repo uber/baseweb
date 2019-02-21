@@ -9,7 +9,6 @@ import * as React from 'react';
 import Week from './week.js';
 import {StyledMonth} from './styled-components.js';
 import {
-  formatDate,
   addDays,
   isSameMonth,
   getStartOfWeek,
@@ -94,12 +93,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
     const {overrides = {}} = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
     return (
-      <Month
-        role="grid"
-        aria-multiselectable={this.props.isRange || null}
-        aria-label={`month-${formatDate(this.props.date, 'YYYY-MM')}`}
-        {...monthProps}
-      >
+      <Month aria-multiselectable={this.props.isRange || null} {...monthProps}>
         {this.renderWeeks()}
       </Month>
     );
