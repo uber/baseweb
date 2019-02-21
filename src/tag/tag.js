@@ -22,6 +22,7 @@ class Tag extends React.Component<PropsT, {}> {
     onActionClick: () => {},
     closeable: true,
     disabled: false,
+    hoverable: true,
     isFocused: false,
     isHovered: false,
     kind: 'primary',
@@ -31,6 +32,7 @@ class Tag extends React.Component<PropsT, {}> {
     const {
       overrides = {},
       closeable,
+      hoverable,
       color,
       disabled,
       isFocused,
@@ -52,6 +54,7 @@ class Tag extends React.Component<PropsT, {}> {
         };
     const sharedProps: SharedPropsT = {
       $closeable: closeable,
+      $hoverable: hoverable,
       $color: color,
       $disabled: disabled,
       $isFocused: isFocused,

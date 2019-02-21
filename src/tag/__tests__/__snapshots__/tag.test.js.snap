@@ -4,15 +4,17 @@ exports[`Stateless tag should render component: Component has correct render 1`]
 <Tag
   closeable={true}
   disabled={false}
+  hoverable={true}
   isFocused={false}
   isHovered={false}
   kind="primary"
   onActionClick={[MockFunction]}
   overrides={Object {}}
 >
-  <MockStyledComponent
+  <Root
     $closeable={true}
     $disabled={false}
+    $hoverable={true}
     $isFocused={false}
     $isHovered={false}
     $kind="primary"
@@ -20,16 +22,17 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     <span
       styled-component="true"
     >
-      <MockStyledComponent>
+      <Text>
         <span
           styled-component="true"
         >
           Some tag
         </span>
-      </MockStyledComponent>
-      <MockStyledComponent
+      </Text>
+      <Action
         $closeable={true}
         $disabled={false}
+        $hoverable={true}
         $isFocused={false}
         $isHovered={false}
         $kind="primary"
@@ -39,7 +42,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           onClick={[Function]}
           styled-component="true"
         >
-          <MockStyledComponent
+          <ActionIcon
             fill="none"
             height="8"
             viewBox="0 0 8 8"
@@ -61,10 +64,10 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                 fillRule="evenodd"
               />
             </svg>
-          </MockStyledComponent>
+          </ActionIcon>
         </span>
-      </MockStyledComponent>
+      </Action>
     </span>
-  </MockStyledComponent>
+  </Root>
 </Tag>
 `;
