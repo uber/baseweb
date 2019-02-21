@@ -13,6 +13,9 @@ import {
   Input as StyledInput,
   Label as StyledLabel,
   Root as StyledRoot,
+  Toggle as StyledToggle,
+  ToggleInner as StyledToggleInner,
+  ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
 import {STYLE_TYPE} from './constants.js';
 
@@ -102,12 +105,18 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       Checkmark: CheckmarkOverride,
       Label: LabelOverride,
       Input: InputOverride,
+      Toggle: ToggleOverride,
+      ToggleInner: ToggleInnerOverride,
+      ToggleTrack: ToggleTrackOverride,
     } = overrides;
 
     const Root = getOverride(RootOverride) || StyledRoot;
     const Checkmark = getOverride(CheckmarkOverride) || StyledCheckmark;
     const Label = getOverride(LabelOverride) || StyledLabel;
     const Input = getOverride(InputOverride) || StyledInput;
+    const Toggle = getOverride(ToggleOverride) || StyledToggle;
+    const ToggleInner = getOverride(ToggleInnerOverride) || StyledToggleInner;
+    const ToggleTrack = getOverride(ToggleTrackOverride) || StyledToggleTrack;
 
     const inputEvents = {
       onChange,
@@ -149,11 +158,25 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {...getOverrideProps(RootOverride)}
       >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
-        <Checkmark
-          checked={checked}
-          {...sharedProps}
-          {...getOverrideProps(CheckmarkOverride)}
-        />
+        {checkmarkType === STYLE_TYPE.toggle ? (
+          <ToggleTrack
+            {...sharedProps}
+            {...getOverrideProps(ToggleTrackOverride)}
+          >
+            <Toggle {...sharedProps} {...getOverrideProps(ToggleOverride)}>
+              <ToggleInner
+                {...sharedProps}
+                {...getOverrideProps(ToggleInnerOverride)}
+              />
+            </Toggle>
+          </ToggleTrack>
+        ) : (
+          <Checkmark
+            checked={checked}
+            {...sharedProps}
+            {...getOverrideProps(CheckmarkOverride)}
+          />
+        )}
         <Input
           value={value}
           name={name}

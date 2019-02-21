@@ -6,6 +6,7 @@ export default () => (
     <StatefulCheckbox onChange={console.log} checkmarkType={STYLE_TYPE.toggle}>
       toggle me
     </StatefulCheckbox>
+    <br />
     <StatefulCheckbox
       disabled
       onChange={console.log}
