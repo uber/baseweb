@@ -18,14 +18,19 @@ function getBorderColor(props) {
 }
 
 function getLabelPadding(props) {
+  const oppositeDirections = {
+    top: 'Bottom',
+    bottom: 'Top',
+    left: 'Right',
+    right: 'Left',
+  };
   const {$labelPlacement = '', $theme} = props;
-  const {
-    sizing: {scale200},
-  } = $theme;
-  const paddingSide =
-    'padding' + $labelPlacement.replace(/^\w/, c => c.toUpperCase());
+  if (!oppositeDirections[$labelPlacement]) return {};
+  const paddingDirection = oppositeDirections[$labelPlacement];
+  const {sizing} = $theme;
+  const {scale300} = sizing;
   return {
-    [paddingSide]: scale200,
+    [`padding${paddingDirection}`]: scale300,
   };
 }
 
@@ -46,7 +51,8 @@ export const RadioGroupRoot = styled('div', props => {
 });
 
 export const Root = styled('label', props => {
-  const {$disabled, $labelPlacement} = props;
+  const {$disabled, $labelPlacement, $theme} = props;
+  const {sizing} = $theme;
   return {
     flexDirection:
       $labelPlacement === 'top' || $labelPlacement === 'bottom'
@@ -55,6 +61,8 @@ export const Root = styled('label', props => {
     display: 'flex',
     alignItems: 'center',
     cursor: $disabled ? 'not-allowed' : 'pointer',
+    marginTop: sizing.scale200,
+    marginBottom: sizing.scale200,
   };
 });
 
@@ -95,10 +103,10 @@ export const RadioMarkOuter = styled('div', props => {
     display: 'flex',
     height: sizing.scale700,
     justifyContent: 'center',
-    marginTop: sizing.scale200,
-    marginRight: sizing.scale200,
-    marginBottom: sizing.scale200,
-    marginLeft: sizing.scale200,
+    marginTop: sizing.scale0,
+    marginRight: sizing.scale0,
+    marginBottom: sizing.scale0,
+    marginLeft: sizing.scale0,
     verticalAlign: 'middle',
     width: sizing.scale700,
     flexShrink: 0,
@@ -113,7 +121,7 @@ export const Label = styled('div', props => {
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font400,
+    ...typography.font450,
   };
 });
 
