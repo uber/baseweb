@@ -18,15 +18,23 @@ function getBorderColor(props) {
 }
 
 function getLabelPadding(props) {
-  const oppositeDirections = {
-    top: 'Bottom',
-    bottom: 'Top',
-    left: 'Right',
-    right: 'Left',
-  };
   const {$labelPlacement = '', $theme} = props;
-  if (!oppositeDirections[$labelPlacement]) return {};
-  const paddingDirection = oppositeDirections[$labelPlacement];
+  let paddingDirection;
+  switch ($labelPlacement) {
+    case 'top':
+      paddingDirection = 'Bottom';
+      break;
+    case 'bottom':
+      paddingDirection = 'Top';
+      break;
+    case 'right':
+      paddingDirection = 'Left';
+      break;
+    case 'left':
+    default:
+      paddingDirection = 'Right';
+      break;
+  }
   const {sizing} = $theme;
   const {scale300} = sizing;
   return {
