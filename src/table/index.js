@@ -15,6 +15,7 @@ export {
   StyledBody,
   StyledRow,
   StyledCell,
+  StyledAction,
 } from './styled-components.js';
 // Flow
 export * from './types.js';

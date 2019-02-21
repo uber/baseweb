@@ -15,6 +15,7 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
+  StyledAction,
 } from '../index.js';
 
 describe('Table styled components', () => {
@@ -25,6 +26,7 @@ describe('Table styled components', () => {
     [StyledBody, 'StyledBody'],
     [StyledRow, 'StyledRow'],
     [StyledCell, 'StyledCell'],
+    [StyledAction, 'StyledAction'],
   ];
 
   test.each(styledComponents)('default properties', (Component, name) => {
