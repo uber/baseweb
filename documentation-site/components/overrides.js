@@ -12,6 +12,8 @@ import {Block} from 'baseui/block';
 import {Card, StyledBody} from 'baseui/card';
 import {Radio, RadioGroup} from 'baseui/radio';
 import Link from 'next/link';
+
+import NavLink from './nav-link';
 import {trackEvent} from '../helpers/ga';
 
 const isStyledExport = exportName => exportName.startsWith('Styled');
@@ -60,7 +62,7 @@ class Overrides extends React.Component {
           <Block as="p" font="font400">
             Additionally, you can{' '}
             <Link passHref={true} href={'/theming/understanding-overrides'}>
-              fully customize
+              <NavLink>fully customize</NavLink>
             </Link>{' '}
             any part of the <strong>{name}</strong> through the{' '}
             <strong>overrides</strong> prop. The {name} consists of multiple
