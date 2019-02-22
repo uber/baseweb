@@ -9,11 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import CodeSandboxer from 'react-codesandboxer';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Button, KIND} from 'baseui/button';
 import {Card} from 'baseui/card';
 import {Block} from 'baseui/block';
-import Check from 'baseui/icon/check';
 import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
@@ -61,7 +59,6 @@ type PropsT = {
 };
 
 type StateT = {
-  isCopied: boolean,
   isSourceOpen: boolean,
   source: ?string,
 };
@@ -69,7 +66,6 @@ type StateT = {
 class Example extends React.Component<PropsT, StateT> {
   static defaultProps = {additionalPackages: {}};
   state = {
-    isCopied: false,
     isSourceOpen: false,
     source: null,
   };
@@ -80,12 +76,6 @@ class Example extends React.Component<PropsT, StateT> {
     const source = await res.text();
     this.setState({source});
   }
-
-  handleCopy = () => {
-    this.setState({isCopied: true}, () =>
-      setTimeout(() => this.setState({isCopied: false}), 5000),
-    );
-  };
 
   render() {
     return (
@@ -167,26 +157,6 @@ class Example extends React.Component<PropsT, StateT> {
               justifyContent="flex-end"
               marginTop="scale400"
             >
-              <Block marginRight="scale600">
-                <CopyToClipboard
-                  onCopy={() => {
-                    this.handleCopy();
-                    trackEvent('copy_to_clipboard', this.props.title);
-                  }}
-                  text={this.state.source}
-                >
-                  {this.state.isCopied ? (
-                    <Button
-                      kind={KIND.tertiary}
-                      endEnhancer={() => <Check size="scale800" />}
-                    >
-                      Copied to clipboard
-                    </Button>
-                  ) : (
-                    <Button kind={KIND.tertiary}>Copy to clipboard</Button>
-                  )}
-                </CopyToClipboard>
-              </Block>
               <CodeSandboxer
                 examplePath="/"
                 example={this.state.source}
