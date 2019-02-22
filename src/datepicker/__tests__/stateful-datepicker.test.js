@@ -7,10 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {
-  Unstable_Datepicker as Datepicker,
-  Unstable_StatefulDatepicker,
-} from '../index.js';
+import {Datepicker, StatefulDatepicker} from '../index.js';
 
 describe('StatefulDatepicker', () => {
   test('basic render', () => {
@@ -21,7 +18,7 @@ describe('StatefulDatepicker', () => {
       onChange: jest.fn(),
     };
 
-    const component = mount(<Unstable_StatefulDatepicker {...props} />);
+    const component = mount(<StatefulDatepicker {...props} />);
     const renderedDatepicker = component.find(Datepicker);
     expect(renderedDatepicker).toExist();
   });

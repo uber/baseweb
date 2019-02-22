@@ -67,7 +67,7 @@ describe('Border radius calculation', () => {
       $pseudoSelected: false,
       $selected: false,
       $startDate: false,
-      $isRange: true,
+      $range: true,
       $hasRangeHighlighted: false,
       $hasRangeOnRight: false,
       $hasRangeSelected: false,
@@ -96,7 +96,7 @@ describe('Border radius calculation', () => {
       : null;
   }
 
-  test('isRange and useRoundedCorners', () => {
+  test('range and useRoundedCorners', () => {
     expect(toStrVal(calcRadius(getProps()))).toEqual('4px 4px 4px 4px');
   });
   test('!useRoundedCorners', () => {
@@ -119,10 +119,10 @@ describe('Border radius calculation', () => {
       '4px 4px 4px 4px',
     );
   });
-  test('$selected and !isRange', () => {
-    // $selected/!$isRange
+  test('$selected and !range', () => {
+    // $selected/!$range
     expect(
-      toStrVal(calcRadius(getProps({$selected: true, $isRange: false}))),
+      toStrVal(calcRadius(getProps({$selected: true, $range: false}))),
     ).toEqual('4px 4px 4px 4px');
   });
   test('$selected, $hasRangeSelected, and $startDate', () => {
@@ -189,9 +189,9 @@ describe('Border radius calculation', () => {
       '0 0 0 0',
     );
   });
-  test('$isHighlighted and !$isRange', () => {
+  test('$isHighlighted and !$range', () => {
     expect(
-      toStrVal(calcRadius(getProps({$isHighlighted: true, $isRange: false}))),
+      toStrVal(calcRadius(getProps({$isHighlighted: true, $range: false}))),
     ).toEqual('4px 4px 4px 4px');
   });
   test('$isHighlighted and $hasRangeHighlighted', () => {

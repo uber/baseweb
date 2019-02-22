@@ -160,7 +160,7 @@ export function calculateBorderRadius(
     $pseudoSelected,
     $selected,
     $startDate,
-    $isRange,
+    $range,
     $hasRangeHighlighted,
     $hasRangeOnRight,
     $hasRangeSelected,
@@ -168,7 +168,7 @@ export function calculateBorderRadius(
   } = props;
   if (borders.useRoundedCorners) {
     if ($selected) {
-      if (!$isRange) {
+      if (!$range) {
         return getBorderRadius(borders.radius200, borders.radius200);
       } else {
         if ($hasRangeSelected) {
@@ -190,7 +190,7 @@ export function calculateBorderRadius(
         return getBorderRadius(0, 0);
       } else {
         if ($isHighlighted) {
-          if (!$isRange) {
+          if (!$range) {
             return getBorderRadius(borders.radius200, borders.radius200);
           } else if ($hasRangeHighlighted) {
             return $hasRangeOnRight
