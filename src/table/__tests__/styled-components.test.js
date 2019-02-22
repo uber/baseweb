@@ -15,6 +15,10 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
+  StyledFilterButton,
+  StyledFilterContent,
+  StyledFilterHeading,
+  StyledFilterFooter,
   StyledAction,
 } from '../index.js';
 
@@ -26,6 +30,10 @@ describe('Table styled components', () => {
     [StyledBody, 'StyledBody'],
     [StyledRow, 'StyledRow'],
     [StyledCell, 'StyledCell'],
+    [StyledFilterButton, 'StyledFilterButton'],
+    [StyledFilterContent, 'StyledFilterContent'],
+    [StyledFilterHeading, 'StyledFilterHeading'],
+    [StyledFilterFooter, 'StyledFilterFooter'],
     [StyledAction, 'StyledAction'],
   ];
 
