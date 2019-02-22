@@ -69,10 +69,18 @@ function FileUploader(props: PropsT) {
           afterFileDrop,
         });
 
+        const getRootPropsArgs: {
+          refKey: string,
+          onClick?: (SyntheticEvent<HTMLElement>) => void,
+        } = {
+          refKey: '$ref',
+          onClick: props.disableClick ? evt => evt.preventDefault() : undefined,
+        };
+
         return (
           <Root {...prefixedStyledProps} {...rootProps}>
             <FileDragAndDrop
-              {...getRootProps({refKey: '$ref'})}
+              {...getRootProps(getRootPropsArgs)}
               {...prefixedStyledProps}
               {...fileDragAndDropProps}
             >
