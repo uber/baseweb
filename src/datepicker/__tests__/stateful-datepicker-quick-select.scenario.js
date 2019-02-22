@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Unstable_StatefulDatepicker as StatefulDatepicker} from '../index.js';
+import {StatefulDatepicker} from '../index.js';
 import {addDays} from '../utils/index.js';
 
 export const name = 'Stateful datepicker quick select';
@@ -17,10 +17,10 @@ const now = new Date('2019-02-14T10:00:00Z');
 
 export const component = () => (
   <StatefulDatepicker
-    isRange
+    range
     initialState={{
       value: [now, addDays(now, 3)],
     }}
-    enableQuickSelect
+    quickSelect
   />
 );

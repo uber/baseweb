@@ -46,12 +46,12 @@ export default class Calendar extends React.Component<
   CalendarInternalState,
 > {
   static defaultProps = {
-    calFocusedInitially: false,
+    autoFocusCalendar: false,
     excludeDates: null,
     filterDate: null,
     highlightedDate: null,
     includeDates: null,
-    isRange: false,
+    range: false,
     locale: null,
     maxDate: null,
     minDate: null,
@@ -78,13 +78,13 @@ export default class Calendar extends React.Component<
         this.props.highlightedDate ||
         this.getSingleDate(this.props.value) ||
         new Date(),
-      isFocused: false,
+      focused: false,
       date: this.getDateInView(),
     };
   }
 
   componentDidMount() {
-    if (this.props.calFocusedInitially) {
+    if (this.props.autoFocusCalendar) {
       this.focusCalendar();
     }
   }
@@ -99,15 +99,15 @@ export default class Calendar extends React.Component<
       });
     }
     if (
-      this.props.calFocusedInitially &&
-      this.props.calFocusedInitially !== prevProps.calFocusedInitially
+      this.props.autoFocusCalendar &&
+      this.props.autoFocusCalendar !== prevProps.autoFocusCalendar
     ) {
       this.focusCalendar();
     }
   }
 
   getSingleDate(value: ?Date | Array<Date>): ?Date {
-    // need to check this.props.isRange but flow would complain
+    // need to check this.props.range but flow would complain
     // at the return value in the else clause
     if (Array.isArray(value)) {
       return value[0] || null;
@@ -243,8 +243,8 @@ export default class Calendar extends React.Component<
   };
 
   focusCalendar = () => {
-    if (!this.state.isFocused) {
-      this.setState({isFocused: true});
+    if (!this.state.focused) {
+      this.setState({focused: true});
     }
   };
 
@@ -252,7 +252,7 @@ export default class Calendar extends React.Component<
     if (__BROWSER__) {
       const activeElm = document.activeElement;
       if (this.calendar && !this.calendar.contains(activeElm)) {
-        this.setState({isFocused: false});
+        this.setState({focused: false});
       }
     }
   };
@@ -335,8 +335,8 @@ export default class Calendar extends React.Component<
             filterDate={this.props.filterDate}
             highlightedDate={this.state.highlightedDate}
             includeDates={this.props.includeDates}
-            isFocused={this.state.isFocused}
-            isRange={this.props.isRange}
+            focusedCalendar={this.state.focused}
+            range={this.props.range}
             locale={this.props.locale}
             maxDate={this.props.maxDate}
             minDate={this.props.minDate}
@@ -372,7 +372,7 @@ export default class Calendar extends React.Component<
       StyledQuickSelectButtons,
     );
 
-    if (!this.props.isRange || !this.props.enableQuickSelect) {
+    if (!this.props.range || !this.props.quickSelect) {
       return null;
     }
 

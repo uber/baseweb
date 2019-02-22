@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Unstable_StatefulDatepicker as StatefulDatepicker} from '../index.js';
+import {StatefulDatepicker} from '../index.js';
 
 export const name = 'Stateful range datepicker';
 
 export const component = () => (
-  <StatefulDatepicker isRange initialState={{value: []}} />
+  <StatefulDatepicker range initialState={{value: []}} />
 );

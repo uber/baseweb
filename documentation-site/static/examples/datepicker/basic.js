@@ -1,4 +1,4 @@
 import React from 'react';
-import {Unstable_StatefulCalendar} from 'baseui/datepicker';
+import {StatefulCalendar} from 'baseui/datepicker';
 
-export default () => <Unstable_StatefulCalendar />;
+export default () => <StatefulCalendar />;
