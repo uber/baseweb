@@ -32,6 +32,7 @@ export type OverridesT<T> = {|
 export type PropsT = {|
   // react-dropzone: https://github.com/react-dropzone/react-dropzone/blob/master/typings/react-dropzone.d.ts
   accept?: string | string[],
+  /** Disallow clicking on the dropzone container to open file dialog */
   disableClick?: boolean,
   disabled?: boolean,
   getDataTransferItems?: GetDataTransferItemsT,
