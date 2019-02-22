@@ -66,12 +66,13 @@ export default class Tabs extends React.Component<TabsPropsT> {
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
       const key = child.key || String(index);
+      const isActive = key === activeKey;
       const props = {
         key,
         'aria-labelledby': key,
       };
       const sharedProps = {
-        $active: key === activeKey,
+        $active: isActive,
         $disabled: disabled,
         $orientation: orientation,
       };
@@ -83,7 +84,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
           {...tabContentProps}
           {...props}
         >
-          {child.props.children}
+          {isActive ? child.props.children : null}
         </TabContent>
       );
     });
