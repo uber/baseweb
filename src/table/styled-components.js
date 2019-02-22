@@ -117,3 +117,19 @@ export const StyledFilterFooter = styled('div', ({$theme}) => ({
   justifyContent: 'space-between',
   width: '216px',
 }));
+
+export const StyledAction = styled('button', ({$theme}) => {
+  return {
+    border: 'none',
+    color: $theme.colors.primary,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    marginRight: $theme.sizing.scale100,
+    marginLeft: $theme.sizing.scale100,
+    ':hover:enabled': {
+      cursor: 'pointer',
+    },
+  };
+});
