@@ -7,10 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {
-  Unstable_Datepicker as Datepicker,
-  Unstable_Calendar as Calendar,
-} from '../index.js';
+import {Datepicker, Calendar} from '../index.js';
 import {Input} from '../../input/index.js';
 import {Popover} from '../../popover/index.js';
 import {addDays} from 'date-fns';
@@ -121,7 +118,7 @@ describe('Datepicker', () => {
     const data = {date: [new Date('2019 01 01')]};
     const component = mount(
       // $FlowFixMe
-      <Datepicker onChange={onChange} isRange value={[]} />,
+      <Datepicker onChange={onChange} range value={[]} />,
     );
 
     component.instance().onChange(data);
@@ -135,7 +132,7 @@ describe('Datepicker', () => {
     const data = {date: [date, addDays(date, 3)]};
     const component = mount(
       // $FlowFixMe
-      <Datepicker onChange={onChange} isRange value={[]} />,
+      <Datepicker onChange={onChange} range value={[]} />,
     );
 
     component.instance().onChange(data);

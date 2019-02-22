@@ -50,7 +50,7 @@ export default class Datepicker extends React.Component<
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
-    if (Array.isArray(date) && this.props.isRange && date.length < 2) {
+    if (Array.isArray(date) && this.props.range && date.length < 2) {
       isOpen = true;
       isPseudoFocused = true;
       calendarFocused = null;
@@ -147,7 +147,7 @@ export default class Datepicker extends React.Component<
           onEsc={this.handleEsc}
           content={
             <Calendar
-              calFocusedInitially={this.state.calendarFocused}
+              autoFocusCalendar={this.state.calendarFocused}
               trapTabbing={true}
               value={this.props.value}
               {...this.props}
