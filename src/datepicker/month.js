@@ -9,7 +9,6 @@ import * as React from 'react';
 import Week from './week.js';
 import {StyledMonth} from './styled-components.js';
 import {
-  formatDate,
   addDays,
   isSameMonth,
   getStartOfWeek,
@@ -64,12 +63,15 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
           filterDate={this.props.filterDate}
           highlightedDate={this.props.highlightedDate}
           includeDates={this.props.includeDates}
+          isFocused={this.props.isFocused}
           isRange={this.props.isRange}
           key={i}
           locale={this.props.locale}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           month={getMonth(this.props.date)}
+          onDayBlur={this.props.onDayBlur}
+          onDayFocus={this.props.onDayFocus}
           onDayClick={this.props.onDayClick}
           onDayMouseOver={this.props.onDayMouseOver}
           onDayMouseLeave={this.props.onDayMouseLeave}
@@ -91,12 +93,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
     const {overrides = {}} = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
     return (
-      <Month
-        role="grid"
-        aria-multiselectable={this.props.isRange || null}
-        aria-label={`month-${formatDate(this.props.date, 'YYYY-MM')}`}
-        {...monthProps}
-      >
+      <Month aria-multiselectable={this.props.isRange || null} {...monthProps}>
         {this.renderWeeks()}
       </Month>
     );

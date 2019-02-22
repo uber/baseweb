@@ -2,6 +2,7 @@
 
 exports[`Textarea Basic functionality: Textarea has correct props 1`] = `
 Object {
+  "aria-describedby": null,
   "aria-invalid": false,
   "aria-label": null,
   "aria-labelledby": null,
@@ -27,6 +28,7 @@ Object {
 exports[`Textarea Basic functionality: textarea renders BaseInput with correct props passed 1`] = `
 Object {
   "adjoined": "none",
+  "aria-describedby": null,
   "aria-label": null,
   "aria-labelledby": null,
   "autoFocus": false,
@@ -62,6 +64,7 @@ Object {
 exports[`Textarea With component overrides: components overrides get passed to the BaseInput 1`] = `
 Object {
   "adjoined": "none",
+  "aria-describedby": null,
   "aria-label": null,
   "aria-labelledby": null,
   "autoFocus": false,
