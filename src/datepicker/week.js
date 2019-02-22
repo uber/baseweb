@@ -45,10 +45,10 @@ export default class Week extends React.Component<WeekPropsT> {
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.props.highlightedDate}
-            isHighlighted={isSameDay(day, this.props.highlightedDate)}
+            highlighted={isSameDay(day, this.props.highlightedDate)}
             includeDates={this.props.includeDates}
-            isFocused={this.props.isFocused}
-            isRange={this.props.isRange}
+            focusedCalendar={this.props.focusedCalendar}
+            range={this.props.range}
             key={offset}
             locale={this.props.locale}
             minDate={this.props.minDate}

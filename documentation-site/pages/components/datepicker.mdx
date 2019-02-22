@@ -15,14 +15,14 @@ import DatepickerQuickSelect from 'examples/datepicker/quick-select.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
 
 import Overrides from '../../components/overrides';
-import {Unstable_StatefulCalendar} from 'baseui/datepicker';
+import {StatefulCalendar} from 'baseui/datepicker';
 import * as DatepickerExports from 'baseui/datepicker';
 
 export default Layout;
 
 # Datepicker
 
-A simple and reusable component to work with or select a date or a range of dates. Please note that component is currently under development and marked as Unstable that means it may change without a notice.
+A simple and reusable component to work with or select a date or a range of dates.
 
 ### Accessibility
 
@@ -65,10 +65,10 @@ A simple and reusable component to work with or select a date or a range of date
   name="Datepicker"
   component={DatepickerExports}
   renderExample={props => (
-    <Unstable_StatefulCalendar
+    <StatefulCalendar
       initialState={{value: new Date()}}
-      isRange
-      enableQuickSelect
+      range
+      quickSelect
       overrides={props.overrides}
     />
   )}
