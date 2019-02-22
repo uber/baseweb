@@ -71,15 +71,13 @@ export const Text = styled('span', props => {
 });
 
 export const Root = styled('span', props => {
-  const {$color, $disabled, $kind, $theme} = props;
+  const {$color, $disabled, $kind, $theme, $closeable} = props;
   const {
     sizing: {scale800, scale100, scale500},
     typography: {font250},
   } = $theme;
   const color = getColor($theme, $kind, $color);
-  const paddingRightIfNotCloseable = props.$closeable
-    ? {}
-    : {paddingRight: scale500};
+  const paddingRightIfNotCloseable = $closeable ? {} : {paddingRight: scale500};
 
   return {
     ...font250,
@@ -105,8 +103,11 @@ export const Root = styled('span', props => {
       : '0px',
     cursor: $disabled ? 'not-allowed' : 'auto',
     backgroundColor: getBackgroundColor(props),
-    ':hover': {
-      backgroundColor: getHoverBackgroundColor(props),
-    },
+    ':hover':
+      $closeable === false
+        ? {}
+        : {
+            backgroundColor: getHoverBackgroundColor(props),
+          },
   };
 });
