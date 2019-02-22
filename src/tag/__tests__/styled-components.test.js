@@ -11,21 +11,24 @@ import {StyledRoot, StyledAction} from '../index.js';
 
 describe('Tag styled components', () => {
   describe('StyledRoot', () => {
-    test.each([[''], ['$disabled'], ['$isFocused'], ['$isActive']])(
-      '',
-      prop => {
-        const props = {};
-        props[prop] = true;
-        const component = shallow(
-          <StyledRoot {...props}>
-            <div />
-          </StyledRoot>,
-        );
-        expect(component.instance().getStyles()).toMatchSnapshot(
-          'StyledRoot has correct styles when ' + prop,
-        );
-      },
-    );
+    test.each([
+      [''],
+      ['$disabled'],
+      ['$isFocused'],
+      ['$isActive'],
+      ['$closable'],
+    ])('', prop => {
+      const props = {};
+      props[prop] = true;
+      const component = shallow(
+        <StyledRoot {...props}>
+          <div />
+        </StyledRoot>,
+      );
+      expect(component.instance().getStyles()).toMatchSnapshot(
+        'StyledRoot has correct styles when ' + prop,
+      );
+    });
   });
 
   describe('StyledAction', () => {

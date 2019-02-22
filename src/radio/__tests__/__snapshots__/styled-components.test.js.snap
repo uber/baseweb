@@ -6,6 +6,7 @@ Object {
   "opacity": 0,
   "overflow": "hidden",
   "padding": 0,
+  "position": "absolute",
   "width": 0,
 }
 `;
@@ -13,11 +14,11 @@ Object {
 exports[`RadioGroup styled components StyledLabel : has correct styles when  1`] = `
 Object {
   "color": "$theme.colors.foreground",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": "$theme.sizing.scale200",
+  "fontFamily": "$theme.typography.font450.fontFamily",
+  "fontSize": "$theme.typography.font450.fontSize",
+  "fontWeight": "$theme.typography.font450.fontWeight",
+  "lineHeight": "$theme.typography.font450.lineHeight",
+  "paddingLeft": "$theme.sizing.scale300",
   "verticalAlign": "middle",
 }
 `;
@@ -25,11 +26,11 @@ Object {
 exports[`RadioGroup styled components StyledLabel : has correct styles when $isError 1`] = `
 Object {
   "color": "$theme.colors.foreground",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": "$theme.sizing.scale200",
+  "fontFamily": "$theme.typography.font450.fontFamily",
+  "fontSize": "$theme.typography.font450.fontSize",
+  "fontWeight": "$theme.typography.font450.fontWeight",
+  "lineHeight": "$theme.typography.font450.lineHeight",
+  "paddingLeft": "$theme.sizing.scale300",
   "verticalAlign": "middle",
 }
 `;
@@ -37,11 +38,11 @@ Object {
 exports[`RadioGroup styled components StyledLabel : has correct styles when disabled 1`] = `
 Object {
   "color": "$theme.colors.foreground",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "padding": "$theme.sizing.scale200",
+  "fontFamily": "$theme.typography.font450.fontFamily",
+  "fontSize": "$theme.typography.font450.fontSize",
+  "fontWeight": "$theme.typography.font450.fontWeight",
+  "lineHeight": "$theme.typography.font450.lineHeight",
+  "paddingLeft": "$theme.sizing.scale300",
   "verticalAlign": "middle",
 }
 `;
@@ -49,11 +50,11 @@ Object {
 exports[`RadioGroup styled components StyledLabel Label: StyledLabel has correct styles when set to bottom 1`] = `
 Object {
   "color": "$theme.colors.foreground",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "paddingBottom": "$theme.sizing.scale200",
+  "fontFamily": "$theme.typography.font450.fontFamily",
+  "fontSize": "$theme.typography.font450.fontSize",
+  "fontWeight": "$theme.typography.font450.fontWeight",
+  "lineHeight": "$theme.typography.font450.lineHeight",
+  "paddingTop": "$theme.sizing.scale300",
   "verticalAlign": "middle",
 }
 `;
@@ -61,11 +62,11 @@ Object {
 exports[`RadioGroup styled components StyledLabel Label: StyledLabel has correct styles when set to left 1`] = `
 Object {
   "color": "$theme.colors.foreground",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "paddingLeft": "$theme.sizing.scale200",
+  "fontFamily": "$theme.typography.font450.fontFamily",
+  "fontSize": "$theme.typography.font450.fontSize",
+  "fontWeight": "$theme.typography.font450.fontWeight",
+  "lineHeight": "$theme.typography.font450.lineHeight",
+  "paddingRight": "$theme.sizing.scale300",
   "verticalAlign": "middle",
 }
 `;
@@ -73,11 +74,11 @@ Object {
 exports[`RadioGroup styled components StyledLabel Label: StyledLabel has correct styles when set to right 1`] = `
 Object {
   "color": "$theme.colors.foreground",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "paddingRight": "$theme.sizing.scale200",
+  "fontFamily": "$theme.typography.font450.fontFamily",
+  "fontSize": "$theme.typography.font450.fontSize",
+  "fontWeight": "$theme.typography.font450.fontWeight",
+  "lineHeight": "$theme.typography.font450.lineHeight",
+  "paddingLeft": "$theme.sizing.scale300",
   "verticalAlign": "middle",
 }
 `;
@@ -85,11 +86,11 @@ Object {
 exports[`RadioGroup styled components StyledLabel Label: StyledLabel has correct styles when set to top 1`] = `
 Object {
   "color": "$theme.colors.foreground",
-  "fontFamily": "$theme.typography.font400.fontFamily",
-  "fontSize": "$theme.typography.font400.fontSize",
-  "fontWeight": "$theme.typography.font400.fontWeight",
-  "lineHeight": "$theme.typography.font400.lineHeight",
-  "paddingTop": "$theme.sizing.scale200",
+  "fontFamily": "$theme.typography.font450.fontFamily",
+  "fontSize": "$theme.typography.font450.fontSize",
+  "fontWeight": "$theme.typography.font450.fontWeight",
+  "lineHeight": "$theme.typography.font450.lineHeight",
+  "paddingBottom": "$theme.sizing.scale300",
   "verticalAlign": "middle",
 }
 `;
@@ -206,10 +207,10 @@ Object {
   "flexShrink": 0,
   "height": "$theme.sizing.scale700",
   "justifyContent": "center",
-  "marginBottom": "$theme.sizing.scale200",
-  "marginLeft": "$theme.sizing.scale200",
-  "marginRight": "$theme.sizing.scale200",
-  "marginTop": "$theme.sizing.scale200",
+  "marginBottom": "$theme.sizing.scale0",
+  "marginLeft": "$theme.sizing.scale0",
+  "marginRight": "$theme.sizing.scale0",
+  "marginTop": "$theme.sizing.scale0",
   "verticalAlign": "middle",
   "width": "$theme.sizing.scale700",
 }
@@ -221,6 +222,8 @@ Object {
   "cursor": "pointer",
   "display": "flex",
   "flexDirection": "row",
+  "marginBottom": "$theme.sizing.scale200",
+  "marginTop": "$theme.sizing.scale200",
 }
 `;
 
@@ -230,6 +233,8 @@ Object {
   "cursor": "pointer",
   "display": "flex",
   "flexDirection": "column",
+  "marginBottom": "$theme.sizing.scale200",
+  "marginTop": "$theme.sizing.scale200",
 }
 `;
 
@@ -239,6 +244,8 @@ Object {
   "cursor": "pointer",
   "display": "flex",
   "flexDirection": "row",
+  "marginBottom": "$theme.sizing.scale200",
+  "marginTop": "$theme.sizing.scale200",
 }
 `;
 
@@ -248,6 +255,8 @@ Object {
   "cursor": "pointer",
   "display": "flex",
   "flexDirection": "row",
+  "marginBottom": "$theme.sizing.scale200",
+  "marginTop": "$theme.sizing.scale200",
 }
 `;
 
@@ -257,5 +266,7 @@ Object {
   "cursor": "pointer",
   "display": "flex",
   "flexDirection": "column",
+  "marginBottom": "$theme.sizing.scale200",
+  "marginTop": "$theme.sizing.scale200",
 }
 `;

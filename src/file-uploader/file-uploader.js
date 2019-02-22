@@ -31,40 +31,26 @@ function prependStyleProps(styleProps) {
   }, {});
 }
 
-function makeOverride(Override, Source) {
-  const OverriddenComponent = props => {
-    const [Overridden, overrideProps] = getOverrides(Override, Source);
-    return <Overridden {...props} {...overrideProps} />;
-  };
-
-  OverriddenComponent.displayName = Source.displayName;
-  return OverriddenComponent;
-}
-
-function makeOverrides(overrides = {}) {
-  return {
-    Root: makeOverride(overrides.Root, StyledRoot),
-    FileDragAndDrop: makeOverride(
-      overrides.FileDragAndDrop,
-      StyledFileDragAndDrop,
-    ),
-    ContentMessage: makeOverride(
-      overrides.ContentMessage,
-      StyledContentMessage,
-    ),
-    ErrorMessage: makeOverride(overrides.ErrorMessage, StyledErrorMessage),
-    HiddenInput: makeOverride(overrides.HiddenInput, StyledHiddenInput),
-  };
-}
-
 function FileUploader(props: PropsT) {
-  const {
-    Root,
-    FileDragAndDrop,
-    ContentMessage,
-    ErrorMessage,
-    HiddenInput,
-  } = makeOverrides(props.overrides);
+  const {overrides = {}} = props;
+
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [FileDragAndDrop, fileDragAndDropProps] = getOverrides(
+    overrides.FileDragAndDrop,
+    StyledFileDragAndDrop,
+  );
+  const [ContentMessage, contentMessageProps] = getOverrides(
+    overrides.ContentMessage,
+    StyledContentMessage,
+  );
+  const [ErrorMessage, errorMessageProps] = getOverrides(
+    overrides.ErrorMessage,
+    StyledErrorMessage,
+  );
+  const [HiddenInput, hiddenInputProps] = getOverrides(
+    overrides.HiddenInput,
+    StyledHiddenInput,
+  );
 
   const afterFileDrop = !!(
     props.progressAmount ||
@@ -84,17 +70,26 @@ function FileUploader(props: PropsT) {
         });
 
         return (
-          <Root {...prefixedStyledProps}>
+          <Root {...prefixedStyledProps} {...rootProps}>
             <FileDragAndDrop
               {...getRootProps({refKey: '$ref'})}
               {...prefixedStyledProps}
+              {...fileDragAndDropProps}
             >
               {!afterFileDrop && (
                 <React.Fragment>
-                  <ContentMessage {...prefixedStyledProps}>
+                  <ContentMessage
+                    {...prefixedStyledProps}
+                    {...contentMessageProps}
+                  >
                     Drop files here to upload
                   </ContentMessage>
-                  <ContentMessage {...prefixedStyledProps}>or</ContentMessage>
+                  <ContentMessage
+                    {...prefixedStyledProps}
+                    {...contentMessageProps}
+                  >
+                    or
+                  </ContentMessage>
 
                   <Button
                     aria-controls="fileupload"
@@ -142,11 +137,17 @@ function FileUploader(props: PropsT) {
                   )}
                   {(props.errorMessage || props.progressMessage) &&
                   props.errorMessage ? (
-                    <ErrorMessage {...prefixedStyledProps}>
+                    <ErrorMessage
+                      {...prefixedStyledProps}
+                      {...errorMessageProps}
+                    >
                       {props.errorMessage}
                     </ErrorMessage>
                   ) : (
-                    <ContentMessage {...prefixedStyledProps}>
+                    <ContentMessage
+                      {...prefixedStyledProps}
+                      {...contentMessageProps}
+                    >
                       {props.progressMessage}
                     </ContentMessage>
                   )}
@@ -186,6 +187,7 @@ function FileUploader(props: PropsT) {
             <HiddenInput
               {...getInputProps({refKey: '$ref'})}
               {...prefixedStyledProps}
+              {...hiddenInputProps}
             />
           </Root>
         );
