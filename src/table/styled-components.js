@@ -45,8 +45,10 @@ export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
     borderTop: 'none',
     borderBottom: 'none',
     borderLeft: 'none',
+    display: 'flex',
+    justifyContent: 'space-between',
     paddingTop: $theme.sizing.scale500,
-    paddingRight: 0,
+    paddingRight: $theme.sizing.scale600,
     paddingBottom: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale600,
     width: '100%',
@@ -80,6 +82,41 @@ export const StyledCell = styled('div', ({$theme}: SharedStylePropsT) => {
     paddingLeft: $theme.sizing.scale600,
   };
 });
+
+export const StyledFilterButton = styled('button', {
+  border: 'none',
+  padding: 'none',
+});
+
+export const StyledFilterContent = styled('div', ({$theme}) => ({
+  ...$theme.borders.border300,
+  borderRight: 'none',
+  borderLeft: 'none',
+  maxHeight: '196px',
+  paddingRight: $theme.sizing.scale600,
+  paddingLeft: $theme.sizing.scale600,
+  overflow: 'auto',
+}));
+
+export const StyledFilterHeading = styled('div', ({$theme}) => ({
+  ...$theme.typography.font350,
+  color: $theme.colors.mono700,
+  paddingTop: $theme.sizing.scale500,
+  paddingRight: $theme.sizing.scale600,
+  paddingBottom: $theme.sizing.scale500,
+  paddingLeft: $theme.sizing.scale600,
+}));
+
+export const StyledFilterFooter = styled('div', ({$theme}) => ({
+  backgroundColor: $theme.colors.mono200,
+  paddingTop: $theme.sizing.scale300,
+  paddingRight: $theme.sizing.scale100,
+  paddingBottom: $theme.sizing.scale300,
+  paddingLeft: $theme.sizing.scale100,
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '216px',
+}));
 
 export const StyledAction = styled('button', ({$theme}) => {
   return {
