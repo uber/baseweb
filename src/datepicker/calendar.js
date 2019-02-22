@@ -22,6 +22,7 @@ import {
   addDays,
   addMonths,
   getMonth,
+  addWeeks,
   getWeekdayMinInLocale,
   getEffectiveMinDate,
   getEffectiveMaxDate,
@@ -29,17 +30,20 @@ import {
   isAfter,
   isBefore,
   isSameDay,
+  isSameMonth,
+  isSameYear,
+  subDays,
   subWeeks,
   subMonths,
   subYears,
 } from './utils/index.js';
 import {WEEKDAYS} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
-import type {CalendarPropsT} from './types.js';
+import type {CalendarPropsT, CalendarInternalState} from './types.js';
 
 export default class Calendar extends React.Component<
   CalendarPropsT,
-  {date: Date},
+  CalendarInternalState,
 > {
   static defaultProps = {
     calFocusedInitially: false,
@@ -61,7 +65,7 @@ export default class Calendar extends React.Component<
     overrides: {},
     peekNextMonth: false,
     value: null,
-    setActiveState: () => {},
+    trapTabbing: false,
   };
 
   root: ?HTMLElement;
@@ -70,8 +74,12 @@ export default class Calendar extends React.Component<
   constructor(props: CalendarPropsT) {
     super(props);
     this.state = {
+      highlightedDate:
+        this.props.highlightedDate ||
+        this.getSingleDate(this.props.value) ||
+        new Date(),
+      isFocused: false,
       date: this.getDateInView(),
-      voiceoverText: '',
     };
   }
 
@@ -126,12 +134,14 @@ export default class Calendar extends React.Component<
   };
 
   handleMonthChange = (date: Date) => {
+    this.setHighlightedDate(date);
     if (this.props.onMonthChange) {
       this.props.onMonthChange({date});
     }
   };
 
   handleYearChange = (date: Date) => {
+    this.setHighlightedDate(date);
     if (this.props.onYearChange) {
       this.props.onYearChange({date});
     }
@@ -170,7 +180,7 @@ export default class Calendar extends React.Component<
       StyledDay,
     );
     return (
-      <MonthHeader {...monthHeaderProps}>
+      <MonthHeader role="presentation" {...monthHeaderProps}>
         {WEEKDAYS.map(offset => {
           const day = addDays(startOfWeek, offset);
           return (
@@ -183,22 +193,120 @@ export default class Calendar extends React.Component<
     );
   };
 
-  setActive = () => {
-    this.props.setActiveState(true, {root: this.root});
+  onKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowUp':
+      case 'ArrowDown':
+      case 'ArrowLeft':
+      case 'ArrowRight':
+        this.handleArrowKey(event.key);
+        event.preventDefault();
+        event.stopPropagation();
+        break;
+    }
   };
 
-  setInactive = () => {
-    this.props.setActiveState(false, {
-      calendar: this.calendar,
-      root: this.root,
-    });
+  handleArrowKey = (key: string) => {
+    const {highlightedDate: oldDate} = this.state;
+    let highlightedDate = oldDate;
+    switch (key) {
+      case 'ArrowLeft':
+        // adding `new Date()` as the last option to satisfy Flow
+        highlightedDate = subDays(
+          highlightedDate ? highlightedDate : new Date(),
+          1,
+        );
+        break;
+      case 'ArrowRight':
+        highlightedDate = addDays(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+          1,
+        );
+        break;
+      case 'ArrowUp':
+        highlightedDate = subWeeks(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+          1,
+        );
+        break;
+      case 'ArrowDown':
+        highlightedDate = addWeeks(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+          1,
+        );
+        break;
+    }
+    this.setState({highlightedDate, date: highlightedDate});
   };
 
   focusCalendar = () => {
-    if (this.calendar) {
-      this.calendar.focus();
+    if (!this.state.isFocused) {
+      this.setState({isFocused: true});
     }
   };
+
+  blurCalendar = () => {
+    if (__BROWSER__) {
+      const activeElm = document.activeElement;
+      if (this.calendar && !this.calendar.contains(activeElm)) {
+        this.setState({isFocused: false});
+      }
+    }
+  };
+
+  handleTabbing = (event: KeyboardEvent) => {
+    if (__BROWSER__) {
+      if (event.keyCode === 9) {
+        const activeElm = document.activeElement;
+        // need to look for any tabindex >= 0 and ideally for not disabled
+        // focusable by default elements like input, button, etc.
+        const focusable = this.root
+          ? this.root.querySelectorAll('[tabindex="0"]')
+          : null;
+        const length = focusable ? focusable.length : 0;
+        if (event.shiftKey) {
+          if (focusable && activeElm === focusable[0]) {
+            event.preventDefault();
+            focusable[length - 1].focus();
+          }
+        } else {
+          if (focusable && activeElm === focusable[length - 1]) {
+            event.preventDefault();
+            focusable[0].focus();
+          }
+        }
+      }
+    }
+  };
+
+  onDayMouseOver = (data: {event: Event, date: Date}) => {
+    const {date} = data;
+    this.setState({highlightedDate: date});
+    this.props.onDayMouseOver(data);
+  };
+
+  onDayMouseLeave = (data: {event: Event, date: Date}) => {
+    const {date} = data;
+    this.setHighlightedDate(date);
+    this.props.onDayMouseLeave(data);
+  };
+
+  setHighlightedDate(date: Date) {
+    const {value} = this.props;
+    const selected = this.getSingleDate(value);
+    let nextState;
+    if (selected && isSameMonth(selected, date) && isSameYear(selected, date)) {
+      nextState = {highlightedDate: selected};
+    } else {
+      nextState = {
+        highlightedDate: date,
+      };
+    }
+    this.setState(nextState);
+  }
 
   renderMonths = () => {
     const {overrides = {}} = this.props;
@@ -214,12 +322,10 @@ export default class Calendar extends React.Component<
       monthList.push(
         <CalendarContainer
           key={monthKey}
-          tabIndex={0}
-          onFocus={this.setActive}
-          onBlur={this.setInactive}
           $ref={calendar => {
             this.calendar = calendar;
           }}
+          onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
         >
           {this.renderMonthHeader(monthDate, i)}
@@ -227,16 +333,19 @@ export default class Calendar extends React.Component<
             date={monthDate}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
-            highlightedDate={this.props.highlightedDate}
+            highlightedDate={this.state.highlightedDate}
             includeDates={this.props.includeDates}
+            isFocused={this.state.isFocused}
             isRange={this.props.isRange}
             locale={this.props.locale}
             maxDate={this.props.maxDate}
             minDate={this.props.minDate}
             month={getMonth(this.state.date)}
+            onDayBlur={this.blurCalendar}
+            onDayFocus={this.focusCalendar}
             onDayClick={this.props.onDayClick}
-            onDayMouseOver={this.props.onDayMouseOver}
-            onDayMouseLeave={this.props.onDayMouseLeave}
+            onDayMouseOver={this.onDayMouseOver}
+            onDayMouseLeave={this.onDayMouseLeave}
             onChange={this.props.onChange}
             overrides={overrides}
             value={this.props.value}
@@ -340,6 +449,9 @@ export default class Calendar extends React.Component<
         $ref={root => {
           this.root = root;
         }}
+        role="application"
+        aria-label="calendar"
+        onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
         {...rootProps}
       >
         {this.renderMonths()}
