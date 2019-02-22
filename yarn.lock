@@ -6015,10 +6015,10 @@ eslint-plugin-flowtype@^3.0.0:
   dependencies:
     lodash "^4.17.10"
 
-eslint-plugin-header@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-header/-/eslint-plugin-header-2.0.0.tgz#c0f729f4e6669d8f63881977bb9dcafafdac2420"
-  integrity sha512-vISfrajZaWRmToJ3GLULhnrwuaBmDap3arHf2+q0uMW2W+YSjFuCKzh/BcP3Ea5UPT8wN0S8uGz/I+QJkKBIoA==
+eslint-plugin-header@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-header/-/eslint-plugin-header-3.0.0.tgz#0e048b5f0adfdd9754142d59d551ae6bfdaf90ad"
+  integrity sha512-OIu2ciVW8jK4Ove4JHm1I7X0C98PZuLCyCsoUhAm2HpyGS+zr34qLM6iV06unnDvssvvEh5BkOfaLRF+N7cGoQ==
 
 eslint-plugin-import@^2.13.0:
   version "2.13.0"
