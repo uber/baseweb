@@ -63,8 +63,8 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
           filterDate={this.props.filterDate}
           highlightedDate={this.props.highlightedDate}
           includeDates={this.props.includeDates}
-          isFocused={this.props.isFocused}
-          isRange={this.props.isRange}
+          focusedCalendar={this.props.focusedCalendar}
+          range={this.props.range}
           key={i}
           locale={this.props.locale}
           minDate={this.props.minDate}
@@ -93,7 +93,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
     const {overrides = {}} = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
     return (
-      <Month aria-multiselectable={this.props.isRange || null} {...monthProps}>
+      <Month aria-multiselectable={this.props.range || null} {...monthProps}>
         {this.renderWeeks()}
       </Month>
     );

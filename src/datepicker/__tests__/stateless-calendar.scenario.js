@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Unstable_Calendar as Calendar} from '../index.js';
+import {Calendar} from '../index.js';
 
 export const name = 'Stateless calendar';
 

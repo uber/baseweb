@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Unstable_StatefulDatepicker as StatefulDatepicker} from '../index.js';
+import {StatefulDatepicker} from '../index.js';
 
 export const name = 'datepicker-range';
 
@@ -16,7 +16,7 @@ export const component = () => (
   <StatefulDatepicker
     aria-label="Select a date"
     initialState={{value: []}}
-    isRange
+    range
     highlightedDate={new Date('March 10, 2019')}
   />
 );
