@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 import {
-  Unstable_Calendar as Calendar,
+  Calendar,
   StyledRoot,
   StyledQuickSelectContainer,
   StyledMonth,
@@ -28,13 +28,13 @@ describe('Component', () => {
     expect(wrapper.find(StyledDay).first()).toExist();
   });
 
-  test('should not display quick select if isRange is false', () => {
-    const wrapper = mount(<Calendar enableQuickSelect />);
+  test('should not display quick select if range is false', () => {
+    const wrapper = mount(<Calendar quickSelect />);
     expect(wrapper.find(StyledQuickSelectContainer).first()).not.toExist();
   });
 
-  test('should display quick select if isRange and enableQuickSelect is true', () => {
-    const wrapper = mount(<Calendar isRange enableQuickSelect />);
+  test('should display quick select if range and quickSelect is true', () => {
+    const wrapper = mount(<Calendar range quickSelect />);
     expect(wrapper.find(StyledQuickSelectContainer).first()).toExist();
   });
 });

@@ -46,9 +46,9 @@ export type DayPropsT = {
   filterDate: ?(day: Date) => boolean,
   highlightedDate: ?Date,
   includeDates: ?Array<Date>,
-  isHighlighted: boolean,
-  isRange: boolean,
-  isFocused: boolean,
+  highlighted: boolean,
+  range: boolean,
+  focusedCalendar: boolean,
   locale: ?LocaleT,
   maxDate: ?Date,
   minDate: ?Date,
@@ -75,8 +75,8 @@ export type WeekPropsT = {
   // highlighted while keyboard navigating or hovered
   highlightedDate: ?Date,
   includeDates: ?Array<Date>,
-  isFocused: boolean,
-  isRange: boolean,
+  focusedCalendar: boolean,
+  range: boolean,
   locale: ?LocaleT,
   maxDate: ?Date,
   minDate: ?Date,
@@ -96,17 +96,17 @@ export type MonthPropsT = WeekPropsT;
 
 export type CalendarInternalState = {
   highlightedDate: Date,
-  isFocused: boolean,
+  focused: boolean,
   date: Date,
 };
 
 export type CalendarPropsT = {
   /** Defines if the calendar is set to be focused on an initial render. */
-  calFocusedInitially: boolean,
+  autoFocusCalendar: boolean,
   /** A list of dates to disable. */
   excludeDates: ?Array<Date>,
-  /** Display a set of buttons for quickly choosing date ranges. isRange must be true as well. */
-  enableQuickSelect?: boolean,
+  /** Display a set of buttons for quickly choosing date ranges. `range` must be true as well. */
+  quickSelect?: boolean,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate: ?(day: Date) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */
@@ -114,7 +114,7 @@ export type CalendarPropsT = {
   /** A list of selectable dates. */
   includeDates: ?Array<Date>,
   /** Defines if a range of dates can be selected. */
-  isRange: boolean,
+  range: boolean,
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
   locale: ?LocaleT,
   /** A max date that is selectable. */
@@ -172,7 +172,7 @@ export type SharedStylePropsT = {
   $pseudoSelected: boolean,
   $selected: boolean,
   $startDate: boolean,
-  $isRange: boolean,
+  $range: boolean,
   $hasRangeHighlighted: boolean,
   $hasRangeOnRight: boolean,
   $hasRangeSelected: boolean,
@@ -182,7 +182,7 @@ export type SharedStylePropsT = {
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
 export type ContainerStateT = {
-  /** Selected `Date`. If `isRange` is set, `value` is an array of 2 values. */
+  /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
   value?: ?Date | Array<Date>,
 };
 
@@ -222,7 +222,7 @@ export type StatefulContainerPropsT<T> = {
 
 export type NavigationContainerPropsT = {
   children: CalendarPropsT => React.Node,
-  isRange?: boolean,
+  range?: boolean,
   highlightedDate?: ?Date,
   /** Day's `mouseover` event handler. */
   onDayMouseOver: (params: {date: Date, event: Event}) => mixed,
@@ -234,7 +234,7 @@ export type NavigationContainerPropsT = {
   onMonthChange?: ({date: Date}) => mixed,
   /** Event handler that is called when the current rendered year is changed. */
   onYearChange?: ({date: Date}) => mixed,
-  /** Selected `Date`. If `isRange` is set, `value` is an array of 2 values. */
+  /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
   value?: ?Date | Array<Date>,
   stateReducer: NavigationContainerStateReducerT,
   trapTabbing: boolean,

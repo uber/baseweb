@@ -170,7 +170,7 @@ const routes = [
             path: '/components/select',
           },
           {
-            text: 'Unstable Datepicker',
+            text: 'Datepicker',
             path: '/components/datepicker',
           },
         ],
