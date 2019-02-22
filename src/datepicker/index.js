@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as StatefulContainer} from './stateful-container.js';
-export {default as NavigationContainer} from './navigation-container.js';
 export {default as Unstable_Calendar} from './calendar.js';
 export {default as Unstable_StatefulCalendar} from './stateful-calendar.js';
 export {default as Unstable_Datepicker} from './datepicker.js';

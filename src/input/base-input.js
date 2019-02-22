@@ -27,6 +27,7 @@ class BaseInput<T: EventTarget> extends React.Component<
   static defaultProps = {
     'aria-label': null,
     'aria-labelledby': null,
+    'aria-describedby': null,
     adjoined: ADJOINED.none,
     autoFocus: false,
     disabled: false,
@@ -90,6 +91,7 @@ class BaseInput<T: EventTarget> extends React.Component<
       $ref: $ref || inputRef,
       'aria-label': this.props['aria-label'],
       'aria-labelledby': this.props['aria-labelledby'],
+      'aria-describedby': this.props['aria-describedby'],
       'aria-invalid': !!error,
       'aria-required': required,
       disabled,

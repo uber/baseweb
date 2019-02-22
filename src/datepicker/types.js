@@ -48,10 +48,13 @@ export type DayPropsT = {
   includeDates: ?Array<Date>,
   isHighlighted: boolean,
   isRange: boolean,
+  isFocused: boolean,
   locale: ?LocaleT,
   maxDate: ?Date,
   minDate: ?Date,
   month: ?number,
+  onBlur: ({event: Event, date: Date}) => mixed,
+  onFocus: ({event: Event, date: Date}) => mixed,
   onSelect: ({date: ?Date | Array<Date>}) => mixed,
   onClick: ({event: Event, date: Date}) => mixed,
   onMouseOver: ({event: Event, date: Date}) => mixed,
@@ -72,12 +75,15 @@ export type WeekPropsT = {
   // highlighted while keyboard navigating or hovered
   highlightedDate: ?Date,
   includeDates: ?Array<Date>,
+  isFocused: boolean,
   isRange: boolean,
   locale: ?LocaleT,
   maxDate: ?Date,
   minDate: ?Date,
   month: ?number,
+  onDayBlur: ({date: Date, event: Event}) => mixed,
   onDayClick: ({date: Date, event: Event}) => mixed,
+  onDayFocus: ({date: Date, event: Event}) => mixed,
   onDayMouseOver: ({date: Date, event: Event}) => mixed,
   onDayMouseLeave: ({date: Date, event: Event}) => mixed,
   onChange: onChangeT,
@@ -87,6 +93,12 @@ export type WeekPropsT = {
 };
 
 export type MonthPropsT = WeekPropsT;
+
+export type CalendarInternalState = {
+  highlightedDate: Date,
+  isFocused: boolean,
+  date: Date,
+};
 
 export type CalendarPropsT = {
   /** Defines if the calendar is set to be focused on an initial render. */
@@ -126,10 +138,10 @@ export type CalendarPropsT = {
   overrides?: DatepickerOverridesT<{}>,
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth: boolean,
+  /** Defines if tabbing inside the calendar is circled within it. */
+  trapTabbing: boolean,
   /** Currently selected date. */
   value: ?Date | Array<Date>,
-  /** A helper handler for disabling a keyboard navigation and keyboard selection through the calendar dates while navigation through the month or year select controls. */
-  setActiveState: (boolean, ?{root: ?HTMLElement}) => mixed,
 };
 
 export type HeaderPropsT = CalendarPropsT & {
@@ -139,6 +151,7 @@ export type HeaderPropsT = CalendarPropsT & {
 export type DatepickerPropsT = CalendarPropsT & {
   'aria-label': ?string,
   'aria-labelledby': ?string,
+  'aria-describedby': ?string,
   disabled: boolean,
   placeholder: string,
   required: boolean,

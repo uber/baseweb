@@ -12,11 +12,13 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
-  calendar: '[role="grid"]',
-  day: '[aria-label="Sunday, March 10th 2019"]',
-  day2: '[aria-label="Thursday, March 28th 2019"]',
-  day3: '[aria-label="Thursday, February 14th 2019"]',
-  day4: '[aria-label="Monday, April 1st 2019"]',
+  calendar: '[role="application"]',
+  day: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
+  day2: '[aria-label="Choose Thursday, March 28th 2019. It\'s available."]',
+  day3: '[aria-label="Choose Thursday, February 14th 2019. It\'s available."]',
+  day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
+  day5: '[aria-label="Choose Saturday, March 10th 2018. It\'s available."]',
+  day6: '[aria-label="Choose Monday, July 1st 2019. It\'s available."]',
   leftArrow: '[aria-label="Previous month"]',
   rightArrow: '[aria-label="Next month"]',
   monthSelect: '[data-id="monthSelect"]',
@@ -151,7 +153,7 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.input);
     await page.click(selectors.input);
     await page.waitFor(selectors.calendar);
-    await page.waitFor('[aria-label="Sunday, March 10th 2019"]');
+    await page.waitFor(selectors.day);
     await page.click(selectors.yearSelect);
     const dropdown = `${selectors.yearSelect} ${selectors.selectDropdown}`;
     await page.waitFor(dropdown);
@@ -165,7 +167,7 @@ describe('Datepicker', () => {
     });
     await page.waitFor(dropdown, {hidden: true});
     await page.waitFor(selectors.calendar);
-    await page.waitFor('[aria-label="Saturday, March 10th 2018"]');
+    await page.waitFor(selectors.day5);
   });
 
   it('updates the calendar when a month selected from the dropdown', async () => {
@@ -173,7 +175,7 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.input);
     await page.click(selectors.input);
     await page.waitFor(selectors.calendar);
-    await page.waitFor('[aria-label="Sunday, March 10th 2019"]');
+    await page.waitFor(selectors.day);
     await page.click(selectors.monthSelect);
     const dropdown = `${selectors.monthSelect} ${selectors.selectDropdown}`;
     await page.waitFor(dropdown);
@@ -187,6 +189,6 @@ describe('Datepicker', () => {
     });
     await page.waitFor(dropdown, {hidden: true});
     await page.waitFor(selectors.calendar);
-    await page.waitFor('[aria-label="Monday, July 1st 2019"]');
+    await page.waitFor(selectors.day6);
   });
 });

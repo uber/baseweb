@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 import {
-  NavigationContainer,
   Unstable_Datepicker as Datepicker,
   Unstable_Calendar as Calendar,
 } from '../index.js';
@@ -59,15 +58,13 @@ describe('Datepicker', () => {
     const PopoverContent = () => renderedPopover.props().content;
 
     const renderedCal = mount(<PopoverContent />);
-    const renderedContainer = renderedCal.find(NavigationContainer).first();
     const renderedCalendar = renderedCal.find(Calendar).first();
 
-    expect(renderedContainer).toExist();
     expect(renderedCalendar).toExist();
 
     expect(renderedCalendar.props().value).toEqual(date);
     expect(renderedCalendar.props().onDayClick).toEqual(onDayClick);
-    expect(renderedContainer.props().onChange).toEqual(
+    expect(renderedCalendar.props().onChange).toEqual(
       component.instance().onChange,
     );
   });
