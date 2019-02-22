@@ -39,6 +39,54 @@ Object {
 }
 `;
 
+exports[`Table styled components $width property: StyledFilterButton has expected styles when $width property defined 1`] = `
+Object {
+  "border": "none",
+  "padding": "none",
+}
+`;
+
+exports[`Table styled components $width property: StyledFilterContent has expected styles when $width property defined 1`] = `
+Object {
+  "borderColor": "$theme.borders.border300.borderColor",
+  "borderLeft": "none",
+  "borderRight": "none",
+  "borderStyle": "$theme.borders.border300.borderStyle",
+  "borderWidth": "$theme.borders.border300.borderWidth",
+  "maxHeight": "196px",
+  "overflow": "auto",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Table styled components $width property: StyledFilterFooter has expected styles when $width property defined 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.mono200",
+  "display": "flex",
+  "justifyContent": "space-between",
+  "paddingBottom": "$theme.sizing.scale300",
+  "paddingLeft": "$theme.sizing.scale100",
+  "paddingRight": "$theme.sizing.scale100",
+  "paddingTop": "$theme.sizing.scale300",
+  "width": "216px",
+}
+`;
+
+exports[`Table styled components $width property: StyledFilterHeading has expected styles when $width property defined 1`] = `
+Object {
+  "color": "$theme.colors.mono700",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": "$theme.typography.font350.fontWeight",
+  "lineHeight": "$theme.typography.font350.lineHeight",
+  "paddingBottom": "$theme.sizing.scale500",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale500",
+}
+`;
+
 exports[`Table styled components $width property: StyledHead has expected styles when $width property defined 1`] = `
 Object {
   "backgroundColor": "$theme.colors.tableHeadBackgroundColor",
@@ -61,13 +109,15 @@ Object {
   "borderStyle": "$theme.borders.border300.borderStyle",
   "borderTop": "none",
   "borderWidth": "$theme.borders.border300.borderWidth",
+  "display": "flex",
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
+  "justifyContent": "space-between",
   "lineHeight": "$theme.typography.font350.lineHeight",
   "paddingBottom": "$theme.sizing.scale500",
   "paddingLeft": "$theme.sizing.scale600",
-  "paddingRight": 0,
+  "paddingRight": "$theme.sizing.scale600",
   "paddingTop": "$theme.sizing.scale500",
   "width": "100%",
 }
@@ -132,6 +182,54 @@ Object {
 }
 `;
 
+exports[`Table styled components default properties: StyledFilterButton has expected default styles 1`] = `
+Object {
+  "border": "none",
+  "padding": "none",
+}
+`;
+
+exports[`Table styled components default properties: StyledFilterContent has expected default styles 1`] = `
+Object {
+  "borderColor": "$theme.borders.border300.borderColor",
+  "borderLeft": "none",
+  "borderRight": "none",
+  "borderStyle": "$theme.borders.border300.borderStyle",
+  "borderWidth": "$theme.borders.border300.borderWidth",
+  "maxHeight": "196px",
+  "overflow": "auto",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+}
+`;
+
+exports[`Table styled components default properties: StyledFilterFooter has expected default styles 1`] = `
+Object {
+  "backgroundColor": "$theme.colors.mono200",
+  "display": "flex",
+  "justifyContent": "space-between",
+  "paddingBottom": "$theme.sizing.scale300",
+  "paddingLeft": "$theme.sizing.scale100",
+  "paddingRight": "$theme.sizing.scale100",
+  "paddingTop": "$theme.sizing.scale300",
+  "width": "216px",
+}
+`;
+
+exports[`Table styled components default properties: StyledFilterHeading has expected default styles 1`] = `
+Object {
+  "color": "$theme.colors.mono700",
+  "fontFamily": "$theme.typography.font350.fontFamily",
+  "fontSize": "$theme.typography.font350.fontSize",
+  "fontWeight": "$theme.typography.font350.fontWeight",
+  "lineHeight": "$theme.typography.font350.lineHeight",
+  "paddingBottom": "$theme.sizing.scale500",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale500",
+}
+`;
+
 exports[`Table styled components default properties: StyledHead has expected default styles 1`] = `
 Object {
   "backgroundColor": "$theme.colors.tableHeadBackgroundColor",
@@ -154,13 +252,15 @@ Object {
   "borderStyle": "$theme.borders.border300.borderStyle",
   "borderTop": "none",
   "borderWidth": "$theme.borders.border300.borderWidth",
+  "display": "flex",
   "fontFamily": "$theme.typography.font350.fontFamily",
   "fontSize": "$theme.typography.font350.fontSize",
   "fontWeight": "$theme.typography.font350.fontWeight",
+  "justifyContent": "space-between",
   "lineHeight": "$theme.typography.font350.lineHeight",
   "paddingBottom": "$theme.sizing.scale500",
   "paddingLeft": "$theme.sizing.scale600",
-  "paddingRight": 0,
+  "paddingRight": "$theme.sizing.scale600",
   "paddingTop": "$theme.sizing.scale500",
   "width": "100%",
 }
