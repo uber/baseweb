@@ -68,6 +68,38 @@ Object {
 }
 `;
 
+exports[`Tag styled components StyledRoot : StyledRoot has correct styles when $closable 1`] = `
+Object {
+  ":hover": Object {
+    "backgroundColor": null,
+  },
+  "alignItems": "center",
+  "backgroundColor": null,
+  "borderColor": undefined,
+  "borderRadius": "$theme.borders.radius400",
+  "borderWidth": "1px",
+  "boxSizing": "border-box",
+  "color": undefined,
+  "cursor": "auto",
+  "display": "inline-flex",
+  "fontFamily": "$theme.typography.font250.fontFamily",
+  "fontSize": "$theme.typography.font250.fontSize",
+  "fontWeight": "$theme.typography.font250.fontWeight",
+  "height": "$theme.sizing.scale800",
+  "justifyContent": "space-between",
+  "lineHeight": "$theme.typography.font250.lineHeight",
+  "marginBottom": "5px",
+  "marginLeft": "5px",
+  "marginRight": "5px",
+  "marginTop": "5px",
+  "opacity": null,
+  "paddingBottom": "$theme.sizing.scale100",
+  "paddingLeft": "$theme.sizing.scale500",
+  "paddingRight": "$theme.sizing.scale500",
+  "paddingTop": "$theme.sizing.scale100",
+}
+`;
+
 exports[`Tag styled components StyledRoot : StyledRoot has correct styles when $disabled 1`] = `
 Object {
   ":hover": Object {
