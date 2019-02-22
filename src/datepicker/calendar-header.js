@@ -41,7 +41,6 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     onMonthChange: () => {},
     onYearChange: () => {},
     overrides: {},
-    setActiveState: () => {},
   };
 
   handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
@@ -58,14 +57,6 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
 
   decreaseMonth = () => {
     this.props.onMonthChange({date: subMonths(this.props.date, 1)});
-  };
-
-  setActive = () => {
-    this.props.setActiveState(true);
-  };
-
-  setInactive = () => {
-    this.props.setActiveState(false);
   };
 
   renderPreviousMonthButton = () => {
@@ -232,8 +223,6 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         // make sure the components functions as expected
         // We can extract the handlers from props overrides
         // and call it along with internal handlers by creating an inline handler
-        // onOpen={this.setInactive}
-        // onClose={this.setActive}
         onChange={this.handleMonthChange}
         // internal and incoming overrides are merged above
         overrides={selectOverrides}
@@ -270,8 +259,6 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         // make sure the components functions as expected
         // We can extract the handlers from props overrides
         // and call it along with internal handlers by creating an inline handler
-        // onOpen={this.setInactive}
-        // onClose={this.setActive}
         onChange={this.handleYearChange}
         // internal and incoming overrides are merged above
         overrides={selectOverrides}

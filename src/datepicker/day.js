@@ -35,39 +35,31 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     value: null,
   };
 
+  dayElm: ?HTMLElement;
+
   state = {
     isHovered: false,
   };
 
   componentDidMount() {
-    if (this.props.isHighlighted) {
-      if (__BROWSER__) {
-        document.addEventListener('keydown', this.onKeyDown);
+    if (this.dayElm && this.props.isFocused) {
+      if (
+        this.props.isHighlighted ||
+        (!this.props.highlightedDate && this.isSelected())
+      ) {
+        this.dayElm.focus();
       }
     }
   }
 
   componentDidUpdate(prevProps: DayPropsT) {
-    if (
-      this.props.isHighlighted &&
-      this.props.isHighlighted !== prevProps.isHighlighted
-    ) {
-      if (__BROWSER__) {
-        document.addEventListener('keydown', this.onKeyDown);
+    if (this.dayElm && this.props.isFocused) {
+      if (
+        this.props.isHighlighted ||
+        (!this.props.highlightedDate && this.isSelected())
+      ) {
+        this.dayElm.focus();
       }
-    } else if (
-      !this.props.isHighlighted &&
-      this.props.isHighlighted !== prevProps.isHighlighted
-    ) {
-      if (__BROWSER__) {
-        document.removeEventListener('keydown', this.onKeyDown);
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    if (__BROWSER__) {
-      document.removeEventListener('keydown', this.onKeyDown);
     }
   }
 
@@ -205,6 +197,28 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     };
   }
 
+  getAriaLabel(sharedProps: {
+    $disabled: boolean,
+    $isRange: boolean,
+    $selected: boolean,
+    $startDate: boolean,
+  }) {
+    const {date, locale} = this.props;
+    return `${
+      sharedProps.$selected
+        ? sharedProps.$isRange
+          ? sharedProps.$startDate
+            ? 'Selected start date.'
+            : 'Selected end date.'
+          : 'Selected.'
+        : sharedProps.$disabled
+          ? 'Not available.'
+          : 'Choose'
+    } ${formatDate(date, 'EEEE, MMMM do YYYY', locale)}. ${
+      !sharedProps.$disabled ? "It's available." : ''
+    }`;
+  }
+
   render() {
     const {date, peekNextMonth, overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
@@ -214,15 +228,27 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <Day
-        aria-label={formatDate(date, 'EEEE, MMMM do YYYY', this.props.locale)}
-        role="cell"
+        aria-label={this.getAriaLabel(sharedProps)}
+        $ref={dayElm => {
+          this.dayElm = dayElm;
+        }}
+        role="button"
+        tabIndex={
+          this.props.isHighlighted ||
+          (!this.props.highlightedDate && this.isSelected())
+            ? '0'
+            : '-1'
+        }
         {...sharedProps}
         {...dayProps}
         // Adding event handlers after customers overrides in order to
         // make sure the components functions as expected
         // We can extract the handlers from props overrides
         // and call it along with internal handlers by creating an inline handler
+        onBlur={this.props.onBlur}
+        onFocus={this.props.onFocus}
         onClick={this.onClick}
+        onKeyDown={this.onKeyDown}
         onMouseOver={this.onMouseOver}
         onMouseLeave={this.onMouseLeave}
       >
