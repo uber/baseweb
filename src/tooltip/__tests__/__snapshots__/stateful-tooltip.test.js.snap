@@ -29,7 +29,6 @@ exports[`StatefulTooltip basic render: renders <Tooltip/> 1`] = `
 <Tooltip
   accessibilityType="tooltip"
   content={[Function]}
-  eventsEnabled={true}
   ignoreBoundary={false}
   isOpen={true}
   onBlur={[Function]}

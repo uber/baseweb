@@ -47,7 +47,6 @@ describe('StatefulTooltipContainer', () => {
       children,
       dismissOnClickOutside: true,
       dismissOnEsc: true,
-      eventsEnabled: true,
       ignoreBoundary: false,
     });
   });

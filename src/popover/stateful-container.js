@@ -28,7 +28,6 @@ class StatefulContainer extends React.Component<
 > {
   static defaultProps: $Shape<StatefulPopoverContainerPropsT> = {
     accessibilityType: ACCESSIBILITY_TYPE.menu,
-    eventsEnabled: true,
     ignoreBoundary: false,
     overrides: {},
     onMouseEnterDelay: 200,
@@ -132,7 +131,6 @@ class StatefulContainer extends React.Component<
       accessibilityType,
       dismissOnClickOutside,
       dismissOnEsc,
-      eventsEnabled,
       ignoreBoundary,
       overrides,
       onMouseEnterDelay,
@@ -144,7 +142,6 @@ class StatefulContainer extends React.Component<
 
     const popoverProps: PopoverPropsWithoutChildrenT = {
       accessibilityType,
-      eventsEnabled,
       ignoreBoundary,
       isOpen: this.state.isOpen,
       overrides,

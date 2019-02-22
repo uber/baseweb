@@ -22,23 +22,28 @@ import {
 import TrapFocus from './trap-focus.js';
 import type {FilterProps} from './types.js';
 
-function makeOverride(Override, Source) {
-  const OverriddenComponent = props => {
-    const [Overridden, overrideProps] = getOverrides(Override, Source);
-    return <Overridden {...props} {...overrideProps} />;
-  };
-
-  OverriddenComponent.displayName = Source.displayName;
-  return OverriddenComponent;
-}
-
 export default function Filter(props: FilterProps) {
   const {onSelectAll = () => {}, onReset = () => {}, overrides = {}} = props;
 
-  const MenuButton = makeOverride(overrides.MenuButton, StyledFilterButton);
-  const Content = makeOverride(overrides.Content, StyledFilterContent);
-  const Heading = makeOverride(overrides.Heading, StyledFilterHeading);
-  const Footer = makeOverride(overrides.Footer, StyledFilterFooter);
+  const [MenuButton, menuButtonProps] = getOverrides(
+    overrides.MenuButton,
+    StyledFilterButton,
+  );
+
+  const [Content, contentProps] = getOverrides(
+    overrides.Content,
+    StyledFilterContent,
+  );
+
+  const [Heading, headingProps] = getOverrides(
+    overrides.Heading,
+    StyledFilterHeading,
+  );
+
+  const [Footer, footerProps] = getOverrides(
+    overrides.Footer,
+    StyledFilterFooter,
+  );
 
   function getIconColor(theme) {
     if (props.disabled) {
@@ -62,7 +67,6 @@ export default function Filter(props: FilterProps) {
 
   return (
     <StatefulPopover
-      eventsEnabled={false}
       placement={PLACEMENT.bottom}
       stateReducer={(_, nextState) => {
         if (props.disabled) {
@@ -72,9 +76,9 @@ export default function Filter(props: FilterProps) {
       }}
       content={
         <TrapFocus>
-          <Heading>Filter Column</Heading>
-          <Content>{props.children}</Content>
-          <Footer>
+          <Heading {...headingProps}>Filter Column</Heading>
+          <Content {...contentProps}>{props.children}</Content>
+          <Footer {...footerProps}>
             <Button
               kind={KIND.minimal}
               size={SIZE.compact}
@@ -98,7 +102,7 @@ export default function Filter(props: FilterProps) {
         </TrapFocus>
       }
     >
-      <MenuButton>
+      <MenuButton {...menuButtonProps}>
         <FilterIcon
           overrides={{
             Svg: {

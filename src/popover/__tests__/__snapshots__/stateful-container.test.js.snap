@@ -5,7 +5,6 @@ Array [
   Object {
     "accessibilityType": "menu",
     "content": [Function],
-    "eventsEnabled": true,
     "ignoreBoundary": false,
     "isOpen": true,
     "onBlur": [Function],

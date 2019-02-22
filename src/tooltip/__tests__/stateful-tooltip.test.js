@@ -58,7 +58,6 @@ describe('StatefulTooltip', () => {
       ...props,
       dismissOnClickOutside: true,
       dismissOnEsc: true,
-      eventsEnabled: true,
       ignoreBoundary: false,
     });
 

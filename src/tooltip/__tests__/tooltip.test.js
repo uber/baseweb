@@ -54,7 +54,6 @@ describe('Tooltip', () => {
       ...baseDefaultProps,
       ...props,
       children: button,
-      eventsEnabled: true,
       ignoreBoundary: false,
       overrides: {
         Arrow: {

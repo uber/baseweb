@@ -22,7 +22,6 @@ function StatefulPopover(props: StatefulPopoverPropsT) {
 
 StatefulPopover.defaultProps = {
   accessibilityType: ACCESSIBILITY_TYPE.menu,
-  eventsEnabled: true,
   ignoreBoundary: false,
   overrides: {},
   onMouseEnterDelay: 200,
