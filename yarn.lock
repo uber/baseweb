@@ -10280,10 +10280,10 @@ normalize-range@^0.1.2:
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
   integrity sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=
 
-now@^13.1.2:
-  version "13.1.2"
-  resolved "https://registry.yarnpkg.com/now/-/now-13.1.2.tgz#dda24eb622edeedc43e694d31d9c81f2154896c4"
-  integrity sha512-v6K4141Zcw/EsEC88uQ8DusP5LnbLIYFEblpH9BiQXCx4s4qmk56xxT7AXRCFBMtUFTX0hF8Bd2rqWGs0HzjAQ==
+now@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/now/-/now-14.0.0.tgz#7fb7aff0c7c1465e534d84198c9e19d284f9cd59"
+  integrity sha512-zOdmN6+6dLTiHCDujp683KRWG4BE6OwIGU++aZXmss8C4GXuKuZU/Bp7czhwnzab/2qs8OtlaTW6eibcNNV0xA==
 
 npm-bundled@^1.0.1:
   version "1.0.3"
