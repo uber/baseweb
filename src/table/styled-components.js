@@ -61,7 +61,7 @@ export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
 export const StyledBody = styled('div', ({$width}: HorizontalStyleProps) => {
   return {
     width: $width ? $width : '100%',
-    overflowY: 'scroll',
+    overflowY: 'overlay',
     flex: 1,
   };
 });
