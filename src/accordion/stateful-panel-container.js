@@ -50,8 +50,8 @@ class StatefulPanelContainer extends React.Component<
     const {children, initialState, stateReducer, ...rest} = this.props;
 
     return this.props.children({
-      ...rest,
       ...this.state,
+      ...rest,
       onChange: this.onChange,
     });
   }
