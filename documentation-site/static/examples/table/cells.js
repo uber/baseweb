@@ -31,27 +31,31 @@ const StyledDeltaCell = styled(StyledCell, props => ({
     : props.$theme.colors.positive,
 }));
 
+const StyledLargeText = styled(StyledCell, {
+  alignItems: 'center',
+});
+
 const DATA = [
-  ['Marlyn', 10, 'Engineering', 'San Francisco', -100],
-  ['Luther', 15, 'Marketing', 'Seattle', 50],
-  ['Kiera', 13, 'Operations', 'Los Angeles', 40],
-  ['Edna', 20, 'Design', 'Atlanta', 700],
-  ['Soraya', 18, 'Finance', 'Denver', 99],
-  ['Dorris', 32, 'Legal', 'Dallas', -20],
-  ['Astrid', 26, 'Product', 'Tempe', 0],
-  ['Wendie', 17, 'Engineering', 'Pittsburgh', -15],
-  ['Marna', 11, 'Marketing', 'Indianapolis', -2],
-  ['Malka', 14, 'Operations', 'New Orleans', 30],
-  ['Jospeh', 10, 'Design', 'New York City', -22],
-  ['Roselee', 12, 'Finance', 'Oakland', 4],
-  ['Justine', 35, 'Legal', 'Louisville', -9],
-  ['Marlon', 30, 'Engineering', 'Baltimore', -2],
-  ['Mellissa', 32, 'Marketing', 'Boulder', -30],
-  ['Fausto', 21, 'Operations', 'Chicago', -10],
-  ['Alfredia', 22, 'Design', 'Grand Rapids', 70],
-  ['Abel', 18, 'Finance', 'Nashville', 30],
-  ['Winford', 19, 'Legal', 'Sacramento', 10],
-  ['Neil', 27, 'Product', 'Columbus', -5],
+  ['Marlyn', 'Engineering', 'San Francisco', -100, 1234.5],
+  ['Luther', 'Marketing', 'Seattle', 50, 2435.2],
+  ['Kiera', 'Operations', 'Los Angeles', 40, 8348.1],
+  ['Edna', 'Design', 'Atlanta', 700, 2893.4],
+  ['Soraya', 'Finance', 'Denver', 99, 8787.3],
+  ['Dorris', 'Legal', 'Dallas', -20, 6325.2],
+  ['Astrid', 'Product', 'Tempe', 0, 7392.7],
+  ['Wendie', 'Engineering', 'Pittsburgh', -15, 9283.1],
+  ['Marna', 'Marketing', 'Indianapolis', -2, 7720.9],
+  ['Malka', 'Operations', 'New Orleans', 30, 6273.3],
+  ['Jospeh', 'Design', 'New York City', -22, 8837.4],
+  ['Roselee', 'Finance', 'Oakland', 4, 9277.9],
+  ['Justine', 'Legal', 'Louisville', -9, 7737.2],
+  ['Marlon', 'Engineering', 'Baltimore', -2, 2330.3],
+  ['Mellissa', 'Marketing', 'Boulder', -30, 4458.8],
+  ['Fausto', 'Operations', 'Chicago', -10, 6363.9],
+  ['Alfredia', 'Design', 'Grand Rapids', 70, 2235.2],
+  ['Abel', 'Finance', 'Nashville', 30, 9882.3],
+  ['Winford', 'Legal', 'Sacramento', 10, 8774.7],
+  ['Neil', 'Product', 'Columbus', -5, 2673.2],
 ];
 
 const Container = styled('div', {
@@ -61,34 +65,40 @@ const Container = styled('div', {
 export default () => (
   <Container>
     <StyledTable>
-      <StyledHead>
+      <StyledHead $width="900px">
         <StyledHeadCell>Name</StyledHeadCell>
-        <StyledHeadCell>Age</StyledHeadCell>
         <StyledHeadCell>Role</StyledHeadCell>
         <StyledHeadCell>Delta</StyledHeadCell>
+        <StyledHeadCell>Amount</StyledHeadCell>
         <StyledHeadCell>Actions</StyledHeadCell>
       </StyledHead>
-      <StyledBody>
+      <StyledBody $width="900px">
         {DATA.map((row, index) => (
           <StyledRow key={index}>
             <StyledCell>{row[0]}</StyledCell>
-            <StyledCell>{row[1]}</StyledCell>
 
             <StyledHeadingCell>
               <Block>
                 <Block font="font200" color="mono600">
-                  {row[3]}
+                  {row[2]}
                 </Block>
-                <Block font="font300">{row[2]}</Block>
+                <Block font="font300">{row[1]}</Block>
               </Block>
             </StyledHeadingCell>
 
-            <StyledDeltaCell $isNegative={row[4] < 0}>
+            <StyledDeltaCell $isNegative={row[3] < 0}>
               <>
-                {row[4] < 0 ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
-                {row[4]}%
+                {row[3] < 0 ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
+                {row[3]}%
               </>
             </StyledDeltaCell>
+
+            <StyledLargeText>
+              <Block font="font500">{row[4]}</Block>
+              <Block color="mono700" font="font250" paddingLeft="scale200">
+                +1000%
+              </Block>
+            </StyledLargeText>
 
             <StyledCell>
               <StyledAction>
