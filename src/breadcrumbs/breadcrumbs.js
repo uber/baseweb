@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import React, {Children} from 'react';
 
+import {LocaleContext} from '../locale/index.js';
 import type {BreadcrumbsPropsT} from './types.js';
 import {StyledRoot, StyledSeparator, StyledIcon} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -37,9 +38,13 @@ function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
   });
 
   return (
-    <Root aria-label="Breadcrumbs navigation" {...baseRootProps}>
-      {childrenWithSeparators}
-    </Root>
+    <LocaleContext.Consumer>
+      {locale => (
+        <Root aria-label={locale.breadcrumb.ariaLabel} {...baseRootProps}>
+          {childrenWithSeparators}
+        </Root>
+      )}
+    </LocaleContext.Consumer>
   );
 }
 
