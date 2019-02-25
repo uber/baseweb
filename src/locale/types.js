@@ -10,10 +10,12 @@ import type {AccordionLocaleT} from '../accordion/locale.js';
 import type {BreadcrumbLocaleT} from '../breadcrumbs/locale.js';
 import type {DatepickerLocaleT} from '../datepicker/locale.js';
 import type {ButtonGroupLocaleT} from '../button-group/locale.js';
+import type {FileUploaderLocaleT} from '../file-uploader/locale.js';
 
 export type LocaleT = {|
   accordion: AccordionLocaleT,
   breadcrumbs: BreadcrumbLocaleT,
   datepicker: DatepickerLocaleT,
   buttongroup: ButtonGroupLocaleT,
+  fileuploader: FileUploaderLocaleT,
 |};

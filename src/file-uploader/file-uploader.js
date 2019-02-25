@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
+import {LocaleContext} from '../locale/index.js';
 import {Block} from '../block/index.js';
 import {Button, KIND} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -78,126 +79,130 @@ function FileUploader(props: PropsT) {
         };
 
         return (
-          <Root {...prefixedStyledProps} {...rootProps}>
-            <FileDragAndDrop
-              {...getRootProps(getRootPropsArgs)}
-              {...prefixedStyledProps}
-              {...fileDragAndDropProps}
-            >
-              {!afterFileDrop && (
-                <React.Fragment>
-                  <ContentMessage
-                    {...prefixedStyledProps}
-                    {...contentMessageProps}
-                  >
-                    Drop files here to upload
-                  </ContentMessage>
-                  <ContentMessage
-                    {...prefixedStyledProps}
-                    {...contentMessageProps}
-                  >
-                    or
-                  </ContentMessage>
+          <LocaleContext.Consumer>
+            {locale => (
+              <Root {...prefixedStyledProps} {...rootProps}>
+                <FileDragAndDrop
+                  {...getRootProps(getRootPropsArgs)}
+                  {...prefixedStyledProps}
+                  {...fileDragAndDropProps}
+                >
+                  {!afterFileDrop && (
+                    <React.Fragment>
+                      <ContentMessage
+                        {...prefixedStyledProps}
+                        {...contentMessageProps}
+                      >
+                        {locale.fileuploader.dropFilesToUpload}
+                      </ContentMessage>
+                      <ContentMessage
+                        {...prefixedStyledProps}
+                        {...contentMessageProps}
+                      >
+                        {locale.fileuploader.or}
+                      </ContentMessage>
 
-                  <Button
-                    aria-controls="fileupload"
-                    disabled={props.disabled}
-                    kind={KIND.minimal}
-                    onClick={open}
-                    overrides={{
-                      BaseButton: {
-                        style: {outline: null, fontWeight: 'normal'},
-                      },
-                    }}
-                    role="button"
-                    {...prefixedStyledProps}
-                  >
-                    Browse files
-                  </Button>
-                </React.Fragment>
-              )}
+                      <Button
+                        aria-controls="fileupload"
+                        disabled={props.disabled}
+                        kind={KIND.minimal}
+                        onClick={open}
+                        overrides={{
+                          BaseButton: {
+                            style: {outline: null, fontWeight: 'normal'},
+                          },
+                        }}
+                        role="button"
+                        {...prefixedStyledProps}
+                      >
+                        {locale.fileuploader.browseFiles}
+                      </Button>
+                    </React.Fragment>
+                  )}
 
-              {afterFileDrop && (
-                <React.Fragment>
-                  {/**
-                   * Below checks typeof value to ensure if progressAmount = 0 we will
-                   * render the progress bar rather than the spinner. Providing a number
-                   * value implies that we expect to have some progress percent in the
-                   * future. We do not want to flash the spinner in this case.
-                   */}
-                  {typeof props.progressAmount === 'number' ? (
-                    <ProgressBar
-                      value={props.progressAmount}
-                      overrides={{
-                        BarProgress: {
-                          style: ({$theme}) => ({
-                            backgroundColor: props.errorMessage
-                              ? $theme.colors.negative
-                              : $theme.colors.primary,
-                          }),
-                        },
-                      }}
-                    />
-                  ) : (
-                    <Block marginBottom="scale300">
-                      <Spinner size={40} />
-                    </Block>
+                  {afterFileDrop && (
+                    <React.Fragment>
+                      {/**
+                       * Below checks typeof value to ensure if progressAmount = 0 we will
+                       * render the progress bar rather than the spinner. Providing a number
+                       * value implies that we expect to have some progress percent in the
+                       * future. We do not want to flash the spinner in this case.
+                       */}
+                      {typeof props.progressAmount === 'number' ? (
+                        <ProgressBar
+                          value={props.progressAmount}
+                          overrides={{
+                            BarProgress: {
+                              style: ({$theme}) => ({
+                                backgroundColor: props.errorMessage
+                                  ? $theme.colors.negative
+                                  : $theme.colors.primary,
+                              }),
+                            },
+                          }}
+                        />
+                      ) : (
+                        <Block marginBottom="scale300">
+                          <Spinner size={40} />
+                        </Block>
+                      )}
+                      {(props.errorMessage || props.progressMessage) &&
+                      props.errorMessage ? (
+                        <ErrorMessage
+                          {...prefixedStyledProps}
+                          {...errorMessageProps}
+                        >
+                          {props.errorMessage}
+                        </ErrorMessage>
+                      ) : (
+                        <ContentMessage
+                          {...prefixedStyledProps}
+                          {...contentMessageProps}
+                        >
+                          {props.progressMessage}
+                        </ContentMessage>
+                      )}
+                      {props.errorMessage ? (
+                        <Button
+                          kind={KIND.minimal}
+                          onClick={() => {
+                            props.onRetry && props.onRetry();
+                          }}
+                          overrides={{
+                            BaseButton: {
+                              style: {outline: null, fontWeight: 'normal'},
+                            },
+                          }}
+                        >
+                          {locale.fileuploader.retry}
+                        </Button>
+                      ) : (
+                        <Button
+                          kind={KIND.minimal}
+                          onClick={() => {
+                            props.onCancel && props.onCancel();
+                          }}
+                          overrides={{
+                            BaseButton: {
+                              style: {outline: null, fontWeight: 'normal'},
+                            },
+                          }}
+                        >
+                          {locale.fileuploader.cancel}
+                        </Button>
+                      )}
+                    </React.Fragment>
                   )}
-                  {(props.errorMessage || props.progressMessage) &&
-                  props.errorMessage ? (
-                    <ErrorMessage
-                      {...prefixedStyledProps}
-                      {...errorMessageProps}
-                    >
-                      {props.errorMessage}
-                    </ErrorMessage>
-                  ) : (
-                    <ContentMessage
-                      {...prefixedStyledProps}
-                      {...contentMessageProps}
-                    >
-                      {props.progressMessage}
-                    </ContentMessage>
-                  )}
-                  {props.errorMessage ? (
-                    <Button
-                      kind={KIND.minimal}
-                      onClick={() => {
-                        props.onRetry && props.onRetry();
-                      }}
-                      overrides={{
-                        BaseButton: {
-                          style: {outline: null, fontWeight: 'normal'},
-                        },
-                      }}
-                    >
-                      Retry Upload
-                    </Button>
-                  ) : (
-                    <Button
-                      kind={KIND.minimal}
-                      onClick={() => {
-                        props.onCancel && props.onCancel();
-                      }}
-                      overrides={{
-                        BaseButton: {
-                          style: {outline: null, fontWeight: 'normal'},
-                        },
-                      }}
-                    >
-                      Cancel
-                    </Button>
-                  )}
-                </React.Fragment>
-              )}
-            </FileDragAndDrop>
+                </FileDragAndDrop>
 
-            <HiddenInput
-              {...getInputProps({refKey: '$ref'})}
-              {...prefixedStyledProps}
-              {...hiddenInputProps}
-            />
-          </Root>
+                <HiddenInput
+                  {...getInputProps({refKey: '$ref'})}
+                  {...prefixedStyledProps}
+                  {...hiddenInputProps}
+                />
+              </Root>
+            )}
+          </LocaleContext.Consumer>
         );
       }}
     </Dropzone>

@@ -10,12 +10,14 @@ import accordion from '../accordion/locale.js';
 import breadcrumbs from '../breadcrumbs/locale.js';
 import datepicker from '../datepicker/locale.js';
 import buttongroup from '../button-group/locale.js';
+import fileuploader from '../file-uploader/locale.js';
 
 const en_US = {
   accordion,
   breadcrumbs,
   datepicker,
   buttongroup,
+  fileuploader,
 };
 
 export default en_US;
