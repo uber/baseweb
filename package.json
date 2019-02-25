@@ -103,7 +103,7 @@
     "jest-enzyme": "^7.0.0",
     "jest-matcher-utils": "^24.0.0",
     "jest-puppeteer": "^4.0.0",
-    "markdownlint-cli": "^0.13.0",
+    "markdownlint-cli": "^0.14.0",
     "next": "^8.0.1",
     "next-images": "^1.0.3",
     "now": "^13.1.3",
