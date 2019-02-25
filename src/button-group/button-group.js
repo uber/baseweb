@@ -100,7 +100,6 @@ export default function ButtonGroup(props: PropsT) {
 }
 
 ButtonGroup.defaultProps = {
-  ariaLabel: null,
   disabled: false,
   onClick: () => {},
   shape: SHAPE.default,

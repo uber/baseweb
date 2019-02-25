@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {AccordionLocaleT} from '../accordion/locale.js';
-import type {BreadcrumbLocaleT} from '../breadcrumb/locale.js';
+import type {BreadcrumbLocaleT} from '../breadcrumbs/locale.js';
 import type {DatepickerLocaleT} from '../datepicker/locale.js';
 import type {ButtonGroupLocaleT} from '../button-group/locale.js';
 

@@ -40,7 +40,7 @@ function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
   return (
     <LocaleContext.Consumer>
       {locale => (
-        <Root aria-label={locale.breadcrumb.ariaLabel} {...baseRootProps}>
+        <Root aria-label={locale.breadcrumbs.ariaLabel} {...baseRootProps}>
           {childrenWithSeparators}
         </Root>
       )}
