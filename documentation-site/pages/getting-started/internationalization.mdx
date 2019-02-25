@@ -1,0 +1,29 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+
+export default Layout;
+
+# Internationalization
+
+Base UI supports English as the default language. Following the instructions below, you
+can use other languages too.
+
+```javascript
+import { LocaleProvider } from 'baseui';
+import {huHU} from '{YOUR_PROJECT}/hu.json';
+import App from '{YOUR_PROJECT}/app.js';
+
+return (
+  <LocaleProvider locale={huHU}>
+    <App />
+  </LocaleProvider>
+);
+```
+
+
