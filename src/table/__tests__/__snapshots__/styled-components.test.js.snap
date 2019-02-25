@@ -19,7 +19,8 @@ Object {
 exports[`Table styled components $width property: StyledBody has expected styles when $width property defined 1`] = `
 Object {
   "flex": 1,
-  "overflowY": "scroll",
+  "overflowX": "hidden",
+  "overflowY": "overlay",
   "width": "1000px",
 }
 `;
@@ -162,7 +163,8 @@ Object {
 exports[`Table styled components default properties: StyledBody has expected default styles 1`] = `
 Object {
   "flex": 1,
-  "overflowY": "scroll",
+  "overflowX": "hidden",
+  "overflowY": "overlay",
   "width": "100%",
 }
 `;
