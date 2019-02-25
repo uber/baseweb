@@ -6,9 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export type DatepickerLocaleT = {
+export type DatepickerLocaleT = {|
   ariaLabel: string,
-};
+  nextMonth: string,
+  prevMonth: string,
+  screenReaderMessageInput: string,
+|};
 
 export type LocaleT = {|
   datepicker: DatepickerLocaleT,

@@ -24,7 +24,6 @@ export default class Datepicker extends React.Component<
   },
 > {
   static defaultProps = {
-    'aria-label': 'Select a date',
     'aria-labelledby': null,
     'aria-describedby': 'datepicker--screenreader--message--input',
     disabled: false,
@@ -140,13 +139,6 @@ export default class Datepicker extends React.Component<
       Popover,
     );
 
-    if (__DEV__ && this.props['aria-label']) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `Providing i18n data through properties will be removed in the next major version. Please use the LocalProvider.`,
-      );
-    }
-
     return (
       <LocaleContext.Consumer>
         {locale => (
@@ -170,7 +162,7 @@ export default class Datepicker extends React.Component<
               <InputComponent
                 aria-disabled={this.props.disabled}
                 aria-label={
-                  locale.datepicker.ariaLabel || this.props['aria-label']
+                  this.props['aria-label'] || locale.datepicker.ariaLabel
                 }
                 aria-labelledby={this.props['aria-labelledby']}
                 aria-describedby={this.props['aria-describedby']}
@@ -199,8 +191,7 @@ export default class Datepicker extends React.Component<
                 clipPath: 'inset(100%)',
               }}
             >
-              Press the down arrow key to interact with the calendar and select
-              a date. Press the escape button to close the calendar.
+              {locale.datepicker.screenReaderMessageInput}
             </p>
           </React.Fragment>
         )}
