@@ -12,4 +12,6 @@ import {Calendar} from '../index.js';
 
 export const name = 'calendar';
 
-export const component = () => <Calendar />;
+export const component = () => (
+  <Calendar highlightedDate={new Date('2019-02-22T10:00:00Z')} />
+);
