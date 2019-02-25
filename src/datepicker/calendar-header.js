@@ -28,6 +28,7 @@ import {
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {SharedStylePropsT} from '../select/types.js';
+import type {LocaleT} from '../locale/types.js';
 
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
@@ -60,7 +61,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     this.props.onMonthChange({date: subMonths(this.props.date, 1)});
   };
 
-  renderPreviousMonthButton = ({locale}) => {
+  renderPreviousMonthButton = ({locale}: {locale: LocaleT}) => {
     const {date, overrides = {}} = this.props;
     const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
 
@@ -99,7 +100,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     );
   };
 
-  renderNextMonthButton = ({locale}) => {
+  renderNextMonthButton = ({locale}: {locale: LocaleT}) => {
     const {date, overrides = {}} = this.props;
     const allNextDaysDisabled = monthDisabledAfter(date, this.props);
 

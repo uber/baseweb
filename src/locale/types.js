@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 export type DatepickerLocaleT = {|
   ariaLabel: string,
   nextMonth: string,
-  prevMonth: string,
+  previousMonth: string,
   screenReaderMessageInput: string,
 |};
 

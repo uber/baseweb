@@ -24,6 +24,7 @@ export default class Datepicker extends React.Component<
   },
 > {
   static defaultProps = {
+    'aria-label': null,
     'aria-labelledby': null,
     'aria-describedby': 'datepicker--screenreader--message--input',
     disabled: false,
