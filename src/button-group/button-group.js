@@ -10,6 +10,7 @@ import React from 'react';
 
 import {KIND, SIZE, SHAPE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {LocaleContext} from '../locale/index.js';
 
 import {StyledRoot} from './styled-components.js';
 import type {PropsT} from './types.js';
@@ -54,43 +55,52 @@ export default function ButtonGroup(props: PropsT) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
   return (
-    <Root aria-label={props.ariaLabel} {...rootProps}>
-      {React.Children.map(props.children, (child, index) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        return React.cloneElement(child, {
-          disabled: props.disabled ? true : child.props.disabled,
-          isSelected: isSelected(props.selected, index),
-          kind: KIND.tertiary,
-          onClick: event => {
-            if (props.disabled) {
-              return;
+    <LocaleContext.Consumer>
+      {locale => (
+        <Root
+          aria-label={props.ariaLabel || locale.buttongroup.ariaLabel}
+          {...rootProps}
+        >
+          {React.Children.map(props.children, (child, index) => {
+            if (!React.isValidElement(child)) {
+              return null;
             }
 
-            if (child.props.onClick) {
-              child.props.onClick(event);
-            }
+            return React.cloneElement(child, {
+              disabled: props.disabled ? true : child.props.disabled,
+              isSelected: isSelected(props.selected, index),
+              kind: KIND.tertiary,
+              onClick: event => {
+                if (props.disabled) {
+                  return;
+                }
 
-            if (props.onClick) {
-              props.onClick(event, index);
-            }
-          },
-          overrides: {
-            BaseButton: {style: getBorderRadii(index, props.children.length)},
-            ...child.props.overrides,
-          },
-          shape: props.shape,
-          size: props.size,
-        });
-      })}
-    </Root>
+                if (child.props.onClick) {
+                  child.props.onClick(event);
+                }
+
+                if (props.onClick) {
+                  props.onClick(event, index);
+                }
+              },
+              overrides: {
+                BaseButton: {
+                  style: getBorderRadii(index, props.children.length),
+                },
+                ...child.props.overrides,
+              },
+              shape: props.shape,
+              size: props.size,
+            });
+          })}
+        </Root>
+      )}
+    </LocaleContext.Consumer>
   );
 }
 
 ButtonGroup.defaultProps = {
-  ariaLabel: 'button group',
+  ariaLabel: null,
   disabled: false,
   onClick: () => {},
   shape: SHAPE.default,
