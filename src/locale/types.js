@@ -6,12 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export type DatepickerLocaleT = {|
-  ariaLabel: string,
-  nextMonth: string,
-  previousMonth: string,
-  screenReaderMessageInput: string,
-|};
+import type {DatepickerLocaleT} from '../datepicker/locale.js';
 
 export type LocaleT = {|
   datepicker: DatepickerLocaleT,

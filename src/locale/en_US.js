@@ -6,14 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import datepicker from '../datepicker/locale.js';
+
 const en_US = {
-  datepicker: {
-    ariaLabel: 'Select a date',
-    previousMonth: 'Previous month',
-    nextMonth: 'Next month',
-    screenReaderMessageInput:
-      'Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.',
-  },
+  datepicker,
 };
 
 export default en_US;
