@@ -259,7 +259,7 @@ const Container = styled('div', {
 export default () => (
   <Container>
     <StyledTable>
-      <StyledHead $width="900px">
+      <StyledHead $width="1000px">
         <StyledHeadCell>Name</StyledHeadCell>
         <StyledHeadCell>Role</StyledHeadCell>
         <StyledHeadCell>Delta</StyledHeadCell>
@@ -269,7 +269,7 @@ export default () => (
         </ExpandableCellHead>
         <StyledHeadCell>Actions</StyledHeadCell>
       </StyledHead>
-      <StyledBody $width="900px">
+      <StyledBody $width="1000px">
         {DATA.map((row, index) => (
           <StyledRow key={index}>
             <StyledCell>{row[0]}</StyledCell>
