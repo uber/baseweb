@@ -106,10 +106,7 @@ class SortableTable extends React.Component<any, any> {
               title="Name"
               direction={this.state.nameDirection}
               onSort={() => this.handleSort('name', this.state.nameDirection)}
-            >
-              {/* eslint-disable-next-line no-console */}
-              <button onClick={() => console.log('filter')}>f</button>
-            </SortableHeadCell>
+            />
             <SortableHeadCell
               disabled
               title="Age"
