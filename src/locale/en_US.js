@@ -13,6 +13,7 @@ import buttongroup from '../button-group/locale.js';
 import fileuploader from '../file-uploader/locale.js';
 import modal from '../modal/locale.js';
 import pagination from '../pagination/locale.js';
+import select from '../select/locale.js';
 
 const en_US = {
   accordion,
@@ -22,6 +23,7 @@ const en_US = {
   fileuploader,
   modal,
   pagination,
+  select,
 };
 
 export default en_US;
