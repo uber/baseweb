@@ -12,6 +12,7 @@ import datepicker from '../datepicker/locale.js';
 import buttongroup from '../button-group/locale.js';
 import fileuploader from '../file-uploader/locale.js';
 import modal from '../modal/locale.js';
+import pagination from '../pagination/locale.js';
 
 const en_US = {
   accordion,
@@ -20,6 +21,7 @@ const en_US = {
   buttongroup,
   fileuploader,
   modal,
+  pagination,
 };
 
 export default en_US;
