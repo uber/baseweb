@@ -11,6 +11,7 @@ import * as React from 'react';
 import {Block} from 'baseui/block';
 import {styled} from 'baseui/styles';
 import Link from 'next/link';
+import {StyledLink} from 'baseui/link';
 import Anchor from './anchor';
 import slugify from '../helpers/slugify';
 import {useHover} from './hooks';
@@ -146,7 +147,9 @@ export default {
       (parts[0] === '' && parts[1] !== '') || !href.includes('http');
     return (
       <Link href={href} prefetch={internal}>
-        <a target={internal ? undefined : '_blank'}>{children}</a>
+        <StyledLink href={href} target={internal ? undefined : '_blank'}>
+          {children}
+        </StyledLink>
       </Link>
     );
   },
