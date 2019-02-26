@@ -24,7 +24,7 @@ const DATA = [...new Array(45)].map((_, i) =>
   [...new Array(5)].map(() => `row: ${i + 1}`),
 );
 
-// $FlowFixMe
+// eslint-disable-next-line flowtype/no-weak-types
 class PaginatedTable extends React.Component<any, any> {
   state = {page: 1, limit: 12};
 
