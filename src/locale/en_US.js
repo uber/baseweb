@@ -14,6 +14,7 @@ import fileuploader from '../file-uploader/locale.js';
 import modal from '../modal/locale.js';
 import pagination from '../pagination/locale.js';
 import select from '../select/locale.js';
+import toast from '../toast/locale.js';
 
 const en_US = {
   accordion,
@@ -24,6 +25,7 @@ const en_US = {
   modal,
   pagination,
   select,
+  toast,
 };
 
 export default en_US;

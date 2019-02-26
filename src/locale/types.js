@@ -14,6 +14,7 @@ import type {FileUploaderLocaleT} from '../file-uploader/locale.js';
 import type {ModalLocaleT} from '../modal/locale.js';
 import type {PaginationLocaleT} from '../pagination/locale.js';
 import type {SelectLocaleT} from '../select/locale.js';
+import type {ToastLocaleT} from '../toast/locale.js';
 
 export type LocaleT = {|
   accordion: AccordionLocaleT,
@@ -24,4 +25,5 @@ export type LocaleT = {|
   modal: ModalLocaleT,
   pagination: PaginationLocaleT,
   select: SelectLocaleT,
+  toast: ToastLocaleT,
 |};
