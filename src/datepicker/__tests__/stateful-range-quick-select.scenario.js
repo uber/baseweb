@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Unstable_StatefulCalendar as StatefulCalendar} from '../index.js';
+import {StatefulCalendar} from '../index.js';
 
 export const name = 'Stateful range quick select';
 
 export const component = () => (
   <StatefulCalendar
-    isRange
-    enableQuickSelect
+    range
+    quickSelect
     highlightedDate={new Date('2019-02-14T10:00:00Z')}
   />
 );

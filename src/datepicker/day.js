@@ -23,8 +23,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   static defaultProps = {
     disabled: false,
     date: new Date(),
-    isHighlighted: false,
-    isRange: false,
+    highlighted: false,
+    range: false,
     month: new Date().getMonth(),
     onClick: () => {},
     onSelect: () => {},
@@ -42,9 +42,9 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   };
 
   componentDidMount() {
-    if (this.dayElm && this.props.isFocused) {
+    if (this.dayElm && this.props.focusedCalendar) {
       if (
-        this.props.isHighlighted ||
+        this.props.highlighted ||
         (!this.props.highlightedDate && this.isSelected())
       ) {
         this.dayElm.focus();
@@ -53,9 +53,9 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   componentDidUpdate(prevProps: DayPropsT) {
-    if (this.dayElm && this.props.isFocused) {
+    if (this.dayElm && this.props.focusedCalendar) {
       if (
-        this.props.isHighlighted ||
+        this.props.highlighted ||
         (!this.props.highlightedDate && this.isSelected())
       ) {
         this.dayElm.focus();
@@ -64,9 +64,9 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   onSelect(selectedDate: Date) {
-    const {isRange, value} = this.props;
+    const {range, value} = this.props;
     let date;
-    if (Array.isArray(value) && isRange) {
+    if (Array.isArray(value) && range) {
       if (!value.length || value.length > 1) {
         date = [selectedDate];
       } else if (isAfter(selectedDate, value[0])) {
@@ -81,8 +81,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   onKeyDown = (event: KeyboardEvent) => {
-    const {isHighlighted, date, disabled} = this.props;
-    if (event.key === 'Enter' && isHighlighted && !disabled) {
+    const {highlighted, date, disabled} = this.props;
+    if (event.key === 'Enter' && highlighted && !disabled) {
       event.preventDefault();
       this.onSelect(date);
     }
@@ -150,12 +150,12 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   }
 
   getSharedProps() {
-    const {date, value, highlightedDate, isRange, isHighlighted} = this.props;
-    const $isHighlighted = isHighlighted;
+    const {date, value, highlightedDate, range, highlighted} = this.props;
+    const $isHighlighted = highlighted;
     const $selected = this.isSelected();
     const $hasRangeHighlighted =
       Array.isArray(value) &&
-      isRange &&
+      range &&
       value.length === 1 &&
       highlightedDate &&
       !isSameDay(value[0], highlightedDate)
@@ -166,13 +166,13 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       $disabled: this.props.disabled,
       $endDate:
         (Array.isArray(value) &&
-          this.props.isRange &&
+          this.props.range &&
           $selected &&
           isSameDay(date, value[1])) ||
         false,
       $isHovered: this.state.isHovered,
       $isHighlighted,
-      $isRange: this.props.isRange,
+      $range: this.props.range,
       $hasRangeHighlighted,
       $hasRangeOnRight:
         Array.isArray(value) &&
@@ -183,14 +183,14 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       $highlightedDate: highlightedDate,
       $peekNextMonth: this.props.peekNextMonth,
       $pseudoHighlighted:
-        this.props.isRange && !$isHighlighted && !$selected
+        this.props.range && !$isHighlighted && !$selected
           ? this.isPseudoHighlighted()
           : false,
       $pseudoSelected:
-        this.props.isRange && !$selected ? this.isPseudoSelected() : false,
+        this.props.range && !$selected ? this.isPseudoSelected() : false,
       $selected,
       $startDate:
-        Array.isArray(this.props.value) && this.props.isRange && $selected
+        Array.isArray(this.props.value) && this.props.range && $selected
           ? isSameDay(date, this.props.value[0])
           : false,
       $outsideMonth: this.isOutsideMonth(),
@@ -199,14 +199,14 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
 
   getAriaLabel(sharedProps: {
     $disabled: boolean,
-    $isRange: boolean,
+    $range: boolean,
     $selected: boolean,
     $startDate: boolean,
   }) {
     const {date, locale} = this.props;
     return `${
       sharedProps.$selected
-        ? sharedProps.$isRange
+        ? sharedProps.$range
           ? sharedProps.$startDate
             ? 'Selected start date.'
             : 'Selected end date.'
@@ -234,7 +234,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         }}
         role="button"
         tabIndex={
-          this.props.isHighlighted ||
+          this.props.highlighted ||
           (!this.props.highlightedDate && this.isSelected())
             ? '0'
             : '-1'

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Unstable_StatefulCalendar} from 'baseui/datepicker';
+import {StatefulCalendar} from 'baseui/datepicker';
 
 const selectOverrides = {
   ControlContainer: {
@@ -25,7 +25,7 @@ const arrowBtnOverrides = ({$theme}) => ({
 });
 
 export default () => (
-  <Unstable_StatefulCalendar
+  <StatefulCalendar
     initialState={{value: new Date()}}
     overrides={{
       CalendarHeader: {

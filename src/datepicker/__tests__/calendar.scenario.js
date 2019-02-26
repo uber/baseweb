@@ -8,8 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Unstable_Calendar as Calendar} from '../index.js';
+import {Calendar} from '../index.js';
 
 export const name = 'calendar';
 
-export const component = () => <Calendar />;
+export const component = () => (
+  <Calendar highlightedDate={new Date('2019-02-22T10:00:00Z')} />
+);

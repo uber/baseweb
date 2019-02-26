@@ -77,7 +77,8 @@ export const StyledSortableLabel = styled('button', ({$theme}) => {
 export const StyledBody = styled('div', ({$width}: HorizontalStyleProps) => {
   return {
     width: $width ? $width : '100%',
-    overflowY: 'scroll',
+    overflowX: 'hidden',
+    overflowY: 'overlay',
     flex: 1,
   };
 });

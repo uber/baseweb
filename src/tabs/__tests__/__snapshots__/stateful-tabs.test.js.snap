@@ -170,9 +170,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
               aria-labelledby="0"
               role="tabpanel"
               styled-component="true"
-            >
-              Tab 1 content
-            </div>
+            />
           </MockStyledComponent>
           <MockStyledComponent
             $active={true}
@@ -202,9 +200,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
               aria-labelledby="2"
               role="tabpanel"
               styled-component="true"
-            >
-              Tab 3 content
-            </div>
+            />
           </MockStyledComponent>
         </div>
       </MockStyledComponent>
@@ -388,9 +384,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
               aria-labelledby="1"
               role="tabpanel"
               styled-component="true"
-            >
-              Tab 2 content
-            </div>
+            />
           </MockStyledComponent>
           <MockStyledComponent
             $active={false}
@@ -404,9 +398,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
               aria-labelledby="2"
               role="tabpanel"
               styled-component="true"
-            >
-              Tab 3 content
-            </div>
+            />
           </MockStyledComponent>
         </div>
       </MockStyledComponent>
