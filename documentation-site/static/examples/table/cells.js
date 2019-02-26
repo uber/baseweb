@@ -8,7 +8,6 @@ import Search from 'baseui/icon/search';
 import Plus from 'baseui/icon/plus';
 import Delete from 'baseui/icon/delete';
 import Overflow from 'baseui/icon/overflow';
-import {StatefulPanel} from 'baseui/accordion';
 import {
   StyledTable,
   StyledHead,
@@ -35,59 +34,6 @@ const StyledDeltaCell = styled(StyledCell, props => ({
 const StyledLargeText = styled(StyledCell, {
   alignItems: 'center',
 });
-
-const ExpandableCellHead = styled(StyledHeadCell, {
-  paddingTop: '0',
-  paddingBottom: '0',
-  paddingLeft: '0',
-  paddingRight: '0',
-  minWidth: '180px',
-});
-
-const ExpandableCell = styled(StyledCell, {
-  paddingTop: '0',
-  paddingBottom: '0',
-  paddingLeft: '0',
-  paddingRight: '0',
-  minWidth: '180px',
-});
-
-const panelOverrides = {
-  Header: {
-    style: ({$theme: {colors, sizing, typography}, $expanded}) => ({
-      ...typography.font300,
-      color: 'inherit',
-      borderBottom: $expanded
-        ? `1px solid ${colors.mono500}`
-        : '1px solid transparent',
-      paddingTop: sizing.scale300,
-      paddingBottom: sizing.scale300,
-      paddingLeft: sizing.scale1000,
-      paddingRight: sizing.scale600,
-      outline: 'none',
-      ':hover': {
-        color: 'inherit',
-      },
-    }),
-  },
-  Content: {
-    style: ({$theme: {colors, sizing}, $expanded}) => ({
-      backgroundColor: colors.mono200,
-      color: colors.mono800,
-      paddingTop: $expanded ? sizing.scale300 : 0,
-      paddingBottom: $expanded ? sizing.scale600 : 0,
-      paddingLeft: sizing.scale1000,
-      paddingRight: sizing.scale600,
-    }),
-  },
-  ToggleIcon: {
-    style: ({$theme: {colors}}) => ({
-      color: colors.mono600,
-      position: 'absolute',
-      left: '12px',
-    }),
-  },
-};
 
 const DATA = [
   [
@@ -264,9 +210,6 @@ export default () => (
         <StyledHeadCell>Role</StyledHeadCell>
         <StyledHeadCell>Delta</StyledHeadCell>
         <StyledHeadCell>Amount</StyledHeadCell>
-        <ExpandableCellHead>
-          <StyledHeadCell>Expandable</StyledHeadCell>
-        </ExpandableCellHead>
         <StyledHeadCell>Actions</StyledHeadCell>
       </StyledHead>
       <StyledBody $width="1000px">
@@ -296,12 +239,6 @@ export default () => (
                 +1000%
               </Block>
             </StyledLargeText>
-
-            <ExpandableCell>
-              <StatefulPanel title={row[5].title} overrides={panelOverrides}>
-                {row[5].data}
-              </StatefulPanel>
-            </ExpandableCell>
 
             <StyledCell>
               <StyledAction>
