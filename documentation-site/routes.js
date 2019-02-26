@@ -108,6 +108,10 @@ const routes = [
             path: '/components/header-navigation',
           },
           {
+            text: 'Link',
+            path: '/components/link',
+          },
+          {
             text: 'Pagination',
             path: '/components/pagination',
           },
