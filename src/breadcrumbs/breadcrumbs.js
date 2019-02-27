@@ -11,10 +11,13 @@ import React, {Children} from 'react';
 
 import {LocaleContext} from '../locale/index.js';
 import type {BreadcrumbsPropsT} from './types.js';
+import type {BreadcrumbLocaleT} from './locale.js';
 import {StyledRoot, StyledSeparator, StyledIcon} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
-function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
+type LocaleT = {|locale?: BreadcrumbLocaleT|};
+export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
+  const {children, overrides, locale} = props;
   const numChildren = Children.count(children);
   const childrenWithSeparators = [];
 
@@ -38,12 +41,16 @@ function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
   });
 
   return (
+    <Root aria-label={locale.ariaLabel} {...baseRootProps}>
+      {childrenWithSeparators}
+    </Root>
+  );
+}
+
+function Breadcrumbs(props: BreadcrumbsPropsT) {
+  return (
     <LocaleContext.Consumer>
-      {locale => (
-        <Root aria-label={locale.breadcrumbs.ariaLabel} {...baseRootProps}>
-          {childrenWithSeparators}
-        </Root>
-      )}
+      {locale => <BreadcrumbsRoot {...props} locale={locale.breadcrumbs} />}
     </LocaleContext.Consumer>
   );
 }
