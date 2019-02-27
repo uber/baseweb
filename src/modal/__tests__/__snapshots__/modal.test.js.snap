@@ -10,8 +10,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
   role="dialog"
   size="default"
 >
-  <div
-    is-portal="true"
+  <Portal
     key="portal"
   >
     <MockStyledComponent
@@ -27,9 +26,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
       $role="dialog"
       $size="default"
     >
-      <div
-        styled-component="true"
-      >
+      <Portal>
         <MockStyledComponent
           $animate={true}
           $closeable={true}
@@ -39,10 +36,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
           $size="default"
           onClick={[Function]}
         >
-          <div
-            onClick={[Function]}
-            styled-component="true"
-          />
+          <Portal />
         </MockStyledComponent>
         <MockStyledComponent
           $animate={true}
@@ -52,9 +46,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
           $role="dialog"
           $size="default"
         >
-          <div
-            styled-component="true"
-          >
+          <Portal>
             <MockStyledComponent
               $animate={true}
               $closeable={true}
@@ -71,12 +63,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
               role="dialog"
               tabIndex="-1"
             >
-              <div
-                aria-modal="true"
-                role="dialog"
-                styled-component="true"
-                tabIndex="-1"
-              >
+              <Portal>
                 <MockStyledComponent
                   $animate={true}
                   $closeable={true}
@@ -87,59 +74,29 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   aria-label="Close"
                   onClick={[Function]}
                 >
-                  <button
-                    aria-label="Close"
-                    onClick={[Function]}
-                    styled-component="true"
-                  >
+                  <Portal>
                     <CloseIcon>
-                      <svg
-                        height="10"
-                        style={
-                          Object {
-                            "stroke": "currentColor",
-                          }
-                        }
-                        viewBox="0 0 10 10"
-                        width="10"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M9 1L5 5M1 9L5 5M5 5L1 1M5 5L9 9"
-                          strokeLinecap="round"
-                          strokeWidth="2"
-                        />
-                      </svg>
+                      <Portal>
+                        <Portal />
+                      </Portal>
                     </CloseIcon>
-                  </button>
+                  </Portal>
                 </MockStyledComponent>
                 <MockStyledComponent>
-                  <div
-                    styled-component="true"
-                  >
-                    Hello world
-                  </div>
+                  <Portal />
                 </MockStyledComponent>
                 <MockStyledComponent>
-                  <div
-                    styled-component="true"
-                  >
-                    Modal Body
-                  </div>
+                  <Portal />
                 </MockStyledComponent>
                 <MockStyledComponent>
-                  <div
-                    styled-component="true"
-                  >
-                    Footer
-                  </div>
+                  <Portal />
                 </MockStyledComponent>
-              </div>
+              </Portal>
             </MockStyledComponent>
-          </div>
+          </Portal>
         </MockStyledComponent>
-      </div>
+      </Portal>
     </MockStyledComponent>
-  </div>
+  </Portal>
 </Modal>
 `;
