@@ -17,8 +17,8 @@ import {getOverrides} from '../helpers/overrides.js';
 
 type LocaleT = {|locale?: BreadcrumbLocaleT|};
 export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
-  const {children, overrides, locale} = props;
-  const numChildren = Children.count(children);
+  const {overrides = {}} = props;
+  const numChildren = Children.count(props.children);
   const childrenWithSeparators = [];
 
   const [Root, baseRootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -28,7 +28,7 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
     StyledSeparator,
   );
 
-  Children.forEach(children, (child, index) => {
+  Children.forEach(props.children, (child, index) => {
     childrenWithSeparators.push(child);
 
     if (index !== numChildren - 1) {
@@ -41,7 +41,12 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
   });
 
   return (
-    <Root aria-label={locale.ariaLabel} {...baseRootProps}>
+    <Root
+      aria-label={
+        props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
+      }
+      {...baseRootProps}
+    >
       {childrenWithSeparators}
     </Root>
   );
