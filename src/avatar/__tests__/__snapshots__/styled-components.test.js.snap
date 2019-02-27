@@ -23,7 +23,7 @@ Object {
 
 exports[`Avatar styled components default properties: StyledRoot has expected default styles 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.primary",
+  "backgroundColor": null,
   "borderRadius": "50%",
   "boxSizing": "border-box",
   "display": "inline-block",
@@ -44,7 +44,7 @@ Object {
 
 exports[`Avatar styled components non-default size: StyledRoot has expected styles with non-default size 1`] = `
 Object {
-  "backgroundColor": "$theme.colors.primary",
+  "backgroundColor": null,
   "borderRadius": "50%",
   "boxSizing": "border-box",
   "display": "inline-block",
