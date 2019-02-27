@@ -32,3 +32,11 @@ export const Svg = styled('svg', props => {
     animationTimingFunction: 'linear',
   };
 });
+
+export const StyledTrackPath = styled('path', props => ({
+  fill: props.$theme.colors.mono400,
+}));
+
+export const StyledActivePath = styled('path', props => ({
+  fill: props.$color || props.$theme.colors.primary400,
+}));

@@ -58,6 +58,22 @@ export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
+export const StyledSortableLabel = styled('button', ({$theme}) => {
+  return {
+    ...$theme.typography.font350,
+    alignItems: 'center',
+    border: 'none',
+    display: 'flex',
+    padding: 0,
+    ':hover:enabled': {
+      cursor: 'pointer',
+    },
+    ':disabled': {
+      color: $theme.colors.mono500,
+    },
+  };
+});
+
 export const StyledBody = styled('div', ({$width}: HorizontalStyleProps) => {
   return {
     width: $width ? $width : '100%',

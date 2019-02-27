@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StyledSvg} from '../index.js';
+import {StyledSvg, StyledTrackPath, StyledActivePath} from '../index.js';
 
 describe('Spinner styled components', () => {
   test('StyledSvg - basic render', () => {
@@ -24,6 +24,20 @@ describe('Spinner styled components', () => {
   });
   test('StyledSvg - custom color', () => {
     const component = shallow(<StyledSvg color="#00FF00" />);
+    expect(component.instance().getStyles()).toMatchSnapshot(
+      'StyledSvg has correct fill value',
+    );
+  });
+
+  test('StyledTrackPath - basic render', () => {
+    const component = shallow(<StyledTrackPath />);
+    expect(component.instance().getStyles()).toMatchSnapshot(
+      'StyledSvg has correct fill value',
+    );
+  });
+
+  test('StyledActivePath - basic render', () => {
+    const component = shallow(<StyledActivePath />);
     expect(component.instance().getStyles()).toMatchSnapshot(
       'StyledSvg has correct fill value',
     );

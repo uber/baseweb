@@ -7,6 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 export {default as Spinner} from './spinner.js';
 // Styled elements
-export {Svg as StyledSvg} from './styled-components.js';
+export {
+  Svg as StyledSvg,
+  StyledTrackPath,
+  StyledActivePath,
+} from './styled-components.js';
 // Flow
 export * from './types.js';
