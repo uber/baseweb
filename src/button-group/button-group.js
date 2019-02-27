@@ -14,6 +14,7 @@ import {LocaleContext} from '../locale/index.js';
 
 import {StyledRoot} from './styled-components.js';
 import type {PropsT} from './types.js';
+import type {ButtonGroupLocaleT} from './locale.js';
 
 function isSelected(selected, index) {
   if (!Array.isArray(selected) && typeof selected !== 'number') {
@@ -50,51 +51,58 @@ function getBorderRadii(index, length) {
   };
 }
 
-export default function ButtonGroup(props: PropsT) {
+type LocaleT = {|locale?: ButtonGroupLocaleT|};
+export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
   const {overrides = {}} = props;
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
   return (
-    <LocaleContext.Consumer>
-      {locale => (
-        <Root
-          aria-label={props.ariaLabel || locale.buttongroup.ariaLabel}
-          {...rootProps}
-        >
-          {React.Children.map(props.children, (child, index) => {
-            if (!React.isValidElement(child)) {
-              return null;
+    <Root
+      aria-label={
+        props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
+      }
+      {...rootProps}
+    >
+      {React.Children.map(props.children, (child, index) => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
+
+        return React.cloneElement(child, {
+          disabled: props.disabled ? true : child.props.disabled,
+          isSelected: isSelected(props.selected, index),
+          kind: KIND.tertiary,
+          onClick: event => {
+            if (props.disabled) {
+              return;
             }
 
-            return React.cloneElement(child, {
-              disabled: props.disabled ? true : child.props.disabled,
-              isSelected: isSelected(props.selected, index),
-              kind: KIND.tertiary,
-              onClick: event => {
-                if (props.disabled) {
-                  return;
-                }
+            if (child.props.onClick) {
+              child.props.onClick(event);
+            }
 
-                if (child.props.onClick) {
-                  child.props.onClick(event);
-                }
+            if (props.onClick) {
+              props.onClick(event, index);
+            }
+          },
+          overrides: {
+            BaseButton: {
+              style: getBorderRadii(index, props.children.length),
+            },
+            ...child.props.overrides,
+          },
+          shape: props.shape,
+          size: props.size,
+        });
+      })}
+    </Root>
+  );
+}
 
-                if (props.onClick) {
-                  props.onClick(event, index);
-                }
-              },
-              overrides: {
-                BaseButton: {
-                  style: getBorderRadii(index, props.children.length),
-                },
-                ...child.props.overrides,
-              },
-              shape: props.shape,
-              size: props.size,
-            });
-          })}
-        </Root>
-      )}
+export default function ButtonGroup(props: PropsT) {
+  return (
+    <LocaleContext.Consumer>
+      {locale => <ButtonGroupRoot {...props} locale={locale.buttongroup} />}
     </LocaleContext.Consumer>
   );
 }
