@@ -11,6 +11,23 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {ThemeT} from '../styles/types.js';
 
+export type HeadCellPropsT = {|
+  /** Additional content to fill head cell. Most likely used for a filter button. */
+  children?: React.Node,
+  /** Visually indicates sort direction. Displays a chevron next to column title. */
+  direction: 'ASC' | 'DESC' | null,
+  /** Disabled click-to-sort. Renders column title in muted color. */
+  disabled?: boolean,
+  /** Callback for when column title is clicked to trigger sort. */
+  onSort?: () => mixed,
+  overrides?: {
+    HeadCell: OverrideT<*>,
+    SortableLabel: OverrideT<*>,
+  },
+  /** Column title. */
+  title: string,
+|};
+
 export type TablePropsT = {|
   /** Table columns. Data passed to each header cell. */
   columns: Array<string | React.Node>,

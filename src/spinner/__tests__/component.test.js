@@ -9,21 +9,19 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 import {Spinner} from '../index.js';
-import {Spinner as SpinnerIcon} from '../../icon/index.js';
+import {Icon} from '../../icon/index.js';
 
 describe('Spinner', () => {
   test('renders spinner icon', () => {
     let renderedIcon;
     const spinner = mount(<Spinner />);
 
-    // renderedRoot = wrapper.find(StyledSvg).first();
-    renderedIcon = spinner.find(SpinnerIcon).first();
+    renderedIcon = spinner.find(Icon).first();
     expect(renderedIcon).toExist();
 
-    // pass new size value set to 56
     spinner.setProps({size: 56});
 
-    renderedIcon = spinner.find(SpinnerIcon).first();
+    renderedIcon = spinner.find(Icon).first();
     expect(renderedIcon.props().size).toBe(56);
   });
 
