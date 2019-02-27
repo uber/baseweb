@@ -43,7 +43,7 @@ export const Root = styled('div', (props: StylePropsT) => {
   const themedSize = getSize(props);
 
   return {
-    backgroundColor: props.$theme.colors.primary,
+    backgroundColor: $didImageFailToLoad ? props.$theme.colors.primary : null,
     borderRadius: '50%',
     boxSizing: 'border-box',
     display: 'inline-block',
