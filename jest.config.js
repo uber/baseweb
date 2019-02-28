@@ -12,7 +12,7 @@ module.exports = {
   rootDir: 'src',
   coverageDirectory: '../coverage',
   setupFiles: ['<rootDir>/test/test-setup.js'],
-  setupTestFrameworkScriptFile: '<rootDir>/test/test-framework-setup.js',
+  setupFilesAfterEnv: ['<rootDir>/test/test-framework-setup.js'],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],

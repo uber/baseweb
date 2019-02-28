@@ -22,7 +22,9 @@ exports[`StatefulTooltip basic render: renders <StatefulContainer/> 1`] = `
   showArrow={true}
   stateReducer={[MockFunction]}
   triggerType="hover"
-/>
+>
+  <Component />
+</StatefulContainer>
 `;
 
 exports[`StatefulTooltip basic render: renders <Tooltip/> 1`] = `
