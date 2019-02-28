@@ -11,7 +11,12 @@ export {default as Layout} from './layout.js';
 export {default as Sidebar} from './sidebar.js';
 
 // Styled elements
-// export {} from './styled-components.js';
+export {
+  StyledContent,
+  StyledHeader,
+  StyledLayout,
+  StyledSidebar,
+} from './styled-components.js';
 
 // Flow
 export * from './types.js';
