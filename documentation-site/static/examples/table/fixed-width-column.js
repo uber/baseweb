@@ -45,7 +45,7 @@ export default () => (
       <StyledHead>
         <SmallerHeadCell>ID</SmallerHeadCell>
         {COLUMNS.slice(1).map((col, index) => (
-          <StyledHeadCell>{col}</StyledHeadCell>
+          <StyledHeadCell key={index}>{col}</StyledHeadCell>
         ))}
       </StyledHead>
 
