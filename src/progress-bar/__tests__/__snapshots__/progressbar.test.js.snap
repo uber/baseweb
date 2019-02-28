@@ -8,7 +8,7 @@ exports[`Stateless progress bar should render component: Component has correct r
   successValue={100}
   value={75}
 >
-  <Root
+  <MockStyledComponent
     $successValue={100}
     $value={75}
     role="progressbar"
@@ -17,24 +17,24 @@ exports[`Stateless progress bar should render component: Component has correct r
       role="progressbar"
       styled-component="true"
     >
-      <Bar
+      <MockStyledComponent
         $successValue={100}
         $value={75}
       >
         <div
           styled-component="true"
         >
-          <BarProgress
+          <MockStyledComponent
             $successValue={100}
             $value={75}
           >
             <div
               styled-component="true"
             />
-          </BarProgress>
+          </MockStyledComponent>
         </div>
-      </Bar>
+      </MockStyledComponent>
     </div>
-  </Root>
+  </MockStyledComponent>
 </ProgressBar>
 `;
