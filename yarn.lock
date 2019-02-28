@@ -9158,6 +9158,11 @@ junk@^1.0.1:
   resolved "https://registry.yarnpkg.com/junk/-/junk-1.0.3.tgz#87be63488649cbdca6f53ab39bec9ccd2347f592"
   integrity sha1-h75jSIZJy9ym9Tqzm+yczSNH9ZI=
 
+just-extend@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-4.0.2.tgz#f3f47f7dfca0f989c55410a7ebc8854b07108afc"
+  integrity sha512-FrLwOgm+iXrPV+5zDU6Jqu4gCRXbWEQg2O3SKONsWE4w7AXFRkryS53bpWdaL9cNol+AmR3AEYz6kn+o0fCPnw==
+
 kefir@^3.7.3:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/kefir/-/kefir-3.8.3.tgz#8e0ab10084ed8a01cbb5d4f7f18a0b859f7b9bd9"

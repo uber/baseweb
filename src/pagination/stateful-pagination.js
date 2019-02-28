@@ -37,10 +37,5 @@ StatefulPagination.defaultProps = {
     currentPage: 1,
   },
   stateReducer: (changeType: *, changes: *) => changes,
-  labels: {
-    prevButton: 'Prev',
-    nextButton: 'Next',
-    preposition: 'of',
-  },
   overrides: {},
 };

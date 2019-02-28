@@ -10,9 +10,11 @@ import React from 'react';
 
 import {KIND, SIZE, SHAPE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {LocaleContext} from '../locale/index.js';
 
 import {StyledRoot} from './styled-components.js';
 import type {PropsT} from './types.js';
+import type {ButtonGroupLocaleT} from './locale.js';
 
 function isSelected(selected, index) {
   if (!Array.isArray(selected) && typeof selected !== 'number') {
@@ -49,12 +51,18 @@ function getBorderRadii(index, length) {
   };
 }
 
-export default function ButtonGroup(props: PropsT) {
+type LocaleT = {|locale?: ButtonGroupLocaleT|};
+export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
   const {overrides = {}} = props;
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
   return (
-    <Root aria-label={props.ariaLabel} {...rootProps}>
+    <Root
+      aria-label={
+        props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
+      }
+      {...rootProps}
+    >
       {React.Children.map(props.children, (child, index) => {
         if (!React.isValidElement(child)) {
           return null;
@@ -78,7 +86,9 @@ export default function ButtonGroup(props: PropsT) {
             }
           },
           overrides: {
-            BaseButton: {style: getBorderRadii(index, props.children.length)},
+            BaseButton: {
+              style: getBorderRadii(index, props.children.length),
+            },
             ...child.props.overrides,
           },
           shape: props.shape,
@@ -89,8 +99,20 @@ export default function ButtonGroup(props: PropsT) {
   );
 }
 
+// The wrapper component below was created to continue to support enzyme tests for the ButtonGroup
+// component. Enzyme at the moment does not support React context @ 16.3. To get around the limitation
+// in enzyme, we create a wrapper around the core ButtonGroup and pass context as a prop. In our tests,
+// only ButtonGroupRoot will be tested.
+// https://github.com/airbnb/enzyme/issues/1908#issuecomment-439747826
+export default function ButtonGroup(props: PropsT) {
+  return (
+    <LocaleContext.Consumer>
+      {locale => <ButtonGroupRoot {...props} locale={locale.buttongroup} />}
+    </LocaleContext.Consumer>
+  );
+}
+
 ButtonGroup.defaultProps = {
-  ariaLabel: 'button group',
   disabled: false,
   onClick: () => {},
   shape: SHAPE.default,

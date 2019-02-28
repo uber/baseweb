@@ -13,6 +13,7 @@ import {
   CloseIconSvg as StyledCloseIcon,
 } from './styled-components.js';
 import {KIND, TYPE} from './constants.js';
+import {LocaleContext} from '../locale/index.js';
 
 import type {
   ToastPropsT,
@@ -155,30 +156,34 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
       return null;
     }
     return (
-      <Body
-        tabIndex={0}
-        role="alert"
-        {...sharedProps}
-        {...bodyProps}
-        // the properties below have to go after overrides
-        onBlur={this.onBlur}
-        onFocus={this.onFocus}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-      >
-        {closeable ? (
-          <DeleteAltIcon
-            onClick={this.dismiss}
-            title="Close"
+      <LocaleContext.Consumer>
+        {locale => (
+          <Body
+            tabIndex={0}
+            role="alert"
             {...sharedProps}
-            {...closeIconProps}
-            overrides={closeIconOverrides}
-          />
-        ) : null}
-        {typeof children === 'function'
-          ? children({dismiss: this.dismiss})
-          : children}
-      </Body>
+            {...bodyProps}
+            // the properties below have to go after overrides
+            onBlur={this.onBlur}
+            onFocus={this.onFocus}
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          >
+            {closeable ? (
+              <DeleteAltIcon
+                onClick={this.dismiss}
+                title={locale.toast.close}
+                {...sharedProps}
+                {...closeIconProps}
+                overrides={closeIconOverrides}
+              />
+            ) : null}
+            {typeof children === 'function'
+              ? children({dismiss: this.dismiss})
+              : children}
+          </Body>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 }
