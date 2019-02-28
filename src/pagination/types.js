@@ -45,7 +45,7 @@ export type PaginationPropsT = CallbacksT & {
   /** The current page. */
   currentPage: number,
   /** Set of labels to use for the buttons and preposition. */
-  labels: LabelsT,
+  labels?: LabelsT,
   overrides?: OverridesT,
 };
 
@@ -57,7 +57,7 @@ export type StatefulPaginationPropsT = CallbacksT & {
   /** Max number of pages. */
   numPages: number,
   /** Set of labels to use for the buttons and preposition. */
-  labels: LabelsT,
+  labels?: LabelsT,
   /** Reducer function to manipulate internal state updates. */
   stateReducer?: StateReducerFnT,
   /** Initial state populated into the component */

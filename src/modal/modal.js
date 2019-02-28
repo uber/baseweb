@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
+import {LocaleContext} from '../locale/index.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
 import {ownerDocument} from './utils.js';
@@ -275,47 +276,51 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const children = this.getChildren();
 
     return (
-      <Root
-        $ref={this.getRef('Root')}
-        {...sharedProps}
-        {...getOverrideProps(RootOverride)}
-      >
-        <Backdrop
-          onClick={this.onBackdropClick}
-          {...sharedProps}
-          {...getOverrideProps(BackdropOverride)}
-        />
-        <DialogContainer
-          {...sharedProps}
-          {...getOverrideProps(DialogContainerOverride)}
-        >
-          <Dialog
-            tabIndex="-1"
-            aria-modal={
-              // aria-modal replaces the need to apply aria-hidden="true" to all other page
-              // content underneath the modal.
-              // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
-              'true'
-            }
-            role={role}
-            $ref={this.getRef('Dialog')}
+      <LocaleContext.Consumer>
+        {locale => (
+          <Root
+            $ref={this.getRef('Root')}
             {...sharedProps}
-            {...getOverrideProps(DialogOverride)}
+            {...getOverrideProps(RootOverride)}
           >
-            {closeable ? (
-              <Close
-                aria-label="Close"
-                onClick={this.onCloseClick}
+            <Backdrop
+              onClick={this.onBackdropClick}
+              {...sharedProps}
+              {...getOverrideProps(BackdropOverride)}
+            />
+            <DialogContainer
+              {...sharedProps}
+              {...getOverrideProps(DialogContainerOverride)}
+            >
+              <Dialog
+                tabIndex="-1"
+                aria-modal={
+                  // aria-modal replaces the need to apply aria-hidden="true" to all other page
+                  // content underneath the modal.
+                  // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
+                  'true'
+                }
+                role={role}
+                $ref={this.getRef('Dialog')}
                 {...sharedProps}
-                {...getOverrideProps(CloseOverride)}
+                {...getOverrideProps(DialogOverride)}
               >
-                <CloseIcon />
-              </Close>
-            ) : null}
-            {children}
-          </Dialog>
-        </DialogContainer>
-      </Root>
+                {closeable ? (
+                  <Close
+                    aria-label={locale.modal.close}
+                    onClick={this.onCloseClick}
+                    {...sharedProps}
+                    {...getOverrideProps(CloseOverride)}
+                  >
+                    <CloseIcon />
+                  </Close>
+                ) : null}
+                {children}
+              </Dialog>
+            </DialogContainer>
+          </Root>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 

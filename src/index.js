@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {styled, ThemeProvider} from './styles/index.js';
+import LocaleProvider from './locale/index.js';
+export {LocaleProvider};
 export {
   createTheme,
   lightThemePrimitives,

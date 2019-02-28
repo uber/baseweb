@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {ArrowLeft, ArrowRight} from '../icon/index.js';
 import {Select} from '../select/index.js';
+import {LocaleContext} from '../locale/index.js';
 import {
   StyledCalendarHeader,
   StyledPrevButton,
@@ -27,6 +28,7 @@ import {
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {SharedStylePropsT} from '../select/types.js';
+import type {LocaleT} from '../locale/types.js';
 
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
@@ -59,7 +61,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     this.props.onMonthChange({date: subMonths(this.props.date, 1)});
   };
 
-  renderPreviousMonthButton = () => {
+  renderPreviousMonthButton = ({locale}: {locale: LocaleT}) => {
     const {date, overrides = {}} = this.props;
     const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
 
@@ -81,7 +83,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     }
     return (
       <PrevButton
-        aria-label="Previous month"
+        aria-label={locale.datepicker.previousMonth}
         tabIndex={0}
         onClick={clickHandler}
         {...prevButtonProps}
@@ -98,7 +100,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     );
   };
 
-  renderNextMonthButton = () => {
+  renderNextMonthButton = ({locale}: {locale: LocaleT}) => {
     const {date, overrides = {}} = this.props;
     const allNextDaysDisabled = monthDisabledAfter(date, this.props);
 
@@ -126,7 +128,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     }
     return (
       <NextButton
-        aria-label="Next month"
+        aria-label={locale.datepicker.nextMonth}
         tabIndex={0}
         onClick={clickHandler}
         {...nextButtonProps}
@@ -273,12 +275,16 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
       StyledCalendarHeader,
     );
     return (
-      <CalendarHeader {...calendarHeaderProps}>
-        {this.renderPreviousMonthButton()}
-        {this.renderMonthDropdown()}
-        {this.renderYearDropdown()}
-        {this.renderNextMonthButton()}
-      </CalendarHeader>
+      <LocaleContext.Consumer>
+        {locale => (
+          <CalendarHeader {...calendarHeaderProps}>
+            {this.renderPreviousMonthButton({locale})}
+            {this.renderMonthDropdown()}
+            {this.renderYearDropdown()}
+            {this.renderNextMonthButton({locale})}
+          </CalendarHeader>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 }

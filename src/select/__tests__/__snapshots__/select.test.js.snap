@@ -22,7 +22,6 @@ exports[`Select component renders component in search mode and false for multipl
   maxDropdownHeight="900px"
   multi={false}
   multiple={false}
-  noResultsMsg="No results found"
   onBlur={[MockFunction]}
   onBlurResetsInput={true}
   onChange={[MockFunction]}
@@ -50,7 +49,6 @@ exports[`Select component renders component in search mode and false for multipl
     ]
   }
   overrides={Object {}}
-  placeholder="Select..."
   required={false}
   searchable={true}
   size="default"
@@ -376,7 +374,6 @@ exports[`Select component renders component in search mode and true for multiple
   maxDropdownHeight="900px"
   multi={false}
   multiple={true}
-  noResultsMsg="No results found"
   onBlur={[MockFunction]}
   onBlurResetsInput={true}
   onChange={[MockFunction]}
@@ -404,7 +401,6 @@ exports[`Select component renders component in search mode and true for multiple
     ]
   }
   overrides={Object {}}
-  placeholder="Select..."
   required={false}
   searchable={true}
   size="default"
@@ -730,7 +726,6 @@ exports[`Select component renders component in select mode and false for multipl
   maxDropdownHeight="900px"
   multi={false}
   multiple={false}
-  noResultsMsg="No results found"
   onBlur={[MockFunction]}
   onBlurResetsInput={true}
   onChange={[MockFunction]}
@@ -758,7 +753,6 @@ exports[`Select component renders component in select mode and false for multipl
     ]
   }
   overrides={Object {}}
-  placeholder="Select..."
   required={false}
   searchable={true}
   size="default"
@@ -1083,7 +1077,6 @@ exports[`Select component renders component in select mode and true for multiple
   maxDropdownHeight="900px"
   multi={false}
   multiple={true}
-  noResultsMsg="No results found"
   onBlur={[MockFunction]}
   onBlurResetsInput={true}
   onChange={[MockFunction]}
@@ -1111,7 +1104,6 @@ exports[`Select component renders component in select mode and true for multiple
     ]
   }
   overrides={Object {}}
-  placeholder="Select..."
   required={false}
   searchable={true}
   size="default"

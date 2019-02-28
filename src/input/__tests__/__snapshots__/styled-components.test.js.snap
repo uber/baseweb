@@ -250,6 +250,30 @@ Object {
 }
 `;
 
+exports[`Input - StyledRoot - basic render: StyledRoot has correct default styles 1`] = `
+Object {
+  "color": "$theme.colors.foreground",
+  "display": "flex",
+  "fontFamily": "$theme.typography.font300.fontFamily",
+  "fontSize": "$theme.typography.font300.fontSize",
+  "fontWeight": "$theme.typography.font300.fontWeight",
+  "lineHeight": "$theme.typography.font300.lineHeight",
+  "width": "100%",
+}
+`;
+
+exports[`Input - StyledRoot - basic render: StyledRoot has correct styles when compact 1`] = `
+Object {
+  "color": "$theme.colors.foreground",
+  "display": "flex",
+  "fontFamily": "$theme.typography.font200.fontFamily",
+  "fontSize": "$theme.typography.font200.fontSize",
+  "fontWeight": "$theme.typography.font200.fontWeight",
+  "lineHeight": "$theme.typography.font200.lineHeight",
+  "width": "100%",
+}
+`;
+
 exports[`Input - StyledStartEnhancer - basic render: StyledStartEnhancer has correct styles when compact and end position 1`] = `
 Object {
   "backgroundColor": "$theme.colors.inputFillEnhancer",
@@ -281,29 +305,5 @@ Object {
   "paddingLeft": "$theme.sizing.scale500",
   "paddingRight": "$theme.sizing.scale500",
   "paddingTop": "$theme.sizing.scale400",
-}
-`;
-
-exports[`Input - StyledRoot - basic render: StyledRoot has correct default styles 1`] = `
-Object {
-  "color": "$theme.colors.foreground",
-  "display": "flex",
-  "fontFamily": "$theme.typography.font300.fontFamily",
-  "fontSize": "$theme.typography.font300.fontSize",
-  "fontWeight": "$theme.typography.font300.fontWeight",
-  "lineHeight": "$theme.typography.font300.lineHeight",
-  "width": "100%",
-}
-`;
-
-exports[`Input - StyledRoot - basic render: StyledRoot has correct styles when compact 1`] = `
-Object {
-  "color": "$theme.colors.foreground",
-  "display": "flex",
-  "fontFamily": "$theme.typography.font200.fontFamily",
-  "fontSize": "$theme.typography.font200.fontSize",
-  "fontWeight": "$theme.typography.font200.fontWeight",
-  "lineHeight": "$theme.typography.font200.lineHeight",
-  "width": "100%",
 }
 `;
