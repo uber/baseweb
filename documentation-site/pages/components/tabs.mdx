@@ -50,7 +50,7 @@ The Tab component is used for navigating frequently accessed, but distinct categ
   name="Tabs"
   component={TabsExports}
   renderExample={props => (
-    <StatefulTabs activeKey="1" overrides={props.overrides}>
+    <StatefulTabs initialState={{activeKey: '0'}} overrides={props.overrides}>
       <TabPanel overrides={props.overrides} title="Tab Link 1">
         Tab 1 content
       </TabPanel>
