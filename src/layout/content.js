@@ -16,7 +16,7 @@ import type {ContentPropsT} from './types.js';
 export default function Content(props: ContentPropsT) {
   const {overrides = {}} = props;
   const [OverridedContent, contentProps] = getOverrides(
-    overrides,
+    overrides.Content,
     StyledContent,
   );
 

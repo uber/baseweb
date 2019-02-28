@@ -15,7 +15,10 @@ import type {HeaderPropsT} from './types.js';
 
 export default function Header(props: HeaderPropsT) {
   const {overrides = {}} = props;
-  const [OverridedHeader, headerProps] = getOverrides(overrides, StyledHeader);
+  const [OverridedHeader, headerProps] = getOverrides(
+    overrides.Header,
+    StyledHeader,
+  );
 
   return <OverridedHeader {...headerProps}>{props.children}</OverridedHeader>;
 }

@@ -34,7 +34,7 @@ class SidebarInner extends React.Component<SidebarInnerPropsT, {}> {
   render() {
     const {overrides = {}} = this.props;
     const [OverridedSidebar, sidebarProps] = getOverrides(
-      overrides,
+      overrides.Sidebar,
       StyledSidebar,
     );
 

@@ -14,7 +14,7 @@ import {HeaderFiller, HeaderLeft, HeaderRight} from './helpers.js';
 export const name = 'layout';
 
 export const component = () => (
-  <Layout>
+  <Layout overrides={{Layout: {props: {'data-test': 'layout'}}}}>
     <Header>
       <HeaderFiller>
         <HeaderLeft />

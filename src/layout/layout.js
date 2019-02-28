@@ -33,7 +33,7 @@ export default class Layout extends React.Component<
   render() {
     const {overrides = {}} = this.props;
     const [OverridedLayout, layoutProps] = getOverrides(
-      overrides,
+      overrides.Layout,
       StyledLayout,
     );
 

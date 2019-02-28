@@ -26,7 +26,7 @@ export const component = () => (
         <HeaderRight />
       </HeaderFiller>
     </Header>
-    <Layout>
+    <Layout overrides={{Layout: {props: {'data-test': 'layout'}}}}>
       <Sidebar>
         <SidebarFiller />
       </Sidebar>
