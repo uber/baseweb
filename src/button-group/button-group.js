@@ -99,6 +99,11 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
   );
 }
 
+// The wrapper component below was created to continue to support enzyme tests for the ButtonGroup
+// component. Enzyme at the moment does not support React context @ 16.3. To get around the limitation
+// in enzyme, we create a wrapper around the core ButtonGroup and pass context as a prop. In our tests,
+// only ButtonGroupRoot will be tested.
+// https://github.com/airbnb/enzyme/issues/1908#issuecomment-439747826
 export default function ButtonGroup(props: PropsT) {
   return (
     <LocaleContext.Consumer>
