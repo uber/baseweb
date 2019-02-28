@@ -10,7 +10,9 @@ exports[`StatefulTextarea basic render: renders <StatefulContainer/> 1`] = `
     }
   }
   stateReducer={[Function]}
-/>
+>
+  <Component />
+</StatefulContainer>
 `;
 
 exports[`StatefulTextarea basic render: renders <Textarea/> as a child 1`] = `
