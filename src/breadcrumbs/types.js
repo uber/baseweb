@@ -18,10 +18,11 @@ export type OverridesT = {
   Icon?: OverrideT<*>,
 };
 
-export type BreadcrumbsPropsT = {
+export type BreadcrumbsPropsT = {|
   children?: Node,
   overrides?: OverridesT,
-};
+  ariaLabel?: string,
+|};
 
 export type StyledRootPropsT = {
   $theme: ThemeT,

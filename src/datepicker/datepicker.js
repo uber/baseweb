@@ -11,6 +11,7 @@ import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
 import {formatDate} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {LocaleContext} from '../locale/index.js';
 import type {DatepickerPropsT} from './types.js';
 
 export default class Datepicker extends React.Component<
@@ -23,7 +24,7 @@ export default class Datepicker extends React.Component<
   },
 > {
   static defaultProps = {
-    'aria-label': 'Select a date',
+    'aria-label': null,
     'aria-labelledby': null,
     'aria-describedby': 'datepicker--screenreader--message--input',
     disabled: false,
@@ -138,58 +139,64 @@ export default class Datepicker extends React.Component<
       overrides.Popover,
       Popover,
     );
+
     return (
-      <React.Fragment>
-        <PopoverComponent
-          placement={PLACEMENT.bottom}
-          isOpen={this.state.isOpen}
-          onClickOutside={this.close}
-          onEsc={this.handleEsc}
-          content={
-            <Calendar
-              autoFocusCalendar={this.state.calendarFocused}
-              trapTabbing={true}
-              value={this.props.value}
-              {...this.props}
-              onChange={this.onChange}
-            />
-          }
-          {...popoverProps}
-        >
-          <InputComponent
-            aria-disabled={this.props.disabled}
-            aria-label={this.props['aria-label']}
-            aria-labelledby={this.props['aria-labelledby']}
-            aria-describedby={this.props['aria-describedby']}
-            aria-required={this.props.required || null}
-            disabled={this.props.disabled}
-            value={this.formatDisplayValue(this.props.value)}
-            onFocus={this.open}
-            onBlur={this.handleInputBlur}
-            onKeyDown={this.handleKeyDown}
-            placeholder={this.props.placeholder}
-            required={this.props.required}
-            {...inputProps}
-          />
-        </PopoverComponent>
-        <p
-          id="datepicker--screenreader--message--input"
-          style={{
-            position: 'absolute',
-            width: '1px',
-            height: '1px',
-            margin: '-1px',
-            border: '0px',
-            padding: '0px',
-            overflow: 'hidden',
-            clip: 'react(0px, 0px, 0px, 0px)',
-            clipPath: 'inset(100%)',
-          }}
-        >
-          Press the down arrow key to interact with the calendar and select a
-          date. Press the escape button to close the calendar.
-        </p>
-      </React.Fragment>
+      <LocaleContext.Consumer>
+        {locale => (
+          <React.Fragment>
+            <PopoverComponent
+              placement={PLACEMENT.bottom}
+              isOpen={this.state.isOpen}
+              onClickOutside={this.close}
+              onEsc={this.handleEsc}
+              content={
+                <Calendar
+                  autoFocusCalendar={this.state.calendarFocused}
+                  trapTabbing={true}
+                  value={this.props.value}
+                  {...this.props}
+                  onChange={this.onChange}
+                />
+              }
+              {...popoverProps}
+            >
+              <InputComponent
+                aria-disabled={this.props.disabled}
+                aria-label={
+                  this.props['aria-label'] || locale.datepicker.ariaLabel
+                }
+                aria-labelledby={this.props['aria-labelledby']}
+                aria-describedby={this.props['aria-describedby']}
+                aria-required={this.props.required || null}
+                disabled={this.props.disabled}
+                value={this.formatDisplayValue(this.props.value)}
+                onFocus={this.open}
+                onBlur={this.handleInputBlur}
+                onKeyDown={this.handleKeyDown}
+                placeholder={this.props.placeholder}
+                required={this.props.required}
+                {...inputProps}
+              />
+            </PopoverComponent>
+            <p
+              id="datepicker--screenreader--message--input"
+              style={{
+                position: 'absolute',
+                width: '1px',
+                height: '1px',
+                margin: '-1px',
+                border: '0px',
+                padding: '0px',
+                overflow: 'hidden',
+                clip: 'react(0px, 0px, 0px, 0px)',
+                clipPath: 'inset(100%)',
+              }}
+            >
+              {locale.datepicker.screenReaderMessageInput}
+            </p>
+          </React.Fragment>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 }

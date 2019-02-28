@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import {Block} from 'baseui/block';
 
 type PropsT = {
   children: string,
@@ -14,9 +15,15 @@ type PropsT = {
 };
 
 const Code = (props: PropsT) => (
-  <SyntaxHighlighter language={props.language} useInlineStyles={false}>
-    {props.children}
-  </SyntaxHighlighter>
+  <Block overflow="scroll">
+    <SyntaxHighlighter
+      language={props.language}
+      useInlineStyles={false}
+      style={{overflow: 'scroll'}}
+    >
+      {props.children}
+    </SyntaxHighlighter>
+  </Block>
 );
 
 Code.defaultProps = {

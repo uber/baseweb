@@ -9,6 +9,21 @@ Object {
 }
 `;
 
+exports[`Component styled components Basic render: StyledCalendarHeader has correct styles 1`] = `
+Object {
+  "alignItems": "center",
+  "backgroundColor": "$theme.colors.primary",
+  "borderRadius": "$theme.borders.radius200 $theme.borders.radius200 0 0",
+  "color": "$theme.colors.white",
+  "display": "flex",
+  "justifyContent": "space-between",
+  "paddingBottom": "$theme.sizing.scale500",
+  "paddingLeft": "$theme.sizing.scale600",
+  "paddingRight": "$theme.sizing.scale600",
+  "paddingTop": "$theme.sizing.scale500",
+}
+`;
+
 exports[`Component styled components Basic render: StyledDay has correct styles 1`] = `
 Object {
   ":first-child": Object {
@@ -41,21 +56,6 @@ Object {
   "position": "relative",
   "textAlign": "center",
   "width": "$theme.sizing.scale1000",
-}
-`;
-
-exports[`Component styled components Basic render: StyledCalendarHeader has correct styles 1`] = `
-Object {
-  "alignItems": "center",
-  "backgroundColor": "$theme.colors.primary",
-  "borderRadius": "$theme.borders.radius200 $theme.borders.radius200 0 0",
-  "color": "$theme.colors.white",
-  "display": "flex",
-  "justifyContent": "space-between",
-  "paddingBottom": "$theme.sizing.scale500",
-  "paddingLeft": "$theme.sizing.scale600",
-  "paddingRight": "$theme.sizing.scale600",
-  "paddingTop": "$theme.sizing.scale500",
 }
 `;
 
