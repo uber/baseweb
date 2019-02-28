@@ -32,23 +32,29 @@ const getText = children => {
   return label;
 };
 
-export const cleanAnchor = (anchor: Node) => slugify(getText(anchor));
+export const cleanAnchor = (anchor: React.Node) => slugify(getText(anchor));
 
 const Code = (props: Props) => <Block>{props.children}</Block>;
 
-const Heading = ({
+export const Heading = ({
   element,
   fontType,
   children,
 }: {
   element: string,
   fontType: string,
-  children: Node,
+  children: React.Node,
 }) => {
   const [hoverRef, isHovered] = useHover();
   const slug = cleanAnchor(children);
   return (
-    <Block as={element} font={fontType} $ref={hoverRef} id={slug}>
+    <Block
+      as={element}
+      font={fontType}
+      $ref={hoverRef}
+      id={slug}
+      color="mono1000"
+    >
       <React.Fragment>
         {children}{' '}
         <Anchor isVisible={isHovered} slug={slug} element={element} />
@@ -106,32 +112,32 @@ const Blockquote = styled('blockquote', {
 
 export default {
   code: Code,
-  h1: ({children}: {children: Node}) => (
+  h1: ({children}: {children: React.Node}) => (
     <Heading element="h1" fontType="font700">
       {children}
     </Heading>
   ),
-  h2: ({children}: {children: Node}) => (
+  h2: ({children}: {children: React.Node}) => (
     <Heading element="h2" fontType="font600">
       {children}
     </Heading>
   ),
-  h3: ({children}: {children: Node}) => (
+  h3: ({children}: {children: React.Node}) => (
     <Heading element="h3" fontType="font500">
       {children}
     </Heading>
   ),
-  h4: ({children}: {children: Node}) => (
+  h4: ({children}: {children: React.Node}) => (
     <Heading element="h4" fontType="font400">
       {children}
     </Heading>
   ),
-  h5: ({children}: {children: Node}) => (
+  h5: ({children}: {children: React.Node}) => (
     <Heading element="h5" fontType="font400">
       {children}
     </Heading>
   ),
-  h6: ({children}: {children: Node}) => (
+  h6: ({children}: {children: React.Node}) => (
     <Heading element="h6" fontType="font300">
       {children}
     </Heading>

@@ -43,7 +43,7 @@ This document helps you navigate the process.
   - Rules can be found here: https://dequeuniversity.com/rules/axe/3.0/
   - Run `yarn lint` , which has eslint-plugin-jsx-a11y running as part of it https://github.com/evcohen/eslint-plugin-jsx-a11y#supported-rules
   - Run `yarn e2e` for e2e test, which has AxeBuilder running as part of it
-- [Styletron](https://styletron.js.org/) for CSS-in-JS styling
+- [Styletron](https://www.styletron.org/) for CSS-in-JS styling
 - Unit tests and [snapshot tests](https://jestjs.io/docs/en/snapshot-testing) with [jest](https://jestjs.io/en/) and [enzyme](https://airbnb.io/enzyme/)
 - [Flow](https://flow.org/) type coverage for all relevant component code and tests
 - Documentation via [Storybook](https://storybook.js.org/): exhaustive examples (all possible props passed examples, custom styles example, custom props example, custom subcomponents, examples of precomposed and self-composed components)
