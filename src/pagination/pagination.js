@@ -140,7 +140,9 @@ export default class Pagination extends React.PureComponent<
               }}
               {...prevButtonProps}
             >
-              {labels.prevButton || locale.pagination.prev}
+              {labels && labels.prevButton
+                ? labels.prevButton
+                : locale.pagination.prev}
             </Button>
             <DropdownContainer
               $ref={this.dropdownContainerRef}
@@ -179,9 +181,11 @@ export default class Pagination extends React.PureComponent<
               )}
             </DropdownContainer>
             <MaxLabel {...maxLabelProps}>
-              {`${labels.preposition ||
-                locale.pagination.preposition ||
-                ''} ${numPages}`}
+              {`${
+                labels && labels.preposition
+                  ? labels.preposition
+                  : locale.pagination.preposition || ''
+              } ${numPages}`}
             </MaxLabel>
             <Button
               onClick={this.onNextClick}
@@ -192,7 +196,9 @@ export default class Pagination extends React.PureComponent<
               }}
               {...nextButtonProps}
             >
-              {labels.nextButton || locale.pagination.next}
+              {labels && labels.nextButton
+                ? labels.nextButton
+                : locale.pagination.next}
             </Button>
           </Root>
         )}
