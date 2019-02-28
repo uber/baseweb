@@ -44,6 +44,7 @@ const Container = styled('div', {
 
 const cache = new CellMeasurerCache({
   defaultHeight: 36,
+  fixedHeight: true,
 });
 
 const FullHeight = styled('div', {height: '100%'});
