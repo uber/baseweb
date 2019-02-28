@@ -1,0 +1,72 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import SiteLayout from '../../components/layout';
+
+import Stacked from 'examples/layout/stacked.js';
+import SidebarLeft from 'examples/layout/sidebar-left.js';
+import SidebarRight from 'examples/layout/sidebar-right.js';
+import SidebarFull from 'examples/layout/sidebar-full.js';
+import Subheader from 'examples/layout/subheader.js';
+
+export default SiteLayout;
+
+# Layout
+
+The `Layout` component and related components are used to quickly scaffold common page layouts with a header, sidebar, and content.
+
+When using the `Sidebar` component, it must be a descendant of the `Layout' component for expected results.
+
+## Examples
+
+<Example title="Stacked Header and Content" path="examples/layout/stacked.js">
+  <Stacked />
+</Example>
+
+<Example title="Layout with Sidebar" path="examples/layout/sidebar-left.js">
+  <SidebarLeft />
+</Example>
+
+<Example
+  title="Layout with Right Sidebar"
+  path="examples/layout/sidebar-right.js"
+>
+  <SidebarRight />
+</Example>
+
+<Example
+  title="Layout with Full Height Sidebar"
+  path="examples/layout/sidebar-full.js"
+>
+  <SidebarFull />
+</Example>
+
+<Example title="Layout with Sub-Header" path="examples/layout/subheader.js">
+  <Subheader />
+</Example>
+
+<API
+  heading="Layout API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/layout/layout.js')}
+/>
+
+<API
+  heading="Content API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/layout/content.js')}
+/>
+
+<API
+  heading="Header API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/layout/header.js')}
+/>
+
+<API
+  heading="Sidebar API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/layout/sidebar.js')}
+/>

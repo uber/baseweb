@@ -233,6 +233,10 @@ const routes = [
             path: '/components/block',
           },
           {
+            text: 'Layout',
+            path: '/components/layout',
+          },
+          {
             text: 'Styled',
             path: '/components/styled',
           },
