@@ -13,48 +13,120 @@ import OverridesStylesWithTheme from 'examples/overrides/style-with-theme.js';
 import OverridesProps from 'examples/overrides/props.js';
 import OverridesComponent from 'examples/overrides/component.js';
 
+import DndListExample from 'examples/dnd-list/overrides_short.js';
+import DndListExampleStyle from 'examples/dnd-list/overrides_style.js';
+
 export default Layout;
 
 # Understanding Overrides
 
-At its core, Base UI is a foundational set of reusable React components,
-with an architecture that enables teams to create new design languages
-on top of it. By default, these components use the Base UI design language
-which, as the name suggests, acts as a base design language you can further customize.
+**Base UI is a set of reusable React components that implements the Base UI design language** and can be used in two different ways:
 
-**If you'd like to build applications using the Base UI design language, in most cases
-you won't need to override components. This helps build consistent applications.**
+- **To build an application** that fully adopts the Base UI design language. You import and use Base UI components out of the box.
+- **To build a new design system** inherited from Base. You take Base UI components and customize them through the Overrides mechanism.
 
-Every internal element is given an identifier that developers
-can target with changes/overrides. You can almost think of these like class names
-(but without the downsides of CSS cascade and global namespace).
+If you are building an application using the Base UI design language (the first scenario), you should avoid further customizations. This helps to keep the design consistent and makes future upgrades easier. **Overrides is an escape hatch that should be used only with caution!**
 
-For each internal element, you can override the **props**, the **style**, and the **component**.
+## Subcomponents
 
-**Use cases for style overrides:**
+Base UI components typically consist of many **subcomponents**. Let's use `baseui/dnd-list` as an example:
 
-* Buiding a design system on top of Base UI
-* You have a special case that Base UI does not cover
+<DndListExample />
+
+This component is very self-contained and you can load it through a single import:
+
+```jsx
+import {StatefulList} from 'baseui/dnd-list';
+
+export default () => (
+  <StatefulList
+    initialState={{
+      items: ['Item 1', 'Item 2', 'Item 3'],
+    }}
+  />
+);
+```
+
+But as you might guess, there are multiple React components under the hood, components like `Item`, `DragHandle` or `Label`. They all come with various styles, behaviors and attributes.
+
+## Introducing Overrides
+
+**Overrides** gives you a full access to all those subcomponents and lets you to override:
+
+- styles
+- props
+- the whole component
+
+**Every Base UI component has a top-level prop called `overrides`**. It accepts a map of subcomponents and requested overrides. So what if we want to change the `Label` color and also add an aditional `data-test-id` attribute?
+
+```jsx
+<StatefulList
+  initialState={{
+    items: ['Item 1', 'Item 2', 'Item 3'],
+  }}
+  overrides={{
+    Label: {
+      style: {
+        color: '#892C21',
+      },
+      props: {
+        'data-test-id': 'dnd-list-label',
+      },
+    },
+  }}
+/>
+```
+
+We added `overrides.Label.style` and `overrides.Label.props` properties and this is the result (inspect the element to see the `data-test-id` attribute):
+
+<DndListExampleStyle />
+
+The `overrides.Label.style` property accepts a [style object](https://www.styletron.org/concepts/#style-object) or [style function](https://www.styletron.org/concepts/#style-function) since [Styletron](https://www.styletron.org) controls all Base UI styles. Base UI also passes down the special **`$theme`** prop that includes all Base UI [design constants](/theming/theming-values). So instead of the hardcoded value `#892C21`, consider using the theme and do this instead:
+
+```jsx
+<StatefulList
+  initialState={{
+    items: ['Item 1', 'Item 2', 'Item 3'],
+  }}
+  overrides={{
+    Label: {
+      style: ({$theme}) => ({
+        color: $theme.colors.negative600,
+      }),
+    },
+  }}
+/>
+```
+
+## Component Overrides
+
+So far we demonstrated how to override styles and add additional props but what if you need to make bigger changes and replace the whole subcomponent?
 
 <Example title="Overriding Styles" path="examples/overrides/style.js">
   <OverridesStyles />
 </Example>
 
-<Example title="Overriding Styles with Theme values" path="examples/overrides/style-with-theme.js">
+<Example
+  title="Overriding Styles with Theme values"
+  path="examples/overrides/style-with-theme.js"
+>
   <OverridesStylesWithTheme />
 </Example>
 
 **Use cases for prop overrides:**
 
-* You have to pass in a property for the underlying component, like "data-" attribitues for testing
+- You have to pass in a property for the underlying component, like "data-" attribitues for testing
 
-<Example title="Overriding Properties - Data Attribute" path="examples/overrides/props.js">
+<Example
+  title="Overriding Properties - Data Attribute"
+  path="examples/overrides/props.js"
+>
   <OverridesProps />
 </Example>
 
 **Use cases for component overrides:**
 
-* You have to swap the whole subcomponent
+- You have to swap the whole subcomponent
 
 <Example title="Overriding Components" path="examples/overrides/component.js">
   <OverridesComponent />
@@ -63,5 +135,3 @@ For each internal element, you can override the **props**, the **style**, and th
 To learn more about how overrides work, check out
 [Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646)
 article.
-
-
