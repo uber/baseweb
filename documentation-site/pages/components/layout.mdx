@@ -14,6 +14,11 @@ import SidebarLeft from 'examples/layout/sidebar-left.js';
 import SidebarRight from 'examples/layout/sidebar-right.js';
 import SidebarFull from 'examples/layout/sidebar-full.js';
 import Subheader from 'examples/layout/subheader.js';
+import OverridesExample from 'examples/layout/_overrides.js';
+
+import Overrides from '../../components/overrides';
+import {Layout, Content, Header, Sidebar} from 'baseui/layout';
+import * as LayoutExports from 'baseui/layout';
 
 export default SiteLayout;
 
@@ -50,6 +55,13 @@ When using the `Sidebar` component, it must be a descendant of the `Layout' comp
 <Example title="Layout with Sub-Header" path="examples/layout/subheader.js">
   <Subheader />
 </Example>
+
+<Overrides
+  name="Layout"
+  component={LayoutExports}
+  whitelisted={['Layout', 'Content', 'Header', 'Sidebar']}
+  renderExample={props => <OverridesExample {...props} />}
+/>
 
 <API
   heading="Layout API"
