@@ -10,17 +10,17 @@ import React from 'react';
 import Props from 'pretty-proptypes';
 
 import {Block} from 'baseui/block';
-import {Button, SIZE as ButtonSize} from 'baseui/button';
-import {Paragraph1, H4} from 'baseui/typography';
-import Anchor from './anchor';
+import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'baseui/button';
+import {Paragraph1} from 'baseui/typography';
+import {Heading} from './markdown-elements';
 
 const API = props => {
   const {heading, api} = props;
   return (
     <React.Fragment>
-      <H4>
-        <Anchor>{heading}</Anchor>
-      </H4>
+      <Heading element="h3" fontType="font600">
+        {heading}
+      </Heading>
       <Props
         props={api}
         heading={' '}
@@ -31,7 +31,11 @@ const API = props => {
           },
           Button: props => {
             return (
-              <Button {...props} size={ButtonSize.compact}>
+              <Button
+                {...props}
+                size={ButtonSize.compact}
+                kind={ButtonKind.tertiary}
+              >
                 {props.children}
               </Button>
             );
