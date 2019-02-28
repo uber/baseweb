@@ -4,15 +4,12 @@ Copyright (c) 2018 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* global document getComputedStyle */
 
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
-
-const selectors = {
-  layout: 'input[data-test="layout"]',
-};
 
 describe('layout', () => {
   it('passes basic a11y tests', async () => {
