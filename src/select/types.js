@@ -207,6 +207,7 @@ export type DropdownPropsT = {
   type: TypeT,
   value: ValueT,
   valueKey: string,
+  width: ?number,
 };
 
 export type AutosizeInputOverridesT = {

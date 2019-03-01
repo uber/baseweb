@@ -278,7 +278,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       return;
     }
     if (this.props.onClickOutside) {
-      this.props.onClickOutside();
+      this.props.onClickOutside(evt);
     }
   };
 
@@ -457,7 +457,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
           {...sharedProps}
           {...getOverrideProps(InnerOverride)}
         >
-          {typeof content === 'function' ? content() : content}
+          {typeof content === 'function'
+            ? content({anchor: this.anchorRef.current})
+            : content}
         </Inner>
       </Body>
     );

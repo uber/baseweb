@@ -13,6 +13,7 @@ import {
   TRIGGER_TYPE,
 } from './constants.js';
 import type {
+  ContentRenderPropT,
   PopoverPropsWithoutChildrenT,
   StateT,
   StatefulPopoverContainerPropsT,
@@ -118,10 +119,10 @@ class StatefulContainer extends React.Component<
    *  Click me
    * </StatefulPopover>
    */
-  renderContent = () => {
+  renderContent: ContentRenderPropT = params => {
     const {content} = this.props;
     if (typeof content === 'function') {
-      return content({close: this.onContentClose});
+      return content({close: this.onContentClose, ...params});
     }
     return content;
   };

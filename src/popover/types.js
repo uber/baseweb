@@ -34,7 +34,7 @@ export type StateReducerT = (
   currentState: StateT,
 ) => StateT;
 
-export type ContentRenderPropT = () => React.Node;
+export type ContentRenderPropT = ({anchor: ?HTMLElement}) => React.Node;
 
 export type StatefulContentRenderPropT = ({
   close: () => void,
@@ -87,7 +87,7 @@ export type PopoverPropsT = BasePopoverPropsT & {
   /** Handler for click events on trigger element. */
   onClick?: (e: Event) => void,
   /** Handler for clicks outside the anchor/popover elements. */
-  onClickOutside?: () => void,
+  onClickOutside?: (event: MouseEvent) => void,
   /** Handler for click events on trigger element. */
   onEsc?: () => void,
   /** Handler for 'Esc' keypress events */

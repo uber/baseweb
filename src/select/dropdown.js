@@ -26,6 +26,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       size,
       searchable,
       type,
+      width,
     } = this.props;
     return {
       $error: error,
@@ -35,6 +36,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       $searchable: searchable,
       $size: size,
       $type: type,
+      $width: width,
     };
   }
   // eslint-disable-next-line flowtype/no-weak-types

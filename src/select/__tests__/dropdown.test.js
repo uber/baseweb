@@ -36,6 +36,7 @@ describe('SelectDropdown', function() {
       required: false,
       searchable: true,
       type: TYPE.select,
+      width: 100,
     };
     wrapper = mount(<SelectDropdown {...props} />);
   });

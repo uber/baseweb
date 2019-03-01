@@ -6,6 +6,23 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
+import {getOverrides} from '../helpers/overrides.js';
+import {
+  Delete as DeleteIcon,
+  TriangleDown as TriangleDownIcon,
+  Search as SearchIconComponent,
+} from '../icon/index.js';
+import {LocaleContext} from '../locale/index.js';
+import type {LocaleT} from '../locale/types.js';
+import {Popover, PLACEMENT} from '../popover/index.js';
+import {Spinner} from '../spinner/index.js';
+
+import AutosizeInput from './autosize-input.js';
+import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
+import defaultProps from './default-props.js';
+import SelectDropdown from './dropdown.js';
+import MultiValue from './multi-value.js';
 import {
   StyledRoot,
   StyledControlContainer,
@@ -18,26 +35,6 @@ import {
   getLoadingIconStyles,
   StyledSearchIcon,
 } from './styled-components.js';
-import AutosizeInput from './autosize-input.js';
-import Value from './value.js';
-import MultiValue from './multi-value.js';
-import SelectDropdown from './dropdown.js';
-import {
-  shouldShowValue,
-  shouldShowPlaceholder,
-  expandValue,
-} from './utils/index.js';
-import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {Spinner} from '../spinner/index.js';
-import {
-  Delete as DeleteIcon,
-  TriangleDown as TriangleDownIcon,
-  Search as SearchIconComponent,
-} from '../icon/index.js';
-import defaultProps from './default-props.js';
-import {LocaleContext} from '../locale/index.js';
-
 import type {
   PropsT,
   SelectStateT,
@@ -45,7 +42,12 @@ import type {
   OptionT,
   ChangeActionT,
 } from './types.js';
-import type {LocaleT} from '../locale/types.js';
+import {
+  shouldShowValue,
+  shouldShowPlaceholder,
+  expandValue,
+} from './utils/index.js';
+import Value from './value.js';
 
 class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;
@@ -55,7 +57,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
   dragging: boolean;
   focusAfterClear: boolean;
   openAfterFocus: boolean;
-  isValueJustSelected: boolean;
 
   state = {
     inputValue: '',
@@ -76,11 +77,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
         ? this.props.onOpen
         : this.props.onClose;
       handler && handler();
-    }
-    if (prevState.isFocused !== this.state.isFocused && this.state.isFocused) {
-      if (__BROWSER__) {
-        document.addEventListener('click', this.handleClickOutside);
-      }
     }
   }
 
@@ -135,18 +131,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (this.dragging) return;
     // Clear the value
     this.clearValue(event);
-  };
-
-  handleClickOutside = (event: Event) => {
-    if (this.isValueJustSelected) {
-      this.isValueJustSelected = false;
-      return;
-    }
-    const isFocused = this.state.isFocused || this.state.isPseudoFocused;
-    // $FlowFixMe
-    if (isFocused && this.wrapper && !this.wrapper.contains(event.target)) {
-      this.handleInputBlur(event);
-    }
   };
 
   handleClick = (event: Event) => {
@@ -266,7 +250,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleInputBlur = (event: Event) => {
+  handleClickOutside = (event: MouseEvent) => {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
@@ -280,9 +264,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       onBlurredState.inputValue = '';
     }
     this.setState(onBlurredState);
-    if (__BROWSER__) {
-      document.removeEventListener('click', this.handleClickOutside);
-    }
   };
 
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -430,9 +411,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   selectValue = ({item}: {item: OptionT}) => {
-    // NOTE: we check this is in handleClickOutside to not count
-    // menu clicks as outside clicks
-    this.isValueJustSelected = true;
     if (item.disabled) {
       return;
     }
@@ -578,7 +556,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
           <MultiValue
             value={value}
             key={`value-${i}-${value[this.props.valueKey]}`}
-            removeValue={() => {
+            removeValue={event => {
+              // stop propagation so that clicks on tag action button does not open dropdown
+              event.stopPropagation();
               this.removeValue(value);
             }}
             disabled={disabled}
@@ -749,53 +729,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  renderMenu(options: ValueT, valueArray: ValueT, locale: LocaleT) {
-    const {
-      error,
-      getOptionLabel,
-      isLoading,
-      labelKey,
-      maxDropdownHeight,
-      multi,
-      noResultsMsg,
-      overrides,
-      required,
-      searchable,
-      size,
-      type,
-      valueKey,
-    } = this.props;
-    const dropdownProps = {
-      error,
-      getOptionLabel: getOptionLabel || this.getOptionLabel,
-      isLoading,
-      labelKey,
-      maxDropdownHeight,
-      multi,
-      onItemSelect: this.selectValue,
-      options,
-      overrides,
-      required,
-      searchable,
-      size,
-      type,
-      value: valueArray,
-      valueKey,
-    };
-    if (options && options.length) {
-      return <SelectDropdown {...dropdownProps} />;
-    } else if (noResultsMsg) {
-      const noResults = {
-        [valueKey]: 'NO_RESULTS_FOUND',
-        [labelKey]: noResultsMsg || locale.select.noResultsMsg,
-        disabled: true,
-      };
-      return <SelectDropdown {...dropdownProps} options={[noResults]} />;
-    } else {
-      return null;
-    }
-  }
-
   getSharedProps() {
     const {
       clearable,
@@ -856,36 +789,79 @@ class Select extends React.Component<PropsT, SelectStateT> {
       isOpen = false;
     }
     sharedProps.$isOpen = isOpen;
+
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <Root
-            $ref={ref => (this.wrapper = ref)}
-            {...sharedProps}
-            {...rootProps}
+          <Popover
+            onClickOutside={this.handleClickOutside}
+            isOpen={isOpen}
+            content={({anchor}) => {
+              const dropdownProps = {
+                error: this.props.error,
+                getOptionLabel:
+                  this.props.getOptionLabel || this.getOptionLabel,
+                isLoading: this.props.isLoading,
+                labelKey: this.props.labelKey,
+                maxDropdownHeight: this.props.maxDropdownHeight,
+                multi,
+                onItemSelect: this.selectValue,
+                options,
+                overrides,
+                required: this.props.required,
+                searchable: this.props.searchable,
+                size: this.props.size,
+                type,
+                value: valueArray,
+                valueKey: this.props.valueKey,
+                width: anchor ? anchor.clientWidth : null,
+              };
+
+              if (options && options.length) {
+                return <SelectDropdown {...dropdownProps} />;
+              } else if (this.props.noResultsMsg) {
+                const noResults = {
+                  [this.props.valueKey]: 'NO_RESULTS_FOUND',
+                  [this.props.labelKey]:
+                    this.props.noResultsMsg || locale.select.noResultsMsg,
+                  disabled: true,
+                };
+                return (
+                  <SelectDropdown {...dropdownProps} options={[noResults]} />
+                );
+              } else {
+                return null;
+              }
+            }}
+            placement={PLACEMENT.bottom}
           >
-            <ControlContainer
-              onKeyDown={this.handleKeyDown}
-              onClick={this.handleClick}
-              onTouchEnd={this.handleTouchEnd}
-              onTouchMove={this.handleTouchMove}
-              onTouchStart={this.handleTouchStart}
+            <Root
+              $ref={ref => (this.wrapper = ref)}
               {...sharedProps}
-              {...controlContainerProps}
+              {...rootProps}
             >
-              {type === TYPE.search ? this.renderSearch() : null}
-              <ValueContainer {...sharedProps} {...valueContainerProps}>
-                {this.renderValue(valueArray, isOpen, locale)}
-                {this.renderInput()}
-              </ValueContainer>
-              <IconsContainer {...sharedProps} {...iconsContainerProps}>
-                {this.renderLoading()}
-                {this.renderClear()}
-                {type === TYPE.select ? this.renderArrow() : null}
-              </IconsContainer>
-            </ControlContainer>
-            {isOpen ? this.renderMenu(options, valueArray, locale) : null}
-          </Root>
+              <ControlContainer
+                onKeyDown={this.handleKeyDown}
+                onClick={this.handleClick}
+                onTouchEnd={this.handleTouchEnd}
+                onTouchMove={this.handleTouchMove}
+                onTouchStart={this.handleTouchStart}
+                {...sharedProps}
+                {...controlContainerProps}
+              >
+                {type === TYPE.search ? this.renderSearch() : null}
+                <ValueContainer {...sharedProps} {...valueContainerProps}>
+                  {this.renderValue(valueArray, isOpen, locale)}
+                  {this.renderInput()}
+                </ValueContainer>
+                <IconsContainer {...sharedProps} {...iconsContainerProps}>
+                  {this.renderLoading()}
+                  {this.renderClear()}
+                  {type === TYPE.select ? this.renderArrow() : null}
+                </IconsContainer>
+              </ControlContainer>
+            </Root>
+          </Popover>
         )}
       </LocaleContext.Consumer>
     );
