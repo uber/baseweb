@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 
+import Head from 'next/head';
 import {Block} from 'baseui/block';
 import {styled} from 'baseui/styles';
 import Link from 'next/link';
@@ -110,9 +111,14 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
 export default {
   code: Code,
   h1: ({children}: {children: React.Node}) => (
-    <Heading element="h1" fontType="font700">
-      {children}
-    </Heading>
+    <React.Fragment>
+      <Head>
+        <title key="title">Base UI - {children}</title>
+      </Head>
+      <Heading element="h1" fontType="font700">
+        {children}
+      </Heading>
+    </React.Fragment>
   ),
   h2: ({children}: {children: React.Node}) => (
     <Heading element="h2" fontType="font600">
