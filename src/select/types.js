@@ -112,7 +112,7 @@ export type PropsT = {
   /** Defines if multiple options can be selected. */
   multi: boolean,
   /** Message to be displayed if no options is found for a search query. */
-  noResultsMsg: React.Node,
+  noResultsMsg?: React.Node,
   onBlur: (e: Event) => void,
   /** Defines if the input value is reset to an empty string when a blur event happens on the select. */
   onBlurResetsInput: boolean,
@@ -135,7 +135,7 @@ export type PropsT = {
   options: ?ValueT,
   overrides: OverridesT,
   /** Sets the placeholder. */
-  placeholder: React.Node,
+  placeholder?: React.Node,
   /** Defines if the select field is required to have a selection. */
   required: boolean,
   /** Defines if the search functionality id enabled. */

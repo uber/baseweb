@@ -11,7 +11,7 @@ import {shallow} from 'enzyme';
 
 import {Button} from '../../button/index.js';
 
-import {ButtonGroup} from '../index.js';
+import {ButtonGroupRoot as ButtonGroup} from '../button-group.js';
 
 function buildSimpleWrapper(props = {}) {
   return shallow(
