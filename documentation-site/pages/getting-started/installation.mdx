@@ -56,7 +56,42 @@ export default () => {
 
 For more information, check out the documentation site for [fusion-plugin-styletron-react](https://fusionjs.com/api/fusion-plugin-styletron-react).
 
+## Styletron
+
+Base UI always needs Styletron to function. You probably will not be able to build the whole application only with Base UI components and you will be creating some new components as well. Since Styletron is already loaded in your project, **we recommend you using Styletron to style any new components**:
+
+```js
+import {styled} from 'baseui';
+
+export default () => {
+  const Anchor = styled('a', {
+    fontSize: '20px',
+    color: 'red',
+  });
+  return <Anchor href="/my-link">Custom Link</Anchor>;
+};
+```
+
+What's the difference here?
+
+```js
+import {styled} from 'baseui';
+import {styled} from 'styletron-react';
+```
+
+It's exactly the same `styled` function but Base UI adds the `$theme` variable that gives you access to all Base UI's [design constants](/theming/theming-values). So if you want to use our `primary` color for that custom link, you can do:
+
+```js
+import {styled} from 'baseui';
+
+const Anchor = styled('a', ({$theme}) => ({
+  color: $theme.colors.primary,
+}));
+```
+
 Do you want to learn more about Styletron? Go to [styletron.org](https://www.styletron.org).
+
+Do you prefer other approaches when styling your components? CSS Modules? Styled-components? You can use them in parallel to Base UI and Styletron. Styletron adds only `8kB` to your bundle and works in an isolation.
 
 # Next step
 

@@ -11,9 +11,7 @@ import React from 'react';
 import {Block} from 'baseui/block';
 import {Card, StyledBody} from 'baseui/card';
 import {Radio, RadioGroup} from 'baseui/radio';
-import Link from 'next/link';
-
-import NavLink from './nav-link';
+import {DocLink} from './markdown-elements';
 import {trackEvent} from '../helpers/ga';
 
 const isStyledExport = exportName => exportName.startsWith('Styled');
@@ -61,13 +59,13 @@ class Overrides extends React.Component {
         <StyledBody>
           <Block as="p" font="font400">
             Additionally, you can{' '}
-            <Link passHref={true} href={'/theming/understanding-overrides'}>
-              <NavLink>fully customize</NavLink>
-            </Link>{' '}
+            <DocLink href="/theming/understanding-overrides">
+              fully customize
+            </DocLink>{' '}
             any part of the <strong>{name}</strong> through the{' '}
             <strong>overrides</strong> prop. The {name} consists of multiple
-            sub-components that are listed bellow and you can override each one
-            of them. To help you identify the names of these sub-components,{' '}
+            subcomponents that are listed bellow and you can override each one
+            of them. To help you identify the names of these subcomponents,{' '}
             <strong>you can highlight them through this selector:</strong>
           </Block>
           <RadioGroup

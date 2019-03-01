@@ -6,62 +6,222 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Layout from '../../components/layout';
-import Example from '../../components/example';
 
-import OverridesStyles from 'examples/overrides/style.js';
-import OverridesStylesWithTheme from 'examples/overrides/style-with-theme.js';
-import OverridesProps from 'examples/overrides/props.js';
-import OverridesComponent from 'examples/overrides/component.js';
+import Overrides from '../../components/overrides';
+import {StatefulList} from 'baseui/dnd-list';
+import * as ListExports from 'baseui/dnd-list';
+
+import DndListExample from 'examples/dnd-list/overrides_short.js';
+import DndListExampleStyle from 'examples/dnd-list/overrides_style.js';
+import DndListExampleStateProps from 'examples/dnd-list/overrides_state_props.js';
+import DndListExampleSubcomponent from 'examples/dnd-list/overrides_whole_subcomponent.js';
 
 export default Layout;
 
 # Understanding Overrides
 
-At its core, Base UI is a foundational set of reusable React components,
-with an architecture that enables teams to create new design languages
-on top of it. By default, these components use the Base UI design language
-which, as the name suggests, acts as a base design language you can further customize.
+**Base UI is a set of reusable React components that implements the Base UI design language** and can be used in two different ways:
 
-**If you'd like to build applications using the Base UI design language, in most cases
-you won't need to override components. This helps build consistent applications.**
+- **To build an application** that fully adopts the Base UI design language. You import and use Base UI components out of the box.
+- **To build a new design system** inherited from the Base. You take Base UI components and customize them through the Overrides mechanism.
 
-Every internal element is given an identifier that developers
-can target with changes/overrides. You can almost think of these like class names
-(but without the downsides of CSS cascade and global namespace).
+If you are building an application using the Base UI design language (the first scenario), you should avoid a further customization. This helps to keep the design of your application consistent and makes future upgrades easier. **Overrides is an escape hatch that should be used only with the great caution!**
 
-For each internal element, you can override the **props**, the **style**, and the **component**.
+## Subcomponents
 
-**Use cases for style overrides:**
+Base UI components typically consist of many **subcomponents**. Let's use `baseui/dnd-list` as an example:
 
-* Buiding a design system on top of Base UI
-* You have a special case that Base UI does not cover
+<DndListExample />
 
-<Example title="Overriding Styles" path="examples/overrides/style.js">
-  <OverridesStyles />
-</Example>
+This component is very self-contained and you can load it through a single import:
 
-<Example title="Overriding Styles with Theme values" path="examples/overrides/style-with-theme.js">
-  <OverridesStylesWithTheme />
-</Example>
+```jsx
+import {StatefulList} from 'baseui/dnd-list';
 
-**Use cases for prop overrides:**
+export default () => (
+  <StatefulList
+    initialState={{
+      items: ['Item 1', 'Item 2', 'Item 3'],
+    }}
+  />
+);
+```
 
-* You have to pass in a property for the underlying component, like "data-" attribitues for testing
+But as you might guess, there are multiple React components under the hood, components like `Item`, `DragHandle` or `Label`. They all come with various styles, behaviors and attributes. **We call them subcomponents**.
 
-<Example title="Overriding Properties - Data Attribute" path="examples/overrides/props.js">
-  <OverridesProps />
-</Example>
+## Introducing Overrides
 
-**Use cases for component overrides:**
+**Overrides** gives you a full access to all those subcomponents and lets you to override:
 
-* You have to swap the whole subcomponent
+- styles of the subcomponent
+- props of the subcomponent
+- the whole subcomponent
 
-<Example title="Overriding Components" path="examples/overrides/component.js">
-  <OverridesComponent />
-</Example>
+**Every Base UI component has a top-level prop called `overrides`**. It accepts a map of subcomponents and desired overrides. For example, if we want to change the `Label`'s color and also add an additional `data-test-id` attribute (props are spread over the subcomponent), we can do:
 
-To learn more about how overrides work, check out
-[Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646)
+```jsx
+<StatefulList
+  initialState={{
+    items: ['Item 1', 'Item 2', 'Item 3'],
+  }}
+  overrides={{
+    Label: {
+      style: {
+        color: '#892C21',
+      },
+      props: {
+        'data-test-id': 'dnd-list-label',
+      },
+    },
+  }}
+/>
+```
+
+We defined `overrides.Label.style` and `overrides.Label.props` properties and this is the result (inspect the element to see the `data-test-id` attribute):
+
+<DndListExampleStyle />
+
+The `overrides.Label.style` property accepts a [style object](https://www.styletron.org/concepts/#style-object) or [style function](https://www.styletron.org/concepts/#style-function) since [Styletron](https://www.styletron.org) manages all Base UI styles.
+
+## `$theme`
+
+If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base UI [design constants](/theming/theming-values). So instead of the hard-coded value `#892C21`, you can use the theme:
+
+```jsx
+<StatefulList
+  initialState={{
+    items: ['Item 1', 'Item 2', 'Item 3'],
+  }}
+  overrides={{
+    Label: {
+      style: ({$theme}) => ({
+        color: $theme.colors.negative600,
+      }),
+    },
+  }}
+/>
+```
+
+## State Props
+
+The prop `$theme` is not the only variable that you can use in your style function. Most of subcomponents get various state props. For example, **the `Label` comes with**:
+
+- `$isDragged: boolean` - `true` if the list item is dragged
+- `$isSelected: boolean` - `true` if the list item is selected (space key-press)
+- `$isRemovable: boolean` - `true` if the list item is removable
+- `$value: React.Node` - item's value
+- `$index: number` - item's index
+
+Let's use `$isDragged` to change the Label color when dragged:
+
+```jsx
+<StatefulList
+  initialState={{
+    items: ['Item 1', 'Item 2', 'Item 3'],
+  }}
+  overrides={{
+    Label: {
+      style: ({$theme, $isDragged}) => ({
+        color: $isDragged ? $theme.colors.primary : $theme.colors.negative600,
+      }),
+    },
+  }}
+/>
+```
+
+And the result is that the Label gets blue when being dragged:
+
+<DndListExampleStateProps />
+
+## Overrides Inspector
+
+Almost every Base UI component has multiple overrides. **How can you learn what's available to you?** Every component page has the `Overrides` section at the bottom. It lists all overridable subcomponents and highlights each one of them. This box is taken straight from the [dnd-list page](/components/dnd-list/#overrides):
+
+<Overrides
+  name="Drag and Drop List"
+  component={ListExports}
+  renderExample={props => (
+    <StatefulList
+      removable
+      initialState={{items: ['Item 1', 'Item 2', 'Item 3', 'Item 4']}}
+      overrides={props.overrides}
+    />
+  )}
+/>
+
+If you are interested in **what state props your style functions can use**, you'll find the list of them at the bottom of every component page. Scroll down to the API section and click on the `Expand Prop Shape` button for the `overrides` property.
+
+## Override The Whole Subcomponent
+
+> **This is a very advanced technique and rarely needed**. If you go down this path, you might also need to inspect our source code to fully understand all behaviors that subcomponents should/can implement.
+
+So far we demonstrated how to **override styles or add additional props** but you can also **completely replace subcomponents**. This means you can alter the behavior and appearance of all Base UI components. For example, **we can enhance our textual Label and add a cloning functionality**:
+
+```jsx
+import React from 'react';
+import {List, arrayMove} from 'baseui/dnd-list';
+
+export default class Example extends React.Component {
+  state = {
+    items: ['Car', 'Truck', 'Bike', 'Skateboard'],
+  };
+  render() {
+    return (
+      <List
+        items={this.state.items}
+        onChange={({oldIndex, newIndex}) =>
+          this.setState(prevState => ({
+            items: arrayMove(prevState.items, oldIndex, newIndex),
+          }))
+        }
+        overrides={{
+          Label: {
+            component: ({$value}) => (
+              <div style={{flexGrow: 1}}>
+                {$value}{' '}
+                <button
+                  onClick={() =>
+                    this.setState(prevState => ({
+                      items: prevState.items.concat([`${$value} clone`]),
+                    }))
+                  }
+                >
+                  Clone
+                </button>
+              </div>
+            ),
+          },
+        }}
+      />
+    );
+  }
+}
+```
+
+The result:
+
+<DndListExampleSubcomponent />
+
+Note that **we lost the original Label styling** since we replaced the whole Label subcomponent. If you wish to still somehow reuse or compose the original subcomponent you can import it:
+
+```js
+import {StyledLabel} from 'baseui/dnd-list';
+```
+
+The named import always matches the override key with an addition of `Styled` prefix. Following two examples yield the exactly same result since this is how Base UI components are implemented underneath:
+
+```jsx
+<StatefulList
+  initialState={{items: ['A', 'B', 'C']}}
+  overrides={{Label: StyledLabel}}
+/>
+
+<StatefulList
+  initialState={{items: ['A', 'B', 'C']}}
+/>
+```
+
+**This technique gives you a ridiculous amount of flexibility.** However, with great power comes great responsibility. We might not be able to effectively support you if you run into issues and upgrades to future versions of Base UI can be complicated. If you have a need to change components behavior this way, you should first [ask maintainers](https://github.com/uber-web/baseui/issues) of Base UI. We might add your feature through an official API instead so you don't need to use this override.
+
+To learn more about how overrides work internally, check out the [Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646)
 article.
-
-
