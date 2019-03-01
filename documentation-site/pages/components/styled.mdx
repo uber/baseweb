@@ -16,11 +16,12 @@ export default Layout;
 
 # Styled
 
-Base UI exports a modified versions of [Styletron's](https://www.styletron.org/api/#styled) `styled` function.
-This modified version has access to theme variables, and component states, like `$disabled` or `$error`, depending
-on the given component.
+```js
+import {styled} from 'baseui';
+```
 
-## Examples
+Base UI exports a modified version of [Styletron's](https://www.styletron.org/api/#styled) `styled` function.
+This modified version has access to [theme variables](/theming/theming-values/):
 
 <Example
   title="Styled reading from Theme values"
@@ -29,9 +30,20 @@ on the given component.
   <StyledBasic />
 </Example>
 
+Since Styletron is already in your application and **you'll probably need to create new components anyway, we recommend you to use this `styled` function**! Do you prefer other approaches when styling your components? Feel free to use them in parallel to Base UI and Styletron. Styletron adds only `8kB` to your bundle and works in an isolation.
+
+If you are interested more into how this modified `styled` function is created, check the Styletron's [theme documetation](https://www.styletron.org/react/#themes).
+
+## Additional State Props
+
+When you [use overrides](/theming/understanding-overrides), you also get an access to additional component states, like `$disabled` or `$error`, depending
+on the given component:
+
 <Example
   title="Styled overriding subcomponents"
   path="examples/styled/overrides.js"
 >
   <StyledOverrides />
 </Example>
+
+To understand overrides better, go [here](/theming/understanding-overrides).
