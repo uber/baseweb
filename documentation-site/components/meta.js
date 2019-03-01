@@ -18,7 +18,7 @@ const title =
 
 export default () => (
   <Head>
-    <title>{title}</title>
+    <title key="title">{title}</title>
     <meta
       name="viewport"
       content="initial-scale=1.0, width=device-width"
