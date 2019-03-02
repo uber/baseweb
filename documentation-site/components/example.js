@@ -83,8 +83,8 @@ class Example extends React.Component<PropsT, StateT> {
         overrides={{
           Root: {
             style: ({$theme}) => ({
-              maxWidth: '776px',
-              marginBottom: $theme.sizing.scale1200,
+              marginTop: $theme.sizing.scale800,
+              marginBottom: $theme.sizing.scale800,
             }),
           },
           Contents: {style: {margin: 0}},
