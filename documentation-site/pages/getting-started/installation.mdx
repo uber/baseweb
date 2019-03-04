@@ -23,38 +23,12 @@ npm install baseui styletron-engine-atomic styletron-react
 
 [Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the CSS in JS family. Base UI uses Styletron as a peer dependency to style all the elements, so you need to add them as dependencies too.
 
-**The next step is to setup Styletron in your application.** There are [detailed guides](https://www.styletron.org/getting-started/) for Fusion.js, Next.js, Gatsby and general React applications.
+**The next step is to setup Styletron in your application.** There are detailed guides for
 
-## With Fusion.js
-
-If you are building a web application on top of [Fusion.js](https://fusionjs.com/), you have to install `fusion-plugin-styletron-react` and `styletron-react`, and register the `fusion-plugin-styletron-react` plugin. It might be installed already if you bootstrapped your Fusion application.
-
-### Adding dependencies
-
-```bash
-# using yarn
-yarn add baseui fusion-plugin-styletron-react styletron-react
-
-# using npm
-npm install baseui fusion-plugin-styletron-react styletron-react
-```
-
-### Registering the plugin
-
-```javascript
-// src/main.js
-import App from 'fusion-react';
-import Styletron from 'fusion-plugin-styletron-react';
-import root from './components/root';
-
-export default () => {
-  const app = new App(root);
-  app.register(Styletron);
-  return app;
-};
-```
-
-For more information, check out the documentation site for [fusion-plugin-styletron-react](https://fusionjs.com/api/fusion-plugin-styletron-react).
+* [Fusion.js](https://www.styletron.org/getting-started/#with-fusionjs),
+* [Next.js](https://www.styletron.org/getting-started/#with-nextjs),
+* [Gatsby](https://www.styletron.org/getting-started/#with-gatsby) and
+* [general React applications](https://www.styletron.org/getting-started/#with-react).
 
 ## Styletron
 
@@ -79,7 +53,7 @@ import {styled} from 'baseui';
 import {styled} from 'styletron-react';
 ```
 
-It's exactly the same `styled` function but Base UI adds the `$theme` variable that gives you access to all Base UI's [design constants](/theming/theming-values). So if you want to use our `primary` color for that custom link, you can do:
+It's exactly the same `styled` function but Base UI adds the `$theme` variable that gives you access to all Base UI's [design tokens](/theming/theming-values). So if you want to use our `primary` color for that custom link, you can do:
 
 ```js
 import {styled} from 'baseui';
