@@ -38,7 +38,8 @@
     "icon:generate": "./src/icon/build-icons.js",
     "now": "now",
     "documentation:dev": "yarn build:es2015 --watch & next documentation-site",
-    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public"
+    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public",
+    "documentation:serve": "static-server public --port 8081"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -81,6 +82,7 @@
     "babel-plugin-transform-define": "^1.3.0",
     "babel-plugin-transform-styletron-display-name": "^1.1.0",
     "babel-plugin-webpack-loaders": "^0.9.0",
+    "broken-link-checker": "^0.7.8",
     "cross-env": "^5.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
