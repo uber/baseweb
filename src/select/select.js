@@ -36,6 +36,7 @@ import {
   Search as SearchIconComponent,
 } from '../icon/index.js';
 import defaultProps from './default-props.js';
+import {LocaleContext} from '../locale/index.js';
 
 import type {
   PropsT,
@@ -44,6 +45,7 @@ import type {
   OptionT,
   ChangeActionT,
 } from './types.js';
+import type {LocaleT} from '../locale/types.js';
 
 class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;
@@ -547,6 +549,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   renderValue(
     valueArray: ValueT,
     isOpen: boolean,
+    locale: LocaleT,
   ): ?React.Node | Array<?React.Node> {
     const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
@@ -563,7 +566,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       );
       return showPlaceholder ? (
         <Placeholder {...sharedProps} {...placeholderProps}>
-          {this.props.placeholder}
+          {this.props.placeholder || locale.select.placeholder}
         </Placeholder>
       ) : null;
     }
@@ -746,7 +749,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
-  renderMenu(options: ValueT, valueArray: ValueT) {
+  renderMenu(options: ValueT, valueArray: ValueT, locale: LocaleT) {
     const {
       error,
       getOptionLabel,
@@ -784,7 +787,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     } else if (noResultsMsg) {
       const noResults = {
         [valueKey]: 'NO_RESULTS_FOUND',
-        [labelKey]: noResultsMsg,
+        [labelKey]: noResultsMsg || locale.select.noResultsMsg,
         disabled: true,
       };
       return <SelectDropdown {...dropdownProps} options={[noResults]} />;
@@ -854,29 +857,37 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     sharedProps.$isOpen = isOpen;
     return (
-      <Root $ref={ref => (this.wrapper = ref)} {...sharedProps} {...rootProps}>
-        <ControlContainer
-          onKeyDown={this.handleKeyDown}
-          onClick={this.handleClick}
-          onTouchEnd={this.handleTouchEnd}
-          onTouchMove={this.handleTouchMove}
-          onTouchStart={this.handleTouchStart}
-          {...sharedProps}
-          {...controlContainerProps}
-        >
-          {type === TYPE.search ? this.renderSearch() : null}
-          <ValueContainer {...sharedProps} {...valueContainerProps}>
-            {this.renderValue(valueArray, isOpen)}
-            {this.renderInput()}
-          </ValueContainer>
-          <IconsContainer {...sharedProps} {...iconsContainerProps}>
-            {this.renderLoading()}
-            {this.renderClear()}
-            {type === TYPE.select ? this.renderArrow() : null}
-          </IconsContainer>
-        </ControlContainer>
-        {isOpen ? this.renderMenu(options, valueArray) : null}
-      </Root>
+      <LocaleContext.Consumer>
+        {locale => (
+          <Root
+            $ref={ref => (this.wrapper = ref)}
+            {...sharedProps}
+            {...rootProps}
+          >
+            <ControlContainer
+              onKeyDown={this.handleKeyDown}
+              onClick={this.handleClick}
+              onTouchEnd={this.handleTouchEnd}
+              onTouchMove={this.handleTouchMove}
+              onTouchStart={this.handleTouchStart}
+              {...sharedProps}
+              {...controlContainerProps}
+            >
+              {type === TYPE.search ? this.renderSearch() : null}
+              <ValueContainer {...sharedProps} {...valueContainerProps}>
+                {this.renderValue(valueArray, isOpen, locale)}
+                {this.renderInput()}
+              </ValueContainer>
+              <IconsContainer {...sharedProps} {...iconsContainerProps}>
+                {this.renderLoading()}
+                {this.renderClear()}
+                {type === TYPE.select ? this.renderArrow() : null}
+              </IconsContainer>
+            </ControlContainer>
+            {isOpen ? this.renderMenu(options, valueArray, locale) : null}
+          </Root>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 }

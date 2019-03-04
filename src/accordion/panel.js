@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {LocaleContext} from '../locale/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {
   Plus as PlusIcon,
@@ -91,31 +92,37 @@ class Panel extends React.Component<PanelPropsT> {
     );
     const ToggleIconComponent = expanded ? CheckIndeterminateIcon : PlusIcon;
     return (
-      <PanelContainer {...sharedProps} {...panelContainerProps}>
-        <Header
-          tabIndex={0}
-          role="button"
-          aria-expanded={expanded}
-          aria-disabled={disabled || null}
-          {...sharedProps}
-          {...headerProps}
-          onClick={this.onClick}
-          onKeyDown={this.onKeyDown}
-        >
-          {title}
-          <ToggleIconComponent
-            size={16}
-            title={expanded ? 'Collapse' : 'Expand'}
-            {...sharedProps}
-            {...toggleIconProps}
-            // $FlowFixMe
-            overrides={toggleIconOverrides}
-          />
-        </Header>
-        <Content {...sharedProps} {...contentProps}>
-          {children}
-        </Content>
-      </PanelContainer>
+      <LocaleContext.Consumer>
+        {locale => (
+          <PanelContainer {...sharedProps} {...panelContainerProps}>
+            <Header
+              tabIndex={0}
+              role="button"
+              aria-expanded={expanded}
+              aria-disabled={disabled || null}
+              {...sharedProps}
+              {...headerProps}
+              onClick={this.onClick}
+              onKeyDown={this.onKeyDown}
+            >
+              {title}
+              <ToggleIconComponent
+                size={16}
+                title={
+                  expanded ? locale.accordion.collapse : locale.accordion.expand
+                }
+                {...sharedProps}
+                {...toggleIconProps}
+                // $FlowFixMe
+                overrides={toggleIconOverrides}
+              />
+            </Header>
+            <Content {...sharedProps} {...contentProps}>
+              {children}
+            </Content>
+          </PanelContainer>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 }

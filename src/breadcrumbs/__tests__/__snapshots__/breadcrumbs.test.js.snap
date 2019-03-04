@@ -2,7 +2,7 @@
 
 exports[`Breadcrumbs displays separators in correct positions 1`] = `
 <MockStyledComponent
-  aria-label="Breadcrumbs navigation"
+  aria-label=""
 >
   <MockStyledComponent
     href="#"

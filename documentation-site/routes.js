@@ -36,6 +36,10 @@ const routes = [
         text: 'Comparison with other component libraries',
         path: '/getting-started/comparison',
       },
+      {
+        text: 'Internationalization',
+        path: '/getting-started/internationalization',
+      },
     ],
   },
   {
@@ -106,6 +110,10 @@ const routes = [
           {
             text: 'Header navigation',
             path: '/components/header-navigation',
+          },
+          {
+            text: 'Link',
+            path: '/components/link',
           },
           {
             text: 'Pagination',

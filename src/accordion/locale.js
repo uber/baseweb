@@ -6,10 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+export type AccordionLocaleT = {|
+  collapse: string,
+  expand: string,
+|};
 
-import {Calendar} from '../index.js';
+const locale = {
+  collapse: 'Collapse',
+  expand: 'Expand',
+};
 
-export const name = 'Stateless calendar';
-
-export const component = () => <Calendar />;
+export default locale;

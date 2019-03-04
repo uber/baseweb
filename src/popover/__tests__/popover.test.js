@@ -34,17 +34,10 @@ describe('Popover', () => {
 
   beforeAll(() => {
     // $FlowFixMe
-    ReactDOM.createPortal = jest.fn(e => (
-      <div is-portal="true" key="portal">
-        {e}
-      </div>
-    ));
-    // $FlowFixMe
     document.addEventListener = jest.fn();
   });
 
   afterEach(() => {
-    ReactDOM.createPortal.mockClear();
     document.addEventListener.mockClear();
     wrapper && wrapper.unmount();
   });
@@ -73,15 +66,14 @@ describe('Popover', () => {
     );
 
     // Should render single button child to begin
-    expect(wrapper.children().length).toBe(1);
-    const renderedButton = wrapper.childAt(0);
-    expect(renderedButton).toHaveDisplayName('button');
-    expect(renderedButton).toHaveText('Click me');
+    expect(wrapper.length).toBe(1);
+    expect(wrapper).toHaveDisplayName('Popover');
+    expect(wrapper).toHaveText('Click me');
 
     // Test click handling (and hover events ignored)
-    renderedButton.simulate('mouseenter');
+    wrapper.simulate('mouseenter');
     expect(onMouseEnter).not.toBeCalled();
-    renderedButton.simulate('click');
+    wrapper.simulate('click');
     expect(onClick).toBeCalled();
 
     // Show the popover
@@ -89,9 +81,8 @@ describe('Popover', () => {
 
     // Should now have the portal as the second child
     expect(wrapper.children().length).toBe(2);
-    expect(wrapper.childAt(0)).toHaveDisplayName('button');
+    expect(wrapper.childAt(1)).toHaveDisplayName('Portal');
     const portal = wrapper.childAt(1);
-    expect(portal).toMatchSelector('[is-portal]');
 
     // Portal should have the popover body and content
     let popoverBody = portal.childAt(0);

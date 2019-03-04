@@ -15,10 +15,10 @@ import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
 import {styled} from 'baseui/styles';
 
-import Anchor from './anchor';
 import {version} from '../../package.json';
 import Code from './code';
 import {trackEvent} from '../helpers/ga';
+import {Heading} from './markdown-elements';
 
 const Link = styled(StyledLink, {cursor: 'pointer'});
 
@@ -83,8 +83,8 @@ class Example extends React.Component<PropsT, StateT> {
         overrides={{
           Root: {
             style: ({$theme}) => ({
-              maxWidth: '776px',
-              marginBottom: $theme.sizing.scale1200,
+              marginTop: $theme.sizing.scale800,
+              marginBottom: $theme.sizing.scale800,
             }),
           },
           Contents: {style: {margin: 0}},
@@ -99,23 +99,10 @@ class Example extends React.Component<PropsT, StateT> {
           paddingBottom="scale600"
           paddingLeft="scale800"
         >
-          <Block
-            overrides={{
-              Block: {
-                style: {
-                  textTransform: 'lowercase',
-                  ':first-letter': {
-                    textTransform: 'uppercase',
-                  },
-                },
-              },
-            }}
-            as="span"
-            font="font500"
-            color="mono1000"
-          >
-            <Anchor>{this.props.title}</Anchor>
-          </Block>
+          <Heading element="span" fontType="font500">
+            {this.props.title}
+          </Heading>
+
           <Block display="flex" alignItems="center">
             <Button
               kind={KIND.secondary}

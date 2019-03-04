@@ -9,12 +9,16 @@ LICENSE file in the root directory of this source tree.
 
 import React, {Children} from 'react';
 
+import {LocaleContext} from '../locale/index.js';
 import type {BreadcrumbsPropsT} from './types.js';
+import type {BreadcrumbLocaleT} from './locale.js';
 import {StyledRoot, StyledSeparator, StyledIcon} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
-function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
-  const numChildren = Children.count(children);
+type LocaleT = {|locale?: BreadcrumbLocaleT|};
+export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
+  const {overrides = {}} = props;
+  const numChildren = Children.count(props.children);
   const childrenWithSeparators = [];
 
   const [Root, baseRootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -24,7 +28,7 @@ function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
     StyledSeparator,
   );
 
-  Children.forEach(children, (child, index) => {
+  Children.forEach(props.children, (child, index) => {
     childrenWithSeparators.push(child);
 
     if (index !== numChildren - 1) {
@@ -37,9 +41,22 @@ function Breadcrumbs({children, overrides = {}}: BreadcrumbsPropsT) {
   });
 
   return (
-    <Root aria-label="Breadcrumbs navigation" {...baseRootProps}>
+    <Root
+      aria-label={
+        props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
+      }
+      {...baseRootProps}
+    >
       {childrenWithSeparators}
     </Root>
+  );
+}
+
+function Breadcrumbs(props: BreadcrumbsPropsT) {
+  return (
+    <LocaleContext.Consumer>
+      {locale => <BreadcrumbsRoot {...props} locale={locale.breadcrumbs} />}
+    </LocaleContext.Consumer>
   );
 }
 

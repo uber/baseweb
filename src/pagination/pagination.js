@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
+import {LocaleContext} from '../locale/index.js';
 import {Button, StyledBaseButton, KIND} from '../button/index.js';
 import {StatefulMenu as Menu} from '../menu/index.js';
 import {
@@ -32,11 +33,7 @@ export default class Pagination extends React.PureComponent<
   PaginationStateT,
 > {
   static defaultProps = {
-    labels: {
-      prevButton: 'Prev',
-      nextButton: 'Next',
-      preposition: 'of',
-    },
+    labels: {},
     overrides: {},
   };
 
@@ -131,69 +128,81 @@ export default class Pagination extends React.PureComponent<
     const options = this.getMenuOptions(numPages);
 
     return (
-      <Root {...rootProps}>
-        <Button
-          onClick={this.onPrevClick}
-          startEnhancer={ArrowLeft}
-          kind={KIND.tertiary}
-          overrides={{
-            BaseButton: PrevButton,
-          }}
-          {...prevButtonProps}
-        >
-          {labels.prevButton}
-        </Button>
-        <DropdownContainer
-          $ref={this.dropdownContainerRef}
-          {...dropdownContainerProps}
-        >
-          <Button
-            onClick={this.onDropdownButtonClick}
-            endEnhancer={ArrowDown}
-            kind={KIND.tertiary}
-            overrides={{
-              BaseButton: DropdownButton,
-            }}
-            {...dropdownButtonProps}
-          >
-            {currentPage}
-          </Button>
-          {isMenuOpen && (
-            // $FlowFixMe
-            <DropdownMenu
-              items={options}
-              onItemSelect={this.onMenuItemSelect}
-              initialState={{
-                highlightedIndex: Math.max(currentPage - 1, 0),
-              }}
+      <LocaleContext.Consumer>
+        {locale => (
+          <Root {...rootProps}>
+            <Button
+              onClick={this.onPrevClick}
+              startEnhancer={ArrowLeft}
+              kind={KIND.tertiary}
               overrides={{
-                List: {
-                  component: StyledDropdownMenu,
-                  // Access $style manually because it has gone through transformation
-                  // from the override helper function already
-                  // $FlowFixMe
-                  style: dropdownMenuProps.$style,
-                },
+                BaseButton: PrevButton,
               }}
-              {...dropdownMenuProps}
-            />
-          )}
-        </DropdownContainer>
-        <MaxLabel {...maxLabelProps}>
-          {`${labels.preposition || ''} ${numPages}`}
-        </MaxLabel>
-        <Button
-          onClick={this.onNextClick}
-          endEnhancer={ArrowRight}
-          kind={KIND.tertiary}
-          overrides={{
-            BaseButton: NextButton,
-          }}
-          {...nextButtonProps}
-        >
-          {labels.nextButton}
-        </Button>
-      </Root>
+              {...prevButtonProps}
+            >
+              {labels && labels.prevButton
+                ? labels.prevButton
+                : locale.pagination.prev}
+            </Button>
+            <DropdownContainer
+              $ref={this.dropdownContainerRef}
+              {...dropdownContainerProps}
+            >
+              <Button
+                onClick={this.onDropdownButtonClick}
+                endEnhancer={ArrowDown}
+                kind={KIND.tertiary}
+                overrides={{
+                  BaseButton: DropdownButton,
+                }}
+                {...dropdownButtonProps}
+              >
+                {currentPage}
+              </Button>
+              {isMenuOpen && (
+                // $FlowFixMe
+                <DropdownMenu
+                  items={options}
+                  onItemSelect={this.onMenuItemSelect}
+                  initialState={{
+                    highlightedIndex: Math.max(currentPage - 1, 0),
+                  }}
+                  overrides={{
+                    List: {
+                      component: StyledDropdownMenu,
+                      // Access $style manually because it has gone through transformation
+                      // from the override helper function already
+                      // $FlowFixMe
+                      style: dropdownMenuProps.$style,
+                    },
+                  }}
+                  {...dropdownMenuProps}
+                />
+              )}
+            </DropdownContainer>
+            <MaxLabel {...maxLabelProps}>
+              {`${
+                labels && labels.preposition
+                  ? labels.preposition
+                  : locale.pagination.preposition || ''
+              } ${numPages}`}
+            </MaxLabel>
+            <Button
+              onClick={this.onNextClick}
+              endEnhancer={ArrowRight}
+              kind={KIND.tertiary}
+              overrides={{
+                BaseButton: NextButton,
+              }}
+              {...nextButtonProps}
+            >
+              {labels && labels.nextButton
+                ? labels.nextButton
+                : locale.pagination.next}
+            </Button>
+          </Root>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 }
