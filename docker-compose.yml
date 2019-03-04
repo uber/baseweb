@@ -43,6 +43,15 @@ services:
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
 
+    # this spins up a server that serves the html/js/css for the docs site
+  docs-site:
+    build: .
+    command: yarn documentation:build && yarn documentation:serve
+    expose:
+      - 8081
+    ports:
+      - '8081:8081'
+
   baseui:
     build: .
     environment:
