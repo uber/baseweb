@@ -56,6 +56,16 @@ steps:
         run: baseui
     agents:
       queue: workers
+  - name: ':documentation-site-link-checker:'
+    command: yarn blc http://localhost:8081
+    plugins:
+      'docker-compose':
+        run: docs-site
+        pull:
+          - docs-site-server
+          - docs-site-healthy
+    agents:
+      queue: builders
   - name: ':puppeteer:'
     command: yarn e2e:test:ci
     plugins:
