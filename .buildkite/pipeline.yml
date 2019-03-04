@@ -61,8 +61,11 @@ steps:
     plugins:
       'docker-compose':
         run: docs-site
+        pull:
+          - docs-site-server
+          - docs-site-healthy
     agents:
-      queue: workers
+      queue: builders
   - name: ':puppeteer:'
     command: yarn e2e:test:ci
     plugins:

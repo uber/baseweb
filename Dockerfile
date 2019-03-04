@@ -14,3 +14,4 @@ COPY . .
 RUN yarn build
 RUN yarn build-storybook
 RUN yarn e2e:build
+RUN yarn documentation:build
