@@ -7,37 +7,66 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
-import type {PropsT} from './types.js';
 import {
   Action as StyledAction,
   Root as StyledRoot,
   ActionIcon as StyledActionIcon,
   Text as StyledText,
 } from './styled-components.js';
-import type {SharedPropsT} from './types.js';
+import {VARIANT} from './constants.js';
+import type {PropsT, SharedPropsT} from './types.js';
 
 class Tag extends React.Component<PropsT, {}> {
   static defaultProps = {
-    overrides: {},
-    onActionClick: () => {},
     closeable: true,
     disabled: false,
     isFocused: false,
     isHovered: false,
+    onActionClick: () => {},
+    onClick: null,
+    overrides: {},
     kind: 'primary',
+    variant: VARIANT.light,
+  };
+
+  handleKeyDown = (event: KeyboardEvent) => {
+    if (event.currentTarget !== event.target) {
+      return;
+    }
+    const {onClick, onKeyDown} = this.props;
+    const key = event.key;
+    if (onClick && key === 'Enter') {
+      onClick(event);
+    }
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  };
+
+  handleActionKeyDown = (event: KeyboardEvent) => {
+    const {onActionClick, onActionKeyDown} = this.props;
+    const key = event.key;
+    if (onActionClick && key === 'Enter') {
+      onActionClick(event);
+    }
+    if (onActionKeyDown) {
+      onActionKeyDown(event);
+    }
   };
 
   render() {
     const {
-      overrides = {},
+      children,
+      onClick,
       closeable,
       color,
       disabled,
       isFocused,
       isHovered,
-      children,
       kind,
       onActionClick,
+      overrides = {},
+      variant,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Action, actionProps] = getOverrides(overrides.Action, StyledAction);
@@ -45,27 +74,49 @@ class Tag extends React.Component<PropsT, {}> {
       overrides.ActionIcon,
       StyledActionIcon,
     );
-    const events = disabled
+    const clickable = typeof onClick === 'function';
+    const rootHandlers = disabled
       ? {}
       : {
-          onClick: e => onActionClick(e, children),
+          onClick: onActionClick,
+          onKeyDown: this.handleKeyDown,
+        };
+    const actionHandlers = disabled
+      ? {}
+      : {
+          onClick: onActionClick,
+          onKeyDown: this.handleActionKeyDown,
         };
     const sharedProps: SharedPropsT = {
+      $clickable: clickable,
       $closeable: closeable,
       $color: color,
       $disabled: disabled,
       $isFocused: isFocused,
       $isHovered: isHovered,
       $kind: kind,
+      $variant: variant,
     };
     return (
-      <Root {...sharedProps} {...rootProps}>
+      <Root
+        role="button"
+        tabIndex={clickable ? '0' : null}
+        {...rootHandlers}
+        {...sharedProps}
+        {...rootProps}
+      >
         <StyledText>{children}</StyledText>
         {closeable ? (
-          <Action {...sharedProps} {...actionProps} {...events}>
+          <Action
+            role="button"
+            tabIndex={'0'}
+            {...actionHandlers}
+            {...sharedProps}
+            {...actionProps}
+          >
             <ActionIcon
-              width={'8'}
-              height={'8'}
+              width={'10'}
+              height={'10'}
               viewBox={'0 0 8 8'}
               fill={'none'}
               xmlns={'http://www.w3.org/2000/svg'}

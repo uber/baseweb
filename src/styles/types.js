@@ -190,6 +190,24 @@ export type ColorsT = {
   shadowFocus: string,
   shadowError: string,
 
+  // Tag
+  tagBackground: string,
+  tagNeutralBackground: string,
+  tagPrimaryBackground: string,
+  tagPositiveBackground: string,
+  tagWarningBackground: string,
+  tagNegativeBackground: string,
+  tagNeutralFont: string,
+  tagPrimaryFont: string,
+  tagPositiveFont: string,
+  tagWarningFont: string,
+  tagNegativeFont: string,
+  tagNeutralFontAlt: string,
+  tagPrimaryFontAlt: string,
+  tagPositiveFontAlt: string,
+  tagWarningFontAlt: string,
+  tagNegativeFontAlt: string,
+
   // Table
   tableHeadBackgroundColor: string,
 
