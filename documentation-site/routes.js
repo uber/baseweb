@@ -50,7 +50,7 @@ const routes = [
         path: '/theming/custom-themes',
       },
       {
-        text: 'Theming values',
+        text: 'w',
         path: '/theming/theming-values',
       },
       {
