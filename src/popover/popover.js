@@ -57,15 +57,18 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   state = this.getDefaultState(this.props);
 
   componentDidMount() {
-    if (this.props.isOpen) {
-      this.initializePopper();
-      this.addDomEvents();
-    }
     this.generatedId = getBuiId();
+    this.setState({isMounted: true});
   }
 
-  componentDidUpdate(prevProps: PopoverPropsT) {
-    if (this.props.isOpen !== prevProps.isOpen) {
+  componentDidUpdate(
+    prevProps: PopoverPropsT,
+    prevState: PopoverPrivateStateT,
+  ) {
+    if (
+      this.props.isOpen !== prevProps.isOpen ||
+      this.state.isMounted !== prevState.isMounted
+    ) {
       if (this.props.isOpen) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
@@ -93,6 +96,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       arrowOffset: {left: 0, top: 0},
       popoverOffset: {left: 0, top: 0},
       placement: props.placement,
+      isMounted: false,
     };
   }
 
@@ -468,7 +472,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
     // Only render popover on the browser (portals aren't supported server-side)
     if (__BROWSER__) {
-      if (this.props.isOpen || this.state.isAnimating) {
+      if (
+        this.state.isMounted &&
+        (this.props.isOpen || this.state.isAnimating)
+      ) {
         rendered.push(
           // $FlowFixMe
           ReactDOM.createPortal(this.renderPopover(), document.body),
