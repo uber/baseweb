@@ -4,7 +4,7 @@
 
 [![Build status](https://badge.buildkite.com/92a7500cd98f619621c4801833d8b358c2fd79efc9b98f1b98.svg?branch=master)](https://buildkite.com/uberopensource/baseui)
 
-**Base** is a design system comprised of modern, responsive, living components. Base Web is the React implementation is Base.
+**Base** is a design system comprised of modern, responsive, living components. Base Web is the React implementation of Base.
 
 ## Usage
 
