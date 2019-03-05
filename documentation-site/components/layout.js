@@ -21,7 +21,7 @@ import {
 import ComponentMenu from './component-menu';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
-import Logo from '../images/Logo.png';
+import Logo from '../images/base-web.svg';
 import GithubLogo from './github-logo';
 import SlackLogo from './slack-logo';
 import Search from './search';
@@ -48,7 +48,7 @@ export default (props: PropsT) => (
           <Link href="/" prefetch>
             <Block
               as="img"
-              height="29.25px"
+              height="40px"
               src={Logo}
               width="101px"
               overrides={{Block: {style: {cursor: 'pointer'}}}}

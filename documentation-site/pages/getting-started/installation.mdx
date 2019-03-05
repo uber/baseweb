@@ -9,9 +9,9 @@ import Layout from '../../components/layout';
 
 export default Layout;
 
-# Installing Base UI
+# Installing Base Web
 
-Base UI is available on [npm](https://npmjs.com/package/baseui). This single package contains all Base UI components.
+Base Web is available on npm as [baseui](https://npmjs.com/package/baseui). This single package contains all Base Web components.
 
 ```bash
 # using yarn
@@ -21,7 +21,7 @@ yarn add baseui styletron-engine-atomic styletron-react
 npm install baseui styletron-engine-atomic styletron-react
 ```
 
-[Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the CSS in JS family. Base UI uses Styletron as a peer dependency to style all the elements, so you need to add them as dependencies too.
+[Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the CSS in JS family. Base Web uses Styletron as a peer dependency to style all the elements, so you need to add them as dependencies too.
 
 **The next step is to setup Styletron in your application.** There are detailed guides for
 
@@ -32,7 +32,7 @@ npm install baseui styletron-engine-atomic styletron-react
 
 ## Styletron
 
-Base UI always needs Styletron to function. You probably will not be able to build the whole application only with Base UI components and you will be creating some new components as well. Since Styletron is already loaded in your project, **we recommend you using Styletron to style any new components**:
+Base Web always needs Styletron to function. You probably will not be able to build the whole application only with Base Web components and you will be creating some new components as well. Since Styletron is already loaded in your project, **we recommend you using Styletron to style any new components**:
 
 ```js
 import {styled} from 'baseui';
@@ -53,7 +53,7 @@ import {styled} from 'baseui';
 import {styled} from 'styletron-react';
 ```
 
-It's exactly the same `styled` function but Base UI adds the `$theme` variable that gives you access to all Base UI's [design tokens](/theming/theming-values). So if you want to use our `primary` color for that custom link, you can do:
+It's exactly the same `styled` function but Base Web adds the `$theme` variable that gives you access to all Base Web's [design tokens](/theming/theming-values). So if you want to use our `primary` color for that custom link, you can do:
 
 ```js
 import {styled} from 'baseui';
@@ -65,8 +65,8 @@ const Anchor = styled('a', ({$theme}) => ({
 
 Do you want to learn more about Styletron? Go to [styletron.org](https://www.styletron.org).
 
-Do you prefer other approaches when styling your components? CSS Modules? Styled-components? You can use them in parallel to Base UI and Styletron. Styletron adds only `8kB` to your bundle and works in an isolation.
+Do you prefer other approaches when styling your components? CSS Modules? Styled-components? You can use them in parallel to Base Web and Styletron. Styletron adds only `8kB` to your bundle and works in an isolation.
 
 # Next step
 
-Check out the [Usage section](/getting-started/usage) to see what you have to change in your application to start using Base UI.
+Check out the [Usage section](/getting-started/usage) to see what you have to change in your application to start using Base Web.

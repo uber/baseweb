@@ -1,6 +1,6 @@
 {
-  "name": "Base UI",
-  "short_name": "Base UI",
+  "name": "Base Web",
+  "short_name": "Base Web",
   "icons": [
     {
       "src": "/static/android-chrome-192x192.png",
@@ -8,7 +8,7 @@
       "type": "image/png"
     },
     {
-      "src": "/static//android-chrome-512x512.png",
+      "src": "/static/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

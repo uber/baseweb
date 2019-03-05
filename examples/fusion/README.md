@@ -1,6 +1,6 @@
-# Fusion.js with Base UI
+# Fusion.js with Base Web
 
-Welcome to your Fusion.js application with Base UI.
+Welcome to your Fusion.js application with Base Web.
 
 Get started by running the application with `yarn dev` in a terminal.
 
