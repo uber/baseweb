@@ -56,6 +56,7 @@ export const ListItem = styled(
     ':hover': {
       backgroundColor: $theme.colors.menuFillHover,
     },
+    marginBottom: '0',
     paddingTop:
       $size === OPTION_LIST_SIZE.compact
         ? $theme.sizing.scale100
