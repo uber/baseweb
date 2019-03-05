@@ -20,9 +20,9 @@ type ApplyParams = {
 
 function build(breakpoints: BreakpointsT) {
   const styles = {};
-  const mediaQueries = Object.keys(breakpoints).map(
-    size => `@media screen and (min-width: ${breakpoints[size]}px)`,
-  );
+
+  // cast to a string because flow reads return of Object.values as mixed
+  const mediaQueries = Object.values(breakpoints).map(String);
 
   return {
     apply: ({property, transform = x => x, value}: ApplyParams) => {

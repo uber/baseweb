@@ -41,7 +41,15 @@ export type LayoutContextT = {|
 |};
 
 export type SidebarPropsT = {|
+  /* Specifies the breakpoint at which the sidebar will collapse. The sidebar will not be
+   * responsive if not defined. This value must be a key in theme.breakpoints. */
+  breakpoint?: string,
   children: React.Node,
+  /* Hides the sidebar. */
+  isCollapsed?: boolean,
+  /* Callback for when the sidebar changes from open to collapsed. Useful for when you need
+   * to update a parent component's state on this change. */
+  onCollapse?: () => mixed,
   overrides?: {|
     Sidebar?: OverrideT<*>,
   |},

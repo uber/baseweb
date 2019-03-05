@@ -461,15 +461,9 @@ describe('Block', () => {
         </Block>,
       ),
     ).toMatchObject({
-      '@media screen and (min-width: $theme.breakpoints.largepx)': {
-        marginLeft: '$theme.sizing.scale400',
-      },
-      '@media screen and (min-width: $theme.breakpoints.mediumpx)': {
-        marginLeft: '$theme.sizing.scale300',
-      },
-      '@media screen and (min-width: $theme.breakpoints.smallpx)': {
-        marginLeft: '$theme.sizing.scale200',
-      },
+      '$theme.breakpoints.large': {marginLeft: '$theme.sizing.scale400'},
+      '$theme.breakpoints.medium': {marginLeft: '$theme.sizing.scale300'},
+      '$theme.breakpoints.small': {marginLeft: '$theme.sizing.scale200'},
       marginLeft: '$theme.sizing.scale100',
     });
   });
@@ -478,9 +472,7 @@ describe('Block', () => {
     expect(
       retrieveStyles(<Block marginLeft={['scale100', 'scale200']}>test</Block>),
     ).toMatchObject({
-      '@media screen and (min-width: $theme.breakpoints.smallpx)': {
-        marginLeft: '$theme.sizing.scale200',
-      },
+      '$theme.breakpoints.small': {marginLeft: '$theme.sizing.scale200'},
       marginLeft: '$theme.sizing.scale100',
     });
   });

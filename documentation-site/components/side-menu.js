@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import {Block} from 'baseui/block';
 import {styled} from 'baseui';
+import {Block} from 'baseui/block';
 import Link from 'next/link';
 
 import NavLink from './nav-link';
@@ -33,8 +33,9 @@ const List = styled(Block, ({$theme}) => ({
   marginBottom: '0',
   marginLeft: '0',
   marginRight: '0',
-  paddingLeft: '0',
-  paddingRight: '0',
+  paddingLeft: $theme.sizing.scale800,
+  paddingRight: $theme.sizing.scale800,
+
   listStyle: 'none',
   maxWidth: '200px',
 }));
@@ -80,7 +81,7 @@ const NavigationItem = props => {
   );
 };
 
-export default () => (
+export default props => (
   <List as="ul">
     {Routes.map((route, index) => {
       return <NavigationItem key={index} route={route} index={index} />;

@@ -18,9 +18,9 @@ export default function createTheme(
 ): ThemeT {
   const theme = {
     breakpoints: {
-      small: 320,
-      medium: 600,
-      large: 1280,
+      small: '@media screen and (min-width: 320px)',
+      medium: '@media screen and (min-width: 600px)',
+      large: '@media screen and (min-width: 1280px)',
     },
 
     colors: {

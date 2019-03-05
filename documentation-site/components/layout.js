@@ -17,6 +17,7 @@ import {
   StyledNavigationList as NavigationList,
   ALIGN,
 } from 'baseui/header-navigation';
+import Menu from 'baseui/icon/menu';
 import {Layout, Content, Header, Sidebar} from 'baseui/layout';
 
 import ComponentMenu from './component-menu';
@@ -32,112 +33,29 @@ type PropsT = {
   children: React.Node,
 };
 
-export default (props: PropsT) => (
-  <Layout>
-    <Header>
-      <HeaderNavigation
-        overrides={{
-          Root: {
-            style: ({$theme}) => ({
-              paddingLeft: $theme.sizing.scale800,
-              paddingRight: $theme.sizing.scale800,
-            }),
-          },
-        }}
-      >
-        <NavigationList align={ALIGN.left}>
-          <Block display="flex" alignItems="center">
-            <Link href="/" prefetch>
-              <Block
-                as="img"
-                height="29.25px"
-                src={Logo}
-                width="101px"
-                overrides={{Block: {style: {cursor: 'pointer'}}}}
-              />
-            </Link>
-            <Block marginLeft="scale600">{version}</Block>
-            <Block
-              overrides={{
-                Block: {
-                  style: {
-                    color: 'inherit',
-                    fontStyle: 'italic',
-                  },
-                },
-              }}
-              target="_blank"
-              as="a"
-              href="https://github.com/uber-web/baseui/releases"
-            >
-              (Changelog)
-            </Block>
-          </Block>
-        </NavigationList>
-        <NavigationList align={ALIGN.center} />
-        <NavigationList align={ALIGN.right}>
-          <Search />
-          <Block marginLeft="scale600">
-            <ComponentMenu />
-          </Block>
-          <Block
-            $as="a"
-            href="https://github.com/uber-web/baseui"
-            marginLeft="scale600"
-            $style={{textDecoration: 'none'}}
-            target="_blank"
-          >
-            <Button
-              kind={ButtonKind.secondary}
-              overrides={{
-                EndEnhancer: {
-                  style: {
-                    marginLeft: 0,
-                  },
-                },
-              }}
-              endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
-            />
-          </Block>
-          <Block
-            $as="a"
-            href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
-            marginLeft="scale600"
-            $style={{textDecoration: 'none'}}
-            target="_blank"
-          >
-            <Button
-              kind={ButtonKind.secondary}
-              overrides={{
-                EndEnhancer: {
-                  style: {
-                    marginLeft: 0,
-                  },
-                },
-              }}
-              endEnhancer={() => <SlackLogo size={24} color="#276EF1" />}
-            />
-          </Block>
-          <Block marginLeft="scale600">
-            <Link href="/getting-started/installation" prefetch>
-              <Button>Get Started</Button>
-            </Link>
-          </Block>
-        </NavigationList>
-      </HeaderNavigation>
-    </Header>
+const HEADER_HEIGHT = '64px';
 
-    <Layout
-      overrides={{
-        Layout: {style: ({$theme}) => ({paddingTop: $theme.sizing.scale500})},
-      }}
-    >
+export default (props: PropsT) => {
+  const [isMenuCollapsed, setMenuCollapsed] = React.useState(false);
+
+  return (
+    <Layout>
       <Sidebar
+        breakpoint="large"
+        isCollapsed={isMenuCollapsed}
+        onCollapse={() => setMenuCollapsed(true)}
         overrides={{
           Sidebar: {
             style: ({$theme}) => ({
-              marginLeft: $theme.sizing.scale800,
-              marginRight: $theme.sizing.scale800,
+              boxSizing: 'border-box',
+              paddingTop: $theme.sizing.scale300,
+              paddingBottom: $theme.sizing.scale300,
+              position: 'fixed',
+              maxHeight: `calc(100vh - ${HEADER_HEIGHT})`,
+              overflow: 'overlay',
+              backgroundColor: $theme.colors.white,
+              zIndex: 1,
+              marginTop: HEADER_HEIGHT,
             }),
           },
         }}
@@ -145,24 +63,140 @@ export default (props: PropsT) => (
         <SideMenu />
       </Sidebar>
 
-      <Content
-        overrides={{
-          Content: {
-            style: ({$theme}) => ({
-              borderLeft: `1px solid ${$theme.colors.border}`,
-              maxWidth: '45rem',
-              paddingLeft: $theme.sizing.scale900,
-            }),
-            props: {
-              id: 'docSearch-content',
+      <Layout>
+        <Header
+          overrides={{
+            Header: {
+              style: {
+                position: 'fixed',
+                width: '100%',
+                backgroundColor: 'white',
+                zIndex: 2,
+              },
             },
-          },
-        }}
-      >
-        <MDXProvider components={MarkdownElements}>
-          {props.children}
-        </MDXProvider>
-      </Content>
+          }}
+        >
+          <HeaderNavigation
+            overrides={{
+              Root: {
+                style: ({$theme}) => ({
+                  paddingLeft: $theme.sizing.scale800,
+                  paddingRight: $theme.sizing.scale800,
+                }),
+              },
+            }}
+          >
+            <NavigationList align={ALIGN.left}>
+              <Block display="flex" alignItems="center">
+                <Button
+                  overrides={{BaseButton: {style: {color: 'black'}}}}
+                  kind={ButtonKind.minimal}
+                  shape="square"
+                  onClick={() => setMenuCollapsed(!isMenuCollapsed)}
+                >
+                  <Menu />
+                </Button>
+                <Link href="/" prefetch>
+                  <Block
+                    as="img"
+                    height="29.25px"
+                    src={Logo}
+                    width="101px"
+                    paddingLeft="scale300"
+                    overrides={{Block: {style: {cursor: 'pointer'}}}}
+                  />
+                </Link>
+                <Block
+                  target="_blank"
+                  as="a"
+                  href="https://github.com/uber-web/baseui/releases"
+                  marginLeft="scale600"
+                  overrides={{
+                    Block: {
+                      style: {
+                        color: 'inherit',
+                        fontStyle: 'italic',
+                      },
+                    },
+                  }}
+                >
+                  {version}
+                </Block>
+              </Block>
+            </NavigationList>
+            <NavigationList align={ALIGN.center} />
+            <NavigationList align={ALIGN.right}>
+              <Search />
+              <Block marginLeft="scale600">
+                <ComponentMenu />
+              </Block>
+              <Block
+                $as="a"
+                href="https://github.com/uber-web/baseui"
+                marginLeft="scale600"
+                $style={{textDecoration: 'none'}}
+                target="_blank"
+              >
+                <Button
+                  kind={ButtonKind.secondary}
+                  overrides={{
+                    EndEnhancer: {
+                      style: {
+                        marginLeft: 0,
+                      },
+                    },
+                  }}
+                  endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
+                />
+              </Block>
+              <Block
+                $as="a"
+                href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
+                marginLeft="scale600"
+                $style={{textDecoration: 'none'}}
+                target="_blank"
+              >
+                <Button
+                  kind={ButtonKind.secondary}
+                  overrides={{
+                    EndEnhancer: {
+                      style: {
+                        marginLeft: 0,
+                      },
+                    },
+                  }}
+                  endEnhancer={() => <SlackLogo size={24} color="#276EF1" />}
+                />
+              </Block>
+              <Block marginLeft="scale600">
+                <Link href="/getting-started/installation" prefetch>
+                  <Button>Get Started</Button>
+                </Link>
+              </Block>
+            </NavigationList>
+          </HeaderNavigation>
+        </Header>
+
+        <Content
+          overrides={{
+            Content: {
+              style: ({$theme}) => ({
+                maxWidth: '45rem',
+                paddingLeft: $theme.sizing.scale900,
+                marginLeft: isMenuCollapsed ? 0 : '250px',
+                marginTop: HEADER_HEIGHT,
+              }),
+              props: {
+                id: 'docSearch-content',
+              },
+            },
+          }}
+        >
+          <MDXProvider components={MarkdownElements}>
+            {props.children}
+          </MDXProvider>
+        </Content>
+      </Layout>
     </Layout>
-  </Layout>
-);
+  );
+};
