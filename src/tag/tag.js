@@ -23,7 +23,9 @@ class Tag extends React.Component<PropsT, {}> {
     isFocused: false,
     isHovered: false,
     onActionClick: () => {},
+    onActionKeyDown: () => {},
     onClick: null,
+    onKeyDown: null,
     overrides: {},
     kind: 'primary',
     variant: VARIANT.light,
@@ -57,7 +59,6 @@ class Tag extends React.Component<PropsT, {}> {
   render() {
     const {
       children,
-      onClick,
       closeable,
       color,
       disabled,
@@ -65,6 +66,7 @@ class Tag extends React.Component<PropsT, {}> {
       isHovered,
       kind,
       onActionClick,
+      onClick,
       overrides = {},
       variant,
     } = this.props;
@@ -78,7 +80,7 @@ class Tag extends React.Component<PropsT, {}> {
     const rootHandlers = disabled
       ? {}
       : {
-          onClick: onActionClick,
+          onClick: onClick,
           onKeyDown: this.handleKeyDown,
         };
     const actionHandlers = disabled

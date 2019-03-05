@@ -84,7 +84,7 @@ function getAlpha(
 function getFontColor(props: SharedPropsT, hovered) {
   const {
     $theme,
-    $kind = COLOR_STYLE_KEYS.primary,
+    $kind = KIND.primary,
     $color = '#000',
     $variant = VARIANT.light,
   } = props;
