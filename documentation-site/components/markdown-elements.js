@@ -113,7 +113,7 @@ export default {
   h1: ({children}: {children: React.Node}) => (
     <React.Fragment>
       <Head>
-        <title key="title">Base UI - {children}</title>
+        <title key="title">Base Web - {children}</title>
       </Head>
       <Heading element="h1" fontType="font700">
         {children}

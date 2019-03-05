@@ -20,16 +20,16 @@ export default Layout;
 
 # Understanding Overrides
 
-**Base UI is a set of reusable React components that implements the Base UI design language** and can be used in two different ways:
+**Base Web is a set of reusable React components that implements the Base Web design language** and can be used in two different ways:
 
-- **To build an application** that fully adopts the Base UI design language. You import and use Base UI components out of the box.
-- **To build a new design system** inherited from the Base. You take Base UI components and customize them through the Overrides mechanism.
+- **To build an application** that fully adopts the Base Web design language. You import and use Base Web components out of the box.
+- **To build a new design system** inherited from the Base. You take Base Web components and customize them through the Overrides mechanism.
 
-If you are building an application using the Base UI design language (the first scenario), you should avoid a further customization. This helps to keep the design of your application consistent and makes future upgrades easier. **Overrides is an escape hatch that should be used only with the great caution!**
+If you are building an application using the Base Web design language (the first scenario), you should avoid a further customization. This helps to keep the design of your application consistent and makes future upgrades easier. **Overrides is an escape hatch that should be used only with the great caution!**
 
 ## Subcomponents
 
-Base UI components typically consist of many **subcomponents**. Let's use `baseui/dnd-list` as an example:
+Base Web components typically consist of many **subcomponents**. Let's use `baseui/dnd-list` as an example:
 
 <DndListExample />
 
@@ -57,7 +57,7 @@ But as you might guess, there are multiple React components under the hood, comp
 - props of the subcomponent
 - the whole subcomponent
 
-**Every Base UI component has a top-level prop called `overrides`**. It accepts a map of subcomponents and desired overrides. For example, if we want to change the `Label`'s color and also add an additional `data-test-id` attribute (props are spread over the subcomponent), we can do:
+**Every Base Web component has a top-level prop called `overrides`**. It accepts a map of subcomponents and desired overrides. For example, if we want to change the `Label`'s color and also add an additional `data-test-id` attribute (props are spread over the subcomponent), we can do:
 
 ```jsx
 <StatefulList
@@ -81,11 +81,11 @@ We defined `overrides.Label.style` and `overrides.Label.props` properties and th
 
 <DndListExampleStyle />
 
-The `overrides.Label.style` property accepts a [style object](https://www.styletron.org/concepts/#style-object) or [style function](https://www.styletron.org/concepts/#style-function) since [Styletron](https://www.styletron.org) manages all Base UI styles.
+The `overrides.Label.style` property accepts a [style object](https://www.styletron.org/concepts/#style-object) or [style function](https://www.styletron.org/concepts/#style-function) since [Styletron](https://www.styletron.org) manages all Base Web styles.
 
 ## `$theme`
 
-If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base UI [design constants](/theming/theming-values). So instead of the hard-coded value `#892C21`, you can use the theme:
+If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base Web [design constants](/theming/theming-values). So instead of the hard-coded value `#892C21`, you can use the theme:
 
 ```jsx
 <StatefulList
@@ -135,7 +135,7 @@ And the result is that the Label gets blue when being dragged:
 
 ## Overrides Inspector
 
-Almost every Base UI component has multiple overrides. **How can you learn what's available to you?** Every component page has the `Overrides` section at the bottom. It lists all overridable subcomponents and highlights each one of them. This box is taken straight from the [dnd-list page](/components/dnd-list/#overrides):
+Almost every Base Web component has multiple overrides. **How can you learn what's available to you?** Every component page has the `Overrides` section at the bottom. It lists all overridable subcomponents and highlights each one of them. This box is taken straight from the [dnd-list page](/components/dnd-list/#overrides):
 
 <Overrides
   name="Drag and Drop List"
@@ -155,7 +155,7 @@ If you are interested in **what state props your style functions can use**, you'
 
 > **This is a very advanced technique and rarely needed**. If you go down this path, you might also need to inspect our source code to fully understand all behaviors that subcomponents should/can implement.
 
-So far we demonstrated how to **override styles or add additional props** but you can also **completely replace subcomponents**. This means you can alter the behavior and appearance of all Base UI components. For example, **we can enhance our textual Label and add a cloning functionality**:
+So far we demonstrated how to **override styles or add additional props** but you can also **completely replace subcomponents**. This means you can alter the behavior and appearance of all Base Web components. For example, **we can enhance our textual Label and add a cloning functionality**:
 
 ```jsx
 import React from 'react';
@@ -208,7 +208,7 @@ Note that **we lost the original Label styling** since we replaced the whole Lab
 import {StyledLabel} from 'baseui/dnd-list';
 ```
 
-The named import always matches the override key with an addition of `Styled` prefix. Following two examples yield the exactly same result since this is how Base UI components are implemented underneath:
+The named import always matches the override key with an addition of `Styled` prefix. Following two examples yield the exactly same result since this is how Base Web components are implemented underneath:
 
 ```jsx
 <StatefulList
@@ -221,7 +221,7 @@ The named import always matches the override key with an addition of `Styled` pr
 />
 ```
 
-**This technique gives you a ridiculous amount of flexibility.** However, with great power comes great responsibility. We might not be able to effectively support you if you run into issues and upgrades to future versions of Base UI can be complicated. If you have a need to change components behavior this way, you should first [ask maintainers](https://github.com/uber-web/baseui/issues) of Base UI. We might add your feature through an official API instead so you don't need to use this override.
+**This technique gives you a ridiculous amount of flexibility.** However, with great power comes great responsibility. We might not be able to effectively support you if you run into issues and upgrades to future versions of Base Web can be complicated. If you have a need to change components behavior this way, you should first [ask maintainers](https://github.com/uber-web/baseui/issues) of Base Web. We might add your feature through an official API instead so you don't need to use this override.
 
 To learn more about how overrides work internally, check out the [Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646)
 article.
