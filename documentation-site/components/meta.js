@@ -13,8 +13,8 @@ import Head from 'next/head';
 
 const title =
   process.env.WEBSITE_ENV === 'production'
-    ? 'Base UI documentation'
-    : '[DEV] Base UI documentation';
+    ? 'Base Web documentation'
+    : '[DEV] Base Web documentation';
 
 export default () => (
   <Head>
@@ -47,7 +47,7 @@ export default () => (
       href="/static/safari-pinned-tab.svg"
       color="#5bbad5"
     />
-    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
   </Head>
 );
