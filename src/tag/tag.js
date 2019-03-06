@@ -62,7 +62,7 @@ class Tag extends React.Component<PropsT, {}> {
       <Root {...sharedProps} {...rootProps}>
         <StyledText>{children}</StyledText>
         {closeable ? (
-          <Action {...sharedProps} {...actionProps} {...events}>
+          <Action role="button" {...sharedProps} {...actionProps} {...events}>
             <ActionIcon
               width={'8'}
               height={'8'}

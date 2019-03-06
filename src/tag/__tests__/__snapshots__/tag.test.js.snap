@@ -34,9 +34,11 @@ exports[`Stateless tag should render component: Component has correct render 1`]
         $isHovered={false}
         $kind="primary"
         onClick={[Function]}
+        role="button"
       >
         <span
           onClick={[Function]}
+          role="button"
           styled-component="true"
         >
           <MockStyledComponent
