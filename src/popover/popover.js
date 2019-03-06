@@ -47,6 +47,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   anchorRef = (React.createRef(): {current: *});
   popperRef = (React.createRef(): {current: *});
   arrowRef = (React.createRef(): {current: *});
+  popperHeight = 0;
   /* eslint-enable react/sort-comp */
 
   /**
@@ -65,6 +66,18 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     prevProps: PopoverPropsT,
     prevState: PopoverPrivateStateT,
   ) {
+    // Handles the case where popover content changes size and creates a gap between the anchor and
+    // the popover. Popper.js only schedules updates on resize and scroll events. In the case of
+    // the Select component, when options were filtered in the dropdown menu it creates a gap
+    // between it and the input element.
+    if (this.popperRef.current) {
+      const {height} = this.popperRef.current.getBoundingClientRect();
+      if (this.popperHeight !== height) {
+        this.popperHeight = height;
+        this.popper && this.popper.scheduleUpdate();
+      }
+    }
+
     if (
       this.props.isOpen !== prevProps.isOpen ||
       this.state.isMounted !== prevState.isMounted
