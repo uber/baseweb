@@ -37,7 +37,7 @@ const Home = () => {
               Put something on my console!
             </Button>
           }
-          title="Hello from Base UI 👋"
+          title="Hello from Base Web 👋"
         >
           We glad you are here!
         </Card>

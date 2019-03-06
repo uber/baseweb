@@ -94,9 +94,7 @@ export default class SortableTable extends React.Component {
               title="Name"
               direction={this.state.nameDirection}
               onSort={() => this.handleSort('name', this.state.nameDirection)}
-            >
-              <button onClick={() => console.log('filter')}>f</button>
-            </SortableHeadCell>
+            />
             <SortableHeadCell
               title="Age"
               direction={this.state.ageDirection}

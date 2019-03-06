@@ -221,12 +221,23 @@ describe('Popover', () => {
       </Popover>,
     );
 
-    expect(CustomComponent).toHaveBeenCalledTimes(1);
-    expect(CustomComponent).toHaveBeenLastCalledWith(
+    // first render is prior to mount, second is after cdm
+    expect(CustomComponent).toHaveBeenCalledTimes(2);
+    expect(CustomComponent).toHaveBeenCalledWith(
       {
         $ref: wrapper.instance().anchorRef,
         onClick: wrapper.instance().onAnchorClick,
         'aria-controls': null,
+        'aria-haspopup': 'true',
+        'aria-expanded': 'true',
+      },
+      {},
+    );
+    expect(CustomComponent).toHaveBeenLastCalledWith(
+      {
+        $ref: wrapper.instance().anchorRef,
+        onClick: wrapper.instance().onAnchorClick,
+        'aria-controls': 'bui-mock-id',
         'aria-haspopup': 'true',
         'aria-expanded': 'true',
       },

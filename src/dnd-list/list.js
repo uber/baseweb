@@ -70,6 +70,8 @@ class StatelessList extends React.Component<ListPropsT> {
               $isRemovable: isRemovable,
               $isDragged: isDragged,
               $isSelected: isSelected,
+              $value: value,
+              $index: index,
             };
             return (
               <Item

@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 
+import Head from 'next/head';
 import {Block} from 'baseui/block';
 import {styled} from 'baseui/styles';
 import Link from 'next/link';
@@ -92,30 +93,32 @@ const Blockquote = styled('blockquote', {
   borderRadius: '3px',
   margin: 0,
   padding: '1em 3em',
-  ':before': {
-    position: 'absolute',
-    color: '#ccc',
-    content: 'open-quote',
-    fontSize: '4em',
-    marginLeft: '-0.55em',
-    marginTop: '-0.25em',
-  },
-  ':after': {
-    float: 'right',
-    color: '#ccc',
-    content: 'close-quote',
-    fontSize: '4em',
-    marginRight: '-0.55em',
-    marginTop: '-0.45em',
-  },
 });
+
+export const DocLink = ({children, href}: {children: string, href: string}) => {
+  const parts = href.split('#');
+  const internal =
+    (parts[0] === '' && parts[1] !== '') || !href.includes('http');
+  return (
+    <Link href={href} prefetch={internal}>
+      <StyledLink href={href} target={internal ? undefined : '_blank'}>
+        {children}
+      </StyledLink>
+    </Link>
+  );
+};
 
 export default {
   code: Code,
   h1: ({children}: {children: React.Node}) => (
-    <Heading element="h1" fontType="font700">
-      {children}
-    </Heading>
+    <React.Fragment>
+      <Head>
+        <title key="title">Base Web - {children}</title>
+      </Head>
+      <Heading element="h1" fontType="font700">
+        {children}
+      </Heading>
+    </React.Fragment>
   ),
   h2: ({children}: {children: React.Node}) => (
     <Heading element="h2" fontType="font600">
@@ -147,16 +150,5 @@ export default {
   ul: UnorderedList,
   inlineCode: ({children}: Props) => <InlineCode>{children}</InlineCode>,
   blockquote: ({children}: Props) => <Blockquote>{children}</Blockquote>,
-  a: ({children, href}: {children: string, href: string}) => {
-    const parts = href.split('#');
-    const internal =
-      (parts[0] === '' && parts[1] !== '') || !href.includes('http');
-    return (
-      <Link href={href} prefetch={internal}>
-        <StyledLink href={href} target={internal ? undefined : '_blank'}>
-          {children}
-        </StyledLink>
-      </Link>
-    );
-  },
+  a: DocLink,
 };

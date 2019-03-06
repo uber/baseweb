@@ -168,6 +168,7 @@ export type PopoverPrivateStateT = {
   arrowOffset: OffsetT,
   popoverOffset: OffsetT,
   placement: PopoverPlacementT,
+  isMounted: boolean,
 };
 
 export type SharedStylePropsArgT = {
