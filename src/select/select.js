@@ -53,6 +53,12 @@ const isClick = event => event.type === 'click';
 const isLeftClick = event =>
   event.button !== null && event.button !== undefined && event.button === 0;
 
+const containsNode = (parent, child) => {
+  if (__BROWSER__) {
+    return child instanceof Node && parent && parent.contains(child);
+  }
+};
+
 export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
   if (rootTarget instanceof Element) {
     let target: ?Element = rootTarget;
@@ -104,6 +110,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
         : this.props.onClose;
       handler && handler();
     }
+
+    if (!prevState.isFocused && this.state.isFocused) {
+      if (__BROWSER__) {
+        document.addEventListener('click', this.handleClickOutside);
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -128,15 +140,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // Handle touch outside on mobile to dismiss menu, ensures that the
   // touch target is not within the wrapper DOM node.
   handleTouchOutside = (event: TouchEvent) => {
-    if (__BROWSER__) {
-      const containsNode =
-        event.target instanceof Node &&
-        this.wrapper &&
-        this.wrapper.contains(event.target);
-
-      if (this.wrapper && !containsNode) {
-        this.closeMenu();
-      }
+    if (this.wrapper && !containsNode(this.wrapper, event.target)) {
+      this.closeMenu();
     }
   };
 
@@ -254,7 +259,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleClickOutside = (event: MouseEvent) => {
+  handleBlur = (event: Event) => {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
@@ -270,6 +275,17 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
 
     this.setState(onBlurredState);
+
+    if (__BROWSER__) {
+      document.removeEventListener('click', this.handleClickOutside);
+    }
+  };
+
+  handleClickOutside = (event: MouseEvent) => {
+    const isFocused = this.state.isFocused || this.state.isPseudoFocused;
+    if (isFocused && containsNode(this.wrapper, event.target)) {
+      this.handleBlur(event);
+    }
   };
 
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -315,6 +331,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           event.stopPropagation();
         } else if (this.props.clearable && this.props.escapeClearsValue) {
           this.clearValue(event);
+          this.setState({isFocused: false, isPseudoFocused: false});
           event.stopPropagation();
         }
         break;
@@ -598,6 +615,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
           aria-required={this.props.required || null}
+          onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
           $ref={ref => (this.input = ref)}
           tabIndex={0}
@@ -620,6 +638,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-required={this.props.required || null}
           disabled={this.props.disabled || null}
           inputRef={ref => (this.input = ref)}
+          onBlur={this.handleBlur}
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           overrides={{Input: overrides.Input}}
