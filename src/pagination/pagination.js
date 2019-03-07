@@ -135,7 +135,7 @@ export default class Pagination extends React.PureComponent<
           <Root {...rootProps}>
             <Button
               onClick={this.onPrevClick}
-              startEnhancer={() => <ChevronLeft size={24} />}
+              startEnhancer={() => <ChevronLeft title={''} size={24} />}
               kind={KIND.tertiary}
               overrides={{
                 BaseButton: PrevButton,
@@ -154,6 +154,7 @@ export default class Pagination extends React.PureComponent<
                 onClick={this.onDropdownButtonClick}
                 endEnhancer={() => (
                   <TriangleDown
+                    title={''}
                     overrides={{
                       Svg: {
                         style: ({$theme}) => ({
@@ -202,7 +203,7 @@ export default class Pagination extends React.PureComponent<
             </MaxLabel>
             <Button
               onClick={this.onNextClick}
-              endEnhancer={() => <ChevronRight size={24} />}
+              endEnhancer={() => <ChevronRight title={''} size={24} />}
               kind={KIND.tertiary}
               overrides={{
                 BaseButton: NextButton,
