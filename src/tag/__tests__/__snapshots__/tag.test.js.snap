@@ -22,12 +22,14 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     $isHovered={false}
     $kind="primary"
     $variant="light"
+    aria-label="button"
     onClick={null}
     onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   >
     <span
+      aria-label="button"
       onClick={null}
       onKeyDown={[Function]}
       role="button"
@@ -49,12 +51,14 @@ exports[`Stateless tag should render component: Component has correct render 1`]
         $isHovered={false}
         $kind="primary"
         $variant="light"
+        aria-label="close button"
         onClick={[MockFunction]}
         onKeyDown={[Function]}
         role="button"
         tabIndex="0"
       >
         <span
+          aria-label="close button"
           onClick={[MockFunction]}
           onKeyDown={[Function]}
           role="button"

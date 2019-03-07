@@ -197,16 +197,8 @@ export type ColorsT = {
   tagPositiveBackground: string,
   tagWarningBackground: string,
   tagNegativeBackground: string,
-  tagNeutralFont: string,
-  tagPrimaryFont: string,
-  tagPositiveFont: string,
-  tagWarningFont: string,
-  tagNegativeFont: string,
-  tagNeutralFontAlt: string,
-  tagPrimaryFontAlt: string,
-  tagPositiveFontAlt: string,
-  tagWarningFontAlt: string,
-  tagNegativeFontAlt: string,
+  tagRGBGradient: string,
+  tagRGBGradientSecondary: string,
 
   // Table
   tableHeadBackgroundColor: string,

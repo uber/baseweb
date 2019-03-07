@@ -101,6 +101,7 @@ class Tag extends React.Component<PropsT, {}> {
     };
     return (
       <Root
+        aria-label="button"
         role="button"
         tabIndex={clickable ? '0' : null}
         {...rootHandlers}
@@ -110,6 +111,7 @@ class Tag extends React.Component<PropsT, {}> {
         <StyledText>{children}</StyledText>
         {closeable ? (
           <Action
+            aria-label="close button"
             role="button"
             tabIndex={'0'}
             {...actionHandlers}

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Tag, KIND, VARIANT} from 'baseui/tag';
 
-const kinds = ['neutral', 'primary', 'positive', 'warning', 'negative'];
-const variants = [VARIANT.solid, null, VARIANT.outlined];
+const kinds = Object.keys(KIND).filter(kind => kind !== KIND.custom);
+const variants = Object.keys(VARIANT);
 const onClick = kind => alert(`${kind} tag is clicked`);
 
 export default () => (
