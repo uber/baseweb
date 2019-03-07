@@ -135,7 +135,7 @@ export default class Pagination extends React.PureComponent<
           <Root {...rootProps}>
             <Button
               onClick={this.onPrevClick}
-              endEnhancer={() => <ChevronLeft size={24} />}
+              startEnhancer={() => <ChevronLeft size={24} />}
               kind={KIND.tertiary}
               overrides={{
                 BaseButton: PrevButton,
