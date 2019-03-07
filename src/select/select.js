@@ -77,8 +77,14 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
 class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;
 
-  wrapper: ?HTMLElement;
+  // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
+  // open. This is required so that we can check if clicks are on/off the anchor element.
+  anchor: {current: ?HTMLElement} = React.createRef();
+  // dropdown is a ref that refers to the popover element. This is required so that we can check if
+  // clicks are on/off the dropdown element.
+  dropdown: {current: ?HTMLElement} = React.createRef();
   input: ?HTMLInputElement;
+  // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
   // option has been cleared.
@@ -104,11 +110,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
     if (prevState.isOpen !== this.state.isOpen) {
-      this.toggleTouchOutsideEvent(this.state.isOpen);
-      const handler = this.state.isOpen
-        ? this.props.onOpen
-        : this.props.onClose;
-      handler && handler();
+      if (this.state.isOpen) {
+        this.props.onOpen && this.props.onOpen();
+        document.addEventListener('touchstart', this.handleTouchOutside);
+      } else {
+        this.props.onClose && this.props.onClose();
+        document.removeEventListener('touchstart', this.handleTouchOutside);
+      }
     }
 
     if (!prevState.isFocused && this.state.isFocused) {
@@ -119,17 +127,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   componentWillUnmount() {
-    this.toggleTouchOutsideEvent(false);
-  }
-
-  toggleTouchOutsideEvent(enabled: boolean) {
-    if (__BROWSER__) {
-      if (enabled) {
-        document.addEventListener('touchstart', this.handleTouchOutside);
-      } else {
-        document.removeEventListener('touchstart', this.handleTouchOutside);
-      }
-    }
+    document.removeEventListener('touchstart', this.handleTouchOutside);
   }
 
   focus() {
@@ -138,9 +136,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   // Handle touch outside on mobile to dismiss menu, ensures that the
-  // touch target is not within the wrapper DOM node.
+  // touch target is not within the anchor DOM node.
   handleTouchOutside = (event: TouchEvent) => {
-    if (this.wrapper && !containsNode(this.wrapper, event.target)) {
+    if (!containsNode(this.anchor.current, event.target)) {
       this.closeMenu();
     }
   };
@@ -260,6 +258,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleBlur = (event: Event) => {
+    if (containsNode(this.anchor.current, event.target)) {
+      return;
+    }
+
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
@@ -282,8 +284,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleClickOutside = (event: MouseEvent) => {
+    if (containsNode(this.dropdown.current, event.target)) return;
+
     const isFocused = this.state.isFocused || this.state.isPseudoFocused;
-    if (isFocused && containsNode(this.wrapper, event.target)) {
+    if (isFocused && !containsNode(this.anchor.current, event.target)) {
       this.handleBlur(event);
     }
   };
@@ -805,9 +809,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
       <LocaleContext.Consumer>
         {locale => (
           <Popover
-            onClickOutside={this.handleClickOutside}
+            // Popover does not provide ability to forward refs through, and if we were to simply
+            // apply the ref to the Root component below it would be overwritten before the popover
+            // renders it. Using this strategy, we will get a ref to the popover, then reuse its
+            // anchorRef so we can check if clicks are on the select component or not.
+            ref={ref => {
+              if (!ref) return;
+              this.anchor = ref.anchorRef;
+            }}
             isOpen={isOpen}
-            content={({anchor}) => {
+            content={() => {
               const dropdownProps = {
                 error: this.props.error,
                 getOptionLabel:
@@ -825,11 +836,15 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 type,
                 value: valueArray,
                 valueKey: this.props.valueKey,
-                width: anchor ? anchor.clientWidth : null,
+                width: this.anchor.current
+                  ? this.anchor.current.clientWidth
+                  : null,
               };
 
               if (options && options.length) {
-                return <SelectDropdown {...dropdownProps} />;
+                return (
+                  <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />
+                );
               } else if (this.props.noResultsMsg) {
                 const noResults = {
                   [this.props.valueKey]: 'NO_RESULTS_FOUND',
@@ -838,7 +853,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
                   disabled: true,
                 };
                 return (
-                  <SelectDropdown {...dropdownProps} options={[noResults]} />
+                  <SelectDropdown
+                    innerRef={this.dropdown}
+                    {...dropdownProps}
+                    options={[noResults]}
+                  />
                 );
               } else {
                 return null;
@@ -846,11 +865,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             }}
             placement={PLACEMENT.bottom}
           >
-            <Root
-              $ref={ref => (this.wrapper = ref)}
-              {...sharedProps}
-              {...rootProps}
-            >
+            <Root {...sharedProps} {...rootProps}>
               <ControlContainer
                 onKeyDown={this.handleKeyDown}
                 onClick={this.handleClick}

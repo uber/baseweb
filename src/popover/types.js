@@ -34,7 +34,7 @@ export type StateReducerT = (
   currentState: StateT,
 ) => StateT;
 
-export type ContentRenderPropT = ({anchor: ?HTMLElement}) => React.Node;
+export type ContentRenderPropT = () => React.Node;
 
 export type StatefulContentRenderPropT = ({
   close: () => void,

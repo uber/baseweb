@@ -474,9 +474,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
           {...sharedProps}
           {...getOverrideProps(InnerOverride)}
         >
-          {typeof content === 'function'
-            ? content({anchor: this.anchorRef.current})
-            : content}
+          {typeof content === 'function' ? content() : content}
         </Inner>
       </Body>
     );
