@@ -160,6 +160,8 @@ export type DatepickerPropsT = CalendarPropsT & {
     formatString: string,
   ) => string,
   formatString: string,
+  /** Where to mount the popover */
+  mountNode?: HTMLElement,
 };
 
 export type SharedStylePropsT = {

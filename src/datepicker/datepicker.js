@@ -145,6 +145,7 @@ export default class Datepicker extends React.Component<
         {locale => (
           <React.Fragment>
             <PopoverComponent
+              mountNode={this.props.mountNode}
               placement={PLACEMENT.bottom}
               isOpen={this.state.isOpen}
               onClickOutside={this.close}
