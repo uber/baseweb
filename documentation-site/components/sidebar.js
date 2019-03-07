@@ -15,16 +15,10 @@ import Link from 'next/link';
 import NavLink from './nav-link';
 import Routes from '../routes';
 
-const levelToPadding = {
-  1: 'scale400',
-  2: 'scale500',
-  3: 'scale600',
-};
-
 const levelToFont = {
   1: 'font450',
   2: 'font400',
-  3: 'font300',
+  3: 'font400',
 };
 
 const List = styled(Block, ({$theme}) => ({
@@ -54,9 +48,21 @@ const NavigationItem = props => {
   return (
     <Block
       font={levelToFont[level]}
-      paddingLeft={levelToPadding[level]}
       paddingBottom={level !== 3 ? 'scale100' : 0}
-      paddingTop={index === 0 && level === 3 ? 'scale100' : 0}
+      paddingTop={index === 0 && level === 3 ? 'scale300' : 'scale300'}
+      overrides={{
+        Block: {
+          style: ({$theme}) => ({
+            paddingLeft: !route.children ? $theme.sizing.scale600 : 0,
+            textTransform: route.children ? 'uppercase' : 'none',
+            ...{
+              ...(route.children && level === 2
+                ? $theme.typography.font350
+                : {}),
+            },
+          }),
+        },
+      }}
     >
       {route.path ? (
         <NavigationLink path={route.path} text={route.text} />

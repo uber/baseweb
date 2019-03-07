@@ -9,16 +9,16 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {MDXProvider} from '@mdx-js/tag';
 import Link from 'next/link';
+import {StyledLink} from 'baseui/link';
+import {Tag} from 'baseui/tag';
 
 import {Block} from 'baseui/block';
-import {Button, KIND as ButtonKind} from 'baseui/button';
 import {
   HeaderNavigation,
   StyledNavigationList as NavigationList,
   ALIGN,
 } from 'baseui/header-navigation';
 
-import ComponentMenu from './component-menu';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import Logo from '../images/base-web.svg';
@@ -39,6 +39,10 @@ export default (props: PropsT) => (
           style: ({$theme}) => ({
             paddingLeft: $theme.sizing.scale800,
             paddingRight: $theme.sizing.scale800,
+            paddingTop: $theme.sizing.scale600,
+            paddingBottom: $theme.sizing.scale600,
+            border: 0,
+            boxShadow: `0 2px 8px ${$theme.colors.mono500}`,
           }),
         },
       }}
@@ -54,13 +58,12 @@ export default (props: PropsT) => (
               overrides={{Block: {style: {cursor: 'pointer'}}}}
             />
           </Link>
-          <Block marginLeft="scale600">{version}</Block>
           <Block
             overrides={{
               Block: {
                 style: {
                   color: 'inherit',
-                  fontStyle: 'italic',
+                  textDecoration: 'none',
                 },
               },
             }}
@@ -68,64 +71,50 @@ export default (props: PropsT) => (
             as="a"
             href="https://github.com/uber-web/baseui/releases"
           >
-            (Changelog)
+            <Tag closeable={false}>{version}</Tag>
           </Block>
         </Block>
       </NavigationList>
       <NavigationList align={ALIGN.center} />
       <NavigationList align={ALIGN.right}>
-        <Search />
-        <Block marginLeft="scale600">
-          <ComponentMenu />
-        </Block>
-        <Block
-          $as="a"
-          href="https://github.com/uber-web/baseui"
-          marginLeft="scale600"
-          $style={{textDecoration: 'none'}}
-          target="_blank"
-        >
-          <Button
-            kind={ButtonKind.secondary}
-            overrides={{
-              EndEnhancer: {
-                style: {
-                  marginLeft: 0,
-                },
-              },
-            }}
-            endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
-          />
-        </Block>
-        <Block
-          $as="a"
-          href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
-          marginLeft="scale600"
-          $style={{textDecoration: 'none'}}
-          target="_blank"
-        >
-          <Button
-            kind={ButtonKind.secondary}
-            overrides={{
-              EndEnhancer: {
-                style: {
-                  marginLeft: 0,
-                },
-              },
-            }}
-            endEnhancer={() => <SlackLogo size={24} color="#276EF1" />}
-          />
-        </Block>
-        <Block marginLeft="scale600">
-          <Link href="/getting-started/installation" prefetch>
-            <Button>Get Started</Button>
-          </Link>
+        <Block display="flex" alignItems="center">
+          <Search />
+          <Block
+            $as="a"
+            href="https://github.com/uber-web/baseui"
+            marginLeft="scale700"
+            $style={{textDecoration: 'none'}}
+            target="_blank"
+          >
+            <GithubLogo size={24} color="#276EF1" />
+          </Block>
+          <Block
+            $as="a"
+            href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
+            marginLeft="scale700"
+            $style={{textDecoration: 'none'}}
+            target="_blank"
+          >
+            <SlackLogo size={24} color="#276EF1" />
+          </Block>
+          <Block marginLeft="scale700">
+            <Link href="/getting-started/installation" prefetch>
+              <StyledLink href="/getting-started/installation">
+                Get Started
+              </StyledLink>
+            </Link>
+          </Block>
         </Block>
       </NavigationList>
     </HeaderNavigation>
 
-    <Block display="flex" paddingTop="scale500">
-      <Block display="flex" marginLeft="scale800" marginRight="scale800">
+    <Block display="flex" paddingTop="scale400">
+      <Block
+        display="flex"
+        paddingTop="scale800"
+        marginLeft="scale1000"
+        marginRight="scale800"
+      >
         <Sidebar />
       </Block>
 
@@ -135,8 +124,7 @@ export default (props: PropsT) => (
         overrides={{
           Block: {
             style: ({$theme}) => ({
-              borderLeft: `1px solid ${$theme.colors.border}`,
-              maxWidth: '45rem',
+              maxWidth: '40rem',
             }),
             props: {
               id: 'docSearch-content',

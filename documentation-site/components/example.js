@@ -83,8 +83,15 @@ class Example extends React.Component<PropsT, StateT> {
         overrides={{
           Root: {
             style: ({$theme}) => ({
-              marginTop: $theme.sizing.scale800,
-              marginBottom: $theme.sizing.scale800,
+              marginTop: $theme.sizing.scale1000,
+              marginBottom: $theme.sizing.scale1000,
+              boxShadow: 'none',
+              borderTop: 'none',
+              borderRight: 'none',
+              borderBottom: 'none',
+              borderRadius: 'none',
+              paddingLeft: $theme.sizing.scale800,
+              borderLeft: `5px solid ${$theme.colors.primary200}`,
             }),
           },
           Contents: {style: {margin: 0}},
@@ -94,10 +101,7 @@ class Example extends React.Component<PropsT, StateT> {
           display="flex"
           alignItems="center"
           justifyContent="space-between"
-          paddingTop="scale600"
-          paddingRight="scale500"
-          paddingBottom="scale600"
-          paddingLeft="scale800"
+          paddingTop="scale200"
         >
           <Heading element="span" fontType="font500">
             {this.props.title}
@@ -105,7 +109,7 @@ class Example extends React.Component<PropsT, StateT> {
 
           <Block display="flex" alignItems="center">
             <Button
-              kind={KIND.secondary}
+              kind={KIND.minimal}
               onClick={() => {
                 this.setState(prevState => ({
                   isSourceOpen: !prevState.isSourceOpen,
@@ -118,19 +122,7 @@ class Example extends React.Component<PropsT, StateT> {
           </Block>
         </Block>
 
-        <Block
-          padding="scale600"
-          overrides={{
-            Block: {
-              style: ({$theme}) => ({
-                borderTop: `1px solid ${$theme.colors.border}`,
-                borderBottom: this.state.isSourceOpen
-                  ? `1px solid ${$theme.colors.border}`
-                  : null,
-              }),
-            },
-          }}
-        >
+        <Block paddingTop="scale400" paddingBottom="scale400">
           {this.props.children}
         </Block>
 
@@ -168,7 +160,7 @@ class Example extends React.Component<PropsT, StateT> {
               >
                 {() => (
                   <Link>
-                    <Button kind={KIND.tertiary}>Edit on CodeSandbox</Button>
+                    <Button kind={KIND.minimal}>Edit on CodeSandbox</Button>
                   </Link>
                 )}
               </CodeSandboxer>
