@@ -2,44 +2,28 @@ import React from 'react';
 import {Tag, KIND, VARIANT} from 'baseui/tag';
 
 const kinds = ['neutral', 'primary', 'positive', 'warning', 'negative'];
+const variants = [VARIANT.solid, null, VARIANT.outlined];
+const onClick = kind => alert(`${kind} tag is clicked`);
+
 export default () => (
   <>
-    {kinds.map(kind => (
-      <Tag
-        closeable={false}
-        onClick={() => {
-          alert(`${kind} tag is clicked`);
-        }}
-        variant={VARIANT.solid}
-        kind={KIND[kind]}
-      >
-        {KIND[kind]}
-      </Tag>
-    ))}
-    <br />
-    {kinds.map(kind => (
-      <Tag
-        closeable={false}
-        onClick={() => {
-          alert(`${kind} tag is clicked`);
-        }}
-        kind={KIND[kind]}
-      >
-        {KIND[kind]}
-      </Tag>
-    ))}
-    <br />
-    {kinds.map(kind => (
-      <Tag
-        closeable={false}
-        onClick={() => {
-          alert(`${kind} tag is clicked`);
-        }}
-        variant={VARIANT.outlined}
-        kind={KIND[kind]}
-      >
-        {KIND[kind]}
-      </Tag>
+    {variants.map((variant, index) => (
+      <React.Fragment key={index}>
+        {kinds.map((kind, index) => (
+          <Tag
+            key={index}
+            closeable={false}
+            onClick={() => {
+              onClick(kind);
+            }}
+            variant={variant}
+            kind={KIND[kind]}
+          >
+            {KIND[kind]}
+          </Tag>
+        ))}
+        <br />
+      </React.Fragment>
     ))}
   </>
 );

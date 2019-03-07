@@ -9,23 +9,64 @@ import {COLOR_STYLE_KEYS, KIND, VARIANT} from './constants.js';
 import {styled, hexToRgb, type ThemeT} from '../styles/index.js';
 import type {SharedPropsT} from './types.js';
 
+export function getColor(
+  $theme?: ThemeT,
+  $kind?: string = COLOR_STYLE_KEYS.primary,
+  $color?: string = '#000',
+) {
+  if ($theme && $theme.colors[COLOR_STYLE_KEYS[$kind]]) {
+    return $theme.colors[COLOR_STYLE_KEYS[$kind]];
+  }
+  return $color;
+}
+
+function getAlpha(props: SharedPropsT, hovered: boolean = false) {
+  if (hovered) {
+    return '0.8';
+  }
+  return '0.92';
+}
+
+function getActionAlpha(
+  props: SharedPropsT,
+  hovered: boolean = false,
+  secondary: boolean = false,
+) {
+  const {$clickable, $variant = VARIANT.light} = props;
+  if ($variant === VARIANT.solid && (!$clickable && hovered) && secondary) {
+    return '0.24';
+  }
+  if (hovered) {
+    return '0.6';
+  }
+  return '0.92';
+}
+
 function getBackgroundColor(props: SharedPropsT, hovered: boolean = false) {
-  const {$color, $isFocused, $kind, $variant, $theme} = props;
-  if ($variant === VARIANT.outlined && $theme) {
+  const {$color, $kind, $variant, $theme} = props;
+  if ($variant === VARIANT.outlined) {
     return $theme.colors.tagBackground;
   }
+
   const color = getColor($theme, $kind, $color);
-  const alpha = getAlpha($theme, $variant, $color);
-  return hexToRgb(color, hovered || $isFocused ? '0.2' : alpha);
+  if ($variant === VARIANT.solid && !hovered) {
+    return color;
+  }
+
+  const alpha = getAlpha(props, hovered);
+  return `linear-gradient(0deg, 
+    rgba(${$theme.colors.tagRGBGradient}, ${alpha}), 
+    rgba(${$theme.colors.tagRGBGradient}, ${alpha})), 
+    ${color}`;
 }
 
 function getBorderColor(props: SharedPropsT, hovered: boolean = false) {
-  const {$color, $kind, $variant, $theme} = props;
+  const {$color, $clickable, $kind, $variant, $theme} = props;
   if ($variant !== VARIANT.outlined) {
     return 'transparent';
   }
   const color = getColor($theme, $kind, $color);
-  return hexToRgb(color, hovered ? '0.6' : '1');
+  return hexToRgb(color, $clickable && hovered ? '0.6' : '1');
 }
 
 function getBorderWidth(props: SharedPropsT) {
@@ -40,13 +81,27 @@ function getActionBackgroundColor(
   props: SharedPropsT,
   hovered: boolean = false,
 ) {
-  const {$color, $isFocused, $kind, $variant, $theme} = props;
+  const {$color, $clickable, $kind, $variant, $theme} = props;
   const color = getColor($theme, $kind, $color);
-  const alpha = getAlpha($theme, $variant, $color);
+  if (!hovered) {
+    return 'transparent';
+  }
   if ($variant === VARIANT.outlined) {
     return getBorderColor(props, hovered);
   }
-  return hexToRgb(color, hovered || $isFocused ? '0.3' : alpha);
+  let alpha;
+  if ($variant === VARIANT.solid && (!$clickable && hovered)) {
+    alpha = getActionAlpha(props, hovered, true);
+    return `linear-gradient(0deg, 
+      rgba(${$theme.colors.tagRGBGradientSecondary}, ${alpha}), 
+      rgba(${$theme.colors.tagRGBGradientSecondary}, ${alpha})), 
+      ${color}`;
+  }
+  alpha = getActionAlpha(props, hovered);
+  return `linear-gradient(0deg, 
+    rgba(${$theme.colors.tagRGBGradient}, ${alpha}), 
+    rgba(${$theme.colors.tagRGBGradient}, ${alpha})), 
+    ${color}`;
 }
 
 function getActionFontColor(props: SharedPropsT, hovered: boolean = false) {
@@ -57,30 +112,6 @@ function getActionFontColor(props: SharedPropsT, hovered: boolean = false) {
   return null;
 }
 
-export function getColor(
-  $theme?: ThemeT,
-  $kind?: string = COLOR_STYLE_KEYS.primary,
-  $color?: string = '#000',
-) {
-  if ($kind === KIND.custom) {
-    return $color;
-  }
-  if ($theme && $theme.colors && $theme.colors[COLOR_STYLE_KEYS[$kind]]) {
-    return $theme.colors[COLOR_STYLE_KEYS[$kind]];
-  }
-}
-
-function getAlpha(
-  $theme?: ThemeT,
-  $variant?: string = VARIANT.light,
-  $color?: string = '#000',
-) {
-  if ($variant === VARIANT.solid || $variant === VARIANT.outlined) {
-    return '1';
-  }
-  return '0.06';
-}
-
 function getFontColor(props: SharedPropsT, hovered) {
   const {
     $theme,
@@ -88,13 +119,13 @@ function getFontColor(props: SharedPropsT, hovered) {
     $color = '#000',
     $variant = VARIANT.light,
   } = props;
+  if ($variant === VARIANT.solid && !hovered) {
+    return $theme.colors.mono200;
+  }
   if ($kind === 'custom') {
     return $color;
   }
-  if ($variant === VARIANT.solid && !hovered && $theme) {
-    return $theme.colors.mono200;
-  }
-  if ($theme && $theme.colors && $theme.colors[COLOR_STYLE_KEYS[$kind]]) {
+  if ($theme.colors[COLOR_STYLE_KEYS[$kind]]) {
     return $theme.colors[COLOR_STYLE_KEYS[$kind]];
   }
 }
@@ -104,7 +135,7 @@ export const Action = styled('span', props => {
   const hoverStyles = $disabled
     ? {}
     : {
-        backgroundColor: getActionBackgroundColor(props, true),
+        background: getActionBackgroundColor(props, true),
         color: getActionFontColor(props, true),
       };
   return {
@@ -118,10 +149,14 @@ export const Action = styled('span', props => {
     cursor: $disabled ? 'not-allowed' : 'pointer',
     display: 'flex',
     marginLeft: '8px',
+    outline: 'none',
     paddingTop: $variant === VARIANT.outlined ? '5px' : '7px',
     paddingBottom: $variant === VARIANT.outlined ? '5px' : '7px',
     paddingLeft: '8px',
     paddingRight: '8px',
+    transitionProperty: 'all',
+    transitionDuration: $theme.animation.timing100,
+    transitionTimingFunction: $theme.animation.easeOutCurve,
     ':hover': hoverStyles,
     ':focus': hoverStyles,
   };
@@ -152,7 +187,7 @@ export const Root = styled('span', props => {
     $disabled || $clickable === false
       ? {}
       : {
-          backgroundColor: getBackgroundColor(props, true),
+          background: getBackgroundColor(props, true),
           borderColor: getBorderColor(props, true),
           color: getFontColor(props, true),
         };
@@ -161,7 +196,7 @@ export const Root = styled('span', props => {
     ...font250,
     ...paddingRightIfNotCloseable,
     alignItems: 'center',
-    backgroundColor: getBackgroundColor(props),
+    background: getBackgroundColor(props),
     borderColor: getBorderColor(props),
     borderStyle: 'solid',
     borderWidth: getBorderWidth(props),
@@ -183,6 +218,9 @@ export const Root = styled('span', props => {
     paddingLeft: scale500,
     opacity: $disabled ? '.56' : null,
     outline: 'none',
+    transitionProperty: 'backgroundColor, borderColor',
+    transitionDuration: $theme.animation.timing100,
+    transitionTimingFunction: $theme.animation.easeOutCurve,
     ':hover': hoverStyles,
     ':focus': hoverStyles,
   };

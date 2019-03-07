@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {OverrideT} from '../helpers/overrides.js';
-import {COLOR_STYLE_KEYS, VARIANT} from './constants.js';
+import {KIND, VARIANT} from './constants.js';
 
-export const TagKind = Object.freeze({...COLOR_STYLE_KEYS, custom: null});
+export const TagKind = Object.freeze(KIND);
 
 export type TagKindT = $Keys<typeof TagKind>;
 export type TagVariantT = $Values<typeof VARIANT>;
@@ -44,7 +44,7 @@ export type PropsT = {
   $theme?: *,
 };
 
-export type SharedPropsT = {
+export type SharedPropsArgT = {
   $clickable?: boolean,
   $closeable?: boolean,
   $color?: string,
@@ -53,6 +53,9 @@ export type SharedPropsT = {
   $isFocused?: boolean,
   $isHovered?: boolean,
   $kind?: string,
-  $theme?: *,
   $variant?: string,
+};
+
+export type SharedPropsT = SharedPropsArgT & {
+  $theme: *,
 };

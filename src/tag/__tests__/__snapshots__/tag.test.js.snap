@@ -8,7 +8,9 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   isHovered={false}
   kind="primary"
   onActionClick={[MockFunction]}
+  onActionKeyDown={[Function]}
   onClick={null}
+  onKeyDown={null}
   overrides={Object {}}
   variant="light"
 >

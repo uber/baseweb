@@ -13,8 +13,8 @@ import {
   ActionIcon as StyledActionIcon,
   Text as StyledText,
 } from './styled-components.js';
-import {VARIANT} from './constants.js';
-import type {PropsT, SharedPropsT} from './types.js';
+import {KIND, VARIANT} from './constants.js';
+import type {PropsT, SharedPropsArgT} from './types.js';
 
 class Tag extends React.Component<PropsT, {}> {
   static defaultProps = {
@@ -27,7 +27,7 @@ class Tag extends React.Component<PropsT, {}> {
     onClick: null,
     onKeyDown: null,
     overrides: {},
-    kind: 'primary',
+    kind: KIND.primary,
     variant: VARIANT.light,
   };
 
@@ -89,7 +89,7 @@ class Tag extends React.Component<PropsT, {}> {
           onClick: onActionClick,
           onKeyDown: this.handleActionKeyDown,
         };
-    const sharedProps: SharedPropsT = {
+    const sharedProps: SharedPropsArgT = {
       $clickable: clickable,
       $closeable: closeable,
       $color: color,
