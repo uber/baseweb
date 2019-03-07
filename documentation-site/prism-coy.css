@@ -31,10 +31,14 @@ pre[class*='language-'] {
 
 /* Code blocks */
 pre[class*='language-'] {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
   position: relative;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   overflow: scroll;
+  max-width: 100%;
   padding: 1em 1em 1em 1.5em;
   border-left: 5px solid #f6ba8b;
 }
@@ -228,4 +232,10 @@ pre[data-line] code {
 }
 pre .line-highlight {
   margin-top: 0;
+}
+
+.hljs {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
 }
