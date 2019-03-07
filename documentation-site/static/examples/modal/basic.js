@@ -41,9 +41,7 @@ export default () => (
   <ModalStateContainer>
     {({open, close, isOpen}) => (
       <React.Fragment>
-        <Button onClick={open} className="open-modal-button">
-          Open Modal
-        </Button>
+        <Button onClick={open}>Open Modal</Button>
         <Modal onClose={close} isOpen={isOpen}>
           <ModalHeader>Hello world</ModalHeader>
           <ModalBody>
