@@ -30,7 +30,6 @@ const List = styled(Block, ({$theme}) => ({
   paddingLeft: '0',
   paddingRight: '0',
   listStyle: 'none',
-  maxWidth: '200px',
 }));
 
 const NavigationLink = props => {
@@ -53,11 +52,13 @@ const NavigationItem = props => {
       overrides={{
         Block: {
           style: ({$theme}) => ({
-            paddingLeft: !route.children ? $theme.sizing.scale600 : 0,
+            paddingLeft: !route.children ? $theme.sizing.scale600 : '0px',
             borderLeft:
               (path && path === route.path) || (!path && route.path === '/')
                 ? `3px solid ${$theme.colors.primary300}`
-                : '3px solid transparent',
+                : route.children
+                  ? 'none'
+                  : '3px solid transparent',
             textTransform: route.children ? 'uppercase' : 'none',
             ...{
               ...(route.children && level === 2
