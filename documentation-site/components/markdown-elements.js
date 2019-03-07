@@ -108,18 +108,20 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
   );
 };
 
+export const H1 = ({children}: {children: React.Node}) => (
+  <React.Fragment>
+    <Head>
+      <title key="title">Base Web - {children}</title>
+    </Head>
+    <Heading element="h1" fontType="font700">
+      {children}
+    </Heading>
+  </React.Fragment>
+);
+
 export default {
   code: Code,
-  h1: ({children}: {children: React.Node}) => (
-    <React.Fragment>
-      <Head>
-        <title key="title">Base Web - {children}</title>
-      </Head>
-      <Heading element="h1" fontType="font700">
-        {children}
-      </Heading>
-    </React.Fragment>
-  ),
+  h1: H1,
   h2: ({children}: {children: React.Node}) => (
     <Heading element="h2" fontType="font600">
       {children}

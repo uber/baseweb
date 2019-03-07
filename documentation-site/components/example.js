@@ -91,7 +91,11 @@ class Example extends React.Component<PropsT, StateT> {
               borderBottom: 'none',
               borderRadius: 'none',
               paddingLeft: $theme.sizing.scale800,
-              borderLeft: `5px solid ${$theme.colors.primary200}`,
+              borderLeft: `5px solid ${
+                this.state.isSourceOpen
+                  ? $theme.colors.primary300
+                  : $theme.colors.primary200
+              }`,
             }),
           },
           Contents: {style: {margin: 0}},

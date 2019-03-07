@@ -13,6 +13,10 @@ const routes = [
     text: 'Getting started',
     children: [
       {
+        text: 'Welcome',
+        path: '/',
+      },
+      {
         text: 'Installation',
         path: '/getting-started/installation',
       },

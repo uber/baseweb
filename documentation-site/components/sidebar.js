@@ -44,16 +44,20 @@ const NavigationLink = props => {
 };
 
 const NavigationItem = props => {
-  const {route, index, level = 1} = props;
+  const {route, index, level = 1, path} = props;
   return (
     <Block
       font={levelToFont[level]}
       paddingBottom={level !== 3 ? 'scale100' : 0}
-      paddingTop={index === 0 && level === 3 ? 'scale300' : 'scale300'}
+      marginTop={index === 0 && level === 3 ? 'scale300' : 'scale300'}
       overrides={{
         Block: {
           style: ({$theme}) => ({
             paddingLeft: !route.children ? $theme.sizing.scale600 : 0,
+            borderLeft:
+              (path && path === route.path) || (!path && route.path === '/')
+                ? `3px solid ${$theme.colors.primary300}`
+                : '3px solid transparent',
             textTransform: route.children ? 'uppercase' : 'none',
             ...{
               ...(route.children && level === 2
@@ -77,6 +81,7 @@ const NavigationItem = props => {
                   level={level + 1}
                   route={childRoute}
                   index={index}
+                  path={path}
                 />
               </React.Fragment>
             );
@@ -86,10 +91,12 @@ const NavigationItem = props => {
   );
 };
 
-export default () => (
+export default ({path}) => (
   <List as="ul">
     {Routes.map((route, index) => {
-      return <NavigationItem key={index} route={route} index={index} />;
+      return (
+        <NavigationItem key={index} route={route} index={index} path={path} />
+      );
     })}
   </List>
 );

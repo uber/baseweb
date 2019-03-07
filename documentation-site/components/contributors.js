@@ -20,7 +20,7 @@ type Contributor = {
 const isUser = user => user.type === 'User';
 
 function Contributors(props: {contributors: Contributor[]}) {
-  if (!props.contributors.length) {
+  if (!props.contributors || !props.contributors.length) {
     return null;
   }
 
