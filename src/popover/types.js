@@ -70,6 +70,8 @@ export type BasePopoverPropsT = {
   showArrow?: boolean,
   /** Whether to toggle the popover when trigger is clicked or hovered. */
   triggerType: TriggerTypeT,
+  /** Where to mount the popover */
+  mountNode?: HTMLElement,
 };
 
 // Props for stateless render logic
