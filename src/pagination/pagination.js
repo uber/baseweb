@@ -19,7 +19,9 @@ import {
   DropdownMenu as StyledDropdownMenu,
   DropdownButton as StyledDropdownButton,
 } from './styled-components.js';
-import {ArrowLeft, ArrowRight, ArrowDown} from './icons.js';
+import TriangleDown from '../icon/triangle-down.js';
+import ChevronLeft from '../icon/chevron-left.js';
+import ChevronRight from '../icon/chevron-right.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {PaginationPropsT, PaginationStateT} from './types.js';
 import type {OnItemSelectFnT} from '../menu/types.js';
@@ -133,7 +135,7 @@ export default class Pagination extends React.PureComponent<
           <Root {...rootProps}>
             <Button
               onClick={this.onPrevClick}
-              startEnhancer={ArrowLeft}
+              startEnhancer={() => <ChevronLeft title={''} size={24} />}
               kind={KIND.tertiary}
               overrides={{
                 BaseButton: PrevButton,
@@ -150,7 +152,19 @@ export default class Pagination extends React.PureComponent<
             >
               <Button
                 onClick={this.onDropdownButtonClick}
-                endEnhancer={ArrowDown}
+                endEnhancer={() => (
+                  <TriangleDown
+                    title={''}
+                    overrides={{
+                      Svg: {
+                        style: ({$theme}) => ({
+                          color: $theme.colors.mono800,
+                        }),
+                      },
+                    }}
+                    size={24}
+                  />
+                )}
                 kind={KIND.tertiary}
                 overrides={{
                   BaseButton: DropdownButton,
@@ -189,7 +203,7 @@ export default class Pagination extends React.PureComponent<
             </MaxLabel>
             <Button
               onClick={this.onNextClick}
-              endEnhancer={ArrowRight}
+              endEnhancer={() => <ChevronRight title={''} size={24} />}
               kind={KIND.tertiary}
               overrides={{
                 BaseButton: NextButton,
