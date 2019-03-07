@@ -1,4 +1,4 @@
-FROM uber/web-base-image:1.0.9
+FROM uber/web-base-image:10.15.2
 
 WORKDIR /baseui
 
