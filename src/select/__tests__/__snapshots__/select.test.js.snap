@@ -61,7 +61,6 @@ exports[`Select component renders component in search mode and false for multipl
     content={[Function]}
     ignoreBoundary={false}
     isOpen={false}
-    onClickOutside={[Function]}
     onMouseEnterDelay={200}
     onMouseLeaveDelay={200}
     overrides={Object {}}
@@ -439,7 +438,6 @@ exports[`Select component renders component in search mode and true for multiple
     content={[Function]}
     ignoreBoundary={false}
     isOpen={false}
-    onClickOutside={[Function]}
     onMouseEnterDelay={200}
     onMouseLeaveDelay={200}
     overrides={Object {}}
@@ -817,7 +815,6 @@ exports[`Select component renders component in select mode and false for multipl
     content={[Function]}
     ignoreBoundary={false}
     isOpen={false}
-    onClickOutside={[Function]}
     onMouseEnterDelay={200}
     onMouseLeaveDelay={200}
     overrides={Object {}}
@@ -1194,7 +1191,6 @@ exports[`Select component renders component in select mode and true for multiple
     content={[Function]}
     ignoreBoundary={false}
     isOpen={false}
-    onClickOutside={[Function]}
     onMouseEnterDelay={200}
     onMouseLeaveDelay={200}
     overrides={Object {}}

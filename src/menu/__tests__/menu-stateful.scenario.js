@@ -30,7 +30,6 @@ const ITEMS = [
 export const component = () => (
   <StatefulMenu
     items={ITEMS}
-    onItemSelect={console.log}
     overrides={{
       List: {
         style: {

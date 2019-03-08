@@ -109,25 +109,27 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
-    if (prevState.isOpen !== this.state.isOpen) {
-      if (this.state.isOpen) {
-        this.props.onOpen && this.props.onOpen();
-        document.addEventListener('touchstart', this.handleTouchOutside);
-      } else {
-        this.props.onClose && this.props.onClose();
-        document.removeEventListener('touchstart', this.handleTouchOutside);
+    if (__BROWSER__) {
+      if (prevState.isOpen !== this.state.isOpen) {
+        if (this.state.isOpen) {
+          this.props.onOpen && this.props.onOpen();
+          document.addEventListener('touchstart', this.handleTouchOutside);
+        } else {
+          this.props.onClose && this.props.onClose();
+          document.removeEventListener('touchstart', this.handleTouchOutside);
+        }
       }
-    }
 
-    if (!prevState.isFocused && this.state.isFocused) {
-      if (__BROWSER__) {
+      if (!prevState.isFocused && this.state.isFocused) {
         document.addEventListener('click', this.handleClickOutside);
       }
     }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('touchstart', this.handleTouchOutside);
+    if (__BROWSER__) {
+      document.removeEventListener('touchstart', this.handleTouchOutside);
+    }
   }
 
   focus() {
