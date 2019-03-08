@@ -146,13 +146,15 @@ describe('Menu StatefulContainer', () => {
       {highlightedIndex: 0},
       {highlightedIndex: -1},
     ]);
+    const parent = React.createRef();
+    const child = React.createRef();
     // $FlowFixMe
-    expect(scrollItemIntoView.mock.calls[0][0]).toEqual({
-      node: React.createRef(),
-      parentNode: React.createRef(),
-      isFirst: true,
-      isLast: false,
-    });
+    expect(scrollItemIntoView.mock.calls[0][0]).toEqual(
+      child.current,
+      parent.current,
+      true,
+      false,
+    );
 
     component.instance().onKeyDown({
       key: KEY_STRINGS.ArrowDown,
