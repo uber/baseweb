@@ -83,17 +83,21 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       this.props.isOpen !== prevProps.isOpen ||
       this.state.isMounted !== prevState.isMounted
     ) {
+      // Transition from closed to open.
       if (this.props.isOpen) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
-        // Opening
         this.initializePopper();
         this.addDomEvents();
-      } else {
-        // Closing
+        return;
+      }
+
+      // Transition from open to closed.
+      if (!this.props.isOpen && prevProps.isOpen) {
         this.destroyPopover();
         this.removeDomEvents();
         this.animateOutTimer = setTimeout(this.animateOut, 20);
+        return;
       }
     }
   }
@@ -501,10 +505,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         (this.props.isOpen || this.state.isAnimating)
       ) {
         const mountNode = this.getMountNode();
-        rendered.push(
-          // $FlowFixMe
-          ReactDOM.createPortal(this.renderPopover(), mountNode),
-        );
+        rendered.push(ReactDOM.createPortal(this.renderPopover(), mountNode));
       }
     }
     return rendered;

@@ -156,7 +156,6 @@ export default class MenuStatefulContainer extends React.Component<
       ref: itemRef,
       isHighlighted: highlightedIndex === index,
       onClick: onClickHandler,
-      'aria-activedescendant': highlightedIndex === index,
       ...getRequiredItemProps(item, index),
     };
   };

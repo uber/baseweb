@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
-  selectInput: '[role="combobox"]',
+  selectInput: 'input[role="combobox"]',
   selectDropDown: '[role="listbox"]',
   dropDownOption: '[role="option"]',
   selectedList: '[data-id="selected"]',
@@ -85,6 +85,7 @@ describe('select', () => {
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
     await page.click(optionAtPosition(1));
+    await page.waitFor(optionAtPosition(3));
     await page.click(optionAtPosition(3));
     await page.waitFor(selectors.selectDropDown);
   });
