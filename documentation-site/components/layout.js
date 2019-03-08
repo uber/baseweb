@@ -53,7 +53,6 @@ export default (props: PropsT) => {
         >
           <Sidebar path={props.path} />
         </SidebarWrapper>
-
         <ContentWrapper id="docSearch-content" $isSidebarOpen={sidebarOpen}>
           <MDXProvider components={MarkdownElements}>
             {props.children}
