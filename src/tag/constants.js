@@ -9,11 +9,18 @@ LICENSE file in the root directory of this source tree.
 import type {TagKindT} from './types.js';
 
 export const COLOR_STYLE_KEYS = {
-  primary: 'primary400',
-  warning: 'warning400',
-  positive: 'positive400',
-  negative: 'negative400',
+  neutral: 'tagNeutralBackground',
+  primary: 'tagPrimaryBackground',
+  positive: 'tagPositiveBackground',
+  warning: 'tagWarningBackground',
+  negative: 'tagNegativeBackground',
 };
+
+export const VARIANT = Object.freeze({
+  light: 'light',
+  outlined: 'outlined',
+  solid: 'solid',
+});
 
 export const KIND: {[TagKindT]: string} = Object.keys({
   ...COLOR_STYLE_KEYS,

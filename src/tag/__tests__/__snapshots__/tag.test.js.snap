@@ -8,17 +8,33 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   isHovered={false}
   kind="primary"
   onActionClick={[MockFunction]}
+  onActionKeyDown={[Function]}
+  onClick={null}
+  onKeyDown={null}
   overrides={Object {}}
+  variant="light"
 >
   <MockStyledComponent
+    $clickable={false}
     $closeable={true}
     $disabled={false}
     $isFocused={false}
     $isHovered={false}
     $kind="primary"
+    $variant="light"
+    aria-label="button"
+    onClick={null}
+    onKeyDown={[Function]}
+    role="button"
+    tabIndex={null}
   >
     <span
+      aria-label="button"
+      onClick={null}
+      onKeyDown={[Function]}
+      role="button"
       styled-component="true"
+      tabIndex={null}
     >
       <MockStyledComponent>
         <span
@@ -28,30 +44,40 @@ exports[`Stateless tag should render component: Component has correct render 1`]
         </span>
       </MockStyledComponent>
       <MockStyledComponent
+        $clickable={false}
         $closeable={true}
         $disabled={false}
         $isFocused={false}
         $isHovered={false}
         $kind="primary"
-        onClick={[Function]}
+        $variant="light"
+        aria-label="close button"
+        onClick={[MockFunction]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex="0"
       >
         <span
-          onClick={[Function]}
+          aria-label="close button"
+          onClick={[MockFunction]}
+          onKeyDown={[Function]}
+          role="button"
           styled-component="true"
+          tabIndex="0"
         >
           <MockStyledComponent
             fill="none"
-            height="8"
+            height="10"
             viewBox="0 0 8 8"
-            width="8"
+            width="10"
             xmlns="http://www.w3.org/2000/svg"
           >
             <svg
               fill="none"
-              height="8"
+              height="10"
               styled-component="true"
               viewBox="0 0 8 8"
-              width="8"
+              width="10"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path

@@ -12,7 +12,7 @@ export default () => (
         {kinds.map((kind, index) => (
           <Tag
             key={index}
-            disabled
+            closeable={false}
             onClick={() => {
               onClick(kind);
             }}
