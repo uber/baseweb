@@ -28,8 +28,8 @@ type Contributor = {
 const cardOverrides = {
   Root: {
     style: ({$theme}) => ({
-      marginLeft: '16px',
-      marginRight: '16px',
+      marginLeft: $theme.sizing.scale600,
+      marginRight: $theme.sizing.scale600,
       marginTop: $theme.sizing.scale500,
       width: '300px',
     }),

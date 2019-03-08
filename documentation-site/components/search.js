@@ -54,6 +54,7 @@ const PlainInput = styled('input', ({$theme, $inputVisible}) => ({
 const IconWrapper = styled('div', ({$inputVisible, $theme}) => ({
   marginRight: $inputVisible ? '-33px' : 0,
   marginTop: $inputVisible ? '8px' : 0,
+  height: '32px',
   cursor: 'pointer',
   zIndex: 1,
   [HEADER_BREAKPOINT]: {

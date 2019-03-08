@@ -43,16 +43,16 @@ const NavigationLink = props => {
 };
 
 const NavigationItem = props => {
-  const {route, index, level = 1, path} = props;
+  const {route, level = 1, path} = props;
   return (
     <Block
       font={levelToFont[level]}
       paddingBottom={level !== 3 ? 'scale100' : 0}
-      marginTop={index === 0 && level === 3 ? 'scale300' : 'scale300'}
+      marginTop="scale300"
       overrides={{
         Block: {
           style: ({$theme}) => ({
-            paddingLeft: !route.children ? $theme.sizing.scale600 : '0px',
+            paddingLeft: !route.children ? $theme.sizing.scale600 : 0,
             borderLeft:
               (path && path === route.path) || (!path && route.path === '/')
                 ? `3px solid ${$theme.colors.primary300}`
@@ -60,11 +60,7 @@ const NavigationItem = props => {
                   ? 'none'
                   : '3px solid transparent',
             textTransform: route.children ? 'uppercase' : 'none',
-            ...{
-              ...(route.children && level === 2
-                ? $theme.typography.font350
-                : {}),
-            },
+            ...(route.children && level === 2 ? $theme.typography.font350 : {}),
           }),
         },
       }}

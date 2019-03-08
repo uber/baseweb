@@ -28,8 +28,8 @@ export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
 const Hamburger = styled('div', ({$theme}) => ({
   display: 'block',
   userSelect: 'none',
+  height: '32px',
   paddingLeft: $theme.sizing.scale600,
-  paddingTop: '2px',
   cursor: 'pointer',
   '@media screen and (min-width: 820px)': {
     display: 'none',
@@ -93,7 +93,12 @@ const Navigation = ({toggleSidebar}: PropsT) => {
             as="a"
             href="https://github.com/uber-web/baseui/releases"
           >
-            <Tag closeable={false} color="#333" kind="custom">
+            <Tag
+              closeable={false}
+              color="#333"
+              kind="custom"
+              onClick={() => {}}
+            >
               {version}
             </Tag>
           </Block>
@@ -113,6 +118,7 @@ const Navigation = ({toggleSidebar}: PropsT) => {
               Block: {
                 style: {
                   display: 'none',
+                  height: '24px',
                   [HEADER_BREAKPOINT]: {
                     display: 'block',
                   },
@@ -132,6 +138,7 @@ const Navigation = ({toggleSidebar}: PropsT) => {
               Block: {
                 style: {
                   display: 'none',
+                  height: '24px',
                   [HEADER_BREAKPOINT]: {
                     display: 'block',
                   },
