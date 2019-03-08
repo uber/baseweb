@@ -1,51 +1,15 @@
 import React from 'react';
 import {Button, KIND} from 'baseui/button';
+import {Block} from 'baseui/block';
 
 export default () => (
   <React.Fragment>
-    <p>
-      <Button>No state</Button>
-      <Button isLoading>Loading</Button>
-      <Button isSelected>Selected</Button>
-      <Button disabled>Disabled</Button>
-    </p>
-    <p>
-      <Button kind={KIND.secondary}>No state</Button>
-      <Button isLoading kind={KIND.secondary}>
-        Loading
-      </Button>
-      <Button isSelected kind={KIND.secondary}>
-        Selected
-      </Button>
-      <Button disabled kind={KIND.secondary}>
-        Disabled
-      </Button>
-    </p>
-
-    <p>
-      <Button kind={KIND.tertiary}>No state</Button>
-      <Button isLoading kind={KIND.tertiary}>
-        Loading
-      </Button>
-      <Button isSelected kind={KIND.tertiary}>
-        Selected
-      </Button>
-      <Button disabled kind={KIND.tertiary}>
-        Disabled
-      </Button>
-    </p>
-
-    <p>
-      <Button kind={KIND.minimal}>No state</Button>
-      <Button isLoading kind={KIND.minimal}>
-        Loading
-      </Button>
-      <Button isSelected kind={KIND.minimal}>
-        Selected
-      </Button>
-      <Button disabled kind={KIND.minimal}>
-        Disabled
-      </Button>
-    </p>
+    <Button>No state</Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button isLoading>Loading</Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button isSelected>Selected</Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button disabled>Disabled</Button>
   </React.Fragment>
 );

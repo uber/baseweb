@@ -10,7 +10,7 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
     Parent Page
   </MockStyledComponent>
   <MockStyledComponent
-    key="0"
+    key="separator-0"
   >
     <MockStyledComponent />
   </MockStyledComponent>
@@ -20,7 +20,7 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
     Sub-Parent Page
   </MockStyledComponent>
   <MockStyledComponent
-    key="1"
+    key="separator-1"
   >
     <MockStyledComponent />
   </MockStyledComponent>

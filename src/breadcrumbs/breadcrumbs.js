@@ -33,7 +33,7 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
 
     if (index !== numChildren - 1) {
       childrenWithSeparators.push(
-        <Separator {...baseSeparatorProps} key={index}>
+        <Separator {...baseSeparatorProps} key={`separator-${index}`}>
           <Icon {...baseIconProps} />
         </Separator>,
       );

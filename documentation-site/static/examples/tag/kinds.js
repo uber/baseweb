@@ -1,11 +1,20 @@
 import React from 'react';
-import {Tag, KIND} from 'baseui/tag';
+import {Tag, KIND, VARIANT} from 'baseui/tag';
+
+const kinds = Object.keys(KIND).filter(kind => kind !== KIND.custom);
+const variants = Object.keys(VARIANT);
 
 export default () => (
-  <React.Fragment>
-    <Tag kind={KIND.primary}>{KIND.primary}</Tag>
-    <Tag kind={KIND.warning}>{KIND.warning}</Tag>
-    <Tag kind={KIND.positive}>{KIND.positive}</Tag>
-    <Tag kind={KIND.negative}>{KIND.negative}</Tag>
-  </React.Fragment>
+  <>
+    {variants.map((variant, index) => (
+      <React.Fragment key={index}>
+        {kinds.map((kind, index) => (
+          <Tag key={index} variant={variant} kind={KIND[kind]}>
+            {KIND[kind]}
+          </Tag>
+        ))}
+        <br />
+      </React.Fragment>
+    ))}
+  </>
 );

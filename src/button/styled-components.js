@@ -33,7 +33,15 @@ function getBorderRadii({$shape, $theme}: StylePropsT) {
 
 export const BaseButton = styled(
   'button',
-  ({$theme, $size, $kind, $shape, $isLoading, $isSelected}: StylePropsT) => ({
+  ({
+    $theme,
+    $size,
+    $kind,
+    $shape,
+    $isLoading,
+    $isSelected,
+    $disabled,
+  }: StylePropsT) => ({
     position: 'relative',
     ...($size === SIZE.compact
       ? $theme.typography.font250
@@ -58,7 +66,7 @@ export const BaseButton = styled(
     // Padding For Shape and Size
     ...getStyleForShape({$theme, $shape, $size}),
     // Kind style override
-    ...getStyleForKind({$theme, $kind, $isLoading, $isSelected}),
+    ...getStyleForKind({$theme, $kind, $isLoading, $isSelected, $disabled}),
   }),
 );
 
@@ -175,7 +183,11 @@ export function getStyleForKind({
   $isLoading,
   $isSelected,
   $kind,
+  $disabled,
 }: StylePropsT) {
+  if ($disabled) {
+    return {};
+  }
   switch ($kind) {
     case KIND.primary:
       return {
@@ -183,17 +195,17 @@ export function getStyleForKind({
         backgroundColor: $isSelected
           ? $theme.colors.buttonPrimaryHover
           : $theme.colors.buttonPrimaryFill,
-        ':hover:enabled': {
+        ':hover': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonPrimaryActive
             : $theme.colors.buttonPrimaryHover,
         },
-        ':focus:enabled': {
+        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonPrimaryActive
             : $theme.colors.buttonPrimaryHover,
         },
-        ':active:enabled': {
+        ':active': {
           backgroundColor: $theme.colors.buttonPrimaryActive,
         },
       };
@@ -203,17 +215,17 @@ export function getStyleForKind({
         backgroundColor: $isSelected
           ? $theme.colors.buttonSecondaryHover
           : $theme.colors.buttonSecondaryFill,
-        ':hover:enabled': {
+        ':hover': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonSecondaryActive
             : $theme.colors.buttonSecondaryHover,
         },
-        ':focus:enabled': {
+        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonSecondaryActive
             : $theme.colors.buttonSecondaryHover,
         },
-        ':active:enabled': {
+        ':active': {
           backgroundColor: $theme.colors.buttonSecondaryActive,
         },
       };
@@ -227,17 +239,17 @@ export function getStyleForKind({
         return {
           color: $theme.colors.buttonTertiaryText,
           backgroundColor: $theme.colors.buttonTertiaryFill,
-          ':hover:enabled': {
+          ':hover': {
             backgroundColor: $isLoading
               ? $theme.colors.buttonTertiaryActive
               : $theme.colors.buttonTertiaryHover,
           },
-          ':focus:enabled': {
+          ':focus': {
             backgroundColor: $isLoading
               ? $theme.colors.buttonTertiaryActive
               : $theme.colors.buttonTertiaryHover,
           },
-          ':active:enabled': {
+          ':active': {
             backgroundColor: $theme.colors.buttonTertiaryActive,
           },
         };
@@ -248,17 +260,17 @@ export function getStyleForKind({
         backgroundColor: $isSelected
           ? $theme.colors.buttonMinimalHover
           : $theme.colors.buttonMinimalFill,
-        ':hover:enabled': {
+        ':hover': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonMinimalActive
             : $theme.colors.buttonMinimalHover,
         },
-        ':focus:enabled': {
+        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonMinimalActive
             : $theme.colors.buttonMinimalHover,
         },
-        ':active:enabled': {
+        ':active': {
           backgroundColor: $theme.colors.buttonMinimalActive,
         },
       };

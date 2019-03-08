@@ -11,9 +11,11 @@ import Layout from '../../components/layout';
 
 import Basic from 'examples/tag/basic.js';
 import Kinds from 'examples/tag/kinds.js';
-import CustomColor from 'examples/tag/custom-color.js';
+import Clickable from 'examples/tag/clickable.js';
 import Disabled from 'examples/tag/disabled.js';
-import Uncloseable from 'examples/tag/uncloseable.js';
+import Noncloseable from 'examples/tag/non-closeable.js';
+import NoncloseableNonclickable from 'examples/tag/clickable-non-closeable.js';
+import CustomColor from 'examples/tag/custom-color.js';
 
 import Overrides from '../../components/overrides';
 import {Tag} from 'baseui/tag';
@@ -35,20 +37,28 @@ Compact UI to display a collection of consice information.
   <Basic />
 </Example>
 
-<Example title="Tag with all available kinds" path="examples/tag/kinds.js">
+<Example title="Tag closeable/non-clickable" path="examples/tag/kinds.js">
   <Kinds />
+</Example>
+
+<Example title="Tag closeable/clickable" path="examples/tag/clickable.js">
+  <Clickable />
+</Example>
+
+<Example title="Tag in a disabled state" path="examples/tag/disabled.js">
+  <Disabled />
+</Example>
+
+<Example title="Tag non-closeable/non-clickable" path="examples/tag/non-closeable.js">
+  <Noncloseable />
+</Example>
+
+<Example title="Tag non-closeable/clickable" path="examples/tag/clickable-non-closeable.js">
+  <NoncloseableNonclickable />
 </Example>
 
 <Example title="Tag Custom Color example" path="examples/tag/custom-color.js">
   <CustomColor />
-</Example>
-
-<Example title="Tag with disabled state" path="examples/tag/disabled.js">
-  <Disabled />
-</Example>
-
-<Example title="Tag uncloseable example" path="examples/tag/uncloseable.js">
-  <Uncloseable />
 </Example>
 
 ## Overrides

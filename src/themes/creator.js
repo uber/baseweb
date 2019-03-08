@@ -211,6 +211,16 @@ export default function createTheme(
       notificationNegativeBackground: primitives.negative50,
       notificationNegativeText: primitives.negative500,
 
+      // Tag
+      tagBackground: primitives.mono100,
+      tagNeutralBackground: primitives.mono900,
+      tagPrimaryBackground: primitives.primary400,
+      tagPositiveBackground: primitives.positive400,
+      tagWarningBackground: primitives.warning400,
+      tagNegativeBackground: primitives.negative400,
+      tagRGBGradient: '255, 255, 255',
+      tagRGBGradientSecondary: '0, 0, 0',
+
       // Table
       tableHeadBackgroundColor: primitives.mono100,
 
