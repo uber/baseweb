@@ -3,7 +3,6 @@ import {Tag, KIND, VARIANT} from 'baseui/tag';
 
 const kinds = Object.keys(KIND).filter(kind => kind !== KIND.custom);
 const variants = Object.keys(VARIANT);
-const onClick = kind => alert(`${kind} tag is clicked`);
 
 export default () => (
   <>
@@ -12,10 +11,7 @@ export default () => (
         {kinds.map((kind, index) => (
           <Tag
             key={index}
-            disabled
-            onClick={() => {
-              onClick(kind);
-            }}
+            closeable={false}
             variant={variant}
             kind={KIND[kind]}
           >

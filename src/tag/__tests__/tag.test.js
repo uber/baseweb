@@ -48,7 +48,6 @@ describe('Stateless tag', function() {
       actionIcon.first().simulate('click');
       expect(allProps.onActionClick).toHaveBeenCalledWith(
         allProps.onActionClick.mock.calls[0][0],
-        children,
       );
     });
   });

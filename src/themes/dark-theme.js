@@ -82,6 +82,14 @@ export const DarkTheme = createTheme(
       listIconFill: primitives.mono100,
       listBorder: primitives.mono500,
 
+      // Tag
+      tagBackground: primitives.mono1000,
+      tagNeutralBackground: primitives.mono600,
+      tagPrimaryBackground: primitives.primary500,
+      tagPositiveBackground: primitives.positive500,
+      tagWarningBackground: primitives.warning500,
+      tagNegativeBackground: primitives.negative500,
+
       // Tick
       tickFill: 'transparent',
       tickFillHover: primitives.mono200,

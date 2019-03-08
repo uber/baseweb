@@ -13,5 +13,5 @@ export {
   ActionIcon as StyledActionIcon,
   Text as StyledText,
 } from './styled-components.js';
-export {COLOR_STYLE_KEYS, KIND} from './constants.js';
+export {COLOR_STYLE_KEYS, KIND, VARIANT} from './constants.js';
 export * from './types.js';
