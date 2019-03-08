@@ -119,14 +119,16 @@ export const H1 = ({children}: {children: React.Node}) => (
   </React.Fragment>
 );
 
+export const H2 = ({children}: {children: React.Node}) => (
+  <Heading element="h2" fontType="font600">
+    {children}
+  </Heading>
+);
+
 export default {
   code: Code,
   h1: H1,
-  h2: ({children}: {children: React.Node}) => (
-    <Heading element="h2" fontType="font600">
-      {children}
-    </Heading>
-  ),
+  h2: H2,
   h3: ({children}: {children: React.Node}) => (
     <Heading element="h3" fontType="font500">
       {children}
