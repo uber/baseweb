@@ -42,6 +42,13 @@ const NavigationLink = props => {
   );
 };
 
+const removeSlash = path => {
+  if (path) {
+    return path.replace(/\/$/, '');
+  }
+  return path;
+};
+
 const NavigationItem = props => {
   const {route, level = 1, path} = props;
   return (
@@ -54,7 +61,8 @@ const NavigationItem = props => {
           style: ({$theme}) => ({
             paddingLeft: !route.children ? $theme.sizing.scale600 : 0,
             borderLeft:
-              (path && path === route.path) || (!path && route.path === '/')
+              (path && removeSlash(path) === removeSlash(route.path)) ||
+              (!path && route.path === '/')
                 ? `3px solid ${$theme.colors.primary300}`
                 : route.children
                   ? 'none'

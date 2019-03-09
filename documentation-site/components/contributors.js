@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Avatar} from 'baseui/avatar';
 import {Block} from 'baseui/block';
+import {H2} from './markdown-elements';
 
 type Contributor = {
   avatar_url: string,
@@ -20,16 +21,14 @@ type Contributor = {
 const isUser = user => user.type === 'User';
 
 function Contributors(props: {contributors: Contributor[]}) {
-  if (!props.contributors || !props.contributors.length) {
+  if (!props.contributors.length) {
     return null;
   }
 
   return (
-    <Block>
-      <Block marginBottom="scale800" font="font450">
-        Thank you to our contributors:
-      </Block>
-      <Block display="flex" flexWrap maxWidth="768px">
+    <React.Fragment>
+      <H2>Thanks to our contributors</H2>
+      <Block display="flex" flexWrap>
         {props.contributors.filter(isUser).map(contributor => (
           <Block
             as="a"
@@ -57,7 +56,7 @@ function Contributors(props: {contributors: Contributor[]}) {
           </Block>
         ))}
       </Block>
-    </Block>
+    </React.Fragment>
   );
 }
 
