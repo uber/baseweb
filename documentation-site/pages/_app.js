@@ -24,7 +24,7 @@ const themes = {
   LightTheme,
   LightThemeMove,
 };
-s
+
 export default class MyApp extends App {
   constructor(props) {
     super(props);
@@ -72,13 +72,8 @@ export default class MyApp extends App {
     return (
       <Container>
         <StyletronProvider value={styletron}>
-<<<<<<< HEAD
           <ThemeProvider theme={this.state.theme}>
-            <Component {...pageProps} />
-=======
-          <ThemeProvider theme={LightTheme}>
             <Component {...pageProps} path={path} />
->>>>>>> docs: active links
             <Block marginBottom="300px" />
           </ThemeProvider>
         </StyletronProvider>
