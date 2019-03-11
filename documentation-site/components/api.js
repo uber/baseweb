@@ -19,77 +19,79 @@ const API = props => {
   return (
     <React.Fragment>
       <H2>{heading}</H2>
-      <Props
-        props={api}
-        heading={' '}
-        shouldCollapseProps={true}
-        components={{
-          Description: props => {
-            return <Paragraph1>{props.children}</Paragraph1>;
-          },
-          Button: props => {
-            return (
-              <Button
-                {...props}
-                size={ButtonSize.compact}
-                kind={ButtonKind.tertiary}
-              >
-                {props.children}
-              </Button>
-            );
-          },
-          Indent: props => {
-            return (
-              <Block
-                overrides={{
-                  Block: {
-                    style: ({$theme}) => ({
-                      paddingLeft: $theme.sizing.scale600,
-                    }),
-                  },
-                }}
-              >
-                {props.children}
-              </Block>
-            );
-          },
-          Required: props => {
-            return (
-              <Block as="span" color="negative">
-                {props.children}
-              </Block>
-            );
-          },
-          Type: props => {
-            return (
-              <Block as="span" color="primary">
-                {props.children}
-              </Block>
-            );
-          },
-          TypeMeta: props => {
-            return (
-              <Block as="span" color="warning400">
-                {props.children}
-              </Block>
-            );
-          },
-          FunctionType: props => {
-            return (
-              <Block as="span" color="positive700">
-                {props.children}
-              </Block>
-            );
-          },
-          StringType: props => {
-            return (
-              <Block as="span" color="positive">
-                {props.children}
-              </Block>
-            );
-          },
-        }}
-      />
+      <Block marginTop="-24px">
+        <Props
+          props={api}
+          heading={' '}
+          shouldCollapseProps={true}
+          components={{
+            Description: props => {
+              return <Paragraph1>{props.children}</Paragraph1>;
+            },
+            Button: props => {
+              return (
+                <Button
+                  {...props}
+                  size={ButtonSize.compact}
+                  kind={ButtonKind.secondary}
+                >
+                  {props.children}
+                </Button>
+              );
+            },
+            Indent: props => {
+              return (
+                <Block
+                  overrides={{
+                    Block: {
+                      style: ({$theme}) => ({
+                        paddingLeft: $theme.sizing.scale600,
+                      }),
+                    },
+                  }}
+                >
+                  {props.children}
+                </Block>
+              );
+            },
+            Required: props => {
+              return (
+                <Block as="span" color="negative">
+                  {props.children}
+                </Block>
+              );
+            },
+            Type: props => {
+              return (
+                <Block as="span" color="primary">
+                  {props.children}
+                </Block>
+              );
+            },
+            TypeMeta: props => {
+              return (
+                <Block as="span" color="warning400">
+                  {props.children}
+                </Block>
+              );
+            },
+            FunctionType: props => {
+              return (
+                <Block as="span" color="positive700">
+                  {props.children}
+                </Block>
+              );
+            },
+            StringType: props => {
+              return (
+                <Block as="span" color="positive">
+                  {props.children}
+                </Block>
+              );
+            },
+          }}
+        />
+      </Block>
     </React.Fragment>
   );
 };
