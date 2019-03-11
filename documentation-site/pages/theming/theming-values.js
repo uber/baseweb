@@ -14,9 +14,13 @@ import Sizing from '../../components/theming-values/sizing';
 import Lighting from '../../components/theming-values/lighting';
 import Typography from '../../components/theming-values/typography';
 
-function ThemingPage() {
+type PropsT = {
+  changeTheme: () => void,
+};
+
+function ThemingPage(props: PropsT) {
   return (
-    <Layout>
+    <Layout changeTheme={props.changeTheme}>
       <Colors />
       <Sizing />
       <Lighting />
