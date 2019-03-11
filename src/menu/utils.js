@@ -29,40 +29,42 @@ export function getSharedProps(
   }, {});
 }
 
-/**
- * Helps scroll a list item into view when cycling through list via
- * keybindings and highlighted item is not in view.
- */
-export function scrollItemIntoView({
-  node,
-  parentNode,
-  isFirst,
-  isLast,
-}: {
-  node: React$ElementRef<*>,
-  parentNode: React$ElementRef<*>,
+// Helps scroll a list item into view when cycling through list via
+// keybindings and highlighted item is not in view.
+
+// Previously, this util had been using `scrollIntoView`. The issue with that method is that
+// it will not only scroll the parent scroll but also the window scroll bar - causing a jump.
+// propblem description https://lists.w3.org/Archives/Public/www-style/2014Jul/0386.html
+
+// CHASE: I've noticed some performance issues when testing this with many items in the list.
+// I imagine the browser can debounce the `node.scrollIntoView` calls. Callers of this function
+// will likely want to debounce themselves.
+export function scrollItemIntoView(
+  child: ?HTMLElement,
+  parent: HTMLElement,
   isFirst?: boolean,
   isLast?: boolean,
-}) {
-  const nodeDOM = node.current;
-  const parentNodeDOM = parentNode.current;
-  if (!nodeDOM) return;
-  const nodeRect = nodeDOM.getBoundingClientRect();
-  const parentNodeRect = parentNodeDOM.getBoundingClientRect();
+) {
+  if (!child) return;
+
+  const childRect = child.getBoundingClientRect();
+  const parentRect = parent.getBoundingClientRect();
+
   // while scrolling down, if element is below view
-  if (nodeRect.bottom > parentNodeRect.bottom) {
+  if (childRect.bottom > parentRect.bottom) {
     if (isLast) {
-      parentNodeDOM.scrollTop =
-        parentNodeDOM.scrollHeight - parentNodeRect.height;
+      parent.scrollTop = parent.scrollHeight - parentRect.height;
     } else {
-      nodeDOM.scrollIntoView(false);
+      const targetBottom = child.offsetTop + childRect.height;
+      parent.scrollTop = targetBottom - parentRect.height;
     }
+
     // while scrolling up, if element is above view
-  } else if (nodeRect.top < parentNodeRect.top) {
+  } else if (childRect.top < parentRect.top) {
     if (isFirst) {
-      parentNodeDOM.scrollTop = 0;
+      parent.scrollTop = 0;
     } else {
-      nodeDOM.scrollIntoView();
+      parent.scrollTop = child.offsetTop;
     }
   }
 }

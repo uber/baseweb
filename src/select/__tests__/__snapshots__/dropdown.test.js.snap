@@ -12,6 +12,7 @@ Object {
   "$selected": true,
   "$size": "default",
   "$type": "select",
+  "$width": 100,
   "aria-readonly": undefined,
   "aria-selected": true,
   "children": <span>
@@ -32,6 +33,7 @@ Object {
   "$selected": false,
   "$size": "default",
   "$type": "select",
+  "$width": 100,
   "aria-readonly": undefined,
   "aria-selected": false,
   "children": <span>
