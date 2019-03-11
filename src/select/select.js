@@ -159,7 +159,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleClick = (event: MouseEvent | TouchEvent) => {
-    if (this.props.disabled || !isClick(event) || !isLeftClick(event)) {
+    if (this.props.disabled || (!isClick(event) && !isLeftClick(event))) {
       return;
     }
 
