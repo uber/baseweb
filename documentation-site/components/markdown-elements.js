@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* global process */
 import * as React from 'react';
 
 import Head from 'next/head';
@@ -113,7 +114,10 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
 export const H1 = ({children}: {children: React.Node}) => (
   <React.Fragment>
     <Head>
-      <title key="title">Base Web - {children}</title>
+      <title key="title">
+        {process.env.WEBSITE_ENV !== 'production' ? '[DEV] ' : ''}
+        Base Web - {children}
+      </title>
     </Head>
     <Heading element="h1" fontType="font700">
       {children}
