@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import CodeSandboxer from 'react-codesandboxer';
-import {Button, KIND} from 'baseui/button';
+import {Button, KIND, SIZE} from 'baseui/button';
 import {Card} from 'baseui/card';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
@@ -97,7 +97,8 @@ class Example extends React.Component<PropsT, StateT> {
 
         <Block paddingTop="scale400">
           <Button
-            kind={KIND.tertiary}
+            kind={KIND.secondary}
+            size={SIZE.compact}
             onClick={() => {
               this.setState(prevState => ({
                 isSourceOpen: !prevState.isSourceOpen,
@@ -139,7 +140,9 @@ class Example extends React.Component<PropsT, StateT> {
             >
               {() => (
                 <Link>
-                  <Button kind={KIND.tertiary}>Edit on CodeSandbox</Button>
+                  <Button kind={KIND.secondary} size={SIZE.compact}>
+                    Edit on CodeSandbox
+                  </Button>
                 </Link>
               )}
             </CodeSandboxer>
