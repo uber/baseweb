@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 /* global process */
 
 import React from 'react';
-import Head from 'next/head';
 
 const title =
   process.env.WEBSITE_ENV === 'production'
@@ -17,7 +16,7 @@ const title =
     : '[DEV] Base Web documentation';
 
 export default () => (
-  <Head>
+  <React.Fragment>
     <title key="title">{title}</title>
     <meta
       name="viewport"
@@ -49,5 +48,5 @@ export default () => (
     />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
-  </Head>
+  </React.Fragment>
 );
