@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* eslint-env browser */
 
 import React from 'react';
 import {LightTheme, LightThemeMove, ThemeProvider} from 'baseui';
@@ -17,6 +18,12 @@ import Router from 'next/router';
 import {styletron} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
 import '../prism-coy.css';
+
+const LS_THEME_KEY = 'theme';
+const themes = {
+  LightTheme,
+  LightThemeMove,
+};
 
 export default class MyApp extends App {
   constructor(props) {
@@ -30,13 +37,27 @@ export default class MyApp extends App {
     Router.onRouteChangeComplete = url => {
       trackPageView(url);
     };
+
+    this.setTheme();
   }
 
-  toggleTheme() {
-    if (this.state.theme === LightTheme) {
-      return this.setState({theme: LightThemeMove});
+  setTheme() {
+    let themeToSet;
+
+    if (window.location.search.includes('font=move')) {
+      window.localStorage.setItem(LS_THEME_KEY, 'LightThemeMove');
+      themeToSet = LightThemeMove;
     }
-    return this.setState({theme: LightTheme});
+
+    if (window.location.search.includes('font=system')) {
+      window.localStorage.setItem(LS_THEME_KEY, 'LightTheme');
+      themeToSet = LightTheme;
+    }
+
+    const savedTheme = localStorage.getItem(LS_THEME_KEY);
+    this.setState({
+      theme: themeToSet || themes[savedTheme] || LightTheme,
+    });
   }
 
   render() {
@@ -45,10 +66,7 @@ export default class MyApp extends App {
       <Container>
         <StyletronProvider value={styletron}>
           <ThemeProvider theme={this.state.theme}>
-            <Component
-              changeTheme={this.toggleTheme.bind(this)}
-              {...pageProps}
-            />
+            <Component {...pageProps} />
             <Block marginBottom="300px" />
           </ThemeProvider>
         </StyletronProvider>

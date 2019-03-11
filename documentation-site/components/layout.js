@@ -17,7 +17,6 @@ import {
   StyledNavigationList as NavigationList,
   ALIGN,
 } from 'baseui/header-navigation';
-import {StatefulCheckbox} from 'baseui/checkbox';
 
 import ComponentMenu from './component-menu';
 import MarkdownElements from './markdown-elements';
@@ -30,7 +29,6 @@ import {version} from '../../package.json';
 
 type PropsT = {
   children: React.Node,
-  changeTheme: () => void,
 };
 
 export default (props: PropsT) => (
@@ -146,9 +144,6 @@ export default (props: PropsT) => (
           },
         }}
       >
-        <StatefulCheckbox checkmarkType={'toggle'} onChange={props.changeTheme}>
-          Use with Uber Move fonts
-        </StatefulCheckbox>
         <MDXProvider components={MarkdownElements}>
           {props.children}
         </MDXProvider>
