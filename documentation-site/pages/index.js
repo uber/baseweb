@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
-import {H4, H6} from 'baseui/typography';
+import {H1} from '../components/markdown-elements';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
 import fetch from 'isomorphic-fetch';
 
@@ -28,16 +28,17 @@ type Contributor = {
 const cardOverrides = {
   Root: {
     style: ({$theme}) => ({
-      marginRight: $theme.sizing.scale500,
-      marginBottom: $theme.sizing.scale500,
-      width: '340px',
+      marginLeft: $theme.sizing.scale600,
+      marginRight: $theme.sizing.scale600,
+      marginTop: $theme.sizing.scale500,
+      width: '300px',
     }),
   },
 };
 
 const Index = (props: {contributors: Contributor[]}) => (
   <Layout>
-    <H4>Base Web React Components</H4>
+    <H1>Base Web React Components</H1>
     <Markdown.p>
       Base Web is a foundation, a basis for initiating, evolving, and unifying
       web products. The system is designed to be fully responsive and device
@@ -45,9 +46,7 @@ const Index = (props: {contributors: Contributor[]}) => (
       components.
     </Markdown.p>
 
-    <H6>Getting started with Base Web</H6>
-
-    <Block display="flex" flexWrap>
+    <Block display="flex" marginLeft="-16px" marginRight="-16px" flexWrap>
       <Card title="Installing Base Web" overrides={cardOverrides}>
         <StyledBody>
           Base Web is distributed as an npm package. As Base Web is built on top

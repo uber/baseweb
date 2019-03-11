@@ -13,7 +13,7 @@ type PropsT = {
 };
 
 const JSONViewer = (props: PropsT) => (
-  <Code language="javascript">{JSON.stringify(props.src, null, 2)}</Code>
+  <Code>{JSON.stringify(props.src, null, 2)}</Code>
 );
 
 export default JSONViewer;

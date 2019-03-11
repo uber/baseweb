@@ -33,11 +33,18 @@ export default class MyApp extends App {
     };
   }
 
+  static async getInitialProps({Component, ctx}) {
+    let pageProps = {};
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+    return {path: ctx.asPath, pageProps};
+  }
+
   componentDidMount() {
     Router.onRouteChangeComplete = url => {
       trackPageView(url);
     };
-
     this.setTheme();
   }
 
@@ -61,12 +68,12 @@ export default class MyApp extends App {
   }
 
   render() {
-    const {Component, pageProps} = this.props;
+    const {Component, pageProps, path} = this.props;
     return (
       <Container>
         <StyletronProvider value={styletron}>
           <ThemeProvider theme={this.state.theme}>
-            <Component {...pageProps} />
+            <Component {...pageProps} path={path} />
             <Block marginBottom="300px" />
           </ThemeProvider>
         </StyletronProvider>

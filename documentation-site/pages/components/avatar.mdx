@@ -24,17 +24,15 @@ export default Layout;
 
 Adds additional visual information about a user.
 
-### When to use
+## When to use
 
 - When you want to show a user's image along contextual information.
 - When you want to attribute an action to a user.
 
-### Accessibility
+## Accessibility
 
 - Top level `name` prop will be set on the `<img>` element as its `alt` attribute.
 - If src fails to load, applies `aria-label` with provided name and `role` with 'img' to root div element.
-
-## Examples
 
 <Example title="Avatar with available sizes" path="examples/avatar/sizes.js">
   <Sizes />

@@ -12,15 +12,13 @@ import Props from 'pretty-proptypes';
 import {Block} from 'baseui/block';
 import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'baseui/button';
 import {Paragraph1} from 'baseui/typography';
-import {Heading} from './markdown-elements';
+import {H2} from './markdown-elements';
 
 const API = props => {
   const {heading, api} = props;
   return (
     <React.Fragment>
-      <Heading element="h3" fontType="font600">
-        {heading}
-      </Heading>
+      <H2>{heading}</H2>
       <Props
         props={api}
         heading={' '}
