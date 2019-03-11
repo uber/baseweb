@@ -43,13 +43,17 @@ export default class MenuStatefulContainer extends React.Component<
     if (__BROWSER__) {
       // TODO(#185): perhaps only bind event listener on focus
       document.addEventListener('keydown', this.onKeyDown);
-      this.state.highlightedIndex > -1 &&
-        scrollItemIntoView({
-          node: this.refList[this.state.highlightedIndex],
-          parentNode: this.rootRef,
-          isFirst: this.state.highlightedIndex === 0,
-          isLast: this.state.highlightedIndex === this.props.items.length - 1,
-        });
+      if (
+        this.state.highlightedIndex > -1 &&
+        this.refList[this.state.highlightedIndex]
+      ) {
+        scrollItemIntoView(
+          this.refList[this.state.highlightedIndex].current,
+          this.rootRef.current,
+          this.state.highlightedIndex === 0,
+          this.state.highlightedIndex === this.props.items.length - 1,
+        );
+      }
     }
   }
 
@@ -105,12 +109,14 @@ export default class MenuStatefulContainer extends React.Component<
       highlightedIndex = Math.min(oldIndex + 1, items.length - 1);
       stateChangeType = STATE_CHANGE_TYPES.moveDown;
     }
-    scrollItemIntoView({
-      node: this.refList[highlightedIndex],
-      parentNode: this.rootRef,
-      isFirst: highlightedIndex === 0,
-      isLast: highlightedIndex === items.length - 1,
-    });
+    if (this.refList[highlightedIndex]) {
+      scrollItemIntoView(
+        this.refList[highlightedIndex].current,
+        this.rootRef.current,
+        highlightedIndex === 0,
+        highlightedIndex === items.length - 1,
+      );
+    }
     this.internalSetState(stateChangeType, {highlightedIndex});
   }
 
@@ -150,7 +156,6 @@ export default class MenuStatefulContainer extends React.Component<
       ref: itemRef,
       isHighlighted: highlightedIndex === index,
       onClick: onClickHandler,
-      'aria-activedescendant': highlightedIndex === index,
       ...getRequiredItemProps(item, index),
     };
   };

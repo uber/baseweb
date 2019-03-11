@@ -48,6 +48,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   anchorRef = (React.createRef(): {current: *});
   popperRef = (React.createRef(): {current: *});
   arrowRef = (React.createRef(): {current: *});
+  popperHeight = 0;
   /* eslint-enable react/sort-comp */
 
   /**
@@ -66,21 +67,37 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     prevProps: PopoverPropsT,
     prevState: PopoverPrivateStateT,
   ) {
+    // Handles the case where popover content changes size and creates a gap between the anchor and
+    // the popover. Popper.js only schedules updates on resize and scroll events. In the case of
+    // the Select component, when options were filtered in the dropdown menu it creates a gap
+    // between it and the input element.
+    if (this.popperRef.current) {
+      const {height} = this.popperRef.current.getBoundingClientRect();
+      if (this.popperHeight !== height) {
+        this.popperHeight = height;
+        this.popper && this.popper.scheduleUpdate();
+      }
+    }
+
     if (
       this.props.isOpen !== prevProps.isOpen ||
       this.state.isMounted !== prevState.isMounted
     ) {
+      // Transition from closed to open.
       if (this.props.isOpen) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
-        // Opening
         this.initializePopper();
         this.addDomEvents();
-      } else {
-        // Closing
+        return;
+      }
+
+      // Transition from open to closed.
+      if (!this.props.isOpen && prevProps.isOpen) {
         this.destroyPopover();
         this.removeDomEvents();
         this.animateOutTimer = setTimeout(this.animateOut, 20);
+        return;
       }
     }
   }
@@ -283,7 +300,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       return;
     }
     if (this.props.onClickOutside) {
-      this.props.onClickOutside();
+      this.props.onClickOutside(evt);
     }
   };
 
@@ -488,10 +505,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         (this.props.isOpen || this.state.isAnimating)
       ) {
         const mountNode = this.getMountNode();
-        rendered.push(
-          // $FlowFixMe
-          ReactDOM.createPortal(this.renderPopover(), mountNode),
-        );
+        rendered.push(ReactDOM.createPortal(this.renderPopover(), mountNode));
       }
     }
     return rendered;

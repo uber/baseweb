@@ -194,6 +194,7 @@ export type DropdownPropsT = {
       $isHighlighted: boolean,
     },
   }) => React.Node,
+  innerRef: {current: ?HTMLElement},
   isLoading: boolean,
   labelKey: string,
   maxDropdownHeight: string,
@@ -207,6 +208,7 @@ export type DropdownPropsT = {
   type: TypeT,
   value: ValueT,
   valueKey: string,
+  width: ?number,
 };
 
 export type AutosizeInputOverridesT = {

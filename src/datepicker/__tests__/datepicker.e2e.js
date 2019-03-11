@@ -155,8 +155,7 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day);
     await page.click(selectors.yearSelect);
-    const dropdown = `${selectors.yearSelect} ${selectors.selectDropdown}`;
-    await page.waitFor(dropdown);
+    await page.waitFor(selectors.selectDropdown);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
@@ -165,7 +164,7 @@ describe('Datepicker', () => {
       option.click();
       return option;
     });
-    await page.waitFor(dropdown, {hidden: true});
+
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day5);
   });
@@ -177,8 +176,7 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day);
     await page.click(selectors.monthSelect);
-    const dropdown = `${selectors.monthSelect} ${selectors.selectDropdown}`;
-    await page.waitFor(dropdown);
+    await page.waitFor(selectors.selectDropdown);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
@@ -187,7 +185,7 @@ describe('Datepicker', () => {
       option.click();
       return option;
     });
-    await page.waitFor(dropdown, {hidden: true});
+
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day6);
   });
