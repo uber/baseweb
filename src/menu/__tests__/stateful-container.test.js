@@ -94,7 +94,6 @@ describe('Menu StatefulContainer', () => {
       ref: React.createRef(),
       isHighlighted: false,
       onClick: props.onClick,
-      'aria-activedescendant': false,
     });
     props.onClick();
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
@@ -110,7 +109,6 @@ describe('Menu StatefulContainer', () => {
       disabled: true,
       ref: React.createRef(),
       isHighlighted: false,
-      'aria-activedescendant': false,
     });
   });
 
@@ -125,7 +123,6 @@ describe('Menu StatefulContainer', () => {
       ref: React.createRef(),
       isHighlighted: true,
       onClick: props.onClick,
-      'aria-activedescendant': true,
     });
   });
 
@@ -146,13 +143,15 @@ describe('Menu StatefulContainer', () => {
       {highlightedIndex: 0},
       {highlightedIndex: -1},
     ]);
+    const parent = React.createRef();
+    const child = React.createRef();
     // $FlowFixMe
-    expect(scrollItemIntoView.mock.calls[0][0]).toEqual({
-      node: React.createRef(),
-      parentNode: React.createRef(),
-      isFirst: true,
-      isLast: false,
-    });
+    expect(scrollItemIntoView.mock.calls[0][0]).toEqual(
+      child.current,
+      parent.current,
+      true,
+      false,
+    );
 
     component.instance().onKeyDown({
       key: KEY_STRINGS.ArrowDown,

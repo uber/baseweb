@@ -63,19 +63,8 @@ function getControlPadding(props, emptyValue) {
 }
 
 export const StyledDropdownContainer = styled('div', props => {
-  const {
-    $theme: {sizing},
-  } = props;
   return {
-    boxSizing: 'border-box',
-    position: 'absolute',
-    width: '100%',
-    zIndex: 1,
-    marginTop: sizing.scale300,
-    paddingTop: '0',
-    paddingBottom: '0',
-    paddingLeft: sizing.scale300,
-    paddingRight: sizing.scale300,
+    width: `${props.$width}px`,
   };
 });
 

@@ -6,6 +6,23 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
+import {getOverrides} from '../helpers/overrides.js';
+import {
+  Delete as DeleteIcon,
+  TriangleDown as TriangleDownIcon,
+  Search as SearchIconComponent,
+} from '../icon/index.js';
+import {LocaleContext} from '../locale/index.js';
+import type {LocaleT} from '../locale/types.js';
+import {Popover, PLACEMENT} from '../popover/index.js';
+import {Spinner} from '../spinner/index.js';
+
+import AutosizeInput from './autosize-input.js';
+import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
+import defaultProps from './default-props.js';
+import SelectDropdown from './dropdown.js';
+import MultiValue from './multi-value.js';
 import {
   StyledRoot,
   StyledControlContainer,
@@ -18,26 +35,6 @@ import {
   getLoadingIconStyles,
   StyledSearchIcon,
 } from './styled-components.js';
-import AutosizeInput from './autosize-input.js';
-import Value from './value.js';
-import MultiValue from './multi-value.js';
-import SelectDropdown from './dropdown.js';
-import {
-  shouldShowValue,
-  shouldShowPlaceholder,
-  expandValue,
-} from './utils/index.js';
-import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {Spinner} from '../spinner/index.js';
-import {
-  Delete as DeleteIcon,
-  TriangleDown as TriangleDownIcon,
-  Search as SearchIconComponent,
-} from '../icon/index.js';
-import defaultProps from './default-props.js';
-import {LocaleContext} from '../locale/index.js';
-
 import type {
   PropsT,
   SelectStateT,
@@ -45,17 +42,58 @@ import type {
   OptionT,
   ChangeActionT,
 } from './types.js';
-import type {LocaleT} from '../locale/types.js';
+import {
+  shouldShowValue,
+  shouldShowPlaceholder,
+  expandValue,
+} from './utils/index.js';
+import Value from './value.js';
+
+const isClick = event => event.type === 'click';
+const isLeftClick = event =>
+  event.button !== null && event.button !== undefined && event.button === 0;
+
+const containsNode = (parent, child) => {
+  if (__BROWSER__) {
+    return child instanceof Node && parent && parent.contains(child);
+  }
+};
+
+export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
+  if (rootTarget instanceof Element) {
+    let target: ?Element = rootTarget;
+    while (target && target !== rootElement) {
+      const role = target.getAttribute('role');
+      if (role === 'button' || role === 'link') {
+        return true;
+      }
+      if (target.tagName) target = target.parentElement;
+    }
+  }
+
+  return false;
+}
 
 class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;
 
-  wrapper: ?HTMLElement;
+  // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
+  // open. This is required so that we can check if clicks are on/off the anchor element.
+  anchor: {current: ?HTMLElement} = React.createRef();
+  // dropdown is a ref that refers to the popover element. This is required so that we can check if
+  // clicks are on/off the dropdown element.
+  dropdown: {current: ?HTMLElement} = React.createRef();
   input: ?HTMLInputElement;
+  // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
   dragging: boolean;
+  // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
+  // option has been cleared.
   focusAfterClear: boolean;
+  // openAfterFocus is a flag to indicate that the dropdown menu should open when the component is
+  // focused. Developers have the option to disable initial clicks opening the dropdown menu. If not
+  // disabled, clicks will set this flag true. Upon focusing, look to this to see if the menu should
+  // be opened, or only focus.
   openAfterFocus: boolean;
-  isValueJustSelected: boolean;
 
   state = {
     inputValue: '',
@@ -69,165 +107,123 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.focus();
     }
   }
+
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
-    if (prevState.isOpen !== this.state.isOpen) {
-      this.toggleTouchOutsideEvent(this.state.isOpen);
-      const handler = this.state.isOpen
-        ? this.props.onOpen
-        : this.props.onClose;
-      handler && handler();
-    }
-    if (prevState.isFocused !== this.state.isFocused && this.state.isFocused) {
-      if (__BROWSER__) {
+    if (__BROWSER__) {
+      if (prevState.isOpen !== this.state.isOpen) {
+        if (this.state.isOpen) {
+          this.props.onOpen && this.props.onOpen();
+          document.addEventListener('touchstart', this.handleTouchOutside);
+        } else {
+          this.props.onClose && this.props.onClose();
+          document.removeEventListener('touchstart', this.handleTouchOutside);
+        }
+      }
+
+      if (!prevState.isFocused && this.state.isFocused) {
         document.addEventListener('click', this.handleClickOutside);
       }
     }
   }
 
   componentWillUnmount() {
-    this.toggleTouchOutsideEvent(false);
-  }
-
-  toggleTouchOutsideEvent(enabled: boolean) {
     if (__BROWSER__) {
-      if (enabled) {
-        document.addEventListener('touchstart', this.handleTouchOutside);
-      } else {
-        document.removeEventListener('touchstart', this.handleTouchOutside);
-      }
+      document.removeEventListener('touchstart', this.handleTouchOutside);
     }
   }
-
-  handleTouchOutside = (event: Event) => {
-    // Handle touch outside on ios to dismiss menu
-    // $FlowFixMe
-    if (this.wrapper && !this.wrapper.contains(event.target)) {
-      this.closeMenu();
-    }
-  };
 
   focus() {
     if (!this.input) return;
     this.input.focus();
   }
 
-  handleTouchMove = () => {
-    // Set a flag that the view is being dragged
-    this.dragging = true;
+  // Handle touch outside on mobile to dismiss menu, ensures that the
+  // touch target is not within the anchor DOM node.
+  handleTouchOutside = (event: TouchEvent) => {
+    if (!containsNode(this.anchor.current, event.target)) {
+      this.closeMenu();
+    }
   };
 
-  handleTouchStart = () => {
-    // Set a flag that the view is not being dragged
-    this.dragging = false;
-  };
-
-  handleTouchEnd = (event: Event) => {
-    // Check if the view is being dragged. In this case
-    // we don't want to fire the click event (because the user only wants to scroll)
+  // Track dragging state to filter false-positive actions where a user
+  // intends to drag/scroll the page.
+  handleTouchMove = () => (this.dragging = true);
+  handleTouchStart = () => (this.dragging = false);
+  handleTouchEnd = (event: TouchEvent) => {
     if (this.dragging) return;
-    // Fire the mouse events
     this.handleClick(event);
   };
-
-  handleTouchEndClearValue = (event: Event) => {
-    // Check if the view is being dragged. In this case
-    // we don't want to fire the click event (because the user only wants to scroll)
+  handleTouchEndClearValue = (event: TouchEvent) => {
     if (this.dragging) return;
-    // Clear the value
     this.clearValue(event);
   };
 
-  handleClickOutside = (event: Event) => {
-    if (this.isValueJustSelected) {
-      this.isValueJustSelected = false;
+  handleClick = (event: MouseEvent | TouchEvent) => {
+    if (this.props.disabled || (!isClick(event) && !isLeftClick(event))) {
       return;
     }
-    const isFocused = this.state.isFocused || this.state.isPseudoFocused;
-    // $FlowFixMe
-    if (isFocused && this.wrapper && !this.wrapper.contains(event.target)) {
-      this.handleInputBlur(event);
-    }
-  };
 
-  handleClick = (event: Event) => {
-    // If the event was triggered by a mouse click and not the primary
-    // button, or if the component is disabled, ignore it
-    if (
-      this.props.disabled ||
-      // $FlowFixMe
-      (event.type === 'click' && event.button !== 0)
-    ) {
-      return;
-    }
-    // $FlowFixMe
-    if (event.target.tagName === 'INPUT') {
+    // Case comes up when text has been typed into the input field. If no text provided,
+    // the 'input' element will have essentially 0 width therefore will not be clickable.
+    // When click outside does not reset input, text provided will stay rendered after clicks away
+    // from the select component. Upon subsequent clicks on the provided text, open the dropdown
+    // menu, in addition to text edit operations.
+    if (event.target === this.input) {
+      // CHASE: not sure why this condition is here. I cannot replicate a situation where clicks
+      // on provided text break into here.
       if (!this.state.isFocused) {
         this.openAfterFocus = this.props.openOnClick;
         this.focus();
-      } else if (!this.state.isOpen) {
+        return;
+      }
+
+      if (!this.state.isOpen) {
         this.setState({
           isOpen: true,
           isPseudoFocused: false,
         });
+        return;
       }
+    }
+
+    // Ensures that interactive elements within the Select component do not trigger the outer click
+    // handler. For example, after an option is selected clicks on the 'clear' icon call here. We
+    // should ignore those events. This comes after case where click is on input element, so that
+    // those are handled on their own.
+    if (this.input && isInteractive(event.target, this.input)) {
       return;
     }
-    event.preventDefault();
-    // For the non-searchable select, toggle the menu
+
+    // For the simple case where clicking on the Select does not allow for providing
+    // text input to filter the dropdown options.
     if (!this.props.searchable) {
-      // This code means that if a select is searchable,
-      // onClick the options menu will not appear, only on
-      // subsequent click will it open.
       this.focus();
-      return this.setState({
-        isOpen: !this.state.isOpen,
-      });
+      this.setState(prev => ({isOpen: !prev.isOpen}));
+      return;
     }
+
+    // Cases below only apply to searchable Select component.
     if (this.state.isFocused) {
-      // On iOS, we can get into a state where we think the input is
-      // focused but it isn't really, since iOS ignores programmatic
-      // calls to input.focus() that weren't triggered by a click event.
-      // Call focus() again here to be safe.
+      // iOS ignores programmaitc calls to input.focus() that were not triggered by a click event.
+      // This component can get into a state where isFocused is true, but the DOM node is not
+      // focused. Call focus here again to ensure.
       this.focus();
-      let toOpen = !this.state.isOpen;
-      // clears the value so that the cursor will be at the end of input when the component re-renders
+
+      // Case comes up when click outside does not reset input - once text has been provided to
+      // the input, and the user closes the dropdown menu the provided text is maintained. After
+      // this, if the user focuses back into the select component then clicks on the component,
+      // the provided text highlights rather than position's the cursor at the end of the input.
       if (this.input) this.input.value = '';
-      if (this.focusAfterClear) {
-        toOpen = false;
-        this.focusAfterClear = false;
-      }
-      // if the input is focused, ensure the menu is open
-      this.setState({
-        isOpen: toOpen,
+
+      this.setState(prev => ({
+        isOpen: this.focusAfterClear ? false : !prev.isOpen,
         isPseudoFocused: false,
-      });
+      }));
+
+      this.focusAfterClear = false;
     } else {
-      // otherwise, focus the input and open the menu
       this.openAfterFocus = this.props.openOnClick;
       this.focus();
-    }
-  };
-
-  handleClickOnArrow = (event: Event) => {
-    // if the event was triggered by a mouse click and not the primary
-    // button, or if the component is disabled, ignore it.
-    if (
-      this.props.disabled ||
-      // $FlowFixMe
-      (event.type === 'click' && event.button !== 0)
-    ) {
-      return;
-    }
-    if (this.state.isOpen) {
-      // prevent default event handlers
-      event.stopPropagation();
-      event.preventDefault();
-      this.closeMenu();
-    } else {
-      // If the menu isn't open, let the event bubble to the main handleClick
-      this.setState({
-        isOpen: true,
-      });
     }
   };
 
@@ -248,14 +244,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   handleInputFocus = (event: SyntheticEvent<HTMLElement>) => {
     if (this.props.disabled) return;
+    if (this.props.onFocus) this.props.onFocus(event);
 
     let toOpen = this.state.isOpen || this.openAfterFocus;
-    //if focus happens after clear values, don't open dropdown yet.
+    // if focus happens after clear values, don't open dropdown yet.
     toOpen = this.focusAfterClear ? false : toOpen;
-
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
 
     this.setState({
       isFocused: true,
@@ -266,22 +259,38 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleInputBlur = (event: Event) => {
+  handleBlur = (event: Event) => {
+    if (containsNode(this.anchor.current, event.target)) {
+      return;
+    }
+
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
-    const onBlurredState = {
+
+    const onBlurredState: $Shape<SelectStateT> = {
       isFocused: false,
       isOpen: false,
       isPseudoFocused: false,
     };
+
     if (this.props.onBlurResetsInput) {
-      // $FlowFixMe
       onBlurredState.inputValue = '';
     }
+
     this.setState(onBlurredState);
+
     if (__BROWSER__) {
       document.removeEventListener('click', this.handleClickOutside);
+    }
+  };
+
+  handleClickOutside = (event: MouseEvent) => {
+    if (containsNode(this.dropdown.current, event.target)) return;
+
+    const isFocused = this.state.isFocused || this.state.isPseudoFocused;
+    if (isFocused && !containsNode(this.anchor.current, event.target)) {
+      this.handleBlur(event);
     }
   };
 
@@ -328,6 +337,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           event.stopPropagation();
         } else if (this.props.clearable && this.props.escapeClearsValue) {
           this.clearValue(event);
+          this.setState({isFocused: false, isPseudoFocused: false});
           event.stopPropagation();
         }
         break;
@@ -430,9 +440,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   selectValue = ({item}: {item: OptionT}) => {
-    // NOTE: we check this is in handleClickOutside to not count
-    // menu clicks as outside clicks
-    this.isValueJustSelected = true;
     if (item.disabled) {
       return;
     }
@@ -502,31 +509,21 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.focus();
   };
 
-  clearValue = (event: Event) => {
-    // if the event was triggered by a mouse click and not the primary
-    // button, ignore it.
-    // $FlowFixMe
-    if (event && event.type === 'click' && event.button !== 0) {
-      return;
-    }
-    event.preventDefault();
-    this.setValue(this.getResetValue(), null, STATE_CHANGE_TYPE.clear);
-    this.setState(
-      {
-        inputValue: '',
-        isOpen: false,
-      },
-      this.focus,
+  clearValue = (event: KeyboardEvent | MouseEvent | TouchEvent) => {
+    if (isClick(event) && !isLeftClick(event)) return;
+
+    const resetValue = this.props.value.filter(
+      item => item.clearableValue === false,
     );
+    this.setValue(resetValue, null, STATE_CHANGE_TYPE.clear);
+    this.setState({
+      inputValue: '',
+      isOpen: false,
+    });
+
+    this.focus();
     this.focusAfterClear = true;
   };
-
-  getResetValue(): ValueT {
-    // Clear all except not clearable values
-    return this.props.value.filter(item => {
-      return item.clearableValue === false;
-    });
-  }
 
   renderLoading() {
     if (!this.props.isLoading) return;
@@ -578,9 +575,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           <MultiValue
             value={value}
             key={`value-${i}-${value[this.props.valueKey]}`}
-            removeValue={() => {
-              this.removeValue(value);
-            }}
+            removeValue={() => this.removeValue(value)}
             disabled={disabled}
             overrides={{MultiValue: overrides.MultiValue}}
             {...sharedProps}
@@ -626,6 +621,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
           aria-required={this.props.required || null}
+          onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
           $ref={ref => (this.input = ref)}
           tabIndex={0}
@@ -634,6 +630,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         />
       );
     }
+
     return (
       <InputContainer {...sharedProps} {...inputContainerProps}>
         <AutosizeInput
@@ -647,6 +644,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-required={this.props.required || null}
           disabled={this.props.disabled || null}
           inputRef={ref => (this.input = ref)}
+          onBlur={this.handleBlur}
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           overrides={{Input: overrides.Input}}
@@ -686,6 +684,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
         overrides={{Svg: StyledClearIcon}}
+        role="button"
         {...sharedProps}
         {...clearIconProps}
       />
@@ -706,7 +705,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       <SelectArrow
         size={16}
         title={'open'}
-        onClick={this.handleClickOnArrow}
         overrides={{Svg: StyledSelectArrow}}
         {...sharedProps}
         {...selectArrowProps}
@@ -728,7 +726,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       <SearchIcon
         size={16}
         title={'search'}
-        onClick={this.handleClickOnArrow}
         overrides={{Svg: StyledSearchIcon}}
         {...sharedProps}
         {...searchIconProps}
@@ -746,53 +743,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       });
     } else {
       return options;
-    }
-  }
-
-  renderMenu(options: ValueT, valueArray: ValueT, locale: LocaleT) {
-    const {
-      error,
-      getOptionLabel,
-      isLoading,
-      labelKey,
-      maxDropdownHeight,
-      multi,
-      noResultsMsg,
-      overrides,
-      required,
-      searchable,
-      size,
-      type,
-      valueKey,
-    } = this.props;
-    const dropdownProps = {
-      error,
-      getOptionLabel: getOptionLabel || this.getOptionLabel,
-      isLoading,
-      labelKey,
-      maxDropdownHeight,
-      multi,
-      onItemSelect: this.selectValue,
-      options,
-      overrides,
-      required,
-      searchable,
-      size,
-      type,
-      value: valueArray,
-      valueKey,
-    };
-    if (options && options.length) {
-      return <SelectDropdown {...dropdownProps} />;
-    } else if (noResultsMsg) {
-      const noResults = {
-        [valueKey]: 'NO_RESULTS_FOUND',
-        [labelKey]: noResultsMsg || locale.select.noResultsMsg,
-        disabled: true,
-      };
-      return <SelectDropdown {...dropdownProps} options={[noResults]} />;
-    } else {
-      return null;
     }
   }
 
@@ -856,36 +806,90 @@ class Select extends React.Component<PropsT, SelectStateT> {
       isOpen = false;
     }
     sharedProps.$isOpen = isOpen;
+
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <Root
-            $ref={ref => (this.wrapper = ref)}
-            {...sharedProps}
-            {...rootProps}
+          <Popover
+            // Popover does not provide ability to forward refs through, and if we were to simply
+            // apply the ref to the Root component below it would be overwritten before the popover
+            // renders it. Using this strategy, we will get a ref to the popover, then reuse its
+            // anchorRef so we can check if clicks are on the select component or not.
+            ref={ref => {
+              if (!ref) return;
+              this.anchor = ref.anchorRef;
+            }}
+            isOpen={isOpen}
+            content={() => {
+              const dropdownProps = {
+                error: this.props.error,
+                getOptionLabel:
+                  this.props.getOptionLabel || this.getOptionLabel,
+                isLoading: this.props.isLoading,
+                labelKey: this.props.labelKey,
+                maxDropdownHeight: this.props.maxDropdownHeight,
+                multi,
+                onItemSelect: this.selectValue,
+                options,
+                overrides,
+                required: this.props.required,
+                searchable: this.props.searchable,
+                size: this.props.size,
+                type,
+                value: valueArray,
+                valueKey: this.props.valueKey,
+                width: this.anchor.current
+                  ? this.anchor.current.clientWidth
+                  : null,
+              };
+
+              if (options && options.length) {
+                return (
+                  <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />
+                );
+              } else if (this.props.noResultsMsg) {
+                const noResults = {
+                  [this.props.valueKey]: 'NO_RESULTS_FOUND',
+                  [this.props.labelKey]:
+                    this.props.noResultsMsg || locale.select.noResultsMsg,
+                  disabled: true,
+                };
+                return (
+                  <SelectDropdown
+                    innerRef={this.dropdown}
+                    {...dropdownProps}
+                    options={[noResults]}
+                  />
+                );
+              } else {
+                return null;
+              }
+            }}
+            placement={PLACEMENT.bottom}
           >
-            <ControlContainer
-              onKeyDown={this.handleKeyDown}
-              onClick={this.handleClick}
-              onTouchEnd={this.handleTouchEnd}
-              onTouchMove={this.handleTouchMove}
-              onTouchStart={this.handleTouchStart}
-              {...sharedProps}
-              {...controlContainerProps}
-            >
-              {type === TYPE.search ? this.renderSearch() : null}
-              <ValueContainer {...sharedProps} {...valueContainerProps}>
-                {this.renderValue(valueArray, isOpen, locale)}
-                {this.renderInput()}
-              </ValueContainer>
-              <IconsContainer {...sharedProps} {...iconsContainerProps}>
-                {this.renderLoading()}
-                {this.renderClear()}
-                {type === TYPE.select ? this.renderArrow() : null}
-              </IconsContainer>
-            </ControlContainer>
-            {isOpen ? this.renderMenu(options, valueArray, locale) : null}
-          </Root>
+            <Root {...sharedProps} {...rootProps}>
+              <ControlContainer
+                onKeyDown={this.handleKeyDown}
+                onClick={this.handleClick}
+                onTouchEnd={this.handleTouchEnd}
+                onTouchMove={this.handleTouchMove}
+                onTouchStart={this.handleTouchStart}
+                {...sharedProps}
+                {...controlContainerProps}
+              >
+                {type === TYPE.search ? this.renderSearch() : null}
+                <ValueContainer {...sharedProps} {...valueContainerProps}>
+                  {this.renderValue(valueArray, isOpen, locale)}
+                  {this.renderInput()}
+                </ValueContainer>
+                <IconsContainer {...sharedProps} {...iconsContainerProps}>
+                  {this.renderLoading()}
+                  {this.renderClear()}
+                  {type === TYPE.select ? this.renderArrow() : null}
+                </IconsContainer>
+              </ControlContainer>
+            </Root>
+          </Popover>
         )}
       </LocaleContext.Consumer>
     );
