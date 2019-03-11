@@ -89,7 +89,7 @@ export type PopoverPropsT = BasePopoverPropsT & {
   /** Handler for click events on trigger element. */
   onClick?: (e: Event) => void,
   /** Handler for clicks outside the anchor/popover elements. */
-  onClickOutside?: () => void,
+  onClickOutside?: (event: MouseEvent) => void,
   /** Handler for click events on trigger element. */
   onEsc?: () => void,
   /** Handler for 'Esc' keypress events */

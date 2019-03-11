@@ -18,6 +18,7 @@ describe('SelectDropdown', function() {
   let props = {};
   const options = [{id: '1', label: 'label1'}, {id: '2', label: 'label2'}];
   const value = [{id: '1', label: 'label1'}];
+  const ref = React.createRef();
 
   beforeEach(function() {
     props = {
@@ -36,8 +37,9 @@ describe('SelectDropdown', function() {
       required: false,
       searchable: true,
       type: TYPE.select,
+      width: 100,
     };
-    wrapper = mount(<SelectDropdown {...props} />);
+    wrapper = mount(<SelectDropdown innerRef={ref} {...props} />);
   });
 
   afterEach(function() {
