@@ -27,8 +27,7 @@ export default () => {
     <Block
       display="flex"
       direction="column"
-      padding="scale3200"
-      $style={{border: 'grey solid 4px'}}
+      $style={{border: 'grey solid 2px'}}
       flexWrap
     >
       {elements}

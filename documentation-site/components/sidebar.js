@@ -15,16 +15,10 @@ import Link from 'next/link';
 import NavLink from './nav-link';
 import Routes from '../routes';
 
-const levelToPadding = {
-  1: 'scale400',
-  2: 'scale500',
-  3: 'scale600',
-};
-
 const levelToFont = {
   1: 'font450',
   2: 'font400',
-  3: 'font300',
+  3: 'font400',
 };
 
 const List = styled(Block, ({$theme}) => ({
@@ -36,7 +30,6 @@ const List = styled(Block, ({$theme}) => ({
   paddingLeft: '0',
   paddingRight: '0',
   listStyle: 'none',
-  maxWidth: '200px',
 }));
 
 const NavigationLink = props => {
@@ -49,14 +42,36 @@ const NavigationLink = props => {
   );
 };
 
+const removeSlash = path => {
+  if (path) {
+    return path.replace(/\/$/, '');
+  }
+  return path;
+};
+
 const NavigationItem = props => {
-  const {route, index, level = 1} = props;
+  const {route, level = 1, path} = props;
   return (
     <Block
       font={levelToFont[level]}
-      paddingLeft={levelToPadding[level]}
       paddingBottom={level !== 3 ? 'scale100' : 0}
-      paddingTop={index === 0 && level === 3 ? 'scale100' : 0}
+      marginTop="scale300"
+      overrides={{
+        Block: {
+          style: ({$theme}) => ({
+            paddingLeft: !route.children ? $theme.sizing.scale600 : 0,
+            borderLeft:
+              (path && removeSlash(path) === removeSlash(route.path)) ||
+              (!path && route.path === '/')
+                ? `3px solid ${$theme.colors.primary300}`
+                : route.children
+                  ? 'none'
+                  : '3px solid transparent',
+            textTransform: route.children ? 'uppercase' : 'none',
+            ...(route.children && level === 2 ? $theme.typography.font350 : {}),
+          }),
+        },
+      }}
     >
       {route.path ? (
         <NavigationLink path={route.path} text={route.text} />
@@ -71,6 +86,7 @@ const NavigationItem = props => {
                   level={level + 1}
                   route={childRoute}
                   index={index}
+                  path={path}
                 />
               </React.Fragment>
             );
@@ -80,10 +96,12 @@ const NavigationItem = props => {
   );
 };
 
-export default () => (
+export default ({path}) => (
   <List as="ul">
     {Routes.map((route, index) => {
-      return <NavigationItem key={index} route={route} index={index} />;
+      return (
+        <NavigationItem key={index} route={route} index={index} path={path} />
+      );
     })}
   </List>
 );

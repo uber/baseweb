@@ -9,16 +9,22 @@ import * as React from 'react';
 import {styled} from 'baseui/styles';
 import {default as SearchIcon} from 'baseui/icon/search';
 import {trackEvent} from '../helpers/ga';
+import {HEADER_BREAKPOINT} from './header-navigation';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';
 
+type Props = {
+  toggleSearchInput: () => void,
+  searchInputOpen: boolean,
+};
 type State = {
   enabled: boolean,
 };
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = styled('input', ({$theme}) => ({
+const PlainInput = styled('input', ({$theme, $inputVisible}) => ({
+  display: $inputVisible ? 'block' : 'none',
   borderWidth: '1px',
   borderRadius: '4px',
   borderColor: $theme.colors.mono200,
@@ -29,7 +35,7 @@ const PlainInput = styled('input', ({$theme}) => ({
   paddingTop: '9px',
   paddingBottom: '9px',
   fontSize: '14px',
-  width: '250px',
+  width: $inputVisible ? '62vw' : '250px',
   backgroundColor: $theme.colors.mono200,
   lineHeight: '20px',
   outline: 'none',
@@ -38,15 +44,28 @@ const PlainInput = styled('input', ({$theme}) => ({
     backgroundColor: $theme.colors.mono100,
     borderColor: $theme.colors.primary,
   },
+  [HEADER_BREAKPOINT]: {
+    position: 'static',
+    display: 'block',
+    width: '250px',
+  },
 }));
 
-const IconWrapper = styled('div', {
-  marginRight: '-33px',
-  marginTop: '10px',
+const IconWrapper = styled('div', ({$inputVisible, $theme}) => ({
+  marginRight: $inputVisible ? '-33px' : 0,
+  marginTop: $inputVisible ? '8px' : 0,
+  height: '32px',
+  cursor: 'pointer',
   zIndex: 1,
-});
+  [HEADER_BREAKPOINT]: {
+    marginRight: '-33px',
+    marginTop: '8px',
+    cursor: 'inherit',
+    zIndex: 1,
+  },
+}));
 
-class DocSearch extends React.Component<{}, State> {
+class DocSearch extends React.Component<Props, State> {
   state = {
     enabled: true,
   };
@@ -69,13 +88,35 @@ class DocSearch extends React.Component<{}, State> {
 
   render() {
     const {enabled} = this.state;
+    const {searchInputOpen, toggleSearchInput} = this.props;
     return enabled ? (
       <React.Fragment>
         <style>{`.ds-dropdown-menu { margin-top: 12px !important }`}</style>
-        <IconWrapper>
-          <SearchIcon size={22} color="#666" />
+        <IconWrapper
+          $inputVisible={searchInputOpen}
+          role="button"
+          onClick={toggleSearchInput}
+        >
+          <SearchIcon
+            overrides={{
+              Svg: {
+                style: {
+                  height: searchInputOpen ? '22px' : '32px',
+                  width: searchInputOpen ? '22px' : '32px',
+                  fill: searchInputOpen ? '#666' : '#333',
+                  [HEADER_BREAKPOINT]: {
+                    height: '22px',
+                    width: '22px',
+                    fill: '#666',
+                  },
+                },
+              },
+            }}
+            color={searchInputOpen ? '#333' : '#666'}
+          />
         </IconWrapper>
         <PlainInput
+          $inputVisible={searchInputOpen}
           id={SEARCH_INPUT_ID}
           type="search"
           placeholder="Search documentation"

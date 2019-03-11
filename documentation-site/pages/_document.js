@@ -43,6 +43,7 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <script
             type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
@@ -51,7 +52,8 @@ export default class MyDocument extends Document {
             <style
               className="_styletron_hydrate_"
               dangerouslySetInnerHTML={{__html: sheet.css}}
-              media={sheet.attrs.media || ''}
+              media={sheet.attrs.media}
+              data-hydrate={sheet.attrs['data-hydrate']}
               key={i}
             />
           ))}

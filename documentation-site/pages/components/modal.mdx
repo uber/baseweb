@@ -30,7 +30,7 @@ The alert modal is to intended to focus the user on an urgent message that requi
 action. By contrast to standard modals, alert modals have no close “X”, nor do they allow for out
 of bounds dismissal. The primary action is always a system red with a grey cancel action.
 
-### Accessibility
+## Accessibility
 
 - Upon opening, focus will be transferred to the dialog itself (unless `autofocus` is set to false)
 - Dialog element has `aria-modal="true"`
@@ -39,8 +39,6 @@ of bounds dismissal. The primary action is always a system red with a grey cance
 - `Escape` key closes the modal
 - Click on backdrop (anywhere outside dialog) hides modal.
 - Background is not be scrollable while modal is open (position: fixed).
-
-## Examples
 
 <Example title="Modal With Button Trigger" path="examples/modal/basic.js">
   <ModalBasic />

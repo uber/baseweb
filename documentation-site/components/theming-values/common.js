@@ -9,14 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {styled} from 'baseui';
-import {Block} from 'baseui/block';
+import {H2} from '../markdown-elements';
 
 export function Header({children}: {children: React.Node}) {
-  return (
-    <Block font="font700" marginBottom="scale200">
-      {children}
-    </Block>
-  );
+  return <H2>{children}</H2>;
 }
 
 export const ExampleWrapper = styled('div', () => {

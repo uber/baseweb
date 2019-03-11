@@ -18,7 +18,7 @@ import {styled} from 'baseui/styles';
 import {version} from '../../package.json';
 import Code from './code';
 import {trackEvent} from '../helpers/ga';
-import {Heading} from './markdown-elements';
+import {H2} from './markdown-elements';
 
 const Link = styled(StyledLink, {cursor: 'pointer'});
 
@@ -83,97 +83,67 @@ class Example extends React.Component<PropsT, StateT> {
         overrides={{
           Root: {
             style: ({$theme}) => ({
-              marginTop: $theme.sizing.scale800,
-              marginBottom: $theme.sizing.scale800,
+              marginTop: 0,
+              marginBottom: 0,
+              boxShadow: 'none',
+              borderWidth: 0,
             }),
           },
           Contents: {style: {margin: 0}},
         }}
       >
-        <Block
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          paddingTop="scale600"
-          paddingRight="scale500"
-          paddingBottom="scale600"
-          paddingLeft="scale800"
-        >
-          <Heading element="span" fontType="font500">
-            {this.props.title}
-          </Heading>
+        <H2>{this.props.title}</H2>
+        {this.props.children}
 
-          <Block display="flex" alignItems="center">
-            <Button
-              kind={KIND.secondary}
-              onClick={() => {
-                this.setState(prevState => ({
-                  isSourceOpen: !prevState.isSourceOpen,
-                }));
-                trackEvent('show_source', this.props.title);
-              }}
-            >
-              {this.state.isSourceOpen ? 'Hide' : 'Show'} Source
-            </Button>
-          </Block>
-        </Block>
-
-        <Block
-          padding="scale600"
-          overrides={{
-            Block: {
-              style: ({$theme}) => ({
-                borderTop: `1px solid ${$theme.colors.border}`,
-                borderBottom: this.state.isSourceOpen
-                  ? `1px solid ${$theme.colors.border}`
-                  : null,
-              }),
-            },
-          }}
-        >
-          {this.props.children}
+        <Block paddingTop="scale400">
+          <Button
+            kind={KIND.tertiary}
+            onClick={() => {
+              this.setState(prevState => ({
+                isSourceOpen: !prevState.isSourceOpen,
+              }));
+              trackEvent('show_source', this.props.title);
+            }}
+          >
+            {this.state.isSourceOpen ? 'Hide' : 'Show'} Source
+          </Button>
         </Block>
 
         {this.state.isSourceOpen && (
-          <Block margin="scale800">
+          <React.Fragment>
             <Block overflow="scrollX">
               <Source>{this.state.source}</Source>
             </Block>
-            <Block
-              display="flex"
-              justifyContent="flex-end"
-              marginTop="scale400"
+
+            <CodeSandboxer
+              examplePath="/"
+              example={this.state.source}
+              name={this.props.title}
+              afterDeploy={() => {
+                trackEvent('codesandbox_deployed', this.props.title);
+              }}
+              afterDeployError={() => {
+                trackEvent('codesandbox_deployed_error', this.props.title);
+              }}
+              dependencies={{
+                baseui: version,
+                react: '16.5.2',
+                'react-dom': '16.5.2',
+                'react-scripts': '2.0.3',
+                'styletron-engine-atomic': '1.0.9',
+                'styletron-react': '4.4.4',
+                ...this.props.additionalPackages,
+              }}
+              providedFiles={{'index.js': {content: index}}}
+              template="create-react-app"
             >
-              <CodeSandboxer
-                examplePath="/"
-                example={this.state.source}
-                name={this.props.title}
-                afterDeploy={() => {
-                  trackEvent('codesandbox_deployed', this.props.title);
-                }}
-                afterDeployError={() => {
-                  trackEvent('codesandbox_deployed_error', this.props.title);
-                }}
-                dependencies={{
-                  baseui: version,
-                  react: '16.5.2',
-                  'react-dom': '16.5.2',
-                  'react-scripts': '2.0.3',
-                  'styletron-engine-atomic': '1.0.9',
-                  'styletron-react': '4.4.4',
-                  ...this.props.additionalPackages,
-                }}
-                providedFiles={{'index.js': {content: index}}}
-                template="create-react-app"
-              >
-                {() => (
-                  <Link>
-                    <Button kind={KIND.tertiary}>Edit on CodeSandbox</Button>
-                  </Link>
-                )}
-              </CodeSandboxer>
-            </Block>
-          </Block>
+              {() => (
+                <Link>
+                  <Button kind={KIND.tertiary}>Edit on CodeSandbox</Button>
+                </Link>
+              )}
+            </CodeSandboxer>
+          </React.Fragment>
         )}
       </Card>
     );

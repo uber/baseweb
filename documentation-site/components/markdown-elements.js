@@ -39,6 +39,7 @@ const Code = (props: Props) => <Block>{props.children}</Block>;
 
 export const Heading = ({
   element,
+  marginTop,
   fontType,
   children,
 }: {
@@ -51,6 +52,7 @@ export const Heading = ({
   return (
     <Block
       as={element}
+      marginBottom="8px"
       font={fontType}
       $ref={hoverRef}
       id={slug}
@@ -108,28 +110,34 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
   );
 };
 
+export const H1 = ({children}: {children: React.Node}) => (
+  <React.Fragment>
+    <Head>
+      <title key="title">Base Web - {children}</title>
+    </Head>
+    <Heading element="h1" fontType="font700">
+      {children}
+    </Heading>
+  </React.Fragment>
+);
+
+export const H2 = ({children}: {children: React.Node}) => (
+  <Heading element="h2" fontType="font600" marginTop="scale1000">
+    {children}
+  </Heading>
+);
+
+export const H3 = ({children}: {children: React.Node}) => (
+  <Heading element="h3" fontType="font500">
+    {children}
+  </Heading>
+);
+
 export default {
   code: Code,
-  h1: ({children}: {children: React.Node}) => (
-    <React.Fragment>
-      <Head>
-        <title key="title">Base Web - {children}</title>
-      </Head>
-      <Heading element="h1" fontType="font700">
-        {children}
-      </Heading>
-    </React.Fragment>
-  ),
-  h2: ({children}: {children: React.Node}) => (
-    <Heading element="h2" fontType="font600">
-      {children}
-    </Heading>
-  ),
-  h3: ({children}: {children: React.Node}) => (
-    <Heading element="h3" fontType="font500">
-      {children}
-    </Heading>
-  ),
+  h1: H1,
+  h2: H2,
+  h3: H3,
   h4: ({children}: {children: React.Node}) => (
     <Heading element="h4" fontType="font400">
       {children}

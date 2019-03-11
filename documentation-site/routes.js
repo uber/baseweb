@@ -13,6 +13,10 @@ const routes = [
     text: 'Getting started',
     children: [
       {
+        text: 'Welcome',
+        path: '/',
+      },
+      {
         text: 'Installation',
         path: '/getting-started/installation',
       },
@@ -33,7 +37,7 @@ const routes = [
         path: '/getting-started/supported-platforms',
       },
       {
-        text: 'Comparison with other component libraries',
+        text: 'Comparison',
         path: '/getting-started/comparison',
       },
       {
@@ -54,7 +58,7 @@ const routes = [
         path: '/theming/theming-values',
       },
       {
-        text: 'Understanding Overrides',
+        text: 'Overrides',
         path: '/theming/understanding-overrides',
       },
     ],
