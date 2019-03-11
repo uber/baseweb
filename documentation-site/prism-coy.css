@@ -6,11 +6,16 @@ https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+ja
  * @author Tim  Shedor
  */
 
+h2 {
+  margin-top: 32px;
+}
+
 code[class*='language-'],
+.hljs > code,
 pre[class*='language-'] {
   color: black;
   background: none;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   text-align: left;
   white-space: pre;
@@ -30,9 +35,11 @@ pre[class*='language-'] {
 }
 
 /* Code blocks */
+.hljs,
 pre[class*='language-'] {
   white-space: pre-wrap;
   word-wrap: break-word;
+  background-color: #fdfdfd;
   text-align: justify;
   position: relative;
   margin-top: 1.5em;

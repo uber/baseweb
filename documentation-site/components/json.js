@@ -7,25 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import Code from './code.js';
-import {Block} from 'baseui/block';
 
 type PropsT = {
   src: string,
 };
 
 const JSONViewer = (props: PropsT) => (
-  <Block
-    paddingLeft="scale600"
-    overrides={{
-      Block: {
-        style: {
-          borderLeft: '5px solid #f6ba8b',
-        },
-      },
-    }}
-  >
-    <Code language="javascript">{JSON.stringify(props.src, null, 2)}</Code>
-  </Block>
+  <Code>{JSON.stringify(props.src, null, 2)}</Code>
 );
 
 export default JSONViewer;

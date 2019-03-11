@@ -23,7 +23,7 @@ const SidebarWrapper = styled('div', ({$theme, $isOpen}) => ({
   display: $isOpen ? 'block' : 'none',
   paddingTop: $theme.sizing.scale700,
   marginLeft: $theme.sizing.scale1000,
-  marginRight: $theme.sizing.scale800,
+  marginRight: $theme.sizing.scale1000,
   '@media screen and (min-width: 820px)': {
     display: 'block',
     maxWidth: '14em',
@@ -41,24 +41,37 @@ const ContentWrapper = styled('div', ({$theme, $isSidebarOpen}) => ({
   },
 }));
 
-export default (props: PropsT) => {
-  const [sidebarOpen, setSidebarOpen] = React.useState(false);
-  return (
-    <React.Fragment>
-      <HeaderNavigation toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
-      <Block display="flex" paddingTop="scale400">
-        <SidebarWrapper
-          $isOpen={sidebarOpen}
-          onClick={() => setSidebarOpen(false)}
-        >
-          <Sidebar path={props.path} />
-        </SidebarWrapper>
-        <ContentWrapper id="docSearch-content" $isSidebarOpen={sidebarOpen}>
-          <MDXProvider components={MarkdownElements}>
-            {props.children}
-          </MDXProvider>
-        </ContentWrapper>
-      </Block>
-    </React.Fragment>
-  );
-};
+class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
+  constructor(props: PropsT) {
+    super(props);
+    this.state = {
+      sidebarOpen: false,
+    };
+  }
+  render() {
+    const {sidebarOpen} = this.state;
+    const {path, children} = this.props;
+    return (
+      <React.Fragment>
+        <HeaderNavigation
+          toggleSidebar={() =>
+            this.setState(prevState => ({sidebarOpen: !prevState.sidebarOpen}))
+          }
+        />
+        <Block display="flex" paddingTop="scale400">
+          <SidebarWrapper
+            $isOpen={sidebarOpen}
+            onClick={() => sidebarOpen && this.setState({sidebarOpen: false})}
+          >
+            <Sidebar path={path} />
+          </SidebarWrapper>
+          <ContentWrapper id="docSearch-content" $isSidebarOpen={sidebarOpen}>
+            <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
+          </ContentWrapper>
+        </Block>
+      </React.Fragment>
+    );
+  }
+}
+
+export default Layout;

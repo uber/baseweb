@@ -33,12 +33,12 @@ content view after being triggered by a click-event (or hover) such as a button,
 icon. Popovers can contain range of content from simple text strings to inputs, or lightly
 structured content and imagery/illustration. It’s usage depends on the context.
 
-### When to use
+## When to use
 
 - Describe the difference between visually similar elements.
 - Hide information that's irrelevant once the user if familiar with the UI.
 
-### Accessibility
+## Accessibility
 
 - The anchor will be focusable and user can tab to it using their keyboard.
 - When triggerType="hover" focusing on the anchor will open the tooltip automatically
@@ -48,8 +48,6 @@ structured content and imagery/illustration. It’s usage depends on the context
 - When used as a `menu`, the anchor will have `aria-haspopup="true" aria-expanded="true" aria-controls="popover-id"` and the popover will have `id="popover-id"`
 - When used as a `tooltip`, the anchor will have `id="jzowpv-anchor" aria-describedby="jzowpv-popover"` and the popover will have `id="jzowpv-popover" aria-ownedby="jzowpv-anchor" role="tooltip"` (note that `jzowpv` is a random uuid generated at runtime).
 - When `accessibilityType` is set to `none`, nothing will be added so the user can do whatever they wish.
-
-## Examples
 
 <Example title="Popover stateless example" path="examples/popover/stateless.js">
   <Stateless />
