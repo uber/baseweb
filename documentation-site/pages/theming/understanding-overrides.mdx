@@ -22,10 +22,10 @@ export default Layout;
 
 **Base Web is a set of reusable React components that implements the Base Web design language** and can be used in two different ways:
 
-- **To build an application** that fully adopts the Base Web design language. You import and use Base Web components out of the box.
-- **To build a new design system** inherited from the Base. You take Base Web components and customize them through the Overrides mechanism.
+- **To build an application** that fully adopts the Base Web design language, you import and use Base Web components out of the box.
+- **To build a new design system** inherited from the Base, you take Base Web components and customize them through the Overrides mechanism.
 
-If you are building an application using the Base Web design language (the first scenario), you should avoid a further customization. This helps to keep the design of your application consistent and makes future upgrades easier. **Overrides is an escape hatch that should be used only with the great caution!**
+If you are building an application using the Base Web design language (the first scenario), you should avoid further customization. This helps to keep the design of your application consistent and makes future upgrades easier. **Overrides is an escape hatch that should be used only with the great caution!**
 
 ## Subcomponents
 
@@ -129,7 +129,7 @@ Let's use `$isDragged` to change the Label color when dragged:
 />
 ```
 
-And the result is that the Label gets blue when being dragged:
+The result is that the Label turns blue when it's dragged:
 
 <DndListExampleStateProps />
 
@@ -149,9 +149,9 @@ Almost every Base Web component has multiple overrides. **How can you learn what
   )}
 />
 
-If you are interested in **what state props your style functions can use**, you'll find the list of them at the bottom of every component page. Scroll down to the API section and click on the `Expand Prop Shape` button for the `overrides` property.
+If you are interested in **which state props your style functions can use**, you'll find the list of them at the bottom of every component page. Scroll down to the API section and click on the `Expand Prop Shape` button for the `overrides` property.
 
-## Override The Whole Subcomponent
+## Override The Entire Subcomponent
 
 > **This is a very advanced technique and rarely needed**. If you go down this path, you might also need to inspect our source code to fully understand all behaviors that subcomponents should/can implement.
 
@@ -202,7 +202,7 @@ The result:
 
 <DndListExampleSubcomponent />
 
-Note that **we lost the original Label styling** since we replaced the whole Label subcomponent. If you wish to still somehow reuse or compose the original subcomponent you can import it:
+Note that **we lost the original Label styling** since we replaced the whole Label subcomponent. If you still want to reuse or compose the original subcomponent you can import it:
 
 ```js
 import {StyledLabel} from 'baseui/dnd-list';
