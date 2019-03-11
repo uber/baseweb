@@ -52,7 +52,8 @@ export default class MyDocument extends Document {
             <style
               className="_styletron_hydrate_"
               dangerouslySetInnerHTML={{__html: sheet.css}}
-              media={sheet.attrs.media || ''}
+              media={sheet.attrs.media}
+              data-hydrate={sheet.attrs['data-hydrate']}
               key={i}
             />
           ))}
