@@ -67,8 +67,8 @@ export default class MyDocument extends Document {
               margin: 0;
             }
           `}</style>
+          <Meta />
         </Head>
-        <Meta />
         <body>
           <Main />
           <NextScript />
