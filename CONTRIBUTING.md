@@ -23,7 +23,7 @@ This document helps you navigate the process.
 
 ## Contributing new components
 
-1.  Write a mini-RFC on the component you'd like to add, and send a PR. You can find [an example here](https://github.com/uber-web/baseui/tree/master/src/template-component/README.md).
+1.  Write a mini-RFC on the component you'd like to add, and send a PR.
 
 - It is ok, if your new component just implements the features you need, we may extend that later
 
@@ -31,7 +31,7 @@ This document helps you navigate the process.
 
 - You can find the component template in `src/template-component`
 - To make the review process fast, please try to send small PRs, if you can
-- All T0D0s in the code have to have a corresponding issue created. Refer to the created issue in the T0D0s following the format `// TOD0(#44): Something`
+- All TODOs in the code have to have a corresponding issue created. Refer to the created issue in the TODOs following the format `// TODO(#44): Something`
 
 3.  Once your implementation is merged, the baseui team will release it
 
