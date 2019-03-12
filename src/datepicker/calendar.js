@@ -424,6 +424,10 @@ export default class Calendar extends React.Component<
                     flexBasis: 0,
                     flexGrow: 1,
                     marginBottom: '8px',
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                    marginLeft: 0,
+                    marginRight: 0,
                     minWidth: '142px',
                     ':nth-of-type(odd)': {
                       marginRight: '8px',
