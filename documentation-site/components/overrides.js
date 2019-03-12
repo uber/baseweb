@@ -84,6 +84,14 @@ class Overrides extends React.Component {
             },
           })}
         </Block>
+        <Block as="p" font="font400" marginTop="scale900">
+          <b>Note:</b> You should always use longhand CSS properties. Mixing
+          shorthands and longhands will lead into{' '}
+          <DocLink href="https://www.styletron.org/concepts/#shorthand-and-longhand-properties">
+            strange behaviors
+          </DocLink>
+          !
+        </Block>
       </React.Fragment>
     );
   }

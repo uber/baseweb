@@ -83,6 +83,8 @@ We defined `overrides.Label.style` and `overrides.Label.props` properties and th
 
 The `overrides.Label.style` property accepts a [style object](https://www.styletron.org/concepts/#style-object) or [style function](https://www.styletron.org/concepts/#style-function) since [Styletron](https://www.styletron.org) manages all Base Web styles.
 
+> **Caveat:** When using `overrides.foo.style`, you are overriding a set of existing CSS properties. **Our components always use longhand CSS properties and so should yours!** If you [mix shorthand and longhand properties](https://www.styletron.org/concepts/#shorthand-and-longhand-properties), you will see a warning and can run into strange behaviors!
+
 ## `$theme`
 
 If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base Web [design constants](/theming/theming-values). So instead of the hard-coded value `#892C21`, you can use the theme:
