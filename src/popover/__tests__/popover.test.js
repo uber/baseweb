@@ -178,7 +178,7 @@ describe('Popover', () => {
     );
 
     const calls = document.addEventListener.mock.calls;
-    expect(calls[0][0]).toBe('mousedown');
+    expect(calls[0][0]).toBe('click');
     expect(calls[1][0]).toBe('keyup');
 
     calls[1][1]({
