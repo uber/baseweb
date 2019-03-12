@@ -18,10 +18,20 @@ export const component = () => (
     highlightedDate={new Date('March 10, 2019')}
     overrides={{
       MonthSelect: {
-        props: {overrides: {Root: {props: {'data-id': 'monthSelect'}}}},
+        props: {
+          overrides: {
+            Root: {props: {'data-id': 'monthSelect'}},
+            Dropdown: {props: {'data-id': 'monthDropdown'}},
+          },
+        },
       },
       YearSelect: {
-        props: {overrides: {Root: {props: {'data-id': 'yearSelect'}}}},
+        props: {
+          overrides: {
+            Root: {props: {'data-id': 'yearSelect'}},
+            Dropdown: {props: {'data-id': 'yearDropdown'}},
+          },
+        },
       },
     }}
   />

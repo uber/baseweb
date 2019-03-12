@@ -58,7 +58,9 @@ Object {
       "overrides": Object {
         "ListItem": Object {
           "component": [MockFunction],
-          "props": Object {},
+          "props": Object {
+            "role": "option",
+          },
           "style": undefined,
         },
       },
