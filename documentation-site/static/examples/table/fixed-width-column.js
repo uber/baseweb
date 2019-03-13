@@ -35,8 +35,7 @@ const SmallerHeadCell = styled(StyledHeadCell, {
 });
 
 const SmallerCell = styled(StyledCell, {
-  width: '30px',
-  flex: 0,
+  maxWidth: '30px',
 });
 
 export default () => (
