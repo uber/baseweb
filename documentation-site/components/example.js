@@ -87,6 +87,7 @@ class Example extends React.Component<PropsT, StateT> {
               marginBottom: 0,
               boxShadow: 'none',
               borderWidth: 0,
+              backgroundColor: $theme.colors.background,
             }),
           },
           Contents: {style: {margin: 0}},

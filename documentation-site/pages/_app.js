@@ -9,7 +9,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import React from 'react';
-import {LightTheme, LightThemeMove, ThemeProvider} from 'baseui';
+import {
+  DarkTheme,
+  DarkThemeMove,
+  LightTheme,
+  LightThemeMove,
+  ThemeProvider,
+} from 'baseui';
+
 import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
@@ -19,10 +26,19 @@ import {styletron} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
 import '../prism-coy.css';
 
-const LS_THEME_KEY = 'theme';
 const themes = {
   LightTheme,
   LightThemeMove,
+  DarkTheme,
+  DarkThemeMove,
+};
+
+const BlockOverrides = {
+  Block: {
+    style: ({$theme}) => ({
+      backgroundColor: $theme.colors.background,
+    }),
+  },
 };
 
 export default class MyApp extends App {
@@ -49,21 +65,47 @@ export default class MyApp extends App {
   }
 
   setTheme() {
+    const search = window.location.search;
+    const ls = window.localStorage;
+
+    const config = {
+      font: 'system',
+      theme: 'light',
+    };
+
+    const presetFont = ls.getItem('docs-font');
+    const presetTheme = ls.getItem('docs-theme');
+
+    let fontToSet;
     let themeToSet;
 
-    if (window.location.search.includes('font=move')) {
-      window.localStorage.setItem(LS_THEME_KEY, 'LightThemeMove');
-      themeToSet = LightThemeMove;
+    if (search.includes('font=move')) {
+      fontToSet = 'move';
+      ls.setItem('docs-font', fontToSet);
     }
 
-    if (window.location.search.includes('font=system')) {
-      window.localStorage.setItem(LS_THEME_KEY, 'LightTheme');
-      themeToSet = LightTheme;
+    if (search.includes('theme=dark')) {
+      themeToSet = 'dark';
+      ls.setItem('docs-theme', themeToSet);
     }
 
-    const savedTheme = localStorage.getItem(LS_THEME_KEY);
+    config.font = fontToSet || presetFont || config.font;
+    config.theme = themeToSet || presetTheme || config.theme;
+
+    let themeName = '';
+
+    if (config.theme === 'dark') {
+      themeName += 'DarkTheme';
+    } else if (config.theme === 'light') {
+      themeName += 'LightTheme';
+    }
+
+    if (config.font === 'move') {
+      themeName += 'Move';
+    }
+
     this.setState({
-      theme: themeToSet || themes[savedTheme] || LightTheme,
+      theme: themes[themeName] || LightTheme,
     });
   }
 
@@ -73,8 +115,10 @@ export default class MyApp extends App {
       <Container>
         <StyletronProvider value={styletron}>
           <ThemeProvider theme={this.state.theme}>
-            <Component {...pageProps} path={path} />
-            <Block marginBottom="300px" />
+            <Block overrides={BlockOverrides}>
+              <Component {...pageProps} path={path} />
+              <Block overrides={BlockOverrides} marginBottom="300px" />
+            </Block>
           </ThemeProvider>
         </StyletronProvider>
       </Container>

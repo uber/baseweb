@@ -8,10 +8,17 @@ LICENSE file in the root directory of this source tree.
 import createTheme from './creator.js';
 import {primitives as lightThemePrimitives} from './light-theme-primitives.js';
 import {LightThemeMove} from './light-theme-with-move.js';
+import {DarkThemeMove} from './dark-theme-with-move.js';
 import {DarkTheme} from './dark-theme.js';
 
 export const LightTheme = createTheme(lightThemePrimitives);
 
-export {createTheme, LightThemeMove, lightThemePrimitives, DarkTheme};
+export {
+  createTheme,
+  LightThemeMove,
+  lightThemePrimitives,
+  DarkTheme,
+  DarkThemeMove,
+};
 
 export * from './types';
