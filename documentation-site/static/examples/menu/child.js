@@ -49,7 +49,10 @@ export default () => (
                   <StatefulMenu
                     size="compact"
                     items={RECENT_FILES}
-                    overrides={{List: {style: {width: '200px'}}}}
+                    overrides={{
+                      List: {style: {width: '200px'}},
+                      Option: {props: {size: 'compact'}},
+                    }}
                   />
                 );
               }
@@ -59,7 +62,7 @@ export default () => (
                   <StatefulMenu
                     items={BREAKPOINTS}
                     overrides={{
-                      List: {style: {width: '200px'}},
+                      List: {style: {width: '220px'}},
                       Option: {props: {size: 'compact'}},
                     }}
                   />
