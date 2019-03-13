@@ -11,9 +11,9 @@ import {styled} from 'baseui';
 export default styled('a', ({$theme}) => ({
   textDecoration: 'none',
   cursor: 'pointer',
-  color: $theme.colors.black,
+  color: $theme.colors.foreground,
   ':visited': {
-    color: $theme.colors.black,
+    color: $theme.colors.foreground,
   },
   ':hover': {
     color: $theme.colors.primary,

@@ -11,6 +11,8 @@ export {LocaleProvider};
 export {
   createTheme,
   lightThemePrimitives,
+  DarkTheme,
+  DarkThemeMove,
   LightTheme,
   LightThemeMove,
 } from './themes/index.js';

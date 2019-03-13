@@ -57,7 +57,7 @@ export const Heading = ({
       font={fontType}
       $ref={hoverRef}
       id={slug}
-      color="mono1000"
+      color="foreground"
     >
       <React.Fragment>
         {children}{' '}

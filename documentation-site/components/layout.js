@@ -58,7 +58,19 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             this.setState(prevState => ({sidebarOpen: !prevState.sidebarOpen}))
           }
         />
-        <Block display="flex" paddingTop="scale400">
+        <Block
+          overrides={{
+            Block: {
+              style: ({$theme}) => ({
+                backgroundColor: $theme.colors.background,
+                color: $theme.colors.foreground,
+                marginTop: '8px',
+              }),
+            },
+          }}
+          display="flex"
+          paddingTop="scale400"
+        >
           <SidebarWrapper
             $isOpen={sidebarOpen}
             onClick={() => sidebarOpen && this.setState({sidebarOpen: false})}
