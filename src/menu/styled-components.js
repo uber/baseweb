@@ -13,6 +13,7 @@ import type {ThemeT} from '../styles/index.js';
 type StyledPropsT = {
   $disabled?: boolean,
   $theme: ThemeT,
+  $isFocused?: boolean,
   $isHighlighted?: boolean,
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
 };
@@ -27,25 +28,34 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   paddingBottom: $theme.sizing.scale300,
   paddingLeft: '0',
   paddingRight: '0',
+  // outline: 'none',
   backgroundColor: $theme.colors.backgroundAlt,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
   overflow: 'auto',
 }));
 
-export const ListItem = styled(
-  'li',
-  ({$disabled, $theme, $isHighlighted, $size}: StyledPropsT) => ({
+function getFontColor(props: StyledPropsT) {
+  if (props.$disabled) {
+    return props.$theme.colors.foregroundAlt;
+  }
+
+  if (props.$isHighlighted && props.$isFocused) {
+    return props.$theme.colors.primary;
+  }
+
+  return props.$theme.colors.foreground;
+}
+
+export const ListItem = styled('li', (props: StyledPropsT) => {
+  const {$disabled, $theme, $isHighlighted, $size} = props;
+  return {
     ...($size === OPTION_LIST_SIZE.compact
       ? $theme.typography.font200
       : $theme.typography.font300),
     position: 'relative',
     display: 'block',
-    color: $disabled
-      ? $theme.colors.foregroundAlt
-      : $isHighlighted
-        ? $theme.colors.primary
-        : $theme.colors.foreground,
+    color: getFontColor(props),
     cursor: $disabled ? 'not-allowed' : 'pointer',
     backgroundColor: $isHighlighted
       ? $theme.colors.menuFillHover
@@ -53,9 +63,6 @@ export const ListItem = styled(
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,
-    ':hover': {
-      backgroundColor: $theme.colors.menuFillHover,
-    },
     marginBottom: '0',
     paddingTop:
       $size === OPTION_LIST_SIZE.compact
@@ -76,8 +83,8 @@ export const ListItem = styled(
     ':focus': {
       outline: 'none',
     },
-  }),
-);
+  };
+});
 
 export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   position: 'relative',

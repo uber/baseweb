@@ -9,9 +9,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Menu from './menu.js';
+import {NestedMenuContext} from './nested-menus.js';
 import StatefulContainer from './stateful-container.js';
 
 import type {StatefulMenuPropsT, StateReducerFnT} from './types.js';
+
+const noop = () => {};
 
 export default class StatefulMenu extends React.PureComponent<
   StatefulMenuPropsT,
@@ -19,6 +22,7 @@ export default class StatefulMenu extends React.PureComponent<
   static defaultProps = {
     // Mostly to satisfy flow
     initialState: {
+      isFocused: false,
       // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,
     },
@@ -35,9 +39,13 @@ export default class StatefulMenu extends React.PureComponent<
   render() {
     const {overrides, ...props} = this.props;
     return (
-      <StatefulContainer {...props}>
-        {renderProps => <Menu {...renderProps} overrides={overrides} />}
-      </StatefulContainer>
+      <NestedMenuContext.Consumer>
+        {ctx => (
+          <StatefulContainer {...ctx} {...props}>
+            {renderProps => <Menu {...renderProps} overrides={overrides} />}
+          </StatefulContainer>
+        )}
+      </NestedMenuContext.Consumer>
     );
   }
 }

@@ -22,15 +22,19 @@ import {getOverrides} from '../helpers/overrides.js';
 // Types
 import type {OptionProfilePropsT} from './types.js';
 
-export default function OptionProfile({
-  item,
-  getChildMenu,
-  getProfileItemLabels,
-  getProfileItemImg,
-  getProfileItemImgText,
-  overrides = {},
-  ...restProps
-}: OptionProfilePropsT) {
+export default function OptionProfile(props: OptionProfilePropsT) {
+  const {
+    item,
+    getChildMenu,
+    getProfileItemLabels,
+    getProfileItemImg,
+    getProfileItemImgText,
+    overrides = {},
+    resetMenu = () => {},
+    $isHighlighted,
+    ...restProps
+  } = props;
+
   const [ListItemProfile, listItemProfileProps] = getOverrides(
     overrides.ListItemProfile,
     StyledListItemProfile,
@@ -64,7 +68,12 @@ export default function OptionProfile({
   const {title, subtitle, body} = getProfileItemLabels(item);
 
   return (
-    <MaybeChildMenu getChildMenu={getChildMenu} item={item}>
+    <MaybeChildMenu
+      getChildMenu={getChildMenu}
+      isOpen={!!$isHighlighted}
+      item={item}
+      resetParentMenu={resetMenu}
+    >
       <ListItemProfile {...restProps} {...listItemProfileProps}>
         <ProfileImgContainer {...profileImgContainerProps}>
           {ItemImg &&

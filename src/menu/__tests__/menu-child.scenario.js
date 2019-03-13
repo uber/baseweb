@@ -1,5 +1,16 @@
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
 import React from 'react';
-import {StatefulMenu, NestedMenus} from 'baseui/menu';
+
+import {StatefulMenu, NestedMenus} from '../index.js';
+
+export const name = 'menu-child';
 
 const OPEN_RECENT = 'Open Recent ->';
 const NEW_BREAKPOINT = 'New Breakpoint ->';
@@ -34,7 +45,7 @@ const BREAKPOINTS = [
   {label: 'Logpoint...'},
 ];
 
-export default () => (
+export const component = () => (
   <NestedMenus>
     <StatefulMenu
       items={FILE}
@@ -47,9 +58,11 @@ export default () => (
               if (item.label === OPEN_RECENT) {
                 return (
                   <StatefulMenu
-                    size="compact"
                     items={RECENT_FILES}
-                    overrides={{List: {style: {width: '200px'}}}}
+                    overrides={{
+                      List: {style: {width: '200px'}},
+                      Option: {props: {size: 'compact'}},
+                    }}
                   />
                 );
               }

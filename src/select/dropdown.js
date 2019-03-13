@@ -111,6 +111,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
           items={options}
           size={size}
           initialState={{
+            isFocused: true,
             highlightedIndex:
               Array.isArray(value) && value.length === 1
                 ? options.findIndex(opt => opt.id === value[0].id)

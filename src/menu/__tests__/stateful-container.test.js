@@ -72,6 +72,7 @@ describe('Menu StatefulContainer', () => {
     const props = {
       ...getSharedProps(),
       initialState: {
+        isFocused: false,
         highlightedIndex: 5,
       },
     };

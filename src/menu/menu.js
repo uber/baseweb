@@ -9,32 +9,58 @@ import * as React from 'react';
 // Components
 import {List as StyledList} from './styled-components.js';
 import OptionList from './option-list.js';
-import {getSharedProps} from './utils.js';
 import {getOverrides} from '../helpers/overrides.js';
 // Types
 import type {StatelessMenuPropsT} from './types.js';
 
-export default function Menu({
-  getRequiredItemProps = (item, index) => ({}),
-  items,
-  overrides = {},
-  rootRef = React.createRef(),
-}: StatelessMenuPropsT) {
+export default function Menu(props: StatelessMenuPropsT) {
+  const {
+    getRequiredItemProps = (item, index) => ({}),
+    items,
+    overrides = {},
+    rootRef = React.createRef(),
+    focusMenu = () => {},
+    unfocusMenu = () => {},
+  } = props;
+
   const [List, listProps] = getOverrides(overrides.List, StyledList);
   const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
+
   return (
-    <List role="listbox" $ref={rootRef} {...listProps}>
+    <List
+      role="listbox"
+      $ref={rootRef}
+      onMouseEnter={props.focusMenu}
+      onMouseOver={props.focusMenu}
+      onMouseLeave={props.unfocusMenu}
+      onFocus={props.focusMenu}
+      onBlur={props.unfocusMenu}
+      tabIndex={0}
+      {...listProps}
+    >
       {items.map((item, index) => {
-        const requiredProps = getRequiredItemProps(item, index);
+        const {
+          disabled,
+          isFocused,
+          isHighlighted,
+          ref,
+          resetMenu = () => {},
+          ...rest
+        } = getRequiredItemProps(item, index);
+
         return (
           <Option
-            item={item}
             key={index}
-            role="option"
+            item={item}
             overrides={overrides}
-            tabIndex={index === 0 ? 0 : -1} // Allows tab focus into first element
-            {...getSharedProps(requiredProps)}
+            resetMenu={resetMenu}
+            role="option"
+            $disabled={disabled}
+            $ref={ref}
+            $isFocused={isFocused}
+            $isHighlighted={isHighlighted}
             {...optionProps}
+            {...rest}
           />
         );
       })}

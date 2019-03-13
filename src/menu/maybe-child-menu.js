@@ -9,12 +9,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulPopover} from '../popover/index.js';
+import {Popover} from '../popover/index.js';
 
 type PropsT = {
   children: React.Node,
   getChildMenu: ?(item: *) => React.Node,
+  isOpen: boolean,
   item: *,
+  resetParentMenu: () => void,
 };
 
 export default function MaybeChildMenu(props: PropsT) {
@@ -22,16 +24,24 @@ export default function MaybeChildMenu(props: PropsT) {
     return props.children;
   }
 
+  const ChildMenu = props.getChildMenu(props.item);
+  if (!ChildMenu) {
+    return props.children;
+  }
+
   return (
-    <StatefulPopover
-      content={props.getChildMenu(props.item)}
+    <Popover
+      isOpen={props.isOpen}
+      content={ChildMenu}
       ignoreBoundary
-      onMouseEnterDelay={100}
-      onMouseLeaveDelay={100}
+      onMouseEnterDelay={30}
+      onMouseLeaveDelay={30}
       placement="rightTop"
-      triggerType="hover"
+      // Adds onMouseLeave handler to popover body so that child menu closes
+      // when user mouses out.
+      overrides={{Body: {props: {onMouseLeave: props.resetParentMenu}}}}
     >
       {props.children}
-    </StatefulPopover>
+    </Popover>
   );
 }
