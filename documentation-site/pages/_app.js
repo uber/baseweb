@@ -84,8 +84,18 @@ export default class MyApp extends App {
       ls.setItem('docs-font', fontToSet);
     }
 
+    if (search.includes('font=system')) {
+      fontToSet = 'system';
+      ls.setItem('docs-font', fontToSet);
+    }
+
     if (search.includes('theme=dark')) {
       themeToSet = 'dark';
+      ls.setItem('docs-theme', themeToSet);
+    }
+
+    if (search.includes('theme=light')) {
+      themeToSet = 'light';
       ls.setItem('docs-theme', themeToSet);
     }
 
