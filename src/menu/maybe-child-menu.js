@@ -37,9 +37,22 @@ export default function MaybeChildMenu(props: PropsT) {
       onMouseEnterDelay={30}
       onMouseLeaveDelay={30}
       placement="rightTop"
-      // Adds onMouseLeave handler to popover body so that child menu closes
-      // when user mouses out.
-      overrides={{Body: {props: {onMouseLeave: props.resetParentMenu}}}}
+      overrides={{
+        Body: {
+          props: {
+            // Adds mouseleave to popover body so that child menu closes when user mouses out.
+            onMouseLeave: props.resetParentMenu,
+            // Trap tabbing when focused on a child menu. Popover mounts the element at the end of
+            // the html body by default. If a user was to tab to the next element it would navigate
+            // to elements not within the immediate area surrounding the menu.
+            onKeyDown: (e: KeyboardEvent) => {
+              if (e.keyCode === 9) {
+                e.preventDefault();
+              }
+            },
+          },
+        },
+      }}
     >
       {props.children}
     </Popover>
