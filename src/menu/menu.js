@@ -59,8 +59,8 @@ export default function Menu(props: StatelessMenuPropsT) {
             $ref={ref}
             $isFocused={isFocused}
             $isHighlighted={isHighlighted}
-            {...optionProps}
             {...rest}
+            {...optionProps}
           />
         );
       })}
