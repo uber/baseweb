@@ -30,11 +30,11 @@ export default function Menu(props: StatelessMenuPropsT) {
     <List
       role="listbox"
       $ref={rootRef}
-      onMouseEnter={props.focusMenu}
-      onMouseOver={props.focusMenu}
-      onMouseLeave={props.unfocusMenu}
-      onFocus={props.focusMenu}
-      onBlur={props.unfocusMenu}
+      onMouseEnter={focusMenu}
+      onMouseOver={focusMenu}
+      onMouseLeave={unfocusMenu}
+      onFocus={focusMenu}
+      onBlur={unfocusMenu}
       tabIndex={0}
       {...listProps}
     >

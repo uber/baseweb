@@ -14,8 +14,6 @@ import StatefulContainer from './stateful-container.js';
 
 import type {StatefulMenuPropsT, StateReducerFnT} from './types.js';
 
-const noop = () => {};
-
 export default class StatefulMenu extends React.PureComponent<
   StatefulMenuPropsT,
 > {
