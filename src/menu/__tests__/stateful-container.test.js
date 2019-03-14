@@ -17,8 +17,6 @@ jest.mock('../utils');
 const mockItems = [{label: 'item1'}, {disabled: true, label: 'item2'}];
 const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockItemSelect = jest.fn();
-const mockFocusMenu = jest.fn();
-const mockUnfocusMenu = jest.fn();
 
 const originalAddEventListener = document.addEventListener;
 const originalRemoveEventListener = document.removeEventListener;
@@ -59,7 +57,7 @@ describe('Menu StatefulContainer', () => {
       onItemSelect: mockItemSelect,
       children: mockChildrenFn,
     };
-    const component = mount(<StatefulContainer {...props} />);
+    mount(<StatefulContainer {...props} />);
 
     const result = mockChildrenFn.mock.calls[0][0];
     expect(result).toHaveProperty('highlightedIndex', -1);
