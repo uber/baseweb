@@ -11,6 +11,9 @@ export const STATE_CHANGE_TYPES = {
   moveUp: 'moveUp',
   moveDown: 'moveDown',
   mouseEnter: 'mouseEnter',
+  focus: 'focus',
+  unfocus: 'unfocus',
+  reset: 'reset',
 };
 
 export const KEY_STRINGS = {
