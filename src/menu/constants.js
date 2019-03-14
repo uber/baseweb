@@ -12,7 +12,6 @@ export const STATE_CHANGE_TYPES = {
   moveDown: 'moveDown',
   mouseEnter: 'mouseEnter',
   focus: 'focus',
-  unfocus: 'unfocus',
   reset: 'reset',
 };
 
