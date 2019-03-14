@@ -177,7 +177,7 @@ export default class MenuStatefulContainer extends React.Component<
       this.refList[index] = itemRef;
     }
     return {
-      disabled: item.disabled,
+      disabled: !!item.disabled,
       ref: itemRef,
       isFocused: this.state.isFocused,
       isHighlighted: this.state.highlightedIndex === index,
