@@ -124,6 +124,10 @@ const routes = [
             path: '/components/pagination',
           },
           {
+            text: 'Side navigation',
+            path: '/components/sidenav',
+          },
+          {
             text: 'Tab',
             path: '/components/tabs',
           },

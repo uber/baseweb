@@ -1,0 +1,46 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import SideNavBasic from 'examples/side-navigation/basic.js';
+import StatefulNav from 'examples/side-navigation/stateful-nav.js';
+
+import Overrides from '../../components/overrides';
+import {Navigation} from 'baseui/side-navigation';
+import * as NavExports from 'baseui/side-navigation';
+
+export default Layout;
+
+# Side Navigation
+
+The side navigation menu is a list of links that is used for a website navigation. The side navigation can provide a multi-level structure.
+
+## Examples
+
+<Example title="Side navigation basic usage" path="examples/side-navigation/basic.js">
+  <SideNavBasic />
+</Example>
+
+<Example title="Stateful side navigation" path="examples/side-navigation/stateful-nav.js">
+  <StatefulNav />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="Side Navigation"
+  component={NavExports}
+  renderExample={props => <Navigation overrides={props.overrides} />}
+/>
+
+<API
+  heading="Side Navigation API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/side-navigation/nav.js')}
+/>

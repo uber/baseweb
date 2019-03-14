@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation basic render: renders <Navigation/> as a child 1`] = `
+<SideNav
+  activePath=""
+  isActive={null}
+  items={
+    Array [
+      Object {
+        "subnav": Array [
+          Object {
+            "path": "#level1.1.2",
+            "subnav": Array [
+              Object {
+                "path": "#level1.1.2.2",
+                "title": "Light",
+              },
+            ],
+            "title": "Shades",
+          },
+        ],
+        "title": "Colors",
+      },
+      Object {
+        "path": "#level1.2",
+        "title": "Sizing",
+      },
+      Object {
+        "path": "#level1.3",
+        "title": "Typography",
+      },
+    ]
+  }
+  onChange={[Function]}
+  overrides={Object {}}
+  renderItem={null}
+/>
+`;
+
+exports[`Navigation basic render: renders <StatefulContainer/> 1`] = `
+<StatefulContainer
+  initialState={Object {}}
+  items={
+    Array [
+      Object {
+        "subnav": Array [
+          Object {
+            "path": "#level1.1.2",
+            "subnav": Array [
+              Object {
+                "path": "#level1.1.2.2",
+                "title": "Light",
+              },
+            ],
+            "title": "Shades",
+          },
+        ],
+        "title": "Colors",
+      },
+      Object {
+        "path": "#level1.2",
+        "title": "Sizing",
+      },
+      Object {
+        "path": "#level1.3",
+        "title": "Typography",
+      },
+    ]
+  }
+  onChange={[MockFunction]}
+  stateReducer={[Function]}
+>
+  <Component />
+</StatefulContainer>
+`;
