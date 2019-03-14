@@ -76,6 +76,7 @@ class Tag extends React.Component<PropsT, {}> {
       overrides.ActionIcon,
       StyledActionIcon,
     );
+    const [Text, textProps] = getOverrides(overrides.Text, StyledText);
     const clickable = typeof onClick === 'function';
     const rootHandlers = disabled
       ? {}
@@ -108,7 +109,7 @@ class Tag extends React.Component<PropsT, {}> {
         {...sharedProps}
         {...rootProps}
       >
-        <StyledText>{children}</StyledText>
+        <Text {...textProps}>{children}</Text>
         {closeable ? (
           <Action
             aria-label="close button"
