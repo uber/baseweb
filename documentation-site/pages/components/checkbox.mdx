@@ -9,7 +9,8 @@ import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
 
-import Basic from 'examples/checkbox/basic.js';
+import Basic from 'examples/checkbox/basic-controlled.js';
+import Uncontrolled from 'examples/checkbox/basic-uncontrolled';
 import Multiline from 'examples/checkbox/multiline.js';
 import Error from 'examples/checkbox/error.js';
 import Indeterminate from 'examples/checkbox/indeterminate.js';
@@ -41,8 +42,20 @@ options. When engaged (on), Base Web toggles are colored and when disengaged (of
 - When a user wants to toggle an option on/off.
 - When a user wants to select multiple options.
 
-<Example title="Checkbox basic usage" path="examples/checkbox/basic.js">
+## Examples
+
+<Example
+  title="Checkbox basic usage"
+  path="examples/checkbox/basic-controlled.js"
+>
   <Basic />
+</Example>
+
+<Example
+  title="Checkbox uncontrolled usage"
+  path="examples/checkbox/basic-uncontrolled.js"
+>
+  <Uncontrolled />
 </Example>
 
 <Example
