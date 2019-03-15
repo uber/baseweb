@@ -68,7 +68,7 @@ exports[`Select component renders component in search mode and false for multipl
     showArrow={false}
     triggerType="click"
   >
-    <MockStyledComponent
+    <StyledRoot
       $clearable={true}
       $disabled={false}
       $error={false}
@@ -89,6 +89,7 @@ exports[`Select component renders component in search mode and false for multipl
       aria-controls={null}
       aria-expanded="false"
       aria-haspopup="true"
+      data-baseweb="select"
       key="popover-anchor"
       onClick={[Function]}
     >
@@ -96,10 +97,11 @@ exports[`Select component renders component in search mode and false for multipl
         aria-controls={null}
         aria-expanded="false"
         aria-haspopup="true"
+        data-baseweb="select"
         onClick={[Function]}
         styled-component="true"
       >
-        <MockStyledComponent
+        <StyledControlContainer
           $clearable={true}
           $disabled={false}
           $error={false}
@@ -169,7 +171,7 @@ exports[`Select component renders component in search mode and false for multipl
                 title="search"
                 viewBox="0 0 24 24"
               >
-                <MockStyledComponent
+                <StyledSearchIcon
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -182,9 +184,11 @@ exports[`Select component renders component in search mode and false for multipl
                   $searchable={true}
                   $size={16}
                   $type="search"
+                  data-baseweb="icon"
                   viewBox="0 0 24 24"
                 >
                   <svg
+                    data-baseweb="icon"
                     styled-component="true"
                     viewBox="0 0 24 24"
                   >
@@ -197,10 +201,10 @@ exports[`Select component renders component in search mode and false for multipl
                       fillRule="evenodd"
                     />
                   </svg>
-                </MockStyledComponent>
+                </StyledSearchIcon>
               </Icon>
             </Search>
-            <MockStyledComponent
+            <StyledValueContainer
               $clearable={true}
               $disabled={false}
               $error={false}
@@ -217,7 +221,7 @@ exports[`Select component renders component in search mode and false for multipl
               <span
                 styled-component="true"
               >
-                <MockStyledComponent
+                <StyledPlaceholder
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -236,8 +240,8 @@ exports[`Select component renders component in search mode and false for multipl
                   >
                     Select...
                   </div>
-                </MockStyledComponent>
-                <MockStyledComponent
+                </StyledPlaceholder>
+                <StyledInputContainer
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -289,7 +293,7 @@ exports[`Select component renders component in search mode and false for multipl
                       role="combobox"
                       value=""
                     >
-                      <MockStyledComponent
+                      <StyledInput
                         $clearable={true}
                         $disabled={false}
                         $error={false}
@@ -338,20 +342,20 @@ exports[`Select component renders component in search mode and false for multipl
                           styled-component="true"
                           value=""
                         />
-                      </MockStyledComponent>
-                      <MockStyledComponent
+                      </StyledInput>
+                      <StyledInputSizer
                         $ref={[Function]}
                       >
                         <div
                           styled-component="true"
                         />
-                      </MockStyledComponent>
+                      </StyledInputSizer>
                     </AutosizeInput>
                   </div>
-                </MockStyledComponent>
+                </StyledInputContainer>
               </span>
-            </MockStyledComponent>
-            <MockStyledComponent
+            </StyledValueContainer>
+            <StyledIconsContainer
               $clearable={true}
               $disabled={false}
               $error={false}
@@ -368,11 +372,11 @@ exports[`Select component renders component in search mode and false for multipl
               <div
                 styled-component="true"
               />
-            </MockStyledComponent>
+            </StyledIconsContainer>
           </div>
-        </MockStyledComponent>
+        </StyledControlContainer>
       </div>
-    </MockStyledComponent>
+    </StyledRoot>
   </Popover>
 </Select>
 `;
@@ -445,7 +449,7 @@ exports[`Select component renders component in search mode and true for multiple
     showArrow={false}
     triggerType="click"
   >
-    <MockStyledComponent
+    <StyledRoot
       $clearable={true}
       $disabled={false}
       $error={false}
@@ -466,6 +470,7 @@ exports[`Select component renders component in search mode and true for multiple
       aria-controls={null}
       aria-expanded="false"
       aria-haspopup="true"
+      data-baseweb="select"
       key="popover-anchor"
       onClick={[Function]}
     >
@@ -473,10 +478,11 @@ exports[`Select component renders component in search mode and true for multiple
         aria-controls={null}
         aria-expanded="false"
         aria-haspopup="true"
+        data-baseweb="select"
         onClick={[Function]}
         styled-component="true"
       >
-        <MockStyledComponent
+        <StyledControlContainer
           $clearable={true}
           $disabled={false}
           $error={false}
@@ -546,7 +552,7 @@ exports[`Select component renders component in search mode and true for multiple
                 title="search"
                 viewBox="0 0 24 24"
               >
-                <MockStyledComponent
+                <StyledSearchIcon
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -559,9 +565,11 @@ exports[`Select component renders component in search mode and true for multiple
                   $searchable={true}
                   $size={16}
                   $type="search"
+                  data-baseweb="icon"
                   viewBox="0 0 24 24"
                 >
                   <svg
+                    data-baseweb="icon"
                     styled-component="true"
                     viewBox="0 0 24 24"
                   >
@@ -574,10 +582,10 @@ exports[`Select component renders component in search mode and true for multiple
                       fillRule="evenodd"
                     />
                   </svg>
-                </MockStyledComponent>
+                </StyledSearchIcon>
               </Icon>
             </Search>
-            <MockStyledComponent
+            <StyledValueContainer
               $clearable={true}
               $disabled={false}
               $error={false}
@@ -594,7 +602,7 @@ exports[`Select component renders component in search mode and true for multiple
               <span
                 styled-component="true"
               >
-                <MockStyledComponent
+                <StyledPlaceholder
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -613,8 +621,8 @@ exports[`Select component renders component in search mode and true for multiple
                   >
                     Select...
                   </div>
-                </MockStyledComponent>
-                <MockStyledComponent
+                </StyledPlaceholder>
+                <StyledInputContainer
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -666,7 +674,7 @@ exports[`Select component renders component in search mode and true for multiple
                       role="combobox"
                       value=""
                     >
-                      <MockStyledComponent
+                      <StyledInput
                         $clearable={true}
                         $disabled={false}
                         $error={false}
@@ -715,20 +723,20 @@ exports[`Select component renders component in search mode and true for multiple
                           styled-component="true"
                           value=""
                         />
-                      </MockStyledComponent>
-                      <MockStyledComponent
+                      </StyledInput>
+                      <StyledInputSizer
                         $ref={[Function]}
                       >
                         <div
                           styled-component="true"
                         />
-                      </MockStyledComponent>
+                      </StyledInputSizer>
                     </AutosizeInput>
                   </div>
-                </MockStyledComponent>
+                </StyledInputContainer>
               </span>
-            </MockStyledComponent>
-            <MockStyledComponent
+            </StyledValueContainer>
+            <StyledIconsContainer
               $clearable={true}
               $disabled={false}
               $error={false}
@@ -745,11 +753,11 @@ exports[`Select component renders component in search mode and true for multiple
               <div
                 styled-component="true"
               />
-            </MockStyledComponent>
+            </StyledIconsContainer>
           </div>
-        </MockStyledComponent>
+        </StyledControlContainer>
       </div>
-    </MockStyledComponent>
+    </StyledRoot>
   </Popover>
 </Select>
 `;
@@ -822,7 +830,7 @@ exports[`Select component renders component in select mode and false for multipl
     showArrow={false}
     triggerType="click"
   >
-    <MockStyledComponent
+    <StyledRoot
       $clearable={true}
       $disabled={false}
       $error={false}
@@ -843,6 +851,7 @@ exports[`Select component renders component in select mode and false for multipl
       aria-controls={null}
       aria-expanded="false"
       aria-haspopup="true"
+      data-baseweb="select"
       key="popover-anchor"
       onClick={[Function]}
     >
@@ -850,10 +859,11 @@ exports[`Select component renders component in select mode and false for multipl
         aria-controls={null}
         aria-expanded="false"
         aria-haspopup="true"
+        data-baseweb="select"
         onClick={[Function]}
         styled-component="true"
       >
-        <MockStyledComponent
+        <StyledControlContainer
           $clearable={true}
           $disabled={false}
           $error={false}
@@ -880,7 +890,7 @@ exports[`Select component renders component in select mode and false for multipl
             onTouchStart={[Function]}
             styled-component="true"
           >
-            <MockStyledComponent
+            <StyledValueContainer
               $clearable={true}
               $disabled={false}
               $error={false}
@@ -897,7 +907,7 @@ exports[`Select component renders component in select mode and false for multipl
               <span
                 styled-component="true"
               >
-                <MockStyledComponent
+                <StyledPlaceholder
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -916,8 +926,8 @@ exports[`Select component renders component in select mode and false for multipl
                   >
                     Select...
                   </div>
-                </MockStyledComponent>
-                <MockStyledComponent
+                </StyledPlaceholder>
+                <StyledInputContainer
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -969,7 +979,7 @@ exports[`Select component renders component in select mode and false for multipl
                       role="combobox"
                       value=""
                     >
-                      <MockStyledComponent
+                      <StyledInput
                         $clearable={true}
                         $disabled={false}
                         $error={false}
@@ -1018,20 +1028,20 @@ exports[`Select component renders component in select mode and false for multipl
                           styled-component="true"
                           value=""
                         />
-                      </MockStyledComponent>
-                      <MockStyledComponent
+                      </StyledInput>
+                      <StyledInputSizer
                         $ref={[Function]}
                       >
                         <div
                           styled-component="true"
                         />
-                      </MockStyledComponent>
+                      </StyledInputSizer>
                     </AutosizeInput>
                   </div>
-                </MockStyledComponent>
+                </StyledInputContainer>
               </span>
-            </MockStyledComponent>
-            <MockStyledComponent
+            </StyledValueContainer>
+            <StyledIconsContainer
               $clearable={true}
               $disabled={false}
               $error={false}
@@ -1091,7 +1101,7 @@ exports[`Select component renders component in select mode and false for multipl
                     title="open"
                     viewBox="0 0 24 24"
                   >
-                    <MockStyledComponent
+                    <StyledSelectArrow
                       $clearable={true}
                       $disabled={false}
                       $error={false}
@@ -1104,9 +1114,11 @@ exports[`Select component renders component in select mode and false for multipl
                       $searchable={true}
                       $size={16}
                       $type="select"
+                      data-baseweb="icon"
                       viewBox="0 0 24 24"
                     >
                       <svg
+                        data-baseweb="icon"
                         styled-component="true"
                         viewBox="0 0 24 24"
                       >
@@ -1117,15 +1129,15 @@ exports[`Select component renders component in select mode and false for multipl
                           d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
                         />
                       </svg>
-                    </MockStyledComponent>
+                    </StyledSelectArrow>
                   </Icon>
                 </TriangleDown>
               </div>
-            </MockStyledComponent>
+            </StyledIconsContainer>
           </div>
-        </MockStyledComponent>
+        </StyledControlContainer>
       </div>
-    </MockStyledComponent>
+    </StyledRoot>
   </Popover>
 </Select>
 `;
@@ -1198,7 +1210,7 @@ exports[`Select component renders component in select mode and true for multiple
     showArrow={false}
     triggerType="click"
   >
-    <MockStyledComponent
+    <StyledRoot
       $clearable={true}
       $disabled={false}
       $error={false}
@@ -1219,6 +1231,7 @@ exports[`Select component renders component in select mode and true for multiple
       aria-controls={null}
       aria-expanded="false"
       aria-haspopup="true"
+      data-baseweb="select"
       key="popover-anchor"
       onClick={[Function]}
     >
@@ -1226,10 +1239,11 @@ exports[`Select component renders component in select mode and true for multiple
         aria-controls={null}
         aria-expanded="false"
         aria-haspopup="true"
+        data-baseweb="select"
         onClick={[Function]}
         styled-component="true"
       >
-        <MockStyledComponent
+        <StyledControlContainer
           $clearable={true}
           $disabled={false}
           $error={false}
@@ -1256,7 +1270,7 @@ exports[`Select component renders component in select mode and true for multiple
             onTouchStart={[Function]}
             styled-component="true"
           >
-            <MockStyledComponent
+            <StyledValueContainer
               $clearable={true}
               $disabled={false}
               $error={false}
@@ -1273,7 +1287,7 @@ exports[`Select component renders component in select mode and true for multiple
               <span
                 styled-component="true"
               >
-                <MockStyledComponent
+                <StyledPlaceholder
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -1292,8 +1306,8 @@ exports[`Select component renders component in select mode and true for multiple
                   >
                     Select...
                   </div>
-                </MockStyledComponent>
-                <MockStyledComponent
+                </StyledPlaceholder>
+                <StyledInputContainer
                   $clearable={true}
                   $disabled={false}
                   $error={false}
@@ -1345,7 +1359,7 @@ exports[`Select component renders component in select mode and true for multiple
                       role="combobox"
                       value=""
                     >
-                      <MockStyledComponent
+                      <StyledInput
                         $clearable={true}
                         $disabled={false}
                         $error={false}
@@ -1394,20 +1408,20 @@ exports[`Select component renders component in select mode and true for multiple
                           styled-component="true"
                           value=""
                         />
-                      </MockStyledComponent>
-                      <MockStyledComponent
+                      </StyledInput>
+                      <StyledInputSizer
                         $ref={[Function]}
                       >
                         <div
                           styled-component="true"
                         />
-                      </MockStyledComponent>
+                      </StyledInputSizer>
                     </AutosizeInput>
                   </div>
-                </MockStyledComponent>
+                </StyledInputContainer>
               </span>
-            </MockStyledComponent>
-            <MockStyledComponent
+            </StyledValueContainer>
+            <StyledIconsContainer
               $clearable={true}
               $disabled={false}
               $error={false}
@@ -1467,7 +1481,7 @@ exports[`Select component renders component in select mode and true for multiple
                     title="open"
                     viewBox="0 0 24 24"
                   >
-                    <MockStyledComponent
+                    <StyledSelectArrow
                       $clearable={true}
                       $disabled={false}
                       $error={false}
@@ -1480,9 +1494,11 @@ exports[`Select component renders component in select mode and true for multiple
                       $searchable={true}
                       $size={16}
                       $type="select"
+                      data-baseweb="icon"
                       viewBox="0 0 24 24"
                     >
                       <svg
+                        data-baseweb="icon"
                         styled-component="true"
                         viewBox="0 0 24 24"
                       >
@@ -1493,15 +1509,15 @@ exports[`Select component renders component in select mode and true for multiple
                           d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
                         />
                       </svg>
-                    </MockStyledComponent>
+                    </StyledSelectArrow>
                   </Icon>
                 </TriangleDown>
               </div>
-            </MockStyledComponent>
+            </StyledIconsContainer>
           </div>
-        </MockStyledComponent>
+        </StyledControlContainer>
       </div>
-    </MockStyledComponent>
+    </StyledRoot>
   </Popover>
 </Select>
 `;

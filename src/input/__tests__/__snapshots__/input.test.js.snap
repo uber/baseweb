@@ -41,7 +41,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <Input
       $adjoined="right"
       $disabled={false}
       $error={false}
@@ -78,6 +78,7 @@ Object {
       $size="default"
     />,
   ],
+  "data-baseweb": "base-input",
 }
 `;
 
@@ -98,7 +99,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <Input
       $adjoined="both"
       $disabled={false}
       $error={false}
@@ -135,6 +136,7 @@ Object {
       $size="default"
     />,
   ],
+  "data-baseweb": "base-input",
 }
 `;
 
@@ -155,7 +157,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <Input
       $adjoined="left"
       $disabled={false}
       $error={false}
@@ -192,5 +194,6 @@ Object {
       $size="default"
     />,
   ],
+  "data-baseweb": "base-input",
 }
 `;

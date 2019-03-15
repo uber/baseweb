@@ -13,7 +13,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
   <Portal
     key="portal"
   >
-    <MockStyledComponent
+    <Root
       $animate={true}
       $closeable={true}
       $isOpen={true}
@@ -25,9 +25,10 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
       }
       $role="dialog"
       $size="default"
+      data-baseweb="modal"
     >
       <Portal>
-        <MockStyledComponent
+        <Backdrop
           $animate={true}
           $closeable={true}
           $isOpen={true}
@@ -37,8 +38,8 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
           onClick={[Function]}
         >
           <Portal />
-        </MockStyledComponent>
-        <MockStyledComponent
+        </Backdrop>
+        <DialogContainer
           $animate={true}
           $closeable={true}
           $isOpen={true}
@@ -47,7 +48,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
           $size="default"
         >
           <Portal>
-            <MockStyledComponent
+            <Dialog
               $animate={true}
               $closeable={true}
               $isOpen={true}
@@ -64,7 +65,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
               tabIndex="-1"
             >
               <Portal>
-                <MockStyledComponent
+                <Close
                   $animate={true}
                   $closeable={true}
                   $isOpen={true}
@@ -81,22 +82,22 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                       </Portal>
                     </CloseIcon>
                   </Portal>
-                </MockStyledComponent>
-                <MockStyledComponent>
+                </Close>
+                <ModalHeader>
                   <Portal />
-                </MockStyledComponent>
-                <MockStyledComponent>
+                </ModalHeader>
+                <ModalBody>
                   <Portal />
-                </MockStyledComponent>
-                <MockStyledComponent>
+                </ModalBody>
+                <ModalFooter>
                   <Portal />
-                </MockStyledComponent>
+                </ModalFooter>
               </Portal>
-            </MockStyledComponent>
+            </Dialog>
           </Portal>
-        </MockStyledComponent>
+        </DialogContainer>
       </Portal>
-    </MockStyledComponent>
+    </Root>
   </Portal>
 </Modal>
 `;

@@ -8,33 +8,35 @@ exports[`Stateless progress bar should render component: Component has correct r
   successValue={100}
   value={75}
 >
-  <MockStyledComponent
+  <Root
     $successValue={100}
     $value={75}
+    data-baseweb="progress-bar"
     role="progressbar"
   >
     <div
+      data-baseweb="progress-bar"
       role="progressbar"
       styled-component="true"
     >
-      <MockStyledComponent
+      <Bar
         $successValue={100}
         $value={75}
       >
         <div
           styled-component="true"
         >
-          <MockStyledComponent
+          <BarProgress
             $successValue={100}
             $value={75}
           >
             <div
               styled-component="true"
             />
-          </MockStyledComponent>
+          </BarProgress>
         </div>
-      </MockStyledComponent>
+      </Bar>
     </div>
-  </MockStyledComponent>
+  </Root>
 </ProgressBar>
 `;
