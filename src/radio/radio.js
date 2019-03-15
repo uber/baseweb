@@ -129,6 +129,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
 
     return (
       <Root
+        data-baseweb="radio"
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onMouseDown={this.onMouseDown}

@@ -70,6 +70,7 @@ export default class Button extends React.Component<ButtonPropsT> {
     const sharedProps = getSharedProps(this.props);
     return (
       <BaseButton
+        data-baseweb="button"
         {...sharedProps}
         {...restProps}
         {...baseButtonProps}

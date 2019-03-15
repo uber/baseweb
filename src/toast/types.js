@@ -74,6 +74,7 @@ export type ToastPropsT = {
   onFocus: (e: Event) => void,
   onMouseEnter: (e: Event) => void,
   onMouseLeave: (e: Event) => void,
+  'data-baseweb'?: string,
   overrides: OverridesT,
   key: React.Key,
 };

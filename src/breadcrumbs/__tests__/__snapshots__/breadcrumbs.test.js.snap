@@ -3,22 +3,23 @@
 exports[`Breadcrumbs displays separators in correct positions 1`] = `
 <MockStyledComponent
   aria-label=""
+  data-baseweb="breadcrumbs"
 >
-  <MockStyledComponent
+  <StyledLink
     href="#"
   >
     Parent Page
-  </MockStyledComponent>
+  </StyledLink>
   <MockStyledComponent
     key="separator-0"
   >
     <MockStyledComponent />
   </MockStyledComponent>
-  <MockStyledComponent
+  <StyledLink
     href="#"
   >
     Sub-Parent Page
-  </MockStyledComponent>
+  </StyledLink>
   <MockStyledComponent
     key="separator-1"
   >

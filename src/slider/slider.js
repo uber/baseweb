@@ -78,7 +78,7 @@ class Slider extends React.Component<PropsT> {
     );
     const sharedProps = this.getSharedProps();
     return (
-      <Root {...sharedProps} {...rootProps}>
+      <Root data-baseweb="slider" {...sharedProps} {...rootProps}>
         <Range
           step={step}
           min={min}
