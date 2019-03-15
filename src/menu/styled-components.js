@@ -28,7 +28,6 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   paddingBottom: $theme.sizing.scale300,
   paddingLeft: '0',
   paddingRight: '0',
-  // outline: 'none',
   backgroundColor: $theme.colors.backgroundAlt,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
@@ -37,18 +36,34 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
 
 function getFontColor(props: StyledPropsT) {
   if (props.$disabled) {
-    return props.$theme.colors.foregroundAlt;
+    return props.$theme.colors.menuFontDisabled;
   }
 
   if (props.$isHighlighted && props.$isFocused) {
-    return props.$theme.colors.primary;
+    return props.$theme.colors.menuFontHighlighted;
   }
 
-  return props.$theme.colors.foreground;
+  if (props.$isHighlighted && !props.$isFocused) {
+    return props.$theme.colors.menuFontSelected;
+  }
+
+  return props.$theme.colors.menuFontDefault;
+}
+
+function getBackgroundColor(props: StyledPropsT) {
+  if (props.$disabled) {
+    return 'transparent';
+  }
+
+  if (props.$isHighlighted) {
+    return props.$theme.colors.menuFillHover;
+  }
+
+  return 'transparent';
 }
 
 export const ListItem = styled('li', (props: StyledPropsT) => {
-  const {$disabled, $theme, $isHighlighted, $size} = props;
+  const {$disabled, $theme, $size} = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact
       ? $theme.typography.font200
@@ -57,9 +72,7 @@ export const ListItem = styled('li', (props: StyledPropsT) => {
     display: 'block',
     color: getFontColor(props),
     cursor: $disabled ? 'not-allowed' : 'pointer',
-    backgroundColor: $isHighlighted
-      ? $theme.colors.menuFillHover
-      : 'transparent',
+    backgroundColor: getBackgroundColor(props),
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,

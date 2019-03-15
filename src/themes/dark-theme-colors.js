@@ -124,7 +124,11 @@ export default {
     inputTextDisabled: primitives.mono500,
 
     // Menu
-    menuFillHover: primitives.mono600,
+    menuFillHover: primitives.mono800,
+    menuFontDefault: primitives.mono400,
+    menuFontDisabled: primitives.mono500,
+    menuFontHighlighted: primitives.mono200,
+    menuFontSelected: primitives.mono200,
   },
   tooltip: {
     backgroundColor: primitives.mono200,
