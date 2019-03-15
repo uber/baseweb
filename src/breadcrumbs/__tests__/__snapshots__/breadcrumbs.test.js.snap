@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Breadcrumbs displays separators in correct positions 1`] = `
-<StyledRoot
+<MockStyledComponent
   aria-label=""
   data-baseweb="breadcrumbs"
 >
@@ -10,23 +10,23 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
   >
     Parent Page
   </StyledLink>
-  <StyledSeparator
+  <MockStyledComponent
     key="separator-0"
   >
-    <StyledIcon />
-  </StyledSeparator>
+    <MockStyledComponent />
+  </MockStyledComponent>
   <StyledLink
     href="#"
   >
     Sub-Parent Page
   </StyledLink>
-  <StyledSeparator
+  <MockStyledComponent
     key="separator-1"
   >
-    <StyledIcon />
-  </StyledSeparator>
+    <MockStyledComponent />
+  </MockStyledComponent>
   <span>
     Current Page
   </span>
-</StyledRoot>
+</MockStyledComponent>
 `;

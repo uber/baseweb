@@ -14,7 +14,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   overrides={Object {}}
   variant="light"
 >
-  <Root
+  <MockStyledComponent
     $clickable={false}
     $closeable={true}
     $disabled={false}
@@ -38,14 +38,14 @@ exports[`Stateless tag should render component: Component has correct render 1`]
       styled-component="true"
       tabIndex={null}
     >
-      <Text>
+      <MockStyledComponent>
         <span
           styled-component="true"
         >
           Some tag
         </span>
-      </Text>
-      <Action
+      </MockStyledComponent>
+      <MockStyledComponent
         $clickable={false}
         $closeable={true}
         $disabled={false}
@@ -67,7 +67,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           styled-component="true"
           tabIndex="0"
         >
-          <ActionIcon
+          <MockStyledComponent
             fill="none"
             height="10"
             viewBox="0 0 8 8"
@@ -89,10 +89,10 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                 fillRule="evenodd"
               />
             </svg>
-          </ActionIcon>
+          </MockStyledComponent>
         </span>
-      </Action>
+      </MockStyledComponent>
     </span>
-  </Root>
+  </MockStyledComponent>
 </Tag>
 `;

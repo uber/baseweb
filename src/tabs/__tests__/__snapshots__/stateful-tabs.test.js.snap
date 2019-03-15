@@ -26,7 +26,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
       orientation="horizontal"
       overrides={Object {}}
     >
-      <Root
+      <MockStyledComponent
         $disabled={false}
         $orientation="horizontal"
         data-baseweb="tabs"
@@ -35,7 +35,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
           data-baseweb="tabs"
           styled-component="true"
         >
-          <TabBar
+          <MockStyledComponent
             $disabled={false}
             $orientation="horizontal"
             role="tablist"
@@ -56,7 +56,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                 onSelect={[Function]}
                 title=""
               >
-                <Tab
+                <MockStyledComponent
                   $active={false}
                   $disabled={false}
                   $orientation="horizontal"
@@ -80,7 +80,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   >
                     Tab Link 1
                   </div>
-                </Tab>
+                </MockStyledComponent>
               </TabComponent>
               <TabComponent
                 $orientation="horizontal"
@@ -94,7 +94,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                 onSelect={[Function]}
                 title=""
               >
-                <Tab
+                <MockStyledComponent
                   $active={true}
                   $disabled={false}
                   $orientation="horizontal"
@@ -118,7 +118,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   >
                     Tab Link 2
                   </div>
-                </Tab>
+                </MockStyledComponent>
               </TabComponent>
               <TabComponent
                 $orientation="horizontal"
@@ -132,7 +132,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                 onSelect={[Function]}
                 title=""
               >
-                <Tab
+                <MockStyledComponent
                   $active={false}
                   $disabled={false}
                   $orientation="horizontal"
@@ -156,11 +156,11 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   >
                     Tab Link 3
                   </div>
-                </Tab>
+                </MockStyledComponent>
               </TabComponent>
             </div>
-          </TabBar>
-          <TabContent
+          </MockStyledComponent>
+          <MockStyledComponent
             $active={false}
             $disabled={false}
             $orientation="horizontal"
@@ -173,8 +173,8 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
               role="tabpanel"
               styled-component="true"
             />
-          </TabContent>
-          <TabContent
+          </MockStyledComponent>
+          <MockStyledComponent
             $active={true}
             $disabled={false}
             $orientation="horizontal"
@@ -189,8 +189,8 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
             >
               Tab 2 content
             </div>
-          </TabContent>
-          <TabContent
+          </MockStyledComponent>
+          <MockStyledComponent
             $active={false}
             $disabled={false}
             $orientation="horizontal"
@@ -203,9 +203,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
               role="tabpanel"
               styled-component="true"
             />
-          </TabContent>
+          </MockStyledComponent>
         </div>
-      </Root>
+      </MockStyledComponent>
     </Tabs>
   </StatefulTabs>
 </Component>
@@ -226,7 +226,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
       orientation="horizontal"
       overrides={Object {}}
     >
-      <Root
+      <MockStyledComponent
         $disabled={false}
         $orientation="horizontal"
         data-baseweb="tabs"
@@ -235,7 +235,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
           data-baseweb="tabs"
           styled-component="true"
         >
-          <TabBar
+          <MockStyledComponent
             $disabled={false}
             $orientation="horizontal"
             role="tablist"
@@ -256,7 +256,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                 onSelect={[Function]}
                 title=""
               >
-                <Tab
+                <MockStyledComponent
                   $active={true}
                   $disabled={false}
                   $orientation="horizontal"
@@ -280,7 +280,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   >
                     Tab Link 1
                   </div>
-                </Tab>
+                </MockStyledComponent>
               </TabComponent>
               <TabComponent
                 $orientation="horizontal"
@@ -294,7 +294,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                 onSelect={[Function]}
                 title=""
               >
-                <Tab
+                <MockStyledComponent
                   $active={false}
                   $disabled={false}
                   $orientation="horizontal"
@@ -318,7 +318,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   >
                     Tab Link 2
                   </div>
-                </Tab>
+                </MockStyledComponent>
               </TabComponent>
               <TabComponent
                 $orientation="horizontal"
@@ -332,7 +332,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                 onSelect={[Function]}
                 title=""
               >
-                <Tab
+                <MockStyledComponent
                   $active={false}
                   $disabled={false}
                   $orientation="horizontal"
@@ -356,11 +356,11 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   >
                     Tab Link 3
                   </div>
-                </Tab>
+                </MockStyledComponent>
               </TabComponent>
             </div>
-          </TabBar>
-          <TabContent
+          </MockStyledComponent>
+          <MockStyledComponent
             $active={true}
             $disabled={false}
             $orientation="horizontal"
@@ -375,8 +375,8 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
             >
               Tab 1 content
             </div>
-          </TabContent>
-          <TabContent
+          </MockStyledComponent>
+          <MockStyledComponent
             $active={false}
             $disabled={false}
             $orientation="horizontal"
@@ -389,8 +389,8 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
               role="tabpanel"
               styled-component="true"
             />
-          </TabContent>
-          <TabContent
+          </MockStyledComponent>
+          <MockStyledComponent
             $active={false}
             $disabled={false}
             $orientation="horizontal"
@@ -403,9 +403,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
               role="tabpanel"
               styled-component="true"
             />
-          </TabContent>
+          </MockStyledComponent>
         </div>
-      </Root>
+      </MockStyledComponent>
     </Tabs>
   </StatefulTabs>
 </Component>
