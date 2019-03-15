@@ -54,6 +54,7 @@ export default class Avatar extends React.Component<PropsT, StateT> {
         role={didImageFailToLoad ? 'img' : null}
         $didImageFailToLoad={didImageFailToLoad}
         $size={size}
+        data-baseweb="avatar"
         {...rootProps}
       >
         {didImageFailToLoad ? (

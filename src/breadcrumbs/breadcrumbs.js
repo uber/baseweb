@@ -45,6 +45,7 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
       aria-label={
         props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
       }
+      data-baseweb="breadcrumbs"
       {...baseRootProps}
     >
       {childrenWithSeparators}
