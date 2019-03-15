@@ -276,14 +276,15 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
   addDomEvents() {
     if (__BROWSER__) {
-      document.addEventListener('click', this.onDocumentClick);
+      // using mousedown event so that callback runs before events on children inside of the popover
+      document.addEventListener('mousedown', this.onDocumentClick);
       document.addEventListener('keyup', this.onKeyPress);
     }
   }
 
   removeDomEvents() {
     if (__BROWSER__) {
-      document.removeEventListener('click', this.onDocumentClick);
+      document.removeEventListener('mousedown', this.onDocumentClick);
       document.removeEventListener('keyup', this.onKeyPress);
     }
   }
