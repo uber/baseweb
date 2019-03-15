@@ -57,21 +57,23 @@ describe('Menu StatefulContainer', () => {
       onItemSelect: mockItemSelect,
       children: mockChildrenFn,
     };
-    const component = mount(<StatefulContainer {...props} />);
-    expect(component.instance().refList).toEqual([]);
-    expect(component.instance().rootRef).toEqual(React.createRef());
-    expect(mockChildrenFn.mock.calls[0][0]).toEqual({
-      highlightedIndex: -1,
-      items: mockItems,
-      rootRef: React.createRef(),
-      getRequiredItemProps: component.instance().getRequiredItemProps,
-    });
+    mount(<StatefulContainer {...props} />);
+
+    const result = mockChildrenFn.mock.calls[0][0];
+    expect(result).toHaveProperty('highlightedIndex', -1);
+    expect(result).toHaveProperty('items', mockItems);
+    expect(result).toHaveProperty('rootRef');
+    expect(result).toHaveProperty('getRequiredItemProps');
+    expect(result).toHaveProperty('focusMenu');
+    expect(result).toHaveProperty('unfocusMenu');
+    expect(result).toHaveProperty('isFocused', false);
   });
 
   test('with initialState', () => {
     const props = {
       ...getSharedProps(),
       initialState: {
+        isFocused: false,
         highlightedIndex: 5,
       },
     };
@@ -79,22 +81,19 @@ describe('Menu StatefulContainer', () => {
     expect(component.state('highlightedIndex')).toBe(5);
   });
 
-  test('add and remove event listeners', () => {
-    const component = mount(<StatefulContainer {...getSharedProps()} />);
-    expect(document.addEventListener.mock.calls.length).toBe(1);
-    component.unmount();
-    expect(document.removeEventListener.mock.calls.length).toBe(1);
-  });
-
   test('getRequiredItemProps returns correct props', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     const item = mockItems[0];
     const props = component.instance().getRequiredItemProps(item, 0);
-    expect(props).toEqual({
-      ref: React.createRef(),
-      isHighlighted: false,
-      onClick: props.onClick,
-    });
+
+    expect(props).toHaveProperty('disabled', false);
+    expect(props).toHaveProperty('isFocused', false);
+    expect(props).toHaveProperty('isHighlighted', false);
+    expect(props).toHaveProperty('onClick');
+    expect(props).toHaveProperty('onMouseEnter');
+    expect(props).toHaveProperty('ref');
+    expect(props).toHaveProperty('resetMenu');
+
     props.onClick();
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
       item,
@@ -105,11 +104,14 @@ describe('Menu StatefulContainer', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     const item = mockItems[1];
     const props = component.instance().getRequiredItemProps(item, 1);
-    expect(props).toEqual({
-      disabled: true,
-      ref: React.createRef(),
-      isHighlighted: false,
-    });
+
+    expect(props).toHaveProperty('disabled', true);
+    expect(props).toHaveProperty('isFocused', false);
+    expect(props).toHaveProperty('isHighlighted', false);
+    expect(props).toHaveProperty('onClick');
+    expect(props).toHaveProperty('onMouseEnter');
+    expect(props).toHaveProperty('ref');
+    expect(props).toHaveProperty('resetMenu');
   });
 
   test('getRequiredItemProps returns correct props for active child', () => {
@@ -119,11 +121,14 @@ describe('Menu StatefulContainer', () => {
     });
     const item = mockItems[0];
     const props = component.instance().getRequiredItemProps(item, 0);
-    expect(props).toEqual({
-      ref: React.createRef(),
-      isHighlighted: true,
-      onClick: props.onClick,
-    });
+
+    expect(props).toHaveProperty('disabled', false);
+    expect(props).toHaveProperty('isFocused', false);
+    expect(props).toHaveProperty('isHighlighted', true);
+    expect(props).toHaveProperty('onClick');
+    expect(props).toHaveProperty('onMouseEnter');
+    expect(props).toHaveProperty('ref');
+    expect(props).toHaveProperty('resetMenu');
   });
 
   test('onKeyDown - handleArrowKey', () => {
@@ -135,14 +140,15 @@ describe('Menu StatefulContainer', () => {
     component.instance().onKeyDown({
       key: KEY_STRINGS.ArrowUp,
       preventDefault: jest.fn(),
-      stopPropagation: jest.fn(),
     });
     expect(component.state('highlightedIndex')).toEqual(0);
+
     expect(props.stateReducer.mock.calls[0]).toEqual([
       STATE_CHANGE_TYPES.moveUp,
       {highlightedIndex: 0},
-      {highlightedIndex: -1},
+      {highlightedIndex: -1, isFocused: false},
     ]);
+
     const parent = React.createRef();
     const child = React.createRef();
     // $FlowFixMe
@@ -162,7 +168,7 @@ describe('Menu StatefulContainer', () => {
     expect(props.stateReducer.mock.calls[1]).toEqual([
       STATE_CHANGE_TYPES.moveDown,
       {highlightedIndex: 1},
-      {highlightedIndex: 0},
+      {highlightedIndex: 0, isFocused: false},
     ]);
   });
 

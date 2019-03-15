@@ -15,27 +15,36 @@ import MaybeChildMenu from './maybe-child-menu.js';
 import {ListItem as StyledListItem} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
-export default function OptionList({
-  item,
-  getChildMenu,
-  getItemLabel,
-  size,
-  overrides,
-  $isHighlighted,
-  ...restProps
-}: OptionListPropsT) {
+export default function OptionList(props: OptionListPropsT) {
+  const {
+    getChildMenu,
+    getItemLabel,
+    item,
+    resetMenu = () => {},
+    size,
+    overrides = {},
+    $isHighlighted,
+    ...restProps
+  } = props;
+
   const [ListItem, listItemProps] = getOverrides(
     overrides.ListItem,
     StyledListItem,
   );
-  const sharedProps = {
-    $size: size,
-    $isHighlighted,
-  };
 
   return (
-    <MaybeChildMenu getChildMenu={getChildMenu} item={item}>
-      <ListItem {...sharedProps} {...restProps} {...listItemProps}>
+    <MaybeChildMenu
+      getChildMenu={getChildMenu}
+      isOpen={!!$isHighlighted}
+      item={item}
+      resetParentMenu={resetMenu}
+    >
+      <ListItem
+        $size={size}
+        $isHighlighted={$isHighlighted}
+        {...restProps}
+        {...listItemProps}
+      >
         {getItemLabel({isHighlighted: $isHighlighted, ...item})}
       </ListItem>
     </MaybeChildMenu>
@@ -45,5 +54,7 @@ export default function OptionList({
 OptionList.defaultProps = {
   getItemLabel: (item: *) => (item ? item.label : ''),
   size: OPTION_LIST_SIZE.default,
+  onMouseEnter: () => {},
   overrides: {},
+  resetMenu: () => {},
 };

@@ -199,7 +199,11 @@ export default function createTheme(
       inputTextDisabled: primitives.mono600,
 
       // Menu
-      menuFillHover: primitives.mono300,
+      menuFillHover: primitives.mono200,
+      menuFontDefault: primitives.mono800,
+      menuFontDisabled: primitives.mono500,
+      menuFontHighlighted: primitives.primary400,
+      menuFontSelected: primitives.mono1000,
 
       // Notification
       notificationPrimaryBackground: primitives.primary50,
