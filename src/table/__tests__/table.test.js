@@ -11,7 +11,6 @@ import {mount, shallow} from 'enzyme';
 
 import {
   Table,
-  StyledTable,
   StyledHead,
   StyledHeadCell,
   StyledBody,
