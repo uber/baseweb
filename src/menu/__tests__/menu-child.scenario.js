@@ -45,38 +45,42 @@ const BREAKPOINTS = [
   {label: 'Logpoint...'},
 ];
 
+const childMenu = items => (
+  <StatefulMenu
+    items={items}
+    overrides={{
+      List: {
+        style: {width: '300px'},
+        props: {'data-e2e': 'child-menu'},
+      },
+      Option: {
+        props: {
+          size: 'compact',
+        },
+      },
+    }}
+  />
+);
+
 export const component = () => (
   <NestedMenus>
     <StatefulMenu
       items={FILE}
       overrides={{
-        List: {style: {width: '350px', overflow: 'auto'}},
+        List: {
+          style: {width: '300px', overflow: 'auto'},
+          props: {'data-e2e': 'parent-menu'},
+        },
         Option: {
           props: {
             size: 'compact',
             getChildMenu: item => {
               if (item.label === OPEN_RECENT) {
-                return (
-                  <StatefulMenu
-                    items={RECENT_FILES}
-                    overrides={{
-                      List: {style: {width: '200px'}},
-                      Option: {props: {size: 'compact'}},
-                    }}
-                  />
-                );
+                return childMenu(RECENT_FILES);
               }
 
               if (item.label === NEW_BREAKPOINT) {
-                return (
-                  <StatefulMenu
-                    items={BREAKPOINTS}
-                    overrides={{
-                      List: {style: {width: '200px'}},
-                      Option: {props: {size: 'compact'}},
-                    }}
-                  />
-                );
+                return childMenu(BREAKPOINTS);
               }
             },
           },
