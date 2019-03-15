@@ -59,6 +59,7 @@ export default class FormControl extends React.Component<FormControlPropsT> {
       <React.Fragment>
         {label && (
           <Label
+            data-baseweb="form-control-label"
             htmlFor={onlyChildProps.id}
             {...sharedProps}
             {...getOverrideProps(LabelOverride)}
@@ -67,6 +68,7 @@ export default class FormControl extends React.Component<FormControlPropsT> {
           </Label>
         )}
         <ControlContainer
+          data-baseweb="form-control-container"
           {...sharedProps}
           {...getOverrideProps(ControlContainerOverride)}
         >

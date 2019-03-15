@@ -107,7 +107,7 @@ export default class Accordion extends React.Component<
     const {Root: RootOverride} = overrides;
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     return (
-      <Root {...sharedProps} {...rootProps}>
+      <Root data-baseweb="accordion" {...sharedProps} {...rootProps}>
         {this.getItems()}
       </Root>
     );

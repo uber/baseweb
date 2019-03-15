@@ -46,7 +46,12 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       $successValue: successValue,
     };
     return (
-      <Root role="progressbar" {...sharedProps} {...rootProps}>
+      <Root
+        data-baseweb="progress-bar"
+        role="progressbar"
+        {...sharedProps}
+        {...rootProps}
+      >
         <Bar {...sharedProps} {...barProps}>
           <BarProgress {...sharedProps} {...barProgressProps} />
         </Bar>

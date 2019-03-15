@@ -132,7 +132,11 @@ class BaseInput<T: EventTarget> extends React.Component<
     const [Before, beforeProps] = getOverrides(BeforeOverride, NullComponent);
     const [After, afterProps] = getOverrides(AfterOverride, NullComponent);
     return (
-      <InputContainer {...sharedProps} {...inputContainerProps}>
+      <InputContainer
+        data-baseweb={this.props['data-baseweb'] || 'base-input'}
+        {...sharedProps}
+        {...inputContainerProps}
+      >
         <Before {...sharedProps} {...beforeProps} />
         <Input {...sharedProps} {...this.getInputProps()} {...inputProps}>
           {type === CUSTOM_INPUT_TYPE.textarea ? value : null}

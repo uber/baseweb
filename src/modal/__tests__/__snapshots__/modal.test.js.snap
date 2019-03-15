@@ -25,6 +25,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
       }
       $role="dialog"
       $size="default"
+      data-baseweb="modal"
     >
       <Portal>
         <MockStyledComponent
