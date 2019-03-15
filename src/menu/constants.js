@@ -10,18 +10,16 @@ export const STATE_CHANGE_TYPES = {
   click: 'click',
   moveUp: 'moveUp',
   moveDown: 'moveDown',
-};
-
-// Dict of props to prepend $ to pass thru to styletron
-export const SHARED_PROPS_MAPPER = {
-  disabled: true,
-  ref: true,
-  isHighlighted: true,
+  mouseEnter: 'mouseEnter',
+  focus: 'focus',
+  reset: 'reset',
 };
 
 export const KEY_STRINGS = {
   ArrowUp: 'ArrowUp',
   ArrowDown: 'ArrowDown',
+  ArrowLeft: 'ArrowLeft',
+  ArrowRight: 'ArrowRight',
   Enter: 'Enter',
   Space: ' ',
   Escape: 'Escape',

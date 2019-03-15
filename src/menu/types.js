@@ -36,7 +36,6 @@ export type RootRefT = React$ElementRef<*>;
 export type OnItemSelectFnT = ({
   item: ItemT,
   event?: SyntheticEvent<HTMLElement> | KeyboardEvent,
-  /* eslint-disable-next-line flowtype/no-weak-types */
 }) => mixed;
 
 export type ProfileOverridesT = {
@@ -51,10 +50,12 @@ export type ProfileOverridesT = {
 };
 
 export type RenderItemPropsT = {
+  disabled?: boolean,
   ref?: React$ElementRef<*>,
+  isFocused?: boolean,
   // indicates when the item is visually focused
   isHighlighted?: boolean,
-  'aria-activedescendant'?: boolean,
+  resetMenu?: () => mixed,
 };
 
 export type GetRequiredItemPropsFnT = (
@@ -71,6 +72,9 @@ export type StateReducerFnT = (
 export type StatefulContainerStateT = {
   // index of currently highlighted item (from keyboard control)
   highlightedIndex: number,
+  // indicates when the menu can be navigated by keyboard and affects menu item option rendering
+  // see https://github.com/uber-web/baseui/issues/993 for a description.
+  isFocused: boolean,
 };
 
 export type RenderPropsT = StatefulContainerStateT & {
@@ -101,6 +105,10 @@ export type StatefulContainerPropsT = {
   onItemSelect: OnItemSelectFnT,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
+  addMenuToNesting?: (ref: {current: ?HTMLElement}) => void,
+  removeMenuFromNesting?: (ref: {current: ?HTMLElement}) => void,
+  getParentMenu?: (ref: {current: ?HTMLElement}) => ?{current: ?HTMLElement},
+  getChildMenu?: (ref: {current: ?HTMLElement}) => ?{current: ?HTMLElement},
 };
 
 export type MenuPropsT = {
@@ -133,6 +141,8 @@ export type SharedStatelessPropsT = {
   onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef: RootRefT,
+  focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => mixed,
+  unfocusMenu?: () => mixed,
 };
 
 export type StatefulMenuPropsT = StatefulContainerPropsT & MenuPropsT;
@@ -152,11 +162,15 @@ export type OptionListPropsT = {
   getItemLabel: GetItemLabelFnT,
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
   getChildMenu?: (item: ItemT) => React.Node,
+  /** Callback used to change highlighted index in stateful menu. */
+  onMouseEnter?: (event: MouseEvent) => mixed,
   /** Renders UI in defined scale. */
-  size: $Keys<typeof OPTION_LIST_SIZE>,
-  overrides: {
+  size?: $Keys<typeof OPTION_LIST_SIZE>,
+  overrides?: {
     ListItem?: OverrideT<*>,
   },
+  /** Utility to reset menu to defualt state. Useful for rendering child menus. */
+  resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,
 };
@@ -181,4 +195,8 @@ export type OptionProfilePropsT = {
     ProfileSubtitle?: OverrideT<*>,
     ProfileBody?: OverrideT<*>,
   },
+  /** Utility to reset menu to defualt state. Useful for rendering child menus. */
+  resetMenu?: () => void,
+  /** Renders UI in 'highlighted' state. */
+  $isHighlighted?: boolean,
 };

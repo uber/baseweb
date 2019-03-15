@@ -7,22 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as Utils from '../utils.js';
 
-describe('Menu Utils - getSharedProps', () => {
-  test('successfully maps', () => {
-    const props = {
-      someStyletronProps: 'styletron',
-      normalProps: 'normal',
-    };
-    const mapper = {
-      someStyletronProps: true,
-    };
-    expect(Utils.getSharedProps(props, mapper)).toEqual({
-      $someStyletronProps: 'styletron',
-      normalProps: 'normal',
-    });
-  });
-});
-
 describe.only('Menu Utils - scrollItemIntoView', () => {
   // |=======================| <-- top of parent window (at 0)
   // | |-------------------| |
