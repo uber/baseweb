@@ -32,8 +32,11 @@ class StatefulContainer extends React.Component<
   };
 
   onChange = (params: {item: *}) => {
+    const {onChange} = this.props;
     this.internalSetState(STATE_CHANGE_TYPE.change, params.item);
-    this.props.onChange(params);
+    if (typeof onChange === 'function') {
+      onChange(params);
+    }
   };
 
   internalSetState = (type: StateTypeT, item: *) => {

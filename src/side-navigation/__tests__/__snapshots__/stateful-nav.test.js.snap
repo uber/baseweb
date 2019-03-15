@@ -3,7 +3,7 @@
 exports[`Navigation basic render: renders <Navigation/> as a child 1`] = `
 <SideNav
   activePath=""
-  isActive={null}
+  activePredicate={null}
   items={
     Array [
       Object {

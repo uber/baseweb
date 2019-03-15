@@ -27,27 +27,9 @@ export const StyledRoot = styled('ul', props => {
   };
 });
 
-export const StyledItemContainer = styled('li', {});
+export const StyledNavItemContainer = styled('li', {});
 
-export const StyledSubNavContainer = styled('ul', {
-  listStyleType: 'none',
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
-  paddingTop: '0',
-  paddingBottom: '0',
-  paddingLeft: '0',
-  paddingRight: '0',
-});
-
-export const StyledLink = styled('a', {
-  color: 'inherit',
-  display: 'block',
-  textDecoration: 'none',
-});
-
-export const StyledItem = styled('div', props => {
+export const StyledNavItem = styled('div', props => {
   const {
     $active,
     $selectable,
@@ -65,6 +47,8 @@ export const StyledItem = styled('div', props => {
     borderLeftStyle: 'solid',
     borderLeftColor: $active ? colors.primary : 'transparent',
     color: $active ? colors.primary : null,
+    cursor: $selectable ? 'pointer' : 'default',
+    // outline: 'none',
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
     paddingLeft: `calc(${sizing.scale800} * ${$level})`,
@@ -72,5 +56,20 @@ export const StyledItem = styled('div', props => {
     ':hover': {
       color: $selectable ? colors.primary : null,
     },
+    ':focus': {
+      color: $selectable ? colors.primary : null,
+    },
   };
+});
+
+export const StyledSubNavContainer = styled('ul', {
+  listStyleType: 'none',
+  marginTop: '0',
+  marginBottom: '0',
+  marginLeft: '0',
+  marginRight: '0',
+  paddingTop: '0',
+  paddingBottom: '0',
+  paddingLeft: '0',
+  paddingRight: '0',
 });

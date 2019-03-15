@@ -31,28 +31,34 @@ export type SharedPropsT = {
   $selectable: boolean,
 };
 
-export type SideNavComponentsT = {
-  Root?: OverrideT<*>,
-  NavItemContainer?: OverrideT<*>,
-  Link?: OverrideT<*>,
-  NavItem?: OverrideT<*>,
-  SubNavContainer?: OverrideT<*>,
-};
-
 export type NavPropsT = {
   /** Defines the current active path. Used for the defaut calculation of the $active prop */
   activePath: string,
-  /** isActive is called on the nav item. If return true the item will be rendered as an active one */
-  isActive: ?(item: *, activePath: string) => mixed,
+  /** 
+    Is called on the nav item render to test if the item is currently selected. 
+    If returns true the item will be rendered as an active one 
+    */
+  activePredicate: ?(item: *, activePath: string) => mixed,
   /** Overrides for the internal elements and components */
-  overrides: SideNavComponentsT,
+  overrides: {
+    Root?: OverrideT<*>,
+    NavItemContainer?: OverrideT<*>,
+    NavItem?: OverrideT<*>,
+    SubNavContainer?: OverrideT<*>,
+  },
   /** Optional render function that is called instead default item rendering */
   renderItem: ?(item: *) => React.Node,
 };
 
+type Item = {
+  title: React.Node,
+  path?: string,
+  subnav?: Item[],
+};
+
 export type SideNavPropsT = NavPropsT & {
   /** List of navigation items */
-  items: Array<*>,
+  items: Item[],
   /** onChange handler that is called when a nav item is selected */
   onChange?: ({item: *}) => mixed,
 };
@@ -72,7 +78,7 @@ export type StatefulContainerPropsT = {
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
   stateReducer: StateReducerT,
-  onChange: ({item: *}) => void,
+  onChange: ({item: *}) => mixed,
 };
 
 export type StatefulNavPropsT = SideNavPropsT & StatefulContainerPropsT;

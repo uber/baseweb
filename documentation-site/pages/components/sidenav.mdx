@@ -37,7 +37,27 @@ The side navigation menu is a list of links that is used for a website navigatio
 <Overrides
   name="Side Navigation"
   component={NavExports}
-  renderExample={props => <Navigation overrides={props.overrides} />}
+  renderExample={props => <Navigation items={[
+  {
+    title: 'Colors',
+    subnav: [
+      {
+        title: 'Shades',
+        path: '#level1.1.2',
+        subnav: [
+          {
+            title: 'Light',
+            path: '#level1.1.2.1',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Sizing',
+    path: '/',
+  }
+]} overrides={props.overrides} />}
 />
 
 <API

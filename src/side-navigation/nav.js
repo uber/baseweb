@@ -16,28 +16,28 @@ export default class SideNav extends React.Component<SideNavPropsT> {
   static defaultProps = {
     activePath: '/',
     items: [],
-    isActive: null,
+    activePredicate: null,
     overrides: {},
     renderItem: null,
   };
 
-  isActive = (item: *, activePath: string) => {
+  activePredicate = (item: *, activePath: string) => {
     return item.path === activePath ? true : false;
   };
 
   render() {
-    const {isActive, items, onChange, overrides} = this.props;
+    const {activePredicate, items, onChange, overrides} = this.props;
     const navLevel = 1;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
     return (
-      <Root {...rootProps}>
+      <Root role="navigation" {...rootProps}>
         {items.map((item, index) => {
           return (
             <NavItem
               key={index}
               {...this.props}
-              isActive={isActive || this.isActive}
+              activePredicate={activePredicate || this.activePredicate}
               index={index}
               item={item}
               navLevel={navLevel}

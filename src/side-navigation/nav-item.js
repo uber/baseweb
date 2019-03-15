@@ -9,10 +9,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {
-  StyledItemContainer,
+  StyledNavItemContainer,
   StyledSubNavContainer,
-  StyledLink,
-  StyledItem,
+  StyledNavItem,
 } from './styled-components.js';
 import type {NavItemPropsT} from './types.js';
 
@@ -48,7 +47,7 @@ export default class NavItem extends React.Component<NavItemPropsT> {
     const {
       activePath,
       index,
-      isActive,
+      activePredicate,
       item: topLevelItem,
       navLevel,
       overrides,
@@ -56,10 +55,9 @@ export default class NavItem extends React.Component<NavItemPropsT> {
     } = this.props;
     const [ItemContainer, itemContainerProps] = getOverrides(
       overrides.NavItemContainer,
-      StyledItemContainer,
+      StyledNavItemContainer,
     );
-    const [Link, linkProps] = getOverrides(overrides.Link, StyledLink);
-    const [Item, itemProps] = getOverrides(overrides.NavItem, StyledItem);
+    const [Item, itemProps] = getOverrides(overrides.NavItem, StyledNavItem);
     const [SubNavContainer, subNavContainerProps] = getOverrides(
       overrides.SubNavContainer,
       StyledSubNavContainer,
@@ -67,7 +65,7 @@ export default class NavItem extends React.Component<NavItemPropsT> {
 
     const renderNavItem = (item, level, index) => {
       const sharedProps = {
-        $active: isActive ? isActive(item, activePath) : false,
+        $active: activePredicate ? activePredicate(item, activePath) : false,
         $level: level,
         $selectable: !!item.path,
       };
@@ -81,27 +79,28 @@ export default class NavItem extends React.Component<NavItemPropsT> {
             renderItem(item)
           ) : (
             <>
-              {item.path ? (
-                <Link
-                  href={item.path}
-                  onClick={e => {
-                    this.handleClick({e, item});
-                  }}
-                  onKeyDown={e => {
-                    this.handleKeyDown({e, item});
-                  }}
-                  {...sharedProps}
-                  {...linkProps}
-                >
-                  <Item {...sharedProps} {...itemProps}>
-                    {item.title}
-                  </Item>
-                </Link>
-              ) : (
-                <Item {...sharedProps} {...itemProps}>
-                  {item.title}
-                </Item>
-              )}
+              <Item
+                role="button"
+                tabIndex={item.path ? 0 : null}
+                onClick={
+                  item.path
+                    ? e => {
+                        this.handleClick({e, item});
+                      }
+                    : null
+                }
+                onKeyDown={
+                  item.path
+                    ? e => {
+                        this.handleKeyDown({e, item});
+                      }
+                    : null
+                }
+                {...sharedProps}
+                {...itemProps}
+              >
+                {item.title}
+              </Item>
               {item.subnav ? (
                 <SubNavContainer {...sharedProps} {...subNavContainerProps}>
                   {item.subnav.map((subitem, idx) => {

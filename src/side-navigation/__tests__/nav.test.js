@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {Navigation, StyledItemContainer, StyledLink} from '../index.js';
+import {Navigation, StyledNavItemContainer} from '../index.js';
 
 const nav = [
   {
@@ -39,7 +39,6 @@ describe('Table', () => {
   it('renders expected number of rows', () => {
     const wrapper = mount(<Navigation items={nav} />);
 
-    expect(wrapper.find(StyledItemContainer)).toHaveLength(5);
-    expect(wrapper.find(StyledLink)).toHaveLength(4);
+    expect(wrapper.find(StyledNavItemContainer)).toHaveLength(5);
   });
 });
