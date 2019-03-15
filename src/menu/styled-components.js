@@ -13,6 +13,7 @@ import type {ThemeT} from '../styles/index.js';
 type StyledPropsT = {
   $disabled?: boolean,
   $theme: ThemeT,
+  $isFocused?: boolean,
   $isHighlighted?: boolean,
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
 };
@@ -33,29 +34,48 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   overflow: 'auto',
 }));
 
-export const ListItem = styled(
-  'li',
-  ({$disabled, $theme, $isHighlighted, $size}: StyledPropsT) => ({
+function getFontColor(props: StyledPropsT) {
+  if (props.$disabled) {
+    return props.$theme.colors.menuFontDisabled;
+  }
+
+  if (props.$isHighlighted && props.$isFocused) {
+    return props.$theme.colors.menuFontHighlighted;
+  }
+
+  if (props.$isHighlighted && !props.$isFocused) {
+    return props.$theme.colors.menuFontSelected;
+  }
+
+  return props.$theme.colors.menuFontDefault;
+}
+
+function getBackgroundColor(props: StyledPropsT) {
+  if (props.$disabled) {
+    return 'transparent';
+  }
+
+  if (props.$isHighlighted) {
+    return props.$theme.colors.menuFillHover;
+  }
+
+  return 'transparent';
+}
+
+export const ListItem = styled('li', (props: StyledPropsT) => {
+  const {$disabled, $theme, $size} = props;
+  return {
     ...($size === OPTION_LIST_SIZE.compact
       ? $theme.typography.font200
       : $theme.typography.font300),
     position: 'relative',
     display: 'block',
-    color: $disabled
-      ? $theme.colors.foregroundAlt
-      : $isHighlighted
-        ? $theme.colors.primary
-        : $theme.colors.foreground,
+    color: getFontColor(props),
     cursor: $disabled ? 'not-allowed' : 'pointer',
-    backgroundColor: $isHighlighted
-      ? $theme.colors.menuFillHover
-      : 'transparent',
+    backgroundColor: getBackgroundColor(props),
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,
-    ':hover': {
-      backgroundColor: $theme.colors.menuFillHover,
-    },
     marginBottom: '0',
     paddingTop:
       $size === OPTION_LIST_SIZE.compact
@@ -76,8 +96,8 @@ export const ListItem = styled(
     ':focus': {
       outline: 'none',
     },
-  }),
-);
+  };
+});
 
 export const ListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
   position: 'relative',

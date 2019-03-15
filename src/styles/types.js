@@ -185,6 +185,10 @@ export type ColorsT = {
 
   // Menu
   menuFillHover: string,
+  menuFontDefault: string,
+  menuFontDisabled: string,
+  menuFontHighlighted: string,
+  menuFontSelected: string,
 
   // Shadow
   shadowFocus: string,
