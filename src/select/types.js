@@ -138,7 +138,7 @@ export type PropsT = {
   placeholder?: React.Node,
   /** Defines if the select field is required to have a selection. */
   required: boolean,
-  /** Defines if the search functionality id enabled. */
+  /** Defines if the search functionality is enabled. */
   searchable: boolean,
   size: SizeT,
   /** Defines type of the component to be in select or search mode.
