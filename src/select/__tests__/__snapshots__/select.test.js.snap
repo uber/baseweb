@@ -89,6 +89,7 @@ exports[`Select component renders component in search mode and false for multipl
       aria-controls={null}
       aria-expanded="false"
       aria-haspopup="true"
+      data-baseweb="select"
       key="popover-anchor"
       onClick={[Function]}
     >
@@ -96,6 +97,7 @@ exports[`Select component renders component in search mode and false for multipl
         aria-controls={null}
         aria-expanded="false"
         aria-haspopup="true"
+        data-baseweb="select"
         onClick={[Function]}
         styled-component="true"
       >
@@ -182,9 +184,11 @@ exports[`Select component renders component in search mode and false for multipl
                   $searchable={true}
                   $size={16}
                   $type="search"
+                  data-baseweb="icon"
                   viewBox="0 0 24 24"
                 >
                   <svg
+                    data-baseweb="icon"
                     styled-component="true"
                     viewBox="0 0 24 24"
                   >
@@ -466,6 +470,7 @@ exports[`Select component renders component in search mode and true for multiple
       aria-controls={null}
       aria-expanded="false"
       aria-haspopup="true"
+      data-baseweb="select"
       key="popover-anchor"
       onClick={[Function]}
     >
@@ -473,6 +478,7 @@ exports[`Select component renders component in search mode and true for multiple
         aria-controls={null}
         aria-expanded="false"
         aria-haspopup="true"
+        data-baseweb="select"
         onClick={[Function]}
         styled-component="true"
       >
@@ -559,9 +565,11 @@ exports[`Select component renders component in search mode and true for multiple
                   $searchable={true}
                   $size={16}
                   $type="search"
+                  data-baseweb="icon"
                   viewBox="0 0 24 24"
                 >
                   <svg
+                    data-baseweb="icon"
                     styled-component="true"
                     viewBox="0 0 24 24"
                   >
@@ -843,6 +851,7 @@ exports[`Select component renders component in select mode and false for multipl
       aria-controls={null}
       aria-expanded="false"
       aria-haspopup="true"
+      data-baseweb="select"
       key="popover-anchor"
       onClick={[Function]}
     >
@@ -850,6 +859,7 @@ exports[`Select component renders component in select mode and false for multipl
         aria-controls={null}
         aria-expanded="false"
         aria-haspopup="true"
+        data-baseweb="select"
         onClick={[Function]}
         styled-component="true"
       >
@@ -1104,9 +1114,11 @@ exports[`Select component renders component in select mode and false for multipl
                       $searchable={true}
                       $size={16}
                       $type="select"
+                      data-baseweb="icon"
                       viewBox="0 0 24 24"
                     >
                       <svg
+                        data-baseweb="icon"
                         styled-component="true"
                         viewBox="0 0 24 24"
                       >
@@ -1219,6 +1231,7 @@ exports[`Select component renders component in select mode and true for multiple
       aria-controls={null}
       aria-expanded="false"
       aria-haspopup="true"
+      data-baseweb="select"
       key="popover-anchor"
       onClick={[Function]}
     >
@@ -1226,6 +1239,7 @@ exports[`Select component renders component in select mode and true for multiple
         aria-controls={null}
         aria-expanded="false"
         aria-haspopup="true"
+        data-baseweb="select"
         onClick={[Function]}
         styled-component="true"
       >
@@ -1480,9 +1494,11 @@ exports[`Select component renders component in select mode and true for multiple
                       $searchable={true}
                       $size={16}
                       $type="select"
+                      data-baseweb="icon"
                       viewBox="0 0 24 24"
                     >
                       <svg
+                        data-baseweb="icon"
                         styled-component="true"
                         viewBox="0 0 24 24"
                       >

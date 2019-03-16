@@ -45,6 +45,7 @@ class Textarea extends React.Component<TextareaPropsT> {
     );
     return (
       <BaseInput
+        data-baseweb="textarea"
         {...this.props}
         type={CUSTOM_INPUT_TYPE.textarea}
         overrides={overrides}

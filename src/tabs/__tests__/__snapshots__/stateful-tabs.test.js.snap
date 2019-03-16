@@ -29,8 +29,10 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
       <MockStyledComponent
         $disabled={false}
         $orientation="horizontal"
+        data-baseweb="tabs"
       >
         <div
+          data-baseweb="tabs"
           styled-component="true"
         >
           <MockStyledComponent
@@ -227,8 +229,10 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
       <MockStyledComponent
         $disabled={false}
         $orientation="horizontal"
+        data-baseweb="tabs"
       >
         <div
+          data-baseweb="tabs"
           styled-component="true"
         >
           <MockStyledComponent

@@ -39,6 +39,7 @@ class Spinner extends React.Component<SpinnerPropsT> {
 
     return (
       <Icon
+        data-baseweb="spinner"
         title="Spinner"
         viewBox="3 3 18 18"
         {...this.props}

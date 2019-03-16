@@ -102,6 +102,7 @@ class Tag extends React.Component<PropsT, {}> {
     };
     return (
       <Root
+        data-baseweb="tag"
         aria-label="button"
         role="button"
         tabIndex={clickable ? '0' : null}

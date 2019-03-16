@@ -14,7 +14,12 @@ import MaybeChildMenu from '../maybe-child-menu.js';
 describe('MaybeChildMenu', () => {
   it('does not render popover if getChildMenu is undefined', () => {
     const wrapper = mount(
-      <MaybeChildMenu getChildMenu={null} item={{label: 'item'}}>
+      <MaybeChildMenu
+        isOpen={true}
+        getChildMenu={null}
+        item={{label: 'item'}}
+        resetParentMenu={() => {}}
+      >
         <div>child</div>
       </MaybeChildMenu>,
     );
@@ -29,8 +34,10 @@ describe('MaybeChildMenu', () => {
   it('renders popover if getChildMenu is provided', () => {
     const wrapper = mount(
       <MaybeChildMenu
+        isOpen={true}
         getChildMenu={() => <button>child menu</button>}
         item={{label: 'item'}}
+        resetParentMenu={() => {}}
       >
         <div>child</div>
       </MaybeChildMenu>,
@@ -41,6 +48,6 @@ describe('MaybeChildMenu', () => {
         .children()
         .first()
         .name(),
-    ).toBe('StatefulPopover');
+    ).toBe('Popover');
   });
 });

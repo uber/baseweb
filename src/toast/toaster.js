@@ -170,7 +170,7 @@ export class ToasterContainer extends React.Component<
     }
 
     const root = (
-      <Root {...sharedProps} {...rootProps}>
+      <Root data-baseweb="toaster" {...sharedProps} {...rootProps}>
         {toastsToRender}
       </Root>
     );

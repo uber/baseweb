@@ -23,6 +23,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     $kind="primary"
     $variant="light"
     aria-label="button"
+    data-baseweb="tag"
     onClick={null}
     onKeyDown={[Function]}
     role="button"
@@ -30,6 +31,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   >
     <span
       aria-label="button"
+      data-baseweb="tag"
       onClick={null}
       onKeyDown={[Function]}
       role="button"

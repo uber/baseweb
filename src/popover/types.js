@@ -56,6 +56,7 @@ export type BasePopoverPropsT = {
    * See the A11Y section at the bottom of this document for more details.
    */
   accessibilityType?: AccessibilityTypeT,
+  'data-baseweb'?: string,
   id?: string,
   /** If true, popover element will not avoid element boundaries. */
   ignoreBoundary?: boolean,

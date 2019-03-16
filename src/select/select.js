@@ -868,7 +868,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             }}
             placement={PLACEMENT.bottom}
           >
-            <Root {...sharedProps} {...rootProps}>
+            <Root data-baseweb="select" {...sharedProps} {...rootProps}>
               <ControlContainer
                 onKeyDown={this.handleKeyDown}
                 onClick={this.handleClick}
