@@ -29,6 +29,7 @@ export default class Table extends React.Component<TablePropsT> {
   render() {
     return (
       <StyledTable
+        data-baseweb="table"
         role="grid"
         aria-colcount={this.props.columns.length}
         aria-rowcount={this.props.data.length}

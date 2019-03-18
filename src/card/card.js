@@ -57,7 +57,11 @@ function Card(props: CardsPropsT) {
 
   const $hasThumbnail = hasThumbnail(props);
   return (
-    <Root {...otherProps} {...getOverrideProps(RootOverride)}>
+    <Root
+      data-baseweb="card"
+      {...otherProps}
+      {...getOverrideProps(RootOverride)}
+    >
       {headerImage && (
         <HeaderImage
           src={headerImage}

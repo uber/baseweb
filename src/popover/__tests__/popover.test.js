@@ -86,7 +86,7 @@ describe('Popover', () => {
 
     // Portal should have the popover body and content
     let popoverBody = portal.childAt(0);
-    expect(popoverBody).toMatchSelector('MockStyledComponent');
+    expect(popoverBody).toMatchSelector('[data-baseweb="popover"]');
     expect(popoverBody).toHaveProp({
       $showArrow: false,
       $placement: 'auto',

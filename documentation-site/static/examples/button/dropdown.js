@@ -26,6 +26,7 @@ export default class Dropdown extends React.Component {
     return (
       <Popover
         onClick={() => this.setState(prev => ({isOpen: !prev.isOpen}))}
+        onClickOutside={() => this.setState({isOpen: false})}
         isOpen={this.state.isOpen}
         placement={PLACEMENT.bottomLeft}
         content={
