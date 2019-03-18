@@ -37,6 +37,7 @@ Object {
     "current": null,
   },
   "$showArrow": true,
+  "data-baseweb": "popover",
   "id": "bui-mock-id",
   "onMouseEnter": [Function],
   "onMouseLeave": [Function],

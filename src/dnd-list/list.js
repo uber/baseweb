@@ -51,7 +51,7 @@ class StatelessList extends React.Component<ListPropsT> {
     const [Label, labelProps] = getOverrides(LabelOverride, StyledLabel);
     const isRemovable = this.props.removable || false;
     return (
-      <Root $isRemovable={isRemovable} {...rootProps}>
+      <Root $isRemovable={isRemovable} data-baseweb="dnd-list" {...rootProps}>
         <MovableList
           values={items}
           onChange={onChange}

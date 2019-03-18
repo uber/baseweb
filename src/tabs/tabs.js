@@ -107,7 +107,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
     const [TabBar, tabBarProps] = getOverrides(TabBarOverride, StyledTabBar);
 
     return (
-      <Root {...sharedProps} {...rootProps}>
+      <Root data-baseweb="tabs" {...sharedProps} {...rootProps}>
         <TabBar role="tablist" {...sharedProps} {...tabBarProps}>
           {this.getTabs()}
         </TabBar>

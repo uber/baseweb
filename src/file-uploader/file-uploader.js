@@ -81,7 +81,11 @@ function FileUploader(props: PropsT) {
         return (
           <LocaleContext.Consumer>
             {locale => (
-              <Root {...prefixedStyledProps} {...rootProps}>
+              <Root
+                data-baseweb="file-uploader"
+                {...prefixedStyledProps}
+                {...rootProps}
+              >
                 <FileDragAndDrop
                   {...getRootProps(getRootPropsArgs)}
                   {...prefixedStyledProps}

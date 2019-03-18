@@ -79,16 +79,10 @@ export const StyledDropdownListItem = StyledListItem;
 
 export const StyledOptionContent = styled('div', props => {
   const {$isHighlighted, $selected, $disabled, $theme} = props;
-  const {
-    colors: {foregroundAlt, primary400, foreground},
-  } = $theme;
+
   return {
     cursor: $disabled ? 'not-allowed' : 'pointer',
-    color: $disabled
-      ? foregroundAlt
-      : $selected || $isHighlighted
-        ? primary400
-        : foreground,
+    color: $selected && !$isHighlighted ? $theme.colors.menuFontSelected : null,
     fontWeight: $selected ? 'bold' : 'normal',
   };
 });

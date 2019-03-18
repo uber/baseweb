@@ -5,9 +5,11 @@ exports[`Stateless header navigation should render component: Component has corr
   overrides={Object {}}
 >
   <MockStyledComponent
+    data-baseweb="header-navigation"
     role="navigation"
   >
     <nav
+      data-baseweb="header-navigation"
       role="navigation"
       styled-component="true"
     >

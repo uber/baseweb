@@ -7,26 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable import/prefer-default-export */
 import smoothscroll from 'smoothscroll-polyfill';
-import {SHARED_PROPS_MAPPER} from './constants.js';
 
 if (__BROWSER__) {
   smoothscroll.polyfill();
-}
-
-/**
- * Given a props object and a mapper dictionary of prop keys, we will prepend
- * all of the existing prop keys inside mapper with $ to present styletron
- * from passing through those props to the underlying React component.
- */
-export function getSharedProps(
-  props: {},
-  mapper: {} = SHARED_PROPS_MAPPER,
-): {} {
-  return Object.keys(props).reduce((newProps, propName) => {
-    const newName = mapper[propName] ? `$${propName}` : propName;
-    newProps[newName] = props[propName];
-    return newProps;
-  }, {});
 }
 
 // Helps scroll a list item into view when cycling through list via

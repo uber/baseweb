@@ -473,6 +473,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       <Body
         key="popover-body"
         $ref={this.popperRef}
+        data-baseweb={this.props['data-baseweb'] || 'popover'}
         {...bodyProps}
         {...sharedProps}
         {...getOverrideProps(BodyOverride)}

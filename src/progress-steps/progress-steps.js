@@ -33,7 +33,11 @@ function ProgressSteps({
     );
   });
 
-  return <Root {...rootProps}>{modifiedChildren}</Root>;
+  return (
+    <Root data-baseweb="progress-steps" {...rootProps}>
+      {modifiedChildren}
+    </Root>
+  );
 }
 
 ProgressSteps.defaultProps = {

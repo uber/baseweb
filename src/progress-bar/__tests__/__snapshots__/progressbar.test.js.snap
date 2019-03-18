@@ -11,9 +11,11 @@ exports[`Stateless progress bar should render component: Component has correct r
   <MockStyledComponent
     $successValue={100}
     $value={75}
+    data-baseweb="progress-bar"
     role="progressbar"
   >
     <div
+      data-baseweb="progress-bar"
       role="progressbar"
       styled-component="true"
     >
