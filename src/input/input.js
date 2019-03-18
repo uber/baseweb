@@ -71,7 +71,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     const sharedProps = getSharedProps(this.props, this.state);
 
     return (
-      <Root {...sharedProps} {...rootProps}>
+      <Root data-baseweb="input" {...sharedProps} {...rootProps}>
         {startEnhancer && (
           <StartEnhancer
             {...sharedProps}

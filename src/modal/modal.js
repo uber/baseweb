@@ -279,6 +279,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       <LocaleContext.Consumer>
         {locale => (
           <Root
+            data-baseweb="modal"
             $ref={this.getRef('Root')}
             {...sharedProps}
             {...getOverrideProps(RootOverride)}

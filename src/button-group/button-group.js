@@ -61,6 +61,7 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
       aria-label={
         props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
       }
+      data-baseweb="button-group"
       {...rootProps}
     >
       {React.Children.map(props.children, (child, index) => {

@@ -135,6 +135,7 @@ function Block({
       $top={top}
       $right={right}
       $bottom={bottom}
+      data-baseweb="block"
       {...other}
       {...baseBlockProps}
     >

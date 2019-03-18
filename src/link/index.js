@@ -6,4 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 // Styled elements
-export {Link as StyledLink} from './styled-components.js';
+import * as React from 'react';
+import {Link} from './styled-components.js';
+
+//$FlowFixMe
+export const StyledLink = props => <Link data-baseweb="link" {...props} />;

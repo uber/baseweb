@@ -34,6 +34,7 @@ class Component extends React.Component<ComponentPropsT> {
     return (
       //$FlowFixMe
       <Root
+        data-baseweb="component"
         onClick={this.props.onClick}
         {...sharedProps}
         {...getOverrideProps(RootOverride)}
