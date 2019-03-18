@@ -14,8 +14,6 @@ export function getSvgStyles({$theme, $size, $color}: StyledComponentParamsT) {
       $size = $theme.sizing[$size];
     } else if (typeof $size === 'number') {
       $size = `${$size}px`;
-    } else {
-      $size = $theme.sizing.scale600;
     }
   } else {
     $size = $theme.sizing.scale600;
