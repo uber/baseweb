@@ -3,7 +3,7 @@
 exports[`StatefulContainer - basic render: function-as-child called with correct args 1`] = `
 Array [
   Object {
-    "activePath": "/",
+    "activeItemId": "/",
     "onChange": [Function],
   },
 ]

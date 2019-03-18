@@ -15,11 +15,11 @@ const nav = [
     subnav: [
       {
         title: 'Shades',
-        path: '#level1.1.2',
+        itemId: '#level1.1.2',
         subnav: [
           {
             title: 'Light',
-            path: '#level1.1.2.2',
+            itemId: '#level1.1.2.2',
           },
         ],
       },
@@ -27,11 +27,11 @@ const nav = [
   },
   {
     title: 'Sizing',
-    path: '#level1.2',
+    itemId: '#level1.2',
   },
   {
     title: 'Typography',
-    path: '#level1.3',
+    itemId: '#level1.3',
   },
 ];
 

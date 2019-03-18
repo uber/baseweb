@@ -2,17 +2,17 @@
 
 exports[`Navigation basic render: renders <Navigation/> as a child 1`] = `
 <SideNav
-  activePath=""
+  activeItemId=""
   activePredicate={null}
   items={
     Array [
       Object {
         "subnav": Array [
           Object {
-            "path": "#level1.1.2",
+            "itemId": "#level1.1.2",
             "subnav": Array [
               Object {
-                "path": "#level1.1.2.2",
+                "itemId": "#level1.1.2.2",
                 "title": "Light",
               },
             ],
@@ -22,11 +22,11 @@ exports[`Navigation basic render: renders <Navigation/> as a child 1`] = `
         "title": "Colors",
       },
       Object {
-        "path": "#level1.2",
+        "itemId": "#level1.2",
         "title": "Sizing",
       },
       Object {
-        "path": "#level1.3",
+        "itemId": "#level1.3",
         "title": "Typography",
       },
     ]
@@ -45,10 +45,10 @@ exports[`Navigation basic render: renders <StatefulContainer/> 1`] = `
       Object {
         "subnav": Array [
           Object {
-            "path": "#level1.1.2",
+            "itemId": "#level1.1.2",
             "subnav": Array [
               Object {
-                "path": "#level1.1.2.2",
+                "itemId": "#level1.1.2.2",
                 "title": "Light",
               },
             ],
@@ -58,11 +58,11 @@ exports[`Navigation basic render: renders <StatefulContainer/> 1`] = `
         "title": "Colors",
       },
       Object {
-        "path": "#level1.2",
+        "itemId": "#level1.2",
         "title": "Sizing",
       },
       Object {
-        "path": "#level1.3",
+        "itemId": "#level1.3",
         "title": "Typography",
       },
     ]

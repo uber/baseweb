@@ -11,6 +11,7 @@ import Layout from '../../components/layout';
 
 import SideNavBasic from 'examples/side-navigation/basic.js';
 import StatefulNav from 'examples/side-navigation/stateful-nav.js';
+import NavOverrides from 'examples/side-navigation/nav-overrides.js';
 
 import Overrides from '../../components/overrides';
 import {Navigation} from 'baseui/side-navigation';
@@ -32,32 +33,37 @@ The side navigation menu is a list of links that is used for a website navigatio
   <StatefulNav />
 </Example>
 
+<Example title="Side navigation with overrides" path="examples/side-navigation/nav-overrides.js">
+  <NavOverrides />
+</Example>
+
 ## Overrides
 
 <Overrides
   name="Side Navigation"
   component={NavExports}
   renderExample={props => <Navigation items={[
-  {
-    title: 'Colors',
-    subnav: [
-      {
-        title: 'Shades',
-        path: '#level1.1.2',
-        subnav: [
-          {
-            title: 'Light',
-            path: '#level1.1.2.1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'Sizing',
-    path: '/',
-  }
-]} overrides={props.overrides} />}
+    {
+      title: 'Colors',
+      subnav: [
+        {
+          title: 'Shades',
+          path: '#level1.1.2',
+          subnav: [
+            {
+              title: 'Light',
+              path: '#level1.1.2.1',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Sizing',
+      path: '/',
+    }
+  ]} 
+  overrides={props.overrides} />}
 />
 
 <API

@@ -27,7 +27,7 @@ class StatefulContainer extends React.Component<
   };
 
   state: StateT = {
-    activePath: '',
+    activeItemId: '',
     ...this.props.initialState,
   };
 
@@ -42,9 +42,11 @@ class StatefulContainer extends React.Component<
   internalSetState = (type: StateTypeT, item: *) => {
     let nextState = {};
     if (type === STATE_CHANGE_TYPE.change) {
-      nextState = {activePath: item.path};
+      nextState = {activeItemId: item.itemId};
     }
-    const newState = this.props.stateReducer(type, nextState, this.state);
+    const newState = this.props.stateReducer
+      ? this.props.stateReducer(type, nextState, this.state)
+      : nextState;
     this.setState(newState);
   };
 

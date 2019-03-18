@@ -13,7 +13,7 @@ const stateChangeType = Object.freeze(STATE_CHANGE_TYPE);
 export type StateTypeT = $Values<typeof stateChangeType>;
 
 export type StateT = {
-  activePath?: string,
+  activeItemId?: string,
 };
 
 export type StateReducerT = (
@@ -26,19 +26,19 @@ export type SharedPropsT = {
   /** Defines if the nav item is currently selected */
   $active: boolean,
   /** Defines the nesting level of the rendered nav item */
-  $level: boolean,
+  $level: number,
   /** Defines if the nav item is selectable/clickable */
   $selectable: boolean,
 };
 
 export type NavPropsT = {
-  /** Defines the current active path. Used for the defaut calculation of the $active prop */
-  activePath: string,
+  /** Defines the current active itemId. Used for the defaut calculation of the $active prop */
+  activeItemId: string,
   /** 
     Is called on the nav item render to test if the item is currently selected. 
     If returns true the item will be rendered as an active one 
     */
-  activePredicate: ?(item: *, activePath: string) => mixed,
+  activePredicate: ?(item: *, activeItemId: string) => boolean,
   /** Overrides for the internal elements and components */
   overrides: {
     Root?: OverrideT<*>,
@@ -47,12 +47,28 @@ export type NavPropsT = {
     SubNavContainer?: OverrideT<*>,
   },
   /** Optional render function that is called instead default item rendering */
-  renderItem: ?(item: *) => React.Node,
+  renderItem: ?(
+    item: *,
+    props: SharedPropsT & {
+      role: string,
+      tabIndex: ?number,
+      onClick: ?(e: Event) => mixed,
+      onKeyDown: ?(e: KeyboardEvent) => mixed,
+    },
+  ) => React.Node,
 };
 
 type Item = {
+  /** Navigation item's title to render */
   title: React.Node,
-  path?: string,
+  /** 
+    Identifier for the navigation item. 
+    Can be a path value or an action name. 
+    It's also used in the default `activePredicate` to
+    identify a currently active item
+    */
+  itemId?: string,
+  /** A list of sub-navigation items */
   subnav?: Item[],
 };
 
@@ -73,12 +89,16 @@ export type NavItemPropsT = NavPropsT & {
 };
 
 export type StatefulContainerPropsT = {
-  children: NavPropsT => React.Node,
+  children: SideNavPropsT => React.Node,
   /** Initial state of an uncontrolled component. */
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
-  stateReducer: StateReducerT,
+  stateReducer?: StateReducerT,
   onChange: ({item: *}) => mixed,
 };
 
-export type StatefulNavPropsT = SideNavPropsT & StatefulContainerPropsT;
+type ExcludeT = {
+  children: SideNavPropsT => React.Node,
+};
+
+export type StatefulNavPropsT = $Diff<StatefulContainerPropsT, ExcludeT>;

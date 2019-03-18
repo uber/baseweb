@@ -45,7 +45,7 @@ export default class NavItem extends React.Component<NavItemPropsT> {
 
   render() {
     const {
-      activePath,
+      activeItemId,
       index,
       activePredicate,
       item: topLevelItem,
@@ -53,11 +53,11 @@ export default class NavItem extends React.Component<NavItemPropsT> {
       overrides,
       renderItem,
     } = this.props;
-    const [ItemContainer, itemContainerProps] = getOverrides(
+    const [NavItemContainer, itemContainerProps] = getOverrides(
       overrides.NavItemContainer,
       StyledNavItemContainer,
     );
-    const [Item, itemProps] = getOverrides(overrides.NavItem, StyledNavItem);
+    const [NavItem, itemProps] = getOverrides(overrides.NavItem, StyledNavItem);
     const [SubNavContainer, subNavContainerProps] = getOverrides(
       overrides.SubNavContainer,
       StyledSubNavContainer,
@@ -65,52 +65,39 @@ export default class NavItem extends React.Component<NavItemPropsT> {
 
     const renderNavItem = (item, level, index) => {
       const sharedProps = {
-        $active: activePredicate ? activePredicate(item, activePath) : false,
+        $active: activePredicate ? activePredicate(item, activeItemId) : false,
         $level: level,
-        $selectable: !!item.path,
+        $selectable: !!item.itemId,
+      };
+      const navItemProps = {
+        role: 'link',
+        tabIndex: item.itemId ? 0 : null,
+        onClick: item.itemId ? e => this.handleClick({e, item}) : null,
+        onKeyDown: item.itemId ? e => this.handleKeyDown({e, item}) : null,
+        ...sharedProps,
+        ...itemProps,
       };
       return (
-        <ItemContainer
+        <NavItemContainer
           key={`${index}-level${level}-${item.title}`}
           {...sharedProps}
           {...itemContainerProps}
         >
-          {typeof renderItem === 'function' ? (
-            renderItem(item)
-          ) : (
-            <>
-              <Item
-                role="button"
-                tabIndex={item.path ? 0 : null}
-                onClick={
-                  item.path
-                    ? e => {
-                        this.handleClick({e, item});
-                      }
-                    : null
-                }
-                onKeyDown={
-                  item.path
-                    ? e => {
-                        this.handleKeyDown({e, item});
-                      }
-                    : null
-                }
-                {...sharedProps}
-                {...itemProps}
-              >
-                {item.title}
-              </Item>
-              {item.subnav ? (
-                <SubNavContainer {...sharedProps} {...subNavContainerProps}>
-                  {item.subnav.map((subitem, idx) => {
-                    return renderNavItem(subitem, level + 1, index);
-                  })}
-                </SubNavContainer>
-              ) : null}
-            </>
-          )}
-        </ItemContainer>
+          <>
+            {typeof renderItem === 'function' ? (
+              renderItem(item, navItemProps)
+            ) : (
+              <NavItem {...navItemProps}>{item.title}</NavItem>
+            )}
+            {item.subnav ? (
+              <SubNavContainer {...sharedProps} {...subNavContainerProps}>
+                {item.subnav.map((subitem, idx) => {
+                  return renderNavItem(subitem, level + 1, index);
+                })}
+              </SubNavContainer>
+            ) : null}
+          </>
+        </NavItemContainer>
       );
     };
 

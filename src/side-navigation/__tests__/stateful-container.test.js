@@ -11,7 +11,7 @@ import {StatefulContainer, STATE_CHANGE_TYPE} from '../index.js';
 
 test('StatefulContainer - basic render', () => {
   const props = {
-    initialState: {activePath: '/'},
+    initialState: {activeItemId: '/'},
     onChange: jest.fn(),
     stateReducer: jest.fn(),
   };
@@ -26,9 +26,9 @@ test('StatefulContainer - basic render', () => {
     'function-as-child called with correct args',
   );
 
-  // state.activePath passed to children as a prop
-  const childrenValueProp = children.mock.calls[0][0].activePath;
-  expect(childrenValueProp).toBe(component.instance().state.activePath);
+  // state.activeItemId passed to children as a prop
+  const childrenValueProp = children.mock.calls[0][0].activeItemId;
+  expect(childrenValueProp).toBe(component.instance().state.activeItemId);
 });
 
 test('StatefulContainer - children function receives onChange handler', () => {
@@ -49,8 +49,8 @@ test('StatefulContainer - children function receives onChange handler', () => {
   expect(childrenOnChangeProp).not.toBe(props.onChange);
 
   // user's onChange handler is called
-  const params = {item: {path: '/123'}};
-  childrenOnChangeProp(params);
+  const params = {item: {itemId: '/123'}};
+  childrenOnChangeProp && childrenOnChangeProp(params);
   expect(props.onChange).toHaveBeenCalledTimes(1);
   expect(props.onChange).toHaveBeenLastCalledWith(params);
 });
@@ -58,7 +58,7 @@ test('StatefulContainer - children function receives onChange handler', () => {
 test('StatefulContainer - stateReducer', () => {
   const props = {
     stateReducer: jest.fn(),
-    initialState: {activePath: '/'},
+    initialState: {activeItemId: '/'},
   };
   const children = jest.fn();
 
@@ -67,14 +67,14 @@ test('StatefulContainer - stateReducer', () => {
   );
 
   // onChange event happens
-  props.stateReducer.mockReturnValueOnce({activePath: '/newpath'});
-  component.instance().onChange({item: {path: '/newpath'}});
+  props.stateReducer.mockReturnValueOnce({activeItemId: '/newpath'});
+  component.instance().onChange({item: {itemId: '/newpath'}});
 
   expect(props.stateReducer).toHaveBeenCalledTimes(1);
   expect(props.stateReducer).toHaveBeenLastCalledWith(
     STATE_CHANGE_TYPE.change,
-    {activePath: '/newpath'},
-    {activePath: '/'},
+    {activeItemId: '/newpath'},
+    {activeItemId: '/'},
   );
-  expect(component).toHaveState('activePath', '/newpath');
+  expect(component).toHaveState('activeItemId', '/newpath');
 });

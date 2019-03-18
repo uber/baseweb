@@ -14,15 +14,15 @@ import type {SideNavPropsT} from './types.js';
 
 export default class SideNav extends React.Component<SideNavPropsT> {
   static defaultProps = {
-    activePath: '/',
+    activeItemId: '/',
     items: [],
     activePredicate: null,
     overrides: {},
     renderItem: null,
   };
 
-  activePredicate = (item: *, activePath: string) => {
-    return item.path === activePath ? true : false;
+  activePredicate = (item: *, activeItemId: string) => {
+    return item.itemId === activeItemId ? true : false;
   };
 
   render() {
@@ -31,7 +31,7 @@ export default class SideNav extends React.Component<SideNavPropsT> {
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
     return (
-      <Root role="navigation" {...rootProps}>
+      <Root role="list" {...rootProps}>
         {items.map((item, index) => {
           return (
             <NavItem
