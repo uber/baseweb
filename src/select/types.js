@@ -150,6 +150,8 @@ export type PropsT = {
   value: ValueT,
   /** Defines an option key for a default key value. */
   valueKey: string,
+  /** Where to mount the popover */
+  mountNode?: HTMLElement,
 };
 
 export type SelectStateT = {
