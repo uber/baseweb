@@ -34,7 +34,7 @@ export type TabOverridesT<T> = {
   Tab?: OverrideT<T>,
 };
 
-export type OnChangeHandlerT = ({activeKey: React.Key}) => void;
+export type OnChangeHandlerT = ({activeKey: React.Key}) => mixed;
 
 export type TabsPropsT = {
   /** An array of TabPanel items. */
@@ -65,11 +65,11 @@ export type TabPanelPropsT = {
   /**  Unique key for the tab. Defaults to the child index. */
   key?: React.Key,
   /** onClick handler for the Tab element */
-  onClick?: (e: Event) => void,
+  onClick?: (e: Event) => mixed,
   /** onKeyDown handler for the Tab element */
-  onKeyDown?: (e: KeyboardEvent) => void,
+  onKeyDown?: (e: KeyboardEvent) => mixed,
   /** onSelect handler for the Tab element */
-  onSelect?: () => void,
+  onSelect?: () => mixed,
   overrides?: TabOverridesT<SharedStylePropsArgT>,
   /** Title of the Tab to be shown in the Tab bar */
   title?: React.Node,

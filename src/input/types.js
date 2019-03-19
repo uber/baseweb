@@ -85,12 +85,12 @@ export type BaseInputPropsT<T> = {
   /** A ref to access an input element. */
   inputRef: {current: ?HTMLInputElement},
   name: string,
-  onBlur: (e: SyntheticFocusEvent<T>) => void,
-  onChange?: (e: SyntheticInputEvent<T>) => void,
-  onKeyDown?: (e: SyntheticKeyboardEvent<T>) => void,
-  onKeyPress?: (e: SyntheticKeyboardEvent<T>) => void,
-  onKeyUp?: (e: SyntheticKeyboardEvent<T>) => void,
-  onFocus: (e: SyntheticFocusEvent<T>) => void,
+  onBlur: (e: SyntheticFocusEvent<T>) => mixed,
+  onChange?: (e: SyntheticInputEvent<T>) => mixed,
+  onKeyDown?: (e: SyntheticKeyboardEvent<T>) => mixed,
+  onKeyPress?: (e: SyntheticKeyboardEvent<T>) => mixed,
+  onKeyUp?: (e: SyntheticKeyboardEvent<T>) => mixed,
+  onFocus: (e: SyntheticFocusEvent<T>) => mixed,
   overrides: BaseInputComponentsT,
   placeholder: string,
   /** Renders UI in 'required' state. */
@@ -111,8 +111,8 @@ export type InputPropsT = {
   startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
   /** An input helper rendered after and attached to the input field. */
   endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
-  onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
-  onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => void,
+  onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+  onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 };
 
 export type StatefulContainerPropsT<T> = {
@@ -121,7 +121,7 @@ export type StatefulContainerPropsT<T> = {
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
   stateReducer: StateReducerT,
-  onChange: (e: SyntheticInputEvent<T>) => void,
+  onChange: (e: SyntheticInputEvent<T>) => mixed,
 };
 
 type OmitPropsT = {
