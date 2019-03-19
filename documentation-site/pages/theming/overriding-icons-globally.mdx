@@ -1,0 +1,25 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+import Example from '../../components/example';
+import IconProvider from 'examples/icon-provider/example.js';
+
+export default Layout;
+
+# Overriding icons globally
+
+Sometimes you need to override the icons used by the components, like the arrows in the pagination component.
+
+To do that, please use the `IconProvider` component, and wrap the root of your application with it.
+
+<Example
+  title="IconProvider example"
+  path="examples/icon-provider/example.js"
+>
+  <IconProvider />
+</Example>
