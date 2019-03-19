@@ -51,7 +51,7 @@ export type ModalPropsT = {
    * Callback is passed a constant identifying what triggered the close. */
   onClose?: ({
     closeSource?: CloseSourceT,
-  }) => void,
+  }) => mixed,
   overrides: OverridesT,
   /** Which accessibility role this modal should have. */
   role: RolePropT,

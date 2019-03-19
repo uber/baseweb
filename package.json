@@ -139,7 +139,7 @@
     "react-dropzone": "^9.0.0",
     "react-input-mask": "^2.0.4",
     "react-movable": "^2.0.1",
-    "react-range": "^1.0.4",
+    "react-range": "^1.0.5",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "peerDependencies": {

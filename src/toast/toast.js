@@ -84,7 +84,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     }, 0);
   };
 
-  animateOut = (callback: () => void = () => {}) => {
+  animateOut = (callback: () => mixed = () => {}) => {
     this.setState({isVisible: false});
     // Remove the toast from the DOM after animation finishes
     this.animateOutCompleteTimer = setTimeout(() => {

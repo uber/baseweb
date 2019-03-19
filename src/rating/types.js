@@ -21,7 +21,7 @@ export type StarRatingPropsT = {
   /** The total number of items to display. */
   numItems: number,
   /** Callback that's called with the newly selected value. */
-  onChange?: ({value: number}) => void,
+  onChange?: ({value: number}) => mixed,
 };
 
 export type EmoticonRatingPropsT = {
@@ -29,7 +29,7 @@ export type EmoticonRatingPropsT = {
   /** The current rating value. */
   value?: number,
   /** Callback that's called with the newly selected value. */
-  onChange?: ({value: number}) => void,
+  onChange?: ({value: number}) => mixed,
 };
 
 export type RatingStateT = {

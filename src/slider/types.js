@@ -39,7 +39,7 @@ export type PropsT = {
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange: ({
     ...ParamsT,
-  }) => void,
+  }) => mixed,
 };
 
 export type StateT = {
@@ -63,7 +63,7 @@ export type StatefulContainerPropsT = {
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducerT,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange: ({...ParamsT}) => void,
+  onChange: ({...ParamsT}) => mixed,
 };
 
 export type StatefulSliderPropsT = {
@@ -74,5 +74,5 @@ export type StatefulSliderPropsT = {
   max?: number,
   step?: number,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange?: ({...ParamsT}) => void,
+  onChange?: ({...ParamsT}) => mixed,
 };
