@@ -38,7 +38,7 @@ export type DefaultPropsT = {
   isError: boolean,
   autoFocus: boolean,
   labelPlacement: LabelPlacementT,
-  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type PropsT = {
@@ -78,15 +78,15 @@ export type PropsT = {
   labelPlacement?: LabelPlacementT,
   $theme?: ThemeT,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for focus events on trigger element. */
-  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for blur events on trigger element. */
-  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type StateT = {
@@ -150,7 +150,7 @@ export type DefaultStatefulPropsT = {
   initialState: StateT,
   children?: (props: PropsT) => React.Node,
   stateReducer: StateReducerT,
-  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type StatefulContainerPropsT = {
@@ -162,7 +162,7 @@ export type StatefulContainerPropsT = {
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducerT,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
 };
@@ -176,5 +176,5 @@ export type StatefulRadioGroupPropsT = {
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };

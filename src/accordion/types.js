@@ -44,11 +44,11 @@ export type PanelOverridesT<T> = {
   Content?: OverrideT<T>,
 };
 
-export type OnChangeHandlerT = ({expanded: boolean}) => void;
+export type OnChangeHandlerT = ({expanded: boolean}) => mixed;
 
 export type AccordionOnChangeHandlerT = ({
   expanded: Array<React.Key>,
-}) => void;
+}) => mixed;
 
 type ChildrenT = React.ChildrenArray<React.Element<*>>;
 
@@ -86,9 +86,9 @@ export type PanelPropsT = {
   /** Handler for individual Panel change events. */
   onChange?: OnChangeHandlerT,
   /** Handler for the Header's click events. */
-  onClick?: (e: Event) => void,
+  onClick?: (e: Event) => mixed,
   /** Handler for the Header's keyDown events. */
-  onKeyDown?: (e: KeyboardEvent) => void,
+  onKeyDown?: (e: KeyboardEvent) => mixed,
   overrides?: PanelOverridesT<SharedStylePropsArgT>,
   /** The title of an accordion panel. */
   title?: React.Node,

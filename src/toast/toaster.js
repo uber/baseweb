@@ -108,7 +108,7 @@ export class ToasterContainer extends React.Component<
     }));
   };
 
-  getOnCloseHandler = (key: React.Key, onClose: ?() => void) => {
+  getOnCloseHandler = (key: React.Key, onClose: ?() => mixed) => {
     return () => {
       this.internalOnClose(key);
       typeof onClose === 'function' && onClose();

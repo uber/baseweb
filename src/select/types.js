@@ -113,21 +113,21 @@ export type PropsT = {
   multi: boolean,
   /** Message to be displayed if no options is found for a search query. */
   noResultsMsg?: React.Node,
-  onBlur: (e: Event) => void,
+  onBlur: (e: Event) => mixed,
   /** Defines if the input value is reset to an empty string when a blur event happens on the select. */
   onBlurResetsInput: boolean,
   /** change handler of the select to be called when a value is changed. */
-  onChange: (params: OnChangeParamsT) => void,
-  onFocus: (e: SyntheticEvent<HTMLElement>) => void,
-  onInputChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange: (params: OnChangeParamsT) => mixed,
+  onFocus: (e: SyntheticEvent<HTMLElement>) => mixed,
+  onInputChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Defines if the input value is reset to an empty string when dropdown is closed. */
   onCloseResetsInput: boolean,
   /** Defines if the input value is reset to an empty string when a selection is made. */
   onSelectResetsInput: boolean,
   /** A function that is called when the dropdown opens. */
-  onOpen: ?() => void,
+  onOpen: ?() => mixed,
   /** A function that is called when the dropdown closes. */
-  onClose: ?() => void,
+  onClose: ?() => mixed,
   /** Defines if the dropdown opens on a click event on the select. */
   openOnClick: boolean,
   /** Options to be displayed in the dropdown. If an option has a
@@ -176,14 +176,14 @@ export type StatefulContainerPropsT = {
   children: PropsT => React$Node,
   initialState: StateT,
   stateReducer: StateReducerT,
-  onChange: (params: OnChangeParamsT) => void,
+  onChange: (params: OnChangeParamsT) => mixed,
 };
 
 export type StatefulSelectPropsT = PropsT & {
   overrides?: OverridesT,
   initialState?: StateT,
   stateReducer?: StateReducerT,
-  onChange?: (params: OnChangeParamsT) => void,
+  onChange?: (params: OnChangeParamsT) => mixed,
 };
 
 export type DropdownPropsT = {

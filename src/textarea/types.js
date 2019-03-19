@@ -34,10 +34,10 @@ export type StatefulContainerPropsT = {
   children: (props: *) => React.Node,
   initialState?: StateT,
   stateReducer?: StateReducerT,
-  onChange?: (e: SyntheticTextareaEvent) => void,
-  onKeyDown?: (e: SyntheticTextareaEvent) => void,
-  onKeyPress?: (e: SyntheticTextareaEvent) => void,
-  onKeyUp?: (e: SyntheticTextareaEvent) => void,
+  onChange?: (e: SyntheticTextareaEvent) => mixed,
+  onKeyDown?: (e: SyntheticTextareaEvent) => mixed,
+  onKeyPress?: (e: SyntheticTextareaEvent) => mixed,
+  onKeyUp?: (e: SyntheticTextareaEvent) => mixed,
 };
 
 type OmitPropsT = {
