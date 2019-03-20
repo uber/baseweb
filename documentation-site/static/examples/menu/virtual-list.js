@@ -11,7 +11,7 @@ const ITEMS = [...new Array(1500)].map((_, index) => ({
 const Container = styled(StyledList, {height: '500px'});
 
 const VirtualList = props => (
-  <Container $ref={props.$ref}>
+  <Container {...props} $ref={props.$ref}>
     <AutoSizer>
       {({width}) => (
         <List

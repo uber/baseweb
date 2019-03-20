@@ -205,7 +205,15 @@ export default class MenuStatefulContainer extends React.Component<
     }
 
     if (this.rootRef.current.contains(event.target)) {
-      this.internalSetState(STATE_CHANGE_TYPES.focus, {isFocused: true});
+      if (this.state.highlightedIndex < 0) {
+        this.internalSetState(STATE_CHANGE_TYPES.focus, {
+          isFocused: true,
+          highlightedIndex: 0,
+        });
+      } else {
+        this.internalSetState(STATE_CHANGE_TYPES.focus, {isFocused: true});
+      }
+
       this.rootRef.current.focus();
     }
   };
