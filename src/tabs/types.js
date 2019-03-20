@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import {default as TabPanel} from './tab-panel.js';
 import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
@@ -37,8 +36,8 @@ export type TabOverridesT<T> = {
 export type OnChangeHandlerT = ({activeKey: React.Key}) => mixed;
 
 export type TabsPropsT = {
-  /** An array of TabPanel items. */
-  children: React.ChildrenArray<React.Element<typeof TabPanel>>,
+  /** An array of Tab components. */
+  children: Array<React.Node>,
   /**  Key of the the tab to be selected. */
   activeKey: React.Key,
   /** If set to true all its tabs will be disabled */
@@ -58,7 +57,7 @@ export type StatefulTabsPropsT = $Diff<TabsPropsT, {activeKey: React.Key}> & {
 };
 
 export type TabPanelPropsT = {
-  children: React.ChildrenArray<React.Node>,
+  children: React.Node,
   /** Sets the tab to disabled */
   disabled?: boolean,
   active?: boolean,
