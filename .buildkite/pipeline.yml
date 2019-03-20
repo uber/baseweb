@@ -65,7 +65,7 @@ steps:
           - docs-site-server
           - docs-site-healthy
     agents:
-      queue: builders
+      queue: workers
   - name: ':puppeteer:'
     command: yarn e2e:test:ci
     plugins:
