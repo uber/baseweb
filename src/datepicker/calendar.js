@@ -450,6 +450,7 @@ export default class Calendar extends React.Component<
 
     return (
       <Root
+        data-baseweb="calendar"
         $ref={root => {
           this.root = root;
         }}

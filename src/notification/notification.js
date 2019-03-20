@@ -17,6 +17,6 @@ export default class Notification extends React.Component<ToastPropsT> {
   };
 
   render() {
-    return <Toast {...this.props} />;
+    return <Toast data-baseweb="notification" {...this.props} />;
   }
 }

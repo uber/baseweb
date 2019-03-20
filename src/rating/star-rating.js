@@ -77,6 +77,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
 
     return (
       <Root
+        data-baseweb="star-rating"
         tabIndex={0}
         role="radiogroup"
         onBlur={() => this.updatePreview(undefined)}

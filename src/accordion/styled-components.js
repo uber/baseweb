@@ -85,7 +85,6 @@ export const Content = styled('div', (props: SharedStylePropsT) => {
     height: $expanded ? 'auto' : '0',
     maxHeight: $expanded ? '100%' : '0',
     overflow: 'hidden',
-    opacity: $expanded ? 1 : 0,
     transitionProperty: 'all',
     transitionDuration: animation.timing400,
     transitionTimingFunction: animation.easeInOutCurve,

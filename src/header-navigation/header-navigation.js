@@ -26,7 +26,14 @@ class HeaderNavigation extends React.Component<PropsT, {}> {
   render() {
     const {overrides, ...restProps} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    return <Root role="navigation" {...restProps} {...rootProps} />;
+    return (
+      <Root
+        data-baseweb="header-navigation"
+        role="navigation"
+        {...restProps}
+        {...rootProps}
+      />
+    );
   }
 }
 

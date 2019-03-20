@@ -53,6 +53,7 @@ describe('Tooltip', () => {
     expect(component.props()).toEqual({
       ...baseDefaultProps,
       ...props,
+      'data-baseweb': 'tooltip',
       children: button,
       ignoreBoundary: false,
       overrides: {

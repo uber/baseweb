@@ -82,6 +82,7 @@ class EmoticonRating extends React.Component<
 
     return (
       <Root
+        data-baseweb="emoticon-rating"
         tabIndex={0}
         role="radiogroup"
         onBlur={() => this.updatePreview(undefined)}

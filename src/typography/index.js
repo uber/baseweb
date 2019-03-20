@@ -13,6 +13,7 @@ import type {BlockPropsT} from '../block/types.js';
 // Captions - aka Caption, CaptionLabel
 export const Caption1 = (props: BlockPropsT) => (
   <Block
+    data-baseweb="typo-caption1"
     {...props}
     font={props.font || 'font200'}
     color={props.color || 'colorSecondary'}
@@ -21,6 +22,7 @@ export const Caption1 = (props: BlockPropsT) => (
 
 export const Caption2 = (props: BlockPropsT) => (
   <Block
+    data-baseweb="typo-caption2"
     {...props}
     font={props.font || 'font250'}
     color={props.color || 'colorSecondary'}
@@ -30,6 +32,7 @@ export const Caption2 = (props: BlockPropsT) => (
 // Display
 export const Display = (props: BlockPropsT) => (
   <Block
+    data-baseweb="typo-display"
     {...props}
     font={props.font || 'font1100'}
     color={props.color || 'colorPrimary'}
@@ -41,6 +44,7 @@ export function H1(props: BlockPropsT) {
   const as = props.as || 'h1';
   return (
     <Block
+      data-baseweb="typo-h1"
       as={as}
       {...props}
       font={props.font || 'font1000'}
@@ -53,6 +57,7 @@ export function H2(props: BlockPropsT) {
   const as = props.as || 'h2';
   return (
     <Block
+      data-baseweb="typo-h2"
       as={as}
       {...props}
       font={props.font || 'font900'}
@@ -65,6 +70,7 @@ export function H3(props: BlockPropsT) {
   const as = props.as || 'h3';
   return (
     <Block
+      data-baseweb="typo-h3"
       as={as}
       {...props}
       font={props.font || 'font800'}
@@ -77,6 +83,7 @@ export function H4(props: BlockPropsT) {
   const as = props.as || 'h4';
   return (
     <Block
+      data-baseweb="typo-h4"
       as={as}
       {...props}
       font={props.font || 'font700'}
@@ -89,6 +96,7 @@ export function H5(props: BlockPropsT) {
   const as = props.as || 'h5';
   return (
     <Block
+      data-baseweb="typo-h5"
       as={as}
       {...props}
       font={props.font || 'font600'}
@@ -101,6 +109,7 @@ export function H6(props: BlockPropsT) {
   const as = props.as || 'h6';
   return (
     <Block
+      data-baseweb="typo-h6"
       as={as}
       {...props}
       font={props.font || 'font500'}
@@ -112,6 +121,7 @@ export function H6(props: BlockPropsT) {
 // Labels - aka Label1, Label2
 export const Label1 = (props: BlockPropsT) => (
   <Block
+    data-baseweb="typo-label1"
     {...props}
     font={props.font || 'font350'}
     color={props.color || 'colorPrimary'}
@@ -120,6 +130,7 @@ export const Label1 = (props: BlockPropsT) => (
 
 export const Label2 = (props: BlockPropsT) => (
   <Block
+    data-baseweb="typo-label2"
     {...props}
     font={props.font || 'font450'}
     color={props.color || 'colorPrimary'}
@@ -131,6 +142,7 @@ export function Paragraph1(props: BlockPropsT) {
   const as = props.as || 'p';
   return (
     <Block
+      data-baseweb="typo-p1"
       as={as}
       {...props}
       font={props.font || 'font300'}
@@ -143,6 +155,7 @@ export function Paragraph2(props: BlockPropsT) {
   const as = props.as || 'p';
   return (
     <Block
+      data-baseweb="typo-p2"
       as={as}
       {...props}
       font={props.font || 'font400'}

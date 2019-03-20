@@ -2,6 +2,7 @@
 
 exports[`Icon renders an icon with viewbox and title: Icon basic render 1`] = `
 <MockStyledComponent
+  data-baseweb="icon"
   viewBox="0 0 23px 23px"
 >
   <title>

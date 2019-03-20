@@ -78,6 +78,7 @@ Object {
       $size="default"
     />,
   ],
+  "data-baseweb": "base-input",
 }
 `;
 
@@ -135,6 +136,7 @@ Object {
       $size="default"
     />,
   ],
+  "data-baseweb": "base-input",
 }
 `;
 
@@ -192,5 +194,6 @@ Object {
       $size="default"
     />,
   ],
+  "data-baseweb": "base-input",
 }
 `;
