@@ -213,8 +213,6 @@ export type ColorsT = {
   toastPositiveBackground: string,
   toastWarningBackground: string,
   toastNegativeBackground: string,
-
-  icons?: IconT,
 };
 
 export type TypographyT = {
@@ -315,6 +313,7 @@ export type ThemeT = {|
   animation: AnimationT,
   borders: BordersT,
   zIndex: ZIndexT,
+  icons?: IconT,
 |};
 
 export type IconT = {

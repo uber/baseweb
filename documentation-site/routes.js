@@ -58,11 +58,11 @@ const routes = [
         path: '/theming/theming-values',
       },
       {
-        text: 'Overriding components',
+        text: 'Overrides',
         path: '/theming/understanding-overrides',
       },
       {
-        text: 'Overriding icons globally',
+        text: 'Icons',
         path: '/theming/overriding-icons',
       },
     ],
