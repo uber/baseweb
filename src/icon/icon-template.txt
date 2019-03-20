@@ -10,11 +10,23 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Icon from './icon.js';
 import type {IconPropsT} from './types.js';
+import {ThemeContext} from '../styles/theme-provider.js';
 
 export default function %%ICON_NAME%%(props: IconPropsT) {
   return (
-    <Icon %%ICON_PROPS%% {...props}>
-      %%ICON_PATH%%
-    </Icon>
+    <ThemeContext.Consumer>
+      {theme => (
+        theme.icons && theme.icons.%%ICON_NAME%% ?
+        (
+          <theme.icons.%%ICON_NAME%% %%ICON_PROPS%% {...props} />
+        )
+        :
+        (
+        <Icon %%ICON_PROPS%% {...props}>
+          %%ICON_PATH%%
+        </Icon>
+        )
+      )}
+    </ThemeContext.Consumer>
   );
 }

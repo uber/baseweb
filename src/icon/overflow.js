@@ -10,13 +10,26 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Icon from './icon.js';
 import type {IconPropsT} from './types.js';
+import {ThemeContext} from '../styles/theme-provider.js';
 
 export default function Overflow(props: IconPropsT) {
   return (
-    <Icon title="Overflow" viewBox="0 0 24 24" {...props}>
-      <circle cx="6" cy="12" r="2" />
-      <circle cx="12" cy="12" r="2" />
-      <circle cx="18" cy="12" r="2" />
-    </Icon>
+    <ThemeContext.Consumer>
+      {theme =>
+        theme.icons && theme.icons.Overflow ? (
+          <theme.icons.Overflow
+            title="Overflow"
+            viewBox="0 0 24 24"
+            {...props}
+          />
+        ) : (
+          <Icon title="Overflow" viewBox="0 0 24 24" {...props}>
+            <circle cx="6" cy="12" r="2" />
+            <circle cx="12" cy="12" r="2" />
+            <circle cx="18" cy="12" r="2" />
+          </Icon>
+        )
+      }
+    </ThemeContext.Consumer>
   );
 }
