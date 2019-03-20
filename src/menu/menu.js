@@ -32,7 +32,6 @@ export default function Menu(props: StatelessMenuPropsT) {
       $ref={rootRef}
       onMouseEnter={focusMenu}
       onMouseOver={focusMenu}
-      onMouseLeave={unfocusMenu}
       onFocus={focusMenu}
       onBlur={unfocusMenu}
       tabIndex={0}
