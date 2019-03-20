@@ -10,13 +10,22 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Icon from './icon.js';
 import type {IconPropsT} from './types.js';
+import {ThemeContext} from '../styles/theme-provider.js';
 
 export default function Menu(props: IconPropsT) {
   return (
-    <Icon title="Menu" viewBox="0 0 24 24" {...props}>
-      <rect x="4" y="11" width="16" height="2" rx="1" />
-      <rect x="4" y="5" width="16" height="2" rx="1" />
-      <rect x="4" y="17" width="16" height="2" rx="1" />
-    </Icon>
+    <ThemeContext.Consumer>
+      {theme =>
+        theme.icons && theme.icons.Menu ? (
+          <theme.icons.Menu title="Menu" viewBox="0 0 24 24" {...props} />
+        ) : (
+          <Icon title="Menu" viewBox="0 0 24 24" {...props}>
+            <rect x="4" y="11" width="16" height="2" rx="1" />
+            <rect x="4" y="5" width="16" height="2" rx="1" />
+            <rect x="4" y="17" width="16" height="2" rx="1" />
+          </Icon>
+        )
+      }
+    </ThemeContext.Consumer>
   );
 }
