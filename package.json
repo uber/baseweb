@@ -145,7 +145,7 @@
   "peerDependencies": {
     "react": ">= 16.4.0 < 17",
     "react-dom": ">= 16.4.0 < 17",
-    "styletron-react": "^4.4.5"
+    "styletron-react": "^4.4.6"
   },
   "engines": {
     "node": ">=8.11.0",
