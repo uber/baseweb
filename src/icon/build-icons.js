@@ -75,7 +75,7 @@ async function generateNewIcons() {
     const svgFile = svgFilename.split('.')[0];
     const componentName = pascalCase(svgFile);
     iconExports.push(
-      `export {default as ${componentName}} from './${svgFile}';`,
+      `export {default as ${componentName}} from './${svgFile}.js';`,
     );
 
     const svgFileContents = fs.readFileSync(
@@ -91,8 +91,8 @@ async function generateNewIcons() {
     }
 
     let result = iconTemplate
-      .replace('%%ICON_NAME%%', componentName)
-      .replace('%%ICON_PROPS%%', iconProps.join(' '))
+      .replace(new RegExp('%%ICON_NAME%%', 'g'), componentName)
+      .replace(new RegExp('%%ICON_PROPS%%', 'g'), iconProps.join(' '))
       .replace('%%ICON_PATH%%', reactify(svgFileContents));
 
     fs.writeFileSync(
