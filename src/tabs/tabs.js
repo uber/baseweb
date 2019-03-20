@@ -36,7 +36,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
 
       const key = child.key || String(index);
       return React.cloneElement(child, {
-        key: key,
+        key,
         id: key, // for aria-labelledby
         active: key === activeKey,
         disabled: disabled || child.props.disabled,
