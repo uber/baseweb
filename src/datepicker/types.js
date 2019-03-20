@@ -153,6 +153,8 @@ export type DatepickerPropsT = CalendarPropsT & {
   'aria-labelledby': ?string,
   'aria-describedby': ?string,
   disabled: boolean,
+  /** Renders UI in 'error' state. */
+  error: boolean,
   placeholder: string,
   required: boolean,
   formatDisplayValue: ?(
