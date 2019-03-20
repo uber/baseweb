@@ -39,9 +39,9 @@ export type PropsT = {
   /** The color theme to be applied to a Tag. Default is `KIND.primary`. */
   color?: string,
   /** onClick handler for the action button element. */
-  onActionClick: (e: Event, children?: React$Node) => void,
+  onActionClick: (e: Event, children?: React$Node) => mixed,
   /** keydown handler for the action button element. */
-  onActionKeyDown: (e: Event, children?: React$Node) => void,
+  onActionKeyDown: (e: Event, children?: React$Node) => mixed,
   /** onClick handler for the tag. Passing an onClick handler also makes the tag clickable. */
   onClick?: null | ((event: Event) => mixed),
   /** onkeydown handler for the tag. */

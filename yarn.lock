@@ -12002,10 +12002,10 @@ react-node-resolver@^1.0.1:
   resolved "https://registry.yarnpkg.com/react-node-resolver/-/react-node-resolver-1.0.1.tgz#1798a729c0e218bf2f0e8ddf79c550d4af61d83a"
   integrity sha1-F5inKcDiGL8vDo3fecVQ1K9h2Do=
 
-react-range@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.0.4.tgz#7894ed455df99b247a66f21ecf9a1e795ace69a4"
-  integrity sha512-x/5ccksgn9nCu1Vaax3qKjmTxVr2NxMjvIwO6AkK792miwoWTDawo8Ny1M6tHbwB7BM3+bLoURMGZwTRYf/D7g==
+react-range@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.0.5.tgz#0179f66fce1cdf4ce632dfef5a79fe4e8b6e651e"
+  integrity sha512-luKKnGOBhiv9/7U8qWuG4JEWd3M2c+cvJQRtbEMFZ6t6QMUWIttv0fo9lnHdjVvHRO6CAWhWV5IbRNC7afmhSg==
 
 react-split-pane@^0.1.84:
   version "0.1.84"

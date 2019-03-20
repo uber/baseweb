@@ -31,13 +31,13 @@ export type DefaultPropsT = {
   isIndeterminate: boolean,
   inputRef: {current: ?HTMLInputElement},
   checkmarkType: StyleTypeT,
-  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onMouseDown: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onMouseUp: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseDown: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseUp: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type PropsT = {
@@ -70,19 +70,19 @@ export type PropsT = {
   checkmarkType: StyleTypeT,
   $theme?: *,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mousedown events on trigger element. */
-  onMouseDown: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseDown: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseup events on trigger element. */
-  onMouseUp: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseUp: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** handler for focus events on trigger element. */
-  onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** handler for blur events on trigger element. */
-  onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type StatelessStateT = {
@@ -107,11 +107,11 @@ export type DefaultStatefulPropsT = {
   initialState: StateT,
   children?: (*) => React$Node,
   stateReducer: StateReducerT,
-  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => void,
-  onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseLeave: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onFocus: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type StatefulContainerPropsT = {
@@ -123,15 +123,15 @@ export type StatefulContainerPropsT = {
   /** A state change handler. Used to override default state transitions. */
   stateReducer: StateReducerT,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for focus events on trigger element. */
-  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for blur events on trigger element. */
-  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean,
 };
@@ -145,13 +145,13 @@ export type StatefulCheckboxPropsT = {
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for focus events on trigger element. */
-  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for blur events on trigger element. */
-  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };

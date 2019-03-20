@@ -12,17 +12,24 @@ import {Spinner} from '../index.js';
 import {Icon} from '../../icon/index.js';
 
 describe('Spinner', () => {
-  test('renders spinner icon', () => {
+  test('color can be changed through props', () => {
     let renderedIcon;
-    const spinner = mount(<Spinner />);
+    const spinner = mount(<Spinner color="red" />);
 
     renderedIcon = spinner.find(Icon).first();
     expect(renderedIcon).toExist();
 
-    spinner.setProps({size: 56});
+    expect(renderedIcon.props().color).toBe('red');
+  });
+
+  test('size can be changed through props', () => {
+    let renderedIcon;
+    const spinner = mount(<Spinner size="10px" />);
 
     renderedIcon = spinner.find(Icon).first();
-    expect(renderedIcon.props().size).toBe(56);
+    expect(renderedIcon).toExist();
+
+    expect(renderedIcon.props().size).toBe('10px');
   });
 
   test('component overrides', () => {
