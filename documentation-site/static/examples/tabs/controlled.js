@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tabs, TabPanel} from 'baseui/tabs';
+import {Tabs, Tab} from 'baseui/tabs';
 
 export default () => <ControlledTabsStory />;
 
@@ -17,9 +17,9 @@ class ControlledTabsStory extends React.Component<{}, {activeKey: React.Key}> {
     return (
       <React.Fragment>
         <Tabs activeKey={this.state.activeKey} onChange={this.onChange}>
-          <TabPanel title="Tab Link 1" />
-          <TabPanel title="Tab Link 2" />
-          <TabPanel title="Tab Link 3" />
+          <Tab title="Tab Link 1" />
+          <Tab title="Tab Link 2" />
+          <Tab title="Tab Link 3" />
         </Tabs>
         <div>Content:</div>
         <div>{content[Number(this.state.activeKey)]}</div>
