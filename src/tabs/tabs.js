@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
-import Tab from './tab.js';
 import {
   Root as StyledRoot,
   TabBar as StyledTabBar,
@@ -34,18 +33,18 @@ export default class Tabs extends React.Component<TabsPropsT> {
     // eslint-disable-next-line flowtype/no-weak-types
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
+
       const key = child.key || String(index);
-      const props = {
+      return React.cloneElement(child, {
         key,
         id: key, // for aria-labelledby
         active: key === activeKey,
         disabled: disabled || child.props.disabled,
         $orientation: orientation,
-        overrides: child.props.overrides,
         onSelect: () => this.onChange({activeKey: key}),
-      };
-      return <Tab {...props}>{child.props.title}</Tab>;
+      });
     });
+
     return tabs;
   }
 

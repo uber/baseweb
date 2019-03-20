@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 export {default as Tabs} from './tabs.js';
 export {default as StatefulTabs} from './stateful-tabs.js';
 export {default as TabPanel} from './tab-panel.js';
+export {default as Tab} from './tab.js';
 // Constants
 export {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
 // Styled elements

@@ -82,7 +82,7 @@ export const StyledEmoticon = styled(
     let emoticonFill = $theme.colors.mono500;
 
     if ($isActive) {
-      emoticonFill = $theme.colors.rating200;
+      emoticonFill = $theme.colors.rating400;
     }
 
     const ratingIcons = [

@@ -54,7 +54,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onSelect={[Function]}
-                title=""
+                title="Tab Link 1"
               >
                 <MockStyledComponent
                   $active={false}
@@ -78,7 +78,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab Link 1
+                    Tab 1 content
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -92,7 +92,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onSelect={[Function]}
-                title=""
+                title="Tab Link 2"
               >
                 <MockStyledComponent
                   $active={true}
@@ -116,7 +116,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab Link 2
+                    Tab 2 content
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -130,7 +130,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onSelect={[Function]}
-                title=""
+                title="Tab Link 3"
               >
                 <MockStyledComponent
                   $active={false}
@@ -154,7 +154,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab Link 3
+                    Tab 3 content
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -254,7 +254,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onSelect={[Function]}
-                title=""
+                title="Tab Link 1"
               >
                 <MockStyledComponent
                   $active={true}
@@ -278,7 +278,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab Link 1
+                    Tab 1 content
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -292,7 +292,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onSelect={[Function]}
-                title=""
+                title="Tab Link 2"
               >
                 <MockStyledComponent
                   $active={false}
@@ -316,7 +316,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab Link 2
+                    Tab 2 content
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -330,7 +330,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onSelect={[Function]}
-                title=""
+                title="Tab Link 3"
               >
                 <MockStyledComponent
                   $active={false}
@@ -354,7 +354,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab Link 3
+                    Tab 3 content
                   </div>
                 </MockStyledComponent>
               </TabComponent>

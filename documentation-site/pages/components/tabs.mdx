@@ -14,7 +14,7 @@ import TabVertical from 'examples/tabs/vertical.js';
 import TabControlled from 'examples/tabs/controlled.js';
 
 import Overrides from '../../components/overrides';
-import {StatefulTabs, TabPanel} from 'baseui/tabs';
+import {StatefulTabs, Tab} from 'baseui/tabs';
 import * as TabsExports from 'baseui/tabs';
 
 export default Layout;
@@ -49,15 +49,15 @@ The Tab component is used for navigating frequently accessed, but distinct categ
   component={TabsExports}
   renderExample={props => (
     <StatefulTabs initialState={{activeKey: '0'}} overrides={props.overrides}>
-      <TabPanel overrides={props.overrides} title="Tab Link 1">
+      <Tab overrides={props.overrides} title="Tab Link 1">
         Tab 1 content
-      </TabPanel>
-      <TabPanel overrides={props.overrides} title="Tab Link 2">
+      </Tab>
+      <Tab overrides={props.overrides} title="Tab Link 2">
         Tab 2 content
-      </TabPanel>
-      <TabPanel overrides={props.overrides} title="Tab Link 3">
+      </Tab>
+      <Tab overrides={props.overrides} title="Tab Link 3">
         Tab 3 content
-      </TabPanel>
+      </Tab>
     </StatefulTabs>
   )}
 />
@@ -73,6 +73,6 @@ The Tab component is used for navigating frequently accessed, but distinct categ
 />
 
 <API
-  heading="TabPanel API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/tab-panel.js')}
+  heading="Tab API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/tab.js')}
 />
