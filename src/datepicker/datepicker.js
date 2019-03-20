@@ -28,6 +28,7 @@ export default class Datepicker extends React.Component<
     'aria-labelledby': null,
     'aria-describedby': 'datepicker--screenreader--message--input',
     disabled: false,
+    error: false,
     formatDisplayValue: null,
     formatString: 'YYYY/MM/dd',
     onChange: () => {},
@@ -184,6 +185,7 @@ export default class Datepicker extends React.Component<
                 aria-label={
                   this.props['aria-label'] || locale.datepicker.ariaLabel
                 }
+                error={this.props.error}
                 aria-labelledby={this.props['aria-labelledby']}
                 aria-describedby={this.props['aria-describedby']}
                 aria-required={this.props.required || null}

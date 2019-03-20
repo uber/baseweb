@@ -35,6 +35,7 @@ export default function Menu(props: StatelessMenuPropsT) {
       onFocus={focusMenu}
       onBlur={unfocusMenu}
       tabIndex={0}
+      data-baseweb="menu"
       {...listProps}
     >
       {items.map((item, index) => {

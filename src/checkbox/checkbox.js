@@ -152,6 +152,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     );
     return (
       <Root
+        data-baseweb="checkbox"
         $labelPlacement={labelPlacement}
         {...sharedProps}
         {...mouseEvents}

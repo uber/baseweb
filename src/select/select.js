@@ -819,6 +819,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
               if (!ref) return;
               this.anchor = ref.anchorRef;
             }}
+            mountNode={this.props.mountNode}
             isOpen={isOpen}
             content={() => {
               const dropdownProps = {
@@ -867,7 +868,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             }}
             placement={PLACEMENT.bottom}
           >
-            <Root {...sharedProps} {...rootProps}>
+            <Root data-baseweb="select" {...sharedProps} {...rootProps}>
               <ControlContainer
                 onKeyDown={this.handleKeyDown}
                 onClick={this.handleClick}

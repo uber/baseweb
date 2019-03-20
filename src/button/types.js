@@ -27,7 +27,7 @@ export type ButtonPropsT = {
   isSelected?: boolean,
   /** Defines the kind (purpose) of a button */
   kind: $Keys<typeof KIND>,
-  onClick?: (SyntheticEvent<HTMLButtonElement>) => void,
+  onClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
   overrides: OverridesT,
   /** Defines the shape of the button */
   shape: $Keys<typeof SHAPE>,

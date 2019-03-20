@@ -132,7 +132,7 @@ export default class Pagination extends React.PureComponent<
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <Root {...rootProps}>
+          <Root data-baseweb="pagination" {...rootProps}>
             <Button
               onClick={this.onPrevClick}
               startEnhancer={() => <ChevronLeft title={''} size={24} />}

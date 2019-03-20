@@ -56,6 +56,7 @@ export type BasePopoverPropsT = {
    * See the A11Y section at the bottom of this document for more details.
    */
   accessibilityType?: AccessibilityTypeT,
+  'data-baseweb'?: string,
   id?: string,
   /** If true, popover element will not avoid element boundaries. */
   ignoreBoundary?: boolean,
@@ -85,19 +86,19 @@ export type PopoverPropsT = BasePopoverPropsT & {
   /** Whether or not to show the popover. */
   isOpen: boolean,
   /** Handler for blur events on trigger element. */
-  onBlur?: () => void,
+  onBlur?: () => mixed,
   /** Handler for click events on trigger element. */
-  onClick?: (e: Event) => void,
+  onClick?: (e: Event) => mixed,
   /** Handler for clicks outside the anchor/popover elements. */
-  onClickOutside?: (event: MouseEvent) => void,
+  onClickOutside?: (event: MouseEvent) => mixed,
   /** Handler for click events on trigger element. */
-  onEsc?: () => void,
+  onEsc?: () => mixed,
   /** Handler for 'Esc' keypress events */
-  onFocus?: () => void,
+  onFocus?: () => mixed,
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: () => void,
+  onMouseEnter?: () => mixed,
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: () => void,
+  onMouseLeave?: () => mixed,
 };
 
 // Props for stateful wrapper
@@ -115,9 +116,9 @@ export type StatefulPopoverPropsT = BasePopoverPropsT & {
   /** Initial state populated into the component */
   initialState?: StateT,
   /** Event handler when popover is hidden. */
-  onClose?: () => void,
+  onClose?: () => mixed,
   /** Event handler when popover is shown. */
-  onOpen?: () => void,
+  onOpen?: () => mixed,
   /** Reducer function to manipulate internal state updates. */
   stateReducer?: StateReducerT,
 };
@@ -200,11 +201,11 @@ export type AnchorPropsT = {
   'aria-haspopup'?: string,
   'aria-owns'?: string | null,
   id?: string | null,
-  onBlur?: () => void,
-  onClick?: (e: Event) => void,
-  onFocus?: () => void,
-  onMouseEnter?: (e: Event) => void,
-  onMouseLeave?: (e: Event) => void,
+  onBlur?: () => mixed,
+  onClick?: (e: Event) => mixed,
+  onFocus?: () => mixed,
+  onMouseEnter?: (e: Event) => mixed,
+  onMouseLeave?: (e: Event) => mixed,
   ref?: React.Ref<*>,
   $ref?: React.Ref<*>,
   tabIndex?: '0',

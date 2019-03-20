@@ -108,7 +108,7 @@ export class ToasterContainer extends React.Component<
     }));
   };
 
-  getOnCloseHandler = (key: React.Key, onClose: ?() => void) => {
+  getOnCloseHandler = (key: React.Key, onClose: ?() => mixed) => {
     return () => {
       this.internalOnClose(key);
       typeof onClose === 'function' && onClose();
@@ -170,7 +170,7 @@ export class ToasterContainer extends React.Component<
     }
 
     const root = (
-      <Root {...sharedProps} {...rootProps}>
+      <Root data-baseweb="toaster" {...sharedProps} {...rootProps}>
         {toastsToRender}
       </Root>
     );

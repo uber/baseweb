@@ -11,7 +11,6 @@ import {mount, shallow} from 'enzyme';
 
 import {
   Table,
-  StyledTable,
   StyledHead,
   StyledHeadCell,
   StyledBody,
@@ -46,13 +45,11 @@ describe('Table', () => {
 
   it('applies correct aria attributes to table container', () => {
     const wrapper = mount(<Table columns={COLUMNS} data={DATA} />);
-    const container = wrapper.find(StyledTable);
-
-    expect(container.getDOMNode().getAttribute('role')).toBe('grid');
-    expect(container.getDOMNode().getAttribute('aria-colcount')).toBe(
+    expect(wrapper.getDOMNode().getAttribute('role')).toBe('grid');
+    expect(wrapper.getDOMNode().getAttribute('aria-colcount')).toBe(
       COLUMNS.length.toString(),
     );
-    expect(container.getDOMNode().getAttribute('aria-rowcount')).toBe(
+    expect(wrapper.getDOMNode().getAttribute('aria-rowcount')).toBe(
       DATA.length.toString(),
     );
   });

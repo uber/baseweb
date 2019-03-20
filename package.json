@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "6.6.0",
+  "version": "6.7.2",
   "description": "React implementation of uber design components platform.",
   "keywords": [
     "react",
@@ -139,13 +139,13 @@
     "react-dropzone": "^9.0.0",
     "react-input-mask": "^2.0.4",
     "react-movable": "^2.0.1",
-    "react-range": "^1.0.4",
+    "react-range": "^1.0.5",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "peerDependencies": {
     "react": ">= 16.4.0 < 17",
     "react-dom": ">= 16.4.0 < 17",
-    "styletron-react": "^4.4.5"
+    "styletron-react": "^4.4.6"
   },
   "engines": {
     "node": ">=8.11.0",
