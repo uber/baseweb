@@ -103,7 +103,6 @@ describe('menu-child', () => {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('ArrowDown');
 
     const text = await findHighlightedLabel(page);
     expect(text).toBe('More...');
