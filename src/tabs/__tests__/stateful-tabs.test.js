@@ -7,15 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {StatefulTabs, TabPanel, StyledTab, StyledTabContent} from '../index.js';
+import {StatefulTabs, Tab, StyledTab, StyledTabContent} from '../index.js';
 import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('StatefulTabs', () => {
   const Component = props => (
     <StatefulTabs {...props}>
-      <TabPanel title="Tab Link 1">Tab 1 content</TabPanel>
-      <TabPanel title="Tab Link 2">Tab 2 content</TabPanel>
-      <TabPanel title="Tab Link 3">Tab 3 content</TabPanel>
+      <Tab title="Tab Link 1">Tab 1 content</Tab>
+      <Tab title="Tab Link 2">Tab 2 content</Tab>
+      <Tab title="Tab Link 3">Tab 3 content</Tab>
     </StatefulTabs>
   );
 

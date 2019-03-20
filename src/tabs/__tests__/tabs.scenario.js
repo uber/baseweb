@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StatefulTabs, TabPanel} from '../index.js';
+import {StatefulTabs, Tab} from '../index.js';
 
 export const name = 'tabs';
 
 export const component = () => (
   <StatefulTabs>
-    <TabPanel title="Tab Link 1">Tab 1 content</TabPanel>
-    <TabPanel title="Tab Link 2">Tab 2 content</TabPanel>
-    <TabPanel title="Tab Link 3">Tab 3 content</TabPanel>
+    <Tab title="Tab Link 1">Tab 1 content</Tab>
+    <Tab title="Tab Link 2">Tab 2 content</Tab>
+    <Tab title="Tab Link 3">Tab 3 content</Tab>
   </StatefulTabs>
 );
