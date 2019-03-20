@@ -213,6 +213,8 @@ export type ColorsT = {
   toastPositiveBackground: string,
   toastWarningBackground: string,
   toastNegativeBackground: string,
+
+  icons?: IconT,
 };
 
 export type TypographyT = {
@@ -314,3 +316,29 @@ export type ThemeT = {|
   borders: BordersT,
   zIndex: ZIndexT,
 |};
+
+export type IconT = {
+  Alert?: React.Node,
+  ArrowDown?: React.Node,
+  ArrowLeft?: React.Node,
+  ArrowRight?: React.Node,
+  ArrowUp?: React.Node,
+  CheckIndeterminate?: React.Node,
+  Check?: React.Node,
+  ChevronLeft?: React.Node,
+  ChevronRight?: React.Node,
+  DeleteAlt?: React.Node,
+  Delete?: React.Node,
+  Filter?: React.Node,
+  Grab?: React.Node,
+  Menu?: React.Node,
+  Overflow?: React.Node,
+  Plus?: React.Node,
+  Search?: React.Node,
+  Spinner?: React.Node,
+  TriangleDown?: React.Node,
+  TriangleLeft?: React.Node,
+  TriangleRight?: React.Node,
+  TriangleUp?: React.Node,
+  Upload?: React.Node,
+};
