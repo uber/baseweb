@@ -42,6 +42,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
         disabled: disabled || child.props.disabled,
         $orientation: orientation,
         onSelect: () => this.onChange({activeKey: key}),
+        children: child.props.title,
       });
     });
 
