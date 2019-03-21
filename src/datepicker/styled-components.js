@@ -17,8 +17,8 @@ export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
   } = props;
   return {
     ...typography.font400,
-    color: colors.black,
-    backgroundColor: colors.white,
+    color: props.$theme.colors.datepickerDayFont,
+    backgroundColor: colors.datepickerBackground,
     textAlign: 'center',
     borderRadius: borders.useRoundedCorners ? borders.radius200 : '0px',
     display: 'inline-block',
@@ -54,7 +54,7 @@ export const StyledQuickSelectLabel = styled(
   'div',
   (props: SharedStylePropsT) => ({
     ...props.$theme.typography.font300,
-    color: props.$theme.colors.mono800,
+    color: props.$theme.colors.colorPrimary,
     marginBottom: props.$theme.sizing.scale600,
     textAlign: 'left',
   }),
@@ -244,7 +244,7 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
     color: $selected
       ? colors.white
       : $outsideMonth || $disabled
-        ? colors.mono600
+        ? colors.datepickerDayFontDisabled
         : 'inherit',
     backgroundColor: $selected
       ? $isHighlighted
@@ -252,10 +252,10 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
         : colors.primary
       : $pseudoSelected
         ? $isHighlighted
-          ? colors.primary200
-          : colors.primary100
+          ? colors.datepickerDayPseudoHighlighted
+          : colors.datepickerDayPseudoSelected
         : $isHovered || $isHighlighted || $pseudoHighlighted
-          ? colors.primary100
+          ? colors.datepickerDayPseudoSelected
           : 'transparent',
     ...calculateBorderRadius(props),
     ':first-child': {

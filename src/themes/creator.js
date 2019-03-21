@@ -139,6 +139,13 @@ export default function createTheme(
       breadcrumbsText: primitives.mono900,
       breadcrumbsSeparatorFill: primitives.mono700,
 
+      // Datepicker
+      datepickerBackground: primitives.mono100,
+      datepickerDayFont: primitives.mono1000,
+      datepickerDayFontDisabled: primitives.mono500,
+      datepickerDayPseudoSelected: primitives.primary100,
+      datepickerDayPseudoHighlighted: primitives.primary200,
+
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,
       fileUploaderBackgroundColorActive: primitives.primary50,

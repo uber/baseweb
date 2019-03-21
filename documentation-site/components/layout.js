@@ -22,11 +22,11 @@ type PropsT = {
 const SidebarWrapper = styled('div', ({$theme, $isOpen}) => ({
   display: $isOpen ? 'block' : 'none',
   paddingTop: $theme.sizing.scale700,
-  marginLeft: $theme.sizing.scale1000,
-  marginRight: $theme.sizing.scale1000,
+  marginLeft: $theme.sizing.scale800,
+  marginRight: $theme.sizing.scale800,
   '@media screen and (min-width: 820px)': {
     display: 'block',
-    maxWidth: '14em',
+    maxWidth: '16em',
   },
 }));
 
