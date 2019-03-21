@@ -4,7 +4,7 @@ This is a proposal to create a new component `baseui/heading` that can serve as 
 
 ## Motivation
 
-Headings are absolutely critical for screen reader users and it's important to correctly set their levels. For example, you should never skip a level (having h2 and not h1 on the same page). 
+Headings are absolutely critical for screen reader users and it's important to correctly set their levels. For example, you should never skip a level (having h2 and not h1 on the same page).
 
 The problem is that levels are a question of context. When you move components with headings around, you need to check if levels still make sense and adjust them if not. That's a lot of mundane work and developers often rather take shortcuts such as using `h1` element only.
 
@@ -66,7 +66,7 @@ would output something like this
 
 ## Landmark elements
 
-There are many new HTML5 elements as `<section>`, `<header>`, `<main>` or `<footer>`. In theory, they should be eventually used to determine the resulting outline. However, since browsers didn't agreed yet on a standardized outline algorithm, it's still up to the user to explictily set it with h1...h6 elements. 
+There are many new HTML5 elements as `<section>`, `<header>`, `<main>` or `<footer>`. In theory, they should be eventually used to determine the resulting outline. However, since browsers didn't agreed yet on a standardized outline algorithm, it's still up to the user to explictily set it with h1...h6 elements.
 
 ## API
 
