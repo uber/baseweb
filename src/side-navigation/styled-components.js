@@ -57,7 +57,7 @@ export const StyledNavItem = styled('div', props => {
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
     paddingLeft: `calc(${sizing.scale800} * ${$level})`,
-    paddingRight: sizing.scale800,
+    paddingRight: sizing.scale500,
     ':hover': {
       color: $selectable ? colors.primary : null,
     },

@@ -60,7 +60,9 @@ export default class SideNav extends React.Component<NavPropsT> {
       };
       return (
         <NavItemContainer
-          key={`${index}-level${level}-${item.itemId || ''}`}
+          key={`${index}-level${level}-${
+            typeof item.title === 'string' ? item.title : item.itemId || ''
+          }`}
           {...sharedProps}
           {...itemContainerProps}
         >
