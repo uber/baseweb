@@ -103,7 +103,7 @@ export default {
     tickBorder: primitives.mono300,
     tickBorderError: primitives.negative400,
     tickMarkFill: primitives.mono100,
-    tickMarkFillDisabled: primitives.mono500,
+    tickMarkFillDisabled: primitives.mono400,
 
     // Slider/Toggle
     sliderTrackFill: primitives.mono600,

@@ -126,7 +126,7 @@ export const Checkmark = styled('span', props => {
   const {sizing, animation} = $theme;
 
   const tickColor = $disabled
-    ? $theme.colors.mono600
+    ? $theme.colors.tickMarkFillDisabled
     : $theme.colors.tickMarkFill;
 
   const indeterminate = encodeURIComponent(`
