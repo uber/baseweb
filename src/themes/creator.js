@@ -162,7 +162,7 @@ export default function createTheme(
       listBorder: primitives.mono500,
 
       // Tick
-      tickFill: 'transparent',
+      tickFill: WHITE,
       tickFillHover: primitives.mono400,
       tickFillActive: primitives.mono500,
       tickFillSelected: primitives.primary400,
@@ -178,7 +178,9 @@ export default function createTheme(
 
       tickFillDisabled: primitives.mono300,
       tickBorder: primitives.mono700,
+      tickBorderError: primitives.negative400,
       tickMarkFill: WHITE,
+      tickMarkFillDisabled: primitives.mono600,
 
       // Slider
       sliderTrackFill: primitives.mono400,

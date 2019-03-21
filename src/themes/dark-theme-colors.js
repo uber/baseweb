@@ -87,7 +87,7 @@ export default {
     tagNegativeBackground: primitives.negative500,
 
     // Tick
-    tickFill: 'transparent',
+    tickFill: primitives.mono1000,
     tickFillHover: primitives.mono800,
     tickFillActive: primitives.mono600,
     tickFillSelected: primitives.primary500,
@@ -101,7 +101,9 @@ export default {
     tickFillErrorSelectedHoverActive: primitives.negative700,
     tickFillDisabled: primitives.mono700,
     tickBorder: primitives.mono300,
+    tickBorderError: primitives.negative400,
     tickMarkFill: primitives.mono100,
+    tickMarkFillDisabled: primitives.mono500,
 
     // Slider/Toggle
     sliderTrackFill: primitives.mono600,
