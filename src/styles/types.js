@@ -77,6 +77,10 @@ export type ColorsT = {
 
   // Semantic Colors
 
+  // Font Color
+  colorPrimary: string,
+  colorSecondary: string,
+
   // Background
   background: string,
   backgroundAlt: string,
@@ -118,6 +122,13 @@ export type ColorsT = {
   // Breadcrumbs
   breadcrumbsText: string,
   breadcrumbsSeparatorFill: string,
+
+  // Datepicker
+  datepickerBackground: string,
+  datepickerDayFont: string,
+  datepickerDayFontDisabled: string,
+  datepickerDayPseudoSelected: string,
+  datepickerDayPseudoHighlighted: string,
 
   // FileUploader
   fileUploaderBackgroundColor: string,
