@@ -12,6 +12,7 @@ import type {
   StateT,
   StateReducerT,
   StateTypeT,
+  Item,
 } from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
@@ -31,7 +32,7 @@ class StatefulContainer extends React.Component<
     ...this.props.initialState,
   };
 
-  onChange = (params: {item: *}) => {
+  onChange = (params: {item: Item, event: Event | KeyboardEvent}) => {
     const {onChange} = this.props;
     this.internalSetState(STATE_CHANGE_TYPE.change, params.item);
     if (typeof onChange === 'function') {

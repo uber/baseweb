@@ -31,6 +31,15 @@ export type SharedPropsT = {
   $selectable: boolean,
 };
 
+type renderItemT = (
+  item: *,
+  props: SharedPropsT & {
+    onSelect?: ({item: *, event: Event | KeyboardEvent}) => mixed,
+    onClick?: (event: Event) => mixed,
+    onKeyDown?: (event: KeyboardEvent) => mixed,
+  },
+) => React.Node;
+
 export type NavPropsT = {
   /** Defines the current active itemId. Used for the defaut calculation of the $active prop */
   activeItemId: string,
@@ -39,26 +48,23 @@ export type NavPropsT = {
     If returns true the item will be rendered as an active one 
     */
   activePredicate: ?(item: *, activeItemId: string) => boolean,
+  /** List of navigation items */
+  items: Item[],
+  /** onChange handler that is called when a nav item is selected */
+  onChange?: ({item: *, event: Event | KeyboardEvent}) => mixed,
   /** Overrides for the internal elements and components */
   overrides: {
     Root?: OverrideT<*>,
     NavItemContainer?: OverrideT<*>,
+    NavLink?: OverrideT<*>,
     NavItem?: OverrideT<*>,
     SubNavContainer?: OverrideT<*>,
   },
   /** Optional render function that is called instead default item rendering */
-  renderItem: ?(
-    item: *,
-    props: SharedPropsT & {
-      role: string,
-      tabIndex: ?number,
-      onClick: ?(e: Event) => mixed,
-      onKeyDown: ?(e: KeyboardEvent) => mixed,
-    },
-  ) => React.Node,
+  renderItem: ?renderItemT,
 };
 
-type Item = {
+export type Item = {
   /** Navigation item's title to render */
   title: React.Node,
   /** 
@@ -72,33 +78,27 @@ type Item = {
   subnav?: Item[],
 };
 
-export type SideNavPropsT = NavPropsT & {
-  /** List of navigation items */
-  items: Item[],
-  /** onChange handler that is called when a nav item is selected */
-  onChange?: ({item: *}) => mixed,
-};
-
-export type NavItemPropsT = NavPropsT & {
-  index: number,
-  item: *,
-  navLevel: number,
-  onSelect: ?({item: *}) => mixed,
-  onClick: ?(e: Event) => mixed,
-  onKeyDown: ?(e: KeyboardEvent) => mixed,
+export type NavItemPropsT = SharedPropsT & {
+  item: Item,
+  onSelect?: ({item: *, event: Event | KeyboardEvent}) => mixed,
+  overrides: {
+    NavLink?: OverrideT<*>,
+    NavItem?: OverrideT<*>,
+  },
+  renderItem?: ?renderItemT,
 };
 
 export type StatefulContainerPropsT = {
-  children: SideNavPropsT => React.Node,
+  children: NavPropsT => React.Node,
   /** Initial state of an uncontrolled component. */
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
   stateReducer?: StateReducerT,
-  onChange: ({item: *}) => mixed,
+  onChange?: ({item: *, event: Event | KeyboardEvent}) => mixed,
 };
 
 type ExcludeT = {
-  children: SideNavPropsT => React.Node,
+  children: NavPropsT => React.Node,
 };
 
 export type StatefulNavPropsT = $Diff<StatefulContainerPropsT, ExcludeT>;

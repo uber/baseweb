@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Block} from 'baseui/block';
+import {Navigation} from 'baseui/side-navigation';
 import {styled} from 'baseui';
 import Link from 'next/link';
 

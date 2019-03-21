@@ -7,7 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulContainer, STATE_CHANGE_TYPE} from '../index.js';
+import StatefulContainer from '../stateful-container.js';
+import {STATE_CHANGE_TYPE} from '../constants.js';
 
 test('StatefulContainer - basic render', () => {
   const props = {
@@ -49,7 +50,8 @@ test('StatefulContainer - children function receives onChange handler', () => {
   expect(childrenOnChangeProp).not.toBe(props.onChange);
 
   // user's onChange handler is called
-  const params = {item: {itemId: '/123'}};
+  const params = {item: {itemId: '/123'}, event: jest.fn()};
+  // $FlowFixMe
   childrenOnChangeProp && childrenOnChangeProp(params);
   expect(props.onChange).toHaveBeenCalledTimes(1);
   expect(props.onChange).toHaveBeenLastCalledWith(params);

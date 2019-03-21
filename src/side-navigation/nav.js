@@ -9,41 +9,84 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import NavItem from './nav-item.js';
-import {StyledRoot} from './styled-components.js';
-import type {SideNavPropsT} from './types.js';
+import {
+  StyledRoot,
+  StyledNavItemContainer,
+  StyledSubNavContainer,
+} from './styled-components.js';
+import type {NavPropsT, Item} from './types.js';
 
-export default class SideNav extends React.Component<SideNavPropsT> {
+export default class SideNav extends React.Component<NavPropsT> {
   static defaultProps = {
     activeItemId: '/',
-    items: [],
     activePredicate: null,
+    items: [],
     overrides: {},
     renderItem: null,
   };
 
-  activePredicate = (item: *, activeItemId: string) => {
-    return item.itemId === activeItemId ? true : false;
+  activePredicate = (item: Item) => {
+    return item.itemId === this.props.activeItemId ? true : false;
   };
 
   render() {
-    const {activePredicate, items, onChange, overrides} = this.props;
+    const {
+      activeItemId,
+      activePredicate,
+      items,
+      onChange,
+      overrides,
+      renderItem,
+    } = this.props;
     const navLevel = 1;
+
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const [NavItemContainer, itemContainerProps] = getOverrides(
+      overrides.NavItemContainer,
+      StyledNavItemContainer,
+    );
+    const [SubNavContainer, subNavContainerProps] = getOverrides(
+      overrides.SubNavContainer,
+      StyledSubNavContainer,
+    );
+
+    const renderNavItem = (item: Item, level: number, index) => {
+      const sharedProps = {
+        $active: activePredicate
+          ? activePredicate(item, activeItemId)
+          : this.activePredicate(item),
+        $level: level,
+        $selectable: !!item.itemId,
+      };
+      return (
+        <NavItemContainer
+          key={`${index}-level${level}-${item.itemId || ''}`}
+          {...sharedProps}
+          {...itemContainerProps}
+        >
+          <>
+            <NavItem
+              item={item}
+              onSelect={onChange}
+              renderItem={renderItem}
+              {...sharedProps}
+            />
+            {item.subnav ? (
+              <SubNavContainer {...sharedProps} {...subNavContainerProps}>
+                {item.subnav.map((subitem, idx) => {
+                  return renderNavItem(subitem, level + 1, index);
+                })}
+              </SubNavContainer>
+            ) : null}
+          </>
+        </NavItemContainer>
+      );
+    };
 
     return (
       <Root role="list" {...rootProps}>
         {items.map((item, index) => {
-          return (
-            <NavItem
-              key={index}
-              {...this.props}
-              activePredicate={activePredicate || this.activePredicate}
-              index={index}
-              item={item}
-              navLevel={navLevel}
-              onSelect={onChange}
-            />
-          );
+          return renderNavItem(item, navLevel, index);
         })}
       </Root>
     );

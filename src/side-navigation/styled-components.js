@@ -29,6 +29,11 @@ export const StyledRoot = styled('ul', props => {
 
 export const StyledNavItemContainer = styled('li', {});
 
+export const StyledNavLink = styled('a', {
+  color: 'inherit',
+  textDecoration: 'none',
+});
+
 export const StyledNavItem = styled('div', props => {
   const {
     $active,

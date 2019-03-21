@@ -1,14 +1,20 @@
 import React, {useState} from 'react';
 import {styled, createTheme, lightThemePrimitives, ThemeProvider} from 'baseui';
-import {Navigation, StyledNavItem} from 'baseui/side-navigation';
+import {Navigation, StyledNavLink, StyledNavItem} from 'baseui/side-navigation';
+import {Label2} from 'baseui/typography';
+
+const heading = {
+  Label2,
+};
 
 const nav = [
   {
     title: 'Colors',
+    heading: 'Label2',
     subnav: [
       {
         title: 'Primary',
-        itemId: '/',
+        itemId: '#level1.1.1',
       },
       {
         title: 'Shades',
@@ -29,10 +35,12 @@ const nav = [
   {
     title: 'Sizing',
     itemId: '#level1.2',
+    heading: 'Label2',
   },
   {
     title: 'Typography',
     itemId: '#level1.3',
+    heading: 'Label2',
   },
 ];
 
@@ -44,31 +52,39 @@ const customTheme = createTheme(
   {},
 );
 
-const StyledLink = styled('a', {
-  color: 'inherit',
-  textDecoration: 'none',
-});
-
 const renderItem = function(item, itemProps) {
-  const {onClick, onKeyDown, tabIndex, role, ...rest} = itemProps;
-  return (
-    <StyledLink href={item.itemId} onClick={onClick} onKeyDown={onKeyDown}>
+  const {onSelect, onClick, onKeyDown, ...rest} = itemProps;
+  const Heading = heading[item.heading];
+  const renderedItem = (
+    <StyledNavLink
+      href={item.itemId}
+      onClick={item.itemId ? onClick : null}
+      onKeyDown={item.itemId ? onKeyDown : null}
+      {...rest}
+    >
       <StyledNavItem {...rest}>
         {item.title}
         {item.itemId ? ` (${item.itemId})` : ''}
       </StyledNavItem>
-    </StyledLink>
+    </StyledNavLink>
+  );
+  return Heading ? (
+    <Heading overrides={{Block: {style: {textTransform: 'uppercase'}}}}>
+      {renderedItem}
+    </Heading>
+  ) : (
+    renderedItem
   );
 };
 
 export default function() {
-  const [activePath, setActivePath] = useState('/');
+  const [location, setLocation] = useState('#level1.1.1');
   return (
     <ThemeProvider theme={customTheme}>
       <Navigation
         items={nav}
-        activeItemId={activePath}
-        onChange={({item}) => setActivePath(item.itemId)}
+        activeItemId={location}
+        onChange={({item}) => setLocation(item.itemId)}
         renderItem={renderItem}
       />
     </ThemeProvider>

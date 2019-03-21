@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Navigation} from 'baseui/side-navigation';
 
 const nav = [
   {
     title: 'Colors',
+    itemId: '#level1.1',
     subnav: [
       {
         title: 'Primary',
-        itemId: '/',
+        itemId: '#level1.1.1',
       },
       {
         title: 'Shades',
@@ -35,10 +36,13 @@ const nav = [
   },
 ];
 
-export default () => (
-  <Navigation
-    items={nav}
-    activeItemId={'/'}
-    onChange={item => console.log(item)}
-  />
-);
+export default () => {
+  const [location, setLocation] = useState('#level1.1.1');
+  return (
+    <Navigation
+      items={nav}
+      activeItemId={location}
+      onChange={({item}) => setLocation(item.itemId)}
+    />
+  );
+};
