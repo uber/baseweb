@@ -154,7 +154,7 @@ export type ColorsT = {
   tickBorder: string,
   tickMarkFill: string,
 
-  // Slider
+  // Slider/Toggle
   sliderTrackFill: string,
   sliderTrackFillHover: string,
   sliderTrackFillActive: string,

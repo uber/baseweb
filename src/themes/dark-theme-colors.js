@@ -93,26 +93,24 @@ export default {
     tickFillSelected: primitives.primary500,
     tickFillSelectedHover: primitives.primary600,
     tickFillSelectedHoverActive: primitives.primary700,
-
     tickFillError: primitives.negative700,
     tickFillErrorHover: primitives.negative600,
     tickFillErrorHoverActive: primitives.negative500,
     tickFillErrorSelected: primitives.negative500,
     tickFillErrorSelectedHover: primitives.negative600,
     tickFillErrorSelectedHoverActive: primitives.negative700,
-
     tickFillDisabled: primitives.mono700,
     tickBorder: primitives.mono300,
     tickMarkFill: WHITE,
 
-    // Slider
-    sliderTrackFill: primitives.mono500,
-    sliderTrackFillHover: primitives.mono600,
-    sliderTrackFillActive: primitives.mono700,
-    sliderTrackFillSelected: primitives.primary700,
-    sliderTrackFillSelectedActive: primitives.primary700,
+    // Slider/Toggle
+    sliderTrackFill: primitives.mono600,
+    sliderTrackFillHover: primitives.mono500,
+    sliderTrackFillActive: primitives.mono400,
+    sliderTrackFillSelected: primitives.primary500,
+    sliderTrackFillSelectedActive: primitives.primary600,
     sliderTrackFillSelectedHover: primitives.primary700,
-    sliderTrackFillDisabled: primitives.mono600,
+    sliderTrackFillDisabled: primitives.mono700,
     sliderHandleFill: primitives.mono300,
     sliderHandleFillHover: primitives.mono300,
     sliderHandleFillActive: primitives.mono300,
