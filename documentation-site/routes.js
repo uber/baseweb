@@ -95,8 +95,8 @@ const routes = [
             itemId: '/components/radio',
           },
           {
-            title: 'titlearea',
-            itemId: '/components/titlearea',
+            title: 'Textarea',
+            itemId: '/components/textarea',
           },
           {
             title: 'FormControl',

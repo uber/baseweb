@@ -18,7 +18,14 @@ describe('side navigation', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'side-navigation');
     await page.waitFor(selectors.root);
-    const accessibilityReport = await analyzeAccessibility(page);
+    const accessibilityReport = await analyzeAccessibility(page, {
+      rules: [
+        {
+          id: 'skip-link',
+          enabled: false,
+        },
+      ],
+    });
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });
