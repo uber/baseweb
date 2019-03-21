@@ -18,8 +18,7 @@ function getState(props): State {
 }
 
 function getOuterColor(props) {
-  const {$checked, $isError, $theme} = props;
-  const {colors} = $theme;
+  const {colors} = props.$theme;
 
   if (!props.$checked) {
     if (props.$disabled) return colors.tickMarkFillDisabled;
@@ -52,8 +51,7 @@ function getOuterColor(props) {
 }
 
 function getInnerColor(props) {
-  const {$checked, $isError, $theme} = props;
-  const {colors} = $theme;
+  const {colors} = props.$theme;
 
   if (props.$disabled) {
     return colors.tickMarkFillDisabled;
@@ -142,16 +140,15 @@ export const Root = styled('label', props => {
 });
 
 export const RadioMarkInner = styled('div', props => {
-  const {$checked, $disabled, $theme, $isFocused, $isError} = props;
-  const {animation, colors, sizing} = $theme;
+  const {animation, sizing} = props.$theme;
 
   return {
     backgroundColor: getInnerColor(props),
     borderRadius: '50%',
-    height: $checked ? sizing.scale200 : sizing.scale600,
+    height: props.$checked ? sizing.scale200 : sizing.scale600,
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
-    width: $checked ? sizing.scale200 : sizing.scale600,
+    width: props.$checked ? sizing.scale200 : sizing.scale600,
   };
 });
 
