@@ -10,56 +10,56 @@ LICENSE file in the root directory of this source tree.
 
 const routes = [
   {
-    text: 'Getting started',
-    children: [
+    title: 'Getting started',
+    subnav: [
       {
-        text: 'Welcome',
-        path: '/',
+        title: 'Welcome',
+        itemId: '/',
       },
       {
-        text: 'Installation',
-        path: '/getting-started/installation',
+        title: 'Installation',
+        itemId: '/getting-started/installation',
       },
       {
-        text: 'Usage',
-        path: '/getting-started/usage',
+        title: 'Usage',
+        itemId: '/getting-started/usage',
       },
       {
-        text: 'Learn',
-        path: '/getting-started/learn',
+        title: 'Learn',
+        itemId: '/getting-started/learn',
       },
       {
-        text: 'Versioning policy',
-        path: '/getting-started/versioning-policy',
+        title: 'Versioning policy',
+        itemId: '/getting-started/versioning-policy',
       },
       {
-        text: 'Supported platforms',
-        path: '/getting-started/supported-platforms',
+        title: 'Supported platforms',
+        itemId: '/getting-started/supported-platforms',
       },
       {
-        text: 'Comparison',
-        path: '/getting-started/comparison',
+        title: 'Comparison',
+        itemId: '/getting-started/comparison',
       },
       {
-        text: 'Internationalization',
-        path: '/getting-started/internationalization',
+        title: 'Internationalization',
+        itemId: '/getting-started/internationalization',
       },
     ],
   },
   {
-    text: 'Theming',
-    children: [
+    title: 'Theming',
+    subnav: [
       {
-        text: 'Intro to Theming',
-        path: '/theming/custom-themes',
+        title: 'Intro to Theming',
+        itemId: '/theming/custom-themes',
       },
       {
-        text: 'Theming values',
-        path: '/theming/theming-values',
+        title: 'Theming values',
+        itemId: '/theming/theming-values',
       },
       {
-        text: 'Overrides',
-        path: '/theming/understanding-overrides',
+        title: 'Overrides',
+        itemId: '/theming/understanding-overrides',
       },
       {
         text: 'Icons',
@@ -69,184 +69,188 @@ const routes = [
   },
   {
     components: true,
-    text: 'Components',
-    children: [
+    title: 'Components',
+    subnav: [
       {
-        text: 'Basic Inputs',
-        children: [
+        title: 'Basic Inputs',
+        subnav: [
           {
-            text: 'Button',
-            path: '/components/button',
+            title: 'Button',
+            itemId: '/components/button',
           },
           {
-            text: 'ButtonGroup',
-            path: '/components/button-group',
+            title: 'ButtonGroup',
+            itemId: '/components/button-group',
           },
           {
-            text: 'Checkbox',
-            path: '/components/checkbox',
+            title: 'Checkbox',
+            itemId: '/components/checkbox',
           },
           {
-            text: 'Input',
-            path: '/components/input',
+            title: 'Input',
+            itemId: '/components/input',
           },
           {
-            text: 'Slider',
-            path: '/components/slider',
+            title: 'Slider',
+            itemId: '/components/slider',
           },
           {
-            text: 'Radio',
-            path: '/components/radio',
+            title: 'Radio',
+            itemId: '/components/radio',
           },
           {
-            text: 'Textarea',
-            path: '/components/textarea',
+            title: 'Textarea',
+            itemId: '/components/textarea',
           },
           {
-            text: 'FormControl',
-            path: '/components/form-control',
+            title: 'FormControl',
+            itemId: '/components/form-control',
           },
         ],
       },
       {
-        text: 'Navigation',
-        children: [
+        title: 'Navigation',
+        subnav: [
           {
-            text: 'Breadcrumbs',
-            path: '/components/breadcrumbs',
+            title: 'Breadcrumbs',
+            itemId: '/components/breadcrumbs',
           },
           {
-            text: 'Header navigation',
-            path: '/components/header-navigation',
+            title: 'Header navigation',
+            itemId: '/components/header-navigation',
           },
           {
-            text: 'Link',
-            path: '/components/link',
+            title: 'Link',
+            itemId: '/components/link',
           },
           {
-            text: 'Pagination',
-            path: '/components/pagination',
+            title: 'Pagination',
+            itemId: '/components/pagination',
           },
           {
-            text: 'Tab',
-            path: '/components/tabs',
-          },
-        ],
-      },
-      {
-        text: 'Content',
-        children: [
-          {
-            text: 'Accordion',
-            path: '/components/accordion',
+            title: 'Side navigation',
+            itemId: '/components/sidenav',
           },
           {
-            text: 'Avatar',
-            path: '/components/avatar',
-          },
-          {
-            text: 'Drag and Drop List',
-            path: '/components/dnd-list',
-          },
-          {
-            text: 'Icon',
-            path: '/components/icon',
-          },
-          {
-            text: 'Tag',
-            path: '/components/tag',
-          },
-          {
-            text: 'Typography',
-            path: '/components/typography',
-          },
-          {
-            text: 'Table',
-            path: '/components/table',
+            title: 'Tab',
+            itemId: '/components/tabs',
           },
         ],
       },
       {
-        text: 'Pickers',
-        children: [
+        title: 'Content',
+        subnav: [
           {
-            text: 'File Uploader',
-            path: '/components/file-uploader',
+            title: 'Accordion',
+            itemId: '/components/accordion',
           },
           {
-            text: 'Menu',
-            path: '/components/menu',
+            title: 'Avatar',
+            itemId: '/components/avatar',
           },
           {
-            text: 'Rating',
-            path: '/components/rating',
+            title: 'Drag and Drop List',
+            itemId: '/components/dnd-list',
           },
           {
-            text: 'Select',
-            path: '/components/select',
+            title: 'Icon',
+            itemId: '/components/icon',
           },
           {
-            text: 'Datepicker',
-            path: '/components/datepicker',
-          },
-        ],
-      },
-      {
-        text: 'Progress & Validation',
-        children: [
-          {
-            text: 'Notification',
-            path: '/components/notification',
+            title: 'Tag',
+            itemId: '/components/tag',
           },
           {
-            text: 'ProgressBar',
-            path: '/components/progress-bar',
+            title: 'Typography',
+            itemId: '/components/typography',
           },
           {
-            text: 'Progress steps',
-            path: '/components/progress-steps',
-          },
-          {
-            text: 'Spinner',
-            path: '/components/spinner',
-          },
-          {
-            text: 'Toast',
-            path: '/components/toast',
+            title: 'Table',
+            itemId: '/components/table',
           },
         ],
       },
       {
-        text: 'Surfaces',
-        children: [
+        title: 'Pickers',
+        subnav: [
           {
-            text: 'Card',
-            path: '/components/card',
+            title: 'File Uploader',
+            itemId: '/components/file-uploader',
           },
           {
-            text: 'Modal',
-            path: '/components/modal',
+            title: 'Menu',
+            itemId: '/components/menu',
           },
           {
-            text: 'Popover',
-            path: '/components/popover',
+            title: 'Rating',
+            itemId: '/components/rating',
           },
           {
-            text: 'Tooltip',
-            path: '/components/tooltip',
+            title: 'Select',
+            itemId: '/components/select',
+          },
+          {
+            title: 'Datepicker',
+            itemId: '/components/datepicker',
           },
         ],
       },
       {
-        text: 'Utility',
-        children: [
+        title: 'Progress & Validation',
+        subnav: [
           {
-            text: 'Block',
-            path: '/components/block',
+            title: 'Notification',
+            itemId: '/components/notification',
           },
           {
-            text: 'Styled',
-            path: '/components/styled',
+            title: 'ProgressBar',
+            itemId: '/components/progress-bar',
+          },
+          {
+            title: 'Progress steps',
+            itemId: '/components/progress-steps',
+          },
+          {
+            title: 'Spinner',
+            itemId: '/components/spinner',
+          },
+          {
+            title: 'Toast',
+            itemId: '/components/toast',
+          },
+        ],
+      },
+      {
+        title: 'Surfaces',
+        subnav: [
+          {
+            title: 'Card',
+            itemId: '/components/card',
+          },
+          {
+            title: 'Modal',
+            itemId: '/components/modal',
+          },
+          {
+            title: 'Popover',
+            itemId: '/components/popover',
+          },
+          {
+            title: 'Tooltip',
+            itemId: '/components/tooltip',
+          },
+        ],
+      },
+      {
+        title: 'Utility',
+        subnav: [
+          {
+            title: 'Block',
+            itemId: '/components/block',
+          },
+          {
+            title: 'Styled',
+            itemId: '/components/styled',
           },
         ],
       },
