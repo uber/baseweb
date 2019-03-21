@@ -65,27 +65,27 @@ function getBackgroundColor(props) {
     return isToggle ? colors.sliderTrackFillDisabled : colors.tickFillDisabled;
   } else if ($isError && ($isIndeterminate || $checked)) {
     if ($isActive || $isFocused) {
-      return colors.negative600;
+      return colors.tickFillErrorSelectedHoverActive;
     } else if ($isHovered) {
-      return colors.negative500;
+      return colors.tickFillErrorSelectedHover;
     } else {
-      return colors.negative400;
+      return colors.tickFillErrorSelected;
     }
   } else if ($isError) {
     if ($isActive || $isFocused) {
-      return colors.negative200;
+      return colors.tickFillErrorHoverActive;
     } else if ($isHovered) {
-      return colors.negative100;
+      return colors.tickFillErrorHover;
     } else {
-      return colors.negative50;
+      return colors.tickFillError;
     }
   } else if ($isIndeterminate || $checked) {
     if ($isActive || $isFocused) {
-      return colors.primary600;
+      return colors.tickFillSelectedHoverActive;
     } else if ($isHovered) {
-      return colors.primary500;
+      return colors.tickFillSelectedHover;
     } else {
-      return colors.primary400;
+      return colors.tickFillSelected;
     }
   } else {
     if ($isActive || $isFocused) {

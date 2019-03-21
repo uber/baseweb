@@ -168,7 +168,15 @@ export default function createTheme(
       tickFillSelected: primitives.primary400,
       tickFillSelectedHover: primitives.primary500,
       tickFillSelectedHoverActive: primitives.primary600,
-      tickFillDisabled: primitives.mono400,
+
+      tickFillError: primitives.negative50,
+      tickFillErrorHover: primitives.negative100,
+      tickFillErrorHoverActive: primitives.negative200,
+      tickFillErrorSelected: primitives.negative400,
+      tickFillErrorSelectedHover: primitives.negative500,
+      tickFillErrorSelectedHoverActive: primitives.negative600,
+
+      tickFillDisabled: primitives.mono300,
       tickBorder: primitives.mono700,
       tickMarkFill: WHITE,
 

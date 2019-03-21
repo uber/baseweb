@@ -19,7 +19,7 @@ export default {
     colorSecondary: primitives.mono200,
 
     // Background
-    background: primitives.mono800,
+    background: primitives.mono1000,
     backgroundAlt: primitives.mono700,
     backgroundInv: primitives.mono100,
 
@@ -88,13 +88,21 @@ export default {
 
     // Tick
     tickFill: 'transparent',
-    tickFillHover: primitives.mono200,
-    tickFillActive: primitives.mono300,
-    tickFillSelected: primitives.primary400,
-    tickFillSelectedHover: primitives.primary500,
-    tickFillSelectedHoverActive: primitives.primary600,
-    tickFillDisabled: primitives.mono600,
-    tickBorder: primitives.mono400,
+    tickFillHover: primitives.mono800,
+    tickFillActive: primitives.mono600,
+    tickFillSelected: primitives.primary500,
+    tickFillSelectedHover: primitives.primary600,
+    tickFillSelectedHoverActive: primitives.primary700,
+
+    tickFillError: primitives.negative700,
+    tickFillErrorHover: primitives.negative600,
+    tickFillErrorHoverActive: primitives.negative500,
+    tickFillErrorSelected: primitives.negative500,
+    tickFillErrorSelectedHover: primitives.negative600,
+    tickFillErrorSelectedHoverActive: primitives.negative700,
+
+    tickFillDisabled: primitives.mono700,
+    tickBorder: primitives.mono300,
     tickMarkFill: WHITE,
 
     // Slider
