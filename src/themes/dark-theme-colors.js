@@ -101,7 +101,7 @@ export default {
     tickFillErrorSelectedHoverActive: primitives.negative700,
     tickFillDisabled: primitives.mono700,
     tickBorder: primitives.mono300,
-    tickMarkFill: WHITE,
+    tickMarkFill: primitives.mono100,
 
     // Slider/Toggle
     sliderTrackFill: primitives.mono600,
