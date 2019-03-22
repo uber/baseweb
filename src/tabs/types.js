@@ -57,7 +57,7 @@ export type StatefulTabsPropsT = $Diff<TabsPropsT, {activeKey: React.Key}> & {
 };
 
 export type TabPanelPropsT = {
-  children: React.Node,
+  children?: React.Node,
   /** Sets the tab to disabled */
   disabled?: boolean,
   active?: boolean,
