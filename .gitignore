@@ -18,4 +18,5 @@ vrt/latest
 vrt/diff
 .cache
 documentation-site/.next
+documentation-site/posts.js
 public
