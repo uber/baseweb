@@ -5,6 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import type {ComponentType} from 'react';
+import type {IconPropsT} from '../icon/types.js';
 
 export type BreakpointsT = {
   small: number,
@@ -328,27 +330,27 @@ export type ThemeT = {|
 |};
 
 export type IconT = {
-  Alert?: React.Node,
-  ArrowDown?: React.Node,
-  ArrowLeft?: React.Node,
-  ArrowRight?: React.Node,
-  ArrowUp?: React.Node,
-  CheckIndeterminate?: React.Node,
-  Check?: React.Node,
-  ChevronLeft?: React.Node,
-  ChevronRight?: React.Node,
-  DeleteAlt?: React.Node,
-  Delete?: React.Node,
-  Filter?: React.Node,
-  Grab?: React.Node,
-  Menu?: React.Node,
-  Overflow?: React.Node,
-  Plus?: React.Node,
-  Search?: React.Node,
-  Spinner?: React.Node,
-  TriangleDown?: React.Node,
-  TriangleLeft?: React.Node,
-  TriangleRight?: React.Node,
-  TriangleUp?: React.Node,
-  Upload?: React.Node,
+  Alert?: ComponentType<IconPropsT>,
+  ArrowDown?: ComponentType<IconPropsT>,
+  ArrowLeft?: ComponentType<IconPropsT>,
+  ArrowRight?: ComponentType<IconPropsT>,
+  ArrowUp?: ComponentType<IconPropsT>,
+  CheckIndeterminate?: ComponentType<IconPropsT>,
+  Check?: ComponentType<IconPropsT>,
+  ChevronLeft?: ComponentType<IconPropsT>,
+  ChevronRight?: ComponentType<IconPropsT>,
+  DeleteAlt?: ComponentType<IconPropsT>,
+  Delete?: ComponentType<IconPropsT>,
+  Filter?: ComponentType<IconPropsT>,
+  Grab?: ComponentType<IconPropsT>,
+  Menu?: ComponentType<IconPropsT>,
+  Overflow?: ComponentType<IconPropsT>,
+  Plus?: ComponentType<IconPropsT>,
+  Search?: ComponentType<IconPropsT>,
+  Spinner?: ComponentType<IconPropsT>,
+  TriangleDown?: ComponentType<IconPropsT>,
+  TriangleLeft?: ComponentType<IconPropsT>,
+  TriangleRight?: ComponentType<IconPropsT>,
+  TriangleUp?: ComponentType<IconPropsT>,
+  Upload?: ComponentType<IconPropsT>,
 };
