@@ -132,7 +132,7 @@
   },
   "dependencies": {
     "date-fns": "2.0.0-alpha.27",
-    "focus-trap": "^4.0.2",
+    "focus-trap": "^5.0.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
     "popper.js": "^1.14.3",
