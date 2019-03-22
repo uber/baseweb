@@ -228,18 +228,18 @@ export const Toggle = styled('div', props => ({
 export const ToggleInner = styled('div', props => {
   function backgroundColor() {
     if (props.$disabled) {
-      return props.$theme.colors.sliderTrackFillDisabled;
+      return props.$theme.colors.sliderHandleInnerFillDisabled;
     }
 
     if (props.$isActive && props.$checked) {
-      return props.$theme.colors.sliderTrackFillSelectedActive;
+      return props.$theme.colors.sliderHandleInnerFillSelectedActive;
     }
 
     if (props.$isHovered && props.$checked) {
-      return props.$theme.colors.sliderTrackFillSelectedHover;
+      return props.$theme.colors.sliderHandleInnerFillSelectedHover;
     }
 
-    return props.$theme.colors.sliderTrackFill;
+    return props.$theme.colors.sliderHandleInnerFill;
   }
 
   return {

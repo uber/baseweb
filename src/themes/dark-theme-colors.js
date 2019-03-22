@@ -129,6 +129,11 @@ export default {
     sliderHandleFillSelectedHover: primitives.primary600,
     sliderHandleFillSelectedActive: primitives.primary700,
     sliderHandleFillDisabled: primitives.mono600,
+    sliderHandleInnerFill: primitives.mono300,
+    sliderHandleInnerFillDisabled: primitives.mono500,
+    sliderHandleInnerFillSelectedHover: primitives.primary600,
+    sliderHandleInnerFillSelectedActive: primitives.primary700,
+
     sliderBorder: WHITE,
     sliderBorderHover: WHITE,
     sliderBorderDisabled: primitives.mono400,

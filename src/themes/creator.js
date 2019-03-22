@@ -189,7 +189,7 @@ export default function createTheme(
       tickMarkFill: WHITE,
       tickMarkFillDisabled: primitives.mono600,
 
-      // Slider
+      // Slider/Toggle
       sliderTrackFill: primitives.mono400,
       sliderTrackFillHover: primitives.mono500,
       sliderTrackFillActive: primitives.mono600,
@@ -204,6 +204,11 @@ export default function createTheme(
       sliderHandleFillSelectedHover: WHITE,
       sliderHandleFillSelectedActive: WHITE,
       sliderHandleFillDisabled: primitives.mono500,
+      sliderHandleInnerFill: primitives.mono400,
+      sliderHandleInnerFillDisabled: primitives.mono400,
+      sliderHandleInnerFillSelectedHover: primitives.primary400,
+      sliderHandleInnerFillSelectedActive: primitives.primary500,
+
       sliderBorder: primitives.mono500,
       sliderBorderHover: primitives.primary400,
       sliderBorderDisabled: primitives.mono600,
