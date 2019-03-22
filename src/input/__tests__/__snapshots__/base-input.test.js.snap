@@ -29,6 +29,7 @@ Object {
   "aria-label": null,
   "aria-labelledby": null,
   "aria-required": false,
+  "autocomplete": true,
   "children": null,
   "disabled": false,
   "id": undefined,

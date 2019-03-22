@@ -3,6 +3,7 @@
 exports[`basic render: renders <Input/> as a child 1`] = `
 <Input
   autoFocus={false}
+  autocomplete={true}
   disabled={false}
   endEnhancer={null}
   error={false}
