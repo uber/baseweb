@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {ComponentType} from 'react';
+import type {IconPropsT} from '../icon/types.js';
 
 export type BreakpointsT = {
   small: number,
@@ -329,27 +330,27 @@ export type ThemeT = {|
 |};
 
 export type IconT = {
-  Alert?: ComponentType<any>,
-  ArrowDown?: ComponentType<any>,
-  ArrowLeft?: ComponentType<any>,
-  ArrowRight?: ComponentType<any>,
-  ArrowUp?: ComponentType<any>,
-  CheckIndeterminate?: ComponentType<any>,
-  Check?: ComponentType<any>,
-  ChevronLeft?: ComponentType<any>,
-  ChevronRight?: ComponentType<any>,
-  DeleteAlt?: ComponentType<any>,
-  Delete?: ComponentType<any>,
-  Filter?: ComponentType<any>,
-  Grab?: ComponentType<any>,
-  Menu?: ComponentType<any>,
-  Overflow?: ComponentType<any>,
-  Plus?: ComponentType<any>,
-  Search?: ComponentType<any>,
-  Spinner?: ComponentType<any>,
-  TriangleDown?: ComponentType<any>,
-  TriangleLeft?: ComponentType<any>,
-  TriangleRight?: ComponentType<any>,
-  TriangleUp?: ComponentType<any>,
-  Upload?: ComponentType<any>,
+  Alert?: ComponentType<IconPropsT>,
+  ArrowDown?: ComponentType<IconPropsT>,
+  ArrowLeft?: ComponentType<IconPropsT>,
+  ArrowRight?: ComponentType<IconPropsT>,
+  ArrowUp?: ComponentType<IconPropsT>,
+  CheckIndeterminate?: ComponentType<IconPropsT>,
+  Check?: ComponentType<IconPropsT>,
+  ChevronLeft?: ComponentType<IconPropsT>,
+  ChevronRight?: ComponentType<IconPropsT>,
+  DeleteAlt?: ComponentType<IconPropsT>,
+  Delete?: ComponentType<IconPropsT>,
+  Filter?: ComponentType<IconPropsT>,
+  Grab?: ComponentType<IconPropsT>,
+  Menu?: ComponentType<IconPropsT>,
+  Overflow?: ComponentType<IconPropsT>,
+  Plus?: ComponentType<IconPropsT>,
+  Search?: ComponentType<IconPropsT>,
+  Spinner?: ComponentType<IconPropsT>,
+  TriangleDown?: ComponentType<IconPropsT>,
+  TriangleLeft?: ComponentType<IconPropsT>,
+  TriangleRight?: ComponentType<IconPropsT>,
+  TriangleUp?: ComponentType<IconPropsT>,
+  Upload?: ComponentType<IconPropsT>,
 };
