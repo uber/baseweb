@@ -32,7 +32,12 @@ describe('toast', () => {
       toasts => toasts.length,
     );
 
+    // close one toast with mouse click
     await page.click(selectors.dismiss);
+
+    // close another toast with the keyboard
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
 
     // we animate out the component
     await new Promise(resolve => {
@@ -44,7 +49,7 @@ describe('toast', () => {
       toasts => toasts.length,
     );
 
-    expect(updatedNumberOfAlerts).toBe(originalNumberOfAlerts - 1);
+    expect(updatedNumberOfAlerts).toBe(originalNumberOfAlerts - 2);
   });
 
   it('opens a notifaction', async () => {
