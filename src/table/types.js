@@ -53,10 +53,10 @@ export type FilterProps = {|
   /** Callback for when the 'select all' button is clicked. */
   onSelectAll?: () => mixed,
   overrides?: {
-    MenuButton: OverrideT<*>,
-    Content: OverrideT<*>,
-    Heading: OverrideT<*>,
-    Footer: OverrideT<*>,
+    MenuButton?: OverrideT<*>,
+    Content?: OverrideT<*>,
+    Heading?: OverrideT<*>,
+    Footer?: OverrideT<*>,
   },
 |};
 
