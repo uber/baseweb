@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import type {ComponentType} from 'react';
 
 export type BreakpointsT = {
   small: number,
@@ -329,27 +329,27 @@ export type ThemeT = {|
 |};
 
 export type IconT = {
-  Alert?: typeof React.Component,
-  ArrowDown?: typeof React.Component,
-  ArrowLeft?: typeof React.Component,
-  ArrowRight?: typeof React.Component,
-  ArrowUp?: typeof React.Component,
-  CheckIndeterminate?: typeof React.Component,
-  Check?: typeof React.Component,
-  ChevronLeft?: typeof React.Component,
-  ChevronRight?: typeof React.Component,
-  DeleteAlt?: typeof React.Component,
-  Delete?: typeof React.Component,
-  Filter?: typeof React.Component,
-  Grab?: typeof React.Component,
-  Menu?: typeof React.Component,
-  Overflow?: typeof React.Component,
-  Plus?: typeof React.Component,
-  Search?: typeof React.Component,
-  Spinner?: typeof React.Component,
-  TriangleDown?: typeof React.Component,
-  TriangleLeft?: typeof React.Component,
-  TriangleRight?: typeof React.Component,
-  TriangleUp?: typeof React.Component,
-  Upload?: typeof React.Component,
+  Alert?: ComponentType<any>,
+  ArrowDown?: ComponentType<any>,
+  ArrowLeft?: ComponentType<any>,
+  ArrowRight?: ComponentType<any>,
+  ArrowUp?: ComponentType<any>,
+  CheckIndeterminate?: ComponentType<any>,
+  Check?: ComponentType<any>,
+  ChevronLeft?: ComponentType<any>,
+  ChevronRight?: ComponentType<any>,
+  DeleteAlt?: ComponentType<any>,
+  Delete?: ComponentType<any>,
+  Filter?: ComponentType<any>,
+  Grab?: ComponentType<any>,
+  Menu?: ComponentType<any>,
+  Overflow?: ComponentType<any>,
+  Plus?: ComponentType<any>,
+  Search?: ComponentType<any>,
+  Spinner?: ComponentType<any>,
+  TriangleDown?: ComponentType<any>,
+  TriangleLeft?: ComponentType<any>,
+  TriangleRight?: ComponentType<any>,
+  TriangleUp?: ComponentType<any>,
+  Upload?: ComponentType<any>,
 };
