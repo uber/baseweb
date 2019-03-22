@@ -55,7 +55,8 @@ const isLeftClick = event =>
 
 const containsNode = (parent, child) => {
   if (__BROWSER__) {
-    return child instanceof Node && parent && parent.contains(child);
+    // eslint-disable-next-line flowtype/no-weak-types
+    return child && parent && parent.contains((child: any));
   }
 };
 
