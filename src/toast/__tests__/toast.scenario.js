@@ -19,7 +19,7 @@ export const component = () => (
     <Toast>
       {({dismiss}) => {
         return (
-          <React.Fragment>
+          <div>
             Info notification with no close button and children as a function.
             <div>
               <Button
@@ -30,7 +30,7 @@ export const component = () => (
                 Click to dismiss
               </Button>
             </div>
-          </React.Fragment>
+          </div>
         );
       }}
     </Toast>
