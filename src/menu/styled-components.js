@@ -19,6 +19,7 @@ type StyledPropsT = {
 };
 
 export const List = styled('ul', ({$theme}: StyledPropsT) => ({
+  backgroundColor: $theme.colors.menuFill,
   position: 'relative',
   marginTop: '0',
   marginBottom: '0',
@@ -28,7 +29,6 @@ export const List = styled('ul', ({$theme}: StyledPropsT) => ({
   paddingBottom: $theme.sizing.scale300,
   paddingLeft: '0',
   paddingRight: '0',
-  backgroundColor: $theme.colors.backgroundAlt,
   borderRadius: $theme.borders.radius300,
   boxShadow: $theme.lighting.shadow600,
   overflow: 'auto',
@@ -157,7 +157,7 @@ export const ProfileSubtitle = styled('p', ({$theme}) => ({
 
 export const ProfileBody = styled('p', ({$theme}) => ({
   ...$theme.typography.font200,
-  color: $theme.colors.foregroundAlt,
+  color: $theme.colors.foreground,
   marginTop: '0',
   marginBottom: '0',
   marginLeft: '0',
