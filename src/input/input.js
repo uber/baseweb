@@ -18,7 +18,7 @@ import {ADJOINED, ENHANCER_POSITION} from './constants.js';
 
 class Input extends React.Component<InputPropsT, InternalStateT> {
   static defaultProps = {
-    autocomplete: true,
+    autocomplete: 'auto',
     autoFocus: false,
     disabled: false,
     name: '',

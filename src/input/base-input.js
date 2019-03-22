@@ -29,7 +29,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     'aria-labelledby': null,
     'aria-describedby': null,
     adjoined: ADJOINED.none,
-    autocomplete: true,
+    autocomplete: 'auto',
     autoFocus: false,
     disabled: false,
     error: false,

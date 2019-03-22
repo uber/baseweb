@@ -52,7 +52,7 @@ Object {
   "aria-labelledby": null,
   "aria-required": false,
   "autoFocus": false,
-  "autocomplete": true,
+  "autocomplete": "auto",
   "id": undefined,
   "name": "",
   "onBlur": [Function],
