@@ -101,7 +101,7 @@ export type RadioPropsT = {
   checked?: boolean,
   /** Label of radio. */
   children?: React$Node,
-  /** Add more detail about a this radio element. */
+  /** Add more detail about a radio element. */
   description?: string,
   /** Disable the checkbox from being changed. */
   disabled?: boolean,
