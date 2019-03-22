@@ -65,27 +65,27 @@ function getBackgroundColor(props) {
     return isToggle ? colors.sliderTrackFillDisabled : colors.tickFillDisabled;
   } else if ($isError && ($isIndeterminate || $checked)) {
     if ($isActive || $isFocused) {
-      return colors.negative600;
+      return colors.tickFillErrorSelectedHoverActive;
     } else if ($isHovered) {
-      return colors.negative500;
+      return colors.tickFillErrorSelectedHover;
     } else {
-      return colors.negative400;
+      return colors.tickFillErrorSelected;
     }
   } else if ($isError) {
     if ($isActive || $isFocused) {
-      return colors.negative200;
+      return colors.tickFillErrorHoverActive;
     } else if ($isHovered) {
-      return colors.negative100;
+      return colors.tickFillErrorHover;
     } else {
-      return colors.negative50;
+      return colors.tickFillError;
     }
   } else if ($isIndeterminate || $checked) {
     if ($isActive || $isFocused) {
-      return colors.primary600;
+      return colors.tickFillSelectedHoverActive;
     } else if ($isHovered) {
-      return colors.primary500;
+      return colors.tickFillSelectedHover;
     } else {
-      return colors.primary400;
+      return colors.tickFillSelected;
     }
   } else {
     if ($isActive || $isFocused) {
@@ -126,7 +126,7 @@ export const Checkmark = styled('span', props => {
   const {sizing, animation} = $theme;
 
   const tickColor = $disabled
-    ? $theme.colors.mono600
+    ? $theme.colors.tickMarkFillDisabled
     : $theme.colors.tickMarkFill;
 
   const indeterminate = encodeURIComponent(`
@@ -226,12 +226,20 @@ export const Toggle = styled('div', props => ({
 }));
 
 export const ToggleInner = styled('div', props => {
-  function backgroundColor($theme) {
-    if (props.$disabled) return props.$theme.colors.mono400;
-    if (props.$isActive) return props.$theme.colors.primary500;
-    if (props.$isHovered || props.$checked) return props.$theme.colors.primary;
+  function backgroundColor() {
+    if (props.$disabled) {
+      return props.$theme.colors.sliderHandleInnerFillDisabled;
+    }
 
-    return props.$theme.colors.mono600;
+    if (props.$isActive && props.$checked) {
+      return props.$theme.colors.sliderHandleInnerFillSelectedActive;
+    }
+
+    if (props.$isHovered && props.$checked) {
+      return props.$theme.colors.sliderHandleInnerFillSelectedHover;
+    }
+
+    return props.$theme.colors.sliderHandleInnerFill;
   }
 
   return {
