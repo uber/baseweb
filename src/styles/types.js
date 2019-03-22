@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import type {ElementType} from 'react';
+
 export type BreakpointsT = {
   small: number,
   medium: number,
@@ -328,27 +330,27 @@ export type ThemeT = {|
 |};
 
 export type IconT = {
-  Alert?: React.Node,
-  ArrowDown?: React.Node,
-  ArrowLeft?: React.Node,
-  ArrowRight?: React.Node,
-  ArrowUp?: React.Node,
-  CheckIndeterminate?: React.Node,
-  Check?: React.Node,
-  ChevronLeft?: React.Node,
-  ChevronRight?: React.Node,
-  DeleteAlt?: React.Node,
-  Delete?: React.Node,
-  Filter?: React.Node,
-  Grab?: React.Node,
-  Menu?: React.Node,
-  Overflow?: React.Node,
-  Plus?: React.Node,
-  Search?: React.Node,
-  Spinner?: React.Node,
-  TriangleDown?: React.Node,
-  TriangleLeft?: React.Node,
-  TriangleRight?: React.Node,
-  TriangleUp?: React.Node,
-  Upload?: React.Node,
+  Alert?: ElementType,
+  ArrowDown?: ElementType,
+  ArrowLeft?: ElementType,
+  ArrowRight?: ElementType,
+  ArrowUp?: ElementType,
+  CheckIndeterminate?: ElementType,
+  Check?: ElementType,
+  ChevronLeft?: ElementType,
+  ChevronRight?: ElementType,
+  DeleteAlt?: ElementType,
+  Delete?: ElementType,
+  Filter?: ElementType,
+  Grab?: ElementType,
+  Menu?: ElementType,
+  Overflow?: ElementType,
+  Plus?: ElementType,
+  Search?: ElementType,
+  Spinner?: ElementType,
+  TriangleDown?: ElementType,
+  TriangleLeft?: ElementType,
+  TriangleRight?: ElementType,
+  TriangleUp?: ElementType,
+  Upload?: ElementType,
 };
