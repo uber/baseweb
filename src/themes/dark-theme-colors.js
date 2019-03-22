@@ -14,6 +14,8 @@ export default {
   colors: {
     // Semantic Colors
 
+    white: WHITE,
+
     // Font Color
     colorPrimary: primitives.mono100,
     colorSecondary: primitives.mono200,
@@ -59,6 +61,13 @@ export default {
     // Breadcrumbs
     breadcrumbsText: primitives.mono100,
     breadcrumbsSeparatorFill: primitives.mono200,
+
+    // Datepicker
+    datepickerBackground: primitives.mono600,
+    datepickerDayFont: WHITE,
+    datepickerDayFontDisabled: primitives.mono100,
+    datepickerDayPseudoSelected: primitives.mono500,
+    datepickerDayPseudoHighlighted: primitives.mono600,
 
     // FileUploader
     fileUploaderBackgroundColor: primitives.mono700,
