@@ -159,7 +159,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
       <LocaleContext.Consumer>
         {locale => (
           <Body
-            tabIndex={0}
             role="alert"
             data-baseweb={this.props['data-baseweb'] || 'toast'}
             {...sharedProps}
@@ -172,7 +171,14 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
           >
             {closeable ? (
               <DeleteAltIcon
+                role="button"
+                tabIndex={0}
                 onClick={this.dismiss}
+                onKeyPress={event => {
+                  if (event.key === 'Enter') {
+                    this.dismiss();
+                  }
+                }}
                 title={locale.toast.close}
                 {...sharedProps}
                 {...closeIconProps}
