@@ -169,6 +169,9 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
           >
+            {typeof children === 'function'
+              ? children({dismiss: this.dismiss})
+              : children}
             {closeable ? (
               <DeleteAltIcon
                 role="button"
@@ -185,9 +188,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
                 overrides={closeIconOverrides}
               />
             ) : null}
-            {typeof children === 'function'
-              ? children({dismiss: this.dismiss})
-              : children}
           </Body>
         )}
       </LocaleContext.Consumer>
