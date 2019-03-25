@@ -208,6 +208,7 @@ export type ColorsT = {
   notificationNegativeText: string,
 
   // Menu
+  menuFill: string,
   menuFillHover: string,
   menuFontDefault: string,
   menuFontDisabled: string,

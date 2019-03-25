@@ -127,7 +127,7 @@ export default class MyApp extends App {
           <ThemeProvider theme={this.state.theme}>
             <Block overrides={BlockOverrides}>
               <Component {...pageProps} path={path} />
-              <Block overrides={BlockOverrides} marginBottom="300px" />
+              <Block overrides={BlockOverrides} height="300px" />
             </Block>
           </ThemeProvider>
         </StyletronProvider>

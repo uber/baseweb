@@ -39,7 +39,9 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
 
 export const StyledContentMessage = styled('div', (props: StylePropsT) => ({
   ...props.$theme.typography.font400,
-  color: props.$afterFileDrop ? props.$theme.colors.mono800 : null,
+  color: props.$afterFileDrop
+    ? props.$theme.colors.fileUploaderMessageColor
+    : null,
   marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
 }));
 
