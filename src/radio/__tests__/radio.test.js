@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 
-import {Radio, StyledRoot, StyledInput} from '../index.js';
+import {Radio, StyledRoot, StyledInput, StyledDescription} from '../index.js';
 
 describe('Radio', () => {
   it('calls provided handlers', () => {
@@ -41,5 +41,11 @@ describe('Radio', () => {
     root.simulate('mousedown');
     root.simulate('mouseup');
     expect(spy).toHaveBeenCalledTimes(4);
+  });
+
+  it('displays description if provided', () => {
+    const description = 'foo';
+    const wrapper = mount(<Radio description={description}>bar</Radio>);
+    expect(wrapper.find(StyledDescription).text()).toBe(description);
   });
 });
