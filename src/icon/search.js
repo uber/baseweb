@@ -17,7 +17,9 @@ export default function Search(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Search ? (
-          <theme.icons.Search title="Search" viewBox="0 0 24 24" {...props} />
+          <Icon title="Search" viewBox="0 0 24 24" {...props}>
+            <theme.icons.Search />
+          </Icon>
         ) : (
           <Icon title="Search" viewBox="0 0 24 24" {...props}>
             <path
