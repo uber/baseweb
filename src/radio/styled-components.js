@@ -193,3 +193,13 @@ export const Input = styled('input', {
   padding: 0,
   position: 'absolute',
 });
+
+export const Description = styled('div', props => {
+  return {
+    ...props.$theme.typography.font300,
+    color: props.$theme.colors.colorSecondary,
+    cursor: 'auto',
+    marginLeft: props.$theme.sizing.scale900,
+    maxWidth: '240px',
+  };
+});
