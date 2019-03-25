@@ -270,6 +270,7 @@ export type SizingT = {
   scale300: string,
   scale400: string,
   scale500: string,
+  scale550: string,
   scale600: string,
   scale700: string,
   scale800: string,
