@@ -16,6 +16,7 @@ import {
   Input as StyledInput,
   RadioMarkInner as StyledRadioMarkInner,
   RadioMarkOuter as StyledRadioMarkOuter,
+  Description as StyledDescription,
 } from './styled-components.js';
 import type {RadioPropsT, RadioStateT} from './types.js';
 
@@ -91,6 +92,10 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
     const [Input, inputProps] = getOverrides(overrides.Input, StyledInput);
+    const [Description, descriptionProps] = getOverrides(
+      overrides.Description,
+      StyledDescription,
+    );
     const [RadioMarkInner, radioMarkInnerProps] = getOverrides(
       overrides.RadioMarkInner,
       StyledRadioMarkInner,
@@ -128,37 +133,45 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     );
 
     return (
-      <Root
-        data-baseweb="radio"
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-        onMouseDown={this.onMouseDown}
-        onMouseUp={this.onMouseUp}
-        {...sharedProps}
-        {...rootProps}
-      >
-        {isLabelTopLeft(this.props.labelPlacement) && label}
-        <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
-          <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
-        </RadioMarkOuter>
-        <Input
-          aria-invalid={this.props.isError || null}
-          aria-required={this.props.required || null}
-          checked={this.props.checked}
-          disabled={this.props.disabled}
-          name={this.props.name}
-          onBlur={this.onBlur}
-          onFocus={this.onFocus}
-          onChange={this.props.onChange}
-          $ref={this.props.inputRef}
-          required={this.props.required}
-          type="radio"
-          value={this.props.value}
+      <React.Fragment>
+        <Root
+          data-baseweb="radio"
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+          onMouseDown={this.onMouseDown}
+          onMouseUp={this.onMouseUp}
           {...sharedProps}
-          {...inputProps}
-        />
-        {isLabelBottomRight(this.props.labelPlacement) && label}
-      </Root>
+          {...rootProps}
+        >
+          {isLabelTopLeft(this.props.labelPlacement) && label}
+          <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
+            <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
+          </RadioMarkOuter>
+          <Input
+            aria-invalid={this.props.isError || null}
+            aria-required={this.props.required || null}
+            checked={this.props.checked}
+            disabled={this.props.disabled}
+            name={this.props.name}
+            onBlur={this.onBlur}
+            onFocus={this.onFocus}
+            onChange={this.props.onChange}
+            $ref={this.props.inputRef}
+            required={this.props.required}
+            type="radio"
+            value={this.props.value}
+            {...sharedProps}
+            {...inputProps}
+          />
+          {isLabelBottomRight(this.props.labelPlacement) && label}
+        </Root>
+
+        {!!this.props.description && (
+          <Description {...descriptionProps}>
+            {this.props.description}
+          </Description>
+        )}
+      </React.Fragment>
     );
   }
 }
