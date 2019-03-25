@@ -17,7 +17,9 @@ export default function Spinner(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Spinner ? (
-          <theme.icons.Spinner title="Spinner" viewBox="0 0 24 24" {...props} />
+          <Icon title="Spinner" viewBox="0 0 24 24" {...props}>
+            <theme.icons.Spinner />
+          </Icon>
         ) : (
           <Icon title="Spinner" viewBox="0 0 24 24" {...props}>
             <path
