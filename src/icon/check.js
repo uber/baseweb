@@ -17,7 +17,9 @@ export default function Check(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Check ? (
-          <theme.icons.Check title="Check" viewBox="0 0 24 24" {...props} />
+          <Icon title="Check" viewBox="0 0 24 24" {...props}>
+            <theme.icons.Check />
+          </Icon>
         ) : (
           <Icon title="Check" viewBox="0 0 24 24" {...props}>
             <path
