@@ -24,6 +24,7 @@ const StyledTableElement = styled('div', ({$theme}: SharedStylePropsT) => {
 export const StyledTable = (props: *) => (
   <StyledTableElement role="grid" {...props} />
 );
+StyledTable.__STYLETRON__ = StyledTableElement.__STYLETRON__;
 
 type HorizontalStyleProps = {
   ...SharedStylePropsT,
@@ -71,6 +72,7 @@ const StyledHeadCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
 export const StyledHeadCell = (props: *) => (
   <StyledHeadCellElement role="columnheader" {...props} />
 );
+StyledHeadCell.__STYLETRON__ = StyledHeadCellElement.__STYLETRON__;
 
 export const StyledSortableLabel = styled('button', ({$theme}) => {
   return {
@@ -100,6 +102,7 @@ const StyledBodyElement = styled('div', ({$width}: HorizontalStyleProps) => {
 export const StyledBody = (props: *) => (
   <StyledBodyElement role="rowgroup" {...props} />
 );
+StyledBody.__STYLETRON__ = StyledBodyElement.__STYLETRON__;
 
 const StyledRowElement = styled('div', ({$theme}) => ({
   display: 'flex',
@@ -109,6 +112,7 @@ const StyledRowElement = styled('div', ({$theme}) => ({
 export const StyledRow = (props: *) => (
   <StyledRowElement role="row" {...props} />
 );
+StyledRow.__STYLETRON__ = StyledRowElement.__STYLETRON__;
 
 const StyledCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
@@ -125,6 +129,7 @@ const StyledCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
 export const StyledCell = (props: *) => (
   <StyledCellElement role="gridcell" {...props} />
 );
+StyledCell.__STYLETRON__ = StyledCellElement.__STYLETRON__;
 
 export const StyledFilterButton = styled('button', {
   border: 'none',
