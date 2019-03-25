@@ -5,10 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import React from 'react';
+
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
 
-export const StyledTable = styled('div', ({$theme}: SharedStylePropsT) => {
+const StyledTableElement = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.borders.border300,
     borderRadius: $theme.borders.radius200,
@@ -19,12 +21,17 @@ export const StyledTable = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
+export const StyledTable = (props: *) => (
+  <StyledTableElement role="grid" {...props} />
+);
+StyledTable.__STYLETRON__ = StyledTableElement.__STYLETRON__;
+
 type HorizontalStyleProps = {
   ...SharedStylePropsT,
   $width?: string,
 };
 
-export const StyledHead = styled(
+const StyledHeadElement = styled(
   'div',
   ({$theme, $width}: HorizontalStyleProps) => {
     return {
@@ -38,7 +45,11 @@ export const StyledHead = styled(
   },
 );
 
-export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
+export const StyledHead = (props: *) => (
+  <StyledHeadElement role="row" {...props} />
+);
+
+const StyledHeadCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.typography.font350,
     ...$theme.borders.border300,
@@ -58,6 +69,11 @@ export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
   };
 });
 
+export const StyledHeadCell = (props: *) => (
+  <StyledHeadCellElement role="columnheader" {...props} />
+);
+StyledHeadCell.__STYLETRON__ = StyledHeadCellElement.__STYLETRON__;
+
 export const StyledSortableLabel = styled('button', ({$theme}) => {
   return {
     ...$theme.typography.font350,
@@ -74,7 +90,7 @@ export const StyledSortableLabel = styled('button', ({$theme}) => {
   };
 });
 
-export const StyledBody = styled('div', ({$width}: HorizontalStyleProps) => {
+const StyledBodyElement = styled('div', ({$width}: HorizontalStyleProps) => {
   return {
     width: $width ? $width : '100%',
     overflowX: 'hidden',
@@ -83,12 +99,22 @@ export const StyledBody = styled('div', ({$width}: HorizontalStyleProps) => {
   };
 });
 
-export const StyledRow = styled('div', ({$theme}) => ({
+export const StyledBody = (props: *) => (
+  <StyledBodyElement role="rowgroup" {...props} />
+);
+StyledBody.__STYLETRON__ = StyledBodyElement.__STYLETRON__;
+
+const StyledRowElement = styled('div', ({$theme}) => ({
   display: 'flex',
   alignItems: 'center',
 }));
 
-export const StyledCell = styled('div', ({$theme}: SharedStylePropsT) => {
+export const StyledRow = (props: *) => (
+  <StyledRowElement role="row" {...props} />
+);
+StyledRow.__STYLETRON__ = StyledRowElement.__STYLETRON__;
+
+const StyledCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.typography.font300,
     display: 'flex',
@@ -99,6 +125,11 @@ export const StyledCell = styled('div', ({$theme}: SharedStylePropsT) => {
     paddingLeft: $theme.sizing.scale600,
   };
 });
+
+export const StyledCell = (props: *) => (
+  <StyledCellElement role="gridcell" {...props} />
+);
+StyledCell.__STYLETRON__ = StyledCellElement.__STYLETRON__;
 
 export const StyledFilterButton = styled('button', {
   border: 'none',
