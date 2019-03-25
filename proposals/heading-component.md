@@ -14,18 +14,21 @@ There is proposal for an `<h>` element and [document outline algorithm](http://a
 
 ```jsx
 import * as React from 'react';
-import {Heading} from 'baseui/heading';
+import {Heading, Section} from 'baseui/heading';
 export default () => (
-  <Heading heading="Base Web">
+  <Section>
+    <Heading>Base Web</Heading>
     Welcome
-    <Heading heading="Introduction">
-       Introduction of Base Web
-      <Heading heading="Quotes" />
-    </Heading>
-    <Heading heading="Motivation">
+    <Section>
+      <Heading>Introduction</Heading>
+      Introduction of Base Web
+      <Section>
+        <Heading>Quotes</Heading>
+      </Section>
+      <Heading>Motivation</Heading>
       Our motivation
-    </Heading>
-  </Heading>
+    </Section>
+  </Section>
 ```
 
 This would output
@@ -50,10 +53,13 @@ Ideally, the user will use the default styles but sometimes it might make sense 
 
 ```jsx
 export default () => (
-  <Heading heading="Level 1">
-    <Heading heading="Level 2" styleLevel={1}/>
-    <Heading heading="Level 2" styleLevel={3}/>
-  </Heading>
+  <Section>
+    <Heading>Level 1</Heading>
+    <Section>
+      <Heading styleLevel={1}>Level 2</Heading>
+      <Heading styleLevel={3}>Level 2</Heading>
+    </Section>
+  </Section>
 ```
 
 would output something like this
