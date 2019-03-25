@@ -38,18 +38,15 @@ Track.displayName = 'StyledTrack';
 export const InnerTrack = styled('div', props => {
   const {$theme, $value, $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
+
   return {
     borderRadius: $theme.borders.useRoundedCorners ? borders.radius100 : '0px',
     background: getTrackBackground({
       values: $value,
       colors:
         $value.length === 1
-          ? [$disabled ? colors.mono600 : colors.primary, colors.mono400]
-          : [
-              colors.mono400,
-              $disabled ? colors.mono600 : colors.primary,
-              colors.mono400,
-            ],
+          ? [colors.primary, colors.mono400]
+          : [colors.mono400, colors.primary, colors.mono400],
       min: $min,
       max: $max,
     }),
