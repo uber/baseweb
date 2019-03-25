@@ -34,6 +34,7 @@ export const DropdownMenu = styled(StyledList, ({$theme}) => ({
   marginTop: $theme.sizing.scale300,
   left: 0,
   right: 0,
+  zIndex: 1,
 }));
 
 export const DropdownButton = styled(StyledBaseButton, ({$theme}) => ({
