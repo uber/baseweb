@@ -17,7 +17,9 @@ export default function Plus(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Plus ? (
-          <theme.icons.Plus title="Plus" viewBox="0 0 24 24" {...props} />
+          <Icon title="Plus" viewBox="0 0 24 24" {...props}>
+            <theme.icons.Plus />
+          </Icon>
         ) : (
           <Icon title="Plus" viewBox="0 0 24 24" {...props}>
             <path
