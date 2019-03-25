@@ -146,9 +146,10 @@ export default {
     inputTextDisabled: primitives.mono500,
 
     // Menu
-    menuFillHover: primitives.mono800,
-    menuFontDefault: primitives.mono400,
-    menuFontDisabled: primitives.mono500,
+    menuFill: primitives.mono600,
+    menuFillHover: primitives.mono700,
+    menuFontDefault: primitives.mono300,
+    menuFontDisabled: primitives.mono400,
     menuFontHighlighted: primitives.mono200,
     menuFontSelected: primitives.mono200,
   },
