@@ -30,25 +30,20 @@ export default class Table extends React.Component<TablePropsT> {
     return (
       <StyledTable
         data-baseweb="table"
-        role="grid"
         aria-colcount={this.props.columns.length}
         aria-rowcount={this.props.data.length}
       >
-        <StyledHead role="row" $width={this.props.horizontalScrollWidth}>
+        <StyledHead $width={this.props.horizontalScrollWidth}>
           {this.props.columns.map((column, index) => (
-            <StyledHeadCell role="columnheader" key={index}>
-              {column}
-            </StyledHeadCell>
+            <StyledHeadCell key={index}>{column}</StyledHeadCell>
           ))}
         </StyledHead>
 
-        <StyledBody role="rowgroup" $width={this.props.horizontalScrollWidth}>
+        <StyledBody $width={this.props.horizontalScrollWidth}>
           {this.props.data.map((row, index) => (
-            <StyledRow key={index} role="row">
+            <StyledRow key={index}>
               {row.map((cell, cellIndex) => (
-                <StyledCell key={cellIndex} role="gridcell">
-                  {cell}
-                </StyledCell>
+                <StyledCell key={cellIndex}>{cell}</StyledCell>
               ))}
             </StyledRow>
           ))}
