@@ -402,16 +402,24 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  getOptionLabel = ({
-    option,
-  }: {
-    option: OptionT,
-    optionState: {
-      $selected: boolean,
-      $disabled: boolean,
-      $isHighlighted: boolean,
+  getOptionLabel = (
+    locale: LocaleT,
+    {
+      option,
+    }: {
+      option: OptionT,
+      optionState: {
+        $selected: boolean,
+        $disabled: boolean,
+        $isHighlighted: boolean,
+      },
     },
-  }): React.Node => {
+  ): React.Node => {
+    if (option.isCreatable) {
+      return (
+        locale.select.create + ' ' + '"' + option[this.props.labelKey] + '"'
+      );
+    }
     return option[this.props.labelKey];
   };
 
@@ -736,20 +744,39 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   filterOptions(excludeOptions: ?ValueT) {
     const filterValue = this.state.inputValue;
-    const options = this.props.options || [];
+    var options = this.props.options || [];
+    // apply filter function
     if (this.props.filterOptions) {
-      return this.props.filterOptions(options, filterValue, excludeOptions, {
+      options = this.props.filterOptions(options, filterValue, excludeOptions, {
         valueKey: this.props.valueKey,
         labelKey: this.props.labelKey,
       });
-    } else {
-      return options;
     }
+    // can user create a new option + there's no exact match already
+    if (
+      filterValue &&
+      this.props.creatable &&
+      options.every(
+        opt =>
+          opt[this.props.labelKey].toLowerCase() !==
+          filterValue.toLowerCase().trim(),
+      )
+    ) {
+      // $FlowFixMe
+      options.push({
+        id: filterValue,
+        [this.props.labelKey]: filterValue,
+        [this.props.valueKey]: filterValue,
+        isCreatable: true,
+      });
+    }
+    return options;
   }
 
   getSharedProps() {
     const {
       clearable,
+      creatable,
       disabled,
       error,
       isLoading,
@@ -762,6 +789,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const {isOpen, isFocused, isPseudoFocused} = this.state;
     return {
       $clearable: clearable,
+      $creatable: creatable,
       $disabled: disabled,
       $error: error,
       $isFocused: isFocused,
@@ -826,7 +854,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
               const dropdownProps = {
                 error: this.props.error,
                 getOptionLabel:
-                  this.props.getOptionLabel || this.getOptionLabel,
+                  this.props.getOptionLabel ||
+                  this.getOptionLabel.bind(this, locale),
                 isLoading: this.props.isLoading,
                 labelKey: this.props.labelKey,
                 maxDropdownHeight: this.props.maxDropdownHeight,

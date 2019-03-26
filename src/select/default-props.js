@@ -16,6 +16,7 @@ const defaultProps = {
   backspaceRemoves: true,
   clearable: true,
   closeOnSelect: true,
+  creatable: false,
   deleteRemoves: true,
   disabled: false,
   error: false,
