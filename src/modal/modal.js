@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document */
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 
 import {LocaleContext} from '../locale/index.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {Layer} from '../layer/index.js';
 import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
 import {ownerDocument} from './utils.js';
 import {
@@ -334,11 +334,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (!this.props.isOpen && !this.state.isVisible) {
       return null;
     }
-    const mountNode = this.getMountNode();
-    if (!mountNode) {
-      return null;
-    }
-    return ReactDOM.createPortal(this.renderModal(), mountNode);
+    return <Layer mountNode={this.props.mountNode}>{this.renderModal()}</Layer>;
   }
 }
 

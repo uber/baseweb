@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 
 import Popper from 'popper.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
@@ -20,6 +19,7 @@ import {
   ANIMATE_OUT_TIME,
   ANIMATE_IN_TIME,
 } from './constants.js';
+import {Layer} from '../layer/index.js';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
@@ -73,6 +73,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     prevProps: PopoverPropsT,
     prevState: PopoverPrivateStateT,
   ) {
+    this.init(prevProps, prevState);
+  }
+
+  init(prevProps: PopoverPropsT, prevState: PopoverPrivateStateT) {
     // Handles the case where popover content changes size and creates a gap between the anchor and
     // the popover. Popper.js only schedules updates on resize and scroll events. In the case of
     // the Select component, when options were filtered in the dropdown menu it creates a gap
@@ -84,13 +88,12 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         this.popper && this.popper.scheduleUpdate();
       }
     }
-
     if (
       this.props.isOpen !== prevProps.isOpen ||
       this.state.isMounted !== prevState.isMounted
     ) {
       // Transition from closed to open.
-      if (this.props.isOpen) {
+      if (this.props.isOpen && this.popperRef.current) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
         this.initializePopper();
@@ -512,8 +515,15 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         this.state.isMounted &&
         (this.props.isOpen || this.state.isAnimating)
       ) {
-        const mountNode = this.getMountNode();
-        rendered.push(ReactDOM.createPortal(this.renderPopover(), mountNode));
+        rendered.push(
+          <Layer
+            mountNode={this.props.mountNode}
+            // $FlowFixMe
+            onMount={() => this.init({}, {})}
+          >
+            {this.renderPopover()}
+          </Layer>,
+        );
       }
     }
     return rendered;

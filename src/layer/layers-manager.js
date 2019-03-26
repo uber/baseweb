@@ -5,13 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React, {createContext} from 'react';
+import * as React from 'react';
+import type {LayersManagerPropsT, LayersContexT} from './types.js';
 
-export const {Provider, Consumer} = createContext();
+export const {Provider, Consumer}: React.Context<LayersContexT> = React.createContext({root: null, host: null});
 
-export default class LayersManager extends React.Component {
-  root = React.createRef();
-  host = React.createRef();
+export default class LayersManager extends React.Component<
+  LayersManagerPropsT,
+> {
+  root: {current: ?HTMLElement} = React.createRef();
+  host: {current: ?HTMLElement} = React.createRef();
 
   componentDidMount() {
     this.forceUpdate();
@@ -20,8 +23,10 @@ export default class LayersManager extends React.Component {
   render() {
     return (
       <Provider value={{root: this.root.current, host: this.host.current}}>
-        <div ref={this.root}>{this.props.children}</div>
-        <div ref={this.host} />
+        <div data-test="root" ref={this.root}>
+          {this.props.children}
+        </div>
+        <div data-test="host" ref={this.host} />
       </Provider>
     );
   }

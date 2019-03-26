@@ -20,6 +20,7 @@ import {
 import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
+import {LayersManager} from 'baseui/layer';
 import Router from 'next/router';
 
 import {styletron} from '../helpers/styletron';
@@ -125,14 +126,16 @@ export default class MyApp extends App {
     const {Component, pageProps, path} = this.props;
     return (
       <Container>
-        <StyletronProvider value={styletron}>
-          <ThemeProvider theme={this.state.theme}>
-            <Block overrides={BlockOverrides}>
-              <Component {...pageProps} path={path} />
-              <Block overrides={BlockOverrides} height="300px" />
-            </Block>
-          </ThemeProvider>
-        </StyletronProvider>
+        <LayersManager>
+          <StyletronProvider value={styletron}>
+            <ThemeProvider theme={this.state.theme}>
+              <Block overrides={BlockOverrides}>
+                <Component {...pageProps} path={path} />
+                <Block overrides={BlockOverrides} height="300px" />
+              </Block>
+            </ThemeProvider>
+          </StyletronProvider>
+        </LayersManager>
       </Container>
     );
   }
