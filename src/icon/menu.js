@@ -17,7 +17,9 @@ export default function Menu(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Menu ? (
-          <theme.icons.Menu title="Menu" viewBox="0 0 24 24" {...props} />
+          <Icon title="Menu" viewBox="0 0 24 24" {...props}>
+            <theme.icons.Menu />
+          </Icon>
         ) : (
           <Icon title="Menu" viewBox="0 0 24 24" {...props}>
             <rect x="4" y="11" width="16" height="2" rx="1" />

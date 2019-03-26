@@ -17,11 +17,9 @@ export default function ArrowDown(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.ArrowDown ? (
-          <theme.icons.ArrowDown
-            title="Arrow Down"
-            viewBox="0 0 24 24"
-            {...props}
-          />
+          <Icon title="Arrow Down" viewBox="0 0 24 24" {...props}>
+            <theme.icons.ArrowDown />
+          </Icon>
         ) : (
           <Icon title="Arrow Down" viewBox="0 0 24 24" {...props}>
             <path

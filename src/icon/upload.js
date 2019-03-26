@@ -17,7 +17,9 @@ export default function Upload(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Upload ? (
-          <theme.icons.Upload title="Upload" viewBox="0 0 24 24" {...props} />
+          <Icon title="Upload" viewBox="0 0 24 24" {...props}>
+            <theme.icons.Upload />
+          </Icon>
         ) : (
           <Icon title="Upload" viewBox="0 0 24 24" {...props}>
             <path
