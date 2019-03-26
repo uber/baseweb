@@ -9,6 +9,7 @@ exports[`Select component renders component in search mode and false for multipl
   backspaceRemoves={true}
   clearable={true}
   closeOnSelect={true}
+  creatable={false}
   deleteRemoves={true}
   disabled={false}
   error={false}
@@ -70,6 +71,7 @@ exports[`Select component renders component in search mode and false for multipl
   >
     <MockStyledComponent
       $clearable={true}
+      $creatable={false}
       $disabled={false}
       $error={false}
       $isFocused={false}
@@ -103,6 +105,7 @@ exports[`Select component renders component in search mode and false for multipl
       >
         <MockStyledComponent
           $clearable={true}
+          $creatable={false}
           $disabled={false}
           $error={false}
           $isFocused={false}
@@ -130,6 +133,7 @@ exports[`Select component renders component in search mode and false for multipl
           >
             <Search
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -151,6 +155,7 @@ exports[`Select component renders component in search mode and false for multipl
             >
               <Icon
                 $clearable={true}
+                $creatable={false}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -173,6 +178,7 @@ exports[`Select component renders component in search mode and false for multipl
               >
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -206,6 +212,7 @@ exports[`Select component renders component in search mode and false for multipl
             </Search>
             <MockStyledComponent
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -223,6 +230,7 @@ exports[`Select component renders component in search mode and false for multipl
               >
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -243,6 +251,7 @@ exports[`Select component renders component in search mode and false for multipl
                 </MockStyledComponent>
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -260,6 +269,7 @@ exports[`Select component renders component in search mode and false for multipl
                   >
                     <AutosizeInput
                       $clearable={true}
+                      $creatable={false}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -295,6 +305,7 @@ exports[`Select component renders component in search mode and false for multipl
                     >
                       <MockStyledComponent
                         $clearable={true}
+                        $creatable={false}
                         $disabled={false}
                         $error={false}
                         $isFocused={false}
@@ -357,6 +368,7 @@ exports[`Select component renders component in search mode and false for multipl
             </MockStyledComponent>
             <MockStyledComponent
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -390,6 +402,7 @@ exports[`Select component renders component in search mode and true for multiple
   backspaceRemoves={true}
   clearable={true}
   closeOnSelect={true}
+  creatable={false}
   deleteRemoves={true}
   disabled={false}
   error={false}
@@ -451,6 +464,7 @@ exports[`Select component renders component in search mode and true for multiple
   >
     <MockStyledComponent
       $clearable={true}
+      $creatable={false}
       $disabled={false}
       $error={false}
       $isFocused={false}
@@ -484,6 +498,7 @@ exports[`Select component renders component in search mode and true for multiple
       >
         <MockStyledComponent
           $clearable={true}
+          $creatable={false}
           $disabled={false}
           $error={false}
           $isFocused={false}
@@ -511,6 +526,7 @@ exports[`Select component renders component in search mode and true for multiple
           >
             <Search
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -532,6 +548,7 @@ exports[`Select component renders component in search mode and true for multiple
             >
               <Icon
                 $clearable={true}
+                $creatable={false}
                 $disabled={false}
                 $error={false}
                 $isFocused={false}
@@ -554,6 +571,7 @@ exports[`Select component renders component in search mode and true for multiple
               >
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -587,6 +605,7 @@ exports[`Select component renders component in search mode and true for multiple
             </Search>
             <MockStyledComponent
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -604,6 +623,7 @@ exports[`Select component renders component in search mode and true for multiple
               >
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -624,6 +644,7 @@ exports[`Select component renders component in search mode and true for multiple
                 </MockStyledComponent>
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -641,6 +662,7 @@ exports[`Select component renders component in search mode and true for multiple
                   >
                     <AutosizeInput
                       $clearable={true}
+                      $creatable={false}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -676,6 +698,7 @@ exports[`Select component renders component in search mode and true for multiple
                     >
                       <MockStyledComponent
                         $clearable={true}
+                        $creatable={false}
                         $disabled={false}
                         $error={false}
                         $isFocused={false}
@@ -738,6 +761,7 @@ exports[`Select component renders component in search mode and true for multiple
             </MockStyledComponent>
             <MockStyledComponent
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -771,6 +795,7 @@ exports[`Select component renders component in select mode and false for multipl
   backspaceRemoves={true}
   clearable={true}
   closeOnSelect={true}
+  creatable={false}
   deleteRemoves={true}
   disabled={false}
   error={false}
@@ -832,6 +857,7 @@ exports[`Select component renders component in select mode and false for multipl
   >
     <MockStyledComponent
       $clearable={true}
+      $creatable={false}
       $disabled={false}
       $error={false}
       $isFocused={false}
@@ -865,6 +891,7 @@ exports[`Select component renders component in select mode and false for multipl
       >
         <MockStyledComponent
           $clearable={true}
+          $creatable={false}
           $disabled={false}
           $error={false}
           $isFocused={false}
@@ -892,6 +919,7 @@ exports[`Select component renders component in select mode and false for multipl
           >
             <MockStyledComponent
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -909,6 +937,7 @@ exports[`Select component renders component in select mode and false for multipl
               >
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -929,6 +958,7 @@ exports[`Select component renders component in select mode and false for multipl
                 </MockStyledComponent>
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -946,6 +976,7 @@ exports[`Select component renders component in select mode and false for multipl
                   >
                     <AutosizeInput
                       $clearable={true}
+                      $creatable={false}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -981,6 +1012,7 @@ exports[`Select component renders component in select mode and false for multipl
                     >
                       <MockStyledComponent
                         $clearable={true}
+                        $creatable={false}
                         $disabled={false}
                         $error={false}
                         $isFocused={false}
@@ -1043,6 +1075,7 @@ exports[`Select component renders component in select mode and false for multipl
             </MockStyledComponent>
             <MockStyledComponent
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -1060,6 +1093,7 @@ exports[`Select component renders component in select mode and false for multipl
               >
                 <TriangleDown
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -1081,6 +1115,7 @@ exports[`Select component renders component in select mode and false for multipl
                 >
                   <Icon
                     $clearable={true}
+                    $creatable={false}
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
@@ -1103,6 +1138,7 @@ exports[`Select component renders component in select mode and false for multipl
                   >
                     <MockStyledComponent
                       $clearable={true}
+                      $creatable={false}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -1151,6 +1187,7 @@ exports[`Select component renders component in select mode and true for multiple
   backspaceRemoves={true}
   clearable={true}
   closeOnSelect={true}
+  creatable={false}
   deleteRemoves={true}
   disabled={false}
   error={false}
@@ -1212,6 +1249,7 @@ exports[`Select component renders component in select mode and true for multiple
   >
     <MockStyledComponent
       $clearable={true}
+      $creatable={false}
       $disabled={false}
       $error={false}
       $isFocused={false}
@@ -1245,6 +1283,7 @@ exports[`Select component renders component in select mode and true for multiple
       >
         <MockStyledComponent
           $clearable={true}
+          $creatable={false}
           $disabled={false}
           $error={false}
           $isFocused={false}
@@ -1272,6 +1311,7 @@ exports[`Select component renders component in select mode and true for multiple
           >
             <MockStyledComponent
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -1289,6 +1329,7 @@ exports[`Select component renders component in select mode and true for multiple
               >
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -1309,6 +1350,7 @@ exports[`Select component renders component in select mode and true for multiple
                 </MockStyledComponent>
                 <MockStyledComponent
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -1326,6 +1368,7 @@ exports[`Select component renders component in select mode and true for multiple
                   >
                     <AutosizeInput
                       $clearable={true}
+                      $creatable={false}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
@@ -1361,6 +1404,7 @@ exports[`Select component renders component in select mode and true for multiple
                     >
                       <MockStyledComponent
                         $clearable={true}
+                        $creatable={false}
                         $disabled={false}
                         $error={false}
                         $isFocused={false}
@@ -1423,6 +1467,7 @@ exports[`Select component renders component in select mode and true for multiple
             </MockStyledComponent>
             <MockStyledComponent
               $clearable={true}
+              $creatable={false}
               $disabled={false}
               $error={false}
               $isFocused={false}
@@ -1440,6 +1485,7 @@ exports[`Select component renders component in select mode and true for multiple
               >
                 <TriangleDown
                   $clearable={true}
+                  $creatable={false}
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
@@ -1461,6 +1507,7 @@ exports[`Select component renders component in select mode and true for multiple
                 >
                   <Icon
                     $clearable={true}
+                    $creatable={false}
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
@@ -1483,6 +1530,7 @@ exports[`Select component renders component in select mode and true for multiple
                   >
                     <MockStyledComponent
                       $clearable={true}
+                      $creatable={false}
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
