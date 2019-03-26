@@ -73,7 +73,7 @@ export type BaseInputPropsT<T> = {
   /** Defines styles for inputs that are grouped with other controls. */
   adjoined: AdjoinedT,
   /** Determines if browser should provide value suggestions. */
-  autocomplete: string,
+  autoComplete: string,
   /** If true the input will be focused on the first mount. */
   autoFocus: boolean,
   /** Renders UI in 'disabled' state. */

@@ -7,7 +7,7 @@ Object {
   "aria-label": null,
   "aria-labelledby": null,
   "aria-required": false,
-  "autocomplete": "on",
+  "autoComplete": "on",
   "children": null,
   "disabled": false,
   "id": undefined,
@@ -59,7 +59,7 @@ Object {
       aria-label={null}
       aria-labelledby={null}
       aria-required={false}
-      autocomplete="on"
+      autoComplete="on"
       disabled={false}
       name=""
       onBlur={[Function]}
@@ -118,7 +118,7 @@ Object {
       aria-label={null}
       aria-labelledby={null}
       aria-required={false}
-      autocomplete="on"
+      autoComplete="on"
       disabled={false}
       name=""
       onBlur={[Function]}
@@ -177,7 +177,7 @@ Object {
       aria-label={null}
       aria-labelledby={null}
       aria-required={false}
-      autocomplete="on"
+      autoComplete="on"
       disabled={false}
       name=""
       onBlur={[Function]}
