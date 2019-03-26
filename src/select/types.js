@@ -22,6 +22,7 @@ export type OptionT = $ReadOnly<{
   label?: React.Node,
   disabled?: boolean,
   clearableValue?: boolean,
+  isCreatable?: boolean,
 }>;
 
 export type ValueT = $ReadOnlyArray<OptionT>;
@@ -74,6 +75,8 @@ export type PropsT = {
   clearable: boolean,
   /** Defines if the menu closes after a selection if made. */
   closeOnSelect: boolean,
+  /** Defines if new options can be created along with choosing existing options. */
+  creatable: boolean,
   /** Defines if options can be removed by pressing backspace. */
   deleteRemoves: boolean,
   /** Defines if the control is disabled. */
@@ -230,6 +233,7 @@ export type AutosizeInputStateT = {
 
 export type SharedStylePropsArgT = {
   $clearable: boolean,
+  $creatable: boolean,
   $disabled: boolean,
   $error: boolean,
   $isFocused: boolean,
