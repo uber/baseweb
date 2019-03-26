@@ -104,4 +104,23 @@ describe('select', () => {
     );
     expect(selectedValue).toBe('DarkBlue');
   });
+
+  it('creates and selects a new option', async () => {
+    await mount(page, 'select-creatable');
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+    await page.keyboard.type('Paris');
+    const option1Text = await page.$eval(
+      optionAtPosition(1),
+      select => select.innerText,
+    );
+    expect(option1Text).toBe('Create "Paris"');
+    await page.click(optionAtPosition(1));
+    const inputValue = await page.$eval(
+      selectors.selectedList,
+      select => select.innerText,
+    );
+    expect(inputValue).toBe('Paris');
+  });
 });

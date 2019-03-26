@@ -15,6 +15,8 @@ import SelectNative from 'examples/select/native.js';
 import SelectSinglePickSearch from 'examples/select/search-single-pick.js';
 import SelectMultiPickSearch from 'examples/select/search-multi-pick.js';
 import SelectWithManyOptions from 'examples/select/with-many-options.js';
+import SelectCreatable from 'examples/select/creatable.js';
+import SelectCreatableMulti from 'examples/select/creatable-multi.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulSelect, TYPE} from 'baseui/select';
@@ -61,8 +63,25 @@ scrollable, if applicable.
   <SelectWithManyOptions />
 </Example>
 
-<Example title="Select similar to native select" path="examples/select/native.js">
+<Example
+  title="Select similar to native select"
+  path="examples/select/native.js"
+>
   <SelectNative />
+</Example>
+
+<Example title="Select Creatable" path="examples/select/creatable.js">
+  <SelectCreatable />
+</Example>
+
+The creatable select enables users to create new options along with choosing
+existing options.
+
+<Example
+  title="Select Creatable Multi Pick"
+  path="examples/select/creatable-multi.js"
+>
+  <SelectCreatableMulti />
 </Example>
 
 ## Overrides
