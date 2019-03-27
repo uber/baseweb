@@ -124,7 +124,7 @@ export const RadioGroupRoot = styled('div', props => {
 });
 
 export const Root = styled('label', props => {
-  const {$disabled, $labelPlacement, $theme} = props;
+  const {$disabled, $hasDescription, $labelPlacement, $theme} = props;
   const {sizing} = $theme;
   return {
     flexDirection:
@@ -135,7 +135,7 @@ export const Root = styled('label', props => {
     alignItems: 'center',
     cursor: $disabled ? 'not-allowed' : 'pointer',
     marginTop: sizing.scale200,
-    marginBottom: sizing.scale200,
+    marginBottom: $hasDescription ? null : sizing.scale200,
   };
 });
 
