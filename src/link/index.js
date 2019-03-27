@@ -11,3 +11,4 @@ import {Link} from './styled-components.js';
 
 //$FlowFixMe
 export const StyledLink = props => <Link data-baseweb="link" {...props} />;
+StyledLink.__STYLETRON__ = Link.__STYLETRON__;
