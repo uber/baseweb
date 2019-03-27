@@ -17,9 +17,7 @@ export default function Grab(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Grab ? (
-          <Icon title="Grab" viewBox="0 0 24 24" {...props}>
-            <theme.icons.Grab />
-          </Icon>
+          <theme.icons.Grab title="Grab" viewBox="0 0 24 24" {...props} />
         ) : (
           <Icon title="Grab" viewBox="0 0 24 24" {...props}>
             <path

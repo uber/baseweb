@@ -17,9 +17,7 @@ export default function Delete(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Delete ? (
-          <Icon title="Delete" viewBox="0 0 24 24" {...props}>
-            <theme.icons.Delete />
-          </Icon>
+          <theme.icons.Delete title="Delete" viewBox="0 0 24 24" {...props} />
         ) : (
           <Icon title="Delete" viewBox="0 0 24 24" {...props}>
             <path

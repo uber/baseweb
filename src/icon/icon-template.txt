@@ -18,9 +18,7 @@ export default function %%ICON_NAME%%(props: IconPropsT) {
       {theme => (
         theme.icons && theme.icons.%%ICON_NAME%% ?
         (
-          <Icon %%ICON_PROPS%% {...props}>
-            <theme.icons.%%ICON_NAME%% />
-          </Icon>
+          <theme.icons.%%ICON_NAME%% %%ICON_PROPS%% {...props} />
         )
         :
         (
