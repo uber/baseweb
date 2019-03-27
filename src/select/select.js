@@ -756,11 +756,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (
       filterValue &&
       this.props.creatable &&
-      options.every(
-        opt =>
-          opt[this.props.labelKey].toLowerCase() !==
-          filterValue.toLowerCase().trim(),
-      )
+      options
+        .concat(this.props.value)
+        .every(
+          opt =>
+            opt[this.props.labelKey].toLowerCase() !==
+            filterValue.toLowerCase().trim(),
+        )
     ) {
       // $FlowFixMe
       options.push({
