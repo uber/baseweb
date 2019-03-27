@@ -117,6 +117,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     const sharedProps = {
       $checked: this.props.checked,
       $disabled: this.props.disabled,
+      $hasDescription: !!this.props.description,
       $isActive: this.state.isActive,
       $isError: this.props.isError,
       $isFocused: this.state.isFocused,
