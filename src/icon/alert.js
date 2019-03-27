@@ -17,9 +17,7 @@ export default function Alert(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Alert ? (
-          <Icon title="Alert" viewBox="0 0 24 24" {...props}>
-            <theme.icons.Alert />
-          </Icon>
+          <theme.icons.Alert title="Alert" viewBox="0 0 24 24" {...props} />
         ) : (
           <Icon title="Alert" viewBox="0 0 24 24" {...props}>
             <path

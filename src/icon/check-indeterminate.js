@@ -17,9 +17,11 @@ export default function CheckIndeterminate(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.CheckIndeterminate ? (
-          <Icon title="Check Indeterminate" viewBox="0 0 24 24" {...props}>
-            <theme.icons.CheckIndeterminate />
-          </Icon>
+          <theme.icons.CheckIndeterminate
+            title="Check Indeterminate"
+            viewBox="0 0 24 24"
+            {...props}
+          />
         ) : (
           <Icon title="Check Indeterminate" viewBox="0 0 24 24" {...props}>
             <path

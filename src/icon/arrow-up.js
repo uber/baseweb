@@ -17,9 +17,11 @@ export default function ArrowUp(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.ArrowUp ? (
-          <Icon title="Arrow Up" viewBox="0 0 24 24" {...props}>
-            <theme.icons.ArrowUp />
-          </Icon>
+          <theme.icons.ArrowUp
+            title="Arrow Up"
+            viewBox="0 0 24 24"
+            {...props}
+          />
         ) : (
           <Icon title="Arrow Up" viewBox="0 0 24 24" {...props}>
             <path

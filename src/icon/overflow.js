@@ -17,9 +17,11 @@ export default function Overflow(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Overflow ? (
-          <Icon title="Overflow" viewBox="0 0 24 24" {...props}>
-            <theme.icons.Overflow />
-          </Icon>
+          <theme.icons.Overflow
+            title="Overflow"
+            viewBox="0 0 24 24"
+            {...props}
+          />
         ) : (
           <Icon title="Overflow" viewBox="0 0 24 24" {...props}>
             <circle cx="6" cy="12" r="2" />

@@ -17,9 +17,11 @@ export default function DeleteAlt(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.DeleteAlt ? (
-          <Icon title="Delete Alt" viewBox="0 0 24 24" {...props}>
-            <theme.icons.DeleteAlt />
-          </Icon>
+          <theme.icons.DeleteAlt
+            title="Delete Alt"
+            viewBox="0 0 24 24"
+            {...props}
+          />
         ) : (
           <Icon title="Delete Alt" viewBox="0 0 24 24" {...props}>
             <path
