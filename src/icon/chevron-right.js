@@ -17,9 +17,11 @@ export default function ChevronRight(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.ChevronRight ? (
-          <Icon title="Chevron Right" viewBox="0 0 24 24" {...props}>
-            <theme.icons.ChevronRight />
-          </Icon>
+          <theme.icons.ChevronRight
+            title="Chevron Right"
+            viewBox="0 0 24 24"
+            {...props}
+          />
         ) : (
           <Icon title="Chevron Right" viewBox="0 0 24 24" {...props}>
             <path

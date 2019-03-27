@@ -17,9 +17,7 @@ export default function Filter(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.Filter ? (
-          <Icon title="Filter" viewBox="0 0 24 24" {...props}>
-            <theme.icons.Filter />
-          </Icon>
+          <theme.icons.Filter title="Filter" viewBox="0 0 24 24" {...props} />
         ) : (
           <Icon title="Filter" viewBox="0 0 24 24" {...props}>
             <rect x="7" y="11" width="10" height="2" rx="1" />

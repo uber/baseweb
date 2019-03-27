@@ -17,9 +17,11 @@ export default function ArrowLeft(props: IconPropsT) {
     <ThemeContext.Consumer>
       {theme =>
         theme.icons && theme.icons.ArrowLeft ? (
-          <Icon title="Arrow Left" viewBox="0 0 24 24" {...props}>
-            <theme.icons.ArrowLeft />
-          </Icon>
+          <theme.icons.ArrowLeft
+            title="Arrow Left"
+            viewBox="0 0 24 24"
+            {...props}
+          />
         ) : (
           <Icon title="Arrow Left" viewBox="0 0 24 24" {...props}>
             <path
