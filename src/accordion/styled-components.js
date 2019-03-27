@@ -34,7 +34,7 @@ export const Header = styled('div', (props: SharedStylePropsT) => {
     paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,
     paddingLeft: sizing.scale700,
-    paddingRight: sizing.scale1200,
+    paddingRight: sizing.scale700,
     marginTop: 0,
     marginBottom: 0,
     marginLeft: 0,
@@ -43,6 +43,7 @@ export const Header = styled('div', (props: SharedStylePropsT) => {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     ':hover': {
       color: colors.linkHover,
     },
@@ -58,8 +59,6 @@ export const ToggleIcon = styled('svg', props => {
     ...getSvgStyles(props),
     color: $color || $theme.colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'pointer',
-    position: 'absolute',
-    right: '12px',
   };
 });
 
