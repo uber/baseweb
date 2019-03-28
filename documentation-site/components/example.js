@@ -129,8 +129,8 @@ class Example extends React.Component<PropsT, StateT> {
               }}
               dependencies={{
                 baseui: version,
-                react: '16.5.2',
-                'react-dom': '16.5.2',
+                react: '16.8.6',
+                'react-dom': '16.8.6',
                 'react-scripts': '2.0.3',
                 'styletron-engine-atomic': '1.0.9',
                 'styletron-react': '4.4.4',
