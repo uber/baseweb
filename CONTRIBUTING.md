@@ -25,7 +25,7 @@ This document helps you navigate the process.
 
 - Each component has a drop-in, stateful, stateless, styled (presentation) components exported
 - Browser accessibility support and aria attributes
-  - Rules can be found [here](https://dequeuniversity.com/rules/axe/3.0/),
+  - A11y rules can be found [here](https://dequeuniversity.com/rules/axe/3.0/),
   - Run `yarn lint` , which has eslint-plugin-jsx-a11y running as part of it https://github.com/evcohen/eslint-plugin-jsx-a11y#supported-rules,
   - Run `yarn e2e:test` for end-to-end test, which has AxeBuilder running as part of it.
 - [Styletron](https://www.styletron.org/) for CSS-in-JS styling
