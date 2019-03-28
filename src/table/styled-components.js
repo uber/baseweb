@@ -48,6 +48,7 @@ const StyledHeadElement = styled(
 export const StyledHead = (props: *) => (
   <StyledHeadElement role="row" {...props} />
 );
+StyledHead.__STYLETRON__ = StyledHeadElement.__STYLETRON__;
 
 const StyledHeadCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
