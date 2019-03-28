@@ -9,11 +9,13 @@ LICENSE file in the root directory of this source tree.
 export type SelectLocaleT = {|
   noResultsMsg: string,
   placeholder: string,
+  create: string,
 |};
 
 const locale = {
   noResultsMsg: 'No results found',
   placeholder: 'Select...',
+  create: 'Create',
 };
 
 export default locale;

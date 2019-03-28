@@ -21,6 +21,7 @@ export type RadioOverridesT = {
   Label?: OverrideT<*>,
   Root?: OverrideT<*>,
   Input?: OverrideT<*>,
+  Description?: OverrideT<*>,
 };
 
 export type RadioGroupOverridesT = {
@@ -100,6 +101,8 @@ export type RadioPropsT = {
   checked?: boolean,
   /** Label of radio. */
   children?: React$Node,
+  /** Add more detail about a radio element. */
+  description?: string,
   /** Disable the checkbox from being changed. */
   disabled?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */

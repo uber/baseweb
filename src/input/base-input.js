@@ -29,6 +29,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     'aria-labelledby': null,
     'aria-describedby': null,
     adjoined: ADJOINED.none,
+    autoComplete: 'on',
     autoFocus: false,
     disabled: false,
     error: false,
@@ -70,6 +71,7 @@ class BaseInput<T: EventTarget> extends React.Component<
 
   getInputProps = () => {
     const {
+      autoComplete,
       disabled,
       error,
       id,
@@ -94,6 +96,7 @@ class BaseInput<T: EventTarget> extends React.Component<
       'aria-describedby': this.props['aria-describedby'],
       'aria-invalid': !!error,
       'aria-required': required,
+      autoComplete,
       disabled,
       id,
       name,

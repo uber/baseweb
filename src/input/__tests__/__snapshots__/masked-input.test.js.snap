@@ -51,6 +51,7 @@ Object {
   "aria-label": null,
   "aria-labelledby": null,
   "aria-required": false,
+  "autoComplete": "on",
   "autoFocus": false,
   "id": undefined,
   "name": "",

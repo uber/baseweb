@@ -5,6 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import type {ComponentType} from 'react';
+import type {IconPropsT} from '../icon/types.js';
 
 export type BreakpointsT = {
   small: number,
@@ -77,6 +79,10 @@ export type ColorsT = {
 
   // Semantic Colors
 
+  // Font Color
+  colorPrimary: string,
+  colorSecondary: string,
+
   // Background
   background: string,
   backgroundAlt: string,
@@ -119,6 +125,13 @@ export type ColorsT = {
   breadcrumbsText: string,
   breadcrumbsSeparatorFill: string,
 
+  // Datepicker
+  datepickerBackground: string,
+  datepickerDayFont: string,
+  datepickerDayFontDisabled: string,
+  datepickerDayPseudoSelected: string,
+  datepickerDayPseudoHighlighted: string,
+
   // FileUploader
   fileUploaderBackgroundColor: string,
   fileUploaderBackgroundColorActive: string,
@@ -144,11 +157,18 @@ export type ColorsT = {
   tickFillSelected: string,
   tickFillSelectedHover: string,
   tickFillSelectedHoverActive: string,
+  tickFillError: string,
+  tickFillErrorHover: string,
+  tickFillErrorHoverActive: string,
+  tickFillErrorSelected: string,
+  tickFillErrorSelectedHover: string,
+  tickFillErrorSelectedHoverActive: string,
   tickFillDisabled: string,
   tickBorder: string,
+  tickBorderError: string,
   tickMarkFill: string,
 
-  // Slider
+  // Slider/Toggle
   sliderTrackFill: string,
   sliderTrackFillHover: string,
   sliderTrackFillActive: string,
@@ -163,6 +183,10 @@ export type ColorsT = {
   sliderHandleFillSelectedHover: string,
   sliderHandleFillSelectedActive: string,
   sliderHandleFillDisabled: string,
+  sliderHandleInnerFill: string,
+  sliderHandleInnerFillDisabled: string,
+  sliderHandleInnerFillSelectedHover: string,
+  sliderHandleInnerFillSelectedActive: string,
   sliderBorder: string,
   sliderBorderHover: string,
   sliderBorderDisabled: string,
@@ -184,6 +208,7 @@ export type ColorsT = {
   notificationNegativeText: string,
 
   // Menu
+  menuFill: string,
   menuFillHover: string,
   menuFontDefault: string,
   menuFontDisabled: string,
@@ -245,6 +270,7 @@ export type SizingT = {
   scale300: string,
   scale400: string,
   scale500: string,
+  scale550: string,
   scale600: string,
   scale700: string,
   scale800: string,
@@ -317,27 +343,27 @@ export type ThemeT = {|
 |};
 
 export type IconT = {
-  Alert?: React.Node,
-  ArrowDown?: React.Node,
-  ArrowLeft?: React.Node,
-  ArrowRight?: React.Node,
-  ArrowUp?: React.Node,
-  CheckIndeterminate?: React.Node,
-  Check?: React.Node,
-  ChevronLeft?: React.Node,
-  ChevronRight?: React.Node,
-  DeleteAlt?: React.Node,
-  Delete?: React.Node,
-  Filter?: React.Node,
-  Grab?: React.Node,
-  Menu?: React.Node,
-  Overflow?: React.Node,
-  Plus?: React.Node,
-  Search?: React.Node,
-  Spinner?: React.Node,
-  TriangleDown?: React.Node,
-  TriangleLeft?: React.Node,
-  TriangleRight?: React.Node,
-  TriangleUp?: React.Node,
-  Upload?: React.Node,
+  Alert?: ComponentType<IconPropsT>,
+  ArrowDown?: ComponentType<IconPropsT>,
+  ArrowLeft?: ComponentType<IconPropsT>,
+  ArrowRight?: ComponentType<IconPropsT>,
+  ArrowUp?: ComponentType<IconPropsT>,
+  CheckIndeterminate?: ComponentType<IconPropsT>,
+  Check?: ComponentType<IconPropsT>,
+  ChevronLeft?: ComponentType<IconPropsT>,
+  ChevronRight?: ComponentType<IconPropsT>,
+  DeleteAlt?: ComponentType<IconPropsT>,
+  Delete?: ComponentType<IconPropsT>,
+  Filter?: ComponentType<IconPropsT>,
+  Grab?: ComponentType<IconPropsT>,
+  Menu?: ComponentType<IconPropsT>,
+  Overflow?: ComponentType<IconPropsT>,
+  Plus?: ComponentType<IconPropsT>,
+  Search?: ComponentType<IconPropsT>,
+  Spinner?: ComponentType<IconPropsT>,
+  TriangleDown?: ComponentType<IconPropsT>,
+  TriangleLeft?: ComponentType<IconPropsT>,
+  TriangleRight?: ComponentType<IconPropsT>,
+  TriangleUp?: ComponentType<IconPropsT>,
+  Upload?: ComponentType<IconPropsT>,
 };

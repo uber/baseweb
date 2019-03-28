@@ -76,10 +76,10 @@ class Overrides extends React.Component {
           {renderExample({
             overrides: {
               [this.state.highlighted]: {
-                style: {
-                  outline: '3px solid #FFE1A5',
-                  backgroundColor: '#FEF3EC',
-                },
+                style: props => ({
+                  outline: `2px solid ${props.$theme.colors.warning200}`,
+                  backgroundColor: props.$theme.colors.warning200,
+                }),
               },
             },
           })}

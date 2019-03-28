@@ -78,7 +78,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab 1 content
+                    Tab Link 1
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -116,7 +116,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab 2 content
+                    Tab Link 2
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -154,7 +154,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab 3 content
+                    Tab Link 3
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -278,7 +278,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab 1 content
+                    Tab Link 1
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -316,7 +316,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab 2 content
+                    Tab Link 2
                   </div>
                 </MockStyledComponent>
               </TabComponent>
@@ -354,7 +354,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     styled-component="true"
                     tabIndex={0}
                   >
-                    Tab 3 content
+                    Tab Link 3
                   </div>
                 </MockStyledComponent>
               </TabComponent>

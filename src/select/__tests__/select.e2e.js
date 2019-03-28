@@ -104,4 +104,53 @@ describe('select', () => {
     );
     expect(selectedValue).toBe('DarkBlue');
   });
+
+  it('creates and selects a new option', async () => {
+    await mount(page, 'select-creatable');
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+    await page.keyboard.type('Paris');
+    const option1Text = await page.$eval(
+      optionAtPosition(1),
+      select => select.innerText,
+    );
+    expect(option1Text).toBe('Create "Paris"');
+    await page.click(optionAtPosition(1));
+    const inputValue = await page.$eval(
+      selectors.selectedList,
+      select => select.innerText,
+    );
+    expect(inputValue).toBe('Paris');
+  });
+
+  it('creates multiple options', async () => {
+    await mount(page, 'select-creatable-multi');
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+
+    // add "Paris"
+    await page.keyboard.type('Paris');
+    await page.click(optionAtPosition(1));
+    const inputValue = await page.$eval(
+      selectors.selectedList,
+      select => select.innerText,
+    );
+    expect(inputValue).toBe('Paris');
+
+    // add "London"
+    await page.keyboard.type('London');
+    await page.click(optionAtPosition(1));
+    const inputValue2 = await page.$eval(
+      selectors.selectedList,
+      select => select.innerText,
+    );
+    expect(inputValue2).toBe('Paris\nLondon');
+
+    // add "Paris" again, option to create should not be provided
+    await page.keyboard.type('Paris');
+    const canBeParisCreated = (await page.$(optionAtPosition(1))) !== null;
+    expect(canBeParisCreated).toBeFalsy();
+  });
 });

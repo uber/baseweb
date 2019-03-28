@@ -134,6 +134,8 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     transitionProperty: 'all',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeInOutCurve,
+    display: 'flex',
+    justifyContent: 'space-between',
   };
 });
 
@@ -144,6 +146,7 @@ export const CloseIconSvg = styled('svg', props => {
   return {
     ...getSvgStyles(props),
     cursor: 'pointer',
-    float: 'right',
+    width: '16px',
+    flexShrink: 0,
   };
 });
