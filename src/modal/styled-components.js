@@ -97,7 +97,10 @@ export const Dialog = styled('div', (props: SharedStylePropsT) => {
     borderRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius200
       : '0px',
-    margin: $theme.sizing.scale600,
+    marginLeft: $theme.sizing.scale600,
+    marginTop: $theme.sizing.scale600,
+    marginRight: $theme.sizing.scale600,
+    marginBottom: $theme.sizing.scale600,
     textAlign: 'left',
     ...getSizeStyles($size),
 
@@ -130,7 +133,10 @@ export const Close = styled('button', (props: SharedStylePropsT) => {
     border: '0',
     background: 'transparent',
     outline: 0,
-    padding: 0,
+    paddingLeft: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
 
     // Positioning
     position: 'absolute',

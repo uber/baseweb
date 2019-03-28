@@ -39,7 +39,10 @@ export const Body = styled('div', props => ({
 export const Inner = styled('div', props => ({
   ...getInnerStyles(props),
   backgroundColor: props.$theme.tooltip.backgroundColor,
-  borderRadius: props.$theme.borders.radius200,
+  borderTopRightRadius: props.$theme.borders.radius200,
+  borderBottomRightRadius: props.$theme.borders.radius200,
+  borderTopLeftRadius: props.$theme.borders.radius200,
+  borderBottomLeftRadius: props.$theme.borders.radius200,
   paddingTop: props.$theme.sizing.scale300,
   paddingBottom: props.$theme.sizing.scale300,
   paddingLeft: props.$theme.sizing.scale300,
