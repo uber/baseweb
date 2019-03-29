@@ -79,9 +79,10 @@ export const Title = styled('h1', ({$hasThumbnail, $theme}) => {
     fontWeight: 500,
     marginLeft: 0,
     marginTop: 0,
-    marginRight: sizing.scale300,
-    marginBottom: 0,
+    marginRight: 0,
+    marginBottom: sizing.scale300,
     paddingLeft: 0,
+    paddingTop: 0,
     paddingRight: 0,
     paddingBottom: 0,
   };
