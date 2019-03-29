@@ -23,7 +23,10 @@ export const Body = styled('div', ({$theme}) => {
 export const Contents = styled('div', ({$theme}) => {
   const {sizing} = $theme;
   return {
-    margin: sizing.scale800,
+    marginLeft: sizing.scale800,
+    marginTop: sizing.scale800,
+    marginRight: sizing.scale800,
+    marginBottom: sizing.scale800,
   };
 });
 
@@ -42,7 +45,10 @@ export const Root = styled('div', ({$theme}) => {
   return {
     ...borders.border300,
     boxShadow: lighting.shadow400,
-    borderRadius: borders.radius200,
+    borderTopLeftRadius: borders.radius200,
+    borderTopRightRadius: borders.radius200,
+    borderBottomLeftRadius: borders.radius200,
+    borderBottomRightRadius: borders.radius200,
     backgroundColor: colors.backgroundAlt,
   };
 });
@@ -56,7 +62,10 @@ export const Thumbnail = styled('img', props => {
     height: sizing.scale2400,
     width: sizing.scale2400,
     objectFit: 'cover',
-    borderRadius: borders.radius200,
+    borderTopLeftRadius: borders.radius200,
+    borderTopRightRadius: borders.radius200,
+    borderBottomLeftRadius: borders.radius200,
+    borderBottomRightRadius: borders.radius200,
     ...borders.border200,
     margin: `0 0 ${sizing.scale500} ${sizing.scale500}`,
   };
@@ -68,7 +77,13 @@ export const Title = styled('h1', ({$hasThumbnail, $theme}) => {
     ...typography.font500,
     color: colors.foreground,
     fontWeight: 500,
-    margin: `0 0 ${sizing.scale300} 0`,
-    padding: 0,
+    marginLeft: 0,
+    marginTop: 0,
+    marginRight: 0,
+    marginBottom: sizing.scale300,
+    paddingLeft: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
   };
 });
