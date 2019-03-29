@@ -44,7 +44,10 @@ export const Root = styled('div', (props: StylePropsT) => {
 
   return {
     backgroundColor: $didImageFailToLoad ? props.$theme.colors.primary : null,
-    borderRadius: '50%',
+    borderTopRightRadius: '50%',
+    borderBottomRightRadius: '50%',
+    borderTopLeftRadius: '50%',
+    borderBottomLeftRadius: '50%',
     boxSizing: 'border-box',
     display: 'inline-block',
 
