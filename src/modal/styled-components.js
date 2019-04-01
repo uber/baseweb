@@ -38,12 +38,10 @@ function getSizeStyles($size: SizePropT) {
 }
 
 export const Root = styled('div', (props: SharedStylePropsT) => {
-  const {$isOpen, $theme} = props;
+  const {$isOpen} = props;
   return {
     position: 'fixed',
     overflow: 'auto',
-    // Maybe this should be dynamic?
-    zIndex: $theme.zIndex.modal,
     right: 0,
     bottom: 0,
     top: 0,
@@ -55,7 +53,6 @@ export const Root = styled('div', (props: SharedStylePropsT) => {
 export const Backdrop = styled('div', (props: SharedStylePropsT) => {
   const {$animate, $isOpen, $isVisible, $theme} = props;
   return {
-    zIndex: -1,
     position: 'fixed',
     right: 0,
     bottom: 0,
