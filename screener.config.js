@@ -21,10 +21,12 @@ module.exports = {
     },
     {
       browserName: 'firefox',
+      excludeRules: [/^baseui-dark/],
     },
     {
       browserName: 'internet explorer',
       version: '11',
+      excludeRules: [/^baseui-dark/],
     },
   ],
 };
