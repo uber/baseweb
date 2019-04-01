@@ -32,7 +32,6 @@ export function getBodyStyles(props: SharedStylePropsT) {
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: 1050,
     backgroundColor: $theme.colors.background,
     borderRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius300
@@ -67,7 +66,6 @@ export function getArrowStyles(props: SharedStylePropsT) {
     height: `${ARROW_WIDTH}px`,
     transform: 'rotate(45deg)',
     position: 'absolute',
-    zIndex: 1, // Below "Inner"
     ...getArrowPositionStyles($arrowOffset, $placement),
   };
 }
@@ -81,14 +79,17 @@ export const Arrow = styled('div', getArrowStyles);
  * clips the part of the arrow that extends into the popover.
  */
 export function getInnerStyles({$theme}: SharedStylePropsT) {
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius300
+    : '0px';
   return {
     backgroundColor: $theme.colors.backgroundAlt,
     color: $theme.colors.foreground,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius300
-      : '0px',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     position: 'relative',
-    zIndex: 2, // Above "Arrow"
   };
 }
 
@@ -100,5 +101,8 @@ export const Inner = styled('div', getInnerStyles);
  * have to define this themselves.
  */
 export const Padding = styled('div', {
-  padding: '12px',
+  paddingLeft: '12px',
+  paddingTop: '12px',
+  paddingRight: '12px',
+  paddingBottom: '12px',
 });

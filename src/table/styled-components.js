@@ -40,7 +40,6 @@ const StyledHeadElement = styled(
       display: 'flex',
       flexGrow: 0,
       width: $width ? $width : '100%',
-      zIndex: 1,
     };
   },
 );

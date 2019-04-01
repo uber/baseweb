@@ -38,12 +38,10 @@ function getSizeStyles($size: SizePropT) {
 }
 
 export const Root = styled('div', (props: SharedStylePropsT) => {
-  const {$isOpen, $theme} = props;
+  const {$isOpen} = props;
   return {
     position: 'fixed',
     overflow: 'auto',
-    // Maybe this should be dynamic?
-    zIndex: $theme.zIndex.modal,
     right: 0,
     bottom: 0,
     top: 0,
@@ -55,7 +53,6 @@ export const Root = styled('div', (props: SharedStylePropsT) => {
 export const Backdrop = styled('div', (props: SharedStylePropsT) => {
   const {$animate, $isOpen, $isVisible, $theme} = props;
   return {
-    zIndex: -1,
     position: 'fixed',
     right: 0,
     bottom: 0,
@@ -97,7 +94,10 @@ export const Dialog = styled('div', (props: SharedStylePropsT) => {
     borderRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius200
       : '0px',
-    margin: $theme.sizing.scale600,
+    marginLeft: $theme.sizing.scale600,
+    marginTop: $theme.sizing.scale600,
+    marginRight: $theme.sizing.scale600,
+    marginBottom: $theme.sizing.scale600,
     textAlign: 'left',
     ...getSizeStyles($size),
 
@@ -130,7 +130,10 @@ export const Close = styled('button', (props: SharedStylePropsT) => {
     border: '0',
     background: 'transparent',
     outline: 0,
-    padding: 0,
+    paddingLeft: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
 
     // Positioning
     position: 'absolute',
