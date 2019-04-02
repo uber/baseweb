@@ -57,6 +57,7 @@ const Navigation = ({toggleSidebar}: PropsT) => {
       overrides={{
         Root: {
           style: ({$theme}) => ({
+            justifyContent: 'space-between',
             paddingLeft: $theme.sizing.scale800,
             paddingRight: $theme.sizing.scale800,
             paddingTop: $theme.sizing.scale600,
@@ -105,7 +106,6 @@ const Navigation = ({toggleSidebar}: PropsT) => {
         </Block>
       </LogoSegment>
 
-      <NavigationList align={ALIGN.center} />
       <NavigationList align={ALIGN.right}>
         <Block display="flex" alignItems="center">
           <Search
