@@ -14,6 +14,7 @@ import {H1} from '../components/markdown-elements';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
 import fetch from 'isomorphic-fetch';
 
+import {HEADER_BREAKPOINT} from '../components/header-navigation';
 import Layout from '../components/layout';
 import Contributors from '../components/contributors';
 import Markdown from '../components/markdown-elements';
@@ -46,7 +47,21 @@ const Index = (props: {contributors: Contributor[]}) => (
       components.
     </Markdown.p>
 
-    <Block display="flex" marginLeft="-16px" marginRight="-16px" flexWrap>
+    <Block
+      display="flex"
+      marginLeft="-16px"
+      marginRight="-16px"
+      overrides={{
+        Block: {
+          style: {
+            flexWrap: 'wrap',
+            [HEADER_BREAKPOINT]: {
+              flexWrap: 'noWrap',
+            },
+          },
+        },
+      }}
+    >
       <Card title="Installing Base Web" overrides={cardOverrides}>
         <StyledBody>
           Base Web is distributed as an npm package. As Base Web is built on top
