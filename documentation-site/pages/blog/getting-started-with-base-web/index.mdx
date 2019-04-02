@@ -13,7 +13,7 @@ Base is a design system comprised of modern, responsive, living components. Base
 
 A major selling point for Base Web is its clever customization solution. This gives you a high level of control over components. This is key when extending components or if you wish to move away from the out of the box Uber Base design.
 
-For an example app, let's build a password generator/validator with Base Web.
+For an example app, let's build a password generator/validator.
 
 <BlogImage src={'/static/images/blog/getting-started-with-base-web/result.png'} />
 
@@ -142,6 +142,7 @@ Overriding the Slider is more interesting. This involves hiding the TickBar and 
       }
     }
   }}
+/>
 ```
 
 Referring to the docs and overriding styles for the other components we are using gives us this.
@@ -199,21 +200,7 @@ We can use Blocks to separate the options and for our second block use flex layo
 >
   <Label>Length</Label>
   <Slider
-    min={4}
-    max={64}
-    value={[32]}
-    overrides={{
-      Track: {
-        style: ({$theme}) => ({
-          padding: `${$theme.sizing.scale800} 0`,
-        }),
-      },
-      TickBar: {
-        style: {
-          display: 'none',
-        },
-      },
-    }}
+    {...sliderProps}
   />
 </Block>
 ```
