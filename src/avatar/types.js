@@ -22,7 +22,7 @@ export type OverridesT<T> = {|
 |};
 
 export type StateT = {|
-  didImageFailToLoad: boolean,
+  noImageAvailable: boolean,
 |};
 
 export type PropsT = {|
@@ -32,5 +32,5 @@ export type PropsT = {|
   /** Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width. */
   size?: string,
   /** Image to display. */
-  src: string,
+  src?: string,
 |};
