@@ -18,7 +18,8 @@ class LayerComponent extends React.Component<
   state = {container: null};
 
   componentDidMount() {
-    const {host = document.body, index, onMount} = this.props;
+    const {index, onMount} = this.props;
+    const host = this.props.host || document.body;
     if (host) {
       const container = host.ownerDocument.createElement('div');
       const sibling = typeof index === 'number' ? host.children[index] : null;

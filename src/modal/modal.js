@@ -242,7 +242,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
   getRef(component: string): ElementRefT {
     const overrideProps: {$ref?: ElementRefT} = getOverrideProps(
-      this.props.overrides.Dialog,
+      this.props.overrides[component],
     );
     const overrideRef = overrideProps.$ref;
     if (overrideRef) {
@@ -334,7 +334,14 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (!this.props.isOpen && !this.state.isVisible) {
       return null;
     }
-    return <Layer mountNode={this.props.mountNode}>{this.renderModal()}</Layer>;
+    return (
+      <Layer
+        mountNode={this.props.mountNode}
+        onMount={this.props.isOpen ? this.autoFocus : undefined}
+      >
+        {this.renderModal()}
+      </Layer>
+    );
   }
 }
 

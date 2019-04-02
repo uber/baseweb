@@ -22,6 +22,13 @@ jest.useFakeTimers();
 
 // Mock popper.js (see __mocks__ directory for impl)
 jest.mock('popper.js');
+jest.mock('../../layer/index.js', () => {
+  return {
+    Layer: jest.fn().mockImplementation(props => {
+      return props.children;
+    }),
+  };
+});
 
 // Mock React 16 portals in a way that makes them easy to test
 const originalCreatePortal = ReactDOM.createPortal;
@@ -79,14 +86,13 @@ describe('Popover', () => {
     // Show the popover
     wrapper.setProps({isOpen: true});
 
-    // Should now have the portal as the second child
+    // Should now have the Layer as the second child
     expect(wrapper.children().length).toBe(2);
-    expect(wrapper.childAt(1)).toHaveDisplayName('Portal');
-    const portal = wrapper.childAt(1);
 
+    wrapper.update();
     // Portal should have the popover body and content
-    let popoverBody = portal.childAt(0);
-    expect(popoverBody).toMatchSelector('[data-baseweb="popover"]');
+    let popoverBody = wrapper.find('[data-baseweb="popover"]').first();
+    expect(popoverBody).toExist();
     expect(popoverBody).toHaveProp({
       $showArrow: false,
       $placement: 'auto',
@@ -97,7 +103,7 @@ describe('Popover', () => {
     });
     const renderedContent = popoverBody.find('strong');
     expect(renderedContent).toExist();
-    expect(renderedContent).toHaveText('Hello world');
+    expect(popoverBody).toHaveText('Hello world');
 
     // Popper library should have been initialized
     expect(Popper).toHaveBeenCalled();
@@ -107,7 +113,7 @@ describe('Popover', () => {
     jest.runAllTimers();
     wrapper.update();
 
-    popoverBody = wrapper.childAt(1).childAt(0);
+    popoverBody = wrapper.find('[data-baseweb="popover"]').first();
     expect(popoverBody).toHaveProp({
       $placement: 'leftTop',
       $popoverOffset: {top: 10, left: 10},

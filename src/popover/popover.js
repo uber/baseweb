@@ -93,7 +93,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       this.state.isMounted !== prevState.isMounted
     ) {
       // Transition from closed to open.
-      if (this.props.isOpen && this.popperRef.current) {
+      if (this.props.isOpen) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
         this.initializePopper();

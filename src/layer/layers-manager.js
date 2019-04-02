@@ -8,7 +8,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {LayersManagerPropsT, LayersContexT} from './types.js';
 
-export const {Provider, Consumer}: React.Context<LayersContexT> = React.createContext({root: null, host: null});
+export const {
+  Provider,
+  Consumer,
+}: React.Context<LayersContexT> = React.createContext({root: null, host: null});
 
 export default class LayersManager extends React.Component<
   LayersManagerPropsT,

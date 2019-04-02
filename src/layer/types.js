@@ -13,8 +13,8 @@ export type LayersManagerPropsT = {
 };
 
 export type LayersContexT = {
-  root: ?HTMLElement, 
-  host: ?HTMLElement
+  root: ?HTMLElement,
+  host: ?HTMLElement,
 };
 
 export type LayerPropsT = {
