@@ -79,4 +79,11 @@ describe('Avatar', () => {
     triggerLoadError(wrapper);
     expect(wrapper.find(StyledInitials).text()).toBe('U');
   });
+
+  it('only renders initial from name if src is not provided', () => {
+    const name = 'user';
+    const wrapper = mount(<Avatar name={name} />);
+
+    expect(wrapper.find(StyledInitials).text()).toBe('U');
+  });
 });
