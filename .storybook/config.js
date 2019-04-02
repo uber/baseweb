@@ -5,14 +5,18 @@ import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 
 import {ThemeProvider} from '../src/styles';
-import {LightThemeMove} from '../src/themes';
+import {LightThemeMove, DarkThemeMove} from '../src/themes';
 
 // Add providers for theme and styletron
 const engine = new Styletron();
-addDecorator(story => {
+addDecorator((story, context) => {
   return (
     <StyletronProvider value={engine}>
-      <ThemeProvider theme={LightThemeMove}>{story()}</ThemeProvider>
+      <ThemeProvider
+        theme={context.kind === 'baseui-dark' ? DarkThemeMove : LightThemeMove}
+      >
+        {story()}
+      </ThemeProvider>
     </StyletronProvider>
   );
 });

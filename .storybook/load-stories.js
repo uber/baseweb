@@ -15,3 +15,8 @@ scenarios.reduce(
   (stories, scenario) => stories.add(scenario.name, scenario.component),
   storiesOf('baseui', module),
 );
+
+scenarios.reduce(
+  (stories, scenario) => stories.add(scenario.name, scenario.component),
+  storiesOf('baseui-dark', module),
+);
