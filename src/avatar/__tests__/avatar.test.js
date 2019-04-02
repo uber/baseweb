@@ -84,7 +84,6 @@ describe('Avatar', () => {
     const name = 'user';
     const wrapper = mount(<Avatar name={name} />);
 
-    triggerLoadError(wrapper);
     expect(wrapper.find(StyledInitials).text()).toBe('U');
   });
 });
