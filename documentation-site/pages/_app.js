@@ -37,6 +37,8 @@ const BlockOverrides = {
   Block: {
     style: ({$theme}) => ({
       backgroundColor: $theme.colors.background,
+      maxWidth: '100vw',
+      overflow: 'hidden',
     }),
   },
 };

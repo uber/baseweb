@@ -34,19 +34,30 @@ const removeSlash = path => {
 function renderItem(item, itemProps) {
   const {onSelect, onClick, onKeyDown, ...sharedProps} = itemProps;
   const Label = itemProps.$level === 1 ? Label2 : Label1;
-  const renderedItem = (
+
+  const NavLink = ({item}) => (
     <Link passHref={true} href={item.itemId} prefetch>
       <StyledNavLink tabIndex="0" {...sharedProps}>
         <StyledNavItem {...sharedProps}>{item.title}</StyledNavItem>
       </StyledNavLink>
     </Link>
   );
-  return !item.itemId ? (
+
+  if (item.itemId && itemProps.$level === 1)
+    return (
+      <Label overrides={{Block: {style: {textTransform: 'uppercase'}}}}>
+        <NavLink item={item} />
+      </Label>
+    );
+
+  if (item.itemId) {
+    return <NavLink item={item} />;
+  }
+
+  return (
     <Label overrides={{Block: {style: {textTransform: 'uppercase'}}}}>
       <StyledNavItem {...sharedProps}>{item.title}</StyledNavItem>
     </Label>
-  ) : (
-    renderedItem
   );
 }
 

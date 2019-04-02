@@ -31,13 +31,15 @@ const SidebarWrapper = styled('div', ({$theme, $isOpen}) => ({
 }));
 
 const ContentWrapper = styled('div', ({$theme, $isSidebarOpen}) => ({
+  boxSizing: 'border-box',
   display: $isSidebarOpen ? 'none' : 'block',
   paddingLeft: $theme.sizing.scale900,
   paddingRight: $theme.sizing.scale900,
-  maxWidth: '40em',
+  maxWidth: '100%',
   flex: 2,
   '@media screen and (min-width: 820px)': {
     display: 'block',
+    maxWidth: '40em',
   },
 }));
 
