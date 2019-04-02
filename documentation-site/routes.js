@@ -256,6 +256,10 @@ const routes = [
       },
     ],
   },
+  {
+    title: 'Blog',
+    itemId: '/blog',
+  },
 ];
 
 export default routes;
