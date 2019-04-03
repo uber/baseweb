@@ -18,7 +18,10 @@ const MetaData = styled('h2', ({$theme}) => ({
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   lineHeight: $theme.sizing.scale600,
-  margin: 0,
+  marginLeft: 0,
+  marginRight: 0,
+  marginTop: 0,
+  marginBottom: 0,
   fontWeight: 300,
 }));
 
