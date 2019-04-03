@@ -90,7 +90,14 @@ class Example extends React.Component<PropsT, StateT> {
               backgroundColor: $theme.colors.background,
             }),
           },
-          Contents: {style: {margin: 0}},
+          Contents: {
+            style: {
+              marginLeft: 0,
+              marginRight: 0,
+              marginTop: 0,
+              marginBottom: 0,
+            },
+          },
         }}
       >
         <H2>{this.props.title}</H2>

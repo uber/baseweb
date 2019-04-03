@@ -85,7 +85,10 @@ const InlineCode = styled('code', {
   backgroundColor: 'rgba(27, 31, 35, 0.05)',
   borderRadius: '3px',
   fontSize: '85%',
-  margin: 0,
+  marginLeft: 0,
+  marginRight: 0,
+  marginTop: 0,
+  marginBottom: 0,
   padding: '0.2em 0.4em',
   fontFamily:
     'SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;',
@@ -94,7 +97,10 @@ const InlineCode = styled('code', {
 const Blockquote = styled('blockquote', {
   backgroundColor: 'rgba(27, 31, 35, 0.03)',
   borderRadius: '3px',
-  margin: 0,
+  marginLeft: 0,
+  marginRight: 0,
+  marginTop: 0,
+  marginBottom: 0,
   padding: '1em 3em',
 });
 
