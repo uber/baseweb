@@ -15,7 +15,7 @@ const Image = styled('img', props => ({
   margin: '0 auto',
   maxWidth: '100%',
   objectFit: 'cover',
-  width: props.full ? '100%' : 'auto',
+  width: props.$full ? '100%' : 'auto',
 }));
 
 const Caption = styled('figcaption', ({$theme}) => ({
@@ -29,7 +29,7 @@ const Caption = styled('figcaption', ({$theme}) => ({
 
 export const BlogImage = ({full, caption, src, style}) => (
   <figure style={{margin: 0}}>
-    <Image full={full} src={src} style={style} />
+    <Image $full={full} src={src} style={style} />
     {caption && <Caption>{caption}</Caption>}
   </figure>
 );
