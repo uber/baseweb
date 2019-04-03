@@ -39,6 +39,25 @@ export default class MyDocument extends Document {
     };
   }
 
+  /**
+   * Docs for thermostat
+   * https://thermostat.io/help/embed/
+   */
+  initThermostat() {
+    return {
+      __html: `
+        thermostatio.start({
+          email: true,
+          name: false,
+          lockout_period: 90,
+          closeLockout: 90,
+          minPageLoadsBeforeShowing: 5,
+          pageLoadTrackingPeriod: 10,
+        });
+      `,
+    };
+  }
+
   render() {
     return (
       <html lang="en">
@@ -66,6 +85,18 @@ export default class MyDocument extends Document {
             body {
               margin: 0;
             }
+
+            #thermostat_io_popup #thermostat_io_popup_score {
+              max-width: 1000px;
+            }
+
+            #thermostat_io_popup_score a {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 4px;
+              font-weight: 600;
+            }
           `}</style>
           <Meta />
         </Head>
@@ -81,6 +112,8 @@ export default class MyDocument extends Document {
               <script dangerouslySetInnerHTML={this.setGoogleTags()} />
             </React.Fragment>
           )}
+          <script src="https://thermostat.io/s/5b7d20ec/survey.js" />
+          <script dangerouslySetInnerHTML={this.initThermostat()} />
         </body>
       </html>
     );
