@@ -7,8 +7,6 @@ WORKDIR /baseui
 COPY package.json yarn.lock /baseui/
 RUN yarn --ignore-scripts
 
-RUN yarn add screener-storybook
-
 # Copy the current files to the docker image.
 COPY . .
 
