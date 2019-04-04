@@ -153,9 +153,6 @@ export default {
     menuFontHighlighted: primitives.mono200,
     menuFontSelected: WHITE,
 
-    // Popover
-    popoverFill: primitives.mono600,
-
     // Spinner
     spinnerTrackFill: primitives.mono100,
   },

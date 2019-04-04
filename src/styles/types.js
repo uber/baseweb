@@ -239,9 +239,6 @@ export type ColorsT = {
   toastWarningBackground: string,
   toastNegativeBackground: string,
 
-  // Popover
-  popoverFill: string,
-
   // Spinner
   spinnerTrackFill: string,
 };

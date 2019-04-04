@@ -258,9 +258,6 @@ export default function createTheme(
       toastWarningBackground: primitives.warning500,
       toastNegativeBackground: primitives.negative500,
 
-      // Popover
-      popoverFill: primitives.mono100,
-
       // Spinner
       spinnerTrackFill: primitives.mono900,
     },
