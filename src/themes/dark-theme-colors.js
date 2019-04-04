@@ -151,7 +151,10 @@ export default {
     menuFontDefault: primitives.mono300,
     menuFontDisabled: primitives.mono400,
     menuFontHighlighted: primitives.mono200,
-    menuFontSelected: primitives.mono200,
+    menuFontSelected: WHITE,
+
+    // Popover
+    popoverFill: primitives.mono600,
   },
   tooltip: {
     backgroundColor: primitives.mono200,

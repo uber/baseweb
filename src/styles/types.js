@@ -238,6 +238,9 @@ export type ColorsT = {
   toastPositiveBackground: string,
   toastWarningBackground: string,
   toastNegativeBackground: string,
+
+  // Popover
+  popoverFill: string,
 };
 
 export type TypographyT = {

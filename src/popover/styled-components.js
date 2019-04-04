@@ -83,7 +83,7 @@ export function getInnerStyles({$theme}: SharedStylePropsT) {
     ? $theme.borders.radius300
     : '0px';
   return {
-    backgroundColor: $theme.colors.backgroundAlt,
+    backgroundColor: $theme.colors.popoverFill,
     color: $theme.colors.foreground,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
