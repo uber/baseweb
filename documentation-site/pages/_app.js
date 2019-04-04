@@ -126,16 +126,16 @@ export default class MyApp extends App {
     const {Component, pageProps, path} = this.props;
     return (
       <Container>
-        <LayersManager>
-          <StyletronProvider value={styletron}>
+        <StyletronProvider value={styletron}>
+          <LayersManager>
             <ThemeProvider theme={this.state.theme}>
               <Block overrides={BlockOverrides}>
                 <Component {...pageProps} path={path} />
                 <Block overrides={BlockOverrides} height="300px" />
               </Block>
             </ThemeProvider>
-          </StyletronProvider>
-        </LayersManager>
+          </LayersManager>
+        </StyletronProvider>
       </Container>
     );
   }

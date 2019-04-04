@@ -18,8 +18,40 @@ class LayerComponent extends React.Component<
   state = {container: null};
 
   componentDidMount() {
-    const {index, onMount} = this.props;
-    const host = this.props.host || document.body;
+    const {onMount, mountNode} = this.props;
+    if (mountNode) {
+      onMount && onMount();
+      return;
+    }
+    const host =
+      this.props.host !== undefined ? this.props.host : document.body;
+    if (host) {
+      this.addContainer(host);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const {host} = this.props;
+    if (host && host !== prevProps.host && prevProps.host === null) {
+      this.addContainer(host);
+    }
+  }
+
+  componentWillUnmount() {
+    const {container} = this.state;
+    const {host, onUnmount} = this.props;
+    onUnmount && onUnmount();
+    host &&
+      container &&
+      host.contains(container) &&
+      host.removeChild(container);
+  }
+
+  addContainer(host) {
+    const {index, mountNode, onMount} = this.props;
+    if (mountNode) {
+      return;
+    }
     if (host) {
       const container = host.ownerDocument.createElement('div');
       const sibling = typeof index === 'number' ? host.children[index] : null;
@@ -30,13 +62,6 @@ class LayerComponent extends React.Component<
         onMount && onMount();
       });
     }
-  }
-
-  componentWillUnmount() {
-    const {container} = this.state;
-    const {host, onUnmount} = this.props;
-    onUnmount && onUnmount();
-    host && container && host.removeChild(container);
   }
 
   render() {

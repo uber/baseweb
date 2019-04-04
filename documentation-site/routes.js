@@ -249,6 +249,10 @@ const routes = [
             itemId: '/components/block',
           },
           {
+            title: 'Layer',
+            itemId: '/components/layer',
+          },
+          {
             title: 'Styled',
             itemId: '/components/styled',
           },

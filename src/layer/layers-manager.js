@@ -11,7 +11,10 @@ import type {LayersManagerPropsT, LayersContexT} from './types.js';
 export const {
   Provider,
   Consumer,
-}: React.Context<LayersContexT> = React.createContext({root: null, host: null});
+}: React.Context<LayersContexT> = React.createContext({
+  root: undefined,
+  host: undefined,
+});
 
 export default class LayersManager extends React.Component<
   LayersManagerPropsT,
@@ -26,10 +29,10 @@ export default class LayersManager extends React.Component<
   render() {
     return (
       <Provider value={{root: this.root.current, host: this.host.current}}>
-        <div data-test="root" ref={this.root}>
+        <div data-id="root" ref={this.root}>
           {this.props.children}
         </div>
-        <div data-test="host" ref={this.host} />
+        <div data-id="host" ref={this.host} />
       </Provider>
     );
   }

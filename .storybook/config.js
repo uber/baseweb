@@ -12,15 +12,17 @@ import {LightThemeMove, DarkThemeMove} from '../src/themes';
 const engine = new Styletron();
 addDecorator((story, context) => {
   return (
-    <LayersManager>
-      <StyletronProvider value={engine}>
+    <StyletronProvider value={engine}>
+      <LayersManager>
         <ThemeProvider
-          theme={context.kind === 'baseui-dark' ? DarkThemeMove : LightThemeMove}
+          theme={
+            context.kind === 'baseui-dark' ? DarkThemeMove : LightThemeMove
+          }
         >
           {story()}
         </ThemeProvider>
-      </StyletronProvider>
-    </LayersManager>
+      </LayersManager>
+    </StyletronProvider>
   );
 });
 
