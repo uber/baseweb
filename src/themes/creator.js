@@ -257,6 +257,9 @@ export default function createTheme(
       toastPositiveBackground: primitives.positive500,
       toastWarningBackground: primitives.warning500,
       toastNegativeBackground: primitives.negative500,
+
+      // Spinner
+      spinnerTrackFill: primitives.mono900,
     },
     typography: {
       font100: {
