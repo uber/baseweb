@@ -237,7 +237,6 @@ export default function createTheme(
       // Tab
       tabBarFill: primitives.mono200,
       tabColor: primitives.mono800,
-      tabColorActive: primitives.mono1000,
 
       // Notification
       notificationPrimaryBackground: primitives.primary50,

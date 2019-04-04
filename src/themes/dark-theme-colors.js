@@ -162,7 +162,6 @@ export default {
     // Tab
     tabBarFill: primitives.mono1000,
     tabColor: primitives.mono300,
-    tabColorActive: primitives.mono100,
 
     // Spinner
     spinnerTrackFill: primitives.mono100,
