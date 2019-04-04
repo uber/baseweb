@@ -151,7 +151,7 @@ export default {
     menuFontDefault: primitives.mono300,
     menuFontDisabled: primitives.mono400,
     menuFontHighlighted: primitives.mono200,
-    menuFontSelected: primitives.mono200,
+    menuFontSelected: WHITE,
 
     // Pagination
     paginationTriangleDown: primitives.mono100,
@@ -163,6 +163,9 @@ export default {
     tabBarFill: primitives.mono1000,
     tabColor: primitives.mono300,
     tabColorActive: primitives.mono100,
+
+    // Spinner
+    spinnerTrackFill: primitives.mono100,
   },
   tooltip: {
     backgroundColor: primitives.mono200,
