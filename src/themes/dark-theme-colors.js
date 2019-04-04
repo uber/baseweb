@@ -155,6 +155,9 @@ export default {
     menuFontDisabled: primitives.mono400,
     menuFontHighlighted: primitives.mono200,
     menuFontSelected: primitives.mono200,
+
+    // Spinner
+    spinnerTrackFill: primitives.mono100,
   },
   tooltip: {
     backgroundColor: primitives.mono200,

@@ -241,6 +241,9 @@ export type ColorsT = {
   toastPositiveBackground: string,
   toastWarningBackground: string,
   toastNegativeBackground: string,
+
+  // Spinner
+  spinnerTrackFill: string,
 };
 
 export type TypographyT = {
