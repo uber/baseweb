@@ -151,7 +151,7 @@ export default {
     menuFontDefault: primitives.mono300,
     menuFontDisabled: primitives.mono400,
     menuFontHighlighted: primitives.mono200,
-    menuFontSelected: primitives.mono200,
+    menuFontSelected: WHITE,
 
     // Spinner
     spinnerTrackFill: primitives.mono100,
