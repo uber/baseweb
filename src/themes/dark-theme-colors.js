@@ -87,6 +87,9 @@ export default {
     listIconFill: primitives.mono100,
     listBorder: primitives.mono500,
 
+    // ProgressSteps
+    progressStepsIconActiveFill: primitives.mono100,
+
     // Tag
     tagBackground: primitives.mono1000,
     tagNeutralBackground: primitives.mono600,
