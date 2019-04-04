@@ -260,6 +260,9 @@ export default function createTheme(
 
       // Popover
       popoverFill: primitives.mono100,
+
+      // Spinner
+      spinnerTrackFill: primitives.mono900,
     },
     typography: {
       font100: {

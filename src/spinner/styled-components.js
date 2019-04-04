@@ -34,7 +34,8 @@ export const Svg = styled('svg', props => {
 });
 
 export const StyledTrackPath = styled('path', props => ({
-  fill: props.$theme.colors.mono400,
+  fill: props.$theme.colors.spinnerTrackFill,
+  opacity: 0.16,
 }));
 
 export const StyledActivePath = styled('path', props => ({

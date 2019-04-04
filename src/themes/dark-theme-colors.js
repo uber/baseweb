@@ -155,6 +155,9 @@ export default {
 
     // Popover
     popoverFill: primitives.mono600,
+
+    // Spinner
+    spinnerTrackFill: primitives.mono100,
   },
   tooltip: {
     backgroundColor: primitives.mono200,

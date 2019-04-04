@@ -241,6 +241,9 @@ export type ColorsT = {
 
   // Popover
   popoverFill: string,
+
+  // Spinner
+  spinnerTrackFill: string,
 };
 
 export type TypographyT = {
