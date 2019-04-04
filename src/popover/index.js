@@ -14,6 +14,8 @@ export {
   PLACEMENT,
   TRIGGER_TYPE,
   STATE_CHANGE_TYPE,
+  ANIMATE_IN_TIME,
+  ANIMATE_OUT_TIME,
 } from './constants.js';
 // Styled elements
 export {
