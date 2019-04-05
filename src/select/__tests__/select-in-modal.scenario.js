@@ -18,24 +18,24 @@ import {
 } from '../../modal/index.js';
 
 // eslint-disable-next-line import/extensions
-// import Screener, {Steps} from 'screener-storybook/src/screener';
+import Screener, {Steps} from 'screener-storybook/src/screener';
 export const name = 'select-in-modal';
 
 export const component = () => {
-  // const buttonSelector = '[data-baseweb="button"]';
-  // const selectSelector = '[data-baseweb="select"] input';
+  const buttonSelector = '[data-baseweb="button"]';
+  const selectSelector = '[data-baseweb="select"] input';
   return (
-    // <Screener
-    //   steps={new Steps()
-    //     .wait(buttonSelector)
-    //     .click(buttonSelector)
-    //     .wait(selectSelector)
-    //     .click(selectSelector)
-    //     .snapshot('Select in a modal dialog')
-    //     .end()}
-    // >
-    <SelectInModal />
-    // </Screener>
+    <Screener
+      steps={new Steps()
+        .wait(buttonSelector)
+        .click(buttonSelector)
+        .wait(selectSelector)
+        .click(selectSelector)
+        .snapshot('Select in a modal dialog')
+        .end()}
+    >
+      <SelectInModal />
+    </Screener>
   );
 };
 
