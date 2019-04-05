@@ -13,6 +13,7 @@ import type {SharedStylePropsT} from './types.js';
 const StyledTableElement = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.borders.border300,
+    backgroundColor: $theme.colors.tableBackground,
     borderRadius: $theme.borders.radius200,
     display: 'flex',
     flexDirection: 'column',
@@ -56,6 +57,7 @@ const StyledHeadCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
     borderTop: 'none',
     borderBottom: 'none',
     borderLeft: 'none',
+    color: $theme.colors.colorPrimary,
     display: 'flex',
     justifyContent: 'space-between',
     paddingTop: $theme.sizing.scale500,
@@ -78,7 +80,9 @@ export const StyledSortableLabel = styled('button', ({$theme}) => {
   return {
     ...$theme.typography.font350,
     alignItems: 'center',
+    backgroundColor: 'transparent',
     border: 'none',
+    color: $theme.colors.colorPrimary,
     display: 'flex',
     padding: 0,
     ':hover:enabled': {
@@ -117,6 +121,7 @@ StyledRow.__STYLETRON__ = StyledRowElement.__STYLETRON__;
 const StyledCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.typography.font300,
+    color: $theme.colors.colorPrimary,
     display: 'flex',
     flex: 1,
     paddingTop: $theme.sizing.scale300,
@@ -131,13 +136,18 @@ export const StyledCell = (props: *) => (
 );
 StyledCell.__STYLETRON__ = StyledCellElement.__STYLETRON__;
 
-export const StyledFilterButton = styled('button', {
+export const StyledFilterButton = styled('button', props => ({
+  backgroundColor: 'transparent',
   border: 'none',
-  padding: 'none',
-});
+  paddingTop: 'none',
+  paddingRight: 'none',
+  paddingBottom: 'none',
+  paddingLeft: 'none',
+}));
 
 export const StyledFilterContent = styled('div', ({$theme}) => ({
   ...$theme.borders.border300,
+  backgroundColor: $theme.colors.tableFilterBackground,
   borderRight: 'none',
   borderLeft: 'none',
   maxHeight: '196px',
@@ -148,7 +158,7 @@ export const StyledFilterContent = styled('div', ({$theme}) => ({
 
 export const StyledFilterHeading = styled('div', ({$theme}) => ({
   ...$theme.typography.font350,
-  color: $theme.colors.mono700,
+  color: $theme.colors.tableFilterHeading,
   paddingTop: $theme.sizing.scale500,
   paddingRight: $theme.sizing.scale600,
   paddingBottom: $theme.sizing.scale500,
@@ -156,7 +166,7 @@ export const StyledFilterHeading = styled('div', ({$theme}) => ({
 }));
 
 export const StyledFilterFooter = styled('div', ({$theme}) => ({
-  backgroundColor: $theme.colors.mono200,
+  backgroundColor: $theme.colors.tableFilterFooterBackground,
   paddingTop: $theme.sizing.scale300,
   paddingRight: $theme.sizing.scale100,
   paddingBottom: $theme.sizing.scale300,
@@ -168,6 +178,7 @@ export const StyledFilterFooter = styled('div', ({$theme}) => ({
 
 export const StyledAction = styled('button', ({$theme}) => {
   return {
+    backgroundColor: 'transparent',
     border: 'none',
     color: $theme.colors.primary,
     paddingTop: 0,
