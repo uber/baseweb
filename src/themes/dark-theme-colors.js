@@ -89,7 +89,7 @@ export default {
 
     // ProgressSteps
     progressStepsIconActiveFill: primitives.mono100,
-    
+
     // Notification
     notificationPrimaryBackground: primitives.primary700,
     notificationPrimaryText: primitives.primary200,
