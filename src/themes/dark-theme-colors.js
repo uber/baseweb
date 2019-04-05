@@ -87,6 +87,16 @@ export default {
     listIconFill: primitives.mono100,
     listBorder: primitives.mono500,
 
+    // Notification
+    notificationPrimaryBackground: primitives.primary700,
+    notificationPrimaryText: primitives.primary200,
+    notificationPositiveBackground: primitives.positive700,
+    notificationPositiveText: primitives.positive200,
+    notificationWarningBackground: primitives.warning700,
+    notificationWarningText: primitives.warning200,
+    notificationNegativeBackground: primitives.negative700,
+    notificationNegativeText: primitives.negative200,
+
     // Tag
     tagBackground: primitives.mono1000,
     tagNeutralBackground: primitives.mono600,
