@@ -87,6 +87,9 @@ export default {
     listIconFill: primitives.mono100,
     listBorder: primitives.mono500,
 
+    // ProgressSteps
+    progressStepsIconActiveFill: primitives.mono100,
+
     // Notification
     notificationPrimaryBackground: primitives.primary700,
     notificationPrimaryText: primitives.primary200,
