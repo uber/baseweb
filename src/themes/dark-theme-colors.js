@@ -163,6 +163,16 @@ export default {
     menuFontHighlighted: primitives.mono200,
     menuFontSelected: WHITE,
 
+    // Pagination
+    paginationTriangleDown: primitives.mono100,
+
+    // Header navigation
+    headerNavigationFill: primitives.mono700,
+
+    // Tab
+    tabBarFill: primitives.mono1000,
+    tabColor: primitives.mono300,
+
     // Spinner
     spinnerTrackFill: primitives.mono100,
   },

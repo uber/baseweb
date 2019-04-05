@@ -228,6 +228,16 @@ export default function createTheme(
       menuFontHighlighted: primitives.primary400,
       menuFontSelected: primitives.mono1000,
 
+      // Pagination
+      paginationTriangleDown: primitives.mono800,
+
+      // Header navigation
+      headerNavigationFill: 'transparent',
+
+      // Tab
+      tabBarFill: primitives.mono200,
+      tabColor: primitives.mono800,
+
       // Notification
       notificationPrimaryBackground: primitives.primary50,
       notificationPrimaryText: primitives.primary500,
