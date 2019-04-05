@@ -89,6 +89,16 @@ export default {
 
     // ProgressSteps
     progressStepsIconActiveFill: primitives.mono100,
+    
+    // Notification
+    notificationPrimaryBackground: primitives.primary700,
+    notificationPrimaryText: primitives.primary200,
+    notificationPositiveBackground: primitives.positive700,
+    notificationPositiveText: primitives.positive200,
+    notificationWarningBackground: primitives.warning700,
+    notificationWarningText: primitives.warning200,
+    notificationNegativeBackground: primitives.negative700,
+    notificationNegativeText: primitives.negative200,
 
     // Tag
     tagBackground: primitives.mono1000,
@@ -155,6 +165,16 @@ export default {
     menuFontDisabled: primitives.mono400,
     menuFontHighlighted: primitives.mono200,
     menuFontSelected: WHITE,
+
+    // Pagination
+    paginationTriangleDown: primitives.mono100,
+
+    // Header navigation
+    headerNavigationFill: primitives.mono700,
+
+    // Tab
+    tabBarFill: primitives.mono1000,
+    tabColor: primitives.mono300,
 
     // Spinner
     spinnerTrackFill: primitives.mono100,

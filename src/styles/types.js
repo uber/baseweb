@@ -218,6 +218,16 @@ export type ColorsT = {
   menuFontHighlighted: string,
   menuFontSelected: string,
 
+  // Pagination
+  paginationTriangleDown: string,
+
+  // Header navigation
+  headerNavigationFill: string,
+
+  // Tab
+  tabBarFill: string,
+  tabColor: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,

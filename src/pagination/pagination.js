@@ -158,7 +158,7 @@ export default class Pagination extends React.PureComponent<
                     overrides={{
                       Svg: {
                         style: ({$theme}) => ({
-                          color: $theme.colors.mono800,
+                          color: $theme.colors.paginationTriangleDown,
                         }),
                       },
                     }}
