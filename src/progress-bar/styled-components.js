@@ -5,7 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {styled, hexToRgb} from '../styles/index.js';
+
 export const Root = styled('div', props => {
   return {
     width: '100%',
@@ -25,7 +26,7 @@ export const Bar = styled('div', props => {
     borderBottomRightRadius: borderRadius,
     borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    backgroundColor: colors.mono400,
+    backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: '4px',
   };
 });
