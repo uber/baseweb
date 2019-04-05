@@ -22,6 +22,7 @@ export const Root = styled('nav', props => {
     paddingBottom: scale500,
     paddingTop: scale500,
     borderBottom: `1px solid ${border}`,
+    backgroundColor: $theme.colors.headerNavigationFill,
   };
 });
 

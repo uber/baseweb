@@ -30,7 +30,7 @@ export const Tab = styled('div', (props: SharedStylePropsT) => {
   let style = {
     ...typography.font300,
     boxSizing: 'border-box',
-    color: $active ? colors.black : colors.mono800,
+    color: $active ? colors.colorPrimary : colors.tabColor,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,
@@ -68,7 +68,7 @@ export const TabBar = styled('div', (props: SharedStylePropsT) => {
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
     paddingLeft: sizing.scale400,
     paddingRight: sizing.scale400,
-    backgroundColor: colors.mono200,
+    backgroundColor: colors.tabBarFill,
   };
 });
 
