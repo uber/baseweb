@@ -260,6 +260,11 @@ export default function createTheme(
 
       // Table
       tableHeadBackgroundColor: primitives.mono100,
+      tableBackground: primitives.mono100,
+      tableFilter: primitives.mono600,
+      tableFilterHeading: primitives.mono700,
+      tableFilterBackground: primitives.mono100,
+      tableFilterFooterBackground: primitives.mono200,
 
       // Toast
       toastText: WHITE,
