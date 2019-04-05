@@ -7,9 +7,38 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import Screener, {Steps} from 'screener-storybook/src/screener.js';
 
 import {StarRating} from '../index.js';
 
 export const name = 'rating-star';
 
-export const component = () => <StarRating value={3} />;
+export const component = () => {
+  const selector = 'li:nth-child(5)';
+  return (
+    <Screener
+      steps={new Steps()
+        .wait(selector)
+        .click(selector)
+        .snapshot('starRating: five stars selected')
+        .end()}
+    >
+      <StarRatingContainer />
+    </Screener>
+  );
+};
+
+class StarRatingContainer extends React.Component<{}, {value: number}> {
+  state = {
+    value: 3,
+  };
+
+  render() {
+    return (
+      <StarRating
+        value={this.state.value}
+        onChange={({value}) => this.setState({value})}
+      />
+    );
+  }
+}
