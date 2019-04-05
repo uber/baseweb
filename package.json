@@ -41,9 +41,12 @@
     "predocumentation:dev": "node ./scripts/post-generator.js",
     "predocumentation:build": "node ./scripts/post-generator.js",
     "predocumentation:serve": "node ./scripts/post-generator.js",
-    "documentation:dev": "yarn build:es2015 --watch & next documentation-site",
-    "documentation:build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o public",
-    "documentation:serve": "static-server public --port 8081"
+    "documentation:dev": "run-p build:es2015 next:dev",
+    "documentation:build": "run-s build:es2015 next:build next:export",
+    "documentation:serve": "static-server public --port 8081",
+    "next:dev": "next documentation-site",
+    "next:build": "next build documentation-site",
+    "next:export": "next export documentation-site -o public"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -113,6 +116,7 @@
     "next": "^8.0.3",
     "next-images": "^1.1.0",
     "now": "^13.1.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.14.3",
     "pretty-proptypes": "^0.6.0",
     "pretty-quick": "^1.4.1",
