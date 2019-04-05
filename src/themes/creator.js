@@ -278,6 +278,9 @@ export default function createTheme(
 
       // Spinner
       spinnerTrackFill: primitives.mono900,
+
+      // Progress bar
+      progressbarTrackFill: primitives.mono900,
     },
     typography: {
       font100: {

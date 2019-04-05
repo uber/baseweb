@@ -259,6 +259,9 @@ export type ColorsT = {
 
   // Spinner
   spinnerTrackFill: string,
+
+  // Progress bar
+  progressbarTrackFill: string,
 };
 
 export type TypographyT = {

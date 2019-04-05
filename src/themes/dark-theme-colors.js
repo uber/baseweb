@@ -186,6 +186,9 @@ export default {
 
     // Spinner
     spinnerTrackFill: primitives.mono100,
+
+    // Progress bar
+    progressbarTrackFill: primitives.mono100,
   },
   tooltip: {
     backgroundColor: primitives.mono200,
