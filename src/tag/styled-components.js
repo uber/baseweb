@@ -24,7 +24,7 @@ function getAlpha(props: SharedPropsT, hovered: boolean = false) {
   if (hovered) {
     return '0.8';
   }
-  return '0.92';
+  return '0.6';
 }
 
 function getActionAlpha(
@@ -37,7 +37,7 @@ function getActionAlpha(
     return '0.24';
   }
   if (hovered) {
-    return '0.6';
+    return '0.8';
   }
   return '0.92';
 }
@@ -54,9 +54,9 @@ function getBackgroundColor(props: SharedPropsT, hovered: boolean = false) {
   }
 
   const alpha = getAlpha(props, hovered);
-  return `linear-gradient(0deg, 
-    rgba(${$theme.colors.tagRGBGradient}, ${alpha}), 
-    rgba(${$theme.colors.tagRGBGradient}, ${alpha})), 
+  return `linear-gradient(0deg,
+    rgba(${$theme.colors.tagRGBGradient}, ${alpha}),
+    rgba(${$theme.colors.tagRGBGradient}, ${alpha})),
     ${color}`;
 }
 
@@ -92,22 +92,22 @@ function getActionBackgroundColor(
   let alpha;
   if ($variant === VARIANT.solid && (!$clickable && hovered)) {
     alpha = getActionAlpha(props, hovered, true);
-    return `linear-gradient(0deg, 
-      rgba(${$theme.colors.tagRGBGradientSecondary}, ${alpha}), 
-      rgba(${$theme.colors.tagRGBGradientSecondary}, ${alpha})), 
+    return `linear-gradient(0deg,
+      rgba(${$theme.colors.tagRGBGradientSecondary}, ${alpha}),
+      rgba(${$theme.colors.tagRGBGradientSecondary}, ${alpha})),
       ${color}`;
   }
   alpha = getActionAlpha(props, hovered);
-  return `linear-gradient(0deg, 
-    rgba(${$theme.colors.tagRGBGradient}, ${alpha}), 
-    rgba(${$theme.colors.tagRGBGradient}, ${alpha})), 
+  return `linear-gradient(0deg,
+    rgba(${$theme.colors.tagRGBGradient}, ${alpha}),
+    rgba(${$theme.colors.tagRGBGradient}, ${alpha})),
     ${color}`;
 }
 
 function getActionFontColor(props: SharedPropsT, hovered: boolean = false) {
   const {$variant, $theme} = props;
   if (hovered && $variant === VARIANT.outlined && $theme) {
-    return $theme.colors.mono200;
+    return $theme.colors.tagBackground;
   }
   return null;
 }
@@ -124,6 +124,9 @@ function getFontColor(props: SharedPropsT, hovered) {
   }
   if ($kind === 'custom') {
     return $color;
+  }
+  if ($kind === 'neutral') {
+    return $theme.colors.colorPrimary;
   }
   if ($theme.colors[COLOR_STYLE_KEYS[$kind]]) {
     return $theme.colors[COLOR_STYLE_KEYS[$kind]];

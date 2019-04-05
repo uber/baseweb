@@ -107,6 +107,8 @@ export default {
     tagPositiveBackground: primitives.positive500,
     tagWarningBackground: primitives.warning500,
     tagNegativeBackground: primitives.negative500,
+    tagRGBGradient: '0, 0, 0',
+    tagRGBGradientSecondary: '255, 255, 255',
 
     // Tick
     tickFill: primitives.mono1000,

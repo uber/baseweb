@@ -17,9 +17,9 @@ export const COLOR_STYLE_KEYS = {
 };
 
 export const VARIANT = Object.freeze({
+  solid: 'solid',
   light: 'light',
   outlined: 'outlined',
-  solid: 'solid',
 });
 
 export const KIND: {[TagKindT]: string} = Object.keys({
