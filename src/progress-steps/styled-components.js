@@ -20,7 +20,11 @@ export const StyledProgressSteps = styled(
   'div',
   ({$theme}: StyledProgressStepsPropsT) => {
     return {
+      backgroundColor: $theme.colors.listHeaderFill,
+      display: 'inline-block',
       paddingTop: $theme.sizing.scale300,
+      paddingRight: $theme.sizing.scale500,
+      paddingLeft: $theme.sizing.scale500,
       paddingBottom: $theme.sizing.scale300,
     };
   },
@@ -46,7 +50,7 @@ export const StyledIcon = styled(
       currentColor = $theme.colors.primary400;
     } else if ($isActive) {
       font = $theme.typography.font450;
-      currentColor = $theme.colors.primary100;
+      currentColor = $theme.colors.progressStepsIconActiveFill;
     }
 
     if ($isActive) {
@@ -161,7 +165,7 @@ export const StyledNumberIcon = styled(
   'div',
   ({$theme, $isActive, $isCompleted, $disabled}: StyledNumberIconPropsT) => {
     let backgroundColor = $theme.colors.mono400;
-    let color = $theme.colors.primary400;
+    let color = $theme.colors.colorSecondary;
     let size = $theme.sizing.scale800;
     let marginRight = $theme.sizing.scale300;
     let font = $theme.typography.font350;
@@ -169,10 +173,11 @@ export const StyledNumberIcon = styled(
 
     if ($isCompleted) {
       backgroundColor = $theme.colors.primary400;
-      color = $theme.colors.mono100;
+      color = $theme.colors.white;
     } else if ($isActive) {
       titleFont = $theme.typography.font450;
-      backgroundColor = $theme.colors.primary100;
+      color = $theme.colors.primary400;
+      backgroundColor = $theme.colors.progressStepsIconActiveFill;
     }
 
     const marginTop = `calc((${titleFont.lineHeight} - ${size}) / 2)`;
@@ -203,7 +208,7 @@ export const StyledNumberContentTail = styled(
     $isCompleted,
     $disabled,
   }: StyledNumberContentTailPropsT) => {
-    let currentColor = $theme.colors.mono400;
+    let currentColor = $theme.colors.mono300;
 
     if ($isCompleted) {
       currentColor = $theme.colors.primary400;

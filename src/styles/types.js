@@ -150,6 +150,9 @@ export type ColorsT = {
   listIconFill: string,
   listBorder: string,
 
+  // ProgressSteps
+  progressStepsIconActiveFill: string,
+
   // Ticks
   tickFill: string,
   tickFillHover: string,
