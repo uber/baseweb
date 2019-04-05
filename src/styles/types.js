@@ -241,6 +241,11 @@ export type ColorsT = {
 
   // Table
   tableHeadBackgroundColor: string,
+  tableBackground: string,
+  tableFilter: string,
+  tableFilterHeading: string,
+  tableFilterBackground: string,
+  tableFilterFooterBackground: string,
 
   // Toast
   toastText: string,
