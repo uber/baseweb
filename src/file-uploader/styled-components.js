@@ -57,3 +57,24 @@ export const StyledRoot = styled('div', (props: StylePropsT) => ({
 }));
 
 export const StyledHiddenInput = styled('input');
+
+export const StyledButton = styled('button', (props: StylePropsT) => {
+  return {
+    boxSizing: 'border-box',
+    height: '22px',
+    color: props.$theme.colors.negative,
+    backgroundColor: 'transparent',
+    borderWidth: '0',
+    paddingTop: '3px',
+    paddingBottom: '3px',
+    paddingLeft: '3px',
+    paddingRight: '3px',
+    outline: 'none',
+    ':focus': {
+      backgroundColor: props.$theme.colors.primary500,
+      borderRadius: props.$theme.borders.useRoundedCorners
+        ? props.$theme.sizing.scale100
+        : 0,
+    },
+  };
+});

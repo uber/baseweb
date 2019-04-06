@@ -22,6 +22,7 @@ import {
   StyledContentMessage,
   StyledErrorMessage,
   StyledHiddenInput,
+  StyledButton,
 } from './styled-components.js';
 import type {PropsT} from './types.js';
 
@@ -52,6 +53,7 @@ function FileUploader(props: PropsT) {
     overrides.HiddenInput,
     StyledHiddenInput,
   );
+  const [Button, buttonProps] = getOverrides(overrides.Button, StyledButton);
 
   const afterFileDrop = !!(
     props.progressAmount ||
@@ -111,13 +113,9 @@ function FileUploader(props: PropsT) {
                         disabled={props.disabled}
                         kind={KIND.minimal}
                         onClick={open}
-                        overrides={{
-                          BaseButton: {
-                            style: {outline: null, fontWeight: 'normal'},
-                          },
-                        }}
                         role="button"
                         {...prefixedStyledProps}
+                        {...buttonProps}
                       >
                         {locale.fileuploader.browseFiles}
                       </Button>
@@ -172,11 +170,7 @@ function FileUploader(props: PropsT) {
                           onClick={() => {
                             props.onRetry && props.onRetry();
                           }}
-                          overrides={{
-                            BaseButton: {
-                              style: {outline: null, fontWeight: 'normal'},
-                            },
-                          }}
+                          {...buttonProps}
                         >
                           {locale.fileuploader.retry}
                         </Button>
@@ -186,11 +180,7 @@ function FileUploader(props: PropsT) {
                           onClick={() => {
                             props.onCancel && props.onCancel();
                           }}
-                          overrides={{
-                            BaseButton: {
-                              style: {outline: null, fontWeight: 'normal'},
-                            },
-                          }}
+                          {...buttonProps}
                         >
                           {locale.fileuploader.cancel}
                         </Button>
