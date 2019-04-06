@@ -164,6 +164,8 @@ export type DatepickerPropsT = CalendarPropsT & {
   formatString: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
+  /** Called when calendar is closed */
+  onClose?: () => mixed,
 };
 
 export type SharedStylePropsT = {

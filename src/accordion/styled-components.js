@@ -28,7 +28,7 @@ export const Header = styled('div', (props: SharedStylePropsT) => {
   } = props;
   return {
     ...typography.font450,
-    color: colors.foreground,
+    color: colors.colorPrimary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     background: colors.listHeaderFill,
     paddingTop: sizing.scale600,
@@ -45,10 +45,7 @@ export const Header = styled('div', (props: SharedStylePropsT) => {
     alignItems: 'center',
     justifyContent: 'space-between',
     ':hover': {
-      color: colors.linkHover,
-    },
-    ':focus': {
-      backgroundColor: colors.background,
+      color: colors.primary,
     },
   };
 });
@@ -69,7 +66,7 @@ export const Content = styled('div', (props: SharedStylePropsT) => {
   } = props;
   return {
     ...typography.font300,
-    backgroundColor: colors.background,
+    backgroundColor: colors.listBodyFill,
     color: colors.foreground,
     paddingTop: $expanded ? sizing.scale800 : 0,
     paddingBottom: $expanded ? sizing.scale1000 : 0,

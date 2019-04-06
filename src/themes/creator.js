@@ -168,6 +168,9 @@ export default function createTheme(
       listIconFill: primitives.mono500,
       listBorder: primitives.mono500,
 
+      // ProgressSteps
+      progressStepsIconActiveFill: primitives.primary100,
+
       // Tick
       tickFill: WHITE,
       tickFillHover: primitives.mono400,
@@ -275,6 +278,9 @@ export default function createTheme(
 
       // Spinner
       spinnerTrackFill: primitives.mono900,
+
+      // Progress bar
+      progressbarTrackFill: primitives.mono900,
     },
     typography: {
       font100: {
