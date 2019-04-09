@@ -22,7 +22,6 @@ import {
   StyledContentMessage,
   StyledErrorMessage,
   StyledHiddenInput,
-  StyledButton,
 } from './styled-components.js';
 import type {PropsT} from './types.js';
 
@@ -53,7 +52,7 @@ function FileUploader(props: PropsT) {
     overrides.HiddenInput,
     StyledHiddenInput,
   );
-  const [Button, buttonProps] = getOverrides(overrides.Button, StyledButton);
+  const [ButtonComponent, buttonProps] = getOverrides(overrides.Button, Button);
 
   const afterFileDrop = !!(
     props.progressAmount ||
