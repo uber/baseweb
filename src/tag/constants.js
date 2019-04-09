@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import type {TagKindT} from './types.js';
 
+// Remove this in the next major version
 export const COLOR_STYLE_KEYS = {
   neutral: 'tagNeutralBackground',
   primary: 'tagPrimaryBackground',
