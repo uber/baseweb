@@ -75,12 +75,6 @@ export default class MenuStatefulContainer extends React.Component<
       this.props.removeMenuFromNesting(this.rootRef);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.highlightedIndex != this.state.highlightedIndex) {
-      console.log(nextState.highlightedIndex);
-    }
-  }
-
   componentDidUpdate(_: mixed, prevState: StatefulContainerStateT) {
     if (__BROWSER__) {
       if (!prevState.isFocused && this.state.isFocused) {

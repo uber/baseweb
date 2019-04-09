@@ -11,6 +11,7 @@ import {
   StyledDropdown,
   StyledDropdownListItem,
   StyledOptionContent,
+  StyledStatefulMenu,
 } from './styled-components.js';
 import {StatefulMenu} from '../menu/index.js';
 import type {DropdownPropsT} from './types.js';
@@ -98,6 +99,10 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     const [ListItem, listItemProps] = getOverrides(
       overrides.DropdownListItem,
       StyledDropdownListItem,
+    );
+    const [StatefulMenu, statefulMenuProps] = getOverrides(
+      overrides.StatefulMenu,
+      StyledStatefulMenu,
     );
     return (
       <DropdownContainer

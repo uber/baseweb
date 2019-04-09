@@ -341,3 +341,12 @@ export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
     height: '100%',
   };
 });
+
+export const StyledStatefulMenu = styled('ul', (props: SharedStylePropsT) => {
+  const {$theme} = props;
+  const {colors} = $theme;
+  return {
+    backgroundColor: colors.negative400,
+    height:'156px',
+  };
+});
