@@ -9,14 +9,19 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
+import type {
+  PopperDataObjectT as TetherPopperDataObjectT,
+  PopperOffsetT as TetherPopperOffsetT,
+  PopperPlacementT,
+  PopperOptionsT as TetherPopperOptionsT,
+} from '../layer/types.js';
 import {
   ACCESSIBILITY_TYPE,
-  PLACEMENT,
   STATE_CHANGE_TYPE,
   TRIGGER_TYPE,
 } from './constants.js';
 
-export type PopoverPlacementT = $Keys<typeof PLACEMENT>;
+export type PopoverPlacementT = PopperPlacementT;
 
 export type TriggerTypeT = $Keys<typeof TRIGGER_TYPE>;
 
@@ -66,7 +71,7 @@ export type BasePopoverPropsT = {
   onMouseLeaveDelay?: number,
   overrides?: OverridesT,
   /** How to position the popover relative to the target. */
-  placement: PopoverPlacementT,
+  placement: PopperPlacementT,
   /** Whether or not to show the arrow pointing from the popover to the trigger. */
   showArrow?: boolean,
   /** Whether to toggle the popover when trigger is clicked or hovered. */
@@ -141,36 +146,21 @@ export type OffsetT = {
   left: number,
 };
 
-export type PopperOffsetT = {
-  top?: number | null,
-  left?: number | null,
-};
+// remove in the next major version
+export type PopperOffsetT = TetherPopperOffsetT;
 
-export type PopperDataObjectT = {
-  offsets: {
-    arrow?: PopperOffsetT,
-    popper: PopperOffsetT,
-  },
-  placement: string,
-};
+// remove in the next major version
+export type PopperDataObjectT = TetherPopperDataObjectT;
 
-export type PopperOptionsT = {
-  placement: string,
-  modifiers: {
-    arrow: {},
-    computeStyle: {},
-    applyStyle: {},
-    applyReactStyle: {
-      fn: (data: PopperDataObjectT) => void,
-    },
-  },
-};
+// remove in the next major version
+export type PopperOptionsT = TetherPopperOptionsT;
 
 export type PopoverPrivateStateT = {
   isAnimating: boolean,
   arrowOffset: OffsetT,
   popoverOffset: OffsetT,
-  placement: PopoverPlacementT,
+  placement: PopperPlacementT,
+  isLayerMounted: boolean,
   isMounted: boolean,
 };
 
@@ -179,7 +169,7 @@ export type SharedStylePropsArgT = {
   $isAnimating: boolean,
   $isOpen: boolean,
   $popoverOffset: OffsetT,
-  $placement: PopoverPlacementT,
+  $placement: PopperPlacementT,
   $showArrow: boolean,
   children?: React.Node,
 

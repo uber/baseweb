@@ -7,7 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import {PLACEMENT} from './constants.js';
 
+/** LayersManager */
 export type LayersManagerPropsT = {
   children: React.Node,
 };
@@ -17,6 +19,7 @@ export type LayersContexT = {
   host: typeof undefined | ?HTMLElement,
 };
 
+/** Layer */
 export type LayerPropsT = {
   children: React.Node,
   host?: ?HTMLElement,
@@ -37,4 +40,46 @@ export type LayerComponentPropsT = {
 
 export type LayerStateT = {
   container: ?HTMLElement,
+};
+
+/** TetherBehavior */
+export type PopperPlacementT = $Keys<typeof PLACEMENT>;
+
+export type PopperOffsetT = {
+  top?: number | null,
+  left?: number | null,
+};
+
+export type PopperDataObjectT = {
+  offsets: {
+    arrow?: PopperOffsetT,
+    popper: PopperOffsetT,
+  },
+  placement: string,
+};
+
+export type PopperOptionsT = {
+  placement: string,
+  modifiers: {
+    arrow: {},
+    computeStyle: {},
+    applyStyle: {},
+    applyReactStyle: {
+      fn: (data: PopperDataObjectT) => void,
+    },
+  },
+};
+
+export type TetherPropsT = {
+  anchorRef: ?HTMLElement,
+  arrowRef?: ?HTMLElement,
+  popperRef: ?HTMLElement,
+  children: React.Node,
+  ignoreBoundary: boolean,
+  onPopperUpdate: PopperDataObjectT => mixed,
+  placement: PopperPlacementT,
+};
+
+export type TetherStateT = {
+  isMounted: boolean,
 };

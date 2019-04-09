@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 
-import Popper from 'popper.js';
+// import Popper from 'popper.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
 import {
@@ -19,17 +19,13 @@ import {
   ANIMATE_OUT_TIME,
   ANIMATE_IN_TIME,
 } from './constants.js';
-import {Layer} from '../layer/index.js';
+import {Layer, TetherBehavior} from '../layer/index.js';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
   Inner as StyledInner,
 } from './styled-components.js';
-import {
-  toPopperPlacement,
-  fromPopperPlacement,
-  parsePopperOffset,
-} from './utils.js';
+import {fromPopperPlacement, parsePopperOffset} from './utils.js';
 import defaultProps from './default-props.js';
 
 import type {
@@ -50,11 +46,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   onMouseEnterTimer: ?TimeoutID;
   onMouseLeaveTimer: ?TimeoutID;
   generatedId: string = '';
-  popper: ?Popper;
   anchorRef = (React.createRef(): {current: *});
   popperRef = (React.createRef(): {current: *});
   arrowRef = (React.createRef(): {current: *});
-  popperHeight = 0;
   /* eslint-enable react/sort-comp */
 
   /**
@@ -77,33 +71,21 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   init(prevProps: PopoverPropsT, prevState: PopoverPrivateStateT) {
-    // Handles the case where popover content changes size and creates a gap between the anchor and
-    // the popover. Popper.js only schedules updates on resize and scroll events. In the case of
-    // the Select component, when options were filtered in the dropdown menu it creates a gap
-    // between it and the input element.
-    if (this.popperRef.current) {
-      const {height} = this.popperRef.current.getBoundingClientRect();
-      if (this.popperHeight !== height) {
-        this.popperHeight = height;
-        this.popper && this.popper.scheduleUpdate();
-      }
-    }
     if (
       this.props.isOpen !== prevProps.isOpen ||
-      this.state.isMounted !== prevState.isMounted
+      this.state.isMounted !== prevState.isMounted ||
+      this.state.isLayerMounted !== prevState.isLayerMounted
     ) {
       // Transition from closed to open.
-      if (this.props.isOpen) {
+      if (this.props.isOpen && this.state.isLayerMounted) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
-        this.initializePopper();
         this.addDomEvents();
         return;
       }
 
       // Transition from open to closed.
       if (!this.props.isOpen && prevProps.isOpen) {
-        this.destroyPopover();
         this.removeDomEvents();
         this.animateOutTimer = setTimeout(this.animateOut, 20);
         return;
@@ -112,7 +94,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   componentWillUnmount() {
-    this.destroyPopover();
     this.removeDomEvents();
     this.clearTimers();
   }
@@ -124,6 +105,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       popoverOffset: {left: 0, top: 0},
       placement: props.placement,
       isMounted: false,
+      isLayerMounted: false,
     };
   }
 
@@ -146,36 +128,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       }, ANIMATE_OUT_TIME);
     }
   };
-
-  initializePopper() {
-    const {placement} = this.state;
-    this.popper = new Popper(this.anchorRef.current, this.popperRef.current, {
-      // Recommended placement (popper may ignore if it causes a viewport overflow, etc)
-      placement: toPopperPlacement(placement),
-      modifiers: {
-        // Passing the arrow ref will measure the arrow when calculating styles
-        arrow: {
-          element: this.arrowRef.current,
-          enabled: this.props.showArrow,
-        },
-        computeStyle: {
-          // Make popper use top/left instead of transform translate, this is because
-          // we use transform for animations and we dont want them to conflict
-          gpuAcceleration: false,
-        },
-        applyStyle: {
-          // Disable default styling modifier, we'll apply styles on our own
-          enabled: false,
-        },
-        applyReactStyle: {
-          enabled: true,
-          fn: this.onPopperUpdate,
-          order: 900,
-        },
-        preventOverflow: {enabled: !this.props.ignoreBoundary},
-      },
-    });
-  }
 
   clearTimers() {
     [
@@ -314,16 +266,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     }
   };
 
-  destroyPopover() {
-    if (this.popper) {
-      this.popper.destroy();
-      delete this.popper;
-    }
-    if (this.isClickTrigger()) {
-      this.removeDomEvents();
-    }
-  }
-
   isClickTrigger() {
     return this.props.triggerType === TRIGGER_TYPE.click;
   }
@@ -431,16 +373,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return childArray[0];
   }
 
-  getMountNode(): HTMLElement {
-    const {mountNode} = this.props;
-    if (mountNode) {
-      return mountNode;
-    }
-    // Flow thinks body could be null (cast through any)
-    // eslint-disable-next-line flowtype/no-weak-types
-    return ((document.body: any): HTMLBodyElement);
-  }
-
   renderAnchor() {
     const anchor = this.getAnchorFromChildren();
     if (!anchor) {
@@ -518,10 +450,19 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         rendered.push(
           <Layer
             mountNode={this.props.mountNode}
-            // $FlowFixMe
-            onMount={() => this.init({}, {})}
+            onMount={() => this.setState({isLayerMounted: true})}
+            onUnmount={() => this.setState({isLayerMounted: false})}
           >
-            {this.renderPopover()}
+            <TetherBehavior
+              anchorRef={this.anchorRef.current}
+              arrowRef={this.arrowRef.current}
+              popperRef={this.popperRef.current}
+              ignoreBoundary={this.props.ignoreBoundary}
+              onPopperUpdate={this.onPopperUpdate}
+              placement={this.state.placement}
+            >
+              {this.renderPopover()}
+            </TetherBehavior>
           </Layer>,
         );
       }

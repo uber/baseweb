@@ -42,18 +42,6 @@ export function capitalize(str: string): string {
 }
 
 /**
- * Converts our placement prop to a Popper.js placement
- * See docs: https://popper.js.org/popper-documentation.html
- * auto, top, right, bottom, left are the same but things
- * like 'rightTop' must be converted to 'right-start'
- */
-export function toPopperPlacement(placement: PopoverPlacementT): string {
-  return placement
-    .replace(/(Top|Left)$/, '-start')
-    .replace(/(Right|Bottom)$/, '-end');
-}
-
-/**
  * Opposite of function above, converts from Popper.js placement
  * to our placement prop
  */

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Popper from 'popper.js';
+import {Layer, TetherBehavior} from '../../layer/index.js';
 import {mount} from 'enzyme';
 import {
   Popover,
@@ -20,11 +20,18 @@ import {
 
 jest.useFakeTimers();
 
-// Mock popper.js (see __mocks__ directory for impl)
-jest.mock('popper.js');
+// Mock Layer and TetherBehavior
+let mockCount = 0;
 jest.mock('../../layer/index.js', () => {
   return {
     Layer: jest.fn().mockImplementation(props => {
+      if (props.onMount && !mockCount) {
+        ++mockCount;
+        props.onMount();
+      }
+      return props.children;
+    }),
+    TetherBehavior: jest.fn().mockImplementation(props => {
       return props.children;
     }),
   };
@@ -45,6 +52,11 @@ describe('Popover', () => {
   });
 
   afterEach(() => {
+    mockCount = 0;
+    // $FlowFixMe
+    Layer.mockClear();
+    // $FlowFixMe
+    TetherBehavior.mockClear();
     document.addEventListener.mockClear();
     wrapper && wrapper.unmount();
   });
@@ -56,7 +68,7 @@ describe('Popover', () => {
     document.addEventListener = originalDocumentAddListener;
   });
 
-  test('basic click functionality', () => {
+  test('Popover - basic click functionality', () => {
     const onClick = jest.fn();
     const onMouseEnter = jest.fn();
     const content = <strong>Hello world</strong>;
@@ -105,11 +117,35 @@ describe('Popover', () => {
     expect(renderedContent).toExist();
     expect(popoverBody).toHaveText('Hello world');
 
-    // Popper library should have been initialized
-    expect(Popper).toHaveBeenCalled();
+    expect(Layer).toHaveBeenCalled();
+    expect(TetherBehavior).toHaveBeenCalled();
+    expect(TetherBehavior).toHaveBeenCalled();
+    // $FlowFixMe
+    const tetherProps = TetherBehavior.mock.calls[0][0];
+    const wrapperInstance = wrapper.instance();
+    expect(tetherProps).toMatchObject({
+      ignoreBoundary: wrapper.props().ignoreBoundary,
+      onPopperUpdate: wrapperInstance.onPopperUpdate,
+      placement: wrapper.state().placement,
+    });
+    expect(tetherProps.anchorRef).toBe(wrapperInstance.anchorRef.current);
+    expect(tetherProps.arrowRef).toBe(wrapperInstance.arrowRef.current);
+    expect(tetherProps.popperRef).toBe(wrapperInstance.popperRef.current);
 
-    // Manually emit a popper update (normally popper does this by itself)
-    wrapper.instance().popper._callOnPopperUpdate();
+    // // Manually emit a popper update (normally popper does this by itself)
+    wrapper.instance().onPopperUpdate({
+      offsets: {
+        popper: {
+          top: 10,
+          left: 10,
+        },
+        arrow: {
+          top: 10,
+          left: 10,
+        },
+      },
+      placement: 'left-start',
+    });
     jest.runAllTimers();
     wrapper.update();
 
@@ -184,6 +220,7 @@ describe('Popover', () => {
     );
 
     const calls = document.addEventListener.mock.calls;
+    expect(document.addEventListener).toBeCalled();
     expect(calls[0][0]).toBe('mousedown');
     expect(calls[1][0]).toBe('keyup');
 
@@ -227,8 +264,7 @@ describe('Popover', () => {
       </Popover>,
     );
 
-    // first render is prior to mount, second is after cdm
-    expect(CustomComponent).toHaveBeenCalledTimes(2);
+    expect(CustomComponent).toHaveBeenCalled();
     expect(CustomComponent).toHaveBeenCalledWith(
       {
         $ref: wrapper.instance().anchorRef,

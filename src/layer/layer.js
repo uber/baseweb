@@ -23,6 +23,8 @@ class LayerComponent extends React.Component<
       onMount && onMount();
       return;
     }
+    // There was no LayersManager added if this.props.host === undefined.
+    // Use document.body is the case no LayersManager is used.
     const host =
       this.props.host !== undefined ? this.props.host : document.body;
     if (host) {
@@ -31,7 +33,10 @@ class LayerComponent extends React.Component<
   }
 
   componentDidUpdate(prevProps) {
-    const {host} = this.props;
+    const {host, mountNode} = this.props;
+    if (mountNode) {
+      return;
+    }
     if (host && host !== prevProps.host && prevProps.host === null) {
       this.addContainer(host);
     }
@@ -49,6 +54,7 @@ class LayerComponent extends React.Component<
 
   addContainer(host) {
     const {index, mountNode, onMount} = this.props;
+    // Do nothing if mounNode is provided
     if (mountNode) {
       return;
     }

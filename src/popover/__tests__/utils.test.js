@@ -18,7 +18,6 @@ import {
   isVerticalPosition,
   parsePopperOffset,
   splitPlacement,
-  toPopperPlacement,
 } from '../utils.js';
 
 describe('Popover utils', () => {
@@ -37,17 +36,6 @@ describe('Popover utils', () => {
       expect(capitalize('left')).toBe('Left');
       expect(capitalize('')).toBe('');
       expect(capitalize('topLeft')).toBe('TopLeft');
-    });
-  });
-
-  describe('toPopperPlacement', () => {
-    test('toPopperPlacement should convert from popover placements to popper placements', () => {
-      expect(toPopperPlacement('rightTop')).toBe('right-start');
-      expect(toPopperPlacement('right')).toBe('right');
-      expect(toPopperPlacement('rightBottom')).toBe('right-end');
-      expect(toPopperPlacement('topLeft')).toBe('top-start');
-      expect(toPopperPlacement('top')).toBe('top');
-      expect(toPopperPlacement('topRight')).toBe('top-end');
     });
   });
 
