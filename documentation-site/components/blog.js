@@ -10,11 +10,29 @@ import React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 
-export const BlogImage = styled('img', {
+const Image = styled('img', props => ({
   display: 'block',
   margin: '0 auto',
   maxWidth: '100%',
-});
+  objectFit: 'cover',
+  width: props.$full ? '100%' : 'auto',
+}));
+
+const Caption = styled('figcaption', ({$theme}) => ({
+  color: $theme.colors.mono800,
+  fontFamily: $theme.typography.font100.fontFamily,
+  fontSize: $theme.sizing.scale500,
+  fontWeight: 300,
+  textAlign: 'right',
+  padding: '4px 4px 0 0',
+}));
+
+export const BlogImage = ({full, caption, src, style}) => (
+  <figure style={{margin: 0}}>
+    <Image $full={full} src={src} style={style} />
+    {caption && <Caption>{caption}</Caption>}
+  </figure>
+);
 
 export const Demo = styled('iframe', {
   border: 0,
