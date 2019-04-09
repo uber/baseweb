@@ -150,6 +150,9 @@ export type ColorsT = {
   listIconFill: string,
   listBorder: string,
 
+  // ProgressSteps
+  progressStepsIconActiveFill: string,
+
   // Ticks
   tickFill: string,
   tickFillHover: string,
@@ -215,6 +218,16 @@ export type ColorsT = {
   menuFontHighlighted: string,
   menuFontSelected: string,
 
+  // Pagination
+  paginationTriangleDown: string,
+
+  // Header navigation
+  headerNavigationFill: string,
+
+  // Tab
+  tabBarFill: string,
+  tabColor: string,
+
   // Shadow
   shadowFocus: string,
   shadowError: string,
@@ -231,6 +244,11 @@ export type ColorsT = {
 
   // Table
   tableHeadBackgroundColor: string,
+  tableBackground: string,
+  tableFilter: string,
+  tableFilterHeading: string,
+  tableFilterBackground: string,
+  tableFilterFooterBackground: string,
 
   // Toast
   toastText: string,
@@ -238,6 +256,12 @@ export type ColorsT = {
   toastPositiveBackground: string,
   toastWarningBackground: string,
   toastNegativeBackground: string,
+
+  // Spinner
+  spinnerTrackFill: string,
+
+  // Progress bar
+  progressbarTrackFill: string,
 };
 
 export type TypographyT = {

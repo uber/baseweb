@@ -168,6 +168,9 @@ export default function createTheme(
       listIconFill: primitives.mono500,
       listBorder: primitives.mono500,
 
+      // ProgressSteps
+      progressStepsIconActiveFill: primitives.primary100,
+
       // Tick
       tickFill: WHITE,
       tickFillHover: primitives.mono400,
@@ -228,6 +231,16 @@ export default function createTheme(
       menuFontHighlighted: primitives.primary400,
       menuFontSelected: primitives.mono1000,
 
+      // Pagination
+      paginationTriangleDown: primitives.mono800,
+
+      // Header navigation
+      headerNavigationFill: 'transparent',
+
+      // Tab
+      tabBarFill: primitives.mono200,
+      tabColor: primitives.mono800,
+
       // Notification
       notificationPrimaryBackground: primitives.primary50,
       notificationPrimaryText: primitives.primary500,
@@ -250,6 +263,11 @@ export default function createTheme(
 
       // Table
       tableHeadBackgroundColor: primitives.mono100,
+      tableBackground: primitives.mono100,
+      tableFilter: primitives.mono600,
+      tableFilterHeading: primitives.mono700,
+      tableFilterBackground: primitives.mono100,
+      tableFilterFooterBackground: primitives.mono200,
 
       // Toast
       toastText: WHITE,
@@ -257,6 +275,12 @@ export default function createTheme(
       toastPositiveBackground: primitives.positive500,
       toastWarningBackground: primitives.warning500,
       toastNegativeBackground: primitives.negative500,
+
+      // Spinner
+      spinnerTrackFill: primitives.mono900,
+
+      // Progress bar
+      progressbarTrackFill: primitives.mono900,
     },
     typography: {
       font100: {

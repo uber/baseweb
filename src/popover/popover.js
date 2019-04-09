@@ -13,7 +13,13 @@ import ReactDOM from 'react-dom';
 import Popper from 'popper.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
-import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants.js';
+import {
+  ACCESSIBILITY_TYPE,
+  PLACEMENT,
+  TRIGGER_TYPE,
+  ANIMATE_OUT_TIME,
+  ANIMATE_IN_TIME,
+} from './constants.js';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
@@ -134,7 +140,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
           // Reset to ideal placement specified in props
           placement: this.props.placement,
         });
-      }, 500);
+      }, ANIMATE_OUT_TIME);
     }
   };
 
@@ -233,7 +239,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     });
 
     // Now that element has been positioned, we can animate it in
-    this.animateInTimer = setTimeout(this.animateIn, 20);
+    this.animateInTimer = setTimeout(this.animateIn, ANIMATE_IN_TIME);
 
     return data;
   };

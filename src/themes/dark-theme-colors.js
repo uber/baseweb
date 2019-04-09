@@ -87,6 +87,19 @@ export default {
     listIconFill: primitives.mono100,
     listBorder: primitives.mono500,
 
+    // ProgressSteps
+    progressStepsIconActiveFill: primitives.mono100,
+
+    // Notification
+    notificationPrimaryBackground: primitives.primary700,
+    notificationPrimaryText: primitives.primary200,
+    notificationPositiveBackground: primitives.positive700,
+    notificationPositiveText: primitives.positive200,
+    notificationWarningBackground: primitives.warning700,
+    notificationWarningText: primitives.warning200,
+    notificationNegativeBackground: primitives.negative700,
+    notificationNegativeText: primitives.negative200,
+
     // Tag
     tagBackground: primitives.mono1000,
     tagNeutralBackground: primitives.mono600,
@@ -94,6 +107,14 @@ export default {
     tagPositiveBackground: primitives.positive500,
     tagWarningBackground: primitives.warning500,
     tagNegativeBackground: primitives.negative500,
+
+    // Table
+    tableHeadBackgroundColor: primitives.mono700,
+    tableBackground: primitives.mono800,
+    tableFilter: primitives.mono400,
+    tableFilterHeading: primitives.mono300,
+    tableFilterBackground: primitives.mono700,
+    tableFilterFooterBackground: primitives.mono800,
 
     // Tick
     tickFill: primitives.mono1000,
@@ -151,7 +172,23 @@ export default {
     menuFontDefault: primitives.mono300,
     menuFontDisabled: primitives.mono400,
     menuFontHighlighted: primitives.mono200,
-    menuFontSelected: primitives.mono200,
+    menuFontSelected: WHITE,
+
+    // Pagination
+    paginationTriangleDown: primitives.mono100,
+
+    // Header navigation
+    headerNavigationFill: primitives.mono700,
+
+    // Tab
+    tabBarFill: primitives.mono1000,
+    tabColor: primitives.mono300,
+
+    // Spinner
+    spinnerTrackFill: primitives.mono100,
+
+    // Progress bar
+    progressbarTrackFill: primitives.mono100,
   },
   tooltip: {
     backgroundColor: primitives.mono200,
