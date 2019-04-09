@@ -386,6 +386,11 @@ export default function createTheme(
 
       // Table
       tableHeadBackgroundColor: primitives.mono100,
+      tableBackground: primitives.mono100,
+      tableFilter: primitives.mono600,
+      tableFilterHeading: primitives.mono700,
+      tableFilterBackground: primitives.mono100,
+      tableFilterFooterBackground: primitives.mono200,
 
       // Toast
       toastText: WHITE,
@@ -396,6 +401,9 @@ export default function createTheme(
 
       // Spinner
       spinnerTrackFill: primitives.mono900,
+
+      // Progress bar
+      progressbarTrackFill: primitives.mono900,
     },
     typography: {
       font100: {

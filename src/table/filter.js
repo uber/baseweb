@@ -51,10 +51,10 @@ export default function Filter(props: FilterProps) {
     }
 
     if (props.active) {
-      return theme.colors.primary;
+      return theme.colors.colorPrimary;
     }
 
-    return theme.colors.mono600;
+    return theme.colors.tableFilter;
   }
 
   function getIconHoverColor(theme) {
@@ -62,7 +62,7 @@ export default function Filter(props: FilterProps) {
       return null;
     }
 
-    return theme.colors.black;
+    return theme.colors.colorPrimary;
   }
 
   return (

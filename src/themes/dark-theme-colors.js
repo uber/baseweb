@@ -233,6 +233,14 @@ export default {
     tagNegativeOutlinedFontHover: primitives.negative700,
     tagNegativeFontDisabled: primitives.negative500,
 
+    // Table
+    tableHeadBackgroundColor: primitives.mono700,
+    tableBackground: primitives.mono800,
+    tableFilter: primitives.mono400,
+    tableFilterHeading: primitives.mono300,
+    tableFilterBackground: primitives.mono700,
+    tableFilterFooterBackground: primitives.mono800,
+
     // Tick
     tickFill: primitives.mono1000,
     tickFillHover: primitives.mono800,
@@ -303,6 +311,9 @@ export default {
 
     // Spinner
     spinnerTrackFill: primitives.mono100,
+
+    // Progress bar
+    progressbarTrackFill: primitives.mono100,
   },
   tooltip: {
     backgroundColor: primitives.mono200,
