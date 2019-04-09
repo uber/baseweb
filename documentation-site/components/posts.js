@@ -11,6 +11,7 @@ import {Block} from 'baseui/block';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
 import {styled} from 'baseui';
+import {HEADER_BREAKPOINT} from './header-navigation';
 import posts from '../posts';
 
 const MetaData = styled('h2', ({$theme}) => ({
@@ -27,7 +28,20 @@ const MetaData = styled('h2', ({$theme}) => ({
 
 const Index = () => {
   return (
-    <Block display="flex" flexWrap="wrap">
+    <Block
+      display="flex"
+      flexWrap="wrap"
+      overrides={{
+        Block: {
+          style: {
+            justifyContent: 'center',
+            [HEADER_BREAKPOINT]: {
+              justifyContent: 'flex-start',
+            },
+          },
+        },
+      }}
+    >
       {posts && !posts.length && <h1>No posts to display</h1>}
       {posts &&
         posts.length > 0 &&
@@ -42,8 +56,7 @@ const Index = () => {
                 Root: {
                   style: {
                     boxSizing: 'border-box',
-                    marginBottom: 0,
-                    marginLeft: '10px',
+                    marginBottom: '10px',
                     marginRight: '10px',
                     marginTop: 0,
                     width: '300px',
@@ -52,8 +65,9 @@ const Index = () => {
                 HeaderImage: {
                   style: {
                     boxSizing: 'border-box',
-                    maxWidth: '100%',
-                    padding: '24px',
+                    height: '220px',
+                    width: '100%',
+                    objectFit: 'cover',
                   },
                 },
               }}
