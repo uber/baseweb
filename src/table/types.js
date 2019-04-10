@@ -21,8 +21,8 @@ export type HeadCellPropsT = {|
   /** Callback for when column title is clicked to trigger sort. */
   onSort?: () => mixed,
   overrides?: {
-    HeadCell: OverrideT<*>,
-    SortableLabel: OverrideT<*>,
+    HeadCell?: OverrideT<*>,
+    SortableLabel?: OverrideT<*>,
   },
   /** Column title. */
   title: string,
