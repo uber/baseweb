@@ -52,7 +52,7 @@ function FileUploader(props: PropsT) {
     overrides.HiddenInput,
     StyledHiddenInput,
   );
-  const [ButtonComponent, buttonProps] = getOverrides(overrides.Button, Button);
+  const [ButtonComponent, buttonProps] = getOverrides(overrides.ButtonComponent, Button);
 
   const afterFileDrop = !!(
     props.progressAmount ||
@@ -107,17 +107,22 @@ function FileUploader(props: PropsT) {
                         {locale.fileuploader.or}
                       </ContentMessage>
 
-                      <Button
+                      <ButtonComponent
                         aria-controls="fileupload"
                         disabled={props.disabled}
                         kind={KIND.minimal}
                         onClick={open}
+                        overrides={{
+                          BaseButton: {
+                            style: {outline: null, fontWeight: 'normal'},
+                          },
+                        }}
                         role="button"
                         {...prefixedStyledProps}
                         {...buttonProps}
                       >
                         {locale.fileuploader.browseFiles}
-                      </Button>
+                      </ButtonComponent>
                     </React.Fragment>
                   )}
 
@@ -164,7 +169,7 @@ function FileUploader(props: PropsT) {
                         </ContentMessage>
                       )}
                       {props.errorMessage ? (
-                        <Button
+                        <ButtonComponent
                           kind={KIND.minimal}
                           onClick={() => {
                             props.onRetry && props.onRetry();
@@ -172,9 +177,9 @@ function FileUploader(props: PropsT) {
                           {...buttonProps}
                         >
                           {locale.fileuploader.retry}
-                        </Button>
+                        </ButtonComponent>
                       ) : (
-                        <Button
+                        <ButtonComponent
                           kind={KIND.minimal}
                           onClick={() => {
                             props.onCancel && props.onCancel();
@@ -182,7 +187,7 @@ function FileUploader(props: PropsT) {
                           {...buttonProps}
                         >
                           {locale.fileuploader.cancel}
-                        </Button>
+                        </ButtonComponent>
                       )}
                     </React.Fragment>
                   )}
