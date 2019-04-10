@@ -61,6 +61,7 @@ export type OverridesDropdownT = {
   DropdownOption?: OverrideT<*>,
   DropdownListItem?: OverrideT<*>,
   OptionContent?: OverrideT<*>,
+  StatefulMenu?: OverrideT<*>,
 };
 
 export type PropsT = {
