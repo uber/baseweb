@@ -11,6 +11,8 @@ import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
+import type {OnChangeParamsT, OptionT, ValueT} from '../select/index.js';
+
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
@@ -252,3 +254,13 @@ export type StatefulDatepickerPropsT<T> = $Diff<
     children: T => React.Node,
   },
 >;
+
+export type TimezonePickerStateT = {
+  timezones: OptionT[],
+  value: ?ValueT,
+};
+export type TimezonePickerPropsT = {
+  date?: Date,
+  onChange?: (params: OnChangeParamsT) => mixed,
+  value?: ValueT,
+};
