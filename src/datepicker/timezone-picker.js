@@ -43,16 +43,18 @@ class TimezonePicker extends React.Component<
         if (zone === tz) this.setState({value: [option]});
         return option;
       })
-      // removes 'noisy' timezones without acronym
+      // Removes 'noisy' timezones without a letter acronym.
       .filter(option => option.label[0] !== '-' && option.label[0] !== '+')
-      // removes timezones with no longer relevant (may lead to unavailable historical times when the timezone was used)
+      // Removes timezones that are no longer relevant. This may lead to unavailable historical timezones.
+      // If we consider a hypothetical date, it may have happened in a particular timezone that no longer
+      // exists. It is still possible to select a historical zone based on approximate offset from UTC.
       .filter(option => option.population > 0)
-      // deletes population field so not available to component consumers
+      // Deletes population field so not available to component consumers.
       .map(option => {
         delete option.population;
         return option;
       })
-      // sorts W -> E, prioritizes america (could be more nuanced with system tz)
+      // Sorts W -> E, prioritizes america (could be more nuanced with system tz).
       .sort((a, b) => {
         const offsetDelta = b.offset - a.offset;
         if (offsetDelta !== 0) return offsetDelta;

@@ -267,7 +267,7 @@ export type TimezonePickerPropsT = {
    * displays options related to the provided date. Take Pacific Time for example. On March 9th,
    * Pacific Time equates to the more specific Pacific Standard Time. On March 10th, it operates on
    * Pacific Daylight Time. The timezone picker will never display PST and PDT together. If you need
-   * exact specificity, provide a date.
+   * exact specificity, provide a date. Otherwise it will default to the relevant timezone at render.
    */
   date?: Date,
   /** Callback for when the timezone selection changes. Follows same pattern as Select component. */
