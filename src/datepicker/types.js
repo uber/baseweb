@@ -256,11 +256,25 @@ export type StatefulDatepickerPropsT<T> = $Diff<
 >;
 
 export type TimezonePickerStateT = {
+  /** List of timezones from the IANA database. */
   timezones: OptionT[],
+  /** Internal value provided to the select component. */
   value: ?ValueT,
 };
 export type TimezonePickerPropsT = {
+  /**
+   * If not provided, defaults to new Date(). Important to note that the timezone picker only
+   * displays options related to the provided date. Take Pacific Time for example. On March 9th,
+   * Pacific Time equates to the more specific Pacific Standard Time. On March 10th, it operates on
+   * Pacific Daylight Time. The timezone picker will never display PST and PDT together. If you need
+   * exact specificity, provide a date.
+   */
   date?: Date,
+  /** Callback for when the timezone selection changes. Follows same pattern as Select component. */
   onChange?: (params: OnChangeParamsT) => mixed,
+  /**
+   * Optional value that can be provided to fully control the component. If not provided,
+   * TimezonePicker will manage state internally.
+   */
   value?: ValueT,
 };
