@@ -52,7 +52,10 @@ function FileUploader(props: PropsT) {
     overrides.HiddenInput,
     StyledHiddenInput,
   );
-  const [ButtonComponent, buttonProps] = getOverrides(overrides.ButtonComponent, Button);
+  const [ButtonComponent, buttonProps] = getOverrides(
+    overrides.ButtonComponent,
+    Button,
+  );
 
   const afterFileDrop = !!(
     props.progressAmount ||
@@ -174,7 +177,11 @@ function FileUploader(props: PropsT) {
                           onClick={() => {
                             props.onRetry && props.onRetry();
                           }}
-                          {...buttonProps}
+                          overrides={{
+                            BaseButton: {
+                              style: {outline: null, fontWeight: 'normal'},
+                            },
+                          }}
                         >
                           {locale.fileuploader.retry}
                         </ButtonComponent>
@@ -184,7 +191,11 @@ function FileUploader(props: PropsT) {
                           onClick={() => {
                             props.onCancel && props.onCancel();
                           }}
-                          {...buttonProps}
+                          overrides={{
+                            BaseButton: {
+                              style: {outline: null, fontWeight: 'normal'},
+                            },
+                          }}
                         >
                           {locale.fileuploader.cancel}
                         </ButtonComponent>
