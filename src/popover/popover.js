@@ -25,16 +25,16 @@ import {
   Body as StyledBody,
   Inner as StyledInner,
 } from './styled-components.js';
-import {fromPopperPlacement, parsePopperOffset} from './utils.js';
+import {fromPopperPlacement} from './utils.js';
 import defaultProps from './default-props.js';
 
 import type {
   AnchorPropsT,
   PopoverPropsT,
   PopoverPrivateStateT,
-  PopperDataObjectT,
   SharedStylePropsArgT,
 } from './types.js';
+import type {PopperDataObjectT, NormalizedOffsetsT} from '../layer/types.js';
 
 class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   static defaultProps: $Shape<PopoverPropsT> = defaultProps;
@@ -183,13 +183,14 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     }
   };
 
-  onPopperUpdate = (data: PopperDataObjectT) => {
+  onPopperUpdate = (
+    normalizedOffsets: NormalizedOffsetsT,
+    data: PopperDataObjectT,
+  ) => {
     const placement = fromPopperPlacement(data.placement) || PLACEMENT.top;
     this.setState({
-      arrowOffset: data.offsets.arrow
-        ? parsePopperOffset(data.offsets.arrow)
-        : {top: 0, left: 0},
-      popoverOffset: parsePopperOffset(data.offsets.popper),
+      arrowOffset: normalizedOffsets.arrow,
+      popoverOffset: normalizedOffsets.popper,
       placement,
     });
 

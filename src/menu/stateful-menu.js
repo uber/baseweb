@@ -29,6 +29,7 @@ export default class StatefulMenu extends React.PureComponent<
       changes: $PropertyType<StateReducerFnT, 'changes'>,
     ) => changes,
     onItemSelect: () => {},
+    rootRef: (React.createRef(): {current: ?HTMLInputElement}),
     getRequiredItemProps: () => ({}),
     children: () => null,
     overrides: {},

@@ -14,7 +14,6 @@ import type {
   StatefulContainerPropsT,
   StatefulContainerStateT,
   GetRequiredItemPropsFnT,
-  RootRefT,
   RenderPropsT,
   StateReducerFnT,
 } from './types.js';
@@ -42,6 +41,9 @@ export default class MenuStatefulContainer extends React.Component<
     removeMenuFromNesting: () => {},
     getParentMenu: () => {},
     getChildMenu: () => {},
+    // We need to have access to the root component user renders
+    // to correctly facilitate keyboard scrolling behavior
+    rootRef: (React.createRef(): {current: ?HTMLInputElement}),
   };
 
   state: StatefulContainerStateT = {...this.props.initialState};
@@ -54,7 +56,7 @@ export default class MenuStatefulContainer extends React.Component<
       ) {
         scrollItemIntoView(
           this.refList[this.state.highlightedIndex].current,
-          this.rootRef.current,
+          this.props.rootRef.current,
           this.state.highlightedIndex === 0,
           this.state.highlightedIndex === this.props.items.length - 1,
         );
@@ -64,7 +66,8 @@ export default class MenuStatefulContainer extends React.Component<
         document.addEventListener('keydown', this.onKeyDown);
       }
     }
-    this.props.addMenuToNesting && this.props.addMenuToNesting(this.rootRef);
+    this.props.addMenuToNesting &&
+      this.props.addMenuToNesting(this.props.rootRef);
   }
 
   componentWillUnmount() {
@@ -72,7 +75,7 @@ export default class MenuStatefulContainer extends React.Component<
       document.removeEventListener('keydown', this.onKeyDown);
     }
     this.props.removeMenuFromNesting &&
-      this.props.removeMenuFromNesting(this.rootRef);
+      this.props.removeMenuFromNesting(this.props.rootRef);
   }
 
   componentDidUpdate(_: mixed, prevState: StatefulContainerStateT) {
@@ -87,10 +90,6 @@ export default class MenuStatefulContainer extends React.Component<
 
   // One array to hold all of list item refs
   refList: Array<React$ElementRef<*>> = [];
-
-  // We need to have access to the root component user renders
-  // to correctly facilitate keyboard scrolling behavior
-  rootRef: RootRefT = React.createRef();
 
   // Internal set state function that will also invoke stateReducer
   internalSetState(
@@ -133,14 +132,14 @@ export default class MenuStatefulContainer extends React.Component<
       });
     } else if (event.key === KEY_STRINGS.ArrowLeft) {
       if (this.props.getParentMenu) {
-        const parent = this.props.getParentMenu(this.rootRef);
+        const parent = this.props.getParentMenu(this.props.rootRef);
         if (parent && parent.current) {
           parent.current.focus();
         }
       }
     } else if (event.key === KEY_STRINGS.ArrowRight) {
       if (this.props.getChildMenu) {
-        const child = this.props.getChildMenu(this.rootRef);
+        const child = this.props.getChildMenu(this.props.rootRef);
         if (child && child.current) {
           child.current.focus();
         }
@@ -150,7 +149,7 @@ export default class MenuStatefulContainer extends React.Component<
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
-        this.rootRef.current,
+        this.props.rootRef.current,
         nextIndex === 0,
         nextIndex === this.props.items.length - 1,
       );
@@ -204,7 +203,7 @@ export default class MenuStatefulContainer extends React.Component<
       return;
     }
 
-    if (this.rootRef.current.contains(event.target)) {
+    if (this.props.rootRef.current.contains(event.target)) {
       if (this.state.highlightedIndex < 0) {
         this.internalSetState(STATE_CHANGE_TYPES.focus, {
           isFocused: true,
@@ -214,7 +213,7 @@ export default class MenuStatefulContainer extends React.Component<
         this.internalSetState(STATE_CHANGE_TYPES.focus, {isFocused: true});
       }
 
-      this.rootRef.current.focus();
+      this.props.rootRef.current.focus();
     }
   };
 
@@ -238,7 +237,7 @@ export default class MenuStatefulContainer extends React.Component<
         items: this.props.items,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
-        rootRef: this.rootRef,
+        rootRef: this.props.rootRef,
       }: RenderPropsT),
     );
   }

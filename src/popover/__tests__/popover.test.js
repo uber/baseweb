@@ -133,17 +133,12 @@ describe('Popover', () => {
     expect(tetherProps.popperRef).toBe(wrapperInstance.popperRef.current);
 
     // // Manually emit a popper update (normally popper does this by itself)
-    wrapper.instance().onPopperUpdate({
-      offsets: {
-        popper: {
-          top: 10,
-          left: 10,
-        },
-        arrow: {
-          top: 10,
-          left: 10,
-        },
-      },
+    const offsets = {
+      popper: {top: 10, left: 10},
+      arrow: {top: 10, left: 10},
+    };
+    wrapper.instance().onPopperUpdate(offsets, {
+      offsets,
       placement: 'left-start',
     });
     jest.runAllTimers();

@@ -10,14 +10,16 @@ import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
 import {LocaleContext} from '../locale/index.js';
+import {Layer, TetherBehavior, TETHER_PLACEMENT} from '../layer/index.js';
 import {Button, StyledBaseButton, KIND} from '../button/index.js';
 import {StatefulMenu as Menu} from '../menu/index.js';
+import {mergeStyleOverrides} from '../helpers/overrides.js';
 import {
-  Root as StyledRoot,
-  MaxLabel as StyledMaxLabel,
-  DropdownContainer as StyledDropdownContainer,
-  DropdownMenu as StyledDropdownMenu,
-  DropdownButton as StyledDropdownButton,
+  StyledRoot,
+  StyledMaxLabel,
+  StyledDropdownContainer,
+  StyledDropdownMenu,
+  StyledDropdownButton,
 } from './styled-components.js';
 import TriangleDown from '../icon/triangle-down.js';
 import ChevronLeft from '../icon/chevron-left.js';
@@ -39,14 +41,27 @@ export default class Pagination extends React.PureComponent<
     overrides: {},
   };
 
-  state = {isMenuOpen: false};
+  state = {
+    isMenuOpen: false,
+    layerIsMounted: false,
+    tetherOffset: {top: 0, left: 0},
+  };
 
+  dropdownAnchorRef = (React.createRef(): {current: ?HTMLDivElement});
+  dropdownRef = (React.createRef(): {current: ?HTMLDivElement});
   dropdownContainerRef = (React.createRef(): {current: ?HTMLDivElement});
 
   onPageClick = (event: MouseEvent) => {
-    const el: ?HTMLDivElement = this.dropdownContainerRef.current;
-    /* eslint-disable-next-line flowtype/no-weak-types */
-    if (el && !el.contains((event.target: any))) {
+    const select: ?HTMLDivElement = this.dropdownContainerRef.current;
+    const dropdown: ?HTMLDivElement = this.dropdownRef.current;
+    if (
+      select &&
+      dropdown &&
+      /* eslint-disable flowtype/no-weak-types */
+      !select.contains((event.target: any)) &&
+      !dropdown.contains((event.target: any))
+      /* eslint-enable flowtype/no-weak-types */
+    ) {
       this.setState({isMenuOpen: false});
     }
   };
@@ -167,31 +182,66 @@ export default class Pagination extends React.PureComponent<
                 )}
                 kind={KIND.tertiary}
                 overrides={{
-                  BaseButton: DropdownButton,
+                  BaseButton: {
+                    component: DropdownButton,
+                    props: {
+                      $ref: this.dropdownAnchorRef,
+                    },
+                  },
                 }}
                 {...dropdownButtonProps}
               >
                 {currentPage}
               </Button>
               {isMenuOpen && (
-                // $FlowFixMe
-                <DropdownMenu
-                  items={options}
-                  onItemSelect={this.onMenuItemSelect}
-                  initialState={{
-                    highlightedIndex: Math.max(currentPage - 1, 0),
-                  }}
-                  overrides={{
-                    List: {
-                      component: StyledDropdownMenu,
-                      // Access $style manually because it has gone through transformation
-                      // from the override helper function already
-                      // $FlowFixMe
-                      style: dropdownMenuProps.$style,
-                    },
-                  }}
-                  {...dropdownMenuProps}
-                />
+                // setting the layerIsMounted onMount to trigger the update
+                <Layer
+                  onMount={() => this.setState({layerIsMounted: true})}
+                  onUnmount={() => this.setState({layerIsMounted: false})}
+                >
+                  <TetherBehavior
+                    anchorRef={this.dropdownAnchorRef.current}
+                    popperRef={this.dropdownRef.current}
+                    onPopperUpdate={(offsets, data) => {
+                      this.setState({tetherOffset: offsets.popper});
+                      return data;
+                    }}
+                    placement={TETHER_PLACEMENT.bottom}
+                  >
+                    <DropdownMenu
+                      items={options}
+                      onItemSelect={this.onMenuItemSelect}
+                      initialState={{
+                        highlightedIndex: Math.max(currentPage - 1, 0),
+                      }}
+                      rootRef={this.dropdownRef}
+                      overrides={{
+                        List: {
+                          component: StyledDropdownMenu,
+                          // ---------------------------
+                          // This is out of the normal override pattern aproach that we choose
+                          // to pass the style overrides passes to the DropdownMenu component
+                          // to its List styled element. Since the DropdownMenu is an override
+                          // for a composable component and not a single styled element
+                          // ---------------------------
+                          // Access $style manually because it has gone through transformation
+                          // from the override helper function already
+                          // $FlowFixMe
+                          style: mergeStyleOverrides(dropdownMenuProps.$style, {
+                            top: `${this.state.tetherOffset.top}px`,
+                            left: `${this.state.tetherOffset.left}px`,
+                            width: this.dropdownAnchorRef.current
+                              ? `${
+                                  this.dropdownAnchorRef.current.clientWidth
+                                }px`
+                              : null,
+                          }),
+                        },
+                      }}
+                      {...dropdownMenuProps}
+                    />
+                  </TetherBehavior>
+                </Layer>
               )}
             </DropdownContainer>
             <MaxLabel {...maxLabelProps}>

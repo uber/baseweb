@@ -58,6 +58,16 @@ export type PopperDataObjectT = {
   placement: string,
 };
 
+export type NormalizedOffsetT = {
+  top: number,
+  left: number,
+};
+
+export type NormalizedOffsetsT = {
+  arrow?: NormalizedOffsetT,
+  popper: NormalizedOffsetT,
+};
+
 export type PopperOptionsT = {
   placement: string,
   modifiers: {
@@ -76,7 +86,7 @@ export type TetherPropsT = {
   popperRef: ?HTMLElement,
   children: React.Node,
   ignoreBoundary: boolean,
-  onPopperUpdate: PopperDataObjectT => mixed,
+  onPopperUpdate: (NormalizedOffsetsT, PopperDataObjectT) => mixed,
   placement: PopperPlacementT,
 };
 

@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import Popper from 'popper.js';
-import {toPopperPlacement} from './utils.js';
+import {toPopperPlacement, parsePopperOffset} from './utils.js';
 import {PLACEMENT} from './constants.js';
-import type {TetherPropsT, TetherStateT} from './types.js';
+import type {TetherPropsT, TetherStateT, PopperDataObjectT} from './types.js';
 
 class Tether extends React.Component<TetherPropsT, TetherStateT> {
   static defaultProps = {
@@ -74,13 +74,23 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
         },
         applyReactStyle: {
           enabled: true,
-          fn: this.props.onPopperUpdate,
+          fn: this.onPopperUpdate,
           order: 900,
         },
         preventOverflow: {enabled: !this.props.ignoreBoundary},
       },
     });
   }
+
+  onPopperUpdate = (data: PopperDataObjectT) => {
+    const normalizedOffsets = {
+      popper: parsePopperOffset(data.offsets.popper),
+      arrow: data.offsets.arrow
+        ? parsePopperOffset(data.offsets.arrow)
+        : {top: 0, left: 0},
+    };
+    this.props.onPopperUpdate(normalizedOffsets, data);
+  };
 
   destroyPopover() {
     if (this.popper) {

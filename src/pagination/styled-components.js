@@ -9,35 +9,38 @@ import {styled} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
 import {StyledBaseButton} from '../button/index.js';
 
-export const Root = styled('div', {
+export const StyledRoot = styled('div', {
   display: 'flex',
   alignItems: 'center',
 });
 
-export const MaxLabel = styled('span', ({$theme}) => ({
+export const StyledMaxLabel = styled('span', ({$theme}) => ({
   ...$theme.typography.font300,
   marginLeft: $theme.sizing.scale300,
   marginRight: $theme.sizing.scale600,
 }));
 
-export const DropdownContainer = styled('div', ({$theme}) => ({
+export const StyledDropdownContainer = styled('div', ({$theme}) => ({
   position: 'relative',
   marginLeft: $theme.sizing.scale600,
   marginRight: $theme.sizing.scale300,
 }));
 
-export const DropdownMenu = styled(StyledList, ({$theme}) => ({
+export const StyledDropdownMenu = styled(StyledList, ({$theme}) => ({
   position: 'absolute',
+  top: 0,
+  left: 0,
   overflow: 'auto',
   maxHeight: '200px',
-  top: 'auto',
+  // top: 'auto',
   marginTop: $theme.sizing.scale300,
-  left: 0,
-  right: 0,
-  zIndex: 1,
+  marginBottom: $theme.sizing.scale300,
+  // left: 0,
+  // right: 0,
+  // zIndex: 1,
 }));
 
-export const DropdownButton = styled(StyledBaseButton, ({$theme}) => ({
+export const StyledDropdownButton = styled(StyledBaseButton, ({$theme}) => ({
   color: $theme.colors.foreground,
   minWidth: `calc(${$theme.sizing.scale1600} + ${$theme.sizing.scale400})`,
 }));

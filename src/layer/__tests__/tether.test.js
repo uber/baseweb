@@ -47,12 +47,36 @@ describe('TetherBehavior', () => {
     const wrapper = mount(<Wrapper />);
     // Popper library should have been initialized
     expect(Popper).toHaveBeenCalled();
+    const tethered = wrapper.childAt(1);
     const calls = Popper.mock.calls;
+
+    expect(tethered).toHaveText('This is popper');
     expect(calls[0][0]).toBe(wrapper.instance().anchorRef.current);
     expect(calls[0][1]).toBe(wrapper.instance().popperRef.current);
     expect(calls[0][2]).toMatchObject({
-      modifiers: {applyReactStyle: {fn: onPopperUpdate}},
+      modifiers: {
+        applyReactStyle: {fn: tethered.instance().onPopperUpdate},
+      },
     });
-    expect(wrapper.childAt(1)).toHaveText('This is popper');
+    const popperUpdateData = {
+      offsets: {
+        popper: {
+          top: 10,
+          left: 10,
+        },
+        arrow: {
+          top: 10,
+          left: 10,
+        },
+      },
+      placement: 'left-start',
+    };
+    tethered.instance().onPopperUpdate(popperUpdateData);
+    expect(onPopperUpdate).toHaveBeenCalled();
+    expect(onPopperUpdate.mock.calls[0][0]).toMatchObject({
+      popper: popperUpdateData.offsets.popper,
+      arrow: popperUpdateData.offsets.arrow,
+    });
+    expect(onPopperUpdate.mock.calls[0][1]).toBe(popperUpdateData);
   });
 });

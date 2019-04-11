@@ -103,6 +103,8 @@ export type StatefulContainerPropsT = {
   getRequiredItemProps: GetRequiredItemPropsFnT,
   /** Callback executed on menu item clicks. */
   onItemSelect: OnItemSelectFnT,
+  /** Ref for the menu container element. Used to capture key events for navigation */
+  rootRef: RootRefT,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
   addMenuToNesting?: (ref: {current: ?HTMLElement}) => void,

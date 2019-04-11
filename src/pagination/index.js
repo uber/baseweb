@@ -9,11 +9,11 @@ export {default as Pagination} from './pagination.js';
 export {default as StatefulPagination} from './stateful-pagination.js';
 export {default as StatefulContainer} from './stateful-container.js';
 export {
-  Root as StyledRoot,
-  MaxLabel as StyledMaxLabel,
-  DropdownContainer as StyledDropdownContainer,
-  DropdownMenu as StyledDropdownMenu,
-  DropdownButton as StyledDropdownButton,
+  StyledRoot,
+  StyledMaxLabel,
+  StyledDropdownContainer,
+  StyledDropdownMenu,
+  StyledDropdownButton,
 } from './styled-components.js';
 // Constants
 export {STATE_CHANGE_TYPE} from './constants.js';
