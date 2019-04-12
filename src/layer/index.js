@@ -7,3 +7,5 @@ LICENSE file in the root directory of this source tree.
 // @flow
 export {default as LayersManager} from './layers-manager.js';
 export {default as Layer} from './layer.js';
+export {default as TetherBehavior} from './tether.js';
+export {PLACEMENT as TETHER_PLACEMENT} from './constants.js';
