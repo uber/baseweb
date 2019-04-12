@@ -16,12 +16,15 @@ import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {LightTheme} from '../src/themes/index.js';
 import {ThemeProvider} from '../src/styles/index.js';
+import {LayersManager} from '../src/layer/index.js';
 
 window.E2E_TEST = true;
 const engine = new Styletron();
 const app = (
   <StyletronProvider value={engine}>
-    <ThemeProvider theme={LightTheme}>{tests()}</ThemeProvider>
+    <LayersManager>
+      <ThemeProvider theme={LightTheme}>{tests()}</ThemeProvider>
+    </LayersManager>
   </StyletronProvider>
 );
 
