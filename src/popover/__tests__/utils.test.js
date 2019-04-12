@@ -16,9 +16,7 @@ import {
   getEndPosition,
   getStartPosition,
   isVerticalPosition,
-  parsePopperOffset,
   splitPlacement,
-  toPopperPlacement,
 } from '../utils.js';
 
 describe('Popover utils', () => {
@@ -40,17 +38,6 @@ describe('Popover utils', () => {
     });
   });
 
-  describe('toPopperPlacement', () => {
-    test('toPopperPlacement should convert from popover placements to popper placements', () => {
-      expect(toPopperPlacement('rightTop')).toBe('right-start');
-      expect(toPopperPlacement('right')).toBe('right');
-      expect(toPopperPlacement('rightBottom')).toBe('right-end');
-      expect(toPopperPlacement('topLeft')).toBe('top-start');
-      expect(toPopperPlacement('top')).toBe('top');
-      expect(toPopperPlacement('topRight')).toBe('top-end');
-    });
-  });
-
   describe('fromPopperPlacement', () => {
     test('fromPopperPlacement to convert from popper placements to popover placements', () => {
       expect(fromPopperPlacement('right-start')).toBe('rightTop');
@@ -60,33 +47,6 @@ describe('Popover utils', () => {
       expect(fromPopperPlacement('top')).toBe('top');
       expect(fromPopperPlacement('top-end')).toBe('topRight');
       expect(fromPopperPlacement('')).toBe(null);
-    });
-  });
-
-  describe('parsePopperOffset', () => {
-    test('parsePopperOffset should handle valid integer inputs', () => {
-      expect(
-        parsePopperOffset({
-          top: 10,
-          left: 15,
-        }),
-      ).toEqual({top: 10, left: 15});
-    });
-    test('parsePopperOffset should round float inputs', () => {
-      expect(
-        parsePopperOffset({
-          top: 10.1,
-          left: 15.24,
-        }),
-      ).toEqual({top: 10, left: 15});
-    });
-    test('parsePopperOffset should be resilient to null input', () => {
-      expect(
-        parsePopperOffset({
-          top: null,
-          left: null,
-        }),
-      ).toEqual({top: 0, left: 0});
     });
   });
 

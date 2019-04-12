@@ -12,8 +12,8 @@ export default () => (
     flexWrap="wrap"
     height="560px"
   >
-    {Object.values(PLACEMENT).map(placement => (
-      <Block padding="scale700">
+    {Object.values(PLACEMENT).map((placement, index) => (
+      <Block padding="scale700" key={index}>
         <StatefulPopover
           placement={placement}
           triggerType={TRIGGER_TYPE.hover}
