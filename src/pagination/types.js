@@ -51,6 +51,8 @@ export type PaginationPropsT = CallbacksT & {
 
 export type PaginationStateT = {
   isMenuOpen: boolean,
+  layerIsMounted: boolean,
+  tetherOffset: {top: number, left: number},
 };
 
 export type StatefulPaginationPropsT = CallbacksT & {

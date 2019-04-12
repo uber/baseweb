@@ -12,6 +12,28 @@ import * as StyledComponents from '../styled-components.js';
 import {Button} from '../../button/index.js';
 import Pagination from '../pagination.js';
 
+jest.useFakeTimers();
+
+// Mock Layer and TetherBehavior
+let mockCount = 0;
+jest.mock('../../layer/index.js', () => {
+  return {
+    Layer: jest.fn().mockImplementation(props => {
+      if (props.onMount && !mockCount) {
+        ++mockCount;
+        props.onMount();
+      }
+      return props.children;
+    }),
+    TetherBehavior: jest.fn().mockImplementation(props => {
+      return props.children;
+    }),
+    TETHER_PLACEMENT: {
+      bottom: 'bottom',
+    },
+  };
+});
+
 const originalAddEventListener = document.addEventListener;
 const originalRemoveEventListener = document.removeEventListener;
 
@@ -56,10 +78,11 @@ describe('Pagination Stateless', () => {
         onItemSelect,
         ...restProps
       }) => <div {...restProps}>{children}</div>;
+      const overrideName = componentName.replace(/^Styled/, '');
       const props = {
         ...getSharedProps(),
         overrides: {
-          [componentName]: {
+          [overrideName]: {
             component: MockComponent,
             props: {
               id: 'prop',
@@ -77,12 +100,12 @@ describe('Pagination Stateless', () => {
 
   test('dropdown button click', () => {
     const component = mount(<Pagination {...getSharedProps()} />);
-    component.find(StyledComponents.DropdownButton).simulate('click');
+    component.find(StyledComponents.StyledDropdownButton).simulate('click');
     expect(component.state('isMenuOpen')).toEqual(true);
     expect(document.addEventListener.mock.calls[0][0]).toEqual('click');
     expect(document.removeEventListener.mock.calls.length).toBe(0);
 
-    component.find(StyledComponents.DropdownButton).simulate('click');
+    component.find(StyledComponents.StyledDropdownButton).simulate('click');
     expect(component.state('isMenuOpen')).toEqual(false);
     expect(document.removeEventListener.mock.calls[0][0]).toEqual('click');
   });
