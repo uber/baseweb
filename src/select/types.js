@@ -145,6 +145,7 @@ export type PropsT = {
   required: boolean,
   /** Defines if the search functionality is enabled. */
   searchable: boolean,
+  /** Defines the size (scale) of dropdown menu items. See the Menu component API. */
   size: SizeT,
   /** Defines type of the component to be in select or search mode.
    * When set to TYPE.search the search icon if rendered on the
