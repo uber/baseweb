@@ -21,7 +21,7 @@ const source = resolve(__dirname, '../documentation-site/pages/blog');
  * Blog page
  */
 
-const posts = [];
+let posts = [];
 const postDirs = readdirSync(source)
   .map(name => join(source, name))
   .filter(a => lstatSync(a).isDirectory());
@@ -34,6 +34,12 @@ for (let postDir of postDirs) {
     ...attrs,
   };
   posts.push(post);
+}
+
+if (posts.length) {
+  posts = posts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
 }
 
 const content = `const posts = ${

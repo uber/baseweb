@@ -94,12 +94,7 @@ const Navigation = ({toggleSidebar}: PropsT) => {
             as="a"
             href="https://github.com/uber-web/baseui/releases"
           >
-            <Tag
-              closeable={false}
-              color="#333"
-              kind="custom"
-              onClick={() => {}}
-            >
+            <Tag closeable={false} onClick={() => {}}>
               {version}
             </Tag>
           </Block>

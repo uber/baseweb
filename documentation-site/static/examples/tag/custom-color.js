@@ -3,20 +3,22 @@ import {Tag, KIND, VARIANT} from 'baseui/tag';
 
 export default () => (
   <>
-    <Tag color="#4D26B0" kind={KIND.custom} onClick={() => {}}>
-      custom
-    </Tag>
     <Tag
-      color="#4D26B0"
-      variant={VARIANT.outlined}
+      color="#4327F1"
+      variant={VARIANT.solid}
       kind={KIND.custom}
       onClick={() => {}}
     >
       custom
     </Tag>
+    <br />
+    <Tag color="#4327F1" kind={KIND.custom} onClick={() => {}}>
+      custom
+    </Tag>
+    <br />
     <Tag
-      color="#4D26B0"
-      variant={VARIANT.solid}
+      color="#4327F1"
+      variant={VARIANT.outlined}
       kind={KIND.custom}
       onClick={() => {}}
     >
