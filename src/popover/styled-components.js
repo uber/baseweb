@@ -28,16 +28,20 @@ export function getBodyStyles(props: SharedStylePropsT) {
     $theme,
   } = props;
 
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius300
+    : '0px';
+
   return {
     position: 'absolute',
     top: 0,
     left: 0,
     backgroundColor: $theme.colors.background,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius300
-      : '0px',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow600,
-
     transitionProperty: 'opacity,transform',
     transitionDuration: $isAnimating ? '0.1s' : '0s',
     transitionTimingFunction: $isOpen
