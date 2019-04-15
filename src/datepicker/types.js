@@ -272,6 +272,7 @@ export type TimezonePickerPropsT = {
   date?: Date,
   /** Callback for when the timezone selection changes. Follows same pattern as Select component. */
   onChange?: (params: OnChangeParamsT) => mixed,
+  overrides?: {Select?: OverrideT<*>},
   /**
    * Optional value that can be provided to fully control the component. If not provided,
    * TimezonePicker will manage state internally.

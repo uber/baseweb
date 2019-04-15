@@ -9,34 +9,45 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Block} from '../../block/index.js';
-import {FormControl} from '../../form-control/index.js';
 import {TimezonePicker} from '../index.js';
 
 export const name = 'timezone-picker';
 
+const overrides = {
+  Select: {
+    props: {overrides: {ValueContainer: {props: {'data-id': 'selected'}}}},
+  },
+};
+
+// eslint-disable-next-line flowtype/no-weak-types
 class Controlled extends React.Component<any, any> {
-  state = {value: [{id: 'Europe/Berlin'}]};
+  state = {value: [{id: 'Asia/Tokyo'}]};
 
   render() {
     return (
-      <FormControl label="controlled">
+      <div data-e2e="controlled">
+        controlled
         <TimezonePicker
           value={this.state.value}
           onChange={({value}) => this.setState({value})}
+          overrides={overrides}
         />
-      </FormControl>
+      </div>
     );
   }
 }
 
 export const component = () => (
   <Block width="400px">
-    <FormControl label="daylight savings time">
-      <TimezonePicker date={new Date(2019, 3, 1)} />
-    </FormControl>
-    <FormControl label="standard time">
-      <TimezonePicker date={new Date(2019, 2, 1)} />
-    </FormControl>
+    <div data-e2e="daylight">
+      daylight savings time:
+      <TimezonePicker date={new Date(2019, 3, 1)} overrides={overrides} />
+    </div>
+
+    <div data-e2e="standard">
+      standard time:
+      <TimezonePicker date={new Date(2019, 2, 1)} overrides={overrides} />
+    </div>
 
     <Controlled />
   </Block>
