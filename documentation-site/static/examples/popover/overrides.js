@@ -14,13 +14,19 @@ export default () => (
       Body: {
         style: ({$theme}) => ({
           backgroundColor: $theme.colors.warning,
-          borderRadius: 0,
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
         }),
       },
       Inner: {
         style: ({$theme}) => ({
           backgroundColor: $theme.colors.warning,
-          borderRadius: 0,
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
           color: $theme.colors.white,
         }),
       },
