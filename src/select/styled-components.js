@@ -327,7 +327,7 @@ export const getLoadingIconStyles = (props: SharedStylePropsT) => {
   };
 };
 
-export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
+export const StyledSearchIcon = styled('div', (props: SharedStylePropsT) => {
   const {$disabled, $theme} = props;
   const {colors, sizing} = $theme;
   return {
@@ -337,7 +337,8 @@ export const StyledSearchIcon = styled('svg', (props: SharedStylePropsT) => {
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
     left: sizing.scale500,
-    display: 'inline-block',
+    display: 'flex',
+    alignItems: 'center',
     height: '100%',
   };
 });
