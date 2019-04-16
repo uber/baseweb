@@ -173,9 +173,9 @@ export const Checkmark = styled('span', props => {
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
-      ? `url('data:image/svg+xml;charset=utf8,${indeterminate}');`
+      ? `url('data:image/svg+xml,${indeterminate}');`
       : $checked
-        ? `url('data:image/svg+xml;charset=utf8,${check}');`
+        ? `url('data:image/svg+xml,${check}');`
         : null,
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
