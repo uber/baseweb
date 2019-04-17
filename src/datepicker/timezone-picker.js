@@ -50,6 +50,10 @@ class TimezonePicker extends React.Component<
           offset: zonedTime.zone.offset,
         };
 
+        if (this.props.mapLabels) {
+          option.label = this.props.mapLabels(option);
+        }
+
         if (zone === tz) this.setState({value: [option]});
         return option;
       })

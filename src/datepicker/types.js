@@ -270,6 +270,11 @@ export type TimezonePickerPropsT = {
    * exact specificity, provide a date. Otherwise it will default to the relevant timezone at render.
    */
   date?: Date,
+  /**
+   * Customize the option's label. Useful for translations and optionally mapping from
+   * 'America/Los_Angeles' to 'Pacific Time'.
+   */
+  mapLabels?: OptionT => string,
   /** Callback for when the timezone selection changes. Follows same pattern as Select component. */
   onChange?: (params: OnChangeParamsT) => mixed,
   overrides?: {Select?: OverrideT<*>},
