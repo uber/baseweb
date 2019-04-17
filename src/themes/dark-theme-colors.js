@@ -80,6 +80,7 @@ export default {
     linkText: primitives.primary300,
     linkVisited: primitives.primary300,
     linkHover: primitives.primary400,
+    linkActive: primitives.primary400,
 
     // List
     listHeaderFill: primitives.mono600,

@@ -11,17 +11,20 @@ import {styled} from '../styles/index.js';
 export const Link = styled('a', ({$theme}) => {
   const {colors, typography, animation} = $theme;
   return {
-    color: colors.primary400,
+    color: colors.linkText,
     ...typography.font450,
     textDecoration: 'none',
     transitionProperty: 'color',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
+    ':visited': {
+      color: colors.linkVisited,
+    },
     ':hover': {
-      color: colors.primary500,
+      color: colors.linkHover,
     },
     ':active': {
-      color: colors.primary600,
+      color: colors.linkActive,
     },
   };
 });
