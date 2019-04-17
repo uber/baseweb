@@ -26,6 +26,7 @@ export const Avatar = styled('img', (props: StylePropsT) => {
     display: 'block',
     height: themedSize,
     width: themedSize,
+    objectFit: 'cover',
   };
 });
 
