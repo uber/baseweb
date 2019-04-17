@@ -15,7 +15,8 @@ const getStyles = received => {
         `Value passed to expect() was an empty enzyme ReactWrapper, expected a single styled component`,
       );
     }
-    const type = received.type();
+
+    const type = received.type() || '';
     if (type.displayName !== 'MockStyledComponent') {
       throw new Error(
         `toHaveStyleRule can only be called on styled components, instead found ${type}`,
