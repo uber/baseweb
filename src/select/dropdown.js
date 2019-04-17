@@ -99,6 +99,10 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       overrides.DropdownListItem,
       StyledDropdownListItem,
     );
+    const [OverriddenStatefulMenu, statefulMenuProps] = getOverrides(
+      overrides.StatefulMenu,
+      StatefulMenu,
+    );
     return (
       <DropdownContainer
         $ref={this.props.innerRef}
@@ -106,7 +110,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
         {...this.getSharedProps()}
         {...dropdownContainerProps}
       >
-        <StatefulMenu
+        <OverriddenStatefulMenu
           onItemSelect={onItemSelect}
           items={options}
           size={size}
@@ -150,6 +154,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
               Option: overrides.DropdownOption || {},
             },
           )}
+          {...statefulMenuProps}
         />
       </DropdownContainer>
     );
