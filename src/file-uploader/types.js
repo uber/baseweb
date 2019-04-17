@@ -27,6 +27,7 @@ export type OverridesT<T> = {|
   HiddenInput?: OverrideT<T>,
   ProgressMessage?: OverrideT<T>,
   ErrorMessage?: OverrideT<T>,
+  ButtonComponent?: OverrideT<T>,
 |};
 
 export type PropsT = {|
