@@ -18,10 +18,17 @@ export default class Container extends React.Component {
         valueKey="color"
         onChange={({value}) => this.setState({value})}
         value={this.state.value}
-        overrides={{StatefulMenu: {props: {stateReducer: (type, next, prev) => {
-          console.log(type, prev, next);
-          return next;
-        }}}}}
+        overrides={{
+          StatefulMenu: {
+            props: {
+              stateReducer: (type, next, prev) => {
+                // eslint-disable-next-line no-console
+                console.log(type, prev, next);
+                return next;
+              },
+            },
+          },
+        }}
       />
     );
   }

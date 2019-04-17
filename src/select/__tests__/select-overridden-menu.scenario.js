@@ -1,3 +1,11 @@
+/*
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
 import React from 'react';
 
 import {StatefulSelect, TYPE} from '../index.js';
@@ -16,10 +24,17 @@ export const component = () => (
       {id: 'DarkBlue', color: '#00008B'},
       {id: 'DarkCyan', color: '#008B8B'},
     ]}
-    overrides={{StatefulMenu: {props: {stateReducer: (type, next, prev) => {
-      console.log(type, prev, next);
-      return next;
-    }}}}}
+    overrides={{
+      StatefulMenu: {
+        props: {
+          stateReducer: (type, next, prev) => {
+            // eslint-disable-next-line no-console
+            console.log(type, prev, next);
+            return next;
+          },
+        },
+      },
+    }}
     closeOnSelect={false}
     labelKey="id"
     multi
