@@ -11,25 +11,29 @@ Date/time selections need more precision than a single date or range of dates (w
 `TimePicker` - used to select a time, decoupled from a date. E.g. `11:50AM`.
 
 API:
-  - `precisionInMinutes`: `number` Range from 1 - 60. 15 default.
-  - `value`: `{hour: number, minute: number}`
-  - `onChange`: `({hour: number, minute: number}) => mixed`
+
+* `precisionInMinutes`: `number` Range from 1 - 60. 15 default.
+* `value`: `{hour: number, minute: number}`
+* `onChange`: `({hour: number, minute: number}) => mixed`
 
 `TimezonePicker` - used to select a timezone. E.g. `America/Los_Angeles` as determined by the [IANA database](https://www.iana.org/time-zones).
 
 API:
-  - `date`: `Date` Determines if the options should include standard or daylight timezones.
-  - `mapLabels`: `(Option) => string` Use this function to modify the displayed timezone labels. For example, map `America/Los_Angeles` to `Pacific Time`.
-  - `onChange`: `(Option) => mixed` Callback for when the selection changes.
-  - `value`: `Array<{id: string}>` Based on Select component value prop.
+
+* `date`: `Date` Determines if the options should include standard or daylight timezones.
+* `mapLabels`: `(Option) => string` Use this function to modify the displayed timezone labels. For example, map `America/Los_Angeles` to `Pacific Time`.
+* `onChange`: `(Option) => mixed` Callback for when the selection changes.
+* `value`: `Array<{id: string}>` Based on Select component value prop.
 
 `DatePicker` - used to select a date. Already implemented.
+
 Updated API:
-  - `quickSelectOptions`: `Array<{label: string, value: Date[]}>` An array of label plus date range combinations that will be displayed in a dropdown menu. Overwrites the default set of quick-select options.
-  - `timePrecisionInMinutes`: `number` Range from 1 - 60. null default. If provided, will display a dropdown menu underneath the calendar. If calendar is displayed as duplex, two time select dropdowns will be displayed; one for start time, and another for end time.
-  - `overrides`: Removes the `QuickSelectContainer`, `QuickSelectLabel`, and `QuickSelectButton` overrides.
-  - `duplex`: `boolean` Renders two calendars side-by-side.
-  - `onTimeChange`: `({hour: number, minute: number} | Array<{hour: number, minute: number}>) => mixed` Called when time select is changed. Calls back with an array of Time objects if duplex calendar.
+
+* `quickSelectOptions`: `Array<{label: string, value: Date[]}>` An array of label plus date range combinations that will be displayed in a dropdown menu. Overwrites the default set of quick-select options.
+* `timePrecisionInMinutes`: `number` Range from 1 - 60. null default. If provided, will display a dropdown menu underneath the calendar. If calendar is displayed as duplex, two time select dropdowns will be displayed; one for start time, and another for end time.
+* `overrides`: Removes the `QuickSelectContainer`, `QuickSelectLabel`, and `QuickSelectButton` overrides.
+* `duplex`: `boolean` Renders two calendars side-by-side.
+* `onTimeChange`: `({hour: number, minute: number} | Array<{hour: number, minute: number}>) => mixed` Called when time select is changed. Calls back with an array of Time objects if duplex calendar.
 
 ## Component Examples
 
@@ -141,4 +145,3 @@ function SelectRangeExample() {
   )
 }
 ```
-
