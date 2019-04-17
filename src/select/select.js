@@ -731,14 +731,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
       SearchIconComponent,
     );
     const sharedProps = this.getSharedProps();
+
     return (
-      <SearchIcon
-        size={16}
-        title={'search'}
-        overrides={{Svg: StyledSearchIcon}}
-        {...sharedProps}
-        {...searchIconProps}
-      />
+      <StyledSearchIcon {...sharedProps} {...searchIconProps}>
+        <SearchIcon size={16} title={'search'} />
+      </StyledSearchIcon>
     );
   }
 
