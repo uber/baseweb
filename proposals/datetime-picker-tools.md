@@ -12,9 +12,10 @@ Date/time selections need more precision than a single date or range of dates (w
 
 API:
 
-* `precisionInMinutes`: `number` Range from 1 - 60. 15 default.
-* `value`: `{hour: number, minute: number}`
-* `onChange`: `({hour: number, minute: number}) => mixed`
+* `format?`: `24h | 12h` Renders dropdown labels in AM/PM 12 hour format or 24 hour. Defaults to 12h.
+* `step?`: `number` Range from 1 - 3600. 900 default (15 minutes). For now, values between whole 'minutes' will round up to nearest minute.
+* `value?`: `number` Value from 0 - 86400.
+* `onChange?`: `(number) => mixed`
 
 `TimezonePicker` - used to select a timezone. E.g. `America/Los_Angeles` as determined by the [IANA database](https://www.iana.org/time-zones).
 
@@ -29,11 +30,12 @@ API:
 
 Updated API:
 
-* `quickSelectOptions`: `Array<{label: string, value: Date[]}>` An array of label plus date range combinations that will be displayed in a dropdown menu. Overwrites the default set of quick-select options.
-* `timePrecisionInMinutes`: `number` Range from 1 - 60. null default. If provided, will display a dropdown menu underneath the calendar. If calendar is displayed as duplex, two time select dropdowns will be displayed; one for start time, and another for end time.
-* `overrides`: Removes the `QuickSelectContainer`, `QuickSelectLabel`, and `QuickSelectButton` overrides.
 * `duplex`: `boolean` Renders two calendars side-by-side.
-* `onTimeChange`: `({hour: number, minute: number} | Array<{hour: number, minute: number}>) => mixed` Called when time select is changed. Calls back with an array of Time objects if duplex calendar.
+* `quickSelectOptions`: `Array<{label: string, value: Date[]}>` An array of label plus date range combinations that will be displayed in a dropdown menu. Overwrites the default set of quick-select options.
+* `onTimeChange`: `(number | number[]) => mixed` Called when time select is changed. Calls back with an array if duplex calendar.
+* `timeFormat?`: `24h | 12h` Renders dropdown labels in AM/PM 12 hour format or 24 hour. Defaults to 12h.
+* `timeStep?`: `number` Range from 1 - 60. null default. If provided, will display a dropdown menu underneath the calendar. If calendar is displayed as duplex, two time select dropdowns will be displayed; one for start time, and another for end time.
+* `overrides`: Removes the `QuickSelectContainer`, `QuickSelectLabel`, and `QuickSelectButton` overrides.
 
 ## Component Examples
 
