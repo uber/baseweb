@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "6.12.4",
+  "version": "6.14.0",
   "description": "React implementation of uber design components platform.",
   "keywords": [
     "react",
@@ -143,6 +143,7 @@
     "focus-trap": "^5.0.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
+    "polished": "^3.2.0",
     "popper.js": "^1.14.3",
     "react-dropzone": "^9.0.0",
     "react-input-mask": "^2.0.4",

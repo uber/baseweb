@@ -15,6 +15,7 @@ import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
 
 type PropsT = {
+  $full?: boolean,
   children: React.Node,
   path?: {},
 };
@@ -30,7 +31,7 @@ const SidebarWrapper = styled('div', ({$theme, $isOpen}) => ({
   },
 }));
 
-const ContentWrapper = styled('div', ({$theme, $isSidebarOpen}) => ({
+const ContentWrapper = styled('div', ({$theme, $isSidebarOpen, $full}) => ({
   boxSizing: 'border-box',
   display: $isSidebarOpen ? 'none' : 'block',
   paddingLeft: $theme.sizing.scale900,
@@ -39,7 +40,7 @@ const ContentWrapper = styled('div', ({$theme, $isSidebarOpen}) => ({
   flex: 2,
   '@media screen and (min-width: 820px)': {
     display: 'block',
-    maxWidth: '40em',
+    maxWidth: $full ? '100%' : '40em',
   },
 }));
 
@@ -52,7 +53,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   }
   render() {
     const {sidebarOpen} = this.state;
-    const {path, children} = this.props;
+    const {$full, path, children} = this.props;
     return (
       <React.Fragment>
         <HeaderNavigation
@@ -79,7 +80,11 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
           >
             <Sidebar path={path} />
           </SidebarWrapper>
-          <ContentWrapper id="docSearch-content" $isSidebarOpen={sidebarOpen}>
+          <ContentWrapper
+            id="docSearch-content"
+            $isSidebarOpen={sidebarOpen}
+            $full={$full}
+          >
             <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
           </ContentWrapper>
         </Block>
