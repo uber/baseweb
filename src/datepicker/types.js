@@ -274,7 +274,7 @@ export type TimezonePickerPropsT = {
    * Customize the option's label. Useful for translations and optionally mapping from
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
-  mapLabels?: OptionT => string,
+  mapLabels?: OptionT => React.Node,
   /** Callback for when the timezone selection changes. Follows same pattern as Select component. */
   onChange?: (params: OnChangeParamsT) => mixed,
   overrides?: {Select?: OverrideT<*>},
