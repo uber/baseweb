@@ -82,7 +82,7 @@ export default class Accordion extends React.Component<
 
       const props = {
         key,
-        expanded: isExpanded,
+        expanded: isExpanded || child.props.expanded,
         accordion,
         disabled:
           child.props.disabled === null ? disabled : child.props.disabled,
