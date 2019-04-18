@@ -118,7 +118,7 @@ class Panel extends React.Component<PanelPropsT> {
               />
             </Header>
             <Content {...sharedProps} {...contentProps}>
-              {children}
+              {expanded ? children : null}
             </Content>
           </PanelContainer>
         )}
