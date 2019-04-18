@@ -255,7 +255,7 @@ export type StatefulDatepickerPropsT<T> = $Diff<
   },
 >;
 
-export type TimePickerProps = {
+export type TimePickerPropsT = {
   /** Render options in AM/PM format or 24 hour format. Defualts to 12 hour. */
   format?: '12' | '24',
   /** Callback for when time selection changes. */
@@ -272,7 +272,7 @@ export type TimePickerProps = {
   value?: number,
 };
 
-export type TimePickerState = {
+export type TimePickerStateT = {
   /** List of options displayed in the dropdown menu. See Select component for reference. */
   options: OptionT[],
   /** Internal value provided to the select component. */

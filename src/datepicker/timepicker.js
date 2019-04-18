@@ -12,7 +12,7 @@ import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
 
-import type {TimePickerProps, TimePickerState} from './types.js';
+import type {TimePickerPropsT, TimePickerStateT} from './types.js';
 
 const MINUTE = 60;
 const HOUR = MINUTE * 60;
@@ -53,7 +53,7 @@ function secondsToLabel(seconds, format = '12') {
   return `${zeroPrefix(hours)} : ${zeroPrefix(minutes)}`;
 }
 
-class TimePicker extends React.Component<TimePickerProps, TimePickerState> {
+class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   state = {options: [], value: []};
 
   componentDidMount() {
@@ -82,7 +82,7 @@ class TimePicker extends React.Component<TimePickerProps, TimePickerState> {
     }
   }
 
-  componentDidUpdate(prevProps: any) {
+  componentDidUpdate(prevProps: TimePickerPropsT) {
     if (
       prevProps.format !== this.props.format ||
       prevProps.step !== this.props.step
@@ -101,6 +101,7 @@ class TimePicker extends React.Component<TimePickerProps, TimePickerState> {
       stepCount = Math.round(stepCount);
 
       if (__DEV__) {
+        // eslint-disable-next-line no-console
         console.warn(
           `Provided step value (${step}) does not spread evenly across a day. Rounding from ${previousStepCount} total steps to ${stepCount}.`,
         );
@@ -137,7 +138,7 @@ class TimePicker extends React.Component<TimePickerProps, TimePickerState> {
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <Select
+          <OverridedSelect
             aria-label={locale.datepicker.timePickerAriaLabel}
             options={this.state.options}
             onChange={params => {
