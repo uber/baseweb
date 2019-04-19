@@ -23,7 +23,7 @@ const overrides = {
 
 // eslint-disable-next-line flowtype/no-weak-types
 class Controlled extends React.Component<any, any> {
-  state = {value: [{id: 'Asia/Tokyo'}], date: daylight};
+  state = {value: [{id: 'Asia/Tokyo'}]};
 
   render() {
     return (
@@ -37,19 +37,8 @@ class Controlled extends React.Component<any, any> {
           Set LA
         </button>
         <br />
-        <button
-          data-e2e="toggle-controlled-date"
-          onClick={() =>
-            this.setState({
-              date: this.state.date === daylight ? standard : daylight,
-            })
-          }
-        >
-          Toggle Date
-        </button>
-        <br />
         <TimezonePicker
-          date={this.state.date}
+          date={daylight}
           value={this.state.value}
           onChange={({value}) => this.setState({value})}
           overrides={overrides}
