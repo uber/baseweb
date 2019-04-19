@@ -47,8 +47,8 @@ describe('TimePicker', () => {
 
   it('is renders expected 24 hour format times with custom step', async () => {
     await mount(page, 'time-picker');
-    await page.waitFor(selectors.twelveHour);
-    await page.click(`${selectors.twelveHour} ${selectors.input}`);
+    await page.waitFor(selectors.twentyFourHour);
+    await page.click(`${selectors.twentyFourHour} ${selectors.input}`);
     await page.waitFor(selectors.dropdown);
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
@@ -57,7 +57,7 @@ describe('TimePicker', () => {
     await page.keyboard.press('Enter');
 
     const value = await page.$eval(
-      `${selectors.twelveHour} ${selectors.value}`,
+      `${selectors.twentyFourHour} ${selectors.value}`,
       select => select.textContent,
     );
 
