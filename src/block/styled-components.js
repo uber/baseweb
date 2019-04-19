@@ -53,6 +53,11 @@ function build(breakpoints: BreakpointsT) {
   };
 }
 
+function getFontValue(obj, key) {
+  if (!obj) return;
+  return obj[key];
+}
+
 export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
   const {breakpoints, colors, typography, sizing} = props.$theme;
 
@@ -69,22 +74,22 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
   styles.apply({
     property: 'fontFamily',
     value: get(props, '$font'),
-    transform: font => typography[font].fontFamily,
+    transform: font => getFontValue(typography[font], 'fontFamily'),
   });
   styles.apply({
     property: 'fontWeight',
     value: get(props, '$font'),
-    transform: font => typography[font].fontWeight,
+    transform: font => getFontValue(typography[font], 'fontWeight'),
   });
   styles.apply({
     property: 'fontSize',
     value: get(props, '$font'),
-    transform: font => typography[font].fontSize,
+    transform: font => getFontValue(typography[font], 'fontSize'),
   });
   styles.apply({
     property: 'lineHeight',
     value: get(props, '$font'),
-    transform: font => typography[font].lineHeight,
+    transform: font => getFontValue(typography[font], 'lineHeight'),
   });
 
   styles.apply({property: 'alignContent', value: get(props, '$alignContent')});
