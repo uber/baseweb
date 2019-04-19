@@ -7,19 +7,22 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React, {useState} from 'react';
+// eslint-disable-next-line import/extensions
+import startOfDay from 'date-fns/startOfDay';
 
 import {TimePicker} from '../index.js';
 
 export const name = 'time-picker';
 
+const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
 const overrides = {
   Select: {
     props: {overrides: {ValueContainer: {props: {'data-id': 'selected'}}}},
   },
 };
 
-const Controlled = ({initialTime, format, step}) => {
-  const [time, setTime] = useState(initialTime);
+const Controlled = ({format, step}) => {
+  const [time, setTime] = useState(MIDNIGHT);
   return (
     <TimePicker
       format={format}
@@ -36,11 +39,11 @@ export const component = () => {
     <div style={{width: '120px'}}>
       <div data-e2e="12-hour">
         12 hour format
-        <Controlled initialTime={0} format="12" step={900} />
+        <Controlled format="12" step={900} />
       </div>
       <div data-e2e="24-hour">
         24 hour format
-        <Controlled initialTime={0} format="24" step={1800} />
+        <Controlled format="24" step={1800} />
       </div>
     </div>
   );

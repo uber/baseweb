@@ -19,11 +19,11 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const NOON = DAY / 2;
 
-function zeroPrefix(n) {
-  if (n < 10) {
-    return `0${n}`;
-  }
-  return n;
+function dateToSeconds(date: Date) {
+  const seconds = date.getSeconds();
+  const minutes = date.getMinutes() * MINUTE;
+  const hours = date.getHours() * HOUR;
+  return seconds + minutes + hours;
 }
 
 function secondsToHourMinute(seconds) {
@@ -36,6 +36,7 @@ function secondsToHourMinute(seconds) {
 
 function secondsToLabel(seconds, format = '12') {
   let [hours, minutes] = secondsToHourMinute(seconds);
+  const zeroPrefix = n => (n < 10 ? `0${n}` : n);
 
   if (format === '12') {
     const isAfterNoon = seconds >= NOON;
@@ -54,48 +55,40 @@ function secondsToLabel(seconds, format = '12') {
 }
 
 class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
-  state = {options: [], value: []};
+  state = {steps: [], value: null};
 
   componentDidMount() {
-    const options = this.buildOptions();
-    this.setState({options});
-
-    if (isNaN(this.props.value)) {
-      const now = new Date();
-      const hours = now.getHours() * HOUR;
-      const minutes = now.getMinutes() * MINUTE;
-      const totalSeconds = hours + minutes;
-
+    const steps = this.buildSteps();
+    if (this.props.value instanceof Date) {
+      this.setState({
+        steps: steps,
+        value: dateToSeconds(this.props.value),
+      });
+    } else {
+      const seconds = dateToSeconds(new Date());
       let closestStep = NOON;
-      options.forEach(option => {
-        if (
-          Math.abs(Number(option.id) - totalSeconds) <
-          Math.abs(Number(closestStep) - totalSeconds)
-        ) {
-          closestStep = option.id;
+      steps.forEach(step => {
+        if (Math.abs(step - seconds) < Math.abs(closestStep - seconds)) {
+          closestStep = step;
         }
       });
-
-      this.setState({value: [{id: closestStep}]});
-    } else {
-      this.setState({value: [{id: this.props.value}]});
+      this.setState({steps: steps, value: closestStep});
     }
   }
 
   componentDidUpdate(prevProps: TimePickerPropsT) {
-    if (
-      prevProps.format !== this.props.format ||
-      prevProps.step !== this.props.step
-    ) {
-      const options = this.buildOptions();
-      this.setState({options});
+    const formatChanged = prevProps.format !== this.props.format;
+    const stepChanged = prevProps.step !== this.props.step;
+    if (formatChanged || stepChanged) {
+      const steps = this.buildSteps();
+      this.setState({steps});
     }
   }
 
-  buildOptions = () => {
+  buildSteps = () => {
     const {step = 900} = this.props;
-    let stepCount = DAY / step;
 
+    let stepCount = DAY / step;
     if (!Number.isInteger(stepCount)) {
       const previousStepCount = stepCount;
       stepCount = Math.round(stepCount);
@@ -110,10 +103,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
 
     const options = [];
     for (let i = 0; i < DAY; i += step) {
-      options.push({
-        id: i,
-        label: secondsToLabel(i, this.props.format),
-      });
+      options.push(i);
     }
     return options;
   };
@@ -126,26 +116,37 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
       Select,
     );
     const selectOverrides = mergeOverrides(
-      {
-        Dropdown: {style: {maxHeight: '126px'}},
-      },
+      {Dropdown: {style: {maxHeight: '126px'}}},
       // $FlowFixMe
       selectProps && selectProps.overrides,
     );
     // $FlowFixMe
     selectProps.overrides = selectOverrides;
 
+    const id =
+      this.props.value instanceof Date
+        ? dateToSeconds(this.props.value)
+        : this.state.value;
+
     return (
       <LocaleContext.Consumer>
         {locale => (
           <OverridedSelect
             aria-label={locale.datepicker.timePickerAriaLabel}
-            options={this.state.options}
+            options={this.state.steps.map(n => ({
+              id: n,
+              label: secondsToLabel(n, this.props.format),
+            }))}
             onChange={params => {
               this.setState({value: params.value});
-              onChange(Number(params.value[0].id));
+
+              const date = this.props.value || new Date();
+              const seconds = params.value[0].id;
+              const [hours, minutes] = secondsToHourMinute(seconds);
+              date.setHours(hours, minutes);
+              onChange(date);
             }}
-            value={[{id: this.props.value}] || this.state.value}
+            value={[{id}]}
             clearable={false}
             {...selectProps}
           />

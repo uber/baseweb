@@ -6,8 +6,8 @@ import {FormControl} from 'baseui/form-control';
 const Container = styled('div', {width: '120px'});
 
 export default () => {
-  const [twelveHourTime, setTwelveHourTime] = useState(0);
-  const [twentyFourHourTime, setTwentyFourHourTime] = useState(0);
+  const [twelveHourTime, setTwelveHourTime] = useState(null);
+  const [twentyFourHourTime, setTwentyFourHourTime] = useState(null);
 
   return (
     <Container>
@@ -19,6 +19,7 @@ export default () => {
           value={twentyFourHourTime}
           onChange={setTwentyFourHourTime}
           format="24"
+          step={1800}
         />
       </FormControl>
     </Container>
