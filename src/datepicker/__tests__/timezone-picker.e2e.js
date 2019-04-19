@@ -21,6 +21,7 @@ const selectors = {
   toggleDate: 'button[data-e2e="toggle-controlled-date"]',
 };
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
 const labelToShortCode = label => label.split(' ')[0];
 
 describe('TimezonePicker', () => {
@@ -80,6 +81,8 @@ describe('TimezonePicker', () => {
     await page.waitFor(selectors.controlled);
     await page.click(selectors.setTimezone);
     await page.click(selectors.toggleDate);
+
+    await delay(1000);
     const value = await page.$eval(
       `${selectors.controlled} ${selectors.value}`,
       select => select.textContent,
