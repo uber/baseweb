@@ -28,13 +28,25 @@ class TimezonePicker extends React.Component<
   state = {timezones: [], value: []};
 
   componentDidMount() {
-    let tz = null;
+    const timezones = this.buildTimezones(this.props.date || new Date());
+
     if (__BROWSER__) {
-      tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      this.setState({value: [{id: tz}]});
     }
+    this.setState({timezones});
+  }
 
-    const compareDate = this.props.date || new Date();
+  componentDidUpdate(prevProps: TimezonePickerPropsT) {
+    const prevTime = prevProps.date ? prevProps.date.getTime() : 0;
+    const nextTime = this.props.date ? this.props.date.getTime() : 0;
+    if (prevTime !== nextTime) {
+      const timezones = this.buildTimezones(this.props.date || new Date());
+      this.setState({timezones});
+    }
+  }
 
+  buildTimezones = (compareDate: Date) => {
     const timezones = listTimeZones()
       .map(zone => {
         const timezone = findTimeZone(zone);
@@ -49,12 +61,9 @@ class TimezonePicker extends React.Component<
           label: formatted,
           offset: zonedTime.zone.offset,
         };
-
         if (this.props.mapLabels) {
           option.label = this.props.mapLabels(option);
         }
-
-        if (zone === tz) this.setState({value: [option]});
         return option;
       })
       // Removes 'noisy' timezones without a letter acronym.
@@ -68,9 +77,8 @@ class TimezonePicker extends React.Component<
         if (a.label > b.label) return 1;
         return 0;
       });
-
-    this.setState({timezones});
-  }
+    return timezones;
+  };
 
   render() {
     const {overrides = {}} = this.props;

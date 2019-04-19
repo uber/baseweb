@@ -13,6 +13,8 @@ import {TimezonePicker} from '../index.js';
 
 export const name = 'timezone-picker';
 
+const daylight = new Date(2019, 3, 1);
+const standard = new Date(2019, 2, 1);
 const overrides = {
   Select: {
     props: {overrides: {ValueContainer: {props: {'data-id': 'selected'}}}},
@@ -21,13 +23,33 @@ const overrides = {
 
 // eslint-disable-next-line flowtype/no-weak-types
 class Controlled extends React.Component<any, any> {
-  state = {value: [{id: 'Asia/Tokyo'}]};
+  state = {value: [{id: 'Asia/Tokyo'}], date: daylight};
 
   render() {
     return (
       <div data-e2e="controlled">
         controlled
+        <br />
+        <button
+          data-e2e="set-la-timezone"
+          onClick={() => this.setState({value: [{id: 'America/Los_Angeles'}]})}
+        >
+          Set LA
+        </button>
+        <br />
+        <button
+          data-e2e="toggle-controlled-date"
+          onClick={() =>
+            this.setState({
+              date: this.state.date === daylight ? standard : daylight,
+            })
+          }
+        >
+          Toggle Date
+        </button>
+        <br />
         <TimezonePicker
+          date={this.state.date}
           value={this.state.value}
           onChange={({value}) => this.setState({value})}
           overrides={overrides}
@@ -41,12 +63,12 @@ export const component = () => (
   <Block width="400px">
     <div data-e2e="daylight">
       daylight savings time:
-      <TimezonePicker date={new Date(2019, 3, 1)} overrides={overrides} />
+      <TimezonePicker date={daylight} overrides={overrides} />
     </div>
 
     <div data-e2e="standard">
       standard time:
-      <TimezonePicker date={new Date(2019, 2, 1)} overrides={overrides} />
+      <TimezonePicker date={standard} overrides={overrides} />
     </div>
 
     <Controlled />

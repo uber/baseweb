@@ -17,6 +17,8 @@ const selectors = {
   input: 'input[role="combobox"]',
   dropdown: '[role="listbox"]',
   value: '[data-id="selected"]',
+  setTimezone: 'button[data-e2e="set-la-timezone"]',
+  toggleDate: 'button[data-e2e="toggle-controlled-date"]',
 };
 
 const labelToShortCode = label => label.split(' ')[0];
@@ -47,7 +49,7 @@ describe('TimezonePicker', () => {
 
   it('provides appropriate zone options if daylight savings time', async () => {
     await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.standard);
+    await page.waitFor(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);
     await page.waitFor(selectors.dropdown);
     await page.keyboard.type('new york');
@@ -59,5 +61,30 @@ describe('TimezonePicker', () => {
     );
 
     expect(labelToShortCode(value)).toBe('EDT');
+  });
+
+  it('updates in response to controlled timezone as expected', async () => {
+    await mount(page, 'timezone-picker');
+    await page.waitFor(selectors.controlled);
+    await page.click(selectors.setTimezone);
+    const value = await page.$eval(
+      `${selectors.daylight} ${selectors.value}`,
+      select => select.textContent,
+    );
+
+    expect(labelToShortCode(value)).toBe('PDT');
+  });
+
+  it('updates in response to controlled date as expected', async () => {
+    await mount(page, 'timezone-picker');
+    await page.waitFor(selectors.controlled);
+    await page.click(selectors.setTimezone);
+    await page.click(selectors.toggleDate);
+    const value = await page.$eval(
+      `${selectors.controlled} ${selectors.value}`,
+      select => select.textContent,
+    );
+
+    expect(labelToShortCode(value)).toBe('PST');
   });
 });
