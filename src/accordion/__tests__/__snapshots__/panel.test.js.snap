@@ -4,7 +4,7 @@ exports[`Panel basic rendering: Content has correct props 1`] = `
 Object {
   "$disabled": false,
   "$expanded": false,
-  "children": "content",
+  "children": null,
 }
 `;
 
