@@ -23,6 +23,7 @@ export default class SideNav extends React.Component<NavPropsT> {
     items: [],
     overrides: {},
     renderItem: null,
+    transformItem: null,
   };
 
   activePredicate = (item: Item) => {
@@ -37,6 +38,7 @@ export default class SideNav extends React.Component<NavPropsT> {
       onChange,
       overrides,
       renderItem,
+      transformItem,
     } = this.props;
     const navLevel = 1;
 
@@ -50,7 +52,11 @@ export default class SideNav extends React.Component<NavPropsT> {
       StyledSubNavContainer,
     );
 
-    const renderNavItem = (item: Item, level: number, index) => {
+    const renderNavItem = (item: Item, level: number, index, transformItem) => {
+      if (typeof transformItem === 'function') {
+        item = transformItem(item);
+      }
+
       const sharedProps = {
         $active: activePredicate
           ? activePredicate(item, activeItemId)
@@ -58,6 +64,7 @@ export default class SideNav extends React.Component<NavPropsT> {
         $level: level,
         $selectable: !!item.itemId,
       };
+
       return (
         <NavItemContainer
           key={`${index}-level${level}-${
@@ -88,7 +95,7 @@ export default class SideNav extends React.Component<NavPropsT> {
     return (
       <Root role="list" {...rootProps}>
         {items.map((item, index) => {
-          return renderNavItem(item, navLevel, index);
+          return renderNavItem(item, navLevel, index, transformItem);
         })}
       </Root>
     );
