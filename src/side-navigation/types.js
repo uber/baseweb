@@ -40,7 +40,7 @@ type renderItemT = (
   },
 ) => React.Node;
 
-type transformItemT = (item: Item) => Item;
+type transformItemT = (item: $ReadOnly<Item>) => Item;
 
 export type NavPropsT = {
   /** Defines the current active itemId. Used for the defaut calculation of the $active prop */
