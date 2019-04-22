@@ -67,6 +67,10 @@ export const BaseButton = styled(
     ...getStyleForShape({$theme, $shape, $size}),
     // Kind style override
     ...getStyleForKind({$theme, $kind, $isLoading, $isSelected, $disabled}),
+    marginLeft: 0,
+    marginTop: 0,
+    marginRight: 0,
+    marginBottom: 0,
   }),
 );
 
