@@ -19,8 +19,8 @@ type onChangeT = ({date: ?Date | Array<Date>}) => mixed;
 export type DatepickerOverridesT<T> = {
   Root?: OverrideT<T>,
   QuickSelectContainer?: OverrideT<T>,
-  QuickSelectLabel?: OverrideT<T>,
-  QuickSelectButtons?: OverrideT<T>,
+  /** Override for reused Select component. Input is **not a styled  element** but a react component that can be replaced */
+  QuickSelect?: OverrideT<T>,
   CalendarContainer?: OverrideT<T>,
   CalendarHeader?: OverrideT<T>,
   PrevButton?: OverrideT<T>,
@@ -98,6 +98,7 @@ export type CalendarInternalState = {
   highlightedDate: Date,
   focused: boolean,
   date: Date,
+  quickSelectId: ?string,
 };
 
 export type CalendarPropsT = {
@@ -105,8 +106,10 @@ export type CalendarPropsT = {
   autoFocusCalendar: boolean,
   /** A list of dates to disable. */
   excludeDates: ?Array<Date>,
-  /** Display a set of buttons for quickly choosing date ranges. `range` must be true as well. */
+  /** Display select for quickly choosing date ranges. `range` must be true as well. */
   quickSelect?: boolean,
+  /** Array of custom options displayed in the quick select. Overrides default options if provided. */
+  quickSelectOptions?: Array<{id: string, beginDate: Date}>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate: ?(day: Date) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */

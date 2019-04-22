@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {Button, KIND} from '../button/index.js';
+import {FormControl} from '../form-control/index.js';
+import {LocaleContext} from '../locale/index.js';
+import {Select} from '../select/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
 import {
   StyledRoot,
   StyledCalendarContainer,
   StyledQuickSelectContainer,
-  StyledQuickSelectButtons,
-  StyledQuickSelectLabel,
   StyledMonthHeader,
   StyledDay,
 } from './styled-components.js';
@@ -80,6 +80,7 @@ export default class Calendar extends React.Component<
         new Date(),
       focused: false,
       date: this.getDateInView(),
+      quickSelectId: null,
     };
   }
 
@@ -363,13 +364,9 @@ export default class Calendar extends React.Component<
       overrides.QuickSelectContainer,
       StyledQuickSelectContainer,
     );
-    const [QuickSelectLabel, quickSelectLabelProps] = getOverrides(
-      overrides.QuickSelectLabel,
-      StyledQuickSelectLabel,
-    );
-    const [QuickSelectButtons, quickSelectButtonsProps] = getOverrides(
-      overrides.QuickSelectButtons,
-      StyledQuickSelectButtons,
+    const [QuickSelect, quickSelectProps] = getOverrides(
+      overrides.QuickSelect,
+      Select,
     );
 
     if (!this.props.range || !this.props.quickSelect) {
@@ -378,69 +375,42 @@ export default class Calendar extends React.Component<
 
     const NOW = new Date();
     const QUICK_SELECT_ACTIONS = [
-      {
-        label: 'Past Week',
-        beginDate: subWeeks(NOW, 1),
-      },
-      {
-        label: 'Past Month',
-        beginDate: subMonths(NOW, 1),
-      },
-      {
-        label: 'Past 3 Months',
-        beginDate: subMonths(NOW, 3),
-      },
-      {
-        label: 'Past 6 Months',
-        beginDate: subMonths(NOW, 6),
-      },
-      {
-        label: 'Past Year',
-        beginDate: subYears(NOW, 1),
-      },
-      {
-        label: 'Past 2 Years',
-        beginDate: subYears(NOW, 2),
-      },
+      {id: 'Past Week', beginDate: subWeeks(NOW, 1)},
+      {id: 'Past Month', beginDate: subMonths(NOW, 1)},
+      {id: 'Past 3 Months', beginDate: subMonths(NOW, 3)},
+      {id: 'Past 6 Months', beginDate: subMonths(NOW, 6)},
+      {id: 'Past Year', beginDate: subYears(NOW, 1)},
+      {id: 'Past 2 Years', beginDate: subYears(NOW, 2)},
     ];
 
     return (
-      <QuickSelectContainer {...quickSelectContainerProps}>
-        <QuickSelectLabel {...quickSelectLabelProps}>
-          Quick Select
-        </QuickSelectLabel>
-        <QuickSelectButtons {...quickSelectButtonsProps}>
-          {QUICK_SELECT_ACTIONS.map(({label, beginDate}) => (
-            <Button
-              key={label}
-              tabIndex={0}
-              kind={KIND.tertiary}
-              onClick={() => {
-                this.props.onChange({date: [beginDate, NOW]});
-              }}
-              overrides={{
-                BaseButton: {
-                  style: {
-                    flexBasis: 0,
-                    flexGrow: 1,
-                    marginBottom: '8px',
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                    marginLeft: 0,
-                    marginRight: 0,
-                    minWidth: '142px',
-                    ':nth-of-type(odd)': {
-                      marginRight: '8px',
-                    },
-                  },
-                },
-              }}
-            >
-              {label}
-            </Button>
-          ))}
-        </QuickSelectButtons>
-      </QuickSelectContainer>
+      <LocaleContext.Consumer>
+        {locale => (
+          <QuickSelectContainer {...quickSelectContainerProps}>
+            <FormControl label="Choose a date range">
+              <QuickSelect
+                aria-label={locale.datepicker.quickSelectAriaLabel}
+                labelKey="id"
+                onChange={params => {
+                  if (!params.option) {
+                    this.setState({quickSelectId: null});
+                    this.props.onChange({date: []});
+                  } else {
+                    this.setState({quickSelectId: params.option.id});
+                    this.props.onChange({date: [params.option.beginDate, NOW]});
+                  }
+                }}
+                options={this.props.quickSelectOptions || QUICK_SELECT_ACTIONS}
+                placeholder="None"
+                value={
+                  this.state.quickSelectId && [{id: this.state.quickSelectId}]
+                }
+                {...quickSelectProps}
+              />
+            </FormControl>
+          </QuickSelectContainer>
+        )}
+      </LocaleContext.Consumer>
     );
   };
 
