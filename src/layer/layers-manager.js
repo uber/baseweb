@@ -12,14 +12,12 @@ export const {
   Provider,
   Consumer,
 }: React.Context<LayersContexT> = React.createContext({
-  root: undefined,
   host: undefined,
 });
 
 export default class LayersManager extends React.Component<
   LayersManagerPropsT,
 > {
-  root: {current: ?HTMLElement} = React.createRef();
   host: {current: ?HTMLElement} = React.createRef();
 
   componentDidMount() {
@@ -28,11 +26,9 @@ export default class LayersManager extends React.Component<
 
   render() {
     return (
-      <Provider value={{root: this.root.current, host: this.host.current}}>
-        <div data-id="root" ref={this.root}>
-          {this.props.children}
-        </div>
-        <div data-id="host" ref={this.host} />
+      <Provider value={{host: this.host.current}}>
+        <div>{this.props.children}</div>
+        <div ref={this.host} />
       </Provider>
     );
   }

@@ -15,7 +15,6 @@ export type LayersManagerPropsT = {
 };
 
 export type LayersContexT = {
-  root: typeof undefined | ?HTMLElement,
   host: typeof undefined | ?HTMLElement,
 };
 
