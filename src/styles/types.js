@@ -143,6 +143,7 @@ export type ColorsT = {
   linkText: string,
   linkVisited: string,
   linkHover: string,
+  linkActive: string,
 
   // Lists
   listHeaderFill: string,
