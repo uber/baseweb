@@ -17,8 +17,6 @@ const selectors = {
   input: 'input[role="combobox"]',
   dropdown: '[role="listbox"]',
   value: '[data-id="selected"]',
-  setTimezone: 'button[data-e2e="set-la-timezone"]',
-  toggleDate: 'button[data-e2e="toggle-controlled-date"]',
 };
 
 const labelToShortCode = label => label.split(' ')[0];
@@ -61,17 +59,5 @@ describe('TimezonePicker', () => {
     );
 
     expect(labelToShortCode(value)).toBe('EDT');
-  });
-
-  it('updates in response to controlled timezone as expected', async () => {
-    await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.controlled);
-    await page.click(selectors.setTimezone);
-    const value = await page.$eval(
-      `${selectors.daylight} ${selectors.value}`,
-      select => select.textContent,
-    );
-
-    expect(labelToShortCode(value)).toBe('PDT');
   });
 });

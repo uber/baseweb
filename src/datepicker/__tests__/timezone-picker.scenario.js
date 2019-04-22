@@ -31,7 +31,6 @@ class Controlled extends React.Component<any, any> {
         controlled
         <br />
         <button
-          data-e2e="set-la-timezone"
           onClick={() => this.setState({value: [{id: 'America/Los_Angeles'}]})}
         >
           Set LA
