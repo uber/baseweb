@@ -21,10 +21,8 @@ const selectors = {
   day6: '[aria-label="Choose Monday, July 1st 2019. It\'s available."]',
   leftArrow: '[aria-label="Previous month"]',
   rightArrow: '[aria-label="Next month"]',
-  monthSelect: '[data-id="monthSelect"]',
-  monthDropdown: '[data-id="monthDropdown"]',
-  yearSelect: '[data-id="yearSelect"]',
-  yearDropdown: '[data-id="yearDropdown"]',
+  monthYearSelect: '[data-id="monthYearSelect"]',
+  monthYearDropdown: '[data-id="monthYearDropdown"]',
   selectDropdown: 'ul[role="listbox"]',
 };
 
@@ -156,18 +154,18 @@ describe('Datepicker', () => {
     await page.click(selectors.input);
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day);
-    await page.click(selectors.yearSelect);
-    await page.waitFor(selectors.yearDropdown);
+    await page.click(selectors.monthYearSelect);
+    await page.waitFor(selectors.monthYearDropdown);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
-        return item.textContent === '2018';
+        return item.textContent === 'March 2018';
       });
       option.click();
       return option;
     });
 
-    await page.waitFor(selectors.yearDropdown, {hidden: true});
+    await page.waitFor(selectors.monthYearDropdown, {hidden: true});
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day5);
   });
@@ -178,18 +176,18 @@ describe('Datepicker', () => {
     await page.click(selectors.input);
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day);
-    await page.click(selectors.monthSelect);
-    await page.waitFor(selectors.monthDropdown);
+    await page.click(selectors.monthYearSelect);
+    await page.waitFor(selectors.monthYearDropdown);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
-        return item.textContent === 'July';
+        return item.textContent === 'July 2019';
       });
       option.click();
       return option;
     });
 
-    await page.waitFor(selectors.monthDropdown, {hidden: true});
+    await page.waitFor(selectors.monthYearDropdown, {hidden: true});
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day6);
   });

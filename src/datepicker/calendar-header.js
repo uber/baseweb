@@ -40,6 +40,14 @@ const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
 });
 
+function yearMonthToId(year, month) {
+  return `${year}-${month}`;
+}
+
+function idToYearMonth(id) {
+  return id.split('-').map(Number);
+}
+
 export default class CalendarHeader extends React.Component<HeaderPropsT> {
   static defaultProps = {
     date: new Date(),
@@ -204,75 +212,57 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     };
   }
 
-  renderMonthDropdown() {
-    const {date, locale, overrides = {}} = this.props;
-    const [MonthSelect, monthSelectProps] = getOverrides(
-      overrides.MonthSelect,
-      Select,
-    );
-    const selectOverrides = mergeOverrides(
-      this.getSelectOverrides({width: '115px'}),
-      // $FlowFixMe
-      monthSelectProps && monthSelectProps.overrides,
-    );
-    const monthOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(M => ({
-      id: M,
-      label: getMonthInLocale(M, locale),
-    }));
-    return (
-      <MonthSelect
-        clearable={false}
-        value={[{id: getMonth(date)}]}
-        maxDropdownHeight={'300px'}
-        options={monthOptions}
-        searchable={false}
-        {...monthSelectProps}
-        // Adding event handlers after customers overrides in order to
-        // make sure the components functions as expected
-        // We can extract the handlers from props overrides
-        // and call it along with internal handlers by creating an inline handler
-        onChange={this.handleMonthChange}
-        // internal and incoming overrides are merged above
-        overrides={selectOverrides}
-      />
-    );
-  }
+  renderMonthYearDropdown = () => {
+    const {date, locale, maxDate, minDate, overrides = {}} = this.props;
 
-  renderYearDropdown() {
-    const {date, minDate, maxDate, overrides = {}} = this.props;
-    const [YearSelect, yearSelectProps] = getOverrides(
-      overrides.YearSelect,
+    const [MonthYearSelect, monthYearSelectProps] = getOverrides(
+      overrides.MonthYearSelect,
       Select,
     );
     const selectOverrides = mergeOverrides(
-      this.getSelectOverrides({width: '80px'}),
+      this.getSelectOverrides({width: '160px'}),
       // $FlowFixMe
-      yearSelectProps && yearSelectProps.overrides,
+      monthYearSelectProps && monthYearSelectProps.overrides,
     );
-    const maxYear = maxDate ? getYear(maxDate) : 2100;
-    const minYear = minDate ? getYear(minDate) : 1900;
-    const yearOptions = [];
+
+    const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    const maxYear = maxDate ? getYear(maxDate) : 2030;
+    const minYear = minDate ? getYear(minDate) : 1980;
+    const options = [];
     for (let i = minYear; i <= maxYear; i++) {
-      yearOptions.push({id: i, label: i});
+      MONTHS.forEach(month => {
+        options.push({
+          id: yearMonthToId(i, month),
+          label: `${getMonthInLocale(month, locale)} ${i}`,
+        });
+      });
     }
+
     return (
-      <YearSelect
+      <MonthYearSelect
         clearable={false}
-        value={[{id: getYear(date)}]}
-        maxDropdownHeight={'300px'}
-        options={yearOptions}
+        maxDropdownHeight="300px"
+        options={options}
         searchable={false}
-        {...yearSelectProps}
+        value={[{id: yearMonthToId(getYear(date), getMonth(date))}]}
+        {...monthYearSelectProps}
         // Adding event handlers after customers overrides in order to
         // make sure the components functions as expected
         // We can extract the handlers from props overrides
-        // and call it along with internal handlers by creating an inline handler
-        onChange={this.handleYearChange}
+        // and call it along with internal handlers by creating an inline handle
+        onChange={params => {
+          if (params.value && params.value[0].id) {
+            const [year, month] = idToYearMonth(String(params.value[0].id));
+            date.setFullYear(year, month);
+            this.props.onMonthChange({date});
+            this.props.onYearChange({date});
+          }
+        }}
         // internal and incoming overrides are merged above
         overrides={selectOverrides}
       />
     );
-  }
+  };
 
   render() {
     const {overrides = {}} = this.props;
@@ -296,8 +286,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
           <>
             <CalendarHeader {...calendarHeaderProps}>
               {this.renderPreviousMonthButton({locale})}
-              {this.renderMonthDropdown()}
-              {this.renderYearDropdown()}
+              {this.renderMonthYearDropdown()}
               {this.renderNextMonthButton({locale})}
             </CalendarHeader>
             <MonthHeader role="presentation" {...monthHeaderProps}>
