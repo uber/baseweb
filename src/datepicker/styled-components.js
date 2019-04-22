@@ -73,6 +73,8 @@ export const StyledCalendarHeader = styled(
 
 export const StyledMonthHeader = styled('div', (props: SharedStylePropsT) => {
   return {
+    color: props.$theme.colors.white,
+    backgroundColor: props.$theme.colors.primary,
     whiteSpace: 'no-wrap',
   };
 });
@@ -200,6 +202,7 @@ export function calculateBorderRadius(
 export const StyledDay = styled('div', (props: SharedStylePropsT) => {
   const {
     $disabled,
+    $isHeader,
     $isHovered,
     $isHighlighted,
     $outsideMonth,
@@ -211,7 +214,7 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
   return {
     boxSizing: 'border-box',
     position: 'relative',
-    cursor: $disabled ? 'default' : 'pointer',
+    cursor: $disabled || $isHeader ? 'default' : 'pointer',
     display: 'inline-block',
     width: sizing.scale1000,
     height: sizing.scale1000,

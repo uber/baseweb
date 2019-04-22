@@ -13,11 +13,16 @@ import {
   StyledCalendarHeader,
   StyledPrevButton,
   StyledNextButton,
+  StyledMonthHeader,
+  StyledDay,
 } from './styled-components.js';
 import {
+  addDays,
   addMonths,
   getMonth,
   getMonthInLocale,
+  getStartOfWeek,
+  getWeekdayMinInLocale,
   getYear,
   monthDisabledBefore,
   monthDisabledAfter,
@@ -25,6 +30,7 @@ import {
   setYear,
   subMonths,
 } from './utils/index.js';
+import {WEEKDAYS} from './constants.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {SharedStylePropsT} from '../select/types.js';
@@ -274,15 +280,37 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
       overrides.CalendarHeader,
       StyledCalendarHeader,
     );
+    const [MonthHeader, monthHeaderProps] = getOverrides(
+      overrides.MonthHeader,
+      StyledMonthHeader,
+    );
+    const [WeekdayHeader, weekdayHeaderProps] = getOverrides(
+      overrides.WeekdayHeader,
+      StyledDay,
+    );
+
+    const startOfWeek = getStartOfWeek(this.props.date, this.props.locale);
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <CalendarHeader {...calendarHeaderProps}>
-            {this.renderPreviousMonthButton({locale})}
-            {this.renderMonthDropdown()}
-            {this.renderYearDropdown()}
-            {this.renderNextMonthButton({locale})}
-          </CalendarHeader>
+          <>
+            <CalendarHeader {...calendarHeaderProps}>
+              {this.renderPreviousMonthButton({locale})}
+              {this.renderMonthDropdown()}
+              {this.renderYearDropdown()}
+              {this.renderNextMonthButton({locale})}
+            </CalendarHeader>
+            <MonthHeader role="presentation" {...monthHeaderProps}>
+              {WEEKDAYS.map(offset => {
+                const day = addDays(startOfWeek, offset);
+                return (
+                  <WeekdayHeader $isHeader key={offset} {...weekdayHeaderProps}>
+                    {getWeekdayMinInLocale(day, this.props.locale)}
+                  </WeekdayHeader>
+                );
+              })}
+            </MonthHeader>
+          </>
         )}
       </LocaleContext.Consumer>
     );

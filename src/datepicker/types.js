@@ -174,6 +174,7 @@ export type DatepickerPropsT = CalendarPropsT & {
 export type SharedStylePropsT = {
   $date: Date,
   $disabled: boolean,
+  $isHeader: boolean,
   $isHighlighted: boolean,
   $isHovered: boolean,
   $outsideMonth: boolean,

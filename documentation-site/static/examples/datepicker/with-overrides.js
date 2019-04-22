@@ -33,6 +33,11 @@ export default () => (
           backgroundColor: $theme.colors.positive,
         }),
       },
+      MonthHeader: {
+        style: ({$theme}) => ({
+          backgroundColor: $theme.colors.positive,
+        }),
+      },
       MonthSelect: {
         props: {overrides: selectOverrides},
       },

@@ -15,18 +15,14 @@ import {
   StyledRoot,
   StyledCalendarContainer,
   StyledQuickSelectContainer,
-  StyledMonthHeader,
-  StyledDay,
 } from './styled-components.js';
 import {
   addDays,
   addMonths,
   getMonth,
   addWeeks,
-  getWeekdayMinInLocale,
   getEffectiveMinDate,
   getEffectiveMaxDate,
-  getStartOfWeek,
   isAfter,
   isBefore,
   isSameDay,
@@ -37,7 +33,6 @@ import {
   subMonths,
   subYears,
 } from './utils/index.js';
-import {WEEKDAYS} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 
@@ -166,31 +161,6 @@ export default class Calendar extends React.Component<
         onMonthChange={this.changeMonth}
         onYearChange={this.changeYear}
       />
-    );
-  };
-
-  renderMonthHeader = (date: Date = this.state.date, order: number) => {
-    const {locale, overrides = {}} = this.props;
-    const startOfWeek = getStartOfWeek(date, locale);
-    const [MonthHeader, monthHeaderProps] = getOverrides(
-      overrides.MonthHeader,
-      StyledMonthHeader,
-    );
-    const [WeekdayHeader, weekdayHeaderProps] = getOverrides(
-      overrides.WeekdayHeader,
-      StyledDay,
-    );
-    return (
-      <MonthHeader role="presentation" {...monthHeaderProps}>
-        {WEEKDAYS.map(offset => {
-          const day = addDays(startOfWeek, offset);
-          return (
-            <WeekdayHeader $disabled key={offset} {...weekdayHeaderProps}>
-              {getWeekdayMinInLocale(day, locale)}
-            </WeekdayHeader>
-          );
-        })}
-      </MonthHeader>
     );
   };
 
@@ -329,7 +299,6 @@ export default class Calendar extends React.Component<
           onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
         >
-          {this.renderMonthHeader(monthDate, i)}
           <Month
             date={monthDate}
             excludeDates={this.props.excludeDates}
