@@ -42,7 +42,7 @@ describe('TimePicker', () => {
       select => select.textContent,
     );
 
-    expect(value).toBe('1 : 00 AM');
+    expect(value).toBe('1:00 AM');
   });
 
   it('is renders expected 24 hour format times with custom step', async () => {
@@ -61,6 +61,6 @@ describe('TimePicker', () => {
       select => select.textContent,
     );
 
-    expect(value).toBe('02 : 00');
+    expect(value).toBe('02:00');
   });
 });
