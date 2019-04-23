@@ -484,4 +484,10 @@ describe('Block', () => {
       marginLeft: '$theme.sizing.scale100',
     });
   });
+
+  it('does not throw if provided unknown font prop', () => {
+    expect(
+      retrieveStyles(<Block font="not-a-real-font">test</Block>),
+    ).toMatchObject({});
+  });
 });
