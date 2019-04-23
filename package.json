@@ -150,7 +150,8 @@
     "react-input-mask": "^2.0.4",
     "react-movable": "^2.0.1",
     "react-range": "^1.0.5",
-    "smoothscroll-polyfill": "^0.4.3"
+    "smoothscroll-polyfill": "^0.4.3",
+    "timezone-support": "^1.8.1"
   },
   "peerDependencies": {
     "react": ">= 16.4.0 < 17",
