@@ -11,6 +11,7 @@ export type DatepickerLocaleT = {|
   nextMonth: string,
   previousMonth: string,
   screenReaderMessageInput: string,
+  timezonePickerAriaLabel: string,
 |};
 
 const locale = {
@@ -19,6 +20,7 @@ const locale = {
   nextMonth: 'Next month',
   screenReaderMessageInput:
     'Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.',
+  timezonePickerAriaLabel: 'Select a timezone',
 };
 
 export default locale;
