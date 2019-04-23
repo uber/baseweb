@@ -48,10 +48,10 @@ function secondsToLabel(seconds, format = '12') {
       hours = 12;
     }
 
-    return `${hours} : ${zeroPrefix(minutes)} ${isAfterNoon ? 'PM' : 'AM'}`;
+    return `${hours}:${zeroPrefix(minutes)} ${isAfterNoon ? 'PM' : 'AM'}`;
   }
 
-  return `${zeroPrefix(hours)} : ${zeroPrefix(minutes)}`;
+  return `${zeroPrefix(hours)}:${zeroPrefix(minutes)}`;
 }
 
 class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
