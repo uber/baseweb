@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {
-  PopperPlacementT,
+  TetherPlacementT,
   PopperOffsetT,
   NormalizedOffsetT,
 } from './types.js';
 
-export function toPopperPlacement(placement: PopperPlacementT): string {
+export function toPopperPlacement(placement: TetherPlacementT): string {
   return placement
     .replace(/(Top|Left)$/, '-start')
     .replace(/(Right|Bottom)$/, '-end');

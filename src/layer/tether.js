@@ -8,16 +8,16 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import Popper from 'popper.js';
 import {toPopperPlacement, parsePopperOffset} from './utils.js';
-import {PLACEMENT} from './constants.js';
+import {TETHER_PLACEMENT} from './constants.js';
 import type {TetherPropsT, TetherStateT, PopperDataObjectT} from './types.js';
 
 class Tether extends React.Component<TetherPropsT, TetherStateT> {
   static defaultProps = {
     anchorRef: null,
-    ignoreBoundary: false,
     onPopperUpdate: () => null,
-    placement: PLACEMENT.auto,
+    placement: TETHER_PLACEMENT.auto,
     popperRef: null,
+    popperOptions: {},
   };
 
   popper: ?Popper;
@@ -53,7 +53,8 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
   }
 
   initializePopper() {
-    const {placement} = this.props;
+    const {placement, popperOptions} = this.props;
+    const {modifiers, ...rest} = popperOptions;
     this.popper = new Popper(this.props.anchorRef, this.props.popperRef, {
       // Recommended placement (popper may ignore if it causes a viewport overflow, etc)
       placement: toPopperPlacement(placement),
@@ -77,8 +78,10 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
           fn: this.onPopperUpdate,
           order: 900,
         },
-        preventOverflow: {enabled: !this.props.ignoreBoundary},
+        preventOverflow: {enabled: true},
+        ...modifiers,
       },
+      ...rest,
     });
   }
 
