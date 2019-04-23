@@ -12,6 +12,7 @@ export type DatepickerLocaleT = {|
   previousMonth: string,
   screenReaderMessageInput: string,
   quickSelectAriaLabel: string,
+  timezonePickerAriaLabel: string,
 |};
 
 const locale = {
@@ -21,6 +22,7 @@ const locale = {
   screenReaderMessageInput:
     'Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.',
   quickSelectAriaLabel: 'Choose a date range',
+  timezonePickerAriaLabel: 'Select a timezone',
 };
 
 export default locale;
