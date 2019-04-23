@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 
-// import Popper from 'popper.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
 import {
@@ -450,6 +449,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       ) {
         rendered.push(
           <Layer
+            key={'new-layer'}
             mountNode={this.props.mountNode}
             onMount={() => this.setState({isLayerMounted: true})}
             onUnmount={() => this.setState({isLayerMounted: false})}
@@ -458,7 +458,13 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
               anchorRef={this.anchorRef.current}
               arrowRef={this.arrowRef.current}
               popperRef={this.popperRef.current}
-              ignoreBoundary={this.props.ignoreBoundary}
+              // Remove the `ignoreBoundary` prop in the next major version
+              // and have it replaced with the TetherBehavior props overrides
+              popperOptions={{
+                modifiers: {
+                  preventOverflow: {enabled: !this.props.ignoreBoundary},
+                },
+              }}
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
             >

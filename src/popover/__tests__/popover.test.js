@@ -124,7 +124,11 @@ describe('Popover', () => {
     const tetherProps = TetherBehavior.mock.calls[0][0];
     const wrapperInstance = wrapper.instance();
     expect(tetherProps).toMatchObject({
-      ignoreBoundary: wrapper.props().ignoreBoundary,
+      popperOptions: {
+        modifiers: {
+          preventOverflow: {enabled: !wrapper.props().ignoreBoundary},
+        },
+      },
       onPopperUpdate: wrapperInstance.onPopperUpdate,
       placement: wrapper.state().placement,
     });

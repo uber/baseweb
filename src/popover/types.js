@@ -9,19 +9,20 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
-import type {
-  PopperDataObjectT as TetherPopperDataObjectT,
-  PopperOffsetT as TetherPopperOffsetT,
-  PopperPlacementT,
-  PopperOptionsT as TetherPopperOptionsT,
-} from '../layer/types.js';
+import type {TetherPlacementT} from '../layer/types.js';
 import {
   ACCESSIBILITY_TYPE,
   STATE_CHANGE_TYPE,
   TRIGGER_TYPE,
 } from './constants.js';
 
-export type PopoverPlacementT = PopperPlacementT;
+export type {
+  PopperDataObjectT,
+  PopperOffsetT,
+  PopperOptionsT,
+} from '../layer/types.js';
+
+export type PopoverPlacementT = TetherPlacementT;
 
 export type TriggerTypeT = $Keys<typeof TRIGGER_TYPE>;
 
@@ -71,7 +72,7 @@ export type BasePopoverPropsT = {
   onMouseLeaveDelay?: number,
   overrides?: OverridesT,
   /** How to position the popover relative to the target. */
-  placement: PopperPlacementT,
+  placement: TetherPlacementT,
   /** Whether or not to show the arrow pointing from the popover to the trigger. */
   showArrow?: boolean,
   /** Whether to toggle the popover when trigger is clicked or hovered. */
@@ -146,20 +147,11 @@ export type OffsetT = {
   left: number,
 };
 
-// remove in the next major version
-export type PopperOffsetT = TetherPopperOffsetT;
-
-// remove in the next major version
-export type PopperDataObjectT = TetherPopperDataObjectT;
-
-// remove in the next major version
-export type PopperOptionsT = TetherPopperOptionsT;
-
 export type PopoverPrivateStateT = {
   isAnimating: boolean,
   arrowOffset: OffsetT,
   popoverOffset: OffsetT,
-  placement: PopperPlacementT,
+  placement: TetherPlacementT,
   isLayerMounted: boolean,
   isMounted: boolean,
 };
@@ -169,7 +161,7 @@ export type SharedStylePropsArgT = {
   $isAnimating: boolean,
   $isOpen: boolean,
   $popoverOffset: OffsetT,
-  $placement: PopperPlacementT,
+  $placement: TetherPlacementT,
   $showArrow: boolean,
   children?: React.Node,
 
