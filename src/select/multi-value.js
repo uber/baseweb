@@ -22,6 +22,7 @@ export default function MultiValue(props: any) {
             marginBottom: '0',
             marginLeft: sizing.scale0,
             marginTop: '0',
+            ...multiValueProps.$style,
           }),
         },
       }}
