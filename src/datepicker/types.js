@@ -255,6 +255,29 @@ export type StatefulDatepickerPropsT<T> = $Diff<
   },
 >;
 
+export type TimePickerPropsT = {
+  /** Render options in AM/PM format or 24 hour format. Defualts to 12 hour. */
+  format?: '12' | '24',
+  /** Callback for when time selection changes. */
+  onChange?: Date => mixed,
+  overrides?: {
+    Select?: OverrideT<*>,
+  },
+  /** Amount of seconds between each option time. Defaults to 900 (15 minutes). */
+  step?: number,
+  /**
+   * Optional value that can be provided to fully control the component. If not provided, TimePicker
+   * will manage state internally. Expects a value in seconds. E.g. 3600 = 01:00.
+   */
+  value?: Date,
+};
+export type TimePickerStateT = {
+  /** List of times (in seconds) displayed in the dropdown menu. */
+  steps: number[],
+  /** Internal value of the selected time as an integer since midnight (0) */
+  value: ?number,
+};
+
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
   timezones: OptionT[],
