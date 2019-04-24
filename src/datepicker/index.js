@@ -10,6 +10,7 @@ export {default as Calendar} from './calendar.js';
 export {default as StatefulCalendar} from './stateful-calendar.js';
 export {default as Datepicker} from './datepicker.js';
 export {default as StatefulDatepicker} from './stateful-datepicker.js';
+export {default as TimePicker} from './timepicker.js';
 export {default as TimezonePicker} from './timezone-picker.js';
 // Util functions
 export {formatDate} from './utils/index.js';
