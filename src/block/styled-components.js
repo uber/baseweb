@@ -151,12 +151,36 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
   styles.apply({property: 'justifyItems', value: get(props, '$justifyItems')});
   styles.apply({property: 'justifySelf', value: get(props, '$justifySelf')});
   styles.apply({property: 'position', value: get(props, '$position')});
-  styles.apply({property: 'width', value: get(props, '$width')});
-  styles.apply({property: 'minWidth', value: get(props, '$minWidth')});
-  styles.apply({property: 'maxWidth', value: get(props, '$maxWidth')});
-  styles.apply({property: 'height', value: get(props, '$height')});
-  styles.apply({property: 'minHeight', value: get(props, '$minHeight')});
-  styles.apply({property: 'maxHeight', value: get(props, '$maxHeight')});
+  styles.apply({
+    property: 'width',
+    value: get(props, '$width'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'minWidth',
+    value: get(props, '$minWidth'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'maxWidth',
+    value: get(props, '$maxWidth'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'height',
+    value: get(props, '$height'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'minHeight',
+    value: get(props, '$minHeight'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'maxHeight',
+    value: get(props, '$maxHeight'),
+    transform: getScale,
+  });
   styles.apply({
     property: 'overflowX',
     value: get(props, '$overflow'),
