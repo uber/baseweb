@@ -60,7 +60,6 @@ describe('Layer', () => {
     const content = <strong>Hello layer</strong>;
     const props = {
       onMount: jest.fn(),
-      // mountNode: mountNode.getDOMNode(),
     };
     function App() {
       return (
