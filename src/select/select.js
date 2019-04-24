@@ -141,6 +141,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // Handle touch outside on mobile to dismiss menu, ensures that the
   // touch target is not within the anchor DOM node.
   handleTouchOutside = (event: TouchEvent) => {
+    if (containsNode(this.dropdown.current, event.target)) return;
     if (!containsNode(this.anchor.current, event.target)) {
       this.closeMenu();
     }
