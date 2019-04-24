@@ -577,6 +577,12 @@ export default function createTheme(
     zIndex: {
       modal: 2000,
     },
+    // Remove this section in next major version
+    // https://github.com/uber-web/baseui/pull/1184
+    tooltip: {
+      backgroundColor: primitives.mono900,
+    },
+    // ^^^^^^^
   };
 
   // to remove the flowfixme, we have to make deepMerge accept a ThemeT
