@@ -386,6 +386,10 @@ export type ColorsT = {
 
   // Progress bar
   progressbarTrackFill: string,
+
+  // Tooltip
+  tooltipBackground: string,
+  tooltipText: string,
 };
 
 export type TypographyT = {

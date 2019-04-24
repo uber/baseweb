@@ -315,8 +315,9 @@ export default {
 
     // Progress bar
     progressbarTrackFill: primitives.mono100,
-  },
-  tooltip: {
-    backgroundColor: primitives.mono200,
+
+    // Tooltip
+    tooltipBackground: primitives.mono200,
+    tooltipText: primitives.mono1000,
   },
 };
