@@ -43,6 +43,11 @@ scrollable, if applicable.
   <SelectControlled />
 </Example>
 
+Things to note in the `Select Controlled` example:
+
+* the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
+* you have to call `setState` with the entire object, not just the `id` value.
+
 <Example title="Select With Overridden Menu" path="examples/select/overridden.js">
   <SelectOverridden />
 </Example>
