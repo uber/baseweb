@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {PLACEMENT} from './constants.js';
+import {TETHER_PLACEMENT} from './constants.js';
 
 /** LayersManager */
 export type LayersManagerPropsT = {
@@ -42,7 +42,17 @@ export type LayerStateT = {
 };
 
 /** TetherBehavior */
-export type PopperPlacementT = $Keys<typeof PLACEMENT>;
+export type TetherPlacementT = $Keys<typeof TETHER_PLACEMENT>;
+
+export type NormalizedOffsetT = {
+  top: number,
+  left: number,
+};
+
+export type NormalizedOffsetsT = {
+  arrow?: NormalizedOffsetT,
+  popper: NormalizedOffsetT,
+};
 
 export type PopperOffsetT = {
   top?: number | null,
@@ -55,16 +65,6 @@ export type PopperDataObjectT = {
     popper: PopperOffsetT,
   },
   placement: string,
-};
-
-export type NormalizedOffsetT = {
-  top: number,
-  left: number,
-};
-
-export type NormalizedOffsetsT = {
-  arrow?: NormalizedOffsetT,
-  popper: NormalizedOffsetT,
 };
 
 export type PopperOptionsT = {
@@ -84,9 +84,10 @@ export type TetherPropsT = {
   arrowRef?: ?HTMLElement,
   popperRef: ?HTMLElement,
   children: React.Node,
-  ignoreBoundary: boolean,
   onPopperUpdate: (NormalizedOffsetsT, PopperDataObjectT) => mixed,
-  placement: PopperPlacementT,
+  placement: TetherPlacementT,
+  // eslint-disable-next-line flowtype/no-weak-types
+  popperOptions: any,
 };
 
 export type TetherStateT = {
