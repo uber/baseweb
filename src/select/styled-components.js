@@ -279,6 +279,7 @@ export const StyledInput = styled(
 
 export const StyledInputSizer = styled('div', {
   position: 'absolute',
+  fontSize: '16px',
   top: 0,
   left: 0,
   visibility: 'hidden',
