@@ -1,0 +1,29 @@
+<!--
+Copyright (c) 2018 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import LayerBasic from 'examples/layer/basic.js';
+
+export default Layout;
+
+# Layers
+
+Every UI has stackable layers and it's important to have control over how the layers play together. Some the examples of the stackable layers are tooltips, modals, popovers, select dropdowns or menus. The issues that come up along the layers usage are z-index and visibility handling, what layer goes on top. There are many more other layers related issues that include focus management, hover management, keyboard navigation, click events and hotkeys usage.
+
+`Layer` component renders all the layers into a host element, instead of the `body` element, using `createPortal`. The application need to be wrapped in a `LayersManager` in order to handle the rendering into a container, if no `LayersManager` is added the conbtent will be added to the `body`. With layers there is no need for `z-index` css property usage as layers completely rely on the stacking context.
+
+<Example title="Layer basic usage" path="examples/layer/basic.js">
+  <LayerBasic />
+</Example>
+
+<API
+  heading="Layer API"
+  api={require('!!extract-react-types-loader!../../../src/layer/layer.js')}
+/>
