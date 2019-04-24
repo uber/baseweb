@@ -23,6 +23,7 @@ const selectors = {
   rightArrow: '[aria-label="Next month"]',
   monthYearSelect: '[data-id="monthYearSelect"]',
   monthYearDropdown: '[data-id="monthYearDropdown"]',
+  monthYearValue: '[data-id="monthYearValue"]',
   selectDropdown: 'ul[role="listbox"]',
 };
 
@@ -190,5 +191,57 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.monthYearDropdown, {hidden: true});
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day6);
+  });
+
+  it('disables previous month button if minimum month is selected', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.click(selectors.monthYearSelect);
+    await page.waitFor(selectors.monthYearDropdown);
+
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'January 1980';
+      });
+      option.click();
+      return option;
+    });
+
+    await page.click(selectors.leftArrow);
+    const value = await page.$eval(
+      selectors.monthYearValue,
+      select => select.textContent,
+    );
+
+    expect(value).toBe('January 1980');
+  });
+
+  it('disables next month button if maximum month is selected', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.click(selectors.monthYearSelect);
+    await page.waitFor(selectors.monthYearDropdown);
+
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'December 2030';
+      });
+      option.click();
+      return option;
+    });
+
+    await page.click(selectors.rightArrow);
+    const value = await page.$eval(
+      selectors.monthYearValue,
+      select => select.textContent,
+    );
+
+    expect(value).toBe('December 2030');
   });
 });

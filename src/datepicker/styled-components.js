@@ -79,11 +79,14 @@ export const StyledMonthHeader = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-function getArrowBtnStyle({$theme}: SharedStylePropsT) {
+function getArrowBtnStyle({$theme, $disabled}: SharedStylePropsT) {
   return {
     boxSizing: 'border-box',
     height: '22px',
-    color: $theme.colors.white,
+    color: $disabled
+      ? $theme.colors.datepickerDayFontDisabled
+      : $theme.colors.white,
+    cursor: $disabled ? 'default' : 'pointer',
     backgroundColor: 'transparent',
     borderWidth: '0',
     paddingTop: '3px',
@@ -91,12 +94,14 @@ function getArrowBtnStyle({$theme}: SharedStylePropsT) {
     paddingLeft: '3px',
     paddingRight: '3px',
     outline: 'none',
-    ':focus': {
-      backgroundColor: $theme.colors.primary500,
-      borderRadius: $theme.borders.useRoundedCorners
-        ? $theme.sizing.scale100
-        : 0,
-    },
+    ':focus': $disabled
+      ? {}
+      : {
+          backgroundColor: $theme.colors.primary500,
+          borderRadius: $theme.borders.useRoundedCorners
+            ? $theme.sizing.scale100
+            : 0,
+        },
   };
 }
 

@@ -24,6 +24,8 @@ import {
   getStartOfWeek,
   getWeekdayMinInLocale,
   getYear,
+  isAfter,
+  isBefore,
   monthDisabledBefore,
   monthDisabledAfter,
   setMonth,
@@ -39,6 +41,9 @@ import type {LocaleT} from '../locale/types.js';
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
 });
+
+const MIN_YEAR = 1980;
+const MAX_YEAR = 2030;
 
 function yearMonthToId(year, month) {
   return `${year}-${month}`;
@@ -79,8 +84,19 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     const {date, overrides = {}} = this.props;
     const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
 
+    let isDisabled = false;
     if (allPrevDaysDisabled) {
-      return;
+      isDisabled = true;
+    }
+    const nextMonth = subMonths(date, 1);
+    if (this.props.minDate) {
+      if (isBefore(nextMonth, this.props.minDate)) {
+        isDisabled = true;
+      }
+    } else {
+      if (getYear(nextMonth) < MIN_YEAR) {
+        isDisabled = true;
+      }
     }
 
     const [PrevButton, prevButtonProps] = getOverrides(
@@ -100,6 +116,8 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         aria-label={locale.datepicker.previousMonth}
         tabIndex={0}
         onClick={clickHandler}
+        disabled={isDisabled}
+        $disabled={isDisabled}
         {...prevButtonProps}
       >
         <PrevButtonIcon
@@ -118,8 +136,19 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     const {date, overrides = {}} = this.props;
     const allNextDaysDisabled = monthDisabledAfter(date, this.props);
 
+    let isDisabled = false;
     if (allNextDaysDisabled) {
-      return;
+      isDisabled = true;
+    }
+    const nextMonth = addMonths(date, 1);
+    if (this.props.maxDate) {
+      if (isAfter(nextMonth, this.props.maxDate)) {
+        isDisabled = true;
+      }
+    } else {
+      if (getYear(nextMonth) > MAX_YEAR) {
+        isDisabled = true;
+      }
     }
 
     const [NextButton, nextButtonProps] = getOverrides(
@@ -145,6 +174,8 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         aria-label={locale.datepicker.nextMonth}
         tabIndex={0}
         onClick={clickHandler}
+        disabled={isDisabled}
+        $disabled={isDisabled}
         {...nextButtonProps}
       >
         <NextButtonIcon
@@ -226,8 +257,8 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     );
 
     const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    const maxYear = maxDate ? getYear(maxDate) : 2030;
-    const minYear = minDate ? getYear(minDate) : 1980;
+    const maxYear = maxDate ? getYear(maxDate) : MAX_YEAR;
+    const minYear = minDate ? getYear(minDate) : MIN_YEAR;
     const options = [];
     for (let i = minYear; i <= maxYear; i++) {
       MONTHS.forEach(month => {

@@ -22,6 +22,7 @@ export const component = () => (
           overrides: {
             Root: {props: {'data-id': 'monthYearSelect'}},
             Dropdown: {props: {'data-id': 'monthYearDropdown'}},
+            ValueContainer: {props: {'data-id': 'monthYearValue'}},
           },
         },
       },
