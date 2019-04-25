@@ -79,6 +79,8 @@ export type BasePopoverPropsT = {
   triggerType: TriggerTypeT,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
+  /** How long should be fade out animation in ms, default 0ms */
+  animateOutTime?: number,
 };
 
 // Props for stateless render logic

@@ -124,7 +124,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
           // Reset to ideal placement specified in props
           placement: this.props.placement,
         });
-      }, ANIMATE_OUT_TIME);
+      }, this.props.animateOutTime || ANIMATE_OUT_TIME);
     }
   };
 
