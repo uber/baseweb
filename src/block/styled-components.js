@@ -34,7 +34,11 @@ function build(breakpoints: BreakpointsT) {
         value.forEach((v, index) => {
           // Do not create a media query for the smallest breakpoint.
           if (index === 0) {
-            styles[property] = transform(v);
+            // styletron will throw when value is undefined. if so, do not apply rule
+            const transformedValue = transform(v);
+            if (transformedValue !== undefined) {
+              styles[property] = transform(v);
+            }
             return;
           }
 
