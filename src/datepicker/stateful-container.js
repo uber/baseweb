@@ -23,7 +23,7 @@ class StatefulContainer extends React.Component<
   ContainerStateT,
 > {
   static defaultProps = {
-    initialState: {value: null},
+    initialState: {value: null, time: null},
     stateReducer: defaultStateReducer,
     onChange: () => {},
   };

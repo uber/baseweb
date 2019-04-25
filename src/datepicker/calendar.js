@@ -344,29 +344,25 @@ export default class Calendar extends React.Component<
     );
 
     return (
-      <LocaleContext.Consumer>
-        {locale => (
-          <TimeSelectContainer {...timeSelectContainerProps}>
-            <FormControl label="Start Time">
-              <TimeSelect
-                value={value}
-                onChange={time => {
-                  if (this.props.onTimeChange) {
-                    if (Array.isArray(this.props.time)) {
-                      this.props.onTimeChange({
-                        time: [time, this.props.time[1]],
-                      });
-                    } else {
-                      this.props.onTimeChange({time});
-                    }
-                  }
-                }}
-                {...timeSelectProps}
-              />
-            </FormControl>
-          </TimeSelectContainer>
-        )}
-      </LocaleContext.Consumer>
+      <TimeSelectContainer {...timeSelectContainerProps}>
+        <FormControl label="Start Time">
+          <TimeSelect
+            value={value}
+            onChange={time => {
+              if (this.props.onTimeChange) {
+                if (Array.isArray(this.props.time)) {
+                  this.props.onTimeChange({
+                    time: [time, this.props.time[1]],
+                  });
+                } else {
+                  this.props.onTimeChange({time});
+                }
+              }
+            }}
+            {...timeSelectProps}
+          />
+        </FormControl>
+      </TimeSelectContainer>
     );
   };
 

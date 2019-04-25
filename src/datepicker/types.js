@@ -11,7 +11,7 @@ import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
-import type {OnChangeParamsT, OptionT, ValueT} from '../select/index.js';
+import type {OptionT} from '../select/index.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
@@ -301,8 +301,8 @@ export type TimePickerStateT = {
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
   timezones: OptionT[],
-  /** Internal value provided to the select component. */
-  value: ?ValueT,
+  /** Value provided to the select component. */
+  value: ?string,
 };
 export type TimezonePickerPropsT = {
   /**
@@ -318,12 +318,12 @@ export type TimezonePickerPropsT = {
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
   mapLabels?: OptionT => React.Node,
-  /** Callback for when the timezone selection changes. Follows same pattern as Select component. */
-  onChange?: (params: OnChangeParamsT) => mixed,
+  /** Callback for when the timezone selection changes. */
+  onChange?: (value: ?{id: string, label: string, offset: number}) => mixed,
   overrides?: {Select?: OverrideT<*>},
   /**
    * Optional value that can be provided to fully control the component. If not provided,
    * TimezonePicker will manage state internally.
    */
-  value?: ValueT,
+  value?: ?string,
 };
