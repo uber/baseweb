@@ -11,6 +11,14 @@ import {styled} from '../styles/index.js';
 import type {BreakpointsT} from '../styles/types.js';
 import type {StyledBlockPropsT} from './types.js';
 
+// styletron will throw when value is undefined. if so, replace with null
+function constrainToNull(value) {
+  if (value === undefined) {
+    return null;
+  }
+  return value;
+}
+
 type ApplyParams = {
   property: string,
   value?: * | Array<*>,
@@ -34,7 +42,7 @@ function build(breakpoints: BreakpointsT) {
         value.forEach((v, index) => {
           // Do not create a media query for the smallest breakpoint.
           if (index === 0) {
-            styles[property] = transform(v);
+            styles[property] = constrainToNull(transform(v));
             return;
           }
 
@@ -43,10 +51,10 @@ function build(breakpoints: BreakpointsT) {
             styles[mediaQuery] = {};
           }
 
-          styles[mediaQuery][property] = transform(v);
+          styles[mediaQuery][property] = constrainToNull(transform(v));
         });
       } else {
-        styles[property] = transform(value);
+        styles[property] = constrainToNull(transform(value));
       }
     },
     value: () => styles,
@@ -151,12 +159,36 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
   styles.apply({property: 'justifyItems', value: get(props, '$justifyItems')});
   styles.apply({property: 'justifySelf', value: get(props, '$justifySelf')});
   styles.apply({property: 'position', value: get(props, '$position')});
-  styles.apply({property: 'width', value: get(props, '$width')});
-  styles.apply({property: 'minWidth', value: get(props, '$minWidth')});
-  styles.apply({property: 'maxWidth', value: get(props, '$maxWidth')});
-  styles.apply({property: 'height', value: get(props, '$height')});
-  styles.apply({property: 'minHeight', value: get(props, '$minHeight')});
-  styles.apply({property: 'maxHeight', value: get(props, '$maxHeight')});
+  styles.apply({
+    property: 'width',
+    value: get(props, '$width'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'minWidth',
+    value: get(props, '$minWidth'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'maxWidth',
+    value: get(props, '$maxWidth'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'height',
+    value: get(props, '$height'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'minHeight',
+    value: get(props, '$minHeight'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'maxHeight',
+    value: get(props, '$maxHeight'),
+    transform: getScale,
+  });
   styles.apply({
     property: 'overflowX',
     value: get(props, '$overflow'),
