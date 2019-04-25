@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable import/prefer-default-export */
 import {ARROW_SIZE, POPOVER_MARGIN, PLACEMENT} from './constants.js';
-import type {OffsetT, PopoverPlacementT, PopperOffsetT} from './types.js';
+import type {OffsetT, PopoverPlacementT} from './types.js';
 
 const OPPOSITE_POSITIONS = {
   top: 'bottom',
@@ -42,18 +42,6 @@ export function capitalize(str: string): string {
 }
 
 /**
- * Converts our placement prop to a Popper.js placement
- * See docs: https://popper.js.org/popper-documentation.html
- * auto, top, right, bottom, left are the same but things
- * like 'rightTop' must be converted to 'right-start'
- */
-export function toPopperPlacement(placement: PopoverPlacementT): string {
-  return placement
-    .replace(/(Top|Left)$/, '-start')
-    .replace(/(Right|Bottom)$/, '-end');
-}
-
-/**
  * Opposite of function above, converts from Popper.js placement
  * to our placement prop
  */
@@ -77,16 +65,6 @@ export function splitPlacement(placement: PopoverPlacementT): string[] {
     .slice(1, 3)
     .filter(Boolean)
     .map(s => s.toLowerCase());
-}
-
-/**
- * Takes the offset passed from popper.js and normalizes it
- */
-export function parsePopperOffset(offset: PopperOffsetT): OffsetT {
-  return {
-    top: Math.floor(offset.top || 0),
-    left: Math.floor(offset.left || 0),
-  };
 }
 
 /**
