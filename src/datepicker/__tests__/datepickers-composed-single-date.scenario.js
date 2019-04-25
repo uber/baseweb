@@ -28,39 +28,37 @@ class Controlled extends React.Component<any, any> {
 
   render() {
     return (
-      <>
-        <Block display="flex">
-          <Block width="120px" marginRight="scale300">
-            <FormControl label="Date" caption="YYYY/MM/DD">
-              <StatefulDatepicker
-                initialState={{value: this.state.date, time: this.state.time}}
-                onChange={({date}) => this.setState({date})}
-                onTimeChange={({time}) => this.setState({time})}
-                timeSelect
-              />
-            </FormControl>
-          </Block>
-
-          <Block width="120px" marginRight="scale300">
-            <FormControl label="Time" caption="HH:MM">
-              <TimePicker
-                value={this.state.time}
-                onChange={time => this.setState({time})}
-              />
-            </FormControl>
-          </Block>
-
-          <Block width="340px">
-            <FormControl label="Timezone">
-              <TimezonePicker
-                date={this.state.date}
-                value={this.state.zone && this.state.zone.id}
-                onChange={zone => this.setState({zone})}
-              />
-            </FormControl>
-          </Block>
+      <Block display="flex">
+        <Block width="120px" marginRight="scale300">
+          <FormControl label="Date" caption="YYYY/MM/DD">
+            <StatefulDatepicker
+              initialState={{value: this.state.date, time: this.state.time}}
+              onChange={({date}) => this.setState({date})}
+              onTimeChange={({time}) => this.setState({time})}
+              timeSelect
+            />
+          </FormControl>
         </Block>
-      </>
+
+        <Block width="120px" marginRight="scale300">
+          <FormControl label="Time" caption="HH:MM">
+            <TimePicker
+              value={this.state.time}
+              onChange={time => this.setState({time})}
+            />
+          </FormControl>
+        </Block>
+
+        <Block width="340px">
+          <FormControl label="Timezone">
+            <TimezonePicker
+              date={this.state.date}
+              value={this.state.zone && this.state.zone.id}
+              onChange={zone => this.setState({zone})}
+            />
+          </FormControl>
+        </Block>
+      </Block>
     );
   }
 }
