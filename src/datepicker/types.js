@@ -21,8 +21,11 @@ type onChangeT = ({date: ?Date | Array<Date>}) => mixed;
 export type DatepickerOverridesT<T> = {
   Root?: OverrideT<T>,
   QuickSelectContainer?: OverrideT<T>,
+  TimeSelectContainer?: OverrideT<T>,
   /** Override for reused Select component. Input is **not a styled  element** but a react component that can be replaced */
   QuickSelect?: OverrideT<T>,
+  /** Override for reused TimePicker component. Input is **not a styled  element** but a react component that can be replaced */
+  TimeSelect?: OverrideT<T>,
   CalendarContainer?: OverrideT<T>,
   CalendarHeader?: OverrideT<T>,
   PrevButton?: OverrideT<T>,
@@ -139,9 +142,19 @@ export type CalendarPropsT = {
   onYearChange: ({date: Date}) => mixed,
   /** Event handler that is called when a new date is selected. */
   onChange: onChangeT,
+  /** Event handler that is called when time selection changes. */
+  onTimeChange?: ({time: Date | Array<Date>}) => mixed,
   overrides?: DatepickerOverridesT<{}>,
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth: boolean,
+  /** Optional time value represented as a Date object. */
+  time?: Date | Array<Date>,
+  /** Passed to internal `TimePicker` component. Sets dropdown option formatting. */
+  timeFormat?: '12' | '24',
+  /** Passed to internal `TimePicker` component. Sets available options in dropdown menu. */
+  timeStep?: number,
+  /** Determines if `TimePicker` component will be embedded in the calendar component. */
+  timeSelect?: boolean,
   /** Defines if tabbing inside the calendar is circled within it. */
   trapTabbing: boolean,
   /** Currently selected date. */
@@ -195,6 +208,8 @@ export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 export type ContainerStateT = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
   value?: ?Date | Array<Date>,
+  /** Selected `Time` */
+  time?: ?Date | Array<Date>,
 };
 
 export type NavigationContainerStateT = {
@@ -229,6 +244,8 @@ export type StatefulContainerPropsT<T> = {
   stateReducer: StateReducerT,
   /** Event handler that is called when a new date is selected. */
   onChange?: onChangeT,
+  /** Event handler that is called when a time is selected. */
+  onTimeChange?: ({time: Date | Array<Date>}) => mixed,
 };
 
 export type NavigationContainerPropsT = {
@@ -272,7 +289,7 @@ export type TimePickerPropsT = {
    * Optional value that can be provided to fully control the component. If not provided, TimePicker
    * will manage state internally. Expects a value in seconds. E.g. 3600 = 01:00.
    */
-  value?: Date,
+  value: ?Date,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */

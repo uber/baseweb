@@ -40,13 +40,16 @@ export const StyledCalendarContainer = styled(
   },
 );
 
-export const StyledQuickSelectContainer = styled(
+export const StyledSelectorContainer = styled(
   'div',
-  (props: SharedStylePropsT) => ({
-    marginBottom: props.$theme.sizing.scale600,
-    maxWidth: '296px',
-    textAlign: 'left',
-  }),
+  (props: SharedStylePropsT) => {
+    return {
+      marginBottom: props.$theme.sizing.scale600,
+      paddingLeft: props.$theme.sizing.scale600,
+      paddingRight: props.$theme.sizing.scale600,
+      textAlign: 'left',
+    };
+  },
 );
 
 export const StyledCalendarHeader = styled(

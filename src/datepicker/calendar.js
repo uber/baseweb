@@ -11,10 +11,11 @@ import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
+import TimePicker from './timepicker.js';
 import {
   StyledRoot,
   StyledCalendarContainer,
-  StyledQuickSelectContainer,
+  StyledSelectorContainer,
 } from './styled-components.js';
 import {
   addDays,
@@ -327,11 +328,53 @@ export default class Calendar extends React.Component<
     return monthList;
   };
 
+  renderTimeSelect = (value: ?Date) => {
+    const {overrides = {}, timeSelect} = this.props;
+    if (!timeSelect) {
+      return;
+    }
+
+    const [TimeSelectContainer, timeSelectContainerProps] = getOverrides(
+      overrides.TimeSelectContainer,
+      StyledSelectorContainer,
+    );
+    const [TimeSelect, timeSelectProps] = getOverrides(
+      overrides.TimeSelect,
+      TimePicker,
+    );
+
+    return (
+      <LocaleContext.Consumer>
+        {locale => (
+          <TimeSelectContainer {...timeSelectContainerProps}>
+            <FormControl label="Start Time">
+              <TimeSelect
+                value={value}
+                onChange={time => {
+                  if (this.props.onTimeChange) {
+                    if (Array.isArray(this.props.time)) {
+                      this.props.onTimeChange({
+                        time: [time, this.props.time[1]],
+                      });
+                    } else {
+                      this.props.onTimeChange({time});
+                    }
+                  }
+                }}
+                {...timeSelectProps}
+              />
+            </FormControl>
+          </TimeSelectContainer>
+        )}
+      </LocaleContext.Consumer>
+    );
+  };
+
   renderQuickSelect = () => {
     const {overrides = {}} = this.props;
     const [QuickSelectContainer, quickSelectContainerProps] = getOverrides(
       overrides.QuickSelectContainer,
-      StyledQuickSelectContainer,
+      StyledSelectorContainer,
     );
     const [QuickSelect, quickSelectProps] = getOverrides(
       overrides.QuickSelect,
@@ -386,6 +429,7 @@ export default class Calendar extends React.Component<
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const [startTime] = [].concat(this.props.time);
 
     return (
       <Root
@@ -399,6 +443,7 @@ export default class Calendar extends React.Component<
         {...rootProps}
       >
         {this.renderMonths()}
+        {this.renderTimeSelect(startTime)}
         {this.renderQuickSelect()}
       </Root>
     );

@@ -31,6 +31,7 @@ class StatefulContainer extends React.Component<
   state = {
     ...{
       value: null,
+      time: null,
     },
     ...this.props.initialState,
   };
@@ -40,6 +41,14 @@ class StatefulContainer extends React.Component<
     this.internalSetState(STATE_CHANGE_TYPE.change, {value: date});
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(data);
+    }
+  };
+
+  onTimeChange = (data: {time: Date | Array<Date>}) => {
+    const {time} = data;
+    this.internalSetState(STATE_CHANGE_TYPE.change, {time});
+    if (typeof this.props.onTimeChange === 'function') {
+      this.props.onTimeChange(data);
     }
   };
 
@@ -54,7 +63,9 @@ class StatefulContainer extends React.Component<
     return this.props.children({
       ...rest,
       value: this.state.value,
+      time: this.state.time,
       onChange: this.onChange,
+      onTimeChange: this.onTimeChange,
     });
   }
 }

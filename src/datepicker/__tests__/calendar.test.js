@@ -11,7 +11,7 @@ import {mount} from 'enzyme';
 import {
   Calendar,
   StyledRoot,
-  StyledQuickSelectContainer,
+  StyledSelectorContainer,
   StyledMonth,
   StyledWeek,
   StyledDay,
@@ -30,11 +30,11 @@ describe('Component', () => {
 
   test('should not display quick select if range is false', () => {
     const wrapper = mount(<Calendar quickSelect />);
-    expect(wrapper.find(StyledQuickSelectContainer).first()).not.toExist();
+    expect(wrapper.find(StyledSelectorContainer).first()).not.toExist();
   });
 
   test('should display quick select if range and quickSelect is true', () => {
     const wrapper = mount(<Calendar range quickSelect />);
-    expect(wrapper.find(StyledQuickSelectContainer).first()).toExist();
+    expect(wrapper.find(StyledSelectorContainer).first()).toExist();
   });
 });
