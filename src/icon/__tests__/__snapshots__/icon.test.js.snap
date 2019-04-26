@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Icon renders an icon with viewbox and title: Icon basic render 1`] = `
+exports[`Icon renders an icon with viewBox and title: Icon basic render 1`] = `
 <MockStyledComponent
   data-baseweb="icon"
   viewBox="0 0 23px 23px"

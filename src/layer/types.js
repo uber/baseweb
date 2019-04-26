@@ -14,7 +14,7 @@ export type LayersManagerPropsT = {
   children: React.Node,
 };
 
-export type LayersContexT = {
+export type LayersContextT = {
   host: typeof undefined | ?HTMLElement,
 };
 

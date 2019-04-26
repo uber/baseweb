@@ -21,7 +21,7 @@ describe('menu', () => {
 
 const parentSelector = '[data-e2e="parent-menu"]';
 const childSelector = '[data-e2e="child-menu"]';
-const highlightedselector = '[aria-selected="true"]';
+const highlightedSelector = '[aria-selected="true"]';
 
 function hoverItem(page, x, y) {
   const MENU_MARGIN_TOP = 16;
@@ -41,7 +41,7 @@ function findActiveElement(page) {
 }
 
 async function findHighlightedLabel(page) {
-  const highlightedItem = await page.$(highlightedselector);
+  const highlightedItem = await page.$(highlightedSelector);
   return await page.evaluate(
     highlightedItem => highlightedItem.textContent,
     highlightedItem,

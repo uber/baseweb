@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {LayersManagerPropsT, LayersContexT} from './types.js';
+import type {LayersManagerPropsT, LayersContextT} from './types.js';
 
 export const {
   Provider,
   Consumer,
-}: React.Context<LayersContexT> = React.createContext({
+}: React.Context<LayersContextT> = React.createContext({
   host: undefined,
 });
 
