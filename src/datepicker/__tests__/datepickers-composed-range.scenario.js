@@ -11,21 +11,26 @@ import React from 'react';
 import {Block} from '../../block/index.js';
 import {FormControl} from '../../form-control/index.js';
 import ArrowRight from '../../icon/arrow-right.js';
-import {StatefulDatepicker, TimePicker, formatDate} from '../index.js';
+import {
+  Datepicker,
+  TimePicker,
+  StatefulContainer,
+  formatDate,
+} from '../index.js';
 
 export const name = 'datepickers-composed-range';
 
 const START_DATE = new Date(2019, 3, 1);
-const END_DATE = new Date(2019, 3, 2);
+const END_DATE = new Date(2019, 3, 10);
 const START_TIME = new Date(START_DATE);
 START_TIME.setHours(12, 0, 0);
 const END_TIME = new Date(START_DATE);
 END_TIME.setHours(16, 0, 0);
 
-function formatDateAtIndex(dates, index) {
+function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
+  if (!dates || !Array.isArray(dates)) return '';
   const date = dates[index];
   if (!date) return '';
-
   return formatDate(date, 'YYYY/MM/dd');
 }
 
@@ -41,17 +46,23 @@ class Controlled extends React.Component<any, any> {
       <Block display="flex" alignItems="center">
         <Block width="120px" marginRight="scale300">
           <FormControl label="Start Date" caption="YYYY/MM/DD">
-            <StatefulDatepicker
-              initialState={{value: this.state.date, time: this.state.time[0]}}
-              onChange={({date}) => this.setState({date})}
-              onTimeChange={({time}) => {
-                const [, end] = this.state.time;
-                this.setState({time: [time, end]});
-              }}
-              formatDisplayValue={date => formatDateAtIndex(date, 0)}
-              timeSelect
-              range
-            />
+            <StatefulContainer>
+              {containerProps => (
+                <Datepicker
+                  {...containerProps}
+                  value={this.state.date}
+                  time={this.state.time[0]}
+                  onChange={({date}) => this.setState({date})}
+                  onTimeChange={({time}) => {
+                    const [, end] = this.state.time;
+                    this.setState({time: [time, end]});
+                  }}
+                  formatDisplayValue={date => formatDateAtIndex(date, 0)}
+                  timeSelect
+                  range
+                />
+              )}
+            </StatefulContainer>
           </FormControl>
         </Block>
 
@@ -73,17 +84,23 @@ class Controlled extends React.Component<any, any> {
 
         <Block width="120px" marginRight="scale300">
           <FormControl label="End Date" caption="YYYY/MM/DD">
-            <StatefulDatepicker
-              initialState={{value: this.state.date, time: this.state.time[1]}}
-              onChange={({date}) => this.setState({date})}
-              onTimeChange={({time}) => {
-                const [start] = this.state.time;
-                this.setState({time: [start, time]});
-              }}
-              formatDisplayValue={date => formatDateAtIndex(date, 1)}
-              timeSelect
-              range
-            />
+            <StatefulContainer>
+              {containerProps => (
+                <Datepicker
+                  {...containerProps}
+                  value={this.state.date}
+                  time={this.state.time[1]}
+                  onChange={({date}) => this.setState({date})}
+                  onTimeChange={({time}) => {
+                    const [, end] = this.state.time;
+                    this.setState({time: [time, end]});
+                  }}
+                  formatDisplayValue={date => formatDateAtIndex(date, 1)}
+                  timeSelect
+                  range
+                />
+              )}
+            </StatefulContainer>
           </FormControl>
         </Block>
 
