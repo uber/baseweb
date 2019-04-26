@@ -11,9 +11,7 @@ import type {LayersManagerPropsT, LayersContextT} from './types.js';
 export const {
   Provider,
   Consumer,
-}: React.Context<LayersContextT> = React.createContext({
-  host: undefined,
-});
+}: React.Context<LayersContextT> = React.createContext({});
 
 export default class LayersManager extends React.Component<
   LayersManagerPropsT,
