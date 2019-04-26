@@ -42,7 +42,7 @@ export const POPOVER_MARGIN = 8;
 
 export const ARROW_SIZE = 6;
 
-export const ANIMATE_OUT_TIME = 500;
+export const ANIMATE_OUT_TIME = 0;
 
 export const ANIMATE_IN_TIME = 20;
 

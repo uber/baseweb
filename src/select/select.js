@@ -95,6 +95,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // disabled, clicks will set this flag true. Upon focusing, look to this to see if the menu should
   // be opened, or only focus.
   openAfterFocus: boolean;
+  // When an item is selected, it also triggers handleClickOutside and since the selected item is
+  // already out of the menu (DOM), it will not recognize it as a subnode and triggers handleBlur
+  // that sests isOpen to false. That's a faulty logic causing visible problems when
+  // closeOnSelect is false. This flag helps to detect that selection was just made.
+  justSelected: boolean;
 
   state = {
     inputValue: '',
@@ -141,6 +146,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // Handle touch outside on mobile to dismiss menu, ensures that the
   // touch target is not within the anchor DOM node.
   handleTouchOutside = (event: TouchEvent) => {
+    if (containsNode(this.dropdown.current, event.target)) return;
     if (!containsNode(this.anchor.current, event.target)) {
       this.closeMenu();
     }
@@ -287,6 +293,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleClickOutside = (event: MouseEvent) => {
+    if (this.justSelected) {
+      this.justSelected = false;
+      return;
+    }
     if (containsNode(this.dropdown.current, event.target)) return;
 
     const isFocused = this.state.isFocused || this.state.isPseudoFocused;
@@ -452,6 +462,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (item.disabled) {
       return;
     }
+    this.justSelected = true;
     // NOTE: we add/set the value in a callback to make sure the
     // input value is empty to avoid styling issues in Chrome
     const updatedValue = this.props.onSelectResetsInput
