@@ -24,7 +24,7 @@ import {getOverrides} from '../helpers/overrides.js';
 // value.length should not be bigger than two
 // because our design doesn't support more than
 // two thumbs
-const limitvalue = (value: number[]) => {
+const limitValue = (value: number[]) => {
   if (value.length > 2 || value.length === 0) {
     throw new Error(
       'the value prop represents positions of thumbs, so its length can be only one or two',
@@ -49,13 +49,13 @@ class Slider extends React.Component<PropsT> {
       $step: step,
       $min: min,
       $max: max,
-      $value: limitvalue(value),
+      $value: limitValue(value),
     };
   }
 
   render() {
     const {overrides = {}, min, max, step, onChange, disabled} = this.props;
-    const value = limitvalue(this.props.value);
+    const value = limitValue(this.props.value);
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Track, trackProps] = getOverrides(overrides.Track, StyledTrack);
     const [InnerTrack, innerTrackProps] = getOverrides(

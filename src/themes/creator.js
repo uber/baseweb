@@ -578,7 +578,7 @@ export default function createTheme(
     },
   };
 
-  // to remove the flowfixme, we have to make deepMerge accept a ThemeT
+  // to remove the FlowFixMe, we have to make deepMerge accept a ThemeT
   // $FlowFixMe
   return deepMerge(theme, overrides);
 }

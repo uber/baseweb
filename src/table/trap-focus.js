@@ -29,7 +29,7 @@ class TrapFocus extends React.Component<Props, {}> {
 
       // enables proper execution when testing with enzyme similar issue to:
       // https://github.com/davidtheclark/focus-trap-react/issues/24
-      // relevant quora answer for why setTimeout with 0 ms is useful:
+      // relevant Quora answer for why setTimeout with 0 ms is useful:
       // https://www.quora.com/What-does-setTimeout-with-a-0ms-delay-do-Is-this-some-trick-to-spawn-a-new-thread-but-why/answer/Andreas-Blixt
       setTimeout(() => this.focusTrap && this.focusTrap.activate(), 0);
     }

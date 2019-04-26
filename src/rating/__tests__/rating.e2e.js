@@ -44,10 +44,10 @@ describe('Rating', () => {
     );
     expect(highlightedEmoticons).toBe(1);
 
-    const indexOfHighlihted = await page.$eval(
+    const indexOfHighlighted = await page.$eval(
       selectors.checked,
       star => +star.getAttribute('aria-posinset'),
     );
-    expect(indexOfHighlihted).toBe(3);
+    expect(indexOfHighlighted).toBe(3);
   });
 });

@@ -59,7 +59,7 @@ export type ToastPropsT = {
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
   /** Toast notification content. The children-as-function
-   *  receives a dissmiss method that can be called to
+   *  receives a dismiss method that can be called to
    * dismiss the notification and can be used as a
    * handler for an action inside the toast content. */
   children: ChildrenT | ComponentRenderPropT,

@@ -256,7 +256,7 @@ export type StatefulDatepickerPropsT<T> = $Diff<
 >;
 
 export type TimePickerPropsT = {
-  /** Render options in AM/PM format or 24 hour format. Defualts to 12 hour. */
+  /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
   format?: '12' | '24',
   /** Callback for when time selection changes. */
   onChange?: Date => mixed,
