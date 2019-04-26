@@ -72,8 +72,8 @@ would output something like this
 
 ## Landmark elements
 
-There are many new HTML5 elements as `<section>`, `<header>`, `<main>` or `<footer>`. In theory, they should be eventually used to determine the resulting outline. However, since browsers didn't agreed yet on a standardized outline algorithm, it's still up to the user to explictily set it with h1...h6 elements.
+There are many new HTML5 elements as `<section>`, `<header>`, `<main>` or `<footer>`. In theory, they should be eventually used to determine the resulting outline. However, since browsers didn't agreed yet on a standardized outline algorithm, it's still up to the user to explicitly set it with h1...h6 elements.
 
 ## API
 
-The Heading component will have the same API as all other Base Web components with an adition of the optional `styleLevel` prop.
+The Heading component will have the same API as all other Base Web components with an addition of the optional `styleLevel` prop.

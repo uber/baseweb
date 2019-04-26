@@ -14,7 +14,7 @@ import {Svg} from '../styled-components.js';
 import * as Icons from '../icon-exports.js';
 
 describe('Icon', () => {
-  test('renders an icon with viewbox and title', () => {
+  test('renders an icon with viewBox and title', () => {
     const wrapper = shallow(
       <Icon viewBox="0 0 23px 23px" title="Test">
         <path

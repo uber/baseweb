@@ -52,7 +52,7 @@ describe('toast', () => {
     expect(updatedNumberOfAlerts).toBe(originalNumberOfAlerts - 2);
   });
 
-  it('opens a notifaction', async () => {
+  it('opens a notification', async () => {
     await mount(page, 'toaster');
     await page.waitFor('button');
     await page.click('button');

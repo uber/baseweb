@@ -36,7 +36,7 @@ describe('sortable-head-cell', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('does not call provided onSort fn on click if disbled', () => {
+  it('does not call provided onSort fn on click if disabled', () => {
     const spy = jest.fn();
     const wrapper = mount(
       <SortableHeadCell onSort={spy} direction={null} title="test" disabled />,
