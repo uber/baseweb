@@ -170,7 +170,7 @@ export type OptionListPropsT = {
   overrides?: {
     ListItem?: OverrideT<*>,
   },
-  /** Utility to reset menu to defualt state. Useful for rendering child menus. */
+  /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,
@@ -196,7 +196,7 @@ export type OptionProfilePropsT = {
     ProfileSubtitle?: OverrideT<*>,
     ProfileBody?: OverrideT<*>,
   },
-  /** Utility to reset menu to defualt state. Useful for rendering child menus. */
+  /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,

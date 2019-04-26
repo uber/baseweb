@@ -54,7 +54,7 @@ class LayerComponent extends React.Component<
 
   addContainer(host) {
     const {index, mountNode, onMount} = this.props;
-    // Do nothing if mounNode is provided
+    // Do nothing if mountNode is provided
     if (mountNode) {
       return;
     }
