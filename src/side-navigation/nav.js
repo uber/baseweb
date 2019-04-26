@@ -73,9 +73,9 @@ export default class SideNav extends React.Component<NavPropsT> {
               renderItem={renderItem}
               {...sharedProps}
             />
-            {item.subnav ? (
+            {item.subNav ? (
               <SubNavContainer {...sharedProps} {...subNavContainerProps}>
-                {item.subnav.map((subitem, idx) => {
+                {item.subNav.map((subitem, idx) => {
                   return renderNavItem(subitem, level + 1, index);
                 })}
               </SubNavContainer>
