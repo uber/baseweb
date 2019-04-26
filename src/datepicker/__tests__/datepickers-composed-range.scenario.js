@@ -92,8 +92,8 @@ class Controlled extends React.Component<any, any> {
                   time={this.state.time[1]}
                   onChange={({date}) => this.setState({date})}
                   onTimeChange={({time}) => {
-                    const [, end] = this.state.time;
-                    this.setState({time: [time, end]});
+                    const [start] = this.state.time;
+                    this.setState({time: [start, time]});
                   }}
                   formatDisplayValue={date => formatDateAtIndex(date, 1)}
                   timeSelect
