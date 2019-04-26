@@ -405,6 +405,10 @@ export default function createTheme(
 
       // Progress bar
       progressbarTrackFill: primitives.mono900,
+
+      // Tooltip
+      tooltipBackground: primitives.mono900,
+      tooltipText: primitives.mono100,
     },
     typography: {
       font100: {
@@ -573,9 +577,12 @@ export default function createTheme(
     zIndex: {
       modal: 2000,
     },
+    // Remove this section in next major version
+    // https://github.com/uber-web/baseui/pull/1184
     tooltip: {
       backgroundColor: primitives.mono900,
     },
+    // ^^^^^^^
   };
 
   // to remove the FlowFixMe, we have to make deepMerge accept a ThemeT
