@@ -34,7 +34,7 @@ function Card(props: CardsPropsT) {
     thumbnail: thumbnailSrc,
     title,
     overrides,
-    ...otherProps
+    ...restProps
   } = props;
 
   const {
@@ -59,7 +59,7 @@ function Card(props: CardsPropsT) {
   return (
     <Root
       data-baseweb="card"
-      {...otherProps}
+      {...restProps}
       {...getOverrideProps(RootOverride)}
     >
       {headerImage && (
