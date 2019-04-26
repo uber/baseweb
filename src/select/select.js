@@ -97,7 +97,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   openAfterFocus: boolean;
   // When an item is selected, it also triggers handleClickOutside and since the selected item is
   // already out of the menu (DOM), it will not recognize it as a subnode and triggers handleBlur
-  // that sests isOpen to false. That's a faulty logic causing visible problems when
+  // that sets isOpen to false. That's a faulty logic causing visible problems when
   // closeOnSelect is false. This flag helps to detect that selection was just made.
   justSelected: boolean;
 
@@ -211,7 +211,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
     // Cases below only apply to searchable Select component.
     if (this.state.isFocused) {
-      // iOS ignores programmaitc calls to input.focus() that were not triggered by a click event.
+      // iOS ignores programmatic calls to input.focus() that were not triggered by a click event.
       // This component can get into a state where isFocused is true, but the DOM node is not
       // focused. Call focus here again to ensure.
       this.focus();

@@ -21,7 +21,7 @@ describe('tabs', () => {
     await mount(page, 'tabs');
     await page.waitFor('[role="tab"]');
 
-    // verifiy initial state, tab 0 is visible, tab 1 and 2 are hidden
+    // verify initial state, tab 0 is visible, tab 1 and 2 are hidden
     let states = [true, false, false];
 
     for (let i = 0; i < states.length; i++) {
