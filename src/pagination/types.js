@@ -35,8 +35,7 @@ export type OverridesT = {
   NextButton?: OverrideT<*>,
   MaxLabel?: OverrideT<*>,
   DropdownContainer?: OverrideT<*>,
-  DropdownButton?: OverrideT<*>,
-  DropdownMenu?: OverrideT<*>,
+  Select?: OverrideT<*>,
 };
 
 export type PaginationPropsT = CallbacksT & {
@@ -47,12 +46,6 @@ export type PaginationPropsT = CallbacksT & {
   /** Set of labels to use for the buttons and preposition. */
   labels?: LabelsT,
   overrides?: OverridesT,
-};
-
-export type PaginationStateT = {
-  isMenuOpen: boolean,
-  layerIsMounted: boolean,
-  tetherOffset: {top: number, left: number},
 };
 
 export type StatefulPaginationPropsT = CallbacksT & {

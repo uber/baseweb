@@ -10,6 +10,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import * as StyledComponents from '../styled-components.js';
 import {Button} from '../../button/index.js';
+import {Select} from '../../select/index.js';
 import Pagination from '../pagination.js';
 
 jest.useFakeTimers();
@@ -98,16 +99,15 @@ describe('Pagination Stateless', () => {
     });
   });
 
-  test('dropdown button click', () => {
-    const component = mount(<Pagination {...getSharedProps()} />);
-    component.find(StyledComponents.StyledDropdownButton).simulate('click');
-    expect(component.state('isMenuOpen')).toEqual(true);
-    expect(document.addEventListener.mock.calls[0][0]).toEqual('click');
-    expect(document.removeEventListener.mock.calls.length).toBe(0);
-
-    component.find(StyledComponents.StyledDropdownButton).simulate('click');
-    expect(component.state('isMenuOpen')).toEqual(false);
-    expect(document.removeEventListener.mock.calls[0][0]).toEqual('click');
+  test('dropdown is rendered', () => {
+    const props = getSharedProps();
+    const component = mount(<Pagination {...props} />);
+    const select = component.find(Select);
+    expect(select).toExist();
+    expect(select.props().value).toEqual([{label: props.currentPage}]);
+    expect(select.props().onChange).toEqual(
+      component.instance().onMenuItemSelect,
+    );
   });
 
   test('prev button click', () => {
@@ -167,7 +167,7 @@ describe('Pagination Stateless', () => {
     };
     const component = mount(<Pagination {...props} />);
     component.instance().onDropdownButtonClick = jest.fn();
-    component.instance().onMenuItemSelect({item: {label: 3}});
+    component.instance().onMenuItemSelect({value: [{label: 3}]});
     expect(props.onPageChange.mock.calls[0]).toEqual([
       {
         nextPage: 3,

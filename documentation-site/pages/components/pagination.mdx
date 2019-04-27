@@ -68,6 +68,14 @@ Divide content into separate pages.
 <Overrides
   name="Pagination"
   component={PaginationExports}
+  whitelisted={[
+    'Root',
+    'PrevButton',
+    'NextButton',
+    'MaxLabel',
+    'DropdownContainer',
+    'Select',
+  ]}
   renderExample={props => (
     <StatefulPagination numPages={10} overrides={props.overrides} />
   )}

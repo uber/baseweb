@@ -12,8 +12,6 @@ export {
   StyledRoot,
   StyledMaxLabel,
   StyledDropdownContainer,
-  StyledDropdownMenu,
-  StyledDropdownButton,
 } from './styled-components.js';
 // Constants
 export {STATE_CHANGE_TYPE} from './constants.js';
