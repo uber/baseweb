@@ -249,6 +249,10 @@ const routes = [
         title: 'Utility',
         subnav: [
           {
+            title: 'BaseProvider',
+            itemId: '/components/base-provider',
+          },
+          {
             title: 'Block',
             itemId: '/components/block',
           },
