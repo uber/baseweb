@@ -82,6 +82,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
           </SidebarWrapper>
           <ContentWrapper
             id="docSearch-content"
+            role="main"
             $isSidebarOpen={sidebarOpen}
             $full={$full}
           >
