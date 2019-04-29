@@ -11,7 +11,7 @@ import {Tag} from '../tag/index.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 export default function MultiValue(props: any) {
-  const {overrides = {}, removeValue, ...rest} = props;
+  const {overrides = {}, removeValue, ...restProps} = props;
   const [MultiValue, multiValueProps] = getOverrides(overrides.MultiValue, Tag);
   return (
     <MultiValue
@@ -26,7 +26,7 @@ export default function MultiValue(props: any) {
         },
       }}
       onActionClick={removeValue}
-      {...rest}
+      {...restProps}
       {...multiValueProps}
     >
       {props.children}

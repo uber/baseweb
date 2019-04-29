@@ -11,7 +11,7 @@ const ValueWrapper = styled('div', {
   alignItems: 'center',
 });
 
-const InputReplacement = ({tags, removeTag, ...rest}) => {
+const InputReplacement = ({tags, removeTag, ...restProps}) => {
   return (
     <ValueWrapper>
       {tags.map((tag, index) => (
@@ -19,7 +19,7 @@ const InputReplacement = ({tags, removeTag, ...rest}) => {
           {tag}
         </Tag>
       ))}
-      <StyledInput {...rest} />
+      <StyledInput {...restProps} />
     </ValueWrapper>
   );
 };
