@@ -29,6 +29,17 @@ function getBorderRadii({$shape, $theme}: StylePropsT) {
   };
 }
 
+function getSize({$size, $theme}: StylePropsT) {
+  switch ($size) {
+    case SIZE.compact:
+      return $theme.typography.font250;
+    case SIZE.large:
+      return $theme.typography.font450;
+    default:
+      return $theme.typography.font350;
+  }
+}
+
 export const BaseButton = styled(
   'button',
   ({
@@ -41,9 +52,7 @@ export const BaseButton = styled(
     $disabled,
   }: StylePropsT) => ({
     position: 'relative',
-    ...($size === SIZE.compact
-      ? $theme.typography.font250
-      : $theme.typography.font450),
+    ...getSize({$size, $theme}),
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
