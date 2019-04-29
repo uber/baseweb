@@ -76,6 +76,7 @@ const Navigation = ({toggleSidebar}: PropsT) => {
               height="40px"
               src={Logo}
               width="101px"
+              alt="Base Web React Components"
               overrides={{Block: {style: {cursor: 'pointer'}}}}
             />
           </Link>
@@ -124,6 +125,7 @@ const Navigation = ({toggleSidebar}: PropsT) => {
             marginLeft="scale700"
             $style={{textDecoration: 'none'}}
             target="_blank"
+            aria-label="Join the Base Web Slack"
           >
             <SlackLogo size={24} color="#333" />
           </Block>
@@ -144,6 +146,7 @@ const Navigation = ({toggleSidebar}: PropsT) => {
             marginLeft="scale700"
             $style={{textDecoration: 'none'}}
             target="_blank"
+            aria-label="Base Web on GitHub"
           >
             <GithubLogo size={24} color="#333" />
           </Block>
