@@ -10871,6 +10871,11 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+opath@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/opath/-/opath-1.0.0.tgz#d0684592f9c5837574eadb8ab8d95335300fb398"
+  integrity sha1-0GhFkvnFg3V06tuKuNlTNTAPs5g=
+
 opn@5.4.0, opn@^5.2.0, opn@^5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/opn/-/opn-5.4.0.tgz#cb545e7aab78562beb11aa3bfabc7042e1761035"

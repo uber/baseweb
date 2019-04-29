@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import opath from 'object-path';
 
 import {KIND, SIZE, SHAPE} from '../button/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, mergeStyleOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 
 import {StyledRoot} from './styled-components.js';
@@ -29,25 +30,17 @@ function isSelected(selected, index) {
 }
 
 function getBorderRadii(index, length) {
-  if (index === 0) {
-    return {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    };
-  }
-
-  if (index === length - 1) {
-    return {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    };
-  }
-
-  return {
+  const rightConnectedRadius = {
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
+  };
+  const leftConnectedRadius = {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
+  };
+  return {
+    ...(index === 0 && rightConnectedRadius),
+    ...(index === length - 1 && leftConnectedRadius),
   };
 }
 
@@ -87,10 +80,13 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
             }
           },
           overrides: {
-            BaseButton: {
-              style: getBorderRadii(index, props.children.length),
-            },
             ...child.props.overrides,
+            BaseButton: {
+              style: mergeStyleOverrides(
+                opath.get(child.props.overrides, 'BaseButton.style'),
+                getBorderRadii(index, props.children.length),
+              ),
+            },
           },
           shape: props.shape,
           size: props.size,
