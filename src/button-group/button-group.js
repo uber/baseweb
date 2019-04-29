@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import opath from 'object-path';
 
 import {KIND, SIZE, SHAPE} from '../button/index.js';
 import {getOverrides, mergeStyleOverrides} from '../helpers/overrides.js';
@@ -30,17 +29,17 @@ function isSelected(selected, index) {
 }
 
 function getBorderRadii(index, length) {
-  const rightConnectedRadius = {
+  const rightConnectedRadius = index !== length - 1 && {
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
   };
-  const leftConnectedRadius = {
+  const leftConnectedRadius = index !== 0 && {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
   };
   return {
-    ...(index === 0 && rightConnectedRadius),
-    ...(index === length - 1 && leftConnectedRadius),
+    ...rightConnectedRadius,
+    ...leftConnectedRadius,
   };
 }
 
@@ -61,6 +60,10 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
         if (!React.isValidElement(child)) {
           return null;
         }
+
+        const BaseButtonChildStyle = (
+          (child.props.overrides || {}).BaseButton || {}
+        ).style;
 
         return React.cloneElement(child, {
           disabled: props.disabled ? true : child.props.disabled,
@@ -83,7 +86,7 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
             ...child.props.overrides,
             BaseButton: {
               style: mergeStyleOverrides(
-                opath.get(child.props.overrides, 'BaseButton.style'),
+                BaseButtonChildStyle,
                 getBorderRadii(index, props.children.length),
               ),
             },
