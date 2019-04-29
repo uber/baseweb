@@ -33,7 +33,8 @@ function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
 class Controlled extends React.Component<any, any> {
   state = {
     date: [START_DATE, END_DATE],
-    time: [START_TIME, END_TIME],
+    startTime: START_TIME,
+    endTime: END_TIME,
   };
 
   render() {
@@ -44,12 +45,9 @@ class Controlled extends React.Component<any, any> {
             <FormControl label="Start Date" caption="YYYY/MM/DD">
               <Datepicker
                 value={this.state.date}
-                time={this.state.time[0]}
+                time={this.state.startTime}
                 onChange={({date}) => this.setState({date})}
-                onTimeChange={({time}) => {
-                  const [, end] = this.state.time;
-                  this.setState({time: [time, end]});
-                }}
+                onTimeChange={({time}) => this.setState({startTime: time})}
                 formatDisplayValue={date => formatDateAtIndex(date, 0)}
                 timeSelect
                 range
@@ -60,11 +58,8 @@ class Controlled extends React.Component<any, any> {
           <Block width="120px" marginRight="scale300">
             <FormControl label="Start Time" caption="HH:MM">
               <TimePicker
-                value={this.state.time[0]}
-                onChange={time => {
-                  const [, end] = this.state.time;
-                  this.setState({time: [time, end]});
-                }}
+                value={this.state.startTime}
+                onChange={startTime => this.setState({startTime})}
               />
             </FormControl>
           </Block>
@@ -77,11 +72,11 @@ class Controlled extends React.Component<any, any> {
             <FormControl label="End Date" caption="YYYY/MM/DD">
               <Datepicker
                 value={this.state.date}
-                time={this.state.time[1]}
+                time={this.state.endTime}
                 onChange={({date}) => this.setState({date})}
-                onTimeChange={({time}) => {
-                  const [start] = this.state.time;
-                  this.setState({time: [start, time]});
+                onTimeChange={({time}) => this.setState({endTime: time})}
+                overrides={{
+                  TimeSelectFormControl: {props: {label: 'End time'}},
                 }}
                 formatDisplayValue={date => formatDateAtIndex(date, 1)}
                 timeSelect
@@ -90,14 +85,11 @@ class Controlled extends React.Component<any, any> {
             </FormControl>
           </Block>
 
-          <Block width="120px" marginRight="scale300">
+          <Block width="120px">
             <FormControl label="End Time" caption="HH:MM">
               <TimePicker
-                value={this.state.time[1]}
-                onChange={time => {
-                  const [start] = this.state.time;
-                  this.setState({time: [start, time]});
-                }}
+                value={this.state.endTime}
+                onChange={endTime => this.setState({endTime})}
               />
             </FormControl>
           </Block>
