@@ -65,8 +65,8 @@ describe('Stateful slider', function() {
     const slider: any = require('../slider');
     wrapper = mount(<StatefulSlider {...allProps} />);
     // eslint-disable-next-line no-unused-vars
-    const {overrides, ...rest} = slider.mock.calls[1][0];
-    expect(rest).toMatchObject({
+    const {overrides, ...restProps} = slider.mock.calls[1][0];
+    expect(restProps).toMatchObject({
       someProp: 'some other slider prop',
     });
   });

@@ -143,6 +143,7 @@ export type ColorsT = {
   linkText: string,
   linkVisited: string,
   linkHover: string,
+  linkActive: string,
 
   // Lists
   listHeaderFill: string,
@@ -385,6 +386,10 @@ export type ColorsT = {
 
   // Progress bar
   progressbarTrackFill: string,
+
+  // Tooltip
+  tooltipBackground: string,
+  tooltipText: string,
 };
 
 export type TypographyT = {
@@ -487,6 +492,12 @@ export type ThemeT = {|
   borders: BordersT,
   zIndex: ZIndexT,
   icons?: IconT,
+  // Remove this section in next major version
+  // https://github.com/uber-web/baseui/pull/1184
+  tooltip: {
+    backgroundColor: string,
+  },
+  // ^^^^^^^
 |};
 
 export type IconT = {

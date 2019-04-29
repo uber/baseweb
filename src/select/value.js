@@ -11,13 +11,13 @@ import {getOverrides} from '../helpers/overrides.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 export default function Value(props: any) {
-  const {overrides = {}, ...rest} = props;
+  const {overrides = {}, ...restProps} = props;
   const [SingleValue, singleValueProps] = getOverrides(
     overrides.SingleValue,
     StyledSingleValue,
   );
   return (
-    <SingleValue aria-selected="true" {...rest} {...singleValueProps}>
+    <SingleValue aria-selected="true" {...restProps} {...singleValueProps}>
       {props.children}
     </SingleValue>
   );

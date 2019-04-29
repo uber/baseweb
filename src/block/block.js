@@ -70,7 +70,7 @@ function Block({
   top,
   right,
   bottom,
-  ...other
+  ...restProps
 }: BlockPropsT) {
   const [BaseBlock, baseBlockProps] = getOverrides(
     // $FlowFixMe
@@ -136,7 +136,7 @@ function Block({
       $right={right}
       $bottom={bottom}
       data-baseweb="block"
-      {...other}
+      {...restProps}
       {...baseBlockProps}
     >
       {children}

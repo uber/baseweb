@@ -53,11 +53,11 @@ class StatefulContainer extends React.Component<
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const {children, initialState, stateReducer, ...rest} = this.props;
+    const {children, initialState, stateReducer, ...restProps} = this.props;
     const {onChange} = this;
     // $FlowFixMe
     return children({
-      ...rest,
+      ...restProps,
       ...this.state,
       onChange,
     });

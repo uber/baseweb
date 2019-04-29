@@ -79,7 +79,6 @@ export type StatefulContainerStateT = {
 
 export type RenderPropsT = StatefulContainerStateT & {
   items: ItemsT,
-  rootRef: RootRefT,
   getRequiredItemProps: GetRequiredItemPropsFnT,
 };
 
@@ -103,6 +102,8 @@ export type StatefulContainerPropsT = {
   getRequiredItemProps: GetRequiredItemPropsFnT,
   /** Callback executed on menu item clicks. */
   onItemSelect: OnItemSelectFnT,
+  /** Ref for the menu container element. Used to capture key events for navigation */
+  rootRef?: RootRefT,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
   addMenuToNesting?: (ref: {current: ?HTMLElement}) => void,
@@ -140,7 +141,7 @@ export type SharedStatelessPropsT = {
   onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   /** Ref for the menu container element. Used to capture key events for navigation */
-  rootRef: RootRefT,
+  rootRef?: RootRefT,
   focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => mixed,
   unfocusMenu?: () => mixed,
 };
@@ -169,7 +170,7 @@ export type OptionListPropsT = {
   overrides?: {
     ListItem?: OverrideT<*>,
   },
-  /** Utility to reset menu to defualt state. Useful for rendering child menus. */
+  /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,
@@ -195,7 +196,7 @@ export type OptionProfilePropsT = {
     ProfileSubtitle?: OverrideT<*>,
     ProfileBody?: OverrideT<*>,
   },
-  /** Utility to reset menu to defualt state. Useful for rendering child menus. */
+  /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,

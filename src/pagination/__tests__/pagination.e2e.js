@@ -27,11 +27,11 @@ describe('pagination', () => {
     await mount(page, 'pagination');
     await page.waitFor(selectors.prevButton);
     // assert initial state
-    const initalValue = await page.$eval(
+    const initialValue = await page.$eval(
       selectors.dropDownButton,
       input => input.textContent,
     );
-    expect(initalValue).toBe('1');
+    expect(initialValue).toBe('1');
 
     // paginate to the next page
     await page.click(selectors.nextButton);
@@ -54,11 +54,11 @@ describe('pagination', () => {
     await mount(page, 'pagination');
     await page.waitFor(selectors.prevButton);
     // assert initial state
-    const initalValue = await page.$eval(
+    const initialValue = await page.$eval(
       selectors.dropDownButton,
       input => input.textContent,
     );
-    expect(initalValue).toBe('1');
+    expect(initialValue).toBe('1');
 
     // paginate using the dropdown menu
     await page.click(selectors.dropDownButton);

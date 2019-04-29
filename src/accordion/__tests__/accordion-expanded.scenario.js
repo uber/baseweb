@@ -20,7 +20,7 @@ export const component = () => (
     </Panel>
     <StatefulPanel
       initialState={{expanded: true}}
-      title="Inital state expanded"
+      title="Initial state expanded"
     >
       stateful panel
     </StatefulPanel>

@@ -11,6 +11,8 @@ import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
+import type {OnChangeParamsT, OptionT, ValueT} from '../select/index.js';
+
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
@@ -252,3 +254,56 @@ export type StatefulDatepickerPropsT<T> = $Diff<
     children: T => React.Node,
   },
 >;
+
+export type TimePickerPropsT = {
+  /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
+  format?: '12' | '24',
+  /** Callback for when time selection changes. */
+  onChange?: Date => mixed,
+  overrides?: {
+    Select?: OverrideT<*>,
+  },
+  /** Amount of seconds between each option time. Defaults to 900 (15 minutes). */
+  step?: number,
+  /**
+   * Optional value that can be provided to fully control the component. If not provided, TimePicker
+   * will manage state internally. Expects a value in seconds. E.g. 3600 = 01:00.
+   */
+  value?: Date,
+};
+export type TimePickerStateT = {
+  /** List of times (in seconds) displayed in the dropdown menu. */
+  steps: number[],
+  /** Internal value of the selected time as an integer since midnight (0) */
+  value: ?number,
+};
+
+export type TimezonePickerStateT = {
+  /** List of timezones from the IANA database. */
+  timezones: OptionT[],
+  /** Internal value provided to the select component. */
+  value: ?ValueT,
+};
+export type TimezonePickerPropsT = {
+  /**
+   * If not provided, defaults to new Date(). Important to note that the timezone picker only
+   * displays options related to the provided date. Take Pacific Time for example. On March 9th,
+   * Pacific Time equates to the more specific Pacific Standard Time. On March 10th, it operates on
+   * Pacific Daylight Time. The timezone picker will never display PST and PDT together. If you need
+   * exact specificity, provide a date. Otherwise it will default to the relevant timezone at render.
+   */
+  date?: Date,
+  /**
+   * Customize the option's label. Useful for translations and optionally mapping from
+   * 'America/Los_Angeles' to 'Pacific Time'.
+   */
+  mapLabels?: OptionT => React.Node,
+  /** Callback for when the timezone selection changes. Follows same pattern as Select component. */
+  onChange?: (params: OnChangeParamsT) => mixed,
+  overrides?: {Select?: OverrideT<*>},
+  /**
+   * Optional value that can be provided to fully control the component. If not provided,
+   * TimezonePicker will manage state internally.
+   */
+  value?: ValueT,
+};
