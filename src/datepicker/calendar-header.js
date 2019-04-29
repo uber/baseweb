@@ -59,25 +59,36 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     locale: null,
     maxDate: null,
     minDate: null,
-    onMonthChange: () => {},
     onYearChange: () => {},
     overrides: {},
   };
 
   handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
-    this.props.onMonthChange({date: setMonth(this.props.date, value[0].id)});
+    if (this.props.onMonthChange) {
+      // $FlowFixMe
+      this.props.onMonthChange({date: setMonth(this.props.date, value[0].id)});
+    }
   };
 
   handleYearChange = ({value}: {value: Array<{id: number}>}) => {
-    this.props.onYearChange({date: setYear(this.props.date, value[0].id)});
+    if (this.props.onYearChange) {
+      // $FlowFixMe
+      this.props.onYearChange({date: setYear(this.props.date, value[0].id)});
+    }
   };
 
   increaseMonth = () => {
-    this.props.onMonthChange({date: addMonths(this.props.date, 1)});
+    if (this.props.onMonthChange) {
+      // $FlowFixMe
+      this.props.onMonthChange({date: addMonths(this.props.date, 1)});
+    }
   };
 
   decreaseMonth = () => {
-    this.props.onMonthChange({date: subMonths(this.props.date, 1)});
+    if (this.props.onMonthChange) {
+      // $FlowFixMe
+      this.props.onMonthChange({date: subMonths(this.props.date, 1)});
+    }
   };
 
   renderPreviousMonthButton = ({locale}: {locale: LocaleT}) => {
@@ -285,8 +296,8 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
           if (params.value && params.value[0].id) {
             const [year, month] = idToYearMonth(String(params.value[0].id));
             date.setFullYear(year, month);
-            this.props.onMonthChange({date});
-            this.props.onYearChange({date});
+            this.props.onMonthChange && this.props.onMonthChange({date});
+            this.props.onYearChange && this.props.onYearChange({date});
           }
         }}
         // internal and incoming overrides are merged above

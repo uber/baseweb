@@ -11,12 +11,7 @@ import React from 'react';
 import {Block} from '../../block/index.js';
 import {FormControl} from '../../form-control/index.js';
 import ArrowRight from '../../icon/arrow-right.js';
-import {
-  Datepicker,
-  TimePicker,
-  StatefulContainer,
-  formatDate,
-} from '../index.js';
+import {Datepicker, TimePicker, formatDate} from '../index.js';
 
 export const name = 'datepickers-composed-range';
 
@@ -43,79 +38,80 @@ class Controlled extends React.Component<any, any> {
 
   render() {
     return (
-      <Block display="flex" alignItems="center">
-        <Block width="120px" marginRight="scale300">
-          <FormControl label="Start Date" caption="YYYY/MM/DD">
-            <StatefulContainer>
-              {containerProps => (
-                <Datepicker
-                  {...containerProps}
-                  value={this.state.date}
-                  time={this.state.time[0]}
-                  onChange={({date}) => this.setState({date})}
-                  onTimeChange={({time}) => {
-                    const [, end] = this.state.time;
-                    this.setState({time: [time, end]});
-                  }}
-                  formatDisplayValue={date => formatDateAtIndex(date, 0)}
-                  timeSelect
-                  range
-                />
-              )}
-            </StatefulContainer>
-          </FormControl>
+      <>
+        <Block display="flex" alignItems="center">
+          <Block width="120px" marginRight="scale300">
+            <FormControl label="Start Date" caption="YYYY/MM/DD">
+              <Datepicker
+                value={this.state.date}
+                time={this.state.time[0]}
+                onChange={({date}) => this.setState({date})}
+                onTimeChange={({time}) => {
+                  const [, end] = this.state.time;
+                  this.setState({time: [time, end]});
+                }}
+                formatDisplayValue={date => formatDateAtIndex(date, 0)}
+                timeSelect
+                range
+              />
+            </FormControl>
+          </Block>
+
+          <Block width="120px" marginRight="scale300">
+            <FormControl label="Start Time" caption="HH:MM">
+              <TimePicker
+                value={this.state.time[0]}
+                onChange={time => {
+                  const [, end] = this.state.time;
+                  this.setState({time: [time, end]});
+                }}
+              />
+            </FormControl>
+          </Block>
+
+          <Block marginRight="scale300">
+            <ArrowRight />
+          </Block>
+
+          <Block width="120px" marginRight="scale300">
+            <FormControl label="End Date" caption="YYYY/MM/DD">
+              <Datepicker
+                value={this.state.date}
+                time={this.state.time[1]}
+                onChange={({date}) => this.setState({date})}
+                onTimeChange={({time}) => {
+                  const [start] = this.state.time;
+                  this.setState({time: [start, time]});
+                }}
+                formatDisplayValue={date => formatDateAtIndex(date, 1)}
+                timeSelect
+                range
+              />
+            </FormControl>
+          </Block>
+
+          <Block width="120px" marginRight="scale300">
+            <FormControl label="End Time" caption="HH:MM">
+              <TimePicker
+                value={this.state.time[1]}
+                onChange={time => {
+                  const [start] = this.state.time;
+                  this.setState({time: [start, time]});
+                }}
+              />
+            </FormControl>
+          </Block>
         </Block>
 
-        <Block width="120px" marginRight="scale300">
-          <FormControl label="Start Time" caption="HH:MM">
-            <TimePicker
-              value={this.state.time[0]}
-              onChange={time => {
-                const [, end] = this.state.time;
-                this.setState({time: [time, end]});
-              }}
-            />
-          </FormControl>
-        </Block>
-
-        <Block marginRight="scale300">
-          <ArrowRight />
-        </Block>
-
-        <Block width="120px" marginRight="scale300">
-          <FormControl label="End Date" caption="YYYY/MM/DD">
-            <StatefulContainer>
-              {containerProps => (
-                <Datepicker
-                  {...containerProps}
-                  value={this.state.date}
-                  time={this.state.time[1]}
-                  onChange={({date}) => this.setState({date})}
-                  onTimeChange={({time}) => {
-                    const [start] = this.state.time;
-                    this.setState({time: [start, time]});
-                  }}
-                  formatDisplayValue={date => formatDateAtIndex(date, 1)}
-                  timeSelect
-                  range
-                />
-              )}
-            </StatefulContainer>
-          </FormControl>
-        </Block>
-
-        <Block width="120px" marginRight="scale300">
-          <FormControl label="End Time" caption="HH:MM">
-            <TimePicker
-              value={this.state.time[1]}
-              onChange={time => {
-                const [start] = this.state.time;
-                this.setState({time: [start, time]});
-              }}
-            />
-          </FormControl>
-        </Block>
-      </Block>
+        <button
+          onClick={() =>
+            this.setState({date: [null, null], time: [null, null]})
+          }
+        >
+          set null
+        </button>
+        <button onClick={() => this.setState({date: []})}>set undefined</button>
+      </>
     );
   }
 }

@@ -51,7 +51,6 @@ export default class Calendar extends React.Component<
     locale: null,
     maxDate: null,
     minDate: null,
-    monthsShown: 1,
     onDayClick: () => {},
     onDayMouseOver: () => {},
     onDayMouseLeave: () => {},
@@ -257,13 +256,13 @@ export default class Calendar extends React.Component<
   onDayMouseOver = (data: {event: Event, date: Date}) => {
     const {date} = data;
     this.setState({highlightedDate: date});
-    this.props.onDayMouseOver(data);
+    this.props.onDayMouseOver && this.props.onDayMouseOver(data);
   };
 
   onDayMouseLeave = (data: {event: Event, date: Date}) => {
     const {date} = data;
     this.setHighlightedDate(date);
-    this.props.onDayMouseLeave(data);
+    this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
   };
 
   setHighlightedDate(date: Date) {
@@ -287,7 +286,7 @@ export default class Calendar extends React.Component<
       overrides.CalendarContainer,
       StyledCalendarContainer,
     );
-    for (let i = 0; i < this.props.monthsShown; ++i) {
+    for (let i = 0; i < (this.props.monthsShown || 1); ++i) {
       const monthDate = addMonths(this.state.date, i);
       const monthKey = `month-${i}`;
       monthList.push(this.renderCalendarHeader(monthDate, i));
@@ -338,31 +337,42 @@ export default class Calendar extends React.Component<
       overrides.TimeSelectContainer,
       StyledSelectorContainer,
     );
+    const [TimeSelectFormControl, timeSelectFormControlProps] = getOverrides(
+      overrides.TimeSelectFormControl,
+      FormControl,
+    );
     const [TimeSelect, timeSelectProps] = getOverrides(
       overrides.TimeSelect,
       TimePicker,
     );
 
     return (
-      <TimeSelectContainer {...timeSelectContainerProps}>
-        <FormControl label="Start Time">
-          <TimeSelect
-            value={value}
-            onChange={time => {
-              if (this.props.onTimeChange) {
-                if (Array.isArray(this.props.time)) {
-                  this.props.onTimeChange({
-                    time: [time, this.props.time[1]],
-                  });
-                } else {
-                  this.props.onTimeChange({time});
-                }
-              }
-            }}
-            {...timeSelectProps}
-          />
-        </FormControl>
-      </TimeSelectContainer>
+      <LocaleContext.Consumer>
+        {locale => (
+          <TimeSelectContainer {...timeSelectContainerProps}>
+            <TimeSelectFormControl
+              label={locale.datepicker.timeSelectLabel}
+              {...timeSelectFormControlProps}
+            >
+              <TimeSelect
+                value={value}
+                onChange={time => {
+                  if (this.props.onTimeChange) {
+                    if (Array.isArray(this.props.time)) {
+                      this.props.onTimeChange({
+                        time: [time, this.props.time[1]],
+                      });
+                    } else {
+                      this.props.onTimeChange({time});
+                    }
+                  }
+                }}
+                {...timeSelectProps}
+              />
+            </TimeSelectFormControl>
+          </TimeSelectContainer>
+        )}
+      </LocaleContext.Consumer>
     );
   };
 
@@ -371,6 +381,10 @@ export default class Calendar extends React.Component<
     const [QuickSelectContainer, quickSelectContainerProps] = getOverrides(
       overrides.QuickSelectContainer,
       StyledSelectorContainer,
+    );
+    const [QuickSelectFormControl, quickSelectFormControlProps] = getOverrides(
+      overrides.QuickSelectFormControl,
+      FormControl,
     );
     const [QuickSelect, quickSelectProps] = getOverrides(
       overrides.QuickSelect,
@@ -395,17 +409,23 @@ export default class Calendar extends React.Component<
       <LocaleContext.Consumer>
         {locale => (
           <QuickSelectContainer {...quickSelectContainerProps}>
-            <FormControl label="Choose a date range">
+            <QuickSelectFormControl
+              label={locale.datepicker.quickSelectLabel}
+              {...quickSelectFormControlProps}
+            >
               <QuickSelect
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
                 onChange={params => {
                   if (!params.option) {
                     this.setState({quickSelectId: null});
-                    this.props.onChange({date: []});
+                    this.props.onChange && this.props.onChange({date: []});
                   } else {
                     this.setState({quickSelectId: params.option.id});
-                    this.props.onChange({date: [params.option.beginDate, NOW]});
+                    this.props.onChange &&
+                      this.props.onChange({
+                        date: [params.option.beginDate, NOW],
+                      });
                   }
                 }}
                 options={this.props.quickSelectOptions || QUICK_SELECT_ACTIONS}
@@ -415,7 +435,7 @@ export default class Calendar extends React.Component<
                 }
                 {...quickSelectProps}
               />
-            </FormControl>
+            </QuickSelectFormControl>
           </QuickSelectContainer>
         )}
       </LocaleContext.Consumer>
