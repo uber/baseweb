@@ -157,8 +157,10 @@ export type CalendarPropsT = {
   timeFormat?: '12' | '24',
   /** Passed to internal `TimePicker` component. Sets available options in dropdown menu. */
   timeStep?: number,
-  /** Determines if `TimePicker` component will be embedded in the calendar component. */
-  timeSelect?: boolean,
+  /** Determines if `TimePicker` component will be enabled for start time */
+  timeSelectStart?: boolean,
+  /** Determines if `TimePicker` component will be enabled for end time */
+  timeSelectEnd?: boolean,
   /** Defines if tabbing inside the calendar is circled within it. */
   trapTabbing?: boolean,
   /** Currently selected date. */

@@ -15,12 +15,8 @@ import {Datepicker, TimePicker, formatDate} from '../index.js';
 
 export const name = 'datepickers-composed-range';
 
-const START_DATE = new Date(2019, 3, 1);
-const END_DATE = new Date(2019, 3, 10);
-const START_TIME = new Date(START_DATE);
-START_TIME.setHours(12, 0, 0);
-const END_TIME = new Date(START_DATE);
-END_TIME.setHours(16, 0, 0);
+const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
+const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
 function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
   if (!dates || !Array.isArray(dates)) return '';
@@ -31,11 +27,7 @@ function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
 
 // eslint-disable-next-line flowtype/no-weak-types
 class Controlled extends React.Component<any, any> {
-  state = {
-    date: [START_DATE, END_DATE],
-    startTime: START_TIME,
-    endTime: END_TIME,
-  };
+  state = {date: [START_DATE, END_DATE]};
 
   render() {
     return (
@@ -45,11 +37,9 @@ class Controlled extends React.Component<any, any> {
             <FormControl label="Start Date" caption="YYYY/MM/DD">
               <Datepicker
                 value={this.state.date}
-                time={this.state.startTime}
                 onChange={({date}) => this.setState({date})}
-                onTimeChange={({time}) => this.setState({startTime: time})}
                 formatDisplayValue={date => formatDateAtIndex(date, 0)}
-                timeSelect
+                timeSelectStart
                 range
               />
             </FormControl>
@@ -58,8 +48,10 @@ class Controlled extends React.Component<any, any> {
           <Block width="120px" marginRight="scale300">
             <FormControl label="Start Time" caption="HH:MM">
               <TimePicker
-                value={this.state.startTime}
-                onChange={startTime => this.setState({startTime})}
+                value={this.state.date[0]}
+                onChange={time => {
+                  this.setState({date: [time, this.state.date[1]]});
+                }}
               />
             </FormControl>
           </Block>
@@ -72,14 +64,12 @@ class Controlled extends React.Component<any, any> {
             <FormControl label="End Date" caption="YYYY/MM/DD">
               <Datepicker
                 value={this.state.date}
-                time={this.state.endTime}
                 onChange={({date}) => this.setState({date})}
-                onTimeChange={({time}) => this.setState({endTime: time})}
+                formatDisplayValue={date => formatDateAtIndex(date, 1)}
                 overrides={{
                   TimeSelectFormControl: {props: {label: 'End time'}},
                 }}
-                formatDisplayValue={date => formatDateAtIndex(date, 1)}
-                timeSelect
+                timeSelectEnd
                 range
               />
             </FormControl>
@@ -88,8 +78,10 @@ class Controlled extends React.Component<any, any> {
           <Block width="120px">
             <FormControl label="End Time" caption="HH:MM">
               <TimePicker
-                value={this.state.endTime}
-                onChange={endTime => this.setState({endTime})}
+                value={this.state.date[1]}
+                onChange={time => {
+                  this.setState({date: [this.state.date[0], time]});
+                }}
               />
             </FormControl>
           </Block>
@@ -97,12 +89,18 @@ class Controlled extends React.Component<any, any> {
 
         <button
           onClick={() =>
-            this.setState({date: [null, null], time: [null, null]})
+            this.setState({date: [null, null], startTime: null, endTime: null})
           }
         >
           set null
         </button>
-        <button onClick={() => this.setState({date: []})}>set undefined</button>
+        <button
+          onClick={() =>
+            this.setState({date: [], startTime: undefined, endTime: undefined})
+          }
+        >
+          set undefined
+        </button>
       </>
     );
   }

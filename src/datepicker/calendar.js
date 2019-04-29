@@ -33,9 +33,22 @@ import {
   subWeeks,
   subMonths,
   subYears,
+  setHours,
+  setMinutes,
+  setSeconds,
+  getHours,
+  getMinutes,
 } from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
+
+function applyTime(prev: ?Date, next: Date) {
+  if (!prev) return next;
+  const hours = setHours(next, getHours(prev));
+  const minutes = setMinutes(hours, getMinutes(prev));
+  const seconds = setSeconds(minutes, 0);
+  return seconds;
+}
 
 export default class Calendar extends React.Component<
   CalendarPropsT,
@@ -265,6 +278,43 @@ export default class Calendar extends React.Component<
     this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
   };
 
+  handleDateChange = (data: {date: ?Date | Array<Date>}) => {
+    const {onChange = params => {}} = this.props;
+    if (Array.isArray(data.date)) {
+      const dates = data.date.map((date, index) => {
+        const values = [].concat(this.props.value);
+        return applyTime(values[index], date);
+      });
+      onChange({date: dates});
+    } else if (!Array.isArray(this.props.value)) {
+      if (data.date) {
+        const nextDate = applyTime(this.props.value, data.date);
+        onChange({date: nextDate});
+      } else {
+        onChange({date: data.date});
+      }
+    }
+  };
+
+  handleTimeChange = (time: Date, index: number) => {
+    const {onChange = params => {}} = this.props;
+
+    if (Array.isArray(this.props.value)) {
+      console.log('is array');
+    } else {
+      const date = applyTime(this.props.value, time);
+      onChange({date});
+    }
+
+    // const [firstValue, ...restDates] = [].concat(this.props.value);
+    // const nextDate = applyTime(firstValue, time);
+    // if (this.props.range) {
+    //   onChange({date: [nextDate, ...restDates]});
+    // } else {
+    //   onChange({date: nextDate});
+    // }
+  };
+
   setHighlightedDate(date: Date) {
     const {value} = this.props;
     const selected = this.getSingleDate(value);
@@ -316,7 +366,7 @@ export default class Calendar extends React.Component<
             onDayClick={this.props.onDayClick}
             onDayMouseOver={this.onDayMouseOver}
             onDayMouseLeave={this.onDayMouseLeave}
-            onChange={this.props.onChange}
+            onChange={this.handleDateChange}
             overrides={overrides}
             value={this.props.value}
             peekNextMonth={this.props.peekNextMonth}
@@ -327,12 +377,8 @@ export default class Calendar extends React.Component<
     return monthList;
   };
 
-  renderTimeSelect = (value: ?Date) => {
-    const {overrides = {}, timeSelect} = this.props;
-    if (!timeSelect) {
-      return;
-    }
-
+  renderTimeSelect = (value: ?Date, onChange: Function) => {
+    const {overrides = {}} = this.props;
     const [TimeSelectContainer, timeSelectContainerProps] = getOverrides(
       overrides.TimeSelectContainer,
       StyledSelectorContainer,
@@ -356,17 +402,7 @@ export default class Calendar extends React.Component<
             >
               <TimeSelect
                 value={value}
-                onChange={time => {
-                  if (this.props.onTimeChange) {
-                    if (Array.isArray(this.props.time)) {
-                      this.props.onTimeChange({
-                        time: [time, this.props.time[1]],
-                      });
-                    } else {
-                      this.props.onTimeChange({time});
-                    }
-                  }
-                }}
+                onChange={onChange}
                 {...timeSelectProps}
               />
             </TimeSelectFormControl>
@@ -396,6 +432,7 @@ export default class Calendar extends React.Component<
     }
 
     const NOW = new Date();
+    NOW.setHours(12, 0, 0);
     const QUICK_SELECT_ACTIONS = [
       {id: 'Past Week', beginDate: subWeeks(NOW, 1)},
       {id: 'Past Month', beginDate: subMonths(NOW, 1)},
@@ -445,21 +482,31 @@ export default class Calendar extends React.Component<
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    const [startTime] = [].concat(this.props.time);
+    const [startDate, endDate] = [].concat(this.props.value);
+
+    if (this.props.timeSelectStart && this.props.timeSelectEnd) {
+      throw new Error('asdfasdfasdf');
+    }
 
     return (
       <Root
         data-baseweb="calendar"
-        $ref={root => {
-          this.root = root;
-        }}
+        $ref={root => (this.root = root)}
         role="application"
         aria-label="calendar"
         onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
         {...rootProps}
       >
         {this.renderMonths()}
-        {this.renderTimeSelect(startTime)}
+        {this.props.timeSelectStart &&
+          this.renderTimeSelect(startDate, time =>
+            this.handleTimeChange(time, 0),
+          )}
+        {this.props.timeSelectEnd &&
+          this.props.range &&
+          this.renderTimeSelect(endDate, time =>
+            this.handleTimeChange(time, 1),
+          )}
         {this.renderQuickSelect()}
       </Root>
     );
