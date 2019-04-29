@@ -4,6 +4,8 @@ import {Block} from 'baseui/block';
 
 export default () => (
   <React.Fragment>
+    <Button size={SIZE.large}>Large size</Button>
+    <Block marginBottom="scale300" />
     <Button size={SIZE.default}>Default size</Button>
     <Block marginBottom="scale300" />
     <Button size={SIZE.compact}>Compact size</Button>
