@@ -116,7 +116,7 @@ export class ToasterContainer extends React.Component<
   };
 
   renderToast = (toastProps: ToastPropsT & {key: React.Key}): React.Node => {
-    const {onClose, children, key, ...rest} = toastProps;
+    const {onClose, children, key, ...restProps} = toastProps;
 
     const {
       ToastBody: BodyOverride,
@@ -134,7 +134,7 @@ export class ToasterContainer extends React.Component<
 
     return (
       <Toast
-        {...rest}
+        {...restProps}
         overrides={toastOverrides}
         key={key}
         onClose={this.getOnCloseHandler(key, onClose)}

@@ -7,7 +7,7 @@ import {Button} from 'baseui/button';
 const layerRef = React.createRef();
 
 function BlockComponent(props) {
-  const {offset, color, children, ...rest} = props;
+  const {offset, color, children, ...restProps} = props;
   return (
     <Block
       position="absolute"
@@ -26,7 +26,7 @@ function BlockComponent(props) {
           },
         },
       }}
-      {...rest}
+      {...restProps}
     >
       {children}
     </Block>

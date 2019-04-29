@@ -51,7 +51,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
   };
 
   render() {
-    const {startEnhancer, endEnhancer, ...rest} = this.props;
+    const {startEnhancer, endEnhancer, ...restProps} = this.props;
 
     const {
       Root: RootOverride,
@@ -85,7 +85,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
           </StartEnhancer>
         )}
         <BaseInput
-          {...rest}
+          {...restProps}
           adjoined={getAdjoinedProp(startEnhancer, endEnhancer)}
           onFocus={this.onFocus}
           onBlur={this.onBlur}

@@ -49,10 +49,10 @@ class StatefulContainer extends React.Component<
   }
 
   render() {
-    const {children, initialState, stateReducer, ...rest} = this.props;
+    const {children, initialState, stateReducer, ...restProps} = this.props;
     // $FlowFixMe
     return this.props.children({
-      ...rest,
+      ...restProps,
       value: this.state.value,
       onChange: this.onChange,
     });

@@ -45,7 +45,7 @@ export default function Menu(props: StatelessMenuPropsT) {
           isHighlighted,
           ref,
           resetMenu = () => {},
-          ...rest
+          ...restProps
         } = getRequiredItemProps(item, index);
 
         return (
@@ -60,7 +60,7 @@ export default function Menu(props: StatelessMenuPropsT) {
             $isFocused={isFocused}
             $isHighlighted={isHighlighted}
             aria-selected={isHighlighted && isFocused}
-            {...rest}
+            {...restProps}
             {...optionProps}
           />
         );

@@ -46,10 +46,10 @@ class StatefulContainer extends React.Component<
   }
 
   render() {
-    const {children, initialState, stateReducer, ...rest} = this.props;
+    const {children, initialState, stateReducer, ...restProps} = this.props;
 
     return this.props.children({
-      ...rest,
+      ...restProps,
       ...this.state,
       onClick: this.onClick,
     });
