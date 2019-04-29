@@ -53,16 +53,16 @@ const customTheme = createTheme(
 );
 
 const renderItem = function(item, itemProps) {
-  const {onSelect, onClick, onKeyDown, ...rest} = itemProps;
+  const {onSelect, onClick, onKeyDown, ...restProps} = itemProps;
   const Heading = heading[item.heading];
   const renderedItem = (
     <StyledNavLink
       href={item.itemId}
       onClick={item.itemId ? onClick : null}
       onKeyDown={item.itemId ? onKeyDown : null}
-      {...rest}
+      {...restProps}
     >
-      <StyledNavItem {...rest}>
+      <StyledNavItem {...restProps}>
         {item.title}
         {item.itemId ? ` (${item.itemId})` : ''}
       </StyledNavItem>
