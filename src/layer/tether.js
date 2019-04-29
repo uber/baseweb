@@ -54,7 +54,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
 
   initializePopper() {
     const {placement, popperOptions} = this.props;
-    const {modifiers, ...rest} = popperOptions;
+    const {modifiers, ...restOptions} = popperOptions;
     this.popper = new Popper(this.props.anchorRef, this.props.popperRef, {
       // Recommended placement (popper may ignore if it causes a viewport overflow, etc)
       placement: toPopperPlacement(placement),
@@ -81,7 +81,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
         preventOverflow: {enabled: true},
         ...modifiers,
       },
-      ...rest,
+      ...restOptions,
     });
   }
 
