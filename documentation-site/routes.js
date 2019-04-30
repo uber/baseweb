@@ -91,24 +91,24 @@ const routes = [
             itemId: '/components/checkbox',
           },
           {
-            title: 'Input',
-            itemId: '/components/input',
+            title: 'FormControl',
+            itemId: '/components/form-control',
           },
           {
-            title: 'Slider',
-            itemId: '/components/slider',
+            title: 'Input',
+            itemId: '/components/input',
           },
           {
             title: 'Radio',
             itemId: '/components/radio',
           },
           {
-            title: 'Textarea',
-            itemId: '/components/textarea',
+            title: 'Slider',
+            itemId: '/components/slider',
           },
           {
-            title: 'FormControl',
-            itemId: '/components/form-control',
+            title: 'Textarea',
+            itemId: '/components/textarea',
           },
         ],
       },
@@ -161,6 +161,10 @@ const routes = [
             itemId: '/components/icon',
           },
           {
+            title: 'Table',
+            itemId: '/components/table',
+          },
+          {
             title: 'Tag',
             itemId: '/components/tag',
           },
@@ -168,15 +172,15 @@ const routes = [
             title: 'Typography',
             itemId: '/components/typography',
           },
-          {
-            title: 'Table',
-            itemId: '/components/table',
-          },
         ],
       },
       {
         title: 'Pickers',
         subnav: [
+          {
+            title: 'Datepicker',
+            itemId: '/components/datepicker',
+          },
           {
             title: 'File Uploader',
             itemId: '/components/file-uploader',
@@ -192,10 +196,6 @@ const routes = [
           {
             title: 'Select',
             itemId: '/components/select',
-          },
-          {
-            title: 'Datepicker',
-            itemId: '/components/datepicker',
           },
         ],
       },
