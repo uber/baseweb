@@ -298,21 +298,18 @@ export default class Calendar extends React.Component<
 
   handleTimeChange = (time: Date, index: number) => {
     const {onChange = params => {}} = this.props;
-
     if (Array.isArray(this.props.value)) {
-      console.log('is array');
+      const dates = this.props.value.map((date, i) => {
+        if (index === i) {
+          return applyTime(date, time);
+        }
+        return date;
+      });
+      onChange({date: dates});
     } else {
       const date = applyTime(this.props.value, time);
       onChange({date});
     }
-
-    // const [firstValue, ...restDates] = [].concat(this.props.value);
-    // const nextDate = applyTime(firstValue, time);
-    // if (this.props.range) {
-    //   onChange({date: [nextDate, ...restDates]});
-    // } else {
-    //   onChange({date: nextDate});
-    // }
   };
 
   setHighlightedDate(date: Date) {
@@ -483,10 +480,6 @@ export default class Calendar extends React.Component<
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [startDate, endDate] = [].concat(this.props.value);
-
-    if (this.props.timeSelectStart && this.props.timeSelectEnd) {
-      throw new Error('asdfasdfasdf');
-    }
 
     return (
       <Root

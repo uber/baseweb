@@ -146,17 +146,9 @@ export type CalendarPropsT = {
   onYearChange?: ({date: Date}) => mixed,
   /** Event handler that is called when a new date is selected. */
   onChange?: onChangeT,
-  /** Event handler that is called when time selection changes. */
-  onTimeChange?: ({time: Date | Array<Date>}) => mixed,
   overrides?: DatepickerOverridesT<{}>,
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth?: boolean,
-  /** Optional time value represented as a Date object. */
-  time?: Date | Array<Date>,
-  /** Passed to internal `TimePicker` component. Sets dropdown option formatting. */
-  timeFormat?: '12' | '24',
-  /** Passed to internal `TimePicker` component. Sets available options in dropdown menu. */
-  timeStep?: number,
   /** Determines if `TimePicker` component will be enabled for start time */
   timeSelectStart?: boolean,
   /** Determines if `TimePicker` component will be enabled for end time */
@@ -214,8 +206,6 @@ export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 export type ContainerStateT = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
   value?: ?Date | Array<Date>,
-  /** Selected `Time` */
-  time?: ?Date | Array<Date>,
 };
 
 export type NavigationContainerStateT = {
@@ -248,10 +238,10 @@ export type StatefulContainerPropsT<T> = {
   initialState: ContainerStateT,
   /** A state change handler. */
   stateReducer: StateReducerT,
-  /** Event handler that is called when a new date is selected. */
+  /** Event handler that is called when a date/time is selected. */
   onChange?: onChangeT,
-  /** Event handler that is called when a time is selected. */
-  onTimeChange?: ({time: Date | Array<Date>}) => mixed,
+  /** Should the date value be stored as an array or single value. */
+  range?: boolean,
 };
 
 export type NavigationContainerPropsT = {

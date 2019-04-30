@@ -107,6 +107,7 @@ class TimezonePicker extends React.Component<
           <OverridedSelect
             aria-label={locale.datepicker.timezonePickerAriaLabel}
             options={this.state.timezones}
+            clearable={false}
             onChange={params => {
               if (params.type === 'clear') {
                 this.setState({value: ''});

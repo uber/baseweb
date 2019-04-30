@@ -10,19 +10,16 @@ import React from 'react';
 
 import {Block} from '../../block/index.js';
 import {FormControl} from '../../form-control/index.js';
-import {StatefulDatepicker, TimePicker, TimezonePicker} from '../index.js';
+import {Datepicker, TimePicker, TimezonePicker} from '../index.js';
 
 export const name = 'datepickers-composed-single';
 
 const DATE = new Date(2019, 3, 1);
-const TIME = new Date(DATE);
-TIME.setHours(12, 0, 0);
 
 // eslint-disable-next-line flowtype/no-weak-types
 class Controlled extends React.Component<any, any> {
   state = {
     date: DATE,
-    time: TIME,
     zone: null,
   };
 
@@ -31,11 +28,10 @@ class Controlled extends React.Component<any, any> {
       <Block display="flex">
         <Block width="120px" marginRight="scale300">
           <FormControl label="Date" caption="YYYY/MM/DD">
-            <StatefulDatepicker
-              initialState={{value: this.state.date, time: this.state.time}}
+            <Datepicker
+              value={this.state.date}
               onChange={({date}) => this.setState({date})}
-              onTimeChange={({time}) => this.setState({time})}
-              timeSelect
+              timeSelectStart
             />
           </FormControl>
         </Block>
@@ -43,8 +39,8 @@ class Controlled extends React.Component<any, any> {
         <Block width="120px" marginRight="scale300">
           <FormControl label="Time" caption="HH:MM">
             <TimePicker
-              value={this.state.time}
-              onChange={time => this.setState({time})}
+              value={this.state.date}
+              onChange={date => this.setState({date})}
             />
           </FormControl>
         </Block>

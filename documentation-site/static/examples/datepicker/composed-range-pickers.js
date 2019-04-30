@@ -42,7 +42,7 @@ export default () => {
       </Block>
 
       <Block marginRight="scale300">
-        <ArrowRight />
+        <ArrowRight size={24} />
       </Block>
 
       <Block width="120px" marginRight="scale300">
