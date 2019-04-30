@@ -29,7 +29,7 @@ function getBorderRadii({$shape, $theme}: StylePropsT) {
   };
 }
 
-function getSize({$size, $theme}: StylePropsT) {
+function getFontStyles({$size, $theme}: StylePropsT) {
   switch ($size) {
     case SIZE.compact:
       return $theme.typography.font250;
@@ -52,7 +52,7 @@ export const BaseButton = styled(
     $disabled,
   }: StylePropsT) => ({
     position: 'relative',
-    ...getSize({$size, $theme}),
+    ...getFontStyles({$size, $theme}),
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -71,7 +71,7 @@ export const BaseButton = styled(
       color: $theme.colors.buttonDisabledText,
     },
     // Padding For Shape and Size
-    ...getStyleForShape({$theme, $shape, $size}),
+    ...getStyleForShapeAndSize({$theme, $shape, $size}),
     // Kind style override
     ...getStyleForKind({$theme, $kind, $isLoading, $isSelected, $disabled}),
     marginLeft: 0,
@@ -151,41 +151,57 @@ export function getLoadingSpinnerColors({
   };
 }
 
-export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
+export function getStyleForShapeAndSize({$theme, $shape, $size}: StylePropsT) {
   switch ($shape) {
     case SHAPE.round:
     case SHAPE.square:
-      return {
-        paddingTop:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingBottom:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingLeft:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingRight:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-      };
+      switch ($size) {
+        case SIZE.compact:
+          return {
+            paddingTop: $theme.sizing.scale300,
+            paddingBottom: $theme.sizing.scale300,
+            paddingLeft: $theme.sizing.scale300,
+            paddingRight: $theme.sizing.scale300,
+          };
+        case SIZE.large:
+          return {
+            paddingTop: $theme.sizing.scale600,
+            paddingBottom: $theme.sizing.scale600,
+            paddingLeft: $theme.sizing.scale600,
+            paddingRight: $theme.sizing.scale600,
+          };
+        default:
+          return {
+            paddingTop: $theme.sizing.scale400,
+            paddingBottom: $theme.sizing.scale400,
+            paddingLeft: $theme.sizing.scale400,
+            paddingRight: $theme.sizing.scale400,
+          };
+      }
     default:
-      return {
-        paddingTop:
-          $size === SIZE.compact
-            ? $theme.sizing.scale200
-            : $theme.sizing.scale300,
-        paddingBottom:
-          $size === SIZE.compact
-            ? $theme.sizing.scale200
-            : $theme.sizing.scale300,
-        paddingLeft: $theme.sizing.scale600,
-        paddingRight: $theme.sizing.scale600,
-      };
+      switch ($size) {
+        case SIZE.compact:
+          return {
+            paddingTop: $theme.sizing.scale200,
+            paddingBottom: $theme.sizing.scale200,
+            paddingLeft: $theme.sizing.scale300,
+            paddingRight: $theme.sizing.scale300,
+          };
+        case SIZE.large:
+          return {
+            paddingTop: $theme.sizing.scale600,
+            paddingBottom: $theme.sizing.scale600,
+            paddingLeft: $theme.sizing.scale900,
+            paddingRight: $theme.sizing.scale900,
+          };
+        default:
+          return {
+            paddingTop: $theme.sizing.scale400,
+            paddingBottom: $theme.sizing.scale400,
+            paddingLeft: $theme.sizing.scale600,
+            paddingRight: $theme.sizing.scale600,
+          };
+      }
   }
 }
 
