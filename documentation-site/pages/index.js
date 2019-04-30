@@ -37,8 +37,11 @@ const cardOverrides = {
   },
 };
 
-const Index = (props: {contributors: Contributor[]}) => (
-  <Layout>
+const Index = (props: {
+  toggleTheme: () => void,
+  contributors: Contributor[],
+}) => (
+  <Layout toggleTheme={props.toggleTheme}>
     <H1>Base Web React Components</H1>
     <Markdown.p>
       Base Web is a foundation, a basis for initiating, evolving, and unifying

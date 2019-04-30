@@ -21,6 +21,7 @@ export const DarkThemeMove = createTheme(
     primaryFontFamily,
   },
   {
+    name: 'dark-theme-with-move',
     ...colors,
     typography: {
       font250: {
