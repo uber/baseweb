@@ -18,6 +18,7 @@ type PropsT = {
   $full?: boolean,
   children: React.Node,
   path?: {},
+  toggleTheme: () => void,
 };
 
 const SidebarWrapper = styled('div', ({$theme, $isOpen}) => ({
@@ -53,13 +54,14 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   }
   render() {
     const {sidebarOpen} = this.state;
-    const {$full, path, children} = this.props;
+    const {$full, path, toggleTheme, children} = this.props;
     return (
       <React.Fragment>
         <HeaderNavigation
           toggleSidebar={() =>
             this.setState(prevState => ({sidebarOpen: !prevState.sidebarOpen}))
           }
+          toggleTheme={toggleTheme}
         />
         <Block
           overrides={{
