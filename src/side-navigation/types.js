@@ -40,7 +40,7 @@ type renderItemT = (
   },
 ) => React.Node;
 
-type transformItemT = (item: $ReadOnly<Item>) => Item;
+type mapItemT = (item: Item) => Item;
 
 export type NavPropsT = {
   /** Defines the current active itemId. Used for the default calculation of the $active prop */
@@ -65,10 +65,10 @@ export type NavPropsT = {
   /** Optional render function that is called instead default item rendering */
   renderItem: ?renderItemT,
   /** Optional transform function that is called for each Item */
-  transformItem: ?transformItemT,
+  mapItem: ?mapItemT,
 };
 
-export type Item = {
+export type Item = $ReadOnly<{
   /** Navigation item's title to render */
   title: React.Node,
   /**
@@ -80,7 +80,7 @@ export type Item = {
   itemId?: string,
   /** A list of sub-navigation items */
   subnav?: Item[],
-};
+}>;
 
 export type NavItemPropsT = SharedPropsT & {
   item: Item,

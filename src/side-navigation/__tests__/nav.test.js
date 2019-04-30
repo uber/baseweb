@@ -41,23 +41,21 @@ describe('Side navigation', () => {
     expect(wrapper.find(StyledNavItemContainer)).toHaveLength(5);
   });
 
-  it('renders titles correctly modified by transformItem', () => {
-    const transformItem = item => ({
+  it('renders titles correctly modified by mapItem', () => {
+    const mapItem = item => ({
       ...item,
       title: <span>New {item.title}</span>,
     });
-    const wrapper = mount(
-      <Navigation items={nav} transformItem={transformItem} />,
-    );
+    const wrapper = mount(<Navigation items={nav} mapItem={mapItem} />);
     expect(
       wrapper.find(NavItem).map(item => item.instance().props.item.title),
     ).toMatchSnapshot();
   });
 
-  it('calls transformItem exactly once for each item', () => {
-    const transformItem = jest.fn();
-    transformItem.mockImplementation(item => item);
-    mount(<Navigation items={nav} transformItem={transformItem} />);
-    expect(transformItem).toHaveBeenCalledTimes(5);
+  it('calls mapItem exactly once for each item', () => {
+    const mapItem = jest.fn();
+    mapItem.mockImplementation(item => item);
+    mount(<Navigation items={nav} mapItem={mapItem} />);
+    expect(mapItem).toHaveBeenCalledTimes(5);
   });
 });

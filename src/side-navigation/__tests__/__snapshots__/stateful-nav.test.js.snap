@@ -31,10 +31,10 @@ exports[`Navigation basic render: renders <Navigation/> as a child 1`] = `
       },
     ]
   }
+  mapItem={null}
   onChange={[Function]}
   overrides={Object {}}
   renderItem={null}
-  transformItem={null}
 />
 `;
 

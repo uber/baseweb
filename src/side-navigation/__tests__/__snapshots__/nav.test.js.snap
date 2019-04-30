@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Side navigation renders titles correctly modified by transformItem 1`] = `
+exports[`Side navigation renders titles correctly modified by mapItem 1`] = `
 Array [
   <span>
     New 
