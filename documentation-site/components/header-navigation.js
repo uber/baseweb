@@ -85,7 +85,6 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   overrides={{Block: {style: {cursor: 'pointer'}}}}
                 />
               </Link>
-
               <Block
                 marginLeft="scale200"
                 overrides={{
