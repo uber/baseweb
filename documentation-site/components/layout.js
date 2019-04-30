@@ -18,6 +18,7 @@ type PropsT = {
   $full?: boolean,
   children: React.Node,
   path?: {},
+  toggleTheme: () => void,
 };
 
 const SidebarWrapper = styled('div', ({$theme, $isOpen}) => ({

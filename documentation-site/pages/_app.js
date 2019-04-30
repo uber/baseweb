@@ -126,7 +126,7 @@ export default class MyApp extends App {
     const theme = localStorage.getItem('docs-theme');
 
     if (!theme) {
-      return;
+      localStorage.setItem('docs-theme', 'dark');
     }
 
     if (theme === 'dark') {
