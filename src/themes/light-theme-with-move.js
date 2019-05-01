@@ -20,6 +20,7 @@ export const LightThemeMove = createTheme(
     primaryFontFamily,
   },
   {
+    name: 'light-theme-with-move',
     typography: {
       font250: {
         fontWeight: 500,

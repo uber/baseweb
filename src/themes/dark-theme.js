@@ -14,6 +14,7 @@ export const DarkTheme = createTheme(
     ...primitives,
   },
   {
+    name: 'dark-theme',
     ...colors,
   },
 );

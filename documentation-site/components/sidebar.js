@@ -19,10 +19,20 @@ import Link from 'next/link';
 
 import Routes from '../routes';
 
-const StyledNavItem = styled(NavItem, ({$theme}) => ({
-  paddingTop: $theme.sizing.scale200,
-  paddingBottom: $theme.sizing.scale200,
-}));
+const StyledNavItem = styled(NavItem, ({$theme, $active}) => {
+  const styleOverride = {};
+
+  if ($theme.name.startsWith('dark')) {
+    if ($active) {
+      styleOverride.background = $theme.colors.backgroundAlt;
+    }
+  }
+  return {
+    paddingTop: $theme.sizing.scale200,
+    paddingBottom: $theme.sizing.scale200,
+    ...styleOverride,
+  };
+});
 
 const removeSlash = path => {
   if (path) {

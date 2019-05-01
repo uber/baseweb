@@ -483,6 +483,7 @@ export type ZIndexT = {
 };
 
 export type ThemeT = {|
+  name: string,
   breakpoints: BreakpointsT,
   colors: ColorsT,
   typography: TypographyT,
