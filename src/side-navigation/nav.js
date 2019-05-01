@@ -54,14 +54,14 @@ export default class SideNav extends React.Component<NavPropsT> {
 
     const renderNavItem = (item: Item, level: number, index, mapItem) => {
       if (typeof mapItem === 'function') {
-        const recTransformItem = item => {
+        const recMapItem = item => {
           let subnav = [];
           if (item.subnav) {
-            subnav = item.subnav.map(recTransformItem);
+            subnav = item.subnav.map(recMapItem);
           }
           return mapItem({...item, subnav: subnav});
         };
-        item = recTransformItem(item);
+        item = recMapItem(item);
       }
 
       const sharedProps = {
