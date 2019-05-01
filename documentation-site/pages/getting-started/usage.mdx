@@ -32,7 +32,7 @@ const Centered = styled('div', {
 export default function Hello() {
   return (
     <StyletronProvider value={engine}>
-      <BaseProvider themeProvider={{theme: LightTheme}}>
+      <BaseProvider theme={LightTheme}>
         <Centered>
           <StatefulInput />
         </Centered>

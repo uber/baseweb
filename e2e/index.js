@@ -21,7 +21,7 @@ window.E2E_TEST = true;
 const engine = new Styletron();
 const app = (
   <StyletronProvider value={engine}>
-    <BaseProvider themeProvider={{theme: LightTheme}}>{tests()}</BaseProvider>
+    <BaseProvider theme={LightTheme}>{tests()}</BaseProvider>
   </StyletronProvider>
 );
 

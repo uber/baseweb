@@ -48,7 +48,7 @@ import {Provider as StyletronProvider} from 'styletron-react';
 export default function App() {
   return (
     <StyletronProvider value={engine}>
-      <BaseProvider themeProvider={{theme: LightTheme}}>
+      <BaseProvider theme={LightTheme}>
         <YourApp />
       </BaseProvider>
     </StyletronProvider>

@@ -10,14 +10,11 @@ import {LayersManager} from '../layer/index.js';
 import {ThemeProvider} from '../styles/index.js';
 import type {ThemeT} from '../styles/types.js';
 
-const BaseProvider = (props: {
-  children: ?React.Node,
-  themeProvider?: {theme?: ThemeT},
-}) => {
-  const {children, themeProvider} = props;
+const BaseProvider = (props: {children: ?React.Node, theme: ThemeT}) => {
+  const {children, theme} = props;
   return (
     <LayersManager>
-      <ThemeProvider {...themeProvider}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </LayersManager>
   );
 };

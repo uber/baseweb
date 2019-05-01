@@ -185,7 +185,7 @@ export default class MyApp extends App {
     return (
       <Container>
         <StyletronProvider value={styletron}>
-          <BaseProvider themeProvider={{theme: this.state.theme}}>
+          <BaseProvider theme={this.state.theme}>
             <Block overrides={BlockOverrides}>
               <Component
                 {...pageProps}

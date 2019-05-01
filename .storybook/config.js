@@ -13,10 +13,7 @@ addDecorator((story, context) => {
   return (
     <StyletronProvider value={engine}>
       <BaseProvider
-        themeProvider={{
-          theme:
-            context.kind === 'baseui-dark' ? DarkThemeMove : LightThemeMove,
-        }}
+        theme={context.kind === 'baseui-dark' ? DarkThemeMove : LightThemeMove}
       >
         {story()}
       </BaseProvider>
