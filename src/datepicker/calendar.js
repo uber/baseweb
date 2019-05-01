@@ -425,7 +425,7 @@ export default class Calendar extends React.Component<
       Select,
     );
 
-    if (!this.props.range || !this.props.quickSelect) {
+    if (!this.props.quickSelect) {
       return null;
     }
 
@@ -457,10 +457,15 @@ export default class Calendar extends React.Component<
                     this.props.onChange && this.props.onChange({date: []});
                   } else {
                     this.setState({quickSelectId: params.option.id});
-                    this.props.onChange &&
-                      this.props.onChange({
-                        date: [params.option.beginDate, NOW],
-                      });
+                    if (this.props.onChange) {
+                      if (this.props.range) {
+                        this.props.onChange({
+                          date: [params.option.beginDate, NOW],
+                        });
+                      } else {
+                        this.props.onChange({date: params.option.beginDate});
+                      }
+                    }
                   }
                 }}
                 options={this.props.quickSelectOptions || QUICK_SELECT_ACTIONS}
