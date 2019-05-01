@@ -14,8 +14,6 @@ import type {ThemeT} from '../styles/types.js';
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 
 export type RadioOverridesT = {
-  // This override will be deprecated in the next major version. Use 'RadioMarkInner' or 'RadioMarkOuter' instead.
-  RadioMark?: OverrideT<*>,
   RadioMarkInner?: OverrideT<*>,
   RadioMarkOuter?: OverrideT<*>,
   Label?: OverrideT<*>,
