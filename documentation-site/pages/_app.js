@@ -34,6 +34,9 @@ const themes = {
   DarkThemeMove,
 };
 
+const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
+const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
+
 const BlockOverrides = {
   Block: {
     style: ({$theme}) => ({
@@ -50,6 +53,7 @@ export default class MyApp extends App {
     this.state = {
       theme: LightTheme,
     };
+    this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
 
   static async getInitialProps({Component, ctx}) {
@@ -64,7 +68,36 @@ export default class MyApp extends App {
     Router.onRouteChangeComplete = url => {
       trackPageView(url);
     };
+    if (window.matchMedia) {
+      const mmDark = window.matchMedia(DARK_MEDIA_QUERY);
+      const mmLight = window.matchMedia(LIGHT_MEDIA_QUERY);
+      const theme = mmDark.matches ? 'dark' : 'light';
+      localStorage.setItem('docs-theme', theme);
+      mmDark.addListener(this.mediaQueryListener);
+      mmLight.addListener(this.mediaQueryListener);
+    }
     this.setTheme();
+  }
+
+  componentWillUnmount() {
+    if (window.matchMedia) {
+      const mmDark = window.matchMedia(DARK_MEDIA_QUERY);
+      const mmLight = window.matchMedia(LIGHT_MEDIA_QUERY);
+      mmDark.removeListener(this.mediaQueryListener);
+      mmLight.removeListener(this.mediaQueryListener);
+    }
+  }
+
+  mediaQueryListener(e) {
+    if (e && e.matches) {
+      if (e.media === DARK_MEDIA_QUERY) {
+        this.setThemeStyle('dark');
+      }
+      if (e.media === LIGHT_MEDIA_QUERY) {
+        this.setThemeStyle('light');
+      }
+      this.setTheme();
+    }
   }
 
   setTheme() {
@@ -122,17 +155,25 @@ export default class MyApp extends App {
     });
   }
 
+  getThemeStyle() {
+    return localStorage.getItem('docs-theme');
+  }
+
+  setThemeStyle(theme) {
+    localStorage.setItem('docs-theme', theme);
+  }
+
   toggleTheme() {
-    const theme = localStorage.getItem('docs-theme');
+    const theme = this.getThemeStyle();
 
     if (!theme) {
-      localStorage.setItem('docs-theme', 'dark');
+      this.setThemeStyle('dark');
     }
 
     if (theme === 'dark') {
-      localStorage.setItem('docs-theme', 'light');
+      this.setThemeStyle('light');
     } else {
-      localStorage.setItem('docs-theme', 'dark');
+      this.setThemeStyle('dark');
     }
 
     this.setTheme();
