@@ -48,15 +48,11 @@ export type PropsT = {
    * visible on screen. If the label is visible, use the 'aria-labeledby' prop instead.
    */
   'aria-label'?: string,
-  // This prop will be deprecated in the next major update. Use 'aria-label' instead.
-  ariaLabel?: string,
   /**
    * Establishes a relationship between the radio group and its label. Screen readers use this
    * attribute to catalog the object on a page so that users can navigate between them.
    */
   'aria-labelledby'?: string,
-  // This prop will be deprecated in the next major update. Use 'aria-labelledby' instead.
-  ariaLabelledBy?: string,
   // This prop will be deprecated in the next major update. Pass overrides to the 'Radio' component instead.
   overrides?: OverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */

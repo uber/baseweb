@@ -38,13 +38,6 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     );
 
     if (__DEV__) {
-      if (this.props.ariaLabel || this.props.ariaLabelledBy) {
-        // eslint-disable-next-line no-console
-        console.error(`The props ariaLabel and ariaLabelledBy will be deprecated in the next major
-          version update. Please use aria-label and aria-labelledby instead.
-        `);
-      }
-
       const overrideKeys = Object.keys(overrides);
       if (overrideKeys.length && !overrideKeys.includes('RadioGroupRoot')) {
         // eslint-disable-next-line no-console
@@ -57,10 +50,8 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     return (
       <RadioGroupRoot
         role="radiogroup"
-        aria-label={this.props.ariaLabel || this.props['aria-label']}
-        aria-labelledby={
-          this.props.ariaLabelledBy || this.props['aria-labelledby']
-        }
+        aria-label={this.props['aria-label']}
+        aria-labelledby={this.props['aria-labelledby']}
         $align={this.props.align}
         $disabled={this.props.disabled}
         $isError={this.props.isError}
