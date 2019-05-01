@@ -154,8 +154,8 @@
     "timezone-support": "^1.8.1"
   },
   "peerDependencies": {
-    "react": ">= 16.4.0 < 17",
-    "react-dom": ">= 16.4.0 < 17",
+    "react": ">= 16.8.0 < 17",
+    "react-dom": ">= 16.8.0 < 17",
     "styletron-react": "^4.4.6"
   },
   "engines": {
