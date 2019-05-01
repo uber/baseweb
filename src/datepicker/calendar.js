@@ -374,6 +374,7 @@ export default class Calendar extends React.Component<
     return monthList;
   };
 
+  // eslint-disable-next-line flowtype/no-weak-types
   renderTimeSelect = (value: ?Date, onChange: Function) => {
     const {overrides = {}} = this.props;
     const [TimeSelectContainer, timeSelectContainerProps] = getOverrides(

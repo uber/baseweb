@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {ArrowLeft, ArrowRight} from '../icon/index.js';
-import {Select} from '../select/index.js';
+import {ArrowLeft, ArrowRight, TriangleDown} from '../icon/index.js';
+import {StatefulMenu} from '../menu/index.js';
+import {StatefulPopover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
 import {
   StyledCalendarHeader,
@@ -15,6 +16,8 @@ import {
   StyledNextButton,
   StyledMonthHeader,
   StyledDay,
+  StyledMonthYearSelectButton,
+  StyledMonthYearSelectIconContainer,
 } from './styled-components.js';
 import {
   addDays,
@@ -35,14 +38,13 @@ import {
 import {WEEKDAYS} from './constants.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
-import type {SharedStylePropsT} from '../select/types.js';
 import type {LocaleT} from '../locale/types.js';
 
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
 });
 
-const MIN_YEAR = 1980;
+const MIN_YEAR = 2000;
 const MAX_YEAR = 2030;
 
 function yearMonthToId(year, month) {
@@ -197,112 +199,79 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     );
   };
 
-  getSelectOverrides({width}: {width: string}) {
-    return {
-      ControlContainer: {
-        style: (props: SharedStylePropsT) => {
-          const {
-            $isFocused,
-            $isPseudoFocused,
-            $theme: {colors},
-          } = props;
-          return {
-            width,
-            backgroundColor:
-              $isFocused || $isPseudoFocused
-                ? colors.primary500
-                : colors.primary,
-            color: colors.white,
-            borderColor: 'transparent',
-          };
-        },
-      },
-      IconsContainer: {
-        style: {
-          paddingRight: '0',
-        },
-      },
-      SelectArrow: {
-        style: ({$theme: {colors}}: SharedStylePropsT) => ({
-          color: 'inherit',
-        }),
-      },
-      ValueContainer: {
-        style: ({$theme: {sizing}}: SharedStylePropsT) => ({
-          paddingTop: '0',
-          paddingBottom: '0',
-          paddingLeft: sizing.scale200,
-          paddingRight: '0',
-        }),
-      },
-      SingleValue: {
-        style: ({$theme: {sizing}}: SharedStylePropsT) => ({
-          paddingTop: '0',
-          paddingBottom: '0',
-          paddingLeft: sizing.scale200,
-          paddingRight: '0',
-        }),
-      },
-      DropdownContainer: {
-        style: {
-          paddingTop: '0',
-          paddingBottom: '0',
-          paddingLeft: '0',
-          paddingRight: '0',
-        },
-      },
-    };
-  }
-
   renderMonthYearDropdown = () => {
     const {date, locale, maxDate, minDate, overrides = {}} = this.props;
 
-    const [MonthYearSelect, monthYearSelectProps] = getOverrides(
-      overrides.MonthYearSelect,
-      Select,
+    const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
+      overrides.MonthYearSelectButton,
+      StyledMonthYearSelectButton,
     );
-    const selectOverrides = mergeOverrides(
-      this.getSelectOverrides({width: '160px'}),
+    const [
+      MonthYearSelectIconContainer,
+      monthYearSelectIconContainerProps,
+    ] = getOverrides(
+      overrides.MonthYearSelectIconContainer,
+      StyledMonthYearSelectIconContainer,
+    );
+    const [OverriddenStatefulPopover, popoverProps] = getOverrides(
+      overrides.MonthYearSelectStatefulPopover,
+      StatefulPopover,
+    );
+    const [OverriddenStatefulMenu, menuProps] = getOverrides(
+      overrides.MonthYearSelectStatefulMenu,
+      StatefulMenu,
+    );
+    const menuOverrides = mergeOverrides(
+      {List: {style: {height: '257px'}}},
       // $FlowFixMe
-      monthYearSelectProps && monthYearSelectProps.overrides,
+      menuProps && menuProps.overrides,
     );
+    // $FlowFixMe
+    menuProps.overrides = menuOverrides;
 
     const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     const maxYear = maxDate ? getYear(maxDate) : MAX_YEAR;
     const minYear = minDate ? getYear(minDate) : MIN_YEAR;
-    const options = [];
+    const items = [];
     for (let i = minYear; i <= maxYear; i++) {
       MONTHS.forEach(month => {
-        options.push({
+        items.push({
           id: yearMonthToId(i, month),
           label: `${getMonthInLocale(month, locale)} ${i}`,
         });
       });
     }
 
+    const initialIndex = items.findIndex(item => {
+      return item.id === yearMonthToId(getYear(date), getMonth(date));
+    });
+
     return (
-      <MonthYearSelect
-        clearable={false}
-        maxDropdownHeight="300px"
-        options={options}
-        searchable={false}
-        value={[{id: yearMonthToId(getYear(date), getMonth(date))}]}
-        {...monthYearSelectProps}
-        // Adding event handlers after customers overrides in order to
-        // make sure the components functions as expected
-        // We can extract the handlers from props overrides
-        // and call it along with internal handlers by creating an inline handle
-        onChange={params => {
-          if (params.value && params.value[0].id) {
-            const [year, month] = idToYearMonth(String(params.value[0].id));
-            date.setFullYear(year, month);
-            this.props.onMonthChange && this.props.onMonthChange({date});
-            this.props.onYearChange && this.props.onYearChange({date});
-          }
-        }}
-        // internal and incoming overrides are merged above
-        overrides={selectOverrides}
-      />
+      <OverriddenStatefulPopover
+        placement="bottom"
+        content={({close}) => (
+          <OverriddenStatefulMenu
+            initialState={{highlightedIndex: initialIndex, isFocused: true}}
+            items={items}
+            onItemSelect={({item}) => {
+              const [year, month] = idToYearMonth(item.id);
+              date.setFullYear(year, month);
+              this.props.onMonthChange && this.props.onMonthChange({date});
+              this.props.onYearChange && this.props.onYearChange({date});
+              close();
+            }}
+            {...menuProps}
+          />
+        )}
+        {...popoverProps}
+      >
+        <MonthYearSelectButton {...monthYearSelectButtonProps}>
+          {`${getMonthInLocale(getMonth(date), locale)} ${getYear(date)}`}
+          <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
+            <TriangleDown />
+          </MonthYearSelectIconContainer>
+        </MonthYearSelectButton>
+      </OverriddenStatefulPopover>
     );
   };
 

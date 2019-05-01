@@ -82,6 +82,27 @@ export const StyledMonthHeader = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
+export const StyledMonthYearSelectButton = styled('button', props => {
+  return {
+    ...props.$theme.typography.font400,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+    color: props.$theme.colors.mono100,
+    cursor: 'pointer',
+    display: 'flex',
+    ':focus': {backgroundColor: props.$theme.colors.primary500},
+  };
+});
+
+export const StyledMonthYearSelectIconContainer = styled('span', props => {
+  return {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: props.$theme.sizing.scale500,
+  };
+});
+
 function getArrowBtnStyle({$theme, $disabled}: SharedStylePropsT) {
   return {
     boxSizing: 'border-box',
