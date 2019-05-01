@@ -17,7 +17,6 @@ export const component = () => (
     overrides={{
       NextButton: {props: {'data-test': 'next-button'}},
       PrevButton: {props: {'data-test': 'prev-button'}},
-      DropdownButton: {props: {'data-test': 'dropdown-button'}},
     }}
     numPages={10}
   />

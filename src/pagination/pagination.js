@@ -5,66 +5,46 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* global document */
 import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
 import {LocaleContext} from '../locale/index.js';
+import {Select as BaseSelect} from '../select/index.js';
 import {Button, StyledBaseButton, KIND} from '../button/index.js';
-import {StatefulMenu as Menu} from '../menu/index.js';
 import {
-  Root as StyledRoot,
-  MaxLabel as StyledMaxLabel,
-  DropdownContainer as StyledDropdownContainer,
-  DropdownMenu as StyledDropdownMenu,
-  DropdownButton as StyledDropdownButton,
+  StyledRoot,
+  StyledMaxLabel,
+  StyledDropdownContainer,
 } from './styled-components.js';
-import TriangleDown from '../icon/triangle-down.js';
 import ChevronLeft from '../icon/chevron-left.js';
 import ChevronRight from '../icon/chevron-right.js';
 import {getOverrides} from '../helpers/overrides.js';
-import type {PaginationPropsT, PaginationStateT} from './types.js';
-import type {OnItemSelectFnT} from '../menu/types.js';
+import type {PaginationPropsT} from './types.js';
 
-type MenuItemT = {
+type PageOptionT = {
   label: number,
 };
 
-export default class Pagination extends React.PureComponent<
-  PaginationPropsT,
-  PaginationStateT,
-> {
+export default class Pagination extends React.PureComponent<PaginationPropsT> {
   static defaultProps = {
     labels: {},
     overrides: {},
   };
 
-  state = {isMenuOpen: false};
-
-  dropdownContainerRef = (React.createRef(): {current: ?HTMLDivElement});
-
-  onPageClick = (event: MouseEvent) => {
-    const el: ?HTMLDivElement = this.dropdownContainerRef.current;
-    /* eslint-disable-next-line flowtype/no-weak-types */
-    if (el && !el.contains((event.target: any))) {
-      this.setState({isMenuOpen: false});
-    }
-  };
-
   getMenuOptions = memoize((numPages: number) => {
     const menuOptions = [];
     for (let i = 1; i <= numPages; i++) {
-      menuOptions.push(({label: i}: MenuItemT));
+      menuOptions.push({label: i});
     }
     return menuOptions;
   });
 
-  onMenuItemSelect: OnItemSelectFnT = ({item}) => {
+  onMenuItemSelect = (data: {value: $ReadOnlyArray<PageOptionT>}) => {
+    const item = data.value[0];
     const {onPageChange, currentPage} = this.props;
     const page = item.label;
     if (page !== currentPage) {
       onPageChange && onPageChange({nextPage: page, prevPage: currentPage});
-      this.onDropdownButtonClick();
     }
   };
 
@@ -82,24 +62,8 @@ export default class Pagination extends React.PureComponent<
     onNextClick && onNextClick({event});
   };
 
-  onDropdownButtonClick = () => {
-    const isMenuOpen = !this.state.isMenuOpen;
-    // no __BROWSER__ check because click only happens client-side
-    if (isMenuOpen) {
-      document.addEventListener('click', this.onPageClick, {
-        capture: true,
-      });
-    } else {
-      document.removeEventListener('click', this.onPageClick, {
-        capture: true,
-      });
-    }
-    this.setState({isMenuOpen});
-  };
-
   render() {
     const {overrides = {}, currentPage, labels, numPages} = this.props;
-    const {isMenuOpen} = this.state;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [PrevButton, prevButtonProps] = getOverrides(
@@ -118,14 +82,7 @@ export default class Pagination extends React.PureComponent<
       overrides.DropdownContainer,
       StyledDropdownContainer,
     );
-    const [DropdownButton, dropdownButtonProps] = getOverrides(
-      overrides.DropdownButton,
-      StyledDropdownButton,
-    );
-    const [DropdownMenu, dropdownMenuProps] = getOverrides(
-      overrides.DropdownMenu,
-      Menu,
-    );
+    const [Select, selectProps] = getOverrides(overrides.Select, BaseSelect);
 
     const options = this.getMenuOptions(numPages);
 
@@ -146,53 +103,64 @@ export default class Pagination extends React.PureComponent<
                 ? labels.prevButton
                 : locale.pagination.prev}
             </Button>
-            <DropdownContainer
-              $ref={this.dropdownContainerRef}
-              {...dropdownContainerProps}
-            >
-              <Button
-                onClick={this.onDropdownButtonClick}
-                endEnhancer={() => (
-                  <TriangleDown
-                    title={''}
-                    overrides={{
-                      Svg: {
-                        style: ({$theme}) => ({
-                          color: $theme.colors.paginationTriangleDown,
-                        }),
-                      },
-                    }}
-                    size={24}
-                  />
-                )}
-                kind={KIND.tertiary}
-                overrides={{
-                  BaseButton: DropdownButton,
-                }}
-                {...dropdownButtonProps}
-              >
-                {currentPage}
-              </Button>
-              {isMenuOpen && (
+            <DropdownContainer {...dropdownContainerProps}>
+              <Select
+                options={options}
+                labelKey="label"
+                valueKey="label"
                 // $FlowFixMe
-                <DropdownMenu
-                  items={options}
-                  onItemSelect={this.onMenuItemSelect}
-                  initialState={{
-                    highlightedIndex: Math.max(currentPage - 1, 0),
-                  }}
-                  overrides={{
-                    List: {
-                      component: StyledDropdownMenu,
-                      // Access $style manually because it has gone through transformation
-                      // from the override helper function already
-                      // $FlowFixMe
-                      style: dropdownMenuProps.$style,
-                    },
-                  }}
-                  {...dropdownMenuProps}
-                />
-              )}
+                onChange={this.onMenuItemSelect}
+                searchable={false}
+                clearable={false}
+                value={[{label: currentPage}]}
+                overrides={{
+                  ControlContainer: {
+                    style: ({
+                      $theme,
+                      $disabled,
+                      $isFocused,
+                      $isPseudoFocused,
+                      $error,
+                    }) => ({
+                      borderWidth: '0',
+                      boxShadow: 'none',
+                      backgroundColor: $disabled
+                        ? $theme.colors.buttonDisabledFill
+                        : $isFocused || $isPseudoFocused
+                          ? $theme.colors.buttonTertiaryHover
+                          : $error
+                            ? $theme.colors.negative50
+                            : $theme.colors.buttonTertiaryFill,
+                    }),
+                  },
+                  ValueContainer: {
+                    style: ({$theme}) => ({
+                      paddingTop: $theme.sizing.scale300,
+                      paddingBottom: $theme.sizing.scale300,
+                      flexBasis: 'auto',
+                    }),
+                  },
+                  SingleValue: {
+                    style: ({$theme}) => ({
+                      position: 'relative',
+                      paddingTop: '0',
+                      paddingBottom: '0',
+                      paddingLeft: $theme.sizing.scale200,
+                      paddingRight: $theme.sizing.scale500,
+                      color: $theme.colors.buttonTertiaryText,
+                      ...$theme.typography.font450,
+                    }),
+                  },
+                  SelectArrow: {
+                    style: ({$theme}) => ({
+                      width: '24px',
+                      height: '24px',
+                      color: $theme.colors.buttonTertiaryText,
+                    }),
+                  },
+                }}
+                {...selectProps}
+              />
             </DropdownContainer>
             <MaxLabel {...maxLabelProps}>
               {`${
