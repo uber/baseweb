@@ -14,7 +14,6 @@ export const StyledRoot = styled('ul', props => {
   return {
     ...typography.font400,
     color: colors.foreground,
-    backgrounColor: 'blue',
     listStyleType: 'none',
     marginTop: '0',
     marginBottom: '0',

@@ -19,7 +19,7 @@ import {
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
 } from 'baseui/header-navigation';
-import * as HeadernavigationExports from 'baseui/header-navigation';
+import * as HeaderNavigationExports from 'baseui/header-navigation';
 
 export default Layout;
 
@@ -43,7 +43,7 @@ export default Layout;
 
 <Overrides
   name="Header Navigation"
-  component={HeadernavigationExports}
+  component={HeaderNavigationExports}
   blacklisted={['NavigationItem', 'NavigationList']}
   renderExample={props => (
     <HeaderNavigation overrides={props.overrides}>

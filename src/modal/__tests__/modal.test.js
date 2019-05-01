@@ -23,6 +23,14 @@ import {
 
 jest.useFakeTimers();
 
+jest.mock('../../layer/index.js', () => {
+  return {
+    Layer: jest.fn().mockImplementation(props => {
+      return props.children;
+    }),
+  };
+});
+
 // Mock React 16 portals in a way that makes them easy to test
 const originalCreatePortal = ReactDOM.createPortal;
 

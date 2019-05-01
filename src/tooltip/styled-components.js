@@ -27,10 +27,10 @@ import {getEndPosition} from '../popover/utils.js';
 export const Body = styled('div', props => ({
   ...getBodyStyles(props),
   // Tooltip
-  backgroundColor: props.$theme.tooltip.backgroundColor,
+  backgroundColor: props.$theme.colors.tooltipBackground,
   borderRadius: props.$theme.borders.radius200,
   boxShadow: props.$theme.lighting.shadow400,
-  color: props.$theme.colors.mono100,
+  color: props.$theme.colors.tooltipText,
   // Reset transition property to opacity only, and static transform
   transitionProperty: 'opacity',
   transform: getEndPosition(props.$popoverOffset),
@@ -38,7 +38,7 @@ export const Body = styled('div', props => ({
 
 export const Inner = styled('div', props => ({
   ...getInnerStyles(props),
-  backgroundColor: props.$theme.tooltip.backgroundColor,
+  backgroundColor: props.$theme.colors.tooltipBackground,
   borderTopRightRadius: props.$theme.borders.radius200,
   borderBottomRightRadius: props.$theme.borders.radius200,
   borderTopLeftRadius: props.$theme.borders.radius200,
@@ -48,10 +48,10 @@ export const Inner = styled('div', props => ({
   paddingLeft: props.$theme.sizing.scale300,
   paddingRight: props.$theme.sizing.scale300,
   ...props.$theme.typography.font250,
-  color: props.$theme.colors.background,
+  color: props.$theme.colors.tooltipText,
 }));
 
 export const Arrow = styled('div', props => ({
   ...getArrowStyles(props),
-  backgroundColor: props.$theme.tooltip.backgroundColor,
+  backgroundColor: props.$theme.colors.tooltipBackground,
 }));

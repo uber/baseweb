@@ -315,8 +315,15 @@ export default {
 
     // Progress bar
     progressbarTrackFill: primitives.mono100,
+
+    // Tooltip
+    tooltipBackground: primitives.mono200,
+    tooltipText: primitives.mono1000,
   },
+  // Remove this section in next major version
+  // https://github.com/uber-web/baseui/pull/1184
   tooltip: {
     backgroundColor: primitives.mono200,
   },
+  // ^^^^^^^
 };

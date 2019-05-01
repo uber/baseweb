@@ -10,8 +10,8 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
   role="dialog"
   size="default"
 >
-  <Portal
-    key="portal"
+  <mockConstructor
+    onMount={[Function]}
   >
     <MockStyledComponent
       $animate={true}
@@ -98,6 +98,6 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
         </MockStyledComponent>
       </Portal>
     </MockStyledComponent>
-  </Portal>
+  </mockConstructor>
 </Modal>
 `;

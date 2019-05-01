@@ -11,7 +11,7 @@ import React from 'react';
 import {Block} from '../../block/index.js';
 import {Checkbox} from '../index.js';
 
-export const name = 'checkbox-indeterminite';
+export const name = 'checkbox-indeterminate';
 
 class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
   state = {checkboxes: [false, false]};

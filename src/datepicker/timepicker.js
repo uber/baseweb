@@ -119,7 +119,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   render() {
     const {overrides = {}} = this.props;
 
-    const [OverridedSelect, selectProps] = getOverrides(
+    const [OverriddenSelect, selectProps] = getOverrides(
       overrides.Select,
       Select,
     );
@@ -139,7 +139,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <OverridedSelect
+          <OverriddenSelect
             aria-label={locale.datepicker.timePickerAriaLabel}
             options={this.state.steps.map(n => ({
               id: n,

@@ -89,7 +89,7 @@ class TimezonePicker extends React.Component<
 
   render() {
     const {overrides = {}} = this.props;
-    const [OverridedSelect, selectProps] = getOverrides(
+    const [OverriddenSelect, selectProps] = getOverrides(
       overrides.Select,
       Select,
     );
@@ -104,7 +104,7 @@ class TimezonePicker extends React.Component<
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <OverridedSelect
+          <OverriddenSelect
             aria-label={locale.datepicker.timezonePickerAriaLabel}
             options={this.state.timezones}
             clearable={false}

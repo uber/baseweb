@@ -371,7 +371,7 @@ describe('toaster', () => {
     });
 
     test('info, positive, warning, negative methods receives autoHideDuration from ToastContainer', () => {
-      // The testing strategy is to instatiate ToasterContainer with autoHideDuration=100
+      // The testing strategy is to instantiate ToasterContainer with autoHideDuration=100
       // Then call the 4 different toaster regularly
       // Then call 1 toaster.negative with an overriding autoHideDuration=3500
       //

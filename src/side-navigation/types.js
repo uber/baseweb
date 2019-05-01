@@ -41,7 +41,7 @@ type renderItemT = (
 ) => React.Node;
 
 export type NavPropsT = {
-  /** Defines the current active itemId. Used for the defaut calculation of the $active prop */
+  /** Defines the current active itemId. Used for the default calculation of the $active prop */
   activeItemId: string,
   /** 
     Is called on the nav item render to test if the item is currently selected. 

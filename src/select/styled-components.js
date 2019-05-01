@@ -257,6 +257,7 @@ export const StyledInput = styled(
     return {
       ...getFont($size, typography),
       boxSizing: 'content-box',
+      fontSize: '16px', // prevents iOS to zoom in when focused
       width: $disabled || !$searchable ? '1px' : $width || '100%',
       maxWidth: '100%',
       background: 'transparent',
@@ -278,6 +279,7 @@ export const StyledInput = styled(
 
 export const StyledInputSizer = styled('div', {
   position: 'absolute',
+  fontSize: '16px',
   top: 0,
   left: 0,
   visibility: 'hidden',

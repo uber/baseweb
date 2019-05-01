@@ -17,7 +17,7 @@ if (__BROWSER__) {
 
 // Previously, this util had been using `scrollIntoView`. The issue with that method is that
 // it will not only scroll the parent scroll but also the window scroll bar - causing a jump.
-// propblem description https://lists.w3.org/Archives/Public/www-style/2014Jul/0386.html
+// problem description https://lists.w3.org/Archives/Public/www-style/2014Jul/0386.html
 
 // CHASE: I've noticed some performance issues when testing this with many items in the list.
 // I imagine the browser can debounce the `node.scrollIntoView` calls. Callers of this function
