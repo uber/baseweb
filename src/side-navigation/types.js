@@ -40,8 +40,6 @@ type renderItemT = (
   },
 ) => React.Node;
 
-type mapItemT = (item: Item) => Item;
-
 export type NavPropsT = {
   /** Defines the current active itemId. Used for the default calculation of the $active prop */
   activeItemId: string,
@@ -65,7 +63,7 @@ export type NavPropsT = {
   /** Optional render function that is called instead default item rendering */
   renderItem: ?renderItemT,
   /** Optional transform function that is called for each Item */
-  mapItem: ?mapItemT,
+  mapItem: ?(item: Item) => Item,
 };
 
 export type Item = $ReadOnly<{
