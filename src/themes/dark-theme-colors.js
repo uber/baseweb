@@ -102,18 +102,6 @@ export default {
     notificationNegativeText: primitives.negative200,
 
     // Tag
-
-    // Remove this section of theme values in next major version
-    tagBackground: primitives.mono1000,
-    tagNeutralBackground: primitives.mono600,
-    tagPrimaryBackground: primitives.primary500,
-    tagPositiveBackground: primitives.positive500,
-    tagWarningBackground: primitives.warning500,
-    tagNegativeBackground: primitives.negative500,
-    tagRGBGradient: '0, 0, 0',
-    tagRGBGradientSecondary: '255, 255, 255',
-    // ^^^^^^^
-
     tagSolidRampUnit: '500',
     tagSolidHoverRampUnit: '500',
     tagSolidActiveRampUnit: '400',
@@ -320,10 +308,4 @@ export default {
     tooltipBackground: primitives.mono200,
     tooltipText: primitives.mono1000,
   },
-  // Remove this section in next major version
-  // https://github.com/uber-web/baseui/pull/1184
-  tooltip: {
-    backgroundColor: primitives.mono200,
-  },
-  // ^^^^^^^
 };
