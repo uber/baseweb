@@ -52,7 +52,6 @@ export default class MyApp extends App {
     super(props);
     this.state = {
       theme: LightTheme,
-      matchMediaListeners: [],
     };
     this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
