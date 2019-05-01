@@ -28,9 +28,11 @@ describe('Component', () => {
     expect(wrapper.find(StyledDay).first()).toExist();
   });
 
-  test('should not display quick select if range is false', () => {
+  // Changed the logic here so that developers can pass through custom
+  // single date quick selects.
+  test('should display quick select if range is false', () => {
     const wrapper = mount(<Calendar quickSelect />);
-    expect(wrapper.find(StyledSelectorContainer).first()).not.toExist();
+    expect(wrapper.find(StyledSelectorContainer).first()).toExist();
   });
 
   test('should display quick select if range and quickSelect is true', () => {
