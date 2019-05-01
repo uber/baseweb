@@ -253,18 +253,6 @@ export default function createTheme(
       notificationNegativeText: primitives.negative500,
 
       // Tag
-
-      // Remove this section of theme values in next major version
-      tagBackground: primitives.mono100,
-      tagNeutralBackground: primitives.mono900,
-      tagPrimaryBackground: primitives.primary400,
-      tagPositiveBackground: primitives.positive400,
-      tagWarningBackground: primitives.warning400,
-      tagNegativeBackground: primitives.negative400,
-      tagRGBGradient: '255, 255, 255',
-      tagRGBGradientSecondary: '0, 0, 0',
-      // ^^^^^^^
-
       tagSolidRampUnit: '400',
       tagSolidHoverRampUnit: '50',
       tagSolidActiveRampUnit: '100',
@@ -577,12 +565,6 @@ export default function createTheme(
     zIndex: {
       modal: 2000,
     },
-    // Remove this section in next major version
-    // https://github.com/uber-web/baseui/pull/1184
-    tooltip: {
-      backgroundColor: primitives.mono900,
-    },
-    // ^^^^^^^
   };
 
   // to remove the FlowFixMe, we have to make deepMerge accept a ThemeT
