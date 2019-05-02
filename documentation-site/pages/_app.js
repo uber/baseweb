@@ -71,8 +71,10 @@ export default class MyApp extends App {
     if (window.matchMedia) {
       const mmDark = window.matchMedia(DARK_MEDIA_QUERY);
       const mmLight = window.matchMedia(LIGHT_MEDIA_QUERY);
-      const theme = mmDark.matches ? 'dark' : 'light';
-      localStorage.setItem('docs-theme', theme);
+      if (mmDark.media === DARK_MEDIA_QUERY) {
+        const theme = mmDark.matches ? 'dark' : 'light';
+        localStorage.setItem('docs-theme', theme);
+      }
       mmDark.addListener(this.mediaQueryListener);
       mmLight.addListener(this.mediaQueryListener);
     }
