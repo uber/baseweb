@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 let headless = true;
 
 if (process.env.PUPPETEER_HEADLESS) {
-  headless = process.env.PUPPETEER_HEADLESS === 'false' ? false : true;
+  headless = process.env.PUPPETEER_HEADLESS !== 'false';
 }
 
 module.exports = {

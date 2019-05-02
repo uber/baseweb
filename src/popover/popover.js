@@ -350,7 +350,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const {isOpen, showArrow} = this.props;
     const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {
-      $showArrow: Boolean(showArrow),
+      $showArrow: !!showArrow,
       $arrowOffset: arrowOffset,
       $popoverOffset: popoverOffset,
       $placement: placement,

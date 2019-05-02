@@ -223,7 +223,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       if (this.input) this.input.value = '';
 
       this.setState(prev => ({
-        isOpen: this.focusAfterClear ? false : !prev.isOpen,
+        isOpen: !this.focusAfterClear && !prev.isOpen,
         isPseudoFocused: false,
       }));
 
@@ -255,7 +255,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
     let toOpen = this.state.isOpen || this.openAfterFocus;
     // if focus happens after clear values, don't open dropdown yet.
-    toOpen = this.focusAfterClear ? false : toOpen;
+    toOpen = !this.focusAfterClear && toOpen;
 
     this.setState({
       isFocused: true,
