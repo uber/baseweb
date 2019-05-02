@@ -1,6 +1,5 @@
 const {BABEL_ENV} = process.env;
-const modules =
-  BABEL_ENV === 'es' || BABEL_ENV === 'modules' ? false : 'commonjs';
+const modules = !(BABEL_ENV === 'es' || BABEL_ENV === 'modules') && 'commonjs';
 
 module.exports = {
   presets: [
