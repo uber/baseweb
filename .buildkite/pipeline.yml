@@ -2,14 +2,14 @@ steps:
   # Build the image in a single place for all parallel steps to leverage the same image.
   - name: ':docker: :package: unit'
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         build: baseui
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
     agents:
       queue: builders
   - name: ':docker: :package: e2e'
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         build:
           - e2e-server
           - e2e-server-healthy
@@ -23,21 +23,21 @@ steps:
   - name: ':eslint:'
     command: yarn lint
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         run: baseui
     agents:
       queue: workers
   - name: ':flowtype:'
     command: yarn flow check
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         run: baseui
     agents:
       queue: workers
   - name: ':jest:'
     command: yarn unit-test
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         run: baseui
     agents:
       queue: workers
@@ -45,21 +45,21 @@ steps:
     branches: 'master'
     command: ./scripts/now-deploy.sh
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         run: baseui
     agents:
       queue: workers
   - name: ':screener:'
     command: yarn storybook:screener:ci
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         run: baseui
     agents:
       queue: workers
   - name: ':documentation-site-link-checker:'
     command: yarn blc http://localhost:8081
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         run: docs-site
         pull:
           - docs-site-server
@@ -69,7 +69,7 @@ steps:
   - name: ':puppeteer:'
     command: yarn e2e:test:ci
     plugins:
-      'docker-compose':
+      'docker-compose#v3.0.3':
         run: e2e-test
         pull:
           - e2e-server
