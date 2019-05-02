@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import Layout from '../../components/layout';
 
+import Example from '../../components/example';
 import Overrides from '../../components/overrides';
 import {StatefulList} from 'baseui/dnd-list';
 import * as ListExports from 'baseui/dnd-list';
@@ -15,6 +16,7 @@ import DndListExample from 'examples/dnd-list/overrides_short.js';
 import DndListExampleStyle from 'examples/dnd-list/overrides_style.js';
 import DndListExampleStateProps from 'examples/dnd-list/overrides_state_props.js';
 import DndListExampleSubcomponent from 'examples/dnd-list/overrides_whole_subcomponent.js';
+import SelectTagExample from 'examples/select/overriden-tag.js';
 
 export default Layout;
 
@@ -152,6 +154,21 @@ Almost every Base Web component has multiple overrides. **How can you learn what
 />
 
 If you are interested in **which state props your style functions can use**, you'll find the list of them at the bottom of every component page. Scroll down to the API section and click on the `Expand Prop Shape` button for the `overrides` property.
+
+## Override Nested Components
+
+Some Base Web components use other Base Web components internally. Examples include the `Select` component, which uses the `Tag` component
+for the multi-select mode, or the `FileUploader` which uses the `Button` component.
+
+In these cases, you are not directly modifying styled components, but nested components. To make that happen, you have to pass in your overrides
+through the `props` override functionality.
+
+To better understand it, let's take a look at the example of the `Select` component:
+
+<Example title="Nested overrides" path="examples/select/overriden-tag.js">
+  <SelectTagExample />
+</Example>
+
 
 ## Override The Entire Subcomponent
 
