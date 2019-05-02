@@ -22,7 +22,7 @@ import {
 import type {CardsPropsT} from './types.js';
 
 export function hasThumbnail(props: {+thumbnail?: string}) {
-  return Boolean(props.thumbnail);
+  return !!props.thumbnail;
 }
 
 function Card(props: CardsPropsT) {

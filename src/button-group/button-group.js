@@ -70,7 +70,7 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
         }
 
         return React.cloneElement(child, {
-          disabled: props.disabled ? true : child.props.disabled,
+          disabled: props.disabled || child.props.disabled,
           isSelected: isSelected(props.selected, index),
           kind: KIND.tertiary,
           onClick: event => {
