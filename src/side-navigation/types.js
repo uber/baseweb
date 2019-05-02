@@ -75,7 +75,7 @@ export type Item = {
     */
   itemId?: string,
   /** A list of sub-navigation items */
-  subnav?: Item[],
+  subNav?: Item[],
 };
 
 export type NavItemPropsT = SharedPropsT & {

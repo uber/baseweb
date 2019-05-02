@@ -12,11 +12,11 @@ import StatefulNavigation from '../stateful-nav.js';
 const nav = [
   {
     title: 'Colors',
-    subnav: [
+    subNav: [
       {
         title: 'Shades',
         itemId: '#level1.1.2',
-        subnav: [
+        subNav: [
           {
             title: 'Light',
             itemId: '#level1.1.2.2',
