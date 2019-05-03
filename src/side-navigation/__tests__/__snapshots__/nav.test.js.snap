@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Side navigation renders titles correctly modified by mapItem 1`] = `
+Array [
+  <span>
+    New 
+    Colors
+  </span>,
+  <span>
+    New 
+    Shades
+  </span>,
+  <span>
+    New 
+    Light
+  </span>,
+  <span>
+    New 
+    Sizing
+  </span>,
+  <span>
+    New 
+    Typography
+  </span>,
+]
+`;
