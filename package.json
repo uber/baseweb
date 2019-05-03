@@ -158,11 +158,6 @@
     "react-dom": ">= 16.4.0 < 17",
     "styletron-react": "^4.4.6"
   },
-  "engines": {
-    "node": ">=8.11.0",
-    "npm": ">=5.6.0",
-    "yarn": ">=1.5.1"
-  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e $GIT_PARAMS",
