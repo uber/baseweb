@@ -101,7 +101,7 @@ export default class Pagination extends React.PureComponent<
     this.setState({isMenuOpen});
   };
 
-  constructAriaWayfinderLabel = (locale, prefix) => {
+  constructAriaWayfinderLabel = (locale: object, prefix: string) => {
     const {currentPage, numPages, labels} = this.props;
     return (
       prefix +
@@ -211,25 +211,27 @@ export default class Pagination extends React.PureComponent<
               </Button>
               {isMenuOpen && (
                 // $FlowFixMe
-                <div role="menu">
-                  <DropdownMenu
-                    items={options}
-                    onItemSelect={this.onMenuItemSelect}
-                    initialState={{
-                      highlightedIndex: Math.max(currentPage - 1, 0),
-                    }}
-                    overrides={{
-                      List: {
-                        component: StyledDropdownMenu,
-                        // Access $style manually because it has gone through transformation
-                        // from the override helper function already
-                        // $FlowFixMe
-                        style: dropdownMenuProps.$style,
-                      },
-                    }}
-                    {...dropdownMenuProps}
-                  />
-                </div>
+                <DropdownMenu
+                  items={options}
+                  onItemSelect={this.onMenuItemSelect}
+                  initialState={{
+                    highlightedIndex: Math.max(currentPage - 1, 0),
+                  }}
+                  overrides={{
+                    List: {
+                      component: StyledDropdownMenu,
+                      // Access $style manually because it has gone through transformation
+                      // from the override helper function already
+                      // $FlowFixMe
+                      style: dropdownMenuProps.$style,
+                      props: {role: 'menu'},
+                    },
+                    Option: {
+                      props: {role: 'menuitem'},
+                    },
+                  }}
+                  {...dropdownMenuProps}
+                />
               )}
             </DropdownContainer>
             <MaxLabel
