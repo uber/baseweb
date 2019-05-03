@@ -9,7 +9,7 @@ import {styled} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
 import {StyledBaseButton} from '../button/index.js';
 
-export const Root = styled('div', {
+export const Root = styled('nav', {
   display: 'flex',
   alignItems: 'center',
 });
