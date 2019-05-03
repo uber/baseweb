@@ -26,9 +26,7 @@ export default class SideNav extends React.Component<NavPropsT> {
     mapItem: null,
   };
 
-  activePredicate = (item: Item) => {
-    return item.itemId === this.props.activeItemId ? true : false;
-  };
+  activePredicate = (item: Item) => item.itemId === this.props.activeItemId;
 
   render() {
     const {
