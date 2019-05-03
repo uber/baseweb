@@ -24,6 +24,7 @@ import ChevronLeft from '../icon/chevron-left.js';
 import ChevronRight from '../icon/chevron-right.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {PaginationPropsT, PaginationStateT} from './types.js';
+import type {LocaleT} from '../locale/types.js';
 import type {OnItemSelectFnT} from '../menu/types.js';
 
 type MenuItemT = {
@@ -101,7 +102,7 @@ export default class Pagination extends React.PureComponent<
     this.setState({isMenuOpen});
   };
 
-  constructAriaWayfinderLabel = (locale: object, prefix: string) => {
+  constructAriaWayfinderLabel = (locale: LocaleT, prefix: string) => {
     const {currentPage, numPages, labels} = this.props;
     return (
       prefix +
