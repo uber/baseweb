@@ -39,6 +39,7 @@
     "icon:generate": "node ./src/icon/build-icons.js",
     "now": "now",
     "predocumentation:dev": "node ./scripts/post-generator.js",
+    "predocumentation:dev:watch": "node ./scripts/post-generator.js",
     "predocumentation:build": "node ./scripts/post-generator.js",
     "predocumentation:serve": "node ./scripts/post-generator.js",
     "documentation:dev": "run-p build:es2015 next:dev",
