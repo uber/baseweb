@@ -1,10 +1,20 @@
-# Base Web
+<p align="center">
+  <a href="https://baseweb.design">
+    <img width="250px" src="https://res.cloudinary.com/dawr8pobn/image/upload/v1556920604/base-web.svg">
+  </a>
+</p>
 
-[![Join Slack](https://img.shields.io/badge/Join%20us%20on-Slack-e01563.svg)](https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA) [![We are hiring](https://img.shields.io/badge/We%20are%20hiring-Join%20us!-blue.svg)](https://www.uber.com/careers/list/40899)
+<h1 align="center">Base Web React Components</h1>
 
 [![Build status](https://badge.buildkite.com/92a7500cd98f619621c4801833d8b358c2fd79efc9b98f1b98.svg?branch=master)](https://buildkite.com/uberopensource/baseui)
 
 **Base** is a design system comprised of modern, responsive, living components. Base Web is the React implementation of Base.
+
+<p align="center">
+  <a href="https://baseweb.design">
+    <img width="500px" src="https://res.cloudinary.com/dawr8pobn/image/upload/v1556920685/base-web-showcase.png">
+  </a>
+</p>
 
 ## Usage
 
@@ -50,9 +60,7 @@ export default function Hello() {
 
 ## Docs
 
-* [Creating custom themes](https://baseweb.design/theming/custom-themes/)
-* [Event handler usage](docs/event-handlers.md)
-* [Docs by Storybook](https://baseui.netlify.com/)
+To read the documentation, please visit [baseweb.design](https://baseweb.design).
 
 ## Contributing
 
