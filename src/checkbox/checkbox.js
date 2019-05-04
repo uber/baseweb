@@ -41,7 +41,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
 
   state = {
     isFocused: this.props.autoFocus || false,
-    isHovered: false,
+    hovered: false,
     isActive: false,
   };
 
@@ -53,12 +53,12 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   }
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: true});
+    this.setState({hovered: true});
     this.props.onMouseEnter(e);
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: false, isActive: false});
+    this.setState({hovered: false, isActive: false});
     this.props.onMouseLeave(e);
   };
 
@@ -131,7 +131,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     };
     const sharedProps = {
       $isFocused: this.state.isFocused,
-      $isHovered: this.state.isHovered,
+      $hovered: this.state.hovered,
       $isActive: this.state.isActive,
       $isError: isError,
       $checked: checked,

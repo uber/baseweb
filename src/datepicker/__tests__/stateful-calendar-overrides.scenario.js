@@ -57,10 +57,10 @@ export const component = () => (
         style: arrowBtnOverrides,
       },
       Day: {
-        style: ({$theme, $selected, $isHovered, $isHighlighted}) => ({
+        style: ({$theme, $selected, $hovered, $isHighlighted}) => ({
           backgroundColor: $selected
             ? $theme.colors.positive
-            : $isHovered || $isHighlighted
+            : $hovered || $isHighlighted
               ? $theme.colors.positive100
               : 'transparent',
         }),

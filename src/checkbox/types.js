@@ -87,7 +87,7 @@ export type PropsT = {
 
 export type StatelessStateT = {
   isFocused: boolean,
-  isHovered: boolean,
+  hovered: boolean,
   isActive: boolean,
 };
 

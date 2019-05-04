@@ -156,8 +156,8 @@ describe('Stateless checkbox', function() {
     let events, instance, event;
     event = {};
     const handlers = [
-      ['onMouseEnter', {isHovered: true}, true],
-      ['onMouseLeave', {isHovered: false, isActive: false}, true],
+      ['onMouseEnter', {hovered: true}, true],
+      ['onMouseLeave', {hovered: false, isActive: false}, true],
       ['onMouseUp', {isActive: false}, true],
       ['onMouseDown', {isActive: true}, true],
       ['onFocus', {isFocused: true}, false],

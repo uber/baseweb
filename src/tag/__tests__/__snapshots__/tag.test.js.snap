@@ -5,7 +5,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   closeable={true}
   disabled={false}
   isFocused={false}
-  isHovered={false}
+  hovered={false}
   kind="primary"
   onActionClick={[MockFunction]}
   onActionKeyDown={[Function]}
@@ -19,7 +19,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     $closeable={true}
     $disabled={false}
     $isFocused={false}
-    $isHovered={false}
+    $hovered={false}
     $kind="primary"
     $variant="light"
     aria-label="button"
@@ -50,7 +50,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
         $closeable={true}
         $disabled={false}
         $isFocused={false}
-        $isHovered={false}
+        $hovered={false}
         $kind="primary"
         $variant="light"
         aria-label="close button"

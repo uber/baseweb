@@ -137,7 +137,7 @@ export type RadioPropsT = {
 export type RadioStateT = {
   isActive: boolean,
   isFocused: boolean,
-  isHovered: boolean,
+  hovered: boolean,
 };
 
 export type StateReducerT = (

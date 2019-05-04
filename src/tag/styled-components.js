@@ -34,7 +34,7 @@ export function customOnRamp(color: string, unit?: RampT) {
   }
 }
 
-function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
+function fontColor(props, hovered?: boolean, isActionText?: boolean) {
   if (props.$disabled) {
     switch (props.$kind) {
       case KIND.neutral:
@@ -60,19 +60,19 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
     case VARIANT.solid:
       switch (props.$kind) {
         case KIND.neutral:
-          if (!isHovered) return props.$theme.colors.tagNeutralSolidFont;
+          if (!hovered) return props.$theme.colors.tagNeutralSolidFont;
           return props.$theme.colors.tagNeutralSolidFontHover;
         case KIND.positive:
-          if (!isHovered) return props.$theme.colors.tagPositiveSolidFont;
+          if (!hovered) return props.$theme.colors.tagPositiveSolidFont;
           return props.$theme.colors.tagPositiveSolidFontHover;
         case KIND.warning:
-          if (!isHovered) return props.$theme.colors.tagWarningSolidFont;
+          if (!hovered) return props.$theme.colors.tagWarningSolidFont;
           return props.$theme.colors.tagWarningSolidFontHover;
         case KIND.negative:
-          if (!isHovered) return props.$theme.colors.tagNegativeSolidFont;
+          if (!hovered) return props.$theme.colors.tagNegativeSolidFont;
           return props.$theme.colors.tagNegativeSolidFontHover;
         case KIND.custom:
-          if (!isHovered)
+          if (!hovered)
             return customOnRamp(
               props.$color,
               props.$theme.colors.tagSolidFontRampUnit,
@@ -83,33 +83,33 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
           );
         case KIND.primary:
         default:
-          if (!isHovered) return props.$theme.colors.tagPrimarySolidFont;
+          if (!hovered) return props.$theme.colors.tagPrimarySolidFont;
           return props.$theme.colors.tagPrimarySolidFontHover;
       }
     case VARIANT.outlined:
       switch (props.$kind) {
         case KIND.neutral:
-          if (!isHovered || !isActionText) {
+          if (!hovered || !isActionText) {
             return props.$theme.colors.tagNeutralOutlinedFont;
           }
           return props.$theme.colors.tagNeutralOutlinedFontHover;
         case KIND.positive:
-          if (!isHovered || !isActionText) {
+          if (!hovered || !isActionText) {
             return props.$theme.colors.tagPositiveOutlinedFont;
           }
           return props.$theme.colors.tagPositiveOutlinedFontHover;
         case KIND.warning:
-          if (!isHovered || !isActionText) {
+          if (!hovered || !isActionText) {
             return props.$theme.colors.tagWarningOutlinedFont;
           }
           return props.$theme.colors.tagWarningOutlinedFontHover;
         case KIND.negative:
-          if (!isHovered || !isActionText) {
+          if (!hovered || !isActionText) {
             return props.$theme.colors.tagNegativeOutlinedFont;
           }
           return props.$theme.colors.tagNegativeOutlinedFontHover;
         case KIND.custom:
-          if (!isHovered || !isActionText) {
+          if (!hovered || !isActionText) {
             return customOnRamp(
               props.$color,
               props.$theme.colors.tagOutlinedFontRampUnit,
@@ -121,7 +121,7 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
           );
         case KIND.primary:
         default:
-          if (!isHovered || !isActionText) {
+          if (!hovered || !isActionText) {
             return props.$theme.colors.tagPrimaryOutlinedFont;
           }
           return props.$theme.colors.tagPrimaryOutlinedFontHover;
@@ -130,19 +130,19 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
     default:
       switch (props.$kind) {
         case KIND.neutral:
-          if (!isHovered) return props.$theme.colors.tagNeutralLightFont;
+          if (!hovered) return props.$theme.colors.tagNeutralLightFont;
           return props.$theme.colors.tagNeutralLightFontHover;
         case KIND.positive:
-          if (!isHovered) return props.$theme.colors.tagPositiveLightFont;
+          if (!hovered) return props.$theme.colors.tagPositiveLightFont;
           return props.$theme.colors.tagPositiveLightFontHover;
         case KIND.warning:
-          if (!isHovered) return props.$theme.colors.tagWarningLightFont;
+          if (!hovered) return props.$theme.colors.tagWarningLightFont;
           return props.$theme.colors.tagWarningLightFontHover;
         case KIND.negative:
-          if (!isHovered) return props.$theme.colors.tagNegativeLightFont;
+          if (!hovered) return props.$theme.colors.tagNegativeLightFont;
           return props.$theme.colors.tagNegativeLightFontHover;
         case KIND.custom:
-          if (!isHovered)
+          if (!hovered)
             return customOnRamp(
               props.$color,
               props.$theme.colors.tagLightFontRampUnit,
@@ -153,7 +153,7 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
           );
         case KIND.primary:
         default:
-          if (!isHovered) return props.$theme.colors.tagPrimaryLightFont;
+          if (!hovered) return props.$theme.colors.tagPrimaryLightFont;
           return props.$theme.colors.tagPrimaryLightFontHover;
       }
   }
@@ -162,8 +162,8 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
 export const Action = styled('span', props => {
   const {$disabled, $variant, $theme} = props;
 
-  function backgroundColor(isHovered?: boolean, isActive?: boolean) {
-    if (props.$disabled || !isHovered) return 'transparent';
+  function backgroundColor(hovered?: boolean, isActive?: boolean) {
+    if (props.$disabled || !hovered) return 'transparent';
     switch (props.$variant) {
       case VARIANT.solid:
         switch (props.$kind) {
@@ -284,7 +284,7 @@ export const Root = styled('span', props => {
     typography: {font250},
   } = $theme;
 
-  function backgroundColor(isHovered?: boolean, isActive?: boolean) {
+  function backgroundColor(hovered?: boolean, isActive?: boolean) {
     if (props.$variant === VARIANT.outlined) {
       return 'transparent';
     }
@@ -299,7 +299,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagNeutralSolidActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagNeutralSolidHover;
             }
             return props.$theme.colors.tagNeutralSolidBackground;
@@ -310,7 +310,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagPositiveSolidActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagPositiveSolidHover;
             }
             return props.$theme.colors.tagPositiveSolidBackground;
@@ -321,7 +321,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagWarningSolidActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagWarningSolidHover;
             }
             return props.$theme.colors.tagWarningSolidBackground;
@@ -332,7 +332,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagNegativeSolidActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagNegativeSolidHover;
             }
             return props.$theme.colors.tagNegativeSolidBackground;
@@ -349,7 +349,7 @@ export const Root = styled('span', props => {
                 props.$theme.colors.tagSolidActiveRampUnit,
               );
             }
-            if (isHovered) {
+            if (hovered) {
               return customOnRamp(
                 props.$color,
                 props.$theme.colors.tagSolidHoverRampUnit,
@@ -368,7 +368,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagPrimarySolidActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagPrimarySolidHover;
             }
             return props.$theme.colors.tagPrimarySolidBackground;
@@ -383,7 +383,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagNeutralLightActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagNeutralLightHover;
             }
             return props.$theme.colors.tagNeutralLightBackground;
@@ -394,7 +394,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagPositiveLightActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagPositiveLightHover;
             }
             return props.$theme.colors.tagPositiveLightBackground;
@@ -405,7 +405,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagWarningLightActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagWarningLightHover;
             }
             return props.$theme.colors.tagWarningLightBackground;
@@ -416,7 +416,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagNegativeLightActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagNegativeLightHover;
             }
             return props.$theme.colors.tagNegativeLightBackground;
@@ -433,7 +433,7 @@ export const Root = styled('span', props => {
                 props.$theme.colors.tagLightActiveRampUnit,
               );
             }
-            if (isHovered) {
+            if (hovered) {
               return customOnRamp(
                 props.$color,
                 props.$theme.colors.tagLightHoverRampUnit,
@@ -451,7 +451,7 @@ export const Root = styled('span', props => {
             if (isActive) {
               return props.$theme.colors.tagPrimaryLightActive;
             }
-            if (isHovered) {
+            if (hovered) {
               return props.$theme.colors.tagPrimaryLightHover;
             }
             return props.$theme.colors.tagPrimaryLightBackground;
@@ -459,7 +459,7 @@ export const Root = styled('span', props => {
     }
   }
 
-  function borderColor(isHovered?: boolean, isActive?: boolean) {
+  function borderColor(hovered?: boolean, isActive?: boolean) {
     if (props.$variant !== VARIANT.outlined) {
       return null;
     }
@@ -472,7 +472,7 @@ export const Root = styled('span', props => {
         if (isActive) {
           return props.$theme.colors.tagNeutralOutlinedActive;
         }
-        if (isHovered) {
+        if (hovered) {
           return props.$theme.colors.tagNeutralOutlinedHover;
         }
         return props.$theme.colors.tagNeutralOutlinedBackground;
@@ -483,7 +483,7 @@ export const Root = styled('span', props => {
         if (isActive) {
           return props.$theme.colors.tagPositiveOutlinedActive;
         }
-        if (isHovered) {
+        if (hovered) {
           return props.$theme.colors.tagPositiveOutlinedHover;
         }
         return props.$theme.colors.tagPositiveOutlinedBackground;
@@ -494,7 +494,7 @@ export const Root = styled('span', props => {
         if (isActive) {
           return props.$theme.colors.tagWarningOutlinedActive;
         }
-        if (isHovered) {
+        if (hovered) {
           return props.$theme.colors.tagWarningOutlinedHover;
         }
         return props.$theme.colors.tagWarningOutlinedBackground;
@@ -505,7 +505,7 @@ export const Root = styled('span', props => {
         if (isActive) {
           return props.$theme.colors.tagNegativeOutlinedActive;
         }
-        if (isHovered) {
+        if (hovered) {
           return props.$theme.colors.tagNegativeOutlinedHover;
         }
         return props.$theme.colors.tagNegativeOutlinedBackground;
@@ -522,7 +522,7 @@ export const Root = styled('span', props => {
             props.$theme.colors.tagOutlinedActiveRampUnit,
           );
         }
-        if (isHovered) {
+        if (hovered) {
           return customOnRamp(
             props.$color,
             props.$theme.colors.tagOutlinedHoverRampUnit,
@@ -541,7 +541,7 @@ export const Root = styled('span', props => {
         if (isActive) {
           return props.$theme.colors.tagPrimaryOutlinedActive;
         }
-        if (isHovered) {
+        if (hovered) {
           return props.$theme.colors.tagPrimaryOutlinedHover;
         }
         return props.$theme.colors.tagPrimaryOutlinedBackground;

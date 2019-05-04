@@ -216,7 +216,7 @@ export function calculateBorderRadius(
 export const StyledDay = styled('div', (props: SharedStylePropsT) => {
   const {
     $disabled,
-    $isHovered,
+    $hovered,
     $isHighlighted,
     $outsideMonth,
     $pseudoHighlighted,
@@ -254,7 +254,7 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
         ? $isHighlighted
           ? colors.datepickerDayPseudoHighlighted
           : colors.datepickerDayPseudoSelected
-        : $isHovered || $isHighlighted || $pseudoHighlighted
+        : $hovered || $isHighlighted || $pseudoHighlighted
           ? colors.datepickerDayPseudoSelected
           : 'transparent',
     ...calculateBorderRadius(props),

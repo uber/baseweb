@@ -48,7 +48,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
   state = {
     isActive: false,
     isFocused: this.props.autoFocus || false,
-    isHovered: false,
+    hovered: false,
   };
 
   componentDidMount() {
@@ -58,12 +58,12 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
   }
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: true});
+    this.setState({hovered: true});
     this.props.onMouseEnter && this.props.onMouseEnter(e);
   };
 
   onMouseLeave = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isHovered: false});
+    this.setState({hovered: false});
     this.props.onMouseLeave && this.props.onMouseLeave(e);
   };
 
@@ -121,7 +121,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       $isActive: this.state.isActive,
       $isError: this.props.isError,
       $isFocused: this.state.isFocused,
-      $isHovered: this.state.isHovered,
+      $hovered: this.state.hovered,
       $labelPlacement: this.props.labelPlacement,
       $required: this.props.required,
       $value: this.props.value,

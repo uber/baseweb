@@ -54,7 +54,7 @@ function getBackgroundColor(props) {
     $indeterminate,
     $isFocused,
     $isError,
-    $isHovered,
+    $hovered,
     $isActive,
     $theme,
     $checkmarkType,
@@ -66,7 +66,7 @@ function getBackgroundColor(props) {
   } else if ($isError && ($indeterminate || $checked)) {
     if ($isActive || $isFocused) {
       return colors.tickFillErrorSelectedHoverActive;
-    } else if ($isHovered) {
+    } else if ($hovered) {
       return colors.tickFillErrorSelectedHover;
     } else {
       return colors.tickFillErrorSelected;
@@ -74,7 +74,7 @@ function getBackgroundColor(props) {
   } else if ($isError) {
     if ($isActive || $isFocused) {
       return colors.tickFillErrorHoverActive;
-    } else if ($isHovered) {
+    } else if ($hovered) {
       return colors.tickFillErrorHover;
     } else {
       return colors.tickFillError;
@@ -82,7 +82,7 @@ function getBackgroundColor(props) {
   } else if ($indeterminate || $checked) {
     if ($isActive || $isFocused) {
       return colors.tickFillSelectedHoverActive;
-    } else if ($isHovered) {
+    } else if ($hovered) {
       return colors.tickFillSelectedHover;
     } else {
       return colors.tickFillSelected;
@@ -90,7 +90,7 @@ function getBackgroundColor(props) {
   } else {
     if ($isActive || $isFocused) {
       return isToggle ? colors.sliderTrackFillActive : colors.tickFillActive;
-    } else if ($isHovered) {
+    } else if ($hovered) {
       return isToggle ? colors.sliderTrackFillHover : colors.tickFillHover;
     } else {
       return isToggle ? colors.sliderTrackFill : colors.tickFill;
@@ -235,7 +235,7 @@ export const ToggleInner = styled('div', props => {
       return props.$theme.colors.sliderHandleInnerFillSelectedActive;
     }
 
-    if (props.$isHovered && props.$checked) {
+    if (props.$hovered && props.$checked) {
       return props.$theme.colors.sliderHandleInnerFillSelectedHover;
     }
 

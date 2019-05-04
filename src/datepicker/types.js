@@ -67,7 +67,7 @@ export type DayPropsT = {
 };
 
 export type DayStateT = {
-  isHovered: boolean,
+  hovered: boolean,
 };
 
 export type WeekPropsT = {
@@ -174,7 +174,7 @@ export type SharedStylePropsT = {
   $date: Date,
   $disabled: boolean,
   $isHighlighted: boolean,
-  $isHovered: boolean,
+  $hovered: boolean,
   $outsideMonth: boolean,
   $pseudoHighlighted: boolean,
   $pseudoSelected: boolean,

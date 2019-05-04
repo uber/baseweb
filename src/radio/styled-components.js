@@ -13,7 +13,7 @@ const ACTIVE = 2;
 type State = typeof DEFAULT | typeof HOVERED | typeof ACTIVE;
 function getState(props): State {
   if (props.$isActive) return ACTIVE;
-  if (props.$isHovered) return HOVERED;
+  if (props.$hovered) return HOVERED;
   return DEFAULT;
 }
 

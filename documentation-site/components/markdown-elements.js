@@ -48,7 +48,7 @@ export const Heading = ({
   fontType: string,
   children: React.Node,
 }) => {
-  const [hoverRef, isHovered] = useHover();
+  const [hoverRef, hovered] = useHover();
   const slug = cleanAnchor(children);
   return (
     <Block
@@ -61,7 +61,7 @@ export const Heading = ({
     >
       <React.Fragment>
         {children}{' '}
-        <Anchor isVisible={isHovered} slug={slug} element={element} />
+        <Anchor isVisible={hovered} slug={slug} element={element} />
       </React.Fragment>
     </Block>
   );

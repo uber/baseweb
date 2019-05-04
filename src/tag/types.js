@@ -29,7 +29,7 @@ export type PropsT = {
   /** Disable control from being changed. */
   disabled?: boolean,
   isFocused?: boolean,
-  isHovered?: boolean,
+  hovered?: boolean,
   /** Defines tags look by purpose. Set it to one of KIND[key] values. Defaults to KIND.primary */
   kind?: TagKindT,
   /** Defines tags look. Set it to one of VARIANT[key] values. Defaults to VARIANT.light */
@@ -56,7 +56,7 @@ export type SharedPropsArgT = {
   $disabled?: boolean,
   $isActive?: boolean,
   $isFocused?: boolean,
-  $isHovered?: boolean,
+  $hovered?: boolean,
   $kind?: string,
   $variant?: string,
 };

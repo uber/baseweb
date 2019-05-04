@@ -38,7 +38,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   dayElm: ?HTMLElement;
 
   state = {
-    isHovered: false,
+    hovered: false,
   };
 
   componentDidMount() {
@@ -97,12 +97,12 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   };
 
   onMouseOver = (event: Event) => {
-    this.setState({isHovered: true});
+    this.setState({hovered: true});
     this.props.onMouseOver({event, date: this.props.date});
   };
 
   onMouseLeave = (event: Event) => {
-    this.setState({isHovered: false});
+    this.setState({hovered: false});
     this.props.onMouseLeave({event, date: this.props.date});
   };
 
@@ -169,7 +169,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
           $selected &&
           isSameDay(date, value[1])) ||
         false,
-      $isHovered: this.state.isHovered,
+      $hovered: this.state.hovered,
       $isHighlighted,
       $range: this.props.range,
       $hasRangeHighlighted,
