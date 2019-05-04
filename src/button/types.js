@@ -22,7 +22,7 @@ export type ButtonPropsT = {
   /** A helper rendered at the end of the button. */
   endEnhancer?: (*) => React$Node | React$Node,
   /** Show loading button style and spinner. */
-  isLoading: boolean,
+  loading: boolean,
   /** Indicates that the button is selected */
   isSelected?: boolean,
   /** Defines the kind (purpose) of a button */
@@ -42,6 +42,6 @@ export type SharedStylePropsT = {
   $isSelected?: boolean,
   $shape?: $Keys<typeof SHAPE>,
   $size?: $Keys<typeof SIZE>,
-  $isLoading?: boolean,
+  $loading?: boolean,
   $disabled?: boolean,
 };

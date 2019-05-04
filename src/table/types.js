@@ -36,7 +36,7 @@ export type TablePropsT = {|
   /** Table width fills this provided value. */
   horizontalScrollWidth?: string,
   /** Renders the table in a loading state. Not implemented, yet. */
-  isLoading?: boolean,
+  loading?: boolean,
 |};
 
 export type FilterProps = {|

@@ -25,7 +25,7 @@ const defaultProps = {
   filterOutSelected: true,
   getOptionLabel: null,
   getValueLabel: null,
-  isLoading: false,
+  loading: false,
   labelKey: 'label',
   maxDropdownHeight: '900px',
   multi: false,

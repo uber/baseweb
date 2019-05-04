@@ -546,7 +546,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   renderLoading() {
-    if (!this.props.isLoading) return;
+    if (!this.props.loading) return;
     const sharedProps = this.getSharedProps();
     const {overrides = {}} = this.props;
     const [LoadingIndicator, loadingIndicatorProps] = getOverrides(
@@ -685,7 +685,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       !value ||
       !value.length ||
       this.props.disabled ||
-      this.props.isLoading
+      this.props.loading
     )
       return;
     const {overrides = {}} = this.props;
@@ -789,7 +789,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       creatable,
       disabled,
       error,
-      isLoading,
+      loading,
       multi,
       required,
       size,
@@ -803,7 +803,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       $disabled: disabled,
       $error: error,
       $isFocused: isFocused,
-      $isLoading: isLoading,
+      $loading: loading,
       $isOpen: isOpen,
       $isPseudoFocused: isPseudoFocused,
       $multi: multi,
@@ -866,7 +866,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 getOptionLabel:
                   this.props.getOptionLabel ||
                   this.getOptionLabel.bind(this, locale),
-                isLoading: this.props.isLoading,
+                loading: this.props.loading,
                 labelKey: this.props.labelKey,
                 maxDropdownHeight: this.props.maxDropdownHeight,
                 multi,

@@ -109,7 +109,7 @@ export type PropsT = {
   /** A custom method to get a display value for a selected option. */
   getValueLabel: ?({option: OptionT}) => React.Node,
   /** Defines if the select if in a loading (async) state. */
-  isLoading: boolean,
+  loading: boolean,
   /** Defines an option key for a default label value. */
   labelKey: string,
   /** Sets max height of the dropdown list. */
@@ -203,7 +203,7 @@ export type DropdownPropsT = {
     },
   }) => React.Node,
   innerRef: {current: ?HTMLElement},
-  isLoading: boolean,
+  loading: boolean,
   labelKey: string,
   maxDropdownHeight: string,
   multi: boolean,
@@ -240,7 +240,7 @@ export type SharedStylePropsArgT = {
   $disabled: boolean,
   $error: boolean,
   $isFocused: boolean,
-  $isLoading: boolean,
+  $loading: boolean,
   $isOpen: boolean,
   $isPseudoFocused: boolean,
   $multi: boolean,

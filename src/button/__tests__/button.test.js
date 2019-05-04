@@ -50,7 +50,7 @@ describe('Button Component', () => {
     const component = mount(<Button />);
 
     expect(component.find(LoadingSpinner)).not.toExist();
-    component.setProps({isLoading: true});
+    component.setProps({loading: true});
     expect(component.find(LoadingSpinner)).toExist();
   });
 
@@ -69,14 +69,14 @@ describe('Button Component', () => {
   test('internalOnClick prevents external onClick while loading', () => {
     const props = {
       onClick: jest.fn(),
-      isLoading: true,
+      loading: true,
     };
     const component = mount(<Button {...props} />);
 
     component.instance().internalOnClick();
     expect(props.onClick.mock.calls.length).toBe(0);
 
-    component.setProps({isLoading: false});
+    component.setProps({loading: false});
     component.instance().internalOnClick();
     expect(props.onClick.mock.calls.length).toBe(1);
   });

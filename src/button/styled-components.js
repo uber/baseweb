@@ -38,7 +38,7 @@ export const BaseButton = styled(
     $size,
     $kind,
     $shape,
-    $isLoading,
+    $loading,
     $isSelected,
     $disabled,
   }: StylePropsT) => ({
@@ -66,7 +66,7 @@ export const BaseButton = styled(
     // Padding For Shape and Size
     ...getStyleForShape({$theme, $shape, $size}),
     // Kind style override
-    ...getStyleForKind({$theme, $kind, $isLoading, $isSelected, $disabled}),
+    ...getStyleForKind({$theme, $kind, $loading, $isSelected, $disabled}),
     marginLeft: 0,
     marginTop: 0,
     marginRight: 0,
@@ -184,7 +184,7 @@ export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
 
 export function getStyleForKind({
   $theme,
-  $isLoading,
+  $loading,
   $isSelected,
   $kind,
   $disabled,
@@ -200,12 +200,12 @@ export function getStyleForKind({
           ? $theme.colors.buttonPrimaryHover
           : $theme.colors.buttonPrimaryFill,
         ':hover': {
-          backgroundColor: $isLoading
+          backgroundColor: $loading
             ? $theme.colors.buttonPrimaryActive
             : $theme.colors.buttonPrimaryHover,
         },
         ':focus': {
-          backgroundColor: $isLoading
+          backgroundColor: $loading
             ? $theme.colors.buttonPrimaryActive
             : $theme.colors.buttonPrimaryHover,
         },
@@ -220,12 +220,12 @@ export function getStyleForKind({
           ? $theme.colors.buttonSecondaryHover
           : $theme.colors.buttonSecondaryFill,
         ':hover': {
-          backgroundColor: $isLoading
+          backgroundColor: $loading
             ? $theme.colors.buttonSecondaryActive
             : $theme.colors.buttonSecondaryHover,
         },
         ':focus': {
-          backgroundColor: $isLoading
+          backgroundColor: $loading
             ? $theme.colors.buttonSecondaryActive
             : $theme.colors.buttonSecondaryHover,
         },
@@ -244,12 +244,12 @@ export function getStyleForKind({
           color: $theme.colors.buttonTertiaryText,
           backgroundColor: $theme.colors.buttonTertiaryFill,
           ':hover': {
-            backgroundColor: $isLoading
+            backgroundColor: $loading
               ? $theme.colors.buttonTertiaryActive
               : $theme.colors.buttonTertiaryHover,
           },
           ':focus': {
-            backgroundColor: $isLoading
+            backgroundColor: $loading
               ? $theme.colors.buttonTertiaryActive
               : $theme.colors.buttonTertiaryHover,
           },
@@ -265,12 +265,12 @@ export function getStyleForKind({
           ? $theme.colors.buttonMinimalHover
           : $theme.colors.buttonMinimalFill,
         ':hover': {
-          backgroundColor: $isLoading
+          backgroundColor: $loading
             ? $theme.colors.buttonMinimalActive
             : $theme.colors.buttonMinimalHover,
         },
         ':focus': {
-          backgroundColor: $isLoading
+          backgroundColor: $loading
             ? $theme.colors.buttonMinimalActive
             : $theme.colors.buttonMinimalHover,
         },

@@ -32,7 +32,7 @@ describe('SelectDropdown', function() {
       maxDropdownHeight: '1000px',
       overrides: {},
       error: false,
-      isLoading: false,
+      loading: false,
       multi: false,
       required: false,
       searchable: true,

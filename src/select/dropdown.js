@@ -20,7 +20,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
   getSharedProps() {
     const {
       error,
-      isLoading,
+      loading,
       multi,
       required,
       size,
@@ -30,7 +30,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     } = this.props;
     return {
       $error: error,
-      $isLoading: isLoading,
+      $loading: loading,
       $multi: multi,
       $required: required,
       $searchable: searchable,

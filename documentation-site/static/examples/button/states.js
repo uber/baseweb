@@ -6,7 +6,7 @@ export default () => (
   <React.Fragment>
     <Button>No state</Button>
     <Block as="span" marginLeft="scale300" />
-    <Button isLoading>Loading</Button>
+    <Button loading>Loading</Button>
     <Block as="span" marginLeft="scale300" />
     <Button isSelected>Selected</Button>
     <Block as="span" marginLeft="scale300" />

@@ -18,7 +18,7 @@ exports[`Select component renders component in search mode and false for multipl
   filterOutSelected={true}
   getOptionLabel={null}
   getValueLabel={null}
-  isLoading={false}
+  loading={false}
   labelKey="label"
   maxDropdownHeight="900px"
   multi={false}
@@ -75,7 +75,7 @@ exports[`Select component renders component in search mode and false for multipl
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $isLoading={false}
+      $loading={false}
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
@@ -109,7 +109,7 @@ exports[`Select component renders component in search mode and false for multipl
           $disabled={false}
           $error={false}
           $isFocused={false}
-          $isLoading={false}
+          $loading={false}
           $isOpen={false}
           $isPseudoFocused={false}
           $multi={false}
@@ -137,7 +137,7 @@ exports[`Select component renders component in search mode and false for multipl
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -188,7 +188,7 @@ exports[`Select component renders component in search mode and false for multipl
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -206,7 +206,7 @@ exports[`Select component renders component in search mode and false for multipl
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -227,7 +227,7 @@ exports[`Select component renders component in search mode and false for multipl
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -245,7 +245,7 @@ exports[`Select component renders component in search mode and false for multipl
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
-                      $isLoading={false}
+                      $loading={false}
                       $isOpen={false}
                       $isPseudoFocused={false}
                       $multi={false}
@@ -281,7 +281,7 @@ exports[`Select component renders component in search mode and false for multipl
                         $disabled={false}
                         $error={false}
                         $isFocused={false}
-                        $isLoading={false}
+                        $loading={false}
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
@@ -344,7 +344,7 @@ exports[`Select component renders component in search mode and false for multipl
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -383,7 +383,7 @@ exports[`Select component renders component in search mode and true for multiple
   filterOutSelected={true}
   getOptionLabel={null}
   getValueLabel={null}
-  isLoading={false}
+  loading={false}
   labelKey="label"
   maxDropdownHeight="900px"
   multi={false}
@@ -440,7 +440,7 @@ exports[`Select component renders component in search mode and true for multiple
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $isLoading={false}
+      $loading={false}
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
@@ -474,7 +474,7 @@ exports[`Select component renders component in search mode and true for multiple
           $disabled={false}
           $error={false}
           $isFocused={false}
-          $isLoading={false}
+          $loading={false}
           $isOpen={false}
           $isPseudoFocused={false}
           $multi={false}
@@ -502,7 +502,7 @@ exports[`Select component renders component in search mode and true for multiple
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -553,7 +553,7 @@ exports[`Select component renders component in search mode and true for multiple
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -571,7 +571,7 @@ exports[`Select component renders component in search mode and true for multiple
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -592,7 +592,7 @@ exports[`Select component renders component in search mode and true for multiple
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -610,7 +610,7 @@ exports[`Select component renders component in search mode and true for multiple
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
-                      $isLoading={false}
+                      $loading={false}
                       $isOpen={false}
                       $isPseudoFocused={false}
                       $multi={false}
@@ -646,7 +646,7 @@ exports[`Select component renders component in search mode and true for multiple
                         $disabled={false}
                         $error={false}
                         $isFocused={false}
-                        $isLoading={false}
+                        $loading={false}
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
@@ -709,7 +709,7 @@ exports[`Select component renders component in search mode and true for multiple
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -748,7 +748,7 @@ exports[`Select component renders component in select mode and false for multipl
   filterOutSelected={true}
   getOptionLabel={null}
   getValueLabel={null}
-  isLoading={false}
+  loading={false}
   labelKey="label"
   maxDropdownHeight="900px"
   multi={false}
@@ -805,7 +805,7 @@ exports[`Select component renders component in select mode and false for multipl
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $isLoading={false}
+      $loading={false}
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
@@ -839,7 +839,7 @@ exports[`Select component renders component in select mode and false for multipl
           $disabled={false}
           $error={false}
           $isFocused={false}
-          $isLoading={false}
+          $loading={false}
           $isOpen={false}
           $isPseudoFocused={false}
           $multi={false}
@@ -867,7 +867,7 @@ exports[`Select component renders component in select mode and false for multipl
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -885,7 +885,7 @@ exports[`Select component renders component in select mode and false for multipl
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -906,7 +906,7 @@ exports[`Select component renders component in select mode and false for multipl
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -924,7 +924,7 @@ exports[`Select component renders component in select mode and false for multipl
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
-                      $isLoading={false}
+                      $loading={false}
                       $isOpen={false}
                       $isPseudoFocused={false}
                       $multi={false}
@@ -960,7 +960,7 @@ exports[`Select component renders component in select mode and false for multipl
                         $disabled={false}
                         $error={false}
                         $isFocused={false}
-                        $isLoading={false}
+                        $loading={false}
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
@@ -1023,7 +1023,7 @@ exports[`Select component renders component in select mode and false for multipl
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -1041,7 +1041,7 @@ exports[`Select component renders component in select mode and false for multipl
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -1063,7 +1063,7 @@ exports[`Select component renders component in select mode and false for multipl
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
-                    $isLoading={false}
+                    $loading={false}
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
@@ -1086,7 +1086,7 @@ exports[`Select component renders component in select mode and false for multipl
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
-                      $isLoading={false}
+                      $loading={false}
                       $isOpen={false}
                       $isPseudoFocused={false}
                       $multi={false}
@@ -1140,7 +1140,7 @@ exports[`Select component renders component in select mode and true for multiple
   filterOutSelected={true}
   getOptionLabel={null}
   getValueLabel={null}
-  isLoading={false}
+  loading={false}
   labelKey="label"
   maxDropdownHeight="900px"
   multi={false}
@@ -1197,7 +1197,7 @@ exports[`Select component renders component in select mode and true for multiple
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $isLoading={false}
+      $loading={false}
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
@@ -1231,7 +1231,7 @@ exports[`Select component renders component in select mode and true for multiple
           $disabled={false}
           $error={false}
           $isFocused={false}
-          $isLoading={false}
+          $loading={false}
           $isOpen={false}
           $isPseudoFocused={false}
           $multi={false}
@@ -1259,7 +1259,7 @@ exports[`Select component renders component in select mode and true for multiple
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -1277,7 +1277,7 @@ exports[`Select component renders component in select mode and true for multiple
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -1298,7 +1298,7 @@ exports[`Select component renders component in select mode and true for multiple
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -1316,7 +1316,7 @@ exports[`Select component renders component in select mode and true for multiple
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
-                      $isLoading={false}
+                      $loading={false}
                       $isOpen={false}
                       $isPseudoFocused={false}
                       $multi={false}
@@ -1352,7 +1352,7 @@ exports[`Select component renders component in select mode and true for multiple
                         $disabled={false}
                         $error={false}
                         $isFocused={false}
-                        $isLoading={false}
+                        $loading={false}
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
@@ -1415,7 +1415,7 @@ exports[`Select component renders component in select mode and true for multiple
               $disabled={false}
               $error={false}
               $isFocused={false}
-              $isLoading={false}
+              $loading={false}
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
@@ -1433,7 +1433,7 @@ exports[`Select component renders component in select mode and true for multiple
                   $disabled={false}
                   $error={false}
                   $isFocused={false}
-                  $isLoading={false}
+                  $loading={false}
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
@@ -1455,7 +1455,7 @@ exports[`Select component renders component in select mode and true for multiple
                     $disabled={false}
                     $error={false}
                     $isFocused={false}
-                    $isLoading={false}
+                    $loading={false}
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
@@ -1478,7 +1478,7 @@ exports[`Select component renders component in select mode and true for multiple
                       $disabled={false}
                       $error={false}
                       $isFocused={false}
-                      $isLoading={false}
+                      $loading={false}
                       $isOpen={false}
                       $isPseudoFocused={false}
                       $multi={false}

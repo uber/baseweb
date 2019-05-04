@@ -21,7 +21,7 @@ import type {ButtonPropsT} from './types.js';
 export default class Button extends React.Component<ButtonPropsT> {
   static defaultProps = {
     disabled: false,
-    isLoading: false,
+    loading: false,
     isSelected: false,
     kind: KIND.primary,
     overrides: {},
@@ -30,8 +30,8 @@ export default class Button extends React.Component<ButtonPropsT> {
   };
 
   internalOnClick = (...args: *) => {
-    const {isLoading, onClick} = this.props;
-    if (isLoading) {
+    const {loading, onClick} = this.props;
+    if (loading) {
       return;
     }
     onClick && onClick(...args);
@@ -43,7 +43,7 @@ export default class Button extends React.Component<ButtonPropsT> {
       size,
       kind,
       shape,
-      isLoading,
+      loading,
       isSelected,
       // Removing from restProps
       startEnhancer,
@@ -77,7 +77,7 @@ export default class Button extends React.Component<ButtonPropsT> {
         // Applies last to override passed in onClick
         onClick={this.internalOnClick}
       >
-        {isLoading ? (
+        {loading ? (
           <React.Fragment>
             {/* This is not meant to be overridable by users */}
             <div style={{opacity: 0, display: 'flex'}}>

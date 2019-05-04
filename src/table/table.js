@@ -23,7 +23,7 @@ export default class Table extends React.Component<TablePropsT> {
   static defaultProps = {
     columns: [],
     data: [[]],
-    isLoading: false,
+    loading: false,
   };
 
   render() {
