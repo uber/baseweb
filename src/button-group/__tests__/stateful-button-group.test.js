@@ -30,7 +30,7 @@ function clickChildAtIndex(wrapper, index) {
 
 function expectSelectedValueAtIndex(wrapper, index, value) {
   const childAtIndex = wrapper.find('div').childAt(index);
-  expect(childAtIndex).toHaveProp('isSelected', value);
+  expect(childAtIndex).toHaveProp('selected', value);
 }
 
 describe('StatefulButtonGroup', () => {

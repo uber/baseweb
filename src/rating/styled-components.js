@@ -37,7 +37,7 @@ export const StyledRoot = styled('ul', ({$theme}: StyledRootPropsT) => {
 
 export const StyledStar = styled(
   'li',
-  ({$theme, $isActive, $isSelected}: StyledRatingItemPropsT) => {
+  ({$theme, $isActive, $selected}: StyledRatingItemPropsT) => {
     let starStroke = $theme.colors.mono500;
     let starFill = $theme.colors.mono300;
 
@@ -59,7 +59,7 @@ export const StyledStar = styled(
       marginRight: $theme.sizing.scale300,
       width: '22px',
       height: '20px',
-      transform: $isSelected ? 'scale(1.35)' : '',
+      transform: $selected ? 'scale(1.35)' : '',
       ':focus': {
         outline: 'none',
       },
@@ -76,7 +76,7 @@ export const StyledStar = styled(
 
 export const StyledEmoticon = styled(
   'li',
-  ({$theme, $isActive, $isSelected, $index = 1}: StyledRatingItemPropsT) => {
+  ({$theme, $isActive, $selected, $index = 1}: StyledRatingItemPropsT) => {
     let emoticonFill = $theme.colors.mono500;
 
     if ($isActive) {
@@ -105,7 +105,7 @@ export const StyledEmoticon = styled(
       marginRight: $theme.sizing.scale300,
       width: '44px',
       height: '44px',
-      transform: $isSelected ? 'scale(1.1)' : '',
+      transform: $selected ? 'scale(1.1)' : '',
       ':focus': {
         outline: 'none',
       },

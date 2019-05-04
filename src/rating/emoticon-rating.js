@@ -58,7 +58,7 @@ class EmoticonRating extends React.Component<
           $isActive={
             previewIndex !== undefined ? x === previewIndex : x === value
           }
-          $isSelected={x === previewIndex}
+          $selected={x === previewIndex}
           onClick={() => this.selectItem(x)}
           onKeyDown={e => {
             if (e.keyCode === SPACE_KEY_CODE || e.keyCode === ENTER_KEY_CODE) {

@@ -32,10 +32,10 @@ List.displayName = 'StyledList';
 
 export const Item = styled(
   'li',
-  ({$isDragged, $isSelected, $theme}: StylePropsT) => {
+  ({$isDragged, $selected, $theme}: StylePropsT) => {
     return {
       ':hover':
-        !$isDragged && !$isSelected
+        !$isDragged && !$selected
           ? {
               borderTopWidth: '2px',
               borderBottomWidth: '2px',
@@ -72,13 +72,13 @@ export const Item = styled(
       borderLeftStyle: 'solid',
       borderRightStyle: 'solid',
       borderTopColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+        $isDragged || $selected ? $theme.colors.primary : 'transparent',
       borderBottomColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+        $isDragged || $selected ? $theme.colors.primary : 'transparent',
       borderLeftColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+        $isDragged || $selected ? $theme.colors.primary : 'transparent',
       borderRightColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+        $isDragged || $selected ? $theme.colors.primary : 'transparent',
     };
   },
 );

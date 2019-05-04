@@ -10,7 +10,7 @@ import type {ButtonPropsT} from './types.js';
 export function getSharedProps({
   disabled,
   loading,
-  isSelected,
+  selected,
   kind,
   shape,
   size,
@@ -18,7 +18,7 @@ export function getSharedProps({
   return {
     $disabled: disabled,
     $loading: loading,
-    $isSelected: isSelected,
+    $selected: selected,
     $kind: kind,
     $shape: shape,
     $size: size,

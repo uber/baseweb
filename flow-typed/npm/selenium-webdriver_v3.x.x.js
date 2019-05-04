@@ -912,7 +912,7 @@ declare class webdriver$WebElement {
   getSize(): webdriver$Promise<webdriver$size>;
   getLocation(): webdriver$Promise<webdriver$location>;
   isEnabled(): webdriver$Promise<boolean>;
-  isSelected(): webdriver$Promise<boolean>;
+  selected(): webdriver$Promise<boolean>;
   submit(): webdriver$Promise<void>;
   clear(): webdriver$Promise<void>;
   isDisplayed(): webdriver$Promise<boolean>;
@@ -960,7 +960,7 @@ declare interface webdriver$until {
   elementIsNotVisible(element: webdriver$WebElement): webdriver$Condition;
   elementIsEnabled(element: webdriver$WebElement): webdriver$Condition;
   elementIsDisabled(element: webdriver$WebElement): webdriver$Condition;
-  elementIsSelected(element: webdriver$WebElement): webdriver$Condition;
+  elementselected(element: webdriver$WebElement): webdriver$Condition;
   elementIsNotSelected(element: webdriver$WebElement): webdriver$Condition;
   elementTextIs(
     element: webdriver$WebElement,

@@ -16,7 +16,7 @@ import {StyledRoot} from './styled-components.js';
 import type {PropsT} from './types.js';
 import type {ButtonGroupLocaleT} from './locale.js';
 
-function isSelected(selected, index) {
+function selected(selected, index) {
   if (!Array.isArray(selected) && typeof selected !== 'number') {
     return false;
   }
@@ -71,7 +71,7 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
 
         return React.cloneElement(child, {
           disabled: props.disabled || child.props.disabled,
-          isSelected: isSelected(props.selected, index),
+          selected: selected(props.selected, index),
           kind: KIND.tertiary,
           onClick: event => {
             if (props.disabled) {

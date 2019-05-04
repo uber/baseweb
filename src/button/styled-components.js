@@ -39,7 +39,7 @@ export const BaseButton = styled(
     $kind,
     $shape,
     $loading,
-    $isSelected,
+    $selected,
     $disabled,
   }: StylePropsT) => ({
     position: 'relative',
@@ -66,7 +66,7 @@ export const BaseButton = styled(
     // Padding For Shape and Size
     ...getStyleForShape({$theme, $shape, $size}),
     // Kind style override
-    ...getStyleForKind({$theme, $kind, $loading, $isSelected, $disabled}),
+    ...getStyleForKind({$theme, $kind, $loading, $selected, $disabled}),
     marginLeft: 0,
     marginTop: 0,
     marginRight: 0,
@@ -185,7 +185,7 @@ export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
 export function getStyleForKind({
   $theme,
   $loading,
-  $isSelected,
+  $selected,
   $kind,
   $disabled,
 }: StylePropsT) {
@@ -196,7 +196,7 @@ export function getStyleForKind({
     case KIND.primary:
       return {
         color: $theme.colors.buttonPrimaryText,
-        backgroundColor: $isSelected
+        backgroundColor: $selected
           ? $theme.colors.buttonPrimaryHover
           : $theme.colors.buttonPrimaryFill,
         ':hover': {
@@ -216,7 +216,7 @@ export function getStyleForKind({
     case KIND.secondary:
       return {
         color: $theme.colors.buttonSecondaryText,
-        backgroundColor: $isSelected
+        backgroundColor: $selected
           ? $theme.colors.buttonSecondaryHover
           : $theme.colors.buttonSecondaryFill,
         ':hover': {
@@ -234,7 +234,7 @@ export function getStyleForKind({
         },
       };
     case KIND.tertiary:
-      if ($isSelected) {
+      if ($selected) {
         return {
           color: $theme.colors.buttonTertiarySelectedText,
           backgroundColor: $theme.colors.buttonTertiarySelectedFill,
@@ -261,7 +261,7 @@ export function getStyleForKind({
     case KIND.minimal:
       return {
         color: $theme.colors.buttonMinimalText,
-        backgroundColor: $isSelected
+        backgroundColor: $selected
           ? $theme.colors.buttonMinimalHover
           : $theme.colors.buttonMinimalFill,
         ':hover': {

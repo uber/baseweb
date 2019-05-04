@@ -8,7 +8,7 @@ export default () => (
     <Block as="span" marginLeft="scale300" />
     <Button loading>Loading</Button>
     <Block as="span" marginLeft="scale300" />
-    <Button isSelected>Selected</Button>
+    <Button selected>Selected</Button>
     <Block as="span" marginLeft="scale300" />
     <Button disabled>Disabled</Button>
   </React.Fragment>

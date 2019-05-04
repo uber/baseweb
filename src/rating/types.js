@@ -43,6 +43,6 @@ export type StyledRootPropsT = {
 export type StyledRatingItemPropsT = {
   $theme: ThemeT,
   $isActive: boolean,
-  $isSelected: boolean,
+  $selected: boolean,
   $index: number,
 };

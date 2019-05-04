@@ -51,7 +51,7 @@ describe('Pagination Stateless', () => {
         $ref,
         $disabled,
         $loading,
-        $isSelected,
+        $selected,
         initialState,
         onItemSelect,
         ...restProps

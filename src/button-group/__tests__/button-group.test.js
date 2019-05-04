@@ -109,14 +109,14 @@ describe('ButtonGroup', () => {
   it('sets no children as selected if selected prop is null value', () => {
     const wrapper = buildSimpleWrapper({selected: null});
     wrapper.children().forEach(child => {
-      expect(child).toHaveProp('isSelected', false);
+      expect(child).toHaveProp('selected', false);
     });
   });
 
   it('sets no children as selected if selected prop is empty array', () => {
     const wrapper = buildSimpleWrapper({selected: []});
     wrapper.children().forEach(child => {
-      expect(child).toHaveProp('isSelected', false);
+      expect(child).toHaveProp('selected', false);
     });
   });
 
@@ -124,7 +124,7 @@ describe('ButtonGroup', () => {
     const selectedIndex = 2;
     const wrapper = buildSimpleWrapper({selected: selectedIndex});
     wrapper.children().forEach((child, index) => {
-      expect(child).toHaveProp('isSelected', selectedIndex === index);
+      expect(child).toHaveProp('selected', selectedIndex === index);
     });
   });
 
@@ -132,7 +132,7 @@ describe('ButtonGroup', () => {
     const selectedIndex = 0;
     const wrapper = buildSimpleWrapper({selected: selectedIndex});
     wrapper.children().forEach((child, index) => {
-      expect(child).toHaveProp('isSelected', selectedIndex === index);
+      expect(child).toHaveProp('selected', selectedIndex === index);
     });
   });
 
@@ -140,7 +140,7 @@ describe('ButtonGroup', () => {
     const selectedIndices = [0, 2];
     const wrapper = buildSimpleWrapper({selected: selectedIndices});
     wrapper.children().forEach((child, index) => {
-      expect(child).toHaveProp('isSelected', selectedIndices.includes(index));
+      expect(child).toHaveProp('selected', selectedIndices.includes(index));
     });
   });
 });

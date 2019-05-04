@@ -24,7 +24,7 @@ export type ButtonPropsT = {
   /** Show loading button style and spinner. */
   loading: boolean,
   /** Indicates that the button is selected */
-  isSelected?: boolean,
+  selected?: boolean,
   /** Defines the kind (purpose) of a button */
   kind: $Keys<typeof KIND>,
   onClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
@@ -39,7 +39,7 @@ export type ButtonPropsT = {
 
 export type SharedStylePropsT = {
   $kind?: $Keys<typeof KIND>,
-  $isSelected?: boolean,
+  $selected?: boolean,
   $shape?: $Keys<typeof SHAPE>,
   $size?: $Keys<typeof SIZE>,
   $loading?: boolean,

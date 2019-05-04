@@ -13,7 +13,7 @@ import {MODE, STATE_CHANGE_TYPE} from './constants.js';
 import type {StatefulContainerPropsT, StateT} from './types.js';
 
 // handles the case where selected = 0
-function isSelectedDefined(selected) {
+function selectedDefined(selected) {
   return Array.isArray(selected) || typeof selected === 'number';
 }
 
@@ -41,7 +41,7 @@ export default class StatefulContainer extends React.Component<
     const {selected = []} = initialState;
 
     this.state = {
-      selected: isSelectedDefined(selected) ? [].concat(selected) : [],
+      selected: selectedDefined(selected) ? [].concat(selected) : [],
     };
   }
 

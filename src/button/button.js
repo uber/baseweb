@@ -22,7 +22,7 @@ export default class Button extends React.Component<ButtonPropsT> {
   static defaultProps = {
     disabled: false,
     loading: false,
-    isSelected: false,
+    selected: false,
     kind: KIND.primary,
     overrides: {},
     shape: SHAPE.default,
@@ -44,7 +44,7 @@ export default class Button extends React.Component<ButtonPropsT> {
       kind,
       shape,
       loading,
-      isSelected,
+      selected,
       // Removing from restProps
       startEnhancer,
       endEnhancer,

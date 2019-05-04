@@ -45,7 +45,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     if (this.dayElm && this.props.focusedCalendar) {
       if (
         this.props.highlighted ||
-        (!this.props.highlightedDate && this.isSelected())
+        (!this.props.highlightedDate && this.selected())
       ) {
         this.dayElm.focus();
       }
@@ -56,7 +56,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     if (this.dayElm && this.props.focusedCalendar) {
       if (
         this.props.highlighted ||
-        (!this.props.highlightedDate && this.isSelected())
+        (!this.props.highlightedDate && this.selected())
       ) {
         this.dayElm.focus();
       }
@@ -118,7 +118,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     );
   };
 
-  isSelected() {
+  selected() {
     const {value, date} = this.props;
     if (Array.isArray(value)) {
       return isSameDay(date, value[0]) || isSameDay(date, value[1]);
@@ -152,7 +152,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   getSharedProps() {
     const {date, value, highlightedDate, range, highlighted} = this.props;
     const $isHighlighted = highlighted;
-    const $selected = this.isSelected();
+    const $selected = this.selected();
     const $hasRangeHighlighted = !!(
       Array.isArray(value) &&
       range &&
@@ -234,7 +234,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         role="button"
         tabIndex={
           this.props.highlighted ||
-          (!this.props.highlightedDate && this.isSelected())
+          (!this.props.highlightedDate && this.selected())
             ? '0'
             : '-1'
         }
