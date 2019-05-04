@@ -45,7 +45,7 @@ describe('Stateless checkbox', function() {
       isError: isError,
       inputRef: React.createRef(),
       autoFocus: false,
-      isIndeterminate: false,
+      indeterminate: false,
       disabled: false,
       checked: false,
     };
@@ -66,7 +66,7 @@ describe('Stateless checkbox', function() {
       const sharedProps = {
         $isError: allProps.isError,
         $checked: allProps.checked,
-        $isIndeterminate: allProps.isIndeterminate,
+        $indeterminate: allProps.indeterminate,
         $required: allProps.required,
         $disabled: allProps.disabled,
       };

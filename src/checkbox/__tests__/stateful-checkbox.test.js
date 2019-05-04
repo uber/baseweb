@@ -61,7 +61,7 @@ describe('Stateful checkbox', function() {
       someProp: 'some other prop',
       checked: false,
       autoFocus: false,
-      isIndeterminate: false,
+      indeterminate: false,
     });
   });
 });

@@ -9,11 +9,11 @@ import {styled} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
 
 function getBorderColor(props) {
-  const {$disabled, $checked, $isError, $isIndeterminate, $theme} = props;
+  const {$disabled, $checked, $isError, $indeterminate, $theme} = props;
   const {colors} = $theme;
   if ($disabled) {
     return colors.tickFillDisabled;
-  } else if ($checked || $isIndeterminate) {
+  } else if ($checked || $indeterminate) {
     return 'transparent';
   } else if ($isError) {
     return colors.negative400;
@@ -51,7 +51,7 @@ function getBackgroundColor(props) {
   const {
     $disabled,
     $checked,
-    $isIndeterminate,
+    $indeterminate,
     $isFocused,
     $isError,
     $isHovered,
@@ -63,7 +63,7 @@ function getBackgroundColor(props) {
   const {colors} = $theme;
   if ($disabled) {
     return isToggle ? colors.sliderTrackFillDisabled : colors.tickFillDisabled;
-  } else if ($isError && ($isIndeterminate || $checked)) {
+  } else if ($isError && ($indeterminate || $checked)) {
     if ($isActive || $isFocused) {
       return colors.tickFillErrorSelectedHoverActive;
     } else if ($isHovered) {
@@ -79,7 +79,7 @@ function getBackgroundColor(props) {
     } else {
       return colors.tickFillError;
     }
-  } else if ($isIndeterminate || $checked) {
+  } else if ($indeterminate || $checked) {
     if ($isActive || $isFocused) {
       return colors.tickFillSelectedHoverActive;
     } else if ($isHovered) {
@@ -122,7 +122,7 @@ export const Root = styled('label', props => {
 });
 
 export const Checkmark = styled('span', props => {
-  const {$checked, $disabled, $isIndeterminate, $theme} = props;
+  const {$checked, $disabled, $indeterminate, $theme} = props;
   const {sizing, animation} = $theme;
 
   const tickColor = $disabled
@@ -172,7 +172,7 @@ export const Checkmark = styled('span', props => {
       : null,
     display: 'inline-block',
     verticalAlign: 'middle',
-    backgroundImage: $isIndeterminate
+    backgroundImage: $indeterminate
       ? `url('data:image/svg+xml,${indeterminate}');`
       : $checked
         ? `url('data:image/svg+xml,${check}');`

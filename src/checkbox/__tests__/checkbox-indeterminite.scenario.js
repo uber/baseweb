@@ -18,7 +18,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
 
   render() {
     const allChecked = this.state.checkboxes.every(Boolean);
-    const isIndeterminate = this.state.checkboxes.some(Boolean) && !allChecked;
+    const indeterminate = this.state.checkboxes.some(Boolean) && !allChecked;
 
     return (
       <Block>
@@ -28,7 +28,7 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
             const nextCheckboxes = [e.target.checked, e.target.checked];
             this.setState({checkboxes: nextCheckboxes});
           }}
-          isIndeterminate={isIndeterminate}
+          indeterminate={indeterminate}
           checked={allChecked}
           overrides={{Root: {props: {'data-name': 'parent'}}}}
         >

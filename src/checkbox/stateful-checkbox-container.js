@@ -23,7 +23,7 @@ class StatefulCheckboxContainer extends React.Component<
   static defaultProps: DefaultStatefulPropsT = {
     initialState: {
       checked: false,
-      isIndeterminate: false,
+      indeterminate: false,
     },
     stateReducer: defaultStateReducer,
     onChange: () => {},

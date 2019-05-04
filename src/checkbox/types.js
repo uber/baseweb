@@ -28,7 +28,7 @@ export type DefaultPropsT = {
   disabled: boolean,
   isError: boolean,
   autoFocus: boolean,
-  isIndeterminate: boolean,
+  indeterminate: boolean,
   inputRef: {current: ?HTMLInputElement},
   checkmarkType: StyleTypeT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
@@ -63,7 +63,7 @@ export type PropsT = {
   /** Passed to the input element value attribute */
   value?: string,
   /** Indicates a 'half' state for the checkmark. In this case, `checked` is ignored. */
-  isIndeterminate?: boolean,
+  indeterminate?: boolean,
   /** How to position the label relative to the checkbox itself. */
   labelPlacement?: LabelPlacementT,
   /** Renders UI as checkmark or toggle switch. */
@@ -93,7 +93,7 @@ export type StatelessStateT = {
 
 export type StateT = {
   checked?: boolean,
-  isIndeterminate?: boolean,
+  indeterminate?: boolean,
 };
 
 export type StateReducerT = (
