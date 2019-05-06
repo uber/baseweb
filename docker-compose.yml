@@ -98,3 +98,4 @@ services:
       - GITHUB_AUTH_TOKEN
       - SCREENER_API_KEY
       - ZEIT_NOW_TOKEN
+      - FOSSA_API_KEY
