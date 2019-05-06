@@ -10,17 +10,16 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {
+  BaseProvider,
   DarkTheme,
   DarkThemeMove,
   LightTheme,
   LightThemeMove,
-  ThemeProvider,
 } from 'baseui';
 
 import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
-import {LayersManager} from 'baseui/layer';
 import Router from 'next/router';
 
 import {styletron} from '../helpers/styletron';
@@ -186,18 +185,16 @@ export default class MyApp extends App {
     return (
       <Container>
         <StyletronProvider value={styletron}>
-          <LayersManager>
-            <ThemeProvider theme={this.state.theme}>
-              <Block overrides={BlockOverrides}>
-                <Component
-                  {...pageProps}
-                  path={path}
-                  toggleTheme={this.toggleTheme.bind(this)}
-                />
-                <Block overrides={BlockOverrides} height="300px" />
-              </Block>
-            </ThemeProvider>
-          </LayersManager>
+          <BaseProvider theme={this.state.theme}>
+            <Block overrides={BlockOverrides}>
+              <Component
+                {...pageProps}
+                path={path}
+                toggleTheme={this.toggleTheme.bind(this)}
+              />
+              <Block overrides={BlockOverrides} height="300px" />
+            </Block>
+          </BaseProvider>
         </StyletronProvider>
       </Container>
     );

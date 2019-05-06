@@ -16,6 +16,7 @@ export {
   LightTheme,
   LightThemeMove,
 } from './themes/index.js';
+export {default as BaseProvider} from './helpers/base-provider.js';
 export {withProps} from './helpers/index.js';
 export {mergeOverrides} from './helpers/overrides.js';
 export type {PrimitivesT} from './themes/types.js';

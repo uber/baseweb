@@ -12,7 +12,7 @@ export default Layout;
 # Base Web Quickstart
 
 In order to use Base Web, you need to do a small setup and wrap the root of your
-application with `StyletronProvider` and `ThemeProvider` components:
+application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
 
 ```javascript
 import {Client as Styletron} from 'styletron-engine-atomic';
@@ -32,11 +32,11 @@ const Centered = styled('div', {
 export default function Hello() {
   return (
     <StyletronProvider value={engine}>
-      <ThemeProvider theme={LightTheme}>
+      <BaseProvider theme={LightTheme}>
         <Centered>
           <StatefulInput />
         </Centered>
-      </ThemeProvider>
+      </BaseProvider>
     </StyletronProvider>
   );
 }
