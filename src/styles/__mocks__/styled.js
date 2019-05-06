@@ -5,7 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
 import React from 'react';
+import {getInitialStyle} from 'styletron-standard';
 import {LightTheme} from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
 import type {ThemeT} from '../../styles/types.js';
@@ -20,9 +22,10 @@ type PropsT = {
 type StateT = {styles?: {}};
 
 const MOCK_THEME = createMockTheme(LightTheme);
+const IDENTITY = x => x;
 
-function styled(Base: string, objOrFn?: ObjOrFnT = {}) {
-  return class MockStyledComponent extends React.Component<PropsT, StateT> {
+function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
+  class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
     state = {};
@@ -64,9 +67,18 @@ function styled(Base: string, objOrFn?: ObjOrFnT = {}) {
     }
 
     render() {
-      return <Base styled-component="true" {...this.getPassedProps()} />;
+      return <ElementName styled-component="true" {...this.getPassedProps()} />;
     }
+  }
+
+  // $FlowFixMe
+  MockStyledComponent.__STYLETRON__ = {
+    getInitialStyle,
+    wrapper: IDENTITY,
+    base: ElementName,
   };
+
+  return MockStyledComponent;
 }
 
 export default styled;

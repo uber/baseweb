@@ -9,18 +9,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import CodeSandboxer from 'react-codesandboxer';
+import {withStyle} from 'styletron-react';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {Card} from 'baseui/card';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
-import {styled} from 'baseui/styles';
 
 import {version} from '../../package.json';
 import Code from './code';
 import {trackEvent} from '../helpers/ga';
 import {H2} from './markdown-elements';
 
-const Link = styled(StyledLink, {cursor: 'pointer'});
+const Link = withStyle(StyledLink, {cursor: 'pointer'});
 
 const index = `
 import React from "react";

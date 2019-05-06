@@ -76,3 +76,12 @@ export type StatefulSliderPropsT = {
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange?: ({...ParamsT}) => mixed,
 };
+
+export type StylePropsT = {
+  $disabled: boolean,
+  $isDragged: boolean,
+  $max: number,
+  $min: number,
+  $thumbIndex: number,
+  $value: Array<number>,
+};

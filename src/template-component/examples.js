@@ -25,8 +25,10 @@ const Span = styled('span', ({$prop, $theme}) => {
 
 const CustomRoot = ({children, ...restProps}: {children?: React.Node}) => {
   return (
-    <StyledRoot {...restProps}>
-      <Span {...restProps}>{children}</Span>
+    <StyledRoot $prop={true} {...restProps}>
+      <Span $prop={false} {...restProps}>
+        {children}
+      </Span>
     </StyledRoot>
   );
 };

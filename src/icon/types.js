@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
@@ -20,16 +19,9 @@ export type ColorT = string;
 export type StyledComponentArgsT = {
   $size?: SizeT,
   $color?: ColorT,
-  // Styletron stuff
-  $as?: string,
-  // styled function wrapper related
-  $style?: ?{},
-  $ref?: React.Ref<*>,
 };
 
-export type StyledComponentParamsT = StyledComponentArgsT & {
-  $theme: ThemeT,
-};
+// Chase: Note removes StyledComponentParamsT
 
 export type IconPropsT = {
   children?: React.Node,

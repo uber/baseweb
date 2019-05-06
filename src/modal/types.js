@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
 
@@ -85,10 +84,5 @@ export type SharedStylePropsArgT = {
   $ref?: ElementRefT,
 };
 
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
-};
-
-export type StyledComponentPropT = {
-  $theme: ThemeT,
-};
+// Chase: Note removes SharedStylePropsT
+// Chase: Note removes StyledComponentPropT

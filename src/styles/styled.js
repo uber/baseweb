@@ -6,8 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {createStyled, withStyleDeep} from 'styletron-react';
+import {createStyled} from 'styletron-react';
 import {driver, getInitialStyle} from 'styletron-standard';
+import type {StyleObject} from 'styletron-standard';
+import type {ThemeT} from './types.js';
 
 import {ThemeContext} from './theme-provider.js';
 
@@ -20,28 +22,26 @@ const wrapper = StyledComponent =>
     );
   };
 
-const baseStyled = createStyled({wrapper, getInitialStyle, driver});
+type StyletronComponent<Props> = React.StatelessFunctionalComponent<Props> & {
+  // eslint-disable-next-line flowtype/no-weak-types
+  __STYLETRON__: any,
+};
+type WithTheme<Props> = {$theme: ThemeT} & Props;
+type StyleFn = {
+  (string, StyleObject): StyletronComponent<{}>,
 
-// TODO(#495): Need a flow expert to help remove this 'any' type
-// eslint-disable-next-line flowtype/no-weak-types
-export default function styledWrapper(...args: any) {
-  // If user is trying to style a styled component
-  // use withStyleDeep, otherwise use baseStyled
-  let styleFn = baseStyled;
-  if (args[0] && args[0].__STYLETRON__) {
-    styleFn = withStyleDeep;
-  }
-  // Also allow passing deep style overrides via $style prop
-  // Ex: <StyledDiv $style={{color: 'red'}} />
-  // Issue for supporting this natively in styletron:
-  // https://github.com/rtsao/styletron/issues/221
+  <Props>(string, (WithTheme<Props>) => StyleObject): StyletronComponent<Props>,
 
-  // $FlowFixMe
-  return withStyleDeep(styleFn(...args), (props: {$style?: ?{}}) => {
-    const {$style} = props;
-    if (typeof $style === 'function') {
-      return $style(props);
-    }
-    return $style || {};
-  });
-}
+  // Not specifying pattern where a react component can be provided as first argument. Was seeing flow
+  // problems where Props generic was being interpreted as a component rather than simply an object.
+  // I've never seen this pattern used in practice and is not documented.
+  // https://github.com/styletron/styletron/blob/master/packages/styletron-react/src/types.js#L55-L62
+};
+
+const styled = ((createStyled({
+  wrapper,
+  getInitialStyle,
+  driver,
+  // eslint-disable-next-line flowtype/no-weak-types
+}): any): StyleFn);
+export default styled;

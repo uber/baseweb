@@ -9,7 +9,7 @@ import * as React from 'react';
 import {styled, asPrimaryExport} from '../styles/index.js';
 import {ALIGN} from './index.js';
 
-export const Root = styled('nav', props => {
+export const Root = styled<{}>('nav', props => {
   const {$theme} = props;
   const {
     sizing: {scale500},
@@ -26,7 +26,7 @@ export const Root = styled('nav', props => {
   };
 });
 
-export const NavigationItem = styled('div', props => {
+export const NavigationItem = styled<{}>('div', props => {
   const {$theme} = props;
   const {
     sizing: {scale800},

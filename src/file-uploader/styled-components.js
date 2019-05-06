@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
-export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
-  return {
+export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
+  return ({
     alignItems: 'center',
     backgroundColor: props.$isDragActive
       ? props.$theme.colors.fileUploaderBackgroundColorActive
@@ -34,26 +34,34 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
       : props.$theme.sizing.scale900,
     paddingLeft: props.$theme.sizing.scale800,
     width: '100%',
-  };
+  }: {});
 });
 
-export const StyledContentMessage = styled('div', (props: StylePropsT) => ({
-  ...props.$theme.typography.font400,
-  color: props.$afterFileDrop
-    ? props.$theme.colors.fileUploaderMessageColor
-    : null,
-  marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
-}));
+export const StyledContentMessage = styled<StylePropsT>(
+  'div',
+  props =>
+    ({
+      ...props.$theme.typography.font400,
+      color: props.$afterFileDrop
+        ? props.$theme.colors.fileUploaderMessageColor
+        : null,
+      marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
+    }: {}),
+);
 
-export const StyledErrorMessage = styled('div', (props: StylePropsT) => ({
-  ...props.$theme.typography.font400,
-  color: props.$theme.colors.negative,
-  marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
-}));
+export const StyledErrorMessage = styled<StylePropsT>(
+  'div',
+  props =>
+    ({
+      ...props.$theme.typography.font400,
+      color: props.$theme.colors.negative,
+      marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
+    }: {}),
+);
 
-export const StyledRoot = styled('div', (props: StylePropsT) => ({
+export const StyledRoot = styled<StylePropsT>('div', props => ({
   ...props.$theme.typography.font400,
   color: props.$theme.colors.fileUploaderMessageColor,
 }));
 
-export const StyledHiddenInput = styled('input');
+export const StyledHiddenInput = styled('input', {});

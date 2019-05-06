@@ -171,6 +171,7 @@ export type ColorsT = {
   tickBorder: string,
   tickBorderError: string,
   tickMarkFill: string,
+  tickMarkFillDisabled: string,
 
   // Slider/Toggle
   sliderTrackFill: string,
@@ -197,6 +198,7 @@ export type ColorsT = {
 
   // Input
   inputFill: string,
+  inputFillEnhancer: string,
   inputFillError: string,
   inputFillDisabled: string,
   inputTextDisabled: string,
@@ -410,7 +412,18 @@ export type TypographyT = {
 
 export type Font = {
   fontFamily: string,
-  fontWeight: string | number,
+  // eslint-disable-next-line flowtype/space-after-type-colon
+  fontWeight:
+    | '-moz-initial'
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'unset'
+    | 'bold'
+    | 'normal'
+    | 'bolder'
+    | 'lighter'
+    | number,
   fontSize: string,
   lineHeight: string | number,
 };
@@ -476,6 +489,7 @@ export type BordersT = {
   radius100: string,
   radius200: string,
   radius300: string,
+  radius400: string,
 };
 
 export type ZIndexT = {

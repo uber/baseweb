@@ -27,3 +27,8 @@ export type ProgressBarPropsT = {
   showLabel: boolean,
   overrides?: OverridesT,
 };
+
+export type StylePropsT = {
+  $successValue: number,
+  $value: number,
+};

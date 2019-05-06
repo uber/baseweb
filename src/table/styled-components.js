@@ -8,9 +8,8 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {styled} from '../styles/index.js';
-import type {SharedStylePropsT} from './types.js';
 
-const StyledTableElement = styled('div', ({$theme}: SharedStylePropsT) => {
+const StyledTableElement = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.borders.border300,
     backgroundColor: $theme.colors.tableBackground,
@@ -28,13 +27,12 @@ export const StyledTable = (props: *) => (
 StyledTable.__STYLETRON__ = StyledTableElement.__STYLETRON__;
 
 type HorizontalStyleProps = {
-  ...SharedStylePropsT,
   $width?: string,
 };
 
-const StyledHeadElement = styled(
+const StyledHeadElement = styled<HorizontalStyleProps>(
   'div',
-  ({$theme, $width}: HorizontalStyleProps) => {
+  ({$theme, $width}) => {
     return {
       backgroundColor: $theme.colors.tableHeadBackgroundColor,
       boxShadow: $theme.lighting.shadow400,
@@ -50,7 +48,7 @@ export const StyledHead = (props: *) => (
 );
 StyledHead.__STYLETRON__ = StyledHeadElement.__STYLETRON__;
 
-const StyledHeadCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
+const StyledHeadCellElement = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.typography.font350,
     ...$theme.borders.border300,
@@ -76,7 +74,7 @@ export const StyledHeadCell = (props: *) => (
 );
 StyledHeadCell.__STYLETRON__ = StyledHeadCellElement.__STYLETRON__;
 
-export const StyledSortableLabel = styled('button', ({$theme}) => {
+export const StyledSortableLabel = styled<{}>('button', ({$theme}) => {
   return {
     ...$theme.typography.font350,
     alignItems: 'center',
@@ -94,13 +92,13 @@ export const StyledSortableLabel = styled('button', ({$theme}) => {
   };
 });
 
-const StyledBodyElement = styled('div', ({$width}: HorizontalStyleProps) => {
-  return {
+const StyledBodyElement = styled<HorizontalStyleProps>('div', ({$width}) => {
+  return ({
     width: $width ? $width : '100%',
     overflowX: 'hidden',
     overflowY: 'overlay',
     flex: 1,
-  };
+  }: {});
 });
 
 export const StyledBody = (props: *) => (
@@ -108,17 +106,17 @@ export const StyledBody = (props: *) => (
 );
 StyledBody.__STYLETRON__ = StyledBodyElement.__STYLETRON__;
 
-const StyledRowElement = styled('div', ({$theme}) => ({
+const StyledRowElement = styled('div', {
   display: 'flex',
   alignItems: 'center',
-}));
+});
 
 export const StyledRow = (props: *) => (
   <StyledRowElement role="row" {...props} />
 );
 StyledRow.__STYLETRON__ = StyledRowElement.__STYLETRON__;
 
-const StyledCellElement = styled('div', ({$theme}: SharedStylePropsT) => {
+const StyledCellElement = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.typography.font300,
     color: $theme.colors.colorPrimary,
@@ -136,16 +134,16 @@ export const StyledCell = (props: *) => (
 );
 StyledCell.__STYLETRON__ = StyledCellElement.__STYLETRON__;
 
-export const StyledFilterButton = styled('button', props => ({
+export const StyledFilterButton = styled('button', {
   backgroundColor: 'transparent',
   border: 'none',
   paddingTop: 'none',
   paddingRight: 'none',
   paddingBottom: 'none',
   paddingLeft: 'none',
-}));
+});
 
-export const StyledFilterContent = styled('div', ({$theme}) => ({
+export const StyledFilterContent = styled<{}>('div', ({$theme}) => ({
   ...$theme.borders.border300,
   backgroundColor: $theme.colors.tableFilterBackground,
   borderRight: 'none',
@@ -156,7 +154,7 @@ export const StyledFilterContent = styled('div', ({$theme}) => ({
   overflow: 'auto',
 }));
 
-export const StyledFilterHeading = styled('div', ({$theme}) => ({
+export const StyledFilterHeading = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font350,
   color: $theme.colors.tableFilterHeading,
   paddingTop: $theme.sizing.scale500,
@@ -165,7 +163,7 @@ export const StyledFilterHeading = styled('div', ({$theme}) => ({
   paddingLeft: $theme.sizing.scale600,
 }));
 
-export const StyledFilterFooter = styled('div', ({$theme}) => ({
+export const StyledFilterFooter = styled<{}>('div', ({$theme}) => ({
   backgroundColor: $theme.colors.tableFilterFooterBackground,
   paddingTop: $theme.sizing.scale300,
   paddingRight: $theme.sizing.scale100,
@@ -176,7 +174,7 @@ export const StyledFilterFooter = styled('div', ({$theme}) => ({
   width: '216px',
 }));
 
-export const StyledAction = styled('button', ({$theme}) => {
+export const StyledAction = styled<{}>('button', ({$theme}) => {
   return {
     backgroundColor: 'transparent',
     border: 'none',

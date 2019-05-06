@@ -40,6 +40,7 @@ export type DefaultPropsT = {
   onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
+// Chase: Note removed $theme prop
 export type PropsT = {
   /** Component or String value for label of checkbox. */
   children?: React$Node,
@@ -68,7 +69,6 @@ export type PropsT = {
   labelPlacement?: LabelPlacementT,
   /** Renders UI as checkmark or toggle switch. */
   checkmarkType: StyleTypeT,
-  $theme?: *,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
@@ -154,4 +154,18 @@ export type StatefulCheckboxPropsT = {
   onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for blur events on trigger element. */
   onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+};
+
+export type SharedStylePropsT = {
+  $isFocused: boolean,
+  $isHovered: boolean,
+  $isActive: boolean,
+  $isError: boolean,
+  $checked: boolean,
+  $isIndeterminate: boolean,
+  $required: boolean,
+  $disabled: boolean,
+  $value: string,
+  $checkmarkType: StyleTypeT,
+  $labelPlacement: LabelPlacementT,
 };

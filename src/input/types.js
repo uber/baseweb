@@ -7,8 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/index.js';
-import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants.js';
+import {
+  STATE_CHANGE_TYPE,
+  ADJOINED,
+  SIZE,
+  ENHANCER_POSITION,
+} from './constants.js';
 
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 
@@ -44,7 +48,7 @@ export type SharedPropsT = {
   $size: SizeT,
   /** Renders UI in 'required' state */
   $required: boolean,
-  $theme: ThemeT,
+  $position: $Keys<typeof ENHANCER_POSITION>,
 };
 
 export type PropsT = *;

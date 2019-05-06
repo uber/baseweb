@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {TetherPlacementT} from '../layer/types.js';
 import {
@@ -174,9 +173,7 @@ export type SharedStylePropsArgT = {
   $ref?: React.Ref<*>,
 };
 
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
-};
+// Chase: Note Removes SharedStylePropsT
 
 export type AnchorPropsT = {
   'aria-controls'?: string | null,

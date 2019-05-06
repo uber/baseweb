@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
@@ -184,7 +183,6 @@ export type SharedStylePropsT = {
   $hasRangeHighlighted: boolean,
   $hasRangeOnRight: boolean,
   $hasRangeSelected: boolean,
-  $theme: ThemeT,
 };
 
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;

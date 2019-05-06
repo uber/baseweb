@@ -27,8 +27,9 @@ import {
 } from './utils/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
-import type {SharedStylePropsT} from '../select/types.js';
+import type {SharedStylePropsArgT} from '../select/types.js';
 import type {LocaleT} from '../locale/types.js';
+import type {ThemeT} from '../styles/types.js';
 
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
@@ -144,7 +145,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
   getSelectOverrides({width}: {width: string}) {
     return {
       ControlContainer: {
-        style: (props: SharedStylePropsT) => {
+        style: (props: SharedStylePropsArgT & {$theme: ThemeT}) => {
           const {
             $isFocused,
             $isPseudoFocused,
@@ -161,18 +162,10 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
           };
         },
       },
-      IconsContainer: {
-        style: {
-          paddingRight: '0',
-        },
-      },
-      SelectArrow: {
-        style: ({$theme: {colors}}: SharedStylePropsT) => ({
-          color: 'inherit',
-        }),
-      },
+      IconsContainer: {style: {paddingRight: '0'}},
+      SelectArrow: {style: {color: 'inherit'}},
       ValueContainer: {
-        style: ({$theme: {sizing}}: SharedStylePropsT) => ({
+        style: ({$theme: {sizing}}: {$theme: ThemeT}) => ({
           paddingTop: '0',
           paddingBottom: '0',
           paddingLeft: sizing.scale200,
@@ -180,7 +173,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
         }),
       },
       SingleValue: {
-        style: ({$theme: {sizing}}: SharedStylePropsT) => ({
+        style: ({$theme: {sizing}}: {$theme: ThemeT}) => ({
           paddingTop: '0',
           paddingBottom: '0',
           paddingLeft: sizing.scale200,

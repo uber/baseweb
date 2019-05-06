@@ -8,18 +8,18 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
+import {withStyle} from 'styletron-react';
 import {
   Navigation,
   StyledNavItem as NavItem,
   StyledNavLink,
 } from 'baseui/side-navigation';
 import {Label2, Label1} from 'baseui/typography';
-import {styled} from 'baseui';
 import Link from 'next/link';
 
 import Routes from '../routes';
 
-const StyledNavItem = styled(NavItem, ({$theme, $active}) => {
+const StyledNavItem = withStyle(NavItem, ({$theme, $active}) => {
   const styleOverride = {};
 
   if ($theme.name.startsWith('dark')) {

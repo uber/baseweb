@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import {styled} from '../styles/index.js';
+import type {StylePropsT} from './types.js';
 
-export const Label = styled('label', props => {
+export const Label = styled<StylePropsT>('label', props => {
   const {
     $disabled,
     $theme: {colors, sizing, typography},
@@ -30,7 +31,7 @@ export const Label = styled('label', props => {
   };
 });
 
-export const Caption = styled('div', props => {
+export const Caption = styled<StylePropsT>('div', props => {
   const {
     $error,
     $theme: {colors, sizing, typography},
@@ -52,7 +53,7 @@ export const Caption = styled('div', props => {
   };
 });
 
-export const ControlContainer = styled('div', props => {
+export const ControlContainer = styled<StylePropsT>('div', props => {
   const {
     $theme: {sizing},
   } = props;

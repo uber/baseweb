@@ -12,6 +12,7 @@ import {
   getInnerStyles,
 } from '../popover/styled-components.js';
 import {getEndPosition} from '../popover/utils.js';
+import type {SharedStylePropsArgT} from '../popover/types.js';
 
 /**
  * We want to reuse the default Popover styles and add our overrides
@@ -24,7 +25,7 @@ import {getEndPosition} from '../popover/utils.js';
  * We could create our own withStyleDeep that also takes the $style
  * prop into account
  */
-export const Body = styled('div', props => ({
+export const Body = styled<SharedStylePropsArgT>('div', props => ({
   ...getBodyStyles(props),
   // Tooltip
   backgroundColor: props.$theme.colors.tooltipBackground,
@@ -36,7 +37,7 @@ export const Body = styled('div', props => ({
   transform: getEndPosition(props.$popoverOffset),
 }));
 
-export const Inner = styled('div', props => ({
+export const Inner = styled<SharedStylePropsArgT>('div', props => ({
   ...getInnerStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
   borderTopRightRadius: props.$theme.borders.radius200,
@@ -51,7 +52,7 @@ export const Inner = styled('div', props => ({
   color: props.$theme.colors.tooltipText,
 }));
 
-export const Arrow = styled('div', props => ({
+export const Arrow = styled<SharedStylePropsArgT>('div', props => ({
   ...getArrowStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
 }));

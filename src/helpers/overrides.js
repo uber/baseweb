@@ -45,9 +45,7 @@ export function getOverride(override: any): any {
 export function getOverrideProps<T>(override: ?OverrideT<T>) {
   if (override && typeof override === 'object') {
     return {
-      // $FlowFixMe
       ...override.props,
-      // $FlowFixMe
       $style: override.style,
     };
   }

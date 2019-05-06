@@ -6,13 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type StylePropsT = {|
   $didImageFailToLoad: boolean,
   $size?: string,
-  $theme: ThemeT,
 |};
 
 export type OverridesT<T> = {|

@@ -13,7 +13,17 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
   <MockStyledComponent
     key="separator-0"
   >
-    <MockStyledComponent />
+    <ChevronRight
+      overrides={
+        Object {
+          "Svg": Object {
+            "style": Object {
+              "verticalAlign": "text-bottom",
+            },
+          },
+        }
+      }
+    />
   </MockStyledComponent>
   <StyledLink
     href="#"
@@ -23,7 +33,17 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
   <MockStyledComponent
     key="separator-1"
   >
-    <MockStyledComponent />
+    <ChevronRight
+      overrides={
+        Object {
+          "Svg": Object {
+            "style": Object {
+              "verticalAlign": "text-bottom",
+            },
+          },
+        }
+      }
+    />
   </MockStyledComponent>
   <span>
     Current Page

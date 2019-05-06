@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
@@ -116,8 +115,10 @@ export type StatefulPanelPropsT = $Diff<
   PanelPropsT;
 
 export type SharedStylePropsArgT = {
+  $color?: string,
   $disabled: ?boolean,
   $expanded?: ?boolean,
+  $size?: string | number,
   // Styletron stuff
   $as?: string,
   // styled function wrapper related
@@ -126,6 +127,5 @@ export type SharedStylePropsArgT = {
   $ref?: React.Ref<any>,
 };
 
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
-};
+// Chase: Note deprecation
+export type SharedStylePropsT = SharedStylePropsArgT;

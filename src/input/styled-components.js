@@ -6,8 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
+import type {ThemeT} from '../styles/types.js';
 import {ADJOINED, SIZE, ENHANCER_POSITION} from './constants.js';
 import type {SharedPropsT} from './types.js';
+
+type UtilityPropsT = $Diff<SharedPropsT & {$theme: ThemeT}, {$position: mixed}>;
 
 function getInputPadding(size, sizing) {
   return {
@@ -49,7 +52,7 @@ function getFont(size, typography) {
   }[size];
 }
 
-export const Root = styled('div', props => {
+export const Root = styled<SharedPropsT>('div', props => {
   const {
     $size,
     $theme: {colors, typography},
@@ -62,7 +65,7 @@ export const Root = styled('div', props => {
   };
 });
 
-export const InputEnhancer = styled('div', props => {
+export const InputEnhancer = styled<SharedPropsT>('div', props => {
   const {
     $position,
     $size,
@@ -78,7 +81,7 @@ export const InputEnhancer = styled('div', props => {
   };
 });
 
-export const getInputContainerStyles = (props: SharedPropsT) => {
+export const getInputContainerStyles = (props: UtilityPropsT) => {
   const {
     $isFocused,
     $adjoined,
@@ -127,9 +130,12 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
   };
 };
 
-export const InputContainer = styled('div', getInputContainerStyles);
+export const InputContainer = styled<SharedPropsT>(
+  'div',
+  getInputContainerStyles,
+);
 
-export const getInputStyles = (props: SharedPropsT) => {
+export const getInputStyles = (props: UtilityPropsT) => {
   const {
     $disabled,
     $error,
@@ -155,4 +161,4 @@ export const getInputStyles = (props: SharedPropsT) => {
   };
 };
 
-export const Input = styled('input', getInputStyles);
+export const Input = styled<SharedPropsT>('input', getInputStyles);

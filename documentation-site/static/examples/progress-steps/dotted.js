@@ -3,9 +3,9 @@ import {ProgressSteps, Step} from 'baseui/progress-steps';
 import {Button} from 'baseui/button';
 import {Block} from 'baseui/block';
 import {StatefulSelect, TYPE} from 'baseui/select';
-import {styled} from 'baseui';
+import {withStyle} from 'styletron-react';
 
-const SpacedButton = styled(Button, ({$theme}) => ({
+const SpacedButton = withStyle(Button, ({$theme}) => ({
   marginLeft: $theme.sizing.scale200,
   marginRight: $theme.sizing.scale200,
   marginTop: $theme.sizing.scale200,

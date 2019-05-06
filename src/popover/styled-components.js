@@ -13,12 +13,13 @@ import {
   getStartPosition,
   getEndPosition,
 } from './utils.js';
-import type {SharedStylePropsT} from './types.js';
+import type {SharedStylePropsArgT} from './types.js';
+import type {ThemeT} from '../styles/types.js';
 
 /**
  * Main popover container element that gets positioned next to the anchor
  */
-export function getBodyStyles(props: SharedStylePropsT) {
+export function getBodyStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
   const {
     $isOpen,
     $isAnimating,
@@ -56,12 +57,12 @@ export function getBodyStyles(props: SharedStylePropsT) {
   };
 }
 
-export const Body = styled('div', getBodyStyles);
+export const Body = styled<SharedStylePropsArgT>('div', getBodyStyles);
 
 /**
  * Arrow shown between the popover and the anchor element
  */
-export function getArrowStyles(props: SharedStylePropsT) {
+export function getArrowStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
   const {$arrowOffset, $placement, $theme} = props;
   return {
     backgroundColor: $theme.colors.backgroundAlt,
@@ -74,7 +75,7 @@ export function getArrowStyles(props: SharedStylePropsT) {
   };
 }
 
-export const Arrow = styled('div', getArrowStyles);
+export const Arrow = styled<SharedStylePropsArgT>('div', getArrowStyles);
 
 /**
  * Extra div that holds the popover content. This extra element
@@ -82,7 +83,7 @@ export const Arrow = styled('div', getArrowStyles);
  * and rendering this extra element on top with a solid background
  * clips the part of the arrow that extends into the popover.
  */
-export function getInnerStyles({$theme}: SharedStylePropsT) {
+export function getInnerStyles({$theme}: {$theme: ThemeT}) {
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius300
     : '0px';
@@ -97,7 +98,7 @@ export function getInnerStyles({$theme}: SharedStylePropsT) {
   };
 }
 
-export const Inner = styled('div', getInnerStyles);
+export const Inner = styled<SharedStylePropsArgT>('div', getInnerStyles);
 
 /**
  * A drop-in component that provides the recommended padding

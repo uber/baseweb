@@ -26,3 +26,8 @@ export type FormControlPropsT = {
   error: boolean | React.Node | ((props: {}) => React.Node),
   children: React.Node,
 };
+
+export type StylePropsT = {
+  $disabled?: boolean,
+  $error?: boolean,
+};

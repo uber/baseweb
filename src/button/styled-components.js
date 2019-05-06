@@ -7,24 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {KIND, SIZE, SHAPE} from './constants.js';
-import type {ThemeT} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
 
-type StylePropsT = SharedStylePropsT & {
-  $theme: ThemeT,
-};
-
-export const BaseButton = styled(
+export const BaseButton = styled<SharedStylePropsT>(
   'button',
-  ({
-    $theme,
-    $size,
-    $kind,
-    $shape,
-    $isLoading,
-    $isSelected,
-    $disabled,
-  }: StylePropsT) => ({
+  ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
     position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
@@ -54,12 +41,12 @@ export const BaseButton = styled(
   }),
 );
 
-export const EndEnhancer = styled('div', ({$theme}: StylePropsT) => ({
+export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
   display: 'flex',
   marginLeft: $theme.sizing.scale500,
 }));
 
-export const StartEnhancer = styled('div', ({$theme}: StylePropsT) => ({
+export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
   display: 'flex',
   marginRight: $theme.sizing.scale500,
 }));
@@ -72,9 +59,9 @@ export const LoadingSpinnerContainer = styled('div', {
   transform: 'translate(-50%, -50%)',
 });
 
-export const LoadingSpinner = styled(
+export const LoadingSpinner = styled<SharedStylePropsT>(
   'div',
-  ({$theme, $kind, $disabled}: StylePropsT) => {
+  ({$theme, $kind, $disabled}) => {
     const {foreground, background} = getLoadingSpinnerColors({
       $theme,
       $kind,
@@ -105,11 +92,8 @@ export const LoadingSpinner = styled(
   },
 );
 
-export function getLoadingSpinnerColors({
-  $theme,
-  $kind,
-  $disabled,
-}: StylePropsT) {
+// Chase: Note remove export
+function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
   return {
     foreground: $disabled
       ? $theme.colors.mono600
@@ -124,7 +108,8 @@ export function getLoadingSpinnerColors({
   };
 }
 
-export function getBorderRadiiStyles({$theme, $shape}: StylePropsT) {
+// Chase: Note remove export
+function getBorderRadiiStyles({$theme, $shape}) {
   let value = '0px';
 
   if ($shape === SHAPE.round) {
@@ -139,7 +124,8 @@ export function getBorderRadiiStyles({$theme, $shape}: StylePropsT) {
   };
 }
 
-export function getFontStyles({$theme, $size}: StylePropsT) {
+// Chase: Note remove export
+function getFontStyles({$theme, $size}) {
   switch ($size) {
     case SIZE.compact:
       return $theme.typography.font250;
@@ -150,7 +136,8 @@ export function getFontStyles({$theme, $size}: StylePropsT) {
   }
 }
 
-export function getPaddingStyles({$theme, $size}: StylePropsT) {
+// Chase: Note remove export
+function getPaddingStyles({$theme, $size}) {
   switch ($size) {
     case SIZE.compact:
       return {
@@ -176,13 +163,7 @@ export function getPaddingStyles({$theme, $size}: StylePropsT) {
   }
 }
 
-export function getKindStyles({
-  $theme,
-  $isLoading,
-  $isSelected,
-  $kind,
-  $disabled,
-}: StylePropsT) {
+function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
   if ($disabled) {
     return {};
   }

@@ -8,38 +8,29 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {styled} from '../styles/index.js';
-import type {
-  StyledProgressStepsPropsT,
-  StyledStepPropsT,
-  StyledNumberIconPropsT,
-  StyledNumberContentTailPropsT,
-  StyledNumberStepPropsT,
-} from './types.js';
+import type {StylePropsT} from './types.js';
 
-export const StyledProgressSteps = styled(
-  'div',
-  ({$theme}: StyledProgressStepsPropsT) => {
-    return {
-      backgroundColor: $theme.colors.listHeaderFill,
-      display: 'inline-block',
-      paddingTop: $theme.sizing.scale300,
-      paddingRight: $theme.sizing.scale500,
-      paddingLeft: $theme.sizing.scale500,
-      paddingBottom: $theme.sizing.scale300,
-    };
-  },
-);
+export const StyledProgressSteps = styled<{}>('div', ({$theme}) => {
+  return {
+    backgroundColor: $theme.colors.listHeaderFill,
+    display: 'inline-block',
+    paddingTop: $theme.sizing.scale300,
+    paddingRight: $theme.sizing.scale500,
+    paddingLeft: $theme.sizing.scale500,
+    paddingBottom: $theme.sizing.scale300,
+  };
+});
 
-export const StyledStep = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledStep = styled<StylePropsT>('div', ({$theme}) => {
   return {
     position: 'relative',
     overflow: 'visible',
   };
 });
 
-export const StyledIcon = styled(
+export const StyledIcon = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}: StyledStepPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
     let marginRight = $theme.sizing.scale500;
@@ -79,7 +70,7 @@ export const StyledIcon = styled(
   },
 );
 
-export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
   return {
     width: $theme.sizing.scale100,
     height: $theme.sizing.scale100,
@@ -90,15 +81,15 @@ export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
   };
 });
 
-export const StyledContent = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
   return {
     marginLeft: $theme.sizing.scale900,
   };
 });
 
-export const StyledContentTitle = styled(
+export const StyledContentTitle = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive}: StyledStepPropsT) => {
+  ({$theme, $isActive}) => {
     let color = $theme.colors.foregroundAlt;
     let font = $theme.typography.font400;
 
@@ -114,9 +105,9 @@ export const StyledContentTitle = styled(
   },
 );
 
-export const StyledContentTail = styled(
+export const StyledContentTail = styled<StylePropsT>(
   'div',
-  ({$theme, $isCompleted}: StyledStepPropsT) => {
+  ({$theme, $isCompleted}) => {
     let currentColor = $theme.colors.mono400;
 
     if ($isCompleted) {
@@ -142,28 +133,25 @@ export const StyledContentTail = styled(
   },
 );
 
-export const StyledContentDescription = styled(
+export const StyledContentDescription = styled<StylePropsT>(
   'div',
-  ({$theme}: StyledStepPropsT) => {
+  ({$theme}) => {
     return {
       marginBottom: $theme.sizing.scale700,
     };
   },
 );
 
-export const StyledNumberStep = styled(
-  'div',
-  ({$theme}: StyledNumberStepPropsT) => {
-    return {
-      position: 'relative',
-      overflow: 'visible',
-    };
-  },
-);
+export const StyledNumberStep = styled<StylePropsT>('div', ({$theme}) => {
+  return {
+    position: 'relative',
+    overflow: 'visible',
+  };
+});
 
-export const StyledNumberIcon = styled(
+export const StyledNumberIcon = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}: StyledNumberIconPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
     let backgroundColor = $theme.colors.mono400;
     let color = $theme.colors.colorSecondary;
     let size = $theme.sizing.scale800;
@@ -200,14 +188,9 @@ export const StyledNumberIcon = styled(
   },
 );
 
-export const StyledNumberContentTail = styled(
+export const StyledNumberContentTail = styled<StylePropsT>(
   'div',
-  ({
-    $theme,
-    $isActive,
-    $isCompleted,
-    $disabled,
-  }: StyledNumberContentTailPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
     let currentColor = $theme.colors.mono300;
 
     if ($isCompleted) {

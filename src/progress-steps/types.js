@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {Node} from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type ProgressStepsOverridesT = {
@@ -45,15 +44,8 @@ export type StepPropsT = {
   children?: Node,
 };
 
-export type StyledProgressStepsPropsT = {
-  $theme: ThemeT,
-};
-
-export type StyledStepPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-};
+// Chase: Note removes StyledProgressSteps type
+// Chase: Note removes StyledNumberIconPropsT, StyledNumberContentTailPropsT, StyledNumberStepPropsT, StyledStepPropsT
 
 export type NumberedStepOverridesT = {
   Root?: OverrideT<*>,
@@ -80,22 +72,7 @@ export type NumberedStepPropsT = {
   step?: Node,
 };
 
-export type StyledNumberIconPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledNumberContentTailPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledNumberStepPropsT = {
-  $theme: ThemeT,
+export type StylePropsT = {
   $isActive: boolean,
   $isCompleted: boolean,
   $disabled: boolean,

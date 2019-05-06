@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
 import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants.js';
 import type {OnItemSelectFnT} from '../menu/types.js';
 
@@ -248,8 +247,10 @@ export type SharedStylePropsArgT = {
   $searchable: boolean,
   $size: SizeT,
   $type: TypeT,
+  $width?: string,
+  $maxHeight?: string,
+  $isHighlighted?: boolean,
+  $selected?: boolean,
 };
 
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
-};
+// Chase: Note removes SharedStylePropsT

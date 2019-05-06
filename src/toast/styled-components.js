@@ -10,8 +10,8 @@ import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
 import {KIND, PLACEMENT, TYPE} from './constants.js';
 import type {
-  SharedStylePropsT,
-  ToasterSharedStylePropsT,
+  SharedStylePropsArgT,
+  ToasterSharedStylePropsArgT,
   KindTypeT,
   NotificationTypeT,
   PlacementTypeT,
@@ -93,7 +93,7 @@ export function getPlacement(placement: PlacementTypeT) {
 /**
  * Main component container element
  */
-export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
+export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
   const {$placement, $theme} = props;
   return {
     pointerEvents: 'none',
@@ -109,7 +109,7 @@ export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
   };
 });
 
-export const Body = styled('div', (props: SharedStylePropsT) => {
+export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
   return {
@@ -142,7 +142,7 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
 /**
  * DeleteAlt icon overrides
  */
-export const CloseIconSvg = styled('svg', props => {
+export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', props => {
   return {
     ...getSvgStyles(props),
     cursor: 'pointer',
