@@ -13,7 +13,7 @@
   "repository": "uber-web/baseui",
   "scripts": {
     "lint:code": "eslint ./",
-    "lint:markdown": "markdownlint -c ./.markdownlint.json proposals README.md",
+    "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
     "lint": "yarn lint:code && yarn lint:markdown",
     "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
