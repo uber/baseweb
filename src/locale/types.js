@@ -11,6 +11,7 @@ import type {BreadcrumbLocaleT} from '../breadcrumbs/locale.js';
 import type {DatepickerLocaleT} from '../datepicker/locale.js';
 import type {ButtonGroupLocaleT} from '../button-group/locale.js';
 import type {FileUploaderLocaleT} from '../file-uploader/locale.js';
+import type {MenuLocaleT} from '../menu/locale.js';
 import type {ModalLocaleT} from '../modal/locale.js';
 import type {PaginationLocaleT} from '../pagination/locale.js';
 import type {SelectLocaleT} from '../select/locale.js';
@@ -22,6 +23,7 @@ export type LocaleT = {|
   datepicker: DatepickerLocaleT,
   buttongroup: ButtonGroupLocaleT,
   fileuploader: FileUploaderLocaleT,
+  menu: MenuLocaleT,
   modal: ModalLocaleT,
   pagination: PaginationLocaleT,
   select: SelectLocaleT,
