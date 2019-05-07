@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {ADJOINED, SIZE, ENHANCER_POSITION} from './constants.js';
+import {SIZE} from './constants.js';
 import type {SharedPropsT} from './types.js';
 
 function getInputPadding(size, sizing) {
@@ -24,22 +24,6 @@ function getInputPadding(size, sizing) {
       paddingLeft: sizing.scale500,
     },
   }[size];
-}
-
-function getBorderRadius(adjoined, radius) {
-  return {
-    [ADJOINED.none]: radius,
-    [ADJOINED.left]: `0 ${radius} ${radius} 0`,
-    [ADJOINED.right]: `${radius} 0 0 ${radius}`,
-    [ADJOINED.both]: '0',
-  }[adjoined];
-}
-
-function getDecoratorBorderRadius(position, radius) {
-  return {
-    [ENHANCER_POSITION.start]: `${radius} 0 0 ${radius}`,
-    [ENHANCER_POSITION.end]: `0 ${radius} ${radius} 0`,
-  }[position];
 }
 
 function getFont(size, typography) {
@@ -64,7 +48,6 @@ export const Root = styled('div', props => {
 
 export const InputEnhancer = styled('div', props => {
   const {
-    $position,
     $size,
     $theme: {colors, sizing, typography},
   } = props;
@@ -74,18 +57,17 @@ export const InputEnhancer = styled('div', props => {
     display: 'flex',
     ...getInputPadding($size, sizing),
     backgroundColor: colors.inputFillEnhancer,
-    borderRadius: getDecoratorBorderRadius($position, sizing.scale100),
+    borderRadius: '0',
   };
 });
 
 export const getInputContainerStyles = (props: SharedPropsT) => {
   const {
     $isFocused,
-    $adjoined,
     $error,
     $disabled,
     $size,
-    $theme: {colors, sizing, typography, animation, borders},
+    $theme: {colors, typography, animation},
   } = props;
   return {
     ...getFont($size, typography),
@@ -109,9 +91,7 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
         : $isFocused
           ? colors.primary400
           : colors.inputFill,
-    borderRadius: borders.useRoundedCorners
-      ? getBorderRadius($adjoined, sizing.scale100)
-      : '0px',
+    borderRadius: '0',
     boxShadow: `0 2px 6px ${
       $disabled
         ? 'transparent'
