@@ -20,11 +20,22 @@ export type LayersContextT = {
 
 /** Layer */
 export type LayerPropsT = {
+  /** Content to be rendered in the Layer. */
   children: React.Node,
+  /** A DOM element where the Layer will be inserted into as a child.
+   The host value comes from the layers context provider. 
+   If there is no `LayersManager` added and therefore no host element 
+   in the context, `document.body` will be used as a container element. */
   host?: ?HTMLElement,
+  /** Defines the location (child order) at which the layer will be inserted in
+   the `host` element. */
   index?: number,
+  /** A custom DOM element where the layer is inserted to as a child.
+   Note that the `index` prop does not work with a custom `mountNode`. */
   mountNode?: HTMLElement,
+  /** A handler that is called when the Layer is mounted. */
   onMount?: () => mixed,
+  /** A handler that is called when the Layer is unmounted. */
   onUnmount?: () => mixed,
 };
 
@@ -80,12 +91,22 @@ export type PopperOptionsT = {
 };
 
 export type TetherPropsT = {
+  /** The reference element used to position the popper. */
   anchorRef: ?HTMLElement,
+  /** The arrow element that is passed as an arrow modifier to alter
+   the popper positioning. */
   arrowRef?: ?HTMLElement,
+  /** The element used as a popper. */
   popperRef: ?HTMLElement,
+  /** Content to be rendered in the Popper. */
   children: React.Node,
+  /** A handler that is called when popper positioning changes. */
   onPopperUpdate: (NormalizedOffsetsT, PopperDataObjectT) => mixed,
+  /** Recommended placement of the popper. */
   placement: TetherPlacementT,
+  /** Options to be passes to the Popper on its initialization.
+   Refer to the [Popper documentation](https://popper.js.org/popper-documentation.html) 
+   for the full list of available options. */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions: any,
 };
