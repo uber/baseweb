@@ -114,6 +114,7 @@ export type StatefulContainerPropsT = {
 
 export type MenuPropsT = {
   overrides?: {
+    EmptyState?: OverrideT<*>,
     List?: OverrideT<*>,
     Option?: OverrideT<*>,
   },
@@ -138,6 +139,8 @@ export type SharedStatelessPropsT = {
   highlightedIndex?: number,
   /** List of menu items. */
   items: ItemsT,
+  /** Message to be displayed if no menu items are passed in. */
+  noResultsMsg?: React.Node,
   onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   /** Ref for the menu container element. Used to capture key events for navigation */

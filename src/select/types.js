@@ -207,6 +207,7 @@ export type DropdownPropsT = {
   labelKey: string,
   maxDropdownHeight: string,
   multi: boolean,
+  noResultsMsg?: React.Node,
   onItemSelect: OnItemSelectFnT,
   options: ValueT,
   overrides?: OverridesDropdownT,

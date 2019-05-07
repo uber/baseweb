@@ -815,7 +815,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   render() {
-    const {overrides = {}, type, multi, value, filterOutSelected} = this.props;
+    const {
+      overrides = {},
+      type,
+      multi,
+      noResultsMsg,
+      value,
+      filterOutSelected,
+    } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [ControlContainer, controlContainerProps] = getOverrides(
       overrides.ControlContainer,
@@ -870,6 +877,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 labelKey: this.props.labelKey,
                 maxDropdownHeight: this.props.maxDropdownHeight,
                 multi,
+                noResultsMsg,
                 onItemSelect: this.selectValue,
                 options,
                 overrides,
@@ -884,27 +892,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
                   : null,
               };
 
-              if (options && options.length) {
-                return (
-                  <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />
-                );
-              } else if (this.props.noResultsMsg) {
-                const noResults = {
-                  [this.props.valueKey]: 'NO_RESULTS_FOUND',
-                  [this.props.labelKey]:
-                    this.props.noResultsMsg || locale.select.noResultsMsg,
-                  disabled: true,
-                };
-                return (
-                  <SelectDropdown
-                    innerRef={this.dropdown}
-                    {...dropdownProps}
-                    options={[noResults]}
-                  />
-                );
-              } else {
-                return null;
-              }
+              return (
+                <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />
+              );
             }}
             placement={PLACEMENT.bottom}
           >
