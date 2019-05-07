@@ -12,7 +12,7 @@ import {getOverrides} from '../helpers/overrides.js';
 
 import {OPTION_LIST_SIZE} from './constants.js';
 import MaybeChildMenu from './maybe-child-menu.js';
-import {ListItem as StyledListItem} from './styled-components.js';
+import {StyledListItem} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
 export default function OptionList(props: OptionListPropsT) {

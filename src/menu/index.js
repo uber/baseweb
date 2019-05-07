@@ -15,15 +15,15 @@ export {default as NestedMenus} from './nested-menus.js';
 export {KEY_STRINGS, STATE_CHANGE_TYPES} from './constants.js';
 // Styled elements
 export {
-  List as StyledList,
-  ListItem as StyledListItem,
-  ListItemProfile as StyledListItemProfile,
-  ProfileImgContainer as StyledProfileImgContainer,
-  ProfileImg as StyledProfileImg,
-  ProfileLabelsContainer as StyledProfileLabelsContainer,
-  ProfileTitle as StyledProfileTitle,
-  ProfileSubtitle as StyledProfileSubtitle,
-  ProfileBody as StyledProfileBody,
+  StyledList,
+  StyledListItem,
+  StyledListItemProfile,
+  StyledProfileImgContainer,
+  StyledProfileImg,
+  StyledProfileLabelsContainer,
+  StyledProfileTitle,
+  StyledProfileSubtitle,
+  StyledProfileBody,
 } from './styled-components.js';
 // Flow
 export * from './types.js';
