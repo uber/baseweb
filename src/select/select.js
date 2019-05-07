@@ -829,6 +829,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
       overrides.IconsContainer,
       StyledIconsContainer,
     );
+    const [PopoverOverride, popoverProps] = getOverrides(
+      overrides.Popover,
+      Popover,
+    );
     const sharedProps = this.getSharedProps();
 
     const valueArray = this.getValueArray(value);
@@ -849,7 +853,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <Popover
+          <PopoverOverride
             // Popover does not provide ability to forward refs through, and if we were to simply
             // apply the ref to the Root component below it would be overwritten before the popover
             // renders it. Using this strategy, we will get a ref to the popover, then reuse its
@@ -907,6 +911,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
               }
             }}
             placement={PLACEMENT.bottom}
+            {...popoverProps}
           >
             <Root data-baseweb="select" {...sharedProps} {...rootProps}>
               <ControlContainer
@@ -930,7 +935,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 </IconsContainer>
               </ControlContainer>
             </Root>
-          </Popover>
+          </PopoverOverride>
         )}
       </LocaleContext.Consumer>
     );

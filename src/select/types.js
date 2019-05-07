@@ -47,6 +47,7 @@ export type OverridesT = {
   ClearIcon?: OverrideT<*>,
   LoadingIndicator?: OverrideT<*>,
   SearchIcon?: OverrideT<*>,
+  Popover?: OverrideT<*>,
   DropdownContainer?: OverrideT<*>,
   Dropdown?: OverrideT<*>,
   DropdownOption?: OverrideT<*>,
