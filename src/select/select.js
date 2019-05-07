@@ -608,7 +608,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     } else if (shouldShowValue(this.state, this.props)) {
       return (
         <Value
-          value={valueArray[0]}
+          value={valueArray[0][this.props.valueKey]}
           disabled={this.props.disabled}
           overrides={{SingleValue: overrides.SingleValue}}
           {...sharedProps}
