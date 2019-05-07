@@ -46,6 +46,20 @@ export const Root = styled('div', props => {
   };
 });
 
+function getInputEnhancerPadding($size, sizing) {
+  return {
+    [SIZE.default]: {
+      padding: sizing.scale500,
+    },
+    [SIZE.compact]: {
+      paddingTop: sizing.scale300,
+      paddingRight: sizing.scale500,
+      paddingBottom: sizing.scale300,
+      paddingLeft: sizing.scale500,
+    },
+  }[$size];
+}
+
 export const InputEnhancer = styled('div', props => {
   const {
     $size,
@@ -55,9 +69,8 @@ export const InputEnhancer = styled('div', props => {
     ...getFont($size, typography),
     color: colors.foreground,
     display: 'flex',
-    ...getInputPadding($size, sizing),
+    ...getInputEnhancerPadding($size, sizing),
     backgroundColor: colors.inputFillEnhancer,
-    borderRadius: '0',
   };
 });
 
@@ -82,7 +95,7 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
         : $error
           ? colors.inputFillError
           : colors.inputFill,
-    borderWidth: '1px',
+    borderWidth: '2px',
     borderStyle: 'solid',
     borderColor: $disabled
       ? colors.inputFillDisabled
@@ -91,7 +104,6 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
         : $isFocused
           ? colors.primary400
           : colors.inputFill,
-    borderRadius: '0',
     boxShadow: `0 2px 6px ${
       $disabled
         ? 'transparent'
