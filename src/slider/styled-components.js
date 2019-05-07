@@ -9,7 +9,9 @@ import {styled} from '../styles/index.js';
 import {getTrackBackground} from 'react-range';
 
 export const Root = styled('div', props => {
-  return {};
+  return {
+    position: 'relative',
+  };
 });
 Root.displayName = 'StyledRoot';
 
