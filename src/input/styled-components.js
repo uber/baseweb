@@ -9,23 +9,6 @@ import {styled} from '../styles/index.js';
 import {SIZE} from './constants.js';
 import type {SharedPropsT} from './types.js';
 
-function getInputPadding(size, sizing) {
-  return {
-    [SIZE.default]: {
-      paddingTop: sizing.scale400,
-      paddingRight: sizing.scale500,
-      paddingBottom: sizing.scale400,
-      paddingLeft: sizing.scale500,
-    },
-    [SIZE.compact]: {
-      paddingTop: sizing.scale200,
-      paddingRight: sizing.scale500,
-      paddingBottom: sizing.scale200,
-      paddingLeft: sizing.scale500,
-    },
-  }[size];
-}
-
 function getFont(size, typography) {
   return {
     [SIZE.default]: typography.font300,
@@ -46,6 +29,8 @@ export const Root = styled('div', props => {
   };
 });
 
+// InputEnhancer
+
 function getInputEnhancerPadding($size, sizing) {
   return {
     [SIZE.default]: {
@@ -60,19 +45,59 @@ function getInputEnhancerPadding($size, sizing) {
   }[$size];
 }
 
+function getInputEnhancerColors(colors) {
+  return {
+    color: colors.foreground,
+    backgroundColor: colors.inputFillEnhancer,
+  };
+}
+
 export const InputEnhancer = styled('div', props => {
   const {
     $size,
     $theme: {colors, sizing, typography},
   } = props;
   return {
-    ...getFont($size, typography),
-    color: colors.foreground,
     display: 'flex',
+    ...getFont($size, typography),
     ...getInputEnhancerPadding($size, sizing),
-    backgroundColor: colors.inputFillEnhancer,
+    ...getInputEnhancerColors(colors),
   };
 });
+
+// InputContainer
+
+function getInputContainerColors($disabled, $isFocused, $error, colors) {
+  if ($disabled) {
+    return {
+      color: colors.inputTextDisabled,
+      borderColor: colors.inputFillDisabled,
+      backgroundColor: colors.inputFillDisabled,
+    };
+  }
+
+  if ($isFocused) {
+    return {
+      color: colors.foreground,
+      borderColor: colors.primary400,
+      backgroundColor: colors.background,
+    };
+  }
+
+  if ($error) {
+    return {
+      color: colors.foreground,
+      borderColor: colors.negative400,
+      backgroundColor: colors.inputFillError,
+    };
+  }
+
+  return {
+    color: colors.foreground,
+    borderColor: colors.inputFill,
+    backgroundColor: colors.inputFill,
+  };
+}
 
 export const getInputContainerStyles = (props: SharedPropsT) => {
   const {
@@ -83,43 +108,59 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
     $theme: {colors, typography, animation},
   } = props;
   return {
-    ...getFont($size, typography),
-    color: $disabled ? colors.inputTextDisabled : colors.foreground,
     boxSizing: 'border-box',
     display: 'flex',
     width: '100%',
-    backgroundColor: $disabled
-      ? colors.inputFillDisabled
-      : $isFocused
-        ? colors.background
-        : $error
-          ? colors.inputFillError
-          : colors.inputFill,
     borderWidth: '2px',
     borderStyle: 'solid',
-    borderColor: $disabled
-      ? colors.inputFillDisabled
-      : $error
-        ? colors.negative400
-        : $isFocused
-          ? colors.primary400
-          : colors.inputFill,
-    boxShadow: `0 2px 6px ${
-      $disabled
-        ? 'transparent'
-        : $isFocused
-          ? $error
-            ? colors.shadowError
-            : colors.shadowFocus
-          : 'transparent'
-    }`,
     transitionProperty: 'border, boxShadow, backgroundColor',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
+    ...getFont($size, typography),
+    ...getInputContainerColors($disabled, $isFocused, $error, colors),
   };
 };
 
 export const InputContainer = styled('div', getInputContainerStyles);
+
+// Input
+
+function getInputPadding(size, sizing) {
+  return {
+    [SIZE.default]: {
+      paddingTop: sizing.scale400,
+      paddingRight: sizing.scale500,
+      paddingBottom: sizing.scale400,
+      paddingLeft: sizing.scale500,
+    },
+    [SIZE.compact]: {
+      paddingTop: sizing.scale200,
+      paddingRight: sizing.scale500,
+      paddingBottom: sizing.scale200,
+      paddingLeft: sizing.scale500,
+    },
+  }[size];
+}
+
+function getInputColors($disabled, $error, colors) {
+  if ($disabled) {
+    return {
+      color: colors.foregroundAlt,
+      caretColor: colors.primary,
+      '::placeholder': {
+        color: colors.inputTextDisabled,
+      },
+    };
+  }
+
+  return {
+    color: colors.foreground,
+    caretColor: colors.primary,
+    '::placeholder': {
+      color: colors.foregroundAlt,
+    },
+  };
+}
 
 export const getInputStyles = (props: SharedPropsT) => {
   const {
@@ -129,21 +170,17 @@ export const getInputStyles = (props: SharedPropsT) => {
     $theme: {colors, sizing, typography},
   } = props;
   return {
-    ...getFont($size, typography),
-    color: $disabled ? colors.foregroundAlt : colors.foreground,
-    caretColor: $error ? colors.negative400 : colors.primary,
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
     borderWidth: '0',
     borderStyle: 'none',
     outline: 'none',
-    ...getInputPadding($size, sizing),
     width: '100%',
     maxWidth: '100%',
     cursor: $disabled ? 'not-allowed' : 'text',
-    '::placeholder': {
-      color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
-    },
+    ...getFont($size, typography),
+    ...getInputPadding($size, sizing),
+    ...getInputColors($disabled, $error, colors),
   };
 };
 
