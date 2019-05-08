@@ -259,10 +259,12 @@ export type BlockPropsT = {
   gridGap?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row */
   gridRow?: ResponsiveT<string>,
-  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start */
-  gridRowStart?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end */
   gridRowEnd?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-gap */
+  gridRowGap?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start */
+  gridRowStart?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template */
   gridTemplate?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas */
@@ -330,8 +332,9 @@ export type StyledBlockPropsT = {
   $gridColumnStart?: ResponsiveT<string>,
   $gridGap?: ResponsiveT<string>,
   $gridRow?: ResponsiveT<string>,
-  $gridRowStart?: ResponsiveT<string>,
   $gridRowEnd?: ResponsiveT<string>,
+  $gridRowGap?: ResponsiveT<string>,
+  $gridRowStart?: ResponsiveT<string>,
   $gridTemplate?: ResponsiveT<string>,
   $gridTemplateAreas?: ResponsiveT<string>,
   $gridTemplateColumns?: ResponsiveT<string>,
