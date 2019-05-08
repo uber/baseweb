@@ -37,34 +37,18 @@ To learn more on how overrides work, check out [Better Reusable React Components
 
 ## The `ThemeProvider`
 
-With the `ThemeProvider`, you can apply a theme to your application globally or locally. By default, Base Web ships with a light and a dark theme.
-
-To use either the light or the dark theme in your application, you have to wrap your app with the `BaseProvider` that adds a `ThemeProvider` under the hood:
-
-```jsx
-import {LightTheme, ThemeProvider} from 'baseui';
-import {Provider as StyletronProvider} from 'styletron-react';
-
-export default function App() {
-  return (
-    <StyletronProvider value={engine}>
-      <BaseProvider theme={LightTheme}>
-        <YourApp />
-      </BaseProvider>
-    </StyletronProvider>
-  );
-}
-```
+With the `ThemeProvider`, you can apply a theme to your application locally. By default, Base Web ships with a light and a dark theme. For global theming, please
+refer to the [BaseProvider](/components/base-provider/).
 
 If you'd like to use a different theme in one part of your application, \
-you can locally wrap that part with the ThemeProvider to override the theme locally:
+you can locally wrap that part with the `ThemeProvider` to override the theme locally:
 
 ```jsx
 import {DarkTheme, ThemeProvider} from 'baseui';
 
 export default function SomeDarkThemedPages () {
     return (
-      <ThemeProvider theme={LightTheme}>
+      <ThemeProvider theme={DarkTheme}>
         <div>
           This is a dark themed page - all the Base Web components used here will use the dark theme,
           as well as the theme object accessed through the styled function will use the values from the dark theme

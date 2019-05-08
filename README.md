@@ -33,7 +33,7 @@ npm install baseui styletron-react styletron-engine-atomic
 ```javascript
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, ThemeProvider, styled} from 'baseui';
+import {LightTheme, BaseProvider, styled} from 'baseui';
 import {StatefulInput} from 'baseui/input';
 
 const engine = new Styletron();
@@ -48,11 +48,11 @@ const Centered = styled('div', {
 export default function Hello() {
   return (
     <StyletronProvider value={engine}>
-      <ThemeProvider theme={LightTheme}>
+      <BaseProvider theme={LightTheme}>
         <Centered>
           <StatefulInput />
         </Centered>
-      </ThemeProvider>
+      </BaseProvider>
     </StyletronProvider>
   );
 }
