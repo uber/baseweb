@@ -241,13 +241,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   getRef(component: string): ElementRefT {
-    const overrideProps: {$ref?: ElementRefT} = getOverrideProps(
-      this.props.overrides[component],
-    );
-    const overrideRef = overrideProps.$ref;
-    if (overrideRef) {
-      return overrideRef;
-    }
     if (!this._refs[component]) {
       this._refs[component] = React.createRef();
     }
@@ -280,7 +273,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
         {locale => (
           <Root
             data-baseweb="modal"
-            $ref={this.getRef('Root')}
+            ref={this.getRef('Root')}
             {...sharedProps}
             {...getOverrideProps(RootOverride)}
           >
@@ -302,7 +295,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                   'true'
                 }
                 role={role}
-                $ref={this.getRef('Dialog')}
+                ref={this.getRef('Dialog')}
                 {...sharedProps}
                 {...getOverrideProps(DialogOverride)}
               >

@@ -187,7 +187,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           aria-required={required || null}
           disabled={disabled}
           type={type}
-          $ref={inputRef}
+          ref={inputRef}
           {...sharedProps}
           {...inputEvents}
           {...getOverrideProps(InputOverride)}

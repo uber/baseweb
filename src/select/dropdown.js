@@ -105,7 +105,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     );
     return (
       <DropdownContainer
-        $ref={this.props.innerRef}
+        ref={this.props.innerRef}
         role="listbox"
         {...this.getSharedProps()}
         {...dropdownContainerProps}

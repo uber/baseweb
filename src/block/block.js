@@ -12,74 +12,77 @@ import type {BlockPropsT} from './types.js';
 import {StyledBlock} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
-function Block({
-  children,
-  as,
-  overrides,
-  color,
-  font,
-  alignContent,
-  alignItems,
-  alignSelf,
-  flexDirection,
-  display,
-  flex,
-  grid,
-  gridArea,
-  gridAutoColumns,
-  gridAutoFlow,
-  gridAutoRows,
-  gridColumn,
-  gridColumnEnd,
-  gridColumnGap,
-  gridColumnStart,
-  gridGap,
-  gridRow,
-  gridRowStart,
-  gridRowEnd,
-  gridTemplate,
-  gridTemplateAreas,
-  gridTemplateColumns,
-  gridTemplateRows,
-  justifyContent,
-  justifyItems,
-  justifySelf,
-  position,
-  width,
-  minWidth,
-  maxWidth,
-  height,
-  minHeight,
-  maxHeight,
-  overflow,
-  margin,
-  marginTop,
-  marginRight,
-  marginBottom,
-  marginLeft,
-  padding,
-  paddingTop,
-  paddingRight,
-  paddingBottom,
-  paddingLeft,
-  placeContent,
-  placeItems,
-  placeSelf,
-  flexWrap,
-  left,
-  top,
-  right,
-  bottom,
-  ...restProps
-}: BlockPropsT) {
+function Block(
+  {
+    children,
+    as = 'div',
+    overrides = {},
+    color,
+    font,
+    alignContent,
+    alignItems,
+    alignSelf,
+    flexDirection,
+    display,
+    flex,
+    grid,
+    gridArea,
+    gridAutoColumns,
+    gridAutoFlow,
+    gridAutoRows,
+    gridColumn,
+    gridColumnEnd,
+    gridColumnGap,
+    gridColumnStart,
+    gridGap,
+    gridRow,
+    gridRowStart,
+    gridRowEnd,
+    gridTemplate,
+    gridTemplateAreas,
+    gridTemplateColumns,
+    gridTemplateRows,
+    justifyContent,
+    justifyItems,
+    justifySelf,
+    position,
+    width,
+    minWidth,
+    maxWidth,
+    height,
+    minHeight,
+    maxHeight,
+    overflow,
+    margin,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    padding,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+    placeContent,
+    placeItems,
+    placeSelf,
+    flexWrap,
+    left,
+    top,
+    right,
+    bottom,
+    ...restProps
+  },
+  ref,
+) {
   const [BaseBlock, baseBlockProps] = getOverrides(
-    // $FlowFixMe
     overrides.Block,
     StyledBlock,
   );
 
   return (
     <BaseBlock
+      ref={ref}
       $as={as}
       $color={color}
       $font={font}
@@ -144,9 +147,6 @@ function Block({
   );
 }
 
-Block.defaultProps = {
-  overrides: {},
-  as: 'div',
-};
-
-export default Block;
+const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(Block);
+BlockComponent.displayName = 'Block';
+export default BlockComponent;

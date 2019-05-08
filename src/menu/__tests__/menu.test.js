@@ -26,10 +26,6 @@ describe('Menu Stateless Component', () => {
     const component = mount(<Menu {...getSharedProps()} />);
 
     expect(component.find(List)).toExist();
-    expect(component.find(List)).toHaveProp({
-      $ref: React.createRef(),
-    });
-
     expect(component.find(OptionList)).toExist();
 
     component.setProps({

@@ -95,7 +95,7 @@ describe('Stateless checkbox', function() {
         Input: {
           type: 'checkbox',
           disabled: false,
-          $ref: allProps.inputRef,
+          ref: allProps.inputRef,
           ...sharedProps,
           ...events,
         },

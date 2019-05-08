@@ -55,7 +55,7 @@ export const Heading = ({
       as={element}
       marginBottom="8px"
       font={fontType}
-      $ref={hoverRef}
+      ref={hoverRef}
       id={slug}
       color="foreground"
     >

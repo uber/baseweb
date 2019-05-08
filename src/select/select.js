@@ -643,7 +643,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-required={this.props.required || null}
           onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
-          $ref={ref => (this.input = ref)}
+          ref={ref => (this.input = ref)}
           tabIndex={0}
           {...sharedProps}
           {...inputContainerProps}

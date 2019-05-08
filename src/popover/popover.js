@@ -291,14 +291,12 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return this.props.id || this.generatedId || null;
   }
 
-  getAnchorProps(refKey: 'ref' | '$ref') {
+  getAnchorProps() {
     const {isOpen} = this.props;
 
     const anchorProps: AnchorPropsT = {
       key: 'popover-anchor',
-      // Once styletron gets forwardRef support, switch to always using ref
-      // https://github.com/rtsao/styletron/issues/253
-      [refKey]: this.anchorRef,
+      ref: this.anchorRef,
     };
 
     const anchorId = this.getAnchorIdAttr();
@@ -380,13 +378,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     }
 
     const isValidElement = React.isValidElement(anchor);
-    const isDomElement =
-      typeof anchor === 'object' && typeof anchor.type === 'string';
-
-    // Use $ref for complex components, ref for html elements
-    const refKey = isValidElement && !isDomElement ? '$ref' : 'ref';
-
-    const anchorProps = this.getAnchorProps(refKey);
+    const anchorProps = this.getAnchorProps();
 
     if (typeof anchor === 'object' && isValidElement) {
       return React.cloneElement(anchor, anchorProps);
@@ -413,7 +405,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return (
       <Body
         key="popover-body"
-        $ref={this.popperRef}
+        ref={this.popperRef}
         data-baseweb={this.props['data-baseweb'] || 'popover'}
         {...bodyProps}
         {...sharedProps}
@@ -422,7 +414,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         {showArrow ? (
           <Arrow
             key="popover-arrow"
-            $ref={this.arrowRef}
+            ref={this.arrowRef}
             {...sharedProps}
             {...getOverrideProps(ArrowOverride)}
           />

@@ -15,9 +15,9 @@ const ListItem = withStyle(StyledDropdownListItem, {
 
 const Container = withStyle(StyledList, {height: '500px'});
 
-function VirtualList(props) {
+const VirtualList = React.forwardRef((props, ref) => {
   return (
-    <Container $ref={props.$ref}>
+    <Container ref={ref}>
       <AutoSizer>
         {({width}) => (
           <List
@@ -42,7 +42,7 @@ function VirtualList(props) {
       </AutoSizer>
     </Container>
   );
-}
+});
 
 const options = [];
 

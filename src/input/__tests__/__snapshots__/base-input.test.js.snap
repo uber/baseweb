@@ -41,6 +41,7 @@ Object {
   "onKeyPress": [MockFunction],
   "onKeyUp": [MockFunction],
   "placeholder": "Placeholder",
+  "rows": null,
   "styled-component": "true",
   "type": "text",
   "value": undefined,

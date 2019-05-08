@@ -87,7 +87,6 @@ export type BaseInputPropsT<T> = {
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id: string,
   'data-baseweb'?: string,
-  $ref: {current: ?HTMLInputElement},
   /** A ref to access an input element. */
   inputRef: {current: ?HTMLInputElement},
   name: string,

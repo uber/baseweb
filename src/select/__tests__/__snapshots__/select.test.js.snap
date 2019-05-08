@@ -79,11 +79,6 @@ exports[`Select component renders component in search mode and false for multipl
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
       $required={false}
       $searchable={true}
       $size="default"
@@ -285,7 +280,6 @@ exports[`Select component renders component in search mode and false for multipl
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
-                        $ref={[Function]}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -326,9 +320,7 @@ exports[`Select component renders component in search mode and false for multipl
                           value=""
                         />
                       </MockStyledComponent>
-                      <MockStyledComponent
-                        $ref={[Function]}
-                      >
+                      <MockStyledComponent>
                         <div
                           styled-component="true"
                         />
@@ -444,11 +436,6 @@ exports[`Select component renders component in search mode and true for multiple
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
       $required={false}
       $searchable={true}
       $size="default"
@@ -650,7 +637,6 @@ exports[`Select component renders component in search mode and true for multiple
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
-                        $ref={[Function]}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -691,9 +677,7 @@ exports[`Select component renders component in search mode and true for multiple
                           value=""
                         />
                       </MockStyledComponent>
-                      <MockStyledComponent
-                        $ref={[Function]}
-                      >
+                      <MockStyledComponent>
                         <div
                           styled-component="true"
                         />
@@ -809,11 +793,6 @@ exports[`Select component renders component in select mode and false for multipl
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
       $required={false}
       $searchable={true}
       $size="default"
@@ -964,7 +943,6 @@ exports[`Select component renders component in select mode and false for multipl
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
-                        $ref={[Function]}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -1005,9 +983,7 @@ exports[`Select component renders component in select mode and false for multipl
                           value=""
                         />
                       </MockStyledComponent>
-                      <MockStyledComponent
-                        $ref={[Function]}
-                      >
+                      <MockStyledComponent>
                         <div
                           styled-component="true"
                         />
@@ -1201,11 +1177,6 @@ exports[`Select component renders component in select mode and true for multiple
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
       $required={false}
       $searchable={true}
       $size="default"
@@ -1356,7 +1327,6 @@ exports[`Select component renders component in select mode and true for multiple
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
-                        $ref={[Function]}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -1397,9 +1367,7 @@ exports[`Select component renders component in select mode and true for multiple
                           value=""
                         />
                       </MockStyledComponent>
-                      <MockStyledComponent
-                        $ref={[Function]}
-                      >
+                      <MockStyledComponent>
                         <div
                           styled-component="true"
                         />

@@ -19,6 +19,7 @@ Object {
   "onKeyPress": [MockFunction],
   "onKeyUp": [MockFunction],
   "placeholder": "Placeholder",
+  "rows": null,
   "styled-component": "true",
   "type": "text",
   "value": "input value",
@@ -47,11 +48,6 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
       $required={false}
       $size="default"
       aria-describedby={null}
@@ -69,6 +65,7 @@ Object {
       onKeyPress={[Function]}
       onKeyUp={[Function]}
       placeholder=""
+      rows={null}
       type="text"
     />,
     <NullComponent
@@ -106,11 +103,6 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
       $required={false}
       $size="default"
       aria-describedby={null}
@@ -128,6 +120,7 @@ Object {
       onKeyPress={[Function]}
       onKeyUp={[Function]}
       placeholder=""
+      rows={null}
       type="text"
     />,
     <NullComponent
@@ -165,11 +158,6 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
       $required={false}
       $size="default"
       aria-describedby={null}
@@ -187,6 +175,7 @@ Object {
       onKeyPress={[Function]}
       onKeyUp={[Function]}
       placeholder=""
+      rows={null}
       type="text"
     />,
     <NullComponent

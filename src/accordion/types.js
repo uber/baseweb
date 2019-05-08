@@ -119,12 +119,6 @@ export type SharedStylePropsArgT = {
   $disabled: ?boolean,
   $expanded?: ?boolean,
   $size?: string | number,
-  // Styletron stuff
-  $as?: string,
-  // styled function wrapper related
-  $style?: ?{},
-  /* eslint-disable flowtype/no-weak-types */
-  $ref?: React.Ref<any>,
 };
 
 // Chase: Note deprecation

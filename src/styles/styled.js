@@ -13,14 +13,13 @@ import type {ThemeT} from './types.js';
 
 import {ThemeContext} from './theme-provider.js';
 
-const wrapper = StyledComponent =>
-  function withThemeHOC(props) {
-    return (
-      <ThemeContext.Consumer>
-        {theme => <StyledComponent {...props} $theme={theme} />}
-      </ThemeContext.Consumer>
-    );
-  };
+const wrapper = StyledComponent => {
+  return React.forwardRef((props, ref) => (
+    <ThemeContext.Consumer>
+      {theme => <StyledComponent ref={ref} {...props} $theme={theme} />}
+    </ThemeContext.Consumer>
+  ));
+};
 
 type StyletronComponent<Props> = React.StatelessFunctionalComponent<Props> & {
   // eslint-disable-next-line flowtype/no-weak-types

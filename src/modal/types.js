@@ -77,11 +77,6 @@ export type SharedStylePropsArgT = {
   $size: SizePropT,
   $role: RolePropT,
   $closeable: boolean,
-  // Styletron stuff
-  $as?: string,
-  // styled function wrapper related
-  $style?: ?{},
-  $ref?: ElementRefT,
 };
 
 // Chase: Note removes SharedStylePropsT

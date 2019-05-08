@@ -23,12 +23,10 @@ describe('AutosizeInput component', function() {
     expect(renderedInput.props()).toMatchObject({
       $width: '5px',
       ...props,
-      $ref: ref,
     });
     expect(renderedSizer).toExist();
     expect(renderedSizer.props()).toMatchObject({
       children: props.value,
-      $ref: wrapper.instance().sizerRef,
     });
   });
 

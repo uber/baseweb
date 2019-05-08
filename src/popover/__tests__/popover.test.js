@@ -132,10 +132,6 @@ describe('Popover', () => {
       onPopperUpdate: wrapperInstance.onPopperUpdate,
       placement: wrapper.state().placement,
     });
-    expect(tetherProps.anchorRef).toBe(wrapperInstance.anchorRef.current);
-    expect(tetherProps.arrowRef).toBe(wrapperInstance.arrowRef.current);
-    expect(tetherProps.popperRef).toBe(wrapperInstance.popperRef.current);
-
     // // Manually emit a popper update (normally popper does this by itself)
     const offsets = {
       popper: {top: 10, left: 10},
@@ -266,7 +262,6 @@ describe('Popover', () => {
     expect(CustomComponent).toHaveBeenCalled();
     expect(CustomComponent).toHaveBeenCalledWith(
       {
-        $ref: wrapper.instance().anchorRef,
         onClick: wrapper.instance().onAnchorClick,
         'aria-controls': null,
         'aria-haspopup': 'true',
@@ -276,7 +271,6 @@ describe('Popover', () => {
     );
     expect(CustomComponent).toHaveBeenLastCalledWith(
       {
-        $ref: wrapper.instance().anchorRef,
         onClick: wrapper.instance().onAnchorClick,
         'aria-controls': 'bui-mock-id',
         'aria-haspopup': 'true',

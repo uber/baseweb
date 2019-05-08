@@ -165,12 +165,6 @@ export type SharedStylePropsArgT = {
   $placement: TetherPlacementT,
   $showArrow: boolean,
   children?: React.Node,
-
-  // Styletron stuff
-  $as?: string,
-  // styled function wrapper related
-  $style?: ?{},
-  $ref?: React.Ref<*>,
 };
 
 // Chase: Note Removes SharedStylePropsT
@@ -188,6 +182,5 @@ export type AnchorPropsT = {
   onMouseEnter?: (e: Event) => mixed,
   onMouseLeave?: (e: Event) => mixed,
   ref?: React.Ref<*>,
-  $ref?: React.Ref<*>,
   tabIndex?: '0',
 };

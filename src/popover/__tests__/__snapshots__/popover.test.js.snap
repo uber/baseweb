@@ -13,9 +13,6 @@ Object {
     "left": 0,
     "top": 0,
   },
-  "$ref": Object {
-    "current": null,
-  },
   "$showArrow": true,
 }
 `;
@@ -32,9 +29,6 @@ Object {
   "$popoverOffset": Object {
     "left": 0,
     "top": 0,
-  },
-  "$ref": Object {
-    "current": null,
   },
   "$showArrow": true,
   "data-baseweb": "popover",
