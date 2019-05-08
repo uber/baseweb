@@ -137,8 +137,13 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     transform: getScale,
   });
   styles.apply({property: 'gridRow', value: get(props, '$gridRow')});
-  styles.apply({property: 'gridRowStart', value: get(props, '$gridRowStart')});
   styles.apply({property: 'gridRowEnd', value: get(props, '$gridRowEnd')});
+  styles.apply({
+    property: 'gridRowGap',
+    value: get(props, '$gridRowGap'),
+    transform: getScale,
+  });
+  styles.apply({property: 'gridRowStart', value: get(props, '$gridRowStart')});
   styles.apply({property: 'gridTemplate', value: get(props, '$gridTemplate')});
   styles.apply({
     property: 'gridTemplateAreas',

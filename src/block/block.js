@@ -35,8 +35,9 @@ function Block({
   gridColumnStart,
   gridGap,
   gridRow,
-  gridRowStart,
   gridRowEnd,
+  gridRowGap,
+  gridRowStart,
   gridTemplate,
   gridTemplateAreas,
   gridTemplateColumns,
@@ -100,8 +101,9 @@ function Block({
       $gridColumnStart={gridColumnStart}
       $gridGap={gridGap}
       $gridRow={gridRow}
-      $gridRowStart={gridRowStart}
       $gridRowEnd={gridRowEnd}
+      $gridRowGap={gridRowGap}
+      $gridRowStart={gridRowStart}
       $gridTemplate={gridTemplate}
       $gridTemplateAreas={gridTemplateAreas}
       $gridTemplateColumns={gridTemplateColumns}
