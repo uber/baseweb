@@ -45,7 +45,13 @@ function getInputEnhancerPadding($size, sizing) {
   }[$size];
 }
 
-function getInputEnhancerColors($disabled, $isFocused, $error, colors) {
+function getInputEnhancerColors(
+  $disabled,
+  $isFocused,
+  $error,
+  $positive,
+  colors,
+) {
   if ($disabled) {
     return {
       color: colors.inputEnhancerTextDisabled,
@@ -67,6 +73,13 @@ function getInputEnhancerColors($disabled, $isFocused, $error, colors) {
     };
   }
 
+  if ($positive) {
+    return {
+      color: colors.foreground,
+      backgroundColor: colors.inputBorderPositive,
+    };
+  }
+
   return {
     color: colors.foreground,
     backgroundColor: colors.inputEnhancerFill,
@@ -79,6 +92,7 @@ export const InputEnhancer = styled('div', props => {
     $disabled,
     $isFocused,
     $error,
+    $positive,
     $theme: {colors, sizing, typography, animation},
   } = props;
   return {
@@ -88,13 +102,19 @@ export const InputEnhancer = styled('div', props => {
     transitionTimingFunction: animation.easeOutCurve,
     ...getFont($size, typography),
     ...getInputEnhancerPadding($size, sizing),
-    ...getInputEnhancerColors($disabled, $isFocused, $error, colors),
+    ...getInputEnhancerColors($disabled, $isFocused, $error, $positive, colors),
   };
 });
 
 // InputContainer
 
-function getInputContainerColors($disabled, $isFocused, $error, colors) {
+function getInputContainerColors(
+  $disabled,
+  $isFocused,
+  $error,
+  $positive,
+  colors,
+) {
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
@@ -119,6 +139,14 @@ function getInputContainerColors($disabled, $isFocused, $error, colors) {
     };
   }
 
+  if ($positive) {
+    return {
+      color: colors.foreground,
+      borderColor: colors.inputBorderPositive,
+      backgroundColor: colors.inputFillPositive,
+    };
+  }
+
   return {
     color: colors.foreground,
     borderColor: colors.inputFill,
@@ -131,6 +159,7 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
     $isFocused,
     $error,
     $disabled,
+    $positive,
     $size,
     $theme: {colors, typography, animation},
   } = props;
@@ -144,7 +173,13 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
     ...getFont($size, typography),
-    ...getInputContainerColors($disabled, $isFocused, $error, colors),
+    ...getInputContainerColors(
+      $disabled,
+      $isFocused,
+      $error,
+      $positive,
+      colors,
+    ),
   };
 };
 

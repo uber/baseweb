@@ -47,6 +47,20 @@ export const component = () => (
     <StatefulInput
       placeholder={'Search here...'}
       endEnhancer="00"
+      positive
+      overrides={{
+        // eslint-disable-next-line react/display-name
+        Before: () => (
+          <Block display="flex" alignItems="center" paddingLeft="scale500">
+            <Search size="18px" />
+          </Block>
+        ),
+      }}
+    />
+    <br />
+    <StatefulInput
+      placeholder={'Search here...'}
+      endEnhancer="00"
       error
       overrides={{
         // eslint-disable-next-line react/display-name
