@@ -47,7 +47,7 @@ export default class MenuStatefulContainer extends React.Component<
 
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
-  rootRef = (React.createRef(): {current: ?HTMLElement});
+  rootRef = (React.createRef(): {current: HTMLElement | null});
 
   componentDidMount() {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;

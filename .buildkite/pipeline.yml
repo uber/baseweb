@@ -56,6 +56,13 @@ steps:
         run: baseui
     agents:
       queue: workers
+  - name: ':fossa:'
+    command: 'curl https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash && fossa'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
   - name: ':documentation-site-link-checker:'
     command: yarn blc http://localhost:8081
     plugins:

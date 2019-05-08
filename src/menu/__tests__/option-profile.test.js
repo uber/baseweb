@@ -9,11 +9,11 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {mount} from 'enzyme';
 import {
-  ListItemProfile,
-  ProfileImg,
-  ProfileTitle,
-  ProfileSubtitle,
-  ProfileBody,
+  StyledListItemProfile,
+  StyledProfileImg,
+  StyledProfileTitle,
+  StyledProfileSubtitle,
+  StyledProfileBody,
 } from '../styled-components.js';
 import OptionProfile from '../option-profile.js';
 
@@ -41,32 +41,32 @@ describe('Option Profile Stateless Component', () => {
   test('basic renders', () => {
     const component = mount(<OptionProfile {...getSharedProps()} />);
 
-    expect(component.find(ListItemProfile)).toExist();
+    expect(component.find(StyledListItemProfile)).toExist();
 
     expect(
       component
-        .find(ProfileTitle)
+        .find(StyledProfileTitle)
         .first()
         .text(),
     ).toEqual(mockItem.title);
 
     expect(
       component
-        .find(ProfileSubtitle)
+        .find(StyledProfileSubtitle)
         .first()
         .text(),
     ).toEqual(mockItem.subtitle);
 
     expect(
       component
-        .find(ProfileBody)
+        .find(StyledProfileBody)
         .first()
         .text(),
     ).toEqual(mockItem.body);
 
     expect(
       component
-        .find(ProfileImg)
+        .find(StyledProfileImg)
         .first()
         .prop('src'),
     ).toEqual(mockItem.imgUrl);
@@ -100,7 +100,7 @@ describe('Option Profile Stateless Component', () => {
       },
     };
     const component = mount(<OptionProfile {...props} />);
-    expect(component.find(ListItemProfile)).not.toExist();
+    expect(component.find(StyledListItemProfile)).not.toExist();
     expect(component.find(MockComponent)).toExist();
     expect(component.find(MockComponent).prop('custom')).toEqual('prop');
   });

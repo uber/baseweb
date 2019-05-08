@@ -34,9 +34,9 @@ export type SharedPropsT = {
 export type NavPropsT = {
   /** Defines the current active itemId. Used for the default calculation of the $active prop */
   activeItemId: string,
-  /** 
-    Is called on the nav item render to test if the item is currently selected. 
-    If returns true the item will be rendered as an active one 
+  /**
+    Is called on the nav item render to test if the item is currently selected.
+    If returns true the item will be rendered as an active one
     */
   activePredicate: ?(item: *, activeItemId: string) => boolean,
   /** List of navigation items */
@@ -51,14 +51,16 @@ export type NavPropsT = {
     NavItem?: OverrideT<*>,
     SubNavContainer?: OverrideT<*>,
   },
+  /** Optional transform function that is called for each Item */
+  mapItem: ?(item: Item) => Item,
 };
 
 export type Item = {
   /** Navigation item's title to render */
   title: React.Node,
-  /** 
-    Identifier for the navigation item. 
-    Can be a path value or an action name. 
+  /**
+    Identifier for the navigation item.
+    Can be a path value or an action name.
     It's also used in the default `activePredicate` to
     identify a currently active item
     */

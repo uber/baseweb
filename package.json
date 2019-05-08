@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "6.16.0",
+  "version": "6.17.1",
   "description": "React implementation of uber design components platform.",
   "keywords": [
     "react",
@@ -13,7 +13,7 @@
   "repository": "uber-web/baseui",
   "scripts": {
     "lint:code": "eslint ./",
-    "lint:markdown": "markdownlint -c ./.markdownlint.json proposals README.md",
+    "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
     "lint": "yarn lint:code && yarn lint:markdown",
     "test": "yarn lint && yarn flow && yarn unit-test",
     "storybook": "start-storybook -p 6006",
@@ -158,11 +158,6 @@
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
     "styletron-react": "^4.4.6"
-  },
-  "engines": {
-    "node": ">=8.11.0",
-    "npm": ">=5.6.0",
-    "yarn": ">=1.5.1"
   },
   "husky": {
     "hooks": {

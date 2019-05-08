@@ -548,6 +548,10 @@ export const Root = styled('span', props => {
     }
   }
 
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius400
+    : '0px';
+
   return {
     ...font250,
     alignItems: 'center',
@@ -555,9 +559,10 @@ export const Root = styled('span', props => {
     borderColor: borderColor(false, false),
     borderStyle: 'solid',
     borderWidth: $variant === VARIANT.outlined ? '2px' : '0',
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius400
-      : '0px',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     boxSizing: 'border-box',
     color: fontColor(props, false, false),
     cursor: $disabled ? 'not-allowed' : $clickable ? 'pointer' : 'default',
