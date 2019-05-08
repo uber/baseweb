@@ -33,7 +33,6 @@ exports[`Navigation basic render: renders <Navigation/> as a child 1`] = `
   }
   onChange={[Function]}
   overrides={Object {}}
-  renderItem={null}
 />
 `;
 
