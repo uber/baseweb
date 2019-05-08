@@ -106,10 +106,14 @@ export type StatefulContainerPropsT = {
   rootRef?: RootRefT,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
-  addMenuToNesting?: (ref: {current: ?HTMLElement}) => void,
-  removeMenuFromNesting?: (ref: {current: ?HTMLElement}) => void,
-  getParentMenu?: (ref: {current: ?HTMLElement}) => ?{current: ?HTMLElement},
-  getChildMenu?: (ref: {current: ?HTMLElement}) => ?{current: ?HTMLElement},
+  addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
+  removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
+  getParentMenu?: (ref: {current: HTMLElement | null}) => ?{
+    current: HTMLElement | null,
+  },
+  getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
+    current: HTMLElement | null,
+  },
 };
 
 export type MenuPropsT = {
