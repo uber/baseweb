@@ -18,7 +18,7 @@ export const {
 export default class LayersManager extends React.Component<
   LayersManagerPropsT,
 > {
-  host: {current: HTMLElement | null} = React.createRef();
+  host: {current: HTMLDivElement | null} = React.createRef();
 
   componentDidMount() {
     this.forceUpdate();
