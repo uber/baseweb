@@ -22,7 +22,6 @@ export default class SideNav extends React.Component<NavPropsT> {
     activePredicate: null,
     items: [],
     overrides: {},
-    renderItem: null,
   };
 
   activePredicate = (item: Item) => {
@@ -36,7 +35,6 @@ export default class SideNav extends React.Component<NavPropsT> {
       items,
       onChange,
       overrides,
-      renderItem,
     } = this.props;
     const navLevel = 1;
 
@@ -70,7 +68,7 @@ export default class SideNav extends React.Component<NavPropsT> {
             <NavItem
               item={item}
               onSelect={onChange}
-              renderItem={renderItem}
+              overrides={overrides}
               {...sharedProps}
             />
             {item.subNav ? (
