@@ -132,7 +132,7 @@ export const Close = styled('button', (props: SharedStylePropsT) => {
   return {
     // Reset button styles
     border: '0',
-    background: 'transparent',
+    backgroundColor: 'transparent',
     outline: 0,
     paddingLeft: 0,
     paddingTop: 0,

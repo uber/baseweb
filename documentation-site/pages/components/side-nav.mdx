@@ -75,10 +75,6 @@ export default withRouter(App);
   name="Side Navigation"
   component={NavExports}
   renderExample={props => <Navigation items={[
-    {
-      title: 'Colors',
-      itemId: '#level1.1',
-      subNav: [
         {
           title: 'Colors',
           itemId: '#level1.1',
@@ -102,7 +98,7 @@ export default withRouter(App);
       overrides={props.overrides}
       {...props}
     />
-  )}
+  }
 />
 
 <API

@@ -48,7 +48,7 @@ export default () => {
           style: ({$active, $theme}) => {
             if (!$active) return {};
             return {
-              background: $theme.colors.positive400,
+              backgroundColor: $theme.colors.positive400,
               borderLeftColor: $theme.colors.mono800,
               color: $theme.colors.mono100,
               ':hover': {

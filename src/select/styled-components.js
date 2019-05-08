@@ -227,7 +227,7 @@ export const StyledInputContainer = styled('div', props => {
     position: 'relative',
     display: 'inline-block',
     maxWidth: '100%',
-    background: 'transparent',
+    backgroundColor: 'transparent',
     border: 'none',
     boxShadow: 'none',
     outline: 'none',
@@ -260,7 +260,7 @@ export const StyledInput = styled(
       fontSize: '16px', // prevents iOS to zoom in when focused
       width: $disabled || !$searchable ? '1px' : $width || '100%',
       maxWidth: '100%',
-      background: 'transparent',
+      backgroundColor: 'transparent',
       border: 'none',
       boxShadow: 'none',
       display: 'inline-block',
