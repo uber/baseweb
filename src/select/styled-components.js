@@ -149,7 +149,7 @@ export const StyledControlContainer = styled(
               : colors.shadowFocus
             : 'transparent'
       }`,
-      transitionProperty: 'border, boxShadow, backgroundColor',
+      transitionProperty: 'border, box-shadow, background-color',
       transitionDuration: animation.timing100,
       transitionTimingFunction: animation.easeOutCurve,
     };

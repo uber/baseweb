@@ -113,7 +113,7 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
     width: '100%',
     borderWidth: '2px',
     borderStyle: 'solid',
-    transitionProperty: 'border, boxShadow, backgroundColor',
+    transitionProperty: 'border, box-shadow, background-color',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
     ...getFont($size, typography),
