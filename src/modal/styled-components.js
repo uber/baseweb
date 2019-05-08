@@ -88,12 +88,16 @@ export const DialogContainer = styled('div', (props: SharedStylePropsT) => {
 
 export const Dialog = styled('div', (props: SharedStylePropsT) => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius200
+    : '0px';
   return {
     position: 'relative',
     backgroundColor: $theme.colors.backgroundAlt,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius200
-      : '0px',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     marginLeft: $theme.sizing.scale600,
     marginTop: $theme.sizing.scale600,
     marginRight: $theme.sizing.scale600,
