@@ -330,12 +330,18 @@ export const getLoadingIconStyles = (props: SharedStylePropsT) => {
 };
 
 export const StyledSearchIcon = styled('div', (props: SharedStylePropsT) => {
-  const {$disabled, $theme} = props;
+  const {$disabled, $error, $isFocused, $isPseudoFocused, $theme} = props;
   const {colors, sizing} = $theme;
   return {
     // $FlowFixMe
     ...getSvgStyles(props),
-    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
+    color: $disabled
+      ? colors.inputTextDisabled
+      : $error
+        ? colors.negative400
+        : $isFocused || $isPseudoFocused
+          ? colors.primary400
+          : colors.foregroundAlt,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
     left: sizing.scale500,
