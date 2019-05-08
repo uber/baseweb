@@ -80,10 +80,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
   // open. This is required so that we can check if clicks are on/off the anchor element.
-  anchor: {current: ?HTMLElement} = React.createRef();
+  anchor: {current: HTMLElement | null} = React.createRef();
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
-  dropdown: {current: ?HTMLElement} = React.createRef();
+  dropdown: {current: HTMLElement | null} = React.createRef();
   input: ?HTMLInputElement;
   // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
   dragging: boolean;
