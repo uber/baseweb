@@ -13,6 +13,7 @@ function getFont(size, typography) {
   return {
     [SIZE.default]: typography.font300,
     [SIZE.compact]: typography.font200,
+    [SIZE.large]: typography.font400,
   }[size];
 }
 
@@ -34,13 +35,13 @@ export const Root = styled('div', props => {
 function getInputEnhancerPadding($size, sizing) {
   return {
     [SIZE.default]: {
-      padding: sizing.scale500,
+      padding: sizing.scale600,
     },
     [SIZE.compact]: {
-      paddingTop: sizing.scale300,
-      paddingRight: sizing.scale500,
-      paddingBottom: sizing.scale300,
-      paddingLeft: sizing.scale500,
+      padding: sizing.scale500,
+    },
+    [SIZE.large]: {
+      padding: sizing.scale700,
     },
   }[$size];
 }
@@ -196,10 +197,10 @@ function getInputPadding(size, sizing) {
       paddingLeft: sizing.scale500,
     },
     [SIZE.compact]: {
-      paddingTop: sizing.scale200,
-      paddingRight: sizing.scale500,
-      paddingBottom: sizing.scale200,
-      paddingLeft: sizing.scale500,
+      padding: sizing.scale300,
+    },
+    [SIZE.large]: {
+      padding: sizing.scale600,
     },
   }[size];
 }
