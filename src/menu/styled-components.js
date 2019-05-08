@@ -18,21 +18,27 @@ type StyledPropsT = {
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
 };
 
-export const StyledList = styled('ul', ({$theme}: StyledPropsT) => ({
-  backgroundColor: $theme.colors.menuFill,
-  position: 'relative',
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
-  paddingTop: $theme.sizing.scale300,
-  paddingBottom: $theme.sizing.scale300,
-  paddingLeft: '0',
-  paddingRight: '0',
-  borderRadius: $theme.borders.radius300,
-  boxShadow: $theme.lighting.shadow600,
-  overflow: 'auto',
-}));
+export const StyledList = styled('ul', ({$theme}: StyledPropsT) => {
+  const borderRadius = $theme.borders.radius300;
+  return {
+    backgroundColor: $theme.colors.menuFill,
+    position: 'relative',
+    marginTop: '0',
+    marginBottom: '0',
+    marginLeft: '0',
+    marginRight: '0',
+    paddingTop: $theme.sizing.scale300,
+    paddingBottom: $theme.sizing.scale300,
+    paddingLeft: '0',
+    paddingRight: '0',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
+    boxShadow: $theme.lighting.shadow600,
+    overflow: 'auto',
+  };
+});
 
 function getFontColor(props: StyledPropsT) {
   if (props.$disabled) {
@@ -148,7 +154,10 @@ export const StyledProfileImgContainer = styled('div', {
 export const StyledProfileImg = styled('img', {
   width: '100%',
   height: '100%',
-  borderRadius: '50%',
+  borderTopRightRadius: '50%',
+  borderBottomRightRadius: '50%',
+  borderTopLeftRadius: '50%',
+  borderBottomLeftRadius: '50%',
 });
 
 export const StyledProfileLabelsContainer = styled('div', ({$theme}) => ({
