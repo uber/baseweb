@@ -442,7 +442,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
    */
   getValueArray(value: ValueT): Array<OptionT> {
     if (!Array.isArray(value)) {
-      if (value === null || value === undefined) return [];
+      if (value === '' || value === null || value === undefined) return [];
       value = [value];
     }
     return value.map(value => expandValue(value, this.props));
