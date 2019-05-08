@@ -211,7 +211,6 @@ export default class Pagination extends React.PureComponent<
                 {currentPage}
               </Button>
               {isMenuOpen && (
-                // $FlowFixMe
                 <DropdownMenu
                   items={options}
                   onItemSelect={this.onMenuItemSelect}
