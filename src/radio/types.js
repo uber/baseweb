@@ -106,7 +106,7 @@ export type RadioPropsT = {
   /** Disable the checkbox from being changed. */
   disabled?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: {current: ?HTMLInputElement},
+  inputRef: {current: HTMLInputElement | null},
   /** Renders checkbox in errored state. */
   isError?: boolean,
   /** How to position the label relative to the checkbox itself. */
