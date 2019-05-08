@@ -199,7 +199,12 @@ export type ColorsT = {
   inputFill: string,
   inputFillError: string,
   inputFillDisabled: string,
+  inputFillActive: string,
   inputTextDisabled: string,
+  inputBorderError: string,
+  inputEnhancerFill: string,
+  inputEnhancerFillDisabled: string,
+  inputEnhancerTextDisabled: string,
 
   // Notification
   notificationPrimaryBackground: string,

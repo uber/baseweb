@@ -45,23 +45,50 @@ function getInputEnhancerPadding($size, sizing) {
   }[$size];
 }
 
-function getInputEnhancerColors(colors) {
+function getInputEnhancerColors($disabled, $isFocused, $error, colors) {
+  if ($disabled) {
+    return {
+      color: colors.inputEnhancerTextDisabled,
+      backgroundColor: colors.inputEnhancerFillDisabled,
+    };
+  }
+
+  if ($isFocused) {
+    return {
+      color: colors.foregroundInv,
+      backgroundColor: colors.foreground,
+    };
+  }
+
+  if ($error) {
+    return {
+      color: colors.foreground,
+      backgroundColor: colors.inputBorderError,
+    };
+  }
+
   return {
     color: colors.foreground,
-    backgroundColor: colors.inputFillEnhancer,
+    backgroundColor: colors.inputEnhancerFill,
   };
 }
 
 export const InputEnhancer = styled('div', props => {
   const {
     $size,
-    $theme: {colors, sizing, typography},
+    $disabled,
+    $isFocused,
+    $error,
+    $theme: {colors, sizing, typography, animation},
   } = props;
   return {
     display: 'flex',
+    transitionProperty: 'color, background-color',
+    transitionDuration: animation.timing100,
+    transitionTimingFunction: animation.easeOutCurve,
     ...getFont($size, typography),
     ...getInputEnhancerPadding($size, sizing),
-    ...getInputEnhancerColors(colors),
+    ...getInputEnhancerColors($disabled, $isFocused, $error, colors),
   };
 });
 
@@ -79,15 +106,15 @@ function getInputContainerColors($disabled, $isFocused, $error, colors) {
   if ($isFocused) {
     return {
       color: colors.foreground,
-      borderColor: colors.primary400,
-      backgroundColor: colors.background,
+      borderColor: colors.foreground,
+      backgroundColor: colors.inputFillActive,
     };
   }
 
   if ($error) {
     return {
       color: colors.foreground,
-      borderColor: colors.negative400,
+      borderColor: colors.inputBorderError,
       backgroundColor: colors.inputFillError,
     };
   }
@@ -113,7 +140,7 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
     width: '100%',
     borderWidth: '2px',
     borderStyle: 'solid',
-    transitionProperty: 'border, box-shadow, background-color',
+    transitionProperty: 'border, background-color',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
     ...getFont($size, typography),
@@ -142,11 +169,11 @@ function getInputPadding(size, sizing) {
   }[size];
 }
 
-function getInputColors($disabled, $error, colors) {
+function getInputColors($disabled, $isFocused, $error, colors) {
   if ($disabled) {
     return {
       color: colors.foregroundAlt,
-      caretColor: colors.primary,
+      caretColor: colors.foreground,
       '::placeholder': {
         color: colors.inputTextDisabled,
       },
@@ -155,7 +182,7 @@ function getInputColors($disabled, $error, colors) {
 
   return {
     color: colors.foreground,
-    caretColor: colors.primary,
+    caretColor: colors.foreground,
     '::placeholder': {
       color: colors.foregroundAlt,
     },
@@ -165,6 +192,7 @@ function getInputColors($disabled, $error, colors) {
 export const getInputStyles = (props: SharedPropsT) => {
   const {
     $disabled,
+    $isFocused,
     $error,
     $size,
     $theme: {colors, sizing, typography},
@@ -180,7 +208,7 @@ export const getInputStyles = (props: SharedPropsT) => {
     cursor: $disabled ? 'not-allowed' : 'text',
     ...getFont($size, typography),
     ...getInputPadding($size, sizing),
-    ...getInputColors($disabled, $error, colors),
+    ...getInputColors($disabled, $isFocused, $error, colors),
   };
 };
 

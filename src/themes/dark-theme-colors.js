@@ -275,10 +275,14 @@ export default {
 
     // Input
     inputFill: primitives.mono600,
-    inputFillEnhancer: primitives.mono500,
-    inputFillError: primitives.mono600,
-    inputFillDisabled: primitives.mono700,
+    inputFillActive: primitives.mono500,
+    inputFillError: primitives.negative700,
+    inputFillDisabled: primitives.mono800,
     inputTextDisabled: primitives.mono500,
+    inputBorderError: primitives.negative400,
+    inputEnhancerFill: primitives.mono500,
+    inputEnhancerFillDisabled: primitives.mono700,
+    inputEnhancerTextDisabled: primitives.mono500,
 
     // Menu
     menuFill: primitives.mono600,

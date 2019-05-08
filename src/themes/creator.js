@@ -219,10 +219,14 @@ export default function createTheme(
 
       // Inputs
       inputFill: primitives.mono200,
-      inputFillEnhancer: primitives.mono400,
       inputFillError: primitives.negative50,
-      inputFillDisabled: primitives.mono300,
+      inputFillDisabled: primitives.mono200,
+      inputFillActive: primitives.mono200,
       inputTextDisabled: primitives.mono600,
+      inputBorderError: primitives.negative200,
+      inputEnhancerFill: primitives.mono300,
+      inputEnhancerFillDisabled: primitives.mono300,
+      inputEnhancerTextDisabled: primitives.mono600,
 
       // Menu
       menuFill: primitives.mono100,
