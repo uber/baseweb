@@ -6,6 +6,7 @@ Object {
   "$disabled": false,
   "$error": true,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
 }
@@ -17,6 +18,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
 }
@@ -53,6 +55,7 @@ Object {
   "$disabled": false,
   "$error": true,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
 }
@@ -64,6 +67,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
 }
