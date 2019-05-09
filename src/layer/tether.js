@@ -44,10 +44,14 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
       }
       if (this.state.isMounted !== prevState.isMounted) {
         if (!this.props.anchorRef) {
-          // eslint-disable-next-line no-console
-          console.warn(
-            `[baseui][TetherBehavior] ref has not been passed to the Popper's anchor element`,
-          );
+          if (__DEV__) {
+            // eslint-disable-next-line no-console
+            console.warn(
+              `[baseui][TetherBehavior] ref has not been passed to the Popper's anchor element.
+              See how to pass the ref to an anchor element in the Popover example
+              http://baseui.design/components/popover#anchor-ref-handling-example`,
+            );
+          }
         } else {
           this.initializePopper();
         }
