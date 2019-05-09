@@ -155,7 +155,10 @@ export type PropsT = {
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value: ValueT,
-  /** Defines an option key for a default key value. */
+  /** Defines a key name for an option's unique identifier value.
+   * The value of the `valueKey` prop is used to identify what options are selected
+   * or removed from the selection, it also used for default filtering out the
+   * selected options from the dropdown list. */
   valueKey: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
