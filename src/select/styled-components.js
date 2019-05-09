@@ -116,23 +116,70 @@ export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
+function getControlContainerColors(
+  $disabled,
+  $isFocused,
+  $isPseudoFocused,
+  $positive,
+  $error,
+  colors,
+) {
+  if ($disabled) {
+    return {
+      color: colors.inputTextDisabled,
+      borderColor: colors.inputFillDisabled,
+      backgroundColor: colors.inputFillDisabled,
+    };
+  }
+
+  if ($isFocused || $isPseudoFocused) {
+    return {
+      color: colors.foreground,
+      borderColor: colors.foreground,
+      backgroundColor: colors.inputFillActive,
+    };
+  }
+
+  if ($error) {
+    return {
+      color: colors.foreground,
+      borderColor: colors.inputBorderError,
+      backgroundColor: colors.inputFillError,
+    };
+  }
+
+  if ($positive) {
+    return {
+      color: colors.foreground,
+      borderColor: colors.inputBorderPositive,
+      backgroundColor: colors.inputFillPositive,
+    };
+  }
+
+  return {
+    color: colors.foreground,
+    borderColor: colors.inputFill,
+    backgroundColor: colors.inputFill,
+  };
+}
+
 export const StyledControlContainer = styled(
   'div',
   (props: SharedStylePropsT) => {
     const {
       $disabled,
       $error,
+      $positive,
       $isFocused,
       $isPseudoFocused,
       $type,
       $searchable,
-      $theme: {colors, sizing, animation, borders},
+      $theme: {colors, animation},
     } = props;
     return {
       boxSizing: 'border-box',
       overflow: 'hidden',
       width: '100%',
-      color: $disabled ? colors.inputTextDisabled : colors.foreground,
       display: 'flex',
       justifyContent: 'space-between',
       cursor: $disabled
@@ -140,35 +187,19 @@ export const StyledControlContainer = styled(
         : $searchable || $type === TYPE.search
           ? 'text'
           : 'pointer',
-      backgroundColor: $disabled
-        ? colors.inputFillDisabled
-        : $isFocused || $isPseudoFocused
-          ? colors.background
-          : $error
-            ? colors.negative50
-            : colors.inputFill,
-      borderWidth: '1px',
+      borderWidth: '2px',
       borderStyle: 'solid',
-      borderColor: $disabled
-        ? colors.inputFillDisabled
-        : $error
-          ? colors.negative400
-          : $isFocused || $isPseudoFocused
-            ? colors.primary400
-            : colors.inputFill,
-      borderRadius: borders.useRoundedCorners ? sizing.scale100 : '0',
-      boxShadow: `0 2px 6px ${
-        $disabled
-          ? 'transparent'
-          : $isFocused || $isPseudoFocused
-            ? $error
-              ? colors.shadowError
-              : colors.shadowFocus
-            : 'transparent'
-      }`,
       transitionProperty: 'border, box-shadow, background-color',
       transitionDuration: animation.timing100,
       transitionTimingFunction: animation.easeOutCurve,
+      ...getControlContainerColors(
+        $disabled,
+        $isFocused,
+        $isPseudoFocused,
+        $positive,
+        $error,
+        colors,
+      ),
     };
   },
 );

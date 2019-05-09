@@ -789,6 +789,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       creatable,
       disabled,
       error,
+      positive,
       isLoading,
       multi,
       required,
@@ -802,6 +803,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       $creatable: creatable,
       $disabled: disabled,
       $error: error,
+      $positive: positive,
       $isFocused: isFocused,
       $isLoading: isLoading,
       $isOpen: isOpen,
@@ -874,6 +876,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             content={() => {
               const dropdownProps = {
                 error: this.props.error,
+                positive: this.props.positive,
                 getOptionLabel:
                   this.props.getOptionLabel ||
                   this.getOptionLabel.bind(this, locale),
