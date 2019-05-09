@@ -15,8 +15,9 @@ import {ellipsisText} from '../styles/util.js';
 
 function getFont(size = SIZE.default, typography) {
   return {
-    [SIZE.default]: typography.font300,
     [SIZE.compact]: typography.font200,
+    [SIZE.default]: typography.font300,
+    [SIZE.large]: typography.font400,
   }[size];
 }
 
@@ -30,6 +31,22 @@ function getControlPadding(props, emptyValue) {
   const isSearch = $type === TYPE.search;
   const paddingLeft = isSearch ? sizing.scale1000 : sizing.scale500;
   return {
+    [SIZE.compact]: {
+      // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
+      paddingTop:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+          : sizing.scale200,
+      paddingBottom:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+          : sizing.scale200,
+      paddingLeft:
+        $multi && !emptyValue
+          ? `calc(${paddingLeft} - ${sizing.scale0})`
+          : paddingLeft,
+      paddingRight: '0',
+    },
     [SIZE.default]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
@@ -43,16 +60,16 @@ function getControlPadding(props, emptyValue) {
       paddingLeft,
       paddingRight: '0',
     },
-    [SIZE.compact]: {
+    [SIZE.large]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
         $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
-          : sizing.scale200,
+          ? `calc(${sizing.scale600} - ${sizing.scale0})`
+          : sizing.scale600,
       paddingBottom:
         $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
-          : sizing.scale200,
+          ? `calc(${sizing.scale600} - ${sizing.scale0})`
+          : sizing.scale600,
       paddingLeft:
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`
