@@ -235,7 +235,7 @@ export default function createTheme(
       menuFillHover: primitives.mono200,
       menuFontDefault: primitives.mono800,
       menuFontDisabled: primitives.mono500,
-      menuFontHighlighted: primitives.primary400,
+      menuFontHighlighted: primitives.mono1000,
       menuFontSelected: primitives.mono1000,
 
       // Pagination
