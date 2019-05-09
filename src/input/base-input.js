@@ -33,6 +33,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     autoFocus: false,
     disabled: false,
     error: false,
+    positive: false,
     name: '',
     inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     onBlur: () => {},

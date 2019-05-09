@@ -38,7 +38,7 @@ export type SharedPropsT = {
   $disabled: boolean,
   /** Renders UI in 'error' state */
   $error: boolean,
-  /** Renders UI in 'error' state */
+  /** Renders UI in 'positive' state */
   $positive: boolean,
   /** Defines styles for inputs that are grouped with other controls. */
   $adjoined: AdjoinedT,
@@ -82,7 +82,7 @@ export type BaseInputPropsT<T> = {
   disabled: boolean,
   /** Renders UI in 'error' state. */
   error: boolean,
-  /** Renders UI in 'error' state. */
+  /** Renders UI in 'positive' state. */
   positive: boolean,
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id: string,
