@@ -23,6 +23,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     disabled: false,
     name: '',
     error: false,
+    positive: false,
     onBlur: () => {},
     onFocus: () => {},
     overrides: {},
