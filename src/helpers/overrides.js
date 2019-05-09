@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import * as ReactIs from 'react-is';
 import deepMerge from '../utils/deep-merge.js';
 
 export type StyleOverrideT = {} | (({}) => ?{});
@@ -59,11 +60,12 @@ export function getOverrideProps<T>(override: ?OverrideT<T>) {
 export function toObjectOverride<T>(
   override: OverrideT<T>,
 ): OverrideObjectT<T> {
-  if (typeof override === 'function') {
+  if (ReactIs.isValidElementType(override)) {
     return {
-      component: (override: React.ComponentType<T>),
+      component: ((override: any): React.ComponentType<T>),
     };
   }
+
   // Flow can't figure out that typeof 'function' above will
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
