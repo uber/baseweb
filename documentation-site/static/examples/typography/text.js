@@ -14,10 +14,10 @@ const bodyString =
 export default () => (
   <React.Fragment>
     <Label2>Label2</Label2>
-    <Paragraph2>{`Paragraph2 - ${bodyString}`}</Paragraph2>
     <Label1>Label1</Label1>
+    <Paragraph2>{`Paragraph2 - ${bodyString}`}</Paragraph2>
     <Paragraph1>{`Paragraph1 - ${bodyString}`}</Paragraph1>
-    <Caption2>Caption2</Caption2>
+    <Caption2>{`Caption2 - ${bodyString}`}</Caption2>
     <Caption1>{`Caption1 - ${bodyString}`}</Caption1>
   </React.Fragment>
 );
