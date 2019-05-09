@@ -43,7 +43,14 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
         this.popper && this.popper.scheduleUpdate();
       }
       if (this.state.isMounted !== prevState.isMounted) {
-        this.initializePopper();
+        if (!this.props.anchorRef) {
+          // eslint-disable-next-line no-console
+          console.warn(
+            `[baseui][TetherBehavior] ref has not been passed to the Popper's anchor element`,
+          );
+        } else {
+          this.initializePopper();
+        }
       }
     }
   }
