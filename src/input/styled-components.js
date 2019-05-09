@@ -208,7 +208,10 @@ function getInputPadding(size, sizing) {
       paddingRight: sizing.scale500,
     },
     [SIZE.large]: {
-      padding: sizing.scale600,
+      paddingTop: sizing.scale600,
+      paddingBottom: sizing.scale600,
+      paddingLeft: sizing.scale600,
+      paddingRight: sizing.scale600,
     },
   }[size];
 }
