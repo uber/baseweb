@@ -13,6 +13,14 @@ module.exports = {
         loader: 'import-glob',
         include: [path.resolve(__dirname)],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
 };

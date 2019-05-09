@@ -218,10 +218,10 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     return {
       $animate: animate,
       $isVisible: this.state.isVisible,
-      $isOpen: Boolean(isOpen),
+      $isOpen: !!isOpen,
       $size: size,
       $role: role,
-      $closeable: Boolean(closeable),
+      $closeable: !!closeable,
     };
   }
 

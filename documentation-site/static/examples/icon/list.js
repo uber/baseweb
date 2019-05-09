@@ -17,15 +17,15 @@ export default () => (
       <Block
         key={key}
         alignItems="center"
-        color="mono1000"
+        color="foreground"
         display="flex"
         paddingBottom="scale500"
       >
         <Icon size={24} />
-        <Block font="font350" marginLeft="scale200">
+        <Block font="foregroundAlt" marginLeft="scale200">
           {key}
         </Block>
-        <Block color="mono700" marginLeft="scale200">
+        <Block color="foregroundAlt" marginLeft="scale200">
           {makeImportStatement(key)}
         </Block>
       </Block>

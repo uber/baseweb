@@ -11,7 +11,9 @@ import {LightThemeMove} from './light-theme-with-move.js';
 import {DarkThemeMove} from './dark-theme-with-move.js';
 import {DarkTheme} from './dark-theme.js';
 
-export const LightTheme = createTheme(lightThemePrimitives);
+export const LightTheme = createTheme(lightThemePrimitives, {
+  name: 'light-theme',
+});
 
 export {
   createTheme,
