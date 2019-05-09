@@ -11,8 +11,8 @@ import type {SharedPropsT} from './types.js';
 
 function getFont(size, typography) {
   return {
-    [SIZE.default]: typography.font300,
     [SIZE.compact]: typography.font200,
+    [SIZE.default]: typography.font300,
     [SIZE.large]: typography.font400,
   }[size];
 }
@@ -34,14 +34,17 @@ export const Root = styled('div', props => {
 
 function getInputEnhancerPadding($size, sizing) {
   return {
-    [SIZE.default]: {
-      padding: sizing.scale600,
-    },
     [SIZE.compact]: {
-      padding: sizing.scale500,
+      paddingRight: sizing.scale400,
+      paddingLeft: sizing.scale400,
+    },
+    [SIZE.default]: {
+      paddingRight: sizing.scale500,
+      paddingLeft: sizing.scale500,
     },
     [SIZE.large]: {
-      padding: sizing.scale700,
+      paddingRight: sizing.scale600,
+      paddingLeft: sizing.scale600,
     },
   }[$size];
 }
@@ -98,6 +101,8 @@ export const InputEnhancer = styled('div', props => {
   } = props;
   return {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     transitionProperty: 'color, background-color',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
@@ -190,14 +195,17 @@ export const InputContainer = styled('div', getInputContainerStyles);
 
 function getInputPadding(size, sizing) {
   return {
+    [SIZE.compact]: {
+      paddingTop: sizing.scale200,
+      paddingBottom: sizing.scale200,
+      paddingLeft: sizing.scale300,
+      paddingRight: sizing.scale300,
+    },
     [SIZE.default]: {
       paddingTop: sizing.scale400,
-      paddingRight: sizing.scale500,
       paddingBottom: sizing.scale400,
       paddingLeft: sizing.scale500,
-    },
-    [SIZE.compact]: {
-      padding: sizing.scale300,
+      paddingRight: sizing.scale500,
     },
     [SIZE.large]: {
       padding: sizing.scale600,

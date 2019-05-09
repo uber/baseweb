@@ -16,12 +16,16 @@ export const component = () => (
   <>
     <StatefulInput
       size={SIZE.compact}
-      placeholder="Compact"
+      initialState={{value: 'Compact'}}
       endEnhancer=".com"
     />
     <br />
-    <StatefulInput placeholder="Default" endEnhancer=".com" />
+    <StatefulInput initialState={{value: 'Default'}} endEnhancer=".com" />
     <br />
-    <StatefulInput size={SIZE.large} placeholder="Large" endEnhancer=".com" />
+    <StatefulInput
+      size={SIZE.large}
+      initialState={{value: 'Large'}}
+      endEnhancer=".com"
+    />
   </>
 );
