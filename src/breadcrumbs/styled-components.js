@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 import type {StyledRootPropsT, StyledSeparatorT} from './types.js';
-import {ChevronRight} from '../icon/index.js';
+import ChevronRight from '../icon/chevron-right.js';
 
 export const StyledRoot = styled('nav', ({$theme}: StyledRootPropsT) => {
   return {

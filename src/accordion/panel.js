@@ -8,10 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {LocaleContext} from '../locale/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import {
-  Plus as PlusIcon,
-  CheckIndeterminate as CheckIndeterminateIcon,
-} from '../icon/index.js';
+import PlusIcon from '../icon/plus.js';
+import CheckIndeterminateIcon from '../icon/check-indeterminate.js';
 import {
   PanelContainer as StyledPanelContainer,
   Header as StyledHeader,

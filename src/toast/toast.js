@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import {Delete as DeleteAltIcon} from '../icon/index.js';
+import DeleteAltIcon from '../icon/delete-alt.js';
 import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
