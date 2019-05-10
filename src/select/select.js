@@ -859,6 +859,15 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     sharedProps.$isOpen = isOpen;
 
+    if (__DEV__) {
+      if (this.props.error && this.props.positive) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[Select] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+        );
+      }
+    }
+
     return (
       <LocaleContext.Consumer>
         {locale => (
