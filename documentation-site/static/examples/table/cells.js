@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyle} from 'styletron-react';
+import {withStyle, styled} from 'styletron-react';
 
 import {Block} from 'baseui/block';
 import ArrowUp from 'baseui/icon/arrow-up';
