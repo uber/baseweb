@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {ListItem} from '../styled-components.js';
+import {StyledListItem} from '../styled-components.js';
 import OptionList from '../option-list.js';
 
 const mockItem = {label: 'item1'};
@@ -24,11 +24,11 @@ describe('Option List Stateless Component', () => {
   test('basic renders', () => {
     const component = mount(<OptionList {...getSharedProps()} />);
 
-    expect(component.find(ListItem)).toExist();
+    expect(component.find(StyledListItem)).toExist();
 
     expect(
       component
-        .find(ListItem)
+        .find(StyledListItem)
         .first()
         .text(),
     ).toEqual(mockItem.label);
@@ -48,7 +48,7 @@ describe('Option List Stateless Component', () => {
       },
     };
     const component = mount(<OptionList {...props} />);
-    expect(component.find(ListItem)).not.toExist();
+    expect(component.find(StyledListItem)).not.toExist();
     expect(component.find(NewListItem)).toExist();
     expect(component.find(NewListItem).prop('custom')).toEqual('prop');
   });

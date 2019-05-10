@@ -20,6 +20,7 @@ import ChevronLeft from '../icon/chevron-left.js';
 import ChevronRight from '../icon/chevron-right.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {PaginationPropsT} from './types.js';
+import type {LocaleT} from '../locale/types.js';
 
 type PageOptionT = {
   label: number,
@@ -50,16 +51,37 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
 
   onPrevClick = (event: SyntheticEvent<>) => {
     const {currentPage, onPageChange, onPrevClick} = this.props;
-    onPageChange &&
-      onPageChange({nextPage: currentPage - 1, prevPage: currentPage});
-    onPrevClick && onPrevClick({event});
+    if (currentPage > 1) {
+      onPageChange &&
+        onPageChange({nextPage: currentPage - 1, prevPage: currentPage});
+      onPrevClick && onPrevClick({event});
+    }
   };
 
   onNextClick = (event: SyntheticEvent<>) => {
-    const {currentPage, onPageChange, onNextClick} = this.props;
-    onPageChange &&
-      onPageChange({nextPage: currentPage + 1, prevPage: currentPage});
-    onNextClick && onNextClick({event});
+    const {currentPage, numPages, onPageChange, onNextClick} = this.props;
+    if (currentPage < numPages) {
+      onPageChange &&
+        onPageChange({nextPage: currentPage + 1, prevPage: currentPage});
+      onNextClick && onNextClick({event});
+    }
+  };
+
+  constructAriaWayfinderLabel = (locale: LocaleT, prefix: string) => {
+    const {currentPage, numPages, labels} = this.props;
+    return (
+      prefix +
+      ' ' +
+      currentPage +
+      ' ' +
+      `${
+        labels && labels.preposition
+          ? labels.preposition
+          : locale.pagination.preposition
+      }` +
+      ' ' +
+      numPages
+    );
   };
 
   render() {
@@ -89,8 +111,17 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <Root data-baseweb="pagination" {...rootProps}>
+          <Root
+            aria-label="pagination"
+            data-baseweb="pagination"
+            {...rootProps}
+          >
             <Button
+              aria-label={this.constructAriaWayfinderLabel(
+                locale,
+                'previous page. current page',
+              )}
+              disabled={currentPage <= 1}
               onClick={this.onPrevClick}
               startEnhancer={() => <ChevronLeft title={''} size={24} />}
               kind={KIND.tertiary}
@@ -162,7 +193,10 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                 {...selectProps}
               />
             </DropdownContainer>
-            <MaxLabel {...maxLabelProps}>
+            <MaxLabel
+              aria-label={this.constructAriaWayfinderLabel(locale, 'page')}
+              {...maxLabelProps}
+            >
               {`${
                 labels && labels.preposition
                   ? labels.preposition
@@ -170,6 +204,11 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
               } ${numPages}`}
             </MaxLabel>
             <Button
+              aria-label={this.constructAriaWayfinderLabel(
+                locale,
+                'next page. current page',
+              )}
+              disabled={currentPage >= numPages}
               onClick={this.onNextClick}
               endEnhancer={() => <ChevronRight title={''} size={24} />}
               kind={KIND.tertiary}

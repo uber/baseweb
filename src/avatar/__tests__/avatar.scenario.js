@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {Avatar} from '../index.js';
+import imageFile from './static/adorable.png';
 
 export const name = 'avatar';
 
@@ -19,7 +20,7 @@ export const component = () => (
         <Avatar
           name={`user name # ${index}`}
           size={size}
-          src={`https://api.adorable.io/avatars/285/${index}@adorable.io.png`}
+          src={imageFile}
           key={size}
         />
       ),

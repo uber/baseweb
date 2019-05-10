@@ -18,7 +18,7 @@ export default class AutosizeInput extends React.Component<
   sizer: ?HTMLElement;
 
   static defaultProps = {
-    inputRef: (React.createRef(): {current: ?HTMLInputElement}),
+    inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     value: '',
     overrides: {},
   };

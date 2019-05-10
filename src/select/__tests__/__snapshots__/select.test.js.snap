@@ -506,7 +506,7 @@ exports[`Select component renders component in search mode and false for multipl
                             styled-component="true"
                             test-style={
                               Object {
-                                "background": "transparent",
+                                "backgroundColor": "transparent",
                                 "border": "none",
                                 "boxShadow": "none",
                                 "display": "inline-block",
@@ -1259,7 +1259,7 @@ exports[`Select component renders component in search mode and true for multiple
                             styled-component="true"
                             test-style={
                               Object {
-                                "background": "transparent",
+                                "backgroundColor": "transparent",
                                 "border": "none",
                                 "boxShadow": "none",
                                 "display": "inline-block",
@@ -1909,7 +1909,7 @@ exports[`Select component renders component in select mode and false for multipl
                             styled-component="true"
                             test-style={
                               Object {
-                                "background": "transparent",
+                                "backgroundColor": "transparent",
                                 "border": "none",
                                 "boxShadow": "none",
                                 "display": "inline-block",
@@ -2672,7 +2672,7 @@ exports[`Select component renders component in select mode and true for multiple
                             styled-component="true"
                             test-style={
                               Object {
-                                "background": "transparent",
+                                "backgroundColor": "transparent",
                                 "border": "none",
                                 "boxShadow": "none",
                                 "display": "inline-block",

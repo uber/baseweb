@@ -85,6 +85,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     const {
       maxDropdownHeight,
       multi,
+      noResultsMsg,
       onItemSelect,
       options = [],
       overrides = {},
@@ -111,6 +112,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
         {...dropdownContainerProps}
       >
         <OverriddenStatefulMenu
+          noResultsMsg={noResultsMsg}
           onItemSelect={onItemSelect}
           items={options}
           size={size}

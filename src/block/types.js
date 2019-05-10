@@ -84,6 +84,8 @@ type FlexDirectionT =
   | 'initial'
   | 'unset';
 
+type FlexT = number | string;
+
 type DisplayT =
   | 'block'
   | 'inline'
@@ -216,6 +218,8 @@ type OverflowT =
   | 'initial'
   | 'unset';
 
+type ScaleT = 0 | string;
+
 export type BlockPropsT = {
   children?: Node,
   /** Modifies the base element used to render the block. */
@@ -235,7 +239,8 @@ export type BlockPropsT = {
   flexDirection?: ResponsiveT<FlexDirectionT>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/display */
   display?: ResponsiveT<DisplayT>,
-  flex?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/flex */
+  flex?: ResponsiveT<FlexT>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid */
   grid?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area */
@@ -251,17 +256,19 @@ export type BlockPropsT = {
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end */
   gridColumnEnd?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-gap */
-  gridColumnGap?: ResponsiveT<string>,
+  gridColumnGap?: ResponsiveT<ScaleT>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start */
   gridColumnStart?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap */
-  gridGap?: ResponsiveT<string>,
+  gridGap?: ResponsiveT<ScaleT>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row */
   gridRow?: ResponsiveT<string>,
-  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start */
-  gridRowStart?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end */
   gridRowEnd?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-gap */
+  gridRowGap?: ResponsiveT<ScaleT>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start */
+  gridRowStart?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template */
   gridTemplate?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas */
@@ -277,23 +284,23 @@ export type BlockPropsT = {
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self */
   justifySelf?: ResponsiveT<JustifySelfT>,
   position?: ResponsiveT<PositionT>,
-  width?: ResponsiveT<string>,
-  minWidth?: ResponsiveT<string>,
-  maxWidth?: ResponsiveT<string>,
-  height?: ResponsiveT<string>,
-  minHeight?: ResponsiveT<string>,
-  maxHeight?: ResponsiveT<string>,
+  width?: ResponsiveT<ScaleT>,
+  minWidth?: ResponsiveT<ScaleT>,
+  maxWidth?: ResponsiveT<ScaleT>,
+  height?: ResponsiveT<ScaleT>,
+  minHeight?: ResponsiveT<ScaleT>,
+  maxHeight?: ResponsiveT<ScaleT>,
   overflow?: ResponsiveT<OverflowT>,
-  margin?: ResponsiveT<string>,
-  marginTop?: ResponsiveT<string>,
-  marginRight?: ResponsiveT<string>,
-  marginBottom?: ResponsiveT<string>,
-  marginLeft?: ResponsiveT<string>,
-  padding?: ResponsiveT<string>,
-  paddingTop?: ResponsiveT<string>,
-  paddingRight?: ResponsiveT<string>,
-  paddingBottom?: ResponsiveT<string>,
-  paddingLeft?: ResponsiveT<string>,
+  margin?: ResponsiveT<ScaleT>,
+  marginTop?: ResponsiveT<ScaleT>,
+  marginRight?: ResponsiveT<ScaleT>,
+  marginBottom?: ResponsiveT<ScaleT>,
+  marginLeft?: ResponsiveT<ScaleT>,
+  padding?: ResponsiveT<ScaleT>,
+  paddingTop?: ResponsiveT<ScaleT>,
+  paddingRight?: ResponsiveT<ScaleT>,
+  paddingBottom?: ResponsiveT<ScaleT>,
+  paddingLeft?: ResponsiveT<ScaleT>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-content */
   placeContent?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-items */
@@ -301,10 +308,10 @@ export type BlockPropsT = {
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-self */
   placeSelf?: ResponsiveT<string>,
   flexWrap?: ResponsiveT<boolean>,
-  left?: ResponsiveT<string>,
-  top?: ResponsiveT<string>,
-  right?: ResponsiveT<string>,
-  bottom?: ResponsiveT<string>,
+  left?: ResponsiveT<ScaleT>,
+  top?: ResponsiveT<ScaleT>,
+  right?: ResponsiveT<ScaleT>,
+  bottom?: ResponsiveT<ScaleT>,
 };
 
 export type StyledBlockPropsT = {
@@ -316,7 +323,7 @@ export type StyledBlockPropsT = {
   $alignSelf?: ResponsiveT<AlignSelfT>,
   $flexDirection?: ResponsiveT<FlexDirectionT>,
   $display?: ResponsiveT<DisplayT>,
-  $flex?: ResponsiveT<string>,
+  $flex?: ResponsiveT<FlexT>,
   $grid?: ResponsiveT<string>,
   $gridArea?: ResponsiveT<string>,
   $gridAutoColumns?: ResponsiveT<string>,
@@ -324,12 +331,13 @@ export type StyledBlockPropsT = {
   $gridAutoRows?: ResponsiveT<string>,
   $gridColumn?: ResponsiveT<string>,
   $gridColumnEnd?: ResponsiveT<string>,
-  $gridColumnGap?: ResponsiveT<string>,
+  $gridColumnGap?: ResponsiveT<ScaleT>,
   $gridColumnStart?: ResponsiveT<string>,
-  $gridGap?: ResponsiveT<string>,
+  $gridGap?: ResponsiveT<ScaleT>,
   $gridRow?: ResponsiveT<string>,
-  $gridRowStart?: ResponsiveT<string>,
   $gridRowEnd?: ResponsiveT<string>,
+  $gridRowGap?: ResponsiveT<ScaleT>,
+  $gridRowStart?: ResponsiveT<string>,
   $gridTemplate?: ResponsiveT<string>,
   $gridTemplateAreas?: ResponsiveT<string>,
   $gridTemplateColumns?: ResponsiveT<string>,
@@ -338,29 +346,29 @@ export type StyledBlockPropsT = {
   $justifyItems?: ResponsiveT<JustifyItemsT>,
   $justifySelf?: ResponsiveT<JustifySelfT>,
   $position?: ResponsiveT<PositionT>,
-  $width?: ResponsiveT<string>,
-  $minWidth?: ResponsiveT<string>,
-  $maxWidth?: ResponsiveT<string>,
-  $height?: ResponsiveT<string>,
-  $minHeight?: ResponsiveT<string>,
-  $maxHeight?: ResponsiveT<string>,
+  $width?: ResponsiveT<ScaleT>,
+  $minWidth?: ResponsiveT<ScaleT>,
+  $maxWidth?: ResponsiveT<ScaleT>,
+  $height?: ResponsiveT<ScaleT>,
+  $minHeight?: ResponsiveT<ScaleT>,
+  $maxHeight?: ResponsiveT<ScaleT>,
   $overflow?: ResponsiveT<OverflowT>,
-  $margin?: ResponsiveT<string>,
-  $marginTop?: ResponsiveT<string>,
-  $marginRight?: ResponsiveT<string>,
-  $marginBottom?: ResponsiveT<string>,
-  $marginLeft?: ResponsiveT<string>,
-  $padding?: ResponsiveT<string>,
-  $paddingTop?: ResponsiveT<string>,
-  $paddingRight?: ResponsiveT<string>,
-  $paddingBottom?: ResponsiveT<string>,
-  $paddingLeft?: ResponsiveT<string>,
+  $margin?: ResponsiveT<ScaleT>,
+  $marginTop?: ResponsiveT<ScaleT>,
+  $marginRight?: ResponsiveT<ScaleT>,
+  $marginBottom?: ResponsiveT<ScaleT>,
+  $marginLeft?: ResponsiveT<ScaleT>,
+  $padding?: ResponsiveT<ScaleT>,
+  $paddingTop?: ResponsiveT<ScaleT>,
+  $paddingRight?: ResponsiveT<ScaleT>,
+  $paddingBottom?: ResponsiveT<ScaleT>,
+  $paddingLeft?: ResponsiveT<ScaleT>,
   $placeContent?: ResponsiveT<string>,
   $placeItems?: ResponsiveT<string>,
   $placeSelf?: ResponsiveT<string>,
   $flexWrap?: ResponsiveT<boolean>,
-  $left?: ResponsiveT<string>,
-  $top?: ResponsiveT<string>,
-  $right?: ResponsiveT<string>,
-  $bottom?: ResponsiveT<string>,
+  $left?: ResponsiveT<ScaleT>,
+  $top?: ResponsiveT<ScaleT>,
+  $right?: ResponsiveT<ScaleT>,
+  $bottom?: ResponsiveT<ScaleT>,
 };

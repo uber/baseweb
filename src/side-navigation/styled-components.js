@@ -43,7 +43,7 @@ export const StyledNavItem = styled<SharedPropsT>('div', props => {
     $theme: {colors, sizing},
   } = props;
   return ({
-    background: $active
+    backgroundColor: $active
       ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), ${
           colors.primary
         }`

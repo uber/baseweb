@@ -1,0 +1,82 @@
+import Layout from '../../../components/layout';
+import {BlogImage, Demo, Meta} from '../../../components/blog';
+import metadata from './metadata.json'
+
+export default Layout;
+
+<Meta data={metadata} />
+
+## React version requirements
+
+To enable the use of [hooks](https://reactjs.org/docs/hooks-intro.html), Base Web 7 requires React 16.8 or higher.
+
+## `Select` component changes
+
+The Pagination component was refactored to reuse the `Select` component for its dropdown element.
+The change only effects you if you used overrides.
+
+### Pagination
+
+- `StyledDropdownMenu` export was removed
+- `StyledDropdownButton` export was removed
+- `overrides` prop changes:
+  - `DropdownButton` override was removed
+  - `DropdownMenu` override was removed
+  - `Select` override was added. Please note that `Select` identifier in the pagination overrides
+  object is for a component and not a styled element. Refer to the API of
+  the [`Select` component](https://baseweb.design/components/select/) for the full list of its props.
+
+## `Side Navigation` component changes
+
+The purpose of this change is to rename the Side Navigation item prop
+`subnav` to `subNav` for consistency with the camel-cased styled component.
+To upgrade, update `subnav` item prop to `subNav`.
+
+## `Button` component changes
+
+Base Web 7 ships with an updated visual for the `Button` component. As part of the update `Button`
+components got uniform padding on all sides. This change made the `square` shape
+redundant so it has been removed.
+
+## `Tag` component changes
+
+We've removed the deprecated `COLOR_STYLE_KEYS` export from the Tag component.
+Instead of that, please use `KIND` and `VARIANT` exports.
+
+## `Radio` component changes
+
+Base Web 7 removed `StyledRadio` and `StyledRadioMark` overrides and subcomponents.
+
+If you've used `StyledRadio`,  please update your code to use the `Radio` component instead. See examples [here](https://baseui.design/components/radio/).
+
+If you've used `StyledRadioMark`, please update your code to use the `StyledRadioInner` and `StyledRadioOuter` instead.
+If you are using the `StyledRadio` component, replace that with the `Radio` component and this warning
+should go away. See examples [here](https://baseui.design/components/radio/).
+
+## `RadioGroup` component changes
+
+To be consistent accross components, we've removed the use of `ariaLabel` and `ariaLabelledBy`. Please use `aria-label` and `aria-labelled-by` instead.
+
+## `Tab` component changes
+
+Base Web 7 removed the unnecessary `TabPanel` subcomponent. Use `Tab` instead of the `TabPanel` subcomponent.
+
+## Theme changes
+
+We removed the deprecated properties from the theme object. It only affects you if you've used your own theme
+with the `Tag` or `Tooltip` components.
+
+To update your theme, please take a look at the update shape of the
+theme object [here](https://baseweb.design/theming/custom-themes/#the-shape-of-the-theme-file).
+
+## Updated Button component visuals
+
+As part of the Base Web 7 release, we've updated the `Button` component visuals, and introduced a `Large` size.
+
+todo: add example
+
+## Updated Input component visuals
+
+As part of the Base Web 7 release, we've updated the `Input` component visuals, and introduced a `Large` size.
+
+todo: add example

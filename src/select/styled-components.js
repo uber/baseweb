@@ -232,7 +232,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       position: 'relative',
       display: 'inline-block',
       maxWidth: '100%',
-      background: 'transparent',
+      backgroundColor: 'transparent',
       border: 'none',
       boxShadow: 'none',
       outline: 'none',
@@ -245,7 +245,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       paddingBottom: $multi ? sizing.scale0 : '0',
       paddingLeft: '0',
       paddingRight: '0',
-      height: !$searchable ? String(font.lineHeight) : 'auto',
+      height: String(!$searchable ? font.lineHeight : 'auto'),
     };
   },
 );

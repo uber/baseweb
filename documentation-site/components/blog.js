@@ -45,15 +45,15 @@ export const Demo = styled('iframe', {
 const Title = styled('h1', ({$theme}) => ({
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale900,
-  margin: `${$theme.sizing.scale1200} 0 0 0`,
+  marginTop: $theme.sizing.scale1200,
+  marginBottom: $theme.sizing.scale400,
 }));
 
-const Tagline = styled('h2', ({$theme}) => ({
+const Tagline = styled('span', ({$theme}) => ({
   color: $theme.colors.mono800,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale800,
   fontWeight: 300,
-  margin: `${$theme.sizing.scale300} 0 0 0`,
 }));
 
 const AuthorLink = styled('a', ({$theme}) => ({

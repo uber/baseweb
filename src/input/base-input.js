@@ -34,7 +34,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     disabled: false,
     error: false,
     name: '',
-    inputRef: (React.createRef(): {current: ?HTMLInputElement}),
+    inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     onBlur: () => {},
     onChange: () => {},
     onKeyDown: () => {},

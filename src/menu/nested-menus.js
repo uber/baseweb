@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-type Ref = {current: ?HTMLElement};
+type Ref = {current: HTMLElement | null};
 type ContextT = {
   addMenuToNesting: (ref: Ref) => void,
   removeMenuFromNesting: (ref: Ref) => void,

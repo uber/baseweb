@@ -59,7 +59,10 @@ export const StyledIcon = styled<StylePropsT>(
       width: size,
       height: size,
       lineHeight: size,
-      borderRadius: size,
+      borderTopRightRadius: size,
+      borderBottomRightRadius: size,
+      borderTopLeftRadius: size,
+      borderBottomLeftRadius: size,
       backgroundColor: currentColor,
       float: 'left',
       textAlign: 'center',
@@ -75,7 +78,10 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
     width: $theme.sizing.scale100,
     height: $theme.sizing.scale100,
     lineHeight: $theme.sizing.scale100,
-    borderRadius: $theme.sizing.scale100,
+    borderTopRightRadius: $theme.sizing.scale100,
+    borderBottomRightRadius: $theme.sizing.scale100,
+    borderTopLeftRadius: $theme.sizing.scale100,
+    borderBottomLeftRadius: $theme.sizing.scale100,
     backgroundColor: $theme.colors.primary400,
     textAlign: 'center',
   };
@@ -107,7 +113,7 @@ export const StyledContentTitle = styled<StylePropsT>(
 
 export const StyledContentTail = styled<StylePropsT>(
   'div',
-  ({$theme, $isCompleted}) => {
+  ({$theme, $isCompleted, $isActive}) => {
     let currentColor = $theme.colors.mono400;
 
     if ($isCompleted) {
@@ -121,7 +127,7 @@ export const StyledContentTail = styled<StylePropsT>(
       height: '100%',
       paddingBottom: '0px',
       width: $theme.sizing.scale0,
-      paddingTop: $theme.sizing.scale600,
+      paddingTop: $isActive ? $theme.sizing.scale700 : $theme.sizing.scale600,
       ':after': {
         content: '""',
         display: 'inline-block',
@@ -175,7 +181,10 @@ export const StyledNumberIcon = styled<StylePropsT>(
       marginTop,
       width: size,
       height: size,
-      borderRadius: size,
+      borderTopRightRadius: size,
+      borderBottomRightRadius: size,
+      borderTopLeftRadius: size,
+      borderBottomLeftRadius: size,
       backgroundColor,
       color,
       float: 'left',
@@ -202,10 +211,9 @@ export const StyledNumberContentTail = styled<StylePropsT>(
       left: '11px',
       top: 0,
       height: '100%',
-      marginTop: '5px',
       paddingBottom: '0px',
       width: $theme.sizing.scale0,
-      paddingTop: $theme.sizing.scale600,
+      paddingTop: $theme.sizing.scale800,
       ':after': {
         content: '""',
         display: 'inline-block',

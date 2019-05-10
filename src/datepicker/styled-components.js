@@ -15,12 +15,16 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {typography, colors, borders},
   } = props;
+  const borderRadius = borders.useRoundedCorners ? borders.radius200 : '0px';
   return {
     ...typography.font400,
     color: props.$theme.colors.datepickerDayFont,
     backgroundColor: colors.datepickerBackground,
     textAlign: 'center',
-    borderRadius: borders.useRoundedCorners ? borders.radius200 : '0px',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     display: 'inline-block',
   };
 });
@@ -80,7 +84,10 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
     backgroundColor: colors.primary,
-    borderRadius: `${borderRadius} ${borderRadius} 0 0`,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: 0,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: 0,
   };
 });
 

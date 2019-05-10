@@ -21,6 +21,7 @@ async function run() {
       ignore: [
         '**/*.test.js',
         '**/*.setup.js',
+        '**/*.scenario.js',
         '**/*stories.js',
         'test/**/*.js',
         '**/__mocks__/*.js',

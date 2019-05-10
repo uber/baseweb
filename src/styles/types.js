@@ -236,18 +236,6 @@ export type ColorsT = {
   shadowError: string,
 
   // Tag
-
-  // Remove this section of theme values in next major version
-  tagBackground: string,
-  tagNeutralBackground: string,
-  tagPrimaryBackground: string,
-  tagPositiveBackground: string,
-  tagWarningBackground: string,
-  tagNegativeBackground: string,
-  tagRGBGradient: string,
-  tagRGBGradientSecondary: string,
-  // ^^^^^^^
-
   tagSolidRampUnit: string,
   tagSolidHoverRampUnit: string,
   tagSolidActiveRampUnit: string,
