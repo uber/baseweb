@@ -95,7 +95,6 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
   },
 );
 
-// Chase: Note remove export
 function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
   return {
     foreground: $disabled
@@ -111,7 +110,6 @@ function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
   };
 }
 
-// Chase: Note remove export
 function getBorderRadiiStyles({$theme, $shape}) {
   let value = '0px';
 
@@ -127,7 +125,6 @@ function getBorderRadiiStyles({$theme, $shape}) {
   };
 }
 
-// Chase: Note remove export
 function getFontStyles({$theme, $size}) {
   switch ($size) {
     case SIZE.compact:
@@ -139,7 +136,6 @@ function getFontStyles({$theme, $size}) {
   }
 }
 
-// Chase: Note remove export
 function getPaddingStyles({$theme, $size}) {
   switch ($size) {
     case SIZE.compact:

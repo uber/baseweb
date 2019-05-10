@@ -13,8 +13,6 @@ import type {OverrideT} from '../helpers/overrides.js';
 
 import {MODE, STATE_CHANGE_TYPE} from './constants.js';
 
-// Chase: Note removed StylePropsT
-
 // button-group
 export type PropsT = {|
   /** Accessible label. */

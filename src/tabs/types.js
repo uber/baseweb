@@ -83,5 +83,3 @@ export type TabPropsT = TabPanelPropsT & {
   id?: string,
   $orientation?: $Values<typeof ORIENTATION>,
 };
-
-// Chase: Note Removes the SharedStylePropsT type

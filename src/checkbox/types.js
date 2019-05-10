@@ -40,7 +40,6 @@ export type DefaultPropsT = {
   onBlur: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
-// Chase: Note removed $theme prop
 export type PropsT = {
   /** Component or String value for label of checkbox. */
   children?: React$Node,

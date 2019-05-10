@@ -21,8 +21,6 @@ export type StyledComponentArgsT = {
   $color?: ColorT,
 };
 
-// Chase: Note removes StyledComponentParamsT
-
 export type IconPropsT = {
   children?: React.Node,
   /** Size of element, will be passed to the svg width/height style. Can also be a value included in */

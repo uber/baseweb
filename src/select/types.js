@@ -254,5 +254,3 @@ export type SharedStylePropsArgT = {
   $isHighlighted?: boolean,
   $selected?: boolean,
 };
-
-// Chase: Note removes SharedStylePropsT

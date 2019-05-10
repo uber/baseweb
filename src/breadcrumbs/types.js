@@ -22,7 +22,3 @@ export type BreadcrumbsPropsT = {|
   overrides?: OverridesT,
   ariaLabel?: string,
 |};
-
-// Chase: Note deprecation
-export type StyledRootPropsT = {};
-export type StyledSeparatorT = {};

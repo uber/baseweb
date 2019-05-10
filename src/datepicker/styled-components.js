@@ -164,7 +164,6 @@ function getBorderRadius(left, right): BorderRadiusT {
   };
 }
 
-// Chase: Note remove export
 function calculateBorderRadius(props): ?BorderRadiusT {
   const {
     $isHighlighted,

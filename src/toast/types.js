@@ -25,13 +25,9 @@ export type SharedStylePropsArgT = {
   $isVisible: boolean,
 };
 
-// Chase: Note removes SharedStylePropsT
-
 export type ToasterSharedStylePropsArgT = {
   $placement: PlacementTypeT,
 };
-
-// Chase: Note removes ToasterSharedStylePropsT
 
 export type OverridesT = {
   Body?: OverrideT<SharedStylePropsArgT>,

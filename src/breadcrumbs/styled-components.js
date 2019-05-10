@@ -24,5 +24,3 @@ export const StyledSeparator = styled<{}>('div', ({$theme}) => {
     marginRight: $theme.sizing.scale300,
   };
 });
-
-// Chase: Note removes StyledIcon component

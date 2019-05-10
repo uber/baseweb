@@ -59,5 +59,3 @@ export type SharedPropsArgT = {
   $kind?: string,
   $variant?: string,
 };
-
-// Chase: Note removes SharedPropsT

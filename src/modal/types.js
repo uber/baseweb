@@ -78,6 +78,3 @@ export type SharedStylePropsArgT = {
   $role: RolePropT,
   $closeable: boolean,
 };
-
-// Chase: Note removes SharedStylePropsT
-// Chase: Note removes StyledComponentPropT

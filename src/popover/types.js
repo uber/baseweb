@@ -167,8 +167,6 @@ export type SharedStylePropsArgT = {
   children?: React.Node,
 };
 
-// Chase: Note Removes SharedStylePropsT
-
 export type AnchorPropsT = {
   'aria-controls'?: string | null,
   'aria-describedby'?: string | null,

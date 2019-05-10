@@ -58,5 +58,3 @@ export type FilterProps = {|
     Footer?: OverrideT<*>,
   },
 |};
-
-// Chase: Note Removes SharedStylePropsT

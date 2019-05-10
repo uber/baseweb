@@ -44,9 +44,6 @@ export type StepPropsT = {
   children?: Node,
 };
 
-// Chase: Note removes StyledProgressSteps type
-// Chase: Note removes StyledNumberIconPropsT, StyledNumberContentTailPropsT, StyledNumberStepPropsT, StyledStepPropsT
-
 export type NumberedStepOverridesT = {
   Root?: OverrideT<*>,
   Icon?: OverrideT<*>,

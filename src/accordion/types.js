@@ -120,6 +120,3 @@ export type SharedStylePropsArgT = {
   $expanded?: ?boolean,
   $size?: string | number,
 };
-
-// Chase: Note deprecation
-export type SharedStylePropsT = SharedStylePropsArgT;
