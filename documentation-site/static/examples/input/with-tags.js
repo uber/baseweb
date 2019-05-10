@@ -28,13 +28,13 @@ class TagSelect extends React.Component {
   state = {value: '', tags: ['hello']};
   ref = React.createRef();
 
-  // componentDidMount() {
-  //   this.ref.current.addEventListener('keydown', this.handleKeyDown);
-  // }
+  componentDidMount() {
+    this.ref.current.addEventListener('keydown', this.handleKeyDown);
+  }
 
-  // componentWillUnmount() {
-  //   this.ref.current.removeEventListener('keydown', this.handleKeyDown);
-  // }
+  componentWillUnmount() {
+    this.ref.current.removeEventListener('keydown', this.handleKeyDown);
+  }
 
   handleKeyDown = event => {
     if (event.keyCode === 13) {

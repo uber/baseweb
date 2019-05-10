@@ -55,7 +55,6 @@ export default class BasicTether extends React.Component {
   };
 
   render() {
-    console.log(this.popperRef1.current);
     return (
       <>
         <Button
