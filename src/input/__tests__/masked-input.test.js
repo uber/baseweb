@@ -10,6 +10,8 @@ import React from 'react';
 import {mount} from 'enzyme';
 import {MaskedInput} from '../index.js';
 
+import {styled} from '../../styles/index.js';
+
 test('MaskedInput - basic functionality', () => {
   const props = {
     mask: '(999) 999-9999',
@@ -21,12 +23,11 @@ test('MaskedInput - basic functionality', () => {
     onKeyPress: jest.fn(),
     onKeyUp: jest.fn(),
     overrides: {
-      Before: jest.fn().mockImplementation(() => <span />),
-      After: jest.fn().mockImplementation(() => <span />),
+      Before: styled('span', {}),
+      After: styled('span', {}),
     },
   };
 
-  // $FlowFixMe
   const wrapper = mount(<MaskedInput {...props} />);
 
   // Renders input, before and after

@@ -124,17 +124,23 @@ Object {
   "disabled": false,
   "error": false,
   "inputRef": Object {
-    "current": <textarea
-      aria-invalid="false"
-      aria-required="false"
-      autocomplete="on"
-      name=""
-      placeholder=""
-      rows="3"
-      styled-component="true"
-      test-style="[object Object]"
-      type="textarea"
-    />,
+    "current": <span
+      id="test-input"
+    >
+      <textarea
+        aria-invalid="false"
+        aria-required="false"
+        autocomplete="on"
+        name=""
+        placeholder="Placeholder"
+        rows="3"
+        styled-component="true"
+        test-style="[object Object]"
+        type="textarea"
+      >
+        textarea value
+      </textarea>
+    </span>,
   },
   "name": "",
   "onBlur": [MockFunction],
@@ -145,10 +151,16 @@ Object {
   "onKeyUp": [Function],
   "overrides": Object {
     "Input": Object {
-      "component": [Function],
+      "component": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "render": [Function],
+      },
     },
     "InputContainer": Object {
-      "component": [Function],
+      "component": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "render": [Function],
+      },
     },
   },
   "placeholder": "Placeholder",

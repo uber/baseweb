@@ -21,15 +21,16 @@ type PropsT = {
   maskChar?: string,
 };
 
-function MaskOverride(props: PropsT) {
+const MaskOverride = React.forwardRef((props, ref) => {
+  const {inputRef, ...restProps} = props;
   return (
-    <InputMask {...props}>
+    <InputMask {...restProps}>
       {({startEnhancer, endEnhancer, error, ...maskProps}) => {
-        return <StyledInput {...maskProps} />;
+        return <StyledInput ref={ref} {...maskProps} />;
       }}
     </InputMask>
   );
-}
+});
 
 export default function MaskedInput(props: PropsT) {
   const {overrides = {}} = props;

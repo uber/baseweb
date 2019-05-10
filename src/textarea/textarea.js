@@ -36,7 +36,6 @@ class Textarea extends React.Component<TextareaPropsT> {
   };
 
   render() {
-    // console.log(this.props.inputRef);
     const overrides = mergeOverrides(
       {
         Input: {component: StyledTextarea},

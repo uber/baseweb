@@ -8,6 +8,7 @@ Object {
   "$isFocused": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -19,6 +20,7 @@ Object {
   "$isFocused": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -30,6 +32,7 @@ Object {
   "$isFocused": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -41,6 +44,7 @@ Object {
   "$isFocused": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -64,47 +68,13 @@ Object {
   "onMouseDown": [Function],
   "onPaste": [Function],
   "overrides": Object {
-    "After": [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "$adjoined": "none",
-            "$disabled": false,
-            "$error": false,
-            "$isFocused": false,
-            "$required": false,
-            "$size": "default",
-          },
-          Object {},
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": <span />,
-        },
-      ],
+    "After": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
     },
-    "Before": [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "$adjoined": "none",
-            "$disabled": false,
-            "$error": false,
-            "$isFocused": false,
-            "$required": false,
-            "$size": "default",
-          },
-          Object {},
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": <span />,
-        },
-      ],
+    "Before": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
     },
   },
   "placeholder": "Placeholder",

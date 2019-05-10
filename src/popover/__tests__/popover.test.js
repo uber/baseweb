@@ -18,6 +18,8 @@ import {
   TRIGGER_TYPE,
 } from '../index.js';
 
+import {styled} from '../../styles/index.js';
+
 jest.useFakeTimers();
 
 // Mock Layer and TetherBehavior
@@ -250,8 +252,7 @@ describe('Popover', () => {
     const onClick = jest.fn();
     const content = <strong>Hello world</strong>;
 
-    const CustomComponent = (jest.fn(): any);
-    CustomComponent.mockReturnValue(<span>Hover Me</span>);
+    const CustomComponent = styled('div', {});
 
     wrapper = mount(
       <Popover isOpen content={content} onClick={onClick}>
@@ -259,34 +260,14 @@ describe('Popover', () => {
       </Popover>,
     );
 
-    expect(CustomComponent).toHaveBeenCalled();
-    expect(CustomComponent).toHaveBeenCalledWith(
-      {
-        onClick: wrapper.instance().onAnchorClick,
-        'aria-controls': null,
-        'aria-haspopup': 'true',
-        'aria-expanded': 'true',
-      },
-      {},
-    );
-    expect(CustomComponent).toHaveBeenLastCalledWith(
-      {
-        onClick: wrapper.instance().onAnchorClick,
-        'aria-controls': 'bui-mock-id',
-        'aria-haspopup': 'true',
-        'aria-expanded': 'true',
-      },
-      {},
-    );
+    expect(wrapper).toMatchSnapshot();
   });
 
   test('component overrides', () => {
     const overrides = {
-      Arrow: jest.fn().mockImplementation(() => <div />),
-      Body: jest.fn().mockImplementation(({children}) => <div>{children}</div>),
-      Inner: jest
-        .fn()
-        .mockImplementation(({children}) => <div>{children}</div>),
+      Arrow: styled('div', {color: 'red'}),
+      Body: styled('div', {color: 'green'}),
+      Inner: styled('div', {color: 'blue'}),
     };
 
     wrapper = mount(
@@ -301,30 +282,17 @@ describe('Popover', () => {
       </Popover>,
     );
 
-    // eslint-disable-next-line flowtype/no-weak-types
-    function withoutChildren(obj: any) {
-      const shallowCopy = {...obj};
-      delete shallowCopy.children;
-      return shallowCopy;
-    }
-
     const body = wrapper.find(overrides.Body);
     expect(body).toHaveLength(1);
-    expect(withoutChildren(body.props())).toMatchSnapshot(
-      'custom popover body has correct props',
-    );
+    expect(body).toMatchSnapshot('custom popover body has correct props');
 
     const arrow = wrapper.find(overrides.Arrow);
     expect(arrow).toHaveLength(1);
-    expect(withoutChildren(arrow.props())).toMatchSnapshot(
-      'custom popover arrow has correct props',
-    );
+    expect(arrow).toMatchSnapshot('custom popover arrow has correct props');
 
     const inner = wrapper.find(overrides.Inner);
     expect(inner).toHaveLength(1);
-    expect(withoutChildren(inner.props())).toMatchSnapshot(
-      'custom popover inner has correct props',
-    );
+    expect(inner).toMatchSnapshot('custom popover inner has correct props');
   });
 
   test('click accessibility attributes', () => {

@@ -73,6 +73,17 @@ describe('Textarea', () => {
   });
 
   test('With component overrides', () => {
+    const CustomContainer = React.forwardRef((props, ref) => (
+      <span ref={ref} id="test-container">
+        {props.children}
+      </span>
+    ));
+    const CustomTextarea = React.forwardRef((props, ref) => (
+      <span ref={ref} id="test-input">
+        <StyledTextarea {...props} />
+      </span>
+    ));
+
     const props = {
       value: 'textarea value',
       placeholder: 'Placeholder',
@@ -80,18 +91,8 @@ describe('Textarea', () => {
       onBlur: jest.fn(),
       onChange: jest.fn(),
       overrides: {
-        InputContainer: {
-          component: function CustomContainer(props: {children: *}) {
-            return <span id="test-container">{props.children}</span>;
-          },
-        },
-        Input: function CustomTextarea(props) {
-          return (
-            <span id="test-input">
-              <StyledTextarea {...props} />
-            </span>
-          );
-        },
+        InputContainer: CustomContainer,
+        Input: CustomTextarea,
       },
     };
 
