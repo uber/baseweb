@@ -8,11 +8,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-import {
-  Delete as DeleteIcon,
-  TriangleDown as TriangleDownIcon,
-  Search as SearchIconComponent,
-} from '../icon/index.js';
+import DeleteIcon from '../icon/delete.js';
+import TriangleDownIcon from '../icon/triangle-down.js';
+import SearchIconComponent from '../icon/search.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {Popover, PLACEMENT} from '../popover/index.js';

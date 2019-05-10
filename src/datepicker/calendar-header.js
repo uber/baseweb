@@ -6,7 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {ArrowLeft, ArrowRight} from '../icon/index.js';
+import ArrowRight from '../icon/arrow-right.js';
+import ArrowLeft from '../icon/arrow-left.js';
 import {Select} from '../select/index.js';
 import {LocaleContext} from '../locale/index.js';
 import {
