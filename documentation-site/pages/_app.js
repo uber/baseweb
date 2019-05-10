@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {
+  createTheme,
   BaseProvider,
   DarkTheme,
   DarkThemeMove,
@@ -24,8 +25,10 @@ import Router from 'next/router';
 
 import {styletron, debug} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
+
 import '../prism-coy.css'; // light theme code highlighting
 import '../tomorrow-night.css'; // dark theme code highlighting
+import ThemeEditor from '../components/theme-editor';
 
 const themes = {
   LightTheme,
@@ -43,11 +46,25 @@ const blockProps = {
   overflow: 'hidden',
 };
 
+/**
+ * Create a map for reset purposes
+ */
+const THEME_MAP = {
+  dark: DarkTheme,
+  light: LightTheme,
+  darkMove: DarkThemeMove,
+  lightMove: LightThemeMove,
+};
+
 export default class MyApp extends App {
   constructor(props) {
     super(props);
     this.state = {
-      theme: LightTheme,
+      dark: createTheme({}, DarkTheme),
+      light: createTheme({}, LightTheme),
+      darkMove: createTheme({}, DarkThemeMove),
+      lightMove: createTheme({}, LightThemeMove),
+      theme: createTheme({}, LightTheme),
     };
     this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
@@ -85,7 +102,7 @@ export default class MyApp extends App {
       mmLight.removeListener(this.mediaQueryListener);
     }
   }
-
+  // Why are we updating the theme style and then updating the theme????
   mediaQueryListener(e) {
     if (e && e.matches) {
       if (e.media === DARK_MEDIA_QUERY) {
@@ -136,28 +153,22 @@ export default class MyApp extends App {
     config.font = fontToSet || presetFont || config.font;
     config.theme = themeToSet || presetTheme || config.theme;
 
-    let themeName = '';
-
-    if (config.theme === 'dark') {
-      themeName += 'DarkTheme';
-    } else if (config.theme === 'light') {
-      themeName += 'LightTheme';
-    }
-
-    if (config.font === 'move') {
-      themeName += 'Move';
-    }
-
-    if (config.theme === 'dark') {
-      document.body.classList.add('darktheme');
-    } else {
-      document.body.classList.remove('darktheme');
-    }
-
     this.setState({
-      theme: themes[themeName] || LightTheme,
+      theme:
+        this.state[`${config.theme}${config.font === 'move' ? 'Move' : ''}`] ||
+        LightTheme,
     });
   }
+
+  setCustomTheme = theme => {
+    this.setState({[localStorage.getItem('docs-theme')]: theme, theme});
+  };
+
+  resetTheme = () => {
+    const current = localStorage.getItem('docs-theme') || 'light';
+    const theme = createTheme({}, THEME_MAP[current]);
+    this.setState({[current]: theme, theme});
+  };
 
   getThemeStyle() {
     return localStorage.getItem('docs-theme');
@@ -182,7 +193,6 @@ export default class MyApp extends App {
 
     this.setTheme();
   }
-
   render() {
     const {Component, pageProps, path} = this.props;
     return (
@@ -190,6 +200,11 @@ export default class MyApp extends App {
         <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
           <BaseProvider theme={this.state.theme}>
             <Block {...blockProps}>
+              <ThemeEditor
+                current={this.state.theme}
+                setTheme={this.setCustomTheme}
+                resetTheme={this.resetTheme}
+              />
               <Component
                 {...pageProps}
                 path={path}

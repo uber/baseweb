@@ -73,6 +73,9 @@ export default class MyDocument extends Document {
           />
           <link rel="stylesheet" href="/static/fonts.css" />
           <style>{`
+            * {
+              box-sizing: border-box;
+            }
             body {
               margin: 0;
             }
