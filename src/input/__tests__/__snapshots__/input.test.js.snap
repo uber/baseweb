@@ -21,6 +21,29 @@ Object {
   "placeholder": "Placeholder",
   "rows": null,
   "styled-component": "true",
+  "test-style": Object {
+    "::placeholder": Object {
+      "color": "$theme.colors.foregroundAlt",
+    },
+    "backgroundColor": "transparent",
+    "borderStyle": "none",
+    "borderWidth": "0",
+    "boxSizing": "border-box",
+    "caretColor": "$theme.colors.primary",
+    "color": "$theme.colors.foreground",
+    "cursor": "text",
+    "fontFamily": "$theme.typography.font300.fontFamily",
+    "fontSize": "$theme.typography.font300.fontSize",
+    "fontWeight": "$theme.typography.font300.fontWeight",
+    "lineHeight": "$theme.typography.font300.lineHeight",
+    "maxWidth": "100%",
+    "outline": "none",
+    "paddingBottom": "$theme.sizing.scale400",
+    "paddingLeft": "$theme.sizing.scale500",
+    "paddingRight": "$theme.sizing.scale500",
+    "paddingTop": "$theme.sizing.scale400",
+    "width": "100%",
+  },
   "type": "text",
   "value": "input value",
 }
@@ -43,7 +66,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <ForwardRef
       $adjoined="right"
       $disabled={false}
       $error={false}
@@ -98,7 +121,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <ForwardRef
       $adjoined="both"
       $disabled={false}
       $error={false}
@@ -153,7 +176,7 @@ Object {
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <ForwardRef
       $adjoined="left"
       $disabled={false}
       $error={false}

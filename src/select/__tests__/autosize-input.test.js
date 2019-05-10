@@ -21,7 +21,7 @@ describe('AutosizeInput component', function() {
     const renderedSizer = wrapper.find(StyledInputSizer).first();
     expect(renderedInput).toExist();
     expect(renderedInput.props()).toMatchObject({
-      $width: '5px',
+      $width: '2px',
       ...props,
     });
     expect(renderedSizer).toExist();
@@ -34,6 +34,6 @@ describe('AutosizeInput component', function() {
     const props = {value: 'test'};
     // $FlowFixMe
     const wrapper = mount(<AutosizeInput {...props} />);
-    expect(wrapper.state().inputWidth).toEqual(5);
+    expect(wrapper.state().inputWidth).toEqual(2);
   });
 });

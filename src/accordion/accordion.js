@@ -71,7 +71,6 @@ export default class Accordion extends React.Component<
     const newChildren = React.Children.map(children, (child: *, index) => {
       if (!child) return;
       // If there is no key provide, use the panel order as default key
-      // $FlowFixMe
       const key = child.key || String(index);
       let isExpanded = false;
       if (accordion) {

@@ -1,143 +1,143 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NumberedStep applies isActive prop correctly 1`] = `
-<MockStyledComponent
+<ForwardRef
   $isActive={true}
   $isCompleted={false}
 >
-  <MockStyledComponent
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   >
     <span />
-  </MockStyledComponent>
-  <MockStyledComponent
+  </ForwardRef>
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   />
-  <MockStyledComponent
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   >
-    <MockStyledComponent
+    <ForwardRef
       $isActive={true}
       $isCompleted={false}
     />
-    <MockStyledComponent />
-  </MockStyledComponent>
-</MockStyledComponent>
+    <ForwardRef />
+  </ForwardRef>
+</ForwardRef>
 `;
 
 exports[`NumberedStep applies isCompleted prop correctly 1`] = `
-<MockStyledComponent
+<ForwardRef
   $isActive={false}
   $isCompleted={true}
 >
-  <MockStyledComponent
+  <ForwardRef
     $isActive={false}
     $isCompleted={true}
   >
     <Check
       size={12}
     />
-  </MockStyledComponent>
-  <MockStyledComponent
+  </ForwardRef>
+  <ForwardRef
     $isActive={false}
     $isCompleted={true}
   />
-  <MockStyledComponent
+  <ForwardRef
     $isActive={false}
     $isCompleted={true}
   >
-    <MockStyledComponent
+    <ForwardRef
       $isActive={false}
       $isCompleted={true}
     />
-    <MockStyledComponent />
-  </MockStyledComponent>
-</MockStyledComponent>
+    <ForwardRef />
+  </ForwardRef>
+</ForwardRef>
 `;
 
 exports[`NumberedStep applies isLast prop correctly 1`] = `
-<MockStyledComponent
+<ForwardRef
   $isActive={false}
   $isCompleted={false}
 >
-  <MockStyledComponent
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   >
     <span />
-  </MockStyledComponent>
-  <MockStyledComponent
+  </ForwardRef>
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   >
-    <MockStyledComponent
+    <ForwardRef
       $isActive={false}
       $isCompleted={false}
     />
-    <MockStyledComponent />
-  </MockStyledComponent>
-</MockStyledComponent>
+    <ForwardRef />
+  </ForwardRef>
+</ForwardRef>
 `;
 
 exports[`NumberedStep applies title prop correctly 1`] = `
-<MockStyledComponent
+<ForwardRef
   $isActive={false}
   $isCompleted={false}
 >
-  <MockStyledComponent
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   >
     <span />
-  </MockStyledComponent>
-  <MockStyledComponent
+  </ForwardRef>
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   />
-  <MockStyledComponent
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   >
-    <MockStyledComponent
+    <ForwardRef
       $isActive={false}
       $isCompleted={false}
     >
       Test Title
-    </MockStyledComponent>
-    <MockStyledComponent />
-  </MockStyledComponent>
-</MockStyledComponent>
+    </ForwardRef>
+    <ForwardRef />
+  </ForwardRef>
+</ForwardRef>
 `;
 
 exports[`NumberedStep renders children correctly if isActive is provided 1`] = `
-<MockStyledComponent
+<ForwardRef
   $isActive={true}
   $isCompleted={false}
 >
-  <MockStyledComponent
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   >
     <span />
-  </MockStyledComponent>
-  <MockStyledComponent
+  </ForwardRef>
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   />
-  <MockStyledComponent
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   >
-    <MockStyledComponent
+    <ForwardRef
       $isActive={true}
       $isCompleted={false}
     />
-    <MockStyledComponent>
+    <ForwardRef>
       Content
-    </MockStyledComponent>
-  </MockStyledComponent>
-</MockStyledComponent>
+    </ForwardRef>
+  </ForwardRef>
+</ForwardRef>
 `;

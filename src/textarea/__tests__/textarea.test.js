@@ -66,29 +66,10 @@ describe('Textarea', () => {
       onChange: jest.fn(),
     };
 
-    // $FlowFixMe
     const wrapper = mount(<Textarea {...props} />);
     const baseInput = wrapper.find(BaseInput);
     // Is focused when mount
     expect(baseInput.instance().state.isFocused).toEqual(true);
-  });
-
-  test('inputRef from props', () => {
-    const focus = jest.fn();
-    const props = {
-      autoFocus: true,
-      onFocus: jest.fn(),
-      onChange: jest.fn(),
-      inputRef: {current: {focus}},
-    };
-
-    // $FlowFixMe
-    const wrapper = mount(<Textarea {...props} />);
-    const baseInput = wrapper.find(BaseInput);
-    // Is focused when mount
-    expect(baseInput.instance().state.isFocused).toEqual(true);
-    // ref's focus method is called
-    expect(focus).toBeCalled();
   });
 
   test('With component overrides', () => {
@@ -114,7 +95,6 @@ describe('Textarea', () => {
       },
     };
 
-    // $FlowFixMe
     const wrapper = mount(<Textarea {...props} />);
 
     const baseInput = wrapper.find(BaseInput);

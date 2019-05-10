@@ -11,12 +11,13 @@ import {getInitialStyle} from 'styletron-standard';
 import {LightTheme} from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
 import type {ThemeT} from '../../styles/types.js';
-
 type ObjOrFnT = {} | (({}) => {});
 
 type PropsT = {
   $style?: ObjOrFnT,
   $theme?: ThemeT,
+  // eslint-disable-next-line flowtype/no-weak-types
+  forwardedRef: any,
 };
 
 type StateT = {styles?: {}};
@@ -52,22 +53,25 @@ function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
       return {styles};
     }
 
-    getStyles() {
-      return this.state.styles;
-    }
-
     getPassedProps() {
-      const {props} = this;
-      return Object.keys(props).reduce((acc, key) => {
+      const {forwardedRef, ...restProps} = this.props;
+      return Object.keys(restProps).reduce((acc, key) => {
         if (key[0] !== '$') {
-          acc[key] = props[key];
+          acc[key] = restProps[key];
         }
         return acc;
       }, {});
     }
 
     render() {
-      return <ElementName styled-component="true" {...this.getPassedProps()} />;
+      return (
+        <ElementName
+          ref={this.props.forwardedRef}
+          styled-component="true"
+          test-style={this.state.styles}
+          {...this.getPassedProps()}
+        />
+      );
     }
   }
 
@@ -78,7 +82,9 @@ function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
     base: ElementName,
   };
 
-  return MockStyledComponent;
+  return React.forwardRef<PropsT, HTMLElement>((props, ref) => (
+    <MockStyledComponent forwardedRef={ref} {...props} />
+  ));
 }
 
 export default styled;

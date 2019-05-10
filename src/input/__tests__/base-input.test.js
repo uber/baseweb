@@ -103,18 +103,14 @@ test('BaseInput - autoFocus sets the initial focus state', () => {
 });
 
 test('BaseInput - inputRef from props', () => {
-  const focus = jest.fn();
   const props = {
     autoFocus: true,
     onFocus: jest.fn(),
     onChange: jest.fn(),
-    inputRef: {current: {focus}},
   };
 
   // $FlowFixMe
   const wrapper = mount(<BaseInput {...props} />);
   // Is focused when mount
   expect(wrapper).toHaveState('isFocused', true);
-  // ref's focus method is called
-  expect(focus).toBeCalled();
 });
