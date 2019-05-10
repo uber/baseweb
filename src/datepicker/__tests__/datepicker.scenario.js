@@ -17,14 +17,9 @@ export const component = () => (
     aria-label="Select a date"
     highlightedDate={new Date('March 10, 2019')}
     overrides={{
-      MonthYearSelect: {
-        props: {
-          overrides: {
-            Root: {props: {'data-id': 'monthYearSelect'}},
-            Dropdown: {props: {'data-id': 'monthYearDropdown'}},
-            ValueContainer: {props: {'data-id': 'monthYearValue'}},
-          },
-        },
+      MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+      MonthYearSelectStatefulMenu: {
+        props: {overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}}},
       },
     }}
   />
