@@ -66,41 +66,41 @@ describe('Datepicker', () => {
     );
   });
 
-  // test('isOpen state change on down arrow keydown event', () => {
-  //   const onChange = jest.fn();
-  //   // $FlowFixMe
-  //   const component = mount(<Datepicker onChange={onChange} />);
-  //   let renderedPopover = component.find(Popover).first();
-  //   const renderedInput = component.find(Input).first();
+  test('isOpen state change on down arrow keydown event', () => {
+    const onChange = jest.fn();
+    // $FlowFixMe
+    const component = mount(<Datepicker onChange={onChange} />);
+    let renderedPopover = component.find(Popover).first();
+    const renderedInput = component.find(Input).first();
 
-  //   expect(component).toHaveState('isOpen', false);
+    expect(component).toHaveState('isOpen', false);
 
-  //   renderedInput.props().onKeyDown({keyCode: 40});
-  //   expect(component).toHaveState('isOpen', true);
+    renderedInput.props().onKeyDown({keyCode: 40});
+    expect(component).toHaveState('isOpen', true);
 
-  //   // isOpen state value is passed to Popover
-  //   component.update();
-  //   renderedPopover = component.find(Popover).first();
-  //   expect(renderedPopover.props().isOpen).toEqual(true);
-  // });
+    // isOpen state value is passed to Popover
+    component.update();
+    renderedPopover = component.find(Popover).first();
+    expect(renderedPopover.props().isOpen).toEqual(true);
+  });
 
-  // test('isOpen state change on input focus', () => {
-  //   const onChange = jest.fn();
-  //   // $FlowFixMe
-  //   const component = mount(<Datepicker onChange={onChange} />);
-  //   let renderedPopover = component.find(Popover).first();
-  //   const renderedInput = component.find(Input).first();
+  test('isOpen state change on input focus', () => {
+    const onChange = jest.fn();
+    // $FlowFixMe
+    const component = mount(<Datepicker onChange={onChange} />);
+    let renderedPopover = component.find(Popover).first();
+    const renderedInput = component.find(Input).first();
 
-  //   expect(component).toHaveState('isOpen', false);
+    expect(component).toHaveState('isOpen', false);
 
-  //   renderedInput.props().onFocus();
-  //   expect(component).toHaveState('isOpen', true);
+    renderedInput.props().onFocus();
+    expect(component).toHaveState('isOpen', true);
 
-  //   // isOpen state value is passed to Popover
-  //   component.update();
-  //   renderedPopover = component.find(Popover).first();
-  //   expect(renderedPopover.props().isOpen).toEqual(true);
-  // });
+    // isOpen state value is passed to Popover
+    component.update();
+    renderedPopover = component.find(Popover).first();
+    expect(renderedPopover.props().isOpen).toEqual(true);
+  });
 
   test('onChange handler from props is called', () => {
     const onChange = jest.fn();
@@ -113,18 +113,18 @@ describe('Datepicker', () => {
     expect(component).toHaveState('isOpen', false);
   });
 
-  // test('does not set isOpen state to false if a single date from a range selected', () => {
-  //   const onChange = jest.fn();
-  //   const data = {date: [new Date('2019 01 01')]};
-  //   const component = mount(
-  //     // $FlowFixMe
-  //     <Datepicker onChange={onChange} range value={[]} />,
-  //   );
+  test('does not set isOpen state to false if a single date from a range selected', () => {
+    const onChange = jest.fn();
+    const data = {date: [new Date('2019 01 01')]};
+    const component = mount(
+      // $FlowFixMe
+      <Datepicker onChange={onChange} range value={[]} />,
+    );
 
-  //   component.instance().onChange(data);
-  //   expect(onChange).toBeCalledWith(data);
-  //   expect(component).toHaveState('isOpen', true);
-  // });
+    component.instance().onChange(data);
+    expect(onChange).toBeCalledWith(data);
+    expect(component).toHaveState('isOpen', true);
+  });
 
   test('sets isOpen state to false if a range selected', () => {
     const onChange = jest.fn();
