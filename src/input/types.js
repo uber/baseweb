@@ -83,7 +83,7 @@ export type BaseInputPropsT<T> = {
   /** Renders UI in 'error' state. */
   error: boolean,
   /** Renders UI in 'positive' state. */
-  positive: boolean,
+  positive?: boolean,
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id: string,
   'data-baseweb'?: string,

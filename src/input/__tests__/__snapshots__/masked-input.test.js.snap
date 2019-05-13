@@ -114,7 +114,6 @@ Object {
     },
   },
   "placeholder": "Placeholder",
-  "positive": false,
   "required": false,
   "size": "default",
   "styled-component": "true",
