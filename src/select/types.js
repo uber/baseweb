@@ -86,6 +86,8 @@ export type PropsT = {
   disabled: boolean,
   /** Defines if the control if in error state. */
   error: boolean,
+  /** Defines if the control if in positive state. */
+  positive: boolean,
   /** Defines if the value is cleared when escape is pressed and the dropdown is closed. */
   escapeClearsValue: boolean,
   /** Defaults to filterOptions that excludes selected options for
@@ -241,6 +243,7 @@ export type SharedStylePropsArgT = {
   $creatable: boolean,
   $disabled: boolean,
   $error: boolean,
+  $positive: boolean,
   $isFocused: boolean,
   $isLoading: boolean,
   $isOpen: boolean,

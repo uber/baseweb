@@ -41,11 +41,10 @@ export const StyledNavItem = styled('div', props => {
     $theme: {colors, sizing},
   } = props;
   return {
-    backgroundColor: $active
-      ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), ${
-          colors.primary
-        }`
-      : 'transparent',
+    backgroundColor: $active ? colors.primary : 'transparent',
+    backgroundImage: $active
+      ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92))`
+      : null,
     boxSizing: 'border-box',
     borderLeftWidth: '4px',
     borderLeftStyle: 'solid',

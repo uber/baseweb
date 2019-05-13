@@ -71,6 +71,15 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
 
     const sharedProps = getSharedProps(this.props, this.state);
 
+    if (__DEV__) {
+      if (this.props.error && this.props.positive) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[Input] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+        );
+      }
+    }
+
     return (
       <Root data-baseweb="input" {...sharedProps} {...rootProps}>
         {startEnhancer && (
