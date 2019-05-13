@@ -57,9 +57,9 @@ const App = ({history, location}) => {
         },
       ]}
       activeItemId={location.pathname}
-      onChange={({e, item}) => {
+      onChange={({event, item}) => {
         // prevent page reload
-        e.preventDefault();
+        event.preventDefault();
         history.push(item.itemId);
       }}
     />
