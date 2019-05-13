@@ -236,15 +236,28 @@ export default class MenuStatefulContainer extends React.Component<
   };
 
   render() {
+    // omit the stateful-container's props and don't pass it down
+    // to the children (stateless menu)
+    const {
+      initialState,
+      stateReducer,
+      children,
+      onItemSelect,
+      addMenuToNesting,
+      removeMenuFromNesting,
+      getParentMenu,
+      getChildMenu,
+      ...restProps
+    } = this.props;
     return this.props.children(
       ({
+        ...restProps,
+        rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
         getRequiredItemProps: this.getRequiredItemProps,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
-        items: this.props.items,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
-        rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
       }: RenderPropsT),
     );
   }
