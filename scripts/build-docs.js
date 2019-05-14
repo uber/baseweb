@@ -17,25 +17,35 @@ const tar = require('tar');
 const mkdirp = require('mkdirp');
 const childProcess = require('child_process');
 
+// eslint-disable-next-line no-console
+console.log(`
+This script generates the legacy documentation sites hosted on Netlify.
+
+Once it's finished, go to the Netlify team we have, and update the manual deployments, if needed.
+
+If you need to add a new major legacy version, just add it to 'majors' configuration object,
+create a new deployment in Netlify, and finally add a CNAME in Cloudflare.
+`);
+
 const majors = {
   v1: {
-    buildCommaid: 'yarn build-storybook',
+    buildCommand: 'yarn build-storybook',
     distFolder: 'docs',
   },
   v2: {
-    buildCommaid: 'yarn build-storybook',
+    buildCommand: 'yarn build-storybook',
     distFolder: 'docs',
   },
   v3: {
-    buildCommaid: 'yarn build-storybook',
+    buildCommand: 'yarn build-storybook',
     distFolder: 'docs',
   },
   v4: {
-    buildCommaid: 'yarn build-storybook',
+    buildCommand: 'yarn build-storybook',
     distFolder: 'docs',
   },
   v5: {
-    buildCommaid: 'yarn documentation:build',
+    buildCommand: 'yarn documentation:build',
     distFolder: 'public',
   },
 };
@@ -75,7 +85,7 @@ async function main() {
       cwd: directoryTmp,
     });
 
-    childProcess.execSync(majors[version].buildCommaid, {
+    childProcess.execSync(majors[version].buildCommand, {
       cwd: directoryTmp,
     });
 
@@ -139,13 +149,10 @@ function patchEventstream(packageJsonPath) {
 }
 
 function getLatestMajors(releases) {
-  return {
-    v1: releases.find(versionFilter('v1')),
-    v2: releases.find(versionFilter('v2')),
-    v3: releases.find(versionFilter('v3')),
-    v4: releases.find(versionFilter('v4')),
-    v5: releases.find(versionFilter('v5')),
-  };
+  return Object.keys(majors).reduce((versions, major) => {
+    versions[major] = releases.find(versionFilter(major));
+    return versions;
+  }, {});
 }
 
 function versionFilter(major) {
