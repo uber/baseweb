@@ -55,11 +55,11 @@ const LogoSegment = styled('div', ({$searchInputOpen}) => ({
 }));
 
 const VERSIONS = [
-  {label: 'v1'},
-  {label: 'v2'},
-  {label: 'v3'},
-  {label: 'v4'},
   {label: 'v5'},
+  {label: 'v4'},
+  {label: 'v3'},
+  {label: 'v2'},
+  {label: 'v1'},
 ];
 
 type PropsT = {
