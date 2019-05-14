@@ -120,6 +120,7 @@ async function getReleasesForPage(page) {
     `https://api.github.com/repos/uber-web/baseui/releases?page=${page}`,
     {
       headers: {
+        // $FlowFixMe
         Authorization: `token ${process.env.GITHUB_AUTH_TOKEN}`,
       },
     },
@@ -128,6 +129,7 @@ async function getReleasesForPage(page) {
 }
 
 function patchEventstream(packageJsonPath) {
+  // $FlowFixMe
   const packageJson = require(packageJsonPath);
   packageJson.resolutions = {
     '**/event-stream': '^4.0.1',

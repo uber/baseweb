@@ -1,6 +1,6 @@
 [build]
   publish = "public/"
-  command = "yarn documentation:build && yarn build-storybook && documentation:legacy"
+  command = "yarn documentation:build && yarn build-storybook && yarn documentation:legacy"
 
 [build.environment]
   BUILD_ENV = "production"
