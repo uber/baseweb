@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-env browser */
 
 import * as React from 'react';
 import Link from 'next/link';
 import {Block} from 'baseui/block';
-import {Tag} from 'baseui/tag';
 import {
   HeaderNavigation,
   StyledNavigationList as NavigationList,
@@ -26,6 +26,10 @@ import {version} from '../../package.json';
 import {ThemeContext} from 'baseui/styles/theme-provider.js';
 import Bulb from './bulb';
 import {StatefulTooltip} from 'baseui/tooltip';
+import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
+import {StatefulMenu} from 'baseui/menu';
+import {Button} from 'baseui/button';
+import ArrowDown from 'baseui/icon/arrow-down.js';
 
 export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
 
@@ -49,6 +53,14 @@ const LogoSegment = styled('div', ({$searchInputOpen}) => ({
     display: 'flex',
   },
 }));
+
+const VERSIONS = [
+  {label: 'v5'},
+  {label: 'v4'},
+  {label: 'v3'},
+  {label: 'v2'},
+  {label: 'v1'},
+];
 
 type PropsT = {
   toggleSidebar: () => void,
@@ -85,23 +97,33 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   overrides={{Block: {style: {cursor: 'pointer'}}}}
                 />
               </Link>
-              <Block
-                marginLeft="scale200"
-                overrides={{
-                  Block: {
-                    style: {
-                      color: 'inherit',
-                      textDecoration: 'none',
-                    },
-                  },
-                }}
-                target="_blank"
-                as="a"
-                href="https://github.com/uber-web/baseui/releases"
-              >
-                <Tag closeable={false} onClick={() => {}}>
-                  {version}
-                </Tag>
+              <Block marginLeft="scale800">
+                <StatefulPopover
+                  placement={PopoverPlacement.bottomLeft}
+                  content={({close}) => (
+                    <StatefulMenu
+                      items={VERSIONS}
+                      onItemSelect={({item}) => {
+                        window.open(`https://${item.label}.baseweb.design`);
+                        close();
+                      }}
+                      overrides={{
+                        List: {
+                          style: {
+                            width: '100px',
+                          },
+                        },
+                      }}
+                    />
+                  )}
+                >
+                  <Button
+                    size="compact"
+                    endEnhancer={() => <ArrowDown size={24} />}
+                  >
+                    {version}
+                  </Button>
+                </StatefulPopover>
               </Block>
             </Block>
           </LogoSegment>

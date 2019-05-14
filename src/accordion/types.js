@@ -73,13 +73,11 @@ export type AccordionPropsT = {
   stateReducer: StateReducerT,
 };
 
-export type PanelPropsT = {
+type SharedPanelPropsT = {
   /** The content visible when Panel is expanded. */
   children: React.Node,
   /** Defaults to the disabled value provided by the parent Accordion component. */
   disabled?: boolean,
-  /** Defines if the panel is expanded. If set to true the panel is rendered expanded. */
-  expanded?: boolean,
   /** The key of a Panel. Used to maintain list of expanded panels.
    * Must be unique across children of the Accordion. */
   key?: React.Key,
@@ -94,26 +92,27 @@ export type PanelPropsT = {
   title?: React.Node,
 };
 
+export type PanelPropsT = SharedPanelPropsT & {
+  /** Defines if the panel is expanded. If set to true the panel is rendered expanded. */
+  expanded?: boolean,
+};
+
 // Props for panel stateful container
-export type StatefulPanelContainerPropsT = {
-  children: (props: $Diff<PanelPropsT, {children: React.Node}>) => React.Node,
+type SharedStatefulPanelContainerPropsT = {
   /** Initial state of a stateful panel component.
    * The expanded prop indicates if the panel is initially expanded.
    * If set to true the panel will be expanded initially */
   initialState?: PanelStateT,
   onChange?: OnChangeHandlerT,
-  stateReducer: PanelStateReducerT,
+  stateReducer?: PanelStateReducerT,
+};
+export type StatefulPanelContainerPropsT = SharedStatefulPanelContainerPropsT & {
+  children: (props: $Diff<PanelPropsT, {children: React.Node}>) => React.Node,
 };
 
 // Props for stateful panel
-export type StatefulPanelPropsT = $Diff<
-  StatefulPanelContainerPropsT,
-  {
-    children: (props: PanelPropsT) => React.Node,
-    stateReducer: PanelStateReducerT,
-  },
-> &
-  PanelPropsT;
+export type StatefulPanelPropsT = SharedStatefulPanelContainerPropsT &
+  SharedPanelPropsT;
 
 export type SharedStylePropsArgT = {
   $disabled: ?boolean,
