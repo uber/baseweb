@@ -206,7 +206,6 @@ test('Renders label and caption for the Checkbox component', () => {
   expect(label).toExist();
   expect(label.props()).toMatchObject({
     $disabled: false,
-    $error: undefined,
     $required: true,
     children: 'Label test',
   });
@@ -214,7 +213,6 @@ test('Renders label and caption for the Checkbox component', () => {
   expect(caption).toExist();
   expect(caption.props()).toMatchObject({
     $disabled: false,
-    $error: undefined,
     $required: true,
     children: 'Caption test',
   });
@@ -234,7 +232,6 @@ test('Renders label and caption for the RadioGroup component', () => {
   expect(label).toExist();
   expect(label.props()).toMatchObject({
     $disabled: false,
-    $error: undefined,
     $required: true,
     children: 'Label test',
   });
@@ -242,7 +239,6 @@ test('Renders label and caption for the RadioGroup component', () => {
   expect(caption).toExist();
   expect(caption.props()).toMatchObject({
     $disabled: false,
-    $error: undefined,
     $required: true,
     children: 'Caption test',
   });

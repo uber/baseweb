@@ -79,7 +79,7 @@ function FileUploader(props: PropsT) {
           onClick?: (SyntheticEvent<HTMLElement>) => void,
         } = {
           refKey: '$ref',
-          onClick: props.disableClick ? evt => evt.preventDefault() : undefined,
+          ...(props.disableClick ? {onClick: evt => evt.preventDefault()} : {}),
         };
 
         return (

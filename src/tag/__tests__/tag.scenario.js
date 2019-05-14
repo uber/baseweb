@@ -19,7 +19,7 @@ export const component = () => (
       <Tag
         key={kind}
         kind={kind}
-        color={kind === 'custom' ? '#748ecc' : undefined}
+        {...(kind === 'custom' ? {color: '#748ecc'} : {})}
       >
         kind {kind}
       </Tag>
