@@ -161,10 +161,10 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
           <Body
             role="alert"
             data-baseweb={this.props['data-baseweb'] || 'toast'}
+            tabIndex={-1}
             {...sharedProps}
             {...bodyProps}
             // the properties below have to go after overrides
-            tabIndex={-1}
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             onMouseEnter={this.onMouseEnter}
