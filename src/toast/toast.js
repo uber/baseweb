@@ -164,7 +164,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             {...sharedProps}
             {...bodyProps}
             // the properties below have to go after overrides
-            tabIndex={0}
+            tabIndex={-1}
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             onMouseEnter={this.onMouseEnter}
