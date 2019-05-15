@@ -64,15 +64,9 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
           toggleTheme={toggleTheme}
         />
         <Block
-          overrides={{
-            Block: {
-              style: ({$theme}) => ({
-                backgroundColor: $theme.colors.background,
-                color: $theme.colors.foreground,
-                marginTop: '8px',
-              }),
-            },
-          }}
+          backgroundColor="background"
+          color="foreground"
+          marginTop="scale300"
           display="flex"
           paddingTop="scale400"
         >
