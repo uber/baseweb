@@ -13,7 +13,7 @@ import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
 
-const StyledBorderBox = styled('div', ({$theme, $border = ''}) => {
+const StyledBorderBox = styled('div', ({$theme, $border = {}}) => {
   return {
     marginTop: $theme.sizing.scale200,
     height: $theme.sizing.scale4800,
