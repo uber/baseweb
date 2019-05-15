@@ -31,6 +31,20 @@ describe('Block', () => {
     });
   });
 
+  it('renders themed backgroundColor if provided', () => {
+    expect(
+      retrieveStyles(<Block backgroundColor="primary200">test</Block>),
+    ).toMatchObject({backgroundColor: '$theme.colors.primary200'});
+  });
+
+  it('renders provided backgroundColor if no matching themeable value is found', () => {
+    expect(
+      retrieveStyles(<Block backgroundColor="red">test</Block>),
+    ).toMatchObject({
+      backgroundColor: 'red',
+    });
+  });
+
   it('renders themed font if provided', () => {
     expect(retrieveStyles(<Block font="font200">test</Block>)).toMatchObject({
       fontFamily: '$theme.typography.font200.fontFamily',
