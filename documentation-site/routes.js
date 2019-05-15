@@ -257,6 +257,10 @@ const routes = [
             itemId: '/components/block',
           },
           {
+            title: 'FlexGrid',
+            itemId: '/components/flex-grid',
+          },
+          {
             title: 'Layer',
             itemId: '/components/layer',
           },
