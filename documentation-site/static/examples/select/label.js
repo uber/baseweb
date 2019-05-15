@@ -12,10 +12,10 @@ export default class Container extends React.Component {
           height="scale300"
           marginRight="scale200"
           display="inline-block"
+          backgroundColor={option.color}
           overrides={{
             Block: {
               style: ({$theme}) => ({
-                backgroundColor: option.color,
                 verticalAlign: 'baseline',
                 ...$theme.borders.border400,
               }),
