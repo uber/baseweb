@@ -8,11 +8,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-import {
-  Delete as DeleteIcon,
-  TriangleDown as TriangleDownIcon,
-  Search as SearchIconComponent,
-} from '../icon/index.js';
+import DeleteIcon from '../icon/delete.js';
+import TriangleDownIcon from '../icon/triangle-down.js';
+import SearchIconComponent from '../icon/search.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
@@ -80,10 +78,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
   // open. This is required so that we can check if clicks are on/off the anchor element.
-  anchor: {current: ?HTMLElement} = React.createRef();
+  anchor: {current: HTMLElement | null} = React.createRef();
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
-  dropdown: {current: ?HTMLElement} = React.createRef();
+  dropdown: {current: HTMLElement | null} = React.createRef();
   input: ?HTMLInputElement;
   // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
   dragging: boolean;
@@ -223,7 +221,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       if (this.input) this.input.value = '';
 
       this.setState(prev => ({
-        isOpen: this.focusAfterClear ? false : !prev.isOpen,
+        isOpen: !this.focusAfterClear && !prev.isOpen,
         isPseudoFocused: false,
       }));
 
@@ -255,7 +253,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
     let toOpen = this.state.isOpen || this.openAfterFocus;
     // if focus happens after clear values, don't open dropdown yet.
-    toOpen = this.focusAfterClear ? false : toOpen;
+    toOpen = !this.focusAfterClear && toOpen;
 
     this.setState({
       isFocused: true,
@@ -608,7 +606,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     } else if (shouldShowValue(this.state, this.props)) {
       return (
         <Value
-          value={valueArray[0]}
+          value={valueArray[0][this.props.valueKey]}
           disabled={this.props.disabled}
           overrides={{SingleValue: overrides.SingleValue}}
           {...sharedProps}
@@ -815,7 +813,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   render() {
-    const {overrides = {}, type, multi, value, filterOutSelected} = this.props;
+    const {
+      overrides = {},
+      type,
+      multi,
+      noResultsMsg,
+      value,
+      filterOutSelected,
+    } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [ControlContainer, controlContainerProps] = getOverrides(
       overrides.ControlContainer,
@@ -828,6 +833,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const [IconsContainer, iconsContainerProps] = getOverrides(
       overrides.IconsContainer,
       StyledIconsContainer,
+    );
+    const [PopoverOverride, popoverProps] = getOverrides(
+      overrides.Popover,
+      Popover,
     );
     const sharedProps = this.getSharedProps();
 
@@ -849,7 +858,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <Popover
+          <PopoverOverride
             // Popover does not provide ability to forward refs through, and if we were to simply
             // apply the ref to the Root component below it would be overwritten before the popover
             // renders it. Using this strategy, we will get a ref to the popover, then reuse its
@@ -870,6 +879,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 labelKey: this.props.labelKey,
                 maxDropdownHeight: this.props.maxDropdownHeight,
                 multi,
+                noResultsMsg,
                 onItemSelect: this.selectValue,
                 options,
                 overrides,
@@ -884,29 +894,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
                   : null,
               };
 
-              if (options && options.length) {
-                return (
-                  <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />
-                );
-              } else if (this.props.noResultsMsg) {
-                const noResults = {
-                  [this.props.valueKey]: 'NO_RESULTS_FOUND',
-                  [this.props.labelKey]:
-                    this.props.noResultsMsg || locale.select.noResultsMsg,
-                  disabled: true,
-                };
-                return (
-                  <SelectDropdown
-                    innerRef={this.dropdown}
-                    {...dropdownProps}
-                    options={[noResults]}
-                  />
-                );
-              } else {
-                return null;
-              }
+              return (
+                <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />
+              );
             }}
             placement={PLACEMENT.bottom}
+            {...popoverProps}
           >
             <Root data-baseweb="select" {...sharedProps} {...rootProps}>
               <ControlContainer
@@ -930,7 +923,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 </IconsContainer>
               </ControlContainer>
             </Root>
-          </Popover>
+          </PopoverOverride>
         )}
       </LocaleContext.Consumer>
     );

@@ -37,7 +37,7 @@ const filterOptions = (
   options: ValueT,
   filterValue: string,
   excludeOptions: ?ValueT,
-  newProps: $Shape<defaultPropsT> | typeof undefined,
+  newProps: ?$Shape<defaultPropsT>,
 ) => {
   let internalExcludeOptions = excludeOptions;
 

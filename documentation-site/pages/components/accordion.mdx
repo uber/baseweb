@@ -13,7 +13,8 @@ import BasicAccordion from 'examples/accordion/basic.js';
 import StatefulAccordion from 'examples/accordion/stateful.js';
 
 import * as AccordionExports from 'baseui/accordion';
-import {Accordion, Panel} from 'baseui/accordion';
+import * as PanelExports from 'baseui/accordion/panel.js';
+import {Accordion, Panel, StatefulPanel} from 'baseui/accordion';
 
 export default Layout;
 
@@ -60,6 +61,8 @@ Accordions display a list of high-level options that can expand/contract to reve
     );
   }}
 />
+
+**Note:** the `Panel` has the same overrides, with the exception of the `Root` subcomponent.
 
 <API
   heading="Accordion API"

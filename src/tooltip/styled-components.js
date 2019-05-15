@@ -28,7 +28,10 @@ export const Body = styled('div', props => ({
   ...getBodyStyles(props),
   // Tooltip
   backgroundColor: props.$theme.colors.tooltipBackground,
-  borderRadius: props.$theme.borders.radius200,
+  borderTopRightRadius: props.$theme.borders.radius200,
+  borderBottomRightRadius: props.$theme.borders.radius200,
+  borderTopLeftRadius: props.$theme.borders.radius200,
+  borderBottomLeftRadius: props.$theme.borders.radius200,
   boxShadow: props.$theme.lighting.shadow400,
   color: props.$theme.colors.tooltipText,
   // Reset transition property to opacity only, and static transform

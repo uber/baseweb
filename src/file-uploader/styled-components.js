@@ -10,6 +10,9 @@ import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
 export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
+  const borderRadius = props.$theme.borders.useRoundedCorners
+    ? props.$theme.borders.radius200
+    : null;
   return {
     alignItems: 'center',
     backgroundColor: props.$isDragActive
@@ -19,9 +22,10 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
       ? props.$theme.colors.fileUploaderBorderColorActive
       : props.$theme.colors.fileUploaderBorderColorDefault,
     borderStyle: props.$afterFileDrop ? 'none' : 'dashed',
-    borderRadius: props.$theme.borders.useRoundedCorners
-      ? props.$theme.borders.radius200
-      : null,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     borderWidth: props.$theme.sizing.scale0,
     boxSizing: 'border-box',
     display: 'flex',

@@ -218,10 +218,10 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     return {
       $animate: animate,
       $isVisible: this.state.isVisible,
-      $isOpen: Boolean(isOpen),
+      $isOpen: !!isOpen,
       $size: size,
       $role: role,
-      $closeable: Boolean(closeable),
+      $closeable: !!closeable,
     };
   }
 
@@ -337,7 +337,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     return (
       <Layer
         mountNode={this.props.mountNode}
-        onMount={this.props.isOpen ? this.autoFocus : undefined}
+        {...(this.props.isOpen ? {onMount: this.autoFocus} : {})}
       >
         {this.renderModal()}
       </Layer>

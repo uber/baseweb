@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {mount} from 'enzyme';
-import {List} from '../styled-components.js';
+import {StyledList} from '../styled-components.js';
 import OptionList from '../option-list.js';
 import Menu from '../menu.js';
 
@@ -25,8 +25,8 @@ describe('Menu Stateless Component', () => {
   test('basic renders', () => {
     const component = mount(<Menu {...getSharedProps()} />);
 
-    expect(component.find(List)).toExist();
-    expect(component.find(List)).toHaveProp({
+    expect(component.find(StyledList)).toExist();
+    expect(component.find(StyledList)).toHaveProp({
       $ref: React.createRef(),
     });
 

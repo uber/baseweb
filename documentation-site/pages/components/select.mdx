@@ -12,6 +12,7 @@ import Layout from '../../components/layout';
 import SelectBasic from 'examples/select/basic.js';
 import SelectControlled from 'examples/select/controlled.js';
 import SelectOverridden from 'examples/select/overridden.js';
+import SelectLabel from 'examples/select/label.js';
 import SelectInModal from 'examples/select/in-modal.js';
 import SelectNative from 'examples/select/native.js';
 import SelectSinglePickSearch from 'examples/select/search-single-pick.js';
@@ -35,11 +36,11 @@ Select menus in Base hover atop of a selection menu while providing a simple lis
 Proper spacing, color, and a check-mark are clear indicators of a selection. Each menu is
 scrollable, if applicable.
 
-<Example title="Select Basic usage" path="examples/select/basic.js">
+<Example title="Select basic usage" path="examples/select/basic.js">
   <SelectBasic />
 </Example>
 
-<Example title="Select Controlled Example" path="examples/select/controlled.js">
+<Example title="Select controlled example" path="examples/select/controlled.js">
   <SelectControlled />
 </Example>
 
@@ -48,26 +49,30 @@ Things to note in the `Select Controlled` example:
 * the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
 * you have to call `setState` with the entire object, not just the `id` value.
 
-<Example title="Select With Overridden Menu" path="examples/select/overridden.js">
+<Example title="Select with overridden menu" path="examples/select/overridden.js">
   <SelectOverridden />
 </Example>
 
+<Example title="Select with custom labels" path="examples/select/label.js">
+  <SelectLabel />
+</Example>
+
 <Example
-  title="Select as Single Pick Search"
+  title="Select as single-pick search"
   path="examples/select/search-single-pick.js"
 >
   <SelectSinglePickSearch />
 </Example>
 
 <Example
-  title="Select as Multi Pick Search"
+  title="Select as multi-pick search"
   path="examples/select/search-multi-pick.js"
 >
   <SelectMultiPickSearch />
 </Example>
 
 <Example
-  title="Select With Many Options"
+  title="Select with many options"
   path="examples/select/with-many-options.js"
   additionalPackages={{'react-virtualized': '^9.21.0'}}
 >
@@ -81,7 +86,7 @@ Things to note in the `Select Controlled` example:
   <SelectNative />
 </Example>
 
-<Example title="Select Creatable" path="examples/select/creatable.js">
+<Example title="Select creatable" path="examples/select/creatable.js">
   <SelectCreatable />
 </Example>
 
@@ -89,7 +94,7 @@ The creatable select enables users to create new options along with choosing
 existing options.
 
 <Example
-  title="Select Creatable Multi Pick"
+  title="Select creatable multi-pick"
   path="examples/select/creatable-multi.js"
 >
   <SelectCreatableMulti />

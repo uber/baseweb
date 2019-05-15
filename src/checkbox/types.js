@@ -29,7 +29,7 @@ export type DefaultPropsT = {
   isError: boolean,
   autoFocus: boolean,
   isIndeterminate: boolean,
-  inputRef: {current: ?HTMLInputElement},
+  inputRef: {current: HTMLInputElement | null},
   checkmarkType: StyleTypeT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   onMouseEnter: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
@@ -53,7 +53,7 @@ export type PropsT = {
   /** Renders checkbox in errored state. */
   isError?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: {current: ?HTMLInputElement},
+  inputRef: {current: HTMLInputElement | null},
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean,
   /** Passed to the input element type attribute */
