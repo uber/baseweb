@@ -17,6 +17,7 @@ function Block({
   as,
   overrides,
   color,
+  backgroundColor,
   font,
   alignContent,
   alignItems,
@@ -83,6 +84,7 @@ function Block({
     <BaseBlock
       $as={as}
       $color={color}
+      $backgroundColor={backgroundColor}
       $font={font}
       $alignContent={alignContent}
       $alignItems={alignItems}
