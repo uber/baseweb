@@ -228,6 +228,8 @@ export type BlockPropsT = {
   overrides?: OverridesT,
   /** Accepts all themeable color properties (`primary200`, etc.). */
   color?: ResponsiveT<string>,
+  /** Accepts all themeable color properties (`primary200`, etc.). */
+  backgroundColor?: ResponsiveT<string>,
   /** Accepts all themeable font properties (`font200`, etc.). */
   font?: string | Array<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
@@ -319,6 +321,7 @@ export type StyledBlockPropsT = {
   $theme: ThemeT,
   $as?: ElementType,
   $color?: ResponsiveT<string>,
+  $backgroundColor?: ResponsiveT<string>,
   $font?: ResponsiveT<string>,
   $alignContent?: ResponsiveT<AlignContentT>,
   $alignItems?: ResponsiveT<AlignItemsT>,

@@ -78,6 +78,11 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     value: get(props, '$color'),
     transform: color => colors[color] || color,
   });
+  styles.apply({
+    property: 'backgroundColor',
+    value: get(props, '$backgroundColor'),
+    transform: backgroundColor => colors[backgroundColor] || backgroundColor,
+  });
 
   styles.apply({
     property: 'fontFamily',
