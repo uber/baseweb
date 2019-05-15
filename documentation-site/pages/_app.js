@@ -36,14 +36,10 @@ const themes = {
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
 
-const BlockOverrides = {
-  Block: {
-    style: ({$theme}) => ({
-      backgroundColor: $theme.colors.background,
-      maxWidth: '100vw',
-      overflow: 'hidden',
-    }),
-  },
+const blockProps = {
+  backgroundColor: 'background',
+  maxWidth: '100vw',
+  overflow: 'hidden',
 };
 
 export default class MyApp extends App {
@@ -186,13 +182,13 @@ export default class MyApp extends App {
       <Container>
         <StyletronProvider value={styletron}>
           <BaseProvider theme={this.state.theme}>
-            <Block overrides={BlockOverrides}>
+            <Block {...blockProps}>
               <Component
                 {...pageProps}
                 path={path}
                 toggleTheme={this.toggleTheme.bind(this)}
               />
-              <Block overrides={BlockOverrides} height="300px" />
+              <Block {...blockProps} height="300px" />
             </Block>
           </BaseProvider>
         </StyletronProvider>

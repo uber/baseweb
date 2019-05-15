@@ -18,11 +18,11 @@ function BlockComponent(props) {
       paddingBottom="20px"
       paddingLeft="20px"
       paddingRight="20px"
+      backgroundColor={color}
       overrides={{
         Block: {
           style: {
             textAlign: 'center',
-            backgroundColor: color,
           },
         },
       }}
