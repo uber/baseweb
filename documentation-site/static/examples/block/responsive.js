@@ -5,11 +5,7 @@ export default () => {
   return (
     <Block
       height={['20px', '40px', '80px', '160px']}
-      overrides={{
-        Block: {
-          style: ({$theme}) => ({backgroundColor: $theme.colors.primary200}),
-        },
-      }}
+      backgroundColor="primary200"
     />
   );
 };

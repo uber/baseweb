@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -64,15 +64,9 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
           toggleTheme={toggleTheme}
         />
         <Block
-          overrides={{
-            Block: {
-              style: ({$theme}) => ({
-                backgroundColor: $theme.colors.background,
-                color: $theme.colors.foreground,
-                marginTop: '8px',
-              }),
-            },
-          }}
+          backgroundColor="background"
+          color="foreground"
+          marginTop="scale300"
           display="flex"
           paddingTop="scale400"
         >

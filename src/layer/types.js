@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,8 +23,8 @@ export type LayerPropsT = {
   /** Content to be rendered in the Layer. */
   children: React.Node,
   /** A DOM element where the Layer will be inserted into as a child.
-   The host value comes from the layers context provider. 
-   If there is no `LayersManager` added and therefore no host element 
+   The host value comes from the layers context provider.
+   If there is no `LayersManager` added and therefore no host element
    in the context, `document.body` will be used as a container element. */
   host?: ?HTMLElement,
   /** Defines the location (child order) at which the layer will be inserted in
@@ -105,7 +105,7 @@ export type TetherPropsT = {
   /** Recommended placement of the popper. */
   placement: TetherPlacementT,
   /** Options to be passes to the Popper on its initialization.
-   Refer to the [Popper documentation](https://popper.js.org/popper-documentation.html) 
+   Refer to the [Popper documentation](https://popper.js.org/popper-documentation.html)
    for the full list of available options. */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions: any,
