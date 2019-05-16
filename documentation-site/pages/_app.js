@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env browser */
 
-import React from 'react';
+import * as React from 'react';
 import {
   BaseProvider,
   DarkTheme,

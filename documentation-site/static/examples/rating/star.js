@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StarRating} from 'baseui/rating';
 
 class StarExample extends React.Component {

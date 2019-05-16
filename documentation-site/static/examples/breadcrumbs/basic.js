@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Breadcrumbs} from 'baseui/breadcrumbs';
 import {StyledLink as Link} from 'baseui/link';
 

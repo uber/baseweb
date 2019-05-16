@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Button, SIZE} from 'baseui/button';
 import {StatefulCheckbox} from 'baseui/checkbox';
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulList} from 'baseui/dnd-list';
 import {styled} from 'baseui';
 import ArrowRight from 'baseui/icon/arrow-right';

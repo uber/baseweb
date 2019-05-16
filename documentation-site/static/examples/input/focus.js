@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {StatefulInput} from 'baseui/input';

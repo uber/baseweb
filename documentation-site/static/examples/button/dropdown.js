@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Button} from 'baseui/button';
 import ArrowDown from 'baseui/icon/arrow-down';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
