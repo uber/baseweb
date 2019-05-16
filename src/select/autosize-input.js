@@ -50,7 +50,10 @@ export default class AutosizeInput extends React.Component<
       return;
     }
     const newInputWidth = this.sizer.scrollWidth + 2;
-    if (newInputWidth !== this.state.inputWidth) {
+    if (
+      newInputWidth !== this.state.inputWidth &&
+      this.sizer.scrollWidth !== this.state.inputWidth
+    ) {
       this.setState({inputWidth: newInputWidth});
     }
   }
