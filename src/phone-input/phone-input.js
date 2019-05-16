@@ -22,11 +22,16 @@ const ChevronDown = styled(ChevronRight, {
   transform: 'rotate(90deg)',
 });
 
-export default function PhoneInput() {
-  const [value, setValue] = useState([countries[0]]);
+export default function PhoneInput(props) {
+  const {value, initialCountry, onInputChange, onCountryChange} = props;
+  const [selectValue, setSelectValue] = useState(
+    [initialCountry] || [countries[0]],
+  );
   return (
     <>
       <Input
+        value={value}
+        onChange={event => onInputChange(event)}
         overrides={{
           Input: {style: {paddingLeft: '4px'}},
           // eslint-disable-next-line react/display-name
@@ -39,8 +44,11 @@ export default function PhoneInput() {
                   valueKey="dialCode"
                   clearable={false}
                   size="compact"
-                  onChange={({value}) => setValue(value)}
-                  value={value}
+                  value={selectValue}
+                  onChange={event => {
+                    setSelectValue(event.value);
+                    onCountryChange(event.option);
+                  }}
                   maxDropdownHeight="300px"
                   getOptionLabel={({option}) => {
                     return (
@@ -66,7 +74,7 @@ export default function PhoneInput() {
                           <Block display="flex" alignItems="center">
                             <Block
                               as="img"
-                              src={flags[value[0].iso2]}
+                              src={flags[selectValue[0].iso2]}
                               alt="Flag"
                               maxWidth="24px"
                               marginRight="6px"
@@ -86,10 +94,15 @@ export default function PhoneInput() {
                         width: '0',
                       },
                     },
+                    Input: {
+                      style: {
+                        width: '0',
+                      },
+                    },
                   }}
                 />
               </Block>
-              <Block marginLeft="4px">+{value[0].dialCode}</Block>
+              <Block marginLeft="4px">+{selectValue[0].dialCode}</Block>
             </Block>
           ),
         }}
