@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React from 'react';
+import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Radio, RadioGroup} from 'baseui/radio';
 import {DocLink} from './markdown-elements';

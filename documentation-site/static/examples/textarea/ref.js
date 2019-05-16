@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulTextarea as Textarea} from 'baseui/textarea';
 import {Button} from 'baseui/button';
 

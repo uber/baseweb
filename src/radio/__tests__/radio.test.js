@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env node */
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
 
 import {Radio, StyledRoot, StyledInput, StyledDescription} from '../index.js';

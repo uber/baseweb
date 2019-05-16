@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';

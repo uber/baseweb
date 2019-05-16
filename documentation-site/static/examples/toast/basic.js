@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
 import {Button} from 'baseui/button';
 

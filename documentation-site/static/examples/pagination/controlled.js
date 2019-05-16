@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Pagination} from 'baseui/pagination';
 
 export default class Basic extends React.Component {

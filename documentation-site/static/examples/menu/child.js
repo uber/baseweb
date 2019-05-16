@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulMenu, NestedMenus} from 'baseui/menu';
 
 const OPEN_RECENT = 'Open Recent ->';

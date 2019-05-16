@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulSelect, TYPE} from 'baseui/select';
 
 export default class Container extends React.Component {
