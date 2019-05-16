@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global process */
 
-import React from 'react';
+import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {H1} from '../components/markdown-elements';

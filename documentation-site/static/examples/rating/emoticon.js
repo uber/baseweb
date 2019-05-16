@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {EmoticonRating} from 'baseui/rating';
 
 class EmoticonExample extends React.Component {

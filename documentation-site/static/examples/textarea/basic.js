@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulTextarea as Textarea, SIZE} from 'baseui/textarea';
 
 export default () => (

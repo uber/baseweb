@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* global document */
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {Consumer} from './layers-manager.js';
 import type {LayerPropsT, LayerComponentPropsT, LayerStateT} from './types.js';

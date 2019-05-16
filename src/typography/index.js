@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import Block from '../block/block.js';
 import type {BlockPropsT} from '../block/types.js';
 
