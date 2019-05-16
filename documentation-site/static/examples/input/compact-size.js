@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulInput, SIZE} from 'baseui/input';
 
 export default () => (

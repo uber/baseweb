@@ -177,7 +177,7 @@ To better understand it, let's take a look at the example of the `Select` compon
 So far we demonstrated how to **override styles or add additional props** but you can also **completely replace subcomponents**. This means you can alter the behavior and appearance of all Base Web components. For example, **we can enhance our textual Label and add a cloning functionality**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import {List, arrayMove} from 'baseui/dnd-list';
 
 export default class Example extends React.Component {

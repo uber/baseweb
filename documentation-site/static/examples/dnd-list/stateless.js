@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {List, arrayMove} from 'baseui/dnd-list';
 
 export default class Example extends React.Component {
