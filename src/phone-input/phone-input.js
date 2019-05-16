@@ -41,6 +41,7 @@ export default function PhoneInput() {
                   size="compact"
                   onChange={({value}) => setValue(value)}
                   value={value}
+                  maxDropdownHeight="300px"
                   overrides={{
                     IconsContainer: {
                       style: {paddingRight: '0', cursor: 'pointer'},
@@ -59,11 +60,6 @@ export default function PhoneInput() {
                             <ChevronDown size={24} />
                           </Block>
                         );
-                      },
-                    },
-                    Dropdown: {
-                      style: {
-                        maxHeight: '300px',
                       },
                     },
                     DropdownContainer: {
