@@ -42,6 +42,20 @@ export default function PhoneInput() {
                   onChange={({value}) => setValue(value)}
                   value={value}
                   maxDropdownHeight="300px"
+                  getOptionLabel={({option}) => {
+                    return (
+                      <Block display="flex" alignItems="center" width="100%">
+                        <Block
+                          as="img"
+                          src={flags[option.iso2]}
+                          maxWidth="18px"
+                          marginRight="12px"
+                        />
+                        <Block paddingRight="4px">{option.name}</Block>
+                        <Block marginLeft="auto">+{option.dialCode}</Block>
+                      </Block>
+                    );
+                  }}
                   overrides={{
                     IconsContainer: {
                       style: {paddingRight: '0', cursor: 'pointer'},
@@ -55,7 +69,7 @@ export default function PhoneInput() {
                               src={flags[value[0].iso2]}
                               alt="Flag"
                               maxWidth="24px"
-                              marginRight="4px"
+                              marginRight="6px"
                             />
                             <ChevronDown size={24} />
                           </Block>
@@ -64,7 +78,7 @@ export default function PhoneInput() {
                     },
                     DropdownContainer: {
                       style: {
-                        width: '250px',
+                        width: '350px',
                       },
                     },
                     ValueContainer: {
