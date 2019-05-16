@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import type {BlockPropsT, ResponsiveT, ScaleT} from '../block/types.js';
 
-export type FlexGridPropsT = BlockPropsT & {
+export type FlexGridPropsT = {
   /** Number of equal-width columns to allow for */
   flexGridColumnCount?: ResponsiveT<number>,
   /** Grid gap between columns */
   flexGridColumnGap?: ResponsiveT<ScaleT>,
   /** Grid gap between rows */
   flexGridRowGap?: ResponsiveT<ScaleT>,
-};
+} & BlockPropsT;
 
 export type FlexGridItemPropsT = FlexGridPropsT;
