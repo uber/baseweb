@@ -9,12 +9,13 @@ const itemProps = {
   justifyContent: 'center',
 };
 
-const wideItemProps = {
+const narrowItemProps = {
   ...itemProps,
   overrides: {
     Block: {
       style: ({$theme}) => ({
-        width: `calc((200% - ${$theme.sizing.scale800}) / 3)`,
+        width: $theme.sizing.scale1600,
+        flexGrow: 0,
       }),
     },
   },
@@ -26,13 +27,11 @@ export default () => (
     flexGridColumnGap="scale800"
     flexGridRowGap="scale800"
   >
-    <FlexGridItem {...wideItemProps}>Wide item</FlexGridItem>
-    <FlexGridItem display="none">
-      This invisible one is needed so the margins line up
-    </FlexGridItem>
+    <FlexGridItem {...itemProps}>Item</FlexGridItem>
+    <FlexGridItem {...narrowItemProps}>Narrow</FlexGridItem>
     <FlexGridItem {...itemProps}>Item</FlexGridItem>
     <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
+    <FlexGridItem {...narrowItemProps}>Narrow</FlexGridItem>
     <FlexGridItem {...itemProps}>Item</FlexGridItem>
   </FlexGrid>
 );

@@ -10,7 +10,8 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import Basic from 'examples/flex-grid/basic.js';
-import Unequal from 'examples/flex-grid/unequal.js';
+import UnequalNarrow from 'examples/flex-grid/unequal-narrow.js';
+import UnequalWide from 'examples/flex-grid/unequal-wide.js';
 import Responsive from 'examples/flex-grid/responsive.js';
 import Missing from 'examples/flex-grid/missing.js';
 
@@ -28,11 +29,17 @@ Note: **FlexGrid** must contain **FlexGridItem** components as children in order
   <Basic />
 </Example>
 
-<Example title="FlexGrid unequal widths" path="examples/flex-grid/unequal.js">
-  <Unequal />
+<Example title="FlexGrid unequal (narrow) widths" path="examples/flex-grid/unequal-narrow.js">
+  <UnequalNarrow />
 </Example>
 
-It is possible to achieve unequal-width items using **FlexGridItem** overrides, but keep in mind that the margins won’t be set properly unless you have the correct number of items in each row.
+It is possible to achieve unequal-width items using **Block** style overrides.
+
+<Example title="FlexGrid unequal (wide) widths" path="examples/flex-grid/unequal-wide.js">
+  <UnequalWide />
+</Example>
+
+Also, keep in mind that the margins won’t be set properly unless you have the correct number of items in each row. In this example, we add a hidden element after the wide element so that the last item in the first row has a margin-right of zero.
 
 ## Responsive Layouts
 
