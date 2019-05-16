@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulTabs, Tab} from 'baseui/tabs';
 
 export default () => (

@@ -40,7 +40,7 @@ Updated API:
 ## Component Examples
 
 ```js
-import React from 'react';
+import * as React from 'react';
 import {Datepicker, Timepicker, TimezonePicker} from 'baseui/datepicker';
 
 function DatepickerCustomQuickSelect() {

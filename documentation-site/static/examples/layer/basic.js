@@ -1,5 +1,5 @@
 /* global document */
-import React from 'react';
+import * as React from 'react';
 import {Layer} from 'baseui/layer';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';

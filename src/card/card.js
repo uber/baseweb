@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* @flow */
 
-import React from 'react';
+import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {
   Action as StyledAction,

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
