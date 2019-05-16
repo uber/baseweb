@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -206,7 +206,6 @@ test('Renders label and caption for the Checkbox component', () => {
   expect(label).toExist();
   expect(label.props()).toMatchObject({
     $disabled: false,
-    $error: undefined,
     $required: true,
     children: 'Label test',
   });
@@ -214,7 +213,6 @@ test('Renders label and caption for the Checkbox component', () => {
   expect(caption).toExist();
   expect(caption.props()).toMatchObject({
     $disabled: false,
-    $error: undefined,
     $required: true,
     children: 'Caption test',
   });
@@ -234,7 +232,6 @@ test('Renders label and caption for the RadioGroup component', () => {
   expect(label).toExist();
   expect(label.props()).toMatchObject({
     $disabled: false,
-    $error: undefined,
     $required: true,
     children: 'Label test',
   });
@@ -242,7 +239,6 @@ test('Renders label and caption for the RadioGroup component', () => {
   expect(caption).toExist();
   expect(caption.props()).toMatchObject({
     $disabled: false,
-    $error: undefined,
     $required: true,
     children: 'Caption test',
   });
