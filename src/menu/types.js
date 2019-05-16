@@ -52,6 +52,7 @@ export type ProfileOverridesT = {
 export type RenderItemPropsT = {
   disabled?: boolean,
   ref?: React$ElementRef<*>,
+  id?: ?string,
   isFocused?: boolean,
   // indicates when the item is visually focused
   isHighlighted?: boolean,
@@ -70,6 +71,8 @@ export type StateReducerFnT = (
 ) => StatefulContainerStateT;
 
 export type StatefulContainerStateT = {
+  // id of the currently highlighted item (from keyboard control)
+  activedescendantId?: ?string,
   // index of currently highlighted item (from keyboard control)
   highlightedIndex: number,
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering
@@ -135,6 +138,8 @@ export type MenuProfilePropsT = {
 };
 
 export type SharedStatelessPropsT = {
+  /** Id of the highlighted menu item. */
+  activedescendantId?: ?string,
   /** Function to get props for each rendered item. This will have some defaults needed for keyboard
    * bindings to work properly. Every rendered item should call this.
    */
