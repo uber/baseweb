@@ -11,10 +11,16 @@ import React, {useState} from 'react';
 import {Block} from '../block/index.js';
 import {Input} from '../input/index.js';
 import {Select} from '../select/index.js';
-import {TriangleDown} from '../icon/index.js';
+import {ChevronRight} from '../icon/index.js';
 
 import {countries} from './countries.js';
 import flags from './flags/flags@2x.js';
+
+import {styled} from '../styles/index.js';
+
+const ChevronDown = styled(ChevronRight, {
+  transform: 'rotate(90deg)',
+});
 
 export default function PhoneInput() {
   const [value, setValue] = useState([countries[0]]);
@@ -48,8 +54,9 @@ export default function PhoneInput() {
                               src={flags[value[0].iso2]}
                               alt="Flag"
                               maxWidth="24px"
+                              marginRight="4px"
                             />
-                            <TriangleDown size={14} />
+                            <ChevronDown size={24} />
                           </Block>
                         );
                       },
