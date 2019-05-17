@@ -1,11 +1,12 @@
 {
   "name": "baseui",
-  "version": "6.18.0",
-  "description": "React implementation of uber design components platform.",
+  "version": "6.19.0",
+  "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
     "uber",
-    "baseui"
+    "baseui",
+    "baseweb"
   ],
   "license": "MIT",
   "main": "index.js",
