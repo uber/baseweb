@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import {styled} from '../styles/index.js';
 import type {BreakpointsT} from '../styles/types.js';
 import type {StyledBlockPropsT} from './types.js';
@@ -28,9 +29,7 @@ type ApplyParams = {
 
 function build(breakpoints: BreakpointsT) {
   const styles = {};
-  const mediaQueries = Object.keys(breakpoints).map(
-    size => `@media screen and (min-width: ${breakpoints[size]}px)`,
-  );
+  const mediaQueries = getMediaQueries(breakpoints);
 
   return {
     apply: ({property, transform = x => x, value}: ApplyParams) => {
