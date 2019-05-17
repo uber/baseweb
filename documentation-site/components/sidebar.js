@@ -41,9 +41,9 @@ const removeSlash = path => {
   return path;
 };
 
-function renderItem(item, itemProps) {
-  const {onSelect, onClick, onKeyDown, ...sharedProps} = itemProps;
-  const Label = itemProps.$level === 1 ? Label2 : Label1;
+function CustomNavItem(props) {
+  const {item, onSelect, onClick, onKeyDown, ...sharedProps} = props;
+  const Label = props.$level === 1 ? Label2 : Label1;
 
   const NavLink = ({item}) => (
     <Link passHref={true} href={item.itemId} prefetch>
@@ -53,7 +53,7 @@ function renderItem(item, itemProps) {
     </Link>
   );
 
-  if (item.itemId && itemProps.$level === 1)
+  if (item.itemId && props.$level === 1)
     return (
       <Label overrides={{Block: {style: {textTransform: 'uppercase'}}}}>
         <NavLink item={item} />
@@ -84,7 +84,11 @@ export default ({path}) => {
       activeItemId={path}
       activePredicate={activePredicate}
       items={Routes}
-      renderItem={renderItem}
+      overrides={{
+        NavItem: {
+          component: CustomNavItem,
+        },
+      }}
     />
   );
 };

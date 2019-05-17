@@ -49,7 +49,7 @@ export default class NavItem extends React.Component<NavItemPropsT> {
             }
           : {})}
       >
-        <NavItem {...sharedProps} {...itemProps}>
+        <NavItem item={item} {...sharedProps} {...itemProps}>
           {item.title}
         </NavItem>
       </NavLink>
