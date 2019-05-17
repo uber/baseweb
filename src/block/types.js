@@ -15,7 +15,7 @@ export type OverridesT = {
   Block?: OverrideT<*>,
 };
 
-type ResponsiveT<T> = T | Array<T>;
+export type ResponsiveT<T> = T | Array<T>;
 
 type AlignContentT =
   | 'center'
@@ -219,7 +219,7 @@ type OverflowT =
   | 'initial'
   | 'unset';
 
-type ScaleT = 0 | string;
+export type ScaleT = 0 | string;
 
 export type BlockPropsT = {
   children?: Node,
