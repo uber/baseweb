@@ -18,19 +18,9 @@ describe('StatefulTabs', () => {
       <Tab title="Tab Link 3">Tab 3 content</Tab>
     </StatefulTabs>
   );
-  const ComponentWithOneTab = props => (
-    <StatefulTabs {...props}>
-      <Tab title="Tab Link 1">Tab 1 content</Tab>
-    </StatefulTabs>
-  );
 
   test('basic render', () => {
     const component = mount(<Component />);
-    expect(component).toMatchSnapshot('Stateful tabs render correctly');
-  });
-
-  test('basic render one tab', () => {
-    const component = mount(<ComponentWithOneTab />);
     expect(component).toMatchSnapshot('Stateful tabs render correctly');
   });
 
