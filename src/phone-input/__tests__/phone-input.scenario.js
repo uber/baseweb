@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {PhoneInput} from '../index.js';
+import {StatefulPhoneInput} from '../index.js';
 
 export const name = 'phone-input';
 
-export const component = () => <PhoneInput />;
+export const component = () => <StatefulPhoneInput />;
