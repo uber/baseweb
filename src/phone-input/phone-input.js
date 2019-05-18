@@ -6,107 +6,131 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 
 import {Block} from '../block/index.js';
 import {Input} from '../input/index.js';
 import {Select} from '../select/index.js';
-import {ChevronRight} from '../icon/index.js';
-
 import {countries} from './countries.js';
-import flags from './flags/flags@2x.js';
 
-import {styled} from '../styles/index.js';
+import flagSprite from './flags/spritesheet.png';
+import spritemap from './flags/spritemap.js';
 
-const ChevronDown = styled(ChevronRight, {
-  transform: 'rotate(90deg)',
-});
-
-export default function PhoneInput(props) {
-  const {value, initialCountry, onInputChange, onCountryChange} = props;
-  const [selectValue, setSelectValue] = useState(
-    [initialCountry] || [countries[0]],
-  );
+function Flag(props) {
   return (
-    <>
-      <Input
-        value={value}
-        onChange={event => onInputChange(event)}
-        overrides={{
-          Input: {style: {paddingLeft: '4px'}},
-          // eslint-disable-next-line react/display-name
-          Before: () => (
-            <Block display="flex" alignItems="center">
-              <Block>
-                <Select
-                  options={countries}
-                  labelKey="name"
-                  valueKey="dialCode"
-                  clearable={false}
-                  size="compact"
-                  value={selectValue}
-                  onChange={event => {
-                    setSelectValue(event.value);
-                    onCountryChange(event.option);
-                  }}
-                  maxDropdownHeight="300px"
-                  getOptionLabel={({option}) => {
-                    return (
-                      <Block display="flex" alignItems="center" width="100%">
-                        <Block
-                          as="img"
-                          src={flags[option.iso2]}
-                          maxWidth="18px"
-                          marginRight="12px"
-                        />
-                        <Block paddingRight="4px">{option.name}</Block>
-                        <Block marginLeft="auto">+{option.dialCode}</Block>
-                      </Block>
-                    );
-                  }}
-                  overrides={{
-                    IconsContainer: {
-                      style: {paddingRight: '0', cursor: 'pointer'},
+    <div
+      style={{
+        width: 21,
+        height: 15,
+        backgroundRepeat: 'none',
+        backgroundImage: `url(${flagSprite})`,
+        backgroundPosition: `-${spritemap[props.iso2].x}px -${
+          spritemap[props.iso2].y
+        }px`,
+      }}
+    />
+  );
+}
+
+export function StatefulPhoneInput(props) {
+  const US = countries.find(c => c.iso2 === 'US');
+  const [phoneNumber, setPhoneNumber] = useState(`+${US.dialCode} `);
+  const [country, setCountry] = useState(US);
+  return (
+    <PhoneInput
+      inputValue={phoneNumber}
+      country={country}
+      initialCountry={country}
+      onInputChange={event => {
+        setPhoneNumber(event.target.value);
+        if (props.onChange) props.onChange(phoneNumber);
+      }}
+      onCountryChange={event => {
+        // attempt to change only country dial code
+        const newPhoneNumber = phoneNumber.replace(
+          /\+(\d){1,4}\s+/,
+          `+${event.option.dialCode} `,
+        );
+        setPhoneNumber(
+          phoneNumber === newPhoneNumber
+            ? `+${event.option.dialCode} `
+            : newPhoneNumber,
+        );
+        setCountry(event.option);
+      }}
+    />
+  );
+}
+
+export function PhoneInput(props) {
+  const inputEl = useRef(null);
+  const {inputValue, country, onInputChange, onCountryChange} = props;
+  return (
+    <Input
+      inputRef={inputEl}
+      value={inputValue}
+      onChange={onInputChange}
+      overrides={{
+        Input: {
+          style: {
+            paddingLeft: '4px',
+          },
+        },
+        Before: {
+          component: function Before() {
+            return (
+              <Select
+                value={[country]}
+                onChange={(...args) => {
+                  inputEl.current.focus();
+                  onCountryChange(...args);
+                }}
+                options={countries}
+                labelKey="name"
+                valueKey="iso2"
+                clearable={false}
+                searchable={false}
+                maxDropdownHeight="300px"
+                getValueLabel={({option}) => {
+                  return <Flag iso2={option.iso2} />;
+                }}
+                getOptionLabel={({option}) => {
+                  return (
+                    <Block display="flex" alignItems="center" width="100%">
+                      <Flag iso2={option.iso2} />
+                      <Block marginLeft="8px">{option.name}</Block>
+                      <Block marginLeft="auto">+{option.dialCode}</Block>
+                    </Block>
+                  );
+                }}
+                overrides={{
+                  ControlContainer: {
+                    style: {
+                      width: '56px',
                     },
-                    SelectArrow: {
-                      component: function Foo() {
-                        return (
-                          <Block display="flex" alignItems="center">
-                            <Block
-                              as="img"
-                              src={flags[selectValue[0].iso2]}
-                              alt="Flag"
-                              maxWidth="24px"
-                              marginRight="6px"
-                            />
-                            <ChevronDown size={24} />
-                          </Block>
-                        );
-                      },
+                  },
+                  DropdownContainer: {
+                    style: {
+                      width: '100%',
                     },
-                    DropdownContainer: {
-                      style: {
-                        width: '350px',
-                      },
+                  },
+                  IconsContainer: {
+                    style: {
+                      paddingRight: '0',
                     },
-                    ValueContainer: {
-                      style: {
-                        width: '0',
-                      },
+                  },
+                  SingleValue: {
+                    style: {
+                      display: 'flex',
+                      alignItems: 'center',
                     },
-                    Input: {
-                      style: {
-                        width: '0',
-                      },
-                    },
-                  }}
-                />
-              </Block>
-              <Block marginLeft="4px">+{selectValue[0].dialCode}</Block>
-            </Block>
-          ),
-        }}
-      />
-    </>
+                  },
+                }}
+              />
+            );
+          },
+        },
+      }}
+    />
   );
 }
