@@ -48,6 +48,10 @@ const majors = {
     buildCommand: 'yarn documentation:build',
     distFolder: 'public',
   },
+  v6: {
+    buildCommand: 'yarn documentation:build',
+    distFolder: 'public',
+  },
 };
 
 async function main() {
