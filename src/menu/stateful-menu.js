@@ -20,6 +20,7 @@ export default class StatefulMenu extends React.PureComponent<
   static defaultProps = {
     // Mostly to satisfy flow
     initialState: {
+      activedescendantId: null,
       isFocused: false,
       // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,

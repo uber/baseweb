@@ -1,0 +1,308 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: {"flexGridColumnCount":1,"flexGridColumnGap":"1px","flexGridRowGap":"2px"} 1`] = `
+Object {
+  ":nth-child(1n-0)": Object {
+    "marginBottom": "2px",
+    "marginRight": 0,
+  },
+  ":nth-child(1n-0):last-child": Object {
+    "marginRight": "calc(0 * (1px + (100% - (1 - 1) * 1px) / 1))",
+  },
+  ":nth-child(1n-0):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  "width": "calc((100% - (1 - 1) * 1px) / 1)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: {"flexGridColumnCount":1,"flexGridColumnGap":0,"flexGridRowGap":0} 1`] = `
+Object {
+  ":nth-child(1n-0)": Object {
+    "marginBottom": "0px",
+    "marginRight": 0,
+  },
+  ":nth-child(1n-0):last-child": Object {
+    "marginRight": "calc(0 * (0px + (100% - (1 - 1) * 0px) / 1))",
+  },
+  ":nth-child(1n-0):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  "width": "calc((100% - (1 - 1) * 0px) / 1)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: {"flexGridColumnCount":2,"flexGridColumnGap":"1px","flexGridRowGap":"2px"} 1`] = `
+Object {
+  ":nth-child(2n-0)": Object {
+    "marginBottom": "2px",
+    "marginRight": 0,
+  },
+  ":nth-child(2n-0):last-child": Object {
+    "marginRight": "calc(0 * (1px + (100% - (2 - 1) * 1px) / 2))",
+  },
+  ":nth-child(2n-0):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(2n-1)": Object {
+    "marginBottom": "2px",
+    "marginRight": "1px",
+  },
+  ":nth-child(2n-1):last-child": Object {
+    "marginRight": "calc(1 * (1px + (100% - (2 - 1) * 1px) / 2))",
+  },
+  ":nth-child(2n-1):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(2n-1):nth-last-child(2)": Object {
+    "marginBottom": 0,
+  },
+  "width": "calc((100% - (2 - 1) * 1px) / 2)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: {"flexGridColumnCount":3,"flexGridColumnGap":"1px","flexGridRowGap":"2px"} 1`] = `
+Object {
+  ":nth-child(3n-0)": Object {
+    "marginBottom": "2px",
+    "marginRight": 0,
+  },
+  ":nth-child(3n-0):last-child": Object {
+    "marginRight": "calc(0 * (1px + (100% - (3 - 1) * 1px) / 3))",
+  },
+  ":nth-child(3n-0):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(3n-1)": Object {
+    "marginBottom": "2px",
+    "marginRight": "1px",
+  },
+  ":nth-child(3n-1):last-child": Object {
+    "marginRight": "calc(1 * (1px + (100% - (3 - 1) * 1px) / 3))",
+  },
+  ":nth-child(3n-1):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(3n-1):nth-last-child(2)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(3n-2)": Object {
+    "marginBottom": "2px",
+    "marginRight": "1px",
+  },
+  ":nth-child(3n-2):last-child": Object {
+    "marginRight": "calc(2 * (1px + (100% - (3 - 1) * 1px) / 3))",
+  },
+  ":nth-child(3n-2):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(3n-2):nth-last-child(2)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(3n-2):nth-last-child(3)": Object {
+    "marginBottom": 0,
+  },
+  "width": "calc((100% - (3 - 1) * 1px) / 3)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemStyle: {"$flexGridColumnCount":[1,2],"$flexGridColumnGap":"1px","$flexGridRowGap":"2px"} 1`] = `
+Object {
+  "@media screen and (max-width: 319px)": Object {
+    ":nth-child(1n-0)": Object {
+      "marginBottom": "2px",
+      "marginRight": 0,
+    },
+    ":nth-child(1n-0):last-child": Object {
+      "marginRight": "calc(0 * (1px + (100% - (1 - 1) * 1px) / 1))",
+    },
+    ":nth-child(1n-0):nth-last-child(1)": Object {
+      "marginBottom": 0,
+    },
+    "width": "calc((100% - (1 - 1) * 1px) / 1)",
+  },
+  "@media screen and (min-width: 320px)": Object {
+    ":nth-child(2n-0)": Object {
+      "marginBottom": "2px",
+      "marginRight": 0,
+    },
+    ":nth-child(2n-0):last-child": Object {
+      "marginRight": "calc(0 * (1px + (100% - (2 - 1) * 1px) / 2))",
+    },
+    ":nth-child(2n-0):nth-last-child(1)": Object {
+      "marginBottom": 0,
+    },
+    ":nth-child(2n-1)": Object {
+      "marginBottom": "2px",
+      "marginRight": "1px",
+    },
+    ":nth-child(2n-1):last-child": Object {
+      "marginRight": "calc(1 * (1px + (100% - (2 - 1) * 1px) / 2))",
+    },
+    ":nth-child(2n-1):nth-last-child(1)": Object {
+      "marginBottom": 0,
+    },
+    ":nth-child(2n-1):nth-last-child(2)": Object {
+      "marginBottom": 0,
+    },
+    "width": "calc((100% - (2 - 1) * 1px) / 2)",
+  },
+  "flexGrow": 1,
+}
+`;
+
+exports[`FlexGridItem flexGridItemStyle: {"$flexGridColumnCount":[1,2],"$flexGridColumnGap":["1px","2px"],"$flexGridRowGap":["2px","4px"]} 1`] = `
+Object {
+  "@media screen and (max-width: 319px)": Object {
+    ":nth-child(1n-0)": Object {
+      "marginBottom": "2px",
+      "marginRight": 0,
+    },
+    ":nth-child(1n-0):last-child": Object {
+      "marginRight": "calc(0 * (1px + (100% - (1 - 1) * 1px) / 1))",
+    },
+    ":nth-child(1n-0):nth-last-child(1)": Object {
+      "marginBottom": 0,
+    },
+    "width": "calc((100% - (1 - 1) * 1px) / 1)",
+  },
+  "@media screen and (min-width: 320px)": Object {
+    ":nth-child(2n-0)": Object {
+      "marginBottom": "4px",
+      "marginRight": 0,
+    },
+    ":nth-child(2n-0):last-child": Object {
+      "marginRight": "calc(0 * (2px + (100% - (2 - 1) * 2px) / 2))",
+    },
+    ":nth-child(2n-0):nth-last-child(1)": Object {
+      "marginBottom": 0,
+    },
+    ":nth-child(2n-1)": Object {
+      "marginBottom": "4px",
+      "marginRight": "2px",
+    },
+    ":nth-child(2n-1):last-child": Object {
+      "marginRight": "calc(1 * (2px + (100% - (2 - 1) * 2px) / 2))",
+    },
+    ":nth-child(2n-1):nth-last-child(1)": Object {
+      "marginBottom": 0,
+    },
+    ":nth-child(2n-1):nth-last-child(2)": Object {
+      "marginBottom": 0,
+    },
+    "width": "calc((100% - (2 - 1) * 2px) / 2)",
+  },
+  "flexGrow": 1,
+}
+`;
+
+exports[`FlexGridItem flexGridItemStyle: {"$flexGridColumnCount":2,"$flexGridColumnGap":"1px","$flexGridRowGap":"2px"} 1`] = `
+Object {
+  ":nth-child(2n-0)": Object {
+    "marginBottom": "2px",
+    "marginRight": 0,
+  },
+  ":nth-child(2n-0):last-child": Object {
+    "marginRight": "calc(0 * (1px + (100% - (2 - 1) * 1px) / 2))",
+  },
+  ":nth-child(2n-0):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(2n-1)": Object {
+    "marginBottom": "2px",
+    "marginRight": "1px",
+  },
+  ":nth-child(2n-1):last-child": Object {
+    "marginRight": "calc(1 * (1px + (100% - (2 - 1) * 1px) / 2))",
+  },
+  ":nth-child(2n-1):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  ":nth-child(2n-1):nth-last-child(2)": Object {
+    "marginBottom": 0,
+  },
+  "flexGrow": 1,
+  "width": "calc((100% - (2 - 1) * 1px) / 2)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemStyle: {} 1`] = `
+Object {
+  ":nth-child(1n-0)": Object {
+    "marginBottom": "0px",
+    "marginRight": 0,
+  },
+  ":nth-child(1n-0):last-child": Object {
+    "marginRight": "calc(0 * (0px + (100% - (1 - 1) * 0px) / 1))",
+  },
+  ":nth-child(1n-0):nth-last-child(1)": Object {
+    "marginBottom": 0,
+  },
+  "flexGrow": 1,
+  "width": "calc((100% - (1 - 1) * 0px) / 1)",
+}
+`;
+
+exports[`FlexGridItem renders: with default styles 1`] = `
+<FlexGridItem>
+  <Block
+    as="div"
+    data-baseweb="flex-grid-item"
+    overrides={
+      Object {
+        "Block": Object {
+          "style": [Function],
+        },
+      }
+    }
+  >
+    <MockStyledComponent
+      $as="div"
+      $style={[Function]}
+      data-baseweb="flex-grid-item"
+    >
+      <div
+        data-baseweb="flex-grid-item"
+        styled-component="true"
+      />
+    </MockStyledComponent>
+  </Block>
+</FlexGridItem>
+`;
+
+exports[`FlexGridItem renders: with overridden styles 1`] = `
+<FlexGridItem
+  overrides={
+    Object {
+      "Block": Object {
+        "style": Object {
+          "color": "red",
+        },
+      },
+    }
+  }
+>
+  <Block
+    as="div"
+    data-baseweb="flex-grid-item"
+    overrides={
+      Object {
+        "Block": Object {
+          "style": [Function],
+        },
+      }
+    }
+  >
+    <MockStyledComponent
+      $as="div"
+      $style={[Function]}
+      data-baseweb="flex-grid-item"
+    >
+      <div
+        data-baseweb="flex-grid-item"
+        styled-component="true"
+      />
+    </MockStyledComponent>
+  </Block>
+</FlexGridItem>
+`;
