@@ -55,6 +55,7 @@ const LogoSegment = styled('div', ({$searchInputOpen}) => ({
 }));
 
 const VERSIONS = [
+  {label: 'v6'},
   {label: 'v5'},
   {label: 'v4'},
   {label: 'v3'},
@@ -110,7 +111,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                       overrides={{
                         List: {
                           style: {
-                            width: '100px',
+                            width: '85px',
                           },
                         },
                       }}
