@@ -13,8 +13,12 @@ import {Input} from '../input/index.js';
 import {Select} from '../select/index.js';
 import {countries} from './countries.js';
 
-import flagSprite from './flags/spritesheet.png';
-import spritemap from './flags/spritemap.js';
+import flagsSpriteSmall from './flags/flags.png';
+// import flagsSpriteMedium from './flags/flags@2x.png';
+// import flagsSpriteLarge from './flags/flags@3x.png';
+import flagsSpriteMapSmall from './flags/flags.js';
+// import flagsSpriteMapMedium from './flags/flags@2x.js';
+// import flagsSpriteMapLarge from './flags/flags@3x.js';
 
 function Flag(props) {
   return (
@@ -23,9 +27,9 @@ function Flag(props) {
         width: 21,
         height: 15,
         backgroundRepeat: 'none',
-        backgroundImage: `url(${flagSprite})`,
-        backgroundPosition: `-${spritemap[props.iso2].x}px -${
-          spritemap[props.iso2].y
+        backgroundImage: `url(${flagsSpriteSmall})`,
+        backgroundPosition: `-${flagsSpriteMapSmall[props.iso2].x}px -${
+          flagsSpriteMapSmall[props.iso2].y
         }px`,
       }}
     />
