@@ -14,22 +14,44 @@ import {Select} from '../select/index.js';
 import {countries} from './countries.js';
 
 import flagsSpriteSmall from './flags/flags.png';
-// import flagsSpriteMedium from './flags/flags@2x.png';
-// import flagsSpriteLarge from './flags/flags@3x.png';
+import flagsSpriteMedium from './flags/flags@2x.png';
+import flagsSpriteLarge from './flags/flags@3x.png';
 import flagsSpriteMapSmall from './flags/flags.js';
-// import flagsSpriteMapMedium from './flags/flags@2x.js';
-// import flagsSpriteMapLarge from './flags/flags@3x.js';
+import flagsSpriteMapMedium from './flags/flags@2x.js';
+import flagsSpriteMapLarge from './flags/flags@3x.js';
+
+const FLAG_SIZES = {
+  compact: {
+    width: 21,
+    height: 15,
+    sprite: flagsSpriteSmall,
+    map: flagsSpriteMapSmall,
+  },
+  default: {
+    width: 42,
+    height: 30,
+    sprite: flagsSpriteMedium,
+    map: flagsSpriteMapMedium,
+  },
+  large: {
+    width: 63,
+    height: 45,
+    sprite: flagsSpriteLarge,
+    map: flagsSpriteMapLarge,
+  },
+};
 
 function Flag(props) {
+  const {size = 'compact'} = props;
   return (
     <div
       style={{
-        width: 21,
-        height: 15,
+        width: FLAG_SIZES[size].width,
+        height: FLAG_SIZES[size].height,
         backgroundRepeat: 'none',
-        backgroundImage: `url(${flagsSpriteSmall})`,
-        backgroundPosition: `-${flagsSpriteMapSmall[props.iso2].x}px -${
-          flagsSpriteMapSmall[props.iso2].y
+        backgroundImage: `url(${FLAG_SIZES[size].sprite})`,
+        backgroundPosition: `-${FLAG_SIZES[size].map[props.iso2].x}px -${
+          FLAG_SIZES[size].map[props.iso2].y
         }px`,
       }}
     />
@@ -38,11 +60,13 @@ function Flag(props) {
 
 export function StatefulPhoneInput(props) {
   // TODO: add default country prop
+  const {size} = props;
   const US = countries.find(c => c.iso2 === 'US');
   const [phoneNumber, setPhoneNumber] = useState(`+${US.dialCode} `);
   const [country, setCountry] = useState(US);
   return (
     <PhoneInput
+      size={size}
       inputValue={phoneNumber}
       country={country}
       initialCountry={country}
@@ -70,9 +94,10 @@ export function StatefulPhoneInput(props) {
 
 export function PhoneInput(props) {
   const inputEl = useRef(null);
-  const {inputValue, country, onInputChange, onCountryChange} = props;
+  const {inputValue, country, onInputChange, onCountryChange, size} = props;
   return (
     <Input
+      size={size}
       inputRef={inputEl}
       value={inputValue}
       onChange={onInputChange}
@@ -86,6 +111,7 @@ export function PhoneInput(props) {
           component: function Before() {
             return (
               <Select
+                size={size}
                 value={[country]}
                 onChange={(...args) => {
                   inputEl.current.focus();
@@ -98,7 +124,7 @@ export function PhoneInput(props) {
                 searchable={false}
                 maxDropdownHeight="300px"
                 getValueLabel={({option}) => {
-                  return <Flag iso2={option.iso2} />;
+                  return <Flag iso2={option.iso2} size={size} />;
                 }}
                 getOptionLabel={({option}) => {
                   return (
