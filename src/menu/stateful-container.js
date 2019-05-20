@@ -194,9 +194,9 @@ export default class MenuStatefulContainer extends React.Component<
       ref: itemRef,
       isFocused: this.state.isFocused,
       isHighlighted: this.state.highlightedIndex === index,
-      onClick: () => {
+      onClick: (event: SyntheticMouseEvent<HTMLElement>) => {
         if (this.props.onItemSelect && !item.disabled) {
-          this.props.onItemSelect({item});
+          this.props.onItemSelect({item, event});
           this.internalSetState(STATE_CHANGE_TYPES.click, {
             highlightedIndex: index,
             activedescendantId,
