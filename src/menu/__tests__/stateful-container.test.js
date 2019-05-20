@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env browser */
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
 import StatefulContainer from '../stateful-container.js';
 import {KEY_STRINGS, STATE_CHANGE_TYPES} from '../constants.js';
@@ -146,7 +146,7 @@ describe('Menu StatefulContainer', () => {
     expect(props.stateReducer.mock.calls[0]).toEqual([
       STATE_CHANGE_TYPES.moveUp,
       {highlightedIndex: 0},
-      {highlightedIndex: -1, isFocused: false},
+      {activedescendantId: null, highlightedIndex: -1, isFocused: false},
     ]);
 
     const parent = React.createRef();
@@ -168,7 +168,7 @@ describe('Menu StatefulContainer', () => {
     expect(props.stateReducer.mock.calls[1]).toEqual([
       STATE_CHANGE_TYPES.moveDown,
       {highlightedIndex: 1},
-      {highlightedIndex: 0, isFocused: false},
+      {activedescendantId: null, highlightedIndex: 0, isFocused: false},
     ]);
   });
 

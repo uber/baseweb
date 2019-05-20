@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React from 'react';
+import * as React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
 import {Provider as StyletronProvider} from 'styletron-react';
 

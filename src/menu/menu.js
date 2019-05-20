@@ -17,6 +17,7 @@ import type {LocaleT} from '../locale/types.js';
 
 export default function Menu(props: StatelessMenuPropsT) {
   const {
+    activedescendantId,
     getRequiredItemProps = (item, index) => ({}),
     items,
     noResultsMsg,
@@ -32,11 +33,11 @@ export default function Menu(props: StatelessMenuPropsT) {
     overrides.EmptyState,
     StyledEmptyState,
   );
-
   return (
     <LocaleContext.Consumer>
       {(locale: LocaleT) => (
         <List
+          aria-activedescendant={activedescendantId || null}
           role="listbox"
           $ref={rootRef}
           onMouseEnter={focusMenu}

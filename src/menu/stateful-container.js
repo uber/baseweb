@@ -27,6 +27,7 @@ export default class MenuStatefulContainer extends React.Component<
       // Defaults to -1 so no item is highlighted
       highlightedIndex: -1,
       isFocused: false,
+      activedescendantId: null,
     },
     stateReducer: (
       changeType: ?$PropertyType<StateReducerFnT, 'changeType'>,
@@ -180,6 +181,14 @@ export default class MenuStatefulContainer extends React.Component<
       itemRef = React.createRef();
       this.refList[index] = itemRef;
     }
+    const requiredItemProps = this.props.getRequiredItemProps(item, index);
+    const activedescendantId = requiredItemProps.id || null;
+    if (
+      this.state.highlightedIndex === index &&
+      this.state.activedescendantId !== activedescendantId
+    ) {
+      this.setState({activedescendantId});
+    }
     return {
       disabled: !!item.disabled,
       ref: itemRef,
@@ -190,16 +199,21 @@ export default class MenuStatefulContainer extends React.Component<
           this.props.onItemSelect({item});
           this.internalSetState(STATE_CHANGE_TYPES.click, {
             highlightedIndex: index,
+            activedescendantId,
           });
         }
       },
       onMouseEnter: () => {
         this.internalSetState(STATE_CHANGE_TYPES.mouseEnter, {
           highlightedIndex: index,
+          activedescendantId,
         });
       },
       resetMenu: this.resetMenu,
-      ...this.props.getRequiredItemProps(item, index),
+      ...(this.state.highlightedIndex === index
+        ? {id: activedescendantId}
+        : {}),
+      ...requiredItemProps,
     };
   };
 
@@ -232,6 +246,7 @@ export default class MenuStatefulContainer extends React.Component<
     this.internalSetState(STATE_CHANGE_TYPES.reset, {
       isFocused: false,
       highlightedIndex: -1,
+      activedescendantId: null,
     });
   };
 
@@ -253,6 +268,7 @@ export default class MenuStatefulContainer extends React.Component<
       ({
         ...restProps,
         rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
+        activedescendantId: this.state.activedescendantId,
         getRequiredItemProps: this.getRequiredItemProps,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Radio, RadioGroup} from 'baseui/radio';
 
 export default class Stateless extends React.Component {
