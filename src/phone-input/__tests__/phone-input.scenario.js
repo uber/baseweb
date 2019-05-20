@@ -12,4 +12,16 @@ import {StatefulPhoneInput} from '../index.js';
 
 export const name = 'phone-input';
 
-export const component = () => <StatefulPhoneInput />;
+export const component = () => (
+  <>
+    <div>
+      <StatefulPhoneInput size="compact" />
+    </div>
+    <div>
+      <StatefulPhoneInput size="default" />
+    </div>
+    <div>
+      <StatefulPhoneInput size="large" />
+    </div>
+  </>
+);
