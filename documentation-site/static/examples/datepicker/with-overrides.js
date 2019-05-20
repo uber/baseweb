@@ -33,10 +33,12 @@ export default () => (
           backgroundColor: $theme.colors.positive,
         }),
       },
-      MonthSelect: {
-        props: {overrides: selectOverrides},
+      MonthHeader: {
+        style: ({$theme}) => ({
+          backgroundColor: $theme.colors.positive,
+        }),
       },
-      YearSelect: {
+      MonthYearSelect: {
         props: {overrides: selectOverrides},
       },
       PrevButton: {

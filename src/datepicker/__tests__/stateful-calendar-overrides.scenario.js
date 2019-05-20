@@ -44,10 +44,7 @@ export const component = () => (
           backgroundColor: $theme.colors.positive,
         }),
       },
-      MonthSelect: {
-        props: {overrides: selectOverrides},
-      },
-      YearSelect: {
+      MonthYearSelect: {
         props: {overrides: selectOverrides},
       },
       PrevButton: {

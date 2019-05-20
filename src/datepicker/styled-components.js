@@ -44,30 +44,17 @@ export const StyledCalendarContainer = styled(
   },
 );
 
-export const StyledQuickSelectContainer = styled(
+export const StyledSelectorContainer = styled(
   'div',
-  (props: SharedStylePropsT) => ({
-    maxWidth: '296px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginBottom: props.$theme.sizing.scale600,
-  }),
+  (props: SharedStylePropsT) => {
+    return {
+      marginBottom: props.$theme.sizing.scale600,
+      paddingLeft: props.$theme.sizing.scale600,
+      paddingRight: props.$theme.sizing.scale600,
+      textAlign: 'left',
+    };
+  },
 );
-
-export const StyledQuickSelectLabel = styled(
-  'div',
-  (props: SharedStylePropsT) => ({
-    ...props.$theme.typography.font300,
-    color: props.$theme.colors.colorPrimary,
-    marginBottom: props.$theme.sizing.scale600,
-    textAlign: 'left',
-  }),
-);
-
-export const StyledQuickSelectButtons = styled('div', {
-  display: 'flex',
-  flexWrap: 'wrap',
-});
 
 export const StyledCalendarHeader = styled(
   'div',
@@ -96,15 +83,41 @@ export const StyledCalendarHeader = styled(
 
 export const StyledMonthHeader = styled('div', (props: SharedStylePropsT) => {
   return {
+    color: props.$theme.colors.white,
+    backgroundColor: props.$theme.colors.primary,
     whiteSpace: 'no-wrap',
   };
 });
 
-function getArrowBtnStyle({$theme}: SharedStylePropsT) {
+export const StyledMonthYearSelectButton = styled('button', props => {
+  return {
+    ...props.$theme.typography.font400,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+    color: props.$theme.colors.mono100,
+    cursor: 'pointer',
+    display: 'flex',
+    ':focus': {backgroundColor: props.$theme.colors.primary500},
+  };
+});
+
+export const StyledMonthYearSelectIconContainer = styled('span', props => {
+  return {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: props.$theme.sizing.scale500,
+  };
+});
+
+function getArrowBtnStyle({$theme, $disabled}: SharedStylePropsT) {
   return {
     boxSizing: 'border-box',
     height: '22px',
-    color: $theme.colors.white,
+    color: $disabled
+      ? $theme.colors.datepickerDayFontDisabled
+      : $theme.colors.white,
+    cursor: $disabled ? 'default' : 'pointer',
     backgroundColor: 'transparent',
     borderWidth: '0',
     paddingTop: '3px',
@@ -112,12 +125,14 @@ function getArrowBtnStyle({$theme}: SharedStylePropsT) {
     paddingLeft: '3px',
     paddingRight: '3px',
     outline: 'none',
-    ':focus': {
-      backgroundColor: $theme.colors.primary500,
-      borderRadius: $theme.borders.useRoundedCorners
-        ? $theme.sizing.scale100
-        : 0,
-    },
+    ':focus': $disabled
+      ? {}
+      : {
+          backgroundColor: $theme.colors.primary500,
+          borderRadius: $theme.borders.useRoundedCorners
+            ? $theme.sizing.scale100
+            : 0,
+        },
   };
 }
 
@@ -223,6 +238,7 @@ export function calculateBorderRadius(
 export const StyledDay = styled('div', (props: SharedStylePropsT) => {
   const {
     $disabled,
+    $isHeader,
     $isHovered,
     $isHighlighted,
     $outsideMonth,
@@ -234,7 +250,7 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
   return {
     boxSizing: 'border-box',
     position: 'relative',
-    cursor: $disabled ? 'default' : 'pointer',
+    cursor: $disabled || $isHeader ? 'default' : 'pointer',
     display: 'inline-block',
     width: sizing.scale1000,
     height: sizing.scale1000,

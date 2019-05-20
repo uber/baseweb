@@ -19,7 +19,7 @@ function StatefulComponent(props: StatefulDatepickerPropsT<CalendarPropsT>) {
 }
 
 StatefulComponent.defaultProps = {
-  initialState: {value: null},
+  initialState: {},
   stateReducer: (type, nextState) => nextState,
   onSelect: () => {},
 };
