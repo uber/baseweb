@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,13 +10,13 @@ import * as React from 'react';
 // Components
 import MaybeChildMenu from './maybe-child-menu.js';
 import {
-  ListItemProfile as StyledListItemProfile,
-  ProfileImgContainer as StyledProfileImgContainer,
-  ProfileImg as StyledProfileImg,
-  ProfileLabelsContainer as StyledProfileLabelsContainer,
-  ProfileTitle as StyledProfileTitle,
-  ProfileSubtitle as StyledProfileSubtitle,
-  ProfileBody as StyledProfileBody,
+  StyledListItemProfile,
+  StyledProfileImgContainer,
+  StyledProfileImg,
+  StyledProfileLabelsContainer,
+  StyledProfileTitle,
+  StyledProfileSubtitle,
+  StyledProfileBody,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 // Types

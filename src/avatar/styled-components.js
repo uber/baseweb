@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,7 +21,10 @@ export const Avatar = styled('img', (props: StylePropsT) => {
   const themedSize = getSize(props);
 
   return {
-    borderRadius: '50%',
+    borderTopRightRadius: '50%',
+    borderBottomRightRadius: '50%',
+    borderTopLeftRadius: '50%',
+    borderBottomLeftRadius: '50%',
     boxSizing: 'border-box',
     display: 'block',
     height: themedSize,

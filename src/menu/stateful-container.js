@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -47,7 +47,7 @@ export default class MenuStatefulContainer extends React.Component<
 
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
-  rootRef = (React.createRef(): {current: ?HTMLElement});
+  rootRef = (React.createRef(): {current: HTMLElement | null});
 
   componentDidMount() {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
@@ -236,15 +236,28 @@ export default class MenuStatefulContainer extends React.Component<
   };
 
   render() {
+    // omit the stateful-container's props and don't pass it down
+    // to the children (stateless menu)
+    const {
+      initialState,
+      stateReducer,
+      children,
+      onItemSelect,
+      addMenuToNesting,
+      removeMenuFromNesting,
+      getParentMenu,
+      getChildMenu,
+      ...restProps
+    } = this.props;
     return this.props.children(
       ({
+        ...restProps,
+        rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
         getRequiredItemProps: this.getRequiredItemProps,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
-        items: this.props.items,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
-        rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
       }: RenderPropsT),
     );
   }

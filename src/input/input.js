@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -70,6 +70,15 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     );
 
     const sharedProps = getSharedProps(this.props, this.state);
+
+    if (__DEV__) {
+      if (this.props.error && this.props.positive) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[Input] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+        );
+      }
+    }
 
     return (
       <Root data-baseweb="input" {...sharedProps} {...rootProps}>

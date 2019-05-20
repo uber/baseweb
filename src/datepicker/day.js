@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -153,14 +153,13 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     const {date, value, highlightedDate, range, highlighted} = this.props;
     const $isHighlighted = highlighted;
     const $selected = this.isSelected();
-    const $hasRangeHighlighted =
+    const $hasRangeHighlighted = !!(
       Array.isArray(value) &&
       range &&
       value.length === 1 &&
       highlightedDate &&
       !isSameDay(value[0], highlightedDate)
-        ? true
-        : false;
+    );
     return {
       $date: date,
       $disabled: this.props.disabled,

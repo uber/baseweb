@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,7 +27,7 @@ export type OverridesT = {
   Close?: OverrideT<SharedStylePropsArgT>,
 };
 
-export type ElementRefT = {current: ?React.ElementRef<'div'>};
+export type ElementRefT = {current: React.ElementRef<'div'> | null};
 
 // Props shared by all flavors of modal
 export type ModalPropsT = {

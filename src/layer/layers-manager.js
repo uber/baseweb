@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,14 +11,12 @@ import type {LayersManagerPropsT, LayersContextT} from './types.js';
 export const {
   Provider,
   Consumer,
-}: React.Context<LayersContextT> = React.createContext({
-  host: undefined,
-});
+}: React.Context<LayersContextT> = React.createContext({});
 
 export default class LayersManager extends React.Component<
   LayersManagerPropsT,
 > {
-  host: {current: ?HTMLElement} = React.createRef();
+  host: {current: HTMLDivElement | null} = React.createRef();
 
   componentDidMount() {
     this.forceUpdate();

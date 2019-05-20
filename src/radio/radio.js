@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
 
@@ -104,15 +104,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       overrides.RadioMarkOuter,
       StyledRadioMarkOuter,
     );
-
-    if (__DEV__) {
-      if (this.props.overrides && this.props.overrides.RadioMark) {
-        // eslint-disable-next-line no-console
-        console.warn(`The RadioMark prop will be deprecated in the next major version. Please use
-          the 'RadioMarkInner', and 'RadioMarkOuter' overrides.
-        `);
-      }
-    }
 
     const sharedProps = {
       $checked: this.props.checked,

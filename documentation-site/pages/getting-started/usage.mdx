@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,12 +12,12 @@ export default Layout;
 # Base Web Quickstart
 
 In order to use Base Web, you need to do a small setup and wrap the root of your
-application with `StyletronProvider` and `ThemeProvider` components:
+application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
 
 ```javascript
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, ThemeProvider, styled} from 'baseui';
+import {LightTheme, BaseProvider, styled} from 'baseui';
 import {StatefulInput} from 'baseui/input';
 
 const engine = new Styletron();
@@ -32,11 +32,11 @@ const Centered = styled('div', {
 export default function Hello() {
   return (
     <StyletronProvider value={engine}>
-      <ThemeProvider theme={LightTheme}>
+      <BaseProvider theme={LightTheme}>
         <Centered>
           <StatefulInput />
         </Centered>
-      </ThemeProvider>
+      </BaseProvider>
     </StyletronProvider>
   );
 }

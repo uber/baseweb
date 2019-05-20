@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Block} from 'baseui/block';
 import ArrowUp from 'baseui/icon/arrow-up';
 import ArrowRight from 'baseui/icon/arrow-right';

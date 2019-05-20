@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -78,6 +78,11 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     value: get(props, '$color'),
     transform: color => colors[color] || color,
   });
+  styles.apply({
+    property: 'backgroundColor',
+    value: get(props, '$backgroundColor'),
+    transform: backgroundColor => colors[backgroundColor] || backgroundColor,
+  });
 
   styles.apply({
     property: 'fontFamily',
@@ -137,8 +142,13 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     transform: getScale,
   });
   styles.apply({property: 'gridRow', value: get(props, '$gridRow')});
-  styles.apply({property: 'gridRowStart', value: get(props, '$gridRowStart')});
   styles.apply({property: 'gridRowEnd', value: get(props, '$gridRowEnd')});
+  styles.apply({
+    property: 'gridRowGap',
+    value: get(props, '$gridRowGap'),
+    transform: getScale,
+  });
+  styles.apply({property: 'gridRowStart', value: get(props, '$gridRowStart')});
   styles.apply({property: 'gridTemplate', value: get(props, '$gridTemplate')});
   styles.apply({
     property: 'gridTemplateAreas',

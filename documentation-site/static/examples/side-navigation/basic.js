@@ -5,7 +5,7 @@ const nav = [
   {
     title: 'Colors',
     itemId: '#level1.1',
-    subnav: [
+    subNav: [
       {
         title: 'Primary',
         itemId: '#level1.1.1',
@@ -13,7 +13,7 @@ const nav = [
       {
         title: 'Shades',
         itemId: '#level1.1.2',
-        subnav: [
+        subNav: [
           {
             title: 'Dark',
             itemId: '#level1.1.2.1',

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,19 +8,18 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env browser */
 
-import React from 'react';
+import * as React from 'react';
 import {
+  BaseProvider,
   DarkTheme,
   DarkThemeMove,
   LightTheme,
   LightThemeMove,
-  ThemeProvider,
 } from 'baseui';
 
 import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
-import {LayersManager} from 'baseui/layer';
 import Router from 'next/router';
 
 import {styletron} from '../helpers/styletron';
@@ -34,14 +33,13 @@ const themes = {
   DarkThemeMove,
 };
 
-const BlockOverrides = {
-  Block: {
-    style: ({$theme}) => ({
-      backgroundColor: $theme.colors.background,
-      maxWidth: '100vw',
-      overflow: 'hidden',
-    }),
-  },
+const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
+const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
+
+const blockProps = {
+  backgroundColor: 'background',
+  maxWidth: '100vw',
+  overflow: 'hidden',
 };
 
 export default class MyApp extends App {
@@ -50,6 +48,7 @@ export default class MyApp extends App {
     this.state = {
       theme: LightTheme,
     };
+    this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
 
   static async getInitialProps({Component, ctx}) {
@@ -64,7 +63,38 @@ export default class MyApp extends App {
     Router.onRouteChangeComplete = url => {
       trackPageView(url);
     };
+    if (window.matchMedia) {
+      const mmDark = window.matchMedia(DARK_MEDIA_QUERY);
+      const mmLight = window.matchMedia(LIGHT_MEDIA_QUERY);
+      if (mmDark.media === DARK_MEDIA_QUERY) {
+        const theme = mmDark.matches ? 'dark' : 'light';
+        localStorage.setItem('docs-theme', theme);
+      }
+      mmDark.addListener(this.mediaQueryListener);
+      mmLight.addListener(this.mediaQueryListener);
+    }
     this.setTheme();
+  }
+
+  componentWillUnmount() {
+    if (window.matchMedia) {
+      const mmDark = window.matchMedia(DARK_MEDIA_QUERY);
+      const mmLight = window.matchMedia(LIGHT_MEDIA_QUERY);
+      mmDark.removeListener(this.mediaQueryListener);
+      mmLight.removeListener(this.mediaQueryListener);
+    }
+  }
+
+  mediaQueryListener(e) {
+    if (e && e.matches) {
+      if (e.media === DARK_MEDIA_QUERY) {
+        this.setThemeStyle('dark');
+      }
+      if (e.media === LIGHT_MEDIA_QUERY) {
+        this.setThemeStyle('light');
+      }
+      this.setTheme();
+    }
   }
 
   setTheme() {
@@ -122,17 +152,25 @@ export default class MyApp extends App {
     });
   }
 
+  getThemeStyle() {
+    return localStorage.getItem('docs-theme');
+  }
+
+  setThemeStyle(theme) {
+    localStorage.setItem('docs-theme', theme);
+  }
+
   toggleTheme() {
-    const theme = localStorage.getItem('docs-theme');
+    const theme = this.getThemeStyle();
 
     if (!theme) {
-      localStorage.setItem('docs-theme', 'dark');
+      this.setThemeStyle('dark');
     }
 
     if (theme === 'dark') {
-      localStorage.setItem('docs-theme', 'light');
+      this.setThemeStyle('light');
     } else {
-      localStorage.setItem('docs-theme', 'dark');
+      this.setThemeStyle('dark');
     }
 
     this.setTheme();
@@ -143,18 +181,16 @@ export default class MyApp extends App {
     return (
       <Container>
         <StyletronProvider value={styletron}>
-          <LayersManager>
-            <ThemeProvider theme={this.state.theme}>
-              <Block overrides={BlockOverrides}>
-                <Component
-                  {...pageProps}
-                  path={path}
-                  toggleTheme={this.toggleTheme.bind(this)}
-                />
-                <Block overrides={BlockOverrides} height="300px" />
-              </Block>
-            </ThemeProvider>
-          </LayersManager>
+          <BaseProvider theme={this.state.theme}>
+            <Block {...blockProps}>
+              <Component
+                {...pageProps}
+                path={path}
+                toggleTheme={this.toggleTheme.bind(this)}
+              />
+              <Block {...blockProps} height="300px" />
+            </Block>
+          </BaseProvider>
         </StyletronProvider>
       </Container>
     );

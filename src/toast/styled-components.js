@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -112,6 +112,9 @@ export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
 export const Body = styled('div', (props: SharedStylePropsT) => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius200
+    : '0px';
   return {
     ...$theme.typography.font350,
     pointerEvents: 'auto',
@@ -126,9 +129,10 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
       getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius200
-      : '0px',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',

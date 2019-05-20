@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {styled} from 'baseui';
 import {StatefulMenu, OptionList, StyledList} from 'baseui/menu';
 import List from 'react-virtualized/dist/commonjs/List';

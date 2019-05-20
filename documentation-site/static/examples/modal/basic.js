@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Button} from 'baseui/button';
 import {
   Modal,
@@ -17,7 +17,7 @@ class ModalStateContainer extends React.Component {
   };
   toggle = (open = !this.state.isOpen) => {
     this.setState({
-      isOpen: Boolean(open),
+      isOpen: !!open,
     });
   };
   open = () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Tag, KIND, VARIANT} from 'baseui/tag';
 
 export default () => (

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -350,7 +350,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const {isOpen, showArrow} = this.props;
     const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {
-      $showArrow: Boolean(showArrow),
+      $showArrow: !!showArrow,
       $arrowOffset: arrowOffset,
       $popoverOffset: popoverOffset,
       $placement: placement,
@@ -443,10 +443,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
     // Only render popover on the browser (portals aren't supported server-side)
     if (__BROWSER__) {
-      if (
-        this.state.isMounted &&
-        (this.props.isOpen || this.state.isAnimating)
-      ) {
+      if (this.state.isMounted && this.props.isOpen) {
         rendered.push(
           <Layer
             key={'new-layer'}

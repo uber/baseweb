@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -85,6 +85,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     const {
       maxDropdownHeight,
       multi,
+      noResultsMsg,
       onItemSelect,
       options = [],
       overrides = {},
@@ -111,6 +112,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
         {...dropdownContainerProps}
       >
         <OverriddenStatefulMenu
+          noResultsMsg={noResultsMsg}
           onItemSelect={onItemSelect}
           items={options}
           size={size}

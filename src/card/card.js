@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* @flow */
 
-import React from 'react';
+import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {
   Action as StyledAction,
@@ -22,7 +22,7 @@ import {
 import type {CardsPropsT} from './types.js';
 
 export function hasThumbnail(props: {+thumbnail?: string}) {
-  return Boolean(props.thumbnail);
+  return !!props.thumbnail;
 }
 
 function Card(props: CardsPropsT) {

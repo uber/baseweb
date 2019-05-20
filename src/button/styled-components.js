@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,23 +14,6 @@ type StylePropsT = SharedStylePropsT & {
   $theme: ThemeT,
 };
 
-function getBorderRadii({$shape, $theme}: StylePropsT) {
-  let value = '0px';
-
-  if ($shape === SHAPE.round) {
-    value = '50%';
-  } else if ($theme.borders.useRoundedCorners) {
-    value = $theme.borders.radius200;
-  }
-
-  return {
-    borderTopRightRadius: value,
-    borderBottomRightRadius: value,
-    borderTopLeftRadius: value,
-    borderBottomLeftRadius: value,
-  };
-}
-
 export const BaseButton = styled(
   'button',
   ({
@@ -43,14 +26,10 @@ export const BaseButton = styled(
     $disabled,
   }: StylePropsT) => ({
     position: 'relative',
-    ...($size === SIZE.compact
-      ? $theme.typography.font250
-      : $theme.typography.font450),
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     border: 'none',
-    ...getBorderRadii({$shape, $theme}),
     textDecoration: 'none',
     outline: 'none',
     WebkitAppearance: 'none',
@@ -63,14 +42,15 @@ export const BaseButton = styled(
       backgroundColor: $theme.colors.buttonDisabledFill,
       color: $theme.colors.buttonDisabledText,
     },
-    // Padding For Shape and Size
-    ...getStyleForShape({$theme, $shape, $size}),
-    // Kind style override
-    ...getStyleForKind({$theme, $kind, $isLoading, $isSelected, $disabled}),
     marginLeft: 0,
     marginTop: 0,
     marginRight: 0,
     marginBottom: 0,
+    ...getFontStyles({$theme, $size}),
+    ...getBorderRadiiStyles({$theme, $shape}),
+    ...getPaddingStyles({$theme, $size}),
+    // Kind style override
+    ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
   }),
 );
 
@@ -103,7 +83,10 @@ export const LoadingSpinner = styled(
     return {
       height: $theme.sizing.scale600,
       width: $theme.sizing.scale600,
-      borderRadius: '50%',
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+      borderTopLeftRadius: '50%',
+      borderBottomLeftRadius: '50%',
       borderStyle: 'solid',
       borderWidth: $theme.sizing.scale0,
       borderTopColor: foreground,
@@ -144,45 +127,59 @@ export function getLoadingSpinnerColors({
   };
 }
 
-export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
-  switch ($shape) {
-    case SHAPE.round:
-    case SHAPE.square:
+export function getBorderRadiiStyles({$theme, $shape}: StylePropsT) {
+  let value = '0px';
+
+  if ($shape === SHAPE.round) {
+    value = '50%';
+  }
+
+  return {
+    borderTopRightRadius: value,
+    borderBottomRightRadius: value,
+    borderTopLeftRadius: value,
+    borderBottomLeftRadius: value,
+  };
+}
+
+export function getFontStyles({$theme, $size}: StylePropsT) {
+  switch ($size) {
+    case SIZE.compact:
+      return $theme.typography.font250;
+    case SIZE.large:
+      return $theme.typography.font450;
+    default:
+      return $theme.typography.font350;
+  }
+}
+
+export function getPaddingStyles({$theme, $size}: StylePropsT) {
+  switch ($size) {
+    case SIZE.compact:
       return {
-        paddingTop:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingBottom:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingLeft:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingRight:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
+        paddingTop: $theme.sizing.scale300,
+        paddingBottom: $theme.sizing.scale300,
+        paddingLeft: $theme.sizing.scale300,
+        paddingRight: $theme.sizing.scale300,
+      };
+    case SIZE.large:
+      return {
+        paddingTop: $theme.sizing.scale600,
+        paddingBottom: $theme.sizing.scale600,
+        paddingLeft: $theme.sizing.scale600,
+        paddingRight: $theme.sizing.scale600,
       };
     default:
       return {
-        paddingTop:
-          $size === SIZE.compact
-            ? $theme.sizing.scale200
-            : $theme.sizing.scale300,
-        paddingBottom:
-          $size === SIZE.compact
-            ? $theme.sizing.scale200
-            : $theme.sizing.scale300,
-        paddingLeft: $theme.sizing.scale600,
-        paddingRight: $theme.sizing.scale600,
+        paddingTop: $theme.sizing.scale500,
+        paddingBottom: $theme.sizing.scale500,
+        paddingLeft: $theme.sizing.scale500,
+        paddingRight: $theme.sizing.scale500,
       };
   }
 }
 
-export function getStyleForKind({
+export function getKindStyles({
   $theme,
   $isLoading,
   $isSelected,

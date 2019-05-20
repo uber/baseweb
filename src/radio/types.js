@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,8 +14,6 @@ import type {ThemeT} from '../styles/types.js';
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 
 export type RadioOverridesT = {
-  // This override will be deprecated in the next major version. Use 'RadioMarkInner' or 'RadioMarkOuter' instead.
-  RadioMark?: OverrideT<*>,
   RadioMarkInner?: OverrideT<*>,
   RadioMarkOuter?: OverrideT<*>,
   Label?: OverrideT<*>,
@@ -48,15 +46,11 @@ export type PropsT = {
    * visible on screen. If the label is visible, use the 'aria-labeledby' prop instead.
    */
   'aria-label'?: string,
-  // This prop will be deprecated in the next major update. Use 'aria-label' instead.
-  ariaLabel?: string,
   /**
    * Establishes a relationship between the radio group and its label. Screen readers use this
    * attribute to catalog the object on a page so that users can navigate between them.
    */
   'aria-labelledby'?: string,
-  // This prop will be deprecated in the next major update. Use 'aria-labelledby' instead.
-  ariaLabelledBy?: string,
   // This prop will be deprecated in the next major update. Pass overrides to the 'Radio' component instead.
   overrides?: OverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
@@ -106,7 +100,7 @@ export type RadioPropsT = {
   /** Disable the checkbox from being changed. */
   disabled?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: {current: ?HTMLInputElement},
+  inputRef: {current: HTMLInputElement | null},
   /** Renders checkbox in errored state. */
   isError?: boolean,
   /** How to position the label relative to the checkbox itself. */

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,12 +22,10 @@ export default class SideNav extends React.Component<NavPropsT> {
     activePredicate: null,
     items: [],
     overrides: {},
-    renderItem: null,
+    mapItem: null,
   };
 
-  activePredicate = (item: Item) => {
-    return item.itemId === this.props.activeItemId ? true : false;
-  };
+  activePredicate = (item: Item) => item.itemId === this.props.activeItemId;
 
   render() {
     const {
@@ -36,7 +34,7 @@ export default class SideNav extends React.Component<NavPropsT> {
       items,
       onChange,
       overrides,
-      renderItem,
+      mapItem,
     } = this.props;
     const navLevel = 1;
 
@@ -50,7 +48,18 @@ export default class SideNav extends React.Component<NavPropsT> {
       StyledSubNavContainer,
     );
 
-    const renderNavItem = (item: Item, level: number, index) => {
+    const renderNavItem = (item: Item, level: number, index, mapItem) => {
+      if (typeof mapItem === 'function') {
+        const recMapItem = item => {
+          let subNav = [];
+          if (item.subNav) {
+            subNav = item.subNav.map(recMapItem);
+          }
+          return mapItem({...item, subNav});
+        };
+        item = recMapItem(item);
+      }
+
       const sharedProps = {
         $active: activePredicate
           ? activePredicate(item, activeItemId)
@@ -58,6 +67,7 @@ export default class SideNav extends React.Component<NavPropsT> {
         $level: level,
         $selectable: !!item.itemId,
       };
+
       return (
         <NavItemContainer
           key={`${index}-level${level}-${
@@ -70,12 +80,12 @@ export default class SideNav extends React.Component<NavPropsT> {
             <NavItem
               item={item}
               onSelect={onChange}
-              renderItem={renderItem}
+              overrides={overrides}
               {...sharedProps}
             />
-            {item.subnav ? (
+            {item.subNav ? (
               <SubNavContainer {...sharedProps} {...subNavContainerProps}>
-                {item.subnav.map((subitem, idx) => {
+                {item.subNav.map((subitem, idx) => {
                   return renderNavItem(subitem, level + 1, index);
                 })}
               </SubNavContainer>
@@ -88,7 +98,7 @@ export default class SideNav extends React.Component<NavPropsT> {
     return (
       <Root role="list" {...rootProps}>
         {items.map((item, index) => {
-          return renderNavItem(item, navLevel, index);
+          return renderNavItem(item, navLevel, index, mapItem);
         })}
       </Root>
     );

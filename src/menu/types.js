@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -106,14 +106,19 @@ export type StatefulContainerPropsT = {
   rootRef?: RootRefT,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
-  addMenuToNesting?: (ref: {current: ?HTMLElement}) => void,
-  removeMenuFromNesting?: (ref: {current: ?HTMLElement}) => void,
-  getParentMenu?: (ref: {current: ?HTMLElement}) => ?{current: ?HTMLElement},
-  getChildMenu?: (ref: {current: ?HTMLElement}) => ?{current: ?HTMLElement},
+  addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
+  removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
+  getParentMenu?: (ref: {current: HTMLElement | null}) => ?{
+    current: HTMLElement | null,
+  },
+  getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
+    current: HTMLElement | null,
+  },
 };
 
 export type MenuPropsT = {
   overrides?: {
+    EmptyState?: OverrideT<*>,
     List?: OverrideT<*>,
     Option?: OverrideT<*>,
   },
@@ -138,6 +143,8 @@ export type SharedStatelessPropsT = {
   highlightedIndex?: number,
   /** List of menu items. */
   items: ItemsT,
+  /** Message to be displayed if no menu items are passed in. */
+  noResultsMsg?: React.Node,
   onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   /** Ref for the menu container element. Used to capture key events for navigation */

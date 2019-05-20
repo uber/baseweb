@@ -1,5 +1,5 @@
 /* global document */
-import React from 'react';
+import * as React from 'react';
 import {Layer, TetherBehavior, TETHER_PLACEMENT} from 'baseui/layer';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
@@ -18,11 +18,11 @@ function BlockComponent(props) {
       paddingBottom="20px"
       paddingLeft="20px"
       paddingRight="20px"
+      backgroundColor={color}
       overrides={{
         Block: {
           style: {
             textAlign: 'center',
-            backgroundColor: color,
           },
         },
       }}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -88,12 +88,16 @@ export const DialogContainer = styled('div', (props: SharedStylePropsT) => {
 
 export const Dialog = styled('div', (props: SharedStylePropsT) => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius200
+    : '0px';
   return {
     position: 'relative',
     backgroundColor: $theme.colors.backgroundAlt,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius200
-      : '0px',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     marginLeft: $theme.sizing.scale600,
     marginTop: $theme.sizing.scale600,
     marginRight: $theme.sizing.scale600,
@@ -128,7 +132,7 @@ export const Close = styled('button', (props: SharedStylePropsT) => {
   return {
     // Reset button styles
     border: '0',
-    background: 'transparent',
+    backgroundColor: 'transparent',
     outline: 0,
     paddingLeft: 0,
     paddingTop: 0,

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-type Ref = {current: ?HTMLElement};
+type Ref = {current: HTMLElement | null};
 type ContextT = {
   addMenuToNesting: (ref: Ref) => void,
   removeMenuFromNesting: (ref: Ref) => void,

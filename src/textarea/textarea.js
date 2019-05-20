@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,7 +19,7 @@ class Textarea extends React.Component<TextareaPropsT> {
     autoFocus: false,
     disabled: false,
     error: false,
-    inputRef: (React.createRef(): {current: ?HTMLInputElement}),
+    inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     name: '',
     onBlur: () => {},
     onChange: () => {},

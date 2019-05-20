@@ -31,6 +31,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
   "children": Array [
@@ -39,6 +40,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
@@ -47,6 +49,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $ref={
         Object {
           "current": null,
@@ -76,6 +79,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
@@ -90,6 +94,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
   "children": Array [
@@ -98,6 +103,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
@@ -106,6 +112,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $ref={
         Object {
           "current": null,
@@ -135,6 +142,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
@@ -149,6 +157,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
   "children": Array [
@@ -157,6 +166,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
@@ -165,6 +175,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $ref={
         Object {
           "current": null,
@@ -194,6 +205,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -33,8 +33,9 @@ class BaseInput<T: EventTarget> extends React.Component<
     autoFocus: false,
     disabled: false,
     error: false,
+    positive: false,
     name: '',
-    inputRef: (React.createRef(): {current: ?HTMLInputElement}),
+    inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     onBlur: () => {},
     onChange: () => {},
     onKeyDown: () => {},

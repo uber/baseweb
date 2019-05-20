@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
@@ -14,7 +14,10 @@ const StyledTableElement = styled('div', ({$theme}: SharedStylePropsT) => {
   return {
     ...$theme.borders.border300,
     backgroundColor: $theme.colors.tableBackground,
-    borderRadius: $theme.borders.radius200,
+    borderTopRightRadius: $theme.borders.radius200,
+    borderBottomRightRadius: $theme.borders.radius200,
+    borderTopLeftRadius: $theme.borders.radius200,
+    borderBottomLeftRadius: $theme.borders.radius200,
     display: 'flex',
     flexDirection: 'column',
     height: '100%',

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -15,12 +15,16 @@ export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
   const {
     $theme: {typography, colors, borders},
   } = props;
+  const borderRadius = borders.useRoundedCorners ? borders.radius200 : '0px';
   return {
     ...typography.font400,
     color: props.$theme.colors.datepickerDayFont,
     backgroundColor: colors.datepickerBackground,
     textAlign: 'center',
-    borderRadius: borders.useRoundedCorners ? borders.radius200 : '0px',
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     display: 'inline-block',
   };
 });
@@ -69,7 +73,10 @@ export const StyledCalendarHeader = styled(
       paddingLeft: sizing.scale600,
       paddingRight: sizing.scale600,
       backgroundColor: colors.primary,
-      borderRadius: `${borderRadius} ${borderRadius} 0 0`,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: 0,
+      borderTopLeftRadius: borderRadius,
+      borderBottomLeftRadius: 0,
     };
   },
 );

@@ -1,12 +1,14 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {ArrowLeft, ArrowRight, TriangleDown} from '../icon/index.js';
+import ArrowRight from '../icon/arrow-right.js';
+import ArrowLeft from '../icon/arrow-left.js';
+import TriangleDown from '../icon/triangle-down.js';
 import {StatefulMenu} from '../menu/index.js';
 import {StatefulPopover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';

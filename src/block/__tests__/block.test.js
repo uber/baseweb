@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -28,6 +28,20 @@ describe('Block', () => {
   it('renders provided color if no matching themeable value is found', () => {
     expect(retrieveStyles(<Block color="red">test</Block>)).toMatchObject({
       color: 'red',
+    });
+  });
+
+  it('renders themed backgroundColor if provided', () => {
+    expect(
+      retrieveStyles(<Block backgroundColor="primary200">test</Block>),
+    ).toMatchObject({backgroundColor: '$theme.colors.primary200'});
+  });
+
+  it('renders provided backgroundColor if no matching themeable value is found', () => {
+    expect(
+      retrieveStyles(<Block backgroundColor="red">test</Block>),
+    ).toMatchObject({
+      backgroundColor: 'red',
     });
   });
 

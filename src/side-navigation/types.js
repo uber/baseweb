@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -31,21 +31,12 @@ export type SharedPropsT = {
   $selectable: boolean,
 };
 
-type renderItemT = (
-  item: *,
-  props: SharedPropsT & {
-    onSelect?: ({item: *, event: Event | KeyboardEvent}) => mixed,
-    onClick?: (event: Event) => mixed,
-    onKeyDown?: (event: KeyboardEvent) => mixed,
-  },
-) => React.Node;
-
 export type NavPropsT = {
   /** Defines the current active itemId. Used for the default calculation of the $active prop */
   activeItemId: string,
-  /** 
-    Is called on the nav item render to test if the item is currently selected. 
-    If returns true the item will be rendered as an active one 
+  /**
+    Is called on the nav item render to test if the item is currently selected.
+    If returns true the item will be rendered as an active one
     */
   activePredicate: ?(item: *, activeItemId: string) => boolean,
   /** List of navigation items */
@@ -60,22 +51,22 @@ export type NavPropsT = {
     NavItem?: OverrideT<*>,
     SubNavContainer?: OverrideT<*>,
   },
-  /** Optional render function that is called instead default item rendering */
-  renderItem: ?renderItemT,
+  /** Optional transform function that is called for each Item */
+  mapItem: ?(item: Item) => Item,
 };
 
 export type Item = {
   /** Navigation item's title to render */
   title: React.Node,
-  /** 
-    Identifier for the navigation item. 
-    Can be a path value or an action name. 
+  /**
+    Identifier for the navigation item.
+    Can be a path value or an action name.
     It's also used in the default `activePredicate` to
     identify a currently active item
     */
   itemId?: string,
   /** A list of sub-navigation items */
-  subnav?: Item[],
+  subNav?: Item[],
 };
 
 export type NavItemPropsT = SharedPropsT & {
@@ -85,7 +76,6 @@ export type NavItemPropsT = SharedPropsT & {
     NavLink?: OverrideT<*>,
     NavItem?: OverrideT<*>,
   },
-  renderItem?: ?renderItemT,
 };
 
 export type StatefulContainerPropsT = {

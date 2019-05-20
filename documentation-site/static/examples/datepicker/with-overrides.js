@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulCalendar} from 'baseui/datepicker';
 
 const selectOverrides = {

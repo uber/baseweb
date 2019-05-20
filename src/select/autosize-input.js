@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {StyledInput, StyledInputSizer} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {AutosizeInputPropsT, AutosizeInputStateT} from './types.js';
@@ -18,7 +18,7 @@ export default class AutosizeInput extends React.Component<
   sizer: ?HTMLElement;
 
   static defaultProps = {
-    inputRef: (React.createRef(): {current: ?HTMLInputElement}),
+    inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     value: '',
     overrides: {},
   };

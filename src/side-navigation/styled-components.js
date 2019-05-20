@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -41,11 +41,10 @@ export const StyledNavItem = styled('div', props => {
     $theme: {colors, sizing},
   } = props;
   return {
-    background: $active
-      ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), ${
-          colors.primary
-        }`
-      : 'transparent',
+    backgroundColor: $active ? colors.primary : 'transparent',
+    backgroundImage: $active
+      ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92))`
+      : null,
     boxSizing: 'border-box',
     borderLeftWidth: '4px',
     borderLeftStyle: 'solid',
