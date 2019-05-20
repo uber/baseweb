@@ -33,6 +33,7 @@ function Flag(props) {
 }
 
 export function StatefulPhoneInput(props) {
+  // TODO: add default country prop
   const US = countries.find(c => c.iso2 === 'US');
   const [phoneNumber, setPhoneNumber] = useState(`+${US.dialCode} `);
   const [country, setCountry] = useState(US);
@@ -46,11 +47,12 @@ export function StatefulPhoneInput(props) {
         if (props.onChange) props.onChange(phoneNumber);
       }}
       onCountryChange={event => {
-        // attempt to change only country dial code
+        // Replace (if possible) the current country dialcode
         const newPhoneNumber = phoneNumber.replace(
-          /\+(\d){1,4}\s+/,
-          `+${event.option.dialCode} `,
+          `+${country.dialCode}`,
+          `+${event.option.dialCode}`,
         );
+        // If the replacement did nothing, just return the new dialcode
         setPhoneNumber(
           phoneNumber === newPhoneNumber
             ? `+${event.option.dialCode} `
