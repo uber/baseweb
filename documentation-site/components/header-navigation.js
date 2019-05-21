@@ -106,7 +106,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
             </Block>
           </LogoSegment>
 
-          <NavigationList align={ALIGN.right}>
+          <NavigationList $align={ALIGN.right}>
             <Block display="flex" alignItems="center">
               <Search
                 searchInputOpen={searchInputOpen}

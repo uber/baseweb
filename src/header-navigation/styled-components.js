@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled, asPrimaryExport} from '../styles/index.js';
+import {styled} from '../styles/index.js';
 import {ALIGN} from './index.js';
 
 export const Root = styled<{}>('nav', props => {
@@ -37,11 +37,9 @@ export const NavigationItem = styled<{}>('div', props => {
   };
 });
 
-export const NavigationList: React.ComponentType<{
-  align?: string,
-  children?: React.Node,
-}> = (asPrimaryExport(
-  styled('div', props => {
+export const NavigationList = styled<{$align: $Values<typeof ALIGN>}>(
+  'div',
+  props => {
     const {$align, $theme} = props;
     const {
       sizing: {scale800},
@@ -60,6 +58,5 @@ export const NavigationList: React.ComponentType<{
       justifySelf: $align,
       justifyContent: $align,
     };
-  }),
-  ['align'],
-): React.ComponentType<*>);
+  },
+);
