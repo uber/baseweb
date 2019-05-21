@@ -23,7 +23,7 @@ type State = {
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = styled(
+const PlainInput = styled<{$inputVisible: boolean}>(
   'input',
   ({$inputVisible, $theme}) =>
     ({
@@ -55,19 +55,22 @@ const PlainInput = styled(
     }: {}),
 );
 
-const IconWrapper = styled('div', ({$inputVisible, $theme}) => ({
-  marginRight: $inputVisible ? '-33px' : 0,
-  marginTop: $inputVisible ? '8px' : 0,
-  height: '32px',
-  cursor: 'pointer',
-  zIndex: 1,
-  [HEADER_BREAKPOINT]: {
-    marginRight: '-33px',
-    marginTop: '8px',
-    cursor: 'inherit',
+const IconWrapper = styled<{$inputVisible: boolean}>(
+  'div',
+  ({$inputVisible, $theme}) => ({
+    marginRight: $inputVisible ? '-33px' : 0,
+    marginTop: $inputVisible ? '8px' : 0,
+    height: '32px',
+    cursor: 'pointer',
     zIndex: 1,
-  },
-}));
+    [HEADER_BREAKPOINT]: {
+      marginRight: '-33px',
+      marginTop: '8px',
+      cursor: 'inherit',
+      zIndex: 1,
+    },
+  }),
+);
 
 class DocSearch extends React.Component<Props, State> {
   state = {

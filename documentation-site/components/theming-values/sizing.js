@@ -13,7 +13,7 @@ import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
 
-const StyledSizeBox = styled('div', ({$size, $theme}) => {
+const StyledSizeBox = styled<{$size: string}>('div', ({$size, $theme}) => {
   return {
     backgroundColor: $theme.colors.primary,
     marginTop: $theme.sizing.scale100,

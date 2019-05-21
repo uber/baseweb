@@ -21,29 +21,35 @@ type PropsT = {
   toggleTheme: () => void,
 };
 
-const SidebarWrapper = styled('div', ({$theme, $isOpen}) => ({
-  display: $isOpen ? 'block' : 'none',
-  paddingTop: $theme.sizing.scale700,
-  marginLeft: $theme.sizing.scale800,
-  marginRight: $theme.sizing.scale800,
-  '@media screen and (min-width: 820px)': {
-    display: 'block',
-    maxWidth: '16em',
-  },
-}));
+const SidebarWrapper = styled<{$isOpen: boolean}>(
+  'div',
+  ({$theme, $isOpen}) => ({
+    display: $isOpen ? 'block' : 'none',
+    paddingTop: $theme.sizing.scale700,
+    marginLeft: $theme.sizing.scale800,
+    marginRight: $theme.sizing.scale800,
+    '@media screen and (min-width: 820px)': {
+      display: 'block',
+      maxWidth: '16em',
+    },
+  }),
+);
 
-const ContentWrapper = styled('div', ({$theme, $isSidebarOpen, $full}) => ({
-  boxSizing: 'border-box',
-  display: $isSidebarOpen ? 'none' : 'block',
-  paddingLeft: $theme.sizing.scale900,
-  paddingRight: $theme.sizing.scale900,
-  maxWidth: '100%',
-  flex: 2,
-  '@media screen and (min-width: 820px)': {
-    display: 'block',
-    maxWidth: $full ? '100%' : '40em',
-  },
-}));
+const ContentWrapper = styled<{$isSidebarOpen: boolean, $full: boolean}>(
+  'div',
+  ({$theme, $isSidebarOpen, $full}) => ({
+    boxSizing: 'border-box',
+    display: $isSidebarOpen ? 'none' : 'block',
+    paddingLeft: $theme.sizing.scale900,
+    paddingRight: $theme.sizing.scale900,
+    maxWidth: '100%',
+    flex: 2,
+    '@media screen and (min-width: 820px)': {
+      display: 'block',
+      maxWidth: $full ? '100%' : '40em',
+    },
+  }),
+);
 
 class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   constructor(props: PropsT) {
@@ -80,7 +86,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             id="docSearch-content"
             role="main"
             $isSidebarOpen={sidebarOpen}
-            $full={$full}
+            $full={Boolean($full)}
           >
             <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
           </ContentWrapper>
