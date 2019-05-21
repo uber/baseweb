@@ -20,7 +20,7 @@ class Component extends React.Component<ComponentPropsT> {
   getSharedProps(): $Diff<SharedStylePropsT, {children?: React.Node}> {
     const {prop} = this.props;
     return {
-      $prop: prop,
+      $prop: Boolean(prop),
     };
   }
 

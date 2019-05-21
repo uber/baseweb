@@ -17,7 +17,7 @@ export const tests = {
   STYLED_COMPONENT_OVERRIDES: 'Styled components overrides',
 };
 
-const Span = styled('span', ({$prop, $theme}) => {
+const Span = styled<{$prop: boolean}>('span', ({$prop, $theme}) => {
   return {
     color: $prop ? $theme.colors.positive : $theme.colors.warning,
   };

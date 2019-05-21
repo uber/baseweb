@@ -59,5 +59,5 @@ export type StatefulComponentContainerPropsT = $Diff<
 };
 
 export type SharedStylePropsT = {
-  $prop: ?boolean,
+  $prop: boolean,
 };
