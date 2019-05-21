@@ -159,6 +159,7 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
   }
 }
 
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Action = styled<SharedPropsArgT>('span', props => {
   const {$disabled, $variant, $theme} = props;
 
@@ -268,6 +269,7 @@ export const Action = styled<SharedPropsArgT>('span', props => {
 
 export const ActionIcon = styled('svg', {});
 
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Text = styled<SharedPropsArgT>('span', props => {
   return {
     overflow: 'hidden',
@@ -277,6 +279,7 @@ export const Text = styled<SharedPropsArgT>('span', props => {
   };
 });
 
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Root = styled<SharedPropsArgT>('span', props => {
   const {$disabled, $theme, $closeable, $clickable, $kind, $variant} = props;
   const {

@@ -21,21 +21,46 @@ const wrapper = StyledComponent => {
   ));
 };
 
+/* eslint-disable flowtype/generic-spacing */
+/* eslint-disable flowtype/no-weak-types */
 type StyletronComponent<Props> = React.StatelessFunctionalComponent<Props> & {
-  // eslint-disable-next-line flowtype/no-weak-types
   __STYLETRON__: any,
 };
-type WithTheme<Props> = {$theme: ThemeT} & Props;
+
 type StyleFn = {
   (string, StyleObject): StyletronComponent<{}>,
 
-  <Props>(string, (WithTheme<Props>) => StyleObject): StyletronComponent<Props>,
+  <Props>(
+    string,
+    ({$theme: ThemeT} & Props) => StyleObject,
+  ): StyletronComponent<Props>,
 
-  // Not specifying pattern where a react component can be provided as first argument. Was seeing flow
-  // problems where Props generic was being interpreted as a component rather than simply an object.
-  // I've never seen this pattern used in practice and is not documented.
-  // https://github.com/styletron/styletron/blob/master/packages/styletron-react/src/types.js#L55-L62
+  <Props, CustomTheme>(
+    string,
+    ({$theme: CustomTheme} & Props) => StyleObject,
+  ): StyletronComponent<Props>,
+
+  <Base: React.ComponentType<any>>(
+    Base,
+    StyleObject,
+  ): StyletronComponent<$Diff<React.ElementConfig<Base>, {className: any}>>,
+
+  <Base: React.ComponentType<any>, Props>(
+    Base,
+    ({$theme: ThemeT} & Props) => StyleObject,
+  ): StyletronComponent<
+    $Diff<React.ElementConfig<Base>, {className: any}> & Props,
+  >,
+
+  <Base: React.ComponentType<any>, Props, CustomTheme>(
+    Base,
+    ({$theme: CustomTheme} & Props) => StyleObject,
+  ): StyletronComponent<
+    $Diff<React.ElementConfig<Base>, {className: any}> & Props,
+  >,
 };
+/* eslint-enable flowtype/generic-spacing */
+/* eslint-enable flowtype/no-weak-types */
 
 const styled = ((createStyled({
   wrapper,

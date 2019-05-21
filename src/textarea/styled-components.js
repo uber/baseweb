@@ -14,6 +14,7 @@ import type {SharedStylePropsT} from './types.js';
 
 export const TextareaContainer = styled('div', {});
 
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Textarea = styled<SharedStylePropsT>('textarea', props => {
   return {
     ...getInputStyles(props),

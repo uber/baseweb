@@ -90,9 +90,7 @@ export function getPlacement(placement: PlacementTypeT) {
   }[placement];
 }
 
-/**
- * Main component container element
- */
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
   const {$placement, $theme} = props;
   return {
@@ -109,6 +107,7 @@ export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
   };
 });
 
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
@@ -143,9 +142,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-/**
- * DeleteAlt icon overrides
- */
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', props => {
   return {
     ...getSvgStyles(props),

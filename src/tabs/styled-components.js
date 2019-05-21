@@ -9,9 +9,7 @@ import {styled} from '../styles/index.js';
 import {ORIENTATION} from './constants.js';
 import type {SharedStylePropsArgT} from './types.js';
 
-/**
- * Main component container element
- */
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Root = styled<SharedStylePropsArgT>('div', props => {
   const {$orientation} = props;
   return {
@@ -20,6 +18,7 @@ export const Root = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Tab = styled<SharedStylePropsArgT>('div', props => {
   const {
     $disabled,
@@ -58,6 +57,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
   return style;
 });
 
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const TabBar = styled<SharedStylePropsArgT>('div', props => {
   const {
     $orientation,
@@ -72,6 +72,7 @@ export const TabBar = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const TabContent = styled<SharedStylePropsArgT>('div', props => {
   const {
     $active,
