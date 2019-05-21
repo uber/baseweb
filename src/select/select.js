@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,11 +8,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-import {
-  Delete as DeleteIcon,
-  TriangleDown as TriangleDownIcon,
-  Search as SearchIconComponent,
-} from '../icon/index.js';
+import DeleteIcon from '../icon/delete.js';
+import TriangleDownIcon from '../icon/triangle-down.js';
+import SearchIconComponent from '../icon/search.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
@@ -789,6 +787,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       creatable,
       disabled,
       error,
+      positive,
       isLoading,
       multi,
       required,
@@ -802,6 +801,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       $creatable: creatable,
       $disabled: disabled,
       $error: error,
+      $positive: positive,
       $isFocused: isFocused,
       $isLoading: isLoading,
       $isOpen: isOpen,
@@ -857,6 +857,15 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     sharedProps.$isOpen = isOpen;
 
+    if (__DEV__) {
+      if (this.props.error && this.props.positive) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[Select] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+        );
+      }
+    }
+
     return (
       <LocaleContext.Consumer>
         {locale => (
@@ -874,6 +883,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             content={() => {
               const dropdownProps = {
                 error: this.props.error,
+                positive: this.props.positive,
                 getOptionLabel:
                   this.props.getOptionLabel ||
                   this.getOptionLabel.bind(this, locale),

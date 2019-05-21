@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import {StatefulCalendar} from '../index.js';
 
@@ -44,10 +44,7 @@ export const component = () => (
           backgroundColor: $theme.colors.positive,
         }),
       },
-      MonthSelect: {
-        props: {overrides: selectOverrides},
-      },
-      YearSelect: {
+      MonthYearSelect: {
         props: {overrides: selectOverrides},
       },
       PrevButton: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Block} from 'baseui/block';
 import * as Icons from 'baseui/icon/icon-exports';
 

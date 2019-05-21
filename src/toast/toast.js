@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import {Delete as DeleteAltIcon} from '../icon/index.js';
+import DeleteAltIcon from '../icon/delete-alt.js';
 import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
@@ -161,6 +161,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
           <Body
             role="alert"
             data-baseweb={this.props['data-baseweb'] || 'toast'}
+            tabIndex={-1}
             {...sharedProps}
             {...bodyProps}
             // the properties below have to go after overrides

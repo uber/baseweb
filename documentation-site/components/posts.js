@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React from 'react';
+import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
@@ -15,7 +15,7 @@ import {HEADER_BREAKPOINT} from './header-navigation';
 import posts from '../posts';
 
 const MetaData = styled('h2', ({$theme}) => ({
-  color: $theme.colors.mono700,
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   lineHeight: $theme.sizing.scale600,

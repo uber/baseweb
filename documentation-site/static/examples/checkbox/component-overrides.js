@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Block} from 'baseui/block';
 import {StatefulCheckbox} from 'baseui/checkbox';
 import Alert from 'baseui/icon/alert';

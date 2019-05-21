@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {Input} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
@@ -24,17 +24,7 @@ export default class Datepicker extends React.Component<
   },
 > {
   static defaultProps = {
-    'aria-label': null,
-    'aria-labelledby': null,
     'aria-describedby': 'datepicker--screenreader--message--input',
-    disabled: false,
-    error: false,
-    formatDisplayValue: null,
-    formatString: 'YYYY/MM/dd',
-    onChange: () => {},
-    overrides: {},
-    placeholder: 'YYYY/MM/DD',
-    required: false,
     value: null,
   };
 
@@ -64,7 +54,7 @@ export default class Datepicker extends React.Component<
       isPseudoFocused,
       ...(calendarFocused === null ? {} : {calendarFocused}),
     });
-    this.props.onChange(data);
+    this.props.onChange && this.props.onChange(data);
   };
 
   formatDate(date: ?Date | Array<Date>, formatString: string) {
@@ -79,7 +69,7 @@ export default class Datepicker extends React.Component<
 
   formatDisplayValue(date: ?Date | Array<Date>) {
     const formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
-    return formatDisplayValue(date, this.props.formatString);
+    return formatDisplayValue(date, this.props.formatString || 'YYYY/MM/dd');
   }
 
   open = () => {
@@ -198,7 +188,7 @@ export default class Datepicker extends React.Component<
                   onFocus={this.open}
                   onBlur={this.handleInputBlur}
                   onKeyDown={this.handleKeyDown}
-                  placeholder={this.props.placeholder}
+                  placeholder={this.props.placeholder || 'YYYY/MM/DD'}
                   required={this.props.required}
                   {...inputProps}
                 />

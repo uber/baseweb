@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Slider} from 'baseui/slider';
 
 export default class Basic extends React.Component {

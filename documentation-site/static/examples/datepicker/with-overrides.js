@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulCalendar} from 'baseui/datepicker';
 
 const selectOverrides = {
@@ -33,10 +33,12 @@ export default () => (
           backgroundColor: $theme.colors.positive,
         }),
       },
-      MonthSelect: {
-        props: {overrides: selectOverrides},
+      MonthHeader: {
+        style: ({$theme}) => ({
+          backgroundColor: $theme.colors.positive,
+        }),
       },
-      YearSelect: {
+      MonthYearSelect: {
         props: {overrides: selectOverrides},
       },
       PrevButton: {

@@ -50,6 +50,7 @@ exports[`Select component renders component in search mode and false for multipl
     ]
   }
   overrides={Object {}}
+  positive={false}
   required={false}
   searchable={true}
   size="default"
@@ -79,6 +80,7 @@ exports[`Select component renders component in search mode and false for multipl
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
+      $positive={false}
       $required={false}
       $searchable={true}
       $size="default"
@@ -100,6 +102,7 @@ exports[`Select component renders component in search mode and false for multipl
         $isOpen={false}
         $isPseudoFocused={false}
         $multi={false}
+        $positive={false}
         $required={false}
         $searchable={true}
         $size="default"
@@ -208,6 +211,7 @@ exports[`Select component renders component in search mode and false for multipl
             $isOpen={false}
             $isPseudoFocused={false}
             $multi={false}
+            $positive={false}
             $required={false}
             $searchable={true}
             $size="default"
@@ -228,6 +232,7 @@ exports[`Select component renders component in search mode and false for multipl
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
+              $positive={false}
               $required={false}
               $searchable={true}
               $size="default"
@@ -250,10 +255,8 @@ exports[`Select component renders component in search mode and false for multipl
                   Object {
                     "backgroundColor": "$theme.colors.inputFill",
                     "borderColor": "$theme.colors.inputFill",
-                    "borderRadius": "$theme.sizing.scale100",
                     "borderStyle": "solid",
-                    "borderWidth": "1px",
-                    "boxShadow": "0 2px 6px transparent",
+                    "borderWidth": "2px",
                     "boxSizing": "border-box",
                     "color": "$theme.colors.foreground",
                     "cursor": "text",
@@ -261,7 +264,7 @@ exports[`Select component renders component in search mode and false for multipl
                     "justifyContent": "space-between",
                     "overflow": "hidden",
                     "transitionDuration": "$theme.animation.timing100",
-                    "transitionProperty": "border, boxShadow, backgroundColor",
+                    "transitionProperty": "border, box-shadow, background-color",
                     "transitionTimingFunction": "$theme.animation.easeOutCurve",
                     "width": "100%",
                   }
@@ -277,6 +280,7 @@ exports[`Select component renders component in search mode and false for multipl
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -292,6 +296,7 @@ exports[`Select component renders component in search mode and false for multipl
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -374,6 +379,7 @@ exports[`Select component renders component in search mode and false for multipl
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -389,6 +395,7 @@ exports[`Select component renders component in search mode and false for multipl
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -425,6 +432,7 @@ exports[`Select component renders component in search mode and false for multipl
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -440,6 +448,7 @@ exports[`Select component renders component in search mode and false for multipl
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -481,6 +490,7 @@ exports[`Select component renders component in search mode and false for multipl
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -496,6 +506,7 @@ exports[`Select component renders component in search mode and false for multipl
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -535,6 +546,7 @@ exports[`Select component renders component in search mode and false for multipl
                               $isOpen={false}
                               $isPseudoFocused={false}
                               $multi={false}
+                              $positive={false}
                               $required={false}
                               $searchable={true}
                               $size="default"
@@ -571,6 +583,7 @@ exports[`Select component renders component in search mode and false for multipl
                                 $isOpen={false}
                                 $isPseudoFocused={false}
                                 $multi={false}
+                                $positive={false}
                                 $required={false}
                                 $searchable={true}
                                 $size="default"
@@ -602,6 +615,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   $isOpen={false}
                                   $isPseudoFocused={false}
                                   $multi={false}
+                                  $positive={false}
                                   $required={false}
                                   $searchable={true}
                                   $size="default"
@@ -706,6 +720,7 @@ exports[`Select component renders component in search mode and false for multipl
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -721,6 +736,7 @@ exports[`Select component renders component in search mode and false for multipl
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -803,6 +819,7 @@ exports[`Select component renders component in search mode and true for multiple
     ]
   }
   overrides={Object {}}
+  positive={false}
   required={false}
   searchable={true}
   size="default"
@@ -832,6 +849,7 @@ exports[`Select component renders component in search mode and true for multiple
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
+      $positive={false}
       $required={false}
       $searchable={true}
       $size="default"
@@ -853,6 +871,7 @@ exports[`Select component renders component in search mode and true for multiple
         $isOpen={false}
         $isPseudoFocused={false}
         $multi={false}
+        $positive={false}
         $required={false}
         $searchable={true}
         $size="default"
@@ -961,6 +980,7 @@ exports[`Select component renders component in search mode and true for multiple
             $isOpen={false}
             $isPseudoFocused={false}
             $multi={false}
+            $positive={false}
             $required={false}
             $searchable={true}
             $size="default"
@@ -981,6 +1001,7 @@ exports[`Select component renders component in search mode and true for multiple
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
+              $positive={false}
               $required={false}
               $searchable={true}
               $size="default"
@@ -1003,10 +1024,8 @@ exports[`Select component renders component in search mode and true for multiple
                   Object {
                     "backgroundColor": "$theme.colors.inputFill",
                     "borderColor": "$theme.colors.inputFill",
-                    "borderRadius": "$theme.sizing.scale100",
                     "borderStyle": "solid",
-                    "borderWidth": "1px",
-                    "boxShadow": "0 2px 6px transparent",
+                    "borderWidth": "2px",
                     "boxSizing": "border-box",
                     "color": "$theme.colors.foreground",
                     "cursor": "text",
@@ -1014,7 +1033,7 @@ exports[`Select component renders component in search mode and true for multiple
                     "justifyContent": "space-between",
                     "overflow": "hidden",
                     "transitionDuration": "$theme.animation.timing100",
-                    "transitionProperty": "border, boxShadow, backgroundColor",
+                    "transitionProperty": "border, box-shadow, background-color",
                     "transitionTimingFunction": "$theme.animation.easeOutCurve",
                     "width": "100%",
                   }
@@ -1030,6 +1049,7 @@ exports[`Select component renders component in search mode and true for multiple
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -1045,6 +1065,7 @@ exports[`Select component renders component in search mode and true for multiple
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -1127,6 +1148,7 @@ exports[`Select component renders component in search mode and true for multiple
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -1142,6 +1164,7 @@ exports[`Select component renders component in search mode and true for multiple
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -1178,6 +1201,7 @@ exports[`Select component renders component in search mode and true for multiple
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -1193,6 +1217,7 @@ exports[`Select component renders component in search mode and true for multiple
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -1234,6 +1259,7 @@ exports[`Select component renders component in search mode and true for multiple
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -1249,6 +1275,7 @@ exports[`Select component renders component in search mode and true for multiple
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -1288,6 +1315,7 @@ exports[`Select component renders component in search mode and true for multiple
                               $isOpen={false}
                               $isPseudoFocused={false}
                               $multi={false}
+                              $positive={false}
                               $required={false}
                               $searchable={true}
                               $size="default"
@@ -1324,6 +1352,7 @@ exports[`Select component renders component in search mode and true for multiple
                                 $isOpen={false}
                                 $isPseudoFocused={false}
                                 $multi={false}
+                                $positive={false}
                                 $required={false}
                                 $searchable={true}
                                 $size="default"
@@ -1355,6 +1384,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   $isOpen={false}
                                   $isPseudoFocused={false}
                                   $multi={false}
+                                  $positive={false}
                                   $required={false}
                                   $searchable={true}
                                   $size="default"
@@ -1459,6 +1489,7 @@ exports[`Select component renders component in search mode and true for multiple
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -1474,6 +1505,7 @@ exports[`Select component renders component in search mode and true for multiple
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -1556,6 +1588,7 @@ exports[`Select component renders component in select mode and false for multipl
     ]
   }
   overrides={Object {}}
+  positive={false}
   required={false}
   searchable={true}
   size="default"
@@ -1585,6 +1618,7 @@ exports[`Select component renders component in select mode and false for multipl
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
+      $positive={false}
       $required={false}
       $searchable={true}
       $size="default"
@@ -1606,6 +1640,7 @@ exports[`Select component renders component in select mode and false for multipl
         $isOpen={false}
         $isPseudoFocused={false}
         $multi={false}
+        $positive={false}
         $required={false}
         $searchable={true}
         $size="default"
@@ -1708,6 +1743,7 @@ exports[`Select component renders component in select mode and false for multipl
             $isOpen={false}
             $isPseudoFocused={false}
             $multi={false}
+            $positive={false}
             $required={false}
             $searchable={true}
             $size="default"
@@ -1728,6 +1764,7 @@ exports[`Select component renders component in select mode and false for multipl
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
+              $positive={false}
               $required={false}
               $searchable={true}
               $size="default"
@@ -1750,10 +1787,8 @@ exports[`Select component renders component in select mode and false for multipl
                   Object {
                     "backgroundColor": "$theme.colors.inputFill",
                     "borderColor": "$theme.colors.inputFill",
-                    "borderRadius": "$theme.sizing.scale100",
                     "borderStyle": "solid",
-                    "borderWidth": "1px",
-                    "boxShadow": "0 2px 6px transparent",
+                    "borderWidth": "2px",
                     "boxSizing": "border-box",
                     "color": "$theme.colors.foreground",
                     "cursor": "text",
@@ -1761,7 +1796,7 @@ exports[`Select component renders component in select mode and false for multipl
                     "justifyContent": "space-between",
                     "overflow": "hidden",
                     "transitionDuration": "$theme.animation.timing100",
-                    "transitionProperty": "border, boxShadow, backgroundColor",
+                    "transitionProperty": "border, box-shadow, background-color",
                     "transitionTimingFunction": "$theme.animation.easeOutCurve",
                     "width": "100%",
                   }
@@ -1777,6 +1812,7 @@ exports[`Select component renders component in select mode and false for multipl
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -1792,6 +1828,7 @@ exports[`Select component renders component in select mode and false for multipl
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -1828,6 +1865,7 @@ exports[`Select component renders component in select mode and false for multipl
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -1843,6 +1881,7 @@ exports[`Select component renders component in select mode and false for multipl
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -1884,6 +1923,7 @@ exports[`Select component renders component in select mode and false for multipl
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -1899,6 +1939,7 @@ exports[`Select component renders component in select mode and false for multipl
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -1938,6 +1979,7 @@ exports[`Select component renders component in select mode and false for multipl
                               $isOpen={false}
                               $isPseudoFocused={false}
                               $multi={false}
+                              $positive={false}
                               $required={false}
                               $searchable={true}
                               $size="default"
@@ -1974,6 +2016,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 $isOpen={false}
                                 $isPseudoFocused={false}
                                 $multi={false}
+                                $positive={false}
                                 $required={false}
                                 $searchable={true}
                                 $size="default"
@@ -2005,6 +2048,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   $isOpen={false}
                                   $isPseudoFocused={false}
                                   $multi={false}
+                                  $positive={false}
                                   $required={false}
                                   $searchable={true}
                                   $size="default"
@@ -2109,6 +2153,7 @@ exports[`Select component renders component in select mode and false for multipl
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -2124,6 +2169,7 @@ exports[`Select component renders component in select mode and false for multipl
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -2154,6 +2200,7 @@ exports[`Select component renders component in select mode and false for multipl
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -2179,6 +2226,7 @@ exports[`Select component renders component in select mode and false for multipl
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -2205,6 +2253,7 @@ exports[`Select component renders component in select mode and false for multipl
                             $isOpen={false}
                             $isPseudoFocused={false}
                             $multi={false}
+                            $positive={false}
                             $required={false}
                             $searchable={true}
                             $size={16}
@@ -2222,6 +2271,7 @@ exports[`Select component renders component in select mode and false for multipl
                               $isOpen={false}
                               $isPseudoFocused={false}
                               $multi={false}
+                              $positive={false}
                               $required={false}
                               $searchable={true}
                               $size={16}
@@ -2319,6 +2369,7 @@ exports[`Select component renders component in select mode and true for multiple
     ]
   }
   overrides={Object {}}
+  positive={false}
   required={false}
   searchable={true}
   size="default"
@@ -2348,6 +2399,7 @@ exports[`Select component renders component in select mode and true for multiple
       $isOpen={false}
       $isPseudoFocused={false}
       $multi={false}
+      $positive={false}
       $required={false}
       $searchable={true}
       $size="default"
@@ -2369,6 +2421,7 @@ exports[`Select component renders component in select mode and true for multiple
         $isOpen={false}
         $isPseudoFocused={false}
         $multi={false}
+        $positive={false}
         $required={false}
         $searchable={true}
         $size="default"
@@ -2471,6 +2524,7 @@ exports[`Select component renders component in select mode and true for multiple
             $isOpen={false}
             $isPseudoFocused={false}
             $multi={false}
+            $positive={false}
             $required={false}
             $searchable={true}
             $size="default"
@@ -2491,6 +2545,7 @@ exports[`Select component renders component in select mode and true for multiple
               $isOpen={false}
               $isPseudoFocused={false}
               $multi={false}
+              $positive={false}
               $required={false}
               $searchable={true}
               $size="default"
@@ -2513,10 +2568,8 @@ exports[`Select component renders component in select mode and true for multiple
                   Object {
                     "backgroundColor": "$theme.colors.inputFill",
                     "borderColor": "$theme.colors.inputFill",
-                    "borderRadius": "$theme.sizing.scale100",
                     "borderStyle": "solid",
-                    "borderWidth": "1px",
-                    "boxShadow": "0 2px 6px transparent",
+                    "borderWidth": "2px",
                     "boxSizing": "border-box",
                     "color": "$theme.colors.foreground",
                     "cursor": "text",
@@ -2524,7 +2577,7 @@ exports[`Select component renders component in select mode and true for multiple
                     "justifyContent": "space-between",
                     "overflow": "hidden",
                     "transitionDuration": "$theme.animation.timing100",
-                    "transitionProperty": "border, boxShadow, backgroundColor",
+                    "transitionProperty": "border, box-shadow, background-color",
                     "transitionTimingFunction": "$theme.animation.easeOutCurve",
                     "width": "100%",
                   }
@@ -2540,6 +2593,7 @@ exports[`Select component renders component in select mode and true for multiple
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -2555,6 +2609,7 @@ exports[`Select component renders component in select mode and true for multiple
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -2591,6 +2646,7 @@ exports[`Select component renders component in select mode and true for multiple
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -2606,6 +2662,7 @@ exports[`Select component renders component in select mode and true for multiple
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -2647,6 +2704,7 @@ exports[`Select component renders component in select mode and true for multiple
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -2662,6 +2720,7 @@ exports[`Select component renders component in select mode and true for multiple
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -2701,6 +2760,7 @@ exports[`Select component renders component in select mode and true for multiple
                               $isOpen={false}
                               $isPseudoFocused={false}
                               $multi={false}
+                              $positive={false}
                               $required={false}
                               $searchable={true}
                               $size="default"
@@ -2737,6 +2797,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 $isOpen={false}
                                 $isPseudoFocused={false}
                                 $multi={false}
+                                $positive={false}
                                 $required={false}
                                 $searchable={true}
                                 $size="default"
@@ -2768,6 +2829,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   $isOpen={false}
                                   $isPseudoFocused={false}
                                   $multi={false}
+                                  $positive={false}
                                   $required={false}
                                   $searchable={true}
                                   $size="default"
@@ -2872,6 +2934,7 @@ exports[`Select component renders component in select mode and true for multiple
                   $isOpen={false}
                   $isPseudoFocused={false}
                   $multi={false}
+                  $positive={false}
                   $required={false}
                   $searchable={true}
                   $size="default"
@@ -2887,6 +2950,7 @@ exports[`Select component renders component in select mode and true for multiple
                     $isOpen={false}
                     $isPseudoFocused={false}
                     $multi={false}
+                    $positive={false}
                     $required={false}
                     $searchable={true}
                     $size="default"
@@ -2917,6 +2981,7 @@ exports[`Select component renders component in select mode and true for multiple
                         $isOpen={false}
                         $isPseudoFocused={false}
                         $multi={false}
+                        $positive={false}
                         $required={false}
                         $searchable={true}
                         $size="default"
@@ -2942,6 +3007,7 @@ exports[`Select component renders component in select mode and true for multiple
                           $isOpen={false}
                           $isPseudoFocused={false}
                           $multi={false}
+                          $positive={false}
                           $required={false}
                           $searchable={true}
                           $size="default"
@@ -2968,6 +3034,7 @@ exports[`Select component renders component in select mode and true for multiple
                             $isOpen={false}
                             $isPseudoFocused={false}
                             $multi={false}
+                            $positive={false}
                             $required={false}
                             $searchable={true}
                             $size={16}
@@ -2985,6 +3052,7 @@ exports[`Select component renders component in select mode and true for multiple
                               $isOpen={false}
                               $isPseudoFocused={false}
                               $multi={false}
+                              $positive={false}
                               $required={false}
                               $searchable={true}
                               $size={16}

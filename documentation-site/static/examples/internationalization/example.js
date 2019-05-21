@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {LocaleProvider} from 'baseui';
 import {StatefulPagination} from 'baseui/pagination';
 

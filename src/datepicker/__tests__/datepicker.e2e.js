@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,11 +21,8 @@ const selectors = {
   day6: '[aria-label="Choose Monday, July 1st 2019. It\'s available."]',
   leftArrow: '[aria-label="Previous month"]',
   rightArrow: '[aria-label="Next month"]',
-  monthSelect: '[data-id="monthSelect"]',
-  monthDropdown: '[data-id="monthDropdown"]',
-  yearSelect: '[data-id="yearSelect"]',
-  yearDropdown: '[data-id="yearDropdown"]',
-  selectDropdown: 'ul[role="listbox"]',
+  monthYearSelectButton: '[data-id="monthYearSelectButton"]',
+  monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
 
 describe('Datepicker', () => {
@@ -156,18 +153,18 @@ describe('Datepicker', () => {
     await page.click(selectors.input);
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day);
-    await page.click(selectors.yearSelect);
-    await page.waitFor(selectors.yearDropdown);
+    await page.click(selectors.monthYearSelectButton);
+    await page.waitFor(selectors.monthYearSelectMenu);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
-        return item.textContent === '2018';
+        return item.textContent === 'March 2018';
       });
       option.click();
       return option;
     });
 
-    await page.waitFor(selectors.yearDropdown, {hidden: true});
+    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day5);
   });
@@ -178,19 +175,67 @@ describe('Datepicker', () => {
     await page.click(selectors.input);
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day);
-    await page.click(selectors.monthSelect);
-    await page.waitFor(selectors.monthDropdown);
+    await page.click(selectors.monthYearSelectButton);
+    await page.waitFor(selectors.monthYearSelectMenu);
 
     await page.$$eval('ul[role="listbox"] li', items => {
       const option = items.find(item => {
-        return item.textContent === 'July';
+        return item.textContent === 'July 2019';
       });
       option.click();
       return option;
     });
 
-    await page.waitFor(selectors.monthDropdown, {hidden: true});
+    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
     await page.waitFor(selectors.calendar);
     await page.waitFor(selectors.day6);
+  });
+
+  it('disables previous month button if minimum month is selected', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.click(selectors.monthYearSelectButton);
+    await page.waitFor(selectors.monthYearSelectMenu);
+
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'January 2000';
+      });
+      option.click();
+      return option;
+    });
+
+    await page.click(selectors.leftArrow);
+    const value = await page.$(selectors.monthYearSelectButton);
+    const text = await page.evaluate(element => element.textContent, value);
+    // (Month YearTriangle Down) because it renders an icon within the element
+    expect(text).toBe('January 2000Triangle Down');
+  });
+
+  it('disables next month button if maximum month is selected', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.click(selectors.monthYearSelectButton);
+    await page.waitFor(selectors.monthYearSelectMenu);
+
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'December 2030';
+      });
+      option.click();
+      return option;
+    });
+
+    await page.click(selectors.rightArrow);
+    const value = await page.$(selectors.monthYearSelectButton);
+    const text = await page.evaluate(element => element.textContent, value);
+    // (Month YearTriangle Down) because it renders an icon within the element
+    expect(text).toBe('December 2030Triangle Down');
   });
 });

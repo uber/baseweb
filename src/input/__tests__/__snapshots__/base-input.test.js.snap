@@ -6,6 +6,7 @@ Object {
   "$disabled": false,
   "$error": true,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
 }
@@ -17,6 +18,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
 }
@@ -51,7 +53,7 @@ Object {
     "borderStyle": "none",
     "borderWidth": "0",
     "boxSizing": "border-box",
-    "caretColor": "$theme.colors.primary",
+    "caretColor": "$theme.colors.foreground",
     "color": "$theme.colors.foreground",
     "cursor": "text",
     "fontFamily": "$theme.typography.font300.fontFamily",
@@ -77,6 +79,7 @@ Object {
   "$disabled": false,
   "$error": true,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
 }
@@ -88,6 +91,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
 }

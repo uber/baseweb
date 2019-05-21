@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StyledLink} from 'baseui/link';
 
 export default () => (

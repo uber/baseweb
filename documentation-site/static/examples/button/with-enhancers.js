@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Button} from 'baseui/button';
 import Upload from 'baseui/icon/upload';
 import ArrowRight from 'baseui/icon/arrow-right';

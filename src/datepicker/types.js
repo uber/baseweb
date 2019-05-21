@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,7 +10,7 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
-import type {OnChangeParamsT, OptionT, ValueT} from '../select/index.js';
+import type {OptionT} from '../select/index.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
@@ -19,18 +19,27 @@ type onChangeT = ({date: ?Date | Array<Date>}) => mixed;
 
 export type DatepickerOverridesT<T> = {
   Root?: OverrideT<T>,
+  /** Override for reused Select component. QuickSelect is **not a styled  element** but a react component that can be replaced */
+  QuickSelect?: OverrideT<T>,
   QuickSelectContainer?: OverrideT<T>,
-  QuickSelectLabel?: OverrideT<T>,
-  QuickSelectButtons?: OverrideT<T>,
+  /** Override for reused Select component. QuickSelectFormControl is **not a styled  element** but a react component that can be replaced */
+  QuickSelectFormControl?: OverrideT<T>,
+  /** Override for reused TimePicker component. TimeSelect is **not a styled  element** but a react component that can be replaced */
+  TimeSelect?: OverrideT<T>,
+  TimeSelectContainer?: OverrideT<T>,
+  /** Override for reused Select component. TimeSelectFormControl is **not a styled  element** but a react component that can be replaced */
+  TimeSelectFormControl?: OverrideT<T>,
   CalendarContainer?: OverrideT<T>,
   CalendarHeader?: OverrideT<T>,
   PrevButton?: OverrideT<T>,
   PrevButtonIcon?: OverrideT<T>,
   NextButton?: OverrideT<T>,
   NextButtonIcon?: OverrideT<T>,
-  MonthSelect?: OverrideT<T>,
-  YearSelect?: OverrideT<T>,
   MonthHeader?: OverrideT<T>,
+  MonthYearSelectButton?: OverrideT<T>,
+  MonthYearSelectIconContainer?: OverrideT<T>,
+  MonthYearSelectStatefulPopover?: OverrideT<T>,
+  MonthYearSelectStatefulMenu?: OverrideT<T>,
   WeekdayHeader?: OverrideT<T>,
   Month?: OverrideT<T>,
   Week?: OverrideT<T>,
@@ -77,7 +86,7 @@ export type WeekPropsT = {
   highlightedDate: ?Date,
   includeDates: ?Array<Date>,
   focusedCalendar: boolean,
-  range: boolean,
+  range?: boolean,
   locale: ?LocaleT,
   maxDate: ?Date,
   minDate: ?Date,
@@ -87,7 +96,7 @@ export type WeekPropsT = {
   onDayFocus: ({date: Date, event: Event}) => mixed,
   onDayMouseOver: ({date: Date, event: Event}) => mixed,
   onDayMouseLeave: ({date: Date, event: Event}) => mixed,
-  onChange: onChangeT,
+  onChange?: onChangeT,
   overrides?: DatepickerOverridesT<{}>,
   peekNextMonth: boolean,
   value: ?Date | Array<Date>,
@@ -99,50 +108,57 @@ export type CalendarInternalState = {
   highlightedDate: Date,
   focused: boolean,
   date: Date,
+  quickSelectId: ?string,
 };
 
 export type CalendarPropsT = {
   /** Defines if the calendar is set to be focused on an initial render. */
-  autoFocusCalendar: boolean,
+  autoFocusCalendar?: boolean,
   /** A list of dates to disable. */
-  excludeDates: ?Array<Date>,
-  /** Display a set of buttons for quickly choosing date ranges. `range` must be true as well. */
+  excludeDates?: ?Array<Date>,
+  /** Display select for quickly choosing date ranges. `range` must be true as well. */
   quickSelect?: boolean,
+  /** Array of custom options displayed in the quick select. Overrides default options if provided. */
+  quickSelectOptions?: Array<{id: string, beginDate: Date}>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
-  filterDate: ?(day: Date) => boolean,
+  filterDate?: ?(day: Date) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */
-  highlightedDate: ?Date,
+  highlightedDate?: ?Date,
   /** A list of selectable dates. */
-  includeDates: ?Array<Date>,
+  includeDates?: ?Array<Date>,
   /** Defines if a range of dates can be selected. */
-  range: boolean,
+  range?: boolean,
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
-  locale: ?LocaleT,
+  locale?: ?LocaleT,
   /** A max date that is selectable. */
-  maxDate: ?Date,
+  maxDate?: ?Date,
   /** A min date that is selectable. */
-  minDate: ?Date,
+  minDate?: ?Date,
   /** A number of months rendered in the calendar. */
-  monthsShown: number,
+  monthsShown?: number,
   /** Day's `click` event handler. */
-  onDayClick: ({date: Date, event: Event}) => mixed,
+  onDayClick?: ({date: Date, event: Event}) => mixed,
   /** Day's `mouseover` event handler. */
-  onDayMouseOver: ({date: Date, event: Event}) => mixed,
+  onDayMouseOver?: ({date: Date, event: Event}) => mixed,
   /** Day's `mouseleave` event handler. */
-  onDayMouseLeave: ({date: Date, event: Event}) => mixed,
+  onDayMouseLeave?: ({date: Date, event: Event}) => mixed,
   /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange: ({date: Date}) => mixed,
+  onMonthChange?: ({date: Date}) => mixed,
   /** Event handler that is called when the current rendered month's year is changed. */
-  onYearChange: ({date: Date}) => mixed,
+  onYearChange?: ({date: Date}) => mixed,
   /** Event handler that is called when a new date is selected. */
-  onChange: onChangeT,
+  onChange?: onChangeT,
   overrides?: DatepickerOverridesT<{}>,
   /** Defines if dates outside of the range of the current month are displayed. */
-  peekNextMonth: boolean,
+  peekNextMonth?: boolean,
+  /** Determines if `TimePicker` component will be enabled for start time */
+  timeSelectStart?: boolean,
+  /** Determines if `TimePicker` component will be enabled for end time */
+  timeSelectEnd?: boolean,
   /** Defines if tabbing inside the calendar is circled within it. */
-  trapTabbing: boolean,
+  trapTabbing?: boolean,
   /** Currently selected date. */
-  value: ?Date | Array<Date>,
+  value?: ?Date | Array<Date>,
 };
 
 export type HeaderPropsT = CalendarPropsT & {
@@ -150,19 +166,19 @@ export type HeaderPropsT = CalendarPropsT & {
 };
 
 export type DatepickerPropsT = CalendarPropsT & {
-  'aria-label': ?string,
-  'aria-labelledby': ?string,
-  'aria-describedby': ?string,
-  disabled: boolean,
+  'aria-label'?: string,
+  'aria-labelledby'?: string,
+  'aria-describedby'?: ?string,
+  disabled?: boolean,
   /** Renders UI in 'error' state. */
-  error: boolean,
-  placeholder: string,
-  required: boolean,
-  formatDisplayValue: ?(
+  error?: boolean,
+  placeholder?: string,
+  required?: boolean,
+  formatDisplayValue?: (
     date: ?Date | Array<Date>,
     formatString: string,
   ) => string,
-  formatString: string,
+  formatString?: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
   /** Called when calendar is closed */
@@ -172,6 +188,7 @@ export type DatepickerPropsT = CalendarPropsT & {
 export type SharedStylePropsT = {
   $date: Date,
   $disabled: boolean,
+  $isHeader: boolean,
   $isHighlighted: boolean,
   $isHovered: boolean,
   $outsideMonth: boolean,
@@ -222,8 +239,10 @@ export type StatefulContainerPropsT<T> = {
   initialState: ContainerStateT,
   /** A state change handler. */
   stateReducer: StateReducerT,
-  /** Event handler that is called when a new date is selected. */
+  /** Event handler that is called when a date/time is selected. */
   onChange?: onChangeT,
+  /** Should the date value be stored as an array or single value. */
+  range?: boolean,
 };
 
 export type NavigationContainerPropsT = {
@@ -267,7 +286,7 @@ export type TimePickerPropsT = {
    * Optional value that can be provided to fully control the component. If not provided, TimePicker
    * will manage state internally. Expects a value in seconds. E.g. 3600 = 01:00.
    */
-  value?: Date,
+  value: ?Date,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */
@@ -279,8 +298,8 @@ export type TimePickerStateT = {
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
   timezones: OptionT[],
-  /** Internal value provided to the select component. */
-  value: ?ValueT,
+  /** Value provided to the select component. */
+  value: ?string,
 };
 export type TimezonePickerPropsT = {
   /**
@@ -296,12 +315,12 @@ export type TimezonePickerPropsT = {
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
   mapLabels?: OptionT => React.Node,
-  /** Callback for when the timezone selection changes. Follows same pattern as Select component. */
-  onChange?: (params: OnChangeParamsT) => mixed,
+  /** Callback for when the timezone selection changes. */
+  onChange?: (value: ?{id: string, label: string, offset: number}) => mixed,
   overrides?: {Select?: OverrideT<*>},
   /**
    * Optional value that can be provided to fully control the component. If not provided,
    * TimezonePicker will manage state internally.
    */
-  value?: ValueT,
+  value?: ?string,
 };

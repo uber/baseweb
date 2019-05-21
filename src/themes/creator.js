@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -219,17 +219,23 @@ export default function createTheme(
 
       // Inputs
       inputFill: primitives.mono200,
-      inputFillEnhancer: primitives.mono400,
       inputFillError: primitives.negative50,
-      inputFillDisabled: primitives.mono300,
+      inputFillDisabled: primitives.mono200,
+      inputFillActive: primitives.mono200,
+      inputFillPositive: primitives.positive50,
       inputTextDisabled: primitives.mono600,
+      inputBorderError: primitives.negative200,
+      inputBorderPositive: primitives.positive200,
+      inputEnhancerFill: primitives.mono300,
+      inputEnhancerFillDisabled: primitives.mono300,
+      inputEnhancerTextDisabled: primitives.mono600,
 
       // Menu
       menuFill: primitives.mono100,
       menuFillHover: primitives.mono200,
       menuFontDefault: primitives.mono800,
       menuFontDisabled: primitives.mono500,
-      menuFontHighlighted: primitives.primary400,
+      menuFontHighlighted: primitives.mono1000,
       menuFontSelected: primitives.mono1000,
 
       // Pagination

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,26 +12,13 @@ import {mount} from 'enzyme';
 import Block from '../block.js';
 
 describe('Block', () => {
-  it('renders themed color if provided', () => {
-    const wrapper = mount(<Block color="primary200">test</Block>);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('renders provided color if no matching themeable value is found', () => {
-    const wrapper = mount(<Block color="red">test</Block>);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('renders themed font if provided', () => {
-    const wrapper = mount(<Block font="font200">test</Block>);
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it('applies expected style rules', () => {
     const wrapper = mount(
       <Block
         alignContent="start"
         alignItems="start"
+        backgroundColor="red"
+        color="red"
         display="inline-block"
         flexDirection="row"
         flex="grow"
@@ -86,6 +73,16 @@ describe('Block', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('renders themed backgroundColor if provided', () => {
+    const wrapper = mount(<Block backgroundColor="primary200">test</Block>);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('renders themed color if provided', () => {
+    const wrapper = mount(<Block color="primary200">test</Block>);
+    expect(wrapper).toMatchSnapshot();
+  });
+
   describe('Overflow', () => {
     it('renders overflowX styling if provided with scrollX value', () => {
       const wrapper = mount(<Block overflow="scrollX">test</Block>);
@@ -134,6 +131,11 @@ describe('Block', () => {
       );
       expect(wrapper).toMatchSnapshot();
     });
+  });
+
+  it('renders themed font if provided', () => {
+    const wrapper = mount(<Block font="font200">test</Block>);
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('does not throw if provided unknown font prop', () => {

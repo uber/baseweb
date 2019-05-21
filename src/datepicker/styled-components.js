@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -44,30 +44,17 @@ export const StyledCalendarContainer = styled<SharedStylePropsT>(
   },
 );
 
-export const StyledQuickSelectContainer = styled<SharedStylePropsT>(
+export const StyledSelectorContainer = styled<SharedStylePropsT>(
   'div',
-  props => ({
-    maxWidth: '296px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginBottom: props.$theme.sizing.scale600,
-  }),
+  props => {
+    return {
+      marginBottom: props.$theme.sizing.scale600,
+      paddingLeft: props.$theme.sizing.scale600,
+      paddingRight: props.$theme.sizing.scale600,
+      textAlign: 'left',
+    };
+  },
 );
-
-export const StyledQuickSelectLabel = styled<SharedStylePropsT>(
-  'div',
-  props => ({
-    ...props.$theme.typography.font300,
-    color: props.$theme.colors.colorPrimary,
-    marginBottom: props.$theme.sizing.scale600,
-    textAlign: 'left',
-  }),
-);
-
-export const StyledQuickSelectButtons = styled('div', {
-  display: 'flex',
-  flexWrap: 'wrap',
-});
 
 export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
   const {
@@ -93,15 +80,41 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
 
 export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
   return {
+    color: props.$theme.colors.white,
+    backgroundColor: props.$theme.colors.primary,
     whiteSpace: 'nowrap',
   };
 });
 
-function getArrowBtnStyle({$theme}) {
+export const StyledMonthYearSelectButton = styled<{}>('button', props => {
+  return {
+    ...props.$theme.typography.font400,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+    color: props.$theme.colors.mono100,
+    cursor: 'pointer',
+    display: 'flex',
+    ':focus': {backgroundColor: props.$theme.colors.primary500},
+  };
+});
+
+export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
+  return {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: props.$theme.sizing.scale500,
+  };
+});
+
+function getArrowBtnStyle({$theme, $disabled}) {
   return {
     boxSizing: 'border-box',
     height: '22px',
-    color: $theme.colors.white,
+    color: $disabled
+      ? $theme.colors.datepickerDayFontDisabled
+      : $theme.colors.white,
+    cursor: $disabled ? 'default' : 'pointer',
     backgroundColor: 'transparent',
     borderWidth: '0',
     paddingTop: '3px',
@@ -109,12 +122,14 @@ function getArrowBtnStyle({$theme}) {
     paddingLeft: '3px',
     paddingRight: '3px',
     outline: 'none',
-    ':focus': {
-      backgroundColor: $theme.colors.primary500,
-      borderRadius: $theme.borders.useRoundedCorners
-        ? $theme.sizing.scale100
-        : 0,
-    },
+    ':focus': $disabled
+      ? {}
+      : {
+          backgroundColor: $theme.colors.primary500,
+          borderRadius: $theme.borders.useRoundedCorners
+            ? $theme.sizing.scale100
+            : 0,
+        },
   };
 }
 
@@ -227,6 +242,7 @@ function calculateBorderRadius(props): ?BorderRadiusT {
 export const StyledDay = styled<SharedStylePropsT>('div', props => {
   const {
     $disabled,
+    $isHeader,
     $isHovered,
     $isHighlighted,
     $outsideMonth,
@@ -238,7 +254,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
   return ({
     boxSizing: 'border-box',
     position: 'relative',
-    cursor: $disabled ? 'default' : 'pointer',
+    cursor: $disabled || $isHeader ? 'default' : 'pointer',
     display: 'inline-block',
     width: sizing.scale1000,
     height: sizing.scale1000,

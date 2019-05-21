@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import {styled} from '../styles/index.js';
 import type {BreakpointsT} from '../styles/types.js';
 import type {StyledBlockPropsT} from './types.js';
@@ -28,9 +29,7 @@ type ApplyParams = {
 
 function build(breakpoints: BreakpointsT) {
   const styles = {};
-  const mediaQueries = Object.keys(breakpoints).map(
-    size => `@media screen and (min-width: ${breakpoints[size]}px)`,
-  );
+  const mediaQueries = getMediaQueries(breakpoints);
 
   return {
     apply: ({property, transform = x => x, value}: ApplyParams) => {
@@ -77,6 +76,11 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
     property: 'color',
     value: get(props, '$color'),
     transform: color => colors[color] || color,
+  });
+  styles.apply({
+    property: 'backgroundColor',
+    value: get(props, '$backgroundColor'),
+    transform: backgroundColor => colors[backgroundColor] || backgroundColor,
   });
 
   styles.apply({

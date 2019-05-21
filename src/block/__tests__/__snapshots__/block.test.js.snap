@@ -244,7 +244,9 @@ exports[`Block applies expected style rules 1`] = `
 <Block
   alignContent="start"
   alignItems="start"
+  backgroundColor="red"
   bottom="1px"
+  color="red"
   display="inline-block"
   flex="grow"
   flexDirection="row"
@@ -296,7 +298,9 @@ exports[`Block applies expected style rules 1`] = `
     $alignContent="start"
     $alignItems="start"
     $as="div"
+    $backgroundColor="red"
     $bottom="1px"
+    $color="red"
     $display="inline-block"
     $flex="grow"
     $flexDirection="row"
@@ -349,7 +353,9 @@ exports[`Block applies expected style rules 1`] = `
       $alignContent="start"
       $alignItems="start"
       $as="div"
+      $backgroundColor="red"
       $bottom="1px"
+      $color="red"
       $display="inline-block"
       $flex="grow"
       $flexDirection="row"
@@ -406,7 +412,9 @@ exports[`Block applies expected style rules 1`] = `
           Object {
             "alignContent": "start",
             "alignItems": "start",
+            "backgroundColor": "red",
             "bottom": "1px",
+            "color": "red",
             "display": "inline-block",
             "flex": "grow",
             "flexDirection": "row",
@@ -497,18 +505,18 @@ exports[`Block does not throw if provided unknown font prop 1`] = `
 </Block>
 `;
 
-exports[`Block renders provided color if no matching themeable value is found 1`] = `
+exports[`Block renders themed backgroundColor if provided 1`] = `
 <Block
-  color="red"
+  backgroundColor="primary200"
 >
   <ForwardRef
     $as="div"
-    $color="red"
+    $backgroundColor="primary200"
     data-baseweb="block"
   >
     <MockStyledComponent
       $as="div"
-      $color="red"
+      $backgroundColor="primary200"
       data-baseweb="block"
       forwardedRef={null}
     >
@@ -517,7 +525,7 @@ exports[`Block renders provided color if no matching themeable value is found 1`
         styled-component="true"
         test-style={
           Object {
-            "color": "red",
+            "backgroundColor": "$theme.colors.primary200",
           }
         }
       >

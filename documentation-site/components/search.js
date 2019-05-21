@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,7 +25,7 @@ type State = {
 // own markdown and breaks our component (that's fairly complex)
 const PlainInput = styled(
   'input',
-  ({$theme, $inputVisible}) =>
+  ({$inputVisible, $theme}) =>
     ({
       display: $inputVisible ? 'block' : 'none',
       borderWidth: '1px',

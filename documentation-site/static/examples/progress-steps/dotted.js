@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {ProgressSteps, Step} from 'baseui/progress-steps';
 import {Button} from 'baseui/button';
 import {Block} from 'baseui/block';
