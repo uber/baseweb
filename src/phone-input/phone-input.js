@@ -13,50 +13,7 @@ import {Input} from '../input/index.js';
 import {Select} from '../select/index.js';
 import {countries} from './countries.js';
 
-import flagsSpriteSmall from './flags/flags.png';
-import flagsSpriteMedium from './flags/flags@2x.png';
-import flagsSpriteLarge from './flags/flags@3x.png';
-import flagsSpriteMapSmall from './flags/flags.js';
-import flagsSpriteMapMedium from './flags/flags@2x.js';
-import flagsSpriteMapLarge from './flags/flags@3x.js';
-
-const FLAG_SIZES = {
-  compact: {
-    width: 21,
-    height: 15,
-    sprite: flagsSpriteSmall,
-    map: flagsSpriteMapSmall,
-  },
-  default: {
-    width: 42,
-    height: 30,
-    sprite: flagsSpriteMedium,
-    map: flagsSpriteMapMedium,
-  },
-  large: {
-    width: 63,
-    height: 45,
-    sprite: flagsSpriteLarge,
-    map: flagsSpriteMapLarge,
-  },
-};
-
-function Flag(props) {
-  const {size = 'compact'} = props;
-  return (
-    <div
-      style={{
-        width: FLAG_SIZES[size].width,
-        height: FLAG_SIZES[size].height,
-        backgroundRepeat: 'none',
-        backgroundImage: `url(${FLAG_SIZES[size].sprite})`,
-        backgroundPosition: `-${FLAG_SIZES[size].map[props.iso2].x}px -${
-          FLAG_SIZES[size].map[props.iso2].y
-        }px`,
-      }}
-    />
-  );
-}
+import Flag from './flag.js';
 
 export function StatefulPhoneInput(props) {
   // TODO: add default country prop
@@ -129,21 +86,20 @@ export function PhoneInput(props) {
                 getOptionLabel={({option}) => {
                   return (
                     <Block display="flex" alignItems="center" width="100%">
-                      <Flag iso2={option.iso2} />
+                      <Flag iso2={option.iso2} size="compact" />
                       <Block marginLeft="8px">{option.name}</Block>
                       <Block marginLeft="auto">+{option.dialCode}</Block>
                     </Block>
                   );
                 }}
                 overrides={{
-                  ControlContainer: {
+                  ValueContainer: {
                     style: {
-                      width: '56px',
-                    },
-                  },
-                  DropdownContainer: {
-                    style: {
-                      width: '100%',
+                      width: {
+                        compact: '34px',
+                        default: '42px',
+                        large: '50px',
+                      }[size],
                     },
                   },
                   IconsContainer: {
@@ -155,6 +111,11 @@ export function PhoneInput(props) {
                     style: {
                       display: 'flex',
                       alignItems: 'center',
+                    },
+                  },
+                  DropdownContainer: {
+                    style: {
+                      width: '100%',
                     },
                   },
                 }}
