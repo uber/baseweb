@@ -35,12 +35,15 @@ import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
 import subYears from 'date-fns/subYears';
 /* eslint-enable import/extensions */
+const {DateTime} = require('luxon');
 
 import type {CalendarPropsT} from '../types.js';
 
 // ** Date Formatting **
 // eslint-disable-next-line flowtype/no-weak-types
 export function formatDate(date: Date, formatStr: string, locale: any) {
+  const dt = DateTime.fromJSDate(date);
+  return dt.toFormat(formatStr);
   return format(date, formatStr, {
     ...(locale ? {locale} : {}),
     awareOfUnicodeTokens: true,
