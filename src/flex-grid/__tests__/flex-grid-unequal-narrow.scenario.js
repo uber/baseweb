@@ -10,7 +10,7 @@ import React from 'react';
 
 import {FlexGrid, FlexGridItem} from '../index.js';
 
-export const name = 'flex-grid-unequal';
+export const name = 'flex-grid-unequal-narrow';
 
 const itemProps = {
   backgroundColor: 'mono300',
