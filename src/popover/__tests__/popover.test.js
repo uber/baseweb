@@ -123,7 +123,7 @@ describe('Popover', () => {
     expect(TetherBehavior).toHaveBeenCalled();
     expect(TetherBehavior).toHaveBeenCalled();
     // $FlowFixMe
-    const tetherProps = TetherBehavior.mock.calls[0][0];
+    const tetherProps = TetherBehavior.mock.calls[1][0];
     const wrapperInstance = wrapper.instance();
     expect(tetherProps).toMatchObject({
       popperOptions: {
@@ -134,6 +134,11 @@ describe('Popover', () => {
       onPopperUpdate: wrapperInstance.onPopperUpdate,
       placement: wrapper.state().placement,
     });
+
+    expect(tetherProps.anchorRef).toBe(wrapperInstance.anchorRef.current);
+    expect(tetherProps.arrowRef).toBe(wrapperInstance.arrowRef.current);
+    expect(tetherProps.popperRef).toBe(wrapperInstance.popperRef.current);
+
     // // Manually emit a popper update (normally popper does this by itself)
     const offsets = {
       popper: {top: 10, left: 10},
@@ -252,7 +257,9 @@ describe('Popover', () => {
     const onClick = jest.fn();
     const content = <strong>Hello world</strong>;
 
-    const CustomComponent = styled('div', {});
+    const CustomComponent = styled('span', {});
+    // const CustomComponent = (jest.fn(): any);
+    // CustomComponent.mockReturnValue(<span>Hover Me</span>);
 
     wrapper = mount(
       <Popover isOpen content={content} onClick={onClick}>
@@ -260,6 +267,12 @@ describe('Popover', () => {
       </Popover>,
     );
 
+    const childProps = wrapper.find('span').props();
+
+    expect(childProps.onClick).toBe(wrapper.instance().onAnchorClick);
+    expect(childProps['aria-controls']).toBe('bui-mock-id');
+    expect(childProps['aria-haspopup']).toBe('true');
+    expect(childProps['aria-expanded']).toBe('true');
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -271,7 +284,6 @@ describe('Popover', () => {
     };
 
     wrapper = mount(
-      // $FlowFixMe - Flow is complaining about jest mock args
       <Popover
         isOpen
         overrides={overrides}

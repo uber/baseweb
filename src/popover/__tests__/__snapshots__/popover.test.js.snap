@@ -31,7 +31,7 @@ exports[`Popover component as anchor 1`] = `
       aria-haspopup="true"
       forwardedRef={
         Object {
-          "current": <div
+          "current": <span
             aria-controls="bui-mock-id"
             aria-expanded="true"
             aria-haspopup="true"
@@ -42,7 +42,7 @@ exports[`Popover component as anchor 1`] = `
       }
       onClick={[Function]}
     >
-      <div
+      <span
         aria-controls="bui-mock-id"
         aria-expanded="true"
         aria-haspopup="true"
@@ -59,7 +59,7 @@ exports[`Popover component as anchor 1`] = `
   >
     <mockConstructor
       anchorRef={
-        <div
+        <span
           aria-controls="bui-mock-id"
           aria-expanded="true"
           aria-haspopup="true"

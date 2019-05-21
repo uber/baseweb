@@ -65,4 +65,20 @@ describe('Button Component', () => {
       target: 'foo',
     });
   });
+
+  test('internalOnClick prevents external onClick while loading', () => {
+    const props = {
+      onClick: jest.fn(),
+      isLoading: true,
+    };
+    const component = mount(<Button {...props} />);
+    const button = component.find('button');
+
+    button.simulate('click');
+    expect(props.onClick.mock.calls.length).toBe(0);
+
+    component.setProps({isLoading: false});
+    button.simulate('click');
+    expect(props.onClick.mock.calls.length).toBe(1);
+  });
 });
