@@ -129,9 +129,9 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
       getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,

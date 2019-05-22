@@ -37,9 +37,9 @@ export function getBodyStyles(props: SharedStylePropsT) {
     top: 0,
     left: 0,
     backgroundColor: $theme.colors.background,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow600,
     transitionProperty: 'opacity,transform',
@@ -89,9 +89,9 @@ export function getInnerStyles({$theme}: SharedStylePropsT) {
   return {
     backgroundColor: $theme.colors.backgroundAlt,
     color: $theme.colors.foreground,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     position: 'relative',
   };

@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "6.19.1",
+  "version": "6.19.2",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -143,6 +143,7 @@
   },
   "dependencies": {
     "date-fns": "2.0.0-alpha.27",
+    "dayjs": "^1.8.14",
     "focus-trap": "^5.0.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",

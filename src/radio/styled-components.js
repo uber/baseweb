@@ -144,9 +144,9 @@ export const RadioMarkInner = styled('div', props => {
 
   return {
     backgroundColor: getInnerColor(props),
+    borderTopLeftRadius: '50%',
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
-    borderTopLeftRadius: '50%',
     borderBottomLeftRadius: '50%',
     height: props.$checked ? sizing.scale200 : sizing.scale600,
     transitionDuration: animation.timing100,
@@ -161,9 +161,9 @@ export const RadioMarkOuter = styled('div', props => {
   return {
     alignItems: 'center',
     backgroundColor: getOuterColor(props),
+    borderTopLeftRadius: '50%',
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
-    borderTopLeftRadius: '50%',
     borderBottomLeftRadius: '50%',
     display: 'flex',
     height: sizing.scale700,
