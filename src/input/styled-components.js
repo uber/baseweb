@@ -172,7 +172,7 @@ export const getInputStyles = (props: SharedPropsT) => {
     caretColor: $error ? colors.negative400 : colors.primary,
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
-    borderWidth: '0',
+    borderWidth: 0,
     borderStyle: 'none',
     outline: 'none',
     ...getInputPadding($size, sizing),

@@ -62,7 +62,7 @@ export const Item = styled(
       listStyle: 'none',
       cursor: $isDragged ? 'grabbing' : 'grab',
       backgroundColor: $theme.colors.backgroundAlt,
-      boxShadow: $isDragged ? '0px 2px 6px rgba(39, 110, 241, 0.32)' : null,
+      boxShadow: $isDragged ? '0 2px 6px rgba(39, 110, 241, 0.32)' : null,
       borderTopWidth: '2px',
       borderBottomWidth: '2px',
       borderLeftWidth: '2px',

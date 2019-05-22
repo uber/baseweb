@@ -54,7 +54,7 @@ export const NavigationList: React.ComponentType<{
       ':last-child': {
         padding: 0,
       },
-      flex: $align === ALIGN.right || $align === ALIGN.left ? 'none' : '1',
+      flex: $align === ALIGN.right || $align === ALIGN.left ? 'none' : 1,
       paddingLeft: scale800,
       paddingRight: scale800,
       justifySelf: $align,

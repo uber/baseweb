@@ -163,14 +163,14 @@ describe('Typography', () => {
     expect(getStyle(<H2>test</H2>)).toEqual(BASIC_TESTS.H2);
     expect(
       getStyle(
-        <H2 position="absolute" bottom="0" left="10px">
+        <H2 position="absolute" bottom={0} left="10px">
           test
         </H2>,
       ),
     ).toEqual({
       ...BASIC_TESTS.H2,
       position: 'absolute',
-      bottom: '0',
+      bottom: 0,
       left: '10px',
     });
   });

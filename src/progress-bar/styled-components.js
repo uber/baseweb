@@ -16,15 +16,15 @@ export const Root = styled('div', props => {
 export const Bar = styled('div', props => {
   const {$theme} = props;
   const {colors, sizing, borders} = $theme;
-  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : '0';
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   return {
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
     marginBottom: sizing.scale500,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: '4px',
@@ -35,11 +35,11 @@ export const BarProgress = styled('div', props => {
   const {$theme, $value, $successValue} = props;
   const {colors, sizing, borders} = $theme;
   const width = `${($value / $successValue) * 100}%`;
-  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : '0';
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   return {
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.primary400,
     width: width,

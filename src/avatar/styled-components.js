@@ -21,9 +21,9 @@ export const Avatar = styled('img', (props: StylePropsT) => {
   const themedSize = getSize(props);
 
   return {
+    borderTopLeftRadius: '50%',
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
-    borderTopLeftRadius: '50%',
     borderBottomLeftRadius: '50%',
     boxSizing: 'border-box',
     display: 'block',
@@ -48,9 +48,9 @@ export const Root = styled('div', (props: StylePropsT) => {
 
   return {
     backgroundColor: $didImageFailToLoad ? props.$theme.colors.primary : null,
+    borderTopLeftRadius: '50%',
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
-    borderTopLeftRadius: '50%',
     borderBottomLeftRadius: '50%',
     boxSizing: 'border-box',
     display: 'inline-block',

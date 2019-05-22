@@ -30,7 +30,7 @@ export default class Datepicker extends React.Component<
     disabled: false,
     error: false,
     formatDisplayValue: null,
-    formatString: 'YYYY/MM/dd',
+    formatString: 'YYYY/MM/DD',
     onChange: () => {},
     overrides: {},
     placeholder: 'YYYY/MM/DD',
@@ -209,10 +209,10 @@ export default class Datepicker extends React.Component<
                 width: '1px',
                 height: '1px',
                 margin: '-1px',
-                border: '0px',
-                padding: '0px',
+                border: 0,
+                padding: 0,
                 overflow: 'hidden',
-                clip: 'react(0px, 0px, 0px, 0px)',
+                clip: 'rect(0, 0, 0, 0)',
                 clipPath: 'inset(100%)',
               }}
             >

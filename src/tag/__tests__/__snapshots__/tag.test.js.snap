@@ -57,7 +57,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
         onClick={[MockFunction]}
         onKeyDown={[Function]}
         role="button"
-        tabIndex="0"
+        tabIndex={0}
       >
         <span
           aria-label="close button"
@@ -65,7 +65,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           onKeyDown={[Function]}
           role="button"
           styled-component="true"
-          tabIndex="0"
+          tabIndex={0}
         >
           <MockStyledComponent
             fill="none"
