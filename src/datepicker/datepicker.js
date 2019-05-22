@@ -69,7 +69,7 @@ export default class Datepicker extends React.Component<
 
   formatDisplayValue(date: ?Date | Array<Date>) {
     const formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
-    return formatDisplayValue(date, this.props.formatString || 'YYYY/MM/dd');
+    return formatDisplayValue(date, this.props.formatString || 'YYYY/MM/DD');
   }
 
   open = () => {
@@ -199,10 +199,10 @@ export default class Datepicker extends React.Component<
                 width: '1px',
                 height: '1px',
                 margin: '-1px',
-                border: '0px',
-                padding: '0px',
+                border: 0,
+                padding: 0,
                 overflow: 'hidden',
-                clip: 'react(0px, 0px, 0px, 0px)',
+                clip: 'rect(0, 0, 0, 0)',
                 clipPath: 'inset(100%)',
               }}
             >

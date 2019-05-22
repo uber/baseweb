@@ -11,17 +11,9 @@ import InputMask from 'react-input-mask';
 
 import Input from './input.js';
 import {Input as StyledInput} from './styled-components.js';
-import type {InputPropsT} from './types.js';
+import type {MaskedInputPropsT} from './types.js';
 
-type PropsT = {
-  ...InputPropsT,
-  /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
-  mask?: string,
-  /** Character to render for unfilled mask element. */
-  maskChar?: string,
-};
-
-function MaskOverride(props: PropsT) {
+function MaskOverride(props: MaskedInputPropsT) {
   return (
     <InputMask {...props}>
       {({startEnhancer, endEnhancer, error, ...maskProps}) => {
@@ -31,14 +23,18 @@ function MaskOverride(props: PropsT) {
   );
 }
 
-export default function MaskedInput(props: PropsT) {
-  const {overrides = {}} = props;
+export default function MaskedInput(props: MaskedInputPropsT) {
+  const {
+    overrides: {Input: inputOverride, ...restOverrides} = {},
+    ...restProps
+  } = props;
   const nextOverrides = {
-    // seems similar to the issue described in overrides.js
-    // https://github.com/uber-web/baseui/blob/master/src/helpers/overrides.js#L32
-    // eslint-disable-next-line flowtype/no-weak-types
-    Input: ({component: MaskOverride, props}: any),
-    ...overrides,
+    Input: {
+      component: MaskOverride,
+      props: restProps,
+      ...(typeof inputOverride === 'object' ? inputOverride : {}),
+    },
+    ...restOverrides,
   };
 
   return <Input {...props} overrides={nextOverrides} />;

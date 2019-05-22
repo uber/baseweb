@@ -85,6 +85,9 @@ describe('Menu StatefulContainer', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     const item = mockItems[0];
     const props = component.instance().getRequiredItemProps(item, 0);
+    const event = {
+      preventDefault: jest.fn(),
+    };
 
     expect(props).toHaveProperty('disabled', false);
     expect(props).toHaveProperty('isFocused', false);
@@ -94,9 +97,10 @@ describe('Menu StatefulContainer', () => {
     expect(props).toHaveProperty('ref');
     expect(props).toHaveProperty('resetMenu');
 
-    props.onClick();
+    props.onClick(event);
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
       item,
+      event,
     });
   });
 

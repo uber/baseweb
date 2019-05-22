@@ -121,6 +121,14 @@ export type InputPropsT = {
   onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 };
 
+export type MaskedInputPropsT = {
+  /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
+  mask?: string,
+  /** Character to render for unfilled mask element. */
+  maskChar?: string,
+  ...InputPropsT,
+};
+
 export type StatefulContainerPropsT<T> = {
   children: (props: PropsT) => React.Node,
   /** Initial state of an uncontrolled input component. */

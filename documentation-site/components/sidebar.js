@@ -47,7 +47,7 @@ function CustomNavItem(props) {
 
   const NavLink = ({item}) => (
     <Link passHref={true} href={item.itemId} prefetch>
-      <StyledNavLink tabIndex="0" {...sharedProps}>
+      <StyledNavLink tabIndex={0} {...sharedProps}>
         <StyledNavItem {...sharedProps}>{item.title}</StyledNavItem>
       </StyledNavLink>
     </Link>

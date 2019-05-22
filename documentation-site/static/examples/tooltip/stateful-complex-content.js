@@ -19,7 +19,7 @@ export default () => (
         </div>
       }
     >
-      <FakeLink tabIndex="0">such as this</FakeLink>
+      <FakeLink tabIndex={0}>such as this</FakeLink>
     </StatefulTooltip>
     . Tooltips are essentially just a Popover with a few style tweaks, so you
     can use all the features that Popover supports.

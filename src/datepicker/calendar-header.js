@@ -203,7 +203,6 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
 
   renderMonthYearDropdown = () => {
     const {date, locale, maxDate, minDate, overrides = {}} = this.props;
-
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
       overrides.MonthYearSelectButton,
       StyledMonthYearSelectButton,

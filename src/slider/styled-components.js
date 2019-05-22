@@ -40,13 +40,11 @@ Track.displayName = 'StyledTrack';
 export const InnerTrack = styled('div', props => {
   const {$theme, $value, $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? borders.radius100
-    : '0px';
+  const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     background: getTrackBackground({
       values: $value,
@@ -104,7 +102,7 @@ export const Thumb = styled('div', props => {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: $theme.colors.mono400,
-    boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.12)',
+    boxShadow: '0 1px 4px rgba(0, 0, 0, 0.12)',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
@@ -115,9 +113,9 @@ export const InnerThumb = styled('div', props => {
   return {
     height: '8px',
     width: '2px',
+    borderTopLeftRadius: '2px',
     borderTopRightRadius: '2px',
     borderBottomRightRadius: '2px',
-    borderTopLeftRadius: '2px',
     borderBottomLeftRadius: '2px',
     backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
   };
