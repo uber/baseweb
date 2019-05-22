@@ -28,9 +28,9 @@ export const Body = styled('div', props => ({
   ...getBodyStyles(props),
   // Tooltip
   backgroundColor: props.$theme.colors.tooltipBackground,
+  borderTopLeftRadius: props.$theme.borders.radius200,
   borderTopRightRadius: props.$theme.borders.radius200,
   borderBottomRightRadius: props.$theme.borders.radius200,
-  borderTopLeftRadius: props.$theme.borders.radius200,
   borderBottomLeftRadius: props.$theme.borders.radius200,
   boxShadow: props.$theme.lighting.shadow400,
   color: props.$theme.colors.tooltipText,
@@ -42,9 +42,9 @@ export const Body = styled('div', props => ({
 export const Inner = styled('div', props => ({
   ...getInnerStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
+  borderTopLeftRadius: props.$theme.borders.radius200,
   borderTopRightRadius: props.$theme.borders.radius200,
   borderBottomRightRadius: props.$theme.borders.radius200,
-  borderTopLeftRadius: props.$theme.borders.radius200,
   borderBottomLeftRadius: props.$theme.borders.radius200,
   paddingTop: props.$theme.sizing.scale300,
   paddingBottom: props.$theme.sizing.scale300,
