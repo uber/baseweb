@@ -7,20 +7,80 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React, {useState, useRef} from 'react';
+import {List, AutoSizer} from 'react-virtualized';
 
 import {Block} from '../block/index.js';
-import {Input} from '../input/index.js';
-import {Select} from '../select/index.js';
 import {countries} from './countries.js';
-
+import {Input} from '../input/index.js';
+import {Select, StyledDropdownListItem} from '../select/index.js';
+import {styled} from '../styles/index.js';
+import {StyledList} from '../menu/index.js';
 import Flag from './flag.js';
 
+const Container = styled(StyledList, ({$height = '400px'}) => {
+  return {height: $height};
+});
+
+const ListItem = styled(StyledDropdownListItem, {
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
+  display: 'flex',
+  alignItems: 'center',
+});
+
+function VirtualList(props) {
+  return (
+    <Container $ref={props.$ref} $height={props.maxDropdownHeight}>
+      <AutoSizer>
+        {({height, width}) => {
+          return (
+            <List
+              role={props.role}
+              height={height}
+              width={width}
+              rowCount={props.children.length}
+              rowHeight={32}
+              rowRenderer={({index, key, style}) => {
+                // resetMenu and getItemLabel should not end up on native html elements
+                const {resetMenu, getItemLabel, ...rest} = props.children[
+                  index
+                ].props;
+                return (
+                  <ListItem key={key} style={style} {...rest}>
+                    <Block paddingLeft="8px" display="flex" alignItems="center">
+                      <Flag
+                        iso2={props.children[index].props.item.iso2}
+                        size="compact"
+                      />
+                    </Block>
+                    <Block paddingLeft="16px">
+                      {props.children[index].props.item.name}
+                    </Block>
+                    <Block marginLeft="auto" paddingRight="8px">
+                      +{props.children[index].props.item.dialCode}
+                    </Block>
+                  </ListItem>
+                );
+              }}
+            />
+          );
+        }}
+      </AutoSizer>
+    </Container>
+  );
+}
+
 export function StatefulPhoneInput(props) {
-  // TODO: add default country prop
-  const {size} = props;
-  const US = countries.find(c => c.iso2 === 'US');
-  const [phoneNumber, setPhoneNumber] = useState(`+${US.dialCode} `);
-  const [country, setCountry] = useState(US);
+  const {size, initialCountryCode = 'US'} = props;
+  const initialCountry =
+    countries.find(c => c.iso2 === initialCountryCode) ||
+    countries.find(c => c.iso2 === 'US');
+  const [phoneNumber, setPhoneNumber] = useState(
+    `+${initialCountry.dialCode} `,
+  );
+  const [country, setCountry] = useState(initialCountry);
   return (
     <PhoneInput
       size={size}
@@ -50,12 +110,20 @@ export function StatefulPhoneInput(props) {
 }
 
 export function PhoneInput(props) {
-  const inputEl = useRef(null);
-  const {inputValue, country, onInputChange, onCountryChange, size} = props;
+  const {
+    inputValue,
+    country,
+    onInputChange,
+    onCountryChange,
+    size,
+    maxDropdownHeight = '400px',
+    maxDropdownWidth = '400px',
+  } = props;
+  const inputRef = useRef(null);
   return (
     <Input
       size={size}
-      inputRef={inputEl}
+      inputRef={inputRef}
       value={inputValue}
       onChange={onInputChange}
       overrides={{
@@ -71,7 +139,7 @@ export function PhoneInput(props) {
                 size={size}
                 value={[country]}
                 onChange={(...args) => {
-                  inputEl.current.focus();
+                  inputRef.current.focus();
                   onCountryChange(...args);
                 }}
                 options={countries}
@@ -79,18 +147,9 @@ export function PhoneInput(props) {
                 valueKey="iso2"
                 clearable={false}
                 searchable={false}
-                maxDropdownHeight="300px"
+                maxDropdownHeight={maxDropdownHeight}
                 getValueLabel={({option}) => {
                   return <Flag iso2={option.iso2} size={size} />;
-                }}
-                getOptionLabel={({option}) => {
-                  return (
-                    <Block display="flex" alignItems="center" width="100%">
-                      <Flag iso2={option.iso2} size="compact" />
-                      <Block marginLeft="8px">{option.name}</Block>
-                      <Block marginLeft="auto">+{option.dialCode}</Block>
-                    </Block>
-                  );
                 }}
                 overrides={{
                   ValueContainer: {
@@ -115,7 +174,14 @@ export function PhoneInput(props) {
                   },
                   DropdownContainer: {
                     style: {
-                      width: '100%',
+                      width: maxDropdownWidth,
+                      maxWidth: 'calc(100vw - 10px)',
+                    },
+                  },
+                  Dropdown: {
+                    component: VirtualList,
+                    props: {
+                      maxDropdownHeight: maxDropdownHeight,
                     },
                   },
                 }}
