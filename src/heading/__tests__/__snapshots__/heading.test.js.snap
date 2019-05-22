@@ -10,7 +10,7 @@ exports[`Heading basic render 1`] = `
       font="font1000"
       overrides={Object {}}
     >
-      <StyledBlock
+      <MockStyledComponent
         $as="h1"
         $color="colorPrimary"
         $font="font1000"
@@ -22,7 +22,7 @@ exports[`Heading basic render 1`] = `
         >
           Base Web [L1]
         </div>
-      </StyledBlock>
+      </MockStyledComponent>
     </Block>
   </Heading>
   <HeadingLevel>
@@ -34,7 +34,7 @@ exports[`Heading basic render 1`] = `
         font="font900"
         overrides={Object {}}
       >
-        <StyledBlock
+        <MockStyledComponent
           $as="h2"
           $color="colorPrimary"
           $font="font900"
@@ -46,7 +46,7 @@ exports[`Heading basic render 1`] = `
           >
             Introduction [L2]
           </div>
-        </StyledBlock>
+        </MockStyledComponent>
       </Block>
     </Heading>
     <HeadingLevel>
@@ -58,7 +58,7 @@ exports[`Heading basic render 1`] = `
           font="font800"
           overrides={Object {}}
         >
-          <StyledBlock
+          <MockStyledComponent
             $as="h3"
             $color="colorPrimary"
             $font="font800"
@@ -70,7 +70,7 @@ exports[`Heading basic render 1`] = `
             >
               Quotes [L3]
             </div>
-          </StyledBlock>
+          </MockStyledComponent>
         </Block>
       </Heading>
       <HeadingLevel>
@@ -82,7 +82,7 @@ exports[`Heading basic render 1`] = `
             font="font700"
             overrides={Object {}}
           >
-            <StyledBlock
+            <MockStyledComponent
               $as="h4"
               $color="colorPrimary"
               $font="font700"
@@ -94,7 +94,7 @@ exports[`Heading basic render 1`] = `
               >
                 Subtitle [L4]
               </div>
-            </StyledBlock>
+            </MockStyledComponent>
           </Block>
         </Heading>
         <HeadingLevel>
@@ -106,7 +106,7 @@ exports[`Heading basic render 1`] = `
               font="font600"
               overrides={Object {}}
             >
-              <StyledBlock
+              <MockStyledComponent
                 $as="h5"
                 $color="colorPrimary"
                 $font="font600"
@@ -118,7 +118,7 @@ exports[`Heading basic render 1`] = `
                 >
                   Subtitle [L5]
                 </div>
-              </StyledBlock>
+              </MockStyledComponent>
             </Block>
           </Heading>
           <HeadingLevel>
@@ -130,7 +130,7 @@ exports[`Heading basic render 1`] = `
                 font="font500"
                 overrides={Object {}}
               >
-                <StyledBlock
+                <MockStyledComponent
                   $as="h6"
                   $color="colorPrimary"
                   $font="font500"
@@ -142,7 +142,7 @@ exports[`Heading basic render 1`] = `
                   >
                     Subtitle [L6]
                   </div>
-                </StyledBlock>
+                </MockStyledComponent>
               </Block>
             </Heading>
           </HeadingLevel>
@@ -157,7 +157,7 @@ exports[`Heading basic render 1`] = `
         font="font900"
         overrides={Object {}}
       >
-        <StyledBlock
+        <MockStyledComponent
           $as="h2"
           $color="colorPrimary"
           $font="font900"
@@ -169,7 +169,7 @@ exports[`Heading basic render 1`] = `
           >
             Motivation [L2]
           </div>
-        </StyledBlock>
+        </MockStyledComponent>
       </Block>
     </Heading>
   </HeadingLevel>
@@ -188,7 +188,7 @@ exports[`Heading styleLevels 1`] = `
       font="font900"
       overrides={Object {}}
     >
-      <StyledBlock
+      <MockStyledComponent
         $as="h1"
         $color="colorPrimary"
         $font="font900"
@@ -200,7 +200,7 @@ exports[`Heading styleLevels 1`] = `
         >
           Base Web [L1 styled as L2]
         </div>
-      </StyledBlock>
+      </MockStyledComponent>
     </Block>
   </Heading>
 </HeadingLevel>
