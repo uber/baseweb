@@ -105,7 +105,7 @@ class Tag extends React.Component<PropsT, {}> {
         data-baseweb="tag"
         aria-label="button"
         role="button"
-        tabIndex={clickable ? '0' : null}
+        tabIndex={clickable ? 0 : null}
         {...rootHandlers}
         {...sharedProps}
         {...rootProps}
@@ -115,7 +115,7 @@ class Tag extends React.Component<PropsT, {}> {
           <Action
             aria-label="close button"
             role="button"
-            tabIndex={'0'}
+            tabIndex={0}
             {...actionHandlers}
             {...sharedProps}
             {...actionProps}

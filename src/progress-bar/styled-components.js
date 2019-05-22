@@ -16,7 +16,7 @@ export const Root = styled('div', props => {
 export const Bar = styled('div', props => {
   const {$theme} = props;
   const {colors, sizing, borders} = $theme;
-  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : '0';
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   return {
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
@@ -35,7 +35,7 @@ export const BarProgress = styled('div', props => {
   const {$theme, $value, $successValue} = props;
   const {colors, sizing, borders} = $theme;
   const width = `${($value / $successValue) * 100}%`;
-  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : '0';
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   return {
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,

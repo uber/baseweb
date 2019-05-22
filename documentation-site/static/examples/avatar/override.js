@@ -14,12 +14,18 @@ export default () => {
   const squaredOverrides = {
     Avatar: {
       style: ({$theme}) => ({
-        borderRadius: $theme.borders.radius100,
+        borderRadiusTopLeft: $theme.borders.radius100,
+        borderRadiusTopRight: $theme.borders.radius100,
+        borderRadiusBottomRight: $theme.borders.radius100,
+        borderRadiusBottomLeft: $theme.borders.radius100,
       }),
     },
     Root: {
       style: ({$theme}) => ({
-        borderRadius: $theme.borders.radius100,
+        borderRadiusTopLeft: $theme.borders.radius100,
+        borderRadiusTopRight: $theme.borders.radius100,
+        borderRadiusBottomRight: $theme.borders.radius100,
+        borderRadiusBottomLeft: $theme.borders.radius100,
       }),
     },
   };

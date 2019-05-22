@@ -15,7 +15,7 @@ type StylePropsT = SharedStylePropsT & {
 };
 
 function getBorderRadii({$shape, $theme}: StylePropsT) {
-  let value = '0px';
+  let value = 0;
 
   if ($shape === SHAPE.round) {
     value = '50%';

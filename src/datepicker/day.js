@@ -235,8 +235,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         tabIndex={
           this.props.highlighted ||
           (!this.props.highlightedDate && this.isSelected())
-            ? '0'
-            : '-1'
+            ? 0
+            : -1
         }
         {...sharedProps}
         {...dayProps}
