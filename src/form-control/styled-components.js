@@ -37,10 +37,7 @@ export const Caption = styled('div', props => {
   } = props;
   return {
     ...typography.font200,
-    color:
-      $error && typeof $error !== 'boolean'
-        ? colors.negative400
-        : colors.foregroundAlt,
+    color: !$error ? colors.foregroundAlt : colors.negative400,
     paddingTop: 0,
     paddingRight: 0,
     paddingBottom: 0,
