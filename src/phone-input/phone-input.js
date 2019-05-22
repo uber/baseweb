@@ -49,7 +49,11 @@ function VirtualList(props) {
                 ].props;
                 return (
                   <ListItem key={key} style={style} {...rest}>
-                    <Block paddingLeft="8px" display="flex" alignItems="center">
+                    <Block
+                      paddingLeft="16px"
+                      display="flex"
+                      alignItems="center"
+                    >
                       <Flag
                         iso2={props.children[index].props.item.iso2}
                         size="compact"
@@ -58,7 +62,7 @@ function VirtualList(props) {
                     <Block paddingLeft="16px">
                       {props.children[index].props.item.name}
                     </Block>
-                    <Block marginLeft="auto" paddingRight="8px">
+                    <Block marginLeft="auto" paddingRight="16px">
                       +{props.children[index].props.item.dialCode}
                     </Block>
                   </ListItem>
