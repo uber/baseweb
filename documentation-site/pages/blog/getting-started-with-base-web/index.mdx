@@ -272,7 +272,10 @@ Tie that into our Input
     InputContainer: {
       style: ({ $theme }) => ({
         borderColor: $theme.colors[getStrengthColor(strength)],
-        borderRadius: $theme.sizing.scale200,
+        borderRadiusTopLeft: $theme.sizing.scale200,
+        borderRadiusTopRight: $theme.sizing.scale200,
+        borderRadiusBottomRight: $theme.sizing.scale200,
+        borderRadiusBottomLeft: $theme.sizing.scale200,
         borderStyle: 'solid',
         borderWidth: $theme.sizing.scale200
       })

@@ -48,7 +48,15 @@ test('styled override prop', () => {
       <div>
         <StyledMockButton id="testButton1" />
         <StyledMockButton id="testButton2" $style={{color: 'blue'}} />
-        <StyledMockButton id="testButton3" $style={{borderRadius: '2px'}} />
+        <StyledMockButton
+          id="testButton3"
+          $style={{
+            borderRadiusTopLeft: '2px',
+            borderRadiusTopRight: '2px',
+            borderRadiusBottomRight: '2px',
+            borderRadiusBottomLeft: '2px',
+          }}
+        />
         <StyledMockButton id="testButton4" $color="red" $style={styleFn} />
         <StyledMockButton id="testButton5" $color="blue" $style={styleFn} />
       </div>
@@ -68,9 +76,9 @@ test('styled override prop', () => {
   expect(button2.classList.item(0)).not.toBe(colorRedClass);
   const colorBlueClass = button2.classList.item(0);
 
-  // Third button should have 2 classes, one for red text, one for border radius
+  // Third button should have 5 classes, one for red text, four for border radii
   const button3 = wrapper.find('button#testButton3').getDOMNode();
-  expect(button3.classList).toHaveLength(2);
+  expect(button3.classList).toHaveLength(5);
   expect(button3.classList).toContain(colorRedClass);
 
   // Fourth button should have single red class

@@ -9,7 +9,10 @@ export default () => (
           'data-label': 'data-label',
         },
         style: ({$theme}) => ({
-          borderRadius: '50%',
+          borderRadiusTopLeft: '50%',
+          borderRadiusTopRight: '50%',
+          borderRadiusBottomRight: '50%',
+          borderRadiusBottomLeft: '50%',
           backgroundColor: $theme.colors.primary50,
         }),
       },

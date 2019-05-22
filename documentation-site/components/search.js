@@ -26,7 +26,10 @@ type State = {
 const PlainInput = styled('input', ({$theme, $inputVisible}) => ({
   display: $inputVisible ? 'block' : 'none',
   borderWidth: '1px',
-  borderRadius: '4px',
+  borderRadiusTopLeft: '4px',
+  borderRadiusTopRight: '4px',
+  borderRadiusBottomRight: '4px',
+  borderRadiusBottomLeft: '4px',
   borderColor: $theme.colors.mono200,
   borderStyle: 'solid',
   paddingLeft: '42px',
