@@ -90,7 +90,7 @@ export const Dialog = styled('div', (props: SharedStylePropsT) => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius200
-    : '0px';
+    : 0;
   return {
     position: 'relative',
     backgroundColor: $theme.colors.backgroundAlt,
@@ -131,7 +131,7 @@ export const Close = styled('button', (props: SharedStylePropsT) => {
   const {$theme} = props;
   return {
     // Reset button styles
-    border: '0',
+    border: 0,
     background: 'transparent',
     outline: 0,
     paddingLeft: 0,

@@ -31,7 +31,7 @@ function getBorderRadius(adjoined, radius) {
     [ADJOINED.none]: radius,
     [ADJOINED.left]: `0 ${radius} ${radius} 0`,
     [ADJOINED.right]: `${radius} 0 0 ${radius}`,
-    [ADJOINED.both]: '0',
+    [ADJOINED.both]: 0,
   }[adjoined];
 }
 
@@ -111,7 +111,7 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
           : colors.inputFill,
     borderRadius: borders.useRoundedCorners
       ? getBorderRadius($adjoined, sizing.scale100)
-      : '0px',
+      : 0,
     boxShadow: `0 2px 6px ${
       $disabled
         ? 'transparent'
@@ -142,7 +142,7 @@ export const getInputStyles = (props: SharedPropsT) => {
     caretColor: $error ? colors.negative400 : colors.primary,
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
-    borderWidth: '0',
+    borderWidth: 0,
     borderStyle: 'none',
     outline: 'none',
     ...getInputPadding($size, sizing),

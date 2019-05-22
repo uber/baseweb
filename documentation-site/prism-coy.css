@@ -52,7 +52,7 @@ pre[class*='language-'] {
 pre[class*='language-'] > code {
   position: relative;
   border-left: 10px solid #358ccb;
-  box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+  box-shadow: -1px 0 0 0 #358ccb, 0 0 0 1px #dfdfdf;
   background-color: #fdfdfd;
   background-image: linear-gradient(
     transparent 50%,

@@ -48,18 +48,18 @@ const StyledLargeText = styled(StyledCell, {
 });
 
 const ExpandableCellHead = styled(StyledHeadCell, {
-  paddingTop: '0',
-  paddingBottom: '0',
-  paddingLeft: '0',
-  paddingRight: '0',
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
   minWidth: '180px',
 });
 
 const ExpandableCell = styled(StyledCell, {
-  paddingTop: '0',
-  paddingBottom: '0',
-  paddingLeft: '0',
-  paddingRight: '0',
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
   minWidth: '180px',
 });
 
