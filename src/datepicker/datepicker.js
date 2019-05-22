@@ -30,7 +30,7 @@ export default class Datepicker extends React.Component<
     disabled: false,
     error: false,
     formatDisplayValue: null,
-    formatString: 'YYYY/MM/dd',
+    formatString: 'YYYY/MM/DD',
     onChange: () => {},
     overrides: {},
     placeholder: 'YYYY/MM/DD',
