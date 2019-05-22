@@ -22,9 +22,9 @@ export const Bar = styled('div', props => {
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
     marginBottom: sizing.scale500,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: '4px',
@@ -37,9 +37,9 @@ export const BarProgress = styled('div', props => {
   const width = `${($value / $successValue) * 100}%`;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : '0';
   return {
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.primary400,
     width: width,

@@ -44,9 +44,9 @@ function getBorderRadii(index, length) {
   }
 
   return {
+    borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
-    borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
   };
 }
