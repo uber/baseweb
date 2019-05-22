@@ -22,9 +22,9 @@ export const StyledFileDragAndDrop = styled('div', (props: StylePropsT) => {
       ? props.$theme.colors.fileUploaderBorderColorActive
       : props.$theme.colors.fileUploaderBorderColorDefault,
     borderStyle: props.$afterFileDrop ? 'none' : 'dashed',
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     borderWidth: props.$theme.sizing.scale0,
     boxSizing: 'border-box',
