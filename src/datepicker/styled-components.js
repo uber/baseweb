@@ -101,6 +101,9 @@ export const StyledMonthHeader = styled('div', (props: SharedStylePropsT) => {
 });
 
 function getArrowBtnStyle({$theme}: SharedStylePropsT) {
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.sizing.scale100
+    : 0;
   return {
     boxSizing: 'border-box',
     height: '22px',
@@ -114,9 +117,10 @@ function getArrowBtnStyle({$theme}: SharedStylePropsT) {
     outline: 'none',
     ':focus': {
       backgroundColor: $theme.colors.primary500,
-      borderRadius: $theme.borders.useRoundedCorners
-        ? $theme.sizing.scale100
-        : 0,
+      borderRadiusTopLeft: borderRadius,
+      borderRadiusTopRight: borderRadius,
+      borderRadiusBottomRight: borderRadius,
+      borderRadiusBottomLeft: borderRadius,
     },
   };
 }
