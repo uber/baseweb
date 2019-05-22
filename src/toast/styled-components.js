@@ -114,7 +114,7 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
   const isInline = $type === TYPE.inline;
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius200
-    : '0px';
+    : 0;
   return {
     ...$theme.typography.font350,
     pointerEvents: 'auto',

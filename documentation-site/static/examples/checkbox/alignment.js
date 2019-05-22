@@ -10,7 +10,7 @@ export default () => (
       style={{
         display: 'flex',
         justifyContent: 'center',
-        margin: '8px 0px 8px 12px',
+        margin: '8px 0 8px 12px',
       }}
     >
       <StatefulCheckbox onChange={console.log} labelPlacement="left">

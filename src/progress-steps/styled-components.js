@@ -134,7 +134,7 @@ export const StyledContentTail = styled(
       left: '7px',
       top: 0,
       height: '100%',
-      paddingBottom: '0px',
+      paddingBottom: 0,
       width: $theme.sizing.scale0,
       paddingTop: $isActive ? $theme.sizing.scale700 : $theme.sizing.scale600,
       ':after': {
@@ -228,7 +228,7 @@ export const StyledNumberContentTail = styled(
       left: '11px',
       top: 0,
       height: '100%',
-      paddingBottom: '0px',
+      paddingBottom: 0,
       width: $theme.sizing.scale0,
       paddingTop: $theme.sizing.scale800,
       ':after': {

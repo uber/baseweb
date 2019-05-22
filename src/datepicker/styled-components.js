@@ -15,7 +15,7 @@ export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
   const {
     $theme: {typography, colors, borders},
   } = props;
-  const borderRadius = borders.useRoundedCorners ? borders.radius200 : '0px';
+  const borderRadius = borders.useRoundedCorners ? borders.radius200 : 0;
   return {
     ...typography.font400,
     color: props.$theme.colors.datepickerDayFont,
@@ -75,7 +75,7 @@ export const StyledCalendarHeader = styled(
     const {
       $theme: {colors, sizing, borders},
     } = props;
-    const borderRadius = borders.useRoundedCorners ? borders.radius200 : '0px';
+    const borderRadius = borders.useRoundedCorners ? borders.radius200 : 0;
     return {
       color: colors.white,
       display: 'flex',
@@ -106,7 +106,7 @@ function getArrowBtnStyle({$theme}: SharedStylePropsT) {
     height: '22px',
     color: $theme.colors.white,
     backgroundColor: 'transparent',
-    borderWidth: '0',
+    borderWidth: 0,
     paddingTop: '3px',
     paddingBottom: '3px',
     paddingLeft: '3px',
@@ -244,10 +244,10 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
     paddingBottom: sizing.scale300,
     paddingLeft: sizing.scale200,
     paddingRight: sizing.scale200,
-    marginTop: '0',
-    marginBottom: '0',
-    marginLeft: '0',
-    marginRight: '0',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
     color: $selected
       ? colors.white
       : $outsideMonth || $disabled

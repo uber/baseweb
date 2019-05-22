@@ -62,7 +62,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
               $size="default"
               aria-modal="true"
               role="dialog"
-              tabIndex="-1"
+              tabIndex={-1}
             >
               <Portal>
                 <MockStyledComponent
