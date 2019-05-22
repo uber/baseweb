@@ -294,7 +294,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               {...getOverrideProps(DialogContainerOverride)}
             >
               <Dialog
-                tabIndex="-1"
+                tabIndex={-1}
                 aria-modal={
                   // aria-modal replaces the need to apply aria-hidden="true" to all other page
                   // content underneath the modal.

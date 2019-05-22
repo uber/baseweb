@@ -30,7 +30,7 @@ export function getBodyStyles(props: SharedStylePropsT) {
 
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius300
-    : '0px';
+    : 0;
 
   return {
     position: 'absolute',
@@ -85,7 +85,7 @@ export const Arrow = styled('div', getArrowStyles);
 export function getInnerStyles({$theme}: SharedStylePropsT) {
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius300
-    : '0px';
+    : 0;
   return {
     backgroundColor: $theme.colors.backgroundAlt,
     color: $theme.colors.foreground,

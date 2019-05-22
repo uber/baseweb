@@ -164,7 +164,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
       },
       IconsContainer: {
         style: {
-          paddingRight: '0',
+          paddingRight: 0,
         },
       },
       SelectArrow: {
@@ -174,26 +174,26 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
       },
       ValueContainer: {
         style: ({$theme: {sizing}}: SharedStylePropsT) => ({
-          paddingTop: '0',
-          paddingBottom: '0',
+          paddingTop: 0,
+          paddingBottom: 0,
           paddingLeft: sizing.scale200,
-          paddingRight: '0',
+          paddingRight: 0,
         }),
       },
       SingleValue: {
         style: ({$theme: {sizing}}: SharedStylePropsT) => ({
-          paddingTop: '0',
-          paddingBottom: '0',
+          paddingTop: 0,
+          paddingBottom: 0,
           paddingLeft: sizing.scale200,
-          paddingRight: '0',
+          paddingRight: 0,
         }),
       },
       DropdownContainer: {
         style: {
-          paddingTop: '0',
-          paddingBottom: '0',
-          paddingLeft: '0',
-          paddingRight: '0',
+          paddingTop: 0,
+          paddingBottom: 0,
+          paddingLeft: 0,
+          paddingRight: 0,
         },
       },
     };

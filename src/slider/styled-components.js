@@ -40,9 +40,7 @@ Track.displayName = 'StyledTrack';
 export const InnerTrack = styled('div', props => {
   const {$theme, $value, $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? borders.radius100
-    : '0px';
+  const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
@@ -104,7 +102,7 @@ export const Thumb = styled('div', props => {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: $theme.colors.mono400,
-    boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.12)',
+    boxShadow: '0 1px 4px rgba(0, 0, 0, 0.12)',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
