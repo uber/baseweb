@@ -28,17 +28,47 @@ function getInputPadding(size, sizing) {
 
 function getBorderRadius(adjoined, radius) {
   return {
-    [ADJOINED.none]: radius,
-    [ADJOINED.left]: `0 ${radius} ${radius} 0`,
-    [ADJOINED.right]: `${radius} 0 0 ${radius}`,
-    [ADJOINED.both]: 0,
+    [ADJOINED.none]: {
+      borderRadiusTopLeft: radius,
+      borderRadiusTopRight: radius,
+      borderRadiusBottomRight: radius,
+      borderRadiusBottomLeft: radius,
+    },
+    [ADJOINED.left]: {
+      borderRadiusTopLeft: 0,
+      borderRadiusTopRight: radius,
+      borderRadiusBottomRight: radius,
+      borderRadiusBottomLeft: 0,
+    },
+    [ADJOINED.right]: {
+      borderRadiusTopLeft: radius,
+      borderRadiusTopRight: 0,
+      borderRadiusBottomRight: 0,
+      borderRadiusBottomLeft: radius,
+    },
+    [ADJOINED.both]: {
+      borderRadiusTopLeft: 0,
+      borderRadiusTopRight: 0,
+      borderRadiusBottomRight: 0,
+      borderRadiusBottomLeft: 0,
+    },
   }[adjoined];
 }
 
 function getDecoratorBorderRadius(position, radius) {
   return {
-    [ENHANCER_POSITION.start]: `${radius} 0 0 ${radius}`,
-    [ENHANCER_POSITION.end]: `0 ${radius} ${radius} 0`,
+    [ENHANCER_POSITION.start]: {
+      borderRadiusTopLeft: radius,
+      borderRadiusTopRight: 0,
+      borderRadiusBottomRight: 0,
+      borderRadiusBottomLeft: radius,
+    },
+    [ENHANCER_POSITION.end]: {
+      borderRadiusTopLeft: 0,
+      borderRadiusTopRight: 0,
+      borderRadiusBottomRight: radius,
+      borderRadiusBottomLeft: radius,
+    },
   }[position];
 }
 
@@ -74,7 +104,7 @@ export const InputEnhancer = styled('div', props => {
     display: 'flex',
     ...getInputPadding($size, sizing),
     backgroundColor: colors.inputFillEnhancer,
-    borderRadius: getDecoratorBorderRadius($position, sizing.scale100),
+    ...getDecoratorBorderRadius($position, sizing.scale100),
   };
 });
 
@@ -109,9 +139,9 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
         : $isFocused
           ? colors.primary400
           : colors.inputFill,
-    borderRadius: borders.useRoundedCorners
-      ? getBorderRadius($adjoined, sizing.scale100)
-      : 0,
+    ...(borders.useRoundedCorners
+      ? {...getBorderRadius($adjoined, sizing.scale100)}
+      : {}),
     boxShadow: `0 2px 6px ${
       $disabled
         ? 'transparent'

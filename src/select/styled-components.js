@@ -111,6 +111,7 @@ export const StyledControlContainer = styled(
       $searchable,
       $theme: {colors, sizing, animation, borders},
     } = props;
+    const borderRadius = borders.useRoundedCorners ? sizing.scale100 : 0;
     return {
       boxSizing: 'border-box',
       overflow: 'hidden',
@@ -139,7 +140,10 @@ export const StyledControlContainer = styled(
           : $isFocused || $isPseudoFocused
             ? colors.primary400
             : colors.inputFill,
-      borderRadius: borders.useRoundedCorners ? sizing.scale100 : 0,
+      borderRadiusTopLeft: borderRadius,
+      borderRadiusTopRight: borderRadius,
+      borderRadiusBottomRight: borderRadius,
+      borderRadiusBottomLeft: borderRadius,
       boxShadow: `0 2px 6px ${
         $disabled
           ? 'transparent'
