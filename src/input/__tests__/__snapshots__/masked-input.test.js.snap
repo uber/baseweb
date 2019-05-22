@@ -63,50 +63,6 @@ Object {
   "onKeyUp": [MockFunction],
   "onMouseDown": [Function],
   "onPaste": [Function],
-  "overrides": Object {
-    "After": [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "$adjoined": "none",
-            "$disabled": false,
-            "$error": false,
-            "$isFocused": false,
-            "$required": false,
-            "$size": "default",
-          },
-          Object {},
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": <span />,
-        },
-      ],
-    },
-    "Before": [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "$adjoined": "none",
-            "$disabled": false,
-            "$error": false,
-            "$isFocused": false,
-            "$required": false,
-            "$size": "default",
-          },
-          Object {},
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": <span />,
-        },
-      ],
-    },
-  },
   "placeholder": "Placeholder",
   "required": false,
   "size": "default",
