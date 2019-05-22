@@ -31,9 +31,9 @@ export const StyledList = styled('ul', ({$theme}: StyledPropsT) => {
     paddingBottom: $theme.sizing.scale300,
     paddingLeft: '0',
     paddingRight: '0',
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow600,
     overflow: 'auto',
@@ -154,9 +154,9 @@ export const StyledProfileImgContainer = styled('div', {
 export const StyledProfileImg = styled('img', {
   width: '100%',
   height: '100%',
+  borderTopLeftRadius: '50%',
   borderTopRightRadius: '50%',
   borderBottomRightRadius: '50%',
-  borderTopLeftRadius: '50%',
   borderBottomLeftRadius: '50%',
 });
 

@@ -94,9 +94,9 @@ export const Dialog = styled('div', (props: SharedStylePropsT) => {
   return {
     position: 'relative',
     backgroundColor: $theme.colors.backgroundAlt,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     marginLeft: $theme.sizing.scale600,
     marginTop: $theme.sizing.scale600,

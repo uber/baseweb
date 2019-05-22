@@ -21,9 +21,9 @@ export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
     color: props.$theme.colors.datepickerDayFont,
     backgroundColor: colors.datepickerBackground,
     textAlign: 'center',
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     display: 'inline-block',
   };
@@ -86,9 +86,9 @@ export const StyledCalendarHeader = styled(
       paddingLeft: sizing.scale600,
       paddingRight: sizing.scale600,
       backgroundColor: colors.primary,
+      borderTopLeftRadius: borderRadius,
       borderTopRightRadius: borderRadius,
       borderBottomRightRadius: 0,
-      borderTopLeftRadius: borderRadius,
       borderBottomLeftRadius: 0,
     };
   },
