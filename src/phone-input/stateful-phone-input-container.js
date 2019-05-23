@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {countries} from './countries.js';
+import {countries} from './constants.js';
 
 export default class StatefulContainer extends React.Component {
   static defaultProps = {
     initialState: {
-      inputValue: '+' + countries.find(c => c.iso2 === 'US').dialCode,
-      countryValue: countries.find(c => c.iso2 === 'US'),
+      inputValue: '+' + countries.US.dialCode,
+      countryValue: countries.US,
     },
     overrides: {},
     onInputChange: () => {},

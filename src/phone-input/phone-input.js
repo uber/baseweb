@@ -10,8 +10,8 @@ import React, {useRef} from 'react';
 import {List, AutoSizer} from 'react-virtualized';
 
 import {Block} from '../block/index.js';
-import {countries} from './countries.js';
-import {Input} from '../input/index.js';
+import {countries} from './constants.js';
+import {Input, SIZE} from '../input/index.js';
 import {Select, StyledDropdownListItem} from '../select/index.js';
 import {styled} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
@@ -82,7 +82,7 @@ export default function PhoneInput(props) {
     onInputChange,
     countryValue,
     onCountryChange,
-    size = 'default',
+    size = SIZE.default,
     maxDropdownHeight = '400px',
     maxDropdownWidth = '400px',
   } = props;
@@ -109,7 +109,7 @@ export default function PhoneInput(props) {
                   inputRef.current.focus();
                   onCountryChange(...args);
                 }}
-                options={countries}
+                options={Object.values(countries)}
                 labelKey="name"
                 valueKey="iso2"
                 clearable={false}
@@ -122,9 +122,9 @@ export default function PhoneInput(props) {
                   ValueContainer: {
                     style: {
                       width: {
-                        compact: '34px',
-                        default: '42px',
-                        large: '50px',
+                        [SIZE.compact]: '34px',
+                        [SIZE.default]: '42px',
+                        [SIZE.large]: '50px',
                       }[size],
                     },
                   },
