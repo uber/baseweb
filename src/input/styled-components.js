@@ -29,28 +29,28 @@ function getInputPadding(size, sizing) {
 function getBorderRadius(adjoined, radius) {
   return {
     [ADJOINED.none]: {
-      borderRadiusTopLeft: radius,
-      borderRadiusTopRight: radius,
-      borderRadiusBottomRight: radius,
-      borderRadiusBottomLeft: radius,
+      borderTopLeftRadius: radius,
+      borderTopRightRadius: radius,
+      borderBottomRightRadius: radius,
+      borderBottomLeftRadius: radius,
     },
     [ADJOINED.left]: {
-      borderRadiusTopLeft: 0,
-      borderRadiusTopRight: radius,
-      borderRadiusBottomRight: radius,
-      borderRadiusBottomLeft: 0,
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: radius,
+      borderBottomRightRadius: radius,
+      borderBottomLeftRadius: 0,
     },
     [ADJOINED.right]: {
-      borderRadiusTopLeft: radius,
-      borderRadiusTopRight: 0,
-      borderRadiusBottomRight: 0,
-      borderRadiusBottomLeft: radius,
+      borderTopLeftRadius: radius,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: radius,
     },
     [ADJOINED.both]: {
-      borderRadiusTopLeft: 0,
-      borderRadiusTopRight: 0,
-      borderRadiusBottomRight: 0,
-      borderRadiusBottomLeft: 0,
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
     },
   }[adjoined];
 }
@@ -58,16 +58,16 @@ function getBorderRadius(adjoined, radius) {
 function getDecoratorBorderRadius(position, radius) {
   return {
     [ENHANCER_POSITION.start]: {
-      borderRadiusTopLeft: radius,
-      borderRadiusTopRight: 0,
-      borderRadiusBottomRight: 0,
-      borderRadiusBottomLeft: radius,
+      borderTopLeftRadius: radius,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: radius,
     },
     [ENHANCER_POSITION.end]: {
-      borderRadiusTopLeft: 0,
-      borderRadiusTopRight: 0,
-      borderRadiusBottomRight: radius,
-      borderRadiusBottomLeft: radius,
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: radius,
+      borderBottomLeftRadius: radius,
     },
   }[position];
 }
