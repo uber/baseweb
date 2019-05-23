@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {countries} from './constants.js';
+import {countries, STATE_CHANGE_TYPE} from './constants.js';
 
 export default class StatefulContainer extends React.Component {
   static defaultProps = {
@@ -19,9 +19,9 @@ export default class StatefulContainer extends React.Component {
     onCountryChange: () => {},
     stateReducer: (state, type, payload) => {
       switch (type) {
-        case 'INPUT_VALUE_CHANGE':
+        case STATE_CHANGE_TYPE.inputValueChange:
           return {...state, inputValue: payload};
-        case 'COUNTRY_VALUE_CHANGE': {
+        case STATE_CHANGE_TYPE.countryValueChange: {
           // Replace (if possible) the current country dialcode
           let newInputValue = state.inputValue.replace(
             `+${state.countryValue.dialCode}`,
@@ -51,12 +51,15 @@ export default class StatefulContainer extends React.Component {
   };
 
   onInputChange = event => {
-    this.internalSetState('INPUT_VALUE_CHANGE', event.target.value);
+    this.internalSetState(
+      STATE_CHANGE_TYPE.inputValueChange,
+      event.target.value,
+    );
     this.props.onInputChange(event);
   };
 
   onCountryChange = event => {
-    this.internalSetState('COUNTRY_VALUE_CHANGE', event.option);
+    this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, event.option);
     this.props.onCountryChange(event);
   };
 
