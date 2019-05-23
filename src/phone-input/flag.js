@@ -8,14 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
+import {SIZE} from './constants.js';
 import * as flagComponents from './flags/index.js';
 
 export default function Flag(props: {size: string, iso2: string}) {
   const FlagComponent = flagComponents['Flag' + props.iso2.toUpperCase()];
   const width = {
-    compact: '22px',
-    default: '30px',
-    large: '37px',
-  }[props.size || 'default'];
+    [SIZE.compact]: '22px',
+    [SIZE.default]: '30px',
+    [SIZE.large]: '37px',
+  }[props.size || SIZE.default];
   return <FlagComponent width={width} />;
 }
