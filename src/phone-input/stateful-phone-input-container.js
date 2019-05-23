@@ -8,7 +8,53 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {countries, STATE_CHANGE_TYPE} from './constants.js';
 
-export default class StatefulContainer extends React.Component {
+import type {
+  StatefulPhoneInputPropsT,
+  StateT,
+  StateReducerT,
+  StateChangeT,
+  StateChangePayloadT,
+  InputChangeEventT,
+  CountryChangeEventT,
+} from './types.js';
+
+const defaultStateReducer: StateReducerT = (state, type, payload) => {
+  switch (type) {
+    case STATE_CHANGE_TYPE.inputValueChange:
+      if (typeof payload === 'string') {
+        return {...state, inputValue: payload};
+      } else {
+        return state;
+      }
+    case STATE_CHANGE_TYPE.countryValueChange: {
+      if (typeof payload !== 'string') {
+        // Replace (if possible) the current country dialcode
+        let newInputValue = state.inputValue.replace(
+          `+${state.countryValue.dialCode}`,
+          `+${payload.dialCode}`,
+        );
+        // If the replacement did nothing, just use the new dialcode
+        newInputValue =
+          state.inputValue === newInputValue
+            ? `+${payload.dialCode} `
+            : newInputValue;
+        return {
+          inputValue: newInputValue,
+          countryValue: payload,
+        };
+      } else {
+        return state;
+      }
+    }
+    default:
+      return state;
+  }
+};
+
+export default class StatefulPhoneInputContainer extends React.Component<
+  StatefulPhoneInputPropsT,
+  StateT,
+> {
   static defaultProps = {
     initialState: {
       inputValue: '+' + countries.US.dialCode,
@@ -17,40 +63,21 @@ export default class StatefulContainer extends React.Component {
     overrides: {},
     onInputChange: () => {},
     onCountryChange: () => {},
-    stateReducer: (state, type, payload) => {
-      switch (type) {
-        case STATE_CHANGE_TYPE.inputValueChange:
-          return {...state, inputValue: payload};
-        case STATE_CHANGE_TYPE.countryValueChange: {
-          // Replace (if possible) the current country dialcode
-          let newInputValue = state.inputValue.replace(
-            `+${state.countryValue.dialCode}`,
-            `+${payload.dialCode}`,
-          );
-          // If the replacement did nothing, just use the new dialcode
-          newInputValue =
-            state.inputValue === newInputValue
-              ? `+${payload.dialCode} `
-              : newInputValue;
-          return {
-            inputValue: newInputValue,
-            countryValue: payload,
-          };
-        }
-        default:
-          return state;
-      }
-    },
+    stateReducer: defaultStateReducer,
   };
 
   state = {...this.props.initialState};
 
-  internalSetState = (type, payload) => {
-    const nextState = this.props.stateReducer(this.state, type, payload);
+  internalSetState = (type: StateChangeT, payload: StateChangePayloadT) => {
+    const nextState: StateT = this.props.stateReducer(
+      this.state,
+      type,
+      payload,
+    );
     this.setState(nextState);
   };
 
-  onInputChange = event => {
+  onInputChange = (event: InputChangeEventT) => {
     this.internalSetState(
       STATE_CHANGE_TYPE.inputValueChange,
       event.target.value,
@@ -58,7 +85,7 @@ export default class StatefulContainer extends React.Component {
     this.props.onInputChange(event);
   };
 
-  onCountryChange = event => {
+  onCountryChange = (event: CountryChangeEventT) => {
     this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, event.option);
     this.props.onCountryChange(event);
   };
