@@ -35,10 +35,10 @@ const arrowBtnOverrides = ({$theme}) => {
   return {
     ':focus': {
       backgroundColor: $theme.colors.positive500,
-      borderRadiusTopLeft: borderRadius,
-      borderRadiusTopRight: borderRadius,
-      borderRadiusBottomRight: borderRadius,
-      borderRadiusBottomLeft: borderRadius,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
     },
   };
 };

@@ -117,10 +117,10 @@ function getArrowBtnStyle({$theme}: SharedStylePropsT) {
     outline: 'none',
     ':focus': {
       backgroundColor: $theme.colors.primary500,
-      borderRadiusTopLeft: borderRadius,
-      borderRadiusTopRight: borderRadius,
-      borderRadiusBottomRight: borderRadius,
-      borderRadiusBottomLeft: borderRadius,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
     },
   };
 }
