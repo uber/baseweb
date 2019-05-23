@@ -176,7 +176,7 @@ export const StyledFilterFooter = styled('div', ({$theme}) => ({
   paddingLeft: $theme.sizing.scale100,
   display: 'flex',
   justifyContent: 'space-between',
-  width: '216px',
+  minWidth: '216px',
 }));
 
 export const StyledAction = styled('button', ({$theme}) => {
