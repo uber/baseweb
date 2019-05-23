@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading basic render 1`] = `
+<HeadingLevel>
+  <Heading>
+    <Block
+      as="h1"
+      color="colorPrimary"
+      data-baseweb="heading"
+      font="font1000"
+      overrides={Object {}}
+    >
+      <MockStyledComponent
+        $as="h1"
+        $color="colorPrimary"
+        $font="font1000"
+        data-baseweb="heading"
+      >
+        <div
+          data-baseweb="heading"
+          styled-component="true"
+        >
+          Base Web [L1]
+        </div>
+      </MockStyledComponent>
+    </Block>
+  </Heading>
+  <HeadingLevel>
+    <Heading>
+      <Block
+        as="h2"
+        color="colorPrimary"
+        data-baseweb="heading"
+        font="font900"
+        overrides={Object {}}
+      >
+        <MockStyledComponent
+          $as="h2"
+          $color="colorPrimary"
+          $font="font900"
+          data-baseweb="heading"
+        >
+          <div
+            data-baseweb="heading"
+            styled-component="true"
+          >
+            Introduction [L2]
+          </div>
+        </MockStyledComponent>
+      </Block>
+    </Heading>
+    <HeadingLevel>
+      <Heading>
+        <Block
+          as="h3"
+          color="colorPrimary"
+          data-baseweb="heading"
+          font="font800"
+          overrides={Object {}}
+        >
+          <MockStyledComponent
+            $as="h3"
+            $color="colorPrimary"
+            $font="font800"
+            data-baseweb="heading"
+          >
+            <div
+              data-baseweb="heading"
+              styled-component="true"
+            >
+              Quotes [L3]
+            </div>
+          </MockStyledComponent>
+        </Block>
+      </Heading>
+      <HeadingLevel>
+        <Heading>
+          <Block
+            as="h4"
+            color="colorPrimary"
+            data-baseweb="heading"
+            font="font700"
+            overrides={Object {}}
+          >
+            <MockStyledComponent
+              $as="h4"
+              $color="colorPrimary"
+              $font="font700"
+              data-baseweb="heading"
+            >
+              <div
+                data-baseweb="heading"
+                styled-component="true"
+              >
+                Subtitle [L4]
+              </div>
+            </MockStyledComponent>
+          </Block>
+        </Heading>
+        <HeadingLevel>
+          <Heading>
+            <Block
+              as="h5"
+              color="colorPrimary"
+              data-baseweb="heading"
+              font="font600"
+              overrides={Object {}}
+            >
+              <MockStyledComponent
+                $as="h5"
+                $color="colorPrimary"
+                $font="font600"
+                data-baseweb="heading"
+              >
+                <div
+                  data-baseweb="heading"
+                  styled-component="true"
+                >
+                  Subtitle [L5]
+                </div>
+              </MockStyledComponent>
+            </Block>
+          </Heading>
+          <HeadingLevel>
+            <Heading>
+              <Block
+                as="h6"
+                color="colorPrimary"
+                data-baseweb="heading"
+                font="font500"
+                overrides={Object {}}
+              >
+                <MockStyledComponent
+                  $as="h6"
+                  $color="colorPrimary"
+                  $font="font500"
+                  data-baseweb="heading"
+                >
+                  <div
+                    data-baseweb="heading"
+                    styled-component="true"
+                  >
+                    Subtitle [L6]
+                  </div>
+                </MockStyledComponent>
+              </Block>
+            </Heading>
+          </HeadingLevel>
+        </HeadingLevel>
+      </HeadingLevel>
+    </HeadingLevel>
+    <Heading>
+      <Block
+        as="h2"
+        color="colorPrimary"
+        data-baseweb="heading"
+        font="font900"
+        overrides={Object {}}
+      >
+        <MockStyledComponent
+          $as="h2"
+          $color="colorPrimary"
+          $font="font900"
+          data-baseweb="heading"
+        >
+          <div
+            data-baseweb="heading"
+            styled-component="true"
+          >
+            Motivation [L2]
+          </div>
+        </MockStyledComponent>
+      </Block>
+    </Heading>
+  </HeadingLevel>
+</HeadingLevel>
+`;
+
+exports[`Heading styleLevels 1`] = `
+<HeadingLevel>
+  <Heading
+    styleLevel={2}
+  >
+    <Block
+      as="h1"
+      color="colorPrimary"
+      data-baseweb="heading"
+      font="font900"
+      overrides={Object {}}
+    >
+      <MockStyledComponent
+        $as="h1"
+        $color="colorPrimary"
+        $font="font900"
+        data-baseweb="heading"
+      >
+        <div
+          data-baseweb="heading"
+          styled-component="true"
+        >
+          Base Web [L1 styled as L2]
+        </div>
+      </MockStyledComponent>
+    </Block>
+  </Heading>
+</HeadingLevel>
+`;
