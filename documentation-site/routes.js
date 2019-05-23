@@ -157,6 +157,10 @@ const routes = [
             itemId: '/components/dnd-list',
           },
           {
+            title: 'Heading',
+            itemId: '/components/heading',
+          },
+          {
             title: 'Icon',
             itemId: '/components/icon',
           },
