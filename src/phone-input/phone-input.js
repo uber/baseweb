@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import {List, AutoSizer} from 'react-virtualized';
 
 import {Block} from '../block/index.js';
@@ -76,50 +76,13 @@ function VirtualList(props) {
   );
 }
 
-export function StatefulPhoneInput(props) {
-  const {size, initialCountryCode = 'US'} = props;
-  const initialCountry =
-    countries.find(c => c.iso2 === initialCountryCode) ||
-    countries.find(c => c.iso2 === 'US');
-  const [phoneNumber, setPhoneNumber] = useState(
-    `+${initialCountry.dialCode} `,
-  );
-  const [country, setCountry] = useState(initialCountry);
-  return (
-    <PhoneInput
-      size={size}
-      inputValue={phoneNumber}
-      country={country}
-      initialCountry={country}
-      onInputChange={event => {
-        setPhoneNumber(event.target.value);
-        if (props.onChange) props.onChange(phoneNumber);
-      }}
-      onCountryChange={event => {
-        // Replace (if possible) the current country dialcode
-        const newPhoneNumber = phoneNumber.replace(
-          `+${country.dialCode}`,
-          `+${event.option.dialCode}`,
-        );
-        // If the replacement did nothing, just return the new dialcode
-        setPhoneNumber(
-          phoneNumber === newPhoneNumber
-            ? `+${event.option.dialCode} `
-            : newPhoneNumber,
-        );
-        setCountry(event.option);
-      }}
-    />
-  );
-}
-
-export function PhoneInput(props) {
+export default function PhoneInput(props) {
   const {
     inputValue,
-    country,
     onInputChange,
+    countryValue,
     onCountryChange,
-    size,
+    size = 'default',
     maxDropdownHeight = '400px',
     maxDropdownWidth = '400px',
   } = props;
@@ -141,7 +104,7 @@ export function PhoneInput(props) {
             return (
               <Select
                 size={size}
-                value={[country]}
+                value={[countryValue]}
                 onChange={(...args) => {
                   inputRef.current.focus();
                   onCountryChange(...args);

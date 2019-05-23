@@ -16,10 +16,10 @@ export const name = 'phone-input';
 export const component = () => (
   <>
     <Block marginBottom="10px">
-      <StatefulPhoneInput size="compact" initialCountryCode="RO" />
+      <StatefulPhoneInput size="compact" />
     </Block>
     <Block marginBottom="10px">
-      <StatefulPhoneInput size="default" initialCountryCode="GB" />
+      <StatefulPhoneInput size="default" />
     </Block>
     <Block marginBottom="10px">
       <StatefulPhoneInput size="large" />
