@@ -82,7 +82,7 @@ function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
     base: ElementName,
   };
 
-  return React.forwardRef<PropsT, HTMLElement>((props: PropsT, ref) => (
+  return React.forwardRef<PropsT, HTMLElement>((props, ref) => (
     <MockStyledComponent forwardedRef={ref} {...props} />
   ));
 }

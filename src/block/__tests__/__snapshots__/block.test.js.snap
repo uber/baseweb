@@ -4,30 +4,35 @@ exports[`Block FlexWrap renders flexWrap styling as expected 1`] = `
 <Block
   flexWrap={true}
 >
-  <ForwardRef
-    $as="div"
-    $flexWrap={true}
-    data-baseweb="block"
+  <Block
+    flexWrap={true}
+    forwardedRef={null}
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $flexWrap={true}
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $as="div"
+        $flexWrap={true}
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "flexWrap": "wrap",
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "flexWrap": "wrap",
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -35,32 +40,37 @@ exports[`Block Overflow renders overflow styling if provided any other value 1`]
 <Block
   overflow="auto"
 >
-  <ForwardRef
-    $as="div"
-    $overflow="auto"
-    data-baseweb="block"
+  <Block
+    forwardedRef={null}
+    overflow="auto"
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $overflow="auto"
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $as="div"
+        $overflow="auto"
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "overflow": "auto",
-            "overflowX": null,
-            "overflowY": null,
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "overflow": "auto",
+              "overflowX": null,
+              "overflowY": null,
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -68,32 +78,37 @@ exports[`Block Overflow renders overflowX styling if provided with scrollX value
 <Block
   overflow="scrollX"
 >
-  <ForwardRef
-    $as="div"
-    $overflow="scrollX"
-    data-baseweb="block"
+  <Block
+    forwardedRef={null}
+    overflow="scrollX"
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $overflow="scrollX"
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $as="div"
+        $overflow="scrollX"
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "overflow": null,
-            "overflowX": "scroll",
-            "overflowY": null,
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "overflow": null,
+              "overflowX": "scroll",
+              "overflowY": null,
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -101,32 +116,37 @@ exports[`Block Overflow renders overflowY styling if provided with scrollY value
 <Block
   overflow="scrollY"
 >
-  <ForwardRef
-    $as="div"
-    $overflow="scrollY"
-    data-baseweb="block"
+  <Block
+    forwardedRef={null}
+    overflow="scrollY"
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $overflow="scrollY"
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $as="div"
+        $overflow="scrollY"
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "overflow": null,
-            "overflowX": null,
-            "overflowY": "scroll",
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "overflow": null,
+              "overflowX": null,
+              "overflowY": "scroll",
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -139,17 +159,16 @@ exports[`Block Responsive applies expected styles if responsive array has less t
     ]
   }
 >
-  <ForwardRef
-    $as="div"
-    $marginLeft={
+  <Block
+    forwardedRef={null}
+    marginLeft={
       Array [
         "scale100",
         "scale200",
       ]
     }
-    data-baseweb="block"
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $marginLeft={
         Array [
@@ -158,24 +177,35 @@ exports[`Block Responsive applies expected styles if responsive array has less t
         ]
       }
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
-        data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
-              "marginLeft": "$theme.sizing.scale200",
-            },
-            "marginLeft": "$theme.sizing.scale100",
-          }
+      <MockStyledComponent
+        $as="div"
+        $marginLeft={
+          Array [
+            "scale100",
+            "scale200",
+          ]
         }
+        data-baseweb="block"
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
+                "marginLeft": "$theme.sizing.scale200",
+              },
+              "marginLeft": "$theme.sizing.scale100",
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -190,9 +220,9 @@ exports[`Block Responsive applies expected styles if responsive array is provide
     ]
   }
 >
-  <ForwardRef
-    $as="div"
-    $marginLeft={
+  <Block
+    forwardedRef={null}
+    marginLeft={
       Array [
         "scale100",
         "scale200",
@@ -200,9 +230,8 @@ exports[`Block Responsive applies expected styles if responsive array is provide
         "scale400",
       ]
     }
-    data-baseweb="block"
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $marginLeft={
         Array [
@@ -213,30 +242,43 @@ exports[`Block Responsive applies expected styles if responsive array is provide
         ]
       }
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
-        data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "@media screen and (min-width: $theme.breakpoints.largepx)": Object {
-              "marginLeft": "$theme.sizing.scale400",
-            },
-            "@media screen and (min-width: $theme.breakpoints.mediumpx)": Object {
-              "marginLeft": "$theme.sizing.scale300",
-            },
-            "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
-              "marginLeft": "$theme.sizing.scale200",
-            },
-            "marginLeft": "$theme.sizing.scale100",
-          }
+      <MockStyledComponent
+        $as="div"
+        $marginLeft={
+          Array [
+            "scale100",
+            "scale200",
+            "scale300",
+            "scale400",
+          ]
         }
+        data-baseweb="block"
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "@media screen and (min-width: $theme.breakpoints.largepx)": Object {
+                "marginLeft": "$theme.sizing.scale400",
+              },
+              "@media screen and (min-width: $theme.breakpoints.mediumpx)": Object {
+                "marginLeft": "$theme.sizing.scale300",
+              },
+              "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
+                "marginLeft": "$theme.sizing.scale200",
+              },
+              "marginLeft": "$theme.sizing.scale100",
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -294,62 +336,61 @@ exports[`Block applies expected style rules 1`] = `
   top="1px"
   width="100px"
 >
-  <ForwardRef
-    $alignContent="start"
-    $alignItems="start"
-    $as="div"
-    $backgroundColor="red"
-    $bottom="1px"
-    $color="red"
-    $display="inline-block"
-    $flex="grow"
-    $flexDirection="row"
-    $grid="100px / 200px"
-    $gridArea="auto"
-    $gridAutoColumns="min-content"
-    $gridAutoFlow="row dense"
-    $gridAutoRows="20cm"
-    $gridColumn="1 / 3"
-    $gridColumnEnd="span 3"
-    $gridColumnGap="scale800"
-    $gridColumnStart="span 2"
-    $gridGap="50px"
-    $gridRow="1"
-    $gridRowEnd="2"
-    $gridRowStart="-1"
-    $gridTemplate="1fr / 1fr"
-    $gridTemplateAreas="inherit"
-    $gridTemplateColumns="1fr 60px"
-    $gridTemplateRows="auto"
-    $height="100px"
-    $justifyContent="start"
-    $justifyItems="center"
-    $justifySelf="start"
-    $left="1px"
-    $margin="scale200"
-    $marginBottom="scale200"
-    $marginLeft="scale200"
-    $marginRight="scale200"
-    $marginTop="scale200"
-    $maxHeight="100px"
-    $maxWidth="100px"
-    $minHeight="100px"
-    $minWidth="100px"
-    $padding="scale200"
-    $paddingBottom="scale200"
-    $paddingLeft="scale200"
-    $paddingRight="scale200"
-    $paddingTop="scale200"
-    $placeContent="end center"
-    $placeItems="end center"
-    $placeSelf="center start"
-    $position="static"
-    $right="1px"
-    $top="1px"
-    $width="100px"
-    data-baseweb="block"
+  <Block
+    alignContent="start"
+    alignItems="start"
+    backgroundColor="red"
+    bottom="1px"
+    color="red"
+    display="inline-block"
+    flex="grow"
+    flexDirection="row"
+    forwardedRef={null}
+    grid="100px / 200px"
+    gridArea="auto"
+    gridAutoColumns="min-content"
+    gridAutoFlow="row dense"
+    gridAutoRows="20cm"
+    gridColumn="1 / 3"
+    gridColumnEnd="span 3"
+    gridColumnGap="scale800"
+    gridColumnStart="span 2"
+    gridGap="50px"
+    gridRow="1"
+    gridRowEnd="2"
+    gridRowStart="-1"
+    gridTemplate="1fr / 1fr"
+    gridTemplateAreas="inherit"
+    gridTemplateColumns="1fr 60px"
+    gridTemplateRows="auto"
+    height="100px"
+    justifyContent="start"
+    justifyItems="center"
+    justifySelf="start"
+    left="1px"
+    margin="scale200"
+    marginBottom="scale200"
+    marginLeft="scale200"
+    marginRight="scale200"
+    marginTop="scale200"
+    maxHeight="100px"
+    maxWidth="100px"
+    minHeight="100px"
+    minWidth="100px"
+    padding="scale200"
+    paddingBottom="scale200"
+    paddingLeft="scale200"
+    paddingRight="scale200"
+    paddingTop="scale200"
+    placeContent="end center"
+    placeItems="end center"
+    placeSelf="center start"
+    position="static"
+    right="1px"
+    top="1px"
+    width="100px"
   >
-    <MockStyledComponent
+    <ForwardRef
       $alignContent="start"
       $alignItems="start"
       $as="div"
@@ -403,71 +444,127 @@ exports[`Block applies expected style rules 1`] = `
       $top="1px"
       $width="100px"
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $alignContent="start"
+        $alignItems="start"
+        $as="div"
+        $backgroundColor="red"
+        $bottom="1px"
+        $color="red"
+        $display="inline-block"
+        $flex="grow"
+        $flexDirection="row"
+        $grid="100px / 200px"
+        $gridArea="auto"
+        $gridAutoColumns="min-content"
+        $gridAutoFlow="row dense"
+        $gridAutoRows="20cm"
+        $gridColumn="1 / 3"
+        $gridColumnEnd="span 3"
+        $gridColumnGap="scale800"
+        $gridColumnStart="span 2"
+        $gridGap="50px"
+        $gridRow="1"
+        $gridRowEnd="2"
+        $gridRowStart="-1"
+        $gridTemplate="1fr / 1fr"
+        $gridTemplateAreas="inherit"
+        $gridTemplateColumns="1fr 60px"
+        $gridTemplateRows="auto"
+        $height="100px"
+        $justifyContent="start"
+        $justifyItems="center"
+        $justifySelf="start"
+        $left="1px"
+        $margin="scale200"
+        $marginBottom="scale200"
+        $marginLeft="scale200"
+        $marginRight="scale200"
+        $marginTop="scale200"
+        $maxHeight="100px"
+        $maxWidth="100px"
+        $minHeight="100px"
+        $minWidth="100px"
+        $padding="scale200"
+        $paddingBottom="scale200"
+        $paddingLeft="scale200"
+        $paddingRight="scale200"
+        $paddingTop="scale200"
+        $placeContent="end center"
+        $placeItems="end center"
+        $placeSelf="center start"
+        $position="static"
+        $right="1px"
+        $top="1px"
+        $width="100px"
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "alignContent": "start",
-            "alignItems": "start",
-            "backgroundColor": "red",
-            "bottom": "1px",
-            "color": "red",
-            "display": "inline-block",
-            "flex": "grow",
-            "flexDirection": "row",
-            "grid": "100px / 200px",
-            "gridArea": "auto",
-            "gridAutoColumns": "min-content",
-            "gridAutoFlow": "row dense",
-            "gridAutoRows": "20cm",
-            "gridColumn": "1 / 3",
-            "gridColumnEnd": "span 3",
-            "gridColumnGap": "$theme.sizing.scale800",
-            "gridColumnStart": "span 2",
-            "gridGap": "50px",
-            "gridRow": "1",
-            "gridRowEnd": "2",
-            "gridRowStart": "-1",
-            "gridTemplate": "1fr / 1fr",
-            "gridTemplateAreas": "inherit",
-            "gridTemplateColumns": "1fr 60px",
-            "gridTemplateRows": "auto",
-            "height": "100px",
-            "justifyContent": "start",
-            "justifyItems": "center",
-            "justifySelf": "start",
-            "left": "1px",
-            "margin": "$theme.sizing.scale200",
-            "marginBottom": "$theme.sizing.scale200",
-            "marginLeft": "$theme.sizing.scale200",
-            "marginRight": "$theme.sizing.scale200",
-            "marginTop": "$theme.sizing.scale200",
-            "maxHeight": "100px",
-            "maxWidth": "100px",
-            "minHeight": "100px",
-            "minWidth": "100px",
-            "padding": "$theme.sizing.scale200",
-            "paddingBottom": "$theme.sizing.scale200",
-            "paddingLeft": "$theme.sizing.scale200",
-            "paddingRight": "$theme.sizing.scale200",
-            "paddingTop": "$theme.sizing.scale200",
-            "placeContent": "end center",
-            "placeItems": "end center",
-            "placeSelf": "center start",
-            "position": "static",
-            "right": "1px",
-            "top": "1px",
-            "width": "100px",
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "alignContent": "start",
+              "alignItems": "start",
+              "backgroundColor": "red",
+              "bottom": "1px",
+              "color": "red",
+              "display": "inline-block",
+              "flex": "grow",
+              "flexDirection": "row",
+              "grid": "100px / 200px",
+              "gridArea": "auto",
+              "gridAutoColumns": "min-content",
+              "gridAutoFlow": "row dense",
+              "gridAutoRows": "20cm",
+              "gridColumn": "1 / 3",
+              "gridColumnEnd": "span 3",
+              "gridColumnGap": "$theme.sizing.scale800",
+              "gridColumnStart": "span 2",
+              "gridGap": "50px",
+              "gridRow": "1",
+              "gridRowEnd": "2",
+              "gridRowStart": "-1",
+              "gridTemplate": "1fr / 1fr",
+              "gridTemplateAreas": "inherit",
+              "gridTemplateColumns": "1fr 60px",
+              "gridTemplateRows": "auto",
+              "height": "100px",
+              "justifyContent": "start",
+              "justifyItems": "center",
+              "justifySelf": "start",
+              "left": "1px",
+              "margin": "$theme.sizing.scale200",
+              "marginBottom": "$theme.sizing.scale200",
+              "marginLeft": "$theme.sizing.scale200",
+              "marginRight": "$theme.sizing.scale200",
+              "marginTop": "$theme.sizing.scale200",
+              "maxHeight": "100px",
+              "maxWidth": "100px",
+              "minHeight": "100px",
+              "minWidth": "100px",
+              "padding": "$theme.sizing.scale200",
+              "paddingBottom": "$theme.sizing.scale200",
+              "paddingLeft": "$theme.sizing.scale200",
+              "paddingRight": "$theme.sizing.scale200",
+              "paddingTop": "$theme.sizing.scale200",
+              "placeContent": "end center",
+              "placeItems": "end center",
+              "placeSelf": "center start",
+              "position": "static",
+              "right": "1px",
+              "top": "1px",
+              "width": "100px",
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -475,33 +572,38 @@ exports[`Block does not throw if provided unknown font prop 1`] = `
 <Block
   font="not-a-real-font"
 >
-  <ForwardRef
-    $as="div"
-    $font="not-a-real-font"
-    data-baseweb="block"
+  <Block
+    font="not-a-real-font"
+    forwardedRef={null}
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $font="not-a-real-font"
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $as="div"
+        $font="not-a-real-font"
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "fontFamily": null,
-            "fontSize": null,
-            "fontWeight": null,
-            "lineHeight": null,
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "fontFamily": null,
+              "fontSize": null,
+              "fontWeight": null,
+              "lineHeight": null,
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -509,30 +611,35 @@ exports[`Block renders themed backgroundColor if provided 1`] = `
 <Block
   backgroundColor="primary200"
 >
-  <ForwardRef
-    $as="div"
-    $backgroundColor="primary200"
-    data-baseweb="block"
+  <Block
+    backgroundColor="primary200"
+    forwardedRef={null}
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $backgroundColor="primary200"
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $as="div"
+        $backgroundColor="primary200"
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "backgroundColor": "$theme.colors.primary200",
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "backgroundColor": "$theme.colors.primary200",
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -540,30 +647,35 @@ exports[`Block renders themed color if provided 1`] = `
 <Block
   color="primary200"
 >
-  <ForwardRef
-    $as="div"
-    $color="primary200"
-    data-baseweb="block"
+  <Block
+    color="primary200"
+    forwardedRef={null}
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $color="primary200"
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $as="div"
+        $color="primary200"
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "color": "$theme.colors.primary200",
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "color": "$theme.colors.primary200",
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
 
@@ -571,32 +683,37 @@ exports[`Block renders themed font if provided 1`] = `
 <Block
   font="font200"
 >
-  <ForwardRef
-    $as="div"
-    $font="font200"
-    data-baseweb="block"
+  <Block
+    font="font200"
+    forwardedRef={null}
   >
-    <MockStyledComponent
+    <ForwardRef
       $as="div"
       $font="font200"
       data-baseweb="block"
-      forwardedRef={null}
     >
-      <div
+      <MockStyledComponent
+        $as="div"
+        $font="font200"
         data-baseweb="block"
-        styled-component="true"
-        test-style={
-          Object {
-            "fontFamily": "$theme.typography.font200.fontFamily",
-            "fontSize": "$theme.typography.font200.fontSize",
-            "fontWeight": "$theme.typography.font200.fontWeight",
-            "lineHeight": "$theme.typography.font200.lineHeight",
-          }
-        }
+        forwardedRef={null}
       >
-        test
-      </div>
-    </MockStyledComponent>
-  </ForwardRef>
+        <div
+          data-baseweb="block"
+          styled-component="true"
+          test-style={
+            Object {
+              "fontFamily": "$theme.typography.font200.fontFamily",
+              "fontSize": "$theme.typography.font200.fontSize",
+              "fontWeight": "$theme.typography.font200.fontWeight",
+              "lineHeight": "$theme.typography.font200.lineHeight",
+            }
+          }
+        >
+          test
+        </div>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Block>
 </Block>
 `;
