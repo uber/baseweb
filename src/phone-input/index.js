@@ -6,4 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {StatefulPhoneInput, PhoneInput} from './phone-input.js';
+export {default as PhoneInput} from './phone-input.js';
+export {default as StatefulPhoneInput} from './stateful-phone-input.js';
+export {
+  default as StatefulPhoneInputContainer,
+} from './stateful-phone-input-container.js';
