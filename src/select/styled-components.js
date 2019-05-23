@@ -140,10 +140,10 @@ export const StyledControlContainer = styled(
           : $isFocused || $isPseudoFocused
             ? colors.primary400
             : colors.inputFill,
-      borderRadiusTopLeft: borderRadius,
-      borderRadiusTopRight: borderRadius,
-      borderRadiusBottomRight: borderRadius,
-      borderRadiusBottomLeft: borderRadius,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
       boxShadow: `0 2px 6px ${
         $disabled
           ? 'transparent'

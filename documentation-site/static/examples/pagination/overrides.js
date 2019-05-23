@@ -9,10 +9,10 @@ export default () => (
       Root: {
         style: ({$theme}) => ({
           ...$theme.borders.border400,
-          borderRadiusTopLeft: $theme.borders.radius200,
-          borderRadiusTopRight: $theme.borders.radius200,
-          borderRadiusBottomRight: $theme.borders.radius200,
-          borderRadiusBottomLeft: $theme.borders.radius200,
+          borderTopLeftRadius: $theme.borders.radius200,
+          borderTopRightRadius: $theme.borders.radius200,
+          borderBottomRightRadius: $theme.borders.radius200,
+          borderBottomLeftRadius: $theme.borders.radius200,
           padding: $theme.sizing.scale400,
         }),
       },
