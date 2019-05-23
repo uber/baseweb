@@ -1,7 +1,10 @@
-# International Metadata
+# Phone Input
+
+A select/input combo with a dropdown for selecting a country dial code.
+
+## International Metadata
 
 The following countries are included in our collection of country flags and dial codes.
-If you use our `PhoneInput`, these are the countries that will show up in the dropdown.
 This list is the intersection of dial codes supported by [jackocnr/intl-tel-input](https://github.com/jackocnr/intl-tel-input) and flags included in [madebybowtie/FlagKit](https://github.com/madebybowtie/FlagKit).
 
 | iso2 | Region                                               | Dial Code |
