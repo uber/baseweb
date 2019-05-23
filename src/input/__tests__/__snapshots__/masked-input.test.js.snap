@@ -53,6 +53,7 @@ Object {
   "aria-required": false,
   "autoComplete": "on",
   "autoFocus": false,
+  "disabled": false,
   "id": undefined,
   "name": "",
   "onBlur": [Function],
@@ -68,5 +69,6 @@ Object {
   "size": "default",
   "styled-component": "true",
   "type": "text",
+  "value": "(123) 456-7890",
 }
 `;

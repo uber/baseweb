@@ -13,12 +13,36 @@ import Input from './input.js';
 import {Input as StyledInput} from './styled-components.js';
 import type {MaskedInputPropsT} from './types.js';
 
-function MaskOverride(props: MaskedInputPropsT) {
+function MaskOverride({
+  startEnhancer,
+  endEnhancer,
+  error,
+  onChange,
+  onFocus,
+  onBlur,
+  value,
+  disabled,
+  ...restProps
+}: MaskedInputPropsT) {
   return (
-    <InputMask {...props}>
-      {({startEnhancer, endEnhancer, error, ...maskProps}) => {
-        return <StyledInput {...maskProps} />;
-      }}
+    <InputMask
+      onChange={onChange}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      value={value}
+      disabled={disabled}
+      {...restProps}
+    >
+      {props => (
+        <StyledInput
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          value={value}
+          disabled={disabled}
+          {...props}
+        />
+      )}
     </InputMask>
   );
 }
