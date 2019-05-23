@@ -91,7 +91,7 @@ class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
 }
 
 const ForwardedButton = React.forwardRef<ButtonPropsT, HTMLButtonElement>(
-  (props, ref) => <Button forwardedRef={ref} {...props} />,
+  (props: ButtonPropsT, ref) => <Button forwardedRef={ref} {...props} />,
 );
 ForwardedButton.displayName = 'Button';
 export default ForwardedButton;

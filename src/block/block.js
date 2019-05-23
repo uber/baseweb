@@ -151,6 +151,8 @@ function Block(
   );
 }
 
-const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(Block);
+const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props: BlockPropsT, ref) => <Block {...props} ref={ref} />,
+);
 BlockComponent.displayName = 'Block';
 export default BlockComponent;
