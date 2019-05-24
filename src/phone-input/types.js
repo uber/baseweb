@@ -10,7 +10,7 @@ import {STATE_CHANGE_TYPE, SIZE} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
 import type {StatefulContainerPropsT} from '../menu/types.js';
-import type {OptionT} from '../select/types.js';
+import type {OptionT, ValueT, ChangeActionT} from '../select/types.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 
@@ -39,7 +39,9 @@ export type InputChangeEventT = {
 };
 
 export type CountryChangeEventT = {
-  option: OptionT,
+  value: ValueT,
+  option: ?CountryT,
+  type: ChangeActionT,
 };
 
 export type OverridesT = {
