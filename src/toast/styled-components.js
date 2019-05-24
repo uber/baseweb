@@ -113,7 +113,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
   const isInline = $type === TYPE.inline;
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius200
-    : '0px';
+    : 0;
   return {
     ...$theme.typography.font350,
     pointerEvents: 'auto',
@@ -128,9 +128,9 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
       getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,

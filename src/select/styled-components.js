@@ -59,7 +59,7 @@ function getControlPadding(props, emptyValue) {
           ? `calc(${sizing.scale400} - ${sizing.scale0})`
           : sizing.scale400,
       paddingLeft,
-      paddingRight: '0',
+      paddingRight: 0,
     },
     [SIZE.large]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
@@ -75,7 +75,7 @@ function getControlPadding(props, emptyValue) {
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`
           : paddingLeft,
-      paddingRight: '0',
+      paddingRight: 0,
     },
   }[$size];
 }
@@ -233,10 +233,10 @@ export const StyledPlaceholder = styled<SharedStylePropsArgT>('div', props => {
   } = props;
   return {
     position: 'absolute',
-    top: '0',
-    bottom: '0',
-    right: '0',
-    left: '0',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
     color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     maxWidth: '100%',
     overflow: 'hidden',
@@ -257,8 +257,8 @@ export const StyledSingleValue = styled<SharedStylePropsArgT>('div', props => {
     lineHeight: !$searchable ? font.lineHeight : 'inherit',
     boxSizing: 'border-box',
     position: 'absolute',
-    top: '0',
-    left: '0',
+    top: 0,
+    left: 0,
     height: '100%',
     maxWidth: '100%',
     ...ellipsisText,
@@ -284,15 +284,15 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       border: 'none',
       boxShadow: 'none',
       outline: 'none',
-      marginTop: '0',
-      marginBottom: '0',
-      marginLeft: '0',
-      marginRight: '0',
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
       // sizing.scale0 to match the multi value component (Tag) top and bottom margin
-      paddingTop: $multi ? sizing.scale0 : '0',
-      paddingBottom: $multi ? sizing.scale0 : '0',
-      paddingLeft: '0',
-      paddingRight: '0',
+      paddingTop: $multi ? sizing.scale0 : 0,
+      paddingBottom: $multi ? sizing.scale0 : 0,
+      paddingLeft: 0,
+      paddingRight: 0,
       height: String(!$searchable ? font.lineHeight : 'auto'),
     };
   },

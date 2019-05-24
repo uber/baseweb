@@ -24,6 +24,7 @@ export {
   StyledInputContainer,
   StyledInput,
   StyledInputSizer,
+  StyledIconsContainer,
   StyledSelectArrow,
   StyledClearIcon,
   StyledSearchIcon,

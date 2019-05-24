@@ -241,10 +241,10 @@ export const Action = styled<SharedPropsArgT>('span', props => {
     alignItems: 'center',
     borderBottomRightRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
-      : '0px',
+      : 0,
     borderTopRightRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
-      : '0px',
+      : 0,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     display: 'flex',
     marginLeft: '8px',
@@ -553,7 +553,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
 
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius400
-    : '0px';
+    : 0;
 
   return ({
     ...font250,
@@ -561,10 +561,10 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     backgroundColor: backgroundColor(false, false),
     borderColor: borderColor(false, false),
     borderStyle: 'solid',
-    borderWidth: $variant === VARIANT.outlined ? '2px' : '0',
+    borderWidth: $variant === VARIANT.outlined ? '2px' : 0,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     boxSizing: 'border-box',
     color: fontColor(props, false, false),

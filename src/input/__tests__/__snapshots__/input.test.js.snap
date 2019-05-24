@@ -27,7 +27,7 @@ Object {
     },
     "backgroundColor": "transparent",
     "borderStyle": "none",
-    "borderWidth": "0",
+    "borderWidth": 0,
     "boxSizing": "border-box",
     "caretColor": "$theme.colors.foreground",
     "color": "$theme.colors.foreground",

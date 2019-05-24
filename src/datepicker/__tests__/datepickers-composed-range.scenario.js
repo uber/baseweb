@@ -22,7 +22,7 @@ function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
   if (!dates || !Array.isArray(dates)) return '';
   const date = dates[index];
   if (!date) return '';
-  return formatDate(date, 'YYYY/MM/dd');
+  return formatDate(date, 'YYYY/MM/DD');
 }
 
 // eslint-disable-next-line flowtype/no-weak-types

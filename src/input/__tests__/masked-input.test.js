@@ -14,6 +14,7 @@ import {styled} from '../../styles/index.js';
 
 test('MaskedInput - basic functionality', () => {
   const props = {
+    value: '(123) 456-7890',
     mask: '(999) 999-9999',
     placeholder: 'Placeholder',
     onFocus: jest.fn(),

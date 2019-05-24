@@ -13,9 +13,9 @@ const StyledTableElement = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.borders.border300,
     backgroundColor: $theme.colors.tableBackground,
+    borderTopLeftRadius: $theme.borders.radius200,
     borderTopRightRadius: $theme.borders.radius200,
     borderBottomRightRadius: $theme.borders.radius200,
-    borderTopLeftRadius: $theme.borders.radius200,
     borderBottomLeftRadius: $theme.borders.radius200,
     display: 'flex',
     flexDirection: 'column',
@@ -174,7 +174,7 @@ export const StyledFilterFooter = styled<{}>('div', ({$theme}) => ({
   paddingLeft: $theme.sizing.scale100,
   display: 'flex',
   justifyContent: 'space-between',
-  width: '216px',
+  minWidth: '216px',
 }));
 
 export const StyledAction = styled<{}>('button', ({$theme}) => {

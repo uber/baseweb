@@ -70,9 +70,9 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
     return {
       height: $theme.sizing.scale600,
       width: $theme.sizing.scale600,
+      borderTopLeftRadius: '50%',
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
-      borderTopLeftRadius: '50%',
       borderBottomLeftRadius: '50%',
       borderStyle: 'solid',
       borderWidth: $theme.sizing.scale0,

@@ -65,7 +65,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
             "borderStyle": "solid",
             "borderTopLeftRadius": "$theme.borders.radius400",
             "borderTopRightRadius": "$theme.borders.radius400",
-            "borderWidth": "0",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "$theme.colors.tagPrimaryLightFont",
             "cursor": "default",
@@ -119,7 +119,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           onClick={[MockFunction]}
           onKeyDown={[Function]}
           role="button"
-          tabIndex="0"
+          tabIndex={0}
         >
           <MockStyledComponent
             $clickable={false}
@@ -134,7 +134,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
             onClick={[MockFunction]}
             onKeyDown={[Function]}
             role="button"
-            tabIndex="0"
+            tabIndex={0}
           >
             <span
               aria-label="close button"
@@ -142,7 +142,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
               onKeyDown={[Function]}
               role="button"
               styled-component="true"
-              tabIndex="0"
+              tabIndex={0}
               test-style={
                 Object {
                   ":focus": Object {

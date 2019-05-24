@@ -86,13 +86,13 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius200
-    : '0px';
+    : 0;
   return ({
     position: 'relative',
     backgroundColor: $theme.colors.backgroundAlt,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     marginLeft: $theme.sizing.scale600,
     marginTop: $theme.sizing.scale600,
@@ -126,8 +126,8 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
   const {$theme} = props;
   return {
     // Reset button styles
-    border: '0',
-    backgroundColor: 'transparent',
+    border: 0,
+    background: 'transparent',
     outline: 0,
     paddingLeft: 0,
     paddingTop: 0,

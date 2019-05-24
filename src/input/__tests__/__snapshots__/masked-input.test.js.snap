@@ -61,6 +61,7 @@ Object {
   "aria-required": false,
   "autoComplete": "on",
   "autoFocus": false,
+  "disabled": false,
   "id": undefined,
   "name": "",
   "onBlur": [Function],
@@ -71,16 +72,6 @@ Object {
   "onKeyUp": [MockFunction],
   "onMouseDown": [Function],
   "onPaste": [Function],
-  "overrides": Object {
-    "After": Object {
-      "$$typeof": Symbol(react.forward_ref),
-      "render": [Function],
-    },
-    "Before": Object {
-      "$$typeof": Symbol(react.forward_ref),
-      "render": [Function],
-    },
-  },
   "placeholder": "Placeholder",
   "required": false,
   "rows": null,
@@ -92,7 +83,7 @@ Object {
     },
     "backgroundColor": "transparent",
     "borderStyle": "none",
-    "borderWidth": "0",
+    "borderWidth": 0,
     "boxSizing": "border-box",
     "caretColor": "$theme.colors.foreground",
     "color": "$theme.colors.foreground",
@@ -110,5 +101,6 @@ Object {
     "width": "100%",
   },
   "type": "text",
+  "value": "(123) 456-7890",
 }
 `;

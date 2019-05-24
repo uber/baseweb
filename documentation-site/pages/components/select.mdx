@@ -109,7 +109,28 @@ existing options.
 <Overrides
   name="Select"
   component={SelectExports}
-  blacklisted={['SingleValue', 'InputSizer']}
+  whitelisted={[
+    'Root',
+    'ControlContainer',
+    'Placeholder',
+    'ValueContainer',
+    'SingleValue',
+    'MultiValue',
+    'InputContainer',
+    'Input',
+    'IconsContainer',
+    'SelectArrow',
+    'ClearIcon',
+    'LoadingIndicator',
+    'SearchIcon',
+    'Popover',
+    'DropdownContainer',
+    'Dropdown',
+    'DropdownOption',
+    'DropdownListItem',
+    'OptionContent',
+    'StatefulMenu',
+  ]}
   renderExample={props => (
     <React.Fragment>
       <StatefulSelect

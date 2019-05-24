@@ -145,7 +145,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   $size="default"
                   aria-modal="true"
                   role="dialog"
-                  tabIndex="-1"
+                  tabIndex={-1}
                 >
                   <MockStyledComponent
                     $animate={true}
@@ -205,7 +205,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                       }
                     }
                     role="dialog"
-                    tabIndex="-1"
+                    tabIndex={-1}
                   >
                     <Portal>
                       <ForwardRef

@@ -20,17 +20,17 @@ export const StyledList = styled<StyledPropsT>('ul', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.menuFill,
     position: 'relative',
-    marginTop: '0',
-    marginBottom: '0',
-    marginLeft: '0',
-    marginRight: '0',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
     paddingTop: $theme.sizing.scale300,
     paddingBottom: $theme.sizing.scale300,
-    paddingLeft: '0',
-    paddingRight: '0',
+    paddingLeft: 0,
+    paddingRight: 0,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow600,
     overflow: 'auto',
@@ -78,7 +78,7 @@ export const StyledEmptyState = styled<StyledPropsT>('li', props => {
     textTransform: 'capitalize',
     cursor: 'not-allowed',
     backgroundColor: 'transparent',
-    marginBottom: '0',
+    marginBottom: 0,
     paddingTop: $theme.sizing.scale800,
     paddingBottom: $theme.sizing.scale800,
     paddingRight: $theme.sizing.scale800,
@@ -100,7 +100,7 @@ export const StyledListItem = styled<StyledPropsT>('li', props => {
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,
-    marginBottom: '0',
+    marginBottom: 0,
     paddingTop:
       $size === OPTION_LIST_SIZE.compact
         ? $theme.sizing.scale100
@@ -151,9 +151,9 @@ export const StyledProfileImgContainer = styled('div', {
 export const StyledProfileImg = styled('img', {
   width: '100%',
   height: '100%',
+  borderTopLeftRadius: '50%',
   borderTopRightRadius: '50%',
   borderBottomRightRadius: '50%',
-  borderTopLeftRadius: '50%',
   borderBottomLeftRadius: '50%',
 });
 
@@ -170,26 +170,26 @@ export const StyledProfileLabelsContainer = styled<StyledPropsT>(
 export const StyledProfileTitle = styled<StyledPropsT>('h6', ({$theme}) => ({
   ...$theme.typography.font450,
   color: $theme.colors.foreground,
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
 }));
 
 export const StyledProfileSubtitle = styled<StyledPropsT>('p', ({$theme}) => ({
   ...$theme.typography.font300,
   color: $theme.colors.foreground,
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
 }));
 
 export const StyledProfileBody = styled<StyledPropsT>('p', ({$theme}) => ({
   ...$theme.typography.font200,
   color: $theme.colors.foreground,
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
 }));

@@ -17,12 +17,20 @@ const selectOverrides = {
   },
 };
 
-const arrowBtnOverrides = ({$theme}) => ({
-  ':focus': {
-    backgroundColor: $theme.colors.positive500,
-    borderRadius: $theme.borders.useRoundedCorners ? $theme.sizing.scale100 : 0,
-  },
-});
+const arrowBtnOverrides = ({$theme}) => {
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.sizing.scale100
+    : 0;
+  return {
+    ':focus': {
+      backgroundColor: $theme.colors.positive500,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
+    },
+  };
+};
 
 export default () => (
   <StatefulCalendar

@@ -10,6 +10,29 @@ import type {ThemeT} from '../styles/types.js';
 import {SIZE} from './constants.js';
 import type {SharedPropsT} from './types.js';
 
+function getInputPadding(size, sizing) {
+  return {
+    [SIZE.compact]: {
+      paddingTop: sizing.scale200,
+      paddingBottom: sizing.scale200,
+      paddingLeft: sizing.scale300,
+      paddingRight: sizing.scale300,
+    },
+    [SIZE.default]: {
+      paddingTop: sizing.scale400,
+      paddingBottom: sizing.scale400,
+      paddingLeft: sizing.scale500,
+      paddingRight: sizing.scale500,
+    },
+    [SIZE.large]: {
+      paddingTop: sizing.scale600,
+      paddingBottom: sizing.scale600,
+      paddingLeft: sizing.scale600,
+      paddingRight: sizing.scale600,
+    },
+  }[size];
+}
+
 function getFont(size, typography) {
   return {
     [SIZE.compact]: typography.font200,
@@ -197,31 +220,6 @@ export const InputContainer = styled<SharedPropsT>(
   getInputContainerStyles,
 );
 
-// Input
-
-function getInputPadding(size, sizing) {
-  return {
-    [SIZE.compact]: {
-      paddingTop: sizing.scale200,
-      paddingBottom: sizing.scale200,
-      paddingLeft: sizing.scale300,
-      paddingRight: sizing.scale300,
-    },
-    [SIZE.default]: {
-      paddingTop: sizing.scale400,
-      paddingBottom: sizing.scale400,
-      paddingLeft: sizing.scale500,
-      paddingRight: sizing.scale500,
-    },
-    [SIZE.large]: {
-      paddingTop: sizing.scale600,
-      paddingBottom: sizing.scale600,
-      paddingLeft: sizing.scale600,
-      paddingRight: sizing.scale600,
-    },
-  }[size];
-}
-
 function getInputColors($disabled, $isFocused, $error, colors) {
   if ($disabled) {
     return {
@@ -253,7 +251,7 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
   return {
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
-    borderWidth: '0',
+    borderWidth: 0,
     borderStyle: 'none',
     outline: 'none',
     width: '100%',

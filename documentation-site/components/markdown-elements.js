@@ -83,7 +83,10 @@ const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
 const InlineCode = styled('code', {
   backgroundColor: 'rgba(27, 31, 35, 0.05)',
-  borderRadius: '3px',
+  borderTopLeftRadius: '3px',
+  borderTopRightRadius: '3px',
+  borderBottomRightRadius: '3px',
+  borderBottomLeftRadius: '3px',
   fontSize: '85%',
   marginLeft: 0,
   marginRight: 0,
@@ -96,7 +99,10 @@ const InlineCode = styled('code', {
 
 const Blockquote = styled('blockquote', {
   backgroundColor: 'rgba(27, 31, 35, 0.03)',
-  borderRadius: '3px',
+  borderTopLeftRadius: '3px',
+  borderTopRightRadius: '3px',
+  borderBottomRightRadius: '3px',
+  borderBottomLeftRadius: '3px',
   marginLeft: 0,
   marginRight: 0,
   marginTop: 0,

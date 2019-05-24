@@ -29,7 +29,10 @@ const PlainInput = styled<{$inputVisible: boolean}>(
     ({
       display: $inputVisible ? 'block' : 'none',
       borderWidth: '1px',
-      borderRadius: '4px',
+      borderTopLeftRadius: '4px',
+      borderTopRightRadius: '4px',
+      borderBottomRightRadius: '4px',
+      borderBottomLeftRadius: '4px',
       borderColor: $theme.colors.mono200,
       borderStyle: 'solid',
       paddingLeft: '42px',

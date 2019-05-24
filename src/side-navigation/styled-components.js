@@ -17,14 +17,14 @@ export const StyledRoot = styled<SharedPropsT>('ul', props => {
     ...typography.font400,
     color: colors.foreground,
     listStyleType: 'none',
-    marginTop: '0',
-    marginBottom: '0',
-    marginLeft: '0',
-    marginRight: '0',
-    paddingTop: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
-    paddingRight: '0',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
   };
 });
 
@@ -69,12 +69,12 @@ export const StyledNavItem = styled<SharedPropsT>('div', props => {
 
 export const StyledSubNavContainer = styled('ul', {
   listStyleType: 'none',
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
-  paddingTop: '0',
-  paddingBottom: '0',
-  paddingLeft: '0',
-  paddingRight: '0',
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
 });

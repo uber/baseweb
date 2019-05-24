@@ -180,5 +180,5 @@ export type AnchorPropsT = {
   onMouseEnter?: (e: Event) => mixed,
   onMouseLeave?: (e: Event) => mixed,
   ref?: React.Ref<*>,
-  tabIndex?: '0',
+  tabIndex?: number,
 };

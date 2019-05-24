@@ -31,16 +31,16 @@ export function getBodyStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
 
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius300
-    : '0px';
+    : 0;
 
   return {
     position: 'absolute',
     top: 0,
     left: 0,
     backgroundColor: $theme.colors.background,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow600,
     transitionProperty: 'opacity,transform',
@@ -86,13 +86,13 @@ export const Arrow = styled<SharedStylePropsArgT>('div', getArrowStyles);
 export function getInnerStyles({$theme}: {$theme: ThemeT}) {
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius300
-    : '0px';
+    : 0;
   return {
     backgroundColor: $theme.colors.backgroundAlt,
     color: $theme.colors.foreground,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     position: 'relative',
   };
