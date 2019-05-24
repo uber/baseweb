@@ -19,6 +19,8 @@ export type CountryT = OptionT &
     dialCode: string,
   }>;
 
+export type CountriesT = $ReadOnlyArray<CountryT>;
+
 export type StateT = {
   inputValue: string,
   countryValue: CountryT,
@@ -48,6 +50,20 @@ export type OverridesT = {
   Root?: OverrideT<*>,
 };
 
+export type CountrySelectPropsT = StatefulContainerPropsT & {
+  dropdownHeight: string,
+};
+
+export type PropsT = {
+  inputValue: string,
+  countryValue: CountryT,
+  onInputChange: (event: InputChangeEventT) => mixed,
+  onCountryChange: (event: CountryChangeEventT) => mixed,
+  size?: SizeT,
+  dropdownHeight?: string,
+  dropdownWidth?: string,
+};
+
 export type StatefulPhoneInputContainerPropsT = {
   children: PropsT => React$Node,
   initialState: StateT,
@@ -64,19 +80,3 @@ export type StatefulPhoneInputPropsT = {
   onCountryChange?: (event: CountryChangeEventT) => mixed,
   overrides?: OverridesT,
 };
-
-export type CountrySelectPropsT = StatefulContainerPropsT & {
-  maxDropdownHeight: string,
-};
-
-export type PropsT = {
-  inputValue: string,
-  countryValue: CountryT,
-  onInputChange: (event: InputChangeEventT) => mixed,
-  onCountryChange: (event: CountryChangeEventT) => mixed,
-  size?: SizeT,
-  maxDropdownHeight?: string,
-  maxDropdownWidth?: string,
-};
-
-export type CountriesT = $ReadOnlyArray<CountryT>;
