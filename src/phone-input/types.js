@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {STATE_CHANGE_TYPE, SIZE} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
+import type {StatefulContainerPropsT} from '../menu/types.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 
@@ -64,4 +65,8 @@ export type StatefulPhoneInputPropsT = {
   onInputChange?: (event: InputChangeEventT) => mixed,
   onCountryChange?: (event: CountryChangeEventT) => mixed,
   overrides?: OverridesT,
+};
+
+export type CountrySelectPropsT = StatefulContainerPropsT & {
+  maxDropdownHeight: string,
 };

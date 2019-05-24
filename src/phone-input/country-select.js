@@ -19,9 +19,11 @@ import {
   StyledCountrySelectIsoContainer as IsoContainer,
 } from './styled-components.js';
 
-export default function CountrySelect(props) {
+import type {CountrySelectPropsT} from './types.js';
+
+export default function CountrySelect(props: CountrySelectPropsT) {
   return (
-    <Container $ref={props.$ref} $height={props.maxDropdownHeight}>
+    <Container $height={props.maxDropdownHeight}>
       <AutoSizer>
         {({height, width}) => {
           return (
