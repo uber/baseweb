@@ -22,8 +22,9 @@ import {
 import type {CountrySelectPropsT} from './types.js';
 
 export default function CountrySelect(props: CountrySelectPropsT) {
+  const {children, dropdownHeight = '400px', mapIsoToLabel = null} = props;
   return (
-    <Container $height={props.dropdownHeight}>
+    <Container $height={dropdownHeight}>
       <AutoSizer>
         {({height, width}) => {
           return (
@@ -31,26 +32,28 @@ export default function CountrySelect(props: CountrySelectPropsT) {
               role="listbox"
               height={height}
               width={width}
-              rowCount={props.children.length}
+              rowCount={children.length}
               rowHeight={32}
               rowRenderer={({index, key, style}) => {
                 // resetMenu and getItemLabel should not end up on native html elements
-                const {resetMenu, getItemLabel, ...rest} = props.children[
+                const {resetMenu, getItemLabel, ...rest} = children[
                   index
                 ].props;
                 return (
                   <ListItem key={key} style={style} {...rest}>
                     <FlagContainer>
                       <Flag
-                        iso2={props.children[index].props.item.id}
+                        iso2={children[index].props.item.id}
                         size={SIZE.compact}
                       />
                     </FlagContainer>
                     <NameContainer>
-                      {props.children[index].props.item.label}
+                      {mapIsoToLabel
+                        ? mapIsoToLabel(props.children[index].props.item.id)
+                        : children[index].props.item.label}
                     </NameContainer>
                     <IsoContainer>
-                      +{props.children[index].props.item.dialCode}
+                      +{children[index].props.item.dialCode}
                     </IsoContainer>
                   </ListItem>
                 );
