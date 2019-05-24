@@ -49,6 +49,7 @@ export default function PhoneInput(props: PropsT) {
                   if (inputRef && inputRef.current) {
                     inputRef.current.focus();
                   }
+                  // $FlowFixMe
                   onCountryChange(event);
                 }}
                 options={countries}

@@ -90,8 +90,10 @@ export default class StatefulPhoneInputContainer extends React.Component<
   };
 
   onCountryChange = (event: CountryChangeEventT) => {
-    this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, event.option);
-    this.props.onCountryChange(event);
+    if (event.option) {
+      this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, event.option);
+      this.props.onCountryChange(event);
+    }
   };
 
   render() {
