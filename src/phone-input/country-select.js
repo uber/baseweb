@@ -12,24 +12,21 @@ import {List, AutoSizer} from 'react-virtualized';
 import Flag from './flag.js';
 import {SIZE} from './constants.js';
 import {
-  StyledCountrySelectContainer,
-  StyledCountrySelectListItem,
-  StyledCountrySelectFlagContainer,
-  StyledCountrySelectNameContainer,
-  StyledCountrySelectIsoContainer,
+  StyledCountrySelectContainer as Container,
+  StyledCountrySelectListItem as ListItem,
+  StyledCountrySelectFlagContainer as FlagContainer,
+  StyledCountrySelectNameContainer as NameContainer,
+  StyledCountrySelectIsoContainer as IsoContainer,
 } from './styled-components.js';
 
 export default function CountrySelect(props) {
   return (
-    <StyledCountrySelectContainer
-      $ref={props.$ref}
-      $height={props.maxDropdownHeight}
-    >
+    <Container $ref={props.$ref} $height={props.maxDropdownHeight}>
       <AutoSizer>
         {({height, width}) => {
           return (
             <List
-              role={props.role}
+              role="listbox"
               height={height}
               width={width}
               rowCount={props.children.length}
@@ -40,37 +37,26 @@ export default function CountrySelect(props) {
                   index
                 ].props;
                 return (
-                  <StyledCountrySelectListItem
-                    key={key}
-                    style={style}
-                    {...rest}
-                  >
-                    <StyledCountrySelectFlagContainer
-                      paddingLeft="16px"
-                      display="flex"
-                      alignItems="center"
-                    >
+                  <ListItem key={key} style={style} {...rest}>
+                    <FlagContainer>
                       <Flag
                         iso2={props.children[index].props.item.iso2}
                         size={SIZE.compact}
                       />
-                    </StyledCountrySelectFlagContainer>
-                    <StyledCountrySelectNameContainer paddingLeft="16px">
+                    </FlagContainer>
+                    <NameContainer>
                       {props.children[index].props.item.name}
-                    </StyledCountrySelectNameContainer>
-                    <StyledCountrySelectIsoContainer
-                      marginLeft="auto"
-                      paddingRight="16px"
-                    >
+                    </NameContainer>
+                    <IsoContainer>
                       +{props.children[index].props.item.dialCode}
-                    </StyledCountrySelectIsoContainer>
-                  </StyledCountrySelectListItem>
+                    </IsoContainer>
+                  </ListItem>
                 );
               }}
             />
           );
         }}
       </AutoSizer>
-    </StyledCountrySelectContainer>
+    </Container>
   );
 }
