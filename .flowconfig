@@ -6,6 +6,7 @@ storybook-static
 .*/node_modules/npmconf/.*
 .*examples/fusion/.*
 documentation-site/.next/.*
+.*/src/codemods/.*
 
 [include]
 ./src/
