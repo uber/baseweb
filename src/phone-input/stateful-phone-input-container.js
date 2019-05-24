@@ -65,6 +65,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
       countryValue: getCountry('US'),
     },
     overrides: {},
+    onChange: () => {},
     onInputChange: () => {},
     onCountryChange: () => {},
     stateReducer: defaultStateReducer,
@@ -78,7 +79,9 @@ export default class StatefulPhoneInputContainer extends React.Component<
       type,
       payload,
     );
-    this.setState(nextState);
+    this.setState(nextState, () => {
+      this.props.onChange(this.state);
+    });
   };
 
   onInputChange = (event: InputChangeEventT) => {

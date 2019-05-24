@@ -50,8 +50,11 @@ export type OverridesT = {
   Root?: OverrideT<*>,
 };
 
+export type mapIsoToLabelT = (iso: string) => string;
+
 export type CountrySelectPropsT = StatefulContainerPropsT & {
   dropdownHeight: string,
+  mapIsoToLabel?: mapIsoToLabelT,
 };
 
 export type PropsT = {
@@ -59,6 +62,7 @@ export type PropsT = {
   countryValue: CountryT,
   onInputChange: (event: InputChangeEventT) => mixed,
   onCountryChange: (event: CountryChangeEventT) => mixed,
+  mapIsoToLabel?: mapIsoToLabelT,
   size?: SizeT,
   dropdownHeight?: string,
   dropdownWidth?: string,
@@ -68,15 +72,19 @@ export type StatefulPhoneInputContainerPropsT = {
   children: PropsT => React$Node,
   initialState: StateT,
   stateReducer: StateReducerT,
+  onChange: (state: StateT) => mixed,
   onInputChange: (event: InputChangeEventT) => mixed,
   onCountryChange: (event: CountryChangeEventT) => mixed,
+  mapIsoToLabel?: mapIsoToLabelT,
   overrides: OverridesT,
 };
 
 export type StatefulPhoneInputPropsT = {
   initialState?: StateT,
   stateReducer?: StateReducerT,
+  onChange?: (state: StateT) => mixed,
   onInputChange?: (event: InputChangeEventT) => mixed,
   onCountryChange?: (event: CountryChangeEventT) => mixed,
+  mapIsoToLabel?: mapIsoToLabelT,
   overrides?: OverridesT,
 };

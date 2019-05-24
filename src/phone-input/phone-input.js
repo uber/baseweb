@@ -25,6 +25,7 @@ export default function PhoneInput(props: PropsT) {
     size = SIZE.default,
     dropdownHeight = '400px',
     dropdownWidth = '400px',
+    mapIsoToLabel = null,
   } = props;
   const inputRef = useRef(null);
   return (
@@ -91,6 +92,7 @@ export default function PhoneInput(props: PropsT) {
                     component: CountrySelect,
                     props: {
                       dropdownHeight: dropdownHeight,
+                      mapIsoToLabel: mapIsoToLabel,
                     },
                   },
                 }}
