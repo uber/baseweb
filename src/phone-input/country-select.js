@@ -23,7 +23,7 @@ import type {CountrySelectPropsT} from './types.js';
 
 export default function CountrySelect(props: CountrySelectPropsT) {
   return (
-    <Container $height={props.maxDropdownHeight}>
+    <Container $height={props.dropdownHeight}>
       <AutoSizer>
         {({height, width}) => {
           return (

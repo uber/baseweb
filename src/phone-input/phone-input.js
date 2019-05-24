@@ -23,8 +23,8 @@ export default function PhoneInput(props: PropsT) {
     onInputChange,
     onCountryChange,
     size = SIZE.default,
-    maxDropdownHeight = '400px',
-    maxDropdownWidth = '400px',
+    dropdownHeight = '400px',
+    dropdownWidth = '400px',
   } = props;
   const inputRef = useRef(null);
   return (
@@ -55,7 +55,6 @@ export default function PhoneInput(props: PropsT) {
                 options={countries}
                 clearable={false}
                 searchable={false}
-                maxDropdownHeight={maxDropdownHeight}
                 getValueLabel={({option}) => {
                   return option.id ? (
                     <Flag iso2={String(option.id)} size={size} />
@@ -84,14 +83,14 @@ export default function PhoneInput(props: PropsT) {
                   },
                   DropdownContainer: {
                     style: {
-                      width: maxDropdownWidth,
+                      width: dropdownWidth,
                       maxWidth: 'calc(100vw - 10px)',
                     },
                   },
                   Dropdown: {
                     component: CountrySelect,
                     props: {
-                      maxDropdownHeight: maxDropdownHeight,
+                      dropdownHeight: dropdownHeight,
                     },
                   },
                 }}
