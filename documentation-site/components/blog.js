@@ -36,10 +36,10 @@ export const BlogImage = ({full, caption, src, style}) => (
 
 export const Demo = styled('iframe', {
   border: 0,
-  borderRadiusTopLeft: '4px',
-  borderRadiusTopRight: '4px',
-  borderRadiusBottomRight: '4px',
-  borderRadiusBottomLeft: '4px',
+  borderTopLeftRadius: '4px',
+  borderTopRightRadius: '4px',
+  borderBottomRightRadius: '4px',
+  borderBottomLeftRadius: '4px',
   height: '500px',
   overflow: 'hidden',
   width: '100%',

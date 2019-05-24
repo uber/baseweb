@@ -18,10 +18,10 @@ const StyledBorderBox = styled('div', ({$theme, $border = {}}) => {
     marginTop: $theme.sizing.scale200,
     height: $theme.sizing.scale4800,
     backgroundColor: $theme.colors.mono100,
-    borderRadiusTopLeft: $theme.borders.radius200,
-    borderRadiusTopRight: $theme.borders.radius200,
-    borderRadiusBottomRight: $theme.borders.radius200,
-    borderRadiusBottomLeft: $theme.borders.radius200,
+    borderTopLeftRadius: $theme.borders.radius200,
+    borderTopRightRadius: $theme.borders.radius200,
+    borderBottomRightRadius: $theme.borders.radius200,
+    borderBottomLeftRadius: $theme.borders.radius200,
     ...$border,
   };
 });

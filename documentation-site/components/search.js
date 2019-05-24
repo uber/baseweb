@@ -23,37 +23,36 @@ type State = {
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = styled(
-  'input',
-  ({$inputVisible, $theme}) =>
-    ({
-      display: $inputVisible ? 'block' : 'none',
-      borderWidth: '1px',
-      borderRadius: '4px',
-      borderColor: $theme.colors.mono200,
-      borderStyle: 'solid',
-      paddingLeft: '42px',
-      color: $theme.colors.foreground,
-      paddingRight: '12px',
-      paddingTop: '9px',
-      paddingBottom: '9px',
-      fontSize: '14px',
-      width: $inputVisible ? '62vw' : '250px',
-      backgroundColor: 'transparent',
-      lineHeight: '20px',
-      outline: 'none',
-      '-webkit-appearance': 'none',
-      ':focus': {
-        backgroundColor: $theme.colors.background,
-        borderColor: $theme.colors.primary,
-      },
-      [HEADER_BREAKPOINT]: {
-        position: 'static',
-        display: 'block',
-        width: '250px',
-      },
-    }: {}),
-);
+const PlainInput = styled('input', ({$theme, $inputVisible}) => ({
+  display: $inputVisible ? 'block' : 'none',
+  borderWidth: '1px',
+  borderTopLeftRadius: '4px',
+  borderTopRightRadius: '4px',
+  borderBottomRightRadius: '4px',
+  borderBottomLeftRadius: '4px',
+  borderColor: $theme.colors.mono200,
+  borderStyle: 'solid',
+  paddingLeft: '42px',
+  color: $theme.colors.foreground,
+  paddingRight: '12px',
+  paddingTop: '9px',
+  paddingBottom: '9px',
+  fontSize: '14px',
+  width: $inputVisible ? '62vw' : '250px',
+  backgroundColor: 'transparent',
+  lineHeight: '20px',
+  outline: 'none',
+  '-webkit-appearance': 'none',
+  ':focus': {
+    backgroundColor: $theme.colors.background,
+    borderColor: $theme.colors.primary,
+  },
+  [HEADER_BREAKPOINT]: {
+    position: 'static',
+    display: 'block',
+    width: '250px',
+  },
+}));
 
 const IconWrapper = styled('div', ({$inputVisible, $theme}) => ({
   marginRight: $inputVisible ? '-33px' : 0,

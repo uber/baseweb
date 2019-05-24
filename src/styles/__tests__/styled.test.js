@@ -51,10 +51,10 @@ test('styled override prop', () => {
         <StyledMockButton
           id="testButton3"
           $style={{
-            borderRadiusTopLeft: '2px',
-            borderRadiusTopRight: '2px',
-            borderRadiusBottomRight: '2px',
-            borderRadiusBottomLeft: '2px',
+            borderTopLeftRadius: '2px',
+            borderTopRightRadius: '2px',
+            borderBottomRightRadius: '2px',
+            borderBottomLeftRadius: '2px',
           }}
         />
         <StyledMockButton id="testButton4" $color="red" $style={styleFn} />
