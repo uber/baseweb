@@ -14,15 +14,7 @@ import {Block} from '../../block/index.js';
 export const name = 'phone-input';
 
 export const component = () => (
-  <>
-    <Block marginBottom="10px">
-      <StatefulPhoneInput size="compact" />
-    </Block>
-    <Block marginBottom="10px">
-      <StatefulPhoneInput size="default" />
-    </Block>
-    <Block marginBottom="10px">
-      <StatefulPhoneInput size="large" />
-    </Block>
-  </>
+  <Block>
+    <StatefulPhoneInput />
+  </Block>
 );
