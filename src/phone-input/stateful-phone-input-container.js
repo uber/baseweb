@@ -9,7 +9,7 @@ import React from 'react';
 import {countries, STATE_CHANGE_TYPE} from './constants.js';
 
 import type {
-  StatefulPhoneInputPropsT,
+  StatefulPhoneInputContainerPropsT,
   StateT,
   StateReducerT,
   StateChangeT,
@@ -52,7 +52,7 @@ const defaultStateReducer: StateReducerT = (state, type, payload) => {
 };
 
 export default class StatefulPhoneInputContainer extends React.Component<
-  StatefulPhoneInputPropsT,
+  StatefulPhoneInputContainerPropsT,
   StateT,
 > {
   static defaultProps = {

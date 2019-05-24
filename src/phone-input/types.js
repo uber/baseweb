@@ -49,11 +49,19 @@ export type PropsT = {
   size?: SizeT,
 };
 
-export type StatefulPhoneInputPropsT = {
+export type StatefulPhoneInputContainerPropsT = {
   children: PropsT => React$Node,
   initialState: StateT,
   stateReducer: StateReducerT,
   onInputChange: (event: InputChangeEventT) => mixed,
   onCountryChange: (event: CountryChangeEventT) => mixed,
   overrides: OverridesT,
+};
+
+export type StatefulPhoneInputPropsT = {
+  initialState?: StateT,
+  stateReducer?: StateReducerT,
+  onInputChange?: (event: InputChangeEventT) => mixed,
+  onCountryChange?: (event: CountryChangeEventT) => mixed,
+  overrides?: OverridesT,
 };
