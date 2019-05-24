@@ -61,7 +61,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
 > {
   static defaultProps = {
     initialState: {
-      inputValue: '+' + getCountry('US').dialCode,
+      inputValue: `+${getCountry('US').dialCode} `,
       countryValue: getCountry('US'),
     },
     overrides: {},
