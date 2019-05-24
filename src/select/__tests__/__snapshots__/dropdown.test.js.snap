@@ -45,11 +45,15 @@ Object {
 exports[`SelectDropdown renders StatefulMenu: Passes correct overrides to the StatefulMenu 1`] = `
 Object {
   "List": Object {
-    "component": [Function],
+    "component": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [MockFunction],
+    },
     "props": Object {
       "$maxHeight": "1000px",
       "aria-multiselectable": false,
     },
+    "style": [Function],
   },
   "Option": Object {
     "props": Object {
@@ -57,7 +61,10 @@ Object {
       "onMouseDown": [Function],
       "overrides": Object {
         "ListItem": Object {
-          "component": [MockFunction],
+          "component": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [MockFunction],
+          },
           "props": Object {
             "role": "option",
           },

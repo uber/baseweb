@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 
 import type {Node} from 'react';
 
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
@@ -23,11 +22,3 @@ export type BreadcrumbsPropsT = {|
   overrides?: OverridesT,
   ariaLabel?: string,
 |};
-
-export type StyledRootPropsT = {
-  $theme: ThemeT,
-};
-
-export type StyledSeparatorT = {
-  $theme: ThemeT,
-};

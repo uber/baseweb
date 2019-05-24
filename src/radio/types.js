@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 
@@ -71,7 +70,6 @@ export type PropsT = {
   name?: string,
   /** How to position the label relative to the radio itself. */
   labelPlacement?: LabelPlacementT,
-  $theme?: ThemeT,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
@@ -174,4 +172,18 @@ export type StatefulRadioGroupPropsT = {
   autoFocus?: boolean,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+};
+
+export type StylePropsT = {
+  $align?: boolean,
+  $checked: boolean,
+  $disabled: boolean,
+  $hasDescription: boolean,
+  $isActive: boolean,
+  $isError: boolean,
+  $isFocused: boolean,
+  $isHovered: boolean,
+  $labelPlacement: LabelPlacementT,
+  $required: boolean,
+  $value: string,
 };

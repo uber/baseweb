@@ -33,7 +33,7 @@ import ArrowDown from 'baseui/icon/arrow-down.js';
 
 export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
 
-const Hamburger = styled('div', ({$theme}) => ({
+const Hamburger = styled<{}>('div', ({$theme}) => ({
   display: 'block',
   userSelect: 'none',
   height: '32px',
@@ -44,15 +44,18 @@ const Hamburger = styled('div', ({$theme}) => ({
   },
 }));
 
-const LogoSegment = styled('div', ({$searchInputOpen}) => ({
-  display: $searchInputOpen ? 'none' : 'flex',
-  justifySelf: 'flex-start',
-  justifyContent: 'flex-start',
-  flex: 'none',
-  [HEADER_BREAKPOINT]: {
-    display: 'flex',
-  },
-}));
+const LogoSegment = styled<{$searchInputOpen: boolean}>(
+  'div',
+  ({$searchInputOpen}) => ({
+    display: $searchInputOpen ? 'none' : 'flex',
+    justifySelf: 'flex-start',
+    justifyContent: 'flex-start',
+    flex: 'none',
+    [HEADER_BREAKPOINT]: {
+      display: 'flex',
+    },
+  }),
+);
 
 const VERSIONS = [
   {label: 'v6'},
@@ -129,7 +132,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
             </Block>
           </LogoSegment>
 
-          <NavigationList align={ALIGN.right}>
+          <NavigationList $align={ALIGN.right}>
             <Block display="flex" alignItems="center">
               <Search
                 searchInputOpen={searchInputOpen}

@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
+import type {ThemeT} from '../styles/types.js';
 import {SIZE} from './constants.js';
 import type {SharedPropsT} from './types.js';
 
@@ -40,7 +41,7 @@ function getFont(size, typography) {
   }[size];
 }
 
-export const Root = styled('div', props => {
+export const Root = styled<SharedPropsT>('div', props => {
   const {
     $size,
     $theme: {colors, typography},
@@ -113,7 +114,7 @@ function getInputEnhancerColors(
   };
 }
 
-export const InputEnhancer = styled('div', props => {
+export const InputEnhancer = styled<SharedPropsT>('div', props => {
   const {
     $size,
     $disabled,
@@ -183,7 +184,9 @@ function getInputContainerColors(
   };
 }
 
-export const getInputContainerStyles = (props: SharedPropsT) => {
+export const getInputContainerStyles = (
+  props: SharedPropsT & {$theme: ThemeT},
+) => {
   const {
     $isFocused,
     $error,
@@ -212,7 +215,10 @@ export const getInputContainerStyles = (props: SharedPropsT) => {
   };
 };
 
-export const InputContainer = styled('div', getInputContainerStyles);
+export const InputContainer = styled<SharedPropsT>(
+  'div',
+  getInputContainerStyles,
+);
 
 function getInputColors($disabled, $isFocused, $error, colors) {
   if ($disabled) {
@@ -234,7 +240,7 @@ function getInputColors($disabled, $isFocused, $error, colors) {
   };
 }
 
-export const getInputStyles = (props: SharedPropsT) => {
+export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
   const {
     $disabled,
     $isFocused,
@@ -257,4 +263,4 @@ export const getInputStyles = (props: SharedPropsT) => {
   };
 };
 
-export const Input = styled('input', getInputStyles);
+export const Input = styled<SharedPropsT>('input', getInputStyles);

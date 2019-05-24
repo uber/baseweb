@@ -38,8 +38,8 @@ class Textarea extends React.Component<TextareaPropsT> {
   render() {
     const overrides = mergeOverrides(
       {
-        Input: StyledTextarea,
-        InputContainer: StyledTextareaContainer,
+        Input: {component: StyledTextarea},
+        InputContainer: {component: StyledTextareaContainer},
       },
       this.props.overrides,
     );

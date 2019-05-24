@@ -148,7 +148,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             onChange={this.props.onChange}
-            $ref={this.props.inputRef}
+            ref={this.props.inputRef}
             required={this.props.required}
             type="radio"
             value={this.props.value}

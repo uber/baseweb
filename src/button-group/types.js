@@ -10,14 +10,8 @@ import * as React from 'react';
 
 import {SIZE, SHAPE} from '../button/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/index.js';
 
 import {MODE, STATE_CHANGE_TYPE} from './constants.js';
-
-// styled-components
-export type StylePropsT = {
-  $theme: ThemeT,
-};
 
 // button-group
 export type PropsT = {|
@@ -39,7 +33,7 @@ export type PropsT = {|
    * this handler will trigger.
    */
   onClick?: ClickHandlerT,
-  overrides?: OverridesT<StylePropsT>,
+  overrides?: OverridesT<*>,
   /**
    * Index or array of indices of the selected Button(s).
    * Primarily for use with controlled components with a `mode` prop defined.

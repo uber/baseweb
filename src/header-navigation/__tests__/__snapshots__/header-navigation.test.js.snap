@@ -4,17 +4,36 @@ exports[`Stateless header navigation should render component: Component has corr
 <HeaderNavigation
   overrides={Object {}}
 >
-  <MockStyledComponent
+  <ForwardRef
     data-baseweb="header-navigation"
     role="navigation"
   >
-    <nav
+    <MockStyledComponent
       data-baseweb="header-navigation"
+      forwardedRef={null}
       role="navigation"
-      styled-component="true"
     >
-      Some tag
-    </nav>
-  </MockStyledComponent>
+      <nav
+        data-baseweb="header-navigation"
+        role="navigation"
+        styled-component="true"
+        test-style={
+          Object {
+            "backgroundColor": "$theme.colors.headerNavigationFill",
+            "borderBottom": "1px solid $theme.colors.border",
+            "display": "flex",
+            "fontFamily": "$theme.typography.font400.fontFamily",
+            "fontSize": "$theme.typography.font400.fontSize",
+            "fontWeight": "$theme.typography.font400.fontWeight",
+            "lineHeight": "$theme.typography.font400.lineHeight",
+            "paddingBottom": "$theme.sizing.scale500",
+            "paddingTop": "$theme.sizing.scale500",
+          }
+        }
+      >
+        Some tag
+      </nav>
+    </MockStyledComponent>
+  </ForwardRef>
 </HeaderNavigation>
 `;

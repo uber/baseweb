@@ -11,7 +11,7 @@ import type {SharedStylePropsT} from './types.js';
 /**
  * Main component container element
  */
-export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
+export const StyledRoot = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {typography, colors, borders},
   } = props;
@@ -29,9 +29,9 @@ export const StyledRoot = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-export const StyledCalendarContainer = styled(
+export const StyledCalendarContainer = styled<SharedStylePropsT>(
   'div',
-  (props: SharedStylePropsT) => {
+  props => {
     const {
       $theme: {sizing},
     } = props;
@@ -44,9 +44,9 @@ export const StyledCalendarContainer = styled(
   },
 );
 
-export const StyledSelectorContainer = styled(
+export const StyledSelectorContainer = styled<SharedStylePropsT>(
   'div',
-  (props: SharedStylePropsT) => {
+  props => {
     return {
       marginBottom: props.$theme.sizing.scale600,
       paddingLeft: props.$theme.sizing.scale600,
@@ -56,40 +56,37 @@ export const StyledSelectorContainer = styled(
   },
 );
 
-export const StyledCalendarHeader = styled(
-  'div',
-  (props: SharedStylePropsT) => {
-    const {
-      $theme: {colors, sizing, borders},
-    } = props;
-    const borderRadius = borders.useRoundedCorners ? borders.radius200 : 0;
-    return {
-      color: colors.white,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingTop: sizing.scale500,
-      paddingBottom: sizing.scale500,
-      paddingLeft: sizing.scale600,
-      paddingRight: sizing.scale600,
-      backgroundColor: colors.primary,
-      borderTopLeftRadius: borderRadius,
-      borderTopRightRadius: borderRadius,
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
-    };
-  },
-);
-
-export const StyledMonthHeader = styled('div', (props: SharedStylePropsT) => {
+export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
+  const {
+    $theme: {colors, sizing, borders},
+  } = props;
+  const borderRadius = borders.useRoundedCorners ? borders.radius200 : '0px';
   return {
-    color: props.$theme.colors.white,
-    backgroundColor: props.$theme.colors.primary,
-    whiteSpace: 'no-wrap',
+    color: colors.white,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: sizing.scale500,
+    paddingBottom: sizing.scale500,
+    paddingLeft: sizing.scale600,
+    paddingRight: sizing.scale600,
+    backgroundColor: colors.primary,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
   };
 });
 
-export const StyledMonthYearSelectButton = styled('button', props => {
+export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
+  return {
+    color: props.$theme.colors.white,
+    backgroundColor: props.$theme.colors.primary,
+    whiteSpace: 'nowrap',
+  };
+});
+
+export const StyledMonthYearSelectButton = styled<{}>('button', props => {
   return {
     ...props.$theme.typography.font400,
     alignItems: 'center',
@@ -102,7 +99,7 @@ export const StyledMonthYearSelectButton = styled('button', props => {
   };
 });
 
-export const StyledMonthYearSelectIconContainer = styled('span', props => {
+export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
   return {
     alignItems: 'center',
     display: 'flex',
@@ -110,7 +107,7 @@ export const StyledMonthYearSelectIconContainer = styled('span', props => {
   };
 });
 
-function getArrowBtnStyle({$theme, $disabled}: SharedStylePropsT) {
+function getArrowBtnStyle({$theme, $disabled}) {
   return {
     boxSizing: 'border-box',
     height: '22px',
@@ -136,22 +133,31 @@ function getArrowBtnStyle({$theme, $disabled}: SharedStylePropsT) {
   };
 }
 
-export const StyledPrevButton = styled('button', getArrowBtnStyle);
+export const StyledPrevButton = styled<SharedStylePropsT>(
+  'button',
+  getArrowBtnStyle,
+);
 
-export const StyledNextButton = styled('button', getArrowBtnStyle);
+export const StyledNextButton = styled<SharedStylePropsT>(
+  'button',
+  getArrowBtnStyle,
+);
 
-export const StyledMonth = styled('div', (props: SharedStylePropsT) => {
-  return {
-    display: 'inline-block',
-  };
-});
+export const StyledMonth = styled<SharedStylePropsT>(
+  'div',
+  (props: SharedStylePropsT) => {
+    return {
+      display: 'inline-block',
+    };
+  },
+);
 
-export const StyledWeek = styled('div', (props: SharedStylePropsT) => {
+export const StyledWeek = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {sizing},
   } = props;
   return {
-    whiteSpace: 'no-wrap',
+    whiteSpace: 'nowrap',
     display: 'flex',
     marginBottom: sizing.scale100,
   };
@@ -173,9 +179,7 @@ function getBorderRadius(left, right): BorderRadiusT {
   };
 }
 
-export function calculateBorderRadius(
-  props: SharedStylePropsT,
-): ?BorderRadiusT {
+function calculateBorderRadius(props): ?BorderRadiusT {
   const {
     $isHighlighted,
     $pseudoHighlighted,
@@ -235,7 +239,7 @@ export function calculateBorderRadius(
   }
 }
 
-export const StyledDay = styled('div', (props: SharedStylePropsT) => {
+export const StyledDay = styled<SharedStylePropsT>('div', props => {
   const {
     $disabled,
     $isHeader,
@@ -247,7 +251,7 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
     $selected,
     $theme: {colors, sizing, borders},
   } = props;
-  return {
+  return ({
     boxSizing: 'border-box',
     position: 'relative',
     cursor: $disabled || $isHeader ? 'default' : 'pointer',
@@ -297,5 +301,5 @@ export const StyledDay = styled('div', (props: SharedStylePropsT) => {
           }
         : {}),
     },
-  };
+  }: {});
 });

@@ -71,7 +71,6 @@ describe('Pagination Stateless', () => {
         $kind,
         $size,
         $shape,
-        $ref,
         $disabled,
         $isLoading,
         $isSelected,

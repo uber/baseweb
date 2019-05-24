@@ -72,12 +72,13 @@ describe('Button Component', () => {
       isLoading: true,
     };
     const component = mount(<Button {...props} />);
+    const button = component.find('button');
 
-    component.instance().internalOnClick();
+    button.simulate('click');
     expect(props.onClick.mock.calls.length).toBe(0);
 
     component.setProps({isLoading: false});
-    component.instance().internalOnClick();
+    button.simulate('click');
     expect(props.onClick.mock.calls.length).toBe(1);
   });
 });

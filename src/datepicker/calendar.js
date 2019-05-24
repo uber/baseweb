@@ -340,7 +340,7 @@ export default class Calendar extends React.Component<
       monthList.push(
         <CalendarContainer
           key={monthKey}
-          $ref={calendar => {
+          ref={calendar => {
             this.calendar = calendar;
           }}
           onKeyDown={this.onKeyDown}
@@ -490,7 +490,9 @@ export default class Calendar extends React.Component<
     return (
       <Root
         data-baseweb="calendar"
-        $ref={root => (this.root = root)}
+        ref={root => {
+          this.root = root;
+        }}
         role="application"
         aria-label="calendar"
         onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}

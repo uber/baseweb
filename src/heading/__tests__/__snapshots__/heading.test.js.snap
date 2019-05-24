@@ -8,21 +8,45 @@ exports[`Heading basic render 1`] = `
       color="colorPrimary"
       data-baseweb="heading"
       font="font1000"
-      overrides={Object {}}
     >
-      <MockStyledComponent
-        $as="h1"
-        $color="colorPrimary"
-        $font="font1000"
+      <Block
+        as="h1"
+        color="colorPrimary"
         data-baseweb="heading"
+        font="font1000"
+        forwardedRef={null}
       >
-        <div
+        <ForwardRef
+          $as="h1"
+          $color="colorPrimary"
+          $font="font1000"
           data-baseweb="heading"
-          styled-component="true"
         >
-          Base Web [L1]
-        </div>
-      </MockStyledComponent>
+          <MockStyledComponent
+            $as="h1"
+            $color="colorPrimary"
+            $font="font1000"
+            data-baseweb="heading"
+            forwardedRef={null}
+          >
+            <div
+              data-baseweb="heading"
+              styled-component="true"
+              test-style={
+                Object {
+                  "color": "$theme.colors.colorPrimary",
+                  "fontFamily": "$theme.typography.font1000.fontFamily",
+                  "fontSize": "$theme.typography.font1000.fontSize",
+                  "fontWeight": "$theme.typography.font1000.fontWeight",
+                  "lineHeight": "$theme.typography.font1000.lineHeight",
+                }
+              }
+            >
+              Base Web [L1]
+            </div>
+          </MockStyledComponent>
+        </ForwardRef>
+      </Block>
     </Block>
   </Heading>
   <HeadingLevel>
@@ -32,21 +56,45 @@ exports[`Heading basic render 1`] = `
         color="colorPrimary"
         data-baseweb="heading"
         font="font900"
-        overrides={Object {}}
       >
-        <MockStyledComponent
-          $as="h2"
-          $color="colorPrimary"
-          $font="font900"
+        <Block
+          as="h2"
+          color="colorPrimary"
           data-baseweb="heading"
+          font="font900"
+          forwardedRef={null}
         >
-          <div
+          <ForwardRef
+            $as="h2"
+            $color="colorPrimary"
+            $font="font900"
             data-baseweb="heading"
-            styled-component="true"
           >
-            Introduction [L2]
-          </div>
-        </MockStyledComponent>
+            <MockStyledComponent
+              $as="h2"
+              $color="colorPrimary"
+              $font="font900"
+              data-baseweb="heading"
+              forwardedRef={null}
+            >
+              <div
+                data-baseweb="heading"
+                styled-component="true"
+                test-style={
+                  Object {
+                    "color": "$theme.colors.colorPrimary",
+                    "fontFamily": "$theme.typography.font900.fontFamily",
+                    "fontSize": "$theme.typography.font900.fontSize",
+                    "fontWeight": "$theme.typography.font900.fontWeight",
+                    "lineHeight": "$theme.typography.font900.lineHeight",
+                  }
+                }
+              >
+                Introduction [L2]
+              </div>
+            </MockStyledComponent>
+          </ForwardRef>
+        </Block>
       </Block>
     </Heading>
     <HeadingLevel>
@@ -56,21 +104,45 @@ exports[`Heading basic render 1`] = `
           color="colorPrimary"
           data-baseweb="heading"
           font="font800"
-          overrides={Object {}}
         >
-          <MockStyledComponent
-            $as="h3"
-            $color="colorPrimary"
-            $font="font800"
+          <Block
+            as="h3"
+            color="colorPrimary"
             data-baseweb="heading"
+            font="font800"
+            forwardedRef={null}
           >
-            <div
+            <ForwardRef
+              $as="h3"
+              $color="colorPrimary"
+              $font="font800"
               data-baseweb="heading"
-              styled-component="true"
             >
-              Quotes [L3]
-            </div>
-          </MockStyledComponent>
+              <MockStyledComponent
+                $as="h3"
+                $color="colorPrimary"
+                $font="font800"
+                data-baseweb="heading"
+                forwardedRef={null}
+              >
+                <div
+                  data-baseweb="heading"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "color": "$theme.colors.colorPrimary",
+                      "fontFamily": "$theme.typography.font800.fontFamily",
+                      "fontSize": "$theme.typography.font800.fontSize",
+                      "fontWeight": "$theme.typography.font800.fontWeight",
+                      "lineHeight": "$theme.typography.font800.lineHeight",
+                    }
+                  }
+                >
+                  Quotes [L3]
+                </div>
+              </MockStyledComponent>
+            </ForwardRef>
+          </Block>
         </Block>
       </Heading>
       <HeadingLevel>
@@ -80,21 +152,45 @@ exports[`Heading basic render 1`] = `
             color="colorPrimary"
             data-baseweb="heading"
             font="font700"
-            overrides={Object {}}
           >
-            <MockStyledComponent
-              $as="h4"
-              $color="colorPrimary"
-              $font="font700"
+            <Block
+              as="h4"
+              color="colorPrimary"
               data-baseweb="heading"
+              font="font700"
+              forwardedRef={null}
             >
-              <div
+              <ForwardRef
+                $as="h4"
+                $color="colorPrimary"
+                $font="font700"
                 data-baseweb="heading"
-                styled-component="true"
               >
-                Subtitle [L4]
-              </div>
-            </MockStyledComponent>
+                <MockStyledComponent
+                  $as="h4"
+                  $color="colorPrimary"
+                  $font="font700"
+                  data-baseweb="heading"
+                  forwardedRef={null}
+                >
+                  <div
+                    data-baseweb="heading"
+                    styled-component="true"
+                    test-style={
+                      Object {
+                        "color": "$theme.colors.colorPrimary",
+                        "fontFamily": "$theme.typography.font700.fontFamily",
+                        "fontSize": "$theme.typography.font700.fontSize",
+                        "fontWeight": "$theme.typography.font700.fontWeight",
+                        "lineHeight": "$theme.typography.font700.lineHeight",
+                      }
+                    }
+                  >
+                    Subtitle [L4]
+                  </div>
+                </MockStyledComponent>
+              </ForwardRef>
+            </Block>
           </Block>
         </Heading>
         <HeadingLevel>
@@ -104,21 +200,45 @@ exports[`Heading basic render 1`] = `
               color="colorPrimary"
               data-baseweb="heading"
               font="font600"
-              overrides={Object {}}
             >
-              <MockStyledComponent
-                $as="h5"
-                $color="colorPrimary"
-                $font="font600"
+              <Block
+                as="h5"
+                color="colorPrimary"
                 data-baseweb="heading"
+                font="font600"
+                forwardedRef={null}
               >
-                <div
+                <ForwardRef
+                  $as="h5"
+                  $color="colorPrimary"
+                  $font="font600"
                   data-baseweb="heading"
-                  styled-component="true"
                 >
-                  Subtitle [L5]
-                </div>
-              </MockStyledComponent>
+                  <MockStyledComponent
+                    $as="h5"
+                    $color="colorPrimary"
+                    $font="font600"
+                    data-baseweb="heading"
+                    forwardedRef={null}
+                  >
+                    <div
+                      data-baseweb="heading"
+                      styled-component="true"
+                      test-style={
+                        Object {
+                          "color": "$theme.colors.colorPrimary",
+                          "fontFamily": "$theme.typography.font600.fontFamily",
+                          "fontSize": "$theme.typography.font600.fontSize",
+                          "fontWeight": "$theme.typography.font600.fontWeight",
+                          "lineHeight": "$theme.typography.font600.lineHeight",
+                        }
+                      }
+                    >
+                      Subtitle [L5]
+                    </div>
+                  </MockStyledComponent>
+                </ForwardRef>
+              </Block>
             </Block>
           </Heading>
           <HeadingLevel>
@@ -128,21 +248,45 @@ exports[`Heading basic render 1`] = `
                 color="colorPrimary"
                 data-baseweb="heading"
                 font="font500"
-                overrides={Object {}}
               >
-                <MockStyledComponent
-                  $as="h6"
-                  $color="colorPrimary"
-                  $font="font500"
+                <Block
+                  as="h6"
+                  color="colorPrimary"
                   data-baseweb="heading"
+                  font="font500"
+                  forwardedRef={null}
                 >
-                  <div
+                  <ForwardRef
+                    $as="h6"
+                    $color="colorPrimary"
+                    $font="font500"
                     data-baseweb="heading"
-                    styled-component="true"
                   >
-                    Subtitle [L6]
-                  </div>
-                </MockStyledComponent>
+                    <MockStyledComponent
+                      $as="h6"
+                      $color="colorPrimary"
+                      $font="font500"
+                      data-baseweb="heading"
+                      forwardedRef={null}
+                    >
+                      <div
+                        data-baseweb="heading"
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "color": "$theme.colors.colorPrimary",
+                            "fontFamily": "$theme.typography.font500.fontFamily",
+                            "fontSize": "$theme.typography.font500.fontSize",
+                            "fontWeight": "$theme.typography.font500.fontWeight",
+                            "lineHeight": "$theme.typography.font500.lineHeight",
+                          }
+                        }
+                      >
+                        Subtitle [L6]
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                </Block>
               </Block>
             </Heading>
           </HeadingLevel>
@@ -155,21 +299,45 @@ exports[`Heading basic render 1`] = `
         color="colorPrimary"
         data-baseweb="heading"
         font="font900"
-        overrides={Object {}}
       >
-        <MockStyledComponent
-          $as="h2"
-          $color="colorPrimary"
-          $font="font900"
+        <Block
+          as="h2"
+          color="colorPrimary"
           data-baseweb="heading"
+          font="font900"
+          forwardedRef={null}
         >
-          <div
+          <ForwardRef
+            $as="h2"
+            $color="colorPrimary"
+            $font="font900"
             data-baseweb="heading"
-            styled-component="true"
           >
-            Motivation [L2]
-          </div>
-        </MockStyledComponent>
+            <MockStyledComponent
+              $as="h2"
+              $color="colorPrimary"
+              $font="font900"
+              data-baseweb="heading"
+              forwardedRef={null}
+            >
+              <div
+                data-baseweb="heading"
+                styled-component="true"
+                test-style={
+                  Object {
+                    "color": "$theme.colors.colorPrimary",
+                    "fontFamily": "$theme.typography.font900.fontFamily",
+                    "fontSize": "$theme.typography.font900.fontSize",
+                    "fontWeight": "$theme.typography.font900.fontWeight",
+                    "lineHeight": "$theme.typography.font900.lineHeight",
+                  }
+                }
+              >
+                Motivation [L2]
+              </div>
+            </MockStyledComponent>
+          </ForwardRef>
+        </Block>
       </Block>
     </Heading>
   </HeadingLevel>
@@ -186,21 +354,45 @@ exports[`Heading styleLevels 1`] = `
       color="colorPrimary"
       data-baseweb="heading"
       font="font900"
-      overrides={Object {}}
     >
-      <MockStyledComponent
-        $as="h1"
-        $color="colorPrimary"
-        $font="font900"
+      <Block
+        as="h1"
+        color="colorPrimary"
         data-baseweb="heading"
+        font="font900"
+        forwardedRef={null}
       >
-        <div
+        <ForwardRef
+          $as="h1"
+          $color="colorPrimary"
+          $font="font900"
           data-baseweb="heading"
-          styled-component="true"
         >
-          Base Web [L1 styled as L2]
-        </div>
-      </MockStyledComponent>
+          <MockStyledComponent
+            $as="h1"
+            $color="colorPrimary"
+            $font="font900"
+            data-baseweb="heading"
+            forwardedRef={null}
+          >
+            <div
+              data-baseweb="heading"
+              styled-component="true"
+              test-style={
+                Object {
+                  "color": "$theme.colors.colorPrimary",
+                  "fontFamily": "$theme.typography.font900.fontFamily",
+                  "fontSize": "$theme.typography.font900.fontSize",
+                  "fontWeight": "$theme.typography.font900.fontWeight",
+                  "lineHeight": "$theme.typography.font900.lineHeight",
+                }
+              }
+            >
+              Base Web [L1 styled as L2]
+            </div>
+          </MockStyledComponent>
+        </ForwardRef>
+      </Block>
     </Block>
   </Heading>
 </HeadingLevel>

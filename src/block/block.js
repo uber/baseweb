@@ -13,9 +13,10 @@ import {StyledBlock} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
 function Block({
+  forwardedRef,
   children,
-  as,
-  overrides,
+  as = 'div',
+  overrides = {},
   color,
   backgroundColor,
   font,
@@ -73,15 +74,15 @@ function Block({
   right,
   bottom,
   ...restProps
-}: BlockPropsT) {
+}) {
   const [BaseBlock, baseBlockProps] = getOverrides(
-    // $FlowFixMe
     overrides.Block,
     StyledBlock,
   );
 
   return (
     <BaseBlock
+      ref={forwardedRef}
       $as={as}
       $color={color}
       $backgroundColor={backgroundColor}
@@ -148,9 +149,8 @@ function Block({
   );
 }
 
-Block.defaultProps = {
-  overrides: {},
-  as: 'div',
-};
-
-export default Block;
+const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props: BlockPropsT, ref) => <Block {...props} forwardedRef={ref} />,
+);
+BlockComponent.displayName = 'Block';
+export default BlockComponent;

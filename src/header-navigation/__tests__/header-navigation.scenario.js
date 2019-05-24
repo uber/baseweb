@@ -22,14 +22,14 @@ export const name = 'header-navigation';
 
 export const component = () => (
   <HeaderNavigation>
-    <NavigationList align={ALIGN.left}>
+    <NavigationList $align={ALIGN.left}>
       <NavigationItem>
         <Menu />
       </NavigationItem>
       <NavigationItem>Uber</NavigationItem>
     </NavigationList>
-    <NavigationList align={ALIGN.center} />
-    <NavigationList align={ALIGN.right}>
+    <NavigationList $align={ALIGN.center} />
+    <NavigationList $align={ALIGN.right}>
       <NavigationItem>
         <Link>Tab Link One</Link>
       </NavigationItem>
@@ -40,7 +40,7 @@ export const component = () => (
         <Link>Tab Link Three</Link>
       </NavigationItem>
     </NavigationList>
-    <NavigationList align={ALIGN.right}>
+    <NavigationList $align={ALIGN.right}>
       <NavigationItem>
         <Button>Get started</Button>
       </NavigationItem>

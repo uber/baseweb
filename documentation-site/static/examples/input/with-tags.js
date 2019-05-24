@@ -26,15 +26,6 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
 
 class TagSelect extends React.Component {
   state = {value: '', tags: ['hello']};
-  ref = React.createRef();
-
-  componentDidMount() {
-    this.ref.current.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentWillUnmount() {
-    this.ref.current.removeEventListener('keydown', this.handleKeyDown);
-  }
 
   handleKeyDown = event => {
     if (event.keyCode === 13) {
@@ -68,14 +59,17 @@ class TagSelect extends React.Component {
         </Block>
         <Input
           size={SIZE.compact}
-          inputRef={this.ref}
           value={this.state.value}
           onChange={e => this.setState({value: e.target.value})}
           overrides={{
             Input: {
               style: {width: 'auto', flexGrow: 1},
               component: InputReplacement,
-              props: {tags: this.state.tags, removeTag: this.removeTag},
+              props: {
+                tags: this.state.tags,
+                removeTag: this.removeTag,
+                onKeyDown: this.handleKeyDown,
+              },
             },
           }}
         />
