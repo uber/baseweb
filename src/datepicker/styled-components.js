@@ -108,6 +108,9 @@ export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
 });
 
 function getArrowBtnStyle({$theme, $disabled}) {
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.sizing.scale100
+    : 0;
   return {
     boxSizing: 'border-box',
     height: '22px',
@@ -126,9 +129,10 @@ function getArrowBtnStyle({$theme, $disabled}) {
       ? {}
       : {
           backgroundColor: $theme.colors.primary500,
-          borderRadius: $theme.borders.useRoundedCorners
-            ? $theme.sizing.scale100
-            : 0,
+          borderTopLeftRadius: borderRadius,
+          borderTopRightRadius: borderRadius,
+          borderBottomRightRadius: borderRadius,
+          borderBottomLeftRadius: borderRadius,
         },
   };
 }
