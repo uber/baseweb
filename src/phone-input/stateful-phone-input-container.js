@@ -51,14 +51,18 @@ const defaultStateReducer: StateReducerT = (state, type, payload) => {
   }
 };
 
+const getCountry = iso => {
+  return countries.find(({id}) => id === iso) || {dialCode: ''};
+};
+
 export default class StatefulPhoneInputContainer extends React.Component<
   StatefulPhoneInputContainerPropsT,
   StateT,
 > {
   static defaultProps = {
     initialState: {
-      inputValue: '+' + countries.US.dialCode,
-      countryValue: countries.US,
+      inputValue: '+' + getCountry('US').dialCode,
+      countryValue: getCountry('US'),
     },
     overrides: {},
     onInputChange: () => {},

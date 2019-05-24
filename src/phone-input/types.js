@@ -10,14 +10,14 @@ import {STATE_CHANGE_TYPE, SIZE} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
 import type {StatefulContainerPropsT} from '../menu/types.js';
+import type {OptionT} from '../select/types.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 
-export type CountryT = {
-  iso2: string,
-  name: string,
-  dialCode: string,
-};
+export type CountryT = OptionT &
+  $ReadOnly<{
+    dialCode: string,
+  }>;
 
 export type StateT = {
   inputValue: string,
@@ -35,19 +35,15 @@ export type StateReducerT = (
 ) => StateT;
 
 export type InputChangeEventT = {
-  target: {value: string},
+  +target: {value: string},
 };
 
 export type CountryChangeEventT = {
-  option: CountryT,
+  option: OptionT,
 };
 
 export type OverridesT = {
   Root?: OverrideT<*>,
-};
-
-export type PropsT = {
-  size?: SizeT,
 };
 
 export type StatefulPhoneInputContainerPropsT = {
@@ -70,3 +66,15 @@ export type StatefulPhoneInputPropsT = {
 export type CountrySelectPropsT = StatefulContainerPropsT & {
   maxDropdownHeight: string,
 };
+
+export type PropsT = {
+  inputValue: string,
+  countryValue: CountryT,
+  onInputChange: (event: InputChangeEventT) => mixed,
+  onCountryChange: (event: CountryChangeEventT) => mixed,
+  size?: SizeT,
+  maxDropdownHeight?: string,
+  maxDropdownWidth?: string,
+};
+
+export type CountriesT = $ReadOnlyArray<CountryT>;
