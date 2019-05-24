@@ -14,11 +14,13 @@ import Flag from './flag.js';
 import {Input} from '../input/index.js';
 import {Select} from '../select/index.js';
 
-export default function PhoneInput(props) {
+import type {PropsT} from './types.js';
+
+export default function PhoneInput(props: PropsT) {
   const {
     inputValue,
-    onInputChange,
     countryValue,
+    onInputChange,
     onCountryChange,
     size = SIZE.default,
     maxDropdownHeight = '400px',
@@ -43,18 +45,20 @@ export default function PhoneInput(props) {
               <Select
                 size={size}
                 value={[countryValue]}
-                onChange={(...args) => {
-                  inputRef.current.focus();
-                  onCountryChange(...args);
+                onChange={event => {
+                  if (inputRef && inputRef.current) {
+                    inputRef.current.focus();
+                  }
+                  onCountryChange(event);
                 }}
-                options={Object.values(countries)}
-                labelKey="name"
-                valueKey="iso2"
+                options={countries}
                 clearable={false}
                 searchable={false}
                 maxDropdownHeight={maxDropdownHeight}
                 getValueLabel={({option}) => {
-                  return <Flag iso2={option.iso2} size={size} />;
+                  return option.id ? (
+                    <Flag iso2={String(option.id)} size={size} />
+                  ) : null;
                 }}
                 overrides={{
                   ValueContainer: {

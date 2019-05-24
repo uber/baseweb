@@ -42,12 +42,12 @@ export default function CountrySelect(props: CountrySelectPropsT) {
                   <ListItem key={key} style={style} {...rest}>
                     <FlagContainer>
                       <Flag
-                        iso2={props.children[index].props.item.iso2}
+                        iso2={props.children[index].props.item.id}
                         size={SIZE.compact}
                       />
                     </FlagContainer>
                     <NameContainer>
-                      {props.children[index].props.item.name}
+                      {props.children[index].props.item.label}
                     </NameContainer>
                     <IsoContainer>
                       +{props.children[index].props.item.dialCode}
