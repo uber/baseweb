@@ -252,7 +252,7 @@ export const StyledInput = styled(
   'input',
   (props: SharedStylePropsT & {$width: string}) => {
     const {
-      $theme: {typography},
+      $theme: {typography, colors},
       $size,
       $disabled,
       $searchable,
@@ -260,6 +260,7 @@ export const StyledInput = styled(
     } = props;
     return {
       ...getFont($size, typography),
+      color: $disabled ? colors.foregroundAlt : colors.foreground,
       boxSizing: 'content-box',
       fontSize: '16px', // prevents iOS to zoom in when focused
       width: $disabled || !$searchable ? '1px' : $width || '100%',
