@@ -100,6 +100,8 @@ class TimezonePicker extends React.Component<
       // $FlowFixMe
       selectProps && selectProps.overrides,
     );
+    // $FlowFixMe
+    selectProps.overrides = selectOverrides;
 
     return (
       <LocaleContext.Consumer>
@@ -122,7 +124,7 @@ class TimezonePicker extends React.Component<
                 ? [{id: this.props.value || this.state.value}]
                 : null
             }
-            overrides={selectOverrides}
+            {...selectProps}
           />
         )}
       </LocaleContext.Consumer>
