@@ -17,16 +17,8 @@ export const component = () => (
   <Block>
     <StatefulPhoneInput
       overrides={{
-        Input: {
-          style: {
-            paddingLeft: '40px',
-          },
-        },
-        Select: {
-          props: {
-            searchable: true,
-          },
-        },
+        Input: {style: {paddingLeft: '10px'}},
+        CountrySelect: {props: {searchable: true}},
       }}
     />
   </Block>

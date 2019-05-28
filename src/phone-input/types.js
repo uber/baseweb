@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {STATE_CHANGE_TYPE, SIZE} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {StatefulContainerPropsT} from '../menu/types.js';
+import type {StatefulContainerPropsT as StatefulMenuContainerPropsT} from '../menu/types.js';
 import type {OptionT, ValueT, ChangeActionT} from '../select/types.js';
 
 export type SizeT = $Keys<typeof SIZE>;
@@ -48,14 +48,27 @@ export type CountryChangeEventT = {
 
 export type OverridesT = {
   Input?: OverrideT<*>,
-  Select?: OverrideT<*>,
+  CountrySelect?: OverrideT<*>,
 };
 
 export type mapIsoToLabelT = (iso: string) => string;
 
-export type CountrySelectPropsT = StatefulContainerPropsT & {
+export type CountrySelectDropdownPropsT = StatefulMenuContainerPropsT & {
   dropdownHeight: string,
   mapIsoToLabel?: mapIsoToLabelT,
+};
+
+export type CountrySelectPropsT = {
+  countryValue: CountryT,
+  inputRef: {current: HTMLInputElement | null},
+  onCountryChange?: (event: CountryChangeEventT) => mixed,
+  size?: SizeT,
+  dropdownWidth?: string,
+  dropdownHeight?: string,
+  mapIsoToLabel?: mapIsoToLabelT,
+  overrides: {
+    CountrySelect?: OverrideT<*>,
+  },
 };
 
 export type PropsT = {
