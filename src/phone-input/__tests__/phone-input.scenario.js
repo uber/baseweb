@@ -15,6 +15,14 @@ export const name = 'phone-input';
 
 export const component = () => (
   <Block>
-    <StatefulPhoneInput />
+    <StatefulPhoneInput
+      overrides={{
+        Input: {
+          style: {
+            paddingLeft: '40px',
+          },
+        },
+      }}
+    />
   </Block>
 );

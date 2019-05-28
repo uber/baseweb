@@ -47,7 +47,7 @@ export type CountryChangeEventT = {
 };
 
 export type OverridesT = {
-  Root?: OverrideT<*>,
+  Input?: OverrideT<*>,
 };
 
 export type mapIsoToLabelT = (iso: string) => string;
@@ -66,6 +66,7 @@ export type PropsT = {
   size?: SizeT,
   dropdownHeight?: string,
   dropdownWidth?: string,
+  overrides?: OverridesT,
 };
 
 export type StatefulPhoneInputContainerPropsT = {
