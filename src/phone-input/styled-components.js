@@ -10,23 +10,26 @@ import {styled} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
 import {StyledDropdownListItem} from '../select/index.js';
 
-export const StyledCountrySelectContainer = styled(
+export const StyledCountrySelectDropdownContainer = styled(
   StyledList,
   ({$height = '400px'}) => {
     return {height: $height};
   },
 );
 
-export const StyledCountrySelectListItem = styled(StyledDropdownListItem, {
-  paddingTop: 0,
-  paddingBottom: 0,
-  paddingLeft: 0,
-  paddingRight: 0,
-  display: 'flex',
-  alignItems: 'center',
-});
+export const StyledCountrySelectDropdownListItem = styled(
+  StyledDropdownListItem,
+  {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    display: 'flex',
+    alignItems: 'center',
+  },
+);
 
-export const StyledCountrySelectFlagContainer = styled(
+export const StyledCountrySelectDropdownFlagContainer = styled(
   'div',
   ({$theme: {sizing}}) => {
     return {
@@ -37,7 +40,7 @@ export const StyledCountrySelectFlagContainer = styled(
   },
 );
 
-export const StyledCountrySelectNameContainer = styled(
+export const StyledCountrySelectDropdownNameContainer = styled(
   'div',
   ({$theme: {sizing}}) => {
     return {
@@ -46,7 +49,7 @@ export const StyledCountrySelectNameContainer = styled(
   },
 );
 
-export const StyledCountrySelectIsoContainer = styled(
+export const StyledCountrySelectDropdownIsoContainer = styled(
   'div',
   ({$theme: {sizing}}) => {
     return {
