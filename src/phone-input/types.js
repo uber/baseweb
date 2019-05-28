@@ -48,6 +48,7 @@ export type CountryChangeEventT = {
 
 export type OverridesT = {
   Input?: OverrideT<*>,
+  Select?: OverrideT<*>,
 };
 
 export type mapIsoToLabelT = (iso: string) => string;

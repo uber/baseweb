@@ -22,6 +22,11 @@ export const component = () => (
             paddingLeft: '40px',
           },
         },
+        Select: {
+          props: {
+            searchable: true,
+          },
+        },
       }}
     />
   </Block>

@@ -12,7 +12,7 @@ import {Input as DefaultInput} from '../input/index.js';
 import {countries, SIZE} from './constants.js';
 import CountrySelect from './country-select.js';
 import Flag from './flag.js';
-import {Select} from '../select/index.js';
+import {Select as DefaultSelect} from '../select/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
 import type {PropsT} from './types.js';
@@ -29,6 +29,7 @@ export default function PhoneInput(props: PropsT) {
     mapIsoToLabel = null,
     overrides = {
       Input: {},
+      Select: {},
     },
   } = props;
   const inputRef = useRef(null);
@@ -39,7 +40,47 @@ export default function PhoneInput(props: PropsT) {
       },
     },
     Before: {
-      component: function Before() {
+      component: function Before(props) {
+        const baseOverrides = {
+          ValueContainer: {
+            style: {
+              width: {
+                [SIZE.compact]: '34px',
+                [SIZE.default]: '42px',
+                [SIZE.large]: '50px',
+              }[size],
+            },
+          },
+          IconsContainer: {
+            style: {
+              paddingRight: '0',
+            },
+          },
+          SingleValue: {
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+            },
+          },
+          DropdownContainer: {
+            style: {
+              width: dropdownWidth,
+              maxWidth: 'calc(100vw - 10px)',
+            },
+          },
+          Dropdown: {
+            component: CountrySelect,
+            props: {
+              dropdownHeight: dropdownHeight,
+              mapIsoToLabel: mapIsoToLabel,
+            },
+          },
+        };
+        const [Select, selectProps] = getOverrides(
+          overrides.Select,
+          DefaultSelect,
+        );
+        const selectOverrides = mergeOverrides(baseOverrides, props.overrides);
         return (
           <Select
             size={size}
@@ -59,41 +100,8 @@ export default function PhoneInput(props: PropsT) {
                 <Flag iso2={String(option.id)} size={size} />
               ) : null;
             }}
-            overrides={{
-              ValueContainer: {
-                style: {
-                  width: {
-                    [SIZE.compact]: '34px',
-                    [SIZE.default]: '42px',
-                    [SIZE.large]: '50px',
-                  }[size],
-                },
-              },
-              IconsContainer: {
-                style: {
-                  paddingRight: '0',
-                },
-              },
-              SingleValue: {
-                style: {
-                  display: 'flex',
-                  alignItems: 'center',
-                },
-              },
-              DropdownContainer: {
-                style: {
-                  width: dropdownWidth,
-                  maxWidth: 'calc(100vw - 10px)',
-                },
-              },
-              Dropdown: {
-                component: CountrySelect,
-                props: {
-                  dropdownHeight: dropdownHeight,
-                  mapIsoToLabel: mapIsoToLabel,
-                },
-              },
-            }}
+            overrides={selectOverrides}
+            {...selectProps}
           />
         );
       },
