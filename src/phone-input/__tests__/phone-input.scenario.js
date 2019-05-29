@@ -17,16 +17,21 @@ export const component = () => (
   <Block>
     <StatefulPhoneInput />
     {/* Test overrides */}
-    {/* <StatefulPhoneInput
+    <StatefulPhoneInput
       overrides={{
-        Input: {style: {paddingLeft: '10px'}},
-        CountrySelect: {props: {searchable: true}},
+        Input: {},
+        CountrySelect: {
+          style: {
+            outline: `2px solid #F6BA8B`,
+            backgroundColor: '#F6BA8B',
+          },
+        },
         CountrySelectDropdown: {style: {background: 'purple'}},
         CountrySelectDropdownListItem: {style: {textDecoration: 'underline'}},
         CountrySelectDropdownFlagColumn: {style: {border: 'solid 1px black'}},
         CountrySelectDropdownNameColumn: {style: {fontWeight: 'bold'}},
         CountrySelectDropdownIsoColumn: {style: {fontStyle: 'italic'}},
       }}
-    /> */}
+    />
   </Block>
 );
