@@ -459,6 +459,22 @@ describe('Block', () => {
     });
   });
 
+  it('renders textOverflow style if provided', () => {
+    expect(
+      retrieveStyles(<Block textOverflow="ellipsis">test</Block>),
+    ).toMatchObject({
+      textOverflow: 'ellipsis',
+    });
+  });
+
+  it('renders whiteSpace style if provided', () => {
+    expect(
+      retrieveStyles(<Block whiteSpace="nowrap">test</Block>),
+    ).toMatchObject({
+      whiteSpace: 'nowrap',
+    });
+  });
+
   it('applies other props if provided', () => {
     const onClickMock = jest.fn();
     const example = mount(<Block onClick={onClickMock}>test</Block>);
