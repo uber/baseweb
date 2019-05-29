@@ -163,8 +163,7 @@
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
-    "styletron-react": "^5.0.0",
-    "react-virtualized": "9.x"
+    "styletron-react": "^5.0.0"
   },
   "husky": {
     "hooks": {
