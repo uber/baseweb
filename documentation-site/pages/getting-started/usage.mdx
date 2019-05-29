@@ -6,6 +6,9 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Layout from '../../components/layout';
+import Example from '../../components/example';
+
+import Usage from 'examples/getting-started/usage.js';
 
 export default Layout;
 
@@ -42,21 +45,13 @@ export default function Hello() {
 }
 ```
 
-<iframe
-  title="codesandbox"
-  src="https://codesandbox.io/embed/18qzmnz88q"
-  style={{
-    width: '100%',
-    height: '700px',
-    border: 0,
-    borderTopLeftRadius: '4px',
-    borderTopRightRadius: '4px',
-    borderBottomRightRadius: '4px',
-    borderBottomLeftRadius: '4px',
-    overflow: 'hidden',
-  }}
-  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-/>
+The above code will result in the following output - you can find the providers
+in the `index.js` file, and the components used in the `example.js` file by
+inspecting it in CodeSandbox.
+
+<Example title="Basic input example" path="examples/getting-started/usage.js">
+  <Usage />
+</Example>
 
 ## Next steps
 
