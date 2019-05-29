@@ -20,10 +20,6 @@ const StyledLightingBox = styled<{$boxShadow: string}>(
       marginTop: $theme.sizing.scale200,
       height: $theme.sizing.scale4800,
       backgroundColor: $theme.colors.mono100,
-      borderTopLeftRadius: $theme.borders.radius200,
-      borderTopRightRadius: $theme.borders.radius200,
-      borderBottomRightRadius: $theme.borders.radius200,
-      borderBottomLeftRadius: $theme.borders.radius200,
       boxShadow: $boxShadow,
     };
   },

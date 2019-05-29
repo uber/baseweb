@@ -111,9 +111,6 @@ export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
 export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius200
-    : 0;
   return {
     ...$theme.typography.font350,
     pointerEvents: 'auto',
@@ -128,10 +125,6 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
       getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',

@@ -27,12 +27,7 @@ import type {SharedStylePropsArgT} from '../popover/types.js';
  */
 export const Body = styled<SharedStylePropsArgT>('div', props => ({
   ...getBodyStyles(props),
-  // Tooltip
   backgroundColor: props.$theme.colors.tooltipBackground,
-  borderTopLeftRadius: props.$theme.borders.radius200,
-  borderTopRightRadius: props.$theme.borders.radius200,
-  borderBottomRightRadius: props.$theme.borders.radius200,
-  borderBottomLeftRadius: props.$theme.borders.radius200,
   boxShadow: props.$theme.lighting.shadow400,
   color: props.$theme.colors.tooltipText,
   // Reset transition property to opacity only, and static transform
@@ -43,10 +38,6 @@ export const Body = styled<SharedStylePropsArgT>('div', props => ({
 export const Inner = styled<SharedStylePropsArgT>('div', props => ({
   ...getInnerStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
-  borderTopLeftRadius: props.$theme.borders.radius200,
-  borderTopRightRadius: props.$theme.borders.radius200,
-  borderBottomRightRadius: props.$theme.borders.radius200,
-  borderBottomLeftRadius: props.$theme.borders.radius200,
   paddingTop: props.$theme.sizing.scale300,
   paddingBottom: props.$theme.sizing.scale300,
   paddingLeft: props.$theme.sizing.scale300,
