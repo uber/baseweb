@@ -15,8 +15,9 @@ export const name = 'phone-input';
 
 export const component = () => (
   <Block>
+    <StatefulPhoneInput />
     {/* Test overrides */}
-    <StatefulPhoneInput
+    {/* <StatefulPhoneInput
       overrides={{
         Input: {style: {paddingLeft: '10px'}},
         CountrySelect: {props: {searchable: true}},
@@ -26,6 +27,6 @@ export const component = () => (
         CountrySelectDropdownNameColumn: {style: {fontWeight: 'bold'}},
         CountrySelectDropdownIsoColumn: {style: {fontStyle: 'italic'}},
       }}
-    />
+    /> */}
   </Block>
 );
