@@ -10,8 +10,13 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 import Overrides from '../../components/overrides';
 
-import {StatefulPhoneInput} from 'baseui/phone-input/index.js';
+import {StatefulPhoneInput, countries} from 'baseui/phone-input/index.js';
 import * as PhoneInputExports from 'baseui/phone-input/index.js';
+
+import PhoneInputBasic from 'examples/phone-input/basic.js';
+import PhoneInputAlternateCountry from 'examples/phone-input/alternate-country.js';
+import PhoneInputControlled from 'examples/phone-input/controlled.js';
+import PhoneInputLocalized from 'examples/phone-input/localized.js';
 
 export default Layout;
 
@@ -20,8 +25,26 @@ export default Layout;
 The Phone Input is used to collect phone numbers with international dial codes.
 It contains a dropdown which allows the user to choose from a list of countries and dial codes.
 
-<Example title="Phone Input" path="examples/phone-input/basic.js">
-  <StatefulPhoneInput />
+<Example title="Basic Usage" path="examples/phone-input/basic.js">
+  <PhoneInputBasic />
+</Example>
+
+<Example
+  title="Alternate Default Country"
+  path="examples/phone-input/alternate-country.js"
+>
+  <PhoneInputAlternateCountry />
+</Example>
+
+<Example title="Controlled" path="examples/phone-input/controlled.js">
+  <PhoneInputControlled />
+</Example>
+
+<Example
+  title="Localized Country Names"
+  path="examples/phone-input/localized.js"
+>
+  <PhoneInputLocalized />
 </Example>
 
 ## Overrides
@@ -42,16 +65,26 @@ It contains a dropdown which allows the user to choose from a list of countries 
 />
 
 <API
-  heading="Phone Input API"
+  heading="PhoneInput API"
   api={require('!!extract-react-types-loader!../../../src/phone-input/phone-input.js')}
 />
 
 <API
-  heading="Country Select API"
+  heading="StatefulPhoneInput API"
+  api={require('!!extract-react-types-loader!../../../src/phone-input/stateful-phone-input.js')}
+/>
+
+<API
+  heading="StatefulPhoneInputContainer API"
+  api={require('!!extract-react-types-loader!../../../src/phone-input/stateful-phone-input-container.js')}
+/>
+
+<API
+  heading="CountrySelect API"
   api={require('!!extract-react-types-loader!../../../src/phone-input/country-select.js')}
 />
 
 <API
-  heading="Country Select Dropdown API"
+  heading="CountrySelectDropdown API"
   api={require('!!extract-react-types-loader!../../../src/phone-input/country-select-dropdown.js')}
 />
