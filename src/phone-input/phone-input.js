@@ -23,6 +23,11 @@ export default function PhoneInput(props: PropsT) {
     overrides = {
       Input: {},
       CountrySelect: {},
+      CountrySelectDropdown: {},
+      CountrySelectDropdownListItem: {},
+      CountrySelectDropdownFlagColumn: {},
+      CountrySelectDropdownNameColumn: {},
+      CountrySelectDropdownIsoColumn: {},
     },
   } = props;
   const inputRef = useRef(null);
@@ -37,9 +42,6 @@ export default function PhoneInput(props: PropsT) {
       props: {
         ...props,
         inputRef,
-        overrides: {
-          CountrySelect: overrides.CountrySelect,
-        },
       },
     },
   };

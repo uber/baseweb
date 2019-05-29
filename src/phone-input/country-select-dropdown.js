@@ -12,21 +12,53 @@ import {List, AutoSizer} from 'react-virtualized';
 import Flag from './flag.js';
 import {SIZE} from './constants.js';
 import {
-  StyledCountrySelectDropdownContainer as Container,
-  StyledCountrySelectDropdownListItem as ListItem,
-  StyledCountrySelectDropdownFlagContainer as FlagContainer,
-  StyledCountrySelectDropdownNameContainer as NameContainer,
-  StyledCountrySelectDropdownIsoContainer as IsoContainer,
+  StyledCountrySelectDropdownContainer as DefaultContainer,
+  StyledCountrySelectDropdownListItem as DefaultListItem,
+  StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
+  StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
+  StyledCountrySelectDropdownIsoColumn as DefaultIsoColumn,
 } from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 
 import type {CountrySelectDropdownPropsT} from './types.js';
 
 export default function CountrySelectDropdown(
   props: CountrySelectDropdownPropsT,
 ) {
-  const {children, dropdownHeight = '400px', mapIsoToLabel = null} = props;
+  const {
+    children,
+    dropdownHeight = '400px',
+    mapIsoToLabel,
+    overrides = {
+      CountrySelectDropdown: {},
+      CountrySelectDropdownListItem: {},
+      CountrySelectDropdownFlagColumn: {},
+      CountrySelectDropdownNameColumn: {},
+      CountrySelectDropdownIsoColumn: {},
+    },
+  } = props;
+  const [Container, containerProps] = getOverrides(
+    overrides.CountrySelectDropdown,
+    DefaultContainer,
+  );
+  const [ListItem, listItemProps] = getOverrides(
+    overrides.CountrySelectDropdownListItem,
+    DefaultListItem,
+  );
+  const [FlagColumn, flagColumnProps] = getOverrides(
+    overrides.CountrySelectDropdownFlagColumn,
+    DefaultFlagColumn,
+  );
+  const [NameColumn, nameColumnProps] = getOverrides(
+    overrides.CountrySelectDropdownNameColumn,
+    DefaultNameColumn,
+  );
+  const [IsoColumn, isoColumnProps] = getOverrides(
+    overrides.CountrySelectDropdownIsoColumn,
+    DefaultIsoColumn,
+  );
   return (
-    <Container $height={dropdownHeight}>
+    <Container $height={dropdownHeight} {...containerProps}>
       <AutoSizer>
         {({height, width}) => {
           return (
@@ -42,21 +74,26 @@ export default function CountrySelectDropdown(
                   index
                 ].props;
                 return (
-                  <ListItem key={key} style={style} {...rest}>
-                    <FlagContainer>
+                  <ListItem
+                    key={key}
+                    style={style}
+                    {...rest}
+                    {...listItemProps}
+                  >
+                    <FlagColumn {...flagColumnProps}>
                       <Flag
                         iso2={children[index].props.item.id}
                         size={SIZE.compact}
                       />
-                    </FlagContainer>
-                    <NameContainer>
+                    </FlagColumn>
+                    <NameColumn {...nameColumnProps}>
                       {mapIsoToLabel
                         ? mapIsoToLabel(props.children[index].props.item.id)
                         : children[index].props.item.label}
-                    </NameContainer>
-                    <IsoContainer>
+                    </NameColumn>
+                    <IsoColumn {...isoColumnProps}>
                       +{children[index].props.item.dialCode}
-                    </IsoContainer>
+                    </IsoColumn>
                   </ListItem>
                 );
               }}
