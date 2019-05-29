@@ -45,7 +45,6 @@ class Overrides extends React.Component {
       this.props.blacklisted,
       this.props.whitelisted,
     );
-    console.log(this.state.highlighted);
     return (
       <React.Fragment>
         <Block as="p" font="font400">

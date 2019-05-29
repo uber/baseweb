@@ -30,7 +30,7 @@ export const component = () => (
         CountrySelectDropdownListItem: {style: {textDecoration: 'underline'}},
         CountrySelectDropdownFlagColumn: {style: {border: 'solid 1px black'}},
         CountrySelectDropdownNameColumn: {style: {fontWeight: 'bold'}},
-        CountrySelectDropdownIsoColumn: {style: {fontStyle: 'italic'}},
+        CountrySelectDropdownDialcodeColumn: {style: {fontStyle: 'italic'}},
       }}
     />
   </Block>

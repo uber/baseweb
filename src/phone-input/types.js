@@ -53,7 +53,7 @@ export type CountrySelectDropdownOverridesT = {
   CountrySelectDropdownListItem?: OverrideT<*>,
   CountrySelectDropdownFlagColumn?: OverrideT<*>,
   CountrySelectDropdownNameColumn?: OverrideT<*>,
-  CountrySelectDropdownIsoColumn?: OverrideT<*>,
+  CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
 };
 
 export type CountrySelectDropdownPropsT = StatefulMenuContainerPropsT & {
@@ -68,7 +68,7 @@ export type CountrySelectOverridesT = {
   CountrySelectDropdownListItem?: OverrideT<*>,
   CountrySelectDropdownFlagColumn?: OverrideT<*>,
   CountrySelectDropdownNameColumn?: OverrideT<*>,
-  CountrySelectDropdownIsoColumn?: OverrideT<*>,
+  CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
 };
 
 export type CountrySelectPropsT = {
@@ -89,7 +89,7 @@ export type OverridesT = {
   CountrySelectDropdownListItem?: OverrideT<*>,
   CountrySelectDropdownFlagColumn?: OverrideT<*>,
   CountrySelectDropdownNameColumn?: OverrideT<*>,
-  CountrySelectDropdownIsoColumn?: OverrideT<*>,
+  CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
 };
 
 export type PropsT = {

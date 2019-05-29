@@ -27,7 +27,7 @@ export default function PhoneInput(props: PropsT) {
       CountrySelectDropdownListItem: {},
       CountrySelectDropdownFlagColumn: {},
       CountrySelectDropdownNameColumn: {},
-      CountrySelectDropdownIsoColumn: {},
+      CountrySelectDropdownDialcodeColumn: {},
     },
   } = props;
   const inputRef = useRef(null);

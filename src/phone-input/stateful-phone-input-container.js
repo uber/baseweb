@@ -71,7 +71,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
       CountrySelectDropdownListItem: {},
       CountrySelectDropdownFlagColumn: {},
       CountrySelectDropdownNameColumn: {},
-      CountrySelectDropdownIsoColumn: {},
+      CountrySelectDropdownDialcodeColumn: {},
     },
     onChange: () => {},
     onInputChange: () => {},
