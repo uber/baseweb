@@ -129,10 +129,6 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                 component: StyledDropdown,
                 style: p => ({
                   maxHeight: p.$maxHeight || null,
-                  borderTopLeftRadius: 0,
-                  borderTopRightRadius: 0,
-                  borderBottomRightRadius: 0,
-                  borderBottomLeftRadius: 0,
                 }),
                 props: {
                   $maxHeight: maxDropdownHeight,

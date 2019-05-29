@@ -16,7 +16,6 @@ type StyledPropsT = {
 };
 
 export const StyledList = styled<StyledPropsT>('ul', ({$theme}) => {
-  const borderRadius = $theme.borders.radius300;
   return {
     backgroundColor: $theme.colors.menuFill,
     position: 'relative',
@@ -28,10 +27,6 @@ export const StyledList = styled<StyledPropsT>('ul', ({$theme}) => {
     paddingBottom: $theme.sizing.scale300,
     paddingLeft: 0,
     paddingRight: 0,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow600,
     overflow: 'auto',
   };
