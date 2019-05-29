@@ -11,3 +11,8 @@ export {default as StatefulPhoneInput} from './stateful-phone-input.js';
 export {
   default as StatefulPhoneInputContainer,
 } from './stateful-phone-input-container.js';
+export {default as CountrySelect} from './country-select.js';
+export {default as CountrySelectDropdown} from './country-select-dropdown.js';
+export * from './constants.js';
+export * from './types.js';
+export * from './styled-components.js';
