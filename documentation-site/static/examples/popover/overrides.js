@@ -14,19 +14,19 @@ export default () => (
       Body: {
         style: ({$theme}) => ({
           backgroundColor: $theme.colors.warning,
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
-          borderBottomLeftRadius: 0,
+          borderTopLeftRadius: $theme.borders.radius200,
+          borderTopRightRadius: $theme.borders.radius200,
+          borderBottomRightRadius: $theme.borders.radius200,
+          borderBottomLeftRadius: $theme.borders.radius200,
         }),
       },
       Inner: {
         style: ({$theme}) => ({
           backgroundColor: $theme.colors.warning,
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
-          borderBottomLeftRadius: 0,
+          borderTopLeftRadius: $theme.borders.radius200,
+          borderTopRightRadius: $theme.borders.radius200,
+          borderBottomRightRadius: $theme.borders.radius200,
+          borderBottomLeftRadius: $theme.borders.radius200,
           color: $theme.colors.white,
         }),
       },

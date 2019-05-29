@@ -29,19 +29,11 @@ export function getBodyStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
     $theme,
   } = props;
 
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius300
-    : 0;
-
   return {
     position: 'absolute',
     top: 0,
     left: 0,
     backgroundColor: $theme.colors.background,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow600,
     transitionProperty: 'opacity,transform',
     transitionDuration: $isAnimating ? '0.1s' : '0s',
@@ -84,16 +76,9 @@ export const Arrow = styled<SharedStylePropsArgT>('div', getArrowStyles);
  * clips the part of the arrow that extends into the popover.
  */
 export function getInnerStyles({$theme}: {$theme: ThemeT}) {
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius300
-    : 0;
   return {
     backgroundColor: $theme.colors.backgroundAlt,
     color: $theme.colors.foreground,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
     position: 'relative',
   };
 }
