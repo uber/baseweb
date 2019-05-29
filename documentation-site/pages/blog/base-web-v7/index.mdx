@@ -332,7 +332,7 @@ Refactors `Datepicker` components to support collections of composed pickers (da
 
 * Removes the `MonthSelect` `YearSelect` overrides.
 * Adds `MonthYearSelectButton` `MonthYearSelectIconContainer` overrides.
-* Adds `MonthYearSelectStatefulPopover` `MonthYearSelectStatefulMenu` overrides to customize internal popover and menu.
+* Adds `MonthYearSelectPopover` `MonthYearSelectStatefulMenu` overrides to customize internal popover and menu.
 
 ```diff
   <Datepicker
@@ -341,7 +341,7 @@ Refactors `Datepicker` components to support collections of composed pickers (da
 -     YearSelect: {},
 +     MonthYearSelectButton: {},
 +     MonthYearSelectIconContainer: {},
-+     MonthYearSelectStatefulPopover: {},
++     MonthYearSelectPopover: {},
 +     MonthYearSelectStatefulMenu: {},
     }}
   />

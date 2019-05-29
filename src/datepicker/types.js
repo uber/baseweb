@@ -38,7 +38,7 @@ export type DatepickerOverridesT<T> = {
   MonthHeader?: OverrideT<T>,
   MonthYearSelectButton?: OverrideT<T>,
   MonthYearSelectIconContainer?: OverrideT<T>,
-  MonthYearSelectStatefulPopover?: OverrideT<T>,
+  MonthYearSelectPopover?: OverrideT<T>,
   MonthYearSelectStatefulMenu?: OverrideT<T>,
   WeekdayHeader?: OverrideT<T>,
   Month?: OverrideT<T>,
