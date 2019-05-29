@@ -29,7 +29,7 @@ export const StyledCountrySelectDropdownListItem = styled(
   },
 );
 
-export const StyledCountrySelectDropdownFlagContainer = styled(
+export const StyledCountrySelectDropdownFlagColumn = styled(
   'div',
   ({$theme: {sizing}}) => {
     return {
@@ -40,7 +40,7 @@ export const StyledCountrySelectDropdownFlagContainer = styled(
   },
 );
 
-export const StyledCountrySelectDropdownNameContainer = styled(
+export const StyledCountrySelectDropdownNameColumn = styled(
   'div',
   ({$theme: {sizing}}) => {
     return {
@@ -49,7 +49,7 @@ export const StyledCountrySelectDropdownNameContainer = styled(
   },
 );
 
-export const StyledCountrySelectDropdownIsoContainer = styled(
+export const StyledCountrySelectDropdownIsoColumn = styled(
   'div',
   ({$theme: {sizing}}) => {
     return {

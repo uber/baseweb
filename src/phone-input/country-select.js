@@ -27,6 +27,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     mapIsoToLabel,
     overrides = {
       CountrySelect: {},
+      CountrySelectDropdown: {},
+      CountrySelectDropdownListItem: {},
+      CountrySelectDropdownFlagColumn: {},
+      CountrySelectDropdownNameColumn: {},
+      CountrySelectDropdownIsoColumn: {},
     },
   } = props;
   const baseOverrides = {
@@ -61,6 +66,17 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       props: {
         dropdownHeight: dropdownHeight,
         mapIsoToLabel: mapIsoToLabel,
+        overrides: {
+          CountrySelectDropdown: overrides.CountrySelectDropdown,
+          CountrySelectDropdownListItem:
+            overrides.CountrySelectDropdownListItem,
+          CountrySelectDropdownFlagColumn:
+            overrides.CountrySelectDropdownFlagColumn,
+          CountrySelectDropdownNameColumn:
+            overrides.CountrySelectDropdownNameColumn,
+          CountrySelectDropdownIsoColumn:
+            overrides.CountrySelectDropdownIsoColumn,
+        },
       },
     },
   };
@@ -68,7 +84,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     overrides.CountrySelect,
     DefaultSelect,
   );
-  const selectOverrides = mergeOverrides(baseOverrides, props.overrides);
+  const selectOverrides = mergeOverrides(baseOverrides, overrides);
   return (
     <Select
       size={size}

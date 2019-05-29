@@ -15,10 +15,16 @@ export const name = 'phone-input';
 
 export const component = () => (
   <Block>
+    {/* Test overrides */}
     <StatefulPhoneInput
       overrides={{
         Input: {style: {paddingLeft: '10px'}},
         CountrySelect: {props: {searchable: true}},
+        CountrySelectDropdown: {style: {background: 'purple'}},
+        CountrySelectDropdownListItem: {style: {textDecoration: 'underline'}},
+        CountrySelectDropdownFlagColumn: {style: {border: 'solid 1px black'}},
+        CountrySelectDropdownNameColumn: {style: {fontWeight: 'bold'}},
+        CountrySelectDropdownIsoColumn: {style: {fontStyle: 'italic'}},
       }}
     />
   </Block>
