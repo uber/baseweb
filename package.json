@@ -156,6 +156,7 @@
     "react-is": "^16.8.6",
     "react-movable": "^2.0.1",
     "react-range": "^1.0.5",
+    "react-virtualized": "^9.21.0",
     "smoothscroll-polyfill": "^0.4.3",
     "timezone-support": "^1.8.1"
   },
@@ -163,7 +164,7 @@
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
     "styletron-react": "^5.0.0",
-    "react-virtualized": "^9.21.0"
+    "react-virtualized": "9.x"
   },
   "husky": {
     "hooks": {
