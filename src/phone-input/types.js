@@ -93,13 +93,21 @@ export type OverridesT = {
 };
 
 export type PropsT = {
+  /** Current input text value. Note, this should include the dial code of the selected country. */
   inputValue: string,
+  /** Current selected country value. Note, this expects an entire CountryT object. */
   countryValue: CountryT,
+  /** Change handler of the text input to be called when a value is changed. */
   onInputChange: (event: InputChangeEventT) => mixed,
+  /** Change handler of the country select to be called when a value is changed. */
   onCountryChange: (event: CountryChangeEventT) => mixed,
+  /** A function that can be used to map iso codes to localized country names */
   mapIsoToLabel?: mapIsoToLabelT,
+  /** Defines the size of the text input. */
   size?: SizeT,
+  /** Defines a maximum dropdown height. The edge of the viewport will shrink the dropdown accordingly. */
   dropdownHeight?: string,
+  /** Defines a maximum dropdown width. The edge of the viewport will shrink the dropdown accordingly. */
   dropdownWidth?: string,
   overrides?: OverridesT,
 };
