@@ -16,7 +16,7 @@ import {
   StyledCountrySelectDropdownListItem as DefaultListItem,
   StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
-  StyledCountrySelectDropdownIsoColumn as DefaultIsoColumn,
+  StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
@@ -34,7 +34,7 @@ export default function CountrySelectDropdown(
       CountrySelectDropdownListItem: {},
       CountrySelectDropdownFlagColumn: {},
       CountrySelectDropdownNameColumn: {},
-      CountrySelectDropdownIsoColumn: {},
+      CountrySelectDropdownDialcodeColumn: {},
     },
   } = props;
   const [Container, containerProps] = getOverrides(
@@ -53,9 +53,9 @@ export default function CountrySelectDropdown(
     overrides.CountrySelectDropdownNameColumn,
     DefaultNameColumn,
   );
-  const [IsoColumn, isoColumnProps] = getOverrides(
-    overrides.CountrySelectDropdownIsoColumn,
-    DefaultIsoColumn,
+  const [Dialcode, dialcodeProps] = getOverrides(
+    overrides.CountrySelectDropdownDialcodeColumn,
+    DefaultDialcodeColumn,
   );
   return (
     <Container $height={dropdownHeight} {...containerProps}>
@@ -91,9 +91,9 @@ export default function CountrySelectDropdown(
                         ? mapIsoToLabel(props.children[index].props.item.id)
                         : children[index].props.item.label}
                     </NameColumn>
-                    <IsoColumn {...isoColumnProps}>
+                    <Dialcode {...dialcodeProps}>
                       +{children[index].props.item.dialCode}
-                    </IsoColumn>
+                    </Dialcode>
                   </ListItem>
                 );
               }}

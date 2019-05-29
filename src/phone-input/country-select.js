@@ -31,7 +31,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       CountrySelectDropdownListItem: {},
       CountrySelectDropdownFlagColumn: {},
       CountrySelectDropdownNameColumn: {},
-      CountrySelectDropdownIsoColumn: {},
+      CountrySelectDropdownDialcodeColumn: {},
     },
   } = props;
   const baseOverrides = {
@@ -74,8 +74,8 @@ export default function CountrySelect(props: CountrySelectPropsT) {
             overrides.CountrySelectDropdownFlagColumn,
           CountrySelectDropdownNameColumn:
             overrides.CountrySelectDropdownNameColumn,
-          CountrySelectDropdownIsoColumn:
-            overrides.CountrySelectDropdownIsoColumn,
+          CountrySelectDropdownDialcodeColumn:
+            overrides.CountrySelectDropdownDialcodeColumn,
         },
       },
     },

@@ -49,7 +49,7 @@ export const StyledCountrySelectDropdownNameColumn = styled(
   },
 );
 
-export const StyledCountrySelectDropdownIsoColumn = styled(
+export const StyledCountrySelectDropdownDialcodeColumn = styled(
   'div',
   ({$theme: {sizing}}) => {
     return {
