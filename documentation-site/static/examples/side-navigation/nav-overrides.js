@@ -46,13 +46,18 @@ export default () => {
       overrides={{
         NavItem: {
           style: ({$active, $theme}) => {
-            if (!$active) return {};
+            if (!$active)
+              return {
+                ':hover': {
+                  color: $theme.colors.positive400,
+                },
+              };
             return {
               backgroundColor: $theme.colors.positive400,
-              borderLeftColor: $theme.colors.mono800,
-              color: $theme.colors.mono100,
+              borderLeftColor: $theme.colors.mono900,
+              color: $theme.colors.mono900,
               ':hover': {
-                color: $theme.colors.mono100,
+                color: $theme.colors.positive400,
               },
             };
           },

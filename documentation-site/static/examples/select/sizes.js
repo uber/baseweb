@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {StatefulSelect} from 'baseui/select';
-import {StatefulInput} from 'baseui/input';
+import {StatefulSelect, SIZE} from 'baseui/select';
 
 export default () => (
-  <div>
+  <>
     <StatefulSelect
-      size="compact"
+      size={SIZE.compact}
       options={[
         {id: 'AliceBlue', color: '#F0F8FF'},
         {id: 'AntiqueWhite', color: '#FAEBD7'},
@@ -18,7 +17,6 @@ export default () => (
       valueKey="color"
       onChange={event => console.log(event)}
     />
-
     <br />
     <StatefulSelect
       options={[
@@ -33,10 +31,9 @@ export default () => (
       valueKey="color"
       onChange={event => console.log(event)}
     />
-
     <br />
     <StatefulSelect
-      size="large"
+      size={SIZE.large}
       options={[
         {id: 'AliceBlue', color: '#F0F8FF'},
         {id: 'AntiqueWhite', color: '#FAEBD7'},
@@ -49,5 +46,5 @@ export default () => (
       valueKey="color"
       onChange={event => console.log(event)}
     />
-  </div>
+  </>
 );

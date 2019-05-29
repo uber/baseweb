@@ -15,29 +15,29 @@ function getInputPadding(size, sizing) {
     [SIZE.compact]: {
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
-      paddingLeft: sizing.scale300,
-      paddingRight: sizing.scale300,
+      paddingLeft: sizing.scale400,
+      paddingRight: sizing.scale400,
     },
     [SIZE.default]: {
       paddingTop: sizing.scale400,
       paddingBottom: sizing.scale400,
-      paddingLeft: sizing.scale500,
-      paddingRight: sizing.scale500,
+      paddingLeft: sizing.scale600,
+      paddingRight: sizing.scale600,
     },
     [SIZE.large]: {
       paddingTop: sizing.scale600,
       paddingBottom: sizing.scale600,
-      paddingLeft: sizing.scale600,
-      paddingRight: sizing.scale600,
+      paddingLeft: sizing.scale800,
+      paddingRight: sizing.scale800,
     },
   }[size];
 }
 
 function getFont(size, typography) {
   return {
-    [SIZE.compact]: typography.font200,
-    [SIZE.default]: typography.font300,
-    [SIZE.large]: typography.font400,
+    [SIZE.compact]: typography.font300,
+    [SIZE.default]: typography.font400,
+    [SIZE.large]: typography.font500,
   }[size];
 }
 
@@ -63,12 +63,12 @@ function getInputEnhancerPadding($size, sizing) {
       paddingLeft: sizing.scale400,
     },
     [SIZE.default]: {
-      paddingRight: sizing.scale500,
-      paddingLeft: sizing.scale500,
-    },
-    [SIZE.large]: {
       paddingRight: sizing.scale600,
       paddingLeft: sizing.scale600,
+    },
+    [SIZE.large]: {
+      paddingRight: sizing.scale800,
+      paddingLeft: sizing.scale800,
     },
   }[$size];
 }
@@ -90,7 +90,7 @@ function getInputEnhancerColors(
   if ($isFocused) {
     return {
       color: colors.foregroundInv,
-      backgroundColor: colors.foreground,
+      backgroundColor: colors.primary400,
     };
   }
 
@@ -156,7 +156,7 @@ function getInputContainerColors(
   if ($isFocused) {
     return {
       color: colors.foreground,
-      borderColor: colors.foreground,
+      borderColor: colors.primary400,
       backgroundColor: colors.inputFillActive,
     };
   }
@@ -193,7 +193,7 @@ export const getInputContainerStyles = (
     $disabled,
     $positive,
     $size,
-    $theme: {colors, typography, animation},
+    $theme: {colors, sizing, typography, animation},
   } = props;
   return {
     boxSizing: 'border-box',
@@ -205,6 +205,7 @@ export const getInputContainerStyles = (
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
     ...getFont($size, typography),
+    ...getInputPadding($size, sizing),
     ...getInputContainerColors(
       $disabled,
       $isFocused,
@@ -246,7 +247,7 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
     $isFocused,
     $error,
     $size,
-    $theme: {colors, sizing, typography},
+    $theme: {colors, typography},
   } = props;
   return {
     boxSizing: 'border-box',
@@ -257,8 +258,11 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
     width: '100%',
     maxWidth: '100%',
     cursor: $disabled ? 'not-allowed' : 'text',
+    paddingTop: '0',
+    paddingBottom: '0',
+    paddingLeft: '0',
+    paddingRight: '0',
     ...getFont($size, typography),
-    ...getInputPadding($size, sizing),
     ...getInputColors($disabled, $isFocused, $error, colors),
   };
 };
