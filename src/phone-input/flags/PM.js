@@ -12,11 +12,7 @@ import * as React from 'react';
 
 export default function FlagPM(props: {width: string}) {
   return (
-    <svg
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 21 15"
-      width={props.width}
-    >
+    <svg viewBox="0 0 21 15" width={props.width}>
       <defs>
         <linearGradient id="PMa" x1="50%" x2="50%" y1="0%" y2="100%">
           <stop offset="0%" stopColor="#FFF" />
