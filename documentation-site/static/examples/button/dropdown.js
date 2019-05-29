@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
-import ArrowDown from 'baseui/icon/arrow-down';
+import ChevronDown from 'baseui/icon/chevron-down';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {StatefulMenu} from 'baseui/menu';
 
@@ -30,6 +30,6 @@ export default () => (
       />
     )}
   >
-    <Button endEnhancer={() => <ArrowDown size={24} />}>Open Menu</Button>
+    <Button endEnhancer={() => <ChevronDown size={24} />}>Open Menu</Button>
   </StatefulPopover>
 );

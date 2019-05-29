@@ -29,7 +29,7 @@ import {StatefulTooltip} from 'baseui/tooltip';
 import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
 import {StatefulMenu} from 'baseui/menu';
 import {Button} from 'baseui/button';
-import ArrowDown from 'baseui/icon/arrow-down.js';
+import ChevronDown from 'baseui/icon/chevron-down.js';
 
 export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
 
@@ -119,7 +119,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                 >
                   <Button
                     size="compact"
-                    endEnhancer={() => <ArrowDown size={24} />}
+                    endEnhancer={() => <ChevronDown size={24} />}
                   >
                     {version}
                   </Button>
