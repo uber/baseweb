@@ -10,7 +10,7 @@ import ArrowRight from '../icon/arrow-right.js';
 import ArrowLeft from '../icon/arrow-left.js';
 import TriangleDown from '../icon/triangle-down.js';
 import {StatefulMenu} from '../menu/index.js';
-import {StatefulPopover} from '../popover/index.js';
+import {Popover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
 import {
   StyledCalendarHeader,
@@ -57,7 +57,10 @@ function idToYearMonth(id) {
   return id.split('-').map(Number);
 }
 
-export default class CalendarHeader extends React.Component<HeaderPropsT> {
+export default class CalendarHeader extends React.Component<
+  HeaderPropsT,
+  {isMonthYearDropdownOpen: boolean},
+> {
   static defaultProps = {
     date: new Date(),
     locale: null,
@@ -67,6 +70,7 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     overrides: {},
   };
 
+  state = {isMonthYearDropdownOpen: false};
   handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
@@ -201,6 +205,15 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     );
   };
 
+  canArrowsOpenDropdown = (event: KeyboardEvent) => {
+    if (!this.state.isMonthYearDropdownOpen) {
+      if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        return true;
+      }
+    }
+    return false;
+  };
+
   renderMonthYearDropdown = () => {
     const {date, locale, maxDate, minDate, overrides = {}} = this.props;
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
@@ -214,9 +227,9 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
       overrides.MonthYearSelectIconContainer,
       StyledMonthYearSelectIconContainer,
     );
-    const [OverriddenStatefulPopover, popoverProps] = getOverrides(
-      overrides.MonthYearSelectStatefulPopover,
-      StatefulPopover,
+    const [OverriddenPopover, popoverProps] = getOverrides(
+      overrides.MonthYearSelectPopover,
+      Popover,
     );
     const [OverriddenStatefulMenu, menuProps] = getOverrides(
       overrides.MonthYearSelectStatefulMenu,
@@ -248,31 +261,56 @@ export default class CalendarHeader extends React.Component<HeaderPropsT> {
     });
 
     return (
-      <OverriddenStatefulPopover
+      <OverriddenPopover
         placement="bottom"
-        content={({close}) => (
+        isOpen={this.state.isMonthYearDropdownOpen}
+        onClick={() => {
+          this.setState(prev => ({
+            isMonthYearDropdownOpen: !prev.isMonthYearDropdownOpen,
+          }));
+        }}
+        onClickOutside={() => this.setState({isMonthYearDropdownOpen: false})}
+        content={() => (
           <OverriddenStatefulMenu
             initialState={{highlightedIndex: initialIndex, isFocused: true}}
             items={items}
-            onItemSelect={({item}) => {
+            onItemSelect={({item, event}) => {
+              event.preventDefault();
               const [year, month] = idToYearMonth(item.id);
               date.setFullYear(year, month);
               this.props.onMonthChange && this.props.onMonthChange({date});
               this.props.onYearChange && this.props.onYearChange({date});
-              close();
+              this.setState({isMonthYearDropdownOpen: false});
             }}
             {...menuProps}
           />
         )}
         {...popoverProps}
       >
-        <MonthYearSelectButton {...monthYearSelectButtonProps}>
+        <MonthYearSelectButton
+          onKeyUp={event => {
+            if (this.canArrowsOpenDropdown(event)) {
+              this.setState({isMonthYearDropdownOpen: true});
+            }
+          }}
+          onKeyDown={event => {
+            if (this.canArrowsOpenDropdown(event)) {
+              // disables page scroll
+              event.preventDefault();
+            }
+
+            if (event.key === 'Tab') {
+              this.setState({isMonthYearDropdownOpen: false});
+            }
+          }}
+          {...monthYearSelectButtonProps}
+        >
           {`${getMonthInLocale(getMonth(date), locale)} ${getYear(date)}`}
           <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
             <TriangleDown />
           </MonthYearSelectIconContainer>
         </MonthYearSelectButton>
-      </OverriddenStatefulPopover>
+      </OverriddenPopover>
     );
   };
 

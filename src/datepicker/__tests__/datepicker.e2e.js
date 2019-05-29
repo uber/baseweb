@@ -191,6 +191,43 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.day6);
   });
 
+  it('month year dropdown opens on arrow down', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.focus(selectors.monthYearSelectButton);
+    await page.keyboard.press('ArrowDown');
+
+    await page.waitFor(selectors.monthYearSelectMenu);
+  });
+
+  it('month year dropdown opens on arrow up', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.focus(selectors.monthYearSelectButton);
+    await page.keyboard.press('ArrowUp');
+
+    await page.waitFor(selectors.monthYearSelectMenu);
+  });
+
+  it('month year dropdown closes on tab away', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.focus(selectors.monthYearSelectButton);
+    await page.keyboard.press('ArrowDown');
+    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.keyboard.press('Tab');
+    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
+  });
+
   it('disables previous month button if minimum month is selected', async () => {
     await mount(page, 'datepicker');
     await page.waitFor(selectors.input);
