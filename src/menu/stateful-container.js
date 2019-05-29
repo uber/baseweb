@@ -29,10 +29,7 @@ export default class MenuStatefulContainer extends React.Component<
       isFocused: false,
       activedescendantId: null,
     },
-    stateReducer: (
-      changeType: ?$PropertyType<StateReducerFnT, 'changeType'>,
-      changes: $PropertyType<StateReducerFnT, 'changes'>,
-    ) => changes,
+    stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
     children: () => null,
