@@ -8,6 +8,7 @@ const Container = styled('div', {width: '120px'});
 export default () => {
   const [twelveHourTime, setTwelveHourTime] = useState(null);
   const [twentyFourHourTime, setTwentyFourHourTime] = useState(null);
+  const [creatableTime, setCreatableTime] = useState(null);
 
   return (
     <Container>
@@ -20,6 +21,14 @@ export default () => {
           onChange={setTwentyFourHourTime}
           format="24"
           step={1800}
+        />
+      </FormControl>
+      <FormControl label="Creatable times">
+        <TimePicker
+          value={creatableTime}
+          onChange={setCreatableTime}
+          creatable
+          step={900}
         />
       </FormControl>
     </Container>
