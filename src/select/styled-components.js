@@ -36,12 +36,12 @@ function getControlPadding(props, emptyValue) {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
         $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
-          : sizing.scale200,
+          ? `calc(${sizing.scale300} - ${sizing.scale0})`
+          : sizing.scale300,
       paddingBottom:
         $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
-          : sizing.scale200,
+          ? `calc(${sizing.scale300} - ${sizing.scale0})`
+          : sizing.scale300,
       paddingLeft:
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`
@@ -52,12 +52,12 @@ function getControlPadding(props, emptyValue) {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
         $multi && !emptyValue
-          ? `calc(${sizing.scale400} - ${sizing.scale0})`
-          : sizing.scale400,
+          ? `calc(${sizing.scale500} - ${sizing.scale0})`
+          : sizing.scale500,
       paddingBottom:
         $multi && !emptyValue
-          ? `calc(${sizing.scale400} - ${sizing.scale0})`
-          : sizing.scale400,
+          ? `calc(${sizing.scale500} - ${sizing.scale0})`
+          : sizing.scale500,
       paddingLeft,
       paddingRight: 0,
     },
