@@ -518,6 +518,8 @@ export type IconT = {
   ArrowUp?: ComponentType<IconPropsT>,
   CheckIndeterminate?: ComponentType<IconPropsT>,
   Check?: ComponentType<IconPropsT>,
+  ChevronDown?: ComponentType<IconPropsT>,
+  ChevronUp?: ComponentType<IconPropsT>,
   ChevronLeft?: ComponentType<IconPropsT>,
   ChevronRight?: ComponentType<IconPropsT>,
   DeleteAlt?: ComponentType<IconPropsT>,
