@@ -6,19 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import {withStyle} from 'styletron-react';
+
 import {DEFAULT_DROPDOWN_HEIGHT} from './constants.js';
 import {styled} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
 import {StyledDropdownListItem} from '../select/index.js';
 
-export const StyledCountrySelectDropdownContainer = styled(
+export const StyledCountrySelectDropdownContainer = withStyle(
   StyledList,
   ({$height = DEFAULT_DROPDOWN_HEIGHT}) => {
     return {height: $height};
   },
 );
 
-export const StyledCountrySelectDropdownListItem = styled(
+export const StyledCountrySelectDropdownListItem = withStyle(
   StyledDropdownListItem,
   {
     paddingTop: 0,
