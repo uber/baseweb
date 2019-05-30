@@ -30,14 +30,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     dropdownWidth = DEFAULT_DROPDOWN_WIDTH,
     dropdownHeight = DEFAULT_DROPDOWN_HEIGHT,
     mapIsoToLabel,
-    overrides = {
-      CountrySelect: {},
-      CountrySelectDropdown: {},
-      CountrySelectDropdownListItem: {},
-      CountrySelectDropdownFlagColumn: {},
-      CountrySelectDropdownNameColumn: {},
-      CountrySelectDropdownDialcodeColumn: {},
-    },
+    overrides = {},
   } = props;
   const baseOverrides = {
     ControlContainer: {
