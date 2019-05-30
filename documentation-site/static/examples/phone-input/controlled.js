@@ -15,7 +15,7 @@ export default () => {
       }}
       onCountryChange={event => {
         setInput(
-          input.replace('+' + country.dialCode, '+' + event.option.dialCode),
+          input.replace(`+${country.dialCode}`, `+${event.option.dialCode}`),
         );
         setCountry(event.option);
       }}
