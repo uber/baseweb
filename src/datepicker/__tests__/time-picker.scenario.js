@@ -15,14 +15,15 @@ import {TimePicker} from '../index.js';
 export const name = 'time-picker';
 
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
+const OFF_STEP_TIME = new Date(2019, 3, 19, 1, 11);
 const overrides = {
   Select: {
     props: {overrides: {ValueContainer: {props: {'data-id': 'selected'}}}},
   },
 };
 
-const Controlled = ({format, step}) => {
-  const [time, setTime] = useState(MIDNIGHT);
+const Controlled = ({format, step, initialDate, creatable = false}) => {
+  const [time, setTime] = useState(initialDate);
   return (
     <TimePicker
       format={format}
@@ -30,6 +31,7 @@ const Controlled = ({format, step}) => {
       value={time}
       onChange={setTime}
       overrides={overrides}
+      creatable={creatable}
     />
   );
 };
@@ -39,11 +41,39 @@ export const component = () => {
     <div style={{width: '120px'}}>
       <div data-e2e="12-hour">
         12 hour format
-        <Controlled format="12" step={900} />
+        <Controlled
+          format="12"
+          step={900}
+          initialDate={MIDNIGHT}
+          creatable={false}
+        />
       </div>
       <div data-e2e="24-hour">
         24 hour format
-        <Controlled format="24" step={1800} />
+        <Controlled
+          format="24"
+          step={1800}
+          initialDate={MIDNIGHT}
+          creatable={false}
+        />
+      </div>
+      <div data-e2e="12-hour-creatable">
+        12 hour format creatable
+        <Controlled
+          format="12"
+          step={900}
+          initialDate={OFF_STEP_TIME}
+          creatable
+        />
+      </div>
+      <div data-e2e="24-hour-creatable">
+        24 hour format creatable
+        <Controlled
+          format="24"
+          step={900}
+          initialDate={OFF_STEP_TIME}
+          creatable
+        />
       </div>
     </div>
   );
