@@ -29,13 +29,7 @@ export default function CountrySelectDropdown(
     children,
     dropdownHeight = DEFAULT_DROPDOWN_HEIGHT,
     mapIsoToLabel,
-    overrides = {
-      CountrySelectDropdown: {},
-      CountrySelectDropdownListItem: {},
-      CountrySelectDropdownFlagColumn: {},
-      CountrySelectDropdownNameColumn: {},
-      CountrySelectDropdownDialcodeColumn: {},
-    },
+    overrides = {},
   } = props;
   const [Container, containerProps] = getOverrides(
     overrides.CountrySelectDropdown,

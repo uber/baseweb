@@ -20,15 +20,7 @@ export default function PhoneInput(props: PropsT) {
     inputValue,
     onInputChange,
     size = SIZE.default,
-    overrides = {
-      Input: {},
-      CountrySelect: {},
-      CountrySelectDropdown: {},
-      CountrySelectDropdownListItem: {},
-      CountrySelectDropdownFlagColumn: {},
-      CountrySelectDropdownNameColumn: {},
-      CountrySelectDropdownDialcodeColumn: {},
-    },
+    overrides = {},
   } = props;
   const inputRef = useRef(null);
   const baseOverrides = {
