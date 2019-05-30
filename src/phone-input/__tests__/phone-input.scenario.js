@@ -15,6 +15,6 @@ export const name = 'phone-input';
 
 export const component = () => (
   <Block>
-    <StatefulPhoneInput />
+    <StatefulPhoneInput aria-label="stateful phone input example" />
   </Block>
 );
