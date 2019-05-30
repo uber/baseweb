@@ -9,7 +9,12 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import Flag from './flag.js';
-import {SIZE, countries} from './constants.js';
+import {
+  SIZE,
+  countries,
+  DEFAULT_DROPDOWN_HEIGHT,
+  DEFAULT_DROPDOWN_WIDTH,
+} from './constants.js';
 import CountrySelectDropdown from './country-select-dropdown.js';
 import {Select as DefaultSelect} from '../select/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
@@ -22,8 +27,8 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     inputRef,
     onCountryChange = event => {},
     size = SIZE.default,
-    dropdownWidth = '400px',
-    dropdownHeight = '400px',
+    dropdownWidth = DEFAULT_DROPDOWN_WIDTH,
+    dropdownHeight = DEFAULT_DROPDOWN_HEIGHT,
     mapIsoToLabel,
     overrides = {
       CountrySelect: {},
