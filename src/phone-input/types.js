@@ -108,7 +108,6 @@ export type StatefulPhoneInputContainerPropsT = {
   children: PropsT => React.Node,
   initialState: StateT,
   stateReducer: StateReducerT,
-  onChange: (state: StateT) => mixed,
   onInputChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   onCountryChange: (event: CountryChangeEventT) => mixed,
   mapIsoToLabel?: mapIsoToLabelT,
@@ -118,7 +117,6 @@ export type StatefulPhoneInputContainerPropsT = {
 export type StatefulPhoneInputPropsT = {
   initialState?: StateT,
   stateReducer?: StateReducerT,
-  onChange?: (state: StateT) => mixed,
   onInputChange?: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   onCountryChange?: (event: CountryChangeEventT) => mixed,
   mapIsoToLabel?: mapIsoToLabelT,
