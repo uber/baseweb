@@ -41,6 +41,9 @@ export default function PhoneInput(props: PropsT) {
   const inputOverrides = mergeOverrides(baseOverrides, overrides);
   return (
     <Input
+      aria-label={props['aria-label']}
+      aria-labelledby={props['aria-labelledby']}
+      aria-describedby={props['aria-describedby']}
       data-baseweb="phone-input"
       size={size}
       inputRef={inputRef}
