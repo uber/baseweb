@@ -72,7 +72,6 @@ export default class StatefulPhoneInputContainer extends React.Component<
       CountrySelectDropdownNameColumn: {},
       CountrySelectDropdownDialcodeColumn: {},
     },
-    onChange: () => {},
     onInputChange: () => {},
     onCountryChange: () => {},
     stateReducer: defaultStateReducer,
@@ -86,9 +85,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
       type,
       payload,
     );
-    this.setState(nextState, () => {
-      this.props.onChange(this.state);
-    });
+    this.setState(nextState);
   };
 
   onInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
