@@ -48,27 +48,16 @@ export type CountryChangeEventT = {
 
 export type mapIsoToLabelT = (iso: string) => string;
 
-export type CountrySelectDropdownOverridesT = {
-  CountrySelectDropdown?: OverrideT<*>,
-  CountrySelectDropdownListItem?: OverrideT<*>,
-  CountrySelectDropdownFlagColumn?: OverrideT<*>,
-  CountrySelectDropdownNameColumn?: OverrideT<*>,
-  CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
-};
-
 export type CountrySelectDropdownPropsT = StatefulMenuContainerPropsT & {
   dropdownHeight: string,
   mapIsoToLabel?: mapIsoToLabelT,
-  overrides: CountrySelectDropdownOverridesT,
-};
-
-export type CountrySelectOverridesT = {
-  CountrySelect?: OverrideT<*>,
-  CountrySelectDropdown?: OverrideT<*>,
-  CountrySelectDropdownListItem?: OverrideT<*>,
-  CountrySelectDropdownFlagColumn?: OverrideT<*>,
-  CountrySelectDropdownNameColumn?: OverrideT<*>,
-  CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
+  overrides: {
+    CountrySelectDropdown?: OverrideT<*>,
+    CountrySelectDropdownListItem?: OverrideT<*>,
+    CountrySelectDropdownFlagColumn?: OverrideT<*>,
+    CountrySelectDropdownNameColumn?: OverrideT<*>,
+    CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
+  },
 };
 
 export type CountrySelectPropsT = {
@@ -79,7 +68,14 @@ export type CountrySelectPropsT = {
   dropdownWidth?: string,
   dropdownHeight?: string,
   mapIsoToLabel?: mapIsoToLabelT,
-  overrides: CountrySelectOverridesT,
+  overrides: {
+    CountrySelect?: OverrideT<*>,
+    CountrySelectDropdown?: OverrideT<*>,
+    CountrySelectDropdownListItem?: OverrideT<*>,
+    CountrySelectDropdownFlagColumn?: OverrideT<*>,
+    CountrySelectDropdownNameColumn?: OverrideT<*>,
+    CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
+  },
 };
 
 export type OverridesT = {
