@@ -36,10 +36,6 @@ export type StateReducerT = (
   payload: StateChangePayloadT,
 ) => StateT;
 
-export type InputChangeEventT = {
-  +target: {value: string},
-};
-
 export type CountryChangeEventT = {
   value: ValueT,
   option: ?CountryT,
@@ -94,7 +90,7 @@ export type PropsT = {
   /** Current selected country value. Note, this expects an entire CountryT object. */
   countryValue: CountryT,
   /** Change handler of the text input to be called when a value is changed. */
-  onInputChange: (event: InputChangeEventT) => mixed,
+  onInputChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Change handler of the country select to be called when a value is changed. */
   onCountryChange: (event: CountryChangeEventT) => mixed,
   /** A function that can be used to map iso codes to localized country names */
@@ -113,7 +109,7 @@ export type StatefulPhoneInputContainerPropsT = {
   initialState: StateT,
   stateReducer: StateReducerT,
   onChange: (state: StateT) => mixed,
-  onInputChange: (event: InputChangeEventT) => mixed,
+  onInputChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   onCountryChange: (event: CountryChangeEventT) => mixed,
   mapIsoToLabel?: mapIsoToLabelT,
   overrides: OverridesT,
@@ -123,7 +119,7 @@ export type StatefulPhoneInputPropsT = {
   initialState?: StateT,
   stateReducer?: StateReducerT,
   onChange?: (state: StateT) => mixed,
-  onInputChange?: (event: InputChangeEventT) => mixed,
+  onInputChange?: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   onCountryChange?: (event: CountryChangeEventT) => mixed,
   mapIsoToLabel?: mapIsoToLabelT,
   overrides?: OverridesT,

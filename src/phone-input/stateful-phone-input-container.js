@@ -14,7 +14,6 @@ import type {
   StateReducerT,
   StateChangeT,
   StateChangePayloadT,
-  InputChangeEventT,
   CountryChangeEventT,
 } from './types.js';
 
@@ -92,7 +91,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     });
   };
 
-  onInputChange = (event: InputChangeEventT) => {
+  onInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     this.internalSetState(
       STATE_CHANGE_TYPE.inputValueChange,
       event.target.value,
