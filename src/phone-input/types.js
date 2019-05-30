@@ -105,7 +105,7 @@ export type PropsT = {
 };
 
 export type StatefulPhoneInputContainerPropsT = {
-  children: PropsT => React$Node,
+  children: PropsT => React.Node,
   initialState: StateT,
   stateReducer: StateReducerT,
   onChange: (state: StateT) => mixed,
