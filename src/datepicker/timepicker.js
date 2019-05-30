@@ -89,9 +89,8 @@ function stringToOptions(
           {hours: twelveHours + 12, minutes},
         ];
       } else {
-        const twentyFourHours = meridiem.toLowerCase().startsWith('a')
-          ? twelveHours
-          : twelveHours + 12;
+        const twentyFourHours =
+          meridiem.toLowerCase()[0] === 'a' ? twelveHours : twelveHours + 12;
 
         hoursMinutes = [{hours: twentyFourHours, minutes}];
       }
