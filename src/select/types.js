@@ -234,6 +234,7 @@ export type AutosizeInputPropsT = {
   defaultValue?: string,
   inputRef: () => void,
   overrides: AutosizeInputOverridesT,
+  $size: SizeT,
 };
 
 export type AutosizeInputStateT = {

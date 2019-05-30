@@ -153,7 +153,7 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                       $isPseudoFocused,
                       $error,
                     }) => ({
-                      borderWidth: '0',
+                      borderColor: 'transparent',
                       boxShadow: 'none',
                       backgroundColor: $disabled
                         ? $theme.colors.buttonDisabledFill
@@ -166,8 +166,6 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                   },
                   ValueContainer: {
                     style: ({$theme}) => ({
-                      paddingTop: $theme.sizing.scale300,
-                      paddingBottom: $theme.sizing.scale300,
                       flexBasis: 'auto',
                     }),
                   },

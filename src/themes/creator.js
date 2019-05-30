@@ -447,6 +447,12 @@ export default function createTheme(
         fontWeight: 'bold',
         lineHeight: '24px',
       },
+      font475: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '18px',
+        fontWeight: 'normal',
+        lineHeight: '24px',
+      },
       font500: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '20px',
@@ -499,7 +505,9 @@ export default function createTheme(
       scale500: '12px',
       scale550: '14px',
       scale600: '16px',
+      scale650: '18px',
       scale700: '20px',
+      scale750: '22px',
       scale800: '24px',
       scale900: '32px',
       scale1000: '40px',

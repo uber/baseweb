@@ -16,9 +16,9 @@ import type {ThemeT} from '../styles/types.js';
 
 function getFont(size = SIZE.default, typography) {
   return {
-    [SIZE.compact]: typography.font200,
-    [SIZE.default]: typography.font300,
-    [SIZE.large]: typography.font400,
+    [SIZE.compact]: typography.font300,
+    [SIZE.default]: typography.font400,
+    [SIZE.large]: typography.font475,
   }[size];
 }
 
@@ -138,7 +138,7 @@ function getControlContainerColors(
   if ($isFocused || $isPseudoFocused) {
     return {
       color: colors.foreground,
-      borderColor: colors.foreground,
+      borderColor: colors.primary400,
       backgroundColor: colors.inputFillActive,
     };
   }
@@ -309,7 +309,6 @@ export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
   return {
     ...getFont($size, typography),
     boxSizing: 'content-box',
-    fontSize: '16px', // prevents iOS to zoom in when focused
     width: $disabled || !$searchable ? '1px' : $width || '100%',
     maxWidth: '100%',
     background: 'transparent',
@@ -328,16 +327,19 @@ export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
   };
 });
 
-export const StyledInputSizer = styled('div', {
-  position: 'absolute',
-  fontSize: '16px',
-  top: 0,
-  left: 0,
-  visibility: 'hidden',
-  height: 0,
-  overflow: 'scroll',
-  whiteSpace: 'pre',
-});
+export const StyledInputSizer = styled(
+  'div',
+  ({$size, $theme: {typography}}) => ({
+    ...getFont($size, typography),
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    visibility: 'hidden',
+    height: 0,
+    overflow: 'scroll',
+    whiteSpace: 'pre',
+  }),
+);
 
 export const StyledIconsContainer = styled<SharedStylePropsArgT>(
   'div',

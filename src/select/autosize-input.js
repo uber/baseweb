@@ -58,7 +58,7 @@ export default class AutosizeInput extends React.Component<
     }
   }
   render() {
-    const {overrides = {}, inputRef, ...restProps} = this.props;
+    const {overrides = {}, inputRef, $size, ...restProps} = this.props;
     const [Input, inputProps] = getOverrides(overrides.Input, StyledInput);
     const sizerValue = [this.props.defaultValue, this.props.value, ''].reduce(
       (previousValue, currentValue) => {
@@ -76,7 +76,9 @@ export default class AutosizeInput extends React.Component<
       <React.Fragment>
         <Input {...componentInputProps} ref={inputRef} {...inputProps} />
         {/* a hidden helper element to calculate the size of the input */}
-        <StyledInputSizer ref={this.sizerRef}>{sizerValue}</StyledInputSizer>
+        <StyledInputSizer $size={this.props.$size} ref={this.sizerRef}>
+          {sizerValue}
+        </StyledInputSizer>
       </React.Fragment>
     );
   }
