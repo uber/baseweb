@@ -17,42 +17,11 @@ import type {
   CountryChangeEventT,
 } from './types.js';
 
-const defaultStateReducer: StateReducerT = (state, type, payload) => {
-  switch (type) {
-    case STATE_CHANGE_TYPE.inputValueChange:
-      if (typeof payload === 'string') {
-        return {...state, inputValue: payload};
-      } else {
-        return state;
-      }
-    case STATE_CHANGE_TYPE.countryValueChange: {
-      if (typeof payload !== 'string') {
-        // Replace (if possible) the current country dialcode
-        let newInputValue = state.inputValue.replace(
-          `+${state.countryValue.dialCode}`,
-          `+${payload.dialCode}`,
-        );
-        // If the replacement did nothing, just use the new dialcode
-        newInputValue =
-          state.inputValue === newInputValue
-            ? `+${payload.dialCode} `
-            : newInputValue;
-        return {
-          inputValue: newInputValue,
-          countryValue: payload,
-        };
-      } else {
-        return state;
-      }
-    }
-    default:
-      return state;
-  }
-};
-
 const getCountry = iso => {
   return countries.find(({id}) => id === iso) || {dialCode: ''};
 };
+
+const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 export default class StatefulPhoneInputContainer extends React.Component<
   StatefulPhoneInputContainerPropsT,
@@ -80,12 +49,41 @@ export default class StatefulPhoneInputContainer extends React.Component<
   state = {...this.props.initialState};
 
   internalSetState = (type: StateChangeT, payload: StateChangePayloadT) => {
-    const nextState: StateT = this.props.stateReducer(
-      this.state,
-      type,
-      payload,
-    );
-    this.setState(nextState);
+    const nextState: StateT = this.internalStateReducer(type, payload);
+    this.setState(this.props.stateReducer(type, nextState));
+  };
+
+  internalStateReducer = (type: StateChangeT, payload: StateChangePayloadT) => {
+    switch (type) {
+      case STATE_CHANGE_TYPE.inputValueChange:
+        if (typeof payload === 'string') {
+          return {...this.state, inputValue: payload};
+        } else {
+          return this.state;
+        }
+      case STATE_CHANGE_TYPE.countryValueChange: {
+        if (typeof payload !== 'string') {
+          // Replace (if possible) the current country dialcode
+          let newInputValue = this.state.inputValue.replace(
+            `+${this.state.countryValue.dialCode}`,
+            `+${payload.dialCode}`,
+          );
+          // If the replacement did nothing, just use the new dialcode
+          newInputValue =
+            this.state.inputValue === newInputValue
+              ? `+${payload.dialCode} `
+              : newInputValue;
+          return {
+            inputValue: newInputValue,
+            countryValue: payload,
+          };
+        } else {
+          return this.state;
+        }
+      }
+      default:
+        return this.state;
+    }
   };
 
   onInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
