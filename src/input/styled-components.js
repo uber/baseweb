@@ -21,14 +21,14 @@ function getInputPadding(size, sizing) {
     [SIZE.default]: {
       paddingTop: sizing.scale400,
       paddingBottom: sizing.scale400,
-      paddingLeft: sizing.scale600,
-      paddingRight: sizing.scale600,
+      paddingLeft: sizing.scale550,
+      paddingRight: sizing.scale550,
     },
     [SIZE.large]: {
       paddingTop: sizing.scale600,
       paddingBottom: sizing.scale600,
-      paddingLeft: sizing.scale800,
-      paddingRight: sizing.scale800,
+      paddingLeft: sizing.scale650,
+      paddingRight: sizing.scale650,
     },
   }[size];
 }
@@ -37,7 +37,7 @@ function getFont(size, typography) {
   return {
     [SIZE.compact]: typography.font300,
     [SIZE.default]: typography.font400,
-    [SIZE.large]: typography.font500,
+    [SIZE.large]: typography.font475,
   }[size];
 }
 
@@ -67,8 +67,8 @@ function getInputEnhancerPadding($size, sizing) {
       paddingLeft: sizing.scale600,
     },
     [SIZE.large]: {
-      paddingRight: sizing.scale800,
-      paddingLeft: sizing.scale800,
+      paddingRight: sizing.scale650,
+      paddingLeft: sizing.scale650,
     },
   }[$size];
 }

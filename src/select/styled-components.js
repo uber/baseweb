@@ -18,7 +18,7 @@ function getFont(size = SIZE.default, typography) {
   return {
     [SIZE.compact]: typography.font300,
     [SIZE.default]: typography.font400,
-    [SIZE.large]: typography.font500,
+    [SIZE.large]: typography.font475,
   }[size];
 }
 
@@ -30,7 +30,7 @@ function getControlPadding(props, emptyValue) {
     $multi,
   } = props;
   const isSearch = $type === TYPE.search;
-  const paddingLeft = isSearch ? sizing.scale1300 : sizing.scale500;
+  const paddingLeft = isSearch ? sizing.scale1000 : sizing.scale500;
   return {
     [SIZE.compact]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
@@ -361,8 +361,8 @@ function getSvgStyles({$theme}) {
     display: 'inline-block',
     fill: 'currentColor',
     color: 'currentColor',
-    height: $theme.sizing.scale700,
-    width: $theme.sizing.scale700,
+    height: $theme.sizing.scale600,
+    width: $theme.sizing.scale600,
   };
 }
 
