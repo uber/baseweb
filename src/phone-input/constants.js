@@ -7,6 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {CountriesT} from './types.js';
 
+export const DEFAULT_DROPDOWN_WIDTH = '400px';
+export const DEFAULT_DROPDOWN_HEIGHT = '400px';
+
 export const STATE_CHANGE_TYPE = {
   inputValueChange: 'inputValueChange',
   countryValueChange: 'countryValueChange',

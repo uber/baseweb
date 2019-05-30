@@ -10,7 +10,7 @@ import React from 'react';
 import {List, AutoSizer} from 'react-virtualized';
 
 import Flag from './flag.js';
-import {SIZE} from './constants.js';
+import {SIZE, DEFAULT_DROPDOWN_HEIGHT} from './constants.js';
 import {
   StyledCountrySelectDropdownContainer as DefaultContainer,
   StyledCountrySelectDropdownListItem as DefaultListItem,
@@ -27,7 +27,7 @@ export default function CountrySelectDropdown(
 ) {
   const {
     children,
-    dropdownHeight = '400px',
+    dropdownHeight = DEFAULT_DROPDOWN_HEIGHT,
     mapIsoToLabel,
     overrides = {
       CountrySelectDropdown: {},
