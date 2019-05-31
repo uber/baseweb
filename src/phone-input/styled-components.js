@@ -16,7 +16,11 @@ import {StyledDropdownListItem} from '../select/index.js';
 export const StyledCountrySelectDropdownContainer = withStyle(
   StyledList,
   ({$height = DEFAULT_DROPDOWN_HEIGHT}) => {
-    return {height: $height};
+    return {
+      height: $height,
+      paddingTop: 0,
+      paddingBottom: 0,
+    };
   },
 );
 
