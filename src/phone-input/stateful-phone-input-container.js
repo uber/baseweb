@@ -42,7 +42,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
 
   internalSetState = (type: StateChangeT, payload: StateChangePayloadT) => {
     const nextState: StateT = this.internalStateReducer(type, payload);
-    this.setState(this.props.stateReducer(type, nextState));
+    this.setState(this.props.stateReducer(type, nextState, this.state));
   };
 
   internalStateReducer = (type: StateChangeT, payload: StateChangePayloadT) => {
