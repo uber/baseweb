@@ -143,6 +143,7 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                 searchable={false}
                 clearable={false}
                 value={[{label: currentPage}]}
+                maxDropdownHeight="200px"
                 overrides={{
                   ControlContainer: {
                     style: ({
