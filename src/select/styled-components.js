@@ -36,12 +36,12 @@ function getControlPadding(props, emptyValue) {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
         $multi && !emptyValue
-          ? `calc(${sizing.scale100} - ${sizing.scale0})`
-          : sizing.scale100,
+          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+          : sizing.scale200,
       paddingBottom:
         $multi && !emptyValue
-          ? `calc(${sizing.scale100} - ${sizing.scale0})`
-          : sizing.scale100,
+          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+          : sizing.scale200,
       paddingLeft:
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`

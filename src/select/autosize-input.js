@@ -58,7 +58,7 @@ export default class AutosizeInput extends React.Component<
     }
   }
   render() {
-    const {overrides = {}, inputRef, $size, ...restProps} = this.props;
+    const {overrides = {}, inputRef, ...restProps} = this.props;
     const [Input, inputProps] = getOverrides(overrides.Input, StyledInput);
     const sizerValue = [this.props.defaultValue, this.props.value, ''].reduce(
       (previousValue, currentValue) => {
