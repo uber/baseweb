@@ -28,8 +28,7 @@ import Bulb from './bulb';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
 import {StatefulMenu} from 'baseui/menu';
-import {Button} from 'baseui/button';
-import ChevronDown from 'baseui/icon/chevron-down.js';
+import {Button, KIND} from 'baseui/button';
 
 export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
 
@@ -101,7 +100,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   overrides={{Block: {style: {cursor: 'pointer'}}}}
                 />
               </Link>
-              <Block marginLeft="scale800">
+              <Block marginLeft="scale300">
                 <StatefulPopover
                   placement={PopoverPlacement.bottomLeft}
                   content={({close}) => (
@@ -121,11 +120,8 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                     />
                   )}
                 >
-                  <Button
-                    size="compact"
-                    endEnhancer={() => <ChevronDown size={24} />}
-                  >
-                    {version}
+                  <Button size="compact" kind={KIND.minimal}>
+                    v{version}
                   </Button>
                 </StatefulPopover>
               </Block>
