@@ -36,12 +36,12 @@ function getControlPadding(props, emptyValue) {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
         $multi && !emptyValue
-          ? `calc(${sizing.scale300} - ${sizing.scale0})`
-          : sizing.scale300,
+          ? `calc(${sizing.scale100} - ${sizing.scale0})`
+          : sizing.scale100,
       paddingBottom:
         $multi && !emptyValue
-          ? `calc(${sizing.scale300} - ${sizing.scale0})`
-          : sizing.scale300,
+          ? `calc(${sizing.scale100} - ${sizing.scale0})`
+          : sizing.scale100,
       paddingLeft:
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`
@@ -52,12 +52,12 @@ function getControlPadding(props, emptyValue) {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
         $multi && !emptyValue
-          ? `calc(${sizing.scale500} - ${sizing.scale0})`
-          : sizing.scale500,
+          ? `calc(${sizing.scale400} - ${sizing.scale0})`
+          : sizing.scale400,
       paddingBottom:
         $multi && !emptyValue
-          ? `calc(${sizing.scale500} - ${sizing.scale0})`
-          : sizing.scale500,
+          ? `calc(${sizing.scale400} - ${sizing.scale0})`
+          : sizing.scale400,
       paddingLeft,
       paddingRight: 0,
     },
@@ -65,12 +65,12 @@ function getControlPadding(props, emptyValue) {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
         $multi && !emptyValue
-          ? `calc(${sizing.scale600} - ${sizing.scale0})`
-          : sizing.scale600,
+          ? `calc(${sizing.scale550} - ${sizing.scale0})`
+          : sizing.scale550,
       paddingBottom:
         $multi && !emptyValue
-          ? `calc(${sizing.scale600} - ${sizing.scale0})`
-          : sizing.scale600,
+          ? `calc(${sizing.scale550} - ${sizing.scale0})`
+          : sizing.scale550,
       paddingLeft:
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`

@@ -8,7 +8,7 @@ export default () => (
     <StatefulInput
       overrides={{
         Before: () => (
-          <Block display="flex" alignItems="center" paddingRight="scale500">
+          <Block display="flex" alignItems="center" paddingLeft="scale500">
             <Search size="18px" />
           </Block>
         ),
@@ -20,7 +20,7 @@ export default () => (
     <StatefulInput
       overrides={{
         After: () => (
-          <Block display="flex" alignItems="center" paddingLeft="scale500">
+          <Block display="flex" alignItems="center" paddingRight="scale500">
             <Search size="18px" />
           </Block>
         ),

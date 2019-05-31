@@ -82,11 +82,11 @@ export type BaseInputPropsT<T> = {
   autoComplete: string,
   /** If true the input will be focused on the first mount. */
   autoFocus: boolean,
-  /** Renders UI in 'disabled' state. */
+  /** Renders component in 'disabled' state. */
   disabled: boolean,
-  /** Renders UI in 'error' state. */
+  /** Renders component in 'error' state. */
   error: boolean,
-  /** Renders UI in 'positive' state. */
+  /** Renders component in 'positive' state. */
   positive?: boolean,
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id: string,
@@ -102,9 +102,9 @@ export type BaseInputPropsT<T> = {
   onFocus: (e: SyntheticFocusEvent<T>) => mixed,
   overrides: BaseInputComponentsT,
   placeholder: string,
-  /** Renders UI in 'required' state. */
+  /** Renders component in 'required' state. */
   required: boolean,
-  /** Renders UI in provided size. */
+  /** Renders component in provided size. */
   size: SizeT,
   /** Input type attribute. */
   type: string,
@@ -120,7 +120,9 @@ export type InputPropsT = {
   startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
   /** An input helper rendered after and attached to the input field. */
   endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  /** Handler for the `focus` event. */
   onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+  /** Handler for the `blur` event. */
   onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 };
 

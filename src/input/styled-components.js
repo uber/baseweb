@@ -25,8 +25,8 @@ function getInputPadding(size, sizing) {
       paddingRight: sizing.scale550,
     },
     [SIZE.large]: {
-      paddingTop: sizing.scale600,
-      paddingBottom: sizing.scale600,
+      paddingTop: sizing.scale550,
+      paddingBottom: sizing.scale550,
       paddingLeft: sizing.scale650,
       paddingRight: sizing.scale650,
     },
@@ -193,7 +193,7 @@ export const getInputContainerStyles = (
     $disabled,
     $positive,
     $size,
-    $theme: {colors, sizing, typography, animation},
+    $theme: {colors, typography, animation},
   } = props;
   return {
     boxSizing: 'border-box',
@@ -205,7 +205,6 @@ export const getInputContainerStyles = (
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
     ...getFont($size, typography),
-    ...getInputPadding($size, sizing),
     ...getInputContainerColors(
       $disabled,
       $isFocused,
@@ -247,7 +246,7 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
     $isFocused,
     $error,
     $size,
-    $theme: {colors, typography},
+    $theme: {colors, sizing, typography},
   } = props;
   return {
     boxSizing: 'border-box',
@@ -263,6 +262,7 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
     paddingLeft: '0',
     paddingRight: '0',
     ...getFont($size, typography),
+    ...getInputPadding($size, sizing),
     ...getInputColors($disabled, $isFocused, $error, colors),
   };
 };

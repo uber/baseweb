@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 import Textarea from '../textarea.js';
-import {Textarea as StyledTextarea} from '../styled-components.js';
+import {StyledTextarea} from '../styled-components.js';
 import {BaseInput} from '../../input/index.js';
 
 describe('Textarea', () => {
