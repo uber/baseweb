@@ -58,6 +58,10 @@ export default function Hello() {
 }
 ```
 
+## Example
+
+An example of an application using Base Web can be found [here](https://github.com/tajo/fusion-baseui). You can also check how it works on [CodeSandbox](https://codesandbox.io/s/patient-sky-nn8t7).
+
 ## Docs
 
 To read the documentation, please visit [baseweb.design](https://baseweb.design).
