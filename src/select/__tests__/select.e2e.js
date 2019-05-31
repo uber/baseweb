@@ -79,6 +79,20 @@ describe('select', () => {
     expect(selectedValue).toBe('Start searching');
   });
 
+  it('allows left/right arrow keys to navigate search text', async () => {
+    await mount(page, 'select-search-single');
+    await page.waitFor(selectors.selectInput);
+    await page.focus(selectors.selectInput);
+    await page.keyboard.type('Aqua');
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.type('z');
+    const selectedValue = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(selectedValue).toBe('Aquza');
+  });
+
   it('does not close dropdown after multiple selections were made', async () => {
     await mount(page, 'select-search-multi');
     await page.waitFor(selectors.selectInput);
