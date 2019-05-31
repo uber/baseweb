@@ -139,7 +139,6 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                 options={options}
                 labelKey="label"
                 valueKey="label"
-                // $FlowFixMe
                 onChange={this.onMenuItemSelect}
                 searchable={false}
                 clearable={false}

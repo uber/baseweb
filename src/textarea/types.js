@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {BaseInputPropsT, StateReducerT, StateT} from '../input/types.js';
 import {ADJOINED, SIZE} from '../input/constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
 
 type SyntheticTextareaEvent = SyntheticEvent<HTMLTextAreaElement>;
 
@@ -19,18 +18,15 @@ export type SharedStylePropsT = {
   $disabled: boolean,
   $error: boolean,
   $isFocused: boolean,
+  $positive?: boolean,
   $required: boolean,
   $size: SizeT,
 };
 
-export type TextareaComponentsT = {
-  InputContainer?: OverrideT<*>,
-  Input?: OverrideT<*>,
-};
-
 export type TextareaPropsT = {
   ...BaseInputPropsT<HTMLTextAreaElement>,
-  components?: TextareaComponentsT,
+  /** Sets the size and number of visible text lines
+   of the texarea element. */
   rows?: number,
 };
 
