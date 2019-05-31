@@ -30,7 +30,11 @@ export type StateChangeT = $Keys<typeof STATE_CHANGE_TYPE>;
 
 export type StateChangePayloadT = string | CountryT;
 
-export type StateReducerT = (type: StateChangeT, nextState: StateT) => StateT;
+export type StateReducerT = (
+  type: StateChangeT,
+  nextState: StateT,
+  currentState: StateT,
+) => StateT;
 
 export type CountryChangeEventT = {
   value: ValueT,
