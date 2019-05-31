@@ -99,6 +99,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       size={size}
       value={[countryValue]}
       onChange={event => {
+        // After choosing a country, shift focus to the text input
         if (inputRef && inputRef.current) {
           inputRef.current.focus();
         }
