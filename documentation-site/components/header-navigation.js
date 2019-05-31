@@ -29,7 +29,6 @@ import {StatefulTooltip} from 'baseui/tooltip';
 import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
 import {StatefulMenu} from 'baseui/menu';
 import {Button, KIND} from 'baseui/button';
-import ChevronDown from 'baseui/icon/chevron-down.js';
 
 export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
 
