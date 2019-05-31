@@ -28,22 +28,20 @@ const PlainInput = styled<{$inputVisible: boolean}>(
   ({$inputVisible, $theme}) =>
     ({
       display: $inputVisible ? 'block' : 'none',
-      borderWidth: '1px',
-      borderColor: $theme.colors.mono200,
+      borderWidth: '2px',
+      borderColor: $theme.colors.inputEnhancerFill,
       borderStyle: 'solid',
       paddingLeft: '42px',
-      color: $theme.colors.foreground,
+      backgroundColor: $theme.colors.inputEnhancerFill,
       paddingRight: '12px',
       paddingTop: '9px',
       paddingBottom: '9px',
       fontSize: '14px',
       width: $inputVisible ? '62vw' : '250px',
-      backgroundColor: 'transparent',
       lineHeight: '20px',
       outline: 'none',
       '-webkit-appearance': 'none',
       ':focus': {
-        backgroundColor: $theme.colors.background,
         borderColor: $theme.colors.primary,
       },
       [HEADER_BREAKPOINT]: {
