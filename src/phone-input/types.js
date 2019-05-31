@@ -41,6 +41,7 @@ export type CountryChangeEventT = {
 export type mapIsoToLabelT = (iso: string) => string;
 
 export type CountrySelectDropdownPropsT = StatefulMenuContainerPropsT & {
+  countryValue: CountryT,
   dropdownHeight: string,
   mapIsoToLabel?: mapIsoToLabelT,
   overrides: {

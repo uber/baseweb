@@ -72,6 +72,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     Dropdown: {
       component: CountrySelectDropdown,
       props: {
+        countryValue: countryValue,
         dropdownHeight: dropdownHeight,
         mapIsoToLabel: mapIsoToLabel,
         overrides: {
