@@ -38,7 +38,7 @@ export type StateReducerT = (
 
 export type CountryChangeEventT = {
   value: ValueT,
-  option: ?CountryT,
+  option: CountryT,
   type: ChangeActionT,
 };
 
