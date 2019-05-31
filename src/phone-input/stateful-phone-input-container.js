@@ -45,7 +45,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
 
   onInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     this.props.onInputChange(event);
-    this.internalSetState(STATE_CHANGE_TYPE.inputValueChange, {
+    this.internalSetState(STATE_CHANGE_TYPE.inputChange, {
       inputValue: event.target.value,
     });
   };
@@ -62,7 +62,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
       this.state.inputValue === newInputValue
         ? `+${event.option.dialCode} `
         : newInputValue;
-    this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, {
+    this.internalSetState(STATE_CHANGE_TYPE.countryChange, {
       inputValue: newInputValue,
       countryValue: event.option,
     });
