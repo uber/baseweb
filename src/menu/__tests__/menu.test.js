@@ -30,7 +30,7 @@ describe('Menu Stateless Component', () => {
       $ref: React.createRef(),
     });
 
-    expect(component.find(OptionList)).toExist();
+    expect(component.find('OptionList')).toExist();
 
     component.setProps({
       getRequiredItemProps: (item, index) => ({
@@ -38,7 +38,7 @@ describe('Menu Stateless Component', () => {
         isHighlighted: true,
       }),
     });
-    expect(component.find(OptionList).first()).toHaveProp({
+    expect(component.find('OptionList').first()).toHaveProp({
       $isHighlighted: true,
     });
   });

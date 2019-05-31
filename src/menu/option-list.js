@@ -15,7 +15,7 @@ import MaybeChildMenu from './maybe-child-menu.js';
 import {StyledListItem} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
-export default function OptionList(props: OptionListPropsT) {
+function OptionList(props: OptionListPropsT) {
   const {
     getChildMenu,
     getItemLabel,
@@ -58,3 +58,13 @@ OptionList.defaultProps = {
   overrides: {},
   resetMenu: () => {},
 };
+
+function compare(prevProps, nextProps) {
+  const highlighted = prevProps.$isHighlighted === nextProps.$isHighlighted;
+  const size = prevProps.size === nextProps.size;
+  return highlighted && size;
+}
+
+// requires updated flow parsing in the v7 branch
+// $FlowFixMe
+export default React.memo(OptionList, compare);
