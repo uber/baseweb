@@ -41,18 +41,14 @@ export default class StatefulPhoneInputContainer extends React.Component<
   state = {...this.props.initialState};
 
   internalSetState = (type: StateChangeT, payload: StateChangePayloadT) => {
-    const nextState: StateT = this.internalStateReducer(type, payload);
+    const nextState: $Shape<StateT> = this.internalStateReducer(type, payload);
     this.setState(this.props.stateReducer(type, nextState, this.state));
   };
 
   internalStateReducer = (type: StateChangeT, payload: StateChangePayloadT) => {
     switch (type) {
       case STATE_CHANGE_TYPE.inputValueChange:
-        if (typeof payload === 'string') {
-          return {...this.state, inputValue: payload};
-        } else {
-          return this.state;
-        }
+        return typeof payload === 'string' ? {inputValue: payload} : {};
       case STATE_CHANGE_TYPE.countryValueChange: {
         if (typeof payload !== 'string') {
           // Replace (if possible) the current country dialcode
@@ -70,11 +66,11 @@ export default class StatefulPhoneInputContainer extends React.Component<
             countryValue: payload,
           };
         } else {
-          return this.state;
+          return {};
         }
       }
       default:
-        return this.state;
+        return {};
     }
   };
 
@@ -87,10 +83,8 @@ export default class StatefulPhoneInputContainer extends React.Component<
   };
 
   onCountryChange = (event: CountryChangeEventT) => {
-    if (event.option) {
-      this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, event.option);
-      this.props.onCountryChange(event);
-    }
+    this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, event.option);
+    this.props.onCountryChange(event);
   };
 
   render() {
