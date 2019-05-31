@@ -13,7 +13,6 @@ import type {
   StateT,
   StateReducerT,
   StateChangeT,
-  StateChangePayloadT,
   CountryChangeEventT,
 } from './types.js';
 
@@ -40,51 +39,33 @@ export default class StatefulPhoneInputContainer extends React.Component<
 
   state = {...this.props.initialState};
 
-  internalSetState = (type: StateChangeT, payload: StateChangePayloadT) => {
-    const nextState: $Shape<StateT> = this.internalStateReducer(type, payload);
+  internalSetState = (type: StateChangeT, nextState: $Shape<StateT>) => {
     this.setState(this.props.stateReducer(type, nextState, this.state));
   };
 
-  internalStateReducer = (type: StateChangeT, payload: StateChangePayloadT) => {
-    switch (type) {
-      case STATE_CHANGE_TYPE.inputValueChange:
-        return typeof payload === 'string' ? {inputValue: payload} : {};
-      case STATE_CHANGE_TYPE.countryValueChange: {
-        if (typeof payload !== 'string') {
-          // Replace (if possible) the current country dialcode
-          let newInputValue = this.state.inputValue.replace(
-            `+${this.state.countryValue.dialCode}`,
-            `+${payload.dialCode}`,
-          );
-          // If the replacement did nothing, just use the new dialcode
-          newInputValue =
-            this.state.inputValue === newInputValue
-              ? `+${payload.dialCode} `
-              : newInputValue;
-          return {
-            inputValue: newInputValue,
-            countryValue: payload,
-          };
-        } else {
-          return {};
-        }
-      }
-      default:
-        return {};
-    }
-  };
-
   onInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    this.internalSetState(
-      STATE_CHANGE_TYPE.inputValueChange,
-      event.target.value,
-    );
     this.props.onInputChange(event);
+    this.internalSetState(STATE_CHANGE_TYPE.inputValueChange, {
+      inputValue: event.target.value,
+    });
   };
 
   onCountryChange = (event: CountryChangeEventT) => {
-    this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, event.option);
     this.props.onCountryChange(event);
+    // Replace (if possible) the current country dialcode
+    let newInputValue = this.state.inputValue.replace(
+      `+${this.state.countryValue.dialCode}`,
+      `+${event.option.dialCode}`,
+    );
+    // If the replacement did nothing, just use the new dialcode
+    newInputValue =
+      this.state.inputValue === newInputValue
+        ? `+${event.option.dialCode} `
+        : newInputValue;
+    this.internalSetState(STATE_CHANGE_TYPE.countryValueChange, {
+      inputValue: newInputValue,
+      countryValue: event.option,
+    });
   };
 
   render() {
