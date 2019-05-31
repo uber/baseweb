@@ -10,9 +10,14 @@ LICENSE file in the root directory of this source tree.
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
+const selectors = {
+  input: `[data-baseweb="phone-input"]`,
+};
+
 describe('PhoneInput', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'phone-input');
+    await page.waitFor(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

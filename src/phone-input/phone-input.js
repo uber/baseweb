@@ -21,6 +21,9 @@ export default function PhoneInput(props: PropsT) {
     onInputChange,
     size = SIZE.default,
     overrides = {},
+    'aria-label': ariaLabel = 'Enter a phone number',
+    'aria-labelledby': ariaLabeledby,
+    'aria-describedby': ariaDescribedby,
   } = props;
   const inputRef = useRef(null);
   const baseOverrides = {
@@ -42,9 +45,9 @@ export default function PhoneInput(props: PropsT) {
   return (
     <Input
       type="tel"
-      aria-label={props['aria-label']}
-      aria-labelledby={props['aria-labelledby']}
-      aria-describedby={props['aria-describedby']}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabeledby}
+      aria-describedby={ariaDescribedby}
       data-baseweb="phone-input"
       size={size}
       inputRef={inputRef}
