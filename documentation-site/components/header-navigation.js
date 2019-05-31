@@ -114,7 +114,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                       overrides={{
                         List: {
                           style: {
-                            width: '85px',
+                            width: '84px',
                           },
                         },
                       }}

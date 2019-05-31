@@ -21,9 +21,6 @@ export default () => (
       <NavigationItem>
         <Link href="#">Tab Link Two</Link>
       </NavigationItem>
-      <NavigationItem>
-        <Link href="#">Tab Link Three</Link>
-      </NavigationItem>
     </NavigationList>
     <NavigationList $align={ALIGN.right}>
       <NavigationItem>
