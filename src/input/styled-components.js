@@ -37,7 +37,7 @@ function getFont(size, typography) {
   return {
     [SIZE.compact]: typography.font300,
     [SIZE.default]: typography.font400,
-    [SIZE.large]: typography.font475,
+    [SIZE.large]: typography.font460,
   }[size];
 }
 

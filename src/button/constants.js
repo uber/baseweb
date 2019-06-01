@@ -16,6 +16,7 @@ export const KIND = {
 export const SHAPE = {
   default: 'default',
   round: 'round',
+  square: 'square',
 };
 
 export const SIZE = {

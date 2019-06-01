@@ -35,7 +35,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     marginBottom: 0,
     ...getFontStyles({$theme, $size}),
     ...getBorderRadiiStyles({$theme, $shape}),
-    ...getPaddingStyles({$theme, $size}),
+    ...getPaddingStyles({$theme, $size, $shape}),
     // Kind style override
     ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
   }),
@@ -128,36 +128,49 @@ function getBorderRadiiStyles({$theme, $shape}) {
 function getFontStyles({$theme, $size}) {
   switch ($size) {
     case SIZE.compact:
-      return $theme.typography.font250;
-    case SIZE.large:
       return $theme.typography.font450;
+    case SIZE.large:
+      return $theme.typography.font500;
     default:
-      return $theme.typography.font350;
+      return $theme.typography.font470;
   }
 }
 
-function getPaddingStyles({$theme, $size}) {
+function getPaddingStyles({$theme, $size, $shape}) {
+  const defaultShape = $shape === SHAPE.default;
   switch ($size) {
     case SIZE.compact:
       return {
-        paddingTop: $theme.sizing.scale300,
-        paddingBottom: $theme.sizing.scale300,
-        paddingLeft: $theme.sizing.scale300,
-        paddingRight: $theme.sizing.scale300,
+        paddingTop: $theme.sizing.scale200,
+        paddingBottom: $theme.sizing.scale200,
+        paddingLeft: defaultShape
+          ? $theme.sizing.scale600
+          : $theme.sizing.scale200,
+        paddingRight: defaultShape
+          ? $theme.sizing.scale600
+          : $theme.sizing.scale200,
       };
     case SIZE.large:
       return {
-        paddingTop: $theme.sizing.scale600,
-        paddingBottom: $theme.sizing.scale600,
-        paddingLeft: $theme.sizing.scale600,
-        paddingRight: $theme.sizing.scale600,
+        paddingTop: $theme.sizing.scale550,
+        paddingBottom: $theme.sizing.scale550,
+        paddingLeft: defaultShape
+          ? $theme.sizing.scale700
+          : $theme.sizing.scale550,
+        paddingRight: defaultShape
+          ? $theme.sizing.scale700
+          : $theme.sizing.scale550,
       };
     default:
       return {
         paddingTop: $theme.sizing.scale500,
         paddingBottom: $theme.sizing.scale500,
-        paddingLeft: $theme.sizing.scale500,
-        paddingRight: $theme.sizing.scale500,
+        paddingLeft: defaultShape
+          ? $theme.sizing.scale600
+          : $theme.sizing.scale500,
+        paddingRight: defaultShape
+          ? $theme.sizing.scale600
+          : $theme.sizing.scale500,
       };
   }
 }
