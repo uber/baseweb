@@ -586,6 +586,7 @@ exports[`Select component renders component in search mode and false for multipl
                                 $positive={false}
                                 $required={false}
                                 $searchable={true}
+                                $size="default"
                                 $type="search"
                                 $width="2px"
                                 aria-autocomplete="list"
@@ -617,6 +618,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   $positive={false}
                                   $required={false}
                                   $searchable={true}
+                                  $size="default"
                                   $type="search"
                                   $width="2px"
                                   aria-autocomplete="list"
@@ -1359,6 +1361,7 @@ exports[`Select component renders component in search mode and true for multiple
                                 $positive={false}
                                 $required={false}
                                 $searchable={true}
+                                $size="default"
                                 $type="search"
                                 $width="2px"
                                 aria-autocomplete="list"
@@ -1390,6 +1393,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   $positive={false}
                                   $required={false}
                                   $searchable={true}
+                                  $size="default"
                                   $type="search"
                                   $width="2px"
                                   aria-autocomplete="list"
@@ -2027,6 +2031,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 $positive={false}
                                 $required={false}
                                 $searchable={true}
+                                $size="default"
                                 $type="select"
                                 $width="2px"
                                 aria-autocomplete="list"
@@ -2058,6 +2063,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   $positive={false}
                                   $required={false}
                                   $searchable={true}
+                                  $size="default"
                                   $type="select"
                                   $width="2px"
                                   aria-autocomplete="list"
@@ -2812,6 +2818,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 $positive={false}
                                 $required={false}
                                 $searchable={true}
+                                $size="default"
                                 $type="select"
                                 $width="2px"
                                 aria-autocomplete="list"
@@ -2843,6 +2850,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   $positive={false}
                                   $required={false}
                                   $searchable={true}
+                                  $size="default"
                                   $type="select"
                                   $width="2px"
                                   aria-autocomplete="list"
