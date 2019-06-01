@@ -44,7 +44,7 @@ export default () => (
                 $isPseudoFocused,
                 $error,
               }) => ({
-                borderWidth: '0',
+                borderColor: 'transparent',
                 boxShadow: 'none',
                 backgroundColor: $disabled
                   ? $theme.colors.buttonDisabledFill
@@ -53,12 +53,6 @@ export default () => (
                     : $error
                       ? $theme.colors.negative50
                       : $theme.colors.buttonSecondaryFill,
-              }),
-            },
-            ValueContainer: {
-              style: ({$theme}) => ({
-                paddingTop: $theme.sizing.scale300,
-                paddingBottom: $theme.sizing.scale300,
               }),
             },
             SingleValue: {
