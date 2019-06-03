@@ -28,9 +28,7 @@ export default function PhoneInput(props: PropsT) {
   const inputRef = useRef(null);
   const baseOverrides = {
     Input: {
-      style: {
-        paddingLeft: '4px',
-      },
+      style: ({$theme: {sizing}}) => ({paddingLeft: sizing.scale100}),
     },
     Before: {
       component: CountrySelect,
