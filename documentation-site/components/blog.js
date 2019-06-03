@@ -19,7 +19,7 @@ const Image = styled('img', props => ({
 }));
 
 const Caption = styled('figcaption', ({$theme}) => ({
-  color: $theme.colors.mono800,
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   fontWeight: 300,
@@ -63,7 +63,7 @@ const AuthorLink = styled('a', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   ':hover': {
-    color: $theme.colors.mono700,
+    color: $theme.colors.foreground,
   },
 }));
 
@@ -87,7 +87,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
       overrides={{
         Block: {
           style: ({$theme}) => ({
-            color: $theme.colors.mono800,
+            color: $theme.colors.foregroundAlt,
             fontFamily: $theme.typography.font100.fontFamily,
             margin: `${$theme.sizing.scale400} 0`,
           }),
