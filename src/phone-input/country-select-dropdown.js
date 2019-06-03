@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {List, AutoSizer} from 'react-virtualized';
 
-import {SIZE, DEFAULT_DROPDOWN_HEIGHT} from './constants.js';
+import {SIZE, DEFAULT_MAX_DROPDOWN_HEIGHT} from './constants.js';
 import {
   StyledFlag,
   StyledCountrySelectDropdownContainer as DefaultContainer,
@@ -27,7 +27,7 @@ const CountrySelectDropdown = React.forwardRef(
   (props: CountrySelectDropdownPropsT, ref) => {
     const {
       children,
-      dropdownHeight = DEFAULT_DROPDOWN_HEIGHT,
+      maxDropdownHeight = DEFAULT_MAX_DROPDOWN_HEIGHT,
       mapIsoToLabel,
       countryValue,
       overrides = {},
@@ -53,7 +53,7 @@ const CountrySelectDropdown = React.forwardRef(
       DefaultDialcodeColumn,
     );
     return (
-      <Container ref={ref} $height={dropdownHeight} {...containerProps}>
+      <Container ref={ref} $height={maxDropdownHeight} {...containerProps}>
         <AutoSizer>
           {({height, width}) => {
             return (

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {withStyle} from 'styletron-react';
 
 import Flag from './flag.js';
-import {DEFAULT_DROPDOWN_HEIGHT, SIZE} from './constants.js';
+import {DEFAULT_MAX_DROPDOWN_HEIGHT, SIZE} from './constants.js';
 import {styled} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
 import {
@@ -48,7 +48,7 @@ export const StyledRoot = withStyle(
 
 export const StyledCountrySelectDropdownContainer = withStyle(
   StyledList,
-  ({$height = DEFAULT_DROPDOWN_HEIGHT}) => {
+  ({$height = DEFAULT_MAX_DROPDOWN_HEIGHT}) => {
     return {
       height: $height,
       paddingTop: 0,
