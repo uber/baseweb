@@ -59,10 +59,26 @@ OptionList.defaultProps = {
   resetMenu: () => {},
 };
 
+function areEqualShallow(a, b) {
+  for (var key in a) {
+    if (a[key] !== b[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function compare(prevProps, nextProps) {
-  const highlighted = prevProps.$isHighlighted === nextProps.$isHighlighted;
-  const size = prevProps.size === nextProps.size;
-  return highlighted && size;
+  return (
+    prevProps.$isHighlighted === nextProps.$isHighlighted &&
+    prevProps.$isFocused === nextProps.$isFocused &&
+    areEqualShallow(prevProps.item, nextProps.item) &&
+    areEqualShallow(prevProps.overrides, nextProps.overrides) &&
+    prevProps.size === nextProps.size &&
+    prevProps.getItemLabel === nextProps.getItemLabel &&
+    prevProps.getChildMenu === nextProps.getChildMenu &&
+    prevProps.resetMenu === nextProps.resetMenu
+  );
 }
 
 // requires updated flow parsing in the v7 branch
