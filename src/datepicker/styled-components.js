@@ -58,9 +58,8 @@ export const StyledSelectorContainer = styled<SharedStylePropsT>(
 
 export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
   const {
-    $theme: {colors, sizing, borders},
+    $theme: {colors, sizing},
   } = props;
-  const borderRadius = borders.useRoundedCorners ? borders.radius200 : '0px';
   return {
     color: colors.white,
     display: 'flex',
@@ -71,10 +70,6 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
     backgroundColor: colors.primary,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
   };
 });
 
@@ -108,9 +103,6 @@ export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
 });
 
 function getArrowBtnStyle({$theme, $disabled}) {
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.sizing.scale100
-    : 0;
   return {
     boxSizing: 'border-box',
     height: '22px',
@@ -129,10 +121,6 @@ function getArrowBtnStyle({$theme, $disabled}) {
       ? {}
       : {
           backgroundColor: $theme.colors.primary500,
-          borderTopLeftRadius: borderRadius,
-          borderTopRightRadius: borderRadius,
-          borderBottomRightRadius: borderRadius,
-          borderBottomLeftRadius: borderRadius,
         },
   };
 }

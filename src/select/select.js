@@ -669,6 +669,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           required={(this.props.required && !this.props.value.length) || null}
           role="combobox"
           value={value}
+          tabIndex={0}
           {...sharedProps}
         />
       </InputContainer>

@@ -164,6 +164,7 @@ exports[`Select component renders component in search mode and false for multipl
                       aria-haspopup="false"
                       role="combobox"
                       styled-component="true"
+                      tabindex="0"
                       test-style="[object Object]"
                       value=""
                     />
@@ -571,6 +572,7 @@ exports[`Select component renders component in search mode and false for multipl
                               }
                               required={null}
                               role="combobox"
+                              tabIndex={0}
                               value=""
                             >
                               <ForwardRef
@@ -603,6 +605,7 @@ exports[`Select component renders component in search mode and false for multipl
                                 onFocus={[Function]}
                                 required={null}
                                 role="combobox"
+                                tabIndex={0}
                                 value=""
                               >
                                 <MockStyledComponent
@@ -636,6 +639,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   onFocus={[Function]}
                                   required={null}
                                   role="combobox"
+                                  tabIndex={0}
                                   value=""
                                 >
                                   <input
@@ -654,6 +658,7 @@ exports[`Select component renders component in search mode and false for multipl
                                     required={null}
                                     role="combobox"
                                     styled-component="true"
+                                    tabIndex={0}
                                     test-style={
                                       Object {
                                         "background": "transparent",
@@ -939,6 +944,7 @@ exports[`Select component renders component in search mode and true for multiple
                       aria-haspopup="false"
                       role="combobox"
                       styled-component="true"
+                      tabindex="0"
                       test-style="[object Object]"
                       value=""
                     />
@@ -1346,6 +1352,7 @@ exports[`Select component renders component in search mode and true for multiple
                               }
                               required={null}
                               role="combobox"
+                              tabIndex={0}
                               value=""
                             >
                               <ForwardRef
@@ -1378,6 +1385,7 @@ exports[`Select component renders component in search mode and true for multiple
                                 onFocus={[Function]}
                                 required={null}
                                 role="combobox"
+                                tabIndex={0}
                                 value=""
                               >
                                 <MockStyledComponent
@@ -1411,6 +1419,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   onFocus={[Function]}
                                   required={null}
                                   role="combobox"
+                                  tabIndex={0}
                                   value=""
                                 >
                                   <input
@@ -1429,6 +1438,7 @@ exports[`Select component renders component in search mode and true for multiple
                                     required={null}
                                     role="combobox"
                                     styled-component="true"
+                                    tabIndex={0}
                                     test-style={
                                       Object {
                                         "background": "transparent",
@@ -1694,6 +1704,7 @@ exports[`Select component renders component in select mode and false for multipl
                       aria-haspopup="false"
                       role="combobox"
                       styled-component="true"
+                      tabindex="0"
                       test-style="[object Object]"
                       value=""
                     />
@@ -2016,6 +2027,7 @@ exports[`Select component renders component in select mode and false for multipl
                               }
                               required={null}
                               role="combobox"
+                              tabIndex={0}
                               value=""
                             >
                               <ForwardRef
@@ -2048,6 +2060,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 onFocus={[Function]}
                                 required={null}
                                 role="combobox"
+                                tabIndex={0}
                                 value=""
                               >
                                 <MockStyledComponent
@@ -2081,6 +2094,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   onFocus={[Function]}
                                   required={null}
                                   role="combobox"
+                                  tabIndex={0}
                                   value=""
                                 >
                                   <input
@@ -2099,6 +2113,7 @@ exports[`Select component renders component in select mode and false for multipl
                                     required={null}
                                     role="combobox"
                                     styled-component="true"
+                                    tabIndex={0}
                                     test-style={
                                       Object {
                                         "background": "transparent",
@@ -2481,6 +2496,7 @@ exports[`Select component renders component in select mode and true for multiple
                       aria-haspopup="false"
                       role="combobox"
                       styled-component="true"
+                      tabindex="0"
                       test-style="[object Object]"
                       value=""
                     />
@@ -2803,6 +2819,7 @@ exports[`Select component renders component in select mode and true for multiple
                               }
                               required={null}
                               role="combobox"
+                              tabIndex={0}
                               value=""
                             >
                               <ForwardRef
@@ -2835,6 +2852,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 onFocus={[Function]}
                                 required={null}
                                 role="combobox"
+                                tabIndex={0}
                                 value=""
                               >
                                 <MockStyledComponent
@@ -2868,6 +2886,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   onFocus={[Function]}
                                   required={null}
                                   role="combobox"
+                                  tabIndex={0}
                                   value=""
                                 >
                                   <input
@@ -2886,6 +2905,7 @@ exports[`Select component renders component in select mode and true for multiple
                                     required={null}
                                     role="combobox"
                                     styled-component="true"
+                                    tabIndex={0}
                                     test-style={
                                       Object {
                                         "background": "transparent",
