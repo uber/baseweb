@@ -8,10 +8,43 @@ LICENSE file in the root directory of this source tree.
 
 import {withStyle} from 'styletron-react';
 
-import {DEFAULT_DROPDOWN_HEIGHT} from './constants.js';
+import Flag from './flag.js';
+import {DEFAULT_DROPDOWN_HEIGHT, SIZE} from './constants.js';
 import {styled} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
-import {StyledDropdownListItem} from '../select/index.js';
+import {
+  StyledDropdownListItem,
+  StyledRoot as SelectStyledRoot,
+} from '../select/index.js';
+
+export const StyledFlag = styled(
+  Flag,
+  ({$size = SIZE.default, $theme: {sizing}}) => {
+    const sizeToWidth = {
+      [SIZE.compact]: sizing.scale800,
+      [SIZE.default]: sizing.scale900,
+      [SIZE.large]: sizing.scale1000,
+    };
+    return {
+      width: sizeToWidth[$size],
+    };
+  },
+);
+
+export const StyledRoot = withStyle(
+  SelectStyledRoot,
+  ({size = SIZE.default, $theme: {sizing}}) => {
+    // hard coded widths for the flag dropdown anchor
+    const sizeToWidth = {
+      [SIZE.compact]: '60px',
+      [SIZE.default]: '70px',
+      [SIZE.large]: '80px',
+    };
+    return {
+      width: sizeToWidth[size],
+    };
+  },
+);
 
 export const StyledCountrySelectDropdownContainer = withStyle(
   StyledList,

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import Flag from './flag.js';
+import {StyledRoot, StyledFlag} from './styled-components.js';
 import {
   SIZE,
   countries,
@@ -33,6 +33,10 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     overrides = {},
   } = props;
   const baseOverrides = {
+    Root: {
+      component: StyledRoot,
+      props: {size},
+    },
     ControlContainer: {
       style: props => {
         if (!props.$isFocused && !props.$isPseudoFocused) {
@@ -41,15 +45,6 @@ export default function CountrySelect(props: CountrySelectPropsT) {
             borderColor: 'transparent',
           };
         }
-      },
-    },
-    ValueContainer: {
-      style: {
-        width: {
-          [SIZE.compact]: '34px',
-          [SIZE.default]: '42px',
-          [SIZE.large]: '50px',
-        }[size],
       },
     },
     IconsContainer: {
@@ -109,7 +104,9 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       clearable={false}
       searchable={false}
       getValueLabel={({option}) => {
-        return option.id ? <Flag iso2={String(option.id)} size={size} /> : null;
+        return option.id ? (
+          <StyledFlag iso2={String(option.id)} $size={size} />
+        ) : null;
       }}
       overrides={selectOverrides}
       {...selectProps}
