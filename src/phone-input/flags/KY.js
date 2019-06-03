@@ -11,8 +11,14 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 export default function FlagKY(props: {width: string}) {
+  const {width, ...restProps} = props;
   return (
-    <svg viewBox="0 0 21 15" width={props.width}>
+    <svg
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 21 15"
+      width={width}
+      {...restProps}
+    >
       <defs>
         <linearGradient id="KYa" x1="50%" x2="50%" y1="0%" y2="100%">
           <stop offset="0%" stopColor="#FFF" />

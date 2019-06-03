@@ -15,6 +15,20 @@ export const name = 'phone-input';
 
 export const component = () => (
   <Block>
-    <StatefulPhoneInput aria-label="stateful phone input example" />
+    <Block marginBottom="scale200">
+      <StatefulPhoneInput
+        aria-label="stateful phone input example"
+        size="compact"
+      />
+    </Block>
+    <Block marginBottom="scale200">
+      <StatefulPhoneInput aria-label="stateful phone input example" />
+    </Block>
+    <Block>
+      <StatefulPhoneInput
+        aria-label="stateful phone input example"
+        size="large"
+      />
+    </Block>
   </Block>
 );

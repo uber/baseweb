@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {List, AutoSizer} from 'react-virtualized';
 
-import Flag from './flag.js';
 import {SIZE, DEFAULT_DROPDOWN_HEIGHT} from './constants.js';
 import {
+  StyledFlag,
   StyledCountrySelectDropdownContainer as DefaultContainer,
   StyledCountrySelectDropdownListItem as DefaultListItem,
   StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
@@ -79,9 +79,9 @@ const CountrySelectDropdown = React.forwardRef(
                       {...listItemProps}
                     >
                       <FlagColumn {...flagColumnProps}>
-                        <Flag
+                        <StyledFlag
                           iso2={children[index].props.item.id}
-                          size={SIZE.compact}
+                          $size={SIZE.compact}
                         />
                       </FlagColumn>
                       <NameColumn {...nameColumnProps}>
