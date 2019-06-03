@@ -44,7 +44,7 @@ export type mapIsoToLabelT = (iso: string) => string;
 
 export type CountrySelectDropdownPropsT = StatefulMenuContainerPropsT & {
   countryValue: CountryT,
-  dropdownHeight: string,
+  maxDropdownHeight: string,
   mapIsoToLabel?: mapIsoToLabelT,
   overrides: {
     CountrySelectDropdown?: OverrideT<*>,
@@ -60,8 +60,8 @@ export type CountrySelectPropsT = {
   inputRef: {current: HTMLInputElement | null},
   onCountryChange?: (event: CountryChangeEventT) => mixed,
   size?: SizeT,
-  dropdownWidth?: string,
-  dropdownHeight?: string,
+  maxDropdownWidth?: string,
+  maxDropdownHeight?: string,
   mapIsoToLabel?: mapIsoToLabelT,
   overrides: {
     CountrySelect?: OverrideT<*>,
@@ -103,9 +103,9 @@ export type PropsT = {
   /** Defines the size of the text input. */
   size?: SizeT,
   /** Defines a maximum dropdown height. The edge of the viewport will shrink the dropdown accordingly. */
-  dropdownHeight?: string,
+  maxDropdownHeight?: string,
   /** Defines a maximum dropdown width. The edge of the viewport will shrink the dropdown accordingly. */
-  dropdownWidth?: string,
+  maxDropdownWidth?: string,
   overrides?: OverridesT,
 };
 

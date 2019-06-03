@@ -12,8 +12,8 @@ import {StyledRoot, StyledFlag} from './styled-components.js';
 import {
   SIZE,
   countries,
-  DEFAULT_DROPDOWN_HEIGHT,
-  DEFAULT_DROPDOWN_WIDTH,
+  DEFAULT_MAX_DROPDOWN_HEIGHT,
+  DEFAULT_MAX_DROPDOWN_WIDTH,
 } from './constants.js';
 import CountrySelectDropdown from './country-select-dropdown.js';
 import {Select as DefaultSelect} from '../select/index.js';
@@ -27,8 +27,8 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     inputRef,
     onCountryChange = event => {},
     size = SIZE.default,
-    dropdownWidth = DEFAULT_DROPDOWN_WIDTH,
-    dropdownHeight = DEFAULT_DROPDOWN_HEIGHT,
+    maxDropdownWidth = DEFAULT_MAX_DROPDOWN_WIDTH,
+    maxDropdownHeight = DEFAULT_MAX_DROPDOWN_HEIGHT,
     mapIsoToLabel,
     overrides = {},
   } = props;
@@ -60,7 +60,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     },
     DropdownContainer: {
       style: {
-        width: dropdownWidth,
+        width: maxDropdownWidth,
         maxWidth: 'calc(100vw - 10px)',
       },
     },
@@ -68,7 +68,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       component: CountrySelectDropdown,
       props: {
         countryValue: countryValue,
-        dropdownHeight: dropdownHeight,
+        maxDropdownHeight: maxDropdownHeight,
         mapIsoToLabel: mapIsoToLabel,
         overrides: {
           CountrySelectDropdown: overrides.CountrySelectDropdown,
