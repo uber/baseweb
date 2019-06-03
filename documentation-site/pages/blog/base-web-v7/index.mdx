@@ -63,17 +63,40 @@ type PropsT = {$active: boolean};
 
 ```javascript
 type PropsT = {$active: boolean};
-const MyStyledComponent = styled<PropsT>('div', props => {
-  console.log(props.$notReal); // is now a flow error
-  return {
-    backgroundColor: props.$active ? props.$theme.colors.primary400 : props.$theme.colors.negative400,
-    notACSSProperty: ':)', // flow will type check for valid css properties as well as values
-  };
-});
+const MyStyledComponent =
+  styled <
+  PropsT >
+  ('div',
+  props => {
+    console.log(props.$notReal); // is now a flow error
+    return {
+      backgroundColor: props.$active
+        ? props.$theme.colors.primary400
+        : props.$theme.colors.negative400,
+      notACSSProperty: ':)', // flow will type check for valid css properties as well as values
+    };
+  });
 ```
 
-All usage of `$ref` has been removed. You can now move from `$ref` to `ref` and you will see a warning
-in the console describing the change.
+We understand that adding type checks to your code all of a sudden may introduce a substantial
+migration effort. Because of this, you can run a codemod to add `// $FlowFixMe` comment above all
+uses of baseui's `styled` function. Doing so will leave your code in the same state as before, no
+type security, with the benefit of migrating type checks at your leisure. Either update the types
+along with the baseui version update or run the codemod to save the changes for later. Follow the
+instructions below to run the codemod locally.
+
+```bash
+npm install -g jscodeshift
+jscodeshift -t node_modules/baseui/codemods/styled-flowfixme.js <transform-path>
+```
+
+Use the -d option for a dry-run and use -p to print the output for comparison.
+
+### $ref -> ref
+
+All usage of `$ref` has been removed. You'll want to move from `$ref` to `ref` and you will see a
+warning in the console describing the change. This change follows styletron's support of forwardRef
+in its latest release.
 
 ```diff
 import {styled} from 'baseui';
@@ -81,6 +104,32 @@ const MyStyledComponent = styled('div', {color: 'red'});
 
 - <MyStyledComponent $ref={myRef} />
 + <MyStyledComponent ref={myRef} />
+```
+
+### styled -> withStyle
+
+Baseui previously checked if the first argument to its `styled` function was a styletron-component or not.
+If it was, the function would call `withStyle` from `styletron-react` automatically. Support for this was
+removed in v7. Separating this functionality out will reduce the amount of complexity in baseui's `styled`
+function and now clearly maps one to one with `styled` functionality from `styletron-react`. The only
+difference now is that `$theme` is injected. See an example below for how you may need to update your
+code. It's a contrived example, but should illustrate how some styletron-components can 'extend' others.
+
+```diff
+import {styled} from 'baseui';
++import {withStyle} from 'styletron-react';
+
+const InitialComponent = styled('div', props => {
+  return {
+    backgroundColor: props.$theme.colors.positive400,
+    color: 'pink',
+  };
+});
+
+-const ExtendedComponent = styled(InitialComponent, {
++const ExtendedComponent = withStyle(InitialComponent, {
+  backgroundColor: 'blue',
+});
 ```
 
 ### Accordion type changes
