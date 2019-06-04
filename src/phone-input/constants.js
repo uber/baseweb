@@ -142,7 +142,7 @@ export const COUNTRIES = {
   HU: {label: 'Hungary (Magyarország)', id: 'HU', dialCode: '+36'},
   IS: {label: 'Iceland (Ísland)', id: 'IS', dialCode: '+354'},
   IN: {label: 'India (भारत)', id: 'IN', dialCode: '+91'},
-  id: {label: 'Indonesia', id: 'iso', dialCode: '+62'},
+  ID: {label: 'Indonesia', id: 'ID', dialCode: '+62'},
   IR: {label: 'Iran (‫ایران‬‎)', id: 'IR', dialCode: '+98'},
   IQ: {label: 'Iraq (‫العراق‬‎)', id: 'IQ', dialCode: '+964'},
   IE: {label: 'Ireland', id: 'IE', dialCode: '+353'},
