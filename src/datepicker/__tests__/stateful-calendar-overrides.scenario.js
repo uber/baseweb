@@ -12,22 +12,6 @@ import {StatefulCalendar} from '../index.js';
 
 export const name = 'Stateful calendar overrides';
 
-const selectOverrides = {
-  ControlContainer: {
-    style: ({$theme, $isFocused, $isPseudoFocused}) => ({
-      backgroundColor:
-        $isFocused || $isPseudoFocused
-          ? $theme.colors.positive500
-          : $theme.colors.positive,
-    }),
-  },
-  OptionContent: {
-    style: ({$theme, $isHighlighted}) => ({
-      color: $isHighlighted ? $theme.colors.positive : $theme.colors.foreground,
-    }),
-  },
-};
-
 const arrowBtnOverrides = ({$theme}) => {
   return {
     ':focus': {
@@ -45,8 +29,18 @@ export const component = () => (
           backgroundColor: $theme.colors.positive,
         }),
       },
-      MonthYearSelect: {
-        props: {overrides: selectOverrides},
+      MonthHeader: {
+        style: ({$theme}) => ({
+          backgroundColor: $theme.colors.positive,
+        }),
+      },
+      MonthYearSelectButton: {
+        style: ({$theme}) => ({
+          ':focus': {
+            backgroundColor: $theme.colors.positive500,
+            outline: 'none',
+          },
+        }),
       },
       PrevButton: {
         style: arrowBtnOverrides,
