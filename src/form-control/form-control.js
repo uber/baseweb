@@ -8,23 +8,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import {STYLETRON_PROP_MAPPER} from './constants.js';
 import {
   Label as StyledLabel,
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
 } from './styled-components.js';
 import type {FormControlPropsT} from './types.js';
-
-function getSharedProps(props: {}, mapper: {}) {
-  return Object.keys(props).reduce((newProps, propName) => {
-    const newName = mapper[propName] && `$${propName}`;
-    if (newName) {
-      newProps[newName] = props[propName];
-    }
-    return newProps;
-  }, {});
-}
 
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (error && typeof error !== 'boolean') {
@@ -47,6 +36,7 @@ export default class FormControl extends React.Component<FormControlPropsT> {
     overrides: {},
     label: null,
     caption: null,
+    disabled: false,
     error: false,
     positive: false,
   };
@@ -69,7 +59,7 @@ export default class FormControl extends React.Component<FormControlPropsT> {
     const onlyChildProps = React.Children.only(children).props;
 
     const sharedProps = {
-      $disabled: disabled,
+      $disabled: !!disabled,
       $error: !!error,
       $positive: !!positive,
     };
