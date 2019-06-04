@@ -26,12 +26,29 @@ function getSharedProps(props: {}, mapper: {}) {
   }, {});
 }
 
+function chooseRenderedHint(caption, error, positive, sharedProps) {
+  if (error && typeof error !== 'boolean') {
+    return typeof error === 'function' ? error(sharedProps) : error;
+  }
+
+  if (positive && typeof positive !== 'boolean') {
+    return typeof positive === 'function' ? positive(sharedProps) : positive;
+  }
+
+  if (caption) {
+    return typeof caption === 'function' ? caption(sharedProps) : caption;
+  }
+
+  return null;
+}
+
 export default class FormControl extends React.Component<FormControlPropsT> {
   static defaultProps = {
     overrides: {},
     label: null,
     caption: null,
     error: false,
+    positive: false,
   };
 
   render() {
@@ -43,17 +60,35 @@ export default class FormControl extends React.Component<FormControlPropsT> {
       },
       label,
       caption,
+      disabled,
       error,
+      positive,
       children,
     } = this.props;
 
     const onlyChildProps = React.Children.only(children).props;
-    const sharedProps = getSharedProps(onlyChildProps, STYLETRON_PROP_MAPPER);
-    sharedProps.$error = this.props.error || sharedProps.$error;
+
+    const sharedProps = {
+      $disabled: disabled,
+      $error: !!error,
+      $positive: !!positive,
+    };
+
     const Label = getOverride(LabelOverride) || StyledLabel;
     const Caption = getOverride(CaptionOverride) || StyledCaption;
     const ControlContainer =
       getOverride(ControlContainerOverride) || StyledControlContainer;
+
+    const hint = chooseRenderedHint(caption, error, positive, sharedProps);
+
+    if (__DEV__) {
+      if (error && positive) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[FormControl] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+        );
+      }
+    }
 
     return (
       <React.Fragment>
@@ -73,15 +108,9 @@ export default class FormControl extends React.Component<FormControlPropsT> {
           {...getOverrideProps(ControlContainerOverride)}
         >
           {children}
-          {(caption || error) && (
+          {(caption || error || positive) && (
             <Caption {...sharedProps} {...getOverrideProps(CaptionOverride)}>
-              {error && typeof error !== 'boolean'
-                ? typeof error === 'function'
-                  ? error(sharedProps)
-                  : error
-                : typeof caption === 'function'
-                  ? caption(sharedProps)
-                  : caption}
+              {hint}
             </Caption>
           )}
         </ControlContainer>

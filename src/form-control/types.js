@@ -22,12 +22,17 @@ export type FormControlPropsT = {
   label: ?(React.Node | ((props: {}) => React.Node)),
   /** A caption rendered below the input field. */
   caption: ?(React.Node | ((props: {}) => React.Node)),
+  /** Displays label in light gray color if true */
+  disabled?: boolean,
   /** Error state of the input. If an error prop passed it will be rendered in place of caption as an error message. */
-  error: boolean | React.Node | ((props: {}) => React.Node),
+  error: React.Node | ((props: {}) => React.Node),
+  /** Positive state of the input. If an error prop passed it will be rendered in place of positive as an error message. */
+  positive: React.Node | ((props: {}) => React.Node),
   children: React.Node,
 };
 
 export type StylePropsT = {
   $disabled?: boolean,
   $error?: boolean,
+  $positive?: boolean,
 };

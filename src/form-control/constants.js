@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 export const STYLETRON_PROP_MAPPER = {
   disabled: true,
   error: true,
+  positive: true,
   required: true,
   size: true,
 };
