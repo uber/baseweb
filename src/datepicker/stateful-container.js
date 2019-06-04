@@ -18,22 +18,19 @@ import type {
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
-class StatefulContainer extends React.Component<
-  StatefulContainerPropsT<CalendarPropsT | DatepickerPropsT>,
-  ContainerStateT,
-> {
+type PropsT = StatefulContainerPropsT<CalendarPropsT | DatepickerPropsT>;
+class StatefulContainer extends React.Component<PropsT, ContainerStateT> {
   static defaultProps = {
-    initialState: {value: null},
+    initialState: {},
     stateReducer: defaultStateReducer,
     onChange: () => {},
   };
 
-  state = {
-    ...{
-      value: null,
-    },
-    ...this.props.initialState,
-  };
+  constructor(props: PropsT) {
+    super(props);
+    const value = props.range ? [] : (null: ?Date);
+    this.state = {value, ...props.initialState};
+  }
 
   onChange = (data: {date: ?Date | Array<Date>}) => {
     const {date} = data;
@@ -50,7 +47,6 @@ class StatefulContainer extends React.Component<
 
   render() {
     const {children, initialState, stateReducer, ...restProps} = this.props;
-    // $FlowFixMe
     return this.props.children({
       ...restProps,
       value: this.state.value,

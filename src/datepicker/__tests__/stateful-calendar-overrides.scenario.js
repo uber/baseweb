@@ -12,33 +12,10 @@ import {StatefulCalendar} from '../index.js';
 
 export const name = 'Stateful calendar overrides';
 
-const selectOverrides = {
-  ControlContainer: {
-    style: ({$theme, $isFocused, $isPseudoFocused}) => ({
-      backgroundColor:
-        $isFocused || $isPseudoFocused
-          ? $theme.colors.positive500
-          : $theme.colors.positive,
-    }),
-  },
-  OptionContent: {
-    style: ({$theme, $isHighlighted}) => ({
-      color: $isHighlighted ? $theme.colors.positive : $theme.colors.foreground,
-    }),
-  },
-};
-
 const arrowBtnOverrides = ({$theme}) => {
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.sizing.scale100
-    : 0;
   return {
     ':focus': {
       backgroundColor: $theme.colors.positive500,
-      borderTopLeftRadius: borderRadius,
-      borderTopRightRadius: borderRadius,
-      borderBottomRightRadius: borderRadius,
-      borderBottomLeftRadius: borderRadius,
     },
   };
 };
@@ -52,11 +29,18 @@ export const component = () => (
           backgroundColor: $theme.colors.positive,
         }),
       },
-      MonthSelect: {
-        props: {overrides: selectOverrides},
+      MonthHeader: {
+        style: ({$theme}) => ({
+          backgroundColor: $theme.colors.positive,
+        }),
       },
-      YearSelect: {
-        props: {overrides: selectOverrides},
+      MonthYearSelectButton: {
+        style: ({$theme}) => ({
+          ':focus': {
+            backgroundColor: $theme.colors.positive500,
+            outline: 'none',
+          },
+        }),
       },
       PrevButton: {
         style: arrowBtnOverrides,

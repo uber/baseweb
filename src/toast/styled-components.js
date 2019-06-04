@@ -10,8 +10,8 @@ import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
 import {KIND, PLACEMENT, TYPE} from './constants.js';
 import type {
-  SharedStylePropsT,
-  ToasterSharedStylePropsT,
+  SharedStylePropsArgT,
+  ToasterSharedStylePropsArgT,
   KindTypeT,
   NotificationTypeT,
   PlacementTypeT,
@@ -90,10 +90,8 @@ export function getPlacement(placement: PlacementTypeT) {
   }[placement];
 }
 
-/**
- * Main component container element
- */
-export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
   const {$placement, $theme} = props;
   return {
     pointerEvents: 'none',
@@ -109,12 +107,10 @@ export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
   };
 });
 
-export const Body = styled('div', (props: SharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius200
-    : 0;
   return {
     ...$theme.typography.font350,
     pointerEvents: 'auto',
@@ -129,10 +125,6 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
       getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',
@@ -143,10 +135,8 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-/**
- * DeleteAlt icon overrides
- */
-export const CloseIconSvg = styled('svg', props => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', props => {
   return {
     ...getSvgStyles(props),
     cursor: 'pointer',

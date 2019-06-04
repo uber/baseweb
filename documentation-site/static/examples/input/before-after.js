@@ -9,7 +9,7 @@ export default () => (
       overrides={{
         Before: () => (
           <Block display="flex" alignItems="center" paddingLeft="scale500">
-            <Search size="16px" />
+            <Search size="18px" />
           </Block>
         ),
       }}
@@ -21,7 +21,7 @@ export default () => (
       overrides={{
         After: () => (
           <Block display="flex" alignItems="center" paddingRight="scale500">
-            <Search size="16px" />
+            <Search size="18px" />
           </Block>
         ),
       }}

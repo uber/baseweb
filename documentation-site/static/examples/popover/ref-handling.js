@@ -5,23 +5,20 @@ import {Label1} from 'baseui/typography';
 import {StatefulCheckbox} from 'baseui/checkbox';
 import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
 
-const CheckboxWithRef = props => {
-  const {$ref, ref, children, ...restProps} = props;
+const CheckboxWithRef = React.forwardRef((props, ref) => {
+  const {children, ...restProps} = props;
   return (
     <StatefulCheckbox
       overrides={{
         Root: {
-          props: {
-            $ref: $ref || ref,
-            ...restProps,
-          },
+          props: {ref: ref, ...restProps},
         },
       }}
     >
       {children}
     </StatefulCheckbox>
   );
-};
+});
 
 const CheckboxWrapped = props => {
   const {$ref, ref, children, ...restProps} = props;
@@ -52,9 +49,11 @@ export default () => (
       content={<Label1 padding="scale300">This is a popover example</Label1>}
       accessibilityType={'tooltip'}
     >
-      <CheckboxWrapped>
-        Wrapped checkbox with props passed to the wrapper.
-      </CheckboxWrapped>
+      <span>
+        <StatefulCheckbox>
+          Wrapped checkbox with props passed to the wrapper.
+        </StatefulCheckbox>
+      </span>
     </StatefulPopover>
   </Block>
 );

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EmoticonRating RatingItem applies correct props if item is active 1`] = `
-<MockStyledComponent
+<ForwardRef
   $index={1}
   $isActive={false}
   $isSelected={false}
@@ -20,7 +20,7 @@ exports[`EmoticonRating RatingItem applies correct props if item is active 1`] =
 `;
 
 exports[`EmoticonRating RatingItem applies correct props if item is selected 1`] = `
-<MockStyledComponent
+<ForwardRef
   $index={2}
   $isActive={true}
   $isSelected={true}

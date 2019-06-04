@@ -18,7 +18,7 @@ import {
   veryHappyRatingSVG,
 } from './svg-icons.js';
 
-export const StyledRoot = styled('ul', ({$theme}: StyledRootPropsT) => {
+export const StyledRoot = styled<StyledRootPropsT>('ul', ({$theme}) => {
   return {
     marginLeft: 0,
     marginRight: 0,
@@ -35,9 +35,9 @@ export const StyledRoot = styled('ul', ({$theme}: StyledRootPropsT) => {
   };
 });
 
-export const StyledStar = styled(
+export const StyledStar = styled<StyledRatingItemPropsT>(
   'li',
-  ({$theme, $isActive, $isSelected}: StyledRatingItemPropsT) => {
+  ({$theme, $isActive, $isSelected}) => {
     let starStroke = $theme.colors.mono500;
     let starFill = $theme.colors.mono300;
 
@@ -74,9 +74,9 @@ export const StyledStar = styled(
   },
 );
 
-export const StyledEmoticon = styled(
+export const StyledEmoticon = styled<StyledRatingItemPropsT>(
   'li',
-  ({$theme, $isActive, $isSelected, $index = 1}: StyledRatingItemPropsT) => {
+  ({$theme, $isActive, $isSelected, $index = 1}) => {
     let emoticonFill = $theme.colors.mono500;
 
     if ($isActive) {

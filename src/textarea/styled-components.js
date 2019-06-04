@@ -10,12 +10,14 @@ import {
   getInputStyles,
   getInputContainerStyles,
 } from '../input/styled-components.js';
+import type {SharedStylePropsT} from './types.js';
 
-export const TextareaContainer = styled('div', props => {});
+export const StyledTextareaContainer = styled('div', props => ({
+  ...getInputContainerStyles(props),
+}));
 
-export const Textarea = styled('textarea', props => {
-  return {
-    ...getInputStyles(props),
-    ...getInputContainerStyles(props),
-  };
-});
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const StyledTextarea = styled<SharedStylePropsT>('textarea', props => ({
+  ...getInputStyles(props),
+  resize: 'none',
+}));

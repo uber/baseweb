@@ -132,6 +132,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
         steps: steps,
         value: {id: closestStep, label: secondsToLabel(closestStep)},
       });
+      this.handleChange(closestStep);
     }
   }
 
@@ -143,6 +144,13 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
       this.setState({steps});
     }
   }
+
+  handleChange = (seconds: number) => {
+    const date = this.props.value || new Date();
+    const [hours, minutes] = secondsToHourMinute(seconds);
+    date.setHours(hours, minutes, 0);
+    this.props.onChange && this.props.onChange(date);
+  };
 
   buildSteps = () => {
     const {step = 900} = this.props;
@@ -189,7 +197,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   }
 
   render() {
-    const {onChange = n => {}, overrides = {}} = this.props;
+    const {overrides = {}} = this.props;
 
     const [OverriddenSelect, selectProps] = getOverrides(
       overrides.Select,
@@ -227,7 +235,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
               const seconds = params.value[0].id;
               const [hours, minutes] = secondsToHourMinute(seconds);
               date.setHours(hours, minutes, 0);
-              onChange(date);
+              this.handleChange(params.value[0].id);
             }}
             value={value}
             clearable={false}

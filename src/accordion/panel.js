@@ -83,11 +83,13 @@ class Panel extends React.Component<PanelPropsT> {
       ToggleIconOverride,
       StyledToggleIcon,
     );
+
     const toggleIconOverrides = mergeOverrides(
       {Svg: ToggleIcon},
       // $FlowFixMe
       {Svg: ToggleIconOverride},
     );
+
     const ToggleIconComponent = expanded ? CheckIndeterminateIcon : PlusIcon;
     return (
       <LocaleContext.Consumer>

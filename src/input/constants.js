@@ -23,6 +23,7 @@ export const ADJOINED = {
 export const SIZE = {
   default: 'default',
   compact: 'compact',
+  large: 'large',
 };
 
 export const ENHANCER_POSITION = {

@@ -7,20 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
-import type {SharedStylePropsT} from './types.js';
+import type {SharedStylePropsArgT} from './types.js';
 
 /**
  * Main component container element
  */
-export const Root = styled('div', (props: SharedStylePropsT) => {
-  return {};
-});
+export const Root = styled('div', {});
 
-export const PanelContainer = styled('div', (props: SharedStylePropsT) => {
-  return {width: '100%'};
-});
+export const PanelContainer = styled('div', {width: '100%'});
 
-export const Header = styled('div', (props: SharedStylePropsT) => {
+export const Header = styled<SharedStylePropsArgT>('div', props => {
   const {
     $disabled,
     $expanded,
@@ -50,7 +46,7 @@ export const Header = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-export const ToggleIcon = styled('svg', props => {
+export const ToggleIcon = styled<SharedStylePropsArgT>('svg', props => {
   const {$theme, $disabled, $color} = props;
   return {
     ...getSvgStyles(props),
@@ -59,7 +55,7 @@ export const ToggleIcon = styled('svg', props => {
   };
 });
 
-export const Content = styled('div', (props: SharedStylePropsT) => {
+export const Content = styled<SharedStylePropsArgT>('div', props => {
   const {
     $theme: {animation, colors, sizing, typography},
     $expanded,

@@ -34,18 +34,9 @@ export default class NavItem extends React.Component<NavItemPropsT> {
   };
 
   render() {
-    const {item, onSelect, overrides, renderItem, ...sharedProps} = this.props;
+    const {item, overrides, ...sharedProps} = this.props;
     const [NavItem, itemProps] = getOverrides(overrides.NavItem, StyledNavItem);
     const [NavLink, linkProps] = getOverrides(overrides.NavLink, StyledNavLink);
-    const navItemProps = {
-      ...sharedProps,
-      onSelect: onSelect,
-      onClick: this.handleClick,
-      onKeyDown: this.handleKeyDown,
-    };
-    if (typeof renderItem === 'function') {
-      return renderItem(item, navItemProps);
-    }
     return (
       <NavLink
         href={item.itemId}
@@ -58,7 +49,7 @@ export default class NavItem extends React.Component<NavItemPropsT> {
             }
           : {})}
       >
-        <NavItem {...sharedProps} {...itemProps}>
+        <NavItem item={item} {...sharedProps} {...itemProps}>
           {item.title}
         </NavItem>
       </NavLink>

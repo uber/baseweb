@@ -23,50 +23,51 @@ type State = {
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = styled('input', ({$theme, $inputVisible}) => ({
-  display: $inputVisible ? 'block' : 'none',
-  borderWidth: '1px',
-  borderTopLeftRadius: '4px',
-  borderTopRightRadius: '4px',
-  borderBottomRightRadius: '4px',
-  borderBottomLeftRadius: '4px',
-  borderColor: $theme.colors.mono200,
-  borderStyle: 'solid',
-  paddingLeft: '42px',
-  color: $theme.colors.foreground,
-  paddingRight: '12px',
-  paddingTop: '9px',
-  paddingBottom: '9px',
-  fontSize: '14px',
-  width: $inputVisible ? '62vw' : '250px',
-  backgroundColor: 'transparent',
-  lineHeight: '20px',
-  outline: 'none',
-  '-webkit-appearance': 'none',
-  ':focus': {
-    backgroundColor: $theme.colors.background,
-    borderColor: $theme.colors.primary,
-  },
-  [HEADER_BREAKPOINT]: {
-    position: 'static',
-    display: 'block',
-    width: '250px',
-  },
-}));
+const PlainInput = styled<{$inputVisible: boolean}>(
+  'input',
+  ({$inputVisible, $theme}) =>
+    ({
+      display: $inputVisible ? 'block' : 'none',
+      borderWidth: '2px',
+      borderColor: $theme.colors.inputEnhancerFill,
+      borderStyle: 'solid',
+      paddingLeft: '42px',
+      backgroundColor: $theme.colors.inputEnhancerFill,
+      paddingRight: '12px',
+      paddingTop: '9px',
+      paddingBottom: '9px',
+      fontSize: '14px',
+      width: $inputVisible ? '62vw' : '250px',
+      lineHeight: '20px',
+      outline: 'none',
+      '-webkit-appearance': 'none',
+      ':focus': {
+        borderColor: $theme.colors.primary,
+      },
+      [HEADER_BREAKPOINT]: {
+        position: 'static',
+        display: 'block',
+        width: '250px',
+      },
+    }: {}),
+);
 
-const IconWrapper = styled('div', ({$inputVisible, $theme}) => ({
-  marginRight: $inputVisible ? '-33px' : 0,
-  marginTop: $inputVisible ? '8px' : 0,
-  height: '32px',
-  cursor: 'pointer',
-  zIndex: 1,
-  [HEADER_BREAKPOINT]: {
-    marginRight: '-33px',
-    marginTop: '8px',
-    cursor: 'inherit',
+const IconWrapper = styled<{$inputVisible: boolean}>(
+  'div',
+  ({$inputVisible, $theme}) => ({
+    marginRight: $inputVisible ? '-33px' : 0,
+    marginTop: $inputVisible ? '8px' : 0,
+    height: '32px',
+    cursor: 'pointer',
     zIndex: 1,
-  },
-}));
+    [HEADER_BREAKPOINT]: {
+      marginRight: '-33px',
+      marginTop: '8px',
+      cursor: 'inherit',
+      zIndex: 1,
+    },
+  }),
+);
 
 class DocSearch extends React.Component<Props, State> {
   state = {

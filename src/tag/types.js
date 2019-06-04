@@ -46,7 +46,6 @@ export type PropsT = {
   onClick?: null | ((event: Event) => mixed),
   /** onkeydown handler for the tag. */
   onKeyDown?: null | ((event: Event) => mixed),
-  $theme?: *,
 };
 
 export type SharedPropsArgT = {
@@ -59,8 +58,4 @@ export type SharedPropsArgT = {
   $isHovered?: boolean,
   $kind?: string,
   $variant?: string,
-};
-
-export type SharedPropsT = SharedPropsArgT & {
-  $theme: *,
 };

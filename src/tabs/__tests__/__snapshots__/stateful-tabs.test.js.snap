@@ -26,186 +26,398 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
       orientation="horizontal"
       overrides={Object {}}
     >
-      <MockStyledComponent
+      <ForwardRef
         $disabled={false}
         $orientation="horizontal"
         data-baseweb="tabs"
       >
-        <div
+        <MockStyledComponent
+          $disabled={false}
+          $orientation="horizontal"
           data-baseweb="tabs"
-          styled-component="true"
+          forwardedRef={null}
         >
-          <MockStyledComponent
-            $disabled={false}
-            $orientation="horizontal"
-            role="tablist"
+          <div
+            data-baseweb="tabs"
+            styled-component="true"
+            test-style={
+              Object {
+                "display": "flex",
+                "flexDirection": "column",
+              }
+            }
           >
-            <div
+            <ForwardRef
+              $disabled={false}
+              $orientation="horizontal"
               role="tablist"
-              styled-component="true"
             >
-              <TabComponent
+              <MockStyledComponent
+                $disabled={false}
                 $orientation="horizontal"
-                active={false}
-                disabled={false}
-                expanded={false}
-                id="0"
-                key="0/.0"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                onSelect={[Function]}
-                title="Tab Link 1"
+                forwardedRef={null}
+                role="tablist"
               >
-                <MockStyledComponent
-                  $active={false}
-                  $disabled={false}
-                  $orientation="horizontal"
-                  aria-disabled={null}
-                  aria-selected={false}
-                  id="0"
-                  onClick={[Function]}
-                  onKeyDown={[Function]}
-                  role="tab"
-                  tabIndex={0}
+                <div
+                  role="tablist"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "backgroundColor": "$theme.colors.tabBarFill",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "paddingLeft": "$theme.sizing.scale400",
+                      "paddingRight": "$theme.sizing.scale400",
+                    }
+                  }
                 >
-                  <div
-                    aria-disabled={null}
-                    aria-selected={false}
+                  <TabComponent
+                    $orientation="horizontal"
+                    active={false}
+                    disabled={false}
+                    expanded={false}
                     id="0"
+                    key="0/.0"
                     onClick={[Function]}
                     onKeyDown={[Function]}
-                    role="tab"
-                    styled-component="true"
-                    tabIndex={0}
+                    onSelect={[Function]}
+                    title="Tab Link 1"
                   >
-                    Tab Link 1
-                  </div>
-                </MockStyledComponent>
-              </TabComponent>
-              <TabComponent
-                $orientation="horizontal"
-                active={true}
-                disabled={false}
-                expanded={false}
-                id="1"
-                key="1/.1"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                onSelect={[Function]}
-                title="Tab Link 2"
-              >
-                <MockStyledComponent
-                  $active={true}
-                  $disabled={false}
-                  $orientation="horizontal"
-                  aria-disabled={null}
-                  aria-selected={true}
-                  id="1"
-                  onClick={[Function]}
-                  onKeyDown={[Function]}
-                  role="tab"
-                  tabIndex={0}
-                >
-                  <div
-                    aria-disabled={null}
-                    aria-selected={true}
+                    <ForwardRef
+                      $active={false}
+                      $disabled={false}
+                      $orientation="horizontal"
+                      aria-disabled={null}
+                      aria-selected={false}
+                      id="0"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="tab"
+                      tabIndex={0}
+                    >
+                      <MockStyledComponent
+                        $active={false}
+                        $disabled={false}
+                        $orientation="horizontal"
+                        aria-disabled={null}
+                        aria-selected={false}
+                        forwardedRef={null}
+                        id="0"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="tab"
+                        tabIndex={0}
+                      >
+                        <div
+                          aria-disabled={null}
+                          aria-selected={false}
+                          id="0"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          role="tab"
+                          styled-component="true"
+                          tabIndex={0}
+                          test-style={
+                            Object {
+                              ":focus": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              ":hover": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              "borderBottom": "none",
+                              "boxSizing": "border-box",
+                              "color": "$theme.colors.tabColor",
+                              "cursor": "pointer",
+                              "display": "inline-block",
+                              "fontFamily": "$theme.typography.font300.fontFamily",
+                              "fontSize": "$theme.typography.font300.fontSize",
+                              "fontWeight": "$theme.typography.font300.fontWeight",
+                              "lineHeight": "$theme.typography.font300.lineHeight",
+                              "marginLeft": "$theme.sizing.scale200",
+                              "marginRight": "$theme.sizing.scale200",
+                              "paddingBottom": "$theme.sizing.scale600",
+                              "paddingLeft": "$theme.sizing.scale300",
+                              "paddingRight": "$theme.sizing.scale300",
+                              "paddingTop": "$theme.sizing.scale600",
+                            }
+                          }
+                        >
+                          Tab Link 1
+                        </div>
+                      </MockStyledComponent>
+                    </ForwardRef>
+                  </TabComponent>
+                  <TabComponent
+                    $orientation="horizontal"
+                    active={true}
+                    disabled={false}
+                    expanded={false}
                     id="1"
+                    key="1/.1"
                     onClick={[Function]}
                     onKeyDown={[Function]}
-                    role="tab"
-                    styled-component="true"
-                    tabIndex={0}
+                    onSelect={[Function]}
+                    title="Tab Link 2"
                   >
-                    Tab Link 2
-                  </div>
-                </MockStyledComponent>
-              </TabComponent>
-              <TabComponent
-                $orientation="horizontal"
-                active={false}
-                disabled={false}
-                expanded={false}
-                id="2"
-                key="2/.2"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                onSelect={[Function]}
-                title="Tab Link 3"
-              >
-                <MockStyledComponent
-                  $active={false}
-                  $disabled={false}
-                  $orientation="horizontal"
-                  aria-disabled={null}
-                  aria-selected={false}
-                  id="2"
-                  onClick={[Function]}
-                  onKeyDown={[Function]}
-                  role="tab"
-                  tabIndex={0}
-                >
-                  <div
-                    aria-disabled={null}
-                    aria-selected={false}
+                    <ForwardRef
+                      $active={true}
+                      $disabled={false}
+                      $orientation="horizontal"
+                      aria-disabled={null}
+                      aria-selected={true}
+                      id="1"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="tab"
+                      tabIndex={0}
+                    >
+                      <MockStyledComponent
+                        $active={true}
+                        $disabled={false}
+                        $orientation="horizontal"
+                        aria-disabled={null}
+                        aria-selected={true}
+                        forwardedRef={null}
+                        id="1"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="tab"
+                        tabIndex={0}
+                      >
+                        <div
+                          aria-disabled={null}
+                          aria-selected={true}
+                          id="1"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          role="tab"
+                          styled-component="true"
+                          tabIndex={0}
+                          test-style={
+                            Object {
+                              ":focus": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              ":hover": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              "borderBottom": "2px solid $theme.colors.primary400",
+                              "boxSizing": "border-box",
+                              "color": "$theme.colors.colorPrimary",
+                              "cursor": "pointer",
+                              "display": "inline-block",
+                              "fontFamily": "$theme.typography.font300.fontFamily",
+                              "fontSize": "$theme.typography.font300.fontSize",
+                              "fontWeight": "$theme.typography.font300.fontWeight",
+                              "lineHeight": "$theme.typography.font300.lineHeight",
+                              "marginLeft": "$theme.sizing.scale200",
+                              "marginRight": "$theme.sizing.scale200",
+                              "paddingBottom": "$theme.sizing.scale600",
+                              "paddingLeft": "$theme.sizing.scale300",
+                              "paddingRight": "$theme.sizing.scale300",
+                              "paddingTop": "$theme.sizing.scale600",
+                            }
+                          }
+                        >
+                          Tab Link 2
+                        </div>
+                      </MockStyledComponent>
+                    </ForwardRef>
+                  </TabComponent>
+                  <TabComponent
+                    $orientation="horizontal"
+                    active={false}
+                    disabled={false}
+                    expanded={false}
                     id="2"
+                    key="2/.2"
                     onClick={[Function]}
                     onKeyDown={[Function]}
-                    role="tab"
-                    styled-component="true"
-                    tabIndex={0}
+                    onSelect={[Function]}
+                    title="Tab Link 3"
                   >
-                    Tab Link 3
-                  </div>
-                </MockStyledComponent>
-              </TabComponent>
-            </div>
-          </MockStyledComponent>
-          <MockStyledComponent
-            $active={false}
-            $disabled={false}
-            $orientation="horizontal"
-            aria-labelledby="0"
-            key="0/.0"
-            role="tabpanel"
-          >
-            <div
+                    <ForwardRef
+                      $active={false}
+                      $disabled={false}
+                      $orientation="horizontal"
+                      aria-disabled={null}
+                      aria-selected={false}
+                      id="2"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="tab"
+                      tabIndex={0}
+                    >
+                      <MockStyledComponent
+                        $active={false}
+                        $disabled={false}
+                        $orientation="horizontal"
+                        aria-disabled={null}
+                        aria-selected={false}
+                        forwardedRef={null}
+                        id="2"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="tab"
+                        tabIndex={0}
+                      >
+                        <div
+                          aria-disabled={null}
+                          aria-selected={false}
+                          id="2"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          role="tab"
+                          styled-component="true"
+                          tabIndex={0}
+                          test-style={
+                            Object {
+                              ":focus": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              ":hover": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              "borderBottom": "none",
+                              "boxSizing": "border-box",
+                              "color": "$theme.colors.tabColor",
+                              "cursor": "pointer",
+                              "display": "inline-block",
+                              "fontFamily": "$theme.typography.font300.fontFamily",
+                              "fontSize": "$theme.typography.font300.fontSize",
+                              "fontWeight": "$theme.typography.font300.fontWeight",
+                              "lineHeight": "$theme.typography.font300.lineHeight",
+                              "marginLeft": "$theme.sizing.scale200",
+                              "marginRight": "$theme.sizing.scale200",
+                              "paddingBottom": "$theme.sizing.scale600",
+                              "paddingLeft": "$theme.sizing.scale300",
+                              "paddingRight": "$theme.sizing.scale300",
+                              "paddingTop": "$theme.sizing.scale600",
+                            }
+                          }
+                        >
+                          Tab Link 3
+                        </div>
+                      </MockStyledComponent>
+                    </ForwardRef>
+                  </TabComponent>
+                </div>
+              </MockStyledComponent>
+            </ForwardRef>
+            <ForwardRef
+              $active={false}
+              $disabled={false}
+              $orientation="horizontal"
               aria-labelledby="0"
+              key="0/.0"
               role="tabpanel"
-              styled-component="true"
-            />
-          </MockStyledComponent>
-          <MockStyledComponent
-            $active={true}
-            $disabled={false}
-            $orientation="horizontal"
-            aria-labelledby="1"
-            key="1/.1"
-            role="tabpanel"
-          >
-            <div
-              aria-labelledby="1"
-              role="tabpanel"
-              styled-component="true"
             >
-              Tab 2 content
-            </div>
-          </MockStyledComponent>
-          <MockStyledComponent
-            $active={false}
-            $disabled={false}
-            $orientation="horizontal"
-            aria-labelledby="2"
-            key="2/.2"
-            role="tabpanel"
-          >
-            <div
-              aria-labelledby="2"
+              <MockStyledComponent
+                $active={false}
+                $disabled={false}
+                $orientation="horizontal"
+                aria-labelledby="0"
+                forwardedRef={null}
+                role="tabpanel"
+              >
+                <div
+                  aria-labelledby="0"
+                  role="tabpanel"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "display": "none",
+                      "fontFamily": "$theme.typography.font400.fontFamily",
+                      "fontSize": "$theme.typography.font400.fontSize",
+                      "fontWeight": "$theme.typography.font400.fontWeight",
+                      "lineHeight": "$theme.typography.font400.lineHeight",
+                      "paddingBottom": "$theme.sizing.scale500",
+                      "paddingLeft": "$theme.sizing.scale800",
+                      "paddingRight": "$theme.sizing.scale800",
+                      "paddingTop": "$theme.sizing.scale500",
+                    }
+                  }
+                />
+              </MockStyledComponent>
+            </ForwardRef>
+            <ForwardRef
+              $active={true}
+              $disabled={false}
+              $orientation="horizontal"
+              aria-labelledby="1"
+              key="1/.1"
               role="tabpanel"
-              styled-component="true"
-            />
-          </MockStyledComponent>
-        </div>
-      </MockStyledComponent>
+            >
+              <MockStyledComponent
+                $active={true}
+                $disabled={false}
+                $orientation="horizontal"
+                aria-labelledby="1"
+                forwardedRef={null}
+                role="tabpanel"
+              >
+                <div
+                  aria-labelledby="1"
+                  role="tabpanel"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "display": "block",
+                      "fontFamily": "$theme.typography.font400.fontFamily",
+                      "fontSize": "$theme.typography.font400.fontSize",
+                      "fontWeight": "$theme.typography.font400.fontWeight",
+                      "lineHeight": "$theme.typography.font400.lineHeight",
+                      "paddingBottom": "$theme.sizing.scale500",
+                      "paddingLeft": "$theme.sizing.scale800",
+                      "paddingRight": "$theme.sizing.scale800",
+                      "paddingTop": "$theme.sizing.scale500",
+                    }
+                  }
+                >
+                  Tab 2 content
+                </div>
+              </MockStyledComponent>
+            </ForwardRef>
+            <ForwardRef
+              $active={false}
+              $disabled={false}
+              $orientation="horizontal"
+              aria-labelledby="2"
+              key="2/.2"
+              role="tabpanel"
+            >
+              <MockStyledComponent
+                $active={false}
+                $disabled={false}
+                $orientation="horizontal"
+                aria-labelledby="2"
+                forwardedRef={null}
+                role="tabpanel"
+              >
+                <div
+                  aria-labelledby="2"
+                  role="tabpanel"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "display": "none",
+                      "fontFamily": "$theme.typography.font400.fontFamily",
+                      "fontSize": "$theme.typography.font400.fontSize",
+                      "fontWeight": "$theme.typography.font400.fontWeight",
+                      "lineHeight": "$theme.typography.font400.lineHeight",
+                      "paddingBottom": "$theme.sizing.scale500",
+                      "paddingLeft": "$theme.sizing.scale800",
+                      "paddingRight": "$theme.sizing.scale800",
+                      "paddingTop": "$theme.sizing.scale500",
+                    }
+                  }
+                />
+              </MockStyledComponent>
+            </ForwardRef>
+          </div>
+        </MockStyledComponent>
+      </ForwardRef>
     </Tabs>
   </StatefulTabs>
 </Component>
@@ -226,186 +438,398 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
       orientation="horizontal"
       overrides={Object {}}
     >
-      <MockStyledComponent
+      <ForwardRef
         $disabled={false}
         $orientation="horizontal"
         data-baseweb="tabs"
       >
-        <div
+        <MockStyledComponent
+          $disabled={false}
+          $orientation="horizontal"
           data-baseweb="tabs"
-          styled-component="true"
+          forwardedRef={null}
         >
-          <MockStyledComponent
-            $disabled={false}
-            $orientation="horizontal"
-            role="tablist"
+          <div
+            data-baseweb="tabs"
+            styled-component="true"
+            test-style={
+              Object {
+                "display": "flex",
+                "flexDirection": "column",
+              }
+            }
           >
-            <div
+            <ForwardRef
+              $disabled={false}
+              $orientation="horizontal"
               role="tablist"
-              styled-component="true"
             >
-              <TabComponent
+              <MockStyledComponent
+                $disabled={false}
                 $orientation="horizontal"
-                active={true}
-                disabled={false}
-                expanded={false}
-                id="0"
-                key="0/.0"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                onSelect={[Function]}
-                title="Tab Link 1"
+                forwardedRef={null}
+                role="tablist"
               >
-                <MockStyledComponent
-                  $active={true}
-                  $disabled={false}
-                  $orientation="horizontal"
-                  aria-disabled={null}
-                  aria-selected={true}
-                  id="0"
-                  onClick={[Function]}
-                  onKeyDown={[Function]}
-                  role="tab"
-                  tabIndex={0}
+                <div
+                  role="tablist"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "backgroundColor": "$theme.colors.tabBarFill",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "paddingLeft": "$theme.sizing.scale400",
+                      "paddingRight": "$theme.sizing.scale400",
+                    }
+                  }
                 >
-                  <div
-                    aria-disabled={null}
-                    aria-selected={true}
+                  <TabComponent
+                    $orientation="horizontal"
+                    active={true}
+                    disabled={false}
+                    expanded={false}
                     id="0"
+                    key="0/.0"
                     onClick={[Function]}
                     onKeyDown={[Function]}
-                    role="tab"
-                    styled-component="true"
-                    tabIndex={0}
+                    onSelect={[Function]}
+                    title="Tab Link 1"
                   >
-                    Tab Link 1
-                  </div>
-                </MockStyledComponent>
-              </TabComponent>
-              <TabComponent
-                $orientation="horizontal"
-                active={false}
-                disabled={false}
-                expanded={false}
-                id="1"
-                key="1/.1"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                onSelect={[Function]}
-                title="Tab Link 2"
-              >
-                <MockStyledComponent
-                  $active={false}
-                  $disabled={false}
-                  $orientation="horizontal"
-                  aria-disabled={null}
-                  aria-selected={false}
-                  id="1"
-                  onClick={[Function]}
-                  onKeyDown={[Function]}
-                  role="tab"
-                  tabIndex={0}
-                >
-                  <div
-                    aria-disabled={null}
-                    aria-selected={false}
+                    <ForwardRef
+                      $active={true}
+                      $disabled={false}
+                      $orientation="horizontal"
+                      aria-disabled={null}
+                      aria-selected={true}
+                      id="0"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="tab"
+                      tabIndex={0}
+                    >
+                      <MockStyledComponent
+                        $active={true}
+                        $disabled={false}
+                        $orientation="horizontal"
+                        aria-disabled={null}
+                        aria-selected={true}
+                        forwardedRef={null}
+                        id="0"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="tab"
+                        tabIndex={0}
+                      >
+                        <div
+                          aria-disabled={null}
+                          aria-selected={true}
+                          id="0"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          role="tab"
+                          styled-component="true"
+                          tabIndex={0}
+                          test-style={
+                            Object {
+                              ":focus": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              ":hover": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              "borderBottom": "2px solid $theme.colors.primary400",
+                              "boxSizing": "border-box",
+                              "color": "$theme.colors.colorPrimary",
+                              "cursor": "pointer",
+                              "display": "inline-block",
+                              "fontFamily": "$theme.typography.font300.fontFamily",
+                              "fontSize": "$theme.typography.font300.fontSize",
+                              "fontWeight": "$theme.typography.font300.fontWeight",
+                              "lineHeight": "$theme.typography.font300.lineHeight",
+                              "marginLeft": "$theme.sizing.scale200",
+                              "marginRight": "$theme.sizing.scale200",
+                              "paddingBottom": "$theme.sizing.scale600",
+                              "paddingLeft": "$theme.sizing.scale300",
+                              "paddingRight": "$theme.sizing.scale300",
+                              "paddingTop": "$theme.sizing.scale600",
+                            }
+                          }
+                        >
+                          Tab Link 1
+                        </div>
+                      </MockStyledComponent>
+                    </ForwardRef>
+                  </TabComponent>
+                  <TabComponent
+                    $orientation="horizontal"
+                    active={false}
+                    disabled={false}
+                    expanded={false}
                     id="1"
+                    key="1/.1"
                     onClick={[Function]}
                     onKeyDown={[Function]}
-                    role="tab"
-                    styled-component="true"
-                    tabIndex={0}
+                    onSelect={[Function]}
+                    title="Tab Link 2"
                   >
-                    Tab Link 2
-                  </div>
-                </MockStyledComponent>
-              </TabComponent>
-              <TabComponent
-                $orientation="horizontal"
-                active={false}
-                disabled={false}
-                expanded={false}
-                id="2"
-                key="2/.2"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                onSelect={[Function]}
-                title="Tab Link 3"
-              >
-                <MockStyledComponent
-                  $active={false}
-                  $disabled={false}
-                  $orientation="horizontal"
-                  aria-disabled={null}
-                  aria-selected={false}
-                  id="2"
-                  onClick={[Function]}
-                  onKeyDown={[Function]}
-                  role="tab"
-                  tabIndex={0}
-                >
-                  <div
-                    aria-disabled={null}
-                    aria-selected={false}
+                    <ForwardRef
+                      $active={false}
+                      $disabled={false}
+                      $orientation="horizontal"
+                      aria-disabled={null}
+                      aria-selected={false}
+                      id="1"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="tab"
+                      tabIndex={0}
+                    >
+                      <MockStyledComponent
+                        $active={false}
+                        $disabled={false}
+                        $orientation="horizontal"
+                        aria-disabled={null}
+                        aria-selected={false}
+                        forwardedRef={null}
+                        id="1"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="tab"
+                        tabIndex={0}
+                      >
+                        <div
+                          aria-disabled={null}
+                          aria-selected={false}
+                          id="1"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          role="tab"
+                          styled-component="true"
+                          tabIndex={0}
+                          test-style={
+                            Object {
+                              ":focus": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              ":hover": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              "borderBottom": "none",
+                              "boxSizing": "border-box",
+                              "color": "$theme.colors.tabColor",
+                              "cursor": "pointer",
+                              "display": "inline-block",
+                              "fontFamily": "$theme.typography.font300.fontFamily",
+                              "fontSize": "$theme.typography.font300.fontSize",
+                              "fontWeight": "$theme.typography.font300.fontWeight",
+                              "lineHeight": "$theme.typography.font300.lineHeight",
+                              "marginLeft": "$theme.sizing.scale200",
+                              "marginRight": "$theme.sizing.scale200",
+                              "paddingBottom": "$theme.sizing.scale600",
+                              "paddingLeft": "$theme.sizing.scale300",
+                              "paddingRight": "$theme.sizing.scale300",
+                              "paddingTop": "$theme.sizing.scale600",
+                            }
+                          }
+                        >
+                          Tab Link 2
+                        </div>
+                      </MockStyledComponent>
+                    </ForwardRef>
+                  </TabComponent>
+                  <TabComponent
+                    $orientation="horizontal"
+                    active={false}
+                    disabled={false}
+                    expanded={false}
                     id="2"
+                    key="2/.2"
                     onClick={[Function]}
                     onKeyDown={[Function]}
-                    role="tab"
-                    styled-component="true"
-                    tabIndex={0}
+                    onSelect={[Function]}
+                    title="Tab Link 3"
                   >
-                    Tab Link 3
-                  </div>
-                </MockStyledComponent>
-              </TabComponent>
-            </div>
-          </MockStyledComponent>
-          <MockStyledComponent
-            $active={true}
-            $disabled={false}
-            $orientation="horizontal"
-            aria-labelledby="0"
-            key="0/.0"
-            role="tabpanel"
-          >
-            <div
+                    <ForwardRef
+                      $active={false}
+                      $disabled={false}
+                      $orientation="horizontal"
+                      aria-disabled={null}
+                      aria-selected={false}
+                      id="2"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="tab"
+                      tabIndex={0}
+                    >
+                      <MockStyledComponent
+                        $active={false}
+                        $disabled={false}
+                        $orientation="horizontal"
+                        aria-disabled={null}
+                        aria-selected={false}
+                        forwardedRef={null}
+                        id="2"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="tab"
+                        tabIndex={0}
+                      >
+                        <div
+                          aria-disabled={null}
+                          aria-selected={false}
+                          id="2"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          role="tab"
+                          styled-component="true"
+                          tabIndex={0}
+                          test-style={
+                            Object {
+                              ":focus": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              ":hover": Object {
+                                "color": "$theme.colors.primary400",
+                              },
+                              "borderBottom": "none",
+                              "boxSizing": "border-box",
+                              "color": "$theme.colors.tabColor",
+                              "cursor": "pointer",
+                              "display": "inline-block",
+                              "fontFamily": "$theme.typography.font300.fontFamily",
+                              "fontSize": "$theme.typography.font300.fontSize",
+                              "fontWeight": "$theme.typography.font300.fontWeight",
+                              "lineHeight": "$theme.typography.font300.lineHeight",
+                              "marginLeft": "$theme.sizing.scale200",
+                              "marginRight": "$theme.sizing.scale200",
+                              "paddingBottom": "$theme.sizing.scale600",
+                              "paddingLeft": "$theme.sizing.scale300",
+                              "paddingRight": "$theme.sizing.scale300",
+                              "paddingTop": "$theme.sizing.scale600",
+                            }
+                          }
+                        >
+                          Tab Link 3
+                        </div>
+                      </MockStyledComponent>
+                    </ForwardRef>
+                  </TabComponent>
+                </div>
+              </MockStyledComponent>
+            </ForwardRef>
+            <ForwardRef
+              $active={true}
+              $disabled={false}
+              $orientation="horizontal"
               aria-labelledby="0"
+              key="0/.0"
               role="tabpanel"
-              styled-component="true"
             >
-              Tab 1 content
-            </div>
-          </MockStyledComponent>
-          <MockStyledComponent
-            $active={false}
-            $disabled={false}
-            $orientation="horizontal"
-            aria-labelledby="1"
-            key="1/.1"
-            role="tabpanel"
-          >
-            <div
+              <MockStyledComponent
+                $active={true}
+                $disabled={false}
+                $orientation="horizontal"
+                aria-labelledby="0"
+                forwardedRef={null}
+                role="tabpanel"
+              >
+                <div
+                  aria-labelledby="0"
+                  role="tabpanel"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "display": "block",
+                      "fontFamily": "$theme.typography.font400.fontFamily",
+                      "fontSize": "$theme.typography.font400.fontSize",
+                      "fontWeight": "$theme.typography.font400.fontWeight",
+                      "lineHeight": "$theme.typography.font400.lineHeight",
+                      "paddingBottom": "$theme.sizing.scale500",
+                      "paddingLeft": "$theme.sizing.scale800",
+                      "paddingRight": "$theme.sizing.scale800",
+                      "paddingTop": "$theme.sizing.scale500",
+                    }
+                  }
+                >
+                  Tab 1 content
+                </div>
+              </MockStyledComponent>
+            </ForwardRef>
+            <ForwardRef
+              $active={false}
+              $disabled={false}
+              $orientation="horizontal"
               aria-labelledby="1"
+              key="1/.1"
               role="tabpanel"
-              styled-component="true"
-            />
-          </MockStyledComponent>
-          <MockStyledComponent
-            $active={false}
-            $disabled={false}
-            $orientation="horizontal"
-            aria-labelledby="2"
-            key="2/.2"
-            role="tabpanel"
-          >
-            <div
+            >
+              <MockStyledComponent
+                $active={false}
+                $disabled={false}
+                $orientation="horizontal"
+                aria-labelledby="1"
+                forwardedRef={null}
+                role="tabpanel"
+              >
+                <div
+                  aria-labelledby="1"
+                  role="tabpanel"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "display": "none",
+                      "fontFamily": "$theme.typography.font400.fontFamily",
+                      "fontSize": "$theme.typography.font400.fontSize",
+                      "fontWeight": "$theme.typography.font400.fontWeight",
+                      "lineHeight": "$theme.typography.font400.lineHeight",
+                      "paddingBottom": "$theme.sizing.scale500",
+                      "paddingLeft": "$theme.sizing.scale800",
+                      "paddingRight": "$theme.sizing.scale800",
+                      "paddingTop": "$theme.sizing.scale500",
+                    }
+                  }
+                />
+              </MockStyledComponent>
+            </ForwardRef>
+            <ForwardRef
+              $active={false}
+              $disabled={false}
+              $orientation="horizontal"
               aria-labelledby="2"
+              key="2/.2"
               role="tabpanel"
-              styled-component="true"
-            />
-          </MockStyledComponent>
-        </div>
-      </MockStyledComponent>
+            >
+              <MockStyledComponent
+                $active={false}
+                $disabled={false}
+                $orientation="horizontal"
+                aria-labelledby="2"
+                forwardedRef={null}
+                role="tabpanel"
+              >
+                <div
+                  aria-labelledby="2"
+                  role="tabpanel"
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "display": "none",
+                      "fontFamily": "$theme.typography.font400.fontFamily",
+                      "fontSize": "$theme.typography.font400.fontSize",
+                      "fontWeight": "$theme.typography.font400.fontWeight",
+                      "lineHeight": "$theme.typography.font400.lineHeight",
+                      "paddingBottom": "$theme.sizing.scale500",
+                      "paddingLeft": "$theme.sizing.scale800",
+                      "paddingRight": "$theme.sizing.scale800",
+                      "paddingTop": "$theme.sizing.scale500",
+                    }
+                  }
+                />
+              </MockStyledComponent>
+            </ForwardRef>
+          </div>
+        </MockStyledComponent>
+      </ForwardRef>
     </Tabs>
   </StatefulTabs>
 </Component>

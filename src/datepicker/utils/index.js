@@ -18,6 +18,8 @@ import dfIsSameYear from 'date-fns/isSameYear';
 import endOfMonth from 'date-fns/endOfMonth';
 import getDay from 'date-fns/getDay';
 import getDate from 'date-fns/getDate';
+import getMinutes from 'date-fns/getMinutes';
+import getHours from 'date-fns/getHours';
 import getMonth from 'date-fns/getMonth';
 import getYear from 'date-fns/getYear';
 import isAfter from 'date-fns/isAfter';
@@ -25,6 +27,9 @@ import isBefore from 'date-fns/isBefore';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import max from 'date-fns/max';
 import min from 'date-fns/min';
+import setSeconds from 'date-fns/setSeconds';
+import setMinutes from 'date-fns/setMinutes';
+import setHours from 'date-fns/setHours';
 import setMonth from 'date-fns/setMonth';
 import setYear from 'date-fns/setYear';
 import startOfMonth from 'date-fns/startOfMonth';
@@ -54,12 +59,12 @@ export function formatDate(date: Date, formatStr: string, locale: any) {
 
 // ** Date Setters **
 
-export {setMonth, setYear};
+export {setSeconds, setMinutes, setHours, setMonth, setYear};
 
 // ** Date Getters **
 
 // getDay Returns day of week, getDate returns day of month
-export {getMonth, getYear, getDay, getDate};
+export {getMinutes, getHours, getMonth, getYear, getDay, getDate};
 
 // eslint-disable-next-line flowtype/no-weak-types
 export function getStartOfWeek(date: Date, locale: any) {

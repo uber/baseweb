@@ -11,7 +11,7 @@ import AutosizeInput from '../autosize-input.js';
 import {StyledInput, StyledInputSizer} from '../styled-components.js';
 
 describe('AutosizeInput component', function() {
-  const props = {value: 'test', id: 'test-id'};
+  const props = {value: 'test', onChange: () => {}, id: 'test-id'};
   const ref = React.createRef();
 
   test('renders correctly', function() {
@@ -21,21 +21,19 @@ describe('AutosizeInput component', function() {
     const renderedSizer = wrapper.find(StyledInputSizer).first();
     expect(renderedInput).toExist();
     expect(renderedInput.props()).toMatchObject({
-      $width: '5px',
+      $width: '2px',
       ...props,
-      $ref: ref,
     });
     expect(renderedSizer).toExist();
     expect(renderedSizer.props()).toMatchObject({
       children: props.value,
-      $ref: wrapper.instance().sizerRef,
     });
   });
 
   test('had correct initial state', function() {
-    const props = {value: 'test'};
+    const props = {value: 'test', onChange: () => {}};
     // $FlowFixMe
     const wrapper = mount(<AutosizeInput {...props} />);
-    expect(wrapper.state().inputWidth).toEqual(5);
+    expect(wrapper.state().inputWidth).toEqual(2);
   });
 });

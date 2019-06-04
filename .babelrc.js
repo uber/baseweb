@@ -5,7 +5,7 @@ module.exports = {
   presets: [
     ['@babel/preset-env', {modules}],
     '@babel/react',
-    '@babel/preset-flow',
+    ['@babel/preset-flow', {all: true}],
   ],
   plugins: [
     './babel/cup.js',

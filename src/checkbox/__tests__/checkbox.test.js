@@ -57,54 +57,6 @@ describe('Stateless checkbox', function() {
   });
 
   test.each([['Root'], ['Label'], ['Checkmark'], ['Input']])(
-    'should send props to %s',
-    subcomponent => {
-      const mockComp: any = jest.fn(() => <div>{subcomponent}</div>);
-      overrides[subcomponent] = mockComp;
-      wrapper = mount(<StatelessCheckbox {...allProps} />);
-      const instance = wrapper.instance();
-      const sharedProps = {
-        $isError: allProps.isError,
-        $checked: allProps.checked,
-        $isIndeterminate: allProps.isIndeterminate,
-        $required: allProps.required,
-        $disabled: allProps.disabled,
-      };
-      const rootEvents = {
-        onMouseEnter: instance.onMouseEnter,
-        onMouseLeave: instance.onMouseLeave,
-        onMouseUp: instance.onMouseUp,
-        onMouseDown: instance.onMouseDown,
-      };
-      events = {
-        onFocus: instance.onFocus,
-        onBlur: instance.onBlur,
-        ...events,
-      };
-      const actualProps = mockComp.mock.calls[0][0];
-      const expectedProps = {
-        Root: {
-          ...sharedProps,
-          ...rootEvents,
-        },
-        Label: {
-          ...sharedProps,
-          $labelPlacement: allProps.labelPlacement,
-        },
-        Checkmark: sharedProps,
-        Input: {
-          type: 'checkbox',
-          disabled: false,
-          $ref: allProps.inputRef,
-          ...sharedProps,
-          ...events,
-        },
-      };
-      expect(actualProps).toMatchObject(expectedProps[subcomponent]);
-    },
-  );
-
-  test.each([['Root'], ['Label'], ['Checkmark'], ['Input']])(
     'should default to standard subcomponent for %s',
     subcomponent => {
       wrapper = mount(<StatelessCheckbox {...allProps} />);

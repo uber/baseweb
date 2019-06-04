@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import {withStyle} from 'styletron-react';
 import {styled} from 'baseui';
 import {
   StyledTable,
@@ -30,11 +31,11 @@ const Container = styled('div', {
   height: '400px',
 });
 
-const SmallerHeadCell = styled(StyledHeadCell, {
+const SmallerHeadCell = withStyle(StyledHeadCell, {
   maxWidth: '30px',
 });
 
-const SmallerCell = styled(StyledCell, {
+const SmallerCell = withStyle(StyledCell, {
   maxWidth: '30px',
 });
 

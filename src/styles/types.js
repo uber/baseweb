@@ -171,6 +171,7 @@ export type ColorsT = {
   tickBorder: string,
   tickBorderError: string,
   tickMarkFill: string,
+  tickMarkFillDisabled: string,
 
   // Slider/Toggle
   sliderTrackFill: string,
@@ -197,9 +198,17 @@ export type ColorsT = {
 
   // Input
   inputFill: string,
+  inputFillEnhancer: string,
   inputFillError: string,
   inputFillDisabled: string,
+  inputFillActive: string,
+  inputFillPositive: string,
   inputTextDisabled: string,
+  inputBorderError: string,
+  inputBorderPositive: string,
+  inputEnhancerFill: string,
+  inputEnhancerFillDisabled: string,
+  inputEnhancerTextDisabled: string,
 
   // Notification
   notificationPrimaryBackground: string,
@@ -234,18 +243,6 @@ export type ColorsT = {
   shadowError: string,
 
   // Tag
-
-  // Remove this section of theme values in next major version
-  tagBackground: string,
-  tagNeutralBackground: string,
-  tagPrimaryBackground: string,
-  tagPositiveBackground: string,
-  tagWarningBackground: string,
-  tagNegativeBackground: string,
-  tagRGBGradient: string,
-  tagRGBGradientSecondary: string,
-  // ^^^^^^^
-
   tagSolidRampUnit: string,
   tagSolidHoverRampUnit: string,
   tagSolidActiveRampUnit: string,
@@ -400,6 +397,8 @@ export type TypographyT = {
   font350: Font,
   font400: Font,
   font450: Font,
+  font460: Font,
+  font470: Font,
   font500: Font,
   font600: Font,
   font700: Font,
@@ -410,7 +409,18 @@ export type TypographyT = {
 
 export type Font = {
   fontFamily: string,
-  fontWeight: string | number,
+  // eslint-disable-next-line flowtype/space-after-type-colon
+  fontWeight:
+    | '-moz-initial'
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'unset'
+    | 'bold'
+    | 'normal'
+    | 'bolder'
+    | 'lighter'
+    | number,
   fontSize: string,
   lineHeight: string | number,
 };
@@ -424,6 +434,7 @@ export type SizingT = {
   scale500: string,
   scale550: string,
   scale600: string,
+  scale650: string,
   scale700: string,
   scale800: string,
   scale900: string,
@@ -476,6 +487,7 @@ export type BordersT = {
   radius100: string,
   radius200: string,
   radius300: string,
+  radius400: string,
 };
 
 export type ZIndexT = {

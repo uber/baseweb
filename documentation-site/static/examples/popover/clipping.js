@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
+import {Paragraph1, Label1} from 'baseui/typography';
 
 export default () => (
   <div style={{height: '300px', overflow: 'auto'}}>
@@ -19,11 +20,11 @@ export default () => (
         dismissOnEsc={false}
         dismissOnClickOutside={false}
         content={() => (
-          <Block padding="scale500" maxWidth="200px">
+          <Paragraph1 padding="scale500" maxWidth="200px">
             Popover will reposition itself to avoid being clipped!
             <br />
-            <strong>Try scrolling in this box...</strong>
-          </Block>
+            <Label1> Try scrolling in this box...</Label1>
+          </Paragraph1>
         )}
         placement={PLACEMENT.top}
       >

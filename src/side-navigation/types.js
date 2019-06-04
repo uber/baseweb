@@ -31,15 +31,6 @@ export type SharedPropsT = {
   $selectable: boolean,
 };
 
-type renderItemT = (
-  item: *,
-  props: SharedPropsT & {
-    onSelect?: ({item: *, event: Event | KeyboardEvent}) => mixed,
-    onClick?: (event: Event) => mixed,
-    onKeyDown?: (event: KeyboardEvent) => mixed,
-  },
-) => React.Node;
-
 export type NavPropsT = {
   /** Defines the current active itemId. Used for the default calculation of the $active prop */
   activeItemId: string,
@@ -60,13 +51,11 @@ export type NavPropsT = {
     NavItem?: OverrideT<*>,
     SubNavContainer?: OverrideT<*>,
   },
-  /** Optional render function that is called instead default item rendering */
-  renderItem: ?renderItemT,
   /** Optional transform function that is called for each Item */
   mapItem: ?(item: Item) => Item,
 };
 
-export type Item = $ReadOnly<{
+export type Item = {
   /** Navigation item's title to render */
   title: React.Node,
   /**
@@ -77,8 +66,8 @@ export type Item = $ReadOnly<{
     */
   itemId?: string,
   /** A list of sub-navigation items */
-  subnav?: Item[],
-}>;
+  subNav?: Item[],
+};
 
 export type NavItemPropsT = SharedPropsT & {
   item: Item,
@@ -87,7 +76,6 @@ export type NavItemPropsT = SharedPropsT & {
     NavLink?: OverrideT<*>,
     NavItem?: OverrideT<*>,
   },
-  renderItem?: ?renderItemT,
 };
 
 export type StatefulContainerPropsT = {

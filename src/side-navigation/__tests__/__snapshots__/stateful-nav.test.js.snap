@@ -7,10 +7,10 @@ exports[`Navigation basic render: renders <Navigation/> as a child 1`] = `
   items={
     Array [
       Object {
-        "subnav": Array [
+        "subNav": Array [
           Object {
             "itemId": "#level1.1.2",
-            "subnav": Array [
+            "subNav": Array [
               Object {
                 "itemId": "#level1.1.2.2",
                 "title": "Light",
@@ -34,7 +34,6 @@ exports[`Navigation basic render: renders <Navigation/> as a child 1`] = `
   mapItem={null}
   onChange={[Function]}
   overrides={Object {}}
-  renderItem={null}
 />
 `;
 
@@ -44,10 +43,10 @@ exports[`Navigation basic render: renders <StatefulContainer/> 1`] = `
   items={
     Array [
       Object {
-        "subnav": Array [
+        "subNav": Array [
           Object {
             "itemId": "#level1.1.2",
-            "subnav": Array [
+            "subNav": Array [
               Object {
                 "itemId": "#level1.1.2.2",
                 "title": "Light",

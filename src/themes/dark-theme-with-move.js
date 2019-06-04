@@ -24,30 +24,6 @@ export const DarkThemeMove = createTheme(
     name: 'dark-theme-with-move',
     ...colors,
     typography: {
-      font250: {
-        fontWeight: 500,
-      },
-      font350: {
-        fontWeight: 500,
-      },
-      font450: {
-        fontWeight: 500,
-      },
-      font500: {
-        fontWeight: 500,
-      },
-      font600: {
-        fontWeight: 500,
-      },
-      font700: {
-        fontWeight: 500,
-      },
-      font800: {
-        fontWeight: 500,
-      },
-      font900: {
-        fontWeight: 500,
-      },
       font1100: {
         fontFamily: secondaryFontFamily,
       },

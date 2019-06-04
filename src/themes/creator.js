@@ -219,17 +219,23 @@ export default function createTheme(
 
       // Inputs
       inputFill: primitives.mono200,
-      inputFillEnhancer: primitives.mono400,
       inputFillError: primitives.negative50,
-      inputFillDisabled: primitives.mono300,
+      inputFillDisabled: primitives.mono200,
+      inputFillActive: primitives.mono200,
+      inputFillPositive: primitives.positive50,
       inputTextDisabled: primitives.mono600,
+      inputBorderError: primitives.negative200,
+      inputBorderPositive: primitives.positive200,
+      inputEnhancerFill: primitives.mono300,
+      inputEnhancerFillDisabled: primitives.mono300,
+      inputEnhancerTextDisabled: primitives.mono600,
 
       // Menu
       menuFill: primitives.mono100,
       menuFillHover: primitives.mono200,
       menuFontDefault: primitives.mono800,
       menuFontDisabled: primitives.mono500,
-      menuFontHighlighted: primitives.primary400,
+      menuFontHighlighted: primitives.mono1000,
       menuFontSelected: primitives.mono1000,
 
       // Pagination
@@ -253,18 +259,6 @@ export default function createTheme(
       notificationNegativeText: primitives.negative500,
 
       // Tag
-
-      // Remove this section of theme values in next major version
-      tagBackground: primitives.mono100,
-      tagNeutralBackground: primitives.mono900,
-      tagPrimaryBackground: primitives.primary400,
-      tagPositiveBackground: primitives.positive400,
-      tagWarningBackground: primitives.warning400,
-      tagNegativeBackground: primitives.negative400,
-      tagRGBGradient: '255, 255, 255',
-      tagRGBGradientSecondary: '0, 0, 0',
-      // ^^^^^^^
-
       tagSolidRampUnit: '400',
       tagSolidHoverRampUnit: '50',
       tagSolidActiveRampUnit: '100',
@@ -426,7 +420,7 @@ export default function createTheme(
       font250: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '12px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '20px',
       },
       font300: {
@@ -438,7 +432,7 @@ export default function createTheme(
       font350: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '14px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '20px',
       },
       font400: {
@@ -450,37 +444,49 @@ export default function createTheme(
       font450: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '16px',
-        fontWeight: 'bold',
+        fontWeight: 500,
+        lineHeight: '24px',
+      },
+      font460: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '18px',
+        fontWeight: 'normal',
+        lineHeight: '24px',
+      },
+      font470: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '18px',
+        fontWeight: 500,
         lineHeight: '24px',
       },
       font500: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '20px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '28px',
       },
       font600: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '24px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '36px',
       },
       font700: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '32px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '48px',
       },
       font800: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '40px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '56px',
       },
       font900: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '52px',
-        fontWeight: 'bold',
+        fontWeight: 500,
         lineHeight: '68px',
       },
       font1000: {
@@ -505,7 +511,9 @@ export default function createTheme(
       scale500: '12px',
       scale550: '14px',
       scale600: '16px',
+      scale650: '18px',
       scale700: '20px',
+      scale750: '22px',
       scale800: '24px',
       scale900: '32px',
       scale1000: '40px',
@@ -577,12 +585,6 @@ export default function createTheme(
     zIndex: {
       modal: 2000,
     },
-    // Remove this section in next major version
-    // https://github.com/uber-web/baseui/pull/1184
-    tooltip: {
-      backgroundColor: primitives.mono900,
-    },
-    // ^^^^^^^
   };
 
   // to remove the FlowFixMe, we have to make deepMerge accept a ThemeT

@@ -24,17 +24,7 @@ export default class Datepicker extends React.Component<
   },
 > {
   static defaultProps = {
-    'aria-label': null,
-    'aria-labelledby': null,
     'aria-describedby': 'datepicker--screenreader--message--input',
-    disabled: false,
-    error: false,
-    formatDisplayValue: null,
-    formatString: 'YYYY/MM/DD',
-    onChange: () => {},
-    overrides: {},
-    placeholder: 'YYYY/MM/DD',
-    required: false,
     value: null,
   };
 
@@ -64,7 +54,7 @@ export default class Datepicker extends React.Component<
       isPseudoFocused,
       ...(calendarFocused === null ? {} : {calendarFocused}),
     });
-    this.props.onChange(data);
+    this.props.onChange && this.props.onChange(data);
   };
 
   formatDate(date: ?Date | Array<Date>, formatString: string) {
@@ -79,7 +69,7 @@ export default class Datepicker extends React.Component<
 
   formatDisplayValue(date: ?Date | Array<Date>) {
     const formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
-    return formatDisplayValue(date, this.props.formatString);
+    return formatDisplayValue(date, this.props.formatString || 'YYYY/MM/DD');
   }
 
   open = () => {
@@ -183,24 +173,26 @@ export default class Datepicker extends React.Component<
               }
               {...popoverProps}
             >
-              <InputComponent
-                aria-disabled={this.props.disabled}
-                aria-label={
-                  this.props['aria-label'] || locale.datepicker.ariaLabel
-                }
-                error={this.props.error}
-                aria-labelledby={this.props['aria-labelledby']}
-                aria-describedby={this.props['aria-describedby']}
-                aria-required={this.props.required || null}
-                disabled={this.props.disabled}
-                value={this.formatDisplayValue(this.props.value)}
-                onFocus={this.open}
-                onBlur={this.handleInputBlur}
-                onKeyDown={this.handleKeyDown}
-                placeholder={this.props.placeholder}
-                required={this.props.required}
-                {...inputProps}
-              />
+              <span>
+                <InputComponent
+                  aria-disabled={this.props.disabled}
+                  aria-label={
+                    this.props['aria-label'] || locale.datepicker.ariaLabel
+                  }
+                  error={this.props.error}
+                  aria-labelledby={this.props['aria-labelledby']}
+                  aria-describedby={this.props['aria-describedby']}
+                  aria-required={this.props.required || null}
+                  disabled={this.props.disabled}
+                  value={this.formatDisplayValue(this.props.value)}
+                  onFocus={this.open}
+                  onBlur={this.handleInputBlur}
+                  onKeyDown={this.handleKeyDown}
+                  placeholder={this.props.placeholder || 'YYYY/MM/DD'}
+                  required={this.props.required}
+                  {...inputProps}
+                />
+              </span>
             </PopoverComponent>
             <p
               id="datepicker--screenreader--message--input"

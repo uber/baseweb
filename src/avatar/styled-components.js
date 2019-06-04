@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
-function getSize(props: StylePropsT) {
+function getSize(props) {
   const {$size, $theme} = props;
 
   const defaultSize = $theme.sizing.scale1000;
@@ -17,7 +17,7 @@ function getSize(props: StylePropsT) {
   return $theme.sizing[size] || size;
 }
 
-export const Avatar = styled('img', (props: StylePropsT) => {
+export const Avatar = styled<StylePropsT>('img', props => {
   const themedSize = getSize(props);
 
   return {
@@ -33,7 +33,7 @@ export const Avatar = styled('img', (props: StylePropsT) => {
   };
 });
 
-export const Initials = styled('div', (props: StylePropsT) => ({
+export const Initials = styled<StylePropsT>('div', props => ({
   ...props.$theme.typography.font400,
   color: props.$theme.colors.mono100,
   alignItems: 'center',
@@ -42,11 +42,11 @@ export const Initials = styled('div', (props: StylePropsT) => ({
   height: '100%',
 }));
 
-export const Root = styled('div', (props: StylePropsT) => {
+export const Root = styled<StylePropsT>('div', props => {
   const {$didImageFailToLoad} = props;
   const themedSize = getSize(props);
 
-  return {
+  return ({
     backgroundColor: $didImageFailToLoad ? props.$theme.colors.primary : null,
     borderTopLeftRadius: '50%',
     borderTopRightRadius: '50%',
@@ -59,5 +59,5 @@ export const Root = styled('div', (props: StylePropsT) => {
     // since image is not rendered, set the height/width
     height: $didImageFailToLoad ? themedSize : null,
     width: $didImageFailToLoad ? themedSize : null,
-  };
+  }: {});
 });

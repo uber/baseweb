@@ -21,6 +21,8 @@ import {
   CLOSE_SOURCE,
 } from '../index.js';
 
+import {styled} from '../../styles/index.js';
+
 jest.useFakeTimers();
 
 jest.mock('../../layer/index.js', () => {
@@ -147,26 +149,19 @@ describe('Modal', () => {
   });
 
   test('override components', () => {
-    const mock = () =>
-      jest.fn().mockImplementation(({children}) => <div>{children}</div>);
-    const Root = mock();
-    const Backdrop = mock();
-    const DialogContainer = mock();
-    const Dialog = mock();
-    const Close = mock();
+    const Root = styled('div', {});
+    const Backdrop = styled('div', {});
+    const DialogContainer = styled('div', {});
+    const Dialog = styled('div', {});
+    const Close = styled('div', {});
     wrapper = mount(
       <Modal
         isOpen
         overrides={{
-          // $FlowFixMe
           Root,
-          // $FlowFixMe
           Backdrop,
-          // $FlowFixMe
           DialogContainer,
-          // $FlowFixMe
           Dialog,
-          // $FlowFixMe
           Close,
         }}
       >
