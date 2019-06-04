@@ -16,6 +16,7 @@ import {
   DEFAULT_MAX_DROPDOWN_WIDTH,
 } from './constants.js';
 import CountrySelectDropdown from './country-select-dropdown.js';
+import {Block} from '../block/index.js';
 import {Select as DefaultSelect} from '../select/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
@@ -90,24 +91,27 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   );
   const selectOverrides = mergeOverrides(baseOverrides, overrides);
   return (
-    <Select
-      size={size}
-      value={[country]}
-      onChange={event => {
-        // After choosing a country, shift focus to the text input
-        if (inputRef && inputRef.current) {
-          inputRef.current.focus();
-        }
-        onCountryChange(event);
-      }}
-      options={Object.values(COUNTRIES)}
-      clearable={false}
-      searchable={false}
-      getValueLabel={(value: {option: CountryT}) => {
-        return <StyledFlag iso={value.option.id} $size={size} />;
-      }}
-      overrides={selectOverrides}
-      {...selectProps}
-    />
+    <Block display="flex" alignItems="center">
+      <Select
+        size={size}
+        value={[country]}
+        onChange={event => {
+          // After choosing a country, shift focus to the text input
+          if (inputRef && inputRef.current) {
+            inputRef.current.focus();
+          }
+          onCountryChange(event);
+        }}
+        options={Object.values(COUNTRIES)}
+        clearable={false}
+        searchable={false}
+        getValueLabel={(value: {option: CountryT}) => {
+          return <StyledFlag iso={value.option.id} $size={size} />;
+        }}
+        overrides={selectOverrides}
+        {...selectProps}
+      />
+      <Block>{country.dialCode}</Block>
+    </Block>
   );
 }
