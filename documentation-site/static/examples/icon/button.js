@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Block} from 'baseui/block';
-import {Button, SHAPE} from 'baseui/button';
+import {Button} from 'baseui/button';
 
 import ChevronLeft from 'baseui/icon/chevron-left';
 import ChevronRight from 'baseui/icon/chevron-right';
@@ -17,7 +17,7 @@ export default () => (
     </Block>
 
     <Block>
-      <Button shape={SHAPE.square}>
+      <Button>
         <Upload />
       </Button>
     </Block>

@@ -16,7 +16,7 @@ import {HEADER_BREAKPOINT} from './header-navigation';
 import posts from '../posts';
 
 const MetaData = styled('h2', ({$theme}) => ({
-  color: $theme.colors.mono700,
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   lineHeight: $theme.sizing.scale600,

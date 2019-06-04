@@ -7,11 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {SIZE, SIZE_WIDTHS} from './constants.js';
-import type {
-  SharedStylePropsT,
-  SizePropT,
-  StyledComponentPropT,
-} from './types.js';
+import type {SharedStylePropsArgT, SizePropT} from './types.js';
 
 function getSizeStyles($size: SizePropT) {
   const styles: {
@@ -37,7 +33,7 @@ function getSizeStyles($size: SizePropT) {
   return styles;
 }
 
-export const Root = styled('div', (props: SharedStylePropsT) => {
+export const Root = styled<SharedStylePropsArgT>('div', props => {
   const {$isOpen} = props;
   return {
     position: 'fixed',
@@ -50,7 +46,7 @@ export const Root = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-export const Backdrop = styled('div', (props: SharedStylePropsT) => {
+export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
   const {$animate, $isOpen, $isVisible, $theme} = props;
   return {
     position: 'fixed',
@@ -74,7 +70,7 @@ export const Backdrop = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-export const DialogContainer = styled('div', (props: SharedStylePropsT) => {
+export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -86,18 +82,11 @@ export const DialogContainer = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-export const Dialog = styled('div', (props: SharedStylePropsT) => {
+export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius200
-    : 0;
-  return {
+  return ({
     position: 'relative',
     backgroundColor: $theme.colors.backgroundAlt,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
     marginLeft: $theme.sizing.scale600,
     marginTop: $theme.sizing.scale600,
     marginRight: $theme.sizing.scale600,
@@ -115,7 +104,6 @@ export const Dialog = styled('div', (props: SharedStylePropsT) => {
           transitionTimingFunction: $theme.animation.easeOutCurve,
         }
       : null),
-
     // Reset interactivity properties set by container
     userSelect: 'text',
     pointerEvents: $isOpen ? 'all' : 'none',
@@ -124,10 +112,10 @@ export const Dialog = styled('div', (props: SharedStylePropsT) => {
     ':focus': {
       outline: 'none',
     },
-  };
+  }: {});
 });
 
-export const Close = styled('button', (props: SharedStylePropsT) => {
+export const Close = styled<SharedStylePropsArgT>('button', props => {
   const {$theme} = props;
   return {
     // Reset button styles
@@ -158,7 +146,7 @@ export const Close = styled('button', (props: SharedStylePropsT) => {
   };
 });
 
-export const ModalHeader = styled('div', ({$theme}: StyledComponentPropT) => ({
+export const ModalHeader = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font500,
   color: $theme.colors.foreground,
   marginTop: $theme.sizing.scale900,
@@ -168,7 +156,7 @@ export const ModalHeader = styled('div', ({$theme}: StyledComponentPropT) => ({
   marginRight: $theme.sizing.scale900,
 }));
 
-export const ModalBody = styled('div', ({$theme}: StyledComponentPropT) => ({
+export const ModalBody = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font300,
   color: $theme.colors.foregroundAlt,
   marginTop: $theme.sizing.scale600,
@@ -177,7 +165,7 @@ export const ModalBody = styled('div', ({$theme}: StyledComponentPropT) => ({
   marginBottom: $theme.sizing.scale700,
 }));
 
-export const ModalFooter = styled('div', ({$theme}: StyledComponentPropT) => ({
+export const ModalFooter = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font300,
   marginTop: $theme.sizing.scale700,
   marginLeft: $theme.sizing.scale800,

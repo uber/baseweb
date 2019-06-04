@@ -14,7 +14,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   overrides={Object {}}
   variant="light"
 >
-  <MockStyledComponent
+  <ForwardRef
     $clickable={false}
     $closeable={true}
     $disabled={false}
@@ -29,70 +29,185 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     role="button"
     tabIndex={null}
   >
-    <span
+    <MockStyledComponent
+      $clickable={false}
+      $closeable={true}
+      $disabled={false}
+      $isFocused={false}
+      $isHovered={false}
+      $kind="primary"
+      $variant="light"
       aria-label="button"
       data-baseweb="tag"
+      forwardedRef={null}
       onClick={null}
       onKeyDown={[Function]}
       role="button"
-      styled-component="true"
       tabIndex={null}
     >
-      <MockStyledComponent>
-        <span
-          styled-component="true"
-        >
-          Some tag
-        </span>
-      </MockStyledComponent>
-      <MockStyledComponent
-        $clickable={false}
-        $closeable={true}
-        $disabled={false}
-        $isFocused={false}
-        $isHovered={false}
-        $kind="primary"
-        $variant="light"
-        aria-label="close button"
-        onClick={[MockFunction]}
+      <span
+        aria-label="button"
+        data-baseweb="tag"
+        onClick={null}
         onKeyDown={[Function]}
         role="button"
-        tabIndex={0}
+        styled-component="true"
+        tabIndex={null}
+        test-style={
+          Object {
+            ":focus": Object {},
+            ":hover": Object {},
+            "alignItems": "center",
+            "backgroundColor": "$theme.colors.tagPrimaryLightBackground",
+            "borderBottomLeftRadius": "$theme.borders.radius400",
+            "borderBottomRightRadius": "$theme.borders.radius400",
+            "borderColor": null,
+            "borderStyle": "solid",
+            "borderTopLeftRadius": "$theme.borders.radius400",
+            "borderTopRightRadius": "$theme.borders.radius400",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "$theme.colors.tagPrimaryLightFont",
+            "cursor": "default",
+            "display": "inline-flex",
+            "fontFamily": "$theme.typography.font250.fontFamily",
+            "fontSize": "$theme.typography.font250.fontSize",
+            "fontWeight": "$theme.typography.font250.fontWeight",
+            "height": "$theme.sizing.scale800",
+            "justifyContent": "space-between",
+            "lineHeight": "$theme.typography.font250.lineHeight",
+            "marginBottom": "5px",
+            "marginLeft": "5px",
+            "marginRight": "5px",
+            "marginTop": "5px",
+            "outline": "none",
+            "paddingBottom": "$theme.sizing.scale0",
+            "paddingLeft": "$theme.sizing.scale500",
+            "paddingRight": null,
+            "paddingTop": "$theme.sizing.scale0",
+          }
+        }
       >
-        <span
+        <ForwardRef>
+          <MockStyledComponent
+            forwardedRef={null}
+          >
+            <span
+              styled-component="true"
+              test-style={
+                Object {
+                  "maxWidth": "$theme.sizing.scale3200",
+                  "overflow": "hidden",
+                  "textOverflow": "ellipsis",
+                  "whiteSpace": "nowrap",
+                }
+              }
+            >
+              Some tag
+            </span>
+          </MockStyledComponent>
+        </ForwardRef>
+        <ForwardRef
+          $clickable={false}
+          $closeable={true}
+          $disabled={false}
+          $isFocused={false}
+          $isHovered={false}
+          $kind="primary"
+          $variant="light"
           aria-label="close button"
           onClick={[MockFunction]}
           onKeyDown={[Function]}
           role="button"
-          styled-component="true"
           tabIndex={0}
         >
           <MockStyledComponent
-            fill="none"
-            height="10"
-            viewBox="0 0 8 8"
-            width="10"
-            xmlns="http://www.w3.org/2000/svg"
+            $clickable={false}
+            $closeable={true}
+            $disabled={false}
+            $isFocused={false}
+            $isHovered={false}
+            $kind="primary"
+            $variant="light"
+            aria-label="close button"
+            forwardedRef={null}
+            onClick={[MockFunction]}
+            onKeyDown={[Function]}
+            role="button"
+            tabIndex={0}
           >
-            <svg
-              fill="none"
-              height="10"
+            <span
+              aria-label="close button"
+              onClick={[MockFunction]}
+              onKeyDown={[Function]}
+              role="button"
               styled-component="true"
-              viewBox="0 0 8 8"
-              width="10"
-              xmlns="http://www.w3.org/2000/svg"
+              tabIndex={0}
+              test-style={
+                Object {
+                  ":focus": Object {
+                    "backgroundColor": "$theme.colors.tagPrimaryLightActive",
+                    "color": "$theme.colors.tagPrimaryLightFontHover",
+                  },
+                  ":hover": Object {
+                    "backgroundColor": "$theme.colors.tagPrimaryLightActive",
+                    "color": "$theme.colors.tagPrimaryLightFontHover",
+                  },
+                  "alignItems": "center",
+                  "borderBottomRightRadius": "$theme.borders.radius400",
+                  "borderTopRightRadius": "$theme.borders.radius400",
+                  "cursor": "pointer",
+                  "display": "flex",
+                  "marginLeft": "8px",
+                  "outline": "none",
+                  "paddingBottom": "7px",
+                  "paddingLeft": "8px",
+                  "paddingRight": "8px",
+                  "paddingTop": "7px",
+                  "transitionDuration": "$theme.animation.timing100",
+                  "transitionProperty": "all",
+                  "transitionTimingFunction": "$theme.animation.easeOutCurve",
+                }
+              }
             >
-              <path
-                clipRule="evenodd"
-                d="M0.861278 0.862254C1.12163 0.601905 1.54374 0.601905 1.80409 0.862254L3.99935 3.05752L6.19461 0.862254C6.45496 0.601905 6.87707 0.601905 7.13742 0.862254C7.39777 1.1226 7.39777 1.54471 7.13742 1.80506L4.94216 4.00033L7.13742 6.19559C7.39777 6.45594 7.39777 6.87805 7.13742 7.1384C6.87707 7.39875 6.45496 7.39875 6.19461 7.1384L3.99935 4.94313L1.80409 7.1384C1.54374 7.39875 1.12163 7.39875 0.861278 7.1384C0.600928 6.87805 0.600928 6.45594 0.861278 6.19559L3.05654 4.00033L0.861278 1.80506C0.600928 1.54471 0.600928 1.1226 0.861278 0.862254Z"
-                fill="currentColor"
-                fillRule="evenodd"
-              />
-            </svg>
+              <ForwardRef
+                fill="none"
+                height="10"
+                viewBox="0 0 8 8"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <MockStyledComponent
+                  fill="none"
+                  forwardedRef={null}
+                  height="10"
+                  viewBox="0 0 8 8"
+                  width="10"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <svg
+                    fill="none"
+                    height="10"
+                    styled-component="true"
+                    test-style={Object {}}
+                    viewBox="0 0 8 8"
+                    width="10"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clipRule="evenodd"
+                      d="M0.861278 0.862254C1.12163 0.601905 1.54374 0.601905 1.80409 0.862254L3.99935 3.05752L6.19461 0.862254C6.45496 0.601905 6.87707 0.601905 7.13742 0.862254C7.39777 1.1226 7.39777 1.54471 7.13742 1.80506L4.94216 4.00033L7.13742 6.19559C7.39777 6.45594 7.39777 6.87805 7.13742 7.1384C6.87707 7.39875 6.45496 7.39875 6.19461 7.1384L3.99935 4.94313L1.80409 7.1384C1.54374 7.39875 1.12163 7.39875 0.861278 7.1384C0.600928 6.87805 0.600928 6.45594 0.861278 6.19559L3.05654 4.00033L0.861278 1.80506C0.600928 1.54471 0.600928 1.1226 0.861278 0.862254Z"
+                      fill="currentColor"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </MockStyledComponent>
+              </ForwardRef>
+            </span>
           </MockStyledComponent>
-        </span>
-      </MockStyledComponent>
-    </span>
-  </MockStyledComponent>
+        </ForwardRef>
+      </span>
+    </MockStyledComponent>
+  </ForwardRef>
 </Tag>
 `;

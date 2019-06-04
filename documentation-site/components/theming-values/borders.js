@@ -13,18 +13,18 @@ import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
 
-const StyledBorderBox = styled('div', ({$theme, $border = {}}) => {
-  return {
-    marginTop: $theme.sizing.scale200,
-    height: $theme.sizing.scale4800,
-    backgroundColor: $theme.colors.mono100,
-    borderTopLeftRadius: $theme.borders.radius200,
-    borderTopRightRadius: $theme.borders.radius200,
-    borderBottomRightRadius: $theme.borders.radius200,
-    borderBottomLeftRadius: $theme.borders.radius200,
-    ...$border,
-  };
-});
+// eslint-disable-next-line flowtype/no-weak-types
+const StyledBorderBox = styled<{$border: any}>(
+  'div',
+  ({$theme, $border = {}}) => {
+    return {
+      marginTop: $theme.sizing.scale200,
+      height: $theme.sizing.scale4800,
+      backgroundColor: $theme.colors.mono100,
+      ...$border,
+    };
+  },
+);
 
 function BorderPreview({name, border}) {
   return (

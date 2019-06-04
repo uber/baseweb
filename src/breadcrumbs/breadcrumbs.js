@@ -10,10 +10,11 @@ LICENSE file in the root directory of this source tree.
 import React, {Children} from 'react';
 
 import {LocaleContext} from '../locale/index.js';
+import {ChevronRight} from '../icon/index.js';
 import type {BreadcrumbsPropsT} from './types.js';
 import type {BreadcrumbLocaleT} from './locale.js';
-import {StyledRoot, StyledSeparator, StyledIcon} from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {StyledRoot, StyledSeparator} from './styled-components.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
 type LocaleT = {|locale?: BreadcrumbLocaleT|};
 export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
@@ -22,11 +23,19 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
   const childrenWithSeparators = [];
 
   const [Root, baseRootProps] = getOverrides(overrides.Root, StyledRoot);
-  const [Icon, baseIconProps] = getOverrides(overrides.Icon, StyledIcon);
+  const [Icon, baseIconProps] = getOverrides(overrides.Icon, ChevronRight);
   const [Separator, baseSeparatorProps] = getOverrides(
     overrides.Separator,
     StyledSeparator,
   );
+
+  const iconOverrides = mergeOverrides(
+    {Svg: {style: {verticalAlign: 'text-bottom'}}},
+    // $FlowFixMe
+    baseIconProps && baseIconProps.overrides,
+  );
+  // $FlowFixMe
+  baseIconProps.overrides = iconOverrides;
 
   Children.forEach(props.children, (child, index) => {
     childrenWithSeparators.push(child);

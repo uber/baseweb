@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
 import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants.js';
 import type {OnItemSelectFnT} from '../menu/types.js';
 
@@ -86,6 +85,8 @@ export type PropsT = {
   disabled: boolean,
   /** Defines if the control if in error state. */
   error: boolean,
+  /** Defines if the control if in positive state. */
+  positive: boolean,
   /** Defines if the value is cleared when escape is pressed and the dropdown is closed. */
   escapeClearsValue: boolean,
   /** Defaults to filterOptions that excludes selected options for
@@ -233,6 +234,7 @@ export type AutosizeInputPropsT = {
   defaultValue?: string,
   inputRef: () => void,
   overrides: AutosizeInputOverridesT,
+  $size: SizeT,
 };
 
 export type AutosizeInputStateT = {
@@ -244,6 +246,7 @@ export type SharedStylePropsArgT = {
   $creatable: boolean,
   $disabled: boolean,
   $error: boolean,
+  $positive: boolean,
   $isFocused: boolean,
   $isLoading: boolean,
   $isOpen: boolean,
@@ -253,8 +256,8 @@ export type SharedStylePropsArgT = {
   $searchable: boolean,
   $size: SizeT,
   $type: TypeT,
-};
-
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
+  $width?: string,
+  $maxHeight?: string,
+  $isHighlighted?: boolean,
+  $selected?: boolean,
 };

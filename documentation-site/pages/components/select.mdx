@@ -10,6 +10,7 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import SelectBasic from 'examples/select/basic.js';
+import SelectSizes from 'examples/select/sizes.js';
 import SelectControlled from 'examples/select/controlled.js';
 import SelectOverridden from 'examples/select/overridden.js';
 import SelectLabel from 'examples/select/label.js';
@@ -40,16 +41,23 @@ scrollable, if applicable.
   <SelectBasic />
 </Example>
 
+<Example title="Select sizes" path="examples/select/sizes.js">
+  <SelectSizes />
+</Example>
+
 <Example title="Select controlled example" path="examples/select/controlled.js">
   <SelectControlled />
 </Example>
 
 Things to note in the `Select Controlled` example:
 
-* the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
-* you have to call `setState` with the entire object, not just the `id` value.
+- the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
+- you have to call `setState` with the entire object, not just the `id` value.
 
-<Example title="Select with overridden menu" path="examples/select/overridden.js">
+<Example
+  title="Select with overridden menu"
+  path="examples/select/overridden.js"
+>
   <SelectOverridden />
 </Example>
 
@@ -171,10 +179,10 @@ existing options.
 
 <API
   heading="Select API"
-  api={require('!!extract-react-types-loader!../../../src/select/select.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/select/select.js')}
 />
 
 <API
   heading="StatefulSelectContainer API"
-  api={require('!!extract-react-types-loader!../../../src/select/stateful-select-container.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/select/stateful-select-container.js')}
 />

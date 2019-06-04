@@ -15,14 +15,15 @@ import MaybeChildMenu from './maybe-child-menu.js';
 import {StyledListItem} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
-export default function OptionList(props: OptionListPropsT) {
+function OptionList(props: OptionListPropsT, ref) {
   const {
     getChildMenu,
-    getItemLabel,
+    getItemLabel = item => (item ? item.label : ''),
     item,
-    resetMenu = () => {},
-    size,
+    onMouseEnter = () => {},
     overrides = {},
+    resetMenu = () => {},
+    size = OPTION_LIST_SIZE.default,
     $isHighlighted,
     ...restProps
   } = props;
@@ -40,6 +41,8 @@ export default function OptionList(props: OptionListPropsT) {
       resetParentMenu={resetMenu}
     >
       <ListItem
+        ref={ref}
+        onMouseEnter={onMouseEnter}
         $size={size}
         $isHighlighted={$isHighlighted}
         {...restProps}
@@ -51,10 +54,4 @@ export default function OptionList(props: OptionListPropsT) {
   );
 }
 
-OptionList.defaultProps = {
-  getItemLabel: (item: *) => (item ? item.label : ''),
-  size: OPTION_LIST_SIZE.default,
-  onMouseEnter: () => {},
-  overrides: {},
-  resetMenu: () => {},
-};
+export default React.forwardRef<OptionListPropsT, HTMLElement>(OptionList);

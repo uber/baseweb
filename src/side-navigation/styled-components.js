@@ -7,7 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 
-export const StyledRoot = styled('ul', props => {
+import type {SharedPropsT} from './types.js';
+
+export const StyledRoot = styled<SharedPropsT>('ul', props => {
   const {
     $theme: {colors, typography},
   } = props;
@@ -33,19 +35,18 @@ export const StyledNavLink = styled('a', {
   textDecoration: 'none',
 });
 
-export const StyledNavItem = styled('div', props => {
+export const StyledNavItem = styled<SharedPropsT>('div', props => {
   const {
     $active,
     $selectable,
     $level,
     $theme: {colors, sizing},
   } = props;
-  return {
-    background: $active
-      ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), ${
-          colors.primary
-        }`
-      : 'transparent',
+  return ({
+    backgroundColor: $active ? colors.primary : 'transparent',
+    backgroundImage: $active
+      ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92))`
+      : null,
     boxSizing: 'border-box',
     borderLeftWidth: '4px',
     borderLeftStyle: 'solid',
@@ -63,7 +64,7 @@ export const StyledNavItem = styled('div', props => {
     ':focus': {
       color: $selectable ? colors.primary : null,
     },
-  };
+  }: {});
 });
 
 export const StyledSubNavContainer = styled('ul', {

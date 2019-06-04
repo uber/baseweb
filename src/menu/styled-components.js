@@ -8,18 +8,14 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
 
-import type {ThemeT} from '../styles/index.js';
-
 type StyledPropsT = {
   $disabled?: boolean,
-  $theme: ThemeT,
   $isFocused?: boolean,
   $isHighlighted?: boolean,
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
 };
 
-export const StyledList = styled('ul', ({$theme}: StyledPropsT) => {
-  const borderRadius = $theme.borders.radius300;
+export const StyledList = styled<StyledPropsT>('ul', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.menuFill,
     position: 'relative',
@@ -31,16 +27,12 @@ export const StyledList = styled('ul', ({$theme}: StyledPropsT) => {
     paddingBottom: $theme.sizing.scale300,
     paddingLeft: 0,
     paddingRight: 0,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow600,
     overflow: 'auto',
   };
 });
 
-function getFontColor(props: StyledPropsT) {
+function getFontColor(props) {
   if (props.$disabled) {
     return props.$theme.colors.menuFontDisabled;
   }
@@ -56,7 +48,7 @@ function getFontColor(props: StyledPropsT) {
   return props.$theme.colors.menuFontDefault;
 }
 
-function getBackgroundColor(props: StyledPropsT) {
+function getBackgroundColor(props) {
   if (props.$disabled) {
     return 'transparent';
   }
@@ -68,7 +60,7 @@ function getBackgroundColor(props: StyledPropsT) {
   return 'transparent';
 }
 
-export const StyledEmptyState = styled('li', (props: StyledPropsT) => {
+export const StyledEmptyState = styled<StyledPropsT>('li', props => {
   const {$theme, $size} = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact
@@ -89,7 +81,7 @@ export const StyledEmptyState = styled('li', (props: StyledPropsT) => {
   };
 });
 
-export const StyledListItem = styled('li', (props: StyledPropsT) => {
+export const StyledListItem = styled<StyledPropsT>('li', props => {
   const {$disabled, $theme, $size} = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact
@@ -126,7 +118,7 @@ export const StyledListItem = styled('li', (props: StyledPropsT) => {
   };
 });
 
-export const StyledListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
+export const StyledListItemProfile = styled<StyledPropsT>('li', ({$theme}) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -160,14 +152,17 @@ export const StyledProfileImg = styled('img', {
   borderBottomLeftRadius: '50%',
 });
 
-export const StyledProfileLabelsContainer = styled('div', ({$theme}) => ({
-  marginLeft: $theme.sizing.scale600,
-  alignSelf: 'flex-start',
-  display: 'flex',
-  flexDirection: 'column',
-}));
+export const StyledProfileLabelsContainer = styled<StyledPropsT>(
+  'div',
+  ({$theme}) => ({
+    marginLeft: $theme.sizing.scale600,
+    alignSelf: 'flex-start',
+    display: 'flex',
+    flexDirection: 'column',
+  }),
+);
 
-export const StyledProfileTitle = styled('h6', ({$theme}) => ({
+export const StyledProfileTitle = styled<StyledPropsT>('h6', ({$theme}) => ({
   ...$theme.typography.font450,
   color: $theme.colors.foreground,
   marginTop: 0,
@@ -176,7 +171,7 @@ export const StyledProfileTitle = styled('h6', ({$theme}) => ({
   marginRight: 0,
 }));
 
-export const StyledProfileSubtitle = styled('p', ({$theme}) => ({
+export const StyledProfileSubtitle = styled<StyledPropsT>('p', ({$theme}) => ({
   ...$theme.typography.font300,
   color: $theme.colors.foreground,
   marginTop: 0,
@@ -185,7 +180,7 @@ export const StyledProfileSubtitle = styled('p', ({$theme}) => ({
   marginRight: 0,
 }));
 
-export const StyledProfileBody = styled('p', ({$theme}) => ({
+export const StyledProfileBody = styled<StyledPropsT>('p', ({$theme}) => ({
   ...$theme.typography.font200,
   color: $theme.colors.foreground,
   marginTop: 0,

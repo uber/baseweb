@@ -28,12 +28,11 @@ import Bulb from './bulb';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
 import {StatefulMenu} from 'baseui/menu';
-import {Button} from 'baseui/button';
-import ChevronDown from 'baseui/icon/chevron-down.js';
+import {Button, KIND} from 'baseui/button';
 
 export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
 
-const Hamburger = styled('div', ({$theme}) => ({
+const Hamburger = styled<{}>('div', ({$theme}) => ({
   display: 'block',
   userSelect: 'none',
   height: '32px',
@@ -44,17 +43,21 @@ const Hamburger = styled('div', ({$theme}) => ({
   },
 }));
 
-const LogoSegment = styled('div', ({$searchInputOpen}) => ({
-  display: $searchInputOpen ? 'none' : 'flex',
-  justifySelf: 'flex-start',
-  justifyContent: 'flex-start',
-  flex: 'none',
-  [HEADER_BREAKPOINT]: {
-    display: 'flex',
-  },
-}));
+const LogoSegment = styled<{$searchInputOpen: boolean}>(
+  'div',
+  ({$searchInputOpen}) => ({
+    display: $searchInputOpen ? 'none' : 'flex',
+    justifySelf: 'flex-start',
+    justifyContent: 'flex-start',
+    flex: 'none',
+    [HEADER_BREAKPOINT]: {
+      display: 'flex',
+    },
+  }),
+);
 
 const VERSIONS = [
+  {label: 'v6'},
   {label: 'v5'},
   {label: 'v4'},
   {label: 'v3'},
@@ -97,7 +100,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   overrides={{Block: {style: {cursor: 'pointer'}}}}
                 />
               </Link>
-              <Block marginLeft="scale800">
+              <Block marginLeft="scale300">
                 <StatefulPopover
                   placement={PopoverPlacement.bottomLeft}
                   content={({close}) => (
@@ -110,25 +113,22 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                       overrides={{
                         List: {
                           style: {
-                            width: '100px',
+                            width: '84px',
                           },
                         },
                       }}
                     />
                   )}
                 >
-                  <Button
-                    size="compact"
-                    endEnhancer={() => <ChevronDown size={24} />}
-                  >
-                    {version}
+                  <Button size="compact" kind={KIND.minimal}>
+                    v{version}
                   </Button>
                 </StatefulPopover>
               </Block>
             </Block>
           </LogoSegment>
 
-          <NavigationList align={ALIGN.right}>
+          <NavigationList $align={ALIGN.right}>
             <Block display="flex" alignItems="center">
               <Search
                 searchInputOpen={searchInputOpen}

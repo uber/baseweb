@@ -6,8 +6,10 @@ Object {
   "$disabled": false,
   "$error": true,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -17,8 +19,10 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -28,8 +32,10 @@ Object {
   "$disabled": false,
   "$error": true,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -39,8 +45,10 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -66,8 +74,32 @@ Object {
   "onPaste": [Function],
   "placeholder": "Placeholder",
   "required": false,
+  "rows": null,
   "size": "default",
   "styled-component": "true",
+  "test-style": Object {
+    "::placeholder": Object {
+      "color": "$theme.colors.foregroundAlt",
+    },
+    "backgroundColor": "transparent",
+    "borderStyle": "none",
+    "borderWidth": 0,
+    "boxSizing": "border-box",
+    "caretColor": "$theme.colors.foreground",
+    "color": "$theme.colors.foreground",
+    "cursor": "text",
+    "fontFamily": "$theme.typography.font400.fontFamily",
+    "fontSize": "$theme.typography.font400.fontSize",
+    "fontWeight": "$theme.typography.font400.fontWeight",
+    "lineHeight": "$theme.typography.font400.lineHeight",
+    "maxWidth": "100%",
+    "outline": "none",
+    "paddingBottom": "$theme.sizing.scale400",
+    "paddingLeft": "$theme.sizing.scale550",
+    "paddingRight": "$theme.sizing.scale550",
+    "paddingTop": "$theme.sizing.scale400",
+    "width": "100%",
+  },
   "type": "text",
   "value": "(123) 456-7890",
 }

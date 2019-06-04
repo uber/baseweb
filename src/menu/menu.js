@@ -39,7 +39,7 @@ export default function Menu(props: StatelessMenuPropsT) {
         <List
           aria-activedescendant={activedescendantId || null}
           role="listbox"
-          $ref={rootRef}
+          ref={rootRef}
           onMouseEnter={focusMenu}
           onMouseOver={focusMenu}
           onFocus={focusMenu}
@@ -71,7 +71,7 @@ export default function Menu(props: StatelessMenuPropsT) {
                   resetMenu={resetMenu}
                   role="option"
                   $disabled={disabled}
-                  $ref={ref}
+                  ref={ref}
                   $isFocused={isFocused}
                   $isHighlighted={isHighlighted}
                   aria-selected={isHighlighted && isFocused}

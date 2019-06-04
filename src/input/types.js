@@ -7,8 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/index.js';
-import {STATE_CHANGE_TYPE, ADJOINED, SIZE} from './constants.js';
+import {
+  STATE_CHANGE_TYPE,
+  ADJOINED,
+  SIZE,
+  ENHANCER_POSITION,
+} from './constants.js';
 
 export type AdjoinedT = $Keys<typeof ADJOINED>;
 
@@ -38,13 +42,15 @@ export type SharedPropsT = {
   $disabled: boolean,
   /** Renders UI in 'error' state */
   $error: boolean,
+  /** Renders UI in 'positive' state */
+  $positive: boolean,
   /** Defines styles for inputs that are grouped with other controls. */
   $adjoined: AdjoinedT,
   /** Renders UI in provided size. */
   $size: SizeT,
   /** Renders UI in 'required' state */
   $required: boolean,
-  $theme: ThemeT,
+  $position: $Keys<typeof ENHANCER_POSITION>,
 };
 
 export type PropsT = *;
@@ -76,14 +82,15 @@ export type BaseInputPropsT<T> = {
   autoComplete: string,
   /** If true the input will be focused on the first mount. */
   autoFocus: boolean,
-  /** Renders UI in 'disabled' state. */
+  /** Renders component in 'disabled' state. */
   disabled: boolean,
-  /** Renders UI in 'error' state. */
+  /** Renders component in 'error' state. */
   error: boolean,
+  /** Renders component in 'positive' state. */
+  positive?: boolean,
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id: string,
   'data-baseweb'?: string,
-  $ref: {current: HTMLInputElement | null},
   /** A ref to access an input element. */
   inputRef: {current: HTMLInputElement | null},
   name: string,
@@ -95,9 +102,9 @@ export type BaseInputPropsT<T> = {
   onFocus: (e: SyntheticFocusEvent<T>) => mixed,
   overrides: BaseInputComponentsT,
   placeholder: string,
-  /** Renders UI in 'required' state. */
+  /** Renders component in 'required' state. */
   required: boolean,
-  /** Renders UI in provided size. */
+  /** Renders component in provided size. */
   size: SizeT,
   /** Input type attribute. */
   type: string,
@@ -113,7 +120,9 @@ export type InputPropsT = {
   startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
   /** An input helper rendered after and attached to the input field. */
   endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  /** Handler for the `focus` event. */
   onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+  /** Handler for the `blur` event. */
   onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 };
 

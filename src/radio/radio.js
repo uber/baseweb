@@ -105,15 +105,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       StyledRadioMarkOuter,
     );
 
-    if (__DEV__) {
-      if (this.props.overrides && this.props.overrides.RadioMark) {
-        // eslint-disable-next-line no-console
-        console.warn(`The RadioMark prop will be deprecated in the next major version. Please use
-          the 'RadioMarkInner', and 'RadioMarkOuter' overrides.
-        `);
-      }
-    }
-
     const sharedProps = {
       $checked: this.props.checked,
       $disabled: this.props.disabled,
@@ -157,7 +148,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             onChange={this.props.onChange}
-            $ref={this.props.inputRef}
+            ref={this.props.inputRef}
             required={this.props.required}
             type="radio"
             value={this.props.value}

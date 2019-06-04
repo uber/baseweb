@@ -8,27 +8,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {styled} from '../styles/index.js';
-import type {StyledRootPropsT, StyledSeparatorT} from './types.js';
-import ChevronRight from '../icon/chevron-right.js';
 
-export const StyledRoot = styled('nav', ({$theme}: StyledRootPropsT) => {
+export const StyledRoot = styled<{}>('nav', ({$theme}) => {
   return {
     color: $theme.colors.breadcrumbsText,
     ...$theme.typography.font450,
   };
 });
 
-export const StyledSeparator = styled('div', ({$theme}: StyledSeparatorT) => {
+export const StyledSeparator = styled<{}>('div', ({$theme}) => {
   return {
     display: 'inline-block',
     color: $theme.colors.breadcrumbsSeparatorFill,
     marginLeft: $theme.sizing.scale300,
     marginRight: $theme.sizing.scale300,
-  };
-});
-
-export const StyledIcon = styled(ChevronRight, () => {
-  return {
-    verticalAlign: 'text-bottom',
   };
 });

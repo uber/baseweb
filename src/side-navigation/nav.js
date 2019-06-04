@@ -22,7 +22,6 @@ export default class SideNav extends React.Component<NavPropsT> {
     activePredicate: null,
     items: [],
     overrides: {},
-    renderItem: null,
     mapItem: null,
   };
 
@@ -35,7 +34,6 @@ export default class SideNav extends React.Component<NavPropsT> {
       items,
       onChange,
       overrides,
-      renderItem,
       mapItem,
     } = this.props;
     const navLevel = 1;
@@ -53,11 +51,11 @@ export default class SideNav extends React.Component<NavPropsT> {
     const renderNavItem = (item: Item, level: number, index, mapItem) => {
       if (typeof mapItem === 'function') {
         const recMapItem = item => {
-          let subnav = [];
-          if (item.subnav) {
-            subnav = item.subnav.map(recMapItem);
+          let subNav = [];
+          if (item.subNav) {
+            subNav = item.subNav.map(recMapItem);
           }
-          return mapItem({...item, subnav: subnav});
+          return mapItem({...item, subNav});
         };
         item = recMapItem(item);
       }
@@ -82,12 +80,12 @@ export default class SideNav extends React.Component<NavPropsT> {
             <NavItem
               item={item}
               onSelect={onChange}
-              renderItem={renderItem}
+              overrides={overrides}
               {...sharedProps}
             />
-            {item.subnav ? (
+            {item.subNav ? (
               <SubNavContainer {...sharedProps} {...subNavContainerProps}>
-                {item.subnav.map((subitem, idx) => {
+                {item.subNav.map((subitem, idx) => {
                   return renderNavItem(subitem, level + 1, index);
                 })}
               </SubNavContainer>

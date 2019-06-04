@@ -246,7 +246,6 @@ Object {
 exports[`FlexGridItem renders: with default styles 1`] = `
 <FlexGridItem>
   <Block
-    as="div"
     data-baseweb="flex-grid-item"
     overrides={
       Object {
@@ -256,16 +255,51 @@ exports[`FlexGridItem renders: with default styles 1`] = `
       }
     }
   >
-    <MockStyledComponent
-      $as="div"
-      $style={[Function]}
+    <Block
       data-baseweb="flex-grid-item"
+      forwardedRef={null}
+      overrides={
+        Object {
+          "Block": Object {
+            "style": [Function],
+          },
+        }
+      }
     >
-      <div
+      <ForwardRef
+        $as="div"
+        $style={[Function]}
         data-baseweb="flex-grid-item"
-        styled-component="true"
-      />
-    </MockStyledComponent>
+      >
+        <MockStyledComponent
+          $as="div"
+          $style={[Function]}
+          data-baseweb="flex-grid-item"
+          forwardedRef={null}
+        >
+          <div
+            data-baseweb="flex-grid-item"
+            styled-component="true"
+            test-style={
+              Object {
+                ":nth-child(1n-0)": Object {
+                  "marginBottom": "0px",
+                  "marginRight": 0,
+                },
+                ":nth-child(1n-0):last-child": Object {
+                  "marginRight": "calc(0 * (0px + (100% - (1 - 1) * 0px) / 1))",
+                },
+                ":nth-child(1n-0):nth-last-child(1)": Object {
+                  "marginBottom": 0,
+                },
+                "flexGrow": 1,
+                "width": "calc((100% - (1 - 1) * 0px) / 1)",
+              }
+            }
+          />
+        </MockStyledComponent>
+      </ForwardRef>
+    </Block>
   </Block>
 </FlexGridItem>
 `;
@@ -283,7 +317,6 @@ exports[`FlexGridItem renders: with overridden styles 1`] = `
   }
 >
   <Block
-    as="div"
     data-baseweb="flex-grid-item"
     overrides={
       Object {
@@ -293,16 +326,52 @@ exports[`FlexGridItem renders: with overridden styles 1`] = `
       }
     }
   >
-    <MockStyledComponent
-      $as="div"
-      $style={[Function]}
+    <Block
       data-baseweb="flex-grid-item"
+      forwardedRef={null}
+      overrides={
+        Object {
+          "Block": Object {
+            "style": [Function],
+          },
+        }
+      }
     >
-      <div
+      <ForwardRef
+        $as="div"
+        $style={[Function]}
         data-baseweb="flex-grid-item"
-        styled-component="true"
-      />
-    </MockStyledComponent>
+      >
+        <MockStyledComponent
+          $as="div"
+          $style={[Function]}
+          data-baseweb="flex-grid-item"
+          forwardedRef={null}
+        >
+          <div
+            data-baseweb="flex-grid-item"
+            styled-component="true"
+            test-style={
+              Object {
+                ":nth-child(1n-0)": Object {
+                  "marginBottom": "0px",
+                  "marginRight": 0,
+                },
+                ":nth-child(1n-0):last-child": Object {
+                  "marginRight": "calc(0 * (0px + (100% - (1 - 1) * 0px) / 1))",
+                },
+                ":nth-child(1n-0):nth-last-child(1)": Object {
+                  "marginBottom": 0,
+                },
+                "color": "red",
+                "flexGrow": 1,
+                "width": "calc((100% - (1 - 1) * 0px) / 1)",
+              }
+            }
+          />
+        </MockStyledComponent>
+      </ForwardRef>
+    </Block>
   </Block>
 </FlexGridItem>
 `;

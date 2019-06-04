@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {TetherPlacementT} from '../layer/types.js';
 import {
@@ -166,16 +165,6 @@ export type SharedStylePropsArgT = {
   $placement: TetherPlacementT,
   $showArrow: boolean,
   children?: React.Node,
-
-  // Styletron stuff
-  $as?: string,
-  // styled function wrapper related
-  $style?: ?{},
-  $ref?: React.Ref<*>,
-};
-
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
 };
 
 export type AnchorPropsT = {
@@ -191,6 +180,5 @@ export type AnchorPropsT = {
   onMouseEnter?: (e: Event) => mixed,
   onMouseLeave?: (e: Event) => mixed,
   ref?: React.Ref<*>,
-  $ref?: React.Ref<*>,
   tabIndex?: number,
 };

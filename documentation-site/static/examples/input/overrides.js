@@ -1,8 +1,8 @@
-import * as React from 'react';
-import {styled} from 'baseui';
+import React from 'react';
+import {withStyle} from 'styletron-react';
 import {StatefulInput, StyledInputContainer} from 'baseui/input';
 
-const RootWithStyle = styled(StyledInputContainer, props => {
+const RootWithStyle = withStyle(StyledInputContainer, props => {
   const {
     $disabled,
     $error,

@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {isValidElementType} from 'react-is';
 import deepMerge from '../utils/deep-merge.js';
 
 export type StyleOverrideT = {} | (({}) => ?{});
@@ -27,6 +28,10 @@ export type OverridesT<T> = {
  */
 // eslint-disable-next-line flowtype/no-weak-types
 export function getOverride(override: any): any {
+  if (isValidElementType(override)) {
+    return override;
+  }
+
   // Check if override is OverrideObjectT
   if (override && typeof override === 'object') {
     // Remove this 'any' once this flow issue is fixed:
@@ -34,7 +39,8 @@ export function getOverride(override: any): any {
     // eslint-disable-next-line flowtype/no-weak-types
     return (override: any).component;
   }
-  // Otherwise it must be a component type (function or class) or null/undefined
+
+  // null/undefined
   return override;
 }
 
@@ -45,9 +51,7 @@ export function getOverride(override: any): any {
 export function getOverrideProps<T>(override: ?OverrideT<T>) {
   if (override && typeof override === 'object') {
     return {
-      // $FlowFixMe
       ...override.props,
-      // $FlowFixMe
       $style: override.style,
     };
   }
@@ -61,11 +65,13 @@ export function getOverrideProps<T>(override: ?OverrideT<T>) {
 export function toObjectOverride<T>(
   override: OverrideT<T>,
 ): OverrideObjectT<T> {
-  if (typeof override === 'function') {
+  if (isValidElementType(override)) {
     return {
-      component: (override: React.ComponentType<T>),
+      // eslint-disable-next-line flowtype/no-weak-types
+      component: ((override: any): React.ComponentType<T>),
     };
   }
+
   // Flow can't figure out that typeof 'function' above will
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)

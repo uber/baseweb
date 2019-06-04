@@ -6,13 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import type {SharedStylePropsT} from './types.js';
 import {ORIENTATION} from './constants.js';
+import type {SharedStylePropsArgT} from './types.js';
 
-/**
- * Main component container element
- */
-export const Root = styled('div', (props: SharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Root = styled<SharedStylePropsArgT>('div', props => {
   const {$orientation} = props;
   return {
     display: 'flex',
@@ -20,7 +18,8 @@ export const Root = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-export const Tab = styled('div', (props: SharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Tab = styled<SharedStylePropsArgT>('div', props => {
   const {
     $disabled,
     $active,
@@ -58,7 +57,8 @@ export const Tab = styled('div', (props: SharedStylePropsT) => {
   return style;
 });
 
-export const TabBar = styled('div', (props: SharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const TabBar = styled<SharedStylePropsArgT>('div', props => {
   const {
     $orientation,
     $theme: {colors, sizing},
@@ -72,7 +72,8 @@ export const TabBar = styled('div', (props: SharedStylePropsT) => {
   };
 });
 
-export const TabContent = styled('div', (props: SharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const TabContent = styled<SharedStylePropsArgT>('div', props => {
   const {
     $active,
     $theme: {sizing, typography},
