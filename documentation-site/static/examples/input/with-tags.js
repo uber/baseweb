@@ -2,7 +2,7 @@ import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import {Input, StyledInput, SIZE} from 'baseui/input';
-import {Tag, VARIANT} from 'baseui/tag';
+import {Tag, VARIANT as TAG_VARIANT} from 'baseui/tag';
 
 const ValueWrapper = styled('div', {
   flex: '1 1 0%',
@@ -16,7 +16,7 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
     <ValueWrapper>
       {tags.map((tag, index) => (
         <Tag
-          variant={VARIANT.solid}
+          variant={TAG_VARIANT.solid}
           onActionClick={() => removeTag(tag)}
           key={index}
         >
