@@ -29,7 +29,7 @@ const CountrySelectDropdown = React.forwardRef(
       children,
       maxDropdownHeight = DEFAULT_MAX_DROPDOWN_HEIGHT,
       mapIsoToLabel,
-      countryValue,
+      country,
       overrides = {},
     } = props;
     const [Container, containerProps] = getOverrides(
@@ -64,7 +64,7 @@ const CountrySelectDropdown = React.forwardRef(
                 rowCount={children.length}
                 rowHeight={32}
                 scrollToIndex={children.findIndex(
-                  opt => opt.props.item.id === countryValue.id,
+                  opt => opt.props.item.id === country.id,
                 )}
                 rowRenderer={({index, key, style}) => {
                   // resetMenu and getItemLabel should not end up on native html elements
@@ -80,7 +80,7 @@ const CountrySelectDropdown = React.forwardRef(
                     >
                       <FlagColumn {...flagColumnProps}>
                         <StyledFlag
-                          iso2={children[index].props.item.id}
+                          iso={children[index].props.item.id}
                           $size={SIZE.compact}
                         />
                       </FlagColumn>
@@ -90,7 +90,7 @@ const CountrySelectDropdown = React.forwardRef(
                           : children[index].props.item.label}
                       </NameColumn>
                       <Dialcode {...dialcodeProps}>
-                        +{children[index].props.item.dialCode}
+                        {children[index].props.item.dialCode}
                       </Dialcode>
                     </ListItem>
                   );

@@ -11,7 +11,7 @@ import React from 'react';
 import {StyledRoot, StyledFlag} from './styled-components.js';
 import {
   SIZE,
-  countries,
+  COUNTRIES,
   DEFAULT_MAX_DROPDOWN_HEIGHT,
   DEFAULT_MAX_DROPDOWN_WIDTH,
 } from './constants.js';
@@ -19,11 +19,11 @@ import CountrySelectDropdown from './country-select-dropdown.js';
 import {Select as DefaultSelect} from '../select/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
-import type {CountrySelectPropsT} from './types.js';
+import type {CountryT, CountrySelectPropsT} from './types.js';
 
 export default function CountrySelect(props: CountrySelectPropsT) {
   const {
-    countryValue,
+    country,
     inputRef,
     onCountryChange = event => {},
     size = SIZE.default,
@@ -67,7 +67,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     Dropdown: {
       component: CountrySelectDropdown,
       props: {
-        countryValue: countryValue,
+        country: country,
         maxDropdownHeight: maxDropdownHeight,
         mapIsoToLabel: mapIsoToLabel,
         overrides: {
@@ -92,7 +92,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   return (
     <Select
       size={size}
-      value={[countryValue]}
+      value={[country]}
       onChange={event => {
         // After choosing a country, shift focus to the text input
         if (inputRef && inputRef.current) {
@@ -100,13 +100,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         }
         onCountryChange(event);
       }}
-      options={countries}
+      options={Object.values(COUNTRIES)}
       clearable={false}
       searchable={false}
-      getValueLabel={({option}) => {
-        return option.id ? (
-          <StyledFlag iso2={String(option.id)} $size={size} />
-        ) : null;
+      getValueLabel={(value: {option: CountryT}) => {
+        return <StyledFlag iso={value.option.id} $size={size} />;
       }}
       overrides={selectOverrides}
       {...selectProps}

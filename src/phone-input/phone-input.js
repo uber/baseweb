@@ -17,8 +17,8 @@ import type {PropsT} from './types.js';
 
 export default function PhoneInput(props: PropsT) {
   const {
-    inputValue,
-    onInputChange,
+    text,
+    onTextChange,
     size = SIZE.default,
     overrides = {},
     'aria-label': ariaLabel = 'Enter a phone number',
@@ -49,8 +49,8 @@ export default function PhoneInput(props: PropsT) {
       data-baseweb="phone-input"
       size={size}
       inputRef={inputRef}
-      value={inputValue}
-      onChange={onInputChange}
+      value={text}
+      onChange={onTextChange}
       overrides={inputOverrides}
       {...inputProps}
     />
