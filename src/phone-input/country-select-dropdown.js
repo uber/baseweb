@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {List, AutoSizer} from 'react-virtualized';
 
-import {SIZE, DEFAULT_MAX_DROPDOWN_HEIGHT} from './constants.js';
+import {DEFAULT_MAX_DROPDOWN_HEIGHT} from './constants.js';
 import {
   StyledFlag,
   StyledCountrySelectDropdownContainer as DefaultContainer,
@@ -62,7 +62,7 @@ const CountrySelectDropdown = React.forwardRef(
                 height={height}
                 width={width}
                 rowCount={children.length}
-                rowHeight={32}
+                rowHeight={42}
                 scrollToIndex={children.findIndex(
                   opt => opt.props.item.id === country.id,
                 )}
@@ -79,10 +79,7 @@ const CountrySelectDropdown = React.forwardRef(
                       {...listItemProps}
                     >
                       <FlagColumn {...flagColumnProps}>
-                        <StyledFlag
-                          iso={children[index].props.item.id}
-                          $size={SIZE.compact}
-                        />
+                        <StyledFlag iso={children[index].props.item.id} />
                       </FlagColumn>
                       <NameColumn {...nameColumnProps}>
                         {mapIsoToLabel

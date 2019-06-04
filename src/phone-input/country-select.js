@@ -18,6 +18,7 @@ import {
 import CountrySelectDropdown from './country-select-dropdown.js';
 import {Block} from '../block/index.js';
 import {Select as DefaultSelect} from '../select/index.js';
+import {PLACEMENT} from '../popover/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
 import type {CountryT, CountrySelectPropsT} from './types.js';
@@ -82,6 +83,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
           CountrySelectDropdownDialcodeColumn:
             overrides.CountrySelectDropdownDialcodeColumn,
         },
+      },
+    },
+    Popover: {
+      props: {
+        placement: PLACEMENT.bottomLeft,
       },
     },
   };
