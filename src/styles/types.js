@@ -399,6 +399,7 @@ export type TypographyT = {
   font450: Font,
   font460: Font,
   font470: Font,
+  font490: Font,
   font500: Font,
   font600: Font,
   font700: Font,

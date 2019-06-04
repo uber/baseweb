@@ -459,6 +459,12 @@ export default function createTheme(
         fontWeight: 'bold',
         lineHeight: '24px',
       },
+      font490: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '20px',
+        fontWeight: 'normal',
+        lineHeight: '28px',
+      },
       font500: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '20px',
