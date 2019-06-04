@@ -420,7 +420,7 @@ export default function createTheme(
       font250: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '12px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '20px',
       },
       font300: {
@@ -432,7 +432,7 @@ export default function createTheme(
       font350: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '14px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '20px',
       },
       font400: {
@@ -444,7 +444,7 @@ export default function createTheme(
       font450: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '16px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '24px',
       },
       font460: {
@@ -456,37 +456,37 @@ export default function createTheme(
       font470: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '18px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '24px',
       },
       font500: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '20px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '28px',
       },
       font600: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '24px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '36px',
       },
       font700: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '32px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '48px',
       },
       font800: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '40px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '56px',
       },
       font900: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '52px',
-        fontWeight: 'medium',
+        fontWeight: 500,
         lineHeight: '68px',
       },
       font1000: {
