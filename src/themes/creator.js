@@ -420,7 +420,7 @@ export default function createTheme(
       font250: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '12px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '20px',
       },
       font300: {
@@ -432,7 +432,7 @@ export default function createTheme(
       font350: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '14px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '20px',
       },
       font400: {
@@ -444,7 +444,7 @@ export default function createTheme(
       font450: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '16px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '24px',
       },
       font460: {
@@ -456,43 +456,37 @@ export default function createTheme(
       font470: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '18px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '24px',
-      },
-      font490: {
-        fontFamily: primitives.primaryFontFamily,
-        fontSize: '20px',
-        fontWeight: 'normal',
-        lineHeight: '28px',
       },
       font500: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '20px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '28px',
       },
       font600: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '24px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '36px',
       },
       font700: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '32px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '48px',
       },
       font800: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '40px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '56px',
       },
       font900: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '52px',
-        fontWeight: 'bold',
+        fontWeight: 'medium',
         lineHeight: '68px',
       },
       font1000: {

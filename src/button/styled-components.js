@@ -128,11 +128,11 @@ function getBorderRadiiStyles({$theme, $shape}) {
 function getFontStyles({$theme, $size}) {
   switch ($size) {
     case SIZE.compact:
-      return $theme.typography.font400;
+      return $theme.typography.font450;
     case SIZE.large:
-      return $theme.typography.font490;
+      return $theme.typography.font500;
     default:
-      return $theme.typography.font460;
+      return $theme.typography.font470;
   }
 }
 
