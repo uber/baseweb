@@ -9,7 +9,7 @@ import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
 
-import type {ComponentPropsT, SharedStylePropsArgT} from './types.js';
+import type {ComponentPropsT, SharedStylePropsT} from './types.js';
 
 class Component extends React.Component<ComponentPropsT> {
   static defaultProps: $Shape<ComponentPropsT> = {
@@ -17,10 +17,10 @@ class Component extends React.Component<ComponentPropsT> {
     onClick: () => {},
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
+  getSharedProps(): $Diff<SharedStylePropsT, {children?: React.Node}> {
     const {prop} = this.props;
     return {
-      $prop: prop,
+      $prop: Boolean(prop),
     };
   }
 
@@ -32,7 +32,6 @@ class Component extends React.Component<ComponentPropsT> {
     const sharedProps = this.getSharedProps();
 
     return (
-      //$FlowFixMe
       <Root
         data-baseweb="component"
         onClick={this.props.onClick}

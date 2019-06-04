@@ -47,11 +47,11 @@ export default Layout;
   blacklisted={['NavigationItem', 'NavigationList']}
   renderExample={props => (
     <HeaderNavigation overrides={props.overrides}>
-      <NavigationList align={ALIGN.left}>
+      <NavigationList $align={ALIGN.left}>
         <NavigationItem>Uber</NavigationItem>
       </NavigationList>
-      <NavigationList align={ALIGN.center} />
-      <NavigationList align={ALIGN.right}>
+      <NavigationList $align={ALIGN.center} />
+      <NavigationList $align={ALIGN.right}>
         <NavigationItem>Tab One</NavigationItem>
         <NavigationItem>Tab Two</NavigationItem>
       </NavigationList>
@@ -61,5 +61,5 @@ export default Layout;
 
 <API
   heading="HeaderNavigation API"
-  api={require('!!extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}
 />

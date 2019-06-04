@@ -21,6 +21,30 @@ Object {
   "placeholder": "Placeholder",
   "rows": 3,
   "styled-component": "true",
+  "test-style": Object {
+    "::placeholder": Object {
+      "color": "$theme.colors.foregroundAlt",
+    },
+    "backgroundColor": "transparent",
+    "borderStyle": "none",
+    "borderWidth": 0,
+    "boxSizing": "border-box",
+    "caretColor": "$theme.colors.foreground",
+    "color": "$theme.colors.foreground",
+    "cursor": "text",
+    "fontFamily": "$theme.typography.font400.fontFamily",
+    "fontSize": "$theme.typography.font400.fontSize",
+    "fontWeight": "$theme.typography.font400.fontWeight",
+    "lineHeight": "$theme.typography.font400.lineHeight",
+    "maxWidth": "100%",
+    "outline": "none",
+    "paddingBottom": "$theme.sizing.scale400",
+    "paddingLeft": "$theme.sizing.scale550",
+    "paddingRight": "$theme.sizing.scale550",
+    "paddingTop": "$theme.sizing.scale400",
+    "resize": "none",
+    "width": "100%",
+  },
   "type": "textarea",
   "value": "textarea value",
 }
@@ -38,7 +62,19 @@ Object {
   "disabled": false,
   "error": false,
   "inputRef": Object {
-    "current": null,
+    "current": <textarea
+      aria-invalid="false"
+      aria-required="false"
+      autocomplete="on"
+      name=""
+      placeholder="Placeholder"
+      rows="3"
+      styled-component="true"
+      test-style="[object Object]"
+      type="textarea"
+    >
+      textarea value
+    </textarea>,
   },
   "name": "",
   "onBlur": [MockFunction],
@@ -49,13 +85,20 @@ Object {
   "onKeyUp": [Function],
   "overrides": Object {
     "Input": Object {
-      "component": [Function],
+      "component": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "render": [Function],
+      },
     },
     "InputContainer": Object {
-      "component": [Function],
+      "component": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "render": [Function],
+      },
     },
   },
   "placeholder": "Placeholder",
+  "positive": false,
   "required": false,
   "rows": 3,
   "size": "default",
@@ -76,7 +119,23 @@ Object {
   "disabled": false,
   "error": false,
   "inputRef": Object {
-    "current": null,
+    "current": <span
+      id="test-input"
+    >
+      <textarea
+        aria-invalid="false"
+        aria-required="false"
+        autocomplete="on"
+        name=""
+        placeholder="Placeholder"
+        rows="3"
+        styled-component="true"
+        test-style="[object Object]"
+        type="textarea"
+      >
+        textarea value
+      </textarea>
+    </span>,
   },
   "name": "",
   "onBlur": [MockFunction],
@@ -87,13 +146,20 @@ Object {
   "onKeyUp": [Function],
   "overrides": Object {
     "Input": Object {
-      "component": [Function],
+      "component": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "render": [Function],
+      },
     },
     "InputContainer": Object {
-      "component": [Function],
+      "component": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "render": [Function],
+      },
     },
   },
   "placeholder": "Placeholder",
+  "positive": false,
   "required": false,
   "rows": 3,
   "size": "default",

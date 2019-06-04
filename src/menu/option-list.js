@@ -15,14 +15,15 @@ import MaybeChildMenu from './maybe-child-menu.js';
 import {StyledListItem} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
-function OptionList(props: OptionListPropsT) {
+function OptionList(props: OptionListPropsT, ref) {
   const {
     getChildMenu,
-    getItemLabel,
+    getItemLabel = item => (item ? item.label : ''),
     item,
-    resetMenu = () => {},
-    size,
+    onMouseEnter = () => {},
     overrides = {},
+    resetMenu = () => {},
+    size = OPTION_LIST_SIZE.default,
     $isHighlighted,
     ...restProps
   } = props;
@@ -40,6 +41,8 @@ function OptionList(props: OptionListPropsT) {
       resetParentMenu={resetMenu}
     >
       <ListItem
+        ref={ref}
+        onMouseEnter={onMouseEnter}
         $size={size}
         $isHighlighted={$isHighlighted}
         {...restProps}
@@ -51,15 +54,9 @@ function OptionList(props: OptionListPropsT) {
   );
 }
 
-OptionList.defaultProps = {
-  getItemLabel: (item: *) => (item ? item.label : ''),
-  size: OPTION_LIST_SIZE.default,
-  onMouseEnter: () => {},
-  overrides: {},
-  resetMenu: () => {},
-};
-
 function areEqualShallow(a, b) {
+  if (!a || !b) return false;
+
   for (var key in a) {
     if (a[key] !== b[key]) {
       return false;
@@ -81,6 +78,7 @@ function compare(prevProps, nextProps) {
   );
 }
 
-// requires updated flow parsing in the v7 branch
-// $FlowFixMe
-export default React.memo(OptionList, compare);
+const forwarded = React.forwardRef<OptionListPropsT, HTMLElement>(OptionList);
+forwarded.displayName = 'OptionList';
+
+export default React.memo<OptionListPropsT>(forwarded, compare);

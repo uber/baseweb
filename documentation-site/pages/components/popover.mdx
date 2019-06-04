@@ -23,6 +23,7 @@ import Overrides from '../../components/overrides';
 import {Popover, PLACEMENT} from 'baseui/popover';
 import * as PopoverExports from 'baseui/popover';
 import {Block} from 'baseui/block';
+import {Paragraph1, Label1} from 'baseui/typography';
 
 export default Layout;
 
@@ -83,7 +84,10 @@ structured content and imagery/illustration. It’s usage depends on the context
   <Dismiss />
 </Example>
 
-<Example title="Anchor ref handling example" path="examples/popover/ref-handling.js">
+<Example
+  title="Anchor ref handling example"
+  path="examples/popover/ref-handling.js"
+>
   <AnchorRefHandling />
 </Example>
 
@@ -104,29 +108,31 @@ structured content and imagery/illustration. It’s usage depends on the context
   renderExample={props => (
     <Popover
       isOpen
-      content={<Block padding="scale500">hello world</Block>}
+      content={<Paragraph1 padding="scale500">hello world</Paragraph1>}
       showArrow
       placement={PLACEMENT.right}
       overrides={props.overrides}
     >
-      <Block as="span" padding="scale500">
-        always open
-      </Block>
+      <span>
+        <Label1 as="span" padding="scale500">
+          always open
+        </Label1>
+      </span>
     </Popover>
   )}
 />
 
 <API
   heading="Popover API"
-  api={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/popover.js')}
 />
 
 <API
   heading="Stateful Popover API"
-  api={require('!!extract-react-types-loader!../../../src/popover/stateful-popover.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/stateful-popover.js')}
 />
 
 <API
   heading="Stateful Container API"
-  api={require('!!extract-react-types-loader!../../../src/popover/stateful-container.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/stateful-container.js')}
 />

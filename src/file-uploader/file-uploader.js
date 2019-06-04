@@ -75,10 +75,8 @@ function FileUploader(props: PropsT) {
         });
 
         const getRootPropsArgs: {
-          refKey: string,
           onClick?: (SyntheticEvent<HTMLElement>) => void,
         } = {
-          refKey: '$ref',
           ...(props.disableClick ? {onClick: evt => evt.preventDefault()} : {}),
         };
 
@@ -205,7 +203,7 @@ function FileUploader(props: PropsT) {
                 </FileDragAndDrop>
 
                 <HiddenInput
-                  {...getInputProps({refKey: '$ref'})}
+                  {...getInputProps()}
                   {...prefixedStyledProps}
                   {...hiddenInputProps}
                 />

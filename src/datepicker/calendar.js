@@ -6,27 +6,24 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Button, KIND} from '../button/index.js';
+import {FormControl} from '../form-control/index.js';
+import {LocaleContext} from '../locale/index.js';
+import {Select} from '../select/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
+import TimePicker from './timepicker.js';
 import {
   StyledRoot,
   StyledCalendarContainer,
-  StyledQuickSelectContainer,
-  StyledQuickSelectButtons,
-  StyledQuickSelectLabel,
-  StyledMonthHeader,
-  StyledDay,
+  StyledSelectorContainer,
 } from './styled-components.js';
 import {
   addDays,
   addMonths,
   getMonth,
   addWeeks,
-  getWeekdayMinInLocale,
   getEffectiveMinDate,
   getEffectiveMaxDate,
-  getStartOfWeek,
   isAfter,
   isBefore,
   isSameDay,
@@ -36,10 +33,22 @@ import {
   subWeeks,
   subMonths,
   subYears,
+  setHours,
+  setMinutes,
+  setSeconds,
+  getHours,
+  getMinutes,
 } from './utils/index.js';
-import {WEEKDAYS} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
+
+function applyTime(prev: ?Date, next: Date) {
+  if (!prev) return next;
+  const hours = setHours(next, getHours(prev));
+  const minutes = setMinutes(hours, getMinutes(prev));
+  const seconds = setSeconds(minutes, 0);
+  return seconds;
+}
 
 export default class Calendar extends React.Component<
   CalendarPropsT,
@@ -55,7 +64,6 @@ export default class Calendar extends React.Component<
     locale: null,
     maxDate: null,
     minDate: null,
-    monthsShown: 1,
     onDayClick: () => {},
     onDayMouseOver: () => {},
     onDayMouseLeave: () => {},
@@ -80,6 +88,7 @@ export default class Calendar extends React.Component<
         new Date(),
       focused: false,
       date: this.getDateInView(),
+      quickSelectId: null,
     };
   }
 
@@ -165,31 +174,6 @@ export default class Calendar extends React.Component<
         onMonthChange={this.changeMonth}
         onYearChange={this.changeYear}
       />
-    );
-  };
-
-  renderMonthHeader = (date: Date = this.state.date, order: number) => {
-    const {locale, overrides = {}} = this.props;
-    const startOfWeek = getStartOfWeek(date, locale);
-    const [MonthHeader, monthHeaderProps] = getOverrides(
-      overrides.MonthHeader,
-      StyledMonthHeader,
-    );
-    const [WeekdayHeader, weekdayHeaderProps] = getOverrides(
-      overrides.WeekdayHeader,
-      StyledDay,
-    );
-    return (
-      <MonthHeader role="presentation" {...monthHeaderProps}>
-        {WEEKDAYS.map(offset => {
-          const day = addDays(startOfWeek, offset);
-          return (
-            <WeekdayHeader $disabled key={offset} {...weekdayHeaderProps}>
-              {getWeekdayMinInLocale(day, locale)}
-            </WeekdayHeader>
-          );
-        })}
-      </MonthHeader>
     );
   };
 
@@ -285,13 +269,47 @@ export default class Calendar extends React.Component<
   onDayMouseOver = (data: {event: Event, date: Date}) => {
     const {date} = data;
     this.setState({highlightedDate: date});
-    this.props.onDayMouseOver(data);
+    this.props.onDayMouseOver && this.props.onDayMouseOver(data);
   };
 
   onDayMouseLeave = (data: {event: Event, date: Date}) => {
     const {date} = data;
     this.setHighlightedDate(date);
-    this.props.onDayMouseLeave(data);
+    this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
+  };
+
+  handleDateChange = (data: {date: ?Date | Array<Date>}) => {
+    const {onChange = params => {}} = this.props;
+    if (Array.isArray(data.date)) {
+      const dates = data.date.map((date, index) => {
+        const values = [].concat(this.props.value);
+        return applyTime(values[index], date);
+      });
+      onChange({date: dates});
+    } else if (!Array.isArray(this.props.value)) {
+      if (data.date) {
+        const nextDate = applyTime(this.props.value, data.date);
+        onChange({date: nextDate});
+      } else {
+        onChange({date: data.date});
+      }
+    }
+  };
+
+  handleTimeChange = (time: Date, index: number) => {
+    const {onChange = params => {}} = this.props;
+    if (Array.isArray(this.props.value)) {
+      const dates = this.props.value.map((date, i) => {
+        if (index === i) {
+          return applyTime(date, time);
+        }
+        return date;
+      });
+      onChange({date: dates});
+    } else {
+      const date = applyTime(this.props.value, time);
+      onChange({date});
+    }
   };
 
   setHighlightedDate(date: Date) {
@@ -315,20 +333,19 @@ export default class Calendar extends React.Component<
       overrides.CalendarContainer,
       StyledCalendarContainer,
     );
-    for (let i = 0; i < this.props.monthsShown; ++i) {
+    for (let i = 0; i < (this.props.monthsShown || 1); ++i) {
       const monthDate = addMonths(this.state.date, i);
       const monthKey = `month-${i}`;
       monthList.push(this.renderCalendarHeader(monthDate, i));
       monthList.push(
         <CalendarContainer
           key={monthKey}
-          $ref={calendar => {
+          ref={calendar => {
             this.calendar = calendar;
           }}
           onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
         >
-          {this.renderMonthHeader(monthDate, i)}
           <Month
             date={monthDate}
             excludeDates={this.props.excludeDates}
@@ -346,7 +363,7 @@ export default class Calendar extends React.Component<
             onDayClick={this.props.onDayClick}
             onDayMouseOver={this.onDayMouseOver}
             onDayMouseLeave={this.onDayMouseLeave}
-            onChange={this.props.onChange}
+            onChange={this.handleDateChange}
             overrides={overrides}
             value={this.props.value}
             peekNextMonth={this.props.peekNextMonth}
@@ -357,101 +374,123 @@ export default class Calendar extends React.Component<
     return monthList;
   };
 
+  // eslint-disable-next-line flowtype/no-weak-types
+  renderTimeSelect = (value: ?Date, onChange: Function) => {
+    const {overrides = {}} = this.props;
+    const [TimeSelectContainer, timeSelectContainerProps] = getOverrides(
+      overrides.TimeSelectContainer,
+      StyledSelectorContainer,
+    );
+    const [TimeSelectFormControl, timeSelectFormControlProps] = getOverrides(
+      overrides.TimeSelectFormControl,
+      FormControl,
+    );
+    const [TimeSelect, timeSelectProps] = getOverrides(
+      overrides.TimeSelect,
+      TimePicker,
+    );
+
+    return (
+      <LocaleContext.Consumer>
+        {locale => (
+          <TimeSelectContainer {...timeSelectContainerProps}>
+            <TimeSelectFormControl
+              label={locale.datepicker.timeSelectLabel}
+              {...timeSelectFormControlProps}
+            >
+              <TimeSelect
+                value={value}
+                onChange={onChange}
+                {...timeSelectProps}
+              />
+            </TimeSelectFormControl>
+          </TimeSelectContainer>
+        )}
+      </LocaleContext.Consumer>
+    );
+  };
+
   renderQuickSelect = () => {
     const {overrides = {}} = this.props;
     const [QuickSelectContainer, quickSelectContainerProps] = getOverrides(
       overrides.QuickSelectContainer,
-      StyledQuickSelectContainer,
+      StyledSelectorContainer,
     );
-    const [QuickSelectLabel, quickSelectLabelProps] = getOverrides(
-      overrides.QuickSelectLabel,
-      StyledQuickSelectLabel,
+    const [QuickSelectFormControl, quickSelectFormControlProps] = getOverrides(
+      overrides.QuickSelectFormControl,
+      FormControl,
     );
-    const [QuickSelectButtons, quickSelectButtonsProps] = getOverrides(
-      overrides.QuickSelectButtons,
-      StyledQuickSelectButtons,
+    const [QuickSelect, quickSelectProps] = getOverrides(
+      overrides.QuickSelect,
+      Select,
     );
 
-    if (!this.props.range || !this.props.quickSelect) {
+    if (!this.props.quickSelect) {
       return null;
     }
 
     const NOW = new Date();
+    NOW.setHours(12, 0, 0);
     const QUICK_SELECT_ACTIONS = [
-      {
-        label: 'Past Week',
-        beginDate: subWeeks(NOW, 1),
-      },
-      {
-        label: 'Past Month',
-        beginDate: subMonths(NOW, 1),
-      },
-      {
-        label: 'Past 3 Months',
-        beginDate: subMonths(NOW, 3),
-      },
-      {
-        label: 'Past 6 Months',
-        beginDate: subMonths(NOW, 6),
-      },
-      {
-        label: 'Past Year',
-        beginDate: subYears(NOW, 1),
-      },
-      {
-        label: 'Past 2 Years',
-        beginDate: subYears(NOW, 2),
-      },
+      {id: 'Past Week', beginDate: subWeeks(NOW, 1)},
+      {id: 'Past Month', beginDate: subMonths(NOW, 1)},
+      {id: 'Past 3 Months', beginDate: subMonths(NOW, 3)},
+      {id: 'Past 6 Months', beginDate: subMonths(NOW, 6)},
+      {id: 'Past Year', beginDate: subYears(NOW, 1)},
+      {id: 'Past 2 Years', beginDate: subYears(NOW, 2)},
     ];
 
     return (
-      <QuickSelectContainer {...quickSelectContainerProps}>
-        <QuickSelectLabel {...quickSelectLabelProps}>
-          Quick Select
-        </QuickSelectLabel>
-        <QuickSelectButtons {...quickSelectButtonsProps}>
-          {QUICK_SELECT_ACTIONS.map(({label, beginDate}) => (
-            <Button
-              key={label}
-              tabIndex={0}
-              kind={KIND.tertiary}
-              onClick={() => {
-                this.props.onChange({date: [beginDate, NOW]});
-              }}
-              overrides={{
-                BaseButton: {
-                  style: {
-                    flexBasis: 0,
-                    flexGrow: 1,
-                    marginBottom: '8px',
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                    marginLeft: 0,
-                    marginRight: 0,
-                    minWidth: '142px',
-                    ':nth-of-type(odd)': {
-                      marginRight: '8px',
-                    },
-                  },
-                },
-              }}
+      <LocaleContext.Consumer>
+        {locale => (
+          <QuickSelectContainer {...quickSelectContainerProps}>
+            <QuickSelectFormControl
+              label={locale.datepicker.quickSelectLabel}
+              {...quickSelectFormControlProps}
             >
-              {label}
-            </Button>
-          ))}
-        </QuickSelectButtons>
-      </QuickSelectContainer>
+              <QuickSelect
+                aria-label={locale.datepicker.quickSelectAriaLabel}
+                labelKey="id"
+                onChange={params => {
+                  if (!params.option) {
+                    this.setState({quickSelectId: null});
+                    this.props.onChange && this.props.onChange({date: []});
+                  } else {
+                    this.setState({quickSelectId: params.option.id});
+                    if (this.props.onChange) {
+                      if (this.props.range) {
+                        this.props.onChange({
+                          date: [params.option.beginDate, NOW],
+                        });
+                      } else {
+                        this.props.onChange({date: params.option.beginDate});
+                      }
+                    }
+                  }
+                }}
+                options={this.props.quickSelectOptions || QUICK_SELECT_ACTIONS}
+                placeholder="None"
+                value={
+                  this.state.quickSelectId && [{id: this.state.quickSelectId}]
+                }
+                {...quickSelectProps}
+              />
+            </QuickSelectFormControl>
+          </QuickSelectContainer>
+        )}
+      </LocaleContext.Consumer>
     );
   };
 
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const [startDate, endDate] = [].concat(this.props.value);
 
     return (
       <Root
         data-baseweb="calendar"
-        $ref={root => {
+        ref={root => {
           this.root = root;
         }}
         role="application"
@@ -460,6 +499,15 @@ export default class Calendar extends React.Component<
         {...rootProps}
       >
         {this.renderMonths()}
+        {this.props.timeSelectStart &&
+          this.renderTimeSelect(startDate, time =>
+            this.handleTimeChange(time, 0),
+          )}
+        {this.props.timeSelectEnd &&
+          this.props.range &&
+          this.renderTimeSelect(endDate, time =>
+            this.handleTimeChange(time, 1),
+          )}
         {this.renderQuickSelect()}
       </Root>
     );

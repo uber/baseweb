@@ -12,11 +12,11 @@ import {Navigation, StyledNavItemContainer, NavItem} from '../index.js';
 const nav = [
   {
     title: 'Colors',
-    subnav: [
+    subNav: [
       {
         title: 'Shades',
         itemId: '/',
-        subnav: [
+        subNav: [
           {
             title: 'Light',
             itemId: '#level1.1.2.2',

@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import {lighten, darken} from 'polished';
 
-import {KIND, VARIANT} from './constants.js';
 import {styled} from '../styles/index.js';
+import {KIND, VARIANT} from './constants.js';
+import type {SharedPropsArgT} from './types.js';
 
-type RampT = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700';
-export function customOnRamp(color: string, unit?: RampT) {
+export function customOnRamp(color?: string, unit?: string) {
   switch (unit) {
     case '50':
       return lighten(0.4, color);
@@ -159,7 +159,8 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
   }
 }
 
-export const Action = styled('span', props => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Action = styled<SharedPropsArgT>('span', props => {
   const {$disabled, $variant, $theme} = props;
 
   function backgroundColor(isHovered?: boolean, isActive?: boolean) {
@@ -236,7 +237,7 @@ export const Action = styled('span', props => {
     }
   }
 
-  return {
+  return ({
     alignItems: 'center',
     borderBottomRightRadius: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
@@ -263,12 +264,13 @@ export const Action = styled('span', props => {
       backgroundColor: backgroundColor(true, false),
       color: fontColor(props, true, true),
     },
-  };
+  }: {});
 });
 
 export const ActionIcon = styled('svg', {});
 
-export const Text = styled('span', props => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Text = styled<SharedPropsArgT>('span', props => {
   return {
     overflow: 'hidden',
     whiteSpace: 'nowrap',
@@ -277,7 +279,8 @@ export const Text = styled('span', props => {
   };
 });
 
-export const Root = styled('span', props => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Root = styled<SharedPropsArgT>('span', props => {
   const {$disabled, $theme, $closeable, $clickable, $kind, $variant} = props;
   const {
     sizing: {scale0, scale800, scale500},
@@ -552,7 +555,7 @@ export const Root = styled('span', props => {
     ? $theme.borders.radius400
     : 0;
 
-  return {
+  return ({
     ...font250,
     alignItems: 'center',
     backgroundColor: backgroundColor(false, false),
@@ -594,5 +597,5 @@ export const Root = styled('span', props => {
             borderColor: borderColor(true, true),
             color: fontColor(props, true, false),
           },
-  };
+  }: {});
 });

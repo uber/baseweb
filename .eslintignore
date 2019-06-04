@@ -9,3 +9,4 @@ documentation-site/.next
 documentation-site/static/examples
 documentation-site/posts.js
 public
+src/codemods/__testfixtures__

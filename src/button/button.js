@@ -13,21 +13,14 @@ import {
 } from './styled-components.js';
 import {getSharedProps} from './utils.js';
 import ButtonInternals from './button-internals.js';
+import {defaultProps} from './default-props.js';
 import {getOverrides} from '../helpers/overrides.js';
-import {KIND, SHAPE, SIZE} from './constants.js';
 
 import type {ButtonPropsT} from './types.js';
 
-export default class Button extends React.Component<ButtonPropsT> {
-  static defaultProps = {
-    disabled: false,
-    isLoading: false,
-    isSelected: false,
-    kind: KIND.primary,
-    overrides: {},
-    shape: SHAPE.default,
-    size: SIZE.default,
-  };
+// eslint-disable-next-line flowtype/no-weak-types
+class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
+  static defaultProps = defaultProps;
 
   internalOnClick = (...args: *) => {
     const {isLoading, onClick} = this.props;
@@ -39,7 +32,7 @@ export default class Button extends React.Component<ButtonPropsT> {
 
   render() {
     const {
-      overrides,
+      overrides = {},
       size,
       kind,
       shape,
@@ -49,6 +42,7 @@ export default class Button extends React.Component<ButtonPropsT> {
       startEnhancer,
       endEnhancer,
       children,
+      forwardedRef,
       ...restProps
     } = this.props;
     // Get overrides
@@ -70,6 +64,7 @@ export default class Button extends React.Component<ButtonPropsT> {
     const sharedProps = getSharedProps(this.props);
     return (
       <BaseButton
+        ref={forwardedRef}
         data-baseweb="button"
         {...sharedProps}
         {...restProps}
@@ -94,3 +89,9 @@ export default class Button extends React.Component<ButtonPropsT> {
     );
   }
 }
+
+const ForwardedButton = React.forwardRef<ButtonPropsT, HTMLButtonElement>(
+  (props: ButtonPropsT, ref) => <Button forwardedRef={ref} {...props} />,
+);
+ForwardedButton.displayName = 'Button';
+export default ForwardedButton;

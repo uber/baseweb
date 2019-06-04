@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import {withStyle} from 'styletron-react';
 
-import {styled} from '../../styles/index.js';
 import {Block} from '../../block/index.js';
 import ArrowDown from '../../icon/arrow-down.js';
 import ArrowUp from '../../icon/arrow-up.js';
@@ -30,24 +30,31 @@ import {
 
 export const name = 'table-cells';
 
-const StyledHeadingCell = styled(StyledCell, {paddingTop: 0, paddingBottom: 0});
+const StyledHeadingCell = withStyle(StyledCell, {
+  paddingTop: 0,
+  paddingBottom: 0,
+});
 
-const StyledDeltaCell = styled(StyledCell, props => ({
-  ...props.$theme.typography.font500,
-  alignItems: 'center',
-  backgroundColor: props.$isNegative
-    ? props.$theme.colors.negative50
-    : props.$theme.colors.positive50,
-  color: props.$isNegative
-    ? props.$theme.colors.negative
-    : props.$theme.colors.positive,
-}));
+// eslint-disable-next-line flowtype/no-weak-types
+const StyledDeltaCell = withStyle<typeof StyledCell, any>(
+  StyledCell,
+  props => ({
+    ...props.$theme.typography.font500,
+    alignItems: 'center',
+    backgroundColor: props.$isNegative
+      ? props.$theme.colors.negative50
+      : props.$theme.colors.positive50,
+    color: props.$isNegative
+      ? props.$theme.colors.negative
+      : props.$theme.colors.positive,
+  }),
+);
 
-const StyledLargeText = styled(StyledCell, {
+const StyledLargeText = withStyle(StyledCell, {
   alignItems: 'center',
 });
 
-const ExpandableCellHead = styled(StyledHeadCell, {
+const ExpandableCellHead = withStyle(StyledHeadCell, {
   paddingTop: 0,
   paddingBottom: 0,
   paddingLeft: 0,
@@ -55,7 +62,7 @@ const ExpandableCellHead = styled(StyledHeadCell, {
   minWidth: '180px',
 });
 
-const ExpandableCell = styled(StyledCell, {
+const ExpandableCell = withStyle(StyledCell, {
   paddingTop: 0,
   paddingBottom: 0,
   paddingLeft: 0,

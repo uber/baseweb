@@ -7,17 +7,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled, hexToRgb} from '../styles/index.js';
 
-export const Root = styled('div', props => {
+import type {StylePropsT} from './types.js';
+
+export const Root = styled<StylePropsT>('div', props => {
   return {
     width: '100%',
   };
 });
 
-export const Bar = styled('div', props => {
+export const Bar = styled<StylePropsT>('div', props => {
   const {$theme} = props;
   const {colors, sizing, borders} = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
-  return {
+  return ({
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
@@ -28,10 +30,10 @@ export const Bar = styled('div', props => {
     borderBottomLeftRadius: borderRadius,
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: '4px',
-  };
+  }: {});
 });
 
-export const BarProgress = styled('div', props => {
+export const BarProgress = styled<StylePropsT>('div', props => {
   const {$theme, $value, $successValue} = props;
   const {colors, sizing, borders} = $theme;
   const width = `${($value / $successValue) * 100}%`;
@@ -48,7 +50,7 @@ export const BarProgress = styled('div', props => {
   };
 });
 
-export const Label = styled('div', props => {
+export const Label = styled<StylePropsT>('div', props => {
   return {
     textAlign: 'center',
     ...props.$theme.typography.font250,

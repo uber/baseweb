@@ -65,7 +65,7 @@ function getFontValue(obj, key) {
   return obj[key];
 }
 
-export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
+export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
   const {breakpoints, colors, typography, sizing} = props.$theme;
 
   const get = (obj, key) => obj[key];
@@ -104,7 +104,10 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     transform: font => getFontValue(typography[font], 'lineHeight'),
   });
 
-  styles.apply({property: 'alignContent', value: get(props, '$alignContent')});
+  styles.apply({
+    property: 'alignContent',
+    value: get(props, '$alignContent'),
+  });
   styles.apply({property: 'alignItems', value: get(props, '$alignItems')});
   styles.apply({property: 'alignSelf', value: get(props, '$alignSelf')});
   styles.apply({property: 'display', value: get(props, '$display')});
@@ -119,8 +122,14 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     property: 'gridAutoColumns',
     value: get(props, '$gridAutoColumns'),
   });
-  styles.apply({property: 'gridAutoFlow', value: get(props, '$gridAutoFlow')});
-  styles.apply({property: 'gridAutoRows', value: get(props, '$gridAutoRows')});
+  styles.apply({
+    property: 'gridAutoFlow',
+    value: get(props, '$gridAutoFlow'),
+  });
+  styles.apply({
+    property: 'gridAutoRows',
+    value: get(props, '$gridAutoRows'),
+  });
   styles.apply({property: 'gridColumn', value: get(props, '$gridColumn')});
   styles.apply({
     property: 'gridColumnEnd',
@@ -165,7 +174,10 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     property: 'justifyContent',
     value: get(props, '$justifyContent'),
   });
-  styles.apply({property: 'justifyItems', value: get(props, '$justifyItems')});
+  styles.apply({
+    property: 'justifyItems',
+    value: get(props, '$justifyItems'),
+  });
   styles.apply({property: 'justifySelf', value: get(props, '$justifySelf')});
   styles.apply({property: 'position', value: get(props, '$position')});
   styles.apply({
@@ -281,7 +293,10 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     transform: getScale,
   });
 
-  styles.apply({property: 'placeContent', value: get(props, '$placeContent')});
+  styles.apply({
+    property: 'placeContent',
+    value: get(props, '$placeContent'),
+  });
   styles.apply({property: 'placeItems', value: get(props, '$placeItems')});
   styles.apply({property: 'placeSelf', value: get(props, '$placeSelf')});
   styles.apply({

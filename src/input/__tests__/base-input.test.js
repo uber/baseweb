@@ -4,6 +4,7 @@ Copyright (c) 2018-2019 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* global document */
 // @flow
 import * as React from 'react';
 import {mount} from 'enzyme';
@@ -103,18 +104,19 @@ test('BaseInput - autoFocus sets the initial focus state', () => {
 });
 
 test('BaseInput - inputRef from props', () => {
-  const focus = jest.fn();
+  const ref = React.createRef();
   const props = {
     autoFocus: true,
     onFocus: jest.fn(),
     onChange: jest.fn(),
-    inputRef: {current: {focus}},
+    inputRef: ref,
   };
 
   // $FlowFixMe
   const wrapper = mount(<BaseInput {...props} />);
   // Is focused when mount
   expect(wrapper).toHaveState('isFocused', true);
-  // ref's focus method is called
-  expect(focus).toBeCalled();
+  expect(wrapper.find('input').getDOMNode() === document.activeElement).toBe(
+    true,
+  );
 });

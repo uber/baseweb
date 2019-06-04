@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-export const Link = styled('a', ({$theme}) => {
+export const Link = styled<{}>('a', ({$theme}) => {
   const {colors, typography, animation} = $theme;
   return {
     color: colors.linkText,

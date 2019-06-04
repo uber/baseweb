@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-export const Action = styled('div', () => ({}));
+export const Action = styled<{}>('div', props => ({}));
 
-export const Body = styled('div', ({$theme}) => {
+export const Body = styled<{}>('div', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     marginBottom: sizing.scale600,
@@ -20,7 +20,7 @@ export const Body = styled('div', ({$theme}) => {
   };
 });
 
-export const Contents = styled('div', ({$theme}) => {
+export const Contents = styled<{}>('div', ({$theme}) => {
   const {sizing} = $theme;
   return {
     marginLeft: sizing.scale800,
@@ -30,30 +30,21 @@ export const Contents = styled('div', ({$theme}) => {
   };
 });
 
-export const HeaderImage = styled('img', ({$theme}) => {
-  const {borders} = $theme;
-  return {
-    borderTopLeftRadius: borders.radius200,
-    borderTopRightRadius: borders.radius200,
-    objectFit: 'contain',
-    maxWidth: '100%',
-  };
+export const HeaderImage = styled('img', {
+  objectFit: 'contain',
+  maxWidth: '100%',
 });
 
-export const Root = styled('div', ({$theme}) => {
+export const Root = styled<{}>('div', ({$theme}) => {
   const {borders, lighting, colors} = $theme;
   return {
     ...borders.border300,
     boxShadow: lighting.shadow400,
-    borderTopLeftRadius: borders.radius200,
-    borderTopRightRadius: borders.radius200,
-    borderBottomLeftRadius: borders.radius200,
-    borderBottomRightRadius: borders.radius200,
     backgroundColor: colors.backgroundAlt,
   };
 });
 
-export const Thumbnail = styled('img', props => {
+export const Thumbnail = styled<{}>('img', props => {
   const {
     $theme: {borders, sizing},
   } = props;
@@ -62,16 +53,12 @@ export const Thumbnail = styled('img', props => {
     height: sizing.scale2400,
     width: sizing.scale2400,
     objectFit: 'cover',
-    borderTopLeftRadius: borders.radius200,
-    borderTopRightRadius: borders.radius200,
-    borderBottomLeftRadius: borders.radius200,
-    borderBottomRightRadius: borders.radius200,
     ...borders.border200,
     margin: `0 0 ${sizing.scale500} ${sizing.scale500}`,
   };
 });
 
-export const Title = styled('h1', ({$hasThumbnail, $theme}) => {
+export const Title = styled<{}>('h1', ({$hasThumbnail, $theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     ...typography.font500,

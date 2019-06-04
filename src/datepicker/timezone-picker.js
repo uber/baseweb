@@ -25,16 +25,20 @@ class TimezonePicker extends React.Component<
   TimezonePickerPropsT,
   TimezonePickerStateT,
 > {
-  state = {timezones: [], value: []};
+  state = {timezones: [], value: null};
 
   componentDidMount() {
     const timezones = this.buildTimezones(this.props.date || new Date());
 
     if (__BROWSER__) {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      this.setState({value: [{id: tz}]});
+      this.setState({timezones, value: tz});
+
+      const option = timezones.find(o => o.id === tz);
+      option && this.props.onChange && this.props.onChange(option);
+    } else {
+      this.setState({timezones});
     }
-    this.setState({timezones});
   }
 
   componentDidUpdate(prevProps: TimezonePickerPropsT) {
@@ -43,6 +47,9 @@ class TimezonePicker extends React.Component<
     if (prevTime !== nextTime) {
       const timezones = this.buildTimezones(this.props.date || new Date());
       this.setState({timezones});
+
+      const option = timezones.find(o => o.id === this.state.value);
+      option && this.props.onChange && this.props.onChange(option);
     }
   }
 
@@ -102,12 +109,21 @@ class TimezonePicker extends React.Component<
           <OverriddenSelect
             aria-label={locale.datepicker.timezonePickerAriaLabel}
             options={this.state.timezones}
-            // overrides={{Dropdown: {style: {maxHeight: '360px'}}}}
+            clearable={false}
             onChange={params => {
-              this.setState({value: params.value});
-              this.props.onChange && this.props.onChange(params);
+              if (params.type === 'clear') {
+                this.setState({value: ''});
+                this.props.onChange && this.props.onChange(null);
+              } else {
+                this.setState({value: params.option.id});
+                this.props.onChange && this.props.onChange(params.option);
+              }
             }}
-            value={this.props.value || this.state.value || []}
+            value={
+              this.props.value || this.state.value
+                ? [{id: this.props.value || this.state.value}]
+                : null
+            }
             {...selectProps}
           />
         )}

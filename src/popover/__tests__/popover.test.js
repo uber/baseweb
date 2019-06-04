@@ -18,6 +18,8 @@ import {
   TRIGGER_TYPE,
 } from '../index.js';
 
+import {styled} from '../../styles/index.js';
+
 jest.useFakeTimers();
 
 // Mock Layer and TetherBehavior
@@ -121,7 +123,7 @@ describe('Popover', () => {
     expect(TetherBehavior).toHaveBeenCalled();
     expect(TetherBehavior).toHaveBeenCalled();
     // $FlowFixMe
-    const tetherProps = TetherBehavior.mock.calls[0][0];
+    const tetherProps = TetherBehavior.mock.calls[1][0];
     const wrapperInstance = wrapper.instance();
     expect(tetherProps).toMatchObject({
       popperOptions: {
@@ -132,6 +134,7 @@ describe('Popover', () => {
       onPopperUpdate: wrapperInstance.onPopperUpdate,
       placement: wrapper.state().placement,
     });
+
     expect(tetherProps.anchorRef).toBe(wrapperInstance.anchorRef.current);
     expect(tetherProps.arrowRef).toBe(wrapperInstance.arrowRef.current);
     expect(tetherProps.popperRef).toBe(wrapperInstance.popperRef.current);
@@ -254,8 +257,9 @@ describe('Popover', () => {
     const onClick = jest.fn();
     const content = <strong>Hello world</strong>;
 
-    const CustomComponent = (jest.fn(): any);
-    CustomComponent.mockReturnValue(<span>Hover Me</span>);
+    const CustomComponent = styled('span', {});
+    // const CustomComponent = (jest.fn(): any);
+    // CustomComponent.mockReturnValue(<span>Hover Me</span>);
 
     wrapper = mount(
       <Popover isOpen content={content} onClick={onClick}>
@@ -263,40 +267,23 @@ describe('Popover', () => {
       </Popover>,
     );
 
-    expect(CustomComponent).toHaveBeenCalled();
-    expect(CustomComponent).toHaveBeenCalledWith(
-      {
-        $ref: wrapper.instance().anchorRef,
-        onClick: wrapper.instance().onAnchorClick,
-        'aria-controls': null,
-        'aria-haspopup': 'true',
-        'aria-expanded': 'true',
-      },
-      {},
-    );
-    expect(CustomComponent).toHaveBeenLastCalledWith(
-      {
-        $ref: wrapper.instance().anchorRef,
-        onClick: wrapper.instance().onAnchorClick,
-        'aria-controls': 'bui-mock-id',
-        'aria-haspopup': 'true',
-        'aria-expanded': 'true',
-      },
-      {},
-    );
+    const childProps = wrapper.find('span').props();
+
+    expect(childProps.onClick).toBe(wrapper.instance().onAnchorClick);
+    expect(childProps['aria-controls']).toBe('bui-mock-id');
+    expect(childProps['aria-haspopup']).toBe('true');
+    expect(childProps['aria-expanded']).toBe('true');
+    expect(wrapper).toMatchSnapshot();
   });
 
   test('component overrides', () => {
     const overrides = {
-      Arrow: jest.fn().mockImplementation(() => <div />),
-      Body: jest.fn().mockImplementation(({children}) => <div>{children}</div>),
-      Inner: jest
-        .fn()
-        .mockImplementation(({children}) => <div>{children}</div>),
+      Arrow: styled('div', {color: 'red'}),
+      Body: styled('div', {color: 'green'}),
+      Inner: styled('div', {color: 'blue'}),
     };
 
     wrapper = mount(
-      // $FlowFixMe - Flow is complaining about jest mock args
       <Popover
         isOpen
         overrides={overrides}
@@ -307,30 +294,17 @@ describe('Popover', () => {
       </Popover>,
     );
 
-    // eslint-disable-next-line flowtype/no-weak-types
-    function withoutChildren(obj: any) {
-      const shallowCopy = {...obj};
-      delete shallowCopy.children;
-      return shallowCopy;
-    }
-
     const body = wrapper.find(overrides.Body);
     expect(body).toHaveLength(1);
-    expect(withoutChildren(body.props())).toMatchSnapshot(
-      'custom popover body has correct props',
-    );
+    expect(body).toMatchSnapshot('custom popover body has correct props');
 
     const arrow = wrapper.find(overrides.Arrow);
     expect(arrow).toHaveLength(1);
-    expect(withoutChildren(arrow.props())).toMatchSnapshot(
-      'custom popover arrow has correct props',
-    );
+    expect(arrow).toMatchSnapshot('custom popover arrow has correct props');
 
     const inner = wrapper.find(overrides.Inner);
     expect(inner).toHaveLength(1);
-    expect(withoutChildren(inner.props())).toMatchSnapshot(
-      'custom popover inner has correct props',
-    );
+    expect(inner).toMatchSnapshot('custom popover inner has correct props');
   });
 
   test('click accessibility attributes', () => {

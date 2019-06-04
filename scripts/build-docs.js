@@ -48,6 +48,10 @@ const majors = {
     buildCommand: 'yarn documentation:build',
     distFolder: 'public',
   },
+  v6: {
+    buildCommand: 'yarn documentation:build',
+    distFolder: 'public',
+  },
 };
 
 async function main() {
@@ -101,7 +105,7 @@ async function downloadFile({latestMajors, version, filePath}) {
   const writer = fs.createWriteStream(filePath);
 
   const tarballResponse = await fetch(latestMajors[version].tarball_url);
-
+  // $FlowFixMe
   tarballResponse.body.pipe(writer);
 
   return new Promise((resolve, reject) => {

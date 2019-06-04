@@ -9,13 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 
 export type RadioOverridesT = {
-  // This override will be deprecated in the next major version. Use 'RadioMarkInner' or 'RadioMarkOuter' instead.
-  RadioMark?: OverrideT<*>,
   RadioMarkInner?: OverrideT<*>,
   RadioMarkOuter?: OverrideT<*>,
   Label?: OverrideT<*>,
@@ -48,15 +45,11 @@ export type PropsT = {
    * visible on screen. If the label is visible, use the 'aria-labeledby' prop instead.
    */
   'aria-label'?: string,
-  // This prop will be deprecated in the next major update. Use 'aria-label' instead.
-  ariaLabel?: string,
   /**
    * Establishes a relationship between the radio group and its label. Screen readers use this
    * attribute to catalog the object on a page so that users can navigate between them.
    */
   'aria-labelledby'?: string,
-  // This prop will be deprecated in the next major update. Use 'aria-labelledby' instead.
-  ariaLabelledBy?: string,
   // This prop will be deprecated in the next major update. Pass overrides to the 'Radio' component instead.
   overrides?: OverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
@@ -77,7 +70,6 @@ export type PropsT = {
   name?: string,
   /** How to position the label relative to the radio itself. */
   labelPlacement?: LabelPlacementT,
-  $theme?: ThemeT,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
@@ -180,4 +172,18 @@ export type StatefulRadioGroupPropsT = {
   autoFocus?: boolean,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+};
+
+export type StylePropsT = {
+  $align?: boolean,
+  $checked: boolean,
+  $disabled: boolean,
+  $hasDescription: boolean,
+  $isActive: boolean,
+  $isError: boolean,
+  $isFocused: boolean,
+  $isHovered: boolean,
+  $labelPlacement: LabelPlacementT,
+  $required: boolean,
+  $value: string,
 };

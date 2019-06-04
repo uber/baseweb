@@ -134,41 +134,41 @@ The provided id will be set as a value for the item container's `id` attribute t
       </Block>
       <Code>
         {`import {StatefulMenu, OptionProfile} from 'baseui/menu';
-export default () => (
-  <StatefulMenu
-    items={[...new Array(4)].map(() => ({
-      title: 'David Smith',
-      subtitle: 'Senior Engineering Manager',
-      body: 'Uber Everything',
-      imgUrl: 'https://via.placeholder.com/60x60',
-    }))}
-    overrides={{
-      List: {},
-      ListItem: {},
-      Option: {
-        component: OptionProfile,
-        props: {
-          getProfileItemLabels: ({title, subtitle, body}) => ({
-            title,
-            subtitle,
-            body,
-          }),
-          getProfileItemImg: item => item.imgUrl,
-          getProfileItemImgText: item => item.title,
-          overrides: {
-            ListItemProfile: {},
-            ProfileImgContainer: {},
-            ProfileImg: {},
-            ProfileLabelsContainer: {},
-            ProfileTitle: {},
-            ProfileSubtitle: {},
-            ProfileBody: {}
-          },
-        },
-      },
-    }}
-  />
-);`}
+          export default () => (
+            <StatefulMenu
+              items={[...new Array(4)].map(() => ({
+                title: 'David Smith',
+                subtitle: 'Senior Engineering Manager',
+                body: 'Uber Everything',
+                imgUrl: 'https://via.placeholder.com/60x60',
+              }))}
+              overrides={{
+                List: {},
+                ListItem: {},
+                Option: {
+                  component: OptionProfile,
+                  props: {
+                    getProfileItemLabels: ({title, subtitle, body}) => ({
+                      title,
+                      subtitle,
+                      body,
+                    }),
+                    getProfileItemImg: item => item.imgUrl,
+                    getProfileItemImgText: item => item.title,
+                    overrides: {
+                      ListItemProfile: {},
+                      ProfileImgContainer: {},
+                      ProfileImg: {},
+                      ProfileLabelsContainer: {},
+                      ProfileTitle: {},
+                      ProfileSubtitle: {},
+                      ProfileBody: {}
+                    },
+                  },
+                },
+              }}
+            />
+          );`}
       </Code>
     </React.Fragment>
   )}
@@ -176,25 +176,25 @@ export default () => (
 
 <API
   heading="Menu API"
-  api={require('!!extract-react-types-loader!../../../src/menu/menu.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/menu.js')}
 />
 
 <API
   heading="Stateful Menu API"
-  api={require('!!extract-react-types-loader!../../../src/menu/stateful-menu.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/stateful-menu.js')}
 />
 
 <API
   heading="Stateful Container API"
-  api={require('!!extract-react-types-loader!../../../src/menu/stateful-container.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/stateful-container.js')}
 />
 
 <API
   heading="Menu Item Api"
-  api={require('!!extract-react-types-loader!../../../src/menu/option-list.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/option-list.js')}
 />
 
 <API
   heading="Profile Menu Item Api"
-  api={require('!!extract-react-types-loader!../../../src/menu/option-profile.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/option-profile.js')}
 />

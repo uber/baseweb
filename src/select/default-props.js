@@ -20,6 +20,7 @@ const defaultProps = {
   deleteRemoves: true,
   disabled: false,
   error: false,
+  positive: false,
   escapeClearsValue: true,
   filterOptions: defaultFilterOptions,
   filterOutSelected: true,

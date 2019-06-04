@@ -7,19 +7,19 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
+import React from 'react';
+import {withStyle} from 'styletron-react';
 import {
   Navigation,
   StyledNavItem as NavItem,
   StyledNavLink,
 } from 'baseui/side-navigation';
 import {Label2, Label1} from 'baseui/typography';
-import {styled} from 'baseui';
 import Link from 'next/link';
 
 import Routes from '../routes';
 
-const StyledNavItem = styled(NavItem, ({$theme, $active}) => {
+const StyledNavItem = withStyle(NavItem, ({$theme, $active}) => {
   const styleOverride = {};
 
   if ($theme.name.startsWith('dark')) {
@@ -41,9 +41,9 @@ const removeSlash = path => {
   return path;
 };
 
-function renderItem(item, itemProps) {
-  const {onSelect, onClick, onKeyDown, ...sharedProps} = itemProps;
-  const Label = itemProps.$level === 1 ? Label2 : Label1;
+function CustomNavItem(props) {
+  const {item, onSelect, onClick, onKeyDown, ...sharedProps} = props;
+  const Label = props.$level === 1 ? Label2 : Label1;
 
   const NavLink = ({item}) => (
     <Link passHref={true} href={item.itemId} prefetch>
@@ -53,7 +53,7 @@ function renderItem(item, itemProps) {
     </Link>
   );
 
-  if (item.itemId && itemProps.$level === 1)
+  if (item.itemId && props.$level === 1)
     return (
       <Label overrides={{Block: {style: {textTransform: 'uppercase'}}}}>
         <NavLink item={item} />
@@ -84,7 +84,11 @@ export default ({path}) => {
       activeItemId={path}
       activePredicate={activePredicate}
       items={Routes}
-      renderItem={renderItem}
+      overrides={{
+        NavItem: {
+          component: CustomNavItem,
+        },
+      }}
     />
   );
 };

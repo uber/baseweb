@@ -7,50 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {KIND, SIZE, SHAPE} from './constants.js';
-import type {ThemeT} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
 
-type StylePropsT = SharedStylePropsT & {
-  $theme: ThemeT,
-};
-
-function getBorderRadii({$shape, $theme}: StylePropsT) {
-  let value = 0;
-
-  if ($shape === SHAPE.round) {
-    value = '50%';
-  } else if ($theme.borders.useRoundedCorners) {
-    value = $theme.borders.radius200;
-  }
-
-  return {
-    borderTopRightRadius: value,
-    borderBottomRightRadius: value,
-    borderTopLeftRadius: value,
-    borderBottomLeftRadius: value,
-  };
-}
-
-export const BaseButton = styled(
+export const BaseButton = styled<SharedStylePropsT>(
   'button',
-  ({
-    $theme,
-    $size,
-    $kind,
-    $shape,
-    $isLoading,
-    $isSelected,
-    $disabled,
-  }: StylePropsT) => ({
+  ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
     position: 'relative',
-    ...($size === SIZE.compact
-      ? $theme.typography.font250
-      : $theme.typography.font450),
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     border: 'none',
-    ...getBorderRadii({$shape, $theme}),
     textDecoration: 'none',
     outline: 'none',
     WebkitAppearance: 'none',
@@ -63,23 +29,24 @@ export const BaseButton = styled(
       backgroundColor: $theme.colors.buttonDisabledFill,
       color: $theme.colors.buttonDisabledText,
     },
-    // Padding For Shape and Size
-    ...getStyleForShape({$theme, $shape, $size}),
-    // Kind style override
-    ...getStyleForKind({$theme, $kind, $isLoading, $isSelected, $disabled}),
     marginLeft: 0,
     marginTop: 0,
     marginRight: 0,
     marginBottom: 0,
+    ...getFontStyles({$theme, $size}),
+    ...getBorderRadiiStyles({$theme, $shape}),
+    ...getPaddingStyles({$theme, $size, $shape}),
+    // Kind style override
+    ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
   }),
 );
 
-export const EndEnhancer = styled('div', ({$theme}: StylePropsT) => ({
+export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
   display: 'flex',
   marginLeft: $theme.sizing.scale500,
 }));
 
-export const StartEnhancer = styled('div', ({$theme}: StylePropsT) => ({
+export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
   display: 'flex',
   marginRight: $theme.sizing.scale500,
 }));
@@ -92,9 +59,9 @@ export const LoadingSpinnerContainer = styled('div', {
   transform: 'translate(-50%, -50%)',
 });
 
-export const LoadingSpinner = styled(
+export const LoadingSpinner = styled<SharedStylePropsT>(
   'div',
-  ({$theme, $kind, $disabled}: StylePropsT) => {
+  ({$theme, $kind, $disabled}) => {
     const {foreground, background} = getLoadingSpinnerColors({
       $theme,
       $kind,
@@ -128,11 +95,7 @@ export const LoadingSpinner = styled(
   },
 );
 
-export function getLoadingSpinnerColors({
-  $theme,
-  $kind,
-  $disabled,
-}: StylePropsT) {
+function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
   return {
     foreground: $disabled
       ? $theme.colors.mono600
@@ -147,51 +110,72 @@ export function getLoadingSpinnerColors({
   };
 }
 
-export function getStyleForShape({$theme, $shape, $size}: StylePropsT) {
-  switch ($shape) {
-    case SHAPE.round:
-    case SHAPE.square:
+function getBorderRadiiStyles({$theme, $shape}) {
+  let value = '0px';
+
+  if ($shape === SHAPE.round) {
+    value = '50%';
+  }
+
+  return {
+    borderTopRightRadius: value,
+    borderBottomRightRadius: value,
+    borderTopLeftRadius: value,
+    borderBottomLeftRadius: value,
+  };
+}
+
+function getFontStyles({$theme, $size}) {
+  switch ($size) {
+    case SIZE.compact:
+      return $theme.typography.font450;
+    case SIZE.large:
+      return $theme.typography.font500;
+    default:
+      return $theme.typography.font470;
+  }
+}
+
+function getPaddingStyles({$theme, $size, $shape}) {
+  const defaultShape = $shape === SHAPE.default;
+  switch ($size) {
+    case SIZE.compact:
       return {
-        paddingTop:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingBottom:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingLeft:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
-        paddingRight:
-          $size === SIZE.compact
-            ? $theme.sizing.scale400
-            : $theme.sizing.scale500,
+        paddingTop: $theme.sizing.scale200,
+        paddingBottom: $theme.sizing.scale200,
+        paddingLeft: defaultShape
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale200,
+        paddingRight: defaultShape
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale200,
+      };
+    case SIZE.large:
+      return {
+        paddingTop: $theme.sizing.scale550,
+        paddingBottom: $theme.sizing.scale550,
+        paddingLeft: defaultShape
+          ? $theme.sizing.scale700
+          : $theme.sizing.scale550,
+        paddingRight: defaultShape
+          ? $theme.sizing.scale700
+          : $theme.sizing.scale550,
       };
     default:
       return {
-        paddingTop:
-          $size === SIZE.compact
-            ? $theme.sizing.scale200
-            : $theme.sizing.scale300,
-        paddingBottom:
-          $size === SIZE.compact
-            ? $theme.sizing.scale200
-            : $theme.sizing.scale300,
-        paddingLeft: $theme.sizing.scale600,
-        paddingRight: $theme.sizing.scale600,
+        paddingTop: $theme.sizing.scale500,
+        paddingBottom: $theme.sizing.scale500,
+        paddingLeft: defaultShape
+          ? $theme.sizing.scale600
+          : $theme.sizing.scale500,
+        paddingRight: defaultShape
+          ? $theme.sizing.scale600
+          : $theme.sizing.scale500,
       };
   }
 }
 
-export function getStyleForKind({
-  $theme,
-  $isLoading,
-  $isSelected,
-  $kind,
-  $disabled,
-}: StylePropsT) {
+function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
   if ($disabled) {
     return {};
   }

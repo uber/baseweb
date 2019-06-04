@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 import Textarea from '../textarea.js';
-import {Textarea as StyledTextarea} from '../styled-components.js';
+import {StyledTextarea} from '../styled-components.js';
 import {BaseInput} from '../../input/index.js';
 
 describe('Textarea', () => {
@@ -66,32 +66,24 @@ describe('Textarea', () => {
       onChange: jest.fn(),
     };
 
-    // $FlowFixMe
     const wrapper = mount(<Textarea {...props} />);
     const baseInput = wrapper.find(BaseInput);
     // Is focused when mount
     expect(baseInput.instance().state.isFocused).toEqual(true);
-  });
-
-  test('inputRef from props', () => {
-    const focus = jest.fn();
-    const props = {
-      autoFocus: true,
-      onFocus: jest.fn(),
-      onChange: jest.fn(),
-      inputRef: {current: {focus}},
-    };
-
-    // $FlowFixMe
-    const wrapper = mount(<Textarea {...props} />);
-    const baseInput = wrapper.find(BaseInput);
-    // Is focused when mount
-    expect(baseInput.instance().state.isFocused).toEqual(true);
-    // ref's focus method is called
-    expect(focus).toBeCalled();
   });
 
   test('With component overrides', () => {
+    const CustomContainer = React.forwardRef((props, ref) => (
+      <span ref={ref} id="test-container">
+        {props.children}
+      </span>
+    ));
+    const CustomTextarea = React.forwardRef((props, ref) => (
+      <span ref={ref} id="test-input">
+        <StyledTextarea {...props} />
+      </span>
+    ));
+
     const props = {
       value: 'textarea value',
       placeholder: 'Placeholder',
@@ -99,22 +91,11 @@ describe('Textarea', () => {
       onBlur: jest.fn(),
       onChange: jest.fn(),
       overrides: {
-        InputContainer: {
-          component: function CustomContainer(props: {children: *}) {
-            return <span id="test-container">{props.children}</span>;
-          },
-        },
-        Input: function CustomTextarea(props) {
-          return (
-            <span id="test-input">
-              <StyledTextarea {...props} />
-            </span>
-          );
-        },
+        InputContainer: CustomContainer,
+        Input: CustomTextarea,
       },
     };
 
-    // $FlowFixMe
     const wrapper = mount(<Textarea {...props} />);
 
     const baseInput = wrapper.find(BaseInput);

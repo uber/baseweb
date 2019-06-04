@@ -12,7 +12,7 @@ import Layout from '../../components/layout';
 import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
 import BasicUncontrolledDefaultValue from 'examples/input/basic-uncontrolled-default-value.js';
 import BasicControlled from 'examples/input/basic-controlled.js';
-import CompactSize from 'examples/input/compact-size.js';
+import Sizes from 'examples/input/sizes.js';
 import AvailableStates from 'examples/input/available-states.js';
 import Enhancers from 'examples/input/enhancers.js';
 import BeforeAfter from 'examples/input/before-after.js';
@@ -46,15 +46,15 @@ An input enables a person to type in text information.
   <BasicUncontrolled />
 </Example>
 
+<Example title="Input sizes" path="examples/input/sizes.js">
+  <Sizes />
+</Example>
+
 <Example
   title="Input as an uncontrolled component with a default value"
   path="examples/input/basic-uncontrolled-default-value.js"
 >
   <BasicUncontrolledDefaultValue />
-</Example>
-
-<Example title="Input compact size" path="examples/input/compact-size.js">
-  <CompactSize />
 </Example>
 
 <Example
@@ -106,5 +106,5 @@ An input enables a person to type in text information.
 
 <API
   heading="Input API"
-  api={require('!!extract-react-types-loader!../../../src/input/input.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/input/input.js')}
 />

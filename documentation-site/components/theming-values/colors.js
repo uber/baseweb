@@ -13,7 +13,7 @@ import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
 
-const StyledColorWrapper = styled(
+const StyledColorWrapper = styled<{$dark: boolean, $backgroundColor: string}>(
   'div',
   ({$dark = false, $backgroundColor = '', $theme}) => {
     return {
@@ -27,7 +27,7 @@ const StyledColorWrapper = styled(
   },
 );
 
-const StyledColorPreview = styled('div', ({$theme}) => {
+const StyledColorPreview = styled<{}>('div', ({$theme}) => {
   return {
     marginTop: $theme.sizing.scale400,
     marginRight: $theme.sizing.scale400,
