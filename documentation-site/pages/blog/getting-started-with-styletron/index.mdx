@@ -81,7 +81,10 @@ Let's start by styling the foundation for our `Button`. Nothing special happenin
 const Button = styled('button', {
   background: 'transparent',
   border: '4px solid #276EF1',
-  borderRadius: '4px',
+  borderTopLeftRadius: '4px',
+  borderTopRightRadius: '4px',
+  borderBottomRightRadius: '4px',
+  borderBottomLeftRadius: '4px',
   color: '#276EF1',
   cursor: 'pointer',
   fontWeight: 'bold',
@@ -97,7 +100,10 @@ We want to copy the `Button` styling onto the `:after` element and use the `cont
 const Button = styled('button', {
   background: 'transparent',
   border: '4px solid #276EF1',
-  borderRadius: '4px',
+  borderTopLeftRadius: '4px',
+  borderTopRightRadius: '4px',
+  borderBottomRightRadius: '4px',
+  borderBottomLeftRadius: '4px',
   color: '#276EF1',
   cursor: 'pointer',
   fontWeight: 'bold',
@@ -139,7 +145,10 @@ const Button = styled('button', props => ({
     background: '#276EF1',
     border: 0,
     bottom: 0,
-    borderRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
     color: '#FFFFFF',
     content: `"${props.children}"`,
     left: 0,
@@ -267,8 +276,6 @@ It’s common to see developers want to render an anchor that looks like a butto
 
 
 <Demo src='https://codesandbox.io/embed/qk0znoxrj6?fontsize=14'/>
-
-The other prop is `$ref`. This works the same as the `ref` you will be familiar with. All you need do, is replace instances of `ref` with `$ref` where you are using a Styletron component.
 
 ## Pitfalls and Drawbacks
 Although there are some, none of these should deter you from using Styletron.

@@ -155,9 +155,7 @@ It would be nice to have a button inside our input that generates a new password
 <Input
   overrides={{
     After: () => (
-      <Button
-        kind={KIND.minimal}
-        shape={SHAPE.square}
+      <Button kind={KIND.minimal}>
         <Icon/>
       </Button>
     ),
@@ -272,7 +270,10 @@ Tie that into our Input
     InputContainer: {
       style: ({ $theme }) => ({
         borderColor: $theme.colors[getStrengthColor(strength)],
-        borderRadius: $theme.sizing.scale200,
+        borderTopLeftRadius: $theme.sizing.scale200,
+        borderTopRightRadius: $theme.sizing.scale200,
+        borderBottomRightRadius: $theme.sizing.scale200,
+        borderBottomLeftRadius: $theme.sizing.scale200,
         borderStyle: 'solid',
         borderWidth: $theme.sizing.scale200
       })

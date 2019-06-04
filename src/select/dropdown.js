@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -106,7 +106,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     );
     return (
       <DropdownContainer
-        $ref={this.props.innerRef}
+        ref={this.props.innerRef}
         role="listbox"
         {...this.getSharedProps()}
         {...dropdownContainerProps}
@@ -127,6 +127,9 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
             {
               List: {
                 component: StyledDropdown,
+                style: p => ({
+                  maxHeight: p.$maxHeight || null,
+                }),
                 props: {
                   $maxHeight: maxDropdownHeight,
                   'aria-multiselectable': multi,

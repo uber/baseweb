@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -35,8 +35,7 @@ export type OverridesT = {
   NextButton?: OverrideT<*>,
   MaxLabel?: OverrideT<*>,
   DropdownContainer?: OverrideT<*>,
-  DropdownButton?: OverrideT<*>,
-  DropdownMenu?: OverrideT<*>,
+  Select?: OverrideT<*>,
 };
 
 export type PaginationPropsT = CallbacksT & {
@@ -47,10 +46,6 @@ export type PaginationPropsT = CallbacksT & {
   /** Set of labels to use for the buttons and preposition. */
   labels?: LabelsT,
   overrides?: OverridesT,
-};
-
-export type PaginationStateT = {
-  isMenuOpen: boolean,
 };
 
 export type StatefulPaginationPropsT = CallbacksT & {

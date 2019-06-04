@@ -1,22 +1,22 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {shallow} from 'enzyme';
 import StatefulNavigation from '../stateful-nav.js';
 
 const nav = [
   {
     title: 'Colors',
-    subnav: [
+    subNav: [
       {
         title: 'Shades',
         itemId: '#level1.1.2',
-        subnav: [
+        subNav: [
           {
             title: 'Light',
             itemId: '#level1.1.2.2',

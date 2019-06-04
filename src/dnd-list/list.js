@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -59,7 +59,7 @@ class StatelessList extends React.Component<ListPropsT> {
             <List
               $isRemovable={isRemovable}
               $isDragged={isDragged}
-              $ref={props.ref}
+              ref={props.ref}
               {...listProps}
             >
               {children}
@@ -76,7 +76,7 @@ class StatelessList extends React.Component<ListPropsT> {
             return (
               <Item
                 {...sharedProps}
-                $ref={props.ref}
+                ref={props.ref}
                 key={props.key}
                 tabIndex={props.tabIndex}
                 aria-roledescription={props['aria-roledescription']}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 const routes = [
   {
     title: 'Getting started',
-    subnav: [
+    subNav: [
       {
         title: 'Welcome',
         itemId: '/',
@@ -52,7 +52,7 @@ const routes = [
   },
   {
     title: 'Theming',
-    subnav: [
+    subNav: [
       {
         title: 'Intro to Theming',
         itemId: '/theming/custom-themes',
@@ -74,10 +74,10 @@ const routes = [
   {
     components: true,
     title: 'Components',
-    subnav: [
+    subNav: [
       {
         title: 'Basic Inputs',
-        subnav: [
+        subNav: [
           {
             title: 'Button',
             itemId: '/components/button',
@@ -114,7 +114,7 @@ const routes = [
       },
       {
         title: 'Navigation',
-        subnav: [
+        subNav: [
           {
             title: 'Breadcrumbs',
             itemId: '/components/breadcrumbs',
@@ -133,7 +133,7 @@ const routes = [
           },
           {
             title: 'Side navigation',
-            itemId: '/components/sidenav',
+            itemId: '/components/side-nav',
           },
           {
             title: 'Tab',
@@ -143,7 +143,7 @@ const routes = [
       },
       {
         title: 'Content',
-        subnav: [
+        subNav: [
           {
             title: 'Accordion',
             itemId: '/components/accordion',
@@ -155,6 +155,10 @@ const routes = [
           {
             title: 'Drag and Drop List',
             itemId: '/components/dnd-list',
+          },
+          {
+            title: 'Heading',
+            itemId: '/components/heading',
           },
           {
             title: 'Icon',
@@ -176,7 +180,7 @@ const routes = [
       },
       {
         title: 'Pickers',
-        subnav: [
+        subNav: [
           {
             title: 'Datepicker',
             itemId: '/components/datepicker',
@@ -201,7 +205,7 @@ const routes = [
       },
       {
         title: 'Progress & Validation',
-        subnav: [
+        subNav: [
           {
             title: 'Notification',
             itemId: '/components/notification',
@@ -226,7 +230,7 @@ const routes = [
       },
       {
         title: 'Surfaces',
-        subnav: [
+        subNav: [
           {
             title: 'Card',
             itemId: '/components/card',
@@ -247,7 +251,7 @@ const routes = [
       },
       {
         title: 'Utility',
-        subnav: [
+        subNav: [
           {
             title: 'BaseProvider',
             itemId: '/components/base-provider',
@@ -255,6 +259,10 @@ const routes = [
           {
             title: 'Block',
             itemId: '/components/block',
+          },
+          {
+            title: 'FlexGrid',
+            itemId: '/components/flex-grid',
           },
           {
             title: 'Layer',

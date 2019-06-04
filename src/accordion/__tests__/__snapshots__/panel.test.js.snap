@@ -22,7 +22,10 @@ Object {
       overrides={
         Object {
           "Svg": Object {
-            "component": [Function],
+            "component": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "render": [Function],
+            },
           },
         }
       }

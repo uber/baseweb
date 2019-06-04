@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -75,4 +75,13 @@ export type StatefulSliderPropsT = {
   step?: number,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange?: ({...ParamsT}) => mixed,
+};
+
+export type StylePropsT = {
+  $disabled: boolean,
+  $isDragged: boolean,
+  $max: number,
+  $min: number,
+  $thumbIndex: number,
+  $value: Array<number>,
 };

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
 import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants.js';
 import type {OnItemSelectFnT} from '../menu/types.js';
 
@@ -86,6 +85,8 @@ export type PropsT = {
   disabled: boolean,
   /** Defines if the control if in error state. */
   error: boolean,
+  /** Defines if the control if in positive state. */
+  positive: boolean,
   /** Defines if the value is cleared when escape is pressed and the dropdown is closed. */
   escapeClearsValue: boolean,
   /** Defaults to filterOptions that excludes selected options for
@@ -155,7 +156,10 @@ export type PropsT = {
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value: ValueT,
-  /** Defines an option key for a default key value. */
+  /** Defines a key name for an option's unique identifier value.
+   * The value of the `valueKey` prop is used to identify what options are selected
+   * or removed from the selection, it also used for default filtering out the
+   * selected options from the dropdown list. */
   valueKey: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
@@ -230,6 +234,7 @@ export type AutosizeInputPropsT = {
   defaultValue?: string,
   inputRef: () => void,
   overrides: AutosizeInputOverridesT,
+  $size: SizeT,
 };
 
 export type AutosizeInputStateT = {
@@ -241,6 +246,7 @@ export type SharedStylePropsArgT = {
   $creatable: boolean,
   $disabled: boolean,
   $error: boolean,
+  $positive: boolean,
   $isFocused: boolean,
   $isLoading: boolean,
   $isOpen: boolean,
@@ -250,8 +256,8 @@ export type SharedStylePropsArgT = {
   $searchable: boolean,
   $size: SizeT,
   $type: TypeT,
-};
-
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
+  $width?: string,
+  $maxHeight?: string,
+  $isHighlighted?: boolean,
+  $selected?: boolean,
 };

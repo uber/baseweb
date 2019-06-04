@@ -1,17 +1,11 @@
 import React, {useState} from 'react';
-import {styled, createTheme, lightThemePrimitives, ThemeProvider} from 'baseui';
-import {Navigation, StyledNavLink, StyledNavItem} from 'baseui/side-navigation';
-import {Label2} from 'baseui/typography';
-
-const heading = {
-  Label2,
-};
+import {Navigation} from 'baseui/side-navigation';
 
 const nav = [
   {
     title: 'Colors',
-    heading: 'Label2',
-    subnav: [
+    itemId: '#level1.1',
+    subNav: [
       {
         title: 'Primary',
         itemId: '#level1.1.1',
@@ -19,7 +13,7 @@ const nav = [
       {
         title: 'Shades',
         itemId: '#level1.1.2',
-        subnav: [
+        subNav: [
           {
             title: 'Dark',
             itemId: '#level1.1.2.1',
@@ -35,58 +29,40 @@ const nav = [
   {
     title: 'Sizing',
     itemId: '#level1.2',
-    heading: 'Label2',
   },
   {
     title: 'Typography',
     itemId: '#level1.3',
-    heading: 'Label2',
   },
 ];
 
-const customTheme = createTheme(
-  {
-    ...lightThemePrimitives,
-    primary400: '#3e9920',
-  },
-  {},
-);
-
-const renderItem = function(item, itemProps) {
-  const {onSelect, onClick, onKeyDown, ...restProps} = itemProps;
-  const Heading = heading[item.heading];
-  const renderedItem = (
-    <StyledNavLink
-      href={item.itemId}
-      onClick={item.itemId ? onClick : null}
-      onKeyDown={item.itemId ? onKeyDown : null}
-      {...restProps}
-    >
-      <StyledNavItem {...restProps}>
-        {item.title}
-        {item.itemId ? ` (${item.itemId})` : ''}
-      </StyledNavItem>
-    </StyledNavLink>
-  );
-  return Heading ? (
-    <Heading overrides={{Block: {style: {textTransform: 'uppercase'}}}}>
-      {renderedItem}
-    </Heading>
-  ) : (
-    renderedItem
-  );
-};
-
-export default function() {
+export default () => {
   const [location, setLocation] = useState('#level1.1.1');
   return (
-    <ThemeProvider theme={customTheme}>
-      <Navigation
-        items={nav}
-        activeItemId={location}
-        onChange={({item}) => setLocation(item.itemId)}
-        renderItem={renderItem}
-      />
-    </ThemeProvider>
+    <Navigation
+      items={nav}
+      activeItemId={location}
+      onChange={({item}) => setLocation(item.itemId)}
+      overrides={{
+        NavItem: {
+          style: ({$active, $theme}) => {
+            if (!$active)
+              return {
+                ':hover': {
+                  color: $theme.colors.positive400,
+                },
+              };
+            return {
+              backgroundColor: $theme.colors.positive400,
+              borderLeftColor: $theme.colors.mono900,
+              color: $theme.colors.mono900,
+              ':hover': {
+                color: $theme.colors.positive400,
+              },
+            };
+          },
+        },
+      }}
+    />
   );
-}
+};

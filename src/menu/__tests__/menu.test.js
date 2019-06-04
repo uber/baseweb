@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
 import {StyledList} from '../styled-components.js';
 import OptionList from '../option-list.js';
@@ -26,10 +26,6 @@ describe('Menu Stateless Component', () => {
     const component = mount(<Menu {...getSharedProps()} />);
 
     expect(component.find(StyledList)).toExist();
-    expect(component.find(StyledList)).toHaveProp({
-      $ref: React.createRef(),
-    });
-
     expect(component.find(OptionList)).toExist();
 
     component.setProps({

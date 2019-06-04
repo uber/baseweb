@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
 import {
@@ -187,7 +187,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           aria-required={required || null}
           disabled={disabled}
           type={type}
-          $ref={inputRef}
+          ref={inputRef}
           {...sharedProps}
           {...inputEvents}
           {...getOverrideProps(InputOverride)}

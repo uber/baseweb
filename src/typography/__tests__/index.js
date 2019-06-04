@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -163,14 +163,14 @@ describe('Typography', () => {
     expect(getStyle(<H2>test</H2>)).toEqual(BASIC_TESTS.H2);
     expect(
       getStyle(
-        <H2 position="absolute" bottom="0" left="10px">
+        <H2 position="absolute" bottom={0} left="10px">
           test
         </H2>,
       ),
     ).toEqual({
       ...BASIC_TESTS.H2,
       position: 'absolute',
-      bottom: '0',
+      bottom: 0,
       left: '10px',
     });
   });

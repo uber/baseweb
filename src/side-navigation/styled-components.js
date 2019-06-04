@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 
-export const StyledRoot = styled('ul', props => {
+import type {SharedPropsT} from './types.js';
+
+export const StyledRoot = styled<SharedPropsT>('ul', props => {
   const {
     $theme: {colors, typography},
   } = props;
@@ -15,14 +17,14 @@ export const StyledRoot = styled('ul', props => {
     ...typography.font400,
     color: colors.foreground,
     listStyleType: 'none',
-    marginTop: '0',
-    marginBottom: '0',
-    marginLeft: '0',
-    marginRight: '0',
-    paddingTop: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
-    paddingRight: '0',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
   };
 });
 
@@ -33,19 +35,18 @@ export const StyledNavLink = styled('a', {
   textDecoration: 'none',
 });
 
-export const StyledNavItem = styled('div', props => {
+export const StyledNavItem = styled<SharedPropsT>('div', props => {
   const {
     $active,
     $selectable,
     $level,
     $theme: {colors, sizing},
   } = props;
-  return {
-    background: $active
-      ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), ${
-          colors.primary
-        }`
-      : 'transparent',
+  return ({
+    backgroundColor: $active ? colors.primary : 'transparent',
+    backgroundImage: $active
+      ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92))`
+      : null,
     boxSizing: 'border-box',
     borderLeftWidth: '4px',
     borderLeftStyle: 'solid',
@@ -63,17 +64,17 @@ export const StyledNavItem = styled('div', props => {
     ':focus': {
       color: $selectable ? colors.primary : null,
     },
-  };
+  }: {});
 });
 
 export const StyledSubNavContainer = styled('ul', {
   listStyleType: 'none',
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
-  paddingTop: '0',
-  paddingBottom: '0',
-  paddingLeft: '0',
-  paddingRight: '0',
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
 });

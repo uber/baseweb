@@ -1,15 +1,16 @@
 /* global document */
-import React from 'react';
+import * as React from 'react';
 import {Layer, TetherBehavior, TETHER_PLACEMENT} from 'baseui/layer';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 
 const layerRef = React.createRef();
 
-function BlockComponent(props) {
-  const {offset, color, children, ...restProps} = props;
+function BlockWrapper(props) {
+  const {offset, color, children, forwardedRef, ...restProps} = props;
   return (
     <Block
+      ref={forwardedRef}
       position="absolute"
       top={`${offset.top}px` || 0}
       left={`${offset.left}px` || 0}
@@ -18,11 +19,11 @@ function BlockComponent(props) {
       paddingBottom="20px"
       paddingLeft="20px"
       paddingRight="20px"
+      backgroundColor={color}
       overrides={{
         Block: {
           style: {
             textAlign: 'center',
-            backgroundColor: color,
           },
         },
       }}
@@ -57,7 +58,7 @@ export default class BasicTether extends React.Component {
     return (
       <>
         <Button
-          $ref={this.anchorRef1}
+          ref={this.anchorRef1}
           onClick={() => this.setState({isBlueOpen: true})}
         >
           Render Blue Layer
@@ -73,21 +74,21 @@ export default class BasicTether extends React.Component {
               onPopperUpdate={(...args) => this.onPopperUpdate(1, ...args)}
               placement={TETHER_PLACEMENT.right}
             >
-              <BlockComponent
-                $ref={this.popperRef1}
+              <BlockWrapper
+                forwardedRef={this.popperRef1}
                 offset={this.state.offset1}
                 color="rgba(0, 190, 255, 0.86)"
               >
                 <Button onClick={() => this.setState({isBlueOpen: false})}>
                   Close
                 </Button>
-              </BlockComponent>
+              </BlockWrapper>
             </TetherBehavior>
           </Layer>
         ) : null}
         <Block padding="5px" />
         <Button
-          $ref={this.anchorRef2}
+          ref={this.anchorRef2}
           onClick={() => this.setState({isPinkOpen: true})}
         >
           Render Pink Layer
@@ -103,15 +104,15 @@ export default class BasicTether extends React.Component {
               onPopperUpdate={(...args) => this.onPopperUpdate(2, ...args)}
               placement={TETHER_PLACEMENT.right}
             >
-              <BlockComponent
-                $ref={this.popperRef2}
+              <BlockWrapper
+                forwardedRef={this.popperRef2}
                 offset={this.state.offset2}
                 color="rgba(255, 180, 200, 0.86)"
               >
                 <Button onClick={() => this.setState({isPinkOpen: false})}>
                   Close
                 </Button>
-              </BlockComponent>
+              </BlockWrapper>
             </TetherBehavior>
           </Layer>
         ) : null}

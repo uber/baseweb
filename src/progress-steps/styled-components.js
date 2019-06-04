@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,38 +8,29 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {styled} from '../styles/index.js';
-import type {
-  StyledProgressStepsPropsT,
-  StyledStepPropsT,
-  StyledNumberIconPropsT,
-  StyledNumberContentTailPropsT,
-  StyledNumberStepPropsT,
-} from './types.js';
+import type {StylePropsT} from './types.js';
 
-export const StyledProgressSteps = styled(
-  'div',
-  ({$theme}: StyledProgressStepsPropsT) => {
-    return {
-      backgroundColor: $theme.colors.listHeaderFill,
-      display: 'inline-block',
-      paddingTop: $theme.sizing.scale300,
-      paddingRight: $theme.sizing.scale500,
-      paddingLeft: $theme.sizing.scale500,
-      paddingBottom: $theme.sizing.scale300,
-    };
-  },
-);
+export const StyledProgressSteps = styled<{}>('div', ({$theme}) => {
+  return {
+    backgroundColor: $theme.colors.listHeaderFill,
+    display: 'inline-block',
+    paddingTop: $theme.sizing.scale300,
+    paddingRight: $theme.sizing.scale500,
+    paddingLeft: $theme.sizing.scale500,
+    paddingBottom: $theme.sizing.scale300,
+  };
+});
 
-export const StyledStep = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledStep = styled<StylePropsT>('div', ({$theme}) => {
   return {
     position: 'relative',
     overflow: 'visible',
   };
 });
 
-export const StyledIcon = styled(
+export const StyledIcon = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}: StyledStepPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
     let marginRight = $theme.sizing.scale500;
@@ -68,9 +59,9 @@ export const StyledIcon = styled(
       width: size,
       height: size,
       lineHeight: size,
+      borderTopLeftRadius: size,
       borderTopRightRadius: size,
       borderBottomRightRadius: size,
-      borderTopLeftRadius: size,
       borderBottomLeftRadius: size,
       backgroundColor: currentColor,
       float: 'left',
@@ -82,29 +73,29 @@ export const StyledIcon = styled(
   },
 );
 
-export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
   return {
     width: $theme.sizing.scale100,
     height: $theme.sizing.scale100,
     lineHeight: $theme.sizing.scale100,
+    borderTopLeftRadius: $theme.sizing.scale100,
     borderTopRightRadius: $theme.sizing.scale100,
     borderBottomRightRadius: $theme.sizing.scale100,
-    borderTopLeftRadius: $theme.sizing.scale100,
     borderBottomLeftRadius: $theme.sizing.scale100,
     backgroundColor: $theme.colors.primary400,
     textAlign: 'center',
   };
 });
 
-export const StyledContent = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
   return {
     marginLeft: $theme.sizing.scale900,
   };
 });
 
-export const StyledContentTitle = styled(
+export const StyledContentTitle = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive}: StyledStepPropsT) => {
+  ({$theme, $isActive}) => {
     let color = $theme.colors.foregroundAlt;
     let font = $theme.typography.font400;
 
@@ -120,9 +111,9 @@ export const StyledContentTitle = styled(
   },
 );
 
-export const StyledContentTail = styled(
+export const StyledContentTail = styled<StylePropsT>(
   'div',
-  ({$theme, $isCompleted, $isActive}: StyledStepPropsT) => {
+  ({$theme, $isCompleted, $isActive}) => {
     let currentColor = $theme.colors.mono400;
 
     if ($isCompleted) {
@@ -134,7 +125,7 @@ export const StyledContentTail = styled(
       left: '7px',
       top: 0,
       height: '100%',
-      paddingBottom: '0px',
+      paddingBottom: 0,
       width: $theme.sizing.scale0,
       paddingTop: $isActive ? $theme.sizing.scale700 : $theme.sizing.scale600,
       ':after': {
@@ -148,28 +139,25 @@ export const StyledContentTail = styled(
   },
 );
 
-export const StyledContentDescription = styled(
+export const StyledContentDescription = styled<StylePropsT>(
   'div',
-  ({$theme}: StyledStepPropsT) => {
+  ({$theme}) => {
     return {
       marginBottom: $theme.sizing.scale700,
     };
   },
 );
 
-export const StyledNumberStep = styled(
-  'div',
-  ({$theme}: StyledNumberStepPropsT) => {
-    return {
-      position: 'relative',
-      overflow: 'visible',
-    };
-  },
-);
+export const StyledNumberStep = styled<StylePropsT>('div', ({$theme}) => {
+  return {
+    position: 'relative',
+    overflow: 'visible',
+  };
+});
 
-export const StyledNumberIcon = styled(
+export const StyledNumberIcon = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}: StyledNumberIconPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
     let backgroundColor = $theme.colors.mono400;
     let color = $theme.colors.colorSecondary;
     let size = $theme.sizing.scale800;
@@ -193,9 +181,9 @@ export const StyledNumberIcon = styled(
       marginTop,
       width: size,
       height: size,
+      borderTopLeftRadius: size,
       borderTopRightRadius: size,
       borderBottomRightRadius: size,
-      borderTopLeftRadius: size,
       borderBottomLeftRadius: size,
       backgroundColor,
       color,
@@ -209,14 +197,9 @@ export const StyledNumberIcon = styled(
   },
 );
 
-export const StyledNumberContentTail = styled(
+export const StyledNumberContentTail = styled<StylePropsT>(
   'div',
-  ({
-    $theme,
-    $isActive,
-    $isCompleted,
-    $disabled,
-  }: StyledNumberContentTailPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
     let currentColor = $theme.colors.mono300;
 
     if ($isCompleted) {
@@ -228,7 +211,7 @@ export const StyledNumberContentTail = styled(
       left: '11px',
       top: 0,
       height: '100%',
-      paddingBottom: '0px',
+      paddingBottom: 0,
       width: $theme.sizing.scale0,
       paddingTop: $theme.sizing.scale800,
       ':after': {

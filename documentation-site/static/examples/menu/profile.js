@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Menu, OptionProfile} from 'baseui/menu';
 
 const ITEMS = [...new Array(4)].map(() => ({

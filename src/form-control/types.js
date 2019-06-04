@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,4 +25,9 @@ export type FormControlPropsT = {
   /** Error state of the input. If an error prop passed it will be rendered in place of caption as an error message. */
   error: boolean | React.Node | ((props: {}) => React.Node),
   children: React.Node,
+};
+
+export type StylePropsT = {
+  $disabled?: boolean,
+  $error?: boolean,
 };

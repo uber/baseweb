@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {ProgressBar} from 'baseui/progress-bar';
 
 const SUCCESS_VALUE = 400;

@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable */
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
 
 import styled from '../styled.js';
@@ -48,7 +48,15 @@ test('styled override prop', () => {
       <div>
         <StyledMockButton id="testButton1" />
         <StyledMockButton id="testButton2" $style={{color: 'blue'}} />
-        <StyledMockButton id="testButton3" $style={{borderRadius: '2px'}} />
+        <StyledMockButton
+          id="testButton3"
+          $style={{
+            borderTopLeftRadius: '2px',
+            borderTopRightRadius: '2px',
+            borderBottomRightRadius: '2px',
+            borderBottomLeftRadius: '2px',
+          }}
+        />
         <StyledMockButton id="testButton4" $color="red" $style={styleFn} />
         <StyledMockButton id="testButton5" $color="blue" $style={styleFn} />
       </div>
@@ -68,9 +76,9 @@ test('styled override prop', () => {
   expect(button2.classList.item(0)).not.toBe(colorRedClass);
   const colorBlueClass = button2.classList.item(0);
 
-  // Third button should have 2 classes, one for red text, one for border radius
+  // Third button should have 5 classes, one for red text, four for border radii
   const button3 = wrapper.find('button#testButton3').getDOMNode();
-  expect(button3.classList).toHaveLength(2);
+  expect(button3.classList).toHaveLength(5);
   expect(button3.classList).toContain(colorRedClass);
 
   // Fourth button should have single red class
@@ -82,41 +90,6 @@ test('styled override prop', () => {
   const button5 = wrapper.find('button#testButton5').getDOMNode();
   expect(button5.classList).toHaveLength(1);
   expect(button5.classList).toContain(colorBlueClass);
-
-  wrapper.unmount();
-});
-
-test('styled override styled component', () => {
-  const StyledBase = styled('div', {
-    color: 'red',
-  });
-  const StyledBaseOverride = styled(StyledBase, {
-    color: 'blue',
-  });
-  const BaseComp = props => <div {...props} />;
-  const StyledBaseComp = styled(BaseComp, {color: 'black'});
-  const TestComponent = withStyletronProvider(() => (
-    <div>
-      <StyledBase />
-      <StyledBaseOverride />
-      <StyledBaseComp />
-    </div>
-  ));
-
-  const wrapper = mount(<TestComponent />);
-
-  const base = wrapper.find(StyledBase).getDOMNode();
-  expect(base.classList).toHaveLength(1);
-  const redColorClass = base.classList.item(0);
-
-  // BaseOverride should not have red color class
-  const override = wrapper.find(StyledBaseOverride).getDOMNode();
-  expect(override.classList).toHaveLength(1);
-  expect(override.classList).not.toContain(redColorClass);
-
-  // Making sure this doesn't throw an error
-  const styledBase = wrapper.find(StyledBaseComp).getDOMNode();
-  expect(styledBase.classList).toHaveLength(1);
 
   wrapper.unmount();
 });

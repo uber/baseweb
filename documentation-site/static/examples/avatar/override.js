@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Avatar} from 'baseui/avatar';
 import {Block} from 'baseui/block';
 
@@ -14,12 +14,18 @@ export default () => {
   const squaredOverrides = {
     Avatar: {
       style: ({$theme}) => ({
-        borderRadius: $theme.borders.radius100,
+        borderTopLeftRadius: $theme.borders.radius100,
+        borderTopRightRadius: $theme.borders.radius100,
+        borderBottomRightRadius: $theme.borders.radius100,
+        borderBottomLeftRadius: $theme.borders.radius100,
       }),
     },
     Root: {
       style: ({$theme}) => ({
-        borderRadius: $theme.borders.radius100,
+        borderTopLeftRadius: $theme.borders.radius100,
+        borderTopRightRadius: $theme.borders.radius100,
+        borderBottomRightRadius: $theme.borders.radius100,
+        borderBottomLeftRadius: $theme.borders.radius100,
       }),
     },
   };

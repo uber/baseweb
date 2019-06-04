@@ -1,15 +1,15 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-env browser */
 
 import * as React from 'react';
 import Link from 'next/link';
 import {Block} from 'baseui/block';
-import {Tag} from 'baseui/tag';
 import {
   HeaderNavigation,
   StyledNavigationList as NavigationList,
@@ -26,10 +26,13 @@ import {version} from '../../package.json';
 import {ThemeContext} from 'baseui/styles/theme-provider.js';
 import Bulb from './bulb';
 import {StatefulTooltip} from 'baseui/tooltip';
+import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
+import {StatefulMenu} from 'baseui/menu';
+import {Button, KIND} from 'baseui/button';
 
 export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
 
-const Hamburger = styled('div', ({$theme}) => ({
+const Hamburger = styled<{}>('div', ({$theme}) => ({
   display: 'block',
   userSelect: 'none',
   height: '32px',
@@ -40,15 +43,27 @@ const Hamburger = styled('div', ({$theme}) => ({
   },
 }));
 
-const LogoSegment = styled('div', ({$searchInputOpen}) => ({
-  display: $searchInputOpen ? 'none' : 'flex',
-  justifySelf: 'flex-start',
-  justifyContent: 'flex-start',
-  flex: 'none',
-  [HEADER_BREAKPOINT]: {
-    display: 'flex',
-  },
-}));
+const LogoSegment = styled<{$searchInputOpen: boolean}>(
+  'div',
+  ({$searchInputOpen}) => ({
+    display: $searchInputOpen ? 'none' : 'flex',
+    justifySelf: 'flex-start',
+    justifyContent: 'flex-start',
+    flex: 'none',
+    [HEADER_BREAKPOINT]: {
+      display: 'flex',
+    },
+  }),
+);
+
+const VERSIONS = [
+  {label: 'v6'},
+  {label: 'v5'},
+  {label: 'v4'},
+  {label: 'v3'},
+  {label: 'v2'},
+  {label: 'v1'},
+];
 
 type PropsT = {
   toggleSidebar: () => void,
@@ -85,28 +100,35 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   overrides={{Block: {style: {cursor: 'pointer'}}}}
                 />
               </Link>
-              <Block
-                marginLeft="scale200"
-                overrides={{
-                  Block: {
-                    style: {
-                      color: 'inherit',
-                      textDecoration: 'none',
-                    },
-                  },
-                }}
-                target="_blank"
-                as="a"
-                href="https://github.com/uber-web/baseui/releases"
-              >
-                <Tag closeable={false} onClick={() => {}}>
-                  {version}
-                </Tag>
+              <Block marginLeft="scale300">
+                <StatefulPopover
+                  placement={PopoverPlacement.bottomLeft}
+                  content={({close}) => (
+                    <StatefulMenu
+                      items={VERSIONS}
+                      onItemSelect={({item}) => {
+                        window.open(`https://${item.label}.baseweb.design`);
+                        close();
+                      }}
+                      overrides={{
+                        List: {
+                          style: {
+                            width: '84px',
+                          },
+                        },
+                      }}
+                    />
+                  )}
+                >
+                  <Button size="compact" kind={KIND.minimal}>
+                    v{version}
+                  </Button>
+                </StatefulPopover>
               </Block>
             </Block>
           </LogoSegment>
 
-          <NavigationList align={ALIGN.right}>
+          <NavigationList $align={ALIGN.right}>
             <Block display="flex" alignItems="center">
               <Search
                 searchInputOpen={searchInputOpen}

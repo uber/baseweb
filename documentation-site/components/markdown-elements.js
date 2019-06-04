@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -55,7 +55,7 @@ export const Heading = ({
       as={element}
       marginBottom="8px"
       font={fontType}
-      $ref={hoverRef}
+      ref={hoverRef}
       id={slug}
       color="foreground"
     >
@@ -83,7 +83,10 @@ const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
 const InlineCode = styled('code', {
   backgroundColor: 'rgba(27, 31, 35, 0.05)',
-  borderRadius: '3px',
+  borderTopLeftRadius: '3px',
+  borderTopRightRadius: '3px',
+  borderBottomRightRadius: '3px',
+  borderBottomLeftRadius: '3px',
   fontSize: '85%',
   marginLeft: 0,
   marginRight: 0,
@@ -96,7 +99,10 @@ const InlineCode = styled('code', {
 
 const Blockquote = styled('blockquote', {
   backgroundColor: 'rgba(27, 31, 35, 0.03)',
-  borderRadius: '3px',
+  borderTopLeftRadius: '3px',
+  borderTopRightRadius: '3px',
+  borderBottomRightRadius: '3px',
+  borderBottomLeftRadius: '3px',
   marginLeft: 0,
   marginRight: 0,
   marginTop: 0,
@@ -110,7 +116,7 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
     (parts[0] === '' && parts[1] !== '') || !href.includes('http');
   return (
     <Link href={href} prefetch={internal}>
-      <StyledLink href={href} target={internal ? undefined : '_blank'}>
+      <StyledLink href={href} {...(internal ? {} : {target: '_blank'})}>
         {children}
       </StyledLink>
     </Link>

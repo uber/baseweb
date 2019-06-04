@@ -6,8 +6,10 @@ Object {
   "$disabled": false,
   "$error": true,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -17,8 +19,10 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -28,8 +32,10 @@ Object {
   "$disabled": false,
   "$error": true,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -39,8 +45,10 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
+  "$style": undefined,
 }
 `;
 
@@ -53,6 +61,7 @@ Object {
   "aria-required": false,
   "autoComplete": "on",
   "autoFocus": false,
+  "disabled": false,
   "id": undefined,
   "name": "",
   "onBlur": [Function],
@@ -63,54 +72,35 @@ Object {
   "onKeyUp": [MockFunction],
   "onMouseDown": [Function],
   "onPaste": [Function],
-  "overrides": Object {
-    "After": [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "$adjoined": "none",
-            "$disabled": false,
-            "$error": false,
-            "$isFocused": false,
-            "$required": false,
-            "$size": "default",
-          },
-          Object {},
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": <span />,
-        },
-      ],
-    },
-    "Before": [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "$adjoined": "none",
-            "$disabled": false,
-            "$error": false,
-            "$isFocused": false,
-            "$required": false,
-            "$size": "default",
-          },
-          Object {},
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": <span />,
-        },
-      ],
-    },
-  },
   "placeholder": "Placeholder",
   "required": false,
+  "rows": null,
   "size": "default",
   "styled-component": "true",
+  "test-style": Object {
+    "::placeholder": Object {
+      "color": "$theme.colors.foregroundAlt",
+    },
+    "backgroundColor": "transparent",
+    "borderStyle": "none",
+    "borderWidth": 0,
+    "boxSizing": "border-box",
+    "caretColor": "$theme.colors.foreground",
+    "color": "$theme.colors.foreground",
+    "cursor": "text",
+    "fontFamily": "$theme.typography.font400.fontFamily",
+    "fontSize": "$theme.typography.font400.fontSize",
+    "fontWeight": "$theme.typography.font400.fontWeight",
+    "lineHeight": "$theme.typography.font400.lineHeight",
+    "maxWidth": "100%",
+    "outline": "none",
+    "paddingBottom": "$theme.sizing.scale400",
+    "paddingLeft": "$theme.sizing.scale550",
+    "paddingRight": "$theme.sizing.scale550",
+    "paddingTop": "$theme.sizing.scale400",
+    "width": "100%",
+  },
   "type": "text",
+  "value": "(123) 456-7890",
 }
 `;

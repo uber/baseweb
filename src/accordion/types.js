@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
@@ -115,16 +114,8 @@ export type StatefulPanelPropsT = SharedStatefulPanelContainerPropsT &
   SharedPanelPropsT;
 
 export type SharedStylePropsArgT = {
+  $color?: string,
   $disabled: ?boolean,
   $expanded?: ?boolean,
-  // Styletron stuff
-  $as?: string,
-  // styled function wrapper related
-  $style?: ?{},
-  /* eslint-disable flowtype/no-weak-types */
-  $ref?: React.Ref<any>,
-};
-
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
+  $size?: string | number,
 };

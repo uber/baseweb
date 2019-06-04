@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,6 +17,9 @@ if (prod) {
 module.exports = {
   'process.env.STATIC_ROOT': '/static/',
   'process.env.GITHUB_AUTH_TOKEN': process.env.GITHUB_AUTH_TOKEN || '',
-  'process.env.WEBSITE_ENV':
-    process.env.BUILD_ENV === 'production' ? 'production' : undefined,
+  ...(process.env.BUILD_ENV === 'production'
+    ? {
+        'process.env.WEBSITE_ENV': 'production',
+      }
+    : {}),
 };

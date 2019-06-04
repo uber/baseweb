@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React from 'react';
+import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 
@@ -19,7 +19,7 @@ const Image = styled('img', props => ({
 }));
 
 const Caption = styled('figcaption', ({$theme}) => ({
-  color: $theme.colors.mono800,
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   fontWeight: 300,
@@ -36,7 +36,10 @@ export const BlogImage = ({full, caption, src, style}) => (
 
 export const Demo = styled('iframe', {
   border: 0,
-  borderRadius: '4px',
+  borderTopLeftRadius: '4px',
+  borderTopRightRadius: '4px',
+  borderBottomRightRadius: '4px',
+  borderBottomLeftRadius: '4px',
   height: '500px',
   overflow: 'hidden',
   width: '100%',
@@ -45,23 +48,27 @@ export const Demo = styled('iframe', {
 const Title = styled('h1', ({$theme}) => ({
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale900,
-  margin: `${$theme.sizing.scale1200} 0 0 0`,
+  marginTop: $theme.sizing.scale1200,
+  marginBottom: $theme.sizing.scale400,
 }));
 
-const Tagline = styled('h2', ({$theme}) => ({
-  color: $theme.colors.mono800,
+const Tagline = styled('span', ({$theme}) => ({
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale800,
   fontWeight: 300,
-  margin: `${$theme.sizing.scale300} 0 0 0`,
 }));
 
 const AuthorLink = styled('a', ({$theme}) => ({
-  color: $theme.colors.mono800,
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   ':hover': {
-    color: $theme.colors.mono700,
+    color: $theme.colors.foreground,
   },
+}));
+
+const Date = styled('span', ({$theme}) => ({
+  color: $theme.colors.foregroundAlt,
 }));
 
 export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
@@ -80,7 +87,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
       overrides={{
         Block: {
           style: ({$theme}) => ({
-            color: $theme.colors.mono800,
+            color: $theme.colors.foregroundAlt,
             fontFamily: $theme.typography.font100.fontFamily,
             margin: `${$theme.sizing.scale400} 0`,
           }),
@@ -95,7 +102,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
       >
         {author}
       </AuthorLink>{' '}
-      - <span>{date}</span>
+      <Date> - {date}</Date>
     </Block>
   </Block>
 );

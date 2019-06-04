@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,6 +17,7 @@ import type {LocaleT} from '../locale/types.js';
 
 export default function Menu(props: StatelessMenuPropsT) {
   const {
+    activedescendantId,
     getRequiredItemProps = (item, index) => ({}),
     items,
     noResultsMsg,
@@ -32,13 +33,13 @@ export default function Menu(props: StatelessMenuPropsT) {
     overrides.EmptyState,
     StyledEmptyState,
   );
-
   return (
     <LocaleContext.Consumer>
       {(locale: LocaleT) => (
         <List
+          aria-activedescendant={activedescendantId || null}
           role="listbox"
-          $ref={rootRef}
+          ref={rootRef}
           onMouseEnter={focusMenu}
           onMouseOver={focusMenu}
           onFocus={focusMenu}
@@ -70,7 +71,7 @@ export default function Menu(props: StatelessMenuPropsT) {
                   resetMenu={resetMenu}
                   role="option"
                   $disabled={disabled}
-                  $ref={ref}
+                  ref={ref}
                   $isFocused={isFocused}
                   $isHighlighted={isHighlighted}
                   aria-selected={isHighlighted && isFocused}

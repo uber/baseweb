@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env browser */
 
-import React from 'react';
+import * as React from 'react';
 import {
   BaseProvider,
   DarkTheme,
@@ -24,7 +24,8 @@ import Router from 'next/router';
 
 import {styletron, debug} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
-import '../prism-coy.css';
+import '../prism-coy.css'; // light theme code highlighting
+import '../tomorrow-night.css'; // dark theme code highlighting
 
 const themes = {
   LightTheme,
@@ -36,14 +37,10 @@ const themes = {
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
 
-const BlockOverrides = {
-  Block: {
-    style: ({$theme}) => ({
-      backgroundColor: $theme.colors.background,
-      maxWidth: '100vw',
-      overflow: 'hidden',
-    }),
-  },
+const blockProps = {
+  backgroundColor: 'background',
+  maxWidth: '100vw',
+  overflow: 'hidden',
 };
 
 export default class MyApp extends App {
@@ -151,6 +148,12 @@ export default class MyApp extends App {
       themeName += 'Move';
     }
 
+    if (config.theme === 'dark') {
+      document.body.classList.add('darktheme');
+    } else {
+      document.body.classList.remove('darktheme');
+    }
+
     this.setState({
       theme: themes[themeName] || LightTheme,
     });
@@ -186,13 +189,13 @@ export default class MyApp extends App {
       <Container>
         <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
           <BaseProvider theme={this.state.theme}>
-            <Block overrides={BlockOverrides}>
+            <Block {...blockProps}>
               <Component
                 {...pageProps}
                 path={path}
                 toggleTheme={this.toggleTheme.bind(this)}
               />
-              <Block overrides={BlockOverrides} height="300px" />
+              <Block {...blockProps} height="300px" />
             </Block>
           </BaseProvider>
         </StyletronProvider>

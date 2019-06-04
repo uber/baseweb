@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Slider} from 'baseui/slider';
 
 export default class Basic extends React.Component {
@@ -19,7 +19,10 @@ export default class Basic extends React.Component {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              borderRadius: '36px',
+              borderTopLeftRadius: '36px',
+              borderTopRightRadius: '36px',
+              borderBottomRightRadius: '36px',
+              borderBottomLeftRadius: '36px',
               border: '3px solid #ccc',
               backgroundColor: '#fff',
             }),

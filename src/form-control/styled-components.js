@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import {styled} from '../styles/index.js';
+import type {StylePropsT} from './types.js';
 
-export const Label = styled('label', props => {
+export const Label = styled<StylePropsT>('label', props => {
   const {
     $disabled,
     $theme: {colors, sizing, typography},
@@ -19,18 +20,18 @@ export const Label = styled('label', props => {
     color: $disabled ? colors.foregroundAlt : colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'auto',
     display: 'block',
-    paddingTop: '0',
-    paddingRight: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
     marginTop: sizing.scale300,
-    marginRight: '0',
+    marginRight: 0,
     marginBottom: sizing.scale300,
-    marginLeft: '0',
+    marginLeft: 0,
   };
 });
 
-export const Caption = styled('div', props => {
+export const Caption = styled<StylePropsT>('div', props => {
   const {
     $error,
     $theme: {colors, sizing, typography},
@@ -41,18 +42,18 @@ export const Caption = styled('div', props => {
       $error && typeof $error !== 'boolean'
         ? colors.negative400
         : colors.foregroundAlt,
-    paddingTop: '0',
-    paddingRight: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
     marginTop: sizing.scale300,
-    marginRight: '0',
+    marginRight: 0,
     marginBottom: sizing.scale300,
-    marginLeft: '0',
+    marginLeft: 0,
   };
 });
 
-export const ControlContainer = styled('div', props => {
+export const ControlContainer = styled<StylePropsT>('div', props => {
   const {
     $theme: {sizing},
   } = props;

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {KIND, PLACEMENT, TYPE} from './constants.js';
 
@@ -17,25 +16,17 @@ export type NotificationTypeT = $Values<typeof TYPE>;
 export type PlacementTypeT = $Values<typeof PLACEMENT>;
 
 export type SharedStylePropsArgT = {
+  $color?: string,
+  $size?: number | string,
   $kind: KindTypeT,
   $type: NotificationTypeT,
   $closeable: boolean,
   $isRendered: boolean,
   $isVisible: boolean,
-  // styled function wrapper related
-  $style?: ?{},
-};
-
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
 };
 
 export type ToasterSharedStylePropsArgT = {
   $placement: PlacementTypeT,
-};
-
-export type ToasterSharedStylePropsT = ToasterSharedStylePropsArgT & {
-  $theme: ThemeT,
 };
 
 export type OverridesT = {

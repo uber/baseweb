@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
+
+import type {SharedStylePropsT} from './types.js';
 
 function getBorderColor(props) {
   const {$disabled, $checked, $isError, $isIndeterminate, $theme} = props;
@@ -104,7 +106,7 @@ function getLabelColor(props) {
   return $disabled ? colors.foregroundAlt : colors.foreground;
 }
 
-export const Root = styled('label', props => {
+export const Root = styled<SharedStylePropsT>('label', props => {
   const {$disabled, $labelPlacement} = props;
   return {
     flexDirection:
@@ -121,7 +123,7 @@ export const Root = styled('label', props => {
   };
 });
 
-export const Checkmark = styled('span', props => {
+export const Checkmark = styled<SharedStylePropsT>('span', props => {
   const {$checked, $disabled, $isIndeterminate, $theme} = props;
   const {sizing, animation} = $theme;
 
@@ -159,7 +161,7 @@ export const Checkmark = styled('span', props => {
     ? $theme.borders.radius200
     : null;
 
-  return {
+  return ({
     flex: '0 0 auto',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
@@ -171,9 +173,9 @@ export const Checkmark = styled('span', props => {
     borderStyle: 'solid',
     borderWidth: '2px',
     borderColor: getBorderColor(props),
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     display: 'inline-block',
     verticalAlign: 'middle',
@@ -189,20 +191,20 @@ export const Checkmark = styled('span', props => {
     marginBottom: $theme.sizing.scale0,
     marginLeft: $theme.sizing.scale0,
     marginRight: $theme.sizing.scale0,
-  };
+  }: {});
 });
 
-export const Label = styled('div', props => {
+export const Label = styled<SharedStylePropsT>('div', props => {
   const {$theme, $checkmarkType} = props;
   const {typography} = $theme;
-  return {
+  return ({
     flex: $checkmarkType === STYLE_TYPE.toggle ? 'auto' : null,
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
     ...typography.font350,
     lineHeight: '24px',
-  };
+  }: {});
 });
 
 // tricky style for focus event cause display: none doesn't work
@@ -216,27 +218,27 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Toggle = styled('div', ({$theme}) => {
+export const Toggle = styled<SharedStylePropsT>('div', ({$theme}) => {
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius200
     : null;
-  return {
+  return ({
     ...$theme.borders.border300,
     alignItems: 'center',
     backgroundColor: $theme.colors.mono100,
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow400,
     display: 'flex',
     justifyContent: 'center',
     height: $theme.sizing.scale800,
     width: $theme.sizing.scale800,
-  };
+  }: {});
 });
 
-export const ToggleInner = styled('div', props => {
+export const ToggleInner = styled<SharedStylePropsT>('div', props => {
   function backgroundColor() {
     if (props.$disabled) {
       return props.$theme.colors.sliderHandleInnerFillDisabled;
@@ -256,24 +258,24 @@ export const ToggleInner = styled('div', props => {
   return {
     height: props.$theme.sizing.scale300,
     width: props.$theme.sizing.scale0,
+    borderTopLeftRadius: props.$theme.borders.radius100,
     borderTopRightRadius: props.$theme.borders.radius100,
     borderBottomRightRadius: props.$theme.borders.radius100,
-    borderTopLeftRadius: props.$theme.borders.radius100,
     borderBottomLeftRadius: props.$theme.borders.radius100,
     backgroundColor: backgroundColor(),
   };
 });
 
-export const ToggleTrack = styled('div', props => {
+export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
   const borderRadius = props.$theme.borders.useRoundedCorners
     ? props.$theme.borders.radius200
     : null;
-  return {
+  return ({
     alignItems: 'center',
     backgroundColor: getBackgroundColor(props),
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     display: 'flex',
     height: props.$theme.sizing.scale600,
@@ -283,5 +285,5 @@ export const ToggleTrack = styled('div', props => {
     marginLeft: props.$theme.sizing.scale100,
     marginRight: props.$theme.sizing.scale100,
     width: props.$theme.sizing.scale1000,
-  };
+  }: {});
 });

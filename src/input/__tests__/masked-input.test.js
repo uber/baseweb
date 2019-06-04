@@ -1,17 +1,20 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
 import {MaskedInput} from '../index.js';
 
+import {styled} from '../../styles/index.js';
+
 test('MaskedInput - basic functionality', () => {
   const props = {
+    value: '(123) 456-7890',
     mask: '(999) 999-9999',
     placeholder: 'Placeholder',
     onFocus: jest.fn(),
@@ -21,12 +24,11 @@ test('MaskedInput - basic functionality', () => {
     onKeyPress: jest.fn(),
     onKeyUp: jest.fn(),
     overrides: {
-      Before: jest.fn().mockImplementation(() => <span />),
-      After: jest.fn().mockImplementation(() => <span />),
+      Before: styled('span', {}),
+      After: styled('span', {}),
     },
   };
 
-  // $FlowFixMe
   const wrapper = mount(<MaskedInput {...props} />);
 
   // Renders input, before and after

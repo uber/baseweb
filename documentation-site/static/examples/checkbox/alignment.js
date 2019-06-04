@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {StatefulCheckbox} from 'baseui/checkbox';
 
 export default () => (
@@ -10,7 +10,7 @@ export default () => (
       style={{
         display: 'flex',
         justifyContent: 'center',
-        margin: '8px 0px 8px 12px',
+        margin: '8px 0 8px 12px',
       }}
     >
       <StatefulCheckbox onChange={console.log} labelPlacement="left">

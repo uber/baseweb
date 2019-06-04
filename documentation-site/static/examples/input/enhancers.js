@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Search} from 'baseui/icon';
 import {StatefulInput} from 'baseui/input';
@@ -22,7 +22,7 @@ export default () => (
     <Block as="br" />
 
     <StatefulInput
-      endEnhancer={<Search />}
+      endEnhancer={<Search size="18px" />}
       placeholder="Input with an icon enhancer"
     />
     <Block as="br" />

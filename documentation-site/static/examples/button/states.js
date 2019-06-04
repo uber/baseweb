@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Button, KIND} from 'baseui/button';
 import {Block} from 'baseui/block';
 

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -16,9 +16,10 @@ import dfIsSameDay from 'date-fns/isSameDay';
 import dfIsSameMonth from 'date-fns/isSameMonth';
 import dfIsSameYear from 'date-fns/isSameYear';
 import endOfMonth from 'date-fns/endOfMonth';
-import format from 'date-fns/format';
 import getDay from 'date-fns/getDay';
 import getDate from 'date-fns/getDate';
+import getMinutes from 'date-fns/getMinutes';
+import getHours from 'date-fns/getHours';
 import getMonth from 'date-fns/getMonth';
 import getYear from 'date-fns/getYear';
 import isAfter from 'date-fns/isAfter';
@@ -26,6 +27,9 @@ import isBefore from 'date-fns/isBefore';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import max from 'date-fns/max';
 import min from 'date-fns/min';
+import setSeconds from 'date-fns/setSeconds';
+import setMinutes from 'date-fns/setMinutes';
+import setHours from 'date-fns/setHours';
 import setMonth from 'date-fns/setMonth';
 import setYear from 'date-fns/setYear';
 import startOfMonth from 'date-fns/startOfMonth';
@@ -34,27 +38,33 @@ import subDays from 'date-fns/subDays';
 import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
 import subYears from 'date-fns/subYears';
+import dayjs from 'dayjs';
+import AdvancedFormat from 'dayjs/plugin/advancedFormat';
 /* eslint-enable import/extensions */
 
+dayjs.extend(AdvancedFormat);
 import type {CalendarPropsT} from '../types.js';
 
 // ** Date Formatting **
 // eslint-disable-next-line flowtype/no-weak-types
 export function formatDate(date: Date, formatStr: string, locale: any) {
-  return format(date, formatStr, {
-    ...(locale ? {locale} : {}),
-    awareOfUnicodeTokens: true,
-  });
+  const dt = dayjs(date);
+
+  if (locale) {
+    dayjs.locale(locale);
+  }
+
+  return dt.format(formatStr);
 }
 
 // ** Date Setters **
 
-export {setMonth, setYear};
+export {setSeconds, setMinutes, setHours, setMonth, setYear};
 
 // ** Date Getters **
 
 // getDay Returns day of week, getDate returns day of month
-export {getMonth, getYear, getDay, getDate};
+export {getMinutes, getHours, getMonth, getYear, getDay, getDate};
 
 // eslint-disable-next-line flowtype/no-weak-types
 export function getStartOfWeek(date: Date, locale: any) {
@@ -122,11 +132,11 @@ export function isEndOfMonth(date: Date) {
 // ** Date Localization **
 // eslint-disable-next-line flowtype/no-weak-types
 export function getWeekdayMinInLocale(date: Date, locale: any) {
-  return formatDate(date, 'EEEEE', locale);
+  return formatDate(date, 'dd', locale).charAt(0);
 }
 // eslint-disable-next-line flowtype/no-weak-types
 export function getMonthInLocale(month: number, locale: any) {
-  return formatDate(setMonth(new Date(), month), 'LLLL', locale);
+  return formatDate(setMonth(new Date(), month), 'MMMM', locale);
 }
 
 // ** Utils for some components **

@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env browser */
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
 import StatefulContainer from '../stateful-container.js';
 import {KEY_STRINGS, STATE_CHANGE_TYPES} from '../constants.js';
@@ -85,6 +85,9 @@ describe('Menu StatefulContainer', () => {
     const component = mount(<StatefulContainer {...getSharedProps()} />);
     const item = mockItems[0];
     const props = component.instance().getRequiredItemProps(item, 0);
+    const event = {
+      preventDefault: jest.fn(),
+    };
 
     expect(props).toHaveProperty('disabled', false);
     expect(props).toHaveProperty('isFocused', false);
@@ -94,9 +97,10 @@ describe('Menu StatefulContainer', () => {
     expect(props).toHaveProperty('ref');
     expect(props).toHaveProperty('resetMenu');
 
-    props.onClick();
+    props.onClick(event);
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
       item,
+      event,
     });
   });
 
@@ -146,7 +150,7 @@ describe('Menu StatefulContainer', () => {
     expect(props.stateReducer.mock.calls[0]).toEqual([
       STATE_CHANGE_TYPES.moveUp,
       {highlightedIndex: 0},
-      {highlightedIndex: -1, isFocused: false},
+      {activedescendantId: null, highlightedIndex: -1, isFocused: false},
     ]);
 
     const parent = React.createRef();
@@ -168,7 +172,7 @@ describe('Menu StatefulContainer', () => {
     expect(props.stateReducer.mock.calls[1]).toEqual([
       STATE_CHANGE_TYPES.moveDown,
       {highlightedIndex: 1},
-      {highlightedIndex: 0, isFocused: false},
+      {activedescendantId: null, highlightedIndex: 0, isFocused: false},
     ]);
   });
 

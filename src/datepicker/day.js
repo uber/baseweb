@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -213,7 +213,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         : sharedProps.$disabled
           ? 'Not available.'
           : 'Choose'
-    } ${formatDate(date, 'EEEE, MMMM do YYYY', locale)}. ${
+    } ${formatDate(date, 'dddd, MMMM Do YYYY', locale)}. ${
       !sharedProps.$disabled ? "It's available." : ''
     }`;
   }
@@ -228,15 +228,15 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <Day
         aria-label={this.getAriaLabel(sharedProps)}
-        $ref={dayElm => {
+        ref={dayElm => {
           this.dayElm = dayElm;
         }}
         role="button"
         tabIndex={
           this.props.highlighted ||
           (!this.props.highlightedDate && this.isSelected())
-            ? '0'
-            : '-1'
+            ? 0
+            : -1
         }
         {...sharedProps}
         {...dayProps}

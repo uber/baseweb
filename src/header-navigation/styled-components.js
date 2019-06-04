@@ -1,15 +1,14 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
-import {styled, asPrimaryExport} from '../styles/index.js';
+import {styled} from '../styles/index.js';
 import {ALIGN} from './index.js';
 
-export const Root = styled('nav', props => {
+export const Root = styled<{}>('nav', props => {
   const {$theme} = props;
   const {
     sizing: {scale500},
@@ -26,7 +25,7 @@ export const Root = styled('nav', props => {
   };
 });
 
-export const NavigationItem = styled('div', props => {
+export const NavigationItem = styled<{}>('div', props => {
   const {$theme} = props;
   const {
     sizing: {scale800},
@@ -37,11 +36,9 @@ export const NavigationItem = styled('div', props => {
   };
 });
 
-export const NavigationList: React.ComponentType<{
-  align?: string,
-  children?: React.Node,
-}> = (asPrimaryExport(
-  styled('div', props => {
+export const NavigationList = styled<{$align: $Values<typeof ALIGN>}>(
+  'div',
+  props => {
     const {$align, $theme} = props;
     const {
       sizing: {scale800},
@@ -54,12 +51,11 @@ export const NavigationList: React.ComponentType<{
       ':last-child': {
         padding: 0,
       },
-      flex: $align === ALIGN.right || $align === ALIGN.left ? 'none' : '1',
+      flex: $align === ALIGN.right || $align === ALIGN.left ? 'none' : 1,
       paddingLeft: scale800,
       paddingRight: scale800,
       justifySelf: $align,
       justifyContent: $align,
     };
-  }),
-  ['align'],
-): React.ComponentType<*>);
+  },
+);

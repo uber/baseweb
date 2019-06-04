@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
 import {
   StartEnhancer,
@@ -72,12 +72,13 @@ describe('Button Component', () => {
       isLoading: true,
     };
     const component = mount(<Button {...props} />);
+    const button = component.find('button');
 
-    component.instance().internalOnClick();
+    button.simulate('click');
     expect(props.onClick.mock.calls.length).toBe(0);
 
     component.setProps({isLoading: false});
-    component.instance().internalOnClick();
+    button.simulate('click');
     expect(props.onClick.mock.calls.length).toBe(1);
   });
 });

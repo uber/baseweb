@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,39 +8,31 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
 
-import type {ThemeT} from '../styles/index.js';
-
 type StyledPropsT = {
   $disabled?: boolean,
-  $theme: ThemeT,
   $isFocused?: boolean,
   $isHighlighted?: boolean,
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
 };
 
-export const StyledList = styled('ul', ({$theme}: StyledPropsT) => {
-  const borderRadius = $theme.borders.radius300;
+export const StyledList = styled<StyledPropsT>('ul', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.menuFill,
     position: 'relative',
-    marginTop: '0',
-    marginBottom: '0',
-    marginLeft: '0',
-    marginRight: '0',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
     paddingTop: $theme.sizing.scale300,
     paddingBottom: $theme.sizing.scale300,
-    paddingLeft: '0',
-    paddingRight: '0',
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    paddingLeft: 0,
+    paddingRight: 0,
     boxShadow: $theme.lighting.shadow600,
     overflow: 'auto',
   };
 });
 
-function getFontColor(props: StyledPropsT) {
+function getFontColor(props) {
   if (props.$disabled) {
     return props.$theme.colors.menuFontDisabled;
   }
@@ -56,7 +48,7 @@ function getFontColor(props: StyledPropsT) {
   return props.$theme.colors.menuFontDefault;
 }
 
-function getBackgroundColor(props: StyledPropsT) {
+function getBackgroundColor(props) {
   if (props.$disabled) {
     return 'transparent';
   }
@@ -68,7 +60,7 @@ function getBackgroundColor(props: StyledPropsT) {
   return 'transparent';
 }
 
-export const StyledEmptyState = styled('li', (props: StyledPropsT) => {
+export const StyledEmptyState = styled<StyledPropsT>('li', props => {
   const {$theme, $size} = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact
@@ -81,7 +73,7 @@ export const StyledEmptyState = styled('li', (props: StyledPropsT) => {
     textTransform: 'capitalize',
     cursor: 'not-allowed',
     backgroundColor: 'transparent',
-    marginBottom: '0',
+    marginBottom: 0,
     paddingTop: $theme.sizing.scale800,
     paddingBottom: $theme.sizing.scale800,
     paddingRight: $theme.sizing.scale800,
@@ -89,7 +81,7 @@ export const StyledEmptyState = styled('li', (props: StyledPropsT) => {
   };
 });
 
-export const StyledListItem = styled('li', (props: StyledPropsT) => {
+export const StyledListItem = styled<StyledPropsT>('li', props => {
   const {$disabled, $theme, $size} = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact
@@ -103,7 +95,7 @@ export const StyledListItem = styled('li', (props: StyledPropsT) => {
     transitionProperty: 'color, background-color',
     transitionDuration: $theme.animation.timing100,
     transitionTimingFunction: $theme.animation.easeOutCurve,
-    marginBottom: '0',
+    marginBottom: 0,
     paddingTop:
       $size === OPTION_LIST_SIZE.compact
         ? $theme.sizing.scale100
@@ -126,7 +118,7 @@ export const StyledListItem = styled('li', (props: StyledPropsT) => {
   };
 });
 
-export const StyledListItemProfile = styled('li', ({$theme}: StyledPropsT) => ({
+export const StyledListItemProfile = styled<StyledPropsT>('li', ({$theme}) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -154,42 +146,45 @@ export const StyledProfileImgContainer = styled('div', {
 export const StyledProfileImg = styled('img', {
   width: '100%',
   height: '100%',
+  borderTopLeftRadius: '50%',
   borderTopRightRadius: '50%',
   borderBottomRightRadius: '50%',
-  borderTopLeftRadius: '50%',
   borderBottomLeftRadius: '50%',
 });
 
-export const StyledProfileLabelsContainer = styled('div', ({$theme}) => ({
-  marginLeft: $theme.sizing.scale600,
-  alignSelf: 'flex-start',
-  display: 'flex',
-  flexDirection: 'column',
-}));
+export const StyledProfileLabelsContainer = styled<StyledPropsT>(
+  'div',
+  ({$theme}) => ({
+    marginLeft: $theme.sizing.scale600,
+    alignSelf: 'flex-start',
+    display: 'flex',
+    flexDirection: 'column',
+  }),
+);
 
-export const StyledProfileTitle = styled('h6', ({$theme}) => ({
+export const StyledProfileTitle = styled<StyledPropsT>('h6', ({$theme}) => ({
   ...$theme.typography.font450,
   color: $theme.colors.foreground,
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
 }));
 
-export const StyledProfileSubtitle = styled('p', ({$theme}) => ({
+export const StyledProfileSubtitle = styled<StyledPropsT>('p', ({$theme}) => ({
   ...$theme.typography.font300,
   color: $theme.colors.foreground,
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
 }));
 
-export const StyledProfileBody = styled('p', ({$theme}) => ({
+export const StyledProfileBody = styled<StyledPropsT>('p', ({$theme}) => ({
   ...$theme.typography.font200,
   color: $theme.colors.foreground,
-  marginTop: '0',
-  marginBottom: '0',
-  marginLeft: '0',
-  marginRight: '0',
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
 }));

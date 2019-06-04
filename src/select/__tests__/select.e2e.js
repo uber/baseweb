@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -77,6 +77,20 @@ describe('select', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('Start searching');
+  });
+
+  it('allows left/right arrow keys to navigate search text', async () => {
+    await mount(page, 'select-search-single');
+    await page.waitFor(selectors.selectInput);
+    await page.focus(selectors.selectInput);
+    await page.keyboard.type('Aqua');
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.type('z');
+    const selectedValue = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(selectedValue).toBe('Aquza');
   });
 
   it('does not close dropdown after multiple selections were made', async () => {

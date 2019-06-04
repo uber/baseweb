@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
 
 export type HeadCellPropsT = {|
   /** Additional content to fill head cell. Most likely used for a filter button. */
@@ -58,8 +57,4 @@ export type FilterProps = {|
     Heading?: OverrideT<*>,
     Footer?: OverrideT<*>,
   },
-|};
-
-export type SharedStylePropsT = {|
-  $theme: ThemeT,
 |};

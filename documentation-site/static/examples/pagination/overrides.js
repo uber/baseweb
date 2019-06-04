@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Button, KIND} from 'baseui/button';
 import {StatefulPagination} from 'baseui/pagination';
 
@@ -9,7 +9,10 @@ export default () => (
       Root: {
         style: ({$theme}) => ({
           ...$theme.borders.border400,
-          borderRadius: $theme.borders.radius200,
+          borderTopLeftRadius: $theme.borders.radius200,
+          borderTopRightRadius: $theme.borders.radius200,
+          borderBottomRightRadius: $theme.borders.radius200,
+          borderBottomLeftRadius: $theme.borders.radius200,
           padding: $theme.sizing.scale400,
         }),
       },
@@ -21,17 +24,58 @@ export default () => (
       },
       MaxLabel: {
         style: ({$theme}) => ({
-          ...$theme.typography.font100,
+          ...$theme.typography.font400,
+          marginRight: $theme.sizing.scale1000,
         }),
       },
       DropdownContainer: {
         style: ({$theme}) => ({
           marginLeft: $theme.sizing.scale1000,
-          marginRight: $theme.sizing.scale1000,
         }),
       },
-      DropdownButton: {props: {kind: KIND.secondary}},
-      DropdownMenu: {style: {width: '300px'}},
+      Select: {
+        props: {
+          overrides: {
+            ControlContainer: {
+              style: ({
+                $theme,
+                $disabled,
+                $isFocused,
+                $isPseudoFocused,
+                $error,
+              }) => ({
+                borderColor: 'transparent',
+                boxShadow: 'none',
+                backgroundColor: $disabled
+                  ? $theme.colors.buttonDisabledFill
+                  : $isFocused || $isPseudoFocused
+                    ? $theme.colors.buttonSecondaryHover
+                    : $error
+                      ? $theme.colors.negative50
+                      : $theme.colors.buttonSecondaryFill,
+              }),
+            },
+            SingleValue: {
+              style: ({$theme}) => ({
+                position: 'relative',
+                paddingTop: '0',
+                paddingBottom: '0',
+                paddingLeft: $theme.sizing.scale200,
+                paddingRight: $theme.sizing.scale500,
+                color: $theme.colors.buttonTertiaryText,
+                ...$theme.typography.font450,
+              }),
+            },
+            SelectArrow: {
+              style: ({$theme}) => ({
+                width: '24px',
+                height: '24px',
+                color: $theme.colors.buttonTertiaryText,
+              }),
+            },
+          },
+        },
+      },
     }}
   />
 );

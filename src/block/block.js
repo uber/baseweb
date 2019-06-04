@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,16 +7,18 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import type {BlockPropsT} from './types.js';
 import {StyledBlock} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
 function Block({
+  forwardedRef,
   children,
-  as,
-  overrides,
+  as = 'div',
+  overrides = {},
   color,
+  backgroundColor,
   font,
   alignContent,
   alignItems,
@@ -72,17 +74,18 @@ function Block({
   right,
   bottom,
   ...restProps
-}: BlockPropsT) {
+}) {
   const [BaseBlock, baseBlockProps] = getOverrides(
-    // $FlowFixMe
     overrides.Block,
     StyledBlock,
   );
 
   return (
     <BaseBlock
+      ref={forwardedRef}
       $as={as}
       $color={color}
+      $backgroundColor={backgroundColor}
       $font={font}
       $alignContent={alignContent}
       $alignItems={alignItems}
@@ -146,9 +149,8 @@ function Block({
   );
 }
 
-Block.defaultProps = {
-  overrides: {},
-  as: 'div',
-};
-
-export default Block;
+const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props: BlockPropsT, ref) => <Block {...props} forwardedRef={ref} />,
+);
+BlockComponent.displayName = 'Block';
+export default BlockComponent;

@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {
   Action as StyledAction,
@@ -105,7 +105,7 @@ class Tag extends React.Component<PropsT, {}> {
         data-baseweb="tag"
         aria-label="button"
         role="button"
-        tabIndex={clickable ? '0' : null}
+        tabIndex={clickable ? 0 : null}
         {...rootHandlers}
         {...sharedProps}
         {...rootProps}
@@ -115,7 +115,7 @@ class Tag extends React.Component<PropsT, {}> {
           <Action
             aria-label="close button"
             role="button"
-            tabIndex={'0'}
+            tabIndex={0}
             {...actionHandlers}
             {...sharedProps}
             {...actionProps}

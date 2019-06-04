@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -54,7 +54,7 @@ Motion helps to reinforce its origin position.
         showArrow
         overrides={props.overrides}
       >
-        <FakeLink tabIndex="0">hover over me</FakeLink>
+        <FakeLink tabIndex={0}>hover over me</FakeLink>
       </StatefulTooltip>
     );
   }}
@@ -62,5 +62,5 @@ Motion helps to reinforce its origin position.
 
 <API
   heading="Stateful Tooltip API"
-  api={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/popover.js')}
 />

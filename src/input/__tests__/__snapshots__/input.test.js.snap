@@ -19,7 +19,31 @@ Object {
   "onKeyPress": [MockFunction],
   "onKeyUp": [MockFunction],
   "placeholder": "Placeholder",
+  "rows": null,
   "styled-component": "true",
+  "test-style": Object {
+    "::placeholder": Object {
+      "color": "$theme.colors.foregroundAlt",
+    },
+    "backgroundColor": "transparent",
+    "borderStyle": "none",
+    "borderWidth": 0,
+    "boxSizing": "border-box",
+    "caretColor": "$theme.colors.foreground",
+    "color": "$theme.colors.foreground",
+    "cursor": "text",
+    "fontFamily": "$theme.typography.font400.fontFamily",
+    "fontSize": "$theme.typography.font400.fontSize",
+    "fontWeight": "$theme.typography.font400.fontWeight",
+    "lineHeight": "$theme.typography.font400.lineHeight",
+    "maxWidth": "100%",
+    "outline": "none",
+    "paddingBottom": "$theme.sizing.scale400",
+    "paddingLeft": "$theme.sizing.scale550",
+    "paddingRight": "$theme.sizing.scale550",
+    "paddingTop": "$theme.sizing.scale400",
+    "width": "100%",
+  },
   "type": "text",
   "value": "input value",
 }
@@ -31,6 +55,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
   "children": Array [
@@ -39,19 +64,16 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <ForwardRef
       $adjoined="right"
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
+      $positive={false}
       $required={false}
       $size="default"
       aria-describedby={null}
@@ -69,6 +91,7 @@ Object {
       onKeyPress={[Function]}
       onKeyUp={[Function]}
       placeholder=""
+      rows={null}
       type="text"
     />,
     <NullComponent
@@ -76,6 +99,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
@@ -90,6 +114,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
   "children": Array [
@@ -98,19 +123,16 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <ForwardRef
       $adjoined="both"
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
+      $positive={false}
       $required={false}
       $size="default"
       aria-describedby={null}
@@ -128,6 +150,7 @@ Object {
       onKeyPress={[Function]}
       onKeyUp={[Function]}
       placeholder=""
+      rows={null}
       type="text"
     />,
     <NullComponent
@@ -135,6 +158,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
@@ -149,6 +173,7 @@ Object {
   "$disabled": false,
   "$error": false,
   "$isFocused": false,
+  "$positive": false,
   "$required": false,
   "$size": "default",
   "children": Array [
@@ -157,19 +182,16 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,
-    <MockStyledComponent
+    <ForwardRef
       $adjoined="left"
       $disabled={false}
       $error={false}
       $isFocused={false}
-      $ref={
-        Object {
-          "current": null,
-        }
-      }
+      $positive={false}
       $required={false}
       $size="default"
       aria-describedby={null}
@@ -187,6 +209,7 @@ Object {
       onKeyPress={[Function]}
       onKeyUp={[Function]}
       placeholder=""
+      rows={null}
       type="text"
     />,
     <NullComponent
@@ -194,6 +217,7 @@ Object {
       $disabled={false}
       $error={false}
       $isFocused={false}
+      $positive={false}
       $required={false}
       $size="default"
     />,

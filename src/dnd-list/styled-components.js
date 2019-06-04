@@ -1,39 +1,35 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import type {ThemeT} from '../styles/index.js';
 import type {SharedStylePropsArgT} from './types.js';
-type StylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
-};
 
 /**
  * Main component container element
  */
-export const Root = styled('div', ({$theme}: StylePropsT) => {
+export const Root = styled<SharedStylePropsArgT>('div', ({$theme}) => {
   return {
     width: '100%',
   };
 });
 Root.displayName = 'StyledRoot';
 
-export const List = styled('ul', ({$isDragged}: StylePropsT) => {
-  return {
+export const List = styled<SharedStylePropsArgT>('ul', ({$isDragged}) => {
+  return ({
     paddingLeft: 0,
     cursor: $isDragged ? 'grabbing' : null,
-  };
+  }: {});
 });
 List.displayName = 'StyledList';
 
-export const Item = styled(
+export const Item = styled<SharedStylePropsArgT>(
   'li',
-  ({$isDragged, $isSelected, $theme}: StylePropsT) => {
-    return {
+  ({$isDragged, $isSelected, $theme}) => {
+    return ({
       ':hover':
         !$isDragged && !$isSelected
           ? {
@@ -62,7 +58,7 @@ export const Item = styled(
       listStyle: 'none',
       cursor: $isDragged ? 'grabbing' : 'grab',
       backgroundColor: $theme.colors.backgroundAlt,
-      boxShadow: $isDragged ? '0px 2px 6px rgba(39, 110, 241, 0.32)' : null,
+      boxShadow: $isDragged ? '0 2px 6px rgba(39, 110, 241, 0.32)' : null,
       borderTopWidth: '2px',
       borderBottomWidth: '2px',
       borderLeftWidth: '2px',
@@ -79,12 +75,12 @@ export const Item = styled(
         $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
       borderRightColor:
         $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-    };
+    }: {});
   },
 );
 List.displayName = 'StyledItem';
 
-export const DragHandle = styled('div', ({$theme}) => ({
+export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => ({
   marginRight: $theme.sizing.scale600,
   width: $theme.sizing.scale800,
   display: 'flex',
@@ -92,23 +88,26 @@ export const DragHandle = styled('div', ({$theme}) => ({
 }));
 DragHandle.displayName = 'StyledDragHandle';
 
-export const CloseHandle = styled('button', ({$theme}) => ({
-  border: 'none',
-  paddingTop: 0,
-  paddingBottom: 0,
-  paddingLeft: 0,
-  paddingRight: 0,
-  overflow: 'visible',
-  cursor: 'pointer',
-  backgroundColor: 'transparent',
-  marginLeft: $theme.sizing.scale600,
-  width: $theme.sizing.scale800,
-  display: 'flex',
-  alignItems: 'center',
-}));
+export const CloseHandle = styled<SharedStylePropsArgT>(
+  'button',
+  ({$theme}) => ({
+    border: 'none',
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    overflow: 'visible',
+    cursor: 'pointer',
+    backgroundColor: 'transparent',
+    marginLeft: $theme.sizing.scale600,
+    width: $theme.sizing.scale800,
+    display: 'flex',
+    alignItems: 'center',
+  }),
+);
 CloseHandle.displayName = 'StyledCloseHandle';
 
-export const Label = styled('div', ({$theme}) => ({
+export const Label = styled<SharedStylePropsArgT>('div', ({$theme}) => ({
   flexGrow: 1,
   ...$theme.typography.font400,
 }));

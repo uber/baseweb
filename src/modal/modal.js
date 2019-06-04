@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -241,13 +241,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   getRef(component: string): ElementRefT {
-    const overrideProps: {$ref?: ElementRefT} = getOverrideProps(
-      this.props.overrides[component],
-    );
-    const overrideRef = overrideProps.$ref;
-    if (overrideRef) {
-      return overrideRef;
-    }
     if (!this._refs[component]) {
       this._refs[component] = React.createRef();
     }
@@ -280,7 +273,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
         {locale => (
           <Root
             data-baseweb="modal"
-            $ref={this.getRef('Root')}
+            ref={this.getRef('Root')}
             {...sharedProps}
             {...getOverrideProps(RootOverride)}
           >
@@ -294,7 +287,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               {...getOverrideProps(DialogContainerOverride)}
             >
               <Dialog
-                tabIndex="-1"
+                tabIndex={-1}
                 aria-modal={
                   // aria-modal replaces the need to apply aria-hidden="true" to all other page
                   // content underneath the modal.
@@ -302,7 +295,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                   'true'
                 }
                 role={role}
-                $ref={this.getRef('Dialog')}
+                ref={this.getRef('Dialog')}
                 {...sharedProps}
                 {...getOverrideProps(DialogOverride)}
               >
@@ -337,7 +330,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     return (
       <Layer
         mountNode={this.props.mountNode}
-        onMount={this.props.isOpen ? this.autoFocus : undefined}
+        {...(this.props.isOpen ? {onMount: this.autoFocus} : {})}
       >
         {this.renderModal()}
       </Layer>

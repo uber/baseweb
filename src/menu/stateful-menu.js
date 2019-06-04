@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,6 +20,7 @@ export default class StatefulMenu extends React.PureComponent<
   static defaultProps = {
     // Mostly to satisfy flow
     initialState: {
+      activedescendantId: null,
       isFocused: false,
       // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,

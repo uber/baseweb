@@ -1,21 +1,19 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
 import {getTrackBackground} from 'react-range';
 
-export const Root = styled('div', props => {
-  return {
-    position: 'relative',
-  };
-});
+import {styled} from '../styles/index.js';
+import type {StylePropsT} from './types.js';
+
+export const Root = styled('div', {position: 'relative'});
 Root.displayName = 'StyledRoot';
 
-export const Track = styled('div', props => {
+export const Track = styled<StylePropsT>('div', props => {
   const {$theme, $value, $disabled, $isDragged} = props;
   const {sizing} = $theme;
   let cursor = 'inherit';
@@ -37,16 +35,14 @@ export const Track = styled('div', props => {
 });
 Track.displayName = 'StyledTrack';
 
-export const InnerTrack = styled('div', props => {
+export const InnerTrack = styled<StylePropsT>('div', props => {
   const {$theme, $value, $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? borders.radius100
-    : '0px';
+  const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
+    borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     background: getTrackBackground({
       values: $value,
@@ -65,14 +61,14 @@ export const InnerTrack = styled('div', props => {
 });
 InnerTrack.displayName = 'StyledInnerTrack';
 
-export const Tick = styled('div', props => {
+export const Tick = styled<StylePropsT>('div', props => {
   return {
     ...props.$theme.typography.font300,
   };
 });
 Tick.displayName = 'StyledTick';
 
-export const TickBar = styled('div', props => {
+export const TickBar = styled<StylePropsT>('div', props => {
   const {$theme} = props;
   const {sizing} = $theme;
   return {
@@ -86,7 +82,7 @@ export const TickBar = styled('div', props => {
 });
 TickBar.displayName = 'StyledTickBar';
 
-export const Thumb = styled('div', props => {
+export const Thumb = styled<StylePropsT>('div', props => {
   const {$theme, $value, $thumbIndex, $disabled} = props;
   const isLeft = $value.length === 2 && $thumbIndex === 0;
   const isRight = $value.length === 2 && $thumbIndex === 1;
@@ -104,27 +100,27 @@ export const Thumb = styled('div', props => {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: $theme.colors.mono400,
-    boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.12)',
+    boxShadow: '0 1px 4px rgba(0, 0, 0, 0.12)',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
 Thumb.displayName = 'StyledThumb';
 
-export const InnerThumb = styled('div', props => {
+export const InnerThumb = styled<StylePropsT>('div', props => {
   const {$theme, $isDragged} = props;
   return {
     height: '8px',
     width: '2px',
+    borderTopLeftRadius: '2px',
     borderTopRightRadius: '2px',
     borderBottomRightRadius: '2px',
-    borderTopLeftRadius: '2px',
     borderBottomLeftRadius: '2px',
     backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
   };
 });
 InnerThumb.displayName = 'StyledInnerThumb';
 
-export const ThumbValue = styled('div', props => {
+export const ThumbValue = styled<StylePropsT>('div', props => {
   const {$theme} = props;
   return {
     position: 'absolute',

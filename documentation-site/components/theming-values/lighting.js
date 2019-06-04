@@ -1,27 +1,29 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import {styled, LightTheme} from 'baseui';
 import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
 
-const StyledLightingBox = styled('div', ({$theme, $boxShadow = ''}) => {
-  return {
-    marginTop: $theme.sizing.scale200,
-    height: $theme.sizing.scale4800,
-    backgroundColor: $theme.colors.mono100,
-    borderRadius: $theme.borders.radius200,
-    boxShadow: $boxShadow,
-  };
-});
+const StyledLightingBox = styled<{$boxShadow: string}>(
+  'div',
+  ({$theme, $boxShadow = ''}) => {
+    return {
+      marginTop: $theme.sizing.scale200,
+      height: $theme.sizing.scale4800,
+      backgroundColor: $theme.colors.mono100,
+      boxShadow: $boxShadow,
+    };
+  },
+);
 
 function LightingPreview({name, boxShadow}) {
   return (

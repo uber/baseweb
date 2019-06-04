@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,6 +27,7 @@ export default class MenuStatefulContainer extends React.Component<
       // Defaults to -1 so no item is highlighted
       highlightedIndex: -1,
       isFocused: false,
+      activedescendantId: null,
     },
     stateReducer: (
       changeType: ?$PropertyType<StateReducerFnT, 'changeType'>,
@@ -120,17 +121,18 @@ export default class MenuStatefulContainer extends React.Component<
 
   // Handler for arrow keys
   handleArrowKey = (event: KeyboardEvent) => {
-    event.preventDefault();
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     const prevIndex = this.state.highlightedIndex;
     let nextIndex = prevIndex;
 
     if (event.key === KEY_STRINGS.ArrowUp) {
+      event.preventDefault();
       nextIndex = Math.max(0, prevIndex - 1);
       this.internalSetState(STATE_CHANGE_TYPES.moveUp, {
         highlightedIndex: nextIndex,
       });
     } else if (event.key === KEY_STRINGS.ArrowDown) {
+      event.preventDefault();
       nextIndex = Math.min(prevIndex + 1, this.props.items.length - 1);
       this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
         highlightedIndex: nextIndex,
@@ -180,26 +182,39 @@ export default class MenuStatefulContainer extends React.Component<
       itemRef = React.createRef();
       this.refList[index] = itemRef;
     }
+    const requiredItemProps = this.props.getRequiredItemProps(item, index);
+    const activedescendantId = requiredItemProps.id || null;
+    if (
+      this.state.highlightedIndex === index &&
+      this.state.activedescendantId !== activedescendantId
+    ) {
+      this.setState({activedescendantId});
+    }
     return {
       disabled: !!item.disabled,
       ref: itemRef,
       isFocused: this.state.isFocused,
       isHighlighted: this.state.highlightedIndex === index,
-      onClick: () => {
+      onClick: (event: SyntheticMouseEvent<HTMLElement>) => {
         if (this.props.onItemSelect && !item.disabled) {
-          this.props.onItemSelect({item});
+          this.props.onItemSelect({item, event});
           this.internalSetState(STATE_CHANGE_TYPES.click, {
             highlightedIndex: index,
+            activedescendantId,
           });
         }
       },
       onMouseEnter: () => {
         this.internalSetState(STATE_CHANGE_TYPES.mouseEnter, {
           highlightedIndex: index,
+          activedescendantId,
         });
       },
       resetMenu: this.resetMenu,
-      ...this.props.getRequiredItemProps(item, index),
+      ...(this.state.highlightedIndex === index
+        ? {id: activedescendantId}
+        : {}),
+      ...requiredItemProps,
     };
   };
 
@@ -232,19 +247,34 @@ export default class MenuStatefulContainer extends React.Component<
     this.internalSetState(STATE_CHANGE_TYPES.reset, {
       isFocused: false,
       highlightedIndex: -1,
+      activedescendantId: null,
     });
   };
 
   render() {
+    // omit the stateful-container's props and don't pass it down
+    // to the children (stateless menu)
+    const {
+      initialState,
+      stateReducer,
+      children,
+      onItemSelect,
+      addMenuToNesting,
+      removeMenuFromNesting,
+      getParentMenu,
+      getChildMenu,
+      ...restProps
+    } = this.props;
     return this.props.children(
       ({
+        ...restProps,
+        rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
+        activedescendantId: this.state.activedescendantId,
         getRequiredItemProps: this.getRequiredItemProps,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
-        items: this.props.items,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
-        rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
       }: RenderPropsT),
     );
   }

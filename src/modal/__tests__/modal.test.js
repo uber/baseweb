@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {mount} from 'enzyme';
 import {
@@ -20,6 +20,8 @@ import {
   StyledDialog,
   CLOSE_SOURCE,
 } from '../index.js';
+
+import {styled} from '../../styles/index.js';
 
 jest.useFakeTimers();
 
@@ -147,26 +149,19 @@ describe('Modal', () => {
   });
 
   test('override components', () => {
-    const mock = () =>
-      jest.fn().mockImplementation(({children}) => <div>{children}</div>);
-    const Root = mock();
-    const Backdrop = mock();
-    const DialogContainer = mock();
-    const Dialog = mock();
-    const Close = mock();
+    const Root = styled('div', {});
+    const Backdrop = styled('div', {});
+    const DialogContainer = styled('div', {});
+    const Dialog = styled('div', {});
+    const Close = styled('div', {});
     wrapper = mount(
       <Modal
         isOpen
         overrides={{
-          // $FlowFixMe
           Root,
-          // $FlowFixMe
           Backdrop,
-          // $FlowFixMe
           DialogContainer,
-          // $FlowFixMe
           Dialog,
-          // $FlowFixMe
           Close,
         }}
       >

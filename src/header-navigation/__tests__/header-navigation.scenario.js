@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import {
   HeaderNavigation,
@@ -22,14 +22,14 @@ export const name = 'header-navigation';
 
 export const component = () => (
   <HeaderNavigation>
-    <NavigationList align={ALIGN.left}>
+    <NavigationList $align={ALIGN.left}>
       <NavigationItem>
         <Menu />
       </NavigationItem>
       <NavigationItem>Uber</NavigationItem>
     </NavigationList>
-    <NavigationList align={ALIGN.center} />
-    <NavigationList align={ALIGN.right}>
+    <NavigationList $align={ALIGN.center} />
+    <NavigationList $align={ALIGN.right}>
       <NavigationItem>
         <Link>Tab Link One</Link>
       </NavigationItem>
@@ -40,7 +40,7 @@ export const component = () => (
         <Link>Tab Link Three</Link>
       </NavigationItem>
     </NavigationList>
-    <NavigationList align={ALIGN.right}>
+    <NavigationList $align={ALIGN.right}>
       <NavigationItem>
         <Button>Get started</Button>
       </NavigationItem>

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {Node} from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type ProgressStepsOverridesT = {
@@ -45,16 +44,6 @@ export type StepPropsT = {
   children?: Node,
 };
 
-export type StyledProgressStepsPropsT = {
-  $theme: ThemeT,
-};
-
-export type StyledStepPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-};
-
 export type NumberedStepOverridesT = {
   Root?: OverrideT<*>,
   Icon?: OverrideT<*>,
@@ -80,22 +69,7 @@ export type NumberedStepPropsT = {
   step?: Node,
 };
 
-export type StyledNumberIconPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledNumberContentTailPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledNumberStepPropsT = {
-  $theme: ThemeT,
+export type StylePropsT = {
   $isActive: boolean,
   $isCompleted: boolean,
   $disabled: boolean,

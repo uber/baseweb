@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {Input} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
@@ -24,17 +24,7 @@ export default class Datepicker extends React.Component<
   },
 > {
   static defaultProps = {
-    'aria-label': null,
-    'aria-labelledby': null,
     'aria-describedby': 'datepicker--screenreader--message--input',
-    disabled: false,
-    error: false,
-    formatDisplayValue: null,
-    formatString: 'YYYY/MM/dd',
-    onChange: () => {},
-    overrides: {},
-    placeholder: 'YYYY/MM/DD',
-    required: false,
     value: null,
   };
 
@@ -64,7 +54,7 @@ export default class Datepicker extends React.Component<
       isPseudoFocused,
       ...(calendarFocused === null ? {} : {calendarFocused}),
     });
-    this.props.onChange(data);
+    this.props.onChange && this.props.onChange(data);
   };
 
   formatDate(date: ?Date | Array<Date>, formatString: string) {
@@ -79,7 +69,7 @@ export default class Datepicker extends React.Component<
 
   formatDisplayValue(date: ?Date | Array<Date>) {
     const formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
-    return formatDisplayValue(date, this.props.formatString);
+    return formatDisplayValue(date, this.props.formatString || 'YYYY/MM/DD');
   }
 
   open = () => {
@@ -183,24 +173,26 @@ export default class Datepicker extends React.Component<
               }
               {...popoverProps}
             >
-              <InputComponent
-                aria-disabled={this.props.disabled}
-                aria-label={
-                  this.props['aria-label'] || locale.datepicker.ariaLabel
-                }
-                error={this.props.error}
-                aria-labelledby={this.props['aria-labelledby']}
-                aria-describedby={this.props['aria-describedby']}
-                aria-required={this.props.required || null}
-                disabled={this.props.disabled}
-                value={this.formatDisplayValue(this.props.value)}
-                onFocus={this.open}
-                onBlur={this.handleInputBlur}
-                onKeyDown={this.handleKeyDown}
-                placeholder={this.props.placeholder}
-                required={this.props.required}
-                {...inputProps}
-              />
+              <span>
+                <InputComponent
+                  aria-disabled={this.props.disabled}
+                  aria-label={
+                    this.props['aria-label'] || locale.datepicker.ariaLabel
+                  }
+                  error={this.props.error}
+                  aria-labelledby={this.props['aria-labelledby']}
+                  aria-describedby={this.props['aria-describedby']}
+                  aria-required={this.props.required || null}
+                  disabled={this.props.disabled}
+                  value={this.formatDisplayValue(this.props.value)}
+                  onFocus={this.open}
+                  onBlur={this.handleInputBlur}
+                  onKeyDown={this.handleKeyDown}
+                  placeholder={this.props.placeholder || 'YYYY/MM/DD'}
+                  required={this.props.required}
+                  {...inputProps}
+                />
+              </span>
             </PopoverComponent>
             <p
               id="datepicker--screenreader--message--input"
@@ -209,10 +201,10 @@ export default class Datepicker extends React.Component<
                 width: '1px',
                 height: '1px',
                 margin: '-1px',
-                border: '0px',
-                padding: '0px',
+                border: 0,
+                padding: 0,
                 overflow: 'hidden',
-                clip: 'react(0px, 0px, 0px, 0px)',
+                clip: 'rect(0, 0, 0, 0)',
                 clipPath: 'inset(100%)',
               }}
             >

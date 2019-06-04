@@ -8,35 +8,86 @@ exports[`Stateless progress bar should render component: Component has correct r
   successValue={100}
   value={75}
 >
-  <MockStyledComponent
+  <ForwardRef
     $successValue={100}
     $value={75}
     data-baseweb="progress-bar"
     role="progressbar"
   >
-    <div
+    <MockStyledComponent
+      $successValue={100}
+      $value={75}
       data-baseweb="progress-bar"
+      forwardedRef={null}
       role="progressbar"
-      styled-component="true"
     >
-      <MockStyledComponent
-        $successValue={100}
-        $value={75}
+      <div
+        data-baseweb="progress-bar"
+        role="progressbar"
+        styled-component="true"
+        test-style={
+          Object {
+            "width": "100%",
+          }
+        }
       >
-        <div
-          styled-component="true"
+        <ForwardRef
+          $successValue={100}
+          $value={75}
         >
           <MockStyledComponent
             $successValue={100}
             $value={75}
+            forwardedRef={null}
           >
             <div
               styled-component="true"
-            />
+              test-style={
+                Object {
+                  "backgroundColor": null,
+                  "borderBottomLeftRadius": "$theme.sizing.scale0",
+                  "borderBottomRightRadius": "$theme.sizing.scale0",
+                  "borderTopLeftRadius": "$theme.sizing.scale0",
+                  "borderTopRightRadius": "$theme.sizing.scale0",
+                  "height": "4px",
+                  "marginBottom": "$theme.sizing.scale500",
+                  "marginLeft": "$theme.sizing.scale500",
+                  "marginRight": "$theme.sizing.scale500",
+                  "marginTop": "$theme.sizing.scale500",
+                }
+              }
+            >
+              <ForwardRef
+                $successValue={100}
+                $value={75}
+              >
+                <MockStyledComponent
+                  $successValue={100}
+                  $value={75}
+                  forwardedRef={null}
+                >
+                  <div
+                    styled-component="true"
+                    test-style={
+                      Object {
+                        "backgroundColor": "$theme.colors.primary400",
+                        "borderBottomLeftRadius": "$theme.sizing.scale0",
+                        "borderBottomRightRadius": "$theme.sizing.scale0",
+                        "borderTopLeftRadius": "$theme.sizing.scale0",
+                        "borderTopRightRadius": "$theme.sizing.scale0",
+                        "height": "100%",
+                        "transition": "width 0.5s",
+                        "width": "75%",
+                      }
+                    }
+                  />
+                </MockStyledComponent>
+              </ForwardRef>
+            </div>
           </MockStyledComponent>
-        </div>
-      </MockStyledComponent>
-    </div>
-  </MockStyledComponent>
+        </ForwardRef>
+      </div>
+    </MockStyledComponent>
+  </ForwardRef>
 </ProgressBar>
 `;
