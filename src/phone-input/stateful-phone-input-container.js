@@ -33,7 +33,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     overrides: {},
   };
 
-  state = {...this.props.initialState};
+  state = {text: '', country: COUNTRIES.US, ...this.props.initialState};
 
   internalSetState = (type: StateChangeT, nextState: $Shape<StateT>) => {
     this.setState(this.props.stateReducer(type, nextState, this.state));
