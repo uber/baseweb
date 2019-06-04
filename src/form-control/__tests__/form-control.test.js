@@ -146,7 +146,7 @@ Object {
     expect(errorRendered).toHaveText('Error test');
   });
 
-  test('Accepts a function for error', () => {
+  test('Accepts a function for positive', () => {
     const positive = jest.fn().mockReturnValue(<span>Positive test</span>);
     const sharedProps = {
       $disabled: false,
