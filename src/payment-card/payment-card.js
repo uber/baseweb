@@ -47,6 +47,19 @@ export const addGaps = (gaps: number[], value: string) =>
     `${value}`,
   );
 
+export const sanitizeNumber = (input: string) => {
+  const number = input.replace(/[^0-9]/gi, '');
+  const validatedValue = valid.number(number);
+  if (validatedValue.card && Array.isArray(validatedValue.card.lengths)) {
+    return number.slice(
+      0,
+      validatedValue.card.lengths[validatedValue.card.lengths.length - 1],
+    );
+  }
+  // CC number NEVER can have more than 19 digits
+  return number.slice(0, 19);
+};
+
 const PaymentCard = (props: PaymentCardPropsT) => {
   const {
     overrides = {},
@@ -96,7 +109,7 @@ const PaymentCard = (props: PaymentCardPropsT) => {
         Before: BeforeComponent,
       }}
       onChange={e => {
-        e.target.value = e.target.value.replace(/[^0-9]/gi, '');
+        e.target.value = sanitizeNumber(e.target.value);
         onChange && onChange(e);
       }}
       value={addGaps(gaps, value || '')}

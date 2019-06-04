@@ -25,7 +25,7 @@ export default Layout;
 
 # Payment Card
 
-An input enables a person to enter a payment card number. We support formatting and icons for following card types:
+Payment card input **automatically detects the card type**, shows the icon and formats the number accordingly. It supports following brands:
 
 <Table
   columns={['Card Type', 'Example Number']}
@@ -42,7 +42,7 @@ An input enables a person to enter a payment card number. We support formatting 
   ]}
 />
 
-We use [card-validator](https://github.com/braintree/card-validator) library to determine the card format. It's also re-exported from `baseui/payment-card` as `{valid}` in case you need more meta-data about the card number to further check the validity.
+The [card-validator](https://github.com/braintree/card-validator) library is used to determine the card format. It's also re-exported from `baseui/payment-card` as `{valid}` in case you need more meta-data about the card.
 
 This component is based on [input](/components/input) and shares the most of its APIs.
 
