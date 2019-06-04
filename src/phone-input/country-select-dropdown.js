@@ -52,6 +52,10 @@ const CountrySelectDropdown = React.forwardRef(
       overrides.CountrySelectDropdownDialcodeColumn,
       DefaultDialcodeColumn,
     );
+    const scrollIndex = Math.min(
+      children.findIndex(opt => opt.props.item.id === country.id) + 5,
+      children.length - 1,
+    );
     return (
       <Container ref={ref} $height={maxDropdownHeight} {...containerProps}>
         <AutoSizer>
@@ -63,9 +67,7 @@ const CountrySelectDropdown = React.forwardRef(
                 width={width}
                 rowCount={children.length}
                 rowHeight={42}
-                scrollToIndex={children.findIndex(
-                  opt => opt.props.item.id === country.id,
-                )}
+                scrollToIndex={scrollIndex}
                 rowRenderer={({index, key, style}) => {
                   // resetMenu and getItemLabel should not end up on native html elements
                   const {resetMenu, getItemLabel, ...rest} = children[
