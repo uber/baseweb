@@ -21,7 +21,7 @@ export default function PhoneInput(props: PropsT) {
     onTextChange,
     size = SIZE.default,
     overrides = {},
-    'aria-label': ariaLabel = 'Enter a phone number',
+    'aria-label': ariaLabel = 'Please choose a country dial code and enter a phone number.',
     'aria-labelledby': ariaLabeledby,
     'aria-describedby': ariaDescribedby,
   } = props;
