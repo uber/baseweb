@@ -117,7 +117,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         overrides={selectOverrides}
         {...selectProps}
       />
-      <Block>{country.dialCode}</Block>
+      <Block data-e2e="phone-input-dialcode">{country.dialCode}</Block>
     </Block>
   );
 }

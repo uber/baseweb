@@ -79,6 +79,8 @@ const CountrySelectDropdown = React.forwardRef(
                       style={style}
                       {...rest}
                       {...listItemProps}
+                      data-e2e="country-select-list-item"
+                      data-iso={children[index].props.item.id}
                     >
                       <FlagColumn {...flagColumnProps}>
                         <StyledFlag iso={children[index].props.item.id} />
