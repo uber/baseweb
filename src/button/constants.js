@@ -20,7 +20,9 @@ export const SHAPE = {
 };
 
 export const SIZE = {
+  medium: 'default',
   default: 'default',
   compact: 'compact',
+  small: 'compact',
   large: 'large',
 };
