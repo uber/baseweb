@@ -9,9 +9,10 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import * as flagComponents from './flags/index.js';
+import type {CountryIsoT} from './types.js';
 
-export default function Flag(props: {iso2: string, width?: string}) {
-  const {iso2, width = '16px', ...restProps} = props;
-  const FlagComponent = flagComponents['Flag' + iso2.toUpperCase()];
-  return <FlagComponent iso2={iso2} width={width} {...restProps} />;
+export default function Flag(props: {iso: CountryIsoT, width?: string}) {
+  const {iso, width = '16px', ...restProps} = props;
+  const FlagComponent = flagComponents['Flag' + iso.toUpperCase()];
+  return <FlagComponent iso={iso} width={width} {...restProps} />;
 }

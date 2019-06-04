@@ -6,19 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {countries, STATE_CHANGE_TYPE} from './constants.js';
+import {COUNTRIES, STATE_CHANGE_TYPE} from './constants.js';
 
 import type {
   StatefulPhoneInputContainerPropsT,
   StateT,
   StateReducerT,
   StateChangeT,
-  CountryChangeEventT,
 } from './types.js';
-
-const getCountry = iso => {
-  return countries.find(({id}) => id === iso) || {dialCode: ''};
-};
+import type {OnChangeParamsT} from '../select/types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
@@ -28,13 +24,13 @@ export default class StatefulPhoneInputContainer extends React.Component<
 > {
   static defaultProps = {
     initialState: {
-      inputValue: `+${getCountry('US').dialCode} `,
-      countryValue: getCountry('US'),
+      text: '',
+      country: COUNTRIES.US,
     },
-    overrides: {},
-    onInputChange: () => {},
+    onTextChange: () => {},
     onCountryChange: () => {},
     stateReducer: defaultStateReducer,
+    overrides: {},
   };
 
   state = {...this.props.initialState};
@@ -43,29 +39,20 @@ export default class StatefulPhoneInputContainer extends React.Component<
     this.setState(this.props.stateReducer(type, nextState, this.state));
   };
 
-  onInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    this.props.onInputChange(event);
-    this.internalSetState(STATE_CHANGE_TYPE.inputChange, {
-      inputValue: event.target.value,
+  onTextChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    this.props.onTextChange(event);
+    this.internalSetState(STATE_CHANGE_TYPE.textChange, {
+      text: event.target.value,
     });
   };
 
-  onCountryChange = (event: CountryChangeEventT) => {
+  onCountryChange = (event: OnChangeParamsT) => {
     this.props.onCountryChange(event);
-    // Replace (if possible) the current country dialcode
-    let newInputValue = this.state.inputValue.replace(
-      `+${this.state.countryValue.dialCode}`,
-      `+${event.option.dialCode}`,
-    );
-    // If the replacement did nothing, just use the new dialcode
-    newInputValue =
-      this.state.inputValue === newInputValue
-        ? `+${event.option.dialCode} `
-        : newInputValue;
-    this.internalSetState(STATE_CHANGE_TYPE.countryChange, {
-      inputValue: newInputValue,
-      countryValue: event.option,
-    });
+    if (event.option && event.option.id) {
+      this.internalSetState(STATE_CHANGE_TYPE.countryChange, {
+        country: COUNTRIES[event.option.id],
+      });
+    }
   };
 
   render() {
@@ -73,7 +60,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     return children({
       ...restProps,
       ...this.state,
-      onInputChange: this.onInputChange,
+      onTextChange: this.onTextChange,
       onCountryChange: this.onCountryChange,
     });
   }
