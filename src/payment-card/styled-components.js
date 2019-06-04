@@ -16,6 +16,7 @@ export const IconWrapper = styled<{$size: typeof SIZE}>('div', props => {
     [SIZE.large]: $theme.sizing.scale700,
   };
   return {
+    //$FlowFixMe
     marginLeft: marginLeft[$size],
     height: '100%',
     display: 'flex',

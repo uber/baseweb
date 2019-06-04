@@ -118,4 +118,6 @@ const PaymentCard = (props: PaymentCardPropsT) => {
   );
 };
 
+PaymentCard.defaultProps = Input.defaultProps;
+
 export default PaymentCard;
