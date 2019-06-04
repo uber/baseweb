@@ -144,10 +144,10 @@ function getPaddingStyles({$theme, $size, $shape}) {
         paddingTop: $theme.sizing.scale200,
         paddingBottom: $theme.sizing.scale200,
         paddingLeft: defaultShape
-          ? $theme.sizing.scale600
+          ? $theme.sizing.scale500
           : $theme.sizing.scale200,
         paddingRight: defaultShape
-          ? $theme.sizing.scale600
+          ? $theme.sizing.scale500
           : $theme.sizing.scale200,
       };
     case SIZE.large:
