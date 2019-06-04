@@ -10,8 +10,6 @@ export {default as StatefulContainer} from '../input/stateful-container.js';
 export {default as PaymentCard} from './payment-card.js';
 export {default as valid} from 'card-validator';
 export {SIZE} from '../input/index.js';
-// Constants
-export {STATE_CHANGE_TYPE} from './constants.js';
 // Styled elements
 export {IconWrapper as StyledIconWrapper} from './styled-components.js';
 // Flow
