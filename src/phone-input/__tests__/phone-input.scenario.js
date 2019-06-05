@@ -9,12 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {StatefulPhoneInput} from '../index.js';
-import {Block} from '../../block/index.js';
 
 export const name = 'phone-input';
 
-export const component = () => (
-  <Block>
-    <StatefulPhoneInput aria-label="stateful phone input example" />
-  </Block>
-);
+export const component = () => <StatefulPhoneInput />;

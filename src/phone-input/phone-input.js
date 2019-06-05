@@ -19,11 +19,10 @@ export default function PhoneInput(props: PropsT) {
   const {
     text,
     onTextChange,
-    size = SIZE.default,
     overrides = {},
     'aria-label': ariaLabel = 'Please choose a country dial code and enter a phone number.',
-    'aria-labelledby': ariaLabeledby,
-    'aria-describedby': ariaDescribedby,
+    size = SIZE.default,
+    ...restProps
   } = props;
   const inputRef = useRef(null);
   const baseOverrides = {
@@ -43,15 +42,15 @@ export default function PhoneInput(props: PropsT) {
   return (
     <Input
       type="tel"
+      autoComplete="tel"
+      value={text}
       aria-label={ariaLabel}
-      aria-labelledby={ariaLabeledby}
-      aria-describedby={ariaDescribedby}
+      onChange={onTextChange}
       data-baseweb="phone-input"
       size={size}
       inputRef={inputRef}
-      value={text}
-      onChange={onTextChange}
       overrides={inputOverrides}
+      {...restProps}
       {...inputProps}
     />
   );

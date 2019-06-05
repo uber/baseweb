@@ -83,10 +83,6 @@ export type OverridesT = {
 export type PropsT = {
   /** Sets aria-label attribute. */
   'aria-label': ?string,
-  /** Sets aria-labelledby attribute. */
-  'aria-labelledby': ?string,
-  /** Sets aria-describedby attribute. */
-  'aria-describedby': ?string,
   /** Current input text value. Note, this should include the dial code of the selected country. */
   text: string,
   /** Current selected country value. Note, this expects an entire CountryT object. */
@@ -109,10 +105,6 @@ export type PropsT = {
 export type StatefulPhoneInputContainerPropsT = {
   /** Sets aria-label attribute. */
   'aria-label': ?string,
-  /** Sets aria-labelledby attribute. */
-  'aria-labelledby': ?string,
-  /** Sets aria-describedby attribute. */
-  'aria-describedby': ?string,
   children: PropsT => React.Node,
   initialState: StateT,
   stateReducer: StateReducerT,
@@ -125,10 +117,6 @@ export type StatefulPhoneInputContainerPropsT = {
 export type StatefulPhoneInputPropsT = {
   /** Sets aria-label attribute. */
   'aria-label'?: string,
-  /** Sets aria-labelledby attribute. */
-  'aria-labelledby'?: string,
-  /** Sets aria-describedby attribute. */
-  'aria-describedby'?: string,
   initialState?: StateT,
   stateReducer?: StateReducerT,
   onTextChange?: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
