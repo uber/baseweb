@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
+import type {StylePropsT} from './types.js';
 
 const DEFAULT = 0;
 const HOVERED = 1;
@@ -113,7 +114,7 @@ function getLabelColor(props) {
   return $disabled ? colors.foregroundAlt : colors.foreground;
 }
 
-export const RadioGroupRoot = styled('div', props => {
+export const RadioGroupRoot = styled<StylePropsT>('div', props => {
   const {$disabled, $align} = props;
   return {
     flexDirection: $align === 'horizontal' ? 'row' : 'column',
@@ -123,10 +124,10 @@ export const RadioGroupRoot = styled('div', props => {
   };
 });
 
-export const Root = styled('label', props => {
+export const Root = styled<StylePropsT>('label', props => {
   const {$disabled, $hasDescription, $labelPlacement, $theme} = props;
   const {sizing} = $theme;
-  return {
+  return ({
     flexDirection:
       $labelPlacement === 'top' || $labelPlacement === 'bottom'
         ? 'column'
@@ -136,10 +137,10 @@ export const Root = styled('label', props => {
     cursor: $disabled ? 'not-allowed' : 'pointer',
     marginTop: sizing.scale200,
     marginBottom: $hasDescription ? null : sizing.scale200,
-  };
+  }: {});
 });
 
-export const RadioMarkInner = styled('div', props => {
+export const RadioMarkInner = styled<StylePropsT>('div', props => {
   const {animation, sizing} = props.$theme;
 
   return {
@@ -155,10 +156,10 @@ export const RadioMarkInner = styled('div', props => {
   };
 });
 
-export const RadioMarkOuter = styled('div', props => {
+export const RadioMarkOuter = styled<StylePropsT>('div', props => {
   const {sizing} = props.$theme;
 
-  return {
+  return ({
     alignItems: 'center',
     backgroundColor: getOuterColor(props),
     borderTopLeftRadius: '50%',
@@ -175,10 +176,10 @@ export const RadioMarkOuter = styled('div', props => {
     verticalAlign: 'middle',
     width: sizing.scale700,
     flexShrink: 0,
-  };
+  }: {});
 });
 
-export const Label = styled('div', props => {
+export const Label = styled<StylePropsT>('div', props => {
   const {
     $theme: {typography},
   } = props;
@@ -200,7 +201,7 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Description = styled('div', props => {
+export const Description = styled<StylePropsT>('div', props => {
   return {
     ...props.$theme.typography.font300,
     color: props.$theme.colors.colorSecondary,

@@ -82,7 +82,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
   dropdown: {current: HTMLElement | null} = React.createRef();
-  input: ?HTMLInputElement;
+  input: React.ElementRef<*>;
   // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
@@ -641,7 +641,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-required={this.props.required || null}
           onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
-          $ref={ref => (this.input = ref)}
+          ref={ref => (this.input = ref)}
           tabIndex={0}
           {...sharedProps}
           {...inputContainerProps}
@@ -669,6 +669,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           required={(this.props.required && !this.props.value.length) || null}
           role="combobox"
           value={value}
+          tabIndex={0}
           {...sharedProps}
         />
       </InputContainer>
@@ -787,6 +788,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       creatable,
       disabled,
       error,
+      positive,
       isLoading,
       multi,
       required,
@@ -800,6 +802,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       $creatable: creatable,
       $disabled: disabled,
       $error: error,
+      $positive: positive,
       $isFocused: isFocused,
       $isLoading: isLoading,
       $isOpen: isOpen,
@@ -855,6 +858,15 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     sharedProps.$isOpen = isOpen;
 
+    if (__DEV__) {
+      if (this.props.error && this.props.positive) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[Select] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+        );
+      }
+    }
+
     return (
       <LocaleContext.Consumer>
         {locale => (
@@ -863,7 +875,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
             // apply the ref to the Root component below it would be overwritten before the popover
             // renders it. Using this strategy, we will get a ref to the popover, then reuse its
             // anchorRef so we can check if clicks are on the select component or not.
-            ref={ref => {
+            // eslint-disable-next-line flowtype/no-weak-types
+            ref={(ref: any) => {
               if (!ref) return;
               this.anchor = ref.anchorRef;
             }}
@@ -872,6 +885,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             content={() => {
               const dropdownProps = {
                 error: this.props.error,
+                positive: this.props.positive,
                 getOptionLabel:
                   this.props.getOptionLabel ||
                   this.getOptionLabel.bind(this, locale),

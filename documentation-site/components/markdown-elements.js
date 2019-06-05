@@ -40,7 +40,6 @@ const Code = (props: Props) => <Block>{props.children}</Block>;
 
 export const Heading = ({
   element,
-  marginTop,
   fontType,
   children,
 }: {
@@ -55,7 +54,7 @@ export const Heading = ({
       as={element}
       marginBottom="8px"
       font={fontType}
-      $ref={hoverRef}
+      ref={hoverRef}
       id={slug}
       color="foreground"
     >

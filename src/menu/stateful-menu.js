@@ -25,10 +25,7 @@ export default class StatefulMenu extends React.PureComponent<
       // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,
     },
-    stateReducer: (
-      changeType: ?$PropertyType<StateReducerFnT, 'changeType'>,
-      changes: $PropertyType<StateReducerFnT, 'changes'>,
-    ) => changes,
+    stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
     children: () => null,

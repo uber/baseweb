@@ -22,9 +22,10 @@ import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
 import Router from 'next/router';
 
-import {styletron} from '../helpers/styletron';
+import {styletron, debug} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
-import '../prism-coy.css';
+import '../prism-coy.css'; // light theme code highlighting
+import '../tomorrow-night.css'; // dark theme code highlighting
 
 const themes = {
   LightTheme,
@@ -147,6 +148,12 @@ export default class MyApp extends App {
       themeName += 'Move';
     }
 
+    if (config.theme === 'dark') {
+      document.body.classList.add('darktheme');
+    } else {
+      document.body.classList.remove('darktheme');
+    }
+
     this.setState({
       theme: themes[themeName] || LightTheme,
     });
@@ -180,7 +187,7 @@ export default class MyApp extends App {
     const {Component, pageProps, path} = this.props;
     return (
       <Container>
-        <StyletronProvider value={styletron}>
+        <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
           <BaseProvider theme={this.state.theme}>
             <Block {...blockProps}>
               <Component

@@ -3,16 +3,14 @@ import {StatefulTextarea as Textarea, SIZE} from 'baseui/textarea';
 
 export default () => (
   <React.Fragment>
-    <Textarea size={SIZE.compact} placeholder="Placeholder" />
+    <Textarea size={SIZE.compact} placeholder="Compact textarea" />
     <br />
-    <Textarea
-      initialState={{value: 'uber'}}
-      size={SIZE.compact}
-      placeholder="Placeholder"
-    />
+    <Textarea initialState={{value: 'uber'}} placeholder="Default textarea" />
     <br />
-    <Textarea size={SIZE.compact} error={true} placeholder="Placeholder" />
+    <Textarea size={SIZE.large} positive placeholder="Large textarea" />
     <br />
-    <Textarea size={SIZE.compact} disabled placeholder="Disabled textarea" />
+    <Textarea error={true} placeholder="Placeholder" />
+    <br />
+    <Textarea disabled placeholder="Disabled textarea" />
   </React.Fragment>
 );

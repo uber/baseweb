@@ -74,9 +74,7 @@ export default withRouter(App);
 <Overrides
   name="Side Navigation"
   component={NavExports}
-  renderExample={props => (
-    <Navigation
-      items={[
+  renderExample={props => <Navigation items={[
         {
           title: 'Colors',
           itemId: '#level1.1',
@@ -100,10 +98,10 @@ export default withRouter(App);
       overrides={props.overrides}
       {...props}
     />
-  )}
+  }
 />
 
 <API
   heading="Side Navigation API"
-  api={require('!!extract-react-types-loader!../../../src/side-navigation/nav.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/side-navigation/nav.js')}
 />

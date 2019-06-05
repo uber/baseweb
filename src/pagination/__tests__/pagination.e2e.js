@@ -12,7 +12,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 const selectors = {
   prevButton: 'button[data-test="prev-button"]',
   nextButton: 'button[data-test="next-button"]',
-  dropDownButton: 'button[data-test="dropdown-button"]',
+  dropDownButton: '[data-baseweb="select"] [aria-selected]',
 };
 
 describe('pagination', () => {

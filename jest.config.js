@@ -16,6 +16,6 @@ module.exports = {
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
-  testRegex: '\\.test\\.js$',
+  testRegex: '(.|-)test\\.js$',
   testURL: 'http://localhost/',
 };

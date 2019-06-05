@@ -19,7 +19,7 @@ const Image = styled('img', props => ({
 }));
 
 const Caption = styled('figcaption', ({$theme}) => ({
-  color: $theme.colors.mono800,
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   fontWeight: 300,
@@ -48,23 +48,27 @@ export const Demo = styled('iframe', {
 const Title = styled('h1', ({$theme}) => ({
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale900,
-  margin: `${$theme.sizing.scale1200} 0 0 0`,
+  marginTop: $theme.sizing.scale1200,
+  marginBottom: $theme.sizing.scale400,
 }));
 
-const Tagline = styled('h2', ({$theme}) => ({
-  color: $theme.colors.mono800,
+const Tagline = styled('span', ({$theme}) => ({
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale800,
   fontWeight: 300,
-  margin: `${$theme.sizing.scale300} 0 0 0`,
 }));
 
 const AuthorLink = styled('a', ({$theme}) => ({
-  color: $theme.colors.mono800,
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   ':hover': {
-    color: $theme.colors.mono700,
+    color: $theme.colors.foreground,
   },
+}));
+
+const Date = styled('span', ({$theme}) => ({
+  color: $theme.colors.foregroundAlt,
 }));
 
 export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
@@ -83,7 +87,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
       overrides={{
         Block: {
           style: ({$theme}) => ({
-            color: $theme.colors.mono800,
+            color: $theme.colors.foregroundAlt,
             fontFamily: $theme.typography.font100.fontFamily,
             margin: `${$theme.sizing.scale400} 0`,
           }),
@@ -98,7 +102,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
       >
         {author}
       </AuthorLink>{' '}
-      - <span>{date}</span>
+      <Date> - {date}</Date>
     </Block>
   </Block>
 );

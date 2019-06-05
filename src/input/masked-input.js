@@ -13,39 +13,45 @@ import Input from './input.js';
 import {Input as StyledInput} from './styled-components.js';
 import type {MaskedInputPropsT} from './types.js';
 
-function MaskOverride({
-  startEnhancer,
-  endEnhancer,
-  error,
-  onChange,
-  onFocus,
-  onBlur,
-  value,
-  disabled,
-  ...restProps
-}: MaskedInputPropsT) {
-  return (
-    <InputMask
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      value={value}
-      disabled={disabled}
-      {...restProps}
-    >
-      {props => (
-        <StyledInput
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          value={value}
-          disabled={disabled}
-          {...props}
-        />
-      )}
-    </InputMask>
-  );
-}
+const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLElement>(
+  (
+    {
+      startEnhancer,
+      endEnhancer,
+      error,
+      onChange,
+      onFocus,
+      onBlur,
+      value,
+      disabled,
+      ...restProps
+    }: MaskedInputPropsT,
+    ref,
+  ) => {
+    return (
+      <InputMask
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        value={value}
+        disabled={disabled}
+        {...restProps}
+      >
+        {props => (
+          <StyledInput
+            ref={ref}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            value={value}
+            disabled={disabled}
+            {...props}
+          />
+        )}
+      </InputMask>
+    );
+  },
+);
 
 export default function MaskedInput(props: MaskedInputPropsT) {
   const {

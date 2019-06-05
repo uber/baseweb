@@ -28,29 +28,6 @@ function isSelected(selected, index) {
   return selected === index;
 }
 
-function getBorderRadii(index, length) {
-  if (index === 0) {
-    return {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    };
-  }
-
-  if (index === length - 1) {
-    return {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    };
-  }
-
-  return {
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
-  };
-}
-
 type LocaleT = {|locale?: ButtonGroupLocaleT|};
 export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
   const {overrides = {}} = props;
@@ -85,12 +62,6 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
             if (props.onClick) {
               props.onClick(event, index);
             }
-          },
-          overrides: {
-            BaseButton: {
-              style: getBorderRadii(index, props.children.length),
-            },
-            ...child.props.overrides,
           },
           shape: props.shape,
           size: props.size,

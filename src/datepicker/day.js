@@ -35,7 +35,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     value: null,
   };
 
-  dayElm: ?HTMLElement;
+  dayElm: React.ElementRef<*>;
 
   state = {
     isHovered: false,
@@ -228,7 +228,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <Day
         aria-label={this.getAriaLabel(sharedProps)}
-        $ref={dayElm => {
+        ref={dayElm => {
           this.dayElm = dayElm;
         }}
         role="button"

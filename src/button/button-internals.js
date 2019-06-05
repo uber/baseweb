@@ -16,7 +16,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {ButtonPropsT} from './types.js';
 
 export default function ButtonInternals(props: ButtonPropsT) {
-  const {children, overrides, startEnhancer, endEnhancer} = props;
+  const {children, overrides = {}, startEnhancer, endEnhancer} = props;
   const [StartEnhancer, startEnhancerProps] = getOverrides(
     overrides.StartEnhancer,
     StyledStartEnhancer,

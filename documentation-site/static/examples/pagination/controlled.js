@@ -8,7 +8,11 @@ export default class Basic extends React.Component {
       <Pagination
         numPages={20}
         currentPage={this.state.currentPage}
-        onPageChange={({nextPage}) => this.setState({currentPage: nextPage})}
+        onPageChange={({nextPage}) =>
+          this.setState({
+            currentPage: Math.min(Math.max(nextPage, 1), 20),
+          })
+        }
       />
     );
   }

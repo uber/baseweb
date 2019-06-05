@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, SHAPE} from '../../button/index.js';
+import {Button} from '../../button/index.js';
 import Upload from '../upload.js';
 
 export const name = 'icon-buttons';
@@ -21,7 +21,7 @@ export const component = () => (
     <Button endEnhancer={Upload}>End Enhancer</Button>
     <br />
     <br />
-    <Button shape={SHAPE.square}>
+    <Button>
       <Upload />
     </Button>
   </div>

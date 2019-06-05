@@ -33,6 +33,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     autoFocus: false,
     disabled: false,
     error: false,
+    positive: false,
     name: '',
     inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     onBlur: () => {},
@@ -69,50 +70,6 @@ class BaseInput<T: EventTarget> extends React.Component<
     this.props.onBlur(e);
   };
 
-  getInputProps = () => {
-    const {
-      autoComplete,
-      disabled,
-      error,
-      id,
-      inputRef,
-      $ref,
-      name,
-      onChange,
-      onKeyDown,
-      onKeyPress,
-      onKeyUp,
-      placeholder,
-      required,
-      rows,
-      type,
-      value,
-    } = this.props;
-
-    return {
-      $ref: $ref || inputRef,
-      'aria-label': this.props['aria-label'],
-      'aria-labelledby': this.props['aria-labelledby'],
-      'aria-describedby': this.props['aria-describedby'],
-      'aria-invalid': !!error,
-      'aria-required': required,
-      autoComplete,
-      disabled,
-      id,
-      name,
-      onBlur: this.onBlur,
-      onChange,
-      onFocus: this.onFocus,
-      onKeyDown,
-      onKeyPress,
-      onKeyUp,
-      placeholder,
-      type,
-      value,
-      ...(type === CUSTOM_INPUT_TYPE.textarea ? {rows} : {}),
-    };
-  };
-
   render() {
     const {
       value,
@@ -141,7 +98,34 @@ class BaseInput<T: EventTarget> extends React.Component<
         {...inputContainerProps}
       >
         <Before {...sharedProps} {...beforeProps} />
-        <Input {...sharedProps} {...this.getInputProps()} {...inputProps}>
+        <Input
+          ref={this.props.inputRef}
+          aria-label={this.props['aria-label']}
+          aria-labelledby={this.props['aria-labelledby']}
+          aria-describedby={this.props['aria-describedby']}
+          aria-invalid={this.props.error}
+          aria-required={this.props.required}
+          autoComplete={this.props.autoComplete}
+          disabled={this.props.disabled}
+          id={this.props.id}
+          name={this.props.name}
+          onBlur={this.onBlur}
+          onChange={this.props.onChange}
+          onFocus={this.onFocus}
+          onKeyDown={this.props.onKeyDown}
+          onKeyPress={this.props.onKeyPress}
+          onKeyUp={this.props.onKeyUp}
+          placeholder={this.props.placeholder}
+          type={this.props.type}
+          value={this.props.value}
+          rows={
+            this.props.type === CUSTOM_INPUT_TYPE.textarea
+              ? this.props.rows
+              : null
+          }
+          {...sharedProps}
+          {...inputProps}
+        >
           {type === CUSTOM_INPUT_TYPE.textarea ? value : null}
         </Input>
         <After {...sharedProps} {...afterProps} />

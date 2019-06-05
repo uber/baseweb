@@ -7,26 +7,26 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import type {BaseInputPropsT, StateReducerT, StateT} from '../input/types.js';
-import {SIZE} from '../input/constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
+import {ADJOINED, SIZE} from '../input/constants.js';
 
 type SyntheticTextareaEvent = SyntheticEvent<HTMLTextAreaElement>;
 
 export type SizeT = $Keys<typeof SIZE>;
 
 export type SharedStylePropsT = {
-  $theme: ThemeT,
-};
-
-export type TextareaComponentsT = {
-  InputContainer?: OverrideT<SharedStylePropsT>,
-  Input?: OverrideT<SharedStylePropsT>,
+  $adjoined: $Keys<typeof ADJOINED>,
+  $disabled: boolean,
+  $error: boolean,
+  $isFocused: boolean,
+  $positive?: boolean,
+  $required: boolean,
+  $size: SizeT,
 };
 
 export type TextareaPropsT = {
   ...BaseInputPropsT<HTMLTextAreaElement>,
-  components?: TextareaComponentsT,
+  /** Sets the size and number of visible text lines
+   of the texarea element. */
   rows?: number,
 };
 

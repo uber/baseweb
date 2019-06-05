@@ -29,10 +29,7 @@ export default class MenuStatefulContainer extends React.Component<
       isFocused: false,
       activedescendantId: null,
     },
-    stateReducer: (
-      changeType: ?$PropertyType<StateReducerFnT, 'changeType'>,
-      changes: $PropertyType<StateReducerFnT, 'changes'>,
-    ) => changes,
+    stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
     children: () => null,
@@ -121,17 +118,18 @@ export default class MenuStatefulContainer extends React.Component<
 
   // Handler for arrow keys
   handleArrowKey = (event: KeyboardEvent) => {
-    event.preventDefault();
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     const prevIndex = this.state.highlightedIndex;
     let nextIndex = prevIndex;
 
     if (event.key === KEY_STRINGS.ArrowUp) {
+      event.preventDefault();
       nextIndex = Math.max(0, prevIndex - 1);
       this.internalSetState(STATE_CHANGE_TYPES.moveUp, {
         highlightedIndex: nextIndex,
       });
     } else if (event.key === KEY_STRINGS.ArrowDown) {
+      event.preventDefault();
       nextIndex = Math.min(prevIndex + 1, this.props.items.length - 1);
       this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
         highlightedIndex: nextIndex,

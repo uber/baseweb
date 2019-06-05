@@ -2,7 +2,7 @@ import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import {Input, StyledInput, SIZE} from 'baseui/input';
-import {Tag} from 'baseui/tag';
+import {Tag, VARIANT as TAG_VARIANT} from 'baseui/tag';
 
 const ValueWrapper = styled('div', {
   flex: '1 1 0%',
@@ -15,7 +15,11 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
   return (
     <ValueWrapper>
       {tags.map((tag, index) => (
-        <Tag onActionClick={() => removeTag(tag)} key={index}>
+        <Tag
+          variant={TAG_VARIANT.solid}
+          onActionClick={() => removeTag(tag)}
+          key={index}
+        >
           {tag}
         </Tag>
       ))}
@@ -26,15 +30,6 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
 
 class TagSelect extends React.Component {
   state = {value: '', tags: ['hello']};
-  ref = React.createRef();
-
-  componentDidMount() {
-    this.ref.current.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentWillUnmount() {
-    this.ref.current.removeEventListener('keydown', this.handleKeyDown);
-  }
 
   handleKeyDown = event => {
     if (event.keyCode === 13) {
@@ -68,14 +63,17 @@ class TagSelect extends React.Component {
         </Block>
         <Input
           size={SIZE.compact}
-          inputRef={this.ref}
           value={this.state.value}
           onChange={e => this.setState({value: e.target.value})}
           overrides={{
             Input: {
               style: {width: 'auto', flexGrow: 1},
               component: InputReplacement,
-              props: {tags: this.state.tags, removeTag: this.removeTag},
+              props: {
+                tags: this.state.tags,
+                removeTag: this.removeTag,
+                onKeyDown: this.handleKeyDown,
+              },
             },
           }}
         />
