@@ -69,7 +69,7 @@ export default class Datepicker extends React.Component<
 
   formatDisplayValue(date: ?Date | Array<Date>) {
     const formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
-    return formatDisplayValue(date, this.props.formatString || 'YYYY/MM/DD');
+    return formatDisplayValue(date, this.props.formatString || 'yyyy/MM/dd');
   }
 
   open = () => {
