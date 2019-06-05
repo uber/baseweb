@@ -76,7 +76,7 @@ const routes = [
     title: 'Components',
     subNav: [
       {
-        title: 'Basic Inputs',
+        title: 'Inputs',
         subNav: [
           {
             title: 'Button',
@@ -109,6 +109,31 @@ const routes = [
           {
             title: 'Textarea',
             itemId: '/components/textarea',
+          },
+        ],
+      },
+      {
+        title: 'Pickers',
+        subNav: [
+          {
+            title: 'Datepicker',
+            itemId: '/components/datepicker',
+          },
+          {
+            title: 'File Uploader',
+            itemId: '/components/file-uploader',
+          },
+          {
+            title: 'Menu',
+            itemId: '/components/menu',
+          },
+          {
+            title: 'Rating',
+            itemId: '/components/rating',
+          },
+          {
+            title: 'Select',
+            itemId: '/components/select',
           },
         ],
       },
@@ -175,31 +200,6 @@ const routes = [
           {
             title: 'Typography',
             itemId: '/components/typography',
-          },
-        ],
-      },
-      {
-        title: 'Pickers',
-        subNav: [
-          {
-            title: 'Datepicker',
-            itemId: '/components/datepicker',
-          },
-          {
-            title: 'File Uploader',
-            itemId: '/components/file-uploader',
-          },
-          {
-            title: 'Menu',
-            itemId: '/components/menu',
-          },
-          {
-            title: 'Rating',
-            itemId: '/components/rating',
-          },
-          {
-            title: 'Select',
-            itemId: '/components/select',
           },
         ],
       },
