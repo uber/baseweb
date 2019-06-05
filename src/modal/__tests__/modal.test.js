@@ -54,6 +54,7 @@ describe('Modal', () => {
   });
 
   afterEach(() => {
+    // $FlowFixMe
     ReactDOM.createPortal.mockClear();
     document.addEventListener.mockClear();
     wrapper && wrapper.unmount();
