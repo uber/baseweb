@@ -7,9 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
+
+export type SharedStylePropsArgT = {
+  $disabled?: boolean,
+  $active?: boolean,
+  $orientation?: $Values<typeof ORIENTATION>,
+};
 
 export type StatefulTabsStateT = {
   activeKey: React.Key,
@@ -78,20 +83,4 @@ export type TabPanelPropsT = {
 export type TabPropsT = TabPanelPropsT & {
   id?: string,
   $orientation?: $Values<typeof ORIENTATION>,
-};
-
-export type SharedStylePropsArgT = {
-  $disabled: ?boolean,
-  $active?: ?boolean,
-  $orientation?: $Values<typeof ORIENTATION>,
-  // Styletron stuff
-  $as?: string,
-  // styled function wrapper related
-  $style?: ?{},
-  /* eslint-disable flowtype/no-weak-types */
-  $ref?: React.Ref<any>,
-};
-
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
 };

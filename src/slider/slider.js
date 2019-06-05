@@ -96,7 +96,7 @@ class Slider extends React.Component<PropsT> {
             >
               <InnerTrack
                 $isDragged={isDragged}
-                $ref={props.ref}
+                ref={props.ref}
                 {...sharedProps}
                 {...innerTrackProps}
               >

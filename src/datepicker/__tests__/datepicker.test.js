@@ -17,7 +17,6 @@ jest.useFakeTimers();
 describe('Datepicker', () => {
   test('basic render', () => {
     const onChange = jest.fn();
-    // $FlowFixMe
     const component = mount(<Datepicker onChange={onChange} />);
     const renderedPopover = component.find(Popover).first();
     const renderedInput = component.find(Input).first();
@@ -48,7 +47,6 @@ describe('Datepicker', () => {
     const onDayClick = jest.fn();
     const date = new Date('2019 01 01');
     const component = mount(
-      // $FlowFixMe
       <Datepicker onChange={onChange} value={date} onDayClick={onDayClick} />,
     );
     const renderedPopover = component.find(Popover).first();
@@ -68,7 +66,6 @@ describe('Datepicker', () => {
 
   test('isOpen state change on down arrow keydown event', () => {
     const onChange = jest.fn();
-    // $FlowFixMe
     const component = mount(<Datepicker onChange={onChange} />);
     let renderedPopover = component.find(Popover).first();
     const renderedInput = component.find(Input).first();
@@ -86,7 +83,6 @@ describe('Datepicker', () => {
 
   test('isOpen state change on input focus', () => {
     const onChange = jest.fn();
-    // $FlowFixMe
     const component = mount(<Datepicker onChange={onChange} />);
     let renderedPopover = component.find(Popover).first();
     const renderedInput = component.find(Input).first();
@@ -105,7 +101,6 @@ describe('Datepicker', () => {
   test('onChange handler from props is called', () => {
     const onChange = jest.fn();
     const data = {date: new Date('2019 01 01')};
-    // $FlowFixMe
     const component = mount(<Datepicker onChange={onChange} />);
 
     component.instance().onChange(data);
@@ -117,7 +112,6 @@ describe('Datepicker', () => {
     const onChange = jest.fn();
     const data = {date: [new Date('2019 01 01')]};
     const component = mount(
-      // $FlowFixMe
       <Datepicker onChange={onChange} range value={[]} />,
     );
 
@@ -131,7 +125,6 @@ describe('Datepicker', () => {
     const date = new Date('2019 01 01');
     const data = {date: [date, addDays(date, 3)]};
     const component = mount(
-      // $FlowFixMe
       <Datepicker onChange={onChange} range value={[]} />,
     );
 
@@ -143,7 +136,6 @@ describe('Datepicker', () => {
   test('default format input value', () => {
     const onChange = jest.fn();
     const date = new Date('2019 01 01');
-    // $FlowFixMe
     const component = mount(<Datepicker onChange={onChange} value={date} />);
     const renderedInput = component.find(Input).first();
 
@@ -154,7 +146,6 @@ describe('Datepicker', () => {
     const onChange = jest.fn();
     const date = new Date('2019 01 01');
     const value = [date, addDays(date, 3)];
-    // $FlowFixMe
     const component = mount(<Datepicker onChange={onChange} value={value} />);
     const renderedInput = component.find(Input).first();
 

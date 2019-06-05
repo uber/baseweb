@@ -9,10 +9,7 @@ import * as React from 'react';
 import type {TextareaPropsT} from './types.js';
 import {mergeOverrides} from '../helpers/overrides.js';
 import {BaseInput, SIZE, CUSTOM_INPUT_TYPE} from '../input/index.js';
-import {
-  Textarea as StyledTextarea,
-  TextareaContainer as StyledTextareaContainer,
-} from './styled-components.js';
+import {StyledTextarea, StyledTextareaContainer} from './styled-components.js';
 
 class Textarea extends React.Component<TextareaPropsT> {
   static defaultProps = {
@@ -38,8 +35,8 @@ class Textarea extends React.Component<TextareaPropsT> {
   render() {
     const overrides = mergeOverrides(
       {
-        Input: StyledTextarea,
-        InputContainer: StyledTextareaContainer,
+        Input: {component: StyledTextarea},
+        InputContainer: {component: StyledTextareaContainer},
       },
       this.props.overrides,
     );

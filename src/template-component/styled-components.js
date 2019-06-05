@@ -8,10 +8,8 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {SharedStylePropsT} from './types.js';
 
-/**
- * Main component container element
- */
-export const Root = styled('div', (props: SharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Root = styled<SharedStylePropsT>('div', props => {
   const {$prop, $theme} = props;
   return {
     color: $prop ? $theme.colors.primary400 : $theme.colors.positive400,

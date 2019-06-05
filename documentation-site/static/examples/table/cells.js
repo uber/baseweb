@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
+import {withStyle, styled} from 'styletron-react';
 
-import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import ArrowUp from 'baseui/icon/arrow-up';
 import ArrowDown from 'baseui/icon/arrow-down';
@@ -19,9 +19,12 @@ import {
 } from 'baseui/table';
 import {Caption1, Caption2, Paragraph1} from 'baseui/typography';
 
-const StyledHeadingCell = styled(StyledCell, {paddingTop: 0, paddingBottom: 0});
+const StyledHeadingCell = withStyle(StyledCell, {
+  paddingTop: 0,
+  paddingBottom: 0,
+});
 
-const StyledDeltaCell = styled(StyledCell, props => ({
+const StyledDeltaCell = withStyle(StyledCell, props => ({
   ...props.$theme.typography.font500,
   alignItems: 'center',
   backgroundColor: props.$isNegative
@@ -32,7 +35,7 @@ const StyledDeltaCell = styled(StyledCell, props => ({
     : props.$theme.colors.positive,
 }));
 
-const StyledLargeText = styled(StyledCell, {
+const StyledLargeText = withStyle(StyledCell, {
   alignItems: 'center',
 });
 

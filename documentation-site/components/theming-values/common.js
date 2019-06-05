@@ -15,9 +15,7 @@ export function Header({children}: {children: React.Node}) {
   return <H2>{children}</H2>;
 }
 
-export const ExampleWrapper = styled('div', () => {
-  return {
-    display: 'flex',
-    flexWrap: 'wrap',
-  };
+export const ExampleWrapper = styled('div', {
+  display: 'flex',
+  flexWrap: 'wrap',
 });

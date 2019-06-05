@@ -9,5 +9,6 @@ Object {
       "style": [Function],
     },
   },
+  "variant": "solid",
 }
 `;

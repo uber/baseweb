@@ -641,7 +641,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-required={this.props.required || null}
           onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
-          $ref={ref => (this.input = ref)}
+          ref={ref => (this.input = ref)}
           tabIndex={0}
           {...sharedProps}
           {...inputContainerProps}
@@ -669,6 +669,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           required={(this.props.required && !this.props.value.length) || null}
           role="combobox"
           value={value}
+          tabIndex={0}
           {...sharedProps}
         />
       </InputContainer>
@@ -787,6 +788,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       creatable,
       disabled,
       error,
+      positive,
       isLoading,
       multi,
       required,
@@ -800,6 +802,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       $creatable: creatable,
       $disabled: disabled,
       $error: error,
+      $positive: positive,
       $isFocused: isFocused,
       $isLoading: isLoading,
       $isOpen: isOpen,
@@ -855,6 +858,15 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
     sharedProps.$isOpen = isOpen;
 
+    if (__DEV__) {
+      if (this.props.error && this.props.positive) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[Select] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+        );
+      }
+    }
+
     return (
       <LocaleContext.Consumer>
         {locale => (
@@ -872,6 +884,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             content={() => {
               const dropdownProps = {
                 error: this.props.error,
+                positive: this.props.positive,
                 getOptionLabel:
                   this.props.getOptionLabel ||
                   this.getOptionLabel.bind(this, locale),

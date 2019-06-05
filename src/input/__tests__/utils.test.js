@@ -17,6 +17,7 @@ test('Utils - getSharedProps', () => {
     required: false,
     disabled: false,
     error: false,
+    positive: false,
     value: 'value',
     placeholder: 'placeholder',
     onChange: jest.fn(),

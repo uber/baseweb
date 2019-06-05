@@ -9,9 +9,6 @@ export {default as Textarea} from './textarea.js';
 export {default as StatefulTextarea} from './stateful-textarea.js';
 export {default as StatefulContainer} from './stateful-container.js';
 // Styled elements
-export {
-  TextareaContainer as StyledTextareaContainer,
-  Textarea as StyledTextarea,
-} from './styled-components.js';
+export {StyledTextareaContainer, StyledTextarea} from './styled-components.js';
 export {STATE_CHANGE_TYPE, SIZE} from './constants.js';
 export * from './types.js';

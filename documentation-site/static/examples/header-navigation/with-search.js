@@ -27,16 +27,16 @@ const options = {
 
 export default () => (
   <HeaderNavigation>
-    <NavigationList align={ALIGN.left}>
+    <NavigationList $align={ALIGN.left}>
       <NavigationItem>Uber</NavigationItem>
     </NavigationList>
-    <NavigationList align={ALIGN.center} />
-    <NavigationList align={ALIGN.right}>
+    <NavigationList $align={ALIGN.center} />
+    <NavigationList $align={ALIGN.right}>
       <NavigationItem>
         <Link href="#">Tab Link One</Link>
       </NavigationItem>
     </NavigationList>
-    <NavigationList align={ALIGN.right}>
+    <NavigationList $align={ALIGN.right}>
       <NavigationItem style={{width: '200px'}}>
         <Search
           {...options}

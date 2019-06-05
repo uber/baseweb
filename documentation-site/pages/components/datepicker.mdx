@@ -12,9 +12,12 @@ import Layout from '../../components/layout';
 import DatepickerBasic from 'examples/datepicker/basic.js';
 import DatepickerInPopover from 'examples/datepicker/in-popover.js';
 import DatepickerQuickSelect from 'examples/datepicker/quick-select.js';
+import DatepickerTimeSelect from 'examples/datepicker/calendar-time-select.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
 import TimePicker from 'examples/datepicker/timepicker.js';
 import TimezonePicker from 'examples/datepicker/timezone-picker.js';
+import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js';
+import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulCalendar} from 'baseui/datepicker';
@@ -67,16 +70,39 @@ A simple and reusable component to work with or select a date or a range of date
   <TimezonePicker />
 </Example>
 
+<Example
+  title="Calendar with time select actions"
+  path="examples/datepicker/calendar-time-select.js"
+>
+  <DatepickerTimeSelect />
+</Example>
+
+<Example
+  title="Composed single pickers"
+  path="examples/datepicker/composed-single-pickers.js"
+>
+  <ComposedSinglePickers />
+</Example>
+
+<Example
+  title="Composed range pickers"
+  path="examples/datepicker/composed-range-pickers.js"
+>
+  <ComposedRangePickers />
+</Example>
+
 ## Overrides
 
 <Overrides
   name="Datepicker"
   component={DatepickerExports}
+  blacklisted={['SelectorContainer']}
   renderExample={props => (
     <StatefulCalendar
       initialState={{value: new Date()}}
       range
       quickSelect
+      timeSelect
       overrides={props.overrides}
     />
   )}
@@ -84,20 +110,20 @@ A simple and reusable component to work with or select a date or a range of date
 
 <API
   heading="Calendar API"
-  api={require('!!extract-react-types-loader!../../../src/datepicker/calendar.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/calendar.js')}
 />
 
 <API
   heading="Datepicker API"
-  api={require('!!extract-react-types-loader!../../../src/datepicker/datepicker.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/datepicker.js')}
 />
 
 <API
   heading="TimePicker API"
-  api={require('!!extract-react-types-loader!../../../src/datepicker/timepicker.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/timepicker.js')}
 />
 
 <API
   heading="TimezonePicker API"
-  api={require('!!extract-react-types-loader!../../../src/datepicker/timezone-picker.js')}
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/timezone-picker.js')}
 />

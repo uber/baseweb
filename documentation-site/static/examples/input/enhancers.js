@@ -22,7 +22,7 @@ export default () => (
     <Block as="br" />
 
     <StatefulInput
-      endEnhancer={<Search />}
+      endEnhancer={<Search size="18px" />}
       placeholder="Input with an icon enhancer"
     />
     <Block as="br" />

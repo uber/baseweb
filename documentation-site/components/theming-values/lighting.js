@@ -13,18 +13,17 @@ import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
 
-const StyledLightingBox = styled('div', ({$theme, $boxShadow = ''}) => {
-  return {
-    marginTop: $theme.sizing.scale200,
-    height: $theme.sizing.scale4800,
-    backgroundColor: $theme.colors.mono100,
-    borderTopLeftRadius: $theme.borders.radius200,
-    borderTopRightRadius: $theme.borders.radius200,
-    borderBottomRightRadius: $theme.borders.radius200,
-    borderBottomLeftRadius: $theme.borders.radius200,
-    boxShadow: $boxShadow,
-  };
-});
+const StyledLightingBox = styled<{$boxShadow: string}>(
+  'div',
+  ({$theme, $boxShadow = ''}) => {
+    return {
+      marginTop: $theme.sizing.scale200,
+      height: $theme.sizing.scale4800,
+      backgroundColor: $theme.colors.mono100,
+      boxShadow: $boxShadow,
+    };
+  },
+);
 
 function LightingPreview({name, boxShadow}) {
   return (

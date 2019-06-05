@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {Block} from 'baseui/block';
+import Link from 'next/link';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
 import {styled} from 'baseui';
@@ -15,7 +16,7 @@ import {HEADER_BREAKPOINT} from './header-navigation';
 import posts from '../posts';
 
 const MetaData = styled('h2', ({$theme}) => ({
-  color: $theme.colors.mono700,
+  color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   lineHeight: $theme.sizing.scale600,
@@ -75,19 +76,20 @@ const Index = () => {
               <MetaData>{`${p.author} - ${p.date}`}</MetaData>
               <StyledBody />
               <StyledAction>
-                <Button
-                  kind={KIND.secondary}
-                  $as="a"
-                  href={p.path}
-                  rel="noreferrer noopener"
-                  overrides={{
-                    BaseButton: {
-                      style: {boxSizing: 'border-box', width: '100%'},
-                    },
-                  }}
-                >
-                  Read
-                </Button>
+                <Link href={p.path}>
+                  <Button
+                    kind={KIND.secondary}
+                    $as="a"
+                    rel="noreferrer noopener"
+                    overrides={{
+                      BaseButton: {
+                        style: {boxSizing: 'border-box', width: '100%'},
+                      },
+                    }}
+                  >
+                    Read
+                  </Button>
+                </Link>
               </StyledAction>
             </Card>
           );

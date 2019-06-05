@@ -11,7 +11,7 @@ import {mount} from 'enzyme';
 import {
   Calendar,
   StyledRoot,
-  StyledQuickSelectContainer,
+  StyledSelectorContainer,
   StyledMonth,
   StyledWeek,
   StyledDay,
@@ -28,13 +28,15 @@ describe('Component', () => {
     expect(wrapper.find(StyledDay).first()).toExist();
   });
 
-  test('should not display quick select if range is false', () => {
+  // Changed the logic here so that developers can pass through custom
+  // single date quick selects.
+  test('should display quick select if range is false', () => {
     const wrapper = mount(<Calendar quickSelect />);
-    expect(wrapper.find(StyledQuickSelectContainer).first()).not.toExist();
+    expect(wrapper.find(StyledSelectorContainer).first()).toExist();
   });
 
   test('should display quick select if range and quickSelect is true', () => {
     const wrapper = mount(<Calendar range quickSelect />);
-    expect(wrapper.find(StyledQuickSelectContainer).first()).toExist();
+    expect(wrapper.find(StyledSelectorContainer).first()).toExist();
   });
 });

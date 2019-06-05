@@ -1,23 +1,23 @@
-import * as React from 'react';
-import {styled} from 'baseui';
+import React from 'react';
+import {withStyle} from 'styletron-react';
 import {StatefulSelect, StyledDropdownListItem} from 'baseui/select';
 import {StyledList} from 'baseui/menu';
 
 import List from 'react-virtualized/dist/commonjs/List';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 
-const ListItem = styled(StyledDropdownListItem, {
+const ListItem = withStyle(StyledDropdownListItem, {
   paddingTop: 0,
   paddingBottom: 0,
   display: 'flex',
   alignItems: 'center',
 });
 
-const Container = styled(StyledList, {height: '500px'});
+const Container = withStyle(StyledList, {height: '500px'});
 
-function VirtualList(props) {
+const VirtualList = React.forwardRef((props, ref) => {
   return (
-    <Container $ref={props.$ref}>
+    <Container ref={ref}>
       <AutoSizer>
         {({width}) => (
           <List
@@ -42,7 +42,7 @@ function VirtualList(props) {
       </AutoSizer>
     </Container>
   );
-}
+});
 
 const options = [];
 

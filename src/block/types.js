@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {Node, ElementType} from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
@@ -318,7 +317,6 @@ export type BlockPropsT = {
 };
 
 export type StyledBlockPropsT = {
-  $theme: ThemeT,
   $as?: ElementType,
   $color?: ResponsiveT<string>,
   $backgroundColor?: ResponsiveT<string>,

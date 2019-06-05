@@ -1,11 +1,12 @@
 [ignore]
-dist
+.*/dist/.*
 babel
 storybook-static
 .*/node_modules/.*[^(package)]\.json$
 .*/node_modules/npmconf/.*
 .*examples/fusion/.*
 documentation-site/.next/.*
+.*/src/codemods/.*
 
 [include]
 ./src/
@@ -16,7 +17,7 @@ documentation-site/.next/.*
 
 [options]
 module.name_mapper.extension='md' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'
-module.name_mapper='^baseui' ->'<PROJECT_ROOT>/dist'
+module.name_mapper='^baseui' ->'<PROJECT_ROOT>/src'
 module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/static/examples'
 
 [strict]
