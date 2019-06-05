@@ -150,7 +150,7 @@ type OmitPropsT = {
 
 type FullStPropsT = InputPropsT & StatefulContainerPropsT<HTMLInputElement>;
 
-type StInputPropsDiffT = $Diff<FullStPropsT, OmitPropsT>;
+export type StInputPropsDiffT = $Diff<FullStPropsT, OmitPropsT>;
 
 export type StatefulInputPropsT = {
   ...StInputPropsDiffT,

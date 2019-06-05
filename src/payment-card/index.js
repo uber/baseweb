@@ -12,5 +12,3 @@ export {default as valid} from 'card-validator';
 export {SIZE} from '../input/index.js';
 // Styled elements
 export {IconWrapper as StyledIconWrapper} from './styled-components.js';
-// Flow
-export * from './types.js';
