@@ -21,46 +21,76 @@ function InputWithClear() {
     };
   });
 
+  function ClearIcon() {
+    return (
+      <Clear onClick={() => setValue('')}>
+        <DeleteAlt size="18px" />
+      </Clear>
+    );
+  }
+
   return (
     <Input
       onChange={event => setValue(event.target.value)}
       value={value}
       placeholder="Input with a clear button"
-      overrides={{
-        After: () => {
-          return (
-            <Clear onClick={() => setValue('')}>
-              <DeleteAlt size="18px" />
-            </Clear>
-          );
-        },
-      }}
+      overrides={{After: ClearIcon}}
     />
+  );
+}
+
+function Before() {
+  return (
+    <Block display="flex" alignItems="center" paddingLeft="scale500">
+      <Search size="18px" />
+    </Block>
+  );
+}
+
+function After() {
+  return (
+    <Block display="flex" alignItems="center" paddingRight="scale500">
+      <Search size="18px" />
+    </Block>
+  );
+}
+
+function Negative() {
+  return (
+    <Block
+      display="flex"
+      alignItems="center"
+      paddingRight="scale500"
+      color="negative400"
+    >
+      <Alert size="18px" />
+    </Block>
+  );
+}
+
+function Positive() {
+  return (
+    <Block
+      display="flex"
+      alignItems="center"
+      paddingRight="scale500"
+      color="positive400"
+    >
+      <Check size="18px" />
+    </Block>
   );
 }
 
 export default () => (
   <Block>
     <StatefulInput
-      overrides={{
-        Before: () => (
-          <Block display="flex" alignItems="center" paddingLeft="scale500">
-            <Search size="18px" />
-          </Block>
-        ),
-      }}
+      overrides={{Before}}
       placeholder="Input with a Before component"
     />
     <Block as="br" />
 
     <StatefulInput
-      overrides={{
-        After: () => (
-          <Block display="flex" alignItems="center" paddingRight="scale500">
-            <Search size="18px" />
-          </Block>
-        ),
-      }}
+      overrides={{After}}
       placeholder="Input with an After component"
     />
     <Block as="br" />
@@ -70,36 +100,14 @@ export default () => (
 
     <StatefulInput
       error
-      overrides={{
-        After: () => (
-          <Block
-            display="flex"
-            alignItems="center"
-            paddingRight="scale500"
-            color="negative400"
-          >
-            <Alert size="18px" />
-          </Block>
-        ),
-      }}
+      overrides={{After: Negative}}
       placeholder="Input with negative icon"
     />
     <Block as="br" />
 
     <StatefulInput
       positive
-      overrides={{
-        After: () => (
-          <Block
-            display="flex"
-            alignItems="center"
-            paddingRight="scale500"
-            color="positive400"
-          >
-            <Check size="18px" />
-          </Block>
-        ),
-      }}
+      overrides={{After: Positive}}
       placeholder="Input with positive icon"
     />
   </Block>
