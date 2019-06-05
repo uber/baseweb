@@ -12,7 +12,7 @@ function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
   if (!dates || !Array.isArray(dates)) return '';
   const date = dates[index];
   if (!date) return '';
-  return formatDate(date, 'YYYY/MM/DD');
+  return formatDate(date, 'yyyy/MM/ddd');
 }
 
 export default () => {
@@ -46,7 +46,7 @@ export default () => {
       </Block>
 
       <Block width="120px" marginRight="scale300">
-        <FormControl label="End Date" caption="YYYY/MM/DD">
+        <FormControl label="End Date" caption="yyyy/MM/DD">
           <Datepicker
             value={dates}
             onChange={({date}) => setDates(date)}
