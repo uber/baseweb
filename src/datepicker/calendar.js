@@ -76,8 +76,8 @@ export default class Calendar extends React.Component<
     trapTabbing: false,
   };
 
-  root: ?HTMLElement;
-  calendar: ?HTMLElement;
+  root: React.ElementRef<*>;
+  calendar: React.ElementRef<*>;
 
   constructor(props: CalendarPropsT) {
     super(props);

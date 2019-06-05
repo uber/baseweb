@@ -164,7 +164,6 @@ export type SharedStylePropsArgT = {
   $popoverOffset: OffsetT,
   $placement: TetherPlacementT,
   $showArrow: boolean,
-  children?: React.Node,
 };
 
 export type AnchorPropsT = {

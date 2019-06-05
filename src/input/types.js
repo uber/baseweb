@@ -92,7 +92,7 @@ export type BaseInputPropsT<T> = {
   id: string,
   'data-baseweb'?: string,
   /** A ref to access an input element. */
-  inputRef: {current: HTMLInputElement | null},
+  inputRef: React.ElementRef<*>,
   name: string,
   onBlur: (e: SyntheticFocusEvent<T>) => mixed,
   onChange?: (e: SyntheticInputEvent<T>) => mixed,

@@ -207,7 +207,7 @@ export type DropdownPropsT = {
       $isHighlighted: boolean,
     },
   }) => React.Node,
-  innerRef: {current: HTMLElement | null},
+  innerRef: React.ElementRef<*>,
   isLoading: boolean,
   labelKey: string,
   maxDropdownHeight: string,
