@@ -213,7 +213,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         : sharedProps.$disabled
           ? 'Not available.'
           : 'Choose'
-    } ${formatDate(date, 'dddd, MMMM Do YYYY', locale)}. ${
+    } ${formatDate(date, 'EEEE, MMMM do yyyy', locale)}. ${
       !sharedProps.$disabled ? "It's available." : ''
     }`;
   }

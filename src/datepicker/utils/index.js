@@ -16,6 +16,7 @@ import dfIsSameDay from 'date-fns/isSameDay';
 import dfIsSameMonth from 'date-fns/isSameMonth';
 import dfIsSameYear from 'date-fns/isSameYear';
 import endOfMonth from 'date-fns/endOfMonth';
+import format from 'date-fns/format';
 import getDay from 'date-fns/getDay';
 import getDate from 'date-fns/getDate';
 import getMinutes from 'date-fns/getMinutes';
@@ -38,23 +39,17 @@ import subDays from 'date-fns/subDays';
 import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
 import subYears from 'date-fns/subYears';
-import dayjs from 'dayjs';
-import AdvancedFormat from 'dayjs/plugin/advancedFormat';
 /* eslint-enable import/extensions */
 
-dayjs.extend(AdvancedFormat);
 import type {CalendarPropsT} from '../types.js';
 
 // ** Date Formatting **
 // eslint-disable-next-line flowtype/no-weak-types
 export function formatDate(date: Date, formatStr: string, locale: any) {
-  const dt = dayjs(date);
-
-  if (locale) {
-    dayjs.locale(locale);
-  }
-
-  return dt.format(formatStr);
+  return format(date, formatStr, {
+    ...(locale ? {locale} : {}),
+    awareOfUnicodeTokens: true,
+  });
 }
 
 // ** Date Setters **
@@ -132,11 +127,11 @@ export function isEndOfMonth(date: Date) {
 // ** Date Localization **
 // eslint-disable-next-line flowtype/no-weak-types
 export function getWeekdayMinInLocale(date: Date, locale: any) {
-  return formatDate(date, 'dd', locale).charAt(0);
+  return formatDate(date, 'EEEE', locale).charAt(0);
 }
 // eslint-disable-next-line flowtype/no-weak-types
 export function getMonthInLocale(month: number, locale: any) {
-  return formatDate(setMonth(new Date(), month), 'MMMM', locale);
+  return formatDate(setMonth(new Date(), month), 'LLLL', locale);
 }
 
 // ** Utils for some components **
