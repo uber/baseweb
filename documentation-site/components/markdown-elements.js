@@ -40,7 +40,6 @@ const Code = (props: Props) => <Block>{props.children}</Block>;
 
 export const Heading = ({
   element,
-  marginTop,
   fontType,
   children,
 }: {

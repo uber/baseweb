@@ -107,7 +107,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.10.0",
-    "flow-bin": "^0.99.0",
+    "flow-bin": "^0.100.0",
     "flow-copy-source": "^2.0.2",
     "husky": "^2.0.0",
     "import-glob": "^1.5.0",
@@ -163,7 +163,7 @@
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
-    "styletron-react": "^5.0.0"
+    "styletron-react": "^5.1.2"
   },
   "husky": {
     "hooks": {

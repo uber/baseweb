@@ -15,7 +15,7 @@ import MaybeChildMenu from './maybe-child-menu.js';
 import {StyledListItem} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
-function OptionList(props: OptionListPropsT, ref) {
+function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
   const {
     getChildMenu,
     getItemLabel = item => (item ? item.label : ''),
