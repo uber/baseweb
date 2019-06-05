@@ -29,7 +29,6 @@ describe('List', () => {
       <List
         items={['Item 1', 'Item 2']}
         onChange={jest.fn()}
-        // $FlowFixMe
         overrides={overrides}
       />,
     );
