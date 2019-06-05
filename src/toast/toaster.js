@@ -18,6 +18,7 @@ import {
 import Toast from './toast.js';
 import type {
   ToasterPropsT,
+  ToastPropsShapeT,
   ToasterContainerStateT,
   ToastPropsT,
 } from './types.js';
@@ -53,15 +54,14 @@ export class ToasterContainer extends React.Component<
     this.setState({isMounted: true});
   }
 
-  getToastProps = (
-    props: ToastPropsT,
-  ): $Shape<ToastPropsT> & {key: React.Key} => {
+  getToastProps = (props: ToastPropsT): ToastPropsShapeT & {key: React.Key} => {
     const {autoHideDuration} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
+    // $FlowFixMe
     return {autoHideDuration, ...props, key};
   };
 
-  show = (props: $Shape<ToastPropsT> = {}): React.Key => {
+  show = (props: ToastPropsT = {}): React.Key => {
     const toastProps = this.getToastProps(props);
     this.setState(({toasts}) => {
       toasts.push(toastProps);
@@ -141,6 +141,7 @@ export class ToasterContainer extends React.Component<
       >
         {({dismiss}) => {
           this.dismissHandlers[key] = dismiss;
+          // $FlowFixMe
           return children;
         }}
       </Toast>
@@ -166,6 +167,7 @@ export class ToasterContainer extends React.Component<
     // to the oldest at the end
     // eslint-disable-next-line for-direction
     for (let i = toastsLength - 1; i >= 0; i--) {
+      // $FlowFixMe
       toastsToRender.push(this.renderToast(this.state.toasts[i]));
     }
 
@@ -198,7 +200,7 @@ const toaster = {
   },
   show: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): ?React.Key {
     // toasts can not be added until Toaster is mounted
     // no SSR for the `toaster.show()`
@@ -211,25 +213,25 @@ const toaster = {
   },
   info: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.info});
   },
   positive: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.positive});
   },
   warning: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.warning});
   },
   negative: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.negative});
   },
