@@ -118,6 +118,7 @@ const PaymentCard = (props: PaymentCardPropsT) => {
   );
 };
 
-PaymentCard.defaultProps = {...Input.defaultProps, autoComplete: 'cc-number'};
+PaymentCard.defaultProps = Input.defaultProps;
+PaymentCard.defaultProps.autoComplete = 'cc-number';
 
 export default PaymentCard;
