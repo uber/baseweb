@@ -82,7 +82,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
   dropdown: {current: HTMLElement | null} = React.createRef();
-  input: ?HTMLInputElement;
+  input: React.ElementRef<*>;
   // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
@@ -875,7 +875,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
             // apply the ref to the Root component below it would be overwritten before the popover
             // renders it. Using this strategy, we will get a ref to the popover, then reuse its
             // anchorRef so we can check if clicks are on the select component or not.
-            ref={ref => {
+            // eslint-disable-next-line flowtype/no-weak-types
+            ref={(ref: any) => {
               if (!ref) return;
               this.anchor = ref.anchorRef;
             }}

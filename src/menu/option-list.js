@@ -15,7 +15,7 @@ import MaybeChildMenu from './maybe-child-menu.js';
 import {StyledListItem} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
-function OptionList(props: OptionListPropsT, ref) {
+function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
   const {
     getChildMenu,
     getItemLabel = item => (item ? item.label : ''),
@@ -54,4 +54,31 @@ function OptionList(props: OptionListPropsT, ref) {
   );
 }
 
-export default React.forwardRef<OptionListPropsT, HTMLElement>(OptionList);
+function areEqualShallow(a, b) {
+  if (!a || !b) return false;
+
+  for (var key in a) {
+    if (a[key] !== b[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function compare(prevProps, nextProps) {
+  return (
+    prevProps.$isHighlighted === nextProps.$isHighlighted &&
+    prevProps.$isFocused === nextProps.$isFocused &&
+    areEqualShallow(prevProps.item, nextProps.item) &&
+    areEqualShallow(prevProps.overrides, nextProps.overrides) &&
+    prevProps.size === nextProps.size &&
+    prevProps.getItemLabel === nextProps.getItemLabel &&
+    prevProps.getChildMenu === nextProps.getChildMenu &&
+    prevProps.resetMenu === nextProps.resetMenu
+  );
+}
+
+const forwarded = React.forwardRef<OptionListPropsT, HTMLElement>(OptionList);
+forwarded.displayName = 'OptionList';
+
+export default React.memo<OptionListPropsT>(forwarded, compare);

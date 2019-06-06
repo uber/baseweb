@@ -18,7 +18,6 @@ export const Label = styled<StylePropsT>('label', props => {
     ...typography.font350,
     fontWeight: 500,
     color: $disabled ? colors.foregroundAlt : colors.foreground,
-    cursor: $disabled ? 'not-allowed' : 'auto',
     display: 'block',
     paddingTop: 0,
     paddingRight: 0,
@@ -34,14 +33,20 @@ export const Label = styled<StylePropsT>('label', props => {
 export const Caption = styled<StylePropsT>('div', props => {
   const {
     $error,
+    $positive,
     $theme: {colors, sizing, typography},
   } = props;
+
+  let fontColor = colors.foregroundAlt;
+  if ($error) {
+    fontColor = colors.negative400;
+  } else if ($positive) {
+    fontColor = colors.positive400;
+  }
+
   return {
     ...typography.font200,
-    color:
-      $error && typeof $error !== 'boolean'
-        ? colors.negative400
-        : colors.foregroundAlt,
+    color: fontColor,
     paddingTop: 0,
     paddingRight: 0,
     paddingBottom: 0,
