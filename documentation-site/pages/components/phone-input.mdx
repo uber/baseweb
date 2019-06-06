@@ -1,0 +1,90 @@
+<!--
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+import Overrides from '../../components/overrides';
+
+import {StatefulPhoneInput, countries} from 'baseui/phone-input/index.js';
+import * as PhoneInputExports from 'baseui/phone-input/index.js';
+
+import PhoneInputBasic from 'examples/phone-input/basic.js';
+import PhoneInputAlternateCountry from 'examples/phone-input/alternate-country.js';
+import PhoneInputControlled from 'examples/phone-input/controlled.js';
+import PhoneInputLocalized from 'examples/phone-input/localized.js';
+
+export default Layout;
+
+# Phone Input
+
+The Phone Input is used to collect phone numbers with international dial codes.
+It contains a dropdown which allows the user to choose from a list of countries and dial codes.
+
+<Example title="Basic Usage" path="examples/phone-input/basic.js">
+  <PhoneInputBasic />
+</Example>
+
+<Example
+  title="Alternate Default Country"
+  path="examples/phone-input/alternate-country.js"
+>
+  <PhoneInputAlternateCountry />
+</Example>
+
+<Example title="Controlled" path="examples/phone-input/controlled.js">
+  <PhoneInputControlled />
+</Example>
+
+<Example
+  title="Localized Country Names"
+  path="examples/phone-input/localized.js"
+>
+  <PhoneInputLocalized />
+</Example>
+
+## Overrides
+
+<Overrides
+  name="Phone Input"
+  component={PhoneInputExports}
+  renderExample={props => <StatefulPhoneInput {...props} />}
+  whitelisted={[
+    'Input',
+    'CountrySelect',
+    'CountrySelectDropdown',
+    'CountrySelectDropdownListItem',
+    'CountrySelectDropdownFlagColumn',
+    'CountrySelectDropdownNameColumn',
+    'CountrySelectDropdownDialcodeColumn',
+  ]}
+/>
+
+<API
+  heading="PhoneInput API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/phone-input/phone-input.js')}
+/>
+
+<API
+  heading="StatefulPhoneInput API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/phone-input/stateful-phone-input.js')}
+/>
+
+<API
+  heading="StatefulPhoneInputContainer API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/phone-input/stateful-phone-input-container.js')}
+/>
+
+<API
+  heading="CountrySelect API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/phone-input/country-select.js')}
+/>
+
+<API
+  heading="CountrySelectDropdown API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/phone-input/country-select-dropdown.js')}
+/>
