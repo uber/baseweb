@@ -99,6 +99,10 @@ const routes = [
             itemId: '/components/input',
           },
           {
+            title: 'Phone Input',
+            itemId: '/components/phone-input',
+          },
+          {
             title: 'Radio',
             itemId: '/components/radio',
           },

@@ -131,7 +131,6 @@
     "react-dom": "^16.8.3",
     "react-markdown": "^4.0.3",
     "react-syntax-highlighter": "^10.1.2",
-    "react-virtualized": "^9.21.0",
     "react-vis": "^1.11.6",
     "recursive-readdir": "^2.2.2",
     "screener-storybook": "^0.17.6",
@@ -156,6 +155,7 @@
     "react-is": "^16.8.6",
     "react-movable": "^2.0.1",
     "react-range": "^1.0.5",
+    "react-virtualized": "^9.21.1",
     "smoothscroll-polyfill": "^0.4.3",
     "timezone-support": "^1.8.1"
   },
