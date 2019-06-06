@@ -29,10 +29,7 @@ export default class MenuStatefulContainer extends React.Component<
       isFocused: false,
       activedescendantId: null,
     },
-    stateReducer: (
-      changeType: ?$PropertyType<StateReducerFnT, 'changeType'>,
-      changes: $PropertyType<StateReducerFnT, 'changes'>,
-    ) => changes,
+    stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
     children: () => null,
@@ -176,6 +173,28 @@ export default class MenuStatefulContainer extends React.Component<
     }
   };
 
+  handleItemClick = (
+    activedescendantId: ?string,
+    index: number,
+    item: *,
+    event: SyntheticMouseEvent<HTMLElement>,
+  ) => {
+    if (this.props.onItemSelect && !item.disabled) {
+      this.props.onItemSelect({item, event});
+      this.internalSetState(STATE_CHANGE_TYPES.click, {
+        highlightedIndex: index,
+        activedescendantId,
+      });
+    }
+  };
+
+  handleMouseEnter = (activedescendantId: ?string, index: number) => {
+    this.internalSetState(STATE_CHANGE_TYPES.mouseEnter, {
+      highlightedIndex: index,
+      activedescendantId,
+    });
+  };
+
   getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
     let itemRef = this.refList[index];
     if (!itemRef) {
@@ -195,21 +214,10 @@ export default class MenuStatefulContainer extends React.Component<
       ref: itemRef,
       isFocused: this.state.isFocused,
       isHighlighted: this.state.highlightedIndex === index,
-      onClick: (event: SyntheticMouseEvent<HTMLElement>) => {
-        if (this.props.onItemSelect && !item.disabled) {
-          this.props.onItemSelect({item, event});
-          this.internalSetState(STATE_CHANGE_TYPES.click, {
-            highlightedIndex: index,
-            activedescendantId,
-          });
-        }
-      },
-      onMouseEnter: () => {
-        this.internalSetState(STATE_CHANGE_TYPES.mouseEnter, {
-          highlightedIndex: index,
-          activedescendantId,
-        });
-      },
+      // binds so that in-line functions can be avoided. this is to ensure
+      // referential equality when option-list compares props in memoized compoent
+      onClick: this.handleItemClick.bind(this, activedescendantId, index, item),
+      onMouseEnter: this.handleMouseEnter.bind(this, activedescendantId, index),
       resetMenu: this.resetMenu,
       ...(this.state.highlightedIndex === index
         ? {id: activedescendantId}
