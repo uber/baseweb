@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {StatefulContainerPropsT as StatefulMenuContainerPropsT} from '../menu/types.js';
 import type {OnChangeParamsT} from '../select/types.js';
 
 export type SizeT = $Keys<typeof SIZE>;
@@ -39,7 +38,8 @@ export type StateReducerT = (
 
 export type mapIsoToLabelT = (iso: string) => string;
 
-export type CountrySelectDropdownPropsT = StatefulMenuContainerPropsT & {
+export type CountrySelectDropdownPropsT = {
+  children: $ReadOnlyArray<React.Node>,
   country: CountryT,
   maxDropdownHeight: string,
   mapIsoToLabel?: mapIsoToLabelT,
