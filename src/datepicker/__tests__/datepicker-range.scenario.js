@@ -18,5 +18,11 @@ export const component = () => (
     initialState={{value: []}}
     range
     highlightedDate={new Date('March 10, 2019')}
+    overrides={{
+      MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+      MonthYearSelectStatefulMenu: {
+        props: {overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}}},
+      },
+    }}
   />
 );
