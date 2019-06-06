@@ -186,6 +186,8 @@ export type OptionListPropsT = {
   resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,
+  /** Is the parent menu focused. determines if highlighted item should be blue or black */
+  $isFocused?: boolean,
 };
 
 export type OptionProfilePropsT = {

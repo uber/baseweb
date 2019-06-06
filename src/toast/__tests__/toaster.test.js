@@ -38,6 +38,7 @@ describe('toaster', () => {
   });
 
   afterEach(() => {
+    // $FlowFixMe
     ReactDOM.createPortal.mockClear();
     wrapper && wrapper.unmount();
   });

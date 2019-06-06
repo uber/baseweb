@@ -58,7 +58,7 @@ export const Thumbnail = styled<{}>('img', props => {
   };
 });
 
-export const Title = styled<{}>('h1', ({$hasThumbnail, $theme}) => {
+export const Title = styled<{}>('h1', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     ...typography.font500,

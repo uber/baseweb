@@ -12,12 +12,14 @@ import deepMerge from '../utils/deep-merge.js';
 export type StyleOverrideT = {} | (({}) => ?{});
 
 export type OverrideObjectT<T> = {|
-  component?: ?React.ComponentType<T>,
+  component?: ?React.ComponentType<T & {children: React.Node}>,
   props?: ?{},
   style?: ?StyleOverrideT,
 |};
 
-export type OverrideT<T> = OverrideObjectT<T> | React.ComponentType<T>;
+export type OverrideT<T> =
+  | OverrideObjectT<T>
+  | React.ComponentType<T & {children: React.Node}>;
 
 export type OverridesT<T> = {
   [string]: OverrideT<T>,

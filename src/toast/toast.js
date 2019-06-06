@@ -17,13 +17,14 @@ import {LocaleContext} from '../locale/index.js';
 
 import type {
   ToastPropsT,
+  ToastPropsShapeT,
   ToastPrivateStateT,
   SharedStylePropsArgT,
 } from './types.js';
 import type {OverridesT} from '../icon/index.js';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
-  static defaultProps: $Shape<ToastPropsT> = {
+  static defaultProps: ToastPropsShapeT = {
     autoHideDuration: 0,
     closeable: true,
     kind: KIND.info,

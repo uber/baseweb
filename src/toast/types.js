@@ -70,6 +70,10 @@ export type ToastPropsT = {
   key: React.Key,
 };
 
+export type ToastPropsShapeT = $Shape<
+  $Diff<ToastPropsT, {children: ChildrenT | ComponentRenderPropT}>,
+>;
+
 export type ToasterOverridesT = {
   Root?: OverrideT<ToasterSharedStylePropsArgT>,
   ToastBody?: OverrideT<SharedStylePropsArgT>,
@@ -86,5 +90,5 @@ export type ToasterPropsT = {
 };
 export type ToasterContainerStateT = {
   isMounted: boolean,
-  toasts: Array<$Shape<ToastPropsT> & {key: React.Key}>,
+  toasts: Array<ToastPropsShapeT>,
 };
