@@ -15,13 +15,11 @@ export const name = 'phone-input-dropdown';
 
 export const component = () => {
   const selectSelector = `[data-baseweb="select"]`;
-  const dropdownSelector = `[role="listbox"]`;
   return (
     <Screener
       steps={new Steps()
         .wait(selectSelector)
         .click(selectSelector)
-        .wait(dropdownSelector)
         .snapshot('Phone input country selector dropdown')
         .end()}
     >
