@@ -87,7 +87,7 @@ function Violation(props: ViolationPropsT) {
         node.addEventListener('mouseleave', handleMouseLeave);
       }
 
-      () => {
+      return () => {
         if (node) {
           node.removeEventListener('mouseenter', handleMouseEnter);
           node.removeEventListener('mouseleave', handleMouseLeave);
