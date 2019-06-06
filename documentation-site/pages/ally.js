@@ -1,43 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+/* global document cancelIdleCallback requestIdleCallback */
+
+import * as React from 'react';
 import axe from 'axe-core';
-import Popper from 'popper.js';
 
 import {styled} from 'baseui';
-import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {Layer, TetherBehavior, TETHER_PLACEMENT} from 'baseui/layer';
 import Search from 'baseui/icon/search';
-import {StatefulPopover} from 'baseui/popover';
-import {Paragraph1} from 'baseui/typography';
+import {Paragraph1, Caption1} from 'baseui/typography';
+import {ThemeContext} from 'baseui/styles/theme-provider';
 
 import {FormControl} from 'baseui/form-control';
 import {StatefulInput} from 'baseui/input';
-
-const ViolationOverlay = styled('div', ({$theme}) => {
-  return {
-    border: `solid 2px ${$theme.colors.primary}`,
-    position: 'absolute',
-    height: '100%',
-    width: '100%',
-    top: 0,
-    left: 0,
-  };
-});
-
-function wrap(selector) {
-  const child = document.querySelector(selector);
-  const wrapper = document.createElement('div');
-  child.parentNode.insertBefore(wrapper, child);
-  wrapper.appendChild(child);
-  return wrapper;
-}
-
-function unwrap(parent) {
-  const child = parent.firstChild;
-  parent.parentNode.appendChild(child);
-  parent.remove();
-}
 
 function validateNode(node) {
   return new Promise((resolve, reject) => {
@@ -62,36 +43,86 @@ function segmentViolationsByNode(violations) {
   return Object.entries(nodes);
 }
 
-// target
-// violations for that node
-function Violation(props) {
+const ViolationContainer = styled('div', ({$theme, $top, $left}) => {
+  return {
+    backgroundColor: $theme.colors.mono100,
+    boxShadow: $theme.lighting.shadow600,
+    position: 'absolute',
+    padding: $theme.sizing.scale400,
+    top: $top,
+    left: $left,
+  };
+});
+
+type NodeT = {target: string};
+type ViolationT = {description: string, nodes: NodeT};
+
+type ViolationPropsT = {
+  target: string,
+  violations: Array<ViolationT>,
+};
+
+function Violation(props: ViolationPropsT) {
+  const [offset, setOffset] = React.useState({top: 0, left: 0});
+  const [anchor, setAnchor] = React.useState(null);
+  const [popper, setPopper] = React.useState(null);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const theme = React.useContext(ThemeContext);
+
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
+
   React.useEffect(
     () => {
-      console.log(document.querySelector(props.target));
-      console.log('updates violation', props.target);
-      const wrapper = wrap(props.target);
-      console.log(wrapper);
+      const node = document.querySelector(props.target);
+      if (node) {
+        setAnchor(node);
 
-      return () => {
-        console.log(wrapper);
-        console.log('unmounts violation', props.target);
-        unwrap(wrapper);
+        node.setAttribute(
+          'style',
+          `border: solid 1px ${theme.colors.negative300};`,
+        );
+
+        node.addEventListener('mouseenter', handleMouseEnter);
+        node.addEventListener('mouseleave', handleMouseLeave);
+      }
+
+      () => {
+        if (node) {
+          node.removeEventListener('mouseenter', handleMouseEnter);
+          node.removeEventListener('mouseleave', handleMouseLeave);
+        }
       };
     },
     [props.target],
   );
 
+  if (!isHovered) return null;
+
   return (
-    <React.Fragment>
-      <Paragraph1>{props.target}</Paragraph1>
-      {props.violations.map((violation, index) => (
-        <Paragraph1 key={index}>{violation.description}</Paragraph1>
-      ))}
-    </React.Fragment>
+    <Layer>
+      <TetherBehavior
+        anchorRef={anchor}
+        popperRef={popper}
+        onPopperUpdate={update => setOffset(update.popper)}
+        placement={TETHER_PLACEMENT.bottom}
+      >
+        <ViolationContainer
+          ref={setPopper}
+          $top={`${offset.top}px` || 0}
+          $left={`${offset.left}px` || 0}
+        >
+          <Caption1>{props.target}</Caption1>
+          {props.violations.map((violation, index) => (
+            <Paragraph1 key={index}>{violation.description}</Paragraph1>
+          ))}
+        </ViolationContainer>
+      </TetherBehavior>
+    </Layer>
   );
 }
 
-function CheckAlly(props) {
+function CheckAlly(props: {children: React.Node}) {
   const [violations, setViolations] = React.useState([]);
   const [idleID, setIdleID] = React.useState(null);
   const child = React.useRef(null);
@@ -119,7 +150,8 @@ function CheckAlly(props) {
       <span ref={child}>{props.children}</span>
       <div>
         {violationsByNode.map(([node, violations], index) => (
-          <Violation target={node} violations={violations} key={index} />
+          // eslint-disable-next-line flowtype/no-weak-types
+          <Violation target={node} violations={(violations: any)} key={index} />
         ))}
       </div>
     </>
@@ -148,9 +180,7 @@ export default () => {
         <br />
         <br />
 
-        <div aria-hidden="asdf">should not check</div>
-        <br />
-
+        {/* eslint-disable-next-line jsx-a11y/aria-proptypes */}
         <div aria-hidden="asdf">should check</div>
         <br />
 
