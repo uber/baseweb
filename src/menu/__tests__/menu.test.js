@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 import {StyledList} from '../styled-components.js';
-import OptionList from '../option-list.js';
 import Menu from '../menu.js';
 
 const mockItems = [{label: 'item1'}, {label: 'item2'}];
@@ -26,7 +25,7 @@ describe('Menu Stateless Component', () => {
     const component = mount(<Menu {...getSharedProps()} />);
 
     expect(component.find(StyledList)).toExist();
-    expect(component.find(OptionList)).toExist();
+    expect(component.find('OptionList')).toExist();
 
     component.setProps({
       getRequiredItemProps: (item, index) => ({
@@ -34,7 +33,7 @@ describe('Menu Stateless Component', () => {
         isHighlighted: true,
       }),
     });
-    expect(component.find(OptionList).first()).toHaveProp({
+    expect(component.find('OptionList').first()).toHaveProp({
       $isHighlighted: true,
     });
   });
@@ -53,7 +52,7 @@ describe('Menu Stateless Component', () => {
       },
     };
     const component = mount(<Menu {...props} />);
-    expect(component.find(OptionList)).not.toExist();
+    expect(component.find('OptionList')).not.toExist();
     expect(component.find(NewOption)).toExist();
     expect(
       component
