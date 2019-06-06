@@ -61,6 +61,7 @@ export type CountrySelectPropsT = {
   maxDropdownHeight?: string,
   mapIsoToLabel?: mapIsoToLabelT,
   overrides: {
+    DialCode?: OverrideT<*>,
     CountrySelect?: OverrideT<*>,
     CountrySelectDropdown?: OverrideT<*>,
     CountrySelectDropdownListItem?: OverrideT<*>,
@@ -72,6 +73,7 @@ export type CountrySelectPropsT = {
 
 export type OverridesT = {
   Input?: OverrideT<*>,
+  DialCode?: OverrideT<*>,
   CountrySelect?: OverrideT<*>,
   CountrySelectDropdown?: OverrideT<*>,
   CountrySelectDropdownListItem?: OverrideT<*>,

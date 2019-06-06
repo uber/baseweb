@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {StyledRoot, StyledFlag} from './styled-components.js';
+import {StyledRoot, StyledFlag, StyledDialCode} from './styled-components.js';
 import {
   SIZE,
   COUNTRIES,
@@ -96,6 +96,10 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     DefaultSelect,
   );
   const selectOverrides = mergeOverrides(baseOverrides, overrides);
+  const [DialCode, dialCodeProps] = getOverrides(
+    overrides.DialCode,
+    StyledDialCode,
+  );
   return (
     <Block display="flex" alignItems="center">
       <Select
@@ -117,7 +121,9 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         overrides={selectOverrides}
         {...selectProps}
       />
-      <Block data-e2e="phone-input-dialcode">{country.dialCode}</Block>
+      <DialCode data-e2e="phone-input-dialcode" {...dialCodeProps}>
+        {country.dialCode}
+      </DialCode>
     </Block>
   );
 }

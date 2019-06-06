@@ -46,6 +46,10 @@ export const StyledRoot = withStyle(
   },
 );
 
+export const StyledDialCode = styled('div', ({$theme: {sizing}}) => ({
+  marginLeft: sizing.scale100,
+}));
+
 export const StyledCountrySelectDropdownContainer = withStyle(
   StyledList,
   ({$height = DEFAULT_MAX_DROPDOWN_HEIGHT}) => {
