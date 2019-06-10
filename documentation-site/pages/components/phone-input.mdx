@@ -10,8 +10,10 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 import Overrides from '../../components/overrides';
 
-import {StatefulPhoneInput, countries} from 'baseui/phone-input/index.js';
+import {StatefulPhoneInput, COUNTRIES} from 'baseui/phone-input/index.js';
 import * as PhoneInputExports from 'baseui/phone-input/index.js';
+import {Table} from 'baseui/table/index.js';
+import {Block} from 'baseui/block/index.js';
 
 import PhoneInputBasic from 'examples/phone-input/basic.js';
 import PhoneInputAlternateCountry from 'examples/phone-input/alternate-country.js';
@@ -47,6 +49,27 @@ It contains a dropdown which allows the user to choose from a list of countries 
   <PhoneInputLocalized />
 </Example>
 
+## Supported Countries
+
+The following countries are available in the country selector dropdown.
+You can import these as an object `COUNTRIES` from `baseui/phone-input`.
+Note, the country objects are formatted for ease of use with our `Select` component.
+
+```js
+COUNTRIES: {
+  id: string,      // Country ISO
+  label: string,   // Country Name
+  dialCode: string // Country Dial Code
+}
+```
+
+<Block height="400px">
+  <Table
+    columns={['ID', 'Label', 'Dial Code']}
+    data={Object.values(COUNTRIES).map(c => [c.id, c.label, c.dialCode])}
+  />
+</Block>
+
 ## Overrides
 
 <Overrides
@@ -55,6 +78,7 @@ It contains a dropdown which allows the user to choose from a list of countries 
   renderExample={props => <StatefulPhoneInput {...props} />}
   whitelisted={[
     'Input',
+    'DialCode',
     'CountrySelect',
     'CountrySelectDropdown',
     'CountrySelectDropdownListItem',
