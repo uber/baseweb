@@ -158,7 +158,7 @@
     "react-range": "^1.0.5",
     "react-virtualized": "^9.21.1",
     "smoothscroll-polyfill": "^0.4.3",
-    "timezone-support": "^1.8.1"
+    "timezone-support": "^2.0.0"
   },
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
