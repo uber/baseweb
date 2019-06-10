@@ -574,6 +574,7 @@ export default function createTheme(
       radius400: '12px',
       useRoundedCorners: true,
       buttonBorderRadius: '0px', // '4px' for useRoundedCorners
+      cardBorderRadius: '0px', // '4px for useRoundedCorners
     },
     animation: {
       timing100: '0.25s',
