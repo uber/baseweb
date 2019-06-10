@@ -286,7 +286,14 @@ exports[`Block applies expected style rules 1`] = `
 <Block
   alignContent="start"
   alignItems="start"
+  backgroundAttachment="scroll"
+  backgroundClip="border-box"
   backgroundColor="red"
+  backgroundImage="linear-gradient(pink, cornflowerblue)"
+  backgroundOrigin="border-box"
+  backgroundPosition="25% 75%"
+  backgroundRepeat="repeat-x"
+  backgroundSize="contain"
   bottom="1px"
   color="red"
   display="inline-block"
@@ -339,7 +346,14 @@ exports[`Block applies expected style rules 1`] = `
   <Block
     alignContent="start"
     alignItems="start"
+    backgroundAttachment="scroll"
+    backgroundClip="border-box"
     backgroundColor="red"
+    backgroundImage="linear-gradient(pink, cornflowerblue)"
+    backgroundOrigin="border-box"
+    backgroundPosition="25% 75%"
+    backgroundRepeat="repeat-x"
+    backgroundSize="contain"
     bottom="1px"
     color="red"
     display="inline-block"
@@ -394,7 +408,14 @@ exports[`Block applies expected style rules 1`] = `
       $alignContent="start"
       $alignItems="start"
       $as="div"
+      $backgroundAttachment="scroll"
+      $backgroundClip="border-box"
       $backgroundColor="red"
+      $backgroundImage="linear-gradient(pink, cornflowerblue)"
+      $backgroundOrigin="border-box"
+      $backgroundPosition="25% 75%"
+      $backgroundRepeat="repeat-x"
+      $backgroundSize="contain"
       $bottom="1px"
       $color="red"
       $display="inline-block"
@@ -449,7 +470,14 @@ exports[`Block applies expected style rules 1`] = `
         $alignContent="start"
         $alignItems="start"
         $as="div"
+        $backgroundAttachment="scroll"
+        $backgroundClip="border-box"
         $backgroundColor="red"
+        $backgroundImage="linear-gradient(pink, cornflowerblue)"
+        $backgroundOrigin="border-box"
+        $backgroundPosition="25% 75%"
+        $backgroundRepeat="repeat-x"
+        $backgroundSize="contain"
         $bottom="1px"
         $color="red"
         $display="inline-block"
@@ -508,7 +536,14 @@ exports[`Block applies expected style rules 1`] = `
             Object {
               "alignContent": "start",
               "alignItems": "start",
+              "backgroundAttachment": "scroll",
+              "backgroundClip": "border-box",
               "backgroundColor": "red",
+              "backgroundImage": "linear-gradient(pink, cornflowerblue)",
+              "backgroundOrigin": "border-box",
+              "backgroundPosition": "25% 75%",
+              "backgroundRepeat": "repeat-x",
+              "backgroundSize": "contain",
               "bottom": "1px",
               "color": "red",
               "display": "inline-block",
