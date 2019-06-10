@@ -11,6 +11,7 @@ Object {
   "children": null,
   "disabled": false,
   "id": undefined,
+  "inputMode": "text",
   "name": "",
   "onBlur": [Function],
   "onChange": [MockFunction],
@@ -83,6 +84,7 @@ Object {
       aria-required={false}
       autoComplete="on"
       disabled={false}
+      inputMode="text"
       name=""
       onBlur={[Function]}
       onChange={[MockFunction]}
@@ -142,6 +144,7 @@ Object {
       aria-required={false}
       autoComplete="on"
       disabled={false}
+      inputMode="text"
       name=""
       onBlur={[Function]}
       onChange={[MockFunction]}
@@ -201,6 +204,7 @@ Object {
       aria-required={false}
       autoComplete="on"
       disabled={false}
+      inputMode="text"
       name=""
       onBlur={[Function]}
       onChange={[MockFunction]}

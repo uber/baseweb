@@ -1,0 +1,74 @@
+<!--
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Controlled from 'examples/payment-card/controlled.js';
+import Uncontrolled from 'examples/payment-card/uncontrolled.js';
+import DefaultValue from 'examples/payment-card/defaultvalue.js';
+
+import Overrides from '../../components/overrides';
+import {StatefulPaymentCard} from 'baseui/payment-card';
+
+import * as PaymentCardExports from 'baseui/payment-card';
+import * as InputExports from 'baseui/input';
+
+import {Table} from 'baseui/table';
+
+export default Layout;
+
+# Payment Card
+
+Payment card input **automatically detects the card type**, shows the icon and formats the number accordingly. It supports following brands:
+
+<Table
+  columns={['Card Type', 'Example Number']}
+  data={[
+    ['American Express', '378282246310005'],
+    ['Diners Club', '36259600000004'],
+    ['Discover', '6011111111111117'],
+    ['ELO', '6550000000000001'],
+    ['JCB', '3530111333300000'],
+    ['Maestro', '6304000000000000'],
+    ['Mastercard', '5555555555554444'],
+    ['UnionPay', '6246729687894613'],
+    ['Visa', '4111111111111111'],
+  ]}
+/>
+
+The [card-validator](https://github.com/braintree/card-validator) library is used to determine the card format. It's also re-exported from `baseui/payment-card` as `{valid}` in case you need more meta-data about the card.
+
+This component is based on [input](/components/input) and shares the most of its APIs.
+
+<Example title="Controlled usage" path="examples/payment-card/controlled.js">
+  <Controlled />
+</Example>
+
+<Example
+  title="Uncontrolled usage"
+  path="examples/payment-card/uncontrolled.js"
+>
+  <Uncontrolled />
+</Example>
+
+<Example title="Default value" path="examples/payment-card/defaultvalue.js">
+  <DefaultValue />
+</Example>
+
+<Overrides
+  name="Payment Card"
+  component={{...PaymentCardExports, ...InputExports}}
+  blacklisted={['InputEnhancer', 'StartEnhancer', 'EndEnhancer']}
+  renderExample={props => <StatefulPaymentCard overrides={props.overrides} />}
+/>
+
+<API
+  heading="PaymentCard API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/payment-card/payment-card.js')}
+/>

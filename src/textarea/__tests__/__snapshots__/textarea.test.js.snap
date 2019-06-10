@@ -11,6 +11,7 @@ Object {
   "children": "textarea value",
   "disabled": false,
   "id": undefined,
+  "inputMode": "text",
   "name": "",
   "onBlur": [Function],
   "onChange": [MockFunction],
@@ -61,11 +62,13 @@ Object {
   "data-baseweb": "textarea",
   "disabled": false,
   "error": false,
+  "inputMode": "text",
   "inputRef": Object {
     "current": <textarea
       aria-invalid="false"
       aria-required="false"
       autocomplete="on"
+      inputmode="text"
       name=""
       placeholder="Placeholder"
       rows="3"
@@ -118,6 +121,7 @@ Object {
   "data-baseweb": "textarea",
   "disabled": false,
   "error": false,
+  "inputMode": "text",
   "inputRef": Object {
     "current": <span
       id="test-input"
@@ -126,6 +130,7 @@ Object {
         aria-invalid="false"
         aria-required="false"
         autocomplete="on"
+        inputmode="text"
         name=""
         placeholder="Placeholder"
         rows="3"
