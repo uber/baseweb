@@ -490,6 +490,9 @@ export type BordersT = {
   radius400: string,
   buttonBorderRadius: string,
   cardBorderRadius: string,
+  checkboxBorderRadius: string,
+  toggleOuterBorderRadius: string,
+  toggleInnerBorderRadius: string,
 };
 
 export type ZIndexT = {

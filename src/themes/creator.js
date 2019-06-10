@@ -575,6 +575,9 @@ export default function createTheme(
       useRoundedCorners: true,
       buttonBorderRadius: '0px', // '4px' for useRoundedCorners
       cardBorderRadius: '0px', // '4px for useRoundedCorners
+      checkboxBorderRadius: '4px', // '4px for useRoundedCorners
+      toggleOuterBorderRadius: '4px', // '4px' for useRoundedCorners
+      toggleInnerBorderRadius: '2px', // '2px' for useRoundedCorners
     },
     animation: {
       timing100: '0.25s',
