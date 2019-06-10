@@ -72,6 +72,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
       size = SIZE.default,
       onChange,
       value,
+      'aria-label': ariaLabel = 'Please enter a debit or credit card number.',
       ...restProps
     } = this.props;
 
@@ -111,7 +112,8 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
         {theme => (
           <Input
             size={size}
-            data-baseweb="payment-card"
+            aria-label={ariaLabel}
+            data-baseweb="payment-card-input"
             inputMode="numeric"
             overrides={{
               ...overrides,
