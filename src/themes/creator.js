@@ -573,7 +573,7 @@ export default function createTheme(
       radius300: '8px',
       radius400: '12px',
       useRoundedCorners: true,
-      buttonBorderRadius: '0px',
+      buttonBorderRadius: '0px', // '4px' for useRoundedCorners
     },
     animation: {
       timing100: '0.25s',
