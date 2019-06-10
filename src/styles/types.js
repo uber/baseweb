@@ -488,6 +488,7 @@ export type BordersT = {
   radius200: string,
   radius300: string,
   radius400: string,
+  buttonBorderRadius: string,
 };
 
 export type ZIndexT = {
