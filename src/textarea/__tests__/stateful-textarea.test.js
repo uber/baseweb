@@ -40,6 +40,7 @@ describe('StatefulTextarea', () => {
     const renderedStatefulContainer = component.find(StatefulContainer).first();
     const statefulContainerInstance = renderedStatefulContainer.instance();
     expect(statefulContainerInstance.state.value).toEqual('');
+    // $FlowFixMe
     statefulContainerInstance.onChange(event);
     expect(props.stateReducer).toHaveBeenCalledWith(
       'change',

@@ -60,7 +60,7 @@ describe('StatefulPanelContainer', () => {
     );
 
     expect(component).toHaveState('expanded', false);
-    component.instance().onChange();
+    component.instance().onChange({expanded: true});
     expect(component).toHaveState('expanded', true);
     expect(props.onChange).toHaveBeenCalledWith({expanded: true});
   });
@@ -77,7 +77,7 @@ describe('StatefulPanelContainer', () => {
 
     expect(component).toHaveState('expanded', false);
     props.stateReducer.mockReturnValueOnce({expanded: false});
-    component.instance().onChange();
+    component.instance().onChange({expanded: true});
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer).toHaveBeenLastCalledWith(

@@ -55,6 +55,7 @@ describe('TetherBehavior', () => {
     expect(calls[0][1]).toBe(wrapper.instance().popperRef.current);
     expect(calls[0][2]).toMatchObject({
       modifiers: {
+        // $FlowFixMe
         applyReactStyle: {fn: tethered.instance().onPopperUpdate},
       },
     });
@@ -71,6 +72,7 @@ describe('TetherBehavior', () => {
       },
       placement: 'left-start',
     };
+    // $FlowFixMe
     tethered.instance().onPopperUpdate(popperUpdateData);
     expect(onPopperUpdate).toHaveBeenCalled();
     expect(onPopperUpdate.mock.calls[0][0]).toMatchObject({

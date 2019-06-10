@@ -122,6 +122,7 @@ describe('Toast', () => {
 
     expect(renderedRoot.props().onMouseEnter).toBe(toastOnMouseEnterHandler);
     expect(renderedRoot.props().onMouseEnter).not.toBe(props.onMouseEnter);
+    // $FlowFixMe
     toastOnMouseEnterHandler({});
     expect(props.onMouseEnter).toHaveBeenCalled();
   });
@@ -137,6 +138,7 @@ describe('Toast', () => {
 
     expect(renderedRoot.props().onMouseLeave).not.toBe(props.onMouseLeave);
     expect(renderedRoot.props().onMouseLeave).toBe(toastOnMouseLeaveHandler);
+    // $FlowFixMe
     toastOnMouseLeaveHandler({});
     expect(props.onMouseLeave).toHaveBeenCalled();
   });
@@ -152,6 +154,7 @@ describe('Toast', () => {
 
     expect(renderedRoot.props().onFocus).not.toBe(props.onFocus);
     expect(renderedRoot.props().onFocus).toBe(toastOnFocusHandler);
+    // $FlowFixMe
     toastOnFocusHandler({});
     expect(props.onFocus).toHaveBeenCalled();
   });
@@ -167,6 +170,7 @@ describe('Toast', () => {
 
     expect(renderedRoot.props().onBlur).not.toBe(props.onBlur);
     expect(renderedRoot.props().onBlur).toBe(toastOnBlurHandler);
+    // $FlowFixMe
     toastOnBlurHandler({});
     expect(props.onBlur).toHaveBeenCalled();
   });
@@ -184,7 +188,7 @@ describe('Toast', () => {
 
     // $FlowFixMe
     const wrapper = mount(<Toast overrides={overrides}>Notification</Toast>);
-
+    // $FlowFixMe
     const bodyOverride = wrapper.find(overrides.Body);
     expect(bodyOverride).toHaveLength(1);
 

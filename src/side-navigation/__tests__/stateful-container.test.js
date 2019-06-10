@@ -70,6 +70,7 @@ test('StatefulContainer - stateReducer', () => {
 
   // onChange event happens
   props.stateReducer.mockReturnValueOnce({activeItemId: '/newpath'});
+  // $FlowFixMe
   component.instance().onChange({item: {itemId: '/newpath'}});
 
   expect(props.stateReducer).toHaveBeenCalledTimes(1);

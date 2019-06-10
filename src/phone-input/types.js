@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import * as React from 'react';
+
 import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
@@ -39,7 +41,7 @@ export type StateReducerT = (
 export type mapIsoToLabelT = (iso: string) => string;
 
 export type CountrySelectDropdownPropsT = {
-  children: $ReadOnlyArray<React.Node>,
+  children: $ReadOnlyArray<React.Element<any>>,
   country: CountryT,
   maxDropdownHeight: string,
   mapIsoToLabel?: mapIsoToLabelT,
