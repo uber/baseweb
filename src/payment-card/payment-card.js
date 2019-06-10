@@ -60,64 +60,116 @@ export const sanitizeNumber = (input: string) => {
   return number.slice(0, 19);
 };
 
-const PaymentCard = (props: PaymentCardPropsT) => {
-  const {
-    overrides = {},
-    size = SIZE.default,
-    onChange,
-    value,
-    ...restProps
-  } = props;
+const getPos = (value, prevValue, pos) => {
+  const cleanValue = sanitizeNumber(value);
+  const validatedValue = valid.number(cleanValue);
 
-  const [IconWrapper, iconWrapperProps] = getOverrides(
-    overrides.IconWrapper,
-    StyledIconWrapper,
-  );
-
-  const {sizing} = React.useContext(ThemeContext);
-  const iconSize = {
-    [SIZE.compact]: sizing.scale800,
-    [SIZE.default]: sizing.scale900,
-    [SIZE.large]: sizing.scale1000,
-  };
-
-  const validatedValue = valid.number(value);
-  let gaps: number[] = [];
-  let type: ?string = undefined;
-  if (validatedValue.card) {
-    gaps = validatedValue.card.gaps || [];
-    type = validatedValue.card.type;
+  // crossing a gap forward
+  if (validatedValue.card && Array.isArray(validatedValue.card.gaps)) {
+    const gaps = validatedValue.card.gaps;
+    const valueWithGaps = addGaps(gaps, cleanValue);
+    if (
+      cleanValue.length > prevValue.length &&
+      valueWithGaps[pos - 1] === ' '
+    ) {
+      return [pos + 1, cleanValue];
+    }
   }
 
-  const BeforeComponent = () => (
-    <IconWrapper $size={size} {...iconWrapperProps}>
-      {React.createElement(
-        CardTypeToComponent[type || 'generic'] || GenericIcon,
-        {
-          size: iconSize[size],
-        },
-      )}
-    </IconWrapper>
-  );
-
-  return (
-    <Input
-      size={size}
-      data-baseweb="payment-card"
-      overrides={{
-        ...overrides,
-        Before: BeforeComponent,
-      }}
-      onChange={e => {
-        e.target.value = sanitizeNumber(e.target.value);
-        onChange && onChange(e);
-      }}
-      value={addGaps(gaps, value || '')}
-      {...restProps}
-    />
-  );
+  // deleting a gap
+  const prevValidatedValue = valid.number(prevValue);
+  if (prevValidatedValue.card && Array.isArray(prevValidatedValue.card.gaps)) {
+    const gaps = prevValidatedValue.card.gaps;
+    const valueWithGaps = addGaps(gaps, prevValue);
+    if (prevValue === cleanValue && valueWithGaps.length > value.length) {
+      const newValue =
+        valueWithGaps.slice(0, pos - 1) + valueWithGaps.slice(pos);
+      return [pos - 1, sanitizeNumber(newValue)];
+    }
+  }
+  return [pos, cleanValue];
 };
+class PaymentCard extends React.Component<PaymentCardPropsT> {
+  caretPosition = 0;
+  inRef = React.createRef();
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.inRef.current.setSelectionRange(
+        this.caretPosition,
+        this.caretPosition,
+      );
+    }
+  }
+  render() {
+    const {
+      overrides = {},
+      size = SIZE.default,
+      onChange,
+      value,
+      ...restProps
+    } = this.props;
 
+    const [IconWrapper, iconWrapperProps] = getOverrides(
+      overrides.IconWrapper,
+      StyledIconWrapper,
+    );
+
+    const validatedValue = valid.number(value);
+    let gaps: number[] = [];
+    let type: ?string = undefined;
+    if (validatedValue.card) {
+      gaps = validatedValue.card.gaps || [];
+      type = validatedValue.card.type;
+    }
+
+    const getBeforeComponent = theme => {
+      const iconSize = {
+        [SIZE.compact]: theme.sizing.scale800,
+        [SIZE.default]: theme.sizing.scale900,
+        [SIZE.large]: theme.sizing.scale1000,
+      };
+      return () => (
+        <IconWrapper $size={size} {...iconWrapperProps}>
+          {React.createElement(
+            CardTypeToComponent[type || 'generic'] || GenericIcon,
+            {
+              size: iconSize[size],
+            },
+          )}
+        </IconWrapper>
+      );
+    };
+
+    return (
+      <ThemeContext.Consumer>
+        {theme => (
+          <Input
+            size={size}
+            data-baseweb="payment-card"
+            inputMode="numeric"
+            inputRef={this.inRef}
+            overrides={{
+              ...overrides,
+              Before: getBeforeComponent(theme),
+            }}
+            onChange={e => {
+              const [pos, value] = getPos(
+                e.target.value,
+                this.props.value || '',
+                e.target.selectionStart,
+              );
+              this.caretPosition = pos;
+              e.target.value = value;
+              onChange && onChange(e);
+            }}
+            value={addGaps(gaps, value || '')}
+            {...restProps}
+          />
+        )}
+      </ThemeContext.Consumer>
+    );
+  }
+}
 PaymentCard.defaultProps = Input.defaultProps;
 PaymentCard.defaultProps.autoComplete = 'cc-number';
 

@@ -91,6 +91,8 @@ export type BaseInputPropsT<T> = {
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id: string,
   'data-baseweb'?: string,
+  /** A  hint as to the type of data that might be entered by the user while editing the element or its contents. */
+  inputMode: string,
   /** A ref to access an input element. */
   inputRef: React.ElementRef<*>,
   name: string,
