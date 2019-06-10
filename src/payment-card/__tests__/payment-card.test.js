@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 //import * as React from 'react';
-import {addGaps, sanitizeNumber} from '../payment-card.js';
+import {addGaps, sanitizeNumber, getCaretPosition} from '../utils.js';
 
 test('add gaps to a string', () => {
   expect(addGaps([4, 8, 12], '4111111111111111')).toBe('4111 1111 1111 1111');
@@ -24,4 +24,19 @@ test('sanitize number', () => {
   expect(sanitizeNumber('abc4111 1111 1111 1111 333 444')).toBe(
     '4111111111111111333',
   );
+});
+
+test('getCaretPosition', () => {
+  // adding
+  expect(getCaretPosition('4111 22', '41112', 7)).toEqual([7, '411122']);
+  expect(getCaretPosition('41112', '4111', 5)).toEqual([6, '41112']);
+  expect(getCaretPosition('41113 2222', '41112222', 5)).toEqual([
+    6,
+    '411132222',
+  ]);
+
+  // deleting
+  expect(getCaretPosition('4111 22', '4111222', 7)).toEqual([7, '411122']);
+  expect(getCaretPosition('41112345', '41112345', 4)).toEqual([3, '4112345']);
+  expect(getCaretPosition('411 2345', '4112345', 3)).toEqual([3, '4112345']);
 });

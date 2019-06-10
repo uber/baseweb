@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import valid from 'card-validator';
 
+import {addGaps, getCaretPosition} from './utils.js';
+
 import {getOverrides} from '../helpers/overrides.js';
 import {Input, SIZE} from '../input/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
@@ -40,64 +42,28 @@ const CardTypeToComponent = {
   generic: GenericIcon,
 };
 
-export const addGaps = (gaps: number[], value: string) =>
-  gaps.reduce(
-    (prev, gap, index) =>
-      `${prev.slice(0, gap + index)} ${prev.slice(gap + index)}`.trim(),
-    `${value}`,
-  );
-
-export const sanitizeNumber = (input: string) => {
-  const number = input.replace(/[^0-9]/gi, '');
-  const validatedValue = valid.number(number);
-  if (validatedValue.card && Array.isArray(validatedValue.card.lengths)) {
-    return number.slice(
-      0,
-      validatedValue.card.lengths[validatedValue.card.lengths.length - 1],
-    );
-  }
-  // CC number NEVER can have more than 19 digits
-  return number.slice(0, 19);
-};
-
-const getPos = (value, prevValue, pos) => {
-  const cleanValue = sanitizeNumber(value);
-  const validatedValue = valid.number(cleanValue);
-
-  // crossing a gap forward
-  if (validatedValue.card && Array.isArray(validatedValue.card.gaps)) {
-    const gaps = validatedValue.card.gaps;
-    const valueWithGaps = addGaps(gaps, cleanValue);
-    if (
-      cleanValue.length > prevValue.length &&
-      valueWithGaps[pos - 1] === ' '
-    ) {
-      return [pos + 1, cleanValue];
-    }
-  }
-
-  // deleting a gap
-  const prevValidatedValue = valid.number(prevValue);
-  if (prevValidatedValue.card && Array.isArray(prevValidatedValue.card.gaps)) {
-    const gaps = prevValidatedValue.card.gaps;
-    const valueWithGaps = addGaps(gaps, prevValue);
-    if (prevValue === cleanValue && valueWithGaps.length > value.length) {
-      const newValue =
-        valueWithGaps.slice(0, pos - 1) + valueWithGaps.slice(pos);
-      return [pos - 1, sanitizeNumber(newValue)];
-    }
-  }
-  return [pos, cleanValue];
-};
 class PaymentCard extends React.Component<PaymentCardPropsT> {
   caretPosition = 0;
-  inRef = React.createRef();
-  componentDidUpdate(prevProps) {
-    if (prevProps.value !== this.props.value) {
-      this.inRef.current.setSelectionRange(
-        this.caretPosition,
-        this.caretPosition,
-      );
+  inRef: ?HTMLInputElement = null;
+
+  static defaultProps = {
+    autoComplete: 'cc-number',
+    autoFocus: false,
+    disabled: false,
+    name: '',
+    error: false,
+    onBlur: () => {},
+    onFocus: () => {},
+    overrides: {},
+    required: false,
+    size: 'default',
+    startEnhancer: null,
+    endEnhancer: null,
+  };
+
+  componentDidUpdate(prevProps: PaymentCardPropsT) {
+    if (this.inRef && prevProps.value !== this.props.value) {
+      this.inRef.setSelectionRange(this.caretPosition, this.caretPosition);
     }
   }
   render() {
@@ -147,18 +113,18 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
             size={size}
             data-baseweb="payment-card"
             inputMode="numeric"
-            inputRef={this.inRef}
             overrides={{
               ...overrides,
               Before: getBeforeComponent(theme),
             }}
             onChange={e => {
-              const [pos, value] = getPos(
+              const [position, value] = getCaretPosition(
                 e.target.value,
                 this.props.value || '',
                 e.target.selectionStart,
               );
-              this.caretPosition = pos;
+              this.caretPosition = position;
+              this.inRef = e.target;
               e.target.value = value;
               onChange && onChange(e);
             }}
@@ -170,7 +136,5 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
     );
   }
 }
-PaymentCard.defaultProps = Input.defaultProps;
-PaymentCard.defaultProps.autoComplete = 'cc-number';
 
 export default PaymentCard;
