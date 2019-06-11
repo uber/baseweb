@@ -10,15 +10,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import axe from 'axe-core';
 
-import {styled} from 'baseui';
-import {Button} from 'baseui/button';
-import {Layer, TetherBehavior, TETHER_PLACEMENT} from 'baseui/layer';
-import Search from 'baseui/icon/search';
-import {Paragraph1, Caption1} from 'baseui/typography';
-import {ThemeContext} from 'baseui/styles/theme-provider';
+import {Layer, TetherBehavior, TETHER_PLACEMENT} from '../layer/index.js';
+import {Paragraph1, Caption1} from '../typography/index.js';
+import {styled} from '../styles/index.js';
+import {ThemeContext} from '../styles/theme-provider.js';
 
-import {FormControl} from 'baseui/form-control';
-import {StatefulInput} from 'baseui/input';
+import type {ViolationPropsT} from './types.js';
 
 function validateNode(node) {
   return new Promise((resolve, reject) => {
@@ -53,14 +50,6 @@ const ViolationContainer = styled('div', ({$theme, $top, $left}) => {
     left: $left,
   };
 });
-
-type NodeT = {target: string};
-type ViolationT = {description: string, nodes: NodeT};
-
-type ViolationPropsT = {
-  target: string,
-  violations: Array<ViolationT>,
-};
 
 function Violation(props: ViolationPropsT) {
   const [offset, setOffset] = React.useState({top: 0, left: 0});
@@ -122,7 +111,7 @@ function Violation(props: ViolationPropsT) {
   );
 }
 
-function CheckAlly(props: {children: React.Node}) {
+export default function A11y(props: {children: React.Node}) {
   const [violations, setViolations] = React.useState([]);
   const [idleID, setIdleID] = React.useState(null);
   const child = React.useRef(null);
@@ -157,47 +146,3 @@ function CheckAlly(props: {children: React.Node}) {
     </>
   );
 }
-
-const Container = styled('div', ({$theme}) => ({
-  padding: $theme.sizing.scale900,
-}));
-
-export default () => {
-  const [toggle, setToggle] = React.useState(false);
-  const [inputs, setInputs] = React.useState(['']);
-
-  return (
-    <CheckAlly>
-      <Container>
-        <Button size="compact" onClick={() => setToggle(!toggle)}>
-          toggle: {String(toggle)}
-        </Button>
-
-        <Button size="compact" onClick={() => setInputs([...inputs, ''])}>
-          add input component
-        </Button>
-
-        <br />
-        <br />
-
-        {/* eslint-disable-next-line jsx-a11y/aria-proptypes */}
-        <div aria-hidden="asdf">should check</div>
-        <br />
-
-        <div>checks but should not violate</div>
-        <br />
-
-        <Button shape="square" size="compact">
-          <Search size={18} />
-        </Button>
-        <br />
-
-        {inputs.map((_, i) => (
-          <FormControl label="hello" key={i}>
-            <StatefulInput />
-          </FormControl>
-        ))}
-      </Container>
-    </CheckAlly>
-  );
-};
