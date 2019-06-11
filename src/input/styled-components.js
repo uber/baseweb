@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {ThemeT} from '../styles/types.js';
 import {SIZE} from './constants.js';
-import type {SharedPropsT} from './types.js';
+import type {SharedPropsT, SizeT} from './types.js';
 
 function getInputPadding(size, sizing) {
   return {
@@ -184,9 +184,14 @@ function getInputContainerColors(
   };
 }
 
-export const getInputContainerStyles = (
-  props: SharedPropsT & {$theme: ThemeT},
-) => {
+export const getInputContainerStyles = (props: {
+  $isFocused: boolean,
+  $error: boolean,
+  $disabled: boolean,
+  $positive: boolean,
+  $size: SizeT,
+  $theme: ThemeT,
+}) => {
   const {
     $isFocused,
     $error,

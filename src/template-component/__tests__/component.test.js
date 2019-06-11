@@ -28,7 +28,9 @@ describe('Component', () => {
 
   test('component overrides', () => {
     const overrides = {
-      Root: props => <span>{props.children}</span>,
+      Root: function RootOverride(props) {
+        return <span>{props.children}</span>;
+      },
     };
 
     const wrapper = mount(<Component overrides={overrides} />);

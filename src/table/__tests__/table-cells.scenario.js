@@ -38,7 +38,8 @@ const StyledHeadingCell = withStyle(StyledCell, {
 // eslint-disable-next-line flowtype/no-weak-types
 const StyledDeltaCell = withStyle<typeof StyledCell, any>(
   StyledCell,
-  props => ({
+  // eslint-disable-next-line flowtype/no-weak-types
+  (props: any): Object => ({
     ...props.$theme.typography.font500,
     alignItems: 'center',
     backgroundColor: props.$isNegative
