@@ -581,6 +581,7 @@ export default function createTheme(
       calendarBorderRadius: '0px', // '4px' for useRoundedCorners
       calendarInteractionBorderRadius: '4px', // '4px' for useRoundedCorners
       inputBorderRadius: '0px', // '4px' for useRoundedCorners
+      menuBorderRadius: '0px', // '4px' for useRoundedCorners
     },
     animation: {
       timing100: '0.25s',
