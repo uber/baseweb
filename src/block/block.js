@@ -18,7 +18,14 @@ function Block({
   as = 'div',
   overrides = {},
   color,
+  backgroundAttachment,
+  backgroundClip,
   backgroundColor,
+  backgroundImage,
+  backgroundOrigin,
+  backgroundPosition,
+  backgroundRepeat,
+  backgroundSize,
   font,
   alignContent,
   alignItems,
@@ -85,7 +92,14 @@ function Block({
       ref={forwardedRef}
       $as={as}
       $color={color}
+      $backgroundAttachment={backgroundAttachment}
+      $backgroundClip={backgroundClip}
       $backgroundColor={backgroundColor}
+      $backgroundImage={backgroundImage}
+      $backgroundOrigin={backgroundOrigin}
+      $backgroundPosition={backgroundPosition}
+      $backgroundRepeat={backgroundRepeat}
+      $backgroundSize={backgroundSize}
       $font={font}
       $alignContent={alignContent}
       $alignItems={alignItems}
