@@ -483,7 +483,6 @@ export type BordersT = {
   border400: BorderT,
   border500: BorderT,
   border600: BorderT,
-  useRoundedCorners: boolean,
   radius100: string,
   radius200: string,
   radius300: string,

@@ -292,20 +292,12 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
           : 'transparent',
     ...calculateBorderRadius(props),
     ':first-child': {
-      ...(borders.useRoundedCorners
-        ? {
-            borderTopLeftRadius: borders.radius200,
-            borderBottomLeftRadius: borders.radius200,
-          }
-        : {}),
+      borderTopLeftRadius: borders.calendarInteractionBorderRadius,
+      borderBottomLeftRadius: borders.calendarInteractionBorderRadius,
     },
     ':last-child': {
-      ...(borders.useRoundedCorners
-        ? {
-            borderTopRightRadius: borders.radius200,
-            borderBottomRightRadius: borders.radius200,
-          }
-        : {}),
+      borderTopRightRadius: borders.calendarInteractionBorderRadius,
+      borderBottomRightRadius: borders.calendarInteractionBorderRadius,
     },
   }: {});
 });

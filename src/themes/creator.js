@@ -572,23 +572,22 @@ export default function createTheme(
       radius200: '4px',
       radius300: '8px',
       radius400: '12px',
-      useRoundedCorners: true,
-      // component specific border radius
-      buttonBorderRadius: '0px', // '4px' for useRoundedCorners
-      cardBorderRadius: '0px', // '4px for useRoundedCorners
-      checkboxBorderRadius: '4px', // '4px for useRoundedCorners
-      toggleOuterBorderRadius: '4px', // '4px' for useRoundedCorners
-      toggleInnerBorderRadius: '2px', // '2px' for useRoundedCorners
-      calendarBorderRadius: '0px', // '4px' for useRoundedCorners
-      calendarInteractionBorderRadius: '4px', // '4px' for useRoundedCorners
-      inputBorderRadius: '0px', // '4px' for useRoundedCorners
-      menuBorderRadius: '0px', // '4px' for useRoundedCorners
-      toastBorderRadius: '0px', // '4px' for useRoundedCorners
-      progressBarBorderRadius: '2px', // '2px' for useRoundedCorners
-      sliderBorderRadius: '4px', // '4px' for useRoundedCorners
-      sliderThumbBorderRadius: '4px', // '4px' for useRoundedCorners
-      tableBorderRadius: '4px', // '4px' for useRoundedCorners
-      tagBorderRadius: '12px', // '12px' for  useRoundedCorners
+      // Component specific border radii
+      buttonBorderRadius: '0px',
+      cardBorderRadius: '0px',
+      checkboxBorderRadius: '4px',
+      toggleOuterBorderRadius: '4px',
+      toggleInnerBorderRadius: '2px',
+      calendarBorderRadius: '0px',
+      calendarInteractionBorderRadius: '4px',
+      inputBorderRadius: '0px',
+      menuBorderRadius: '0px',
+      toastBorderRadius: '0px',
+      progressBarBorderRadius: '2px',
+      sliderBorderRadius: '4px',
+      sliderThumbBorderRadius: '4px',
+      tableBorderRadius: '4px',
+      tagBorderRadius: '12px',
     },
     animation: {
       timing100: '0.25s',
