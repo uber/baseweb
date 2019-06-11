@@ -502,6 +502,7 @@ export type BordersT = {
   sliderBorderRadius: string,
   sliderThumbBorderRadius: string,
   tableBorderRadius: string,
+  tagBorderRadius: string,
 };
 
 export type ZIndexT = {

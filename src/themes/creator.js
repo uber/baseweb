@@ -587,7 +587,8 @@ export default function createTheme(
       progressBarBorderRadius: '2px', // '2px' for useRoundedCorners
       sliderBorderRadius: '4px', // '4px' for useRoundedCorners
       sliderThumbBorderRadius: '4px', // '4px' for useRoundedCorners
-      tableBorderRadius: '0px', // '4px' for useRoundedCorners
+      tableBorderRadius: '4px', // '4px' for useRoundedCorners
+      tagBorderRadius: '12px', // '12px' for  useRoundedCorners
     },
     animation: {
       timing100: '0.25s',
