@@ -1,5 +1,5 @@
 [ignore]
-.*/dist/.*
+<PROJECT_ROOT>/dist/.*
 babel
 storybook-static
 .*/node_modules/.*[^(package)]\.json$
