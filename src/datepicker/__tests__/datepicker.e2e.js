@@ -123,6 +123,38 @@ describe('Datepicker', () => {
     expect(selectedValue2).toBe('2019/03/10 - 2019/03/28');
   });
 
+  it('selects range - verifies end of year', async () => {
+    await mount(page, 'datepicker-range');
+
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.click(selectors.monthYearSelectButton);
+    await page.waitFor(selectors.monthYearSelectMenu);
+
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'December 2019';
+      });
+      option.click();
+      return option;
+    });
+
+    await page.click(
+      '[aria-label="Choose Wednesday, December 25th 2019. It\'s available."]',
+    );
+
+    await page.click(
+      '[aria-label="Choose Tuesday, December 31st 2019. It\'s available."]',
+    );
+
+    const selectedValue = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue).toBe('2019/12/25 - 2019/12/31');
+  });
+
   it('renders previous month when the left arrow is clicked', async () => {
     await mount(page, 'datepicker');
     await page.waitFor(selectors.input);

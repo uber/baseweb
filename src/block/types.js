@@ -227,8 +227,22 @@ export type BlockPropsT = {
   overrides?: OverridesT,
   /** Accepts all themeable color properties (`primary200`, etc.). */
   color?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment */
+  backgroundAttachment?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
+  backgroundClip?: ResponsiveT<string>,
   /** Accepts all themeable color properties (`primary200`, etc.). */
   backgroundColor?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-image */
+  backgroundImage?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin */
+  backgroundOrigin?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-position */
+  backgroundPosition?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat */
+  backgroundRepeat?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/background-size */
+  backgroundSize?: ResponsiveT<string>,
   /** Accepts all themeable font properties (`font200`, etc.). */
   font?: string | Array<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
@@ -319,7 +333,14 @@ export type BlockPropsT = {
 export type StyledBlockPropsT = {
   $as?: ElementType,
   $color?: ResponsiveT<string>,
+  $backgroundAttachment?: ResponsiveT<string>,
+  $backgroundClip?: ResponsiveT<string>,
   $backgroundColor?: ResponsiveT<string>,
+  $backgroundImage?: ResponsiveT<string>,
+  $backgroundOrigin?: ResponsiveT<string>,
+  $backgroundPosition?: ResponsiveT<string>,
+  $backgroundRepeat?: ResponsiveT<string>,
+  $backgroundSize?: ResponsiveT<string>,
   $font?: ResponsiveT<string>,
   $alignContent?: ResponsiveT<AlignContentT>,
   $alignItems?: ResponsiveT<AlignItemsT>,

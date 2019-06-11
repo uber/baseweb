@@ -63,6 +63,7 @@ Object {
   "autoFocus": false,
   "disabled": false,
   "id": undefined,
+  "inputMode": "text",
   "name": "",
   "onBlur": [Function],
   "onChange": [Function],
