@@ -578,6 +578,8 @@ export default function createTheme(
       checkboxBorderRadius: '4px', // '4px for useRoundedCorners
       toggleOuterBorderRadius: '4px', // '4px' for useRoundedCorners
       toggleInnerBorderRadius: '2px', // '2px' for useRoundedCorners
+      calendarBorderRadius: '0px', // '4px' for useRoundedCorners
+      calendarInteractionBorderRadius: '4px', // '4px' for useRoundedCorners
     },
     animation: {
       timing100: '0.25s',

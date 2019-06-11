@@ -15,16 +15,15 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {typography, colors, borders},
   } = props;
-  const borderRadius = borders.useRoundedCorners ? borders.radius200 : 0;
   return {
     ...typography.font400,
     color: props.$theme.colors.datepickerDayFont,
     backgroundColor: colors.datepickerBackground,
     textAlign: 'center',
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    borderTopLeftRadius: borders.calendarBorderRadius,
+    borderTopRightRadius: borders.calendarBorderRadius,
+    borderBottomRightRadius: borders.calendarBorderRadius,
+    borderBottomLeftRadius: borders.calendarBorderRadius,
     display: 'inline-block',
   };
 });
@@ -58,7 +57,7 @@ export const StyledSelectorContainer = styled<SharedStylePropsT>(
 
 export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
   const {
-    $theme: {colors, sizing},
+    $theme: {borders, colors, sizing},
   } = props;
   return {
     color: colors.white,
@@ -70,6 +69,10 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
     backgroundColor: colors.primary,
+    borderTopLeftRadius: borders.calendarBorderRadius,
+    borderTopRightRadius: borders.calendarBorderRadius,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
   };
 });
 
@@ -90,7 +93,16 @@ export const StyledMonthYearSelectButton = styled<{}>('button', props => {
     color: props.$theme.colors.mono100,
     cursor: 'pointer',
     display: 'flex',
-    ':focus': {backgroundColor: props.$theme.colors.primary500},
+    ':focus': {
+      backgroundColor: props.$theme.colors.primary500,
+      borderTopLeftRadius: props.$theme.borders.calendarInteractionBorderRadius,
+      borderTopRightRadius:
+        props.$theme.borders.calendarInteractionBorderRadius,
+      borderBottomRightRadius:
+        props.$theme.borders.calendarInteractionBorderRadius,
+      borderBottomLeftRadius:
+        props.$theme.borders.calendarInteractionBorderRadius,
+    },
   };
 });
 
@@ -121,6 +133,12 @@ function getArrowBtnStyle({$theme, $disabled}) {
       ? {}
       : {
           backgroundColor: $theme.colors.primary500,
+          borderTopLeftRadius: $theme.borders.calendarInteractionBorderRadius,
+          borderTopRightRadius: $theme.borders.calendarInteractionBorderRadius,
+          borderBottomRightRadius:
+            $theme.borders.calendarInteractionBorderRadius,
+          borderBottomLeftRadius:
+            $theme.borders.calendarInteractionBorderRadius,
         },
   };
 }
@@ -184,50 +202,46 @@ function calculateBorderRadius(props): ?BorderRadiusT {
     $hasRangeSelected,
     $theme: {borders},
   } = props;
-  if (borders.useRoundedCorners) {
-    if ($selected) {
-      if (!$range) {
-        return getBorderRadius(borders.radius200, borders.radius200);
-      } else {
-        if ($hasRangeSelected) {
-          return $startDate
-            ? getBorderRadius(borders.radius200, 0)
-            : getBorderRadius(0, borders.radius200);
-        } else {
-          if ($hasRangeHighlighted) {
-            return $hasRangeOnRight
-              ? getBorderRadius(borders.radius200, 0)
-              : getBorderRadius(0, borders.radius200);
-          } else {
-            return getBorderRadius(borders.radius200, borders.radius200);
-          }
-        }
-      }
+  const radius = borders.calendarInteractionBorderRadius;
+
+  if ($selected) {
+    if (!$range) {
+      return getBorderRadius(radius, radius);
     } else {
-      if (!$isHighlighted && ($pseudoHighlighted || $pseudoSelected)) {
-        return getBorderRadius(0, 0);
+      if ($hasRangeSelected) {
+        return $startDate
+          ? getBorderRadius(radius, 0)
+          : getBorderRadius(0, radius);
       } else {
-        if ($isHighlighted) {
-          if (!$range) {
-            return getBorderRadius(borders.radius200, borders.radius200);
-          } else if ($hasRangeHighlighted) {
-            return $hasRangeOnRight
-              ? getBorderRadius(0, borders.radius200)
-              : getBorderRadius(borders.radius200, 0);
-          } else {
-            return $pseudoSelected
-              ? getBorderRadius(0, 0)
-              : getBorderRadius(borders.radius200, borders.radius200);
-          }
+        if ($hasRangeHighlighted) {
+          return $hasRangeOnRight
+            ? getBorderRadius(radius, 0)
+            : getBorderRadius(0, radius);
         } else {
-          return !$pseudoSelected
-            ? getBorderRadius(borders.radius200, borders.radius200)
-            : null;
+          return getBorderRadius(radius, radius);
         }
       }
     }
   } else {
-    return getBorderRadius(0, 0);
+    if (!$isHighlighted && ($pseudoHighlighted || $pseudoSelected)) {
+      return getBorderRadius(0, 0);
+    } else {
+      if ($isHighlighted) {
+        if (!$range) {
+          return getBorderRadius(radius, radius);
+        } else if ($hasRangeHighlighted) {
+          return $hasRangeOnRight
+            ? getBorderRadius(0, radius)
+            : getBorderRadius(radius, 0);
+        } else {
+          return $pseudoSelected
+            ? getBorderRadius(0, 0)
+            : getBorderRadius(radius, radius);
+        }
+      } else {
+        return !$pseudoSelected ? getBorderRadius(radius, radius) : null;
+      }
+    }
   }
 }
 

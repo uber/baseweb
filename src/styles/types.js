@@ -493,6 +493,8 @@ export type BordersT = {
   checkboxBorderRadius: string,
   toggleOuterBorderRadius: string,
   toggleInnerBorderRadius: string,
+  calendarBorderRadius: string,
+  calendarInteractionBorderRadius: string,
 };
 
 export type ZIndexT = {
