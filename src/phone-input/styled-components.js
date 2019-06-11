@@ -6,12 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {withStyle} from 'styletron-react';
-import type {StyleObject} from 'styletron-standard';
-
 import Flag from './flag.js';
 import {DEFAULT_MAX_DROPDOWN_HEIGHT, SIZE} from './constants.js';
-import {styled} from '../styles/index.js';
+import {styled, withStyle} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
 import {
   StyledDropdownListItem,
@@ -37,7 +34,7 @@ export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
 
 export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   SelectStyledRoot,
-  (props: SizeStyleProps): StyleObject => {
+  props => {
     // hard coded widths for the flag dropdown anchor
     const sizeToWidth = {
       [SIZE.compact]: '60px',
@@ -58,17 +55,14 @@ export const StyledDialCode = styled<{}>('div', ({$theme: {sizing}}) => ({
 export const StyledCountrySelectDropdownContainer = withStyle<
   typeof StyledList,
   HeightStyleProps,
->(
-  StyledList,
-  (props: HeightStyleProps): StyleObject => {
-    const {$height = DEFAULT_MAX_DROPDOWN_HEIGHT} = props;
-    return {
-      height: $height,
-      paddingTop: 0,
-      paddingBottom: 0,
-    };
-  },
-);
+>(StyledList, props => {
+  const {$height = DEFAULT_MAX_DROPDOWN_HEIGHT} = props;
+  return {
+    height: $height,
+    paddingTop: 0,
+    paddingBottom: 0,
+  };
+});
 
 export const StyledCountrySelectDropdownListItem = withStyle<
   typeof StyledDropdownListItem,

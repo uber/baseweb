@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {withStyle} from 'styletron-react';
 
 import {Block} from '../../block/index.js';
 import ArrowDown from '../../icon/arrow-down.js';
@@ -17,6 +16,7 @@ import Plus from '../../icon/plus.js';
 import Delete from '../../icon/delete.js';
 import Overflow from '../../icon/overflow.js';
 import {StatefulPanel} from '../../accordion/index.js';
+import {withStyle} from '../../styles/index.js';
 
 import {
   StyledTable,
@@ -38,8 +38,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
 // eslint-disable-next-line flowtype/no-weak-types
 const StyledDeltaCell = withStyle<typeof StyledCell, any>(
   StyledCell,
-  // eslint-disable-next-line flowtype/no-weak-types
-  (props: any): Object => ({
+  props => ({
     ...props.$theme.typography.font500,
     alignItems: 'center',
     backgroundColor: props.$isNegative
