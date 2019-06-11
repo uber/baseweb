@@ -573,6 +573,7 @@ export default function createTheme(
       radius300: '8px',
       radius400: '12px',
       useRoundedCorners: true,
+      // component specific border radius
       buttonBorderRadius: '0px', // '4px' for useRoundedCorners
       cardBorderRadius: '0px', // '4px for useRoundedCorners
       checkboxBorderRadius: '4px', // '4px for useRoundedCorners
@@ -582,6 +583,7 @@ export default function createTheme(
       calendarInteractionBorderRadius: '4px', // '4px' for useRoundedCorners
       inputBorderRadius: '0px', // '4px' for useRoundedCorners
       menuBorderRadius: '0px', // '4px' for useRoundedCorners
+      toastBorderRadius: '0px', // '4px' for useRoundedCorners
     },
     animation: {
       timing100: '0.25s',

@@ -497,6 +497,7 @@ export type BordersT = {
   calendarInteractionBorderRadius: string,
   inputBorderRadius: string,
   menuBorderRadius: string,
+  toastBorderRadius: string,
 };
 
 export type ZIndexT = {
