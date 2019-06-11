@@ -501,6 +501,7 @@ export type BordersT = {
   progressBarBorderRadius: string,
   sliderBorderRadius: string,
   sliderThumbBorderRadius: string,
+  tableBorderRadius: string,
 };
 
 export type ZIndexT = {
