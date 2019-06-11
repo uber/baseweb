@@ -20,10 +20,10 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
     color: props.$theme.colors.datepickerDayFont,
     backgroundColor: colors.datepickerBackground,
     textAlign: 'center',
-    borderTopLeftRadius: borders.calendarBorderRadius,
-    borderTopRightRadius: borders.calendarBorderRadius,
-    borderBottomRightRadius: borders.calendarBorderRadius,
-    borderBottomLeftRadius: borders.calendarBorderRadius,
+    borderTopLeftRadius: borders.datepickerBorderRadius,
+    borderTopRightRadius: borders.datepickerBorderRadius,
+    borderBottomRightRadius: borders.datepickerBorderRadius,
+    borderBottomLeftRadius: borders.datepickerBorderRadius,
     display: 'inline-block',
   };
 });
@@ -69,8 +69,8 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
     backgroundColor: colors.primary,
-    borderTopLeftRadius: borders.calendarBorderRadius,
-    borderTopRightRadius: borders.calendarBorderRadius,
+    borderTopLeftRadius: borders.datepickerBorderRadius,
+    borderTopRightRadius: borders.datepickerBorderRadius,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
   };
@@ -95,13 +95,14 @@ export const StyledMonthYearSelectButton = styled<{}>('button', props => {
     display: 'flex',
     ':focus': {
       backgroundColor: props.$theme.colors.primary500,
-      borderTopLeftRadius: props.$theme.borders.calendarInteractionBorderRadius,
+      borderTopLeftRadius:
+        props.$theme.borders.datepickerInteractionBorderRadius,
       borderTopRightRadius:
-        props.$theme.borders.calendarInteractionBorderRadius,
+        props.$theme.borders.datepickerInteractionBorderRadius,
       borderBottomRightRadius:
-        props.$theme.borders.calendarInteractionBorderRadius,
+        props.$theme.borders.datepickerInteractionBorderRadius,
       borderBottomLeftRadius:
-        props.$theme.borders.calendarInteractionBorderRadius,
+        props.$theme.borders.datepickerInteractionBorderRadius,
     },
   };
 });
@@ -133,12 +134,13 @@ function getArrowBtnStyle({$theme, $disabled}) {
       ? {}
       : {
           backgroundColor: $theme.colors.primary500,
-          borderTopLeftRadius: $theme.borders.calendarInteractionBorderRadius,
-          borderTopRightRadius: $theme.borders.calendarInteractionBorderRadius,
+          borderTopLeftRadius: $theme.borders.datepickerInteractionBorderRadius,
+          borderTopRightRadius:
+            $theme.borders.datepickerInteractionBorderRadius,
           borderBottomRightRadius:
-            $theme.borders.calendarInteractionBorderRadius,
+            $theme.borders.datepickerInteractionBorderRadius,
           borderBottomLeftRadius:
-            $theme.borders.calendarInteractionBorderRadius,
+            $theme.borders.datepickerInteractionBorderRadius,
         },
   };
 }
@@ -202,7 +204,7 @@ function calculateBorderRadius(props): ?BorderRadiusT {
     $hasRangeSelected,
     $theme: {borders},
   } = props;
-  const radius = borders.calendarInteractionBorderRadius;
+  const radius = borders.datepickerInteractionBorderRadius;
 
   if ($selected) {
     if (!$range) {
@@ -292,12 +294,12 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
           : 'transparent',
     ...calculateBorderRadius(props),
     ':first-child': {
-      borderTopLeftRadius: borders.calendarInteractionBorderRadius,
-      borderBottomLeftRadius: borders.calendarInteractionBorderRadius,
+      borderTopLeftRadius: borders.datepickerInteractionBorderRadius,
+      borderBottomLeftRadius: borders.datepickerInteractionBorderRadius,
     },
     ':last-child': {
-      borderTopRightRadius: borders.calendarInteractionBorderRadius,
-      borderBottomRightRadius: borders.calendarInteractionBorderRadius,
+      borderTopRightRadius: borders.datepickerInteractionBorderRadius,
+      borderBottomRightRadius: borders.datepickerInteractionBorderRadius,
     },
   }: {});
 });
