@@ -495,6 +495,7 @@ export type BordersT = {
   toggleInnerBorderRadius: string,
   calendarBorderRadius: string,
   calendarInteractionBorderRadius: string,
+  inputBorderRadius: string,
 };
 
 export type ZIndexT = {

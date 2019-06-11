@@ -580,6 +580,7 @@ export default function createTheme(
       toggleInnerBorderRadius: '2px', // '2px' for useRoundedCorners
       calendarBorderRadius: '0px', // '4px' for useRoundedCorners
       calendarInteractionBorderRadius: '4px', // '4px' for useRoundedCorners
+      inputBorderRadius: '0px', // '4px' for useRoundedCorners
     },
     animation: {
       timing100: '0.25s',
