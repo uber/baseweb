@@ -113,7 +113,6 @@ class Panel extends React.Component<PanelPropsT> {
                 }
                 {...sharedProps}
                 {...toggleIconProps}
-                // $FlowFixMe
                 overrides={toggleIconOverrides}
               />
             </Header>

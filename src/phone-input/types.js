@@ -41,6 +41,7 @@ export type StateReducerT = (
 export type mapIsoToLabelT = (iso: string) => string;
 
 export type CountrySelectDropdownPropsT = {
+  // eslint-disable-next-line flowtype/no-weak-types
   children: $ReadOnlyArray<React.Element<any>>,
   country: CountryT,
   maxDropdownHeight: string,

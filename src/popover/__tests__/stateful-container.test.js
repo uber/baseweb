@@ -185,7 +185,6 @@ describe('StatefulPopoverContainer', () => {
     expect(props.content).toHaveBeenCalledWith({
       close: component.instance().onContentClose,
     });
-    // $FlowFixMe - This invocation refines props.content and creates a flow error
     props.content.mock.calls[0][0].close();
 
     expect(component).toHaveState('isOpen', false);
