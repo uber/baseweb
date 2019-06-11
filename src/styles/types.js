@@ -498,6 +498,7 @@ export type BordersT = {
   inputBorderRadius: string,
   menuBorderRadius: string,
   toastBorderRadius: string,
+  progressBarBorderRadius: string,
 };
 
 export type ZIndexT = {

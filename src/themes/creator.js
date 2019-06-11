@@ -584,6 +584,7 @@ export default function createTheme(
       inputBorderRadius: '0px', // '4px' for useRoundedCorners
       menuBorderRadius: '0px', // '4px' for useRoundedCorners
       toastBorderRadius: '0px', // '4px' for useRoundedCorners
+      progressBarBorderRadius: '2px', // '2px' for useRoundedCorners
     },
     animation: {
       timing100: '0.25s',
