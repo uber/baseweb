@@ -5,7 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export {styled, ThemeProvider} from './styles/index.js';
+export {
+  styled,
+  withStyle,
+  createThemedStyled,
+  createThemedWithStyle,
+  ThemeProvider,
+} from './styles/index.js';
 import LocaleProvider from './locale/index.js';
 export {LocaleProvider};
 export {
