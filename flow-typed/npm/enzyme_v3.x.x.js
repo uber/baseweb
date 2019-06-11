@@ -12,7 +12,6 @@ declare module 'enzyme' {
   declare type EnzymeSelector = UntypedSelector | React$ElementType;
 
   // CheerioWrapper is a type alias for an actual cheerio instance
-  // TODO: Reference correct type from cheerio's type declarations
   declare type CheerioWrapper = any;
 
   declare class Wrapper<RootComponent> {
