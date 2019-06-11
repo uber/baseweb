@@ -16,7 +16,7 @@
     "lint:code": "eslint ./",
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
     "lint": "yarn lint:code && yarn lint:markdown",
-    "test": "yarn lint && yarn flow && yarn unit-test",
+    "test": "yarn lint && yarn flow check --max-warnings 0 && yarn unit-test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o public/legacy && build-storybook",
     "storybook:screener": "screener-storybook --conf screener.config.js",
