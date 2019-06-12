@@ -35,6 +35,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     error: false,
     positive: false,
     name: '',
+    inputMode: 'text',
     inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     onBlur: () => {},
     onChange: () => {},
@@ -108,6 +109,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           autoComplete={this.props.autoComplete}
           disabled={this.props.disabled}
           id={this.props.id}
+          inputMode={this.props.inputMode}
           name={this.props.name}
           onBlur={this.onBlur}
           onChange={this.props.onChange}

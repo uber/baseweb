@@ -78,11 +78,38 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
     transform: color => colors[color] || color,
   });
   styles.apply({
+    property: 'backgroundAttachment',
+    value: get(props, '$backgroundAttachment'),
+  });
+  styles.apply({
+    property: 'backgroundClip',
+    value: get(props, '$backgroundClip'),
+  });
+  styles.apply({
     property: 'backgroundColor',
     value: get(props, '$backgroundColor'),
     transform: backgroundColor => colors[backgroundColor] || backgroundColor,
   });
-
+  styles.apply({
+    property: 'backgroundImage',
+    value: get(props, '$backgroundImage'),
+  });
+  styles.apply({
+    property: 'backgroundOrigin',
+    value: get(props, '$backgroundOrigin'),
+  });
+  styles.apply({
+    property: 'backgroundPosition',
+    value: get(props, '$backgroundPosition'),
+  });
+  styles.apply({
+    property: 'backgroundRepeat',
+    value: get(props, '$backgroundRepeat'),
+  });
+  styles.apply({
+    property: 'backgroundSize',
+    value: get(props, '$backgroundSize'),
+  });
   styles.apply({
     property: 'fontFamily',
     value: get(props, '$font'),
