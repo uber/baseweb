@@ -575,13 +575,13 @@ export default function createTheme(
       /** Checkbox, Datepicker (Range), Progress Bar, Slider, Tag */
       useRoundedCorners: true,
       /** Button, ButtonGroup */
-      buttonBorderRadius: '0px', // for rounded use '4px' or radio200
+      buttonBorderRadius: '0px',
       /** Input, Select, Textarea */
-      inputBorderRadius: '0px', // for rounded use '4px' or radio200
+      inputBorderRadius: '0px',
       /** Popover, Menu, Tooltip */
-      popoverBorderRadius: '0px', // for rounded use '8px' or radio300
+      popoverBorderRadius: '0px',
       /** Card, Datepicker, Modal, Toast, Notification */
-      cardBorderRadius: '0px', // for rounded use '4px' or radio200
+      cardBorderRadius: '0px',
     },
     animation: {
       timing100: '0.25s',
