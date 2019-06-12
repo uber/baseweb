@@ -574,7 +574,7 @@ export default function createTheme(
       radius400: '12px',
       /** Checkbox, Datepicker (Range), Progress Bar, Slider, Tag */
       useRoundedCorners: true,
-      /** Button, Button Group */
+      /** Button, ButtonGroup */
       buttonBorderRadius: '0px', // for rounded use '4px' or radio200
       /** Input, Select, Textarea */
       inputBorderRadius: '0px', // for rounded use '4px' or radio200
