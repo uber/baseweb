@@ -239,8 +239,12 @@ export const Action = styled<SharedPropsArgT>('span', props => {
 
   return ({
     alignItems: 'center',
-    borderBottomRightRadius: $theme.borders.tagBorderRadius,
-    borderTopRightRadius: $theme.borders.tagBorderRadius,
+    borderBottomRightRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius400
+      : 0,
+    borderTopRightRadius: $theme.borders.useRoundedCorners
+      ? $theme.borders.radius400
+      : 0,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     display: 'flex',
     marginLeft: '8px',
@@ -547,6 +551,10 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     }
   }
 
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius400
+    : 0;
+
   return ({
     ...font250,
     alignItems: 'center',
@@ -554,10 +562,10 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     borderColor: borderColor(false, false),
     borderStyle: 'solid',
     borderWidth: $variant === VARIANT.outlined ? '2px' : 0,
-    borderTopLeftRadius: $theme.borders.tagBorderRadius,
-    borderTopRightRadius: $theme.borders.tagBorderRadius,
-    borderBottomRightRadius: $theme.borders.tagBorderRadius,
-    borderBottomLeftRadius: $theme.borders.tagBorderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     boxSizing: 'border-box',
     color: fontColor(props, false, false),
     cursor: $disabled ? 'not-allowed' : $clickable ? 'pointer' : 'default',

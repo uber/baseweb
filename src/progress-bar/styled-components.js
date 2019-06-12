@@ -18,15 +18,16 @@ export const Root = styled<StylePropsT>('div', props => {
 export const Bar = styled<StylePropsT>('div', props => {
   const {$theme} = props;
   const {colors, sizing, borders} = $theme;
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   return ({
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
     marginBottom: sizing.scale500,
-    borderTopLeftRadius: borders.progressBarBorderRadius,
-    borderTopRightRadius: borders.progressBarBorderRadius,
-    borderBottomRightRadius: borders.progressBarBorderRadius,
-    borderBottomLeftRadius: borders.progressBarBorderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: '4px',
   }: {});
@@ -34,13 +35,14 @@ export const Bar = styled<StylePropsT>('div', props => {
 
 export const BarProgress = styled<StylePropsT>('div', props => {
   const {$theme, $value, $successValue} = props;
-  const {colors, borders} = $theme;
+  const {colors, sizing, borders} = $theme;
   const width = `${($value / $successValue) * 100}%`;
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   return {
-    borderTopLeftRadius: borders.progressBarBorderRadius,
-    borderTopRightRadius: borders.progressBarBorderRadius,
-    borderBottomRightRadius: borders.progressBarBorderRadius,
-    borderBottomLeftRadius: borders.progressBarBorderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.primary400,
     width: width,
     transition: 'width 0.5s',

@@ -38,11 +38,12 @@ Track.displayName = 'StyledTrack';
 export const InnerTrack = styled<StylePropsT>('div', props => {
   const {$theme, $value, $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
+  const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
-    borderTopLeftRadius: borders.sliderBorderRadius,
-    borderTopRightRadius: borders.sliderBorderRadius,
-    borderBottomRightRadius: borders.sliderBorderRadius,
-    borderBottomLeftRadius: borders.sliderBorderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     background: getTrackBackground({
       values: $value,
       colors:
@@ -85,14 +86,13 @@ export const Thumb = styled<StylePropsT>('div', props => {
   const {$theme, $value, $thumbIndex, $disabled} = props;
   const isLeft = $value.length === 2 && $thumbIndex === 0;
   const isRight = $value.length === 2 && $thumbIndex === 1;
-  const radius = $theme.borders.sliderThumbBorderRadius;
   return {
     height: '24px',
     width: isLeft || isRight ? '12px' : '24px',
-    borderTopLeftRadius: isRight ? '0px' : radius,
-    borderTopRightRadius: isLeft ? '0px' : radius,
-    borderBottomLeftRadius: isRight ? '0px' : radius,
-    borderBottomRightRadius: isLeft ? '0px' : radius,
+    borderTopLeftRadius: isRight ? '1px' : '4px',
+    borderTopRightRadius: isLeft ? '1px' : '4px',
+    borderBottomLeftRadius: isRight ? '1px' : '4px',
+    borderBottomRightRadius: isLeft ? '1px' : '4px',
     backgroundColor: $theme.colors.mono100,
     display: 'flex',
     justifyContent: 'center',

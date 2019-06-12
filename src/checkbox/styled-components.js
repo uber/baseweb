@@ -157,6 +157,10 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     </svg>
   `);
 
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius200
+    : null;
+
   return ({
     flex: '0 0 auto',
     transitionDuration: animation.timing100,
@@ -169,10 +173,10 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     borderStyle: 'solid',
     borderWidth: '2px',
     borderColor: getBorderColor(props),
-    borderTopLeftRadius: $theme.borders.checkboxBorderRadius,
-    borderTopRightRadius: $theme.borders.checkboxBorderRadius,
-    borderBottomRightRadius: $theme.borders.checkboxBorderRadius,
-    borderBottomLeftRadius: $theme.borders.checkboxBorderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
@@ -215,14 +219,17 @@ export const Input = styled('input', {
 });
 
 export const Toggle = styled<SharedStylePropsT>('div', ({$theme}) => {
+  const borderRadius = $theme.borders.useRoundedCorners
+    ? $theme.borders.radius200
+    : null;
   return ({
     ...$theme.borders.border300,
     alignItems: 'center',
     backgroundColor: $theme.colors.mono100,
-    borderTopLeftRadius: $theme.borders.toggleOuterBorderRadius,
-    borderTopRightRadius: $theme.borders.toggleOuterBorderRadius,
-    borderBottomRightRadius: $theme.borders.toggleOuterBorderRadius,
-    borderBottomLeftRadius: $theme.borders.toggleOuterBorderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     boxShadow: $theme.lighting.shadow400,
     display: 'flex',
     justifyContent: 'center',
@@ -251,22 +258,25 @@ export const ToggleInner = styled<SharedStylePropsT>('div', props => {
   return {
     height: props.$theme.sizing.scale300,
     width: props.$theme.sizing.scale0,
-    borderTopLeftRadius: props.$theme.borders.toggleInnerBorderRadius,
-    borderTopRightRadius: props.$theme.borders.toggleInnerBorderRadius,
-    borderBottomRightRadius: props.$theme.borders.toggleInnerBorderRadius,
-    borderBottomLeftRadius: props.$theme.borders.toggleInnerBorderRadius,
+    borderTopLeftRadius: props.$theme.borders.radius100,
+    borderTopRightRadius: props.$theme.borders.radius100,
+    borderBottomRightRadius: props.$theme.borders.radius100,
+    borderBottomLeftRadius: props.$theme.borders.radius100,
     backgroundColor: backgroundColor(),
   };
 });
 
 export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
+  const borderRadius = props.$theme.borders.useRoundedCorners
+    ? props.$theme.borders.radius200
+    : null;
   return ({
     alignItems: 'center',
     backgroundColor: getBackgroundColor(props),
-    borderTopLeftRadius: props.$theme.borders.toggleOuterBorderRadius,
-    borderTopRightRadius: props.$theme.borders.toggleOuterBorderRadius,
-    borderBottomRightRadius: props.$theme.borders.toggleOuterBorderRadius,
-    borderBottomLeftRadius: props.$theme.borders.toggleOuterBorderRadius,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     display: 'flex',
     height: props.$theme.sizing.scale600,
     justifyContent: props.$checked ? 'flex-end' : 'flex-start',

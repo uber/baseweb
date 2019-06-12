@@ -487,21 +487,13 @@ export type BordersT = {
   radius200: string,
   radius300: string,
   radius400: string,
+  useRoundedCorners: boolean,
   buttonBorderRadius: string,
   cardBorderRadius: string,
-  checkboxBorderRadius: string,
-  toggleOuterBorderRadius: string,
-  toggleInnerBorderRadius: string,
-  datepickerBorderRadius: string,
-  datepickerInteractionBorderRadius: string,
   inputBorderRadius: string,
   menuBorderRadius: string,
-  toastBorderRadius: string,
-  progressBarBorderRadius: string,
-  sliderBorderRadius: string,
-  sliderThumbBorderRadius: string,
+  popoverBorderRadius: string,
   tableBorderRadius: string,
-  tagBorderRadius: string,
 };
 
 export type ZIndexT = {
