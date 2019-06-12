@@ -220,6 +220,17 @@ type OverflowT =
 
 export type ScaleT = 0 | string;
 
+export type WhiteSpaceT =
+  | 'normal'
+  | 'nowrap'
+  | 'pre'
+  | 'pre-wrap'
+  | 'pre-line'
+  | 'break-spaces'
+  | 'inherit'
+  | 'initial'
+  | 'unset';
+
 export type BlockPropsT = {
   children?: Node,
   /** Modifies the base element used to render the block. */
@@ -328,6 +339,10 @@ export type BlockPropsT = {
   top?: ResponsiveT<ScaleT>,
   right?: ResponsiveT<ScaleT>,
   bottom?: ResponsiveT<ScaleT>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow */
+  textOverflow?: ResponsiveT<string>,
+  /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
+  whiteSpace?: ResponsiveT<WhiteSpaceT>,
 };
 
 export type StyledBlockPropsT = {
@@ -395,4 +410,6 @@ export type StyledBlockPropsT = {
   $top?: ResponsiveT<ScaleT>,
   $right?: ResponsiveT<ScaleT>,
   $bottom?: ResponsiveT<ScaleT>,
+  $textOverflow?: ResponsiveT<string>,
+  $whiteSpace?: ResponsiveT<WhiteSpaceT>,
 };
