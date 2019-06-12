@@ -20,10 +20,10 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
     color: props.$theme.colors.datepickerDayFont,
     backgroundColor: colors.datepickerBackground,
     textAlign: 'center',
-    borderTopLeftRadius: borders.cardBorderRadius,
-    borderTopRightRadius: borders.cardBorderRadius,
-    borderBottomRightRadius: borders.cardBorderRadius,
-    borderBottomLeftRadius: borders.cardBorderRadius,
+    borderTopLeftRadius: borders.defaultBorderRadius,
+    borderTopRightRadius: borders.defaultBorderRadius,
+    borderBottomRightRadius: borders.defaultBorderRadius,
+    borderBottomLeftRadius: borders.defaultBorderRadius,
     display: 'inline-block',
   };
 });
@@ -69,8 +69,8 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
     backgroundColor: colors.primary,
-    borderTopLeftRadius: borders.cardBorderRadius,
-    borderTopRightRadius: borders.cardBorderRadius,
+    borderTopLeftRadius: borders.defaultBorderRadius,
+    borderTopRightRadius: borders.defaultBorderRadius,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
   };
@@ -124,10 +124,10 @@ function getArrowBtnStyle({$theme, $disabled}) {
       ? {}
       : {
           backgroundColor: $theme.colors.primary500,
-          borderTopLeftRadius: $theme.borders.cardBorderRadius,
-          borderTopRightRadius: $theme.borders.cardBorderRadius,
-          borderBottomRightRadius: $theme.borders.cardBorderRadius,
-          borderBottomLeftRadius: $theme.borders.cardBorderRadius,
+          borderTopLeftRadius: $theme.borders.defaultBorderRadius,
+          borderTopRightRadius: $theme.borders.defaultBorderRadius,
+          borderBottomRightRadius: $theme.borders.defaultBorderRadius,
+          borderBottomLeftRadius: $theme.borders.defaultBorderRadius,
         },
   };
 }

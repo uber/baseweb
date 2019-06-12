@@ -581,7 +581,7 @@ export default function createTheme(
       /** Popover, Menu, Tooltip */
       popoverBorderRadius: '0px',
       /** Card, Datepicker, Modal, Toast, Notification */
-      cardBorderRadius: '0px',
+      defaultBorderRadius: '0px',
     },
     animation: {
       timing100: '0.25s',
