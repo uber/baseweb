@@ -491,9 +491,7 @@ export type BordersT = {
   buttonBorderRadius: string,
   cardBorderRadius: string,
   inputBorderRadius: string,
-  menuBorderRadius: string,
   popoverBorderRadius: string,
-  tableBorderRadius: string,
 };
 
 export type ZIndexT = {

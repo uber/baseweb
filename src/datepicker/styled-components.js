@@ -15,16 +15,15 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {typography, colors, borders},
   } = props;
-  const borderRadius = borders.useRoundedCorners ? borders.radius200 : 0;
   return {
     ...typography.font400,
     color: props.$theme.colors.datepickerDayFont,
     backgroundColor: colors.datepickerBackground,
     textAlign: 'center',
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    borderTopLeftRadius: borders.cardBorderRadius,
+    borderTopRightRadius: borders.cardBorderRadius,
+    borderBottomRightRadius: borders.cardBorderRadius,
+    borderBottomLeftRadius: borders.cardBorderRadius,
     display: 'inline-block',
   };
 });
@@ -58,7 +57,7 @@ export const StyledSelectorContainer = styled<SharedStylePropsT>(
 
 export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
   const {
-    $theme: {colors, sizing},
+    $theme: {borders, colors, sizing},
   } = props;
   return {
     color: colors.white,
@@ -70,6 +69,10 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
     backgroundColor: colors.primary,
+    borderTopLeftRadius: borders.cardBorderRadius,
+    borderTopRightRadius: borders.cardBorderRadius,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
   };
 });
 
@@ -121,6 +124,10 @@ function getArrowBtnStyle({$theme, $disabled}) {
       ? {}
       : {
           backgroundColor: $theme.colors.primary500,
+          borderTopLeftRadius: $theme.borders.cardBorderRadius,
+          borderTopRightRadius: $theme.borders.cardBorderRadius,
+          borderBottomRightRadius: $theme.borders.cardBorderRadius,
+          borderBottomLeftRadius: $theme.borders.cardBorderRadius,
         },
   };
 }

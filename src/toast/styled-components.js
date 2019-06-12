@@ -125,6 +125,10 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
       getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
+    borderTopLeftRadius: $theme.borders.cardBorderRadius,
+    borderTopRightRadius: $theme.borders.cardBorderRadius,
+    borderBottomRightRadius: $theme.borders.cardBorderRadius,
+    borderBottomLeftRadius: $theme.borders.cardBorderRadius,
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',

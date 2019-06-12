@@ -572,14 +572,16 @@ export default function createTheme(
       radius200: '4px',
       radius300: '8px',
       radius400: '12px',
+      /** Checkbox, Datepicker (Range), Progress Bar, Slider, Tag */
       useRoundedCorners: true,
-      // Component specific border radii
-      buttonBorderRadius: '0px',
-      cardBorderRadius: '0px',
-      inputBorderRadius: '0px',
-      menuBorderRadius: '0px',
-      popoverBorderRadius: '0px',
-      tableBorderRadius: '4px',
+      /** Button, Button Group */
+      buttonBorderRadius: '0px', // for rounded use '4px' or radio200
+      /** Input, Select, Textarea */
+      inputBorderRadius: '0px', // for rounded use '4px' or radio200
+      /** Popover, Menu, Tooltip */
+      popoverBorderRadius: '0px', // for rounded use '8px' or radio300
+      /** Card, Datepicker, Modal, Toast, Notification */
+      cardBorderRadius: '0px', // for rounded use '4px' or radio200
     },
     animation: {
       timing100: '0.25s',
