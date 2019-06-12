@@ -1,11 +1,3 @@
-/*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
-*/
-// @flow
-
 import React from 'react';
 
 import {styled} from 'baseui';
@@ -20,16 +12,11 @@ const Container = styled('div', ({$theme}) => ({
 }));
 
 export default () => {
-  const [toggle, setToggle] = React.useState(false);
   const [inputs, setInputs] = React.useState(['']);
 
   return (
     <A11y>
       <Container>
-        <Button size="compact" onClick={() => setToggle(!toggle)}>
-          toggle: {String(toggle)}
-        </Button>
-
         <Button size="compact" onClick={() => setInputs([...inputs, ''])}>
           add input component
         </Button>
@@ -38,15 +25,10 @@ export default () => {
         <br />
 
         {/* eslint-disable-next-line jsx-a11y/aria-proptypes */}
-        <div aria-hidden="asdf">should check</div>
+        <div aria-hidden="asdf">should violate</div>
         <br />
 
-        <div>checks but should not violate</div>
-        <br />
-
-        <Button shape="square" size="compact">
-          <Search size={18} />
-        </Button>
+        <div>should not violate</div>
         <br />
 
         {inputs.map((_, i) => (
