@@ -15,6 +15,7 @@ LICENSE file in the root directory of this source tree.
  * Example input:
  * {
  *   borders: {
+ *     useRoundedCorners: true,
  *     radius100: '2px',
  *     radius200: '4px',
  *     radius300: '8px',
@@ -28,6 +29,7 @@ LICENSE file in the root directory of this source tree.
  * Example output:
  * {
  *   borders: {
+ *     useRoundedCorners: '$theme.borders.useRoundedCorners',
  *     radius100: '$theme.borders.radius100',
  *     radius200: '$theme.borders.radius200',
  *     radius300: '$theme.borders.radius300',
