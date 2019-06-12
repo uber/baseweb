@@ -164,6 +164,10 @@ exports[`Popover component as anchor 1`] = `
             test-style={
               Object {
                 "backgroundColor": "$theme.colors.background",
+                "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
+                "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
+                "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
+                "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
                 "boxShadow": "$theme.lighting.shadow600",
                 "left": 0,
                 "opacity": 0,
@@ -219,6 +223,10 @@ exports[`Popover component as anchor 1`] = `
                   test-style={
                     Object {
                       "backgroundColor": "$theme.colors.backgroundAlt",
+                      "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
+                      "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
+                      "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
+                      "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
                       "color": "$theme.colors.foreground",
                       "position": "relative",
                     }

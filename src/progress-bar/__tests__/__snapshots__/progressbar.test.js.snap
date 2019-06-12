@@ -45,10 +45,10 @@ exports[`Stateless progress bar should render component: Component has correct r
               test-style={
                 Object {
                   "backgroundColor": null,
-                  "borderBottomLeftRadius": "$theme.borders.progressBarBorderRadius",
-                  "borderBottomRightRadius": "$theme.borders.progressBarBorderRadius",
-                  "borderTopLeftRadius": "$theme.borders.progressBarBorderRadius",
-                  "borderTopRightRadius": "$theme.borders.progressBarBorderRadius",
+                  "borderBottomLeftRadius": "$theme.sizing.scale0",
+                  "borderBottomRightRadius": "$theme.sizing.scale0",
+                  "borderTopLeftRadius": "$theme.sizing.scale0",
+                  "borderTopRightRadius": "$theme.sizing.scale0",
                   "height": "4px",
                   "marginBottom": "$theme.sizing.scale500",
                   "marginLeft": "$theme.sizing.scale500",
@@ -71,10 +71,10 @@ exports[`Stateless progress bar should render component: Component has correct r
                     test-style={
                       Object {
                         "backgroundColor": "$theme.colors.primary400",
-                        "borderBottomLeftRadius": "$theme.borders.progressBarBorderRadius",
-                        "borderBottomRightRadius": "$theme.borders.progressBarBorderRadius",
-                        "borderTopLeftRadius": "$theme.borders.progressBarBorderRadius",
-                        "borderTopRightRadius": "$theme.borders.progressBarBorderRadius",
+                        "borderBottomLeftRadius": "$theme.sizing.scale0",
+                        "borderBottomRightRadius": "$theme.sizing.scale0",
+                        "borderTopLeftRadius": "$theme.sizing.scale0",
+                        "borderTopRightRadius": "$theme.sizing.scale0",
                         "height": "100%",
                         "transition": "width 0.5s",
                         "width": "75%",
