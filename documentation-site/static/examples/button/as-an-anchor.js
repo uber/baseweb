@@ -3,17 +3,8 @@ import {Button} from 'baseui/button';
 
 export default () => (
   <React.Fragment>
-    <Button
-      href="#"
-      overrides={{
-        BaseButton: {
-          props: {
-            $as: 'a',
-          },
-        },
-      }}
-    >
-      I am a Link
+    <Button $as="a" href="https://styletron.org" target="_blank">
+      Visit the Styletron docs
     </Button>
   </React.Fragment>
 );
