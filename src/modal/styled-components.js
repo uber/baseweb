@@ -87,6 +87,10 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   return ({
     position: 'relative',
     backgroundColor: $theme.colors.backgroundAlt,
+    borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
+    borderTopRightRadius: $theme.borders.surfaceBorderRadius,
+    borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+    borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
     marginLeft: $theme.sizing.scale600,
     marginTop: $theme.sizing.scale600,
     marginRight: $theme.sizing.scale600,

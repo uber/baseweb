@@ -177,9 +177,13 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
       $isPseudoFocused,
       $type,
       $searchable,
-      $theme: {colors, animation},
+      $theme: {borders, colors, animation},
     } = props;
     return {
+      borderTopLeftRadius: borders.inputBorderRadius,
+      borderTopRightRadius: borders.inputBorderRadius,
+      borderBottomRightRadius: borders.inputBorderRadius,
+      borderBottomLeftRadius: borders.inputBorderRadius,
       boxSizing: 'border-box',
       overflow: 'hidden',
       width: '100%',
