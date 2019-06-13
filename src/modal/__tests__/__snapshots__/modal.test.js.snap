@@ -10,19 +10,18 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
   role="dialog"
   size="default"
 >
-  <mockConstructor
-    onMount={[Function]}
-  >
-    <ForwardRef
-      $animate={true}
-      $closeable={true}
-      $isOpen={true}
-      $isVisible={false}
-      $role="dialog"
-      $size="default"
-      data-baseweb="modal"
+  <mockConstructor>
+    <FocusTrap
+      _createFocusTrap={[Function]}
+      active={true}
+      focusTrapOptions={
+        Object {
+          "fallbackFocus": [Function],
+        }
+      }
+      paused={false}
     >
-      <MockStyledComponent
+      <ForwardRef
         $animate={true}
         $closeable={true}
         $isOpen={true}
@@ -30,124 +29,59 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
         $role="dialog"
         $size="default"
         data-baseweb="modal"
-        forwardedRef={
-          Object {
-            "current": <div
-              data-baseweb="modal"
-              styled-component="true"
-              test-style="[object Object]"
-            >
-              <div
-                styled-component="true"
-                test-style="[object Object]"
-              />
-              <div
-                styled-component="true"
-                test-style="[object Object]"
-              >
-                <div
-                  aria-modal="true"
-                  role="dialog"
-                  styled-component="true"
-                  tabindex="-1"
-                  test-style="[object Object]"
-                >
-                  <button
-                    aria-label="Close"
-                    styled-component="true"
-                    test-style="[object Object]"
-                  >
-                    <svg
-                      height="10"
-                      style="stroke: currentColor;"
-                      viewBox="0 0 10 10"
-                      width="10"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9 1L5 5M1 9L5 5M5 5L1 1M5 5L9 9"
-                        stroke-linecap="round"
-                        stroke-width="2"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    styled-component="true"
-                    test-style="[object Object]"
-                  >
-                    Hello world
-                  </div>
-                  <div
-                    styled-component="true"
-                    test-style="[object Object]"
-                  >
-                    Modal Body
-                  </div>
-                  <div
-                    styled-component="true"
-                    test-style="[object Object]"
-                  >
-                    Footer
-                  </div>
-                </div>
-              </div>
-            </div>,
-          }
-        }
       >
-        <Portal>
-          <ForwardRef
-            $animate={true}
-            $closeable={true}
-            $isOpen={true}
-            $isVisible={false}
-            $role="dialog"
-            $size="default"
-            onClick={[Function]}
-          >
-            <MockStyledComponent
+        <MockStyledComponent
+          $animate={true}
+          $closeable={true}
+          $isOpen={true}
+          $isVisible={false}
+          $role="dialog"
+          $size="default"
+          data-baseweb="modal"
+          forwardedRef={[Function]}
+        >
+          <Portal>
+            <ForwardRef
               $animate={true}
               $closeable={true}
               $isOpen={true}
               $isVisible={false}
               $role="dialog"
               $size="default"
-              forwardedRef={null}
               onClick={[Function]}
             >
-              <Portal />
-            </MockStyledComponent>
-          </ForwardRef>
-          <ForwardRef
-            $animate={true}
-            $closeable={true}
-            $isOpen={true}
-            $isVisible={false}
-            $role="dialog"
-            $size="default"
-          >
-            <MockStyledComponent
+              <MockStyledComponent
+                $animate={true}
+                $closeable={true}
+                $isOpen={true}
+                $isVisible={false}
+                $role="dialog"
+                $size="default"
+                forwardedRef={null}
+                onClick={[Function]}
+              >
+                <Portal />
+              </MockStyledComponent>
+            </ForwardRef>
+            <ForwardRef
               $animate={true}
               $closeable={true}
               $isOpen={true}
               $isVisible={false}
               $role="dialog"
               $size="default"
-              forwardedRef={null}
             >
-              <Portal>
-                <ForwardRef
-                  $animate={true}
-                  $closeable={true}
-                  $isOpen={true}
-                  $isVisible={false}
-                  $role="dialog"
-                  $size="default"
-                  aria-modal="true"
-                  role="dialog"
-                  tabIndex={-1}
-                >
-                  <MockStyledComponent
+              <MockStyledComponent
+                $animate={true}
+                $closeable={true}
+                $isOpen={true}
+                $isVisible={false}
+                $role="dialog"
+                $size="default"
+                forwardedRef={null}
+              >
+                <Portal>
+                  <ForwardRef
                     $animate={true}
                     $closeable={true}
                     $isOpen={true}
@@ -155,70 +89,92 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                     $role="dialog"
                     $size="default"
                     aria-modal="true"
-                    forwardedRef={
-                      Object {
-                        "current": <div
-                          aria-modal="true"
-                          role="dialog"
-                          styled-component="true"
-                          tabindex="-1"
-                          test-style="[object Object]"
-                        >
-                          <button
-                            aria-label="Close"
-                            styled-component="true"
-                            test-style="[object Object]"
-                          >
-                            <svg
-                              height="10"
-                              style="stroke: currentColor;"
-                              viewBox="0 0 10 10"
-                              width="10"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M9 1L5 5M1 9L5 5M5 5L1 1M5 5L9 9"
-                                stroke-linecap="round"
-                                stroke-width="2"
-                              />
-                            </svg>
-                          </button>
-                          <div
-                            styled-component="true"
-                            test-style="[object Object]"
-                          >
-                            Hello world
-                          </div>
-                          <div
-                            styled-component="true"
-                            test-style="[object Object]"
-                          >
-                            Modal Body
-                          </div>
-                          <div
-                            styled-component="true"
-                            test-style="[object Object]"
-                          >
-                            Footer
-                          </div>
-                        </div>,
-                      }
-                    }
                     role="dialog"
                     tabIndex={-1}
                   >
-                    <Portal>
-                      <ForwardRef
-                        $animate={true}
-                        $closeable={true}
-                        $isOpen={true}
-                        $isVisible={false}
-                        $role="dialog"
-                        $size="default"
-                        aria-label="Close"
-                        onClick={[Function]}
-                      >
-                        <MockStyledComponent
+                    <MockStyledComponent
+                      $animate={true}
+                      $closeable={true}
+                      $isOpen={true}
+                      $isVisible={false}
+                      $role="dialog"
+                      $size="default"
+                      aria-modal="true"
+                      forwardedRef={
+                        Object {
+                          "current": <div
+                            aria-modal="true"
+                            role="dialog"
+                            styled-component="true"
+                            tabindex="-1"
+                            test-style="[object Object]"
+                          >
+                            <div
+                              styled-component="true"
+                              test-style="[object Object]"
+                            >
+                              Hello world
+                            </div>
+                            <div
+                              styled-component="true"
+                              test-style="[object Object]"
+                            >
+                              Modal Body
+                            </div>
+                            <div
+                              styled-component="true"
+                              test-style="[object Object]"
+                            >
+                              Footer
+                            </div>
+                            <button
+                              aria-label="Close"
+                              styled-component="true"
+                              test-style="[object Object]"
+                            >
+                              <svg
+                                height="10"
+                                style="stroke: currentColor;"
+                                viewBox="0 0 10 10"
+                                width="10"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M9 1L5 5M1 9L5 5M5 5L1 1M5 5L9 9"
+                                  stroke-linecap="round"
+                                  stroke-width="2"
+                                />
+                              </svg>
+                            </button>
+                          </div>,
+                        }
+                      }
+                      role="dialog"
+                      tabIndex={-1}
+                    >
+                      <Portal>
+                        <ForwardRef>
+                          <MockStyledComponent
+                            forwardedRef={null}
+                          >
+                            <Portal />
+                          </MockStyledComponent>
+                        </ForwardRef>
+                        <ForwardRef>
+                          <MockStyledComponent
+                            forwardedRef={null}
+                          >
+                            <Portal />
+                          </MockStyledComponent>
+                        </ForwardRef>
+                        <ForwardRef>
+                          <MockStyledComponent
+                            forwardedRef={null}
+                          >
+                            <Portal />
+                          </MockStyledComponent>
+                        </ForwardRef>
+                        <ForwardRef
                           $animate={true}
                           $closeable={true}
                           $isOpen={true}
@@ -226,48 +182,38 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                           $role="dialog"
                           $size="default"
                           aria-label="Close"
-                          forwardedRef={null}
                           onClick={[Function]}
                         >
-                          <Portal>
-                            <CloseIcon>
-                              <Portal>
-                                <Portal />
-                              </Portal>
-                            </CloseIcon>
-                          </Portal>
-                        </MockStyledComponent>
-                      </ForwardRef>
-                      <ForwardRef>
-                        <MockStyledComponent
-                          forwardedRef={null}
-                        >
-                          <Portal />
-                        </MockStyledComponent>
-                      </ForwardRef>
-                      <ForwardRef>
-                        <MockStyledComponent
-                          forwardedRef={null}
-                        >
-                          <Portal />
-                        </MockStyledComponent>
-                      </ForwardRef>
-                      <ForwardRef>
-                        <MockStyledComponent
-                          forwardedRef={null}
-                        >
-                          <Portal />
-                        </MockStyledComponent>
-                      </ForwardRef>
-                    </Portal>
-                  </MockStyledComponent>
-                </ForwardRef>
-              </Portal>
-            </MockStyledComponent>
-          </ForwardRef>
-        </Portal>
-      </MockStyledComponent>
-    </ForwardRef>
+                          <MockStyledComponent
+                            $animate={true}
+                            $closeable={true}
+                            $isOpen={true}
+                            $isVisible={false}
+                            $role="dialog"
+                            $size="default"
+                            aria-label="Close"
+                            forwardedRef={null}
+                            onClick={[Function]}
+                          >
+                            <Portal>
+                              <CloseIcon>
+                                <Portal>
+                                  <Portal />
+                                </Portal>
+                              </CloseIcon>
+                            </Portal>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </Portal>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                </Portal>
+              </MockStyledComponent>
+            </ForwardRef>
+          </Portal>
+        </MockStyledComponent>
+      </ForwardRef>
+    </FocusTrap>
   </mockConstructor>
 </Modal>
 `;
