@@ -27,6 +27,10 @@ export const StyledList = styled<StyledPropsT>('ul', ({$theme}) => {
     paddingBottom: $theme.sizing.scale300,
     paddingLeft: 0,
     paddingRight: 0,
+    borderTopLeftRadius: $theme.borders.popoverBorderRadius,
+    borderTopRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
     boxShadow: $theme.lighting.shadow600,
     overflow: 'auto',
   };

@@ -111,7 +111,7 @@ function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
 }
 
 function getBorderRadiiStyles({$theme, $shape}) {
-  let value = '0px';
+  let value = $theme.borders.buttonBorderRadius;
 
   if ($shape === SHAPE.round) {
     value = '50%';
