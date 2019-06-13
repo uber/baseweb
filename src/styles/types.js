@@ -489,7 +489,7 @@ export type BordersT = {
   radius400: string,
   useRoundedCorners: boolean,
   buttonBorderRadius: string,
-  defaultBorderRadius: string,
+  surfaceBorderRadius: string,
   inputBorderRadius: string,
   popoverBorderRadius: string,
 };
