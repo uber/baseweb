@@ -29,13 +29,19 @@ There are times when it comes in handy to build a box with a specific aspect rat
 
 It can be useful to wrap an image component in an **AspectRatioBox**, so content does not reflow as the image loads. This is useful when building UIs for mobile devices, to avoid content moving around as images load on poor network connections.
 
-<Example title="Image in an AspectRatioBox" path="examples/aspect-ratio-box/image.js">
+<Example
+  title="Image in an AspectRatioBox"
+  path="examples/aspect-ratio-box/image.js"
+>
   <AspectRatioBoxImage />
 </Example>
 
 You could even build a calendar of square buttons with it, that resizes with the window width!
 
-<Example title="Full-width calendar" path="examples/aspect-ratio-box/calendar.js">
+<Example
+  title="Full-width calendar"
+  path="examples/aspect-ratio-box/calendar.js"
+>
   <AspectRatioBoxCalendar />
 </Example>
 
@@ -46,9 +52,7 @@ You could even build a calendar of square buttons with it, that resizes with the
   component={AspectRatioBoxExports}
   renderExample={props => (
     <div style={{width: '200px'}}>
-      <AspectRatioBox
-        overrides={props.overrides}
-      >
+      <AspectRatioBox overrides={props.overrides}>
         Example aspect ratio box
       </AspectRatioBox>
     </div>
