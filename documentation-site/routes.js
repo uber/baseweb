@@ -280,6 +280,10 @@ const routes = [
             title: 'Styled',
             itemId: '/components/styled',
           },
+          {
+            title: 'A11y Validator',
+            itemId: '/components/unstable-a11y',
+          },
         ],
       },
     ],

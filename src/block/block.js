@@ -80,6 +80,8 @@ function Block({
   top,
   right,
   bottom,
+  textOverflow,
+  whiteSpace,
   ...restProps
 }) {
   const [BaseBlock, baseBlockProps] = getOverrides(
@@ -154,6 +156,8 @@ function Block({
       $top={top}
       $right={right}
       $bottom={bottom}
+      $textOverflow={textOverflow}
+      $whiteSpace={whiteSpace}
       data-baseweb="block"
       {...restProps}
       {...baseBlockProps}
