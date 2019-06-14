@@ -145,7 +145,7 @@
   },
   "dependencies": {
     "card-validator": "^6.1.0",
-    "date-fns": "2.0.0-alpha.33",
+    "date-fns": "2.0.0-alpha.34",
     "focus-trap": "^5.0.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
