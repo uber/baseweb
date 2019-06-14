@@ -16,7 +16,6 @@ const props = {
   overrides: {
     Root: {
       style: {
-        width: '100%',
         border: 'grey solid 2px',
       },
     },
