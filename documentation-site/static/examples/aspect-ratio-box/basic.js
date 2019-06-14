@@ -22,7 +22,7 @@ export default () => (
   <React.Fragment>
     <AspectRatioBox {...props}>Square by default</AspectRatioBox>
     <AspectRatioBox {...props} aspectRatio={16 / 9}>
-      16:9 ratio
+      16:9 aspect ratio
     </AspectRatioBox>
   </React.Fragment>
 );
