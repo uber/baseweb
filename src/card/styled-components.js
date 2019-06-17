@@ -30,9 +30,13 @@ export const Contents = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export const HeaderImage = styled('img', {
-  objectFit: 'contain',
-  maxWidth: '100%',
+export const HeaderImage = styled('img', ({$theme: {borders}}) => {
+  return {
+    borderTopLeftRadius: borders.surfaceBorderRadius,
+    borderTopRightRadius: borders.surfaceBorderRadius,
+    objectFit: 'contain',
+    maxWidth: '100%',
+  };
 });
 
 export const Root = styled<{}>('div', ({$theme}) => {
@@ -40,6 +44,10 @@ export const Root = styled<{}>('div', ({$theme}) => {
   return {
     ...borders.border300,
     boxShadow: lighting.shadow400,
+    borderTopLeftRadius: borders.surfaceBorderRadius,
+    borderTopRightRadius: borders.surfaceBorderRadius,
+    borderBottomLeftRadius: borders.surfaceBorderRadius,
+    borderBottomRightRadius: borders.surfaceBorderRadius,
     backgroundColor: colors.backgroundAlt,
   };
 });
@@ -53,6 +61,10 @@ export const Thumbnail = styled<{}>('img', props => {
     height: sizing.scale2400,
     width: sizing.scale2400,
     objectFit: 'cover',
+    borderTopLeftRadius: borders.surfaceBorderRadius,
+    borderTopRightRadius: borders.surfaceBorderRadius,
+    borderBottomLeftRadius: borders.surfaceBorderRadius,
+    borderBottomRightRadius: borders.surfaceBorderRadius,
     ...borders.border200,
     margin: `0 0 ${sizing.scale500} ${sizing.scale500}`,
   };

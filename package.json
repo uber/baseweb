@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -107,7 +107,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.10.0",
-    "flow-bin": "^0.100.0",
+    "flow-bin": "^0.101.0",
     "flow-copy-source": "^2.0.2",
     "husky": "^2.0.0",
     "import-glob": "^1.5.0",
@@ -117,7 +117,7 @@
     "jest-matcher-utils": "^24.0.0",
     "jest-puppeteer": "^4.0.0",
     "jscodeshift": "^0.6.4",
-    "markdownlint-cli": "^0.16.0",
+    "markdownlint-cli": "^0.17.0",
     "mkdirp": "^0.5.1",
     "next": "^8.0.3",
     "next-images": "^1.1.0",
@@ -145,7 +145,7 @@
   },
   "dependencies": {
     "card-validator": "^6.1.0",
-    "date-fns": "2.0.0-alpha.31",
+    "date-fns": "2.0.0-alpha.34",
     "focus-trap": "^5.0.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
@@ -158,12 +158,12 @@
     "react-range": "^1.0.5",
     "react-virtualized": "^9.21.1",
     "smoothscroll-polyfill": "^0.4.3",
-    "timezone-support": "^1.8.1"
+    "timezone-support": "^2.0.0"
   },
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
-    "styletron-react": "^5.1.2"
+    "styletron-react": "^5.1.3"
   },
   "husky": {
     "hooks": {

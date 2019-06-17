@@ -12,7 +12,7 @@ function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
   if (!dates || !Array.isArray(dates)) return '';
   const date = dates[index];
   if (!date) return '';
-  return formatDate(date, 'yyyy/MM/ddd');
+  return formatDate(date, 'yyyy/MM/dd');
 }
 
 export default () => {

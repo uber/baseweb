@@ -572,7 +572,16 @@ export default function createTheme(
       radius200: '4px',
       radius300: '8px',
       radius400: '12px',
+      /** Checkbox, Datepicker (Range), Progress Bar, Slider, Tag */
       useRoundedCorners: true,
+      /** Button, ButtonGroup */
+      buttonBorderRadius: '0px',
+      /** Input, Select, Textarea */
+      inputBorderRadius: '0px',
+      /** Popover, Menu, Tooltip */
+      popoverBorderRadius: '0px',
+      /** Card, Datepicker, Modal, Toast, Notification */
+      surfaceBorderRadius: '0px',
     },
     animation: {
       timing100: '0.25s',

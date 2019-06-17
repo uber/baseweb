@@ -65,6 +65,34 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
           },
           shape: props.shape,
           size: props.size,
+          overrides: {
+            BaseButton: {
+              style: () => {
+                // left most button
+                if (index === 0) {
+                  return {
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                  };
+                }
+                // right most button
+                if (index === props.children.length - 1) {
+                  return {
+                    borderTopLeftRadius: 0,
+                    borderBottomLeftRadius: 0,
+                  };
+                }
+                // inner button
+                return {
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                  borderTopLeftRadius: 0,
+                  borderBottomLeftRadius: 0,
+                };
+              },
+              ...child.props.overrides,
+            },
+          },
         });
       })}
     </Root>
