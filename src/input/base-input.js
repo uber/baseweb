@@ -9,14 +9,16 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-
 import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants.js';
 import {
   InputContainer as StyledInputContainer,
   Input as StyledInput,
+  StyledClearIcon,
+  StyledClearIconContainer,
 } from './styled-components.js';
 import type {BaseInputPropsT, InternalStateT} from './types.js';
 import {getSharedProps} from './utils.js';
+import triggerInputChangeEvent from '../utils/trigger-input-change-event.js';
 
 const NullComponent = () => null;
 
@@ -43,6 +45,8 @@ class BaseInput<T: EventTarget> extends React.Component<
     onKeyPress: () => {},
     onKeyUp: () => {},
     onFocus: () => {},
+    onClear: () => {},
+    clearable: false,
     overrides: {},
     placeholder: '',
     required: false,
@@ -55,11 +59,48 @@ class BaseInput<T: EventTarget> extends React.Component<
   };
 
   componentDidMount() {
-    const {autoFocus, inputRef} = this.props;
-    if (autoFocus && inputRef.current) {
-      inputRef.current.focus();
+    const {inputRef, autoFocus, clearable} = this.props;
+    if (inputRef.current) {
+      if (autoFocus) {
+        inputRef.current.focus();
+      }
+      if (clearable) {
+        inputRef.current.addEventListener('keydown', this.onInputKeyDown);
+      }
     }
   }
+
+  componentWillUnmount() {
+    const {inputRef, clearable} = this.props;
+    if (clearable && inputRef.current) {
+      inputRef.current.removeEventListener('keydown', this.onInputKeyDown);
+    }
+  }
+
+  clearValue() {
+    // trigger a fake input change event (as if all text was deleted)
+    triggerInputChangeEvent(this.props.inputRef.current, '');
+  }
+
+  onInputKeyDown = (e: SyntheticKeyboardEvent<T>) => {
+    if (
+      this.props.clearable &&
+      e.key === 'Escape' &&
+      this.props.inputRef.current
+    ) {
+      this.clearValue();
+      // prevent event from closing modal or doing something unexpected
+      e.stopPropagation();
+    }
+  };
+
+  onClearIconClick = () => {
+    if (this.props.inputRef.current) {
+      this.clearValue();
+      // return focus to the input after click
+      this.props.inputRef.current.focus();
+    }
+  };
 
   onFocus = (e: SyntheticFocusEvent<T>) => {
     this.setState({isFocused: true});
@@ -70,6 +111,38 @@ class BaseInput<T: EventTarget> extends React.Component<
     this.setState({isFocused: false});
     this.props.onBlur(e);
   };
+
+  renderClear() {
+    const {clearable, value, disabled, overrides = {}, size} = this.props;
+    if (!clearable || !value || !value.length || disabled) {
+      return null;
+    }
+    const [ClearIconContainer, clearIconContainerProps] = getOverrides(
+      overrides.ClearIconContainer,
+      StyledClearIconContainer,
+    );
+    const [ClearIcon, clearIconProps] = getOverrides(
+      overrides.ClearIcon,
+      StyledClearIcon,
+    );
+    const ariaLabel = 'Clear value';
+    return (
+      <ClearIconContainer
+        $size={size}
+        $alignTop={this.props.type === CUSTOM_INPUT_TYPE.textarea}
+        {...clearIconContainerProps}
+      >
+        <ClearIcon
+          size={size === SIZE.large ? 'scale700' : 'scale600'}
+          title={ariaLabel}
+          aria-label={ariaLabel}
+          onClick={this.onClearIconClick}
+          role="button"
+          {...clearIconProps}
+        />
+      </ClearIconContainer>
+    );
+  }
 
   render() {
     const {
@@ -130,6 +203,7 @@ class BaseInput<T: EventTarget> extends React.Component<
         >
           {type === CUSTOM_INPUT_TYPE.textarea ? value : null}
         </Input>
+        {this.renderClear()}
         <After {...sharedProps} {...afterProps} />
       </InputContainer>
     );
