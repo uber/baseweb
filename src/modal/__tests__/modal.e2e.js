@@ -11,6 +11,7 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
+  cancelButton: '[data-e2e="cancel-button"]',
   closeButton: 'button[aria-label="Close"]',
   openModal: '.open-modal-button',
   dialog: '[role="dialog"]',
@@ -28,13 +29,24 @@ describe('modal', () => {
     await page.click(selectors.openModal);
     await page.waitFor(selectors.dialog);
 
-    const dialogIsFocused = await page.$eval(
-      selectors.dialog,
-      dialog => dialog === document.activeElement,
+    const cancelButtonIsFocused = await page.$eval(
+      selectors.cancelButton,
+      cancelButton => cancelButton === document.activeElement,
     );
 
-    // dialog should be the focused element
-    expect(dialogIsFocused).toBe(true);
+    // first focusable element (cancel button) should be focused
+    expect(cancelButtonIsFocused).toBe(true);
+
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('Tab');
+
+    const closeButtonIsFocused = await page.$eval(
+      selectors.closeButton,
+      closeButton => closeButton === document.activeElement,
+    );
+
+    // focus should be trapped in modal and go to close button
+    expect(closeButtonIsFocused).toBe(true);
 
     // dialog should be accessible
     const accessibilityReport = await analyzeAccessibility(page);

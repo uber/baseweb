@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import FocusTrap from 'focus-trap-react';
 
 import {Button, KIND, SIZE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -19,7 +20,6 @@ import {
   StyledFilterHeading,
   StyledFilterFooter,
 } from './styled-components.js';
-import TrapFocus from './trap-focus.js';
 import type {FilterProps} from './types.js';
 
 export default function Filter(props: FilterProps) {
@@ -75,31 +75,33 @@ export default function Filter(props: FilterProps) {
         return nextState;
       }}
       content={
-        <TrapFocus>
-          <Heading {...headingProps}>Filter Column</Heading>
-          <Content {...contentProps}>{props.children}</Content>
-          <Footer {...footerProps}>
-            <Button
-              kind={KIND.minimal}
-              size={SIZE.compact}
-              onClick={() => {
-                onSelectAll();
-              }}
-            >
-              Select All
-            </Button>
+        <FocusTrap>
+          <div>
+            <Heading {...headingProps}>Filter Column</Heading>
+            <Content {...contentProps}>{props.children}</Content>
+            <Footer {...footerProps}>
+              <Button
+                kind={KIND.minimal}
+                size={SIZE.compact}
+                onClick={() => {
+                  onSelectAll();
+                }}
+              >
+                Select All
+              </Button>
 
-            <Button
-              kind={KIND.minimal}
-              size={SIZE.compact}
-              onClick={() => {
-                onReset();
-              }}
-            >
-              Reset
-            </Button>
-          </Footer>
-        </TrapFocus>
+              <Button
+                kind={KIND.minimal}
+                size={SIZE.compact}
+                onClick={() => {
+                  onReset();
+                }}
+              >
+                Reset
+              </Button>
+            </Footer>
+          </div>
+        </FocusTrap>
       }
     >
       <MenuButton {...menuButtonProps}>
