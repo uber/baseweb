@@ -21,6 +21,7 @@ import SelectMultiPickSearch from 'examples/select/search-multi-pick.js';
 import SelectWithManyOptions from 'examples/select/with-many-options.js';
 import SelectCreatable from 'examples/select/creatable.js';
 import SelectCreatableMulti from 'examples/select/creatable-multi.js';
+import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulSelect, TYPE} from 'baseui/select';
@@ -100,6 +101,13 @@ Things to note in the `Select Controlled` example:
 
 The creatable select enables users to create new options along with choosing
 existing options.
+
+<Example title="Select dropdown overrides" path="examples/select/overridden-dropdown.js">
+  <SelectOverriddenDropdown />
+</Example>
+
+To override the `Popover` that's being used by the Dropdown subcomponent, you have to follow
+the approach outlined [here](/theming/understanding-overrides#override-nested-components).
 
 <Example
   title="Select creatable multi-pick"
