@@ -7,5 +7,5 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export {default as AspectRatioBox} from './aspect-ratio-box.js';
-export {Body as StyledBody, Root as StyledRoot} from './styled-components.js';
+export {default as AspectRatioBoxBody} from './aspect-ratio-box-body.js';
 export * from './types.js';

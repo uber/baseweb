@@ -6,19 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
-import type {OverrideT} from '../helpers/overrides.js';
-
-export type AspectRatioBoxComponentsT = {
-  Body?: OverrideT<?{}>,
-  Root?: OverrideT<?{}>,
-};
+import type {BlockPropsT} from '../block/types.js';
 
 export type AspectRatioBoxPropsT = {
   /** Aspect ratio is width divided by height. */
-  +aspectRatio?: number,
-  /** Content to be rendered in the Body. */
-  +children?: React.Node,
-  +overrides: AspectRatioBoxComponentsT,
-};
+  +aspectRatio: number,
+} & BlockPropsT;

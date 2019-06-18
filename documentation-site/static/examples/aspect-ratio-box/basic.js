@@ -1,18 +1,14 @@
 import * as React from 'react';
-import {AspectRatioBox} from 'baseui/aspect-ratio-box';
+import {AspectRatioBox, AspectRatioBoxBody} from 'baseui/aspect-ratio-box';
 
-const props = {
+const bodyProps = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   overrides: {
-    Root: {
+    Block: {
       style: {
         border: 'grey solid 2px',
-      },
-    },
-    Body: {
-      style: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
       },
     },
   },
@@ -20,9 +16,11 @@ const props = {
 
 export default () => (
   <React.Fragment>
-    <AspectRatioBox {...props}>Square by default</AspectRatioBox>
-    <AspectRatioBox {...props} aspectRatio={16 / 9}>
-      16:9 aspect ratio
+    <AspectRatioBox>
+      <AspectRatioBoxBody {...bodyProps}>Square by default</AspectRatioBoxBody>
+    </AspectRatioBox>
+    <AspectRatioBox aspectRatio={16 / 9}>
+      <AspectRatioBoxBody {...bodyProps}>16:9 aspect ratio</AspectRatioBoxBody>
     </AspectRatioBox>
   </React.Fragment>
 );

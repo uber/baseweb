@@ -8,35 +8,50 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Body as StyledBody, Root as StyledRoot} from './styled-components.js';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {Block} from '../block/index.js';
+import {mergeOverrides} from '../helpers/overrides.js';
 import type {AspectRatioBoxPropsT} from './types.js';
 
-const AspectRatioBox = ({
+const aspectRatioBoxStyle = ({$aspectRatio}) => ({
+  position: 'relative',
+  '::before': {
+    content: '""',
+    width: '1px',
+    marginLeft: '-1px',
+    float: 'left',
+    height: 0,
+    paddingTop: `${100 / $aspectRatio}%`,
+    pointerEvents: 'none',
+  },
+  '::after': {
+    content: '""',
+    display: 'table',
+    clear: 'both',
+  },
+});
+
+export const AspectRatioBox = ({
   aspectRatio,
-  children,
   overrides,
   ...restProps
-}: AspectRatioBoxPropsT) => {
-  const {Body: BodyOverride, Root: RootOverride} = overrides;
-
-  const Body = getOverride(BodyOverride) || StyledBody;
-  const Root = getOverride(RootOverride) || StyledRoot;
-
+}: AspectRatioBoxPropsT): React.Node => {
+  const aspectRatioBoxOverrides = {
+    Block: {
+      style: aspectRatioBoxStyle,
+    },
+  };
+  const blockOverrides = mergeOverrides(aspectRatioBoxOverrides, overrides);
   return (
-    <Root
-      data-baseweb="aspect-ratio-box"
+    <Block
+      overrides={blockOverrides}
       $aspectRatio={aspectRatio}
+      data-baseweb="aspect-ratio-box"
       {...restProps}
-      {...getOverrideProps(RootOverride)}
-    >
-      <Body {...getOverrideProps(BodyOverride)}>{children}</Body>
-    </Root>
+    />
   );
 };
 
 AspectRatioBox.defaultProps = {
-  children: null,
   aspectRatio: 1,
   overrides: {},
 };

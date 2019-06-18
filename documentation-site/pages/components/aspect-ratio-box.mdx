@@ -23,6 +23,8 @@ export default Layout;
 
 There are times when it comes in handy to build a box with a specific aspect ratio, given a certain width. This utility component uses CSS pseudo-elements to achieve set aspect-ratios.
 
+Note: **AspectRatioBox** and **AspectRatioBoxBody** components are both implemented using **Block**, and can take all the **Block** properties for styling.
+
 <Example title="Basic usage" path="examples/aspect-ratio-box/basic.js">
   <AspectRatioBoxBasic />
 </Example>
@@ -45,21 +47,12 @@ You could even build a calendar of square buttons with it, that resizes with the
   <AspectRatioBoxCalendar />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="AspectRatioBox"
-  component={AspectRatioBoxExports}
-  renderExample={props => (
-    <div style={{width: '200px'}}>
-      <AspectRatioBox overrides={props.overrides}>
-        Example aspect ratio box
-      </AspectRatioBox>
-    </div>
-  )}
-/>
-
 <API
   heading="AspectRatioBox API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/aspect-ratio-box/aspect-ratio-box.js')}
+/>
+
+<API
+  heading="AspectRatioBoxBody API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/aspect-ratio-box/aspect-ratio-box-body.js')}
 />

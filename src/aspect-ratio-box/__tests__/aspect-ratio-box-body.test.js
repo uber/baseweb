@@ -9,15 +9,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 
-import AspectRatioBox from '../aspect-ratio-box.js';
+import AspectRatioBoxBody from '../aspect-ratio-box-body.js';
 
-describe('AspectRatioBox', () => {
+describe('AspectRatioBoxBody', () => {
   it('renders', () => {
-    const wrapper = mount(<AspectRatioBox />);
-    expect(wrapper).toMatchSnapshot('for aspectRatio={1}');
-
-    wrapper.setProps({aspectRatio: 16 / 9});
-    expect(wrapper).toMatchSnapshot('for aspectRatio={16 / 9}');
+    const wrapper = mount(<AspectRatioBoxBody />);
+    expect(wrapper).toMatchSnapshot('with default styles');
 
     wrapper.setProps({
       overrides: {
