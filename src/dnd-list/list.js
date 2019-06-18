@@ -94,13 +94,14 @@ class StatelessList extends React.Component<ListPropsT> {
                 {removable && (
                   <CloseHandle
                     {...sharedProps}
-                    onClick={() =>
+                    onClick={evt => {
+                      evt.preventDefault();
                       onChange &&
-                      onChange({
-                        oldIndex: typeof index !== 'undefined' ? index : 0,
-                        newIndex: -1,
-                      })
-                    }
+                        onChange({
+                          oldIndex: typeof index !== 'undefined' ? index : 0,
+                          newIndex: -1,
+                        });
+                    }}
                     {...closeHandleProps}
                   >
                     <Delete size={24} color="#CCC" />
