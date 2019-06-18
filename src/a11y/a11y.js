@@ -40,16 +40,19 @@ function segmentViolationsByNode(violations) {
   return Object.entries(nodes);
 }
 
-const ViolationContainer = styled('div', ({$theme, $top, $left}) => {
-  return {
-    backgroundColor: $theme.colors.mono100,
-    boxShadow: $theme.lighting.shadow600,
-    position: 'absolute',
-    padding: $theme.sizing.scale400,
-    top: $top,
-    left: $left,
-  };
-});
+const ViolationContainer = styled<{$top: string, $left: string}>(
+  'div',
+  ({$theme, $top, $left}) => {
+    return {
+      backgroundColor: $theme.colors.mono100,
+      boxShadow: $theme.lighting.shadow600,
+      position: 'absolute',
+      padding: $theme.sizing.scale400,
+      top: $top,
+      left: $left,
+    };
+  },
+);
 
 function Violation(props: ViolationPropsT) {
   const [offset, setOffset] = React.useState({top: 0, left: 0});
@@ -98,8 +101,8 @@ function Violation(props: ViolationPropsT) {
       >
         <ViolationContainer
           ref={setPopper}
-          $top={`${offset.top}px` || 0}
-          $left={`${offset.left}px` || 0}
+          $top={`${offset.top}px` || '0px'}
+          $left={`${offset.left}px` || '0px'}
         >
           <Caption1>{props.target}</Caption1>
           {props.violations.map((violation, index) => (
