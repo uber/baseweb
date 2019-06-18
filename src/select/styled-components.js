@@ -331,7 +331,7 @@ export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
   };
 });
 
-export const StyledInputSizer = styled(
+export const StyledInputSizer = styled<SharedStylePropsArgT>(
   'div',
   ({$size, $theme: {typography}}) => ({
     ...getFont($size, typography),
