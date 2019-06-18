@@ -47,22 +47,6 @@ const HiddenFormElement = styled('a', () => ({
   visibility: 'hidden',
 }));
 
-const copyToClipboard = theme => {
-  const faker = document.createElement('textarea');
-  faker.value = JSON.stringify(theme);
-  faker.readonly = true;
-  faker.style = {
-    ...faker.style,
-    left: '100%',
-    position: 'absolute',
-    visibility: 'hidden',
-  };
-  document.body.appendChild(faker);
-  faker.select();
-  document.execCommand('copy');
-  document.body.removeChild(faker);
-};
-
 const exportToJSON = (anchor, theme) => {
   anchor.setAttribute('download', 'baseweb.json');
   anchor.setAttribute(
@@ -93,10 +77,6 @@ const ThemeEditor = ({current, setTheme, resetTheme}) => {
     keys.reduce(function(o, s, i) {
       return (o[s] = i === keys.length - 1 ? value : o[s]);
     }, editedTheme.current);
-  };
-
-  const copy = () => {
-    copyToClipboard(JSON.stringify(editedTheme.current));
   };
 
   const reset = () => {
@@ -277,7 +257,6 @@ const ThemeEditor = ({current, setTheme, resetTheme}) => {
         >
           Reset
         </Button>
-        <Button onClick={copy}>Copy</Button>
         <Button onClick={exportTheme}>Export</Button>
         <Button onClick={() => importer.current.click()}>Import</Button>
       </Block>

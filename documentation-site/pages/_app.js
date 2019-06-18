@@ -30,13 +30,6 @@ import '../prism-coy.css'; // light theme code highlighting
 import '../tomorrow-night.css'; // dark theme code highlighting
 import ThemeEditor from '../components/theme-editor';
 
-const themes = {
-  LightTheme,
-  LightThemeMove,
-  DarkTheme,
-  DarkThemeMove,
-};
-
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
 
