@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 export {default as Modal} from './modal.js';
 export {default as ModalButton} from './modal-button.js';
+export {default as FocusOnce} from './focus-once.js';
 export {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
 export {
   Root as StyledRoot,

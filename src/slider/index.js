@@ -17,5 +17,6 @@ export {
   InnerThumb as StyledInnerThumb,
   Tick as StyledTick,
   TickBar as StyledTickBar,
+  ThumbValue as StyledThumbValue,
 } from './styled-components.js';
 export * from './types.js';
