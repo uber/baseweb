@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {ALIGN} from './index.js';
+import {ALIGN} from './constants.js';
 
 export const Root = styled<{}>('nav', props => {
   const {$theme} = props;

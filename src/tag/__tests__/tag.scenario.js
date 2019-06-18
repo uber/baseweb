@@ -9,13 +9,14 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Tag, KIND} from '../index.js';
+import type {TagKind} from '../index.js';
 
 export const name = 'tag';
 
 export const component = () => (
   <React.Fragment>
     <Tag key="default">Default Color</Tag>
-    {Object.keys(KIND).map(kind => (
+    {Object.keys((KIND: {[TagKind]: string})).map(kind => (
       <Tag
         key={kind}
         kind={kind}

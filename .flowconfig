@@ -19,5 +19,6 @@ documentation-site/.next/.*
 module.name_mapper.extension='md' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'
 module.name_mapper='^baseui' ->'<PROJECT_ROOT>/src'
 module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/static/examples'
+log.file=.flow.log
 
 [strict]
