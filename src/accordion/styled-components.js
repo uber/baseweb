@@ -36,7 +36,6 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
     marginLeft: 0,
     marginRight: 0,
     borderBottom: `1px solid ${$expanded ? colors.mono500 : colors.mono400}`,
-    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
