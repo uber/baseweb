@@ -177,9 +177,13 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
       $isPseudoFocused,
       $type,
       $searchable,
-      $theme: {colors, animation},
+      $theme: {borders, colors, animation},
     } = props;
     return {
+      borderTopLeftRadius: borders.inputBorderRadius,
+      borderTopRightRadius: borders.inputBorderRadius,
+      borderBottomRightRadius: borders.inputBorderRadius,
+      borderBottomLeftRadius: borders.inputBorderRadius,
       boxSizing: 'border-box',
       overflow: 'hidden',
       width: '100%',
@@ -327,7 +331,7 @@ export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
   };
 });
 
-export const StyledInputSizer = styled(
+export const StyledInputSizer = styled<SharedStylePropsArgT>(
   'div',
   ({$size, $theme: {typography}}) => ({
     ...getFont($size, typography),

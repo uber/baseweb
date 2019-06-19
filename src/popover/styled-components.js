@@ -34,6 +34,10 @@ export function getBodyStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
     top: 0,
     left: 0,
     backgroundColor: $theme.colors.background,
+    borderTopLeftRadius: $theme.borders.popoverBorderRadius,
+    borderTopRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
     boxShadow: $theme.lighting.shadow600,
     transitionProperty: 'opacity,transform',
     transitionDuration: $isAnimating ? '0.1s' : '0s',
@@ -78,6 +82,10 @@ export const Arrow = styled<SharedStylePropsArgT>('div', getArrowStyles);
 export function getInnerStyles({$theme}: {$theme: ThemeT}) {
   return {
     backgroundColor: $theme.colors.backgroundAlt,
+    borderTopLeftRadius: $theme.borders.popoverBorderRadius,
+    borderTopRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
     color: $theme.colors.foreground,
     position: 'relative',
   };

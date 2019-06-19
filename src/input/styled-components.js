@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import type {ThemeT} from '../styles/types.js';
-import {SIZE} from './constants.js';
+import {ADJOINED, ENHANCER_POSITION, SIZE} from './constants.js';
 import type {SharedPropsT} from './types.js';
 
 function getInputPadding(size, sizing) {
@@ -55,6 +55,23 @@ export const Root = styled<SharedPropsT>('div', props => {
 });
 
 // InputEnhancer
+
+function getInputEnhancerBorderRadius(position, radius) {
+  return {
+    [ENHANCER_POSITION.start]: {
+      borderTopLeftRadius: radius,
+      borderBottomLeftRadius: radius,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    [ENHANCER_POSITION.end]: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderTopRightRadius: radius,
+      borderBottomRightRadius: radius,
+    },
+  }[position];
+}
 
 function getInputEnhancerPadding($size, sizing) {
   return {
@@ -116,12 +133,13 @@ function getInputEnhancerColors(
 
 export const InputEnhancer = styled<SharedPropsT>('div', props => {
   const {
+    $position,
     $size,
     $disabled,
     $isFocused,
     $error,
     $positive,
-    $theme: {colors, sizing, typography, animation},
+    $theme: {borders, colors, sizing, typography, animation},
   } = props;
   return {
     display: 'flex',
@@ -130,6 +148,7 @@ export const InputEnhancer = styled<SharedPropsT>('div', props => {
     transitionProperty: 'color, background-color',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
+    ...getInputEnhancerBorderRadius($position, borders.inputBorderRadius),
     ...getFont($size, typography),
     ...getInputEnhancerPadding($size, sizing),
     ...getInputEnhancerColors($disabled, $isFocused, $error, $positive, colors),
@@ -137,6 +156,35 @@ export const InputEnhancer = styled<SharedPropsT>('div', props => {
 });
 
 // InputContainer
+
+function getInputContainerBorderRadius(adjoined, radius) {
+  return {
+    [ADJOINED.none]: {
+      borderTopLeftRadius: radius,
+      borderBottomLeftRadius: radius,
+      borderTopRightRadius: radius,
+      borderBottomRightRadius: radius,
+    },
+    [ADJOINED.left]: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderTopRightRadius: radius,
+      borderBottomRightRadius: radius,
+    },
+    [ADJOINED.right]: {
+      borderTopLeftRadius: radius,
+      borderBottomLeftRadius: radius,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    [ADJOINED.both]: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  }[adjoined];
+}
 
 function getInputContainerColors(
   $disabled,
@@ -189,11 +237,12 @@ export const getInputContainerStyles = (
 ) => {
   const {
     $isFocused,
+    $adjoined,
     $error,
     $disabled,
     $positive,
     $size,
-    $theme: {colors, typography, animation},
+    $theme: {borders, colors, typography, animation},
   } = props;
   return {
     boxSizing: 'border-box',
@@ -204,6 +253,7 @@ export const getInputContainerStyles = (
     transitionProperty: 'border, background-color',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
+    ...getInputContainerBorderRadius($adjoined, borders.inputBorderRadius),
     ...getFont($size, typography),
     ...getInputContainerColors(
       $disabled,

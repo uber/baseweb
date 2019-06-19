@@ -87,6 +87,10 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   return ({
     position: 'relative',
     backgroundColor: $theme.colors.backgroundAlt,
+    borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
+    borderTopRightRadius: $theme.borders.surfaceBorderRadius,
+    borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+    borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
     marginLeft: $theme.sizing.scale600,
     marginTop: $theme.sizing.scale600,
     marginRight: $theme.sizing.scale600,
@@ -119,13 +123,27 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
   const {$theme} = props;
   return {
     // Reset button styles
-    border: 0,
     background: 'transparent',
     outline: 0,
     paddingLeft: 0,
     paddingTop: 0,
     paddingRight: 0,
     paddingBottom: 0,
+
+    // colors
+    color: $theme.colors.mono700,
+    transitionProperty: 'color, border-color',
+    transitionDuration: $theme.animation.timing100,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: 'transparent',
+    ':hover': {
+      color: $theme.colors.mono800,
+    },
+    ':focus': {
+      color: $theme.colors.mono800,
+      borderColor: $theme.colors.primary,
+    },
 
     // Positioning
     position: 'absolute',
@@ -137,12 +155,6 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
-    color: $theme.colors.mono700,
-    transitionProperty: 'color',
-    transitionDuration: $theme.animation.timing100,
-    ':hover': {
-      color: $theme.colors.mono800,
-    },
   };
 });
 

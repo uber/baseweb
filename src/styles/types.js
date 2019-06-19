@@ -483,11 +483,15 @@ export type BordersT = {
   border400: BorderT,
   border500: BorderT,
   border600: BorderT,
-  useRoundedCorners: boolean,
   radius100: string,
   radius200: string,
   radius300: string,
   radius400: string,
+  useRoundedCorners: boolean,
+  buttonBorderRadius: string,
+  surfaceBorderRadius: string,
+  inputBorderRadius: string,
+  popoverBorderRadius: string,
 };
 
 export type ZIndexT = {

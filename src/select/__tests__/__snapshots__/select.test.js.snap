@@ -255,8 +255,12 @@ exports[`Select component renders component in search mode and false for multipl
                 test-style={
                   Object {
                     "backgroundColor": "$theme.colors.inputFill",
+                    "borderBottomLeftRadius": "$theme.borders.inputBorderRadius",
+                    "borderBottomRightRadius": "$theme.borders.inputBorderRadius",
                     "borderColor": "$theme.colors.inputFill",
                     "borderStyle": "solid",
+                    "borderTopLeftRadius": "$theme.borders.inputBorderRadius",
+                    "borderTopRightRadius": "$theme.borders.inputBorderRadius",
                     "borderWidth": "2px",
                     "boxSizing": "border-box",
                     "color": "$theme.colors.foreground",
@@ -1035,8 +1039,12 @@ exports[`Select component renders component in search mode and true for multiple
                 test-style={
                   Object {
                     "backgroundColor": "$theme.colors.inputFill",
+                    "borderBottomLeftRadius": "$theme.borders.inputBorderRadius",
+                    "borderBottomRightRadius": "$theme.borders.inputBorderRadius",
                     "borderColor": "$theme.colors.inputFill",
                     "borderStyle": "solid",
+                    "borderTopLeftRadius": "$theme.borders.inputBorderRadius",
+                    "borderTopRightRadius": "$theme.borders.inputBorderRadius",
                     "borderWidth": "2px",
                     "boxSizing": "border-box",
                     "color": "$theme.colors.foreground",
@@ -1809,8 +1817,12 @@ exports[`Select component renders component in select mode and false for multipl
                 test-style={
                   Object {
                     "backgroundColor": "$theme.colors.inputFill",
+                    "borderBottomLeftRadius": "$theme.borders.inputBorderRadius",
+                    "borderBottomRightRadius": "$theme.borders.inputBorderRadius",
                     "borderColor": "$theme.colors.inputFill",
                     "borderStyle": "solid",
+                    "borderTopLeftRadius": "$theme.borders.inputBorderRadius",
+                    "borderTopRightRadius": "$theme.borders.inputBorderRadius",
                     "borderWidth": "2px",
                     "boxSizing": "border-box",
                     "color": "$theme.colors.foreground",
@@ -2601,8 +2613,12 @@ exports[`Select component renders component in select mode and true for multiple
                 test-style={
                   Object {
                     "backgroundColor": "$theme.colors.inputFill",
+                    "borderBottomLeftRadius": "$theme.borders.inputBorderRadius",
+                    "borderBottomRightRadius": "$theme.borders.inputBorderRadius",
                     "borderColor": "$theme.colors.inputFill",
                     "borderStyle": "solid",
+                    "borderTopLeftRadius": "$theme.borders.inputBorderRadius",
+                    "borderTopRightRadius": "$theme.borders.inputBorderRadius",
                     "borderWidth": "2px",
                     "boxSizing": "border-box",
                     "color": "$theme.colors.foreground",

@@ -17,7 +17,10 @@ import {
   StyledRoot as SelectStyledRoot,
 } from '../select/index.js';
 
-export const StyledFlag = styled(
+type SizeStyleProps = {$size?: $Keys<typeof SIZE>};
+type HeightStyleProps = {$height: string};
+
+export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
   Flag,
   ({$size = SIZE.default, $theme: {sizing}}) => {
     const sizeToWidth = {
@@ -31,49 +34,50 @@ export const StyledFlag = styled(
   },
 );
 
-export const StyledRoot = withStyle(
+export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   SelectStyledRoot,
-  ({size = SIZE.default, $theme: {sizing}}) => {
+  props => {
     // hard coded widths for the flag dropdown anchor
     const sizeToWidth = {
       [SIZE.compact]: '60px',
       [SIZE.default]: '70px',
       [SIZE.large]: '80px',
     };
+
     return {
-      width: sizeToWidth[size],
+      width: sizeToWidth[props.$size || SIZE.default],
     };
   },
 );
 
-export const StyledDialCode = styled('div', ({$theme: {sizing}}) => ({
+export const StyledDialCode = styled<{}>('div', ({$theme: {sizing}}) => ({
   marginLeft: sizing.scale100,
 }));
 
-export const StyledCountrySelectDropdownContainer = withStyle(
-  StyledList,
-  ({$height = DEFAULT_MAX_DROPDOWN_HEIGHT}) => {
-    return {
-      height: $height,
-      paddingTop: 0,
-      paddingBottom: 0,
-    };
-  },
-);
-
-export const StyledCountrySelectDropdownListItem = withStyle(
-  StyledDropdownListItem,
-  {
+export const StyledCountrySelectDropdownContainer = withStyle<
+  typeof StyledList,
+  HeightStyleProps,
+>(StyledList, props => {
+  const {$height = DEFAULT_MAX_DROPDOWN_HEIGHT} = props;
+  return {
+    height: $height,
     paddingTop: 0,
     paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-    display: 'flex',
-    alignItems: 'center',
-  },
-);
+  };
+});
 
-export const StyledCountrySelectDropdownFlagColumn = styled(
+export const StyledCountrySelectDropdownListItem = withStyle<
+  typeof StyledDropdownListItem,
+>(StyledDropdownListItem, {
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
+  display: 'flex',
+  alignItems: 'center',
+});
+
+export const StyledCountrySelectDropdownFlagColumn = styled<{}>(
   'div',
   ({$theme: {sizing}}) => {
     return {
@@ -84,7 +88,7 @@ export const StyledCountrySelectDropdownFlagColumn = styled(
   },
 );
 
-export const StyledCountrySelectDropdownNameColumn = styled(
+export const StyledCountrySelectDropdownNameColumn = styled<{}>(
   'div',
   ({$theme: {sizing}}) => {
     return {
@@ -93,7 +97,7 @@ export const StyledCountrySelectDropdownNameColumn = styled(
   },
 );
 
-export const StyledCountrySelectDropdownDialcodeColumn = styled(
+export const StyledCountrySelectDropdownDialcodeColumn = styled<{}>(
   'div',
   ({$theme: {sizing}}) => {
     return {

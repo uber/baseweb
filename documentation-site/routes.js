@@ -261,6 +261,10 @@ const routes = [
         title: 'Utility',
         subNav: [
           {
+            title: 'AspectRatioBox',
+            itemId: '/components/aspect-ratio-box',
+          },
+          {
             title: 'BaseProvider',
             itemId: '/components/base-provider',
           },
@@ -279,6 +283,10 @@ const routes = [
           {
             title: 'Styled',
             itemId: '/components/styled',
+          },
+          {
+            title: 'A11y Validator',
+            itemId: '/components/unstable-a11y',
           },
         ],
       },
