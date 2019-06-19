@@ -91,7 +91,7 @@ export default class BasicTether extends React.Component {
           ref={this.anchorRef2}
           onClick={() => this.setState({isPinkOpen: true})}
         >
-          Render Pink Layer
+          Render Purple Layer
         </Button>
         {this.state.isPinkOpen ? (
           <Layer
@@ -107,7 +107,7 @@ export default class BasicTether extends React.Component {
               <BlockWrapper
                 forwardedRef={this.popperRef2}
                 offset={this.state.offset2}
-                color="rgba(255, 180, 200, 0.86)"
+                color="rgba(190, 190, 255, 0.86)"
               >
                 <Button onClick={() => this.setState({isPinkOpen: false})}>
                   Close
