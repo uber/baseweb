@@ -84,7 +84,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
           {...tabContentProps}
           {...props}
         >
-          {isActive ? child.props.children : null}
+          {child.props.children}
         </TabContent>
       );
     });

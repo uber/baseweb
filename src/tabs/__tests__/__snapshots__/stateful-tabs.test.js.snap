@@ -338,7 +338,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                       "paddingTop": "$theme.sizing.scale500",
                     }
                   }
-                />
+                >
+                  Tab 1 content
+                </div>
               </MockStyledComponent>
             </ForwardRef>
             <ForwardRef
@@ -412,7 +414,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                       "paddingTop": "$theme.sizing.scale500",
                     }
                   }
-                />
+                >
+                  Tab 3 content
+                </div>
               </MockStyledComponent>
             </ForwardRef>
           </div>
@@ -788,7 +792,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                       "paddingTop": "$theme.sizing.scale500",
                     }
                   }
-                />
+                >
+                  Tab 2 content
+                </div>
               </MockStyledComponent>
             </ForwardRef>
             <ForwardRef
@@ -824,7 +830,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                       "paddingTop": "$theme.sizing.scale500",
                     }
                   }
-                />
+                >
+                  Tab 3 content
+                </div>
               </MockStyledComponent>
             </ForwardRef>
           </div>
