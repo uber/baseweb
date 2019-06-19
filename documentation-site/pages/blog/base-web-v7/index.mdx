@@ -1,4 +1,5 @@
 import Layout from '../../../components/layout';
+import {Table} from 'baseui/table';
 import {BlogImage, Demo, Meta} from '../../../components/blog';
 import metadata from './metadata.json'
 
@@ -434,3 +435,38 @@ As part of the Base Web 7 release, we've updated the `Input` component visuals, 
 
 <img src="https://res.cloudinary.com/dawr8pobn/image/upload/v1559064944/Screen_Shot_2019-05-28_at_10.34.22_AM_nu3fb0.png" width="100%" alt="Inputs - Base Web version 7" />
 
+## Rounded Corners
+
+Many components have been changed to have non-rounded corners.
+
+As of Base Web `v7.2.1`, if you would like to preserve the pre-v7 round corners, you can do so by customizing your theme with a few new variables:
+
+```diff
+  const theme = {
+    borders: {
+      // use these values to preserve rounded corners look
+      useRoundedCorners: true,
++     buttonBorderRadius: '4px'
++     inputBorderRadius: '4px'
++     popoverBorderRadius: '8px'
++     surfaceBorderRadius: '4px',
+    }
+  };
+```
+
+Components that were unchanged in `v7` will still respect the `useRoundedCorners` variable, but we expect this variable will soon be deprecated in a future major release.
+Here is a mapping of which components each theme variable affects:
+
+<Table
+  columns={['Variable', 'Components']}
+  data={[
+    [
+      'useRoundedCorners',
+      'Checkbox, Datepicker (Range), Progress Bar, Slider, Tag',
+    ],
+    ['buttonBorderRadius', 'Button, ButtonGroup'],
+    ['inputBorderRadius', 'Input, Select, Textarea'],
+    ['popoverBorderRadius', 'Popover, Menu, Tooltip'],
+    ['surfaceBorderRadius', 'Card, Datepicker, Modal, Toast, Notification'],
+  ]}
+/>

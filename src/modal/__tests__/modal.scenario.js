@@ -80,7 +80,9 @@ export const component = () => (
             faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus.
           </ModalBody>
           <ModalFooter>
-            <ModalButton onClick={close}>Cancel</ModalButton>
+            <ModalButton onClick={close} data-e2e="cancel-button">
+              Cancel
+            </ModalButton>
             <ModalButton onClick={close}>Okay</ModalButton>
           </ModalFooter>
         </Modal>

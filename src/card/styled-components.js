@@ -32,7 +32,7 @@ export const Contents = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export const HeaderImage = styled('img', ({$theme: {borders}}) => {
+export const HeaderImage = styled<{}>('img', ({$theme: {borders}}) => {
   return {
     borderTopLeftRadius: borders.surfaceBorderRadius,
     borderTopRightRadius: borders.surfaceBorderRadius,
