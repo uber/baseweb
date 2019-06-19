@@ -80,6 +80,9 @@ export type BasePopoverPropsT = {
   mountNode?: HTMLElement,
   /** How long should be fade out animation in ms, default 0ms */
   animateOutTime?: number,
+  /** Popper options override */
+  // eslint-disable-next-line flowtype/no-weak-types
+  popperOptions?: any,
 };
 
 // Props for stateless render logic
