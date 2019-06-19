@@ -37,7 +37,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   const baseOverrides = {
     Root: {
       component: StyledRoot,
-      props: {size},
+      props: {$size: size},
     },
     ControlContainer: {
       style: props => {
