@@ -4,21 +4,15 @@ import {Tag} from 'baseui/tag';
 export default () => (
   <>
     <React.Fragment>
-      <Tag variant="solid" kind="primary">
-        solid
-      </Tag>
+      <Tag variant="solid">solid</Tag>
     </React.Fragment>
 
     <React.Fragment>
-      <Tag variant="light" kind="primary">
-        light
-      </Tag>
+      <Tag variant="light">light</Tag>
     </React.Fragment>
 
     <React.Fragment>
-      <Tag variant="outlined" kind="primary">
-        outlined
-      </Tag>
+      <Tag variant="outlined">outlined</Tag>
     </React.Fragment>
   </>
 );
