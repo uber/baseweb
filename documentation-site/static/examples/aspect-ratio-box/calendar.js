@@ -3,9 +3,26 @@ import {AspectRatioBox, AspectRatioBoxBody} from 'baseui/aspect-ratio-box';
 import {Block} from 'baseui/block';
 import {Button, KIND} from 'baseui/button';
 
+const CalendarButton = props => (
+  <Button
+    kind={KIND.minimal}
+    overrides={{
+      BaseButton: {
+        style: {
+          paddingTop: 0,
+          paddingRight: 0,
+          paddingBottom: 0,
+          paddingLeft: 0,
+        },
+      },
+    }}
+    {...props}
+  />
+);
+
 const DateBox = props => (
   <AspectRatioBox width={`${100 / 7}%`}>
-    <AspectRatioBoxBody as={Button} kind={KIND.minimal} {...props} />
+    <AspectRatioBoxBody as={CalendarButton} {...props} />
   </AspectRatioBox>
 );
 
