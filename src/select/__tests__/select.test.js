@@ -71,4 +71,19 @@ describe('Select component', function() {
       value: [],
     });
   });
+  test('select flow allows custom keys in options objects', function() {
+    wrapper = mount(
+      <Select
+        options={[
+          {id: 'AliceBlue', color: '#F0F8FF'},
+          {id: 'AntiqueWhite', color: '#FAEBD7'},
+        ]}
+        closeOnSelect={false}
+        onChange={({option}) => option.color}
+        labelKey="id"
+        multi
+        valueKey="color"
+      />,
+    );
+  });
 });

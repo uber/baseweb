@@ -22,7 +22,8 @@ export type OptionT = $ReadOnly<{
   disabled?: boolean,
   clearableValue?: boolean,
   isCreatable?: boolean,
-  [key: string]: mixed,
+  // eslint-disable-next-line flowtype/no-weak-types
+  [string]: any,
 }>;
 
 export type ValueT = $ReadOnlyArray<OptionT>;
