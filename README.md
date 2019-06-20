@@ -58,6 +58,12 @@ export default function Hello() {
 }
 ```
 
+Both Base Web and Styletron are [flow typed](https://flow.org/) out of the box. **Do you use [TypeScript](https://www.typescriptlang.org/index.html)**? We provide external declarations:
+
+```bash
+yarn add @types/baseui @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
+```
+
 ## Example
 
 An example of an application using Base Web can be found [here](https://github.com/tajo/fusion-baseui). You can also check how it works on [CodeSandbox](https://codesandbox.io/s/patient-sky-nn8t7).
