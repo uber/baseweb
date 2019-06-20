@@ -432,7 +432,11 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
   render() {
     const rendered = [this.renderAnchor()];
-
+    const defaultPopperOptions = {
+      modifiers: {
+        preventOverflow: {enabled: !this.props.ignoreBoundary},
+      },
+    };
     // Only render popover on the browser (portals aren't supported server-side)
     if (__BROWSER__) {
       if (this.state.isMounted && this.props.isOpen) {
@@ -450,9 +454,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
               // Remove the `ignoreBoundary` prop in the next major version
               // and have it replaced with the TetherBehavior props overrides
               popperOptions={{
-                modifiers: {
-                  preventOverflow: {enabled: !this.props.ignoreBoundary},
-                },
+                ...defaultPopperOptions,
+                ...this.props.popperOptions,
               }}
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
