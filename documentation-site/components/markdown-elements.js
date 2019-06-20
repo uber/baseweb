@@ -36,7 +36,7 @@ const getText = children => {
 
 export const cleanAnchor = (anchor: React.Node) => slugify(getText(anchor));
 
-const Code = (props: Props) => <Block>{props.children}</Block>;
+const Code = (props: Props) => <Block whiteSpace="pre">{props.children}</Block>;
 
 export const Heading = ({
   element,
