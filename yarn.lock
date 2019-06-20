@@ -5997,10 +5997,10 @@ data-urls@^1.0.0:
     whatwg-mimetype "^2.0.0"
     whatwg-url "^6.4.0"
 
-date-fns@2.0.0-alpha.34:
-  version "2.0.0-alpha.34"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.34.tgz#5d3ae7ca0d08915ccfc87a20545250af4e9c3cae"
-  integrity sha512-yjSYUHASHvzOZl++cEms+Tw7oQOFA+7Z6/lL7L3lRO9j6pMfT48N6oEyvCGo/MVlH08XWmydgf8X9Y1eedf9sQ==
+date-fns@2.0.0-alpha.35:
+  version "2.0.0-alpha.35"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.35.tgz#185813cdc51b05cc1468a95116494bb3f3440934"
+  integrity sha512-dAY1ujqRtyUsa9mVeupyMzUluWo1d7kAMwyXTQHFImKYSHKvxDw/dipiY6fdswQOs8CwpGoiKysGfaaRP5r3bA==
 
 date-now@^0.1.4:
   version "0.1.4"
