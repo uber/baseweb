@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Tag, KIND} from '../index.js';
-import type {TagKindT} from '../index.js';
 
 export const name = 'tag';
 
