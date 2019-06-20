@@ -31,24 +31,24 @@ function BlockComponent(props) {
   );
 }
 export default () => {
-  const [isBlueOpen, setIsBlueOpen] = React.useState(false);
-  const [isPinkOpen, setIsPinkOpen] = React.useState(false);
+  const [isFirstOpen, setIsFirstOpen] = React.useState(false);
+  const [isSecondOpen, setIsSecondOpen] = React.useState(false);
   return (
     <>
-      <Button onClick={() => setIsBlueOpen(true)}>Render Red Layer</Button>
-      {isBlueOpen ? (
+      <Button onClick={() => setIsFirstOpen(true)}>Render Red Layer</Button>
+      {isFirstOpen ? (
         <Layer>
           <BlockComponent color="rgba(255, 190, 190, 0.86)">
-            <Button onClick={() => setIsBlueOpen(false)}>Close</Button>
+            <Button onClick={() => setIsFirstOpen(false)}>Close</Button>
           </BlockComponent>
         </Layer>
       ) : null}
       <Block padding="5px" />
-      <Button onClick={() => setIsPinkOpen(true)}>Render Orange Layer</Button>
-      {isPinkOpen ? (
+      <Button onClick={() => setIsSecondOpen(true)}>Render Orange Layer</Button>
+      {isSecondOpen ? (
         <Layer>
           <BlockComponent color="rgba(255, 212, 135, 0.86)" offset="48%">
-            <Button onClick={() => setIsPinkOpen(false)}>Close</Button>
+            <Button onClick={() => setIsSecondOpen(false)}>Close</Button>
           </BlockComponent>
         </Layer>
       ) : null}

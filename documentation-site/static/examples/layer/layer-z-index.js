@@ -4,8 +4,6 @@ import {Layer, LayersManager} from 'baseui/layer';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 
-const layerRef = React.createRef();
-
 function BlockComponent(props) {
   return (
     <Block
@@ -31,8 +29,8 @@ function BlockComponent(props) {
   );
 }
 export default () => {
-  const [isBlueOpen, setIsBlueOpen] = React.useState(false);
-  const [isPinkOpen, setIsPinkOpen] = React.useState(false);
+  const [isFirstOpen, setIsFirstOpen] = React.useState(false);
+  const [isSecondOpen, setIsSecondOpen] = React.useState(false);
   return (
     // WARNING: DO NOT COPY THIS EXAMPLE AS IS. THIS EXAMPLE HAS LOCAL LayersManager
     // JUST FOR DOCUMENTATION EXAMPLE PRESENTATIONAL PURPOSE.
@@ -67,20 +65,24 @@ export default () => {
         >
           Element with z-index set
         </Block>
-        <Button onClick={() => setIsBlueOpen(true)}>Render Yellow Layer</Button>
-        {isBlueOpen ? (
+        <Button onClick={() => setIsFirstOpen(true)}>
+          Render Yellow Layer
+        </Button>
+        {isFirstOpen ? (
           <Layer>
             <BlockComponent color="rgba(255, 255, 190, 0.86)">
-              <Button onClick={() => setIsBlueOpen(false)}>Close</Button>
+              <Button onClick={() => setIsFirstOpen(false)}>Close</Button>
             </BlockComponent>
           </Layer>
         ) : null}
         <Block padding="5px" />
-        <Button onClick={() => setIsPinkOpen(true)}>Render Green Layer</Button>
-        {isPinkOpen ? (
+        <Button onClick={() => setIsSecondOpen(true)}>
+          Render Green Layer
+        </Button>
+        {isSecondOpen ? (
           <Layer>
             <BlockComponent color="rgba(190, 255, 190, 0.86)" offset="52%">
-              <Button onClick={() => setIsPinkOpen(false)}>Close</Button>
+              <Button onClick={() => setIsSecondOpen(false)}>Close</Button>
             </BlockComponent>
           </Layer>
         ) : null}
