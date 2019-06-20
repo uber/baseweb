@@ -86,7 +86,7 @@ Doing so saves from needing to import the custom theme type around. See below fo
  });
 
 -const Second = withStyle<PropsT>('div', props => {
-+const Second = themedWithStyle<PropsT>('div', props => {
++const Second = themedWithStyle<PropsT>(First, props => {
    return {
      color: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
    };
