@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document */
 import * as React from 'react';
+import FocusTrap from 'focus-trap-react';
 
 import {LocaleContext} from '../locale/index.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {Layer} from '../layer/index.js';
 import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
-import {ownerDocument} from './utils.js';
 import {
   Root as StyledRoot,
   Backdrop as StyledBackdrop,
@@ -143,10 +143,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   didOpen() {
-    // Store last focused item (we'll return focus after closing for a11y)
-    this.captureLastFocus();
-    this.autoFocus();
-
     // Sometimes scroll starts past zero, possibly due to animation
     // Reset scroll to 0 (other libraries do this as well)
     const rootRef = this.getRef('Root').current;
@@ -170,7 +166,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.removeDomEvents();
     this.resetMountNodeScroll();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
-    this.restoreLastFocus();
   }
 
   triggerClose(source?: CloseSourceT) {
@@ -181,31 +176,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       });
     }
   }
-
-  captureLastFocus = () => {
-    this.lastFocus = ownerDocument(this.getMountNode()).activeElement;
-  };
-
-  restoreLastFocus = () => {
-    if (this.lastFocus) {
-      // Not all elements in IE11 can focus
-      if (this.lastFocus.focus) {
-        this.lastFocus.focus();
-      }
-      this.lastFocus = null;
-    }
-  };
-
-  autoFocus = () => {
-    if (!this.props.autofocus) {
-      return;
-    }
-    const dialog = this.getRef('Dialog').current;
-    if (!dialog) {
-      return;
-    }
-    dialog.focus();
-  };
 
   animateOutComplete = () => {
     this.setState({
@@ -271,48 +241,56 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <Root
-            data-baseweb="modal"
-            ref={this.getRef('Root')}
-            {...sharedProps}
-            {...getOverrideProps(RootOverride)}
+          <FocusTrap
+            focusTrapOptions={{
+              [this.props.autofocus ? 'fallbackFocus' : 'initialFocus']: () => {
+                return this.getRef('Dialog').current;
+              },
+            }}
           >
-            <Backdrop
-              onClick={this.onBackdropClick}
+            <Root
+              data-baseweb="modal"
+              ref={this.getRef('Root')}
               {...sharedProps}
-              {...getOverrideProps(BackdropOverride)}
-            />
-            <DialogContainer
-              {...sharedProps}
-              {...getOverrideProps(DialogContainerOverride)}
+              {...getOverrideProps(RootOverride)}
             >
-              <Dialog
-                tabIndex={-1}
-                aria-modal={
-                  // aria-modal replaces the need to apply aria-hidden="true" to all other page
-                  // content underneath the modal.
-                  // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
-                  'true'
-                }
-                role={role}
-                ref={this.getRef('Dialog')}
+              <Backdrop
+                onClick={this.onBackdropClick}
                 {...sharedProps}
-                {...getOverrideProps(DialogOverride)}
+                {...getOverrideProps(BackdropOverride)}
+              />
+              <DialogContainer
+                {...sharedProps}
+                {...getOverrideProps(DialogContainerOverride)}
               >
-                {closeable ? (
-                  <Close
-                    aria-label={locale.modal.close}
-                    onClick={this.onCloseClick}
-                    {...sharedProps}
-                    {...getOverrideProps(CloseOverride)}
-                  >
-                    <CloseIcon />
-                  </Close>
-                ) : null}
-                {children}
-              </Dialog>
-            </DialogContainer>
-          </Root>
+                <Dialog
+                  tabIndex={-1}
+                  aria-modal={
+                    // aria-modal replaces the need to apply aria-hidden="true" to all other page
+                    // content underneath the modal.
+                    // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
+                    'true'
+                  }
+                  role={role}
+                  ref={this.getRef('Dialog')}
+                  {...sharedProps}
+                  {...getOverrideProps(DialogOverride)}
+                >
+                  {children}
+                  {closeable ? (
+                    <Close
+                      aria-label={locale.modal.close}
+                      onClick={this.onCloseClick}
+                      {...sharedProps}
+                      {...getOverrideProps(CloseOverride)}
+                    >
+                      <CloseIcon />
+                    </Close>
+                  ) : null}
+                </Dialog>
+              </DialogContainer>
+            </Root>
+          </FocusTrap>
         )}
       </LocaleContext.Consumer>
     );
@@ -327,14 +305,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (!this.props.isOpen && !this.state.isVisible) {
       return null;
     }
-    return (
-      <Layer
-        mountNode={this.props.mountNode}
-        {...(this.props.isOpen ? {onMount: this.autoFocus} : {})}
-      >
-        {this.renderModal()}
-      </Layer>
-    );
+    return <Layer mountNode={this.props.mountNode}>{this.renderModal()}</Layer>;
   }
 }
 

@@ -32,9 +32,10 @@ export type ElementRefT = {current: React.ElementRef<'div'> | null};
 export type ModalPropsT = {
   /** Sets whether the Modal should be displayed by easing in and out */
   animate: boolean,
-  /** Set to false if modal shouldn't autofocus on its content.
-   *  Moving focus into a newly opened modal is important for accessibility purposes.
-   *  If you set this to false, you should manually trigger focus on another element in the modal. */
+  /** If true, focus will shift to the first interactive element within the modal.
+   * If false, the modal container itself will receive focus.
+   * Moving focus into a newly opened modal is important for accessibility purposes, so please be careful!
+   */
   autofocus: boolean,
   /** Modal content. The children-as-function API may be preferable
    * for performance reasons (wont render until opened) */

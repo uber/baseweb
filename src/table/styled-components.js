@@ -25,7 +25,7 @@ const StyledTableElement = styled<{}>('div', ({$theme}) => {
 });
 
 export const StyledTable = (props: *) => (
-  <StyledTableElement role="grid" {...props} />
+  <StyledTableElement data-baseweb="table-custom" role="grid" {...props} />
 );
 StyledTable.__STYLETRON__ = StyledTableElement.__STYLETRON__;
 

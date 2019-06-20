@@ -60,6 +60,7 @@ const ExpandableCellHead = withStyle(StyledHeadCell, {
   paddingLeft: 0,
   paddingRight: 0,
   minWidth: '180px',
+  maxWidth: '180px',
 });
 
 const ExpandableCell = withStyle(StyledCell, {
@@ -68,6 +69,7 @@ const ExpandableCell = withStyle(StyledCell, {
   paddingLeft: 0,
   paddingRight: 0,
   minWidth: '180px',
+  maxWidth: '180px',
 });
 
 const panelOverrides = {
@@ -80,9 +82,11 @@ const panelOverrides = {
         : '1px solid transparent',
       paddingTop: sizing.scale300,
       paddingBottom: sizing.scale300,
-      paddingLeft: sizing.scale1000,
+      paddingLeft: sizing.scale500,
       paddingRight: sizing.scale600,
       outline: 'none',
+      flexDirection: 'row-reverse',
+      justifyContent: 'flex-end',
       ':hover': {
         color: 'inherit',
       },
@@ -99,10 +103,9 @@ const panelOverrides = {
     }),
   },
   ToggleIcon: {
-    style: ({$theme: {colors}}) => ({
+    style: ({$theme: {colors, sizing}}) => ({
       color: colors.mono600,
-      position: 'absolute',
-      left: '12px',
+      marginRight: sizing.scale500,
     }),
   },
 };

@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "7.2.1",
+  "version": "7.5.0",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -145,8 +145,8 @@
   },
   "dependencies": {
     "card-validator": "^6.1.0",
-    "date-fns": "2.0.0-alpha.34",
-    "focus-trap": "^5.0.0",
+    "date-fns": "2.0.0-alpha.35",
+    "focus-trap-react": "^6.0.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
     "polished": "^3.2.0",
