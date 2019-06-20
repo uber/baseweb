@@ -1,15 +1,21 @@
 /* global document */
 import * as React from 'react';
-import {Layer, LayersManager} from 'baseui/layer';
+import {
+  Layer,
+  LayersManager,
+  TetherBehavior,
+  TETHER_PLACEMENT,
+} from 'baseui/layer';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 
 function BlockComponent(props) {
   return (
     <Block
-      position="fixed"
-      top={props.offset || '50%'}
-      left={props.offset || '50%'}
+      ref={props.forwardedRef}
+      position="absolute"
+      top={`${props.offset.top}px` || '50%'}
+      left={`${props.offset.left}px` || '50%'}
       width="200px"
       paddingTop="20px"
       paddingBottom="20px"
@@ -28,65 +34,128 @@ function BlockComponent(props) {
     </Block>
   );
 }
-export default () => {
-  const [isFirstOpen, setIsFirstOpen] = React.useState(false);
-  const [isSecondOpen, setIsSecondOpen] = React.useState(false);
-  return (
-    // WARNING: DO NOT COPY THIS EXAMPLE AS IS. THIS EXAMPLE HAS LOCAL LayersManager
-    // JUST FOR DOCUMENTATION EXAMPLE PRESENTATIONAL PURPOSE.
-    // Do not wrap a single component or a part of an application with
-    // LayersManager that has zIndex set to a value other than 'auto' since it
-    // will make all the Layers within its context be on top of other Layers
-    // outside of the local LayersManager (therefore layers provider) added later.
-    // Pass the `zIndex` value to the LayersManager added at the root of your application.
-    <LayersManager zIndex={2}>
-      <Block data-test="test" position="relative">
-        <Block
-          position="absolute"
-          top={'50%'}
-          left={'50%'}
-          height="60px"
-          marginTop="-30px"
-          display="flex"
-          alignItems="center"
-          paddingLeft="20px"
-          paddingRight="20px"
-          backgroundColor="#000000"
-          color="#ffffff"
-          overrides={{
-            Block: {
-              style: {
-                boxSizing: 'border-box',
-                zIndex: 1,
-                textAlign: 'center',
+export default class LayerWithZIndex extends React.Component {
+  anchorRef1 = React.createRef();
+  popperRef1 = React.createRef();
+  anchorRef2 = React.createRef();
+  popperRef2 = React.createRef();
+
+  state = {
+    isFirstOpen: false,
+    isSecondOpen: false,
+    isFirstMounted: false,
+    isSecondMounted: false,
+    offset1: {top: 0, left: 0},
+    offset2: {top: 0, left: 0},
+  };
+
+  onPopperUpdate = (order, normalizedOffsets) => {
+    this.setState({
+      [`offset${order}`]: normalizedOffsets.popper,
+    });
+  };
+
+  render() {
+    return (
+      // WARNING: DO NOT COPY THIS EXAMPLE AS IS. THIS EXAMPLE HAS LOCAL LayersManager
+      // JUST FOR DOCUMENTATION EXAMPLE PRESENTATIONAL PURPOSE.
+      // Do not wrap a single component or a part of an application with
+      // LayersManager that has zIndex set to a value other than 'auto' since it
+      // will make all the Layers within its context be on top of other Layers
+      // outside of the local LayersManager (therefore layers provider) added later.
+      // Pass the `zIndex` value to the LayersManager added at the root of your application.
+      <LayersManager zIndex={2}>
+        <Block display="flex" justifyContent="flex-start" alignItems="center">
+          <Block>
+            <Button
+              ref={this.anchorRef1}
+              onClick={() => this.setState({isFirstOpen: true})}
+            >
+              Render Yellow Layer
+            </Button>
+            {this.state.isFirstOpen ? (
+              <Layer
+                onMount={() => this.setState({setIsFirstMounted: true})}
+                onUnmount={() => this.setState({setIsFirstMounted: false})}
+              >
+                <TetherBehavior
+                  anchorRef={this.anchorRef1.current}
+                  popperRef={this.popperRef1.current}
+                  onPopperUpdate={(...args) => this.onPopperUpdate(1, ...args)}
+                  placement={TETHER_PLACEMENT.right}
+                >
+                  <BlockComponent
+                    forwardedRef={this.popperRef1}
+                    offset={this.state.offset1}
+                    color="rgba(255, 255, 190, 0.86)"
+                  >
+                    <Button onClick={() => this.setState({isFirstOpen: false})}>
+                      Close
+                    </Button>
+                  </BlockComponent>
+                </TetherBehavior>
+              </Layer>
+            ) : null}
+            <Block padding="5px" />
+            <Button
+              ref={this.anchorRef2}
+              onClick={() => this.setState({isSecondOpen: true})}
+            >
+              Render Green Layer
+            </Button>
+            {this.state.isSecondOpen ? (
+              <Layer
+                onMount={() => this.setState({isSecondMounted: true})}
+                onUnmount={() => this.setState({isSecondMounted: false})}
+              >
+                <TetherBehavior
+                  anchorRef={this.anchorRef2.current}
+                  popperRef={this.popperRef2.current}
+                  onPopperUpdate={(...args) => this.onPopperUpdate(2, ...args)}
+                  placement={TETHER_PLACEMENT.right}
+                >
+                  <BlockComponent
+                    forwardedRef={this.popperRef2}
+                    offset={this.state.offset2}
+                    color="rgba(190, 255, 190, 0.86)"
+                  >
+                    <Button
+                      onClick={() => this.setState({isSecondOpen: false})}
+                    >
+                      Close
+                    </Button>
+                  </BlockComponent>
+                </TetherBehavior>
+              </Layer>
+            ) : null}
+          </Block>
+          <Block
+            position="relative"
+            boxSizing="border-box"
+            width="200px"
+            marginLeft="50px"
+            display="flex"
+            alignItems="center"
+            paddingLeft="20px"
+            paddingRight="20px"
+            paddingTop="20px"
+            paddingBottom="20px"
+            backgroundColor="#000000"
+            color="#ffffff"
+            overrides={{
+              Block: {
+                style: {
+                  boxSizing: 'border-box',
+                  zIndex: 1,
+                  textAlign: 'center',
+                },
               },
-            },
-          }}
-        >
-          Element with z-index set
+            }}
+          >
+            Element with z-index set
+          </Block>
         </Block>
-        <Button onClick={() => setIsFirstOpen(true)}>
-          Render Yellow Layer
-        </Button>
-        {isFirstOpen ? (
-          <Layer>
-            <BlockComponent color="rgba(255, 255, 190, 0.86)">
-              <Button onClick={() => setIsFirstOpen(false)}>Close</Button>
-            </BlockComponent>
-          </Layer>
-        ) : null}
-        <Block padding="5px" />
-        <Button onClick={() => setIsSecondOpen(true)}>
-          Render Green Layer
-        </Button>
-        {isSecondOpen ? (
-          <Layer>
-            <BlockComponent color="rgba(190, 255, 190, 0.86)" offset="52%">
-              <Button onClick={() => setIsSecondOpen(false)}>Close</Button>
-            </BlockComponent>
-          </Layer>
-        ) : null}
-      </Block>
-    </LayersManager>
-  );
-};
+      </LayersManager>
+    );
+  }
+}

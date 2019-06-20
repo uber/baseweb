@@ -13,12 +13,12 @@ import {TETHER_PLACEMENT} from './constants.js';
 export type LayersManagerPropsT = {
   children: React.Node,
   // z-index to be set for all the layers.
-  zIndex?: ?number,
+  zIndex?: number,
 };
 
 export type LayersContextT = {
   host: ?HTMLElement,
-  zIndex?: ?number,
+  zIndex?: number,
 };
 
 /** Layer */
@@ -42,7 +42,7 @@ export type LayerPropsT = {
   onUnmount?: () => mixed,
   /** A value of z-index to be set on the layer.
    The zIndex value comes from the layers context provider. */
-  zIndex?: ?number,
+  zIndex?: number,
 };
 
 export type LayerComponentPropsT = {
@@ -52,7 +52,7 @@ export type LayerComponentPropsT = {
   mountNode?: HTMLElement,
   onMount?: () => mixed,
   onUnmount?: () => mixed,
-  zIndex?: ?number,
+  zIndex?: number,
 };
 
 export type LayerStateT = {
