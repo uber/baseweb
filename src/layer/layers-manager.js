@@ -24,10 +24,29 @@ export default class LayersManager extends React.Component<
 
   render() {
     return (
-      <Provider value={{host: this.host.current}}>
-        <div>{this.props.children}</div>
-        <div ref={this.host} />
-      </Provider>
+      <Consumer>
+        {({host}) => {
+          if (__DEV__) {
+            if (host !== undefined) {
+              // eslint-disable-next-line no-console
+              console.warn(
+                'There is a LayersManager already exists in your application. It is not recommended to have more than one LayersManager in an application.',
+              );
+            }
+          }
+          return (
+            <Provider
+              value={{
+                host: host || this.host.current,
+                zIndex: this.props.zIndex,
+              }}
+            >
+              <div>{this.props.children}</div>
+              <div ref={this.host} />
+            </Provider>
+          );
+        }}
+      </Consumer>
     );
   }
 }
