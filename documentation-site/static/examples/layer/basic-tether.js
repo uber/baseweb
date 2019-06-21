@@ -40,10 +40,10 @@ export default class BasicTether extends React.Component {
   popperRef2 = React.createRef();
 
   state = {
-    isBlueOpen: false,
-    isPinkOpen: false,
-    isBlueMounted: false,
-    isPinkMounted: false,
+    isFirstOpen: false,
+    isSecondOpen: false,
+    isFirstMounted: false,
+    isSecondMounted: false,
     offset1: {top: 0, left: 0},
     offset2: {top: 0, left: 0},
   };
@@ -59,14 +59,14 @@ export default class BasicTether extends React.Component {
       <>
         <Button
           ref={this.anchorRef1}
-          onClick={() => this.setState({isBlueOpen: true})}
+          onClick={() => this.setState({isFirstOpen: true})}
         >
           Render Blue Layer
         </Button>
-        {this.state.isBlueOpen ? (
+        {this.state.isFirstOpen ? (
           <Layer
-            onMount={() => this.setState({isBlueMounted: true})}
-            onUnmount={() => this.setState({isBlueMounted: false})}
+            onMount={() => this.setState({isFirstMounted: true})}
+            onUnmount={() => this.setState({isFirstMounted: false})}
           >
             <TetherBehavior
               anchorRef={this.anchorRef1.current}
@@ -79,7 +79,7 @@ export default class BasicTether extends React.Component {
                 offset={this.state.offset1}
                 color="rgba(0, 190, 255, 0.86)"
               >
-                <Button onClick={() => this.setState({isBlueOpen: false})}>
+                <Button onClick={() => this.setState({isFirstOpen: false})}>
                   Close
                 </Button>
               </BlockWrapper>
@@ -89,14 +89,14 @@ export default class BasicTether extends React.Component {
         <Block padding="5px" />
         <Button
           ref={this.anchorRef2}
-          onClick={() => this.setState({isPinkOpen: true})}
+          onClick={() => this.setState({isSecondOpen: true})}
         >
-          Render Pink Layer
+          Render Purple Layer
         </Button>
-        {this.state.isPinkOpen ? (
+        {this.state.isSecondOpen ? (
           <Layer
-            onMount={() => this.setState({isPinkMounted: true})}
-            onUnmount={() => this.setState({isPinkMounted: false})}
+            onMount={() => this.setState({isSecondMounted: true})}
+            onUnmount={() => this.setState({isSecondMounted: false})}
           >
             <TetherBehavior
               anchorRef={this.anchorRef2.current}
@@ -107,9 +107,9 @@ export default class BasicTether extends React.Component {
               <BlockWrapper
                 forwardedRef={this.popperRef2}
                 offset={this.state.offset2}
-                color="rgba(255, 180, 200, 0.86)"
+                color="rgba(190, 190, 255, 0.86)"
               >
-                <Button onClick={() => this.setState({isPinkOpen: false})}>
+                <Button onClick={() => this.setState({isSecondOpen: false})}>
                   Close
                 </Button>
               </BlockWrapper>
