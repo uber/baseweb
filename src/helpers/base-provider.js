@@ -11,9 +11,9 @@ import {ThemeProvider} from '../styles/index.js';
 import type {BaseProviderPropsT} from './types.js';
 
 const BaseProvider = (props: BaseProviderPropsT) => {
-  const {children, theme} = props;
+  const {children, theme, zIndex} = props;
   return (
-    <LayersManager>
+    <LayersManager zIndex={zIndex}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </LayersManager>
   );
