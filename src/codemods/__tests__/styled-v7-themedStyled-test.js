@@ -14,36 +14,36 @@ const defineTest = require('jscodeshift/dist/testUtils').defineTest;
 describe('styled-flowfixme', () => {
   defineTest(
     __dirname,
-    'styled-v7-themedStyled',
+    'styled-v8-themedStyled',
     null,
-    'styled-v7-themedStyled-component',
+    'styled-v8-themedStyled-component',
   );
 
   defineTest(
     __dirname,
-    'styled-v7-themedStyled',
+    'styled-v8-themedStyled',
     null,
-    'styled-v7-themedStyled-element',
+    'styled-v8-themedStyled-element',
   );
 
   defineTest(
     __dirname,
-    'styled-v7-themedStyled',
+    'styled-v8-themedStyled',
     null,
-    'styled-v7-themedStyled-multi-diff',
+    'styled-v8-themedStyled-multi-diff',
   );
 
   defineTest(
     __dirname,
-    'styled-v7-themedStyled',
+    'styled-v8-themedStyled',
     null,
-    'styled-v7-themedStyled-multi-dup',
+    'styled-v8-themedStyled-multi-dup',
   );
 
   defineTest(
     __dirname,
-    'styled-v7-themedStyled',
+    'styled-v8-themedStyled',
     null,
-    'styled-v7-themedStyled-object',
+    'styled-v8-themedStyled-object',
   );
 });
