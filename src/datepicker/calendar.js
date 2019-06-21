@@ -143,7 +143,6 @@ export default class Calendar extends React.Component<
   };
 
   handleMonthChange = (date: Date) => {
-    this.setHighlightedDate(date);
     if (this.props.onMonthChange) {
       this.props.onMonthChange({date});
     }
