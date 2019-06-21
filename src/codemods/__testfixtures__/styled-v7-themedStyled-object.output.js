@@ -1,5 +1,5 @@
 // @flow
-import {styled, createThemedStyled} from 'baseui';
+import { styled, createThemedStyled } from 'baseui';
 
 const themedStyled1 = createThemedStyled<{color: string}>();
 

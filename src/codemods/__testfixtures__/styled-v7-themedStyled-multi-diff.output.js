@@ -1,5 +1,5 @@
 // @flow
-import {styled, createThemedStyled} from 'baseui';
+import { styled, createThemedStyled } from 'baseui';
 
 type CustomTheme1 = {color: string};
 type CustomTheme2 = {size: string};
