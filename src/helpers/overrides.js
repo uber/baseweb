@@ -9,7 +9,10 @@ import * as React from 'react';
 import {isValidElementType} from 'react-is';
 import deepMerge from '../utils/deep-merge.js';
 
-export type StyleOverrideT = {} | (({}) => ?{});
+export type StyleOverrideFunctionT = ({}) => ?{};
+export type StyleOverrideObjectT = {};
+
+export type StyleOverrideT = StyleOverrideObjectT | StyleOverrideFunctionT;
 
 export type OverrideObjectT<T> = {|
   component?: ?React.ComponentType<T & {children: React.Node}>,
