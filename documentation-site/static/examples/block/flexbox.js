@@ -26,7 +26,7 @@ export default () => {
   return (
     <Block
       display="flex"
-      direction="column"
+      flexDirection="column"
       $style={{border: 'grey solid 2px'}}
       flexWrap
     >
