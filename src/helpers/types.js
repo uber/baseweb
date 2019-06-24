@@ -14,4 +14,6 @@ export type BaseProviderPropsT = {
   children: ?React.Node,
   /** The base theme to be used in the application. */
   theme: ThemeT,
+  /** A value of z-index to be set on the layers. */
+  zIndex?: number,
 };

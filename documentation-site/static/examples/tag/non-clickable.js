@@ -7,23 +7,23 @@ export default () => (
   <>
     {variants.map((variant, index) => (
       <React.Fragment key={index}>
-        <Tag closeable={false} variant={variant} kind="neutral">
+        <Tag variant={variant} kind="neutral">
           neutral
         </Tag>
 
-        <Tag closeable={false} variant={variant} kind="primary">
+        <Tag variant={variant} kind="primary">
           primary
         </Tag>
 
-        <Tag closeable={false} variant={variant} kind="positive">
+        <Tag variant={variant} kind="positive">
           positive
         </Tag>
 
-        <Tag closeable={false} variant={variant} kind="warning">
+        <Tag variant={variant} kind="warning">
           warning
         </Tag>
 
-        <Tag closeable={false} variant={variant} kind="negative">
+        <Tag variant={variant} kind="negative">
           negative
         </Tag>
         <br />
