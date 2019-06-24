@@ -39,25 +39,73 @@ function findStyledComponentsWithTheme(j, root) {
   });
 }
 
-function visitStyledCall(j, path, index) {
-  const ThemeT = path.node.typeArguments.params.pop();
-  const nextCalleeName = `themedStyled${index + 1}`;
-  path.node.callee.name = nextCalleeName;
+class ThemeCache {
+  count = 0;
+  visitedGenericTypes = {};
 
-  const createThemedStyled = j.variableDeclaration('const', [
-    j.variableDeclarator(
-      j.identifier(nextCalleeName),
-      j.callExpression(j.identifier('createThemedStyled'), []),
-    ),
-  ]);
+  insert(node) {
+    if (node.type === 'GenericTypeAnnotation') {
+      this.count++;
+      this.visitedGenericTypes[node.id.name] = {node, position: this.count};
+    } else {
+      this.count++;
+    }
+  }
 
-  createThemedStyled.declarations[0].init.callee.typeAnnotation = j.typeParameterInstantiation(
-    [ThemeT],
-  );
+  read(node) {
+    if (node.type === 'GenericTypeAnnotation') {
+      const value = this.visitedGenericTypes[node.id.name];
+      return value ? value.node : null;
+    } else {
+      return null;
+    }
+  }
 
-  j(path)
-    .closest(j.VariableDeclaration)
-    .insertBefore(createThemedStyled);
+  position(node) {
+    if (
+      node.type === 'GenericTypeAnnotation' &&
+      this.visitedGenericTypes[node.id.name]
+    ) {
+      return this.visitedGenericTypes[node.id.name].position;
+    } else {
+      return this.count;
+    }
+  }
+}
+
+function buildThemedStyledXName(position) {
+  if (position <= 1) {
+    return 'themedStyled';
+  }
+  return `themedStyled${position}`;
+}
+
+function visitStyledCall(j, path, themes) {
+  const theme = path.node.typeArguments.params.pop();
+
+  if (themes.read(theme)) {
+    path.node.callee.name = buildThemedStyledXName(themes.position(theme));
+  } else {
+    themes.insert(theme);
+
+    const nextCalleeName = buildThemedStyledXName(themes.position(theme));
+    path.node.callee.name = nextCalleeName;
+
+    const createThemedStyled = j.variableDeclaration('const', [
+      j.variableDeclarator(
+        j.identifier(nextCalleeName),
+        j.callExpression(j.identifier('createThemedStyled'), []),
+      ),
+    ]);
+
+    createThemedStyled.declarations[0].init.callee.typeAnnotation = j.typeParameterInstantiation(
+      [themes.read(theme) || theme],
+    );
+
+    j(path)
+      .closest(j.VariableDeclaration)
+      .insertBefore(createThemedStyled);
+  }
 }
 
 module.exports = function(file, api, options) {
@@ -65,11 +113,12 @@ module.exports = function(file, api, options) {
   const root = j(file.source);
 
   if (containsFlowComment(j, root)) {
+    const themes = new ThemeCache();
     const styledElements = findStyledElementsWithTheme(j, root);
-    styledElements.forEach((path, index) => visitStyledCall(j, path, index));
+    styledElements.forEach(path => visitStyledCall(j, path, themes));
 
     const styledComponents = findStyledComponentsWithTheme(j, root);
-    styledComponents.forEach((path, index) => visitStyledCall(j, path, index));
+    styledComponents.forEach(path => visitStyledCall(j, path, themes));
 
     if (styledElements.length || styledComponents.length) {
       const baseImport = root.find(j.ImportDeclaration, {

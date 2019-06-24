@@ -1,8 +1,8 @@
 // @flow
 import { styled, createThemedStyled } from 'baseui';
 
-const themedStyled1 = createThemedStyled<{color: string}>();
+const themedStyled = createThemedStyled<{color: string}>();
 
-const Component = themedStyled1<{}>('div', props => {
+const Component = themedStyled<{}>('div', props => {
   return {color: props.$theme.color};
 });

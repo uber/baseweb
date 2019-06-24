@@ -30,6 +30,13 @@ describe('styled-flowfixme', () => {
     __dirname,
     'styled-v8-themedStyled',
     null,
+    'styled-v8-themedStyled-mixed',
+  );
+
+  defineTest(
+    __dirname,
+    'styled-v8-themedStyled',
+    null,
     'styled-v8-themedStyled-multi-diff',
   );
 
