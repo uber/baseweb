@@ -6,7 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {createStyled, withStyle as styletronWithStyle} from 'styletron-react';
+import {
+  createStyled,
+  withStyle as styletronWithStyle,
+  useStyletron as styletronUseStyletron,
+} from 'styletron-react';
 import {driver, getInitialStyle} from 'styletron-standard';
 import type {StyleObject} from 'styletron-standard';
 import type {ThemeT} from './types.js';
@@ -80,3 +84,15 @@ export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
 }
 
 export const withStyle = createThemedWithStyle<ThemeT>();
+
+type UseStyletronFn<Theme> = () => [(StyleObject) => string, Theme];
+
+export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
+  return function() {
+    const theme = ((React.useContext(ThemeContext): any): Theme);
+    const [css] = styletronUseStyletron();
+    return [css, theme];
+  };
+}
+
+export const useStyletron = createThemedUseStyletron<ThemeT>();

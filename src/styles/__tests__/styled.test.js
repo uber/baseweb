@@ -14,6 +14,8 @@ import {
   createThemedStyled,
   withStyle,
   createThemedWithStyle,
+  useStyletron,
+  createThemedUseStyletron,
 } from '../styled.js';
 import {
   withStyletronProvider,
@@ -247,5 +249,65 @@ describe('themedWithStyle flow', () => {
       console.log(props.world);
       return {color: 'green'};
     });
+  });
+});
+
+describe('useStyletron flow', () => {
+  test('it provides flow error if argument is not a StyleObject', () => {
+    function A() {
+      const [css] = useStyletron();
+      // $FlowFixMe
+      return <div className={css(false)}>hello</div>;
+    }
+  });
+
+  test('it provides flow error if accessing property not defined in default theme type', () => {
+    function A() {
+      const [css, theme] = useStyletron();
+      return (
+        <div
+          className={css({
+            color: theme.colors.primary400,
+            // $FlowFixMe
+            backgroundColor: theme.colors.primary9000,
+          })}
+        >
+          hello
+        </div>
+      );
+    }
+  });
+});
+
+describe('themedUseStyletron flow', () => {
+  test('it provides flow error if argument is not a StyleObject', () => {
+    type T = {colors: {custom400: string}};
+    const themedUseStyletron = createThemedUseStyletron<T>();
+
+    function A() {
+      const [css] = themedUseStyletron();
+      // $FlowFixMe
+      return <div className={css(false)}>hello</div>;
+    }
+  });
+
+  test('it provides flow error if accessing property not defined in default theme type', () => {
+    function A() {
+      type T = {colors: {custom400: string}};
+      const themedUseStyletron = createThemedUseStyletron<T>();
+
+      const [css, theme] = themedUseStyletron();
+      return (
+        <div
+          className={css({
+            color: theme.colors.custom400,
+            // $FlowFixMe
+            backgroundColor: theme.colors.custom9000,
+          })}
+        >
+          hello
+        </div>
+      );
+    }
   });
 });
