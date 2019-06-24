@@ -7,16 +7,16 @@ LICENSE file in the root directory of this source tree.
 /* global module */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import React from 'react';
 import {storiesOf} from '@storybook/react';
 
 import scenarios from '../src/**/*.scenario.js';
 
-scenarios.reduce(
-  (stories, scenario) => stories.add(scenario.name, scenario.component),
-  storiesOf('baseui', module),
-);
+const light = storiesOf('baseui', module);
+const dark = storiesOf('baseui-dark', module);
 
-scenarios.reduce(
-  (stories, scenario) => stories.add(scenario.name, scenario.component),
-  storiesOf('baseui-dark', module),
-);
+scenarios.forEach(scenario => {
+  const Component = scenario.component;
+  light.add(scenario.name, () => <Component />);
+  dark.add(scenario.name, () => <Component />);
+});
