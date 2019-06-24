@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 export {
   createThemedStyled,
   createThemedWithStyle,
+  createThemedUseStyletron,
   styled,
   withStyle,
+  useStyletron,
 } from './styled.js';
 export {hexToRgb} from './util.js';
 export {default as ThemeProvider} from './theme-provider.js';

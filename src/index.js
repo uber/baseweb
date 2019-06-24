@@ -8,8 +8,10 @@ LICENSE file in the root directory of this source tree.
 export {
   styled,
   withStyle,
+  useStyletron,
   createThemedStyled,
   createThemedWithStyle,
+  createThemedUseStyletron,
   ThemeProvider,
 } from './styles/index.js';
 import LocaleProvider from './locale/index.js';
