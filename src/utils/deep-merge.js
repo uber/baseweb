@@ -18,7 +18,7 @@ export default function deepMerge(
   for (let i = 0; i < len; i++) {
     obj = sources[i] || {};
     for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      if (typeof obj[key] !== undefined) {
         value = obj[key];
         if (isCloneable(value)) {
           target[key] = deepMerge(target[key] || {}, value);
