@@ -45,45 +45,19 @@ import {styled} from 'baseui';
 
 ### Custom theme
 
-If your application has a custom theme, to properly type check your theme values we will pass the
-custom theme type to baseui's `createThemedStyled` function. This will return you a styled function
-with your custom theme applied. Doing so saves from needing to import the custom theme type around.
-Similar to this, it also works with extending styletron components using `withStyle`. Import
-`createThemedWithStyle`, pass your theme type and it returns a `withStyle` function with your the type
-applied. See below for an example.
+If your application has a custom theme, to properly type check in styled functions, you'll need to pass
+your theme type as a generic.
 
 ```diff
- import {
--  styled,
--  withStyle,
-+  createThemedStyled,
-+  createThemedWithStyle
- } from 'baseui';
+import {styled} from 'baseui';
 
- type CustomThemeT = {myBlue: string, myRed: string};
-
-// you'll likely want to import these functions from a relative path in your application
-+const themedStyled = createThemedStyled<CustomThemeT>();
-+const themedWithStyle = createThemedWithStyle<CustomThemeT>();
-
- type PropsT = {
-   $active: boolean
--  $theme: CustomThemeT
- };
-
--const First = styled<PropsT>('div', props => {
-+const First = themedStyled<PropsT>('div', props => {
+type PropsT = {$active: boolean};
+- const MyStyledComponent = styled<PropsT>('div', props => {
++ const MyStyledComponent = styled<PropsT, MyCustomThemeT>('div', props => {
    return {
      backgroundColor: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
    };
- });
-
--const Second = withStyle<PropsT>(First, props => {
-+const Second = themedWithStyle<PropsT>(First, props => {
-   return {
-     color: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
-   };
- });
+  });
 ```
 
 ### Better type checks
@@ -144,7 +118,7 @@ code. It's a contrived example, but should illustrate how some styletron-compone
 
 ```diff
 import {styled} from 'baseui';
-+import {withStyle} from 'baseui';
++import {withStyle} from 'styletron-react';
 
 const InitialComponent = styled('div', props => {
   return {
