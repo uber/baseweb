@@ -79,7 +79,15 @@ describe('Select component', function() {
           {id: 'AntiqueWhite', color: '#FAEBD7'},
         ]}
         closeOnSelect={false}
-        onChange={({option}) => option.color}
+        onChange={({option}) => {
+          /* eslint-disable no-console */
+          // $FlowFixMe
+          console.info(option.color);
+          if (option.color) {
+            console.info(option.color);
+          }
+          /* eslint-enable no-console */
+        }}
         labelKey="id"
         multi
         valueKey="color"
