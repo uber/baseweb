@@ -60,7 +60,7 @@ describe('Icon', () => {
       icons: {Alert: IconMock},
     });
 
-    const wrapper = mount(
+    mount(
       <ThemeProvider theme={customTheme}>
         <Icons.Alert $size="12px" size="12px" />
       </ThemeProvider>,
