@@ -8,8 +8,17 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import {styled} from '../styles/index.js';
 import {Consumer} from './layers-manager.js';
 import type {LayerPropsT, LayerComponentPropsT, LayerStateT} from './types.js';
+
+const Container = styled('div', ({$zIndex}) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  zIndex: $zIndex || null,
+}));
 
 class LayerComponent extends React.Component<
   LayerComponentPropsT,
@@ -72,11 +81,17 @@ class LayerComponent extends React.Component<
 
   render() {
     const {container} = this.state;
-    const {children, mountNode} = this.props;
+    const {children, mountNode, zIndex} = this.props;
+    // Only adding an additional wrapper when a layer has z-index to be set
+    const childrenToRender = zIndex ? (
+      <Container $zIndex={zIndex}>{children}</Container>
+    ) : (
+      children
+    );
     if (__BROWSER__) {
       if (mountNode || container) {
         // $FlowFixMe
-        return ReactDOM.createPortal(children, mountNode || container);
+        return ReactDOM.createPortal(childrenToRender, mountNode || container);
       }
       return null;
     }
@@ -86,6 +101,10 @@ class LayerComponent extends React.Component<
 
 export default function Layer(props: LayerPropsT) {
   return (
-    <Consumer>{({host}) => <LayerComponent {...props} host={host} />}</Consumer>
+    <Consumer>
+      {({host, zIndex}) => (
+        <LayerComponent {...props} host={host} zIndex={zIndex} />
+      )}
+    </Consumer>
   );
 }

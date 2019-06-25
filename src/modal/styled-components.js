@@ -21,7 +21,7 @@ function getSizeStyles($size: SizePropT) {
 
   if (typeof $size === 'number') {
     styles.width = `${$size}px`;
-  } else if (SIZE.hasOwnProperty($size)) {
+  } else if (SIZE[$size]) {
     styles.width = SIZE_WIDTHS[$size];
   } else if (typeof $size === 'string') {
     styles.width = $size;
