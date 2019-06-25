@@ -52,6 +52,8 @@ export type TabsPropsT = {
   onChange?: OnChangeHandlerT,
   /** Sets the orientation of the Tab component */
   orientation?: $Values<typeof ORIENTATION>,
+  /** Renders all tab content for SEO purposes regardless of tab active state */
+  renderAll?: boolean,
   overrides?: TabsOverridesT<$Diff<SharedStylePropsArgT, {$active?: ?boolean}>>,
 };
 
