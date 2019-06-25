@@ -69,12 +69,23 @@ const App = ({history, location}) => {
 export default withRouter(App);
 ```
 
+## Performance
+
+If you are experiencing performance issues from rendering hundreds of items, consider adding a
+comparator function through the `itemMemoizationComparator` prop. This function is provided to
+a `React.memo` call on the `NavItem` component. See React's
+[documentation](https://reactjs.org/docs/react-api.html#reactmemo) for more information on how
+this works. Take care to ensure that you diff all of the props you care about. While powerful,
+intervening in React's default update schedule can lead to unexpected results.
+
 ## Overrides
 
 <Overrides
   name="Side Navigation"
   component={NavExports}
-  renderExample={props => <Navigation items={[
+  renderExample={props => (
+    <Navigation
+      items={[
         {
           title: 'Colors',
           itemId: '#level1.1',
@@ -98,7 +109,7 @@ export default withRouter(App);
       overrides={props.overrides}
       {...props}
     />
-  }
+  )}
 />
 
 <API
