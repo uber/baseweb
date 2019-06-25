@@ -49,7 +49,10 @@ class StatefulContainer extends React.Component<
     this.close();
   };
 
-  onClick = () => {
+  onClick = (e: Event) => {
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
     if (this.state.isOpen) {
       this.close();
     } else {
