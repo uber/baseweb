@@ -83,7 +83,7 @@ describe('Select component', function() {
           /* eslint-disable no-console */
           // $FlowFixMe
           console.info(option.color);
-          if (option.color) {
+          if (option !== null && option !== undefined && option.color) {
             console.info(option.color);
           }
           /* eslint-enable no-console */
