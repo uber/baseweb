@@ -20,6 +20,7 @@ import Mask from 'examples/input/mask.js';
 import Customization from 'examples/input/overrides.js';
 import Focus from 'examples/input/focus.js';
 import WithTags from 'examples/input/with-tags.js';
+import Clearable from 'examples/input/clearable.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulInput} from 'baseui/input';
@@ -78,6 +79,13 @@ An input enables a person to type in text information.
 <Example title="Input mask" path="examples/input/mask.js">
   <Mask />
 </Example>
+
+<Example title="Input with clearable" path="examples/input/clearable.js">
+  <Clearable />
+</Example>
+
+When `clearable` is true, pressing the `Escape` key or clicking the clear icon on the right will clear the input's current value.
+Other input components such as [`Textarea`](/components/textarea), [`PhoneInput`](/components/phone-input), and [`PaymentCard`](/components/payment-card) also respect the `clearable` property.
 
 <Example title="Input with overrides" path="examples/input/overrides.js">
   <Customization />
