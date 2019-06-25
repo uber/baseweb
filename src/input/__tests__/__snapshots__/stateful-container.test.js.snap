@@ -4,6 +4,7 @@ exports[`StatefulContainer - basic render: function-as-child called with correct
 Array [
   Object {
     "onChange": [Function],
+    "onClear": [Function],
     "value": "initial value",
   },
 ]
