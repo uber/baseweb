@@ -96,6 +96,7 @@ Object {
       rows={null}
       type="text"
     />,
+    null,
     <NullComponent
       $adjoined="right"
       $disabled={false}
@@ -156,6 +157,7 @@ Object {
       rows={null}
       type="text"
     />,
+    null,
     <NullComponent
       $adjoined="both"
       $disabled={false}
@@ -216,6 +218,7 @@ Object {
       rows={null}
       type="text"
     />,
+    null,
     <NullComponent
       $adjoined="left"
       $disabled={false}

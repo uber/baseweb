@@ -60,6 +60,8 @@ export type BaseInputComponentsT = {
   Input?: OverrideT<*>,
   Before?: OverrideT<*>,
   After?: OverrideT<*>,
+  ClearIcon?: OverrideT<*>,
+  ClearIconContainer?: OverrideT<*>,
 };
 
 export type InputComponentsT = {
@@ -102,6 +104,8 @@ export type BaseInputPropsT<T> = {
   onKeyPress?: (e: SyntheticKeyboardEvent<T>) => mixed,
   onKeyUp?: (e: SyntheticKeyboardEvent<T>) => mixed,
   onFocus: (e: SyntheticFocusEvent<T>) => mixed,
+  /** If true, adds a clear value icon button to the end of the input container. */
+  clearable: boolean,
   overrides: BaseInputComponentsT,
   placeholder: string,
   /** Renders component in 'required' state. */
@@ -143,6 +147,8 @@ export type StatefulContainerPropsT<T> = {
   /** A state change handler. Used to override default state transitions. */
   stateReducer: StateReducerT,
   onChange: (e: SyntheticInputEvent<T>) => mixed,
+  /** If true, adds a clear value icon button to the end of the input container. */
+  clearable?: boolean,
 };
 
 type OmitPropsT = {
