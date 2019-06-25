@@ -57,27 +57,11 @@ class NavItem extends React.Component<NavItemPropsT> {
   }
 }
 
-function areEqualShallow(a, b) {
-  if (!a || !b) return false;
-  if (typeof a !== 'object' || typeof a !== 'object') return false;
-
-  if (Object.keys(a).length !== Object.keys(b).length) return false;
-
-  for (var key in a) {
-    if (a[key] !== b[key]) {
-      return false;
-    }
-  }
-  return true;
-}
-
 function compare(prevProps, nextProps) {
-  return (
-    prevProps.$active === nextProps.$active &&
-    prevProps.$level === nextProps.$level &&
-    prevProps.$selectable === nextProps.$selectable &&
-    areEqualShallow(prevProps.item, nextProps.item)
-  );
+  if (nextProps.itemMemoizationComparator) {
+    return nextProps.itemMemoizationComparator(prevProps, nextProps);
+  }
+  return false;
 }
 
 export default React.memo<NavItemPropsT>(NavItem, compare);

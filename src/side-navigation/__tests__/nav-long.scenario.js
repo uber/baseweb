@@ -23,6 +23,29 @@ function createItems(floor) {
   return nav;
 }
 
+function areEqualShallow(a, b) {
+  if (!a || !b) return false;
+  if (typeof a !== 'object' || typeof a !== 'object') return false;
+
+  if (Object.keys(a).length !== Object.keys(b).length) return false;
+
+  for (var key in a) {
+    if (a[key] !== b[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function pragmaticCompare(prevProps, nextProps) {
+  return (
+    prevProps.$active === nextProps.$active &&
+    prevProps.$level === nextProps.$level &&
+    prevProps.$selectable === nextProps.$selectable &&
+    areEqualShallow(prevProps.item, nextProps.item)
+  );
+}
+
 export const component = () => {
   const [location, setLocation] = React.useState('0');
   const [floor, setFloor] = React.useState(0);
@@ -33,7 +56,9 @@ export const component = () => {
 
   return (
     <div>
-      <button onClick={() => setFloor(floor + 1)}>change</button>
+      <button onClick={() => setFloor(floor + 1)}>
+        change (this works since we compare item)
+      </button>
       <button
         onClick={() => {
           if (color === 'red') {
@@ -43,7 +68,7 @@ export const component = () => {
           }
         }}
       >
-        change override
+        change override (this does not work with given comparator)
       </button>
 
       <Navigation
@@ -52,7 +77,9 @@ export const component = () => {
           setLocation(item.itemId);
         }}
         items={items}
+        itemMemoizationComparator={pragmaticCompare}
         activeItemId={location}
+        overrides={{NavItem: {style: {color}}}}
       />
     </div>
   );
