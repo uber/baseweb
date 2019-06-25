@@ -24,6 +24,7 @@ class StatefulContainer<T: EventTarget> extends React.Component<
     initialState: {},
     stateReducer: defaultStateReducer,
     onChange: () => {},
+    onClear: () => {},
   };
 
   state: StateT = {
@@ -32,18 +33,12 @@ class StatefulContainer<T: EventTarget> extends React.Component<
   };
 
   onChange = (e: SyntheticInputEvent<T>) => {
-    this.internalSetState(STATE_CHANGE_TYPE.change, e);
+    const nextState = {value: e.target.value};
+    this.internalSetState(STATE_CHANGE_TYPE.change, nextState);
     this.props.onChange(e);
   };
 
-  internalSetState = <T: EventTarget>(
-    type: StateTypeT,
-    e: SyntheticInputEvent<T>,
-  ) => {
-    let nextState = {};
-    if (type === STATE_CHANGE_TYPE.change) {
-      nextState = {value: e.target.value};
-    }
+  internalSetState = (type: StateTypeT, nextState: StateT) => {
     const newState = this.props.stateReducer(type, nextState, this.state);
     this.setState(newState);
   };

@@ -71,4 +71,27 @@ describe('Select component', function() {
       value: [],
     });
   });
+  test('select flow allows custom keys in options objects', function() {
+    wrapper = mount(
+      <Select
+        options={[
+          {id: 'AliceBlue', color: '#F0F8FF'},
+          {id: 'AntiqueWhite', color: '#FAEBD7'},
+        ]}
+        closeOnSelect={false}
+        onChange={({option}) => {
+          /* eslint-disable no-console */
+          // $FlowFixMe
+          console.info(option.color);
+          if (option !== null && option !== undefined && option.color) {
+            console.info(option.color);
+          }
+          /* eslint-enable no-console */
+        }}
+        labelKey="id"
+        multi
+        valueKey="color"
+      />,
+    );
+  });
 });

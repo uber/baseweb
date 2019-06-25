@@ -9,7 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-export const Action = styled<{}>('div', props => ({}));
+export const Action = styled<{}>('div', ({$theme: {typography}}) => ({
+  ...typography.font450,
+}));
 
 export const Body = styled<{}>('div', ({$theme}) => {
   const {colors, sizing, typography} = $theme;

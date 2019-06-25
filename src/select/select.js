@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-import DeleteIcon from '../icon/delete.js';
+import DeleteAlt from '../icon/delete-alt.js';
 import TriangleDownIcon from '../icon/triangle-down.js';
 import SearchIconComponent from '../icon/search.js';
 import {LocaleContext} from '../locale/index.js';
@@ -691,7 +691,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const {overrides = {}} = this.props;
     const [ClearIcon, clearIconProps] = getOverrides(
       overrides.ClearIcon,
-      DeleteIcon,
+      DeleteAlt,
     );
     const ariaLabel = this.props.multi ? 'Clear all' : 'Clear value';
     return (

@@ -4,6 +4,7 @@ exports[`StatefulTextarea basic render: renders <StatefulContainer/> 1`] = `
 <StatefulContainer
   initialState={Object {}}
   onChange={[MockFunction]}
+  onClear={[Function]}
   overrides={
     Object {
       "Input": [Function],
@@ -28,6 +29,7 @@ exports[`StatefulTextarea basic render: renders <Textarea/> as a child 1`] = `
   name=""
   onBlur={[Function]}
   onChange={[Function]}
+  onClear={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyPress={[Function]}
