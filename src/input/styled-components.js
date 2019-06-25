@@ -12,8 +12,9 @@ import type {SharedPropsT, SizeT} from './types.js';
 import {DeleteAlt} from '../icon/index.js';
 
 export const StyledClearIconContainer = styled<{
-  $size: SizeT,
   $alignTop: boolean,
+  $size: SizeT,
+  $theme: ThemeT,
 }>('div', ({$size = SIZE.default, $alignTop = false, $theme}) => {
   const sidePadding =
     $size === SIZE.compact
@@ -31,7 +32,7 @@ export const StyledClearIconContainer = styled<{
   };
 });
 
-export const StyledClearIcon = styled(DeleteAlt, {
+export const StyledClearIcon = styled<typeof DeleteAlt, {}>(DeleteAlt, {
   cursor: 'pointer',
 });
 

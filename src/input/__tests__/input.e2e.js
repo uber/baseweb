@@ -41,6 +41,13 @@ describe('input', () => {
   });
 
   describe('can clear values', () => {
+    it('shows a clear value icon', async () => {
+      await mount(page, 'input-clearable');
+      await page.waitFor(selectors.deleteIcon, {
+        visible: true,
+      });
+    });
+
     it('with escape key', async () => {
       await mount(page, 'input-clearable');
       await page.waitFor(selectors.input);
@@ -53,6 +60,10 @@ describe('input', () => {
 
       inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('');
+
+      await page.waitFor(selectors.deleteIcon, {
+        hidden: true,
+      });
     });
 
     it('with delete icon', async () => {
@@ -66,6 +77,10 @@ describe('input', () => {
 
       inputValue = await page.$eval(selectors.input, input => input.value);
       expect(inputValue).toBe('');
+
+      await page.waitFor(selectors.deleteIcon, {
+        hidden: true,
+      });
     });
   });
 });

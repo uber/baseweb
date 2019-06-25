@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-import {DeleteAlt} from '../icon/index.js';
+import DeleteAlt from '../icon/delete-alt.js';
 import TriangleDownIcon from '../icon/triangle-down.js';
 import SearchIconComponent from '../icon/search.js';
 import {LocaleContext} from '../locale/index.js';

@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* global window */
 
 import * as React from 'react';
 
@@ -18,7 +19,7 @@ import {
 } from './styled-components.js';
 import type {BaseInputPropsT, InternalStateT} from './types.js';
 import {getSharedProps} from './utils.js';
-import triggerInputChangeEvent from '../utils/trigger-input-change-event.js';
+import createEvent from '../utils/create-event.js';
 
 const NullComponent = () => null;
 
@@ -79,7 +80,21 @@ class BaseInput<T: EventTarget> extends React.Component<
 
   clearValue() {
     // trigger a fake input change event (as if all text was deleted)
-    triggerInputChangeEvent(this.props.inputRef.current, '');
+    const input = this.props.inputRef.current;
+    if (input) {
+      const nativeInputValue = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value',
+      );
+      if (nativeInputValue) {
+        const nativeInputValueSetter = nativeInputValue.set;
+        if (nativeInputValueSetter) {
+          nativeInputValueSetter.call(input, '');
+          const event = createEvent('input');
+          input.dispatchEvent(event);
+        }
+      }
+    }
   }
 
   onInputKeyDown = (e: SyntheticKeyboardEvent<T>) => {
