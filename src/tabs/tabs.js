@@ -21,6 +21,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
     onChange: () => {},
     overrides: {},
     orientation: ORIENTATION.horizontal,
+    renderAll: false,
   };
 
   onChange({activeKey}: {activeKey: string}) {
@@ -56,6 +57,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
       orientation,
       children,
       overrides = {},
+      renderAll,
     } = this.props;
     const {TabContent: TabContentOverride} = overrides;
     const [TabContent, tabContentProps] = getOverrides(
@@ -84,7 +86,8 @@ export default class Tabs extends React.Component<TabsPropsT> {
           {...tabContentProps}
           {...props}
         >
-          {isActive ? child.props.children : null}
+          {renderAll ? child.props.children : null}
+          {isActive && !renderAll ? child.props.children : null}
         </TabContent>
       );
     });

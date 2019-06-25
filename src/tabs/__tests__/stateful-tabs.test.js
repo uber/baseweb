@@ -24,6 +24,28 @@ describe('StatefulTabs', () => {
     expect(component).toMatchSnapshot('Stateful tabs render correctly');
   });
 
+  test('basic render w/ SEO', () => {
+    const component = mount(<Component renderAll />);
+    const Tab1 = component
+      .find(StyledTabContent)
+      .at(0)
+      .text();
+    expect(Tab1).not.toBe(null);
+    const Tab2 = component
+      .find(StyledTabContent)
+      .at(1)
+      .text();
+    expect(Tab2).not.toBe(null);
+    const Tab3 = component
+      .find(StyledTabContent)
+      .at(2)
+      .text();
+    expect(Tab3).not.toBe(null);
+    expect(component).toMatchSnapshot(
+      'Stateful tabs render all tab content with renderAll',
+    );
+  });
+
   test('basic render with initial state', () => {
     const props = {
       initialState: {activeKey: '1'},
