@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDatepicker} from '../index.js';
+import {StyledDay, StatefulDatepicker} from '../index.js';
 
 export const name = 'datepicker-range';
 
@@ -19,6 +19,12 @@ export const component = () => (
     range
     highlightedDate={new Date('March 10, 2019')}
     overrides={{
+      Day: {
+        // eslint-disable-next-line react/display-name
+        component: props => (
+          <StyledDay data-highlighted={props.$isHighlighted} {...props} />
+        ),
+      },
       MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
       MonthYearSelectStatefulMenu: {
         props: {overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}}},
