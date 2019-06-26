@@ -195,7 +195,6 @@ export default class MyApp extends App {
                 path={path}
                 toggleTheme={this.toggleTheme.bind(this)}
               />
-              <Block {...blockProps} height="300px" />
             </Block>
           </BaseProvider>
         </StyletronProvider>
