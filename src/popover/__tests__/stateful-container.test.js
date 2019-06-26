@@ -203,6 +203,7 @@ describe('StatefulPopoverContainer', () => {
 
     // Block opening
     props.stateReducer.mockReturnValueOnce({isOpen: false});
+    // $FlowFixMe
     component.instance().onClick();
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
@@ -215,12 +216,14 @@ describe('StatefulPopoverContainer', () => {
 
     // Open
     props.stateReducer.mockReturnValueOnce({isOpen: true});
+    // $FlowFixMe
     component.instance().onClick();
     expect(component).toHaveState('isOpen', true);
 
     // Block closing
     props.stateReducer.mockClear();
     props.stateReducer.mockReturnValueOnce({isOpen: true});
+    // $FlowFixMe
     component.instance().onClick();
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
@@ -267,7 +270,7 @@ describe('StatefulPopoverContainer', () => {
       <StatefulContainer {...props}>{children}</StatefulContainer>,
     );
 
-    // null state reducer shouldn't break component
+    // $FlowFixMe null state reducer shouldn't break component
     component.instance().onClick();
     expect(component).toHaveState('isOpen', true);
   });
