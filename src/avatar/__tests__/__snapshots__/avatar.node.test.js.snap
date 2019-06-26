@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar applies expected accessibility attributes to img element: SSR Avatar 1`] = `
+<div
+  data-baseweb="avatar"
+  styled-component="true"
+  test-style="[object Object]"
+>
+  <img
+    alt="user name"
+    src="valid-img-src.png"
+    styled-component="true"
+    test-style="[object Object]"
+  />
+</div>
+`;
