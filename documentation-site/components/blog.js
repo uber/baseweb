@@ -5,10 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* global process */
 
 import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
+import Head from 'next/head';
 
 const Image = styled('img', props => ({
   display: 'block',
@@ -72,37 +74,46 @@ const Date = styled('span', ({$theme}) => ({
 }));
 
 export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
-  <Block
-    overrides={{
-      Block: {
-        style: ({$theme}) => ({
-          marginBottom: $theme.sizing.scale1400,
-        }),
-      },
-    }}
-  >
-    <Title>{title}</Title>
-    <Tagline>{tagline}</Tagline>
+  <React.Fragment>
+    <Head>
+      <title key="title">
+        {process.env.WEBSITE_ENV !== 'production' ? '[DEV] ' : ''}
+        Base Web - {title}
+      </title>
+      <meta key="description" name="description" content={tagline} />
+    </Head>
     <Block
       overrides={{
         Block: {
           style: ({$theme}) => ({
-            color: $theme.colors.foregroundAlt,
-            fontFamily: $theme.typography.font100.fontFamily,
-            margin: `${$theme.sizing.scale400} 0`,
+            marginBottom: $theme.sizing.scale1400,
           }),
         },
       }}
     >
-      <AuthorLink
-        $as={authorLink ? 'a' : 'span'}
-        rel="noopener noreferrer"
-        target="_blank"
-        href={authorLink ? authorLink : '/'}
+      <Title>{title}</Title>
+      <Tagline>{tagline}</Tagline>
+      <Block
+        overrides={{
+          Block: {
+            style: ({$theme}) => ({
+              color: $theme.colors.foregroundAlt,
+              fontFamily: $theme.typography.font100.fontFamily,
+              margin: `${$theme.sizing.scale400} 0`,
+            }),
+          },
+        }}
       >
-        {author}
-      </AuthorLink>{' '}
-      <Date> - {date}</Date>
+        <AuthorLink
+          $as={authorLink ? 'a' : 'span'}
+          rel="noopener noreferrer"
+          target="_blank"
+          href={authorLink ? authorLink : '/'}
+        >
+          {author}
+        </AuthorLink>{' '}
+        <Date> - {date}</Date>
+      </Block>
     </Block>
-  </Block>
+  </React.Fragment>
 );
