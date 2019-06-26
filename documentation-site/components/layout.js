@@ -46,7 +46,7 @@ const ContentWrapper = styled<{$isSidebarOpen: boolean, $full: boolean}>(
     flex: 2,
     '@media screen and (min-width: 820px)': {
       display: 'block',
-      maxWidth: $full ? '100%' : '40em',
+      maxWidth: $full ? '100%' : '60em',
     },
   }),
 );
@@ -75,6 +75,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
           marginTop="scale300"
           display="flex"
           paddingTop="scale400"
+          justifyContent="center"
         >
           <SidebarWrapper
             $isOpen={sidebarOpen}
