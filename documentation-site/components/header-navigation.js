@@ -130,6 +130,16 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   kind={KIND.minimal}
                   $as="a"
                   href="/blog/base-web-v8/"
+                  overrides={{
+                    BaseButton: {
+                      style: {
+                        display: 'none',
+                        [HEADER_BREAKPOINT]: {
+                          display: 'inline-block',
+                        },
+                      },
+                    },
+                  }}
                 >
                   {"What's new in v8?"}
                 </Button>
