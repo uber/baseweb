@@ -133,6 +133,8 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
               <Search
                 searchInputOpen={searchInputOpen}
                 toggleSearchInput={() => setSearchInputOpen(!searchInputOpen)}
+                // passed as prop to avoid circular dependency
+                breakpoint={HEADER_BREAKPOINT}
               />
               <Block
                 $as="a"

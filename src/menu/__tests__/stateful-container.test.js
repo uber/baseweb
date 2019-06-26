@@ -97,6 +97,7 @@ describe('Menu StatefulContainer', () => {
     expect(props).toHaveProperty('ref');
     expect(props).toHaveProperty('resetMenu');
 
+    // $FlowFixMe
     props.onClick(event);
     expect(mockItemSelect.mock.calls[0][0]).toEqual({
       item,
@@ -141,6 +142,7 @@ describe('Menu StatefulContainer', () => {
     expect(component.state('highlightedIndex')).toEqual(-1);
 
     component.instance().refList = [React.createRef(), React.createRef()];
+    // $FlowFixMe
     component.instance().onKeyDown({
       key: KEY_STRINGS.ArrowUp,
       preventDefault: jest.fn(),
@@ -163,6 +165,7 @@ describe('Menu StatefulContainer', () => {
       false,
     );
 
+    // $FlowFixMe
     component.instance().onKeyDown({
       key: KEY_STRINGS.ArrowDown,
       preventDefault: jest.fn(),
@@ -183,12 +186,14 @@ describe('Menu StatefulContainer', () => {
       key: KEY_STRINGS.Enter,
       preventDefault: jest.fn(),
     };
+    // $FlowFixMe
     component.instance().onKeyDown(event);
     expect(mockItemSelect.mock.calls.length).toBe(0);
 
     component.setState({
       highlightedIndex: 0,
     });
+    // $FlowFixMe
     component.instance().onKeyDown(event);
     expect(mockItemSelect.mock.calls[0]).toEqual([
       {
@@ -200,6 +205,7 @@ describe('Menu StatefulContainer', () => {
     component.setState({
       highlightedIndex: 1,
     });
+    // $FlowFixMe
     component.instance().onKeyDown(event);
     expect(mockItemSelect.mock.calls.length).toBe(1);
   });

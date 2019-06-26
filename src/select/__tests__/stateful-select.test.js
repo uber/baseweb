@@ -91,6 +91,7 @@ describe('Stateful select', function() {
     wrapper = mount(<StatefulSelect {...props} />);
     const renderedContainer = wrapper.find(StatefulSelectContainer).first();
     const params = {value: ''};
+    // $FlowFixMe
     renderedContainer.instance().onChange(params);
     expect(props.onChange).toHaveBeenCalledWith(params);
   });

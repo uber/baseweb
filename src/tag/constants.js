@@ -6,15 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {TagKindT} from './types.js';
-
 export const VARIANT = Object.freeze({
   solid: 'solid',
   light: 'light',
   outlined: 'outlined',
 });
 
-export const KIND: {[TagKindT]: string} = [
+export const KIND = [
   'neutral',
   'primary',
   'positive',

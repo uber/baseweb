@@ -45,6 +45,7 @@ describe('Panel', () => {
     };
     // $FlowFixMe
     const wrapper = mount(<Panel overrides={overrides}>Content</Panel>);
+    // $FlowFixMe
     const header = wrapper.find(overrides.Header);
     expect(header).toHaveLength(1);
   });

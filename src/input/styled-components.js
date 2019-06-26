@@ -258,9 +258,15 @@ function getInputContainerColors(
   };
 }
 
-export const getInputContainerStyles = (
-  props: SharedPropsT & {$theme: ThemeT},
-) => {
+export const getInputContainerStyles = (props: {
+  $adjoined: $Keys<typeof ADJOINED>,
+  $isFocused: boolean,
+  $error: boolean,
+  $disabled: boolean,
+  $positive: boolean,
+  $size: SizeT,
+  $theme: ThemeT,
+}) => {
   const {
     $isFocused,
     $adjoined,

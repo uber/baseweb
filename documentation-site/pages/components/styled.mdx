@@ -11,6 +11,7 @@ import Layout from '../../components/layout';
 
 import StyledBasic from 'examples/styled/basic.js';
 import StyledOverrides from 'examples/styled/overrides.js';
+import UseStyletron from 'examples/styled/use-styletron.js';
 
 export default Layout;
 
@@ -37,6 +38,20 @@ bundle and works in an isolation.
 
 If you are interested more into how this modified `styled` function is created, check the Styletron's [theme documentation](https://www.styletron.org/react/#themes).
 
+# UseStyletron
+
+An alternative to `styled` is the `useStyletron` hook. With `useStyletron` we introduce a
+lightweight approach to generating CSS classes for an element or component, without having
+to opt in to the standard Styletron styled component API. This allows you to style any element
+or component directly while still taking advantage of Styletron's efficient CSS generation. See
+[styletron's documentation](https://www.styletron.org/react/#usestyletron-hook) for more
+information about how this is used. The benefit of using `baseui`'s export is that it provides the
+theme for convenience. See an example below of how it is used.
+
+<Example title="UseStyletron hook" path="examples/styled/use-styletron.js">
+  <UseStyletron />
+</Example>
+
 ## Additional State Props
 
 When you [use overrides](/theming/understanding-overrides), you also get an access to additional component states, like `$disabled` or `$error`, depending
@@ -50,3 +65,60 @@ on the given component:
 </Example>
 
 To understand overrides better, go [here](/theming/understanding-overrides).
+
+### Custom themes and Flow type
+
+The `styled` and `withStyle` functions imported from `baseui` provide flow type support for the
+default [theme shape](/theming/theming-values). However, if you create a custom theme with additional fields,
+flow will show an error. To help, baseui exports two utility functions `createThemedStyled` and
+`createThemedWithStyle`. These will return their respective functions with a provided theme type.
+Doing so saves from needing to import the custom theme type around. See below for an example.
+
+```diff
+ import {
+-  styled,
+-  withStyle,
+-  useStyletron,
++  createThemedStyled,
++  createThemedWithStyle,
++  createThemedUseStyletron,
+ } from 'baseui';
+
+ type CustomThemeT = {myBlue: string, myRed: string};
+
+// you'll likely want to import these functions from a relative path in your application
++const themedStyled = createThemedStyled<CustomThemeT>();
++const themedWithStyle = createThemedWithStyle<CustomThemeT>();
++const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
+
+ type PropsT = {
+   $active: boolean
+-  $theme: CustomThemeT
+ };
+
+-const First = styled<PropsT>('div', props => {
++const First = themedStyled<PropsT>('div', props => {
+   return {
+     backgroundColor: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
+   };
+ });
+
+-const Second = withStyle<PropsT>('div', props => {
++const Second = themedWithStyle<PropsT>(First, props => {
+   return {
+     color: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
+   };
+ });
+
+const Third = () => {
+- const [css, theme] = useStyletron();
++ const [css, theme] = themedUseStyletron();
+
+return (
+- <div className={css({color: theme.colors.primary})}>
++ <div className={css({color: theme.myBlue)}>
+    test
+  </div>
+);
+}
+```

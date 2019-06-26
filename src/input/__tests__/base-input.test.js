@@ -37,10 +37,12 @@ test('BaseInput - basic functionality', () => {
   expect(renderedInput.props().onFocus).toEqual(wrapper.instance().onFocus);
   expect(renderedInput.props().onBlur).toEqual(wrapper.instance().onBlur);
 
+  // $FlowFixMe
   const renderedBefore = wrapper.find(props.overrides.Before);
   expect(renderedBefore).toHaveLength(1);
   expect(renderedBefore.props()).toMatchSnapshot('Before gets correct props');
 
+  // $FlowFixMe
   const renderedAfter = wrapper.find(props.overrides.After);
   expect(renderedAfter).toHaveLength(1);
   expect(renderedAfter.props()).toMatchSnapshot('After gets correct props');
@@ -74,11 +76,13 @@ test('BaseInput - basic functionality', () => {
   // Correct props passed when error state
   wrapper.setProps({error: true});
 
+  // $FlowFixMe
   const updatedBefore = wrapper.find(props.overrides.Before);
   expect(updatedBefore.props()).toMatchSnapshot(
     'Before gets correct error prop',
   );
 
+  // $FlowFixMe
   const updatedAfter = wrapper.find(props.overrides.After);
   expect(updatedAfter.props()).toMatchSnapshot('After gets correct error prop');
 });

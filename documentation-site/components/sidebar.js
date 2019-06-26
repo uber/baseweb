@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import {withStyle} from 'styletron-react';
+import {withStyle} from 'baseui';
 import {
   Navigation,
   StyledNavItem as NavItem,

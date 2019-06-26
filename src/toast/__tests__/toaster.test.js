@@ -125,6 +125,7 @@ describe('toaster', () => {
       wrapper.update();
 
       Object.keys(overrides).forEach(name => {
+        // $FlowFixMe
         expect(wrapper.find(overrides[name]).first()).toExist();
       });
     });

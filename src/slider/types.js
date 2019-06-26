@@ -78,10 +78,10 @@ export type StatefulSliderPropsT = {
 };
 
 export type StylePropsT = {
-  $disabled: boolean,
-  $isDragged: boolean,
-  $max: number,
-  $min: number,
-  $thumbIndex: number,
-  $value: Array<number>,
+  $disabled?: boolean,
+  $isDragged?: boolean,
+  $max?: number,
+  $min?: number,
+  $thumbIndex?: number,
+  $value?: Array<number>,
 };

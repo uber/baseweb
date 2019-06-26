@@ -14,7 +14,7 @@ export const Root = styled('div', {position: 'relative'});
 Root.displayName = 'StyledRoot';
 
 export const Track = styled<StylePropsT>('div', props => {
-  const {$theme, $value, $disabled, $isDragged} = props;
+  const {$theme, $value = [], $disabled, $isDragged} = props;
   const {sizing} = $theme;
   let cursor = 'inherit';
   if ($disabled) {
@@ -36,7 +36,7 @@ export const Track = styled<StylePropsT>('div', props => {
 Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled<StylePropsT>('div', props => {
-  const {$theme, $value, $min, $max, $disabled} = props;
+  const {$theme, $value = [], $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
@@ -83,7 +83,7 @@ export const TickBar = styled<StylePropsT>('div', props => {
 TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled<StylePropsT>('div', props => {
-  const {$theme, $value, $thumbIndex, $disabled} = props;
+  const {$theme, $value = [], $thumbIndex, $disabled} = props;
   const isLeft = $value.length === 2 && $thumbIndex === 0;
   const isRight = $value.length === 2 && $thumbIndex === 1;
   return {
@@ -120,7 +120,7 @@ export const InnerThumb = styled<StylePropsT>('div', props => {
 });
 InnerThumb.displayName = 'StyledInnerThumb';
 
-export const ThumbValue = styled<StylePropsT>('div', props => {
+export const ThumbValue = styled<{}>('div', props => {
   const {$theme} = props;
   return {
     position: 'absolute',

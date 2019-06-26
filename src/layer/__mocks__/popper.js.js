@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {PopperOptionsT} from '../types.js';
 
-// $FlowFixMe
 const destroy = jest.fn();
 // $FlowFixMe
 const mock = jest

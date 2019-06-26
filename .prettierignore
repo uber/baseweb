@@ -3,3 +3,4 @@ dist
 coverage
 proposals
 README.md
+src/codemods/__testfixtures__

@@ -29,7 +29,6 @@ describe('Tab', () => {
       // eslint-disable-next-line react/display-name
       Tab: ({children}) => <span>{children}</span>,
     };
-    // $FlowFixMe
     const wrapper = mount(<Tab overrides={overrides}>Title</Tab>);
     const tab = wrapper.find(overrides.Tab);
     expect(tab).toHaveLength(1);

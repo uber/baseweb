@@ -56,6 +56,7 @@ describe('Select component', function() {
   test('calls onInputChange when input value changes', function() {
     wrapper = mount(<Select {...props} />);
     const e = {target: {value: 'test'}};
+    // $FlowFixMe
     wrapper.instance().handleInputChange(e);
     expect(props.onInputChange).toHaveBeenCalledWith(e);
   });
@@ -63,6 +64,7 @@ describe('Select component', function() {
   test('removes selected tag on clear', function() {
     wrapper = mount(<Select {...props} value={[item]} />);
     const e = {type: 'click', button: 0, preventDefault: jest.fn()};
+    // $FlowFixMe
     wrapper.instance().clearValue(e);
     expect(props.onChange).toHaveBeenCalled();
     expect(props.onChange.mock.calls[0][0]).toEqual({
