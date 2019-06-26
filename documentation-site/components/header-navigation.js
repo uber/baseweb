@@ -129,7 +129,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   size="compact"
                   kind={KIND.minimal}
                   $as="a"
-                  href="https://baseweb.design/blog/base-web-v8/"
+                  href="/blog/base-web-v8/"
                 >
                   {"What's new in v8?"}
                 </Button>
