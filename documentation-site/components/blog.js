@@ -18,7 +18,7 @@ const Image = styled('img', props => ({
   width: props.$full ? '100%' : 'auto',
 }));
 
-const Caption = styled('figcaption', ({$theme}) => ({
+export const Caption = styled('figcaption', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
