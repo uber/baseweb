@@ -125,6 +125,14 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                     v{version}
                   </Button>
                 </StatefulPopover>
+                <Button
+                  size="compact"
+                  kind={KIND.minimal}
+                  $as="a"
+                  href="https://baseweb.design/blog/base-web-v8/"
+                >
+                  {"What's new in v8?"}
+                </Button>
               </Block>
             </Block>
           </LogoSegment>
