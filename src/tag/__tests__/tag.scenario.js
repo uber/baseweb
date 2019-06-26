@@ -18,7 +18,8 @@ export const component = () => (
     {Object.keys(KIND).map(kind => (
       <Tag
         key={kind}
-        kind={kind}
+        // eslint-disable-next-line flowtype/no-weak-types
+        kind={(kind: any)}
         {...(kind === 'custom' ? {color: '#748ecc'} : {})}
       >
         kind {kind}

@@ -27,6 +27,7 @@ import {
 import Block from '../../block/block.js';
 
 function getStyle(element: React.Node) {
+  // $FlowFixMe
   return shallow(element)
     .find(Block)
     .props();

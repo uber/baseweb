@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+import {containsFlowComment} from './shared.js';
+
 function getStyledImportName(j, root) {
   const baseImports = root.find(j.ImportDeclaration, {
     source: {value: 'baseui'},
@@ -22,12 +24,6 @@ function getStyledImportName(j, root) {
     }
   }
   return null;
-}
-
-function containsFlowComment(j, root) {
-  const getBodyNode = () => root.find(j.Program).get('body', 0).node;
-  const comments = getBodyNode().comments || [];
-  return comments.filter(e => e.value.indexOf('@flow') !== -1).length > 0;
 }
 
 module.exports = function(file, api, options) {

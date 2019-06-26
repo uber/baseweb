@@ -6,11 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {withStyle} from 'styletron-react';
-
 import Flag from './flag.js';
 import {DEFAULT_MAX_DROPDOWN_HEIGHT, SIZE} from './constants.js';
-import {styled} from '../styles/index.js';
+import {styled, withStyle} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
 import {
   StyledDropdownListItem,

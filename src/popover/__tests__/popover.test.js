@@ -145,6 +145,7 @@ describe('Popover', () => {
       arrow: {top: 10, left: 10},
     };
     wrapper.instance().onPopperUpdate(offsets, {
+      // $FlowFixMe
       offsets,
       placement: 'left-start',
     });

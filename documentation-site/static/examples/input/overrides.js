@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyle} from 'styletron-react';
+import {withStyle} from 'baseui';
 import {StatefulInput, StyledInputContainer} from 'baseui/input';
 
 const RootWithStyle = withStyle(StyledInputContainer, props => {

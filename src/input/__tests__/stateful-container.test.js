@@ -29,7 +29,6 @@ test('StatefulContainer - basic render', () => {
   );
 
   // state.value passed to children as a prop
-  // $FlowFixMe
   const childrenValueProp = children.mock.calls[0][0].value;
   expect(childrenValueProp).toBe(component.instance().state.value);
   expect(childrenValueProp).not.toBe(props.value);
@@ -53,7 +52,6 @@ test('StatefulContainer - children function receives onChange handler', () => {
   expect(children).toHaveBeenCalledTimes(1);
 
   // onChange is passed to children function
-  // $FlowFixMe
   const childrenOnChangeProp = children.mock.calls[0][0].onChange;
   expect(childrenOnChangeProp).toBe(component.instance().onChange);
   expect(childrenOnChangeProp).not.toBe(props.onChange);
@@ -82,6 +80,7 @@ test('StatefulContainer - stateReducer', () => {
 
   // onChange event happens
   props.stateReducer.mockReturnValueOnce({value: 'new value'});
+  // $FlowFixMe
   component.instance().onChange(event);
 
   expect(props.stateReducer).toHaveBeenCalledTimes(1);
@@ -108,6 +107,7 @@ test('StatefulContainer - no stateReducer passed in', () => {
     <StatefulContainer {...props}>{children}</StatefulContainer>,
   );
 
+  // $FlowFixMe
   component.instance().onChange(event);
   expect(component).toHaveState('value', 'input value');
 });

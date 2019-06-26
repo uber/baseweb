@@ -1,7 +1,7 @@
 import Layout from '../../../components/layout';
 import {Table} from 'baseui/table';
 import {BlogImage, Demo, Meta} from '../../../components/blog';
-import metadata from './metadata.json'
+import metadata from './metadata.json';
 
 export default Layout;
 
@@ -93,7 +93,7 @@ jscodeshift -t node_modules/baseui/codemods/styled-flowfixme.js <transform-path>
 
 Use the -d option for a dry-run and use -p to print the output for comparison.
 
-### $ref -> ref
+### \$ref -> ref
 
 All usage of `$ref` has been removed. You'll want to move from `$ref` to `ref` and you will see a
 warning in the console describing the change. This change follows styletron's support of forwardRef
@@ -135,69 +135,69 @@ const InitialComponent = styled('div', props => {
 
 ### Accordion type changes
 
-* `SharedStylePropsT` type is removed. It duplicates the `SharedStylePropsArgT` type. Use
+- `SharedStylePropsT` type is removed. It duplicates the `SharedStylePropsArgT` type. Use
   that instead.
 
 ### Breadcrumbs type changes
 
-* `StyledIcon` component is removed. It was only wrapping an arrow icon. This logic was moved to the
+- `StyledIcon` component is removed. It was only wrapping an arrow icon. This logic was moved to the
   component itself.
-* `StyledRootPropsT` and `StyledSeparatorT` types are removed. There are no style props passed to these
+- `StyledRootPropsT` and `StyledSeparatorT` types are removed. There are no style props passed to these
   components. Use an empty object type if they were imported in your code.
 
 ### Button Group type changes
 
-* `StylePropsT` type is removed. There are no style props passed. Use an empty object type if they
+- `StylePropsT` type is removed. There are no style props passed. Use an empty object type if they
   were imported in your code.
 
 ### Checkbox type changes
 
-* `$theme` prop is removed from `PropsT` type. The `$theme` is provided by the baseui `styled` function.
+- `$theme` prop is removed from `PropsT` type. The `$theme` is provided by the baseui `styled` function.
   There is no need to be concerned with it in consuming code.
 
 ### Datepicker type changes
 
-* `calculateBorderRadius` function is no longer exported. It is a utility function not meant to be used.
+- `calculateBorderRadius` function is no longer exported. It is a utility function not meant to be used.
 
 ### HeaderNavigation type changes
 
-* `align` prop on `NavigationList` is renamed to `$align` since it is a component built with styletron.
+- `align` prop on `NavigationList` is renamed to `$align` since it is a component built with styletron.
 
 ### Icon type changes
 
-* `StyledComponentParamsT` type is removed. Use `StyledComponentArgsT` instead.
-* `SharedStylePropsT` and `StyledComponentPropT` types are removed. Use `SharedStylePropsArgT` instead.
+- `StyledComponentParamsT` type is removed. Use `StyledComponentArgsT` instead.
+- `SharedStylePropsT` and `StyledComponentPropT` types are removed. Use `SharedStylePropsArgT` instead.
 
 ### Popover type changes
 
-* `SharedStylePropsT` type is removed. Use `StyledStyledPropsArgT` instead.
+- `SharedStylePropsT` type is removed. Use `StyledStyledPropsArgT` instead.
 
 ### Progress Steps type changes
 
-* `StyledProgressStepsPropsT`, `StyledNumberIconPropsT`, `StyledNumberContentTailPropsT`, `StyledNumberStepPropsT`,
+- `StyledProgressStepsPropsT`, `StyledNumberIconPropsT`, `StyledNumberContentTailPropsT`, `StyledNumberStepPropsT`,
   `StyledStepPropsT` types are removed. Use `StylePropsT` instead.
 
 ### Select type changes
 
-* `SharedStylePropsT` type is removed. Use `SharedStylePropsArgT` instead.
+- `SharedStylePropsT` type is removed. Use `SharedStylePropsArgT` instead.
 
 ### Table type changes
 
-* `SharedStylePropsT` type is removed. There are no style props passed. Use an empty object type if it
+- `SharedStylePropsT` type is removed. There are no style props passed. Use an empty object type if it
   was imported in your code
 
 ### Tabs type changes
 
-* `SharedStylePropsT` type is removed. Use `SharedStylePropsArgT` instead.
+- `SharedStylePropsT` type is removed. Use `SharedStylePropsArgT` instead.
 
 ### Tag type changes
 
-* `SharedPropsT` type is removed. Use `SharedPropsArgT` instead.
+- `SharedPropsT` type is removed. Use `SharedPropsArgT` instead.
 
 ### Toast type changes
 
-* `SharedStylePropsT` type is removed. Use `SharedStylePropsArgT` instead.
-* `ToasterSharedStylePropsT` type is removed. Use `ToasterSharedStylePropsArgT` instead.
+- `SharedStylePropsT` type is removed. Use `SharedStylePropsArgT` instead.
+- `ToasterSharedStylePropsT` type is removed. Use `ToasterSharedStylePropsArgT` instead.
 
 ## Theme changes
 
@@ -212,12 +212,12 @@ The Pagination component was refactored to reuse the `Select` component for its 
 
 ### Migrating the `Pagination` component
 
-* `StyledDropdownMenu` export was removed
-* `StyledDropdownButton` export was removed
-* `overrides` prop changes:
-  * `DropdownButton` override was removed
-  * `DropdownMenu` override was removed
-  * `Select` override was added. Please note that `Select` identifier in the pagination overrides object is for a component and not a styled element. Refer to the API of the [`Select` component](https://baseweb.design/components/select/) for the full list of its props.
+- `StyledDropdownMenu` export was removed
+- `StyledDropdownButton` export was removed
+- `overrides` prop changes:
+  - `DropdownButton` override was removed
+  - `DropdownMenu` override was removed
+  - `Select` override was added. Please note that `Select` identifier in the pagination overrides object is for a component and not a styled element. Refer to the API of the [`Select` component](https://baseweb.design/components/select/) for the full list of its props.
 
 ```diff
 - import {StyledDropdownMenu} from 'baseui/select';
@@ -380,9 +380,9 @@ Refactors `Datepicker` components to support collections of composed pickers (da
 
 ### Combines month/year dropdowns to a single menu
 
-* Removes the `MonthSelect` `YearSelect` overrides.
-* Adds `MonthYearSelectButton` `MonthYearSelectIconContainer` overrides.
-* Adds `MonthYearSelectPopover` `MonthYearSelectStatefulMenu` overrides to customize internal popover and menu.
+- Removes the `MonthSelect` `YearSelect` overrides.
+- Adds `MonthYearSelectButton` `MonthYearSelectIconContainer` overrides.
+- Adds `MonthYearSelectPopover` `MonthYearSelectStatefulMenu` overrides to customize internal popover and menu.
 
 ```diff
   <Datepicker
@@ -427,13 +427,21 @@ As part of the Base Web 7 release, we've updated the `Button` component visuals,
 
 In a future, non-major release, we'll update the Button colors to use grayscale colors instead of the color blue.
 
-<img src="https://res.cloudinary.com/dawr8pobn/image/upload/v1559064947/Screen_Shot_2019-05-28_at_10.34.41_AM_wvvgbb.png" width="100%" alt="Buttons - Base Web version 7" />
+<img
+  src="https://res.cloudinary.com/dawr8pobn/image/upload/v1559064947/Screen_Shot_2019-05-28_at_10.34.41_AM_wvvgbb.png"
+  width="100%"
+  alt="Buttons - Base Web version 7"
+/>
 
 ## Updated Input component visuals
 
 As part of the Base Web 7 release, we've updated the `Input` component visuals, and introduced a `Large` size.
 
-<img src="https://res.cloudinary.com/dawr8pobn/image/upload/v1559064944/Screen_Shot_2019-05-28_at_10.34.22_AM_nu3fb0.png" width="100%" alt="Inputs - Base Web version 7" />
+<img
+  src="https://res.cloudinary.com/dawr8pobn/image/upload/v1559064944/Screen_Shot_2019-05-28_at_10.34.22_AM_nu3fb0.png"
+  width="100%"
+  alt="Inputs - Base Web version 7"
+/>
 
 ## Rounded Corners
 

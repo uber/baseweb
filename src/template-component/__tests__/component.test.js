@@ -28,15 +28,12 @@ describe('Component', () => {
 
   test('component overrides', () => {
     const overrides = {
-      Root: jest
-        .fn()
-        .mockImplementation(({children}) => <span>{children}</span>),
+      Root: function RootOverride(props) {
+        return <span>{props.children}</span>;
+      },
     };
 
-    const wrapper = mount(
-      // $FlowFixMe
-      <Component overrides={overrides} />,
-    );
+    const wrapper = mount(<Component overrides={overrides} />);
 
     const root = wrapper.find(overrides.Root);
     expect(root).toHaveLength(1);

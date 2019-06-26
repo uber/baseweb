@@ -74,6 +74,7 @@ describe('SelectDropdown', function() {
 
   test('passes correct props to OptionContent', function() {
     const renderedOption = wrapper.instance().getItemLabel(options[1]);
+    // $FlowFixMe
     expect(renderedOption.props.$selected).toEqual(false);
     expect(renderedOption.props).toMatchSnapshot(
       'OptionContent gets correct props when an option is not selected',
@@ -82,6 +83,7 @@ describe('SelectDropdown', function() {
 
   test('passes correct props to OptionContent for a selected item', function() {
     const renderedOption = wrapper.instance().getItemLabel(options[0]);
+    // $FlowFixMe
     expect(renderedOption.props.$selected).toEqual(true);
     expect(renderedOption.props).toMatchSnapshot(
       'OptionContent gets correct props when an option is selected',

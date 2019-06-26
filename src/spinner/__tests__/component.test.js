@@ -40,6 +40,7 @@ describe('Spinner', () => {
       // $FlowFixMe
       <Spinner overrides={overrides} />,
     );
+    // $FlowFixMe
     const root = wrapper.find(overrides.Svg);
     expect(root).toHaveLength(1);
   });
