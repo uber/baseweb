@@ -57,6 +57,7 @@ const LogoSegment = styled<{$searchInputOpen: boolean}>(
 );
 
 const VERSIONS = [
+  {label: 'v7'},
   {label: 'v6'},
   {label: 'v5'},
   {label: 'v4'},
