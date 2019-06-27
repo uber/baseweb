@@ -18,7 +18,8 @@ module.exports = {
       height: 768,
     },
     {
-      deviceName: 'iPhone X',
+      width: 375,
+      height: 812,
       excludeRules: [/^baseui-dark/],
     },
   ],
