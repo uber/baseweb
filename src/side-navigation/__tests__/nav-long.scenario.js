@@ -25,7 +25,7 @@ function createItems(floor) {
 
 function areEqualShallow(a, b) {
   if (!a || !b) return false;
-  if (typeof a !== 'object' || typeof a !== 'object') return false;
+  if (typeof a !== 'object' || typeof b !== 'object') return false;
 
   if (Object.keys(a).length !== Object.keys(b).length) return false;
 
