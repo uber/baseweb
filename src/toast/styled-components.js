@@ -108,6 +108,9 @@ export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
 });
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const InnerContainer = styled<SharedStylePropsArgT>('div', {});
+
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
