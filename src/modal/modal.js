@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document */
 import * as React from 'react';
-import FocusTrap from 'focus-trap-react';
+import FocusLock from 'react-focus-lock';
 
 import {LocaleContext} from '../locale/index.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
@@ -241,13 +241,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <FocusTrap
-            focusTrapOptions={{
-              [this.props.autofocus ? 'fallbackFocus' : 'initialFocus']: () => {
-                return this.getRef('Dialog').current;
-              },
-            }}
-          >
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          <FocusLock returnFocus autoFocus={this.props.autofocus}>
             <Root
               data-baseweb="modal"
               ref={this.getRef('Root')}
@@ -290,7 +285,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                 </Dialog>
               </DialogContainer>
             </Root>
-          </FocusTrap>
+          </FocusLock>
         )}
       </LocaleContext.Consumer>
     );
