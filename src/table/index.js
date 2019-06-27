@@ -8,7 +8,9 @@ LICENSE file in the root directory of this source tree.
 export {default as SortableHeadCell} from './sortable-head-cell.js';
 export {default as Table} from './table.js';
 export {default as Filter} from './filter.js';
-
+// Constants
+export {SORT_DIRECTION} from './constants.js';
+// Styled elements
 export {
   StyledTable,
   StyledFilterButton,
