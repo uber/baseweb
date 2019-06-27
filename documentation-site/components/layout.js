@@ -46,7 +46,7 @@ const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
     flex: 2,
     '@media screen and (min-width: 820px)': {
       display: 'block',
-      maxWidth: '60em',
+      maxWidth: '45em',
     },
   }),
 );
