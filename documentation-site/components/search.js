@@ -9,11 +9,11 @@ import * as React from 'react';
 import {styled} from 'baseui/styles';
 import {default as SearchIcon} from 'baseui/icon/search';
 import {trackEvent} from '../helpers/ga';
-import {HEADER_BREAKPOINT} from './header-navigation';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';
 
 type Props = {
+  breakpoint: string,
   toggleSearchInput: () => void,
   searchInputOpen: boolean,
 };
@@ -23,9 +23,9 @@ type State = {
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = styled<{$inputVisible: boolean}>(
+const PlainInput = styled<{$inputVisible: boolean, $breakpoint: string}>(
   'input',
-  ({$inputVisible, $theme}) =>
+  ({$inputVisible, $theme, $breakpoint}) =>
     ({
       display: $inputVisible ? 'block' : 'none',
       borderWidth: '2px',
@@ -44,7 +44,7 @@ const PlainInput = styled<{$inputVisible: boolean}>(
       ':focus': {
         borderColor: $theme.colors.primary,
       },
-      [HEADER_BREAKPOINT]: {
+      [$breakpoint]: {
         position: 'static',
         display: 'block',
         width: '250px',
@@ -52,15 +52,15 @@ const PlainInput = styled<{$inputVisible: boolean}>(
     }: {}),
 );
 
-const IconWrapper = styled<{$inputVisible: boolean}>(
+const IconWrapper = styled<{$inputVisible: boolean, $breakpoint: string}>(
   'div',
-  ({$inputVisible, $theme}) => ({
+  ({$inputVisible, $theme, $breakpoint}) => ({
     marginRight: $inputVisible ? '-33px' : 0,
     marginTop: $inputVisible ? '8px' : 0,
     height: '32px',
     cursor: 'pointer',
     zIndex: 1,
-    [HEADER_BREAKPOINT]: {
+    [$breakpoint]: {
       marginRight: '-33px',
       marginTop: '8px',
       cursor: 'inherit',
@@ -92,11 +92,12 @@ class DocSearch extends React.Component<Props, State> {
 
   render() {
     const {enabled} = this.state;
-    const {searchInputOpen, toggleSearchInput} = this.props;
+    const {breakpoint, searchInputOpen, toggleSearchInput} = this.props;
     return enabled ? (
       <React.Fragment>
         <style>{`.ds-dropdown-menu { margin-top: 12px !important }`}</style>
         <IconWrapper
+          $breakpoint={breakpoint}
           $inputVisible={searchInputOpen}
           role="button"
           onClick={toggleSearchInput}
@@ -108,7 +109,7 @@ class DocSearch extends React.Component<Props, State> {
                   height: searchInputOpen ? '22px' : '32px',
                   width: searchInputOpen ? '22px' : '32px',
                   fill: searchInputOpen ? '#666' : '#333',
-                  [HEADER_BREAKPOINT]: {
+                  [breakpoint]: {
                     height: '22px',
                     width: '22px',
                     fill: '#666',
@@ -120,6 +121,7 @@ class DocSearch extends React.Component<Props, State> {
           />
         </IconWrapper>
         <PlainInput
+          $breakpoint={breakpoint}
           $inputVisible={searchInputOpen}
           id={SEARCH_INPUT_ID}
           type="search"

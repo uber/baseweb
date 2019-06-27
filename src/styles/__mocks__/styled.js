@@ -25,7 +25,7 @@ type StateT = {styles?: {}};
 const MOCK_THEME = createMockTheme(LightTheme);
 const IDENTITY = x => x;
 
-function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
+export function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
   class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
@@ -86,5 +86,3 @@ function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
     <MockStyledComponent forwardedRef={ref} {...props} />
   ));
 }
-
-export default styled;

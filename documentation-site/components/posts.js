@@ -81,6 +81,7 @@ const Index = () => {
                     kind={KIND.secondary}
                     $as="a"
                     rel="noreferrer noopener"
+                    href={p.path}
                     overrides={{
                       BaseButton: {
                         style: {boxSizing: 'border-box', width: '100%'},

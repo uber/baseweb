@@ -69,6 +69,8 @@ export type BasePopoverPropsT = {
   onMouseEnterDelay?: number,
   /** Number of milliseconds to wait before showing the popover after mouse leaves the trigger element (for triggerType `hover`). */
   onMouseLeaveDelay?: number,
+  /** Handler for click events on trigger element. */
+  onClick?: (e: Event) => mixed,
   overrides?: OverridesT,
   /** How to position the popover relative to the target. */
   placement: TetherPlacementT,
@@ -98,8 +100,6 @@ export type PopoverPropsT = BasePopoverPropsT & {
   isOpen: boolean,
   /** Handler for blur events on trigger element. */
   onBlur?: () => mixed,
-  /** Handler for click events on trigger element. */
-  onClick?: (e: Event) => mixed,
   /** Handler for clicks outside the anchor/popover elements. */
   onClickOutside?: (event: MouseEvent) => mixed,
   /** Handler for click events on trigger element. */

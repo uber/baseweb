@@ -8,10 +8,13 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import {Icon} from '../index.js';
 import {Svg} from '../styled-components.js';
 import * as Icons from '../icon-exports.js';
+
+import {ThemeProvider} from '../../styles/index.js';
+import {lightThemePrimitives, createTheme} from '../../themes/index.js';
 
 describe('Icon', () => {
   test('renders an icon with viewBox and title', () => {
@@ -49,5 +52,21 @@ describe('Icon', () => {
       const wrapper = shallow(<Component />);
       expect(wrapper).toExist();
     });
+  });
+
+  test('does not pass dollar prefix props to globally overridden icons', () => {
+    const IconMock = jest.fn(() => <div>mock</div>);
+    const customTheme = createTheme(lightThemePrimitives, {
+      icons: {Alert: IconMock},
+    });
+
+    mount(
+      <ThemeProvider theme={customTheme}>
+        <Icons.Alert $size="12px" size="12px" />
+      </ThemeProvider>,
+    );
+
+    expect(IconMock.mock.calls[0][0]).toHaveProperty('size', '12px');
+    expect(IconMock.mock.calls[0][0]).not.toHaveProperty('$size');
   });
 });

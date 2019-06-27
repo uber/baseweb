@@ -9,7 +9,6 @@ import Layout from '../../components/layout';
 import JSON from '../../components/json';
 import {LightTheme} from 'baseui';
 
-
 export default Layout;
 
 # Intro to theming
@@ -46,15 +45,16 @@ you can locally wrap that part with the `ThemeProvider` to override the theme lo
 ```jsx
 import {DarkTheme, ThemeProvider} from 'baseui';
 
-export default function SomeDarkThemedPages () {
-    return (
-      <ThemeProvider theme={DarkTheme}>
-        <div>
-          This is a dark themed page - all the Base Web components used here will use the dark theme,
-          as well as the theme object accessed through the styled function will use the values from the dark theme
-        </div>
-      </ThemeProvider>
-    );
+export default function SomeDarkThemedPages() {
+  return (
+    <ThemeProvider theme={DarkTheme}>
+      <div>
+        This is a dark themed page - all the Base Web components used here will
+        use the dark theme, as well as the theme object accessed through the
+        styled function will use the values from the dark theme
+      </div>
+    </ThemeProvider>
+  );
 }
 ```
 
@@ -91,6 +91,8 @@ const yourTheme = createTheme(
   },
 );
 ```
+
+If you are using flow type with a custom theme, visit the [`styled`](/components/styled) function page for more information.
 
 ## The shape of the theme file
 

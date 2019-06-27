@@ -29,6 +29,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     },
     onTextChange: () => {},
     onCountryChange: () => {},
+    onClear: () => {},
     stateReducer: defaultStateReducer,
     overrides: {},
   };
@@ -58,8 +59,8 @@ export default class StatefulPhoneInputContainer extends React.Component<
   render() {
     const {children, initialState, stateReducer, ...restProps} = this.props;
     return children({
-      ...restProps,
       ...this.state,
+      ...restProps,
       onTextChange: this.onTextChange,
       onCountryChange: this.onCountryChange,
     });

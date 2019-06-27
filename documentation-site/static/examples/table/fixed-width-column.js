@@ -1,6 +1,5 @@
 import React from 'react';
-import {withStyle} from 'styletron-react';
-import {styled} from 'baseui';
+import {styled, withStyle} from 'baseui';
 import {
   StyledTable,
   StyledHead,

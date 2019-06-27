@@ -10,6 +10,7 @@ exports[`basic render: renders <Input/> as a child 1`] = `
   name=""
   onBlur={[Function]}
   onChange={[Function]}
+  onClear={[Function]}
   onFocus={[Function]}
   overrides={
     Object {
@@ -27,6 +28,7 @@ exports[`basic render: renders <StatefulContainer/> 1`] = `
 <StatefulContainer
   initialState={Object {}}
   onChange={[MockFunction]}
+  onClear={[Function]}
   overrides={
     Object {
       "Input": [Function],

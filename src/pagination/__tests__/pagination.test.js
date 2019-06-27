@@ -165,6 +165,7 @@ describe('Pagination Stateless', () => {
       onPageChange: jest.fn(),
     };
     const component = mount(<Pagination {...props} />);
+    // $FlowFixMe
     component.instance().onDropdownButtonClick = jest.fn();
     component.instance().onMenuItemSelect({value: [{label: 3}]});
     expect(props.onPageChange.mock.calls[0]).toEqual([

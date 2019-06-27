@@ -13,9 +13,9 @@ import {Block} from 'baseui/block';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
+import Footer from './footer';
 
 type PropsT = {
-  $full?: boolean,
   children: React.Node,
   path?: {},
   toggleTheme: () => void,
@@ -35,9 +35,9 @@ const SidebarWrapper = styled<{$isOpen: boolean}>(
   }),
 );
 
-const ContentWrapper = styled<{$isSidebarOpen: boolean, $full: boolean}>(
+const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
   'div',
-  ({$theme, $isSidebarOpen, $full}) => ({
+  ({$theme, $isSidebarOpen}) => ({
     boxSizing: 'border-box',
     display: $isSidebarOpen ? 'none' : 'block',
     paddingLeft: $theme.sizing.scale900,
@@ -46,7 +46,7 @@ const ContentWrapper = styled<{$isSidebarOpen: boolean, $full: boolean}>(
     flex: 2,
     '@media screen and (min-width: 820px)': {
       display: 'block',
-      maxWidth: $full ? '100%' : '40em',
+      maxWidth: '60em',
     },
   }),
 );
@@ -60,7 +60,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   }
   render() {
     const {sidebarOpen} = this.state;
-    const {$full, path, toggleTheme, children} = this.props;
+    const {path, toggleTheme, children} = this.props;
     return (
       <React.Fragment>
         <HeaderNavigation
@@ -75,6 +75,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
           marginTop="scale300"
           display="flex"
           paddingTop="scale400"
+          justifyContent="center"
         >
           <SidebarWrapper
             $isOpen={sidebarOpen}
@@ -86,11 +87,11 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             id="docSearch-content"
             role="main"
             $isSidebarOpen={sidebarOpen}
-            $full={Boolean($full)}
           >
             <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
           </ContentWrapper>
         </Block>
+        <Footer />
       </React.Fragment>
     );
   }

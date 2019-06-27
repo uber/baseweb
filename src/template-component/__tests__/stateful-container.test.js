@@ -84,7 +84,6 @@ describe('StatefulComponentContainer', () => {
     const children = jest.fn();
 
     const component = shallow(
-      // $FlowFixMe - Allow null stateReducer for the sake of testing
       <StatefulContainer {...props}>{children}</StatefulContainer>,
     );
 
