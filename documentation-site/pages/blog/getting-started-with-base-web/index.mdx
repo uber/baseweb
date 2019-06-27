@@ -1,12 +1,17 @@
 import Layout from '../../../components/layout';
 import {BlogImage, Demo, Meta} from '../../../components/blog';
-import metadata from './metadata.json'
+import metadata from './metadata.json';
 
 export default Layout;
 
-<BlogImage style={{marginTop: '20px'}} full src="https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png" caption='Base Web by Uber Design'/>
-
 <Meta data={metadata} />
+
+<BlogImage
+  style={{marginTop: '20px'}}
+  full
+  src="https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png"
+  caption="Base Web by Uber Design"
+/>
 
 In this post, we take a look at Base Web. It's Uber's component library offering for React apps.
 Base is a design system comprised of modern, responsive, living components. Base Web is the React implementation of Base.
@@ -15,7 +20,9 @@ A major selling point for Base Web is its clever customization solution. This gi
 
 For an example app, let's build a password generator/validator.
 
-<BlogImage src={'/static/images/blog/getting-started-with-base-web/result.png'} />
+<BlogImage
+  src={'/static/images/blog/getting-started-with-base-web/result.png'}
+/>
 
 ## Set up
 
@@ -64,7 +71,9 @@ ReactDOM.render(
 
 Let's put together the building blocks of our app.
 
-<BlogImage src={'/static/images/blog/getting-started-with-base-web/mockup.png'} />
+<BlogImage
+  src={'/static/images/blog/getting-started-with-base-web/mockup.png'}
+/>
 
 We can create the majority of our UI using the following components
 
@@ -77,7 +86,9 @@ We can create the majority of our UI using the following components
 
 This puts us in a pretty good place without needing to make any changes.
 
-<BlogImage src={'/static/images/blog/getting-started-with-base-web/foundation.png'} />
+<BlogImage
+  src={'/static/images/blog/getting-started-with-base-web/foundation.png'}
+/>
 
 At this stage, we can hook up some logic and we are almost there. It's not pretty though. We need to add some of our own styling tweaks.
 
@@ -132,22 +143,24 @@ Overriding the Slider is more interesting. This involves hiding the TickBar and 
   value={[32]}
   overrides={{
     Track: {
-      style: ({ $theme }) => ({
-        padding: `${$theme.sizing.scale800} 0`
-      })
+      style: ({$theme}) => ({
+        padding: `${$theme.sizing.scale800} 0`,
+      }),
     },
     TickBar: {
       style: {
-        display: 'none'
-      }
-    }
+        display: 'none',
+      },
+    },
   }}
 />
 ```
 
 Referring to the docs and overriding styles for the other components we are using gives us this.
 
-<BlogImage src={'/static/images/blog/getting-started-with-base-web/styled.png'} />
+<BlogImage
+  src={'/static/images/blog/getting-started-with-base-web/styled.png'}
+/>
 
 It would be nice to have a button inside our input that generates a new password on click. We could use a Button component and tweak the positioning. But there is no need. Base Web already caters for scenarios like this.
 
@@ -156,7 +169,7 @@ It would be nice to have a button inside our input that generates a new password
   overrides={{
     After: () => (
       <Button kind={KIND.minimal}>
-        <Icon/>
+        <Icon />
       </Button>
     ),
   }}
@@ -165,7 +178,9 @@ It would be nice to have a button inside our input that generates a new password
 
 Using overrides, we can leverage an After option and pass a Button to it.
 
-<BlogImage src={'/static/images/blog/getting-started-with-base-web/input-with-cta.png'} />
+<BlogImage
+  src={'/static/images/blog/getting-started-with-base-web/input-with-cta.png'}
+/>
 
 We are close.
 
@@ -197,9 +212,7 @@ We can use Blocks to separate the options and for our second block use flex layo
   }}
 >
   <Label>Length</Label>
-  <Slider
-    {...sliderProps}
-  />
+  <Slider {...sliderProps} />
 </Block>
 ```
 
@@ -285,7 +298,9 @@ Tie that into our Input
 
 And this will give us
 
-<BlogImage src={'/static/images/blog/getting-started-with-base-web/strength-meter.gif'} />
+<BlogImage
+  src={'/static/images/blog/getting-started-with-base-web/strength-meter.gif'}
+/>
 
 ## Conclusion
 

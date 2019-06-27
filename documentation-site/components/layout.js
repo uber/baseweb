@@ -28,7 +28,7 @@ const SidebarWrapper = styled<{$isOpen: boolean}>(
     paddingTop: $theme.sizing.scale700,
     marginLeft: $theme.sizing.scale800,
     marginRight: $theme.sizing.scale800,
-    '@media screen and (min-width: 820px)': {
+    '@media screen and (min-width: 920px)': {
       display: 'block',
       maxWidth: '16em',
     },
@@ -42,11 +42,12 @@ const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
     display: $isSidebarOpen ? 'none' : 'block',
     paddingLeft: $theme.sizing.scale900,
     paddingRight: $theme.sizing.scale900,
-    maxWidth: '100%',
+    width: '100%',
+    maxWidth: '40em',
     flex: 2,
-    '@media screen and (min-width: 820px)': {
+    '@media screen and (min-width: 920px)': {
       display: 'block',
-      maxWidth: '60em',
+      maxWidth: '40em',
     },
   }),
 );

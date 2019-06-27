@@ -5,12 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global process */
 
 import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import Head from 'next/head';
+import {H1} from './markdown-elements';
 
 const Image = styled('img', props => ({
   display: 'block',
@@ -47,13 +47,6 @@ export const Demo = styled('iframe', {
   width: '100%',
 });
 
-const Title = styled('h1', ({$theme}) => ({
-  fontFamily: $theme.typography.font100.fontFamily,
-  fontSize: $theme.sizing.scale900,
-  marginTop: $theme.sizing.scale1200,
-  marginBottom: $theme.sizing.scale400,
-}));
-
 const Tagline = styled('span', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
@@ -76,10 +69,6 @@ const Date = styled('span', ({$theme}) => ({
 export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
   <React.Fragment>
     <Head>
-      <title key="title">
-        {process.env.WEBSITE_ENV !== 'production' ? '[DEV] ' : ''}
-        Base Web - {title}
-      </title>
       <meta key="description" name="description" content={tagline} />
     </Head>
     <Block
@@ -91,7 +80,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
         },
       }}
     >
-      <Title>{title}</Title>
+      <H1>{title}</H1>
       <Tagline>{tagline}</Tagline>
       <Block
         overrides={{
