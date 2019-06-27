@@ -38,7 +38,7 @@ const Hamburger = styled<{}>('div', ({$theme}) => ({
   height: '32px',
   paddingLeft: $theme.sizing.scale600,
   cursor: 'pointer',
-  '@media screen and (min-width: 820px)': {
+  '@media screen and (min-width: 920px)': {
     display: 'none',
   },
 }));
