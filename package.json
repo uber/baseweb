@@ -151,7 +151,7 @@
     "polished": "^3.2.0",
     "popper.js": "^1.14.3",
     "react-dropzone": "^9.0.0",
-    "react-focus-lock": "^2.0.0",
+    "react-focus-lock": "^1.9.1",
     "react-input-mask": "^2.0.4",
     "react-is": "^16.8.6",
     "react-movable": "^2.0.1",
