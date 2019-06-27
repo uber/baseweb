@@ -13,7 +13,7 @@ type Props = {
 
 /**
  * Wrap an element in FocusOnce that would normally not receive tab focus.
- * This is useful for placing initial focus in a Modal or FocusTrap.
+ * This is useful for placing initial focus in a Modal or FocusLock.
  * */
 export default function FocusOnce(props: Props) {
   const [tabIndex, setTabIndex] = React.useState('0');
