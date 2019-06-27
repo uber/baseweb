@@ -10,7 +10,7 @@ import React from 'react';
 import {Block} from 'baseui/block';
 import {styled} from 'baseui';
 
-const StyledFooter = styled(
+const StyledFooter = styled<{}>(
   'footer',
   ({$theme: {typography, sizing, colors}}) => ({
     ...typography.font300,
