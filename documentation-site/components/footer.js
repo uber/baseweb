@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Block} from 'baseui/block';
+import Link from 'next/link';
 import {styled} from 'baseui';
 
 const UberLogo = () => (
@@ -46,6 +47,7 @@ const StyledLink = styled('a', ({$theme}) => ({
   textDecoration: 'none',
   color: $theme.colors.foreground,
   display: 'inline-block',
+  cursor: 'pointer',
   marginLeft: '32px',
   ':first-child': {
     marginLeft: '0',
@@ -74,7 +76,9 @@ export default () => (
       >
         Changelog
       </StyledLink>
-      <StyledLink href="/blog">Blog</StyledLink>
+      <Link href="/blog">
+        <StyledLink>Blog</StyledLink>
+      </Link>
     </Block>
     <UberLogo />
   </StyledFooter>

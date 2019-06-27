@@ -125,24 +125,25 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                     v{version}
                   </Button>
                 </StatefulPopover>
-                <Button
-                  size="compact"
-                  kind={KIND.minimal}
-                  $as="a"
-                  href="/blog/base-web-v8/"
-                  overrides={{
-                    BaseButton: {
-                      style: {
-                        display: 'none',
-                        '@media screen and (min-width: 820px)': {
-                          display: 'inline-block',
+                <Link href="/blog/base-web-v8">
+                  <Button
+                    size="compact"
+                    kind={KIND.minimal}
+                    $as="a"
+                    overrides={{
+                      BaseButton: {
+                        style: {
+                          display: 'none',
+                          '@media screen and (min-width: 820px)': {
+                            display: 'inline-block',
+                          },
                         },
                       },
-                    },
-                  }}
-                >
-                  {"What's new in v8?"}
-                </Button>
+                    }}
+                  >
+                    {"What's new in v8?"}
+                  </Button>
+                </Link>
               </Block>
             </Block>
           </LogoSegment>
