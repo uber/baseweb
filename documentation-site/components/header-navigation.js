@@ -30,7 +30,7 @@ import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
 import {StatefulMenu} from 'baseui/menu';
 import {Button, KIND} from 'baseui/button';
 
-export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
+export const HEADER_BREAKPOINT = '@media screen and (min-width: 670px)';
 
 const Hamburger = styled<{}>('div', ({$theme}) => ({
   display: 'block',
@@ -134,7 +134,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                     BaseButton: {
                       style: {
                         display: 'none',
-                        [HEADER_BREAKPOINT]: {
+                        '@media screen and (min-width: 820px)': {
                           display: 'inline-block',
                         },
                       },
