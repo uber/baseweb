@@ -32,6 +32,7 @@ export type ToasterSharedStylePropsArgT = {
 export type OverridesT = {
   Body?: OverrideT<SharedStylePropsArgT>,
   CloseIcon?: OverrideT<SharedStylePropsArgT>,
+  InnerContainer?: OverrideT<SharedStylePropsArgT>,
 };
 
 export type ComponentRenderPropT = (props: {dismiss: () => void}) => React.Node;
