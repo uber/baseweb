@@ -27,12 +27,14 @@ const UberLogo = () => (
 
 const StyledFooter = styled<{}>(
   'footer',
-  ({$theme: {typography, sizing, colors}}) => ({
+  ({$theme: {typography, sizing, colors, name}}) => ({
     ...typography.font400,
     position: 'sticky',
     bottom: 0,
+    color: colors.foreground,
+    backgroundColor:
+      name === 'light-theme' ? colors.mono200 : colors.headerNavigationFill,
     width: '100%',
-    backgroundColor: colors.mono300,
     marginTop: sizing.scale1400,
     paddingTop: sizing.scale1600,
     paddingBottom: sizing.scale1600,
@@ -42,7 +44,7 @@ const StyledFooter = styled<{}>(
 
 const StyledLink = styled('a', ({$theme}) => ({
   textDecoration: 'none',
-  color: 'inherit',
+  color: $theme.colors.foreground,
   display: 'inline-block',
   marginLeft: '32px',
   ':first-child': {
