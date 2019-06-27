@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
-import {SortableHeadCell} from '../../table/index.js';
 
 import {
   StyledTable,
@@ -27,66 +26,42 @@ const data = Array(100)
      creating art, games, institutions, religions, or life itself: live to world and world to live.`,
     'Cell two',
     'Cell three',
+    'Cell four',
+    'Cell five',
+    'Cell six',
   ]);
 
 export function component() {
   const [css] = useStyletron();
   return (
-    <div>
-      <div className={css({height: '400px', width: '800px'})}>
-        <StyledTable $gridTemplateColumns="auto auto auto">
-          <SortableHeadCell
-            direction={null}
-            title="sort"
-            overrides={{HeadCell: StyledHeadCell}}
-          />
-          <StyledHeadCell>hello</StyledHeadCell>
-          <StyledHeadCell>hello</StyledHeadCell>
-          {data.map(row => {
-            return (
-              <>
-                <StyledBodyCell>{row[0]}</StyledBodyCell>
-                <StyledBodyCell>{row[1]}</StyledBodyCell>
-                <StyledBodyCell>{row[2]}</StyledBodyCell>
-              </>
-            );
-          })}
-          <StyledFooterCell>Foo</StyledFooterCell>
-          <StyledFooterCell>Foo</StyledFooterCell>
-          <StyledFooterCell>Foo</StyledFooterCell>
-        </StyledTable>
-      </div>
+    <div className={css({height: '750px', width: '900px'})}>
+      <StyledTable $gridTemplateColumns="minmax(400px, max-content) 200px 200px 200px 200px 200px">
+        <StyledHeadCell>Column 1</StyledHeadCell>
+        <StyledHeadCell>Column 2</StyledHeadCell>
+        <StyledHeadCell>Column 3</StyledHeadCell>
+        <StyledHeadCell>Column 4</StyledHeadCell>
+        <StyledHeadCell>Column 5</StyledHeadCell>
+        <StyledHeadCell>Column 6</StyledHeadCell>
+        {data.map(row => {
+          return (
+            <>
+              <StyledBodyCell>{row[0]}</StyledBodyCell>
+              <StyledBodyCell>{row[1]}</StyledBodyCell>
+              <StyledBodyCell>{row[2]}</StyledBodyCell>
+              <StyledBodyCell>{row[3]}</StyledBodyCell>
+              <StyledBodyCell>{row[4]}</StyledBodyCell>
+              <StyledBodyCell>{row[5]}</StyledBodyCell>
+            </>
+          );
+        })}
 
-      <div
-        className={css({height: '400px', width: '800px', marginTop: '50px'})}
-      >
-        <StyledTable $gridTemplateColumns="200px 200px 200px 200px 200px 200px">
-          <StyledHeadCell>hello</StyledHeadCell>
-          <StyledHeadCell>hello</StyledHeadCell>
-          <StyledHeadCell>hello</StyledHeadCell>
-          <StyledHeadCell>hello</StyledHeadCell>
-          <StyledHeadCell>hello</StyledHeadCell>
-          <StyledHeadCell>hello</StyledHeadCell>
-          {data.map(row => {
-            return (
-              <>
-                <StyledBodyCell>{row[0]}</StyledBodyCell>
-                <StyledBodyCell>{row[1]}</StyledBodyCell>
-                <StyledBodyCell>{row[2]}</StyledBodyCell>
-                <StyledBodyCell>{row[2]}</StyledBodyCell>
-                <StyledBodyCell>{row[2]}</StyledBodyCell>
-                <StyledBodyCell>{row[2]}</StyledBodyCell>
-              </>
-            );
-          })}
-          <StyledFooterCell>Foo</StyledFooterCell>
-          <StyledFooterCell>Foo</StyledFooterCell>
-          <StyledFooterCell>Foo</StyledFooterCell>
-          <StyledFooterCell>Foo</StyledFooterCell>
-          <StyledFooterCell>Foo</StyledFooterCell>
-          <StyledFooterCell>Foo</StyledFooterCell>
-        </StyledTable>
-      </div>
+        <StyledFooterCell>Footer 1</StyledFooterCell>
+        <StyledFooterCell>Footer 2</StyledFooterCell>
+        <StyledFooterCell>Footer 3</StyledFooterCell>
+        <StyledFooterCell>Footer 4</StyledFooterCell>
+        <StyledFooterCell>Footer 5</StyledFooterCell>
+        <StyledFooterCell>Footer 6</StyledFooterCell>
+      </StyledTable>
     </div>
   );
 }

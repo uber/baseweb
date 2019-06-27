@@ -31,6 +31,7 @@ export const StyledHeadCell = withStyle<typeof FlexStyledHeadCell, {}>(
   props => {
     return {
       backgroundColor: props.$theme.colors.tableHeadBackgroundColor,
+      // clip path is to only display box-shadow from bottom edge
       clipPath: 'inset(0px 0px -8px 0px)',
       boxShadow: props.$theme.lighting.shadow400,
       position: 'sticky',
