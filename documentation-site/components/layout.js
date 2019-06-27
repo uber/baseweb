@@ -13,6 +13,7 @@ import {Block} from 'baseui/block';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
+import Footer from './footer';
 
 type PropsT = {
   children: React.Node,
@@ -90,6 +91,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
           </ContentWrapper>
         </Block>
+        <Footer />
       </React.Fragment>
     );
   }
