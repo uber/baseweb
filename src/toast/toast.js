@@ -11,6 +11,7 @@ import DeleteIcon from '../icon/delete.js';
 import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
+  InnerContainer as StyledInnerContainer,
 } from './styled-components.js';
 import {KIND, TYPE} from './constants.js';
 import {LocaleContext} from '../locale/index.js';
@@ -136,9 +137,15 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     const {
       Body: BodyOverride,
       CloseIcon: CloseIconOverride,
+      InnerContainer: InnerContainerOverride,
     } = this.props.overrides;
 
     const [Body, bodyProps] = getOverrides(BodyOverride, StyledBody);
+
+    const [InnerContainer, innerContainerProps] = getOverrides(
+      InnerContainerOverride,
+      StyledInnerContainer,
+    );
 
     const [CloseIcon, closeIconProps] = getOverrides(
       CloseIconOverride,
@@ -171,9 +178,11 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
           >
-            {typeof children === 'function'
-              ? children({dismiss: this.dismiss})
-              : children}
+            <InnerContainer {...sharedProps} {...innerContainerProps}>
+              {typeof children === 'function'
+                ? children({dismiss: this.dismiss})
+                : children}
+            </InnerContainer>
             {closeable ? (
               <DeleteIcon
                 role="button"
