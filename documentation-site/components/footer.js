@@ -77,7 +77,7 @@ export default () => (
         Changelog
       </StyledLink>
       <Link href="/blog">
-        <StyledLink>Blog</StyledLink>
+        <StyledLink href="/blog">Blog</StyledLink>
       </Link>
     </Block>
     <UberLogo />

@@ -130,6 +130,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                     size="compact"
                     kind={KIND.minimal}
                     $as="a"
+                    href="/blog/base-web-v8"
                     overrides={{
                       BaseButton: {
                         style: {
