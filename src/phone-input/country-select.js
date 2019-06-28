@@ -32,6 +32,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     maxDropdownWidth = DEFAULT_MAX_DROPDOWN_WIDTH,
     maxDropdownHeight = DEFAULT_MAX_DROPDOWN_HEIGHT,
     mapIsoToLabel,
+    disabled = false,
     overrides = {},
   } = props;
   const baseOverrides = {
@@ -105,6 +106,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       <Select
         size={size}
         value={[country]}
+        disabled={disabled}
         onChange={event => {
           // After choosing a country, shift focus to the text input
           if (inputRef && inputRef.current) {
