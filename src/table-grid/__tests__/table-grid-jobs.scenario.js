@@ -19,7 +19,6 @@ import {StatefulMenu} from '../../menu/index.js';
 import {StatefulPopover, PLACEMENT} from '../../popover/index.js';
 import {styled, withStyle, useStyletron} from '../../styles/index.js';
 import {Tag} from '../../tag/index.js';
-import type {TagKindT} from '../../tag/index.js';
 
 import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
@@ -284,7 +283,7 @@ export function component() {
 
         {data.map((row, index) => {
           const striped = index % 2 === 0;
-          return <Row row={row} striped={striped} />;
+          return <Row key={index} row={row} striped={striped} />;
         })}
       </StyledTable>
     </div>

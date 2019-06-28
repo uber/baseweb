@@ -20,7 +20,7 @@ export const name = 'table-grid-records';
 type EventT = [Date, string];
 
 // [pr title, pr link, description, release kind, author]
-type RowT = [string, string, string, string, EventT[]];
+type RowT = [string, string, string, string, string, EventT[]];
 
 const row = [
   'feat(docs-site): theme editor POC',
@@ -41,7 +41,7 @@ const row = [
   ],
 ];
 
-const data = [row, row, row, row, row, row, row];
+const data: RowT[] = [row, row, row, row, row, row, row];
 
 export function component() {
   const [css] = useStyletron();
