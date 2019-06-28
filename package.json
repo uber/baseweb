@@ -50,7 +50,7 @@
     "next:dev": "next documentation-site",
     "next:build": "next build documentation-site",
     "next:export": "next export documentation-site -o public",
-    "now-build": "yarn build:es2015 && next build documentation-site && next export documentation-site -o dist"
+    "now-build": "yarn documentation:build"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
