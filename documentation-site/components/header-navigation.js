@@ -30,7 +30,7 @@ import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
 import {StatefulMenu} from 'baseui/menu';
 import {Button, KIND} from 'baseui/button';
 
-export const HEADER_BREAKPOINT = '@media screen and (min-width: 640px)';
+export const HEADER_BREAKPOINT = '@media screen and (min-width: 670px)';
 
 const Hamburger = styled<{}>('div', ({$theme}) => ({
   display: 'block',
@@ -38,7 +38,7 @@ const Hamburger = styled<{}>('div', ({$theme}) => ({
   height: '32px',
   paddingLeft: $theme.sizing.scale600,
   cursor: 'pointer',
-  '@media screen and (min-width: 820px)': {
+  '@media screen and (min-width: 920px)': {
     display: 'none',
   },
 }));
@@ -57,6 +57,7 @@ const LogoSegment = styled<{$searchInputOpen: boolean}>(
 );
 
 const VERSIONS = [
+  {label: 'v7'},
   {label: 'v6'},
   {label: 'v5'},
   {label: 'v4'},
@@ -124,6 +125,26 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                     v{version}
                   </Button>
                 </StatefulPopover>
+                <Link href="/blog/base-web-v8">
+                  <Button
+                    size="compact"
+                    kind={KIND.minimal}
+                    $as="a"
+                    href="/blog/base-web-v8"
+                    overrides={{
+                      BaseButton: {
+                        style: {
+                          display: 'none',
+                          '@media screen and (min-width: 820px)': {
+                            display: 'inline-block',
+                          },
+                        },
+                      },
+                    }}
+                  >
+                    {"What's new in v8?"}
+                  </Button>
+                </Link>
               </Block>
             </Block>
           </LogoSegment>
@@ -133,6 +154,8 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
               <Search
                 searchInputOpen={searchInputOpen}
                 toggleSearchInput={() => setSearchInputOpen(!searchInputOpen)}
+                // passed as prop to avoid circular dependency
+                breakpoint={HEADER_BREAKPOINT}
               />
               <Block
                 $as="a"

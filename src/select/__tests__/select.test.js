@@ -56,6 +56,7 @@ describe('Select component', function() {
   test('calls onInputChange when input value changes', function() {
     wrapper = mount(<Select {...props} />);
     const e = {target: {value: 'test'}};
+    // $FlowFixMe
     wrapper.instance().handleInputChange(e);
     expect(props.onInputChange).toHaveBeenCalledWith(e);
   });
@@ -63,6 +64,7 @@ describe('Select component', function() {
   test('removes selected tag on clear', function() {
     wrapper = mount(<Select {...props} value={[item]} />);
     const e = {type: 'click', button: 0, preventDefault: jest.fn()};
+    // $FlowFixMe
     wrapper.instance().clearValue(e);
     expect(props.onChange).toHaveBeenCalled();
     expect(props.onChange.mock.calls[0][0]).toEqual({
@@ -70,5 +72,28 @@ describe('Select component', function() {
       option: null,
       value: [],
     });
+  });
+  test('select flow allows custom keys in options objects', function() {
+    wrapper = mount(
+      <Select
+        options={[
+          {id: 'AliceBlue', color: '#F0F8FF'},
+          {id: 'AntiqueWhite', color: '#FAEBD7'},
+        ]}
+        closeOnSelect={false}
+        onChange={({option}) => {
+          /* eslint-disable no-console */
+          // $FlowFixMe
+          console.info(option.color);
+          if (option !== null && option !== undefined && option.color) {
+            console.info(option.color);
+          }
+          /* eslint-enable no-console */
+        }}
+        labelKey="id"
+        multi
+        valueKey="color"
+      />,
+    );
   });
 });

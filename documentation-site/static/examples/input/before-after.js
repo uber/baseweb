@@ -3,41 +3,8 @@ import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import Alert from 'baseui/icon/alert';
 import Check from 'baseui/icon/check';
-import DeleteAlt from 'baseui/icon/delete-alt';
 import Search from 'baseui/icon/search';
 import {StatefulInput, Input} from 'baseui/input';
-
-function InputWithClear() {
-  const [value, setValue] = React.useState('');
-
-  const Clear = styled('button', ({$theme}) => {
-    return {
-      alignItems: 'center',
-      background: 'none',
-      border: 'none',
-      cursor: 'pointer',
-      display: 'flex',
-      paddingRight: $theme.sizing.scale500,
-    };
-  });
-
-  function ClearIcon() {
-    return (
-      <Clear onClick={() => setValue('')}>
-        <DeleteAlt size="18px" />
-      </Clear>
-    );
-  }
-
-  return (
-    <Input
-      onChange={event => setValue(event.target.value)}
-      value={value}
-      placeholder="Input with a clear button"
-      overrides={{After: ClearIcon}}
-    />
-  );
-}
 
 function Before() {
   return (
@@ -93,9 +60,6 @@ export default () => (
       overrides={{After}}
       placeholder="Input with an After component"
     />
-    <Block as="br" />
-
-    <InputWithClear />
     <Block as="br" />
 
     <StatefulInput

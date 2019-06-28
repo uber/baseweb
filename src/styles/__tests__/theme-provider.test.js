@@ -9,7 +9,7 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 
 import ThemeProvider from '../theme-provider.js';
-import styled from '../styled.js';
+import {styled} from '../styled.js';
 import {withStyletronProvider} from '../../test/test-utils.js';
 
 jest.unmock('../styled.js');

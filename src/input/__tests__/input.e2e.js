@@ -12,6 +12,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input[data-test="e2e"]',
+  deleteIcon: 'svg[role="button"]',
 };
 
 describe('input', () => {
@@ -37,5 +38,49 @@ describe('input', () => {
 
     const value = await page.$eval(selectors.input, input => input.value);
     expect(value).toBe('uber_good');
+  });
+
+  describe('can clear values', () => {
+    it('shows a clear value icon', async () => {
+      await mount(page, 'input-clearable');
+      await page.waitFor(selectors.deleteIcon, {
+        visible: true,
+      });
+    });
+
+    it('with escape key', async () => {
+      await mount(page, 'input-clearable');
+      await page.waitFor(selectors.input);
+
+      let inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('Something');
+
+      await page.focus(selectors.input);
+      await page.keyboard.press('Escape');
+
+      inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('');
+
+      await page.waitFor(selectors.deleteIcon, {
+        hidden: true,
+      });
+    });
+
+    it('with delete icon', async () => {
+      await mount(page, 'input-clearable');
+      await page.waitFor(selectors.input);
+
+      let inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('Something');
+
+      await page.click(selectors.deleteIcon);
+
+      inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('');
+
+      await page.waitFor(selectors.deleteIcon, {
+        hidden: true,
+      });
+    });
   });
 });

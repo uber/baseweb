@@ -131,6 +131,7 @@ describe('Stateless checkbox', function() {
       'should call handler for %s event if it is present',
       (eventHandler, state, internalEvent) => {
         const setStateMock = jest.spyOn(instance, 'setState');
+        // $FlowFixMe
         const handler = instance[eventHandler];
         handler(event);
         if (!internalEvent) {

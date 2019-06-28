@@ -8,12 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import {withStyle} from 'styletron-react';
-import {
-  Navigation,
-  StyledNavItem as NavItem,
-  StyledNavLink,
-} from 'baseui/side-navigation';
+import {withStyle} from 'baseui';
+import {Navigation, StyledNavItem as NavItem} from 'baseui/side-navigation';
 import {Label2, Label1} from 'baseui/typography';
 import Link from 'next/link';
 
@@ -47,9 +43,7 @@ function CustomNavItem(props) {
 
   const NavLink = ({item}) => (
     <Link passHref={true} href={item.itemId} prefetch>
-      <StyledNavLink tabIndex={0} {...sharedProps}>
-        <StyledNavItem {...sharedProps}>{item.title}</StyledNavItem>
-      </StyledNavLink>
+      <StyledNavItem {...sharedProps}>{item.title}</StyledNavItem>
     </Link>
   );
 

@@ -67,6 +67,7 @@ describe('Stateful container', function() {
     test.each([handlers[0]])(
       'should call state reducer to apply new state for %s event',
       (eventHandler, type, newState) => {
+        // $FlowFixMe
         const handler = instance[eventHandler];
         handler(event);
         expect(stateReducerMock).toHaveBeenCalledWith(
@@ -81,6 +82,7 @@ describe('Stateful container', function() {
     test.each(handlers)(
       'should call handler for %s event if it is present',
       eventHandler => {
+        // $FlowFixMe
         const handler = instance[eventHandler];
         handler(event);
         expect(events[eventHandler]).toHaveBeenCalledWith(event);

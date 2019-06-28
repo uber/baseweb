@@ -49,13 +49,13 @@ describe('StatefulComponentContainer', () => {
       // event handler is passed to children function
       const childrenHandler = children.mock.calls[0][0][handler];
       if (replaced) {
+        // $FlowFixMe
         expect(childrenHandler).toBe(component.instance()[handler]);
         expect(childrenHandler).not.toBe(props[handler]);
       } else {
         expect(childrenHandler).toBe(props[handler]);
       }
       // event handler from props is called
-      // $FlowFixMe
       childrenHandler(eArgs);
       expect(props[handler]).toHaveBeenCalledTimes(1);
       expect(props[handler]).toHaveBeenLastCalledWith(eArgs);

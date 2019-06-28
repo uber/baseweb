@@ -21,7 +21,6 @@ import Screener, {Steps} from 'screener-storybook/src/screener';
 export const name = 'layer-z-index';
 
 function BlockComponent(props) {
-  // $FlowFixMe
   const {children, forwardedRef, offset, color, ...restProps} = props;
   return (
     <Block

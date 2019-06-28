@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import * as React from 'react';
+
 import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
@@ -39,7 +41,8 @@ export type StateReducerT = (
 export type mapIsoToLabelT = (iso: string) => string;
 
 export type CountrySelectDropdownPropsT = {
-  children: $ReadOnlyArray<React.Node>,
+  // eslint-disable-next-line flowtype/no-weak-types
+  children: $ReadOnlyArray<React.Element<any>>,
   country: CountryT,
   maxDropdownHeight: string,
   mapIsoToLabel?: mapIsoToLabelT,
@@ -60,6 +63,7 @@ export type CountrySelectPropsT = {
   maxDropdownWidth?: string,
   maxDropdownHeight?: string,
   mapIsoToLabel?: mapIsoToLabelT,
+  disabled?: boolean,
   overrides: {
     DialCode?: OverrideT<*>,
     CountrySelect?: OverrideT<*>,
@@ -97,6 +101,8 @@ export type PropsT = {
   mapIsoToLabel?: mapIsoToLabelT,
   /** Defines the size of the text input. */
   size?: SizeT,
+  /** Renders component in 'disabled' state. */
+  disabled?: boolean,
   /** Defines a maximum dropdown height. The edge of the viewport will shrink the dropdown accordingly. */
   maxDropdownHeight?: string,
   /** Defines a maximum dropdown width. The edge of the viewport will shrink the dropdown accordingly. */

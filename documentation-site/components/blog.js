@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
+import Head from 'next/head';
+import {H1} from './markdown-elements';
 
 const Image = styled('img', props => ({
   display: 'block',
@@ -18,7 +20,7 @@ const Image = styled('img', props => ({
   width: props.$full ? '100%' : 'auto',
 }));
 
-const Caption = styled('figcaption', ({$theme}) => ({
+export const Caption = styled('figcaption', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
@@ -45,13 +47,6 @@ export const Demo = styled('iframe', {
   width: '100%',
 });
 
-const Title = styled('h1', ({$theme}) => ({
-  fontFamily: $theme.typography.font100.fontFamily,
-  fontSize: $theme.sizing.scale900,
-  marginTop: $theme.sizing.scale1200,
-  marginBottom: $theme.sizing.scale400,
-}));
-
 const Tagline = styled('span', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
@@ -67,42 +62,82 @@ const AuthorLink = styled('a', ({$theme}) => ({
   },
 }));
 
-const Date = styled('span', ({$theme}) => ({
+const ArticleDate = styled('span', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
 }));
 
-export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
-  <Block
-    overrides={{
-      Block: {
-        style: ({$theme}) => ({
-          marginBottom: $theme.sizing.scale1400,
-        }),
-      },
-    }}
-  >
-    <Title>{title}</Title>
-    <Tagline>{tagline}</Tagline>
+export const Meta = ({
+  data: {
+    title,
+    tagline,
+    author,
+    authorLink,
+    date,
+    coverImage,
+    coverImageWidth,
+    coverImageHeight,
+    keyWords = [],
+  },
+}) => (
+  <React.Fragment>
+    <Head>
+      <meta property="og:title" content={title} name="title" />
+      <meta property="og:type" content="article" />
+      <meta
+        property="og:description"
+        content={tagline}
+        key="description"
+        name="description"
+      />
+      <meta property="article:author" content={author} name="author" />
+      {keyWords.map(kw => (
+        <meta property="article:tag" content={kw} key={`article:tag:${kw}`} />
+      ))}
+      <meta
+        property="article:published_time"
+        content={new Date(date).toISOString()}
+      />
+      <meta property="og:image" content={coverImage} />
+      {/* Best practice to specify these, but will usually work regardless. Ideal dimensions are 1200x630. */}
+      {coverImageWidth ? (
+        <meta property="og:image:width" content={coverImageWidth} />
+      ) : null}
+      {coverImageHeight ? (
+        <meta property="og:image:height" content={coverImageHeight} />
+      ) : null}
+    </Head>
     <Block
       overrides={{
         Block: {
           style: ({$theme}) => ({
-            color: $theme.colors.foregroundAlt,
-            fontFamily: $theme.typography.font100.fontFamily,
-            margin: `${$theme.sizing.scale400} 0`,
+            marginBottom: $theme.sizing.scale1400,
           }),
         },
       }}
     >
-      <AuthorLink
-        $as={authorLink ? 'a' : 'span'}
-        rel="noopener noreferrer"
-        target="_blank"
-        href={authorLink ? authorLink : '/'}
+      <H1>{title}</H1>
+      <Tagline>{tagline}</Tagline>
+      <Block
+        overrides={{
+          Block: {
+            style: ({$theme}) => ({
+              color: $theme.colors.foregroundAlt,
+              fontFamily: $theme.typography.font100.fontFamily,
+              margin: `${$theme.sizing.scale400} 0`,
+            }),
+          },
+        }}
       >
-        {author}
-      </AuthorLink>{' '}
-      <Date> - {date}</Date>
+        <AuthorLink
+          $as={authorLink ? 'a' : 'span'}
+          rel="noopener noreferrer"
+          target="_blank"
+          href={authorLink ? authorLink : '/'}
+        >
+          {author}
+        </AuthorLink>{' '}
+        <ArticleDate> - {date}</ArticleDate>
+      </Block>
     </Block>
-  </Block>
+  </React.Fragment>
 );

@@ -12,7 +12,7 @@ import {styled} from '../styles/index.js';
 import {Consumer} from './layers-manager.js';
 import type {LayerPropsT, LayerComponentPropsT, LayerStateT} from './types.js';
 
-const Container = styled('div', ({$zIndex}) => ({
+const Container = styled<{$zIndex?: number}>('div', ({$zIndex}) => ({
   position: 'absolute',
   top: 0,
   left: 0,
