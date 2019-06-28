@@ -62,14 +62,49 @@ const AuthorLink = styled('a', ({$theme}) => ({
   },
 }));
 
-const Date = styled('span', ({$theme}) => ({
+const ArticleDate = styled('span', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
 }));
 
-export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
+export const Meta = ({
+  data: {
+    title,
+    tagline,
+    author,
+    authorLink,
+    date,
+    coverImage,
+    coverImageWidth,
+    coverImageHeight,
+    keyWords = [],
+  },
+}) => (
   <React.Fragment>
     <Head>
-      <meta key="description" name="description" content={tagline} />
+      <meta property="og:title" content={title} name="title" />
+      <meta property="og:type" content="article" />
+      <meta
+        property="og:description"
+        content={tagline}
+        key="description"
+        name="description"
+      />
+      <meta property="article:author" content={author} name="author" />
+      {keyWords.map(kw => (
+        <meta property="article:tag" content={kw} key={`article:tag:${kw}`} />
+      ))}
+      <meta
+        property="article:published_time"
+        content={new Date(date).toISOString()}
+      />
+      <meta property="og:image" content={coverImage} />
+      {/* Best practice to specify these, but will usually work regardless. Ideal dimensions are 1200x630. */}
+      {coverImageWidth ? (
+        <meta property="og:image:width" content={coverImageWidth} />
+      ) : null}
+      {coverImageHeight ? (
+        <meta property="og:image:height" content={coverImageHeight} />
+      ) : null}
     </Head>
     <Block
       overrides={{
@@ -101,7 +136,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
         >
           {author}
         </AuthorLink>{' '}
-        <Date> - {date}</Date>
+        <ArticleDate> - {date}</ArticleDate>
       </Block>
     </Block>
   </React.Fragment>
