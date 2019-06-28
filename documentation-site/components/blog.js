@@ -5,12 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global process */
 
 import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import Head from 'next/head';
+import {H1} from './markdown-elements';
 
 const Image = styled('img', props => ({
   display: 'block',
@@ -47,13 +47,6 @@ export const Demo = styled('iframe', {
   width: '100%',
 });
 
-const Title = styled('h1', ({$theme}) => ({
-  fontFamily: $theme.typography.font100.fontFamily,
-  fontSize: $theme.sizing.scale900,
-  marginTop: $theme.sizing.scale1200,
-  marginBottom: $theme.sizing.scale400,
-}));
-
 const Tagline = styled('span', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
@@ -69,18 +62,49 @@ const AuthorLink = styled('a', ({$theme}) => ({
   },
 }));
 
-const Date = styled('span', ({$theme}) => ({
+const ArticleDate = styled('span', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
 }));
 
-export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
+export const Meta = ({
+  data: {
+    title,
+    tagline,
+    author,
+    authorLink,
+    date,
+    coverImage,
+    coverImageWidth,
+    coverImageHeight,
+    keyWords = [],
+  },
+}) => (
   <React.Fragment>
     <Head>
-      <title key="title">
-        {process.env.WEBSITE_ENV !== 'production' ? '[DEV] ' : ''}
-        Base Web - {title}
-      </title>
-      <meta key="description" name="description" content={tagline} />
+      <meta property="og:title" content={title} name="title" />
+      <meta property="og:type" content="article" />
+      <meta
+        property="og:description"
+        content={tagline}
+        key="description"
+        name="description"
+      />
+      <meta property="article:author" content={author} name="author" />
+      {keyWords.map(kw => (
+        <meta property="article:tag" content={kw} key={`article:tag:${kw}`} />
+      ))}
+      <meta
+        property="article:published_time"
+        content={new Date(date).toISOString()}
+      />
+      <meta property="og:image" content={coverImage} />
+      {/* Best practice to specify these, but will usually work regardless. Ideal dimensions are 1200x630. */}
+      {coverImageWidth ? (
+        <meta property="og:image:width" content={coverImageWidth} />
+      ) : null}
+      {coverImageHeight ? (
+        <meta property="og:image:height" content={coverImageHeight} />
+      ) : null}
     </Head>
     <Block
       overrides={{
@@ -91,7 +115,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
         },
       }}
     >
-      <Title>{title}</Title>
+      <H1>{title}</H1>
       <Tagline>{tagline}</Tagline>
       <Block
         overrides={{
@@ -112,7 +136,7 @@ export const Meta = ({data: {title, tagline, author, authorLink, date}}) => (
         >
           {author}
         </AuthorLink>{' '}
-        <Date> - {date}</Date>
+        <ArticleDate> - {date}</ArticleDate>
       </Block>
     </Block>
   </React.Fragment>

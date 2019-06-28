@@ -12,19 +12,19 @@ import {getOverrides} from '../helpers/overrides.js';
 import TriangleDown from '../icon/triangle-down.js';
 import TriangleUp from '../icon/triangle-up.js';
 
+import {SORT_DIRECTION} from './constants.js';
 import {StyledHeadCell, StyledSortableLabel} from './styled-components.js';
-import type {HeadCellPropsT} from './types.js';
+import type {SortDirectionT, HeadCellPropsT} from './types.js';
 
-function Direction(props: {direction: 'ASC' | 'DESC' | null}) {
-  if (props.direction === 'ASC') {
-    return <TriangleDown />;
+function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
+  switch (direction) {
+    case SORT_DIRECTION.ASC:
+      return <TriangleDown />;
+    case SORT_DIRECTION.DESC:
+      return <TriangleUp />;
+    default:
+      return null;
   }
-
-  if (props.direction === 'DESC') {
-    return <TriangleUp />;
-  }
-
-  return null;
 }
 
 export default function SortableHeadCell(props: HeadCellPropsT) {
@@ -49,7 +49,7 @@ export default function SortableHeadCell(props: HeadCellPropsT) {
         }}
         {...sortableLabelProps}
       >
-        <Direction direction={props.direction} />
+        <SortDirectionIcon direction={props.direction} />
         {props.title}
       </SortableLabel>
       {props.children}
