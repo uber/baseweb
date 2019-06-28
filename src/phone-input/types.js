@@ -63,6 +63,7 @@ export type CountrySelectPropsT = {
   maxDropdownWidth?: string,
   maxDropdownHeight?: string,
   mapIsoToLabel?: mapIsoToLabelT,
+  disabled?: boolean,
   overrides: {
     DialCode?: OverrideT<*>,
     CountrySelect?: OverrideT<*>,
@@ -100,6 +101,8 @@ export type PropsT = {
   mapIsoToLabel?: mapIsoToLabelT,
   /** Defines the size of the text input. */
   size?: SizeT,
+  /** Renders component in 'disabled' state. */
+  disabled?: boolean,
   /** Defines a maximum dropdown height. The edge of the viewport will shrink the dropdown accordingly. */
   maxDropdownHeight?: string,
   /** Defines a maximum dropdown width. The edge of the viewport will shrink the dropdown accordingly. */
