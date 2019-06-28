@@ -9,9 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {withStyle} from '../styles/index.js';
 import {
   StyledTable as FlexStyledTable,
-  StyledHead as FlexStyledHead,
   StyledHeadCell as FlexStyledHeadCell,
-  StyledBody as FlexStyledBody,
   StyledCell as FlexStyledBodyCell,
 } from '../table/index.js';
 
@@ -31,8 +29,6 @@ export const StyledHeadCell = withStyle<typeof FlexStyledHeadCell, {}>(
   props => {
     return {
       backgroundColor: props.$theme.colors.tableHeadBackgroundColor,
-      // clip path is to only display box-shadow from bottom edge
-      clipPath: 'inset(0px 0px -8px 0px)',
       boxShadow: props.$theme.lighting.shadow400,
       position: 'sticky',
       top: 0,
@@ -41,25 +37,14 @@ export const StyledHeadCell = withStyle<typeof FlexStyledHeadCell, {}>(
   },
 );
 
-export const StyledBodyCell = withStyle<typeof FlexStyledBodyCell>(
-  FlexStyledBodyCell,
-  {
+export const StyledBodyCell = withStyle<
+  typeof FlexStyledBodyCell,
+  {$gridColumn?: string, $gridRow?: string},
+>(FlexStyledBodyCell, props => {
+  return {
     display: 'block',
     flex: 'unset',
-  },
-);
-
-export const StyledFooterCell = withStyle<typeof StyledBodyCell, {}>(
-  StyledBodyCell,
-  props => {
-    return {
-      backgroundColor: props.$theme.colors.tableHeadBackgroundColor,
-      ...props.$theme.borders.border300,
-      borderRight: 'none',
-      borderBottom: 'none',
-      borderLeft: 'none',
-      bottom: 0,
-      position: 'sticky',
-    };
-  },
-);
+    gridColumn: props.$gridColumn || null,
+    gridRow: props.$gridRow || null,
+  };
+});
