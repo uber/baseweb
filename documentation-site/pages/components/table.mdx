@@ -25,7 +25,11 @@ export default Layout;
 
 # Table
 
-Display larger amounts of information in a scannable UI.
+Display larger amounts of information in a scannable UI. This component is best suited for
+applications that need to support older browsers like Internet Explorer. It is implemented with
+[flex-box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
+If your application does not need legacy support, you may want to explore baseui's [table-grid](/components/table-grid),
+components, a visually similar table, but implemented with [css-grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout).
 
 <Example title="Table basic usage" path="examples/table/basic.js">
   <Basic />
