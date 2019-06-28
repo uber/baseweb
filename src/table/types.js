@@ -8,13 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {SORT_DIRECTION} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
+
+export type SortDirectionT = ?$Keys<typeof SORT_DIRECTION>;
 
 export type HeadCellPropsT = {|
   /** Additional content to fill head cell. Most likely used for a filter button. */
   children?: React.Node,
   /** Visually indicates sort direction. Displays a chevron next to column title. */
-  direction: 'ASC' | 'DESC' | null,
+  direction: SortDirectionT,
   /** Disabled click-to-sort. Renders column title in muted color. */
   disabled?: boolean,
   /** Callback for when column title is clicked to trigger sort. */
