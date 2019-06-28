@@ -10,12 +10,7 @@ import React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
 
-import {
-  StyledTable,
-  StyledHeadCell,
-  StyledBodyCell,
-  StyledFooterCell,
-} from '../index.js';
+import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
 export const name = 'table-grid';
 
@@ -54,13 +49,6 @@ export function component() {
             </>
           );
         })}
-
-        <StyledFooterCell>Footer 1</StyledFooterCell>
-        <StyledFooterCell>Footer 2</StyledFooterCell>
-        <StyledFooterCell>Footer 3</StyledFooterCell>
-        <StyledFooterCell>Footer 4</StyledFooterCell>
-        <StyledFooterCell>Footer 5</StyledFooterCell>
-        <StyledFooterCell>Footer 6</StyledFooterCell>
       </StyledTable>
     </div>
   );
