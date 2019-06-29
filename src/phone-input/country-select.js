@@ -9,31 +9,36 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {StyledRoot, StyledFlag, StyledDialCode} from './styled-components.js';
-import {
-  SIZE,
-  COUNTRIES,
-  DEFAULT_MAX_DROPDOWN_HEIGHT,
-  DEFAULT_MAX_DROPDOWN_WIDTH,
-} from './constants.js';
+import {COUNTRIES} from './constants.js';
 import CountrySelectDropdown from './country-select-dropdown.js';
 import {Block} from '../block/index.js';
 import {Select as DefaultSelect} from '../select/index.js';
 import {PLACEMENT} from '../popover/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import defaultProps from './default-props.js';
 
 import type {CountryT, CountrySelectPropsT} from './types.js';
+
+CountrySelect.defaultProps = {
+  disabled: defaultProps.disabled,
+  inputRef: null,
+  maxDropdownHeight: defaultProps.maxDropdownHeight,
+  maxDropdownWidth: defaultProps.maxDropdownWidth,
+  overrides: {},
+  size: defaultProps.size,
+};
 
 export default function CountrySelect(props: CountrySelectPropsT) {
   const {
     country,
+    disabled,
     inputRef,
-    onCountryChange = event => {},
-    size = SIZE.default,
-    maxDropdownWidth = DEFAULT_MAX_DROPDOWN_WIDTH,
-    maxDropdownHeight = DEFAULT_MAX_DROPDOWN_HEIGHT,
+    maxDropdownHeight,
+    maxDropdownWidth,
     mapIsoToLabel,
-    disabled = false,
-    overrides = {},
+    onCountryChange,
+    overrides,
+    size,
   } = props;
   const baseOverrides = {
     Root: {
@@ -108,11 +113,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         value={[country]}
         disabled={disabled}
         onChange={event => {
+          onCountryChange(event);
           // After choosing a country, shift focus to the text input
           if (inputRef && inputRef.current) {
             inputRef.current.focus();
           }
-          onCountryChange(event);
         }}
         options={Object.values(COUNTRIES)}
         clearable={false}

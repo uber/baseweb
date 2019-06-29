@@ -7,15 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import Flag from './flag.js';
-import {DEFAULT_MAX_DROPDOWN_HEIGHT, SIZE} from './constants.js';
+import {SIZE} from './constants.js';
 import {styled, withStyle} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
 import {
   StyledDropdownListItem,
   StyledRoot as SelectStyledRoot,
 } from '../select/index.js';
+import defaultProps from '../select/default-props.js';
 
-type SizeStyleProps = {$size?: $Keys<typeof SIZE>};
+type SizeStyleProps = {
+  $size?: $Keys<typeof SIZE>,
+};
 type HeightStyleProps = {$height: string};
 
 export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
@@ -56,7 +59,7 @@ export const StyledCountrySelectDropdownContainer = withStyle<
   typeof StyledList,
   HeightStyleProps,
 >(StyledList, props => {
-  const {$height = DEFAULT_MAX_DROPDOWN_HEIGHT} = props;
+  const {$height = defaultProps.maxDropdownHeight} = props;
   return {
     height: $height,
     paddingTop: 0,

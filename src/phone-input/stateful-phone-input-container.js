@@ -7,29 +7,28 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import {COUNTRIES, STATE_CHANGE_TYPE} from './constants.js';
-
 import type {
-  StatefulPhoneInputContainerPropsT,
+  StatefulContainerPropsT,
   StateT,
   StateReducerT,
   StateChangeT,
 } from './types.js';
+import defaultProps from './default-props.js';
 import type {OnChangeParamsT} from '../select/types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 export default class StatefulPhoneInputContainer extends React.Component<
-  StatefulPhoneInputContainerPropsT,
+  StatefulContainerPropsT,
   StateT,
 > {
   static defaultProps = {
     initialState: {
-      text: '',
-      country: COUNTRIES.US,
+      text: defaultProps.text,
+      country: defaultProps.country,
     },
-    onTextChange: () => {},
-    onCountryChange: () => {},
-    onClear: () => {},
+    onTextChange: defaultProps.onTextChange,
+    onCountryChange: defaultProps.onTextChange,
     stateReducer: defaultStateReducer,
     overrides: {},
   };
@@ -58,9 +57,10 @@ export default class StatefulPhoneInputContainer extends React.Component<
 
   render() {
     const {children, initialState, stateReducer, ...restProps} = this.props;
+    // $FlowFixMe
     return children({
-      ...this.state,
       ...restProps,
+      ...this.state,
       onTextChange: this.onTextChange,
       onCountryChange: this.onCountryChange,
     });
