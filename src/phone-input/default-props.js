@@ -15,13 +15,15 @@ const defaultProps = {
   country: COUNTRIES.US,
   disabled: false,
   error: false,
-  positive: false,
-  size: SIZE.default,
+  id: null,
   maxDropdownHeight: '400px',
   maxDropdownWidth: '400px',
+  name: null,
   onCountryChange: () => {},
   onTextChange: () => {},
   overrides: {},
+  positive: false,
+  size: SIZE.default,
   text: '',
 };
 

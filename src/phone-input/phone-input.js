@@ -22,9 +22,12 @@ export default function PhoneInput(props: PropsT) {
     country,
     disabled,
     error,
+    id,
+    name,
     onTextChange,
     onCountryChange,
     overrides,
+    placeholder,
     positive,
     size,
     text,
@@ -38,6 +41,7 @@ export default function PhoneInput(props: PropsT) {
       component: CountrySelect,
       props: {
         country,
+        disabled,
         inputRef,
         onCountryChange,
         size,
@@ -55,12 +59,15 @@ export default function PhoneInput(props: PropsT) {
       data-baseweb="phone-input"
       disabled={disabled}
       error={error}
+      id={id}
       inputRef={inputRef}
-      type="tel"
+      name={name}
       onChange={onTextChange}
       overrides={inputOverrides}
       positive={positive}
+      placeholder={placeholder}
       size={size}
+      type="tel"
       value={text}
       {...inputProps}
     />

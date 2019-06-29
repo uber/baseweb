@@ -88,12 +88,16 @@ export type PropsT = {
   disabled: boolean,
   /** Renders component in 'error' state. */
   error: boolean,
+  /** Sets the id attribute of the input element. */
+  id: ?string,
   /** Sets the max height of the country select dropdown. */
   maxDropdownHeight: string,
   /** Sets the max width of the country select dropdown. */
   maxDropdownWidth: string,
   /** Function for mapping ISO codes to country names. Useful for localization of the country select dropdown. */
   mapIsoToLabel?: mapIsoToLabelT,
+  /** Sets the name attribute of the input element. */
+  name: ?string,
   /** A handler for the country select's change events. */
   onCountryChange: (event: OnChangeParamsT) => mixed,
   /** A handler for the input element's change events. */
