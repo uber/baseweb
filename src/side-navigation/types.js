@@ -41,6 +41,10 @@ export type NavPropsT = {
   activePredicate: ?(item: *, activeItemId: string) => boolean,
   /** List of navigation items */
   items: Item[],
+  /** Used as a performance optimization if many nav items are rendered. Function provided to
+   *  NavItem component's React.memo call.
+   */
+  itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
   /** onChange handler that is called when a nav item is selected */
   onChange?: ({item: *, event: Event | KeyboardEvent}) => mixed,
   /** Overrides for the internal elements and components */
@@ -71,6 +75,10 @@ export type Item = {
 
 export type NavItemPropsT = SharedPropsT & {
   item: Item,
+  /** Used as a performance optimization if many nav items are rendered. Function provided to
+   *  NavItem component's React.memo call.
+   */
+  itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
   onSelect?: ({item: *, event: Event | KeyboardEvent}) => mixed,
   overrides: {
     NavLink?: OverrideT<*>,
