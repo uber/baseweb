@@ -5,7 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {SIZE, COUNTRIES} from './constants.js';
+import {
+  SIZE,
+  COUNTRIES,
+  DEFAULT_MAX_DROPDOWN_HEIGHT,
+  DEFAULT_MAX_DROPDOWN_WIDTH,
+} from './constants.js';
 
 const defaultProps = {
   'aria-label': 'Please choose a country dial code and enter a phone number.',
@@ -16,8 +21,8 @@ const defaultProps = {
   disabled: false,
   error: false,
   id: null,
-  maxDropdownHeight: '400px',
-  maxDropdownWidth: '400px',
+  maxDropdownHeight: DEFAULT_MAX_DROPDOWN_HEIGHT,
+  maxDropdownWidth: DEFAULT_MAX_DROPDOWN_WIDTH,
   name: null,
   onCountryChange: () => {},
   onTextChange: () => {},

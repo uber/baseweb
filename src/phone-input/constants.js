@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-// These are not used as of #1490. Leaving here until a future major so as not to break consumer code.
 export const DEFAULT_MAX_DROPDOWN_WIDTH = '400px';
 export const DEFAULT_MAX_DROPDOWN_HEIGHT = '400px';
 
