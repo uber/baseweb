@@ -1,6 +1,10 @@
 import React from 'react';
 import {useStyletron} from 'baseui/styles';
-import {StyledTable, StyledHeadCell, StyledBodyCell} from 'baseui/table-grid';
+import {
+  Unstable_StyledTable as StyledTable,
+  Unstable_StyledHeadCell as StyledHeadCell,
+  Unstable_StyledBodyCell as StyledBodyCell,
+} from 'baseui/table-grid';
 
 const data = Array(100)
   .fill(2)

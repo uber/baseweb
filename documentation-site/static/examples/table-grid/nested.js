@@ -10,7 +10,11 @@ import {StyledLink} from 'baseui/link';
 import {StatefulMenu} from 'baseui/menu';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {styled, withStyle, useStyletron} from 'baseui/styles';
-import {StyledTable, StyledHeadCell, StyledBodyCell} from 'baseui/table-grid';
+import {
+  Unstable_StyledTable as StyledTable,
+  Unstable_StyledHeadCell as StyledHeadCell,
+  Unstable_StyledBodyCell as StyledBodyCell,
+} from 'baseui/table-grid';
 import {Tag} from 'baseui/tag';
 import type {TagKindT} from 'baseui/tag';
 
