@@ -251,8 +251,8 @@ function Row({striped, row}) {
 export default function() {
   const [css] = useStyletron();
   return (
-    <div className={css({height: '600px', width: '900px'})}>
-      <StyledTable $gridTemplateColumns="auto auto auto auto auto">
+    <div className={css({height: '600px'})}>
+      <StyledTable $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto">
         <StyledHeadCell>Job Name</StyledHeadCell>
         <StyledHeadCell>Status</StyledHeadCell>
         <StyledHeadCell>Pull Request</StyledHeadCell>
