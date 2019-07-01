@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import {SIZE, COUNTRIES} from './constants.js';
 
 const defaultProps = {
-  'aria-label': null,
+  'aria-label': 'Please choose a country dial code and enter a phone number.',
   'aria-describedby': null,
   'aria-labelledby': null,
   autoFocus: false,
