@@ -23,6 +23,7 @@ const defaultProps = {
   onTextChange: () => {},
   overrides: {},
   positive: false,
+  required: false,
   size: SIZE.default,
   text: '',
 };

@@ -115,6 +115,8 @@ export type PropsT = {
   placeholder?: string,
   /** Renders component in 'positive' state. */
   positive: boolean,
+  /** Sets the 'required' attribute of the input element. The country select will always have a value so does has no need for 'require'. */
+  required: boolean,
   /** Sets the size of the component. */
   size: SizeT,
   /** Defines the value of the input element. */
