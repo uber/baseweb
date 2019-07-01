@@ -11,7 +11,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import {StyledNavLink, StyledNavItem} from './styled-components.js';
 import type {NavItemPropsT} from './types.js';
 
-export default class NavItem extends React.Component<NavItemPropsT> {
+class NavItem extends React.Component<NavItemPropsT> {
   static defaultProps = {
     overrides: {},
     onSelect: () => {},
@@ -56,3 +56,12 @@ export default class NavItem extends React.Component<NavItemPropsT> {
     );
   }
 }
+
+function compare(prevProps, nextProps) {
+  if (nextProps.itemMemoizationComparator) {
+    return nextProps.itemMemoizationComparator(prevProps, nextProps);
+  }
+  return false;
+}
+
+export default React.memo<NavItemPropsT>(NavItem, compare);
