@@ -57,8 +57,8 @@ export default class StatefulPhoneInputContainer extends React.Component<
 
   render() {
     const {children, initialState, stateReducer, ...restProps} = this.props;
-    // $FlowFixMe
     return children({
+      ...defaultProps,
       ...restProps,
       ...this.state,
       onTextChange: this.onTextChange,
