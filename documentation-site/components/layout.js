@@ -40,8 +40,8 @@ const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
   ({$theme, $isSidebarOpen}) => ({
     boxSizing: 'border-box',
     display: $isSidebarOpen ? 'none' : 'block',
-    paddingLeft: $theme.sizing.scale900,
-    paddingRight: $theme.sizing.scale900,
+    paddingLeft: $theme.sizing.scale800,
+    paddingRight: $theme.sizing.scale800,
     width: '100%',
     maxWidth: '40em',
     flex: 2,
