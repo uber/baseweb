@@ -30,7 +30,7 @@ CountrySelectDropdown.defaultProps = {
 function CountrySelectDropdown(props: CountrySelectDropdownPropsT) {
   const {
     children,
-    containerRef,
+    forwardedRef,
     country,
     overrides,
     maxDropdownHeight,
@@ -62,7 +62,7 @@ function CountrySelectDropdown(props: CountrySelectDropdownPropsT) {
   );
   return (
     <Container
-      ref={containerRef}
+      ref={forwardedRef}
       $height={maxDropdownHeight}
       {...containerProps}
     >
@@ -115,4 +115,4 @@ function CountrySelectDropdown(props: CountrySelectDropdownPropsT) {
 export default React.forwardRef<
   CountrySelectDropdownPropsT,
   typeof CountrySelectDropdown,
->((props, ref) => <CountrySelectDropdown {...props} containerRef={ref} />);
+>((props, ref) => <CountrySelectDropdown {...props} forwardedRef={ref} />);

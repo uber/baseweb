@@ -52,7 +52,7 @@ export type CountrySelectDropdownPropsT = {
     CountrySelectDropdownNameColumn?: OverrideT<*>,
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
   },
-  containerRef: React.ElementRef<*>,
+  forwardedRef: React.ElementRef<*>,
 };
 
 export type CountrySelectPropsT = {
