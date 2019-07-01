@@ -118,7 +118,7 @@
     "react-codesandboxer": "^3.1.1",
     "react-dom": "^16.8.3",
     "react-markdown": "^4.0.3",
-    "react-syntax-highlighter": "^10.1.2",
+    "react-syntax-highlighter": "^11.0.0",
     "react-vis": "^1.11.6",
     "recursive-readdir": "^2.2.2",
     "screener-storybook": "^0.18.0",
