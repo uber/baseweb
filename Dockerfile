@@ -6,6 +6,7 @@ WORKDIR /baseui
 # Doing this before a build step can more effectively leverage Docker caching.
 COPY package.json yarn.lock /baseui/
 RUN yarn --ignore-scripts
+RUN yarn global add now
 
 # Copy the current files to the docker image.
 COPY . .
@@ -16,4 +17,4 @@ RUN yarn remove puppeteer && yarn add puppeteer
 RUN yarn build
 RUN yarn build-storybook
 RUN yarn e2e:build
-RUN yarn documentation:build
+RUN BUILD_ENV=production yarn documentation:build

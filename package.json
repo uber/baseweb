@@ -49,8 +49,7 @@
     "documentation:legacy": "./scripts/build-docs.js",
     "next:dev": "next documentation-site",
     "next:build": "next build documentation-site",
-    "next:export": "next export documentation-site -o public",
-    "now-build": "yarn documentation:build"
+    "next:export": "next export documentation-site -o public"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
