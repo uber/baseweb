@@ -31,6 +31,7 @@ export default function PhoneInput(props: PropsT) {
     positive,
     size,
     text,
+    ...restProps
   } = props;
   const inputRef = useRef(null);
   const baseOverrides = {
@@ -70,6 +71,7 @@ export default function PhoneInput(props: PropsT) {
       type="tel"
       value={text}
       {...inputProps}
+      {...restProps}
     />
   );
 }
