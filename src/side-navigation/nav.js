@@ -79,6 +79,7 @@ export default class SideNav extends React.Component<NavPropsT> {
           <>
             <NavItem
               item={item}
+              itemMemoizationComparator={this.props.itemMemoizationComparator}
               onSelect={onChange}
               overrides={overrides}
               {...sharedProps}
