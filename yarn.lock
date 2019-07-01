@@ -11040,6 +11040,11 @@ normalize-range@^0.1.2:
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
   integrity sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=
 
+now@^15.6.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/now/-/now-15.6.2.tgz#2baba11392ec5d131465b1f8c0684b35222922bf"
+  integrity sha512-yU7yIcSI6PcMjdjx2M4YtewT0jF3dj6Q1t0qP3c74F+ZjMQwazB0Wq6R+To3qf9Qp4VvRLqY1qGVZXZ6qeVT+Q==
+
 npm-bundled@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.3.tgz#7e71703d973af3370a9591bafe3a63aca0be2308"
