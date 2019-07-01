@@ -121,7 +121,7 @@ export type PropsT = {
   text: string,
 };
 
-export type StatefulContainerPropsT = {
+export type StatefulPhoneInputContainerPropsT = {
   children: PropsT => React.Node,
   initialState: StateT,
   stateReducer: StateReducerT,

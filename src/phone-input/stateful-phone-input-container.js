@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {COUNTRIES, STATE_CHANGE_TYPE} from './constants.js';
 import type {
-  StatefulContainerPropsT,
+  StatefulPhoneInputContainerPropsT,
   StateT,
   StateReducerT,
   StateChangeT,
@@ -19,7 +19,7 @@ import type {OnChangeParamsT} from '../select/types.js';
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 export default class StatefulPhoneInputContainer extends React.Component<
-  StatefulContainerPropsT,
+  StatefulPhoneInputContainerPropsT,
   StateT,
 > {
   static defaultProps = {
