@@ -12,7 +12,6 @@ import type {SharedStylePropsT} from './types.js';
 export const BaseButton = styled<SharedStylePropsT>(
   'button',
   ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
-    position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -54,9 +53,6 @@ export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
 export const LoadingSpinnerContainer = styled('div', {
   // To center within parent
   position: 'absolute',
-  left: '50%',
-  top: '50%',
-  transform: 'translate(-50%, -50%)',
 });
 
 export const LoadingSpinner = styled<SharedStylePropsT>(

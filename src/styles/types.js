@@ -366,6 +366,7 @@ export type ColorsT = {
   // Table
   tableHeadBackgroundColor: string,
   tableBackground: string,
+  tableStripedBackground: string,
   tableFilter: string,
   tableFilterHeading: string,
   tableFilterBackground: string,

@@ -225,6 +225,7 @@ export default {
     // Table
     tableHeadBackgroundColor: primitives.mono700,
     tableBackground: primitives.mono800,
+    tableStripedBackground: primitives.mono700,
     tableFilter: primitives.mono400,
     tableFilterHeading: primitives.mono300,
     tableFilterBackground: primitives.mono700,

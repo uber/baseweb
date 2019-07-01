@@ -1,0 +1,40 @@
+<!--
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+import UnstableWarning from '../../components/unstable-warning';
+
+import Basic from 'examples/table-grid/basic.js';
+import Nested from 'examples/table-grid/nested.js';
+import CellSpan from 'examples/table-grid/cell-span.js';
+
+export default Layout;
+
+# Table-Grid
+
+<UnstableWarning />
+
+Display larger amounts of information in a scannable UI. This component is best suited for
+applications that _do not_ need to support older browsers like Internet Explorer. It is implemented with
+[css-grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and can likely support more
+complex use-cases and layouts. If your application _does_ need legacy support, you may want to explore
+baseui's [table-grid](/components/table-grid), components, a visually similar table, but implemented
+with [flex-box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
+
+<Example title="Basic usage" path="examples/table-grid/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Nested table" path="examples/table-grid/nested.js">
+  <Nested />
+</Example>
+
+<Example title="Cell spanning" path="examples/table-grid/cell-span.js">
+  <CellSpan />
+</Example>
