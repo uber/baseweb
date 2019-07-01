@@ -24,18 +24,18 @@ export const StyledTable = withStyle<
   };
 });
 
-export const StyledHeadCell = withStyle<typeof FlexStyledHeadCell, {}>(
-  FlexStyledHeadCell,
-  props => {
-    return {
-      backgroundColor: props.$theme.colors.tableHeadBackgroundColor,
-      boxShadow: props.$theme.lighting.shadow400,
-      position: 'sticky',
-      top: 0,
-      width: 'unset',
-    };
-  },
-);
+export const StyledHeadCell = withStyle<
+  typeof FlexStyledHeadCell,
+  {$sticky?: boolean},
+>(FlexStyledHeadCell, ({$sticky = true, $theme}) => {
+  return {
+    backgroundColor: $theme.colors.tableHeadBackgroundColor,
+    boxShadow: $theme.lighting.shadow400,
+    position: $sticky ? 'sticky' : null,
+    top: $sticky ? 0 : null,
+    width: 'unset',
+  };
+});
 
 export const StyledBodyCell = withStyle<
   typeof FlexStyledBodyCell,

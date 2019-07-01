@@ -142,15 +142,6 @@ function statusToTagKind(status: StatusT) {
   }
 }
 
-// sticky elements create a new stacking context. because parent table head cells are _siblings_
-// of these visually child elements, stacking is determined by order in html. this leads to
-// unintended layering upon scrolling the outer table. this table should not need to scroll
-// therefore chose to remove sticky rather than provide relative zindex values.
-const NotStickyHeadCell = withStyle<typeof StyledHeadCell>(StyledHeadCell, {
-  position: 'unset',
-  top: 'unset',
-});
-
 function Tasks(props: {tasks: TaskT[]}) {
   const [css] = useStyletron();
   return (
@@ -161,10 +152,10 @@ function Tasks(props: {tasks: TaskT[]}) {
       })}
     >
       <StyledTable $gridTemplateColumns="max-content auto auto auto">
-        <NotStickyHeadCell>Task</NotStickyHeadCell>
-        <NotStickyHeadCell>Status</NotStickyHeadCell>
-        <NotStickyHeadCell>Last Run</NotStickyHeadCell>
-        <NotStickyHeadCell>Details</NotStickyHeadCell>
+        <StyledHeadCell $sticky={false}>Task</StyledHeadCell>
+        <StyledHeadCell $sticky={false}>Status</StyledHeadCell>
+        <StyledHeadCell $sticky={false}>Last Run</StyledHeadCell>
+        <StyledHeadCell $sticky={false}>Details</StyledHeadCell>
         {props.tasks.map((task, index) => {
           return (
             <>
