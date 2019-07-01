@@ -8,11 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Notification, KIND} from 'baseui/notification';
-import {useStyletron} from 'baseui';
 
 export default function UnstableWarning() {
-  const [useCss, theme] = useStyletron();
-
   return (
     <Notification
       overrides={{Body: {style: {width: 'auto'}}}}
