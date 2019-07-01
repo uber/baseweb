@@ -40,83 +40,65 @@ export const Display = (props: BlockPropsT) => (
 );
 
 // Headings
-export function H1(props: BlockPropsT) {
-  const as = props.as || 'h1';
-  return (
-    <Block
-      data-baseweb="typo-h1"
-      as={as}
-      {...props}
-      font={props.font || 'font1000'}
-      color={props.color || 'colorPrimary'}
-    />
-  );
-}
+export const H1 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-h1"
+    as={props.as || 'h1'}
+    {...props}
+    font={props.font || 'font1000'}
+    color={props.color || 'colorPrimary'}
+  />
+);
 
-export function H2(props: BlockPropsT) {
-  const as = props.as || 'h2';
-  return (
-    <Block
-      data-baseweb="typo-h2"
-      as={as}
-      {...props}
-      font={props.font || 'font900'}
-      color={props.color || 'colorPrimary'}
-    />
-  );
-}
+export const H2 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-h2"
+    as={props.as || 'h2'}
+    {...props}
+    font={props.font || 'font900'}
+    color={props.color || 'colorPrimary'}
+  />
+);
 
-export function H3(props: BlockPropsT) {
-  const as = props.as || 'h3';
-  return (
-    <Block
-      data-baseweb="typo-h3"
-      as={as}
-      {...props}
-      font={props.font || 'font800'}
-      color={props.color || 'colorPrimary'}
-    />
-  );
-}
+export const H3 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-h3"
+    as={props.as || 'h3'}
+    {...props}
+    font={props.font || 'font800'}
+    color={props.color || 'colorPrimary'}
+  />
+);
 
-export function H4(props: BlockPropsT) {
-  const as = props.as || 'h4';
-  return (
-    <Block
-      data-baseweb="typo-h4"
-      as={as}
-      {...props}
-      font={props.font || 'font700'}
-      color={props.color || 'colorPrimary'}
-    />
-  );
-}
+export const H4 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-h4"
+    as={props.as || 'h4'}
+    {...props}
+    font={props.font || 'font700'}
+    color={props.color || 'colorPrimary'}
+  />
+);
 
-export function H5(props: BlockPropsT) {
-  const as = props.as || 'h5';
-  return (
-    <Block
-      data-baseweb="typo-h5"
-      as={as}
-      {...props}
-      font={props.font || 'font600'}
-      color={props.color || 'colorPrimary'}
-    />
-  );
-}
+export const H5 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-h5"
+    as={props.as || 'h5'}
+    {...props}
+    font={props.font || 'font600'}
+    color={props.color || 'colorPrimary'}
+  />
+);
 
-export function H6(props: BlockPropsT) {
-  const as = props.as || 'h6';
-  return (
-    <Block
-      data-baseweb="typo-h6"
-      as={as}
-      {...props}
-      font={props.font || 'font500'}
-      color={props.color || 'colorPrimary'}
-    />
-  );
-}
+export const H6 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-h6"
+    as={props.as || 'h6'}
+    {...props}
+    font={props.font || 'font500'}
+    color={props.color || 'colorPrimary'}
+  />
+);
 
 // Labels - aka Label1, Label2
 export const Label1 = (props: BlockPropsT) => (
@@ -138,28 +120,22 @@ export const Label2 = (props: BlockPropsT) => (
 );
 
 // Paragraphs - Paragraph1, Paragraph2
-export function Paragraph1(props: BlockPropsT) {
-  const as = props.as || 'p';
-  return (
-    <Block
-      data-baseweb="typo-p1"
-      as={as}
-      {...props}
-      font={props.font || 'font300'}
-      color={props.color || 'colorPrimary'}
-    />
-  );
-}
+export const Paragraph1 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-p1"
+    as={props.as || 'p'}
+    {...props}
+    font={props.font || 'font300'}
+    color={props.color || 'colorPrimary'}
+  />
+);
 
-export function Paragraph2(props: BlockPropsT) {
-  const as = props.as || 'p';
-  return (
-    <Block
-      data-baseweb="typo-p2"
-      as={as}
-      {...props}
-      font={props.font || 'font400'}
-      color={props.color || 'colorPrimary'}
-    />
-  );
-}
+export const Paragraph2 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-p2"
+    as={props.as || 'p'}
+    {...props}
+    font={props.font || 'font400'}
+    color={props.color || 'colorPrimary'}
+  />
+);
