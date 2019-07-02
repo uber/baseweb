@@ -68,6 +68,13 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
           overrides: {
             BaseButton: {
               style: () => {
+                // Even though baseui's buttons have square corners, some applications override to
+                // rounded. Maintaining corner radius in this circumstance is ideal to avoid further
+                // customization.
+                if (props.children.length === 1) {
+                  return {};
+                }
+
                 // left most button
                 if (index === 0) {
                   return {
