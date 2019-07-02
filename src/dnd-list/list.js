@@ -53,6 +53,7 @@ class StatelessList extends React.Component<ListPropsT> {
     return (
       <Root $isRemovable={isRemovable} data-baseweb="dnd-list" {...rootProps}>
         <MovableList
+          removableByMove={isRemovable}
           values={items}
           onChange={onChange}
           renderList={({children, props, isDragged}) => (
