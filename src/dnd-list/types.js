@@ -37,6 +37,8 @@ type ChildrenT = Array<React.Node>;
 export type ListPropsT = {|
   /** Set if the list items should be removable */
   removable?: boolean,
+  /** Set if the list items should be removable by dragging them far left or right */
+  removableByMove?: boolean,
   /** Items (labels) to be rendered */
   items: Array<React.Node>,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
@@ -57,6 +59,7 @@ export type StatefulListPropsT = {|
     newState: Array<React.Node>,
     oldIndex: number,
     newIndex: number,
+    targetRect: ClientRect,
   }) => mixed,
   overrides?: OverridesT,
 |};
@@ -74,4 +77,6 @@ export type SharedStylePropsArgT = {
   $isDragged: boolean,
   $isSelected: boolean,
   $isRemovable: boolean,
+  $isRemovableByMove: boolean,
+  $isOutOfBounds: boolean,
 };
