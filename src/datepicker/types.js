@@ -328,4 +328,7 @@ export type TimezonePickerPropsT = {
    * TimezonePicker will manage state internally.
    */
   value?: ?string,
+  disabled?: boolean,
+  error?: boolean,
+  positive?: boolean,
 };
