@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
+import semver from 'semver';
 
 import ChevronDown from 'baseui/icon/chevron-down';
 import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
@@ -32,10 +33,8 @@ const MAJOR_VERSIONS = [
 const VersionSelector = () => {
   const versionsToShow = versions
     .filter(releaseVersion => {
-      // we have now deployments since this date
-      return (
-        new Date(releaseVersion.published_at) > new Date('2019-07-01T10:57:35Z')
-      );
+      // we have "now" deployments since v8.1.0
+      return semver.satisfies(releaseVersion.name, '>=8.1.0');
     })
     .map(item => {
       return {
@@ -47,6 +46,7 @@ const VersionSelector = () => {
   return (
     <StatefulPopover
       placement={PopoverPlacement.bottomLeft}
+      dismissOnClickOutside={false}
       content={({close}) => (
         <NestedMenus>
           <StatefulMenu
@@ -65,13 +65,14 @@ const VersionSelector = () => {
                 props: {
                   size: 'compact',
                   getChildMenu: item => {
-                    if (item.label === 'v8') {
+                    if (
+                      semver.satisfies(semver.coerce(item.label), '>=8.0.0')
+                    ) {
                       return (
                         <StatefulMenu
                           size="compact"
                           items={versionsToShow}
                           onItemSelect={({item}) => {
-                            console.log('onItemSelect', item);
                             window.open(
                               `https://${item.commit}-baseweb.now.sh`,
                             );
