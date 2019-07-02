@@ -60,7 +60,7 @@ const Index = () => {
                     marginBottom: '10px',
                     marginRight: '10px',
                     marginTop: 0,
-                    width: '300px',
+                    width: '275px',
                   },
                 },
                 HeaderImage: {

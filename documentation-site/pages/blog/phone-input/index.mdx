@@ -122,6 +122,12 @@ It requires less reliance on the app developer getting the experience right.
 
 This leaves us with a subset of our original design prompt: _What is the best way to choose a country code?_
 
+We can greatly reduce the chances a user needs to select a country code by getting the initial value right.
+We can do this during a localization step in our appʼs build process or more accurately in real time by looking at a userʼs IP.
+You can find what country a user is visiting from by making an async call to an [IP lookup service](https://ipinfo.io/) or, if you have one, your own backend service.
+Once you know the country, you can pre-select the closest matching dial code and the majority of users will not have to worry about it.
+Now, even with this optimization, we still need a back up method for users to choose their country code.
+
 Many users probably know their country code already but it is understandable if a large set of users do not.
 In this case the most intuitive (and most common) approach is to have the user choose from a mapping of country names to dial codes.
 We can also provide small flag icons next to the country names for quick visual scanning.
@@ -132,12 +138,15 @@ We can also provide small flag icons next to the country names for quick visual 
   caption="Mapping countries to dial codes"
 />
 
-Of course, because there are almost 300 country codes to choose from, we want our list to be filterable.
-Typing in your country name should quickly filter the list down to something more manageable.
-Sometimes country names can vary slightly so it is helpful to use [fuzzy filtering](https://en.wikipedia.org/wiki/Approximate_string_matching) for our list rather than following the default browser `select` filtering behavior.
-This means a user can open the dropdown, type `america` and quickly select `United States of America`.
+This is where the current Phone Input design stands, but you may notice a potential issue with this design.
+There are almost 300 country codes to choose from.
+That can lead to a lot of scrolling if, for example, a user has an Argentinean phone number but the dropdown has the United States pre-selected.
+In a future version of the Phone Input we should add a way to alleviate this potential inconvenience.
 
-Thankfully, Base Web’s default [Select](/components/select) component has fuzzy filtering and keyboard accessibility built in!
+Typing in your country name should quickly filter the list down to something more manageable.
+Sometimes country names can vary slightly so it would be helpful to use [fuzzy filtering](https://en.wikipedia.org/wiki/Approximate_string_matching) for our list rather than following the default browser `select` filtering behavior.
+This means a user can open the dropdown, type `tobago` and quickly select `Trinidad and Tobago`.
+This would function similarly to Base Web’s default [Select](/components/select), which has fuzzy filtering and keyboard accessibility built in, but we would need to integrate it into the Phone Inputʼs design.
 
 ## Implementation
 

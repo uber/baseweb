@@ -202,6 +202,10 @@ const routes = [
             itemId: '/components/table',
           },
           {
+            title: 'Table Grid',
+            itemId: '/components/table-grid',
+          },
+          {
             title: 'Tag',
             itemId: '/components/tag',
           },
