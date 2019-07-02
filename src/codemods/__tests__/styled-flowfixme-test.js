@@ -19,6 +19,13 @@ describe('styled-flowfixme', () => {
     'styled-flowfixme-baseui-import',
   );
 
+  defineTest(
+    __dirname,
+    'styled-flowfixme',
+    null,
+    'styled-flowfixme-existing-generics',
+  );
+
   defineTest(__dirname, 'styled-flowfixme', null, 'styled-flowfixme-flow');
   defineTest(__dirname, 'styled-flowfixme', null, 'styled-flowfixme-no-flow');
   defineTest(__dirname, 'styled-flowfixme', null, 'styled-flowfixme-renamed');
