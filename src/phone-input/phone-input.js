@@ -5,23 +5,32 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-
 import React, {useRef} from 'react';
-
 import {Input as DefaultInput} from '../input/index.js';
-import {SIZE} from './constants.js';
 import CountrySelect from './country-select.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-
+import defaultProps from './default-props.js';
 import type {PropsT} from './types.js';
+
+PhoneInput.defaultProps = defaultProps;
 
 export default function PhoneInput(props: PropsT) {
   const {
-    text,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedBy,
+    country,
+    disabled,
+    error,
+    id,
+    name,
     onTextChange,
-    overrides = {},
-    'aria-label': ariaLabel = 'Please choose a country dial code and enter a phone number.',
-    size = SIZE.default,
+    onCountryChange,
+    overrides,
+    placeholder,
+    positive,
+    size,
+    text,
     ...restProps
   } = props;
   const inputRef = useRef(null);
@@ -32,8 +41,11 @@ export default function PhoneInput(props: PropsT) {
     Before: {
       component: CountrySelect,
       props: {
-        ...props,
+        country,
+        disabled,
         inputRef,
+        onCountryChange,
+        size,
       },
     },
   };
@@ -41,17 +53,25 @@ export default function PhoneInput(props: PropsT) {
   const inputOverrides = mergeOverrides(baseOverrides, overrides);
   return (
     <Input
-      type="tel"
-      autoComplete="tel"
-      value={text}
       aria-label={ariaLabel}
-      onChange={onTextChange}
+      aria-labelledby={ariaLabelledBy}
+      aria-describedby={ariaDescribedBy}
+      autoComplete="tel"
       data-baseweb="phone-input"
-      size={size}
+      disabled={disabled}
+      error={error}
+      id={id}
       inputRef={inputRef}
+      name={name}
+      onChange={onTextChange}
       overrides={inputOverrides}
-      {...restProps}
+      positive={positive}
+      placeholder={placeholder}
+      size={size}
+      type="tel"
+      value={text}
       {...inputProps}
+      {...restProps}
     />
   );
 }
