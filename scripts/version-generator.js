@@ -28,7 +28,7 @@ async function main() {
   );
   let releases = await res.json();
 
-  if (Array.isArray(releases)) {
+  if (!Array.isArray(releases)) {
     // fetching failed - probably with rate limit issues
     releases = [];
   }
