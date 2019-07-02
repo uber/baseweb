@@ -73,7 +73,12 @@ describe('StatefulListContainer', () => {
     );
 
     props.stateReducer.mockReturnValueOnce({items: ['Item 2', 'Item 1']});
-    component.instance().onChange({oldIndex: 0, newIndex: 1});
+    const targetRect: any = {};
+    component.instance().onChange({
+      oldIndex: 0,
+      newIndex: 1,
+      targetRect,
+    });
 
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer).toHaveBeenLastCalledWith(
