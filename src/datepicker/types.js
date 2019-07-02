@@ -172,6 +172,7 @@ export type DatepickerPropsT = CalendarPropsT & {
   disabled?: boolean,
   /** Renders UI in 'error' state. */
   error?: boolean,
+  positive?: boolean,
   placeholder?: string,
   required?: boolean,
   formatDisplayValue?: (
