@@ -12,7 +12,7 @@ import * as React from 'react';
 
 import ChevronDown from 'baseui/icon/chevron-down';
 import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
-import {StatefulMenu} from 'baseui/menu';
+import {StatefulMenu, NestedMenus} from 'baseui/menu';
 import {Button, KIND} from 'baseui/button';
 
 import {version} from '../../package.json';
@@ -48,44 +48,48 @@ const VersionSelector = () => {
     <StatefulPopover
       placement={PopoverPlacement.bottomLeft}
       content={({close}) => (
-        <StatefulMenu
-          items={MAJOR_VERSIONS}
-          onItemSelect={({item}) => {
-            window.open(`https://${item.label}.baseweb.design`);
-            close();
-          }}
-          overrides={{
-            List: {
-              style: {
-                width: '84px',
-              },
-            },
-            Option: {
-              props: {
-                size: 'compact',
-                getChildMenu: item => {
-                  if (item.label === 'v8') {
-                    return (
-                      <StatefulMenu
-                        size="compact"
-                        items={versionsToShow}
-                        onItemSelect={({item}) => {
-                          console.log('onItemSelect', item);
-                          window.open(`https://${item.commit}-baseweb.now.sh`);
-                          close();
-                        }}
-                        overrides={{
-                          List: {style: {width: '200px'}},
-                          Option: {props: {size: 'compact'}},
-                        }}
-                      />
-                    );
-                  }
+        <NestedMenus>
+          <StatefulMenu
+            items={MAJOR_VERSIONS}
+            onItemSelect={({item}) => {
+              window.open(`https://${item.label}.baseweb.design`);
+              close();
+            }}
+            overrides={{
+              List: {
+                style: {
+                  width: '84px',
                 },
               },
-            },
-          }}
-        />
+              Option: {
+                props: {
+                  size: 'compact',
+                  getChildMenu: item => {
+                    if (item.label === 'v8') {
+                      return (
+                        <StatefulMenu
+                          size="compact"
+                          items={versionsToShow}
+                          onItemSelect={({item}) => {
+                            console.log('onItemSelect', item);
+                            window.open(
+                              `https://${item.commit}-baseweb.now.sh`,
+                            );
+                            close();
+                          }}
+                          overrides={{
+                            List: {style: {width: '200px'}},
+                            Option: {props: {size: 'compact'}},
+                          }}
+                        />
+                      );
+                    }
+                  },
+                },
+              },
+            }}
+          />
+        </NestedMenus>
       )}
     >
       <Button
