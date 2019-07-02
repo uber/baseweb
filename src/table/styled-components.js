@@ -119,18 +119,22 @@ export const StyledRow = (props: *) => (
 );
 StyledRow.__STYLETRON__ = StyledRowElement.__STYLETRON__;
 
-const StyledCellElement = styled<{}>('div', ({$theme}) => {
-  return {
-    ...$theme.typography.font300,
-    color: $theme.colors.colorPrimary,
-    display: 'flex',
-    flex: 1,
-    paddingTop: $theme.sizing.scale300,
-    paddingRight: $theme.sizing.scale600,
-    paddingBottom: $theme.sizing.scale300,
-    paddingLeft: $theme.sizing.scale600,
-  };
-});
+const StyledCellElement = styled<{$striped?: boolean}>(
+  'div',
+  ({$theme, $striped}) => {
+    return {
+      ...$theme.typography.font300,
+      backgroundColor: $striped ? $theme.colors.tableStripedBackground : null,
+      color: $theme.colors.colorPrimary,
+      display: 'flex',
+      flex: 1,
+      paddingTop: $theme.sizing.scale300,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale300,
+      paddingLeft: $theme.sizing.scale600,
+    };
+  },
+);
 
 export const StyledCell = (props: *) => (
   <StyledCellElement role="gridcell" {...props} />

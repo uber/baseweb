@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {mount} from 'enzyme';
-import {Navigation, StyledNavItemContainer, NavItem} from '../index.js';
+import {Navigation, StyledNavItemContainer} from '../index.js';
 
 const nav = [
   {
@@ -47,9 +47,7 @@ describe('Side navigation', () => {
       title: <span>New {item.title}</span>,
     });
     const wrapper = mount(<Navigation items={nav} mapItem={mapItem} />);
-    expect(
-      wrapper.find(NavItem).map(item => item.instance().props.item.title),
-    ).toMatchSnapshot();
+    expect(wrapper.find('NavItem')).toMatchSnapshot();
   });
 
   it('calls mapItem exactly once for each item', () => {
