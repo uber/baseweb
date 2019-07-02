@@ -289,6 +289,9 @@ export type TimePickerPropsT = {
    * will manage state internally and default to the closest step to new Date().
    */
   value: ?Date,
+  disabled?: boolean,
+  error?: boolean,
+  positive?: boolean,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */

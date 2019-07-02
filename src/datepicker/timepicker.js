@@ -206,7 +206,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     const selectOverrides = mergeOverrides(
       {Dropdown: {style: {maxHeight: '126px'}}},
       // $FlowFixMe
-      selectProps && selectProps.overrides,
+      selectProps.overrides,
     );
     // $FlowFixMe
     selectProps.overrides = selectOverrides;
@@ -221,6 +221,9 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
         {locale => (
           <OverriddenSelect
             aria-label={locale.datepicker.timePickerAriaLabel}
+            disabled={this.props.disabled}
+            error={this.props.error}
+            positive={this.props.positive}
             options={this.state.steps.map(n => ({
               id: n,
               label: secondsToLabel(n, this.props.format),
