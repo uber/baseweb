@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* eslint-env browser */
 
 import * as React from 'react';
 import Link from 'next/link';
@@ -21,13 +20,11 @@ import Logo from '../images/base-web.svg';
 import LogoWhite from '../images/base-web-white.svg';
 import GithubLogo from './github-logo';
 import SlackLogo from './slack-logo';
+import VersionSelector from './version-selector.js';
 import Search from './search';
-import {version} from '../../package.json';
 import {ThemeContext} from 'baseui/styles/theme-provider.js';
 import Bulb from './bulb';
 import {StatefulTooltip} from 'baseui/tooltip';
-import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
-import {StatefulMenu} from 'baseui/menu';
 import {Button, KIND} from 'baseui/button';
 
 export const HEADER_BREAKPOINT = '@media screen and (min-width: 670px)';
@@ -55,16 +52,6 @@ const LogoSegment = styled<{$searchInputOpen: boolean}>(
     },
   }),
 );
-
-const VERSIONS = [
-  {label: 'v7'},
-  {label: 'v6'},
-  {label: 'v5'},
-  {label: 'v4'},
-  {label: 'v3'},
-  {label: 'v2'},
-  {label: 'v1'},
-];
 
 type PropsT = {
   toggleSidebar: () => void,
@@ -102,29 +89,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                 />
               </Link>
               <Block marginLeft="scale300">
-                <StatefulPopover
-                  placement={PopoverPlacement.bottomLeft}
-                  content={({close}) => (
-                    <StatefulMenu
-                      items={VERSIONS}
-                      onItemSelect={({item}) => {
-                        window.open(`https://${item.label}.baseweb.design`);
-                        close();
-                      }}
-                      overrides={{
-                        List: {
-                          style: {
-                            width: '84px',
-                          },
-                        },
-                      }}
-                    />
-                  )}
-                >
-                  <Button size="compact" kind={KIND.minimal}>
-                    v{version}
-                  </Button>
-                </StatefulPopover>
+                <VersionSelector />
                 <Link href="/blog/base-web-v8">
                   <Button
                     size="compact"
