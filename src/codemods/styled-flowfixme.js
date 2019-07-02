@@ -35,9 +35,10 @@ module.exports = function(file, api, options) {
     if (styledImportName) {
       const comment = j.commentLine(' $FlowFixMe', true, false);
       const styledComponents = root.find(j.VariableDeclaration).filter(path => {
-        const calls = j(path).find(j.CallExpression, {
-          callee: {name: styledImportName},
-        });
+        const calls = j(path)
+          .find(j.CallExpression, {callee: {name: styledImportName}})
+          // ignore styled calls that already include call expression generics
+          .filter(call => !call.node.typeArguments);
         return Boolean(calls.length);
       });
 
