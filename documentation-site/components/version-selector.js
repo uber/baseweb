@@ -19,6 +19,8 @@ import {Button, KIND} from 'baseui/button';
 import {version} from '../../package.json';
 import versions from '../../versions.json';
 
+// this is the only place needed to be updated if a new
+// major is cut
 const MAJOR_VERSIONS = [
   {label: 'v8'},
   {label: 'v7'},
@@ -28,7 +30,15 @@ const MAJOR_VERSIONS = [
   {label: 'v3'},
   {label: 'v2'},
   {label: 'v1'},
-];
+].map(version => {
+  const {label} = version;
+
+  return {
+    label: semver.satisfies(semver.coerce(label), '>=8.0.0')
+      ? `${label} →`
+      : label,
+  };
+});
 
 const VersionSelector = () => {
   const versionsToShow = versions
@@ -58,7 +68,7 @@ const VersionSelector = () => {
             overrides={{
               List: {
                 style: {
-                  width: '84px',
+                  width: '100px',
                 },
               },
               Option: {
@@ -79,7 +89,7 @@ const VersionSelector = () => {
                             close();
                           }}
                           overrides={{
-                            List: {style: {width: '200px'}},
+                            List: {style: {width: '100px'}},
                             Option: {props: {size: 'compact'}},
                           }}
                         />
