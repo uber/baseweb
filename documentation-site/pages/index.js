@@ -42,7 +42,7 @@ const Index = (props: {
   contributors: Contributor[],
 }) => (
   <Layout toggleTheme={props.toggleTheme}>
-    <H1>Base Web React Components</H1>
+    <H1>Base Web React UI Framework</H1>
     <Markdown.p>
       Base Web is a foundation, a basis for initiating, evolving, and unifying
       web products. The system is designed to be fully responsive and device
