@@ -31,12 +31,25 @@ class StatefulListContainer extends React.Component<
     ...this.props.initialState,
   };
 
-  onChange = ({oldIndex, newIndex}: {oldIndex: number, newIndex: number}) => {
+  onChange = ({
+    oldIndex,
+    newIndex,
+    targetRect,
+  }: {
+    oldIndex: number,
+    newIndex: number,
+    targetRect: ClientRect,
+  }) => {
     const newItemsState =
       newIndex === -1
         ? arrayRemove(this.state.items, oldIndex)
         : arrayMove(this.state.items, oldIndex, newIndex);
-    this.props.onChange({newState: newItemsState, oldIndex, newIndex});
+    this.props.onChange({
+      newState: newItemsState,
+      oldIndex,
+      newIndex,
+      targetRect,
+    });
     this.internalSetState('change', {items: newItemsState});
   };
 
