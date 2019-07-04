@@ -127,6 +127,7 @@ export const ThumbValue = styled<{}>('div', props => {
     top: `-${$theme.sizing.scale800}`,
     ...$theme.typography.font300,
     backgroundColor: 'transparent',
+    whiteSpace: 'nowrap',
   };
 });
 ThumbValue.displayName = 'StyledThumbValue';
