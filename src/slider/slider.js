@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Range} from 'react-range';
+import {Range, useThumbOverlap} from 'react-range';
 import type {PropsT} from './types.js';
 import {
   Root as StyledRoot,
@@ -33,6 +33,15 @@ const limitValue = (value: number[]) => {
   return value;
 };
 
+const ThumbLabel = ({index, values, rangeRef, Component, ...props}) => {
+  const [labelValue, style] = useThumbOverlap(rangeRef, values, index);
+  return (
+    <Component {...props} style={style}>
+      {labelValue}
+    </Component>
+  );
+};
+
 class Slider extends React.Component<PropsT> {
   static defaultProps = {
     overrides: {},
@@ -42,7 +51,7 @@ class Slider extends React.Component<PropsT> {
     max: 100,
     step: 1,
   };
-
+  rangeRef = React.createRef<Range>();
   getSharedProps() {
     const {disabled, step, min, max, value}: PropsT = this.props;
     return {
@@ -87,6 +96,7 @@ class Slider extends React.Component<PropsT> {
           values={value}
           disabled={disabled}
           onChange={value => onChange({value})}
+          ref={this.rangeRef}
           renderTrack={({props, children, isDragged}) => (
             <Track
               onMouseDown={props.onMouseDown}
@@ -105,7 +115,7 @@ class Slider extends React.Component<PropsT> {
               </InnerTrack>
             </Track>
           )}
-          renderThumb={({props, value, index, isDragged}) => (
+          renderThumb={({props, index, isDragged}) => (
             <Thumb
               {...props}
               $thumbIndex={index}
@@ -116,14 +126,16 @@ class Slider extends React.Component<PropsT> {
               {...sharedProps}
               {...thumbProps}
             >
-              <ThumbValue
+              <ThumbLabel
+                Component={ThumbValue}
+                values={value}
+                index={index}
+                rangeRef={this.rangeRef.current}
                 $thumbIndex={index}
                 $isDragged={isDragged}
                 {...sharedProps}
                 {...thumbValueProps}
-              >
-                {value}
-              </ThumbValue>
+              />
               <InnerThumb
                 $thumbIndex={index}
                 $isDragged={isDragged}
