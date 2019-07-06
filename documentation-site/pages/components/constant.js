@@ -1,8 +1,3 @@
-import {Avatar} from 'baseui/avatar';
-import Code from '../../../pages/components/code';
-
-const scope = {Avatar};
-
 const code = `import * as React from 'react';
 import {Avatar} from 'baseui/avatar';
 
@@ -21,6 +16,4 @@ export default () => (
   </React.Fragment>
 );`;
 
-export default () => {
-  return <Code code={code} scope={scope} />;
-};
+export default code;
