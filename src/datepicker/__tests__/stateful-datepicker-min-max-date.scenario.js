@@ -10,8 +10,11 @@ import * as React from 'react';
 
 import {StatefulDatepicker} from '../index.js';
 
-export const name = 'stateful-range-datepicker';
+export const name = 'stateful-datepicker-min-max-date';
 
 export const component = () => (
-  <StatefulDatepicker range initialState={{value: []}} />
+  <StatefulDatepicker
+    minDate={new Date(2019, 1, 15)}
+    maxDate={new Date(2019, 2, 15)}
+  />
 );

@@ -30,7 +30,6 @@ import {
   getWeekdayMinInLocale,
   getYear,
   isAfter,
-  isBefore,
   monthDisabledBefore,
   monthDisabledAfter,
   setMonth,
@@ -108,14 +107,8 @@ export default class CalendarHeader extends React.Component<
       isDisabled = true;
     }
     const nextMonth = subMonths(date, 1);
-    if (this.props.minDate) {
-      if (isBefore(nextMonth, this.props.minDate)) {
-        isDisabled = true;
-      }
-    } else {
-      if (getYear(nextMonth) < MIN_YEAR) {
-        isDisabled = true;
-      }
+    if (getYear(nextMonth) < MIN_YEAR) {
+      isDisabled = true;
     }
 
     const [PrevButton, prevButtonProps] = getOverrides(
