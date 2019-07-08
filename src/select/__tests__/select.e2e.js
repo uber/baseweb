@@ -167,4 +167,19 @@ describe('select', () => {
     const canBeParisCreated = (await page.$(optionAtPosition(1))) !== null;
     expect(canBeParisCreated).toBeFalsy();
   });
+
+  it('selects second option without mouse or arrow keys', async () => {
+    await mount(page, 'select-search-multi');
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.type(selectors.selectInput, 'dark');
+    await page.keyboard.press('Enter');
+    await page.type(selectors.selectInput, 'az');
+    await page.keyboard.press('Enter');
+    const selectedValue = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(selectedValue).toBe('DarkBlueAzure');
+  });
 });
