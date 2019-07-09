@@ -12,7 +12,7 @@ LICENSE file in the root directory of this source tree.
 import {argv} from 'yargs';
 import {Stepper, step} from '@dubstep/core';
 
-import styledV7FlowFixMe from './styled-flowfixme.js';
+import styledV7TypeArguments from './styled-v7-type-arguments.js';
 import styledV8ToThemedStyled from './styled-v8-themedStyled.js';
 
 let dir = argv.dir;
@@ -29,12 +29,9 @@ if (dir[dir.length - 1] === '/') {
 }
 
 const steps = [
-  step(
-    'apply flowfixme to baseui styled calls without type definitions',
-    async () => {
-      await styledV7FlowFixMe({dir});
-    },
-  ),
+  step('apply type arguments to baseui styled calls', async () => {
+    await styledV7TypeArguments({dir});
+  }),
   step('migrate styled theme generic to createThemedStyled', async () => {
     await styledV8ToThemedStyled({dir});
   }),
