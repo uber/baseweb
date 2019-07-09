@@ -15,13 +15,14 @@ export const name = 'datepicker-range-highlight';
 
 export const component = () => {
   const input = 'input';
+  const calendar = '[role="application"]';
   const rightArrow = '[aria-label="Next month"]';
   return (
     <Screener
       steps={new Steps()
         .wait(input)
         .click(input)
-        .wait(rightArrow)
+        .wait(calendar)
         .click(rightArrow)
         .snapshot('Datepicker range (no highlight)')
         .end()}
