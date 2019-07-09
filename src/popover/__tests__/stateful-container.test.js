@@ -27,6 +27,7 @@ describe('StatefulPopoverContainer', () => {
       onMouseEnterDelay: 100,
       onMouseLeaveDelay: 200,
       placement: PLACEMENT.topLeft,
+      popperOptions: {},
       showArrow: true,
       triggerType: TRIGGER_TYPE.hover,
       dismissOnClickOutside: true,

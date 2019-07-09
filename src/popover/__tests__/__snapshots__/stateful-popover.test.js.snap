@@ -20,6 +20,7 @@ exports[`StatefulPopover basic render: renders <Popover/> as child to container 
     }
   }
   placement="topLeft"
+  popperOptions={Object {}}
   showArrow={true}
   triggerType="hover"
 >
@@ -51,6 +52,7 @@ exports[`StatefulPopover basic render: renders <StatefulContainer/> 1`] = `
     }
   }
   placement="topLeft"
+  popperOptions={Object {}}
   showArrow={true}
   stateReducer={[MockFunction]}
   triggerType="hover"
