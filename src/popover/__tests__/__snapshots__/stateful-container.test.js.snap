@@ -20,6 +20,7 @@ Array [
       "Body": [Function],
     },
     "placement": "topLeft",
+    "popperOptions": Object {},
     "showArrow": true,
     "triggerType": "hover",
   },

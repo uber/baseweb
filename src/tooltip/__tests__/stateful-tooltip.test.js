@@ -36,6 +36,7 @@ describe('StatefulTooltip', () => {
       onClose: jest.fn(),
       onOpen: jest.fn(),
       placement: PLACEMENT.topLeft,
+      popperOptions: {},
       showArrow: true,
       stateReducer: jest.fn(),
       triggerType: TRIGGER_TYPE.hover,

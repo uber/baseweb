@@ -19,6 +19,8 @@ import {Button, KIND} from 'baseui/button';
 import {version} from '../../package.json';
 import versions from '../../versions.json';
 
+// this is the only place needed to be updated if a new
+// major is cut
 const MAJOR_VERSIONS = [
   {label: 'v8'},
   {label: 'v7'},
@@ -28,7 +30,15 @@ const MAJOR_VERSIONS = [
   {label: 'v3'},
   {label: 'v2'},
   {label: 'v1'},
-];
+].map(version => {
+  const {label} = version;
+
+  return {
+    label: semver.satisfies(semver.coerce(label), '>=8.0.0')
+      ? `${label} →`
+      : label,
+  };
+});
 
 const VersionSelector = () => {
   const versionsToShow = versions
@@ -39,7 +49,6 @@ const VersionSelector = () => {
     .map(item => {
       return {
         label: item.name,
-        commit: item.target_commitish,
       };
     });
 
@@ -58,7 +67,7 @@ const VersionSelector = () => {
             overrides={{
               List: {
                 style: {
-                  width: '84px',
+                  width: '100px',
                 },
               },
               Option: {
@@ -74,12 +83,15 @@ const VersionSelector = () => {
                           items={versionsToShow}
                           onItemSelect={({item}) => {
                             window.open(
-                              `https://${item.commit}-baseweb.now.sh`,
+                              `https://${item.label.replace(
+                                /\./gi,
+                                '-',
+                              )}.baseweb.design`,
                             );
                             close();
                           }}
                           overrides={{
-                            List: {style: {width: '200px'}},
+                            List: {style: {width: '100px'}},
                             Option: {props: {size: 'compact'}},
                           }}
                         />

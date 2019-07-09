@@ -50,9 +50,11 @@ class StatelessList extends React.Component<ListPropsT> {
     );
     const [Label, labelProps] = getOverrides(LabelOverride, StyledLabel);
     const isRemovable = this.props.removable || false;
+    const isRemovableByMove = this.props.removableByMove || false;
     return (
       <Root $isRemovable={isRemovable} data-baseweb="dnd-list" {...rootProps}>
         <MovableList
+          removableByMove={isRemovableByMove}
           values={items}
           onChange={onChange}
           renderList={({children, props, isDragged}) => (
@@ -65,11 +67,20 @@ class StatelessList extends React.Component<ListPropsT> {
               {children}
             </List>
           )}
-          renderItem={({value, props, isDragged, isSelected, index}) => {
+          renderItem={({
+            value,
+            props,
+            isDragged,
+            isSelected,
+            isOutOfBounds,
+            index,
+          }) => {
             const sharedProps: SharedStylePropsArgT = {
               $isRemovable: isRemovable,
+              $isRemovableByMove: isRemovableByMove,
               $isDragged: isDragged,
               $isSelected: isSelected,
+              $isOutOfBounds: isOutOfBounds,
               $value: value,
               $index: index,
             };
