@@ -11,7 +11,7 @@ import * as React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
 import {Provider as StyletronProvider} from 'styletron-react';
 
-import Meta from '../components/meta';
+import Favicons from '../components/meta-favicons';
 import {styletron} from '../helpers/styletron';
 import {GA_ID} from '../helpers/ga';
 
@@ -77,7 +77,7 @@ export default class MyDocument extends Document {
               margin: 0;
             }
           `}</style>
-          <Meta />
+          <Favicons />
         </Head>
         <body>
           <Main />

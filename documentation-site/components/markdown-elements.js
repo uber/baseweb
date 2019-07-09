@@ -114,7 +114,7 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
   const internal =
     (parts[0] === '' && parts[1] !== '') || !href.includes('http');
   return (
-    <Link href={href} prefetch={internal}>
+    <Link href={href}>
       <StyledLink href={href} {...(internal ? {} : {target: '_blank'})}>
         {children}
       </StyledLink>

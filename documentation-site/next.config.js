@@ -22,6 +22,7 @@ const withCSS = require('@zeit/next-css');
 module.exports = withCSS(
   withMDX(
     withImages({
+      exportTrailingSlash: true,
       webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
         config.resolve.alias.baseui = resolve(__dirname, '../dist');
         config.resolve.alias.examples = resolve(__dirname, 'static/examples');

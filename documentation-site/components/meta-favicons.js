@@ -6,23 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-disable flowtype/require-valid-file-annotation */
-/* global process */
 
 import * as React from 'react';
 
-const title =
-  process.env.WEBSITE_ENV === 'production'
-    ? 'Base Web documentation'
-    : '[DEV] Base Web documentation';
-
 export default () => (
   <React.Fragment>
-    <title key="title">{title}</title>
-    <meta
-      name="viewport"
-      content="initial-scale=1.0, width=device-width"
-      key="viewport"
-    />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
