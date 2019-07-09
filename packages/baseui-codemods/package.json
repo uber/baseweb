@@ -2,9 +2,7 @@
   "name": "@uber-web-ui/baseui-codemods",
   "version": "1.0.0",
   "description": "",
-  "bin": {
-    "baseui-codemods": "./dist/cli.js"
-  },
+  "main": "./dist/cli.js",
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "babel src --out-dir dist --ignore 'src/**/*.test.js'",
