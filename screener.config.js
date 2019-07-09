@@ -12,7 +12,16 @@ module.exports = {
   projectRepo: 'uber-web/baseui',
   storybookConfigDir: '.storybook',
   apiKey: process.env.SCREENER_API_KEY,
-  resolution: '1024x768',
+  resolutions: [
+    {
+      width: 1024,
+      height: 768,
+    },
+    {
+      deviceName: 'iPhone 8',
+      excludeRules: [/^baseui-dark/],
+    },
+  ],
   baseBranch: 'master',
   failureExitCode: 0,
   browsers: [
