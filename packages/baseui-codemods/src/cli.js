@@ -19,7 +19,7 @@ let dir = argv.dir;
 
 if (!dir) {
   throw new Error(
-    'Must specify a directory with the --dir argument. ex: --test=src',
+    'Must specify a directory with the --dir argument. ex: --dir=src',
   );
 }
 
