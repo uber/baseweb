@@ -5,3 +5,4 @@ src
 .flowconfig
 babel.config.js
 jest.config.js
+.DS_Store
