@@ -42,7 +42,7 @@ function CustomNavItem(props) {
   const Label = props.$level === 1 ? Label2 : Label1;
 
   const NavLink = ({item}) => (
-    <Link passHref={true} href={item.itemId} prefetch>
+    <Link passHref={true} href={item.itemId}>
       <StyledNavItem {...sharedProps}>{item.title}</StyledNavItem>
     </Link>
   );

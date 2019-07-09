@@ -79,7 +79,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
         >
           <LogoSegment $searchInputOpen={searchInputOpen}>
             <Block display="flex" alignItems="center">
-              <Link href="/" prefetch>
+              <Link href="/">
                 <Block
                   as="img"
                   height="40px"
