@@ -49,7 +49,6 @@ const VersionSelector = () => {
     .map(item => {
       return {
         label: item.name,
-        commit: item.target_commitish,
       };
     });
 
@@ -84,7 +83,10 @@ const VersionSelector = () => {
                           items={versionsToShow}
                           onItemSelect={({item}) => {
                             window.open(
-                              `https://${item.commit}-baseweb.now.sh`,
+                              `https://${item.label.replace(
+                                /\./gi,
+                                '-',
+                              )}.baseweb.design`,
                             );
                             close();
                           }}
