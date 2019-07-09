@@ -1,6 +1,6 @@
 {
   "name": "@uber-web-ui/baseui-codemods",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "bin": {
     "@uber-web-ui/baseui-codemods": "/dist/cli.js",
