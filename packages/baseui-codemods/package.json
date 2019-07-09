@@ -3,8 +3,8 @@
   "version": "1.0.3",
   "description": "",
   "bin": {
-    "@uber-web-ui/baseui-codemods": "/dist/cli.js",
-    "baseui-codemods": "/dist/cli.js"
+    "@uber-web-ui/baseui-codemods": "./dist/cli.js",
+    "baseui-codemods": "./dist/cli.js"
   },
   "scripts": {
     "prebuild": "rm -rf dist",
