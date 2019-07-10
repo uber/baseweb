@@ -180,6 +180,7 @@ export default class Datepicker extends React.Component<
                     this.props['aria-label'] || locale.datepicker.ariaLabel
                   }
                   error={this.props.error}
+                  positive={this.props.positive}
                   aria-labelledby={this.props['aria-labelledby']}
                   aria-describedby={this.props['aria-describedby']}
                   aria-required={this.props.required || null}
