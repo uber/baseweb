@@ -98,7 +98,7 @@ class TimezonePicker extends React.Component<
         Dropdown: {style: {maxHeight: '360px'}},
       },
       // $FlowFixMe
-      selectProps && selectProps.overrides,
+      selectProps.overrides,
     );
     // $FlowFixMe
     selectProps.overrides = selectOverrides;
@@ -110,6 +110,9 @@ class TimezonePicker extends React.Component<
             aria-label={locale.datepicker.timezonePickerAriaLabel}
             options={this.state.timezones}
             clearable={false}
+            disabled={this.props.disabled}
+            error={this.props.error}
+            positive={this.props.positive}
             onChange={params => {
               if (params.type === 'clear') {
                 this.setState({value: ''});
