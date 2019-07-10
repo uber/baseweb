@@ -101,7 +101,8 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     overrides.CountrySelect,
     DefaultSelect,
   );
-  const selectOverrides = mergeOverrides(baseOverrides, overrides);
+  // $FlowFixMe
+  selectProps.overrides = mergeOverrides(baseOverrides, selectProps.overrides);
   const [DialCode, dialCodeProps] = getOverrides(
     overrides.DialCode,
     StyledDialCode,
@@ -125,7 +126,6 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         getValueLabel={(value: {option: CountryT}) => {
           return <StyledFlag iso={value.option.id} $size={size} />;
         }}
-        overrides={selectOverrides}
         {...selectProps}
       />
       <DialCode data-e2e="phone-input-dialcode" {...dialCodeProps}>
