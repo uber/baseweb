@@ -46,11 +46,13 @@ export default function PhoneInput(props: PropsT) {
         inputRef,
         onCountryChange,
         size,
+        overrides,
       },
     },
   };
   const [Input, inputProps] = getOverrides(overrides.Input, DefaultInput);
-  const inputOverrides = mergeOverrides(baseOverrides, overrides);
+  // $FlowFixMe
+  inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
   return (
     <Input
       aria-label={ariaLabel}
@@ -64,14 +66,13 @@ export default function PhoneInput(props: PropsT) {
       inputRef={inputRef}
       name={name}
       onChange={onTextChange}
-      overrides={inputOverrides}
       positive={positive}
       placeholder={placeholder}
       size={size}
       type="tel"
       value={text}
-      {...inputProps}
       {...restProps}
+      {...inputProps}
     />
   );
 }
