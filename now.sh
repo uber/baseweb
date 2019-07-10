@@ -12,15 +12,17 @@ latest_tagged_commit=$(echo $tags | jq '.[-1].object.sha' | tr -d '"')
 echo this commit: $this_commit
 echo latest tagged commit: $latest_tagged_commit
 
+#BUILDKITE_MESSAGE="Release v8.4.0 (#1532)"
+
 if [ "$this_commit" = "$latest_tagged_commit" ]; then
   echo current commit matches latest tagged commit
   echo deploying to now
-  BUILDKITE_TAG=$BUILDKITE_TAG
-  echo version $BUILDKITE_TAG
+  version=$(echo $BUILDKITE_MESSAGE | cut -d' ' -f 2)
+  echo version $version
 
   now --scope=uber-ui-platform --token=$ZEIT_NOW_TOKEN --public --no-clipboard deploy ./public > deployment.txt
   deployment=`cat deployment.txt`
-  cname="${BUILDKITE_TAG//./-}"
+  cname="${version//./-}"
   curl -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records" \
      -H "X-Auth-Email: $CF_AUTH_EMAIL" \
      -H "X-Auth-Key: $CF_API_KEY" \
