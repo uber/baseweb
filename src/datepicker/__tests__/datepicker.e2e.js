@@ -179,6 +179,22 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.day4);
   });
 
+  it('does not highlight random days when the right arrow is clicked', async () => {
+    await mount(page, 'datepicker-range');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.click(selectors.rightArrow);
+    await page.waitFor(selectors.day4);
+    const value = await page.$(selectors.day4);
+    const highlighted = await page.evaluate(
+      element => element.getAttribute('data-highlighted'),
+      value,
+    );
+    // Check the value of a custom data-highlighted attribute
+    expect(highlighted).toBe('false');
+  });
+
   it('updates the calendar when a year selected from the dropdown', async () => {
     await mount(page, 'datepicker');
     await page.waitFor(selectors.input);
