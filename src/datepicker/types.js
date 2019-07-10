@@ -172,6 +172,7 @@ export type DatepickerPropsT = CalendarPropsT & {
   disabled?: boolean,
   /** Renders UI in 'error' state. */
   error?: boolean,
+  positive?: boolean,
   placeholder?: string,
   required?: boolean,
   formatDisplayValue?: (
@@ -289,6 +290,9 @@ export type TimePickerPropsT = {
    * will manage state internally and default to the closest step to new Date().
    */
   value: ?Date,
+  disabled?: boolean,
+  error?: boolean,
+  positive?: boolean,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */
@@ -325,4 +329,7 @@ export type TimezonePickerPropsT = {
    * TimezonePicker will manage state internally.
    */
   value?: ?string,
+  disabled?: boolean,
+  error?: boolean,
+  positive?: boolean,
 };
