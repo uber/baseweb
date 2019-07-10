@@ -19,6 +19,7 @@ exports[`StatefulTooltip basic render: renders <StatefulContainer/> 1`] = `
     }
   }
   placement="topLeft"
+  popperOptions={Object {}}
   showArrow={true}
   stateReducer={[MockFunction]}
   triggerType="hover"
@@ -47,6 +48,7 @@ exports[`StatefulTooltip basic render: renders <Tooltip/> 1`] = `
     }
   }
   placement="topLeft"
+  popperOptions={Object {}}
   showArrow={true}
   triggerType="hover"
 >
