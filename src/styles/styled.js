@@ -32,6 +32,8 @@ type StyletronComponent<Props> = React.StatelessFunctionalComponent<Props> & {
 };
 
 type StyleFn<Theme> = {
+  (string): StyletronComponent<{||}>,
+
   (string, StyleObject): StyletronComponent<{}>,
 
   <Props>(
