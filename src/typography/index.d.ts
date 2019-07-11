@@ -1,4 +1,3 @@
-/// <reference types="baseui"/>
 import * as React from 'react';
 import {BlockProps} from '../block';
 

@@ -1,4 +1,3 @@
-/// <reference types="baseui"/>
 import * as React from 'react';
 
 export type Responsive<T> = T | T[];

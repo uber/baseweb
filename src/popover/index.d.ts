@@ -1,4 +1,3 @@
-/// <reference types="baseui"/>
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {NormalizedOffsets, PopperDataObject, TetherPlacement} from '../layer';

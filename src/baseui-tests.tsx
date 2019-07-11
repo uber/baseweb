@@ -5,79 +5,68 @@ import {
   mergeOverrides,
   BaseProvider,
   styled,
-} from 'baseui';
-import {Block} from 'baseui/block';
-import {FlexGrid, FlexGridItem} from 'baseui/flex-grid';
-import {Accordion, Panel, StatefulPanel} from 'baseui/accordion';
-import {Avatar} from 'baseui/avatar';
-import {Breadcrumbs} from 'baseui/breadcrumbs';
+} from './index';
+import {Block} from './block';
+import {FlexGrid, FlexGridItem} from './flex-grid';
+import {Accordion, Panel, StatefulPanel} from './accordion';
+import {Avatar} from './avatar';
+import {Breadcrumbs} from './breadcrumbs';
 import {
   Button,
   KIND as BUTTON_KIND,
   SHAPE as BUTTON_SHAPE,
   SIZE as BUTTON_SIZE,
-} from 'baseui/button';
+} from './button';
 import {
   ButtonGroup,
   StatefulButtonGroup,
   MODE as BUTTON_GROUP_MODE,
-} from 'baseui/button-group';
-import {Card, StyledBody} from 'baseui/card';
-import {Checkbox, StatefulCheckbox} from 'baseui/checkbox';
+} from './button-group';
+import {Card, StyledBody} from './card';
+import {Checkbox, StatefulCheckbox} from './checkbox';
 import {
   StatefulCalendar,
   StatefulDatepicker,
   TimePicker,
   TimezonePicker,
   Datepicker,
-} from 'baseui/datepicker';
-import {StatefulList, List} from 'baseui/dnd-list';
-import {FileUploader} from 'baseui/file-uploader';
-import {FormControl} from 'baseui/form-control';
+} from './datepicker';
+import {StatefulList, List} from './dnd-list';
+import {FileUploader} from './file-uploader';
+import {FormControl} from './form-control';
 import {
   HeaderNavigation,
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
   ALIGN as NAV_ALIGN,
-} from 'baseui/header-navigation';
-import {Heading, HeadingLevel} from 'baseui/heading';
-import ArrowUp from 'baseui/icon/arrow-up';
-import ArrowRight from 'baseui/icon/arrow-right';
-import ArrowDown from 'baseui/icon/arrow-down';
-import ArrowLeft from 'baseui/icon/arrow-left';
-import {
-  Input,
-  MaskedInput,
-  StatefulInput,
-  SIZE as INPUT_SIZE,
-} from 'baseui/input';
-import {Layer, TetherBehavior} from 'baseui/layer';
-import {StyledLink} from 'baseui/link';
-import {Menu, StatefulMenu, NestedMenus} from 'baseui/menu';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalButton,
-} from 'baseui/modal';
-import {Notification} from 'baseui/notification';
-import {Pagination, StatefulPagination} from 'baseui/pagination';
-import {Popover, StatefulPopover} from 'baseui/popover';
-import {ProgressBar} from 'baseui/progress-bar';
+} from './header-navigation';
+import {Heading, HeadingLevel} from './heading';
+import ArrowUp from './icon/arrow-up';
+import ArrowRight from './icon/arrow-right';
+import ArrowDown from './icon/arrow-down';
+import ArrowLeft from './icon/arrow-left';
+import {Input, MaskedInput, StatefulInput, SIZE as INPUT_SIZE} from './input';
+import {Layer, TetherBehavior} from './layer';
+import {StyledLink} from './link';
+import {Menu, StatefulMenu, NestedMenus} from './menu';
+import {Modal, ModalHeader, ModalBody, ModalFooter, ModalButton} from './modal';
+import {Notification} from './notification';
+import {Pagination, StatefulPagination} from './pagination';
+import {Popover, StatefulPopover} from './popover';
+import {ProgressBar} from './progress-bar';
 import {
   NumberedStep,
   ProgressSteps,
   Step,
   StyledProgressSteps,
   StyleProps as ProgressStepsStyleProps,
-} from 'baseui/progress-steps';
-import {Radio, RadioGroup, StatefulRadioGroup} from 'baseui/radio';
-import {StarRating, EmoticonRating} from 'baseui/rating';
-import {StatefulSelect, Select} from 'baseui/select';
-import {Navigation} from 'baseui/side-navigation';
-import {Slider, StatefulSlider} from 'baseui/slider';
-import {Spinner} from 'baseui/spinner';
+} from './progress-steps';
+import {Radio, RadioGroup, StatefulRadioGroup} from './radio';
+import {StarRating, EmoticonRating} from './rating';
+import {StatefulSelect, Select} from './select';
+import {Navigation} from './side-navigation';
+import {Slider, StatefulSlider} from './slider';
+import {Spinner} from './spinner';
 import {
   StyledTable,
   StyledHead,
@@ -87,17 +76,12 @@ import {
   StyledCell,
   StyledAction,
   Table,
-} from 'baseui/table';
-import {
-  Tab,
-  Tabs,
-  StatefulTabs,
-  ORIENTATION as TAB_ORIENTATION,
-} from 'baseui/tabs';
-import {Tag, KIND as TAG_KIND, VARIANT as TAG_VARIANT} from 'baseui/tag';
-import {StatefulTextarea as Textarea} from 'baseui/textarea';
-import {ToasterContainer, Toast, KIND as TOAST_KIND} from 'baseui/toast';
-import {StatefulTooltip} from 'baseui/tooltip';
+} from './table';
+import {Tab, Tabs, StatefulTabs, ORIENTATION as TAB_ORIENTATION} from './tabs';
+import {Tag, KIND as TAG_KIND, VARIANT as TAG_VARIANT} from './tag';
+import {StatefulTextarea as Textarea} from './textarea';
+import {ToasterContainer, Toast, KIND as TOAST_KIND} from './toast';
+import {StatefulTooltip} from './tooltip';
 import {
   Label1,
   Label2,
@@ -105,9 +89,9 @@ import {
   Caption2,
   Paragraph1,
   Paragraph2,
-} from 'baseui/typography';
-import {PaymentCard, StatefulPaymentCard} from 'baseui/payment-card';
-import {PhoneInput, StatefulPhoneInput, COUNTRIES} from 'baseui/phone-input';
+} from './typography';
+import {PaymentCard, StatefulPaymentCard} from './payment-card';
+import {PhoneInput, StatefulPhoneInput, COUNTRIES} from './phone-input';
 
 // Base API
 const newTheme = createTheme({...lightThemePrimitives}, {}); // $ExpectType Theme

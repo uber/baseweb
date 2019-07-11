@@ -2104,6 +2104,28 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/styletron-engine-atomic@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/styletron-engine-atomic/-/styletron-engine-atomic-1.1.0.tgz#aea5f44e946aa4641e576b13048a78e0efebdfc3"
+  integrity sha512-wEU9lwW+sEZ7y8lRmPe2NLNeJzm7AgvK72CVE0iHoT1pyzS90O9APgxaN5E83p4h8ej7wOaS3swBZtvZ08B/LQ==
+  dependencies:
+    "@types/styletron-standard" "*"
+
+"@types/styletron-react@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/styletron-react/-/styletron-react-5.0.1.tgz#2d0131bb1e498f4c8ec468b77bb0f6b2bcba59ea"
+  integrity sha512-rOgsOZwRiRKQfxxM6cguh1Tk3vyLzOFxCq3CoDgAPp79qg6oK5VlF0gc9hnk9Tl4UYv0fKJRkJ+oy/UJk5x5PA==
+  dependencies:
+    "@types/react" "*"
+    "@types/styletron-standard" "*"
+
+"@types/styletron-standard@*", "@types/styletron-standard@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/styletron-standard/-/styletron-standard-2.0.0.tgz#fff4c89cb2cb1f6cc48699188fcea31a02191052"
+  integrity sha512-TCNFfgWmGLyuthLVl55Bvw6xjdflrtJ43+CIB+UfumLDRDFdANPB5fnMP/gahepI/QUaLI0nVuZYfNq/MTCjdQ==
+  dependencies:
+    csstype "^2.6.4"
+
 "@uber-web-ui/extract-react-types-loader@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@uber-web-ui/extract-react-types-loader/-/extract-react-types-loader-1.0.1.tgz#4dc56a4ee8cffc6d3be5c54666726ca608ea07ae"
@@ -5828,6 +5850,11 @@ csstype@^2.5.2:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.0.tgz#6cf7b2fa7fc32aab3d746802c244d4eda71371a2"
   integrity sha512-by8hi8BlLbowQq0qtkx54d9aN73R9oUW20HISpka5kmgsR9F7nnxgfsemuR2sdCKZh+CDNf5egW9UZMm4mgJRg==
+
+csstype@^2.6.4:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.6.tgz#c34f8226a94bbb10c32cc0d714afdf942291fc41"
+  integrity sha512-RpFbQGUE74iyPgvr46U9t1xoQBM8T4BL8SxrN66Le2xYAPSaDJJKeztV3awugusb3g3G9iL8StmkBBXhcbbXhg==
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
