@@ -16,7 +16,7 @@
     "lint:code": "eslint ./",
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
     "lint": "yarn lint:code && yarn lint:markdown",
-    "test": "yarn lint && yarn flow check --max-warnings 0 && yarn unit-test",
+    "test": "yarn lint && yarn flow check --max-warnings 0 && yarn tsc && yarn unit-test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o public/legacy && build-storybook",
     "storybook:screener": "screener-storybook --conf screener.config.js",
@@ -131,6 +131,7 @@
     "styletron-react": "^5.2.0",
     "styletron-standard": "^3.0.0",
     "tar": "^4.4.8",
+    "typescript": "^3.5.3",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   },

@@ -1,4 +1,3 @@
-// TypeScript Version: 3.1
 /// <reference path="theme.d.ts"/>
 /// <reference path="locale.d.ts"/>
 /// <reference path="overrides.d.ts"/>
