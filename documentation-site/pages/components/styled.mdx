@@ -38,7 +38,7 @@ bundle and works in an isolation.
 
 If you are interested more into how this modified `styled` function is created, check the Styletron's [theme documentation](https://www.styletron.org/react/#themes).
 
-# UseStyletron
+## UseStyletron
 
 An alternative to `styled` is the `useStyletron` hook. With `useStyletron` we introduce a
 lightweight approach to generating CSS classes for an element or component, without having
@@ -52,7 +52,7 @@ theme for convenience. See an example below of how it is used.
   <UseStyletron />
 </Example>
 
-## Additional State Props
+### Additional State Props
 
 When you [use overrides](/theming/understanding-overrides), you also get an access to additional component states, like `$disabled` or `$error`, depending
 on the given component:
@@ -66,7 +66,7 @@ on the given component:
 
 To understand overrides better, go [here](/theming/understanding-overrides).
 
-### Custom themes and Flow type
+#### Custom themes and Flow type
 
 The `styled` and `withStyle` functions imported from `baseui` provide flow type support for the
 default [theme shape](/theming/theming-values). However, if you create a custom theme with additional fields,
