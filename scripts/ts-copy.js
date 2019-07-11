@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 // @flow
 
-const fs = require('fs-extra');
+const fs = require('fs').promises;
 const globby = require('globby');
 const path = require('path');
 
@@ -19,6 +19,6 @@ const path = require('path');
   files.forEach(async file => {
     const from = path.join(__dirname, '../', file);
     const to = path.join(__dirname, '../', file.replace('src', 'dist'));
-    await fs.copy(from, to);
+    await fs.copyFile(from, to);
   });
 })();
