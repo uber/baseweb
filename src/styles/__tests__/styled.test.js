@@ -42,6 +42,13 @@ test('styled', () => {
   wrapper.unmount();
 });
 
+test('styled can be called with single string argument', () => {
+  const ADiv = styled('div');
+  expect(ADiv).toBeTruthy();
+  const wrapper = mount(<ADiv />);
+  wrapper.unmount();
+});
+
 test('styled override prop', () => {
   const StyledMockButton = styled('button', {
     color: 'red',
