@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {ButtonProps} from '../button';
+import {Override} from '../overrides';
 
 export interface SIZE {
   default: 'default';

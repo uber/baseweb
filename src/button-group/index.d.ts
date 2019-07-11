@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {StyledFn, StyletronComponent} from 'styletron-react';
 import {SHAPE, SIZE} from '../button';
+import {Override} from '../overrides';
 
 export interface MODE {
   checkbox: 'checkbox';

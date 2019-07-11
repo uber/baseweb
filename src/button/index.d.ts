@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {StyledFn, StyletronComponent} from 'styletron-react';
+import {Override} from '../overrides';
 
 export interface KIND {
   primary: 'primary';

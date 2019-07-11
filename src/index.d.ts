@@ -1,9 +1,6 @@
-/// <reference path="theme.d.ts"/>
-/// <reference path="locale.d.ts"/>
-/// <reference path="overrides.d.ts"/>
-
 import * as React from 'react';
 import {StyleObject, StyletronComponent} from 'styletron-react';
+import {Overrides} from './overrides';
 
 export function createTheme(
   primitives: ThemePrimitives,
@@ -36,6 +33,7 @@ export const LightThemeMove: Theme;
 export const lightThemePrimitives: ThemePrimitives;
 export const DarkTheme: Theme;
 export const DarkThemeMove: Theme;
+export const darkThemePrimitives: ThemePrimitives;
 
 export interface BaseProviderProps {
   children: React.ReactNode;

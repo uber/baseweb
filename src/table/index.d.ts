@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
+import {Override} from '../overrides';
 
 export interface SortableHeadCellProps {
   children?: React.ReactNode;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
+import {Override} from '../overrides';
 import {
   SIZE,
   StatefulContainer,

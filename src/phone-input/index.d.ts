@@ -2,6 +2,7 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {SIZE} from '../input';
 import {OnChangeParams} from '../select';
+import {Override} from '../overrides';
 
 export interface STATE_CHANGE_TYPE {
   textChange: 'textChange';

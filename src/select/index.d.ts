@@ -2,6 +2,7 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {SIZE} from '../input';
 import {OnItemSelect} from '../menu';
+import {Override} from '../overrides';
 
 export interface TYPE {
   select: 'select';
@@ -101,8 +102,8 @@ export interface SelectProps {
   onBlur?: (e: Event) => any;
   onBlurResetsInput?: boolean;
   onChange?: (params: OnChangeParams) => any;
-  onFocus?: (e: React.FocusEventHandler<HTMLElement>) => any;
-  onInputChange?: (e: React.FormEventHandler<HTMLInputElement>) => any;
+  onFocus?: React.FocusEventHandler<HTMLElement>;
+  onInputChange?: React.FormEventHandler<HTMLInputElement>;
   onCloseResetsInput?: boolean;
   onSelectResetsInput?: boolean;
   onOpen?: () => any;

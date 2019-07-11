@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Option} from '../select';
+import {Override} from '../overrides';
 import {any} from 'prop-types';
 
 export interface STATE_CHANGE_TYPE {
