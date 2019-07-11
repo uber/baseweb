@@ -17,8 +17,13 @@ const path = require('path');
 (async () => {
   const files = await globby(['src/**/*.d.ts']);
   files.forEach(async file => {
-    const from = path.join(__dirname, '../', file);
-    const to = path.join(__dirname, '../', file.replace('src', 'dist'));
-    await fs.copyFile(from, to);
+    try {
+      const from = path.join(__dirname, '../', file);
+      const to = path.join(__dirname, '../', file.replace('src', 'dist'));
+      await fs.copyFile(from, to);
+    } catch (e) {
+      console.log(e);
+      process.exit(1);
+    }
   });
 })();
