@@ -35,20 +35,34 @@ async function styledV7TypeArguments(options: {dir: string}) {
       if (styledLocalImportName) {
         p.traverse({
           CallExpression(path) {
+            if (path.node.arguments.length === 1) {
+              path.node.arguments.push(t.objectExpression([]));
+            }
+
             if (
               path.node.callee.name === styledLocalImportName &&
               !path.node.typeArguments
             ) {
               if (isStyledElement(path)) {
-                path.node.callee.typeAnnotation = t.typeParameterInstantiation([
-                  t.anyTypeAnnotation(),
-                ]);
+                if (!t.isObjectExpression(path.node.arguments[1])) {
+                  path.node.callee.typeAnnotation = t.typeParameterInstantiation(
+                    [t.anyTypeAnnotation()],
+                  );
+                }
               } else if (isStyledComponent(path)) {
                 const base = path.node.arguments[0];
-                path.node.callee.typeAnnotation = t.typeParameterInstantiation([
-                  t.typeofTypeAnnotation(t.genericTypeAnnotation(base)),
-                  t.anyTypeAnnotation(),
-                ]);
+                if (!t.isObjectExpression(path.node.arguments[1])) {
+                  path.node.callee.typeAnnotation = t.typeParameterInstantiation(
+                    [
+                      t.typeofTypeAnnotation(t.genericTypeAnnotation(base)),
+                      t.anyTypeAnnotation(),
+                    ],
+                  );
+                } else {
+                  path.node.callee.typeAnnotation = t.typeParameterInstantiation(
+                    [t.typeofTypeAnnotation(t.genericTypeAnnotation(base))],
+                  );
+                }
               }
             }
           },
