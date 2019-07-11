@@ -180,4 +180,24 @@ const Component = styled('div');`;
       const Component = styled('div', {});"
     `);
   });
+
+  it('handles styled call wrapped in another function', async () => {
+    const content = `
+// @flow
+import {styled} from 'baseui';
+const Component = something(styled('div', p => ({color: 'red'})));`;
+
+    const fixture = new Fixture();
+    await fixture.write(content);
+    await codemod({dir: fixture.dir});
+    const transformed = await fixture.read();
+    await fixture.remove();
+
+    expect(transformed).toMatchInlineSnapshot(`
+      "
+      // @flow
+      import {styled} from 'baseui';
+      const Component = something(styled<any>('div', p => ({color: 'red'})));"
+    `);
+  });
 });

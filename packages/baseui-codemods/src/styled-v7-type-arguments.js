@@ -35,14 +35,14 @@ async function styledV7TypeArguments(options: {dir: string}) {
       if (styledLocalImportName) {
         p.traverse({
           CallExpression(path) {
-            if (path.node.arguments.length === 1) {
-              path.node.arguments.push(t.objectExpression([]));
-            }
-
             if (
               path.node.callee.name === styledLocalImportName &&
               !path.node.typeArguments
             ) {
+              if (path.node.arguments.length === 1) {
+                path.node.arguments.push(t.objectExpression([]));
+              }
+
               if (isStyledElement(path)) {
                 if (!t.isObjectExpression(path.node.arguments[1])) {
                   path.node.callee.typeAnnotation = t.typeParameterInstantiation(
