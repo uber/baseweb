@@ -29,5 +29,15 @@
       "baseui": ["./src"],
       "baseui/*": ["./src/*"]
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "public",
+    "coverage",
+    ".cache",
+    "storybook-static",
+    "documentation-site/.next",
+    "build"
+  ]
 }
