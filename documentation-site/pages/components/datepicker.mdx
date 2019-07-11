@@ -20,6 +20,7 @@ import TimezonePicker from 'examples/datepicker/timezone-picker.js';
 import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js';
 import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.js';
 import DatePickersColorStates from 'examples/datepicker/datepickers-color-states.js';
+import DatePickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulCalendar} from 'baseui/datepicker';
@@ -105,6 +106,16 @@ A simple and reusable component to work with or select a date or a range of date
   path="examples/datepicker/datepickers-color-states.js"
 >
   <DatePickersColorStates />
+</Example>
+
+<Example
+  title="Datepicker with timezone selection"
+  path="examples/datepicker/datepicker-with-timezone.js"
+>
+  This example works for most use-cases, however certian edge-cases
+  are not handled here. If this data is mission critical for your systems,
+  consider using Moment.js, and pass the date object from Moment.js to the datepicker.
+  <DatePickerTimezone />
 </Example>
 
 ## Overrides
