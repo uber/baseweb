@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Panel aria-controls populated when ID provided: Content has correct props w/ ID 1`] = `
+exports[`Panel aria-controls populated when provided: Content has correct props w/ ID 1`] = `
 <ForwardRef
   $disabled={false}
   $expanded={false}
@@ -46,7 +46,7 @@ exports[`Panel aria-controls populated when ID provided: Content has correct pro
 </ForwardRef>
 `;
 
-exports[`Panel aria-controls populated when ID provided: Header has correct props w/ aria-controls 1`] = `
+exports[`Panel aria-controls populated when provided: Header has correct props w/ aria-controls 1`] = `
 <ForwardRef
   $disabled={false}
   $expanded={false}

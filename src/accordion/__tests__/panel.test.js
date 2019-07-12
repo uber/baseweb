@@ -37,7 +37,7 @@ describe('Panel', () => {
     );
   });
 
-  test('aria-controls populated when ID provided', () => {
+  test('aria-controls populated when provided', () => {
     const props = {
       onChange: jest.fn(),
       onKeyDown: jest.fn(),
