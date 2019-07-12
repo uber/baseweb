@@ -15,7 +15,7 @@ const globby = require('globby');
 const path = require('path');
 
 (async () => {
-  const files = await globby(['src/**/*.d.ts']);
+  const files = await globby(['src/**/*.ts']);
   files.forEach(async file => {
     try {
       const from = path.join(__dirname, '../', file);

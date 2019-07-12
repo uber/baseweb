@@ -472,7 +472,7 @@ interface ZIndex {
   modal?: number;
 }
 
-interface Theme {
+export interface Theme {
   name?: string;
   breakpoints?: Breakpoints;
   colors?: Colors;
@@ -488,7 +488,7 @@ interface Theme {
   };
 }
 
-interface ThemePrimitives {
+export interface ThemePrimitives {
   // Primary Palette
   primary50: string;
   primary100: string;
