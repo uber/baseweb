@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {StyleObject, StyletronComponent} from 'styletron-react';
 import {Overrides} from './overrides';
+import {Locale} from './locale';
+import {Theme, ThemePrimitives} from './theme';
 
 export function createTheme(
   primitives: ThemePrimitives,

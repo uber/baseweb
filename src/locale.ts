@@ -45,7 +45,7 @@ interface ToastLocale {
   close: string;
 }
 
-interface Locale {
+export interface Locale {
   accordion: AccordionLocale;
   breadcrumbs: BreadcrumbLocale;
   datepicker: DatepickerLocale;
