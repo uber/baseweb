@@ -61,7 +61,14 @@ class Panel extends React.Component<PanelPropsT> {
   }
 
   render() {
-    const {expanded, disabled, overrides = {}, children, title} = this.props;
+    const {
+      expanded,
+      id,
+      disabled,
+      overrides = {},
+      children,
+      title,
+    } = this.props;
     const sharedProps = this.getSharedProps();
     const {
       PanelContainer: PanelContainerOverride,
@@ -102,6 +109,7 @@ class Panel extends React.Component<PanelPropsT> {
               aria-disabled={disabled || null}
               {...sharedProps}
               {...headerProps}
+              {...(id ? {'aria-controls': id} : {})}
               onClick={this.onClick}
               onKeyDown={this.onKeyDown}
             >
@@ -116,7 +124,7 @@ class Panel extends React.Component<PanelPropsT> {
                 overrides={toggleIconOverrides}
               />
             </Header>
-            <Content {...sharedProps} {...contentProps}>
+            <Content {...sharedProps} {...contentProps} {...(id ? {id} : {})}>
               {expanded ? children : null}
             </Content>
           </PanelContainer>
