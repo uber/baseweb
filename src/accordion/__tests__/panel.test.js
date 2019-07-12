@@ -41,7 +41,8 @@ describe('Panel', () => {
     const props = {
       onChange: jest.fn(),
       onKeyDown: jest.fn(),
-      id: 'panel',
+      children: 'content',
+      'aria-controls': 'panel',
       title: 'title',
     };
     let renderedHeader;

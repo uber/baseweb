@@ -80,7 +80,7 @@ type SharedPanelPropsT = {
   /** Id for a panel, when provided populates aria-controls
    * attribute for panel button and content
    * */
-  id?: string,
+  'aria-controls'?: string,
   /** The key of a Panel. Used to maintain list of expanded panels.
    * Must be unique across children of the Accordion. */
   key?: React.Key,
