@@ -3,6 +3,7 @@ import {StyletronComponent} from 'styletron-react';
 import {SIZE} from '../input';
 import {OnItemSelect} from '../menu';
 import {Override} from '../overrides';
+import {Locale} from '../locale';
 
 export interface TYPE {
   select: 'select';

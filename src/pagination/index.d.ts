@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
+import {Locale} from '../locale';
 
 export interface STATE_CHANGE_TYPE {
   change: 'change';

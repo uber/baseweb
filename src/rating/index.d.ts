@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
+import {Theme} from '../theme';
 
 export interface RatingState {
   previewIndex?: number;
