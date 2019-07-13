@@ -9,15 +9,19 @@ import * as React from 'react';
 import {isValidElementType} from 'react-is';
 import deepMerge from '../utils/deep-merge.js';
 
-export type StyleOverrideFunctionT = ({}) => ?{};
-export type StyleOverrideObjectT = {};
+export type ConfigurationOverrideFunctionT = ({}) => ?{};
+export type ConfigurationOverrideObjectT = {};
 
-export type StyleOverrideT = StyleOverrideObjectT | StyleOverrideFunctionT;
+export type ConfigurationOverrideT =
+  | ConfigurationOverrideObjectT
+  | ConfigurationOverrideFunctionT;
+
+export type StyleOverrideT = ConfigurationOverrideT;
 
 export type OverrideObjectT<T> = {|
   component?: ?React.ComponentType<T & {children: React.Node}>,
-  props?: ?{},
-  style?: ?StyleOverrideT,
+  props?: ?ConfigurationOverrideT,
+  style?: ?ConfigurationOverrideT,
 |};
 
 export type OverrideT<T> =
@@ -55,8 +59,12 @@ export function getOverride(override: any): any {
  */
 export function getOverrideProps<T>(override: ?OverrideT<T>) {
   if (override && typeof override === 'object') {
+    const props =
+      typeof override.props === 'function'
+        ? override.props(override)
+        : override.props;
     return {
-      ...override.props,
+      ...props,
       $style: override.style,
     };
   }
@@ -128,26 +136,24 @@ export function mergeOverride<T>(
 ): OverrideObjectT<T> {
   // Shallow merge should handle `component`
   const merged = {...target, ...source};
-  // Props just use deep merge
   if (target.props && source.props) {
-    merged.props = deepMerge({}, target.props, source.props);
+    merged.props = mergeConfigurationOverrides(target.props, source.props);
   }
-  // Style overrides need special merging since they may be functions
   if (target.style && source.style) {
-    merged.style = mergeStyleOverrides(target.style, source.style);
+    merged.style = mergeConfigurationOverrides(target.style, source.style);
   }
   return merged;
 }
 
 /**
- * Since style overrides can be an object *or* a function, we need to handle
+ * Since style or props overrides can be an object *or* a function, we need to handle
  * the case that one of them is a function. We do this by returning a new
  * function that deep merges the result of each style override
  */
-export function mergeStyleOverrides(
-  target: StyleOverrideT,
-  source: StyleOverrideT,
-): StyleOverrideT {
+export function mergeConfigurationOverrides(
+  target: ConfigurationOverrideT,
+  source: ConfigurationOverrideT,
+): ConfigurationOverrideT {
   // Simple case of both objects
   if (typeof target === 'object' && typeof source === 'object') {
     return deepMerge({}, target, source);

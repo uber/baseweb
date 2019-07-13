@@ -12,7 +12,7 @@ import {
   toObjectOverride,
   mergeOverrides,
   mergeOverride,
-  mergeStyleOverrides,
+  mergeConfigurationOverrides,
   getOverrides,
 } from '../overrides.js';
 
@@ -35,6 +35,15 @@ describe('Helpers - Overrides', () => {
       props: {propName: 'propsValue'},
       style: {color: 'blue'},
     };
+    const propsAsFunction = override => {
+      const props: {propName: string, className?: string} = {
+        propName: 'propValue',
+      };
+      if (override.style) {
+        props.className = 'someCSSClass';
+      }
+      return props;
+    };
     expect(getOverrideProps(null)).toMatchSnapshot(
       'returns empty object when no overrides',
     );
@@ -43,6 +52,24 @@ describe('Helpers - Overrides', () => {
     );
     expect(getOverrideProps(override)).toMatchSnapshot(
       'returns correct object when override has props and styles',
+    );
+    expect(getOverrideProps({props: propsAsFunction})).toMatchSnapshot(
+      'returns correct object when props is a function and styles in override is not present',
+    );
+    expect(
+      getOverrideProps({
+        props: propsAsFunction,
+        style: {color: 'red'},
+      }),
+    ).toMatchSnapshot(
+      'returns correct object when props is a function and styles in override is present',
+    );
+    expect(
+      getOverrideProps({
+        props: () => null,
+      }),
+    ).toMatchSnapshot(
+      'returns correct object when props is a function which return null',
     );
   });
 
@@ -138,20 +165,46 @@ describe('Helpers - Overrides', () => {
     });
   });
 
-  test('mergeStyleOverrides', () => {
-    const overrideObject1 = {color: 'red', textTransform: 'uppercase'};
-    const overrideObject2 = {color: 'blue'};
+  test('mergeOverride can compose props functions', () => {
+    const override1 = {
+      props: () => ({prop1: 'val1', prop2: 'val2'}),
+    };
+    const override2 = {props: () => ({prop1: 'newValue'})};
+    const result = mergeOverride(override1, override2);
+    expect(typeof result.props).toBe('function');
+    // $FlowFixMe props should be a function here
+    expect(result.props()).toEqual({
+      prop1: 'newValue',
+      prop2: 'val2',
+    });
+  });
+
+  test('mergeConfigurationOverrides', () => {
+    const overrideObject1 = {key1: 'value1', key2: 'value2'};
+    const overrideObject2 = {key1: 'overrideValue'};
     const overrideFunction1 = () => overrideObject1;
     const overrideFunction2 = () => overrideObject2;
     const expectedResult = {
-      color: 'blue',
-      textTransform: 'uppercase',
+      key1: 'overrideValue',
+      key2: 'value2',
     };
 
-    const result1 = mergeStyleOverrides(overrideObject1, overrideObject2);
-    const result2 = mergeStyleOverrides(overrideObject1, overrideFunction2);
-    const result3 = mergeStyleOverrides(overrideFunction1, overrideObject2);
-    const result4 = mergeStyleOverrides(overrideFunction1, overrideFunction2);
+    const result1 = mergeConfigurationOverrides(
+      overrideObject1,
+      overrideObject2,
+    );
+    const result2 = mergeConfigurationOverrides(
+      overrideObject1,
+      overrideFunction2,
+    );
+    const result3 = mergeConfigurationOverrides(
+      overrideFunction1,
+      overrideObject2,
+    );
+    const result4 = mergeConfigurationOverrides(
+      overrideFunction1,
+      overrideFunction2,
+    );
 
     expect(typeof result1).toBe('object');
     expect(result1).toEqual(expectedResult);
@@ -172,6 +225,7 @@ describe('Helpers - Overrides', () => {
   test('getOverrides', () => {
     const DefaultComponent = getMockComponent();
     const OverrideComponent = getMockComponent();
+    const propsAsFunction = props => ({key1: 'value1', key2: 'value2'});
 
     expect(getOverrides(null, DefaultComponent)).toEqual([
       DefaultComponent,
@@ -200,6 +254,28 @@ describe('Helpers - Overrides', () => {
       OverrideComponent,
       {
         custom: 'prop',
+        $style: {
+          cursor: 'pointer',
+        },
+      },
+    ]);
+
+    expect(
+      getOverrides(
+        {
+          component: OverrideComponent,
+          props: propsAsFunction,
+          style: {
+            cursor: 'pointer',
+          },
+        },
+        DefaultComponent,
+      ),
+    ).toEqual([
+      OverrideComponent,
+      {
+        key1: 'value1',
+        key2: 'value2',
         $style: {
           cursor: 'pointer',
         },
