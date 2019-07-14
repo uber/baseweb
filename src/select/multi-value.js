@@ -19,10 +19,10 @@ export default function MultiValue(props: any) {
       overrides={{
         Root: {
           style: ({$theme: {sizing}}) => ({
+            marginTop: sizing.scale0,
             marginRight: sizing.scale0,
-            marginBottom: 0,
+            marginBottom: sizing.scale0,
             marginLeft: sizing.scale0,
-            marginTop: 0,
           }),
         },
       }}
