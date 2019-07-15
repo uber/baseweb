@@ -14,7 +14,10 @@ const selectors = {
   input: 'input',
   calendar: '[role="application"]',
   day: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
+  selected:
+    '[aria-label="Choose Tuesday, February 19th 2019. It\'s available."]',
   leftArrow: '[aria-label="Previous month"]',
+  rightArrow: '[aria-label="Next month"]',
 };
 
 describe('Stateful Datepicker', () => {
@@ -50,5 +53,16 @@ describe('Stateful Datepicker', () => {
     await page.waitFor(selectors.leftArrow);
     value = await page.$eval(selectors.leftArrow, select => select.disabled);
     expect(value).toBe(true);
+    await page.waitFor(selectors.selected);
+    await page.click(selectors.selected);
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.leftArrow);
+    value = await page.$eval(selectors.leftArrow, select => select.disabled);
+    expect(value).toBe(true);
+    await page.waitFor(selectors.rightArrow);
+    value = await page.$eval(selectors.rightArrow, select => select.disabled);
+    expect(value).toBe(false);
   });
 });

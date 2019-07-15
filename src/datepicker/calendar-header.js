@@ -29,7 +29,6 @@ import {
   getStartOfWeek,
   getWeekdayMinInLocale,
   getYear,
-  isAfter,
   monthDisabledBefore,
   monthDisabledAfter,
   setMonth,
@@ -153,14 +152,9 @@ export default class CalendarHeader extends React.Component<
       isDisabled = true;
     }
     const nextMonth = addMonths(date, 1);
-    if (this.props.maxDate) {
-      if (isAfter(nextMonth, this.props.maxDate)) {
-        isDisabled = true;
-      }
-    } else {
-      if (getYear(nextMonth) > MAX_YEAR) {
-        isDisabled = true;
-      }
+
+    if (getYear(nextMonth) > MAX_YEAR) {
+      isDisabled = true;
     }
 
     const [NextButton, nextButtonProps] = getOverrides(
