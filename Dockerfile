@@ -17,4 +17,4 @@ RUN yarn remove puppeteer && yarn add puppeteer
 RUN yarn build
 RUN yarn build-storybook
 RUN yarn e2e:build
-RUN BUILD_ENV=production yarn documentation:build
+RUN NODE_ENV=production yarn documentation:build
