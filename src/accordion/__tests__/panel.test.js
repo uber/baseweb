@@ -37,6 +37,27 @@ describe('Panel', () => {
     );
   });
 
+  test('aria-controls populated when provided', () => {
+    const props = {
+      onChange: jest.fn(),
+      onKeyDown: jest.fn(),
+      children: 'content',
+      'aria-controls': 'panel',
+      title: 'title',
+    };
+    let renderedHeader;
+    let renderedContent;
+    const wrapper = mount(<Panel {...props} />);
+    renderedHeader = wrapper.find(StyledHeader).first();
+    renderedContent = wrapper.find(StyledContent).first();
+    expect(renderedHeader).toExist();
+    expect(renderedHeader).toMatchSnapshot(
+      'Header has correct props w/ aria-controls',
+    );
+    expect(renderedContent).toExist();
+    expect(renderedContent).toMatchSnapshot('Content has correct props w/ ID');
+  });
+
   test('component overrides', () => {
     const overrides = {
       Header: jest
