@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {StatefulDatepicker} from '../index.js';
 
-export const name = 'Stateful datepicker';
+export const name = 'stateful-datepicker';
 
 export const component = () => <StatefulDatepicker />;

@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulCalendar} from '../index.js';
 
-export const name = 'Stateful range quick select';
+export const name = 'stateful-range-quick-select';
 
 export const component = () => (
   <StatefulCalendar
