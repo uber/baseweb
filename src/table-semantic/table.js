@@ -121,12 +121,13 @@ export function Table(props: TablePropsT) {
   const {columns, fill, rows, sortKey, sortOrder, onSort} = props;
 
   return (
-    <StyledTableContainer fill={fill}>
-      <StyledTable border={!fill}>
+    <StyledTableContainer $fill={fill}>
+      <StyledTable $border={!fill}>
         <StyledTableHead>
           <StyledTableHeadRow>
             {columns.map(column => (
               <TableHeadCell
+                $isFrozen={fill}
                 key={column.key}
                 column={column}
                 sortKey={sortKey}
