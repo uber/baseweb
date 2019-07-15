@@ -287,6 +287,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       backgroundColor: 'transparent',
       border: 'none',
       boxShadow: 'none',
+      boxSizing: 'border-box',
       outline: 'none',
       marginTop: 0,
       marginBottom: 0,
@@ -298,6 +299,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       paddingLeft: 0,
       paddingRight: 0,
       height: String(!$searchable ? font.lineHeight : 'auto'),
+      maxHeight: font.lineHeight,
     };
   },
 );
