@@ -77,6 +77,10 @@ type SharedPanelPropsT = {
   children: React.Node,
   /** Defaults to the disabled value provided by the parent Accordion component. */
   disabled?: boolean,
+  /** Id for a panel, when provided populates aria-controls
+   * attribute for panel button and content
+   * */
+  'aria-controls'?: string,
   /** The key of a Panel. Used to maintain list of expanded panels.
    * Must be unique across children of the Accordion. */
   key?: React.Key,
