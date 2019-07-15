@@ -110,6 +110,7 @@ export function TableBodyRow(props: TableBodyRowPropsT) {
 
 export type TablePropsT = {
   columns: Array<TableColumnT>,
+  fill?: boolean,
   rows: Array<any>,
   sortKey?: ?string,
   sortOrder?: ?SortOrderT,
@@ -117,11 +118,11 @@ export type TablePropsT = {
 };
 
 export function Table(props: TablePropsT) {
-  const {columns, rows, sortKey, sortOrder, onSort} = props;
+  const {columns, fill, rows, sortKey, sortOrder, onSort} = props;
 
   return (
-    <StyledTableContainer>
-      <StyledTable>
+    <StyledTableContainer fill={fill}>
+      <StyledTable border={!fill}>
         <StyledTableHead>
           <StyledTableHeadRow>
             {columns.map(column => (

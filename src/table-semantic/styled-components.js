@@ -8,26 +8,61 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-export const StyledTableContainer = styled<{}>('div', ({$theme}) => ({
-  position: 'relative',
-  top: '0',
-  right: '0',
-  bottom: '0',
-  left: '0',
-  overflow: 'auto',
-  WebkitOverflowScrolling: 'touch',
-  border: `1px solid ${$theme.colors.border}`,
-}));
+type StyledTableContainerPropsT = {
+  $fill?: boolean,
+};
 
-export const StyledTable = styled<{}>('table', ({$theme}) => ({
-  position: 'relative',
-  zIndex: 0,
-  backgroundColor: $theme.colors.background,
-  borderCollapse: 'collapse',
-  borderStyle: 'hidden',
-  boxSizing: 'border-box',
-  minWidth: '100%',
-}));
+export const StyledTableContainer = styled<StyledTableContainerPropsT>(
+  'div',
+  ({$theme, $fill}) => {
+    const position = $fill
+      ? {
+          position: 'absolute',
+          top: '0',
+          right: '0',
+          bottom: '0',
+          left: '0',
+          overflow: 'auto',
+          WebkitOverflowScrolling: 'touch',
+        }
+      : {
+          position: 'relative',
+        };
+
+    return {
+      ...position,
+      border: `1px solid ${$theme.colors.border}`,
+    };
+  },
+);
+
+type StyledTablePropsT = {
+  $border?: boolean,
+};
+
+export const StyledTable = styled<StyledTablePropsT>(
+  'table',
+  ({$theme, $border}) => {
+    const border =
+      $border !== false
+        ? {
+            border: `1px solid ${$theme.colors.border}`,
+          }
+        : {
+            borderStyle: 'hidden',
+          };
+
+    return {
+      ...border,
+      position: 'relative',
+      zIndex: 0,
+      backgroundColor: $theme.colors.background,
+      borderCollapse: 'collapse',
+      boxSizing: 'border-box',
+      minWidth: '100%',
+    };
+  },
+);
 
 export const StyledTableHead = styled<{}>('thead', () => ({}));
 
@@ -40,7 +75,7 @@ type StyledTableHeadCellProps = {
 
 export const StyledTableHeadCell = styled<StyledTableHeadCellProps>(
   'th',
-  ({$theme, $isSortable}) => {
+  ({$theme, $isFrozen, $isSortable}) => {
     const {colors, sizing, typography} = $theme;
     let sortableStyles = {};
 
@@ -48,11 +83,9 @@ export const StyledTableHeadCell = styled<StyledTableHeadCellProps>(
       sortableStyles = {
         cursor: 'pointer',
         outline: 'none',
-
         ':focus': {
           backgroundColor: $theme.colors.mono200,
         },
-
         ':hover': {
           backgroundColor: $theme.colors.mono200,
         },
