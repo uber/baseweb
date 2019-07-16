@@ -49,6 +49,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     onClear: () => {},
     clearable: false,
     overrides: {},
+    pattern: null,
     placeholder: '',
     required: false,
     size: SIZE.default,
@@ -205,6 +206,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           onKeyDown={this.props.onKeyDown}
           onKeyPress={this.props.onKeyPress}
           onKeyUp={this.props.onKeyUp}
+          pattern={this.props.pattern}
           placeholder={this.props.placeholder}
           type={this.props.type}
           value={this.props.value}

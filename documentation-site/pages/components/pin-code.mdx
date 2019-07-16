@@ -1,0 +1,160 @@
+<!--
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+import Overrides from '../../components/overrides';
+
+import PinCodeBasic from 'examples/pin-code/basic.js';
+import PinCodeLength from 'examples/pin-code/length.js';
+import PinCodeIdAndName from 'examples/pin-code/id-and-name.js';
+import PinCodeStates from 'examples/pin-code/states.js';
+import PinCodeSizes from 'examples/pin-code/size.js';
+import PinCodePlaceholder from 'examples/pin-code/placeholder.js';
+import PinCodeNoTab from 'examples/pin-code/no-tab.js';
+import PinCodeAutofocus from 'examples/pin-code/autofocus.js';
+import PinCodeCompletion from 'examples/pin-code/completion.js';
+import PinCodeOverride from 'examples/pin-code/override.js';
+
+import * as PinCodeExports from 'baseui/pin-code/index.js';
+import {StatefulPinCode} from 'baseui/pin-code/index.js';
+
+export default Layout;
+
+# Pin Code
+
+The `PinCode` component is optimized for entering sequences of digits.
+The most common application is for entering single-use security codes.
+It is optimized for entering digits quickly.
+
+<Example title="Basic Usage" path="examples/pin-code/basic.js">
+  <PinCodeBasic />
+</Example>
+
+Each input collects one digit at a time.
+When a digit is entered, focus transfers to the next input in the sequence, until every input is filled in.
+A few things to note:
+
+1. You canʼt enter anything other than a digit.
+2. You can only enter one character per input.
+3. To overwrite the value of an input, you donʼt need to select the text in the input. If you type a digit while the input is focused, the input will update. This is an optimization for quickly editing the inputs.
+4. Pressing `Delete` when there is nothing in the input will transfer focus to, and clear the value of, the previous input (if any). This avoids the need to explicitly Shift+Tab & Delete.
+
+<Example title="Changing the code length" path="examples/pin-code/length.js">
+  <PinCodeLength />
+</Example>
+
+The code defaults to a length of 4, but you can change that.
+`PinCode` expects an array of strings for the `values` prop.
+The number of inputs rendered will match the length of the array.
+
+<Example title="Passing id and name" path="examples/pin-code/id-and-name.js">
+  <PinCodeIdAndName />
+</Example>
+
+Similarly, you can pass an individual `id` or `name` prop to each input.
+Just provide an array of strings to `ids` or `names` and each string will be passed through to the respective input.
+
+These are the only props that will target individual inputs.
+Every other prop that `PinCode` accepts is ‟shared” between the inputs.
+Hopefully, you donʼt have many reasons to target the inputs individually.
+
+<Example title="Various states" path="examples/pin-code/states.js">
+  <PinCodeStates />
+</Example>
+
+`PinCode` accepts most of the same boolean props as our other inputs: `disabled`, `error`, `positive`, etc.
+
+<Example title="Various sizes" path="examples/pin-code/sizes.js">
+  <PinCodeSizes />
+</Example>
+
+You can control the size of the inputs with the `size` prop.
+
+<Example
+  title="Changing the placeholder"
+  path="examples/pin-code/placeholder.js"
+>
+  <PinCodePlaceholder />
+</Example>
+
+If you donʼt like the default placeholder (`○`), you can change that too.
+Notice how each placeholder disappears when any of the inputs have focus.
+
+<Example title="Disable focus management" path="examples/pin-code/no-tab.js">
+  <PinCodeNoTab />
+</Example>
+
+You can disable `PinCode`ʼs built-in focusing logic by toggling the `manageFocus` prop.
+It defaults to `true`, which makes it so that when an input receives a digit, focus is automatically changed to the next input.
+It also transfers focus to a previous input when `Delete` is pressed with focus on an empty input.
+Set `manageFocus` to `false` if, for some reason, you donʼt want this nifty behavior.
+You can use the `onChange` handler to implement your own thing.
+
+<Example title="Autofocus" path="examples/pin-code/autofocus.js">
+  <PinCodeAutofocus />
+</Example>
+
+There is a decent chance that if you are using `PinCode` you want it to be focused from the start.
+Simply set `autoFocus` to `true` to focus the first input upon initial mounting of the component.
+
+In the example above, click `Mount PinCode` to ...mount the PinCode component.
+With `autoFocus` toggled on, the first input receives focus immediately.
+
+<Example
+  title="Once things are filled in"
+  path="examples/pin-code/completion.js"
+>
+  <PinCodeCompletion />
+</Example>
+
+It is a common pattern to immediately submit the userʼs input once the full pin code has been entered.
+In the above example, we shift focus to the submit button once all of our inputs have been filled in.
+Keep in mind that folks may have mistyped a digit so auto-submitting might be a bit aggressive.
+
+<Example
+  title="Autocomplete and Copy + Paste"
+  path="examples/pin-code/basic.js"
+>
+  <PinCodeBasic />
+</Example>
+
+Try copying & pasting `1234` into any of the inputs in the example above.
+
+By default, you can only change one input at a time.
+But what if a user wants to copy and paste a value in?
+Or what if the userʼs browser can [autocomplete verification codes](https://developer.apple.com/documentation/security/password_autofill/enabling_password_autofill_on_an_html_input_element#3001194).
+
+If one of the individual inputs receives a longer string, `PinCode` does some basic validation (is the length right? does it contain only digits?) to see if it can fill all the inputs.
+If things seem promising, `PinCode` will call `onChange` will all of the values updated.
+
+## Overrides
+
+<Overrides
+  name="Pin Code"
+  component={PinCodeExports}
+  renderExample={props => <StatefulPinCode {...props} />}
+  whitelisted={['Root', 'Input']}
+/>
+
+**Second Note:** You may have noticed that the `Input` override above does not highlight.
+To set the background and/or border styles for an `Input` component, you need to style the nested `InputContainer` override like so:
+
+<Example title="Overriding the Input" path="examples/pin-code/override.js">
+  <PinCodeOverride />
+</Example>
+
+<API
+  heading="PinCode API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/pin-code/pin-code.js')}
+/>
+
+<API
+  heading="StatefulPinCode API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/pin-code/stateful-pin-code.js')}
+/>
