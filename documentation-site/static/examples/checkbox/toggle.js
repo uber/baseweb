@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {StatefulCheckbox, STYLE_TYPE} from 'baseui/checkbox';
 

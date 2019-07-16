@@ -1,4 +1,5 @@
 /* global document */
+// @flow
 import * as React from 'react';
 import {Layer} from 'baseui/layer';
 import {Block} from 'baseui/block';

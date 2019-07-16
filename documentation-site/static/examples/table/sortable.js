@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 
 import {
@@ -33,10 +34,18 @@ const DATA = [
   ['Neil', 27],
 ];
 
-export default class SortableTable extends React.Component {
+type DirectionT = $Keys<typeof SORT_DIRECTION> | null;
+
+export default class SortableTable extends React.Component<
+  {},
+  {
+    nameDirection: DirectionT,
+    ageDirection: DirectionT,
+  },
+> {
   state = {nameDirection: null, ageDirection: null};
 
-  handleSort = (title, prevDirection) => {
+  handleSort = (title: string, prevDirection: DirectionT) => {
     let nextDirection = null;
     if (prevDirection === SORT_DIRECTION.ASC) {
       nextDirection = SORT_DIRECTION.DESC;
@@ -61,6 +70,7 @@ export default class SortableTable extends React.Component {
 
   getSortedData = () => {
     if (this.state.nameDirection) {
+      //$FlowFixMe
       const sorted = DATA.slice(0).sort((a, b) => a[0].localeCompare(b[0]));
 
       if (this.state.nameDirection === SORT_DIRECTION.ASC) {

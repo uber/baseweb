@@ -1,8 +1,9 @@
+// @flow
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Checkbox} from 'baseui/checkbox';
 
-class GroupList extends React.Component {
+class GroupList extends React.Component<{}, {checkboxes: boolean[]}> {
   state = {checkboxes: [false, false]};
 
   render() {

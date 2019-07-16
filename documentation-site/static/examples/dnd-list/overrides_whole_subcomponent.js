@@ -1,7 +1,11 @@
+// @flow
 import * as React from 'react';
 import {List, arrayMove, StyledLabel} from 'baseui/dnd-list';
 
-export default class Example extends React.Component {
+export default class Example extends React.Component<
+  {},
+  {items: Array<React.Node>},
+> {
   state = {
     items: ['Car', 'Truck', 'Bike', 'Skateboard'],
   };

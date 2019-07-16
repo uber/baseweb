@@ -1,9 +1,10 @@
+// @flow
 import * as React from 'react';
 import {StarRating} from 'baseui/rating';
 
-class StarExample extends React.Component {
+class StarExample extends React.Component<{}, {value: number}> {
   state = {
-    value: null,
+    value: 1,
   };
 
   render() {

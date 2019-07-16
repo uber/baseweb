@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Button} from 'baseui/button';
 import ChevronDown from 'baseui/icon/chevron-down';

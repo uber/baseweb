@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
@@ -28,10 +29,10 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
   );
 };
 
-class TagSelect extends React.Component {
+class TagSelect extends React.Component<{}, {value: string, tags: string[]}> {
   state = {value: '', tags: ['hello']};
 
-  handleKeyDown = event => {
+  handleKeyDown = (event: SyntheticKeyboardEvent<*>) => {
     if (event.keyCode === 13) {
       if (!this.state.value) return;
 
@@ -46,11 +47,11 @@ class TagSelect extends React.Component {
     }
   };
 
-  addTag = tag => {
+  addTag = (tag: string) => {
     this.setState({tags: [...this.state.tags, tag]});
   };
 
-  removeTag = tag => {
+  removeTag = (tag: string) => {
     this.setState({tags: this.state.tags.filter(t => t !== tag)});
   };
 

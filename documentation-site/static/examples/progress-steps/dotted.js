@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {ProgressSteps, Step} from 'baseui/progress-steps';
 import {Button} from 'baseui/button';
@@ -11,7 +12,7 @@ const SpacedButton = styled(Button, ({$theme}) => ({
   marginTop: $theme.sizing.scale200,
 }));
 
-class ProgressStepsContainer extends React.Component {
+class ProgressStepsContainer extends React.Component<{}, {current: number}> {
   state = {
     current: 0,
   };

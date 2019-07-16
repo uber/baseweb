@@ -1,7 +1,9 @@
+// @flow
 import * as React from 'react';
 import {Select} from 'baseui/select';
+import type {ValueT} from 'baseui/select';
 
-export default class Container extends React.Component {
+export default class Container extends React.Component<{}, {value: ValueT}> {
   state = {value: []};
   render() {
     return (

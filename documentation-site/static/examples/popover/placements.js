@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
@@ -13,17 +14,19 @@ export default () => (
     flexWrap="wrap"
     height="560px"
   >
-    {Object.values(PLACEMENT).map((placement, index) => (
+    {Object.keys(PLACEMENT).map((key, index) => (
       <Block padding="scale700" key={index}>
         <StatefulPopover
-          placement={placement}
+          placement={PLACEMENT[key]}
           triggerType={TRIGGER_TYPE.hover}
           content={
-            <Paragraph1 padding="scale300">{`PLACEMENT.${placement}`}</Paragraph1>
+            <Paragraph1 padding="scale300">{`PLACEMENT.${
+              PLACEMENT[key]
+            }`}</Paragraph1>
           }
           accessibilityType={'tooltip'}
         >
-          <Button>{placement}</Button>
+          <Button>{PLACEMENT[key]}</Button>
         </StatefulPopover>
       </Block>
     ))}

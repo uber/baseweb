@@ -1,13 +1,19 @@
+// @flow
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
+import type {DropFilesEventHandlerT} from 'baseui/file-uploader';
 
-export default class Uploader extends React.Component {
+export default class Uploader extends React.Component<
+  {},
+  {progressAmount: number, errorMessage: string},
+> {
   state = {
     progressAmount: 0,
     errorMessage: '',
   };
+  intervalId: IntervalID;
 
-  handleDrop = (acceptedFiles, rejectedFiles) => {
+  handleDrop: DropFilesEventHandlerT = (acceptedFiles, rejectedFiles) => {
     // handle file upload...
     this.startProgress();
   };
@@ -42,8 +48,9 @@ export default class Uploader extends React.Component {
         onRetry={this.reset}
         progressAmount={this.state.progressAmount}
         progressMessage={
-          this.state.progressAmount &&
-          `Uploading... ${this.state.progressAmount}% of 100%`
+          this.state.progressAmount
+            ? `Uploading... ${this.state.progressAmount}% of 100%`
+            : ''
         }
       />
     );

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Block} from 'baseui/block';
 import * as Icons from 'baseui/icon/icon-exports';
 
-function makeImportStatement(key) {
+function makeImportStatement(key: string) {
   const path = key
     .split(/(?=[A-Z])/)
     .map(word => word.toLowerCase())
@@ -13,7 +13,7 @@ function makeImportStatement(key) {
 
 export default () => (
   <Block>
-    {Object.entries(Icons).map(([key, Icon]) => (
+    {Object.entries(Icons).map(([key, Icon]: [string, React.Node]) => (
       <Block
         key={key}
         alignItems="center"

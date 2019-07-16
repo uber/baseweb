@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Block} from 'baseui/block';
 
@@ -18,7 +19,7 @@ export default () => {
     1000,
   ];
 
-  return sizes.map(size => {
+  return sizes.map<React.Node>(size => {
     const fontString = `font${size}`;
 
     return (

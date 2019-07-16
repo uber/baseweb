@@ -1,11 +1,12 @@
+// @flow
 import * as React from 'react';
 import {Input} from 'baseui/input';
 
-export default class ControlledInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
-  }
+export default class ControlledInput extends React.Component<
+  {},
+  {value: string},
+> {
+  state = {value: ''};
 
   render() {
     return (

@@ -1,7 +1,8 @@
+// @flow
 import * as React from 'react';
 import {StatefulSelect, TYPE} from 'baseui/select';
 
-export default class Container extends React.Component {
+export default class Container extends React.Component<{}, {}> {
   render() {
     return (
       <StatefulSelect

@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Heading, HeadingLevel} from 'baseui/heading';
 import {Paragraph1} from 'baseui/typography';

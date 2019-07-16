@@ -1,4 +1,5 @@
 /* global document */
+// @flow
 import * as React from 'react';
 import {
   Layer,
@@ -34,22 +35,28 @@ function BlockComponent(props) {
     </Block>
   );
 }
-export default class LayerWithZIndex extends React.Component {
-  anchorRef1 = React.createRef();
-  popperRef1 = React.createRef();
-  anchorRef2 = React.createRef();
-  popperRef2 = React.createRef();
 
-  state = {
-    isFirstOpen: false,
-    isSecondOpen: false,
-    isFirstMounted: false,
-    isSecondMounted: false,
-    offset1: {top: 0, left: 0},
-    offset2: {top: 0, left: 0},
-  };
+const initialState = {
+  isFirstOpen: false,
+  isSecondOpen: false,
+  isFirstMounted: false,
+  isSecondMounted: false,
+  setIsFirstMounted: false,
+  offset1: {top: 0, left: 0},
+  offset2: {top: 0, left: 0},
+};
+export default class LayerWithZIndex extends React.Component<
+  {},
+  typeof initialState,
+> {
+  anchorRef1 = React.createRef<any>();
+  popperRef1 = React.createRef<any>();
+  anchorRef2 = React.createRef<any>();
+  popperRef2 = React.createRef<any>();
 
-  onPopperUpdate = (order, normalizedOffsets) => {
+  state = initialState;
+
+  onPopperUpdate: any = (order, normalizedOffsets) => {
     this.setState({
       [`offset${order}`]: normalizedOffsets.popper,
     });

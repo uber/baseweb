@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Menu, OptionProfile} from 'baseui/menu';
 

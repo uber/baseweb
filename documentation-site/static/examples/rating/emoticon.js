@@ -1,9 +1,10 @@
+// @flow
 import * as React from 'react';
 import {EmoticonRating} from 'baseui/rating';
 
-class EmoticonExample extends React.Component {
+class EmoticonExample extends React.Component<{}, {value: number}> {
   state = {
-    value: null,
+    value: 1,
   };
 
   render() {

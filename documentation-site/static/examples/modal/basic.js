@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Button} from 'baseui/button';
 import {
@@ -8,14 +9,26 @@ import {
   ModalButton,
 } from 'baseui/modal';
 
-class ModalStateContainer extends React.Component {
+interface IRenderChildrenProps {
+  open: () => void;
+  close: () => void;
+  isOpen: boolean;
+}
+
+class ModalStateContainer extends React.Component<
+  {
+    isInitiallyOpen: boolean,
+    children: (args: IRenderChildrenProps) => React.Node,
+  },
+  {isOpen: boolean},
+> {
   static defaultProps = {
     isInitiallyOpen: false,
   };
   state = {
     isOpen: this.props.isInitiallyOpen,
   };
-  toggle = (open = !this.state.isOpen) => {
+  toggle = (open: boolean = !this.state.isOpen) => {
     this.setState({
       isOpen: !!open,
     });
@@ -28,11 +41,9 @@ class ModalStateContainer extends React.Component {
   };
   render() {
     return this.props.children({
-      toggle: this.toggle,
       open: this.open,
       close: this.close,
-      setState: this.setState.bind(this),
-      ...this.state,
+      isOpen: this.state.isOpen,
     });
   }
 }

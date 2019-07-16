@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Button, KIND} from 'baseui/button';
@@ -10,7 +11,7 @@ import {Table} from 'baseui/table';
 class PaginatedTable extends React.Component<any, any> {
   state = {page: 1, limit: 12};
 
-  handlePageChange = nextPage => {
+  handlePageChange = (nextPage: number) => {
     if (nextPage < 1) {
       return;
     }

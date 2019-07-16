@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {styled} from 'baseui';
 import Head from 'next/head';
@@ -77,7 +78,7 @@ const seriesProps = {
   fill: '#276EF1',
 };
 
-class GraphTable extends React.Component {
+class GraphTable extends React.Component<{}, {}> {
   render() {
     return (
       <React.Fragment>

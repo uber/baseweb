@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {StyledLink} from 'baseui/link';
 import {Block} from 'baseui/block';

@@ -1,10 +1,16 @@
+// @flow
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
+import type {DropFilesEventHandlerT} from 'baseui/file-uploader';
 
-export default class Uploader extends React.Component {
+export default class Uploader extends React.Component<
+  {},
+  {uploading: boolean},
+> {
   state = {uploading: false};
+  timeoutId: TimeoutID;
 
-  handleDrop = (acceptedFiles, rejectedFiles) => {
+  handleDrop: DropFilesEventHandlerT = (acceptedFiles, rejectedFiles) => {
     // handle file upload...
     this.startProgress();
   };
@@ -30,7 +36,7 @@ export default class Uploader extends React.Component {
       <FileUploader
         onCancel={this.reset}
         onDrop={this.handleDrop}
-        progressMessage={this.state.uploading && `Uploading... hang tight.`}
+        progressMessage={this.state.uploading ? `Uploading... hang tight.` : ''}
       />
     );
   }

@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {StatefulDatepicker} from 'baseui/datepicker';
 import {Block} from 'baseui/block';

@@ -1,8 +1,9 @@
+// @flow
 import * as React from 'react';
 import {Radio, RadioGroup} from 'baseui/radio';
 
-export default class Stateless extends React.Component {
-  state = {value: null};
+export default class Stateless extends React.Component<{}, {value: string}> {
+  state = {value: '1'};
   render() {
     return (
       <RadioGroup

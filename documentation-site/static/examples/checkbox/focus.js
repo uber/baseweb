@@ -1,10 +1,11 @@
+// @flow
 import * as React from 'react';
 import {Button, SIZE} from 'baseui/button';
 import {StatefulCheckbox} from 'baseui/checkbox';
 
-class Focus extends React.Component {
+class Focus extends React.Component<{}, {isFocused: boolean}> {
   state = {isFocused: false};
-  inputRef = React.createRef();
+  inputRef = React.createRef<HTMLInputElement>();
 
   render() {
     return (

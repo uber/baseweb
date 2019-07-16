@@ -1,18 +1,22 @@
+// @flow
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 
-export default class ControlledButtonGroup extends React.Component {
+export default class ControlledButtonGroup extends React.Component<
+  {},
+  {selected: number, boldClickCount: number},
+> {
   state = {selected: 1, boldClickCount: 0};
 
-  handleClick = (event, index) => {
+  handleClick = (event: SyntheticEvent<HTMLButtonElement>, index: number) => {
     if (this.state.selected !== index) {
       this.setState({selected: index});
     }
   };
 
-  handleBold = event => {
+  handleBold = (event: SyntheticEvent<HTMLButtonElement>) => {
     this.setState(prevState => ({
       boldClickCount: prevState.boldClickCount + 1,
     }));

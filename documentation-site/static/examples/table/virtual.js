@@ -1,8 +1,8 @@
+// @flow
 import * as React from 'react';
 import {styled} from 'baseui';
 import {
   StyledTable,
-  StyledContent,
   StyledHead,
   StyledHeadCell,
   StyledRow,

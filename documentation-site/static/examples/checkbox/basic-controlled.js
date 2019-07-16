@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 import {Checkbox} from 'baseui/checkbox';
 

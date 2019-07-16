@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Tabs, Tab} from 'baseui/tabs';
 
@@ -8,7 +9,7 @@ class ControlledTabsStory extends React.Component<{}, {activeKey: React.Key}> {
     activeKey: '0',
   };
 
-  onChange = ({activeKey}) => {
+  onChange = ({activeKey}: {activeKey: React.Key}) => {
     this.setState({activeKey});
   };
 

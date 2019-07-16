@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
 import {styled} from 'baseui';
@@ -20,7 +21,7 @@ const ThumbValue = styled('div', ({$theme}) => ({
 
 const mToKm = value => `${(value / 1000).toFixed(1)}km`;
 
-export default class Basic extends React.Component {
+export default class Basic extends React.Component<{}, {value: number[]}> {
   state = {value: [4500]};
 
   render() {

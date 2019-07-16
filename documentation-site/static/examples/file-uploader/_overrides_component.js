@@ -1,11 +1,21 @@
+// @flow
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
+import type {
+  DropFilesEventHandlerT,
+  OverridesT,
+  StylePropsT,
+} from 'baseui/file-uploader';
 import {Block} from 'baseui/block';
 
-export default class Uploader extends React.Component {
+export default class Uploader extends React.Component<
+  {overrides: OverridesT<StylePropsT>},
+  {progressAmount: number},
+> {
   state = {progressAmount: 0};
+  intervalId: IntervalID;
 
-  handleDrop = (acceptedFiles, rejectedFiles) => {
+  handleDrop: DropFilesEventHandlerT = (acceptedFiles, rejectedFiles) => {
     // handle file upload...
     this.startProgress();
   };
@@ -37,8 +47,9 @@ export default class Uploader extends React.Component {
             onDrop={this.handleDrop}
             progressAmount={this.state.progressAmount}
             progressMessage={
-              this.state.progressAmount &&
-              `Uploading... ${this.state.progressAmount}% of 100%`
+              this.state.progressAmount
+                ? `Uploading... ${this.state.progressAmount}% of 100%`
+                : ''
             }
             overrides={this.props.overrides}
           />
@@ -49,8 +60,9 @@ export default class Uploader extends React.Component {
           progressAmount={this.state.progressAmount}
           errorMessage={'Something went wrong. Sorry!'}
           progressMessage={
-            this.state.progressAmount &&
-            `Uploading... ${this.state.progressAmount}% of 100%`
+            this.state.progressAmount
+              ? `Uploading... ${this.state.progressAmount}% of 100%`
+              : ''
           }
           overrides={this.props.overrides}
         />
