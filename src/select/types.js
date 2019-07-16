@@ -139,6 +139,8 @@ export type PropsT = {
   onClose: ?() => mixed,
   /** Defines if the dropdown opens on a click event on the select. */
   openOnClick: boolean,
+  /** If true, opens the dropdown when the select mounts. */
+  startOpen: boolean,
   /** Options to be displayed in the dropdown. If an option has a
    * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
   options: ?ValueT,
