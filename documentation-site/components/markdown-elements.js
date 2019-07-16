@@ -126,7 +126,7 @@ export const H1 = ({children}: {children: React.Node}) => (
   <React.Fragment>
     <Head>
       <title key="title">
-        {process.env.WEBSITE_ENV !== 'production' ? '[DEV] ' : ''}
+        {process.env.NODE_ENV !== 'production' ? '[DEV] ' : ''}
         Base Web - {children}
       </title>
     </Head>
