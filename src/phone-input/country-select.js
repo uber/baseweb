@@ -21,7 +21,7 @@ import type {CountryT, CountrySelectPropsT} from './types.js';
 
 CountrySelect.defaultProps = {
   disabled: defaultProps.disabled,
-  inputRef: null,
+  inputRef: {current: null},
   maxDropdownHeight: defaultProps.maxDropdownHeight,
   maxDropdownWidth: defaultProps.maxDropdownWidth,
   overrides: {},
