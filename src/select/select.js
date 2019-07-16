@@ -102,7 +102,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   state = {
     inputValue: '',
     isFocused: false,
-    isOpen: false,
+    isOpen: this.props.startOpen,
     isPseudoFocused: false,
   };
 
