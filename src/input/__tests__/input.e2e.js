@@ -23,6 +23,16 @@ describe('input', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
+  it('does not wrap the input container if there are no enhancers', async () => {
+    await mount(page, 'input-simple');
+    await page.waitFor(selectors.input);
+
+    const parentIdentifier = await page.$eval(selectors.input, input =>
+      input.parentElement.getAttribute('data-baseweb'),
+    );
+    expect(parentIdentifier).toBe('test-container');
+  });
+
   it('preset value is displayed', async () => {
     await mount(page, 'input');
     await page.waitFor(selectors.input);

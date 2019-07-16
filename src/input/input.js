@@ -79,6 +79,18 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
         );
       }
     }
+    if (!startEnhancer && !endEnhancer) {
+      return (
+        <BaseInput
+          adjoined={getAdjoinedProp(startEnhancer, endEnhancer)}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          {...sharedProps}
+          {...rootProps}
+          {...restProps}
+        />
+      );
+    }
 
     return (
       <Root data-baseweb="input" {...sharedProps} {...rootProps}>
