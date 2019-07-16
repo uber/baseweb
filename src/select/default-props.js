@@ -40,6 +40,7 @@ const defaultProps = {
   onOpen: null,
   onClose: null,
   openOnClick: true,
+  startOpen: false,
   options: [],
   overrides: {},
   required: false,

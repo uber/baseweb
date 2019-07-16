@@ -12,6 +12,7 @@ import Layout from '../../components/layout';
 import SelectBasic from 'examples/select/basic.js';
 import SelectSizes from 'examples/select/sizes.js';
 import SelectControlled from 'examples/select/controlled.js';
+import SelectOpen from 'examples/select/open.js';
 import SelectOverridden from 'examples/select/overridden.js';
 import SelectLabel from 'examples/select/label.js';
 import SelectInModal from 'examples/select/in-modal.js';
@@ -54,6 +55,15 @@ Things to note in the `Select Controlled` example:
 
 - the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
 - you have to call `setState` with the entire object, not just the `id` value.
+
+<Example title="Select with open dropdown" path="">
+  <SelectOpen />
+</Example>
+
+Use `startOpen` to mount the Select with an open dropdown.
+Combine this with `autoFocus` if you want the input to be focused as well.
+Note, the dropdown will close once an item is selected or if the `escape` key is pressed while the Select has focus.
+If you want the dropdown to stay open you might be better off using [`Menu`](/components/menu) directly.
 
 <Example
   title="Select with overridden menu"
@@ -102,7 +112,10 @@ Things to note in the `Select Controlled` example:
 The creatable select enables users to create new options along with choosing
 existing options.
 
-<Example title="Select dropdown overrides" path="examples/select/overridden-dropdown.js">
+<Example
+  title="Select dropdown overrides"
+  path="examples/select/overridden-dropdown.js"
+>
   <SelectOverriddenDropdown />
 </Example>
 
