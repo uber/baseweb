@@ -99,15 +99,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // closeOnSelect is false. This flag helps to detect that selection was just made.
   justSelected: boolean;
 
-  constructor(props: PropsT) {
-    super(props);
-    this.state = {
-      inputValue: '',
-      isFocused: false,
-      isOpen: props.startOpen,
-      isPseudoFocused: false,
-    };
-  }
+  state = {
+    inputValue: '',
+    isFocused: false,
+    isOpen: this.props.startOpen,
+    isPseudoFocused: false,
+  };
 
   componentDidMount() {
     if (this.props.autoFocus) {
