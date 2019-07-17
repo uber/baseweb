@@ -54,6 +54,7 @@ exports[`Select component renders component in search mode and false for multipl
   required={false}
   searchable={true}
   size="default"
+  startOpen={false}
   type="search"
   value={Array []}
   valueKey="id"
@@ -838,6 +839,7 @@ exports[`Select component renders component in search mode and true for multiple
   required={false}
   searchable={true}
   size="default"
+  startOpen={false}
   type="search"
   value={Array []}
   valueKey="id"
@@ -1622,6 +1624,7 @@ exports[`Select component renders component in select mode and false for multipl
   required={false}
   searchable={true}
   size="default"
+  startOpen={false}
   type="select"
   value={Array []}
   valueKey="id"
@@ -2418,6 +2421,7 @@ exports[`Select component renders component in select mode and true for multiple
   required={false}
   searchable={true}
   size="default"
+  startOpen={false}
   type="select"
   value={Array []}
   valueKey="id"
