@@ -11,7 +11,9 @@ export default () => (
     showArrow
     overrides={{
       Arrow: {
-        style: ({$theme}) => ({backgroundColor: $theme.colors.warning}),
+        style: ({$theme}) => ({
+          backgroundColor: $theme.colors.warning,
+        }),
       },
       Body: {
         style: ({$theme}) => ({
@@ -33,7 +35,9 @@ export default () => (
         }),
       },
     }}
-    content={<Paragraph1 padding="scale500">hello world</Paragraph1>}
+    content={
+      <Paragraph1 padding="scale500">hello world</Paragraph1>
+    }
   >
     <Button>Click Me</Button>
   </StatefulPopover>

@@ -10,7 +10,12 @@ import {
   StyledRow,
   StyledCell,
 } from 'baseui/table';
-import {AreaSeries, VerticalBarSeries, LineMarkSeries, XYPlot} from 'react-vis';
+import {
+  AreaSeries,
+  VerticalBarSeries,
+  LineMarkSeries,
+  XYPlot,
+} from 'react-vis';
 
 const GraphCell = styled('div', {
   display: 'flex',

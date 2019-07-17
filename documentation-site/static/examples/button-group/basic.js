@@ -25,9 +25,15 @@ export default () => (
     </ButtonGroup>
     <br />
     <ButtonGroup>
-      <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
-      <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
-      <Button startEnhancer={() => <Upload size={24} />}>Label</Button>
+      <Button startEnhancer={() => <Upload size={24} />}>
+        Label
+      </Button>
+      <Button startEnhancer={() => <Upload size={24} />}>
+        Label
+      </Button>
+      <Button startEnhancer={() => <Upload size={24} />}>
+        Label
+      </Button>
     </ButtonGroup>
   </React.Fragment>
 );

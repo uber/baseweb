@@ -58,12 +58,18 @@ export default class SortableTable extends React.Component<
     }
 
     if (title === 'name') {
-      this.setState({nameDirection: nextDirection, ageDirection: null});
+      this.setState({
+        nameDirection: nextDirection,
+        ageDirection: null,
+      });
       return;
     }
 
     if (title === 'age') {
-      this.setState({nameDirection: null, ageDirection: nextDirection});
+      this.setState({
+        nameDirection: null,
+        ageDirection: nextDirection,
+      });
       return;
     }
   };
@@ -71,7 +77,9 @@ export default class SortableTable extends React.Component<
   getSortedData = () => {
     if (this.state.nameDirection) {
       //$FlowFixMe
-      const sorted = DATA.slice(0).sort((a, b) => a[0].localeCompare(b[0]));
+      const sorted = DATA.slice(0).sort((a, b) =>
+        a[0].localeCompare(b[0]),
+      );
 
       if (this.state.nameDirection === SORT_DIRECTION.ASC) {
         return sorted;
@@ -104,12 +112,16 @@ export default class SortableTable extends React.Component<
             <SortableHeadCell
               title="Name"
               direction={this.state.nameDirection}
-              onSort={() => this.handleSort('name', this.state.nameDirection)}
+              onSort={() =>
+                this.handleSort('name', this.state.nameDirection)
+              }
             />
             <SortableHeadCell
               title="Age"
               direction={this.state.ageDirection}
-              onSort={() => this.handleSort('age', this.state.ageDirection)}
+              onSort={() =>
+                this.handleSort('age', this.state.ageDirection)
+              }
             />
           </StyledHead>
           <StyledBody>

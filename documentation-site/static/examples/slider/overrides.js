@@ -2,7 +2,10 @@
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
 
-export default class Basic extends React.Component<{}, {value: number[]}> {
+export default class Basic extends React.Component<
+  {},
+  {value: number[]},
+> {
   state = {value: [70]};
 
   render() {
@@ -11,7 +14,8 @@ export default class Basic extends React.Component<{}, {value: number[]}> {
         value={this.state.value}
         onChange={({value}) => this.setState({value})}
         overrides={{
-          InnerThumb: ({$value, $thumbIndex}) => $value[$thumbIndex],
+          InnerThumb: ({$value, $thumbIndex}) =>
+            $value[$thumbIndex],
           ThumbValue: () => null,
           Thumb: {
             style: ({$value, $thumbIndex, $min, $max}) => ({

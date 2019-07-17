@@ -202,7 +202,11 @@ function Row({striped, row}) {
           onClick={() => setExpanded(!expanded)}
           shape="square"
         >
-          {expanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+          {expanded ? (
+            <ChevronDown size={18} />
+          ) : (
+            <ChevronRight size={18} />
+          )}
         </Button>
         {row[0]}
       </CenteredBodyCell>
@@ -234,7 +238,9 @@ function Row({striped, row}) {
                 {label: 'Item Four'},
               ]}
               onItemSelect={() => close()}
-              overrides={{List: {style: {height: '144px', width: '138px'}}}}
+              overrides={{
+                List: {style: {height: '144px', width: '138px'}},
+              }}
             />
           )}
         >

@@ -4,7 +4,10 @@ import {StatefulCheckbox, STYLE_TYPE} from 'baseui/checkbox';
 
 export default () => (
   <React.Fragment>
-    <StatefulCheckbox onChange={console.log} checkmarkType={STYLE_TYPE.toggle}>
+    <StatefulCheckbox
+      onChange={console.log}
+      checkmarkType={STYLE_TYPE.toggle}
+    >
       toggle me
     </StatefulCheckbox>
     <br />

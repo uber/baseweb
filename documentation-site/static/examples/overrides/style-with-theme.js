@@ -6,7 +6,9 @@ export default () => (
   <Button
     overrides={{
       BaseButton: {
-        style: ({$theme}) => ({backgroundColor: $theme.colors.warning}),
+        style: ({$theme}) => ({
+          backgroundColor: $theme.colors.warning,
+        }),
       },
     }}
   >

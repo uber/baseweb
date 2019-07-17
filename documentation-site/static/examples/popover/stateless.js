@@ -7,7 +7,9 @@ import {Paragraph1} from 'baseui/typography';
 export default () => (
   <Popover
     isOpen
-    content={<Paragraph1 padding="scale500">hello world</Paragraph1>}
+    content={
+      <Paragraph1 padding="scale500">hello world</Paragraph1>
+    }
   >
     <Block as="span" font="font400">
       Always open

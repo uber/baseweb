@@ -27,7 +27,9 @@ class Dropdown extends React.Component<
     return (
       <Popover
         isOpen={this.state.isOpen}
-        onClick={() => this.setState(prev => ({isOpen: !prev.isOpen}))}
+        onClick={() =>
+          this.setState(prev => ({isOpen: !prev.isOpen}))
+        }
         content={
           <StatefulMenu
             items={items}
@@ -37,7 +39,10 @@ class Dropdown extends React.Component<
           />
         }
       >
-        <Button {...this.props} endEnhancer={() => <Down size={24} />}>
+        <Button
+          {...this.props}
+          endEnhancer={() => <Down size={24} />}
+        >
           {this.props.children}
         </Button>
       </Popover>

@@ -12,7 +12,9 @@ export default () => (
       </Button>
     </p>
     <p>
-      <Button endEnhancer={() => <Upload size={24} />}>End Enhancer</Button>
+      <Button endEnhancer={() => <Upload size={24} />}>
+        End Enhancer
+      </Button>
     </p>
   </React.Fragment>
 );

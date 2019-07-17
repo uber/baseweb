@@ -10,7 +10,9 @@ export default () => (
     overrides={{
       Label: {
         style: ({$theme, $isDragged}) => ({
-          color: $isDragged ? $theme.colors.primary : $theme.colors.negative600,
+          color: $isDragged
+            ? $theme.colors.primary
+            : $theme.colors.negative600,
         }),
       },
     }}

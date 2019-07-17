@@ -4,7 +4,10 @@ import {ProgressBar} from 'baseui/progress-bar';
 
 const SUCCESS_VALUE = 100;
 
-export default class Basic extends React.Component<{}, {value: number}> {
+export default class Basic extends React.Component<
+  {},
+  {value: number},
+> {
   state = {value: 0};
 
   componentDidMount() {
@@ -24,7 +27,9 @@ export default class Basic extends React.Component<{}, {value: number}> {
         successValue={SUCCESS_VALUE}
         overrides={{
           BarProgress: {
-            style: ({$theme}) => ({backgroundColor: $theme.colors.negative}),
+            style: ({$theme}) => ({
+              backgroundColor: $theme.colors.negative,
+            }),
           },
         }}
       />

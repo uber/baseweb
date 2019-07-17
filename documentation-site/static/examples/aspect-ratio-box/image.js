@@ -1,6 +1,9 @@
 // @flow
 import * as React from 'react';
-import {AspectRatioBox, AspectRatioBoxBody} from 'baseui/aspect-ratio-box';
+import {
+  AspectRatioBox,
+  AspectRatioBoxBody,
+} from 'baseui/aspect-ratio-box';
 
 export default () => (
   <AspectRatioBox width="scale1400">

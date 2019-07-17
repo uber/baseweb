@@ -21,13 +21,16 @@ export default function() {
         </FocusOnce>
         <ModalBody>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            quam nisl, tempor ut varius sit amet, sodales sit amet mauris.
-            Aliquam vitae sapien quis eros finibus aliquet.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Maecenas quam nisl, tempor ut varius sit amet, sodales
+            sit amet mauris. Aliquam vitae sapien quis eros finibus
+            aliquet.
           </p>
         </ModalBody>
         <ModalFooter>
-          <ModalButton onClick={() => setOpen(false)}>Close</ModalButton>
+          <ModalButton onClick={() => setOpen(false)}>
+            Close
+          </ModalButton>
           <ModalButton autoFocus onClick={() => setOpen(false)}>
             Confirm
           </ModalButton>

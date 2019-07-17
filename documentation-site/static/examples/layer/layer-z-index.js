@@ -72,7 +72,11 @@ export default class LayerWithZIndex extends React.Component<
       // outside of the local LayersManager (therefore layers provider) added later.
       // Pass the `zIndex` value to the LayersManager added at the root of your application.
       <LayersManager zIndex={2}>
-        <Block display="flex" justifyContent="flex-start" alignItems="center">
+        <Block
+          display="flex"
+          justifyContent="flex-start"
+          alignItems="center"
+        >
           <Block>
             <Button
               ref={this.anchorRef1}
@@ -82,13 +86,19 @@ export default class LayerWithZIndex extends React.Component<
             </Button>
             {this.state.isFirstOpen ? (
               <Layer
-                onMount={() => this.setState({setIsFirstMounted: true})}
-                onUnmount={() => this.setState({setIsFirstMounted: false})}
+                onMount={() =>
+                  this.setState({setIsFirstMounted: true})
+                }
+                onUnmount={() =>
+                  this.setState({setIsFirstMounted: false})
+                }
               >
                 <TetherBehavior
                   anchorRef={this.anchorRef1.current}
                   popperRef={this.popperRef1.current}
-                  onPopperUpdate={(...args) => this.onPopperUpdate(1, ...args)}
+                  onPopperUpdate={(...args) =>
+                    this.onPopperUpdate(1, ...args)
+                  }
                   placement={TETHER_PLACEMENT.right}
                 >
                   <BlockComponent
@@ -96,7 +106,11 @@ export default class LayerWithZIndex extends React.Component<
                     offset={this.state.offset1}
                     color="rgba(255, 255, 190, 0.86)"
                   >
-                    <Button onClick={() => this.setState({isFirstOpen: false})}>
+                    <Button
+                      onClick={() =>
+                        this.setState({isFirstOpen: false})
+                      }
+                    >
                       Close
                     </Button>
                   </BlockComponent>
@@ -112,13 +126,19 @@ export default class LayerWithZIndex extends React.Component<
             </Button>
             {this.state.isSecondOpen ? (
               <Layer
-                onMount={() => this.setState({isSecondMounted: true})}
-                onUnmount={() => this.setState({isSecondMounted: false})}
+                onMount={() =>
+                  this.setState({isSecondMounted: true})
+                }
+                onUnmount={() =>
+                  this.setState({isSecondMounted: false})
+                }
               >
                 <TetherBehavior
                   anchorRef={this.anchorRef2.current}
                   popperRef={this.popperRef2.current}
-                  onPopperUpdate={(...args) => this.onPopperUpdate(2, ...args)}
+                  onPopperUpdate={(...args) =>
+                    this.onPopperUpdate(2, ...args)
+                  }
                   placement={TETHER_PLACEMENT.right}
                 >
                   <BlockComponent
@@ -127,7 +147,9 @@ export default class LayerWithZIndex extends React.Component<
                     color="rgba(190, 255, 190, 0.86)"
                   >
                     <Button
-                      onClick={() => this.setState({isSecondOpen: false})}
+                      onClick={() =>
+                        this.setState({isSecondOpen: false})
+                      }
                     >
                       Close
                     </Button>

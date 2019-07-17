@@ -10,8 +10,8 @@ export default () => (
     title="Example card"
   >
     <StyledBody>
-      Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-      faucibus ex, non facilisis nisl.
+      Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla
+      ornare faucibus ex, non facilisis nisl.
     </StyledBody>
     <StyledAction>
       <Button style={{width: '100%'}}>Button Label</Button>

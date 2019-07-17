@@ -11,7 +11,9 @@ export default class ControlledInput extends React.Component<
   render() {
     return (
       <Input
-        onChange={event => this.setState({value: event.target.value})}
+        onChange={event =>
+          this.setState({value: event.target.value})
+        }
         placeholder="Controlled Input"
         value={this.state.value}
       />

@@ -4,8 +4,10 @@ import {Avatar} from 'baseui/avatar';
 
 export default () => (
   <React.Fragment>
-    {['scale1000', 'scale1200', 'scale1400', '64px'].map((size, index) => (
-      <Avatar name={`Han Solo`} size={size} key={size} />
-    ))}
+    {['scale1000', 'scale1200', 'scale1400', '64px'].map(
+      (size, index) => (
+        <Avatar name={`Han Solo`} size={size} key={size} />
+      ),
+    )}
   </React.Fragment>
 );

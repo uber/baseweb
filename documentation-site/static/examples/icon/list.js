@@ -13,22 +13,24 @@ function makeImportStatement(key: string) {
 
 export default () => (
   <Block>
-    {Object.entries(Icons).map(([key, Icon]: [string, React.Node]) => (
-      <Block
-        key={key}
-        alignItems="center"
-        color="foreground"
-        display="flex"
-        paddingBottom="scale500"
-      >
-        <Icon size={24} />
-        <Block font="foregroundAlt" marginLeft="scale200">
-          {key}
+    {Object.entries(Icons).map(
+      ([key, Icon]: [string, React.Node]) => (
+        <Block
+          key={key}
+          alignItems="center"
+          color="foreground"
+          display="flex"
+          paddingBottom="scale500"
+        >
+          <Icon size={24} />
+          <Block font="foregroundAlt" marginLeft="scale200">
+            {key}
+          </Block>
+          <Block color="foregroundAlt" marginLeft="scale200">
+            {makeImportStatement(key)}
+          </Block>
         </Block>
-        <Block color="foregroundAlt" marginLeft="scale200">
-          {makeImportStatement(key)}
-        </Block>
-      </Block>
-    ))}
+      ),
+    )}
   </Block>
 );

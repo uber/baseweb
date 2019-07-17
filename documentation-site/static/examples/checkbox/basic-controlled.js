@@ -5,7 +5,10 @@ import {Checkbox} from 'baseui/checkbox';
 const App = () => {
   const [checked, setChecked] = useState(true);
   return (
-    <Checkbox checked={checked} onChange={() => setChecked(!checked)}>
+    <Checkbox
+      checked={checked}
+      onChange={() => setChecked(!checked)}
+    >
       click me
     </Checkbox>
   );

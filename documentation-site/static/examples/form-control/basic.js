@@ -17,7 +17,10 @@ export default () => (
     <FormControl label="Checkbox label" caption="Checkbox caption">
       <StatefulCheckbox>Checkbox control</StatefulCheckbox>
     </FormControl>
-    <FormControl label="RadioGroup label" caption="RadioGroup caption">
+    <FormControl
+      label="RadioGroup label"
+      caption="RadioGroup caption"
+    >
       <StatefulRadioGroup>
         <Radio value="red">Red</Radio>
         <Radio value="green">Green</Radio>

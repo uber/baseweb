@@ -1,14 +1,24 @@
 /* global document */
 // @flow
 import * as React from 'react';
-import {Layer, TetherBehavior, TETHER_PLACEMENT} from 'baseui/layer';
+import {
+  Layer,
+  TetherBehavior,
+  TETHER_PLACEMENT,
+} from 'baseui/layer';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 
 const layerRef = React.createRef();
 
 function BlockWrapper(props) {
-  const {offset, color, children, forwardedRef, ...restProps} = props;
+  const {
+    offset,
+    color,
+    children,
+    forwardedRef,
+    ...restProps
+  } = props;
   return (
     <Block
       ref={forwardedRef}
@@ -78,7 +88,9 @@ export default class BasicTether extends React.Component<
             <TetherBehavior
               anchorRef={this.anchorRef1.current}
               popperRef={this.popperRef1.current}
-              onPopperUpdate={(...args) => this.onPopperUpdate(1, ...args)}
+              onPopperUpdate={(...args) =>
+                this.onPopperUpdate(1, ...args)
+              }
               placement={TETHER_PLACEMENT.right}
             >
               <BlockWrapper
@@ -86,7 +98,11 @@ export default class BasicTether extends React.Component<
                 offset={this.state.offset1}
                 color="rgba(0, 190, 255, 0.86)"
               >
-                <Button onClick={() => this.setState({isFirstOpen: false})}>
+                <Button
+                  onClick={() =>
+                    this.setState({isFirstOpen: false})
+                  }
+                >
                   Close
                 </Button>
               </BlockWrapper>
@@ -103,12 +119,16 @@ export default class BasicTether extends React.Component<
         {this.state.isSecondOpen ? (
           <Layer
             onMount={() => this.setState({isSecondMounted: true})}
-            onUnmount={() => this.setState({isSecondMounted: false})}
+            onUnmount={() =>
+              this.setState({isSecondMounted: false})
+            }
           >
             <TetherBehavior
               anchorRef={this.anchorRef2.current}
               popperRef={this.popperRef2.current}
-              onPopperUpdate={(...args) => this.onPopperUpdate(2, ...args)}
+              onPopperUpdate={(...args) =>
+                this.onPopperUpdate(2, ...args)
+              }
               placement={TETHER_PLACEMENT.right}
             >
               <BlockWrapper
@@ -116,7 +136,11 @@ export default class BasicTether extends React.Component<
                 offset={this.state.offset2}
                 color="rgba(190, 190, 255, 0.86)"
               >
-                <Button onClick={() => this.setState({isSecondOpen: false})}>
+                <Button
+                  onClick={() =>
+                    this.setState({isSecondOpen: false})
+                  }
+                >
                   Close
                 </Button>
               </BlockWrapper>

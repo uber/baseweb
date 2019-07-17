@@ -10,7 +10,10 @@ export default class Uploader extends React.Component<
   state = {progressAmount: 0};
   intervalId: IntervalID;
 
-  handleDrop: DropFilesEventHandlerT = (acceptedFiles, rejectedFiles) => {
+  handleDrop: DropFilesEventHandlerT = (
+    acceptedFiles,
+    rejectedFiles,
+  ) => {
     // handle file upload...
     this.startProgress();
   };
@@ -22,7 +25,9 @@ export default class Uploader extends React.Component<
       if (this.state.progressAmount >= 100) {
         this.reset();
       } else {
-        this.setState({progressAmount: this.state.progressAmount + 10});
+        this.setState({
+          progressAmount: this.state.progressAmount + 10,
+        });
       }
     }, 500);
   };

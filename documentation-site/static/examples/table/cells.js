@@ -46,7 +46,10 @@ const DATA = [
     'San Francisco',
     -100,
     1234.5,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    {
+      title: 'New York',
+      data: '100 Broadway st. New York City, New York',
+    },
   ],
   [
     'Luther',
@@ -54,7 +57,10 @@ const DATA = [
     'Seattle',
     50,
     2435.2,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    {
+      title: 'California',
+      data: '100 Market st. San Francisco, California',
+    },
   ],
   [
     'Kiera',
@@ -62,7 +68,10 @@ const DATA = [
     'Los Angeles',
     40,
     8348.1,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    {
+      title: 'Australia',
+      data: '100 Macquarie st. Sydney, Australia',
+    },
   ],
   [
     'Edna',
@@ -70,7 +79,10 @@ const DATA = [
     'Atlanta',
     700,
     2893.4,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    {
+      title: 'New York',
+      data: '100 Broadway st. New York City, New York',
+    },
   ],
   [
     'Soraya',
@@ -78,7 +90,10 @@ const DATA = [
     'Denver',
     99,
     8787.3,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    {
+      title: 'California',
+      data: '100 Market st. San Francisco, California',
+    },
   ],
   [
     'Dorris',
@@ -86,7 +101,10 @@ const DATA = [
     'Dallas',
     -20,
     6325.2,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    {
+      title: 'Australia',
+      data: '100 Macquarie st. Sydney, Australia',
+    },
   ],
   [
     'Astrid',
@@ -94,7 +112,10 @@ const DATA = [
     'Tempe',
     0,
     7392.7,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    {
+      title: 'New York',
+      data: '100 Broadway st. New York City, New York',
+    },
   ],
   [
     'Wendie',
@@ -102,7 +123,10 @@ const DATA = [
     'Pittsburgh',
     -15,
     9283.1,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    {
+      title: 'California',
+      data: '100 Market st. San Francisco, California',
+    },
   ],
   [
     'Marna',
@@ -110,7 +134,10 @@ const DATA = [
     'Indianapolis',
     -2,
     7720.9,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    {
+      title: 'Australia',
+      data: '100 Macquarie st. Sydney, Australia',
+    },
   ],
   [
     'Malka',
@@ -118,7 +145,10 @@ const DATA = [
     'New Orleans',
     30,
     6273.3,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    {
+      title: 'New York',
+      data: '100 Broadway st. New York City, New York',
+    },
   ],
   [
     'Jospeh',
@@ -126,7 +156,10 @@ const DATA = [
     'New York City',
     -22,
     8837.4,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    {
+      title: 'California',
+      data: '100 Market st. San Francisco, California',
+    },
   ],
   [
     'Roselee',
@@ -134,7 +167,10 @@ const DATA = [
     'Oakland',
     4,
     9277.9,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    {
+      title: 'Australia',
+      data: '100 Macquarie st. Sydney, Australia',
+    },
   ],
   [
     'Justine',
@@ -142,7 +178,10 @@ const DATA = [
     'Louisville',
     -9,
     7737.2,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    {
+      title: 'New York',
+      data: '100 Broadway st. New York City, New York',
+    },
   ],
   [
     'Marlon',
@@ -150,7 +189,10 @@ const DATA = [
     'Baltimore',
     -2,
     2330.3,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    {
+      title: 'California',
+      data: '100 Market st. San Francisco, California',
+    },
   ],
   [
     'Mellissa',
@@ -158,7 +200,10 @@ const DATA = [
     'Boulder',
     -30,
     4458.8,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    {
+      title: 'Australia',
+      data: '100 Macquarie st. Sydney, Australia',
+    },
   ],
   [
     'Fausto',
@@ -166,7 +211,10 @@ const DATA = [
     'Chicago',
     -10,
     6363.9,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    {
+      title: 'New York',
+      data: '100 Broadway st. New York City, New York',
+    },
   ],
   [
     'Alfredia',
@@ -174,7 +222,10 @@ const DATA = [
     'Grand Rapids',
     70,
     2235.2,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    {
+      title: 'California',
+      data: '100 Market st. San Francisco, California',
+    },
   ],
   [
     'Abel',
@@ -182,7 +233,10 @@ const DATA = [
     'Nashville',
     30,
     9882.3,
-    {title: 'Australia', data: '100 Macquarie st. Sydney, Australia'},
+    {
+      title: 'Australia',
+      data: '100 Macquarie st. Sydney, Australia',
+    },
   ],
   [
     'Winford',
@@ -190,7 +244,10 @@ const DATA = [
     'Sacramento',
     10,
     8774.7,
-    {title: 'New York', data: '100 Broadway st. New York City, New York'},
+    {
+      title: 'New York',
+      data: '100 Broadway st. New York City, New York',
+    },
   ],
   [
     'Neil',
@@ -198,7 +255,10 @@ const DATA = [
     'Columbus',
     -5,
     2673.2,
-    {title: 'California', data: '100 Market st. San Francisco, California'},
+    {
+      title: 'California',
+      data: '100 Market st. San Francisco, California',
+    },
   ],
 ];
 
@@ -230,7 +290,11 @@ export default () => (
 
             <StyledDeltaCell $isNegative={row[3] < 0}>
               <>
-                {row[3] < 0 ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
+                {row[3] < 0 ? (
+                  <ArrowDown size={24} />
+                ) : (
+                  <ArrowUp size={24} />
+                )}
                 {row[3]}%
               </>
             </StyledDeltaCell>

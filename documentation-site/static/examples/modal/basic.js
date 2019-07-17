@@ -56,8 +56,9 @@ export default () => (
         <Modal onClose={close} isOpen={isOpen}>
           <ModalHeader>Hello world</ModalHeader>
           <ModalBody>
-            Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-            faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus.
+            Proin ut dui sed metus pharetra hend rerit vel non mi.
+            Nulla ornare faucibus ex, non facilisis nisl. Maecenas
+            aliquet mauris ut tempus.
           </ModalBody>
           <ModalFooter>
             <ModalButton onClick={close}>Cancel</ModalButton>

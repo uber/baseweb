@@ -39,7 +39,12 @@ export default () => (
         style: arrowBtnOverrides,
       },
       Day: {
-        style: ({$theme, $selected, $isHovered, $isHighlighted}) => ({
+        style: ({
+          $theme,
+          $selected,
+          $isHovered,
+          $isHighlighted,
+        }) => ({
           backgroundColor: $selected
             ? $theme.colors.positive
             : $isHovered || $isHighlighted

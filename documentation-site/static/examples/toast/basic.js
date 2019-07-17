@@ -5,9 +5,12 @@ import {Button} from 'baseui/button';
 
 class ToasterExample extends React.Component<{}, {}> {
   add = () => {
-    toaster.info('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', {
-      autoHideDuration: 5000,
-    });
+    toaster.info(
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      {
+        autoHideDuration: 5000,
+      },
+    );
   };
 
   render() {

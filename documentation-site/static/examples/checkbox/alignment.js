@@ -14,14 +14,23 @@ export default () => (
         margin: '8px 0 8px 12px',
       }}
     >
-      <StatefulCheckbox onChange={console.log} labelPlacement="left">
+      <StatefulCheckbox
+        onChange={console.log}
+        labelPlacement="left"
+      >
         Label on the left
       </StatefulCheckbox>
-      <StatefulCheckbox onChange={console.log} labelPlacement="right">
+      <StatefulCheckbox
+        onChange={console.log}
+        labelPlacement="right"
+      >
         Label on the right
       </StatefulCheckbox>
     </div>
-    <StatefulCheckbox onChange={console.log} labelPlacement="bottom">
+    <StatefulCheckbox
+      onChange={console.log}
+      labelPlacement="bottom"
+    >
       Label on the bottom
     </StatefulCheckbox>
   </React.Fragment>

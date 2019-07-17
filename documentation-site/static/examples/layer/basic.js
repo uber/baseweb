@@ -36,20 +36,31 @@ export default () => {
   const [isSecondOpen, setIsSecondOpen] = React.useState(false);
   return (
     <>
-      <Button onClick={() => setIsFirstOpen(true)}>Render Red Layer</Button>
+      <Button onClick={() => setIsFirstOpen(true)}>
+        Render Red Layer
+      </Button>
       {isFirstOpen ? (
         <Layer>
           <BlockComponent color="rgba(255, 190, 190, 0.86)">
-            <Button onClick={() => setIsFirstOpen(false)}>Close</Button>
+            <Button onClick={() => setIsFirstOpen(false)}>
+              Close
+            </Button>
           </BlockComponent>
         </Layer>
       ) : null}
       <Block padding="5px" />
-      <Button onClick={() => setIsSecondOpen(true)}>Render Orange Layer</Button>
+      <Button onClick={() => setIsSecondOpen(true)}>
+        Render Orange Layer
+      </Button>
       {isSecondOpen ? (
         <Layer>
-          <BlockComponent color="rgba(255, 212, 135, 0.86)" offset="48%">
-            <Button onClick={() => setIsSecondOpen(false)}>Close</Button>
+          <BlockComponent
+            color="rgba(255, 212, 135, 0.86)"
+            offset="48%"
+          >
+            <Button onClick={() => setIsSecondOpen(false)}>
+              Close
+            </Button>
           </BlockComponent>
         </Layer>
       ) : null}

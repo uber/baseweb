@@ -7,7 +7,10 @@ export default () => {
   const inputRef = React.createRef();
   return (
     <React.Fragment>
-      <Textarea inputRef={inputRef} placeholder="With textarea input ref" />
+      <Textarea
+        inputRef={inputRef}
+        placeholder="With textarea input ref"
+      />
       <br />
       <Button
         onClick={() => {

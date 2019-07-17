@@ -9,9 +9,14 @@ export default () => {
   return (
     <Block display="flex">
       <Block width="50%" marginRight="scale400">
-        <StatefulInput inputRef={inputRef} placeholder="With input ref" />
+        <StatefulInput
+          inputRef={inputRef}
+          placeholder="With input ref"
+        />
       </Block>
-      <Button onClick={() => inputRef.current && inputRef.current.focus()}>
+      <Button
+        onClick={() => inputRef.current && inputRef.current.focus()}
+      >
         Click to focus
       </Button>
     </Block>

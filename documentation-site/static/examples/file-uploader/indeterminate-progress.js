@@ -10,7 +10,10 @@ export default class Uploader extends React.Component<
   state = {uploading: false};
   timeoutId: TimeoutID;
 
-  handleDrop: DropFilesEventHandlerT = (acceptedFiles, rejectedFiles) => {
+  handleDrop: DropFilesEventHandlerT = (
+    acceptedFiles,
+    rejectedFiles,
+  ) => {
     // handle file upload...
     this.startProgress();
   };
@@ -36,7 +39,9 @@ export default class Uploader extends React.Component<
       <FileUploader
         onCancel={this.reset}
         onDrop={this.handleDrop}
-        progressMessage={this.state.uploading ? `Uploading... hang tight.` : ''}
+        progressMessage={
+          this.state.uploading ? `Uploading... hang tight.` : ''
+        }
       />
     );
   }

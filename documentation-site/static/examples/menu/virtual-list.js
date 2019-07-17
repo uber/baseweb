@@ -46,5 +46,8 @@ const VirtualList = React.forwardRef((props, ref) => {
 });
 
 export default () => (
-  <StatefulMenu items={ITEMS} overrides={{List: {component: VirtualList}}} />
+  <StatefulMenu
+    items={ITEMS}
+    overrides={{List: {component: VirtualList}}}
+  />
 );

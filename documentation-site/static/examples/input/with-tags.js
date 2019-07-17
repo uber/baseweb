@@ -29,7 +29,10 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
   );
 };
 
-class TagSelect extends React.Component<{}, {value: string, tags: string[]}> {
+class TagSelect extends React.Component<
+  {},
+  {value: string, tags: string[]},
+> {
   state = {value: '', tags: ['hello']};
 
   handleKeyDown = (event: SyntheticKeyboardEvent<*>) => {
@@ -59,8 +62,8 @@ class TagSelect extends React.Component<{}, {value: string, tags: string[]}> {
     return (
       <React.Fragment>
         <Block>
-          Type a word and press enter to create a tag. Use backspace to remove
-          tags.
+          Type a word and press enter to create a tag. Use backspace
+          to remove tags.
         </Block>
         <Input
           size={SIZE.compact}

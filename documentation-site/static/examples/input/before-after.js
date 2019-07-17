@@ -9,7 +9,11 @@ import {StatefulInput, Input} from 'baseui/input';
 
 function Before() {
   return (
-    <Block display="flex" alignItems="center" paddingLeft="scale500">
+    <Block
+      display="flex"
+      alignItems="center"
+      paddingLeft="scale500"
+    >
       <Search size="18px" />
     </Block>
   );
@@ -17,7 +21,11 @@ function Before() {
 
 function After() {
   return (
-    <Block display="flex" alignItems="center" paddingRight="scale500">
+    <Block
+      display="flex"
+      alignItems="center"
+      paddingRight="scale500"
+    >
       <Search size="18px" />
     </Block>
   );

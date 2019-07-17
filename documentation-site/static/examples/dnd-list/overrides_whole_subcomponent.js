@@ -26,7 +26,9 @@ export default class Example extends React.Component<
                 <button
                   onClick={() =>
                     this.setState(prevState => ({
-                      items: prevState.items.concat([`${$value} clone`]),
+                      items: prevState.items.concat([
+                        `${$value} clone`,
+                      ]),
                     }))
                   }
                 >

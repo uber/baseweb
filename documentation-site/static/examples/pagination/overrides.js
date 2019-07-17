@@ -18,10 +18,14 @@ export default () => (
         }),
       },
       PrevButton: {
-        component: ({onClick}) => <Button onClick={onClick}>Left</Button>,
+        component: ({onClick}) => (
+          <Button onClick={onClick}>Left</Button>
+        ),
       },
       NextButton: {
-        component: ({onClick}) => <Button onClick={onClick}>Right</Button>,
+        component: ({onClick}) => (
+          <Button onClick={onClick}>Right</Button>
+        ),
       },
       MaxLabel: {
         style: ({$theme}) => ({

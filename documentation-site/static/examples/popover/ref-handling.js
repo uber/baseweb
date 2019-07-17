@@ -4,7 +4,11 @@ import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import {Label1} from 'baseui/typography';
 import {StatefulCheckbox} from 'baseui/checkbox';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
+import {
+  StatefulPopover,
+  PLACEMENT,
+  TRIGGER_TYPE,
+} from 'baseui/popover';
 
 const CheckboxWithRef = React.forwardRef((props, ref) => {
   const {children, ...restProps} = props;
@@ -35,19 +39,27 @@ export default () => (
     <StatefulPopover
       placement={PLACEMENT.bottomLeft}
       triggerType={TRIGGER_TYPE.hover}
-      content={<Label1 padding="scale300">This is a popover example</Label1>}
+      content={
+        <Label1 padding="scale300">
+          This is a popover example
+        </Label1>
+      }
       accessibilityType={'tooltip'}
     >
       <CheckboxWithRef>
-        Created a wrapper component that renders Checkbox and passes popover's
-        anchor props to the Chackbox's Root element.
+        Created a wrapper component that renders Checkbox and passes
+        popover's anchor props to the Chackbox's Root element.
       </CheckboxWithRef>
     </StatefulPopover>
     <br />
     <StatefulPopover
       placement={PLACEMENT.bottomLeft}
       triggerType={TRIGGER_TYPE.hover}
-      content={<Label1 padding="scale300">This is a popover example</Label1>}
+      content={
+        <Label1 padding="scale300">
+          This is a popover example
+        </Label1>
+      }
       accessibilityType={'tooltip'}
     >
       <span>

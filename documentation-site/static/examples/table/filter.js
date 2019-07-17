@@ -51,12 +51,16 @@ class FilterTable extends React.Component {
   };
 
   handleReset = () => this.setState({filters: []});
-  handleSelectAll = () => this.setState({filters: this.FILTER_FUNCTIONS});
+  handleSelectAll = () =>
+    this.setState({filters: this.FILTER_FUNCTIONS});
 
   render() {
     const filteredData = this.state.filters
       .filter(Boolean)
-      .reduce((data, filter) => data.filter(filter), this.props.data);
+      .reduce(
+        (data, filter) => data.filter(filter),
+        this.props.data,
+      );
 
     return (
       <StyledTable>
@@ -101,7 +105,10 @@ const Container = styled('div', {
 });
 
 export default () => {
-  const FILTER_DATA = [...new Array(100)].map((_, i) => [i, 'row title']);
+  const FILTER_DATA = [...new Array(100)].map((_, i) => [
+    i,
+    'row title',
+  ]);
   return (
     <Container>
       <FilterTable data={FILTER_DATA} />

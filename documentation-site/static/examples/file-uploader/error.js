@@ -13,7 +13,10 @@ export default class Uploader extends React.Component<
   };
   intervalId: IntervalID;
 
-  handleDrop: DropFilesEventHandlerT = (acceptedFiles, rejectedFiles) => {
+  handleDrop: DropFilesEventHandlerT = (
+    acceptedFiles,
+    rejectedFiles,
+  ) => {
     // handle file upload...
     this.startProgress();
   };
@@ -28,7 +31,9 @@ export default class Uploader extends React.Component<
           errorMessage: 'Upload failed... connection was lost.',
         });
       } else {
-        this.setState({progressAmount: this.state.progressAmount + 10});
+        this.setState({
+          progressAmount: this.state.progressAmount + 10,
+        });
       }
     }, 500);
   };

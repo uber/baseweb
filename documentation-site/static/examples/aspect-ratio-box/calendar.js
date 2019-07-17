@@ -1,6 +1,9 @@
 // @flow
 import * as React from 'react';
-import {AspectRatioBox, AspectRatioBoxBody} from 'baseui/aspect-ratio-box';
+import {
+  AspectRatioBox,
+  AspectRatioBoxBody,
+} from 'baseui/aspect-ratio-box';
 import {Block} from 'baseui/block';
 import {Button, KIND} from 'baseui/button';
 

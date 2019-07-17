@@ -3,7 +3,11 @@ import * as React from 'react';
 import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
+import {
+  StatefulPopover,
+  PLACEMENT,
+  TRIGGER_TYPE,
+} from 'baseui/popover';
 import {Paragraph1} from 'baseui/typography';
 
 export default () => (

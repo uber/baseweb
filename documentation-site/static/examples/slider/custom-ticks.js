@@ -21,7 +21,10 @@ const ThumbValue = styled('div', ({$theme}) => ({
 
 const mToKm = value => `${(value / 1000).toFixed(1)}km`;
 
-export default class Basic extends React.Component<{}, {value: number[]}> {
+export default class Basic extends React.Component<
+  {},
+  {value: number[]},
+> {
   state = {value: [4500]};
 
   render() {
@@ -33,7 +36,9 @@ export default class Basic extends React.Component<{}, {value: number[]}> {
         step={100}
         onChange={({value}) => this.setState({value})}
         overrides={{
-          ThumbValue: ({$value}) => <ThumbValue>{$value}m</ThumbValue>,
+          ThumbValue: ({$value}) => (
+            <ThumbValue>{$value}m</ThumbValue>
+          ),
           TickBar: ({$min, $max}) => (
             <TickBar>
               <div>{mToKm($min)}</div>

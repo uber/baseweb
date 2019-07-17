@@ -3,12 +3,19 @@ import React, {useState} from 'react';
 import {Block} from 'baseui/block';
 import {FormControl} from 'baseui/form-control';
 import ArrowRight from 'baseui/icon/arrow-right';
-import {Datepicker, TimePicker, formatDate} from 'baseui/datepicker';
+import {
+  Datepicker,
+  TimePicker,
+  formatDate,
+} from 'baseui/datepicker';
 
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
-function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
+function formatDateAtIndex(
+  dates: ?Date | ?Array<Date>,
+  index: number,
+) {
   if (!dates || !Array.isArray(dates)) return '';
   const date = dates[index];
   if (!date) return '';
@@ -52,7 +59,9 @@ export default () => {
             onChange={({date}) => setDates(date)}
             formatDisplayValue={date => formatDateAtIndex(date, 1)}
             overrides={{
-              TimeSelectFormControl: {props: {label: 'End time'}},
+              TimeSelectFormControl: {
+                props: {label: 'End time'},
+              },
             }}
             timeSelectEnd
             range

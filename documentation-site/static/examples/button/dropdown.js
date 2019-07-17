@@ -27,10 +27,14 @@ export default () => (
       <StatefulMenu
         items={ITEMS}
         onItemSelect={() => close()}
-        overrides={{List: {style: {height: '150px', width: '138px'}}}}
+        overrides={{
+          List: {style: {height: '150px', width: '138px'}},
+        }}
       />
     )}
   >
-    <Button endEnhancer={() => <ChevronDown size={24} />}>Open Menu</Button>
+    <Button endEnhancer={() => <ChevronDown size={24} />}>
+      Open Menu
+    </Button>
   </StatefulPopover>
 );

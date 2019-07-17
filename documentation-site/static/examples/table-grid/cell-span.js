@@ -21,7 +21,10 @@ const row = [
     [new Date(2019, 6, 22), 'chasestarr left a comment'],
     [new Date(2019, 6, 22), 'jh3y added a commit'],
     [new Date(2019, 6, 22), 'jh3y added a commit'],
-    [new Date(2019, 6, 22), 'jh3y marked this pull request as ready'],
+    [
+      new Date(2019, 6, 22),
+      'jh3y marked this pull request as ready',
+    ],
   ],
 ];
 

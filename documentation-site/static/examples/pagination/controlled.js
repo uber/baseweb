@@ -2,7 +2,10 @@
 import * as React from 'react';
 import {Pagination} from 'baseui/pagination';
 
-export default class Basic extends React.Component<{}, {currentPage: number}> {
+export default class Basic extends React.Component<
+  {},
+  {currentPage: number},
+> {
   state = {currentPage: 1};
   render() {
     return (

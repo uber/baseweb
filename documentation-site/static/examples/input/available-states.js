@@ -11,7 +11,10 @@ export default () => (
     <Block as="br" />
     <StatefulInput placeholder="Input in an error state" error />
     <Block as="br" />
-    <StatefulInput placeholder="Input in an positive state" positive />
+    <StatefulInput
+      placeholder="Input in an positive state"
+      positive
+    />
     <Block as="br" />
     <StatefulInput placeholder="Disabled input" disabled />
   </Block>

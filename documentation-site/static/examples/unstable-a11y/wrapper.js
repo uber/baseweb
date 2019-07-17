@@ -17,7 +17,10 @@ export default () => {
   return (
     <A11y>
       <Container>
-        <Button size="compact" onClick={() => setInputs([...inputs, ''])}>
+        <Button
+          size="compact"
+          onClick={() => setInputs([...inputs, ''])}
+        >
           add input component
         </Button>
 

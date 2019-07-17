@@ -25,7 +25,10 @@ class Focus extends React.Component<{}, {isFocused: boolean}> {
         >
           Click to focus checkbox
         </Button>
-        <StatefulCheckbox inputRef={this.inputRef} onChange={console.log}>
+        <StatefulCheckbox
+          inputRef={this.inputRef}
+          onChange={console.log}
+        >
           Focused checkbox
         </StatefulCheckbox>
       </React.Fragment>

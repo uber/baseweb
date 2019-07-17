@@ -5,7 +5,9 @@ import {Spinner} from 'baseui/spinner';
 export default () => (
   <Spinner
     overrides={{
-      ActivePath: {style: ({$theme}) => ({fill: $theme.colors.negative})},
+      ActivePath: {
+        style: ({$theme}) => ({fill: $theme.colors.negative}),
+      },
     }}
   />
 );

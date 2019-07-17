@@ -12,7 +12,10 @@ export default () => (
     />
     <Block as="br" />
 
-    <StatefulInput endEnhancer=".00" placeholder="Input with an end enhancer" />
+    <StatefulInput
+      endEnhancer=".00"
+      placeholder="Input with an end enhancer"
+    />
     <Block as="br" />
 
     <StatefulInput
@@ -33,7 +36,9 @@ export default () => (
         <Block color={$isFocused ? 'primary' : 'mono700'}>@</Block>
       )}
       endEnhancer={({$isFocused}) => (
-        <Block color={$isFocused ? 'primary' : 'mono700'}>.com</Block>
+        <Block color={$isFocused ? 'primary' : 'mono700'}>
+          .com
+        </Block>
       )}
       placeholder="Input with function enhancers."
     />

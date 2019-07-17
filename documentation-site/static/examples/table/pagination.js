@@ -15,14 +15,19 @@ class PaginatedTable extends React.Component<any, any> {
     if (nextPage < 1) {
       return;
     }
-    if (nextPage > Math.ceil(this.props.data.length / this.state.limit)) {
+    if (
+      nextPage >
+      Math.ceil(this.props.data.length / this.state.limit)
+    ) {
       return;
     }
     this.setState({page: nextPage});
   };
 
   handleLimitChange = (nextLimit: number) => {
-    const nextPageNum = Math.ceil(this.props.data.length / nextLimit);
+    const nextPageNum = Math.ceil(
+      this.props.data.length / nextLimit,
+    );
     if (nextPageNum < this.state.page) {
       this.setState({limit: nextLimit, page: nextPageNum});
     } else {
@@ -52,7 +57,10 @@ class PaginatedTable extends React.Component<any, any> {
           </Button>
         </Block>
         <Block height="500px">
-          <Table columns={this.props.columns} data={this.window()} />
+          <Table
+            columns={this.props.columns}
+            data={this.window()}
+          />
         </Block>
         <Block
           paddingTop="scale600"
@@ -65,12 +73,18 @@ class PaginatedTable extends React.Component<any, any> {
           <StatefulPopover
             content={({close}) => (
               <StatefulMenu
-                items={[...new Array(100)].map((_, i) => ({label: i + 1}))}
+                items={[...new Array(100)].map((_, i) => ({
+                  label: i + 1,
+                }))}
                 onItemSelect={({item}) => {
                   this.handleLimitChange(item.label);
                   close();
                 }}
-                overrides={{List: {style: {height: '150px', width: '100px'}}}}
+                overrides={{
+                  List: {
+                    style: {height: '150px', width: '100px'},
+                  },
+                }}
               />
             )}
             placement={PLACEMENT.bottom}
@@ -82,8 +96,12 @@ class PaginatedTable extends React.Component<any, any> {
 
           <Pagination
             currentPage={this.state.page}
-            numPages={Math.ceil(this.props.data.length / this.state.limit)}
-            onPageChange={({nextPage}) => this.handlePageChange(nextPage)}
+            numPages={Math.ceil(
+              this.props.data.length / this.state.limit,
+            )}
+            onPageChange={({nextPage}) =>
+              this.handlePageChange(nextPage)
+            }
           />
         </Block>
       </>
@@ -96,4 +114,6 @@ const DATA = [...new Array(45)].map((_, i) =>
   [...new Array(5)].map(() => `row: ${i + 1}`),
 );
 
-export default () => <PaginatedTable columns={COLUMNS} data={DATA} />;
+export default () => (
+  <PaginatedTable columns={COLUMNS} data={DATA} />
+);

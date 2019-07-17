@@ -1,6 +1,9 @@
 import React from 'react';
 import {withStyle} from 'styletron-react';
-import {StatefulSelect, StyledDropdownListItem} from 'baseui/select';
+import {
+  StatefulSelect,
+  StyledDropdownListItem,
+} from 'baseui/select';
 import {StyledList} from 'baseui/menu';
 
 import List from 'react-virtualized/dist/commonjs/List';
