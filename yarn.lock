@@ -10319,7 +10319,7 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
-lodash@4.17.11, lodash@^4.17.11, lodash@~4.17.11:
+lodash@4.17.11, lodash@^4.17.11:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -10338,6 +10338,11 @@ lodash@^4.13.1, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5,
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   integrity sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
+
+lodash@~4.17.13:
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 long@4.0.0:
   version "4.0.0"
@@ -13857,10 +13862,10 @@ screener-ngrok@2.2.28:
     request "^2.55.0"
     uuid "^3.0.0"
 
-screener-runner@^0.10.36:
-  version "0.10.38"
-  resolved "https://registry.yarnpkg.com/screener-runner/-/screener-runner-0.10.38.tgz#d63eb3fa34219c9dacba81b9bbea904b8dac7958"
-  integrity sha512-rIYkaTY8GD+vXVU7/d0iM0jUnSsJKDD/1T3PjTLRJpGWCUG2UfcmSseSVKUwLTLbM/diBHWTe7AMF3iCqacTLA==
+screener-runner@^0.10.40:
+  version "0.10.41"
+  resolved "https://registry.yarnpkg.com/screener-runner/-/screener-runner-0.10.41.tgz#f90bbbb1d56b1f360a20a08efbda084f2913d89b"
+  integrity sha512-IlZDiVwv1RaoPGpc1X/VbZoH2ivot6XrJpSJGhKnSzeUbniWte6eIn8qSVJCx9tgut8soHwBrHtO1iwR5x4sbQ==
   dependencies:
     bluebird "~3.4.6"
     colors "~1.1.2"
@@ -13870,16 +13875,16 @@ screener-runner@^0.10.36:
     http-proxy "~1.16.2"
     joi "~9.2.0"
     js-yaml "^3.13.1"
-    lodash "~4.17.11"
+    lodash "~4.17.13"
     portfinder "~1.0.10"
     request "~2.87.0"
     requestretry "~2.0.2"
     screener-ngrok "2.2.28"
 
-screener-storybook@^0.18.0:
-  version "0.18.2"
-  resolved "https://registry.yarnpkg.com/screener-storybook/-/screener-storybook-0.18.2.tgz#85ff4d8584a9a5d4767117ad12e55258b96c191c"
-  integrity sha512-fkjgwd4zA520nUg4ZatS7ZRPO9io+0E2CUBoTO3937mDCPYOrzdA2jFWfJHPWM6mCBkW4wBqfPViATdet1Kh8w==
+screener-storybook@^0.18.6:
+  version "0.18.6"
+  resolved "https://registry.yarnpkg.com/screener-storybook/-/screener-storybook-0.18.6.tgz#a9c0ca99512944611494abdff670b1d3ef338523"
+  integrity sha512-FVr0XmDSGfId52fYNwW2Ip7Y0Jb1k8pEi2IiiViZu/CJUn4IEHgnMO3cspWeukz6w/RMaoZkkO8Rk2kyvdBJBg==
   dependencies:
     "@types/react" "*"
     bluebird "~3.4.6"
@@ -13888,7 +13893,7 @@ screener-storybook@^0.18.0:
     get-port "~3.2.0"
     joi "~10.0.2"
     js-yaml "^3.13.1"
-    lodash "~4.17.11"
+    lodash "~4.17.13"
     node-static "~0.7.11"
     prop-types "^15.6.0"
     puppeteer "~1.17.0"
@@ -13896,7 +13901,7 @@ screener-storybook@^0.18.0:
     react-dom "^16.0.0"
     request "^2.87.0"
     requestretry "~1.12.2"
-    screener-runner "^0.10.36"
+    screener-runner "^0.10.40"
     semver "~5.6.0"
 
 select@^1.1.2:
