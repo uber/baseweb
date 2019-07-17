@@ -126,7 +126,7 @@
     "react-syntax-highlighter": "^11.0.0",
     "react-vis": "^1.11.6",
     "recursive-readdir": "^2.2.2",
-    "screener-storybook": "^0.18.0",
+    "screener-storybook": "^0.18.6",
     "semver": "^6.2.0",
     "shx": "^0.3.2",
     "static-server": "^2.2.1",
