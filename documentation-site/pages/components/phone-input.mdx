@@ -9,6 +9,7 @@ import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
 import Overrides from '../../components/overrides';
+import {DocLink} from '../../components/markdown-elements';
 
 import {StatefulPhoneInput, COUNTRIES} from 'baseui/phone-input/index.js';
 import * as PhoneInputExports from 'baseui/phone-input/index.js';
@@ -19,6 +20,7 @@ import PhoneInputBasic from 'examples/phone-input/basic.js';
 import PhoneInputAlternateCountry from 'examples/phone-input/alternate-country.js';
 import PhoneInputControlled from 'examples/phone-input/controlled.js';
 import PhoneInputLocalized from 'examples/phone-input/localized.js';
+import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
 
 export default Layout;
 
@@ -48,6 +50,17 @@ It contains a dropdown which allows the user to choose from a list of countries 
 >
   <PhoneInputLocalized />
 </Example>
+
+<Example
+  title="With Nested Overrides"
+  path="examples/phone-input/nested-overrides.js"
+>
+  <WithNestedOverrides />
+</Example>
+
+<DocLink href="/theming/understanding-overrides/#override-nested-components">
+  Click here to learn more about nested overrides
+</DocLink>{' '}
 
 ## Supported Countries
 
