@@ -78,10 +78,10 @@ class Example extends React.Component<PropsT, StateT> {
 
   async componentDidMount() {
     //const sourcePath = `${String(process.env.STATIC_ROOT)}${this.props.path}`;
-    const codeFlow = await import(/* webpackMode: "eager" */ `!!raw-loader!../static/examples/${
+    const codeFlow = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${
       this.props.path
     }`);
-    const codeJs = await import(/* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../static/examples/${
+    const codeJs = await import(/* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${
       this.props.path
     }`);
     this.setState({
