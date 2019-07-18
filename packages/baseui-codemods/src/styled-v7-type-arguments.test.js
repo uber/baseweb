@@ -11,7 +11,27 @@ import codemod from './styled-v7-type-arguments.js';
 import {Fixture} from './test-utilities.js';
 
 describe('styled v7 change - type parameters on baseui styled', () => {
-  it('applies any as prop type if base is element string', async () => {
+  it('applies any as prop type if base is element string, and fn style arg', async () => {
+    const content = `
+// @flow
+import {styled} from 'baseui';
+const Component = styled('div', p => ({color: 'red'}));`;
+
+    const fixture = new Fixture();
+    await fixture.write(content);
+    await codemod({dir: fixture.dir});
+    const transformed = await fixture.read();
+    await fixture.remove();
+
+    expect(transformed).toMatchInlineSnapshot(`
+      "
+      // @flow
+      import {styled} from 'baseui';
+      const Component = styled<any>('div', p => ({color: 'red'}));"
+    `);
+  });
+
+  it('does not apply type argument if base is element string, and obj style arg', async () => {
     const content = `
 // @flow
 import {styled} from 'baseui';
@@ -27,11 +47,37 @@ const Component = styled('div', {color: 'red'});`;
       "
       // @flow
       import {styled} from 'baseui';
-      const Component = styled<any>('div', {color: 'red'});"
+      const Component = styled('div', {color: 'red'});"
     `);
   });
 
-  it('applies any as prop type if base is component', async () => {
+  it('applies any as prop type if base is component, and fn style arg', async () => {
+    const content = `
+// @flow
+import {styled} from 'baseui';
+function Base() {
+  return <div>base</div>;
+}
+const Component = styled(Base, p => ({color: 'red'}));`;
+
+    const fixture = new Fixture();
+    await fixture.write(content);
+    await codemod({dir: fixture.dir});
+    const transformed = await fixture.read();
+    await fixture.remove();
+
+    expect(transformed).toMatchInlineSnapshot(`
+      "
+      // @flow
+      import {styled} from 'baseui';
+      function Base() {
+        return <div>base</div>;
+      }
+      const Component = styled<typeof Base, any>(Base, p => ({color: 'red'}));"
+    `);
+  });
+
+  it('applies base type if base is component, and obj style arg', async () => {
     const content = `
 // @flow
 import {styled} from 'baseui';
@@ -53,7 +99,7 @@ const Component = styled(Base, {color: 'red'});`;
       function Base() {
         return <div>base</div>;
       }
-      const Component = styled<typeof Base, any>(Base, {color: 'red'});"
+      const Component = styled<typeof Base>(Base, {color: 'red'});"
     `);
   });
 
@@ -99,7 +145,7 @@ const Component = styled('div', {color: 'red'});`;
     const content = `
 // @flow
 import {styled} from 'baseui';
-const Component = styled<{}>('div', {color: 'red'});`;
+const Component = styled<{}>('div', p => ({color: 'red'}));`;
 
     const fixture = new Fixture();
     await fixture.write(content);
@@ -111,7 +157,47 @@ const Component = styled<{}>('div', {color: 'red'});`;
       "
       // @flow
       import {styled} from 'baseui';
-      const Component = styled<{}>('div', {color: 'red'});"
+      const Component = styled<{}>('div', p => ({color: 'red'}));"
+    `);
+  });
+
+  it('appends object expression to args if no style object provided', async () => {
+    const content = `
+// @flow
+import {styled} from 'baseui';
+const Component = styled('div');`;
+
+    const fixture = new Fixture();
+    await fixture.write(content);
+    await codemod({dir: fixture.dir});
+    const transformed = await fixture.read();
+    await fixture.remove();
+
+    expect(transformed).toMatchInlineSnapshot(`
+      "
+      // @flow
+      import {styled} from 'baseui';
+      const Component = styled('div', {});"
+    `);
+  });
+
+  it('handles styled call wrapped in another function', async () => {
+    const content = `
+// @flow
+import {styled} from 'baseui';
+const Component = something(styled('div', p => ({color: 'red'})));`;
+
+    const fixture = new Fixture();
+    await fixture.write(content);
+    await codemod({dir: fixture.dir});
+    const transformed = await fixture.read();
+    await fixture.remove();
+
+    expect(transformed).toMatchInlineSnapshot(`
+      "
+      // @flow
+      import {styled} from 'baseui';
+      const Component = something(styled<any>('div', p => ({color: 'red'})));"
     `);
   });
 });
