@@ -8,10 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import type {OverrideT} from '../helpers/overrides.js';
 
-export type StylePropsT = {|
+export type InitialsStylePropsT = {};
+export type AvatarStylePropsT = {
+  $size?: string,
+};
+export type RootStylePropsT = {
   $didImageFailToLoad: boolean,
   $size?: string,
-|};
+};
+export type StylePropsT = RootStylePropsT;
 
 export type OverridesT<T> = {|
   Avatar?: OverrideT<T>,
