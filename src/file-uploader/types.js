@@ -62,7 +62,7 @@ export type PropsT = {|
   progressMessage?: string,
 |};
 
-type DropFilesEventHandlerT = (
+export type DropFilesEventHandlerT = (
   accepted: File[],
   rejected: File[],
   event: SyntheticDragEvent<HTMLElement>,
