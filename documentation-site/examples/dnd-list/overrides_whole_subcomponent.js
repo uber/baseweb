@@ -27,7 +27,9 @@ export default class Example extends React.Component<
                   onClick={() =>
                     this.setState(prevState => ({
                       items: prevState.items.concat([
-                        `${$value} clone`,
+                        `${
+                          typeof $value === 'string' ? $value : ''
+                        } clone`,
                       ]),
                     }))
                   }

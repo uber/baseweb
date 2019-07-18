@@ -334,7 +334,7 @@ export type BlockPropsT = {
   placeItems?: ResponsiveT<string>,
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/place-self */
   placeSelf?: ResponsiveT<string>,
-  flexWrap?: ResponsiveT<string | boolean>,
+  flexWrap?: ResponsiveT<boolean>,
   left?: ResponsiveT<ScaleT>,
   top?: ResponsiveT<ScaleT>,
   right?: ResponsiveT<ScaleT>,

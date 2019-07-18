@@ -81,6 +81,5 @@ export type SharedStylePropsArgT = {
   $isRemovable: boolean,
   $isRemovableByMove: boolean,
   $isOutOfBounds: boolean,
-  // $FlowFixMe
-  $value: string,
+  $value: React.Node,
 };

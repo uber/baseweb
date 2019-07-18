@@ -15,7 +15,7 @@ export default () => (
     display="flex"
     flexDirection="column"
     justifyContent="center"
-    flexWrap="wrap"
+    flexWrap
     height="560px"
   >
     {Object.keys(PLACEMENT).map((key, index) => (
