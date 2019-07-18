@@ -274,10 +274,9 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
   'div',
   props => {
     const {
-      $multi,
       $size,
       $searchable,
-      $theme: {typography, sizing},
+      $theme: {typography},
     } = props;
     const font = getFont($size, typography);
     return {
@@ -287,17 +286,18 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       backgroundColor: 'transparent',
       border: 'none',
       boxShadow: 'none',
+      boxSizing: 'border-box',
       outline: 'none',
       marginTop: 0,
       marginBottom: 0,
       marginLeft: 0,
       marginRight: 0,
-      // sizing.scale0 to match the multi value component (Tag) top and bottom margin
-      paddingTop: $multi ? sizing.scale0 : 0,
-      paddingBottom: $multi ? sizing.scale0 : 0,
+      paddingTop: 0,
+      paddingBottom: 0,
       paddingLeft: 0,
       paddingRight: 0,
       height: String(!$searchable ? font.lineHeight : 'auto'),
+      maxHeight: font.lineHeight,
     };
   },
 );

@@ -649,7 +649,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
         />
       );
     }
-
     return (
       <InputContainer {...sharedProps} {...inputContainerProps}>
         <AutosizeInput

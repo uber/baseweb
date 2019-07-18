@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {styled} from '../styles/index.js';
+import type {StyletronComponent} from '../styles/styled.js';
 
 const StyledTableElement = styled<{}>('div', ({$theme}) => {
   return {
@@ -24,10 +25,20 @@ const StyledTableElement = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export const StyledTable = (props: *) => (
-  <StyledTableElement data-baseweb="table-custom" role="grid" {...props} />
-);
+// eslint-disable-next-line flowtype/no-weak-types
+export const StyledTable = ((React.forwardRef<{}, any>((props, ref) => {
+  return (
+    <StyledTableElement
+      ref={ref}
+      data-baseweb="table-custom"
+      role="grid"
+      {...props}
+    />
+  );
+  // eslint-disable-next-line flowtype/no-weak-types
+}): any): StyletronComponent<{}>);
 StyledTable.__STYLETRON__ = StyledTableElement.__STYLETRON__;
+StyledTable.displayName = 'StyledTable';
 
 type HorizontalStyleProps = {
   $width?: string,
@@ -46,10 +57,13 @@ const StyledHeadElement = styled<HorizontalStyleProps>(
   },
 );
 
-export const StyledHead = (props: *) => (
-  <StyledHeadElement role="row" {...props} />
-);
+// eslint-disable-next-line flowtype/no-weak-types
+export const StyledHead = ((React.forwardRef<HorizontalStyleProps, any>(
+  (props, ref) => <StyledHeadElement ref={ref} role="row" {...props} />,
+  // eslint-disable-next-line flowtype/no-weak-types
+): any): StyletronComponent<HorizontalStyleProps>);
 StyledHead.__STYLETRON__ = StyledHeadElement.__STYLETRON__;
+StyledHead.displayName = 'StyledHead';
 
 const StyledHeadCellElement = styled<{}>('div', ({$theme}) => {
   return {
@@ -72,10 +86,13 @@ const StyledHeadCellElement = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export const StyledHeadCell = (props: *) => (
-  <StyledHeadCellElement role="columnheader" {...props} />
-);
+// eslint-disable-next-line flowtype/no-weak-types
+export const StyledHeadCell = ((React.forwardRef<{}, any>((props, ref) => (
+  <StyledHeadCellElement ref={ref} role="columnheader" {...props} />
+  // eslint-disable-next-line flowtype/no-weak-types
+)): any): StyletronComponent<{}>);
 StyledHeadCell.__STYLETRON__ = StyledHeadCellElement.__STYLETRON__;
+StyledHeadCell.displayName = 'StyledHeadCell';
 
 export const StyledSortableLabel = styled<{}>('button', ({$theme}) => {
   return {
@@ -104,22 +121,30 @@ const StyledBodyElement = styled<HorizontalStyleProps>('div', ({$width}) => {
   }: {});
 });
 
-export const StyledBody = (props: *) => (
-  <StyledBodyElement role="rowgroup" {...props} />
-);
+// eslint-disable-next-line flowtype/no-weak-types
+export const StyledBody = ((React.forwardRef<HorizontalStyleProps, any>(
+  (props, ref) => <StyledBodyElement ref={ref} role="rowgroup" {...props} />,
+  // eslint-disable-next-line flowtype/no-weak-types
+): any): StyletronComponent<HorizontalStyleProps>);
 StyledBody.__STYLETRON__ = StyledBodyElement.__STYLETRON__;
+StyledBody.displayName = 'StyledBody';
 
 const StyledRowElement = styled('div', {
   display: 'flex',
   alignItems: 'center',
 });
 
-export const StyledRow = (props: *) => (
-  <StyledRowElement role="row" {...props} />
-);
+// eslint-disable-next-line flowtype/no-weak-types
+export const StyledRow = ((React.forwardRef<{}, any>((props, ref) => (
+  <StyledRowElement ref={ref} role="row" {...props} />
+  // eslint-disable-next-line flowtype/no-weak-types
+)): any): StyletronComponent<{}>);
 StyledRow.__STYLETRON__ = StyledRowElement.__STYLETRON__;
+StyledRow.displayName = 'StyledRow';
 
-const StyledCellElement = styled<{$striped?: boolean}>(
+type CellStyledProps = {$striped?: boolean};
+
+const StyledCellElement = styled<CellStyledProps>(
   'div',
   ({$theme, $striped}) => {
     return {
@@ -136,10 +161,13 @@ const StyledCellElement = styled<{$striped?: boolean}>(
   },
 );
 
-export const StyledCell = (props: *) => (
-  <StyledCellElement role="gridcell" {...props} />
-);
+// eslint-disable-next-line flowtype/no-weak-types
+export const StyledCell = ((React.forwardRef<CellStyledProps, any>(
+  (props, ref) => <StyledCellElement ref={ref} role="gridcell" {...props} />,
+  // eslint-disable-next-line flowtype/no-weak-types
+): any): StyletronComponent<CellStyledProps>);
 StyledCell.__STYLETRON__ = StyledCellElement.__STYLETRON__;
+StyledCell.displayName = 'StyledCell';
 
 export const StyledFilterButton = styled('button', {
   backgroundColor: 'transparent',
