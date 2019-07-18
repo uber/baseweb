@@ -32,7 +32,7 @@ The `PinCode` component is optimized for entering sequences of digits.
 The most common application is for entering single-use security codes.
 It is optimized for entering digits quickly.
 
-<Example title="Basic Usage" path="examples/pin-code/basic.js">
+<Example title="Basic Usage" path="pin-code/basic.js">
   <PinCodeBasic />
 </Example>
 
@@ -45,7 +45,7 @@ A few things to note:
 3. To overwrite the value of an input, you donʼt need to select the text in the input. If you type a digit while the input is focused, the input will update. This is an optimization for quickly editing the inputs.
 4. Pressing `Delete` when there is nothing in the input will transfer focus to, and clear the value of, the previous input (if any). This avoids the need to explicitly Shift+Tab & Delete.
 
-<Example title="Changing the code length" path="examples/pin-code/length.js">
+<Example title="Changing the code length" path="pin-code/length.js">
   <PinCodeLength />
 </Example>
 
@@ -53,7 +53,7 @@ The code defaults to a length of 4, but you can change that.
 `PinCode` expects an array of strings for the `values` prop.
 The number of inputs rendered will match the length of the array.
 
-<Example title="Passing id and name" path="examples/pin-code/id-and-name.js">
+<Example title="Passing id and name" path="pin-code/id-and-name.js">
   <PinCodeIdAndName />
 </Example>
 
@@ -64,29 +64,26 @@ These are the only props that will target individual inputs.
 Every other prop that `PinCode` accepts is ‟shared” between the inputs.
 Hopefully, you donʼt have many reasons to target the inputs individually.
 
-<Example title="Various states" path="examples/pin-code/states.js">
+<Example title="Various states" path="pin-code/states.js">
   <PinCodeStates />
 </Example>
 
 `PinCode` accepts most of the same boolean props as our other inputs: `disabled`, `error`, `positive`, etc.
 
-<Example title="Various sizes" path="examples/pin-code/sizes.js">
+<Example title="Various sizes" path="pin-code/sizes.js">
   <PinCodeSizes />
 </Example>
 
 You can control the size of the inputs with the `size` prop.
 
-<Example
-  title="Changing the placeholder"
-  path="examples/pin-code/placeholder.js"
->
+<Example title="Changing the placeholder" path="pin-code/placeholder.js">
   <PinCodePlaceholder />
 </Example>
 
 If you donʼt like the default placeholder (`○`), you can change that too.
 Notice how each placeholder disappears when any of the inputs have focus.
 
-<Example title="Disable focus management" path="examples/pin-code/no-tab.js">
+<Example title="Disable focus management" path="pin-code/no-tab.js">
   <PinCodeNoTab />
 </Example>
 
@@ -96,7 +93,7 @@ It also transfers focus to a previous input when `Delete` is pressed with focus 
 Set `manageFocus` to `false` if, for some reason, you donʼt want this nifty behavior.
 You can use the `onChange` handler to implement your own thing.
 
-<Example title="Autofocus" path="examples/pin-code/autofocus.js">
+<Example title="Autofocus" path="pin-code/autofocus.js">
   <PinCodeAutofocus />
 </Example>
 
@@ -106,10 +103,7 @@ Simply set `autoFocus` to `true` to focus the first input upon initial mounting 
 In the example above, click `Mount PinCode` to ...mount the PinCode component.
 With `autoFocus` toggled on, the first input receives focus immediately.
 
-<Example
-  title="Once things are filled in"
-  path="examples/pin-code/completion.js"
->
+<Example title="Once things are filled in" path="pin-code/completion.js">
   <PinCodeCompletion />
 </Example>
 
@@ -117,10 +111,7 @@ It is a common pattern to immediately submit the userʼs input once the full pin
 In the above example, we shift focus to the submit button once all of our inputs have been filled in.
 Keep in mind that folks may have mistyped a digit so auto-submitting might be a bit aggressive.
 
-<Example
-  title="Autocomplete and Copy + Paste"
-  path="examples/pin-code/basic.js"
->
+<Example title="Autocomplete and Copy + Paste" path="pin-code/basic.js">
   <PinCodeBasic />
 </Example>
 
@@ -145,7 +136,7 @@ If things seem promising, `PinCode` will call `onChange` will all of the values 
 **Second Note:** You may have noticed that the `Input` override above does not highlight.
 To set the background and/or border styles for an `Input` component, you need to style the nested `InputContainer` override like so:
 
-<Example title="Overriding the Input" path="examples/pin-code/override.js">
+<Example title="Overriding the Input" path="pin-code/override.js">
   <PinCodeOverride />
 </Example>
 

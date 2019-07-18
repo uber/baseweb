@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
@@ -15,7 +16,7 @@ export default function() {
           // if all of our inputs are filled in,
           // shift focus to our submit button
           if (!values.includes('')) {
-            buttonRef.current.focus();
+            buttonRef.current && buttonRef.current.focus();
           }
         }}
       />
