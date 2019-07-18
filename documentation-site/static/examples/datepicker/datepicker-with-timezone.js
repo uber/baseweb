@@ -12,7 +12,7 @@ export default () => {
   });
 
   return (
-    <>
+    <React.Fragment>
       <FormControl label="Date">
         <Datepicker
           onChange={({date}) => {
@@ -24,6 +24,6 @@ export default () => {
       <FormControl label="Timezone">
         <TimezonePicker date={date} onChange={setZone} />
       </FormControl>
-    </>
+    </React.Fragment>
   );
 };

@@ -25,11 +25,11 @@ export default function() {
         <StyledHeadCell>Column 3</StyledHeadCell>
         {data.map(row => {
           return (
-            <>
+            <React.Fragment>
               <StyledBodyCell>{row[0]}</StyledBodyCell>
               <StyledBodyCell>{row[1]}</StyledBodyCell>
               <StyledBodyCell>{row[2]}</StyledBodyCell>
-            </>
+            </React.Fragment>
           );
         })}
       </StyledTable>

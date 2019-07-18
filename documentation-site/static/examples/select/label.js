@@ -11,7 +11,7 @@ export default class Container extends React.Component<
   state = {value: []};
   getLabel = ({option}: any) => {
     return (
-      <>
+      <React.Fragment>
         <Block
           width="scale300"
           height="scale300"
@@ -28,7 +28,7 @@ export default class Container extends React.Component<
           }}
         />
         {option.id}
-      </>
+      </React.Fragment>
     );
   };
   render() {

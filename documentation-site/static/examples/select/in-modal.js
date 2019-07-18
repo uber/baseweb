@@ -12,7 +12,7 @@ import {
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <>
+    <React.Fragment>
       <Button
         onClick={() => {
           setIsOpen(true);
@@ -59,6 +59,6 @@ export default () => {
           </ModalButton>
         </ModalFooter>
       </Modal>
-    </>
+    </React.Fragment>
   );
 };

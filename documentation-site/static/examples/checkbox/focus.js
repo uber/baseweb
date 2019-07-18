@@ -5,7 +5,7 @@ import {StatefulCheckbox} from 'baseui/checkbox';
 
 class Focus extends React.Component<{}, {isFocused: boolean}> {
   state = {isFocused: false};
-  inputRef = React.createRef<HTMLInputElement>();
+  inputRef: any = React.createRef();
 
   render() {
     return (

@@ -289,14 +289,14 @@ export default () => (
             </StyledHeadingCell>
 
             <StyledDeltaCell $isNegative={row[3] < 0}>
-              <>
+              <React.Fragment>
                 {row[3] < 0 ? (
                   <ArrowDown size={24} />
                 ) : (
                   <ArrowUp size={24} />
                 )}
                 {row[3]}%
-              </>
+              </React.Fragment>
             </StyledDeltaCell>
 
             <StyledLargeText>

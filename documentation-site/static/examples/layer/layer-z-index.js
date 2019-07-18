@@ -49,10 +49,10 @@ export default class LayerWithZIndex extends React.Component<
   {},
   typeof initialState,
 > {
-  anchorRef1 = React.createRef<any>();
-  popperRef1 = React.createRef<any>();
-  anchorRef2 = React.createRef<any>();
-  popperRef2 = React.createRef<any>();
+  anchorRef1: any = React.createRef();
+  popperRef1: any = React.createRef();
+  anchorRef2: any = React.createRef();
+  popperRef2: any = React.createRef();
 
   state = initialState;
 

@@ -154,7 +154,7 @@ function Tasks(props) {
         <NotStickyHeadCell>Details</NotStickyHeadCell>
         {props.tasks.map((task, index) => {
           return (
-            <>
+            <React.Fragment>
               <StyledBodyCell>{task[0]}</StyledBodyCell>
               <StyledBodyCell>
                 <Tag
@@ -171,7 +171,7 @@ function Tasks(props) {
               <StyledBodyCell>
                 <StyledLink href={task[4]}>{task[3]}</StyledLink>
               </StyledBodyCell>
-            </>
+            </React.Fragment>
           );
         })}
       </StyledTable>
@@ -194,7 +194,7 @@ const Truncate = styled('div', {
 function Row({striped, row}) {
   const [expanded, setExpanded] = React.useState(false);
   return (
-    <>
+    <React.Fragment>
       <CenteredBodyCell $striped={striped}>
         <Button
           size="compact"
@@ -250,7 +250,7 @@ function Row({striped, row}) {
         </StatefulPopover>
       </CenteredBodyCell>
       {expanded && <Tasks tasks={row[6]} />}
-    </>
+    </React.Fragment>
   );
 }
 

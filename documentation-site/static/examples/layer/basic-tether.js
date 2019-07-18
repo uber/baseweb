@@ -58,10 +58,10 @@ export default class BasicTether extends React.Component<
   {},
   typeof initialState,
 > {
-  anchorRef1 = React.createRef<HTMLButtonElement>();
-  popperRef1 = React.createRef<any>();
-  anchorRef2 = React.createRef<HTMLButtonElement>();
-  popperRef2 = React.createRef<any>();
+  anchorRef1: any = React.createRef();
+  popperRef1: any = React.createRef();
+  anchorRef2: any = React.createRef();
+  popperRef2: any = React.createRef();
 
   state = initialState;
 
@@ -73,7 +73,7 @@ export default class BasicTether extends React.Component<
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <Button
           ref={this.anchorRef1}
           onClick={() => this.setState({isFirstOpen: true})}
@@ -147,7 +147,7 @@ export default class BasicTether extends React.Component<
             </TetherBehavior>
           </Layer>
         ) : null}
-      </>
+      </React.Fragment>
     );
   }
 }

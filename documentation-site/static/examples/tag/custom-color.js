@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Tag, KIND, VARIANT} from 'baseui/tag';
 
 export default () => (
-  <>
+  <React.Fragment>
     <Tag
       color="#4327F1"
       variant={VARIANT.solid}
@@ -25,5 +25,5 @@ export default () => (
     >
       custom
     </Tag>
-  </>
+  </React.Fragment>
 );

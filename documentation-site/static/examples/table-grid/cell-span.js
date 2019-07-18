@@ -40,24 +40,24 @@ export default function() {
         <StyledHeadCell>Event</StyledHeadCell>
         {data.map(row => {
           return (
-            <>
+            <React.Fragment>
               <StyledBodyCell $gridRow={`span ${row[2].length}`}>
                 <StyledLink href={row[1]}>{row[0]}</StyledLink>
               </StyledBodyCell>
               {row[2].map((event, index) => {
                 const striped = index % 2 === 0;
                 return (
-                  <>
+                  <React.Fragment>
                     <StyledBodyCell $striped={striped}>
                       {format(event[0], 'yyyy-MM-dd h:mm a')}
                     </StyledBodyCell>
                     <StyledBodyCell $striped={striped}>
                       {event[1]}
                     </StyledBodyCell>
-                  </>
+                  </React.Fragment>
                 );
               })}
-            </>
+            </React.Fragment>
           );
         })}
       </StyledTable>

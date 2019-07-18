@@ -6,7 +6,7 @@ const variants = Object.keys(VARIANT);
 const onClick = kind => alert(`${kind} tag is clicked`);
 
 export default () => (
-  <>
+  <React.Fragment>
     {variants.map((variant, index) => (
       <React.Fragment key={index}>
         <Tag
@@ -62,5 +62,5 @@ export default () => (
         <br />
       </React.Fragment>
     ))}
-  </>
+  </React.Fragment>
 );

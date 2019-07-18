@@ -42,7 +42,7 @@ class PaginatedTable extends React.Component<any, any> {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <Block
           display="flex"
           justifyContent="space-between"
@@ -104,7 +104,7 @@ class PaginatedTable extends React.Component<any, any> {
             }
           />
         </Block>
-      </>
+      </React.Fragment>
     );
   }
 }

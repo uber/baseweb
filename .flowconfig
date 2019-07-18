@@ -18,6 +18,7 @@ documentation-site/.next/.*
 [lints]
 
 [options]
+module.ignore_non_literal_requires=true
 module.name_mapper.extension='md' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'
 module.name_mapper='^baseui' ->'<PROJECT_ROOT>/src'
 module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/static/examples'

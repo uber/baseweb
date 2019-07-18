@@ -12,7 +12,7 @@ import {Radio, RadioGroup} from 'baseui/radio';
 
 export default () => {
   return (
-    <>
+    <React.Fragment>
       Disabled state
       <FlexGrid flexDirection="row">
         <Block width="120px" marginRight="scale500">
@@ -67,6 +67,6 @@ export default () => {
           </FormControl>
         </Block>
       </FlexGrid>
-    </>
+    </React.Fragment>
   );
 };

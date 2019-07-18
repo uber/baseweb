@@ -35,7 +35,7 @@ export default () => {
   const [isFirstOpen, setIsFirstOpen] = React.useState(false);
   const [isSecondOpen, setIsSecondOpen] = React.useState(false);
   return (
-    <>
+    <React.Fragment>
       <Button onClick={() => setIsFirstOpen(true)}>
         Render Red Layer
       </Button>
@@ -64,6 +64,6 @@ export default () => {
           </BlockComponent>
         </Layer>
       ) : null}
-    </>
+    </React.Fragment>
   );
 };

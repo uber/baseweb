@@ -5,7 +5,7 @@ import {Tag, VARIANT} from 'baseui/tag';
 const variants = Object.keys(VARIANT);
 
 export default () => (
-  <>
+  <React.Fragment>
     {variants.map((variant, index) => (
       <React.Fragment key={index}>
         <Tag closeable={false} variant={variant} kind="neutral">
@@ -30,5 +30,5 @@ export default () => (
         <br />
       </React.Fragment>
     ))}
-  </>
+  </React.Fragment>
 );

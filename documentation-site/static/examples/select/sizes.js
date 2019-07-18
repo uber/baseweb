@@ -3,7 +3,7 @@ import * as React from 'react';
 import {StatefulSelect, SIZE} from 'baseui/select';
 
 export default () => (
-  <>
+  <React.Fragment>
     <StatefulSelect
       size={SIZE.compact}
       options={[
@@ -47,5 +47,5 @@ export default () => (
       valueKey="color"
       onChange={event => console.log(event)}
     />
-  </>
+  </React.Fragment>
 );
