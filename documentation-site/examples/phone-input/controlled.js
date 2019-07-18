@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
 
@@ -11,7 +12,7 @@ export default () => {
       onTextChange={event => {
         setText(event.target.value);
       }}
-      onCountryChange={event => {
+      onCountryChange={(event: any) => {
         setCountry(event.option);
       }}
     />
