@@ -54,6 +54,8 @@ export type StatefulListPropsT = {|
   stateReducer?: StateReducerT,
   /** Set if the list items should be removable */
   removable?: boolean,
+  /** Set if the list items should be removable by dragging them far left or right */
+  removableByMove?: boolean,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
   onChange?: (params: {
     newState: Array<React.Node>,
@@ -79,4 +81,5 @@ export type SharedStylePropsArgT = {
   $isRemovable: boolean,
   $isRemovableByMove: boolean,
   $isOutOfBounds: boolean,
+  $value: React.Node,
 };
