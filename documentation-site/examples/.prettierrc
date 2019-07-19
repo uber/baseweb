@@ -1,0 +1,14 @@
+{
+  "singleQuote": true,
+  "bracketSpacing": false,
+  "trailingComma": "all",
+  "printWidth": 68,
+  "overrides": [
+    {
+      "files": "*.js",
+      "options": {
+        "parser": "flow"
+      }
+    }
+  ]
+}

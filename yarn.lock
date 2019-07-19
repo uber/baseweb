@@ -4420,7 +4420,7 @@ babylon-options@^2.0.1:
   resolved "https://registry.yarnpkg.com/babylon-options/-/babylon-options-2.0.1.tgz#cc797a8ff65f8a98ae3f1d57a4626f987fc50620"
   integrity sha512-P4zPuf884K30wMK14JAKYgtLzgMVbUEkxciCB0dmPFasaZNSPPLwHpX3sqi1jVCzLzpns/3MO6GfMFTedAo/3w==
 
-babylon@^6.18.0, babylon@^6.3.26:
+babylon@^6.15.0, babylon@^6.18.0, babylon@^6.3.26:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
   integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
@@ -7649,6 +7649,14 @@ flow-parser@0.*:
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.99.0.tgz#1fd3d1751b897a74c1f92c758688eb7f200237f0"
   integrity sha512-6opkcL97qs5MhXqP9X/jym0lia6jsqyHpA+Z+6GlJv3bPOfmR45WACEwubJCXv0rMS1ryGF+E5ONzRpxzSoGZQ==
 
+flow-remove-types@^1.0.0:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/flow-remove-types/-/flow-remove-types-1.2.3.tgz#6131aefc7da43364bb8b479758c9dec7735d1a18"
+  integrity sha512-ypq/U3V+t9atYiOuSJd40tekCra03EHKoRsiK/wXGrsZimuum0kdwVY7Yv0HTaoXgHW1WiayomYd+Q3kkvPl9Q==
+  dependencies:
+    babylon "^6.15.0"
+    vlq "^0.2.1"
+
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
@@ -10319,7 +10327,7 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
-lodash@4.17.11, lodash@^4.17.11, lodash@~4.17.11:
+lodash@4.17.11, lodash@^4.17.11:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -10338,6 +10346,11 @@ lodash@^4.13.1, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5,
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   integrity sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
+
+lodash@~4.17.13:
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 long@4.0.0:
   version "4.0.0"
@@ -12643,6 +12656,14 @@ raw-loader@^0.5.1:
   resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-0.5.1.tgz#0c3d0beaed8a01c966d9787bf778281252a979aa"
   integrity sha1-DD0L6u2KAclm2Xh793goElKpeao=
 
+raw-loader@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-3.1.0.tgz#5e9d399a5a222cc0de18f42c3bc5e49677532b3f"
+  integrity sha512-lzUVMuJ06HF4rYveaz9Tv0WRlUMxJ0Y1hgSkkgg+50iEdaI0TthyEDe08KIHb0XsF6rn8WYTqPCaGTZg3sX+qA==
+  dependencies:
+    loader-utils "^1.1.0"
+    schema-utils "^2.0.1"
+
 rc@^1.2.7, rc@~1.2.7:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.8.tgz#cd924bf5200a075b83c188cd6b9e211b7fc0d3ed"
@@ -13403,6 +13424,14 @@ remark-squeeze-paragraphs@^3.0.1:
   dependencies:
     mdast-squeeze-paragraphs "^3.0.0"
 
+remove-flow-types-loader@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/remove-flow-types-loader/-/remove-flow-types-loader-1.1.0.tgz#ded5012e09022af408ec190c9d23e10204f6412a"
+  integrity sha512-9diL4hIexIzoql2q2G9DrYjvM3hId+56QrkJJwnRmynXZ102pHAPyMfgyoPo3bgUeDIHR5lJLVWTX3GAbvAuoQ==
+  dependencies:
+    flow-remove-types "^1.0.0"
+    loader-utils "^1.1.0"
+
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
@@ -13845,6 +13874,14 @@ schema-utils@^1.0.0:
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
 
+schema-utils@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-2.0.1.tgz#1eec2e059556af841b7f3a83b61af13d7a3f9196"
+  integrity sha512-HJFKJ4JixDpRur06QHwi8uu2kZbng318ahWEKgBjc0ZklcE4FDvmm2wghb448q0IRaABxIESt8vqPFvwgMB80A==
+  dependencies:
+    ajv "^6.1.0"
+    ajv-keywords "^3.1.0"
+
 screener-ngrok@2.2.28:
   version "2.2.28"
   resolved "https://registry.yarnpkg.com/screener-ngrok/-/screener-ngrok-2.2.28.tgz#09a4a00509a34e83758f6637e7eb1f0dbf60bf14"
@@ -13857,10 +13894,10 @@ screener-ngrok@2.2.28:
     request "^2.55.0"
     uuid "^3.0.0"
 
-screener-runner@^0.10.36:
-  version "0.10.38"
-  resolved "https://registry.yarnpkg.com/screener-runner/-/screener-runner-0.10.38.tgz#d63eb3fa34219c9dacba81b9bbea904b8dac7958"
-  integrity sha512-rIYkaTY8GD+vXVU7/d0iM0jUnSsJKDD/1T3PjTLRJpGWCUG2UfcmSseSVKUwLTLbM/diBHWTe7AMF3iCqacTLA==
+screener-runner@^0.10.40:
+  version "0.10.41"
+  resolved "https://registry.yarnpkg.com/screener-runner/-/screener-runner-0.10.41.tgz#f90bbbb1d56b1f360a20a08efbda084f2913d89b"
+  integrity sha512-IlZDiVwv1RaoPGpc1X/VbZoH2ivot6XrJpSJGhKnSzeUbniWte6eIn8qSVJCx9tgut8soHwBrHtO1iwR5x4sbQ==
   dependencies:
     bluebird "~3.4.6"
     colors "~1.1.2"
@@ -13870,16 +13907,16 @@ screener-runner@^0.10.36:
     http-proxy "~1.16.2"
     joi "~9.2.0"
     js-yaml "^3.13.1"
-    lodash "~4.17.11"
+    lodash "~4.17.13"
     portfinder "~1.0.10"
     request "~2.87.0"
     requestretry "~2.0.2"
     screener-ngrok "2.2.28"
 
-screener-storybook@^0.18.0:
-  version "0.18.2"
-  resolved "https://registry.yarnpkg.com/screener-storybook/-/screener-storybook-0.18.2.tgz#85ff4d8584a9a5d4767117ad12e55258b96c191c"
-  integrity sha512-fkjgwd4zA520nUg4ZatS7ZRPO9io+0E2CUBoTO3937mDCPYOrzdA2jFWfJHPWM6mCBkW4wBqfPViATdet1Kh8w==
+screener-storybook@^0.18.6:
+  version "0.18.6"
+  resolved "https://registry.yarnpkg.com/screener-storybook/-/screener-storybook-0.18.6.tgz#a9c0ca99512944611494abdff670b1d3ef338523"
+  integrity sha512-FVr0XmDSGfId52fYNwW2Ip7Y0Jb1k8pEi2IiiViZu/CJUn4IEHgnMO3cspWeukz6w/RMaoZkkO8Rk2kyvdBJBg==
   dependencies:
     "@types/react" "*"
     bluebird "~3.4.6"
@@ -13888,7 +13925,7 @@ screener-storybook@^0.18.0:
     get-port "~3.2.0"
     joi "~10.0.2"
     js-yaml "^3.13.1"
-    lodash "~4.17.11"
+    lodash "~4.17.13"
     node-static "~0.7.11"
     prop-types "^15.6.0"
     puppeteer "~1.17.0"
@@ -13896,7 +13933,7 @@ screener-storybook@^0.18.0:
     react-dom "^16.0.0"
     request "^2.87.0"
     requestretry "~1.12.2"
-    screener-runner "^0.10.36"
+    screener-runner "^0.10.40"
     semver "~5.6.0"
 
 select@^1.1.2:
@@ -15633,6 +15670,11 @@ vfile@^2.0.0:
     replace-ext "1.0.0"
     unist-util-stringify-position "^1.0.0"
     vfile-message "^1.0.0"
+
+vlq@^0.2.1:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
+  integrity sha512-DRibZL6DsNhIgYQ+wNdWDL2SL3bKPlVrRiBqV5yuMm++op8W4kGFtaQfCs4KEJn0wBZcHVHJ3eoywX8983k1ow==
 
 vm-browserify@0.0.4:
   version "0.0.4"

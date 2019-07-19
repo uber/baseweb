@@ -36,6 +36,7 @@ const limitValue = (value: number[]) => {
 class Slider extends React.Component<PropsT> {
   static defaultProps = {
     overrides: {},
+    disabled: false,
     onChange: () => {},
     min: 0,
     max: 100,

@@ -5,18 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* global fetch process */
 
 import * as React from 'react';
 import CodeSandboxer from 'react-codesandboxer';
 import {withStyle} from 'styletron-react';
 import {Button, KIND, SIZE} from 'baseui/button';
+import {ButtonGroup} from 'baseui/button-group';
 import {Card} from 'baseui/card';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
 
 import {version} from '../../package.json';
 import Code from './code';
+import CodeIcon from './code-icon';
 import {trackEvent} from '../helpers/ga';
 import {H2} from './markdown-elements';
 
@@ -62,22 +63,30 @@ type PropsT = {
 };
 
 type StateT = {
-  isSourceOpen: boolean,
+  sourceSelected: number,
   source: ?string,
+  sourceFlow: ?string,
 };
 
 class Example extends React.Component<PropsT, StateT> {
   static defaultProps = {additionalPackages: {}};
   state = {
-    isSourceOpen: false,
+    sourceSelected: -1,
     source: null,
+    sourceFlow: null,
   };
 
   async componentDidMount() {
-    const sourcePath = `${String(process.env.STATIC_ROOT)}${this.props.path}`;
-    const res = await fetch(sourcePath);
-    const source = await res.text();
-    this.setState({source});
+    const codeFlow = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${
+      this.props.path
+    }`);
+    const codeJs = await import(/* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${
+      this.props.path
+    }`);
+    this.setState({
+      sourceFlow: codeFlow.default,
+      source: codeJs.default.replace(/^\/\//, '').trim(),
+    });
   }
 
   render() {
@@ -107,24 +116,48 @@ class Example extends React.Component<PropsT, StateT> {
         {this.props.children}
 
         <Block paddingTop="scale400">
-          <Button
-            kind={KIND.secondary}
+          <ButtonGroup
             size={SIZE.compact}
-            onClick={() => {
-              this.setState(prevState => ({
-                isSourceOpen: !prevState.isSourceOpen,
-              }));
-              trackEvent('show_source', this.props.title);
+            selected={this.state.sourceSelected}
+            mode="radio"
+            onClick={(event, index) => {
+              if (this.state.sourceSelected !== index) {
+                this.setState({sourceSelected: index});
+              } else {
+                this.setState({sourceSelected: -1});
+              }
             }}
           >
-            {this.state.isSourceOpen ? 'Hide' : 'Show'} Source
-          </Button>
+            <Button
+              kind={KIND.secondary}
+              startEnhancer={() => <CodeIcon />}
+              onClick={() => {
+                trackEvent('show_js_source', this.props.title);
+              }}
+            >
+              JS
+            </Button>
+            <Button
+              kind={KIND.secondary}
+              startEnhancer={() => <CodeIcon />}
+              onClick={() => {
+                trackEvent('show_flow_source', this.props.title);
+              }}
+            >
+              Flow
+            </Button>
+          </ButtonGroup>
         </Block>
 
-        {this.state.isSourceOpen && (
+        {this.state.sourceSelected > -1 && (
           <React.Fragment>
             <Block overflow="scrollX">
-              <Source>{this.state.source}</Source>
+              {this.state.sourceSelected === 0 && (
+                <Source>{this.state.source}</Source>
+              )}
+              {this.state.sourceSelected === 1 && (
+                <Source>{this.state.sourceFlow}</Source>
+              )}
             </Block>
 
             <CodeSandboxer
