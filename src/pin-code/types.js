@@ -10,7 +10,7 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE, STATE_CHANGE_TYPE} from '../input/index.js';
 
-export type ChangeEventT = {values: string[]};
+export type ChangeEventT = {values: string[], event: InputEvent};
 
 export type PropsT = {
   /** Sets aria-label attribute for each input element. */

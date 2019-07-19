@@ -83,7 +83,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
                     eventValue.length === this.props.values.length &&
                     eventValue.match(/^[0-9]+$/)
                   ) {
-                    this.props.onChange({values: eventValue.split('')});
+                    this.props.onChange({values: eventValue.split(''), event});
                   }
                   return;
                 }
@@ -91,7 +91,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
                 if (eventValue === '') {
                   const newValues = this.props.values.slice();
                   newValues[i] = '';
-                  this.props.onChange({values: newValues});
+                  this.props.onChange({values: newValues, event});
                   return;
                 }
                 // we want to override the input value with the last digit typed
@@ -106,7 +106,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
                 if (newValue.match(/^[0-9]$/)) {
                   const newValues = this.props.values.slice();
                   newValues[i] = newValue;
-                  this.props.onChange({values: newValues});
+                  this.props.onChange({values: newValues, event});
                   // tab to next pin code input if we aren't at end already
                   if (
                     this.props.manageFocus &&

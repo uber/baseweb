@@ -20,6 +20,7 @@ import PinCodeNoTab from 'examples/pin-code/no-tab.js';
 import PinCodeAutofocus from 'examples/pin-code/autofocus.js';
 import PinCodeCompletion from 'examples/pin-code/completion.js';
 import PinCodeOverride from 'examples/pin-code/override.js';
+import PinCodeEvent from 'examples/pin-code/event.js';
 
 import * as PinCodeExports from 'baseui/pin-code/index.js';
 import {StatefulPinCode} from 'baseui/pin-code/index.js';
@@ -92,6 +93,18 @@ It defaults to `true`, which makes it so that when an input receives a digit, fo
 It also transfers focus to a previous input when `Delete` is pressed with focus on an empty input.
 Set `manageFocus` to `false` if, for some reason, you donʼt want this nifty behavior.
 You can use the `onChange` handler to implement your own thing.
+
+<Example title="The main Event" path="pin-code/event.js">
+  <PinCodeEvent />
+</Example>
+
+The object passed to `onChange` has two properties.
+`values` is the new array of strings that `PinCode` thinks you should update your state with.
+Of course, you can decide not to use those values.
+If, for some reason, you do not want to use `values`, the `onChange` object also includes an `event` property which references the original input change event.
+We do not envision a lot of scenarios where you would need this level of control- but just in case, it is there for you.
+Note, if you do decide to go off the rails with `event`, you may want to turn off `manageFocus` as well.
+Otherwise you may have focus jumping around in ways inconsistent with your customizations.
 
 <Example title="Autofocus" path="pin-code/autofocus.js">
   <PinCodeAutofocus />

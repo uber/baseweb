@@ -31,8 +31,8 @@ export default class StatefulPinCodeContainer extends React.Component<
 
   state = this.props.initialState;
 
-  handleChange = ({values}: ChangeEventT) => {
-    this.props.onChange({values});
+  handleChange = ({values, event}: ChangeEventT) => {
+    this.props.onChange({values, event});
     const nextState = this.props.stateReducer(
       STATE_CHANGE_TYPE.change,
       {values},
