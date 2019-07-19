@@ -16,17 +16,19 @@ export const StyledRoot = styled<{}>('nav', ({$theme}) => {
   };
 });
 
-export const StyledList = styled<{}>('ol', () => {
+export const StyledList = styled<{}>('ol', ({$theme}) => {
   return {
     listStyleType: 'none',
     margin: 0,
     padding: 0,
+    ...$theme.typography.font450,
   };
 });
 
-export const StyledListItem = styled<{}>('li', () => {
+export const StyledListItem = styled<{}>('li', ({$theme}) => {
   return {
     display: 'inline-block',
+    ...$theme.typography.font450,
   };
 });
 

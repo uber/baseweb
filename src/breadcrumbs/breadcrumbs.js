@@ -49,7 +49,11 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
 
   Children.forEach(props.children, (child, index) => {
     childrenWithSeparators.push(
-      <ListItem key={index} {...baseListItemProps}>
+      <ListItem
+        key={`breadcrumb-item-${index}`}
+        $itemIndex={index}
+        {...baseListItemProps}
+      >
         {child}
         {index !== numChildren - 1 && (
           <Separator {...baseSeparatorProps} key={`separator-${index}`}>
