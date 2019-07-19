@@ -58,12 +58,10 @@ The number of inputs rendered will match the length of the array.
   <PinCodeIdAndName />
 </Example>
 
-Similarly, you can pass an individual `id` or `name` prop to each input.
-Just provide an array of strings to `ids` or `names` and each string will be passed through to the respective input.
-
-These are the only props that will target individual inputs.
-Every other prop that `PinCode` accepts is ‟shared” between the inputs.
-Hopefully, you donʼt have many reasons to target the inputs individually.
+You can pass an individual `id` or `name` prop.
+`name` will be shared amongst the inputs, meaning they will each have their `name` set to this value.
+`id` will have an index appended to whatever string you provide and passed to the respective input.
+In the above example, the resulting ids are `foo-0`, `foo-1`, `foo-2`, and `foo-3` and each input has the name `pin-code`.
 
 <Example title="Various states" path="pin-code/states.js">
   <PinCodeStates />
@@ -102,6 +100,7 @@ The object passed to `onChange` has two properties.
 `values` is the new array of strings that `PinCode` thinks you should update your state with.
 Of course, you can decide not to use those values.
 If, for some reason, you do not want to use `values`, the `onChange` object also includes an `event` property which references the original input change event.
+
 We do not envision a lot of scenarios where you would need this level of control- but just in case, it is there for you.
 Note, if you do decide to go off the rails with `event`, you may want to turn off `manageFocus` as well.
 Otherwise you may have focus jumping around in ways inconsistent with your customizations.

@@ -25,10 +25,10 @@ export type PropsT = {
   disabled: boolean,
   /** Renders the component in an error state. */
   error: boolean,
-  /** Sets the id attribute of each input element. The index of the string in the array should match the index of the pin code input. */
-  ids: ?(string[]),
-  /** Sets the name attribute of each input element. The index of the string in the array should match the index of the pin code input. */
-  names: ?(string[]),
+  /** Sets the base id string that will be applied to the id attribute of each input element. The index of the input will be appended to this base string. Ex: `id="foo"` -> `id="foo-1"`, `id="foo-2",` etc... */
+  id: ?string,
+  /** Sets the name attribute of each input element. */
+  name: ?string,
   /** A handler for when any pin code input changes value. */
   onChange: ChangeEventT => mixed,
   overrides: {

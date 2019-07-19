@@ -60,18 +60,12 @@ export default class PinCode extends React.Component<PropsT, StateT> {
               autoComplete="one-time-code"
               disabled={this.props.disabled}
               error={this.props.error}
-              id={
-                this.props.ids && this.props.ids[i] ? this.props.ids[i] : null
-              }
+              id={this.props.id ? this.props.id + '-' + i : null}
               inputMode="numeric"
               inputRef={this._inputRefs.ref(i)}
               key={i}
               maxLength="1"
-              name={
-                this.props.names && this.props.names[i]
-                  ? this.props.names[i]
-                  : null
-              }
+              name={this.props.name}
               onBlur={() => this.setState({hasFocus: false})}
               onFocus={() => this.setState({hasFocus: true})}
               onChange={event => {
