@@ -73,6 +73,7 @@ Object {
   "onKeyUp": [MockFunction],
   "onMouseDown": [Function],
   "onPaste": [Function],
+  "pattern": null,
   "placeholder": "Placeholder",
   "required": false,
   "rows": null,

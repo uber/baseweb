@@ -90,6 +90,8 @@ export type BaseInputPropsT<T> = {
   error: boolean,
   /** Renders component in 'positive' state. */
   positive?: boolean,
+  /** A regex that is used to validate the value of the input on form submission. */
+  pattern: ?string,
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id: string,
   'data-baseweb'?: string,

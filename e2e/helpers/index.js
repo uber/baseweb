@@ -92,9 +92,11 @@ const printInvalidNode = node =>
     .join('\n\t')}`;
 
 const printInvalidRule = rule =>
-  `${printReceived(rule.help)} on ${
-    rule.nodes.length
-  } nodes\r\n${rule.nodes.map(printInvalidNode).join('\n')}`;
+  `Violated rule: ${printReceived(rule.id)}\nReasoning: ${printReceived(
+    rule.help,
+  )}\n${rule.nodes.length} nodes involved:\n\n${rule.nodes
+    .map(printInvalidNode)
+    .join('\n')}`;
 
 // Add a new method to expect assertions with a very detailed error report
 expect.extend({
@@ -114,7 +116,6 @@ expect.extend({
         } violations:\n`,
       ].concat(accessibilityReport.violations.map(printInvalidRule));
     }
-
     if (
       finalOptions.incompleteThreshold !== false &&
       accessibilityReport.incomplete.length > finalOptions.incompleteThreshold
@@ -127,7 +128,6 @@ expect.extend({
         } incomplete:\n`,
       ].concat(accessibilityReport.incomplete.map(printInvalidRule));
     }
-
     const message = [].concat(violations, incomplete).join('\n');
     const pass =
       accessibilityReport.violations.length <=

@@ -43,6 +43,7 @@ Object {
   "onKeyDown": [MockFunction],
   "onKeyPress": [MockFunction],
   "onKeyUp": [MockFunction],
+  "pattern": null,
   "placeholder": "Placeholder",
   "rows": null,
   "styled-component": "true",
