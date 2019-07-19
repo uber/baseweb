@@ -9,7 +9,6 @@ export default function() {
       values={values}
       manageFocus={false}
       onChange={({values, event}) => {
-        // setValues(values);
         alert(event.target);
       }}
     />
