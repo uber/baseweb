@@ -118,6 +118,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
                 }
               }}
               onKeyDown={event => {
+                // if we see a backspace/delete and the input is empty, transfer focus backward
                 if (
                   this.props.manageFocus &&
                   event.key === 'Backspace' &&
