@@ -107,6 +107,10 @@ const routes = [
             itemId: '/components/phone-input',
           },
           {
+            title: 'Pin Code',
+            itemId: '/components/pin-code',
+          },
+          {
             title: 'Radio',
             itemId: '/components/radio',
           },
