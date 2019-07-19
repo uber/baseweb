@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {Notification} from 'baseui/notification';
 import DeleteAlt from 'baseui/icon/delete-alt';

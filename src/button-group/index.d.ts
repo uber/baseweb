@@ -22,7 +22,10 @@ export interface ButtonGroupProps {
   children: React.ReactNode;
   disabled?: boolean;
   mode?: MODE[keyof MODE];
-  onClick?: (event: React.MouseEventHandler<HTMLButtonElement>) => any;
+  onClick?: (
+    event: React.MouseEventHandler<HTMLButtonElement>,
+    index: number,
+  ) => any;
   overrides?: ButtonGroupOverrides;
   selected?: number | number[];
   shape?: SHAPE[keyof SHAPE];

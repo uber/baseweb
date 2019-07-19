@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Checkbox} from 'baseui/checkbox';

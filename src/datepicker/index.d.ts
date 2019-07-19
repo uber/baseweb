@@ -63,7 +63,7 @@ export interface CalendarProps {
   onMonthChange?: (args: {date: Date}) => any;
   onYearChange?: (args: {date: Date}) => any;
   onChange?: onChange;
-  overrides?: DatepickerOverrides<{}>;
+  overrides?: DatepickerOverrides<SharedStylePropsT>;
   peekNextMonth?: boolean;
   timeSelectStart?: boolean;
   timeSelectEnd?: boolean;
@@ -218,3 +218,20 @@ export const ISO_MONTH_FORMAT: 'YYYY-MM';
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
 
 export const WEEKDAYS: [0, 1, 2, 3, 4, 5, 6];
+
+export type SharedStylePropsT = {
+  $date: Date;
+  $disabled: boolean;
+  $isHeader: boolean;
+  $isHighlighted: boolean;
+  $isHovered: boolean;
+  $outsideMonth: boolean;
+  $pseudoHighlighted: boolean;
+  $pseudoSelected: boolean;
+  $selected: boolean;
+  $startDate: boolean;
+  $range: boolean;
+  $hasRangeHighlighted: boolean;
+  $hasRangeOnRight: boolean;
+  $hasRangeSelected: boolean;
+};

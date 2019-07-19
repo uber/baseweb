@@ -1,7 +1,6 @@
-// @flow
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
-import type {DropFilesEventHandlerT} from 'baseui/file-uploader';
+import {DropFilesEventHandlerT} from 'baseui/file-uploader';
 
 export default class Uploader extends React.Component<
   {},

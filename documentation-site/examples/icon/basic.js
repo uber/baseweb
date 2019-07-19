@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import ArrowUp from 'baseui/icon/arrow-up';

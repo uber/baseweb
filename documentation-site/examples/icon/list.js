@@ -14,7 +14,7 @@ function makeImportStatement(key: string) {
 export default () => (
   <Block>
     {Object.entries(Icons).map(
-      ([key, Icon]: [string, React.Node]) => (
+      ([key, Icon]: [string, React.ReactNode]) => (
         <Block
           key={key}
           alignItems="center"

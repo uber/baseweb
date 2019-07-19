@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {StatefulList} from 'baseui/dnd-list';
 import {styled} from 'baseui';

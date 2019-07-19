@@ -96,7 +96,9 @@ export interface ToastOverrides {
 }
 export interface ToastProps {
   autoHideDuration?: number;
-  children?: React.ReactNode;
+  children?:
+    | ((args: {dismiss: () => void}) => React.ReactNode)
+    | React.ReactNode;
   closeable?: boolean;
   kind?: KIND[keyof KIND];
   notificationType?: TYPE[keyof TYPE];

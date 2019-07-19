@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
 import {StatefulInput, SIZE} from 'baseui/input';

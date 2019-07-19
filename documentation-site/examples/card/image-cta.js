@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
 import {Button} from 'baseui/button';

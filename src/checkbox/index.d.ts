@@ -10,6 +10,11 @@ export interface STYLE_TYPE {
   toggle: 'toggle';
 }
 
+type initialState = {
+  checked?: boolean;
+  isIndeterminate?: boolean;
+};
+
 export const StyledRoot: StyletronComponent<any>;
 export const StyledCheckmark: StyletronComponent<any>;
 export const StyledLabel: StyletronComponent<any>;
@@ -42,8 +47,13 @@ export const StatefulContainer: React.FC<StatefulContainerProps>;
 
 export interface StatefulCheckboxProps {
   overrides?: CheckboxOverrides;
+  disabled?: boolean;
+  isError?: boolean;
+  labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
+  inputRef?: React.Ref<HTMLInputElement>;
+  isIndeterminate?: boolean;
   children?: React.ReactNode;
-  initialState?: CheckboxState;
+  initialState?: initialState;
   autoFocus?: boolean;
   checkmarkType?: STYLE_TYPE[keyof STYLE_TYPE];
   onChange?: React.FormEventHandler<HTMLInputElement>;
