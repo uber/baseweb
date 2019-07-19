@@ -16,6 +16,20 @@ export const StyledRoot = styled<{}>('nav', ({$theme}) => {
   };
 });
 
+export const StyledList = styled<{}>('ol', () => {
+  return {
+    listStyleType: 'none',
+    margin: 0,
+    padding: 0,
+  };
+});
+
+export const StyledListItem = styled<{}>('li', () => {
+  return {
+    display: 'inline-block',
+  };
+});
+
 export const StyledSeparator = styled<{}>('div', ({$theme}) => {
   return {
     display: 'inline-block',
