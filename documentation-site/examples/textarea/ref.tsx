@@ -3,7 +3,7 @@ import {StatefulTextarea as Textarea} from 'baseui/textarea';
 import {Button} from 'baseui/button';
 
 export default () => {
-  const inputRef = React.createRef();
+  const inputRef = React.createRef<HTMLTextAreaElement>();
   return (
     <React.Fragment>
       <Textarea

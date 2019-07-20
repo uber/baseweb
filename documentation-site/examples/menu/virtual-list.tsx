@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyle} from 'styletron-react';
+import {withStyle} from 'baseui';
 import {StatefulMenu, OptionList, StyledList} from 'baseui/menu';
 import {List, AutoSizer} from 'react-virtualized';
 

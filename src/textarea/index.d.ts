@@ -4,7 +4,7 @@ import {
   BaseInputProps,
   StatefulContainer,
   STATE_CHANGE_TYPE,
-  SIZE,
+  SIZE as INPUT_SIZE,
   StatefulContainerProps,
 } from '../input';
 

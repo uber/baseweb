@@ -2,7 +2,7 @@ import * as React from 'react';
 import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
 import {Button} from 'baseui/button';
 
-class ToasterExample extends React.Component<{}, {}> {
+class ToasterExample extends React.Component {
   add = () => {
     toaster.info(
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',

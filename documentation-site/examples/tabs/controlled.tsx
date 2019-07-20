@@ -3,10 +3,7 @@ import {Tabs, Tab} from 'baseui/tabs';
 
 export default () => <ControlledTabsStory />;
 
-class ControlledTabsStory extends React.Component<
-  {},
-  {activeKey: React.Key},
-> {
+class ControlledTabsStory extends React.Component {
   state = {
     activeKey: '0',
   };

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Tag, VARIANT} from 'baseui/tag';
 
-const variants = Object.keys(VARIANT);
+const variants = Object.keys(VARIANT) as (keyof VARIANT)[];
 
 export default () => (
   <React.Fragment>

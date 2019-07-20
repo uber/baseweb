@@ -3,7 +3,7 @@ import {StatefulPagination} from 'baseui/pagination';
 
 import {createTheme, lightThemePrimitives} from 'baseui';
 import {ThemeProvider} from 'baseui';
-import ArrowLeft from 'baseui/icon/arrow-left';
+import {ArrowLeft} from 'baseui/icon';
 
 const themeWithIcons = createTheme(
   {

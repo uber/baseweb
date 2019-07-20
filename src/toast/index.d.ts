@@ -21,7 +21,7 @@ export interface TYPE {
   toast: 'toast';
 }
 
-export interface toaster {
+export interface IToaster {
   getRef: () => React.Ref<typeof ToasterContainer>;
   show: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
   info: (children: React.ReactNode, props: Readonly<ToastProps>) => React.Key;
@@ -40,6 +40,8 @@ export interface toaster {
   update: (key: React.Key, props: Readonly<ToastProps>) => void;
   clear: (key: React.Key) => void;
 }
+
+export const toaster: IToaster;
 
 export interface ToasterContainerState {
   isMounted: boolean;

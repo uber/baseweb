@@ -1,8 +1,7 @@
 import React from 'react';
 import {format} from 'date-fns';
-
 import {StyledLink} from 'baseui/link';
-import {useStyletron} from 'baseui/styles';
+import {useStyletron} from 'baseui';
 
 import {
   Unstable_StyledTable as StyledTable,
@@ -44,19 +43,21 @@ export default function() {
               <StyledBodyCell $gridRow={`span ${row[2].length}`}>
                 <StyledLink href={row[1]}>{row[0]}</StyledLink>
               </StyledBodyCell>
-              {row[2].map((event, index) => {
-                const striped = index % 2 === 0;
-                return (
-                  <React.Fragment>
-                    <StyledBodyCell $striped={striped}>
-                      {format(event[0], 'yyyy-MM-dd h:mm a')}
-                    </StyledBodyCell>
-                    <StyledBodyCell $striped={striped}>
-                      {event[1]}
-                    </StyledBodyCell>
-                  </React.Fragment>
-                );
-              })}
+              {(row[2] as Array<any>).map(
+                (event: [Date, string], index: number) => {
+                  const striped = index % 2 === 0;
+                  return (
+                    <React.Fragment>
+                      <StyledBodyCell $striped={striped}>
+                        {format(event[0], 'yyyy-MM-dd h:mm a')}
+                      </StyledBodyCell>
+                      <StyledBodyCell $striped={striped}>
+                        {event[1]}
+                      </StyledBodyCell>
+                    </React.Fragment>
+                  );
+                },
+              )}
             </React.Fragment>
           );
         })}

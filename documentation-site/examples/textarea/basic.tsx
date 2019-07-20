@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {StatefulTextarea as Textarea, SIZE} from 'baseui/textarea';
+import {StatefulTextarea as Textarea} from 'baseui/textarea';
+import {SIZE} from 'baseui/input';
 
 export default () => (
   <React.Fragment>

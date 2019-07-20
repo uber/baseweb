@@ -58,3 +58,16 @@ export interface ThemeProviderProps {
   children?: React.ReactNode;
 }
 export const ThemeProvider: React.FC<ThemeProviderProps>;
+
+export interface WithStyleFn {
+  <C extends StyletronComponent<any>, P extends object>(
+    component: C,
+    style: (props: P & {$theme: Theme}) => StyleObject,
+  ): StyletronComponent<React.ComponentProps<C> & P>;
+  <C extends StyletronComponent<any>>(
+    component: C,
+    style: StyleObject,
+  ): StyletronComponent<React.ComponentProps<C>>;
+}
+
+export const withStyle: WithStyleFn;

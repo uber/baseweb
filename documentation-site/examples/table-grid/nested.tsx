@@ -2,23 +2,19 @@ import React from 'react';
 import {format} from 'date-fns';
 
 import {Button} from 'baseui/button';
-import {Heading, HeadingLevel} from 'baseui/heading';
-import ChevronDown from 'baseui/icon/chevron-down';
-import ChevronRight from 'baseui/icon/chevron-right';
-import Overflow from 'baseui/icon/overflow';
+import {ChevronDown, ChevronRight, Overflow} from 'baseui/icon';
 import {StyledLink} from 'baseui/link';
 import {StatefulMenu} from 'baseui/menu';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
-import {styled, withStyle, useStyletron} from 'baseui/styles';
+import {styled, withStyle, useStyletron} from 'baseui';
 import {
   Unstable_StyledTable as StyledTable,
   Unstable_StyledHeadCell as StyledHeadCell,
   Unstable_StyledBodyCell as StyledBodyCell,
 } from 'baseui/table-grid';
 import {Tag} from 'baseui/tag';
-import {TagKindT} from 'baseui/tag';
 
-function buildRow(status) {
+function buildRow(status: string) {
   return [
     'Baseui Github CI Job',
     status,
@@ -112,7 +108,7 @@ const data = [
   buildRow('passed'),
 ];
 
-function statusToTagKind(status) {
+function statusToTagKind(status: string) {
   switch (status) {
     case 'running': {
       return 'primary';
@@ -138,7 +134,7 @@ const NotStickyHeadCell = withStyle(StyledHeadCell, {
   top: 'unset',
 });
 
-function Tasks(props) {
+function Tasks(props: {tasks: any[]}) {
   const [css] = useStyletron();
   return (
     <div
@@ -152,7 +148,7 @@ function Tasks(props) {
         <NotStickyHeadCell>Status</NotStickyHeadCell>
         <NotStickyHeadCell>Last Run</NotStickyHeadCell>
         <NotStickyHeadCell>Details</NotStickyHeadCell>
-        {props.tasks.map((task, index) => {
+        {props.tasks.map(task => {
           return (
             <React.Fragment>
               <StyledBodyCell>{task[0]}</StyledBodyCell>
@@ -191,7 +187,7 @@ const Truncate = styled('div', {
   whiteSpace: 'nowrap',
 });
 
-function Row({striped, row}) {
+function Row({striped, row}: any) {
   const [expanded, setExpanded] = React.useState(false);
   return (
     <React.Fragment>
