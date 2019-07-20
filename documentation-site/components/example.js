@@ -65,6 +65,7 @@ type PropsT = {
 type StateT = {
   sourceSelected: number,
   source: ?string,
+  sourceTs: ?string,
   sourceFlow: ?string,
 };
 
@@ -73,6 +74,7 @@ class Example extends React.Component<PropsT, StateT> {
   state = {
     sourceSelected: -1,
     source: null,
+    sourceTs: null,
     sourceFlow: null,
   };
 
@@ -80,11 +82,16 @@ class Example extends React.Component<PropsT, StateT> {
     const codeFlow = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${
       this.props.path
     }`);
+    const codeTs = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${this.props.path.replace(
+      '.js',
+      '.tsx',
+    )}`);
     const codeJs = await import(/* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${
       this.props.path
     }`);
     this.setState({
       sourceFlow: codeFlow.default,
+      sourceTs: codeTs.default,
       source: codeJs.default.replace(/^\/\//, '').trim(),
     });
   }
@@ -146,6 +153,15 @@ class Example extends React.Component<PropsT, StateT> {
             >
               Flow
             </Button>
+            <Button
+              kind={KIND.secondary}
+              startEnhancer={() => <CodeIcon />}
+              onClick={() => {
+                trackEvent('show_ts_source', this.props.title);
+              }}
+            >
+              TS
+            </Button>
           </ButtonGroup>
         </Block>
 
@@ -157,6 +173,9 @@ class Example extends React.Component<PropsT, StateT> {
               )}
               {this.state.sourceSelected === 1 && (
                 <Source>{this.state.sourceFlow}</Source>
+              )}
+              {this.state.sourceSelected === 2 && (
+                <Source>{this.state.sourceTs}</Source>
               )}
             </Block>
 
@@ -171,16 +190,20 @@ class Example extends React.Component<PropsT, StateT> {
                 trackEvent('codesandbox_deployed_error', this.props.title);
               }}
               dependencies={{
-                baseui: version,
-                react: '16.8.6',
-                'react-dom': '16.8.6',
-                'react-scripts': '2.0.3',
-                'styletron-engine-atomic': '1.0.9',
-                'styletron-react': '5.1.2',
+                baseui: `^${version}`,
+                react: '^16.8.6',
+                'react-dom': '^16.8.6',
+                'react-scripts': '^2.0.3',
+                'styletron-engine-atomic': '^1.0.0',
+                'styletron-react': '^5.0.0',
                 ...this.props.additionalPackages,
               }}
               providedFiles={{'index.js': {content: index}}}
-              template="create-react-app"
+              template={
+                this.state.sourceSelected === 2
+                  ? 'create-react-app-typescript'
+                  : 'create-react-app'
+              }
             >
               {() => (
                 <Link>
