@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {
@@ -20,16 +19,16 @@ export default () => (
     {Object.keys(PLACEMENT).map((key, index) => (
       <Block padding="scale700" key={index}>
         <StatefulPopover
-          placement={PLACEMENT[key]}
+          placement={PLACEMENT[key as keyof PLACEMENT]}
           triggerType={TRIGGER_TYPE.hover}
           content={
             <Paragraph1 padding="scale300">{`PLACEMENT.${
-              PLACEMENT[key]
+              PLACEMENT[key as keyof PLACEMENT]
             }`}</Paragraph1>
           }
           accessibilityType={'tooltip'}
         >
-          <Button>{PLACEMENT[key]}</Button>
+          <Button>{PLACEMENT[key as keyof PLACEMENT]}</Button>
         </StatefulPopover>
       </Block>
     ))}

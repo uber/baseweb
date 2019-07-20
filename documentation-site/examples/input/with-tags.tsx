@@ -11,10 +11,10 @@ const ValueWrapper = styled('div', {
   alignItems: 'center',
 });
 
-const InputReplacement = ({tags, removeTag, ...restProps}) => {
+const InputReplacement = ({tags, removeTag, ...restProps}: any) => {
   return (
     <ValueWrapper>
-      {tags.map((tag, index) => (
+      {tags.map((tag: string, index: number) => (
         <Tag
           variant={TAG_VARIANT.solid}
           onActionClick={() => removeTag(tag)}
@@ -30,11 +30,13 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
 
 class TagSelect extends React.Component<
   {},
-  {value: string, tags: string[]},
+  {value: string; tags: string[]}
 > {
   state = {value: '', tags: ['hello']};
 
-  handleKeyDown = (event: SyntheticKeyboardEvent<*>) => {
+  handleKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
     if (event.keyCode === 13) {
       if (!this.state.value) return;
 
@@ -67,7 +69,11 @@ class TagSelect extends React.Component<
         <Input
           size={SIZE.compact}
           value={this.state.value}
-          onChange={e => this.setState({value: e.target.value})}
+          onChange={e =>
+            this.setState({
+              value: (e.target as HTMLInputElement).value,
+            })
+          }
           overrides={{
             Input: {
               style: {width: 'auto', flexGrow: 1},

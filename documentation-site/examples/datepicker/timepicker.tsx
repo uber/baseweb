@@ -6,11 +6,16 @@ import {FormControl} from 'baseui/form-control';
 const Container = styled('div', {width: '120px'});
 
 export default () => {
-  const [twelveHourTime, setTwelveHourTime] = useState(null);
-  const [twentyFourHourTime, setTwentyFourHourTime] = useState(
+  const [twelveHourTime, setTwelveHourTime] = useState<Date | null>(
     null,
   );
-  const [creatableTime, setCreatableTime] = useState(null);
+  const [
+    twentyFourHourTime,
+    setTwentyFourHourTime,
+  ] = useState<Date | null>(null);
+  const [creatableTime, setCreatableTime] = useState<Date | null>(
+    null,
+  );
 
   return (
     <Container>

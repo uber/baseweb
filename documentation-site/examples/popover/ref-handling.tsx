@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import {Label1} from 'baseui/typography';
 import {StatefulCheckbox} from 'baseui/checkbox';
@@ -9,7 +8,7 @@ import {
   TRIGGER_TYPE,
 } from 'baseui/popover';
 
-const CheckboxWithRef = React.forwardRef((props, ref) => {
+const CheckboxWithRef = React.forwardRef((props: any, ref) => {
   const {children, ...restProps} = props;
   return (
     <StatefulCheckbox
@@ -23,15 +22,6 @@ const CheckboxWithRef = React.forwardRef((props, ref) => {
     </StatefulCheckbox>
   );
 });
-
-const CheckboxWrapped = props => {
-  const {$ref, ref, children, ...restProps} = props;
-  return (
-    <span ref={$ref || ref} {...restProps}>
-      <StatefulCheckbox>{children}</StatefulCheckbox>
-    </span>
-  );
-};
 
 export default () => (
   <Block paddingTop="24px" paddingBottom="24px">

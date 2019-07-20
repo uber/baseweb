@@ -1,11 +1,7 @@
 import * as React from 'react';
 import {Select} from 'baseui/select';
-import {ValueT} from 'baseui/select';
 
-export default class Container extends React.Component<
-  {},
-  {value: ValueT}
-> {
+export default class Container extends React.Component {
   state = {value: []};
   render() {
     return (
@@ -25,7 +21,7 @@ export default class Container extends React.Component<
         overrides={{
           StatefulMenu: {
             props: {
-              stateReducer: (type, next, prev) => {
+              stateReducer: (type: any, next: any, prev: any) => {
                 // eslint-disable-next-line no-console
                 console.log(type, prev, next);
                 return next;

@@ -221,6 +221,7 @@ export interface BlockProps {
   backgroundColor?: Responsive<string>;
   font?: string | string[];
   src?: string;
+  ref?: React.Ref<any>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
   alignContent?: Responsive<AlignContent>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items */

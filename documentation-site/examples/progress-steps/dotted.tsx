@@ -11,10 +11,7 @@ const SpacedButton = styled(Button, ({$theme}) => ({
   marginTop: $theme.sizing.scale200,
 }));
 
-class ProgressStepsContainer extends React.Component<
-  {},
-  {current: number},
-> {
+class ProgressStepsContainer extends React.Component {
   state = {
     current: 0,
   };

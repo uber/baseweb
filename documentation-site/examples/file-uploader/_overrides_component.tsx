@@ -1,31 +1,22 @@
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
 import {
-  DropFilesEventHandlerT,
-  OverridesT,
-  StylePropsT,
+  FileUploaderOverrides,
+  StyleProps,
 } from 'baseui/file-uploader';
 import {Block} from 'baseui/block';
 
 export default class Uploader extends React.Component<
-  {overrides: OverridesT<StylePropsT>},
+  {overrides: FileUploaderOverrides<StyleProps>},
   {progressAmount: number}
 > {
   state = {progressAmount: 0};
-  intervalId: IntervalID;
-
-  handleDrop: DropFilesEventHandlerT = (
-    acceptedFiles,
-    rejectedFiles,
-  ) => {
-    // handle file upload...
-    this.startProgress();
-  };
+  intervalId: number = 0;
 
   // startProgress method is only illustrative. Use the progress info returned
   // from your upload endpoint. If unavailable, do not provide a progressAmount.
   startProgress = () => {
-    this.intervalId = setInterval(() => {
+    this.intervalId = window.setInterval(() => {
       if (this.state.progressAmount >= 100) {
         this.reset();
       } else {
@@ -48,7 +39,10 @@ export default class Uploader extends React.Component<
         <Block marginBottom="scale600">
           <FileUploader
             onCancel={this.reset}
-            onDrop={this.handleDrop}
+            onDrop={() => {
+              // handle file upload...
+              this.startProgress();
+            }}
             progressAmount={this.state.progressAmount}
             progressMessage={
               this.state.progressAmount
@@ -62,7 +56,10 @@ export default class Uploader extends React.Component<
         </Block>
         <FileUploader
           onCancel={this.reset}
-          onDrop={this.handleDrop}
+          onDrop={() => {
+            // handle file upload...
+            this.startProgress();
+          }}
           progressAmount={this.state.progressAmount}
           errorMessage={'Something went wrong. Sorry!'}
           progressMessage={

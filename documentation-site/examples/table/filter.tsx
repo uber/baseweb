@@ -11,7 +11,7 @@ import {
   StyledCell,
 } from 'baseui/table';
 
-const FilterCheckbox = props => (
+const FilterCheckbox = (props: any) => (
   <Checkbox
     checked={props.checked}
     onChange={props.onChange}
@@ -29,19 +29,19 @@ const FilterCheckbox = props => (
   </Checkbox>
 );
 
-class FilterTable extends React.Component {
+class FilterTable extends React.Component<any> {
   state = {
     filters: [],
   };
 
-  FILTER_FUNCTIONS = [...new Array(10)].map((_, i) => row =>
+  FILTER_FUNCTIONS = [...new Array(10)].map((_, i) => (row: any) =>
     row[0] % (i + 1) === 0,
   );
 
-  onFilter = index => {
+  onFilter = (index: number) => {
     const isActive = !!this.state.filters[index];
 
-    const filters = [...this.state.filters];
+    const filters: any = [...this.state.filters];
     if (isActive) {
       filters[index] = null;
     } else {
@@ -87,9 +87,9 @@ class FilterTable extends React.Component {
         </StyledHead>
 
         <StyledBody>
-          {filteredData.map((row, index) => (
+          {filteredData.map((row: any, index: number) => (
             <StyledRow key={index}>
-              {row.map((cell, cellIndex) => (
+              {row.map((cell: any, cellIndex: number) => (
                 <StyledCell key={cellIndex}>{cell}</StyledCell>
               ))}
             </StyledRow>

@@ -10,21 +10,27 @@ export default () => {
   return (
     <React.Fragment>
       <PaymentCard
-        onChange={event => setCardOne(event.target.value)}
+        onChange={event =>
+          setCardOne((event.target as HTMLInputElement).value)
+        }
         placeholder="Enter payment card number"
         value={cardOne}
         size={SIZE.compact}
       />
       <Block as="br" />
       <PaymentCard
-        onChange={event => setCardTwo(event.target.value)}
+        onChange={event =>
+          setCardTwo((event.target as HTMLInputElement).value)
+        }
         placeholder="Enter payment card number"
         value={cardTwo}
         size={SIZE.default}
       />
       <Block as="br" />
       <PaymentCard
-        onChange={event => setCardThree(event.target.value)}
+        onChange={event =>
+          setCardThree((event.target as HTMLInputElement).value)
+        }
         placeholder="Enter payment card number"
         value={cardThree}
         size={SIZE.large}

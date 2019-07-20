@@ -11,7 +11,7 @@ const OPTIONS = [
 ];
 
 const App = () => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<any>([]);
   return (
     <Select
       options={OPTIONS}

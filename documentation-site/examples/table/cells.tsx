@@ -2,12 +2,14 @@ import React from 'react';
 import {withStyle, styled} from 'styletron-react';
 
 import {Block} from 'baseui/block';
-import ArrowUp from 'baseui/icon/arrow-up';
-import ArrowDown from 'baseui/icon/arrow-down';
-import Search from 'baseui/icon/search';
-import Plus from 'baseui/icon/plus';
-import Delete from 'baseui/icon/delete';
-import Overflow from 'baseui/icon/overflow';
+import {
+  ArrowUp,
+  ArrowDown,
+  Search,
+  Plus,
+  Delete,
+  Overflow,
+} from 'baseui/icon';
 import {
   StyledTable,
   StyledHead,
@@ -24,7 +26,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
   paddingBottom: 0,
 });
 
-const StyledDeltaCell = withStyle(StyledCell, props => ({
+const StyledDeltaCell = withStyle(StyledCell, (props: any) => ({
   ...props.$theme.typography.font500,
   alignItems: 'center',
   backgroundColor: props.$isNegative

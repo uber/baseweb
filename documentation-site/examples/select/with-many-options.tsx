@@ -6,8 +6,7 @@ import {
 } from 'baseui/select';
 import {StyledList} from 'baseui/menu';
 
-import List from 'react-virtualized/dist/commonjs/List';
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import {List, AutoSizer} from 'react-virtualized';
 
 const ListItem = withStyle(StyledDropdownListItem, {
   paddingTop: 0,
@@ -18,7 +17,7 @@ const ListItem = withStyle(StyledDropdownListItem, {
 
 const Container = withStyle(StyledList, {height: '500px'});
 
-const VirtualList = React.forwardRef((props, ref) => {
+const VirtualList = React.forwardRef((props: any, ref) => {
   return (
     <Container ref={ref}>
       <AutoSizer>
@@ -47,7 +46,7 @@ const VirtualList = React.forwardRef((props, ref) => {
   );
 });
 
-const options = [];
+const options: {id: number; label: number}[] = [];
 
 for (let i = 0; i < 10000; i += 1) {
   options.push({

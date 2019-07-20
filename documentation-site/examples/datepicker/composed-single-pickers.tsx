@@ -20,7 +20,7 @@ export default () => {
         <FormControl label="Date" caption="YYYY/MM/DD">
           <Datepicker
             value={date}
-            onChange={({date}) => setDate(date)}
+            onChange={({date}) => setDate(date as Date)}
             timeSelectStart
           />
         </FormControl>
@@ -36,8 +36,8 @@ export default () => {
         <FormControl label="Timezone">
           <TimezonePicker
             date={date}
-            value={zone && zone.id}
-            onChange={setZone}
+            value={zone ? (zone as any).id : undefined}
+            onChange={setZone as any}
           />
         </FormControl>
       </Block>

@@ -2,6 +2,11 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
+export enum SORT_DIRECTION {
+  ASC = 'asc',
+  DESC = 'desc',
+}
+
 export interface SortableHeadCellProps {
   children?: React.ReactNode;
   direction: 'ASC' | 'DESC' | null;

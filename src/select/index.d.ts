@@ -21,6 +21,7 @@ export interface Option {
   readonly disabled?: boolean;
   readonly clearableValue?: boolean;
   readonly isCreatable?: boolean;
+  [others: string]: any;
 }
 export type Value = ReadonlyArray<Option>;
 
@@ -97,6 +98,7 @@ export interface SelectProps {
   getValueLabel?: (args: {option: Option}) => React.ReactNode;
   isLoading?: boolean;
   labelKey?: string;
+  startOpen?: boolean;
   maxDropdownHeight?: string;
   multi?: boolean;
   noResultsMsg?: React.ReactNode;
@@ -283,7 +285,6 @@ export interface OnChangeParams {
 export type StatefulSelectProps = SelectProps & {
   initialState?: State;
   stateReducer?: StateReducer;
-  onChange?: (params: OnChangeParams) => any;
 };
 export const StatefulSelect: React.FC<StatefulSelectProps>;
 

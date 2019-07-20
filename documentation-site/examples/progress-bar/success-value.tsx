@@ -3,10 +3,7 @@ import {ProgressBar} from 'baseui/progress-bar';
 
 const SUCCESS_VALUE = 400;
 
-export default class Basic extends React.Component<
-  {},
-  {value: number},
-> {
+export default class Basic extends React.Component {
   state = {value: 0};
 
   componentDidMount() {

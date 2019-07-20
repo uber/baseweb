@@ -27,6 +27,7 @@ export interface OPTION_LIST_SIZE {
 }
 
 export interface MenuProps {
+  size?: keyof OPTION_LIST_SIZE;
   overrides?: {
     EmptyState?: Override<any>;
     List?: Override<any>;

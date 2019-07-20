@@ -3,7 +3,7 @@ import {Pagination} from 'baseui/pagination';
 
 export default class Basic extends React.Component<
   {},
-  {currentPage: number},
+  {currentPage: number}
 > {
   state = {currentPage: 1};
   render() {

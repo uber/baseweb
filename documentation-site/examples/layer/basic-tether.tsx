@@ -1,4 +1,3 @@
-/* global document */
 import * as React from 'react';
 import {
   Layer,
@@ -8,9 +7,7 @@ import {
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 
-const layerRef = React.createRef();
-
-function BlockWrapper(props) {
+function BlockWrapper(props: any) {
   const {
     offset,
     color,
@@ -55,7 +52,7 @@ const initialState = {
 
 export default class BasicTether extends React.Component<
   {},
-  typeof initialState,
+  typeof initialState
 > {
   anchorRef1: any = React.createRef();
   popperRef1: any = React.createRef();
@@ -64,10 +61,10 @@ export default class BasicTether extends React.Component<
 
   state = initialState;
 
-  onPopperUpdate: any = (order, normalizedOffsets) => {
+  onPopperUpdate: any = (order: string, normalizedOffsets: any) => {
     this.setState({
       [`offset${order}`]: normalizedOffsets.popper,
-    });
+    } as any);
   };
 
   render() {

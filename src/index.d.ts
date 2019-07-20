@@ -48,7 +48,7 @@ export interface BaseProviderProps {
 export const BaseProvider: React.FC<BaseProviderProps>;
 
 export interface LocaleProviderProps {
-  locale: Locale;
+  locale: Partial<Locale>;
   children?: React.ReactNode;
 }
 export const LocaleProvider: React.FC<LocaleProviderProps>;

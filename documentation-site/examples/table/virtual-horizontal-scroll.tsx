@@ -8,8 +8,7 @@ import {
   StyledCell,
 } from 'baseui/table';
 
-import List from 'react-virtualized/dist/commonjs/List';
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import {List, AutoSizer} from 'react-virtualized';
 import {
   CellMeasurer,
   CellMeasurerCache,
@@ -65,7 +64,7 @@ export default () => (
 
       <FullHeight>
         <AutoSizer>
-          {({height, width}) => (
+          {({height}) => (
             <List
               height={height}
               width={WIDTH}

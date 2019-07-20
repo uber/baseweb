@@ -4,28 +4,37 @@ import {
   AspectRatioBoxBody,
 } from 'baseui/aspect-ratio-box';
 
-const bodyProps = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  overrides: {
-    Block: {
-      style: {
-        border: 'grey solid 2px',
-      },
-    },
-  },
-};
-
 export default () => (
   <React.Fragment>
     <AspectRatioBox>
-      <AspectRatioBoxBody {...bodyProps}>
+      <AspectRatioBoxBody
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        overrides={{
+          Block: {
+            style: {
+              border: 'grey solid 2px',
+            },
+          },
+        }}
+      >
         Square by default
       </AspectRatioBoxBody>
     </AspectRatioBox>
     <AspectRatioBox aspectRatio={16 / 9}>
-      <AspectRatioBoxBody {...bodyProps}>
+      <AspectRatioBoxBody
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        overrides={{
+          Block: {
+            style: {
+              border: 'grey solid 2px',
+            },
+          },
+        }}
+      >
         16:9 aspect ratio
       </AspectRatioBoxBody>
     </AspectRatioBox>

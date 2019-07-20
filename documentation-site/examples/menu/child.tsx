@@ -43,7 +43,7 @@ export default () => (
         Option: {
           props: {
             size: 'compact',
-            getChildMenu: item => {
+            getChildMenu: (item: {label: string}) => {
               if (item.label === OPEN_RECENT) {
                 return (
                   <StatefulMenu
@@ -68,6 +68,7 @@ export default () => (
                   />
                 );
               }
+              return null;
             },
           },
         },

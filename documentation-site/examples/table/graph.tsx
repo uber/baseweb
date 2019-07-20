@@ -14,6 +14,7 @@ import {
   VerticalBarSeries,
   LineMarkSeries,
   XYPlot,
+  // @ts-ignore
 } from 'react-vis';
 
 const GraphCell = styled('div', {
@@ -23,16 +24,16 @@ const GraphCell = styled('div', {
 const Left = styled('div', ({$theme}) => ({
   marginRight: $theme.sizing.scale600,
 }));
-const Right = styled('div', ({$theme}) => ({}));
-const TopRange = styled('div', ({$theme}) => ({
+const Right = styled('div', () => ({}));
+const TopRange = styled('div', ({$theme}: any) => ({
   color: $theme.colors.mono800,
   ...$theme.typography.font400,
 }));
-const BottomRange = styled('div', ({$theme}) => ({
+const BottomRange = styled('div', ({$theme}: any) => ({
   color: $theme.colors.mono700,
   ...$theme.typography.font200,
 }));
-const StyledGraphCell = ({children}) => (
+const StyledGraphCell = ({children}: any) => (
   <GraphCell>
     <Left>
       <TopRange>100%</TopRange>

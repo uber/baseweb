@@ -4,9 +4,7 @@ import {Layer} from 'baseui/layer';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 
-const layerRef = React.createRef();
-
-function BlockComponent(props) {
+function BlockComponent(props: any) {
   return (
     <Block
       position="fixed"

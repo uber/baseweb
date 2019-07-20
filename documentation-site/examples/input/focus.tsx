@@ -4,7 +4,7 @@ import {Button} from 'baseui/button';
 import {StatefulInput} from 'baseui/input';
 
 export default () => {
-  const inputRef = React.createRef();
+  const inputRef = React.createRef<HTMLInputElement>();
   return (
     <Block display="flex">
       <Block width="50%" marginRight="scale400">

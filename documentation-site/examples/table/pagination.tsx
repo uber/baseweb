@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Button, KIND} from 'baseui/button';
-import TriangleDown from 'baseui/icon/triangle-down';
+import {TriangleDown} from 'baseui/icon';
 import {StatefulMenu} from 'baseui/menu';
 import {Pagination} from 'baseui/pagination';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';

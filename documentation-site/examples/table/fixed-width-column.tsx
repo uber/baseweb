@@ -1,4 +1,5 @@
 import React from 'react';
+//@ts-ignore
 import {styled, withStyle} from 'baseui';
 import {
   StyledTable,

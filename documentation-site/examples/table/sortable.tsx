@@ -33,14 +33,14 @@ const DATA = [
   ['Neil', 27],
 ];
 
-type DirectionT = $Keys<typeof SORT_DIRECTION> | null;
+type DirectionT = SORT_DIRECTION | null;
 
 export default class SortableTable extends React.Component<
   {},
   {
-    nameDirection: DirectionT,
-    ageDirection: DirectionT,
-  },
+    nameDirection: DirectionT;
+    ageDirection: DirectionT;
+  }
 > {
   state = {nameDirection: null, ageDirection: null};
 
@@ -75,8 +75,8 @@ export default class SortableTable extends React.Component<
 
   getSortedData = () => {
     if (this.state.nameDirection) {
-      //$FlowFixMe
       const sorted = DATA.slice(0).sort((a, b) =>
+        //@ts-ignore
         a[0].localeCompare(b[0]),
       );
 
@@ -90,6 +90,7 @@ export default class SortableTable extends React.Component<
     }
 
     if (this.state.ageDirection) {
+      //@ts-ignore
       const sorted = DATA.slice(0).sort((a, b) => a[1] - b[1]);
       if (this.state.ageDirection === SORT_DIRECTION.ASC) {
         return sorted;

@@ -1,8 +1,7 @@
 import React from 'react';
 import {withStyle} from 'styletron-react';
 import {StatefulMenu, OptionList, StyledList} from 'baseui/menu';
-import List from 'react-virtualized/dist/commonjs/List';
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import {List, AutoSizer} from 'react-virtualized';
 
 const ITEMS = [...new Array(1500)].map((_, index) => ({
   label: `item number: ${index + 1}`,
@@ -10,7 +9,7 @@ const ITEMS = [...new Array(1500)].map((_, index) => ({
 
 const Container = withStyle(StyledList, {height: '500px'});
 
-const VirtualList = React.forwardRef((props, ref) => {
+const VirtualList = React.forwardRef((props: any, ref) => {
   return (
     <Container {...props} ref={ref}>
       <AutoSizer>

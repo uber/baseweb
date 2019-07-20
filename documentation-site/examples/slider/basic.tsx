@@ -1,10 +1,7 @@
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
 
-export default class Basic extends React.Component<
-  {},
-  {value: number[]},
-> {
+export default class Basic extends React.Component {
   state = {value: [60]};
   render() {
     return (

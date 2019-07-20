@@ -1,16 +1,17 @@
 import * as React from 'react';
 import {Radio, RadioGroup} from 'baseui/radio';
 
-export default class Stateless extends React.Component<
-  {},
-  {value: string},
-> {
+export default class Stateless extends React.Component {
   state = {value: '1'};
   render() {
     return (
       <RadioGroup
         name="radio group"
-        onChange={e => this.setState({value: e.target.value})}
+        onChange={e =>
+          this.setState({
+            value: (e.target as HTMLInputElement).value,
+          })
+        }
         value={this.state.value}
       >
         <Radio value="1">First</Radio>

@@ -5,7 +5,9 @@ const DefaultValue = () => {
   const [value, setValue] = React.useState('4111111111111111');
   return (
     <PaymentCard
-      onChange={event => setValue(event.target.value)}
+      onChange={event =>
+        setValue((event.target as HTMLInputElement).value)
+      }
       placeholder="Enter payment card number"
       value={value}
     />

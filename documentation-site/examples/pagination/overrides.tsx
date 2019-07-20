@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button, KIND} from 'baseui/button';
+import {Button} from 'baseui/button';
 import {StatefulPagination} from 'baseui/pagination';
 
 export default () => (
@@ -47,7 +47,7 @@ export default () => (
                 $isFocused,
                 $isPseudoFocused,
                 $error,
-              }) => ({
+              }: any) => ({
                 borderColor: 'transparent',
                 boxShadow: 'none',
                 backgroundColor: $disabled
@@ -60,7 +60,7 @@ export default () => (
               }),
             },
             SingleValue: {
-              style: ({$theme}) => ({
+              style: ({$theme}: any) => ({
                 position: 'relative',
                 paddingTop: '0',
                 paddingBottom: '0',
@@ -71,7 +71,7 @@ export default () => (
               }),
             },
             SelectArrow: {
-              style: ({$theme}) => ({
+              style: ({$theme}: any) => ({
                 width: '24px',
                 height: '24px',
                 color: $theme.colors.buttonTertiaryText,

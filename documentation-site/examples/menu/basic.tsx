@@ -28,7 +28,7 @@ export default () => (
       },
       Option: {
         props: {
-          getItemLabel: item => item.label,
+          getItemLabel: (item: {label: string}) => item.label,
         },
       },
     }}

@@ -9,7 +9,7 @@ export default () => {
       text={text}
       country={country}
       onTextChange={event => {
-        setText(event.target.value);
+        setText((event.target as HTMLInputElement).value);
       }}
       onCountryChange={(event: any) => {
         setCountry(event.option);

@@ -13,13 +13,13 @@ const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
 function formatDateAtIndex(
-  dates: ?Date | ?Array<Date>,
+  dates: Date | Array<Date>,
   index: number,
 ) {
   if (!dates || !Array.isArray(dates)) return '';
   const date = dates[index];
   if (!date) return '';
-  return formatDate(date, 'yyyy/MM/dd');
+  return formatDate(date, 'yyyy/MM/dd') as string;
 }
 
 export default () => {
@@ -31,7 +31,7 @@ export default () => {
         <FormControl label="Start Date" caption="YYYY/MM/DD">
           <Datepicker
             value={dates}
-            onChange={({date}) => setDates(date)}
+            onChange={({date}) => setDates(date as Date[])}
             formatDisplayValue={date => formatDateAtIndex(date, 0)}
             timeSelectStart
             range
@@ -56,7 +56,7 @@ export default () => {
         <FormControl label="End Date" caption="yyyy/MM/DD">
           <Datepicker
             value={dates}
-            onChange={({date}) => setDates(date)}
+            onChange={({date}) => setDates(date as Date[])}
             formatDisplayValue={date => formatDateAtIndex(date, 1)}
             overrides={{
               TimeSelectFormControl: {

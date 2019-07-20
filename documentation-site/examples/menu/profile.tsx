@@ -1,6 +1,13 @@
 import * as React from 'react';
 import {Menu, OptionProfile} from 'baseui/menu';
 
+interface IItem {
+  title: string;
+  subtitle: string;
+  body: string;
+  imgUrl: string;
+}
+
 const ITEMS = [...new Array(4)].map(() => ({
   title: 'David Smith',
   subtitle: 'Senior Engineering Manager',
@@ -21,13 +28,17 @@ export default () => (
       Option: {
         component: OptionProfile,
         props: {
-          getProfileItemLabels: ({title, subtitle, body}) => ({
+          getProfileItemLabels: ({
+            title,
+            subtitle,
+            body,
+          }: IItem) => ({
             title,
             subtitle,
             body,
           }),
-          getProfileItemImg: item => item.imgUrl,
-          getProfileItemImgText: item => item.title,
+          getProfileItemImg: (item: IItem) => item.imgUrl,
+          getProfileItemImgText: (item: IItem) => item.title,
         },
       },
     }}

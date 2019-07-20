@@ -68,6 +68,7 @@ export class TetherBehavior extends React.Component<TetherProps, TetherState> {
 
 export interface LayersManagerProps {
   children: React.ReactNode;
+  zIndex?: number;
 }
 export interface LayerProps {
   children: React.ReactNode;

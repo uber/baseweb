@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {styled} from 'baseui';
 import {Datepicker, TimezonePicker} from 'baseui/datepicker';
 import {FormControl} from 'baseui/form-control';
 
@@ -16,7 +15,7 @@ export default () => {
       <FormControl label="Date">
         <Datepicker
           onChange={({date}) => {
-            setDate(date);
+            setDate(date as Date);
           }}
           value={new Date(date.getTime() + tz.offset * 60000)}
         />

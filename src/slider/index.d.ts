@@ -17,14 +17,14 @@ export type StateReducer = (
 ) => State;
 
 export interface SliderOverrides {
-  Root?: Override<any>;
-  Track?: Override<any>;
-  InnerTrack?: Override<any>;
-  Tick?: Override<any>;
-  TickBar?: Override<any>;
-  Thumb?: Override<any>;
-  InnerThumb?: Override<any>;
-  ThumbValue?: Override<any>;
+  Root?: Override<SharedProps>;
+  Track?: Override<SharedProps>;
+  InnerTrack?: Override<SharedProps>;
+  Tick?: Override<SharedProps>;
+  TickBar?: Override<SharedProps>;
+  Thumb?: Override<SharedProps>;
+  InnerThumb?: Override<SharedProps>;
+  ThumbValue?: Override<SharedProps>;
 }
 
 export interface SliderProps {
@@ -56,6 +56,15 @@ export interface StatefulContainerProps {
   stateReducer?: StateReducer;
   onChange?: (e: State) => any;
 }
+
+export type SharedProps = {
+  $disabled: boolean;
+  $isDragged: boolean;
+  $max: number;
+  $min: number;
+  $thumbIndex: number;
+  $value: Array<number>;
+};
 
 export const Slider: React.FC<SliderProps>;
 export const StatefulSlider: React.FC<StatefulSliderProps>;

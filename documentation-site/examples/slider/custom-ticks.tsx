@@ -14,16 +14,13 @@ const TickBar = styled('div', ({$theme}) => ({
 const ThumbValue = styled('div', ({$theme}) => ({
   position: 'absolute',
   top: `-${$theme.sizing.scale800}`,
-  ...$theme.typography.font300,
+  ...($theme.typography.font300 as any),
   backgroundColor: 'transparent',
 }));
 
-const mToKm = value => `${(value / 1000).toFixed(1)}km`;
+const mToKm = (value: number) => `${(value / 1000).toFixed(1)}km`;
 
-export default class Basic extends React.Component<
-  {},
-  {value: number[]},
-> {
+export default class Basic extends React.Component {
   state = {value: [4500]};
 
   render() {

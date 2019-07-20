@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {FormControl} from 'baseui/form-control';
 import {Block} from 'baseui/block';
@@ -8,7 +8,6 @@ import {
   TimePicker,
   TimezonePicker,
 } from 'baseui/datepicker';
-import {Radio, RadioGroup} from 'baseui/radio';
 
 export default () => {
   return (

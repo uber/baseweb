@@ -1,12 +1,8 @@
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Select} from 'baseui/select';
-import {ValueT} from 'baseui/select';
 
-export default class Container extends React.Component<
-  {},
-  {value: ValueT}
-> {
+export default class Container extends React.Component {
   state = {value: []};
   getLabel = ({option}: any) => {
     return (

@@ -9,7 +9,7 @@ import {
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 
-function BlockComponent(props) {
+function BlockComponent(props: any) {
   return (
     <Block
       ref={props.forwardedRef}
@@ -46,7 +46,7 @@ const initialState = {
 };
 export default class LayerWithZIndex extends React.Component<
   {},
-  typeof initialState,
+  typeof initialState
 > {
   anchorRef1: any = React.createRef();
   popperRef1: any = React.createRef();
@@ -55,10 +55,10 @@ export default class LayerWithZIndex extends React.Component<
 
   state = initialState;
 
-  onPopperUpdate: any = (order, normalizedOffsets) => {
+  onPopperUpdate: any = (order: any, normalizedOffsets: any) => {
     this.setState({
       [`offset${order}`]: normalizedOffsets.popper,
-    });
+    } as any);
   };
 
   render() {
@@ -159,7 +159,6 @@ export default class LayerWithZIndex extends React.Component<
           </Block>
           <Block
             position="relative"
-            boxSizing="border-box"
             width="200px"
             marginLeft="50px"
             display="flex"
