@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {StatefulTabs, Tab, ORIENTATION} from 'baseui/tabs';
 

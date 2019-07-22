@@ -24,7 +24,7 @@ export type CountriesT = $ReadOnly<CountryT>;
 
 export type StateT = {
   country: CountryT,
-  text: string,
+  text?: string,
 };
 
 export type StateChangeT = $Keys<typeof STATE_CHANGE_TYPE>;

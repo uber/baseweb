@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {ProgressSteps, NumberedStep} from 'baseui/progress-steps';
 import {Button} from 'baseui/button';

@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {PaymentCard, SIZE} from 'baseui/payment-card';
 import {Block} from 'baseui/block';

@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {StatefulPopover, TRIGGER_TYPE} from 'baseui/popover';

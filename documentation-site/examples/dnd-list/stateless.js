@@ -1,9 +1,10 @@
+// @flow
 import * as React from 'react';
 import {List, arrayMove} from 'baseui/dnd-list';
 
 export default class Example extends React.Component<
   {},
-  {items: Array<React.ReactNode>},
+  {items: Array<React.Node>},
 > {
   state = {
     items: [

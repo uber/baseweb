@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
 

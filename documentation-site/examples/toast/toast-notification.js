@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Toast, KIND} from 'baseui/toast';
 import {

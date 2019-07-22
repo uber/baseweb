@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Tag, VARIANT} from 'baseui/tag';
 

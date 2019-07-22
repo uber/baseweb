@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {StatefulTextarea as Textarea} from 'baseui/textarea';
 import {Button} from 'baseui/button';

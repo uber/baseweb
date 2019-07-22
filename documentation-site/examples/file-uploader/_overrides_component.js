@@ -1,6 +1,7 @@
+// @flow
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
-import {
+import type {
   DropFilesEventHandlerT,
   OverridesT,
   StylePropsT,

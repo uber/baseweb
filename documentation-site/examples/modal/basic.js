@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Button} from 'baseui/button';
 import {
@@ -17,7 +18,7 @@ interface IRenderChildrenProps {
 class ModalStateContainer extends React.Component<
   {
     isInitiallyOpen: boolean,
-    children: (args: IRenderChildrenProps) => React.ReactNode,
+    children: (args: IRenderChildrenProps) => React.Node,
   },
   {isOpen: boolean},
 > {

@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
 import {styled} from 'baseui';
