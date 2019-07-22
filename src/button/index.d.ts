@@ -58,6 +58,7 @@ export const StyledLoadingSpinnerContainer: StyletronComponent<any>;
 
 export class Button extends React.Component<ButtonProps> {
   internalOnClick(...args: any): void;
+  focus(): void;
 }
 
 export const KIND: KIND;
