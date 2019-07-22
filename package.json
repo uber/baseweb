@@ -17,7 +17,7 @@
     "lint:code": "eslint ./",
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
     "lint": "yarn lint:code && yarn lint:markdown",
-    "test": "yarn lint && yarn flow check --max-warnings 0 && yarn tsc && yarn unit-test",
+    "test": "yarn validate:examples && yarn lint && yarn flow check --max-warnings 0 && yarn tsc && yarn unit-test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o public/legacy && build-storybook",
     "storybook:screener:wrapper": "./scripts/run-screener.sh",
@@ -53,7 +53,8 @@
     "next:dev": "next documentation-site",
     "next:build": "next build documentation-site",
     "next:export": "next export documentation-site -o public",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "validate:examples": "./scripts/validate-examples.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
