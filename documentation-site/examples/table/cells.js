@@ -25,7 +25,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
   paddingBottom: 0,
 });
 
-const StyledDeltaCell = withStyle<any, any>(StyledCell, props => ({
+const StyledDeltaCell: any = withStyle(StyledCell, props => ({
   ...props.$theme.typography.font500,
   alignItems: 'center',
   backgroundColor: props.$isNegative
