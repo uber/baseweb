@@ -92,8 +92,12 @@ class Example extends React.Component<PropsT, StateT> {
     this.setState({
       sourceFlow: codeFlow.default,
       sourceTs: codeTs.default,
-      // flow-remove-types doesn't remove // from the first line
-      source: codeJs.default.replace(/^\/\//, '').trim(),
+      source: codeJs.default
+        // flow-remove-types doesn't remove // from the first line
+        .replace(/^\/\//, '')
+        // remove all instances of <{}>
+        .replace(/<\{\}>/g, '')
+        .trim(),
     });
   }
 
