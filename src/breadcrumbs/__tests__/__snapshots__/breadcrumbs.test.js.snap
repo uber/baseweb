@@ -7,7 +7,8 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
 >
   <ForwardRef>
     <ForwardRef
-      key="0"
+      $itemIndex={0}
+      key="breadcrumb-item-0"
     >
       <StyledLink
         href="#"
@@ -31,7 +32,8 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       </ForwardRef>
     </ForwardRef>
     <ForwardRef
-      key="1"
+      $itemIndex={1}
+      key="breadcrumb-item-1"
     >
       <StyledLink
         href="#"
@@ -55,7 +57,8 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       </ForwardRef>
     </ForwardRef>
     <ForwardRef
-      key="2"
+      $itemIndex={2}
+      key="breadcrumb-item-2"
     >
       <span>
         Current Page
