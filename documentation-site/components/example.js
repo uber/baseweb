@@ -97,6 +97,36 @@ class Example extends React.Component<PropsT, StateT> {
   }
 
   render() {
+    const isTsx = this.state.sourceSelected === 2;
+    // react-codesandboxer doesn't play nicely when you update its props
+    // it keeps deploying the same source code that was set on initial mount
+    // so if you toggle from JS from TS, it still deploy .js version
+    // that's why we are forcing second mount through an unique "key"
+    const csProps = {
+      name: this.props.title,
+      afterDeploy: () => {
+        trackEvent('codesandbox_deployed', this.props.title);
+      },
+      afterDeployError: () => {
+        trackEvent('codesandbox_deployed_error', this.props.title);
+      },
+      dependencies: {
+        baseui: version,
+        react: '16.8.6',
+        'react-dom': '16.8.6',
+        'react-scripts': '3.0.1',
+        'styletron-engine-atomic': '1.4.0',
+        'styletron-react': '5.2.0',
+        ...this.props.additionalPackages,
+      },
+      children: () => (
+        <Link>
+          <Button kind={KIND.secondary} size={SIZE.compact}>
+            Edit on CodeSandbox
+          </Button>
+        </Link>
+      ),
+    };
     return (
       <Card
         overrides={{
@@ -179,40 +209,33 @@ class Example extends React.Component<PropsT, StateT> {
               )}
             </Block>
 
-            <CodeSandboxer
-              examplePath="/"
-              example={this.state.source}
-              name={this.props.title}
-              afterDeploy={() => {
-                trackEvent('codesandbox_deployed', this.props.title);
-              }}
-              afterDeployError={() => {
-                trackEvent('codesandbox_deployed_error', this.props.title);
-              }}
-              dependencies={{
-                baseui: `^${version}`,
-                react: '^16.8.6',
-                'react-dom': '^16.8.6',
-                'react-scripts': '^2.0.3',
-                'styletron-engine-atomic': '^1.0.0',
-                'styletron-react': '^5.0.0',
-                ...this.props.additionalPackages,
-              }}
-              providedFiles={{'index.js': {content: index}}}
-              template={
-                this.state.sourceSelected === 2
-                  ? 'create-react-app-typescript'
-                  : 'create-react-app'
-              }
-            >
-              {() => (
-                <Link>
-                  <Button kind={KIND.secondary} size={SIZE.compact}>
-                    Edit on CodeSandbox
-                  </Button>
-                </Link>
-              )}
-            </CodeSandboxer>
+            {isTsx ? (
+              <CodeSandboxer
+                key="tsx"
+                examplePath="/example.tsx"
+                example={this.state.sourceTs}
+                providedFiles={{
+                  'index.tsx': {
+                    content: index,
+                  },
+                }}
+                template="create-react-app-typescript"
+                {...csProps}
+              />
+            ) : (
+              <CodeSandboxer
+                key="js"
+                examplePath="/example.js"
+                example={this.state.source}
+                providedFiles={{
+                  'index.js': {
+                    content: index,
+                  },
+                }}
+                template="create-react-app"
+                {...csProps}
+              />
+            )}
           </React.Fragment>
         )}
       </Card>

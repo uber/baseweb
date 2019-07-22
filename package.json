@@ -72,6 +72,8 @@
     "@mapbox/rehype-prism": "^0.3.1",
     "@mdx-js/tag": "^0.20.0",
     "@storybook/react": "^4.0.0",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
     "@types/react-virtualized": "^9.21.3",
     "@types/styletron-engine-atomic": "^1.1.0",
     "@types/styletron-react": "^5.0.1",
@@ -123,9 +125,9 @@
     "pretty-quick": "^1.4.1",
     "puppeteer": "^1.12.2",
     "raw-loader": "^3.1.0",
-    "react": "^16.8.3",
+    "react": "^16.8.6",
     "react-codesandboxer": "^3.1.1",
-    "react-dom": "^16.8.3",
+    "react-dom": "^16.8.6",
     "react-markdown": "^4.0.3",
     "react-syntax-highlighter": "^11.0.0",
     "react-vis": "^1.11.6",
@@ -165,6 +167,9 @@
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
     "styletron-react": "^5.2.0"
+  },
+  "resolutions": {
+    "@types/react": "16.8.23"
   },
   "husky": {
     "hooks": {
