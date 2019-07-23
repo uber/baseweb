@@ -149,5 +149,6 @@ export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', props => {
     cursor: 'pointer',
     width: '16px',
     flexShrink: 0,
+    paddingTop: '2px',
   };
 });
