@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants.js';
 import {
   InputContainer as StyledInputContainer,
@@ -19,6 +19,9 @@ import {
 } from './styled-components.js';
 import type {BaseInputPropsT, InternalStateT} from './types.js';
 import {getSharedProps} from './utils.js';
+import {Button, KIND} from '../button/index.js';
+import Hide from '../icon/hide.js';
+import Show from '../icon/show.js';
 import createEvent from '../utils/create-event.js';
 
 const NullComponent = () => null;
@@ -58,6 +61,7 @@ class BaseInput<T: EventTarget> extends React.Component<
 
   state = {
     isFocused: this.props.autoFocus || false,
+    isMasked: this.props.type === 'password',
   };
 
   componentDidMount() {
@@ -127,6 +131,78 @@ class BaseInput<T: EventTarget> extends React.Component<
     this.setState({isFocused: false});
     this.props.onBlur(e);
   };
+
+  getInputType() {
+    // If the type prop is equal to "password" we allow the user to toggle between
+    // masked and non masked text. Internally, we toggle between type "password"
+    // and "text".
+    if (this.props.type === 'password') {
+      return this.state.isMasked ? 'password' : 'text';
+    } else {
+      return this.props.type;
+    }
+  }
+
+  renderMaskToggle() {
+    if (this.props.type !== 'password') return null;
+
+    const [MaskToggleButton, maskToggleButtonProps] = getOverrides(
+      this.props.overrides.MaskToggleButton,
+      Button,
+    );
+    const baseButtonOverrides = {
+      BaseButton: {
+        style: ({$theme}) => ({
+          color: $theme.colors.foreground,
+        }),
+      },
+    };
+    // $FlowFixMe
+    maskToggleButtonProps.overrides = mergeOverrides(
+      baseButtonOverrides,
+      // $FlowFixMe
+      maskToggleButtonProps.overrides,
+    );
+    const [MaskToggleShowIcon, maskToggleIconShowProps] = getOverrides(
+      this.props.overrides.MaskToggleShowIcon,
+      Show,
+    );
+    const [MaskToggleHideIcon, maskToggleIconHideProps] = getOverrides(
+      this.props.overrides.MaskToggleHideIcon,
+      Hide,
+    );
+    const label = this.state.isMasked
+      ? 'Show password text'
+      : 'Hide password text';
+    const iconSize = {
+      [SIZE.compact]: '16px',
+      [SIZE.default]: '20px',
+      [SIZE.large]: '24px',
+    }[this.props.size];
+    return (
+      <MaskToggleButton
+        aria-label={label}
+        kind={KIND.minimal}
+        onClick={() => this.setState({isMasked: !this.state.isMasked})}
+        title={label}
+        {...maskToggleButtonProps}
+      >
+        {this.state.isMasked ? (
+          <MaskToggleShowIcon
+            size={iconSize}
+            title={label}
+            {...maskToggleIconShowProps}
+          />
+        ) : (
+          <MaskToggleHideIcon
+            size={iconSize}
+            title={label}
+            {...maskToggleIconHideProps}
+          />
+        )}
+      </MaskToggleButton>
+    );
+  }
 
   renderClear() {
     const {clearable, value, disabled, overrides = {}, size} = this.props;
@@ -208,7 +284,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           onKeyUp={this.props.onKeyUp}
           pattern={this.props.pattern}
           placeholder={this.props.placeholder}
-          type={this.props.type}
+          type={this.getInputType()}
           value={this.props.value}
           rows={
             this.props.type === CUSTOM_INPUT_TYPE.textarea
@@ -221,10 +297,10 @@ class BaseInput<T: EventTarget> extends React.Component<
           {type === CUSTOM_INPUT_TYPE.textarea ? value : null}
         </Input>
         {this.renderClear()}
+        {this.renderMaskToggle()}
         <After {...sharedProps} {...afterProps} />
       </InputContainer>
     );
   }
 }
-
 export default BaseInput;
