@@ -26,11 +26,11 @@ export interface ENHANCER_POSITION {
   end: 'end';
 }
 
-export interface BaseInputOverrides {
-  InputContainer?: Override<any>;
-  Input?: Override<any>;
-  Before?: Override<any>;
-  After?: Override<any>;
+export interface BaseInputOverrides<T> {
+  InputContainer?: Override<T>;
+  Input?: Override<T>;
+  Before?: Override<T>;
+  After?: Override<T>;
 }
 
 export interface BaseInputProps<T> {
@@ -40,6 +40,7 @@ export interface BaseInputProps<T> {
   adjoined?: ADJOINED[keyof ADJOINED];
   autoComplete?: string;
   autoFocus?: boolean;
+  clearable?: boolean;
   disabled?: boolean;
   error?: boolean;
   positive?: boolean;
@@ -53,7 +54,7 @@ export interface BaseInputProps<T> {
   onKeyPress?: React.KeyboardEventHandler<T>;
   onKeyUp?: React.KeyboardEventHandler<T>;
   onFocus?: React.FocusEventHandler<T>;
-  overrides?: BaseInputOverrides;
+  overrides?: BaseInputOverrides<SharedProps>;
   placeholder?: string;
   required?: boolean;
   size?: SIZE[keyof SIZE];
@@ -66,15 +67,33 @@ export interface State {
   value?: string;
 }
 
-export type InputOverrides = BaseInputOverrides & {
-  Root?: Override<any>;
-  StartEnhancer?: Override<any>;
-  EndEnhancer?: Override<any>;
+export type InputOverrides = BaseInputOverrides<SharedProps> & {
+  Root?: Override<SharedProps>;
+  StartEnhancer?: Override<SharedProps>;
+  EndEnhancer?: Override<SharedProps>;
+};
+
+export type SharedProps = {
+  /** Renders UI in 'focus' state */
+  $isFocused: boolean;
+  /** Renders UI in 'disabled' state */
+  $disabled: boolean;
+  /** Renders UI in 'error' state */
+  $error: boolean;
+  /** Renders UI in 'positive' state */
+  $positive: boolean;
+  /** Defines styles for inputs that are grouped with other controls. */
+  $adjoined: keyof ADJOINED;
+  /** Renders UI in provided size. */
+  $size: keyof SIZE;
+  /** Renders UI in 'required' state */
+  $required: boolean;
+  $position: keyof ENHANCER_POSITION;
 };
 
 export interface InputProps extends BaseInputProps<HTMLInputElement> {
-  startEnhancer?: React.ReactNode;
-  endEnhancer?: React.ReactNode;
+  startEnhancer?: ((args: SharedProps) => React.ReactNode) | React.ReactNode;
+  endEnhancer?: ((args: SharedProps) => React.ReactNode) | React.ReactNode;
   overrides?: InputOverrides;
 }
 

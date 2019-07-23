@@ -17,7 +17,7 @@
     "lint:code": "eslint ./",
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
     "lint": "yarn lint:code && yarn lint:markdown",
-    "test": "yarn lint && yarn flow check --max-warnings 0 && yarn tsc && yarn unit-test",
+    "test": "yarn validate:examples && yarn lint && yarn flow check --max-warnings 0 && yarn tsc && yarn unit-test",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o public/legacy && build-storybook",
     "storybook:screener:wrapper": "./scripts/run-screener.sh",
@@ -52,7 +52,9 @@
     "documentation:legacy": "./scripts/build-docs.js",
     "next:dev": "next documentation-site",
     "next:build": "next build documentation-site",
-    "next:export": "next export documentation-site -o public"
+    "next:export": "next export documentation-site -o public",
+    "tsc": "tsc",
+    "validate:examples": "./scripts/validate-examples.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -71,6 +73,9 @@
     "@mapbox/rehype-prism": "^0.3.1",
     "@mdx-js/tag": "^0.20.0",
     "@storybook/react": "^4.0.0",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-virtualized": "^9.21.3",
     "@types/styletron-engine-atomic": "^1.1.0",
     "@types/styletron-react": "^5.0.1",
     "@types/styletron-standard": "^2.0.0",
@@ -121,15 +126,15 @@
     "pretty-quick": "^1.4.1",
     "puppeteer": "^1.12.2",
     "raw-loader": "^3.1.0",
-    "react": "^16.8.3",
+    "react": "^16.8.6",
     "react-codesandboxer": "^3.1.1",
-    "react-dom": "^16.8.3",
+    "react-dom": "^16.8.6",
     "react-markdown": "^4.0.3",
     "react-syntax-highlighter": "^11.0.0",
     "react-vis": "^1.11.6",
     "recursive-readdir": "^2.2.2",
-    "screener-storybook": "^0.18.6",
     "remove-flow-types-loader": "^1.1.0",
+    "screener-storybook": "^0.18.6",
     "semver": "^6.2.0",
     "shx": "^0.3.2",
     "static-server": "^2.2.1",
@@ -163,6 +168,9 @@
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
     "styletron-react": "^5.2.0"
+  },
+  "resolutions": {
+    "@types/react": "16.8.23"
   },
   "husky": {
     "hooks": {

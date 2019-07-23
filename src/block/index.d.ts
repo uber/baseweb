@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Override} from '../overrides';
+import {$StyleProp} from 'styletron-react';
 
 export type Responsive<T> = T | T[];
 
@@ -214,10 +215,13 @@ export interface BlockOverrides {
 export interface BlockProps {
   children?: React.ReactNode;
   as?: React.ElementType;
+  $style?: $StyleProp<BlockProps>;
   overrides?: BlockOverrides;
   color?: Responsive<string>;
   backgroundColor?: Responsive<string>;
   font?: string | string[];
+  src?: string;
+  ref?: React.Ref<any>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
   alignContent?: Responsive<AlignContent>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items */

@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {Block} from 'baseui/block';
 import {StatefulInput, SIZE} from 'baseui/input';
