@@ -51,9 +51,9 @@ class Slider extends React.Component<PropsT> {
     max: 100,
     step: 1,
   };
-  rangeRef: React.RefObject<Range> = React.createRef();
+  rangeRef = React.createRef<Range>();
   getSharedProps() {
-    const {disabled, step, min, max, value}: PropsT = this.props;
+    const {disabled, step, min, max, value} = this.props;
     return {
       $disabled: disabled,
       $step: step,

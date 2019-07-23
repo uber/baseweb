@@ -36,7 +36,7 @@ export const Track = styled<StylePropsT>('div', props => {
 Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled<StylePropsT>('div', props => {
-  const {$theme, $value = [], $min, $max, $disabled} = props;
+  const {$theme, $value = [], $min = 0, $max = 100, $disabled} = props;
   const {colors, borders, sizing} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
