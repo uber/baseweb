@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {withStyle} from 'baseui';
 import {StatefulInput, StyledInputContainer} from 'baseui/input';

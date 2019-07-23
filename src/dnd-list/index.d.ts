@@ -1,6 +1,10 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
+import {
+  arrayMove as arrayMoveT,
+  arrayRemove as arrayRemoveT,
+} from 'react-movable';
 
 // export {arrayMove, arrayRemove} from 'react-movable';
 
@@ -18,6 +22,7 @@ export interface StatefulListProps {
   initialState?: State;
   stateReducer?: StateReducer;
   removable?: boolean;
+  removableByMove?: boolean;
   onChange?: (
     params: {
       newState: React.ReactNode[];
@@ -53,6 +58,8 @@ export interface SharedStylePropsArgT {
   $isDragged: boolean;
   $isSelected: boolean;
   $isRemovable: boolean;
+  $isRemovableByMove: boolean;
+  $value: React.ReactNode;
 }
 
 export interface ListOverrides {
@@ -66,6 +73,7 @@ export interface ListOverrides {
 
 export interface ListProps {
   removable?: boolean;
+  removableByMove?: boolean;
   items?: React.ReactNode[];
   onChange?: (args: {oldIndex: number; newIndex: number}) => any;
   overrides?: ListOverrides;
@@ -81,3 +89,5 @@ export const StyledCloseHandle: StyletronComponent<any>;
 export const StyledLabel: StyletronComponent<any>;
 
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export const arrayMove: typeof arrayMoveT;
+export const arrayRemove: typeof arrayRemoveT;

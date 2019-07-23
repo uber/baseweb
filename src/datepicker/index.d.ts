@@ -63,7 +63,7 @@ export interface CalendarProps {
   onMonthChange?: (args: {date: Date}) => any;
   onYearChange?: (args: {date: Date}) => any;
   onChange?: onChange;
-  overrides?: DatepickerOverrides<{}>;
+  overrides?: DatepickerOverrides<SharedStylePropsT>;
   peekNextMonth?: boolean;
   timeSelectStart?: boolean;
   timeSelectEnd?: boolean;
@@ -136,6 +136,7 @@ export type DatepickerProps = CalendarProps & {
   'aria-describedby'?: string;
   disabled?: boolean;
   error?: boolean;
+  positive?: boolean;
   placeholder?: string;
   required?: boolean;
   formatDisplayValue?: (date: Date | Date[], formatString: string) => string;
@@ -149,6 +150,12 @@ export interface DatepickerState {
   isPseudoFocused: boolean;
   lastActiveElm?: HTMLElement;
 }
+
+declare function formatDate(
+  date: Date | Date[],
+  formatString: string,
+): string | string[];
+
 export class Datepicker extends React.Component<
   DatepickerProps,
   DatepickerState
@@ -176,9 +183,12 @@ export interface TimePickerProps {
   overrides?: {
     Select?: Override<any>;
   };
+  positive?: boolean;
+  error?: boolean;
   creatable?: boolean;
+  disabled?: boolean;
   step?: number;
-  value: Date | null;
+  value?: Date | null;
 }
 export interface TimePickerState {
   steps: number[];
@@ -195,6 +205,9 @@ export class TimePicker extends React.Component<
 
 export interface TimezonePickerProps {
   date?: Date;
+  disabled?: boolean;
+  positive?: boolean;
+  error?: boolean;
   mapLabels?: (args: Option) => React.ReactNode;
   onChange?: (value: {id: string; label: string; offset: number}) => any;
   overrides?: {Select?: Override<any>};
@@ -218,3 +231,20 @@ export const ISO_MONTH_FORMAT: 'YYYY-MM';
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
 
 export const WEEKDAYS: [0, 1, 2, 3, 4, 5, 6];
+
+export type SharedStylePropsT = {
+  $date: Date;
+  $disabled: boolean;
+  $isHeader: boolean;
+  $isHighlighted: boolean;
+  $isHovered: boolean;
+  $outsideMonth: boolean;
+  $pseudoHighlighted: boolean;
+  $pseudoSelected: boolean;
+  $selected: boolean;
+  $startDate: boolean;
+  $range: boolean;
+  $hasRangeHighlighted: boolean;
+  $hasRangeOnRight: boolean;
+  $hasRangeSelected: boolean;
+};

@@ -11,4 +11,4 @@ export const FlexGrid: React.FC<FlexGridProps>;
 
 export type FlexGridItemProps = FlexGridProps;
 
-export const FlexGridItem: React.FC<FlexGridItemProps>;
+export const FlexGridItem: React.FC<FlexGridProps>;

@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {format} from 'date-fns';
 
@@ -16,7 +17,6 @@ import {
   Unstable_StyledBodyCell as StyledBodyCell,
 } from 'baseui/table-grid';
 import {Tag} from 'baseui/tag';
-import type {TagKindT} from 'baseui/tag';
 
 function buildRow(status) {
   return [

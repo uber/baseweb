@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 import {Select} from 'baseui/select';
 
