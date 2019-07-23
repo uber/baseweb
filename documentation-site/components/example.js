@@ -226,6 +226,12 @@ class Example extends React.Component<PropsT, StateT> {
                 }}
                 template="create-react-app-typescript"
                 {...csProps}
+                dependencies={{
+                  ...csProps.dependencies,
+                  '@types/styletron-react': '5.0.1',
+                  '@types/styletron-engine-atomic': '1.1.0',
+                  '@types/styletron-standard': '2.0.0',
+                }}
               />
             ) : (
               <CodeSandboxer
