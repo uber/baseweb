@@ -21,6 +21,7 @@ import Customization from 'examples/input/overrides.js';
 import Focus from 'examples/input/focus.js';
 import WithTags from 'examples/input/with-tags.js';
 import Clearable from 'examples/input/clearable.js';
+import Password from 'examples/input/password.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulInput} from 'baseui/input';
@@ -87,6 +88,37 @@ An input enables a person to type in text information.
 When `clearable` is true, pressing the `Escape` key or clicking the clear icon on the right will clear the input's current value.
 Other input components such as [`Textarea`](/components/textarea), [`PhoneInput`](/components/phone-input), and [`PaymentCard`](/components/payment-card) also respect the `clearable` property.
 
+<Example title="Input for passwords" path="input/password.js">
+  <Password />
+</Example>
+
+`Input` has some built-in logic when you set `type` to `"password"`.
+A button is added to the right side of the input which, when activated, toggles the masking of the inputʼs current text.
+Allowing users to see the text they have entered is considered a [usability best practice](https://www.nngroup.com/articles/stop-password-masking/) so we have built-in this behavior.
+
+If you want to opt-out of this behavior, you can override the toggle with a null component:
+
+```jsx
+<Password
+  overrides={{
+    MaskToggleButton: () => null,
+  }}
+/>
+```
+
+You can also use `overrides` to customize the icons used in the toggle:
+
+```jsx
+<Password
+  overrides={{
+    MaskToggleHideIcon: () => '🙈',
+    MaskToggleShowIcon: () => '🐵',
+  }}
+/>
+```
+
+Note, if all you want to do is change the icons, you could [update your theme](https://deploy-preview-1598--baseui.netlify.com/theming/overriding-icons/) instead.
+
 <Example title="Input with overrides" path="input/overrides.js">
   <Customization />
 </Example>
@@ -99,9 +131,25 @@ Other input components such as [`Textarea`](/components/textarea), [`PhoneInput`
   <WithTags />
 </Example>
 
+## Overrides
+
 <Overrides
   name="Input"
   component={InputExports}
+  whitelisted={[
+    'After',
+    'Before',
+    'ClearIcon',
+    'ClearIconContainer',
+    'EndEnhancer',
+    'Input',
+    'InputContainer',
+    'MaskToggleButton',
+    'MaskToggleHideIcon',
+    'MaskToggleShowIcon',
+    'Root',
+    'StartEnhancer',
+  ]}
   renderExample={props => (
     <StatefulInput
       overrides={props.overrides}

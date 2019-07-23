@@ -99,6 +99,7 @@ export interface InputProps extends BaseInputProps<HTMLInputElement> {
 
 export interface InternalState {
   isFocused?: boolean;
+  isMasked?: boolean;
 }
 
 export class Input extends React.Component<InputProps, InternalState> {
