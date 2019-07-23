@@ -56,7 +56,7 @@ Things to note in the `Select Controlled` example:
 - the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
 - you have to call `setState` with the entire object, not just the `id` value.
 
-<Example title="Select with open dropdown" path="examples/select/open.js">
+<Example title="Select with open dropdown" path="select/open.js">
   <SelectOpen />
 </Example>
 
@@ -65,10 +65,7 @@ Combine this with `autoFocus` if you want the input to be focused as well.
 Note, the dropdown will close once an item is selected or if the `escape` key is pressed while the Select has focus.
 If you want the dropdown to stay open you might be better off using [`Menu`](/components/menu) directly.
 
-<Example
-  title="Select with overridden menu"
-  path="select/overridden.js"
->
+<Example title="Select with overridden menu" path="select/overridden.js">
   <SelectOverridden />
 </Example>
 
@@ -83,10 +80,7 @@ If you want the dropdown to stay open you might be better off using [`Menu`](/co
   <SelectSinglePickSearch />
 </Example>
 
-<Example
-  title="Select as multi-pick search"
-  path="select/search-multi-pick.js"
->
+<Example title="Select as multi-pick search" path="select/search-multi-pick.js">
   <SelectMultiPickSearch />
 </Example>
 
@@ -98,10 +92,7 @@ If you want the dropdown to stay open you might be better off using [`Menu`](/co
   <SelectWithManyOptions />
 </Example>
 
-<Example
-  title="Select similar to native select"
-  path="select/native.js"
->
+<Example title="Select similar to native select" path="select/native.js">
   <SelectNative />
 </Example>
 
@@ -112,20 +103,14 @@ If you want the dropdown to stay open you might be better off using [`Menu`](/co
 The creatable select enables users to create new options along with choosing
 existing options.
 
-<Example
-  title="Select dropdown overrides"
-  path="select/overridden-dropdown.js"
->
+<Example title="Select dropdown overrides" path="select/overridden-dropdown.js">
   <SelectOverriddenDropdown />
 </Example>
 
 To override the `Popover` that's being used by the Dropdown subcomponent, you have to follow
 the approach outlined [here](/theming/understanding-overrides#override-nested-components).
 
-<Example
-  title="Select creatable multi-pick"
-  path="select/creatable-multi.js"
->
+<Example title="Select creatable multi-pick" path="select/creatable-multi.js">
   <SelectCreatableMulti />
 </Example>
 
