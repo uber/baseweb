@@ -35,6 +35,7 @@ export type ButtonPropsT = {
   size?: $Keys<typeof SIZE>,
   /** A helper rendered at the start of the button. */
   startEnhancer?: (*) => React$Node | React$Node,
+  type?: 'submit' | 'reset' | 'button',
 };
 
 export type SharedStylePropsT = {
