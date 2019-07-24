@@ -37,4 +37,18 @@ describe('Helpers - ResponsiveHelpers', () => {
       '@media screen and (min-width: 1280px)',
     ]);
   });
+
+  test('getMediaQueries stable breakpoint order', () => {
+    expect(
+      getMediaQueries({
+        large: 1280,
+        small: 320,
+        medium: 600,
+      }),
+    ).toMatchObject([
+      '@media screen and (min-width: 320px)',
+      '@media screen and (min-width: 600px)',
+      '@media screen and (min-width: 1280px)',
+    ]);
+  });
 });
