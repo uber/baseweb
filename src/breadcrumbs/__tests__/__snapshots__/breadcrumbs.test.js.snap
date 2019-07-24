@@ -5,48 +5,65 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
   aria-label=""
   data-baseweb="breadcrumbs"
 >
-  <StyledLink
-    href="#"
-  >
-    Parent Page
-  </StyledLink>
-  <ForwardRef
-    key="separator-0"
-  >
-    <ChevronRight
-      overrides={
-        Object {
-          "Svg": Object {
-            "style": Object {
-              "verticalAlign": "text-bottom",
-            },
-          },
-        }
-      }
-    />
+  <ForwardRef>
+    <ForwardRef
+      $itemIndex={0}
+      key="breadcrumb-item-0"
+    >
+      <StyledLink
+        href="#"
+      >
+        Parent Page
+      </StyledLink>
+      <ForwardRef
+        key="separator-0"
+      >
+        <ChevronRight
+          overrides={
+            Object {
+              "Svg": Object {
+                "style": Object {
+                  "verticalAlign": "text-bottom",
+                },
+              },
+            }
+          }
+        />
+      </ForwardRef>
+    </ForwardRef>
+    <ForwardRef
+      $itemIndex={1}
+      key="breadcrumb-item-1"
+    >
+      <StyledLink
+        href="#"
+      >
+        Sub-Parent Page
+      </StyledLink>
+      <ForwardRef
+        key="separator-1"
+      >
+        <ChevronRight
+          overrides={
+            Object {
+              "Svg": Object {
+                "style": Object {
+                  "verticalAlign": "text-bottom",
+                },
+              },
+            }
+          }
+        />
+      </ForwardRef>
+    </ForwardRef>
+    <ForwardRef
+      $itemIndex={2}
+      key="breadcrumb-item-2"
+    >
+      <span>
+        Current Page
+      </span>
+    </ForwardRef>
   </ForwardRef>
-  <StyledLink
-    href="#"
-  >
-    Sub-Parent Page
-  </StyledLink>
-  <ForwardRef
-    key="separator-1"
-  >
-    <ChevronRight
-      overrides={
-        Object {
-          "Svg": Object {
-            "style": Object {
-              "verticalAlign": "text-bottom",
-            },
-          },
-        }
-      }
-    />
-  </ForwardRef>
-  <span>
-    Current Page
-  </span>
 </ForwardRef>
 `;
