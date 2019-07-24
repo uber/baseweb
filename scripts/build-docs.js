@@ -143,7 +143,6 @@ async function getReleasesForPage(page) {
 }
 
 function patchEventstream(packageJsonPath) {
-  // $FlowFixMe
   const packageJson = require(packageJsonPath);
   packageJson.resolutions = {
     '**/event-stream': '^4.0.1',

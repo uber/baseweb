@@ -12,6 +12,7 @@ const ITEMS = [...new Array(1500)].map((_, index) => ({
 const Container = withStyle(StyledList, {height: '500px'});
 
 const VirtualList = React.forwardRef((props, ref) => {
+  const children = React.Children.toArray(props.children);
   return (
     <Container {...props} ref={ref}>
       <AutoSizer>
@@ -25,7 +26,7 @@ const VirtualList = React.forwardRef((props, ref) => {
               <OptionList
                 key={key}
                 style={style}
-                {...props.children[index].props}
+                {...children[index].props}
                 overrides={{
                   ListItem: {
                     style: {
