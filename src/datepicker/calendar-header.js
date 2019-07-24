@@ -35,7 +35,7 @@ import {
   setYear,
   subMonths,
 } from './utils/index.js';
-import {WEEKDAYS} from './constants.js';
+import {ORIENTATION, WEEKDAYS} from './constants.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
@@ -46,6 +46,11 @@ const navBtnStyle = ({$theme}) => ({
 
 const MIN_YEAR = 2000;
 const MAX_YEAR = 2030;
+
+const DIRECTION = {
+  NEXT: 'next',
+  PREVIOUS: 'previous',
+};
 
 function yearMonthToId(year, month) {
   return `${year}-${month}`;
@@ -97,6 +102,26 @@ export default class CalendarHeader extends React.Component<
     }
   };
 
+  isHiddenPaginationButton = (direction: $Values<typeof DIRECTION>) => {
+    const {monthsShown, order, orientation} = this.props;
+
+    if (!orientation || !monthsShown) {
+      return false;
+    }
+
+    if (orientation === ORIENTATION.horizontal && monthsShown > 1) {
+      if (direction === DIRECTION.NEXT) {
+        const isLastMonth = order === monthsShown - 1;
+        return !isLastMonth;
+      } else {
+        const isFirstMonth = order === 0;
+        return !isFirstMonth;
+      }
+    }
+
+    return false;
+  };
+
   renderPreviousMonthButton = ({locale}: {locale: LocaleT}) => {
     const {date, overrides = {}} = this.props;
     const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
@@ -107,6 +132,11 @@ export default class CalendarHeader extends React.Component<
     }
     const nextMonth = subMonths(date, 1);
     if (getYear(nextMonth) < MIN_YEAR) {
+      isDisabled = true;
+    }
+
+    const isHidden = this.isHiddenPaginationButton(DIRECTION.PREVIOUS);
+    if (isHidden) {
       isDisabled = true;
     }
 
@@ -131,14 +161,12 @@ export default class CalendarHeader extends React.Component<
         $disabled={isDisabled}
         {...prevButtonProps}
       >
-        <PrevButtonIcon
-          overrides={{
-            Svg: {
-              style: navBtnStyle,
-            },
-          }}
-          {...prevButtonIconProps}
-        />
+        {isHidden ? null : (
+          <PrevButtonIcon
+            overrides={{Svg: {style: navBtnStyle}}}
+            {...prevButtonIconProps}
+          />
+        )}
       </PrevButton>
     );
   };
@@ -154,6 +182,11 @@ export default class CalendarHeader extends React.Component<
     const nextMonth = addMonths(date, 1);
 
     if (getYear(nextMonth) > MAX_YEAR) {
+      isDisabled = true;
+    }
+
+    const isHidden = this.isHiddenPaginationButton(DIRECTION.NEXT);
+    if (isHidden) {
       isDisabled = true;
     }
 
@@ -175,6 +208,7 @@ export default class CalendarHeader extends React.Component<
     if (allNextDaysDisabled) {
       clickHandler = null;
     }
+
     return (
       <NextButton
         aria-label={locale.datepicker.nextMonth}
@@ -184,10 +218,12 @@ export default class CalendarHeader extends React.Component<
         $disabled={isDisabled}
         {...nextButtonProps}
       >
-        <NextButtonIcon
-          overrides={{Svg: {style: navBtnStyle}}}
-          {...nextButtonIconProps}
-        />
+        {isHidden ? null : (
+          <NextButtonIcon
+            overrides={{Svg: {style: navBtnStyle}}}
+            {...nextButtonIconProps}
+          />
+        )}
       </NextButton>
     );
   };

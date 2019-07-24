@@ -7,10 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {mount} from 'enzyme';
-import {Datepicker, Calendar} from '../index.js';
+import {Datepicker, Calendar, ORIENTATION} from '../index.js';
 import {Input} from '../../input/index.js';
 import {Popover} from '../../popover/index.js';
 import {addDays} from 'date-fns';
+import CalendarHeader from '../calendar-header.js';
+import ArrowLeft from '../../icon/arrow-left.js';
+import ArrowRight from '../../icon/arrow-right.js';
 
 jest.useFakeTimers();
 
@@ -150,5 +153,29 @@ describe('Datepicker', () => {
     const renderedInput = component.find(Input).first();
 
     expect(renderedInput.props().value).toEqual('2019/01/01 - 2019/01/04');
+  });
+
+  test('calendar popover renders multiple months and hides redundant UI', () => {
+    const date = new Date('2019 01 01');
+    const monthsShown = 3;
+    const component = mount(
+      <Datepicker
+        monthsShown={monthsShown}
+        orientation={ORIENTATION.horizontal}
+        value={date}
+      />,
+    );
+    const renderedPopover = component.find(Popover).first();
+    const PopoverContent = () => renderedPopover.props().content;
+
+    const renderedCal = mount(<PopoverContent />);
+
+    const renderedMonthHeaders = renderedCal.find(CalendarHeader);
+    expect(renderedMonthHeaders.length).toEqual(monthsShown);
+
+    const renderedPreviousButton = renderedMonthHeaders.find(ArrowLeft);
+    expect(renderedPreviousButton.length).toEqual(1);
+    const renderedNextButton = renderedMonthHeaders.find(ArrowRight);
+    expect(renderedNextButton.length).toEqual(1);
   });
 });
