@@ -84,7 +84,11 @@ export class Modal extends React.Component<ModalProps, ModalState> {
   renderModal(): React.ReactNode;
 }
 
-export class ModalButton extends React.Component<ButtonProps> {}
+export class ModalButton extends React.Component<
+  ButtonProps & {autoFocus?: boolean}
+> {}
+
+export class FocusOnce extends React.Component<{children: React.ReactNode}> {}
 
 export const StyledRoot: StyletronComponent<any>;
 export const StyledBackdrop: StyletronComponent<any>;

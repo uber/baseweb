@@ -4,6 +4,10 @@ import {Overrides} from './overrides';
 import {Locale} from './locale';
 import {Theme, ThemePrimitives} from './theme';
 
+type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
+export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
+export const useStyletron: UseStyletronFn<Theme>;
+
 export function createTheme(
   primitives: ThemePrimitives,
   overrides?: object,
@@ -44,7 +48,7 @@ export interface BaseProviderProps {
 export const BaseProvider: React.FC<BaseProviderProps>;
 
 export interface LocaleProviderProps {
-  locale: Locale;
+  locale: Partial<Locale>;
   children?: React.ReactNode;
 }
 export const LocaleProvider: React.FC<LocaleProviderProps>;
@@ -54,3 +58,16 @@ export interface ThemeProviderProps {
   children?: React.ReactNode;
 }
 export const ThemeProvider: React.FC<ThemeProviderProps>;
+
+export interface WithStyleFn {
+  <C extends StyletronComponent<any>, P extends object>(
+    component: C,
+    style: (props: P & {$theme: Theme}) => StyleObject,
+  ): StyletronComponent<React.ComponentProps<C> & P>;
+  <C extends StyletronComponent<any>>(
+    component: C,
+    style: StyleObject,
+  ): StyletronComponent<React.ComponentProps<C>>;
+}
+
+export const withStyle: WithStyleFn;

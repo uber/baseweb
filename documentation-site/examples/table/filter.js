@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {styled} from 'baseui';
 import {Checkbox} from 'baseui/checkbox';
@@ -29,7 +30,10 @@ const FilterCheckbox = props => (
   </Checkbox>
 );
 
-class FilterTable extends React.Component {
+class FilterTable extends React.Component<
+  {data: any},
+  {filters: any[]},
+> {
   state = {
     filters: [],
   };

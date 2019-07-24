@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 import {Button} from 'baseui/button';
 import {StatefulSelect} from 'baseui/select';

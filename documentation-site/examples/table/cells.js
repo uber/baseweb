@@ -1,4 +1,5 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import {withStyle, styled} from 'styletron-react';
 
 import {Block} from 'baseui/block';
@@ -24,7 +25,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
   paddingBottom: 0,
 });
 
-const StyledDeltaCell = withStyle(StyledCell, props => ({
+const StyledDeltaCell: any = withStyle(StyledCell, props => ({
   ...props.$theme.typography.font500,
   alignItems: 'center',
   backgroundColor: props.$isNegative
