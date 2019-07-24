@@ -117,6 +117,7 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
             {...rootProps}
           >
             <Button
+              $as="a"
               aria-label={this.constructAriaWayfinderLabel(
                 locale,
                 'previous page. current page',
@@ -202,6 +203,7 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
               } ${numPages}`}
             </MaxLabel>
             <Button
+              $as="a"
               aria-label={this.constructAriaWayfinderLabel(
                 locale,
                 'next page. current page',
