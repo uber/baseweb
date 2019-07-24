@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 
 import {Block} from 'baseui/block';
@@ -23,7 +24,7 @@ function formatDateAtIndex(
 }
 
 export default () => {
-  const [dates, setDates] = useState([START_DATE, END_DATE]);
+  const [dates, setDates] = useState<any>([START_DATE, END_DATE]);
 
   return (
     <Block display="flex" alignItems="center">

@@ -30,6 +30,7 @@ export interface TabsProps {
   children: React.ReactNode;
   activeKey?: React.Key;
   disabled?: boolean;
+  renderAll?: boolean;
   onChange?: (args: {activeKey: React.Key}) => any;
   orientation?: ORIENTATION[keyof ORIENTATION];
   overrides?: TabsOverrides<SharedProps & {$active?: boolean}>;
@@ -39,6 +40,7 @@ export const Tabs: React.FC<TabsProps>;
 
 export type StatefulTabsProps = TabsProps & {
   activeKey?: never;
+  renderAll?: boolean;
   initialState?: State;
   stateReducer?: StateReducer;
 };

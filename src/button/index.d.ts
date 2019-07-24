@@ -1,5 +1,9 @@
 import * as React from 'react';
-import {StyledFn, StyletronComponent} from 'styletron-react';
+import {
+  StyledFn,
+  StyletronComponent,
+  StyletronComponentInjectedProps,
+} from 'styletron-react';
 import {Override} from '../overrides';
 
 export interface KIND {
@@ -29,7 +33,10 @@ export interface ButtonOverrides {
   LoadingSpinner?: Override<any>;
 }
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends StyletronComponentInjectedProps<ButtonProps> {
+  href?: string;
+  target?: string;
   children?: React.ReactNode;
   disabled?: boolean;
   endEnhancer?: React.ReactNode;
@@ -51,6 +58,7 @@ export const StyledLoadingSpinnerContainer: StyletronComponent<any>;
 
 export class Button extends React.Component<ButtonProps> {
   internalOnClick(...args: any): void;
+  focus(): void;
 }
 
 export const KIND: KIND;

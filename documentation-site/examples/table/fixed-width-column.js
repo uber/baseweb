@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {styled, withStyle} from 'baseui';
 import {

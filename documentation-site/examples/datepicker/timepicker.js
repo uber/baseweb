@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 import {styled} from 'baseui';
 import {TimePicker} from 'baseui/datepicker';

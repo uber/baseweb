@@ -65,6 +65,7 @@ type PropsT = {
 type StateT = {
   sourceSelected: number,
   source: ?string,
+  sourceTs: ?string,
   sourceFlow: ?string,
 };
 
@@ -73,6 +74,7 @@ class Example extends React.Component<PropsT, StateT> {
   state = {
     sourceSelected: -1,
     source: null,
+    sourceTs: null,
     sourceFlow: null,
   };
 
@@ -80,16 +82,56 @@ class Example extends React.Component<PropsT, StateT> {
     const codeFlow = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${
       this.props.path
     }`);
+    const codeTs = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${this.props.path.replace(
+      '.js',
+      '.tsx',
+    )}`);
     const codeJs = await import(/* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${
       this.props.path
     }`);
     this.setState({
       sourceFlow: codeFlow.default,
-      source: codeJs.default.replace(/^\/\//, '').trim(),
+      sourceTs: codeTs.default,
+      source: codeJs.default
+        // flow-remove-types doesn't remove // from the first line
+        .replace(/^\/\//, '')
+        // remove all instances of <{}>
+        .replace(/<\{\}>/g, '')
+        .trim(),
     });
   }
 
   render() {
+    const isTsx = this.state.sourceSelected === 2;
+    // react-codesandboxer doesn't play nicely when you update its props
+    // it keeps deploying the same source code that was set on initial mount
+    // so if you toggle from JS from TS, it still deploy .js version
+    // that's why we are forcing second mount through an unique "key"
+    const csProps = {
+      name: this.props.title,
+      afterDeploy: () => {
+        trackEvent('codesandbox_deployed', this.props.title);
+      },
+      afterDeployError: () => {
+        trackEvent('codesandbox_deployed_error', this.props.title);
+      },
+      dependencies: {
+        baseui: version,
+        react: '16.8.6',
+        'react-dom': '16.8.6',
+        'react-scripts': '3.0.1',
+        'styletron-engine-atomic': '1.4.0',
+        'styletron-react': '5.2.0',
+        ...this.props.additionalPackages,
+      },
+      children: () => (
+        <Link>
+          <Button kind={KIND.secondary} size={SIZE.compact}>
+            Edit on CodeSandbox
+          </Button>
+        </Link>
+      ),
+    };
     return (
       <Card
         overrides={{
@@ -146,6 +188,15 @@ class Example extends React.Component<PropsT, StateT> {
             >
               Flow
             </Button>
+            <Button
+              kind={KIND.secondary}
+              startEnhancer={() => <CodeIcon />}
+              onClick={() => {
+                trackEvent('show_ts_source', this.props.title);
+              }}
+            >
+              TS
+            </Button>
           </ButtonGroup>
         </Block>
 
@@ -158,38 +209,44 @@ class Example extends React.Component<PropsT, StateT> {
               {this.state.sourceSelected === 1 && (
                 <Source>{this.state.sourceFlow}</Source>
               )}
+              {this.state.sourceSelected === 2 && (
+                <Source>{this.state.sourceTs}</Source>
+              )}
             </Block>
 
-            <CodeSandboxer
-              examplePath="/"
-              example={this.state.source}
-              name={this.props.title}
-              afterDeploy={() => {
-                trackEvent('codesandbox_deployed', this.props.title);
-              }}
-              afterDeployError={() => {
-                trackEvent('codesandbox_deployed_error', this.props.title);
-              }}
-              dependencies={{
-                baseui: version,
-                react: '16.8.6',
-                'react-dom': '16.8.6',
-                'react-scripts': '2.0.3',
-                'styletron-engine-atomic': '1.0.9',
-                'styletron-react': '5.1.2',
-                ...this.props.additionalPackages,
-              }}
-              providedFiles={{'index.js': {content: index}}}
-              template="create-react-app"
-            >
-              {() => (
-                <Link>
-                  <Button kind={KIND.secondary} size={SIZE.compact}>
-                    Edit on CodeSandbox
-                  </Button>
-                </Link>
-              )}
-            </CodeSandboxer>
+            {isTsx ? (
+              <CodeSandboxer
+                key="tsx"
+                examplePath="/example.tsx"
+                example={this.state.sourceTs}
+                providedFiles={{
+                  'index.tsx': {
+                    content: index,
+                  },
+                }}
+                template="create-react-app-typescript"
+                {...csProps}
+                dependencies={{
+                  ...csProps.dependencies,
+                  '@types/styletron-react': '5.0.1',
+                  '@types/styletron-engine-atomic': '1.1.0',
+                  '@types/styletron-standard': '2.0.0',
+                }}
+              />
+            ) : (
+              <CodeSandboxer
+                key="js"
+                examplePath="/example.js"
+                example={this.state.source}
+                providedFiles={{
+                  'index.js': {
+                    content: index,
+                  },
+                }}
+                template="create-react-app"
+                {...csProps}
+              />
+            )}
           </React.Fragment>
         )}
       </Card>

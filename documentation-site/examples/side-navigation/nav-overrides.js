@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 import {Navigation} from 'baseui/side-navigation';
 

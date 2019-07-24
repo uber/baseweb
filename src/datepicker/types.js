@@ -289,7 +289,7 @@ export type TimePickerPropsT = {
    * Optional value that can be provided to fully control the component. If not provided, TimePicker
    * will manage state internally and default to the closest step to new Date().
    */
-  value: ?Date,
+  value?: ?Date,
   disabled?: boolean,
   error?: boolean,
   positive?: boolean,

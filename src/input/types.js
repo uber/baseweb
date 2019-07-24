@@ -23,6 +23,8 @@ export type StateTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type InternalStateT = {
   /** Renders UI in 'focus' state */
   isFocused?: boolean,
+  /** Renders input in 'masked' state if type equals "password" */
+  isMasked?: boolean,
 };
 
 export type StateT = {
@@ -62,6 +64,9 @@ export type BaseInputComponentsT = {
   After?: OverrideT<*>,
   ClearIcon?: OverrideT<*>,
   ClearIconContainer?: OverrideT<*>,
+  MaskToggleButton?: OverrideT<*>,
+  MaskToggleShowIcon?: OverrideT<*>,
+  MaskToggleHideIcon?: OverrideT<*>,
 };
 
 export type InputComponentsT = {

@@ -1,3 +1,4 @@
+// @flow
 import React, {useState} from 'react';
 
 import {Block} from 'baseui/block';
@@ -11,7 +12,7 @@ import {
 const DATE = new Date(2019, 3, 1, 12, 0, 0);
 
 export default () => {
-  const [date, setDate] = useState(DATE);
+  const [date, setDate] = useState<any>(DATE);
   const [zone, setZone] = useState(null);
 
   return (

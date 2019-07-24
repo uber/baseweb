@@ -34,6 +34,7 @@ function titleCase(str) {
 // transform svg string to properly styled jsx
 function reactify(svgString) {
   return svgString
+    .replace(/<!--.*-->\n/gm, '')
     .replace(/<\/?svg[^>]*>/gm, '')
     .replace(/^\s*\n/gm, '')
     .replace(/\n$/, '')
@@ -103,7 +104,9 @@ async function generateNewIcons() {
 
   fs.writeFileSync(
     path.resolve(__dirname, `./icon-exports.js`),
-    `// @flow\n${iconExports.join('\n')}\n`,
+    `/*\nCopyright (c) 2018-2019 Uber Technologies, Inc.\n\nThis source code is licensed under the MIT license found in the\nLICENSE file in the root directory of this source tree.\n*/\n// @flow\n${iconExports.join(
+      '\n',
+    )}\n`,
   );
 
   // eslint-disable-next-line no-console

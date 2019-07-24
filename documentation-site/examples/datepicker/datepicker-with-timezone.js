@@ -1,11 +1,12 @@
+// @flow
 import React, {useState} from 'react';
 import {styled} from 'baseui';
 import {Datepicker, TimezonePicker} from 'baseui/datepicker';
 import {FormControl} from 'baseui/form-control';
 
 export default () => {
-  const [date, setDate] = useState(new Date());
-  const [tz, setZone] = useState({
+  const [date, setDate] = useState<any>(new Date());
+  const [tz, setZone] = useState<any>({
     id: 'America/Fort_Nelson',
     label: 'MST - America/Fort Nelson (GMT -07:00)',
     offset: 420,
