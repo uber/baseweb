@@ -18,6 +18,7 @@ const ListItem = withStyle(StyledDropdownListItem, {
 const Container = withStyle(StyledList, {height: '500px'});
 
 const VirtualList = React.forwardRef((props: any, ref) => {
+  const children = React.Children.toArray(props.children);
   return (
     <Container ref={ref}>
       <AutoSizer>
@@ -33,9 +34,9 @@ const VirtualList = React.forwardRef((props: any, ref) => {
                 <ListItem
                   key={key}
                   style={style}
-                  {...props.children[index].props}
+                  {...children[index].props}
                 >
-                  {props.children[index].props.item.id}
+                  {children[index].props.item.id}
                 </ListItem>
               );
             }}
