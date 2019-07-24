@@ -13,7 +13,7 @@ export const Action = styled<{}>('div', ({$theme: {typography}}) => ({
   ...typography.font450,
 }));
 
-export const Body = styled<{}>('div', ({$theme}) => {
+export const Body = styled<{}>('p', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     marginBottom: sizing.scale600,
@@ -72,7 +72,7 @@ export const Thumbnail = styled<{}>('img', props => {
   };
 });
 
-export const Title = styled<{}>('h1', ({$theme}) => {
+export const Title = styled<{}>('h2', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     ...typography.font500,

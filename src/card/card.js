@@ -83,7 +83,9 @@ function Card(props: CardsPropsT) {
             {title}
           </Title>
         )}
-        <Body {...getOverrideProps(BodyOverride)}>{children}</Body>
+        <Body $as="div" {...getOverrideProps(BodyOverride)}>
+          {children}
+        </Body>
         {action && (
           <Action {...getOverrideProps(ActionOverride)}>{action}</Action>
         )}
