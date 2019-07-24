@@ -10,6 +10,7 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import BasicBreadcrumbs from 'examples/breadcrumbs/basic.js';
+import PseudoBreadcrumbs from 'examples/breadcrumbs/pseudo.js';
 
 import Overrides from '../../components/overrides';
 import {Breadcrumbs} from 'baseui/breadcrumbs';
@@ -26,6 +27,15 @@ the user’s location in an application.
 <Example title="Breadcrumbs basic usage" path="breadcrumbs/basic.js">
   <BasicBreadcrumbs />
 </Example>
+
+<Example
+  title="Breadcrumbs with pseudo separators"
+  path="breadcrumbs/pseudo.js"
+>
+  <PseudoBreadcrumbs />
+</Example>
+
+This is the recommended approach where SEO/Accessibility is important.
 
 ## Overrides
 
