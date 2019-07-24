@@ -102,14 +102,20 @@ export default class CalendarHeader extends React.Component<
     }
   };
 
-  isHiddenPaginationButton = (direction: $Values<typeof DIRECTION>) => {
-    const {monthsShown, order, orientation} = this.props;
+  isMultiMonthHorizontal = () => {
+    const {monthsShown, orientation} = this.props;
 
-    if (!orientation || !monthsShown) {
+    if (!monthsShown) {
       return false;
     }
 
-    if (orientation === ORIENTATION.horizontal && monthsShown > 1) {
+    return orientation === ORIENTATION.horizontal && monthsShown > 1;
+  };
+
+  isHiddenPaginationButton = (direction: $Values<typeof DIRECTION>) => {
+    const {monthsShown, order} = this.props;
+
+    if (monthsShown && this.isMultiMonthHorizontal()) {
       if (direction === DIRECTION.NEXT) {
         const isLastMonth = order === monthsShown - 1;
         return !isLastMonth;
@@ -283,7 +289,14 @@ export default class CalendarHeader extends React.Component<
       return item.id === yearMonthToId(getYear(date), getMonth(date));
     });
 
-    return (
+    const monthYearTitle = `${getMonthInLocale(
+      getMonth(date),
+      locale,
+    )} ${getYear(date)}`;
+
+    return this.isMultiMonthHorizontal() ? (
+      <div>{monthYearTitle}</div>
+    ) : (
       <OverriddenPopover
         placement="bottom"
         isOpen={this.state.isMonthYearDropdownOpen}
@@ -328,7 +341,7 @@ export default class CalendarHeader extends React.Component<
           }}
           {...monthYearSelectButtonProps}
         >
-          {`${getMonthInLocale(getMonth(date), locale)} ${getYear(date)}`}
+          {monthYearTitle}
           <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
             <TriangleDown />
           </MonthYearSelectIconContainer>

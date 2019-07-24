@@ -14,6 +14,7 @@ import {addDays} from 'date-fns';
 import CalendarHeader from '../calendar-header.js';
 import ArrowLeft from '../../icon/arrow-left.js';
 import ArrowRight from '../../icon/arrow-right.js';
+import {StyledMonthYearSelectButton} from '../styled-components.js';
 
 jest.useFakeTimers();
 
@@ -155,7 +156,22 @@ describe('Datepicker', () => {
     expect(renderedInput.props().value).toEqual('2019/01/01 - 2019/01/04');
   });
 
-  test('calendar popover renders multiple months and hides redundant UI', () => {
+  test('calendar popover renders multiple months', () => {
+    const date = new Date('2019 01 01');
+    const monthsShown = 2;
+    const component = mount(
+      <Datepicker monthsShown={monthsShown} value={date} />,
+    );
+    const renderedPopover = component.find(Popover).first();
+    const PopoverContent = () => renderedPopover.props().content;
+
+    const renderedCal = mount(<PopoverContent />);
+
+    const renderedMonthHeaders = renderedCal.find(CalendarHeader);
+    expect(renderedMonthHeaders.length).toEqual(monthsShown);
+  });
+
+  test('hide pagination buttons and month drowndown with mutliple months', () => {
     const date = new Date('2019 01 01');
     const monthsShown = 3;
     const component = mount(
@@ -171,11 +187,14 @@ describe('Datepicker', () => {
     const renderedCal = mount(<PopoverContent />);
 
     const renderedMonthHeaders = renderedCal.find(CalendarHeader);
-    expect(renderedMonthHeaders.length).toEqual(monthsShown);
-
     const renderedPreviousButton = renderedMonthHeaders.find(ArrowLeft);
     expect(renderedPreviousButton.length).toEqual(1);
     const renderedNextButton = renderedMonthHeaders.find(ArrowRight);
     expect(renderedNextButton.length).toEqual(1);
+
+    const renderedMonthYearSelectButton = renderedMonthHeaders.find(
+      StyledMonthYearSelectButton,
+    );
+    expect(renderedMonthYearSelectButton.length).toEqual(0);
   });
 });

@@ -377,7 +377,9 @@ export default class Calendar extends React.Component<
           />
         </CalendarContainer>,
       );
-      monthList.push(<div key={`month-${i}`}>{monthSubComponents}</div>);
+      monthList.push(
+        <div key={`month-component-${i}`}>{monthSubComponents}</div>,
+      );
     }
     return (
       <MonthContainer {...monthContainerProps}>{monthList}</MonthContainer>
