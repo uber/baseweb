@@ -13,7 +13,12 @@ import {LocaleContext} from '../locale/index.js';
 import {ChevronRight} from '../icon/index.js';
 import type {BreadcrumbsPropsT} from './types.js';
 import type {BreadcrumbLocaleT} from './locale.js';
-import {StyledRoot, StyledSeparator} from './styled-components.js';
+import {
+  StyledRoot,
+  StyledSeparator,
+  StyledList,
+  StyledListItem,
+} from './styled-components.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
 type LocaleT = {|locale?: BreadcrumbLocaleT|};
@@ -24,6 +29,11 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
 
   const [Root, baseRootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Icon, baseIconProps] = getOverrides(overrides.Icon, ChevronRight);
+  const [List, baseListProps] = getOverrides(overrides.List, StyledList);
+  const [ListItem, baseListItemProps] = getOverrides(
+    overrides.ListItem,
+    StyledListItem,
+  );
   const [Separator, baseSeparatorProps] = getOverrides(
     overrides.Separator,
     StyledSeparator,
@@ -38,15 +48,20 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
   baseIconProps.overrides = iconOverrides;
 
   Children.forEach(props.children, (child, index) => {
-    childrenWithSeparators.push(child);
-
-    if (index !== numChildren - 1) {
-      childrenWithSeparators.push(
-        <Separator {...baseSeparatorProps} key={`separator-${index}`}>
-          <Icon {...baseIconProps} />
-        </Separator>,
-      );
-    }
+    childrenWithSeparators.push(
+      <ListItem
+        key={`breadcrumb-item-${index}`}
+        $itemIndex={index}
+        {...baseListItemProps}
+      >
+        {child}
+        {index !== numChildren - 1 && (
+          <Separator {...baseSeparatorProps} key={`separator-${index}`}>
+            <Icon {...baseIconProps} />
+          </Separator>
+        )}
+      </ListItem>,
+    );
   });
 
   return (
@@ -57,7 +72,7 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
       data-baseweb="breadcrumbs"
       {...baseRootProps}
     >
-      {childrenWithSeparators}
+      <List {...baseListProps}>{childrenWithSeparators}</List>
     </Root>
   );
 }
