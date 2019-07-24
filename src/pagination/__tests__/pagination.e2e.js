@@ -10,8 +10,8 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
-  prevButton: 'button[data-test="prev-button"]',
-  nextButton: 'button[data-test="next-button"]',
+  prevButton: 'a[data-test="prev-button"]',
+  nextButton: 'a[data-test="next-button"]',
   dropDownButton: '[data-baseweb="select"] [aria-selected]',
 };
 
