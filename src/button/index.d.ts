@@ -48,6 +48,7 @@ export interface ButtonProps
   shape?: SHAPE[keyof SHAPE];
   size?: SIZE[keyof SIZE];
   startEnhancer?: React.ReactNode;
+  type?: 'submit' | 'reset' | 'button';
 }
 
 export const StyledBaseButton: StyletronComponent<any>;
