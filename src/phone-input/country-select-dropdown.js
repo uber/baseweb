@@ -31,13 +31,15 @@ function CountrySelectDropdown(
   props: CountrySelectDropdownPropsT & {forwardedRef: React.ElementRef<*>},
 ) {
   const {
-    children,
     forwardedRef,
     country,
     overrides,
     maxDropdownHeight,
     mapIsoToLabel,
   } = props;
+
+  const children = React.Children.toArray(props.children);
+
   const [Container, containerProps] = getOverrides(
     overrides.CountrySelectDropdown,
     DefaultContainer,
