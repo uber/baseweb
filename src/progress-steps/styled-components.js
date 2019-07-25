@@ -14,6 +14,8 @@ export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.listHeaderFill,
     display: 'inline-block',
+    marginBottom: 0,
+    marginTop: 0,
     paddingTop: $theme.sizing.scale300,
     paddingRight: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale500,
