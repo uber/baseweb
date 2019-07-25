@@ -9,6 +9,11 @@ export const DISPLAY_FORMAT = 'L';
 export const ISO_FORMAT = 'YYYY-MM-DD';
 export const ISO_MONTH_FORMAT = 'YYYY-MM';
 
+export const ORIENTATION = Object.freeze({
+  horizontal: 'horizontal',
+  vertical: 'vertical',
+});
+
 export const STATE_CHANGE_TYPE = Object.freeze({
   change: 'change',
   moveUp: 'moveUp',

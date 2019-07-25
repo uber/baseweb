@@ -28,6 +28,8 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
   };
 });
 
+export const StyledMonthContainer = styled('div', {display: 'flex'});
+
 export const StyledCalendarContainer = styled<SharedStylePropsT>(
   'div',
   props => {
