@@ -143,6 +143,21 @@ const Index = (props: {
       </Link>
       , this is one of the fastest solution.
     </Markdown.p>
+    <H2>Who is using Base Web?</H2>
+    <Block>
+      <Block width="125px" $as="img" src="/static/images/uber-logo.png" />
+      <Block
+        $as="a"
+        href="http://t.uber.com/base-web-adopters"
+        $style={{textDecoration: 'none'}}
+        display="block"
+        paddingTop="scale800"
+      >
+        <Button size="compact" kind="secondary">
+          Please let us know if you are using Base Web!
+        </Button>
+      </Block>
+    </Block>
     <Contributors contributors={props.contributors} />
   </Layout>
 );
