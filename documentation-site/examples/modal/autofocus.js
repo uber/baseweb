@@ -20,12 +20,10 @@ export default function() {
           <ModalHeader>Some Header</ModalHeader>
         </FocusOnce>
         <ModalBody>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Maecenas quam nisl, tempor ut varius sit amet, sodales
-            sit amet mauris. Aliquam vitae sapien quis eros finibus
-            aliquet.
-          </p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Maecenas quam nisl, tempor ut varius sit amet, sodales sit
+          amet mauris. Aliquam vitae sapien quis eros finibus
+          aliquet.
         </ModalBody>
         <ModalFooter>
           <ModalButton onClick={() => setOpen(false)}>
