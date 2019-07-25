@@ -10,9 +10,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
-import {H1} from '../components/markdown-elements';
+import {StyledLink as Link} from 'baseui/link';
+import {H1, H2} from '../components/markdown-elements';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
+import {Tag} from 'baseui/tag';
 import fetch from 'isomorphic-fetch';
+
+import BlogPosts from '../posts.js';
 
 import {HEADER_BREAKPOINT} from '../components/header-navigation';
 import Layout from '../components/layout';
@@ -42,12 +46,30 @@ const Index = (props: {
   contributors: Contributor[],
 }) => (
   <Layout toggleTheme={props.toggleTheme}>
+    <Block
+      paddingTop={['scale100', 'scale400', 'scale800']}
+      display="block"
+      $as="a"
+      href={BlogPosts[0].path}
+      overrides={{
+        Block: {
+          style: {
+            textDecoration: 'none',
+          },
+        },
+      }}
+    >
+      <Tag kind="positive" closeable={false}>
+        New
+      </Tag>
+      <Block color="mono900" display="inline-block" font="font350">
+        {BlogPosts[0].title}
+      </Block>
+    </Block>
     <H1>Base Web React UI Framework</H1>
     <Markdown.p>
-      Base Web is a foundation, a basis for initiating, evolving, and unifying
-      web products. The system is designed to be fully responsive and device
-      agnostic providing designers and developers with a unique catalog of
-      components.
+      Base Web is a foundation for initiating, evolving, and unifying web
+      products.
     </Markdown.p>
 
     <Block
@@ -68,8 +90,7 @@ const Index = (props: {
       <Card title="Installing Base Web" overrides={cardOverrides}>
         <StyledBody>
           Base Web is distributed as an npm package. As Base Web is built on top
-          of a CSS-in-JS engine, all you need is the dependencies from npm. Let
-          {"'"}s add Base to your project!
+          of a CSS-in-JS engine, all you need is the dependencies from npm.
         </StyledBody>
         <StyledAction>
           <Block
@@ -100,7 +121,28 @@ const Index = (props: {
         </StyledAction>
       </Card>
     </Block>
-
+    <H2>Extensibility</H2>
+    <Markdown.p>
+      Through the{' '}
+      <Link href="/theming/understanding-overrides/">Overrides API</Link> and{' '}
+      <Link href="/theming/custom-themes">configurable Themes</Link>, Base Web
+      provides you with an extreme level of customization. No matter if you want
+      to modify a component in one place only, or you want to build your design
+      system on top of Base Web, we have the options for you.
+    </Markdown.p>
+    <H2>Built-in Accessibility</H2>
+    <Markdown.p>
+      Base Web does the heavy lifting for you - components are built with
+      accessibility being a first-class citizen.
+    </Markdown.p>
+    <H2>Performance</H2>
+    <Markdown.p>
+      Styletron is the CSS-in-JS engine powering Base Web. Based on{' '}
+      <Link href="https://ryantsao.com/blog/virtual-css-with-styletron">
+        our benchmarks
+      </Link>
+      , this is one of the fastest solution.
+    </Markdown.p>
     <Contributors contributors={props.contributors} />
   </Layout>
 );
