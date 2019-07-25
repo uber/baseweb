@@ -11,6 +11,7 @@ documentation-site/.next/.*
 
 [include]
 ./src/
+documentation-site/examples/.*
 
 [libs]
 
