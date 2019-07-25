@@ -18,7 +18,7 @@ import Anchor from './anchor';
 import slugify from '../helpers/slugify';
 import {useHover} from './hooks';
 type Props = {
-  children: string,
+  children: string | React.Node,
 };
 
 const getText = children => {
