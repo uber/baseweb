@@ -51,7 +51,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                 forwardedRef={null}
                 role="tablist"
               >
-                <div
+                <ul
                   role="tablist"
                   styled-component="true"
                   test-style={
@@ -59,12 +59,15 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                       "backgroundColor": "$theme.colors.tabBarFill",
                       "display": "flex",
                       "flexDirection": "row",
+                      "marginBottom": 0,
+                      "marginTop": 0,
                       "paddingLeft": "$theme.sizing.scale400",
                       "paddingRight": "$theme.sizing.scale400",
                     }
                   }
                 >
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={true}
                     disabled={false}
@@ -78,6 +81,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                   >
                     <ForwardRef
                       $active={true}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -90,6 +94,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                     >
                       <MockStyledComponent
                         $active={true}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -142,6 +147,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                     </ForwardRef>
                   </TabComponent>
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={false}
                     disabled={false}
@@ -155,6 +161,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                   >
                     <ForwardRef
                       $active={false}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -167,6 +174,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                     >
                       <MockStyledComponent
                         $active={false}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -219,6 +227,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                     </ForwardRef>
                   </TabComponent>
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={false}
                     disabled={false}
@@ -232,6 +241,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                   >
                     <ForwardRef
                       $active={false}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -244,6 +254,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                     >
                       <MockStyledComponent
                         $active={false}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -295,7 +306,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                       </MockStyledComponent>
                     </ForwardRef>
                   </TabComponent>
-                </div>
+                </ul>
               </MockStyledComponent>
             </ForwardRef>
             <ForwardRef
@@ -479,7 +490,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                 forwardedRef={null}
                 role="tablist"
               >
-                <div
+                <ul
                   role="tablist"
                   styled-component="true"
                   test-style={
@@ -487,12 +498,15 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                       "backgroundColor": "$theme.colors.tabBarFill",
                       "display": "flex",
                       "flexDirection": "row",
+                      "marginBottom": 0,
+                      "marginTop": 0,
                       "paddingLeft": "$theme.sizing.scale400",
                       "paddingRight": "$theme.sizing.scale400",
                     }
                   }
                 >
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={false}
                     disabled={false}
@@ -506,6 +520,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   >
                     <ForwardRef
                       $active={false}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -518,6 +533,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     >
                       <MockStyledComponent
                         $active={false}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -570,6 +586,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     </ForwardRef>
                   </TabComponent>
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={true}
                     disabled={false}
@@ -583,6 +600,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   >
                     <ForwardRef
                       $active={true}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -595,6 +613,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     >
                       <MockStyledComponent
                         $active={true}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -647,6 +666,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     </ForwardRef>
                   </TabComponent>
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={false}
                     disabled={false}
@@ -660,6 +680,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   >
                     <ForwardRef
                       $active={false}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -672,6 +693,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     >
                       <MockStyledComponent
                         $active={false}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -723,7 +745,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                       </MockStyledComponent>
                     </ForwardRef>
                   </TabComponent>
-                </div>
+                </ul>
               </MockStyledComponent>
             </ForwardRef>
             <ForwardRef
@@ -892,7 +914,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                 forwardedRef={null}
                 role="tablist"
               >
-                <div
+                <ul
                   role="tablist"
                   styled-component="true"
                   test-style={
@@ -900,12 +922,15 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                       "backgroundColor": "$theme.colors.tabBarFill",
                       "display": "flex",
                       "flexDirection": "row",
+                      "marginBottom": 0,
+                      "marginTop": 0,
                       "paddingLeft": "$theme.sizing.scale400",
                       "paddingRight": "$theme.sizing.scale400",
                     }
                   }
                 >
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={true}
                     disabled={false}
@@ -919,6 +944,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   >
                     <ForwardRef
                       $active={true}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -931,6 +957,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     >
                       <MockStyledComponent
                         $active={true}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -983,6 +1010,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     </ForwardRef>
                   </TabComponent>
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={false}
                     disabled={false}
@@ -996,6 +1024,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   >
                     <ForwardRef
                       $active={false}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -1008,6 +1037,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     >
                       <MockStyledComponent
                         $active={false}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -1060,6 +1090,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     </ForwardRef>
                   </TabComponent>
                   <TabComponent
+                    $as="li"
                     $orientation="horizontal"
                     active={false}
                     disabled={false}
@@ -1073,6 +1104,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   >
                     <ForwardRef
                       $active={false}
+                      $as="li"
                       $disabled={false}
                       $orientation="horizontal"
                       aria-disabled={null}
@@ -1085,6 +1117,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     >
                       <MockStyledComponent
                         $active={false}
+                        $as="li"
                         $disabled={false}
                         $orientation="horizontal"
                         aria-disabled={null}
@@ -1136,7 +1169,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                       </MockStyledComponent>
                     </ForwardRef>
                   </TabComponent>
-                </div>
+                </ul>
               </MockStyledComponent>
             </ForwardRef>
             <ForwardRef

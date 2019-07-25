@@ -3,6 +3,7 @@
 exports[`Tab basic rendering: styled tab has correct props 1`] = `
 Object {
   "$active": true,
+  "$as": undefined,
   "$disabled": false,
   "$orientation": undefined,
   "aria-disabled": null,

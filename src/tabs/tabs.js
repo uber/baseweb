@@ -34,12 +34,12 @@ export default class Tabs extends React.Component<TabsPropsT> {
     // eslint-disable-next-line flowtype/no-weak-types
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
-
       const key = child.key || String(index);
       return React.cloneElement(child, {
         key,
         id: key, // for aria-labelledby
         active: key === activeKey,
+        $as: 'li',
         disabled: disabled || child.props.disabled,
         $orientation: orientation,
         onSelect: () => this.onChange({activeKey: key}),

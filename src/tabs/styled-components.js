@@ -58,17 +58,19 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
 });
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const TabBar = styled<SharedStylePropsArgT>('div', props => {
+export const TabBar = styled<SharedStylePropsArgT>('ul', props => {
   const {
     $orientation,
     $theme: {colors, sizing},
   } = props;
   return {
+    backgroundColor: colors.tabBarFill,
     display: 'flex',
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
+    marginBottom: 0,
+    marginTop: 0,
     paddingLeft: sizing.scale400,
     paddingRight: sizing.scale400,
-    backgroundColor: colors.tabBarFill,
   };
 });
 
