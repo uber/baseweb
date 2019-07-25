@@ -13,21 +13,13 @@ import {DeleteAlt} from '../icon/index.js';
 
 export const StyledClearIconContainer = styled<{
   $alignTop: boolean,
-  $size: SizeT,
   $theme: ThemeT,
-}>('div', ({$size = SIZE.default, $alignTop = false, $theme}) => {
-  const sidePadding =
-    $size === SIZE.compact
-      ? $theme.sizing.scale100
-      : $size === SIZE.large
-        ? $theme.sizing.scale300
-        : $theme.sizing.scale200;
+}>('div', ({$alignTop = false, $theme}) => {
   return {
     display: 'flex',
     alignItems: $alignTop ? 'flex-start' : 'center',
-    paddingLeft: sidePadding,
-    paddingRight: sidePadding,
-    paddingTop: $alignTop ? sidePadding : '0px',
+    paddingRight: $theme.sizing.scale500,
+    paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
     color: $theme.colors.foregroundAlt,
   };
 });
