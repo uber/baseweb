@@ -15,6 +15,11 @@ export interface STATE_CHANGE_TYPE {
   mouseLeave: 'mouseLeave';
 }
 
+export interface ORIENTATION {
+  horizontal: 'horizontal';
+  vertical: 'vertical';
+}
+
 export type onChange = (args: {date: Date | Date[]}) => any;
 export type StateReducer = (
   stateType: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE],
@@ -63,6 +68,7 @@ export interface CalendarProps {
   onMonthChange?: (args: {date: Date}) => any;
   onYearChange?: (args: {date: Date}) => any;
   onChange?: onChange;
+  orientation?: ORIENTATION[keyof ORIENTATION];
   overrides?: DatepickerOverrides<SharedStylePropsT>;
   peekNextMonth?: boolean;
   timeSelectStart?: boolean;
@@ -118,6 +124,7 @@ export interface DatepickerOverrides<T> {
   PrevButtonIcon?: Override<T>;
   NextButton?: Override<T>;
   NextButtonIcon?: Override<T>;
+  MonthContainer?: Override<T>;
   MonthHeader?: Override<T>;
   MonthYearSelectButton?: Override<T>;
   MonthYearSelectIconContainer?: Override<T>;
@@ -229,6 +236,8 @@ export const ISO_FORMAT: 'YYYY-MM-DD';
 export const ISO_MONTH_FORMAT: 'YYYY-MM';
 
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+
+export const ORIENTATION: ORIENTATION;
 
 export const WEEKDAYS: [0, 1, 2, 3, 4, 5, 6];
 
