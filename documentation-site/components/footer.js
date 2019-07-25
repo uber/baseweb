@@ -64,6 +64,9 @@ export default () => (
       <StyledLink href="https://github.com/uber-web/baseui" target="_blank">
         GitHub
       </StyledLink>
+      <StyledLink href="https://twitter.com/BaseWebReact" target="_blank">
+        Twitter
+      </StyledLink>
       <StyledLink
         href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
         target="_blank"
