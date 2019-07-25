@@ -10,7 +10,7 @@ function Icon() {
     <div style={{width: '16px', marginTop: '3px'}}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        ariaHidden="true"
+        aria-hidden="true"
         className="svg-inline--fa fa-code fa-w-20"
         data-icon="code"
         data-prefix="fas"
