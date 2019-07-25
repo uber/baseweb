@@ -161,13 +161,27 @@ export type PopoverPrivateStateT = {
   isMounted: boolean,
 };
 
-export type SharedStylePropsArgT = {
+export type ArrowStylePropsArgT = {
   $arrowOffset: OffsetT,
+  $placement: TetherPlacementT,
+};
+
+export type BodyStylePropsArgT = {
   $isAnimating: boolean,
   $isOpen: boolean,
   $popoverOffset: OffsetT,
   $placement: TetherPlacementT,
   $showArrow: boolean,
+};
+
+export type InnerStylePropsArgT = {};
+/*
+* Can't use Intersection types because of https://github.com/facebook/flow/issues/7946
+* export type SharedStylePropsArgT = ArrowStylePropsArgT & BodyStylePropsArgT & InnerStylePropsArgT;
+*/
+export type SharedStylePropsArgT = {
+  ...$Exact<ArrowStylePropsArgT>,
+  ...$Exact<BodyStylePropsArgT>,
 };
 
 export type AnchorPropsT = {

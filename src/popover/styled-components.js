@@ -13,13 +13,17 @@ import {
   getStartPosition,
   getEndPosition,
 } from './utils.js';
-import type {SharedStylePropsArgT} from './types.js';
+import type {
+  ArrowStylePropsArgT,
+  BodyStylePropsArgT,
+  InnerStylePropsArgT,
+} from './types.js';
 import type {ThemeT} from '../styles/types.js';
 
 /**
  * Main popover container element that gets positioned next to the anchor
  */
-export function getBodyStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
+export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
   const {
     $isOpen,
     $isAnimating,
@@ -53,12 +57,12 @@ export function getBodyStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
   };
 }
 
-export const Body = styled<SharedStylePropsArgT>('div', getBodyStyles);
+export const Body = styled<BodyStylePropsArgT>('div', getBodyStyles);
 
 /**
  * Arrow shown between the popover and the anchor element
  */
-export function getArrowStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
+export function getArrowStyles(props: ArrowStylePropsArgT & {$theme: ThemeT}) {
   const {$arrowOffset, $placement, $theme} = props;
   return {
     backgroundColor: $theme.colors.backgroundAlt,
@@ -71,7 +75,7 @@ export function getArrowStyles(props: SharedStylePropsArgT & {$theme: ThemeT}) {
   };
 }
 
-export const Arrow = styled<SharedStylePropsArgT>('div', getArrowStyles);
+export const Arrow = styled<ArrowStylePropsArgT>('div', getArrowStyles);
 
 /**
  * Extra div that holds the popover content. This extra element
@@ -91,7 +95,7 @@ export function getInnerStyles({$theme}: {$theme: ThemeT}) {
   };
 }
 
-export const Inner = styled<SharedStylePropsArgT>('div', getInnerStyles);
+export const Inner = styled<InnerStylePropsArgT>('div', getInnerStyles);
 
 /**
  * A drop-in component that provides the recommended padding
