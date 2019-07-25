@@ -19,7 +19,7 @@ export default function() {
         <FocusOnce>
           <ModalHeader>Some Header</ModalHeader>
         </FocusOnce>
-        <ModalBody>
+        <ModalBody $as="div">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Maecenas quam nisl, tempor ut varius sit amet, sodales
