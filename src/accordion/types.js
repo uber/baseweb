@@ -70,6 +70,11 @@ export type AccordionPropsT = {
   /** Handler called each time the component state changes.
    * Used to override default state-change functionality. */
   stateReducer: StateReducerT,
+  /**
+   * Allows users to render all child content whether a panel is expanded or not
+   * for SEO purposed
+   */
+  renderPanelContent?: boolean,
 };
 
 type SharedPanelPropsT = {
@@ -93,6 +98,11 @@ type SharedPanelPropsT = {
   overrides?: PanelOverridesT<SharedStylePropsArgT>,
   /** The title of an accordion panel. */
   title?: React.Node,
+  /**
+   * Allows users to render all child content whether a panel is expanded or not
+   * for SEO purposed
+   */
+  renderPanelContent?: boolean,
 };
 
 export type PanelPropsT = SharedPanelPropsT & {
