@@ -4,6 +4,7 @@ const theme = {
     color: '#333',
     backgroundColor: 'rgb(253, 253, 253)',
     fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
+    margin: 0,
   },
   styles: [
     {
