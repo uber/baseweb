@@ -90,7 +90,9 @@ class BaseInput<T: EventTarget> extends React.Component<
     const input = this.inputRef.current;
     if (input) {
       const nativeInputValue = Object.getOwnPropertyDescriptor(
-        window.HTMLInputElement.prototype,
+        this.props.type === CUSTOM_INPUT_TYPE.textarea
+          ? window.HTMLTextAreaElement.prototype
+          : window.HTMLInputElement.prototype,
         'value',
       );
       if (nativeInputValue) {
