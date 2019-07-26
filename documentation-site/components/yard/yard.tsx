@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStyletron} from 'styletron-react';
+import {useStyletron} from 'baseui';
 import Router, {withRouter} from 'next/router';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {Input} from 'baseui/input';
@@ -23,6 +23,9 @@ import {
   StyledRow,
   StyledCell,
 } from 'baseui/table';
+import darkTheme from './dark-theme';
+import lightTheme from './light-theme';
+import CodeBox from './code-box';
 
 const parse: any = babel.parsers.babel.parse;
 
@@ -36,11 +39,16 @@ const transformCode = (code: string) =>
 
 const formatCode = (code: string) => {
   try {
-    return prettier.format(code, {
-      parser: 'babel',
-      printWidth: 60,
-      plugins: [babel],
-    });
+    return (
+      prettier
+        .format(code, {
+          parser: 'babel',
+          printWidth: 60,
+          plugins: [babel],
+        })
+        // remove newline at the end of file
+        .replace(/[\r\n]+$/, '')
+    );
   } catch (e) {
     return code;
   }
@@ -93,9 +101,7 @@ const getCode = (props: any) => {
   });
   const imports = `import {Button, KIND, SIZE} from 'baseui/button';\n\n`;
   if (children.value) {
-    return `${imports}export default () => <Button${propsString}>${
-      children.value
-    }</Button>`;
+    return `${imports}export default () => <Button${propsString}>${children.value}</Button>`;
   } else {
     return `${imports}export default () => <Button${propsString} />`;
   }
@@ -277,44 +283,42 @@ const ValueCell: React.SFC<{
 };
 
 export default withRouter(({router}) => {
-  const [css] = useStyletron();
+  const [css, theme] = useStyletron();
   const [state, dispatch] = React.useReducer(reducer, {
     code: formatCode(getCode(initialProps)),
     props: initialProps,
   });
 
-  React.useEffect(
-    () => {
-      if (router.query.code) {
-        const propValues: any = {};
-        const parsedProps = parseProps(router.query.code as string, 'Button');
-        Object.keys(state.props).forEach(name => {
-          propValues[name] = initialProps[name].value;
-          propValues[name] = parsedProps[name];
-        });
-        dispatch({
-          type: Action.UpdatePropsAndCode,
-          payload: {
-            code: formatCode(router.query.code as string),
-            updatedPropValues: propValues,
-          },
-        });
-      }
-    },
-    [router.query.code],
-  );
-
+  React.useEffect(() => {
+    if (router.query.code) {
+      const propValues: any = {};
+      const parsedProps = parseProps(router.query.code as string, 'Button');
+      Object.keys(state.props).forEach(name => {
+        propValues[name] = initialProps[name].value;
+        propValues[name] = parsedProps[name];
+      });
+      dispatch({
+        type: Action.UpdatePropsAndCode,
+        payload: {
+          code: formatCode(router.query.code as string),
+          updatedPropValues: propValues,
+        },
+      });
+    }
+  }, [router.query.code]);
   return (
-    <div className={css({margin: '2em'})}>
+    <React.Fragment>
       <LiveProvider
         code={state.code}
         scope={{Button, KIND, SIZE}}
         transformCode={transformCode}
+        theme={theme.name === 'light-theme' ? lightTheme : darkTheme}
+        language="jsx"
       >
         <div className={css({height: '50px'})}>
           <LivePreview />
         </div>
-        <div className={css({margin: '2em 0em'})}>
+        <div className={css({marginTop: '2em'})}>
           <StyledTable>
             <StyledHead>
               <StyledHeadCell $style={{maxWidth: '120px'}}>
@@ -360,14 +364,9 @@ export default withRouter(({router}) => {
             </StyledBody>
           </StyledTable>
         </div>
-        <div
-          className={css({
-            backgroundColor: '#222',
-            fontSize: '1.6em',
-            color: '#FFF',
-          })}
-        >
+        <CodeBox>
           <LiveEditor
+            lang="jsx"
             onChange={newCode => {
               const propValues: any = {};
               try {
@@ -391,7 +390,8 @@ export default withRouter(({router}) => {
               }
             }}
           />
-        </div>
+        </CodeBox>
+
         <LiveError />
       </LiveProvider>
       <Button
@@ -415,6 +415,6 @@ export default withRouter(({router}) => {
       >
         Format
       </Button>
-    </div>
+    </React.Fragment>
   );
 });
