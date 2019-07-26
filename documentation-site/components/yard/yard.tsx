@@ -2,32 +2,23 @@ import React from 'react';
 import {useStyletron} from 'baseui';
 import Router, {withRouter} from 'next/router';
 import {Button, KIND, SIZE} from 'baseui/button';
-import {Input} from 'baseui/input';
-import {Textarea} from 'baseui/textarea';
-import {Radio, RadioGroup} from 'baseui/radio';
-// @ts-ignore
+import {Card, StyledBody as CardStyledBody} from 'baseui/card';
+
 import prettier from 'prettier/standalone';
-// @ts-ignore
 import traverse from '@babel/traverse';
-// @ts-ignore
 import generate from '@babel/generator';
-// @ts-ignore
 import babel from 'prettier/parser-babylon';
-import {Checkbox} from 'baseui/checkbox';
+
+import Knobs from './knobs';
+import {PropTypes} from './const';
+import {assertUnreachable} from './utils';
+
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
-import {
-  StyledTable,
-  StyledHead,
-  StyledHeadCell,
-  StyledBody,
-  StyledRow,
-  StyledCell,
-} from 'baseui/table';
 import darkTheme from './dark-theme';
 import lightTheme from './light-theme';
 import CodeBox from './code-box';
 
-const parse: any = babel.parsers.babel.parse;
+const parse = babel.parsers.babel.parse as (code: string) => any;
 
 const FILTERED = [/^import.*/gim, 'export default', 'export'];
 
@@ -57,20 +48,6 @@ const formatCode = (code: string) => {
 enum Action {
   UpdateCode,
   UpdatePropsAndCode,
-}
-
-enum PropTypes {
-  String = 'string',
-  Boolean = 'boolean',
-  Number = 'number',
-  Enum = 'enum',
-  Array = 'array',
-  Object = 'object',
-  Function = 'function',
-}
-
-function assertUnreachable(): never {
-  throw new Error("Didn't expect to get here");
 }
 
 const getCode = (props: any) => {
@@ -183,13 +160,14 @@ function reducer(state: any, action: {type: Action; payload: any}) {
 function parseProps(code: string, elementName: string) {
   const propValues: any = {};
   try {
-    const ast: any = parse(code);
+    const ast = parse(code);
     traverse(ast, {
-      enter(path: any) {
+      enter(path) {
         if (
           Object.keys(propValues).length === 0 && // process just the first element
           path.node.type === 'JSXElement' &&
           path.node.openingElement.type === 'JSXOpeningElement' &&
+          //@ts-ignore
           path.node.openingElement.name.name === elementName
         ) {
           path.node.openingElement.attributes.forEach((attr: any) => {
@@ -211,10 +189,9 @@ function parseProps(code: string, elementName: string) {
             }
             propValues[name] = value;
           });
-          propValues['children'] = generate(path.node.children[0]).code.replace(
-            /^\s+|\s+$/g,
-            '',
-          );
+          propValues['children'] = generate(
+            (path.node as any).children[0],
+          ).code.replace(/^\s+|\s+$/g, '');
         }
       },
     });
@@ -223,64 +200,6 @@ function parseProps(code: string, elementName: string) {
   }
   return propValues;
 }
-
-const ValueCell: React.SFC<{
-  name: string;
-  val: any;
-  set: any;
-  type: PropTypes;
-  options: any;
-}> = ({name, type, val, set, options}) => {
-  switch (type) {
-    case PropTypes.String:
-    case PropTypes.Number:
-    case PropTypes.Array:
-    case PropTypes.Object:
-      return (
-        <Input
-          //@ts-ignore
-          onChange={event => set(event.target.value)}
-          placeholder="Controlled Input"
-          value={val}
-        />
-      );
-    case PropTypes.Boolean:
-      return <Checkbox checked={val} onChange={() => set(!val)} />;
-    case PropTypes.Enum:
-      return (
-        <RadioGroup
-          name="radio group"
-          //@ts-ignore
-          onChange={e => set(e.target.value)}
-          value={val}
-        >
-          {Object.keys(options).map(opt => (
-            <Radio value={`${name.toUpperCase()}.${opt}`}>{opt}</Radio>
-          ))}
-        </RadioGroup>
-      );
-    case PropTypes.Function:
-      return (
-        <Textarea
-          //@ts-ignore
-          onChange={event => set(event.target.value)}
-          value={val}
-          overrides={{
-            Input: {
-              style: {
-                fontSize: '0.8em',
-                fontFamily:
-                  "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
-                resize: 'vertical',
-              },
-            },
-          }}
-        />
-      );
-    default:
-      return assertUnreachable();
-  }
-};
 
 export default withRouter(({router}) => {
   const [css, theme] = useStyletron();
@@ -315,55 +234,38 @@ export default withRouter(({router}) => {
         theme={theme.name === 'light-theme' ? lightTheme : darkTheme}
         language="jsx"
       >
-        <div className={css({height: '50px'})}>
-          <LivePreview />
-        </div>
-        <div className={css({marginTop: '2em'})}>
-          <StyledTable>
-            <StyledHead>
-              <StyledHeadCell $style={{maxWidth: '120px'}}>
-                Prop name
-              </StyledHeadCell>
-              <StyledHeadCell>Value</StyledHeadCell>
-              <StyledHeadCell $style={{maxWidth: '80px'}}>Type</StyledHeadCell>
-              <StyledHeadCell $style={{maxWidth: '300px'}}>
-                Description
-              </StyledHeadCell>
-            </StyledHead>
-            <StyledBody>
-              {Object.keys(state.props).map(name => (
-                <StyledRow key={name}>
-                  <StyledCell $style={{maxWidth: '120px'}}>{name}</StyledCell>
-                  <StyledCell>
-                    <ValueCell
-                      name={name}
-                      type={state.props[name].type}
-                      val={state.props[name].value}
-                      options={state.props[name].options}
-                      set={(value: any) => {
-                        dispatch({
-                          type: Action.UpdatePropsAndCode,
-                          payload: {
-                            code: formatCode(
-                              getCode(buildPropsObj(state, {[name]: value})),
-                            ),
-                            updatedPropValues: {[name]: value},
-                          },
-                        });
-                      }}
-                    />
-                  </StyledCell>
-                  <StyledCell $style={{maxWidth: '80px'}}>
-                    {state.props[name].type}
-                  </StyledCell>
-                  <StyledCell $style={{maxWidth: '300px'}}>
-                    {state.props[name].description}
-                  </StyledCell>
-                </StyledRow>
-              ))}
-            </StyledBody>
-          </StyledTable>
-        </div>
+        <Card>
+          <CardStyledBody>
+            <div className={css({display: 'flex', alignItems: 'center'})}>
+              <div
+                className={css({
+                  width: '50%',
+                  marginRight: '1em',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                })}
+              >
+                <LivePreview />
+              </div>
+              <div className={css({width: '50%', display: 'block'})}>
+                <Knobs
+                  knobProps={state.props}
+                  set={(value: any, name: string) => {
+                    dispatch({
+                      type: Action.UpdatePropsAndCode,
+                      payload: {
+                        code: formatCode(
+                          getCode(buildPropsObj(state, {[name]: value})),
+                        ),
+                        updatedPropValues: {[name]: value},
+                      },
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          </CardStyledBody>
+        </Card>
         <CodeBox>
           <LiveEditor
             lang="jsx"
