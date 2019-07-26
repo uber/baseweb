@@ -1,7 +1,7 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
 import Router, {withRouter} from 'next/router';
-import {Button, KIND, SIZE} from 'baseui/button';
+import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
 import {Card, StyledBody as CardStyledBody} from 'baseui/card';
 
 import prettier from 'prettier/standalone';
@@ -52,6 +52,7 @@ enum Action {
 
 const getCode = (props: any) => {
   let propsString = ``;
+  let enumImports = ``;
   const {children, ...restProps} = props;
   Object.keys(restProps).forEach(name => {
     const value = restProps[name].value;
@@ -67,8 +68,11 @@ const getCode = (props: any) => {
         case PropTypes.Number:
         case PropTypes.Array:
         case PropTypes.Object:
-        case PropTypes.Enum:
         case PropTypes.Function:
+          propsString += ` ${name}={${value}}`;
+          break;
+        case PropTypes.Enum:
+          enumImports += `, ${name.toUpperCase()}`;
           propsString += ` ${name}={${value}}`;
           break;
         default:
@@ -76,7 +80,7 @@ const getCode = (props: any) => {
       }
     }
   });
-  const imports = `import {Button, KIND, SIZE} from 'baseui/button';\n\n`;
+  const imports = `import {Button${enumImports}} from 'baseui/button';\n\n`;
   if (children.value) {
     return `${imports}export default () => <Button${propsString}>${children.value}</Button>`;
   } else {
@@ -88,39 +92,55 @@ const initialProps: any = {
   children: {
     value: 'Hello',
     type: PropTypes.String,
-    description: `button's label`,
+    description: `Visible label.`,
   },
   onClick: {
-    value: "() => {\n  console.log('clicked');\n}",
+    value: "() => {alert('click')}",
     type: PropTypes.Function,
-    description: `triggered when button is clicked`,
+    description: `Function called when button is clicked.`,
+  },
+  startEnhancer: {
+    value: '() => <span>🦊</span>',
+    type: PropTypes.Function,
+    description: `A component rendered at the start of the button.`,
+  },
+  endEnhancer: {
+    value: '',
+    type: PropTypes.Function,
+    description: `A component rendered at the end of the button.`,
   },
   disabled: {
     value: false,
     type: PropTypes.Boolean,
-    description: 'true when button is disabled',
+    description: 'Indicates that the button is disabled',
+  },
+  kind: {
+    value: undefined,
+    options: KIND,
+    type: PropTypes.Enum,
+    description: 'Defines the kind (purpose) of a button.',
+  },
+  size: {
+    value: undefined,
+    options: SIZE,
+    type: PropTypes.Enum,
+    description: 'Defines the size of the button.',
+  },
+  shape: {
+    value: undefined,
+    options: SHAPE,
+    type: PropTypes.Enum,
+    description: 'Defines the shape of the button.',
   },
   isLoading: {
     value: false,
     type: PropTypes.Boolean,
-    description: 'true when button is loading',
+    description: 'Show loading button style and spinner.',
   },
   isSelected: {
     value: false,
     type: PropTypes.Boolean,
-    description: 'true when button is selected',
-  },
-  kind: {
-    value: 'KIND.primary',
-    options: KIND,
-    type: PropTypes.Enum,
-    description: 'button style',
-  },
-  size: {
-    value: 'SIZE.default',
-    options: SIZE,
-    type: PropTypes.Enum,
-    description: 'button size',
+    description: 'Indicates that the button is selected.',
   },
 };
 
@@ -229,41 +249,35 @@ export default withRouter(({router}) => {
     <React.Fragment>
       <LiveProvider
         code={state.code}
-        scope={{Button, KIND, SIZE}}
+        scope={{Button, KIND, SIZE, SHAPE}}
         transformCode={transformCode}
         theme={theme.name === 'light-theme' ? lightTheme : darkTheme}
         language="jsx"
       >
         <Card>
           <CardStyledBody>
-            <div className={css({display: 'flex', alignItems: 'center'})}>
-              <div
-                className={css({
-                  width: '50%',
-                  marginRight: '1em',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                })}
-              >
-                <LivePreview />
-              </div>
-              <div className={css({width: '50%', display: 'block'})}>
-                <Knobs
-                  knobProps={state.props}
-                  set={(value: any, name: string) => {
-                    dispatch({
-                      type: Action.UpdatePropsAndCode,
-                      payload: {
-                        code: formatCode(
-                          getCode(buildPropsObj(state, {[name]: value})),
-                        ),
-                        updatedPropValues: {[name]: value},
-                      },
-                    });
-                  }}
-                />
-              </div>
-            </div>
+            <LivePreview
+              className={css({
+                display: 'flex',
+                justifyContent: 'center',
+                marginBottom: theme.sizing.scale1000,
+                marginTop: theme.sizing.scale1000,
+              })}
+            />
+            <Knobs
+              knobProps={state.props}
+              set={(value: any, name: string) => {
+                dispatch({
+                  type: Action.UpdatePropsAndCode,
+                  payload: {
+                    code: formatCode(
+                      getCode(buildPropsObj(state, {[name]: value})),
+                    ),
+                    updatedPropValues: {[name]: value},
+                  },
+                });
+              }}
+            />
           </CardStyledBody>
         </Card>
         <CodeBox>
