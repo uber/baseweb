@@ -16,7 +16,6 @@ class Textarea extends React.Component<TextareaPropsT> {
     autoFocus: false,
     disabled: false,
     error: false,
-    inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     name: '',
     onBlur: () => {},
     onChange: () => {},

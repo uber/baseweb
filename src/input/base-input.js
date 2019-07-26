@@ -42,7 +42,6 @@ class BaseInput<T: EventTarget> extends React.Component<
     positive: false,
     name: '',
     inputMode: 'text',
-    inputRef: null,
     onBlur: () => {},
     onChange: () => {},
     onKeyDown: () => {},
@@ -59,7 +58,8 @@ class BaseInput<T: EventTarget> extends React.Component<
     type: 'text',
   };
 
-  inputRef = this.props.inputRef || React.createRef<HTMLInputElement>();
+  // eslint-disable-next-line flowtype/no-weak-types
+  inputRef = this.props.inputRef || React.createRef<any>();
 
   state = {
     isFocused: this.props.autoFocus || false,
@@ -104,7 +104,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     }
   }
 
-  onInputKeyDown = (e: SyntheticKeyboardEvent<T>) => {
+  onInputKeyDown = (e: KeyboardEvent) => {
     if (this.props.clearable && e.key === 'Escape' && this.inputRef.current) {
       this.clearValue();
       // prevent event from closing modal or doing something unexpected
