@@ -2,6 +2,7 @@ import React from 'react';
 import {useStyletron} from 'baseui';
 import Router, {withRouter} from 'next/router';
 import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
+import {StatefulTabs, Tab} from 'baseui/tabs';
 import {ButtonGroup} from 'baseui/button-group';
 import copy from 'copy-to-clipboard';
 import {Card, StyledBody as CardStyledBody} from 'baseui/card';
@@ -289,25 +290,59 @@ export default withRouter(({router}) => {
                 marginTop: theme.sizing.scale1000,
               })}
             />
-            <Knobs
-              knobProps={state.props}
-              set={(value: any, name: string) => {
-                const newCode = formatCode(
-                  getCode(buildPropsObj(state, {[name]: value})),
-                );
-                dispatch({
-                  type: Action.UpdatePropsAndCode,
-                  payload: {
-                    code: newCode,
-                    updatedPropValues: {[name]: value},
-                  },
-                });
-                Router.push({
-                  pathname: router.pathname,
-                  query: {code: newCode},
-                } as any);
+            <StatefulTabs
+              initialState={{activeKey: '0'}}
+              overrides={{
+                TabBar: {style: {background: 'none', paddingLeft: 0}},
+                TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
               }}
-            />
+            >
+              <Tab
+                title="Props"
+                overrides={{
+                  Tab: {
+                    style: ({$theme}) =>
+                      ({
+                        marginLeft: 0,
+                        ...$theme.typography.font450,
+                      } as any),
+                  },
+                }}
+              >
+                <Knobs
+                  knobProps={state.props}
+                  set={(value: any, name: string) => {
+                    const newCode = formatCode(
+                      getCode(buildPropsObj(state, {[name]: value})),
+                    );
+                    dispatch({
+                      type: Action.UpdatePropsAndCode,
+                      payload: {
+                        code: newCode,
+                        updatedPropValues: {[name]: value},
+                      },
+                    });
+                    Router.push({
+                      pathname: router.pathname,
+                      query: {code: newCode},
+                    } as any);
+                  }}
+                />
+              </Tab>
+              <Tab
+                title="Overrides"
+                overrides={{
+                  Tab: {
+                    style: ({$theme}) =>
+                      ({
+                        ...$theme.typography.font450,
+                      } as any),
+                  },
+                }}
+              >
+                Overrides
+              </Tab>
+            </StatefulTabs>
             <div
               className={css({
                 marginTop: `${theme.sizing.scale800}`,
