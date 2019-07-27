@@ -10,6 +10,7 @@ const KnobColumn = ({knobProps, knobNames, set}: any) => {
     >
       {knobNames.map((name: string) => (
         <Knob
+          key={name}
           name={name}
           description={knobProps[name].description}
           type={knobProps[name].type}

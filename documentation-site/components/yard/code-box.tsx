@@ -11,7 +11,7 @@ const CodeBox = ({children}: {children: React.ReactNode}) => {
         borderLeft: `5px solid ${
           isLight ? theme.colors.warning200 : theme.colors.mono500
         }`,
-        backgroundColor: isLight ? 'rgb(253, 253, 253)' : '#1e1e1e',
+        backgroundColor: isLight ? 'rgb(253, 253, 253)' : '#292929',
         paddingLeft: theme.sizing.scale400,
         marginBottom: theme.sizing.scale600,
         marginTop: theme.sizing.scale600,

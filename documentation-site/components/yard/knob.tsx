@@ -97,6 +97,7 @@ const Knob: React.SFC<{
           >
             {Object.keys(options).map(opt => (
               <Radio
+                key={opt}
                 value={`${name.toUpperCase()}.${opt}`}
                 overrides={{
                   Root: {

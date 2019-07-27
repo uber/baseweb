@@ -2,6 +2,8 @@ import React from 'react';
 import {useStyletron} from 'baseui';
 import Router, {withRouter} from 'next/router';
 import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
+import {ButtonGroup} from 'baseui/button-group';
+import copy from 'copy-to-clipboard';
 import {Card, StyledBody as CardStyledBody} from 'baseui/card';
 
 import prettier from 'prettier/standalone';
@@ -16,7 +18,6 @@ import {assertUnreachable} from './utils';
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 import darkTheme from './dark-theme';
 import lightTheme from './light-theme';
-import CodeBox from './code-box';
 
 const parse = babel.parsers.babel.parse as (code: string) => any;
 
@@ -34,7 +35,7 @@ const formatCode = (code: string) => {
       prettier
         .format(code, {
           parser: 'babel',
-          printWidth: 60,
+          printWidth: 70,
           plugins: [babel],
         })
         // remove newline at the end of file
@@ -48,6 +49,7 @@ const formatCode = (code: string) => {
 enum Action {
   UpdateCode,
   UpdatePropsAndCode,
+  Reset,
 }
 
 const getCode = (props: any) => {
@@ -95,7 +97,7 @@ const initialProps: any = {
     description: `Visible label.`,
   },
   onClick: {
-    value: "() => {alert('click')}",
+    value: "() => alert('click')",
     type: PropTypes.Function,
     description: `Function called when button is clicked.`,
   },
@@ -172,6 +174,12 @@ function reducer(state: any, action: {type: Action; payload: any}) {
         code: action.payload.code,
         props: buildPropsObj(state, updatedPropValues),
       };
+    case Action.Reset:
+      return {
+        ...state,
+        code: action.payload.code,
+        props: action.payload.props,
+      };
     default:
       return assertUnreachable();
   }
@@ -223,6 +231,7 @@ function parseProps(code: string, elementName: string) {
 
 export default withRouter(({router}) => {
   const [css, theme] = useStyletron();
+  const [editorFocused, focusEditor] = React.useState(false);
   const [state, dispatch] = React.useReducer(reducer, {
     code: formatCode(getCode(initialProps)),
     props: initialProps,
@@ -244,14 +253,30 @@ export default withRouter(({router}) => {
         },
       });
     }
-  }, [router.query.code]);
+  }, []);
   return (
     <React.Fragment>
       <LiveProvider
         code={state.code}
         scope={{Button, KIND, SIZE, SHAPE}}
         transformCode={transformCode}
-        theme={theme.name === 'light-theme' ? lightTheme : darkTheme}
+        theme={
+          theme.name === 'light-theme'
+            ? {
+                ...lightTheme,
+                plain: {
+                  ...lightTheme.plain,
+                  backgroundColor: theme.colors.mono200,
+                },
+              }
+            : {
+                ...darkTheme,
+                plain: {
+                  ...darkTheme.plain,
+                  backgroundColor: editorFocused ? '#3D3D3D' : '#292929',
+                },
+              }
+        }
         language="jsx"
       >
         <Card>
@@ -267,70 +292,133 @@ export default withRouter(({router}) => {
             <Knobs
               knobProps={state.props}
               set={(value: any, name: string) => {
-                dispatch({
-                  type: Action.UpdatePropsAndCode,
-                  payload: {
-                    code: formatCode(
-                      getCode(buildPropsObj(state, {[name]: value})),
-                    ),
-                    updatedPropValues: {[name]: value},
-                  },
-                });
-              }}
-            />
-          </CardStyledBody>
-        </Card>
-        <CodeBox>
-          <LiveEditor
-            lang="jsx"
-            onChange={newCode => {
-              const propValues: any = {};
-              try {
-                const parsedProps = parseProps(newCode, 'Button');
-                Object.keys(state.props).forEach(name => {
-                  propValues[name] = initialProps[name].value;
-                  propValues[name] = parsedProps[name];
-                });
+                const newCode = formatCode(
+                  getCode(buildPropsObj(state, {[name]: value})),
+                );
                 dispatch({
                   type: Action.UpdatePropsAndCode,
                   payload: {
                     code: newCode,
-                    updatedPropValues: propValues,
+                    updatedPropValues: {[name]: value},
                   },
                 });
-              } catch (e) {
-                dispatch({
-                  type: Action.UpdateCode,
-                  payload: newCode,
-                });
-              }
-            }}
-          />
-        </CodeBox>
-
-        <LiveError />
+                Router.push({
+                  pathname: router.pathname,
+                  query: {code: newCode},
+                } as any);
+              }}
+            />
+            <div
+              className={css({
+                marginTop: `${theme.sizing.scale800}`,
+                boxSizing: 'border-box',
+                border: editorFocused
+                  ? `2px solid ${theme.colors.primary400}`
+                  : `2px solid ${
+                      theme.name === 'light-theme'
+                        ? theme.colors.mono200
+                        : '#292929 '
+                    }`,
+              })}
+              onClick={() => focusEditor(true)}
+              onBlur={() => focusEditor(false)}
+            >
+              <style
+                dangerouslySetInnerHTML={{
+                  __html: `.npm__react-simple-code-editor__textarea { outline: none !important }`,
+                }}
+              />
+              <LiveEditor
+                lang="jsx"
+                onChange={newCode => {
+                  const propValues: any = {};
+                  try {
+                    const parsedProps = parseProps(newCode, 'Button');
+                    Object.keys(state.props).forEach(name => {
+                      propValues[name] = initialProps[name].value;
+                      propValues[name] = parsedProps[name];
+                    });
+                    dispatch({
+                      type: Action.UpdatePropsAndCode,
+                      payload: {
+                        code: newCode,
+                        updatedPropValues: propValues,
+                      },
+                    });
+                    Router.push({
+                      pathname: router.pathname,
+                      query: {code: newCode},
+                    } as any);
+                  } catch (e) {
+                    dispatch({
+                      type: Action.UpdateCode,
+                      payload: newCode,
+                    });
+                  }
+                }}
+              />
+            </div>
+            <LiveError
+              className={css({
+                backgroundColor: theme.colors.negative600,
+                whiteSpace: 'pre',
+                fontSize: '12px',
+                fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
+                color: theme.colors.mono100,
+                padding: theme.sizing.scale600,
+                overflowX: 'scroll',
+              })}
+            />
+            <div className={css({display: 'flex', justifyContent: 'flex-end'})}>
+              <ButtonGroup
+                size={SIZE.compact}
+                overrides={{
+                  Root: {
+                    style: ({$theme}) => ({
+                      marginTop: $theme.sizing.scale300,
+                    }),
+                  },
+                }}
+              >
+                <Button
+                  kind={KIND.tertiary}
+                  onClick={() =>
+                    dispatch({
+                      type: Action.UpdateCode,
+                      payload: formatCode(state.code),
+                    })
+                  }
+                >
+                  Format
+                </Button>
+                <Button
+                  kind={KIND.tertiary}
+                  onClick={() => copy(window.location.href)}
+                >
+                  Copy URL
+                </Button>
+                <Button
+                  kind={KIND.tertiary}
+                  onClick={() => {
+                    dispatch({
+                      type: Action.Reset,
+                      payload: {
+                        code: formatCode(getCode(initialProps)),
+                        props: initialProps,
+                      },
+                    });
+                    Router.push({
+                      pathname: router.pathname,
+                    } as any);
+                  }}
+                >
+                  Reset
+                </Button>
+              </ButtonGroup>
+            </div>
+          </CardStyledBody>
+        </Card>
       </LiveProvider>
-      <Button
-        kind={KIND.secondary}
-        size={SIZE.compact}
-        onClick={() => {
-          Router.push({pathname: '/', query: {code: state.code}} as any);
-        }}
-      >
-        Share
-      </Button>
-      <Button
-        kind={KIND.secondary}
-        size={SIZE.compact}
-        onClick={() =>
-          dispatch({
-            type: Action.UpdateCode,
-            payload: formatCode(state.code),
-          })
-        }
-      >
-        Format
-      </Button>
     </React.Fragment>
   );
 });

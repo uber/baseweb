@@ -1,7 +1,7 @@
 const theme = {
   plain: {
     color: '#d4d4d4',
-    backgroundColor: '#1e1e1e',
+    backgroundColor: '#292929',
     fontSize: '14px',
     fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
     margin: 0,
