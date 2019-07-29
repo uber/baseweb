@@ -21,11 +21,6 @@ exports[`StatefulTextarea basic render: renders <Textarea/> as a child 1`] = `
   autoFocus={false}
   disabled={false}
   error={false}
-  inputRef={
-    Object {
-      "current": null,
-    }
-  }
   name=""
   onBlur={[Function]}
   onChange={[Function]}
