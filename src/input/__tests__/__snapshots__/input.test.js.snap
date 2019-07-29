@@ -21,6 +21,7 @@ Object {
   "onKeyUp": [MockFunction],
   "pattern": null,
   "placeholder": "Placeholder",
+  "required": false,
   "rows": null,
   "styled-component": "true",
   "test-style": Object {
@@ -95,6 +96,7 @@ Object {
       onKeyUp={[Function]}
       pattern={null}
       placeholder=""
+      required={false}
       rows={null}
       type="text"
     />,
@@ -158,6 +160,7 @@ Object {
       onKeyUp={[Function]}
       pattern={null}
       placeholder=""
+      required={false}
       rows={null}
       type="text"
     />,
@@ -221,6 +224,7 @@ Object {
       onKeyUp={[Function]}
       pattern={null}
       placeholder=""
+      required={false}
       rows={null}
       type="text"
     />,

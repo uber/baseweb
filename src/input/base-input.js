@@ -285,6 +285,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           pattern={this.props.pattern}
           placeholder={this.props.placeholder}
           type={this.getInputType()}
+          required={this.props.required}
           value={this.props.value}
           rows={
             this.props.type === CUSTOM_INPUT_TYPE.textarea
