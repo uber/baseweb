@@ -24,7 +24,7 @@ export default class Stateless extends React.Component<
             ),
             RadioMarkOuter: {
               style: ({$theme}) => ({
-                borderColor: $theme.colors.positive,
+                backgroundColor: $theme.colors.positive,
               }),
             },
           }}
@@ -41,7 +41,7 @@ export default class Stateless extends React.Component<
             ),
             RadioMarkOuter: {
               style: ({$theme}) => ({
-                borderColor: $theme.colors.positive,
+                backgroundColor: $theme.colors.positive,
               }),
             },
           }}
@@ -58,7 +58,7 @@ export default class Stateless extends React.Component<
             ),
             RadioMarkOuter: {
               style: ({$theme}) => ({
-                borderColor: $theme.colors.positive,
+                backgroundColor: $theme.colors.positive,
               }),
             },
           }}
