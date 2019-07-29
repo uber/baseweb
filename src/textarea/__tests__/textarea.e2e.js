@@ -12,6 +12,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   textarea: 'textarea',
+  clearIcon: '[data-e2e="clear-icon"]',
 };
 
 describe('textarea', () => {
@@ -45,5 +46,25 @@ describe('textarea', () => {
 
     const value = await page.$eval(selectors.textarea, input => input.value);
     expect(value).toBe('initial value!');
+  });
+
+  it('can be cleared with a click', async () => {
+    await mount(page, 'textarea');
+    await page.waitFor(selectors.textarea);
+    await page.click(selectors.textarea);
+    await page.keyboard.type('Something or other');
+    await page.click(selectors.clearIcon);
+    const value = await page.$eval(selectors.textarea, input => input.value);
+    expect(value).toBe('');
+  });
+
+  it('can be cleared with escape', async () => {
+    await mount(page, 'textarea');
+    await page.waitFor(selectors.textarea);
+    await page.click(selectors.textarea);
+    await page.keyboard.type('Something or other');
+    await page.keyboard.press('Escape');
+    const value = await page.$eval(selectors.textarea, input => input.value);
+    expect(value).toBe('');
   });
 });
