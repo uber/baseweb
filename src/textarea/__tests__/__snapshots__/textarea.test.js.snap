@@ -21,6 +21,7 @@ Object {
   "onKeyUp": [Function],
   "pattern": null,
   "placeholder": "Placeholder",
+  "required": false,
   "rows": 3,
   "styled-component": "true",
   "test-style": Object {
