@@ -1,10 +1,7 @@
 // @flow
 import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
-import {StatefulInput, SIZE} from 'baseui/input';
-import {StatefulTextarea} from 'baseui/textarea';
-import {StatefulCheckbox} from 'baseui/checkbox';
-import {StatefulRadioGroup, Radio} from 'baseui/radio';
+import {StatefulInput} from 'baseui/input';
 
 export default () => (
   <React.Fragment>
