@@ -15,6 +15,7 @@ import babel from 'prettier/parser-babylon';
 import Knobs from './knobs';
 import {PropTypes} from './const';
 import {assertUnreachable} from './utils';
+import Overrides from './overrides';
 
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 import darkTheme from './dark-theme';
@@ -77,6 +78,8 @@ const getCode = (props: any) => {
         case PropTypes.Enum:
           enumImports += `, ${name.toUpperCase()}`;
           propsString += ` ${name}={${value}}`;
+          break;
+        case PropTypes.Overrides:
           break;
         default:
           assertUnreachable();
@@ -144,6 +147,26 @@ const initialProps: any = {
     value: false,
     type: PropTypes.Boolean,
     description: 'Indicates that the button is selected.',
+  },
+  overrides: {
+    value: undefined,
+    type: PropTypes.Overrides,
+    description: 'Lets you customize all aspects of the component.',
+    keys: [
+      'BaseButton',
+      'EndEnhancer',
+      'LoadingSpinner',
+      'LoadingSpinnerContainer',
+      'StartEnhancer',
+    ],
+    sharedProps: {
+      $kind: 'kind',
+      $isSelected: 'isSelected',
+      $shape: 'shape',
+      $size: 'size',
+      $isLoading: 'isLoading',
+      $disabled: 'disabled',
+    },
   },
 };
 
@@ -340,7 +363,7 @@ export default withRouter(({router}) => {
                   },
                 }}
               >
-                Overrides
+                <Overrides />
               </Tab>
             </StatefulTabs>
             <div

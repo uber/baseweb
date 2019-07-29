@@ -141,6 +141,8 @@ const Knob: React.SFC<{
           />
         </Spacing>
       );
+    case PropTypes.Overrides:
+      return null;
     default:
       return assertUnreachable();
   }

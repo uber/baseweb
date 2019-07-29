@@ -6,4 +6,5 @@ export enum PropTypes {
   Array = 'array',
   Object = 'object',
   Function = 'function',
+  Overrides = 'overrides',
 }
