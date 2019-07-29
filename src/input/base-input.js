@@ -205,7 +205,7 @@ class BaseInput<T: EventTarget> extends React.Component<
   }
 
   renderClear() {
-    const {clearable, value, disabled, overrides = {}, size} = this.props;
+    const {clearable, value, disabled, overrides = {}} = this.props;
     if (!clearable || !value || !value.length || disabled) {
       return null;
     }
@@ -218,18 +218,20 @@ class BaseInput<T: EventTarget> extends React.Component<
       StyledClearIcon,
     );
     const ariaLabel = 'Clear value';
+    const sharedProps = getSharedProps(this.props, this.state);
     return (
       <ClearIconContainer
-        $size={size}
         $alignTop={this.props.type === CUSTOM_INPUT_TYPE.textarea}
+        {...sharedProps}
         {...clearIconContainerProps}
       >
         <ClearIcon
-          size={size === SIZE.large ? 'scale700' : 'scale600'}
+          size={16}
           title={ariaLabel}
           aria-label={ariaLabel}
           onClick={this.onClearIconClick}
           role="button"
+          {...sharedProps}
           {...clearIconProps}
         />
       </ClearIconContainer>
