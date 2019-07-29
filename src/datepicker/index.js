@@ -15,7 +15,7 @@ export {default as TimezonePicker} from './timezone-picker.js';
 // Util functions
 export {formatDate} from './utils/index.js';
 // Constants
-export {STATE_CHANGE_TYPE} from './constants.js';
+export {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
 // Styled elements
 export * from './styled-components.js';
 // Flow

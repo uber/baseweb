@@ -13,8 +13,9 @@ import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
 import TimePicker from './timepicker.js';
 import {
-  StyledRoot,
   StyledCalendarContainer,
+  StyledMonthContainer,
+  StyledRoot,
   StyledSelectorContainer,
 } from './styled-components.js';
 import {
@@ -41,6 +42,7 @@ import {
 } from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
+import {ORIENTATION} from './constants.js';
 
 function applyTime(prev: ?Date, next: Date) {
   if (!prev) return next;
@@ -70,6 +72,7 @@ export default class Calendar extends React.Component<
     onMonthChange: () => {},
     onYearChange: () => {},
     onChange: () => {},
+    orientation: ORIENTATION.vertical,
     overrides: {},
     peekNextMonth: false,
     value: null,
@@ -332,11 +335,16 @@ export default class Calendar extends React.Component<
       overrides.CalendarContainer,
       StyledCalendarContainer,
     );
+    const [MonthContainer, monthContainerProps] = getOverrides(
+      overrides.MonthContainer,
+      StyledMonthContainer,
+    );
     for (let i = 0; i < (this.props.monthsShown || 1); ++i) {
+      const monthSubComponents = [];
       const monthDate = addMonths(this.state.date, i);
       const monthKey = `month-${i}`;
-      monthList.push(this.renderCalendarHeader(monthDate, i));
-      monthList.push(
+      monthSubComponents.push(this.renderCalendarHeader(monthDate, i));
+      monthSubComponents.push(
         <CalendarContainer
           key={monthKey}
           ref={calendar => {
@@ -369,8 +377,13 @@ export default class Calendar extends React.Component<
           />
         </CalendarContainer>,
       );
+      monthList.push(
+        <div key={`month-component-${i}`}>{monthSubComponents}</div>,
+      );
     }
-    return monthList;
+    return (
+      <MonthContainer {...monthContainerProps}>{monthList}</MonthContainer>
+    );
   };
 
   // eslint-disable-next-line flowtype/no-weak-types
