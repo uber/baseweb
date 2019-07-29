@@ -65,22 +65,6 @@ Object {
   "disabled": false,
   "error": false,
   "inputMode": "text",
-  "inputRef": Object {
-    "current": <textarea
-      aria-invalid="false"
-      aria-required="false"
-      autocomplete="on"
-      inputmode="text"
-      name=""
-      placeholder="Placeholder"
-      rows="3"
-      styled-component="true"
-      test-style="[object Object]"
-      type="textarea"
-    >
-      textarea value
-    </textarea>,
-  },
   "name": "",
   "onBlur": [MockFunction],
   "onChange": [MockFunction],
@@ -127,26 +111,6 @@ Object {
   "disabled": false,
   "error": false,
   "inputMode": "text",
-  "inputRef": Object {
-    "current": <span
-      id="test-input"
-    >
-      <textarea
-        aria-invalid="false"
-        aria-required="false"
-        autocomplete="on"
-        inputmode="text"
-        name=""
-        placeholder="Placeholder"
-        rows="3"
-        styled-component="true"
-        test-style="[object Object]"
-        type="textarea"
-      >
-        textarea value
-      </textarea>
-    </span>,
-  },
   "name": "",
   "onBlur": [MockFunction],
   "onChange": [MockFunction],
