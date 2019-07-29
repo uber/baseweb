@@ -21,6 +21,6 @@ export const component = () => (
     startEnhancer="@"
     endEnhancer=".com"
     size={SIZE.compact}
-    overrides={{Input: {props: {'data-test': 'e2e'}}}}
+    overrides={{Input: {props: {'data-e2e': 'input'}}}}
   />
 );
