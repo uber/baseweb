@@ -8,6 +8,7 @@ export enum Action {
 
 export enum PropTypes {
   String = 'string',
+  ReactNode = 'react node',
   Boolean = 'boolean',
   Number = 'number',
   Enum = 'enum',
@@ -21,7 +22,7 @@ export const COMPONENTS = {
   Button: {
     children: {
       value: 'Hello',
-      type: PropTypes.String,
+      type: PropTypes.ReactNode,
       description: `Visible label.`,
     },
     onClick: {
@@ -30,12 +31,14 @@ export const COMPONENTS = {
       description: `Function called when button is clicked.`,
     },
     startEnhancer: {
-      value: '() => <span>🦊</span>',
+      value: '',
+      placeholder: '() => <span>🦊</span>',
       type: PropTypes.Function,
       description: `A component rendered at the start of the button.`,
     },
     endEnhancer: {
       value: '',
+      placeholder: '<i>world!</i>',
       type: PropTypes.Function,
       description: `A component rendered at the end of the button.`,
     },

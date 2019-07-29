@@ -12,6 +12,7 @@ import Knobs from './knobs';
 import {transformCode, formatCode, parseProps} from './ast';
 import {assertUnreachable} from './utils';
 import Overrides from './overrides';
+import {TState, TProp} from './types';
 
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 import darkTheme from './dark-theme';
@@ -36,6 +37,7 @@ const getCode = (props: {[key: string]: TProp}) => {
         case PropTypes.Array:
         case PropTypes.Object:
         case PropTypes.Function:
+        case PropTypes.ReactNode:
           propsString += ` ${name}={${value}}`;
           break;
         case PropTypes.Enum:
@@ -62,12 +64,7 @@ const buildPropsObj = (
   updatedPropValues: {[key: string]: any},
 ) => {
   const newProps: {
-    [key: string]: {
-      value: any;
-      type: PropTypes;
-      options?: any;
-      description: string;
-    };
+    [key: string]: TProp;
   } = {};
   Object.keys(state.props).forEach(name => {
     newProps[name] = {...state.props[name]};
@@ -81,20 +78,6 @@ const buildPropsObj = (
     };
   });
   return newProps;
-};
-
-type TProp = {
-  value: any;
-  type: PropTypes;
-  description: string;
-  options?: any;
-};
-
-type TState = {
-  code: string;
-  props: {
-    [key: string]: TProp;
-  };
 };
 
 function reducer(state: TState, action: {type: Action; payload: any}): TState {

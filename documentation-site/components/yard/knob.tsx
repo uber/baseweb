@@ -8,6 +8,15 @@ import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
 import {StatefulTooltip} from 'baseui/tooltip';
 
+const getTooltip = (description: string, type: string, name: string) => (
+  <span>
+    <p>
+      <b>{name}</b>: <i>{type}</i>
+    </p>
+    <p>{description}</p>
+  </span>
+);
+
 const Spacing: React.FC<{children: React.ReactNode}> = ({children}) => {
   const [css, theme] = useStyletron();
   return (
@@ -17,10 +26,10 @@ const Spacing: React.FC<{children: React.ReactNode}> = ({children}) => {
   );
 };
 
-const Label: React.FC<{children: React.ReactNode; tooltip: string}> = ({
-  children,
-  tooltip,
-}) => {
+const Label: React.FC<{
+  children: React.ReactNode;
+  tooltip: React.ReactNode;
+}> = ({children, tooltip}) => {
   const [css, theme] = useStyletron();
   return (
     <label
@@ -40,10 +49,11 @@ const Knob: React.SFC<{
   name: string;
   description: string;
   val: any;
-  set: any;
+  set: (val: any) => void;
   type: PropTypes;
-  options: any;
-}> = ({name, type, val, set, options, description}) => {
+  options?: any;
+  placeholder?: string;
+}> = ({name, type, val, set, options, description, placeholder}) => {
   //const [css, theme] = useStyletron();
   switch (type) {
     case PropTypes.String:
@@ -52,10 +62,11 @@ const Knob: React.SFC<{
     case PropTypes.Object:
       return (
         <Spacing>
-          <Label tooltip={description}>{name}</Label>
+          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Input
             //@ts-ignore
             onChange={event => set(event.target.value)}
+            placeholder={placeholder}
             size="compact"
             value={val}
           />
@@ -67,7 +78,7 @@ const Knob: React.SFC<{
           <Checkbox checked={val} onChange={() => set(!val)}>
             <StatefulTooltip
               accessibilityType="tooltip"
-              content={description}
+              content={getTooltip(description, type, name)}
               placement="right"
             >
               {name}
@@ -78,7 +89,7 @@ const Knob: React.SFC<{
     case PropTypes.Enum:
       return (
         <Spacing>
-          <Label tooltip={description}>{name}</Label>
+          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <RadioGroup
             name="radio group"
             align="horizontal"
@@ -118,15 +129,17 @@ const Knob: React.SFC<{
           </RadioGroup>
         </Spacing>
       );
+    case PropTypes.ReactNode:
     case PropTypes.Function:
       return (
         <Spacing>
-          <Label tooltip={description}>{name}</Label>
+          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Textarea
             //@ts-ignore
             onChange={event => set(event.target.value)}
             value={val}
             size="compact"
+            placeholder={placeholder}
             overrides={{
               Input: {
                 style: ({$isFocused}) => ({

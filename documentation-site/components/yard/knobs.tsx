@@ -16,6 +16,7 @@ const KnobColumn = ({knobProps, knobNames, set}: any) => {
           type={knobProps[name].type}
           val={knobProps[name].value}
           options={knobProps[name].options}
+          placeholder={knobProps[name].placeholder}
           set={(value: any) => set(value, name)}
         />
       ))}
