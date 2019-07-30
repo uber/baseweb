@@ -9,6 +9,7 @@ import Layout from '../../components/layout';
 
 import Example from '../../components/example';
 import Overrides from '../../components/overrides';
+import {StatefulSelect, TYPE} from 'baseui/select';
 import {StatefulList} from 'baseui/dnd-list';
 import * as ListExports from 'baseui/dnd-list';
 
@@ -157,17 +158,95 @@ If you are interested in **which state props your style functions can use**, you
 
 ## Override Nested Components
 
-Some Base Web components use other Base Web components internally. Examples include the `Select` component, which uses the `Tag` component
-for the multi-select mode, or the `FileUploader` which uses the `Button` component.
+Every Base Web component exposes the `override` prop. When one Base Web component uses another Base Web component internally we have access to a new, powerful pattern: **Nested Overrides**.
 
-In these cases, you are not directly modifying styled components, but nested components. To make that happen, you have to pass in your overrides
-through the `props` override functionality.
+The idea is to use a component's `overrides` prop to access a nested component and pass this nested component an `overrides` prop of its own. You end up with a _nested_ structure like so:
 
-To better understand it, let's take a look at the example of the `Select` component:
+```jsx
+<Foo
+  overrides={{
+    Boo: {
+      props: {
+        overrides: {
+          // pass "nested" overrides to the inner "Boo" component
+        },
+      },
+    },
+  }}
+/>
+```
 
-<Example title="Nested overrides" path="select/overriden-tag.js">
+This is a very reliable method for customizing deeply nested components. It is possible because everywhere a Base Web component uses another Base Web component, that ‟parent” component will expose an `overrides` property for the ‟child” component. In theory, you could nest overrides as many levels deep as necessary to customize something.
+
+```jsx
+<Foo
+  overrides={{
+    Boo: {
+      props: {
+        overrides: {
+          Moo: {
+            props: {
+              overrides: {
+                Zoo: {
+                  props: {
+                    overrides: {
+                      Goo: () => 'hey mom!',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  }}
+/>
+```
+
+In this example, we use four nested overrides to replace the `Goo` component. We do this without affecting the four components above `Goo`. We've avoided having to re-implement layers and layers of logic, and, because the interface is consistent, you can focus on _where_ you want to drop in, rather than _how_ to do it.
+
+If you find the exact syntax of this technique a little difficult to recall, try instead to remember that every Base Web component exposes an `overrides` prop and that every nested Base Web component is made accessible as an `overrides` property in the top-level component.
+
+The path always follows this pattern:
+
+> ComponentA > overrides > ComponentB > props > overrides
+
+### A more practical example
+
+Here is the default multi-select option for Base Web:
+
+<StatefulSelect
+  multi
+  type="search"
+  options={[
+    {label: 'Atlanta', id: 'ATL'},
+    {label: 'Baltimore', id: 'BWI'},
+    {label: 'Chicago', id: 'ORD'},
+    {label: 'Denver', id: 'DEN'},
+  ]}
+  initialState={{
+    value: [{label: 'Atlanta', id: 'ATL'}],
+  }}
+/>
+
+Let's change the way the selected values appear.
+
+The first step is to identify _what_ we want to override. In this case, we want to change the selected values for a multi-select. Let's check out the [`overrides` inspector for Select](/components/select/#overrides). Looking through the list of possible overrides, we see there is a promising `MultiValue` property.
+
+You might notice that the `MultiValue` component is just an instance of the `Tag` component. We can [reference the documentation for Tag](/components/tag/#overrides) to see what overrides are available.
+
+We have identified a nested Base Web component that is accessible via overrides. Now we can apply some nested overrides to customize things:
+
+<Example path="select/overriden-tag.js">
   <SelectTagExample />
 </Example>
+
+Notice the nested override pattern here:
+
+> StatefulSelect > overrides > MultiValue > props > overrides
+
+Once we have access to the nested `Tag`, we can override the styles for the `Root`, `Text`, `Action` & `ActionIcon`, changing the colors to a few lovely shades of purple.
 
 ## Override The Entire Subcomponent
 
