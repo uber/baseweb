@@ -204,37 +204,6 @@ export default withRouter(
                 }}
               >
                 <Tab
-                  title="Style Overrides"
-                  overrides={{
-                    Tab: {
-                      style: ({$theme}) =>
-                        ({
-                          ...$theme.typography.font450,
-                        } as any),
-                    },
-                  }}
-                >
-                  <Overrides
-                    overrides={state.props.overrides}
-                    set={(value: any) => {
-                      const newCode = formatCode(
-                        getCode(buildPropsObj(state, {overrides: value})),
-                      );
-                      dispatch({
-                        type: Action.UpdatePropsAndCode,
-                        payload: {
-                          code: newCode,
-                          updatedPropValues: {overrides: value},
-                        },
-                      });
-                      Router.push({
-                        pathname: router.pathname,
-                        query: {code: newCode},
-                      } as any);
-                    }}
-                  />
-                </Tab>
-                <Tab
                   title="Props"
                   overrides={{
                     Tab: {
@@ -257,6 +226,38 @@ export default withRouter(
                         payload: {
                           code: newCode,
                           updatedPropValues: {[name]: value},
+                        },
+                      });
+                      Router.push({
+                        pathname: router.pathname,
+                        query: {code: newCode},
+                      } as any);
+                    }}
+                  />
+                </Tab>
+                <Tab
+                  title="Style Overrides"
+                  overrides={{
+                    Tab: {
+                      style: ({$theme}) =>
+                        ({
+                          ...$theme.typography.font450,
+                        } as any),
+                    },
+                  }}
+                >
+                  <Overrides
+                    componentName={componentName}
+                    overrides={state.props.overrides}
+                    set={(value: any) => {
+                      const newCode = formatCode(
+                        getCode(buildPropsObj(state, {overrides: value})),
+                      );
+                      dispatch({
+                        type: Action.UpdatePropsAndCode,
+                        payload: {
+                          code: newCode,
+                          updatedPropValues: {overrides: value},
                         },
                       });
                       Router.push({
@@ -372,6 +373,12 @@ export default withRouter(
                   }
                 >
                   Format
+                </Button>
+                <Button
+                  kind={KIND.tertiary}
+                  onClick={() => copy(formatCode(state.code))}
+                >
+                  Copy code
                 </Button>
                 <Button
                   kind={KIND.tertiary}
