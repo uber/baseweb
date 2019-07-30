@@ -9,7 +9,7 @@ import {Card, StyledBody as CardStyledBody} from 'baseui/card';
 
 import {COMPONENTS, PropTypes, Action} from './const';
 import Knobs from './knobs';
-import {transformCode, formatCode, parseProps} from './ast';
+import {transformCode, formatCode, parseProps, parseOverrides} from './ast';
 import {assertUnreachable} from './utils';
 import Overrides from './overrides';
 import {TState, TProp} from './types';
@@ -45,6 +45,15 @@ const getCode = (props: {[key: string]: TProp}) => {
           propsString += ` ${name}={${value}}`;
           break;
         case PropTypes.Overrides:
+          if (!value) break;
+          let overrideString = '{';
+          Object.keys(value).forEach(key => {
+            if (value[key].active === true) {
+              overrideString += `${key}: { style: ${value[key].style} },`;
+            }
+          });
+          overrideString += '}';
+          propsString += ` ${name}={${overrideString}}`;
           break;
         default:
           assertUnreachable();
@@ -75,6 +84,7 @@ const buildPropsObj = (
       type: state.props[name].type,
       options: state.props[name].options,
       description: state.props[name].description,
+      meta: state.props[name].meta,
     };
   });
   return newProps;
@@ -124,8 +134,18 @@ export default withRouter(
         Object.keys(state.props).forEach(name => {
           //@ts-ignore
           propValues[name] = COMPONENTS[componentName][name].value;
-          propValues[name] = parsedProps[name];
+          if (name === 'overrides') {
+            // overrides need a special treatment since the value needs to
+            // be further analyzed and parsed
+            propValues[name] = parseOverrides(
+              parsedProps[name],
+              COMPONENTS[componentName].overrides.meta.names,
+            );
+          } else {
+            propValues[name] = parsedProps[name];
+          }
         });
+
         dispatch({
           type: Action.UpdatePropsAndCode,
           payload: {
@@ -173,10 +193,43 @@ export default withRouter(
               <StatefulTabs
                 initialState={{activeKey: '0'}}
                 overrides={{
-                  TabBar: {style: {background: 'none', paddingLeft: 0}},
+                  TabBar: {
+                    style: {backgroundColor: 'transparent', paddingLeft: 0},
+                  },
                   TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
                 }}
               >
+                <Tab
+                  title="Style Overrides"
+                  overrides={{
+                    Tab: {
+                      style: ({$theme}) =>
+                        ({
+                          ...$theme.typography.font450,
+                        } as any),
+                    },
+                  }}
+                >
+                  <Overrides
+                    overrides={state.props.overrides}
+                    set={(value: any) => {
+                      const newCode = formatCode(
+                        getCode(buildPropsObj(state, {overrides: value})),
+                      );
+                      dispatch({
+                        type: Action.UpdatePropsAndCode,
+                        payload: {
+                          code: newCode,
+                          updatedPropValues: {overrides: value},
+                        },
+                      });
+                      Router.push({
+                        pathname: router.pathname,
+                        query: {code: newCode},
+                      } as any);
+                    }}
+                  />
+                </Tab>
                 <Tab
                   title="Props"
                   overrides={{
@@ -208,19 +261,6 @@ export default withRouter(
                       } as any);
                     }}
                   />
-                </Tab>
-                <Tab
-                  title="Overrides"
-                  overrides={{
-                    Tab: {
-                      style: ({$theme}) =>
-                        ({
-                          ...$theme.typography.font450,
-                        } as any),
-                    },
-                  }}
-                >
-                  <Overrides />
                 </Tab>
               </StatefulTabs>
               <div
@@ -286,55 +326,51 @@ export default withRouter(
                   overflowX: 'scroll',
                 })}
               />
-              <div
-                className={css({display: 'flex', justifyContent: 'flex-end'})}
+              <ButtonGroup
+                size={SIZE.compact}
+                overrides={{
+                  Root: {
+                    style: ({$theme}) => ({
+                      marginTop: $theme.sizing.scale300,
+                    }),
+                  },
+                }}
               >
-                <ButtonGroup
-                  size={SIZE.compact}
-                  overrides={{
-                    Root: {
-                      style: ({$theme}) => ({
-                        marginTop: $theme.sizing.scale300,
-                      }),
-                    },
+                <Button
+                  kind={KIND.tertiary}
+                  onClick={() =>
+                    dispatch({
+                      type: Action.UpdateCode,
+                      payload: formatCode(state.code),
+                    })
+                  }
+                >
+                  Format
+                </Button>
+                <Button
+                  kind={KIND.tertiary}
+                  onClick={() => copy(window.location.href)}
+                >
+                  Copy URL
+                </Button>
+                <Button
+                  kind={KIND.tertiary}
+                  onClick={() => {
+                    dispatch({
+                      type: Action.Reset,
+                      payload: {
+                        code: formatCode(getCode(COMPONENTS[componentName])),
+                        props: COMPONENTS[componentName],
+                      },
+                    });
+                    Router.push({
+                      pathname: router.pathname,
+                    } as any);
                   }}
                 >
-                  <Button
-                    kind={KIND.tertiary}
-                    onClick={() =>
-                      dispatch({
-                        type: Action.UpdateCode,
-                        payload: formatCode(state.code),
-                      })
-                    }
-                  >
-                    Format
-                  </Button>
-                  <Button
-                    kind={KIND.tertiary}
-                    onClick={() => copy(window.location.href)}
-                  >
-                    Copy URL
-                  </Button>
-                  <Button
-                    kind={KIND.tertiary}
-                    onClick={() => {
-                      dispatch({
-                        type: Action.Reset,
-                        payload: {
-                          code: formatCode(getCode(COMPONENTS[componentName])),
-                          props: COMPONENTS[componentName],
-                        },
-                      });
-                      Router.push({
-                        pathname: router.pathname,
-                      } as any);
-                    }}
-                  >
-                    Reset
-                  </Button>
-                </ButtonGroup>
-              </div>
+                  Reset
+                </Button>
+              </ButtonGroup>
             </CardStyledBody>
           </Card>
         </LiveProvider>

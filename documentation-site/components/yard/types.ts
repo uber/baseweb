@@ -6,6 +6,10 @@ export type TProp = {
   description: string;
   options?: any;
   placeholder?: string;
+  meta?: {
+    names?: string[];
+    sharedKeys?: any;
+  };
 };
 
 export type TState = {
