@@ -12,9 +12,18 @@ import type {SharedStylePropsArgT} from './types.js';
 /**
  * Main component container element
  */
-export const Root = styled('div', {});
+export const Root = styled('ul', {
+  listStyleType: 'none',
+  marginBottom: 0,
+  marginTop: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
+});
 
-export const PanelContainer = styled('div', {width: '100%'});
+export const PanelContainer = styled('li', {
+  listStyleType: 'none',
+  width: '100%',
+});
 
 export const Header = styled<SharedStylePropsArgT>('div', props => {
   const {

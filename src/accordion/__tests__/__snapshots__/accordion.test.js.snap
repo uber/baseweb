@@ -1,0 +1,1351 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion basic render w/ SEO: Accordion renders all panel content with renderPanelContent 1`] = `
+<Component
+  renderPanelContent={true}
+>
+  <Accordion
+    accordion={true}
+    disabled={false}
+    initialState={
+      Object {
+        "expanded": Array [],
+      }
+    }
+    onChange={[Function]}
+    overrides={Object {}}
+    renderPanelContent={true}
+    stateReducer={[Function]}
+  >
+    <ForwardRef
+      $disabled={false}
+      data-baseweb="accordion"
+    >
+      <MockStyledComponent
+        $disabled={false}
+        data-baseweb="accordion"
+        forwardedRef={null}
+      >
+        <ul
+          data-baseweb="accordion"
+          styled-component="true"
+          test-style={
+            Object {
+              "listStyleType": "none",
+              "marginBottom": 0,
+              "marginTop": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            }
+          }
+        >
+          <Panel
+            accordion={true}
+            disabled={false}
+            expanded={false}
+            key="0/.0"
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            renderPanelContent={true}
+            title="Accordion panel 1"
+          >
+            <ForwardRef
+              $disabled={false}
+              $expanded={false}
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $expanded={false}
+                forwardedRef={null}
+              >
+                <li
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "listStyleType": "none",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                    aria-disabled={null}
+                    aria-expanded={false}
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      aria-disabled={null}
+                      aria-expanded={false}
+                      forwardedRef={null}
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div
+                        aria-disabled={null}
+                        aria-expanded={false}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        styled-component="true"
+                        tabIndex={0}
+                        test-style={
+                          Object {
+                            ":hover": Object {
+                              "color": "$theme.colors.primary",
+                            },
+                            "alignItems": "center",
+                            "background": "$theme.colors.listHeaderFill",
+                            "borderBottom": "1px solid $theme.colors.mono400",
+                            "color": "$theme.colors.colorPrimary",
+                            "cursor": "pointer",
+                            "display": "flex",
+                            "fontFamily": "$theme.typography.font450.fontFamily",
+                            "fontSize": "$theme.typography.font450.fontSize",
+                            "fontWeight": "$theme.typography.font450.fontWeight",
+                            "justifyContent": "space-between",
+                            "lineHeight": "$theme.typography.font450.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "paddingBottom": "$theme.sizing.scale600",
+                            "paddingLeft": "$theme.sizing.scale700",
+                            "paddingRight": "$theme.sizing.scale700",
+                            "paddingTop": "$theme.sizing.scale600",
+                          }
+                        }
+                      >
+                        Accordion panel 1
+                        <Plus
+                          $disabled={false}
+                          $expanded={false}
+                          overrides={
+                            Object {
+                              "Svg": Object {
+                                "component": Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "render": [Function],
+                                },
+                              },
+                            }
+                          }
+                          size={16}
+                          title="Expand"
+                        >
+                          <Icon
+                            $disabled={false}
+                            $expanded={false}
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
+                                },
+                              }
+                            }
+                            size={16}
+                            title="Expand"
+                            viewBox="0 0 24 24"
+                          >
+                            <ForwardRef
+                              $disabled={false}
+                              $expanded={false}
+                              $size={16}
+                              data-baseweb="icon"
+                              viewBox="0 0 24 24"
+                            >
+                              <MockStyledComponent
+                                $disabled={false}
+                                $expanded={false}
+                                $size={16}
+                                data-baseweb="icon"
+                                forwardedRef={null}
+                                viewBox="0 0 24 24"
+                              >
+                                <svg
+                                  data-baseweb="icon"
+                                  styled-component="true"
+                                  test-style={
+                                    Object {
+                                      "color": "$theme.colors.foreground",
+                                      "cursor": "pointer",
+                                      "display": "inline-block",
+                                      "fill": "currentColor",
+                                      "height": "16px",
+                                      "width": "16px",
+                                    }
+                                  }
+                                  viewBox="0 0 24 24"
+                                >
+                                  <title>
+                                    Expand
+                                  </title>
+                                  <path
+                                    clipRule="evenodd"
+                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                    fillRule="evenodd"
+                                  />
+                                </svg>
+                              </MockStyledComponent>
+                            </ForwardRef>
+                          </Icon>
+                        </Plus>
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      forwardedRef={null}
+                    >
+                      <div
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "backgroundColor": "$theme.colors.listBodyFill",
+                            "borderBottom": "none",
+                            "boxSizing": "border-box",
+                            "color": "$theme.colors.foreground",
+                            "fontFamily": "$theme.typography.font300.fontFamily",
+                            "fontSize": "$theme.typography.font300.fontSize",
+                            "fontWeight": "$theme.typography.font300.fontWeight",
+                            "height": 0,
+                            "lineHeight": "$theme.typography.font300.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "maxHeight": 0,
+                            "overflow": "hidden",
+                            "paddingBottom": 0,
+                            "paddingLeft": "$theme.sizing.scale800",
+                            "paddingRight": "$theme.sizing.scale800",
+                            "paddingTop": 0,
+                            "transitionDuration": "$theme.animation.timing400",
+                            "transitionProperty": "all",
+                            "transitionTimingFunction": "$theme.animation.easeInOutCurve",
+                          }
+                        }
+                      >
+                        panel 1
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                </li>
+              </MockStyledComponent>
+            </ForwardRef>
+          </Panel>
+          <Panel
+            accordion={true}
+            disabled={false}
+            expanded={false}
+            key="1/.1"
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            renderPanelContent={true}
+            title="Accordion panel 2"
+          >
+            <ForwardRef
+              $disabled={false}
+              $expanded={false}
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $expanded={false}
+                forwardedRef={null}
+              >
+                <li
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "listStyleType": "none",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                    aria-disabled={null}
+                    aria-expanded={false}
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      aria-disabled={null}
+                      aria-expanded={false}
+                      forwardedRef={null}
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div
+                        aria-disabled={null}
+                        aria-expanded={false}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        styled-component="true"
+                        tabIndex={0}
+                        test-style={
+                          Object {
+                            ":hover": Object {
+                              "color": "$theme.colors.primary",
+                            },
+                            "alignItems": "center",
+                            "background": "$theme.colors.listHeaderFill",
+                            "borderBottom": "1px solid $theme.colors.mono400",
+                            "color": "$theme.colors.colorPrimary",
+                            "cursor": "pointer",
+                            "display": "flex",
+                            "fontFamily": "$theme.typography.font450.fontFamily",
+                            "fontSize": "$theme.typography.font450.fontSize",
+                            "fontWeight": "$theme.typography.font450.fontWeight",
+                            "justifyContent": "space-between",
+                            "lineHeight": "$theme.typography.font450.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "paddingBottom": "$theme.sizing.scale600",
+                            "paddingLeft": "$theme.sizing.scale700",
+                            "paddingRight": "$theme.sizing.scale700",
+                            "paddingTop": "$theme.sizing.scale600",
+                          }
+                        }
+                      >
+                        Accordion panel 2
+                        <Plus
+                          $disabled={false}
+                          $expanded={false}
+                          overrides={
+                            Object {
+                              "Svg": Object {
+                                "component": Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "render": [Function],
+                                },
+                              },
+                            }
+                          }
+                          size={16}
+                          title="Expand"
+                        >
+                          <Icon
+                            $disabled={false}
+                            $expanded={false}
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
+                                },
+                              }
+                            }
+                            size={16}
+                            title="Expand"
+                            viewBox="0 0 24 24"
+                          >
+                            <ForwardRef
+                              $disabled={false}
+                              $expanded={false}
+                              $size={16}
+                              data-baseweb="icon"
+                              viewBox="0 0 24 24"
+                            >
+                              <MockStyledComponent
+                                $disabled={false}
+                                $expanded={false}
+                                $size={16}
+                                data-baseweb="icon"
+                                forwardedRef={null}
+                                viewBox="0 0 24 24"
+                              >
+                                <svg
+                                  data-baseweb="icon"
+                                  styled-component="true"
+                                  test-style={
+                                    Object {
+                                      "color": "$theme.colors.foreground",
+                                      "cursor": "pointer",
+                                      "display": "inline-block",
+                                      "fill": "currentColor",
+                                      "height": "16px",
+                                      "width": "16px",
+                                    }
+                                  }
+                                  viewBox="0 0 24 24"
+                                >
+                                  <title>
+                                    Expand
+                                  </title>
+                                  <path
+                                    clipRule="evenodd"
+                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                    fillRule="evenodd"
+                                  />
+                                </svg>
+                              </MockStyledComponent>
+                            </ForwardRef>
+                          </Icon>
+                        </Plus>
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      forwardedRef={null}
+                    >
+                      <div
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "backgroundColor": "$theme.colors.listBodyFill",
+                            "borderBottom": "none",
+                            "boxSizing": "border-box",
+                            "color": "$theme.colors.foreground",
+                            "fontFamily": "$theme.typography.font300.fontFamily",
+                            "fontSize": "$theme.typography.font300.fontSize",
+                            "fontWeight": "$theme.typography.font300.fontWeight",
+                            "height": 0,
+                            "lineHeight": "$theme.typography.font300.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "maxHeight": 0,
+                            "overflow": "hidden",
+                            "paddingBottom": 0,
+                            "paddingLeft": "$theme.sizing.scale800",
+                            "paddingRight": "$theme.sizing.scale800",
+                            "paddingTop": 0,
+                            "transitionDuration": "$theme.animation.timing400",
+                            "transitionProperty": "all",
+                            "transitionTimingFunction": "$theme.animation.easeInOutCurve",
+                          }
+                        }
+                      >
+                        panel 2
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                </li>
+              </MockStyledComponent>
+            </ForwardRef>
+          </Panel>
+          <Panel
+            accordion={true}
+            disabled={false}
+            expanded={false}
+            key="2/.2"
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            renderPanelContent={true}
+            title="Accordion panel 3"
+          >
+            <ForwardRef
+              $disabled={false}
+              $expanded={false}
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $expanded={false}
+                forwardedRef={null}
+              >
+                <li
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "listStyleType": "none",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                    aria-disabled={null}
+                    aria-expanded={false}
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      aria-disabled={null}
+                      aria-expanded={false}
+                      forwardedRef={null}
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div
+                        aria-disabled={null}
+                        aria-expanded={false}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        styled-component="true"
+                        tabIndex={0}
+                        test-style={
+                          Object {
+                            ":hover": Object {
+                              "color": "$theme.colors.primary",
+                            },
+                            "alignItems": "center",
+                            "background": "$theme.colors.listHeaderFill",
+                            "borderBottom": "1px solid $theme.colors.mono400",
+                            "color": "$theme.colors.colorPrimary",
+                            "cursor": "pointer",
+                            "display": "flex",
+                            "fontFamily": "$theme.typography.font450.fontFamily",
+                            "fontSize": "$theme.typography.font450.fontSize",
+                            "fontWeight": "$theme.typography.font450.fontWeight",
+                            "justifyContent": "space-between",
+                            "lineHeight": "$theme.typography.font450.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "paddingBottom": "$theme.sizing.scale600",
+                            "paddingLeft": "$theme.sizing.scale700",
+                            "paddingRight": "$theme.sizing.scale700",
+                            "paddingTop": "$theme.sizing.scale600",
+                          }
+                        }
+                      >
+                        Accordion panel 3
+                        <Plus
+                          $disabled={false}
+                          $expanded={false}
+                          overrides={
+                            Object {
+                              "Svg": Object {
+                                "component": Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "render": [Function],
+                                },
+                              },
+                            }
+                          }
+                          size={16}
+                          title="Expand"
+                        >
+                          <Icon
+                            $disabled={false}
+                            $expanded={false}
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
+                                },
+                              }
+                            }
+                            size={16}
+                            title="Expand"
+                            viewBox="0 0 24 24"
+                          >
+                            <ForwardRef
+                              $disabled={false}
+                              $expanded={false}
+                              $size={16}
+                              data-baseweb="icon"
+                              viewBox="0 0 24 24"
+                            >
+                              <MockStyledComponent
+                                $disabled={false}
+                                $expanded={false}
+                                $size={16}
+                                data-baseweb="icon"
+                                forwardedRef={null}
+                                viewBox="0 0 24 24"
+                              >
+                                <svg
+                                  data-baseweb="icon"
+                                  styled-component="true"
+                                  test-style={
+                                    Object {
+                                      "color": "$theme.colors.foreground",
+                                      "cursor": "pointer",
+                                      "display": "inline-block",
+                                      "fill": "currentColor",
+                                      "height": "16px",
+                                      "width": "16px",
+                                    }
+                                  }
+                                  viewBox="0 0 24 24"
+                                >
+                                  <title>
+                                    Expand
+                                  </title>
+                                  <path
+                                    clipRule="evenodd"
+                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                    fillRule="evenodd"
+                                  />
+                                </svg>
+                              </MockStyledComponent>
+                            </ForwardRef>
+                          </Icon>
+                        </Plus>
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      forwardedRef={null}
+                    >
+                      <div
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "backgroundColor": "$theme.colors.listBodyFill",
+                            "borderBottom": "none",
+                            "boxSizing": "border-box",
+                            "color": "$theme.colors.foreground",
+                            "fontFamily": "$theme.typography.font300.fontFamily",
+                            "fontSize": "$theme.typography.font300.fontSize",
+                            "fontWeight": "$theme.typography.font300.fontWeight",
+                            "height": 0,
+                            "lineHeight": "$theme.typography.font300.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "maxHeight": 0,
+                            "overflow": "hidden",
+                            "paddingBottom": 0,
+                            "paddingLeft": "$theme.sizing.scale800",
+                            "paddingRight": "$theme.sizing.scale800",
+                            "paddingTop": 0,
+                            "transitionDuration": "$theme.animation.timing400",
+                            "transitionProperty": "all",
+                            "transitionTimingFunction": "$theme.animation.easeInOutCurve",
+                          }
+                        }
+                      >
+                        panel 3
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                </li>
+              </MockStyledComponent>
+            </ForwardRef>
+          </Panel>
+        </ul>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Accordion>
+</Component>
+`;
+
+exports[`Accordion basic render: Accordion renders correctly 1`] = `
+<Component>
+  <Accordion
+    accordion={true}
+    disabled={false}
+    initialState={
+      Object {
+        "expanded": Array [],
+      }
+    }
+    onChange={[Function]}
+    overrides={Object {}}
+    renderPanelContent={false}
+    stateReducer={[Function]}
+  >
+    <ForwardRef
+      $disabled={false}
+      data-baseweb="accordion"
+    >
+      <MockStyledComponent
+        $disabled={false}
+        data-baseweb="accordion"
+        forwardedRef={null}
+      >
+        <ul
+          data-baseweb="accordion"
+          styled-component="true"
+          test-style={
+            Object {
+              "listStyleType": "none",
+              "marginBottom": 0,
+              "marginTop": 0,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            }
+          }
+        >
+          <Panel
+            accordion={true}
+            disabled={false}
+            expanded={false}
+            key="0/.0"
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            renderPanelContent={false}
+            title="Accordion panel 1"
+          >
+            <ForwardRef
+              $disabled={false}
+              $expanded={false}
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $expanded={false}
+                forwardedRef={null}
+              >
+                <li
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "listStyleType": "none",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                    aria-disabled={null}
+                    aria-expanded={false}
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      aria-disabled={null}
+                      aria-expanded={false}
+                      forwardedRef={null}
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div
+                        aria-disabled={null}
+                        aria-expanded={false}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        styled-component="true"
+                        tabIndex={0}
+                        test-style={
+                          Object {
+                            ":hover": Object {
+                              "color": "$theme.colors.primary",
+                            },
+                            "alignItems": "center",
+                            "background": "$theme.colors.listHeaderFill",
+                            "borderBottom": "1px solid $theme.colors.mono400",
+                            "color": "$theme.colors.colorPrimary",
+                            "cursor": "pointer",
+                            "display": "flex",
+                            "fontFamily": "$theme.typography.font450.fontFamily",
+                            "fontSize": "$theme.typography.font450.fontSize",
+                            "fontWeight": "$theme.typography.font450.fontWeight",
+                            "justifyContent": "space-between",
+                            "lineHeight": "$theme.typography.font450.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "paddingBottom": "$theme.sizing.scale600",
+                            "paddingLeft": "$theme.sizing.scale700",
+                            "paddingRight": "$theme.sizing.scale700",
+                            "paddingTop": "$theme.sizing.scale600",
+                          }
+                        }
+                      >
+                        Accordion panel 1
+                        <Plus
+                          $disabled={false}
+                          $expanded={false}
+                          overrides={
+                            Object {
+                              "Svg": Object {
+                                "component": Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "render": [Function],
+                                },
+                              },
+                            }
+                          }
+                          size={16}
+                          title="Expand"
+                        >
+                          <Icon
+                            $disabled={false}
+                            $expanded={false}
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
+                                },
+                              }
+                            }
+                            size={16}
+                            title="Expand"
+                            viewBox="0 0 24 24"
+                          >
+                            <ForwardRef
+                              $disabled={false}
+                              $expanded={false}
+                              $size={16}
+                              data-baseweb="icon"
+                              viewBox="0 0 24 24"
+                            >
+                              <MockStyledComponent
+                                $disabled={false}
+                                $expanded={false}
+                                $size={16}
+                                data-baseweb="icon"
+                                forwardedRef={null}
+                                viewBox="0 0 24 24"
+                              >
+                                <svg
+                                  data-baseweb="icon"
+                                  styled-component="true"
+                                  test-style={
+                                    Object {
+                                      "color": "$theme.colors.foreground",
+                                      "cursor": "pointer",
+                                      "display": "inline-block",
+                                      "fill": "currentColor",
+                                      "height": "16px",
+                                      "width": "16px",
+                                    }
+                                  }
+                                  viewBox="0 0 24 24"
+                                >
+                                  <title>
+                                    Expand
+                                  </title>
+                                  <path
+                                    clipRule="evenodd"
+                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                    fillRule="evenodd"
+                                  />
+                                </svg>
+                              </MockStyledComponent>
+                            </ForwardRef>
+                          </Icon>
+                        </Plus>
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      forwardedRef={null}
+                    >
+                      <div
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "backgroundColor": "$theme.colors.listBodyFill",
+                            "borderBottom": "none",
+                            "boxSizing": "border-box",
+                            "color": "$theme.colors.foreground",
+                            "fontFamily": "$theme.typography.font300.fontFamily",
+                            "fontSize": "$theme.typography.font300.fontSize",
+                            "fontWeight": "$theme.typography.font300.fontWeight",
+                            "height": 0,
+                            "lineHeight": "$theme.typography.font300.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "maxHeight": 0,
+                            "overflow": "hidden",
+                            "paddingBottom": 0,
+                            "paddingLeft": "$theme.sizing.scale800",
+                            "paddingRight": "$theme.sizing.scale800",
+                            "paddingTop": 0,
+                            "transitionDuration": "$theme.animation.timing400",
+                            "transitionProperty": "all",
+                            "transitionTimingFunction": "$theme.animation.easeInOutCurve",
+                          }
+                        }
+                      />
+                    </MockStyledComponent>
+                  </ForwardRef>
+                </li>
+              </MockStyledComponent>
+            </ForwardRef>
+          </Panel>
+          <Panel
+            accordion={true}
+            disabled={false}
+            expanded={false}
+            key="1/.1"
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            renderPanelContent={false}
+            title="Accordion panel 2"
+          >
+            <ForwardRef
+              $disabled={false}
+              $expanded={false}
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $expanded={false}
+                forwardedRef={null}
+              >
+                <li
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "listStyleType": "none",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                    aria-disabled={null}
+                    aria-expanded={false}
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      aria-disabled={null}
+                      aria-expanded={false}
+                      forwardedRef={null}
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div
+                        aria-disabled={null}
+                        aria-expanded={false}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        styled-component="true"
+                        tabIndex={0}
+                        test-style={
+                          Object {
+                            ":hover": Object {
+                              "color": "$theme.colors.primary",
+                            },
+                            "alignItems": "center",
+                            "background": "$theme.colors.listHeaderFill",
+                            "borderBottom": "1px solid $theme.colors.mono400",
+                            "color": "$theme.colors.colorPrimary",
+                            "cursor": "pointer",
+                            "display": "flex",
+                            "fontFamily": "$theme.typography.font450.fontFamily",
+                            "fontSize": "$theme.typography.font450.fontSize",
+                            "fontWeight": "$theme.typography.font450.fontWeight",
+                            "justifyContent": "space-between",
+                            "lineHeight": "$theme.typography.font450.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "paddingBottom": "$theme.sizing.scale600",
+                            "paddingLeft": "$theme.sizing.scale700",
+                            "paddingRight": "$theme.sizing.scale700",
+                            "paddingTop": "$theme.sizing.scale600",
+                          }
+                        }
+                      >
+                        Accordion panel 2
+                        <Plus
+                          $disabled={false}
+                          $expanded={false}
+                          overrides={
+                            Object {
+                              "Svg": Object {
+                                "component": Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "render": [Function],
+                                },
+                              },
+                            }
+                          }
+                          size={16}
+                          title="Expand"
+                        >
+                          <Icon
+                            $disabled={false}
+                            $expanded={false}
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
+                                },
+                              }
+                            }
+                            size={16}
+                            title="Expand"
+                            viewBox="0 0 24 24"
+                          >
+                            <ForwardRef
+                              $disabled={false}
+                              $expanded={false}
+                              $size={16}
+                              data-baseweb="icon"
+                              viewBox="0 0 24 24"
+                            >
+                              <MockStyledComponent
+                                $disabled={false}
+                                $expanded={false}
+                                $size={16}
+                                data-baseweb="icon"
+                                forwardedRef={null}
+                                viewBox="0 0 24 24"
+                              >
+                                <svg
+                                  data-baseweb="icon"
+                                  styled-component="true"
+                                  test-style={
+                                    Object {
+                                      "color": "$theme.colors.foreground",
+                                      "cursor": "pointer",
+                                      "display": "inline-block",
+                                      "fill": "currentColor",
+                                      "height": "16px",
+                                      "width": "16px",
+                                    }
+                                  }
+                                  viewBox="0 0 24 24"
+                                >
+                                  <title>
+                                    Expand
+                                  </title>
+                                  <path
+                                    clipRule="evenodd"
+                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                    fillRule="evenodd"
+                                  />
+                                </svg>
+                              </MockStyledComponent>
+                            </ForwardRef>
+                          </Icon>
+                        </Plus>
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      forwardedRef={null}
+                    >
+                      <div
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "backgroundColor": "$theme.colors.listBodyFill",
+                            "borderBottom": "none",
+                            "boxSizing": "border-box",
+                            "color": "$theme.colors.foreground",
+                            "fontFamily": "$theme.typography.font300.fontFamily",
+                            "fontSize": "$theme.typography.font300.fontSize",
+                            "fontWeight": "$theme.typography.font300.fontWeight",
+                            "height": 0,
+                            "lineHeight": "$theme.typography.font300.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "maxHeight": 0,
+                            "overflow": "hidden",
+                            "paddingBottom": 0,
+                            "paddingLeft": "$theme.sizing.scale800",
+                            "paddingRight": "$theme.sizing.scale800",
+                            "paddingTop": 0,
+                            "transitionDuration": "$theme.animation.timing400",
+                            "transitionProperty": "all",
+                            "transitionTimingFunction": "$theme.animation.easeInOutCurve",
+                          }
+                        }
+                      />
+                    </MockStyledComponent>
+                  </ForwardRef>
+                </li>
+              </MockStyledComponent>
+            </ForwardRef>
+          </Panel>
+          <Panel
+            accordion={true}
+            disabled={false}
+            expanded={false}
+            key="2/.2"
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            renderPanelContent={false}
+            title="Accordion panel 3"
+          >
+            <ForwardRef
+              $disabled={false}
+              $expanded={false}
+            >
+              <MockStyledComponent
+                $disabled={false}
+                $expanded={false}
+                forwardedRef={null}
+              >
+                <li
+                  styled-component="true"
+                  test-style={
+                    Object {
+                      "listStyleType": "none",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                    aria-disabled={null}
+                    aria-expanded={false}
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      aria-disabled={null}
+                      aria-expanded={false}
+                      forwardedRef={null}
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div
+                        aria-disabled={null}
+                        aria-expanded={false}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        styled-component="true"
+                        tabIndex={0}
+                        test-style={
+                          Object {
+                            ":hover": Object {
+                              "color": "$theme.colors.primary",
+                            },
+                            "alignItems": "center",
+                            "background": "$theme.colors.listHeaderFill",
+                            "borderBottom": "1px solid $theme.colors.mono400",
+                            "color": "$theme.colors.colorPrimary",
+                            "cursor": "pointer",
+                            "display": "flex",
+                            "fontFamily": "$theme.typography.font450.fontFamily",
+                            "fontSize": "$theme.typography.font450.fontSize",
+                            "fontWeight": "$theme.typography.font450.fontWeight",
+                            "justifyContent": "space-between",
+                            "lineHeight": "$theme.typography.font450.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "paddingBottom": "$theme.sizing.scale600",
+                            "paddingLeft": "$theme.sizing.scale700",
+                            "paddingRight": "$theme.sizing.scale700",
+                            "paddingTop": "$theme.sizing.scale600",
+                          }
+                        }
+                      >
+                        Accordion panel 3
+                        <Plus
+                          $disabled={false}
+                          $expanded={false}
+                          overrides={
+                            Object {
+                              "Svg": Object {
+                                "component": Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "render": [Function],
+                                },
+                              },
+                            }
+                          }
+                          size={16}
+                          title="Expand"
+                        >
+                          <Icon
+                            $disabled={false}
+                            $expanded={false}
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
+                                },
+                              }
+                            }
+                            size={16}
+                            title="Expand"
+                            viewBox="0 0 24 24"
+                          >
+                            <ForwardRef
+                              $disabled={false}
+                              $expanded={false}
+                              $size={16}
+                              data-baseweb="icon"
+                              viewBox="0 0 24 24"
+                            >
+                              <MockStyledComponent
+                                $disabled={false}
+                                $expanded={false}
+                                $size={16}
+                                data-baseweb="icon"
+                                forwardedRef={null}
+                                viewBox="0 0 24 24"
+                              >
+                                <svg
+                                  data-baseweb="icon"
+                                  styled-component="true"
+                                  test-style={
+                                    Object {
+                                      "color": "$theme.colors.foreground",
+                                      "cursor": "pointer",
+                                      "display": "inline-block",
+                                      "fill": "currentColor",
+                                      "height": "16px",
+                                      "width": "16px",
+                                    }
+                                  }
+                                  viewBox="0 0 24 24"
+                                >
+                                  <title>
+                                    Expand
+                                  </title>
+                                  <path
+                                    clipRule="evenodd"
+                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                    fillRule="evenodd"
+                                  />
+                                </svg>
+                              </MockStyledComponent>
+                            </ForwardRef>
+                          </Icon>
+                        </Plus>
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
+                  <ForwardRef
+                    $disabled={false}
+                    $expanded={false}
+                  >
+                    <MockStyledComponent
+                      $disabled={false}
+                      $expanded={false}
+                      forwardedRef={null}
+                    >
+                      <div
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "backgroundColor": "$theme.colors.listBodyFill",
+                            "borderBottom": "none",
+                            "boxSizing": "border-box",
+                            "color": "$theme.colors.foreground",
+                            "fontFamily": "$theme.typography.font300.fontFamily",
+                            "fontSize": "$theme.typography.font300.fontSize",
+                            "fontWeight": "$theme.typography.font300.fontWeight",
+                            "height": 0,
+                            "lineHeight": "$theme.typography.font300.lineHeight",
+                            "marginBottom": 0,
+                            "marginLeft": 0,
+                            "marginRight": 0,
+                            "marginTop": 0,
+                            "maxHeight": 0,
+                            "overflow": "hidden",
+                            "paddingBottom": 0,
+                            "paddingLeft": "$theme.sizing.scale800",
+                            "paddingRight": "$theme.sizing.scale800",
+                            "paddingTop": 0,
+                            "transitionDuration": "$theme.animation.timing400",
+                            "transitionProperty": "all",
+                            "transitionTimingFunction": "$theme.animation.easeInOutCurve",
+                          }
+                        }
+                      />
+                    </MockStyledComponent>
+                  </ForwardRef>
+                </li>
+              </MockStyledComponent>
+            </ForwardRef>
+          </Panel>
+        </ul>
+      </MockStyledComponent>
+    </ForwardRef>
+  </Accordion>
+</Component>
+`;

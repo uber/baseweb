@@ -10,10 +10,12 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
-export const StyledProgressSteps = styled<{}>('div', ({$theme}) => {
+export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.listHeaderFill,
     display: 'inline-block',
+    marginBottom: 0,
+    marginTop: 0,
     paddingTop: $theme.sizing.scale300,
     paddingRight: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale500,
@@ -21,8 +23,9 @@ export const StyledProgressSteps = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export const StyledStep = styled<StylePropsT>('div', ({$theme}) => {
+export const StyledStep = styled<StylePropsT>('li', ({$theme}) => {
   return {
+    listStyleType: 'none',
     position: 'relative',
     overflow: 'visible',
   };
@@ -148,8 +151,9 @@ export const StyledContentDescription = styled<StylePropsT>(
   },
 );
 
-export const StyledNumberStep = styled<StylePropsT>('div', ({$theme}) => {
+export const StyledNumberStep = styled<StylePropsT>('li', ({$theme}) => {
   return {
+    listStyleType: 'none',
     position: 'relative',
     overflow: 'visible',
   };

@@ -661,6 +661,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-labelledby={this.props['aria-labelledby']}
           aria-required={this.props.required || null}
           disabled={this.props.disabled || null}
+          id={this.props.id || null}
           inputRef={ref => (this.input = ref)}
           onBlur={this.handleBlur}
           onChange={this.handleInputChange}
