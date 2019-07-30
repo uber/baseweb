@@ -22,6 +22,7 @@ import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js'
 import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.js';
 import DatePickersColorStates from 'examples/datepicker/datepickers-color-states.js';
 import DatePickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
+import NestedOverride from 'examples/datepicker/nested-override.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulCalendar} from 'baseui/datepicker';
@@ -45,10 +46,7 @@ A simple and reusable component to work with or select a date or a range of date
   <DatepickerBasic />
 </Example>
 
-<Example
-  title="Datepicker in a popover"
-  path="datepicker/in-popover.js"
->
+<Example title="Datepicker in a popover" path="datepicker/in-popover.js">
   <DatepickerInPopover />
 </Example>
 
@@ -59,17 +57,11 @@ A simple and reusable component to work with or select a date or a range of date
   <DatepickerQuickSelect />
 </Example>
 
-<Example
-  title="Datepicker with localization"
-  path="datepicker/i18n.js"
->
+<Example title="Datepicker with localization" path="datepicker/i18n.js">
   <DatepickerI18n />
 </Example>
 
-<Example
-  title="Datepicker with overrides"
-  path="datepicker/with-overrides.js"
->
+<Example title="Datepicker with overrides" path="datepicker/with-overrides.js">
   <DatepickerWithOverrides />
 </Example>
 
@@ -120,9 +112,9 @@ A simple and reusable component to work with or select a date or a range of date
   title="Datepicker with timezone selection"
   path="datepicker/datepicker-with-timezone.js"
 >
-  This example works for most use-cases, however certian edge-cases
-  are not handled here. If this data is mission critical for your systems,
-  consider using Moment.js, and pass the date object from Moment.js to the datepicker.
+  This example works for most use-cases, however certian edge-cases are not
+  handled here. If this data is mission critical for your systems, consider
+  using Moment.js, and pass the date object from Moment.js to the datepicker.
   <DatePickerTimezone />
 </Example>
 
@@ -142,6 +134,15 @@ A simple and reusable component to work with or select a date or a range of date
     />
   )}
 />
+
+<Example
+  title="Overriding a nested component"
+  path="datepicker/nested-override.js"
+>
+  <NestedOverride />
+</Example>
+
+In this example we use a [nested override](/theming/understanding-overrides#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
 
 <API
   heading="Calendar API"
