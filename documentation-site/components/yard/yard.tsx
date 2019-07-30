@@ -6,12 +6,15 @@ import {StatefulTabs, Tab} from 'baseui/tabs';
 import {ButtonGroup} from 'baseui/button-group';
 import copy from 'copy-to-clipboard';
 import {Card, StyledBody as CardStyledBody} from 'baseui/card';
+import {StatefulTooltip} from 'baseui/tooltip';
+import {Tag, VARIANT} from 'baseui/tag';
 
 import {COMPONENTS, PropTypes, Action} from './const';
 import Knobs from './knobs';
 import {transformCode, formatCode, parseProps, parseOverrides} from './ast';
 import {assertUnreachable} from './utils';
 import Overrides from './overrides';
+import ThemeEditor from './theme-editor';
 import {TState, TProp} from './types';
 
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
@@ -53,6 +56,7 @@ const getCode = (props: {[key: string]: TProp}) => {
             }
           });
           overrideString += '}';
+          if (overrideString === '{}') break;
           propsString += ` ${name}={${overrideString}}`;
           break;
         default:
@@ -262,6 +266,19 @@ export default withRouter(
                     }}
                   />
                 </Tab>
+                <Tab
+                  title="Theme"
+                  overrides={{
+                    Tab: {
+                      style: ({$theme}) =>
+                        ({
+                          ...$theme.typography.font450,
+                        } as any),
+                    },
+                  }}
+                >
+                  <ThemeEditor />
+                </Tab>
               </StatefulTabs>
               <div
                 className={css({
@@ -293,7 +310,16 @@ export default withRouter(
                         propValues[name] =
                           //@ts-ignore
                           COMPONENTS[componentName][name].value;
-                        propValues[name] = parsedProps[name];
+                        if (name === 'overrides') {
+                          // overrides need a special treatment since the value needs to
+                          // be further analyzed and parsed
+                          propValues[name] = parseOverrides(
+                            parsedProps[name],
+                            COMPONENTS[componentName].overrides.meta.names,
+                          );
+                        } else {
+                          propValues[name] = parsedProps[name];
+                        }
                       });
                       dispatch({
                         type: Action.UpdatePropsAndCode,
@@ -371,6 +397,23 @@ export default withRouter(
                   Reset
                 </Button>
               </ButtonGroup>
+              <div
+                className={css({display: 'flex', justifyContent: 'flex-end'})}
+              >
+                <Tag
+                  closeable={false}
+                  variant={VARIANT.outlined}
+                  kind="warning"
+                >
+                  <StatefulTooltip
+                    accessibilityType="tooltip"
+                    placement="bottomLeft"
+                    content="This is a new experimental component playground. Please use GitHub issues to report any feedback and bugs. Thank you!"
+                  >
+                    Beta
+                  </StatefulTooltip>
+                </Tag>
+              </div>
             </CardStyledBody>
           </Card>
         </LiveProvider>

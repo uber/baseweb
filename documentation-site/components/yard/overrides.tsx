@@ -13,10 +13,9 @@ type TOverridesProps = {
 
 const getHighlightStyles = (isLightTheme: boolean, sharedProps: string[]) =>
   formatCode(`({ $theme, ${sharedProps.join(',')} }) => { return ({
-    outlineStyle: 'solid',
-    outlineColor: ${
+    outline: \`\${${
       isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
-    },
+    }} solid\`,
     backgroundColor: ${
       isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
     },
@@ -95,7 +94,7 @@ const Overrides: React.FC<TOverridesProps> = ({overrides, set}) => {
                 Input: {
                   style: () => ({
                     fontSize: '12px',
-                    minHeight: '186px',
+                    minHeight: '162px',
                     fontFamily:
                       "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
                     resize: 'vertical',
