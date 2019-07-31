@@ -7,7 +7,7 @@ import {Caption1} from 'baseui/typography';
 import Link from 'next/link';
 import {StyledLink} from 'baseui/link';
 import {useStyletron} from 'baseui';
-import {formatCode} from './ast';
+import {formatCode, addOverrideSharedProps} from './ast';
 
 type TOverridesProps = {
   set: any;
@@ -163,7 +163,23 @@ const Overrides: React.FC<TOverridesProps> = ({
                 >
                   Format
                 </Button>
-                <Button kind={KIND.tertiary} onClick={() => {}}>
+                <Button
+                  kind={KIND.tertiary}
+                  onClick={() => {
+                    set({
+                      ...overrides.value,
+                      [overrideKey]: {
+                        style: formatCode(
+                          addOverrideSharedProps(
+                            overrides.value[overrideKey].style,
+                            Object.keys(overrides.meta.sharedProps),
+                          ),
+                        ),
+                        active: true,
+                      },
+                    });
+                  }}
+                >
                   Add shared props
                 </Button>
                 <Button

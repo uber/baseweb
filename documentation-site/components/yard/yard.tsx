@@ -204,38 +204,6 @@ export default withRouter(
                 }}
               >
                 <Tab
-                  title="Props"
-                  overrides={{
-                    Tab: {
-                      style: ({$theme}) =>
-                        ({
-                          marginLeft: 0,
-                          ...$theme.typography.font450,
-                        } as any),
-                    },
-                  }}
-                >
-                  <Knobs
-                    knobProps={state.props}
-                    set={(value: any, name: string) => {
-                      const newCode = formatCode(
-                        getCode(buildPropsObj(state, {[name]: value})),
-                      );
-                      dispatch({
-                        type: Action.UpdatePropsAndCode,
-                        payload: {
-                          code: newCode,
-                          updatedPropValues: {[name]: value},
-                        },
-                      });
-                      Router.push({
-                        pathname: router.pathname,
-                        query: {code: newCode},
-                      } as any);
-                    }}
-                  />
-                </Tab>
-                <Tab
                   title="Style Overrides"
                   overrides={{
                     Tab: {
@@ -258,6 +226,38 @@ export default withRouter(
                         payload: {
                           code: newCode,
                           updatedPropValues: {overrides: value},
+                        },
+                      });
+                      Router.push({
+                        pathname: router.pathname,
+                        query: {code: newCode},
+                      } as any);
+                    }}
+                  />
+                </Tab>
+                <Tab
+                  title="Props"
+                  overrides={{
+                    Tab: {
+                      style: ({$theme}) =>
+                        ({
+                          marginLeft: 0,
+                          ...$theme.typography.font450,
+                        } as any),
+                    },
+                  }}
+                >
+                  <Knobs
+                    knobProps={state.props}
+                    set={(value: any, name: string) => {
+                      const newCode = formatCode(
+                        getCode(buildPropsObj(state, {[name]: value})),
+                      );
+                      dispatch({
+                        type: Action.UpdatePropsAndCode,
+                        payload: {
+                          code: newCode,
+                          updatedPropValues: {[name]: value},
                         },
                       });
                       Router.push({

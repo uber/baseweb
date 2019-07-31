@@ -1,6 +1,7 @@
 import prettier from 'prettier/standalone';
 import traverse from '@babel/traverse';
 import generate from '@babel/generator';
+import * as t from 'babel-types';
 import babel from 'prettier/parser-babylon';
 
 const parse = babel.parsers.babel.parse as (code: string) => any;
@@ -60,6 +61,48 @@ export function parseOverrides(code: string, names: string[]) {
     throw new Error("Overrides code is not valid and can't be parsed.");
   }
   return resultOverrides;
+}
+
+export function addOverrideSharedProps(code: string, sharedProps: string[]) {
+  let result: string = '';
+  try {
+    const ast = parse(code);
+    traverse(ast, {
+      ArrowFunctionExpression(path) {
+        if (result !== '') return;
+        if (path.node.params.length !== 1) return;
+        const firstParam: any = path.node.params[0];
+        let newParams: string[] = [];
+        if (firstParam.type === 'ObjectPattern') {
+          const properties = firstParam.properties;
+          newParams = properties.map((prop: any) => prop.key.name);
+        }
+        console.log(sharedProps);
+        sharedProps.forEach(param => {
+          if (!newParams.includes(param)) {
+            newParams.push(param);
+          }
+        });
+        path.node.params = [
+          t.objectPattern(
+            //@ts-ignore
+            newParams.map(param =>
+              t.objectProperty(
+                t.identifier(param),
+                t.identifier(param),
+                false,
+                true,
+              ),
+            ),
+          ),
+        ];
+        result = generate(path.node as any).code;
+      },
+    });
+  } catch (e) {
+    throw new Error('Override params transform was no good.');
+  }
+  return result;
 }
 
 export function parseProps(code: string, elementName: string) {
