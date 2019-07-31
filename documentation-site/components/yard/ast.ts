@@ -63,7 +63,7 @@ export function parseOverrides(code: string, names: string[]) {
   return resultOverrides;
 }
 
-export function addOverrideSharedProps(code: string, sharedProps: string[]) {
+export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
   let result: string = '';
   try {
     const ast = parse(code);
@@ -77,24 +77,43 @@ export function addOverrideSharedProps(code: string, sharedProps: string[]) {
           const properties = firstParam.properties;
           newParams = properties.map((prop: any) => prop.key.name);
         }
-        sharedProps.forEach(param => {
-          if (!newParams.includes(param)) {
-            newParams.push(param);
-          }
-        });
-        path.node.params = [
-          t.objectPattern(
+
+        const shoudlWeAddSharedProps = newParams.every(
+          name => !sharedProps.includes(name),
+        );
+
+        if (shoudlWeAddSharedProps) {
+          sharedProps.forEach(param => {
+            if (!newParams.includes(param)) {
+              newParams.push(param);
+            }
+          });
+          path.node.params = [
+            t.objectPattern(
+              //@ts-ignore
+              newParams.map(param =>
+                t.objectProperty(
+                  t.identifier(param),
+                  t.identifier(param),
+                  false,
+                  true,
+                ),
+              ),
+            ),
+          ];
+        } else {
+          path.node.params = [
             //@ts-ignore
-            newParams.map(param =>
+            t.objectPattern([
               t.objectProperty(
-                t.identifier(param),
-                t.identifier(param),
+                t.identifier('$theme'),
+                t.identifier('$theme'),
                 false,
                 true,
               ),
-            ),
-          ),
-        ];
+            ]),
+          ];
+        }
         result = generate(path.node as any).code;
       },
     });

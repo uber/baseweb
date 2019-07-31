@@ -216,6 +216,7 @@ export default withRouter(
                 >
                   <Overrides
                     componentName={componentName}
+                    componentConfig={COMPONENTS[componentName]}
                     overrides={state.props.overrides}
                     set={(value: any) => {
                       const newCode = formatCode(

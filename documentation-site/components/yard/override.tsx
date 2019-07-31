@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Textarea} from 'baseui/textarea';
+import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
-import {formatCode, addOverrideSharedProps} from './ast';
+import {formatCode, toggleOverrideSharedProps} from './ast';
 
 export const getHighlightStyles = (
   isLightTheme: boolean,
@@ -27,13 +28,57 @@ type TProps = {
   overrideKey: string;
   overrides: any;
   overridesObj: any;
+  componentConfig: any;
   set: (args: any) => void;
+};
+
+const SharedPropsTooltip: React.FC<{
+  componentConfig: any;
+  children: React.ReactNode;
+}> = ({componentConfig, children}) => {
+  const sharedProps = Object.keys(componentConfig.overrides.meta.sharedProps);
+  const getDescription = (name: string) => {
+    if (typeof componentConfig.overrides.meta.sharedProps[name] === 'string') {
+      const propName = componentConfig.overrides.meta.sharedProps[name];
+      return (
+        <React.Fragment>
+          <i>{componentConfig[propName].type}</i> -{' '}
+          {componentConfig[propName].description}
+        </React.Fragment>
+      );
+    }
+    return 'TBD';
+  };
+  return (
+    <StatefulTooltip
+      accessibilityType="tooltip"
+      placement="bottomLeft"
+      content={
+        <React.Fragment>
+          <p>These props are passed to the override function:</p>
+          <ul>
+            <li>
+              <strong>$theme</strong>: <i>ThemeT</i> - Global theme object.
+            </li>
+            {sharedProps.map(prop => (
+              <li>
+                <strong>{prop}</strong>: {getDescription(prop)}
+              </li>
+            ))}
+          </ul>
+        </React.Fragment>
+      }
+    >
+      {children}
+    </StatefulTooltip>
+  );
 };
 
 const Override: React.FC<TProps> = ({
   overrideKey,
   overrides,
   overridesObj,
+  componentConfig,
   set,
 }) => {
   const [, theme] = useStyletron();
@@ -42,7 +87,6 @@ const Override: React.FC<TProps> = ({
   const textareaValue = overridesObj[overrideKey]
     ? overridesObj[overrideKey].style
     : '';
-
   // autoresize textarea
   React.useEffect(() => {
     setTextareaHeight(textareaValue.split('\n').length * 24 + 16);
@@ -97,7 +141,7 @@ const Override: React.FC<TProps> = ({
           kind={KIND.tertiary}
           onClick={() => {
             const newCode = formatCode(
-              addOverrideSharedProps(
+              toggleOverrideSharedProps(
                 overrides.value[overrideKey].style,
                 Object.keys(overrides.meta.sharedProps),
               ),
@@ -111,7 +155,9 @@ const Override: React.FC<TProps> = ({
             });
           }}
         >
-          Add shared props
+          <SharedPropsTooltip componentConfig={componentConfig}>
+            Toggle shared props
+          </SharedPropsTooltip>
         </Button>
         <Button
           kind={KIND.tertiary}

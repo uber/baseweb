@@ -10,6 +10,7 @@ import Override, {getHighlightStyles} from './override';
 type TOverridesProps = {
   set: any;
   overrides: any;
+  componentConfig: any;
   componentName: string;
 };
 
@@ -17,6 +18,7 @@ const Overrides: React.FC<TOverridesProps> = ({
   overrides,
   set,
   componentName,
+  componentConfig,
 }) => {
   const [, theme] = useStyletron();
   const isLightTheme = theme.name === 'light-theme';
@@ -101,6 +103,7 @@ const Overrides: React.FC<TOverridesProps> = ({
               overrideKey={overrideKey}
               overridesObj={overridesObj}
               overrides={overrides}
+              componentConfig={componentConfig}
               set={set}
             />
           </Panel>
