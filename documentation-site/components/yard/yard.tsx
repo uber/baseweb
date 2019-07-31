@@ -90,6 +90,7 @@ const buildPropsObj = (
       type: state.props[name].type,
       options: state.props[name].options,
       description: state.props[name].description,
+      placeholder: state.props[name].placeholder,
       meta: state.props[name].meta,
     };
   });
@@ -128,6 +129,7 @@ export default withRouter(
   }) => {
     const [css, theme] = useStyletron();
     const [editorFocused, focusEditor] = React.useState(false);
+    const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
     const [state, dispatch] = React.useReducer(reducer, {
       code: formatCode(getCode(COMPONENTS[componentName])),
       props: COMPONENTS[componentName],
@@ -141,7 +143,8 @@ export default withRouter(
     ).length;
 
     React.useEffect(() => {
-      if (router.query.code) {
+      if (!urlCodeHydrated && router.query.code) {
+        setUrlCodeHydrated(true);
         const propValues: {[key: string]: any} = {};
         const parsedProps = parseProps(router.query.code as string, 'Button');
         Object.keys(state.props).forEach(name => {
@@ -167,7 +170,7 @@ export default withRouter(
           },
         });
       }
-    }, []);
+    }, [router.query.code]);
     return (
       <React.Fragment>
         <LiveProvider
@@ -347,6 +350,7 @@ export default withRouter(
                           propValues[name] = parsedProps[name];
                         }
                       });
+
                       dispatch({
                         type: Action.UpdatePropsAndCode,
                         payload: {

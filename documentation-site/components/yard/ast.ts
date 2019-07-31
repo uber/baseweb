@@ -39,21 +39,19 @@ export function parseOverrides(code: string, names: string[]) {
     // to make the AST root valid, let's add a const definition
     const ast = parse(`const foo = ${code};`);
     traverse(ast, {
-      enter(path) {
-        if (path.node.type === 'ObjectProperty') {
-          const propertyName = path.node.key.name;
-          if (names.includes(propertyName)) {
-            //@ts-ignore
-            const overrideProps = path.node.value.properties;
-            overrideProps.forEach((prop: any) => {
-              if (prop.key.name === 'style') {
-                resultOverrides[propertyName] = {
-                  style: formatCode(generate(prop.value).code),
-                  active: true,
-                };
-              }
-            });
-          }
+      ObjectProperty(path) {
+        const propertyName = path.node.key.name;
+        if (names.includes(propertyName)) {
+          //@ts-ignore
+          const overrideProps = path.node.value.properties;
+          overrideProps.forEach((prop: any) => {
+            if (prop.key.name === 'style') {
+              resultOverrides[propertyName] = {
+                style: formatCode(generate(prop.value).code),
+                active: true,
+              };
+            }
+          });
         }
       },
     });
@@ -128,10 +126,9 @@ export function parseProps(code: string, elementName: string) {
   try {
     const ast = parse(code);
     traverse(ast, {
-      enter(path) {
+      JSXElement(path) {
         if (
           Object.keys(propValues).length === 0 && // process just the first element
-          path.node.type === 'JSXElement' &&
           path.node.openingElement.type === 'JSXOpeningElement' &&
           //@ts-ignore
           path.node.openingElement.name.name === elementName

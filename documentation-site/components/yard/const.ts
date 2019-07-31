@@ -31,13 +31,13 @@ export const COMPONENTS = {
       description: `Function called when button is clicked.`,
     },
     startEnhancer: {
-      value: '',
+      value: undefined,
       placeholder: '() => <span>🦊</span>',
       type: PropTypes.Function,
       description: `A component rendered at the start of the button.`,
     },
     endEnhancer: {
-      value: '',
+      value: undefined,
       placeholder: '<i>world!</i>',
       type: PropTypes.Function,
       description: `A component rendered at the end of the button.`,
