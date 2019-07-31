@@ -79,32 +79,3 @@ primary button action. As the name implies, it’s offered to supplement to crea
 <Example title="Button as an Anchor" path="button/as-an-anchor.js">
   <ButtonAsAnAnchor />
 </Example>
-
-## Overrides
-
-<Overrides
-  name="Button"
-  component={ButtonExports}
-  renderExample={props => (
-    <React.Fragment>
-      <p>
-        <Button
-          startEnhancer={() => <ArrowRight size={24} />}
-          endEnhancer={() => <Upload size={24} />}
-          kind={KIND.secondary}
-          overrides={props.overrides}
-        >
-          Label
-        </Button>
-      </p>
-      <Button isLoading kind={KIND.secondary} overrides={props.overrides}>
-        Loading
-      </Button>
-    </React.Fragment>
-  )}
-/>
-
-<API
-  heading="Button API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button/button.js')}
-/>

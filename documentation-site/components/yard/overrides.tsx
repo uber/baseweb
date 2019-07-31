@@ -6,6 +6,7 @@ import {StyledLink} from 'baseui/link';
 import {useStyletron} from 'baseui';
 
 import Override, {getHighlightStyles} from './override';
+import {trackEvent} from '../../helpers/ga';
 
 type TOverridesProps = {
   set: any;
@@ -76,7 +77,7 @@ const Overrides: React.FC<TOverridesProps> = ({
         marginBottom="scale400"
       >
         Additionally, you can fully customize any part of the {componentName}{' '}
-        through the overrides prop (
+        component through the overrides prop (
         <Link href="/theming/understanding-overrides/">
           <StyledLink href="/theming/understanding-overrides/">
             learn more
@@ -96,6 +97,14 @@ const Overrides: React.FC<TOverridesProps> = ({
           <Panel
             key={overrideKey}
             title={overrideKey}
+            onChange={({expanded}) => {
+              if (expanded) {
+                trackEvent(
+                  'yard',
+                  `${componentName}:expand_override_${overrideKey}`,
+                );
+              }
+            }}
             overrides={{Content: {style: {backgroundColor: 'transparent'}}}}
           >
             <Override
@@ -104,6 +113,7 @@ const Overrides: React.FC<TOverridesProps> = ({
               overridesObj={overridesObj}
               overrides={overrides}
               componentConfig={componentConfig}
+              componentName={componentName}
               set={set}
             />
           </Panel>

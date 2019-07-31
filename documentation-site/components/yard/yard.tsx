@@ -21,6 +21,8 @@ import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 import darkTheme from './dark-theme';
 import lightTheme from './light-theme';
 
+import {trackEvent} from '../../helpers/ga';
+
 const getCode = (props: {[key: string]: TProp}) => {
   let propsString = ``;
   let enumImports = ``;
@@ -131,6 +133,13 @@ export default withRouter(
       props: COMPONENTS[componentName],
     });
 
+    const existingOverrides = state.props.overrides.value
+      ? Object.keys(state.props.overrides.value)
+      : [];
+    const activeOverrides = existingOverrides.filter(
+      key => state.props.overrides.value[key].active,
+    ).length;
+
     React.useEffect(() => {
       if (router.query.code) {
         const propValues: {[key: string]: any} = {};
@@ -196,6 +205,12 @@ export default withRouter(
               />
               <StatefulTabs
                 initialState={{activeKey: '0'}}
+                onChange={({activeKey}) => {
+                  trackEvent(
+                    'yard',
+                    `${componentName}:tab_switch_${activeKey}`,
+                  );
+                }}
                 overrides={{
                   TabBar: {
                     style: {backgroundColor: 'transparent', paddingLeft: 0},
@@ -204,7 +219,45 @@ export default withRouter(
                 }}
               >
                 <Tab
-                  title="Style Overrides"
+                  title="Props"
+                  overrides={{
+                    Tab: {
+                      style: ({$theme}) =>
+                        ({
+                          marginLeft: 0,
+                          ...$theme.typography.font450,
+                        } as any),
+                    },
+                  }}
+                >
+                  <Knobs
+                    knobProps={state.props}
+                    set={(value: any, name: string) => {
+                      const newCode = formatCode(
+                        getCode(buildPropsObj(state, {[name]: value})),
+                      );
+                      trackEvent(
+                        'yard',
+                        `${componentName}:knob_change_${name}`,
+                      );
+                      dispatch({
+                        type: Action.UpdatePropsAndCode,
+                        payload: {
+                          code: newCode,
+                          updatedPropValues: {[name]: value},
+                        },
+                      });
+                      Router.push({
+                        pathname: router.pathname,
+                        query: {code: newCode},
+                      } as any);
+                    }}
+                  />
+                </Tab>
+                <Tab
+                  title={`Style Overrides${
+                    activeOverrides > 0 ? ` (${activeOverrides})` : ''
+                  }`}
                   overrides={{
                     Tab: {
                       style: ({$theme}) =>
@@ -227,38 +280,6 @@ export default withRouter(
                         payload: {
                           code: newCode,
                           updatedPropValues: {overrides: value},
-                        },
-                      });
-                      Router.push({
-                        pathname: router.pathname,
-                        query: {code: newCode},
-                      } as any);
-                    }}
-                  />
-                </Tab>
-                <Tab
-                  title="Props"
-                  overrides={{
-                    Tab: {
-                      style: ({$theme}) =>
-                        ({
-                          marginLeft: 0,
-                          ...$theme.typography.font450,
-                        } as any),
-                    },
-                  }}
-                >
-                  <Knobs
-                    knobProps={state.props}
-                    set={(value: any, name: string) => {
-                      const newCode = formatCode(
-                        getCode(buildPropsObj(state, {[name]: value})),
-                      );
-                      dispatch({
-                        type: Action.UpdatePropsAndCode,
-                        payload: {
-                          code: newCode,
-                          updatedPropValues: {[name]: value},
                         },
                       });
                       Router.push({
@@ -294,7 +315,10 @@ export default withRouter(
                           : '#292929 '
                       }`,
                 })}
-                onClick={() => focusEditor(true)}
+                onClick={() => {
+                  trackEvent('yard', `${componentName}:code_editor_focused`);
+                  focusEditor(true);
+                }}
                 onBlur={() => focusEditor(false)}
               >
                 <style
@@ -366,24 +390,31 @@ export default withRouter(
               >
                 <Button
                   kind={KIND.tertiary}
-                  onClick={() =>
+                  onClick={() => {
+                    trackEvent('yard', `${componentName}:format_code`);
                     dispatch({
                       type: Action.UpdateCode,
                       payload: formatCode(state.code),
-                    })
-                  }
+                    });
+                  }}
                 >
                   Format
                 </Button>
                 <Button
                   kind={KIND.tertiary}
-                  onClick={() => copy(formatCode(state.code))}
+                  onClick={() => {
+                    trackEvent('yard', `${componentName}:copy_code`);
+                    copy(formatCode(state.code));
+                  }}
                 >
                   Copy code
                 </Button>
                 <Button
                   kind={KIND.tertiary}
-                  onClick={() => copy(window.location.href)}
+                  onClick={() => {
+                    trackEvent('yard', `${componentName}:copy_url`);
+                    copy(window.location.href);
+                  }}
                 >
                   Copy URL
                 </Button>
@@ -397,6 +428,7 @@ export default withRouter(
                         props: COMPONENTS[componentName],
                       },
                     });
+                    trackEvent('yard', `${componentName}:reset_code`);
                     Router.push({
                       pathname: router.pathname,
                     } as any);

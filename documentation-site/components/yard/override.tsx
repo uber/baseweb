@@ -5,6 +5,7 @@ import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 import {formatCode, toggleOverrideSharedProps} from './ast';
+import {trackEvent} from '../../helpers/ga';
 
 export const getHighlightStyles = (
   isLightTheme: boolean,
@@ -29,6 +30,7 @@ type TProps = {
   overrides: any;
   overridesObj: any;
   componentConfig: any;
+  componentName: string;
   set: (args: any) => void;
 };
 
@@ -79,6 +81,7 @@ const Override: React.FC<TProps> = ({
   overrides,
   overridesObj,
   componentConfig,
+  componentName,
   set,
 }) => {
   const [, theme] = useStyletron();
@@ -94,6 +97,12 @@ const Override: React.FC<TProps> = ({
   return (
     <React.Fragment>
       <Textarea
+        onFocus={() => {
+          trackEvent(
+            'yard',
+            `${componentName}:override_textarea_focused_${overrideKey}`,
+          );
+        }}
         onChange={event => {
           const newValue = (event.target as HTMLTextAreaElement).value;
           set({
@@ -133,6 +142,10 @@ const Override: React.FC<TProps> = ({
                 active: true,
               },
             });
+            trackEvent(
+              'yard',
+              `${componentName}:override_format_${overrideKey}`,
+            );
           }}
         >
           Format
@@ -153,6 +166,10 @@ const Override: React.FC<TProps> = ({
                 active: true,
               },
             });
+            trackEvent(
+              'yard',
+              `${componentName}:override_toggle_shared_props_${overrideKey}`,
+            );
           }}
         >
           <SharedPropsTooltip componentConfig={componentConfig}>
@@ -162,6 +179,10 @@ const Override: React.FC<TProps> = ({
         <Button
           kind={KIND.tertiary}
           onClick={() => {
+            trackEvent(
+              'yard',
+              `${componentName}:override_empty_${overrideKey}`,
+            );
             set({
               ...overrides.value,
               [overrideKey]: {
@@ -176,6 +197,10 @@ const Override: React.FC<TProps> = ({
         <Button
           kind={KIND.tertiary}
           onClick={() => {
+            trackEvent(
+              'yard',
+              `${componentName}:override_reset_${overrideKey}`,
+            );
             set({
               ...overrides.value,
               [overrideKey]: {
