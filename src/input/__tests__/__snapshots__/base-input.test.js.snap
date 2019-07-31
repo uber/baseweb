@@ -45,6 +45,7 @@ Object {
   "onKeyUp": [MockFunction],
   "pattern": null,
   "placeholder": "Placeholder",
+  "required": false,
   "rows": null,
   "styled-component": "true",
   "test-style": Object {

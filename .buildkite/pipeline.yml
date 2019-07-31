@@ -20,6 +20,20 @@ steps:
   # This way we can download the built image from a registry instead of building each for each test task.
   - wait
   # All of the commands after the wait are run in parallel.
+  - name: ':validate-examples:'
+    command: yarn validate:examples
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+  - name: ':typescript:'
+    command: yarn tsc
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
   - name: ':eslint:'
     command: yarn lint
     plugins:

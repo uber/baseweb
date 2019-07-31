@@ -6,6 +6,7 @@ export interface BreadcrumbsOverrides {
   Root?: Override<any>;
   Separator?: Override<any>;
   Icon?: Override<any>;
+  ListItem?: Override<any>;
 }
 
 export interface BreadcrumbsProps {

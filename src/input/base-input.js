@@ -42,7 +42,6 @@ class BaseInput<T: EventTarget> extends React.Component<
     positive: false,
     name: '',
     inputMode: 'text',
-    inputRef: (React.createRef(): {current: HTMLInputElement | null}),
     onBlur: () => {},
     onChange: () => {},
     onKeyDown: () => {},
@@ -59,36 +58,41 @@ class BaseInput<T: EventTarget> extends React.Component<
     type: 'text',
   };
 
+  // eslint-disable-next-line flowtype/no-weak-types
+  inputRef = this.props.inputRef || React.createRef<any>();
+
   state = {
     isFocused: this.props.autoFocus || false,
     isMasked: this.props.type === 'password',
   };
 
   componentDidMount() {
-    const {inputRef, autoFocus, clearable} = this.props;
-    if (inputRef.current) {
+    const {autoFocus, clearable} = this.props;
+    if (this.inputRef.current) {
       if (autoFocus) {
-        inputRef.current.focus();
+        this.inputRef.current.focus();
       }
       if (clearable) {
-        inputRef.current.addEventListener('keydown', this.onInputKeyDown);
+        this.inputRef.current.addEventListener('keydown', this.onInputKeyDown);
       }
     }
   }
 
   componentWillUnmount() {
-    const {inputRef, clearable} = this.props;
-    if (clearable && inputRef.current) {
-      inputRef.current.removeEventListener('keydown', this.onInputKeyDown);
+    const {clearable} = this.props;
+    if (clearable && this.inputRef.current) {
+      this.inputRef.current.removeEventListener('keydown', this.onInputKeyDown);
     }
   }
 
   clearValue() {
     // trigger a fake input change event (as if all text was deleted)
-    const input = this.props.inputRef.current;
+    const input = this.inputRef.current;
     if (input) {
       const nativeInputValue = Object.getOwnPropertyDescriptor(
-        window.HTMLInputElement.prototype,
+        this.props.type === CUSTOM_INPUT_TYPE.textarea
+          ? window.HTMLTextAreaElement.prototype
+          : window.HTMLInputElement.prototype,
         'value',
       );
       if (nativeInputValue) {
@@ -102,12 +106,8 @@ class BaseInput<T: EventTarget> extends React.Component<
     }
   }
 
-  onInputKeyDown = (e: SyntheticKeyboardEvent<T>) => {
-    if (
-      this.props.clearable &&
-      e.key === 'Escape' &&
-      this.props.inputRef.current
-    ) {
+  onInputKeyDown = (e: KeyboardEvent) => {
+    if (this.props.clearable && e.key === 'Escape' && this.inputRef.current) {
       this.clearValue();
       // prevent event from closing modal or doing something unexpected
       e.stopPropagation();
@@ -115,11 +115,9 @@ class BaseInput<T: EventTarget> extends React.Component<
   };
 
   onClearIconClick = () => {
-    if (this.props.inputRef.current) {
-      this.clearValue();
-      // return focus to the input after click
-      this.props.inputRef.current.focus();
-    }
+    if (this.inputRef.current) this.clearValue();
+    // return focus to the input after click
+    if (this.inputRef.current) this.inputRef.current.focus();
   };
 
   onFocus = (e: SyntheticFocusEvent<T>) => {
@@ -205,7 +203,7 @@ class BaseInput<T: EventTarget> extends React.Component<
   }
 
   renderClear() {
-    const {clearable, value, disabled, overrides = {}, size} = this.props;
+    const {clearable, value, disabled, overrides = {}} = this.props;
     if (!clearable || !value || !value.length || disabled) {
       return null;
     }
@@ -218,18 +216,20 @@ class BaseInput<T: EventTarget> extends React.Component<
       StyledClearIcon,
     );
     const ariaLabel = 'Clear value';
+    const sharedProps = getSharedProps(this.props, this.state);
     return (
       <ClearIconContainer
-        $size={size}
         $alignTop={this.props.type === CUSTOM_INPUT_TYPE.textarea}
+        {...sharedProps}
         {...clearIconContainerProps}
       >
         <ClearIcon
-          size={size === SIZE.large ? 'scale700' : 'scale600'}
+          size={16}
           title={ariaLabel}
           aria-label={ariaLabel}
           onClick={this.onClearIconClick}
           role="button"
+          {...sharedProps}
           {...clearIconProps}
         />
       </ClearIconContainer>
@@ -265,7 +265,7 @@ class BaseInput<T: EventTarget> extends React.Component<
       >
         <Before {...sharedProps} {...beforeProps} />
         <Input
-          ref={this.props.inputRef}
+          ref={this.inputRef}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
           aria-describedby={this.props['aria-describedby']}
@@ -285,6 +285,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           pattern={this.props.pattern}
           placeholder={this.props.placeholder}
           type={this.getInputType()}
+          required={this.props.required}
           value={this.props.value}
           rows={
             this.props.type === CUSTOM_INPUT_TYPE.textarea
