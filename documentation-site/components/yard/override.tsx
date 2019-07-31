@@ -37,7 +37,16 @@ const Override: React.FC<TProps> = ({
   set,
 }) => {
   const [, theme] = useStyletron();
+  const [textareaHeight, setTextareaHeight] = React.useState(162);
   const isLightTheme = theme.name === 'light-theme';
+  const textareaValue = overridesObj[overrideKey]
+    ? overridesObj[overrideKey].style
+    : '';
+
+  // autoresize textarea
+  React.useEffect(() => {
+    setTextareaHeight(textareaValue.split('\n').length * 24 + 16);
+  }, [textareaValue]);
   return (
     <React.Fragment>
       <Textarea
@@ -48,15 +57,14 @@ const Override: React.FC<TProps> = ({
             [overrideKey]: {style: newValue, active: true},
           });
         }}
-        value={overridesObj[overrideKey] ? overridesObj[overrideKey].style : ''}
+        value={textareaValue}
         overrides={{
           Input: {
             style: () => ({
               fontSize: '12px',
-              minHeight: '162px',
+              height: `${textareaHeight}px`,
               fontFamily:
                 "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
-              resize: 'vertical',
             }),
           },
         }}
@@ -88,15 +96,16 @@ const Override: React.FC<TProps> = ({
         <Button
           kind={KIND.tertiary}
           onClick={() => {
+            const newCode = formatCode(
+              addOverrideSharedProps(
+                overrides.value[overrideKey].style,
+                Object.keys(overrides.meta.sharedProps),
+              ),
+            );
             set({
               ...overrides.value,
               [overrideKey]: {
-                style: formatCode(
-                  addOverrideSharedProps(
-                    overrides.value[overrideKey].style,
-                    Object.keys(overrides.meta.sharedProps),
-                  ),
-                ),
+                style: newCode,
                 active: true,
               },
             });

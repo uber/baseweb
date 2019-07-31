@@ -77,7 +77,6 @@ export function addOverrideSharedProps(code: string, sharedProps: string[]) {
           const properties = firstParam.properties;
           newParams = properties.map((prop: any) => prop.key.name);
         }
-        console.log(sharedProps);
         sharedProps.forEach(param => {
           if (!newParams.includes(param)) {
             newParams.push(param);
