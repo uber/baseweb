@@ -13,6 +13,7 @@ import {StatefulCheckbox} from '../../checkbox/index.js';
 import {StatefulInput, SIZE} from '../../input/index.js';
 import {StatefulRadioGroup, Radio} from '../../radio/index.js';
 import {StatefulTextarea} from '../../textarea/index.js';
+import {StatefulSelect} from '../../select/index.js';
 
 export const name = 'form-control';
 
@@ -33,6 +34,20 @@ export const component = () => (
         <Radio value="green">Green</Radio>
         <Radio value="blue">Blue</Radio>
       </StatefulRadioGroup>
+    </FormControl>
+    <FormControl label="Select label" caption="Select caption">
+      <StatefulSelect
+        options={[
+          {id: 'AliceBlue', color: '#F0F8FF'},
+          {id: 'AntiqueWhite', color: '#FAEBD7'},
+          {id: 'Aqua', color: '#00FFFF'},
+          {id: 'Aquamarine', color: '#7FFFD4'},
+          {id: 'Azure', color: '#F0FFFF'},
+          {id: 'Beige', color: '#F5F5DC'},
+        ]}
+        labelKey="id"
+        valueKey="color"
+      />
     </FormControl>
   </div>
 );

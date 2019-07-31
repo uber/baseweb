@@ -112,6 +112,8 @@ export type PropsT = {
   }) => React.Node,
   /** A custom method to get a display value for a selected option. */
   getValueLabel: ?({option: OptionT}) => React.Node,
+  /** Sets the id attribute of the internal input element. Allows for usage with labels. */
+  id?: string,
   /** Defines if the select if in a loading (async) state. */
   isLoading: boolean,
   /** Defines an option key for a default label value. */

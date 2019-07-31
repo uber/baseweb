@@ -16,7 +16,7 @@ const expanded = '[aria-expanded=true]';
 describe('accordion', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'accordion');
-    await page.waitFor('div');
+    await page.waitFor('ul');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
@@ -25,7 +25,7 @@ describe('accordion', () => {
     await mount(page, 'accordion');
     await page.click(collapsed);
     await page.waitForSelector(expanded);
-    await expect(page).toMatchElement('div', {text: 'panel 1'});
+    await expect(page).toMatchElement('li', {text: 'panel 1'});
   });
 
   it('collapses once expanded title is clicked', async () => {

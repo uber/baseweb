@@ -31,6 +31,7 @@ export interface AccordionProps {
   onChange?: (args: {expanded: React.Key[]}) => any;
   overrides?: AccordionOverrides<SharedProps & {$expanded?: never}>;
   stateReducer?: StateReducer<AccordionState>;
+  renderPanelContent?: boolean;
 }
 
 export interface AccordionState {
@@ -62,6 +63,7 @@ export interface SharedPanelProps {
   onKeyDown?: (e: KeyboardEvent) => any;
   overrides?: PanelOverrides<SharedProps>;
   title?: React.ReactNode;
+  renderPanelContent?: boolean;
 }
 
 export interface SharedStatefulPanelContainerProps {

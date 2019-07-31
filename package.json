@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "8.11.0",
+  "version": "8.12.0",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -124,7 +124,7 @@
     "prettier": "^1.14.3",
     "pretty-proptypes": "^0.6.0",
     "pretty-quick": "^1.4.1",
-    "puppeteer": "^1.12.2",
+    "puppeteer": "^1.19.0",
     "raw-loader": "^3.1.0",
     "react": "^16.8.6",
     "react-codesandboxer": "^3.1.1",
@@ -159,7 +159,7 @@
     "react-is": "^16.8.6",
     "react-movable": "^2.2.0",
     "react-multi-ref": "^1.0.0",
-    "react-range": "^1.0.5",
+    "react-range": "^1.2.0",
     "react-virtualized": "^9.21.1",
     "smoothscroll-polyfill": "^0.4.3",
     "timezone-support": "^2.0.0"
