@@ -1,34 +1,17 @@
 import * as React from 'react';
 import {Accordion, Panel} from 'baseui/accordion';
-import {Textarea} from 'baseui/textarea';
-import {Button, KIND, SIZE} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
 import {Caption1} from 'baseui/typography';
 import Link from 'next/link';
 import {StyledLink} from 'baseui/link';
 import {useStyletron} from 'baseui';
-import {formatCode, addOverrideSharedProps} from './ast';
+
+import Override, {getHighlightStyles} from './override';
 
 type TOverridesProps = {
   set: any;
   overrides: any;
   componentName: string;
 };
-
-const getHighlightStyles = (isLightTheme: boolean, sharedProps: string[]) =>
-  formatCode(`({ $theme, ${sharedProps.join(',')} }) => { return ({
-    outline: \`\${${
-      isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
-    }} solid\`,
-    backgroundColor: ${
-      isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
-    },
-    })}
-  `);
-
-const getEmptyStyles = (sharedProps: string[]) =>
-  formatCode(`({ $theme, ${sharedProps.join(',')} }) => { return ({})}
-`);
 
 const Overrides: React.FC<TOverridesProps> = ({
   overrides,
@@ -107,113 +90,21 @@ const Overrides: React.FC<TOverridesProps> = ({
         onChange={handleChange}
         accordion={false}
       >
-        {Object.keys(overridesObj).map(overrideKey => {
-          return (
-            <Panel
+        {Object.keys(overridesObj).map(overrideKey => (
+          <Panel
+            key={overrideKey}
+            title={overrideKey}
+            overrides={{Content: {style: {backgroundColor: 'transparent'}}}}
+          >
+            <Override
               key={overrideKey}
-              title={overrideKey}
-              overrides={{Content: {style: {backgroundColor: 'transparent'}}}}
-            >
-              <Textarea
-                onChange={event => {
-                  const newValue = (event.target as HTMLTextAreaElement).value;
-                  set({
-                    ...overrides.value,
-                    [overrideKey]: {style: newValue, active: true},
-                  });
-                }}
-                value={
-                  overridesObj[overrideKey]
-                    ? overridesObj[overrideKey].style
-                    : ''
-                }
-                overrides={{
-                  Input: {
-                    style: () => ({
-                      fontSize: '12px',
-                      minHeight: '162px',
-                      fontFamily:
-                        "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
-                      resize: 'vertical',
-                    }),
-                  },
-                }}
-              />
-              <ButtonGroup
-                size={SIZE.compact}
-                overrides={{
-                  Root: {
-                    style: ({$theme}) => ({
-                      marginTop: $theme.sizing.scale300,
-                    }),
-                  },
-                }}
-              >
-                <Button
-                  kind={KIND.tertiary}
-                  onClick={() => {
-                    set({
-                      ...overrides.value,
-                      [overrideKey]: {
-                        style: formatCode(overrides.value[overrideKey].style),
-                        active: true,
-                      },
-                    });
-                  }}
-                >
-                  Format
-                </Button>
-                <Button
-                  kind={KIND.tertiary}
-                  onClick={() => {
-                    set({
-                      ...overrides.value,
-                      [overrideKey]: {
-                        style: formatCode(
-                          addOverrideSharedProps(
-                            overrides.value[overrideKey].style,
-                            Object.keys(overrides.meta.sharedProps),
-                          ),
-                        ),
-                        active: true,
-                      },
-                    });
-                  }}
-                >
-                  Add shared props
-                </Button>
-                <Button
-                  kind={KIND.tertiary}
-                  onClick={() => {
-                    set({
-                      ...overrides.value,
-                      [overrideKey]: {
-                        style: getEmptyStyles([]),
-                        active: true,
-                      },
-                    });
-                  }}
-                >
-                  Empty
-                </Button>
-                <Button
-                  kind={KIND.tertiary}
-                  onClick={() => {
-                    set({
-                      ...overrides.value,
-                      [overrideKey]: {
-                        style: getHighlightStyles(isLightTheme, []),
-                        active: true,
-                      },
-                    });
-                  }}
-                >
-                  Reset
-                </Button>
-              </ButtonGroup>
-            </Panel>
-          );
-        })}
+              overrideKey={overrideKey}
+              overridesObj={overridesObj}
+              overrides={overrides}
+              set={set}
+            />
+          </Panel>
+        ))}
       </Accordion>
     </React.Fragment>
   );
