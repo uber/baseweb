@@ -1,35 +1,57 @@
 // @flow
 import * as React from 'react';
-import {StatefulSelect, TYPE} from 'baseui/select';
+import {StatefulSelect} from 'baseui/select';
 
 export default class Container extends React.Component<{}, {}> {
   render() {
     return (
       <StatefulSelect
-        options={[
-          {id: 'AliceBlue', color: '#F0F8FF'},
-          {id: 'AntiqueWhite', color: '#FAEBD7'},
-        ]}
         overrides={{
           MultiValue: {
             props: {
-              color: '#4327F1',
-              kind: 'custom',
               overrides: {
                 Root: {
                   style: {
-                    borderLeft: '1px solid black',
+                    borderRadius: '0px',
+                    backgroundColor: 'slateblue',
+                  },
+                },
+                Action: {
+                  style: {
+                    borderRadius: '0px',
+                    ':hover': {
+                      backgroundColor: 'mediumpurple',
+                    },
+                    ':focus': {
+                      backgroundColor: 'mediumpurple',
+                    },
+                  },
+                },
+                Text: {
+                  style: {
+                    color: 'lavender',
+                  },
+                },
+                ActionIcon: {
+                  props: {
+                    color: 'lavender',
                   },
                 },
               },
             },
           },
         }}
-        labelKey="id"
-        valueKey="color"
-        type={TYPE.search}
         multi
-        onChange={event => console.log(event)}
+        type="search"
+        options={[
+          {label: 'Atlanta', id: 'ATL'},
+          {label: 'Baltimore', id: 'BWI'},
+          {label: 'Chicago', id: 'ORD'},
+          {label: 'Denver', id: 'DEN'},
+        ]}
+        initialState={{
+          value: [{label: 'Atlanta', id: 'ATL'}],
+        }}
       />
     );
   }
