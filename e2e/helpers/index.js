@@ -109,11 +109,7 @@ expect.extend({
       accessibilityReport.violations.length > finalOptions.violationsThreshold
     ) {
       violations = [
-        `Expected to have no more than ${
-          finalOptions.violationsThreshold
-        } violations. Detected ${
-          accessibilityReport.violations.length
-        } violations:\n`,
+        `Expected to have no more than ${finalOptions.violationsThreshold} violations. Detected ${accessibilityReport.violations.length} violations:\n`,
       ].concat(accessibilityReport.violations.map(printInvalidRule));
     }
     if (
@@ -121,11 +117,7 @@ expect.extend({
       accessibilityReport.incomplete.length > finalOptions.incompleteThreshold
     ) {
       incomplete = [
-        `Expected to have no more than ${
-          finalOptions.incompleteThreshold
-        } incomplete. Detected ${
-          accessibilityReport.incomplete.length
-        } incomplete:\n`,
+        `Expected to have no more than ${finalOptions.incompleteThreshold} incomplete. Detected ${accessibilityReport.incomplete.length} incomplete:\n`,
       ].concat(accessibilityReport.incomplete.map(printInvalidRule));
     }
     const message = [].concat(violations, incomplete).join('\n');

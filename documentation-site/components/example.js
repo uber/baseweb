@@ -18,6 +18,7 @@ import {StyledLink} from 'baseui/link';
 import {version} from '../../package.json';
 import Code from './code';
 import CodeIcon from './code-icon';
+//$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 import {H2} from './markdown-elements';
 
@@ -79,16 +80,18 @@ class Example extends React.Component<PropsT, StateT> {
   };
 
   async componentDidMount() {
-    const codeFlow = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${
-      this.props.path
-    }`);
-    const codeTs = await import(/* webpackMode: "eager" */ `!!raw-loader!../examples/${this.props.path.replace(
-      '.js',
-      '.tsx',
-    )}`);
-    const codeJs = await import(/* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${
-      this.props.path
-    }`);
+    const codeFlow = await import(
+      /* webpackMode: "eager" */ `!!raw-loader!../examples/${this.props.path}`
+    );
+    const codeTs = await import(
+      /* webpackMode: "eager" */ `!!raw-loader!../examples/${this.props.path.replace(
+        '.js',
+        '.tsx',
+      )}`
+    );
+    const codeJs = await import(
+      /* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${this.props.path}`
+    );
     this.setState({
       sourceFlow: codeFlow.default,
       sourceTs: codeTs.default,

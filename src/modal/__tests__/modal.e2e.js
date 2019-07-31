@@ -22,9 +22,7 @@ const selectors = {
 };
 
 const optionAtPosition = position =>
-  `${selectors.selectDropDown} ${
-    selectors.dropDownOption
-  }:nth-child(${position})`;
+  `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
 describe('modal', () => {
   it('handles focus changes properly', async () => {
