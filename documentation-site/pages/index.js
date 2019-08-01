@@ -145,7 +145,14 @@ const Index = (props: {
     </Markdown.p>
     <H2>Who is using Base Web?</H2>
     <Block>
-      <Block width="125px" $as="img" src="/static/images/uber-logo.png" />
+      <Block
+        display="grid"
+        gridTemplateColumns="repeat(3, 1fr)"
+        alignItems="center"
+      >
+        <Block width="125px" $as="img" src="/static/images/uber-logo.png" />
+        <Block width="125px" $as="img" src="/static/images/broadcom-logo.svg" />
+      </Block>
       <Block
         $as="a"
         href="http://t.uber.com/base-web-adopters"
