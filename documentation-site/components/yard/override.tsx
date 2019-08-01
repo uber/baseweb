@@ -86,7 +86,7 @@ const Override: React.FC<TProps> = ({
 }) => {
   const [, theme] = useStyletron();
   const [textareaHeight, setTextareaHeight] = React.useState(162);
-  const isLightTheme = theme.name === 'light-theme';
+  const isLightTheme = theme.name.startsWith('light-theme');
   const textareaValue = overridesObj[overrideKey]
     ? overridesObj[overrideKey].style
     : '';

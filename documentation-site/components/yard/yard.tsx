@@ -178,7 +178,7 @@ export default withRouter(
           scope={{Button, KIND, SIZE, SHAPE}}
           transformCode={transformCode}
           theme={
-            theme.name === 'light-theme'
+            theme.name.startsWith('light-theme')
               ? {
                   ...lightTheme,
                   plain: {
@@ -313,7 +313,7 @@ export default withRouter(
                   border: editorFocused
                     ? `2px solid ${theme.colors.primary400}`
                     : `2px solid ${
-                        theme.name === 'light-theme'
+                        theme.name.startsWith('light-theme')
                           ? theme.colors.mono200
                           : '#292929 '
                       }`,

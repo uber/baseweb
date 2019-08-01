@@ -28,7 +28,7 @@ const Code = ({children, language}: PropsT) => {
         {...defaultProps}
         code={children.replace(/[\r\n]+$/, '')}
         language={language}
-        theme={theme.name === 'light-theme' ? lightTheme : darkTheme}
+        theme={theme.name.startsWith('light-theme') ? lightTheme : darkTheme}
       >
         {({style, tokens, getLineProps, getTokenProps}) => (
           <pre style={{...style, padding: '10px 10px'}}>

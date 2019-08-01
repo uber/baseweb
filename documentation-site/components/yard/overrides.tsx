@@ -22,7 +22,7 @@ const Overrides: React.FC<TOverridesProps> = ({
   componentConfig,
 }) => {
   const [, theme] = useStyletron();
-  const isLightTheme = theme.name === 'light-theme';
+  const isLightTheme = theme.name.startsWith('light-theme');
   if (
     !overrides.meta ||
     !overrides.meta.names ||

@@ -3,7 +3,7 @@ import {useStyletron} from 'baseui';
 
 const CodeBox = ({children}: {children: React.ReactNode}) => {
   const [css, theme] = useStyletron();
-  const isLight = theme.name === 'light-theme';
+  const isLight = theme.name.startsWith('light-theme');
   return (
     <div
       className={css({
