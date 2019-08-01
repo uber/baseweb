@@ -331,6 +331,7 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
     width: '100%',
     maxWidth: '100%',
     cursor: $disabled ? 'not-allowed' : 'text',
+    margin: '0',
     paddingTop: '0',
     paddingBottom: '0',
     paddingLeft: '0',
