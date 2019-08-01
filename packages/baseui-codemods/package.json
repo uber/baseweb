@@ -18,7 +18,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-flow": "^7.0.0",
     "babel-jest": "^24.8.0",
-    "flow-bin": "^0.102.0",
+    "flow-bin": "^0.104.0",
     "jest": "^24.8.0"
   },
   "dependencies": {
