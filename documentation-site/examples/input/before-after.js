@@ -1,11 +1,10 @@
 // @flow
 import * as React from 'react';
-import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import Alert from 'baseui/icon/alert';
 import Check from 'baseui/icon/check';
 import Search from 'baseui/icon/search';
-import {StatefulInput, Input} from 'baseui/input';
+import {Input} from 'baseui/input';
 
 function Before() {
   return (
@@ -57,31 +56,30 @@ function Positive() {
   );
 }
 
-export default () => (
-  <Block>
-    <StatefulInput
-      overrides={{Before}}
-      placeholder="Input with a Before component"
-    />
-    <Block as="br" />
-
-    <StatefulInput
-      overrides={{After}}
-      placeholder="Input with an After component"
-    />
-    <Block as="br" />
-
-    <StatefulInput
-      error
-      overrides={{After: Negative}}
-      placeholder="Input with negative icon"
-    />
-    <Block as="br" />
-
-    <StatefulInput
-      positive
-      overrides={{After: Positive}}
-      placeholder="Input with positive icon"
-    />
-  </Block>
-);
+export default () => {
+  return (
+    <React.Fragment>
+      <Input
+        overrides={{Before}}
+        placeholder="Input with a Before component"
+      />
+      <Block as="br" />
+      <Input
+        overrides={{After}}
+        placeholder="Input with an After component"
+      />
+      <Block as="br" />
+      <Input
+        error
+        overrides={{After: Negative}}
+        placeholder="Input with negative icon"
+      />
+      <Block as="br" />
+      <Input
+        positive
+        overrides={{After: Positive}}
+        placeholder="Input with positive icon"
+      />
+    </React.Fragment>
+  );
+};
