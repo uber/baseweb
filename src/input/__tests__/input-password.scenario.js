@@ -15,7 +15,7 @@ import {StatefulInput} from '../index.js';
 export const name = 'input-password';
 
 export const component = () => {
-  const toggleSelector = `[data-e2e="maskToggle"]`;
+  const toggleSelector = `[data-e2e="mask-toggle"]`;
   const steps = new Steps()
     .wait(toggleSelector)
     .click(toggleSelector)
