@@ -14,9 +14,7 @@ import StatefulContainer from './stateful-container.js';
 
 import type {StatefulMenuPropsT, StateReducerFnT} from './types.js';
 
-export default class StatefulMenu extends React.PureComponent<
-  StatefulMenuPropsT,
-> {
+export default class StatefulMenu extends React.PureComponent<StatefulMenuPropsT> {
   static defaultProps = {
     // Mostly to satisfy flow
     initialState: {
