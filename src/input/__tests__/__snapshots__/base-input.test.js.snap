@@ -63,6 +63,7 @@ Object {
     "fontSize": "$theme.typography.font400.fontSize",
     "fontWeight": "$theme.typography.font400.fontWeight",
     "lineHeight": "$theme.typography.font400.lineHeight",
+    "margin": "0",
     "maxWidth": "100%",
     "outline": "none",
     "paddingBottom": "$theme.sizing.scale400",
