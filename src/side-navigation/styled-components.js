@@ -9,7 +9,7 @@ import {styled} from '../styles/index.js';
 
 import type {SharedPropsT} from './types.js';
 
-export const StyledRoot = styled<SharedPropsT>('ul', props => {
+export const StyledRoot = styled<SharedPropsT>('nav', props => {
   const {
     $theme: {colors, typography},
   } = props;
