@@ -183,6 +183,7 @@ class BaseInput<T: EventTarget> extends React.Component<
         kind={KIND.minimal}
         onClick={() => this.setState({isMasked: !this.state.isMasked})}
         title={label}
+        type="button"
         {...maskToggleButtonProps}
       >
         {this.state.isMasked ? (
