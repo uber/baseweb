@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
-  root: 'ul[data-test="e2e"]',
+  root: 'nav[data-test="e2e"]',
 };
 
 describe('side navigation', () => {
