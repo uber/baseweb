@@ -26,6 +26,7 @@ export const component = () => {
       onSubmit={event => {
         event.preventDefault();
         window.__e2e__formSubmitted__ = true;
+        return false;
       }}
     >
       <Screener steps={steps}>
