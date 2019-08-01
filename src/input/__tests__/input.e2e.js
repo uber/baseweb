@@ -118,7 +118,7 @@ describe('input', () => {
       beforeEach(async () => {
         await mount(page, 'input-password');
         await page.waitFor(selectors.input);
-        // set global variable 'submitted' to false
+        // set global variable '__e2e__formSubmitted__' to false
         await page.evaluate(() => (window.__e2e__formSubmitted__ = false));
       });
 
@@ -135,7 +135,7 @@ describe('input', () => {
         expect(await page.$eval(selectors.input, input => input.type)).toBe(
           'password',
         );
-        // verify global variable 'submitted' is true
+        // verify global variable '__e2e__formSubmitted__' is true
         expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(
           true,
         );
@@ -154,7 +154,7 @@ describe('input', () => {
         expect(await page.$eval(selectors.input, input => input.type)).toBe(
           'text',
         );
-        // verify global variable 'submitted' is still false
+        // verify global variable '__e2e__formSubmitted__' is still false
         expect(await page.evaluate(() => window.__e2e__formSubmitted__)).toBe(
           false,
         );
