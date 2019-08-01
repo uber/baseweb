@@ -92,7 +92,10 @@ const Override: React.FC<TProps> = ({
     : '';
   // autoresize textarea
   React.useEffect(() => {
-    setTextareaHeight(textareaValue.split('\n').length * 24 + 16);
+    const height = textareaValue
+      ? textareaValue.split('\n').length * 24 + 16
+      : 160;
+    setTextareaHeight(height);
   }, [textareaValue]);
   return (
     <React.Fragment>
