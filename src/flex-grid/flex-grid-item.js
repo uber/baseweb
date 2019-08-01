@@ -95,8 +95,8 @@ export const flexGridItemStyle = ({
 
   // Get the length of the longest responsive array
   const maxResponsiveLength = Math.max(
-    ...[$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map(
-      r => (Array.isArray(r) ? r.length : 0),
+    ...[$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map(r =>
+      Array.isArray(r) ? r.length : 0,
     ),
   );
 

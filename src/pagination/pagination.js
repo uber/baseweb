@@ -158,10 +158,10 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                       backgroundColor: $disabled
                         ? $theme.colors.buttonDisabledFill
                         : $isFocused || $isPseudoFocused
-                          ? $theme.colors.buttonTertiaryHover
-                          : $error
-                            ? $theme.colors.negative50
-                            : $theme.colors.buttonTertiaryFill,
+                        ? $theme.colors.buttonTertiaryHover
+                        : $error
+                        ? $theme.colors.negative50
+                        : $theme.colors.buttonTertiaryFill,
                     }),
                   },
                   ValueContainer: {

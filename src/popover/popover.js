@@ -363,9 +363,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     if (childArray.length !== 1) {
       // eslint-disable-next-line no-console
       console.error(
-        `[baseui] Exactly 1 child must be passed to Popover/Tooltip, found ${
-          childArray.length
-        } children`,
+        `[baseui] Exactly 1 child must be passed to Popover/Tooltip, found ${childArray.length} children`,
       );
     }
     return childArray[0];

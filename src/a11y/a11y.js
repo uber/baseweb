@@ -64,30 +64,27 @@ function Violation(props: ViolationPropsT) {
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
-  React.useEffect(
-    () => {
-      const node = document.querySelector(props.target);
+  React.useEffect(() => {
+    const node = document.querySelector(props.target);
+    if (node) {
+      setAnchor(node);
+
+      node.setAttribute(
+        'style',
+        `border: solid 1px ${theme.colors.negative300};`,
+      );
+
+      node.addEventListener('mouseenter', handleMouseEnter);
+      node.addEventListener('mouseleave', handleMouseLeave);
+    }
+
+    return () => {
       if (node) {
-        setAnchor(node);
-
-        node.setAttribute(
-          'style',
-          `border: solid 1px ${theme.colors.negative300};`,
-        );
-
-        node.addEventListener('mouseenter', handleMouseEnter);
-        node.addEventListener('mouseleave', handleMouseLeave);
+        node.removeEventListener('mouseenter', handleMouseEnter);
+        node.removeEventListener('mouseleave', handleMouseLeave);
       }
-
-      return () => {
-        if (node) {
-          node.removeEventListener('mouseenter', handleMouseEnter);
-          node.removeEventListener('mouseleave', handleMouseLeave);
-        }
-      };
-    },
-    [props.target],
-  );
+    };
+  }, [props.target]);
 
   if (!isHovered) return null;
 
@@ -118,22 +115,19 @@ export default function A11y(props: {children: React.Node}) {
   const [violations, setViolations] = React.useState([]);
   const [idleID, setIdleID] = React.useState(null);
   const child = React.useRef(null);
-  React.useEffect(
-    () => {
-      if (child.current) {
-        if (idleID) {
-          cancelIdleCallback(idleID);
-          setIdleID(null);
-        }
-
-        const id = requestIdleCallback(() => {
-          validateNode(child.current).then(setViolations);
-        });
-        setIdleID(id);
+  React.useEffect(() => {
+    if (child.current) {
+      if (idleID) {
+        cancelIdleCallback(idleID);
+        setIdleID(null);
       }
-    },
-    [props.children],
-  );
+
+      const id = requestIdleCallback(() => {
+        validateNode(child.current).then(setViolations);
+      });
+      setIdleID(id);
+    }
+  }, [props.children]);
 
   const violationsByNode = segmentViolationsByNode(violations);
 

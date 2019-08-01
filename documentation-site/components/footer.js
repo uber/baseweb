@@ -33,8 +33,9 @@ const StyledFooter = styled<{}>(
     position: 'sticky',
     bottom: 0,
     color: colors.foreground,
-    backgroundColor:
-      name === 'light-theme' ? colors.mono200 : colors.headerNavigationFill,
+    backgroundColor: name.startsWith('light-theme')
+      ? colors.mono200
+      : colors.headerNavigationFill,
     width: '100%',
     marginTop: sizing.scale1400,
     paddingTop: sizing.scale1600,

@@ -27,9 +27,9 @@ const wrapper = StyledComponent => {
 
 /* eslint-disable flowtype/generic-spacing */
 /* eslint-disable flowtype/no-weak-types */
-export type StyletronComponent<Props> = React.StatelessFunctionalComponent<
+export type StyletronComponent<
   Props,
-> & {
+> = React.StatelessFunctionalComponent<Props> & {
   __STYLETRON__: any,
 };
 

@@ -10,41 +10,34 @@ LICENSE file in the root directory of this source tree.
 
 const {resolve} = require('path');
 const withImages = require('next-images');
-const rehypePrism = require('@mapbox/rehype-prism');
 const withMDX = require('@zeit/next-mdx')({
   extension: /\.mdx?$/,
-  options: {
-    hastPlugins: [rehypePrism],
-  },
 });
-const withCSS = require('@zeit/next-css');
 
-module.exports = withCSS(
-  withMDX(
-    withImages({
-      exportTrailingSlash: true,
-      webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
-        config.resolve.alias.baseui = resolve(__dirname, '../dist');
-        config.resolve.alias.examples = resolve(__dirname, 'examples');
+module.exports = withMDX(
+  withImages({
+    exportTrailingSlash: true,
+    webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
+      config.resolve.alias.baseui = resolve(__dirname, '../dist');
+      config.resolve.alias.examples = resolve(__dirname, 'examples');
 
-        // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
-        const originalEntry = config.entry;
-        config.entry = async () => {
-          const entries = await originalEntry();
+      // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
+      const originalEntry = config.entry;
+      config.entry = async () => {
+        const entries = await originalEntry();
 
-          if (
-            entries['main.js'] &&
-            !entries['main.js'].includes('./helpers/polyfills.js')
-          ) {
-            entries['main.js'].unshift('./helpers/polyfills.js');
-          }
+        if (
+          entries['main.js'] &&
+          !entries['main.js'].includes('./helpers/polyfills.js')
+        ) {
+          entries['main.js'].unshift('./helpers/polyfills.js');
+        }
 
-          return entries;
-        };
+        return entries;
+      };
 
-        return config;
-      },
-      pageExtensions: ['js', 'jsx', 'mdx'],
-    }),
-  ),
+      return config;
+    },
+    pageExtensions: ['js', 'jsx', 'mdx'],
+  }),
 );

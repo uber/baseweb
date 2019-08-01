@@ -53,8 +53,8 @@ export const component = () => (
           backgroundColor: $selected
             ? $theme.colors.positive
             : $isHovered || $isHighlighted
-              ? $theme.colors.positive100
-              : 'transparent',
+            ? $theme.colors.positive100
+            : 'transparent',
         }),
       },
     }}

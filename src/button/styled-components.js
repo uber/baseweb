@@ -96,13 +96,13 @@ function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
     foreground: $disabled
       ? $theme.colors.mono600
       : $kind === KIND.primary
-        ? $theme.colors.white
-        : $theme.colors.primary,
+      ? $theme.colors.white
+      : $theme.colors.primary,
     background: $disabled
       ? 'rgba(179, 179, 179, 0.32)'
       : $kind === KIND.primary
-        ? 'rgba(255, 255, 255, 0.32)'
-        : 'rgba(39, 110, 241, 0.32)',
+      ? 'rgba(255, 255, 255, 0.32)'
+      : 'rgba(39, 110, 241, 0.32)',
   };
 }
 
