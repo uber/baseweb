@@ -1,18 +1,14 @@
 // @flow
 import * as React from 'react';
-import {StatefulCheckbox} from 'baseui/checkbox';
+import {Checkbox} from 'baseui/checkbox';
 
-export default () => (
-  <React.Fragment>
-    <StatefulCheckbox onChange={console.log} disabled>
-      Disabled checkbox
-    </StatefulCheckbox>
-    <StatefulCheckbox
-      onChange={console.log}
-      disabled
-      initialState={{checked: true}}
-    >
-      Disabled checkbox (checked)
-    </StatefulCheckbox>
-  </React.Fragment>
-);
+export default () => {
+  return (
+    <React.Fragment>
+      <Checkbox disabled>Disabled checkbox</Checkbox>
+      <Checkbox disabled checked>
+        Disabled checkbox (checked)
+      </Checkbox>
+    </React.Fragment>
+  );
+};
