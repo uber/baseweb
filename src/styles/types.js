@@ -501,6 +501,7 @@ export type ZIndexT = {
 
 export type ThemeT = {|
   name: string,
+  direction: 'auto' | 'rtl' | 'ltr',
   breakpoints: BreakpointsT,
   colors: ColorsT,
   typography: TypographyT,
