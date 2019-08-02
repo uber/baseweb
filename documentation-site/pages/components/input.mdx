@@ -9,8 +9,6 @@ import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
 
-import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
-import BasicUncontrolledDefaultValue from 'examples/input/basic-uncontrolled-default-value.js';
 import BasicControlled from 'examples/input/basic-controlled.js';
 import Sizes from 'examples/input/sizes.js';
 import AvailableStates from 'examples/input/available-states.js';
@@ -22,6 +20,7 @@ import Focus from 'examples/input/focus.js';
 import WithTags from 'examples/input/with-tags.js';
 import Clearable from 'examples/input/clearable.js';
 import Password from 'examples/input/password.js';
+import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulInput} from 'baseui/input';
@@ -118,18 +117,13 @@ Note, if all you want to do is change the icons, you could [update your theme](h
 </Example>
 
 <Example
-  title="Input as an uncontrolled component"
+  title="Stateful (Uncontrolled) usage"
   path="input/basic-uncontrolled.js"
 >
   <BasicUncontrolled />
 </Example>
 
-<Example
-  title="Input as an uncontrolled component with a default value"
-  path="input/basic-uncontrolled-default-value.js"
->
-  <BasicUncontrolledDefaultValue />
-</Example>
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulInput`, which manages its own state.
 
 ## Overrides
 
