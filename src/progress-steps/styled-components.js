@@ -20,8 +20,7 @@ export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
     paddingRight: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale500,
     paddingBottom: $theme.sizing.scale300,
-    textAlign:
-      $theme.direction && $theme.direction === 'rtl' ? 'right' : 'left',
+    textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
   };
 });
 
@@ -57,7 +56,7 @@ export const StyledIcon = styled<StylePropsT>(
 
     const marginTop = `calc((${font.lineHeight} - ${size}) / 2)`;
 
-    if ($theme.direction && $theme.direction === 'rtl') {
+    if ($theme.direction === 'rtl') {
       let oldMarginLeft = marginLeft;
       marginLeft = marginRight;
       marginRight = oldMarginLeft;
@@ -75,7 +74,7 @@ export const StyledIcon = styled<StylePropsT>(
       borderBottomRightRadius: size,
       borderBottomLeftRadius: size,
       backgroundColor: currentColor,
-      float: $theme.direction && $theme.direction === 'rtl' ? 'right' : 'left',
+      float: $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
@@ -100,9 +99,8 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
 
 export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
   return {
-    [$theme.direction && $theme.direction === 'rtl'
-      ? 'marginRight'
-      : 'marginLeft']: $theme.sizing.scale900,
+    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+      .scale900,
   };
 });
 
@@ -135,9 +133,7 @@ export const StyledContentTail = styled<StylePropsT>(
 
     return {
       position: 'absolute',
-      [$theme.direction && $theme.direction === 'rtl'
-        ? 'right'
-        : 'left']: '7px',
+      [$theme.direction === 'rtl' ? 'right' : 'left']: '7px',
       top: 0,
       height: '100%',
       paddingBottom: 0,
@@ -203,7 +199,7 @@ export const StyledNumberIcon = styled<StylePropsT>(
       borderBottomLeftRadius: size,
       backgroundColor,
       color,
-      float: $theme.direction && $theme.direction === 'rtl' ? 'right' : 'left',
+      float: $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
