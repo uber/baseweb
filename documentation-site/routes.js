@@ -83,7 +83,7 @@ const routes = [
             itemId: '/components/button',
           },
           {
-            title: 'ButtonGroup',
+            title: 'Button Group',
             itemId: '/components/button-group',
           },
           {
@@ -91,7 +91,7 @@ const routes = [
             itemId: '/components/checkbox',
           },
           {
-            title: 'FormControl',
+            title: 'Form Control',
             itemId: '/components/form-control',
           },
           {
