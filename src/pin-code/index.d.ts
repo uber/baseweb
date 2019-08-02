@@ -35,7 +35,10 @@ export interface StatefulContainerProps {
     nextState: State,
     currentState: State,
   ) => State;
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: (args: {
+    values: string[];
+    event: React.FormEvent<HTMLInputElement>;
+  }) => void;
 }
 
 export type StatefulPinCodeProps = Partial<PinCodeProps> &
