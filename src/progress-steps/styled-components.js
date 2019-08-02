@@ -20,6 +20,8 @@ export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
     paddingRight: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale500,
     paddingBottom: $theme.sizing.scale300,
+    textAlign:
+      $theme.direction && $theme.direction === 'rtl' ? 'right' : 'left',
   };
 });
 
@@ -55,6 +57,12 @@ export const StyledIcon = styled<StylePropsT>(
 
     const marginTop = `calc((${font.lineHeight} - ${size}) / 2)`;
 
+    if ($theme.direction && $theme.direction === 'rtl') {
+      let oldMarginLeft = marginLeft;
+      marginLeft = marginRight;
+      marginRight = oldMarginLeft;
+    }
+
     return {
       marginRight,
       marginLeft,
@@ -67,7 +75,7 @@ export const StyledIcon = styled<StylePropsT>(
       borderBottomRightRadius: size,
       borderBottomLeftRadius: size,
       backgroundColor: currentColor,
-      float: 'left',
+      float: $theme.direction && $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
@@ -91,8 +99,11 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
 });
 
 export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
+  console.info($theme);
   return {
-    marginLeft: $theme.sizing.scale900,
+    [$theme.direction && $theme.direction === 'rtl'
+      ? 'marginRight'
+      : 'marginLeft']: $theme.sizing.scale900,
   };
 });
 
@@ -125,7 +136,9 @@ export const StyledContentTail = styled<StylePropsT>(
 
     return {
       position: 'absolute',
-      left: '7px',
+      [$theme.direction && $theme.direction === 'rtl'
+        ? 'right'
+        : 'left']: '7px',
       top: 0,
       height: '100%',
       paddingBottom: 0,
@@ -191,7 +204,7 @@ export const StyledNumberIcon = styled<StylePropsT>(
       borderBottomLeftRadius: size,
       backgroundColor,
       color,
-      float: 'left',
+      float: $theme.direction && $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
