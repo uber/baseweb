@@ -15,6 +15,8 @@ export const name = 'progress-steps-rtl';
 
 export const component = () => (
   <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-    <ProgressSteps />
+    <div dir="rtl">
+      <ProgressSteps />
+    </div>
   </ThemeProvider>
 );
