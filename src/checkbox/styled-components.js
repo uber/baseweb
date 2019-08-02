@@ -27,7 +27,10 @@ function getBorderColor(props) {
 
 function getLabelPadding(props) {
   const {$labelPlacement = '', $theme} = props;
+  const {sizing} = $theme;
+  const {scale300} = sizing;
   let paddingDirection;
+
   switch ($labelPlacement) {
     case 'top':
       paddingDirection = 'Bottom';
@@ -43,8 +46,13 @@ function getLabelPadding(props) {
       paddingDirection = 'Left';
       break;
   }
-  const {sizing} = $theme;
-  const {scale300} = sizing;
+
+  if ($theme.direction === 'rtl' && paddingDirection === 'Left') {
+    paddingDirection = 'Right';
+  } else if ($theme.direction === 'rtl' && paddingDirection === 'Right') {
+    paddingDirection = 'Left';
+  }
+
   return {
     [`padding${paddingDirection}`]: scale300,
   };
