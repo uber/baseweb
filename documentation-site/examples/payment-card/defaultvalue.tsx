@@ -8,7 +8,7 @@ const DefaultValue = () => {
       onChange={event =>
         setValue((event.target as HTMLInputElement).value)
       }
-      placeholder="Enter payment card number"
+      placeholder="Please enter your credit card number..."
       value={value}
     />
   );
