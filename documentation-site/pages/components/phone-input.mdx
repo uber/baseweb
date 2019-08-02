@@ -17,8 +17,7 @@ import {Table} from 'baseui/table/index.js';
 import {Block} from 'baseui/block/index.js';
 
 import PhoneInputBasic from 'examples/phone-input/basic.js';
-import PhoneInputAlternateCountry from 'examples/phone-input/alternate-country.js';
-import PhoneInputControlled from 'examples/phone-input/controlled.js';
+import PhoneInputUncontrolled from 'examples/phone-input/uncontrolled.js';
 import PhoneInputLocalized from 'examples/phone-input/localized.js';
 import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
 
@@ -33,17 +32,6 @@ It contains a dropdown which allows the user to choose from a list of countries 
   <PhoneInputBasic />
 </Example>
 
-<Example
-  title="Alternate Default Country"
-  path="phone-input/alternate-country.js"
->
-  <PhoneInputAlternateCountry />
-</Example>
-
-<Example title="Controlled" path="phone-input/controlled.js">
-  <PhoneInputControlled />
-</Example>
-
 <Example title="Localized Country Names" path="phone-input/localized.js">
   <PhoneInputLocalized />
 </Example>
@@ -55,6 +43,10 @@ It contains a dropdown which allows the user to choose from a list of countries 
 <DocLink href="/theming/understanding-overrides/#override-nested-components">
   Click here to learn more about nested overrides
 </DocLink>{' '}
+
+<Example title="Uncontrolled" path="phone-input/uncontrolled.js">
+  <PhoneInputUncontrolled />
+</Example>
 
 ## Supported Countries
 
