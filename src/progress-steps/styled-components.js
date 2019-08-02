@@ -99,7 +99,6 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
 });
 
 export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
-  console.info($theme);
   return {
     [$theme.direction && $theme.direction === 'rtl'
       ? 'marginRight'
