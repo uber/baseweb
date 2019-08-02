@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Checkbox} from 'baseui/checkbox';
-import Alert from 'baseui/icon/alert';
+import {Alert} from 'baseui/icon';
 
 const CustomCheckmark = ({checked}: {checked: boolean}) => (
   <Block

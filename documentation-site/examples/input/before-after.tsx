@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {Block} from 'baseui/block';
-import Alert from 'baseui/icon/alert';
-import Check from 'baseui/icon/check';
-import Search from 'baseui/icon/search';
+import {Alert, Check, Search} from 'baseui/icon';
 import {Input} from 'baseui/input';
 
 const Before = () => (
