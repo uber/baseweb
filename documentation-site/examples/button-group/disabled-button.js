@@ -5,7 +5,7 @@ import {ButtonGroup} from 'baseui/button-group';
 
 export default () => (
   <ButtonGroup>
-    <Button>Label</Button>
+    <Button disabled>Label</Button>
     <Button>Label</Button>
     <Button>Label</Button>
   </ButtonGroup>

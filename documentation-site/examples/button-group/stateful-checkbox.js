@@ -1,12 +1,15 @@
 // @flow
 import * as React from 'react';
 import {Button} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
+import {StatefulButtonGroup, MODE} from 'baseui/button-group';
 
 export default () => (
-  <ButtonGroup>
+  <StatefulButtonGroup
+    mode={MODE.checkbox}
+    initialState={{selected: [0, 1]}}
+  >
     <Button>Label</Button>
     <Button>Label</Button>
     <Button>Label</Button>
-  </ButtonGroup>
+  </StatefulButtonGroup>
 );
