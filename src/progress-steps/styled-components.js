@@ -57,9 +57,7 @@ export const StyledIcon = styled<StylePropsT>(
     const marginTop = `calc((${font.lineHeight} - ${size}) / 2)`;
 
     if ($theme.direction === 'rtl') {
-      let oldMarginLeft = marginLeft;
-      marginLeft = marginRight;
-      marginRight = oldMarginLeft;
+      [marginLeft, marginRight] = [marginRight, marginLeft];
     }
 
     return {
