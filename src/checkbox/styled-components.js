@@ -4,6 +4,7 @@ Copyright (c) 2018-2019 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+
 // @flow
 import {styled} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
@@ -182,8 +183,8 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     backgroundImage: $isIndeterminate
       ? `url('data:image/svg+xml,${indeterminate}');`
       : $checked
-        ? `url('data:image/svg+xml,${check}');`
-        : null,
+      ? `url('data:image/svg+xml,${check}');`
+      : null,
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',

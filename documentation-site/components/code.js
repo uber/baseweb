@@ -6,25 +6,45 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
+import Highlight, {defaultProps} from 'prism-react-renderer';
+//$FlowFixMe
+import lightTheme from './yard/light-theme';
+//$FlowFixMe
+import darkTheme from './yard/dark-theme';
+//$FlowFixMe
+import CodeBox from './yard/code-box';
 
 type PropsT = {
   children: string,
   language: string,
 };
 
-const Code = (props: PropsT) => (
-  <Block overflow="scroll">
-    <SyntaxHighlighter
-      language={props.language}
-      useInlineStyles={false}
-      style={{overflow: 'scroll'}}
-    >
-      {props.children}
-    </SyntaxHighlighter>
-  </Block>
-);
+const Code = ({children, language}: PropsT) => {
+  const [, theme] = useStyletron();
+  return (
+    <CodeBox>
+      <Highlight
+        {...defaultProps}
+        code={children.replace(/[\r\n]+$/, '')}
+        language={language}
+        theme={theme.name.startsWith('light-theme') ? lightTheme : darkTheme}
+      >
+        {({style, tokens, getLineProps, getTokenProps}) => (
+          <pre style={{...style, padding: '10px 10px'}}>
+            {tokens.map((line, i) => (
+              <div key={i} {...getLineProps({line, key: i})}>
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({token, key})} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
+    </CodeBox>
+  );
+};
 
 Code.defaultProps = {
   language: 'jsx',

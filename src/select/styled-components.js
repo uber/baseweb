@@ -192,8 +192,8 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
       cursor: $disabled
         ? 'not-allowed'
         : $searchable || $type === TYPE.search
-          ? 'text'
-          : 'pointer',
+        ? 'text'
+        : 'pointer',
       borderWidth: '2px',
       borderStyle: 'solid',
       transitionProperty: 'border, box-shadow, background-color',

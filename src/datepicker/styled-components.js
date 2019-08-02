@@ -272,19 +272,19 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     color: $selected
       ? colors.white
       : $outsideMonth || $disabled
-        ? colors.datepickerDayFontDisabled
-        : 'inherit',
+      ? colors.datepickerDayFontDisabled
+      : 'inherit',
     backgroundColor: $selected
       ? $isHighlighted
         ? colors.primary500
         : colors.primary
       : $pseudoSelected
-        ? $isHighlighted
-          ? colors.datepickerDayPseudoHighlighted
-          : colors.datepickerDayPseudoSelected
-        : $isHovered || $isHighlighted || $pseudoHighlighted
-          ? colors.datepickerDayPseudoSelected
-          : 'transparent',
+      ? $isHighlighted
+        ? colors.datepickerDayPseudoHighlighted
+        : colors.datepickerDayPseudoSelected
+      : $isHovered || $isHighlighted || $pseudoHighlighted
+      ? colors.datepickerDayPseudoSelected
+      : 'transparent',
     ...calculateBorderRadius(props),
     ':first-child': {
       ...(borders.useRoundedCorners

@@ -13,9 +13,7 @@ export const {
   Consumer,
 }: React.Context<LayersContextT> = React.createContext({});
 
-export default class LayersManager extends React.Component<
-  LayersManagerPropsT,
-> {
+export default class LayersManager extends React.Component<LayersManagerPropsT> {
   host: {current: HTMLDivElement | null} = React.createRef();
 
   componentDidMount() {

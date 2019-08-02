@@ -11,6 +11,7 @@ import * as React from 'react';
 
 import Head from 'next/head';
 import {Block} from 'baseui/block';
+import Code from './code';
 import {styled} from 'baseui/styles';
 import Link from 'next/link';
 import {StyledLink} from 'baseui/link';
@@ -35,8 +36,6 @@ const getText = children => {
 };
 
 export const cleanAnchor = (anchor: React.Node) => slugify(getText(anchor));
-
-const Code = (props: Props) => <Block whiteSpace="pre">{props.children}</Block>;
 
 export const Heading = ({
   element,

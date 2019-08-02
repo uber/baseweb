@@ -156,7 +156,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   },
                 }}
                 href="https://github.com/uber-web/baseui"
-                marginLeft="scale700"
+                marginLeft="scale300"
                 $style={{textDecoration: 'none'}}
                 target="_blank"
               >
@@ -167,7 +167,6 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                 overrides={{
                   Block: {
                     style: {
-                      display: 'none',
                       height: '24px',
                       [HEADER_BREAKPOINT]: {
                         display: 'block',
@@ -175,7 +174,7 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                     },
                   },
                 }}
-                marginLeft="scale700"
+                marginLeft="scale300"
                 $style={{textDecoration: 'none'}}
                 href="#"
                 onClick={toggleTheme}
