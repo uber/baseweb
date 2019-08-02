@@ -5,7 +5,7 @@ export default () => (
   <React.Fragment>
     <Input size={SIZE.compact} placeholder="compact" />
     <br />
-    <Input size={SIZE.default} placeholder="default" />
+    <Input placeholder="default" />
     <br />
     <Input size={SIZE.large} placeholder="large" />
   </React.Fragment>

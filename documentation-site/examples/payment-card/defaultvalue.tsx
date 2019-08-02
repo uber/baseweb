@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {PaymentCard} from 'baseui/payment-card';
 
-const DefaultValue = () => {
+export default () => {
   const [value, setValue] = React.useState('4111111111111111');
   return (
     <PaymentCard
@@ -13,5 +13,3 @@ const DefaultValue = () => {
     />
   );
 };
-
-export default DefaultValue;

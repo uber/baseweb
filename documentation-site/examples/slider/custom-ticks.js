@@ -21,7 +21,7 @@ const ThumbValue = styled('div', ({$theme}) => ({
 
 const mToKm = (value: number) => `${(value / 1000).toFixed(1)}km`;
 
-export default function() {
+export default () => {
   const [value, setValue] = React.useState([4500]);
   return (
     <Slider
@@ -47,4 +47,4 @@ export default function() {
       }}
     />
   );
-}
+};

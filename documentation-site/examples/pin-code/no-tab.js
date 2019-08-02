@@ -2,7 +2,7 @@
 import React from 'react';
 import {PinCode} from 'baseui/pin-code';
 
-export default function() {
+export default () => {
   const [values, setValues] = React.useState(['', '', '', '']);
   return (
     <React.Fragment>
@@ -15,4 +15,4 @@ export default function() {
       />
     </React.Fragment>
   );
-}
+};

@@ -17,7 +17,7 @@ const items = [
 // The button group parent will decorate its children with additional props.
 // In Dropdown, we ensure that those props get shuttled to the Button component
 // rather than the wrapping StatefulPopover
-function Dropdown(props: {children: React.ReactNode}) {
+const Dropdown = (props: {children: React.ReactNode}) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <Popover
@@ -38,14 +38,12 @@ function Dropdown(props: {children: React.ReactNode}) {
       </Button>
     </Popover>
   );
-}
+};
 
-export default function() {
-  return (
-    <ButtonGroup>
-      <Button>First</Button>
-      <Button>Second</Button>
-      <Dropdown>Third</Dropdown>
-    </ButtonGroup>
-  );
-}
+export default () => (
+  <ButtonGroup>
+    <Button>First</Button>
+    <Button>Second</Button>
+    <Dropdown>Third</Dropdown>
+  </ButtonGroup>
+);

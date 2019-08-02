@@ -3,7 +3,7 @@ import React from 'react';
 import {PinCode} from 'baseui/pin-code';
 import {SIZE} from 'baseui/input';
 
-export default function() {
+export default () => {
   const [valuesA, setValuesA] = React.useState(['', '', '', '']);
   const [valuesB, setValuesB] = React.useState(['', '', '', '']);
   const [valuesC, setValuesC] = React.useState(['', '', '', '']);
@@ -18,7 +18,6 @@ export default function() {
       />
       <br />
       <PinCode
-        size={SIZE.default} // this can be omitted
         values={valuesB}
         onChange={({values}) => {
           setValuesB(values);
@@ -34,4 +33,4 @@ export default function() {
       />
     </React.Fragment>
   );
-}
+};

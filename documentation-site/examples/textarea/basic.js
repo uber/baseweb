@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {Textarea} from 'baseui/textarea';
 
-export default function() {
+export default () => {
   const [value, setValue] = React.useState('');
   return (
     <Textarea
@@ -11,4 +11,4 @@ export default function() {
       placeholder="Enter some text here..."
     />
   );
-}
+};

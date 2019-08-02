@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Textarea} from 'baseui/textarea';
 import {Button} from 'baseui/button';
 
-export default function() {
+export default () => {
   const [value, setValue] = React.useState('');
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   return (
@@ -23,4 +23,4 @@ export default function() {
       </Button>
     </React.Fragment>
   );
-}
+};

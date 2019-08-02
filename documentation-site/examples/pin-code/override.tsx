@@ -17,7 +17,7 @@ const overrides = {
   },
 };
 
-export default function() {
+export default () => {
   const [values, setValues] = React.useState(['', '', '', '']);
   return (
     <PinCode
@@ -28,4 +28,4 @@ export default function() {
       }}
     />
   );
-}
+};

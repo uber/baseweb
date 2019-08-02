@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {Textarea} from 'baseui/textarea';
 
-export default function() {
+export default () => {
   const [valueA, setValueA] = React.useState('Positive state...');
   const [valueB, setValueB] = React.useState('Error state...');
   return (
@@ -24,4 +24,4 @@ export default function() {
       <Textarea disabled value="Disabled state..." />
     </React.Fragment>
   );
-}
+};

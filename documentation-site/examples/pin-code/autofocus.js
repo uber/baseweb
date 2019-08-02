@@ -4,7 +4,7 @@ import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {PinCode} from 'baseui/pin-code';
 
-export default function() {
+export default () => {
   const [showPinCode, toggle] = React.useState(false);
   const [values, setValues] = React.useState(['', '', '', '']);
   return (
@@ -22,4 +22,4 @@ export default function() {
       ) : null}
     </Block>
   );
-}
+};

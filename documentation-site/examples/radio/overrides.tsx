@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Radio, RadioGroup} from 'baseui/radio';
 
-export default function() {
+export default () => {
   const [value, setValue] = React.useState('1');
   return (
     <RadioGroup
@@ -63,4 +63,4 @@ export default function() {
       </Radio>
     </RadioGroup>
   );
-}
+};

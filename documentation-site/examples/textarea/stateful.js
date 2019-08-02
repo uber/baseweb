@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {StatefulTextarea} from 'baseui/textarea';
 
-export default function() {
+export default () => {
   return (
     <StatefulTextarea
       initialState={{value: 'I manage my own state...'}}
@@ -10,4 +10,4 @@ export default function() {
       placeholder="I manage my own state..."
     />
   );
-}
+};
