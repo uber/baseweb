@@ -22,7 +22,7 @@ export default () => {
       onChange={() => setChecked(!checked)}
       overrides={{Checkmark: CustomCheckmark}}
     >
-      With style overrides
+      With component overrides
     </Checkbox>
   );
 };
