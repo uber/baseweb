@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {PinCode} from 'baseui/pin-code';
 
