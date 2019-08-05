@@ -2,15 +2,13 @@
 import * as React from 'react';
 import {Input} from 'baseui/input';
 
-function ControlledInput() {
+export default () => {
   const [value, setValue] = React.useState('');
   return (
     <Input
-      onChange={event => setValue(event.target.value)}
-      placeholder="Controlled Input"
       value={value}
+      onChange={event => setValue(event.currentTarget.value)}
+      placeholder="Controlled Input"
     />
   );
-}
-
-export default ControlledInput;
+};

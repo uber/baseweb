@@ -1,12 +1,12 @@
 import React from 'react';
-import {StatefulInput, SIZE} from 'baseui/input';
+import {Input, SIZE} from 'baseui/input';
 
 export default () => (
-  <div>
-    <StatefulInput size={SIZE.compact} placeholder="compact" />
+  <React.Fragment>
+    <Input size={SIZE.compact} placeholder="compact" />
     <br />
-    <StatefulInput size={SIZE.default} placeholder="default" />
+    <Input placeholder="default" />
     <br />
-    <StatefulInput size={SIZE.large} placeholder="large" />
-  </div>
+    <Input size={SIZE.large} placeholder="large" />
+  </React.Fragment>
 );

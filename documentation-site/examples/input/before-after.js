@@ -4,7 +4,7 @@ import {useStyletron} from 'baseui';
 import Alert from 'baseui/icon/alert';
 import Check from 'baseui/icon/check';
 import Search from 'baseui/icon/search';
-import {StatefulInput, Input} from 'baseui/input';
+import {Input} from 'baseui/input';
 
 function Before() {
   const [useCss, theme] = useStyletron();
@@ -70,26 +70,26 @@ function Positive() {
 
 export default () => (
   <div>
-    <StatefulInput
+    <Input
       overrides={{Before}}
       placeholder="Input with a Before component"
     />
     <br />
 
-    <StatefulInput
+    <Input
       overrides={{After}}
       placeholder="Input with an After component"
     />
     <br />
 
-    <StatefulInput
+    <Input
       error
       overrides={{After: Negative}}
       placeholder="Input with negative icon"
     />
     <br />
 
-    <StatefulInput
+    <Input
       positive
       overrides={{After: Positive}}
       placeholder="Input with positive icon"

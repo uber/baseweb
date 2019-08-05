@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
-import {StatefulInput} from 'baseui/input';
+import {Input} from 'baseui/input';
 
 export default () => {
   const [useCss, theme] = useStyletron();
@@ -14,10 +14,7 @@ export default () => {
           marginRight: theme.sizing.scale400,
         })}
       >
-        <StatefulInput
-          inputRef={inputRef}
-          placeholder="With input ref"
-        />
+        <Input inputRef={inputRef} placeholder="With input ref" />
       </div>
       <Button
         onClick={() => inputRef.current && inputRef.current.focus()}

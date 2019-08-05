@@ -10,9 +10,7 @@ import {StatefulContainer as StatefulPopoverContainer} from '../popover/index.js
 import baseDefaultProps from './default-props.js';
 import type {StatefulTooltipContainerPropsT} from './types.js';
 
-class StatefulContainer extends React.Component<
-  StatefulTooltipContainerPropsT,
-> {
+class StatefulContainer extends React.Component<StatefulTooltipContainerPropsT> {
   static defaultProps: $Shape<StatefulTooltipContainerPropsT> = {
     ...baseDefaultProps,
   };

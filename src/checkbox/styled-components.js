@@ -191,8 +191,8 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     backgroundImage: $isIndeterminate
       ? `url('data:image/svg+xml,${indeterminate}');`
       : $checked
-        ? `url('data:image/svg+xml,${check}');`
-        : null,
+      ? `url('data:image/svg+xml,${check}');`
+      : null,
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',

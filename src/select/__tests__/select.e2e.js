@@ -19,9 +19,7 @@ const selectors = {
 };
 
 const optionAtPosition = position =>
-  `${selectors.selectDropDown} ${
-    selectors.dropDownOption
-  }:nth-child(${position})`;
+  `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
 describe('select', () => {
   it(`passes basic a11y tests`, async () => {

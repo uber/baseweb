@@ -43,9 +43,8 @@ class StatefulPanelContainer extends React.Component<
 
   internalSetState(type: StateChangeTypeT, changes: PanelStateT) {
     const {stateReducer} = this.props;
-    this.setState(
-      prevState =>
-        stateReducer ? stateReducer(type, changes, prevState) : changes,
+    this.setState(prevState =>
+      stateReducer ? stateReducer(type, changes, prevState) : changes,
     );
   }
 
