@@ -42,12 +42,14 @@ export const BaseButton = styled<SharedStylePropsT>(
 
 export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
   display: 'flex',
-  marginLeft: $theme.sizing.scale500,
+  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+    .scale500,
 }));
 
 export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
   display: 'flex',
-  marginRight: $theme.sizing.scale500,
+  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
+    .scale500,
 }));
 
 export const LoadingSpinnerContainer = styled('div', {
