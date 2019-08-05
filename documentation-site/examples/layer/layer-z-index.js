@@ -23,8 +23,8 @@ function Wrapper(props: any) {
     <div
       className={useCss({
         position: 'absolute',
-        top: props.offset || '50%',
-        left: props.offset || '50%',
+        top: `${props.offset.top}px` || '50%',
+        left: `${props.offset.left}px` || '50%',
         width: '200px',
         paddingTop: '20px',
         paddingBottom: '20px',
