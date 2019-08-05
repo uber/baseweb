@@ -58,10 +58,10 @@ export default function Hello() {
 }
 ```
 
-Both Base Web and Styletron are [flow typed](https://flow.org/) out of the box. **Do you use [TypeScript](https://www.typescriptlang.org/index.html)**? We provide external declarations:
+Both Base Web and Styletron come with [flow types](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/index.html). All our components are typed and examples have Vanilla, Flow and TypeScript versions. For Styletron + TS, you need to add some additional packages: 
 
 ```bash
-yarn add @types/baseui @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
+yarn add @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
 ```
 
 ## Example

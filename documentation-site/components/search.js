@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {styled} from 'baseui/styles';
 import {default as SearchIcon} from 'baseui/icon/search';
+//$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';

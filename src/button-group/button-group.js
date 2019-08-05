@@ -97,8 +97,8 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
                   borderBottomLeftRadius: 0,
                 };
               },
-              ...child.props.overrides,
             },
+            ...child.props.overrides,
           },
         });
       })}

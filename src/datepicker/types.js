@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
+import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
 
 import type {OptionT} from '../select/index.js';
 
@@ -35,6 +35,7 @@ export type DatepickerOverridesT<T> = {
   PrevButtonIcon?: OverrideT<T>,
   NextButton?: OverrideT<T>,
   NextButtonIcon?: OverrideT<T>,
+  MonthContainer?: OverrideT<T>,
   MonthHeader?: OverrideT<T>,
   MonthYearSelectButton?: OverrideT<T>,
   MonthYearSelectIconContainer?: OverrideT<T>,
@@ -148,6 +149,8 @@ export type CalendarPropsT = {
   onYearChange?: ({date: Date}) => mixed,
   /** Event handler that is called when a new date is selected. */
   onChange?: onChangeT,
+  /** Sets the orientation of the calendar when multiple months are displayed */
+  orientation?: $Values<typeof ORIENTATION>,
   overrides?: DatepickerOverridesT<{}>,
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth?: boolean,
@@ -163,6 +166,7 @@ export type CalendarPropsT = {
 
 export type HeaderPropsT = CalendarPropsT & {
   date: Date,
+  order: number,
 };
 
 export type DatepickerPropsT = CalendarPropsT & {

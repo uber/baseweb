@@ -474,6 +474,7 @@ interface ZIndex {
 
 export interface Theme {
   name: string;
+  direction: 'auto' | 'rtl' | 'ltr';
   breakpoints: Breakpoints;
   colors: Colors;
   typography: Typography;

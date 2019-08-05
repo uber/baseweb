@@ -592,6 +592,7 @@ export default function createTheme(
       easeInCurve: 'cubic-bezier(.8, .2, .6, 1)',
       easeInOutCurve: 'cubic-bezier(0.4, 0, 0.2, 1)',
     },
+    direction: 'auto',
     zIndex: {
       modal: 2000,
     },

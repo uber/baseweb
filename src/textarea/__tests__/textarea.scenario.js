@@ -14,7 +14,13 @@ export const name = 'textarea';
 
 export const component = () => (
   <StatefulTextarea
+    clearable
     placeholder="Uncontrolled textarea"
     initialState={{value: 'initial value'}}
+    overrides={{
+      ClearIcon: {
+        props: {'data-e2e': 'clear-icon'},
+      },
+    }}
   />
 );

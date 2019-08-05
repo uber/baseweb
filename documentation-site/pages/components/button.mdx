@@ -18,6 +18,8 @@ import Dropdown from 'examples/button/dropdown.js';
 import ButtonAsAnAnchor from 'examples/button/as-an-anchor.js';
 
 import Overrides from '../../components/overrides';
+import Yard from '../../components/yard/yard';
+
 import {Button, KIND} from 'baseui/button';
 import * as ButtonExports from 'baseui/button';
 import Upload from 'baseui/icon/upload';
@@ -26,6 +28,8 @@ import ArrowRight from 'baseui/icon/arrow-right';
 export default Layout;
 
 # Button
+
+<Yard componentName="Button" />
 
 Buttons provide cues for actions and events. These fundamental components allow users to process actions or navigate an experience.
 
@@ -75,32 +79,3 @@ primary button action. As the name implies, it’s offered to supplement to crea
 <Example title="Button as an Anchor" path="button/as-an-anchor.js">
   <ButtonAsAnAnchor />
 </Example>
-
-## Overrides
-
-<Overrides
-  name="Button"
-  component={ButtonExports}
-  renderExample={props => (
-    <React.Fragment>
-      <p>
-        <Button
-          startEnhancer={() => <ArrowRight size={24} />}
-          endEnhancer={() => <Upload size={24} />}
-          kind={KIND.secondary}
-          overrides={props.overrides}
-        >
-          Label
-        </Button>
-      </p>
-      <Button isLoading kind={KIND.secondary} overrides={props.overrides}>
-        Loading
-      </Button>
-    </React.Fragment>
-  )}
-/>
-
-<API
-  heading="Button API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button/button.js')}
-/>

@@ -4,6 +4,7 @@ Copyright (c) 2018-2019 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+
 // @flow
 import {styled} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
@@ -26,7 +27,10 @@ function getBorderColor(props) {
 
 function getLabelPadding(props) {
   const {$labelPlacement = '', $theme} = props;
+  const {sizing} = $theme;
+  const {scale300} = sizing;
   let paddingDirection;
+
   switch ($labelPlacement) {
     case 'top':
       paddingDirection = 'Bottom';
@@ -42,8 +46,13 @@ function getLabelPadding(props) {
       paddingDirection = 'Left';
       break;
   }
-  const {sizing} = $theme;
-  const {scale300} = sizing;
+
+  if ($theme.direction === 'rtl' && paddingDirection === 'Left') {
+    paddingDirection = 'Right';
+  } else if ($theme.direction === 'rtl' && paddingDirection === 'Right') {
+    paddingDirection = 'Left';
+  }
+
   return {
     [`padding${paddingDirection}`]: scale300,
   };

@@ -18,6 +18,7 @@ import {StyledLink} from 'baseui/link';
 import {version} from '../../package.json';
 import Code from './code';
 import CodeIcon from './code-icon';
+//$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 import {H2} from './markdown-elements';
 
@@ -59,7 +60,7 @@ type PropsT = {
   additionalPackages: {[string]: string},
   children: React.Node,
   path: string, // required to fetch the uncompiled source code
-  title: string,
+  title: ?string,
 };
 
 type StateT = {
@@ -70,7 +71,7 @@ type StateT = {
 };
 
 class Example extends React.Component<PropsT, StateT> {
-  static defaultProps = {additionalPackages: {}};
+  static defaultProps = {additionalPackages: {}, title: null};
   state = {
     sourceSelected: -1,
     source: null,
@@ -154,7 +155,7 @@ class Example extends React.Component<PropsT, StateT> {
           },
         }}
       >
-        <H2>{this.props.title}</H2>
+        {this.props.title && <H2>{this.props.title}</H2>}
         {this.props.children}
 
         <Block paddingTop="scale400">
