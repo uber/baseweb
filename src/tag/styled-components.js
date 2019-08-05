@@ -239,15 +239,19 @@ export const Action = styled<SharedPropsArgT>('span', props => {
 
   return ({
     alignItems: 'center',
-    borderBottomRightRadius: $theme.borders.useRoundedCorners
+    [$theme.direction === 'rtl'
+      ? 'borderBottomLeftRadius'
+      : 'borderBottomRightRadius']: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
       : 0,
-    borderTopRightRadius: $theme.borders.useRoundedCorners
+    [$theme.direction === 'rtl'
+      ? 'borderTopLeftRadius'
+      : 'borderTopRightRadius']: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
       : 0,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     display: 'flex',
-    marginLeft: '8px',
+    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: '8px',
     outline: 'none',
     paddingTop: $variant === VARIANT.outlined ? '5px' : '7px',
     paddingBottom: $variant === VARIANT.outlined ? '5px' : '7px',
@@ -578,8 +582,10 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     marginRight: '5px',
     paddingTop: scale0,
     paddingBottom: scale0,
-    paddingLeft: scale500,
-    paddingRight: $closeable ? null : scale500,
+    [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']: scale500,
+    [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $closeable
+      ? null
+      : scale500,
     outline: 'none',
     ':hover':
       $disabled || !$clickable
