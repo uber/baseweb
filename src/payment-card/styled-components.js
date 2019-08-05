@@ -10,14 +10,14 @@ import {SIZE} from '../input/index.js';
 
 export const IconWrapper = styled<{$size: typeof SIZE}>('div', props => {
   const {$size, $theme} = props;
-  const marginLeft = {
+  const margin = {
     [SIZE.compact]: $theme.sizing.scale500,
     [SIZE.default]: $theme.sizing.scale600,
     [SIZE.large]: $theme.sizing.scale700,
   };
   return {
     //$FlowFixMe
-    marginLeft: marginLeft[$size],
+    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: margin[$size],
     height: '100%',
     display: 'flex',
     alignItems: 'center',
