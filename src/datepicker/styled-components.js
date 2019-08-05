@@ -52,7 +52,6 @@ export const StyledSelectorContainer = styled<SharedStylePropsT>(
       marginBottom: props.$theme.sizing.scale600,
       paddingLeft: props.$theme.sizing.scale600,
       paddingRight: props.$theme.sizing.scale600,
-      textAlign: 'left',
     };
   },
 );
@@ -103,7 +102,8 @@ export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
   return {
     alignItems: 'center',
     display: 'flex',
-    marginLeft: props.$theme.sizing.scale500,
+    [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
+      .$theme.sizing.scale500,
   };
 });
 
@@ -131,6 +131,7 @@ function getArrowBtnStyle({$theme, $disabled}) {
           borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
           borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
         },
+    ...($theme.direction === 'rtl' && {transform: 'rotateY(180deg)'}),
   };
 }
 
