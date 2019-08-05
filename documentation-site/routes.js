@@ -45,6 +45,10 @@ const routes = [
         itemId: '/getting-started/internationalization',
       },
       {
+        title: 'Bidirectionality',
+        itemId: '/getting-started/bidirectionality',
+      },
+      {
         title: 'Roadmap',
         itemId: '/getting-started/roadmap',
       },

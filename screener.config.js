@@ -19,7 +19,7 @@ module.exports = {
     },
     {
       deviceName: 'iPhone 8',
-      excludeRules: [/^baseui-dark/],
+      excludeRules: [/(^baseui-dark|-rtl$)/],
     },
   ],
   baseBranch: 'master',
@@ -30,12 +30,12 @@ module.exports = {
     },
     {
       browserName: 'firefox',
-      excludeRules: [/^baseui-dark/],
+      excludeRules: [/(^baseui-dark|-rtl$)/],
     },
     {
       browserName: 'internet explorer',
       version: '11',
-      excludeRules: [/^baseui-dark/],
+      excludeRules: [/(^baseui-dark|-rtl$)/],
     },
   ],
 };

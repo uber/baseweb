@@ -55,6 +55,10 @@ export const StyledIcon = styled<StylePropsT>(
 
     const marginTop = `calc((${font.lineHeight} - ${size}) / 2)`;
 
+    if ($theme.direction === 'rtl') {
+      [marginLeft, marginRight] = [marginRight, marginLeft];
+    }
+
     return {
       marginRight,
       marginLeft,
@@ -67,7 +71,7 @@ export const StyledIcon = styled<StylePropsT>(
       borderBottomRightRadius: size,
       borderBottomLeftRadius: size,
       backgroundColor: currentColor,
-      float: 'left',
+      float: $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
@@ -92,7 +96,8 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
 
 export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
   return {
-    marginLeft: $theme.sizing.scale900,
+    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+      .scale900,
   };
 });
 
@@ -125,7 +130,7 @@ export const StyledContentTail = styled<StylePropsT>(
 
     return {
       position: 'absolute',
-      left: '7px',
+      [$theme.direction === 'rtl' ? 'right' : 'left']: '7px',
       top: 0,
       height: '100%',
       paddingBottom: 0,
@@ -191,7 +196,7 @@ export const StyledNumberIcon = styled<StylePropsT>(
       borderBottomLeftRadius: size,
       backgroundColor,
       color,
-      float: 'left',
+      float: $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',

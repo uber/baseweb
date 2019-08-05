@@ -145,30 +145,37 @@ export default withRouter(
     React.useEffect(() => {
       if (!urlCodeHydrated && router.query.code) {
         setUrlCodeHydrated(true);
-        const propValues: {[key: string]: any} = {};
-        const parsedProps = parseProps(router.query.code as string, 'Button');
-        Object.keys(state.props).forEach(name => {
-          //@ts-ignore
-          propValues[name] = COMPONENTS[componentName][name].value;
-          if (name === 'overrides') {
-            // overrides need a special treatment since the value needs to
-            // be further analyzed and parsed
-            propValues[name] = parseOverrides(
-              parsedProps[name],
-              COMPONENTS[componentName].overrides.meta.names,
-            );
-          } else {
-            propValues[name] = parsedProps[name];
-          }
-        });
+        try {
+          const propValues: {[key: string]: any} = {};
+          const parsedProps = parseProps(router.query.code as string, 'Button');
+          Object.keys(state.props).forEach(name => {
+            //@ts-ignore
+            propValues[name] = COMPONENTS[componentName][name].value;
+            if (name === 'overrides') {
+              // overrides need a special treatment since the value needs to
+              // be further analyzed and parsed
+              propValues[name] = parseOverrides(
+                parsedProps[name],
+                COMPONENTS[componentName].overrides.meta.names,
+              );
+            } else {
+              propValues[name] = parsedProps[name];
+            }
+          });
 
-        dispatch({
-          type: Action.UpdatePropsAndCode,
-          payload: {
-            code: formatCode(router.query.code as string),
-            updatedPropValues: propValues,
-          },
-        });
+          dispatch({
+            type: Action.UpdatePropsAndCode,
+            payload: {
+              code: formatCode(router.query.code as string),
+              updatedPropValues: propValues,
+            },
+          });
+        } catch (e) {
+          dispatch({
+            type: Action.UpdateCode,
+            payload: router.query.code,
+          });
+        }
       }
     }, [router.query.code]);
     return (
