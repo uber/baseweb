@@ -24,13 +24,13 @@ function ProgressStepsContainer() {
   const [current, setCurrent] = React.useState(0);
   const [useCss, theme] = useStyletron();
   return (
-    <ProgressSteps current={this.state.current}>
+    <ProgressSteps current={current}>
       <NumberedStep title="Create Account">
         <div className={useCss({...theme.typography.font400})}>
           Here is some step content
         </div>
         <SpacedButton disabled>Previous</SpacedButton>
-        <SpacedButton onClick={() => this.setState({current: 1})}>
+        <SpacedButton onClick={() => setCurrent(1)}>
           Next
         </SpacedButton>
       </NumberedStep>
@@ -38,10 +38,10 @@ function ProgressStepsContainer() {
         <div className={useCss({...theme.typography.font400})}>
           Here is some more content
         </div>
-        <SpacedButton onClick={() => this.setState({current: 0})}>
+        <SpacedButton onClick={() => setCurrent(0)}>
           Previous
         </SpacedButton>
-        <SpacedButton onClick={() => this.setState({current: 2})}>
+        <SpacedButton onClick={() => setCurrent(2)}>
           Next
         </SpacedButton>
       </NumberedStep>
@@ -49,7 +49,7 @@ function ProgressStepsContainer() {
         <div className={useCss({...theme.typography.font400})}>
           Here too!
         </div>
-        <SpacedButton onClick={() => this.setState({current: 1})}>
+        <SpacedButton onClick={() => setCurrent(1)}>
           Previous
         </SpacedButton>
         <SpacedButton disabled>Next</SpacedButton>

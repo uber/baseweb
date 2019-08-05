@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ProgressSteps, Step} from 'baseui/progress-steps';
 import {Button} from 'baseui/button';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {StatefulSelect, TYPE} from 'baseui/select';
 
 function SpacedButton(props) {

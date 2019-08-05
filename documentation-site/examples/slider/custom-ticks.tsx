@@ -4,7 +4,7 @@ import {useStyletron} from 'baseui';
 
 const mToKm = value => `${(value / 1000).toFixed(1)}km`;
 
-export function Basic() {
+export function CustomTicks() {
   const [value, setValue] = React.useState([4500]);
   const [useCss, theme] = useStyletron();
   return (
@@ -50,3 +50,5 @@ export function Basic() {
     />
   );
 }
+
+export default CustomTicks;

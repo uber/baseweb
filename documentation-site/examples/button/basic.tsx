@@ -4,20 +4,17 @@ import {useStyletron} from 'baseui';
 
 export default () => {
   const [useCss, theme] = useStyletron();
+
+  const space = useCss({marginLeft: theme.sizing.scale300});
+
   return (
     <React.Fragment>
       <Button>Primary</Button>
-      <div
-        className={useCss({marginLeft: theme.sizing.scale300})}
-      />
+      <span className={space} />
       <Button kind={KIND.secondary}>Secondary</Button>
-      <div
-        className={useCss({marginLeft: theme.sizing.scale300})}
-      />
+      <span className={space} />
       <Button kind={KIND.tertiary}>Tertiary</Button>
-      <div
-        className={useCss({marginLeft: theme.sizing.scale300})}
-      />
+      <span className={space} />
       <Button kind={KIND.minimal}>Minimal</Button>
     </React.Fragment>
   );

@@ -13,3 +13,5 @@ function ControlledInput() {
     />
   );
 }
+
+export default ControlledInput;

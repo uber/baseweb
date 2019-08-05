@@ -5,8 +5,8 @@ import {useStyletron} from 'baseui';
 
 const mToKm = value => `${(value / 1000).toFixed(1)}km`;
 
-export function Basic() {
-  const [value, setValue] = React.useState<number[]>([4500]);
+export function CustomTicks() {
+  const [value, setValue] = React.useState([4500]);
   const [useCss, theme] = useStyletron();
   return (
     <Slider
@@ -57,3 +57,5 @@ export function Basic() {
     />
   );
 }
+
+export default CustomTicks;

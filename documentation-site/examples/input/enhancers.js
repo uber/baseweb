@@ -1,11 +1,10 @@
 // @flow
 import * as React from 'react';
-import {useStyletron} from 'baseui';
+import {Block} from 'baseui/block';
 import {Search} from 'baseui/icon';
 import {StatefulInput} from 'baseui/input';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
   return (
     <div>
       <StatefulInput
@@ -35,26 +34,14 @@ export default () => {
 
       <StatefulInput
         startEnhancer={({$isFocused}) => (
-          <div
-            className={useCss({
-              color: $isFocused
-                ? theme.colors.primary
-                : theme.colors.mono700,
-            })}
-          >
+          <Block color={$isFocused ? 'negative' : 'mono700'}>
             @
-          </div>
+          </Block>
         )}
         endEnhancer={({$isFocused}) => (
-          <div
-            className={useCss({
-              color: $isFocused
-                ? theme.colors.primary
-                : theme.colors.mono700,
-            })}
-          >
+          <Block color={$isFocused ? 'negative' : 'mono700'}>
             .com
-          </div>
+          </Block>
         )}
         placeholder="Input with function enhancers."
       />

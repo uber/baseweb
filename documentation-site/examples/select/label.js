@@ -45,3 +45,5 @@ function CustomLabel() {
     />
   );
 }
+
+export default CustomLabel;
