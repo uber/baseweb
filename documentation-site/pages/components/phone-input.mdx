@@ -17,8 +17,7 @@ import {Table} from 'baseui/table/index.js';
 import {Block} from 'baseui/block/index.js';
 
 import PhoneInputBasic from 'examples/phone-input/basic.js';
-import PhoneInputAlternateCountry from 'examples/phone-input/alternate-country.js';
-import PhoneInputControlled from 'examples/phone-input/controlled.js';
+import PhoneInputUncontrolled from 'examples/phone-input/uncontrolled.js';
 import PhoneInputLocalized from 'examples/phone-input/localized.js';
 import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
 
@@ -29,32 +28,28 @@ export default Layout;
 The Phone Input is used to collect phone numbers with international dial codes.
 It contains a dropdown which allows the user to choose from a list of countries and dial codes.
 
-<Example title="Basic Usage" path="phone-input/basic.js">
+<Example title="Basic usage" path="phone-input/basic.js">
   <PhoneInputBasic />
 </Example>
 
-<Example
-  title="Alternate Default Country"
-  path="phone-input/alternate-country.js"
->
-  <PhoneInputAlternateCountry />
-</Example>
-
-<Example title="Controlled" path="phone-input/controlled.js">
-  <PhoneInputControlled />
-</Example>
-
-<Example title="Localized Country Names" path="phone-input/localized.js">
+<Example title="Localized country names" path="phone-input/localized.js">
   <PhoneInputLocalized />
 </Example>
 
-<Example title="With Nested Overrides" path="phone-input/nested-overrides.js">
+<Example title="With nested overrides" path="phone-input/nested-overrides.js">
   <WithNestedOverrides />
 </Example>
 
-<DocLink href="/theming/understanding-overrides/#override-nested-components">
-  Click here to learn more about nested overrides
-</DocLink>{' '}
+Click [here](/theming/understanding-overrides/#override-nested-components) to learn more about nested overrides.
+
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="phone-input/uncontrolled.js"
+>
+  <PhoneInputUncontrolled />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPhoneInput`, which manages its own state.
 
 ## Supported Countries
 

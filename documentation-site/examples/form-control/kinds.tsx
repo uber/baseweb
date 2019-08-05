@@ -1,27 +1,25 @@
 import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
-import {StatefulInput} from 'baseui/input';
+import {Input} from 'baseui/input';
 
 export default () => (
   <React.Fragment>
     <FormControl label="Input label" caption="Input caption">
-      <StatefulInput />
+      <Input />
     </FormControl>
-
     <FormControl
       positive="Positive caption"
       label="Input label"
       caption="Input caption"
     >
-      <StatefulInput positive />
+      <Input positive />
     </FormControl>
-
     <FormControl
       error="Error caption"
       label="Input label"
       caption="Input caption"
     >
-      <StatefulInput error />
+      <Input error />
     </FormControl>
   </React.Fragment>
 );

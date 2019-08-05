@@ -20,33 +20,30 @@ const ThumbValue = styled('div', ({$theme}) => ({
 
 const mToKm = (value: number) => `${(value / 1000).toFixed(1)}km`;
 
-export default class Basic extends React.Component {
-  state = {value: [4500]};
-
-  render() {
-    return (
-      <Slider
-        value={this.state.value}
-        min={1000}
-        max={8000}
-        step={100}
-        onChange={({value}) => this.setState({value})}
-        overrides={{
-          ThumbValue: ({$value}) => (
-            <ThumbValue>{$value}m</ThumbValue>
-          ),
-          TickBar: ({$min, $max}) => (
-            <TickBar>
-              <div>{mToKm($min)}</div>
-              <div>{mToKm(2400)}</div>
-              <div>{mToKm(3800)}</div>
-              <div>{mToKm(5200)}</div>
-              <div>{mToKm(6600)}</div>
-              <div>{mToKm($max)}</div>
-            </TickBar>
-          ),
-        }}
-      />
-    );
-  }
-}
+export default () => {
+  const [value, setValue] = React.useState([4500]);
+  return (
+    <Slider
+      value={value}
+      min={1000}
+      max={8000}
+      step={100}
+      onChange={({value}) => setValue(value)}
+      overrides={{
+        ThumbValue: ({$value}) => (
+          <ThumbValue>{$value}m</ThumbValue>
+        ),
+        TickBar: ({$min, $max}) => (
+          <TickBar>
+            <div>{mToKm($min)}</div>
+            <div>{mToKm(2400)}</div>
+            <div>{mToKm(3800)}</div>
+            <div>{mToKm(5200)}</div>
+            <div>{mToKm(6600)}</div>
+            <div>{mToKm($max)}</div>
+          </TickBar>
+        ),
+      }}
+    />
+  );
+};
