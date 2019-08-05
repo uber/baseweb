@@ -293,6 +293,10 @@ const routes = [
             itemId: '/components/layer',
           },
           {
+            title: 'UseStyletron',
+            itemId: '/components/use-styletron',
+          },
+          {
             title: 'Styled',
             itemId: '/components/styled',
           },
