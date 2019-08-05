@@ -1,18 +1,28 @@
 // @flow
 import * as React from 'react';
-import {styled} from 'baseui';
+import {useStyletron} from 'baseui';
 import {Block} from 'baseui/block';
 
+function Inner(props: {children: React.Node}) {
+  const [useCss, theme] = useStyletron();
+  return (
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: theme.colors.mono300,
+        border: `1px solid ${theme.colors.mono900}`,
+        height: '50px',
+        width: '50px',
+      })}
+    >
+      {props.children}
+    </div>
+  );
+}
+
 export default () => {
-  const Inner = styled('div', ({$theme}) => ({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: $theme.colors.mono300,
-    border: `1px solid ${$theme.colors.mono900}`,
-    height: '50px',
-    width: '50px',
-  }));
   return (
     <Block
       display="grid"

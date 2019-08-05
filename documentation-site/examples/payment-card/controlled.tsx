@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {PaymentCard, SIZE} from 'baseui/payment-card';
-import {Block} from 'baseui/block';
 
 export default () => {
   const [cardOne, setCardOne] = React.useState();
@@ -17,7 +16,7 @@ export default () => {
         value={cardOne}
         size={SIZE.compact}
       />
-      <Block as="br" />
+      <br />
       <PaymentCard
         onChange={event =>
           setCardTwo((event.target as HTMLInputElement).value)
@@ -26,7 +25,7 @@ export default () => {
         value={cardTwo}
         size={SIZE.default}
       />
-      <Block as="br" />
+      <br />
       <PaymentCard
         onChange={event =>
           setCardThree((event.target as HTMLInputElement).value)

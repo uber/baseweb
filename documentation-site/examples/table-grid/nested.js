@@ -10,7 +10,7 @@ import Overflow from 'baseui/icon/overflow';
 import {StyledLink} from 'baseui/link';
 import {StatefulMenu} from 'baseui/menu';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
-import {styled, withStyle, useStyletron} from 'baseui/styles';
+import {withStyle, useStyletron} from 'baseui/styles';
 import {
   Unstable_StyledTable as StyledTable,
   Unstable_StyledHeadCell as StyledHeadCell,
@@ -129,15 +129,6 @@ function statusToTagKind(status) {
   }
 }
 
-// sticky elements create a new stacking context. because parent table head cells are _siblings_
-// of these visually child elements, stacking is determined by order in html. this leads to
-// unintended layering upon scrolling the outer table. this table should not need to scroll
-// therefore chose to remove sticky rather than provide relative zindex values.
-const NotStickyHeadCell = withStyle(StyledHeadCell, {
-  position: 'unset',
-  top: 'unset',
-});
-
 function Tasks(props) {
   const [css] = useStyletron();
   return (
@@ -148,10 +139,10 @@ function Tasks(props) {
       })}
     >
       <StyledTable $gridTemplateColumns="max-content auto auto auto">
-        <NotStickyHeadCell>Task</NotStickyHeadCell>
-        <NotStickyHeadCell>Status</NotStickyHeadCell>
-        <NotStickyHeadCell>Last Run</NotStickyHeadCell>
-        <NotStickyHeadCell>Details</NotStickyHeadCell>
+        <StyledHeadCell $sticky={false}>Task</StyledHeadCell>
+        <StyledHeadCell $sticky={false}>Status</StyledHeadCell>
+        <StyledHeadCell $sticky={false}>Last Run</StyledHeadCell>
+        <StyledHeadCell $sticky={false}>Details</StyledHeadCell>
         {props.tasks.map((task, index) => {
           return (
             <React.Fragment>
@@ -184,14 +175,8 @@ const CenteredBodyCell = withStyle(StyledBodyCell, {
   alignItems: 'center',
 });
 
-const Truncate = styled('div', {
-  textOverflow: 'ellipsis',
-  maxWidth: '200px',
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-});
-
 function Row({striped, row}) {
+  const [useCss] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
     <React.Fragment>
@@ -226,7 +211,16 @@ function Row({striped, row}) {
         {format(row[2], 'yyyy-MM-dd h:mm a')}
       </CenteredBodyCell>
       <CenteredBodyCell $striped={striped}>
-        <Truncate>{row[5]}</Truncate>
+        <div
+          className={useCss({
+            textOverflow: 'ellipsis',
+            maxWidth: '200px',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+          })}
+        >
+          {row[5]}
+        </div>
         <StatefulPopover
           placement={PLACEMENT.bottomLeft}
           content={({close}) => (
@@ -255,9 +249,9 @@ function Row({striped, row}) {
 }
 
 export default function() {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '600px'})}>
+    <div className={useCss({height: '600px'})}>
       <StyledTable $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto">
         <StyledHeadCell>Job Name</StyledHeadCell>
         <StyledHeadCell>Status</StyledHeadCell>

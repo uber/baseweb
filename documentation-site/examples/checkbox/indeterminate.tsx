@@ -1,56 +1,48 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Checkbox} from 'baseui/checkbox';
 
-class GroupList extends React.Component {
-  state = {checkboxes: [false, false]};
+function GroupList() {
+  const [useCss, theme] = useStyletron();
+  const [checkboxes, setCheckboxes] = React.useState([
+    false,
+    false,
+  ]);
 
-  render() {
-    const allChecked = this.state.checkboxes.every(Boolean);
-    const isIndeterminate =
-      this.state.checkboxes.some(Boolean) && !allChecked;
+  const allChecked = checkboxes.every(Boolean);
+  const isIndeterminate = checkboxes.some(Boolean) && !allChecked;
 
-    return (
-      <Block>
+  return (
+    <div>
+      <Checkbox
+        onChange={e => {
+          setCheckboxes([e.target.checked, e.target.checked]);
+        }}
+        isIndeterminate={isIndeterminate}
+        checked={allChecked}
+      >
+        Indeterminate checkbox if not all subcheckboxes are checked
+      </Checkbox>
+      <div className={useCss({padding: theme.sizing.scale400})}>
         <Checkbox
+          checked={checkboxes[0]}
           onChange={e => {
-            const nextCheckboxes = [
-              (e.target as HTMLInputElement).checked,
-              (e.target as HTMLInputElement).checked,
-            ];
-            this.setState({checkboxes: nextCheckboxes});
+            setCheckboxes([e.target.checked, checkboxes[1]]);
           }}
-          isIndeterminate={isIndeterminate}
-          checked={allChecked}
         >
-          Indeterminate checkbox if not all subcheckboxes are
-          checked
+          First subcheckbox
         </Checkbox>
-        <Block padding="scale400">
-          <Checkbox
-            checked={this.state.checkboxes[0]}
-            onChange={e => {
-              const nextCheckboxes = [...this.state.checkboxes];
-              nextCheckboxes[0] = (e.target as HTMLInputElement).checked;
-              this.setState({checkboxes: nextCheckboxes});
-            }}
-          >
-            First subcheckbox
-          </Checkbox>
-          <Checkbox
-            checked={this.state.checkboxes[1]}
-            onChange={e => {
-              const nextCheckboxes = [...this.state.checkboxes];
-              nextCheckboxes[1] = (e.target as HTMLInputElement).checked;
-              this.setState({checkboxes: nextCheckboxes});
-            }}
-          >
-            Second subcheckbox
-          </Checkbox>
-        </Block>
-      </Block>
-    );
-  }
+        <Checkbox
+          checked={checkboxes[1]}
+          onChange={e => {
+            setCheckboxes([checkboxes[0], e.target.checked]);
+          }}
+        >
+          Second subcheckbox
+        </Checkbox>
+      </div>
+    </div>
+  );
 }
 
 export default GroupList;

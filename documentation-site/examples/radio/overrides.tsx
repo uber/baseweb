@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {Paragraph1} from 'baseui/typography';
 import {Radio, RadioGroup} from 'baseui/radio';
 
 export default class Stateless extends React.Component {
@@ -18,9 +18,9 @@ export default class Stateless extends React.Component {
         <Radio
           overrides={{
             Label: ({$value}) => (
-              <Block font="font400">
+              <Paragraph1>
                 Custom label for value: {$value}
-              </Block>
+              </Paragraph1>
             ),
             RadioMarkOuter: {
               style: ({$theme}) => ({
@@ -35,9 +35,9 @@ export default class Stateless extends React.Component {
         <Radio
           overrides={{
             Label: ({$value}) => (
-              <Block font="font400">
+              <Paragraph1>
                 Custom label for value: {$value}
-              </Block>
+              </Paragraph1>
             ),
             RadioMarkOuter: {
               style: ({$theme}) => ({
@@ -52,9 +52,9 @@ export default class Stateless extends React.Component {
         <Radio
           overrides={{
             Label: ({$value}) => (
-              <Block font="font400">
+              <Paragraph1>
                 Custom label for value: {$value}
-              </Block>
+              </Paragraph1>
             ),
             RadioMarkOuter: {
               style: ({$theme}) => ({

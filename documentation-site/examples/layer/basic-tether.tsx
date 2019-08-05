@@ -4,10 +4,11 @@ import {
   TetherBehavior,
   TETHER_PLACEMENT,
 } from 'baseui/layer';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
-function BlockWrapper(props: any) {
+function Wrapper(props) {
+  const [useCss, theme] = useStyletron();
   const {
     offset,
     color,
@@ -16,28 +17,23 @@ function BlockWrapper(props: any) {
     ...restProps
   } = props;
   return (
-    <Block
+    <div
+      className={useCss({
+        position: 'absolute',
+        top: `${offset.top}px` || 0,
+        left: `${offset.left}px` || 0,
+        width: '200px',
+        paddingTop: '20px',
+        paddingBottom: '20px',
+        paddingLeft: '20px',
+        paddingRight: '20px',
+        backgroundColor: color,
+        textAlign: 'center',
+      })}
       ref={forwardedRef}
-      position="absolute"
-      top={`${offset.top}px` || 0}
-      left={`${offset.left}px` || 0}
-      width="200px"
-      paddingTop="20px"
-      paddingBottom="20px"
-      paddingLeft="20px"
-      paddingRight="20px"
-      backgroundColor={color}
-      overrides={{
-        Block: {
-          style: {
-            textAlign: 'center',
-          },
-        },
-      }}
-      {...restProps}
     >
       {children}
-    </Block>
+    </div>
   );
 }
 
@@ -89,7 +85,7 @@ export default class BasicTether extends React.Component<
               }
               placement={TETHER_PLACEMENT.right}
             >
-              <BlockWrapper
+              <Wrapper
                 forwardedRef={this.popperRef1}
                 offset={this.state.offset1}
                 color="rgba(0, 190, 255, 0.86)"
@@ -101,11 +97,12 @@ export default class BasicTether extends React.Component<
                 >
                   Close
                 </Button>
-              </BlockWrapper>
+              </Wrapper>
             </TetherBehavior>
           </Layer>
         ) : null}
-        <Block padding="5px" />
+        <br />
+        <br />
         <Button
           ref={this.anchorRef2}
           onClick={() => this.setState({isSecondOpen: true})}
@@ -127,7 +124,7 @@ export default class BasicTether extends React.Component<
               }
               placement={TETHER_PLACEMENT.right}
             >
-              <BlockWrapper
+              <Wrapper
                 forwardedRef={this.popperRef2}
                 offset={this.state.offset2}
                 color="rgba(190, 190, 255, 0.86)"
@@ -139,7 +136,7 @@ export default class BasicTether extends React.Component<
                 >
                   Close
                 </Button>
-              </BlockWrapper>
+              </Wrapper>
             </TetherBehavior>
           </Layer>
         ) : null}

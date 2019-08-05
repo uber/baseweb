@@ -1,20 +1,20 @@
 // @flow
 import * as React from 'react';
-import {styled} from 'baseui';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Input, StyledInput, SIZE} from 'baseui/input';
 import {Tag, VARIANT as TAG_VARIANT} from 'baseui/tag';
 
-const ValueWrapper = styled('div', {
-  flex: '1 1 0%',
-  flexWrap: 'wrap',
-  display: 'flex',
-  alignItems: 'center',
-});
-
 const InputReplacement = ({tags, removeTag, ...restProps}) => {
+  const [useCss] = useStyletron();
   return (
-    <ValueWrapper>
+    <div
+      className={useCss({
+        flex: '1 1 0%',
+        flexWrap: 'wrap',
+        display: 'flex',
+        alignItems: 'center',
+      })}
+    >
       {tags.map((tag, index) => (
         <Tag
           variant={TAG_VARIANT.solid}
@@ -25,7 +25,7 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
         </Tag>
       ))}
       <StyledInput {...restProps} />
-    </ValueWrapper>
+    </div>
   );
 };
 
@@ -61,10 +61,10 @@ class TagSelect extends React.Component<
   render() {
     return (
       <React.Fragment>
-        <Block>
+        <div>
           Type a word and press enter to create a tag. Use backspace
           to remove tags.
-        </Block>
+        </div>
         <Input
           size={SIZE.compact}
           value={this.state.value}

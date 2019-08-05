@@ -7,32 +7,36 @@ import {
   TetherBehavior,
   TETHER_PLACEMENT,
 } from 'baseui/layer';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
-function BlockComponent(props) {
+function Wrapper(props: any) {
+  const [useCss, theme] = useStyletron();
+  const {
+    offset,
+    color,
+    children,
+    forwardedRef,
+    ...restProps
+  } = props;
   return (
-    <Block
-      ref={props.forwardedRef}
-      position="absolute"
-      top={`${props.offset.top}px` || '50%'}
-      left={`${props.offset.left}px` || '50%'}
-      width="200px"
-      paddingTop="20px"
-      paddingBottom="20px"
-      paddingLeft="20px"
-      paddingRight="20px"
-      backgroundColor={props.color}
-      overrides={{
-        Block: {
-          style: {
-            textAlign: 'center',
-          },
-        },
-      }}
+    <div
+      className={useCss({
+        position: 'absolute',
+        top: props.offset || '50%',
+        left: props.offset || '50%',
+        width: '200px',
+        paddingTop: '20px',
+        paddingBottom: '20px',
+        paddingLeft: '20px',
+        paddingRight: '20px',
+        backgroundColor: color,
+        textAlign: 'center',
+      })}
+      ref={forwardedRef}
     >
-      {props.children}
-    </Block>
+      {children}
+    </div>
   );
 }
 
@@ -72,12 +76,14 @@ export default class LayerWithZIndex extends React.Component<
       // outside of the local LayersManager (therefore layers provider) added later.
       // Pass the `zIndex` value to the LayersManager added at the root of your application.
       <LayersManager zIndex={2}>
-        <Block
-          display="flex"
-          justifyContent="flex-start"
-          alignItems="center"
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}
         >
-          <Block>
+          <div>
             <Button
               ref={this.anchorRef1}
               onClick={() => this.setState({isFirstOpen: true})}
@@ -101,7 +107,7 @@ export default class LayerWithZIndex extends React.Component<
                   }
                   placement={TETHER_PLACEMENT.right}
                 >
-                  <BlockComponent
+                  <Wrapper
                     forwardedRef={this.popperRef1}
                     offset={this.state.offset1}
                     color="rgba(255, 255, 190, 0.86)"
@@ -113,11 +119,12 @@ export default class LayerWithZIndex extends React.Component<
                     >
                       Close
                     </Button>
-                  </BlockComponent>
+                  </Wrapper>
                 </TetherBehavior>
               </Layer>
             ) : null}
-            <Block padding="5px" />
+            <br />
+            <br />
             <Button
               ref={this.anchorRef2}
               onClick={() => this.setState({isSecondOpen: true})}
@@ -141,7 +148,7 @@ export default class LayerWithZIndex extends React.Component<
                   }
                   placement={TETHER_PLACEMENT.right}
                 >
-                  <BlockComponent
+                  <Wrapper
                     forwardedRef={this.popperRef2}
                     offset={this.state.offset2}
                     color="rgba(190, 255, 190, 0.86)"
@@ -153,37 +160,32 @@ export default class LayerWithZIndex extends React.Component<
                     >
                       Close
                     </Button>
-                  </BlockComponent>
+                  </Wrapper>
                 </TetherBehavior>
               </Layer>
             ) : null}
-          </Block>
-          <Block
-            position="relative"
-            boxSizing="border-box"
-            width="200px"
-            marginLeft="50px"
-            display="flex"
-            alignItems="center"
-            paddingLeft="20px"
-            paddingRight="20px"
-            paddingTop="20px"
-            paddingBottom="20px"
-            backgroundColor="#000000"
-            color="#ffffff"
-            overrides={{
-              Block: {
-                style: {
-                  boxSizing: 'border-box',
-                  zIndex: 1,
-                  textAlign: 'center',
-                },
-              },
+          </div>
+          <div
+            style={{
+              position: 'relative',
+              boxSizing: 'border-box',
+              width: '200px',
+              marginLeft: '50px',
+              display: 'flex',
+              alignItems: 'center',
+              paddingLeft: '20px',
+              paddingRight: '20px',
+              paddingTop: '20px',
+              paddingBottom: '20px',
+              backgroundColor: '#000000',
+              color: '#ffffff',
+              zIndex: 1,
+              textAlign: 'center',
             }}
           >
             Element with z-index set
-          </Block>
-        </Block>
+          </div>
+        </div>
       </LayersManager>
     );
   }
