@@ -1,9 +1,16 @@
 // @flow
 import * as React from 'react';
-import {StatefulCheckbox} from 'baseui/checkbox';
+import {Checkbox} from 'baseui/checkbox';
 
-export default () => (
-  <StatefulCheckbox onChange={console.log} isError>
-    Checkbox with an error
-  </StatefulCheckbox>
-);
+export default () => {
+  const [checked, setChecked] = React.useState(true);
+  return (
+    <Checkbox
+      checked={checked}
+      onChange={() => setChecked(!checked)}
+      isError
+    >
+      Checkbox with an error
+    </Checkbox>
+  );
+};

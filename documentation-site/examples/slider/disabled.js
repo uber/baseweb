@@ -2,18 +2,13 @@
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
 
-export default class Basic extends React.Component<
-  {},
-  {value: number[]},
-> {
-  state = {value: [40]};
-  render() {
-    return (
-      <Slider
-        disabled
-        value={this.state.value}
-        onChange={({value}) => this.setState({value})}
-      />
-    );
-  }
-}
+export default () => {
+  const [value, setValue] = React.useState([40]);
+  return (
+    <Slider
+      disabled
+      value={value}
+      onChange={({value}) => value && setValue(value)}
+    />
+  );
+};
