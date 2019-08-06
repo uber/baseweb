@@ -1,5 +1,11 @@
 import React from 'react';
-import {useStyletron} from 'baseui';
+import {
+  useStyletron,
+  createTheme,
+  lightThemePrimitives,
+  darkThemePrimitives,
+  ThemeProvider,
+} from 'baseui';
 import Router, {withRouter} from 'next/router';
 import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
 import {StatefulTabs, Tab} from 'baseui/tabs';
@@ -9,9 +15,15 @@ import {Card, StyledBody as CardStyledBody} from 'baseui/card';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Tag, VARIANT} from 'baseui/tag';
 
-import {COMPONENTS, PropTypes, Action} from './const';
+import {COMPONENTS, Action} from './const';
+import {getCode} from './code-generator';
 import Knobs from './knobs';
-import {transformCode, formatCode, parseProps, parseOverrides} from './ast';
+import {
+  removeImportsAndExports,
+  formatCode,
+  parseCode,
+  parseOverrides,
+} from './ast';
 import {assertUnreachable} from './utils';
 import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
@@ -22,57 +34,6 @@ import darkTheme from './dark-theme';
 import lightTheme from './light-theme';
 
 import {trackEvent} from '../../helpers/ga';
-
-const getCode = (props: {[key: string]: TProp}) => {
-  let propsString = ``;
-  let enumImports = ``;
-  const {children, ...restProps} = props;
-  Object.keys(restProps).forEach(name => {
-    const value = restProps[name].value;
-    const type = restProps[name].type;
-    if (value) {
-      switch (type as PropTypes) {
-        case PropTypes.String:
-          propsString += ` ${name}="${value}"`;
-          break;
-        case PropTypes.Boolean:
-          propsString += ` ${name}`;
-          break;
-        case PropTypes.Number:
-        case PropTypes.Array:
-        case PropTypes.Object:
-        case PropTypes.Function:
-        case PropTypes.ReactNode:
-          propsString += ` ${name}={${value}}`;
-          break;
-        case PropTypes.Enum:
-          enumImports += `, ${name.toUpperCase()}`;
-          propsString += ` ${name}={${value}}`;
-          break;
-        case PropTypes.Overrides:
-          if (!value) break;
-          let overrideString = '{';
-          Object.keys(value).forEach(key => {
-            if (value[key].active === true) {
-              overrideString += `${key}: { style: ${value[key].style} },`;
-            }
-          });
-          overrideString += '}';
-          if (overrideString === '{}') break;
-          propsString += ` ${name}={${overrideString}}`;
-          break;
-        default:
-          assertUnreachable();
-      }
-    }
-  });
-  const imports = `import {Button${enumImports}} from 'baseui/button';\n\n`;
-  if (children.value) {
-    return `${imports}export default () => <Button${propsString}>${children.value}</Button>`;
-  } else {
-    return `${imports}export default () => <Button${propsString} />`;
-  }
-};
 
 const buildPropsObj = (
   state: TState,
@@ -101,18 +62,38 @@ function reducer(state: TState, action: {type: Action; payload: any}): TState {
   switch (action.type) {
     case Action.UpdateCode:
       return {...state, code: action.payload};
-    case Action.UpdatePropsAndCode:
-      const {updatedPropValues} = action.payload;
+    case Action.Update:
+      const newTheme = {...state.theme};
+      Object.keys(state.theme).forEach(key => {
+        if (action.payload.theme[key]) {
+          newTheme[key] = action.payload.theme[key];
+        }
+      });
+
       return {
         ...state,
         code: action.payload.code,
-        props: buildPropsObj(state, updatedPropValues),
+        theme: newTheme,
+        props: buildPropsObj(state, action.payload.updatedPropValues),
+      };
+    case Action.UpdatePropsAndCode:
+      return {
+        ...state,
+        code: action.payload.code,
+        props: buildPropsObj(state, action.payload.updatedPropValues),
+      };
+    case Action.UpdateThemeAndCode:
+      return {
+        ...state,
+        code: action.payload.code,
+        theme: action.payload.theme,
       };
     case Action.Reset:
       return {
         ...state,
         code: action.payload.code,
         props: action.payload.props,
+        theme: action.payload.theme,
       };
     default:
       return assertUnreachable();
@@ -130,10 +111,50 @@ export default withRouter(
     const [css, theme] = useStyletron();
     const [editorFocused, focusEditor] = React.useState(false);
     const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
-    const [state, dispatch] = React.useReducer(reducer, {
-      code: formatCode(getCode(COMPONENTS[componentName])),
-      props: COMPONENTS[componentName],
+    const componentProps = COMPONENTS[componentName].props;
+    const componentTheme = COMPONENTS[componentName].theme;
+
+    const componentThemeObj: any = {};
+    componentTheme.forEach(key => {
+      componentThemeObj[key] = (theme.colors as any)[key];
     });
+
+    const [state, dispatch] = React.useReducer(reducer, {
+      code: formatCode(
+        getCode(componentProps, componentName, {
+          themeValues: {},
+          themeName: '',
+        }),
+      ),
+      props: componentProps,
+      theme: componentThemeObj,
+    });
+
+    let changedProps = 0;
+    Object.keys(state.props).forEach(prop => {
+      if (
+        prop !== 'overrides' &&
+        state.props[prop].value !== '' &&
+        typeof state.props[prop].value !== 'undefined' &&
+        //@ts-ignore
+        state.props[prop].value !== componentProps[prop].value
+      ) {
+        changedProps++;
+      }
+    });
+
+    const componentThemeValueDiff: any = {};
+    componentTheme.forEach(key => {
+      if ((theme.colors as any)[key] !== state.theme[key]) {
+        componentThemeValueDiff[key] = state.theme[key];
+      }
+    });
+
+    const componentThemeDiff: any = {};
+    if (Object.keys(componentThemeValueDiff).length > 0) {
+      componentThemeDiff.themeValues = componentThemeValueDiff;
+      componentThemeDiff.themeName = theme.name;
+    }
 
     const existingOverrides = state.props.overrides.value
       ? Object.keys(state.props.overrides.value)
@@ -147,16 +168,19 @@ export default withRouter(
         setUrlCodeHydrated(true);
         try {
           const propValues: {[key: string]: any} = {};
-          const parsedProps = parseProps(router.query.code as string, 'Button');
+          const {parsedProps, parsedTheme} = parseCode(
+            router.query.code as string,
+            'Button',
+          );
           Object.keys(state.props).forEach(name => {
             //@ts-ignore
-            propValues[name] = COMPONENTS[componentName][name].value;
+            propValues[name] = componentProps[name].value;
             if (name === 'overrides') {
               // overrides need a special treatment since the value needs to
               // be further analyzed and parsed
               propValues[name] = parseOverrides(
                 parsedProps[name],
-                COMPONENTS[componentName].overrides.meta.names,
+                componentProps.overrides.meta.names,
               );
             } else {
               propValues[name] = parsedProps[name];
@@ -164,9 +188,10 @@ export default withRouter(
           });
 
           dispatch({
-            type: Action.UpdatePropsAndCode,
+            type: Action.Update,
             payload: {
               code: formatCode(router.query.code as string),
+              theme: parsedTheme,
               updatedPropValues: propValues,
             },
           });
@@ -178,12 +203,22 @@ export default withRouter(
         }
       }
     }, [router.query.code]);
+
     return (
       <React.Fragment>
         <LiveProvider
           code={state.code}
-          scope={{Button, KIND, SIZE, SHAPE}}
-          transformCode={transformCode}
+          scope={{
+            Button,
+            KIND,
+            SIZE,
+            SHAPE,
+            ThemeProvider,
+            lightThemePrimitives,
+            darkThemePrimitives,
+            createTheme,
+          }}
+          transformCode={removeImportsAndExports}
           theme={
             theme.name.startsWith('light-theme')
               ? {
@@ -229,7 +264,7 @@ export default withRouter(
                 }}
               >
                 <Tab
-                  title="Props"
+                  title={`Props${changedProps > 0 ? ` (${changedProps})` : ''}`}
                   overrides={{
                     Tab: {
                       style: ({$theme}) =>
@@ -244,7 +279,11 @@ export default withRouter(
                     knobProps={state.props}
                     set={(value: any, name: string) => {
                       const newCode = formatCode(
-                        getCode(buildPropsObj(state, {[name]: value})),
+                        getCode(
+                          buildPropsObj(state, {[name]: value}),
+                          componentName,
+                          componentThemeDiff,
+                        ),
                       );
                       trackEvent(
                         'yard',
@@ -279,11 +318,15 @@ export default withRouter(
                 >
                   <Overrides
                     componentName={componentName}
-                    componentConfig={COMPONENTS[componentName]}
+                    componentConfig={componentProps}
                     overrides={state.props.overrides}
                     set={(value: any) => {
                       const newCode = formatCode(
-                        getCode(buildPropsObj(state, {overrides: value})),
+                        getCode(
+                          buildPropsObj(state, {overrides: value}),
+                          componentName,
+                          componentThemeDiff,
+                        ),
                       );
                       dispatch({
                         type: Action.UpdatePropsAndCode,
@@ -300,7 +343,11 @@ export default withRouter(
                   />
                 </Tab>
                 <Tab
-                  title="Theme"
+                  title={`Theme ${
+                    Object.keys(componentThemeValueDiff).length > 0
+                      ? `(${Object.keys(componentThemeValueDiff).length})`
+                      : ''
+                  }`}
                   overrides={{
                     Tab: {
                       style: ({$theme}) =>
@@ -310,7 +357,38 @@ export default withRouter(
                     },
                   }}
                 >
-                  <ThemeEditor />
+                  <ThemeEditor
+                    themeInit={componentThemeObj}
+                    theme={state.theme}
+                    componentName={componentName}
+                    set={(value: any) => {
+                      const componentThemeValueDiff: any = {};
+                      componentTheme.forEach(key => {
+                        if ((theme.colors as any)[key] !== value[key]) {
+                          componentThemeValueDiff[key] = value[key];
+                        }
+                      });
+                      const componentThemeDiff: any = {};
+                      if (Object.keys(componentThemeValueDiff).length > 0) {
+                        componentThemeDiff.themeValues = componentThemeValueDiff;
+                        componentThemeDiff.themeName = theme.name;
+                      }
+                      const newCode = formatCode(
+                        getCode(state.props, componentName, componentThemeDiff),
+                      );
+                      dispatch({
+                        type: Action.UpdateThemeAndCode,
+                        payload: {
+                          code: newCode,
+                          theme: value,
+                        },
+                      });
+                      Router.push({
+                        pathname: router.pathname,
+                        query: {code: newCode},
+                      } as any);
+                    }}
+                  />
                 </Tab>
               </StatefulTabs>
               <div
@@ -341,17 +419,20 @@ export default withRouter(
                   onChange={newCode => {
                     const propValues: any = {};
                     try {
-                      const parsedProps = parseProps(newCode, 'Button');
+                      const {parsedProps, parsedTheme} = parseCode(
+                        newCode,
+                        'Button',
+                      );
                       Object.keys(state.props).forEach(name => {
                         propValues[name] =
                           //@ts-ignore
-                          COMPONENTS[componentName][name].value;
+                          componentProps[name].value;
                         if (name === 'overrides') {
                           // overrides need a special treatment since the value needs to
                           // be further analyzed and parsed
                           propValues[name] = parseOverrides(
                             parsedProps[name],
-                            COMPONENTS[componentName].overrides.meta.names,
+                            componentProps.overrides.meta.names,
                           );
                         } else {
                           propValues[name] = parsedProps[name];
@@ -359,10 +440,11 @@ export default withRouter(
                       });
 
                       dispatch({
-                        type: Action.UpdatePropsAndCode,
+                        type: Action.Update,
                         payload: {
                           code: newCode,
                           updatedPropValues: propValues,
+                          theme: parsedTheme,
                         },
                       });
                       Router.push({
@@ -435,8 +517,11 @@ export default withRouter(
                     dispatch({
                       type: Action.Reset,
                       payload: {
-                        code: formatCode(getCode(COMPONENTS[componentName])),
-                        props: COMPONENTS[componentName],
+                        code: formatCode(
+                          getCode(componentProps, componentName, {} as any),
+                        ),
+                        props: componentProps,
+                        theme: componentThemeObj,
                       },
                     });
                     trackEvent('yard', `${componentName}:reset_code`);
