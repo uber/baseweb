@@ -1,20 +1,21 @@
 import React from 'react';
 
-import {styled} from 'baseui';
+import {useStyletron} from 'baseui';
 import {Unstable_A11y as A11y} from 'baseui/a11y';
 import {Button} from 'baseui/button';
 import {FormControl} from 'baseui/form-control';
 import {StatefulInput} from 'baseui/input';
 
-const Container = styled('div', ({$theme}) => ({
-  padding: $theme.sizing.scale900,
-}));
-
 export default () => {
   const [inputs, setInputs] = React.useState(['']);
+  const [useCss, theme] = useStyletron();
   return (
     <A11y>
-      <Container>
+      <div
+        className={useCss({
+          padding: theme.sizing.scale900,
+        })}
+      >
         <Button
           size="compact"
           onClick={() => setInputs([...inputs, ''])}
@@ -39,7 +40,7 @@ export default () => {
             <StatefulInput />
           </FormControl>
         ))}
-      </Container>
+      </div>
     </A11y>
   );
 };

@@ -85,16 +85,14 @@ export interface SelectProps {
     newProps?: {valueKey: string; labelKey: string},
   ) => Value;
   filterOutSelected?: boolean;
-  getOptionLabel?: (
-    args: {
-      option?: Option;
-      optionState: {
-        $selected?: boolean;
-        $disabled?: boolean;
-        $isHighlighted?: boolean;
-      };
-    },
-  ) => React.ReactNode;
+  getOptionLabel?: (args: {
+    option?: Option;
+    optionState: {
+      $selected?: boolean;
+      $disabled?: boolean;
+      $isHighlighted?: boolean;
+    };
+  }) => React.ReactNode;
   getValueLabel?: (args: {option: Option}) => React.ReactNode;
   id?: string;
   isLoading?: boolean;
@@ -228,16 +226,14 @@ export interface DropdownOverrides {
 }
 export interface DropdownProps {
   error?: boolean;
-  getOptionLabel?: (
-    args: {
-      option: Option;
-      optionState: {
-        $selected: boolean;
-        $disabled: boolean;
-        $isHighlighted: boolean;
-      };
-    },
-  ) => React.ReactNode;
+  getOptionLabel?: (args: {
+    option: Option;
+    optionState: {
+      $selected: boolean;
+      $disabled: boolean;
+      $isHighlighted: boolean;
+    };
+  }) => React.ReactNode;
   innerRef?: React.Ref<any>;
   isLoading?: boolean;
   labelKey?: string;
@@ -279,7 +275,7 @@ export type StateReducer = (
   currentState: State,
 ) => State;
 export interface OnChangeParams {
-  value?: Value;
+  value: Value;
   option?: Option;
   type?: STATE_CHANGE_TYPE[keyof STATE_CHANGE_TYPE];
 }

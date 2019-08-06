@@ -5,18 +5,25 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
+import {Notification, KIND} from 'baseui/notification';
+
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import Basic from 'examples/block/basic.js';
-import Fonts from 'examples/block/fonts.js';
-import Flexbox from 'examples/block/flexbox.js';
-import Grid from 'examples/block/grid.js';
 import Responsive from 'examples/block/responsive.js';
 import Override from 'examples/block/override.js';
 
 export default Layout;
+
+<Notification overrides={{Body: {style: {width: 'auto'}}}} kind={KIND.warning}>
+  We recommend using the <a href="/components/use-styletron">useStyletron</a>{' '}
+  hook to apply css styles to your html elements. It allows for simpler patterns
+  with less custom api to learn. It aligns much closer to basic html/css without
+  React and maintains the efficient inline benefits of using the Block
+  component.
+</Notification>
 
 # Block
 
@@ -31,18 +38,6 @@ The move to CSS-in-JS sort of eliminates these classes in favor of encapsulating
 
 <Example title="Block basic Usage" path="block/basic.js">
   <Basic />
-</Example>
-
-<Example title="Block with font customization" path="block/fonts.js">
-  <Fonts />
-</Example>
-
-<Example title="Block as a flexbox" path="block/flexbox.js">
-  <Flexbox />
-</Example>
-
-<Example title="Block with grid usage" path="block/grid.js">
-  <Grid />
 </Example>
 
 ## Responsive Layouts

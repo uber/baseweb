@@ -14,7 +14,9 @@ export default () => (
       ornare faucibus ex, non facilisis nisl.
     </StyledBody>
     <StyledAction>
-      <Button style={{width: '100%'}}>Button Label</Button>
+      <Button overrides={{BaseButton: {style: {width: '100%'}}}}>
+        Button Label
+      </Button>
     </StyledAction>
   </Card>
 );

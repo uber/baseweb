@@ -17,9 +17,9 @@ const data = Array(100)
   ]);
 
 export default function() {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '750px'})}>
+    <div className={useCss({height: '750px'})}>
       <StyledTable $gridTemplateColumns="minmax(400px, max-content) 200px 200px">
         <StyledHeadCell>Column 1</StyledHeadCell>
         <StyledHeadCell>Column 2</StyledHeadCell>
