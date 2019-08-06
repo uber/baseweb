@@ -39,9 +39,10 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     marginRight: sizing.scale200,
     borderBottom:
       $orientation === ORIENTATION.horizontal && $active
-        ? `2px solid ${colors.primary400}`
+        ? `2px solid ${colors.borderFocus}`
         : 'none',
     display: 'inline-block',
+    outline: 'none',
   };
   if (!$disabled) {
     style = {

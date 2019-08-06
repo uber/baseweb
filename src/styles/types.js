@@ -238,6 +238,7 @@ export type ColorsT = {
   // Tab
   tabBarFill: string,
   tabColor: string,
+  tabBorder: string,
 
   // Shadow
   shadowFocus: string,
