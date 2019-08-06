@@ -41,10 +41,10 @@ export const Item = styled<SharedStylePropsArgT>(
               borderBottomStyle: 'solid',
               borderLeftStyle: 'solid',
               borderRightStyle: 'solid',
-              borderTopColor: $theme.colors.primary,
-              borderBottomColor: $theme.colors.primary,
-              borderLeftColor: $theme.colors.primary,
-              borderRightColor: $theme.colors.primary,
+              borderTopColor: $theme.colors.borderFocus,
+              borderBottomColor: $theme.colors.borderFocus,
+              borderLeftColor: $theme.colors.borderFocus,
+              borderRightColor: $theme.colors.borderFocus,
             }
           : {},
       paddingTop: $theme.sizing.scale600,
@@ -58,7 +58,7 @@ export const Item = styled<SharedStylePropsArgT>(
       listStyle: 'none',
       cursor: $isDragged ? 'grabbing' : 'grab',
       backgroundColor: $theme.colors.backgroundAlt,
-      boxShadow: $isDragged ? '0 2px 6px rgba(39, 110, 241, 0.32)' : null,
+      boxShadow: $isDragged ? '0 2px 6px rgba(0, 0, 0, 0.32)' : null,
       borderTopWidth: '2px',
       borderBottomWidth: '2px',
       borderLeftWidth: '2px',
@@ -68,13 +68,13 @@ export const Item = styled<SharedStylePropsArgT>(
       borderLeftStyle: 'solid',
       borderRightStyle: 'solid',
       borderTopColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+        $isDragged || $isSelected ? $theme.colors.borderFocus : 'transparent',
       borderBottomColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+        $isDragged || $isSelected ? $theme.colors.borderFocus : 'transparent',
       borderLeftColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+        $isDragged || $isSelected ? $theme.colors.borderFocus : 'transparent',
       borderRightColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+        $isDragged || $isSelected ? $theme.colors.borderFocus : 'transparent',
     }: {});
   },
 );
