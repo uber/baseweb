@@ -6,13 +6,37 @@ import babel from 'prettier/parser-babylon';
 
 const parse = babel.parsers.babel.parse as (code: string) => any;
 
-const FILTERED = [/^import.*/gim, 'export default', 'export'];
-
-export const transformCode = (code: string) =>
-  FILTERED.reduce(
-    (acc, token) => (acc as string).replace(token, ''),
-    code,
-  ) as string;
+// clean-up for react-live, removing all imports, exports and top level
+// variable declaration
+export const removeImportsAndExports = (code: string) => {
+  let result = code;
+  try {
+    const ast = parse(code);
+    traverse(ast, {
+      VariableDeclaration(path) {
+        if (path.parent.type === 'Program') {
+          //@ts-ignore
+          path.replaceWith(path.node.declarations[0].init);
+        }
+      },
+      ImportDeclaration(path) {
+        path.remove();
+      },
+      ExportDefaultDeclaration(path) {
+        if (
+          path.node.declaration.type === 'ArrowFunctionExpression' ||
+          path.node.declaration.type === 'FunctionDeclaration'
+        ) {
+          path.replaceWith(path.node.declaration);
+        } else {
+          path.remove();
+        }
+      },
+    });
+    result = generate(ast).code;
+  } catch (e) {}
+  return result;
+};
 
 export const formatCode = (code: string) => {
   try {
@@ -121,11 +145,27 @@ export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
   return result;
 }
 
-export function parseProps(code: string, elementName: string) {
+export function parseCode(code: string, elementName: string) {
   const propValues: any = {};
+  let themeValues: any = {};
   try {
     const ast = parse(code);
     traverse(ast, {
+      CallExpression(path) {
+        if (
+          //@ts-ignore
+          path.node.callee.name === 'createTheme' &&
+          path.node.arguments.length === 2 &&
+          //@ts-ignore
+          path.node.arguments[1].properties.length === 1
+        ) {
+          //@ts-ignore
+          const colors = path.node.arguments[1].properties[0].value;
+          colors.properties.forEach(
+            (prop: any) => (themeValues[prop.key.name] = prop.value.value),
+          );
+        }
+      },
       JSXElement(path) {
         if (
           Object.keys(propValues).length === 0 && // process just the first element
@@ -161,5 +201,5 @@ export function parseProps(code: string, elementName: string) {
   } catch (e) {
     throw new Error("Code is not valid and can't be parsed.");
   }
-  return propValues;
+  return {parsedProps: propValues, parsedTheme: themeValues};
 }
