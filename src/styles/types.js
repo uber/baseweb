@@ -172,6 +172,7 @@ export type ColorsT = {
   tickBorderError: string,
   tickMarkFill: string,
   tickMarkFillDisabled: string,
+  tickMarkFillError: string,
 
   // Slider/Toggle
   sliderTrackFill: string,

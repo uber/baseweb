@@ -174,11 +174,14 @@ export default function createTheme(
 
       // Tick
       tickFill: WHITE,
-      tickFillHover: primitives.mono400,
-      tickFillActive: primitives.mono500,
-      tickFillSelected: primitives.primary400,
-      tickFillSelectedHover: primitives.primary500,
-      tickFillSelectedHoverActive: primitives.primary600,
+      tickFillHover: primitives.mono200,
+      tickFillActive: primitives.mono400,
+      tickBorder: primitives.mono700,
+      tickMarkFill: WHITE,
+
+      tickFillSelected: primitives.mono1000,
+      tickFillSelectedHover: primitives.mono800,
+      tickFillSelectedHoverActive: primitives.mono900,
 
       tickFillError: primitives.negative50,
       tickFillErrorHover: primitives.negative100,
@@ -186,21 +189,26 @@ export default function createTheme(
       tickFillErrorSelected: primitives.negative400,
       tickFillErrorSelectedHover: primitives.negative500,
       tickFillErrorSelectedHoverActive: primitives.negative600,
+      tickBorderError: primitives.negative400,
+      tickMarkFillError: WHITE,
 
       tickFillDisabled: primitives.mono300,
-      tickBorder: primitives.mono700,
-      tickBorderError: primitives.negative400,
-      tickMarkFill: WHITE,
       tickMarkFillDisabled: primitives.mono600,
 
       // Slider/Toggle
       sliderTrackFill: primitives.mono400,
       sliderTrackFillHover: primitives.mono500,
       sliderTrackFillActive: primitives.mono600,
+      sliderTrackFillDisabled: primitives.mono300,
+      sliderHandleInnerFill: primitives.mono400,
+      sliderHandleInnerFillDisabled: primitives.mono400,
+      sliderHandleInnerFillSelectedHover: primitives.mono800,
+      sliderHandleInnerFillSelectedActive: primitives.mono900,
+
+      // unused Slider/Toggle
       sliderTrackFillSelected: primitives.primary400,
       sliderTrackFillSelectedHover: primitives.primary400,
       sliderTrackFillSelectedActive: primitives.primary500,
-      sliderTrackFillDisabled: primitives.mono300,
       sliderHandleFill: WHITE,
       sliderHandleFillHover: WHITE,
       sliderHandleFillActive: WHITE,
@@ -208,11 +216,6 @@ export default function createTheme(
       sliderHandleFillSelectedHover: WHITE,
       sliderHandleFillSelectedActive: WHITE,
       sliderHandleFillDisabled: primitives.mono500,
-      sliderHandleInnerFill: primitives.mono400,
-      sliderHandleInnerFillDisabled: primitives.mono400,
-      sliderHandleInnerFillSelectedHover: primitives.primary400,
-      sliderHandleInnerFillSelectedActive: primitives.primary500,
-
       sliderBorder: primitives.mono500,
       sliderBorderHover: primitives.primary400,
       sliderBorderDisabled: primitives.mono600,

@@ -8,8 +8,28 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulCheckbox} from '../index.js';
+import {Checkbox} from '../index.js';
 
 export const name = 'checkbox';
 
-export const component = () => <StatefulCheckbox>click me</StatefulCheckbox>;
+export const component = () => (
+  <React.Fragment>
+    <Checkbox>basic</Checkbox>
+    <br />
+    <Checkbox checked>checked</Checkbox>
+    <br />
+    <Checkbox isError>error</Checkbox>
+    <br />
+    <Checkbox isError checked>
+      error checked
+    </Checkbox>
+    <br />
+    <Checkbox disabled>disabled</Checkbox>
+    <br />
+    <Checkbox disabled checked>
+      disabled checked
+    </Checkbox>
+    <br />
+    <Checkbox isIndeterminate>indeterminate</Checkbox>
+  </React.Fragment>
+);
