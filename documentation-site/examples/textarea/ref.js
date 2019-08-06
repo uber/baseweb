@@ -1,15 +1,18 @@
 // @flow
 import * as React from 'react';
-import {StatefulTextarea as Textarea} from 'baseui/textarea';
+import {Textarea} from 'baseui/textarea';
 import {Button} from 'baseui/button';
 
 export default () => {
-  const inputRef = React.createRef();
+  const [value, setValue] = React.useState('');
+  const inputRef = React.useRef(null);
   return (
     <React.Fragment>
       <Textarea
         inputRef={inputRef}
-        placeholder="With textarea input ref"
+        value={value}
+        onChange={e => setValue(e.currentTarget.value)}
+        placeholder="Focus me by clicking the button below..."
       />
       <br />
       <Button
@@ -17,7 +20,7 @@ export default () => {
           inputRef.current && inputRef.current.focus();
         }}
       >
-        Click here to focus input
+        Focus Textarea
       </Button>
     </React.Fragment>
   );
