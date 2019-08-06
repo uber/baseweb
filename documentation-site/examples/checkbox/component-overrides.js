@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react';
 import {Block} from 'baseui/block';
-import {StatefulCheckbox} from 'baseui/checkbox';
+import {Checkbox} from 'baseui/checkbox';
 import Alert from 'baseui/icon/alert';
 
-const CustomCheckmark = props => (
+const CustomCheckmark = ({checked}) => (
   <Block
-    color={props.checked ? 'primary' : 'mono700'}
+    color={checked ? 'primary' : 'mono700'}
     marginTop="3px"
     marginRight="3px"
   >
@@ -14,11 +14,15 @@ const CustomCheckmark = props => (
   </Block>
 );
 
-export default () => (
-  <StatefulCheckbox
-    onChange={console.log}
-    overrides={{Checkmark: CustomCheckmark}}
-  >
-    With style overrides
-  </StatefulCheckbox>
-);
+export default () => {
+  const [checked, setChecked] = React.useState(true);
+  return (
+    <Checkbox
+      checked={checked}
+      onChange={() => setChecked(!checked)}
+      overrides={{Checkmark: CustomCheckmark}}
+    >
+      With component overrides
+    </Checkbox>
+  );
+};

@@ -1,14 +1,28 @@
 // @flow
-import React from 'react';
-import {StatefulPhoneInput} from 'baseui/phone-input';
+import React, {useState} from 'react';
+import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
 
-const iso2FlagEmoji = iso =>
+const iso2FlagEmoji = (iso: any) =>
   String.fromCodePoint(
     ...[...iso.toUpperCase()].map(
       char => char.charCodeAt(0) + 127397,
     ),
   );
 
-export default () => (
-  <StatefulPhoneInput mapIsoToLabel={iso => iso2FlagEmoji(iso)} />
-);
+export default () => {
+  const [text, setText] = useState('');
+  const [country, setCountry] = useState(COUNTRIES.US);
+  return (
+    <PhoneInput
+      text={text}
+      country={country}
+      onTextChange={event => {
+        setText(event.currentTarget.value);
+      }}
+      onCountryChange={(event: any) => {
+        setCountry(event.option);
+      }}
+      mapIsoToLabel={iso => iso2FlagEmoji(iso)}
+    />
+  );
+};

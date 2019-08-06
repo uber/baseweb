@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import {StatefulInput} from 'baseui/input';
+import {Input} from 'baseui/input';
 
 export default () => {
-  const inputRef = React.useRef(null);
+  const [value, setValue] = React.useState('Clear me!');
   return (
-    <StatefulInput
-      initialState={{value: 'Clear me!'}}
-      inputRef={inputRef}
+    <Input
+      value={value}
+      onChange={event => setValue(event.currentTarget.value)}
       clearable
     />
   );
