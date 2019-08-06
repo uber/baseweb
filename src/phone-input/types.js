@@ -9,6 +9,7 @@ import * as React from 'react';
 import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {OnChangeParamsT} from '../select/types.js';
+import type {StatefulInputPropsT} from '../input/types.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 
@@ -51,6 +52,16 @@ export type CountrySelectDropdownPropsT = {
     CountrySelectDropdownFlagColumn?: OverrideT<*>,
     CountrySelectDropdownNameColumn?: OverrideT<*>,
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
+    FilterInput?: OverrideT<*>,
+    PopoverContentContainer?: OverrideT<*>,
+  },
+  enableFiltering: boolean,
+  onFilter: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
+};
+
+export type FilterInputPropsT = StatefulInputPropsT & {
+  overrides: {
+    FilterInput?: OverrideT<*>,
   },
 };
 
@@ -70,8 +81,11 @@ export type CountrySelectPropsT = {
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
     DialCode?: OverrideT<*>,
     CountrySelect?: OverrideT<*>,
+    FilterInput?: OverrideT<*>,
+    PopoverContentContainer?: OverrideT<*>,
   },
   size: SizeT,
+  enableFiltering: boolean,
 };
 
 export type PropsT = {
@@ -110,6 +124,8 @@ export type PropsT = {
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
     DialCode?: OverrideT<*>,
     CountrySelect?: OverrideT<*>,
+    FilterInput?: OverrideT<*>,
+    PopoverContentContainer?: OverrideT<*>,
   },
   /** Sets the placeholder text for the input element.  */
   placeholder?: string,
@@ -121,6 +137,8 @@ export type PropsT = {
   size: SizeT,
   /** Defines the value of the input element. */
   text: string,
+  /** Defines if the list of countries is filterable */
+  enableFiltering: boolean,
 };
 
 export type StatefulPhoneInputContainerPropsT = {

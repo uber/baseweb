@@ -31,6 +31,7 @@ export default function PhoneInput(props: PropsT) {
     positive,
     size,
     text,
+    enableFiltering,
     ...restProps
   } = props;
   const inputRef = useRef(null);
@@ -46,6 +47,7 @@ export default function PhoneInput(props: PropsT) {
         inputRef,
         onCountryChange,
         size,
+        enableFiltering,
         overrides,
       },
     },

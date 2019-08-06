@@ -107,3 +107,16 @@ export const StyledCountrySelectDropdownDialcodeColumn = styled<{}>(
     };
   },
 );
+
+export const StyledSearchIcon = styled<{}>('div', ({$theme: {sizing}}) => {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: sizing.scale500,
+  };
+});
+
+export const StyledPopoverContentContainer = styled<{}>('div', ({$theme}) => ({
+  height: 'auto',
+  width: 'auto',
+}));

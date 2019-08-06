@@ -11,8 +11,9 @@ import React from 'react';
 import {StyledRoot, StyledFlag, StyledDialCode} from './styled-components.js';
 import {COUNTRIES} from './constants.js';
 import CountrySelectDropdown from './country-select-dropdown.js';
+import {default as FilterInput} from './filter-input.js';
 import {Block} from '../block/index.js';
-import {Select as DefaultSelect} from '../select/index.js';
+import {Select as DefaultSelect, filterOptions} from '../select/index.js';
 import {PLACEMENT} from '../popover/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
@@ -39,7 +40,10 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     onCountryChange,
     overrides,
     size,
+    enableFiltering,
   } = props;
+  const [filterMask, setFilterMask] = React.useState('');
+  const onFilter = event => setFilterMask(event.currentTarget.value);
   const baseOverrides = {
     Root: {
       component: StyledRoot,
@@ -78,7 +82,10 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         country: country,
         maxDropdownHeight: maxDropdownHeight,
         mapIsoToLabel: mapIsoToLabel,
+        onFilter: onFilter,
+        enableFiltering: enableFiltering,
         overrides: {
+          PopoverContentContainer: overrides.PopoverContentContainer,
           CountrySelectDropdown: overrides.CountrySelectDropdown,
           CountrySelectDropdownListItem:
             overrides.CountrySelectDropdownListItem,
@@ -88,6 +95,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
             overrides.CountrySelectDropdownNameColumn,
           CountrySelectDropdownDialcodeColumn:
             overrides.CountrySelectDropdownDialcodeColumn,
+          FilterInput: {
+            component: FilterInput,
+            props: {
+              overrides: {
+                FilterInput: overrides.FilterInput,
+              },
+            },
+          },
         },
       },
     },
@@ -120,9 +135,15 @@ export default function CountrySelect(props: CountrySelectPropsT) {
             inputRef.current.focus();
           }
         }}
+        onClose={event => {
+          setFilterMask('');
+        }}
         options={Object.values(COUNTRIES)}
         clearable={false}
         searchable={false}
+        filterOptions={(options, filterValue, excludeOptions, newProps) =>
+          filterOptions(options, filterMask, excludeOptions, newProps)
+        }
         getValueLabel={(value: {option: CountryT}) => {
           return <StyledFlag iso={value.option.id} $size={size} />;
         }}
