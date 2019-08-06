@@ -180,7 +180,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     return (
       <MaskToggleButton
         aria-label={label}
-        kind={KIND.minimal}
+        kind={KIND.tertiary}
         onClick={() => this.setState({isMasked: !this.state.isMasked})}
         title={label}
         type="button"

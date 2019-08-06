@@ -9,7 +9,7 @@ import {Button, KIND} from 'baseui/button';
 
 const CalendarButton = props => (
   <Button
-    kind={KIND.minimal}
+    kind={KIND.tertiary}
     overrides={{
       BaseButton: {
         style: {

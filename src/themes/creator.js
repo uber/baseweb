@@ -120,15 +120,15 @@ export default function createTheme(
       buttonSecondaryHover: primitives.mono300,
       buttonSecondaryActive: primitives.mono400,
       buttonSecondaryDisabledFill: primitives.mono200,
+      // ButtonGroup $selected only applies to `secondary` variant,
+      buttonSecondarySelectedFill: primitives.mono400,
+      buttonSecondarySelectedText: primitives.mono1000,
 
       buttonTertiaryFill: 'transparent',
       buttonTertiaryText: primitives.mono1000,
       buttonTertiaryHover: primitives.mono200,
       buttonTertiaryActive: primitives.mono300,
       buttonTertiaryDisabledFill: 'transparent',
-      // button $selected only applies to tertiary variant.
-      buttonTertiarySelectedFill: primitives.primary400,
-      buttonTertiarySelectedText: primitives.mono100,
 
       buttonDisabledText: primitives.mono600,
 

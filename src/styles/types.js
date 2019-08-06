@@ -110,13 +110,13 @@ export type ColorsT = {
   buttonSecondaryHover: string,
   buttonSecondaryActive: string,
   buttonSecondaryDisabledFill: string,
+  buttonSecondarySelectedText: string,
+  buttonSecondarySelectedFill: string,
   buttonTertiaryFill: string,
   buttonTertiaryText: string,
   buttonTertiaryHover: string,
   buttonTertiaryActive: string,
   buttonTertiaryDisabledFill: string,
-  buttonTertiarySelectedText: string,
-  buttonTertiarySelectedFill: string,
   buttonDisabledText: string,
 
   // Breadcrumbs

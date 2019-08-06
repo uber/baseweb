@@ -111,8 +111,8 @@ function FileUploader(props: PropsT) {
                       <ButtonComponent
                         aria-controls="fileupload"
                         disabled={props.disabled}
-                        kind={KIND.minimal}
                         onClick={open}
+                        kind={KIND.tertiary}
                         overrides={{
                           BaseButton: {
                             style: {outline: null, fontWeight: 'normal'},
@@ -171,7 +171,7 @@ function FileUploader(props: PropsT) {
                       )}
                       {props.errorMessage ? (
                         <ButtonComponent
-                          kind={KIND.minimal}
+                          kind={KIND.tertiary}
                           onClick={() => {
                             props.onRetry && props.onRetry();
                           }}
@@ -185,7 +185,7 @@ function FileUploader(props: PropsT) {
                         </ButtonComponent>
                       ) : (
                         <ButtonComponent
-                          kind={KIND.minimal}
+                          kind={KIND.tertiary}
                           onClick={() => {
                             props.onCancel && props.onCancel();
                           }}

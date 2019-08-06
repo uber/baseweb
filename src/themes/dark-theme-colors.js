@@ -48,14 +48,14 @@ export default {
     buttonSecondaryHover: primitives.mono700,
     buttonSecondaryActive: primitives.mono600,
     buttonSecondaryDisabledFill: primitives.mono800,
+    // ButtonGroup $selected only applies to `secondary` variant,
+    buttonSecondarySelectedFill: primitives.mono600,
+    buttonSecondarySelectedText: primitives.mono100,
 
     buttonTertiaryFill: 'transparent',
     buttonTertiaryText: primitives.mono100,
     buttonTertiaryHover: primitives.mono800,
     buttonTertiaryActive: primitives.mono700,
-    // button $selected only applies to tertiary variant.
-    buttonTertiarySelectedText: primitives.mono100,
-    buttonTertiarySelectedFill: primitives.primary500,
     buttonTertiaryDisabledFill: 'transparent',
 
     buttonMinimalFill: 'transparent',

@@ -211,68 +211,48 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         },
       };
     case KIND.secondary:
-      return {
-        color: $theme.colors.buttonSecondaryText,
-        backgroundColor: $isSelected
-          ? $theme.colors.buttonSecondaryHover
-          : $theme.colors.buttonSecondaryFill,
-        ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonSecondaryActive
-            : $theme.colors.buttonSecondaryHover,
-        },
-        ':focus': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonSecondaryActive
-            : $theme.colors.buttonSecondaryHover,
-        },
-        ':active': {
-          backgroundColor: $theme.colors.buttonSecondaryActive,
-        },
-      };
-    case KIND.tertiary:
       if ($isSelected) {
         return {
-          color: $theme.colors.buttonTertiarySelectedText,
-          backgroundColor: $theme.colors.buttonTertiarySelectedFill,
+          color: $theme.colors.buttonSecondarySelectedText,
+          backgroundColor: $theme.colors.buttonSecondarySelectedFill,
         };
       } else {
         return {
-          color: $theme.colors.buttonTertiaryText,
-          backgroundColor: $theme.colors.buttonTertiaryFill,
+          color: $theme.colors.buttonSecondaryText,
+          backgroundColor: $isSelected
+            ? $theme.colors.buttonSecondaryHover
+            : $theme.colors.buttonSecondaryFill,
           ':hover': {
             backgroundColor: $isLoading
-              ? $theme.colors.buttonTertiaryActive
-              : $theme.colors.buttonTertiaryHover,
+              ? $theme.colors.buttonSecondaryActive
+              : $theme.colors.buttonSecondaryHover,
           },
           ':focus': {
             backgroundColor: $isLoading
-              ? $theme.colors.buttonTertiaryActive
-              : $theme.colors.buttonTertiaryHover,
+              ? $theme.colors.buttonSecondaryActive
+              : $theme.colors.buttonSecondaryHover,
           },
           ':active': {
-            backgroundColor: $theme.colors.buttonTertiaryActive,
+            backgroundColor: $theme.colors.buttonSecondaryActive,
           },
         };
       }
-    case KIND.minimal:
+    case KIND.tertiary:
       return {
-        color: $theme.colors.buttonMinimalText,
-        backgroundColor: $isSelected
-          ? $theme.colors.buttonMinimalHover
-          : $theme.colors.buttonMinimalFill,
+        color: $theme.colors.buttonTertiaryText,
+        backgroundColor: $theme.colors.buttonTertiaryFill,
         ':hover': {
           backgroundColor: $isLoading
-            ? $theme.colors.buttonMinimalActive
-            : $theme.colors.buttonMinimalHover,
+            ? $theme.colors.buttonTertiaryActive
+            : $theme.colors.buttonTertiaryHover,
         },
         ':focus': {
           backgroundColor: $isLoading
-            ? $theme.colors.buttonMinimalActive
-            : $theme.colors.buttonMinimalHover,
+            ? $theme.colors.buttonTertiaryActive
+            : $theme.colors.buttonTertiaryHover,
         },
         ':active': {
-          backgroundColor: $theme.colors.buttonMinimalActive,
+          backgroundColor: $theme.colors.buttonTertiaryActive,
         },
       };
     default:

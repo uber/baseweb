@@ -107,7 +107,7 @@ const VersionSelector = () => {
     >
       <Button
         size="compact"
-        kind={KIND.minimal}
+        kind={KIND.tertiary}
         endEnhancer={() => <ChevronDown size={20} />}
       >
         v{version}

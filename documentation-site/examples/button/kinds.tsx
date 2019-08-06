@@ -9,7 +9,5 @@ export default () => (
     <Button kind={KIND.secondary}>Secondary</Button>
     <Block marginBottom="scale300" />
     <Button kind={KIND.tertiary}>Tertiary</Button>
-    <Block marginBottom="scale300" />
-    <Button kind={KIND.minimal}>Minimal</Button>
   </React.Fragment>
 );
