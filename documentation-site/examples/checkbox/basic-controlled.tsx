@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import * as React from 'react';
 import {Checkbox} from 'baseui/checkbox';
 
-const App = () => {
-  const [checked, setChecked] = useState(true);
+export default () => {
+  const [checked, setChecked] = React.useState(true);
   return (
     <Checkbox
       checked={checked}
@@ -12,5 +12,3 @@ const App = () => {
     </Checkbox>
   );
 };
-
-export default App;
