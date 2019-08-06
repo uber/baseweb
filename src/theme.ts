@@ -384,7 +384,17 @@ interface Colors {
 
 interface Font {
   fontFamily: string;
-  fontWeight: string | number;
+  fontWeight:
+    | '-moz-initial'
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'unset'
+    | 'bold'
+    | 'normal'
+    | 'bolder'
+    | 'lighter'
+    | number;
   fontSize: string;
   lineHeight: string | number;
 }

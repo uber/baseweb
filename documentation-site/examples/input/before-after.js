@@ -1,67 +1,98 @@
 // @flow
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import Alert from 'baseui/icon/alert';
 import Check from 'baseui/icon/check';
 import Search from 'baseui/icon/search';
 import {Input} from 'baseui/input';
 
-const Before = () => (
-  <Block display="flex" alignItems="center" paddingLeft="scale500">
-    <Search size="18px" />
-  </Block>
-);
+function Before() {
+  const [useCss, theme] = useStyletron();
+  return (
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: theme.sizing.scale500,
+      })}
+    >
+      <Search size="18px" />
+    </div>
+  );
+}
 
-const After = () => (
-  <Block display="flex" alignItems="center" paddingRight="scale500">
-    <Search size="18px" />
-  </Block>
-);
+function After() {
+  const [useCss, theme] = useStyletron();
+  return (
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingRight: theme.sizing.scale500,
+      })}
+    >
+      <Search size="18px" />
+    </div>
+  );
+}
 
-const Negative = () => (
-  <Block
-    display="flex"
-    alignItems="center"
-    paddingRight="scale500"
-    color="negative400"
-  >
-    <Alert size="18px" />
-  </Block>
-);
+function Negative() {
+  const [useCss, theme] = useStyletron();
+  return (
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingRight: theme.sizing.scale500,
+        color: theme.colors.negative400,
+      })}
+    >
+      <Alert size="18px" />
+    </div>
+  );
+}
 
-const Positive = () => (
-  <Block
-    display="flex"
-    alignItems="center"
-    paddingRight="scale500"
-    color="positive400"
-  >
-    <Check size="18px" />
-  </Block>
-);
+function Positive() {
+  const [useCss, theme] = useStyletron();
+  return (
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingRight: theme.sizing.scale500,
+        color: theme.colors.positive400,
+      })}
+    >
+      <Check size="18px" />
+    </div>
+  );
+}
 
 export default () => (
-  <React.Fragment>
+  <div>
     <Input
       overrides={{Before}}
       placeholder="Input with a Before component"
     />
-    <Block as="br" />
+    <br />
+
     <Input
       overrides={{After}}
       placeholder="Input with an After component"
     />
-    <Block as="br" />
+    <br />
+
     <Input
       error
       overrides={{After: Negative}}
       placeholder="Input with negative icon"
     />
-    <Block as="br" />
+    <br />
+
     <Input
       positive
       overrides={{After: Positive}}
       placeholder="Input with positive icon"
     />
-  </React.Fragment>
+  </div>
 );

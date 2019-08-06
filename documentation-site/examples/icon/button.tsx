@@ -1,23 +1,30 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
 import {ChevronLeft, ChevronRight, Upload} from 'baseui/icon';
 
-export default () => (
-  <Block>
-    <Block paddingBottom="scale300">
-      <Button startEnhancer={ChevronLeft}>Start Enhancer</Button>
-    </Block>
+export default () => {
+  const [useCss, theme] = useStyletron();
+  return (
+    <div>
+      <div
+        className={useCss({paddingBottom: theme.sizing.scale300})}
+      >
+        <Button startEnhancer={ChevronLeft}>Start Enhancer</Button>
+      </div>
 
-    <Block paddingBottom="scale300">
-      <Button endEnhancer={ChevronRight}>End Enhancer</Button>
-    </Block>
+      <div
+        className={useCss({paddingBottom: theme.sizing.scale300})}
+      >
+        <Button endEnhancer={ChevronRight}>End Enhancer</Button>
+      </div>
 
-    <Block>
-      <Button>
-        <Upload />
-      </Button>
-    </Block>
-  </Block>
-);
+      <div>
+        <Button>
+          <Upload />
+        </Button>
+      </div>
+    </div>
+  );
+};

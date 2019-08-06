@@ -1,18 +1,19 @@
 import * as React from 'react';
-import {styled} from 'baseui';
+import {useStyletron} from 'baseui';
 import {Input, StyledInput} from 'baseui/input';
 import {Tag, VARIANT as TAG_VARIANT} from 'baseui/tag';
 
-const ValueWrapper = styled('div', {
-  flex: '1 1 0%',
-  flexWrap: 'wrap',
-  display: 'flex',
-  alignItems: 'center',
-});
-
 const InputReplacement = ({tags, removeTag, ...restProps}: any) => {
+  const [useCss] = useStyletron();
   return (
-    <ValueWrapper>
+    <div
+      className={useCss({
+        flex: '1 1 0%',
+        flexWrap: 'wrap',
+        display: 'flex',
+        alignItems: 'center',
+      })}
+    >
       {tags.map((tag: string, index: number) => (
         <Tag
           variant={TAG_VARIANT.solid}
@@ -23,7 +24,7 @@ const InputReplacement = ({tags, removeTag, ...restProps}: any) => {
         </Tag>
       ))}
       <StyledInput {...restProps} />
-    </ValueWrapper>
+    </div>
   );
 };
 
