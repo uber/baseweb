@@ -1,7 +1,16 @@
 // @flow
 import React from 'react';
-import {StatefulPinCode} from 'baseui/pin-code';
+import {PinCode} from 'baseui/pin-code';
 
-export default function() {
-  return <StatefulPinCode placeholder="😀" />;
-}
+export default () => {
+  const [values, setValues] = React.useState(['', '', '', '']);
+  return (
+    <PinCode
+      placeholder="😀"
+      values={values}
+      onChange={({values}) => {
+        setValues(values);
+      }}
+    />
+  );
+};

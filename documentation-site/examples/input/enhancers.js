@@ -2,36 +2,32 @@
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Search} from 'baseui/icon';
-import {StatefulInput} from 'baseui/input';
+import {Input} from 'baseui/input';
 
 export default () => (
-  <Block>
-    <StatefulInput
+  <React.Fragment>
+    <Input
       startEnhancer="@"
       placeholder="Input with a start enhancer"
     />
-    <Block as="br" />
-
-    <StatefulInput
+    <br />
+    <Input
       endEnhancer=".00"
       placeholder="Input with an end enhancer"
     />
-    <Block as="br" />
-
-    <StatefulInput
+    <br />
+    <Input
       startEnhancer="$"
       endEnhancer=".00"
       placeholder="Input with start and end enhancers"
     />
-    <Block as="br" />
-
-    <StatefulInput
+    <br />
+    <Input
       endEnhancer={<Search size="18px" />}
       placeholder="Input with an icon enhancer"
     />
-    <Block as="br" />
-
-    <StatefulInput
+    <br />
+    <Input
       startEnhancer={({$isFocused}) => (
         <Block color={$isFocused ? 'primary' : 'mono700'}>@</Block>
       )}
@@ -42,5 +38,5 @@ export default () => (
       )}
       placeholder="Input with function enhancers."
     />
-  </Block>
+  </React.Fragment>
 );

@@ -1,23 +1,27 @@
 import * as React from 'react';
 import {Block} from 'baseui/block';
-import {StatefulCheckbox} from 'baseui/checkbox';
+import {Checkbox} from 'baseui/checkbox';
 import {Alert} from 'baseui/icon';
 
-export default () => (
-  <StatefulCheckbox
-    onChange={console.log}
-    overrides={{
-      Checkmark: props => (
-        <Block
-          color={props.checked ? 'primary' : 'mono700'}
-          marginTop="3px"
-          marginRight="3px"
-        >
-          <Alert />
-        </Block>
-      ),
-    }}
+const CustomCheckmark = ({checked}: {checked: boolean}) => (
+  <Block
+    color={checked ? 'primary' : 'mono700'}
+    marginTop="3px"
+    marginRight="3px"
   >
-    With style overrides
-  </StatefulCheckbox>
+    <Alert />
+  </Block>
 );
+
+export default () => {
+  const [checked, setChecked] = React.useState(true);
+  return (
+    <Checkbox
+      checked={checked}
+      onChange={() => setChecked(!checked)}
+      overrides={{Checkmark: CustomCheckmark}}
+    >
+      With component overrides
+    </Checkbox>
+  );
+};
