@@ -1,31 +1,30 @@
 /* global document */
 import * as React from 'react';
 import {Layer} from 'baseui/layer';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
-function BlockComponent(props: any) {
+function Wrapper(props: any) {
+  const [useCss] = useStyletron();
+  const {offset, color, children, forwardedRef} = props;
   return (
-    <Block
-      position="fixed"
-      top={props.offset || '46%'}
-      left={props.offset || '46%'}
-      width="200px"
-      paddingTop="20px"
-      paddingBottom="20px"
-      paddingLeft="20px"
-      paddingRight="20px"
-      backgroundColor={props.color}
-      overrides={{
-        Block: {
-          style: {
-            textAlign: 'center',
-          },
-        },
-      }}
+    <div
+      className={useCss({
+        position: 'fixed',
+        top: offset || '46%',
+        left: offset || '46%',
+        width: '200px',
+        paddingTop: '20px',
+        paddingBottom: '20px',
+        paddingLeft: '20px',
+        paddingRight: '20px',
+        backgroundColor: color,
+        textAlign: 'center',
+      })}
+      ref={forwardedRef}
     >
-      {props.children}
-    </Block>
+      {children}
+    </div>
   );
 }
 export default () => {
@@ -38,27 +37,25 @@ export default () => {
       </Button>
       {isFirstOpen ? (
         <Layer>
-          <BlockComponent color="rgba(255, 190, 190, 0.86)">
+          <Wrapper color="rgba(255, 190, 190, 0.86)">
             <Button onClick={() => setIsFirstOpen(false)}>
               Close
             </Button>
-          </BlockComponent>
+          </Wrapper>
         </Layer>
       ) : null}
-      <Block padding="5px" />
+      <br />
+      <br />
       <Button onClick={() => setIsSecondOpen(true)}>
         Render Orange Layer
       </Button>
       {isSecondOpen ? (
         <Layer>
-          <BlockComponent
-            color="rgba(255, 212, 135, 0.86)"
-            offset="48%"
-          >
+          <Wrapper color="rgba(255, 212, 135, 0.86)" offset="48%">
             <Button onClick={() => setIsSecondOpen(false)}>
               Close
             </Button>
-          </BlockComponent>
+          </Wrapper>
         </Layer>
       ) : null}
     </React.Fragment>

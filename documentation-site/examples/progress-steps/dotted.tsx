@@ -1,66 +1,79 @@
 import * as React from 'react';
 import {ProgressSteps, Step} from 'baseui/progress-steps';
-import {Button} from 'baseui/button';
-import {Block} from 'baseui/block';
+import {Button, ButtonProps} from 'baseui/button';
+import {useStyletron} from 'baseui';
 import {StatefulSelect, TYPE} from 'baseui/select';
-import {styled} from 'baseui';
 
-const SpacedButton = styled(Button, ({$theme}) => ({
-  marginLeft: $theme.sizing.scale200,
-  marginRight: $theme.sizing.scale200,
-  marginTop: $theme.sizing.scale200,
-}));
+function SpacedButton(props: ButtonProps) {
+  return (
+    <Button
+      {...props}
+      overrides={{
+        BaseButton: {
+          style: ({$theme}) => ({
+            marginLeft: $theme.sizing.scale200,
+            marginRight: $theme.sizing.scale200,
+            marginTop: $theme.sizing.scale200,
+          }),
+        },
+      }}
+    />
+  );
+}
 
-class ProgressStepsContainer extends React.Component {
-  state = {
-    current: 0,
-  };
+function ProgressStepsContainer() {
+  const [current, setCurrent] = React.useState(0);
+  const [useCss, theme] = useStyletron();
 
-  render() {
-    return (
-      <ProgressSteps current={this.state.current}>
-        <Step title="Create Account">
-          <Block font="font400">Here is some step content</Block>
-          <StatefulSelect
-            options={[
-              {id: 'AliceBlue', color: '#F0F8FF'},
-              {id: 'AntiqueWhite', color: '#FAEBD7'},
-              {id: 'Aqua', color: '#00FFFF'},
-              {id: 'Aquamarine', color: '#7FFFD4'},
-              {id: 'Azure', color: '#F0FFFF'},
-              {id: 'Beige', color: '#F5F5DC'},
-            ]}
-            labelKey="id"
-            valueKey="color"
-            placeholder="Choose a color"
-            maxDropdownHeight="300px"
-            type={TYPE.search}
-            onChange={event => console.log(event)}
-          />
-          <SpacedButton disabled>Previous</SpacedButton>
-          <SpacedButton onClick={() => this.setState({current: 1})}>
-            Next
-          </SpacedButton>
-        </Step>
-        <Step title="Verify Payment">
-          <Block font="font400">Here is some some content</Block>
-          <SpacedButton onClick={() => this.setState({current: 0})}>
-            Previous
-          </SpacedButton>
-          <SpacedButton onClick={() => this.setState({current: 2})}>
-            Next
-          </SpacedButton>
-        </Step>
-        <Step title="Add Payment Method">
-          <Block font="font400">Here too!</Block>
-          <SpacedButton onClick={() => this.setState({current: 1})}>
-            Previous
-          </SpacedButton>
-          <SpacedButton disabled>Next</SpacedButton>
-        </Step>
-      </ProgressSteps>
-    );
-  }
+  return (
+    <ProgressSteps current={current}>
+      <Step title="Create Account">
+        <div className={useCss({...theme.typography.font400})}>
+          Here is some step content
+        </div>
+        <StatefulSelect
+          options={[
+            {id: 'AliceBlue', color: '#F0F8FF'},
+            {id: 'AntiqueWhite', color: '#FAEBD7'},
+            {id: 'Aqua', color: '#00FFFF'},
+            {id: 'Aquamarine', color: '#7FFFD4'},
+            {id: 'Azure', color: '#F0FFFF'},
+            {id: 'Beige', color: '#F5F5DC'},
+          ]}
+          labelKey="id"
+          valueKey="color"
+          placeholder="Choose a color"
+          maxDropdownHeight="300px"
+          type={TYPE.search}
+          onChange={event => console.log(event)}
+        />
+        <SpacedButton disabled>Previous</SpacedButton>
+        <SpacedButton onClick={() => setCurrent(1)}>
+          Next
+        </SpacedButton>
+      </Step>
+      <Step title="Verify Payment">
+        <div className={useCss({...theme.typography.font400})}>
+          Here is some some content
+        </div>
+        <SpacedButton onClick={() => setCurrent(0)}>
+          Previous
+        </SpacedButton>
+        <SpacedButton onClick={() => setCurrent(2)}>
+          Next
+        </SpacedButton>
+      </Step>
+      <Step title="Add Payment Method">
+        <div className={useCss({...theme.typography.font400})}>
+          Here too!
+        </div>
+        <SpacedButton onClick={() => setCurrent(1)}>
+          Previous
+        </SpacedButton>
+        <SpacedButton disabled>Next</SpacedButton>
+      </Step>
+    </ProgressSteps>
+  );
 }
 
 export default ProgressStepsContainer;

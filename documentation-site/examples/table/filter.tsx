@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {styled} from 'baseui';
+import {useStyletron} from 'baseui';
 import {Checkbox} from 'baseui/checkbox';
 import {
   Filter,
@@ -100,18 +100,15 @@ class FilterTable extends React.Component<any> {
   }
 }
 
-const Container = styled('div', {
-  height: '500px',
-});
-
 export default () => {
+  const [useCss] = useStyletron();
   const FILTER_DATA = [...new Array(100)].map((_, i) => [
     i,
     'row title',
   ]);
   return (
-    <Container>
+    <div className={useCss({height: '500px'})}>
       <FilterTable data={FILTER_DATA} />
-    </Container>
+    </div>
   );
 };

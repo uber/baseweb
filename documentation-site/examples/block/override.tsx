@@ -5,7 +5,6 @@ export default () => {
   return (
     <Block
       as="h2"
-      font="font500"
       overrides={{
         Block: {
           style: {color: 'red'},

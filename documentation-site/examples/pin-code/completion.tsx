@@ -1,13 +1,14 @@
 import React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 import {PinCode} from 'baseui/pin-code';
 
-export default () => {
+export default function() {
+  const [useCss] = useStyletron();
   const [values, setValues] = React.useState(['', '', '', '']);
   const buttonRef = React.useRef<Button>(null);
   return (
-    <Block display="flex">
+    <div className={useCss({display: 'flex'})}>
       <PinCode
         values={values}
         onChange={({values}: any) => {
@@ -20,6 +21,6 @@ export default () => {
         }}
       />
       <Button ref={buttonRef}>Submit</Button>
-    </Block>
+    </div>
   );
-};
+}
