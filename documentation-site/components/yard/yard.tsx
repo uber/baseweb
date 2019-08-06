@@ -108,6 +108,12 @@ function reducer(state: TState, action: {type: Action; payload: any}): TState {
         code: action.payload.code,
         props: buildPropsObj(state, updatedPropValues),
       };
+    case Action.UpdateThemeAndCode:
+      return {
+        ...state,
+        code: action.payload.code,
+        theme: action.payload.theme,
+      };
     case Action.Reset:
       return {
         ...state,
@@ -130,9 +136,18 @@ export default withRouter(
     const [css, theme] = useStyletron();
     const [editorFocused, focusEditor] = React.useState(false);
     const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
+    const componentProps = COMPONENTS[componentName].props;
+    const componentTheme = COMPONENTS[componentName].theme;
+
+    const componentThemeObj: any = {};
+    componentTheme.forEach(key => {
+      componentThemeObj[key] = (theme.colors as any)[key];
+    });
+
     const [state, dispatch] = React.useReducer(reducer, {
-      code: formatCode(getCode(COMPONENTS[componentName])),
-      props: COMPONENTS[componentName],
+      code: formatCode(getCode(componentProps)),
+      props: componentProps,
+      theme: componentThemeObj,
     });
 
     const existingOverrides = state.props.overrides.value
@@ -150,13 +165,13 @@ export default withRouter(
           const parsedProps = parseProps(router.query.code as string, 'Button');
           Object.keys(state.props).forEach(name => {
             //@ts-ignore
-            propValues[name] = COMPONENTS[componentName][name].value;
+            propValues[name] = componentProps[name].value;
             if (name === 'overrides') {
               // overrides need a special treatment since the value needs to
               // be further analyzed and parsed
               propValues[name] = parseOverrides(
                 parsedProps[name],
-                COMPONENTS[componentName].overrides.meta.names,
+                componentProps.overrides.meta.names,
               );
             } else {
               propValues[name] = parsedProps[name];
@@ -229,6 +244,39 @@ export default withRouter(
                 }}
               >
                 <Tab
+                  title="Theme"
+                  overrides={{
+                    Tab: {
+                      style: ({$theme}) =>
+                        ({
+                          ...$theme.typography.font450,
+                        } as any),
+                    },
+                  }}
+                >
+                  <ThemeEditor
+                    themeInit={componentThemeObj}
+                    theme={state.theme}
+                    componentName={componentName}
+                    set={(value: any) => {
+                      // const newCode = formatCode(
+                      //   getCode(buildPropsObj(state, {overrides: value})),
+                      // );
+                      dispatch({
+                        type: Action.UpdateThemeAndCode,
+                        payload: {
+                          code: state.code,
+                          theme: value,
+                        },
+                      });
+                      // Router.push({
+                      //   pathname: router.pathname,
+                      //   query: {code: newCode},
+                      // } as any);
+                    }}
+                  />
+                </Tab>
+                <Tab
                   title="Props"
                   overrides={{
                     Tab: {
@@ -279,7 +327,7 @@ export default withRouter(
                 >
                   <Overrides
                     componentName={componentName}
-                    componentConfig={COMPONENTS[componentName]}
+                    componentConfig={componentProps}
                     overrides={state.props.overrides}
                     set={(value: any) => {
                       const newCode = formatCode(
@@ -298,19 +346,6 @@ export default withRouter(
                       } as any);
                     }}
                   />
-                </Tab>
-                <Tab
-                  title="Theme"
-                  overrides={{
-                    Tab: {
-                      style: ({$theme}) =>
-                        ({
-                          ...$theme.typography.font450,
-                        } as any),
-                    },
-                  }}
-                >
-                  <ThemeEditor />
                 </Tab>
               </StatefulTabs>
               <div
@@ -345,13 +380,13 @@ export default withRouter(
                       Object.keys(state.props).forEach(name => {
                         propValues[name] =
                           //@ts-ignore
-                          COMPONENTS[componentName][name].value;
+                          componentProps[name].value;
                         if (name === 'overrides') {
                           // overrides need a special treatment since the value needs to
                           // be further analyzed and parsed
                           propValues[name] = parseOverrides(
                             parsedProps[name],
-                            COMPONENTS[componentName].overrides.meta.names,
+                            componentProps.overrides.meta.names,
                           );
                         } else {
                           propValues[name] = parsedProps[name];
@@ -435,8 +470,8 @@ export default withRouter(
                     dispatch({
                       type: Action.Reset,
                       payload: {
-                        code: formatCode(getCode(COMPONENTS[componentName])),
-                        props: COMPONENTS[componentName],
+                        code: formatCode(getCode(componentProps)),
+                        props: componentProps,
                       },
                     });
                     trackEvent('yard', `${componentName}:reset_code`);
