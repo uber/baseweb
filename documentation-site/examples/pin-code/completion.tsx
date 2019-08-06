@@ -3,7 +3,7 @@ import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {PinCode} from 'baseui/pin-code';
 
-export default function() {
+export default () => {
   const [values, setValues] = React.useState(['', '', '', '']);
   const buttonRef = React.useRef<Button>(null);
   return (
@@ -22,4 +22,4 @@ export default function() {
       <Button ref={buttonRef}>Submit</Button>
     </Block>
   );
-}
+};
