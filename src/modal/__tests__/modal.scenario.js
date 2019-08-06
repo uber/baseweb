@@ -66,14 +66,19 @@ class ModalStateContainer extends React.Component<
   }
 }
 
-export const component = () => (
+export const component = modalOverrides => (
   <ModalStateContainer isInitiallyOpen>
     {({open, close, isOpen}) => (
       <React.Fragment>
         <Button onClick={open} className="open-modal-button">
           Open Modal
         </Button>
-        <Modal onClose={close} isOpen={isOpen} size={SIZE.default}>
+        <Modal
+          onClose={close}
+          isOpen={isOpen}
+          size={SIZE.default}
+          overrides={modalOverrides}
+        >
           <ModalHeader>Hello world</ModalHeader>
           <ModalBody>
             Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
