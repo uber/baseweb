@@ -25,8 +25,6 @@ export const BaseButton = styled<SharedStylePropsT>(
     cursor: 'pointer',
     ':disabled': {
       cursor: 'not-allowed',
-      backgroundColor: $theme.colors.buttonDisabledFill,
-      color: $theme.colors.buttonDisabledText,
     },
     marginLeft: 0,
     marginTop: 0,
@@ -173,7 +171,23 @@ function getPaddingStyles({$theme, $size, $shape}) {
 
 function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
   if ($disabled) {
-    return {};
+    switch ($kind) {
+      case KIND.primary:
+        return {
+          backgroundColor: $theme.colors.buttonPrimaryDisabledFill,
+          color: $theme.colors.buttonDisabledText,
+        };
+      case KIND.secondary:
+        return {
+          backgroundColor: $theme.colors.buttonSecondaryDisabledFill,
+          color: $theme.colors.buttonDisabledText,
+        };
+      case KIND.tertiary:
+        return {
+          backgroundColor: $theme.colors.buttonTertiaryDisabledFill,
+          color: $theme.colors.buttonDisabledText,
+        };
+    }
   }
   switch ($kind) {
     case KIND.primary:

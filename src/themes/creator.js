@@ -109,30 +109,27 @@ export default function createTheme(
       borderError: primitives.negative400,
 
       // Buttons
-      buttonPrimaryFill: primitives.primary400,
-      buttonPrimaryText: primitives.mono100, // white
-      buttonPrimaryHover: primitives.primary500,
-      buttonPrimaryActive: primitives.primary600,
+      buttonPrimaryFill: primitives.mono1000,
+      buttonPrimaryText: WHITE,
+      buttonPrimaryHover: primitives.mono900,
+      buttonPrimaryActive: primitives.mono800,
+      buttonPrimaryDisabledFill: primitives.mono300,
 
-      buttonSecondaryFill: primitives.primary50,
-      buttonSecondaryText: primitives.primary400,
-      buttonSecondaryHover: primitives.primary100,
-      buttonSecondaryActive: primitives.primary200,
+      buttonSecondaryFill: primitives.mono200,
+      buttonSecondaryText: primitives.mono1000,
+      buttonSecondaryHover: primitives.mono300,
+      buttonSecondaryActive: primitives.mono400,
+      buttonSecondaryDisabledFill: primitives.mono200,
 
-      buttonTertiaryFill: primitives.mono200,
-      buttonTertiaryText: primitives.primary400,
-      buttonTertiaryHover: primitives.mono400,
-      buttonTertiaryActive: primitives.mono500,
+      buttonTertiaryFill: 'transparent',
+      buttonTertiaryText: primitives.mono1000,
+      buttonTertiaryHover: primitives.mono200,
+      buttonTertiaryActive: primitives.mono300,
+      buttonTertiaryDisabledFill: 'transparent',
       // button $selected only applies to tertiary variant.
       buttonTertiarySelectedFill: primitives.primary400,
       buttonTertiarySelectedText: primitives.mono100,
 
-      buttonMinimalFill: 'transparent',
-      buttonMinimalText: primitives.primary400,
-      buttonMinimalHover: primitives.mono200,
-      buttonMinimalActive: primitives.mono400,
-
-      buttonDisabledFill: primitives.mono300,
       buttonDisabledText: primitives.mono600,
 
       // Breadcrumbs

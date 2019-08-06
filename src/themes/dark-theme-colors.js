@@ -37,25 +37,32 @@ export default {
     borderError: primitives.negative400,
 
     // Buttons
-    buttonPrimaryFill: primitives.primary500,
-    buttonPrimaryText: primitives.mono100,
-    buttonPrimaryHover: primitives.primary600,
-    buttonPrimaryActive: primitives.primary700,
-    buttonSecondaryFill: primitives.mono600,
+    buttonPrimaryFill: primitives.mono100,
+    buttonPrimaryText: primitives.mono1000,
+    buttonPrimaryHover: primitives.mono300,
+    buttonPrimaryActive: primitives.mono400,
+    buttonPrimaryDisabledFill: primitives.mono700,
+
+    buttonSecondaryFill: primitives.mono800,
     buttonSecondaryText: primitives.mono100,
-    buttonSecondaryHover: primitives.mono500,
-    buttonSecondaryActive: primitives.mono400,
-    buttonTertiaryFill: primitives.mono800,
+    buttonSecondaryHover: primitives.mono700,
+    buttonSecondaryActive: primitives.mono600,
+    buttonSecondaryDisabledFill: primitives.mono800,
+
+    buttonTertiaryFill: 'transparent',
     buttonTertiaryText: primitives.mono100,
-    buttonTertiaryHover: primitives.mono700,
-    buttonTertiaryActive: primitives.mono600,
+    buttonTertiaryHover: primitives.mono800,
+    buttonTertiaryActive: primitives.mono700,
+    // button $selected only applies to tertiary variant.
     buttonTertiarySelectedText: primitives.mono100,
     buttonTertiarySelectedFill: primitives.primary500,
+    buttonTertiaryDisabledFill: 'transparent',
+
     buttonMinimalFill: 'transparent',
     buttonMinimalText: primitives.primary400,
     buttonMinimalHover: primitives.mono800,
     buttonMinimalActive: primitives.mono700,
-    buttonDisabledFill: primitives.mono700,
+
     buttonDisabledText: primitives.mono500,
 
     // Breadcrumbs
