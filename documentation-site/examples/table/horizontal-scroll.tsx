@@ -67,10 +67,6 @@ const DATA = [
 
 const COLUMNS = ['Id', 'First Name', 'Last Name', 'Age', 'Address'];
 
-const Container = styled('div', {
-  height: '400px',
-});
-
 export default () => {
   const [useCss] = useStyletron();
   return (

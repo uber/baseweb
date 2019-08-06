@@ -39,7 +39,7 @@ export default () => {
         <FormControl label="Start Date" caption="YYYY/MM/DD">
           <Datepicker
             value={dates}
-            onChange={({date}) => setDates(date)}
+            onChange={({date}) => setDates(date as Array<Date>)}
             formatDisplayValue={date => formatDateAtIndex(date, 0)}
             timeSelectStart
             range
@@ -78,7 +78,7 @@ export default () => {
         <FormControl label="End Date" caption="yyyy/MM/DD">
           <Datepicker
             value={dates}
-            onChange={({date}) => setDates(date)}
+            onChange={({date}) => setDates(date as Array<Date>)}
             formatDisplayValue={date => formatDateAtIndex(date, 1)}
             overrides={{
               TimeSelectFormControl: {

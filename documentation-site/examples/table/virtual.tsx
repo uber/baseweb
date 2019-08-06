@@ -40,6 +40,7 @@ const cache = new CellMeasurerCache({
 });
 
 export default () => {
+  const [useCss] = useStyletron();
   return (
     <div className={useCss({width: '500px'})}>
       <StyledTable

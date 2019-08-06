@@ -4,6 +4,7 @@ import {Input, StyledInput} from 'baseui/input';
 import {Tag, VARIANT as TAG_VARIANT} from 'baseui/tag';
 
 const InputReplacement = ({tags, removeTag, ...restProps}: any) => {
+  const [useCss] = useStyletron();
   return (
     <div
       className={useCss({

@@ -1,5 +1,5 @@
 // @flow
-import React, {useState} from 'react';
+import React from 'react';
 
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
@@ -9,7 +9,6 @@ import {
   TimePicker,
   TimezonePicker,
 } from 'baseui/datepicker';
-import {Radio, RadioGroup} from 'baseui/radio';
 
 export default () => {
   const [useCss, theme] = useStyletron();

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Select, ValueT} from 'baseui/select';
+import {Select, Value} from 'baseui/select';
 
 const getLabel = ({option}: any) => {
   const [useCss, theme] = useStyletron();
@@ -23,7 +23,7 @@ const getLabel = ({option}: any) => {
 };
 
 function CustomLabel() {
-  const [value, setValue] = React.useState<ValueT>([]);
+  const [value, setValue] = React.useState<Value>([]);
   return (
     <Select
       options={[

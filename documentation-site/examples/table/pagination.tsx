@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button, KIND} from 'baseui/button';
-import TriangleDown from 'baseui/icon/triangle-down';
+import {TriangleDown} from 'baseui/icon';
 import {StatefulMenu} from 'baseui/menu';
 import {Pagination} from 'baseui/pagination';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
@@ -47,7 +47,15 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
           paddingBottom: theme.sizing.scale600,
         })}
       >
-        <div className={useCss({...theme.typography.font700})}>
+        <div
+          className={useCss({
+            // ...theme.typography.font700
+            fontFamily: theme.typography.font700.fontFamily,
+            fontWeight: theme.typography.font700.fontWeight,
+            fontSize: theme.typography.font700.fontSize,
+            lineHeight: theme.typography.font700.lineHeight,
+          })}
+        >
           Table Example
         </div>
         <Button>

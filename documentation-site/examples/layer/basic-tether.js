@@ -12,14 +12,8 @@ import {Button} from 'baseui/button';
 const layerRef = React.createRef();
 
 function Wrapper(props) {
-  const [useCss, theme] = useStyletron();
-  const {
-    offset,
-    color,
-    children,
-    forwardedRef,
-    ...restProps
-  } = props;
+  const [useCss] = useStyletron();
+  const {offset, color, children, forwardedRef} = props;
   return (
     <div
       className={useCss({

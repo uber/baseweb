@@ -18,7 +18,7 @@ function ControlledButtonGroup() {
       <ButtonGroup
         selected={selected}
         mode="radio"
-        onClick={(event, index) => {
+        onClick={(_, index) => {
           if (selected !== index) {
             setSelected(index);
           }

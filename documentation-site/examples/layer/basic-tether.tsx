@@ -7,15 +7,9 @@ import {
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
-function Wrapper(props) {
-  const [useCss, theme] = useStyletron();
-  const {
-    offset,
-    color,
-    children,
-    forwardedRef,
-    ...restProps
-  } = props;
+function Wrapper(props: any) {
+  const [useCss] = useStyletron();
+  const {offset, color, children, forwardedRef} = props;
   return (
     <div
       className={useCss({

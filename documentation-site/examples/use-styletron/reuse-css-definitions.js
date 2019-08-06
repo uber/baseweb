@@ -8,12 +8,7 @@ function ReuseDefinitions() {
   const green = useCss({backgroundColor: theme.colors.positive});
 
   return (
-    <ul
-      className={useCss({
-        ...theme.typography.font400,
-        color: 'white',
-      })}
-    >
+    <ul className={useCss({color: 'white'})}>
       <li className={red}>1</li>
       <li className={green}>2</li>
       <li className={red}>3</li>

@@ -16,7 +16,7 @@ import {
   // @ts-ignore
 } from 'react-vis';
 
-const GraphCell = ({children}) => {
+const GraphCell = ({children}: {children: React.ReactNode}) => {
   const [useCss, theme] = useStyletron();
   return (
     <div
@@ -24,7 +24,7 @@ const GraphCell = ({children}) => {
     >
       <div
         className={useCss({
-          marginRight: $theme.sizing.scale600,
+          marginRight: theme.sizing.scale600,
         })}
       >
         <div

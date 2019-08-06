@@ -12,7 +12,7 @@ function makeImportStatement(key: string) {
   return `import ${key} from 'baseui/icon/${path}'`;
 }
 
-function Row(props) {
+function Row(props: any) {
   const [useCss, theme] = useStyletron();
   const Icon = props.icon;
   return (

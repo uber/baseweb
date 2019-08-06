@@ -8,20 +8,14 @@ import {Button} from 'baseui/button';
 const layerRef = React.createRef();
 
 function Wrapper(props: any) {
-  const [useCss, theme] = useStyletron();
-  const {
-    offset,
-    color,
-    children,
-    forwardedRef,
-    ...restProps
-  } = props;
+  const [useCss] = useStyletron();
+  const {offset, color, children, forwardedRef} = props;
   return (
     <div
       className={useCss({
         position: 'fixed',
-        top: props.offset || '46%',
-        left: props.offset || '46%',
+        top: offset || '46%',
+        left: offset || '46%',
         width: '200px',
         paddingTop: '20px',
         paddingBottom: '20px',

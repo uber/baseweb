@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {StatefulDatepicker} from 'baseui/datepicker';
-import {Block} from 'baseui/block';
 import {addDays} from 'date-fns';
 
 export default () => (

@@ -16,7 +16,8 @@ function GroupList() {
     <div>
       <Checkbox
         onChange={e => {
-          setCheckboxes([e.target.checked, e.target.checked]);
+          const target = e.target as HTMLInputElement;
+          setCheckboxes([target.checked, target.checked]);
         }}
         isIndeterminate={isIndeterminate}
         checked={allChecked}
@@ -27,7 +28,8 @@ function GroupList() {
         <Checkbox
           checked={checkboxes[0]}
           onChange={e => {
-            setCheckboxes([e.target.checked, checkboxes[1]]);
+            const target = e.target as HTMLInputElement;
+            setCheckboxes([target.checked, checkboxes[1]]);
           }}
         >
           First subcheckbox
@@ -35,7 +37,8 @@ function GroupList() {
         <Checkbox
           checked={checkboxes[1]}
           onChange={e => {
-            setCheckboxes([checkboxes[0], e.target.checked]);
+            const target = e.target as HTMLInputElement;
+            setCheckboxes([checkboxes[0], target.checked]);
           }}
         >
           Second subcheckbox

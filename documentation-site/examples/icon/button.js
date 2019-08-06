@@ -3,9 +3,7 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
-import ChevronLeft from 'baseui/icon/chevron-left';
-import ChevronRight from 'baseui/icon/chevron-right';
-import Upload from 'baseui/icon/upload';
+import {ChevronLeft, ChevronRight, Upload} from 'baseui/icon';
 
 export default () => {
   const [useCss, theme] = useStyletron();
