@@ -43,7 +43,7 @@ const PlainInput = styled<{$inputVisible: boolean, $breakpoint: string}>(
       outline: 'none',
       '-webkit-appearance': 'none',
       ':focus': {
-        borderColor: $theme.colors.primary,
+        borderColor: $theme.colors.borderFocus,
       },
       [$breakpoint]: {
         position: 'static',
