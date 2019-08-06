@@ -29,7 +29,13 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
     >
       {themeKeys.map(key => {
         return (
-          <div className={css({display: 'flex', alignItems: 'center'})}>
+          <label
+            key={key}
+            className={css({
+              display: 'flex',
+              alignItems: 'center',
+            })}
+          >
             <div
               className={css({
                 width: '4px',
@@ -39,7 +45,6 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
             ></div>
             <Input
               positive={theme[key] !== themeInit[key]}
-              key={key}
               size={SIZE.compact}
               placeholder={themeInit[key]}
               value={theme[key]}
@@ -48,7 +53,7 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
               }
               overrides={{Root: {style: {width: '100px'}}}}
             />
-            <label
+            <div
               className={css({
                 ...($theme.typography.font200 as any),
                 color: $theme.colors.foreground,
@@ -56,8 +61,8 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
               })}
             >
               {key}
-            </label>
-          </div>
+            </div>
+          </label>
         );
       })}
     </div>
@@ -95,10 +100,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
       <div
         className={css({
           display: 'flex',
-          flexDirection: 'column',
-          '@media screen and (min-width: 664px)': {
-            flexDirection: 'row',
-          },
+          flexDirection: 'row',
         })}
       >
         <Column

@@ -130,6 +130,19 @@ export default withRouter(
       theme: componentThemeObj,
     });
 
+    let changedProps = 0;
+    Object.keys(state.props).forEach(prop => {
+      if (
+        prop !== 'overrides' &&
+        state.props[prop].value !== '' &&
+        typeof state.props[prop].value !== 'undefined' &&
+        //@ts-ignore
+        state.props[prop].value !== componentProps[prop].value
+      ) {
+        changedProps++;
+      }
+    });
+
     const componentThemeValueDiff: any = {};
     componentTheme.forEach(key => {
       if ((theme.colors as any)[key] !== state.theme[key]) {
@@ -251,7 +264,7 @@ export default withRouter(
                 }}
               >
                 <Tab
-                  title="Props"
+                  title={`Props${changedProps > 0 ? ` (${changedProps})` : ''}`}
                   overrides={{
                     Tab: {
                       style: ({$theme}) =>

@@ -51,7 +51,7 @@ export const COMPONENTS = {
         description: `Visible label.`,
       },
       onClick: {
-        value: "() => alert('click')",
+        value: '() => alert("click")',
         type: PropTypes.Function,
         description: `Function called when button is clicked.`,
       },
