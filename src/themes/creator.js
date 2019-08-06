@@ -105,7 +105,7 @@ export default function createTheme(
       // Borders
       border: primitives.mono500,
       borderAlt: primitives.mono600,
-      borderFocus: primitives.primary400,
+      borderFocus: primitives.mono1000,
       borderError: primitives.negative400,
 
       // Buttons

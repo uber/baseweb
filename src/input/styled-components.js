@@ -125,7 +125,7 @@ function getInputEnhancerColors(
   if ($isFocused) {
     return {
       color: colors.foregroundInv,
-      backgroundColor: colors.primary400,
+      backgroundColor: colors.borderFocus,
     };
   }
 
@@ -222,7 +222,7 @@ function getInputContainerColors(
   if ($isFocused) {
     return {
       color: colors.foreground,
-      borderColor: colors.primary400,
+      borderColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
   }

@@ -33,7 +33,7 @@ export default {
     // Borders
     border: primitives.mono600,
     borderAlt: primitives.mono700,
-    borderFocus: primitives.primary400,
+    borderFocus: WHITE,
     borderError: primitives.negative400,
 
     // Buttons
