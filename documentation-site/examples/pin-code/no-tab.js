@@ -1,11 +1,18 @@
 // @flow
 import React from 'react';
-import {StatefulPinCode} from 'baseui/pin-code';
+import {PinCode} from 'baseui/pin-code';
 
-export default function() {
+export default () => {
+  const [values, setValues] = React.useState(['', '', '', '']);
   return (
     <React.Fragment>
-      <StatefulPinCode manageFocus={false} />
+      <PinCode
+        manageFocus={false}
+        values={values}
+        onChange={({values}) => {
+          setValues(values);
+        }}
+      />
     </React.Fragment>
   );
-}
+};
