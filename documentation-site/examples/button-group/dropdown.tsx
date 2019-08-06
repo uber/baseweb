@@ -17,44 +17,33 @@ const items = [
 // The button group parent will decorate its children with additional props.
 // In Dropdown, we ensure that those props get shuttled to the Button component
 // rather than the wrapping StatefulPopover
-class Dropdown extends React.Component<
-  {children: React.ReactNode},
-  {isOpen: boolean}
-> {
-  state = {isOpen: false};
-  render() {
-    return (
-      <Popover
-        isOpen={this.state.isOpen}
-        onClick={() =>
-          this.setState(prev => ({isOpen: !prev.isOpen}))
-        }
-        content={
-          <StatefulMenu
-            items={items}
-            onItemSelect={() => {
-              this.setState({isOpen: false});
-            }}
-          />
-        }
-      >
-        <Button
-          {...this.props}
-          endEnhancer={() => <TriangleDown size={24} />}
-        >
-          {this.props.children}
-        </Button>
-      </Popover>
-    );
-  }
-}
-
-export default function() {
+const Dropdown = (props: {children: React.ReactNode}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <ButtonGroup>
-      <Button>First</Button>
-      <Button>Second</Button>
-      <Dropdown>Third</Dropdown>
-    </ButtonGroup>
+    <Popover
+      isOpen={isOpen}
+      onClick={() => setIsOpen(s => !s)}
+      content={
+        <StatefulMenu
+          items={items}
+          onItemSelect={() => setIsOpen(false)}
+        />
+      }
+    >
+      <Button
+        {...props}
+        endEnhancer={() => <TriangleDown size={24} />}
+      >
+        {props.children}
+      </Button>
+    </Popover>
   );
-}
+};
+
+export default () => (
+  <ButtonGroup>
+    <Button>First</Button>
+    <Button>Second</Button>
+    <Dropdown>Third</Dropdown>
+  </ButtonGroup>
+);

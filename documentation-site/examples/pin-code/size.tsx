@@ -1,15 +1,35 @@
-// @flow
 import React from 'react';
-import {StatefulPinCode} from 'baseui/pin-code';
+import {PinCode} from 'baseui/pin-code';
+import {SIZE} from 'baseui/input';
 
-export default function() {
+export default () => {
+  const [valuesA, setValuesA] = React.useState(['', '', '', '']);
+  const [valuesB, setValuesB] = React.useState(['', '', '', '']);
+  const [valuesC, setValuesC] = React.useState(['', '', '', '']);
   return (
     <React.Fragment>
-      <StatefulPinCode size="compact" />
+      <PinCode
+        size={SIZE.compact}
+        values={valuesA}
+        onChange={({values}) => {
+          setValuesA(values);
+        }}
+      />
       <br />
-      <StatefulPinCode />
+      <PinCode
+        values={valuesB}
+        onChange={({values}) => {
+          setValuesB(values);
+        }}
+      />
       <br />
-      <StatefulPinCode size="large" />
+      <PinCode
+        size={SIZE.large}
+        values={valuesC}
+        onChange={({values}) => {
+          setValuesC(values);
+        }}
+      />
     </React.Fragment>
   );
-}
+};
