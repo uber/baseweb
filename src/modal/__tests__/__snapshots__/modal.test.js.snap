@@ -54,18 +54,18 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                     tabindex="-1"
                     test-style="[object Object]"
                   >
-                    <h2
+                    <div
                       styled-component="true"
                       test-style="[object Object]"
                     >
                       Hello world
-                    </h2>
-                    <p
+                    </div>
+                    <div
                       styled-component="true"
                       test-style="[object Object]"
                     >
                       Modal Body
-                    </p>
+                    </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
@@ -128,18 +128,18 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                       tabindex="-1"
                       test-style="[object Object]"
                     >
-                      <h2
+                      <div
                         styled-component="true"
                         test-style="[object Object]"
                       >
                         Hello world
-                      </h2>
-                      <p
+                      </div>
+                      <div
                         styled-component="true"
                         test-style="[object Object]"
                       >
                         Modal Body
-                      </p>
+                      </div>
                       <div
                         styled-component="true"
                         test-style="[object Object]"
@@ -215,18 +215,18 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                       tabindex="-1"
                       test-style="[object Object]"
                     >
-                      <h2
+                      <div
                         styled-component="true"
                         test-style="[object Object]"
                       >
                         Hello world
-                      </h2>
-                      <p
+                      </div>
+                      <div
                         styled-component="true"
                         test-style="[object Object]"
                       >
                         Modal Body
-                      </p>
+                      </div>
                       <div
                         styled-component="true"
                         test-style="[object Object]"
@@ -327,18 +327,18 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                               tabindex="-1"
                               test-style="[object Object]"
                             >
-                              <h2
+                              <div
                                 styled-component="true"
                                 test-style="[object Object]"
                               >
                                 Hello world
-                              </h2>
-                              <p
+                              </div>
+                              <div
                                 styled-component="true"
                                 test-style="[object Object]"
                               >
                                 Modal Body
-                              </p>
+                              </div>
                               <div
                                 styled-component="true"
                                 test-style="[object Object]"

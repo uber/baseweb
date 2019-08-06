@@ -9,8 +9,6 @@ import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
 
-import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
-import BasicUncontrolledDefaultValue from 'examples/input/basic-uncontrolled-default-value.js';
 import BasicControlled from 'examples/input/basic-controlled.js';
 import Sizes from 'examples/input/sizes.js';
 import AvailableStates from 'examples/input/available-states.js';
@@ -22,6 +20,7 @@ import Focus from 'examples/input/focus.js';
 import WithTags from 'examples/input/with-tags.js';
 import Clearable from 'examples/input/clearable.js';
 import Password from 'examples/input/password.js';
+import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulInput} from 'baseui/input';
@@ -37,51 +36,31 @@ An input enables a person to type in text information.
 
 - When a person should provide information to the application.
 
-<Example title="Input basic usage" path="input/basic-controlled.js">
+<Example title="Basic usage" path="input/basic-controlled.js">
   <BasicControlled />
 </Example>
 
-<Example
-  title="Input as an uncontrolled component"
-  path="input/basic-uncontrolled.js"
->
-  <BasicUncontrolled />
-</Example>
-
-<Example title="Input sizes" path="input/sizes.js">
-  <Sizes />
-</Example>
-
-<Example
-  title="Input as an uncontrolled component with a default value"
-  path="input/basic-uncontrolled-default-value.js"
->
-  <BasicUncontrolledDefaultValue />
-</Example>
-
-<Example
-  title="Input with all available states"
-  path="input/available-states.js"
->
+<Example title="States" path="input/available-states.js">
   <AvailableStates />
 </Example>
 
-<Example title="Input with enhancers" path="input/enhancers.js">
+<Example title="Sizes" path="input/sizes.js">
+  <Sizes />
+</Example>
+
+<Example title="Enhancers" path="input/enhancers.js">
   <Enhancers />
 </Example>
 
-<Example
-  title="Input with before and after overrides"
-  path="input/before-after.js"
->
+<Example title="Before and After overrides" path="input/before-after.js">
   <BeforeAfter />
 </Example>
 
-<Example title="Input mask" path="input/mask.js">
+<Example title="MaskedInput" path="input/mask.js">
   <Mask />
 </Example>
 
-<Example title="Input with clearable" path="input/clearable.js">
+<Example title="Clearable" path="input/clearable.js">
   <Clearable />
 </Example>
 
@@ -119,17 +98,28 @@ You can also use `overrides` to customize the icons used in the toggle:
 
 Note, if all you want to do is change the icons, you could [update your theme](https://deploy-preview-1598--baseui.netlify.com/theming/overriding-icons/) instead.
 
-<Example title="Input with overrides" path="input/overrides.js">
+<Example title="Overrides usage" path="input/overrides.js">
   <Customization />
 </Example>
 
-<Example title="Input Focus with a ref" path="input/focus.js">
+<Example title="Focus and ref" path="input/focus.js">
   <Focus />
 </Example>
 
 <Example title="Create/Delete Tags" path="input/with-tags.js">
   <WithTags />
 </Example>
+
+In the example above we use `overrides` to add "tag" functionality to our input. Type a phrase and press enter to create a new tag. Use backspace to remove tags.
+
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="input/basic-uncontrolled.js"
+>
+  <BasicUncontrolled />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulInput`, which manages its own state.
 
 ## Overrides
 

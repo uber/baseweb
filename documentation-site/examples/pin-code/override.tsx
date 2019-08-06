@@ -1,6 +1,5 @@
-// @flow
 import React from 'react';
-import {StatefulPinCode} from 'baseui/pin-code';
+import {PinCode} from 'baseui/pin-code';
 
 const overrides = {
   Input: {
@@ -18,6 +17,15 @@ const overrides = {
   },
 };
 
-export default function() {
-  return <StatefulPinCode overrides={overrides} />;
-}
+export default () => {
+  const [values, setValues] = React.useState(['', '', '', '']);
+  return (
+    <PinCode
+      overrides={overrides}
+      values={values}
+      onChange={({values}) => {
+        setValues(values);
+      }}
+    />
+  );
+};

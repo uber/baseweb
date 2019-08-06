@@ -1,10 +1,18 @@
 // @flow
 import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
-import {StatefulCheckbox} from 'baseui/checkbox';
+import {Checkbox} from 'baseui/checkbox';
 
-export default () => (
-  <FormControl label="Checkbox label" caption="Checkbox caption">
-    <StatefulCheckbox>Checkbox control</StatefulCheckbox>
-  </FormControl>
-);
+export default () => {
+  const [checked, setChecked] = React.useState(false);
+  return (
+    <FormControl label="Checkbox label" caption="Checkbox caption">
+      <Checkbox
+        checked={checked}
+        onChange={() => setChecked(!checked)}
+      >
+        Checkbox control
+      </Checkbox>
+    </FormControl>
+  );
+};
