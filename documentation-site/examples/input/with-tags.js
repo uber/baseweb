@@ -1,8 +1,7 @@
 // @flow
 import * as React from 'react';
 import {styled} from 'baseui';
-import {Block} from 'baseui/block';
-import {Input, StyledInput, SIZE} from 'baseui/input';
+import {Input, StyledInput} from 'baseui/input';
 import {Tag, VARIANT as TAG_VARIANT} from 'baseui/tag';
 
 const ValueWrapper = styled('div', {
@@ -12,10 +11,10 @@ const ValueWrapper = styled('div', {
   alignItems: 'center',
 });
 
-const InputReplacement = ({tags, removeTag, ...restProps}) => {
+const InputReplacement = ({tags, removeTag, ...restProps}: any) => {
   return (
     <ValueWrapper>
-      {tags.map((tag, index) => (
+      {tags.map((tag: string, index: number) => (
         <Tag
           variant={TAG_VARIANT.solid}
           onActionClick={() => removeTag(tag)}
@@ -29,61 +28,47 @@ const InputReplacement = ({tags, removeTag, ...restProps}) => {
   );
 };
 
-class TagSelect extends React.Component<
-  {},
-  {value: string, tags: string[]},
-> {
-  state = {value: '', tags: ['hello']};
-
-  handleKeyDown = (event: SyntheticKeyboardEvent<*>) => {
-    if (event.keyCode === 13) {
-      if (!this.state.value) return;
-
-      this.addTag(this.state.value);
-      this.setState({value: ''});
+export default () => {
+  const [value, setValue] = React.useState('');
+  const [tags, setTags] = React.useState(['hello']);
+  const addTag = (tag: string) => {
+    setTags([...tags, tag]);
+  };
+  const removeTag = (tag: string) => {
+    setTags(tags.filter(t => t !== tag));
+  };
+  const handleKeyDown = event => {
+    switch (event.keyCode) {
+      // Enter
+      case 13: {
+        if (!value) return;
+        addTag(value);
+        setValue('');
+        return;
+      }
+      // Backspace
+      case 8: {
+        if (value || !tags.length) return;
+        removeTag(tags[tags.length - 1]);
+        return;
+      }
     }
-
-    if (event.keyCode === 8) {
-      if (this.state.value || !this.state.tags.length) return;
-
-      this.removeTag(this.state.tags[this.state.tags.length - 1]);
-    }
   };
-
-  addTag = (tag: string) => {
-    this.setState({tags: [...this.state.tags, tag]});
-  };
-
-  removeTag = (tag: string) => {
-    this.setState({tags: this.state.tags.filter(t => t !== tag)});
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <Block>
-          Type a word and press enter to create a tag. Use backspace
-          to remove tags.
-        </Block>
-        <Input
-          size={SIZE.compact}
-          value={this.state.value}
-          onChange={e => this.setState({value: e.target.value})}
-          overrides={{
-            Input: {
-              style: {width: 'auto', flexGrow: 1},
-              component: InputReplacement,
-              props: {
-                tags: this.state.tags,
-                removeTag: this.removeTag,
-                onKeyDown: this.handleKeyDown,
-              },
-            },
-          }}
-        />
-      </React.Fragment>
-    );
-  }
-}
-
-export default TagSelect;
+  return (
+    <Input
+      value={value}
+      onChange={e => setValue(e.currentTarget.value)}
+      overrides={{
+        Input: {
+          style: {width: 'auto', flexGrow: 1},
+          component: InputReplacement,
+          props: {
+            tags: tags,
+            removeTag: removeTag,
+            onKeyDown: handleKeyDown,
+          },
+        },
+      }}
+    />
+  );
+};

@@ -1,24 +1,14 @@
 // @flow
 import * as React from 'react';
-import {StatefulTextarea as Textarea, SIZE} from 'baseui/textarea';
+import {Textarea} from 'baseui/textarea';
 
-export default () => (
-  <React.Fragment>
-    <Textarea size={SIZE.compact} placeholder="Compact textarea" />
-    <br />
+export default () => {
+  const [value, setValue] = React.useState('');
+  return (
     <Textarea
-      initialState={{value: 'uber'}}
-      placeholder="Default textarea"
+      value={value}
+      onChange={e => setValue(e.currentTarget.value)}
+      placeholder="Enter some text here..."
     />
-    <br />
-    <Textarea
-      size={SIZE.large}
-      positive
-      placeholder="Large textarea"
-    />
-    <br />
-    <Textarea error={true} placeholder="Placeholder" />
-    <br />
-    <Textarea disabled placeholder="Disabled textarea" />
-  </React.Fragment>
-);
+  );
+};
