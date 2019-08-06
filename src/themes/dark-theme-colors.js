@@ -255,13 +255,21 @@ export default {
     tickMarkFillDisabled: primitives.mono400,
 
     // Slider/Toggle
+    sliderFill: WHITE,
+    sliderFillDisabled: primitives.mono300,
     sliderTrackFill: primitives.mono600,
     sliderTrackFillHover: primitives.mono500,
     sliderTrackFillActive: primitives.mono400,
+    sliderTrackFillDisabled: primitives.mono700,
+    sliderHandleInnerFill: primitives.mono300,
+    sliderHandleInnerFillDisabled: primitives.mono500,
+    sliderHandleInnerFillSelectedHover: primitives.mono600,
+    sliderHandleInnerFillSelectedActive: primitives.mono700,
+
+    // unused Slider/Toggle
     sliderTrackFillSelected: primitives.primary500,
     sliderTrackFillSelectedActive: primitives.primary600,
     sliderTrackFillSelectedHover: primitives.primary700,
-    sliderTrackFillDisabled: primitives.mono700,
     sliderHandleFill: primitives.mono300,
     sliderHandleFillHover: primitives.mono300,
     sliderHandleFillActive: primitives.mono300,
@@ -269,10 +277,6 @@ export default {
     sliderHandleFillSelectedHover: primitives.primary600,
     sliderHandleFillSelectedActive: primitives.primary700,
     sliderHandleFillDisabled: primitives.mono600,
-    sliderHandleInnerFill: primitives.mono300,
-    sliderHandleInnerFillDisabled: primitives.mono500,
-    sliderHandleInnerFillSelectedHover: primitives.primary600,
-    sliderHandleInnerFillSelectedActive: primitives.primary700,
 
     sliderBorder: WHITE,
     sliderBorderHover: WHITE,

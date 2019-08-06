@@ -40,6 +40,7 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
   const {$theme, $value = [], $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
+  const fillColor = $disabled ? colors.sliderFillDisabled : colors.sliderFill;
   return {
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
@@ -49,8 +50,8 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
       values: $value,
       colors:
         $value.length === 1
-          ? [colors.primary, colors.mono400]
-          : [colors.mono400, colors.primary, colors.mono400],
+          ? [fillColor, colors.sliderTrackFill]
+          : [colors.sliderTrackFill, fillColor, colors.sliderTrackFill],
       min: $min,
       max: $max,
     }),
@@ -116,7 +117,9 @@ export const InnerThumb = styled<StylePropsT>('div', props => {
     borderTopRightRadius: '2px',
     borderBottomRightRadius: '2px',
     borderBottomLeftRadius: '2px',
-    backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
+    backgroundColor: $isDragged
+      ? $theme.colors.sliderHandleInnerFillSelectedActive
+      : $theme.colors.sliderHandleInnerFill,
   };
 });
 InnerThumb.displayName = 'StyledInnerThumb';
