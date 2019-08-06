@@ -24,4 +24,14 @@ describe('deepMerge', () => {
     const ret = deepMerge({}, target, source1, source2);
     expect(ret).toEqual({foo: 3, bar: 2, baz: 3, quux: 4});
   });
+
+  test('merges array and object properties absent in target correctly', () => {
+    const target = {};
+    const source = {foo: {bar: {a: 1, b: 2}}, baz: {quux: ['a', 'b', 'c']}};
+    const ret = deepMerge({}, target, source);
+    expect(ret).toEqual({
+      foo: {bar: {a: 1, b: 2}},
+      baz: {quux: ['a', 'b', 'c']},
+    });
+  });
 });
