@@ -138,7 +138,7 @@ function getControlContainerColors(
   if ($isFocused || $isPseudoFocused) {
     return {
       color: colors.foreground,
-      borderColor: colors.primary400,
+      borderColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
   }
