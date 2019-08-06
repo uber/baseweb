@@ -1,8 +1,8 @@
 import React from 'react';
-import {StatefulInput} from 'baseui/input';
+import {Input} from 'baseui/input';
 
 export default () => (
-  <StatefulInput
+  <Input
     overrides={{
       InputContainer: {
         style: props => {
@@ -16,18 +16,18 @@ export default () => (
             borderColor: $disabled
               ? colors.borderAlt
               : $error
-                ? colors.borderError
-                : $isFocused
-                  ? 'darkseagreen'
-                  : colors.border,
+              ? colors.borderError
+              : $isFocused
+              ? 'darkseagreen'
+              : colors.border,
             boxShadow: `0 0 ${sizing.scale100} ${
               $disabled
                 ? 'transparent'
                 : $error
-                  ? colors.shadowError
-                  : $isFocused
-                    ? 'lightseagreen'
-                    : 'transparent'
+                ? colors.shadowError
+                : $isFocused
+                ? 'lightseagreen'
+                : 'transparent'
             }`,
           };
         },

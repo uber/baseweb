@@ -10,7 +10,8 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import BasicButton from 'examples/button/basic.js';
-import BasicButtonCompact from 'examples/button/basic-compact.js';
+import Kinds from 'examples/button/kinds.js';
+import Sizes from 'examples/button/sizes.js';
 import WithEnhancer from 'examples/button/with-enhancers.js';
 import States from 'examples/button/states.js';
 import Shapes from 'examples/button/shapes.js';
@@ -52,30 +53,34 @@ Secondary buttons are subdued in value with the primary color text to compliment
 **Tertiary** buttons can used as a substitute for a secondary buttons, but should never take the role of a
 primary button action. As the name implies, it’s offered to supplement to create variation within an experience.
 
-<Example title="Button kinds" path="button/basic.js">
+<Example title="Basic usage" path="button/basic.js">
   <BasicButton />
 </Example>
 
-<Example title="Button states" path="button/states.js">
+<Example title="Kinds" path="button/kinds.js">
+  <Kinds />
+</Example>
+
+<Example title="States" path="button/states.js">
   <States />
 </Example>
 
-<Example title="Button sizes" path="button/basic-compact.js">
-  <BasicButtonCompact />
+<Example title="Sizes" path="button/sizes.js">
+  <Sizes />
 </Example>
 
-<Example title="Button with enhancers" path="button/with-enhancers.js">
-  <WithEnhancer />
-</Example>
-
-<Example title="Button shapes" path="button/shapes.js">
+<Example title="Shapes" path="button/shapes.js">
   <Shapes />
 </Example>
 
-<Example title="Button dropdown" path="button/dropdown.js">
+<Example title="Adding enhancers" path="button/with-enhancers.js">
+  <WithEnhancer />
+</Example>
+
+<Example title="As a dropdown" path="button/dropdown.js">
   <Dropdown />
 </Example>
 
-<Example title="Button as an Anchor" path="button/as-an-anchor.js">
+<Example title="As an anchor" path="button/as-an-anchor.js">
   <ButtonAsAnAnchor />
 </Example>

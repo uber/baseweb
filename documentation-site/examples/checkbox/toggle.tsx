@@ -1,21 +1,37 @@
 import * as React from 'react';
-import {StatefulCheckbox, STYLE_TYPE} from 'baseui/checkbox';
+import {Checkbox, STYLE_TYPE} from 'baseui/checkbox';
 
-export default () => (
-  <React.Fragment>
-    <StatefulCheckbox
-      onChange={console.log}
-      checkmarkType={STYLE_TYPE.toggle}
-    >
-      toggle me
-    </StatefulCheckbox>
-    <br />
-    <StatefulCheckbox
-      disabled
-      onChange={console.log}
-      checkmarkType={STYLE_TYPE.toggle}
-    >
-      disabled toggle
-    </StatefulCheckbox>
-  </React.Fragment>
-);
+export default () => {
+  const [checkboxes, setCheckboxes] = React.useState([
+    false,
+    false,
+  ]);
+  return (
+    <React.Fragment>
+      <Checkbox
+        checked={checkboxes[0]}
+        onChange={e => {
+          const nextCheckboxes = [...checkboxes];
+          nextCheckboxes[0] = e.currentTarget.checked;
+          setCheckboxes(nextCheckboxes);
+        }}
+        checkmarkType={STYLE_TYPE.toggle}
+      >
+        toggle me
+      </Checkbox>
+      <br />
+      <Checkbox
+        disabled
+        checked={checkboxes[1]}
+        onChange={e => {
+          const nextCheckboxes = [...checkboxes];
+          nextCheckboxes[1] = e.currentTarget.checked;
+          setCheckboxes(nextCheckboxes);
+        }}
+        checkmarkType={STYLE_TYPE.toggle}
+      >
+        disabled toggle
+      </Checkbox>
+    </React.Fragment>
+  );
+};
