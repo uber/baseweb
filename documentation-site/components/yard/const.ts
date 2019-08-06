@@ -1,6 +1,7 @@
 import {KIND, SIZE, SHAPE} from 'baseui/button';
 
 export enum Action {
+  Update,
   UpdateCode,
   UpdatePropsAndCode,
   UpdateThemeAndCode,

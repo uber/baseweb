@@ -38,6 +38,7 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
               })}
             ></div>
             <Input
+              positive={theme[key] !== themeInit[key]}
               key={key}
               size={SIZE.compact}
               placeholder={themeInit[key]}
