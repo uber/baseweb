@@ -1,12 +1,19 @@
 // @flow
 import * as React from 'react';
 import {StyledLink} from 'baseui/link';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 
-export default () => (
-  <Block font="font450">
-    <StyledLink href="https://baseui.design">
-      Link to baseui.design
-    </StyledLink>
-  </Block>
-);
+export default () => {
+  const [useCss, theme] = useStyletron();
+  return (
+    <div
+      className={useCss({
+        ...theme.typography.font450,
+      })}
+    >
+      <StyledLink href="https://baseui.design">
+        Link to baseui.design
+      </StyledLink>
+    </div>
+  );
+};

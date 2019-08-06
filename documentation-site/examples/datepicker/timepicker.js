@@ -1,12 +1,11 @@
 // @flow
 import React, {useState} from 'react';
-import {styled} from 'baseui';
+import {useStyletron} from 'baseui';
 import {TimePicker} from 'baseui/datepicker';
 import {FormControl} from 'baseui/form-control';
 
-const Container = styled('div', {width: '120px'});
-
 export default () => {
+  const [useCss] = useStyletron();
   const [twelveHourTime, setTwelveHourTime] = useState(null);
   const [twentyFourHourTime, setTwentyFourHourTime] = useState(
     null,
@@ -14,7 +13,7 @@ export default () => {
   const [creatableTime, setCreatableTime] = useState(null);
 
   return (
-    <Container>
+    <div className={useCss({width: '120px'})}>
       <FormControl label="12 hour format">
         <TimePicker
           value={twelveHourTime}
@@ -37,6 +36,6 @@ export default () => {
           step={900}
         />
       </FormControl>
-    </Container>
+    </div>
   );
 };

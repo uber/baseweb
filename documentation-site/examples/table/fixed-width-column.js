@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import {styled, withStyle} from 'baseui';
+import {withStyle, useStyletron} from 'baseui';
 import {
   StyledTable,
   StyledHead,
@@ -75,10 +75,6 @@ const DATA = [
 
 const COLUMNS = ['Id', 'First Name', 'Last Name', 'Age', 'Address'];
 
-const Container = styled('div', {
-  height: '400px',
-});
-
 const SmallerHeadCell = withStyle(StyledHeadCell, {
   maxWidth: '30px',
 });
@@ -87,26 +83,29 @@ const SmallerCell = withStyle(StyledCell, {
   maxWidth: '30px',
 });
 
-export default () => (
-  <Container>
-    <StyledTable>
-      <StyledHead>
-        <SmallerHeadCell>ID</SmallerHeadCell>
-        {COLUMNS.slice(1).map((col, index) => (
-          <StyledHeadCell key={index}>{col}</StyledHeadCell>
-        ))}
-      </StyledHead>
+export default () => {
+  const [useCss] = useStyletron();
+  return (
+    <div className={useCss({height: '400px'})}>
+      <StyledTable>
+        <StyledHead>
+          <SmallerHeadCell>ID</SmallerHeadCell>
+          {COLUMNS.slice(1).map((col, index) => (
+            <StyledHeadCell key={index}>{col}</StyledHeadCell>
+          ))}
+        </StyledHead>
 
-      <StyledBody>
-        {DATA.map((row, index) => (
-          <StyledRow key={index}>
-            <SmallerCell>{row[0]}</SmallerCell>
-            {row.slice(1).map((cell, cellIndex) => (
-              <StyledCell key={cellIndex}>{cell}</StyledCell>
-            ))}
-          </StyledRow>
-        ))}
-      </StyledBody>
-    </StyledTable>
-  </Container>
-);
+        <StyledBody>
+          {DATA.map((row, index) => (
+            <StyledRow key={index}>
+              <SmallerCell>{row[0]}</SmallerCell>
+              {row.slice(1).map((cell, cellIndex) => (
+                <StyledCell key={cellIndex}>{cell}</StyledCell>
+              ))}
+            </StyledRow>
+          ))}
+        </StyledBody>
+      </StyledTable>
+    </div>
+  );
+};

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
 import {ArrowRight} from 'baseui/icon';
 import {
@@ -23,40 +23,62 @@ function formatDateAtIndex(
 }
 
 export default () => {
+  const [useCss, theme] = useStyletron();
   const [dates, setDates] = useState([START_DATE, END_DATE]);
 
   return (
-    <Block display="flex" alignItems="center">
-      <Block width="120px" marginRight="scale300">
+    <div
+      className={useCss({display: 'flex', alignItems: 'center'})}
+    >
+      <div
+        className={useCss({
+          width: '120px',
+          marginRight: theme.sizing.scale300,
+        })}
+      >
         <FormControl label="Start Date" caption="YYYY/MM/DD">
           <Datepicker
             value={dates}
-            onChange={({date}) => setDates(date as Date[])}
+            onChange={({date}) => setDates(date as Array<Date>)}
             formatDisplayValue={date => formatDateAtIndex(date, 0)}
             timeSelectStart
             range
           />
         </FormControl>
-      </Block>
+      </div>
 
-      <Block width="120px" marginRight="scale300">
+      <div
+        className={useCss({
+          width: '120px',
+          marginRight: theme.sizing.scale300,
+        })}
+      >
         <FormControl label="Start Time" caption="HH:MM">
           <TimePicker
             value={dates[0]}
             onChange={time => setDates([time, dates[1]])}
           />
         </FormControl>
-      </Block>
+      </div>
 
-      <Block marginRight="scale300">
+      <div
+        className={useCss({
+          marginRight: theme.sizing.scale300,
+        })}
+      >
         <ArrowRight size={24} />
-      </Block>
+      </div>
 
-      <Block width="120px" marginRight="scale300">
+      <div
+        className={useCss({
+          width: '120px',
+          marginRight: theme.sizing.scale300,
+        })}
+      >
         <FormControl label="End Date" caption="yyyy/MM/DD">
           <Datepicker
             value={dates}
-            onChange={({date}) => setDates(date as Date[])}
+            onChange={({date}) => setDates(date as Array<Date>)}
             formatDisplayValue={date => formatDateAtIndex(date, 1)}
             overrides={{
               TimeSelectFormControl: {
@@ -67,16 +89,20 @@ export default () => {
             range
           />
         </FormControl>
-      </Block>
+      </div>
 
-      <Block width="120px">
+      <div
+        className={useCss({
+          width: '120px',
+        })}
+      >
         <FormControl label="End Time" caption="HH:MM">
           <TimePicker
             value={dates[1]}
             onChange={time => setDates([dates[0], time])}
           />
         </FormControl>
-      </Block>
-    </Block>
+      </div>
+    </div>
   );
 };

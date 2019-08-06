@@ -14,6 +14,9 @@ export type TProp = {
 
 export type TState = {
   code: string;
+  theme: {
+    [key: string]: string;
+  };
   props: {
     [key: string]: TProp;
   };

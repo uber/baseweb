@@ -1,7 +1,7 @@
 // @flow
 import React, {useState} from 'react';
 
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
 import {
   Datepicker,
@@ -12,12 +12,18 @@ import {
 const DATE = new Date(2019, 3, 1, 12, 0, 0);
 
 export default () => {
+  const [useCss, theme] = useStyletron();
   const [date, setDate] = useState<any>(DATE);
   const [zone, setZone] = useState(null);
 
   return (
-    <Block display="flex">
-      <Block width="120px" marginRight="scale300">
+    <div className={useCss({display: 'flex'})}>
+      <div
+        className={useCss({
+          width: '120px',
+          marginRight: theme.sizing.scale300,
+        })}
+      >
         <FormControl label="Date" caption="YYYY/MM/DD">
           <Datepicker
             value={date}
@@ -25,15 +31,24 @@ export default () => {
             timeSelectStart
           />
         </FormControl>
-      </Block>
+      </div>
 
-      <Block width="120px" marginRight="scale300">
+      <div
+        className={useCss({
+          width: '120px',
+          marginRight: theme.sizing.scale300,
+        })}
+      >
         <FormControl label="Time" caption="HH:MM">
           <TimePicker value={date} onChange={setDate} />
         </FormControl>
-      </Block>
+      </div>
 
-      <Block width="340px">
+      <div
+        className={useCss({
+          width: '340px',
+        })}
+      >
         <FormControl label="Timezone">
           <TimezonePicker
             date={date}
@@ -41,7 +56,7 @@ export default () => {
             onChange={setZone}
           />
         </FormControl>
-      </Block>
-    </Block>
+      </div>
+    </div>
   );
 };

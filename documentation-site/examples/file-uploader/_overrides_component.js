@@ -6,7 +6,6 @@ import type {
   OverridesT,
   StylePropsT,
 } from 'baseui/file-uploader';
-import {Block} from 'baseui/block';
 
 export default class Uploader extends React.Component<
   {overrides: OverridesT<StylePropsT>},
@@ -46,21 +45,19 @@ export default class Uploader extends React.Component<
   render() {
     return (
       <React.Fragment>
-        <Block marginBottom="scale600">
-          <FileUploader
-            onCancel={this.reset}
-            onDrop={this.handleDrop}
-            progressAmount={this.state.progressAmount}
-            progressMessage={
-              this.state.progressAmount
-                ? `Uploading... ${
-                    this.state.progressAmount
-                  }% of 100%`
-                : ''
-            }
-            overrides={this.props.overrides}
-          />
-        </Block>
+        <FileUploader
+          onCancel={this.reset}
+          onDrop={this.handleDrop}
+          progressAmount={this.state.progressAmount}
+          progressMessage={
+            this.state.progressAmount
+              ? `Uploading... ${this.state.progressAmount}% of 100%`
+              : ''
+          }
+          overrides={this.props.overrides}
+        />
+        <br />
+        <br />
         <FileUploader
           onCancel={this.reset}
           onDrop={this.handleDrop}

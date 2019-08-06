@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Button, KIND} from 'baseui/button';
 import {TriangleDown} from 'baseui/icon';
 import {StatefulMenu} from 'baseui/menu';
@@ -7,105 +7,113 @@ import {Pagination} from 'baseui/pagination';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {Table} from 'baseui/table';
 
-class PaginatedTable extends React.Component<any, any> {
-  state = {page: 1, limit: 12};
+function PaginatedTable(props: {data: any[]; columns: any[]}) {
+  const [useCss, theme] = useStyletron();
+  const [page, setPage] = React.useState(1);
+  const [limit, setLimit] = React.useState(12);
 
-  handlePageChange = (nextPage: number) => {
+  const handlePageChange = (nextPage: number) => {
     if (nextPage < 1) {
       return;
     }
-    if (
-      nextPage >
-      Math.ceil(this.props.data.length / this.state.limit)
-    ) {
+    if (nextPage > Math.ceil(props.data.length / limit)) {
       return;
     }
-    this.setState({page: nextPage});
+    setPage(nextPage);
   };
 
-  handleLimitChange = (nextLimit: number) => {
-    const nextPageNum = Math.ceil(
-      this.props.data.length / nextLimit,
-    );
-    if (nextPageNum < this.state.page) {
-      this.setState({limit: nextLimit, page: nextPageNum});
+  const handleLimitChange = (nextLimit: number) => {
+    const nextPageNum = Math.ceil(props.data.length / nextLimit);
+    if (nextPageNum < page) {
+      setLimit(nextLimit);
+      setPage(nextPageNum);
     } else {
-      this.setState({limit: nextLimit});
+      setLimit(nextLimit);
     }
   };
 
-  window = () => {
-    const min = (this.state.page - 1) * this.state.limit;
-    return this.props.data.slice(min, min + this.state.limit);
+  const window = () => {
+    const min = (page - 1) * limit;
+    return props.data.slice(min, min + limit);
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <Block
-          display="flex"
-          justifyContent="space-between"
-          paddingTop="scale600"
-          paddingBottom="scale600"
+  return (
+    <React.Fragment>
+      <div
+        className={useCss({
+          display: 'flex',
+          justifyContent: 'space-between',
+          paddingTop: theme.sizing.scale600,
+          paddingBottom: theme.sizing.scale600,
+        })}
+      >
+        <div
+          className={useCss({
+            // ...theme.typography.font700
+            fontFamily: theme.typography.font700.fontFamily,
+            fontWeight: theme.typography.font700.fontWeight,
+            fontSize: theme.typography.font700.fontSize,
+            lineHeight: theme.typography.font700.lineHeight,
+          })}
         >
-          <Block font="font700">Table Example</Block>
-          <Button>
-            <Block paddingLeft="scale1200" paddingRight="scale1200">
-              Action
-            </Block>
-          </Button>
-        </Block>
-        <Block height="500px">
-          <Table
-            columns={this.props.columns}
-            data={this.window()}
-          />
-        </Block>
-        <Block
-          paddingTop="scale600"
-          paddingRight="scale800"
-          paddingBottom="scale600"
-          paddingLeft="scale800"
-          display="flex"
-          justifyContent="space-between"
-        >
-          <StatefulPopover
-            content={({close}) => (
-              <StatefulMenu
-                items={[...new Array(100)].map((_, i) => ({
-                  label: i + 1,
-                }))}
-                onItemSelect={({item}) => {
-                  this.handleLimitChange(item.label);
-                  close();
-                }}
-                overrides={{
-                  List: {
-                    style: {height: '150px', width: '100px'},
-                  },
-                }}
-              />
-            )}
-            placement={PLACEMENT.bottom}
+          Table Example
+        </div>
+        <Button>
+          <div
+            className={useCss({
+              paddingLeft: theme.sizing.scale1200,
+              paddingRight: theme.sizing.scale1200,
+            })}
           >
-            <Button kind={KIND.tertiary} endEnhancer={TriangleDown}>
-              {`${this.state.limit} Rows`}
-            </Button>
-          </StatefulPopover>
+            Action
+          </div>
+        </Button>
+      </div>
+      <div className={useCss({height: '500px'})}>
+        <Table columns={props.columns} data={window()} />
+      </div>
+      <div
+        className={useCss({
+          paddingTop: theme.sizing.scale600,
+          paddingBottom: theme.sizing.scale600,
+          paddingRight: theme.sizing.scale800,
+          paddingLeft: theme.sizing.scale800,
+          display: 'flex',
+          justifyContent: 'space-between',
+        })}
+      >
+        <StatefulPopover
+          content={({close}) => (
+            <StatefulMenu
+              items={[...new Array(100)].map((_, i) => ({
+                label: i + 1,
+              }))}
+              onItemSelect={({item}) => {
+                handleLimitChange(item.label);
+                close();
+              }}
+              overrides={{
+                List: {
+                  style: {height: '150px', width: '100px'},
+                },
+              }}
+            />
+          )}
+          placement={PLACEMENT.bottom}
+        >
+          <Button kind={KIND.tertiary} endEnhancer={TriangleDown}>
+            {`${limit} Rows`}
+          </Button>
+        </StatefulPopover>
 
-          <Pagination
-            currentPage={this.state.page}
-            numPages={Math.ceil(
-              this.props.data.length / this.state.limit,
-            )}
-            onPageChange={({nextPage}) =>
-              this.handlePageChange(nextPage)
-            }
-          />
-        </Block>
-      </React.Fragment>
-    );
-  }
+        <Pagination
+          currentPage={page}
+          numPages={Math.ceil(props.data.length / limit)}
+          onPageChange={({nextPage}) => handlePageChange(nextPage)}
+        />
+      </div>
+    </React.Fragment>
+  );
 }
 
 const COLUMNS = [...new Array(5)].map(() => 'Label');
