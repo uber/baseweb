@@ -79,7 +79,11 @@ function getInnerColor(props) {
       }
     }
   } else {
-    return colors.tickMarkFill;
+    if (props.$isError) {
+      return colors.tickMarkFillError;
+    } else {
+      return colors.tickMarkFill;
+    }
   }
 }
 
