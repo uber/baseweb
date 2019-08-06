@@ -25,7 +25,7 @@ export default Layout;
 
 # Payment Card
 
-Payment card input **automatically detects the card type**, shows the icon and formats the number accordingly. It supports following brands:
+The Payment Card input **automatically detects and formats credit card types**. It shows a small thumbnail icon of the parsed credit card brand to let users know they have entered their card in the correct format. The supported credit card brands are listed here:
 
 <Table
   columns={['Card Type', 'Example Number']}
@@ -42,24 +42,28 @@ Payment card input **automatically detects the card type**, shows the icon and f
   ]}
 />
 
-The [card-validator](https://github.com/braintree/card-validator) library is used to determine the card format. It's also re-exported from `baseui/payment-card` as `{valid}` in case you need more meta-data about the card.
+The [card-validator](https://github.com/braintree/card-validator) library is used to determine the card format. It's also re-exported from `baseui/payment-card` as `valid` in case you need more metadata about the card.
 
-This component is based on [input](/components/input) and shares the most of its APIs.
+This component is based on the [Input](/components/input) component. All of the props you can pass to `Input` also work on `PaymentCard`: `size`, `error`, `positive`, `disabled`, etc. The only exception to this is `overrides`, which has a [slightly different API](/components/payment-card/#overrides).
 
-<Example title="Controlled usage" path="payment-card/controlled.js">
+<Example title="Basic usage" path="payment-card/controlled.js">
   <Controlled />
-</Example>
-
-<Example
-  title="Uncontrolled usage"
-  path="payment-card/uncontrolled.js"
->
-  <Uncontrolled />
 </Example>
 
 <Example title="Default value" path="payment-card/defaultvalue.js">
   <DefaultValue />
 </Example>
+
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="payment-card/uncontrolled.js"
+>
+  <Uncontrolled />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPaymentCard`, which manages its own state.
+
+## Overrides
 
 <Overrides
   name="Payment Card"

@@ -10,8 +10,11 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 
 import TextareaBasic from 'examples/textarea/basic.js';
+import TextareaStates from 'examples/textarea/states.js';
+import TextareaSizes from 'examples/textarea/sizes.js';
 import TextareaRef from 'examples/textarea/ref.js';
 import TextareaResizable from 'examples/textarea/resizable.js';
+import TextareaStateful from 'examples/textarea/stateful.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulTextarea as Textarea, SIZE} from 'baseui/textarea';
@@ -21,17 +24,33 @@ export default Layout;
 
 # Textarea
 
-<Example title="Textarea Basic Usage" path="textarea/basic.js">
+<Example title="Basic usage" path="textarea/basic.js">
   <TextareaBasic />
 </Example>
 
-<Example title="Textarea with ref" path="textarea/ref.js">
+<Example title="States" path="textarea/states.js">
+  <TextareaStates />
+</Example>
+
+<Example title="Sizes" path="textarea/sizes.js">
+  <TextareaSizes />
+</Example>
+
+<Example title="Allow the user to resize" path="textarea/resizable.js">
+  <TextareaResizable />
+</Example>
+
+By default, `Textarea` is not resizeable. However, you can use `overrides` as in the example above to supply minimum and maximum dimensions for the component. This will allow users to resize the `Textarea` within the boundaries you define.
+
+<Example title="Focus and ref" path="textarea/ref.js">
   <TextareaRef />
 </Example>
 
-<Example title="Resizable Textarea with restrictions" path="textarea/resizable.js">
-  <TextareaResizable />
+<Example title="Stateful (uncontrolled) usage" path="textarea/stateful.js">
+  <TextareaStateful />
 </Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulTextarea`, which manages its own state.
 
 ## Overrides
 
