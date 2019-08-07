@@ -150,7 +150,16 @@ export type ColorsT = {
   listBorder: string,
 
   // ProgressSteps
-  progressStepsIconActiveFill: string,
+  progressCompletedLine: string,
+  progressCompletedNodeForeground: string,
+  progressCompletedNodeBackground: string,
+
+  progressUncompletedLine: string,
+  progressUncompletedNodeForeground: string,
+  progressUncompletedNodeBackground: string,
+
+  progressActiveNodeForeground: string,
+  progressActiveNodeBackground: string,
 
   // Ticks
   tickFill: string,

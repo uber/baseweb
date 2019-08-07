@@ -34,17 +34,17 @@ export const StyledStep = styled<StylePropsT>('li', ({$theme}) => {
 export const StyledIcon = styled<StylePropsT>(
   'div',
   ({$theme, $isActive, $isCompleted, $disabled}) => {
-    let currentColor = $theme.colors.mono400;
+    let backgroundColor = $theme.colors.progressUncompletedNodeBackground;
     let size = $theme.sizing.scale300;
     let marginRight = $theme.sizing.scale500;
     let marginLeft = $theme.sizing.scale100;
     let font = $theme.typography.font400;
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
+      backgroundColor = $theme.colors.progressCompletedNodeBackground;
     } else if ($isActive) {
       font = $theme.typography.font450;
-      currentColor = $theme.colors.progressStepsIconActiveFill;
+      backgroundColor = $theme.colors.progressActiveNodeBackground;
     }
 
     if ($isActive) {
@@ -63,6 +63,7 @@ export const StyledIcon = styled<StylePropsT>(
       marginRight,
       marginLeft,
       marginTop,
+      backgroundColor,
       width: size,
       height: size,
       lineHeight: size,
@@ -70,7 +71,6 @@ export const StyledIcon = styled<StylePropsT>(
       borderTopRightRadius: size,
       borderBottomRightRadius: size,
       borderBottomLeftRadius: size,
-      backgroundColor: currentColor,
       float: $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
@@ -89,7 +89,7 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
     borderTopRightRadius: $theme.sizing.scale100,
     borderBottomRightRadius: $theme.sizing.scale100,
     borderBottomLeftRadius: $theme.sizing.scale100,
-    backgroundColor: $theme.colors.primary400,
+    backgroundColor: $theme.colors.progressActiveNodeForeground,
     textAlign: 'center',
   };
 });
@@ -122,12 +122,6 @@ export const StyledContentTitle = styled<StylePropsT>(
 export const StyledContentTail = styled<StylePropsT>(
   'div',
   ({$theme, $isCompleted, $isActive}) => {
-    let currentColor = $theme.colors.mono400;
-
-    if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
-    }
-
     return {
       position: 'absolute',
       [$theme.direction === 'rtl' ? 'right' : 'left']: '7px',
@@ -141,7 +135,9 @@ export const StyledContentTail = styled<StylePropsT>(
         display: 'inline-block',
         height: `calc(100% + ${$theme.sizing.scale500})`,
         width: '100%',
-        backgroundColor: currentColor,
+        backgroundColor: $isCompleted
+          ? $theme.colors.progressCompletedLine
+          : $theme.colors.progressUncompletedLine,
       },
     };
   },
@@ -167,20 +163,20 @@ export const StyledNumberStep = styled<StylePropsT>('li', ({$theme}) => {
 export const StyledNumberIcon = styled<StylePropsT>(
   'div',
   ({$theme, $isActive, $isCompleted, $disabled}) => {
-    let backgroundColor = $theme.colors.mono400;
-    let color = $theme.colors.colorSecondary;
+    let color = $theme.colors.progressUncompletedNodeForeground;
+    let backgroundColor = $theme.colors.progressUncompletedNodeBackground;
     let size = $theme.sizing.scale800;
     let marginRight = $theme.sizing.scale300;
     let font = $theme.typography.font350;
     let titleFont = $theme.typography.font400;
 
     if ($isCompleted) {
-      backgroundColor = $theme.colors.primary400;
-      color = $theme.colors.white;
+      color = $theme.colors.progressCompletedNodeForeground;
+      backgroundColor = $theme.colors.progressCompletedNodeBackground;
     } else if ($isActive) {
       titleFont = $theme.typography.font450;
-      color = $theme.colors.primary400;
-      backgroundColor = $theme.colors.progressStepsIconActiveFill;
+      color = $theme.colors.progressActiveNodeForeground;
+      backgroundColor = $theme.colors.progressActiveNodeBackground;
     }
 
     const marginTop = `calc((${titleFont.lineHeight} - ${size}) / 2)`;
@@ -209,12 +205,6 @@ export const StyledNumberIcon = styled<StylePropsT>(
 export const StyledNumberContentTail = styled<StylePropsT>(
   'div',
   ({$theme, $isActive, $isCompleted, $disabled}) => {
-    let currentColor = $theme.colors.mono300;
-
-    if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
-    }
-
     return {
       position: 'absolute',
       left: '11px',
@@ -228,7 +218,9 @@ export const StyledNumberContentTail = styled<StylePropsT>(
         display: 'inline-block',
         height: '100%',
         width: '100%',
-        backgroundColor: currentColor,
+        backgroundColor: $isCompleted
+          ? $theme.colors.progressCompletedLine
+          : $theme.colors.progressUncompletedLine,
       },
     };
   },

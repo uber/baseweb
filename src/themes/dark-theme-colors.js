@@ -96,7 +96,16 @@ export default {
     listBorder: primitives.mono500,
 
     // ProgressSteps
-    progressStepsIconActiveFill: primitives.mono100,
+    progressUncompletedLine: primitives.mono700,
+    progressUncompletedNodeBackground: primitives.mono700,
+    progressUncompletedNodeForeground: primitives.mono300,
+
+    progressActiveNodeBackground: WHITE,
+    progressActiveNodeForeground: primitives.mono1000,
+
+    progressCompletedLine: WHITE,
+    progressCompletedNodeBackground: WHITE,
+    progressCompletedNodeForeground: primitives.mono1000,
 
     // Notification
     notificationPrimaryBackground: primitives.primary700,

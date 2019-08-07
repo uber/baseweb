@@ -167,7 +167,16 @@ export default function createTheme(
       listBorder: primitives.mono500,
 
       // ProgressSteps
-      progressStepsIconActiveFill: primitives.primary100,
+      progressUncompletedLine: primitives.mono300,
+      progressUncompletedNodeBackground: primitives.mono300,
+      progressUncompletedNodeForeground: primitives.mono600,
+
+      progressCompletedLine: primitives.mono1000,
+      progressCompletedNodeBackground: primitives.mono1000,
+      progressCompletedNodeForeground: primitives.mono100,
+
+      progressActiveNodeBackground: primitives.mono1000,
+      progressActiveNodeForeground: primitives.mono100,
 
       // Tick
       tickFill: WHITE,
