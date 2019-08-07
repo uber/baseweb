@@ -7,7 +7,7 @@ import {
   ThemeProvider,
 } from 'baseui';
 import Router, {withRouter} from 'next/router';
-import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
+import {Button, KIND, SIZE} from 'baseui/button';
 import {StatefulTabs, Tab} from 'baseui/tabs';
 import {ButtonGroup} from 'baseui/button-group';
 import copy from 'copy-to-clipboard';
@@ -52,6 +52,7 @@ const buildPropsObj = (
       options: state.props[name].options,
       description: state.props[name].description,
       placeholder: state.props[name].placeholder,
+      hidden: state.props[name].hidden,
       meta: state.props[name].meta,
     };
   });
@@ -170,7 +171,7 @@ export default withRouter(
           const propValues: {[key: string]: any} = {};
           const {parsedProps, parsedTheme} = parseCode(
             router.query.code as string,
-            'Button',
+            componentName,
           );
           Object.keys(state.props).forEach(name => {
             //@ts-ignore
@@ -209,10 +210,7 @@ export default withRouter(
         <LiveProvider
           code={state.code}
           scope={{
-            Button,
-            KIND,
-            SIZE,
-            SHAPE,
+            ...COMPONENTS[componentName].scope,
             ThemeProvider,
             lightThemePrimitives,
             darkThemePrimitives,
@@ -421,7 +419,7 @@ export default withRouter(
                     try {
                       const {parsedProps, parsedTheme} = parseCode(
                         newCode,
-                        'Button',
+                        componentName,
                       );
                       Object.keys(state.props).forEach(name => {
                         propValues[name] =

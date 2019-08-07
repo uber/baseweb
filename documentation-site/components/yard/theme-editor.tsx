@@ -78,8 +78,12 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
   const [css] = useStyletron();
   const themeKeys = Object.keys(theme);
 
-  const firstThemeKeys = themeKeys.slice(0, themeKeys.length / 2);
-  const secondThemeKeys = themeKeys.slice(themeKeys.length / 2);
+  const midPoint =
+    themeKeys.length % 2 === 0
+      ? themeKeys.length / 2
+      : themeKeys.length / 2 + 1;
+  const firstThemeKeys = themeKeys.slice(0, midPoint);
+  const secondThemeKeys = themeKeys.slice(midPoint);
 
   return (
     <React.Fragment>

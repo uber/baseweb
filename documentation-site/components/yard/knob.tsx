@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
+import {StyledLink} from 'baseui/link';
 import {assertUnreachable} from './utils';
 import {PropTypes} from './const';
 import {Input} from 'baseui/input';
@@ -56,6 +57,23 @@ const Knob: React.SFC<{
 }> = ({name, type, val, set, options, description, placeholder}) => {
   //const [css, theme] = useStyletron();
   switch (type) {
+    case PropTypes.Ref:
+      return (
+        <Spacing>
+          <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
+
+          <StyledLink
+            href="https://reactjs.org/docs/refs-and-the-dom.html"
+            target="_blank"
+            $style={{
+              fontSize: '14px',
+              display: 'block',
+            }}
+          >
+            React Ref documentation
+          </StyledLink>
+        </Spacing>
+      );
     case PropTypes.String:
     case PropTypes.Number:
     case PropTypes.Array:
