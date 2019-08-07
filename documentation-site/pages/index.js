@@ -149,6 +149,8 @@ const Index = (props: {
         display="grid"
         gridTemplateColumns="repeat(3, 1fr)"
         alignItems="center"
+        justifyItems="center"
+        backgroundColor="mono100"
       >
         <Block width="125px" $as="img" src="/static/images/uber-logo.png" />
         <Block width="125px" $as="img" src="/static/images/broadcom-logo.svg" />
