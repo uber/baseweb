@@ -6,6 +6,7 @@ export type TProp = {
   description: string;
   options?: any;
   placeholder?: string;
+  hidden?: boolean;
   meta?: {
     names?: string[];
     sharedKeys?: any;
