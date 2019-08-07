@@ -17,6 +17,7 @@ import {Table} from 'baseui/table/index.js';
 import {Block} from 'baseui/block/index.js';
 
 import PhoneInputBasic from 'examples/phone-input/basic.js';
+import PhoneInputBasicWithFilter from 'examples/phone-input/basic-with-filter.js';
 import PhoneInputAlternateCountry from 'examples/phone-input/alternate-country.js';
 import PhoneInputControlled from 'examples/phone-input/controlled.js';
 import PhoneInputLocalized from 'examples/phone-input/localized.js';
@@ -31,6 +32,13 @@ It contains a dropdown which allows the user to choose from a list of countries 
 
 <Example title="Basic Usage" path="phone-input/basic.js">
   <PhoneInputBasic />
+</Example>
+
+<Example
+  title="Basic with enabled dropdown filter"
+  path="phone-input/basic-with-filter.js"
+>
+  <PhoneInputBasicWithFilter />
 </Example>
 
 <Example
@@ -82,16 +90,18 @@ COUNTRIES: {
 <Overrides
   name="Phone Input"
   component={PhoneInputExports}
-  renderExample={props => <StatefulPhoneInput {...props} />}
+  renderExample={props => <StatefulPhoneInput {...props} enableFiltering />}
   whitelisted={[
     'Input',
     'DialCode',
     'CountrySelect',
+    'PopoverContentContainer',
     'CountrySelectDropdown',
     'CountrySelectDropdownListItem',
     'CountrySelectDropdownFlagColumn',
     'CountrySelectDropdownNameColumn',
     'CountrySelectDropdownDialcodeColumn',
+    'FilterInput',
   ]}
 />
 

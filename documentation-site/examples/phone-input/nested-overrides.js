@@ -4,6 +4,7 @@ import {StatefulPhoneInput} from 'baseui/phone-input';
 
 export default () => (
   <StatefulPhoneInput
+    enableFiltering
     overrides={{
       Input: {
         props: {
@@ -11,6 +12,17 @@ export default () => (
             Root: {
               style: {
                 width: '300px',
+              },
+            },
+          },
+        },
+      },
+      FilterInput: {
+        props: {
+          overrides: {
+            Before: {
+              style: {
+                backgroundColor: 'salmon',
               },
             },
           },
