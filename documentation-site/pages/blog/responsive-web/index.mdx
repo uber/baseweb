@@ -24,7 +24,7 @@ export default Layout;
   caption="Responsive apps work across mobile and desktop"
 />
 
-When building web applications, it is important to make things accessible to as many people as possible. [More and more people are relying on their phones to access the web](https://www.pewinternet.org/fact-sheet/mobile/), which means we need to prioritize building our applications to work on smaller form factors. Here are some tips and tricks for using Base Web to build UIs for both mobile and desktop.
+When building web applications, it is important to consider all users and prioritize accessibility. [More and more people are relying on their phones to access the web](https://www.pewinternet.org/fact-sheet/mobile/), which means we need to ensure our applications work well on smaller form factors. Here are some tips and tricks for using Base Web to build UIs for both mobile and desktop.
 
 ## Setting the viewport meta tag
 
@@ -176,7 +176,7 @@ We can also take advantage of these responsive properties to completely hide a B
 // NavLink appears only on desktop
 const NavLink = props => <Block display={['none', 'block']} {...props} />;
 
-// TabLink appears only on desktop
+// TabLink appears only on mobile
 const TabLink = props => <Block display={['block', 'none']} {...props} />;
 ```
 
@@ -201,7 +201,7 @@ const Filters = () => (
   </FlexGrid>
 );
 
-const Facilities = (Pickup, Dropoff) => (
+const Facilities = ({Pickup, Dropoff}) => (
   <FlexGrid columnCount={[1, 2]} columnGap="scale300" rowGap="scale300">
     <FlexGridItem>
       <Pickup />
@@ -221,7 +221,7 @@ const Facilities = (Pickup, Dropoff) => (
 
 ## AspectRatioBox component
 
-On slower network connections, especially apparent on mobile networks, images can cause content to reflow as they are downloaded. When browsers see an image tag, they typically do not know how much space to allocate for it until it begins downloading the image headers, which can take some time.
+On slower network connections, especially apparent on cellular networks, images can cause content to jump around (reflow) as they are downloaded. When browsers see an image tag, they typically do not know how much space to allocate for it until it begins downloading the image headers, which can take some time.
 
 In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/components/aspect-ratio-box) component ([v7.5.0](https://github.com/uber-web/baseui/releases/tag/v7.5.0)+), which allows us to specify the aspect ratio for an element ahead of time using CSS (see [CSS-Tricks](https://css-tricks.com/aspect-ratio-boxes/#article-header-id-6) for how this works).
 
@@ -245,4 +245,4 @@ In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/
 
 ## Final thoughts
 
-Base Web gives you a few components with responsive design in mind, from Block, to FlexGrid, to AspectRatioBox. We hope this guide can help you build responsive apps, making them accessible to even more users.
+Base Web currently gives you a few foundational components to build responsive web applications: from **Block**, to **FlexGrid**, to **AspectRatioBox**. We hope these components, along with this guide, will help and encourage you to build applications that are accessible to as many users as possible. Base Web is also open-source, so if you want to contribute enhancements or additional components, check out our [contributing guide](https://github.com/uber-web/baseui/blob/master/CONTRIBUTING.md)!
