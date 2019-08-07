@@ -17,7 +17,7 @@ export const component = () => (
     <div dir="rtl">
       <ModalScenario
         modalOverrides={{
-          Root: {
+          Dialog: {
             props: {
               dir: 'rtl',
             },
