@@ -42,10 +42,9 @@ export const HeaderImage = styled<{}>('img', ({$theme: {borders}}) => {
 });
 
 export const Root = styled<{}>('div', ({$theme}) => {
-  const {borders, lighting, colors} = $theme;
+  const {borders, colors} = $theme;
   return {
     ...borders.border300,
-    boxShadow: lighting.shadow400,
     borderTopLeftRadius: borders.surfaceBorderRadius,
     borderTopRightRadius: borders.surfaceBorderRadius,
     borderBottomLeftRadius: borders.surfaceBorderRadius,
