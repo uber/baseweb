@@ -48,6 +48,7 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    outline: 'none',
     ':hover': {
       color: colors.primary,
     },
