@@ -171,7 +171,7 @@ export default withRouter(
           const propValues: {[key: string]: any} = {};
           const {parsedProps, parsedTheme} = parseCode(
             router.query.code as string,
-            'Button',
+            componentName,
           );
           Object.keys(state.props).forEach(name => {
             //@ts-ignore
@@ -419,7 +419,7 @@ export default withRouter(
                     try {
                       const {parsedProps, parsedTheme} = parseCode(
                         newCode,
-                        'Button',
+                        componentName,
                       );
                       Object.keys(state.props).forEach(name => {
                         propValues[name] =

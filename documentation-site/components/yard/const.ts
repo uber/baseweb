@@ -28,6 +28,7 @@ export enum PropTypes {
   Object = 'object',
   Function = 'function',
   Overrides = 'overrides',
+  Ref = 'ref',
 }
 
 export const COMPONENTS = {
@@ -266,7 +267,6 @@ export const COMPONENTS = {
         description: 'If true the input will be focused on the first mount.',
         hidden: true,
       },
-
       pattern: {
         value: undefined,
         type: PropTypes.String,
@@ -281,10 +281,9 @@ export const COMPONENTS = {
           "Id attribute value to be added to the input element and as a label's for attribute value.",
         hidden: true,
       },
-
       inputRef: {
         value: undefined,
-        type: PropTypes.Function,
+        type: PropTypes.Ref,
         description: 'A ref to access an input element.',
         hidden: true,
       },
@@ -353,14 +352,21 @@ export const COMPONENTS = {
             'StartEnhancer',
           ],
           sharedProps: {
-            $isFocused: 'autoFocus', //fix
+            $isFocused: {
+              type: PropTypes.Boolean,
+              description: 'True when the component is focused.',
+            },
             $disabled: 'disabled',
             $error: 'error',
             $positive: 'positive',
             $adjoined: 'adjoined',
             $size: 'size',
             $required: 'required',
-            $position: 'clearable', //fix
+            $position: {
+              type: PropTypes.Enum,
+              description:
+                'ADJOINED state. How is the input grouped with other controls.',
+            },
           },
         },
       },

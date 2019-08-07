@@ -23,6 +23,8 @@ export const getCode = (
         case PropTypes.Boolean:
           propsString += ` ${name}`;
           break;
+        case PropTypes.Ref:
+          break;
         case PropTypes.Number:
         case PropTypes.Array:
         case PropTypes.Object:
