@@ -69,8 +69,8 @@ steps:
         run: baseui
     agents:
       queue: workers
-  - name: ':now:'
-    command: './now.sh'
+  - name: ':deploy:'
+    command: './deploy.sh'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
