@@ -1,61 +1,57 @@
 // @flow
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 
-class ControlledButtonGroup extends React.Component<
-  {},
-  {selected: number, boldClickCount: number},
-> {
-  state = {selected: 1, boldClickCount: 0};
+function ControlledButtonGroup() {
+  const [useCss, theme] = useStyletron();
+  const [selected, setSelected] = React.useState(1);
+  const [boldClickCount, setBoldClickCount] = React.useState(0);
 
-  handleClick = (
-    event: SyntheticEvent<HTMLButtonElement>,
-    index: number,
-  ) => {
-    if (this.state.selected !== index) {
-      this.setState({selected: index});
-    }
-  };
+  const fontWeight =
+    selected === 0
+      ? theme.typography.font450
+      : theme.typography.font400;
 
-  handleBold = (event: SyntheticEvent<HTMLButtonElement>) => {
-    this.setState(prevState => ({
-      boldClickCount: prevState.boldClickCount + 1,
-    }));
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <ButtonGroup
-          selected={this.state.selected}
-          mode="radio"
-          onClick={this.handleClick}
+  return (
+    <React.Fragment>
+      <ButtonGroup
+        selected={selected}
+        mode="radio"
+        onClick={(event, index) => {
+          if (selected !== index) {
+            setSelected(index);
+          }
+        }}
+      >
+        <Button
+          onClick={() => setBoldClickCount(boldClickCount + 1)}
         >
-          <Button onClick={this.handleBold}>Bold</Button>
-          <Button>Normal</Button>
-        </ButtonGroup>
+          Bold
+        </Button>
+        <Button>Normal</Button>
+      </ButtonGroup>
 
-        <Block
-          font={this.state.selected === 0 ? 'font450' : 'font400'}
-          paddingTop="scale400"
-        >
-          Lorem ipsum dolor sit amet, ea insolens deseruisse
-          mnesarchum mea. An munere utroque mentitum vis, ea rebum
-          inani iudicabit has. Cu his dolorum perpetua. Mea atqui
-          tation partem ne, ei vim etiam volumus nominavi. Cum id
-          atqui cotidieque, quaeque nostrum salutandi cum at, idque
-          scaevola platonem mei ad.
-        </Block>
+      <div
+        className={useCss({
+          ...fontWeight,
+          paddingTop: theme.sizing.scale400,
+        })}
+      >
+        Lorem ipsum dolor sit amet, ea insolens deseruisse
+        mnesarchum mea. An munere utroque mentitum vis, ea rebum
+        inani iudicabit has. Cu his dolorum perpetua. Mea atqui
+        tation partem ne, ei vim etiam volumus nominavi. Cum id
+        atqui cotidieque, quaeque nostrum salutandi cum at, idque
+        scaevola platonem mei ad.
+      </div>
 
-        <Block paddingTop="scale800">
-          The Bold option has been selected{' '}
-          {this.state.boldClickCount} times
-        </Block>
-      </React.Fragment>
-    );
-  }
+      <div className={useCss({paddingTop: theme.sizing.scale800})}>
+        The Bold option has been selected {boldClickCount} times
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default ControlledButtonGroup;

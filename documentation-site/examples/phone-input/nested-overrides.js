@@ -1,33 +1,45 @@
 // @flow
-import React from 'react';
-import {StatefulPhoneInput} from 'baseui/phone-input';
+import React, {useState} from 'react';
+import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
 
-export default () => (
-  <StatefulPhoneInput
-    enableFiltering
-    overrides={{
-      Input: {
-        props: {
-          overrides: {
-            Root: {
-              style: {
-                width: '300px',
+export default () => {
+  const [text, setText] = useState('');
+  const [country, setCountry] = useState(COUNTRIES.US);
+  return (
+    <PhoneInput
+      enableFiltering
+      text={text}
+      country={country}
+      onTextChange={event => {
+        setText(event.currentTarget.value);
+      }}
+      onCountryChange={(event: any) => {
+        setCountry(event.option);
+      }}
+      overrides={{
+        Input: {
+          props: {
+            overrides: {
+              Root: {
+                style: {
+                  width: '300px',
+                },
               },
             },
           },
         },
-      },
-      FilterInput: {
-        props: {
-          overrides: {
-            Before: {
-              style: {
-                backgroundColor: 'salmon',
+        FilterInput: {
+          props: {
+            overrides: {
+              Before: {
+                style: {
+                  backgroundColor: 'salmon',
+                },
               },
             },
           },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+};

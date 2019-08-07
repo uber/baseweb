@@ -1,39 +1,36 @@
 // @flow
 import * as React from 'react';
 import {Button, SIZE} from 'baseui/button';
-import {StatefulCheckbox} from 'baseui/checkbox';
+import {Checkbox} from 'baseui/checkbox';
 
-class Focus extends React.Component<{}, {isFocused: boolean}> {
-  state = {isFocused: false};
-  inputRef: any = React.createRef();
-
-  render() {
-    return (
-      <React.Fragment>
-        <Button
-          size={SIZE.compact}
-          onClick={() => {
-            if (!this.inputRef.current) return;
-            if (this.state.isFocused) {
-              this.inputRef.current.blur();
-              this.setState({isFocused: false});
-            } else {
-              this.inputRef.current.focus();
-              this.setState({isFocused: true});
-            }
-          }}
-        >
-          Click to focus checkbox
-        </Button>
-        <StatefulCheckbox
-          inputRef={this.inputRef}
-          onChange={console.log}
-        >
-          Focused checkbox
-        </StatefulCheckbox>
-      </React.Fragment>
-    );
-  }
-}
-
-export default Focus;
+export default () => {
+  const [checked, setChecked] = React.useState(true);
+  const [focused, setFocused] = React.useState(false);
+  const inputRef = React.useRef(null);
+  return (
+    <React.Fragment>
+      <Button
+        size={SIZE.compact}
+        onClick={() => {
+          if (inputRef.current === null) return;
+          if (focused) {
+            inputRef.current.blur();
+            setFocused(false);
+          } else {
+            inputRef.current.focus();
+            setFocused(true);
+          }
+        }}
+      >
+        Click to focus checkbox
+      </Button>
+      <Checkbox
+        inputRef={inputRef}
+        checked={checked}
+        onChange={() => setChecked(!checked)}
+      >
+        Focused checkbox
+      </Checkbox>
+    </React.Fragment>
+  );
+};

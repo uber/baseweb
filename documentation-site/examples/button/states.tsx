@@ -1,15 +1,19 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 
-export default () => (
-  <React.Fragment>
-    <Button>No state</Button>
-    <Block as="span" marginLeft="scale300" />
-    <Button isLoading>Loading</Button>
-    <Block as="span" marginLeft="scale300" />
-    <Button isSelected>Selected</Button>
-    <Block as="span" marginLeft="scale300" />
-    <Button disabled>Disabled</Button>
-  </React.Fragment>
-);
+export default () => {
+  const [useCss, theme] = useStyletron();
+  const space = useCss({marginLeft: theme.sizing.scale300});
+  return (
+    <React.Fragment>
+      <Button>No state</Button>
+      <span className={space} />
+      <Button isLoading>Loading</Button>
+      <span className={space} />
+      <Button isSelected>Selected</Button>
+      <span className={space} />
+      <Button disabled>Disabled</Button>
+    </React.Fragment>
+  );
+};

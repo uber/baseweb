@@ -21,6 +21,7 @@ import PinCodeAutofocus from 'examples/pin-code/autofocus.js';
 import PinCodeCompletion from 'examples/pin-code/completion.js';
 import PinCodeOverride from 'examples/pin-code/override.js';
 import PinCodeEvent from 'examples/pin-code/event.js';
+import PinCodeStateful from 'examples/pin-code/stateful.js';
 
 import * as PinCodeExports from 'baseui/pin-code/index.js';
 import {StatefulPinCode} from 'baseui/pin-code/index.js';
@@ -33,7 +34,7 @@ The `PinCode` component is optimized for entering sequences of digits.
 The most common application is for entering single-use security codes.
 It is optimized for entering digits quickly.
 
-<Example title="Basic Usage" path="pin-code/basic.js">
+<Example title="Basic usage" path="pin-code/basic.js">
   <PinCodeBasic />
 </Example>
 
@@ -46,11 +47,10 @@ A few things to note:
 3. To overwrite the value of an input, you donʼt need to select the text in the input. If you type a digit while the input is focused, the input will update. This is an optimization for quickly editing the inputs.
 4. Pressing `Delete` when there is nothing in the input will transfer focus to, and clear the value of, the previous input (if any). This avoids the need to explicitly Shift+Tab & Delete.
 
-<Example title="Changing the code length" path="pin-code/length.js">
+<Example title="Code length" path="pin-code/length.js">
   <PinCodeLength />
 </Example>
 
-The code defaults to a length of 4, but you can change that.
 `PinCode` expects an array of strings for the `values` prop.
 The number of inputs rendered will match the length of the array.
 
@@ -63,13 +63,13 @@ You can pass an individual `id` or `name` prop.
 `id` will have an index appended to whatever string you provide and passed to the respective input.
 In the above example, the resulting ids are `foo-0`, `foo-1`, `foo-2`, and `foo-3` and each input has the name `pin-code`.
 
-<Example title="Various states" path="pin-code/states.js">
+<Example title="States" path="pin-code/states.js">
   <PinCodeStates />
 </Example>
 
 `PinCode` accepts most of the same boolean props as our other inputs: `disabled`, `error`, `positive`, etc.
 
-<Example title="Various sizes" path="pin-code/size.js">
+<Example title="Sizes" path="pin-code/size.js">
   <PinCodeSizes />
 </Example>
 
@@ -135,6 +135,12 @@ Or what if the userʼs browser can [autocomplete verification codes](https://dev
 
 If one of the individual inputs receives a longer string, `PinCode` does some basic validation (is the length right? does it contain only digits?) to see if it can fill all the inputs.
 If things seem promising, `PinCode` will call `onChange` will all of the values updated.
+
+<Example title="Stateful (uncontrolled) usage" path="pin-code/stateful.js">
+  <PinCodeStateful />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPinCode`, which manages its own state. The default code length for this component is four, but you can change that by passing in an array of a different length to `initialState`.
 
 ## Overrides
 

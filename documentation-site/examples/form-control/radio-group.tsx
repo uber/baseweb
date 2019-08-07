@@ -1,16 +1,22 @@
 import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
-import {StatefulRadioGroup, Radio} from 'baseui/radio';
+import {RadioGroup, Radio} from 'baseui/radio';
 
-export default () => (
-  <FormControl
-    label="RadioGroup label"
-    caption="RadioGroup caption"
-  >
-    <StatefulRadioGroup>
-      <Radio value="red">Red</Radio>
-      <Radio value="green">Green</Radio>
-      <Radio value="blue">Blue</Radio>
-    </StatefulRadioGroup>
-  </FormControl>
-);
+export default () => {
+  const [value, setValue] = React.useState('');
+  return (
+    <FormControl
+      label="RadioGroup label"
+      caption="RadioGroup caption"
+    >
+      <RadioGroup
+        value={value}
+        onChange={event => setValue(event.currentTarget.value)}
+      >
+        <Radio value="red">Red</Radio>
+        <Radio value="green">Green</Radio>
+        <Radio value="blue">Blue</Radio>
+      </RadioGroup>
+    </FormControl>
+  );
+};

@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import * as Icons from 'baseui/icon/icon-exports';
 
 function makeImportStatement(key: string) {
@@ -12,24 +12,43 @@ function makeImportStatement(key: string) {
   return `import ${key} from 'baseui/icon/${path}'`;
 }
 
-export default () => (
-  <Block>
-    {Object.entries(Icons).map(([key, Icon]: [string, any]) => (
-      <Block
-        key={key}
-        alignItems="center"
-        color="foreground"
-        display="flex"
-        paddingBottom="scale500"
+function Row(props) {
+  const [useCss, theme] = useStyletron();
+  const Icon = props.icon;
+  return (
+    <div
+      className={useCss({
+        alignItems: 'center',
+        color: theme.colors.foreground,
+        display: 'flex',
+        paddingBottom: theme.sizing.scale500,
+      })}
+    >
+      <Icon size={24} />
+      <div
+        className={useCss({
+          color: theme.colors.foregroundAlt,
+          marginLeft: theme.sizing.scale200,
+        })}
       >
-        <Icon size={24} />
-        <Block font="foregroundAlt" marginLeft="scale200">
-          {key}
-        </Block>
-        <Block color="foregroundAlt" marginLeft="scale200">
-          {makeImportStatement(key)}
-        </Block>
-      </Block>
+        {props.title}
+      </div>
+      <div
+        className={useCss({
+          color: theme.colors.foregroundAlt,
+          marginLeft: theme.sizing.scale200,
+        })}
+      >
+        {makeImportStatement(props.title)}
+      </div>
+    </div>
+  );
+}
+
+export default () => (
+  <div>
+    {Object.entries(Icons).map(([title, Icon]: [string, any]) => (
+      <Row key={title} title={title} icon={Icon} />
     ))}
-  </Block>
+  </div>
 );

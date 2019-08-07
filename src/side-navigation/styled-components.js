@@ -40,6 +40,7 @@ export const StyledNavItem = styled<SharedPropsT>('div', props => {
     $active,
     $selectable,
     $level,
+    $theme,
     $theme: {colors, sizing},
   } = props;
   return ({
@@ -48,16 +49,26 @@ export const StyledNavItem = styled<SharedPropsT>('div', props => {
       ? `linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92))`
       : null,
     boxSizing: 'border-box',
-    borderLeftWidth: '4px',
-    borderLeftStyle: 'solid',
-    borderLeftColor: $active ? colors.primary : 'transparent',
+    [$theme.direction === 'rtl'
+      ? 'borderRightWidth'
+      : 'borderLeftWidth']: '4px',
+    [$theme.direction === 'rtl'
+      ? 'borderRightStyle'
+      : 'borderLeftStyle']: 'solid',
+    [$theme.direction === 'rtl'
+      ? 'borderRightColor'
+      : 'borderLeftColor']: $active ? colors.primary : 'transparent',
     color: $active ? colors.primary : null,
     cursor: $selectable ? 'pointer' : 'default',
     // outline: 'none',
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
-    paddingLeft: `calc(${sizing.scale800} * ${$level})`,
-    paddingRight: sizing.scale500,
+    [$theme.direction === 'rtl'
+      ? 'paddingRight'
+      : 'paddingLeft']: `calc(${sizing.scale800} * ${$level})`,
+    [$theme.direction === 'rtl'
+      ? 'paddingLeft'
+      : 'paddingRight']: sizing.scale500,
     ':hover': {
       color: $selectable ? colors.primary : null,
     },

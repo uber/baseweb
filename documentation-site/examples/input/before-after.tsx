@@ -1,83 +1,95 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Alert, Check, Search} from 'baseui/icon';
-import {StatefulInput} from 'baseui/input';
+import {Input} from 'baseui/input';
 
 function Before() {
+  const [useCss, theme] = useStyletron();
   return (
-    <Block
-      display="flex"
-      alignItems="center"
-      paddingLeft="scale500"
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: theme.sizing.scale500,
+      })}
     >
       <Search size="18px" />
-    </Block>
+    </div>
   );
 }
 
 function After() {
+  const [useCss, theme] = useStyletron();
   return (
-    <Block
-      display="flex"
-      alignItems="center"
-      paddingRight="scale500"
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingRight: theme.sizing.scale500,
+      })}
     >
       <Search size="18px" />
-    </Block>
+    </div>
   );
 }
 
 function Negative() {
+  const [useCss, theme] = useStyletron();
   return (
-    <Block
-      display="flex"
-      alignItems="center"
-      paddingRight="scale500"
-      color="negative400"
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingRight: theme.sizing.scale500,
+        color: theme.colors.negative400,
+      })}
     >
       <Alert size="18px" />
-    </Block>
+    </div>
   );
 }
 
 function Positive() {
+  const [useCss, theme] = useStyletron();
   return (
-    <Block
-      display="flex"
-      alignItems="center"
-      paddingRight="scale500"
-      color="positive400"
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingRight: theme.sizing.scale500,
+        color: theme.colors.positive400,
+      })}
     >
       <Check size="18px" />
-    </Block>
+    </div>
   );
 }
 
 export default () => (
-  <Block>
-    <StatefulInput
+  <div>
+    <Input
       overrides={{Before}}
       placeholder="Input with a Before component"
     />
-    <Block as="br" />
+    <br />
 
-    <StatefulInput
+    <Input
       overrides={{After}}
       placeholder="Input with an After component"
     />
-    <Block as="br" />
+    <br />
 
-    <StatefulInput
+    <Input
       error
       overrides={{After: Negative}}
       placeholder="Input with negative icon"
     />
-    <Block as="br" />
+    <br />
 
-    <StatefulInput
+    <Input
       positive
       overrides={{After: Positive}}
       placeholder="Input with positive icon"
     />
-  </Block>
+  </div>
 );
