@@ -15,15 +15,7 @@ export const name = 'modal-rtl';
 export const component = () => (
   <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
     <div dir="rtl">
-      <ModalScenario
-        modalOverrides={{
-          Dialog: {
-            props: {
-              dir: 'rtl',
-            },
-          },
-        }}
-      />
+      <ModalScenario />
     </div>
   </ThemeProvider>
 );
