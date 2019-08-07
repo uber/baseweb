@@ -51,6 +51,7 @@ export const getCode = (
       }
     }
   });
+  const hasChild = children && children.value;
   const themeImports = isCustomTheme
     ? `import {ThemeProvider, createTheme, lightThemePrimitives} from 'baseui';\n`
     : '';
@@ -61,7 +62,7 @@ export const getCode = (
         theme.themeValues,
       )} })}>`
     : '';
-  return `${imports}export default () => ${themeProviderOpen}<${componentName}${propsString}>${
-    children ? children.value : undefined
-  }</Button>${isCustomTheme ? '</ThemeProvider>' : ''}`;
+  return `${imports}export default () => ${themeProviderOpen}<${componentName}${propsString}${
+    hasChild ? `>${children.value}</${componentName}>` : ' />'
+  }${isCustomTheme ? '</ThemeProvider>' : ''}`;
 };
