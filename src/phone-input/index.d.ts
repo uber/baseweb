@@ -339,15 +339,10 @@ export interface PhoneInputProps {
 }
 export const PhoneInput: React.FC<PhoneInputProps>;
 
-export interface StatefulPhoneInputProps {
+export interface StatefulPhoneInputProps extends PhoneInputProps {
   'aria-label'?: string;
   initialState?: State;
   stateReducer?: StateReducer;
-  onTextChange?: (event: React.SyntheticEvent<HTMLInputElement>) => any;
-  onCountryChange?: (event: OnChangeParams) => any;
-  mapIsoToLabel?: (iso: string) => string;
-  overrides?: PhoneInputOverrides;
-  enableFiltering?: boolean;
 }
 export const StatefulPhoneInput: React.FC<StatefulPhoneInputProps>;
 
