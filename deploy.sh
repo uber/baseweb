@@ -21,7 +21,8 @@ if [ "$this_commit" = "$latest_tagged_commit" ]; then
   echo version $version
 
   # deploy to npm
-  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc > /dev/null 2>&1
+  rm .npmrc
+  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
   yarn build
   npm publish dist
 
