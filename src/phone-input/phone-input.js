@@ -32,6 +32,7 @@ export default function PhoneInput(props: PropsT) {
     size,
     text,
     enableFiltering,
+    maxDropdownHeight,
     ...restProps
   } = props;
   const inputRef = useRef(null);
@@ -49,6 +50,7 @@ export default function PhoneInput(props: PropsT) {
         size,
         enableFiltering,
         overrides,
+        maxDropdownHeight,
       },
     },
   };
