@@ -1,6 +1,5 @@
 // @flow
 import React, {useState} from 'react';
-import {styled} from 'baseui';
 import {Datepicker, TimezonePicker} from 'baseui/datepicker';
 import {FormControl} from 'baseui/form-control';
 

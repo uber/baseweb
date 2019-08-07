@@ -21,7 +21,10 @@ export default function deepMerge(
       if (typeof obj[key] !== undefined) {
         value = obj[key];
         if (isCloneable(value)) {
-          target[key] = deepMerge(target[key] || {}, value);
+          target[key] = deepMerge(
+            target[key] || (Array.isArray(value) && []) || {},
+            value,
+          );
         } else {
           target[key] = value;
         }

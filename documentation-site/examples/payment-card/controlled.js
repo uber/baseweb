@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import {PaymentCard} from 'baseui/payment-card';
-import {Block} from 'baseui/block';
 
 export default () => {
   const [value, setValue] = React.useState();

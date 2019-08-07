@@ -36,7 +36,6 @@ export const Track = styled<StylePropsT>('div', props => {
 Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled<StylePropsT>('div', props => {
-  // $FlowFixMe
   const {$theme, $value = [], $min, $max, $disabled} = props;
   const {colors, borders, sizing} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
@@ -51,8 +50,8 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
         $value.length === 1
           ? [colors.primary, colors.mono400]
           : [colors.mono400, colors.primary, colors.mono400],
-      min: $min,
-      max: $max,
+      min: $min || 0,
+      max: $max || 0,
     }),
     height: sizing.scale100,
     width: '100%',

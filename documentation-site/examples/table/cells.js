@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {withStyle, styled} from 'styletron-react';
+import {withStyle, useStyletron} from 'baseui';
 
 import {Block} from 'baseui/block';
 import ArrowUp from 'baseui/icon/arrow-up';
@@ -263,68 +263,67 @@ const DATA = [
   ],
 ];
 
-const Container = styled('div', {
-  height: '400px',
-});
+export default () => {
+  const [useCss] = useStyletron();
+  return (
+    <div className={useCss({height: '400px'})}>
+      <StyledTable>
+        <StyledHead $width="1000px">
+          <StyledHeadCell>Name</StyledHeadCell>
+          <StyledHeadCell>Role</StyledHeadCell>
+          <StyledHeadCell>Delta</StyledHeadCell>
+          <StyledHeadCell>Amount</StyledHeadCell>
+          <StyledHeadCell>Actions</StyledHeadCell>
+        </StyledHead>
+        <StyledBody $width="1000px">
+          {DATA.map((row, index) => (
+            <StyledRow key={index}>
+              <StyledCell>{row[0]}</StyledCell>
 
-export default () => (
-  <Container>
-    <StyledTable>
-      <StyledHead $width="1000px">
-        <StyledHeadCell>Name</StyledHeadCell>
-        <StyledHeadCell>Role</StyledHeadCell>
-        <StyledHeadCell>Delta</StyledHeadCell>
-        <StyledHeadCell>Amount</StyledHeadCell>
-        <StyledHeadCell>Actions</StyledHeadCell>
-      </StyledHead>
-      <StyledBody $width="1000px">
-        {DATA.map((row, index) => (
-          <StyledRow key={index}>
-            <StyledCell>{row[0]}</StyledCell>
+              <StyledHeadingCell>
+                <Block>
+                  <Caption1>{row[2]}</Caption1>
+                  <Paragraph1 as="div">{row[1]}</Paragraph1>
+                </Block>
+              </StyledHeadingCell>
 
-            <StyledHeadingCell>
-              <Block>
-                <Caption1>{row[2]}</Caption1>
-                <Paragraph1 as="div">{row[1]}</Paragraph1>
-              </Block>
-            </StyledHeadingCell>
+              <StyledDeltaCell $isNegative={row[3] < 0}>
+                <React.Fragment>
+                  {row[3] < 0 ? (
+                    <ArrowDown size={24} />
+                  ) : (
+                    <ArrowUp size={24} />
+                  )}
+                  {row[3]}%
+                </React.Fragment>
+              </StyledDeltaCell>
 
-            <StyledDeltaCell $isNegative={row[3] < 0}>
-              <React.Fragment>
-                {row[3] < 0 ? (
-                  <ArrowDown size={24} />
-                ) : (
-                  <ArrowUp size={24} />
-                )}
-                {row[3]}%
-              </React.Fragment>
-            </StyledDeltaCell>
+              <StyledLargeText>
+                <Block font="font500">{row[4]}</Block>
+                <Caption2 paddingLeft="scale200">+1000%</Caption2>
+              </StyledLargeText>
 
-            <StyledLargeText>
-              <Block font="font500">{row[4]}</Block>
-              <Caption2 paddingLeft="scale200">+1000%</Caption2>
-            </StyledLargeText>
+              <StyledCell>
+                <StyledAction>
+                  <Search />
+                </StyledAction>
 
-            <StyledCell>
-              <StyledAction>
-                <Search />
-              </StyledAction>
+                <StyledAction>
+                  <Plus />
+                </StyledAction>
 
-              <StyledAction>
-                <Plus />
-              </StyledAction>
+                <StyledAction>
+                  <Delete />
+                </StyledAction>
 
-              <StyledAction>
-                <Delete />
-              </StyledAction>
-
-              <StyledAction>
-                <Overflow />
-              </StyledAction>
-            </StyledCell>
-          </StyledRow>
-        ))}
-      </StyledBody>
-    </StyledTable>
-  </Container>
-);
+                <StyledAction>
+                  <Overflow />
+                </StyledAction>
+              </StyledCell>
+            </StyledRow>
+          ))}
+        </StyledBody>
+      </StyledTable>
+    </div>
+  );
+};

@@ -40,16 +40,18 @@ const SharedPropsTooltip: React.FC<{
 }> = ({componentConfig, children}) => {
   const sharedProps = Object.keys(componentConfig.overrides.meta.sharedProps);
   const getDescription = (name: string) => {
+    let metaObj: any = {};
     if (typeof componentConfig.overrides.meta.sharedProps[name] === 'string') {
-      const propName = componentConfig.overrides.meta.sharedProps[name];
-      return (
-        <React.Fragment>
-          <i>{componentConfig[propName].type}</i> -{' '}
-          {componentConfig[propName].description}
-        </React.Fragment>
-      );
+      metaObj =
+        componentConfig[componentConfig.overrides.meta.sharedProps[name]];
+    } else {
+      metaObj = componentConfig.overrides.meta.sharedProps[name];
     }
-    return 'TBD';
+    return (
+      <React.Fragment>
+        <i>{metaObj.type}</i> - {metaObj.description}
+      </React.Fragment>
+    );
   };
   return (
     <StatefulTooltip

@@ -1,16 +1,19 @@
 // @flow
 import React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 import {PinCode} from 'baseui/pin-code';
 
-export default () => {
+export default function() {
+  const [useCss, theme] = useStyletron();
   const [showPinCode, toggle] = React.useState(false);
   const [values, setValues] = React.useState(['', '', '', '']);
   return (
-    <Block display="flex">
+    <div className={useCss({display: 'flex'})}>
       <Button onClick={() => toggle(s => !s)}>Mount PinCode</Button>
-      <Block marginLeft="scale300" />
+      <div
+        className={useCss({marginLeft: theme.sizing.scale300})}
+      />
       {showPinCode ? (
         <PinCode
           values={values}
@@ -20,6 +23,6 @@ export default () => {
           autoFocus
         />
       ) : null}
-    </Block>
+    </div>
   );
-};
+}

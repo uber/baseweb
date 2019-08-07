@@ -1,22 +1,23 @@
 import * as React from 'react';
 import {StatefulList} from 'baseui/dnd-list';
-import {styled} from 'baseui';
+import {useStyletron} from 'baseui';
 import {ArrowRight} from 'baseui/icon';
 
-const CustomDragHandleWrapper = styled('div', () => {
-  return {
-    marginRight: '1em',
-    width: '24px',
-    display: 'flex',
-    alignItems: 'center',
-  };
-});
-
-const CustomDragHandle = () => (
-  <CustomDragHandleWrapper>
-    <ArrowRight size={24} color="#CCC" />
-  </CustomDragHandleWrapper>
-);
+const CustomDragHandle = () => {
+  const [useCss] = useStyletron();
+  return (
+    <div
+      className={useCss({
+        marginRight: '1em',
+        width: '24px',
+        display: 'flex',
+        alignItems: 'center',
+      })}
+    >
+      <ArrowRight size={24} color="#CCC" />
+    </div>
+  );
+};
 
 export default () => (
   <StatefulList
