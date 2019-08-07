@@ -85,7 +85,7 @@ export type PropsT = {
   deleteRemoves: boolean,
   /** Defines if the control is disabled. */
   disabled: boolean,
-  /** Defines if the control if in error state. */
+  /** Defines if the control is in error state. */
   error: boolean,
   /** Defines if the control if in positive state. */
   positive: boolean,
