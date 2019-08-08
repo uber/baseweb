@@ -36,7 +36,7 @@ Before we begin, we should set the viewport meta tag.
   caption="Default behavior for resizing the browser shrinks content to fit the window width"
 />
 
-The default browser behavior is to shrink the page until the entire width of the page is visible, forcing the user to pan and zoom on small devices. This behavior, however, is undesirable once you build a responsive app, and wish to see the content at its intended scale. In order properly size the content based on the device width, you will need to set the viewport `<meta>` in your `<head>` (or [`<Helmet>`](https://github.com/nfl/react-helmet))
+The default browser behavior is to shrink the page until the entire width of the page is visible, forcing the user to pan and zoom on smaller devices. This behavior, however, is undesirable once you build a responsive app, and wish to see the content at its intended scale. In order properly size the content based on the device width, you will need to set the viewport `<meta>` in your `<head>` (or [`<Helmet>`](https://github.com/nfl/react-helmet))
 
 ```js
 <head> // or <Helmet>
@@ -49,7 +49,7 @@ The default browser behavior is to shrink the page until the entire width of the
 
 This meta tag was originally introduced by [Apple](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) for iOS Safari, but has since become an industry standard for controlling the viewport’s size and scale.
 
-- **`width=device-width`** sets the width of the page equal to the width of the device or window. E.g. if your screen has a width of 375px, then `width: 100%` will by default set width to 375px.
+- **`width=device-width`** sets the width of the page equal to the width of the device or window. E.g. if your screen has a width of 375px, then `width: 100%` will set the width to 375px.
 - **`initial-scale=1`** tells the browser to start at the 1:1 zoom level.
 - **`shrink-to-fit=no`** further prevents the page from scaling down in the event that you have elements on the page that overflow (either intentionally or unintentionally) the viewport bounds.
 
@@ -113,7 +113,7 @@ Then you can use `MyTheme` throughout your app using Base Web’s [`ThemeProvide
 
 It is important to write your styles [mobile first](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first) by default, and to treat desktop styles as enhancements. This is because it is usually easier to scale up a mobile component for desktop than vice-versa; desktop components often have usability issues when shrunken down.
 
-Another benefit with this approach is consistency with how Base Web components handle responsive props, which we will see later on with the **Block** and **FlexGrid** components.
+Another benefit with this approach is the consistency with how Base Web components handle responsive props, which we will see later on with the **Block** and **FlexGrid** components.
 
 Now that our theme is set up with media queries, we can start using them to create responsively-styled components using `themeStyled()`:
 
@@ -192,7 +192,7 @@ const NavLink = props => <Block display={['none', 'block']} {...props} />;
 
 ## FlexGrid component
 
-Another handy tool for building responsive UIs is the [FlexGrid](/components/flex-grid/) component ([v6.19.0](https://github.com/uber-web/baseui/releases/tag/v6.19.0)+). This component lets you build grid layouts using CSS flexbox, supporting Internet Explorer 10+ users. It sets gaps between the columns and rows [using `:nth-child` and `:nth-last-child` math](https://github.com/uber-web/baseui/blob/master/src/flex-grid/flex-grid-item.js), and also allows for responsive prop arrays like the [Block](/components/block/#responsive-layouts) component.
+Another handy tool for building responsive UIs is the [FlexGrid](/components/flex-grid/) component ([v6.19.0](https://github.com/uber-web/baseui/releases/tag/v6.19.0)+). This component lets you build grid layouts using CSS flexbox, supporting Internet Explorer 10+ users. It sets gaps between the columns and rows [using `:nth-child` and `:nth-last-child` math](https://github.com/uber-web/baseui/blob/master/src/flex-grid/flex-grid-item.js), which avoids extra margins at the end of each row or column, and also adds extra margins to account for incomplete rows. **FlexGrid** also allows for responsive prop arrays like the [Block](/components/block/#responsive-layouts) component.
 
 ```js
 // Example usage
@@ -205,7 +205,7 @@ const Filters = () => (
   </FlexGrid>
 );
 
-const Facilities = ({Pickup, Dropoff}) => (
+const Locations = ({Pickup, Dropoff}) => (
   <FlexGrid columnCount={[1, 2]} columnGap="scale300" rowGap="scale300">
     <FlexGridItem>
       <Pickup />
@@ -217,7 +217,7 @@ const Facilities = ({Pickup, Dropoff}) => (
 );
 ```
 
-These `columnCount` props mean that the Filters component will have two columns on mobile, and one column on desktop, whereas the Facilities component will have one column on mobile, and two columns on desktop:
+These `columnCount` props mean that the Filters component will have two columns on mobile, and one column on desktop, whereas the Locations component will have one column on mobile, and two columns on desktop:
 
 <BlogImage
   src={responsiveFlexGridGif}
@@ -227,7 +227,7 @@ These `columnCount` props mean that the Filters component will have two columns 
 
 ## AspectRatioBox component
 
-On slower network connections, especially apparent on cellular networks, images can cause content to jump around (reflow) as they are downloaded. When browsers see an image tag, they typically do not know how much space to allocate for it until it begins downloading the image headers, which can take some time.
+On slower network connections, especially apparent on cellular networks, images can cause content to jump around (reflow) as they are downloaded. When browsers see an image tag, they typically do not know how much space to allocate until it begins downloading the image headers, which can take some time.
 
 In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/components/aspect-ratio-box) component ([v7.5.0](https://github.com/uber-web/baseui/releases/tag/v7.5.0)+), which allows us to specify the aspect ratio for an element ahead of time using CSS (see [CSS-Tricks](https://css-tricks.com/aspect-ratio-boxes/#article-header-id-6) for how this works).
 
@@ -251,4 +251,4 @@ In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/
 
 ## Final thoughts
 
-Base Web currently gives you a few foundational components to build responsive web applications: from **Block**, to **FlexGrid**, to **AspectRatioBox**. We hope these components, along with this guide, will help and encourage you to build applications that are accessible to as many users as possible. Base Web is also open-source, so if you want to contribute enhancements or additional components, check out our [contributing guide](https://github.com/uber-web/baseui/blob/master/CONTRIBUTING.md)!
+Base Web currently gives you a few foundational components to build responsive web applications: from **Block**, to **FlexGrid**, to **AspectRatioBox**. We hope these components, along with this guide, will help and encourage you to build applications that are accessible to as many users as possible. Base Web is also open-source, so if you want to contribute enhancements or additional components, please check out our [contributing guide](https://github.com/uber-web/baseui/blob/master/CONTRIBUTING.md)!
