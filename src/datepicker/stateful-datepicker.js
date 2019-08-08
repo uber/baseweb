@@ -19,7 +19,7 @@ function StatefulComponent(props: StatefulDatepickerPropsT<DatepickerPropsT>) {
 }
 
 StatefulComponent.defaultProps = {
-  initialState: {value: null},
+  initialState: {},
   stateReducer: (type, nextState) => nextState,
   onChange: () => {},
 };
