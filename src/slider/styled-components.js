@@ -52,8 +52,8 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
         $value.length === 1
           ? [fillColor, colors.sliderTrackFill]
           : [colors.sliderTrackFill, fillColor, colors.sliderTrackFill],
-      min: $min,
-      max: $max,
+      min: $min || 0,
+      max: $max || 0,
     }),
     height: sizing.scale100,
     width: '100%',
