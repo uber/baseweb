@@ -109,9 +109,13 @@ This sets the following values inside `MyTheme`:
 
 Then you can use `MyTheme` throughout your app using Base Web’s [`ThemeProvider`](/theming/custom-themes#the-themeprovider).
 
-## Styling components using `themedStyled()`
+## Mobile-first styling of components
 
-Now that our theme is set up, we can start using it to create styled components using `themeStyled()`. Using the media queries we created above, we will write the mobile styles first, and add desktop styles under the media query key:
+It is important to write your styles [mobile first](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first) by default, and to treat desktop styles as enhancements. This is because it is usually easier to scale up a mobile component for desktop than vice-versa; desktop components often have usability issues when shrunken down.
+
+Another benefit with this approach is consistency with how Base Web components handle responsive props, which we will see later on with the **Block** and **FlexGrid** components.
+
+Now that our theme is set up with media queries, we can start using them to create responsively-styled components using `themeStyled()`:
 
 ```js
 const LoadStatus = themedStyled('span', ({$theme}) => ({
@@ -124,12 +128,12 @@ const LoadStatus = themedStyled('span', ({$theme}) => ({
 }));
 ```
 
-With our small breakpoint of 769px, this means that the component will change font and color as the screen increases past 769px:
+With our small breakpoint of 769px, this means that the component will change font-size and color as the screen increases past 769px:
 
 <BlogImage
   src={responsiveLoadStatusGif}
   alt="resizing the window smaller and seeing the pink-highlighted text change size and color"
-  caption="LoadStatus component, highlighted in pink, changes font and color on mobile"
+  caption="LoadStatus component, highlighted in pink, changes font-size and color on mobile"
 />
 
 ## Block responsive API
