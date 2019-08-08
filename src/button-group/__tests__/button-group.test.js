@@ -25,7 +25,7 @@ function buildSimpleWrapper(props = {}) {
 
 describe('ButtonGroup', () => {
   it('propagates kind to children', () => {
-    const kind = 'tertiary';
+    const kind = 'secondary';
     const wrapper = buildSimpleWrapper({kind});
     wrapper.children().forEach(child => {
       expect(child).toHaveProp('kind', kind);
