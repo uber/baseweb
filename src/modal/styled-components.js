@@ -188,4 +188,5 @@ export const ModalFooter = styled<{}>('div', ({$theme}) => ({
   borderTopWidth: '1px',
   borderTopStyle: 'solid',
   borderTopColor: $theme.colors.mono400,
+  textAlign: $theme.direction === 'rtl' ? 'left' : 'right',
 }));

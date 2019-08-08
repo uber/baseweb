@@ -47,11 +47,12 @@ export const StyledCalendarContainer = styled<SharedStylePropsT>(
 
 export const StyledSelectorContainer = styled<SharedStylePropsT>(
   'div',
-  props => {
+  ({$theme}) => {
     return {
-      marginBottom: props.$theme.sizing.scale600,
-      paddingLeft: props.$theme.sizing.scale600,
-      paddingRight: props.$theme.sizing.scale600,
+      marginBottom: $theme.sizing.scale600,
+      paddingLeft: $theme.sizing.scale600,
+      paddingRight: $theme.sizing.scale600,
+      textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
     };
   },
 );
