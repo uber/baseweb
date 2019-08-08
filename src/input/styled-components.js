@@ -18,7 +18,8 @@ export const StyledClearIconContainer = styled<{
   return {
     display: 'flex',
     alignItems: $alignTop ? 'flex-start' : 'center',
-    paddingRight: $theme.sizing.scale500,
+    [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $theme.sizing
+      .scale500,
     paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
     color: $theme.colors.foregroundAlt,
   };
