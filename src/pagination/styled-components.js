@@ -23,6 +23,8 @@ export const StyledMaxLabel = styled<{}>('span', ({$theme}) => ({
 
 export const StyledDropdownContainer = styled<{}>('div', ({$theme}) => ({
   position: 'relative',
-  [$theme.direction ? 'marginRight' : 'marginLeft']: $theme.sizing.scale600,
-  [$theme.direction ? 'marginLeft' : 'marginRight']: $theme.sizing.scale300,
+  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+    .scale600,
+  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
+    .scale300,
 }));
