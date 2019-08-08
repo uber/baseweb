@@ -29,9 +29,9 @@ export const Caption = styled('figcaption', ({$theme}) => ({
   padding: '4px 4px 0 0',
 }));
 
-export const BlogImage = ({full, caption, src, style}) => (
+export const BlogImage = ({full, alt, caption, src, style}) => (
   <figure style={{margin: 0}}>
-    <Image $full={full} src={src} style={style} />
+    <Image $full={full} src={src} alt={alt} style={style} />
     {caption && <Caption>{caption}</Caption>}
   </figure>
 );
