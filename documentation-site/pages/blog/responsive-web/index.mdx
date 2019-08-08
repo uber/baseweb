@@ -8,7 +8,7 @@ import {StatefulPhoneInput} from 'baseui/phone-input';
 import metadata from './metadata.json';
 
 import aspectRatioBoxGif from './aspect-ratio-box.gif';
-import responsiveDashboardGif from './responsive-dashboard.gif';
+import responsiveFlexGridGif from './responsive-flex-grid.gif';
 import responsiveHideGif from './responsive-hide.gif';
 import responsiveLoadStatusGif from './responsive-load-status.gif';
 import responsiveNavBarGif from './responsive-nav-bar.gif';
@@ -128,12 +128,12 @@ const LoadStatus = themedStyled('span', ({$theme}) => ({
 }));
 ```
 
-With our small breakpoint of 769px, this means that the component will change font-size and color as the screen increases past 769px:
+With our `small` breakpoint of 769px, this means that the component will change font-size and color as the screen increases past 769px:
 
 <BlogImage
   src={responsiveLoadStatusGif}
-  alt="resizing the window smaller and seeing the pink-highlighted text change size and color"
-  caption="LoadStatus component, highlighted in pink, changes font-size and color on mobile"
+  alt="resizing the window larger and seeing the pink-highlighted text change font-size and color"
+  caption="LoadStatus component, highlighted in pink, changes font-size and color on desktop"
 />
 
 ## Block responsive API
@@ -168,8 +168,8 @@ const NavBar = themedStyled('div', ({$theme}) => ({
 
 <BlogImage
   src={responsiveNavBarGif}
-  alt="resizing the window smaller and seeing the yellow-highlighted nav bar change height and padding"
-  caption="NavBar component, highlighted in yellow, changes height and padding on mobile"
+  alt="resizing the window larger and seeing the yellow-highlighted nav bar increase height and padding"
+  caption="NavBar component, highlighted in yellow, increases height and padding on desktop"
 />
 
 ## Mobile-only or desktop-only Blocks
@@ -177,17 +177,17 @@ const NavBar = themedStyled('div', ({$theme}) => ({
 We can also take advantage of these responsive properties to completely hide a Block component using CSS `display: none`.
 
 ```js
-// NavLink appears only on desktop
-const NavLink = props => <Block display={['none', 'block']} {...props} />;
-
 // TabLink appears only on mobile
 const TabLink = props => <Block display={['block', 'none']} {...props} />;
+
+// NavLink appears only on desktop
+const NavLink = props => <Block display={['none', 'block']} {...props} />;
 ```
 
 <BlogImage
   src={responsiveHideGif}
-  alt="resizing the window smaller and seeing the green-highlighted components appear or disappear"
-  caption="Mobile/desktop-only components, highlighted in green, appear or disappear on mobile"
+  alt="resizing the window larger and seeing the green-highlighted components appear or disappear"
+  caption="Mobile-only/desktop-only components, highlighted in green, appear or disappear on desktop"
 />
 
 ## FlexGrid component
@@ -220,9 +220,9 @@ const Facilities = ({Pickup, Dropoff}) => (
 These `columnCount` props mean that the Filters component will have two columns on mobile, and one column on desktop, whereas the Facilities component will have one column on mobile, and two columns on desktop:
 
 <BlogImage
-  src={responsiveDashboardGif}
-  alt="resizing the window smaller and seeing the red-highlighted grid components change column-counts"
-  caption="FlexGrid components, highlighted in red, change column-counts on mobile"
+  src={responsiveFlexGridGif}
+  alt="resizing the window larger and seeing the red-highlighted FlexGrid components change column-counts"
+  caption="FlexGrid components, highlighted in red, change column-counts on desktop"
 />
 
 ## AspectRatioBox component
@@ -246,7 +246,7 @@ In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/
 <BlogImage
   src={aspectRatioBoxGif}
   alt="side-by-side comparison of app loading, left with an image that reflows on load"
-  caption="Right image uses AspectRatioBox component to prevent reflows on slower networks."
+  caption="Right image uses AspectRatioBox component to prevent reflows on slower networks"
 />
 
 ## Final thoughts
