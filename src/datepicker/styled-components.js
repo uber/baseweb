@@ -132,8 +132,6 @@ function getArrowBtnStyle({$theme, $disabled}) {
           borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
           borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
         },
-    // $FlowFixMe
-    ...($theme.direction === 'rtl' && {transform: 'rotateY(180deg)'}),
   };
 }
 
