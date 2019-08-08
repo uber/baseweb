@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {styled} from 'baseui';
+import {useStyletron} from 'baseui';
 import {Table} from 'baseui/table';
 
 const DATA = [
@@ -68,16 +68,15 @@ const DATA = [
 
 const COLUMNS = ['Id', 'First Name', 'Last Name', 'Age', 'Address'];
 
-const Container = styled('div', {
-  height: '400px',
-});
-
-export default () => (
-  <Container>
-    <Table
-      columns={COLUMNS}
-      data={DATA}
-      horizontalScrollWidth="1000px"
-    />
-  </Container>
-);
+export default () => {
+  const [useCss] = useStyletron();
+  return (
+    <div className={useCss({height: '400px'})}>
+      <Table
+        columns={COLUMNS}
+        data={DATA}
+        horizontalScrollWidth="1000px"
+      />
+    </div>
+  );
+};

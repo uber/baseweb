@@ -23,12 +23,15 @@ import Password from 'examples/input/password.js';
 import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
 
 import Overrides from '../../components/overrides';
+import Yard from '../../components/yard/yard';
 import {StatefulInput} from 'baseui/input';
 import * as InputExports from 'baseui/input';
 
 export default Layout;
 
 # Input
+
+<Yard componentName="Input" />
 
 An input enables a person to type in text information.
 
@@ -120,37 +123,3 @@ In the example above we use `overrides` to add "tag" functionality to our input.
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulInput`, which manages its own state.
-
-## Overrides
-
-<Overrides
-  name="Input"
-  component={InputExports}
-  whitelisted={[
-    'After',
-    'Before',
-    'ClearIcon',
-    'ClearIconContainer',
-    'EndEnhancer',
-    'Input',
-    'InputContainer',
-    'MaskToggleButton',
-    'MaskToggleHideIcon',
-    'MaskToggleShowIcon',
-    'Root',
-    'StartEnhancer',
-  ]}
-  renderExample={props => (
-    <StatefulInput
-      overrides={props.overrides}
-      startEnhancer="$"
-      endEnhancer=".00"
-      placeholder="Price"
-    />
-  )}
-/>
-
-<API
-  heading="Input API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/input/input.js')}
-/>

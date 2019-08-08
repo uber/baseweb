@@ -1,36 +1,35 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {useStyletron} from 'baseui';
 import {Checkbox} from 'baseui/checkbox';
 
-export default () => {
+function GroupList() {
+  const [useCss, theme] = useStyletron();
   const [checkboxes, setCheckboxes] = React.useState([
     false,
     false,
   ]);
+
   const allChecked = checkboxes.every(Boolean);
   const isIndeterminate = checkboxes.some(Boolean) && !allChecked;
+
   return (
-    <Block>
+    <div>
       <Checkbox
         onChange={e => {
-          const nextCheckboxes = [
-            e.currentTarget.checked,
-            e.currentTarget.checked,
-          ];
-          setCheckboxes(nextCheckboxes);
+          const target = e.target as HTMLInputElement;
+          setCheckboxes([target.checked, target.checked]);
         }}
         isIndeterminate={isIndeterminate}
         checked={allChecked}
       >
         Indeterminate checkbox if not all subcheckboxes are checked
       </Checkbox>
-      <Block padding="scale400">
+      <div className={useCss({padding: theme.sizing.scale400})}>
         <Checkbox
           checked={checkboxes[0]}
           onChange={e => {
-            const nextCheckboxes = [...checkboxes];
-            nextCheckboxes[0] = e.currentTarget.checked;
-            setCheckboxes(nextCheckboxes);
+            const target = e.target as HTMLInputElement;
+            setCheckboxes([target.checked, checkboxes[1]]);
           }}
         >
           First subcheckbox
@@ -38,14 +37,15 @@ export default () => {
         <Checkbox
           checked={checkboxes[1]}
           onChange={e => {
-            const nextCheckboxes = [...checkboxes];
-            nextCheckboxes[1] = e.currentTarget.checked;
-            setCheckboxes(nextCheckboxes);
+            const target = e.target as HTMLInputElement;
+            setCheckboxes([checkboxes[0], target.checked]);
           }}
         >
           Second subcheckbox
         </Checkbox>
-      </Block>
-    </Block>
+      </div>
+    </div>
   );
-};
+}
+
+export default GroupList;

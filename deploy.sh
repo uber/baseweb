@@ -20,6 +20,13 @@ if [ "$this_commit" = "$latest_tagged_commit" ]; then
   version=$(echo $BUILDKITE_MESSAGE | cut -d' ' -f 2)
   echo version $version
 
+  # deploy to npm
+  rm .npmrc
+  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+  yarn build
+  npm publish dist
+
+  # deploy to now
   now --scope=uber-ui-platform --token=$ZEIT_NOW_TOKEN --public --no-clipboard deploy ./public > deployment.txt
   deployment=`cat deployment.txt`
   cname="${version//./-}"
