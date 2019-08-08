@@ -192,12 +192,12 @@ const TabLink = props => <Block display={['block', 'none']} {...props} />;
 
 ## FlexGrid component
 
-Another handy tool for building responsive UIs is the [FlexGrid](/components/flex-grid/) component ([v6.19.0](https://github.com/uber-web/baseui/releases/tag/v6.19.0)+). This component lets you build grid layouts using CSS flexbox, supporting Internet Explorer 10+ users. It sets gaps between the columns and rows using `:nth-child` and `:nth-last-child` math, and also allows for responsive prop arrays like the [Block](/components/block/#responsive-layouts) component.
+Another handy tool for building responsive UIs is the [FlexGrid](/components/flex-grid/) component ([v6.19.0](https://github.com/uber-web/baseui/releases/tag/v6.19.0)+). This component lets you build grid layouts using CSS flexbox, supporting Internet Explorer 10+ users. It sets gaps between the columns and rows [using `:nth-child` and `:nth-last-child` math](https://github.com/uber-web/baseui/blob/master/src/flex-grid/flex-grid-item.js), and also allows for responsive prop arrays like the [Block](/components/block/#responsive-layouts) component.
 
 ```js
 // Example usage
 const Filters = () => (
-  <FlexGrid columnCount={[2, 4]} columnGap="scale300" rowGap="scale800">
+  <FlexGrid columnCount={[2, 1]} columnGap="scale300" rowGap="scale800">
     <FlexGridItem>All Shipments</FlexGridItem>
     <FlexGridItem>In Progress</FlexGridItem>
     <FlexGridItem>Upcoming</FlexGridItem>
@@ -216,6 +216,8 @@ const Facilities = ({Pickup, Dropoff}) => (
   </FlexGrid>
 );
 ```
+
+These `columnCount` props mean that the Filters component will have two columns on mobile, and one column on desktop, whereas the Facilities component will have one column on mobile, and two columns on desktop:
 
 <BlogImage
   src={responsiveDashboardGif}
