@@ -12,6 +12,4 @@ import {StatefulDatepicker} from '../index.js';
 
 export const name = 'stateful-range-datepicker';
 
-export const component = () => (
-  <StatefulDatepicker range initialState={{value: []}} />
-);
+export const component = () => <StatefulDatepicker range />;
