@@ -597,6 +597,7 @@ export interface ThemePrimitives {
   positive700: string;
 
   // Monochrome Palette
+  mono50: string;
   mono100: string;
   mono200: string;
   mono300: string;

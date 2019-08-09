@@ -89,7 +89,7 @@ export default function createTheme(
 
       // Font Color
       colorPrimary: primitives.mono1000,
-      colorSecondary: primitives.mono800,
+      colorSecondary: primitives.mono600,
 
       // Background
       background: primitives.white,
@@ -112,7 +112,7 @@ export default function createTheme(
       buttonPrimaryFill: primitives.mono1000,
       buttonPrimaryText: primitives.white,
       buttonPrimaryHover: primitives.mono900,
-      buttonPrimaryActive: primitives.mono800,
+      buttonPrimaryActive: primitives.mono600,
       buttonPrimaryDisabledFill: primitives.mono50,
       buttonSecondaryFill: primitives.mono50,
       buttonSecondaryText: primitives.mono1000,
@@ -210,7 +210,7 @@ export default function createTheme(
       tickFillHover: primitives.mono50,
       tickFillActive: primitives.mono200,
       tickFillSelected: primitives.mono1000,
-      tickFillSelectedHover: primitives.mono800,
+      tickFillSelectedHover: primitives.mono600,
       tickFillSelectedHoverActive: primitives.mono900,
       tickFillError: primitives.negative50,
       tickFillErrorHover: primitives.negative100,
@@ -236,7 +236,7 @@ export default function createTheme(
       sliderHandleBorder: primitives.mono200,
       sliderHandleInnerFill: primitives.mono200,
       sliderHandleInnerFillDisabled: primitives.mono200,
-      sliderHandleInnerFillSelectedHover: primitives.mono800,
+      sliderHandleInnerFillSelectedHover: primitives.mono600,
       sliderHandleInnerFillSelectedActive: primitives.mono900,
       // deprecated: no longer in use
       sliderTrackFillSelected: primitives.primary400,
@@ -268,20 +268,20 @@ export default function createTheme(
       // Menu
       menuFill: primitives.white,
       menuFillHover: primitives.mono50,
-      menuFontDefault: primitives.mono800,
+      menuFontDefault: primitives.mono600,
       menuFontDisabled: primitives.mono300,
       menuFontHighlighted: primitives.mono1000,
       menuFontSelected: primitives.mono1000,
 
       // Pagination
-      paginationTriangleDown: primitives.mono800,
+      paginationTriangleDown: primitives.mono600,
 
       // Header navigation
       headerNavigationFill: 'transparent',
 
       // Tab
       tabBarFill: primitives.mono50,
-      tabColor: primitives.mono800,
+      tabColor: primitives.mono600,
       tabBorder: primitives.mono1000,
 
       // Notification
@@ -328,7 +328,7 @@ export default function createTheme(
       tagNeutralLightFont: primitives.mono900,
       tagNeutralLightFontHover: primitives.mono900,
       tagNeutralOutlinedBackground: primitives.mono900,
-      tagNeutralOutlinedHover: primitives.mono800,
+      tagNeutralOutlinedHover: primitives.mono600,
       tagNeutralOutlinedActive: primitives.mono900,
       tagNeutralOutlinedDisabled: primitives.mono50,
       tagNeutralOutlinedFont: primitives.mono900,

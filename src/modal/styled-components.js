@@ -131,17 +131,17 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
     paddingBottom: 0,
 
     // colors
-    color: $theme.colors.foregroundAlt,
+    color: $theme.colors.foreground,
     transitionProperty: 'color, border-color',
     transitionDuration: $theme.animation.timing100,
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: 'transparent',
     ':hover': {
-      color: $theme.colors.mono800,
+      color: $theme.colors.foregroundAlt,
     },
     ':focus': {
-      color: $theme.colors.mono800,
+      color: $theme.colors.foregroundAlt,
       borderColor: $theme.colors.borderFocus,
     },
 
