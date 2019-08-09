@@ -32,7 +32,7 @@ const PlainInput = styled<{$inputVisible: boolean, $breakpoint: string}>(
       borderWidth: '2px',
       borderColor: $theme.colors.inputEnhancerFill,
       borderStyle: 'solid',
-      paddingLeft: '42px',
+      paddingLeft: $theme.direction === 'rtl' ? '9px' : '42px',
       backgroundColor: $theme.colors.inputEnhancerFill,
       paddingRight: '12px',
       paddingTop: '9px',
@@ -56,13 +56,15 @@ const PlainInput = styled<{$inputVisible: boolean, $breakpoint: string}>(
 const IconWrapper = styled<{$inputVisible: boolean, $breakpoint: string}>(
   'div',
   ({$inputVisible, $theme, $breakpoint}) => ({
-    marginRight: $inputVisible ? '-33px' : 0,
+    [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $inputVisible
+      ? '-33px'
+      : 0,
     marginTop: $inputVisible ? '8px' : 0,
     height: '32px',
     cursor: 'pointer',
     zIndex: 1,
     [$breakpoint]: {
-      marginRight: '-33px',
+      [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: '-33px',
       marginTop: '8px',
       cursor: 'inherit',
       zIndex: 1,

@@ -47,12 +47,12 @@ export const StyledCalendarContainer = styled<SharedStylePropsT>(
 
 export const StyledSelectorContainer = styled<SharedStylePropsT>(
   'div',
-  props => {
+  ({$theme}) => {
     return {
-      marginBottom: props.$theme.sizing.scale600,
-      paddingLeft: props.$theme.sizing.scale600,
-      paddingRight: props.$theme.sizing.scale600,
-      textAlign: 'left',
+      marginBottom: $theme.sizing.scale600,
+      paddingLeft: $theme.sizing.scale600,
+      paddingRight: $theme.sizing.scale600,
+      textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
     };
   },
 );
@@ -103,7 +103,8 @@ export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
   return {
     alignItems: 'center',
     display: 'flex',
-    marginLeft: props.$theme.sizing.scale500,
+    [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
+      .$theme.sizing.scale500,
   };
 });
 

@@ -12,6 +12,7 @@ import TriangleDown from '../icon/triangle-down.js';
 import {StatefulMenu} from '../menu/index.js';
 import {Popover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
+import {ThemeContext} from '../styles/theme-provider.js';
 import {
   StyledCalendarHeader,
   StyledPrevButton,
@@ -39,6 +40,7 @@ import {ORIENTATION, WEEKDAYS} from './constants.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
+import type {ThemeT} from '../styles/types.js';
 
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
@@ -128,7 +130,13 @@ export default class CalendarHeader extends React.Component<
     return false;
   };
 
-  renderPreviousMonthButton = ({locale}: {locale: LocaleT}) => {
+  renderPreviousMonthButton = ({
+    locale,
+    theme,
+  }: {
+    locale: LocaleT,
+    theme: ThemeT,
+  }) => {
     const {date, overrides = {}} = this.props;
     const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
 
@@ -152,7 +160,7 @@ export default class CalendarHeader extends React.Component<
     );
     const [PrevButtonIcon, prevButtonIconProps] = getOverrides(
       overrides.PrevButtonIcon,
-      ArrowLeft,
+      theme.direction === 'rtl' ? ArrowRight : ArrowLeft,
     );
     let clickHandler = this.decreaseMonth;
     if (allPrevDaysDisabled) {
@@ -177,7 +185,13 @@ export default class CalendarHeader extends React.Component<
     );
   };
 
-  renderNextMonthButton = ({locale}: {locale: LocaleT}) => {
+  renderNextMonthButton = ({
+    locale,
+    theme,
+  }: {
+    locale: LocaleT,
+    theme: ThemeT,
+  }) => {
     const {date, overrides = {}} = this.props;
     const allNextDaysDisabled = monthDisabledAfter(date, this.props);
 
@@ -202,7 +216,7 @@ export default class CalendarHeader extends React.Component<
     );
     const [NextButtonIcon, nextButtonIconProps] = getOverrides(
       overrides.NextButtonIcon,
-      ArrowRight,
+      theme.direction === 'rtl' ? ArrowLeft : ArrowRight,
     );
 
     let clickHandler = this.increaseMonth;
@@ -367,27 +381,35 @@ export default class CalendarHeader extends React.Component<
 
     const startOfWeek = getStartOfWeek(this.props.date, this.props.locale);
     return (
-      <LocaleContext.Consumer>
-        {locale => (
-          <>
-            <CalendarHeader {...calendarHeaderProps}>
-              {this.renderPreviousMonthButton({locale})}
-              {this.renderMonthYearDropdown()}
-              {this.renderNextMonthButton({locale})}
-            </CalendarHeader>
-            <MonthHeader role="presentation" {...monthHeaderProps}>
-              {WEEKDAYS.map(offset => {
-                const day = addDays(startOfWeek, offset);
-                return (
-                  <WeekdayHeader $isHeader key={offset} {...weekdayHeaderProps}>
-                    {getWeekdayMinInLocale(day, this.props.locale)}
-                  </WeekdayHeader>
-                );
-              })}
-            </MonthHeader>
-          </>
+      <ThemeContext.Consumer>
+        {theme => (
+          <LocaleContext.Consumer>
+            {locale => (
+              <>
+                <CalendarHeader {...calendarHeaderProps}>
+                  {this.renderPreviousMonthButton({locale, theme})}
+                  {this.renderMonthYearDropdown()}
+                  {this.renderNextMonthButton({locale, theme})}
+                </CalendarHeader>
+                <MonthHeader role="presentation" {...monthHeaderProps}>
+                  {WEEKDAYS.map(offset => {
+                    const day = addDays(startOfWeek, offset);
+                    return (
+                      <WeekdayHeader
+                        $isHeader
+                        key={offset}
+                        {...weekdayHeaderProps}
+                      >
+                        {getWeekdayMinInLocale(day, this.props.locale)}
+                      </WeekdayHeader>
+                    );
+                  })}
+                </MonthHeader>
+              </>
+            )}
+          </LocaleContext.Consumer>
         )}
-      </LocaleContext.Consumer>
+      </ThemeContext.Consumer>
     );
   }
 }

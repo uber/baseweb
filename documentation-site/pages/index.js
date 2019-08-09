@@ -43,9 +43,13 @@ const cardOverrides = {
 
 const Index = (props: {
   toggleTheme: () => void,
+  toggleDirection: () => void,
   contributors: Contributor[],
 }) => (
-  <Layout toggleTheme={props.toggleTheme}>
+  <Layout
+    toggleDirection={props.toggleDirection}
+    toggleTheme={props.toggleTheme}
+  >
     <Block
       paddingTop={['scale100', 'scale400', 'scale800']}
       display="block"

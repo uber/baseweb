@@ -24,6 +24,7 @@ import Router from 'next/router';
 
 import {styletron, debug} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
+import DirectionContext from '../components/direction-context';
 
 const themes = {
   LightTheme,
@@ -46,6 +47,7 @@ export default class MyApp extends App {
     super(props);
     this.state = {
       theme: LightTheme,
+      direction: 'ltr',
     };
     this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
@@ -175,6 +177,23 @@ export default class MyApp extends App {
     this.setTheme();
   }
 
+  toggleDirection() {
+    console.log(1);
+    if (this.state.direction === 'rtl') {
+      this.setState({
+        direction: 'ltr',
+        theme: {...this.state.theme, direction: 'ltr'},
+      });
+      document.body.dir = 'ltr';
+    } else {
+      this.setState({
+        direction: 'rtl',
+        theme: {...this.state.theme, direction: 'rtl'},
+      });
+      document.body.dir = 'rtl';
+    }
+  }
+
   render() {
     const {Component, pageProps, path} = this.props;
     return (
@@ -182,11 +201,14 @@ export default class MyApp extends App {
         <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
           <BaseProvider theme={this.state.theme}>
             <Block {...blockProps}>
-              <Component
-                {...pageProps}
-                path={path}
-                toggleTheme={this.toggleTheme.bind(this)}
-              />
+              <DirectionContext.Provider value={this.state.direction}>
+                <Component
+                  {...pageProps}
+                  path={path}
+                  toggleTheme={this.toggleTheme.bind(this)}
+                  toggleDirection={this.toggleDirection.bind(this)}
+                />
+              </DirectionContext.Provider>
             </Block>
           </BaseProvider>
         </StyletronProvider>
