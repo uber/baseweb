@@ -113,23 +113,23 @@ export default function createTheme(
       buttonPrimaryText: primitives.white,
       buttonPrimaryHover: primitives.mono900,
       buttonPrimaryActive: primitives.mono800,
-      buttonPrimaryDisabledFill: primitives.mono200,
-      buttonSecondaryFill: primitives.mono200,
+      buttonPrimaryDisabledFill: primitives.mono50,
+      buttonSecondaryFill: primitives.mono50,
       buttonSecondaryText: primitives.mono1000,
       buttonSecondaryHover: primitives.mono300,
       buttonSecondaryActive: primitives.mono400,
-      buttonSecondaryDisabledFill: primitives.mono200,
+      buttonSecondaryDisabledFill: primitives.mono50,
       buttonSecondarySelectedFill: primitives.mono400,
       buttonSecondarySelectedText: primitives.mono1000,
       buttonTertiaryFill: 'transparent',
       buttonTertiaryText: primitives.mono1000,
-      buttonTertiaryHover: primitives.mono200,
+      buttonTertiaryHover: primitives.mono50,
       buttonTertiaryActive: primitives.mono300,
       buttonTertiaryDisabledFill: 'transparent',
       // deprecated (to be removed)
       buttonMinimalFill: 'transparent',
       buttonMinimalText: primitives.mono1000,
-      buttonMinimalHover: primitives.mono200,
+      buttonMinimalHover: primitives.mono50,
       buttonMinimalActive: primitives.mono300,
       buttonMinimalDisabledFill: 'transparent',
       // deprecated: no longer in use
@@ -167,7 +167,7 @@ export default function createTheme(
       calendarDayForegroundSelectedHighlighted: primitives.white,
 
       // FileUploader
-      fileUploaderBackgroundColor: primitives.mono200,
+      fileUploaderBackgroundColor: primitives.mono50,
       fileUploaderBackgroundColorActive: primitives.primary50,
       fileUploaderBorderColorActive: primitives.primary400,
       fileUploaderBorderColorDefault: primitives.mono500,
@@ -185,7 +185,7 @@ export default function createTheme(
 
       // List
       listHeaderFill: primitives.white,
-      listBodyFill: primitives.mono200,
+      listBodyFill: primitives.mono50,
       listIconFill: primitives.mono500,
       listBorder: primitives.mono500,
 
@@ -203,7 +203,7 @@ export default function createTheme(
 
       // Tick
       tickFill: primitives.white,
-      tickFillHover: primitives.mono200,
+      tickFillHover: primitives.mono50,
       tickFillActive: primitives.mono400,
       tickFillSelected: primitives.mono1000,
       tickFillSelectedHover: primitives.mono800,
@@ -248,10 +248,10 @@ export default function createTheme(
       sliderBorderDisabled: primitives.mono600,
 
       // Inputs
-      inputFill: primitives.mono200,
+      inputFill: primitives.mono50,
       inputFillError: primitives.negative50,
-      inputFillDisabled: primitives.mono200,
-      inputFillActive: primitives.mono200,
+      inputFillDisabled: primitives.mono50,
+      inputFillActive: primitives.mono50,
       inputFillPositive: primitives.positive50,
       inputTextDisabled: primitives.mono600,
       inputBorderError: primitives.negative200,
@@ -262,7 +262,7 @@ export default function createTheme(
 
       // Menu
       menuFill: primitives.white,
-      menuFillHover: primitives.mono200,
+      menuFillHover: primitives.mono50,
       menuFontDefault: primitives.mono800,
       menuFontDisabled: primitives.mono500,
       menuFontHighlighted: primitives.mono1000,
@@ -275,7 +275,7 @@ export default function createTheme(
       headerNavigationFill: 'transparent',
 
       // Tab
-      tabBarFill: primitives.mono200,
+      tabBarFill: primitives.mono50,
       tabColor: primitives.mono800,
       tabBorder: primitives.mono1000,
 
@@ -313,21 +313,21 @@ export default function createTheme(
       tagNeutralSolidBackground: primitives.mono900,
       tagNeutralSolidHover: primitives.mono300,
       tagNeutralSolidActive: primitives.mono400,
-      tagNeutralSolidDisabled: primitives.mono200,
+      tagNeutralSolidDisabled: primitives.mono50,
       tagNeutralSolidFont: primitives.white,
       tagNeutralSolidFontHover: primitives.mono900,
       tagNeutralLightBackground: primitives.mono300,
       tagNeutralLightHover: primitives.mono300,
       tagNeutralLightActive: primitives.mono400,
-      tagNeutralLightDisabled: primitives.mono200,
+      tagNeutralLightDisabled: primitives.mono50,
       tagNeutralLightFont: primitives.mono900,
       tagNeutralLightFontHover: primitives.mono900,
       tagNeutralOutlinedBackground: primitives.mono900,
       tagNeutralOutlinedHover: primitives.mono800,
       tagNeutralOutlinedActive: primitives.mono900,
-      tagNeutralOutlinedDisabled: primitives.mono200,
+      tagNeutralOutlinedDisabled: primitives.mono50,
       tagNeutralOutlinedFont: primitives.mono900,
-      tagNeutralOutlinedFontHover: primitives.mono200,
+      tagNeutralOutlinedFontHover: primitives.mono50,
       tagNeutralFontDisabled: primitives.mono500,
 
       tagPrimarySolidBackground: primitives.primary400,
@@ -413,11 +413,11 @@ export default function createTheme(
       // Table
       tableHeadBackgroundColor: primitives.white,
       tableBackground: primitives.white,
-      tableStripedBackground: primitives.mono200,
+      tableStripedBackground: primitives.mono50,
       tableFilter: primitives.mono600,
       tableFilterHeading: primitives.mono700,
       tableFilterBackground: primitives.white,
-      tableFilterFooterBackground: primitives.mono200,
+      tableFilterFooterBackground: primitives.mono50,
 
       // Toast
       toastText: primitives.white,

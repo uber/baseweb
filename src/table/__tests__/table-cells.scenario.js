@@ -94,7 +94,7 @@ const panelOverrides = {
   },
   Content: {
     style: ({$theme: {colors, sizing}, $expanded}) => ({
-      backgroundColor: colors.mono200,
+      backgroundColor: colors.mono50,
       color: colors.mono800,
       paddingTop: $expanded ? sizing.scale300 : 0,
       paddingBottom: $expanded ? sizing.scale600 : 0,
