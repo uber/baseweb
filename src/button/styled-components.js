@@ -187,6 +187,11 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
           backgroundColor: $theme.colors.buttonTertiaryDisabledFill,
           color: $theme.colors.buttonDisabledText,
         };
+      case KIND.minimal:
+        return {
+          backgroundColor: $theme.colors.buttonMinimalDisabledFill,
+          color: $theme.colors.buttonDisabledText,
+        };
     }
   }
   switch ($kind) {
@@ -253,6 +258,24 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         },
         ':active': {
           backgroundColor: $theme.colors.buttonTertiaryActive,
+        },
+      };
+    case KIND.minimal:
+      return {
+        color: $theme.colors.buttonMinimalText,
+        backgroundColor: $theme.colors.buttonMinimalFill,
+        ':hover': {
+          backgroundColor: $isLoading
+            ? $theme.colors.buttonMinimalActive
+            : $theme.colors.buttonMinimalHover,
+        },
+        ':focus': {
+          backgroundColor: $isLoading
+            ? $theme.colors.buttonMinimalActive
+            : $theme.colors.buttonMinimalHover,
+        },
+        ':active': {
+          backgroundColor: $theme.colors.buttonMinimalActive,
         },
       };
     default:

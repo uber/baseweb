@@ -10,7 +10,7 @@ export const KIND = {
   primary: 'primary',
   secondary: 'secondary',
   tertiary: 'tertiary',
-  minimal: 'tertiary', // alias for `tertiary` - removed in v9
+  minimal: 'minimal',
 };
 
 export const SHAPE = {

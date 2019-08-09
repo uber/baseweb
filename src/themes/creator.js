@@ -109,28 +109,34 @@ export default function createTheme(
       borderError: primitives.negative400,
 
       // Buttons
+      buttonDisabledText: primitives.mono600,
       buttonPrimaryFill: primitives.mono1000,
       buttonPrimaryText: WHITE,
       buttonPrimaryHover: primitives.mono900,
       buttonPrimaryActive: primitives.mono800,
-      buttonPrimaryDisabledFill: primitives.mono300,
-
+      buttonPrimaryDisabledFill: primitives.mono200,
       buttonSecondaryFill: primitives.mono200,
       buttonSecondaryText: primitives.mono1000,
       buttonSecondaryHover: primitives.mono300,
       buttonSecondaryActive: primitives.mono400,
       buttonSecondaryDisabledFill: primitives.mono200,
-      // ButtonGroup $selected only applies to `secondary` variant,
       buttonSecondarySelectedFill: primitives.mono400,
       buttonSecondarySelectedText: primitives.mono1000,
-
       buttonTertiaryFill: 'transparent',
       buttonTertiaryText: primitives.mono1000,
       buttonTertiaryHover: primitives.mono200,
       buttonTertiaryActive: primitives.mono300,
       buttonTertiaryDisabledFill: 'transparent',
-
-      buttonDisabledText: primitives.mono600,
+      // deprecated (to be removed)
+      buttonMinimalFill: 'transparent',
+      buttonMinimalText: primitives.mono1000,
+      buttonMinimalHover: primitives.mono200,
+      buttonMinimalActive: primitives.mono300,
+      buttonMinimalDisabledFill: 'transparent',
+      // deprecated (no longer in use)
+      buttonDisabledFill: primitives.mono300,
+      buttonTertiarySelectedFill: primitives.primary400,
+      buttonTertiarySelectedText: primitives.mono100,
 
       // Breadcrumbs
       breadcrumbsText: primitives.mono900,

@@ -32,5 +32,11 @@ export const component = () => (
     <Button kind={KIND.tertiary} disabled>
       Disabled Button
     </Button>
+    <Block marginBottom="scale300" />
+    <Button kind={KIND.minimal}>Button</Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.minimal} disabled>
+      Disabled Button
+    </Button>
   </React.Fragment>
 );

@@ -100,6 +100,7 @@ export type ColorsT = {
   borderError: string,
 
   // Buttons
+  buttonDisabledText: string,
   buttonPrimaryFill: string,
   buttonPrimaryText: string,
   buttonPrimaryHover: string,
@@ -110,14 +111,23 @@ export type ColorsT = {
   buttonSecondaryHover: string,
   buttonSecondaryActive: string,
   buttonSecondaryDisabledFill: string,
-  buttonSecondarySelectedText: string,
-  buttonSecondarySelectedFill: string,
+  buttonSecondarySelectedText: string, // for use with button-group
+  buttonSecondarySelectedFill: string, // for use with button-group
   buttonTertiaryFill: string,
   buttonTertiaryText: string,
   buttonTertiaryHover: string,
   buttonTertiaryActive: string,
   buttonTertiaryDisabledFill: string,
-  buttonDisabledText: string,
+  // deprecated (to be removed)
+  buttonMinimalFill: string,
+  buttonMinimalText: string,
+  buttonMinimalHover: string,
+  buttonMinimalActive: string,
+  buttonMinimalDisabledFill: string,
+  // deprecated (no longer in use)
+  buttonDisabledFill: string, // split into seperate variables for each KIND
+  buttonTertiarySelectedFill: string, // ButtonGroup uses `secondary` now
+  buttonTertiarySelectedText: string, // ButtonGroup uses `secondary` now
 
   // Breadcrumbs
   breadcrumbsText: string,
