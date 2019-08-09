@@ -46,7 +46,7 @@ export const primitives: PrimitivesT = {
   positive700: '#1C472F',
 
   white: '#FFFFFF',
-  mono50: '##F6F6F6',
+  mono50: '#F6F6F6',
   mono100: '#EEEEEE',
   mono200: '#E2E2E2',
   mono300: '#CBCBCB',
