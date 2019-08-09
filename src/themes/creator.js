@@ -88,47 +88,47 @@ export default function createTheme(
       // Semantic Colors
 
       // Font Color
-      colorPrimary: primitives.mono1000,
+      colorPrimary: primitives.black,
       colorSecondary: primitives.mono600,
 
       // Background
       background: primitives.white,
       backgroundAlt: primitives.white,
-      backgroundInv: primitives.mono1000,
+      backgroundInv: primitives.black,
 
       // Foreground
-      foreground: primitives.mono1000,
+      foreground: primitives.black,
       foregroundAlt: primitives.mono600,
       foregroundInv: primitives.white,
 
       // Borders
       border: primitives.mono300,
       borderAlt: primitives.mono400,
-      borderFocus: primitives.mono1000,
+      borderFocus: primitives.black,
       borderError: primitives.negative400,
 
       // Buttons
       buttonDisabledText: primitives.mono400,
-      buttonPrimaryFill: primitives.mono1000,
+      buttonPrimaryFill: primitives.black,
       buttonPrimaryText: primitives.white,
       buttonPrimaryHover: primitives.mono700,
       buttonPrimaryActive: primitives.mono600,
       buttonPrimaryDisabledFill: primitives.mono50,
       buttonSecondaryFill: primitives.mono50,
-      buttonSecondaryText: primitives.mono1000,
+      buttonSecondaryText: primitives.black,
       buttonSecondaryHover: primitives.mono100,
       buttonSecondaryActive: primitives.mono200,
       buttonSecondaryDisabledFill: primitives.mono50,
       buttonSecondarySelectedFill: primitives.mono200,
-      buttonSecondarySelectedText: primitives.mono1000,
+      buttonSecondarySelectedText: primitives.black,
       buttonTertiaryFill: 'transparent',
-      buttonTertiaryText: primitives.mono1000,
+      buttonTertiaryText: primitives.black,
       buttonTertiaryHover: primitives.mono50,
       buttonTertiaryActive: primitives.mono100,
       buttonTertiaryDisabledFill: 'transparent',
       // deprecated (to be removed)
       buttonMinimalFill: 'transparent',
-      buttonMinimalText: primitives.mono1000,
+      buttonMinimalText: primitives.black,
       buttonMinimalHover: primitives.mono50,
       buttonMinimalActive: primitives.mono100,
       buttonMinimalDisabledFill: 'transparent',
@@ -144,24 +144,24 @@ export default function createTheme(
       // Datepicker
       // deprecated: no longer in use
       datepickerBackground: primitives.white,
-      datepickerDayFont: primitives.mono1000,
+      datepickerDayFont: primitives.black,
       datepickerDayFontDisabled: primitives.mono300,
       datepickerDayPseudoSelected: primitives.primary100,
       datepickerDayPseudoHighlighted: primitives.primary200,
 
       // Calendar
       calendarBackground: primitives.white,
-      calendarForeground: primitives.mono1000,
+      calendarForeground: primitives.black,
       calendarForegroundDisabled: primitives.mono300,
-      calendarHeaderBackground: primitives.mono1000,
+      calendarHeaderBackground: primitives.black,
       calendarHeaderForeground: primitives.white,
       calendarHeaderBackgroundActive: primitives.mono700,
       calendarHeaderForegroundDisabled: primitives.mono500,
       calendarDayBackgroundPseudoSelected: primitives.mono100,
-      calendarDayForegroundPseudoSelected: primitives.mono1000,
+      calendarDayForegroundPseudoSelected: primitives.black,
       calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono200,
-      calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
-      calendarDayBackgroundSelected: primitives.mono1000,
+      calendarDayForegroundPseudoSelectedHighlighted: primitives.black,
+      calendarDayBackgroundSelected: primitives.black,
       calendarDayForegroundSelected: primitives.white,
       calendarDayBackgroundSelectedHighlighted: primitives.mono700,
       calendarDayForegroundSelectedHighlighted: primitives.white,
@@ -197,10 +197,10 @@ export default function createTheme(
       progressUncompletedLine: primitives.mono100,
       progressUncompletedNodeBackground: primitives.mono100,
       progressUncompletedNodeForeground: primitives.mono400,
-      progressCompletedLine: primitives.mono1000,
-      progressCompletedNodeBackground: primitives.mono1000,
+      progressCompletedLine: primitives.black,
+      progressCompletedNodeBackground: primitives.black,
       progressCompletedNodeForeground: primitives.white,
-      progressActiveNodeBackground: primitives.mono1000,
+      progressActiveNodeBackground: primitives.black,
       progressActiveNodeForeground: primitives.white,
       // deprecated: no longer in use
       progressStepsIconActiveFill: primitives.primary100,
@@ -209,7 +209,7 @@ export default function createTheme(
       tickFill: primitives.white,
       tickFillHover: primitives.mono50,
       tickFillActive: primitives.mono200,
-      tickFillSelected: primitives.mono1000,
+      tickFillSelected: primitives.black,
       tickFillSelectedHover: primitives.mono600,
       tickFillSelectedHoverActive: primitives.mono700,
       tickFillError: primitives.negative50,
@@ -226,7 +226,7 @@ export default function createTheme(
       tickFillDisabled: primitives.mono100,
 
       // Slider/Toggle
-      sliderFill: primitives.mono1000,
+      sliderFill: primitives.black,
       sliderFillDisabled: primitives.mono400,
       sliderTrackFill: primitives.mono200,
       sliderTrackFillHover: primitives.mono300,
@@ -270,8 +270,8 @@ export default function createTheme(
       menuFillHover: primitives.mono50,
       menuFontDefault: primitives.mono600,
       menuFontDisabled: primitives.mono300,
-      menuFontHighlighted: primitives.mono1000,
-      menuFontSelected: primitives.mono1000,
+      menuFontHighlighted: primitives.black,
+      menuFontSelected: primitives.black,
 
       // Pagination
       paginationTriangleDown: primitives.mono600,
@@ -282,7 +282,7 @@ export default function createTheme(
       // Tab
       tabBarFill: primitives.mono50,
       tabColor: primitives.mono600,
-      tabBorder: primitives.mono1000,
+      tabBorder: primitives.black,
 
       // Notification
       notificationPrimaryBackground: primitives.primary50,
