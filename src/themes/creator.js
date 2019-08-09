@@ -126,7 +126,7 @@ export default function createTheme(
       buttonTertiaryHover: primitives.mono50,
       buttonTertiaryActive: primitives.mono100,
       buttonTertiaryDisabledFill: 'transparent',
-      // deprecated (to be removed)
+      // deprecated: to be removed
       buttonMinimalFill: 'transparent',
       buttonMinimalText: primitives.black,
       buttonMinimalHover: primitives.mono50,

@@ -53,7 +53,7 @@ export default {
     buttonTertiaryHover: primitives.mono1000,
     buttonTertiaryActive: primitives.mono900,
     buttonTertiaryDisabledFill: 'transparent',
-    // deprecated (to be removed)
+    // deprecated: to be removed
     buttonMinimalFill: 'transparent',
     buttonMinimalText: primitives.mono300,
     buttonMinimalHover: primitives.mono1000,

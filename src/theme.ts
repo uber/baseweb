@@ -109,7 +109,7 @@ interface Colors {
   buttonTertiaryHover: string;
   buttonTertiaryActive: string;
   buttonTertiaryDisabledFill: string;
-  // deprecated (to be removed)
+  // deprecated: to be removed
   buttonMinimalFill: string;
   buttonMinimalText: string;
   buttonMinimalHover: string;
