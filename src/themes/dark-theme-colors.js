@@ -19,14 +19,14 @@ export default {
     colorSecondary: primitives.mono200,
 
     // Background
-    background: primitives.mono1000,
+    background: primitives.black,
     backgroundAlt: primitives.mono700,
     backgroundInv: primitives.mono100,
 
     // Foreground
     foreground: primitives.mono100,
     foregroundAlt: primitives.mono300,
-    foregroundInv: primitives.mono1000,
+    foregroundInv: primitives.black,
 
     // Borders
     border: primitives.mono600,
@@ -37,7 +37,7 @@ export default {
     // Buttons
     buttonDisabledText: primitives.mono500,
     buttonPrimaryFill: primitives.mono100,
-    buttonPrimaryText: primitives.mono1000,
+    buttonPrimaryText: primitives.black,
     buttonPrimaryHover: primitives.mono300,
     buttonPrimaryActive: primitives.mono400,
     buttonPrimaryDisabledFill: primitives.mono700,
@@ -89,9 +89,9 @@ export default {
     calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono600,
     calendarDayForegroundPseudoSelectedHighlighted: primitives.mono100,
     calendarDayBackgroundSelected: primitives.mono100,
-    calendarDayForegroundSelected: primitives.mono1000,
+    calendarDayForegroundSelected: primitives.black,
     calendarDayBackgroundSelectedHighlighted: primitives.mono200,
-    calendarDayForegroundSelectedHighlighted: primitives.mono1000,
+    calendarDayForegroundSelectedHighlighted: primitives.black,
 
     // FileUploader
     fileUploaderBackgroundColor: primitives.mono700,
@@ -121,10 +121,10 @@ export default {
     progressUncompletedNodeBackground: primitives.mono700,
     progressUncompletedNodeForeground: primitives.mono300,
     progressActiveNodeBackground: primitives.white,
-    progressActiveNodeForeground: primitives.mono1000,
+    progressActiveNodeForeground: primitives.black,
     progressCompletedLine: primitives.white,
     progressCompletedNodeBackground: primitives.white,
-    progressCompletedNodeForeground: primitives.mono1000,
+    progressCompletedNodeForeground: primitives.black,
     // deprecated: no longer in use
     progressStepsIconActiveFill: primitives.mono100,
 
@@ -269,7 +269,7 @@ export default {
     tableFilterFooterBackground: primitives.mono800,
 
     // Tick
-    tickFill: primitives.mono1000,
+    tickFill: primitives.black,
     tickFillHover: primitives.mono800,
     tickFillActive: primitives.mono600,
     tickFillSelected: primitives.white,
@@ -283,7 +283,7 @@ export default {
     tickFillErrorSelectedHoverActive: primitives.negative700,
     tickBorder: primitives.mono300,
     tickBorderError: primitives.negative400,
-    tickMarkFill: primitives.mono1000,
+    tickMarkFill: primitives.black,
     tickMarkFillError: primitives.white,
     tickMarkFillDisabled: primitives.mono400,
     tickFillDisabled: primitives.mono700,
@@ -343,7 +343,7 @@ export default {
     headerNavigationFill: primitives.mono700,
 
     // Tab
-    tabBarFill: primitives.mono1000,
+    tabBarFill: primitives.black,
     tabColor: primitives.mono300,
     tabBorder: primitives.mono100,
 
@@ -355,7 +355,7 @@ export default {
 
     // Tooltip
     tooltipBackground: primitives.mono200,
-    tooltipText: primitives.mono1000,
+    tooltipText: primitives.black,
 
     // Avatar
     avatarForeground: primitives.mono100,
