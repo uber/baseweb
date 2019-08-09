@@ -23,6 +23,7 @@ export {
   StyledRow,
   StyledCell,
   StyledAction,
+  StyledSortableLabel,
 } from './styled-components.js';
 // Flow
 export * from './types.js';

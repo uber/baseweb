@@ -160,7 +160,7 @@ export const StyledProfileLabelsContainer = styled<StyledPropsT>(
   'div',
   ({$theme}) => ({
     marginLeft: $theme.sizing.scale600,
-    alignSelf: 'flex-start',
+    alignSelf: $theme.direction === 'rtl' ? 'flex-end' : 'flex-start',
     display: 'flex',
     flexDirection: 'column',
   }),
