@@ -77,7 +77,7 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
 export const StyledEmoticon = styled<StyledRatingItemPropsT>(
   'li',
   ({$theme, $isActive, $isSelected, $index = 1}) => {
-    let emoticonFill = $theme.colors.mono500;
+    let emoticonFill = $theme.colors.emoticonFill;
 
     if ($isActive) {
       emoticonFill = $theme.colors.rating400;

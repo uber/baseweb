@@ -102,7 +102,7 @@ export default function createTheme(
       foregroundInv: primitives.white,
 
       // Borders
-      border: primitives.mono500,
+      border: primitives.mono300,
       borderAlt: primitives.mono600,
       borderFocus: primitives.mono1000,
       borderError: primitives.negative400,
@@ -145,14 +145,14 @@ export default function createTheme(
       // deprecated: no longer in use
       datepickerBackground: primitives.white,
       datepickerDayFont: primitives.mono1000,
-      datepickerDayFontDisabled: primitives.mono500,
+      datepickerDayFontDisabled: primitives.mono300,
       datepickerDayPseudoSelected: primitives.primary100,
       datepickerDayPseudoHighlighted: primitives.primary200,
 
       // Calendar
       calendarBackground: primitives.white,
       calendarForeground: primitives.mono1000,
-      calendarForegroundDisabled: primitives.mono500,
+      calendarForegroundDisabled: primitives.mono300,
       calendarHeaderBackground: primitives.mono1000,
       calendarHeaderForeground: primitives.white,
       calendarHeaderBackgroundActive: primitives.mono900,
@@ -170,7 +170,7 @@ export default function createTheme(
       fileUploaderBackgroundColor: primitives.mono50,
       fileUploaderBackgroundColorActive: primitives.primary50,
       fileUploaderBorderColorActive: primitives.primary400,
-      fileUploaderBorderColorDefault: primitives.mono500,
+      fileUploaderBorderColorDefault: primitives.mono300,
       fileUploaderMessageColor: primitives.mono600,
 
       // Links
@@ -186,12 +186,12 @@ export default function createTheme(
       // List
       listHeaderFill: primitives.white,
       listBodyFill: primitives.mono50,
-      listIconFill: primitives.mono500,
-      listBorder: primitives.mono500,
+      listIconFill: primitives.mono300,
+      listBorder: primitives.mono300,
 
       // Accordian
       accordianHeaderBorder: primitives.mono200,
-      accordianHeaderBorderExpanded: primitives.mono500,
+      accordianHeaderBorderExpanded: primitives.mono300,
 
       // ProgressSteps
       progressUncompletedLine: primitives.mono100,
@@ -229,7 +229,7 @@ export default function createTheme(
       sliderFill: primitives.mono1000,
       sliderFillDisabled: primitives.mono600,
       sliderTrackFill: primitives.mono200,
-      sliderTrackFillHover: primitives.mono500,
+      sliderTrackFillHover: primitives.mono300,
       sliderTrackFillActive: primitives.mono600,
       sliderTrackFillDisabled: primitives.mono100,
       sliderHandleFill: primitives.white,
@@ -247,8 +247,8 @@ export default function createTheme(
       sliderHandleFillSelected: primitives.white,
       sliderHandleFillSelectedHover: primitives.white,
       sliderHandleFillSelectedActive: primitives.white,
-      sliderHandleFillDisabled: primitives.mono500,
-      sliderBorder: primitives.mono500,
+      sliderHandleFillDisabled: primitives.mono300,
+      sliderBorder: primitives.mono300,
       sliderBorderHover: primitives.primary400,
       sliderBorderDisabled: primitives.mono600,
 
@@ -269,7 +269,7 @@ export default function createTheme(
       menuFill: primitives.white,
       menuFillHover: primitives.mono50,
       menuFontDefault: primitives.mono800,
-      menuFontDisabled: primitives.mono500,
+      menuFontDisabled: primitives.mono300,
       menuFontHighlighted: primitives.mono1000,
       menuFontSelected: primitives.mono1000,
 
@@ -333,7 +333,7 @@ export default function createTheme(
       tagNeutralOutlinedDisabled: primitives.mono50,
       tagNeutralOutlinedFont: primitives.mono900,
       tagNeutralOutlinedFontHover: primitives.mono50,
-      tagNeutralFontDisabled: primitives.mono500,
+      tagNeutralFontDisabled: primitives.mono300,
 
       tagPrimarySolidBackground: primitives.primary400,
       tagPrimarySolidHover: primitives.primary50,
@@ -453,6 +453,9 @@ export default function createTheme(
 
       // Modal
       modalFooterBorder: primitives.mono200,
+
+      // Emoticon
+      emoticonFill: primitives.mono300,
     },
     typography: {
       font100: {

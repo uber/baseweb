@@ -437,6 +437,9 @@ interface Colors {
 
   // Modal
   modalFooterBorder: string;
+
+  // Emoticon
+  emoticonFill: string;
 }
 
 interface Font {

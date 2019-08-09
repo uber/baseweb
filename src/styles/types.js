@@ -447,6 +447,9 @@ export type ColorsT = {
 
   // Modal
   modalFooterBorder: string,
+
+  // Emoticon
+  emoticonFill: string,
 };
 
 export type TypographyT = {

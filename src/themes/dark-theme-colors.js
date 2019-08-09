@@ -369,5 +369,8 @@ export default {
 
     // Modal
     modalFooterBorder: primitives.mono400,
+
+    // Emoticon
+    emoticonFill: primitives.mono500,
   },
 };
