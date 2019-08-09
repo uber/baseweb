@@ -61,7 +61,7 @@ export default {
     buttonMinimalHover: primitives.mono800,
     buttonMinimalActive: primitives.mono700,
     buttonMinimalDisabledFill: 'transparent',
-    // deprecated (no longer in use)
+    // deprecated: no longer in use
     buttonDisabledFill: primitives.mono700,
     buttonTertiarySelectedFill: primitives.mono100,
     buttonTertiarySelectedText: primitives.primary500,
@@ -70,21 +70,26 @@ export default {
     breadcrumbsText: primitives.mono100,
     breadcrumbsSeparatorFill: primitives.mono200,
 
+    // Datepicker
+    // deprecated: no longer in use
+    datepickerBackground: primitives.mono600,
+    datepickerDayFont: WHITE,
+    datepickerDayFontDisabled: primitives.mono100,
+    datepickerDayPseudoSelected: primitives.mono500,
+    datepickerDayPseudoHighlighted: primitives.mono600,
+
     // Calendar
     calendarBackground: primitives.mono800,
     calendarForeground: primitives.mono100,
     calendarForegroundDisabled: primitives.mono600,
-
     calendarHeaderBackground: primitives.mono700,
     calendarHeaderForeground: primitives.mono100,
     calendarHeaderBackgroundActive: primitives.mono800,
     calendarHeaderForegroundDisabled: primitives.mono600,
-
     calendarDayBackgroundPseudoSelected: primitives.mono700,
     calendarDayForegroundPseudoSelected: primitives.mono100,
     calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono600,
     calendarDayForegroundPseudoSelectedHighlighted: primitives.mono100,
-
     calendarDayBackgroundSelected: primitives.mono100,
     calendarDayForegroundSelected: primitives.mono1000,
     calendarDayBackgroundSelectedHighlighted: primitives.mono200,

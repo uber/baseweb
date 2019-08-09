@@ -133,7 +133,7 @@ export default function createTheme(
       buttonMinimalHover: primitives.mono200,
       buttonMinimalActive: primitives.mono300,
       buttonMinimalDisabledFill: 'transparent',
-      // deprecated (no longer in use)
+      // deprecated: no longer in use
       buttonDisabledFill: primitives.mono300,
       buttonTertiarySelectedFill: primitives.primary400,
       buttonTertiarySelectedText: primitives.mono100,
@@ -142,21 +142,26 @@ export default function createTheme(
       breadcrumbsText: primitives.mono900,
       breadcrumbsSeparatorFill: primitives.mono700,
 
+      // Datepicker
+      // deprecated: no longer in use
+      datepickerBackground: primitives.mono100,
+      datepickerDayFont: primitives.mono1000,
+      datepickerDayFontDisabled: primitives.mono500,
+      datepickerDayPseudoSelected: primitives.primary100,
+      datepickerDayPseudoHighlighted: primitives.primary200,
+
       // Calendar
       calendarBackground: primitives.mono100,
       calendarForeground: primitives.mono1000,
       calendarForegroundDisabled: primitives.mono500,
-
       calendarHeaderBackground: primitives.mono1000,
       calendarHeaderForeground: primitives.mono100,
       calendarHeaderBackgroundActive: primitives.mono900,
       calendarHeaderForegroundDisabled: primitives.mono700,
-
       calendarDayBackgroundPseudoSelected: primitives.mono300,
       calendarDayForegroundPseudoSelected: primitives.mono1000,
       calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono400,
       calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
-
       calendarDayBackgroundSelected: primitives.mono1000,
       calendarDayForegroundSelected: primitives.mono100,
       calendarDayBackgroundSelectedHighlighted: primitives.mono900,
