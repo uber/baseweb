@@ -92,7 +92,7 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
 function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
   return {
     foreground: $disabled
-      ? $theme.colors.mono600
+      ? $theme.colors.mono400
       : $kind === KIND.primary
       ? $theme.colors.white
       : $theme.colors.primary,

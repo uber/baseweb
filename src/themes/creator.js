@@ -103,12 +103,12 @@ export default function createTheme(
 
       // Borders
       border: primitives.mono300,
-      borderAlt: primitives.mono600,
+      borderAlt: primitives.mono400,
       borderFocus: primitives.mono1000,
       borderError: primitives.negative400,
 
       // Buttons
-      buttonDisabledText: primitives.mono600,
+      buttonDisabledText: primitives.mono400,
       buttonPrimaryFill: primitives.mono1000,
       buttonPrimaryText: primitives.white,
       buttonPrimaryHover: primitives.mono900,
@@ -171,7 +171,7 @@ export default function createTheme(
       fileUploaderBackgroundColorActive: primitives.primary50,
       fileUploaderBorderColorActive: primitives.primary400,
       fileUploaderBorderColorDefault: primitives.mono300,
-      fileUploaderMessageColor: primitives.mono600,
+      fileUploaderMessageColor: primitives.mono400,
 
       // Links
       linkText: primitives.primary400,
@@ -196,7 +196,7 @@ export default function createTheme(
       // ProgressSteps
       progressUncompletedLine: primitives.mono100,
       progressUncompletedNodeBackground: primitives.mono100,
-      progressUncompletedNodeForeground: primitives.mono600,
+      progressUncompletedNodeForeground: primitives.mono400,
       progressCompletedLine: primitives.mono1000,
       progressCompletedNodeBackground: primitives.mono1000,
       progressCompletedNodeForeground: primitives.white,
@@ -222,15 +222,15 @@ export default function createTheme(
       tickBorderError: primitives.negative400,
       tickMarkFill: primitives.white,
       tickMarkFillError: primitives.white,
-      tickMarkFillDisabled: primitives.mono600,
+      tickMarkFillDisabled: primitives.mono400,
       tickFillDisabled: primitives.mono100,
 
       // Slider/Toggle
       sliderFill: primitives.mono1000,
-      sliderFillDisabled: primitives.mono600,
+      sliderFillDisabled: primitives.mono400,
       sliderTrackFill: primitives.mono200,
       sliderTrackFillHover: primitives.mono300,
-      sliderTrackFillActive: primitives.mono600,
+      sliderTrackFillActive: primitives.mono400,
       sliderTrackFillDisabled: primitives.mono100,
       sliderHandleFill: primitives.white,
       sliderHandleBorder: primitives.mono200,
@@ -250,7 +250,7 @@ export default function createTheme(
       sliderHandleFillDisabled: primitives.mono300,
       sliderBorder: primitives.mono300,
       sliderBorderHover: primitives.primary400,
-      sliderBorderDisabled: primitives.mono600,
+      sliderBorderDisabled: primitives.mono400,
 
       // Inputs
       inputFill: primitives.mono50,
@@ -258,12 +258,12 @@ export default function createTheme(
       inputFillDisabled: primitives.mono50,
       inputFillActive: primitives.mono50,
       inputFillPositive: primitives.positive50,
-      inputTextDisabled: primitives.mono600,
+      inputTextDisabled: primitives.mono400,
       inputBorderError: primitives.negative200,
       inputBorderPositive: primitives.positive200,
       inputEnhancerFill: primitives.mono100,
       inputEnhancerFillDisabled: primitives.mono100,
-      inputEnhancerTextDisabled: primitives.mono600,
+      inputEnhancerTextDisabled: primitives.mono400,
 
       // Menu
       menuFill: primitives.white,
@@ -419,7 +419,7 @@ export default function createTheme(
       tableHeadBackgroundColor: primitives.white,
       tableBackground: primitives.white,
       tableStripedBackground: primitives.mono50,
-      tableFilter: primitives.mono600,
+      tableFilter: primitives.mono400,
       tableFilterHeading: primitives.mono700,
       tableFilterBackground: primitives.white,
       tableFilterFooterBackground: primitives.mono50,

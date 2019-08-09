@@ -104,7 +104,7 @@ const panelOverrides = {
   },
   ToggleIcon: {
     style: ({$theme: {colors, sizing}}) => ({
-      color: colors.mono600,
+      color: colors.mono400,
       marginRight: sizing.scale500,
     }),
   },
@@ -293,7 +293,7 @@ export const component = () => (
 
             <StyledHeadingCell>
               <Block>
-                <Block font="font200" color="mono600">
+                <Block font="font200" color="mono400">
                   {row[2]}
                 </Block>
                 <Block font="font300">{row[1]}</Block>
