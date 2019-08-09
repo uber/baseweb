@@ -12,7 +12,20 @@ import {storiesOf} from '@storybook/react';
 import scenarios from '../src/**/*.scenario.js';
 
 const light = storiesOf('baseui', module);
-const dark = storiesOf('baseui-dark', module);
+const dark = storiesOf('baseui-dark', module).addDecorator(storyFn => (
+  <div
+    style={{
+      boxSizing: 'border-box',
+      width: 'calc(100vw - 10px)',
+      height: 'calc(100vh - 17px)',
+      overflow: 'scroll',
+      padding: '32px',
+      backgroundColor: 'black',
+    }}
+  >
+    {storyFn()}
+  </div>
+));
 
 scenarios.forEach(scenario => {
   const Component = scenario.component;
