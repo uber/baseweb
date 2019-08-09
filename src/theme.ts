@@ -51,6 +51,7 @@ interface Colors {
 
   // Monochrome Palette
   white: string;
+  mono50: string;
   mono100: string;
   mono200: string;
   mono300: string;
@@ -90,37 +91,63 @@ interface Colors {
   borderError: string;
 
   // Buttons
+  buttonDisabledText: string;
   buttonPrimaryFill: string;
   buttonPrimaryText: string;
   buttonPrimaryHover: string;
   buttonPrimaryActive: string;
+  buttonPrimaryDisabledFill: string;
   buttonSecondaryFill: string;
   buttonSecondaryText: string;
   buttonSecondaryHover: string;
   buttonSecondaryActive: string;
+  buttonSecondaryDisabledFill: string;
+  buttonSecondarySelectedText: string; // for use with button-group
+  buttonSecondarySelectedFill: string; // for use with button-group
   buttonTertiaryFill: string;
   buttonTertiaryText: string;
   buttonTertiaryHover: string;
   buttonTertiaryActive: string;
-  buttonTertiarySelectedText: string;
-  buttonTertiarySelectedFill: string;
+  buttonTertiaryDisabledFill: string;
+  // deprecated (to be removed)
   buttonMinimalFill: string;
   buttonMinimalText: string;
   buttonMinimalHover: string;
   buttonMinimalActive: string;
-  buttonDisabledFill: string;
-  buttonDisabledText: string;
+  buttonMinimalDisabledFill: string;
+  // deprecated: no longer in use
+  buttonDisabledFill: string; // split into seperate variables for each KIND
+  buttonTertiarySelectedFill: string; // ButtonGroup uses `secondary` now
+  buttonTertiarySelectedText: string; // ButtonGroup uses `secondary` now
 
   // Breadcrumbs
   breadcrumbsText: string;
   breadcrumbsSeparatorFill: string;
 
   // Datepicker
+  // deprecated: no longer in use
   datepickerBackground: string;
   datepickerDayFont: string;
   datepickerDayFontDisabled: string;
   datepickerDayPseudoSelected: string;
   datepickerDayPseudoHighlighted: string;
+
+  // Calendar
+  calendarBackground: string;
+  calendarForeground: string;
+  calendarHeaderBackground: string;
+  calendarHeaderForeground: string;
+  calendarHeaderBackgroundActive: string;
+  calendarDayBackgroundPseudoSelected: string;
+  calendarDayForegroundPseudoSelected: string;
+  calendarDayBackgroundPseudoSelectedHighlighted: string;
+  calendarDayForegroundPseudoSelectedHighlighted: string;
+  calendarDayBackgroundSelected: string;
+  calendarDayForegroundSelected: string;
+  calendarDayBackgroundSelectedHighlighted: string;
+  calendarDayForegroundSelectedHighlighted: string;
+  calendarForegroundDisabled: string;
+  calendarHeaderForegroundDisabled: string;
 
   // FileUploader
   fileUploaderBackgroundColor: string;
@@ -142,6 +169,15 @@ interface Colors {
   listBorder: string;
 
   // ProgressSteps
+  progressCompletedLine: string;
+  progressCompletedNodeForeground: string;
+  progressCompletedNodeBackground: string;
+  progressUncompletedLine: string;
+  progressUncompletedNodeForeground: string;
+  progressUncompletedNodeBackground: string;
+  progressActiveNodeForeground: string;
+  progressActiveNodeBackground: string;
+  // deprecated: no longer in use
   progressStepsIconActiveFill: string;
 
   // Ticks
@@ -161,35 +197,48 @@ interface Colors {
   tickBorder: string;
   tickBorderError: string;
   tickMarkFill: string;
+  tickMarkFillDisabled: string;
+  tickMarkFillError: string;
 
   // Slider/Toggle
+  sliderFill: string;
+  sliderFillDisabled: string;
   sliderTrackFill: string;
   sliderTrackFillHover: string;
   sliderTrackFillActive: string;
-  sliderTrackFillSelected: string;
-  sliderTrackFillSelectedHover: string;
-  sliderTrackFillSelectedActive: string;
   sliderTrackFillDisabled: string;
   sliderHandleFill: string;
+  sliderHandleInnerFill: string;
+  sliderHandleInnerFillDisabled: string;
+  sliderHandleInnerFillSelectedHover: string;
+  sliderHandleInnerFillSelectedActive: string;
+  // deprecated: no longer in use
+  sliderTrackFillSelected: string;
+  sliderTrackFillSelectedActive: string;
+  sliderTrackFillSelectedHover: string;
   sliderHandleFillHover: string;
   sliderHandleFillActive: string;
   sliderHandleFillSelected: string;
   sliderHandleFillSelectedHover: string;
   sliderHandleFillSelectedActive: string;
   sliderHandleFillDisabled: string;
-  sliderHandleInnerFill: string;
-  sliderHandleInnerFillDisabled: string;
-  sliderHandleInnerFillSelectedHover: string;
-  sliderHandleInnerFillSelectedActive: string;
   sliderBorder: string;
   sliderBorderHover: string;
   sliderBorderDisabled: string;
 
   // Input
   inputFill: string;
+  inputFillEnhancer: string;
   inputFillError: string;
   inputFillDisabled: string;
+  inputFillActive: string;
+  inputFillPositive: string;
   inputTextDisabled: string;
+  inputBorderError: string;
+  inputBorderPositive: string;
+  inputEnhancerFill: string;
+  inputEnhancerFillDisabled: string;
+  inputEnhancerTextDisabled: string;
 
   // Notification
   notificationPrimaryBackground: string;
@@ -218,24 +267,13 @@ interface Colors {
   // Tab
   tabBarFill: string;
   tabColor: string;
+  tabBorder: string;
 
   // Shadow
   shadowFocus: string;
   shadowError: string;
 
   // Tag
-
-  // Remove this section of theme values in next major version
-  tagBackground: string;
-  tagNeutralBackground: string;
-  tagPrimaryBackground: string;
-  tagPositiveBackground: string;
-  tagWarningBackground: string;
-  tagNegativeBackground: string;
-  tagRGBGradient: string;
-  tagRGBGradientSecondary: string;
-  // ^^^^^^^
-
   tagSolidRampUnit: string;
   tagSolidHoverRampUnit: string;
   tagSolidActiveRampUnit: string;
@@ -359,6 +397,7 @@ interface Colors {
   // Table
   tableHeadBackgroundColor: string;
   tableBackground: string;
+  tableStripedBackground: string;
   tableFilter: string;
   tableFilterHeading: string;
   tableFilterBackground: string;
@@ -380,6 +419,12 @@ interface Colors {
   // Tooltip
   tooltipBackground: string;
   tooltipText: string;
+
+  // Avatar
+  avatarForeground: string;
+
+  // Toggle
+  toggleBackground: string;
 }
 
 interface Font {

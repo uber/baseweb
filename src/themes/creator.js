@@ -67,7 +67,8 @@ export default function createTheme(
       positive700: primitives.positive700,
 
       // Monochrome Palette
-      white: primitives.mono100,
+      white: primitives.white,
+      mono50: primitives.mono50,
       mono100: primitives.mono100,
       mono200: primitives.mono200,
       mono300: primitives.mono300,
@@ -78,7 +79,7 @@ export default function createTheme(
       mono800: primitives.mono800,
       mono900: primitives.mono900,
       mono1000: primitives.mono1000,
-      black: primitives.mono1000,
+      black: primitives.black,
 
       // Rating Palette,
       rating200: primitives.rating200,
@@ -91,14 +92,14 @@ export default function createTheme(
       colorSecondary: primitives.mono800,
 
       // Background
-      background: primitives.mono100,
-      backgroundAlt: primitives.mono100,
+      background: primitives.white,
+      backgroundAlt: primitives.white,
       backgroundInv: primitives.mono1000,
 
       // Foreground
       foreground: primitives.mono1000,
       foregroundAlt: primitives.mono800,
-      foregroundInv: primitives.mono100,
+      foregroundInv: primitives.white,
 
       // Borders
       border: primitives.mono500,
@@ -134,7 +135,7 @@ export default function createTheme(
       // deprecated: no longer in use
       buttonDisabledFill: primitives.mono300,
       buttonTertiarySelectedFill: primitives.primary400,
-      buttonTertiarySelectedText: primitives.mono100,
+      buttonTertiarySelectedText: primitives.white,
 
       // Breadcrumbs
       breadcrumbsText: primitives.mono900,
@@ -142,18 +143,18 @@ export default function createTheme(
 
       // Datepicker
       // deprecated: no longer in use
-      datepickerBackground: primitives.mono100,
+      datepickerBackground: primitives.white,
       datepickerDayFont: primitives.mono1000,
       datepickerDayFontDisabled: primitives.mono500,
       datepickerDayPseudoSelected: primitives.primary100,
       datepickerDayPseudoHighlighted: primitives.primary200,
 
       // Calendar
-      calendarBackground: primitives.mono100,
+      calendarBackground: primitives.white,
       calendarForeground: primitives.mono1000,
       calendarForegroundDisabled: primitives.mono500,
       calendarHeaderBackground: primitives.mono1000,
-      calendarHeaderForeground: primitives.mono100,
+      calendarHeaderForeground: primitives.white,
       calendarHeaderBackgroundActive: primitives.mono900,
       calendarHeaderForegroundDisabled: primitives.mono700,
       calendarDayBackgroundPseudoSelected: primitives.mono300,
@@ -161,9 +162,9 @@ export default function createTheme(
       calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono400,
       calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
       calendarDayBackgroundSelected: primitives.mono1000,
-      calendarDayForegroundSelected: primitives.mono100,
+      calendarDayForegroundSelected: primitives.white,
       calendarDayBackgroundSelectedHighlighted: primitives.mono900,
-      calendarDayForegroundSelectedHighlighted: primitives.mono100,
+      calendarDayForegroundSelectedHighlighted: primitives.white,
 
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,
@@ -194,9 +195,9 @@ export default function createTheme(
       progressUncompletedNodeForeground: primitives.mono600,
       progressCompletedLine: primitives.mono1000,
       progressCompletedNodeBackground: primitives.mono1000,
-      progressCompletedNodeForeground: primitives.mono100,
+      progressCompletedNodeForeground: primitives.white,
       progressActiveNodeBackground: primitives.mono1000,
-      progressActiveNodeForeground: primitives.mono100,
+      progressActiveNodeForeground: primitives.white,
       // deprecated: no longer in use
       progressStepsIconActiveFill: primitives.primary100,
 
@@ -227,6 +228,7 @@ export default function createTheme(
       sliderTrackFillHover: primitives.mono500,
       sliderTrackFillActive: primitives.mono600,
       sliderTrackFillDisabled: primitives.mono300,
+      sliderHandleFill: primitives.white,
       sliderHandleInnerFill: primitives.mono400,
       sliderHandleInnerFillDisabled: primitives.mono400,
       sliderHandleInnerFillSelectedHover: primitives.mono800,
@@ -235,7 +237,6 @@ export default function createTheme(
       sliderTrackFillSelected: primitives.primary400,
       sliderTrackFillSelectedHover: primitives.primary400,
       sliderTrackFillSelectedActive: primitives.primary500,
-      sliderHandleFill: primitives.white,
       sliderHandleFillHover: primitives.white,
       sliderHandleFillActive: primitives.white,
       sliderHandleFillSelected: primitives.white,
@@ -260,7 +261,7 @@ export default function createTheme(
       inputEnhancerTextDisabled: primitives.mono600,
 
       // Menu
-      menuFill: primitives.mono100,
+      menuFill: primitives.white,
       menuFillHover: primitives.mono200,
       menuFontDefault: primitives.mono800,
       menuFontDisabled: primitives.mono500,
@@ -313,7 +314,7 @@ export default function createTheme(
       tagNeutralSolidHover: primitives.mono300,
       tagNeutralSolidActive: primitives.mono400,
       tagNeutralSolidDisabled: primitives.mono200,
-      tagNeutralSolidFont: primitives.mono100,
+      tagNeutralSolidFont: primitives.white,
       tagNeutralSolidFontHover: primitives.mono900,
       tagNeutralLightBackground: primitives.mono300,
       tagNeutralLightHover: primitives.mono300,
@@ -410,12 +411,12 @@ export default function createTheme(
       tagNegativeFontDisabled: primitives.negative200,
 
       // Table
-      tableHeadBackgroundColor: primitives.mono100,
-      tableBackground: primitives.mono100,
+      tableHeadBackgroundColor: primitives.white,
+      tableBackground: primitives.white,
       tableStripedBackground: primitives.mono200,
       tableFilter: primitives.mono600,
       tableFilterHeading: primitives.mono700,
-      tableFilterBackground: primitives.mono100,
+      tableFilterBackground: primitives.white,
       tableFilterFooterBackground: primitives.mono200,
 
       // Toast
@@ -433,7 +434,13 @@ export default function createTheme(
 
       // Tooltip
       tooltipBackground: primitives.mono900,
-      tooltipText: primitives.mono100,
+      tooltipText: primitives.white,
+
+      // Avatar
+      avatarForeground: primitives.white,
+
+      // Toggle
+      toggleBackground: primitives.white,
     },
     typography: {
       font100: {

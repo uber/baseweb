@@ -94,7 +94,7 @@ export const Thumb = styled<StylePropsT>('div', props => {
     borderTopRightRadius: isLeft ? '1px' : '4px',
     borderBottomLeftRadius: isRight ? '1px' : '4px',
     borderBottomRightRadius: isLeft ? '1px' : '4px',
-    backgroundColor: $theme.colors.mono100,
+    backgroundColor: $theme.colors.sliderHandleFill,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

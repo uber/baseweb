@@ -291,6 +291,7 @@ export default {
     sliderTrackFillHover: primitives.mono500,
     sliderTrackFillActive: primitives.mono400,
     sliderTrackFillDisabled: primitives.mono700,
+    sliderHandleFill: primitives.mono300,
     sliderHandleInnerFill: primitives.mono300,
     sliderHandleInnerFillDisabled: primitives.mono500,
     sliderHandleInnerFillSelectedHover: primitives.mono600,
@@ -299,7 +300,6 @@ export default {
     sliderTrackFillSelected: primitives.primary500,
     sliderTrackFillSelectedActive: primitives.primary600,
     sliderTrackFillSelectedHover: primitives.primary700,
-    sliderHandleFill: primitives.mono300,
     sliderHandleFillHover: primitives.mono300,
     sliderHandleFillActive: primitives.mono300,
     sliderHandleFillSelected: primitives.primary500,
@@ -351,5 +351,11 @@ export default {
     // Tooltip
     tooltipBackground: primitives.mono200,
     tooltipText: primitives.mono1000,
+
+    // Avatar
+    avatarForeground: primitives.mono300,
+
+    // Toggle
+    toggleBackground: primitives.mono300,
   },
 };

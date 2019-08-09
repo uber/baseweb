@@ -49,6 +49,7 @@ export type PrimitivesT = {
 
   // Monochrome Palette
   white: string,
+  mono50: string,
   mono100: string,
   mono200: string,
   mono300: string,

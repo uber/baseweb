@@ -44,7 +44,7 @@ const ViolationContainer = styled<{$top: string, $left: string}>(
   'div',
   ({$theme, $top, $left}) => {
     return {
-      backgroundColor: $theme.colors.mono100,
+      backgroundColor: $theme.colors.backgroundAlt,
       boxShadow: $theme.lighting.shadow600,
       position: 'absolute',
       padding: $theme.sizing.scale400,

@@ -39,7 +39,7 @@ export const Avatar = styled<AvatarStylePropsT>('img', props => {
 
 export const Initials = styled<InitialsStylePropsT>('div', props => ({
   ...props.$theme.typography.font400,
-  color: props.$theme.colors.mono100,
+  color: props.$theme.colors.avatarForeground,
   alignItems: 'center',
   display: 'flex',
   justifyContent: 'center',

@@ -237,7 +237,7 @@ export const Toggle = styled<SharedStylePropsT>('div', ({$theme}) => {
   return ({
     ...$theme.borders.border300,
     alignItems: 'center',
-    backgroundColor: $theme.colors.mono100,
+    backgroundColor: $theme.colors.toggleBackground,
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,

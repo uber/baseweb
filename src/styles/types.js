@@ -61,6 +61,7 @@ export type ColorsT = {
 
   // Monochrome Palette
   white: string,
+  mono50: string,
   mono100: string,
   mono200: string,
   mono300: string,
@@ -132,13 +133,6 @@ export type ColorsT = {
   // Breadcrumbs
   breadcrumbsText: string,
   breadcrumbsSeparatorFill: string,
-
-  // Datepicker
-  datepickerBackground: string,
-  datepickerDayFont: string,
-  datepickerDayFontDisabled: string,
-  datepickerDayPseudoSelected: string,
-  datepickerDayPseudoHighlighted: string,
 
   // Datepicker
   // deprecated: no longer in use
@@ -223,6 +217,7 @@ export type ColorsT = {
   sliderTrackFillHover: string,
   sliderTrackFillActive: string,
   sliderTrackFillDisabled: string,
+  sliderHandleFill: string,
   sliderHandleInnerFill: string,
   sliderHandleInnerFillDisabled: string,
   sliderHandleInnerFillSelectedHover: string,
@@ -231,7 +226,6 @@ export type ColorsT = {
   sliderTrackFillSelected: string,
   sliderTrackFillSelectedActive: string,
   sliderTrackFillSelectedHover: string,
-  sliderHandleFill: string,
   sliderHandleFillHover: string,
   sliderHandleFillActive: string,
   sliderHandleFillSelected: string,
@@ -435,6 +429,12 @@ export type ColorsT = {
   // Tooltip
   tooltipBackground: string,
   tooltipText: string,
+
+  // Avatar
+  avatarForeground: string,
+
+  // Toggle
+  toggleBackground: string,
 };
 
 export type TypographyT = {
