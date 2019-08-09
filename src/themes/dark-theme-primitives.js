@@ -54,9 +54,9 @@ export const primitives: PrimitivesT = {
   mono500: '#757575',
   mono600: '#545454',
   mono700: '#333333',
-  mono800: '#272727', // not in uber color scheme
-  mono900: '#1F1F1F', // not in uber color scheme
-  mono1000: '#141414', // not in uber color scheme
+  mono800: '#272727', // not in uber colors, used for dark theme
+  mono900: '#1F1F1F', // not in uber colors, used for dark theme
+  mono1000: '#141414', // not in uber colors, used for dark theme
   black: '#000000',
 
   rating200: '#FFE3AC',
