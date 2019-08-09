@@ -425,6 +425,10 @@ interface Colors {
 
   // Toggle
   toggleBackground: string;
+
+  // Rating
+  ratingStarStroke: string;
+  ratingStarFill: string;
 }
 
 interface Font {

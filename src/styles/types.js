@@ -435,6 +435,10 @@ export type ColorsT = {
 
   // Toggle
   toggleBackground: string,
+
+  // Rating
+  ratingStarStroke: string,
+  ratingStarFill: string,
 };
 
 export type TypographyT = {

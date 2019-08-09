@@ -116,7 +116,7 @@ export default function createTheme(
       buttonPrimaryDisabledFill: primitives.mono50,
       buttonSecondaryFill: primitives.mono50,
       buttonSecondaryText: primitives.mono1000,
-      buttonSecondaryHover: primitives.mono300,
+      buttonSecondaryHover: primitives.mono100,
       buttonSecondaryActive: primitives.mono400,
       buttonSecondaryDisabledFill: primitives.mono50,
       buttonSecondarySelectedFill: primitives.mono400,
@@ -124,16 +124,16 @@ export default function createTheme(
       buttonTertiaryFill: 'transparent',
       buttonTertiaryText: primitives.mono1000,
       buttonTertiaryHover: primitives.mono50,
-      buttonTertiaryActive: primitives.mono300,
+      buttonTertiaryActive: primitives.mono100,
       buttonTertiaryDisabledFill: 'transparent',
       // deprecated (to be removed)
       buttonMinimalFill: 'transparent',
       buttonMinimalText: primitives.mono1000,
       buttonMinimalHover: primitives.mono50,
-      buttonMinimalActive: primitives.mono300,
+      buttonMinimalActive: primitives.mono100,
       buttonMinimalDisabledFill: 'transparent',
       // deprecated: no longer in use
-      buttonDisabledFill: primitives.mono300,
+      buttonDisabledFill: primitives.mono100,
       buttonTertiarySelectedFill: primitives.primary400,
       buttonTertiarySelectedText: primitives.white,
 
@@ -157,7 +157,7 @@ export default function createTheme(
       calendarHeaderForeground: primitives.white,
       calendarHeaderBackgroundActive: primitives.mono900,
       calendarHeaderForegroundDisabled: primitives.mono700,
-      calendarDayBackgroundPseudoSelected: primitives.mono300,
+      calendarDayBackgroundPseudoSelected: primitives.mono100,
       calendarDayForegroundPseudoSelected: primitives.mono1000,
       calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono400,
       calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
@@ -190,8 +190,8 @@ export default function createTheme(
       listBorder: primitives.mono500,
 
       // ProgressSteps
-      progressUncompletedLine: primitives.mono300,
-      progressUncompletedNodeBackground: primitives.mono300,
+      progressUncompletedLine: primitives.mono100,
+      progressUncompletedNodeBackground: primitives.mono100,
       progressUncompletedNodeForeground: primitives.mono600,
       progressCompletedLine: primitives.mono1000,
       progressCompletedNodeBackground: primitives.mono1000,
@@ -219,7 +219,7 @@ export default function createTheme(
       tickMarkFill: primitives.white,
       tickMarkFillError: primitives.white,
       tickMarkFillDisabled: primitives.mono600,
-      tickFillDisabled: primitives.mono300,
+      tickFillDisabled: primitives.mono100,
 
       // Slider/Toggle
       sliderFill: primitives.mono1000,
@@ -227,7 +227,7 @@ export default function createTheme(
       sliderTrackFill: primitives.mono400,
       sliderTrackFillHover: primitives.mono500,
       sliderTrackFillActive: primitives.mono600,
-      sliderTrackFillDisabled: primitives.mono300,
+      sliderTrackFillDisabled: primitives.mono100,
       sliderHandleFill: primitives.white,
       sliderHandleInnerFill: primitives.mono400,
       sliderHandleInnerFillDisabled: primitives.mono400,
@@ -256,8 +256,8 @@ export default function createTheme(
       inputTextDisabled: primitives.mono600,
       inputBorderError: primitives.negative200,
       inputBorderPositive: primitives.positive200,
-      inputEnhancerFill: primitives.mono300,
-      inputEnhancerFillDisabled: primitives.mono300,
+      inputEnhancerFill: primitives.mono100,
+      inputEnhancerFillDisabled: primitives.mono100,
       inputEnhancerTextDisabled: primitives.mono600,
 
       // Menu
@@ -311,13 +311,13 @@ export default function createTheme(
       tagFontDisabledRampUnit: '200',
 
       tagNeutralSolidBackground: primitives.mono900,
-      tagNeutralSolidHover: primitives.mono300,
+      tagNeutralSolidHover: primitives.mono100,
       tagNeutralSolidActive: primitives.mono400,
       tagNeutralSolidDisabled: primitives.mono50,
       tagNeutralSolidFont: primitives.white,
       tagNeutralSolidFontHover: primitives.mono900,
-      tagNeutralLightBackground: primitives.mono300,
-      tagNeutralLightHover: primitives.mono300,
+      tagNeutralLightBackground: primitives.mono100,
+      tagNeutralLightHover: primitives.mono100,
       tagNeutralLightActive: primitives.mono400,
       tagNeutralLightDisabled: primitives.mono50,
       tagNeutralLightFont: primitives.mono900,
@@ -441,6 +441,10 @@ export default function createTheme(
 
       // Toggle
       toggleBackground: primitives.white,
+
+      // Rating
+      ratingStarStroke: primitives.mono300,
+      ratingStarFill: primitives.mono100,
     },
     typography: {
       font100: {

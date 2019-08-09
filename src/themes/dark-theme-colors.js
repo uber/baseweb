@@ -353,9 +353,13 @@ export default {
     tooltipText: primitives.mono1000,
 
     // Avatar
-    avatarForeground: primitives.mono300,
+    avatarForeground: primitives.mono100,
 
     // Toggle
-    toggleBackground: primitives.mono300,
+    toggleBackground: primitives.mono100,
+
+    // Rating
+    ratingStarStroke: primitives.mono500,
+    ratingStarFill: primitives.mono300,
   },
 };

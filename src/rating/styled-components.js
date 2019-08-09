@@ -38,8 +38,8 @@ export const StyledRoot = styled<StyledRootPropsT>('ul', ({$theme}) => {
 export const StyledStar = styled<StyledRatingItemPropsT>(
   'li',
   ({$theme, $isActive, $isSelected}) => {
-    let starStroke = $theme.colors.mono500;
-    let starFill = $theme.colors.mono300;
+    let starStroke = $theme.colors.ratingStarStroke;
+    let starFill = $theme.colors.ratingStarFill;
 
     if ($isActive) {
       starStroke = starFill = $theme.colors.rating400;

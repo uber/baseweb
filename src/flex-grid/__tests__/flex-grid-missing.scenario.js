@@ -13,7 +13,7 @@ import {FlexGrid, FlexGridItem} from '../index.js';
 export const name = 'flex-grid-missing';
 
 const itemProps = {
-  backgroundColor: 'mono300',
+  backgroundColor: 'mono100',
   height: 'scale1000',
   display: 'flex',
   alignItems: 'center',
