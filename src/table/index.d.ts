@@ -54,3 +54,4 @@ export const StyledBody: StyletronComponent<any>;
 export const StyledRow: StyletronComponent<any>;
 export const StyledCell: StyletronComponent<any>;
 export const StyledAction: StyletronComponent<any>;
+export const StyledSortableLabel: StyletronComponent<any>;
