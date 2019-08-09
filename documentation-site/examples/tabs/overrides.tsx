@@ -7,7 +7,7 @@ type StateT = {
   activeKey: string;
 };
 
-function TabOverride({children, ...rest}) {
+function TabOverride({children, ...rest}: {children?: any}) {
   return (
     <StyledTab {...rest}>
       <Label2
@@ -23,7 +23,15 @@ function TabOverride({children, ...rest}) {
   );
 }
 
-const tabStyle = ({$active, $disabled, $theme}) => ({
+const tabStyle = ({
+  $active,
+  $disabled,
+  $theme,
+}: {
+  $active?: boolean;
+  $disabled?: boolean;
+  $theme: any;
+}) => ({
   outlineColor: $theme.colors.white,
   color: $active ? $theme.colors.mono100 : $theme.colors.mono300,
   ':hover': $disabled
@@ -38,11 +46,11 @@ const tabStyle = ({$active, $disabled, $theme}) => ({
       },
 });
 
-const tabBarStyle = ({$theme}) => ({
+const tabBarStyle = ({$theme}: {$theme: any}) => ({
   backgroundColor: $theme.colors.mono600,
 });
 
-const tabContentStyle = ({$theme}) => ({
+const tabContentStyle = ({$theme}: {$theme: any}) => ({
   borderLeftWidth: '2px',
   borderRightWidth: '2px',
   borderBottomWidth: '2px',
