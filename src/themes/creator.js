@@ -111,7 +111,7 @@ export default function createTheme(
       buttonDisabledText: primitives.mono400,
       buttonPrimaryFill: primitives.mono1000,
       buttonPrimaryText: primitives.white,
-      buttonPrimaryHover: primitives.mono900,
+      buttonPrimaryHover: primitives.mono700,
       buttonPrimaryActive: primitives.mono600,
       buttonPrimaryDisabledFill: primitives.mono50,
       buttonSecondaryFill: primitives.mono50,
@@ -138,7 +138,7 @@ export default function createTheme(
       buttonTertiarySelectedText: primitives.white,
 
       // Breadcrumbs
-      breadcrumbsText: primitives.mono900,
+      breadcrumbsText: primitives.mono700,
       breadcrumbsSeparatorFill: primitives.mono500,
 
       // Datepicker
@@ -155,7 +155,7 @@ export default function createTheme(
       calendarForegroundDisabled: primitives.mono300,
       calendarHeaderBackground: primitives.mono1000,
       calendarHeaderForeground: primitives.white,
-      calendarHeaderBackgroundActive: primitives.mono900,
+      calendarHeaderBackgroundActive: primitives.mono700,
       calendarHeaderForegroundDisabled: primitives.mono500,
       calendarDayBackgroundPseudoSelected: primitives.mono100,
       calendarDayForegroundPseudoSelected: primitives.mono1000,
@@ -163,7 +163,7 @@ export default function createTheme(
       calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
       calendarDayBackgroundSelected: primitives.mono1000,
       calendarDayForegroundSelected: primitives.white,
-      calendarDayBackgroundSelectedHighlighted: primitives.mono900,
+      calendarDayBackgroundSelectedHighlighted: primitives.mono700,
       calendarDayForegroundSelectedHighlighted: primitives.white,
 
       // FileUploader
@@ -211,7 +211,7 @@ export default function createTheme(
       tickFillActive: primitives.mono200,
       tickFillSelected: primitives.mono1000,
       tickFillSelectedHover: primitives.mono600,
-      tickFillSelectedHoverActive: primitives.mono900,
+      tickFillSelectedHoverActive: primitives.mono700,
       tickFillError: primitives.negative50,
       tickFillErrorHover: primitives.negative100,
       tickFillErrorHoverActive: primitives.negative200,
@@ -237,7 +237,7 @@ export default function createTheme(
       sliderHandleInnerFill: primitives.mono200,
       sliderHandleInnerFillDisabled: primitives.mono200,
       sliderHandleInnerFillSelectedHover: primitives.mono600,
-      sliderHandleInnerFillSelectedActive: primitives.mono900,
+      sliderHandleInnerFillSelectedActive: primitives.mono700,
       // deprecated: no longer in use
       sliderTrackFillSelected: primitives.primary400,
       sliderTrackFillSelectedHover: primitives.primary400,
@@ -315,23 +315,23 @@ export default function createTheme(
       tagOutlinedFontHoverRampUnit: '50',
       tagFontDisabledRampUnit: '200',
 
-      tagNeutralSolidBackground: primitives.mono900,
+      tagNeutralSolidBackground: primitives.mono700,
       tagNeutralSolidHover: primitives.mono100,
       tagNeutralSolidActive: primitives.mono200,
       tagNeutralSolidDisabled: primitives.mono50,
       tagNeutralSolidFont: primitives.white,
-      tagNeutralSolidFontHover: primitives.mono900,
+      tagNeutralSolidFontHover: primitives.mono700,
       tagNeutralLightBackground: primitives.mono100,
       tagNeutralLightHover: primitives.mono100,
       tagNeutralLightActive: primitives.mono200,
       tagNeutralLightDisabled: primitives.mono50,
-      tagNeutralLightFont: primitives.mono900,
-      tagNeutralLightFontHover: primitives.mono900,
-      tagNeutralOutlinedBackground: primitives.mono900,
+      tagNeutralLightFont: primitives.mono700,
+      tagNeutralLightFontHover: primitives.mono700,
+      tagNeutralOutlinedBackground: primitives.mono700,
       tagNeutralOutlinedHover: primitives.mono600,
-      tagNeutralOutlinedActive: primitives.mono900,
+      tagNeutralOutlinedActive: primitives.mono700,
       tagNeutralOutlinedDisabled: primitives.mono50,
-      tagNeutralOutlinedFont: primitives.mono900,
+      tagNeutralOutlinedFont: primitives.mono700,
       tagNeutralOutlinedFontHover: primitives.mono50,
       tagNeutralFontDisabled: primitives.mono300,
 
@@ -432,13 +432,13 @@ export default function createTheme(
       toastNegativeBackground: primitives.negative500,
 
       // Spinner
-      spinnerTrackFill: primitives.mono900,
+      spinnerTrackFill: primitives.mono700,
 
       // Progress bar
-      progressbarTrackFill: primitives.mono900,
+      progressbarTrackFill: primitives.mono700,
 
       // Tooltip
-      tooltipBackground: primitives.mono900,
+      tooltipBackground: primitives.mono700,
       tooltipText: primitives.white,
 
       // Avatar
