@@ -98,7 +98,7 @@ export default function createTheme(
 
       // Foreground
       foreground: primitives.mono1000,
-      foregroundAlt: primitives.mono800,
+      foregroundAlt: primitives.mono600,
       foregroundInv: primitives.white,
 
       // Borders
@@ -139,7 +139,7 @@ export default function createTheme(
 
       // Breadcrumbs
       breadcrumbsText: primitives.mono900,
-      breadcrumbsSeparatorFill: primitives.mono700,
+      breadcrumbsSeparatorFill: primitives.mono500,
 
       // Datepicker
       // deprecated: no longer in use
@@ -156,7 +156,7 @@ export default function createTheme(
       calendarHeaderBackground: primitives.mono1000,
       calendarHeaderForeground: primitives.white,
       calendarHeaderBackgroundActive: primitives.mono900,
-      calendarHeaderForegroundDisabled: primitives.mono700,
+      calendarHeaderForegroundDisabled: primitives.mono500,
       calendarDayBackgroundPseudoSelected: primitives.mono100,
       calendarDayForegroundPseudoSelected: primitives.mono1000,
       calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono200,
@@ -218,7 +218,7 @@ export default function createTheme(
       tickFillErrorSelected: primitives.negative400,
       tickFillErrorSelectedHover: primitives.negative500,
       tickFillErrorSelectedHoverActive: primitives.negative600,
-      tickBorder: primitives.mono700,
+      tickBorder: primitives.mono500,
       tickBorderError: primitives.negative400,
       tickMarkFill: primitives.white,
       tickMarkFillError: primitives.white,
@@ -420,7 +420,7 @@ export default function createTheme(
       tableBackground: primitives.white,
       tableStripedBackground: primitives.mono50,
       tableFilter: primitives.mono400,
-      tableFilterHeading: primitives.mono700,
+      tableFilterHeading: primitives.mono500,
       tableFilterBackground: primitives.white,
       tableFilterFooterBackground: primitives.mono50,
 

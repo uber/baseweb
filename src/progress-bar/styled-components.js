@@ -54,6 +54,6 @@ export const Label = styled<StylePropsT>('div', props => {
   return {
     textAlign: 'center',
     ...props.$theme.typography.font250,
-    color: props.$theme.colors.mono700,
+    color: props.$theme.colors.foregroundAlt,
   };
 });

@@ -131,7 +131,7 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
     paddingBottom: 0,
 
     // colors
-    color: $theme.colors.mono700,
+    color: $theme.colors.foregroundAlt,
     transitionProperty: 'color, border-color',
     transitionDuration: $theme.animation.timing100,
     borderWidth: '1px',

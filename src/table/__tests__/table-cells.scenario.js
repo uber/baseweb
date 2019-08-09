@@ -309,7 +309,7 @@ export const component = () => (
 
             <StyledLargeText>
               <Block font="font500">{row[4]}</Block>
-              <Block color="mono700" font="font250" paddingLeft="scale200">
+              <Block color="mono500" font="font250" paddingLeft="scale200">
                 +1000%
               </Block>
             </StyledLargeText>

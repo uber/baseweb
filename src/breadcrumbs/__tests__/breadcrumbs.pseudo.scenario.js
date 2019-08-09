@@ -22,7 +22,7 @@ export const component = () => (
           return {
             ':before': {
               content: "'>'",
-              color: $theme.colors.mono700,
+              color: $theme.colors.mono500,
               marginLeft: $theme.sizing.scale400,
               marginRight: $theme.sizing.scale400,
               ...$theme.typography.font450,
