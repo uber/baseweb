@@ -10,8 +10,6 @@ import type {ThemeT} from '../styles/types.js';
 import type {PrimitivesT} from './types.js';
 import deepMerge from '../utils/deep-merge.js';
 
-const WHITE = '#FFFFFF';
-
 export default function createTheme(
   primitives: PrimitivesT,
   overrides?: {},
@@ -111,7 +109,7 @@ export default function createTheme(
       // Buttons
       buttonDisabledText: primitives.mono600,
       buttonPrimaryFill: primitives.mono1000,
-      buttonPrimaryText: WHITE,
+      buttonPrimaryText: primitives.white,
       buttonPrimaryHover: primitives.mono900,
       buttonPrimaryActive: primitives.mono800,
       buttonPrimaryDisabledFill: primitives.mono200,
@@ -185,7 +183,7 @@ export default function createTheme(
       shadowError: 'rgba(229, 73, 55, 0.32)',
 
       // List
-      listHeaderFill: WHITE,
+      listHeaderFill: primitives.white,
       listBodyFill: primitives.mono200,
       listIconFill: primitives.mono500,
       listBorder: primitives.mono500,
@@ -203,7 +201,7 @@ export default function createTheme(
       progressStepsIconActiveFill: primitives.primary100,
 
       // Tick
-      tickFill: WHITE,
+      tickFill: primitives.white,
       tickFillHover: primitives.mono200,
       tickFillActive: primitives.mono400,
       tickFillSelected: primitives.mono1000,
@@ -217,8 +215,8 @@ export default function createTheme(
       tickFillErrorSelectedHoverActive: primitives.negative600,
       tickBorder: primitives.mono700,
       tickBorderError: primitives.negative400,
-      tickMarkFill: WHITE,
-      tickMarkFillError: WHITE,
+      tickMarkFill: primitives.white,
+      tickMarkFillError: primitives.white,
       tickMarkFillDisabled: primitives.mono600,
       tickFillDisabled: primitives.mono300,
 
@@ -237,12 +235,12 @@ export default function createTheme(
       sliderTrackFillSelected: primitives.primary400,
       sliderTrackFillSelectedHover: primitives.primary400,
       sliderTrackFillSelectedActive: primitives.primary500,
-      sliderHandleFill: WHITE,
-      sliderHandleFillHover: WHITE,
-      sliderHandleFillActive: WHITE,
-      sliderHandleFillSelected: WHITE,
-      sliderHandleFillSelectedHover: WHITE,
-      sliderHandleFillSelectedActive: WHITE,
+      sliderHandleFill: primitives.white,
+      sliderHandleFillHover: primitives.white,
+      sliderHandleFillActive: primitives.white,
+      sliderHandleFillSelected: primitives.white,
+      sliderHandleFillSelectedHover: primitives.white,
+      sliderHandleFillSelectedActive: primitives.white,
       sliderHandleFillDisabled: primitives.mono500,
       sliderBorder: primitives.mono500,
       sliderBorderHover: primitives.primary400,
@@ -421,7 +419,7 @@ export default function createTheme(
       tableFilterFooterBackground: primitives.mono200,
 
       // Toast
-      toastText: WHITE,
+      toastText: primitives.white,
       toastPrimaryBackground: primitives.primary500,
       toastPositiveBackground: primitives.positive500,
       toastWarningBackground: primitives.warning500,

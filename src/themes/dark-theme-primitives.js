@@ -45,6 +45,8 @@ export const primitives: PrimitivesT = {
   positive600: '#2B6B46',
   positive700: '#1C472F',
 
+  white: '#FFFFFF',
+  mono50: '##F6F6F6',
   mono100: '#EEEEEE',
   mono200: '#E2E2E2',
   mono300: '#CBCBCB',
@@ -52,9 +54,10 @@ export const primitives: PrimitivesT = {
   mono500: '#757575',
   mono600: '#545454',
   mono700: '#333333',
-  mono800: '#222222',
-  mono900: '#111111',
+  mono800: '#282828',
+  mono900: '#1B1B1B',
   mono1000: '#000000',
+  black: '#000000',
 
   rating200: '#FFE3AC',
   rating400: '#FFC043',

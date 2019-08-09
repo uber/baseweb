@@ -8,13 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import {primitives} from './dark-theme-primitives.js';
 
-const WHITE = '#FFFFFF';
-
 export default {
   colors: {
     // Semantic Colors
 
-    white: WHITE,
+    white: primitives.white,
 
     // Font Color
     colorPrimary: primitives.mono100,
@@ -33,7 +31,7 @@ export default {
     // Borders
     border: primitives.mono600,
     borderAlt: primitives.mono700,
-    borderFocus: WHITE,
+    borderFocus: primitives.white,
     borderError: primitives.negative400,
 
     // Buttons
@@ -73,7 +71,7 @@ export default {
     // Datepicker
     // deprecated: no longer in use
     datepickerBackground: primitives.mono600,
-    datepickerDayFont: WHITE,
+    datepickerDayFont: primitives.white,
     datepickerDayFontDisabled: primitives.mono100,
     datepickerDayPseudoSelected: primitives.mono500,
     datepickerDayPseudoHighlighted: primitives.mono600,
@@ -118,10 +116,10 @@ export default {
     progressUncompletedLine: primitives.mono700,
     progressUncompletedNodeBackground: primitives.mono700,
     progressUncompletedNodeForeground: primitives.mono300,
-    progressActiveNodeBackground: WHITE,
+    progressActiveNodeBackground: primitives.white,
     progressActiveNodeForeground: primitives.mono1000,
-    progressCompletedLine: WHITE,
-    progressCompletedNodeBackground: WHITE,
+    progressCompletedLine: primitives.white,
+    progressCompletedNodeBackground: primitives.white,
     progressCompletedNodeForeground: primitives.mono1000,
     // deprecated: no longer in use
     progressStepsIconActiveFill: primitives.mono100,
@@ -270,7 +268,7 @@ export default {
     tickFill: primitives.mono1000,
     tickFillHover: primitives.mono800,
     tickFillActive: primitives.mono600,
-    tickFillSelected: WHITE,
+    tickFillSelected: primitives.white,
     tickFillSelectedHover: primitives.mono100,
     tickFillSelectedHoverActive: primitives.mono200,
     tickFillError: primitives.negative700,
@@ -282,12 +280,12 @@ export default {
     tickBorder: primitives.mono300,
     tickBorderError: primitives.negative400,
     tickMarkFill: primitives.mono1000,
-    tickMarkFillError: WHITE,
+    tickMarkFillError: primitives.white,
     tickMarkFillDisabled: primitives.mono400,
     tickFillDisabled: primitives.mono700,
 
     // Slider/Toggle
-    sliderFill: WHITE,
+    sliderFill: primitives.white,
     sliderFillDisabled: primitives.mono300,
     sliderTrackFill: primitives.mono600,
     sliderTrackFillHover: primitives.mono500,
@@ -308,8 +306,8 @@ export default {
     sliderHandleFillSelectedHover: primitives.primary600,
     sliderHandleFillSelectedActive: primitives.primary700,
     sliderHandleFillDisabled: primitives.mono600,
-    sliderBorder: WHITE,
-    sliderBorderHover: WHITE,
+    sliderBorder: primitives.white,
+    sliderBorderHover: primitives.white,
     sliderBorderDisabled: primitives.mono400,
 
     // Input
@@ -331,7 +329,7 @@ export default {
     menuFontDefault: primitives.mono300,
     menuFontDisabled: primitives.mono400,
     menuFontHighlighted: primitives.mono200,
-    menuFontSelected: WHITE,
+    menuFontSelected: primitives.white,
 
     // Pagination
     paginationTriangleDown: primitives.mono100,

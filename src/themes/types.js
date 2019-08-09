@@ -48,6 +48,7 @@ export type PrimitivesT = {
   positive700: string,
 
   // Monochrome Palette
+  white: string,
   mono100: string,
   mono200: string,
   mono300: string,
@@ -55,9 +56,10 @@ export type PrimitivesT = {
   mono500: string,
   mono600: string,
   mono700: string,
-  mono800: string,
-  mono900: string,
-  mono1000: string,
+  mono800: string, // deprecated
+  mono900: string, // deprecated
+  mono1000: string, // deprecated, alias for black
+  black: string,
 
   // Rating Palette
   rating200: string,

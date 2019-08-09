@@ -45,16 +45,19 @@ export const primitives: PrimitivesT = {
   positive600: '#2B6B46',
   positive700: '#1C472F',
 
-  mono100: '#FFFFFF',
-  mono200: '#F6F6F6',
-  mono300: '#EEEEEE',
-  mono400: '#E2E2E2',
-  mono500: '#CBCBCB',
-  mono600: '#AFAFAF',
-  mono700: '#757575',
-  mono800: '#545454',
-  mono900: '#333333',
-  mono1000: '#000000',
+  white: '#FFFFFF',
+  mono50: '##F6F6F6',
+  mono100: '#EEEEEE',
+  mono200: '#E2E2E2',
+  mono300: '#CBCBCB',
+  mono400: '#AFAFAF',
+  mono500: '#757575',
+  mono600: '#545454',
+  mono700: '#333333',
+  mono800: '#282828', // not in uber color scheme
+  mono900: '#1B1B1B', // not in uber color scheme
+  mono1000: '#000000', // not in uber color scheme
+  black: '#000000',
 
   rating200: '#FFE3AC',
   rating400: '#FFC043',
