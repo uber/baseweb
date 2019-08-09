@@ -142,7 +142,7 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
     },
     ':focus': {
       color: $theme.colors.mono800,
-      borderColor: $theme.colors.primary,
+      borderColor: $theme.colors.borderFocus,
     },
 
     // Positioning
