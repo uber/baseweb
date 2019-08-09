@@ -162,6 +162,7 @@ export const COMPONENTS = {
       'inputEnhancerFill',
       'inputEnhancerFillDisabled',
       'inputEnhancerTextDisabled',
+      'borderFocus',
     ],
     props: {
       value: {
