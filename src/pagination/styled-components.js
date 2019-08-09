@@ -15,12 +15,16 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => ({
 }));
 
 export const StyledMaxLabel = styled<{}>('span', ({$theme}) => ({
-  marginLeft: $theme.sizing.scale300,
-  marginRight: $theme.sizing.scale600,
+  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+    .scale300,
+  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
+    .scale600,
 }));
 
 export const StyledDropdownContainer = styled<{}>('div', ({$theme}) => ({
   position: 'relative',
-  marginLeft: $theme.sizing.scale600,
-  marginRight: $theme.sizing.scale300,
+  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+    .scale600,
+  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
+    .scale300,
 }));

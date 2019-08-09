@@ -146,6 +146,7 @@
     "semver": "^6.2.0",
     "shx": "^0.3.2",
     "static-server": "^2.2.1",
+    "storybook-addon-rtl": "^0.2.2",
     "styletron-engine-atomic": "^1.4.0",
     "styletron-react": "^5.2.0",
     "styletron-standard": "^3.0.0",

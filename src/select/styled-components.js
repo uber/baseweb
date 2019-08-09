@@ -24,6 +24,7 @@ function getFont(size = SIZE.default, typography) {
 
 function getControlPadding(props, emptyValue) {
   const {
+    $theme,
     $theme: {sizing},
     $size = SIZE.default,
     $type,
@@ -42,11 +43,11 @@ function getControlPadding(props, emptyValue) {
         $multi && !emptyValue
           ? `calc(${sizing.scale200} - ${sizing.scale0})`
           : sizing.scale200,
-      paddingLeft:
+      [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`
           : paddingLeft,
-      paddingRight: '0',
+      [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: '0',
     },
     [SIZE.default]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
@@ -58,8 +59,10 @@ function getControlPadding(props, emptyValue) {
         $multi && !emptyValue
           ? `calc(${sizing.scale400} - ${sizing.scale0})`
           : sizing.scale400,
-      paddingLeft,
-      paddingRight: 0,
+      [$theme.direction === 'rtl'
+        ? 'paddingRight'
+        : 'paddingLeft']: paddingLeft,
+      [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: 0,
     },
     [SIZE.large]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
@@ -71,11 +74,11 @@ function getControlPadding(props, emptyValue) {
         $multi && !emptyValue
           ? `calc(${sizing.scale550} - ${sizing.scale0})`
           : sizing.scale550,
-      paddingLeft:
+      [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`
           : paddingLeft,
-      paddingRight: 0,
+      [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: 0,
     },
   }[$size];
 }
@@ -254,6 +257,7 @@ export const StyledSingleValue = styled<SharedStylePropsArgT>('div', props => {
   const {
     $searchable,
     $size,
+    $theme,
     $theme: {typography},
   } = props;
   const font = getFont($size, typography);
@@ -262,7 +266,7 @@ export const StyledSingleValue = styled<SharedStylePropsArgT>('div', props => {
     boxSizing: 'border-box',
     position: 'absolute',
     top: 0,
-    left: 0,
+    [$theme.direction === 'rtl' ? 'right' : 'left']: 0,
     height: '100%',
     maxWidth: '100%',
     ...ellipsisText,
@@ -333,11 +337,11 @@ export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
 
 export const StyledInputSizer = styled<SharedStylePropsArgT>(
   'div',
-  ({$size, $theme: {typography}}) => ({
+  ({$size, $theme, $theme: {typography}}) => ({
     ...getFont($size, typography),
     position: 'absolute',
     top: 0,
-    left: 0,
+    [$theme.direction === 'rtl' ? 'right' : 'left']: 0,
     visibility: 'hidden',
     height: 0,
     overflow: 'scroll',
@@ -347,7 +351,7 @@ export const StyledInputSizer = styled<SharedStylePropsArgT>(
 
 export const StyledIconsContainer = styled<SharedStylePropsArgT>(
   'div',
-  ({$theme: {sizing}}) => {
+  ({$theme, $theme: {sizing}}) => {
     return {
       boxSizing: 'border-box',
       position: 'relative',
@@ -355,7 +359,9 @@ export const StyledIconsContainer = styled<SharedStylePropsArgT>(
       flexShrink: 0,
       alignItems: 'center',
       alignSelf: 'stretch',
-      paddingRight: sizing.scale500,
+      [$theme.direction === 'rtl'
+        ? 'paddingLeft'
+        : 'paddingRight']: sizing.scale500,
     };
   },
 );
@@ -407,7 +413,7 @@ export const StyledSearchIcon = styled<SharedStylePropsArgT>('div', props => {
     color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
-    left: sizing.scale500,
+    [$theme.direction === 'rtl' ? 'right' : 'left']: sizing.scale500,
     display: 'flex',
     alignItems: 'center',
     height: '100%',
