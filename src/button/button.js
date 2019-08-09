@@ -14,6 +14,7 @@ import {
 import {getSharedProps} from './utils.js';
 import ButtonInternals from './button-internals.js';
 import {defaultProps} from './default-props.js';
+import {KIND} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
 
 import type {ButtonPropsT} from './types.js';
@@ -21,6 +22,15 @@ import type {ButtonPropsT} from './types.js';
 // eslint-disable-next-line flowtype/no-weak-types
 class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
   static defaultProps = defaultProps;
+
+  componentDidMount() {
+    if (__DEV__ && this.props.kind === KIND.minimal) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Buttons with the [minimal] KIND are deprecated. Please use [tertiary] instead.`,
+      );
+    }
+  }
 
   internalOnClick = (...args: *) => {
     const {isLoading, onClick} = this.props;

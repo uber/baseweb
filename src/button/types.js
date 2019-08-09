@@ -25,7 +25,7 @@ export type ButtonPropsT = {
   isLoading?: boolean,
   /** Indicates that the button is selected */
   isSelected?: boolean,
-  /** Defines the kind (purpose) of a button */
+  /** Defines the kind (purpose) of a button. The `minimal` kind is deprecated and will be removed in a future major version. */
   kind?: $Keys<typeof KIND>,
   onClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
   overrides?: OverridesT,
