@@ -188,13 +188,13 @@ export type ColorsT = {
   progressCompletedLine: string,
   progressCompletedNodeForeground: string,
   progressCompletedNodeBackground: string,
-
   progressUncompletedLine: string,
   progressUncompletedNodeForeground: string,
   progressUncompletedNodeBackground: string,
-
   progressActiveNodeForeground: string,
   progressActiveNodeBackground: string,
+  // deprecated: no longer in use
+  progressStepsIconActiveFill: string,
 
   // Ticks
   tickFill: string,
@@ -222,10 +222,15 @@ export type ColorsT = {
   sliderTrackFill: string,
   sliderTrackFillHover: string,
   sliderTrackFillActive: string,
-  sliderTrackFillSelected: string,
-  sliderTrackFillSelectedHover: string,
-  sliderTrackFillSelectedActive: string,
   sliderTrackFillDisabled: string,
+  sliderHandleInnerFill: string,
+  sliderHandleInnerFillDisabled: string,
+  sliderHandleInnerFillSelectedHover: string,
+  sliderHandleInnerFillSelectedActive: string,
+  // deprecated: no longer in use
+  sliderTrackFillSelected: string,
+  sliderTrackFillSelectedActive: string,
+  sliderTrackFillSelectedHover: string,
   sliderHandleFill: string,
   sliderHandleFillHover: string,
   sliderHandleFillActive: string,
@@ -233,10 +238,6 @@ export type ColorsT = {
   sliderHandleFillSelectedHover: string,
   sliderHandleFillSelectedActive: string,
   sliderHandleFillDisabled: string,
-  sliderHandleInnerFill: string,
-  sliderHandleInnerFillDisabled: string,
-  sliderHandleInnerFillSelectedHover: string,
-  sliderHandleInnerFillSelectedActive: string,
   sliderBorder: string,
   sliderBorderHover: string,
   sliderBorderDisabled: string,

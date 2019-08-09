@@ -118,13 +118,13 @@ export default {
     progressUncompletedLine: primitives.mono700,
     progressUncompletedNodeBackground: primitives.mono700,
     progressUncompletedNodeForeground: primitives.mono300,
-
     progressActiveNodeBackground: WHITE,
     progressActiveNodeForeground: primitives.mono1000,
-
     progressCompletedLine: WHITE,
     progressCompletedNodeBackground: WHITE,
     progressCompletedNodeForeground: primitives.mono1000,
+    // deprecated: no longer in use
+    progressStepsIconActiveFill: primitives.mono100,
 
     // Notification
     notificationPrimaryBackground: primitives.primary700,
@@ -270,24 +270,21 @@ export default {
     tickFill: primitives.mono1000,
     tickFillHover: primitives.mono800,
     tickFillActive: primitives.mono600,
-    tickBorder: primitives.mono300,
-    tickMarkFill: primitives.mono1000,
-
     tickFillSelected: WHITE,
     tickFillSelectedHover: primitives.mono100,
     tickFillSelectedHoverActive: primitives.mono200,
-
     tickFillError: primitives.negative700,
     tickFillErrorHover: primitives.negative600,
     tickFillErrorHoverActive: primitives.negative500,
     tickFillErrorSelected: primitives.negative500,
     tickFillErrorSelectedHover: primitives.negative600,
     tickFillErrorSelectedHoverActive: primitives.negative700,
+    tickBorder: primitives.mono300,
     tickBorderError: primitives.negative400,
+    tickMarkFill: primitives.mono1000,
     tickMarkFillError: WHITE,
-
-    tickFillDisabled: primitives.mono700,
     tickMarkFillDisabled: primitives.mono400,
+    tickFillDisabled: primitives.mono700,
 
     // Slider/Toggle
     sliderFill: WHITE,
@@ -300,8 +297,7 @@ export default {
     sliderHandleInnerFillDisabled: primitives.mono500,
     sliderHandleInnerFillSelectedHover: primitives.mono600,
     sliderHandleInnerFillSelectedActive: primitives.mono700,
-
-    // unused Slider/Toggle
+    // deprecated: no longer in use
     sliderTrackFillSelected: primitives.primary500,
     sliderTrackFillSelectedActive: primitives.primary600,
     sliderTrackFillSelectedHover: primitives.primary700,
@@ -312,7 +308,6 @@ export default {
     sliderHandleFillSelectedHover: primitives.primary600,
     sliderHandleFillSelectedActive: primitives.primary700,
     sliderHandleFillDisabled: primitives.mono600,
-
     sliderBorder: WHITE,
     sliderBorderHover: WHITE,
     sliderBorderDisabled: primitives.mono400,

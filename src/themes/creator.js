@@ -194,36 +194,33 @@ export default function createTheme(
       progressUncompletedLine: primitives.mono300,
       progressUncompletedNodeBackground: primitives.mono300,
       progressUncompletedNodeForeground: primitives.mono600,
-
       progressCompletedLine: primitives.mono1000,
       progressCompletedNodeBackground: primitives.mono1000,
       progressCompletedNodeForeground: primitives.mono100,
-
       progressActiveNodeBackground: primitives.mono1000,
       progressActiveNodeForeground: primitives.mono100,
+      // deprecated: no longer in use
+      progressStepsIconActiveFill: primitives.primary100,
 
       // Tick
       tickFill: WHITE,
       tickFillHover: primitives.mono200,
       tickFillActive: primitives.mono400,
-      tickBorder: primitives.mono700,
-      tickMarkFill: WHITE,
-
       tickFillSelected: primitives.mono1000,
       tickFillSelectedHover: primitives.mono800,
       tickFillSelectedHoverActive: primitives.mono900,
-
       tickFillError: primitives.negative50,
       tickFillErrorHover: primitives.negative100,
       tickFillErrorHoverActive: primitives.negative200,
       tickFillErrorSelected: primitives.negative400,
       tickFillErrorSelectedHover: primitives.negative500,
       tickFillErrorSelectedHoverActive: primitives.negative600,
+      tickBorder: primitives.mono700,
       tickBorderError: primitives.negative400,
+      tickMarkFill: WHITE,
       tickMarkFillError: WHITE,
-
-      tickFillDisabled: primitives.mono300,
       tickMarkFillDisabled: primitives.mono600,
+      tickFillDisabled: primitives.mono300,
 
       // Slider/Toggle
       sliderFill: primitives.mono1000,
@@ -236,8 +233,7 @@ export default function createTheme(
       sliderHandleInnerFillDisabled: primitives.mono400,
       sliderHandleInnerFillSelectedHover: primitives.mono800,
       sliderHandleInnerFillSelectedActive: primitives.mono900,
-
-      // unused Slider/Toggle
+      // deprecated: no longer in use
       sliderTrackFillSelected: primitives.primary400,
       sliderTrackFillSelectedHover: primitives.primary400,
       sliderTrackFillSelectedActive: primitives.primary500,
