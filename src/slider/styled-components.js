@@ -100,7 +100,7 @@ export const Thumb = styled<StylePropsT>('div', props => {
     alignItems: 'center',
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: $theme.colors.mono400,
+    borderColor: $theme.colors.sliderHandleBorder,
     boxShadow: '0 1px 4px rgba(0, 0, 0, 0.12)',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };

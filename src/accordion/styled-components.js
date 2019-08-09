@@ -44,7 +44,11 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
-    borderBottom: `1px solid ${$expanded ? colors.mono500 : colors.mono400}`,
+    borderBottom: `1px solid ${
+      $expanded
+        ? colors.accordianHeaderBorderExpanded
+        : colors.accordianHeaderBorder
+    }`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

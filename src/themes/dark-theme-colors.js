@@ -112,6 +112,10 @@ export default {
     listIconFill: primitives.mono100,
     listBorder: primitives.mono500,
 
+    // Accordian
+    accordianHeaderBorder: primitives.mono400,
+    accordianHeaderBorderExpanded: primitives.mono500,
+
     // ProgressSteps
     progressUncompletedLine: primitives.mono700,
     progressUncompletedNodeBackground: primitives.mono700,
@@ -292,6 +296,7 @@ export default {
     sliderTrackFillActive: primitives.mono400,
     sliderTrackFillDisabled: primitives.mono700,
     sliderHandleFill: primitives.mono300,
+    sliderHandleBorder: primitives.mono400,
     sliderHandleInnerFill: primitives.mono300,
     sliderHandleInnerFillDisabled: primitives.mono500,
     sliderHandleInnerFillSelectedHover: primitives.mono600,
@@ -361,5 +366,8 @@ export default {
     // Rating
     ratingStarStroke: primitives.mono500,
     ratingStarFill: primitives.mono300,
+
+    // Modal
+    modalFooterBorder: primitives.mono400,
   },
 };

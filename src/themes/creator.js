@@ -117,9 +117,9 @@ export default function createTheme(
       buttonSecondaryFill: primitives.mono50,
       buttonSecondaryText: primitives.mono1000,
       buttonSecondaryHover: primitives.mono100,
-      buttonSecondaryActive: primitives.mono400,
+      buttonSecondaryActive: primitives.mono200,
       buttonSecondaryDisabledFill: primitives.mono50,
-      buttonSecondarySelectedFill: primitives.mono400,
+      buttonSecondarySelectedFill: primitives.mono200,
       buttonSecondarySelectedText: primitives.mono1000,
       buttonTertiaryFill: 'transparent',
       buttonTertiaryText: primitives.mono1000,
@@ -159,7 +159,7 @@ export default function createTheme(
       calendarHeaderForegroundDisabled: primitives.mono700,
       calendarDayBackgroundPseudoSelected: primitives.mono100,
       calendarDayForegroundPseudoSelected: primitives.mono1000,
-      calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono400,
+      calendarDayBackgroundPseudoSelectedHighlighted: primitives.mono200,
       calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
       calendarDayBackgroundSelected: primitives.mono1000,
       calendarDayForegroundSelected: primitives.white,
@@ -189,6 +189,10 @@ export default function createTheme(
       listIconFill: primitives.mono500,
       listBorder: primitives.mono500,
 
+      // Accordian
+      accordianHeaderBorder: primitives.mono200,
+      accordianHeaderBorderExpanded: primitives.mono500,
+
       // ProgressSteps
       progressUncompletedLine: primitives.mono100,
       progressUncompletedNodeBackground: primitives.mono100,
@@ -204,7 +208,7 @@ export default function createTheme(
       // Tick
       tickFill: primitives.white,
       tickFillHover: primitives.mono50,
-      tickFillActive: primitives.mono400,
+      tickFillActive: primitives.mono200,
       tickFillSelected: primitives.mono1000,
       tickFillSelectedHover: primitives.mono800,
       tickFillSelectedHoverActive: primitives.mono900,
@@ -224,13 +228,14 @@ export default function createTheme(
       // Slider/Toggle
       sliderFill: primitives.mono1000,
       sliderFillDisabled: primitives.mono600,
-      sliderTrackFill: primitives.mono400,
+      sliderTrackFill: primitives.mono200,
       sliderTrackFillHover: primitives.mono500,
       sliderTrackFillActive: primitives.mono600,
       sliderTrackFillDisabled: primitives.mono100,
       sliderHandleFill: primitives.white,
-      sliderHandleInnerFill: primitives.mono400,
-      sliderHandleInnerFillDisabled: primitives.mono400,
+      sliderHandleBorder: primitives.mono200,
+      sliderHandleInnerFill: primitives.mono200,
+      sliderHandleInnerFillDisabled: primitives.mono200,
       sliderHandleInnerFillSelectedHover: primitives.mono800,
       sliderHandleInnerFillSelectedActive: primitives.mono900,
       // deprecated: no longer in use
@@ -312,13 +317,13 @@ export default function createTheme(
 
       tagNeutralSolidBackground: primitives.mono900,
       tagNeutralSolidHover: primitives.mono100,
-      tagNeutralSolidActive: primitives.mono400,
+      tagNeutralSolidActive: primitives.mono200,
       tagNeutralSolidDisabled: primitives.mono50,
       tagNeutralSolidFont: primitives.white,
       tagNeutralSolidFontHover: primitives.mono900,
       tagNeutralLightBackground: primitives.mono100,
       tagNeutralLightHover: primitives.mono100,
-      tagNeutralLightActive: primitives.mono400,
+      tagNeutralLightActive: primitives.mono200,
       tagNeutralLightDisabled: primitives.mono50,
       tagNeutralLightFont: primitives.mono900,
       tagNeutralLightFontHover: primitives.mono900,
@@ -445,6 +450,9 @@ export default function createTheme(
       // Rating
       ratingStarStroke: primitives.mono300,
       ratingStarFill: primitives.mono100,
+
+      // Modal
+      modalFooterBorder: primitives.mono200,
     },
     typography: {
       font100: {

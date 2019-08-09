@@ -168,6 +168,10 @@ interface Colors {
   listIconFill: string;
   listBorder: string;
 
+  // Accordian
+  accordianHeaderBorder: string;
+  accordianHeaderBorderExpanded: string;
+
   // ProgressSteps
   progressCompletedLine: string;
   progressCompletedNodeForeground: string;
@@ -208,6 +212,7 @@ interface Colors {
   sliderTrackFillActive: string;
   sliderTrackFillDisabled: string;
   sliderHandleFill: string;
+  sliderHandleBorder: string;
   sliderHandleInnerFill: string;
   sliderHandleInnerFillDisabled: string;
   sliderHandleInnerFillSelectedHover: string;
@@ -429,6 +434,9 @@ interface Colors {
   // Rating
   ratingStarStroke: string;
   ratingStarFill: string;
+
+  // Modal
+  modalFooterBorder: string;
 }
 
 interface Font {

@@ -178,6 +178,10 @@ export type ColorsT = {
   listIconFill: string,
   listBorder: string,
 
+  // Accordian
+  accordianHeaderBorder: string,
+  accordianHeaderBorderExpanded: string,
+
   // ProgressSteps
   progressCompletedLine: string,
   progressCompletedNodeForeground: string,
@@ -218,6 +222,7 @@ export type ColorsT = {
   sliderTrackFillActive: string,
   sliderTrackFillDisabled: string,
   sliderHandleFill: string,
+  sliderHandleBorder: string,
   sliderHandleInnerFill: string,
   sliderHandleInnerFillDisabled: string,
   sliderHandleInnerFillSelectedHover: string,
@@ -439,6 +444,9 @@ export type ColorsT = {
   // Rating
   ratingStarStroke: string,
   ratingStarFill: string,
+
+  // Modal
+  modalFooterBorder: string,
 };
 
 export type TypographyT = {
