@@ -253,7 +253,7 @@ export default function createTheme(
       sliderBorderDisabled: primitives.mono400,
 
       // Inputs
-      inputFill: primitives.mono50,
+      inputFill: primitives.mono100,
       inputFillError: primitives.negative50,
       inputFillDisabled: primitives.mono50,
       inputFillActive: primitives.mono50,
@@ -261,7 +261,7 @@ export default function createTheme(
       inputTextDisabled: primitives.mono400,
       inputBorderError: primitives.negative200,
       inputBorderPositive: primitives.positive200,
-      inputEnhancerFill: primitives.mono100,
+      inputEnhancerFill: primitives.mono200,
       inputEnhancerFillDisabled: primitives.mono100,
       inputEnhancerTextDisabled: primitives.mono400,
 

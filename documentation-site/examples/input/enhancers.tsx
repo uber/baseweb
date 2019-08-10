@@ -28,10 +28,12 @@ export default () => (
     <br />
     <Input
       startEnhancer={({$isFocused}) => (
-        <Block color={$isFocused ? 'primary' : 'mono700'}>@</Block>
+        <Block color={$isFocused ? 'foregroundInv' : 'foreground'}>
+          @
+        </Block>
       )}
       endEnhancer={({$isFocused}) => (
-        <Block color={$isFocused ? 'primary' : 'mono700'}>
+        <Block color={$isFocused ? 'foregroundInv' : 'foreground'}>
           .com
         </Block>
       )}

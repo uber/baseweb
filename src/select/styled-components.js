@@ -375,7 +375,7 @@ export const StyledSelectArrow = styled<SharedStylePropsArgT>('svg', props => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
+    color: $disabled ? colors.inputTextDisabled : colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
@@ -385,7 +385,7 @@ export const StyledClearIcon = styled<SharedStylePropsArgT>('svg', props => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: colors.foregroundAlt,
+    color: colors.foreground,
     cursor: 'pointer',
   };
 });
@@ -395,7 +395,7 @@ export const getLoadingIconStyles = (props: {$theme: ThemeT}) => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: colors.foregroundAlt,
+    color: colors.foreground,
   };
 };
 
@@ -404,7 +404,7 @@ export const StyledSearchIcon = styled<SharedStylePropsArgT>('div', props => {
   const {colors, sizing} = $theme;
   return {
     ...getSvgStyles(props),
-    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
+    color: $disabled ? colors.inputTextDisabled : colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
     left: sizing.scale500,

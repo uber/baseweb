@@ -30,10 +30,10 @@ const PlainInput = styled<{$inputVisible: boolean, $breakpoint: string}>(
     ({
       display: $inputVisible ? 'block' : 'none',
       borderWidth: '2px',
-      borderColor: $theme.colors.inputEnhancerFill,
+      borderColor: $theme.colors.inputFill,
       borderStyle: 'solid',
       paddingLeft: '42px',
-      backgroundColor: $theme.colors.inputEnhancerFill,
+      backgroundColor: $theme.colors.inputFill,
       paddingRight: '12px',
       paddingTop: '9px',
       paddingBottom: '9px',
