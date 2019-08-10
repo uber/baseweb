@@ -9,6 +9,7 @@ import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
 import {LocaleContext} from '../locale/index.js';
+import {ThemeContext} from '../styles/theme-provider.js';
 import {Select as BaseSelect} from '../select/index.js';
 import {Button, StyledBaseButton, KIND} from '../button/index.js';
 import {
@@ -109,119 +110,135 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
     const options = this.getMenuOptions(numPages);
 
     return (
-      <LocaleContext.Consumer>
-        {locale => (
-          <Root
-            aria-label="pagination"
-            data-baseweb="pagination"
-            {...rootProps}
-          >
-            <Button
-              aria-label={this.constructAriaWayfinderLabel(
-                locale,
-                'previous page. current page',
-              )}
-              disabled={currentPage <= 1}
-              onClick={this.onPrevClick}
-              startEnhancer={() => <ChevronLeft title={''} size={24} />}
-              kind={KIND.tertiary}
-              overrides={{
-                BaseButton: PrevButton,
-              }}
-              {...prevButtonProps}
-            >
-              {labels && labels.prevButton
-                ? labels.prevButton
-                : locale.pagination.prev}
-            </Button>
-            <DropdownContainer {...dropdownContainerProps}>
-              <Select
-                options={options}
-                labelKey="label"
-                valueKey="label"
-                onChange={this.onMenuItemSelect}
-                searchable={false}
-                clearable={false}
-                value={[{label: currentPage}]}
-                maxDropdownHeight="200px"
-                overrides={{
-                  ControlContainer: {
-                    style: ({
-                      $theme,
-                      $disabled,
-                      $isFocused,
-                      $isPseudoFocused,
-                      $error,
-                    }) => ({
-                      borderColor: 'transparent',
-                      boxShadow: 'none',
-                      backgroundColor: $disabled
-                        ? $theme.colors.buttonDisabledFill
-                        : $isFocused || $isPseudoFocused
-                        ? $theme.colors.buttonTertiaryHover
-                        : $error
-                        ? $theme.colors.negative50
-                        : $theme.colors.buttonTertiaryFill,
-                    }),
-                  },
-                  ValueContainer: {
-                    style: ({$theme}) => ({
-                      flexBasis: 'auto',
-                    }),
-                  },
-                  SingleValue: {
-                    style: ({$theme}) => ({
-                      position: 'relative',
-                      paddingTop: '0',
-                      paddingBottom: '0',
-                      paddingLeft: $theme.sizing.scale200,
-                      paddingRight: $theme.sizing.scale500,
-                      color: $theme.colors.buttonTertiaryText,
-                      ...$theme.typography.font450,
-                    }),
-                  },
-                  SelectArrow: {
-                    style: ({$theme}) => ({
-                      width: '24px',
-                      height: '24px',
-                      color: $theme.colors.buttonTertiaryText,
-                    }),
-                  },
-                }}
-                {...selectProps}
-              />
-            </DropdownContainer>
-            <MaxLabel
-              aria-label={this.constructAriaWayfinderLabel(locale, 'page')}
-              {...maxLabelProps}
-            >
-              {`${
-                labels && labels.preposition
-                  ? labels.preposition
-                  : locale.pagination.preposition || ''
-              } ${numPages}`}
-            </MaxLabel>
-            <Button
-              aria-label={this.constructAriaWayfinderLabel(
-                locale,
-                'next page. current page',
-              )}
-              disabled={currentPage >= numPages}
-              onClick={this.onNextClick}
-              endEnhancer={() => <ChevronRight title={''} size={24} />}
-              kind={KIND.tertiary}
-              overrides={{
-                BaseButton: NextButton,
-              }}
-              {...nextButtonProps}
-            >
-              {labels && labels.nextButton
-                ? labels.nextButton
-                : locale.pagination.next}
-            </Button>
-          </Root>
+      <ThemeContext.Consumer>
+        {theme => (
+          <LocaleContext.Consumer>
+            {locale => (
+              <Root
+                aria-label="pagination"
+                data-baseweb="pagination"
+                {...rootProps}
+              >
+                <Button
+                  aria-label={this.constructAriaWayfinderLabel(
+                    locale,
+                    'previous page. current page',
+                  )}
+                  disabled={currentPage <= 1}
+                  onClick={this.onPrevClick}
+                  startEnhancer={() => {
+                    return theme.direction === 'rtl' ? (
+                      <ChevronRight title={''} size={24} />
+                    ) : (
+                      <ChevronLeft title={''} size={24} />
+                    );
+                  }}
+                  kind={KIND.tertiary}
+                  overrides={{
+                    BaseButton: PrevButton,
+                  }}
+                  {...prevButtonProps}
+                >
+                  {labels && labels.prevButton
+                    ? labels.prevButton
+                    : locale.pagination.prev}
+                </Button>
+                <DropdownContainer {...dropdownContainerProps}>
+                  <Select
+                    options={options}
+                    labelKey="label"
+                    valueKey="label"
+                    onChange={this.onMenuItemSelect}
+                    searchable={false}
+                    clearable={false}
+                    value={[{label: currentPage}]}
+                    maxDropdownHeight="200px"
+                    overrides={{
+                      ControlContainer: {
+                        style: ({
+                          $theme,
+                          $disabled,
+                          $isFocused,
+                          $isPseudoFocused,
+                          $error,
+                        }) => ({
+                          borderColor: 'transparent',
+                          boxShadow: 'none',
+                          backgroundColor: $disabled
+                            ? $theme.colors.buttonDisabledFill
+                            : $isFocused || $isPseudoFocused
+                            ? $theme.colors.buttonTertiaryHover
+                            : $error
+                            ? $theme.colors.negative50
+                            : $theme.colors.buttonTertiaryFill,
+                        }),
+                      },
+                      ValueContainer: {
+                        style: ({$theme}) => ({
+                          flexBasis: 'auto',
+                        }),
+                      },
+                      SingleValue: {
+                        style: ({$theme}) => ({
+                          position: 'relative',
+                          paddingTop: '0',
+                          paddingBottom: '0',
+                          paddingLeft: $theme.sizing.scale200,
+                          paddingRight: $theme.sizing.scale500,
+                          color: $theme.colors.buttonTertiaryText,
+                          ...$theme.typography.font450,
+                        }),
+                      },
+                      SelectArrow: {
+                        style: ({$theme}) => ({
+                          width: '24px',
+                          height: '24px',
+                          color: $theme.colors.buttonTertiaryText,
+                        }),
+                      },
+                    }}
+                    {...selectProps}
+                  />
+                </DropdownContainer>
+                <MaxLabel
+                  aria-label={this.constructAriaWayfinderLabel(locale, 'page')}
+                  {...maxLabelProps}
+                >
+                  {`${
+                    labels && labels.preposition
+                      ? labels.preposition
+                      : locale.pagination.preposition || ''
+                  } ${numPages}`}
+                </MaxLabel>
+                <Button
+                  aria-label={this.constructAriaWayfinderLabel(
+                    locale,
+                    'next page. current page',
+                  )}
+                  disabled={currentPage >= numPages}
+                  onClick={this.onNextClick}
+                  endEnhancer={() => {
+                    return theme.direction === 'rtl' ? (
+                      <ChevronLeft title={''} size={24} />
+                    ) : (
+                      <ChevronRight title={''} size={24} />
+                    );
+                  }}
+                  kind={KIND.tertiary}
+                  overrides={{
+                    BaseButton: NextButton,
+                  }}
+                  {...nextButtonProps}
+                >
+                  {labels && labels.nextButton
+                    ? labels.nextButton
+                    : locale.pagination.next}
+                </Button>
+              </Root>
+            )}
+          </LocaleContext.Consumer>
         )}
-      </LocaleContext.Consumer>
+      </ThemeContext.Consumer>
     );
   }
 }

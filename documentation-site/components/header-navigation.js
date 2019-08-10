@@ -20,6 +20,8 @@ import Logo from '../images/base-web.svg';
 import LogoWhite from '../images/base-web-white.svg';
 import GithubLogo from './github-logo';
 import SlackLogo from './slack-logo';
+import AlignLeftIcon from './align-left-icon';
+import AlignRightIcon from './align-right-icon';
 import VersionSelector from './version-selector.js';
 import Search from './search';
 import {ThemeContext} from 'baseui/styles/theme-provider.js';
@@ -56,9 +58,10 @@ const LogoSegment = styled<{$searchInputOpen: boolean}>(
 type PropsT = {
   toggleSidebar: () => void,
   toggleTheme: () => void,
+  toggleDirection: () => void,
 };
 
-const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
+const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
   const [searchInputOpen, setSearchInputOpen] = React.useState(false);
   return (
     <ThemeContext.Consumer>
@@ -136,7 +139,8 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                   },
                 }}
                 href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
-                marginLeft="scale700"
+                marginLeft="scale400"
+                marginRight="scale400"
                 $style={{textDecoration: 'none'}}
                 target="_blank"
               >
@@ -163,6 +167,31 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                 <GithubLogo size={24} color={theme.colors.foreground} />
               </Block>
               <Block
+                as="span"
+                font="font400"
+                marginLeft="scale400"
+                marginRight="scale400"
+                onClick={toggleDirection}
+                overrides={{
+                  Block: {
+                    style: {
+                      cursor: 'pointer',
+                      display: 'none',
+                      height: '24px',
+                      [HEADER_BREAKPOINT]: {
+                        display: 'block',
+                      },
+                    },
+                  },
+                }}
+              >
+                {theme.direction === 'rtl' ? (
+                  <AlignLeftIcon size={24} color={theme.colors.foreground} />
+                ) : (
+                  <AlignRightIcon size={24} color={theme.colors.foreground} />
+                )}
+              </Block>
+              <Block
                 $as="a"
                 overrides={{
                   Block: {
@@ -174,7 +203,6 @@ const Navigation = ({toggleSidebar, toggleTheme}: PropsT) => {
                     },
                   },
                 }}
-                marginLeft="scale300"
                 $style={{textDecoration: 'none'}}
                 href="#"
                 onClick={toggleTheme}

@@ -31,7 +31,7 @@ const Code = ({children, language}: PropsT) => {
         theme={theme.name.startsWith('light-theme') ? lightTheme : darkTheme}
       >
         {({style, tokens, getLineProps, getTokenProps}) => (
-          <pre style={{...style, padding: '10px 10px'}}>
+          <pre dir="ltr" style={{...style, padding: '10px 10px'}}>
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({line, key: i})}>
                 {line.map((token, key) => (

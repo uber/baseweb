@@ -98,11 +98,11 @@ function getLabelPadding(props) {
       paddingDirection = 'Top';
       break;
     case 'left':
-      paddingDirection = 'Right';
+      paddingDirection = $theme.direction === 'rtl' ? 'Left' : 'Right';
       break;
     default:
     case 'right':
-      paddingDirection = 'Left';
+      paddingDirection = $theme.direction === 'rtl' ? 'Right' : 'Left';
       break;
   }
   const {sizing} = $theme;
@@ -210,7 +210,8 @@ export const Description = styled<StylePropsT>('div', props => {
     ...props.$theme.typography.font300,
     color: props.$theme.colors.colorSecondary,
     cursor: 'auto',
-    marginLeft: props.$theme.sizing.scale900,
+    [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
+      .$theme.sizing.scale900,
     maxWidth: '240px',
   };
 });
