@@ -10,14 +10,38 @@ import * as React from 'react';
 import {styled} from 'baseui';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
+import {Button, KIND, SIZE} from 'baseui/button';
+
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
 import Footer from './footer';
+import PencilIcon from './pencil-icon';
+import Routes from '../routes';
+
+const GH_URL =
+  'https://github.com/uber-web/baseui/blob/master/documentation-site/pages';
+
+function findByPath(o, path) {
+  if (!path) return;
+  if (o.itemId === path) {
+    return o;
+  }
+  var result, p;
+  for (p in o) {
+    if (o[p] && typeof o[p] === 'object') {
+      result = findByPath(o[p], path);
+      if (result) {
+        return result;
+      }
+    }
+  }
+  return result;
+}
 
 type PropsT = {
   children: React.Node,
-  path?: {},
+  path?: string,
   toggleTheme: () => void,
   toggleDirection: () => void,
 };
@@ -39,6 +63,7 @@ const SidebarWrapper = styled<{$isOpen: boolean}>(
 const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
   'div',
   ({$theme, $isSidebarOpen}) => ({
+    position: 'relative',
     boxSizing: 'border-box',
     display: $isSidebarOpen ? 'none' : 'block',
     paddingLeft: $theme.sizing.scale800,
@@ -62,7 +87,23 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   }
   render() {
     const {sidebarOpen} = this.state;
-    const {path, toggleTheme, toggleDirection, children} = this.props;
+    const {toggleTheme, toggleDirection, children} = this.props;
+    let {path} = this.props;
+
+    if (path && path.endsWith('/')) {
+      path = path.slice(0, -1);
+    }
+
+    const route = findByPath(Routes, path);
+    let isGitHubEditDisabled;
+    let githubUrl;
+    if (!path || !route) {
+      isGitHubEditDisabled = true;
+    } else {
+      isGitHubEditDisabled = route.isGitHubEditDisabled;
+      githubUrl = `${GH_URL}${path}.mdx`;
+    }
+
     return (
       <React.Fragment>
         <HeaderNavigation
@@ -91,6 +132,25 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             role="main"
             $isSidebarOpen={sidebarOpen}
           >
+            {isGitHubEditDisabled ? null : (
+              <Block
+                display={['none', 'block']}
+                position="absolute"
+                right="0px"
+                top="-10px"
+              >
+                <Button
+                  startEnhancer={() => <PencilIcon size={16} color="#666666" />}
+                  $as="a"
+                  href={githubUrl}
+                  target="_blank"
+                  size={SIZE.compact}
+                  kind={KIND.tertiary}
+                >
+                  Edit this page
+                </Button>
+              </Block>
+            )}
             <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
           </ContentWrapper>
         </Block>

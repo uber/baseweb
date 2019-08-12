@@ -80,6 +80,16 @@ export type StatefulContainerStateT = {
   isFocused: boolean,
 };
 
+export type InitialStateT = {
+  // id of the currently highlighted item (from keyboard control)
+  activedescendantId?: ?string,
+  // index of currently highlighted item (from keyboard control)
+  highlightedIndex?: number,
+  // indicates when the menu can be navigated by keyboard and affects menu item option rendering
+  // see https://github.com/uber-web/baseui/issues/993 for a description.
+  isFocused?: boolean,
+};
+
 export type RenderPropsT = StatefulContainerStateT & {
   items: ItemsT,
   getRequiredItemProps: GetRequiredItemPropsFnT,
@@ -96,7 +106,7 @@ export type StatefulContainerPropsT = {
   /** List of menu items. */
   items: ItemsT,
   /** Initial state of the stateful menu. */
-  initialState: StatefulContainerStateT,
+  initialState: InitialStateT,
   /** State reducer to intercept state changes and return new internal state */
   stateReducer: StateReducerFnT,
   /** Function to get props for each rendered item. This will have some defaults needed for keyboard
@@ -158,7 +168,32 @@ export type SharedStatelessPropsT = {
   unfocusMenu?: () => mixed,
 };
 
-export type StatefulMenuPropsT = StatefulContainerPropsT & MenuPropsT;
+export type StatefulMenuPropsT = {
+  /** List of menu items. */
+  items: ItemsT,
+  /** Initial state of the stateful menu. */
+  initialState?: InitialStateT,
+  /** State reducer to intercept state changes and return new internal state */
+  stateReducer?: StateReducerFnT,
+  /** Function to get props for each rendered item. This will have some defaults needed for keyboard
+   * bindings to work properly. Every rendered item should call this.
+   */
+  getRequiredItemProps?: GetRequiredItemPropsFnT,
+  /** Callback executed on menu item clicks. */
+  onItemSelect?: OnItemSelectFnT,
+  /** Ref for the menu container element. Used to capture key events for navigation */
+  rootRef?: RootRefT,
+  /** Child as function pattern. */
+  children?: RenderPropsT => React.Node,
+  addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
+  removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
+  getParentMenu?: (ref: {current: HTMLElement | null}) => ?{
+    current: HTMLElement | null,
+  },
+  getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
+    current: HTMLElement | null,
+  },
+} & MenuPropsT;
 
 export type StatefulMenuProfilePropsT = StatefulContainerPropsT &
   MenuProfilePropsT;
