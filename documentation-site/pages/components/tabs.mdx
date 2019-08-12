@@ -9,11 +9,11 @@ import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
 
-import TabBasic from 'examples/tabs/basic.js';
-import TabVertical from 'examples/tabs/vertical.js';
-import TabControlled from 'examples/tabs/controlled.js';
-import TabRenderAll from 'examples/tabs/renderall.js';
-import TabOverrides from 'examples/tabs/overrides.js';
+import TabsControlled from 'examples/tabs/controlled.js';
+import TabsUncontrolled from 'examples/tabs/uncontrolled.js';
+import TabsVertical from 'examples/tabs/vertical.js';
+import TabsRenderAll from 'examples/tabs/renderall.js';
+import TabsOverrides from 'examples/tabs/overrides.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulTabs, Tab} from 'baseui/tabs';
@@ -21,9 +21,9 @@ import * as TabsExports from 'baseui/tabs';
 
 export default Layout;
 
-# Tab
+# Tabs
 
-The Tab component is used for navigating frequently accessed, but distinct categories.
+The Tabs component is used for navigating frequently accessed, but distinct categories.
 
 ## Accessibility
 
@@ -32,24 +32,24 @@ The Tab component is used for navigating frequently accessed, but distinct categ
 - `aria-selected`, `aria-disabled` are applied to the tabs.
 - Roles: `role=tab`, `role=tablist`, `role=tabpanel`
 
-<Example title="Tab Basic Usage" path="tabs/basic.js">
-  <TabBasic />
+<Example title="Controlled Tabs Usage" path="tabs/controlled.js">
+  <TabsControlled />
 </Example>
 
-<Example title="Tab SEO Friendly" path="tabs/renderall.js">
-  <TabRenderAll />
+<Example title="Uncontrolled Tabs Usage" path="tabs/uncontrolled.js">
+  <TabsUncontrolled />
 </Example>
 
-<Example title="Tab Vertical Usage" path="tabs/vertical.js">
-  <TabVertical />
+<Example title="Tabs SEO Friendly" path="tabs/renderall.js">
+  <TabsRenderAll />
 </Example>
 
-<Example title="Tab Controlled Usage" path="tabs/controlled.js">
-  <TabControlled />
+<Example title="Tabs Vertical Usage" path="tabs/vertical.js">
+  <TabsVertical />
 </Example>
 
-<Example title="Tab Overrides" path="tabs/overrides.js">
-  <TabOverrides />
+<Example title="Tabs Overrides" path="tabs/overrides.js">
+  <TabsOverrides />
 </Example>
 
 ## Overrides

@@ -33,7 +33,7 @@ export default () => (
     <NavigationList $align={ALIGN.center} />
     <NavigationList $align={ALIGN.right}>
       <NavigationItem>
-        <Link href="#">Tab Link One</Link>
+        <Link href="#search-link1">Tab Link One</Link>
       </NavigationItem>
     </NavigationList>
     <NavigationList $align={ALIGN.right}>
