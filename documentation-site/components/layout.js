@@ -87,7 +87,13 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   }
   render() {
     const {sidebarOpen} = this.state;
-    const {path, toggleTheme, toggleDirection, children} = this.props;
+    const {toggleTheme, toggleDirection, children} = this.props;
+    let {path} = this.props;
+
+    if (path && path.endsWith('/')) {
+      path = path.slice(0, -1);
+    }
+
     const route = findByPath(Routes, path);
     let isGitHubEditDisabled;
     let githubUrl;
