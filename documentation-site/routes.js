@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
+const GH_URL = 'https://github.com/uber-web/baseui';
+
 const routes = [
   {
     title: 'Getting started',
@@ -19,6 +21,7 @@ const routes = [
       {
         title: 'Installation',
         itemId: '/getting-started/installation',
+        sourcePath: `${GH_URL}/blob/master/documentation-site/pages/getting-started/installation.mdx`,
       },
       {
         title: 'Usage',

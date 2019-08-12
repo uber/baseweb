@@ -10,10 +10,30 @@ import * as React from 'react';
 import {styled} from 'baseui';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
+import {Button, KIND, SIZE} from 'baseui/button';
+
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
 import Footer from './footer';
+import GithubLogo from './github-logo';
+import Routes from '../routes';
+
+function findByPath(o, path) {
+  if (o.itemId === path) {
+    return o;
+  }
+  var result, p;
+  for (p in o) {
+    if (o[p] && typeof o[p] === 'object') {
+      result = findByPath(o[p], path);
+      if (result) {
+        return result;
+      }
+    }
+  }
+  return result;
+}
 
 type PropsT = {
   children: React.Node,
@@ -39,6 +59,7 @@ const SidebarWrapper = styled<{$isOpen: boolean}>(
 const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
   'div',
   ({$theme, $isSidebarOpen}) => ({
+    position: 'relative',
     boxSizing: 'border-box',
     display: $isSidebarOpen ? 'none' : 'block',
     paddingLeft: $theme.sizing.scale800,
@@ -63,6 +84,8 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   render() {
     const {sidebarOpen} = this.state;
     const {path, toggleTheme, toggleDirection, children} = this.props;
+    const githubUrl = findByPath(Routes, path).sourcePath;
+
     return (
       <React.Fragment>
         <HeaderNavigation
@@ -91,6 +114,20 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             role="main"
             $isSidebarOpen={sidebarOpen}
           >
+            {githubUrl ? (
+              <Block display={['none', 'block']} position="absolute" right={0}>
+                <Button
+                  startEnhancer={() => <GithubLogo size={16} color="#666666" />}
+                  $as="a"
+                  href={githubUrl}
+                  _target="_blank"
+                  size={SIZE.compact}
+                  kind={KIND.tertiary}
+                >
+                  Edit this page
+                </Button>
+              </Block>
+            ) : null}
             <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
           </ContentWrapper>
         </Block>
