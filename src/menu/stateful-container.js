@@ -23,8 +23,9 @@ export default class MenuStatefulContainer extends React.Component<
   StatefulContainerStateT,
 > {
   static defaultProps = {
+    // keeping it in defaultProps to satisfy Flow
     initialState: {
-      // Defaults to -1 so no item is highlighted
+      // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,
       isFocused: false,
       activedescendantId: null,
@@ -41,7 +42,10 @@ export default class MenuStatefulContainer extends React.Component<
     getChildMenu: () => {},
   };
 
-  state: StatefulContainerStateT = {...this.props.initialState};
+  state: StatefulContainerStateT = {
+    ...this.constructor.defaultProps.initialState,
+    ...this.props.initialState,
+  };
 
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior

@@ -29,11 +29,14 @@ const ITEMS = [
 
 export const component = () => (
   <StatefulMenu
+    initialState={{
+      highlightedIndex: 5,
+    }}
     items={ITEMS}
     overrides={{
       List: {
         style: {
-          height: '100px',
+          height: '300px',
           width: '350px',
         },
       },
