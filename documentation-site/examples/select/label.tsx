@@ -12,7 +12,7 @@ const getLabel = ({option}: any) => {
           height: theme.sizing.scale300,
           marginRight: theme.sizing.scale200,
           display: 'inline-block',
-          bakgroundColor: option.color,
+          backgroundColor: option.color,
           verticalAlign: 'baseline',
           ...theme.borders.border400,
         })}

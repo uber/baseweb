@@ -4,7 +4,7 @@ import {useStyletron} from 'baseui';
 import {Select} from 'baseui/select';
 import type {ValueT} from 'baseui/select';
 
-const getLabel = ({option}: any) => {
+const getLabel = ({option}) => {
   const [useCss, theme] = useStyletron();
   return (
     <React.Fragment>
@@ -14,7 +14,7 @@ const getLabel = ({option}: any) => {
           height: theme.sizing.scale300,
           marginRight: theme.sizing.scale200,
           display: 'inline-block',
-          bakgroundColor: option.color,
+          backgroundColor: option.color,
           verticalAlign: 'baseline',
           ...theme.borders.border400,
         })}
