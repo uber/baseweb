@@ -112,8 +112,6 @@ export type ColorsT = {
   buttonSecondaryHover: string,
   buttonSecondaryActive: string,
   buttonSecondaryDisabledFill: string,
-  buttonSecondarySelectedText: string, // for use with button-group
-  buttonSecondarySelectedFill: string, // for use with button-group
   buttonTertiaryFill: string,
   buttonTertiaryText: string,
   buttonTertiaryHover: string,
@@ -129,6 +127,10 @@ export type ColorsT = {
   buttonDisabledFill: string, // split into seperate variables for each KIND
   buttonTertiarySelectedFill: string, // ButtonGroup uses `secondary` now
   buttonTertiarySelectedText: string, // ButtonGroup uses `secondary` now
+
+  // Button Group
+  buttonGroupSelectedText: string, // Does not apply to `primary` buttons
+  buttonGroupSelectedFill: string, // Does not apply to `primary` buttons
 
   // Breadcrumbs
   breadcrumbsText: string,

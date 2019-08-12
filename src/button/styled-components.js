@@ -220,8 +220,8 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
     case KIND.secondary:
       if ($isSelected) {
         return {
-          color: $theme.colors.buttonSecondarySelectedText,
-          backgroundColor: $theme.colors.buttonSecondarySelectedFill,
+          color: $theme.colors.buttonGroupSelectedText,
+          backgroundColor: $theme.colors.buttonGroupSelectedFill,
         };
       } else {
         return {
@@ -245,23 +245,30 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         };
       }
     case KIND.tertiary:
-      return {
-        color: $theme.colors.buttonTertiaryText,
-        backgroundColor: $theme.colors.buttonTertiaryFill,
-        ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
-        ':focus': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
-        ':active': {
-          backgroundColor: $theme.colors.buttonTertiaryActive,
-        },
-      };
+      if ($isSelected) {
+        return {
+          color: $theme.colors.buttonGroupSelectedText,
+          backgroundColor: $theme.colors.buttonGroupSelectedFill,
+        };
+      } else {
+        return {
+          color: $theme.colors.buttonTertiaryText,
+          backgroundColor: $theme.colors.buttonTertiaryFill,
+          ':hover': {
+            backgroundColor: $isLoading
+              ? $theme.colors.buttonTertiaryActive
+              : $theme.colors.buttonTertiaryHover,
+          },
+          ':focus': {
+            backgroundColor: $isLoading
+              ? $theme.colors.buttonTertiaryActive
+              : $theme.colors.buttonTertiaryHover,
+          },
+          ':active': {
+            backgroundColor: $theme.colors.buttonTertiaryActive,
+          },
+        };
+      }
     case KIND.minimal:
       return {
         color: $theme.colors.buttonMinimalText,

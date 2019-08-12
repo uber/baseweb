@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SIZE, SHAPE} from '../button/index.js';
+import {SIZE, SHAPE, KIND} from '../button/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 import {MODE, STATE_CHANGE_TYPE} from './constants.js';
@@ -43,6 +43,7 @@ export type PropsT = {|
   shape?: $Values<typeof SHAPE>,
   /** Defines the size of the buttons in the button group. */
   size?: $Values<typeof SIZE>,
+  kind?: $Values<typeof KIND>,
 |};
 
 type OverridesT<T> = {

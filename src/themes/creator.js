@@ -119,8 +119,6 @@ export default function createTheme(
       buttonSecondaryHover: primitives.mono200,
       buttonSecondaryActive: primitives.mono300,
       buttonSecondaryDisabledFill: primitives.mono50,
-      buttonSecondarySelectedFill: primitives.black,
-      buttonSecondarySelectedText: primitives.white,
       buttonTertiaryFill: 'transparent',
       buttonTertiaryText: primitives.black,
       buttonTertiaryHover: primitives.mono50,
@@ -136,6 +134,10 @@ export default function createTheme(
       buttonDisabledFill: primitives.mono100,
       buttonTertiarySelectedFill: primitives.primary400,
       buttonTertiarySelectedText: primitives.white,
+
+      // Button Group
+      buttonGroupSelectedFill: primitives.black,
+      buttonGroupSelectedText: primitives.white,
 
       // Breadcrumbs
       breadcrumbsText: primitives.mono700,

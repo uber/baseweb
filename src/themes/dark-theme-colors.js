@@ -11,7 +11,6 @@ import {primitives} from './dark-theme-primitives.js';
 export default {
   colors: {
     // Semantic Colors
-
     white: primitives.white,
 
     // Font Color
@@ -46,8 +45,6 @@ export default {
     buttonSecondaryHover: primitives.mono600,
     buttonSecondaryActive: primitives.mono500,
     buttonSecondaryDisabledFill: primitives.mono900,
-    buttonSecondarySelectedFill: primitives.mono100,
-    buttonSecondarySelectedText: primitives.black,
     buttonTertiaryFill: 'transparent',
     buttonTertiaryText: primitives.white,
     buttonTertiaryHover: primitives.mono900,
@@ -63,6 +60,10 @@ export default {
     buttonDisabledFill: primitives.mono900,
     buttonTertiarySelectedFill: primitives.mono300,
     buttonTertiarySelectedText: primitives.primary500,
+
+    // Button Group
+    buttonGroupSelectedFill: primitives.mono100,
+    buttonGroupSelectedText: primitives.black,
 
     // Breadcrumbs
     breadcrumbsText: primitives.mono300,
