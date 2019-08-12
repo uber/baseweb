@@ -15,6 +15,7 @@ const routes = [
       {
         title: 'Welcome',
         itemId: '/',
+        isGitHubEditDisabled: true,
       },
       {
         title: 'Installation',
@@ -311,6 +312,7 @@ const routes = [
   {
     title: 'Blog',
     itemId: '/blog',
+    isGitHubEditDisabled: true,
   },
 ];
 
