@@ -41,7 +41,7 @@ function findByPath(o, path) {
 
 type PropsT = {
   children: React.Node,
-  path?: {},
+  path?: string,
   toggleTheme: () => void,
   toggleDirection: () => void,
 };
@@ -90,13 +90,14 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     const {path, toggleTheme, toggleDirection, children} = this.props;
     const route = findByPath(Routes, path);
     let isGitHubEditDisabled;
+    let githubUrl;
     if (!path || !route) {
       isGitHubEditDisabled = true;
     } else {
       isGitHubEditDisabled = route.isGitHubEditDisabled;
+      githubUrl = `${GH_URL}${path}.mdx`;
     }
 
-    const githubUrl = `${GH_URL}${path}.mdx`;
     return (
       <React.Fragment>
         <HeaderNavigation
