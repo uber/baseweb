@@ -12,24 +12,9 @@ import Menu from './menu.js';
 import {NestedMenuContext} from './nested-menus.js';
 import StatefulContainer from './stateful-container.js';
 
-import type {StatefulMenuPropsT, StateReducerFnT} from './types.js';
+import type {StatefulMenuPropsT} from './types.js';
 
 export default class StatefulMenu extends React.PureComponent<StatefulMenuPropsT> {
-  static defaultProps = {
-    // Mostly to satisfy flow
-    initialState: {
-      activedescendantId: null,
-      isFocused: false,
-      // We start the index at -1 to indicate that no highlighting exists initially
-      highlightedIndex: -1,
-    },
-    stateReducer: ((changeType, changes) => changes: StateReducerFnT),
-    onItemSelect: () => {},
-    getRequiredItemProps: () => ({}),
-    children: () => null,
-    overrides: {},
-  };
-
   render() {
     const {overrides, ...props} = this.props;
     return (
