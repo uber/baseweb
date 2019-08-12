@@ -32,6 +32,8 @@ export const flexGridItemMediaQueryStyle = ({
     $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
   flexGridRowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
   const widthCalc = `(100% - (${flexGridColumnCount} - 1) * ${flexGridColumnGap}) / ${flexGridColumnCount}`;
+  const marginDirection =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     width: `calc(${widthCalc})`,
     ...[...Array(flexGridColumnCount).keys()].reduce(
@@ -40,13 +42,13 @@ export const flexGridItemMediaQueryStyle = ({
         ...acc,
         [`:nth-child(${flexGridColumnCount}n-${i})`]: {
           // Add flexGridColumnGap except at end of row
-          marginRight: i && flexGridColumnGap,
+          [marginDirection]: i && flexGridColumnGap,
           // Add flexGridRowGap below in general
           marginBottom: flexGridRowGap,
         },
         [`:nth-child(${flexGridColumnCount}n-${i}):last-child`]: {
           // Add space to make up for missing columns if row ends early
-          marginRight: `calc(${i} * (${flexGridColumnGap} + ${widthCalc}))`,
+          [marginDirection]: `calc(${i} * (${flexGridColumnGap} + ${widthCalc}))`,
         },
         ...[...Array(i + 1).keys()].reduce(
           (acc, j) => ({
