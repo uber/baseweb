@@ -19,7 +19,11 @@ import Footer from './footer';
 import GithubLogo from './github-logo';
 import Routes from '../routes';
 
+const GH_URL =
+  'https://github.com/uber-web/baseui/blob/master/documentation-site/pages';
+
 function findByPath(o, path) {
+  if (!path) return;
   if (o.itemId === path) {
     return o;
   }
@@ -84,8 +88,15 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   render() {
     const {sidebarOpen} = this.state;
     const {path, toggleTheme, toggleDirection, children} = this.props;
-    const githubUrl = findByPath(Routes, path).sourcePath;
+    const route = findByPath(Routes, path);
+    let isGitHubEditDisabled;
+    if (!path || !route) {
+      isGitHubEditDisabled = true;
+    } else {
+      isGitHubEditDisabled = route.isGitHubEditDisabled;
+    }
 
+    const githubUrl = `${GH_URL}${path}.mdx`;
     return (
       <React.Fragment>
         <HeaderNavigation
@@ -114,20 +125,25 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             role="main"
             $isSidebarOpen={sidebarOpen}
           >
-            {githubUrl ? (
-              <Block display={['none', 'block']} position="absolute" right={0}>
+            {isGitHubEditDisabled ? null : (
+              <Block
+                display={['none', 'block']}
+                position="absolute"
+                right="0px"
+                top="-10px"
+              >
                 <Button
                   startEnhancer={() => <GithubLogo size={16} color="#666666" />}
                   $as="a"
                   href={githubUrl}
-                  _target="_blank"
+                  target="_blank"
                   size={SIZE.compact}
                   kind={KIND.tertiary}
                 >
                   Edit this page
                 </Button>
               </Block>
-            ) : null}
+            )}
             <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
           </ContentWrapper>
         </Block>

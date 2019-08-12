@@ -16,6 +16,7 @@ import {
   LightTheme,
   LightThemeMove,
 } from 'baseui';
+import {getMediaQuery} from 'baseui/helpers/responsive-helpers';
 
 import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
@@ -26,11 +27,43 @@ import {styletron, debug} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
 import DirectionContext from '../components/direction-context';
 
+const Breakpoints = {
+  small: 670,
+  medium: 920,
+  large: 1280,
+};
+
+const ResponsiveTheme = Object.keys(Breakpoints).reduce(
+  (acc, key) => {
+    acc.breakpoints[key] = Breakpoints[key];
+    acc.media[key] = getMediaQuery({
+      'min-width': `${Breakpoints[key]}px`,
+    });
+    return acc;
+  },
+  {
+    breakpoints: {},
+    media: {},
+  },
+);
+
 const themes = {
-  LightTheme,
-  LightThemeMove,
-  DarkTheme,
-  DarkThemeMove,
+  LightTheme: {
+    ...LightTheme,
+    ...ResponsiveTheme,
+  },
+  LightThemeMove: {
+    ...LightThemeMove,
+    ...ResponsiveTheme,
+  },
+  DarkTheme: {
+    ...DarkTheme,
+    ...ResponsiveTheme,
+  },
+  DarkThemeMove: {
+    ...DarkThemeMove,
+    ...ResponsiveTheme,
+  },
 };
 
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
