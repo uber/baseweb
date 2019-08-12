@@ -16,7 +16,7 @@ import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
 import Footer from './footer';
-import GithubLogo from './github-logo';
+import PencilIcon from './pencil-icon';
 import Routes from '../routes';
 
 const GH_URL =
@@ -140,7 +140,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                 top="-10px"
               >
                 <Button
-                  startEnhancer={() => <GithubLogo size={16} color="#666666" />}
+                  startEnhancer={() => <PencilIcon size={16} color="#666666" />}
                   $as="a"
                   href={githubUrl}
                   target="_blank"
