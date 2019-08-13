@@ -191,7 +191,7 @@ export const Label = styled<StylePropsT>('div', props => {
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font450,
+    ...typography.font250,
   };
 });
 
