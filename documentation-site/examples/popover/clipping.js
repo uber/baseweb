@@ -23,7 +23,11 @@ export default () => {
           dismissOnEsc={false}
           dismissOnClickOutside={false}
           content={() => (
-            <Paragraph1 padding="scale500" maxWidth="200px">
+            <Paragraph1
+              $as="div"
+              padding="scale500"
+              maxWidth="200px"
+            >
               Popover will reposition itself to avoid being clipped!
               <br />
               <Label1> Try scrolling in this box...</Label1>

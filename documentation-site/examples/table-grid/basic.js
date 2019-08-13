@@ -24,9 +24,9 @@ export default function() {
         <StyledHeadCell>Column 1</StyledHeadCell>
         <StyledHeadCell>Column 2</StyledHeadCell>
         <StyledHeadCell>Column 3</StyledHeadCell>
-        {data.map(row => {
+        {data.map((row, index) => {
           return (
-            <React.Fragment>
+            <React.Fragment key={index}>
               <StyledBodyCell>{row[0]}</StyledBodyCell>
               <StyledBodyCell>{row[1]}</StyledBodyCell>
               <StyledBodyCell>{row[2]}</StyledBodyCell>
