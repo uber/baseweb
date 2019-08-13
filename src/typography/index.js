@@ -15,7 +15,7 @@ export const Caption1 = (props: BlockPropsT) => (
   <Block
     data-baseweb="typo-caption1"
     {...props}
-    font={props.font || 'font200'}
+    font={props.font || 'font100'}
     color={props.color || 'colorSecondary'}
   />
 );
@@ -24,7 +24,7 @@ export const Caption2 = (props: BlockPropsT) => (
   <Block
     data-baseweb="typo-caption2"
     {...props}
-    font={props.font || 'font250'}
+    font={props.font || 'font150'}
     color={props.color || 'colorSecondary'}
   />
 );
@@ -135,7 +135,7 @@ export const Label1 = (props: BlockPropsT) => (
   <Block
     data-baseweb="typo-label1"
     {...props}
-    font={props.font || 'font350'}
+    font={props.font || 'font450'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -144,7 +144,25 @@ export const Label2 = (props: BlockPropsT) => (
   <Block
     data-baseweb="typo-label2"
     {...props}
-    font={props.font || 'font450'}
+    font={props.font || 'font350'}
+    color={props.color || 'colorPrimary'}
+  />
+);
+
+export const Label3 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-label3"
+    {...props}
+    font={props.font || 'font250'}
+    color={props.color || 'colorPrimary'}
+  />
+);
+
+export const Label4 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-label4"
+    {...props}
+    font={props.font || 'font150'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -155,7 +173,7 @@ export const Paragraph1 = (props: BlockPropsT) => (
     data-baseweb="typo-p1"
     as={props.as || 'p'}
     {...props}
-    font={props.font || 'font300'}
+    font={props.font || 'font400'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -165,7 +183,27 @@ export const Paragraph2 = (props: BlockPropsT) => (
     data-baseweb="typo-p2"
     as={props.as || 'p'}
     {...props}
-    font={props.font || 'font400'}
+    font={props.font || 'font300'}
+    color={props.color || 'colorPrimary'}
+  />
+);
+
+export const Paragraph3 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-p3"
+    as={props.as || 'p'}
+    {...props}
+    font={props.font || 'font200'}
+    color={props.color || 'colorPrimary'}
+  />
+);
+
+export const Paragraph4 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-p4"
+    as={props.as || 'p'}
+    {...props}
+    font={props.font || 'font100'}
     color={props.color || 'colorPrimary'}
   />
 );

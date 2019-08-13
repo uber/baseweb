@@ -10,28 +10,39 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {
-  Caption1,
-  Caption2,
-  Label1,
-  Label2,
   Paragraph1,
   Paragraph2,
+  Paragraph3,
+  Paragraph4,
+  Label1,
+  Label2,
+  Label3,
+  Label4,
+  Caption1,
+  Caption2,
 } from '../index.js';
 
 export const name = 'typography-body';
 
-const bodyString =
-  "Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.";
-
 export const component = () => (
-  <React.Fragment>
-    <Label2>Label2</Label2>
-    <Paragraph2>{`Paragraph2 - ${bodyString}`}</Paragraph2>
-    <Label1>Label1</Label1>
-    <Paragraph1>{`Paragraph1 - ${bodyString}`}</Paragraph1>
-    <Caption2>Caption2</Caption2>
-    <Paragraph2>{`Paragraph2 - ${bodyString}`}</Paragraph2>
-    <Caption1>Caption1</Caption1>
-    <Paragraph1>{`Paragraph1 - ${bodyString}`}</Paragraph1>
-  </React.Fragment>
+  <div style={{width: '768px'}}>
+    <Label1>We ignite opportunity by setting the world in motion.</Label1>
+    <Paragraph1>
+      We ignite opportunity by setting the world in motion.
+    </Paragraph1>
+    <Label2>We ignite opportunity by setting the world in motion.</Label2>
+    <Paragraph2>
+      We ignite opportunity by setting the world in motion.
+    </Paragraph2>
+    <Label3>We ignite opportunity by setting the world in motion.</Label3>
+    <Paragraph3>
+      We ignite opportunity by setting the world in motion.
+    </Paragraph3>
+    <Label4>We ignite opportunity by setting the world in motion.</Label4>
+    <Paragraph4>
+      We ignite opportunity by setting the world in motion.
+    </Paragraph4>
+    <Caption2>We ignite opportunity by setting the world in motion.</Caption2>
+    <Caption1>We ignite opportunity by setting the world in motion.</Caption1>
+  </div>
 );
