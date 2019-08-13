@@ -14,7 +14,7 @@ import {Display1, Display2, Display3, Display4} from '../index.js';
 export const name = 'typography-display';
 
 export const component = () => (
-  <Block width="800px">
+  <Block width="768px">
     <Block marginBottom="30px">
       <Display1>We ignite opportunity by setting the world in motion.</Display1>
     </Block>
