@@ -4,6 +4,12 @@ import {StatefulSelect} from 'baseui/select';
 
 export default class Container extends React.Component<{}, {}> {
   render() {
+    const borderRadius = {
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
+    };
     return (
       <StatefulSelect
         overrides={{
@@ -12,13 +18,13 @@ export default class Container extends React.Component<{}, {}> {
               overrides: {
                 Root: {
                   style: {
-                    borderRadius: '0px',
+                    ...borderRadius,
                     backgroundColor: 'slateblue',
                   },
                 },
                 Action: {
                   style: {
-                    borderRadius: '0px',
+                    ...borderRadius,
                     ':hover': {
                       backgroundColor: 'mediumpurple',
                     },

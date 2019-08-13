@@ -39,16 +39,16 @@ export default function() {
         <StyledHeadCell>Name</StyledHeadCell>
         <StyledHeadCell>Date</StyledHeadCell>
         <StyledHeadCell>Event</StyledHeadCell>
-        {data.map(row => {
+        {data.map((row, index) => {
           return (
-            <React.Fragment>
+            <React.Fragment key={index}>
               <StyledBodyCell $gridRow={`span ${row[2].length}`}>
                 <StyledLink href={row[1]}>{row[0]}</StyledLink>
               </StyledBodyCell>
               {row[2].map((event, index) => {
                 const striped = index % 2 === 0;
                 return (
-                  <React.Fragment>
+                  <React.Fragment key={index}>
                     <StyledBodyCell $striped={striped}>
                       {format(event[0], 'yyyy-MM-dd h:mm a')}
                     </StyledBodyCell>
