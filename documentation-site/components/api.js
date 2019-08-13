@@ -26,7 +26,7 @@ const API = props => {
           shouldCollapseProps={true}
           components={{
             Description: props => {
-              return <Paragraph1>{props.children}</Paragraph1>;
+              return <Paragraph1 $as="div">{props.children}</Paragraph1>;
             },
             Button: props => {
               return (

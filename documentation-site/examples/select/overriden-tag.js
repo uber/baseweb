@@ -15,13 +15,19 @@ export default () => {
             overrides: {
               Root: {
                 style: {
-                  borderRadius: '0px',
+                  borderTopLeftRadius: 0,
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                  borderBottomLeftRadius: 0,
                   backgroundColor: 'slateblue',
                 },
               },
               Action: {
                 style: {
-                  borderRadius: '0px',
+                  borderTopLeftRadius: 0,
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                  borderBottomLeftRadius: 0,
                   ':hover': {
                     backgroundColor: 'mediumpurple',
                   },

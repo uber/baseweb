@@ -15,7 +15,12 @@ export default () => {
   return (
     <React.Fragment>
       Disabled state
-      <FlexGrid flexDirection="row">
+      <div
+        className={useCss({
+          display: 'flex',
+          flexDirection: 'row',
+        })}
+      >
         <div
           className={useCss({
             width: '120px',
@@ -41,9 +46,14 @@ export default () => {
             <TimezonePicker disabled />
           </FormControl>
         </div>
-      </FlexGrid>
+      </div>
       Positive state
-      <FlexGrid flexDirection="row">
+      <div
+        className={useCss({
+          display: 'flex',
+          flexDirection: 'row',
+        })}
+      >
         <div
           className={useCss({
             width: '120px',
@@ -69,9 +79,14 @@ export default () => {
             <TimezonePicker positive />
           </FormControl>
         </div>
-      </FlexGrid>
+      </div>
       Error state
-      <FlexGrid flexDirection="row">
+      <div
+        className={useCss({
+          display: 'flex',
+          flexDirection: 'row',
+        })}
+      >
         <div
           className={useCss({
             width: '120px',
@@ -97,7 +112,7 @@ export default () => {
             <TimezonePicker error />
           </FormControl>
         </div>
-      </FlexGrid>
+      </div>
     </React.Fragment>
   );
 };
