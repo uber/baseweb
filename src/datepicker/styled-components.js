@@ -16,7 +16,7 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
     $theme: {typography, colors, borders},
   } = props;
   return {
-    ...typography.font400,
+    ...typography.font300,
     color: colors.calendarForeground,
     backgroundColor: colors.calendarBackground,
     textAlign: 'center',
@@ -88,7 +88,7 @@ export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
 
 export const StyledMonthYearSelectButton = styled<{}>('button', props => {
   return {
-    ...props.$theme.typography.font400,
+    ...props.$theme.typography.font300,
     alignItems: 'center',
     backgroundColor: 'transparent',
     borderWidth: 0,
