@@ -27,7 +27,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     $theme: {colors, sizing, typography},
   } = props;
   let style = {
-    ...typography.font300,
+    ...typography.font200,
     boxSizing: 'border-box',
     color: $active ? colors.colorPrimary : colors.tabColor,
     cursor: $disabled ? 'not-allowed' : 'pointer',
@@ -80,7 +80,7 @@ export const TabContent = styled<SharedStylePropsArgT>('div', props => {
     $theme: {sizing, typography},
   } = props;
   return {
-    ...typography.font400,
+    ...typography.font300,
     display: $active ? 'block' : 'none',
     paddingLeft: sizing.scale800,
     paddingRight: sizing.scale800,

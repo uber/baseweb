@@ -13,12 +13,12 @@ import type {HeadingPropsT} from './types.js';
 
 const FONTS = [
   '',
-  'font1000',
-  'font900',
   'font800',
   'font700',
   'font600',
   'font500',
+  'font470',
+  'font460',
 ];
 
 const Heading = ({styleLevel, ...restProps}: HeadingPropsT) => (

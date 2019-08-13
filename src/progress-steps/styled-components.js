@@ -38,12 +38,12 @@ export const StyledIcon = styled<StylePropsT>(
     let size = $theme.sizing.scale300;
     let marginRight = $theme.sizing.scale500;
     let marginLeft = $theme.sizing.scale100;
-    let font = $theme.typography.font400;
+    let font = $theme.typography.font300;
 
     if ($isCompleted) {
       backgroundColor = $theme.colors.progressCompletedNodeBackground;
     } else if ($isActive) {
-      font = $theme.typography.font450;
+      font = $theme.typography.font350;
       backgroundColor = $theme.colors.progressActiveNodeBackground;
     }
 
@@ -105,11 +105,11 @@ export const StyledContentTitle = styled<StylePropsT>(
   'div',
   ({$theme, $isActive}) => {
     let color = $theme.colors.foregroundAlt;
-    let font = $theme.typography.font400;
+    let font = $theme.typography.font300;
 
     if ($isActive) {
       color = $theme.colors.foreground;
-      font = $theme.typography.font450;
+      font = $theme.typography.font350;
     }
 
     return {
@@ -167,14 +167,14 @@ export const StyledNumberIcon = styled<StylePropsT>(
     let backgroundColor = $theme.colors.progressUncompletedNodeBackground;
     let size = $theme.sizing.scale800;
     let marginRight = $theme.sizing.scale300;
-    let font = $theme.typography.font350;
-    let titleFont = $theme.typography.font400;
+    let font = $theme.typography.font250;
+    let titleFont = $theme.typography.font300;
 
     if ($isCompleted) {
       color = $theme.colors.progressCompletedNodeForeground;
       backgroundColor = $theme.colors.progressCompletedNodeBackground;
     } else if ($isActive) {
-      titleFont = $theme.typography.font450;
+      titleFont = $theme.typography.font350;
       color = $theme.colors.progressActiveNodeForeground;
       backgroundColor = $theme.colors.progressActiveNodeBackground;
     }

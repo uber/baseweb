@@ -288,7 +288,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
   const {$disabled, $theme, $closeable, $clickable, $kind, $variant} = props;
   const {
     sizing: {scale0, scale800, scale500},
-    typography: {font250},
+    typography: {font150},
   } = $theme;
 
   function backgroundColor(isHovered?: boolean, isActive?: boolean) {
@@ -560,7 +560,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     : 0;
 
   return ({
-    ...font250,
+    ...font150,
     alignItems: 'center',
     backgroundColor: backgroundColor(false, false),
     borderColor: borderColor(false, false),

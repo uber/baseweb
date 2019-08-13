@@ -115,7 +115,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
   return {
-    ...$theme.typography.font350,
+    ...$theme.typography.font250,
     pointerEvents: 'auto',
     color: isInline ? getFontColor($kind, $theme) : $theme.colors.toastText,
     height: 'auto',

@@ -463,18 +463,23 @@ interface Font {
 
 interface Typography {
   font100: Font;
+  font150: Font;
   font200: Font;
   font250: Font;
   font300: Font;
   font350: Font;
   font400: Font;
   font450: Font;
+  font460: Font;
+  font470: Font;
   font500: Font;
   font600: Font;
   font700: Font;
   font800: Font;
   font900: Font;
   font1000: Font;
+  font1100: Font;
+  font1200: Font;
 }
 
 interface Sizing {

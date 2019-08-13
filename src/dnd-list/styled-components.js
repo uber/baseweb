@@ -111,6 +111,6 @@ CloseHandle.displayName = 'StyledCloseHandle';
 
 export const Label = styled<SharedStylePropsArgT>('div', ({$theme}) => ({
   flexGrow: 1,
-  ...$theme.typography.font400,
+  ...$theme.typography.font300,
 }));
 Label.displayName = 'StyledLabel';
