@@ -30,11 +30,41 @@ export const Caption2 = (props: BlockPropsT) => (
 );
 
 // Display
-export const Display = (props: BlockPropsT) => (
+export const Display1 = (props: BlockPropsT) => (
   <Block
-    data-baseweb="typo-display"
+    data-baseweb="typo-display-large"
+    {...props}
+    font={props.font || 'font1200'}
+    color={props.color || 'colorPrimary'}
+  />
+);
+
+// We used to have only one display, alias for backwards compatability
+export const Display = Display1;
+
+export const Display2 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-display-medium"
     {...props}
     font={props.font || 'font1100'}
+    color={props.color || 'colorPrimary'}
+  />
+);
+
+export const Display3 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-display-small"
+    {...props}
+    font={props.font || 'font1000'}
+    color={props.color || 'colorPrimary'}
+  />
+);
+
+export const Display4 = (props: BlockPropsT) => (
+  <Block
+    data-baseweb="typo-display-x-small"
+    {...props}
+    font={props.font || 'font900'}
     color={props.color || 'colorPrimary'}
   />
 );

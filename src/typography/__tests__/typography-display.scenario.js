@@ -8,11 +8,24 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-
-import {Display} from '../index.js';
+import {Block} from '../../block/index.js';
+import {Display1, Display2, Display3, Display4} from '../index.js';
 
 export const name = 'typography-display';
 
 export const component = () => (
-  <Display>We ignite opportunity by setting the world in motion.</Display>
+  <Block width="800px">
+    <Block marginBottom="30px">
+      <Display1>We ignite opportunity by setting the world in motion.</Display1>
+    </Block>
+    <Block marginBottom="30px">
+      <Display2>We ignite opportunity by setting the world in motion.</Display2>
+    </Block>
+    <Block marginBottom="30px">
+      <Display3>We ignite opportunity by setting the world in motion.</Display3>
+    </Block>
+    <Block marginBottom="30px">
+      <Display4>We ignite opportunity by setting the world in motion.</Display4>
+    </Block>
+  </Block>
 );
