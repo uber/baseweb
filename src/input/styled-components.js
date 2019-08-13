@@ -9,7 +9,7 @@ import {styled} from '../styles/index.js';
 import type {ThemeT} from '../styles/types.js';
 import {ADJOINED, ENHANCER_POSITION, SIZE} from './constants.js';
 import type {SharedPropsT, SizeT} from './types.js';
-import {DeleteAlt} from '../icon/index.js';
+import DeleteAlt from '../icon/delete-alt.js';
 
 export const StyledClearIconContainer = styled<{
   $alignTop: boolean,
