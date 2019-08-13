@@ -25,8 +25,8 @@ export default () => (
       },
     }}
   >
-    <Link href="#">Parent Page</Link>
-    <Link href="#">Sub-Parent Page</Link>
+    <Link href="#pseudo-parent">Parent Page</Link>
+    <Link href="#pseudo-subparent">Sub-Parent Page</Link>
     <span>Current Page</span>
   </Breadcrumbs>
 );
