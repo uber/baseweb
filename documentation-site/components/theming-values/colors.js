@@ -125,6 +125,7 @@ function Colors() {
   };
 
   const monoColors = {
+    mono50: {color: theme.colors.mono50, dark: true},
     mono100: {color: theme.colors.mono100, dark: true},
     mono200: {color: theme.colors.mono200, dark: true},
     mono300: {color: theme.colors.mono300, dark: true},
@@ -135,6 +136,11 @@ function Colors() {
     mono800: {color: theme.colors.mono800, dark: false},
     mono900: {color: theme.colors.mono900, dark: false},
     mono1000: {color: theme.colors.mono1000, dark: false},
+  };
+
+  const bwColors = {
+    black: {color: theme.colors.black, dark: false},
+    white: {color: theme.colors.white, dark: true},
   };
 
   const ratingColors = {
@@ -151,6 +157,7 @@ function Colors() {
         <ColorPreview colors={warningColors} />
         <ColorPreview colors={positiveColors} />
         <ColorPreview colors={monoColors} />
+        <ColorPreview colors={bwColors} />
         <ColorPreview colors={ratingColors} />
       </ExampleWrapper>
     </Block>
