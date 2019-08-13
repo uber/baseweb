@@ -66,7 +66,7 @@ const Index = (props: {
       <Tag kind="positive" closeable={false}>
         New
       </Tag>
-      <Block color="mono900" display="inline-block" font="font350">
+      <Block color="foreground" display="inline-block" font="font350">
         {BlogPosts[0].title}
       </Block>
     </Block>
