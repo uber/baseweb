@@ -9,8 +9,9 @@ import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
 
-import Text from 'examples/typography/text.js';
-import Display from 'examples/typography/display.js';
+import ExampleBody from 'examples/typography/text.js';
+import ExampleHeading from 'examples/typography/heading.js';
+import ExampleDisplay from 'examples/typography/display.js';
 
 export default Layout;
 
@@ -24,12 +25,16 @@ You can find the font definitions in the [Theming values](/theming/theming-value
 
 - Use the drop-in typography components for titles and text blocks in an app.
 
-<Example title="Typography Text Blocks" path="typography/text.js">
-  <Text />
+<Example title="Display Typography" path="typography/display.js">
+  <ExampleDisplay />
 </Example>
 
-<Example title="Typography Display Block" path="typography/display.js">
-  <Display />
+<Example title="Heading Typography" path="typography/heading.js">
+  <ExampleHeading />
+</Example>
+
+<Example title="Body Typography" path="typography/text.js">
+  <ExampleBody />
 </Example>
 
 <API
