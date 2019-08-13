@@ -5,9 +5,14 @@ const SUCCESS_VALUE = 400;
 
 export default class Basic extends React.Component {
   state = {value: 0};
+  timerId!: number;
+
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
+  }
 
   componentDidMount() {
-    setInterval(() => {
+    this.timerId = window.setInterval(() => {
       if (this.state.value < SUCCESS_VALUE) {
         this.setState({value: this.state.value + 10});
       } else {
