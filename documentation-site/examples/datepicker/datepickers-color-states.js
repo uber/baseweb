@@ -3,7 +3,6 @@ import React from 'react';
 
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
-import {Block} from 'baseui/block';
 import {FlexGrid} from 'baseui/flex-grid';
 import {
   StatefulDatepicker,
@@ -16,7 +15,12 @@ export default () => {
   return (
     <React.Fragment>
       Disabled state
-      <Block display="flex" flexDirection="row">
+      <div
+        className={useCss({
+          display: 'flex',
+          flexDirection: 'row',
+        })}
+      >
         <div
           className={useCss({
             width: '120px',
@@ -42,9 +46,14 @@ export default () => {
             <TimezonePicker disabled />
           </FormControl>
         </div>
-      </Block>
+      </div>
       Positive state
-      <Block display="flex" flexDirection="row">
+      <div
+        className={useCss({
+          display: 'flex',
+          flexDirection: 'row',
+        })}
+      >
         <div
           className={useCss({
             width: '120px',
@@ -70,9 +79,14 @@ export default () => {
             <TimezonePicker positive />
           </FormControl>
         </div>
-      </Block>
+      </div>
       Error state
-      <Block display="flex" flexDirection="row">
+      <div
+        className={useCss({
+          display: 'flex',
+          flexDirection: 'row',
+        })}
+      >
         <div
           className={useCss({
             width: '120px',
@@ -98,7 +112,7 @@ export default () => {
             <TimezonePicker error />
           </FormControl>
         </div>
-      </Block>
+      </div>
     </React.Fragment>
   );
 };
