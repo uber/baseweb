@@ -1,4 +1,21 @@
-# Style Updates
+import Layout from '../../../components/layout';
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+import {Block} from 'baseui/block';
+import {StatefulInput} from 'baseui/input';
+import {StatefulSelect} from 'baseui/select';
+import {StatefulPaymentCard} from 'baseui/payment-card';
+import {StatefulPhoneInput} from 'baseui/phone-input';
+import metadata from './metadata.json';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+<BlogImage
+  src="/static/images/blog/responsive-web/responsive-shipper-tools.svg"
+  alt="mobile, laptop, and desktop devices running a web application"
+  caption="Responsive apps work across mobile and desktop"
+/>
 
 Version `8.17.0` of Base Web brings some significant style changes to our components. Read below to find out what has changed and how you can incorporate these changes into your codebase.
 
