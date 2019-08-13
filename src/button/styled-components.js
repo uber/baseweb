@@ -124,11 +124,11 @@ function getBorderRadiiStyles({$theme, $shape}) {
 function getFontStyles({$theme, $size}) {
   switch ($size) {
     case SIZE.compact:
-      return $theme.typography.font450;
+      return $theme.typography.font250;
     case SIZE.large:
-      return $theme.typography.font500;
+      return $theme.typography.font450;
     default:
-      return $theme.typography.font470;
+      return $theme.typography.font350;
   }
 }
 
@@ -137,14 +137,14 @@ function getPaddingStyles({$theme, $size, $shape}) {
   switch ($size) {
     case SIZE.compact:
       return {
-        paddingTop: $theme.sizing.scale200,
-        paddingBottom: $theme.sizing.scale200,
+        paddingTop: $theme.sizing.scale300,
+        paddingBottom: $theme.sizing.scale300,
         paddingLeft: defaultShape
           ? $theme.sizing.scale500
-          : $theme.sizing.scale200,
+          : $theme.sizing.scale300,
         paddingRight: defaultShape
           ? $theme.sizing.scale500
-          : $theme.sizing.scale200,
+          : $theme.sizing.scale300,
       };
     case SIZE.large:
       return {
