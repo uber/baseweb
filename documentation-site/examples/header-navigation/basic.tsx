@@ -16,10 +16,10 @@ export default () => (
     <NavigationList $align={ALIGN.center} />
     <NavigationList $align={ALIGN.right}>
       <NavigationItem>
-        <Link href="#">Tab Link One</Link>
+        <Link href="#basic-link1">Tab Link One</Link>
       </NavigationItem>
       <NavigationItem>
-        <Link href="#">Tab Link Two</Link>
+        <Link href="#basic-link2">Tab Link Two</Link>
       </NavigationItem>
     </NavigationList>
     <NavigationList $align={ALIGN.right}>

@@ -81,7 +81,8 @@ export const Item = styled<SharedStylePropsArgT>(
 List.displayName = 'StyledItem';
 
 export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => ({
-  marginRight: $theme.sizing.scale600,
+  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
+    .scale600,
   width: $theme.sizing.scale800,
   display: 'flex',
   alignItems: 'center',
@@ -99,7 +100,8 @@ export const CloseHandle = styled<SharedStylePropsArgT>(
     overflow: 'visible',
     cursor: 'pointer',
     backgroundColor: 'transparent',
-    marginLeft: $theme.sizing.scale600,
+    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+      .scale600,
     width: $theme.sizing.scale800,
     display: 'flex',
     alignItems: 'center',

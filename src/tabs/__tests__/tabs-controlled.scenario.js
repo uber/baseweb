@@ -30,12 +30,16 @@ class Example extends React.Component<{}, StateT> {
     return (
       <React.Fragment>
         <Tabs activeKey={this.state.activeKey} onChange={this.onChange}>
-          <Tab title="Tab Link 1" />
-          <Tab title="Tab Link 2" />
-          <Tab title="Tab Link 3" />
+          <Tab title="Tab Link 1">
+            <div>{content[Number(this.state.activeKey)]}</div>
+          </Tab>
+          <Tab title="Tab Link 2">
+            <div>{content[Number(this.state.activeKey)]}</div>
+          </Tab>
+          <Tab title="Tab Link 3">
+            <div>{content[Number(this.state.activeKey)]}</div>
+          </Tab>
         </Tabs>
-        <div>Content:</div>
-        <div>{content[Number(this.state.activeKey)]}</div>
       </React.Fragment>
     );
   }

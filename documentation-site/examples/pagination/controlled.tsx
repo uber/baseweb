@@ -1,22 +1,15 @@
 import * as React from 'react';
 import {Pagination} from 'baseui/pagination';
 
-export default class Basic extends React.Component<
-  {},
-  {currentPage: number}
-> {
-  state = {currentPage: 1};
-  render() {
-    return (
-      <Pagination
-        numPages={20}
-        currentPage={this.state.currentPage}
-        onPageChange={({nextPage}) =>
-          this.setState({
-            currentPage: Math.min(Math.max(nextPage, 1), 20),
-          })
-        }
-      />
-    );
-  }
+export default function Basic() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  return (
+    <Pagination
+      numPages={20}
+      currentPage={currentPage}
+      onPageChange={({nextPage}) => {
+        setCurrentPage(Math.min(Math.max(nextPage, 1), 20));
+      }}
+    />
+  );
 }

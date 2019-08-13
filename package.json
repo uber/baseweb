@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "8.14.1",
+  "version": "8.16.1",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -106,7 +106,7 @@
     "eslint": "^6.0.0",
     "eslint-config-uber-universal-stage-3": "^3.0.0",
     "eslint-plugin-cup": "^2.0.0",
-    "eslint-plugin-flowtype": "^3.0.0",
+    "eslint-plugin-flowtype": "^4.0.0",
     "eslint-plugin-header": "^3.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.0",
@@ -146,6 +146,7 @@
     "semver": "^6.2.0",
     "shx": "^0.3.2",
     "static-server": "^2.2.1",
+    "storybook-addon-rtl": "^0.2.2",
     "styletron-engine-atomic": "^1.4.0",
     "styletron-react": "^5.2.0",
     "styletron-standard": "^3.0.0",

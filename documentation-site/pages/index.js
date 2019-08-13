@@ -43,9 +43,13 @@ const cardOverrides = {
 
 const Index = (props: {
   toggleTheme: () => void,
+  toggleDirection: () => void,
   contributors: Contributor[],
 }) => (
-  <Layout toggleTheme={props.toggleTheme}>
+  <Layout
+    toggleDirection={props.toggleDirection}
+    toggleTheme={props.toggleTheme}
+  >
     <Block
       paddingTop={['scale100', 'scale400', 'scale800']}
       display="block"
@@ -62,7 +66,7 @@ const Index = (props: {
       <Tag kind="positive" closeable={false}>
         New
       </Tag>
-      <Block color="mono900" display="inline-block" font="font350">
+      <Block color="foreground" display="inline-block" font="font350">
         {BlogPosts[0].title}
       </Block>
     </Block>
@@ -149,6 +153,8 @@ const Index = (props: {
         display="grid"
         gridTemplateColumns="repeat(3, 1fr)"
         alignItems="center"
+        justifyItems="center"
+        backgroundColor="mono100"
       >
         <Block width="125px" $as="img" src="/static/images/uber-logo.png" />
         <Block width="125px" $as="img" src="/static/images/broadcom-logo.svg" />

@@ -16,6 +16,7 @@ import {
   LightTheme,
   LightThemeMove,
 } from 'baseui';
+import {getMediaQuery} from 'baseui/helpers/responsive-helpers';
 
 import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
@@ -24,12 +25,45 @@ import Router from 'next/router';
 
 import {styletron, debug} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
+import DirectionContext from '../components/direction-context';
+
+const Breakpoints = {
+  small: 670,
+  medium: 920,
+  large: 1280,
+};
+
+const ResponsiveTheme = Object.keys(Breakpoints).reduce(
+  (acc, key) => {
+    acc.breakpoints[key] = Breakpoints[key];
+    acc.media[key] = getMediaQuery({
+      'min-width': `${Breakpoints[key]}px`,
+    });
+    return acc;
+  },
+  {
+    breakpoints: {},
+    media: {},
+  },
+);
 
 const themes = {
-  LightTheme,
-  LightThemeMove,
-  DarkTheme,
-  DarkThemeMove,
+  LightTheme: {
+    ...LightTheme,
+    ...ResponsiveTheme,
+  },
+  LightThemeMove: {
+    ...LightThemeMove,
+    ...ResponsiveTheme,
+  },
+  DarkTheme: {
+    ...DarkTheme,
+    ...ResponsiveTheme,
+  },
+  DarkThemeMove: {
+    ...DarkThemeMove,
+    ...ResponsiveTheme,
+  },
 };
 
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
@@ -46,6 +80,7 @@ export default class MyApp extends App {
     super(props);
     this.state = {
       theme: LightTheme,
+      direction: 'ltr',
     };
     this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
@@ -175,6 +210,23 @@ export default class MyApp extends App {
     this.setTheme();
   }
 
+  toggleDirection() {
+    console.log(1);
+    if (this.state.direction === 'rtl') {
+      this.setState({
+        direction: 'ltr',
+        theme: {...this.state.theme, direction: 'ltr'},
+      });
+      document.body.dir = 'ltr';
+    } else {
+      this.setState({
+        direction: 'rtl',
+        theme: {...this.state.theme, direction: 'rtl'},
+      });
+      document.body.dir = 'rtl';
+    }
+  }
+
   render() {
     const {Component, pageProps, path} = this.props;
     return (
@@ -182,11 +234,14 @@ export default class MyApp extends App {
         <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
           <BaseProvider theme={this.state.theme}>
             <Block {...blockProps}>
-              <Component
-                {...pageProps}
-                path={path}
-                toggleTheme={this.toggleTheme.bind(this)}
-              />
+              <DirectionContext.Provider value={this.state.direction}>
+                <Component
+                  {...pageProps}
+                  path={path}
+                  toggleTheme={this.toggleTheme.bind(this)}
+                  toggleDirection={this.toggleDirection.bind(this)}
+                />
+              </DirectionContext.Provider>
             </Block>
           </BaseProvider>
         </StyletronProvider>

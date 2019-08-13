@@ -16,8 +16,11 @@ export const name = 'button';
 export const component = () => (
   <React.Fragment>
     <Button>Primary</Button>
+    <br />
     <Button startEnhancer={ArrowRight}>Start Enhancer</Button>
+    <br />
     <Button endEnhancer={ArrowRight}>End Enhancer</Button>
+    <br />
     <Button startEnhancer={ArrowRight} endEnhancer={ArrowRight}>
       Both Enhancers
     </Button>
