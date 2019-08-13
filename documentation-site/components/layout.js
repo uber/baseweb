@@ -18,6 +18,7 @@ import HeaderNavigation from './header-navigation';
 import Footer from './footer';
 import PencilIcon from './pencil-icon';
 import Routes from '../routes';
+import DirectionContext from '../components/direction-context';
 
 const GH_URL =
   'https://github.com/uber-web/baseui/blob/master/documentation-site/pages';
@@ -105,57 +106,76 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     }
 
     return (
-      <React.Fragment>
-        <HeaderNavigation
-          toggleSidebar={() =>
-            this.setState(prevState => ({sidebarOpen: !prevState.sidebarOpen}))
-          }
-          toggleTheme={toggleTheme}
-          toggleDirection={toggleDirection}
-        />
-        <Block
-          backgroundColor="background"
-          color="foreground"
-          marginTop="scale300"
-          display="flex"
-          paddingTop="scale400"
-          justifyContent="center"
-        >
-          <SidebarWrapper
-            $isOpen={sidebarOpen}
-            onClick={() => sidebarOpen && this.setState({sidebarOpen: false})}
-          >
-            <Sidebar path={path} />
-          </SidebarWrapper>
-          <ContentWrapper
-            id="docSearch-content"
-            role="main"
-            $isSidebarOpen={sidebarOpen}
-          >
-            {isGitHubEditDisabled ? null : (
-              <Block
-                display={['none', 'block']}
-                position="absolute"
-                right="0px"
-                top="-10px"
+      <DirectionContext.Consumer>
+        {direction => (
+          <React.Fragment>
+            <HeaderNavigation
+              toggleSidebar={() =>
+                this.setState(prevState => ({
+                  sidebarOpen: !prevState.sidebarOpen,
+                }))
+              }
+              toggleTheme={toggleTheme}
+              toggleDirection={toggleDirection}
+            />
+            <Block
+              backgroundColor="background"
+              color="foreground"
+              marginTop="scale300"
+              display="flex"
+              paddingTop="scale400"
+              justifyContent="center"
+            >
+              <SidebarWrapper
+                $isOpen={sidebarOpen}
+                onClick={() =>
+                  sidebarOpen && this.setState({sidebarOpen: false})
+                }
               >
-                <Button
-                  startEnhancer={() => <PencilIcon size={16} color="#666666" />}
-                  $as="a"
-                  href={githubUrl}
-                  target="_blank"
-                  size={SIZE.compact}
-                  kind={KIND.tertiary}
-                >
-                  Edit this page
-                </Button>
-              </Block>
-            )}
-            <MDXProvider components={MarkdownElements}>{children}</MDXProvider>
-          </ContentWrapper>
-        </Block>
-        <Footer />
-      </React.Fragment>
+                <Sidebar path={path} />
+              </SidebarWrapper>
+              <ContentWrapper
+                id="docSearch-content"
+                role="main"
+                $isSidebarOpen={sidebarOpen}
+              >
+                {isGitHubEditDisabled ? null : (
+                  <Block
+                    display={['none', 'block']}
+                    position="absolute"
+                    top="-10px"
+                    overrides={{
+                      Block: {
+                        style: {
+                          [direction === 'rtl' ? 'left' : 'right']: 0,
+                          [direction === 'rtl' ? 'right' : 'left']: 'auto',
+                        },
+                      },
+                    }}
+                  >
+                    <Button
+                      startEnhancer={() => (
+                        <PencilIcon size={16} color="#666666" />
+                      )}
+                      $as="a"
+                      href={githubUrl}
+                      target="_blank"
+                      size={SIZE.compact}
+                      kind={KIND.tertiary}
+                    >
+                      Edit this page
+                    </Button>
+                  </Block>
+                )}
+                <MDXProvider components={MarkdownElements}>
+                  {children}
+                </MDXProvider>
+              </ContentWrapper>
+            </Block>
+            <Footer />
+          </React.Fragment>
+        )}
+      </DirectionContext.Consumer>
     );
   }
 }

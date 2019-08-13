@@ -1,13 +1,8 @@
-// @flow
 import * as React from 'react';
 import {StatefulTabs, Tab, StyledTab} from 'baseui/tabs';
 import {Label2} from 'baseui/typography';
 
-type StateT = {
-  activeKey: string;
-};
-
-function TabOverride({children, ...rest}: {children?: any}) {
+function TabOverride({children, ...rest}: any) {
   return (
     <StyledTab {...rest}>
       <Label2
@@ -23,15 +18,7 @@ function TabOverride({children, ...rest}: {children?: any}) {
   );
 }
 
-const tabStyle = ({
-  $active,
-  $disabled,
-  $theme,
-}: {
-  $active?: boolean;
-  $disabled?: boolean;
-  $theme: any;
-}) => ({
+const tabStyle = ({$active, $disabled, $theme}: any) => ({
   outlineColor: $theme.colors.white,
   color: $active ? $theme.colors.mono100 : $theme.colors.mono300,
   ':hover': $disabled
@@ -46,11 +33,11 @@ const tabStyle = ({
       },
 });
 
-const tabBarStyle = ({$theme}: {$theme: any}) => ({
+const tabBarStyle = ({$theme}: any) => ({
   backgroundColor: $theme.colors.mono600,
 });
 
-const tabContentStyle = ({$theme}: {$theme: any}) => ({
+const tabContentStyle = ({$theme}: any) => ({
   borderLeftWidth: '2px',
   borderRightWidth: '2px',
   borderBottomWidth: '2px',
@@ -59,63 +46,51 @@ const tabContentStyle = ({$theme}: {$theme: any}) => ({
   borderColor: $theme.colors.mono600,
 });
 
-class Example extends React.Component<{}, StateT> {
-  state = {
-    activeKey: '0',
-  };
+const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];
 
-  onChange = (params: {activeKey: React.Key}) => {
-    this.setState({activeKey: String(params.activeKey)});
-  };
-
-  render() {
-    const content = [
-      'Tab Content 1',
-      'Tab Content 2',
-      'Tab Content 3',
-    ];
-    return (
-      <React.Fragment>
-        <StatefulTabs
-          initialState={{activeKey: this.state.activeKey}}
-          onChange={this.onChange}
-          overrides={{
-            TabBar: {
-              style: tabBarStyle,
-            },
-            TabContent: {
-              style: tabContentStyle,
-            },
-          }}
-        >
-          <Tab
-            overrides={{
-              Tab: {component: TabOverride, style: tabStyle},
-            }}
-            title="Tab Link 1"
-          >
-            <div>{content[Number(this.state.activeKey)]}</div>
-          </Tab>
-          <Tab
-            overrides={{
-              Tab: {component: TabOverride, style: tabStyle},
-            }}
-            title="Tab Link 2"
-          >
-            <div>{content[Number(this.state.activeKey)]}</div>
-          </Tab>
-          <Tab
-            overrides={{
-              Tab: {component: TabOverride, style: tabStyle},
-            }}
-            title="Tab Link 3"
-          >
-            <div>{content[Number(this.state.activeKey)]}</div>
-          </Tab>
-        </StatefulTabs>
-      </React.Fragment>
-    );
-  }
+export default function Example() {
+  const [activeKey, setActiveKey] = React.useState<string | number>(
+    '0',
+  );
+  return (
+    <StatefulTabs
+      initialState={{activeKey: activeKey}}
+      onChange={({activeKey}) => {
+        setActiveKey(activeKey);
+      }}
+      overrides={{
+        TabBar: {
+          style: tabBarStyle,
+        },
+        TabContent: {
+          style: tabContentStyle,
+        },
+      }}
+    >
+      <Tab
+        overrides={{
+          Tab: {component: TabOverride, style: tabStyle},
+        }}
+        title="Tab Link 1"
+      >
+        <div>{content[Number(activeKey)]}</div>
+      </Tab>
+      <Tab
+        overrides={{
+          Tab: {component: TabOverride, style: tabStyle},
+        }}
+        title="Tab Link 2"
+      >
+        <div>{content[Number(activeKey)]}</div>
+      </Tab>
+      <Tab
+        overrides={{
+          Tab: {component: TabOverride, style: tabStyle},
+        }}
+        title="Tab Link 3"
+      >
+        <div>{content[Number(activeKey)]}</div>
+      </Tab>
+    </StatefulTabs>
+  );
 }
-
-export default () => <Example />;
