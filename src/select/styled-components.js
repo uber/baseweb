@@ -16,9 +16,9 @@ import type {ThemeT} from '../styles/types.js';
 
 function getFont(size = SIZE.default, typography) {
   return {
-    [SIZE.compact]: typography.font300,
-    [SIZE.default]: typography.font400,
-    [SIZE.large]: typography.font460,
+    [SIZE.compact]: typography.font200,
+    [SIZE.default]: typography.font300,
+    [SIZE.large]: typography.font400,
   }[size];
 }
 
@@ -37,12 +37,13 @@ function getControlPadding(props, emptyValue) {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
         $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
           : sizing.scale200,
+          ? `calc(${sizing.scale300} - ${sizing.scale0})`
+          : sizing.scale300,
       paddingBottom:
         $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
-          : sizing.scale200,
+          ? `calc(${sizing.scale300} - ${sizing.scale0})`
+          : sizing.scale300,
       [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
         $multi && !emptyValue
           ? `calc(${paddingLeft} - ${sizing.scale0})`
