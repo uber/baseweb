@@ -149,7 +149,7 @@ function Colors() {
   };
 
   return (
-    <Block font="font300">
+    <Block font="font200">
       <Header>Colors</Header>
       <ExampleWrapper>
         <ColorPreview colors={primaryColors} />

@@ -66,13 +66,13 @@ export const Heading = ({
 };
 
 const ListItem = (props: Props) => (
-  <Block as="li" font="font400">
+  <Block as="li" font="font300">
     {props.children}
   </Block>
 );
 
 const Paragraph = (props: Props) => (
-  <Block as="p" font="font400">
+  <Block as="p" font="font300">
     {props.children}
   </Block>
 );

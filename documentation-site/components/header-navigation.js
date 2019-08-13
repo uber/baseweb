@@ -168,7 +168,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
               </Block>
               <Block
                 as="span"
-                font="font400"
+                font="font300"
                 marginLeft="scale400"
                 marginRight="scale400"
                 onClick={toggleDirection}
@@ -211,7 +211,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   content="Switch theme"
                   accessibilityType={'tooltip'}
                 >
-                  <Block as="span" font="font400">
+                  <Block as="span" font="font300">
                     <Bulb size={24} color={theme.colors.foreground} />
                   </Block>
                 </StatefulTooltip>

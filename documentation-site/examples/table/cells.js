@@ -299,7 +299,7 @@ export default () => {
               </StyledDeltaCell>
 
               <StyledLargeText>
-                <Block font="font500">{row[4]}</Block>
+                <Block font="font460">{row[4]}</Block>
                 <Caption2 paddingLeft="scale200">+1000%</Caption2>
               </StyledLargeText>
 

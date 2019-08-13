@@ -47,7 +47,7 @@ class Overrides extends React.Component {
     );
     return (
       <React.Fragment>
-        <Block as="p" font="font400">
+        <Block as="p" font="font300">
           Additionally, you can{' '}
           <DocLink href="/theming/understanding-overrides">
             fully customize
@@ -90,7 +90,7 @@ class Overrides extends React.Component {
             },
           })}
         </Block>
-        <Block as="p" font="font400" marginTop="scale900">
+        <Block as="p" font="font300" marginTop="scale900">
           <b>Note:</b> You should always use longhand CSS properties. Mixing
           shorthands and longhands will lead into{' '}
           <DocLink href="https://www.styletron.org/concepts/#shorthand-and-longhand-properties">
