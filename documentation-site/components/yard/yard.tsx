@@ -268,7 +268,7 @@ export default withRouter(
                       style: ({$theme}) =>
                         ({
                           marginLeft: 0,
-                          ...$theme.typography.font450,
+                          ...$theme.typography.font350,
                         } as any),
                     },
                   }}
@@ -309,7 +309,7 @@ export default withRouter(
                     Tab: {
                       style: ({$theme}) =>
                         ({
-                          ...$theme.typography.font450,
+                          ...$theme.typography.font350,
                         } as any),
                     },
                   }}
@@ -350,7 +350,7 @@ export default withRouter(
                     Tab: {
                       style: ({$theme}) =>
                         ({
-                          ...$theme.typography.font450,
+                          ...$theme.typography.font350,
                         } as any),
                     },
                   }}

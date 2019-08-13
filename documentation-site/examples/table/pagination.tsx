@@ -49,11 +49,10 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
       >
         <div
           className={useCss({
-            // ...theme.typography.font700
-            fontFamily: theme.typography.font700.fontFamily,
-            fontWeight: theme.typography.font700.fontWeight,
-            fontSize: theme.typography.font700.fontSize,
-            lineHeight: theme.typography.font700.lineHeight,
+            fontFamily: theme.typography.font600.fontFamily,
+            fontWeight: theme.typography.font600.fontWeight,
+            fontSize: theme.typography.font600.fontSize,
+            lineHeight: theme.typography.font600.lineHeight,
           })}
         >
           Table Example

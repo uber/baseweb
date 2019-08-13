@@ -50,8 +50,6 @@ export const COMPONENTS = {
       'buttonSecondaryHover',
       'buttonSecondaryActive',
       'buttonSecondaryDisabledFill',
-      'buttonSecondarySelectedText',
-      'buttonSecondarySelectedFill',
       'buttonTertiaryFill',
       'buttonTertiaryText',
       'buttonTertiaryHover',
@@ -63,6 +61,8 @@ export const COMPONENTS = {
       'buttonMinimalActive',
       'buttonMinimalDisabledFill',
       'buttonDisabledText',
+      'buttonGroupSelectedFill',
+      'buttonGroupSelectedText',
     ],
     props: {
       children: {

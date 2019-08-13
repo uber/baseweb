@@ -29,7 +29,7 @@ export default () => (
       },
       MaxLabel: {
         style: ({$theme}) => ({
-          ...$theme.typography.font400,
+          ...$theme.typography.font300,
           marginRight: $theme.sizing.scale1000,
         }),
       },
@@ -54,10 +54,10 @@ export default () => (
                 backgroundColor: $disabled
                   ? $theme.colors.buttonDisabledFill
                   : $isFocused || $isPseudoFocused
-                    ? $theme.colors.buttonSecondaryHover
-                    : $error
-                      ? $theme.colors.negative50
-                      : $theme.colors.buttonSecondaryFill,
+                  ? $theme.colors.buttonSecondaryHover
+                  : $error
+                  ? $theme.colors.negative50
+                  : $theme.colors.buttonSecondaryFill,
               }),
             },
             SingleValue: {
@@ -68,7 +68,7 @@ export default () => (
                 paddingLeft: $theme.sizing.scale200,
                 paddingRight: $theme.sizing.scale500,
                 color: $theme.colors.buttonTertiaryText,
-                ...$theme.typography.font450,
+                ...$theme.typography.font350,
               }),
             },
             SelectArrow: {

@@ -55,7 +55,7 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
             />
             <div
               className={css({
-                ...($theme.typography.font200 as any),
+                ...($theme.typography.font100 as any),
                 color: $theme.colors.foreground,
                 marginLeft: $theme.sizing.scale300,
               })}

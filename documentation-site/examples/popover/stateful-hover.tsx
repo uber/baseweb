@@ -13,7 +13,7 @@ export default () => {
       accessibilityType={'tooltip'}
       triggerType={TRIGGER_TYPE.hover}
     >
-      <span className={useCss({...theme.typography.font400})}>
+      <span className={useCss({...theme.typography.font300})}>
         Hover
       </span>
     </StatefulPopover>

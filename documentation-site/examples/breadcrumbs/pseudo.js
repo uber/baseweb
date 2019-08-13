@@ -15,7 +15,7 @@ export default () => (
               color: $theme.colors.mono700,
               marginLeft: $theme.sizing.scale400,
               marginRight: $theme.sizing.scale400,
-              ...$theme.typography.font450,
+              ...$theme.typography.font350,
             },
           };
         },
