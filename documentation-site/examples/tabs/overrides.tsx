@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StatefulTabs, Tab, StyledTab} from 'baseui/tabs';
 import {Label2} from 'baseui/typography';
 
-function TabOverride({children, ...rest}) {
+function TabOverride({children, ...rest}: any) {
   return (
     <StyledTab {...rest}>
       <Label2
@@ -18,7 +18,7 @@ function TabOverride({children, ...rest}) {
   );
 }
 
-const tabStyle = ({$active, $disabled, $theme}) => ({
+const tabStyle = ({$active, $disabled, $theme}: any) => ({
   outlineColor: $theme.colors.white,
   color: $active ? $theme.colors.mono100 : $theme.colors.mono300,
   ':hover': $disabled
@@ -33,11 +33,11 @@ const tabStyle = ({$active, $disabled, $theme}) => ({
       },
 });
 
-const tabBarStyle = ({$theme}) => ({
+const tabBarStyle = ({$theme}: any) => ({
   backgroundColor: $theme.colors.mono600,
 });
 
-const tabContentStyle = ({$theme}) => ({
+const tabContentStyle = ({$theme}: any) => ({
   borderLeftWidth: '2px',
   borderRightWidth: '2px',
   borderBottomWidth: '2px',
@@ -49,7 +49,9 @@ const tabContentStyle = ({$theme}) => ({
 const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];
 
 export default function Example() {
-  const [activeKey, setActiveKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState<string | number>(
+    '0',
+  );
   return (
     <StatefulTabs
       initialState={{activeKey: activeKey}}
