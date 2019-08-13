@@ -9,9 +9,14 @@ export default class Basic extends React.Component<
   {value: number},
 > {
   state = {value: 0};
+  timerId: IntervalID;
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
 
   componentDidMount() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       if (this.state.value < SUCCESS_VALUE) {
         this.setState({value: this.state.value + 10});
       } else {
