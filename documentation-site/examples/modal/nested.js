@@ -9,33 +9,49 @@ import {
   ModalButton,
 } from 'baseui/modal';
 
-interface IRenderChildrenProps {
-  open: () => void;
-  close: () => void;
-  isOpen: boolean;
-}
-
 class ModalStateContainer extends React.Component<
   {
     isInitiallyOpen: boolean,
-    children: (args: IRenderChildrenProps) => React.Node,
+    children: ({
+      open: () => mixed,
+      close: () => mixed,
+      isOpen: boolean,
+      isConfirmationOpen: boolean,
+      toggleConfirm: (open?: boolean, cb?: () => mixed) => mixed,
+    }) => React.Node,
   },
-  {isOpen: boolean},
+  {
+    isOpen: boolean,
+    isConfirmationOpen: boolean,
+  },
 > {
   static defaultProps = {
     isInitiallyOpen: false,
   };
   state = {
     isOpen: this.props.isInitiallyOpen,
+    isConfirmationOpen: false,
   };
   toggle = (open: boolean = !this.state.isOpen) => {
     this.setState({
       isOpen: open,
     });
   };
+  toggleConfirm = (
+    open: boolean = !this.state.isConfirmationOpen,
+    cb: () => mixed = () => {},
+  ) => {
+    this.setState(
+      {
+        isConfirmationOpen: open,
+      },
+      cb,
+    );
+  };
   open = () => {
     this.toggle(true);
   };
+
   close = () => {
     this.toggle(false);
   };
@@ -44,15 +60,34 @@ class ModalStateContainer extends React.Component<
       open: this.open,
       close: this.close,
       isOpen: this.state.isOpen,
+      isConfirmationOpen: this.state.isConfirmationOpen,
+      toggleConfirm: this.toggleConfirm,
     });
   }
 }
 
 export default () => (
   <ModalStateContainer>
-    {({open, close, isOpen}) => (
+    {({open, close, isOpen, isConfirmationOpen, toggleConfirm}) => (
       <React.Fragment>
         <Button onClick={open}>Open Modal</Button>
+        <Modal onClose={close} isOpen={isConfirmationOpen}>
+          <ModalHeader>Confirm</ModalHeader>
+          <ModalBody>Confirm closing all.</ModalBody>
+          <ModalFooter>
+            <ModalButton onClick={() => toggleConfirm(false)}>
+              No
+            </ModalButton>
+            <ModalButton
+              onClick={() => {
+                toggleConfirm(false);
+                close();
+              }}
+            >
+              Yes
+            </ModalButton>
+          </ModalFooter>
+        </Modal>
         <Modal onClose={close} isOpen={isOpen}>
           <ModalHeader>Hello world</ModalHeader>
           <ModalBody>
@@ -62,7 +97,9 @@ export default () => (
           </ModalBody>
           <ModalFooter>
             <ModalButton onClick={close}>Cancel</ModalButton>
-            <ModalButton onClick={close}>Okay</ModalButton>
+            <ModalButton onClick={() => toggleConfirm(true)}>
+              Okay
+            </ModalButton>
           </ModalFooter>
         </Modal>
       </React.Fragment>
