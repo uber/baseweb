@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*
 Copyright (c) 2018-2019 Uber Technologies, Inc.
 
@@ -8,11 +9,13 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+const {gzipSync} = require('zlib');
 const path = require('path');
+const fs = require('fs');
+
 const webpack = require('webpack');
 const MemoryFS = require('memory-fs');
 const Terser = require('terser');
-const {gzipSync} = require('zlib');
 
 function modulePath(identifier) {
   // the format of module paths is
@@ -44,6 +47,53 @@ function getByteLen(normal_val) {
         : Number.NaN;
   }
   return byteLen;
+}
+
+function minify(source) {
+  return Terser.minify(source, {
+    mangle: false,
+    compress: {
+      arrows: true,
+      booleans: true,
+      collapse_vars: true,
+      comparisons: true,
+      conditionals: true,
+      dead_code: true,
+      drop_console: false,
+      drop_debugger: true,
+      ecma: 5,
+      evaluate: true,
+      expression: false,
+      global_defs: {},
+      hoist_vars: false,
+      ie8: false,
+      if_return: true,
+      inline: true,
+      join_vars: true,
+      keep_fargs: true,
+      keep_fnames: false,
+      keep_infinity: false,
+      loops: true,
+      negate_iife: true,
+      passes: 1,
+      properties: true,
+      pure_getters: 'strict',
+      pure_funcs: null,
+      reduce_vars: true,
+      sequences: true,
+      side_effects: true,
+      switches: true,
+      top_retain: null,
+      toplevel: false,
+      typeofs: true,
+      unsafe: false,
+      unused: true,
+      warnings: false,
+    },
+    output: {
+      comments: false,
+    },
+  });
 }
 
 function getDependencySizes(stats) {
@@ -143,50 +193,7 @@ function getDependencySizes(stats) {
     .filter(treeItem => treeItem.sources.length)
     .map(treeItem => {
       const size = treeItem.sources.reduce((acc, source) => {
-        const uglifiedSource = Terser.minify(source, {
-          mangle: false,
-          compress: {
-            arrows: true,
-            booleans: true,
-            collapse_vars: true,
-            comparisons: true,
-            conditionals: true,
-            dead_code: true,
-            drop_console: false,
-            drop_debugger: true,
-            ecma: 5,
-            evaluate: true,
-            expression: false,
-            global_defs: {},
-            hoist_vars: false,
-            ie8: false,
-            if_return: true,
-            inline: true,
-            join_vars: true,
-            keep_fargs: true,
-            keep_fnames: false,
-            keep_infinity: false,
-            loops: true,
-            negate_iife: true,
-            passes: 1,
-            properties: true,
-            pure_getters: 'strict',
-            pure_funcs: null,
-            reduce_vars: true,
-            sequences: true,
-            side_effects: true,
-            switches: true,
-            top_retain: null,
-            toplevel: false,
-            typeofs: true,
-            unsafe: false,
-            unused: true,
-            warnings: false,
-          },
-          output: {
-            comments: false,
-          },
-        });
+        const uglifiedSource = minify(source);
 
         if (uglifiedSource.error) {
           throw new Error('Uglifying failed' + uglifiedSource.error);
@@ -251,15 +258,30 @@ function makeWebpackConfig({entryPoint}) {
   };
 }
 
-const compiler = webpack(
-  makeWebpackConfig({
-    entryPoint: path.join(__dirname, 'src/phone-input/index.js'),
-  }),
-);
 const memoryFileSystem = new MemoryFS();
-compiler.outputFileSystem = memoryFileSystem;
 
-compiler.run((err, stats) => {
+function compile({path}) {
+  const compiler = webpack(
+    makeWebpackConfig({
+      entryPoint: path,
+    }),
+  );
+
+  compiler.outputFileSystem = memoryFileSystem;
+
+  return new Promise((resolve, reject) => {
+    compiler.run((err, stats) => {
+      if (err) return reject(err);
+      resolve(stats);
+    });
+  });
+}
+
+async function getStatsForComponent(component) {
+  const stats = await compile({
+    path: path.join(__dirname, `../src/${component}/index.js`),
+  });
+
   let jsonStats = stats
     ? stats.toJson({
         assets: true,
@@ -283,17 +305,77 @@ compiler.run((err, stats) => {
     : {};
 
   const bundleContents = memoryFileSystem.readFileSync(
-    path.join(__dirname, 'dist/main.bundle.js'),
+    path.join(__dirname, '../dist/main.bundle.js'),
+    'utf-8',
   );
   const size = jsonStats.assets.filter(x => x.name === 'main.bundle.js').pop()
     .size;
   const dependencySizes = getDependencySizes(jsonStats);
 
-  const sumDependencySizes = dependencySizes.reduce((acc, current) => {
-    return acc + current.approximateSize;
-  }, 0);
+  const minified = minify(bundleContents);
 
-  const gzip = gzipSync(bundleContents, {}).length;
+  const gzip = gzipSync(minified.code, {});
 
-  console.log({size, sumDependencySizes, gzip});
-});
+  const gzippedSize = getByteLen(gzip);
+
+  return {
+    size,
+    dependencySizes,
+    gzip: gzippedSize,
+    minified: getByteLen(minified.code),
+  };
+}
+
+function compare(original, current) {
+  const components = Object.keys(current);
+
+  for (let i = 0; i < components.length; i += 1) {
+    const originalSize = original[components[i]].size;
+    const currentSize = current[components[i]].size;
+
+    const ratio = currentSize / originalSize;
+    if (ratio > 1.1 || ratio < 0.9) {
+      console.error(`This size of ${components[i]} changed signifcantly`);
+      console.error(
+        'If this is expected, rerun this command with the environment variable FORCE_UPDATE=true',
+      );
+      process.exit(-1);
+    }
+  }
+}
+
+async function main() {
+  const original = require('../component-sizes.json');
+  const blacklistFolders = [
+    'test',
+    'template-component',
+    'utils',
+    'styles',
+    'themes',
+    'codemods',
+    'helpers',
+    'a11y',
+    'layout',
+  ];
+
+  const components = fs
+    .readdirSync(path.join(__dirname, '../src'))
+    .filter(name => !name.includes('.') && !blacklistFolders.includes(name));
+
+  const data = {};
+
+  for (let i = 0; i < components.length; i += 1) {
+    data[components[i]] = await getStatsForComponent(components[i]);
+  }
+
+  compare(original, data);
+
+  if (process.env.FORCE_UPDATE) {
+    const filePath = path.join(__dirname, '../component-sizes.json');
+
+    fs.unlinkSync(filePath);
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  }
+}
+
+main().catch(console.error);
