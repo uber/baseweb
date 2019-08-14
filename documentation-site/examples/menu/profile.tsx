@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Menu, OptionProfile} from 'baseui/menu';
+import {StatefulMenu, OptionProfile} from 'baseui/menu';
 
 interface IItem {
   title: string;
@@ -16,9 +16,8 @@ const ITEMS = [...new Array(4)].map(() => ({
 }));
 
 export default () => (
-  <Menu
+  <StatefulMenu
     items={ITEMS}
-    rootRef={React.createRef()}
     overrides={{
       List: {
         style: {

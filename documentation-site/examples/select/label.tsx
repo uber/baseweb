@@ -1,22 +1,23 @@
 import * as React from 'react';
-import {useStyletron} from 'baseui';
+import {styled} from 'baseui';
 import {Select, Value} from 'baseui/select';
 
+const ColorSwatch = styled('div', (props: any) => {
+  return {
+    width: props.$theme.sizing.scale300,
+    height: props.$theme.sizing.scale300,
+    marginRight: props.$theme.sizing.scale200,
+    display: 'inline-block',
+    backgroundColor: props.$color,
+    verticalAlign: 'baseline',
+    ...props.$theme.borders.border400,
+  };
+});
+
 const getLabel = ({option}: any) => {
-  const [useCss, theme] = useStyletron();
   return (
     <React.Fragment>
-      <div
-        className={useCss({
-          width: theme.sizing.scale300,
-          height: theme.sizing.scale300,
-          marginRight: theme.sizing.scale200,
-          display: 'inline-block',
-          bakgroundColor: option.color,
-          verticalAlign: 'baseline',
-          ...theme.borders.border400,
-        })}
-      />
+      <ColorSwatch $color={option.color} />
       {option.id}
     </React.Fragment>
   );

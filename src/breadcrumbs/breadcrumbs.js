@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React, {Children} from 'react';
 
 import {LocaleContext} from '../locale/index.js';
-import {ChevronRight} from '../icon/index.js';
+import ChevronRight from '../icon/chevron-right.js';
 import type {BreadcrumbsPropsT} from './types.js';
 import type {BreadcrumbLocaleT} from './locale.js';
 import {
