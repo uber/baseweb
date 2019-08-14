@@ -31,7 +31,9 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridColumnGap =
     $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
   flexGridRowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
-  const widthCalc = `(100% - (${flexGridColumnCount} - 1) * ${flexGridColumnGap}) / ${flexGridColumnCount}`;
+  const widthCalc = `${Math.floor(100 / flexGridColumnCount)}% - ${Math.ceil(
+    (flexGridColumnCount - 1) / flexGridColumnCount,
+  )} * ${flexGridColumnGap}`;
   const marginDirection =
     $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
