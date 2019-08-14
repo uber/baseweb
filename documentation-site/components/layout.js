@@ -102,7 +102,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
       component = path.replace('/components/', '');
     }
 
-    const componentStats = ComponentSizes[component] || {};
+    const componentStats = ComponentSizes[component] || {dependencySizes: []};
     const componentSizeKbs = Math.floor(componentStats.gzip / 1000);
 
     const route = findByPath(Routes, path);
@@ -177,7 +177,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     </Button>
                   </Block>
                 )}
-                {componentStats ? (
+                {componentStats.size ? (
                   <StatefulTooltip
                     accessibilityType={'tooltip'}
                     content={
