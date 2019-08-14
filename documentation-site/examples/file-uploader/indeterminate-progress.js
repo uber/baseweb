@@ -1,48 +1,34 @@
 // @flow
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
-import type {DropFilesEventHandlerT} from 'baseui/file-uploader';
 
-export default class Uploader extends React.Component<
-  {},
-  {uploading: boolean},
-> {
-  state = {uploading: false};
-  timeoutId: TimeoutID;
+export default function() {
+  const [isUploading, setIsUploading] = React.useState(false);
+  const timeoutId = React.useRef(null);
 
-  handleDrop: DropFilesEventHandlerT = (
-    acceptedFiles,
-    rejectedFiles,
-  ) => {
-    // handle file upload...
-    this.startProgress();
-  };
+  function reset() {
+    setIsUploading(false);
+    clearTimeout(timeoutId.current);
+  }
 
-  // startProgress method is only illustrative. Use the progress info returned
+  // startProgress is only illustrative. Use the progress info returned
   // from your upload endpoint. This example shows how the file-uploader operates
   // if there is no progress info available.
-  startProgress = () => {
-    this.setState({uploading: true});
-    this.timeoutId = setTimeout(() => {
-      this.reset();
-    }, 4000);
-  };
-
-  // reset the component to its original state. use this to cancel/retry the upload.
-  reset = () => {
-    clearTimeout(this.timeoutId);
-    this.setState({uploading: false});
-  };
-
-  render() {
-    return (
-      <FileUploader
-        onCancel={this.reset}
-        onDrop={this.handleDrop}
-        progressMessage={
-          this.state.uploading ? `Uploading... hang tight.` : ''
-        }
-      />
-    );
+  function startProgress() {
+    setIsUploading(true);
+    timeoutId.current = setTimeout(reset, 4000);
   }
+
+  return (
+    <FileUploader
+      onCancel={reset}
+      onDrop={(acceptedFiles, rejectedFiles) => {
+        // handle file upload...
+        startProgress();
+      }}
+      progressMessage={
+        isUploading ? `Uploading... hang tight.` : ''
+      }
+    />
+  );
 }

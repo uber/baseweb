@@ -14,7 +14,6 @@ import {Block} from 'baseui/block';
 import Code from './code';
 import {styled} from 'baseui/styles';
 import Link from 'next/link';
-import {StyledLink} from 'baseui/link';
 import Anchor from './anchor';
 import slugify from '../helpers/slugify';
 import {useHover} from './hooks';
@@ -114,9 +113,9 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
     (parts[0] === '' && parts[1] !== '') || !href.includes('http');
   return (
     <Link href={href}>
-      <StyledLink href={href} {...(internal ? {} : {target: '_blank'})}>
+      <a href={href} {...(internal ? {} : {target: '_blank'})}>
         {children}
-      </StyledLink>
+      </a>
     </Link>
   );
 };
