@@ -4,27 +4,27 @@
     "dependencySizes": [
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       }
     ],
     "gzip": 29739,
@@ -35,23 +35,23 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       }
     ],
     "gzip": 27008,
@@ -62,23 +62,23 @@
     "dependencySizes": [
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       }
     ],
     "gzip": 23377,
@@ -89,81 +89,81 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       }
     ],
     "gzip": 25832,
     "minified": 63643
   },
   "breadcrumbs": {
-    "size": 102850,
+    "size": 64510,
     "dependencySizes": [
       {
-        "name": "object-assign",
-        "approximateSize": 1232
+        "name": "styletron-standard",
+        "approximateSize": 955
       },
       {
-        "name": "react",
-        "approximateSize": 6663
+        "name": "object-assign",
+        "approximateSize": 1085
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
-        "name": "styletron-standard",
-        "approximateSize": 1296
-      },
-      {
-        "name": "just-extend",
-        "approximateSize": 702
+        "name": "react",
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
+      },
+      {
+        "name": "just-extend",
+        "approximateSize": 645
       }
     ],
-    "gzip": 33044,
-    "minified": 102115
+    "gzip": 25521,
+    "minified": 63775
   },
   "button": {
     "size": 66325,
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       }
     ],
     "gzip": 26443,
@@ -174,27 +174,27 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
       }
     ],
     "gzip": 30404,
@@ -205,23 +205,23 @@
     "dependencySizes": [
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       }
     ],
     "gzip": 23601,
@@ -232,203 +232,203 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       }
     ],
     "gzip": 28637,
     "minified": 69590
   },
   "datepicker": {
-    "size": 598118,
+    "size": 567837,
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
-      },
-      {
-        "name": "timezone-support",
-        "approximateSize": 40103
+        "approximateSize": 64818
       },
       {
         "name": "date-fns",
-        "approximateSize": 49551
+        "approximateSize": 36093
       },
       {
-        "name": "object-assign",
-        "approximateSize": 1232
+        "name": "timezone-support",
+        "approximateSize": 19566
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
-      },
-      {
-        "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react-input-mask",
-        "approximateSize": 14531
+        "approximateSize": 8501
+      },
+      {
+        "name": "object-assign",
+        "approximateSize": 1085
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
-      },
-      {
-        "name": "popper.js",
-        "approximateSize": 34412
-      },
-      {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 5241
+        "approximateSize": 645
       },
       {
         "name": "polished",
-        "approximateSize": 56438
+        "approximateSize": 28614
+      },
+      {
+        "name": "react",
+        "approximateSize": 5008
+      },
+      {
+        "name": "smoothscroll-polyfill",
+        "approximateSize": 2903
+      },
+      {
+        "name": "popper.js",
+        "approximateSize": 16380
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       }
     ],
-    "gzip": 245418,
-    "minified": 594488
+    "gzip": 238467,
+    "minified": 564207
   },
   "dnd-list": {
     "size": 195721,
     "dependencySizes": [
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       },
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "react-movable",
-        "approximateSize": 16492
+        "approximateSize": 9147
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       }
     ],
     "gzip": 97796,
     "minified": 194431
   },
   "file-uploader": {
-    "size": 163074,
+    "size": 123188,
     "dependencySizes": [
       {
-        "name": "attr-accept",
-        "approximateSize": 6953
-      },
-      {
-        "name": "styletron-standard",
-        "approximateSize": 1296
-      },
-      {
-        "name": "react-dropzone",
-        "approximateSize": 13371
-      },
-      {
         "name": "react-is",
-        "approximateSize": 2241
-      },
-      {
-        "name": "tslib",
-        "approximateSize": 5993
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
-      },
-      {
-        "name": "prop-types",
-        "approximateSize": 1422
+        "approximateSize": 5008
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
-      },
-      {
-        "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 1085
       },
       {
         "name": "file-selector",
-        "approximateSize": 3843
+        "approximateSize": 2662
+      },
+      {
+        "name": "prop-types",
+        "approximateSize": 1518
+      },
+      {
+        "name": "attr-accept",
+        "approximateSize": 4537
+      },
+      {
+        "name": "styletron-react",
+        "approximateSize": 6869
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
+      },
+      {
+        "name": "styletron-standard",
+        "approximateSize": 955
+      },
+      {
+        "name": "react-dropzone",
+        "approximateSize": 7185
+      },
+      {
+        "name": "tslib",
+        "approximateSize": 3700
       }
     ],
-    "gzip": 58209,
-    "minified": 162216
+    "gzip": 49247,
+    "minified": 122330
   },
   "flex-grid": {
     "size": 72302,
     "dependencySizes": [
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       }
     ],
     "gzip": 28432,
@@ -439,23 +439,23 @@
     "dependencySizes": [
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       }
     ],
     "gzip": 23362,
@@ -466,23 +466,23 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       }
     ],
     "gzip": 23220,
@@ -493,23 +493,23 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       }
     ],
     "gzip": 26526,
@@ -520,97 +520,97 @@
     "dependencySizes": [
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       }
     ],
     "gzip": 30388,
     "minified": 94438
   },
   "input": {
-    "size": 258993,
+    "size": 223214,
     "dependencySizes": [
       {
         "name": "webpack",
-        "approximateSize": 149
-      },
-      {
-        "name": "react",
-        "approximateSize": 6663
-      },
-      {
-        "name": "react-dom",
-        "approximateSize": 111179
-      },
-      {
-        "name": "react-input-mask",
-        "approximateSize": 14531
+        "approximateSize": 243
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
-      },
-      {
-        "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
+      },
+      {
+        "name": "react",
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
+      },
+      {
+        "name": "react-dom",
+        "approximateSize": 64818
+      },
+      {
+        "name": "react-input-mask",
+        "approximateSize": 8501
+      },
+      {
+        "name": "styletron-standard",
+        "approximateSize": 955
       }
     ],
-    "gzip": 114481,
-    "minified": 257605
+    "gzip": 106450,
+    "minified": 221826
   },
   "layer": {
     "size": 193429,
     "dependencySizes": [
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "popper.js",
-        "approximateSize": 34412
+        "approximateSize": 16380
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       }
     ],
     "gzip": 99054,
@@ -621,19 +621,19 @@
     "dependencySizes": [
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       }
     ],
     "gzip": 20585,
@@ -644,15 +644,15 @@
     "dependencySizes": [
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
       }
     ],
     "gzip": 7186,
@@ -663,43 +663,43 @@
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "smoothscroll-polyfill",
-        "approximateSize": 5241
+        "approximateSize": 2903
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "popper.js",
-        "approximateSize": 34412
+        "approximateSize": 16380
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
       }
     ],
     "gzip": 121256,
@@ -710,59 +710,59 @@
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
       },
       {
         "name": "react-focus-lock",
-        "approximateSize": 13651
+        "approximateSize": 8924
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "@babel/runtime",
-        "approximateSize": 897
+        "approximateSize": 1145
       },
       {
         "name": "focus-lock",
-        "approximateSize": 10869
+        "approximateSize": 8223
       },
       {
         "name": "react-clientside-effect",
-        "approximateSize": 1689
+        "approximateSize": 1058
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "prop-types",
-        "approximateSize": 1422
+        "approximateSize": 1518
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "popper.js",
-        "approximateSize": 34412
+        "approximateSize": 16380
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       }
     ],
     "gzip": 117809,
@@ -773,318 +773,318 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       }
     ],
     "gzip": 93990,
     "minified": 190714
   },
   "pagination": {
-    "size": 473159,
+    "size": 442790,
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
-        "name": "react",
-        "approximateSize": 6663
-      },
-      {
-        "name": "react-is",
-        "approximateSize": 2241
-      },
-      {
-        "name": "just-extend",
-        "approximateSize": 702
-      },
-      {
-        "name": "object-assign",
-        "approximateSize": 1232
-      },
-      {
-        "name": "react-input-mask",
-        "approximateSize": 14531
-      },
-      {
-        "name": "polished",
-        "approximateSize": 56438
-      },
-      {
-        "name": "styletron-standard",
-        "approximateSize": 1296
+        "name": "styletron-react",
+        "approximateSize": 6869
       },
       {
         "name": "memoize-one",
-        "approximateSize": 687
-      },
-      {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 5241
-      },
-      {
-        "name": "popper.js",
-        "approximateSize": 34412
-      },
-      {
-        "name": "webpack",
-        "approximateSize": 149
-      },
-      {
-        "name": "styletron-react",
-        "approximateSize": 13831
-      }
-    ],
-    "gzip": 196032,
-    "minified": 469915
-  },
-  "payment-card": {
-    "size": 302387,
-    "dependencySizes": [
-      {
-        "name": "webpack",
-        "approximateSize": 149
-      },
-      {
-        "name": "credit-card-type",
-        "approximateSize": 6982
-      },
-      {
-        "name": "card-validator",
-        "approximateSize": 6373
-      },
-      {
-        "name": "styletron-standard",
-        "approximateSize": 1296
-      },
-      {
-        "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 600
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
-      },
-      {
-        "name": "react-input-mask",
-        "approximateSize": 14531
-      },
-      {
-        "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
-      },
-      {
-        "name": "react-dom",
-        "approximateSize": 111179
-      }
-    ],
-    "gzip": 136095,
-    "minified": 300866
-  },
-  "phone-input": {
-    "size": 1026895,
-    "dependencySizes": [
-      {
-        "name": "core-js",
-        "approximateSize": 27351
-      },
-      {
-        "name": "react-virtualized",
-        "approximateSize": 202305
-      },
-      {
-        "name": "react-lifecycles-compat",
-        "approximateSize": 3353
-      },
-      {
-        "name": "styletron-react",
-        "approximateSize": 13831
-      },
-      {
-        "name": "react-is",
-        "approximateSize": 2241
-      },
-      {
-        "name": "react-input-mask",
-        "approximateSize": 14531
-      },
-      {
-        "name": "object-assign",
-        "approximateSize": 1232
-      },
-      {
-        "name": "styletron-standard",
-        "approximateSize": 1296
-      },
-      {
-        "name": "babel-runtime",
-        "approximateSize": 6478
-      },
-      {
-        "name": "react",
-        "approximateSize": 6663
-      },
-      {
-        "name": "prop-types",
-        "approximateSize": 1422
-      },
-      {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 5241
-      },
-      {
-        "name": "dom-helpers",
-        "approximateSize": 860
+        "approximateSize": 5008
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
-      },
-      {
-        "name": "react-dom",
-        "approximateSize": 111179
-      },
-      {
-        "name": "clsx",
-        "approximateSize": 425
-      },
-      {
-        "name": "polished",
-        "approximateSize": 56438
-      },
-      {
-        "name": "popper.js",
-        "approximateSize": 34412
-      },
-      {
-        "name": "webpack",
-        "approximateSize": 149
-      },
-      {
-        "name": "@babel/runtime",
-        "approximateSize": 120
-      },
-      {
-        "name": "linear-layout-vector",
-        "approximateSize": 10145
-      }
-    ],
-    "gzip": 520200,
-    "minified": 1021224
-  },
-  "pin-code": {
-    "size": 269367,
-    "dependencySizes": [
-      {
-        "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 645
       },
       {
         "name": "react-input-mask",
-        "approximateSize": 14531
+        "approximateSize": 8501
       },
       {
-        "name": "react",
-        "approximateSize": 6663
-      },
-      {
-        "name": "@babel/runtime",
-        "approximateSize": 989
-      },
-      {
-        "name": "react-multi-ref",
-        "approximateSize": 945
-      },
-      {
-        "name": "react-is",
-        "approximateSize": 2241
-      },
-      {
-        "name": "object-assign",
-        "approximateSize": 1232
-      },
-      {
-        "name": "react-dom",
-        "approximateSize": 111179
-      },
-      {
-        "name": "styletron-react",
-        "approximateSize": 13831
+        "name": "polished",
+        "approximateSize": 28614
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
+      },
+      {
+        "name": "smoothscroll-polyfill",
+        "approximateSize": 2903
+      },
+      {
+        "name": "object-assign",
+        "approximateSize": 1085
+      },
+      {
+        "name": "webpack",
+        "approximateSize": 243
+      },
+      {
+        "name": "popper.js",
+        "approximateSize": 16380
       }
     ],
-    "gzip": 116950,
-    "minified": 267958
+    "gzip": 190042,
+    "minified": 439546
+  },
+  "payment-card": {
+    "size": 266593,
+    "dependencySizes": [
+      {
+        "name": "card-validator",
+        "approximateSize": 5516
+      },
+      {
+        "name": "webpack",
+        "approximateSize": 243
+      },
+      {
+        "name": "react",
+        "approximateSize": 5008
+      },
+      {
+        "name": "react-is",
+        "approximateSize": 1467
+      },
+      {
+        "name": "react-input-mask",
+        "approximateSize": 8501
+      },
+      {
+        "name": "credit-card-type",
+        "approximateSize": 5114
+      },
+      {
+        "name": "object-assign",
+        "approximateSize": 1085
+      },
+      {
+        "name": "styletron-standard",
+        "approximateSize": 955
+      },
+      {
+        "name": "styletron-react",
+        "approximateSize": 6869
+      },
+      {
+        "name": "react-dom",
+        "approximateSize": 64818
+      }
+    ],
+    "gzip": 128586,
+    "minified": 265072
+  },
+  "phone-input": {
+    "size": 993734,
+    "dependencySizes": [
+      {
+        "name": "core-js",
+        "approximateSize": 35491
+      },
+      {
+        "name": "react-virtualized",
+        "approximateSize": 96118
+      },
+      {
+        "name": "react-lifecycles-compat",
+        "approximateSize": 1683
+      },
+      {
+        "name": "styletron-standard",
+        "approximateSize": 955
+      },
+      {
+        "name": "styletron-react",
+        "approximateSize": 6869
+      },
+      {
+        "name": "react-is",
+        "approximateSize": 1467
+      },
+      {
+        "name": "react-input-mask",
+        "approximateSize": 8501
+      },
+      {
+        "name": "object-assign",
+        "approximateSize": 1085
+      },
+      {
+        "name": "prop-types",
+        "approximateSize": 1518
+      },
+      {
+        "name": "babel-runtime",
+        "approximateSize": 7356
+      },
+      {
+        "name": "just-extend",
+        "approximateSize": 645
+      },
+      {
+        "name": "react-dom",
+        "approximateSize": 64818
+      },
+      {
+        "name": "dom-helpers",
+        "approximateSize": 884
+      },
+      {
+        "name": "smoothscroll-polyfill",
+        "approximateSize": 2903
+      },
+      {
+        "name": "polished",
+        "approximateSize": 28614
+      },
+      {
+        "name": "clsx",
+        "approximateSize": 391
+      },
+      {
+        "name": "react",
+        "approximateSize": 5008
+      },
+      {
+        "name": "@babel/runtime",
+        "approximateSize": 174
+      },
+      {
+        "name": "webpack",
+        "approximateSize": 243
+      },
+      {
+        "name": "popper.js",
+        "approximateSize": 16380
+      },
+      {
+        "name": "linear-layout-vector",
+        "approximateSize": 4474
+      }
+    ],
+    "gzip": 514024,
+    "minified": 988063
+  },
+  "pin-code": {
+    "size": 233587,
+    "dependencySizes": [
+      {
+        "name": "react-input-mask",
+        "approximateSize": 8501
+      },
+      {
+        "name": "webpack",
+        "approximateSize": 243
+      },
+      {
+        "name": "react",
+        "approximateSize": 5008
+      },
+      {
+        "name": "react-multi-ref",
+        "approximateSize": 654
+      },
+      {
+        "name": "@babel/runtime",
+        "approximateSize": 1134
+      },
+      {
+        "name": "styletron-react",
+        "approximateSize": 6869
+      },
+      {
+        "name": "styletron-standard",
+        "approximateSize": 955
+      },
+      {
+        "name": "react-is",
+        "approximateSize": 1467
+      },
+      {
+        "name": "react-dom",
+        "approximateSize": 64818
+      },
+      {
+        "name": "object-assign",
+        "approximateSize": 1085
+      }
+    ],
+    "gzip": 109533,
+    "minified": 232178
   },
   "popover": {
     "size": 221066,
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "popper.js",
-        "approximateSize": 34412
+        "approximateSize": 16380
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       }
     ],
     "gzip": 109856,
@@ -1095,23 +1095,23 @@
     "dependencySizes": [
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       }
     ],
     "gzip": 23583,
@@ -1122,23 +1122,23 @@
     "dependencySizes": [
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       }
     ],
     "gzip": 26811,
@@ -1149,23 +1149,23 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       }
     ],
     "gzip": 28521,
@@ -1176,105 +1176,105 @@
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       }
     ],
     "gzip": 27322,
     "minified": 68253
   },
   "select": {
-    "size": 459109,
+    "size": 425976,
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
-      },
-      {
-        "name": "react-input-mask",
-        "approximateSize": 14531
-      },
-      {
-        "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
-      },
-      {
-        "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 5008
       },
       {
         "name": "polished",
-        "approximateSize": 56438
+        "approximateSize": 28614
       },
       {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 5241
+        "name": "react-is",
+        "approximateSize": 1467
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
-        "name": "popper.js",
-        "approximateSize": 34412
+        "name": "react-input-mask",
+        "approximateSize": 8501
+      },
+      {
+        "name": "styletron-react",
+        "approximateSize": 6869
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
+      },
+      {
+        "name": "smoothscroll-polyfill",
+        "approximateSize": 2903
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
+      },
+      {
+        "name": "popper.js",
+        "approximateSize": 16380
       }
     ],
-    "gzip": 192916,
-    "minified": 455887
+    "gzip": 187871,
+    "minified": 422754
   },
   "side-navigation": {
     "size": 64559,
     "dependencySizes": [
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       }
     ],
     "gzip": 25111,
@@ -1285,113 +1285,113 @@
     "dependencySizes": [
       {
         "name": "react-range",
-        "approximateSize": 16572
+        "approximateSize": 9465
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       }
     ],
     "gzip": 33308,
     "minified": 78275
   },
   "spinner": {
-    "size": 100733,
+    "size": 60851,
     "dependencySizes": [
       {
-        "name": "react",
-        "approximateSize": 6663
-      },
-      {
         "name": "react-is",
-        "approximateSize": 2241
-      },
-      {
-        "name": "styletron-react",
-        "approximateSize": 13831
-      },
-      {
-        "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1467
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
+      },
+      {
+        "name": "styletron-react",
+        "approximateSize": 6869
+      },
+      {
+        "name": "object-assign",
+        "approximateSize": 1085
+      },
+      {
+        "name": "react",
+        "approximateSize": 5008
       }
     ],
-    "gzip": 32583,
-    "minified": 100085
+    "gzip": 24571,
+    "minified": 60203
   },
   "table": {
     "size": 269174,
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "@babel/runtime",
-        "approximateSize": 897
+        "approximateSize": 1145
       },
       {
         "name": "react-focus-lock",
-        "approximateSize": 13651
+        "approximateSize": 8924
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "focus-lock",
-        "approximateSize": 10869
+        "approximateSize": 8223
       },
       {
         "name": "react-clientside-effect",
-        "approximateSize": 1689
+        "approximateSize": 1058
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "prop-types",
-        "approximateSize": 1422
+        "approximateSize": 1518
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "popper.js",
-        "approximateSize": 34412
+        "approximateSize": 16380
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       }
     ],
     "gzip": 127709,
@@ -1402,55 +1402,55 @@
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "react-focus-lock",
-        "approximateSize": 13651
+        "approximateSize": 8924
       },
       {
         "name": "focus-lock",
-        "approximateSize": 10869
+        "approximateSize": 8223
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "@babel/runtime",
-        "approximateSize": 897
+        "approximateSize": 1145
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "prop-types",
-        "approximateSize": 1422
+        "approximateSize": 1518
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "react-clientside-effect",
-        "approximateSize": 1689
+        "approximateSize": 1058
       },
       {
         "name": "popper.js",
-        "approximateSize": 34412
+        "approximateSize": 16380
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       }
     ],
     "gzip": 128096,
@@ -1461,23 +1461,23 @@
     "dependencySizes": [
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       }
     ],
     "gzip": 26718,
@@ -1488,105 +1488,105 @@
     "dependencySizes": [
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "polished",
-        "approximateSize": 56438
+        "approximateSize": 28614
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       }
     ],
     "gzip": 46361,
     "minified": 104139
   },
   "textarea": {
-    "size": 265034,
+    "size": 229254,
     "dependencySizes": [
       {
+        "name": "react-is",
+        "approximateSize": 1467
+      },
+      {
         "name": "webpack",
-        "approximateSize": 149
-      },
-      {
-        "name": "react",
-        "approximateSize": 6663
-      },
-      {
-        "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 243
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
-        "name": "react-is",
-        "approximateSize": 2241
+        "name": "styletron-standard",
+        "approximateSize": 955
       },
       {
         "name": "react-input-mask",
-        "approximateSize": 14531
+        "approximateSize": 8501
+      },
+      {
+        "name": "react",
+        "approximateSize": 5008
       },
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       }
     ],
-    "gzip": 115259,
-    "minified": 263633
+    "gzip": 107782,
+    "minified": 227853
   },
   "toast": {
     "size": 189597,
     "dependencySizes": [
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "just-extend",
-        "approximateSize": 702
+        "approximateSize": 645
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       }
     ],
     "gzip": 93649,
@@ -1597,35 +1597,35 @@
     "dependencySizes": [
       {
         "name": "react-dom",
-        "approximateSize": 111179
+        "approximateSize": 64818
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "popper.js",
-        "approximateSize": 34412
+        "approximateSize": 16380
       },
       {
         "name": "webpack",
-        "approximateSize": 149
+        "approximateSize": 243
       }
     ],
     "gzip": 111129,
@@ -1636,23 +1636,23 @@
     "dependencySizes": [
       {
         "name": "styletron-standard",
-        "approximateSize": 1296
+        "approximateSize": 955
       },
       {
         "name": "react",
-        "approximateSize": 6663
+        "approximateSize": 5008
       },
       {
         "name": "styletron-react",
-        "approximateSize": 13831
+        "approximateSize": 6869
       },
       {
         "name": "react-is",
-        "approximateSize": 2241
+        "approximateSize": 1467
       },
       {
         "name": "object-assign",
-        "approximateSize": 1232
+        "approximateSize": 1085
       }
     ],
     "gzip": 26653,

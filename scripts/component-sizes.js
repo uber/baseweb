@@ -199,7 +199,7 @@ function getDependencySizes(stats) {
           throw new Error('Uglifying failed' + uglifiedSource.error);
         }
 
-        return acc + getByteLen(uglifiedSource.code);
+        return acc + getByteLen(gzipSync(uglifiedSource.code));
       }, 0);
 
       return {
@@ -333,6 +333,10 @@ function compare(original, current) {
     const originalSize = original[components[i]].size;
     const currentSize = current[components[i]].size;
 
+    console.log(
+      `Size of ${components[i]}: ${currentSize} bytes. On master, it is ${originalSize} bytes`,
+    );
+
     const ratio = currentSize / originalSize;
     if (ratio > 1.1 || ratio < 0.9) {
       console.error(`This size of ${components[i]} changed signifcantly`);
@@ -368,13 +372,13 @@ async function main() {
     data[components[i]] = await getStatsForComponent(components[i]);
   }
 
-  compare(original, data);
-
   if (process.env.FORCE_UPDATE) {
     const filePath = path.join(__dirname, '../component-sizes.json');
 
     fs.unlinkSync(filePath);
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  } else {
+    compare(original, data);
   }
 }
 

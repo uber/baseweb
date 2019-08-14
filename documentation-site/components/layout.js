@@ -183,12 +183,13 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     content={
                       <div>
                         <p>
-                          Some of the component's dependencies are one-time
+                          Some of the component{"'"}s dependencies are one-time
                           costs for your application, like React or Styletron.
                         </p>
                         <p>
                           Below you can find the full breakdown of dependencies
-                          associated with this component.
+                          and their approximate size associated with this
+                          component:
                         </p>
                         <ul>
                           {componentStats.dependencySizes.map(dep => (
