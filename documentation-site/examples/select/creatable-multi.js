@@ -1,21 +1,25 @@
 // @flow
 import * as React from 'react';
-import {StatefulSelect} from 'baseui/select';
+import {Select} from 'baseui/select';
 
-export default () => (
-  <StatefulSelect
-    creatable
-    multi
-    options={[
-      {id: 'Portland', label: 'Portland'},
-      {id: 'NYC', label: 'New York City'},
-      {id: 'LosAngeles', label: 'Los Angeles'},
-      {id: 'Boston', label: 'Boston'},
-      {id: 'Atlanta', label: 'Atlanta'},
-      {id: 'SanFrancisco', label: 'San Francisco'},
-    ]}
-    labelKey="label"
-    valueKey="id"
-    onChange={event => console.log(event)}
-  />
-);
+export default () => {
+  const [value, setValue] = React.useState([]);
+  return (
+    <Select
+      creatable
+      multi
+      options={[
+        {id: 'Portland', label: 'Portland'},
+        {id: 'NYC', label: 'New York City'},
+        {id: 'LosAngeles', label: 'Los Angeles'},
+        {id: 'Boston', label: 'Boston'},
+        {id: 'Atlanta', label: 'Atlanta'},
+        {id: 'SanFrancisco', label: 'San Francisco'},
+      ]}
+      labelKey="label"
+      valueKey="id"
+      onChange={({value}) => setValue(value)}
+      value={value}
+    />
+  );
+};

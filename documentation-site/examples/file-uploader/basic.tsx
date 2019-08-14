@@ -1,48 +1,79 @@
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
 
-export default class Uploader extends React.Component<
-  {},
-  {progressAmount: number}
-> {
-  state = {progressAmount: 0};
-  intervalId: number = 0;
+// https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+function useInterval(callback: any, delay: number | null) {
+  const savedCallback = React.useRef(() => {});
 
-  // startProgress method is only illustrative. Use the progress info returned
-  // from your upload endpoint. If unavailable, do not provide a progressAmount.
-  startProgress = () => {
-    this.intervalId = window.setInterval(() => {
-      if (this.state.progressAmount >= 100) {
-        this.reset();
-      } else {
-        this.setState({
-          progressAmount: this.state.progressAmount + 10,
-        });
-      }
-    }, 500);
-  };
+  // Remember the latest callback.
+  React.useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
 
-  // reset the component to its original state. use this to cancel/retry the upload.
-  reset = () => {
-    clearInterval(this.intervalId);
-    this.setState({progressAmount: 0});
-  };
-
-  render() {
-    return (
-      <FileUploader
-        onCancel={this.reset}
-        onDrop={() => {
-          // handle file upload...
-          this.startProgress();
-        }}
-        progressAmount={this.state.progressAmount}
-        progressMessage={
-          this.state.progressAmount
-            ? `Uploading... ${this.state.progressAmount}% of 100%`
-            : ''
-        }
-      />
-    );
-  }
+  // Set up the interval.
+  React.useEffect((): any => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 }
+
+// useFakeProgress is an elaborate way to show a fake file transfer for illustrative purposes. You
+// don't need this is your application. Use metadata from your upload destination if it's available,
+// or don't provide progress.
+function useFakeProgress(): [number, () => void, () => void] {
+  const [fakeProgress, setFakeProgress] = React.useState(0);
+  const [isActive, setIsActive] = React.useState(false);
+
+  function stopFakeProgress() {
+    setIsActive(false);
+    setFakeProgress(0);
+  }
+
+  function startFakeProgress() {
+    setIsActive(true);
+  }
+
+  useInterval(
+    () => {
+      if (fakeProgress >= 100) {
+        stopFakeProgress();
+      } else {
+        setFakeProgress(fakeProgress + 10);
+      }
+    },
+    isActive ? 500 : null,
+  );
+
+  return [fakeProgress, startFakeProgress, stopFakeProgress];
+}
+
+export default () => {
+  const [
+    progressAmount,
+    startFakeProgress,
+    stopFakeProgress,
+  ] = useFakeProgress();
+
+  return (
+    <FileUploader
+      onCancel={stopFakeProgress}
+      onDrop={(acceptedFiles, rejectedFiles) => {
+        // handle file upload...
+        console.log(acceptedFiles, rejectedFiles);
+        startFakeProgress();
+      }}
+      // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
+      progressAmount={progressAmount}
+      progressMessage={
+        progressAmount
+          ? `Uploading... ${progressAmount}% of 100%`
+          : ''
+      }
+    />
+  );
+};

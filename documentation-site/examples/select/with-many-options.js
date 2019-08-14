@@ -1,10 +1,7 @@
 // @flow
 import React from 'react';
 import {withStyle} from 'baseui';
-import {
-  StatefulSelect,
-  StyledDropdownListItem,
-} from 'baseui/select';
+import {Select, StyledDropdownListItem} from 'baseui/select';
 import {StyledList} from 'baseui/menu';
 
 import List from 'react-virtualized/dist/commonjs/List';
@@ -58,12 +55,16 @@ for (let i = 0; i < 10000; i += 1) {
   });
 }
 
-export default () => (
-  <StatefulSelect
-    options={options}
-    labelKey="id"
-    valueKey="label"
-    overrides={{Dropdown: {component: VirtualList}}}
-    onChange={event => console.log(event)}
-  />
-);
+export default () => {
+  const [value, setValue] = React.useState([]);
+  return (
+    <Select
+      options={options}
+      labelKey="id"
+      valueKey="label"
+      overrides={{Dropdown: {component: VirtualList}}}
+      onChange={({value}) => setValue(value)}
+      value={value}
+    />
+  );
+};

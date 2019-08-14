@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {Menu} from 'baseui/menu';
+import {StatefulMenu} from 'baseui/menu';
 
 const ITEMS = [
   {label: 'Item One'},
@@ -18,9 +18,8 @@ const ITEMS = [
 ];
 
 export default () => (
-  <Menu
+  <StatefulMenu
     items={ITEMS}
-    rootRef={React.createRef()}
     overrides={{
       List: {
         style: {
