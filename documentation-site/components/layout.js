@@ -103,7 +103,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     }
 
     const componentStats = ComponentSizes[component] || {dependencySizes: []};
-    const componentSizeKbs = Math.floor(componentStats.gzip / 1000);
+    const componentSizeKb = Math.floor(componentStats.gzip / 1000);
 
     const route = findByPath(Routes, path);
     let isGitHubEditDisabled;
@@ -195,7 +195,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                           {componentStats.dependencySizes.map(dep => (
                             <li key={dep.name}>
                               {dep.name} -{' '}
-                              {Math.floor(dep.approximateSize / 1000)}kbs
+                              {Math.floor(dep.approximateSize / 1000)}kb
                             </li>
                           ))}
                         </ul>
@@ -203,7 +203,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     }
                   >
                     <Block font="font200">
-                      [?] Component size, gzipped: {componentSizeKbs}kbs
+                      [?] Component size, gzipped: {componentSizeKb}kb
                     </Block>
                   </StatefulTooltip>
                 ) : null}
