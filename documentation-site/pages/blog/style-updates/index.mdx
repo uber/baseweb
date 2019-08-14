@@ -1,11 +1,9 @@
+import {Block} from 'baseui/block';
+import {Table} from 'baseui/table';
+
+import metadata from './metadata.json';
 import Layout from '../../../components/layout';
 import {BlogImage, Meta, Caption} from '../../../components/blog';
-import {Block} from 'baseui/block';
-import {StatefulInput} from 'baseui/input';
-import {StatefulSelect} from 'baseui/select';
-import {StatefulPaymentCard} from 'baseui/payment-card';
-import {StatefulPhoneInput} from 'baseui/phone-input';
-import metadata from './metadata.json';
 
 export default Layout;
 
@@ -17,83 +15,95 @@ export default Layout;
   caption="Responsive apps work across mobile and desktop"
 />
 
-Version `8.17.0` of Base Web brings some significant style changes to our components. Read below to find out what has changed and how you can incorporate these changes into your codebase.
+Version `8.17` brings some significant style changes to Base Web. Read below to find out what has changed and how you can safetly incorporate these changes into your codebase.
 
-## Increased contrast in colors
+## Base Color Palette
 
-The base color primitives for both the default light and dark theme have been adjusted. These have been changed to improve the contrast ratios across our color palette. You probably won't notice most of the color changes
+The base color primitives for both the default light and dark theme have been adjusted. These have been changed to improve the contrast ratios across our color palette.
 
 These changes are most noticeable in the gray-scale theme values. Here are the updated gray scale values:
 
-### Light theme updates
+### Light Theme Changes
 
-| Primitive  | Old       | New       |
-| ---------- | --------- | --------- |
-| `mono50`   | -         | `#F6F6F6` |
-| `mono100`  | `#FFFFFF` | `#EEEEEE` |
-| `mono200`  | `#F7F7F7` | `#E2E2E2` |
-| `mono300`  | `#F0F0F0` | `#CBCBCB` |
-| `mono400`  | `#E5E5E5` | `#AFAFAF` |
-| `mono500`  | `#CCCCCC` | `#757575` |
-| `mono600`  | `#B3B3B3` | `#545454` |
-| `mono700`  | `#999999` | `#333333` |
-| `mono800`  | `#666666` | `#272727` |
-| `mono900`  | `#333333` | `#1F1F1F` |
-| `mono1000` | `#000000` | `#141414` |
+<Table
+  columns={['Primitive', 'Old', 'New']}
+  data={[
+    ['mono50', '-', '#F6F6F6'],
+    ['mono100', '#FFFFFF', '#EEEEEE'],
+    ['mono200', '#F7F7F7', '#E2E2E2'],
+    ['mono300', '#F0F0F0', '#CBCBCB'],
+    ['mono400', '#E5E5E5', '#AFAFAF'],
+    ['mono500', '#CCCCCC', '#757575'],
+    ['mono600', '#B3B3B3', '#545454'],
+    ['mono700', '#999999', '#333333'],
+    ['mono800', '#666666', '#272727'],
+    ['mono900', '#333333', '#1F1F1F'],
+    ['mono1000', '#000000', '#141414'],
+  ]}
+/>
 
-### Dark theme updates
+### Dark Theme Changes
 
-| Primitive  | Old       | New       |
-| ---------- | --------- | --------- |
-| `mono50`   | -         | `#F6F6F6` |
-| `mono100`  | `#CCCCCC` | `#EEEEEE` |
-| `mono200`  | `#999999` | `#E2E2E2` |
-| `mono300`  | `#7A7A7A` | `#CBCBCB` |
-| `mono400`  | `#5C5C5C` | `#AFAFAF` |
-| `mono500`  | `#3D3D3D` | `#757575` |
-| `mono600`  | `#292929` | `#545454` |
-| `mono700`  | `#1F1F1F` | `#333333` |
-| `mono800`  | `#141414` | `#272727` |
-| `mono900`  | `#111111` | `#1F1F1F` |
-| `mono1000` | `#000000` | `#141414` |
+<Table
+  columns={['Primitive', 'Old', 'New']}
+  data={[
+    ['mono50', '-', '#F6F6F6'],
+    ['mono100', '#CCCCCC', '#EEEEEE'],
+    ['mono200', '#999999', '#E2E2E2'],
+    ['mono300', '#7A7A7A', '#CBCBCB'],
+    ['mono400', '#5C5C5C', '#AFAFAF'],
+    ['mono500', '#3D3D3D', '#757575'],
+    ['mono600', '#292929', '#545454'],
+    ['mono700', '#1F1F1F', '#333333'],
+    ['mono800', '#141414', '#272727'],
+    ['mono900', '#111111', '#1F1F1F'],
+    ['mono1000', '#000000', '#141414'],
+  ]}
+/>
 
 Note, the primitives for light and dark are identical now (as you can see on the right-most column for both tables). Both primitives are still being exported for backwards compatability. In a future major we may remove this redundancy.
 
 The following is a suggested mapping of old to new theme variables based on the closest matching color:
 
-### Light theme map
+### Light Theme Mapping
 
-| Old        | New       |
-| ---------- | --------- |
-| -          | `mono50`  |
-| `mono100`  | `white`   |
-| `mono200`  | `mono50`  |
-| `mono300`  | `mono100` |
-| `mono400`  | `mono200` |
-| `mono500`  | `mono300` |
-| `mono600`  | `mono400` |
-| `mono700`  | `mono500` |
-| `mono800`  | `mono600` |
-| `mono900`  | `mono700` |
-| `mono1000` | `black`   |
+<Table
+  columns={['Old', 'New']}
+  data={[
+    ['-', 'mono50'],
+    ['mono100', 'white'],
+    ['mono200', 'mono50'],
+    ['mono300', 'mono100'],
+    ['mono400', 'mono200'],
+    ['mono500', 'mono300'],
+    ['mono600', 'mono400'],
+    ['mono700', 'mono500'],
+    ['mono800', 'mono600'],
+    ['mono900', 'mono700'],
+    ['mono1000', 'black'],
+  ]}
+/>
 
-### Dark theme map
+### Dark Theme Mapping
 
-| Old        | New       |
-| ---------- | --------- |
-| -          | `mono50`  |
-| `mono100`  | `mono300` |
-| `mono200`  | `mono400` |
-| `mono300`  | `mono500` |
-| `mono400`  | `mono600` |
-| `mono500`  | `mono700` |
-| `mono600`  | `mono800` |
-| `mono700`  | `mono900` |
-| `mono800`  | `mono900` |
-| `mono900`  | `mono900` |
-| `mono1000` | `black`   |
+<Table
+  columns={['Old', 'New']}
+  data={[
+    ['-', `mono50`],
+    [`mono100`, `mono300`],
+    [`mono200`, `mono400`],
+    [`mono300`, `mono500`],
+    [`mono400`, `mono600`],
+    [`mono500`, `mono700`],
+    [`mono600`, `mono800`],
+    [`mono700`, `mono900`],
+    [`mono800`, `mono900`],
+    [`mono900`, `mono900`],
+    [`mono1000`, `black`],
+  ]}
+/>
 
-## Black is the new blue
+## Black is the New Blue
 
 The use of `primary` blue has been greatly reduced in favor of `black`. The most noticeable instances of this change are in our buttons and the highlight on various inputs. Here is a list of affected components:
 
@@ -113,7 +123,9 @@ The use of `primary` blue has been greatly reduced in favor of `black`. The most
 
 We realize these changes may conflict with your app's styles so we've added new theme variables to allow you to easily tweak things as needed.
 
-After updating to `v8.17.0` you can use the following theme variables to keep your app looking almost identical to `v8.16.X`:
+After updating to `v8.17` you can use the following [theme variables](/theming/custom-themes) to keep your app looking as it did in `v8.16`:
+
+### v8.16 Theme Values
 
 ```js
 const colors = {
@@ -188,15 +200,15 @@ const colors = {
 
 That's a lot of stuff, so let's break down some of the changes in more detail...
 
-### Border focus
+### Border Focus
 
-The default highlight for focus is now `black` in the light theme and `white` in the dark theme.
+The default highlight for focus is now `black` in the light theme and `white` in the dark theme. You can adjust the `borderFocus` theme property back to `primary` or whatever you like.
 
 ### Button
 
-The `Button` component has various `kind` values that change the coloring. The default button colors now use a gray-scale rather than variations on the `primary` blue color.
+The `Button` component has various `kind` values that change the coloring. The default button kinds now use a gray-scale rather than variations on the `primary` blue color.
 
-### ButtonGroup
+### Button Group
 
 The `ButtonGroup` component has been updated to use buttons with `kind={KIND.secondary}` rather than the previous `tertiary`. If you still want to use `tertiary` you can now use `kind` as a top level prop on `ButtonGroup`:
 
@@ -208,7 +220,7 @@ This will set the children buttons to whatever kind you have passed to `ButtonGr
 
 A note on `selected` styling: If the buttons are `tertiary` or `secondary`, `buttonGroupSelectedFill` and `buttonGroupSelectedText` will be used to style the selected button. If the type is `primary`, the default styling is the `active` state of your `primary` button.
 
-### KIND.minimal
+### Minimal Button
 
 We are deprecating the `minimal` button. `tertiary` now serves the same purpose and so the two are redundant. We haven't removed the option yet to avoid breaking your code, so you can still set your buttons to `kind={KIND.minimal}` and use theme variables to style them uniquely. We encourage you to use `tertiary` going forward instead however, as the `minimal` button may be removed in a future major.
 
@@ -222,46 +234,56 @@ The default typography values included in our theme have been adjusted. The over
 
 Here is a mapping of the old and new values:
 
-| Type       | Old        | New        | Purpose                   |
-| ---------- | ---------- | ---------- | ------------------------- |
-| `font100`  | 11/16/400  | 12/20/400  | Paragraph, Caption, Label |
-| `font150`  | -          | 12/20/500  | Paragraph, Caption, Label |
-| `font200`  | 12/20/400  | 14/20/400  | Paragraph, Label          |
-| `font250`  | 12/20/500  | 14/20/500  | Paragraph, Label          |
-| `font300`  | 14/20/400  | 16/24/400  | Paragraph, Label          |
-| `font350`  | 14/20/500  | 16/24/500  | Paragraph, Label          |
-| `font400`  | 16/24/400  | 18/28/400  | Paragraph, Label          |
-| `font450`  | 16/24/500  | 18/28/500  | Paragraph, Label          |
-| `font460`  | 18/24/400  | 20/28/500  | Header                    |
-| `font470`  | 18/24/500  | 24/32/500  | Header                    |
-| `font500`  | 20/28/500  | 28/36/500  | Header                    |
-| `font600`  | 24/36/500  | 32/40/500  | Header                    |
-| `font700`  | 32/48/500  | 36/44/500  | Header                    |
-| `font800`  | 40/56/500  | 40/52/500  | Header                    |
-| `font900`  | 52/68/500  | 36/44/500  | Display                   |
-| `font1000` | 72/68/400  | 44/52/500  | Display                   |
-| `font1100` | 96/116/400 | 52/64/500  | Display                   |
-| `font1200` | -          | 96/112/500 | Display                   |
+### Typography Updates
 
-Notice that there are now four **Display** values. We use these internally with a different font family as an alternate typography for certain headings. One side-effect of this is that the scale no longer consistently correlates "higher" font values with larger font sizes. For example, the **Display** values start at `font900` with a `font-size: 36px`, even though `font800` has a `font-size: 40px`.
+<Table
+  columns={['Type', 'Old', 'New', 'Purpose']}
+  data={[
+    [`font100`, `11/16/400`, `12/20/400`, `Paragraph, Caption, Label`],
+    [`font150`, `-`, `12/20/500`, `Paragraph, Caption, Label`],
+    [`font200`, `12/20/400`, `14/20/400`, `Paragraph, Label`],
+    [`font250`, `12/20/500`, `14/20/500`, `Paragraph, Label`],
+    [`font300`, `14/20/400`, `16/24/400`, `Paragraph, Label`],
+    [`font350`, `14/20/500`, `16/24/500`, `Paragraph, Label`],
+    [`font400`, `16/24/400`, `18/28/400`, `Paragraph, Label`],
+    [`font450`, `16/24/500`, `18/28/500`, `Paragraph, Label`],
+    [`font460`, `18/24/400`, `20/28/500`, `Header`],
+    [`font470`, `18/24/500`, `24/32/500`, `Header`],
+    [`font500`, `20/28/500`, `28/36/500`, `Header`],
+    [`font600`, `24/36/500`, `32/40/500`, `Header`],
+    [`font700`, `32/48/500`, `36/44/500`, `Header`],
+    [`font800`, `40/56/500`, `40/52/500`, `Header`],
+    [`font900`, `52/68/500`, `36/44/500`, `Display`],
+    [`font1000`, `72/68/400`, `44/52/500`, `Display`],
+    [`font1100`, `96/116/400`, `52/64/500`, `Display`],
+    [`font1200`, `-`, `96/112/500`, `Display`],
+  ]}
+/>
+
+Notice that there are now four **Display** values. At Uber, we use these with a different font family as an alternate typography for certain headings. One side-effect of this is that the scale no longer consistently correlates "higher" font values with larger font sizes. For example, the Display values start at `font900` with a `font-size: 36px`, even though `font800` has a `font-size: 40px`.
 
 The following is a suggested mapping of old to new theme variables based on the closest matching size:
 
-| Old        | New        |
-| ---------- | ---------- |
-| `font100`  | `font100`  |
-| `font200`  | `font100`  |
-| `font250`  | `font150`  |
-| `font300`  | `font200`  |
-| `font350`  | `font250`  |
-| `font400`  | `font300`  |
-| `font450`  | `font350`  |
-| `font460`  | `font400`  |
-| `font470`  | `font450`  |
-| `font500`  | `font460`  |
-| `font600`  | `font470`  |
-| `font700`  | `font600`  |
-| `font800`  | `font800`  |
-| `font900`  | `font1100` |
-| `font1000` | `font1100` |
-| `font1100` | `font1200` |
+### Typography Mapping
+
+<Table
+  columns={['Old', 'New']}
+  data={[
+    [`font100`, `font100`],
+    [`font200`, `font100`],
+    [`font250`, `font150`],
+    [`font300`, `font200`],
+    [`font350`, `font250`],
+    [`font400`, `font300`],
+    [`font450`, `font350`],
+    [`font460`, `font400`],
+    [`font470`, `font450`],
+    [`font500`, `font460`],
+    [`font600`, `font470`],
+    [`font700`, `font600`],
+    [`font800`, `font800`],
+    [`font900`, `font1100`],
+    [`font1000`, `font1100`],
+    [`font1100`, `font1200`],
+  ]}
+/>
