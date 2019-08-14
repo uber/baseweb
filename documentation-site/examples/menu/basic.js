@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react';
-import {Menu} from 'baseui/menu';
+import {StatefulMenu} from 'baseui/menu';
 
 const ITEMS = [
   {label: 'Item One'},
   {label: 'Item Two'},
-  {label: 'Item Three'},
-  {label: 'Item Four'},
+  {label: 'Item Three', disabled: true},
+  {label: 'Item Four', disabled: true},
   {label: 'Item Five'},
   {label: 'Item Six'},
   {label: 'Item Seven'},
@@ -18,13 +18,14 @@ const ITEMS = [
 ];
 
 export default () => (
-  <Menu
+  <StatefulMenu
     items={ITEMS}
-    rootRef={React.createRef()}
+    onItemSelect={console.log}
     overrides={{
       List: {
         style: {
-          width: '200px',
+          height: '250px',
+          width: '350px',
         },
       },
       Option: {
