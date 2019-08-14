@@ -1,10 +1,10 @@
 {
   "author": "Graham Murdoch",
   "authorLink": "https://github.com/sandgraham",
-  "title": "Style Updates in v8.17",
-  "tagline": "Everything you need to know about the latest updates",
+  "title": "Color and Typography Updates in V8.17",
+  "tagline": "Everything you need to know about the latest style updates in Base Web",
   "date": "15 August 2019",
-  "coverImage": "/static/images/blog/responsive-web/responsive-shipper-tools.svg",
+  "coverImage": "/static/images/blog/style-updates/baseblack.png",
   "coverImageWidth": 1200,
   "coverImageHeight": 630,
   "keyWords": [

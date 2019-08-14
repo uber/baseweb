@@ -10,18 +10,18 @@ export default Layout;
 <Meta data={metadata} />
 
 <BlogImage
-  src="/static/images/blog/responsive-web/responsive-shipper-tools.svg"
-  alt="mobile, laptop, and desktop devices running a web application"
-  caption="Responsive apps work across mobile and desktop"
+  src="/static/images/blog/style-updates/baseblack.png"
+  alt="updated base web components with black highlights"
+  caption="Base Web has an updated look"
 />
 
-Version `8.17` brings some significant style changes to Base Web. Read below to find out what has changed and how you can safetly incorporate these changes into your codebase.
+Version `8.17` brings some noticeable style updates to Base Web. Read below to find out what has changed and how you can safetly incorporate these changes into your codebase.
 
 ## Base Color Palette
 
 The base color primitives for both the default light and dark theme have been adjusted. These have been changed to improve the contrast ratios across our color palette.
 
-These changes are most noticeable in the gray-scale theme values. Here are the updated gray scale values:
+The changes in most of the color ways are quite subtle, but the gray (mono) palette has shifted more noticeably. Here are the updated gray scale values:
 
 ### Light Theme Changes
 
@@ -61,9 +61,16 @@ These changes are most noticeable in the gray-scale theme values. Here are the u
   ]}
 />
 
-Note, the primitives for light and dark are identical now (as you can see on the right-most column for both tables). Both primitives are still being exported for backwards compatability. In a future major we may remove this redundancy.
+<Caption>
+  Note, the primitives for light and dark are identical now (as you can see on
+  the right-most column for both tables). Both primitives are still being
+  exported for backwards compatability. In a future major we may remove this
+  redundancy.
+</Caption>
 
-The following is a suggested mapping of old to new theme variables based on the closest matching color:
+The new gray scale does not mean everything is now two shades darker. We have shifted our use of grays across all of Base Web's components in order to keep the values consistent. However, if you access the gray values on the theme object directly you may need to update your code.
+
+The following is a suggested mapping of old to new theme properties based on the closest matching color:
 
 ### Light Theme Mapping
 
@@ -102,6 +109,33 @@ The following is a suggested mapping of old to new theme variables based on the 
     [`mono1000`, `black`],
   ]}
 />
+
+Here is an example of updating direct usage of grays from the theme object:
+
+```jsx
+// OLD, mono200 is #F7F7F7 and mono800 is #666666
+const StyledFoo = styled('div', props => ({
+  color: props.$theme.colors.mono800,
+  backgroundColor: props.$theme.colors.mono200,
+}));
+
+// NEW, mono50 is #F6F6F6 and mono600 is #545454
+// these aren't exact, but the nearest values in the new scale
+const StyledFoo = styled('div', props => ({
+  color: props.$theme.colors.mono600,
+  backgroundColor: props.$theme.colors.mono50,
+}));
+```
+
+Or, if you use a `Block` to apply theme values, those will need adjusting as well:
+
+```jsx
+// OLD
+<Block color="mono200" backgroundColor="mono800" />
+
+// NEW
+<Block color="mono50" backgroundColor="mono600" />
+```
 
 ## Black is the New Blue
 
@@ -287,3 +321,53 @@ The following is a suggested mapping of old to new theme variables based on the 
     [`font1100`, `font1200`],
   ]}
 />
+
+All of Base Web's components have been adjusted to use these new values, so you will only have to update your code in places you have used theme typography properties directly:
+
+```jsx
+// old
+// font300 used to return 14px/20px/400
+const StyledFoo = styled('div', props => ({
+  ...props.$theme.typography.font300,
+}));
+
+// new
+// font200 now returns 14px/20px/400
+const StyledFoo = styled('div', props => ({
+  ...props.$theme.typography.font200,
+}));
+```
+
+If you use the `Block` component to apply theme font properties, you will need to adjust those as well:
+
+```jsx
+// old
+<Block font="font300" />
+
+// new
+<Block font="font200" />
+```
+
+## Reasoning
+
+Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Others might ask why these changes are coming as a minor version and not a breaking major. Afterall, this version will likely require code changes in projects that use Base Web.
+
+It is important to remember that Uber's Base design system is still evolving. The Base Web library has an ever moving target ahead of it. Style changes are, at this point, a constant reality for the project.
+
+We on the Base Web team consider this one of the main features of Base Web. Folks who use the Base design system, as Uber does on hundreds of projects, know that by staying on the latest version of `baseui`, their app remains on brand and consitent with other products.
+
+If we had to release a major every time we updated the visual styles of the library we would likely have a new one every week. Teams facing a slew of major updates would easily fall behind and projects would inevitably diverge.
+For this reason we decided in our [versioning policy](/getting-started/versioning-policy) that style updates would not be considered breaking changes.
+
+This is why all of these updates are considered a minor bump to `v8.17` and not a major release of `v9.0`.
+
+All of that said, we have tried to make it an easy transition to `v8.17`. There are no backwards incompatable changes, so your project, even if it looks different, should not throw any novel errors from these updates. Additionally, the new theme variables provided allow you to "undo" any style updates that you don't like.
+
+Of course, we hope you _do_ like the changes.
+
+---
+
+<Caption>
+  Feel free to reach out to us on our Slack channel or through a GitHub issue if
+  you think there is something missing from this migration guide.
+</Caption>
