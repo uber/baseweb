@@ -1,6 +1,6 @@
 [build]
   publish = "public/"
-  command = "yarn install --production=false && yarn documentation:build && yarn build-storybook"
+  command = "yarn install --production=false && yarn documentation:build"
 
 [build.environment]
   NODE_ENV = "production"
