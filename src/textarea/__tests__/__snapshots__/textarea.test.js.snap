@@ -79,12 +79,14 @@ Object {
     "Input": Object {
       "component": Object {
         "$$typeof": Symbol(react.forward_ref),
+        "displayName": "StyledTextarea",
         "render": [Function],
       },
     },
     "InputContainer": Object {
       "component": Object {
         "$$typeof": Symbol(react.forward_ref),
+        "displayName": "StyledTextareaContainer",
         "render": [Function],
       },
     },
