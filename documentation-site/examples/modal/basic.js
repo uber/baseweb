@@ -30,7 +30,7 @@ class ModalStateContainer extends React.Component<
   };
   toggle = (open: boolean = !this.state.isOpen) => {
     this.setState({
-      isOpen: !!open,
+      isOpen: open,
     });
   };
   open = () => {
