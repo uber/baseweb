@@ -73,7 +73,6 @@ const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
     paddingRight: $theme.sizing.scale800,
     width: '100%',
     maxWidth: '40em',
-    flex: 2,
     '@media screen and (min-width: 920px)': {
       display: 'block',
       maxWidth: '40em',
