@@ -33,13 +33,14 @@ export const flexGridItemMediaQueryStyle = ({
   const rowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
   const colGapQuantity = parseFloat(colGap);
   const colGapUnit = colGap.match(/[a-zA-Z]+/)[0];
-  const widthCalc = `${Math.floor(100 / colCount)}% - ${((colCount - 1) *
-    colGapQuantity) /
-    colCount}${colGapUnit}`;
+  const widthCalc = `(100% - ${(colCount - 1) *
+    colGapQuantity}${colGapUnit}) / ${colCount}`;
   const marginDirection =
     $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
-    width: `calc(${widthCalc})`,
+    // Subtract .5px to avoid rounding issues on IE/Edge
+    // See https://github.com/uber-web/baseui/pull/1748
+    width: `calc(${widthCalc} - .5px)`,
     ...[...Array(colCount).keys()].reduce(
       (acc, i) => ({
         // Iterate over each column i for 0 <= i < colCount
