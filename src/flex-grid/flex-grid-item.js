@@ -30,9 +30,9 @@ export const flexGridItemMediaQueryStyle = ({
   const colCount = flexGridColumnCount;
   // 0px needed for calc() to behave properly
   const colGap = $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
-  const rowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
   const colGapQuantity = parseFloat(colGap);
   const colGapUnit = colGap.match(/[a-zA-Z]+/)[0];
+  const rowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
   const widthCalc = `(100% - ${(colCount - 1) *
     colGapQuantity}${colGapUnit}) / ${colCount}`;
   const marginDirection =
