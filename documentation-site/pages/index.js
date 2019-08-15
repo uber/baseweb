@@ -10,9 +10,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
+import {FlexGrid, FlexGridItem} from 'baseui/flex-grid';
 import {StyledLink as Link} from 'baseui/link';
 import {H1, H2} from '../components/markdown-elements';
-import {Card, StyledBody, StyledAction} from 'baseui/card';
+import {Card, StyledBody} from 'baseui/card';
 import {Tag} from 'baseui/tag';
 import fetch from 'isomorphic-fetch';
 
@@ -41,6 +42,41 @@ const cardOverrides = {
   },
 };
 
+const Adopters = (props: {logoSrcs: string[]}) => (
+  <>
+    <H2>Who is using Base Web?</H2>
+    <Block>
+      <FlexGrid flexGridColumnCount={3} backgroundColor="mono100">
+        {props.logoSrcs.map((logoSrc, i) => (
+          <FlexGridItem
+            key={i}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Block width="125px" $as="img" src={logoSrc} />
+          </FlexGridItem>
+        ))}
+      </FlexGrid>
+      <Button
+        $as="a"
+        href="http://t.uber.com/base-web-adopters"
+        size="compact"
+        kind="secondary"
+        overrides={{
+          BaseButton: {
+            style: ({$theme}) => ({
+              marginTop: $theme.sizing.scale800,
+            }),
+          },
+        }}
+      >
+        Please let us know if you are using Base Web!
+      </Button>
+    </Block>
+  </>
+);
+
 const Index = (props: {
   toggleTheme: () => void,
   toggleDirection: () => void,
@@ -51,7 +87,7 @@ const Index = (props: {
     toggleTheme={props.toggleTheme}
   >
     <Block
-      paddingTop={['scale100', 'scale400', 'scale800']}
+      marginTop={['scale100', 'scale400', 'scale800']}
       display="block"
       $as="a"
       href={BlogPosts[0].path}
@@ -85,7 +121,7 @@ const Index = (props: {
           style: {
             flexWrap: 'wrap',
             [HEADER_BREAKPOINT]: {
-              flexWrap: 'noWrap',
+              flexWrap: 'nowrap',
             },
           },
         },
@@ -96,33 +132,42 @@ const Index = (props: {
           Base Web is distributed as an npm package. As Base Web is built on top
           of a CSS-in-JS engine, all you need is the dependencies from npm.
         </StyledBody>
-        <StyledAction>
-          <Block
-            $as="a"
-            href="/getting-started/installation"
-            $style={{textDecoration: 'none'}}
-          >
-            <Button style={{width: '100%'}}>Install Base Web</Button>
-          </Block>
-        </StyledAction>
+        <Button
+          $as="a"
+          href="/getting-started/installation"
+          overrides={{
+            BaseButton: {
+              style: ({$theme}) => ({
+                boxSizing: 'border-box',
+                width: '100%',
+              }),
+            },
+          }}
+        >
+          Install Base Web
+        </Button>
       </Card>
 
       <Card title="Learning Base Web" overrides={cardOverrides}>
         <StyledBody>
           Probably the best way to learn Base Web is by start building an
-          application using it. On this page, you
-          {"'"}
-          ll find a simple and a more complex app built using Base Web.
+          application using it. On this page, you’ll find a simple and a more
+          complex app built using Base Web.
         </StyledBody>
-        <StyledAction>
-          <Block
-            $as="a"
-            href="/getting-started/learn"
-            $style={{textDecoration: 'none'}}
-          >
-            <Button style={{width: '100%'}}>Learn more</Button>
-          </Block>
-        </StyledAction>
+        <Button
+          $as="a"
+          href="/getting-started/learn"
+          overrides={{
+            BaseButton: {
+              style: ({$theme}) => ({
+                boxSizing: 'border-box',
+                width: '100%',
+              }),
+            },
+          }}
+        >
+          Learn more
+        </Button>
       </Card>
     </Block>
     <H2>Extensibility</H2>
@@ -136,7 +181,7 @@ const Index = (props: {
     </Markdown.p>
     <H2>Built-in Accessibility</H2>
     <Markdown.p>
-      Base Web does the heavy lifting for you - components are built with
+      Base Web does the heavy lifting for you—components are built with
       accessibility being a first-class citizen.
     </Markdown.p>
     <H2>Performance</H2>
@@ -147,30 +192,12 @@ const Index = (props: {
       </Link>
       , this is one of the fastest solution.
     </Markdown.p>
-    <H2>Who is using Base Web?</H2>
-    <Block>
-      <Block
-        display="grid"
-        gridTemplateColumns="repeat(3, 1fr)"
-        alignItems="center"
-        justifyItems="center"
-        backgroundColor="mono100"
-      >
-        <Block width="125px" $as="img" src="/static/images/uber-logo.png" />
-        <Block width="125px" $as="img" src="/static/images/broadcom-logo.svg" />
-      </Block>
-      <Block
-        $as="a"
-        href="http://t.uber.com/base-web-adopters"
-        $style={{textDecoration: 'none'}}
-        display="block"
-        paddingTop="scale800"
-      >
-        <Button size="compact" kind="secondary">
-          Please let us know if you are using Base Web!
-        </Button>
-      </Block>
-    </Block>
+    <Adopters
+      logoSrcs={[
+        '/static/images/uber-logo.png',
+        '/static/images/broadcom-logo.png',
+      ]}
+    />
     <Contributors contributors={props.contributors} />
   </Layout>
 );
