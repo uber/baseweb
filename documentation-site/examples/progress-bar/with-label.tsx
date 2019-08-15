@@ -3,31 +3,42 @@ import {ProgressBar} from 'baseui/progress-bar';
 
 const SUCCESS_VALUE = 100;
 
-export default class Basic extends React.Component {
-  state = {value: 0};
-  timerId!: number;
+// https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+function useInterval(callback: () => void, delay: number | null) {
+  const savedCallback = React.useRef(() => {});
 
-  componentWillUnmount() {
-    window.clearInterval(this.timerId);
-  }
+  // Remember the latest callback.
+  React.useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
 
-  componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      if (this.state.value < SUCCESS_VALUE) {
-        this.setState({value: this.state.value + 10});
-      } else {
-        this.setState({value: 0});
-      }
-    }, 1500);
-  }
-
-  render() {
-    return (
-      <ProgressBar
-        value={this.state.value}
-        successValue={SUCCESS_VALUE}
-        showLabel
-      />
-    );
-  }
+  // Set up the interval.
+  React.useEffect((): any => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 }
+
+export default () => {
+  const [value, setValue] = React.useState(0);
+  useInterval(() => {
+    if (value < SUCCESS_VALUE) {
+      setValue(value + 10);
+    } else {
+      setValue(0);
+    }
+  }, 1000);
+
+  return (
+    <ProgressBar
+      value={value}
+      successValue={SUCCESS_VALUE}
+      showLabel
+    />
+  );
+};

@@ -44,6 +44,7 @@ function Typography() {
     'font800',
     'font900',
     'font1000',
+    'font1100',
   ];
 
   return (
