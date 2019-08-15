@@ -11,6 +11,7 @@ import {styled} from 'baseui';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
+import {StatefulTooltip} from 'baseui/tooltip';
 
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
@@ -19,6 +20,7 @@ import Footer from './footer';
 import PencilIcon from './pencil-icon';
 import Routes from '../routes';
 import DirectionContext from '../components/direction-context';
+import ComponentSizes from '../../component-sizes.json';
 
 const GH_URL =
   'https://github.com/uber-web/baseui/blob/master/documentation-site/pages';
@@ -89,11 +91,19 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   render() {
     const {sidebarOpen} = this.state;
     const {toggleTheme, toggleDirection, children} = this.props;
-    let {path} = this.props;
+    let {path = ''} = this.props;
+    let component;
 
     if (path && path.endsWith('/')) {
       path = path.slice(0, -1);
     }
+
+    if (path.includes('/components')) {
+      component = path.replace('/components/', '');
+    }
+
+    const componentStats = ComponentSizes[component] || {dependencySizes: []};
+    const componentSizeKb = Math.floor(componentStats.gzip / 1000);
 
     const route = findByPath(Routes, path);
     let isGitHubEditDisabled;
@@ -167,6 +177,36 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     </Button>
                   </Block>
                 )}
+                {componentStats.size ? (
+                  <StatefulTooltip
+                    accessibilityType={'tooltip'}
+                    content={
+                      <div>
+                        <p>
+                          Some of the component{"'"}s dependencies are one-time
+                          costs for your application, like React or Styletron.
+                        </p>
+                        <p>
+                          Below you can find the full breakdown of dependencies
+                          and their approximate size associated with this
+                          component:
+                        </p>
+                        <ul>
+                          {componentStats.dependencySizes.map(dep => (
+                            <li key={dep.name}>
+                              {dep.name} -{' '}
+                              {Math.floor(dep.approximateSize / 1000)}kb
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    }
+                  >
+                    <Block font="font200">
+                      [?] Component size, gzipped: {componentSizeKb}kb
+                    </Block>
+                  </StatefulTooltip>
+                ) : null}
                 <MDXProvider components={MarkdownElements}>
                   {children}
                 </MDXProvider>

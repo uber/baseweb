@@ -76,6 +76,13 @@ steps:
         run: baseui
     agents:
       queue: workers
+  - name: ':guard-component-sizes:'
+    command: './scripts/component-sizes.js'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
   - name: ':documentation-site-link-checker:'
     command: yarn blc http://localhost:8081
     plugins:
