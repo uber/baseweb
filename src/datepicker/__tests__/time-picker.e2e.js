@@ -15,6 +15,8 @@ const selectors = {
   twentyFourHour: '[data-e2e="24-hour"]',
   twelveHourCreatable: '[data-e2e="12-hour-creatable"]',
   twentyFourHourCreatable: '[data-e2e="24-hour-creatable"]',
+  hours: '[data-e2e="hours"]',
+  minutes: '[data-e2e="minutes"]',
   input: 'input[role="combobox"]',
   dropdown: '[role="listbox"]',
   option: '[role="option"]',
@@ -44,8 +46,19 @@ describe('TimePicker', () => {
       `${selectors.twelveHour} ${selectors.value}`,
       select => select.textContent,
     );
-
     expect(value).toBe('1:00 AM');
+
+    const hours = await page.$eval(
+      `${selectors.twelveHour} ${selectors.hours}`,
+      select => select.textContent,
+    );
+    expect(hours).toBe('hour: 1');
+
+    const minutes = await page.$eval(
+      `${selectors.twelveHour} ${selectors.minutes}`,
+      select => select.textContent,
+    );
+    expect(minutes).toBe('minute: 0');
   });
 
   it('is renders expected 24 hour format times with custom step', async () => {
@@ -65,6 +78,18 @@ describe('TimePicker', () => {
     );
 
     expect(value).toBe('02:00');
+
+    const hours = await page.$eval(
+      `${selectors.twentyFourHour} ${selectors.hours}`,
+      select => select.textContent,
+    );
+    expect(hours).toBe('hour: 2');
+
+    const minutes = await page.$eval(
+      `${selectors.twentyFourHour} ${selectors.minutes}`,
+      select => select.textContent,
+    );
+    expect(minutes).toBe('minute: 0');
   });
 
   it('renders a date that is not one of the steps', async () => {
@@ -132,6 +157,18 @@ describe('TimePicker', () => {
       );
 
       expect(value).toBe('12:11 PM');
+
+      const hours = await page.$eval(
+        `${selectors.twelveHourCreatable} ${selectors.hours}`,
+        select => select.textContent,
+      );
+      expect(hours).toBe('hour: 12');
+
+      const minutes = await page.$eval(
+        `${selectors.twelveHourCreatable} ${selectors.minutes}`,
+        select => select.textContent,
+      );
+      expect(minutes).toBe('minute: 11');
     });
 
     it('generates the correct seconds for 12AM', async () => {

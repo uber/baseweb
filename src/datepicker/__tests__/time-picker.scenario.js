@@ -25,14 +25,18 @@ const overrides = {
 const Controlled = ({format, step, initialDate, creatable = false}) => {
   const [time, setTime] = useState(initialDate);
   return (
-    <TimePicker
-      format={format}
-      step={step}
-      value={time}
-      onChange={setTime}
-      overrides={overrides}
-      creatable={creatable}
-    />
+    <React.Fragment>
+      <TimePicker
+        format={format}
+        step={step}
+        value={time}
+        onChange={setTime}
+        overrides={overrides}
+        creatable={creatable}
+      />
+      <p data-e2e="hours">hour: {time.getHours()}</p>
+      <p data-e2e="minutes">minute: {time.getMinutes()}</p>
+    </React.Fragment>
   );
 };
 
