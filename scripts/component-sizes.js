@@ -16,6 +16,8 @@ const fs = require('fs');
 const webpack = require('webpack');
 const MemoryFS = require('memory-fs');
 const Terser = require('terser');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
 function modulePath(identifier) {
   // the format of module paths is
@@ -212,10 +214,17 @@ function getDependencySizes(stats) {
 }
 
 function makeWebpackConfig({entryPoint}) {
+  const plugins = [];
+
+  if (process.env.ANALYZER) {
+    plugins.push(new BundleAnalyzerPlugin());
+  }
+
   return {
     entry: {
       main: entryPoint,
     },
+    plugins,
     mode: 'production',
     optimization: {
       namedChunks: true,
@@ -278,8 +287,23 @@ function compile({path}) {
 }
 
 async function getStatsForComponent(component) {
+  const exceptions = {
+    'dnd-list': 'dnd-list/list',
+    link: 'link/index',
+    locale: 'locale/index',
+    'progress-bar': 'progress-bar/progressbar',
+    rating: 'rating/index',
+    'side-navigation': 'side-navigation/nav',
+    'table-grid': 'table-grid/index',
+    typography: 'typography/index',
+  };
+
+  const sourcePath = exceptions[component]
+    ? path.join(__dirname, `../src/${exceptions[component]}.js`)
+    : path.join(__dirname, `../src/${component}/${component}.js`);
+
   const stats = await compile({
-    path: path.join(__dirname, `../src/${component}/index.js`),
+    path: sourcePath,
   });
 
   let jsonStats = stats
@@ -308,6 +332,7 @@ async function getStatsForComponent(component) {
     path.join(__dirname, '../dist/main.bundle.js'),
     'utf-8',
   );
+
   const size = jsonStats.assets.filter(x => x.name === 'main.bundle.js').pop()
     .size;
   const dependencySizes = getDependencySizes(jsonStats);
@@ -362,9 +387,15 @@ async function main() {
     'layout',
   ];
 
-  const components = fs
-    .readdirSync(path.join(__dirname, '../src'))
-    .filter(name => !name.includes('.') && !blacklistFolders.includes(name));
+  let components = [];
+
+  if (process.env.COMPONENTS) {
+    components = process.env.COMPONENTS.split(',');
+  } else {
+    components = fs
+      .readdirSync(path.join(__dirname, '../src'))
+      .filter(name => !name.includes('.') && !blacklistFolders.includes(name));
+  }
 
   const data = {};
 
