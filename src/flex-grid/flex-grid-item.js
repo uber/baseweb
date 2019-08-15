@@ -27,36 +27,40 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridColumnGap: ScaleT,
   flexGridRowGap: ScaleT,
 }): StyleOverrideT => {
+  const colCount = flexGridColumnCount;
   // 0px needed for calc() to behave properly
-  flexGridColumnGap =
-    $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
-  flexGridRowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
-  const widthCalc = `(100% - (${flexGridColumnCount} - 1) * ${flexGridColumnGap}) / ${flexGridColumnCount}`;
+  const colGap = $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
+  const colGapQuantity = parseFloat(colGap);
+  const colGapUnit = colGap.match(/[a-zA-Z]+/)[0];
+  const rowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
+  const widthCalc = `(100% - ${(colCount - 1) *
+    colGapQuantity}${colGapUnit}) / ${colCount}`;
   const marginDirection =
     $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
-    width: `calc(${widthCalc})`,
-    ...[...Array(flexGridColumnCount).keys()].reduce(
+    // Subtract .5px to avoid rounding issues on IE/Edge
+    // See https://github.com/uber-web/baseui/pull/1748
+    width: `calc(${widthCalc} - .5px)`,
+    ...[...Array(colCount).keys()].reduce(
       (acc, i) => ({
-        // Iterate over each column i for 0 <= i < flexGridColumnCount
+        // Iterate over each column i for 0 <= i < colCount
         ...acc,
-        [`:nth-child(${flexGridColumnCount}n-${i})`]: {
-          // Add flexGridColumnGap except at end of row
-          [marginDirection]: i && flexGridColumnGap,
-          // Add flexGridRowGap below in general
-          marginBottom: flexGridRowGap,
+        [`:nth-child(${colCount}n-${i})`]: {
+          // Add colGap except at end of row
+          [marginDirection]: i && colGap,
+          // Add rowGap below in general
+          marginBottom: rowGap,
         },
-        [`:nth-child(${flexGridColumnCount}n-${i}):last-child`]: {
+        [`:nth-child(${colCount}n-${i}):last-child`]: {
           // Add space to make up for missing columns if row ends early
-          [marginDirection]: `calc(${i} * (${flexGridColumnGap} + ${widthCalc}))`,
+          [marginDirection]: `calc(${i} * (${colGap} + ${widthCalc}))`,
         },
         ...[...Array(i + 1).keys()].reduce(
           (acc, j) => ({
             // Iterate over each column j for 0 <= j <= i
             ...acc,
-            [`:nth-child(${flexGridColumnCount}n-${i}):nth-last-child(${j +
-              1})`]: {
-              // Remove flexGridRowGap below for last row items
+            [`:nth-child(${colCount}n-${i}):nth-last-child(${j + 1})`]: {
+              // Remove rowGap below for last row items
               marginBottom: 0,
             },
           }),
