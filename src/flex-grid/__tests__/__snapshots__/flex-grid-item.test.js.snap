@@ -7,12 +7,12 @@ Object {
     "marginRight": 0,
   },
   ":nth-child(1n-0):last-child": Object {
-    "marginRight": "calc(0 * (1px + (100% - (1 - 1) * 1px) / 1))",
+    "marginRight": "calc(0 * (1px + (100% - 0px) / 1))",
   },
   ":nth-child(1n-0):nth-last-child(1)": Object {
     "marginBottom": 0,
   },
-  "width": "calc((100% - (1 - 1) * 1px) / 1)",
+  "width": "calc((100% - 0px) / 1 - .5px)",
 }
 `;
 
@@ -23,12 +23,12 @@ Object {
     "marginRight": 0,
   },
   ":nth-child(1n-0):last-child": Object {
-    "marginRight": "calc(0 * (0px + (100% - (1 - 1) * 0px) / 1))",
+    "marginRight": "calc(0 * (0px + (100% - 0px) / 1))",
   },
   ":nth-child(1n-0):nth-last-child(1)": Object {
     "marginBottom": 0,
   },
-  "width": "calc((100% - (1 - 1) * 0px) / 1)",
+  "width": "calc((100% - 0px) / 1 - .5px)",
 }
 `;
 
@@ -39,7 +39,7 @@ Object {
     "marginRight": 0,
   },
   ":nth-child(2n-0):last-child": Object {
-    "marginRight": "calc(0 * (1px + (100% - (2 - 1) * 1px) / 2))",
+    "marginRight": "calc(0 * (1px + (100% - 1px) / 2))",
   },
   ":nth-child(2n-0):nth-last-child(1)": Object {
     "marginBottom": 0,
@@ -49,7 +49,7 @@ Object {
     "marginRight": "1px",
   },
   ":nth-child(2n-1):last-child": Object {
-    "marginRight": "calc(1 * (1px + (100% - (2 - 1) * 1px) / 2))",
+    "marginRight": "calc(1 * (1px + (100% - 1px) / 2))",
   },
   ":nth-child(2n-1):nth-last-child(1)": Object {
     "marginBottom": 0,
@@ -57,7 +57,7 @@ Object {
   ":nth-child(2n-1):nth-last-child(2)": Object {
     "marginBottom": 0,
   },
-  "width": "calc((100% - (2 - 1) * 1px) / 2)",
+  "width": "calc((100% - 1px) / 2 - .5px)",
 }
 `;
 
@@ -68,7 +68,7 @@ Object {
     "marginRight": 0,
   },
   ":nth-child(3n-0):last-child": Object {
-    "marginRight": "calc(0 * (1px + (100% - (3 - 1) * 1px) / 3))",
+    "marginRight": "calc(0 * (1px + (100% - 2px) / 3))",
   },
   ":nth-child(3n-0):nth-last-child(1)": Object {
     "marginBottom": 0,
@@ -78,7 +78,7 @@ Object {
     "marginRight": "1px",
   },
   ":nth-child(3n-1):last-child": Object {
-    "marginRight": "calc(1 * (1px + (100% - (3 - 1) * 1px) / 3))",
+    "marginRight": "calc(1 * (1px + (100% - 2px) / 3))",
   },
   ":nth-child(3n-1):nth-last-child(1)": Object {
     "marginBottom": 0,
@@ -91,7 +91,7 @@ Object {
     "marginRight": "1px",
   },
   ":nth-child(3n-2):last-child": Object {
-    "marginRight": "calc(2 * (1px + (100% - (3 - 1) * 1px) / 3))",
+    "marginRight": "calc(2 * (1px + (100% - 2px) / 3))",
   },
   ":nth-child(3n-2):nth-last-child(1)": Object {
     "marginBottom": 0,
@@ -102,7 +102,7 @@ Object {
   ":nth-child(3n-2):nth-last-child(3)": Object {
     "marginBottom": 0,
   },
-  "width": "calc((100% - (3 - 1) * 1px) / 3)",
+  "width": "calc((100% - 2px) / 3 - .5px)",
 }
 `;
 
@@ -114,12 +114,12 @@ Object {
       "marginRight": 0,
     },
     ":nth-child(1n-0):last-child": Object {
-      "marginRight": "calc(0 * (1px + (100% - (1 - 1) * 1px) / 1))",
+      "marginRight": "calc(0 * (1px + (100% - 0px) / 1))",
     },
     ":nth-child(1n-0):nth-last-child(1)": Object {
       "marginBottom": 0,
     },
-    "width": "calc((100% - (1 - 1) * 1px) / 1)",
+    "width": "calc((100% - 0px) / 1 - .5px)",
   },
   "@media screen and (min-width: 320px)": Object {
     ":nth-child(2n-0)": Object {
@@ -127,7 +127,7 @@ Object {
       "marginRight": 0,
     },
     ":nth-child(2n-0):last-child": Object {
-      "marginRight": "calc(0 * (1px + (100% - (2 - 1) * 1px) / 2))",
+      "marginRight": "calc(0 * (1px + (100% - 1px) / 2))",
     },
     ":nth-child(2n-0):nth-last-child(1)": Object {
       "marginBottom": 0,
@@ -137,7 +137,7 @@ Object {
       "marginRight": "1px",
     },
     ":nth-child(2n-1):last-child": Object {
-      "marginRight": "calc(1 * (1px + (100% - (2 - 1) * 1px) / 2))",
+      "marginRight": "calc(1 * (1px + (100% - 1px) / 2))",
     },
     ":nth-child(2n-1):nth-last-child(1)": Object {
       "marginBottom": 0,
@@ -145,7 +145,7 @@ Object {
     ":nth-child(2n-1):nth-last-child(2)": Object {
       "marginBottom": 0,
     },
-    "width": "calc((100% - (2 - 1) * 1px) / 2)",
+    "width": "calc((100% - 1px) / 2 - .5px)",
   },
   "flexGrow": 1,
 }
@@ -159,12 +159,12 @@ Object {
       "marginRight": 0,
     },
     ":nth-child(1n-0):last-child": Object {
-      "marginRight": "calc(0 * (1px + (100% - (1 - 1) * 1px) / 1))",
+      "marginRight": "calc(0 * (1px + (100% - 0px) / 1))",
     },
     ":nth-child(1n-0):nth-last-child(1)": Object {
       "marginBottom": 0,
     },
-    "width": "calc((100% - (1 - 1) * 1px) / 1)",
+    "width": "calc((100% - 0px) / 1 - .5px)",
   },
   "@media screen and (min-width: 320px)": Object {
     ":nth-child(2n-0)": Object {
@@ -172,7 +172,7 @@ Object {
       "marginRight": 0,
     },
     ":nth-child(2n-0):last-child": Object {
-      "marginRight": "calc(0 * (2px + (100% - (2 - 1) * 2px) / 2))",
+      "marginRight": "calc(0 * (2px + (100% - 2px) / 2))",
     },
     ":nth-child(2n-0):nth-last-child(1)": Object {
       "marginBottom": 0,
@@ -182,7 +182,7 @@ Object {
       "marginRight": "2px",
     },
     ":nth-child(2n-1):last-child": Object {
-      "marginRight": "calc(1 * (2px + (100% - (2 - 1) * 2px) / 2))",
+      "marginRight": "calc(1 * (2px + (100% - 2px) / 2))",
     },
     ":nth-child(2n-1):nth-last-child(1)": Object {
       "marginBottom": 0,
@@ -190,7 +190,7 @@ Object {
     ":nth-child(2n-1):nth-last-child(2)": Object {
       "marginBottom": 0,
     },
-    "width": "calc((100% - (2 - 1) * 2px) / 2)",
+    "width": "calc((100% - 2px) / 2 - .5px)",
   },
   "flexGrow": 1,
 }
@@ -203,7 +203,7 @@ Object {
     "marginRight": 0,
   },
   ":nth-child(2n-0):last-child": Object {
-    "marginRight": "calc(0 * (1px + (100% - (2 - 1) * 1px) / 2))",
+    "marginRight": "calc(0 * (1px + (100% - 1px) / 2))",
   },
   ":nth-child(2n-0):nth-last-child(1)": Object {
     "marginBottom": 0,
@@ -213,7 +213,7 @@ Object {
     "marginRight": "1px",
   },
   ":nth-child(2n-1):last-child": Object {
-    "marginRight": "calc(1 * (1px + (100% - (2 - 1) * 1px) / 2))",
+    "marginRight": "calc(1 * (1px + (100% - 1px) / 2))",
   },
   ":nth-child(2n-1):nth-last-child(1)": Object {
     "marginBottom": 0,
@@ -222,7 +222,7 @@ Object {
     "marginBottom": 0,
   },
   "flexGrow": 1,
-  "width": "calc((100% - (2 - 1) * 1px) / 2)",
+  "width": "calc((100% - 1px) / 2 - .5px)",
 }
 `;
 
@@ -233,13 +233,13 @@ Object {
     "marginRight": 0,
   },
   ":nth-child(1n-0):last-child": Object {
-    "marginRight": "calc(0 * (0px + (100% - (1 - 1) * 0px) / 1))",
+    "marginRight": "calc(0 * (0px + (100% - 0px) / 1))",
   },
   ":nth-child(1n-0):nth-last-child(1)": Object {
     "marginBottom": 0,
   },
   "flexGrow": 1,
-  "width": "calc((100% - (1 - 1) * 0px) / 1)",
+  "width": "calc((100% - 0px) / 1 - .5px)",
 }
 `;
 
@@ -287,13 +287,13 @@ exports[`FlexGridItem renders: with default styles 1`] = `
                   "marginRight": 0,
                 },
                 ":nth-child(1n-0):last-child": Object {
-                  "marginRight": "calc(0 * (0px + (100% - (1 - 1) * 0px) / 1))",
+                  "marginRight": "calc(0 * (0px + (100% - 0px) / 1))",
                 },
                 ":nth-child(1n-0):nth-last-child(1)": Object {
                   "marginBottom": 0,
                 },
                 "flexGrow": 1,
-                "width": "calc((100% - (1 - 1) * 0px) / 1)",
+                "width": "calc((100% - 0px) / 1 - .5px)",
               }
             }
           />
@@ -358,14 +358,14 @@ exports[`FlexGridItem renders: with overridden styles 1`] = `
                   "marginRight": 0,
                 },
                 ":nth-child(1n-0):last-child": Object {
-                  "marginRight": "calc(0 * (0px + (100% - (1 - 1) * 0px) / 1))",
+                  "marginRight": "calc(0 * (0px + (100% - 0px) / 1))",
                 },
                 ":nth-child(1n-0):nth-last-child(1)": Object {
                   "marginBottom": 0,
                 },
                 "color": "red",
                 "flexGrow": 1,
-                "width": "calc((100% - (1 - 1) * 0px) / 1)",
+                "width": "calc((100% - 0px) / 1 - .5px)",
               }
             }
           />
