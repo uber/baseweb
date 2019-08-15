@@ -24,7 +24,16 @@ export default Layout;
   caption="Base Web has an updated look"
 />
 
-Version `8.17` brings some noticeable style updates to Base Web. Read below to find out what has changed and how you can safely incorporate these changes into your codebase.
+## Migration Guide
+
+After bumping to `v8.17`, your app will look a little different. Grays will be darker and type will be larger. Input highlights and buttons will be black rather than blue. _Don't panic!_ If you address each of the points below your app will look right in no time!
+
+- Replace direct usage of gray scale (`$theme.colors.mono100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#light-theme-mapping)
+- Replace direct usage of typographic scale (`$theme.typography.font100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#typography-mapping)
+- Update any usage of typography components (`Paragraph`, `Caption`) as needed. [Read more 📖](#typography-components)
+- If some of the changes in `v8.17` are not to your liking, customize your theme with some of the new theme properties available. [Read more 📖](#v816-theme-values)
+
+Read below to find out exactly what has changed and how you can safely incorporate these changes into your codebase.
 
 ## Base Color Palette
 
@@ -447,9 +456,23 @@ If you use the `Block` component to apply theme font properties, you will need t
 <Block font="font200" />
 ```
 
+#### Typography Components
+
+There has also been a small but important update to a few of the typography components. `Paragraph` and `Label` used to increase in font size as the digit suffix increased, as opposed to various header components (`H1`, `H2`, etc). This has been changed so that all of the typography components _decrease_ in size as the suffix increases, to stay consistent with the header (`h1`) pattern in HTML.
+
+<Table
+  columns={['Old', 'New']}
+  data={[
+    [`Paragraph1`, `Paragraph2`],
+    [`Paragraph2`, `Paragraph1`],
+    [`Label1`, `Label2`],
+    [`Label2`, `Label1`],
+  ]}
+/>
+
 ## Reasoning
 
-Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Others might ask why these changes are coming as a minor version and not a breaking major. After all, this version will likely require code changes in projects that use Base Web.
+Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Aren't most components already implemented? Others might ask why these changes are coming as a minor version and not a breaking major. After all, this version will likely require code changes in dependant projects.
 
 It is important to remember that Uber's Base design system is still evolving. The Base Web library has an ever-moving target ahead of it. Style changes are, at this point, a constant reality for the project.
 
