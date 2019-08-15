@@ -24,13 +24,13 @@ export default Layout;
   caption="Base Web has an updated look"
 />
 
-Version `8.17` brings some noticeable style updates to Base Web. Read below to find out what has changed and how you can safetly incorporate these changes into your codebase.
+Version `8.17` brings some noticeable style updates to Base Web. Read below to find out what has changed and how you can safely incorporate these changes into your codebase.
 
 ## Base Color Palette
 
 The base color primitives for both the default light and dark theme have been adjusted. These have been changed to improve the contrast ratios across our color palette.
 
-The changes in most of the color ways are quite subtle, but the gray (mono) palette has shifted more noticeably. Here are the updated gray scale values:
+The changes in most of the colorways are quite subtle, but the gray (mono) palette has shifted more noticeably. Here are the updated grayscale values:
 
 ### Light Theme Changes
 
@@ -117,11 +117,11 @@ The changes in most of the color ways are quite subtle, but the gray (mono) pale
 <Caption>
   Note, the primitives for light and dark are identical now (as you can see on
   the right-most column for both tables). Both primitives are still being
-  exported for backwards compatability. In a future major we may remove this
+  exported for backward compatibility. In a future major we may remove this
   redundancy.
 </Caption>
 
-The new gray scale does not mean everything is now two shades darker. We have shifted our use of grays across all of Base Web's components in order to keep the values consistent. However, if you access the gray values on the theme object directly you may need to update your code.
+The new grayscale does not mean everything is now two shades darker. We have shifted our use of grays across all of Base Web's components to keep the values consistent. However, if you access the gray values on the theme object directly you may need to update your code.
 
 The following is a suggested mapping of old to new theme properties based on the closest matching color:
 
@@ -164,7 +164,6 @@ The following is a suggested mapping of old to new theme properties based on the
         </StyledRow>
       );
     })}
-
   </StyledBody>
 </StyledTable>
 
@@ -207,7 +206,6 @@ The following is a suggested mapping of old to new theme properties based on the
         </StyledRow>
       );
     })}
-
   </StyledBody>
 </StyledTable>
 
@@ -345,7 +343,7 @@ The `Button` component has various `kind` values that change the coloring. The d
 
 ### Button Group
 
-The `ButtonGroup` component has been updated to use buttons with `kind={KIND.secondary}` rather than the previous `tertiary`. If you still want to use `tertiary` you can now use `kind` as a top level prop on `ButtonGroup`:
+The `ButtonGroup` component has been updated to use buttons with `kind={KIND.secondary}` rather than the previous `tertiary`. If you still want to use `tertiary` you can now use `kind` as a top-level prop on `ButtonGroup`:
 
 ```jsx
 <ButtonGroup kind={KIND.tertiary} />
@@ -357,7 +355,7 @@ A note on `selected` styling: If the buttons are `tertiary` or `secondary`, `but
 
 ### Minimal Button
 
-We are deprecating the `minimal` button. `tertiary` now serves the same purpose and so the two are redundant. We haven't removed the option yet to avoid breaking your code, so you can still set your buttons to `kind={KIND.minimal}` and use theme variables to style them uniquely. We encourage you to use `tertiary` going forward instead however, as the `minimal` button may be removed in a future major.
+We are deprecating the `minimal` button. `tertiary` now serves the same purpose and so the two are redundant. We haven't removed the option yet to avoid breaking your code, so you can still set your buttons to `kind={KIND.minimal}` and use theme variables to style them uniquely. We encourage you to use `tertiary` going forward instead, however, as the `minimal` button may be removed in a future major.
 
 ### Calendar
 
@@ -395,7 +393,7 @@ Here is a mapping of the old and new values:
   ]}
 />
 
-Notice that there are now four **Display** values. At Uber, we use these with a different font family as an alternate typography for certain headings. One side-effect of this is that the scale no longer consistently correlates "higher" font values with larger font sizes. For example, the Display values start at `font900` with a `font-size: 36px`, even though `font800` has a `font-size: 40px`.
+Notice that there are now four **Display** values. At Uber, we use these with a different font family as alternate typography for certain headings. One side-effect of this is that the scale no longer consistently correlates "higher" font values with larger font sizes. For example, the Display values start at `font900` with a `font-size: 36px`, even though `font800` has a `font-size: 40px`.
 
 The following is a suggested mapping of old to new theme variables based on the closest matching size:
 
@@ -451,18 +449,18 @@ If you use the `Block` component to apply theme font properties, you will need t
 
 ## Reasoning
 
-Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Others might ask why these changes are coming as a minor version and not a breaking major. Afterall, this version will likely require code changes in projects that use Base Web.
+Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Others might ask why these changes are coming as a minor version and not a breaking major. After all, this version will likely require code changes in projects that use Base Web.
 
-It is important to remember that Uber's Base design system is still evolving. The Base Web library has an ever moving target ahead of it. Style changes are, at this point, a constant reality for the project.
+It is important to remember that Uber's Base design system is still evolving. The Base Web library has an ever-moving target ahead of it. Style changes are, at this point, a constant reality for the project.
 
-We on the Base Web team consider this one of the main features of Base Web. Folks who use the Base design system, as Uber does on hundreds of projects, know that by staying on the latest version of `baseui`, their app remains on brand and consitent with other products.
+We on the Base Web team consider this one of the main features of Base Web. Folks who use the Base design system, as Uber does on hundreds of projects, know that by staying on the latest version of `baseui`, their app remains on-brand and consistent with other products.
 
 If we had to release a major every time we updated the visual styles of the library we would likely have a new one every week. Teams facing a slew of major updates would easily fall behind and projects would inevitably diverge.
-For this reason we decided in our [versioning policy](/getting-started/versioning-policy) that style updates would not be considered breaking changes.
+For this reason, we decided in our [versioning policy](/getting-started/versioning-policy) that style updates would not be considered breaking changes.
 
 This is why all of these updates are considered a minor bump to `v8.17` and not a major release of `v9.0`.
 
-All of that said, we have tried to make it an easy transition to `v8.17`. There are no backwards incompatable changes, so your project, even if it looks different, should not throw any novel errors from these updates. Additionally, the new theme variables provided allow you to "undo" any style changes that you don't like.
+All of that said, we have tried to make it an easy transition to `v8.17`. There are no backward-incompatible changes, so your project, even if it looks different, should not throw any novel errors from these updates. Additionally, the new theme variables provided allow you to "undo" any style changes that you don't like.
 
 Of course, we hope you _do_ like the changes. 🤞
 
@@ -470,5 +468,5 @@ Of course, we hope you _do_ like the changes. 🤞
 
 <Caption>
   Feel free to reach out to us on our Slack channel or through a GitHub issue if
-  you think there is something missing from this migration guide.
+  you think something is missing from this migration guide.
 </Caption>
