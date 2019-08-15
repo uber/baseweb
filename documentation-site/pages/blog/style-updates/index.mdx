@@ -1,5 +1,14 @@
+import {withStyle} from 'baseui';
 import {Block} from 'baseui/block';
-import {Table} from 'baseui/table';
+import {
+  Table,
+  StyledTable,
+  StyledHead,
+  StyledHeadCell,
+  StyledBody,
+  StyledRow,
+  StyledCell,
+} from 'baseui/table';
 
 import metadata from './metadata.json';
 import Layout from '../../../components/layout';
@@ -25,41 +34,85 @@ The changes in most of the color ways are quite subtle, but the gray (mono) pale
 
 ### Light Theme Changes
 
-<Table
-  columns={['Primitive', 'Old', 'New']}
-  data={[
-    ['mono50', '-', '#F6F6F6'],
-    ['mono100', '#FFFFFF', '#EEEEEE'],
-    ['mono200', '#F7F7F7', '#E2E2E2'],
-    ['mono300', '#F0F0F0', '#CBCBCB'],
-    ['mono400', '#E5E5E5', '#AFAFAF'],
-    ['mono500', '#CCCCCC', '#757575'],
-    ['mono600', '#B3B3B3', '#545454'],
-    ['mono700', '#999999', '#333333'],
-    ['mono800', '#666666', '#272727'],
-    ['mono900', '#333333', '#1F1F1F'],
-    ['mono1000', '#000000', '#141414'],
-  ]}
-/>
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Primitive</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['mono50', '-', '#F6F6F6'],
+      ['mono100', '#FFFFFF', '#EEEEEE'],
+      ['mono200', '#F7F7F7', '#E2E2E2'],
+      ['mono300', '#F0F0F0', '#CBCBCB'],
+      ['mono400', '#E5E5E5', '#AFAFAF'],
+      ['mono500', '#CCCCCC', '#757575'],
+      ['mono600', '#B3B3B3', '#545454'],
+      ['mono700', '#999999', '#333333'],
+      ['mono800', '#666666', '#272727'],
+      ['mono900', '#333333', '#1F1F1F'],
+      ['mono1000', '#000000', '#141414'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 6 ? 'white' : 'black',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 4 ? 'white' : 'black',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
 
 ### Dark Theme Changes
 
-<Table
-  columns={['Primitive', 'Old', 'New']}
-  data={[
-    ['mono50', '-', '#F6F6F6'],
-    ['mono100', '#CCCCCC', '#EEEEEE'],
-    ['mono200', '#999999', '#E2E2E2'],
-    ['mono300', '#7A7A7A', '#CBCBCB'],
-    ['mono400', '#5C5C5C', '#AFAFAF'],
-    ['mono500', '#3D3D3D', '#757575'],
-    ['mono600', '#292929', '#545454'],
-    ['mono700', '#1F1F1F', '#333333'],
-    ['mono800', '#141414', '#272727'],
-    ['mono900', '#111111', '#1F1F1F'],
-    ['mono1000', '#000000', '#141414'],
-  ]}
-/>
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Primitive</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['mono50', '-', '#F6F6F6'],
+      ['mono100', '#CCCCCC', '#EEEEEE'],
+      ['mono200', '#999999', '#E2E2E2'],
+      ['mono300', '#7A7A7A', '#CBCBCB'],
+      ['mono400', '#5C5C5C', '#AFAFAF'],
+      ['mono500', '#3D3D3D', '#757575'],
+      ['mono600', '#292929', '#545454'],
+      ['mono700', '#1F1F1F', '#333333'],
+      ['mono800', '#141414', '#272727'],
+      ['mono900', '#111111', '#1F1F1F'],
+      ['mono1000', '#000000', '#141414'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? 'white' : 'black',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 4 ? 'white' : 'black',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
 
 <Caption>
   Note, the primitives for light and dark are identical now (as you can see on
@@ -74,41 +127,89 @@ The following is a suggested mapping of old to new theme properties based on the
 
 ### Light Theme Mapping
 
-<Table
-  columns={['Old', 'New']}
-  data={[
-    ['-', 'mono50'],
-    ['mono100', 'white'],
-    ['mono200', 'mono50'],
-    ['mono300', 'mono100'],
-    ['mono400', 'mono200'],
-    ['mono500', 'mono300'],
-    ['mono600', 'mono400'],
-    ['mono700', 'mono500'],
-    ['mono800', 'mono600'],
-    ['mono900', 'mono700'],
-    ['mono1000', 'black'],
-  ]}
-/>
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['mono100', 'white', '#FFFFFF'],
+      ['mono200', 'mono50', '#F7F7F7'],
+      ['mono300', 'mono100', '#F0F0F0'],
+      ['mono400', 'mono200', '#E5E5E5'],
+      ['mono500', 'mono300', '#CCCCCC'],
+      ['mono600', 'mono400', '#B3B3B3'],
+      ['mono700', 'mono500', '#999999'],
+      ['mono800', 'mono600', '#666666'],
+      ['mono900', 'mono700', '#333333'],
+      ['mono1000', 'black', '#000000'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, props => {
+        return {
+          backgroundColor: row[2],
+          color: index > 5 ? 'white' : 'black',
+        };
+      });
+      const StyledColorCellNew = withStyle(StyledCell, props => {
+        return {
+          backgroundColor: props.$theme.colors[row[1]],
+          color: index > 5 ? 'white' : 'black',
+        };
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledColorCellOld>{row[0]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[1]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+
+  </StyledBody>
+</StyledTable>
 
 ### Dark Theme Mapping
 
-<Table
-  columns={['Old', 'New']}
-  data={[
-    ['-', `mono50`],
-    [`mono100`, `mono300`],
-    [`mono200`, `mono400`],
-    [`mono300`, `mono500`],
-    [`mono400`, `mono600`],
-    [`mono500`, `mono700`],
-    [`mono600`, `mono800`],
-    [`mono700`, `mono900`],
-    [`mono800`, `mono900`],
-    [`mono900`, `mono900`],
-    [`mono1000`, `black`],
-  ]}
-/>
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      [`mono100`, `mono300`, '#CCCCCC'],
+      [`mono200`, `mono400`, '#999999'],
+      [`mono300`, `mono500`, '#7A7A7A'],
+      [`mono400`, `mono600`, '#5C5C5C'],
+      [`mono500`, `mono700`, '#3D3D3D'],
+      [`mono600`, `mono800`, '#292929'],
+      [`mono700`, `mono900`, '#1F1F1F'],
+      [`mono800`, `mono900`, '#141414'],
+      [`mono900`, `mono900`, '#111111'],
+      [`mono1000`, `black`, '#000000'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, props => {
+        return {
+          backgroundColor: row[2],
+          color: index > 1 ? 'white' : 'black',
+        };
+      });
+      const StyledColorCellNew = withStyle(StyledCell, props => {
+        return {
+          backgroundColor: props.$theme.colors[row[1]],
+          color: index > 1 ? 'white' : 'black',
+        };
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledColorCellOld>{row[0]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[1]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+
+  </StyledBody>
+</StyledTable>
 
 Here is an example of updating direct usage of grays from the theme object:
 
