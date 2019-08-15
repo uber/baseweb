@@ -26,12 +26,12 @@ export default Layout;
 
 ## Migration Guide
 
-After bumping to `v8.17`, your app will look a little different. Grays will be darker and type will be larger. Input highlights and buttons will be black rather than blue. _Don't panic!_ If you address each of the points below your app will look right in no time!
+After bumping to **v9**, your app will look a little different. Grays will be darker and type will be larger. Input highlights and buttons will be black rather than blue. _Don't panic!_ If you address each of the points below your app will look right in no time!
 
 - Replace direct usage of gray scale (`$theme.colors.mono100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#light-theme-mapping)
 - Replace direct usage of typographic scale (`$theme.typography.font100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#typography-mapping)
 - Update any usage of typography components (`Paragraph`, `Caption`) as needed. [Read more 📖](#typography-components)
-- If some of the changes in `v8.17` are not to your liking, customize your theme with some of the new theme properties available. [Read more 📖](#v816-theme-values)
+- If some of the changes in **v9** are not to your liking, customize your theme with some of the new theme properties available. [Read more 📖](#v8-theme-values)
 
 Read below to find out exactly what has changed and how you can safely incorporate these changes into your codebase.
 
@@ -265,9 +265,9 @@ The use of `primary` blue has been greatly reduced in favor of `black`. The most
 
 We realize these changes may conflict with your app's styles so we've added new theme variables to allow you to easily tweak things as needed.
 
-After updating to `v8.17` you can use the following [theme variables](/theming/custom-themes) to keep your app looking as it did in `v8.16`:
+After updating to **v9** you can use the following [theme variables](/theming/custom-themes) to keep your app looking as it did in **v8**:
 
-### v8.16 Theme Values
+### v8 Theme Values
 
 ```js
 const colors = {
@@ -472,20 +472,15 @@ There has also been a small but important update to a few of the typography comp
 
 ## Reasoning
 
-Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Aren't most components already implemented? Others might ask why these changes are coming as a minor version and not a breaking major. After all, this version will likely require code changes in dependant projects.
+Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Aren't most components already implemented?
 
 It is important to remember that Uber's Base design system is still evolving. The Base Web library has an ever-moving target ahead of it. Style changes are, at this point, a constant reality for the project.
 
 We on the Base Web team consider this one of the main features of Base Web. Folks who use the Base design system, as Uber does on hundreds of projects, know that by staying on the latest version of `baseui`, their app remains on-brand and consistent with other products.
 
-If we had to release a major every time we updated the visual styles of the library we would likely have a new one every week. Teams facing a slew of major updates would easily fall behind and projects would inevitably diverge.
-For this reason, we decided in our [versioning policy](/getting-started/versioning-policy) that style updates would not be considered breaking changes.
+We have tried to make it an easy transition to **v9**. There are no backward-incompatible changes from an API perspective, so your project, even if it looks different, should not throw any novel errors from these updates. Additionally, the new theme variables provided allow you to "undo" any style changes that you don't like.
 
-This is why all of these updates are considered a minor bump to `v8.17` and not a major release of `v9.0`.
-
-All of that said, we have tried to make it an easy transition to `v8.17`. There are no backward-incompatible changes, so your project, even if it looks different, should not throw any novel errors from these updates. Additionally, the new theme variables provided allow you to "undo" any style changes that you don't like.
-
-Of course, we hope you _do_ like the changes. 🤞
+That said, we hope you _do_ like the changes. 🤞
 
 ---
 

@@ -93,12 +93,12 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
               </Link>
               <Block marginLeft="scale300">
                 <VersionSelector />
-                <Link href="/blog/style-updates">
+                <Link href="/blog/base-web-v9">
                   <Button
                     size="compact"
                     kind={KIND.tertiary}
                     $as="a"
-                    href="/blog/style-updates"
+                    href="/blog/base-web-v9"
                     overrides={{
                       BaseButton: {
                         style: {
@@ -110,7 +110,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                       },
                     }}
                   >
-                    {"What's new in v8.17?"}
+                    {"What's new in v9?"}
                   </Button>
                 </Link>
               </Block>
