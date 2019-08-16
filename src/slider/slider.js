@@ -20,6 +20,7 @@ import {
   ThumbValue as StyledThumbValue,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {ThemeContext} from '../styles/theme-provider.js';
 
 // value.length should not be bigger than two
 // because our design doesn't support more than
@@ -88,72 +89,77 @@ class Slider extends React.Component<PropsT> {
     );
     const sharedProps = this.getSharedProps();
     return (
-      <Root data-baseweb="slider" {...sharedProps} {...rootProps}>
-        <Range
-          step={step}
-          min={min}
-          max={max}
-          values={value}
-          disabled={disabled}
-          onChange={value => onChange({value})}
-          ref={this.rangeRef}
-          renderTrack={({props, children, isDragged}) => (
-            <Track
-              onMouseDown={props.onMouseDown}
-              onTouchStart={props.onTouchStart}
-              $isDragged={isDragged}
-              {...sharedProps}
-              {...trackProps}
-            >
-              <InnerTrack
-                $isDragged={isDragged}
-                ref={props.ref}
-                {...sharedProps}
-                {...innerTrackProps}
-              >
-                {children}
-              </InnerTrack>
-            </Track>
-          )}
-          renderThumb={({props, index, isDragged}) => (
-            <Thumb
-              {...props}
-              $thumbIndex={index}
-              $isDragged={isDragged}
-              style={{
-                ...props.style,
-              }}
-              {...sharedProps}
-              {...thumbProps}
-            >
-              <ThumbLabel
-                Component={ThumbValue}
-                values={value}
-                index={index}
-                rangeRef={this.rangeRef.current}
-                $thumbIndex={index}
-                $isDragged={isDragged}
-                {...sharedProps}
-                {...thumbValueProps}
-              />
-              <InnerThumb
-                $thumbIndex={index}
-                $isDragged={isDragged}
-                {...sharedProps}
-                {...innerThumbProps}
-              />
-            </Thumb>
-          )}
-        />
-        <TickBar {...sharedProps} {...tickBarProps}>
-          <Tick {...sharedProps} {...tickProps}>
-            {min}
-          </Tick>
-          <Tick {...sharedProps} {...tickProps}>
-            {max}
-          </Tick>
-        </TickBar>
-      </Root>
+      <ThemeContext.Consumer>
+        {theme => (
+          <Root data-baseweb="slider" {...sharedProps} {...rootProps}>
+            <Range
+              step={step}
+              min={min}
+              max={max}
+              values={value}
+              disabled={disabled}
+              onChange={value => onChange({value})}
+              ref={this.rangeRef}
+              rtl={theme.direction === 'rtl'}
+              renderTrack={({props, children, isDragged}) => (
+                <Track
+                  onMouseDown={props.onMouseDown}
+                  onTouchStart={props.onTouchStart}
+                  $isDragged={isDragged}
+                  {...sharedProps}
+                  {...trackProps}
+                >
+                  <InnerTrack
+                    $isDragged={isDragged}
+                    ref={props.ref}
+                    {...sharedProps}
+                    {...innerTrackProps}
+                  >
+                    {children}
+                  </InnerTrack>
+                </Track>
+              )}
+              renderThumb={({props, index, isDragged}) => (
+                <Thumb
+                  {...props}
+                  $thumbIndex={index}
+                  $isDragged={isDragged}
+                  style={{
+                    ...props.style,
+                  }}
+                  {...sharedProps}
+                  {...thumbProps}
+                >
+                  <ThumbLabel
+                    Component={ThumbValue}
+                    values={value}
+                    index={index}
+                    rangeRef={this.rangeRef.current}
+                    $thumbIndex={index}
+                    $isDragged={isDragged}
+                    {...sharedProps}
+                    {...thumbValueProps}
+                  />
+                  <InnerThumb
+                    $thumbIndex={index}
+                    $isDragged={isDragged}
+                    {...sharedProps}
+                    {...innerThumbProps}
+                  />
+                </Thumb>
+              )}
+            />
+            <TickBar {...sharedProps} {...tickBarProps}>
+              <Tick {...sharedProps} {...tickProps}>
+                {min}
+              </Tick>
+              <Tick {...sharedProps} {...tickProps}>
+                {max}
+              </Tick>
+            </TickBar>
+          </Root>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }
