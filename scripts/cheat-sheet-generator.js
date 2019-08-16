@@ -65,10 +65,17 @@ function parseFileToOutline(code) {
           typeNode.children = path.node.declaration.right.properties.map(
             property => {
               if (t.isObjectTypeProperty(property)) {
-                return {
-                  name: property.key.name,
-                  lineStart: property.loc.start.line,
-                };
+                if (t.isLiteral(property.key)) {
+                  return {
+                    name: property.key.value,
+                    lineStart: property.loc.start.line,
+                  };
+                } else if (t.isIdentifier(property.key)) {
+                  return {
+                    name: property.key.name,
+                    lineStart: property.loc.start.line,
+                  };
+                }
               } else if (t.isObjectTypeSpreadProperty(property)) {
                 return {
                   name: property.argument.id.name,
@@ -85,7 +92,7 @@ function parseFileToOutline(code) {
   return types;
 }
 
-// type Outline = {name: string, types: TypeNode[]};
+// type Outline = {file: string, definitions: TypeNode[]};
 async function generateCheatSheet() {
   const outlines = [];
 
@@ -95,8 +102,8 @@ async function generateCheatSheet() {
       const name = file.split('/')[1];
       const from = path.join(__dirname, '../', file);
       const source = await fs.readFile(from, 'utf-8');
-      const types = parseFileToOutline(source);
-      outlines.push({name, types});
+      const definitions = parseFileToOutline(source);
+      outlines.push({file, definitions});
     }),
   );
 
