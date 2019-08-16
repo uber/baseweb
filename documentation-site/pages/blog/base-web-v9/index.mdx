@@ -31,7 +31,6 @@ After bumping to **v9**, your app will probably look a little different. Grays w
 - Replace direct usage of gray scale (`$theme.colors.mono100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#light-theme-mapping)
 - Replace direct usage of typographic scale (`$theme.typography.font100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#typography-mapping)
 - Update any usage of typography components (`Paragraph`, `Caption`) as needed. [Read more 📖](#typography-components)
-- Remove any usage of the typography properties `font460` and `font470`. These have been deprecated and removed!
 - If some of the changes in **v9** are not to your liking, customize your theme with some of the new theme properties available. [Read more 📖](#v8-theme-values)
 
 Read below to find out exactly what has changed and how you can safely incorporate these changes into your codebase.
@@ -443,8 +442,8 @@ The following is a comparison of the old and new typographic values:
     [`font350`, `14px/20px/500`, `font350`, `16px/24px/500`],
     [`font400`, `16px/24px/400`, `font400`, `18px/28px/400`],
     [`font450`, `16px/24px/500`, `font450`, `18px/28px/500`],
-    [`font460`, `18px/24px/400`, `-`, `-`],
-    [`font470`, `18px/24px/500`, `-`, `-`],
+    [`font460`, `18px/24px/400`, `font460`, `18px/24px/400`],
+    [`font470`, `18px/24px/500`, `font470`, `18px/24px/500`],
     [`font500`, `20px/28px/500`, `font550`, `20px/28px/500`],
     [`font600`, `24px/36px/500`, `font650`, `24px/32px/500`],
     [`font700`, `32px/48px/500`, `font750`, `28px/36px/500`],
@@ -458,7 +457,10 @@ The following is a comparison of the old and new typographic values:
   ]}
 />
 
-<Caption>Read values as font-size/line-height/font-weight.</Caption>
+<Caption>
+  We are deprecating font460 and font470 in v9. These properties will be removed
+  in a future version.
+</Caption>
 
 The way to use this mapping is to find references to any of the older font properties on the typography theme object and replace them with a newer property name that corresponds to the same or similar sizing.
 

@@ -508,6 +508,20 @@ export default function createTheme(
         fontWeight: 500,
         lineHeight: '28px',
       },
+      // deprecated, maintained for backward compatibility, may be removed in the future
+      font460: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '18px',
+        fontWeight: 'normal',
+        lineHeight: '24px',
+      },
+      // deprecated, maintained for backward compatibility, may be removed in the future
+      font470: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '18px',
+        fontWeight: 500,
+        lineHeight: '24px',
+      },
       font550: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '20px',

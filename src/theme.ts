@@ -470,6 +470,8 @@ interface Typography {
   font350: Font;
   font400: Font;
   font450: Font;
+  font460: Font; // deprecated
+  font470: Font; // deprecated
   font550: Font;
   font650: Font;
   font750: Font;
