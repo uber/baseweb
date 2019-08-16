@@ -128,20 +128,20 @@ export const H1 = ({children}: {children: React.Node}) => (
         Base Web - {children}
       </title>
     </Head>
-    <Heading element="h1" fontType="font700">
+    <Heading element="h1" fontType="font950">
       {children}
     </Heading>
   </React.Fragment>
 );
 
 export const H2 = ({children}: {children: React.Node}) => (
-  <Heading element="h2" fontType="font600" marginTop="scale1000">
+  <Heading element="h2" fontType="font850" marginTop="scale1000">
     {children}
   </Heading>
 );
 
 export const H3 = ({children}: {children: React.Node}) => (
-  <Heading element="h3" fontType="font500">
+  <Heading element="h3" fontType="font750">
     {children}
   </Heading>
 );

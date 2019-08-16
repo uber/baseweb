@@ -34,7 +34,7 @@ export const Display1 = (props: BlockPropsT) => (
   <Block
     data-baseweb="typo-display-large"
     {...props}
-    font={props.font || 'font1200'}
+    font={props.font || 'font1450'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -46,7 +46,7 @@ export const Display2 = (props: BlockPropsT) => (
   <Block
     data-baseweb="typo-display-medium"
     {...props}
-    font={props.font || 'font1100'}
+    font={props.font || 'font1350'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -55,7 +55,7 @@ export const Display3 = (props: BlockPropsT) => (
   <Block
     data-baseweb="typo-display-small"
     {...props}
-    font={props.font || 'font1000'}
+    font={props.font || 'font1250'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -64,7 +64,7 @@ export const Display4 = (props: BlockPropsT) => (
   <Block
     data-baseweb="typo-display-x-small"
     {...props}
-    font={props.font || 'font900'}
+    font={props.font || 'font1150'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -75,7 +75,7 @@ export const H1 = (props: BlockPropsT) => (
     data-baseweb="typo-h1"
     as={props.as || 'h1'}
     {...props}
-    font={props.font || 'font800'}
+    font={props.font || 'font1050'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -85,7 +85,7 @@ export const H2 = (props: BlockPropsT) => (
     data-baseweb="typo-h2"
     as={props.as || 'h2'}
     {...props}
-    font={props.font || 'font700'}
+    font={props.font || 'font950'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -95,7 +95,7 @@ export const H3 = (props: BlockPropsT) => (
     data-baseweb="typo-h3"
     as={props.as || 'h3'}
     {...props}
-    font={props.font || 'font600'}
+    font={props.font || 'font850'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -105,7 +105,7 @@ export const H4 = (props: BlockPropsT) => (
     data-baseweb="typo-h4"
     as={props.as || 'h4'}
     {...props}
-    font={props.font || 'font500'}
+    font={props.font || 'font750'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -115,7 +115,7 @@ export const H5 = (props: BlockPropsT) => (
     data-baseweb="typo-h5"
     as={props.as || 'h5'}
     {...props}
-    font={props.font || 'font470'}
+    font={props.font || 'font650'}
     color={props.color || 'colorPrimary'}
   />
 );
@@ -125,7 +125,7 @@ export const H6 = (props: BlockPropsT) => (
     data-baseweb="typo-h6"
     as={props.as || 'h6'}
     {...props}
-    font={props.font || 'font460'}
+    font={props.font || 'font550'}
     color={props.color || 'colorPrimary'}
   />
 );

@@ -61,7 +61,7 @@ class PaginatedTable extends React.Component<any, any> {
           paddingTop="scale600"
           paddingBottom="scale600"
         >
-          <Block font="font700">Table Example</Block>
+          <Block font="font950">Table Example</Block>
           <Button>
             <Block paddingLeft="scale1200" paddingRight="scale1200">
               Action

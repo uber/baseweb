@@ -26,11 +26,12 @@ export default Layout;
 
 ## Migration Guide
 
-After bumping to **v9**, your app will look a little different. Grays will be darker and type will be larger. Input highlights and buttons will be black rather than blue. _Don't panic!_ If you address each of the points below your app will look right in no time!
+After bumping to **v9**, your app will probably look a little different. Grays will be darker and type will be larger. Input highlights and buttons will be black rather than blue. _Don't panic!_ If you address each of the points below your app will look right in no time!
 
 - Replace direct usage of gray scale (`$theme.colors.mono100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#light-theme-mapping)
 - Replace direct usage of typographic scale (`$theme.typography.font100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#typography-mapping)
 - Update any usage of typography components (`Paragraph`, `Caption`) as needed. [Read more 📖](#typography-components)
+- Remove any usage of the typography properties `font460` and `font470`. These have been deprecated and removed!
 - If some of the changes in **v9** are not to your liking, customize your theme with some of the new theme properties available. [Read more 📖](#v8-theme-values)
 
 Read below to find out exactly what has changed and how you can safely incorporate these changes into your codebase.
@@ -374,63 +375,92 @@ The `Calendar` component now has a mostly monotone color palette. Thankfully, th
 
 The default typography values included in our theme have been adjusted. The overall scale has shifted upwards, so for instance, `font200` is now `14px` rather than `12px`.
 
-Here is a mapping of the old and new values:
+### Body
 
-### Typography Updates
+These values are used for body text such as `Caption`, `Label`, and `Paragraph`.
 
 <Table
-  columns={['Type', 'Old', 'New', 'Purpose']}
+  columns={['Name', 'Value']}
   data={[
-    [`font100`, `11/16/400`, `12/20/400`, `Paragraph, Caption, Label`],
-    [`font150`, `-`, `12/20/500`, `Paragraph, Caption, Label`],
-    [`font200`, `12/20/400`, `14/20/400`, `Paragraph, Label`],
-    [`font250`, `12/20/500`, `14/20/500`, `Paragraph, Label`],
-    [`font300`, `14/20/400`, `16/24/400`, `Paragraph, Label`],
-    [`font350`, `14/20/500`, `16/24/500`, `Paragraph, Label`],
-    [`font400`, `16/24/400`, `18/28/400`, `Paragraph, Label`],
-    [`font450`, `16/24/500`, `18/28/500`, `Paragraph, Label`],
-    [`font460`, `18/24/400`, `20/28/500`, `Header`],
-    [`font470`, `18/24/500`, `24/32/500`, `Header`],
-    [`font500`, `20/28/500`, `28/36/500`, `Header`],
-    [`font600`, `24/36/500`, `32/40/500`, `Header`],
-    [`font700`, `32/48/500`, `36/44/500`, `Header`],
-    [`font800`, `40/56/500`, `40/52/500`, `Header`],
-    [`font900`, `52/68/500`, `36/44/500`, `Display`],
-    [`font1000`, `72/68/400`, `44/52/500`, `Display`],
-    [`font1100`, `96/116/400`, `52/64/500`, `Display`],
-    [`font1200`, `-`, `96/112/500`, `Display`],
+    [`font100`, `12px/20px/400`],
+    [`font150`, `12px/20px/500`],
+    [`font200`, `14px/20px/400`],
+    [`font250`, `14px/20px/500`],
+    [`font300`, `16px/24px/400`],
+    [`font350`, `16px/24px/500`],
+    [`font400`, `18px/28px/400`],
+    [`font450`, `18px/28px/500`],
+  ]}
+/>
+<Caption>Read values as font-size/line-height/font-weight.</Caption>
+
+### Header
+
+These values are used for various headers: `H1`, `H2`, etc.
+
+<Table
+  columns={['Name', 'Value']}
+  data={[
+    [`font550`, `20px/28px/500`],
+    [`font650`, `24px/32px/500`],
+    [`font750`, `28px/36px/500`],
+    [`font850`, `32px/40px/500`],
+    [`font950`, `36px/44px/500`],
+    [`font1050`, `40px/52px/500`],
+  ]}
+/>
+<Caption>Read values as font-size/line-height/font-weight.</Caption>
+
+### Display
+
+These values are used for special headers, usually in association with marketing material. Internally, we assign these properties to a different `font-family`. This gives your app a little visual variety.
+
+<Table
+  columns={['Name', 'Value']}
+  data={[
+    [`font1150`, `36px/44px/500`],
+    [`font1250`, `44px/52px/500`],
+    [`font1350`, `52px/64px/500`],
+    [`font1450`, `96px/112px/500`],
+  ]}
+/>
+<Caption>Read values as font-size/line-height/font-weight.</Caption>
+
+### Comparison to v8
+
+All of Base Web's components have been updated to adjust to the new scale such that there is very little visual change (with regards to sizing) in the components themselves. Still, you may have built some of your own components or made adjustments using the typography theme object. References in your codebase will need to be updated accordingly.
+
+The following is a comparison of the old and new typographic values:
+
+<Table
+  columns={['Old', 'Value', 'New', 'Value']}
+  data={[
+    [`font100`, `11px/16px/400`, `font100`, `12px/20px/400`],
+    [`-`, `-`, `font150`, `12px/20px/500`],
+    [`font200`, `12px/20px/400`, `font200`, `14px/20px/400`],
+    [`font250`, `12px/20px/500`, `font250`, `14px/20px/500`],
+    [`font300`, `14px/20px/400`, `font300`, `16px/24px/400`],
+    [`font350`, `14px/20px/500`, `font350`, `16px/24px/500`],
+    [`font400`, `16px/24px/400`, `font400`, `18px/28px/400`],
+    [`font450`, `16px/24px/500`, `font450`, `18px/28px/500`],
+    [`font460`, `18px/24px/400`, `-`, `-`],
+    [`font470`, `18px/24px/500`, `-`, `-`],
+    [`font500`, `20px/28px/500`, `font550`, `20px/28px/500`],
+    [`font600`, `24px/36px/500`, `font650`, `24px/32px/500`],
+    [`font700`, `32px/48px/500`, `font750`, `28px/36px/500`],
+    [`font800`, `40px/56px/500`, `font850`, `32px/40px/500`],
+    [`font900`, `52px/68px/500`, `font950`, `36px/44px/500`],
+    [`font1000`, `72px/96px/400`, `font1050`, `40px/52px/500`],
+    [`font1100`, `96px/116px/400`, `font1150`, `36px/44px/500`],
+    [`-`, `-`, `font1250`, `44px/52px/500`],
+    [`-`, `-`, `font1350`, `52px/64px/500`],
+    [`-`, `-`, `font1450`, `96px/112px/500`],
   ]}
 />
 
-Notice that there are now four **Display** values. At Uber, we use these with a different font family as alternate typography for certain headings. One side-effect of this is that the scale no longer consistently correlates "higher" font values with larger font sizes. For example, the Display values start at `font900` with a `font-size: 36px`, even though `font800` has a `font-size: 40px`.
+<Caption>Read values as font-size/line-height/font-weight.</Caption>
 
-The following is a suggested mapping of old to new theme variables based on the closest matching size:
-
-### Typography Mapping
-
-<Table
-  columns={['Old', 'New']}
-  data={[
-    [`font100`, `font100`],
-    [`font200`, `font100`],
-    [`font250`, `font150`],
-    [`font300`, `font200`],
-    [`font350`, `font250`],
-    [`font400`, `font300`],
-    [`font450`, `font350`],
-    [`font460`, `font400`],
-    [`font470`, `font450`],
-    [`font500`, `font460`],
-    [`font600`, `font470`],
-    [`font700`, `font600`],
-    [`font800`, `font800`],
-    [`font900`, `font1100`],
-    [`font1000`, `font1100`],
-    [`font1100`, `font1200`],
-  ]}
-/>
-
-All of Base Web's components have been adjusted to use these new values, so you will only have to update your code in places you have used theme typography properties directly:
+The way to use this mapping is to find references to any of the older font properties on the typography theme object and replace them with a newer property name that corresponds to the same or similar sizing.
 
 ```jsx
 // old
@@ -470,17 +500,13 @@ There has also been a small but important update to a few of the typography comp
   ]}
 />
 
-## Reasoning
+## Inspiration
 
 Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Aren't most components already implemented?
 
 It is important to remember that Uber's Base design system is still evolving. The Base Web library has an ever-moving target ahead of it. Style changes are, at this point, a constant reality for the project.
 
 We on the Base Web team consider this one of the main features of Base Web. Folks who use the Base design system, as Uber does on hundreds of projects, know that by staying on the latest version of `baseui`, their app remains on-brand and consistent with other products.
-
-We have tried to make it an easy transition to **v9**. There are no backward-incompatible changes from an API perspective, so your project, even if it looks different, should not throw any novel errors from these updates. Additionally, the new theme variables provided allow you to "undo" any style changes that you don't like.
-
-That said, we hope you _do_ like the changes. 🤞
 
 ---
 

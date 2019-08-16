@@ -26,7 +26,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
 });
 
 const StyledDeltaCell: any = withStyle(StyledCell, props => ({
-  ...props.$theme.typography.font460,
+  ...props.$theme.typography.font550,
   alignItems: 'center',
   backgroundColor: props.$isNegative
     ? props.$theme.colors.negative50
@@ -299,7 +299,7 @@ export default () => {
               </StyledDeltaCell>
 
               <StyledLargeText>
-                <Block font="font460">{row[4]}</Block>
+                <Block font="font550">{row[4]}</Block>
                 <Caption2 paddingLeft="scale200">+1000%</Caption2>
               </StyledLargeText>
 
