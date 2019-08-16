@@ -8,7 +8,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+import {useStyletron} from 'baseui';
+import {StyledLink} from 'baseui/link';
 import outlines from '../cheat-sheet.js';
+import {H2} from './markdown-elements.js';
 
 function buildHref(file, line) {
   const commit = process.env.COMMIT_REF || 'master';
@@ -20,37 +23,59 @@ function buildHref(file, line) {
   }
   return href;
 }
-
 function CheatSheet() {
+  const [useCss, theme] = useStyletron();
   return (
     <div>
-      cheat sheet
       {!outlines.length && <p>no data to display</p>}
-      {outlines.map(outline => (
-        <div>
-          <h2>
-            <a href={buildHref(outline.file)}>{outline.file.split('/')[1]}</a>
-          </h2>
-          <ul>
-            {outline.definitions.map(t => (
-              <React.Fragment>
-                <li>
-                  <a href={buildHref(outline.file, t.lineStart)}>{t.name}</a>
-                </li>
-                <ul>
+      {outlines.map(outline => {
+        const componentName = outline.file.split('/')[1];
+        return (
+          <div>
+            <H2 id={componentName}>
+              <StyledLink target="_blank" href={buildHref(outline.file)}>
+                {componentName}
+              </StyledLink>
+            </H2>
+            <ul
+              className={useCss({
+                columnCount: 1,
+                '@media screen and (min-width: 920px)': {
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  columnCount: 3,
+                },
+              })}
+            >
+              {outline.definitions.map(t => (
+                <React.Fragment>
+                  <li
+                    className={useCss({
+                      ...theme.typography.font400,
+                    })}
+                  >
+                    <StyledLink href={buildHref(outline.file, t.lineStart)}>
+                      {t.name}
+                    </StyledLink>
+                  </li>
                   {t.children.map(c => (
-                    <li>
-                      <a href={buildHref(outline.file, c.lineStart)}>
+                    <li
+                      className={useCss({
+                        ...theme.typography.font300,
+                        paddingLeft: '12px',
+                        listStyleType: 'none',
+                      })}
+                    >
+                      <StyledLink href={buildHref(outline.file, c.lineStart)}>
                         {c.name}
-                      </a>
+                      </StyledLink>
                     </li>
                   ))}
-                </ul>
-              </React.Fragment>
-            ))}
-          </ul>
-        </div>
-      ))}
+                </React.Fragment>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
     </div>
   );
 }
