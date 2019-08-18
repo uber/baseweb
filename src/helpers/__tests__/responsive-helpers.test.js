@@ -32,6 +32,7 @@ describe('Helpers - ResponsiveHelpers', () => {
         large: 1280,
       }),
     ).toMatchObject([
+      '@media screen and (min-width: 0px)',
       '@media screen and (min-width: 320px)',
       '@media screen and (min-width: 600px)',
       '@media screen and (min-width: 1280px)',
@@ -46,6 +47,7 @@ describe('Helpers - ResponsiveHelpers', () => {
         medium: 600,
       }),
     ).toMatchObject([
+      '@media screen and (min-width: 0px)',
       '@media screen and (min-width: 320px)',
       '@media screen and (min-width: 600px)',
       '@media screen and (min-width: 1280px)',

@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {styled} from 'baseui';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {StatefulTooltip} from 'baseui/tooltip';
 
+import {themedStyled} from '../pages/_app';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
@@ -49,21 +49,21 @@ type PropsT = {
   toggleDirection: () => void,
 };
 
-const SidebarWrapper = styled<{$isOpen: boolean}>(
+const SidebarWrapper = themedStyled<{$isOpen: boolean}>(
   'div',
   ({$theme, $isOpen}) => ({
     display: $isOpen ? 'block' : 'none',
     paddingTop: $theme.sizing.scale700,
     marginLeft: $theme.sizing.scale800,
     marginRight: $theme.sizing.scale800,
-    '@media screen and (min-width: 920px)': {
+    [$theme.media.medium]: {
       display: 'block',
       maxWidth: '16em',
     },
   }),
 );
 
-const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
+const ContentWrapper = themedStyled<{$isSidebarOpen: boolean}>(
   'div',
   ({$theme, $isSidebarOpen}) => ({
     position: 'relative',
@@ -73,7 +73,7 @@ const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
     paddingRight: $theme.sizing.scale800,
     width: '100%',
     maxWidth: '40em',
-    '@media screen and (min-width: 920px)': {
+    [$theme.media.medium]: {
       display: 'block',
       maxWidth: '40em',
     },

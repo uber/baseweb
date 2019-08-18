@@ -29,6 +29,9 @@ export const getMediaQuery = (
 };
 
 export const getMediaQueries = (breakpoints: BreakpointsT): string[] =>
-  Object.keys(breakpoints)
-    .sort((a, b) => breakpoints[a] - breakpoints[b])
-    .map(size => getMediaQuery({'min-width': `${breakpoints[size]}px`}));
+  [
+    0,
+    ...Object.keys(breakpoints)
+      .map(key => breakpoints[key])
+      .sort((a, b) => a - b),
+  ].map(size => getMediaQuery({'min-width': `${size}px`}));

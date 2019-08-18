@@ -39,13 +39,7 @@ function build(breakpoints: BreakpointsT) {
 
       if (Array.isArray(value)) {
         value.forEach((v, index) => {
-          // Do not create a media query for the smallest breakpoint.
-          if (index === 0) {
-            styles[property] = constrainToNull(transform(v));
-            return;
-          }
-
-          const mediaQuery = mediaQueries[index - 1];
+          const mediaQuery = mediaQueries[index];
           if (!styles[mediaQuery]) {
             styles[mediaQuery] = {};
           }

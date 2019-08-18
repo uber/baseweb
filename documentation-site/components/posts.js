@@ -12,7 +12,6 @@ import Link from 'next/link';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
 import {styled} from 'baseui';
-import {HEADER_BREAKPOINT} from './header-navigation';
 import posts from '../posts';
 
 const MetaData = styled('h2', ({$theme}) => ({
@@ -34,12 +33,12 @@ const Index = () => {
       flexWrap="wrap"
       overrides={{
         Block: {
-          style: {
+          style: ({$theme}) => ({
             justifyContent: 'center',
-            [HEADER_BREAKPOINT]: {
+            [$theme.media.small]: {
               justifyContent: 'flex-start',
             },
-          },
+          }),
         },
       }}
     >

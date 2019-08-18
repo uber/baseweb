@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Block} from '../block/index.js';
 import {mergeOverrides} from '../helpers/overrides.js';
-import {getMediaQueries, getMediaQuery} from '../helpers/responsive-helpers.js';
+import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import type {FlexGridItemPropsT} from './types.js';
 import type {ResponsiveT, ScaleT} from '../block/index.js';
 import type {StyleOverrideT} from '../helpers/overrides.js';
@@ -133,16 +133,7 @@ export const flexGridItemStyle = ({
     ] = [$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map(r =>
       getResponsiveValue(r, i),
     );
-    let mediaQuery;
-    if (i === 0) {
-      // Custom max-width media query for mobile needed so :nth-child styles
-      // don't conflict
-      mediaQuery = getMediaQuery({
-        'max-width': `${$theme.breakpoints.small - 1}px`,
-      });
-    } else {
-      mediaQuery = mediaQueries[i - 1];
-    }
+    const mediaQuery = mediaQueries[i];
     if (mediaQuery) {
       acc[mediaQuery] = flexGridItemMediaQueryStyle({
         $theme,
