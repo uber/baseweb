@@ -123,7 +123,7 @@
     "jest-matcher-utils": "^24.0.0",
     "jest-puppeteer": "^4.0.0",
     "jscodeshift": "^0.6.4",
-    "markdownlint-cli": "^0.17.0",
+    "markdownlint-cli": "^0.18.0",
     "memory-fs": "^0.4.1",
     "mkdirp": "^0.5.1",
     "next": "^9.0.0",
