@@ -136,7 +136,7 @@ export const flexGridItemStyle = ({
     // Mobile media query needed to guarantee ordering by Styletron
     // TODO(v9): update getMediaQueries to include the 0 media query
     const mediaQuery =
-      i === 0 ? getMediaQuery({'min-width': '0'}) : mediaQueries[i - 1];
+      i === 0 ? getMediaQuery({'min-width': '0px'}) : mediaQueries[i - 1];
     if (mediaQuery) {
       acc[mediaQuery] = flexGridItemMediaQueryStyle({
         $theme,

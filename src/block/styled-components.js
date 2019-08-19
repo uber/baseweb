@@ -43,7 +43,7 @@ function build(breakpoints: BreakpointsT) {
           // TODO(v9): update getMediaQueries to include the 0 media query
           const mediaQuery =
             index === 0
-              ? getMediaQuery({'min-width': '0'})
+              ? getMediaQuery({'min-width': '0px'})
               : mediaQueries[index - 1];
           if (!styles[mediaQuery]) {
             styles[mediaQuery] = {};
