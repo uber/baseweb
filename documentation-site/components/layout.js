@@ -47,38 +47,40 @@ type PropsT = {
   path?: string,
   toggleTheme: () => void,
   toggleDirection: () => void,
+  hideSideNavigation?: boolean,
+  maxContentWidth?: string,
 };
 
-const SidebarWrapper = themedStyled<{$isOpen: boolean}>(
-  'div',
-  ({$theme, $isOpen}) => ({
-    display: $isOpen ? 'block' : 'none',
-    paddingTop: $theme.sizing.scale700,
-    marginLeft: $theme.sizing.scale800,
-    marginRight: $theme.sizing.scale800,
-    [$theme.media.medium]: {
-      display: 'block',
-      maxWidth: '16em',
-    },
-  }),
-);
+const SidebarWrapper = themedStyled<{
+  $isOpen: boolean,
+  $hideSideNavigation: boolean,
+}>('div', ({$theme, $isOpen, $hideSideNavigation}) => ({
+  display: $isOpen ? 'block' : 'none',
+  paddingTop: $theme.sizing.scale700,
+  marginLeft: $theme.sizing.scale800,
+  marginRight: $theme.sizing.scale800,
+  [$theme.media.medium]: {
+    display: $hideSideNavigation ? 'none' : 'block',
+    maxWidth: '16em',
+  },
+}));
 
-const ContentWrapper = themedStyled<{$isSidebarOpen: boolean}>(
-  'div',
-  ({$theme, $isSidebarOpen}) => ({
-    position: 'relative',
-    boxSizing: 'border-box',
-    display: $isSidebarOpen ? 'none' : 'block',
-    paddingLeft: $theme.sizing.scale800,
-    paddingRight: $theme.sizing.scale800,
-    width: '100%',
+const ContentWrapper = themedStyled<{
+  $isSidebarOpen: boolean,
+  $maxWidth?: string,
+}>('div', ({$theme, $isSidebarOpen}) => ({
+  position: 'relative',
+  boxSizing: 'border-box',
+  display: $isSidebarOpen ? 'none' : 'block',
+  paddingLeft: $theme.sizing.scale800,
+  paddingRight: $theme.sizing.scale800,
+  width: '100%',
+  maxWidth: '40em',
+  [$theme.media.medium]: {
+    display: 'block',
     maxWidth: '40em',
-    [$theme.media.medium]: {
-      display: 'block',
-      maxWidth: '40em',
-    },
-  }),
-);
+  },
+}));
 
 class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   constructor(props: PropsT) {
@@ -137,6 +139,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             >
               <SidebarWrapper
                 $isOpen={sidebarOpen}
+                $hideSideNavigation={!!this.props.hideSideNavigation}
                 onClick={() =>
                   sidebarOpen && this.setState({sidebarOpen: false})
                 }
@@ -147,6 +150,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                 id="docSearch-content"
                 role="main"
                 $isSidebarOpen={sidebarOpen}
+                $maxWidth={this.props.maxContentWidth}
               >
                 {isGitHubEditDisabled ? null : (
                   <Block

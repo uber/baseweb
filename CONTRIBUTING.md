@@ -27,7 +27,7 @@ This document helps you navigate the process.
 - Browser accessibility support and aria attributes
   - A11y rules can be found [here](https://dequeuniversity.com/rules/axe/3.0/),
   - Run `yarn lint` , which has eslint-plugin-jsx-a11y running as part of it https://github.com/evcohen/eslint-plugin-jsx-a11y#supported-rules,
-  - Run `yarn e2e:test` for end-to-end test, which has AxeBuilder running as part of it.
+  - Check out `TESTING.md` to learn how to run end-to-end tests
 - [Styletron](https://www.styletron.org/) for CSS-in-JS styling
 - Unit tests with [jest](https://jestjs.io/en/) and [enzyme](https://airbnb.io/enzyme/)
 - [Flow](https://flow.org/) type coverage for all relevant component code and tests
