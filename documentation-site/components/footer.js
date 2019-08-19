@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Block} from 'baseui/block';
 import Link from 'next/link';
-import {styled} from 'baseui';
+import {themedStyled} from '../pages/_app';
 
 const UberLogo = () => (
   <svg
@@ -26,7 +26,7 @@ const UberLogo = () => (
   </svg>
 );
 
-const StyledFooter = styled<{}>(
+const StyledFooter = themedStyled<{}>(
   'footer',
   ({$theme: {typography, sizing, colors, name}}) => ({
     ...typography.font400,
@@ -44,7 +44,7 @@ const StyledFooter = styled<{}>(
   }),
 );
 
-const StyledLink = styled('a', ({$theme}) => ({
+const StyledLink = themedStyled('a', ({$theme}) => ({
   textDecoration: 'none',
   color: $theme.colors.foreground,
   display: 'inline-block',

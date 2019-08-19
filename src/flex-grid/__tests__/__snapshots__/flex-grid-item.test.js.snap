@@ -108,7 +108,7 @@ Object {
 
 exports[`FlexGridItem flexGridItemStyle: {"$flexGridColumnCount":[1,2],"$flexGridColumnGap":"1px","$flexGridRowGap":"2px"} 1`] = `
 Object {
-  "@media screen and (max-width: 319px)": Object {
+  "@media screen and (min-width: 0px)": Object {
     ":nth-child(1n-0)": Object {
       "marginBottom": "2px",
       "marginRight": 0,
@@ -153,7 +153,7 @@ Object {
 
 exports[`FlexGridItem flexGridItemStyle: {"$flexGridColumnCount":[1,2],"$flexGridColumnGap":["1px","2px"],"$flexGridRowGap":["2px","4px"]} 1`] = `
 Object {
-  "@media screen and (max-width: 319px)": Object {
+  "@media screen and (min-width: 0px)": Object {
     ":nth-child(1n-0)": Object {
       "marginBottom": "2px",
       "marginRight": 0,
