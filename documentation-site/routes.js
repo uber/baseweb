@@ -50,6 +50,10 @@ const routes = [
         itemId: '/getting-started/bidirectionality',
       },
       {
+        title: 'API Cheat Sheet',
+        itemId: '/cheat-sheet',
+      },
+      {
         title: 'Roadmap',
         itemId: '/getting-started/roadmap',
       },
