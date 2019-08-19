@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {styled} from 'baseui';
+import {themedStyled} from '../pages/_app';
 
-const Wrapper = styled('a', ({$isVisible}) => ({
+const Wrapper = themedStyled('a', ({$isVisible}) => ({
   visibility: $isVisible ? 'visible' : 'hidden',
   color: '#000',
 }));

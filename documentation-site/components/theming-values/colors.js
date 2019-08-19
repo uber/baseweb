@@ -8,26 +8,27 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {styled, LightTheme} from 'baseui';
+import {LightTheme} from 'baseui';
 import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
+import {themedStyled} from '../../pages/_app';
 
-const StyledColorWrapper = styled<{$dark: boolean, $backgroundColor: string}>(
-  'div',
-  ({$dark = false, $backgroundColor = '', $theme}) => {
-    return {
-      color: $dark ? 'black' : 'white',
-      backgroundColor: $backgroundColor,
-      display: 'flex',
-      justifyContent: 'space-between',
-      padding: $theme.sizing.scale300,
-      width: '250px',
-    };
-  },
-);
+const StyledColorWrapper = themedStyled<{
+  $dark: boolean,
+  $backgroundColor: string,
+}>('div', ({$dark = false, $backgroundColor = '', $theme}) => {
+  return {
+    color: $dark ? 'black' : 'white',
+    backgroundColor: $backgroundColor,
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: $theme.sizing.scale300,
+    width: '250px',
+  };
+});
 
-const StyledColorPreview = styled<{}>('div', ({$theme}) => {
+const StyledColorPreview = themedStyled<{}>('div', ({$theme}) => {
   return {
     marginTop: $theme.sizing.scale400,
     marginRight: $theme.sizing.scale400,
