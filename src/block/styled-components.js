@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {getMediaQueries} from '../helpers/responsive-helpers.js';
+import {getMediaQueries, getMediaQuery} from '../helpers/responsive-helpers.js';
 import {styled} from '../styles/index.js';
 import type {BreakpointsT} from '../styles/types.js';
 import type {StyledBlockPropsT} from './types.js';
@@ -39,7 +39,12 @@ function build(breakpoints: BreakpointsT) {
 
       if (Array.isArray(value)) {
         value.forEach((v, index) => {
-          const mediaQuery = mediaQueries[index];
+          // Mobile media query needed to guarantee ordering by Styletron
+          // TODO(v9): update getMediaQueries to include the 0 media query
+          const mediaQuery =
+            index === 0
+              ? getMediaQuery({'min-width': '0'})
+              : mediaQueries[index - 1];
           if (!styles[mediaQuery]) {
             styles[mediaQuery] = {};
           }

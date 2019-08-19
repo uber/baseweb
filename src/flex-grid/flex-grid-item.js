@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Block} from '../block/index.js';
 import {mergeOverrides} from '../helpers/overrides.js';
-import {getMediaQueries} from '../helpers/responsive-helpers.js';
+import {getMediaQueries, getMediaQuery} from '../helpers/responsive-helpers.js';
 import type {FlexGridItemPropsT} from './types.js';
 import type {ResponsiveT, ScaleT} from '../block/index.js';
 import type {StyleOverrideT} from '../helpers/overrides.js';
@@ -133,7 +133,10 @@ export const flexGridItemStyle = ({
     ] = [$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map(r =>
       getResponsiveValue(r, i),
     );
-    const mediaQuery = mediaQueries[i];
+    // Mobile media query needed to guarantee ordering by Styletron
+    // TODO(v9): update getMediaQueries to include the 0 media query
+    const mediaQuery =
+      i === 0 ? getMediaQuery({'min-width': '0'}) : mediaQueries[i - 1];
     if (mediaQuery) {
       acc[mediaQuery] = flexGridItemMediaQueryStyle({
         $theme,
