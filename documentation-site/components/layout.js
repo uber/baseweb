@@ -13,6 +13,7 @@ import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {StatefulTooltip} from 'baseui/tooltip';
 
+import TableOfContents from './table-of-contents';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
@@ -48,6 +49,14 @@ type PropsT = {
   toggleTheme: () => void,
   toggleDirection: () => void,
 };
+
+const TOCWrapper = styled<{$isOpen: boolean}>('div', ({$theme, $isOpen}) => ({
+  display: $isOpen ? 'block' : 'none',
+  '@media screen and (min-width: 920px)': {
+    display: 'block',
+    maxWidth: '16em',
+  },
+}));
 
 const SidebarWrapper = styled<{$isOpen: boolean}>(
   'div',
@@ -210,6 +219,9 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                   {children}
                 </MDXProvider>
               </ContentWrapper>
+              <TOCWrapper>
+                <TableOfContents content={React.Children.toArray(children)} />
+              </TOCWrapper>
             </Block>
             <Footer />
           </React.Fragment>
