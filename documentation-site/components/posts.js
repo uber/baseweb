@@ -11,11 +11,10 @@ import {Block} from 'baseui/block';
 import Link from 'next/link';
 import {Card, StyledBody, StyledAction} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
-import {styled} from 'baseui';
-import {HEADER_BREAKPOINT} from './header-navigation';
+import {themedStyled} from '../pages/_app';
 import posts from '../posts';
 
-const MetaData = styled('h2', ({$theme}) => ({
+const MetaData = themedStyled('h2', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
@@ -34,12 +33,12 @@ const Index = () => {
       flexWrap="wrap"
       overrides={{
         Block: {
-          style: {
+          style: ({$theme}) => ({
             justifyContent: 'center',
-            [HEADER_BREAKPOINT]: {
+            [$theme.media.small]: {
               justifyContent: 'flex-start',
             },
-          },
+          }),
         },
       }}
     >
