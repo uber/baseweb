@@ -133,16 +133,10 @@ export const flexGridItemStyle = ({
     ] = [$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map(r =>
       getResponsiveValue(r, i),
     );
-    let mediaQuery;
-    if (i === 0) {
-      // Custom max-width media query for mobile needed so :nth-child styles
-      // don't conflict
-      mediaQuery = getMediaQuery({
-        'max-width': `${$theme.breakpoints.small - 1}px`,
-      });
-    } else {
-      mediaQuery = mediaQueries[i - 1];
-    }
+    // Mobile media query needed to guarantee ordering by Styletron
+    // TODO(#1697): update getMediaQueries to include the 0px media query
+    const mediaQuery =
+      i === 0 ? getMediaQuery({'min-width': '0px'}) : mediaQueries[i - 1];
     if (mediaQuery) {
       acc[mediaQuery] = flexGridItemMediaQueryStyle({
         $theme,

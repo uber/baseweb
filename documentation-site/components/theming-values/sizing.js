@@ -8,19 +8,23 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {styled, LightTheme} from 'baseui';
+import {LightTheme} from 'baseui';
 import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
+import {themedStyled} from '../../pages/_app';
 
-const StyledSizeBox = styled<{$size: string}>('div', ({$size, $theme}) => {
-  return {
-    backgroundColor: $theme.colors.primary,
-    marginTop: $theme.sizing.scale100,
-    width: $size,
-    height: $size,
-  };
-});
+const StyledSizeBox = themedStyled<{$size: string}>(
+  'div',
+  ({$size, $theme}) => {
+    return {
+      backgroundColor: $theme.colors.primary,
+      marginTop: $theme.sizing.scale100,
+      width: $size,
+      height: $size,
+    };
+  },
+);
 
 function SizePreview({name, size}) {
   return (

@@ -8,12 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {styled, LightTheme} from 'baseui';
+import {LightTheme} from 'baseui';
 import {Block} from 'baseui/block';
 
 import {Header, ExampleWrapper} from './common';
+import {themedStyled} from '../../pages/_app';
 
-const StyledLightingBox = styled<{$boxShadow: string}>(
+const StyledLightingBox = themedStyled<{$boxShadow: string}>(
   'div',
   ({$theme, $boxShadow = ''}) => {
     return {
