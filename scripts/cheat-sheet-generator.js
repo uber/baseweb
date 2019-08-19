@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
 /* eslint-env node */
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 const {parse} = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
@@ -24,7 +24,6 @@ const path = require('path');
 // };
 
 // --- input ---
-// // @flow
 // type PropsT = {
 //   a: string,
 //   b: number,
@@ -50,7 +49,7 @@ const path = require('path');
 //   }
 // ]
 
-function parseFileToOutline(code: string) {
+function parseFileToOutline(code) {
   const types = [];
   const ast = parse(code, {sourceType: 'module', plugins: ['flow']});
   traverse(ast, {
