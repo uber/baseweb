@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /*eslint-env node*/
 module.exports = {
-  coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/test'],
-  rootDir: 'src',
+  coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/src/test'],
+  rootDir: '.',
   coverageDirectory: '../coverage',
-  setupFiles: ['<rootDir>/test/test-setup.js'],
-  setupFilesAfterEnv: ['<rootDir>/test/test-framework-setup.js'],
+  setupFiles: ['<rootDir>/src/test/test-setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/src/test/test-framework-setup.js'],
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/packages/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testRegex: '(.|-)test\\.js$',
   testURL: 'http://localhost/',
