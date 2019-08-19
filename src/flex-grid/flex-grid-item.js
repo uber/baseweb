@@ -134,7 +134,7 @@ export const flexGridItemStyle = ({
       getResponsiveValue(r, i),
     );
     // Mobile media query needed to guarantee ordering by Styletron
-    // TODO(v9): update getMediaQueries to include the 0 media query
+    // TODO(#1697): update getMediaQueries to include the 0px media query
     const mediaQuery =
       i === 0 ? getMediaQuery({'min-width': '0px'}) : mediaQueries[i - 1];
     if (mediaQuery) {

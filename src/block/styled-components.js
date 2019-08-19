@@ -40,7 +40,7 @@ function build(breakpoints: BreakpointsT) {
       if (Array.isArray(value)) {
         value.forEach((v, index) => {
           // Mobile media query needed to guarantee ordering by Styletron
-          // TODO(v9): update getMediaQueries to include the 0 media query
+          // TODO(#1697): update getMediaQueries to include the 0px media query
           const mediaQuery =
             index === 0
               ? getMediaQuery({'min-width': '0px'})
