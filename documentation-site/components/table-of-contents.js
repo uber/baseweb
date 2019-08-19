@@ -16,7 +16,7 @@ function getPadding(componentType) {
   return `${multiplier * 8}px`;
 }
 
-const VersionSelector = props => {
+const TableOfContents = props => {
   const [useCss, theme] = useStyletron();
   const TOC = [];
   const content = props.content[0].props.children;
@@ -81,4 +81,4 @@ const VersionSelector = props => {
   );
 };
 
-export default VersionSelector;
+export default TableOfContents;
