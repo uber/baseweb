@@ -71,7 +71,7 @@ exports[`Select component renders component in search mode and false for multipl
     showArrow={false}
     triggerType="click"
   >
-    <StyledRoot
+    <ForwardRef
       $clearable={true}
       $creatable={false}
       $disabled={false}
@@ -203,7 +203,7 @@ exports[`Select component renders component in search mode and false for multipl
             }
           }
         >
-          <StyledControlContainer
+          <ForwardRef
             $clearable={true}
             $creatable={false}
             $disabled={false}
@@ -276,7 +276,7 @@ exports[`Select component renders component in search mode and false for multipl
                   }
                 }
               >
-                <StyledSearchIcon
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -334,7 +334,7 @@ exports[`Select component renders component in search mode and false for multipl
                           title="search"
                           viewBox="0 0 24 24"
                         >
-                          <Svg
+                          <ForwardRef
                             $size={16}
                             data-baseweb="icon"
                             viewBox="0 0 24 24"
@@ -369,13 +369,13 @@ exports[`Select component renders component in search mode and false for multipl
                                 />
                               </svg>
                             </MockStyledComponent>
-                          </Svg>
+                          </ForwardRef>
                         </Icon>
                       </Search>
                     </div>
                   </MockStyledComponent>
-                </StyledSearchIcon>
-                <StyledValueContainer
+                </ForwardRef>
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -428,7 +428,7 @@ exports[`Select component renders component in search mode and false for multipl
                         }
                       }
                     >
-                      <StyledPlaceholder
+                      <ForwardRef
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -485,8 +485,8 @@ exports[`Select component renders component in search mode and false for multipl
                             Select...
                           </div>
                         </MockStyledComponent>
-                      </StyledPlaceholder>
-                      <StyledInputContainer
+                      </ForwardRef>
+                      <ForwardRef
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -583,7 +583,7 @@ exports[`Select component renders component in search mode and false for multipl
                               tabIndex={0}
                               value=""
                             >
-                              <StyledInput
+                              <ForwardRef
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -697,8 +697,8 @@ exports[`Select component renders component in search mode and false for multipl
                                     value=""
                                   />
                                 </MockStyledComponent>
-                              </StyledInput>
-                              <StyledInputSizer
+                              </ForwardRef>
+                              <ForwardRef
                                 $size="default"
                               >
                                 <MockStyledComponent
@@ -724,15 +724,15 @@ exports[`Select component renders component in search mode and false for multipl
                                     }
                                   />
                                 </MockStyledComponent>
-                              </StyledInputSizer>
+                              </ForwardRef>
                             </AutosizeInput>
                           </div>
                         </MockStyledComponent>
-                      </StyledInputContainer>
+                      </ForwardRef>
                     </span>
                   </MockStyledComponent>
-                </StyledValueContainer>
-                <StyledIconsContainer
+                </ForwardRef>
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -780,13 +780,13 @@ exports[`Select component renders component in search mode and false for multipl
                       }
                     />
                   </MockStyledComponent>
-                </StyledIconsContainer>
+                </ForwardRef>
               </div>
             </MockStyledComponent>
-          </StyledControlContainer>
+          </ForwardRef>
         </div>
       </MockStyledComponent>
-    </StyledRoot>
+    </ForwardRef>
   </Popover>
 </Select>
 `;
@@ -862,7 +862,7 @@ exports[`Select component renders component in search mode and true for multiple
     showArrow={false}
     triggerType="click"
   >
-    <StyledRoot
+    <ForwardRef
       $clearable={true}
       $creatable={false}
       $disabled={false}
@@ -994,7 +994,7 @@ exports[`Select component renders component in search mode and true for multiple
             }
           }
         >
-          <StyledControlContainer
+          <ForwardRef
             $clearable={true}
             $creatable={false}
             $disabled={false}
@@ -1067,7 +1067,7 @@ exports[`Select component renders component in search mode and true for multiple
                   }
                 }
               >
-                <StyledSearchIcon
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -1125,7 +1125,7 @@ exports[`Select component renders component in search mode and true for multiple
                           title="search"
                           viewBox="0 0 24 24"
                         >
-                          <Svg
+                          <ForwardRef
                             $size={16}
                             data-baseweb="icon"
                             viewBox="0 0 24 24"
@@ -1160,13 +1160,13 @@ exports[`Select component renders component in search mode and true for multiple
                                 />
                               </svg>
                             </MockStyledComponent>
-                          </Svg>
+                          </ForwardRef>
                         </Icon>
                       </Search>
                     </div>
                   </MockStyledComponent>
-                </StyledSearchIcon>
-                <StyledValueContainer
+                </ForwardRef>
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -1219,7 +1219,7 @@ exports[`Select component renders component in search mode and true for multiple
                         }
                       }
                     >
-                      <StyledPlaceholder
+                      <ForwardRef
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -1276,8 +1276,8 @@ exports[`Select component renders component in search mode and true for multiple
                             Select...
                           </div>
                         </MockStyledComponent>
-                      </StyledPlaceholder>
-                      <StyledInputContainer
+                      </ForwardRef>
+                      <ForwardRef
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -1374,7 +1374,7 @@ exports[`Select component renders component in search mode and true for multiple
                               tabIndex={0}
                               value=""
                             >
-                              <StyledInput
+                              <ForwardRef
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -1488,8 +1488,8 @@ exports[`Select component renders component in search mode and true for multiple
                                     value=""
                                   />
                                 </MockStyledComponent>
-                              </StyledInput>
-                              <StyledInputSizer
+                              </ForwardRef>
+                              <ForwardRef
                                 $size="default"
                               >
                                 <MockStyledComponent
@@ -1515,15 +1515,15 @@ exports[`Select component renders component in search mode and true for multiple
                                     }
                                   />
                                 </MockStyledComponent>
-                              </StyledInputSizer>
+                              </ForwardRef>
                             </AutosizeInput>
                           </div>
                         </MockStyledComponent>
-                      </StyledInputContainer>
+                      </ForwardRef>
                     </span>
                   </MockStyledComponent>
-                </StyledValueContainer>
-                <StyledIconsContainer
+                </ForwardRef>
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -1571,13 +1571,13 @@ exports[`Select component renders component in search mode and true for multiple
                       }
                     />
                   </MockStyledComponent>
-                </StyledIconsContainer>
+                </ForwardRef>
               </div>
             </MockStyledComponent>
-          </StyledControlContainer>
+          </ForwardRef>
         </div>
       </MockStyledComponent>
-    </StyledRoot>
+    </ForwardRef>
   </Popover>
 </Select>
 `;
@@ -1653,7 +1653,7 @@ exports[`Select component renders component in select mode and false for multipl
     showArrow={false}
     triggerType="click"
   >
-    <StyledRoot
+    <ForwardRef
       $clearable={true}
       $creatable={false}
       $disabled={false}
@@ -1779,7 +1779,7 @@ exports[`Select component renders component in select mode and false for multipl
             }
           }
         >
-          <StyledControlContainer
+          <ForwardRef
             $clearable={true}
             $creatable={false}
             $disabled={false}
@@ -1852,7 +1852,7 @@ exports[`Select component renders component in select mode and false for multipl
                   }
                 }
               >
-                <StyledValueContainer
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -1905,7 +1905,7 @@ exports[`Select component renders component in select mode and false for multipl
                         }
                       }
                     >
-                      <StyledPlaceholder
+                      <ForwardRef
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -1962,8 +1962,8 @@ exports[`Select component renders component in select mode and false for multipl
                             Select...
                           </div>
                         </MockStyledComponent>
-                      </StyledPlaceholder>
-                      <StyledInputContainer
+                      </ForwardRef>
+                      <ForwardRef
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -2060,7 +2060,7 @@ exports[`Select component renders component in select mode and false for multipl
                               tabIndex={0}
                               value=""
                             >
-                              <StyledInput
+                              <ForwardRef
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -2174,8 +2174,8 @@ exports[`Select component renders component in select mode and false for multipl
                                     value=""
                                   />
                                 </MockStyledComponent>
-                              </StyledInput>
-                              <StyledInputSizer
+                              </ForwardRef>
+                              <ForwardRef
                                 $size="default"
                               >
                                 <MockStyledComponent
@@ -2201,15 +2201,15 @@ exports[`Select component renders component in select mode and false for multipl
                                     }
                                   />
                                 </MockStyledComponent>
-                              </StyledInputSizer>
+                              </ForwardRef>
                             </AutosizeInput>
                           </div>
                         </MockStyledComponent>
-                      </StyledInputContainer>
+                      </ForwardRef>
                     </span>
                   </MockStyledComponent>
-                </StyledValueContainer>
-                <StyledIconsContainer
+                </ForwardRef>
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -2275,7 +2275,6 @@ exports[`Select component renders component in select mode and false for multipl
                           Object {
                             "Svg": Object {
                               "$$typeof": Symbol(react.forward_ref),
-                              "displayName": "StyledSelectArrow",
                               "render": [Function],
                             },
                           }
@@ -2302,7 +2301,6 @@ exports[`Select component renders component in select mode and false for multipl
                             Object {
                               "Svg": Object {
                                 "$$typeof": Symbol(react.forward_ref),
-                                "displayName": "StyledSelectArrow",
                                 "render": [Function],
                               },
                             }
@@ -2311,7 +2309,7 @@ exports[`Select component renders component in select mode and false for multipl
                           title="open"
                           viewBox="0 0 24 24"
                         >
-                          <StyledSelectArrow
+                          <ForwardRef
                             $clearable={true}
                             $creatable={false}
                             $disabled={false}
@@ -2371,18 +2369,18 @@ exports[`Select component renders component in select mode and false for multipl
                                 />
                               </svg>
                             </MockStyledComponent>
-                          </StyledSelectArrow>
+                          </ForwardRef>
                         </Icon>
                       </TriangleDown>
                     </div>
                   </MockStyledComponent>
-                </StyledIconsContainer>
+                </ForwardRef>
               </div>
             </MockStyledComponent>
-          </StyledControlContainer>
+          </ForwardRef>
         </div>
       </MockStyledComponent>
-    </StyledRoot>
+    </ForwardRef>
   </Popover>
 </Select>
 `;
@@ -2458,7 +2456,7 @@ exports[`Select component renders component in select mode and true for multiple
     showArrow={false}
     triggerType="click"
   >
-    <StyledRoot
+    <ForwardRef
       $clearable={true}
       $creatable={false}
       $disabled={false}
@@ -2584,7 +2582,7 @@ exports[`Select component renders component in select mode and true for multiple
             }
           }
         >
-          <StyledControlContainer
+          <ForwardRef
             $clearable={true}
             $creatable={false}
             $disabled={false}
@@ -2657,7 +2655,7 @@ exports[`Select component renders component in select mode and true for multiple
                   }
                 }
               >
-                <StyledValueContainer
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -2710,7 +2708,7 @@ exports[`Select component renders component in select mode and true for multiple
                         }
                       }
                     >
-                      <StyledPlaceholder
+                      <ForwardRef
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -2767,8 +2765,8 @@ exports[`Select component renders component in select mode and true for multiple
                             Select...
                           </div>
                         </MockStyledComponent>
-                      </StyledPlaceholder>
-                      <StyledInputContainer
+                      </ForwardRef>
+                      <ForwardRef
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -2865,7 +2863,7 @@ exports[`Select component renders component in select mode and true for multiple
                               tabIndex={0}
                               value=""
                             >
-                              <StyledInput
+                              <ForwardRef
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -2979,8 +2977,8 @@ exports[`Select component renders component in select mode and true for multiple
                                     value=""
                                   />
                                 </MockStyledComponent>
-                              </StyledInput>
-                              <StyledInputSizer
+                              </ForwardRef>
+                              <ForwardRef
                                 $size="default"
                               >
                                 <MockStyledComponent
@@ -3006,15 +3004,15 @@ exports[`Select component renders component in select mode and true for multiple
                                     }
                                   />
                                 </MockStyledComponent>
-                              </StyledInputSizer>
+                              </ForwardRef>
                             </AutosizeInput>
                           </div>
                         </MockStyledComponent>
-                      </StyledInputContainer>
+                      </ForwardRef>
                     </span>
                   </MockStyledComponent>
-                </StyledValueContainer>
-                <StyledIconsContainer
+                </ForwardRef>
+                <ForwardRef
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -3080,7 +3078,6 @@ exports[`Select component renders component in select mode and true for multiple
                           Object {
                             "Svg": Object {
                               "$$typeof": Symbol(react.forward_ref),
-                              "displayName": "StyledSelectArrow",
                               "render": [Function],
                             },
                           }
@@ -3107,7 +3104,6 @@ exports[`Select component renders component in select mode and true for multiple
                             Object {
                               "Svg": Object {
                                 "$$typeof": Symbol(react.forward_ref),
-                                "displayName": "StyledSelectArrow",
                                 "render": [Function],
                               },
                             }
@@ -3116,7 +3112,7 @@ exports[`Select component renders component in select mode and true for multiple
                           title="open"
                           viewBox="0 0 24 24"
                         >
-                          <StyledSelectArrow
+                          <ForwardRef
                             $clearable={true}
                             $creatable={false}
                             $disabled={false}
@@ -3176,18 +3172,18 @@ exports[`Select component renders component in select mode and true for multiple
                                 />
                               </svg>
                             </MockStyledComponent>
-                          </StyledSelectArrow>
+                          </ForwardRef>
                         </Icon>
                       </TriangleDown>
                     </div>
                   </MockStyledComponent>
-                </StyledIconsContainer>
+                </ForwardRef>
               </div>
             </MockStyledComponent>
-          </StyledControlContainer>
+          </ForwardRef>
         </div>
       </MockStyledComponent>
-    </StyledRoot>
+    </ForwardRef>
   </Popover>
 </Select>
 `;

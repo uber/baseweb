@@ -16,7 +16,7 @@ exports[`Heading basic render 1`] = `
         font="font1000"
         forwardedRef={null}
       >
-        <StyledBlock
+        <ForwardRef
           $as="h1"
           $color="colorPrimary"
           $font="font1000"
@@ -45,7 +45,7 @@ exports[`Heading basic render 1`] = `
               Base Web [L1]
             </div>
           </MockStyledComponent>
-        </StyledBlock>
+        </ForwardRef>
       </Block>
     </Block>
   </Heading>
@@ -64,7 +64,7 @@ exports[`Heading basic render 1`] = `
           font="font900"
           forwardedRef={null}
         >
-          <StyledBlock
+          <ForwardRef
             $as="h2"
             $color="colorPrimary"
             $font="font900"
@@ -93,7 +93,7 @@ exports[`Heading basic render 1`] = `
                 Introduction [L2]
               </div>
             </MockStyledComponent>
-          </StyledBlock>
+          </ForwardRef>
         </Block>
       </Block>
     </Heading>
@@ -112,7 +112,7 @@ exports[`Heading basic render 1`] = `
             font="font800"
             forwardedRef={null}
           >
-            <StyledBlock
+            <ForwardRef
               $as="h3"
               $color="colorPrimary"
               $font="font800"
@@ -141,7 +141,7 @@ exports[`Heading basic render 1`] = `
                   Quotes [L3]
                 </div>
               </MockStyledComponent>
-            </StyledBlock>
+            </ForwardRef>
           </Block>
         </Block>
       </Heading>
@@ -160,7 +160,7 @@ exports[`Heading basic render 1`] = `
               font="font700"
               forwardedRef={null}
             >
-              <StyledBlock
+              <ForwardRef
                 $as="h4"
                 $color="colorPrimary"
                 $font="font700"
@@ -189,7 +189,7 @@ exports[`Heading basic render 1`] = `
                     Subtitle [L4]
                   </div>
                 </MockStyledComponent>
-              </StyledBlock>
+              </ForwardRef>
             </Block>
           </Block>
         </Heading>
@@ -208,7 +208,7 @@ exports[`Heading basic render 1`] = `
                 font="font600"
                 forwardedRef={null}
               >
-                <StyledBlock
+                <ForwardRef
                   $as="h5"
                   $color="colorPrimary"
                   $font="font600"
@@ -237,7 +237,7 @@ exports[`Heading basic render 1`] = `
                       Subtitle [L5]
                     </div>
                   </MockStyledComponent>
-                </StyledBlock>
+                </ForwardRef>
               </Block>
             </Block>
           </Heading>
@@ -256,7 +256,7 @@ exports[`Heading basic render 1`] = `
                   font="font500"
                   forwardedRef={null}
                 >
-                  <StyledBlock
+                  <ForwardRef
                     $as="h6"
                     $color="colorPrimary"
                     $font="font500"
@@ -285,7 +285,7 @@ exports[`Heading basic render 1`] = `
                         Subtitle [L6]
                       </div>
                     </MockStyledComponent>
-                  </StyledBlock>
+                  </ForwardRef>
                 </Block>
               </Block>
             </Heading>
@@ -307,7 +307,7 @@ exports[`Heading basic render 1`] = `
           font="font900"
           forwardedRef={null}
         >
-          <StyledBlock
+          <ForwardRef
             $as="h2"
             $color="colorPrimary"
             $font="font900"
@@ -336,7 +336,7 @@ exports[`Heading basic render 1`] = `
                 Motivation [L2]
               </div>
             </MockStyledComponent>
-          </StyledBlock>
+          </ForwardRef>
         </Block>
       </Block>
     </Heading>
@@ -362,7 +362,7 @@ exports[`Heading styleLevels 1`] = `
         font="font900"
         forwardedRef={null}
       >
-        <StyledBlock
+        <ForwardRef
           $as="h1"
           $color="colorPrimary"
           $font="font900"
@@ -391,7 +391,7 @@ exports[`Heading styleLevels 1`] = `
               Base Web [L1 styled as L2]
             </div>
           </MockStyledComponent>
-        </StyledBlock>
+        </ForwardRef>
       </Block>
     </Block>
   </Heading>

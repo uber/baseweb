@@ -28,7 +28,7 @@ exports[`AspectRatioBox renders: for aspectRatio={1} 1`] = `
         }
       }
     >
-      <StyledBlock
+      <ForwardRef
         $as="div"
         $aspectRatio={1}
         $style={[Function]}
@@ -65,7 +65,7 @@ exports[`AspectRatioBox renders: for aspectRatio={1} 1`] = `
             }
           />
         </MockStyledComponent>
-      </StyledBlock>
+      </ForwardRef>
     </Block>
   </Block>
 </AspectRatioBox>
@@ -99,7 +99,7 @@ exports[`AspectRatioBox renders: for aspectRatio={16 / 9} 1`] = `
         }
       }
     >
-      <StyledBlock
+      <ForwardRef
         $as="div"
         $aspectRatio={1.7777777777777777}
         $style={[Function]}
@@ -136,7 +136,7 @@ exports[`AspectRatioBox renders: for aspectRatio={16 / 9} 1`] = `
             }
           />
         </MockStyledComponent>
-      </StyledBlock>
+      </ForwardRef>
     </Block>
   </Block>
 </AspectRatioBox>
@@ -178,7 +178,7 @@ exports[`AspectRatioBox renders: with overridden styles 1`] = `
         }
       }
     >
-      <StyledBlock
+      <ForwardRef
         $as="div"
         $aspectRatio={1.7777777777777777}
         $style={[Function]}
@@ -216,7 +216,7 @@ exports[`AspectRatioBox renders: with overridden styles 1`] = `
             }
           />
         </MockStyledComponent>
-      </StyledBlock>
+      </ForwardRef>
     </Block>
   </Block>
 </AspectRatioBox>

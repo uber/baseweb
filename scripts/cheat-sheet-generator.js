@@ -5,11 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
+// @flow
 /* eslint-env node */
 
 const {parse} = require('@babel/parser');
-const traverse = require('babel-traverse').default;
-const t = require('babel-types');
+const traverse = require('@babel/traverse').default;
+const t = require('@babel/types');
 
 const fs = require('fs').promises;
 const globby = require('globby');
@@ -49,7 +50,7 @@ const path = require('path');
 //   }
 // ]
 
-function parseFileToOutline(code) {
+function parseFileToOutline(code: string) {
   const types = [];
   const ast = parse(code, {sourceType: 'module', plugins: ['flow']});
   traverse(ast, {
@@ -99,7 +100,6 @@ async function generateCheatSheet() {
   const filepaths = await globby(['src/**/types.js']);
   await Promise.all(
     filepaths.map(async file => {
-      const name = file.split('/')[1];
       const from = path.join(__dirname, '../', file);
       const source = await fs.readFile(from, 'utf-8');
       const definitions = parseFileToOutline(source);

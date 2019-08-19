@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
+/* global process */
 
 import React from 'react';
 import {useStyletron} from 'baseui';
@@ -31,7 +32,7 @@ function CheatSheet() {
       {outlines.map(outline => {
         const componentName = outline.file.split('/')[1];
         return (
-          <div>
+          <div key={outline.file}>
             <H2 id={componentName}>
               <StyledLink target="_blank" href={buildHref(outline.file)}>
                 {componentName}
@@ -47,7 +48,7 @@ function CheatSheet() {
               })}
             >
               {outline.definitions.map(t => (
-                <React.Fragment>
+                <React.Fragment key={t.name}>
                   <li
                     className={useCss({
                       ...theme.typography.font400,
@@ -59,6 +60,7 @@ function CheatSheet() {
                   </li>
                   {t.children.map(c => (
                     <li
+                      key={c.name}
                       className={useCss({
                         ...theme.typography.font300,
                         paddingLeft: '12px',
