@@ -52,7 +52,7 @@ type PropsT = {
   maxContentWidth?: string,
 };
 
-const TOCWrapper = styled<{}>('div', ({$theme}) => ({
+const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
   display: 'none',
   '@media screen and (min-width: 1280px)': {
     display: 'block',
