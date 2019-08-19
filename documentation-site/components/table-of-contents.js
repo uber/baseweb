@@ -20,23 +20,35 @@ const VersionSelector = props => {
   const [useCss, theme] = useStyletron();
   const TOC = [];
   const content = props.content[0].props.children;
-  content.forEach(element => {
-    if (element.props.name && element.props.name.startsWith('h')) {
-      TOC.push({
-        name: element.props.children,
-        anchor: `#${element.props.children.toLowerCase().replace(/\s+/g, '-')}`,
-        component: element.props.name,
-      });
-    }
+  content &&
+    content.forEach &&
+    content.forEach(element => {
+      if (
+        element.props.name &&
+        element.props.name.startsWith('h') &&
+        element.props.children.toLowerCase
+      ) {
+        TOC.push({
+          name: element.props.children,
+          anchor: `#${element.props.children
+            .toLowerCase()
+            .replace(/\s+/g, '-')}`,
+          component: element.props.name,
+        });
+      }
 
-    if (element.type && element.type.name === 'Example') {
-      TOC.push({
-        name: element.props.title,
-        anchor: `#${element.props.title.toLowerCase().replace(/\s+/g, '-')}`,
-        component: 'h2',
-      });
-    }
-  });
+      if (
+        element.type &&
+        element.type.name === 'Example' &&
+        element.props.title
+      ) {
+        TOC.push({
+          name: element.props.title,
+          anchor: `#${element.props.title.toLowerCase().replace(/\s+/g, '-')}`,
+          component: 'h2',
+        });
+      }
+    });
 
   return (
     <ul
