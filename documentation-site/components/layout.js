@@ -77,17 +77,17 @@ const SidebarWrapper = themedStyled<{
 const ContentWrapper = themedStyled<{
   $isSidebarOpen: boolean,
   $maxWidth?: string,
-}>('div', ({$theme, $isSidebarOpen}) => ({
+}>('div', ({$theme, $isSidebarOpen, $maxWidth}) => ({
   position: 'relative',
   boxSizing: 'border-box',
   display: $isSidebarOpen ? 'none' : 'block',
   paddingLeft: $theme.sizing.scale800,
   paddingRight: $theme.sizing.scale800,
   width: '100%',
-  maxWidth: '40em',
+  maxWidth: $maxWidth ? $maxWidth : '40em',
   [$theme.media.medium]: {
     display: 'block',
-    maxWidth: '40em',
+    maxWidth: $maxWidth ? $maxWidth : '40em',
   },
 }));
 
