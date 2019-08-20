@@ -12,6 +12,7 @@ import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {StatefulTooltip} from 'baseui/tooltip';
 
+import TableOfContents from './table-of-contents';
 import {themedStyled} from '../pages/_app';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
@@ -50,6 +51,14 @@ type PropsT = {
   hideSideNavigation?: boolean,
   maxContentWidth?: string,
 };
+
+const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
+  display: 'none',
+  '@media screen and (min-width: 1280px)': {
+    display: 'block',
+    maxWidth: '16em',
+  },
+}));
 
 const SidebarWrapper = themedStyled<{
   $isOpen: boolean,
@@ -214,6 +223,9 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                   {children}
                 </MDXProvider>
               </ContentWrapper>
+              <TOCWrapper>
+                <TableOfContents content={React.Children.toArray(children)} />
+              </TOCWrapper>
             </Block>
             <Footer />
           </React.Fragment>

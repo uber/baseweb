@@ -25,21 +25,35 @@ Many layouts we build today are well-suited for the [`grid`](https://developer.m
 
 Note: **FlexGrid** must contain **FlexGridItem** components as children in order to get the desired behavior with widths and margins. Also note that these are both implemented using **Block**, and can take all the **Block** properties for styling.
 
+## Examples
+
 <Example title="FlexGrid basic usage" path="flex-grid/basic.js">
   <Basic />
 </Example>
 
-<Example title="FlexGrid unequal (narrow) widths" path="flex-grid/unequal-narrow.js">
+<Example
+  title="FlexGrid unequal (narrow) widths"
+  path="flex-grid/unequal-narrow.js"
+>
   <UnequalNarrow />
 </Example>
 
 It is possible to achieve unequal-width items using **Block** style overrides.
 
-<Example title="FlexGrid unequal (wide) widths" path="flex-grid/unequal-wide.js">
+<Example
+  title="FlexGrid unequal (wide) widths"
+  path="flex-grid/unequal-wide.js"
+>
   <UnequalWide />
 </Example>
 
 Also, keep in mind that the margins won’t be set properly unless you have the correct number of items in each row. In this example, we add a hidden element after the wide element so that the last item in the first row has a margin-right of zero.
+
+<Example title="FlexGrid missing items" path="flex-grid/missing.js">
+  <Missing />
+</Example>
+
+**FlexGrid** will add additional margin after the last element such that it always lines up with the row above, and avoids `flexbox`’s default nature of spreading out.
 
 ## Responsive Layouts
 
@@ -49,11 +63,7 @@ Also, keep in mind that the margins won’t be set properly unless you have the 
   <Responsive />
 </Example>
 
-<Example title="FlexGrid missing items" path="flex-grid/missing.js">
-  <Missing />
-</Example>
-
-**FlexGrid** will add additional margin after the last element such that it always lines up with the row above, and avoids `flexbox`’s default nature of spreading out.
+## API
 
 <API
   heading="FlexGrid API"
