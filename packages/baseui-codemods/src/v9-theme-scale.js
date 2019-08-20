@@ -9,8 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import {withJsFiles} from '@dubstep/core';
 
-const MAP = {
-  // typography
+const THEME_TYPOGRAPHY_MAP = {
   font100: 'font100',
   font200: 'font100',
   font250: 'font150',
@@ -27,7 +26,9 @@ const MAP = {
   font900: 'font1350',
   font1000: 'font1350',
   font1100: 'font1450',
-  // colors
+};
+
+const THEME_COLOR_MAP = {
   mono100: 'white',
   mono200: 'mono50',
   mono300: 'mono100',
@@ -40,6 +41,16 @@ const MAP = {
   mono1000: 'black',
 };
 
+const THEME_MAP = {
+  ...THEME_TYPOGRAPHY_MAP,
+  ...THEME_COLOR_MAP,
+};
+
+const COMPONENT_TYPOGRAPHY_MAP = {
+  Paragraph1: 'Paragraph3',
+  Label1: 'Label3',
+};
+
 async function codemod(options: {dir: string}) {
   await withJsFiles(`${options.dir}/**/*.js`, async path => {
     path.traverse({
@@ -50,20 +61,51 @@ async function codemod(options: {dir: string}) {
               if (path.node.name === 'font' || path.node.name === 'color') {
                 path.parentPath.traverse({
                   StringLiteral(path) {
-                    const newValue = MAP[path.node.value];
+                    const newValue = THEME_MAP[path.node.value];
                     if (newValue) path.node.value = newValue;
                   },
                 });
               }
             },
           });
+        } else if (
+          Object.keys(COMPONENT_TYPOGRAPHY_MAP).includes(path.node.name)
+        ) {
+          const newValue = COMPONENT_TYPOGRAPHY_MAP[path.node.name];
+          if (newValue) path.node.name = newValue;
         }
       },
       Identifier(path) {
-        if (Object.keys(MAP).includes(path.node.name)) {
-          const newValue = MAP[path.node.name];
+        if (Object.keys(THEME_MAP).includes(path.node.name)) {
+          const newValue = THEME_MAP[path.node.name];
           if (newValue) path.node.name = newValue;
         }
+      },
+      ImportDeclaration(path) {
+        path.traverse({
+          StringLiteral(path) {
+            if (path.node.value === 'baseui/typography') {
+              path.parentPath.traverse({
+                ImportSpecifier(path) {
+                  if (
+                    Object.keys(COMPONENT_TYPOGRAPHY_MAP).includes(
+                      path.node.imported.name,
+                    )
+                  ) {
+                    const newValue =
+                      COMPONENT_TYPOGRAPHY_MAP[path.node.imported.name];
+                    const hasLocalAlias =
+                      path.node.imported.name !== path.node.local.name;
+                    if (newValue) {
+                      path.node.imported.name = newValue;
+                      if (!hasLocalAlias) path.node.local.name = newValue;
+                    }
+                  }
+                },
+              });
+            }
+          },
+        });
       },
     });
   });
