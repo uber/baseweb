@@ -63,10 +63,14 @@ const TableOfContents = props => {
   return (
     <ul
       className={useCss({
-        borderLeft: `1px solid ${theme.colors.mono400}`,
+        [theme.direction === 'rtl'
+          ? 'borderRight'
+          : 'borderLeft']: `1px solid ${theme.colors.mono400}`,
         listStyle: 'none',
-        marginLeft: theme.sizing.scale400,
+        [theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: theme.sizing
+          .scale400,
         paddingLeft: 0,
+        paddingRight: 0,
         // to make sure we align vertically with the edit on github button
         marginTop: '-10px',
         marginBottom: 0,
@@ -77,7 +81,9 @@ const TableOfContents = props => {
           key={header.name}
           className={useCss({
             ...theme.typography.font100,
-            paddingLeft: getPadding(header.component),
+            [theme.direction === 'rtl'
+              ? 'paddingRight'
+              : 'paddingLeft']: getPadding(header.component),
           })}
         >
           <a
