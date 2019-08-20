@@ -41,11 +41,163 @@ The base color primitives for both the default light and dark theme have been ad
 
 The changes in most of the colorways are quite subtle, but the gray (mono) palette has shifted more noticeably. Here are the updated grayscale values:
 
-### Light Theme Changes
+### Blue Changes (Primary)
 
 <StyledTable>
   <StyledHead>
-    <StyledHeadCell>Primitive</StyledHeadCell>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['primary50', '#EDF3FE', '#EEF3FE'],
+      ['primary100', '#D2E0FC', '#D4E2FC'],
+      ['primary200', '#9CBCF8', '#A0BFF9'],
+      ['primary300', '#548BF4', '#5B91F4'],
+      ['primary400', '#276EF1', '#276EF1'],
+      ['primary500', '#174EB6', '#1E54B7'],
+      ['primary600', '#123D90', '#174291'],
+      ['primary700', '#0C2960', '#102C60'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? '#EDF3FE' : '#0C2960',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 2 ? '#EEF3FE' : '#102C60',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Red Changes (Negative)
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['negative50', '#FDF0EF', '#FDF0EF'],
+      ['negative100', '#FADBD7', '#FADBD7'],
+      ['negative200', '#F4AFA7', '#F4AFA7'],
+      ['negative300', '#EB7567', '#EB7567'],
+      ['negative400', '#E54937', '#D44333'],
+      ['negative500', '#AE372A', '#AE372A'],
+      ['negative600', '#892C21', '#892C21'],
+      ['negative700', '#5C1D16', '#5C1D16'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? '#FDF0EF' : '#5C1D16',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 2 ? '#FDF0EF' : '#5C1D16',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Green Changes (Positive)
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['positive50', '#EBF8F2', '#F0F9F4'],
+      ['positive100', '#CDEDDE', '#DAF0E3'],
+      ['positive200', '#88D3B0', '#AEDDC2'],
+      ['positive300', '#43B982', '#73C496'],
+      ['positive400', '#07A35A', '#3AA76D'],
+      ['positive500', '#057C44', '#368759'],
+      ['positive600', '#046236', '#2B6B46'],
+      ['positive700', '#034124', '#1C472F'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? '#EBF8F2' : '#034124',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 2 ? '#F0F9F4' : '#1C472F',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Orange Changes (Warning)
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['warning50', '#FEF3EC', '#FEF3EF'],
+      ['warning100', '#FBE2CF', '#FBE2D6'],
+      ['warning200', '#F6BA8B', '#F7BFA5'],
+      ['warning300', '#F19248', '#F19164'],
+      ['warning400', '#ED6F0E', '#ED6E33'],
+      ['warning500', '#B4540B', '#B45427'],
+      ['warning600', '#8E4308', '#8E421F'],
+      ['warning700', '#5F2C06', '#5F2C14'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? '#FEF3EC' : '#5F2C06',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 2 ? '#FEF3EF' : '#5F2C14',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Gray Changes (Light Theme)
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
     <StyledHeadCell>Old</StyledHeadCell>
     <StyledHeadCell>New</StyledHeadCell>
   </StyledHead>
@@ -82,11 +234,11 @@ The changes in most of the colorways are quite subtle, but the gray (mono) palet
   </StyledBody>
 </StyledTable>
 
-### Dark Theme Changes
+### Gray Changes (Dark Theme)
 
 <StyledTable>
   <StyledHead>
-    <StyledHeadCell>Primitive</StyledHeadCell>
+    <StyledHeadCell>Name</StyledHeadCell>
     <StyledHeadCell>Old</StyledHeadCell>
     <StyledHeadCell>New</StyledHeadCell>
   </StyledHead>
@@ -244,6 +396,121 @@ Or, if you use a `Block` to apply theme values, those will need adjusting as wel
 // NEW
 <Block color="mono50" backgroundColor="mono600" />
 ```
+
+### New color scales
+
+The default light and dark themes now come with full **yellow**, **brown**, and **purple** color scales.
+
+#### Yellow
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Value</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['rating50', '#FFFAF0'],
+      ['rating100', '#FFF2D9'],
+      ['rating200', '#FFE3AC'],
+      ['rating300', '#FFCF70'],
+      ['rating400', '#FFC043'],
+      ['rating500', '#BC8B2C'],
+      ['rating600', '#997328'],
+      ['rating700', '#664D1B'],
+    ].map((row, index) => {
+      const StyledColorCellNew = withStyle(StyledCell, props => {
+        return {
+          backgroundColor: row[1],
+          color:
+            index > 4
+              ? props.$theme.colors.rating50
+              : props.$theme.colors.rating700,
+        };
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellNew>{row[1]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+#### Purple
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Value</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['purple50', '#F4F1FA'],
+      ['purple100', '#E3DDF2'],
+      ['purple200', '#C1B5E3'],
+      ['purple300', '#957FCE'],
+      ['purple400', '#7356BF'],
+      ['purple500', '#574191'],
+      ['purple600', '#453473'],
+      ['purple700', '#2E224C'],
+    ].map((row, index) => {
+      const StyledColorCellNew = withStyle(StyledCell, props => {
+        return {
+          backgroundColor: row[1],
+          color:
+            index > 3
+              ? props.$theme.colors.purple50
+              : props.$theme.colors.purple700,
+        };
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellNew>{row[1]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+#### Brown
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Value</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['brown50', '#F7F3F1'],
+      ['brown100', '#EBE0DB'],
+      ['brown200', '#D2BBB0'],
+      ['brown300', '#B18977'],
+      ['brown400', '#99644C'],
+      ['brown500', '#744C3A'],
+      ['brown600', '#5C3C2E'],
+      ['brown700', '#3D281E'],
+    ].map((row, index) => {
+      const StyledColorCellNew = withStyle(StyledCell, props => {
+        return {
+          backgroundColor: row[1],
+          color:
+            index > 3
+              ? props.$theme.colors.brown50
+              : props.$theme.colors.brown700,
+        };
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellNew>{row[1]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
 
 ## Black is the New Blue
 
