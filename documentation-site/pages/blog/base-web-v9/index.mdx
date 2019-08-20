@@ -760,12 +760,16 @@ If you use the `Block` component to apply theme font properties, you will need t
 There has also been a small but important update to a few of the typography components. `Paragraph` and `Label` used to increase in font size as the digit suffix increased, as opposed to various header components (`H1`, `H2`, etc). This has been changed so that all of the typography components _decrease_ in size as the suffix increases, to stay consistent with the header (`h1`) pattern in HTML.
 
 <Table
-  columns={['Old', 'New']}
+  columns={['Name', 'Old', 'New']}
   data={[
-    [`Paragraph1`, `Paragraph2`],
-    [`Paragraph2`, `Paragraph1`],
-    [`Label1`, `Label2`],
-    [`Label2`, `Label1`],
+    ['Label1', 'font350, 14px/20px/500', 'font450, 18px/28px/500'],
+    ['Label2', 'font450, 16px/20px/500', 'font350, 16px/24px/500'],
+    ['Label3', '-', 'font250, 14px/20px/500'],
+    ['Label4', '-', 'font150, 12px/20px/500'],
+    ['Paragraph1', 'font300, 14px/20px/400', 'font400, 18px/28px/400'],
+    ['Paragraph2', 'font400, 16px/20px/400', 'font300, 16px/24px/400'],
+    ['Paragraph3', '-', 'font200, 14px/20px/400'],
+    ['Paragraph4', '-', 'font100, 12px/20px/400'],
   ]}
 />
 
