@@ -16,7 +16,7 @@ const fetch = require('isomorphic-fetch');
 
 const VERSIONS_PATH = resolve(__dirname, '../versions.json');
 
-async function main() {
+module.exports = async function generateVersions() {
   try {
     unlinkSync(VERSIONS_PATH);
   } catch (ex) {
@@ -34,6 +34,4 @@ async function main() {
   }
 
   writeFileSync(VERSIONS_PATH, JSON.stringify(releases, null, 2));
-}
-
-main().catch(console.error);
+};

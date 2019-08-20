@@ -197,7 +197,9 @@ exports[`Block Responsive applies expected styles if responsive array has less t
               "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
                 "marginLeft": "$theme.sizing.scale200",
               },
-              "marginLeft": "$theme.sizing.scale100",
+              "@media screen and (min-width: 0px)": Object {
+                "marginLeft": "$theme.sizing.scale100",
+              },
             }
           }
         >
@@ -270,7 +272,9 @@ exports[`Block Responsive applies expected styles if responsive array is provide
               "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
                 "marginLeft": "$theme.sizing.scale200",
               },
-              "marginLeft": "$theme.sizing.scale100",
+              "@media screen and (min-width: 0px)": Object {
+                "marginLeft": "$theme.sizing.scale100",
+              },
             }
           }
         >

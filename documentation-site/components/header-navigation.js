@@ -14,7 +14,7 @@ import {
   StyledNavigationList as NavigationList,
   ALIGN,
 } from 'baseui/header-navigation';
-import {styled} from 'baseui';
+import {themedStyled} from '../pages/_app';
 import Menu from 'baseui/icon/menu';
 import Logo from '../images/base-web.svg';
 import LogoWhite from '../images/base-web-white.svg';
@@ -29,27 +29,25 @@ import Bulb from './bulb';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND} from 'baseui/button';
 
-export const HEADER_BREAKPOINT = '@media screen and (min-width: 670px)';
-
-const Hamburger = styled<{}>('div', ({$theme}) => ({
+const Hamburger = themedStyled<{}>('div', ({$theme}) => ({
   display: 'block',
   userSelect: 'none',
   height: '32px',
   paddingLeft: $theme.sizing.scale600,
   cursor: 'pointer',
-  '@media screen and (min-width: 920px)': {
+  [$theme.media.medium]: {
     display: 'none',
   },
 }));
 
-const LogoSegment = styled<{$searchInputOpen: boolean}>(
+const LogoSegment = themedStyled<{$searchInputOpen: boolean}>(
   'div',
-  ({$searchInputOpen}) => ({
+  ({$searchInputOpen, $theme}) => ({
     display: $searchInputOpen ? 'none' : 'flex',
     justifySelf: 'flex-start',
     justifyContent: 'flex-start',
     flex: 'none',
-    [HEADER_BREAKPOINT]: {
+    [$theme.media.small]: {
       display: 'flex',
     },
   }),
@@ -122,20 +120,18 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
               <Search
                 searchInputOpen={searchInputOpen}
                 toggleSearchInput={() => setSearchInputOpen(!searchInputOpen)}
-                // passed as prop to avoid circular dependency
-                breakpoint={HEADER_BREAKPOINT}
               />
               <Block
                 $as="a"
                 overrides={{
                   Block: {
-                    style: {
+                    style: ({$theme}) => ({
                       display: 'none',
-                      height: '24px',
-                      [HEADER_BREAKPOINT]: {
+                      height: $theme.sizing.scale800,
+                      [$theme.media.small]: {
                         display: 'block',
                       },
-                    },
+                    }),
                   },
                 }}
                 href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
@@ -150,13 +146,13 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 $as="a"
                 overrides={{
                   Block: {
-                    style: {
+                    style: ({$theme}) => ({
                       display: 'none',
-                      height: '24px',
-                      [HEADER_BREAKPOINT]: {
+                      height: $theme.sizing.scale800,
+                      [$theme.media.small]: {
                         display: 'block',
                       },
-                    },
+                    }),
                   },
                 }}
                 href="https://github.com/uber-web/baseui"
@@ -174,14 +170,14 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 onClick={toggleDirection}
                 overrides={{
                   Block: {
-                    style: {
+                    style: ({$theme}) => ({
                       cursor: 'pointer',
                       display: 'none',
-                      height: '24px',
-                      [HEADER_BREAKPOINT]: {
+                      height: $theme.sizing.scale800,
+                      [$theme.media.small]: {
                         display: 'block',
                       },
-                    },
+                    }),
                   },
                 }}
               >
@@ -195,12 +191,12 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 $as="a"
                 overrides={{
                   Block: {
-                    style: {
-                      height: '24px',
-                      [HEADER_BREAKPOINT]: {
+                    style: ({$theme}) => ({
+                      height: $theme.sizing.scale800,
+                      [$theme.media.small]: {
                         display: 'block',
                       },
-                    },
+                    }),
                   },
                 }}
                 $style={{textDecoration: 'none'}}

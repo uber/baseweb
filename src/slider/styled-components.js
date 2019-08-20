@@ -37,7 +37,7 @@ Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled<StylePropsT>('div', props => {
   const {$theme, $value = [], $min, $max, $disabled} = props;
-  const {colors, borders, sizing} = $theme;
+  const {colors, borders, sizing, direction} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   const fillColor = $disabled ? colors.sliderFillDisabled : colors.sliderFill;
   return {
@@ -53,6 +53,7 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
           : [colors.sliderTrackFill, fillColor, colors.sliderTrackFill],
       min: $min || 0,
       max: $max || 0,
+      rtl: direction === 'rtl',
     }),
     height: sizing.scale100,
     width: '100%',
@@ -85,8 +86,14 @@ TickBar.displayName = 'StyledTickBar';
 
 export const Thumb = styled<StylePropsT>('div', props => {
   const {$theme, $value = [], $thumbIndex, $disabled} = props;
-  const isLeft = $value.length === 2 && $thumbIndex === 0;
-  const isRight = $value.length === 2 && $thumbIndex === 1;
+  let isLeft = $value.length === 2 && $thumbIndex === 0;
+  let isRight = $value.length === 2 && $thumbIndex === 1;
+
+  if ($theme.direction === 'rtl' && (isRight || isLeft)) {
+    isLeft = !isLeft;
+    isRight = !isRight;
+  }
+
   return {
     height: '24px',
     width: isLeft || isRight ? '12px' : '24px',

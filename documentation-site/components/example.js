@@ -20,7 +20,7 @@ import Code from './code';
 import CodeIcon from './code-icon';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
-import {H2} from './markdown-elements';
+import {H3} from './markdown-elements';
 
 const Link = withStyle(StyledLink, {cursor: 'pointer'});
 
@@ -157,7 +157,7 @@ class Example extends React.Component<PropsT, StateT> {
           },
         }}
       >
-        {this.props.title && <H2>{this.props.title}</H2>}
+        {this.props.title && <H3>{this.props.title}</H3>}
         {this.props.children}
 
         <Block paddingTop="scale400">

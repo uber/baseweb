@@ -19,7 +19,6 @@ import fetch from 'isomorphic-fetch';
 
 import BlogPosts from '../posts.js';
 
-import {HEADER_BREAKPOINT} from '../components/header-navigation';
 import Layout from '../components/layout';
 import Contributors from '../components/contributors';
 import Markdown from '../components/markdown-elements';
@@ -118,12 +117,12 @@ const Index = (props: {
       marginRight="-16px"
       overrides={{
         Block: {
-          style: {
+          style: ({$theme}) => ({
             flexWrap: 'wrap',
-            [HEADER_BREAKPOINT]: {
+            [$theme.media.small]: {
               flexWrap: 'nowrap',
             },
-          },
+          }),
         },
       }}
     >
