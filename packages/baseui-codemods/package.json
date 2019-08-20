@@ -24,6 +24,6 @@
   "dependencies": {
     "@babel/types": "^7.4.4",
     "@dubstep/core": "^3.3.1",
-    "yargs": "^13.2.4"
+    "yargs": "^14.0.0"
   }
 }
