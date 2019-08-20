@@ -46,6 +46,8 @@ The [card-validator](https://github.com/braintree/card-validator) library is use
 
 This component is based on the [Input](/components/input) component. All of the props you can pass to `Input` also work on `PaymentCard`: `size`, `error`, `positive`, `disabled`, etc. The only exception to this is `overrides`, which has a [slightly different API](/components/payment-card/#overrides).
 
+## Examples
+
 <Example title="Basic usage" path="payment-card/controlled.js">
   <Controlled />
 </Example>
@@ -71,6 +73,8 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
   blacklisted={['InputEnhancer', 'StartEnhancer', 'EndEnhancer']}
   renderExample={props => <StatefulPaymentCard overrides={props.overrides} />}
 />
+
+## API
 
 <API
   heading="PaymentCard API"

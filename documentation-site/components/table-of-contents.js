@@ -20,7 +20,6 @@ const TableOfContents = props => {
   const [useCss, theme] = useStyletron();
   const TOC = [];
   const content = props.content[0].props.children;
-  console.log(content);
   content &&
     content.forEach &&
     content.forEach(element => {
@@ -42,7 +41,7 @@ const TableOfContents = props => {
         TOC.push({
           name: element.props.title,
           anchor: `#${element.props.title.toLowerCase().replace(/\s+/g, '-')}`,
-          component: 'h2',
+          component: 'h3',
         });
       }
 
@@ -52,7 +51,7 @@ const TableOfContents = props => {
           anchor: `#${element.props.heading
             .toLowerCase()
             .replace(/\s+/g, '-')}`,
-          component: 'h2',
+          component: 'h3',
         });
       }
     });
