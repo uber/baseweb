@@ -5,7 +5,7 @@ interface Breakpoints {
 }
 
 interface Colors {
-  // Primary Palette
+  // Primary Palette, Blue
   primary50: string;
   primary100: string;
   primary200: string;
@@ -16,7 +16,7 @@ interface Colors {
   primary600: string;
   primary700: string;
 
-  // Alert Palette
+  // Alert Palette, Red
   negative50: string;
   negative100: string;
   negative200: string;
@@ -27,7 +27,7 @@ interface Colors {
   negative600: string;
   negative700: string;
 
-  // Warning Palette
+  // Warning Palette, Orange
   warning50: string;
   warning100: string;
   warning200: string;
@@ -38,7 +38,7 @@ interface Colors {
   warning600: string;
   warning700: string;
 
-  // Success Palette
+  // Success Palette, Green
   positive50: string;
   positive100: string;
   positive200: string;
@@ -49,7 +49,7 @@ interface Colors {
   positive600: string;
   positive700: string;
 
-  // Monochrome Palette
+  // Monochrome Palette, Gray
   white: string;
   mono50: string;
   mono100: string;
@@ -64,9 +64,35 @@ interface Colors {
   mono1000: string;
   black: string;
 
-  // Rating Palette
+  // Rating Palette, Yellow
+  rating50: string;
+  rating100: string;
   rating200: string;
+  rating300: string;
   rating400: string;
+  rating500: string;
+  rating600: string;
+  rating700: string;
+
+  // Purple Palette
+  purple50: string;
+  purple100: string;
+  purple200: string;
+  purple300: string;
+  purple400: string;
+  purple500: string;
+  purple600: string;
+  purple700: string;
+
+  // Brown Palette
+  brown50: string;
+  brown100: string;
+  brown200: string;
+  brown300: string;
+  brown400: string;
+  brown500: string;
+  brown600: string;
+  brown700: string;
 
   // Semantic Colors
 

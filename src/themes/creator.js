@@ -22,7 +22,7 @@ export default function createTheme(
     },
 
     colors: {
-      // Primary Palette
+      // Primary Palette, Blue
       primary50: primitives.primary50,
       primary100: primitives.primary100,
       primary200: primitives.primary200,
@@ -33,7 +33,7 @@ export default function createTheme(
       primary600: primitives.primary600,
       primary700: primitives.primary700,
 
-      // Negative Palette
+      // Negative Palette, Red
       negative50: primitives.negative50,
       negative100: primitives.negative100,
       negative200: primitives.negative200,
@@ -44,7 +44,7 @@ export default function createTheme(
       negative600: primitives.negative600,
       negative700: primitives.negative700,
 
-      // Warning Palette
+      // Warning Palette, Orange
       warning50: primitives.warning50,
       warning100: primitives.warning100,
       warning200: primitives.warning200,
@@ -55,7 +55,7 @@ export default function createTheme(
       warning600: primitives.warning600,
       warning700: primitives.warning700,
 
-      // Positive Palette
+      // Positive Palette, Green
       positive50: primitives.positive50,
       positive100: primitives.positive100,
       positive200: primitives.positive200,
@@ -66,7 +66,7 @@ export default function createTheme(
       positive600: primitives.positive600,
       positive700: primitives.positive700,
 
-      // Monochrome Palette
+      // Monochrome Palette, Gray
       white: primitives.white,
       mono50: primitives.mono50,
       mono100: primitives.mono100,
@@ -81,9 +81,35 @@ export default function createTheme(
       mono1000: primitives.mono1000,
       black: primitives.black,
 
-      // Rating Palette,
+      // Rating Palette, Yellow
+      rating50: primitives.rating50,
+      rating100: primitives.rating100,
       rating200: primitives.rating200,
+      rating300: primitives.rating300,
       rating400: primitives.rating400,
+      rating500: primitives.rating500,
+      rating600: primitives.rating600,
+      rating700: primitives.rating700,
+
+      // Purple Palette
+      purple50: primitives.purple50,
+      purple100: primitives.purple100,
+      purple200: primitives.purple200,
+      purple300: primitives.purple300,
+      purple400: primitives.purple400,
+      purple500: primitives.purple500,
+      purple600: primitives.purple600,
+      purple700: primitives.purple700,
+
+      // Brown Palette
+      brown50: primitives.brown50,
+      brown100: primitives.brown100,
+      brown200: primitives.brown200,
+      brown300: primitives.brown300,
+      brown400: primitives.brown400,
+      brown500: primitives.brown500,
+      brown600: primitives.brown600,
+      brown700: primitives.brown700,
 
       // Semantic Colors
 

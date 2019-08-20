@@ -59,8 +59,32 @@ export const primitives: PrimitivesT = {
   mono1000: '#141414', // not in uber colors, used for dark theme
   black: '#000000',
 
+  rating50: '#FFFAF0',
+  rating100: '#FFF209',
   rating200: '#FFE3AC',
+  rating300: '#FFCF70',
   rating400: '#FFC043',
+  rating500: '#BC8B2C',
+  rating600: '#997328',
+  rating700: '#664D1B',
+
+  purple50: '#F4F1FA',
+  purple100: '#E3DDF2',
+  purple200: '#C1B5E3',
+  purple300: '#957FCE',
+  purple400: '#7356BF',
+  purple500: '#574191',
+  purple600: '#453473',
+  purple700: '#2E224C',
+
+  brown50: '#F7F3F1',
+  brown100: '#EBE0DB',
+  brown200: '#D2BBB0',
+  brown300: '#B18977',
+  brown400: '#99644C',
+  brown500: '#744C3A',
+  brown600: '#5C3C2E',
+  brown700: '#3D281E',
 
   primaryFontFamily:
     'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
