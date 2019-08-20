@@ -48,7 +48,25 @@ const TableOfContents = props => {
           component: 'h2',
         });
       }
+
+      if (
+        element.type &&
+        element.type.name === 'API' &&
+        element.props.heading
+      ) {
+        TOC.push({
+          name: element.props.heading,
+          anchor: `#${element.props.heading
+            .toLowerCase()
+            .replace(/\s+/g, '-')}`,
+          component: 'h2',
+        });
+      }
     });
+
+  if (TOC.length === 1) {
+    return null;
+  }
 
   return (
     <ul
@@ -57,7 +75,8 @@ const TableOfContents = props => {
         listStyle: 'none',
         marginLeft: theme.sizing.scale400,
         paddingLeft: 0,
-        marginTop: 0,
+        // to make sure we align vertically with the edit on github button
+        marginTop: '-10px',
         marginBottom: 0,
       })}
     >
