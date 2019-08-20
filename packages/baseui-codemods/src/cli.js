@@ -14,6 +14,7 @@ import {Stepper, step} from '@dubstep/core';
 
 import styledV7TypeArguments from './styled-v7-type-arguments.js';
 import styledV8ToThemedStyled from './styled-v8-themedStyled.js';
+import v9ThemeScale from './v9-theme-scale.js';
 
 let dir = argv.dir;
 
@@ -34,6 +35,9 @@ const steps = [
   }),
   step('migrate styled theme generic to createThemedStyled', async () => {
     await styledV8ToThemedStyled({dir});
+  }),
+  step('update theme properties for v9', async () => {
+    await v9ThemeScale({dir});
   }),
 ];
 
