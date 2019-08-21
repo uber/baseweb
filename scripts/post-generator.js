@@ -20,30 +20,31 @@ const source = resolve(__dirname, '../documentation-site/pages/blog');
  * Generates JavaScript file exporting posts Array for use by
  * Blog page
  */
+module.exports = function generatePosts() {
+  let posts = [];
+  const postDirs = readdirSync(source)
+    .map(name => join(source, name))
+    .filter(a => lstatSync(a).isDirectory());
 
-let posts = [];
-const postDirs = readdirSync(source)
-  .map(name => join(source, name))
-  .filter(a => lstatSync(a).isDirectory());
+  for (let postDir of postDirs) {
+    const content = readFileSync(`${postDir}/metadata.json`, 'utf-8');
+    const attrs = JSON.parse(content);
+    let post = {
+      path: `/blog/${basename(postDir)}`,
+      ...attrs,
+    };
+    posts.push(post);
+  }
 
-for (let postDir of postDirs) {
-  const content = readFileSync(`${postDir}/metadata.json`, 'utf-8');
-  const attrs = JSON.parse(content);
-  let post = {
-    path: `/blog/${basename(postDir)}`,
-    ...attrs,
-  };
-  posts.push(post);
-}
+  if (posts.length) {
+    posts = posts.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
+  }
 
-if (posts.length) {
-  posts = posts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-  );
-}
+  const content = `const posts = ${
+    posts.length ? JSON.stringify(posts) : '[]'
+  }; export default posts;`;
 
-const content = `const posts = ${
-  posts.length ? JSON.stringify(posts) : '[]'
-}; export default posts;`;
-
-writeFileSync(`${process.cwd()}/documentation-site/posts.js`, content);
+  writeFileSync(`${process.cwd()}/documentation-site/posts.js`, content);
+};

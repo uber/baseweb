@@ -5,11 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env browser */
 
+// @flow
 import * as React from 'react';
 import {
+  createThemedStyled,
+  createThemedUseStyletron,
+  createThemedWithStyle,
   BaseProvider,
   DarkTheme,
   DarkThemeMove,
@@ -17,13 +20,17 @@ import {
   LightThemeMove,
 } from 'baseui';
 import {getMediaQuery} from 'baseui/helpers/responsive-helpers';
+import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
 
 import App, {Container} from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
 import Router from 'next/router';
+import type {AppProps} from 'next/app';
+import type {NextPage, NextPageContext} from 'next';
 
 import {styletron, debug} from '../helpers/styletron';
+// $FlowFixMe
 import {trackPageView} from '../helpers/ga';
 import DirectionContext from '../components/direction-context';
 
@@ -66,6 +73,12 @@ const themes = {
   },
 };
 
+type AppThemeT = ThemeT & {media: $ObjMap<BreakpointsT, <V>(V) => string>};
+
+export const themedStyled = createThemedStyled<AppThemeT>();
+export const themedWithStyle = createThemedWithStyle<AppThemeT>();
+export const themedUseStyletron = createThemedUseStyletron<AppThemeT>();
+
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
 
@@ -76,16 +89,23 @@ const blockProps = {
 };
 
 export default class MyApp extends App {
-  constructor(props) {
+  constructor(props: AppProps) {
     super(props);
     this.state = {
-      theme: LightTheme,
+      theme: themes.LightTheme,
       direction: 'ltr',
     };
+    // $FlowFixMe
     this.mediaQueryListener = this.mediaQueryListener.bind(this);
   }
 
-  static async getInitialProps({Component, ctx}) {
+  static async getInitialProps({
+    Component,
+    ctx,
+  }: {
+    Component: NextPage,
+    ctx: NextPageContext,
+  }) {
     let pageProps = {};
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
@@ -119,12 +139,11 @@ export default class MyApp extends App {
     }
   }
 
-  mediaQueryListener(e) {
+  mediaQueryListener(e: MediaQueryListEvent) {
     if (e && e.matches) {
       if (e.media === DARK_MEDIA_QUERY) {
         this.setThemeStyle('dark');
-      }
-      if (e.media === LIGHT_MEDIA_QUERY) {
+      } else if (e.media === LIGHT_MEDIA_QUERY) {
         this.setThemeStyle('light');
       }
       this.setTheme();
@@ -169,20 +188,17 @@ export default class MyApp extends App {
     config.font = fontToSet || presetFont || config.font;
     config.theme = themeToSet || presetTheme || config.theme;
 
-    let themeName = '';
-
-    if (config.theme === 'dark') {
-      themeName += 'DarkTheme';
-    } else if (config.theme === 'light') {
-      themeName += 'LightTheme';
-    }
-
-    if (config.font === 'move') {
-      themeName += 'Move';
-    }
+    const themeName =
+      config.theme === 'dark'
+        ? config.font === 'move'
+          ? 'DarkThemeMove'
+          : 'DarkTheme'
+        : config.font === 'move'
+        ? 'LightThemeMove'
+        : 'LightTheme';
 
     this.setState({
-      theme: themes[themeName] || LightTheme,
+      theme: themes[themeName],
     });
   }
 
@@ -190,16 +206,12 @@ export default class MyApp extends App {
     return localStorage.getItem('docs-theme');
   }
 
-  setThemeStyle(theme) {
+  setThemeStyle(theme: 'light' | 'dark') {
     localStorage.setItem('docs-theme', theme);
   }
 
   toggleTheme() {
     const theme = this.getThemeStyle();
-
-    if (!theme) {
-      this.setThemeStyle('dark');
-    }
 
     if (theme === 'dark') {
       this.setThemeStyle('light');
@@ -217,13 +229,17 @@ export default class MyApp extends App {
         direction: 'ltr',
         theme: {...this.state.theme, direction: 'ltr'},
       });
-      document.body.dir = 'ltr';
+      if (document.body) {
+        document.body.dir = 'ltr';
+      }
     } else {
       this.setState({
         direction: 'rtl',
         theme: {...this.state.theme, direction: 'rtl'},
       });
-      document.body.dir = 'rtl';
+      if (document.body) {
+        document.body.dir = 'rtl';
+      }
     }
   }
 

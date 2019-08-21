@@ -261,7 +261,7 @@ export default function() {
 
         {data.map((row, index) => {
           const striped = index % 2 === 0;
-          return <Row row={row} striped={striped} />;
+          return <Row key={index} row={row} striped={striped} />;
         })}
       </StyledTable>
     </div>

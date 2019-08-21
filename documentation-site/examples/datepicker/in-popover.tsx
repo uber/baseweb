@@ -1,15 +1,27 @@
 import * as React from 'react';
-import {StatefulDatepicker} from 'baseui/datepicker';
+import {Datepicker} from 'baseui/datepicker';
 import {addDays} from 'date-fns';
 
-export default () => (
-  <React.Fragment>
-    <StatefulDatepicker />
-    <br />
-    <StatefulDatepicker
-      range
-      initialState={{value: [new Date(), addDays(new Date(), 4)]}}
-      placeholder="YYYY/MM/YY - YYYY/MM/YY"
-    />
-  </React.Fragment>
-);
+export default () => {
+  const [singleDate, setSingleDate] = React.useState<any>(null);
+  const [rangeDate, setRangeDate] = React.useState<any>([
+    new Date(),
+    addDays(new Date(), 4),
+  ]);
+
+  return (
+    <React.Fragment>
+      <Datepicker
+        value={singleDate}
+        onChange={({date}) => setSingleDate(date)}
+      />
+      <br />
+      <Datepicker
+        range
+        value={rangeDate}
+        onChange={({date}) => setRangeDate(date)}
+        placeholder="YYYY/MM/DD - YYYY/MM/DD"
+      />
+    </React.Fragment>
+  );
+};

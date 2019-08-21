@@ -406,6 +406,7 @@ export type TypographyT = {
   font800: Font,
   font900: Font,
   font1000: Font,
+  font1100: Font,
 };
 
 export type Font = {

@@ -12,13 +12,13 @@ import Props from 'pretty-proptypes';
 import {Block} from 'baseui/block';
 import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'baseui/button';
 import {Paragraph1} from 'baseui/typography';
-import {H2} from './markdown-elements';
+import {H3} from './markdown-elements';
 
 const API = props => {
   const {heading, api} = props;
   return (
     <React.Fragment>
-      <H2>{heading}</H2>
+      <H3>{heading}</H3>
       <Block marginTop="-24px">
         <Props
           props={api}
@@ -26,7 +26,7 @@ const API = props => {
           shouldCollapseProps={true}
           components={{
             Description: props => {
-              return <Paragraph1>{props.children}</Paragraph1>;
+              return <Paragraph1 $as="div">{props.children}</Paragraph1>;
             },
             Button: props => {
               return (

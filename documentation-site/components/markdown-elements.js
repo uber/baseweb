@@ -12,9 +12,8 @@ import * as React from 'react';
 import Head from 'next/head';
 import {Block} from 'baseui/block';
 import Code from './code';
-import {styled} from 'baseui/styles';
+import {themedStyled} from '../pages/_app';
 import Link from 'next/link';
-import {StyledLink} from 'baseui/link';
 import Anchor from './anchor';
 import slugify from '../helpers/slugify';
 import {useHover} from './hooks';
@@ -79,7 +78,7 @@ const Paragraph = (props: Props) => (
 
 const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
-const InlineCode = styled('code', {
+const InlineCode = themedStyled('code', {
   backgroundColor: 'rgba(27, 31, 35, 0.05)',
   borderTopLeftRadius: '3px',
   borderTopRightRadius: '3px',
@@ -95,7 +94,7 @@ const InlineCode = styled('code', {
     'SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;',
 });
 
-const Blockquote = styled('blockquote', {
+const Blockquote = themedStyled('blockquote', {
   backgroundColor: 'rgba(27, 31, 35, 0.03)',
   borderTopLeftRadius: '3px',
   borderTopRightRadius: '3px',
@@ -114,9 +113,9 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
     (parts[0] === '' && parts[1] !== '') || !href.includes('http');
   return (
     <Link href={href}>
-      <StyledLink href={href} {...(internal ? {} : {target: '_blank'})}>
+      <a href={href} {...(internal ? {} : {target: '_blank'})}>
         {children}
-      </StyledLink>
+      </a>
     </Link>
   );
 };

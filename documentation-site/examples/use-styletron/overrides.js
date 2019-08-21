@@ -12,14 +12,16 @@ export default () => {
         BaseButton: props => {
           return (
             <button
-              {...props}
+              disabled={props.disabled}
               className={useCss({
                 background: props.$disabled
                   ? theme.colors.negative400
                   : theme.colors.warning400,
                 color: theme.colors.background,
               })}
-            />
+            >
+              {props.children}
+            </button>
           );
         },
       }}

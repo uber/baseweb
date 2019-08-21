@@ -7,11 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {styled} from 'baseui';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
+import {StatefulTooltip} from 'baseui/tooltip';
 
+import TableOfContents from './table-of-contents';
+import {themedStyled} from '../pages/_app';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
 import HeaderNavigation from './header-navigation';
@@ -19,6 +21,7 @@ import Footer from './footer';
 import PencilIcon from './pencil-icon';
 import Routes from '../routes';
 import DirectionContext from '../components/direction-context';
+import ComponentSizes from '../../component-sizes.json';
 
 const GH_URL =
   'https://github.com/uber-web/baseui/blob/master/documentation-site/pages';
@@ -45,39 +48,48 @@ type PropsT = {
   path?: string,
   toggleTheme: () => void,
   toggleDirection: () => void,
+  hideSideNavigation?: boolean,
+  maxContentWidth?: string,
 };
 
-const SidebarWrapper = styled<{$isOpen: boolean}>(
-  'div',
-  ({$theme, $isOpen}) => ({
-    display: $isOpen ? 'block' : 'none',
-    paddingTop: $theme.sizing.scale700,
-    marginLeft: $theme.sizing.scale800,
-    marginRight: $theme.sizing.scale800,
-    '@media screen and (min-width: 920px)': {
-      display: 'block',
-      maxWidth: '16em',
-    },
-  }),
-);
+const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
+  display: 'none',
+  '@media screen and (min-width: 1280px)': {
+    display: 'block',
+    maxWidth: '16em',
+  },
+}));
 
-const ContentWrapper = styled<{$isSidebarOpen: boolean}>(
-  'div',
-  ({$theme, $isSidebarOpen}) => ({
-    position: 'relative',
-    boxSizing: 'border-box',
-    display: $isSidebarOpen ? 'none' : 'block',
-    paddingLeft: $theme.sizing.scale800,
-    paddingRight: $theme.sizing.scale800,
-    width: '100%',
-    maxWidth: '40em',
-    flex: 2,
-    '@media screen and (min-width: 920px)': {
-      display: 'block',
-      maxWidth: '40em',
-    },
-  }),
-);
+const SidebarWrapper = themedStyled<{
+  $isOpen: boolean,
+  $hideSideNavigation: boolean,
+}>('div', ({$theme, $isOpen, $hideSideNavigation}) => ({
+  display: $isOpen ? 'block' : 'none',
+  paddingTop: $theme.sizing.scale700,
+  marginLeft: $theme.sizing.scale800,
+  marginRight: $theme.sizing.scale800,
+  [$theme.media.medium]: {
+    display: $hideSideNavigation ? 'none' : 'block',
+    maxWidth: '16em',
+  },
+}));
+
+const ContentWrapper = themedStyled<{
+  $isSidebarOpen: boolean,
+  $maxWidth?: string,
+}>('div', ({$theme, $isSidebarOpen, $maxWidth}) => ({
+  position: 'relative',
+  boxSizing: 'border-box',
+  display: $isSidebarOpen ? 'none' : 'block',
+  paddingLeft: $theme.sizing.scale800,
+  paddingRight: $theme.sizing.scale800,
+  width: '100%',
+  maxWidth: $maxWidth ? $maxWidth : '40em',
+  [$theme.media.medium]: {
+    display: 'block',
+    maxWidth: $maxWidth ? $maxWidth : '40em',
+  },
+}));
 
 class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   constructor(props: PropsT) {
@@ -89,11 +101,19 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
   render() {
     const {sidebarOpen} = this.state;
     const {toggleTheme, toggleDirection, children} = this.props;
-    let {path} = this.props;
+    let {path = ''} = this.props;
+    let component;
 
     if (path && path.endsWith('/')) {
       path = path.slice(0, -1);
     }
+
+    if (path.includes('/components')) {
+      component = path.replace('/components/', '');
+    }
+
+    const componentStats = ComponentSizes[component] || {dependencySizes: []};
+    const componentSizeKb = Math.floor(componentStats.gzip / 1000);
 
     const route = findByPath(Routes, path);
     let isGitHubEditDisabled;
@@ -128,6 +148,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             >
               <SidebarWrapper
                 $isOpen={sidebarOpen}
+                $hideSideNavigation={!!this.props.hideSideNavigation}
                 onClick={() =>
                   sidebarOpen && this.setState({sidebarOpen: false})
                 }
@@ -138,6 +159,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                 id="docSearch-content"
                 role="main"
                 $isSidebarOpen={sidebarOpen}
+                $maxWidth={this.props.maxContentWidth}
               >
                 {isGitHubEditDisabled ? null : (
                   <Block
@@ -167,10 +189,43 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     </Button>
                   </Block>
                 )}
+                {componentStats.size ? (
+                  <StatefulTooltip
+                    accessibilityType={'tooltip'}
+                    content={
+                      <div>
+                        <p>
+                          Some of the component{"'"}s dependencies are one-time
+                          costs for your application, like React or Styletron.
+                        </p>
+                        <p>
+                          Below you can find the full breakdown of dependencies
+                          and their approximate size associated with this
+                          component:
+                        </p>
+                        <ul>
+                          {componentStats.dependencySizes.map(dep => (
+                            <li key={dep.name}>
+                              {dep.name} -{' '}
+                              {Math.floor(dep.approximateSize / 1000)}kb
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    }
+                  >
+                    <Block font="font200">
+                      [?] Component size, gzipped: {componentSizeKb}kb
+                    </Block>
+                  </StatefulTooltip>
+                ) : null}
                 <MDXProvider components={MarkdownElements}>
                   {children}
                 </MDXProvider>
               </ContentWrapper>
+              <TOCWrapper>
+                <TableOfContents content={React.Children.toArray(children)} />
+              </TOCWrapper>
             </Block>
             <Footer />
           </React.Fragment>

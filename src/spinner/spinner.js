@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {mergeOverrides, getOverrides} from '../helpers/overrides.js';
-import {Icon} from '../icon/index.js';
+import Icon from '../icon/icon.js';
 
 import {
   Svg as StyledSvg,

@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {styled} from 'baseui';
 import {Block} from 'baseui/block';
 import Head from 'next/head';
 import {H1} from './markdown-elements';
+import {themedStyled} from '../pages/_app';
 
-const Image = styled('img', props => ({
+const Image = themedStyled('img', props => ({
   display: 'block',
   margin: '0 auto',
   maxWidth: '100%',
@@ -20,7 +20,7 @@ const Image = styled('img', props => ({
   width: props.$full ? '100%' : 'auto',
 }));
 
-export const Caption = styled('figcaption', ({$theme}) => ({
+export const Caption = themedStyled('figcaption', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
@@ -36,7 +36,7 @@ export const BlogImage = ({full, alt, caption, src, style}) => (
   </figure>
 );
 
-export const Demo = styled('iframe', {
+export const Demo = themedStyled('iframe', {
   border: 0,
   borderTopLeftRadius: '4px',
   borderTopRightRadius: '4px',
@@ -47,14 +47,14 @@ export const Demo = styled('iframe', {
   width: '100%',
 });
 
-const Tagline = styled('span', ({$theme}) => ({
+const Tagline = themedStyled('span', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale800,
   fontWeight: 300,
 }));
 
-const AuthorLink = styled('a', ({$theme}) => ({
+const AuthorLink = themedStyled('a', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
   fontFamily: $theme.typography.font100.fontFamily,
   ':hover': {
@@ -62,7 +62,7 @@ const AuthorLink = styled('a', ({$theme}) => ({
   },
 }));
 
-const ArticleDate = styled('span', ({$theme}) => ({
+const ArticleDate = themedStyled('span', ({$theme}) => ({
   color: $theme.colors.foregroundAlt,
 }));
 
