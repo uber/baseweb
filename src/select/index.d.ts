@@ -253,6 +253,7 @@ export interface DropdownProps {
   width?: number;
   selectKeyDownHandler: (event: KeyboardEvent) => void;
   focusSelect: () => void;
+  closeDropdownMenu: () => void;
 }
 export class SelectDropdown extends React.Component<DropdownProps> {
   getSharedProps(): {

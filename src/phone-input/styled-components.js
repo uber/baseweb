@@ -14,12 +14,13 @@ import {
   StyledDropdownListItem,
   StyledRoot as SelectStyledRoot,
 } from '../select/index.js';
-import defaultProps from '../select/default-props.js';
+import defaultProps from './default-props.js';
 
 type SizeStyleProps = {
   $size?: $Keys<typeof SIZE>,
 };
 type HeightStyleProps = {$height: string};
+type WidthStyleProps = {$width: string};
 
 export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
   Flag,
@@ -116,7 +117,14 @@ export const StyledSearchIcon = styled<{}>('div', ({$theme: {sizing}}) => {
   };
 });
 
-export const StyledPopoverContentContainer = styled<{}>('div', ({$theme}) => ({
-  height: 'auto',
-  width: 'auto',
-}));
+export const StyledPopoverContentContainer = styled<WidthStyleProps>(
+  'div',
+  props => {
+    const {$width = defaultProps.maxDropdownWidth} = props;
+    return {
+      height: 'auto',
+      width: $width,
+      maxWidth: 'calc(100vw - 10px)',
+    };
+  },
+);

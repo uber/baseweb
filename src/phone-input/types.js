@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
-import type {OnChangeParamsT} from '../select/types.js';
+import type {OnChangeParamsT, DropdownPropsT} from '../select/types.js';
 import type {StatefulInputPropsT} from '../input/types.js';
 
 export type SizeT = $Keys<typeof SIZE>;
@@ -39,13 +39,14 @@ export type StateReducerT = (
 export type mapIsoToLabelT = (iso: string) => string;
 
 // Props
-
-export type CountrySelectDropdownPropsT = {
-  // eslint-disable-next-line flowtype/no-weak-types
-  children: $ReadOnlyArray<React.Element<any>>,
+// eslint-disable-next-line flowtype/generic-spacing
+export type CountrySelectDropdownPropsT = DropdownPropsT & {
   country: CountryT,
   mapIsoToLabel?: mapIsoToLabelT,
   maxDropdownHeight: string,
+  maxDropdownWidth: string,
+  enableFiltering: boolean,
+  onFilter: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   overrides: {
     CountrySelectDropdown?: OverrideT<*>,
     CountrySelectDropdownListItem?: OverrideT<*>,
@@ -54,9 +55,8 @@ export type CountrySelectDropdownPropsT = {
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
     FilterInput?: OverrideT<*>,
     PopoverContentContainer?: OverrideT<*>,
+    EmptyState?: OverrideT<*>,
   },
-  enableFiltering: boolean,
-  onFilter: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type FilterInputPropsT = StatefulInputPropsT & {
@@ -83,6 +83,7 @@ export type CountrySelectPropsT = {
     CountrySelect?: OverrideT<*>,
     FilterInput?: OverrideT<*>,
     PopoverContentContainer?: OverrideT<*>,
+    EmptyState?: OverrideT<*>,
   },
   size: SizeT,
   enableFiltering: boolean,
@@ -126,6 +127,7 @@ export type PropsT = {
     CountrySelect?: OverrideT<*>,
     FilterInput?: OverrideT<*>,
     PopoverContentContainer?: OverrideT<*>,
+    EmptyState?: OverrideT<*>,
   },
   /** Sets the placeholder text for the input element.  */
   placeholder?: string,

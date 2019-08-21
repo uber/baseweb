@@ -232,6 +232,7 @@ export type DropdownPropsT = {
   width: ?number,
   selectKeyDownHandler: (event: KeyboardEvent) => void,
   focusSelect: () => void,
+  closeDropdownMenu: () => void,
 };
 
 export type AutosizeInputOverridesT = {

@@ -40,6 +40,7 @@ describe('SelectDropdown', function() {
       width: 100,
       selectKeyDownHandler: jest.fn(),
       focusSelect: jest.fn(),
+      closeDropdownMenu: jest.fn(),
     };
     wrapper = mount(<SelectDropdown innerRef={ref} {...props} />);
   });

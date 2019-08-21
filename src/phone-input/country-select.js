@@ -13,7 +13,11 @@ import {COUNTRIES} from './constants.js';
 import CountrySelectDropdown from './country-select-dropdown.js';
 import {default as FilterInput} from './filter-input.js';
 import {Block} from '../block/index.js';
-import {Select as DefaultSelect, filterOptions} from '../select/index.js';
+import {
+  Select as DefaultSelect,
+  filterOptions,
+  StyledControlContainer,
+} from '../select/index.js';
 import {PLACEMENT} from '../popover/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
@@ -28,6 +32,24 @@ CountrySelect.defaultProps = {
   overrides: {},
   size: defaultProps.size,
 };
+
+function ControlContainer(props) {
+  const {$isOpen, onKeyDown, ...rest} = props;
+  //prevent handling keydown event, when Dropdown are open
+  //so dropdown will handle keydown event by yourself.
+  const handleKeyDown = event => {
+    if (!$isOpen) {
+      onKeyDown(event);
+    }
+  };
+  return (
+    <StyledControlContainer
+      onKeyDown={handleKeyDown}
+      $isOpen={$isOpen}
+      {...rest}
+    />
+  );
+}
 
 export default function CountrySelect(props: CountrySelectPropsT) {
   const {
@@ -44,12 +66,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   } = props;
   const [filterMask, setFilterMask] = React.useState('');
   const onFilter = event => setFilterMask(event.currentTarget.value);
+  //overrides
   const baseOverrides = {
     Root: {
       component: StyledRoot,
       props: {$size: size},
     },
     ControlContainer: {
+      component: ControlContainer,
       style: props => {
         if (!props.$isFocused && !props.$isPseudoFocused) {
           return {
@@ -70,13 +94,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         alignItems: 'center',
       },
     },
-    DropdownContainer: {
-      style: {
-        width: maxDropdownWidth,
-        maxWidth: 'calc(100vw - 10px)',
-      },
-    },
-    Dropdown: {
+    SelectDropdown: {
       component: CountrySelectDropdown,
       props: {
         country: country,
@@ -84,6 +102,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         mapIsoToLabel: mapIsoToLabel,
         onFilter: onFilter,
         enableFiltering: enableFiltering,
+        maxDropdownWidth: maxDropdownWidth,
         overrides: {
           PopoverContentContainer: overrides.PopoverContentContainer,
           CountrySelectDropdown: overrides.CountrySelectDropdown,
@@ -95,6 +114,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
             overrides.CountrySelectDropdownNameColumn,
           CountrySelectDropdownDialcodeColumn:
             overrides.CountrySelectDropdownDialcodeColumn,
+          EmptyState: overrides.EmptyState,
           FilterInput: {
             component: FilterInput,
             props: {
@@ -122,6 +142,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     overrides.DialCode,
     StyledDialCode,
   );
+
   return (
     <Block display="flex" alignItems="center">
       <Select

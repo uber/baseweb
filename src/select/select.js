@@ -913,6 +913,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                   : null,
                 selectKeyDownHandler: event => this.handleKeyDown(event),
                 focusSelect: () => this.focus(),
+                closeDropdownMenu: () => this.closeMenu(),
               };
 
               return (

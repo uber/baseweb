@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {SIZE} from '../input';
-import {OnChangeParams} from '../select';
+import {OnChangeParams, DropdownProps} from '../select';
 import {Override} from '../overrides';
 import {StatefulInputProps, InputOverrides} from '../input';
 
@@ -323,6 +323,7 @@ export interface PhoneInputOverrides {
   CountrySelectDropdownDialcodeColumn?: Override<any>;
   FilterInput?: Override<any>;
   PopoverContentContainer?: Override<any>;
+  EmptyState?: Override<any>;
 }
 export interface PhoneInputProps {
   'aria-label'?: string;
@@ -398,16 +399,20 @@ export interface CountrySelectProps {
     CountrySelectDropdownDialcodeColumn?: Override<any>;
     FilterInput?: Override<any>;
     PopoverContentContainer?: Override<any>;
+    EmptyState?: Override<any>;
   };
   enableFiltering?: boolean;
 }
 export const CountrySelect: React.FC<CountrySelectProps>;
 
-export interface CountrySelectDropdownProps {
-  children?: Readonly<React.ReactNode[]>;
+export interface CountrySelectDropdownProps
+  extends Omit<DropdownProps, 'overrides'> {
   country?: Country;
   maxDropdownHeight?: string;
+  maxDropdownWidth?: string;
   mapIsoToLabel?: (iso: string) => string;
+  enableFiltering?: boolean;
+  onFilter?(e: React.FormEventHandler<HTMLInputElement>): void;
   overrides?: {
     CountrySelectDropdown?: Override<any>;
     CountrySelectDropdownListItem?: Override<any>;
@@ -416,9 +421,8 @@ export interface CountrySelectDropdownProps {
     CountrySelectDropdownDialcodeColumn?: Override<any>;
     FilterInput?: Override<any>;
     PopoverContentContainer?: Override<any>;
+    EmptyState?: Override<any>;
   };
-  enableFiltering?: boolean;
-  onFilter?(e: React.FormEventHandler<HTMLInputElement>): void;
 }
 export const CountrySelectDropdown: React.RefForwardingComponent<
   CountrySelectDropdownProps
