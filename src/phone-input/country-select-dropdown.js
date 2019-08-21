@@ -54,7 +54,7 @@ export default function CountrySelectDropdown(
     mapIsoToLabel,
     onFilter,
     options,
-    enableFiltering,
+    searchable,
     onItemSelect,
     focusSelect,
     selectKeyDownHandler,
@@ -80,7 +80,7 @@ export default function CountrySelectDropdown(
         break;
       case 'Tab':
         if (__BROWSER__) {
-          if (!enableFiltering) {
+          if (!searchable) {
             selectKeyDownHandler(event);
             return;
           }
@@ -183,7 +183,7 @@ export default function CountrySelectDropdown(
       ref={innerRef}
       {...popoverContentContainerProps}
     >
-      {enableFiltering && (
+      {searchable && (
         <FilterInput
           inputRef={filterRef}
           onChange={event => {

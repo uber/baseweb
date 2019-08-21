@@ -31,7 +31,7 @@ const defaultProps = {
   required: false,
   size: SIZE.default,
   text: '',
-  enableFiltering: false,
+  searchable: false,
 };
 
 export default defaultProps;

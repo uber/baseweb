@@ -6,7 +6,7 @@ export default () => {
   const [country, setCountry] = useState(COUNTRIES.US);
   return (
     <PhoneInput
-      enableFiltering
+      searchable
       text={text}
       country={country}
       onTextChange={event => {

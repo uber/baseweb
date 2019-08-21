@@ -45,7 +45,7 @@ export type CountrySelectDropdownPropsT = DropdownPropsT & {
   mapIsoToLabel?: mapIsoToLabelT,
   maxDropdownHeight: string,
   maxDropdownWidth: string,
-  enableFiltering: boolean,
+  searchable: boolean,
   onFilter: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   overrides: {
     CountrySelectDropdown?: OverrideT<*>,
@@ -86,7 +86,7 @@ export type CountrySelectPropsT = {
     EmptyState?: OverrideT<*>,
   },
   size: SizeT,
-  enableFiltering: boolean,
+  searchable: boolean,
 };
 
 export type PropsT = {
@@ -139,8 +139,8 @@ export type PropsT = {
   size: SizeT,
   /** Defines the value of the input element. */
   text: string,
-  /** Defines if the list of countries is filterable */
-  enableFiltering: boolean,
+  /** Defines if the list of countries is searchable */
+  searchable: boolean,
 };
 
 export type StatefulPhoneInputContainerPropsT = {

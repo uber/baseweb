@@ -25,7 +25,7 @@ export const component = () => {
         )
         .end()}
     >
-      <StatefulPhoneInput maxDropdownHeight="100px" enableFiltering />
+      <StatefulPhoneInput maxDropdownHeight="100px" searchable />
     </Screener>
   );
 };

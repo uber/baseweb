@@ -32,7 +32,7 @@ export default function PhoneInput(props: PropsT) {
     positive,
     size,
     text,
-    enableFiltering,
+    searchable,
     maxDropdownHeight,
     ...restProps
   } = props;
@@ -50,7 +50,7 @@ export default function PhoneInput(props: PropsT) {
         mapIsoToLabel,
         onCountryChange,
         size,
-        enableFiltering,
+        searchable,
         overrides,
         maxDropdownHeight,
       },

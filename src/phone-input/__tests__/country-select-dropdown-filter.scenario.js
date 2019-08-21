@@ -23,7 +23,7 @@ export const component = () => {
         .snapshot('Phone input country selector dropdown with filter')
         .end()}
     >
-      <StatefulPhoneInput enableFiltering />
+      <StatefulPhoneInput searchable />
     </Screener>
   );
 };

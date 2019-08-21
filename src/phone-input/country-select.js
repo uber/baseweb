@@ -62,7 +62,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     onCountryChange,
     overrides,
     size,
-    enableFiltering,
+    searchable,
   } = props;
   const [filterMask, setFilterMask] = React.useState('');
   const onFilter = event => setFilterMask(event.currentTarget.value);
@@ -101,7 +101,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         maxDropdownHeight: maxDropdownHeight,
         mapIsoToLabel: mapIsoToLabel,
         onFilter: onFilter,
-        enableFiltering: enableFiltering,
+        searchable: searchable,
         maxDropdownWidth: maxDropdownWidth,
         overrides: {
           PopoverContentContainer: overrides.PopoverContentContainer,
@@ -161,6 +161,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         }}
         options={Object.values(COUNTRIES)}
         clearable={false}
+        //set to false because our `searchable` property is not the select property `searchable`
         searchable={false}
         filterOptions={(options, filterValue, excludeOptions, newProps) =>
           filterOptions(options, filterMask, excludeOptions, newProps)

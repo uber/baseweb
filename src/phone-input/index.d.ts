@@ -336,7 +336,7 @@ export interface PhoneInputProps {
   maxDropdownHeight?: string;
   maxDropdownWidth?: string;
   overrides?: PhoneInputOverrides;
-  enableFiltering?: boolean;
+  searchable?: boolean;
 }
 export const PhoneInput: React.FC<PhoneInputProps>;
 
@@ -401,7 +401,7 @@ export interface CountrySelectProps {
     PopoverContentContainer?: Override<any>;
     EmptyState?: Override<any>;
   };
-  enableFiltering?: boolean;
+  searchable?: boolean;
 }
 export const CountrySelect: React.FC<CountrySelectProps>;
 
@@ -411,7 +411,7 @@ export interface CountrySelectDropdownProps
   maxDropdownHeight?: string;
   maxDropdownWidth?: string;
   mapIsoToLabel?: (iso: string) => string;
-  enableFiltering?: boolean;
+  searchable?: boolean;
   onFilter?(e: React.FormEventHandler<HTMLInputElement>): void;
   overrides?: {
     CountrySelectDropdown?: Override<any>;
