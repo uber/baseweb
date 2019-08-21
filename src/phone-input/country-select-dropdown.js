@@ -116,6 +116,18 @@ export default function CountrySelectDropdown(
         break;
     }
   };
+  // On the first render we set `listScrollToAlignment` state to `center`,
+  // so our selected country would be rendered in the center.
+  // And then after first render set `listScrollToAlignment` to 'auto'
+  // so when the user scrolls the list by keyboard or mouse or touch,
+  // it reacts as the regular menu.
+  const [listScrollToAlignment, setListScrollToAlignment] = React.useState(
+    'center',
+  );
+  React.useEffect(() => {
+    let timeoutId = setTimeout(() => setListScrollToAlignment('auto'));
+    return () => clearTimeout(timeoutId);
+  }, []);
   const [scrollIndex, setScrollIndex] = React.useState(
     options.findIndex(option => option.id === country.id),
   );
@@ -205,6 +217,7 @@ export default function CountrySelectDropdown(
                     width={width}
                     rowCount={options.length}
                     rowHeight={LIST_ROW_HEIGHT}
+                    scrollToAlignment={listScrollToAlignment}
                     onSectionRendered={onSectionRendered}
                     scrollToIndex={scrollToRow}
                     rowRenderer={({index, key, style, isScrolling}) => {
