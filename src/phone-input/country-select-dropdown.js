@@ -39,6 +39,15 @@ function calculateDropDownHeight(maxDropdownHeight, rowCount, rowHeight) {
 
 CountrySelectDropdown.defaultProps = {
   maxDropdownHeight: defaultProps.maxDropdownHeight,
+  maxDropdownWidth: defaultProps.maxDropdownWidth,
+  searchable: defaultProps.searchable,
+  onFilter: () => {},
+  onItemSelect: () => {},
+  focusSelect: () => {},
+  selectKeyDownHandler: () => {},
+  closeDropdownMenu: () => {},
+  options: [],
+  country: defaultProps.country,
   overrides: {},
 };
 
