@@ -13,14 +13,18 @@ export default Layout;
 
 We recognize that you need stability from Base Web.
 
-This document describes the practices that we follow to provide you the Base Web library. We want everyone who depends on Base Web to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
+This document describes the practices that we follow to provide you the Base Web library.
+We want everyone who depends on Base Web to know when and how new features are added,
+and to be well-prepared when obsolete ones are removed.
 
-[Please visit the release history](https://github.com/uber-web/baseui/releases). This log includes a list of bug fixes and new features, as well as breaking changes and migration guides.
+[Please visit the release history](https://github.com/uber-web/baseui/releases). This log
+includes a list of bug fixes and new features, as well as breaking changes and migration guides.
 
-The project follows [SemVer](https://semver.org), with a few flavours. We do not bump major versions for the following changes:
+The project follows [SemVer](https://semver.org), with a few flavours. We do not
+bump major versions for the following changes:
 
 - Any component or function that's prefixed with `Unstable_` / `unstable_` may change or be removed without notice.
-- Visual changes, like colors and sizes, or any changes in CSS.
+- Visual changes, like colors. Under special circumstances, like sweeping visual changes, we may release a major version.
 - Change in undocumented APIs and internal data structures.
 
 _Development builds of Base Web include many helpful warnings._
