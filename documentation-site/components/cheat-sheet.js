@@ -13,6 +13,8 @@ import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
 import outlines from '../cheat-sheet.js';
 import {H2} from './markdown-elements.js';
+// $FlowFixMe - because this is a .ts file
+import {trackEvent} from '../helpers/ga';
 
 function buildHref(file, line) {
   const commit = process.env.COMMIT_REF || 'master';
@@ -34,7 +36,11 @@ function CheatSheet() {
         return (
           <div key={outline.file}>
             <H2 id={componentName}>
-              <StyledLink target="_blank" href={buildHref(outline.file)}>
+              <StyledLink
+                target="_blank"
+                href={buildHref(outline.file)}
+                onClick={() => trackEvent('cheat_sheet_click', componentName)}
+              >
                 {componentName}
               </StyledLink>
             </H2>
@@ -54,7 +60,16 @@ function CheatSheet() {
                       ...theme.typography.font400,
                     })}
                   >
-                    <StyledLink href={buildHref(outline.file, t.lineStart)}>
+                    <StyledLink
+                      target="_blank"
+                      href={buildHref(outline.file, t.lineStart)}
+                      onClick={() =>
+                        trackEvent(
+                          'cheat_sheet_click',
+                          `${componentName}_${t.name}`,
+                        )
+                      }
+                    >
                       {t.name}
                     </StyledLink>
                   </li>
@@ -67,7 +82,16 @@ function CheatSheet() {
                         listStyleType: 'none',
                       })}
                     >
-                      <StyledLink href={buildHref(outline.file, c.lineStart)}>
+                      <StyledLink
+                        target="_blank"
+                        href={buildHref(outline.file, c.lineStart)}
+                        onClick={() =>
+                          trackEvent(
+                            'cheat_sheet_click',
+                            `${componentName}_${t.name}_${c.name}`,
+                          )
+                        }
+                      >
                         {c.name}
                       </StyledLink>
                     </li>
