@@ -75,7 +75,7 @@ const TableOfContents = props => {
         marginTop: '-10px',
         marginBottom: 0,
         // set predictable width to avoid page relayout when table of content changes
-        width: 160
+        width: 160,
       })}
     >
       {TOC.map(header => (
