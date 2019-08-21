@@ -19,7 +19,7 @@ import {Spinner} from '../spinner/index.js';
 import AutosizeInput from './autosize-input.js';
 import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
 import defaultProps from './default-props.js';
-import SelectDropdown from './dropdown.js';
+import DefaultSelectDropdown from './dropdown.js';
 import MultiValue from './multi-value.js';
 import {
   StyledRoot,
@@ -842,6 +842,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
       overrides.Popover,
       Popover,
     );
+    const [SelectDropdown, selectDropdownProps] = getOverrides(
+      overrides.SelectDropdown,
+      DefaultSelectDropdown,
+    );
     const sharedProps = this.getSharedProps();
 
     const valueArray = this.getValueArray(value);
@@ -907,10 +911,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 width: this.anchor.current
                   ? this.anchor.current.clientWidth
                   : null,
+                selectKeyDownHandler: event => this.handleKeyDown(event),
+                focusSelect: () => this.focus(),
               };
 
               return (
-                <SelectDropdown innerRef={this.dropdown} {...dropdownProps} />
+                <SelectDropdown
+                  innerRef={this.dropdown}
+                  {...dropdownProps}
+                  {...selectDropdownProps}
+                />
               );
             }}
             placement={PLACEMENT.bottom}

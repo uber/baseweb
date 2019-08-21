@@ -38,6 +38,8 @@ describe('SelectDropdown', function() {
       searchable: true,
       type: TYPE.select,
       width: 100,
+      selectKeyDownHandler: jest.fn(),
+      focusSelect: jest.fn(),
     };
     wrapper = mount(<SelectDropdown innerRef={ref} {...props} />);
   });

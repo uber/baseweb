@@ -49,6 +49,7 @@ export type OverridesT = {
   LoadingIndicator?: OverrideT<*>,
   SearchIcon?: OverrideT<*>,
   Popover?: OverrideT<*>,
+  SelectDropdown?: OverrideT<*>,
   DropdownContainer?: OverrideT<*>,
   Dropdown?: OverrideT<*>,
   DropdownOption?: OverrideT<*>,
@@ -229,6 +230,8 @@ export type DropdownPropsT = {
   value: ValueT,
   valueKey: string,
   width: ?number,
+  selectKeyDownHandler: (event: KeyboardEvent) => void,
+  focusSelect: () => void,
 };
 
 export type AutosizeInputOverridesT = {

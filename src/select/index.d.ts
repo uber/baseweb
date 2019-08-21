@@ -57,6 +57,7 @@ export interface SelectOverrides {
   LoadingIndicator?: Override<any>;
   SearchIcon?: Override<any>;
   Popover?: Override<any>;
+  SelectDropdown?: Override<any>;
   DropdownContainer?: Override<any>;
   Dropdown?: Override<any>;
   DropdownOption?: Override<any>;
@@ -250,6 +251,8 @@ export interface DropdownProps {
   value?: Value;
   valueKey?: string;
   width?: number;
+  selectKeyDownHandler: (event: KeyboardEvent) => void;
+  focusSelect: () => void;
 }
 export class SelectDropdown extends React.Component<DropdownProps> {
   getSharedProps(): {
