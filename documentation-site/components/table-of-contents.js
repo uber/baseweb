@@ -87,7 +87,7 @@ const TableOfContents = props => {
           })}
         >
           <a
-            className={useCss({color: theme.colors.mono800})}
+            className={useCss({color: theme.colors.foregroundAlt})}
             href={header.anchor}
           >
             {header.name}
