@@ -141,7 +141,7 @@ export default function CountrySelectDropdown(
         document.removeEventListener('keydown', handleKeydown);
       }
     };
-  }, [scrollIndex]);
+  }, [scrollIndex, options]);
 
   //overrides
   const [PopoverContentContainer, popoverContentContainerProps] = getOverrides(
