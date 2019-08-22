@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {styled} from 'baseui';
 import {H2} from '../markdown-elements';
+import {themedStyled} from '../../pages/_app';
 
 export function Header({children}: {children: React.Node}) {
   return <H2>{children}</H2>;
 }
 
-export const ExampleWrapper = styled('div', {
+export const ExampleWrapper = themedStyled('div', {
   display: 'flex',
   flexWrap: 'wrap',
 });

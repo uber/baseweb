@@ -23,6 +23,8 @@ still taking advantage of Styletron's efficient CSS generation. See
 [styletron's documentation](https://www.styletron.org/react/#usestyletron-hook) for more
 information about how this is used.
 
+## Examples
+
 This modified version has access to [theme variables](/theming/theming-values/):
 
 <Example
@@ -47,7 +49,7 @@ bundle and works in isolation.
 In the example above, take a look at how css definitions are re-used by multiple elements. Consider how this can be
 further extended with your own custom hooks.
 
-### Additional State Props
+## Additional State Props
 
 When you [use overrides](/theming/understanding-overrides), you also get an access to additional component states, like `$disabled` or `$error`, depending
 on the given component:
@@ -58,7 +60,7 @@ on the given component:
 
 To understand overrides better, go [here](/theming/understanding-overrides).
 
-### Custom themes and Flow type
+## Custom themes and Flow type
 
 The `styled` and `withStyle` functions imported from `baseui` provide flow type support for the
 default [theme shape](/theming/theming-values). However, if you create a custom theme with additional fields,

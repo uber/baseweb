@@ -8,13 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {styled, LightTheme} from 'baseui';
+import {LightTheme} from 'baseui';
 import {Block} from 'baseui/block';
+import type {BorderT} from 'baseui/styles/types';
 
 import {Header, ExampleWrapper} from './common';
+import {themedStyled} from '../../pages/_app';
 
-// eslint-disable-next-line flowtype/no-weak-types
-const StyledBorderBox = styled<{$border: any}>(
+const StyledBorderBox = themedStyled<{$border: BorderT}>(
   'div',
   ({$theme, $border = {}}) => {
     return {

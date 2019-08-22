@@ -42,6 +42,8 @@ A simple and reusable component to work with or select a date or a range of date
 - When left or right arrow is focused, `enter` causes the same as click on this arrow.
 - Accessibility best practices for this component (`aria-valuenow`, `aria-valuetext`, `aria-valuemin`, `aria-valuemax`, `role=datepicker`).
 
+## Examples
+
 <Example title="Datepicker" path="datepicker/basic.js">
   <DatepickerBasic />
 </Example>
@@ -118,6 +120,15 @@ A simple and reusable component to work with or select a date or a range of date
   <DatePickerTimezone />
 </Example>
 
+<Example
+  title="Overriding a nested component"
+  path="datepicker/nested-override.js"
+>
+  <NestedOverride />
+</Example>
+
+In this example we use a [nested override](/theming/understanding-overrides#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
+
 ## Overrides
 
 <Overrides
@@ -135,14 +146,7 @@ A simple and reusable component to work with or select a date or a range of date
   )}
 />
 
-<Example
-  title="Overriding a nested component"
-  path="datepicker/nested-override.js"
->
-  <NestedOverride />
-</Example>
-
-In this example we use a [nested override](/theming/understanding-overrides#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
+## API
 
 <API
   heading="Calendar API"

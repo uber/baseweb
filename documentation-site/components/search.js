@@ -6,15 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 //@flow
 import * as React from 'react';
-import {styled} from 'baseui/styles';
 import {default as SearchIcon} from 'baseui/icon/search';
+import {themedStyled} from '../pages/_app';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';
 
 type Props = {
-  breakpoint: string,
   toggleSearchInput: () => void,
   searchInputOpen: boolean,
 };
@@ -24,9 +23,9 @@ type State = {
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = styled<{$inputVisible: boolean, $breakpoint: string}>(
+const PlainInput = themedStyled<{$inputVisible: boolean}>(
   'input',
-  ({$inputVisible, $theme, $breakpoint}) =>
+  ({$inputVisible, $theme}) =>
     ({
       display: $inputVisible ? 'block' : 'none',
       borderWidth: '2px',
@@ -45,7 +44,7 @@ const PlainInput = styled<{$inputVisible: boolean, $breakpoint: string}>(
       ':focus': {
         borderColor: $theme.colors.primary,
       },
-      [$breakpoint]: {
+      [$theme.media.small]: {
         position: 'static',
         display: 'block',
         width: '250px',
@@ -53,9 +52,9 @@ const PlainInput = styled<{$inputVisible: boolean, $breakpoint: string}>(
     }: {}),
 );
 
-const IconWrapper = styled<{$inputVisible: boolean, $breakpoint: string}>(
+const IconWrapper = themedStyled<{$inputVisible: boolean}>(
   'div',
-  ({$inputVisible, $theme, $breakpoint}) => ({
+  ({$inputVisible, $theme}) => ({
     [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $inputVisible
       ? '-33px'
       : 0,
@@ -63,7 +62,7 @@ const IconWrapper = styled<{$inputVisible: boolean, $breakpoint: string}>(
     height: '32px',
     cursor: 'pointer',
     zIndex: 1,
-    [$breakpoint]: {
+    [$theme.media.small]: {
       [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: '-33px',
       marginTop: '8px',
       cursor: 'inherit',
@@ -95,12 +94,11 @@ class DocSearch extends React.Component<Props, State> {
 
   render() {
     const {enabled} = this.state;
-    const {breakpoint, searchInputOpen, toggleSearchInput} = this.props;
+    const {searchInputOpen, toggleSearchInput} = this.props;
     return enabled ? (
       <React.Fragment>
         <style>{`.ds-dropdown-menu { margin-top: 12px !important }`}</style>
         <IconWrapper
-          $breakpoint={breakpoint}
           $inputVisible={searchInputOpen}
           role="button"
           onClick={toggleSearchInput}
@@ -108,23 +106,22 @@ class DocSearch extends React.Component<Props, State> {
           <SearchIcon
             overrides={{
               Svg: {
-                style: {
+                style: ({$theme}) => ({
                   height: searchInputOpen ? '22px' : '32px',
                   width: searchInputOpen ? '22px' : '32px',
                   fill: searchInputOpen ? '#666' : '#333',
-                  [breakpoint]: {
+                  [$theme.media.small]: {
                     height: '22px',
                     width: '22px',
                     fill: '#666',
                   },
-                },
+                }),
               },
             }}
             color={searchInputOpen ? '#333' : '#666'}
           />
         </IconWrapper>
         <PlainInput
-          $breakpoint={breakpoint}
           $inputVisible={searchInputOpen}
           id={SEARCH_INPUT_ID}
           type="search"
