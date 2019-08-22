@@ -65,34 +65,8 @@ interface Colors {
   black: string;
 
   // Rating Palette, Yellow
-  rating50: string;
-  rating100: string;
   rating200: string;
-  rating300: string;
   rating400: string;
-  rating500: string;
-  rating600: string;
-  rating700: string;
-
-  // Purple Palette
-  purple50: string;
-  purple100: string;
-  purple200: string;
-  purple300: string;
-  purple400: string;
-  purple500: string;
-  purple600: string;
-  purple700: string;
-
-  // Brown Palette
-  brown50: string;
-  brown100: string;
-  brown200: string;
-  brown300: string;
-  brown400: string;
-  brown500: string;
-  brown600: string;
-  brown700: string;
 
   // Semantic Colors
 

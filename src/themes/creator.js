@@ -82,34 +82,8 @@ export default function createTheme(
       black: primitives.black,
 
       // Rating Palette, Yellow
-      rating50: primitives.rating50,
-      rating100: primitives.rating100,
       rating200: primitives.rating200,
-      rating300: primitives.rating300,
       rating400: primitives.rating400,
-      rating500: primitives.rating500,
-      rating600: primitives.rating600,
-      rating700: primitives.rating700,
-
-      // Purple Palette
-      purple50: primitives.purple50,
-      purple100: primitives.purple100,
-      purple200: primitives.purple200,
-      purple300: primitives.purple300,
-      purple400: primitives.purple400,
-      purple500: primitives.purple500,
-      purple600: primitives.purple600,
-      purple700: primitives.purple700,
-
-      // Brown Palette
-      brown50: primitives.brown50,
-      brown100: primitives.brown100,
-      brown200: primitives.brown200,
-      brown300: primitives.brown300,
-      brown400: primitives.brown400,
-      brown500: primitives.brown500,
-      brown600: primitives.brown600,
-      brown700: primitives.brown700,
 
       // Semantic Colors
 
