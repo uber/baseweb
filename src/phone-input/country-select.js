@@ -66,6 +66,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   } = props;
   const [filterMask, setFilterMask] = React.useState('');
   const onFilter = event => setFilterMask(event.currentTarget.value);
+  // $FlowFixMe
+  const options = Object.values(COUNTRIES).map((option: CountryT) => ({
+    fullInfo: `${option.label} ${option.dialCode}`,
+    ...option,
+  }));
   //overrides
   const baseOverrides = {
     Root: {
@@ -159,12 +164,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         onClose={event => {
           setFilterMask('');
         }}
-        options={Object.values(COUNTRIES)}
+        options={options}
         clearable={false}
         //set to false because our `searchable` property is not the select property `searchable`
         searchable={false}
-        filterOptions={(options, filterValue, excludeOptions, newProps) =>
-          filterOptions(options, filterMask, excludeOptions, newProps)
+        filterOptions={(options, filterValue, excludeOptions) =>
+          filterOptions(options, filterMask, excludeOptions, {
+            labelKey: 'fullInfo',
+          })
         }
         getValueLabel={(value: {option: CountryT}) => {
           return <StyledFlag iso={value.option.id} $size={size} />;
