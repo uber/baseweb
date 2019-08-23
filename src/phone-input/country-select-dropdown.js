@@ -237,7 +237,6 @@ export default function CountrySelectDropdown(
                           key={key}
                           style={style}
                           {...listItemProps}
-                          data-e2e="country-select-list-item"
                           data-iso={id}
                           onMouseEnter={() => {
                             setScrollIndex(index);

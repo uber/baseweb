@@ -171,9 +171,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         }}
         {...selectProps}
       />
-      <DialCode data-e2e="phone-input-dialcode" {...dialCodeProps}>
-        {country.dialCode}
-      </DialCode>
+      <DialCode {...dialCodeProps}>{country.dialCode}</DialCode>
     </Block>
   );
 }

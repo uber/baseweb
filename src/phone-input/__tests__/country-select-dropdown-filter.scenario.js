@@ -23,7 +23,38 @@ export const component = () => {
         .snapshot('Phone input country selector dropdown with filter')
         .end()}
     >
-      <StatefulPhoneInput searchable />
+      <StatefulPhoneInput
+        searchable
+        overrides={{
+          //we need this overrides for `phone-input-filter.e2e.js`
+          CountrySelectDropdownListItem: {
+            props: {
+              'data-e2e': 'country-select-list-item',
+            },
+          },
+          DialCode: {
+            props: {
+              'data-e2e': 'phone-input-dialcode',
+            },
+          },
+          CountrySelect: {
+            props: {
+              overrides: {
+                SingleValue: {
+                  props: {
+                    'data-e2e': 'country-flag-container',
+                  },
+                },
+              },
+            },
+          },
+          EmptyState: {
+            props: {
+              'data-e2e': 'country-select-empty-state',
+            },
+          },
+        }}
+      />
     </Screener>
   );
 };

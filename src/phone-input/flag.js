@@ -14,12 +14,5 @@ import type {CountryIsoT} from './types.js';
 export default function Flag(props: {iso: CountryIsoT, width?: string}) {
   const {iso, width = '16px', ...restProps} = props;
   const FlagComponent = flags[`Flag${props.iso.toUpperCase()}`];
-  return (
-    <FlagComponent
-      width={width}
-      data-e2e="country-flag"
-      data-iso={iso}
-      {...restProps}
-    />
-  );
+  return <FlagComponent width={width} data-iso={iso} {...restProps} />;
 }

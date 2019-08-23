@@ -14,12 +14,13 @@ const {mount} = require('../../../e2e/helpers');
 const selectors = {
   phoneInput: `[data-baseweb="phone-input"]`,
   phoneInputInput: `[data-baseweb="phone-input"] > input`,
-  phoneInputFlag: `[data-e2e="country-flag"]`,
+  phoneInputFlag: `[data-e2e="country-flag-container"]>img`,
   phoneInputDialcode: `[data-e2e="phone-input-dialcode"]`,
   phoneInputSelect: `[data-baseweb="select"]`,
   phoneInputSelectDropdown: `[role="listbox"]`,
   phoneInputSelectListItem: `[data-e2e="country-select-list-item"]`,
   phoneInputFilterInput: `[data-baseweb="base-input"] input`,
+  phoneInputEmptyState: `[data-e2e="country-select-empty-state"]`,
 };
 
 const countryListItemForIso = iso =>
@@ -63,9 +64,7 @@ describe('PhoneInputFilter', () => {
         const listItems = document.querySelectorAll(
           selectors.phoneInputSelectListItem,
         );
-        const empty = document.querySelector(
-          selectors.phoneInputSelectDropdown + ' li',
-        );
+        const empty = document.querySelector(selectors.phoneInputEmptyState);
         return (
           listItems.length === 0 && empty && empty.textContent == 'No results'
         );
