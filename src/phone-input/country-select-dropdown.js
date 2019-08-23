@@ -11,7 +11,7 @@ import {List, AutoSizer} from 'react-virtualized';
 
 import defaultProps from './default-props.js';
 import {
-  StyledFlag,
+  StyledFlagContainer,
   StyledCountrySelectDropdownContainer as DefaultContainer,
   StyledCountrySelectDropdownListItem as DefaultListItem,
   StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
@@ -19,6 +19,7 @@ import {
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {iso2FlagEmoji} from './utils.js';
 
 import type {CountrySelectDropdownPropsT} from './types.js';
 
@@ -31,11 +32,11 @@ function CountrySelectDropdown(
   props: CountrySelectDropdownPropsT & {forwardedRef: React.ElementRef<*>},
 ) {
   const {
-    forwardedRef,
     country,
-    overrides,
+    forwardedRef,
     maxDropdownHeight,
     mapIsoToLabel,
+    overrides,
   } = props;
 
   const children = React.Children.toArray(props.children);
@@ -51,6 +52,10 @@ function CountrySelectDropdown(
   const [FlagColumn, flagColumnProps] = getOverrides(
     overrides.CountrySelectDropdownFlagColumn,
     DefaultFlagColumn,
+  );
+  const [FlagContainer, flagContainerProps] = getOverrides(
+    overrides.FlagContainer,
+    StyledFlagContainer,
   );
   const [NameColumn, nameColumnProps] = getOverrides(
     overrides.CountrySelectDropdownNameColumn,
@@ -95,11 +100,16 @@ function CountrySelectDropdown(
                     data-iso={children[index].props.item.id}
                   >
                     <FlagColumn {...flagColumnProps}>
-                      <StyledFlag iso={children[index].props.item.id} />
+                      <FlagContainer
+                        $iso={children[index].props.item.id}
+                        {...flagContainerProps}
+                      >
+                        {iso2FlagEmoji(children[index].props.item.id)}
+                      </FlagContainer>
                     </FlagColumn>
                     <NameColumn {...nameColumnProps}>
                       {mapIsoToLabel
-                        ? mapIsoToLabel(props.children[index].props.item.id)
+                        ? mapIsoToLabel(children[index].props.item.id)
                         : children[index].props.item.label}
                     </NameColumn>
                     <Dialcode {...dialcodeProps}>

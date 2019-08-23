@@ -51,12 +51,14 @@ export type CountrySelectDropdownPropsT = {
     CountrySelectDropdownFlagColumn?: OverrideT<*>,
     CountrySelectDropdownNameColumn?: OverrideT<*>,
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
+    FlagContainer?: OverrideT<*>,
   },
 };
 
 export type CountrySelectPropsT = {
   country: CountryT,
   disabled: boolean,
+  error: boolean,
   inputRef: {current: HTMLInputElement | null},
   onCountryChange: (event: OnChangeParamsT) => mixed,
   mapIsoToLabel?: mapIsoToLabelT,
@@ -70,7 +72,10 @@ export type CountrySelectPropsT = {
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
     DialCode?: OverrideT<*>,
     CountrySelect?: OverrideT<*>,
+    FlagContainer?: OverrideT<*>,
   },
+  positive: boolean,
+  required: boolean,
   size: SizeT,
 };
 
@@ -110,6 +115,7 @@ export type PropsT = {
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
     DialCode?: OverrideT<*>,
     CountrySelect?: OverrideT<*>,
+    FlagContainer?: OverrideT<*>,
   },
   /** Sets the placeholder text for the input element.  */
   placeholder?: string,
