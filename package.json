@@ -162,7 +162,7 @@
   },
   "dependencies": {
     "card-validator": "^6.1.0",
-    "date-fns": "2.0.0",
+    "date-fns": "2.0.1",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
     "polished": "^3.2.0",
