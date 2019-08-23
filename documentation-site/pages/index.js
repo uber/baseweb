@@ -201,12 +201,26 @@ const Index = (props: {
   </Layout>
 );
 
-Index.getInitialProps = async () => {
+async function fetchContributorsByPage(page = 1) {
   const res = await fetch(
     `https://api.github.com/repos/uber-web/baseui/contributors?access_token=${process
-      .env.GITHUB_AUTH_TOKEN || ''}`,
+      .env.GITHUB_AUTH_TOKEN || ''}&page=${page}`,
   );
-  const contributors = await res.json();
+  return res.json();
+}
+
+Index.getInitialProps = async () => {
+  let contributors = [];
+  let page = 1;
+  while (page !== -1) {
+    const res = await fetchContributorsByPage(page);
+    contributors = contributors.concat(res);
+    if (res.length) {
+      page += 1;
+    } else {
+      page = -1;
+    }
+  }
 
   if (Array.isArray(contributors)) {
     return {contributors};
