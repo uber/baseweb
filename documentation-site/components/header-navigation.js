@@ -91,6 +91,25 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
               </Link>
               <Block marginLeft="scale300">
                 <VersionSelector />
+                <Link href="/components">
+                  <Button
+                    size="compact"
+                    $as="a"
+                    href="/components"
+                    overrides={{
+                      BaseButton: {
+                        style: {
+                          display: 'none',
+                          '@media screen and (min-width: 820px)': {
+                            display: 'inline-block',
+                          },
+                        },
+                      },
+                    }}
+                  >
+                    Components
+                  </Button>
+                </Link>
                 <Link href="/blog/base-web-v8">
                   <Button
                     size="compact"

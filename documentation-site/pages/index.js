@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {Block} from 'baseui/block';
-import {Button} from 'baseui/button';
+import {Button, SIZE, KIND} from 'baseui/button';
 import {FlexGrid, FlexGridItem} from 'baseui/flex-grid';
 import {StyledLink as Link} from 'baseui/link';
 import {H1, H2} from '../components/markdown-elements';
@@ -106,6 +106,9 @@ const Index = (props: {
       </Block>
     </Block>
     <H1>Base Web React UI Framework</H1>
+    <Button size={SIZE.compact} $as="a" href="/components">
+      Browse components
+    </Button>
     <Markdown.p>
       Base Web is a foundation for initiating, evolving, and unifying web
       products.
@@ -132,6 +135,7 @@ const Index = (props: {
           of a CSS-in-JS engine, all you need is the dependencies from npm.
         </StyledBody>
         <Button
+          kind={KIND.secondary}
           $as="a"
           href="/getting-started/installation"
           overrides={{
@@ -154,6 +158,7 @@ const Index = (props: {
           complex app built using Base Web.
         </StyledBody>
         <Button
+          kind={KIND.secondary}
           $as="a"
           href="/getting-started/learn"
           overrides={{
