@@ -121,7 +121,6 @@ export default function CountrySelectDropdown(
       case 'Escape':
         focusSelect();
         selectKeyDownHandler(event);
-        event.preventDefault();
         break;
     }
   };

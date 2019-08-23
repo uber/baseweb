@@ -100,4 +100,50 @@ describe('PhoneInputFilter', () => {
     );
     expect(inputIsFocused).toBe(true);
   });
+
+  it('allows a user to use keyboard for navigation', async () => {
+    // click select
+    await page.click(selectors.phoneInputSelect);
+    // verify dropdown is open
+    await page.waitFor(selectors.phoneInputSelectDropdown);
+    //press `Tab` to focus filter
+    await page.keyboard.press('Tab');
+    // verify filterInput has focus
+    const phoneInputFilterInput = await page.$eval(
+      selectors.phoneInputFilterInput,
+      input => input === document.activeElement,
+    );
+    expect(phoneInputFilterInput).toBe(true);
+    //press `Esc` to close dropdown
+    await page.keyboard.press('Escape');
+    // verify dropdown has closed
+    await page.waitForSelector(selectors.phoneInputSelectDropdown, {
+      hidden: true,
+    });
+    // press `Enter` to open dropdown again
+    await page.keyboard.press('Enter');
+    //press `Tab` to focus filter
+    await page.keyboard.press('Tab');
+    //type China
+    await page.keyboard.type('China');
+    // press `Enter` to select China
+    await page.keyboard.press('Enter');
+    // verify correct flag and dial code shows up
+    const iso = await page.$eval(selectors.phoneInputFlag, flag =>
+      flag.getAttribute('data-iso'),
+    );
+    expect(iso).toEqual(china.iso);
+    // verify correct dial code shows up
+    const dialcode = await page.$eval(
+      selectors.phoneInputDialcode,
+      block => block.innerText,
+    );
+    expect(dialcode).toEqual(china.dialCode);
+    // verify input has focus
+    const inputIsFocused = await page.$eval(
+      selectors.phoneInputInput,
+      input => input === document.activeElement,
+    );
+    expect(inputIsFocused).toBe(true);
+  });
 });

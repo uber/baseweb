@@ -26,6 +26,7 @@ const countryListItemForIso = iso =>
 
 const unitedStates = {iso: 'US', dialCode: '+1'};
 const unitedKingdom = {iso: 'GB', dialCode: '+44'};
+const sweden = {iso: 'SE', dialCode: '+46'};
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
@@ -86,6 +87,53 @@ describe('PhoneInput', () => {
       block => block.innerText,
     );
     expect(dialcode).toEqual(unitedKingdom.dialCode);
+    // verify input has focus
+    const inputIsFocused = await page.$eval(
+      selectors.phoneInputInput,
+      input => input === document.activeElement,
+    );
+    expect(inputIsFocused).toBe(true);
+  });
+
+  it('allows a user to use keyboard navigation \
+  for selecting countries', async () => {
+    // click select
+    await page.click(selectors.phoneInputSelect);
+    // verify dropdown is open
+    await page.waitFor(selectors.phoneInputSelectDropdown);
+    // navigate by keyboard to Sweden (22 key downs more from the US)
+    // We need to make sure our list is scrollable when we press `arrow up` key
+    // and Sweden should occur in the viewport
+    for (let i = 0; i < 22; i++) {
+      await page.keyboard.press('ArrowUp', {
+        delay: 10,
+      });
+    }
+    // Sweden occur in dom
+    await page.waitForSelector(countryListItemForIso(sweden.iso));
+    // wait for scrolling is finished
+    let swedenIsVisible = false;
+    while (!swedenIsVisible) {
+      const swedenElement = await page.$(countryListItemForIso(sweden.iso));
+      swedenIsVisible = await swedenElement.isIntersectingViewport();
+    }
+    // select a new country, Sweden
+    await page.keyboard.press('Enter');
+    // verify dropdown has closed
+    await page.waitForSelector(selectors.phoneInputSelectDropdown, {
+      hidden: true,
+    });
+    // verify correct flag and dial code shows up
+    const iso = await page.$eval(selectors.phoneInputFlag, flag =>
+      flag.getAttribute('data-iso'),
+    );
+    expect(iso).toEqual(sweden.iso);
+    // verify correct dial code shows up
+    const dialcode = await page.$eval(
+      selectors.phoneInputDialcode,
+      block => block.innerText,
+    );
+    expect(dialcode).toEqual(sweden.dialCode);
     // verify input has focus
     const inputIsFocused = await page.$eval(
       selectors.phoneInputInput,
