@@ -5,8 +5,6 @@ import {
   Label2,
   Label3,
   Label4,
-  Caption1,
-  Caption2,
   Paragraph1,
   Paragraph2,
   Paragraph3,
@@ -59,16 +57,5 @@ export default () => (
       around the world go all kinds of places in all kinds of ways
       with the help of our technology.
     </Paragraph4>
-    <Caption2>
-      We ignite opportunity by setting the world in motion.
-    </Caption2>
-    <Caption1>
-      Good things happen when people can move, whether across town
-      or towards their dreams. Opportunities appear, open up, become
-      reality. What started as a way to tap a button to get a ride
-      has led to billions of moments of human connection as people
-      around the world go all kinds of places in all kinds of ways
-      with the help of our technology.
-    </Caption1>
   </React.Fragment>
 );

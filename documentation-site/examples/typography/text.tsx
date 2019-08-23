@@ -4,8 +4,6 @@ import {
   Label2,
   Label3,
   Label4,
-  Caption1,
-  Caption2,
   Paragraph1,
   Paragraph2,
   Paragraph3,
@@ -38,11 +36,5 @@ export default () => (
     <Paragraph4>
       We ignite opportunity by setting the world in motion.
     </Paragraph4>
-    <Caption2>
-      We ignite opportunity by setting the world in motion.
-    </Caption2>
-    <Caption1>
-      We ignite opportunity by setting the world in motion.
-    </Caption1>
   </React.Fragment>
 );

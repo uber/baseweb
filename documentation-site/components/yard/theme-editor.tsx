@@ -3,7 +3,7 @@ import {Input, SIZE} from 'baseui/input';
 import {useStyletron} from 'baseui';
 import Link from 'next/link';
 import {StyledLink} from 'baseui/link';
-import {Caption1} from 'baseui/typography';
+import {Paragraph4} from 'baseui/typography';
 
 type ThemeEditorProps = {
   componentName: string;
@@ -87,10 +87,11 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
 
   return (
     <React.Fragment>
-      <Caption1
+      <Paragraph4
         marginLeft="scale200"
         marginRight="scale200"
         marginBottom="scale400"
+        color="colorSecondary"
       >
         Do you want to change {componentName} colors globally? You can customize
         the theme through ThemeProvider and set your own colors.{' '}
@@ -100,7 +101,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
           </StyledLink>
         </Link>
         . Try different values:
-      </Caption1>
+      </Paragraph4>
       <div
         className={css({
           display: 'flex',

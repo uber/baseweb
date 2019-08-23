@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-
+import * as t from '@babel/types';
 import {withJsFiles} from '@dubstep/core';
 
 const THEME_TYPOGRAPHY_MAP = {
@@ -46,16 +46,61 @@ const THEME_MAP = {
   ...THEME_COLOR_MAP,
 };
 
-const COMPONENT_TYPOGRAPHY_MAP = {
-  Paragraph1: 'Paragraph3',
+const OLD_TYPOGRAPHY_COMPONENTS = [
+  'Display',
+  'H1',
+  'H2',
+  'H3',
+  'H4',
+  'H5',
+  'H6',
+  'Label1',
+  'Label2',
+  'Paragraph1',
+  'Paragraph2',
+];
+
+const COMPONENT_MAP = {
+  Display: 'Display1',
   Label1: 'Label3',
+  Paragraph1: 'Paragraph3',
+  Caption1: 'Paragraph4',
+  Caption2: 'Label4',
 };
+
+const CAPTIONS = ['Caption1', 'Caption2'];
 
 async function codemod(options: {dir: string}) {
   await withJsFiles(`${options.dir}/**/*.js`, async path => {
     path.traverse({
+      JSXOpeningElement(path) {
+        if (CAPTIONS.includes(path.node.name.name)) {
+          // Captions are deprecated in favor of Paragraph4 and Label4.
+          // Captions used to have a lower contrast color via `colorSecondary`.
+          // We can try to update the `color` prop to keep this color consistent.
+          // If the `color` prop is already set though we should leave it as is.
+          let shouldSetCaptionColor = true;
+          path.traverse({
+            JSXIdentifier(path) {
+              // If `color` is already set, don't change it...
+              if (path.node.name === 'color') shouldSetCaptionColor = false;
+            },
+          });
+          if (shouldSetCaptionColor) {
+            const colorAttribute = t.jsxAttribute(
+              t.jsxIdentifier('color'),
+              t.StringLiteral('colorSecondary'),
+            );
+            path.node.attributes.push(colorAttribute);
+          }
+        }
+      },
       JSXIdentifier(path) {
-        if (path.node.name === 'Block') {
+        // `Block` and typography components accept `font` and `color` props which need to be updated...
+        if (
+          path.node.name === 'Block' ||
+          OLD_TYPOGRAPHY_COMPONENTS.includes(path.node.name)
+        ) {
           path.parentPath.traverse({
             JSXIdentifier(path) {
               if (path.node.name === 'font' || path.node.name === 'color') {
@@ -68,11 +113,10 @@ async function codemod(options: {dir: string}) {
               }
             },
           });
-        } else if (
-          Object.keys(COMPONENT_TYPOGRAPHY_MAP).includes(path.node.name)
-        ) {
-          const newValue = COMPONENT_TYPOGRAPHY_MAP[path.node.name];
-          if (newValue) path.node.name = newValue;
+        }
+        // Update typography components based on mapping
+        if (Object.keys(COMPONENT_MAP).includes(path.node.name)) {
+          path.node.name = COMPONENT_MAP[path.node.name];
         }
       },
       Identifier(path) {
@@ -88,18 +132,46 @@ async function codemod(options: {dir: string}) {
               path.parentPath.traverse({
                 ImportSpecifier(path) {
                   if (
-                    Object.keys(COMPONENT_TYPOGRAPHY_MAP).includes(
-                      path.node.imported.name,
-                    )
+                    Object.keys(COMPONENT_MAP).includes(path.node.imported.name)
                   ) {
-                    const newValue =
-                      COMPONENT_TYPOGRAPHY_MAP[path.node.imported.name];
+                    const newName = COMPONENT_MAP[path.node.imported.name];
                     const hasLocalAlias =
                       path.node.imported.name !== path.node.local.name;
-                    if (newValue) {
-                      path.node.imported.name = newValue;
-                      if (!hasLocalAlias) path.node.local.name = newValue;
+
+                    if (
+                      CAPTIONS.includes(path.node.imported.name) &&
+                      hasLocalAlias
+                    ) {
+                      const localAlias = path.node.local.name;
+                      path.parentPath.parentPath.traverse({
+                        JSXOpeningElement(path) {
+                          if (path.node.name.name === localAlias) {
+                            // Captions are deprecated in favor of Paragraph4 and Label4.
+                            // Captions used to have a lower contrast color via `colorSecondary`.
+                            // We can try to update the `color` prop to keep this color consistent.
+                            // If the `color` prop is already set though we should leave it as is.
+                            let shouldSetCaptionColor = true;
+                            path.traverse({
+                              JSXIdentifier(path) {
+                                // If `color` is already set, don't change it...
+                                if (path.node.name === 'color')
+                                  shouldSetCaptionColor = false;
+                              },
+                            });
+                            if (shouldSetCaptionColor) {
+                              const colorAttribute = t.jsxAttribute(
+                                t.jsxIdentifier('color'),
+                                t.StringLiteral('colorSecondary'),
+                              );
+                              path.node.attributes.push(colorAttribute);
+                            }
+                          }
+                        },
+                      });
                     }
+
+                    path.node.imported.name = newName;
+                    if (!hasLocalAlias) path.node.local.name = newName;
                   }
                 },
               });

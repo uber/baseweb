@@ -10,25 +10,6 @@ import * as React from 'react';
 import Block from '../block/block.js';
 import type {BlockPropsT} from '../block/types.js';
 
-// Captions - aka Caption, CaptionLabel
-export const Caption1 = (props: BlockPropsT) => (
-  <Block
-    data-baseweb="typo-caption1"
-    {...props}
-    font={props.font || 'font100'}
-    color={props.color || 'colorSecondary'}
-  />
-);
-
-export const Caption2 = (props: BlockPropsT) => (
-  <Block
-    data-baseweb="typo-caption2"
-    {...props}
-    font={props.font || 'font150'}
-    color={props.color || 'colorSecondary'}
-  />
-);
-
 // Display
 export const Display1 = (props: BlockPropsT) => (
   <Block
@@ -38,9 +19,6 @@ export const Display1 = (props: BlockPropsT) => (
     color={props.color || 'colorPrimary'}
   />
 );
-
-// We used to have only one display, alias for backwards compatability
-export const Display = Display1;
 
 export const Display2 = (props: BlockPropsT) => (
   <Block
@@ -207,3 +185,8 @@ export const Paragraph4 = (props: BlockPropsT) => (
     color={props.color || 'colorPrimary'}
   />
 );
+
+// Aliases for backwards compatability
+export const Display = Display1;
+export const Caption1 = Paragraph4;
+export const Caption2 = Label4;

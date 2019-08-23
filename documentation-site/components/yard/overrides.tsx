@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Accordion, Panel} from 'baseui/accordion';
-import {Caption1} from 'baseui/typography';
+import {Paragraph4} from 'baseui/typography';
 import Link from 'next/link';
 import {StyledLink} from 'baseui/link';
 import {useStyletron} from 'baseui';
@@ -71,10 +71,11 @@ const Overrides: React.FC<TOverridesProps> = ({
 
   return (
     <React.Fragment>
-      <Caption1
+      <Paragraph4
         marginLeft="scale200"
         marginRight="scale200"
         marginBottom="scale400"
+        color="colorSecondary"
       >
         Additionally, you can fully customize any part of the {componentName}{' '}
         component through the overrides prop (
@@ -85,7 +86,7 @@ const Overrides: React.FC<TOverridesProps> = ({
         </Link>
         ). Try to update different <b>style overrides</b> in the explorer
         bellow:
-      </Caption1>
+      </Paragraph4>
       <Accordion
         initialState={{
           expanded: overrides.value ? Object.keys(overrides.value) : [],

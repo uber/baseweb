@@ -28,9 +28,9 @@ export default Layout;
 
 After bumping to **v9**, your app will probably look a little different. Grays will be darker and type will be larger. Input highlights and buttons will be black rather than blue. _Don't panic!_ If you address each of the points below your app will look right in no time!
 
-- Replace direct usage of gray scale (`$theme.colors.mono100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#light-theme-mapping)
+- Replace direct usage of gray scale (`$theme.colors.mono100` for example) with new values. Make sure to look for references in `Block` and typographic components (`H1`) as well. [Read more 📖](#light-theme-mapping)
 - Replace direct usage of typographic scale (`$theme.typography.font100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#typography-mapping)
-- Update any usage of typography components (`Paragraph`, `Caption`) as needed. [Read more 📖](#typography-components)
+- Update any usage of typography components (`Paragraph`, `H1`) as needed. [Read more 📖](#typography-components)
 - If some of the changes in **v9** are not to your liking, customize your theme with some of the new theme properties available. [Read more 📖](#v8-theme-values)
 
 Read below to find out exactly what has changed and how you can safely incorporate these changes into your codebase.
@@ -528,7 +528,7 @@ The default typography values included in our theme have been adjusted. The over
 
 ### Body
 
-These values are used for body text such as `Caption`, `Label`, and `Paragraph`.
+These values are used for body text `Label`, and `Paragraph`.
 
 <Table
   columns={['Name', 'Value']}
@@ -642,23 +642,50 @@ If you use the `Block` component to apply theme font properties, you will need t
 
 #### Typography Components
 
-There has also been a small but important update to a few of the typography components. `Paragraph` and `Label` used to increase in font size as the digit suffix increased, as opposed to various header components (`H1`, `H2`, etc). This has been changed so that all of the typography components _decrease_ in size as the suffix increases, to stay consistent with the header (`h1`) pattern in HTML.
+All of the `baseui/typography` components have been updated according to the new typography ramps.
 
 <Table
-  columns={['Name', 'Old', 'New']}
+  columns={['Component', 'Font', 'Value']}
   data={[
-    ['Label1', 'font350, 14px/20px/500', 'font450, 18px/28px/500'],
-    ['Label2', 'font450, 16px/20px/500', 'font350, 16px/24px/500'],
-    ['Label3', '-', 'font250, 14px/20px/500'],
-    ['Label4', '-', 'font150, 12px/20px/500'],
-    ['Paragraph1', 'font300, 14px/20px/400', 'font400, 18px/28px/400'],
-    ['Paragraph2', 'font400, 16px/20px/400', 'font300, 16px/24px/400'],
-    ['Paragraph3', '-', 'font200, 14px/20px/400'],
-    ['Paragraph4', '-', 'font100, 12px/20px/400'],
+    [`Display1`, `font1450`, `96px/112px/500`],
+    [`Display2`, `font1350`, `52px/64px/500`],
+    [`Display3`, `font1250`, `44px/52px/500`],
+    [`Display4`, `font1150`, `36px/44px/500`],
+    [`H1`, `font1050`, `40px/52px/500`],
+    [`H2`, `font950`, `36px/44px/500`],
+    [`H3`, `font850`, `32px/40px/500`],
+    [`H4`, `font750`, `28px/36px/500`],
+    [`H5`, `font650`, `24px/32px/500`],
+    [`H6`, `font550`, `20px/28px/500`],
+    [`Label1`, `font450`, `18px/28px/500`],
+    [`Paragraph1`, `font400`, `18px/28px/400`],
+    [`Label2`, `font350`, `16px/24px/500`],
+    [`Paragraph2`, `font300`, `16px/24px/400`],
+    [`Label3`, `font250`, `14px/20px/500`],
+    [`Paragraph3`, `font200`, `14px/20px/400`],
+    [`Label4`, `font150`, `12px/20px/500`],
+    [`Paragraph4`, `font100`, `12px/20px/400`],
   ]}
 />
 
-In terms of migrating, you will want to change `Label1` and `Paragraph1` to `Label3` and `Paragraph3`.
+There are a few important changes to note:
+
+1. **There are now four levels each of Display, Paragraph, and Label** (up from one, two, and two respectively).
+2. **`Paragraph` and `Label` no longer increase in `font-size` as the digit suffix increases**. This has been changed so that all of the typography components _decrease_ in size as the suffix increases, to stay consistent with the header (`h1`) pattern in HTML. This means you will want to change `Label1` and `Paragraph1` to `Label3` and `Paragraph3`.
+3. **`Caption1` and `Caption2` have been deprecated** in favor of `Paragraph4` and `Label4` respectively. The caption components have not been removed but instead alias paragraph and label components. This means you will want to change `Caption1` to `Paragraph4` and `Caption2` to `Label4`. Note, captions had their color set to `colorSecondary` so that they had a lower contrast with your theme's background color. Paragraphs and labels do not have any color set so you may want to adjust accordingly.
+
+For reference, here is a mapping of **v8** to **v9** components:
+
+<Table
+  columns={['Old', 'New', 'Note']}
+  data={[
+    ['Display', 'Display1', 'Aliased'],
+    ['Label1', 'Label3', ''],
+    ['Paragraph1', 'Paragraph3', ''],
+    ['Caption1', 'Paragraph4', 'Aliased'],
+    ['Caption2', 'Label4', 'Aliased'],
+  ]}
+/>
 
 ## Inspiration
 

@@ -38,21 +38,21 @@ describe('shift theme usage for colors and fonts', () => {
   );`;
 
       expect(await transform(content)).toMatchInlineSnapshot(`
-                                "const Foo = () => (
-                                    <React.Fragment>
-                                      <Block color=\\"black\\" />
-                                      <Block color=\\"mono700\\" />
-                                      <Block color=\\"mono600\\" />
-                                      <Block color=\\"mono500\\" />
-                                      <Block color=\\"mono400\\" />
-                                      <Block color=\\"mono300\\" />
-                                      <Block color=\\"mono200\\" />
-                                      <Block color=\\"mono100\\" />
-                                      <Block color=\\"mono50\\" />
-                                      <Block color=\\"white\\" />
-                                    </React.Fragment>
-                                  );"
-                        `);
+                                                                                        "const Foo = () => (
+                                                                                            <React.Fragment>
+                                                                                              <Block color=\\"black\\" />
+                                                                                              <Block color=\\"mono700\\" />
+                                                                                              <Block color=\\"mono600\\" />
+                                                                                              <Block color=\\"mono500\\" />
+                                                                                              <Block color=\\"mono400\\" />
+                                                                                              <Block color=\\"mono300\\" />
+                                                                                              <Block color=\\"mono200\\" />
+                                                                                              <Block color=\\"mono100\\" />
+                                                                                              <Block color=\\"mono50\\" />
+                                                                                              <Block color=\\"white\\" />
+                                                                                            </React.Fragment>
+                                                                                          );"
+                                                                  `);
     });
 
     it('font values in Blocks', async () => {
@@ -78,27 +78,27 @@ describe('shift theme usage for colors and fonts', () => {
   );`;
 
       expect(await transform(content)).toMatchInlineSnapshot(`
-                                "const Foo = () => (
-                                    <React.Fragment>
-                                      <Block font=\\"font1450\\" />
-                                      <Block font=\\"font1350\\" />
-                                      <Block font=\\"font1350\\" />
-                                      <Block font=\\"font1050\\" />
-                                      <Block font=\\"font750\\" />
-                                      <Block font=\\"font650\\" />
-                                      <Block font=\\"font550\\" />
-                                      <Block font=\\"font450\\" />
-                                      <Block font=\\"font400\\" />
-                                      <Block font=\\"font350\\" />
-                                      <Block font=\\"font300\\" />
-                                      <Block font=\\"font250\\" />
-                                      <Block font=\\"font200\\" />
-                                      <Block font=\\"font150\\" />
-                                      <Block font=\\"font100\\" />
-                                      <Block font=\\"font100\\" />
-                                    </React.Fragment>
-                                  );"
-                        `);
+                                                                                        "const Foo = () => (
+                                                                                            <React.Fragment>
+                                                                                              <Block font=\\"font1450\\" />
+                                                                                              <Block font=\\"font1350\\" />
+                                                                                              <Block font=\\"font1350\\" />
+                                                                                              <Block font=\\"font1050\\" />
+                                                                                              <Block font=\\"font750\\" />
+                                                                                              <Block font=\\"font650\\" />
+                                                                                              <Block font=\\"font550\\" />
+                                                                                              <Block font=\\"font450\\" />
+                                                                                              <Block font=\\"font400\\" />
+                                                                                              <Block font=\\"font350\\" />
+                                                                                              <Block font=\\"font300\\" />
+                                                                                              <Block font=\\"font250\\" />
+                                                                                              <Block font=\\"font200\\" />
+                                                                                              <Block font=\\"font150\\" />
+                                                                                              <Block font=\\"font100\\" />
+                                                                                              <Block font=\\"font100\\" />
+                                                                                            </React.Fragment>
+                                                                                          );"
+                                                                  `);
     });
 
     it('direct usage of mono values', async () => {
@@ -107,10 +107,10 @@ describe('shift theme usage for colors and fonts', () => {
   }));`;
 
       expect(await transform(content)).toMatchInlineSnapshot(`
-                                "const Foo = styled('div', props => ({
-                                    ...props.$theme.colors.white
-                                  }));"
-                        `);
+                                                                                        "const Foo = styled('div', props => ({
+                                                                                            ...props.$theme.colors.white
+                                                                                          }));"
+                                                                  `);
     });
 
     it('direct usage of font values', async () => {
@@ -119,10 +119,10 @@ describe('shift theme usage for colors and fonts', () => {
   }));`;
 
       expect(await transform(content)).toMatchInlineSnapshot(`
-                                "const Foo = styled('div', props => ({
-                                    ...props.$theme.typography.font200
-                                  }));"
-                        `);
+                                                                                        "const Foo = styled('div', props => ({
+                                                                                            ...props.$theme.typography.font200
+                                                                                          }));"
+                                                                  `);
     });
 
     it('direct usage of values with destructured `$theme`', async () => {
@@ -131,10 +131,10 @@ describe('shift theme usage for colors and fonts', () => {
   }));`;
 
       expect(await transform(content)).toMatchInlineSnapshot(`
-                                "const Foo = styled('div', ({$theme}) => ({
-                                    ...$theme.typography.font200
-                                  }));"
-                        `);
+                                                                                        "const Foo = styled('div', ({$theme}) => ({
+                                                                                            ...$theme.typography.font200
+                                                                                          }));"
+                                                                  `);
     });
 
     it('direct usage of values with destructured value', async () => {
@@ -143,10 +143,10 @@ describe('shift theme usage for colors and fonts', () => {
   }));`;
 
       expect(await transform(content)).toMatchInlineSnapshot(`
-                                "const Foo = styled('div', ({$theme: {typography: {font200}}}) => ({
-                                    ...$theme.typography.font200
-                                  }));"
-                        `);
+                                                                                        "const Foo = styled('div', ({$theme: {typography: {font200}}}) => ({
+                                                                                            ...$theme.typography.font200
+                                                                                          }));"
+                                                                  `);
     });
 
     it('override style function', async () => {
@@ -169,17 +169,17 @@ const Foo = () => {
 }
 export default Foo;`;
         expect(await transform(content)).toMatchInlineSnapshot(`
-                              "import {Label3, Label2} from \\"baseui/typography\\";
-                              const Foo = () => {
-                                return (
-                                  <div>
-                                    <Label3>Hello there!</Label3>
-                                    <Label2>Hello there!</Label2>
-                                  </div>
-                                );
-                              }
-                              export default Foo;"
-                        `);
+                                                                                                    "import {Label3, Label2} from \\"baseui/typography\\";
+                                                                                                    const Foo = () => {
+                                                                                                      return (
+                                                                                                        <div>
+                                                                                                          <Label3>Hello there!</Label3>
+                                                                                                          <Label2>Hello there!</Label2>
+                                                                                                        </div>
+                                                                                                      );
+                                                                                                    }
+                                                                                                    export default Foo;"
+                                                                                `);
       });
 
       it('paragraphs', async () => {
@@ -194,17 +194,44 @@ const Foo = () => {
 }
 export default Foo;`;
         expect(await transform(content)).toMatchInlineSnapshot(`
-                    "import {Paragraph3, Paragraph2} from \\"baseui/typography\\";
-                    const Foo = () => {
-                      return (
-                        <div>
-                          <Paragraph3>Hello there!</Paragraph3>
-                          <Paragraph2>Hello there!</Paragraph2>
-                        </div>
-                      );
-                    }
-                    export default Foo;"
-                `);
+                                                                                          "import {Paragraph3, Paragraph2} from \\"baseui/typography\\";
+                                                                                          const Foo = () => {
+                                                                                            return (
+                                                                                              <div>
+                                                                                                <Paragraph3>Hello there!</Paragraph3>
+                                                                                                <Paragraph2>Hello there!</Paragraph2>
+                                                                                              </div>
+                                                                                            );
+                                                                                          }
+                                                                                          export default Foo;"
+                                                                        `);
+      });
+
+      it('captions', async () => {
+        const content = `import {Caption1, Caption2} from "baseui/typography";
+const Foo = () => {
+  return (
+    <div>
+      <Caption1>Hello there!</Caption1>
+      <Caption1 color="primary">Hello there!</Caption1>
+      <Caption2>Hello there!</Caption2>
+    </div>
+  );
+}
+export default Foo;`;
+        expect(await transform(content)).toMatchInlineSnapshot(`
+                                        "import {Paragraph4, Label4} from \\"baseui/typography\\";
+                                        const Foo = () => {
+                                          return (
+                                            <div>
+                                              <Paragraph4 color=\\"colorSecondary\\">Hello there!</Paragraph4>
+                                              <Paragraph4 color=\\"primary\\">Hello there!</Paragraph4>
+                                              <Label4 color=\\"colorSecondary\\">Hello there!</Label4>
+                                            </div>
+                                          );
+                                        }
+                                        export default Foo;"
+                                `);
       });
 
       it('respects local aliases', async () => {
@@ -218,11 +245,36 @@ const Foo = () => {
 }
 export default Foo;`;
         expect(await transform(content)).toMatchInlineSnapshot(`
-          "import {Paragraph3 as Paragraph} from \\"baseui/typography\\";
+                                                                                "import {Paragraph3 as Paragraph} from \\"baseui/typography\\";
+                                                                                const Foo = () => {
+                                                                                  return (
+                                                                                    <div>
+                                                                                      <Paragraph>Hello there!</Paragraph>
+                                                                                    </div>
+                                                                                  );
+                                                                                }
+                                                                                export default Foo;"
+                                                                `);
+      });
+
+      it('updates captions even with local aliases', async () => {
+        const content = `import {Caption1 as Caption} from "baseui/typography";
+const Foo = () => {
+  return (
+    <div>
+      <Caption>Hello there!</Caption>
+      <Caption color="primary">Hello there!</Caption>
+    </div>
+  );
+}
+export default Foo;`;
+        expect(await transform(content)).toMatchInlineSnapshot(`
+          "import {Paragraph4 as Caption} from \\"baseui/typography\\";
           const Foo = () => {
             return (
               <div>
-                <Paragraph>Hello there!</Paragraph>
+                <Caption color=\\"colorSecondary\\">Hello there!</Caption>
+                <Caption color=\\"primary\\">Hello there!</Caption>
               </div>
             );
           }
