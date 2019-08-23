@@ -12,6 +12,18 @@ import {DataTable} from '../data-table.js';
 
 export const name = 'data-table';
 
+// https://gist.github.com/6174/6062387
+function randomString() {
+  return (
+    Math.random()
+      .toString(36)
+      .substring(2, 15) +
+    Math.random()
+      .toString(36)
+      .substring(2, 15)
+  );
+}
+
 function makeRowsFromColumns(columns, rowCount) {
   const rows = [];
   for (let i = 0; i < rowCount; i++) {
@@ -36,11 +48,11 @@ function makeRowsFromColumns(columns, rowCount) {
           case 'BOOLEAN':
             return Math.random() > 0.5;
           case 'STRING':
-            return 'string';
+            return randomString();
           case 'CUSTOM':
-            return 'custom';
+            return randomString();
           default:
-            return 'default';
+            return 'default' + randomString();
         }
       }),
     });
@@ -65,6 +77,6 @@ const columns = [
   },
 ];
 
-const rows = makeRowsFromColumns(columns, 200);
+const rows = makeRowsFromColumns(columns, 2000);
 
 export const component = () => <DataTable columns={columns} rows={rows} />;
