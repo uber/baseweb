@@ -11,6 +11,7 @@ import {Button} from '../button/index.js';
 import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import {StatefulPopover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
+import {Tag} from '../tag/index.js';
 
 type CategoricalColumn = {|
   title: string,
@@ -227,6 +228,11 @@ export function DataTable(props: Props) {
     setFilters(new Map(filters));
   }
 
+  function removeFilter(title) {
+    filters.delete(title);
+    setFilters(new Map(filters));
+  }
+
   const rows = React.useMemo(() => {
     if (sortIndex === -1 && !filters.size) {
       return props.rows;
@@ -262,64 +268,71 @@ export function DataTable(props: Props) {
   }, [sortIndex, sortDirection, filters]);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {props.columns.map((column, i) => (
-            <th key={i}>
-              {column.title}
-              <button
-                style={{
-                  color: sortIndex === i ? 'pink' : 'unset',
-                }}
-                onClick={() => handleSort(i)}
-              >
-                sort
-              </button>
-              <StatefulPopover
-                content={({close}) => (
-                  <CategoricalFilter
-                    setFilter={(filterParams, description) =>
-                      addFilter(filterParams, column.title, description)
-                    }
-                    data={props.rows.map(r => r.data[i])}
-                    close={close}
-                  />
-                )}
-              >
-                <button>filter</button>
-              </StatefulPopover>
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, rowIdx) => (
-          <tr key={rowIdx}>
-            {row.data.map((d, i) => {
-              const column = props.columns[i];
-              if (column.kind === 'CATEGORICAL') {
-                return <td>{d}</td>;
-              } else if (column.kind === 'NUMERICAL') {
-                return <td>{d}</td>;
-              } else if (column.kind === 'BOOLEAN') {
-                return <td>{d ? 'T' : 'F'}</td>;
-              } else if (column.kind === 'STRING') {
-                return <td>{d}</td>;
-              } else if (column.kind === 'CUSTOM') {
-                const Cell = column.renderCell;
-                return (
-                  <td>
-                    <Cell data={d} />
-                  </td>
-                );
-              } else {
-                return null;
-              }
-            })}
+    <React.Fragment>
+      {Array.from(filters).map(([title, filter]) => (
+        <Tag onActionClick={() => removeFilter(title)}>
+          {title} | {filter.description}
+        </Tag>
+      ))}
+      <table>
+        <thead>
+          <tr>
+            {props.columns.map((column, i) => (
+              <th key={i}>
+                {column.title}
+                <button
+                  style={{
+                    color: sortIndex === i ? 'pink' : 'unset',
+                  }}
+                  onClick={() => handleSort(i)}
+                >
+                  sort
+                </button>
+                <StatefulPopover
+                  content={({close}) => (
+                    <CategoricalFilter
+                      setFilter={(filterParams, description) =>
+                        addFilter(filterParams, column.title, description)
+                      }
+                      data={props.rows.map(r => r.data[i])}
+                      close={close}
+                    />
+                  )}
+                >
+                  <button>filter</button>
+                </StatefulPopover>
+              </th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {rows.map((row, rowIdx) => (
+            <tr key={rowIdx}>
+              {row.data.map((d, i) => {
+                const column = props.columns[i];
+                if (column.kind === 'CATEGORICAL') {
+                  return <td>{d}</td>;
+                } else if (column.kind === 'NUMERICAL') {
+                  return <td>{d}</td>;
+                } else if (column.kind === 'BOOLEAN') {
+                  return <td>{d ? 'T' : 'F'}</td>;
+                } else if (column.kind === 'STRING') {
+                  return <td>{d}</td>;
+                } else if (column.kind === 'CUSTOM') {
+                  const Cell = column.renderCell;
+                  return (
+                    <td>
+                      <Cell data={d} />
+                    </td>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </React.Fragment>
   );
 }
