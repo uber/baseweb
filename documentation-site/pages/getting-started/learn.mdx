@@ -11,7 +11,26 @@ export default Layout;
 
 # Learning Base Web
 
-We understand that learning new libraries have their own set of challenges. To help you get started, we are here to help!
+We understand that learning new libraries have their own set of challenges.
+To help you get started, we are here to help!
+
+## Controlled and Uncontrolled components
+
+Most code examples you'll find on the documentation site feature controlled components.
+
+> In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own
+> state and update it based on user input. In React, mutable state is typically
+> kept in the state property of components, and only updated with setState().
+
+> We can combine the two by making the React state be the “single source of truth”.
+
+To learn more about these, check out the official React docs on [Controlled components](https://reactjs.org/docs/forms.html#controlled-components)
+and [Uncontrolled components](https://reactjs.org/docs/uncontrolled-components.html).
+
+Most Base Web components are released with both options:
+
+- `Stateful` components, to support uncontrolled usage,
+- and the default component, that supports controlled usage.
 
 ## Your first Base Web example
 
@@ -32,5 +51,5 @@ or through [GitHub issues](https://github.com/uber-web/baseui/issues).
 
 Once you have a better understanding of Base Web, we recommend diving into more advanced topics like:
 
-* [How Theming works](/theming/custom-themes)
-* [Understanding Overrides](/theming/understanding-overrides)
+- [How Theming works](/theming/custom-themes)
+- [Understanding Overrides](/theming/understanding-overrides)

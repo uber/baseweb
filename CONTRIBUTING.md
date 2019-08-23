@@ -24,6 +24,7 @@ This document helps you navigate the process.
 ## Definition of done
 
 - Each component has a drop-in, stateful, stateless, styled (presentation) components exported
+  - When you add examples for the documentation site, try to prioritize stateless examples with hooks
 - Browser accessibility support and aria attributes
   - A11y rules can be found [here](https://dequeuniversity.com/rules/axe/3.0/),
   - Run `yarn lint` , which has eslint-plugin-jsx-a11y running as part of it https://github.com/evcohen/eslint-plugin-jsx-a11y#supported-rules,
@@ -31,7 +32,8 @@ This document helps you navigate the process.
 - [Styletron](https://www.styletron.org/) for CSS-in-JS styling
 - Unit tests with [jest](https://jestjs.io/en/) and [enzyme](https://airbnb.io/enzyme/)
 - [Flow](https://flow.org/) type coverage for all relevant component code and tests
-- Documentation added to the docs site. You start the doc site using `yarn documentation:dev`.
+  - TypeScript coverage for the API
+- Documentation added to the docs site. You start the doc site using `yarn documentation:dev:watch`.
 
 ## Sending Pull Requests
 

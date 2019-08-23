@@ -74,6 +74,8 @@ const TableOfContents = props => {
         // to make sure we align vertically with the edit on github button
         marginTop: '-10px',
         marginBottom: 0,
+        // set predictable width to avoid page relayout when table of content changes
+        width: 160,
       })}
     >
       {TOC.map(header => (
@@ -87,7 +89,7 @@ const TableOfContents = props => {
           })}
         >
           <a
-            className={useCss({color: theme.colors.mono800})}
+            className={useCss({color: theme.colors.foregroundAlt})}
             href={header.anchor}
           >
             {header.name}
