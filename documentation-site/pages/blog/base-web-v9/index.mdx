@@ -422,73 +422,79 @@ After updating to **v9** you can use the following [theme variables](/theming/cu
 ### v8 Theme Values
 
 ```js
-const colors = {
-  // Borders
-  borderFocus: primitives.primary400,
+const theme = {
+  colors: {
+    // Borders
+    borderFocus: primitives.primary400,
 
-  // Buttons
-  // Primary
-  buttonPrimaryFill: primitives.primary400,
-  buttonPrimaryText: primitives.white,
-  buttonPrimaryHover: primitives.primary500,
-  buttonPrimaryActive: primitives.primary600,
-  buttonPrimaryDisabledFill: primitives.mono100,
-  // Secondary
-  buttonSecondaryFill: primitives.primary50,
-  buttonSecondaryText: primitives.primary400,
-  buttonSecondaryHover: primitives.primary100,
-  buttonSecondaryActive: primitives.primary200,
-  buttonSecondaryDisabledFill: primitives.mono100,
-  // Tertiary
-  buttonTertiaryFill: primitives.mono50,
-  buttonTertiaryText: primitives.primary400,
-  buttonTertiaryHover: primitives.mono100,
-  buttonTertiaryActive: primitives.mono200,
-  buttonTertiaryDisabledFill: primitives.mono100,
-  // Minimal
-  buttonMinimalFill: 'transparent',
-  buttonMinimalText: primitives.primary400,
-  buttonMinimalHover: primitives.mono50,
-  buttonMinimalActive: primitives.mono100,
-  buttonMinimalDisabledFill: primitives.mono100,
+    // Buttons
+    // Primary
+    buttonPrimaryFill: primitives.primary400,
+    buttonPrimaryText: primitives.white,
+    buttonPrimaryHover: primitives.primary500,
+    buttonPrimaryActive: primitives.primary600,
+    buttonPrimaryDisabledFill: primitives.mono100,
+    // Secondary
+    buttonSecondaryFill: primitives.primary50,
+    buttonSecondaryText: primitives.primary400,
+    buttonSecondaryHover: primitives.primary100,
+    buttonSecondaryActive: primitives.primary200,
+    buttonSecondaryDisabledFill: primitives.mono100,
+    // Tertiary
+    buttonTertiaryFill: primitives.mono50,
+    buttonTertiaryText: primitives.primary400,
+    buttonTertiaryHover: primitives.mono100,
+    buttonTertiaryActive: primitives.mono200,
+    buttonTertiaryDisabledFill: primitives.mono100,
+    // Minimal
+    buttonMinimalFill: 'transparent',
+    buttonMinimalText: primitives.primary400,
+    buttonMinimalHover: primitives.mono50,
+    buttonMinimalActive: primitives.mono100,
+    buttonMinimalDisabledFill: primitives.mono100,
 
-  // Button Group
-  buttonGroupSelectedFill: primitives.primary400,
-  buttonGroupSelectedText: primitives.white,
+    // Button Group
+    buttonGroupSelectedFill: primitives.primary400,
+    buttonGroupSelectedText: primitives.white,
 
-  // Tick
-  tickFillSelected: primitives.primary400,
-  tickFillSelectedHover: primitives.primary500,
-  tickFillSelectedHoverActive: primitives.primary600,
+    // Tick
+    tickFillSelected: primitives.primary400,
+    tickFillSelectedHover: primitives.primary500,
+    tickFillSelectedHoverActive: primitives.primary600,
 
-  // Slider
-  sliderFill: primitives.primary400,
-  sliderHandleInnerFillSelectedHover: primitives.primary400,
-  sliderHandleInnerFillSelectedActive: primitives.primary500,
+    // Slider
+    sliderFill: primitives.primary400,
+    sliderHandleInnerFillSelectedHover: primitives.primary400,
+    sliderHandleInnerFillSelectedActive: primitives.primary500,
 
-  // Calendar
-  calendarBackground: primitives.white,
-  calendarForeground: primitives.black,
-  calendarForegroundDisabled: primitives.mono300,
-  calendarHeaderBackground: primitives.primary400,
-  calendarHeaderForeground: primitives.white,
-  calendarHeaderBackgroundActive: primitives.primary500,
-  calendarHeaderForegroundDisabled: primitives.primary200,
-  calendarDayBackgroundPseudoSelected: primitives.primary100,
-  calendarDayForegroundPseudoSelected: primitives.black,
-  calendarDayBackgroundPseudoSelectedHighlighted: primitives.primary200,
-  calendarDayForegroundPseudoSelectedHighlighted: primitives.black,
-  calendarDayBackgroundSelected: primitives.primary400,
-  calendarDayForegroundSelected: primitives.white,
-  calendarDayBackgroundSelectedHighlighted: primitives.primary500,
-  calendarDayForegroundSelectedHighlighted: primitives.white,
+    // Calendar
+    calendarBackground: primitives.white,
+    calendarForeground: primitives.black,
+    calendarForegroundDisabled: primitives.mono300,
+    calendarHeaderBackground: primitives.primary400,
+    calendarHeaderForeground: primitives.white,
+    calendarHeaderBackgroundActive: primitives.primary500,
+    calendarHeaderForegroundDisabled: primitives.primary200,
+    calendarDayBackgroundPseudoSelected: primitives.primary100,
+    calendarDayForegroundPseudoSelected: primitives.black,
+    calendarDayBackgroundPseudoSelectedHighlighted: primitives.primary200,
+    calendarDayForegroundPseudoSelectedHighlighted: primitives.black,
+    calendarDayBackgroundSelected: primitives.primary400,
+    calendarDayForegroundSelected: primitives.white,
+    calendarDayBackgroundSelectedHighlighted: primitives.primary500,
+    calendarDayForegroundSelectedHighlighted: primitives.white,
 
-  // Progress Steps
-  progressCompletedLine: primitives.primary400,
-  progressCompletedNodeBackground: primitives.primary400,
-  progressCompletedNodeForeground: primitives.white,
-  progressActiveNodeBackground: primitives.primary100,
-  progressActiveNodeForeground: primitives.primary400,
+    // Progress Steps
+    progressCompletedLine: primitives.primary400,
+    progressCompletedNodeBackground: primitives.primary400,
+    progressCompletedNodeForeground: primitives.white,
+    progressActiveNodeBackground: primitives.primary100,
+    progressActiveNodeForeground: primitives.primary400,
+  },
+  // The largest breakpoint has changed to 1136px
+  breakpoints: {
+    large: 1280,
+  },
 };
 ```
 
@@ -521,6 +527,23 @@ We are deprecating the `minimal` button. `tertiary` now serves the same purpose 
 ### Calendar
 
 The `Calendar` component now has a mostly monotone color palette. Thankfully, there are a lot of new theme variables for styling it. In the past, this required some tricky overriding to style correctly- the new theme variables should allow you to adjust the styles easily.
+
+### Breakpoints
+
+Unrelated to color but related to themeing: we have updated the default breakpoints in the theme object. The largest breakpoint is now `1136px`. You can set it back to `1280px` in your theme.
+
+```js
+const theme = {
+  breakpoints: {
+    large: 1280,
+  },
+};
+```
+
+<Caption>
+  We do a deep merge of your custom theme object with our default values so
+  there is no need to redefine other breakpoints.
+</Caption>
 
 ## Typography
 
@@ -694,6 +717,10 @@ Some folks may wonder why there is a noticeable stylistic update coming to Base 
 It is important to remember that Uber's Base design system is still evolving. The Base Web library has an ever-moving target ahead of it. Style changes are, at this point, a constant reality for the project.
 
 We on the Base Web team consider this one of the main features of Base Web. Folks who use the Base design system, as Uber does on hundreds of projects, know that by staying on the latest version of `baseui`, their app remains on-brand and consistent with other products.
+
+That said, we know these sorts of changes can be disruptive. We don't anticipate stylistic changes of this magnitude to come very often. When they do we will try to make the transition as painless as possible with migration guides (such as this blog post), codemods, and backward compatability whereever possible.
+
+Thanks for using `baseui`!
 
 ---
 
