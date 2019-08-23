@@ -95,6 +95,8 @@ export function DataTable(props: Props) {
               } else if (column.kind === 'CUSTOM') {
                 const Cell = column.renderCell;
                 return <Cell data={d} />;
+              } else {
+                return null;
               }
             })}
           </tr>

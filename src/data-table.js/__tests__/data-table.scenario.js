@@ -19,7 +19,18 @@ function makeRowsFromColumns(columns, rowCount) {
       data: columns.map(column => {
         switch (column.kind) {
           case 'CATEGORICAL':
-            return 'asdf';
+            const grade = Math.floor(Math.random() * 100);
+            if (grade >= 90) {
+              return 'A';
+            } else if (grade >= 80) {
+              return 'B';
+            } else if (grade >= 70) {
+              return 'C';
+            } else if (grade >= 60) {
+              return 'D';
+            } else {
+              return 'F';
+            }
           case 'NUMERICAL':
             return Math.floor(Math.random() * 200);
           case 'BOOLEAN':
@@ -38,6 +49,7 @@ function makeRowsFromColumns(columns, rowCount) {
 }
 
 const columns = [
+  {kind: 'CATEGORICAL', title: 'aslkfjalksd'},
   {kind: 'STRING', title: 'asdflj'},
   {kind: 'NUMERICAL', title: 'jljljh', format: 'NONE'},
   {kind: 'NUMERICAL', title: 'jljljh', format: 'NONE'},
