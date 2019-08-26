@@ -11,16 +11,28 @@ A codemod is just a script that makes some changes to a directory of source code
 
 ## Usage
 
-Most folks should run `baseui-codemods` using [npx](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner). Simply specify a path to your source code's directory (`--dir`) and which codemod you would like to run (`--mod`).
+### Installation
+
+Most folks probably want to run `baseui-codemods` using [npx](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner). If you want to run multiple codemods however, it may be convenient to install globally.
 
 ```shell
-$ npx baseui-codemods --dir=<PATH_TO_CODE> --mod=<CODEMOD_NAME>
+$ npm i -g @uber-web-ui/baseui-codemods
+```
+
+Just make sure to install the latest version next time you run a codemod.
+
+### Running a codemod
+
+Simply specify a path to your source code's directory (`--dir`) and which codemod you would like to run (`--mod`).
+
+```shell
+$ npx @uber-web-ui/baseui-codemods --dir=<PATH_TO_CODE> --mod=<CODEMOD_NAME>
 ```
 
 Here is an example with some dummy options:
 
 ```shell
-$ npx baseui-codemods --dir=src --mod=v8Types
+$ npx @uber-web-ui/baseui-codemods --dir=src --mod=v8Types
 ```
 
 Note, there are **no defaults** for the `--dir` and `--mod` flags. You **have** to specify the directory and codemod you would like to run.
@@ -125,11 +137,19 @@ For more information on AST traversal, you will want to become familiar with [ho
 
 #### Publishing
 
+Make sure you are logged in to the npm account which is part of the `@uber-web-ui` org.
+
 ```shell
-$ yarn build
-$ npm version <UPDATE_TYPE>
-$ npm publish
+$ npm login
 ```
+
+```shell
+$ npm version <UPDATE_TYPE>
+$ git commit -am "feat(baseui-codemods): <VERSION>"
+$ npm publish --access public
+```
+
+Here is a reference for semver on this project:
 
 | `UPDATE_TYPE` | Note |
 | --- | --- |
