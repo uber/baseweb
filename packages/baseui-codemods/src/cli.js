@@ -18,38 +18,38 @@ import styledV7TypeArguments from './styled-v7-type-arguments.js';
 import styledV8ToThemedStyled from './styled-v8-themedStyled.js';
 import v9ThemeScale from './v9-theme-scale.js';
 
-const mods = {
+// Each mod or script is an array of dubstep steps
+// Users can select one of these to run from the CLI via `--mod`
+const MODS = {
   v8Types: [
-    step('apply type arguments to baseui styled calls', async () => {
-      console.log(
-        chalk.dim('⮑  Apply type arguments to baseui "styled" calls.'),
-      );
-      await styledV7TypeArguments({dir});
-    }),
-    step('migrate styled theme generic to createThemedStyled', async () => {
-      console.log(
-        chalk.dim('⮑  Migrate styled theme generic to "createThemedStyled".'),
-      );
-      await styledV8ToThemedStyled({dir});
-    }),
+    _step(
+      'Apply type arguments to baseui "styled" calls.',
+      styledV7TypeArguments,
+    ),
+    _step(
+      'Migrate styled theme generic to "createThemedStyled".',
+      styledV8ToThemedStyled,
+    ),
   ],
   v9Styles: [
-    step('update theme properties for v9', async () => {
-      console.log(
-        chalk.dim(
-          '⮑  Map colors and typography to v9. These changes are not idempotent!',
-        ),
-      );
-      await v9ThemeScale({dir});
-    }),
-  ],
-  test: [
-    step('soo', async () => {
-      await new Promise(res => setTimeout(res, 2000));
-    }),
+    _step(
+      'Map colors and typography to v9. These changes are not idempotent!',
+      v9ThemeScale,
+    ),
   ],
 };
 
+// Wrapper for step
+// Mainly so that we can log each step, which dubstep doesn't do
+function _step(msg, fn) {
+  return step(msg, async () => {
+    console.log(chalk.dim(`⮑  ${msg}`));
+    await fn({dir});
+  });
+}
+
+// Set up yargs
+// Includes usage on -h or --help
 const {argv} = yargs
   .usage(
     `${chalk.white.bold('baseui-codemods')}
@@ -63,7 +63,7 @@ Example:
   $ baseui-codemods --dir=src --mod=v8Types
 
 Codemods:
-${Object.keys(mods)
+${Object.keys(MODS)
   .map(m => `  ${m}`)
   .join(`\n`)}`,
   )
@@ -81,6 +81,7 @@ ${Object.keys(mods)
   .help()
   .alias('help', 'h');
 
+// Get `dir` parameter
 let dir = argv.dir;
 if (!dir) {
   console.log(chalk.white.bold('baseui-codemods'));
@@ -97,13 +98,14 @@ if (dir[dir.length - 1] === '/') {
   dir = dir.substring(0, dir.length - 1);
 }
 
+// Get `mod` parameter
 const mod = argv.mod;
-if (!mod || !Object.keys(mods).includes(mod)) {
+if (!mod || !Object.keys(MODS).includes(mod)) {
   console.error(
     `${chalk.red(
       'error',
     )} Must specify a valid codemod to run with the "--mod" argument. Here are the currently available mods:${Object.keys(
-      mods,
+      MODS,
     )
       .map(m => `\n  --mod=${m}`)
       .join('')}`,
@@ -111,11 +113,11 @@ if (!mod || !Object.keys(mods).includes(mod)) {
   process.exit(1);
 }
 
-const steps = mods[mod];
+// Retrieve steps for codemod
+const steps = MODS[mod];
+
+// Add a finish step to script for logging completion
 const start = process.hrtime();
-
-console.log(`${chalk.white.bold('baseui-codemods')} ${chalk.cyan(mod)}`);
-
 steps.push(
   step('finish', async () => {
     const end = process.hrtime(start);
@@ -124,5 +126,9 @@ steps.push(
   }),
 );
 
+// We are ready to codemod!
+console.log(`${chalk.white.bold('baseui-codemods')} ${chalk.cyan(mod)}`);
+
+// Run selected codemod
 const stepper = new Stepper(steps);
 stepper.run();
