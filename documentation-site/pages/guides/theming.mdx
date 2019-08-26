@@ -5,39 +5,43 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
+import {Notification} from 'baseui/notification';
+import {LightTheme} from 'baseui';
+
 import Layout from '../../components/layout';
 import JSON from '../../components/json';
-import {LightTheme} from 'baseui';
+import Colors from '../../components/theming-values/colors';
+import Sizing from '../../components/theming-values/sizing';
+import Lighting from '../../components/theming-values/lighting';
+import Borders from '../../components/theming-values/borders';
+import Typography from '../../components/theming-values/typography';
+import Example from '../../components/example';
+import IconOverrides from 'examples/theme/icon-overrides.js';
 
 export default Layout;
 
-# Intro to theming
+# Theming
+
+<Notification
+  overrides={{
+    Body: {style: {width: 'auto'}},
+  }}
+>
+  In this guide, you'll learn how to customize Base Web through the theme object
+  and how to create your own theme.
+</Notification>
+
+## Intro to theming
 
 Base Web ships by default with the `Light` theme. We understand that in some cases
 you want to change the look and feel of the components. To do so, follow the steps
-outlined here
-
-## Using themeable values in component overrides
-
-All themeable values are available within components that provide the `overrides` prop.
-
-```jsx
-<Input
-  overrides={{
-    Input: {
-      style: ({$theme}) => ({color: $theme.colors.primary}),
-    },
-  }}
-  placeholder="Custom input that uses themeable values"
-/>
-```
-
-To learn more on how overrides work, check out [Better Reusable React Components with the Overrides Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646) article.
+outlined here.
 
 ## The `ThemeProvider`
 
-With the `ThemeProvider`, you can apply a theme to your application locally. By default, Base Web ships with a light and a dark theme. For global theming, please
-refer to the [BaseProvider](/components/base-provider/).
+With the `ThemeProvider`, you can apply a theme to your application locally. By default,
+Base Web ships with a light and a dark theme. For global theming, please refer to
+the [BaseProvider](/components/base-provider/).
 
 If you'd like to use a different theme in one part of your application, \
 you can locally wrap that part with the `ThemeProvider` to override the theme locally:
@@ -94,10 +98,34 @@ const yourTheme = createTheme(
 
 If you are using flow type with a custom theme, visit the [`styled`](/components/styled) function page for more information.
 
-## The shape of the theme file
+## Theming Values
+
+<Colors />
+<Sizing />
+<Lighting />
+<Borders />
+<Typography />
+
+### The shape of the theme file
 
 <JSON src={LightTheme} />
 
-## Next steps
+## Overriding icons
 
-Now that you have a solid understanding of Themes in Base Web, it's time to dive into the default [theme values](/theming/theming-values).
+With Base Web, you can use your custom icon set. To do that, you have to provide your icons in the theme.
+
+You can use any React components as Icon replacements, as long as they accept the following properties:
+
+- `size`, to set their width and height,
+- `color`, to set their colors,
+- `title`, to set the title of the icon for accessibility purposes.
+
+You can find more about the [Icon API here](/components/icon/#icon-api) and also refer to this [list of available icons](https://baseweb.design/components/icon/#available-icons).
+
+The example below overrides the `ChevronLeft` icon with the `ArrowLeft` icon, making the pagination slightly different.
+
+All the icons that can be found on the Icon component page can be overridden using this technique.
+
+<Example title="Pagination icon overrides" path="theme/icon-overrides.js">
+  <IconOverrides />
+</Example>

@@ -126,14 +126,14 @@ const Index = (props: {
         },
       }}
     >
-      <Card title="Installing Base Web" overrides={cardOverrides}>
+      <Card title="Setup Base Web" overrides={cardOverrides}>
         <StyledBody>
           Base Web is distributed as an npm package. As Base Web is built on top
           of a CSS-in-JS engine, all you need is the dependencies from npm.
         </StyledBody>
         <Button
           $as="a"
-          href="/getting-started/installation"
+          href="/getting-started/setup"
           overrides={{
             BaseButton: {
               style: ({$theme}) => ({
@@ -143,7 +143,7 @@ const Index = (props: {
             },
           }}
         >
-          Install Base Web
+          Setup Base Web
         </Button>
       </Card>
 
@@ -172,10 +172,10 @@ const Index = (props: {
     <H2>Extensibility</H2>
     <Markdown.p>
       Through the{' '}
-      <Link href="/theming/understanding-overrides/">Overrides API</Link> and{' '}
-      <Link href="/theming/custom-themes">configurable Themes</Link>, Base Web
-      provides you with an extreme level of customization. No matter if you want
-      to modify a component in one place only, or you want to build your design
+      <Link href="/guides/understanding-overrides">Overrides API</Link> and{' '}
+      <Link href="/guides/theming">configurable Themes</Link>, Base Web provides
+      you with an extreme level of customization. No matter if you want to
+      modify a component in one place only, or you want to build your design
       system on top of Base Web, we have the options for you.
     </Markdown.p>
     <H2>Built-in Accessibility</H2>
