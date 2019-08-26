@@ -13,7 +13,7 @@ import {useStyletron} from 'baseui';
 function getPadding(componentType) {
   const multiplier = Number(componentType.replace('h', ''));
 
-  return `${multiplier * 10}px`;
+  return `${multiplier * 8}px`;
 }
 
 const TableOfContents = props => {

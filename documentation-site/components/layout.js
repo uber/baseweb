@@ -54,7 +54,7 @@ type PropsT = {
 
 const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
   display: 'none',
-  '@media screen and (min-width: 1280px)': {
+  '@media screen and (min-width: 1340px)': {
     display: 'block',
     maxWidth: '16em',
   },
