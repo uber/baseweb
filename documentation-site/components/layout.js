@@ -104,6 +104,9 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     let {path = ''} = this.props;
     let component;
 
+    // strip the query string
+    path = path.split('?')[0];
+
     if (path && path.endsWith('/')) {
       path = path.slice(0, -1);
     }
