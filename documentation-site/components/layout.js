@@ -24,7 +24,7 @@ import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
 
 const GH_URL =
-  'https://github.com/uber-web/baseui/blob/master/documentation-site/pages';
+  'https://github.com/uber-web/baseui/edit/master/documentation-site/pages';
 
 function findByPath(o, path) {
   if (!path) return;
@@ -180,7 +180,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                         <PencilIcon size={16} color="#666666" />
                       )}
                       $as="a"
-                      href={githubUrl.replace('/blob', '/edit')}
+                      href={githubUrl}
                       target="_blank"
                       size={SIZE.compact}
                       kind={KIND.minimal}
