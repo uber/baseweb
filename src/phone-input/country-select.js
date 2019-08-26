@@ -128,19 +128,22 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     overrides.DialCode,
     StyledDialCode,
   );
+
   return (
     <Block display="flex" alignItems="center">
       <Select
         clearable={false}
         disabled={disabled}
         getValueLabel={(value: {option: CountryT}) => {
+          const iso = value.option.id;
           return (
             <FlagContainer
-              $iso={value.option.id}
+              $iso={iso}
+              data-iso={iso}
               {...sharedProps}
               {...flagContainerProps}
             >
-              {iso2FlagEmoji(value.option.id)}
+              {iso2FlagEmoji(iso)}
             </FlagContainer>
           );
         }}
@@ -160,11 +163,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         value={[country]}
         {...selectProps}
       />
-      <DialCode
-        data-e2e="phone-input-dialcode"
-        {...sharedProps}
-        {...dialCodeProps}
-      >
+      <DialCode {...sharedProps} {...dialCodeProps}>
         {country.dialCode}
       </DialCode>
     </Block>

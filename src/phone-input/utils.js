@@ -12,17 +12,15 @@ const ISO_REGEX = /^[a-z]{2}$/i;
 const OFFSET = 127397;
 // convert country code to corresponding emoji flag
 export function iso2FlagEmoji(iso: string) {
-  if (__DEV__) {
-    if (!ISO_REGEX.test(iso)) {
-      const type = typeof iso;
-      throw new TypeError(
-        `iso argument must be an ISO 3166-1 alpha-2 string, but got '${
-          type === 'string' ? iso : type
-        }' instead.`,
-      );
-    }
+  if (!ISO_REGEX.test(iso)) {
+    const type = typeof iso;
+    console.warn(
+      `iso argument must be an ISO 3166-1 alpha-2 string, but got '${
+        type === 'string' ? iso : type
+      }' instead.`,
+    );
+    return;
   }
-  return String.fromCodePoint(
-    ...[...iso.toUpperCase()].map(char => char.charCodeAt(0) + OFFSET),
-  );
+  const chars = [...iso.toUpperCase()].map(char => char.charCodeAt(0) + OFFSET);
+  return String.fromCodePoint(...chars);
 }

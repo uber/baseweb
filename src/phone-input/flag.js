@@ -26,14 +26,7 @@ export default function Flag(props: {
   const {$iso, iso: oldIsoProp, width = '16px', ...restProps} = props;
   const iso: CountryIsoT = oldIsoProp || $iso;
   const FlagComponent = flags[`Flag${iso.toUpperCase()}`];
-  return (
-    <FlagComponent
-      width={width}
-      data-e2e="country-flag"
-      data-iso={iso}
-      {...restProps}
-    />
-  );
+  return <FlagComponent width={width} data-iso={iso} {...restProps} />;
 }
 
 export const StyledFlag = styled<typeof Flag, SizeStyleProps>(

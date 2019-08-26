@@ -90,26 +90,27 @@ function CountrySelectDropdown(
                 const {resetMenu, getItemLabel, ...rest} = children[
                   index
                 ].props;
+                const iso = children[index].props.item.id;
                 return (
                   <ListItem
                     key={key}
                     style={style}
                     {...rest}
                     {...listItemProps}
-                    data-e2e="country-select-list-item"
-                    data-iso={children[index].props.item.id}
+                    data-iso={iso}
                   >
                     <FlagColumn {...flagColumnProps}>
                       <FlagContainer
-                        $iso={children[index].props.item.id}
+                        $iso={iso}
+                        data-iso={iso}
                         {...flagContainerProps}
                       >
-                        {iso2FlagEmoji(children[index].props.item.id)}
+                        {iso2FlagEmoji(iso)}
                       </FlagContainer>
                     </FlagColumn>
                     <NameColumn {...nameColumnProps}>
                       {mapIsoToLabel
-                        ? mapIsoToLabel(children[index].props.item.id)
+                        ? mapIsoToLabel(iso)
                         : children[index].props.item.label}
                     </NameColumn>
                     <Dialcode {...dialcodeProps}>

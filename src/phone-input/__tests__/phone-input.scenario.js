@@ -12,4 +12,18 @@ import {StatefulPhoneInput} from '../index.js';
 
 export const name = 'phone-input';
 
-export const component = () => <StatefulPhoneInput />;
+export const component = () => (
+  <StatefulPhoneInput
+    overrides={{
+      CountrySelectDropdownListItem: {
+        props: {'data-e2e': 'country-select-list-item'},
+      },
+      FlagContainer: {
+        props: {'data-e2e': 'country-flag'},
+      },
+      DialCode: {
+        props: {'data-e2e': 'phone-input-dialcode'},
+      },
+    }}
+  />
+);
