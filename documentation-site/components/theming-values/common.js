@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {H2} from '../markdown-elements';
+import {H3} from '../markdown-elements';
 import {themedStyled} from '../../pages/_app';
 
 export function Header({children}: {children: React.Node}) {
-  return <H2>{children}</H2>;
+  return <H3>{children}</H3>;
 }
 
 export const ExampleWrapper = themedStyled('div', {

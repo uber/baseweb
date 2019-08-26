@@ -133,7 +133,7 @@ const Index = (props: {
         </StyledBody>
         <Button
           $as="a"
-          href="/getting-started/installation"
+          href="/getting-started/setup"
           overrides={{
             BaseButton: {
               style: ({$theme}) => ({

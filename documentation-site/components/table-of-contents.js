@@ -20,6 +20,7 @@ const TableOfContents = props => {
   const [useCss, theme] = useStyletron();
   const TOC = [];
   const content = props.content[0].props.children;
+  console.log(content);
   content &&
     content.forEach &&
     content.forEach(element => {
