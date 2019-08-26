@@ -61,16 +61,17 @@ function makeRowsFromColumns(columns, rowCount) {
 }
 
 const columns = [
-  {kind: 'CATEGORICAL', title: 'aslkfjalksd'},
-  {kind: 'STRING', title: 'asdflj'},
-  {kind: 'NUMERICAL', title: 'jljljh', format: 'NONE'},
-  {kind: 'NUMERICAL', title: 'jljljh', format: 'NONE'},
-  {kind: 'NUMERICAL', title: 'jljljh', format: 'NONE'},
-  {kind: 'BOOLEAN', title: 'jljljh'},
-  {kind: 'STRING', title: 'jljljh'},
+  {kind: 'CATEGORICAL', title: 'one'},
+  {kind: 'STRING', title: 'two'},
+  {kind: 'NUMERICAL', title: 'three', format: 'NONE'},
+  {kind: 'NUMERICAL', title: 'four', format: 'NONE'},
+  {kind: 'NUMERICAL', title: 'five', format: 'NONE'},
+  {kind: 'BOOLEAN', title: 'six'},
+  {kind: 'STRING', title: 'seven'},
+  {kind: 'CATEGORICAL', title: 'eight'},
   {
     kind: 'CUSTOM',
-    title: 'jljljh',
+    title: 'nine',
     renderCell: props => (
       <div style={{backgroundColor: 'green'}}>{props.data}</div>
     ),

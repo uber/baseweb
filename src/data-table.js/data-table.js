@@ -233,39 +233,135 @@ export function DataTable(props: Props) {
     setFilters(new Map(filters));
   }
 
-  const rows = React.useMemo(() => {
-    if (sortIndex === -1 && !filters.size) {
-      return props.rows;
-    }
+  const sortedIndices = React.useMemo(() => {
+    performance.mark('table-sort-start');
+    let toSort = [].concat(props.rows.map((r, i) => [r, i]));
 
-    let nextRows = [].concat(props.rows);
     if (sortIndex !== -1) {
       const sortFn = sortFnByColumn(props.columns[sortIndex]);
-      nextRows.sort((a, b) => sortFn(a.data[sortIndex], b.data[sortIndex]));
-
-      if (sortDirection === 'ASC') {
-        nextRows = nextRows.reverse();
+      if (sortDirection === 'DESC') {
+        toSort.sort((a, b) =>
+          sortFn(a[0].data[sortIndex], b[0].data[sortIndex]),
+        );
+      } else if (sortDirection === 'ASC') {
+        toSort.sort((a, b) =>
+          sortFn(b[0].data[sortIndex], a[0].data[sortIndex]),
+        );
       }
     }
 
-    nextRows = Array.from(filters, f => f).reduce((rows, [title, filter]) => {
+    performance.mark('table-sort-end');
+    performance.measure('table-sort', 'table-sort-start', 'table-sort-end');
+
+    return toSort.map(el => el[1]);
+  }, [sortIndex, sortDirection, props.columns, props.rows]);
+
+  const filteredIndices = React.useMemo(() => {
+    performance.mark('table-filter-start');
+
+    const set = new Set(props.rows.map((_, idx) => idx));
+    Array.from(filters, f => f).forEach(([title, filter]) => {
       const columnIndex = props.columns.findIndex(c => c.title === title);
       const column = props.columns[columnIndex];
       if (!column) {
-        return rows;
+        return;
       }
 
       const buildFilterFn = buildFilterFnByColumn(column);
       if (!buildFilterFn) {
-        return rows;
+        return;
       }
 
       const filterFn = buildFilterFn(filter.filterParams);
-      return rows.filter(row => filterFn(row.data[columnIndex]));
-    }, nextRows);
+      Array.from(set).forEach(idx => {
+        if (!filterFn(props.rows[idx].data[columnIndex])) {
+          set.delete(idx);
+        }
+      });
+    });
 
-    return nextRows;
-  }, [sortIndex, sortDirection, filters]);
+    performance.mark('table-filter-end');
+    performance.measure(
+      'table-filter',
+      'table-filter-start',
+      'table-filter-end',
+    );
+
+    return set;
+  }, [filters, props.columns, props.rows]);
+
+  const rows = React.useMemo(() => {
+    return sortedIndices
+      .filter(idx => filteredIndices.has(idx))
+      .map(idx => props.rows[idx]);
+  }, [sortedIndices, filteredIndices]);
+
+  // in this commented example, sorts happen on every generation of
+  // calculating rows and therefore pays the perf cost more often than
+  // just when sort action is taken. another option (uncommented code),
+  // is to spend more cycles on sorting, but refrain from paying for
+  // it over and over.
+  //
+  // one benefit here versus independently sorting is that, we can
+  // apply the filter _before_ sorting. doing so has the potential to
+  // drastically improve sort speed. conversely, the independent method
+  // always sorts across all rows. In practice, the sorts and filtering
+  // themselves are not noticable operations to an end user, but _updating_
+  // the rows to the next state takes significantly longer.
+
+  // const filteredIndices = React.useMemo(() => {
+  //   performance.mark('table-filter-start');
+  //   const set = new Set(props.rows.map((_, idx) => idx));
+  //   Array.from(filters, f => f).forEach(([title, filter]) => {
+  //     const columnIndex = props.columns.findIndex(c => c.title === title);
+  //     const column = props.columns[columnIndex];
+  //     if (!column) {
+  //       return;
+  //     }
+
+  //     const buildFilterFn = buildFilterFnByColumn(column);
+  //     if (!buildFilterFn) {
+  //       return;
+  //     }
+
+  //     const filterFn = buildFilterFn(filter.filterParams);
+  //     Array.from(set).forEach(idx => {
+  //       if (!filterFn(props.rows[idx].data[columnIndex])) {
+  //         set.delete(idx);
+  //       }
+  //     });
+  //   });
+
+  //   performance.mark('table-filter-end');
+  //   performance.measure(
+  //     'table-filter',
+  //     'table-filter-start',
+  //     'table-filter-end',
+  //   );
+
+  //   return set;
+  // }, [filters, props.columns, props.rows]);
+
+  // const rows = React.useMemo(() => {
+  //   performance.mark('table-sort-start');
+  //   const toSort = [].concat(
+  //     props.rows.filter((_, idx) => filteredIndices.has(idx)),
+  //   );
+
+  //   if (sortIndex !== -1) {
+  //     const sortFn = sortFnByColumn(props.columns[sortIndex]);
+  //     if (sortDirection === 'DESC') {
+  //       toSort.sort((a, b) => sortFn(a.data[sortIndex], b.data[sortIndex]));
+  //     } else if (sortDirection === 'ASC') {
+  //       toSort.sort((a, b) => sortFn(b.data[sortIndex], a.data[sortIndex]));
+  //     }
+  //   }
+
+  //   performance.mark('table-sort-end');
+  //   performance.measure('table-sort', 'table-sort-start', 'table-sort-end');
+
+  //   return toSort;
+  // }, [sortIndex, sortDirection, filteredIndices, props.columns, props.rows]);
 
   return (
     <React.Fragment>
