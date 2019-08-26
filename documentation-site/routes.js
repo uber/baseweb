@@ -13,7 +13,7 @@ const routes = [
     title: 'Getting started',
     subNav: [
       {
-        title: 'Welcome',
+        title: 'Home',
         itemId: '/',
         isGitHubEditDisabled: true,
       },
