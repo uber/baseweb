@@ -24,7 +24,7 @@ import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
 
 const GH_URL =
-  'https://github.com/uber-web/baseui/blob/master/documentation-site/pages';
+  'https://github.com/uber-web/baseui/edit/master/documentation-site/pages';
 
 function findByPath(o, path) {
   if (!path) return;
@@ -54,7 +54,7 @@ type PropsT = {
 
 const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
   display: 'none',
-  '@media screen and (min-width: 1280px)': {
+  '@media screen and (min-width: 1340px)': {
     display: 'block',
     maxWidth: '16em',
   },
@@ -77,17 +77,17 @@ const SidebarWrapper = themedStyled<{
 const ContentWrapper = themedStyled<{
   $isSidebarOpen: boolean,
   $maxWidth?: string,
-}>('div', ({$theme, $isSidebarOpen}) => ({
+}>('div', ({$theme, $isSidebarOpen, $maxWidth}) => ({
   position: 'relative',
   boxSizing: 'border-box',
   display: $isSidebarOpen ? 'none' : 'block',
   paddingLeft: $theme.sizing.scale800,
   paddingRight: $theme.sizing.scale800,
   width: '100%',
-  maxWidth: '40em',
+  maxWidth: $maxWidth ? $maxWidth : '40em',
   [$theme.media.medium]: {
     display: 'block',
-    maxWidth: '40em',
+    maxWidth: $maxWidth ? $maxWidth : '40em',
   },
 }));
 
@@ -103,6 +103,9 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     const {toggleTheme, toggleDirection, children} = this.props;
     let {path = ''} = this.props;
     let component;
+
+    // strip the query string
+    path = path.split('?')[0];
 
     if (path && path.endsWith('/')) {
       path = path.slice(0, -1);
@@ -183,7 +186,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                       href={githubUrl}
                       target="_blank"
                       size={SIZE.compact}
-                      kind={KIND.tertiary}
+                      kind={KIND.minimal}
                     >
                       Edit this page
                     </Button>

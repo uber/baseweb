@@ -9,9 +9,12 @@ import Layout from '../../components/layout';
 
 export default Layout;
 
-# Installing Base Web
+# Setup
 
-Base Web is available on npm as [baseui](https://npmjs.com/package/baseui). This single package contains all Base Web components.
+## Installing Base Web
+
+Base Web is available on npm as [baseui](https://npmjs.com/package/baseui). This single
+package contains all Base Web components.
 
 ```bash
 # using yarn
@@ -21,7 +24,8 @@ yarn add baseui styletron-engine-atomic styletron-react
 npm install baseui styletron-engine-atomic styletron-react
 ```
 
-Base Web comes with both Flow and TypeScript. Styletron only with Flow. If you use TypeScript there are an external declarations:
+Base Web comes with both Flow and TypeScript. Styletron only with Flow. If you use
+TypeScript there are an external declarations:
 
 ```bash
 yarn add @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
@@ -29,9 +33,44 @@ yarn add @types/styletron-standard @types/styletron-react @types/styletron-engin
 
 Our React components don't use [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html).
 
-[Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the CSS in JS family. Base Web uses Styletron as a peer dependency to style all the elements, so you need to add them as dependencies too.
+[Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the
+CSS in JS family. Base Web uses Styletron as a peer dependency to style all the elements, so you
+need to add them as dependencies too.
 
-**The next step is to setup Styletron in your application.** There are detailed guides for
+## Adding Base Web to Your Application
+
+In order to use Base Web, you need to do a small setup and wrap the root of your
+application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
+
+```javascript
+import {Client as Styletron} from 'styletron-engine-atomic';
+import {Provider as StyletronProvider} from 'styletron-react';
+import {LightTheme, BaseProvider, styled} from 'baseui';
+import {StatefulInput} from 'baseui/input';
+
+const engine = new Styletron();
+
+const Centered = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+});
+
+export default function Hello() {
+  return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <Centered>
+          <StatefulInput />
+        </Centered>
+      </BaseProvider>
+    </StyletronProvider>
+  );
+}
+```
+
+There are detailed guides for Styletron setup for the following frameworks:
 
 - [Fusion.js](https://www.styletron.org/getting-started/#with-fusionjs)
 - [Next.js](https://www.styletron.org/getting-started/#with-nextjs)
@@ -76,6 +115,6 @@ Do you want to learn more about Styletron? Go to [styletron.org](https://www.sty
 
 Do you prefer other approaches when styling your components? CSS Modules? Styled-components? You can use them in parallel to Base Web and Styletron. Styletron adds only `8kB` to your bundle and works in an isolation.
 
-# Next step
+## Next step
 
-Check out the [Usage section](/getting-started/usage) to see what you have to change in your application to start using Base Web.
+Check out the [Learn Base Web](/getting-started/learn), to better understand the concepts of Base Web.

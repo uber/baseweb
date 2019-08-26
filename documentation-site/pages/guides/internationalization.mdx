@@ -9,12 +9,22 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import JSON from '../../components/json';
 import en_US from 'baseui/locale/en_US.js';
+import {Notification} from 'baseui/notification';
 
 import InternationalizationExample from 'examples/internationalization/example.js';
 
 export default Layout;
 
 # Internationalization
+
+<Notification
+  overrides={{
+    Body: {style: {width: 'auto'}},
+  }}
+>
+  In this guide, you'll learn how to customize Base Web for languages other than
+  English.
+</Notification>
 
 Base Web supports English as the default language. Following the instructions below, you
 can use other languages too.

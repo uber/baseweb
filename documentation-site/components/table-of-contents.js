@@ -64,13 +64,21 @@ const TableOfContents = props => {
   return (
     <ul
       className={useCss({
-        borderLeft: `1px solid ${theme.colors.mono400}`,
+        [theme.direction === 'rtl'
+          ? 'borderRight'
+          : 'borderLeft']: `1px solid ${theme.colors.mono400}`,
         listStyle: 'none',
-        marginLeft: theme.sizing.scale400,
+        [theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: theme.sizing
+          .scale400,
         paddingLeft: 0,
+        paddingRight: 0,
         // to make sure we align vertically with the edit on github button
         marginTop: '-10px',
         marginBottom: 0,
+        // set predictable width to avoid page relayout when table of content changes
+        width: '160px',
+        position: 'fixed',
+        top: '100px',
       })}
     >
       {TOC.map(header => (
@@ -78,11 +86,13 @@ const TableOfContents = props => {
           key={header.name}
           className={useCss({
             ...theme.typography.font100,
-            paddingLeft: getPadding(header.component),
+            [theme.direction === 'rtl'
+              ? 'paddingRight'
+              : 'paddingLeft']: getPadding(header.component),
           })}
         >
           <a
-            className={useCss({color: theme.colors.mono800})}
+            className={useCss({color: theme.colors.foregroundAlt})}
             href={header.anchor}
           >
             {header.name}

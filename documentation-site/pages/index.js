@@ -126,14 +126,14 @@ const Index = (props: {
         },
       }}
     >
-      <Card title="Installing Base Web" overrides={cardOverrides}>
+      <Card title="Setup Base Web" overrides={cardOverrides}>
         <StyledBody>
           Base Web is distributed as an npm package. As Base Web is built on top
           of a CSS-in-JS engine, all you need is the dependencies from npm.
         </StyledBody>
         <Button
           $as="a"
-          href="/getting-started/installation"
+          href="/getting-started/setup"
           overrides={{
             BaseButton: {
               style: ({$theme}) => ({
@@ -143,7 +143,7 @@ const Index = (props: {
             },
           }}
         >
-          Install Base Web
+          Setup Base Web
         </Button>
       </Card>
 
@@ -172,10 +172,10 @@ const Index = (props: {
     <H2>Extensibility</H2>
     <Markdown.p>
       Through the{' '}
-      <Link href="/theming/understanding-overrides/">Overrides API</Link> and{' '}
-      <Link href="/theming/custom-themes">configurable Themes</Link>, Base Web
-      provides you with an extreme level of customization. No matter if you want
-      to modify a component in one place only, or you want to build your design
+      <Link href="/guides/understanding-overrides">Overrides API</Link> and{' '}
+      <Link href="/guides/theming">configurable Themes</Link>, Base Web provides
+      you with an extreme level of customization. No matter if you want to
+      modify a component in one place only, or you want to build your design
       system on top of Base Web, we have the options for you.
     </Markdown.p>
     <H2>Built-in Accessibility</H2>
@@ -201,12 +201,26 @@ const Index = (props: {
   </Layout>
 );
 
-Index.getInitialProps = async () => {
+async function fetchContributorsByPage(page = 1) {
   const res = await fetch(
     `https://api.github.com/repos/uber-web/baseui/contributors?access_token=${process
-      .env.GITHUB_AUTH_TOKEN || ''}`,
+      .env.GITHUB_AUTH_TOKEN || ''}&page=${page}`,
   );
-  const contributors = await res.json();
+  return res.json();
+}
+
+Index.getInitialProps = async () => {
+  let contributors = [];
+  let page = 1;
+  while (page !== -1) {
+    const res = await fetchContributorsByPage(page);
+    contributors = contributors.concat(res);
+    if (res.length) {
+      page += 1;
+    } else {
+      page = -1;
+    }
+  }
 
   if (Array.isArray(contributors)) {
     return {contributors};
