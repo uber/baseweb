@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {DataTable} from '../data-table.js';
+import {Unstable_DataTable} from '../data-table.js';
 
 export const name = 'data-table';
 
@@ -78,4 +78,6 @@ const columns = [
 
 const rows = makeRowsFromColumns(columns, 2000);
 
-export const component = () => <DataTable columns={columns} rows={rows} />;
+export const component = () => (
+  <Unstable_DataTable columns={columns} rows={rows} />
+);

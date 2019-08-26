@@ -194,7 +194,7 @@ function CategoricalFilter(props: {
   );
 }
 
-export function DataTable(props: Props) {
+export function Unstable_DataTable(props: Props) {
   const [sortIndex, setSortIndex] = React.useState(-1);
   const [sortDirection, setSortDirection] = React.useState(null);
   const [filters, setFilters] = React.useState(new Map());
