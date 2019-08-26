@@ -24,7 +24,7 @@ import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
 
 const GH_URL =
-  'https://github.com/uber-web/baseui/blob/master/documentation-site/pages';
+  'https://github.com/uber-web/baseui/edit/master/documentation-site/pages';
 
 function findByPath(o, path) {
   if (!path) return;
@@ -54,7 +54,7 @@ type PropsT = {
 
 const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
   display: 'none',
-  '@media screen and (min-width: 1280px)': {
+  '@media screen and (min-width: 1340px)': {
     display: 'block',
     maxWidth: '16em',
   },
@@ -183,7 +183,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                       href={githubUrl}
                       target="_blank"
                       size={SIZE.compact}
-                      kind={KIND.tertiary}
+                      kind={KIND.minimal}
                     >
                       Edit this page
                     </Button>
