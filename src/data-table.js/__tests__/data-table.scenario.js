@@ -13,14 +13,12 @@ import {DataTable} from '../data-table.js';
 export const name = 'data-table';
 
 // https://gist.github.com/6174/6062387
-function randomString() {
+function randomString(rowIdx, columnIdx) {
   return (
-    Math.random()
+    (0.88 * rowIdx)
       .toString(36)
-      .substring(2, 15) +
-    Math.random()
-      .toString(36)
-      .substring(2, 15)
+      .replace('.', '')
+      .substring(2) + (0.99 * columnIdx).toString(36).replace('.', '')
   );
 }
 
@@ -28,7 +26,7 @@ function makeRowsFromColumns(columns, rowCount) {
   const rows = [];
   for (let i = 0; i < rowCount; i++) {
     rows.push({
-      data: columns.map(column => {
+      data: columns.map((column, j) => {
         switch (column.kind) {
           case 'CATEGORICAL':
             const grade = Math.floor(Math.random() * 100);
@@ -48,11 +46,11 @@ function makeRowsFromColumns(columns, rowCount) {
           case 'BOOLEAN':
             return Math.random() > 0.5;
           case 'STRING':
-            return randomString();
+            return randomString(i, j);
           case 'CUSTOM':
-            return randomString();
+            return randomString(i, j);
           default:
-            return 'default' + randomString();
+            return 'default' + randomString(i, j);
         }
       }),
     });

@@ -236,7 +236,6 @@ export function DataTable(props: Props) {
   }
 
   const sortedIndices = React.useMemo(() => {
-    performance.mark('table-sort-start');
     let toSort = props.rows.map((r, i) => [r, i]);
 
     if (sortIndex !== -1) {
@@ -252,15 +251,10 @@ export function DataTable(props: Props) {
       }
     }
 
-    performance.mark('table-sort-end');
-    performance.measure('table-sort', 'table-sort-start', 'table-sort-end');
-
     return toSort.map(el => el[1]);
   }, [sortIndex, sortDirection, props.columns, props.rows]);
 
   const filteredIndices = React.useMemo(() => {
-    performance.mark('table-filter-start');
-
     const set = new Set(props.rows.map((_, idx) => idx));
     Array.from(filters, f => f).forEach(([title, filter]) => {
       const columnIndex = props.columns.findIndex(c => c.title === title);
@@ -281,13 +275,6 @@ export function DataTable(props: Props) {
         }
       });
     });
-
-    performance.mark('table-filter-end');
-    performance.measure(
-      'table-filter',
-      'table-filter-start',
-      'table-filter-end',
-    );
 
     return set;
   }, [filters, props.columns, props.rows]);
