@@ -180,10 +180,10 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                         <PencilIcon size={16} color="#666666" />
                       )}
                       $as="a"
-                      href={githubUrl}
+                      href={githubUrl.replace('/blob', '/edit')}
                       target="_blank"
                       size={SIZE.compact}
-                      kind={KIND.tertiary}
+                      kind={KIND.minimal}
                     >
                       Edit this page
                     </Button>
