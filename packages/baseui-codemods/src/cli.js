@@ -57,7 +57,7 @@ const {argv} = yargs
 You can use this CLI tool to run various scripts (codemods) that will automate laborious migrations between major versions of the "baseui" library.
 
 Usage:
-  $ baseui-codemods --dir=PATH_TO_CODE --mod=CODEMOD_NAME
+  $ baseui-codemods --dir=<PATH_TO_CODE> --mod=<CODEMOD_NAME>
 
 Example:
   $ baseui-codemods --dir=src --mod=v8Types
