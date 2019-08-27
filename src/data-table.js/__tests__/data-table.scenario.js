@@ -29,6 +29,7 @@ function makeRowsFromColumns(columns, rowCount) {
       data: columns.map((column, j) => {
         switch (column.kind) {
           case 'CATEGORICAL':
+            // eslint-disable-next-line no-case-declarations
             const grade = Math.floor(Math.random() * 100);
             if (grade >= 90) {
               return 'A';
@@ -70,14 +71,14 @@ const columns = [
   {
     kind: 'CUSTOM',
     title: 'nine',
-    renderCell: props => (
-      <div style={{backgroundColor: 'green'}}>{props.data}</div>
-    ),
+    renderCell: function Cell(props) {
+      return <div style={{backgroundColor: 'green'}}>{props.data}</div>;
+    },
   },
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);
 
-export const component = () => (
-  <Unstable_DataTable columns={columns} rows={rows} />
-);
+export function component() {
+  return <Unstable_DataTable columns={columns} rows={rows} />;
+}

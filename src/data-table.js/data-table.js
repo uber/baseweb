@@ -56,16 +56,21 @@ type CustomColumn = {|
   sortable?: boolean,
   filterable?: boolean,
   kind: 'CUSTOM',
+  // eslint-disable-next-line flowtype/no-weak-types
   renderCell: React.ComponentType<{data: any}>,
   renderFilter?: React.ComponentType<{
+    // eslint-disable-next-line flowtype/no-weak-types
     setFilter: (filterParams: any, description: string) => void,
     close: () => void,
   }>,
+  // eslint-disable-next-line flowtype/no-weak-types
   buildFilter?: any => any => boolean,
+  // eslint-disable-next-line flowtype/no-weak-types
   sortFn?: (any, any) => number,
 |};
 
 type Row = {
+  // eslint-disable-next-line flowtype/no-weak-types
   data: any[],
 };
 
@@ -324,7 +329,7 @@ export function Unstable_DataTable(props: Props) {
   return (
     <>
       {Array.from(filters).map(([title, filter]) => (
-        <Tag onActionClick={() => removeFilter(title)}>
+        <Tag key={title} onActionClick={() => removeFilter(title)}>
           {title} | {filter.description}
         </Tag>
       ))}
