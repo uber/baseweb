@@ -216,11 +216,10 @@ function ComponentA(props: {className: string}) {
 
 To make the migration process even simpler, you can run a codemod to shift from v7's generic API to
 this extracted pattern. The codemod operates somewhat naively, but will output running code. There
-may be some follow-up after running. Follow the instructions below to run the codemod locally.
+may be some follow-up after running. You can run the codemod locally with the command below:
 
-```
-npm install -g jscodeshift
-jscodeshift -t node_modules/baseui/codemods/styled-v8-themedStyled.js <transform-path>
+```shell
+$ npx @uber-web-ui/baseui-codemods --mod=v8Types --dir=<path_to_code>
 ```
 
-Use the -d option for a dry-run and use -p to print the output for comparison.
+[Click here](https://www.npmjs.com/package/@uber-web-ui/baseui-codemods) for more information on `baseui` codemods.

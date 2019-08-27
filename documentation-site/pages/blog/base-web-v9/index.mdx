@@ -28,12 +28,14 @@ export default Layout;
 
 After bumping to **v9**, your app will probably look a little different. Grays will be darker and type will be larger. Input highlights and buttons will be black rather than blue. _Don't panic!_ If you address each of the points below your app will look right in no time!
 
-- Replace direct usage of gray scale (`$theme.colors.mono100` for example) with new values. Make sure to look for references in `Block` and typographic components (`H1`) as well. [Read more 📖](#light-theme-mapping)
+- Replace direct usage of grayscale (`$theme.colors.mono100` for example) with new values. Make sure to look for references in `Block` and typographic components (`H1`) as well. [Read more 📖](#light-theme-mapping)
 - Replace direct usage of typographic scale (`$theme.typography.font100` for example) with new values. Make sure to look for references in `Block` as well. [Read more 📖](#typography-mapping)
 - Update any usage of typography components (`Paragraph`, `H1`) as needed. [Read more 📖](#typography-components)
 - If some of the changes in **v9** are not to your liking, customize your theme with some of the new theme properties available. [Read more 📖](#v8-theme-values)
 
 Read below to find out exactly what has changed and how you can safely incorporate these changes into your codebase.
+
+**Be sure to check out our [codemod](#codemod) for automatically migrating your codebase to v9!**
 
 ## Base Color Palette
 
@@ -530,7 +532,7 @@ The `Calendar` component now has a mostly monotone color palette. Thankfully, th
 
 ### Breakpoints
 
-Unrelated to color but related to themeing: we have updated the default breakpoints in the theme object. The largest breakpoint is now `1136px`. You can set it back to `1280px` in your theme.
+Unrelated to color but related to theming: we have updated the default breakpoints in the theme object. The largest breakpoint is now `1136px`. You can set it back to `1280px` in your theme.
 
 ```js
 const theme = {
@@ -602,7 +604,7 @@ These values are used for special headers, usually in association with marketing
 
 ### Comparison to v8
 
-All of Base Web's components have been updated to adjust to the new scale such that there is very little visual change (with regards to sizing) in the components themselves. Still, you may have built some of your own components or made adjustments using the typography theme object. References in your codebase will need to be updated accordingly.
+All of Base Web's components have been updated to adjust to the new scale such that there is very little visual change (with regards to sizing) in the components themselves. Still, you may have built some of your components or made adjustments using the typography theme object. References in your codebase will need to be updated accordingly.
 
 The following is a comparison of the old and new typographic values:
 
@@ -710,6 +712,22 @@ For reference, here is a mapping of **v8** to **v9** components:
   ]}
 />
 
+## Codemod
+
+We made a codemod for migrating codebases to **v9**. You can run it with a single command via `npx`:
+
+```shell
+$ npx @uber-web-ui/baseui-codemods --mod=v9Styles --dir=<path_to_code>
+```
+
+This will go through all of the `*.js` files in your codebase, updating any usage of theme font values, theme color values, and typography components to their **v9** counterparts, following the various mappings in this post.
+
+The codemod _does not_ update your theme. You will have to set theme variables manually if you want to customize the look of various components. [You can even set everything to look as it does in v8](#v8-theme-values).
+
+Run the script, check your diff, and click through your app to make sure things look good.
+
+Note, the codemod may not work perfectly- if we forgot any edge cases we will update the script (one more reason to use `npx`). [Click here](https://www.npmjs.com/package/@uber-web-ui/baseui-codemods) for more information on `baseui` codemods.
+
 ## Inspiration
 
 Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Aren't most components already implemented?
@@ -718,7 +736,7 @@ It is important to remember that Uber's Base design system is still evolving. Th
 
 We on the Base Web team consider this one of the main features of Base Web. Folks who use the Base design system, as Uber does on hundreds of projects, know that by staying on the latest version of `baseui`, their app remains on-brand and consistent with other products.
 
-That said, we know these sorts of changes can be disruptive. We don't anticipate stylistic changes of this magnitude to come very often. When they do we will try to make the transition as painless as possible with migration guides (such as this blog post), codemods, and backward compatability whereever possible.
+That said, we know these sorts of changes can be disruptive. We don't anticipate stylistic changes of this magnitude to come very often. When they do we will try to make the transition as painless as possible with migration guides (such as this blog post), codemods, and backward compatibility wherever possible.
 
 Thanks for using `baseui`!
 
