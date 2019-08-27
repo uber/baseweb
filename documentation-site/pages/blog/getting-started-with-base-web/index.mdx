@@ -13,20 +13,15 @@ export default Layout;
   caption="Base Web by Uber Design"
 />
 
-In this post, we take a look at Base Web. It's Uber's component library offering for React apps.
-Base is a design system comprised of modern, responsive, living components. Base Web is the React implementation of Base.
-
-A major selling point for Base Web is its clever customization solution. This gives you a high level of control over components. This is key when extending components or if you wish to move away from the out of the box Uber Base design.
-
-For an example app, let's build a password generator/validator.
+**In this post, you'll learn how to create a basic password generator using Base Web components. If you are unfamiliar with Base Web, please go over the [Getting started](/) section before continuing with this article.**
 
 <BlogImage
   src={'/static/images/blog/getting-started-with-base-web/result.png'}
 />
 
-## Set up
+## Setup
 
-Let's save ourselves some work and use `create-react-app` to bootstrap a React application.
+For the sake of simplicity, we'll use `create-react-app` to bootstrap a React application.
 
 ```shell
 create-react-app password-generator
@@ -41,35 +36,30 @@ yarn add baseui styletron-engine-atomic styletron-react
 
 You might be asking "What's Styletron?". [Styletron](https://www.styletron.org) is a CSS-in-JS solution for component-oriented styling.
 
-It's a dependency of Base Web. For example, here's a Link component;
-
-```js
-import {styled} from 'styletron-react';
-
-const Link = styled('a', {
-  color: '#276ef1',
-});
-```
-
-As per Styletron's set up instructions, we need to wrap our app in a Styletron Provider before we can begin:
+As per [Base Web's set up instructions](/getting-started/setup/), we need to wrap our app in both the Styletron Provider and the [Base Provider](/components/base-provider/) before we can begin:
 
 ```js
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
+import {LightTheme, BaseProvider} from 'baseui';
 
 const engine = new Styletron();
 
 ReactDOM.render(
   <StyletronProvider value={engine}>
-    <App />
+    <BaseProvider theme={LightTheme}>
+      <App />
+    </BaseProvider>
   </StyletronProvider>,
   document.getElementById('root'),
 );
 ```
 
-## Scaffolding the UI
+_Do you want to learn more about Styletron? Check out the [Styletron docs](https://www.styletron.org)._
 
-Let's put together the building blocks of our app.
+## What are we building?
+
+In this post, we'll implement the following mini-app, that can be used to generate passwords. It will look something like this:
 
 <BlogImage
   src={'/static/images/blog/getting-started-with-base-web/mockup.png'}
@@ -84,7 +74,7 @@ We can create the majority of our UI using the following components
 - [Slider](/components/slider)
 - [Checkbox](/components/checkbox)
 
-This puts us in a pretty good place without needing to make any changes.
+This puts us in a good spot without needing to make any changes.
 
 <BlogImage
   src={'/static/images/blog/getting-started-with-base-web/foundation.png'}
@@ -105,15 +95,13 @@ If you've ever consumed component libraries, you've likely hit some hurdles. You
 />
 ```
 
-Uber's Base Web tackles this with an "Overrides" pattern. It provides a consistent API to override a components characteristics. You are able to override the styles, props and render logic of a component. And this is all made possible through one prop.
+Base Web tackles this with an "Overrides" pattern. It provides a consistent API to override a components characteristics. You are able to override the styles, props and render logic of a component. And this is all made possible through one prop.
 
-You can read a great article on the pattern [here](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646)
+_To learn more, check out the [Overrides guide](/guides/understanding-overrides/)._
 
 Don't throw everything into overrides though. Adjusting your theme values is better if you override the same properties over and over (_Read about themes [here](/guides/theming#the-shape-of-the-theme-file)_).
 
-This is a pretty big deal. It makes for a component library that feels less opinionated and very reusable.
-
-Overriding the Card component styles makes things look better. We could also extract these to another file if we want to tidy up our JSX.
+To customize the `Card` component to work better for our use-case, we can do something like this:
 
 ```js
 <Card
@@ -134,35 +122,7 @@ Overriding the Card component styles makes things look better. We could also ext
 </Card>
 ```
 
-Overriding the Slider is more interesting. This involves hiding the TickBar and making the Track full width.
-
-```js
-<Slider
-  min={4}
-  max={64}
-  value={[32]}
-  overrides={{
-    Track: {
-      style: ({$theme}) => ({
-        padding: `${$theme.sizing.scale800} 0`,
-      }),
-    },
-    TickBar: {
-      style: {
-        display: 'none',
-      },
-    },
-  }}
-/>
-```
-
-Referring to the docs and overriding styles for the other components we are using gives us this.
-
-<BlogImage
-  src={'/static/images/blog/getting-started-with-base-web/styled.png'}
-/>
-
-It would be nice to have a button inside our input that generates a new password on click. We could use a Button component and tweak the positioning. But there is no need. Base Web already caters for scenarios like this.
+As a next step, let's move the button inside our input that generates a new password every time a user clicks it. We could use the `Button` component and tweak the positioning. But there is no need. Base Web already caters for scenarios like this:
 
 ```js
 <Input
@@ -176,56 +136,35 @@ It would be nice to have a button inside our input that generates a new password
 />
 ```
 
-Using overrides, we can leverage an After option and pass a Button to it.
+Using overrides, we can leverage an `After` option and pass a `Button` to it.
 
 <BlogImage
   src={'/static/images/blog/getting-started-with-base-web/input-with-cta.png'}
 />
 
-We are close.
+## Adjusting the layout
 
-## Fixing the layout
-
-Our app looks almost there but the layout for those options doesn't look right. We need some labels and layout constraints. Base Web provides a component that aids with creating these less reusable layout pieces. We can use a Block whenever there's a need to layout UI. For our app, we can use Blocks and block styled labels.
-
-We can create a basic label component with Styletron and hook into the Base light theme for font styling.
+Our app looks almost there but the layout for those options doesn't look right. We need some labels and layout constraints. Base Web provides a component that aids with creating these less reusable layout pieces. We can use a [Block](/components/block/) whenever there's a need to layout UI.
 
 ```js
-const Label = styled('label', ({$theme}) => ({
-  display: 'block',
-  marginBottom: $theme.sizing.scale400,
-  width: '100%',
-  ...$theme.typography.font450,
-}));
-```
-
-We can use Blocks to separate the options and for our second block use flex layout.
-
-```js
-<Block
-  overrides={{
-    Block: {
-      style: ({$theme}) => ({
-        marginBottom: $theme.sizing.scale800,
-      }),
-    },
-  }}
->
-  <Label>Length</Label>
-  <Slider {...sliderProps} />
+<Block marginBottom="scale800">
+  <FormControl label="Length">
+    <Slider {...sliderProps} />
+  </FormControl>
 </Block>
 ```
 
-```js
-<Block display="flex" flexDirection="row" flexWrap="wrap">
-  <Label>Characters</Label>
-  <Checkbox checked>A-Z</Checkbox>
-  <Checkbox checked>0-9</Checkbox>
-  <Checkbox checked>%@#</Checkbox>
-</Block>
-```
+Alternatively, you can use the [useStyletron](/components/use-styletron/) hook to achive the same result:
 
-We use overrides on the first Block to access theme values for the margin.
+```js
+const [useCss, theme] = useStyletron();
+
+<div className={useCss({marginBottom: theme.sizing.scale800})}>
+  <FormControl label="Length">
+    <Slider {...sliderProps} />
+  </FormControl>
+</div>;
+```
 
 ## Hooking up the password generation
 
@@ -272,7 +211,7 @@ const getStrengthColor = strength => {
 };
 ```
 
-Tie that into our Input
+Tie that into our `Input`:
 
 ```js
 <Input
@@ -283,11 +222,6 @@ Tie that into our Input
     InputContainer: {
       style: ({ $theme }) => ({
         borderColor: $theme.colors[getStrengthColor(strength)],
-        borderTopLeftRadius: $theme.sizing.scale200,
-        borderTopRightRadius: $theme.sizing.scale200,
-        borderBottomRightRadius: $theme.sizing.scale200,
-        borderBottomLeftRadius: $theme.sizing.scale200,
-        borderStyle: 'solid',
         borderWidth: $theme.sizing.scale200
       })
     },
@@ -304,13 +238,13 @@ And this will give us
 
 ## Conclusion
 
-With little effort we've put together an example app that uses Uber's Base design language. Base Web is an attractive option as a React Component library.
+With little effort we've put together an example app that uses the Base design language.
 
-The design has a focus on how developers will actually use the components. Yes, by default they all have that Uber look and feel. But the powerful customization makes for a component library that feels less opinionated.
+By default all the components have the Uber look and feel, but the powerful customization makes for a component library that feels less opinionated.
 
-You can see all the code for this post in the following demo
+You can see all the code for this post in the following demo:
 
 <Demo
-  src="https://codesandbox.io/embed/v8q6104jm5?fontsize=14"
+  src="https://codesandbox.io/embed/password-validatorgenerator-w-base-web-ogrn3?fontsize=14"
   sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
 />
