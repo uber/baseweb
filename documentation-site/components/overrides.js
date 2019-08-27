@@ -49,13 +49,11 @@ class Overrides extends React.Component {
       <React.Fragment>
         <Block as="p" font="font400">
           Additionally, you can{' '}
-          <DocLink href="/theming/understanding-overrides">
-            fully customize
-          </DocLink>{' '}
-          any part of the <strong>{name}</strong> through the{' '}
-          <strong>overrides</strong> prop. The {name} consists of multiple
-          subcomponents that are listed bellow and you can override each one of
-          them. To help you identify the names of these subcomponents,{' '}
+          <DocLink href="/guides/theming">fully customize</DocLink> any part of
+          the <strong>{name}</strong> through the <strong>overrides</strong>{' '}
+          prop. The {name} consists of multiple subcomponents that are listed
+          bellow and you can override each one of them. To help you identify the
+          names of these subcomponents,{' '}
           <strong>you can highlight them through this selector:</strong>
         </Block>
         <RadioGroup

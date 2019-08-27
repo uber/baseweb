@@ -78,8 +78,8 @@ const Overrides: React.FC<TOverridesProps> = ({
       >
         Additionally, you can fully customize any part of the {componentName}{' '}
         component through the overrides prop (
-        <Link href="/theming/understanding-overrides/">
-          <StyledLink href="/theming/understanding-overrides/">
+        <Link href="/guides/understanding-overrides">
+          <StyledLink href="/guides/understanding-overrides">
             learn more
           </StyledLink>
         </Link>
