@@ -78,43 +78,6 @@ There are detailed guides for Styletron setup for the following frameworks:
 - [Other React applications](https://www.styletron.org/getting-started/#with-react)
 - [Bedrock](http://t.uber.com/base-bedrock) (Uber only)
 
-## Styletron
-
-Base Web always needs Styletron to function. You probably will not be able to build the whole application only with Base Web components and you will be creating some new components as well. Since Styletron is already loaded in your project, **we recommend you using Styletron to style any new components**:
-
-```js
-import {styled} from 'baseui';
-
-export default () => {
-  const Anchor = styled('a', {
-    fontSize: '20px',
-    color: 'red',
-  });
-  return <Anchor href="/my-link">Custom Link</Anchor>;
-};
-```
-
-What's the difference here?
-
-```js
-import {styled} from 'baseui';
-import {styled} from 'styletron-react';
-```
-
-It's exactly the same `styled` function, but Base Web adds the `$theme` variable that gives you access to all Base Web's [design tokens](/theming/theming-values). So if you want to use our `primary` color for that custom link, you can do:
-
-```js
-import {styled} from 'baseui';
-
-const Anchor = styled('a', ({$theme}) => ({
-  color: $theme.colors.primary,
-}));
-```
-
-Do you want to learn more about Styletron? Go to [styletron.org](https://www.styletron.org).
-
-Do you prefer other approaches when styling your components? CSS Modules? Styled-components? You can use them in parallel to Base Web and Styletron. Styletron adds only `8kB` to your bundle and works in an isolation.
-
 ## Next step
 
 Check out the [Learn Base Web](/getting-started/learn), to better understand the concepts of Base Web.
