@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/menu/basic.js';
 import Compact from 'examples/menu/compact.js';
@@ -202,3 +203,5 @@ The provided id will be set as a value for the item container's `id` attribute t
   heading="Profile Menu Item Api"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/option-profile.js')}
 />
+
+<Exports component={MenuExports} title="Menu exports" path="baseui/menu" />

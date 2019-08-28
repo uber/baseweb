@@ -10,6 +10,7 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 import Overrides from '../../components/overrides';
 import {DocLink} from '../../components/markdown-elements';
+import Exports from '../../components/exports';
 
 import {StatefulPhoneInput, COUNTRIES} from 'baseui/phone-input/index.js';
 import * as PhoneInputExports from 'baseui/phone-input/index.js';
@@ -117,4 +118,10 @@ COUNTRIES: {
 <API
   heading="CountrySelectDropdown API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/phone-input/country-select-dropdown.js')}
+/>
+
+<Exports
+  component={PhoneInputExports}
+  title="Phone Input exports"
+  path="baseui/phone-input"
 />
