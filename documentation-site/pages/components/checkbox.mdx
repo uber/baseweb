@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/checkbox/basic-controlled.js';
 import Uncontrolled from 'examples/checkbox/basic-uncontrolled';
@@ -132,4 +133,10 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <API
   heading="Stateful Checkbox Container API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/stateful-checkbox-container.js')}
+/>
+
+<Exports
+  component={CheckboxExports}
+  title="Checkbox exports"
+  path="baseui/checkbox"
 />

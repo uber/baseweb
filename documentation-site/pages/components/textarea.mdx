@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import TextareaBasic from 'examples/textarea/basic.js';
 import TextareaStates from 'examples/textarea/states.js';
@@ -74,4 +75,10 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <API
   heading="Textarea API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/textarea/textarea.js')}
+/>
+
+<Exports
+  component={TextareaExports}
+  title="Textarea exports"
+  path="baseui/textarea"
 />

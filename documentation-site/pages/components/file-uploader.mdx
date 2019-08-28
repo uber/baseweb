@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import FileUploaderBasic from 'examples/file-uploader/basic.js';
 import FileUploaderError from 'examples/file-uploader/error.js';
@@ -74,4 +75,10 @@ Creates a dropzone for file uploads.
 <API
   heading="File Uploader API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/file-uploader/file-uploader.js')}
+/>
+
+<Exports
+  component={FileUploaderExports}
+  title="File uploader exports"
+  path="baseui/file-uploader"
 />
