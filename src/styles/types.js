@@ -498,6 +498,7 @@ export type BordersT = {
 
 export type ZIndexT = {
   modal: number,
+  drawer: number,
 };
 
 export type ThemeT = {|

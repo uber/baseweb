@@ -13,6 +13,7 @@ import type {ButtonGroupLocaleT} from '../button-group/locale.js';
 import type {FileUploaderLocaleT} from '../file-uploader/locale.js';
 import type {MenuLocaleT} from '../menu/locale.js';
 import type {ModalLocaleT} from '../modal/locale.js';
+import type {DrawerLocaleT} from '../drawer/locale.js';
 import type {PaginationLocaleT} from '../pagination/locale.js';
 import type {SelectLocaleT} from '../select/locale.js';
 import type {ToastLocaleT} from '../toast/locale.js';
@@ -25,6 +26,7 @@ export type LocaleT = {|
   fileuploader: FileUploaderLocaleT,
   menu: MenuLocaleT,
   modal: ModalLocaleT,
+  drawer: DrawerLocaleT,
   pagination: PaginationLocaleT,
   select: SelectLocaleT,
   toast: ToastLocaleT,
