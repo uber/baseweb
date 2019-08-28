@@ -595,6 +595,7 @@ export default function createTheme(
     direction: 'auto',
     zIndex: {
       modal: 2000,
+      drawer: 1000,
     },
   };
 
