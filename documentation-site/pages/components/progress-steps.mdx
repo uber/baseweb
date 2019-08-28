@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import ProgressStepsDotted from 'examples/progress-steps/dotted';
 import ProgressStepsNumbered from 'examples/progress-steps/numbered';
@@ -86,4 +87,10 @@ list type provides the user with a sense of awareness around progress and the st
 <API
   heading="Step API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/progress-steps/step.js')}
+/>
+
+<Exports
+  component={ProgressStepsExports}
+  title="Progress Steps exports"
+  path="baseui/progress-steps"
 />

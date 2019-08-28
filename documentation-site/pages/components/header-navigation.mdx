@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import BasicHeader from 'examples/header-navigation/basic.js';
 import WithSearch from 'examples/header-navigation/with-search.js';
@@ -66,4 +67,10 @@ export default Layout;
 <API
   heading="HeaderNavigation API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}
+/>
+
+<Exports
+  component={HeaderNavigationExports}
+  title="Header Navigation exports"
+  path="baseui/header-navigation"
 />

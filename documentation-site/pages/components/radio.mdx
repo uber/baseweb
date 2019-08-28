@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/radio/basic.js';
 import Stateful from 'examples/radio/stateful.js';
@@ -111,3 +112,5 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
   heading="StatefulRadioGroupContainer API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/radio/stateful-radiogroup-container.js')}
 />
+
+<Exports component={RadioExports} title="Radio exports" path="baseui/radio" />
