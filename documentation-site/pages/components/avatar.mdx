@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import API from '../../components/api';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 
 import Sizes from 'examples/avatar/sizes.js';
@@ -83,4 +84,10 @@ Adds additional visual information about a user.
 <API
   heading="Avatar API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/avatar/avatar.js')}
+/>
+
+<Exports
+  component={AvatarExports}
+  title="Avatar exports"
+  path="baseui/avatar"
 />

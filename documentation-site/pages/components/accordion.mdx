@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import API from '../../components/api';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 import SEO from '../../components/meta-seo';
 import Overrides from '../../components/overrides';
@@ -89,4 +90,10 @@ Accordions display a list of high-level options that can expand/contract to reve
 <API
   heading="Stateful Panel API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/accordion/stateful-panel.js')}
+/>
+
+<Exports
+  component={AccordionExports}
+  title="Accordion exports"
+  path="baseui/accordion"
 />

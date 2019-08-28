@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/icon/basic.js';
 import List from 'examples/icon/list.js';
@@ -58,3 +59,5 @@ _If you are an Uber employee, you can access the full list of icons [here](http:
   heading="Icon API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/icon/icon.js')}
 />
+
+<Exports component={IconExports} title="Icon exports" path="baseui/icon" />
