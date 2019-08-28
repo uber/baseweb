@@ -84,7 +84,7 @@ steps:
     agents:
       queue: workers
   - name: ':documentation-site-link-checker:'
-    command: yarn blc http://localhost:8081 -ro --exclude components/avatar
+    command: yarn blc http://localhost:8081 -ro --exclude components/avatar --exclude github.com
     plugins:
       'docker-compose#v3.0.3':
         run: docs-site
