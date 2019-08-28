@@ -67,8 +67,8 @@ export const component = () => (
           Open Drawer
         </Button>
         <Drawer
+          animate={false}
           onClose={close}
-          showBackdrop={true}
           isOpen={isOpen}
           size={SIZE.default}
           anchor={ANCHOR.right}
