@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as Drawer} from './drawer.js';
-export {default as FocusOnce} from './focus-once.js';
 export {SIZE, SIZE_DIMENSION, ANCHOR, CLOSE_SOURCE} from './constants.js';
 export {
   Root as StyledRoot,

@@ -481,7 +481,6 @@ interface Borders {
 
 interface ZIndex {
   modal: number;
-  drawer: number;
 }
 
 export interface Theme {

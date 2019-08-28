@@ -55,7 +55,7 @@ export interface DrawerProps {
   mountNode?: HTMLElement;
   onClose?: (args: {closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE]}) => any;
   overrides?: DrawerOverrides;
-  size?: SIZE[keyof SIZE] | string | number;
+  size?: SIZE[keyof SIZE] | string;
   anchor?: ANCHOR[keyof ANCHOR] | string;
   showBackdrop?: boolean;
   onBackdropClick?: (event: React.MouseEventHandler<HTMLElement>) => any;
@@ -83,8 +83,6 @@ export class Drawer extends React.Component<DrawerProps, DrawerState> {
   getRef(component: string): React.Ref<any>;
   renderDrawer(): React.ReactNode;
 }
-
-export class FocusOnce extends React.Component<{children: React.ReactNode}> {}
 
 export const StyledRoot: StyletronComponent<any>;
 export const StyledBackdrop: StyletronComponent<any>;

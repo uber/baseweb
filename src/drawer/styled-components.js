@@ -25,9 +25,7 @@ function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
   if ($anchor === ANCHOR.left || $anchor === ANCHOR.right) {
     // If the anchor is horizontal, set the width
     styles.height = SIZE_DIMENSION.full;
-    if (typeof $size === 'number') {
-      styles.width = `${$size}px`;
-    } else if (SIZE[$size]) {
+    if (SIZE[$size]) {
       styles.width = SIZE_DIMENSION[$size];
     } else if (typeof $size === 'string') {
       styles.width = $size;
@@ -35,9 +33,7 @@ function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
   } else {
     // If the anchor is vertical, set the height
     styles.width = SIZE_DIMENSION.full;
-    if (typeof $size === 'number') {
-      styles.height = `${$size}px`;
-    } else if (SIZE[$size]) {
+    if (SIZE[$size]) {
       styles.height = SIZE_DIMENSION[$size];
     } else if (typeof $size === 'string') {
       styles.height = $size;
@@ -98,7 +94,6 @@ function getAnchorStyles(props: SharedStylePropsArgT) {
 }
 
 export const Root = styled<SharedStylePropsArgT>('div', props => {
-  const {$theme} = props;
   return {
     position: 'fixed',
     overflow: 'auto',
@@ -106,7 +101,6 @@ export const Root = styled<SharedStylePropsArgT>('div', props => {
     bottom: 0,
     top: 0,
     left: 0,
-    zIndex: $theme.zIndex.drawer,
   };
 });
 
