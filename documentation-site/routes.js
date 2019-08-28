@@ -13,70 +13,42 @@ const routes = [
     title: 'Getting started',
     subNav: [
       {
-        title: 'Welcome',
+        title: 'Home',
         itemId: '/',
         isGitHubEditDisabled: true,
       },
       {
-        title: 'Installation',
-        itemId: '/getting-started/installation',
+        title: 'Setup',
+        itemId: '/getting-started/setup',
       },
       {
-        title: 'Usage',
-        itemId: '/getting-started/usage',
-      },
-      {
-        title: 'Learn',
+        title: 'Learn Base Web',
         itemId: '/getting-started/learn',
-      },
-      {
-        title: 'Versioning policy',
-        itemId: '/getting-started/versioning-policy',
-      },
-      {
-        title: 'Supported platforms',
-        itemId: '/getting-started/supported-platforms',
-      },
-      {
-        title: 'Comparison',
-        itemId: '/getting-started/comparison',
-      },
-      {
-        title: 'Internationalization',
-        itemId: '/getting-started/internationalization',
-      },
-      {
-        title: 'Bidirectionality',
-        itemId: '/getting-started/bidirectionality',
-      },
-      {
-        title: 'API Cheat Sheet',
-        itemId: '/cheat-sheet',
-      },
-      {
-        title: 'Roadmap',
-        itemId: '/getting-started/roadmap',
       },
     ],
   },
   {
-    title: 'Theming',
+    title: 'Guides',
     subNav: [
       {
-        title: 'Intro to Theming',
-        itemId: '/theming/custom-themes',
+        title: 'Internationalization',
+        itemId: '/guides/internationalization',
       },
       {
-        title: 'Theming values',
-        itemId: '/theming/theming-values',
+        title: 'Bidirectionality',
+        itemId: '/guides/bidirectionality',
+      },
+      {
+        title: 'Theming',
+        itemId: '/guides/theming',
       },
       {
         title: 'Overrides',
-        itemId: '/theming/understanding-overrides',
+        itemId: '/guides/understanding-overrides',
       },
       {
-        title: 'Icons',
-        itemId: '/theming/overriding-icons',
+        title: 'API Cheat Sheet',
+        itemId: '/cheat-sheet',
       },
     ],
   },
@@ -310,6 +282,27 @@ const routes = [
             itemId: '/components/unstable-a11y',
           },
         ],
+      },
+    ],
+  },
+  {
+    title: 'Discover more',
+    subNav: [
+      {
+        title: 'Versioning policy',
+        itemId: '/discover-more/versioning-policy',
+      },
+      {
+        title: 'Supported platforms',
+        itemId: '/discover-more/supported-platforms',
+      },
+      {
+        title: 'Comparison',
+        itemId: '/discover-more/comparison',
+      },
+      {
+        title: 'Roadmap',
+        itemId: '/discover-more/roadmap',
       },
     ],
   },
