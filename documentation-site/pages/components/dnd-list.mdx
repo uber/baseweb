@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/dnd-list/basic.js';
 import Stateless from 'examples/dnd-list/stateless.js';
@@ -108,3 +109,5 @@ This component also supports iOS and Android browsers and screen readers.
   heading="Stateful List Container API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/dnd-list/stateful-list-container.js')}
 />
+
+<Exports component={ListExports} title="DnD exports" path="baseui/dnd-list" />
