@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import BasicControlled from 'examples/input/basic-controlled.js';
 import Sizes from 'examples/input/sizes.js';
@@ -101,7 +102,7 @@ You can also use `overrides` to customize the icons used in the toggle:
 />
 ```
 
-Note, if all you want to do is change the icons, you could [update your theme](https://deploy-preview-1598--baseui.netlify.com/theming/overriding-icons/) instead.
+Note, if all you want to do is change the icons, you could [update your theme](/guides/theming/#overriding-icons) instead.
 
 <Example title="Overrides usage" path="input/overrides.js">
   <Customization />
@@ -125,3 +126,7 @@ In the example above we use `overrides` to add "tag" functionality to our input.
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulInput`, which manages its own state.
+
+## API
+
+<Exports component={InputExports} title="Input exports" path="baseui/input" />

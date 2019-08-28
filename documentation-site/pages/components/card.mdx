@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import CardBasic from 'examples/card/basic.js';
 import CardWithImageCta from 'examples/card/image-cta.js';
@@ -71,3 +72,5 @@ The entire card can become an active click-target.
   heading="Card API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/card/card.js')}
 />
+
+<Exports component={CardExports} title="Card exports" path="baseui/card" />
