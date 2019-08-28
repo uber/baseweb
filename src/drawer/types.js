@@ -11,7 +11,7 @@ import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE, CLOSE_SOURCE, ANCHOR} from './constants.js';
 
 export type SizeT = $Keys<typeof SIZE>;
-export type SizePropT = SizeT | number | string;
+export type SizePropT = SizeT | string;
 
 export type AnchorT = $Keys<typeof ANCHOR>;
 export type AnchorPropT = AnchorT | string;
@@ -59,8 +59,8 @@ export type DrawerPropsT = {
   /** Whether the backdrop should be present */
   showBackdrop: boolean,
   /**Function to be called when backdrop is clicked */
-  onBackdropClick: (e: Event) => mixed,
-  onEscapeKeyDown: (e: Event) => mixed,
+  onBackdropClick?: (e: Event) => mixed,
+  onEscapeKeyDown?: (e: Event) => mixed,
 };
 
 export type DrawerPropsWithoutChildrenT = $Diff<
