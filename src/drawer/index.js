@@ -11,6 +11,7 @@ export {
   Root as StyledRoot,
   Backdrop as StyledBackdrop,
   DrawerContainer as StyledDrawerContainer,
+  DrawerBody as StyledDrawerBody,
   Close as StyledClose,
 } from './styled-components.js';
 export * from './types.js';

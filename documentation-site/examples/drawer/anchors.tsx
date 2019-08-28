@@ -3,7 +3,7 @@ import {Button} from 'baseui/button';
 import {Drawer, ANCHOR} from 'baseui/drawer';
 
 export default () => {
-  let initialState: any = {};
+  let initialState: {[key: string]: boolean} = {};
   for (let anchor in ANCHOR) {
     initialState[anchor] = false;
   }

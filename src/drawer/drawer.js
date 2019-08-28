@@ -271,6 +271,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                   />
                 )}
                 <DrawerContainer
+                  aria-label="drawer"
                   {...sharedProps}
                   {...getOverrideProps(DrawerContainerOverride)}
                 >

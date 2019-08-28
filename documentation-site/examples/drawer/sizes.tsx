@@ -3,7 +3,7 @@ import {Button} from 'baseui/button';
 import {Drawer, SIZE} from 'baseui/drawer';
 
 export default () => {
-  let initialState: any = {};
+  let initialState: {[key: string]: boolean} = {};
   for (let size in SIZE) {
     initialState[size] = false;
   }
