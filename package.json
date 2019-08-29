@@ -39,7 +39,6 @@
     "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "jest --runInBand -c jest.e2e.config.js",
     "e2e:test:ci": "jest -c jest.e2e.config.js",
-    "prepublish": "npm run build",
     "icon:generate": "node ./src/icon/build-icons.js",
     "predocumentation:dev": "node ./scripts/build-documentation-site-files.js",
     "predocumentation:dev:watch": "node ./scripts/build-documentation-site-files.js",

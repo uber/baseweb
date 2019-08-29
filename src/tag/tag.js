@@ -103,8 +103,8 @@ class Tag extends React.Component<PropsT, {}> {
     return (
       <Root
         data-baseweb="tag"
-        aria-label="button"
-        role="button"
+        aria-label={disabled ? null : 'button'}
+        role={disabled ? null : 'button'}
         tabIndex={clickable ? 0 : null}
         {...rootHandlers}
         {...sharedProps}
@@ -113,8 +113,8 @@ class Tag extends React.Component<PropsT, {}> {
         <Text {...textProps}>{children}</Text>
         {closeable ? (
           <Action
-            aria-label="close button"
-            role="button"
+            aria-label={disabled ? null : 'close button'}
+            role={disabled ? null : 'button'}
             tabIndex={0}
             {...actionHandlers}
             {...sharedProps}
