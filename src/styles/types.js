@@ -26,6 +26,17 @@ export type ColorsT = {
   primary600: string,
   primary700: string,
 
+  // Accent Palette
+  accent50: string,
+  accent100: string,
+  accent200: string,
+  accent300: string,
+  accent400: string,
+  accent: string,
+  accent500: string,
+  accent600: string,
+  accent700: string,
+
   // Alert Palette
   negative50: string,
   negative100: string,

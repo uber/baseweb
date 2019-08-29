@@ -11,6 +11,7 @@ import type {PrimitivesT} from './types.js';
 import deepMerge from '../utils/deep-merge.js';
 
 const WHITE = '#FFFFFF';
+const BLACK = '#000000';
 
 export default function createTheme(
   primitives: PrimitivesT,
@@ -25,51 +26,62 @@ export default function createTheme(
 
     colors: {
       // Primary Palette
+      primary: primitives.primary,
       primary50: primitives.primary50,
       primary100: primitives.primary100,
       primary200: primitives.primary200,
       primary300: primitives.primary300,
       primary400: primitives.primary400,
-      primary: primitives.primary400,
       primary500: primitives.primary500,
       primary600: primitives.primary600,
       primary700: primitives.primary700,
 
+      // Accent Palette
+      accent: primitives.accent,
+      accent50: primitives.accent50,
+      accent100: primitives.accent100,
+      accent200: primitives.accent200,
+      accent300: primitives.accent300,
+      accent400: primitives.accent400,
+      accent500: primitives.accent500,
+      accent600: primitives.accent600,
+      accent700: primitives.accent700,
+
       // Negative Palette
+      negative: primitives.negative,
       negative50: primitives.negative50,
       negative100: primitives.negative100,
       negative200: primitives.negative200,
       negative300: primitives.negative300,
       negative400: primitives.negative400,
-      negative: primitives.negative400,
       negative500: primitives.negative500,
       negative600: primitives.negative600,
       negative700: primitives.negative700,
 
       // Warning Palette
+      warning: primitives.warning,
       warning50: primitives.warning50,
       warning100: primitives.warning100,
       warning200: primitives.warning200,
       warning300: primitives.warning300,
       warning400: primitives.warning400,
-      warning: primitives.warning400,
       warning500: primitives.warning500,
       warning600: primitives.warning600,
       warning700: primitives.warning700,
 
       // Positive Palette
+      positive: primitives.positive,
       positive50: primitives.positive50,
       positive100: primitives.positive100,
       positive200: primitives.positive200,
       positive300: primitives.positive300,
       positive400: primitives.positive400,
-      positive: primitives.positive400,
       positive500: primitives.positive500,
       positive600: primitives.positive600,
       positive700: primitives.positive700,
 
       // Monochrome Palette
-      white: primitives.mono100,
+      white: WHITE,
       mono100: primitives.mono100,
       mono200: primitives.mono200,
       mono300: primitives.mono300,
@@ -80,7 +92,7 @@ export default function createTheme(
       mono800: primitives.mono800,
       mono900: primitives.mono900,
       mono1000: primitives.mono1000,
-      black: primitives.mono1000,
+      black: BLACK,
 
       // Rating Palette,
       rating200: primitives.rating200,

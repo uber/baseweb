@@ -16,6 +16,17 @@ interface Colors {
   primary600: string;
   primary700: string;
 
+  // Accent Palette
+  accent50: string;
+  accent100: string;
+  accent200: string;
+  accent300: string;
+  accent400: string;
+  accent: string;
+  accent500: string;
+  accent600: string;
+  accent700: string;
+
   // Alert Palette
   negative50: string;
   negative100: string;
@@ -504,6 +515,7 @@ export interface Theme {
 
 export interface ThemePrimitives {
   // Primary Palette
+  primary: string;
   primary50: string;
   primary100: string;
   primary200: string;
@@ -513,7 +525,19 @@ export interface ThemePrimitives {
   primary600: string;
   primary700: string;
 
+  // Accent Palette
+  accent: string;
+  accent50: string;
+  accent100: string;
+  accent200: string;
+  accent300: string;
+  accent400: string;
+  accent500: string;
+  accent600: string;
+  accent700: string;
+
   // Alert Palette
+  negative: string;
   negative50: string;
   negative100: string;
   negative200: string;
@@ -524,6 +548,7 @@ export interface ThemePrimitives {
   negative700: string;
 
   // Warning Palette
+  warning: string;
   warning50: string;
   warning100: string;
   warning200: string;
@@ -534,6 +559,7 @@ export interface ThemePrimitives {
   warning700: string;
 
   // Success Palette
+  positive: string;
   positive50: string;
   positive100: string;
   positive200: string;
