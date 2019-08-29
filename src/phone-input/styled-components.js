@@ -75,6 +75,7 @@ export const StyledCountrySelectDropdownListItem = withStyle<
   paddingRight: 0,
   display: 'flex',
   alignItems: 'center',
+  height: '42px',
 });
 
 export const StyledCountrySelectDropdownFlagColumn = styled<{}>(

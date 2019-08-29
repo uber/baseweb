@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import {
   PhoneInput,
@@ -6,12 +5,8 @@ import {
   CountrySelectDropdown,
   StyledFlag,
 } from 'baseui/phone-input';
-import type {CountryIsoT} from 'baseui/phone-input';
 
-function CustomFlag(props: {
-  children: React.Node,
-  $iso: CountryIsoT,
-}) {
+function CustomFlag(props: any) {
   const {children, ...rest} = props;
   return <StyledFlag iso={props.$iso} {...rest} />;
 }

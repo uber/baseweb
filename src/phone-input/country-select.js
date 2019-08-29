@@ -12,9 +12,12 @@ import {
   StyledRoot,
   StyledFlagContainer,
   StyledDialCode,
+  StyledCountrySelectDropdownListItem as DefaultListItem,
+  StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
+  StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
+  StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
 import {COUNTRIES} from './constants.js';
-import CountrySelectDropdown from './country-select-dropdown.js';
 import {Block} from '../block/index.js';
 import {Select as DefaultSelect} from '../select/index.js';
 import {PLACEMENT} from '../popover/index.js';
@@ -32,6 +35,19 @@ CountrySelect.defaultProps = {
   overrides: {},
   size: defaultProps.size,
 };
+
+const DropdownListItem = React.forwardRef((props, ref) => {
+  const {children, ...rest} = props;
+  return (
+    <DefaultListItem ref={ref} {...rest}>
+      {props.children}
+    </DefaultListItem>
+  );
+});
+
+function DropdownOptionContent(props) {
+  return <>{props.children}</>;
+}
 
 export default function CountrySelect(props: CountrySelectPropsT) {
   const {
@@ -55,6 +71,12 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     $required: required,
     $size: size,
   };
+  const options = Object.values(COUNTRIES);
+  const scrollIndex = Math.min(
+    // $FlowFixMe
+    options.findIndex(opt => opt.id === country.id) + 5,
+    options.length - 1,
+  );
   const baseOverrides = {
     Root: {
       component: StyledRoot,
@@ -80,6 +102,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         alignItems: 'center',
       },
     },
+    StatefulMenu: {
+      props: {
+        initialState: {
+          isFocused: true,
+          highlightedIndex: scrollIndex,
+        },
+      },
+    },
     DropdownContainer: {
       style: {
         width: maxDropdownWidth,
@@ -87,12 +117,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       },
     },
     Dropdown: {
-      component: CountrySelectDropdown,
       props: {
-        country,
-        maxDropdownHeight,
-        mapIsoToLabel,
-        overrides: {
+        $country: country,
+        $maxDropdownHeight: maxDropdownHeight,
+        $mapIsoToLabel: mapIsoToLabel,
+        $overrides: {
           CountrySelectDropdown: overrides.CountrySelectDropdown,
           CountrySelectDropdownListItem:
             overrides.CountrySelectDropdownListItem,
@@ -106,24 +135,51 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         },
       },
     },
+    DropdownListItem: {
+      component: DropdownListItem,
+    },
+    OptionContent: {
+      component: DropdownOptionContent,
+    },
     Popover: {
       props: {
         placement: PLACEMENT.bottomLeft,
       },
     },
   };
+
   const [Select, selectProps] = getOverrides(
     overrides.CountrySelect,
     DefaultSelect,
   );
+  // $FlowFixMe
+  const selectOverrides = mergeOverrides(baseOverrides, {
+    Dropdown: overrides.CountrySelectDropdown,
+    DropdownListItem: overrides.CountrySelectDropdownListItem,
+  });
+  // $FlowFixMe
+  selectProps.overrides = mergeOverrides(
+    selectOverrides,
+    // $FlowFixMe
+    selectProps.overrides,
+  );
 
+  const [FlagColumn, flagColumnProps] = getOverrides(
+    overrides.CountrySelectDropdownFlagColumn,
+    DefaultFlagColumn,
+  );
   const [FlagContainer, flagContainerProps] = getOverrides(
     overrides.FlagContainer,
     StyledFlagContainer,
   );
-
-  // $FlowFixMe
-  selectProps.overrides = mergeOverrides(baseOverrides, selectProps.overrides);
+  const [NameColumn, nameColumnProps] = getOverrides(
+    overrides.CountrySelectDropdownNameColumn,
+    DefaultNameColumn,
+  );
+  const [Dialcode, dialcodeProps] = getOverrides(
+    overrides.CountrySelectDropdownDialcodeColumn,
+    DefaultDialcodeColumn,
+  );
   const [DialCode, dialCodeProps] = getOverrides(
     overrides.DialCode,
     StyledDialCode,
@@ -134,6 +190,26 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       <Select
         clearable={false}
         disabled={disabled}
+        getOptionLabel={({option, optionState}) => {
+          const iso = option.id;
+          return (
+            <>
+              <FlagColumn {...flagColumnProps}>
+                <FlagContainer
+                  $iso={iso}
+                  data-iso={iso}
+                  {...flagContainerProps}
+                >
+                  {iso2FlagEmoji(iso)}
+                </FlagContainer>
+              </FlagColumn>
+              <NameColumn {...nameColumnProps}>
+                {mapIsoToLabel ? mapIsoToLabel(iso) : option.label}
+              </NameColumn>
+              <Dialcode {...dialcodeProps}>{option.dialCode}</Dialcode>
+            </>
+          );
+        }}
         getValueLabel={(value: {option: CountryT}) => {
           const iso = value.option.id;
           return (
@@ -148,6 +224,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
           );
         }}
         error={error}
+        maxDropdownHeight={maxDropdownHeight}
         onChange={event => {
           onCountryChange(event);
           // After choosing a country, shift focus to the text input
@@ -155,7 +232,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
             inputRef.current.focus();
           }
         }}
-        options={Object.values(COUNTRIES)}
+        options={options}
         positive={positive}
         required={required}
         searchable={false}

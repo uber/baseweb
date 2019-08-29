@@ -139,7 +139,7 @@
     "minified": 63112
   },
   "button": {
-    "size": 64935,
+    "size": 64954,
     "dependencySizes": [
       {
         "name": "react-is",
@@ -162,11 +162,11 @@
         "approximateSize": 1085
       }
     ],
-    "gzip": 26045,
-    "minified": 64278
+    "gzip": 25978,
+    "minified": 64297
   },
   "button-group": {
-    "size": 72832,
+    "size": 72851,
     "dependencySizes": [
       {
         "name": "react-is",
@@ -193,8 +193,8 @@
         "approximateSize": 645
       }
     ],
-    "gzip": 28605,
-    "minified": 72072
+    "gzip": 28755,
+    "minified": 72091
   },
   "card": {
     "size": 57557,
@@ -251,7 +251,7 @@
     "minified": 63542
   },
   "datepicker": {
-    "size": 522644,
+    "size": 522663,
     "dependencySizes": [
       {
         "name": "react-dom",
@@ -306,8 +306,8 @@
         "approximateSize": 645
       }
     ],
-    "gzip": 216971,
-    "minified": 519053
+    "gzip": 216572,
+    "minified": 519072
   },
   "dnd-list": {
     "size": 189499,
@@ -349,7 +349,7 @@
     "minified": 188222
   },
   "file-uploader": {
-    "size": 122113,
+    "size": 122132,
     "dependencySizes": [
       {
         "name": "react-dropzone",
@@ -396,8 +396,8 @@
         "approximateSize": 5008
       }
     ],
-    "gzip": 49099,
-    "minified": 121267
+    "gzip": 49106,
+    "minified": 121286
   },
   "flex-grid": {
     "size": 67489,
@@ -535,7 +535,7 @@
     "minified": 54503
   },
   "input": {
-    "size": 90643,
+    "size": 90662,
     "dependencySizes": [
       {
         "name": "react-is",
@@ -558,8 +558,8 @@
         "approximateSize": 5008
       }
     ],
-    "gzip": 34054,
-    "minified": 89914
+    "gzip": 34210,
+    "minified": 89933
   },
   "layer": {
     "size": 165977,
@@ -780,7 +780,7 @@
     "minified": 190397
   },
   "pagination": {
-    "size": 436897,
+    "size": 436916,
     "dependencySizes": [
       {
         "name": "react-dom",
@@ -835,11 +835,11 @@
         "approximateSize": 243
       }
     ],
-    "gzip": 190056,
-    "minified": 433666
+    "gzip": 189395,
+    "minified": 433685
   },
   "payment-card": {
-    "size": 264965,
+    "size": 264984,
     "dependencySizes": [
       {
         "name": "webpack",
@@ -882,87 +882,27 @@
         "approximateSize": 64818
       }
     ],
-    "gzip": 128235,
-    "minified": 263456
+    "gzip": 128172,
+    "minified": 263475
   },
   "phone-input": {
-    "size": 607886,
+    "size": 461331,
     "dependencySizes": [
       {
-        "name": "core-js",
-        "approximateSize": 41963
-      },
-      {
-        "name": "babel-runtime",
-        "approximateSize": 7356
-      },
-      {
-        "name": "react-virtualized",
-        "approximateSize": 96118
+        "name": "react-dom",
+        "approximateSize": 64818
       },
       {
         "name": "react",
         "approximateSize": 5008
       },
       {
-        "name": "prop-types",
-        "approximateSize": 1518
-      },
-      {
-        "name": "dom-helpers",
-        "approximateSize": 884
-      },
-      {
         "name": "react-is",
         "approximateSize": 1467
       },
       {
-        "name": "polished",
-        "approximateSize": 28614
-      },
-      {
-        "name": "react-dom",
-        "approximateSize": 64818
-      },
-      {
-        "name": "popper.js",
-        "approximateSize": 16380
-      },
-      {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 2903
-      },
-      {
-        "name": "react-lifecycles-compat",
-        "approximateSize": 1683
-      },
-      {
-        "name": "@babel/runtime",
-        "approximateSize": 174
-      },
-      {
-        "name": "webpack",
-        "approximateSize": 243
-      },
-      {
-        "name": "react-input-mask",
-        "approximateSize": 8501
-      },
-      {
-        "name": "linear-layout-vector",
-        "approximateSize": 4474
-      },
-      {
-        "name": "styletron-standard",
-        "approximateSize": 955
-      },
-      {
         "name": "styletron-react",
         "approximateSize": 6869
-      },
-      {
-        "name": "clsx",
-        "approximateSize": 391
       },
       {
         "name": "just-extend",
@@ -971,13 +911,37 @@
       {
         "name": "object-assign",
         "approximateSize": 1085
+      },
+      {
+        "name": "styletron-standard",
+        "approximateSize": 955
+      },
+      {
+        "name": "react-input-mask",
+        "approximateSize": 8501
+      },
+      {
+        "name": "polished",
+        "approximateSize": 28614
+      },
+      {
+        "name": "smoothscroll-polyfill",
+        "approximateSize": 2903
+      },
+      {
+        "name": "popper.js",
+        "approximateSize": 16380
+      },
+      {
+        "name": "webpack",
+        "approximateSize": 243
       }
     ],
-    "gzip": 275604,
-    "minified": 603680
+    "gzip": 204596,
+    "minified": 458716
   },
   "pin-code": {
-    "size": 229849,
+    "size": 229868,
     "dependencySizes": [
       {
         "name": "webpack",
@@ -1020,8 +984,8 @@
         "approximateSize": 1085
       }
     ],
-    "gzip": 108583,
-    "minified": 228453
+    "gzip": 108950,
+    "minified": 228472
   },
   "popover": {
     "size": 213300,
@@ -1171,7 +1135,7 @@
     "minified": 68253
   },
   "select": {
-    "size": 418246,
+    "size": 418265,
     "dependencySizes": [
       {
         "name": "react-dom",
@@ -1222,8 +1186,8 @@
         "approximateSize": 243
       }
     ],
-    "gzip": 185025,
-    "minified": 415037
+    "gzip": 184682,
+    "minified": 415056
   },
   "side-navigation": {
     "size": 63293,
@@ -1334,7 +1298,7 @@
     "minified": 56573
   },
   "table-grid": {
-    "size": 270300,
+    "size": 270319,
     "dependencySizes": [
       {
         "name": "react-dom",
@@ -1389,8 +1353,8 @@
         "approximateSize": 955
       }
     ],
-    "gzip": 128096,
-    "minified": 267394
+    "gzip": 128097,
+    "minified": 267413
   },
   "tabs": {
     "size": 59117,
@@ -1451,7 +1415,7 @@
     "minified": 102895
   },
   "textarea": {
-    "size": 226724,
+    "size": 226743,
     "dependencySizes": [
       {
         "name": "webpack",
@@ -1486,8 +1450,8 @@
         "approximateSize": 64818
       }
     ],
-    "gzip": 107522,
-    "minified": 225323
+    "gzip": 107519,
+    "minified": 225342
   },
   "toast": {
     "size": 69877,

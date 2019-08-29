@@ -42,10 +42,10 @@ export type mapIsoToLabelT = (iso: string) => string;
 export type CountrySelectDropdownPropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
   children: $ReadOnlyArray<React.Element<any>>,
-  country: CountryT,
-  mapIsoToLabel?: mapIsoToLabelT,
-  maxDropdownHeight: string,
-  overrides: {
+  $country: CountryT,
+  $mapIsoToLabel?: mapIsoToLabelT,
+  $maxDropdownHeight: string,
+  $overrides: {
     CountrySelectDropdown?: OverrideT<*>,
     CountrySelectDropdownListItem?: OverrideT<*>,
     CountrySelectDropdownFlagColumn?: OverrideT<*>,

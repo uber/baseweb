@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {List, AutoSizer} from 'react-virtualized';
-
 import defaultProps from './default-props.js';
 import {
   StyledFlagContainer,
@@ -29,14 +28,14 @@ CountrySelectDropdown.defaultProps = {
 };
 
 function CountrySelectDropdown(
-  props: CountrySelectDropdownPropsT & {forwardedRef: React.ElementRef<*>},
+  props: CountrySelectDropdownPropsT & {$forwardedRef: React.ElementRef<*>},
 ) {
   const {
-    country,
-    forwardedRef,
-    maxDropdownHeight,
-    mapIsoToLabel,
-    overrides,
+    $country: country,
+    $forwardedRef: forwardedRef,
+    $maxDropdownHeight: maxDropdownHeight,
+    $mapIsoToLabel: mapIsoToLabel,
+    $overrides: overrides,
   } = props;
 
   const children = React.Children.toArray(props.children);
@@ -105,7 +104,7 @@ function CountrySelectDropdown(
                         data-iso={iso}
                         {...flagContainerProps}
                       >
-                        {iso2FlagEmoji(iso)}
+                        ABC {iso2FlagEmoji(iso)}
                       </FlagContainer>
                     </FlagColumn>
                     <NameColumn {...nameColumnProps}>
@@ -130,4 +129,4 @@ function CountrySelectDropdown(
 export default React.forwardRef<
   CountrySelectDropdownPropsT,
   typeof CountrySelectDropdown,
->((props, ref) => <CountrySelectDropdown {...props} forwardedRef={ref} />);
+>((props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />);
