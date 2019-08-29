@@ -133,10 +133,11 @@ export const flexGridItemStyle = ({
     ] = [$flexGridColumnCount, $flexGridColumnGap, $flexGridRowGap].map(r =>
       getResponsiveValue(r, i),
     );
-    // Mobile media query needed to guarantee ordering by Styletron
-    // TODO(#1697): update getMediaQueries to include the 0px media query
     const mediaQuery =
-      i === 0 ? getMediaQuery({'min-width': '0px'}) : mediaQueries[i - 1];
+      i === 0
+        ? // Custom media query needed so :nth-child styles don't conflict
+          getMediaQuery({'min-width': '0px'})
+        : mediaQueries[i - 1];
     if (mediaQuery) {
       acc[mediaQuery] = flexGridItemMediaQueryStyle({
         $theme,
