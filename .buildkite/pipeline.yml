@@ -6,7 +6,7 @@ steps:
         build: baseui
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
     agents:
-      queue: builders
+      queue: workers
   - name: ':docker: :package: e2e'
     plugins:
       'docker-compose#v3.0.3':
@@ -15,7 +15,7 @@ steps:
           - e2e-server-healthy
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
     agents:
-      queue: builders
+      queue: workers
   # Wait until all images are built.
   # This way we can download the built image from a registry instead of building each for each test task.
   - wait
@@ -92,7 +92,7 @@ steps:
           - docs-site-server
           - docs-site-healthy
     agents:
-      queue: builders
+      queue: workers
   - name: ':puppeteer:'
     command: yarn e2e:test:ci
     plugins:
@@ -102,4 +102,4 @@ steps:
           - e2e-server
           - e2e-server-healthy
     agents:
-      queue: builders
+      queue: workers
