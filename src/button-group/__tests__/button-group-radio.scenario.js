@@ -14,7 +14,7 @@ import {StatefulButtonGroup, MODE} from '../index.js';
 export const name = 'button-group-radio';
 
 export const component = () => (
-  <StatefulButtonGroup mode={MODE.radio}>
+  <StatefulButtonGroup mode={MODE.radio} initialState={{selected: 0}}>
     <Button>Label</Button>
     <Button>Label</Button>
     <Button>Label</Button>

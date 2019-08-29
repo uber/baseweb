@@ -105,10 +105,14 @@ interface Colors {
   buttonPrimaryText: string;
   buttonPrimaryHover: string;
   buttonPrimaryActive: string;
+  buttonPrimarySelectedText: string;
+  buttonPrimarySelectedFill: string;
   buttonSecondaryFill: string;
   buttonSecondaryText: string;
   buttonSecondaryHover: string;
   buttonSecondaryActive: string;
+  buttonSecondarySelectedText: string;
+  buttonSecondarySelectedFill: string;
   buttonTertiaryFill: string;
   buttonTertiaryText: string;
   buttonTertiaryHover: string;
@@ -119,6 +123,8 @@ interface Colors {
   buttonMinimalText: string;
   buttonMinimalHover: string;
   buttonMinimalActive: string;
+  buttonMinimalSelectedText: string;
+  buttonMinimalSelectedFill: string;
   buttonDisabledFill: string;
   buttonDisabledText: string;
 

@@ -17,26 +17,42 @@ export const component = () => (
   <React.Fragment>
     <Button kind={KIND.primary}>Button</Button>
     <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.primary} isSelected>
+      Selected
+    </Button>
+    <Block as="span" marginLeft="scale300" />
     <Button kind={KIND.primary} disabled>
-      Disabled Button
+      Disabled
     </Button>
     <Block marginBottom="scale300" />
     <Button kind={KIND.secondary}>Button</Button>
     <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.secondary} isSelected>
+      Selected
+    </Button>
+    <Block as="span" marginLeft="scale300" />
     <Button kind={KIND.secondary} disabled>
-      Disabled Button
+      Disabled
     </Button>
     <Block marginBottom="scale300" />
     <Button kind={KIND.tertiary}>Button</Button>
     <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.tertiary} isSelected>
+      Selected
+    </Button>
+    <Block as="span" marginLeft="scale300" />
     <Button kind={KIND.tertiary} disabled>
-      Disabled Button
+      Disabled
     </Button>
     <Block marginBottom="scale300" />
     <Button kind={KIND.minimal}>Button</Button>
     <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.minimal} isSelected>
+      Selected
+    </Button>
+    <Block as="span" marginLeft="scale300" />
     <Button kind={KIND.minimal} disabled>
-      Disabled Button
+      Disabled
     </Button>
   </React.Fragment>
 );

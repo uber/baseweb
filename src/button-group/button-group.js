@@ -49,7 +49,7 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
         return React.cloneElement(child, {
           disabled: props.disabled || child.props.disabled,
           isSelected: isSelected(props.selected, index),
-          kind: KIND.tertiary,
+          kind: props.kind,
           onClick: event => {
             if (props.disabled) {
               return;
@@ -124,4 +124,5 @@ ButtonGroup.defaultProps = {
   onClick: () => {},
   shape: SHAPE.default,
   size: SIZE.default,
+  kind: KIND.secondary,
 };
