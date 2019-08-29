@@ -32,8 +32,8 @@ export default {
     // Borders
     border: primitives.mono600,
     borderAlt: primitives.mono700,
-    borderFocus: primitives.primary400,
-    borderError: primitives.negative400,
+    borderFocus: primitives.primary,
+    borderError: primitives.negative,
 
     // Buttons
     buttonPrimaryFill: primitives.primary,
