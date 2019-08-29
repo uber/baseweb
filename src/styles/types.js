@@ -149,6 +149,22 @@ export type ColorsT = {
   datepickerDayPseudoSelected: string,
   datepickerDayPseudoHighlighted: string,
 
+  calendarBackground: string,
+  calendarForeground: string,
+  calendarForegroundDisabled: string,
+  calendarHeaderBackground: string,
+  calendarHeaderForeground: string,
+  calendarHeaderBackgroundActive: string,
+  calendarHeaderForegroundDisabled: string,
+  calendarDayBackgroundPseudoSelected: string,
+  calendarDayForegroundPseudoSelected: string,
+  calendarDayBackgroundPseudoSelectedHighlighted: string,
+  calendarDayForegroundPseudoSelectedHighlighted: string,
+  calendarDayBackgroundSelected: string,
+  calendarDayForegroundSelected: string,
+  calendarDayBackgroundSelectedHighlighted: string,
+  calendarDayForegroundSelectedHighlighted: string,
+
   // FileUploader
   fileUploaderBackgroundColor: string,
   fileUploaderBackgroundColorActive: string,

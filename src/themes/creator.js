@@ -163,6 +163,23 @@ export default function createTheme(
       datepickerDayPseudoSelected: primitives.primary100,
       datepickerDayPseudoHighlighted: primitives.primary200,
 
+      // Calendar
+      calendarBackground: primitives.mono100,
+      calendarForeground: primitives.mono1000,
+      calendarForegroundDisabled: primitives.mono500,
+      calendarHeaderBackground: primitives.primary,
+      calendarHeaderForeground: WHITE,
+      calendarHeaderBackgroundActive: primitives.primary700,
+      calendarHeaderForegroundDisabled: primitives.primary500,
+      calendarDayBackgroundPseudoSelected: primitives.primary100,
+      calendarDayForegroundPseudoSelected: primitives.mono1000,
+      calendarDayBackgroundPseudoSelectedHighlighted: primitives.primary200,
+      calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
+      calendarDayBackgroundSelected: primitives.primary,
+      calendarDayForegroundSelected: WHITE,
+      calendarDayBackgroundSelectedHighlighted: primitives.primary700,
+      calendarDayForegroundSelectedHighlighted: primitives.mono100,
+
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,
       fileUploaderBackgroundColorActive: primitives.primary50,

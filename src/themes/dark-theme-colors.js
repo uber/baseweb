@@ -78,6 +78,23 @@ export default {
     datepickerDayPseudoSelected: primitives.mono500,
     datepickerDayPseudoHighlighted: primitives.mono600,
 
+    // Calendar
+    calendarBackground: primitives.mono800,
+    calendarForeground: WHITE,
+    calendarForegroundDisabled: primitives.mono300,
+    calendarHeaderBackground: primitives.primary700,
+    calendarHeaderForeground: primitives.primary,
+    calendarHeaderBackgroundActive: primitives.primary600,
+    calendarHeaderForegroundDisabled: primitives.primary500,
+    calendarDayBackgroundPseudoSelected: primitives.primary700,
+    calendarDayForegroundPseudoSelected: primitives.primary,
+    calendarDayBackgroundPseudoSelectedHighlighted: primitives.primary600,
+    calendarDayForegroundPseudoSelectedHighlighted: primitives.primary,
+    calendarDayBackgroundSelected: primitives.primary,
+    calendarDayForegroundSelected: BLACK,
+    calendarDayBackgroundSelectedHighlighted: primitives.primary100,
+    calendarDayForegroundSelectedHighlighted: BLACK,
+
     // FileUploader
     fileUploaderBackgroundColor: primitives.mono700,
     fileUploaderBackgroundColorActive: primitives.mono600,
