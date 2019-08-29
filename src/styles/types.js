@@ -228,6 +228,11 @@ export type ColorsT = {
   menuFontHighlighted: string,
   menuFontSelected: string,
 
+  // Modal
+  modalCloseColor: string,
+  modalCloseColorHover: string,
+  modalCloseColorFocus: string,
+
   // Pagination
   paginationTriangleDown: string,
 
