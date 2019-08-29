@@ -1,0 +1,41 @@
+<!--
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+import Anchors from 'examples/drawer/anchors.js';
+import Sizes from 'examples/drawer/sizes.js';
+
+export default Layout;
+
+# Drawer
+
+<Example title="Drawer with anchor" path="drawer/anchors.js">
+  <Anchors />
+</Example>
+
+<Example title="Drawer with different size" path="drawer/sizes.js">
+  <Sizes />
+</Example>
+
+## Accessibility
+
+We have built in functionality based on the recommendations for dialogs and drawers in [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/#dialog_drawer).
+
+- Upon opening, focus will be transferred to the first interactive element (unless `autofocus` is set to false)
+- Container element has `aria-label="drawer"`
+- `Escape` key closes the drawer
+- Click on backdrop (anywhere outside dialog) hides drawer.
+- Background is not be scrollable while drawer is open (position: fixed).
+- Upon closing, focus should return to element that triggered drawer.
+
+<API
+  heading="Drawer API"
+  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/drawer/drawer.js')}
+/>
