@@ -39,7 +39,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     marginRight: sizing.scale200,
     borderBottom:
       $orientation === ORIENTATION.horizontal && $active
-        ? `2px solid ${colors.primary400}`
+        ? `2px solid ${colors.primary}`
         : 'none',
     display: 'inline-block',
   };
@@ -47,10 +47,10 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     style = {
       ...style,
       ':focus': {
-        color: colors.primary400,
+        color: colors.primary,
       },
       ':hover': {
-        color: colors.primary400,
+        color: colors.primary,
       },
     };
   }
