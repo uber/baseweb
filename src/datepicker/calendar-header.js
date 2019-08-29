@@ -177,6 +177,7 @@ export default class CalendarHeader extends React.Component<
       >
         {isHidden ? null : (
           <PrevButtonIcon
+            size={'24px'}
             overrides={{Svg: {style: navBtnStyle}}}
             {...prevButtonIconProps}
           />
@@ -240,6 +241,7 @@ export default class CalendarHeader extends React.Component<
       >
         {isHidden ? null : (
           <NextButtonIcon
+            size={'24px'}
             overrides={{Svg: {style: navBtnStyle}}}
             {...nextButtonIconProps}
           />
