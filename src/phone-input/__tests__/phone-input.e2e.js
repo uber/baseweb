@@ -22,7 +22,7 @@ const selectors = {
 };
 
 const countryListItemForIso = iso =>
-  `${selectors.phoneInputSelectListItem}[data-iso="${iso}"]`;
+  `${selectors.phoneInputSelectListItem} [data-iso="${iso}"]`;
 
 const unitedStates = {iso: 'US', dialCode: '+1'};
 const unitedKingdom = {iso: 'GB', dialCode: '+44'};
