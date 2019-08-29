@@ -45,6 +45,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                   test-style="[object Object]"
                 />
                 <div
+                  aria-label="drawer"
                   styled-component="true"
                   test-style="[object Object]"
                 >
@@ -101,6 +102,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                     test-style="[object Object]"
                   />
                   <div
+                    aria-label="drawer"
                     styled-component="true"
                     test-style="[object Object]"
                   >
@@ -170,6 +172,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                     test-style="[object Object]"
                   />
                   <div
+                    aria-label="drawer"
                     styled-component="true"
                     test-style="[object Object]"
                   >
@@ -235,6 +238,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                 $isOpen={true}
                 $isVisible={false}
                 $size="default"
+                aria-label="drawer"
               >
                 <MockStyledComponent
                   $anchor="right"
@@ -243,6 +247,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                   $isOpen={true}
                   $isVisible={false}
                   $size="default"
+                  aria-label="drawer"
                   forwardedRef={null}
                 >
                   <Portal>

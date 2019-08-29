@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {default as SearchIcon} from 'baseui/icon/search';
 import {themedStyled} from '../pages/_app';
-import {Block} from 'baseui/block';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 
@@ -53,9 +52,9 @@ const PlainInput = themedStyled<{$inputVisible: boolean}>(
     }: {}),
 );
 
-const SearchContainer = themedStyled<{$inputVisible: boolean}>(
-  Block,
-  ({$inputVisible, $theme}) =>
+const SearchContainer = themedStyled<{}>(
+  'div',
+  ({$theme}) =>
     ({
       display: 'flex',
       alignItems: 'center',
