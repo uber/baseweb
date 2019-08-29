@@ -118,7 +118,7 @@ export default function createTheme(
       border: primitives.mono500,
       borderAlt: primitives.mono600,
       borderFocus: primitives.primary,
-      borderError: primitives.negative400,
+      borderError: primitives.negative,
 
       // Buttons
       buttonPrimaryFill: primitives.primary,

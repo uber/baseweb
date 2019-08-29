@@ -21,7 +21,7 @@ export const StyledClearIconContainer = styled<{
     [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $theme.sizing
       .scale500,
     paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
-    color: $theme.colors.foregroundAlt,
+    color: $theme.colors.foreground,
   };
 });
 
@@ -126,7 +126,7 @@ function getInputEnhancerColors(
   if ($isFocused) {
     return {
       color: colors.foregroundInv,
-      backgroundColor: colors.primary400,
+      backgroundColor: colors.borderFocus,
     };
   }
 
@@ -223,7 +223,7 @@ function getInputContainerColors(
   if ($isFocused) {
     return {
       color: colors.foreground,
-      borderColor: colors.primary400,
+      borderColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
   }
