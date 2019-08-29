@@ -98,7 +98,10 @@ export default {
     listBorder: primitives.mono500,
 
     // ProgressSteps
-    progressStepsIconActiveFill: primitives.mono100,
+    progressStepsCompletedText: BLACK,
+    progressStepsCompletedFill: primitives.primary,
+    progressStepsActiveText: BLACK,
+    progressStepsActiveFill: primitives.primary,
 
     // Modal
     modalCloseColor: primitives.mono300,

@@ -159,6 +159,10 @@ interface Colors {
   listBorder: string;
 
   // ProgressSteps
+  progressStepsCompletedText: string;
+  progressStepsCompletedFill: string;
+  progressStepsActiveText: string;
+  progressStepsActiveFill: string;
   progressStepsIconActiveFill: string;
 
   // Ticks

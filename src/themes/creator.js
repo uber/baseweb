@@ -187,7 +187,11 @@ export default function createTheme(
       listBorder: primitives.mono500,
 
       // ProgressSteps
-      progressStepsIconActiveFill: primitives.primary100,
+      progressStepsCompletedText: WHITE,
+      progressStepsCompletedFill: primitives.primary,
+      progressStepsActiveText: WHITE,
+      progressStepsActiveFill: primitives.primary,
+      progressStepsIconActiveFill: primitives.primary,
 
       // Tick
       tickFill: primitives.mono100,
