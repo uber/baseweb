@@ -37,6 +37,26 @@ describe('Stateless tag', function() {
     expect(wrapper).toMatchSnapshot('Component has correct render');
   });
 
+  describe('On disabled', function() {
+    beforeEach(function() {
+      allProps.onActionClick = jest.fn();
+      wrapper = mount(
+        <Tag {...allProps} disabled>
+          {children}
+        </Tag>,
+      );
+    });
+
+    test('should not render a11y attributes', function() {
+      const tag = wrapper.getDOMNode();
+      const closeBtn = tag.children[1];
+      expect(tag.getAttribute('aria-label')).toBeNull();
+      expect(tag.getAttribute('role')).toBeNull();
+      expect(closeBtn.getAttribute('aria-label')).toBeNull();
+      expect(closeBtn.getAttribute('role')).toBeNull();
+    });
+  });
+
   describe('On action', function() {
     beforeEach(function() {
       allProps.onActionClick = jest.fn();
