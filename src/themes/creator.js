@@ -190,11 +190,12 @@ export default function createTheme(
       progressStepsIconActiveFill: primitives.primary100,
 
       // Tick
-      tickFill: WHITE,
-      tickFillHover: primitives.mono400,
-      tickFillActive: primitives.mono500,
-      tickFillSelected: primitives.primary400,
-      tickFillSelectedHover: primitives.primary500,
+      tickFill: primitives.mono100,
+      tickFillHover: primitives.mono200,
+      tickFillActive: primitives.mono300,
+
+      tickFillSelected: primitives.primary,
+      tickFillSelectedHover: primitives.primary700,
       tickFillSelectedHoverActive: primitives.primary600,
 
       tickFillError: primitives.negative50,
@@ -205,9 +206,12 @@ export default function createTheme(
       tickFillErrorSelectedHoverActive: primitives.negative600,
 
       tickFillDisabled: primitives.mono300,
+
       tickBorder: primitives.mono700,
       tickBorderError: primitives.negative400,
+
       tickMarkFill: WHITE,
+      tickMarkFillError: WHITE,
       tickMarkFillDisabled: primitives.mono600,
 
       // Slider/Toggle

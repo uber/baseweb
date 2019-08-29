@@ -178,6 +178,8 @@ interface Colors {
   tickBorder: string;
   tickBorderError: string;
   tickMarkFill: string;
+  tickMarkFillDisabled: string;
+  tickMarkFillError: string;
 
   // Slider/Toggle
   sliderTrackFill: string;

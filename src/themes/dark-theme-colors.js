@@ -247,21 +247,28 @@ export default {
 
     // Tick
     tickFill: primitives.mono1000,
-    tickFillHover: primitives.mono800,
+    tickFillHover: primitives.mono700,
     tickFillActive: primitives.mono600,
-    tickFillSelected: primitives.primary500,
-    tickFillSelectedHover: primitives.primary600,
-    tickFillSelectedHoverActive: primitives.primary700,
+
+    tickFillSelected: primitives.primary,
+    tickFillSelectedHover: primitives.primary50,
+    tickFillSelectedHoverActive: primitives.primary100,
+
     tickFillError: primitives.negative700,
     tickFillErrorHover: primitives.negative600,
     tickFillErrorHoverActive: primitives.negative500,
+
     tickFillErrorSelected: primitives.negative500,
     tickFillErrorSelectedHover: primitives.negative600,
     tickFillErrorSelectedHoverActive: primitives.negative700,
+
     tickFillDisabled: primitives.mono700,
+
     tickBorder: primitives.mono300,
     tickBorderError: primitives.negative400,
-    tickMarkFill: primitives.mono100,
+
+    tickMarkFill: BLACK,
+    tickMarkFillError: WHITE,
     tickMarkFillDisabled: primitives.mono400,
 
     // Slider/Toggle
