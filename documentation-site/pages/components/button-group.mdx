@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import API from '../../components/api';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 
 import Basic from 'examples/button-group/basic.js';
@@ -121,4 +122,10 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <API
   heading="StatefulContainer API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button-group/stateful-container.js')}
+/>
+
+<Exports
+  component={ButtonGroupExports}
+  title="ButtonGroup exports"
+  path="baseui/button-group"
 />
