@@ -9,12 +9,11 @@ LICENSE file in the root directory of this source tree.
 import {primitives} from './dark-theme-primitives.js';
 
 const WHITE = '#FFFFFF';
+const BLACK = '#000000';
 
 export default {
   colors: {
     // Semantic Colors
-
-    white: WHITE,
 
     // Font Color
     colorPrimary: primitives.mono100,
@@ -37,26 +36,30 @@ export default {
     borderError: primitives.negative400,
 
     // Buttons
-    buttonPrimaryFill: primitives.primary500,
-    buttonPrimaryText: primitives.mono100,
-    buttonPrimaryHover: primitives.primary600,
-    buttonPrimaryActive: primitives.primary700,
-    buttonSecondaryFill: primitives.mono600,
-    buttonSecondaryText: primitives.mono100,
-    buttonSecondaryHover: primitives.mono500,
-    buttonSecondaryActive: primitives.mono400,
-    buttonTertiaryFill: primitives.mono800,
-    buttonTertiaryText: primitives.mono100,
-    buttonTertiaryHover: primitives.mono700,
-    buttonTertiaryActive: primitives.mono600,
+    buttonPrimaryFill: primitives.primary,
+    buttonPrimaryText: BLACK,
+    buttonPrimaryHover: primitives.primary100,
+    buttonPrimaryActive: primitives.primary200,
+
+    buttonSecondaryFill: primitives.primary700,
+    buttonSecondaryText: primitives.primary,
+    buttonSecondaryHover: primitives.primary600,
+    buttonSecondaryActive: primitives.primary500,
+
+    buttonTertiaryFill: 'transparent',
+    buttonTertiaryText: primitives.primary,
+    buttonTertiaryHover: primitives.primary700,
+    buttonTertiaryActive: primitives.primary600,
     buttonTertiarySelectedText: primitives.mono100,
     buttonTertiarySelectedFill: primitives.primary500,
+
     buttonMinimalFill: 'transparent',
-    buttonMinimalText: primitives.primary400,
-    buttonMinimalHover: primitives.mono800,
-    buttonMinimalActive: primitives.mono700,
-    buttonDisabledFill: primitives.mono700,
-    buttonDisabledText: primitives.mono500,
+    buttonMinimalText: primitives.primary,
+    buttonMinimalHover: primitives.primary700,
+    buttonMinimalActive: primitives.primary600,
+
+    buttonDisabledFill: primitives.mono600,
+    buttonDisabledText: primitives.mono300,
 
     // Breadcrumbs
     breadcrumbsText: primitives.mono100,

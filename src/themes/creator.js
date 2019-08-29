@@ -117,34 +117,33 @@ export default function createTheme(
       // Borders
       border: primitives.mono500,
       borderAlt: primitives.mono600,
-      borderFocus: primitives.primary400,
+      borderFocus: primitives.primary,
       borderError: primitives.negative400,
 
       // Buttons
-      buttonPrimaryFill: primitives.primary400,
-      buttonPrimaryText: primitives.mono100, // white
-      buttonPrimaryHover: primitives.primary500,
+      buttonPrimaryFill: primitives.primary,
+      buttonPrimaryText: WHITE,
+      buttonPrimaryHover: primitives.primary700,
       buttonPrimaryActive: primitives.primary600,
 
-      buttonSecondaryFill: primitives.primary50,
-      buttonSecondaryText: primitives.primary400,
-      buttonSecondaryHover: primitives.primary100,
-      buttonSecondaryActive: primitives.primary200,
+      buttonSecondaryFill: primitives.primary100,
+      buttonSecondaryText: primitives.primary,
+      buttonSecondaryHover: primitives.primary200,
+      buttonSecondaryActive: primitives.primary300,
 
-      buttonTertiaryFill: primitives.mono200,
-      buttonTertiaryText: primitives.primary400,
-      buttonTertiaryHover: primitives.mono400,
-      buttonTertiaryActive: primitives.mono500,
-      // button $selected only applies to tertiary variant.
+      buttonTertiaryFill: 'transparent',
+      buttonTertiaryText: primitives.primary,
+      buttonTertiaryHover: primitives.primary50,
+      buttonTertiaryActive: primitives.primary100,
       buttonTertiarySelectedFill: primitives.primary400,
       buttonTertiarySelectedText: primitives.mono100,
 
       buttonMinimalFill: 'transparent',
-      buttonMinimalText: primitives.primary400,
-      buttonMinimalHover: primitives.mono200,
-      buttonMinimalActive: primitives.mono400,
+      buttonMinimalText: primitives.primary,
+      buttonMinimalHover: primitives.primary50,
+      buttonMinimalActive: primitives.primary100,
 
-      buttonDisabledFill: primitives.mono300,
+      buttonDisabledFill: primitives.mono200,
       buttonDisabledText: primitives.mono600,
 
       // Breadcrumbs
