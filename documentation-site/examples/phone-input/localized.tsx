@@ -3,8 +3,8 @@ import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
 
 const iso2FlagEmoji = (iso: any) =>
   String.fromCodePoint(
-    ...[...iso.toUpperCase()].map(
-      char => char.charCodeAt(0) + 127397,
+    ...Array.from(iso.toUpperCase()).map(
+      (char: any) => char.charCodeAt(0) + 127397,
     ),
   );
 

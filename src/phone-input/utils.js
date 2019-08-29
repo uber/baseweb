@@ -21,6 +21,8 @@ export function iso2FlagEmoji(iso: string) {
     );
     return;
   }
-  const chars = [...iso.toUpperCase()].map(char => char.charCodeAt(0) + OFFSET);
+  const chars = Array.from(iso.toUpperCase()).map(
+    char => char.charCodeAt(0) + OFFSET,
+  );
   return String.fromCodePoint(...chars);
 }
