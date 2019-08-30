@@ -320,6 +320,7 @@ export interface PhoneInputOverrides {
   CountrySelectDropdownFlagColumn?: Override<any>;
   CountrySelectDropdownNameColumn?: Override<any>;
   CountrySelectDropdownDialcodeColumn?: Override<any>;
+  FlagContainer?: Override<any>;
 }
 export interface PhoneInputProps {
   'aria-label'?: string;
@@ -396,6 +397,7 @@ export interface CountrySelectProps {
     CountrySelectDropdownFlagColumn?: Override<any>;
     CountrySelectDropdownNameColumn?: Override<any>;
     CountrySelectDropdownDialcodeColumn?: Override<any>;
+    FlagContainer?: Override<any>;
   };
 }
 export const CountrySelect: React.FC<CountrySelectProps>;
@@ -411,6 +413,7 @@ export interface CountrySelectDropdownProps {
     CountrySelectDropdownFlagColumn?: Override<any>;
     CountrySelectDropdownNameColumn?: Override<any>;
     CountrySelectDropdownDialcodeColumn?: Override<any>;
+    FlagContainer?: Override<any>;
   };
 }
 export const CountrySelectDropdown: React.RefForwardingComponent<

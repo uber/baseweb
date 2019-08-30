@@ -9,17 +9,36 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import * as flags from './flags/index.js';
-import type {CountryIsoT} from './types.js';
+import {styled} from '../styles/index.js';
+import {SIZE} from './constants.js';
+import type {CountryIsoT, SizeT} from './types.js';
 
-export default function Flag(props: {iso: CountryIsoT, width?: string}) {
-  const {iso, width = '16px', ...restProps} = props;
-  const FlagComponent = flags[`Flag${props.iso.toUpperCase()}`];
-  return (
-    <FlagComponent
-      width={width}
-      data-e2e="country-flag"
-      data-iso={iso}
-      {...restProps}
-    />
-  );
+type SizeStyleProps = {
+  $size?: SizeT,
+};
+
+export default function Flag(props: {
+  $iso: CountryIsoT,
+  // remove `iso` prop in the next major version
+  iso?: CountryIsoT,
+  width?: string,
+}) {
+  const {$iso, iso: oldIsoProp, width = '16px', ...restProps} = props;
+  const iso: CountryIsoT = oldIsoProp || $iso;
+  const FlagComponent = flags[`Flag${iso.toUpperCase()}`];
+  return <FlagComponent width={width} data-iso={iso} {...restProps} />;
 }
+
+export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
+  Flag,
+  ({$size = SIZE.default, $theme: {sizing}}) => {
+    const sizeToWidth = {
+      [SIZE.compact]: sizing.scale800,
+      [SIZE.default]: sizing.scale900,
+      [SIZE.large]: sizing.scale1000,
+    };
+    return {
+      width: sizeToWidth[$size],
+    };
+  },
+);

@@ -111,17 +111,18 @@ export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
 function getArrowBtnStyle({$theme, $disabled}) {
   return {
     boxSizing: 'border-box',
-    height: '22px',
     color: $disabled
       ? $theme.colors.datepickerDayFontDisabled
       : $theme.colors.white,
     cursor: $disabled ? 'default' : 'pointer',
     backgroundColor: 'transparent',
     borderWidth: 0,
-    paddingTop: '3px',
-    paddingBottom: '3px',
-    paddingLeft: '3px',
-    paddingRight: '3px',
+    paddingTop: '0',
+    paddingBottom: '0',
+    paddingLeft: '0',
+    paddingRight: '0',
+    marginLeft: '6px',
+    marginRight: '6px',
     outline: 'none',
     ':focus': $disabled
       ? {}
