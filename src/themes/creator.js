@@ -188,10 +188,10 @@ export default function createTheme(
       fileUploaderMessageColor: primitives.mono600,
 
       // Links
-      linkText: primitives.primary400,
-      linkVisited: primitives.primary500,
+      linkText: primitives.primary,
+      linkVisited: primitives.primary700,
       linkHover: primitives.primary600,
-      linkActive: primitives.primary600,
+      linkActive: primitives.primary500,
 
       // Shadow
       shadowFocus: 'rgba(39, 110, 241, 0.32)',

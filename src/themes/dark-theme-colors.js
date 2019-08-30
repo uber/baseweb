@@ -103,10 +103,10 @@ export default {
     fileUploaderMessageColor: primitives.mono100,
 
     // Links
-    linkText: primitives.primary300,
-    linkVisited: primitives.primary300,
-    linkHover: primitives.primary400,
-    linkActive: primitives.primary400,
+    linkText: primitives.primary,
+    linkVisited: primitives.primary100,
+    linkHover: primitives.primary200,
+    linkActive: primitives.primary300,
 
     // List
     listHeaderFill: primitives.mono600,

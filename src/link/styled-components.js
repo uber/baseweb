@@ -15,7 +15,6 @@ export const Link = styled<{}>('a', ({$theme}) => {
     ...typography.font450,
     fontSize: 'inherit',
     lineHeight: 'inherit',
-    textDecoration: 'none',
     transitionProperty: 'color',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
