@@ -8,10 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {List, AutoSizer} from 'react-virtualized';
-
 import defaultProps from './default-props.js';
 import {
-  StyledFlag,
+  StyledFlagContainer,
   StyledCountrySelectDropdownContainer as DefaultContainer,
   StyledCountrySelectDropdownListItem as DefaultListItem,
   StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
@@ -19,6 +18,7 @@ import {
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {iso2FlagEmoji} from './utils.js';
 
 import type {CountrySelectDropdownPropsT} from './types.js';
 
@@ -28,14 +28,14 @@ CountrySelectDropdown.defaultProps = {
 };
 
 function CountrySelectDropdown(
-  props: CountrySelectDropdownPropsT & {forwardedRef: React.ElementRef<*>},
+  props: CountrySelectDropdownPropsT & {$forwardedRef: React.ElementRef<*>},
 ) {
   const {
-    forwardedRef,
-    country,
-    overrides,
-    maxDropdownHeight,
-    mapIsoToLabel,
+    $country: country,
+    $forwardedRef: forwardedRef,
+    $maxDropdownHeight: maxDropdownHeight,
+    $mapIsoToLabel: mapIsoToLabel,
+    $overrides: overrides,
   } = props;
 
   const children = React.Children.toArray(props.children);
@@ -51,6 +51,10 @@ function CountrySelectDropdown(
   const [FlagColumn, flagColumnProps] = getOverrides(
     overrides.CountrySelectDropdownFlagColumn,
     DefaultFlagColumn,
+  );
+  const [FlagContainer, flagContainerProps] = getOverrides(
+    overrides.FlagContainer,
+    StyledFlagContainer,
   );
   const [NameColumn, nameColumnProps] = getOverrides(
     overrides.CountrySelectDropdownNameColumn,
@@ -85,21 +89,27 @@ function CountrySelectDropdown(
                 const {resetMenu, getItemLabel, ...rest} = children[
                   index
                 ].props;
+                const iso = children[index].props.item.id;
                 return (
                   <ListItem
                     key={key}
                     style={style}
                     {...rest}
                     {...listItemProps}
-                    data-e2e="country-select-list-item"
-                    data-iso={children[index].props.item.id}
+                    data-iso={iso}
                   >
                     <FlagColumn {...flagColumnProps}>
-                      <StyledFlag iso={children[index].props.item.id} />
+                      <FlagContainer
+                        $iso={iso}
+                        data-iso={iso}
+                        {...flagContainerProps}
+                      >
+                        ABC {iso2FlagEmoji(iso)}
+                      </FlagContainer>
                     </FlagColumn>
                     <NameColumn {...nameColumnProps}>
                       {mapIsoToLabel
-                        ? mapIsoToLabel(props.children[index].props.item.id)
+                        ? mapIsoToLabel(iso)
                         : children[index].props.item.label}
                     </NameColumn>
                     <Dialcode {...dialcodeProps}>
@@ -119,4 +129,4 @@ function CountrySelectDropdown(
 export default React.forwardRef<
   CountrySelectDropdownPropsT,
   typeof CountrySelectDropdown,
->((props, ref) => <CountrySelectDropdown {...props} forwardedRef={ref} />);
+>((props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />);
