@@ -32,8 +32,8 @@ const PlainInput = themedStyled<{$inputVisible: boolean}>(
       borderColor: $theme.colors.inputEnhancerFill,
       borderStyle: 'solid',
       paddingLeft: $theme.direction === 'rtl' ? '9px' : '42px',
-      backgroundColor: $theme.colors.inputEnhancerFill,
-      paddingRight: '12px',
+      paddingRight: $theme.direction === 'rtl' ? '42px' : '9px',
+      backgroundColor: 'transparent',
       paddingTop: '9px',
       paddingBottom: '9px',
       fontSize: '14px',
@@ -52,21 +52,31 @@ const PlainInput = themedStyled<{$inputVisible: boolean}>(
     }: {}),
 );
 
+const SearchContainer = themedStyled<{}>(
+  'div',
+  ({$theme}) =>
+    ({
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: $theme.colors.inputEnhancerFill,
+      position: 'relative',
+    }: {}),
+);
+
 const IconWrapper = themedStyled<{$inputVisible: boolean}>(
   'div',
   ({$inputVisible, $theme}) => ({
-    [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $inputVisible
-      ? '-33px'
-      : 0,
-    marginTop: $inputVisible ? '8px' : 0,
+    position: 'absolute',
+    [$theme.direction === 'rtl' ? 'right' : 'left']: $inputVisible
+      ? '12px'
+      : '-33px',
+    marginTop: $inputVisible ? '4px' : 0,
     height: '32px',
     cursor: 'pointer',
-    zIndex: 1,
     [$theme.media.small]: {
-      [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: '-33px',
-      marginTop: '8px',
+      [$theme.direction === 'rtl' ? 'right' : 'left']: '12px',
+      marginTop: '4px',
       cursor: 'inherit',
-      zIndex: 1,
     },
   }),
 );
@@ -95,40 +105,43 @@ class DocSearch extends React.Component<Props, State> {
   render() {
     const {enabled} = this.state;
     const {searchInputOpen, toggleSearchInput} = this.props;
+
     return enabled ? (
       <React.Fragment>
         <style>{`.ds-dropdown-menu { margin-top: 12px !important }`}</style>
-        <IconWrapper
-          $inputVisible={searchInputOpen}
-          role="button"
-          onClick={toggleSearchInput}
-        >
-          <SearchIcon
-            overrides={{
-              Svg: {
-                style: ({$theme}) => ({
-                  height: searchInputOpen ? '22px' : '32px',
-                  width: searchInputOpen ? '22px' : '32px',
-                  fill: searchInputOpen ? '#666' : '#333',
-                  [$theme.media.small]: {
-                    height: '22px',
-                    width: '22px',
-                    fill: '#666',
-                  },
-                }),
-              },
-            }}
-            color={searchInputOpen ? '#333' : '#666'}
+        <SearchContainer>
+          <IconWrapper
+            $inputVisible={searchInputOpen}
+            role="button"
+            onClick={toggleSearchInput}
+          >
+            <SearchIcon
+              overrides={{
+                Svg: {
+                  style: ({$theme}) => ({
+                    height: searchInputOpen ? '22px' : '32px',
+                    width: searchInputOpen ? '22px' : '32px',
+                    fill: searchInputOpen ? '#666' : '#333',
+                    [$theme.media.small]: {
+                      height: '22px',
+                      width: '22px',
+                      fill: '#666',
+                    },
+                  }),
+                },
+              }}
+              color={searchInputOpen ? '#333' : '#666'}
+            />
+          </IconWrapper>
+          <PlainInput
+            $inputVisible={searchInputOpen}
+            id={SEARCH_INPUT_ID}
+            type="search"
+            placeholder="Search documentation"
+            aria-label="Search documentation"
+            onChange={e => trackEvent('algolia_search', e.target.value)}
           />
-        </IconWrapper>
-        <PlainInput
-          $inputVisible={searchInputOpen}
-          id={SEARCH_INPUT_ID}
-          type="search"
-          placeholder="Search documentation"
-          aria-label="Search documentation"
-          onChange={e => trackEvent('algolia_search', e.target.value)}
-        />
+        </SearchContainer>
       </React.Fragment>
     ) : null;
   }

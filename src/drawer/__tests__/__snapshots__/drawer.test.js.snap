@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
+<Drawer
+  anchor="right"
+  animate={true}
+  autoFocus={true}
+  closeable={true}
+  isOpen={true}
+  overrides={Object {}}
+  showBackdrop={true}
+  size="default"
+>
+  <mockConstructor>
+    <FocusLock
+      as="div"
+      autoFocus={true}
+      disabled={false}
+      lockProps={Object {}}
+      noFocusGuards={false}
+      persistentFocus={false}
+      returnFocus={true}
+    >
+      <Portal
+        key="guard-first"
+      />
+      <Portal
+        key="guard-nearest"
+      />
+      <Portal>
+        <SideEffect(FocusWatcher)
+          autoFocus={true}
+          disabled={false}
+          observed={
+            <div
+              data-focus-lock-disabled="false"
+            >
+              <div
+                data-baseweb="drawer"
+                styled-component="true"
+                test-style="[object Object]"
+              >
+                <div
+                  styled-component="true"
+                  test-style="[object Object]"
+                />
+                <div
+                  aria-label="drawer"
+                  styled-component="true"
+                  test-style="[object Object]"
+                >
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    Drawer Body
+                  </div>
+                  <button
+                    aria-label="Close"
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    <svg
+                      data-baseweb="icon"
+                      styled-component="true"
+                      test-style="[object Object]"
+                      viewBox="0 0 24 24"
+                    >
+                      <title>
+                        Delete
+                      </title>
+                      <path
+                        clip-rule="evenodd"
+                        d="M7.29289 7.29289C7.68342 6.90237 8.31658 6.90237 8.70711 7.29289L12 10.5858L15.2929 7.29289C15.6834 6.90237 16.3166 6.90237 16.7071 7.29289C17.0976 7.68342 17.0976 8.31658 16.7071 8.70711L13.4142 12L16.7071 15.2929C17.0976 15.6834 17.0976 16.3166 16.7071 16.7071C16.3166 17.0976 15.6834 17.0976 15.2929 16.7071L12 13.4142L8.70711 16.7071C8.31658 17.0976 7.68342 17.0976 7.29289 16.7071C6.90237 16.3166 6.90237 15.6834 7.29289 15.2929L10.5858 12L7.29289 8.70711C6.90237 8.31658 6.90237 7.68342 7.29289 7.29289Z"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+          onActivation={[Function]}
+          onDeactivation={[Function]}
+          persistentFocus={false}
+          shards={Array []}
+        >
+          <FocusWatcher
+            autoFocus={true}
+            disabled={false}
+            observed={
+              <div
+                data-focus-lock-disabled="false"
+              >
+                <div
+                  data-baseweb="drawer"
+                  styled-component="true"
+                  test-style="[object Object]"
+                >
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  />
+                  <div
+                    aria-label="drawer"
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Drawer Body
+                    </div>
+                    <button
+                      aria-label="Close"
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      <svg
+                        data-baseweb="icon"
+                        styled-component="true"
+                        test-style="[object Object]"
+                        viewBox="0 0 24 24"
+                      >
+                        <title>
+                          Delete
+                        </title>
+                        <path
+                          clip-rule="evenodd"
+                          d="M7.29289 7.29289C7.68342 6.90237 8.31658 6.90237 8.70711 7.29289L12 10.5858L15.2929 7.29289C15.6834 6.90237 16.3166 6.90237 16.7071 7.29289C17.0976 7.68342 17.0976 8.31658 16.7071 8.70711L13.4142 12L16.7071 15.2929C17.0976 15.6834 17.0976 16.3166 16.7071 16.7071C16.3166 17.0976 15.6834 17.0976 15.2929 16.7071L12 13.4142L8.70711 16.7071C8.31658 17.0976 7.68342 17.0976 7.29289 16.7071C6.90237 16.3166 6.90237 15.6834 7.29289 15.2929L10.5858 12L7.29289 8.70711C6.90237 8.31658 6.90237 7.68342 7.29289 7.29289Z"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
+            onActivation={[Function]}
+            onDeactivation={[Function]}
+            persistentFocus={false}
+            shards={Array []}
+          />
+        </SideEffect(FocusWatcher)>
+        <ForwardRef
+          $anchor="right"
+          $animating={true}
+          $closeable={true}
+          $isOpen={true}
+          $isVisible={false}
+          $size="default"
+          data-baseweb="drawer"
+        >
+          <MockStyledComponent
+            $anchor="right"
+            $animating={true}
+            $closeable={true}
+            $isOpen={true}
+            $isVisible={false}
+            $size="default"
+            data-baseweb="drawer"
+            forwardedRef={
+              Object {
+                "current": <div
+                  data-baseweb="drawer"
+                  styled-component="true"
+                  test-style="[object Object]"
+                >
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  />
+                  <div
+                    aria-label="drawer"
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Drawer Body
+                    </div>
+                    <button
+                      aria-label="Close"
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      <svg
+                        data-baseweb="icon"
+                        styled-component="true"
+                        test-style="[object Object]"
+                        viewBox="0 0 24 24"
+                      >
+                        <title>
+                          Delete
+                        </title>
+                        <path
+                          clip-rule="evenodd"
+                          d="M7.29289 7.29289C7.68342 6.90237 8.31658 6.90237 8.70711 7.29289L12 10.5858L15.2929 7.29289C15.6834 6.90237 16.3166 6.90237 16.7071 7.29289C17.0976 7.68342 17.0976 8.31658 16.7071 8.70711L13.4142 12L16.7071 15.2929C17.0976 15.6834 17.0976 16.3166 16.7071 16.7071C16.3166 17.0976 15.6834 17.0976 15.2929 16.7071L12 13.4142L8.70711 16.7071C8.31658 17.0976 7.68342 17.0976 7.29289 16.7071C6.90237 16.3166 6.90237 15.6834 7.29289 15.2929L10.5858 12L7.29289 8.70711C6.90237 8.31658 6.90237 7.68342 7.29289 7.29289Z"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>,
+              }
+            }
+          >
+            <Portal>
+              <ForwardRef
+                $anchor="right"
+                $animating={true}
+                $closeable={true}
+                $isOpen={true}
+                $isVisible={false}
+                $size="default"
+                onClick={[Function]}
+              >
+                <MockStyledComponent
+                  $anchor="right"
+                  $animating={true}
+                  $closeable={true}
+                  $isOpen={true}
+                  $isVisible={false}
+                  $size="default"
+                  forwardedRef={null}
+                  onClick={[Function]}
+                >
+                  <Portal />
+                </MockStyledComponent>
+              </ForwardRef>
+              <ForwardRef
+                $anchor="right"
+                $animating={true}
+                $closeable={true}
+                $isOpen={true}
+                $isVisible={false}
+                $size="default"
+                aria-label="drawer"
+              >
+                <MockStyledComponent
+                  $anchor="right"
+                  $animating={true}
+                  $closeable={true}
+                  $isOpen={true}
+                  $isVisible={false}
+                  $size="default"
+                  aria-label="drawer"
+                  forwardedRef={null}
+                >
+                  <Portal>
+                    <ForwardRef
+                      $anchor="right"
+                      $animating={true}
+                      $closeable={true}
+                      $isOpen={true}
+                      $isVisible={false}
+                      $size="default"
+                    >
+                      <MockStyledComponent
+                        $anchor="right"
+                        $animating={true}
+                        $closeable={true}
+                        $isOpen={true}
+                        $isVisible={false}
+                        $size="default"
+                        forwardedRef={null}
+                      >
+                        <Portal />
+                      </MockStyledComponent>
+                    </ForwardRef>
+                    <ForwardRef
+                      $anchor="right"
+                      $animating={true}
+                      $closeable={true}
+                      $isOpen={true}
+                      $isVisible={false}
+                      $size="default"
+                      aria-label="Close"
+                      onClick={[Function]}
+                    >
+                      <MockStyledComponent
+                        $anchor="right"
+                        $animating={true}
+                        $closeable={true}
+                        $isOpen={true}
+                        $isVisible={false}
+                        $size="default"
+                        aria-label="Close"
+                        forwardedRef={null}
+                        onClick={[Function]}
+                      >
+                        <Portal>
+                          <CloseIcon>
+                            <Delete
+                              color="inherit"
+                              size="inherit"
+                            >
+                              <Icon
+                                color="inherit"
+                                size="inherit"
+                                title="Delete"
+                                viewBox="0 0 24 24"
+                              >
+                                <ForwardRef
+                                  $color="inherit"
+                                  $size="inherit"
+                                  data-baseweb="icon"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <MockStyledComponent
+                                    $color="inherit"
+                                    $size="inherit"
+                                    data-baseweb="icon"
+                                    forwardedRef={null}
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <Portal>
+                                      <Portal />
+                                      <Portal />
+                                    </Portal>
+                                  </MockStyledComponent>
+                                </ForwardRef>
+                              </Icon>
+                            </Delete>
+                          </CloseIcon>
+                        </Portal>
+                      </MockStyledComponent>
+                    </ForwardRef>
+                  </Portal>
+                </MockStyledComponent>
+              </ForwardRef>
+            </Portal>
+          </MockStyledComponent>
+        </ForwardRef>
+      </Portal>
+      <Portal />
+    </FocusLock>
+  </mockConstructor>
+</Drawer>
+`;
