@@ -91,6 +91,11 @@ export default {
     // ProgressSteps
     progressStepsIconActiveFill: primitives.mono100,
 
+    // Modal
+    modalCloseColor: primitives.mono300,
+    modalCloseColorHover: primitives.mono400,
+    modalCloseColorFocus: primitives.mono400,
+
     // Notification
     notificationPrimaryBackground: primitives.primary700,
     notificationPrimaryText: primitives.primary200,

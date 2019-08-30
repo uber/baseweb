@@ -7,18 +7,17 @@ import {Paragraph1} from 'baseui/typography';
 
 export default () => {
   const [useCss, theme] = useStyletron();
+  const contentCx = useCss({
+    padding: theme.sizing.scale500,
+    maxWidth: '300px',
+  });
   return (
     <StatefulPopover
       dismissOnEsc={false}
       dismissOnClickOutside={false}
       accessibilityType={'tooltip'}
       content={({close}) => (
-        <div
-          className={useCss({
-            padding: theme.sizing.scale500,
-            maxWidth: '300px',
-          })}
-        >
+        <div className={contentCx}>
           <Paragraph1 paddingBottom="scale400">
             content render prop is passed a <code>close()</code>{' '}
             callback so it you can manually trigger popover close

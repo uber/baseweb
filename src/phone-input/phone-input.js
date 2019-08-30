@@ -30,6 +30,7 @@ export default function PhoneInput(props: PropsT) {
     overrides,
     placeholder,
     positive,
+    required,
     size,
     text,
     ...restProps
@@ -44,10 +45,13 @@ export default function PhoneInput(props: PropsT) {
       props: {
         country,
         disabled,
+        error,
         inputRef,
         mapIsoToLabel,
         onCountryChange,
         overrides,
+        positive,
+        required,
         size,
       },
     },

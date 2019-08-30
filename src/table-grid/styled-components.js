@@ -6,14 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import * as React from 'react';
 import {withStyle} from '../styles/index.js';
 import {
   StyledTable as FlexStyledTable,
   StyledHeadCell as FlexStyledHeadCell,
   StyledCell as FlexStyledBodyCell,
 } from '../table/index.js';
+import type {StyletronComponent} from '../styles/styled.js';
 
-export const StyledTable = withStyle<
+const StyledTableElement = withStyle<
   typeof FlexStyledTable,
   {$gridTemplateColumns: string},
 >(FlexStyledTable, props => {
@@ -23,6 +25,22 @@ export const StyledTable = withStyle<
     flexDirection: 'unset',
   };
 });
+
+// eslint-disable-next-line flowtype/no-weak-types
+export const StyledTable = ((React.forwardRef<{}, any>((props, ref) => {
+  return (
+    //$FlowFixMe
+    <StyledTableElement
+      ref={ref}
+      data-baseweb="table-grid"
+      role="grid"
+      {...props}
+    />
+  );
+  // eslint-disable-next-line flowtype/no-weak-types
+}): any): StyletronComponent<{}>);
+StyledTable.__STYLETRON__ = StyledTableElement.__STYLETRON__;
+StyledTable.displayName = 'StyledTable';
 
 export const StyledHeadCell = withStyle<
   typeof FlexStyledHeadCell,

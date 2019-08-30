@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 // eslint-disable-next-line import/extensions
 import Screener, {Steps} from 'screener-storybook/src/screener';
-import {StatefulPhoneInput} from '../index.js';
+import {StatefulPhoneInput, SIZE} from '../index.js';
 
 export const name = 'phone-input-dropdown';
 
@@ -23,7 +23,11 @@ export const component = () => {
         .snapshot('Phone input country selector dropdown')
         .end()}
     >
+      <StatefulPhoneInput size={SIZE.compact} />
+      <br />
       <StatefulPhoneInput />
+      <br />
+      <StatefulPhoneInput size={SIZE.large} />
     </Screener>
   );
 };

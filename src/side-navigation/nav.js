@@ -101,7 +101,7 @@ export default class SideNav extends React.Component<NavPropsT> {
     };
 
     return (
-      <Root role="navigation" {...rootProps}>
+      <Root role="navigation" data-baseweb="side-navigation" {...rootProps}>
         <SubNavContainer role="list">
           {items.map((item, index) => {
             return renderNavItem(item, navLevel, index, mapItem);
