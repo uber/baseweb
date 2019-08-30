@@ -251,6 +251,8 @@ export type ColorsT = {
   // Notification
   notificationPrimaryBackground: string,
   notificationPrimaryText: string,
+  notificationInfoBackground: string,
+  notificationInfoText: string,
   notificationPositiveBackground: string,
   notificationPositiveText: string,
   notificationWarningBackground: string,

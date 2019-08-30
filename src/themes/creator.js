@@ -298,6 +298,8 @@ export default function createTheme(
       // Notification
       notificationPrimaryBackground: primitives.primary50,
       notificationPrimaryText: primitives.primary500,
+      notificationInfoBackground: primitives.accent50,
+      notificationInfoText: primitives.accent500,
       notificationPositiveBackground: primitives.positive50,
       notificationPositiveText: primitives.positive500,
       notificationWarningBackground: primitives.warning50,

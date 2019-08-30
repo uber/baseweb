@@ -26,7 +26,7 @@ function getBackgroundColor(
   const isInline = type === TYPE.inline;
   return {
     [KIND.info]: isInline
-      ? theme.colors.notificationPrimaryBackground
+      ? theme.colors.notificationInfoBackground
       : theme.colors.toastPrimaryBackground,
     [KIND.positive]: isInline
       ? theme.colors.notificationPositiveBackground
@@ -42,7 +42,7 @@ function getBackgroundColor(
 
 function getFontColor(kind: KindTypeT, theme: ThemeT) {
   return {
-    [KIND.info]: theme.colors.notificationPrimaryText,
+    [KIND.info]: theme.colors.notificationInfoText,
     [KIND.positive]: theme.colors.notificationPositiveText,
     [KIND.warning]: theme.colors.notificationWarningText,
     [KIND.negative]: theme.colors.notificationNegativeText,

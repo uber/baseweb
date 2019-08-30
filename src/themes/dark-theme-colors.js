@@ -128,6 +128,8 @@ export default {
     // Notification
     notificationPrimaryBackground: primitives.primary700,
     notificationPrimaryText: primitives.primary200,
+    notificationInfoBackground: primitives.accent700,
+    notificationInfoText: primitives.accent200,
     notificationPositiveBackground: primitives.positive700,
     notificationPositiveText: primitives.positive200,
     notificationWarningBackground: primitives.warning700,
