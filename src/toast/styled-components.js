@@ -27,7 +27,7 @@ function getBackgroundColor(
   return {
     [KIND.info]: isInline
       ? theme.colors.notificationInfoBackground
-      : theme.colors.toastPrimaryBackground,
+      : theme.colors.toastInfoBackground,
     [KIND.positive]: isInline
       ? theme.colors.notificationPositiveBackground
       : theme.colors.toastPositiveBackground,
@@ -127,7 +127,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
     marginTop: $theme.sizing.scale300,
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
-      getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
+      getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
     borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
     borderTopRightRadius: $theme.borders.surfaceBorderRadius,
     borderBottomRightRadius: $theme.borders.surfaceBorderRadius,

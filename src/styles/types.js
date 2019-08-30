@@ -420,6 +420,7 @@ export type ColorsT = {
   // Toast
   toastText: string,
   toastPrimaryBackground: string,
+  toastInfoBackground: string,
   toastPositiveBackground: string,
   toastWarningBackground: string,
   toastNegativeBackground: string,

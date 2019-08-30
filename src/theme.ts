@@ -413,6 +413,7 @@ interface Colors {
   // Toast
   toastText: string;
   toastPrimaryBackground: string;
+  toastInfoBackground: string;
   toastPositiveBackground: string;
   toastWarningBackground: string;
   toastNegativeBackground: string;

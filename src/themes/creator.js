@@ -440,6 +440,7 @@ export default function createTheme(
       // Toast
       toastText: WHITE,
       toastPrimaryBackground: primitives.primary500,
+      toastInfoBackground: primitives.accent500,
       toastPositiveBackground: primitives.positive500,
       toastWarningBackground: primitives.warning500,
       toastNegativeBackground: primitives.negative500,
