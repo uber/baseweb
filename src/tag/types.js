@@ -38,6 +38,8 @@ export type PropsT = {
   children?: React$Node,
   /** The color theme to be applied to a Tag. Default is `KIND.primary`. */
   color?: string,
+  /** Text to display in native OS tooltip on long hover. */
+  title?: string,
   /** onClick handler for the action button element. */
   onActionClick: (e: Event, children?: React$Node) => mixed,
   /** keydown handler for the action button element. */
