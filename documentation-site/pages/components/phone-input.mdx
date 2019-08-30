@@ -10,6 +10,7 @@ import API from '../../components/api';
 import Layout from '../../components/layout';
 import Overrides from '../../components/overrides';
 import {DocLink} from '../../components/markdown-elements';
+import Exports from '../../components/exports';
 
 import {StatefulPhoneInput, COUNTRIES} from 'baseui/phone-input/index.js';
 import * as PhoneInputExports from 'baseui/phone-input/index.js';
@@ -19,6 +20,7 @@ import {Block} from 'baseui/block/index.js';
 import PhoneInputBasic from 'examples/phone-input/basic.js';
 import PhoneInputUncontrolled from 'examples/phone-input/uncontrolled.js';
 import PhoneInputLocalized from 'examples/phone-input/localized.js';
+import FlagOverrides from 'examples/phone-input/flag-overrides.js';
 import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
 
 export default Layout;
@@ -36,6 +38,13 @@ It contains a dropdown which allows the user to choose from a list of countries 
 
 <Example title="Localized country names" path="phone-input/localized.js">
   <PhoneInputLocalized />
+</Example>
+
+<Example
+  title="With flag overrides and virtualized dropdown list"
+  path="phone-input/flag-overrides.js"
+>
+  <FlagOverrides />
 </Example>
 
 <Example title="With nested overrides" path="phone-input/nested-overrides.js">
@@ -117,4 +126,10 @@ COUNTRIES: {
 <API
   heading="CountrySelectDropdown API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/phone-input/country-select-dropdown.js')}
+/>
+
+<Exports
+  component={PhoneInputExports}
+  title="Phone Input exports"
+  path="baseui/phone-input"
 />

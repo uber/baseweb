@@ -9,6 +9,7 @@ import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
 import Overrides from '../../components/overrides';
+import Exports from '../../components/exports';
 
 import PinCodeBasic from 'examples/pin-code/basic.js';
 import PinCodeLength from 'examples/pin-code/length.js';
@@ -170,4 +171,10 @@ To set the background and/or border styles for an `Input` component, you need to
 <API
   heading="StatefulPinCode API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/pin-code/stateful-pin-code.js')}
+/>
+
+<Exports
+  component={PinCodeExports}
+  title="Pin Code exports"
+  path="baseui/pin-code"
 />

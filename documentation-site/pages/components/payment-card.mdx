@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Controlled from 'examples/payment-card/controlled.js';
 import Uncontrolled from 'examples/payment-card/uncontrolled.js';
@@ -79,4 +80,10 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 <API
   heading="PaymentCard API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/payment-card/payment-card.js')}
+/>
+
+<Exports
+  component={PaymentCardExports}
+  title="Payment Card exports"
+  path="baseui/payment-card"
 />

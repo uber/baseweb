@@ -233,6 +233,10 @@ const routes = [
             itemId: '/components/card',
           },
           {
+            title: 'Drawer',
+            itemId: '/components/drawer',
+          },
+          {
             title: 'Modal',
             itemId: '/components/modal',
           },
