@@ -19,8 +19,17 @@ export default () => {
       {Object.keys(SIZE).map(eachSize => (
         <React.Fragment>
           <Button
-            style={{margin: 12}}
             onClick={() => setIsOpen({...isOpen, [eachSize]: true})}
+            overrides={{
+              BaseButton: {
+                style: {
+                  marginTop: '12px',
+                  marginBottom: '12px',
+                  marginLeft: '12px',
+                  marginRight: '12px',
+                },
+              },
+            }}
           >
             Open Drawer of {eachSize} size
           </Button>
