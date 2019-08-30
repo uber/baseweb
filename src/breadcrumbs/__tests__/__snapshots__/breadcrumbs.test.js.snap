@@ -10,11 +10,11 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       $itemIndex={0}
       key="breadcrumb-item-0"
     >
-      <StyledLink
+      <ForwardRef
         href="#"
       >
         Parent Page
-      </StyledLink>
+      </ForwardRef>
       <ForwardRef
         key="separator-0"
       >
@@ -35,11 +35,11 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       $itemIndex={1}
       key="breadcrumb-item-1"
     >
-      <StyledLink
+      <ForwardRef
         href="#"
       >
         Sub-Parent Page
-      </StyledLink>
+      </ForwardRef>
       <ForwardRef
         key="separator-1"
       >

@@ -9,6 +9,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Link} from './styled-components.js';
 
-//$FlowFixMe
-export const StyledLink = props => <Link data-baseweb="link" {...props} />;
+// $FlowFixMe
+export const StyledLink: React.AbstractComponent = React.forwardRef(
+  (props, ref) => <Link data-baseweb="link" {...props} ref={ref} />,
+);
+
 StyledLink.__STYLETRON__ = Link.__STYLETRON__;
