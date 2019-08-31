@@ -120,7 +120,8 @@ export default class MyApp extends App {
     if (window.matchMedia) {
       const mmDark = window.matchMedia(DARK_MEDIA_QUERY);
       const mmLight = window.matchMedia(LIGHT_MEDIA_QUERY);
-      if (mmDark.media === DARK_MEDIA_QUERY) {
+      // if no theme is set in localStorage, set theme based on user's OS preference
+      if (!this.getThemeStyle() && mmDark.media === DARK_MEDIA_QUERY) {
         const theme = mmDark.matches ? 'dark' : 'light';
         localStorage.setItem('docs-theme', theme);
       }
