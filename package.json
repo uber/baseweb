@@ -44,6 +44,7 @@
     "predocumentation:dev:watch": "node ./scripts/build-documentation-site-files.js",
     "predocumentation:build": "node ./scripts/build-documentation-site-files.js",
     "predocumentation:serve": "node ./scripts/build-documentation-site-files.js",
+    "pretest": "node ./scripts/build-documentation-site-files.js",
     "documentation:dev": "run-p build:es2015 next:dev",
     "documentation:dev:watch": "yarn build:es2015 --watch & next documentation-site",
     "documentation:build": "run-s build:es2015 next:build next:export",
