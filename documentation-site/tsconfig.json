@@ -12,10 +12,10 @@
     "isolatedModules": true,
     "baseUrl": "./",
     "paths": {
-      "baseui": ["../dist"],
-      "baseui/*": ["../dist/*"]
+      // todo: maybe use dist to improve performance
+      "baseui": ["../src"],
+      "baseui/*": ["../src/*"]
     }
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "./**/*.ts", "./**/*.tsx"]
 }

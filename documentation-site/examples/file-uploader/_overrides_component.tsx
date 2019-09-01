@@ -1,12 +1,9 @@
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
-import {
-  FileUploaderOverrides,
-  StyleProps,
-} from 'baseui/file-uploader';
+import {FileUploaderOverrides} from 'baseui/file-uploader';
 
 export default class Uploader extends React.Component<
-  {overrides: FileUploaderOverrides<StyleProps>},
+  {overrides: FileUploaderOverrides},
   {progressAmount: number}
 > {
   state = {progressAmount: 0};

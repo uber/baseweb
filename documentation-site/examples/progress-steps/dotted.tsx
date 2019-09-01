@@ -59,7 +59,7 @@ function ProgressStepsContainer() {
           placeholder="Choose a color"
           maxDropdownHeight="300px"
           type={TYPE.search}
-          onChange={event => console.log(event)}
+          onChange={(event) => console.log(event)}
         />
         <SpacedButton disabled>Previous</SpacedButton>
         <SpacedButton onClick={() => setCurrent(1)}>

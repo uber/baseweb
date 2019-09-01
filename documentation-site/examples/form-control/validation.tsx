@@ -26,7 +26,7 @@ export default function Example() {
   const [isValid, setIsValid] = React.useState(false);
   const [isVisited, setIsVisited] = React.useState(false);
   const shouldShowError = !isValid && isVisited;
-  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {value} = event.currentTarget;
     setIsValid(validateEmail(value));
     setValue(value);

@@ -64,6 +64,7 @@ const ActionButtons: React.FC<{
               },
             },
           }}
+          // @ts-ignore
           href={`/cheat-sheet#${Object.keys(importsConfig)[0].split('/')[1].toLowerCase()}`}
           kind={KIND.tertiary}
         >

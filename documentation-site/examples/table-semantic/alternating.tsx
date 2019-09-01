@@ -41,10 +41,10 @@ export default function Example() {
   return (
     <TableBuilder data={DATA} overrides={overrides}>
       <TableBuilderColumn header="Produce">
-        {row => <Link href={row.url}>{row.bar}</Link>}
+        {(row: any) => <Link href={row.url}>{row.bar}</Link>}
       </TableBuilderColumn>
       <TableBuilderColumn header="Quantity" numeric>
-        {row => row.foo}
+        {(row: any) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>
   );

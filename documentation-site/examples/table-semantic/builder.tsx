@@ -5,7 +5,8 @@ import {
   TableBuilderColumn,
 } from 'baseui/table-semantic';
 
-const DATA = [
+type Row = {bar: string; foo: number; url: string};
+const DATA: Row[] = [
   {
     foo: 10,
     bar: 'banana',
@@ -27,10 +28,10 @@ export default function Example() {
   return (
     <TableBuilder data={DATA}>
       <TableBuilderColumn header="Produce">
-        {row => <Link href={row.url}>{row.bar}</Link>}
+        {(row:Row) => <Link href={row.url}>{row.bar}</Link>}
       </TableBuilderColumn>
       <TableBuilderColumn header="Quantity" numeric>
-        {row => row.foo}
+        {(row:Row) => row.foo}
       </TableBuilderColumn>
     </TableBuilder>
   );
