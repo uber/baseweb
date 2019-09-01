@@ -30,6 +30,7 @@ const SemanticTitle = ({ children, ...restProps }) => {
   return (
     <LevelContext.Consumer>
       {(level) => (
+        // @ts-expect-error
         <StyledTitle $as={levels[level]} {...restProps}>
           {children}
         </StyledTitle>

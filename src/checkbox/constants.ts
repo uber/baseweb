@@ -8,20 +8,20 @@ LICENSE file in the root directory of this source tree.
 
 export const STATE_TYPE = {
   change: 'CHANGE',
-};
+} as const;
 
 export const STYLE_TYPE = Object.freeze({
   default: 'default',
   toggle: 'toggle',
   // maintaining key with aliased value to assist in transition to v11 but will be removed soon after release
   toggle_round: 'toggle',
-});
+} as const);
 
 export const LABEL_PLACEMENT = Object.freeze({
   top: 'top',
   right: 'right',
   bottom: 'bottom',
   left: 'left',
-});
+} as const);
 
 /* eslint-enable import/prefer-default-export */

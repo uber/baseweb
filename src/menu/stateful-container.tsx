@@ -20,6 +20,7 @@ import type {
 import { useUIDSeed } from 'react-uid';
 
 import type { MouseEvent } from 'react';
+import { RenderItemPropsT } from './types';
 
 const DEFAULT_PROPS = {
   // keeping it in defaultProps to satisfy Flow
@@ -57,6 +58,7 @@ class MenuStatefulContainerInner extends React.Component<
   static defaultProps = DEFAULT_PROPS;
 
   state: StatefulContainerStateT = {
+    // @ts-expect-error todo: probably MenuStatefulContainer should be used instead of this.constructor
     ...this.constructor.defaultProps.initialState,
     ...this.props.initialState,
   };
@@ -332,7 +334,7 @@ class MenuStatefulContainerInner extends React.Component<
     }
   };
 
-  handleItemClick = (index: number, item: ItemT, event: MouseEvent<HTMLElement>) => {
+  handleItemClick = (index: number, item: ItemT, event: React.MouseEvent<HTMLElement>) => {
     if (this.props.onItemSelect && !item.disabled) {
       this.props.onItemSelect({ item, event });
       this.internalSetState(STATE_CHANGE_TYPES.click, {
@@ -379,7 +381,7 @@ class MenuStatefulContainerInner extends React.Component<
             onMouseEnter: this.handleMouseEnter.bind(this, index),
           }),
       ...requiredItemProps,
-    };
+    } as RenderItemPropsT;
   };
 
   focusMenu = (event: FocusEvent | MouseEvent | KeyboardEvent) => {
@@ -388,7 +390,7 @@ class MenuStatefulContainerInner extends React.Component<
     if (
       !this.state.isFocused &&
       rootRef.current &&
-      // $FlowFixMe
+      // @ts-expect-error
       rootRef.current.contains(event.target)
     ) {
       if (this.state.highlightedIndex < 0) {

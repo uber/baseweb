@@ -27,8 +27,6 @@ const findSiblings = (node: TreeNodeT, children: TreeNodeT[]): TreeNodeT[] | und
 };
 
 export default class StatefulContainer extends React.Component<StatefulContainerPropsT, StateType> {
-  state: StateType;
-
   constructor(props: StatefulContainerPropsT) {
     super(props);
     this.state = { data: this.props.data };

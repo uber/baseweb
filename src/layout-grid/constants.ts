@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 export const BEHAVIOR = Object.freeze({
   fluid: 'fluid',
   fixed: 'fixed',
-});
+} as const);
 
 export const ALIGNMENT = Object.freeze({
   start: 'flex-start',
   center: 'center',
   end: 'flex-end',
-});
+} as const);
 
 export const STYLE = Object.freeze({
   default: 'default',
   compact: 'compact',
-});
+} as const);
 
 export const STYLE_VALUES = Object.freeze({
   [STYLE.default]: null,

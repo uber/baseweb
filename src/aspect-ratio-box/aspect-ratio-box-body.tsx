@@ -9,13 +9,13 @@ import * as React from 'react';
 import Block from '../block/block';
 import type { BlockPropsT } from '../block/types';
 
-export const AspectRatioBoxBody = ({
+export const AspectRatioBoxBody: React.FC<React.ComponentProps<typeof Block>> = ({
   position,
   top,
   bottom,
   width,
   ...restProps
-}: BlockPropsT): React.ReactNode => (
+}: BlockPropsT) => (
   <Block
     data-baseweb="aspect-ratio-box-body"
     position={position || 'absolute'}

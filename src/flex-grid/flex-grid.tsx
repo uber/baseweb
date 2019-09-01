@@ -6,10 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 
-import { Block } from '../block/index';
+import { Block, BlockPropsT } from '../block/index';
 import { flattenFragments } from '../helpers/react-helpers';
 import { getOverrides } from '../helpers/overrides';
-import type { BlockPropsT } from '../block/types';
 import type { FlexGridPropsT } from './types';
 
 export const BaseFlexGrid = React.forwardRef<HTMLElement, BlockPropsT>(
@@ -26,7 +25,7 @@ export const BaseFlexGrid = React.forwardRef<HTMLElement, BlockPropsT>(
 );
 BaseFlexGrid.displayName = 'BaseFlexGrid';
 
-const FlexGrid = ({
+const FlexGrid: React.FC<FlexGridPropsT & { forwardedRef: React.Ref<HTMLElement> }> = ({
   forwardedRef,
   children,
   as,
@@ -35,14 +34,14 @@ const FlexGrid = ({
   flexGridColumnGap,
   flexGridRowGap,
   ...restProps
-}): React.ReactNode => {
+}) => {
   const [FlexGrid, flexGridProps] = getOverrides(overrides && overrides.Block, BaseFlexGrid);
   return (
     <FlexGrid
       // coerced to any because of how react components are typed.
       // cannot guarantee an html element
       // flowlint-next-line unclear-type:off
-      ref={forwardedRef as any}
+      ref={forwardedRef}
       as={as}
       {...restProps}
       {...flexGridProps}
@@ -51,7 +50,8 @@ const FlexGrid = ({
         // flatten fragments so FlexGrid correctly iterates over fragments’ children
         flattenFragments(children).map(
           (
-            child: React.ReactNode,
+            // todo: incorrect component typings - children should be strictly ReactElement[] or implementation below needs to be updated to handle other things that can be in ReactNode
+            child: React.ReactElement,
             flexGridItemIndex: number,
             { length: flexGridItemCount }: React.ReactNode[]
           ) => {
@@ -70,8 +70,9 @@ const FlexGrid = ({
   );
 };
 
-const FlexGridComponent = React.forwardRef<HTMLElement, FlexGridPropsT>(
-  (props: FlexGridPropsT, ref) => <FlexGrid {...props} forwardedRef={ref} />
-);
+const FlexGridComponent = React.forwardRef<
+  HTMLElement,
+  Omit<React.ComponentProps<typeof FlexGrid>, 'forwardedRef'>
+>((props: FlexGridPropsT, ref) => <FlexGrid {...props} forwardedRef={ref} />);
 FlexGridComponent.displayName = 'FlexGrid';
 export default FlexGridComponent;

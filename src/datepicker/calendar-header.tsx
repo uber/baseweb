@@ -45,7 +45,7 @@ const MAX_MONTH = 11;
 const DIRECTION = {
   NEXT: 'next',
   PREVIOUS: 'previous',
-};
+} as const;
 
 function idToYearMonth(id) {
   return id.split('-').map(Number);

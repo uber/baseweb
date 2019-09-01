@@ -47,7 +47,7 @@ const CardTypeToComponent = {
 
 class PaymentCard extends React.Component<PaymentCardPropsT> {
   caretPosition = 0;
-  inRef: HTMLInputElement | undefined | null = null;
+  inRef: HTMLInputElement | HTMLTextAreaElement | null = null;
 
   static defaultProps = {
     autoComplete: 'cc-number',
@@ -68,6 +68,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
     super(props);
     // For adding new custom card type, add card config to custom-cards.config.js
     CUSTOM_CARDS_CONFIGURATION.forEach((cardTypeConfig) =>
+      // @ts-expect-error todo(flow-ts) upgrade card-validator dependency
       valid.creditCardType.addCard(cardTypeConfig)
     );
   }
@@ -90,7 +91,8 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
     const { IconWrapper: IconWrapperOverride, ...restOverrides } = overrides;
     const [IconWrapper, iconWrapperProps] = getOverrides(IconWrapperOverride, StyledIconWrapper);
 
-    const validatedValue = valid.number(value);
+    // todo: maybe incorrect typecast
+    const validatedValue = valid.number(value as string);
     let gaps: number[] = [];
     let type: string | undefined | null = undefined;
     if (validatedValue.card) {
@@ -133,8 +135,10 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
                 this.props.value ? String(this.props.value) : '',
                 e.target.selectionStart
               );
+              // @ts-expect-error todo: looks dangerous
               this.caretPosition = position;
               this.inRef = e.target;
+              // @ts-expect-error todo: looks dangerous
               e.target.value = value;
               onChange && onChange(e);
             }}

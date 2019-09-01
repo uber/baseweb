@@ -54,48 +54,54 @@ function getFontColor(kind: KindTypeT, type: NotificationTypeT, theme: ThemeT) {
   }[kind];
 }
 
-export function getPlacement(placement: PlacementTypeT) {
-  return {
-    [PLACEMENT.topLeft]: {
-      top: 0,
-      alignItems: 'flex-start',
-      justifyContent: 'flex-start',
-      flexDirection: 'column',
-    },
-    [PLACEMENT.top]: {
-      top: 0,
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      flexDirection: 'column',
-    },
-    [PLACEMENT.topRight]: {
-      top: 0,
-      alignItems: 'flex-end',
-      justifyContent: 'flex-start',
-      flexDirection: 'column',
-    },
-    [PLACEMENT.bottomRight]: {
-      bottom: 0,
-      alignItems: 'flex-end',
-      justifyContent: 'flex-end',
-      flexDirection: 'column-reverse',
-    },
-    [PLACEMENT.bottom]: {
-      bottom: 0,
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      flexDirection: 'column-reverse',
-    },
-    [PLACEMENT.bottomLeft]: {
-      bottom: 0,
-      alignItems: 'flex-start',
-      justifyContent: 'flex-end',
-      flexDirection: 'column-reverse',
-    },
-  }[placement];
+export function getPlacement(placement: PlacementTypeT): StyleObject {
+  switch (placement) {
+    case PLACEMENT.topLeft:
+      return {
+        top: 0,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        flexDirection: 'column',
+      };
+    case PLACEMENT.top:
+      return {
+        top: 0,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        flexDirection: 'column',
+      };
+    case PLACEMENT.topRight:
+      return {
+        top: 0,
+        alignItems: 'flex-end',
+        justifyContent: 'flex-start',
+        flexDirection: 'column',
+      };
+    case PLACEMENT.bottomRight:
+      return {
+        bottom: 0,
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        flexDirection: 'column-reverse',
+      };
+    case PLACEMENT.bottom:
+      return {
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        flexDirection: 'column-reverse',
+      };
+    case PLACEMENT.bottomLeft:
+      return {
+        bottom: 0,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-end',
+        flexDirection: 'column-reverse',
+      };
+  }
 }
 
-export const Root = styled<ToasterSharedStylePropsArgT>(
+export const Root = styled<'div', ToasterSharedStylePropsArgT>(
   'div',
   ({
     $placement,
@@ -118,14 +124,14 @@ export const Root = styled<ToasterSharedStylePropsArgT>(
   }
 );
 
-export const InnerContainer = styled<SharedStylePropsArgT>(
+export const InnerContainer = styled<'div', SharedStylePropsArgT>(
   'div', // eslint-disable-next-line no-empty-pattern
   ({}: SharedStylePropsArgT & {
     $theme: ThemeT;
   }) => ({})
 );
 
-export const Body = styled<SharedStylePropsArgT>(
+export const Body = styled<'div', SharedStylePropsArgT>(
   'div',
   ({
     $isVisible,
@@ -165,6 +171,7 @@ export const Body = styled<SharedStylePropsArgT>(
 );
 
 export const CloseIconSvg = styled<
+  'svg',
   {
     $size: number | string;
     $color: string;
@@ -181,7 +188,7 @@ export const CloseIconSvg = styled<
     $size: any;
     $color: string;
     $theme: ThemeT;
-  }): StyleObject => ({
+  }) => ({
     ...getSvgStyles({ $theme, $size, $color }),
     cursor: 'pointer',
     width: $size || '16px',

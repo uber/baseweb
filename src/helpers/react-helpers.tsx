@@ -12,6 +12,7 @@ export const flattenFragments = (
   ChildWrapper?: React.ComponentType<{}>,
   depth: number = 0
 ): React.ReactNode[] =>
+  // @ts-expect-error
   React.Children.toArray(children).reduce(
     (acc: React.ReactNode[], child: React.ReactNode, i: number): React.ReactNode[] => {
       if (isFragment(child)) {

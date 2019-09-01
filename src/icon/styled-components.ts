@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles/index';
 import type { ThemeT } from '../styles/types';
 import type { StyledComponentArgsT } from './types';
+import type { StyleObject } from 'styletron-standard';
 
 export function getSvgStyles({
   $theme,
@@ -14,13 +15,9 @@ export function getSvgStyles({
   $color,
 }: {
   $theme: ThemeT;
-} & StyledComponentArgsT): {
-  display: string;
-  fill: string;
-  color: string;
-  height: string;
-  width: string;
-} {
+  $size?;
+  $color?;
+}): StyleObject {
   let size = $theme.sizing.scale600;
   if ($size) {
     if ($theme.sizing[$size]) {
@@ -50,4 +47,4 @@ export function getSvgStyles({
   };
 }
 
-export const Svg = styled<StyledComponentArgsT>('svg', getSvgStyles);
+export const Svg = styled<'svg', StyledComponentArgsT>('svg', getSvgStyles);

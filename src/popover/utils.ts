@@ -13,7 +13,7 @@ const OPPOSITE_POSITIONS = {
   bottom: 'top',
   right: 'left',
   left: 'right',
-};
+} as const;
 
 /**
  * Returns the opposite of the specified position. Useful for tooltip

@@ -16,7 +16,7 @@ import { useRef } from 'react';
 function MeasureColumn({ sampleIndexes, column, columnIndex, rows, isSelectable, onLayout }) {
   const [css] = useStyletron();
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>();
 
   React.useEffect(() => {
     if (__BROWSER__) {

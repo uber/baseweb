@@ -10,16 +10,9 @@ import { COLUMNS, SORT_DIRECTIONS } from './constants';
 
 import type { SyntheticEvent } from 'react';
 
-export type SortDirectionsT = typeof SORT_DIRECTIONS.ASC | typeof SORT_DIRECTIONS.DESC | null;
+export type SortDirectionsT = typeof SORT_DIRECTIONS[keyof typeof SORT_DIRECTIONS];
 
-export type ColumnsT =
-  | typeof COLUMNS.ANCHOR
-  | typeof COLUMNS.BOOLEAN
-  | typeof COLUMNS.CATEGORICAL
-  | typeof COLUMNS.CUSTOM
-  | typeof COLUMNS.DATETIME
-  | typeof COLUMNS.NUMERICAL
-  | typeof COLUMNS.STRING;
+export type ColumnsT = typeof COLUMNS[keyof typeof COLUMNS];
 
 // These options are available on all column kinds. Most have additional
 // unique options depending on the data visualization requirements.
@@ -76,21 +69,25 @@ export type BatchActionT = {
     event: SyntheticEvent<HTMLButtonElement>;
     selection: RowT[];
   }) => unknown;
-  renderIcon?: React.ComponentType<{
-    size: number;
-  }>;
+  renderIcon?: React.ComponentType<
+    {
+      size: number;
+    } & any
+  >;
 };
 
 export type RowActionT = {
   label: string;
   onClick: (a: { event: SyntheticEvent<HTMLButtonElement>; row: RowT }) => unknown;
-  renderIcon: React.ComponentType<{
-    size: number;
-  }>;
+  renderIcon: React.ComponentType<
+    {
+      size: number;
+    } & any
+  >;
   renderButton?: React.ComponentType<{}>;
 };
 
-type ImperativeMethodsT = {
+export type ImperativeMethodsT = {
   getRows: () => RowT[];
 };
 

@@ -20,8 +20,8 @@ type PropsT<T> = StatefulContainerPropsT<InputProps<T>, T>;
 
 class StatefulContainer<T = Date> extends React.Component<PropsT<T>, ContainerStateT<T>> {
   static defaultProps: {
-    stateReducer: StateReducerT<T>;
-  } = {
+    stateReducer: StateReducerT<unknown>;
+  } & Partial<PropsT<unknown>> = {
     initialState: {},
     stateReducer: (type, nextState) => nextState,
     onChange: () => {},

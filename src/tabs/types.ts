@@ -44,7 +44,7 @@ export type OnChangeHandlerT = (a: { activeKey: React.Key }) => unknown;
 export type TabsPropsT = {
   /** An array of Tab components. */
   // flowlint-next-line unclear-type:off
-  children: React.ChildrenArray<React.ReactElement<any>>;
+  children: Array<React.ReactElement<any>> | React.ReactElement<any>;
   /**  Key of the the tab to be selected. */
   activeKey: React.Key;
   /** If set to true all its tabs will be disabled */

@@ -43,4 +43,4 @@ function Check(props: IconPropsT, ref) {
   );
 }
 
-export default React.forwardRef<unknown, IconPropsT>(Check);
+export default React.forwardRef<SVGElement, IconPropsT>(Check);

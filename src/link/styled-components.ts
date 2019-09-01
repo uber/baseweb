@@ -6,10 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles/index';
 
-export const Link = styled<{
-  $isAnimateUnderline: boolean;
-  $isFocusVisible: boolean;
-}>('a', ({ $theme, $isAnimateUnderline, $isFocusVisible }) => {
+export const Link = styled<
+  'a',
+  {
+    $isAnimateUnderline: boolean;
+    $isFocusVisible: boolean;
+  }
+>('a', ({ $theme, $isAnimateUnderline, $isFocusVisible }) => {
   const { colors, typography, animation, direction } = $theme;
 
   const underlineLTR = `linear-gradient(transparent calc(100% - 1px), ${colors.linkHover} 1px), linear-gradient(transparent calc(100% - 1px), ${colors.linkText} 1px)`;

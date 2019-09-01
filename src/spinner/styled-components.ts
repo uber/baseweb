@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles/index';
 import { SIZE } from './constants';
 import type { SpinnerPropsT } from './types';
+import { StyleObject } from 'styletron-react';
 
 const spin = {
   from: {
@@ -17,7 +18,7 @@ const spin = {
   },
 };
 
-export const StyledSpinner = styled<SpinnerPropsT>(
+export const StyledSpinner = styled<'i', SpinnerPropsT>(
   'i',
   ({
     //$FlowFixMe
@@ -42,12 +43,14 @@ export const StyledSpinner = styled<SpinnerPropsT>(
     if (!borderSize) {
       borderSize = $theme.sizing[$borderWidth];
       if (!borderSize) {
+        // @ts-expect-error todo(flow->ts) avoid mixing string with number
         borderSize = `${parseInt($borderWidth)}px`;
       }
     }
     if (!boxSize) {
       boxSize = $theme.sizing[$size];
       if (!boxSize) {
+        // @ts-expect-error todo(flow->ts) avoid mixing string with number
         boxSize = `${parseInt($size)}px`;
       }
     }

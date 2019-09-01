@@ -34,7 +34,7 @@ export default class StatefulContainer extends React.Component<StatefulContainer
   constructor(props: StatefulContainerPropsT) {
     super(props);
 
-    const { initialState = {} } = props;
+    const { initialState = {} as StateT } = props;
     const { selected = [] } = initialState;
 
     this.state = {

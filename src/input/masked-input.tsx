@@ -68,9 +68,9 @@ export default function MaskedInput({
   overrides: { Input: inputOverride = {}, ...restOverrides } = {},
   ...restProps
 }: MaskedInputPropsT) {
-  let componentOverride = MaskOverride;
-  let propsOverride = {};
-  let styleOverride = {};
+  let componentOverride: any = MaskOverride;
+  let propsOverride: any = {};
+  let styleOverride: any = {};
 
   if (typeof inputOverride === 'function') {
     componentOverride = inputOverride;

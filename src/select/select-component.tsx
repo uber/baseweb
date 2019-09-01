@@ -30,7 +30,7 @@ import {
   StyledSearchIconContainer,
   StyledLoadingIndicator,
 } from './styled-components';
-import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT, ReactRefT } from './types';
+import type { PropsT, SelectStateT, ValueT, OptionT, ChangeActionT } from './types';
 import { expandValue, normalizeOptions } from './utils/index';
 
 import type { SyntheticEvent, ChangeEvent } from 'react';
@@ -69,11 +69,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
   // open. This is required so that we can check if clicks are on/off the anchor element.
-  anchor: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
+  anchor = React.createRef<HTMLElement>();
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
-  dropdown: ReactRefT<HTMLElement> = React.createRef<HTMLElement>();
-  input: React.RefObject<typeof HTMLInputElement>;
+  dropdown = React.createRef<HTMLElement>();
+  input?: HTMLInputElement;
   // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
@@ -309,7 +309,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleBlur = (event: FocusEvent | MouseEvent) => {
+  handleBlur = (event: React.FocusEvent | MouseEvent) => {
     if (event.relatedTarget) {
       if (
         containsNode(this.anchor.current, event.relatedTarget) ||
@@ -497,16 +497,18 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   //flowlint-next-line unclear-type:off
-  handleInputRef = (input: React.RefObject<any>) => {
+  handleInputRef = (input: HTMLInputElement) => {
     this.input = input;
 
     if (typeof this.props.inputRef === 'function') {
       this.props.inputRef(input);
     } else if (this.props.inputRef) {
+      // @ts-expect-error todo(flow->ts) MutableRefObject
       this.props.inputRef.current = input;
     }
 
     if (this.props.controlRef && typeof this.props.controlRef === 'function') {
+      // @ts-expect-error todo(flow->ts) according to types this code is not reachable
       this.props.controlRef(input);
     }
   };
@@ -887,7 +889,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.props.creatable &&
       this.options.concat(this.props.value).every(filterDoesNotMatchOption)
     ) {
-      // $FlowFixMe - this.options is typed as a read-only array
+      // todo:
+      // @ts-expect-error - this.options is typed as a read-only array
       this.options.push({
         id: filterValue,
         [this.props.labelKey]: filterValue,

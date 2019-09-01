@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles/index';
 import type { StylePropsT } from './types';
 
-export const Label = styled<StylePropsT>('label', (props) => {
+export const Label = styled<'label', StylePropsT>('label', (props) => {
   const {
     $disabled,
     $theme: { colors, typography },
@@ -25,7 +25,7 @@ export const Label = styled<StylePropsT>('label', (props) => {
   };
 });
 
-export const LabelContainer = styled<StylePropsT>('span', ({ $theme: { sizing } }) => ({
+export const LabelContainer = styled<'span', StylePropsT>('span', ({ $theme: { sizing } }) => ({
   display: 'flex',
   width: '100%',
   marginTop: sizing.scale300,
@@ -34,7 +34,7 @@ export const LabelContainer = styled<StylePropsT>('span', ({ $theme: { sizing } 
   marginLeft: 0,
 }));
 
-export const LabelEndEnhancer = styled<StylePropsT>(
+export const LabelEndEnhancer = styled<'span', StylePropsT>(
   'span',
   ({ $disabled, $counterError, $theme: { colors, typography } }) => ({
     ...typography.font100,
@@ -48,7 +48,7 @@ export const LabelEndEnhancer = styled<StylePropsT>(
   })
 );
 
-export const Caption = styled<StylePropsT>('div', (props) => {
+export const Caption = styled<'div', StylePropsT>('div', (props) => {
   const {
     $error,
     $positive,
@@ -76,7 +76,7 @@ export const Caption = styled<StylePropsT>('div', (props) => {
   };
 });
 
-export const ControlContainer = styled<StylePropsT>('div', (props) => {
+export const ControlContainer = styled<'div', StylePropsT>('div', (props) => {
   const {
     $theme: { sizing },
   } = props;

@@ -4,6 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+import * as React from 'react';
 import type { OverrideT } from '../helpers/overrides';
 import { STYLE_TYPE } from './constants';
 
@@ -11,13 +12,6 @@ import type { ReactNode, ChangeEvent } from 'react';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type StyleTypeT = keyof typeof STYLE_TYPE;
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
 
 export type OverridesT = {
   Checkmark?: OverrideT;
@@ -30,13 +24,15 @@ export type OverridesT = {
 };
 
 export type DefaultPropsT = {
+  overrides?: any;
   children?: ReactNode;
   checked: boolean;
   disabled: boolean;
   error: boolean;
+  type: string;
   autoFocus: boolean;
   isIndeterminate: boolean;
-  inputRef: ReactRefT<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement>;
   checkmarkType: StyleTypeT;
   onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
   onMouseEnter: (e: ChangeEvent<HTMLInputElement>) => unknown;
@@ -69,7 +65,7 @@ export type PropsT = {
   /** Renders checkbox in errored state. */
   error?: boolean;
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: ReactRefT<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement>;
   /** Focus the checkbox on initial render. */
   autoFocus?: boolean;
   /** Passed to the input element type attribute */

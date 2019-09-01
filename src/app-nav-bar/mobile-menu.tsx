@@ -11,7 +11,7 @@ import { Drawer, ANCHOR } from '../drawer/index';
 import { getOverrides, mergeOverrides } from '../helpers/overrides';
 import ArrowLeft from '../icon/arrow-left';
 import MenuIcon from '../icon/menu';
-import { MenuAdapter, ListItemLabel, ARTWORK_SIZES } from '../list/index';
+import { MenuAdapter, ListItemLabel, ARTWORK_SIZES, MenuAdapterPropsT } from '../list/index';
 import { StatefulMenu } from '../menu/index';
 
 import { StyledSideMenuButton, StyledUserMenuProfileListItem } from './styled-components';
@@ -24,7 +24,7 @@ const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
 // eslint-disable-next-line react/display-name
-const MobileNavMenuItem = React.forwardRef((props, ref) => {
+const MobileNavMenuItem = React.forwardRef<HTMLLIElement, any>((props, ref) => {
   const { item, mapItemToNode = defaultMapItemToNode, overrides = {}, ...restProps } = props;
 
   const [UserMenuProfileListItem, userMenuProfileListItemProps] = getOverrides(

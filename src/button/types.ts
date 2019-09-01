@@ -11,14 +11,6 @@ import type { OverrideT } from '../helpers/overrides';
 
 import type { ReactNode, SyntheticEvent } from 'react';
 
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
-
 export type OverridesT = {
   Root?: OverrideT;
   BaseButton?: OverrideT;

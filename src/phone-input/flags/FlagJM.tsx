@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-export default function FlagJM(props: unknown) {
+export default function FlagJM(props: React.ComponentProps<'img'>) {
   return (
     <img
       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAAtCAMAAAAun0N9AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAzUExURRwcHBu1S+rIOlG2RBy7ThWeQBekQxYWFv/VP//SNprCQNjHOywqHlNJIWpbJaKILbeZMLtRcK0AAAHsSURBVEjHnZILgoMgDESjFhSU6v1P24TwSRBt7aAYXSZvoAvLsozT6x9NI3phIfk/7D462b8s0z9w4X8YwWdb8T85hQwnf1iXpxEKfFkDwLbLCAOOV76HNF4vUQv4vqEdThFw2ZDs56eCoxnvTUUYBlrNys9SaPiWGmCEUURIBvWMs4CPgY1x3tQprNPQ17RqeOKnJjJC167hIL18DLcRNJxNtQNX7+sIAv6Gvqjr0Y8g4IeO3QojOBHBxovg7h5eUxxlcYpAcMcfjw2+i07BscUjPe3c/QJvIjiMsOLs9M5/jeAymOrf4LOIgCbHG7nb+SyqmadZ/C+4OCJ8VqOY1efcA6/gSNwgQO09Q10j7U3xHl3OTvxmwSxKSO/y2g7yRX68cf8tpokdm+QC4UsKz3aH55//LgT6Pb0gPJvx9y8dMEJdpqlKtPMIdqO31vo2wtxBVmW4I7glxQisEuHSH+EsgtvBpgisUwTowJ2A2y8RlD80cCERIVz4Ye/DTxF26Plv4ChzEaH4b+HcohcBOnBjLI0GT5/OEeAMN9mS2ojrHIGmsMqdm2QyxU51ea8R1sB+CeeFrFJkN3+Z6lZ39Cu4Sai8Nu/BqJ4yAtQTmYyWvahVhOL35ol84z/BvylHgLLzp/LF/xguInwACsA82mixeFoAAAAASUVORK5CYII="

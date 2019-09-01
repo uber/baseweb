@@ -32,3 +32,6 @@ console.warn = function (message) {
   warn.apply(console, arguments);
   throw new Error(applyWarningDetails(message));
 };
+
+// All files must be modules when the '--isolatedModules' flag is provided.
+export {};

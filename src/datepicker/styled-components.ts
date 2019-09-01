@@ -8,11 +8,13 @@ import { styled } from '../styles/index';
 import getDayStateCode from './utils/day-state';
 import type { SharedStylePropsT, CalendarPropsT } from './types';
 import { ORIENTATION, DENSITY, INPUT_ROLE } from './constants';
+import type { StyleObject } from 'styletron-standard';
 
 /**
  * Main component container element
  */
 export const StyledInputWrapper = styled<
+  'div',
   {
     $separateRangeInputs: boolean;
   } & SharedStylePropsT
@@ -25,24 +27,24 @@ export const StyledInputWrapper = styled<
   };
 });
 
-export const StyledInputLabel = styled<{}>('div', ({ $theme }) => ({
+export const StyledInputLabel = styled('div', ({ $theme }) => ({
   ...$theme.typography.LabelMedium,
   marginBottom: $theme.sizing.scale300,
 }));
 
-export const StyledStartDate = styled<{}>('div', ({ $theme }) => ({
+export const StyledStartDate = styled('div', ({ $theme }) => ({
   width: '100%',
   marginRight: $theme.sizing.scale300,
 }));
 
-export const StyledEndDate = styled<{}>('div', ({ $theme }) => ({
+export const StyledEndDate = styled('div', ({ $theme }) => ({
   width: '100%',
 }));
 
 /**
  * Main component container element
  */
-export const StyledRoot = styled<SharedStylePropsT>('div', (props) => {
+export const StyledRoot = styled<'div', SharedStylePropsT>('div', (props) => {
   const {
     $theme: { typography, colors, borders },
   } = props;
@@ -59,9 +61,12 @@ export const StyledRoot = styled<SharedStylePropsT>('div', (props) => {
   };
 });
 
-export const StyledMonthContainer = styled<{
-  $orientation: CalendarPropsT<Date>['orientation'];
-}>('div', (props) => {
+export const StyledMonthContainer = styled<
+  'div',
+  {
+    $orientation: CalendarPropsT<Date>['orientation'];
+  }
+>('div', (props) => {
   const { $orientation } = props;
   return {
     display: 'flex',
@@ -69,7 +74,7 @@ export const StyledMonthContainer = styled<{
   };
 });
 
-export const StyledCalendarContainer = styled<SharedStylePropsT>('div', (props) => {
+export const StyledCalendarContainer = styled<'div', SharedStylePropsT>('div', (props) => {
   const {
     $theme: { sizing },
     $density,
@@ -82,7 +87,7 @@ export const StyledCalendarContainer = styled<SharedStylePropsT>('div', (props) 
   };
 });
 
-export const StyledSelectorContainer = styled<SharedStylePropsT>('div', ({ $theme }) => {
+export const StyledSelectorContainer = styled<'div', SharedStylePropsT>('div', ({ $theme }) => {
   const textAlign = $theme.direction === 'rtl' ? 'right' : 'left';
   return {
     marginBottom: $theme.sizing.scale600,
@@ -92,7 +97,7 @@ export const StyledSelectorContainer = styled<SharedStylePropsT>('div', ({ $them
   };
 });
 
-export const StyledCalendarHeader = styled<SharedStylePropsT>('div', (props) => {
+export const StyledCalendarHeader = styled<'div', SharedStylePropsT>('div', (props) => {
   const {
     $theme: { typography, borders, colors, sizing },
     $density,
@@ -118,7 +123,7 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', (props) => 
   };
 });
 
-export const StyledMonthHeader = styled<SharedStylePropsT>('div', (props) => {
+export const StyledMonthHeader = styled<'div', SharedStylePropsT>('div', (props) => {
   return {
     color: props.$theme.colors.calendarHeaderForeground,
     backgroundColor: props.$theme.colors.calendarHeaderBackground,
@@ -126,31 +131,34 @@ export const StyledMonthHeader = styled<SharedStylePropsT>('div', (props) => {
   };
 });
 
-export const StyledMonthYearSelectButton = styled<SharedStylePropsT>('button', (props) => {
-  const {
-    $theme: { typography, colors },
-    $isFocusVisible,
-    $density,
-  } = props;
-  return {
-    ...($density === DENSITY.high ? typography.LabelMedium : typography.LabelLarge),
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-    color: colors.calendarHeaderForeground,
-    cursor: 'pointer',
-    display: 'flex',
-    outline: 'none',
-    ':focus': {
-      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
-    },
-  };
-});
+export const StyledMonthYearSelectButton = styled<'button', SharedStylePropsT>(
+  'button',
+  (props) => {
+    const {
+      $theme: { typography, colors },
+      $isFocusVisible,
+      $density,
+    } = props;
+    return {
+      ...($density === DENSITY.high ? typography.LabelMedium : typography.LabelLarge),
+      alignItems: 'center',
+      backgroundColor: 'transparent',
+      borderLeftWidth: 0,
+      borderRightWidth: 0,
+      borderTopWidth: 0,
+      borderBottomWidth: 0,
+      color: colors.calendarHeaderForeground,
+      cursor: 'pointer',
+      display: 'flex',
+      outline: 'none',
+      ':focus': {
+        boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
+      },
+    };
+  }
+);
 
-export const StyledMonthYearSelectIconContainer = styled<{}>('span', (props) => {
+export const StyledMonthYearSelectIconContainer = styled('span', (props) => {
   const marginDirection: string = props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     alignItems: 'center',
@@ -159,7 +167,7 @@ export const StyledMonthYearSelectIconContainer = styled<{}>('span', (props) => 
   };
 });
 
-function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }) {
+function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }): StyleObject {
   return {
     boxSizing: 'border-box',
     display: 'flex',
@@ -187,17 +195,17 @@ function getArrowBtnStyle({ $theme, $disabled, $isFocusVisible }) {
   };
 }
 
-export const StyledPrevButton = styled<SharedStylePropsT>('button', getArrowBtnStyle);
+export const StyledPrevButton = styled<'button', SharedStylePropsT>('button', getArrowBtnStyle);
 
-export const StyledNextButton = styled<SharedStylePropsT>('button', getArrowBtnStyle);
+export const StyledNextButton = styled<'button', SharedStylePropsT>('button', getArrowBtnStyle);
 
-export const StyledMonth = styled<SharedStylePropsT>('div', (props: SharedStylePropsT) => {
+export const StyledMonth = styled<'div', SharedStylePropsT>('div', (props: SharedStylePropsT) => {
   return {
     display: 'inline-block',
   };
 });
 
-export const StyledWeek = styled<SharedStylePropsT>('div', (props) => {
+export const StyledWeek = styled<'div', SharedStylePropsT>('div', (props) => {
   const {
     $theme: { sizing },
   } = props;
@@ -395,7 +403,7 @@ function getDayStyles(code, { colors }): any {
   return dayStateStyle[code] || defaultDayStyle;
 }
 
-export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
+export const StyledDay = styled<'div', SharedStylePropsT>('div', (props) => {
   const {
     $disabled,
     $isFocusVisible,
@@ -550,7 +558,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', (props) => {
   } as {};
 });
 
-export const StyledDayLabel = styled<SharedStylePropsT>('div', (props) => {
+export const StyledDayLabel = styled<'div', SharedStylePropsT>('div', (props) => {
   const {
     $theme: { typography, colors },
     $selected,
@@ -561,7 +569,7 @@ export const StyledDayLabel = styled<SharedStylePropsT>('div', (props) => {
   };
 });
 
-export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', (props) => {
+export const StyledWeekdayHeader = styled<'div', SharedStylePropsT>('div', (props) => {
   const {
     $theme: { typography, colors, sizing },
     $density,

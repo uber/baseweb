@@ -56,9 +56,10 @@ export type ThemeT = {
   zIndex: ZIndexT;
   // Remove this section in next v11 major version
   // https://github.com/uber/baseweb/pull/1184
-  tooltip?: {
-    backgroundColor: string;
-  };
+  // todo: tooltip is already not there
+  // tooltip: {
+  //   backgroundColor: string;
+  // };
   // ^^^^^^^
 };
 

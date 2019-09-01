@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-export default function FlagSJ(props: unknown) {
+export default function FlagSJ(props: React.ComponentProps<'img'>) {
   return (
     <img
       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAAtBAMAAADrb658AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAVUExURfA+Q/j4+O81OwYydu4wNu4yOO0vNdWmoZEAAAEnSURBVDjL7Y+xbsMwDEQFfUHSNpkJAe5cID+QQfIcGCbnDpb+/xPKI2WjTYGkQ1B06BmW7qingx3Cqv3zab8LN/QP/H0g6kOBogPx6pQIBMW4NcSvQkO0BqLeQIh2LdhcnQ16A5EjKr+p800KfNfuAcDptt4eAPzCX6SuAcBTuhZtQLoH/KzhcLdhgEtT8l0dhWGVN0wqDbZPkzW47cCgLoHAjpWCJsbD3qCJgeMSppeADOLVAKSJu0ABMO8NR/cDb9AKMEtvuJIDM5feMJfy6VTTJeQswrXWAuAllzLPIqIvq8v5HEouXIVltoZRZ5lxQydqZzTk1rShWYPUmgVZpIkeaYMuI9JiDU2c1k3qYsC4LKO9/g3wrTVdq1WcQ4NW4LildX//AIP0spXA0iTsAAAAAElFTkSuQmCC"

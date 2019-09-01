@@ -20,7 +20,7 @@ import type { SharedStylePropsArgT } from '../popover/types';
  * We could create our own withStyleDeep that also takes the $style
  * prop into account
  */
-export const Body = styled<SharedStylePropsArgT>('div', (props) => ({
+export const Body = styled<'div', SharedStylePropsArgT>('div', (props) => ({
   ...getBodyStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
   borderTopLeftRadius: props.$theme.borders.radius300,
@@ -34,7 +34,7 @@ export const Body = styled<SharedStylePropsArgT>('div', (props) => ({
   transform: getEndPosition(props.$popoverOffset),
 }));
 
-export const Inner = styled<SharedStylePropsArgT>('div', (props) => ({
+export const Inner = styled<'div', SharedStylePropsArgT>('div', (props) => ({
   ...getInnerStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
   borderTopLeftRadius: props.$theme.borders.radius300,
@@ -49,7 +49,7 @@ export const Inner = styled<SharedStylePropsArgT>('div', (props) => ({
   color: props.$theme.colors.tooltipText,
 }));
 
-export const Arrow = styled<SharedStylePropsArgT>('div', (props) => ({
+export const Arrow = styled<'div', SharedStylePropsArgT>('div', (props) => ({
   ...getArrowStyles(props),
   backgroundColor: props.$theme.colors.tooltipBackground,
 }));

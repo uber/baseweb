@@ -57,6 +57,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.setState({ mounted: true });
     if (__DEV__) {
       // $FlowFixMe: flow complains that this prop doesn't exist
+      // @ts-expect-error it indeed should not exist, and if typescript is used - this issue would be catched at compile time
       if (this.props.closable) {
         console.warn(
           'The property `closable` is not supported on the Modal. Did you mean `closeable`?'
@@ -123,7 +124,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.triggerClose(CLOSE_SOURCE.escape);
   };
 
-  onDocumentClick = (e: MouseEvent) => {
+  onDocumentClick = (e: React.MouseEvent) => {
     if (
       e.target &&
       e.target instanceof HTMLElement &&

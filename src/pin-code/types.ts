@@ -10,7 +10,7 @@ import { SIZE, STATE_CHANGE_TYPE } from '../input/index';
 
 export type ChangeEventT = {
   values: string[];
-  event: InputEvent;
+  event: any;
 };
 
 export type PropsT = {

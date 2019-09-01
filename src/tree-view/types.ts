@@ -9,14 +9,6 @@ import type { OverrideT } from '../helpers/overrides';
 
 import type { SyntheticEvent } from 'react';
 
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
-
 export type TreeLabelOverridesT = {
   TreeItemContent?: OverrideT;
   IconContainer?: OverrideT;
@@ -72,7 +64,7 @@ export type TreeNodePropsT = {
   onFocus?: (event: SyntheticEvent) => unknown;
   onBlur?: (event: SyntheticEvent) => unknown;
   selectedNodeId?: TreeNodeIdT;
-  addRef: (id: TreeNodeIdT, ref: ReactRefT<HTMLLIElement>) => unknown;
+  addRef: (id: TreeNodeIdT, ref: React.Ref<HTMLLIElement>) => unknown;
   removeRef: (id: TreeNodeIdT) => unknown;
   isFocusVisible?: boolean;
   indentGuides?: boolean;

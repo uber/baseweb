@@ -11,9 +11,12 @@ import { styled } from '../styles/index';
 import { LayersContext, Consumer } from './layers-manager';
 import type { LayerPropsT, LayerComponentPropsT, LayerStateT } from './types';
 
-const Container = styled<{
-  $zIndex?: number;
-}>('div', ({ $zIndex }) => ({
+const Container = styled<
+  'div',
+  {
+    $zIndex?: number;
+  }
+>('div', ({ $zIndex }) => ({
   position: 'absolute',
   top: 0,
   left: 0,
@@ -96,7 +99,7 @@ class LayerComponent extends React.Component<LayerComponentPropsT, LayerStateT> 
     }
   };
 
-  onDocumentClick = (event: MouseEvent) => {
+  onDocumentClick = (event: React.MouseEvent) => {
     if (this.props.onDocumentClick) {
       this.props.onDocumentClick(event);
     }

@@ -15,7 +15,10 @@ const getInitialState = (children: React.ReactNode, initialState?: StatefulTabsS
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {
-    const firstKey = React.Children.map(children, (child, index) => child.key || String(index))[0];
+    const firstKey = React.Children.map(
+      children,
+      (child, index) => (child as React.ReactElement).key || String(index)
+    )[0];
     return { activeKey: firstKey };
   }
 };

@@ -16,7 +16,7 @@ type StyledPropsT = {
   $size?: keyof typeof OPTION_LIST_SIZE;
 };
 
-export const StyledList = styled<StyledPropsT>('ul', ({ $theme, $isFocusVisible }) => {
+export const StyledList = styled<'ul', StyledPropsT>('ul', ({ $theme, $isFocusVisible }) => {
   return {
     backgroundColor: $theme.colors.menuFill,
     position: 'relative',
@@ -68,7 +68,7 @@ function getBackgroundColor(props) {
   return 'transparent';
 }
 
-export const StyledEmptyState = styled<StyledPropsT>('li', (props) => {
+export const StyledEmptyState = styled<'li', StyledPropsT>('li', (props) => {
   const { $theme, $size } = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact ? $theme.typography.font100 : $theme.typography.font200),
@@ -86,7 +86,7 @@ export const StyledEmptyState = styled<StyledPropsT>('li', (props) => {
   };
 });
 
-export const StyledOptgroupHeader = styled<{}>('li', (props) => {
+export const StyledOptgroupHeader = styled('li', (props) => {
   const paddingX = props.$theme.sizing.scale300;
   const paddingY = props.$theme.sizing.scale200;
   return {
@@ -98,13 +98,13 @@ export const StyledOptgroupHeader = styled<{}>('li', (props) => {
     paddingLeft: paddingX,
   };
 });
-export const StyledListItemAnchor = styled<StyledPropsT>('a', (props) => {
+export const StyledListItemAnchor = styled<'a', StyledPropsT>('a', (props) => {
   return {
     display: 'block',
     color: getFontColor(props),
   };
 });
-export const StyledListItemElement = styled<StyledPropsT>('li', (props) => {
+export const StyledListItemElement = styled<'li', StyledPropsT>('li', (props) => {
   const { $disabled, $theme, $size } = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact ? $theme.typography.font100 : $theme.typography.font200),
@@ -139,7 +139,7 @@ export const StyledListItem = withWrapper(
     }
 );
 
-export const StyledListItemProfile = styled<StyledPropsT>('li', ({ $theme }) => ({
+export const StyledListItemProfile = styled<'li', StyledPropsT>('li', ({ $theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -173,7 +173,7 @@ export const StyledProfileImg = styled('img', {
   borderBottomLeftRadius: '50%',
 });
 
-export const StyledProfileLabelsContainer = styled<StyledPropsT>(
+export const StyledProfileLabelsContainer = styled<'div', StyledPropsT>(
   'div',
   ({ $theme: { direction, sizing } }) => ({
     alignSelf: direction === 'rtl' ? 'flex-end' : 'flex-start',
@@ -183,7 +183,7 @@ export const StyledProfileLabelsContainer = styled<StyledPropsT>(
   })
 );
 
-export const StyledProfileTitle = styled<StyledPropsT>('h6', ({ $theme }) => ({
+export const StyledProfileTitle = styled<'h6', StyledPropsT>('h6', ({ $theme }) => ({
   ...$theme.typography.font350,
   color: $theme.colors.contentPrimary,
   marginTop: 0,
@@ -192,7 +192,7 @@ export const StyledProfileTitle = styled<StyledPropsT>('h6', ({ $theme }) => ({
   marginRight: 0,
 }));
 
-export const StyledProfileSubtitle = styled<StyledPropsT>('p', ({ $theme }) => ({
+export const StyledProfileSubtitle = styled<'p', StyledPropsT>('p', ({ $theme }) => ({
   ...$theme.typography.font200,
   color: $theme.colors.contentPrimary,
   marginTop: 0,
@@ -201,7 +201,7 @@ export const StyledProfileSubtitle = styled<StyledPropsT>('p', ({ $theme }) => (
   marginRight: 0,
 }));
 
-export const StyledProfileBody = styled<StyledPropsT>('p', ({ $theme }) => ({
+export const StyledProfileBody = styled<'p', StyledPropsT>('p', ({ $theme }) => ({
   ...$theme.typography.font100,
   color: $theme.colors.contentPrimary,
   marginTop: 0,

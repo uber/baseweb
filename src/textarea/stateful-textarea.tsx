@@ -12,7 +12,7 @@ import type { StatefulTextareaPropsT, TextareaPropsT } from './types';
 export default function StatefulTextarea(props: StatefulTextareaPropsT) {
   return (
     <StatefulContainer {...props}>
-      {(childrenProps: TextareaPropsT) => <Textarea {...childrenProps} />}
+      {(childrenProps) => <Textarea {...(childrenProps as TextareaPropsT)} />}
     </StatefulContainer>
   );
 }

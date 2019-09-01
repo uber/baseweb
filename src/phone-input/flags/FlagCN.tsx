@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-export default function FlagCN(props: unknown) {
+export default function FlagCN(props: React.ComponentProps<'img'>) {
   return (
     <img
       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAAtBAMAAADrb658AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAVUExURegvFu40GuIrEv7VK/u2Ku9RHfWDIkliEvwAAAF1SURBVDjL5Y7BbsIwEEQ3Ful5owJny1I/oHXIGYS5g0R7Lorg/z+hM2uTgKrQHnrrotjrnTezSPO4VP4WOP8EpPfHwCK20wC987iaBi5MOG6mgWQ7TpPAIh5KMwEsI826uHTfALV7HrEebez0XkeC6jGlbWxT2mnTx6a6LSTw2kZWq6r95aDaVOhwwqsi7JcGnICazOLYbrHHEfpKykivnxrAmOoJwGcWmAmXQMHBBGbMAKwpnmulyDH9wMwgzzHFVwHax71IVUKsI1NJ31V9xzCcDOKMyXKt7V7qFmwdOxNzduasNvhmzNKPwTTaUU5+V/X6sT6LbxOKE8/jJa6s48bSODscn168iwlvjzYThDwVzoi4HYY29c4ob8mOFv6ctd4SIIZCB/oDpDCqeFEr3jAYnVUo+0LGij9QykGw+IAuT7AClmCtnc6FcobAEf5kMB+mNgimh4JjnWSJNTRj67jCnEOCv+Fsi4z9fZXJFZis/wJ8AXJ3deR1AI3VAAAAAElFTkSuQmCC"

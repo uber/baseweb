@@ -33,7 +33,7 @@ function mapSelection<X, Y>(selection: Set<X>, transform: (a: X) => Y): Set<Y> {
 function BooleanFilter(props) {
   const locale = React.useContext(LocaleContext);
 
-  let selectionString = new Set();
+  let selectionString = new Set<string>();
   if (props.filterParams && props.filterParams.selection) {
     selectionString = mapSelection(props.filterParams.selection, (i) =>
       i ? locale.datatable.booleanFilterTrue : locale.datatable.booleanFilterFalse

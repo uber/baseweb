@@ -21,31 +21,31 @@ import { isFocusVisible } from '../utils/focusVisible';
 
 import type { SyntheticEvent } from 'react';
 
-function ColumnIcon(props: { column: ColumnT }) {
+const ColumnIcon: React.FC<{ column: ColumnT }> = (props) => {
   if (props.column.kind === COLUMNS.BOOLEAN) {
-    return '01';
+    return <>01</>;
   }
 
   if (props.column.kind === COLUMNS.CATEGORICAL) {
-    return 'abc';
+    return <>abc</>;
   }
 
   if (props.column.kind === COLUMNS.DATETIME) {
-    return 'dt';
+    return <>dt</>;
   }
 
   if (props.column.kind === COLUMNS.NUMERICAL) {
-    return '#';
+    return <>#</>;
   }
 
   return <FilterIcon />;
-}
+};
 
 type OptionsPropsT = {
   columns: ColumnT[];
   highlightIndex: number;
   onClick: (a: ColumnT) => void;
-  onKeyDown: (a: KeyboardEvent) => void;
+  onKeyDown: (a: React.KeyboardEvent) => void;
   onMouseEnter: (a: number) => void;
   onQueryChange: (a: string) => void;
   query: string;
@@ -134,7 +134,8 @@ function Options(props: OptionsPropsT) {
         onKeyDown={props.onKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        tabIndex="0"
+        // todo: tabIndex should be a number
+        tabIndex={0}
         role="listbox"
         aria-activedescendant={`bui-${buiRef.current[props.highlightIndex]}`}
         className={css({

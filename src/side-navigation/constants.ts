@@ -6,4 +6,4 @@ LICENSE file in the root directory of this source tree.
 */
 export const STATE_CHANGE_TYPE = {
   change: 'change',
-};
+} as const;

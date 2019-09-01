@@ -59,13 +59,7 @@ type HeaderContextT = {
 type CellPlacementPropsT = {
   columnIndex: number;
   rowIndex: number;
-  style: {
-    position: string;
-    height: number;
-    width: number;
-    top: number;
-    left: number;
-  };
+  style: React.CSSProperties;
   data: {
     columns: ColumnT[];
     columnHighlightIndex: number;
@@ -81,7 +75,7 @@ type CellPlacementPropsT = {
 
 const sum = (ns) => ns.reduce((s, n) => s + n, 0);
 
-function CellPlacement({ columnIndex, rowIndex, data, style }) {
+function CellPlacement({ columnIndex, rowIndex, data, style }: CellPlacementPropsT) {
   const [css, theme] = useStyletron();
 
   // ignores the table header row
@@ -182,10 +176,7 @@ function compareCellPlacement(prevProps, nextProps) {
 
   return false;
 }
-const CellPlacementMemo = React.memo<CellPlacementPropsT, unknown>(
-  CellPlacement,
-  compareCellPlacement
-);
+const CellPlacementMemo = React.memo<CellPlacementPropsT>(CellPlacement, compareCellPlacement);
 CellPlacementMemo.displayName = 'CellPlacement';
 
 const HeaderContext = React.createContext<HeaderContextT>({
@@ -582,6 +573,7 @@ const InnerTableElement = React.forwardRef<
               const RowActionIcon = rowAction.renderIcon;
               return (
                 <Button
+                  // @ts-expect-error todo: alt on button?
                   alt={rowAction.label}
                   key={rowAction.label}
                   onClick={(event) =>
@@ -618,8 +610,8 @@ InnerTableElement.displayName = 'InnerTableElement';
 
 function MeasureScrollbarWidth(props) {
   const [css] = useStyletron();
-  const outerRef = React.useRef();
-  const innerRef = React.useRef();
+  const outerRef = React.useRef<HTMLDivElement | undefined>();
+  const innerRef = React.useRef<HTMLDivElement | undefined>();
   React.useEffect(() => {
     if (outerRef.current && innerRef.current) {
       const width = outerRef.current.offsetWidth - innerRef.current.offsetWidth;
@@ -679,7 +671,7 @@ export function DataTable({
 
   // We use state for our ref, to allow hooks to  update when the ref changes.
   // flowlint-next-line unclear-type:off
-  const [gridRef, setGridRef] = React.useState<VariableSizeGrid<any> | undefined | null>(null);
+  const [gridRef, setGridRef] = React.useState<VariableSizeGrid | undefined | null>(null);
   const [measuredWidths, setMeasuredWidths] = React.useState(columns.map(() => 0));
   const [resizeDeltas, setResizeDeltas] = React.useState(columns.map(() => 0));
   React.useEffect(() => {
@@ -744,7 +736,7 @@ export function DataTable({
   );
 
   const sortedIndices = React.useMemo(() => {
-    let toSort = allRows.map((r, i) => [r, i]);
+    let toSort = allRows.map((r, i): [DataTablePropsT['rows'][number], number] => [r, i]);
     const index = sortIndex;
 
     if (index !== null && index !== undefined && index !== -1 && columns[index]) {

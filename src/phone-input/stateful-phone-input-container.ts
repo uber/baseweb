@@ -18,6 +18,7 @@ import type { OnChangeParamsT } from '../select/types';
 
 import type { ChangeEvent } from 'react';
 
+// @ts-expect-error todo: possible bug
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 
 export default class StatefulPhoneInputContainer extends React.Component<
@@ -35,7 +36,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
     overrides: {},
   };
 
-  state = { text: '', country: COUNTRIES.US, ...this.props.initialState };
+  state: StateT = { text: '', country: COUNTRIES.US, ...this.props.initialState };
 
   internalSetState = (type: StateChangeT, nextState: Partial<StateT>) => {
     this.setState(this.props.stateReducer(type, nextState, this.state));

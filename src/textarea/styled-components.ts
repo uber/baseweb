@@ -8,7 +8,7 @@ import { styled, type ThemeT } from '../styles/index';
 import { getInputStyles, getInputContainerStyles, getRootStyles } from '../input/styled-components';
 import type { SharedStylePropsT } from './types';
 
-export const StyledTextAreaRoot = styled<SharedStylePropsT>(
+export const StyledTextAreaRoot = styled<'div', SharedStylePropsT>(
   'div',
   (
     props: SharedStylePropsT & {
@@ -19,7 +19,7 @@ export const StyledTextAreaRoot = styled<SharedStylePropsT>(
   }
 );
 
-export const StyledTextareaContainer = styled<SharedStylePropsT>(
+export const StyledTextareaContainer = styled<'div', SharedStylePropsT>(
   'div',
   (
     props: SharedStylePropsT & {
@@ -30,7 +30,7 @@ export const StyledTextareaContainer = styled<SharedStylePropsT>(
   })
 );
 
-export const StyledTextarea = styled<SharedStylePropsT>(
+export const StyledTextarea = styled<'textarea', SharedStylePropsT>(
   'textarea',
   (
     props: SharedStylePropsT & {

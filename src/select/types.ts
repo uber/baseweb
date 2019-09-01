@@ -15,27 +15,22 @@ import type { ReactNode, SyntheticEvent, ChangeEvent } from 'react';
 export type ChangeActionT = keyof typeof STATE_CHANGE_TYPE;
 export type SizeT = keyof typeof SIZE;
 export type TypeT = keyof typeof TYPE;
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
 
 export type OptionT = Readonly<{
   id?: string | number;
+  // todo: React.ReactNode might be incorrect: given implementation - only string would work correctly
   label?: React.ReactNode;
   disabled?: boolean;
   clearableValue?: boolean;
   isCreatable?: boolean;
   __optgroup?: string;
+  // todo: probably this should be deleted, but that will require to clarify other types
   [x: string]: any;
 }>;
 
 export type ValueT = ReadonlyArray<OptionT>;
 export type OptgroupsT = {
-  __ungrouped: ValueT;
+  __ungrouped?: ValueT;
   [x: string]: ValueT;
 };
 export type OptionsT = ValueT | undefined | null | OptgroupsT;
@@ -69,6 +64,8 @@ export type OverridesT = {
   DropdownListItem?: OverrideT;
   OptionContent?: OverrideT;
   StatefulMenu?: OverrideT;
+  // todo: backport
+  StyledClearIcon?: OverrideT;
 };
 
 export type OverridesDropdownT = {
@@ -81,7 +78,7 @@ export type OverridesDropdownT = {
   StatefulMenu?: OverrideT;
 };
 
-type ImperativeMethodsT = {
+export type ImperativeMethodsT = {
   setDropdownOpen: (a: boolean) => unknown;
   setInputValue: (a: string) => void;
   setInputFocus: () => void;
@@ -96,35 +93,35 @@ export type ControlRefT = {
 };
 
 export type PropsT = {
-  'aria-label': string | undefined | null;
-  'aria-describedby': string | undefined | null;
-  'aria-errormessage': string | undefined | null;
-  'aria-labelledby': string | undefined | null;
+  'aria-label'?: string | null;
+  'aria-describedby'?: string | null;
+  'aria-errormessage'?: string | null;
+  'aria-labelledby'?: string | null;
   /** Defines if select element is focused on the first mount. */
-  autoFocus: boolean;
+  autoFocus?: boolean;
   /** Defines if options can be removed by pressing backspace. If you have customized labels, it will remove the option entirely, otherwise, it starts removing characters from the end of the string. */
-  backspaceRemoves: boolean;
+  backspaceRemoves?: boolean;
   /** By default, backspace will only remove the last character of the input value. If true, the input value will be cleared. */
   backspaceClearsInputValue?: boolean;
   /** Defines if the select value can be cleared. If true a clear icon is rendered when a value is set. */
-  clearable: boolean;
+  clearable?: boolean;
   /** Defines if the menu closes after a selection if made. */
-  closeOnSelect: boolean;
+  closeOnSelect?: boolean;
   /** Defines if new options can be created along with choosing existing options. */
-  creatable: boolean;
+  creatable?: boolean;
   /** Defines if options can be removed by pressing backspace. */
-  deleteRemoves: boolean;
+  deleteRemoves?: boolean;
   /** Defines if the control is disabled. */
-  disabled: boolean;
+  disabled?: boolean;
   /** Defines if the control is in error state. */
-  error: boolean;
+  error?: boolean;
   /** Defines if the control is in positive state. */
-  positive: boolean;
+  positive?: boolean;
   /** Defines if the value is cleared when escape is pressed and the dropdown is closed. */
-  escapeClearsValue: boolean;
+  escapeClearsValue?: boolean;
   /** Defaults to filterOptions that excludes selected options for
    * multi select. A custom method to filter options to be displayed in the dropdown. */
-  filterOptions:
+  filterOptions?:
     | ((
         options: ValueT,
         filterValue: string,
@@ -134,12 +131,11 @@ export type PropsT = {
           labelKey: string;
         }
       ) => ValueT)
-    | undefined
     | null;
   /** Defines if currently selected options are filtered out in the dropdown options. */
-  filterOutSelected: boolean;
+  filterOutSelected?: boolean;
   /** A custom method to get a display value for a dropdown option. */
-  getOptionLabel:
+  getOptionLabel?:
     | ((a: {
         option: OptionT;
         optionState: {
@@ -148,62 +144,61 @@ export type PropsT = {
           $isHighlighted: boolean;
         };
       }) => React.ReactNode)
-    | undefined
     | null;
   /** A custom method to get a display value for a selected option. */
-  getValueLabel: ((a: { option: OptionT }) => React.ReactNode) | undefined | null;
+  getValueLabel?: ((a: { option: OptionT; index?: number }) => React.ReactNode) | null;
   /** Sets the id attribute of the internal input element. Allows for usage with labels. */
   id?: string;
   /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean;
-  inputRef?: ReactRefT<HTMLInputElement>;
+  inputRef?: React.Ref<HTMLInputElement>;
   /** An imperative handle exposing internal methods. */
   controlRef?: ControlRefT;
   /** Defines if the select is in a loading (async) state. */
-  isLoading: boolean;
+  isLoading?: boolean;
   /** Defines an option key for a default label value. */
-  labelKey: string;
+  labelKey?: string;
   /** Sets max height of the dropdown list. */
-  maxDropdownHeight: string;
+  maxDropdownHeight?: string;
   /** Defines if multiple options can be selected. */
-  multi: boolean;
+  multi?: boolean;
   /** Message to be displayed if no options is found for a search query. */
   noResultsMsg?: React.ReactNode;
-  onBlur: (e: Event) => unknown;
+  onBlur?: (e: React.FocusEvent | MouseEvent) => unknown;
   /** Defines if the input value is reset to an empty string when a blur event happens on the select. */
-  onBlurResetsInput: boolean;
+  onBlurResetsInput?: boolean;
   /** change handler of the select to be called when a value is changed. */
-  onChange: (params: OnChangeParamsT) => unknown;
-  onFocus: (e: SyntheticEvent<HTMLElement>) => unknown;
-  onInputChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  onChange?: (params: OnChangeParamsT) => unknown;
+  onFocus?: (e: SyntheticEvent<HTMLElement>) => unknown;
+  onInputChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   /** Defines if the input value is reset to an empty string when dropdown is closed. */
-  onCloseResetsInput: boolean;
+  onCloseResetsInput?: boolean;
   /** Defines if the input value is reset to an empty string when a selection is made. */
-  onSelectResetsInput: boolean;
+  onSelectResetsInput?: boolean;
   /** A function that is called when the dropdown opens. */
-  onOpen: (() => unknown) | undefined | null;
+  onOpen?: (() => unknown) | null;
   /** A function that is called when the dropdown closes. */
-  onClose: (() => unknown) | undefined | null;
+  onClose?: (() => unknown) | undefined | null;
   /** Defines if the dropdown opens on a click event on the select. */
-  openOnClick: boolean;
+  openOnClick?: boolean;
   /** If true, opens the dropdown when the select mounts. */
-  startOpen: boolean;
+  startOpen?: boolean;
   /** Options to be displayed in the dropdown. If an option has a
    * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
   options: OptionsT;
-  overrides: OverridesT;
+  overrides?: OverridesT;
   /** Sets the placeholder. */
   placeholder?: React.ReactNode;
   /** Defines if the select field is required to have a selection. */
-  required: boolean;
+  required?: boolean;
   /** Defines if the search functionality is enabled. */
-  searchable: boolean;
+  searchable?: boolean;
   /** Defines the size (scale) of dropdown menu items. See the Menu component API. */
-  size: SizeT;
+  size?: SizeT;
   /** Defines type of the component to be in select or search mode.
    * When set to TYPE.search the search icon is rendered on the
    * left and the select arrow icon is not rendered. */
-  type: TypeT;
+  type?: TypeT;
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value: ValueT;
@@ -213,7 +208,7 @@ export type PropsT = {
    * The value of the `valueKey` prop is used to identify what options are selected
    * or removed from the selection, it also used for default filtering out the
    * selected options from the dropdown list. */
-  valueKey: string;
+  valueKey?: string;
   /** Where to mount the popover */
   mountNode?: HTMLElement;
 };
@@ -240,7 +235,10 @@ export type StatefulContainerPropsT = {
   onChange: (params: OnChangeParamsT) => unknown;
 };
 
-export type StatefulSelectPropsT = PropsT & {
+export declare type StatefulSelectPropsT = Omit<
+  PropsT,
+  'onChange' | 'overrides' | 'initialState' | 'stateReducer'
+> & {
   overrides?: OverridesT;
   initialState?: StateT;
   stateReducer?: StateReducerT;
@@ -258,7 +256,7 @@ export type DropdownPropsT = {
     };
   }) => React.ReactNode;
   id?: string;
-  innerRef: ReactRefT<HTMLElement>;
+  innerRef: React.Ref<HTMLElement>;
   isLoading: boolean;
   labelKey: string;
   maxDropdownHeight: string;
@@ -275,7 +273,7 @@ export type DropdownPropsT = {
   value: ValueT;
   valueKey: string;
   width: number | undefined | null;
-  keyboardControlNode?: ReactRefT<HTMLElement>;
+  keyboardControlNode?: React.Ref<HTMLElement>;
 };
 
 export type AutosizeInputOverridesT = {
@@ -285,7 +283,7 @@ export type AutosizeInputOverridesT = {
 export type AutosizeInputPropsT = {
   value: string;
   defaultValue?: string;
-  inputRef: () => void;
+  inputRef: (ref: any) => any;
   overrides: AutosizeInputOverridesT;
   $size: SizeT;
 };

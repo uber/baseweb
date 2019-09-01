@@ -65,7 +65,7 @@ export type StatefulTabsPropsT = {
 export type TabPropsT = {
   title?: React.ReactNode;
   key?: React.Key;
-  tabRef?: React.Ref<'button'>;
+  tabRef?: React.Ref<HTMLButtonElement>;
   overrides?: TabOverridesT;
   children?: React.ReactNode;
   artwork?: React.ComponentType<

@@ -20,7 +20,7 @@ import PinHead from './pin-head';
 import Needle from './needle';
 import DragShadow from './drag-shadow';
 import { StyledFixedMarkerDragContainer, StyledFixedMarkerRoot } from './styled-components';
-import type { FixedMarkerPropsT, KindT } from './types';
+import type { FixedMarkerPropsT, KindT, PinHeadSizeT } from './types';
 
 type Colors = {
   color: string;
@@ -77,19 +77,23 @@ const FixedMarker = ({
 
   const renderNeedle =
     needle !== NEEDLE_SIZES.none &&
-    ![PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare].includes(size);
+    !(
+      [PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare] as PinHeadSizeT[]
+    ).includes(size);
 
   if (__DEV__) {
     if (
       needle !== NEEDLE_SIZES.none &&
-      [PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare].includes(size)
+      (
+        [PINHEAD_SIZES_SHAPES.xxSmallCircle, PINHEAD_SIZES_SHAPES.xxSmallSquare] as PinHeadSizeT[]
+      ).includes(size)
     ) {
       console.warn(
         `Needles cannot be rendered with ${PINHEAD_SIZES_SHAPES.xxSmallCircle} or ${PINHEAD_SIZES_SHAPES.xxSmallSquare} pin heads`
       );
     }
   }
-  const enhancers = {};
+  const enhancers: Pick<FixedMarkerPropsT, 'startEnhancer' | 'endEnhancer'> = {};
   if (startEnhancer) {
     enhancers.startEnhancer = startEnhancer;
   }

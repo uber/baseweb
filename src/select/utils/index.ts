@@ -25,7 +25,7 @@ export function normalizeOptions(options: OptionsT): ValueT {
     if (Array.isArray(options)) {
       return options;
     } else {
-      return groupedOptionsToArray(options);
+      return groupedOptionsToArray(options as OptgroupsT);
     }
   }
 

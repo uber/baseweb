@@ -39,11 +39,11 @@ export function useStyletron() {
   return [css, MOCK_THEME];
 }
 
-export function styled(ElementName: string | React.ComponentType<{}>, objOrFn: ObjOrFnT = {}) {
+export function styled(ElementName: string | React.ComponentType<any>, objOrFn: ObjOrFnT = {}) {
   class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
-    state = {};
+    state = {} as StateT;
 
     static getDerivedStateFromProps(props: PropsT) {
       const styleFnArg = {
@@ -88,7 +88,7 @@ export function styled(ElementName: string | React.ComponentType<{}>, objOrFn: O
     }
   }
 
-  // $FlowFixMe
+  // @ts-expect-error
   MockStyledComponent.__STYLETRON__ = {
     getInitialStyle,
     wrapper: IDENTITY,

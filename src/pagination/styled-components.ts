@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 import { styled } from '../styles/index';
 
-export const StyledRoot = styled<{}>('div', ({ $theme }) => ({
+export const StyledRoot = styled('div', ({ $theme }) => ({
   display: 'flex',
   alignItems: 'center',
   color: $theme.colors.backgroundInversePrimary,
   ...$theme.typography.font350,
 }));
 
-export const StyledMaxLabel = styled<{}>('span', ({ $theme }) => {
+export const StyledMaxLabel = styled('span', ({ $theme }) => {
   const marginStartDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   const marginEndDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
@@ -22,9 +22,12 @@ export const StyledMaxLabel = styled<{}>('span', ({ $theme }) => {
   };
 });
 
-export const StyledDropdownContainer = styled<{
-  $isFocusVisible: boolean;
-}>('div', ({ $theme, $isFocusVisible }) => {
+export const StyledDropdownContainer = styled<
+  'div',
+  {
+    $isFocusVisible: boolean;
+  }
+>('div', ({ $theme, $isFocusVisible }) => {
   const marginStartDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   const marginEndDir: string = $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
 

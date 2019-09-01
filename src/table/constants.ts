@@ -7,4 +7,4 @@ LICENSE file in the root directory of this source tree.
 export const SORT_DIRECTION = Object.freeze({
   ASC: 'ASC',
   DESC: 'DESC',
-});
+} as const);

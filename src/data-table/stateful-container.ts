@@ -43,7 +43,7 @@ function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
   return [sortIndex, sortDirection, handleSort];
 }
 
-export function StatefulContainer(props: StatefulContainerPropsT) {
+export const StatefulContainer: React.FC<StatefulContainerPropsT> = (props) => {
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters(
     props.initialSortIndex,
@@ -67,7 +67,7 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
     setFilters(new Map(filters));
   }
 
-  const [selectedRowIds, setSelectedRowIds] = React.useState(
+  const [selectedRowIds, setSelectedRowIds] = React.useState<Set<string | number>>(
     props.initialSelectedRowIds || new Set()
   );
   function handleSelectChange(next) {
@@ -129,5 +129,5 @@ export function StatefulContainer(props: StatefulContainerPropsT) {
     sortIndex,
     sortDirection,
     textQuery,
-  });
-}
+  }) as any;
+};

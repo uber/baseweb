@@ -36,15 +36,9 @@ export default class LayersManager extends React.Component<
   LayersManagerPropsT,
   LayersManagerStateT
 > {
-  host: {
-    // flowlint-next-line unclear-type:off
-    current: React.RefObject<any> | null;
-  } = React.createRef();
+  host = React.createRef<HTMLElement>();
 
-  containerRef: {
-    // flowlint-next-line unclear-type:off
-    current: React.RefObject<any> | null;
-  } = React.createRef();
+  containerRef = React.createRef<any>();
 
   constructor(props: LayersManagerPropsT) {
     super(props);

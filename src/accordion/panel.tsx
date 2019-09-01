@@ -36,7 +36,12 @@ const Panel = (
   }: PanelPropsT,
   ref
 ) => {
-  const [localState, setLocalState] = React.useState({
+  const [localState, setLocalState] = React.useState<{
+    expanded: boolean;
+    elementHeight: number | string;
+    isFocusVisible: boolean;
+    animationInProgress: boolean;
+  }>({
     expanded,
     isFocusVisible: false,
     elementHeight: 0,
@@ -101,7 +106,7 @@ const Panel = (
           expanded,
           animationInProgress: true,
         });
-      } else if (parseInt(localState.elementHeight) !== height) {
+      } else if (parseInt(localState.elementHeight as string) !== height) {
         // After the second render (where child elements were added to the Content)
         //the Content height now reflects the true height. This kicks off the actual
         //animation.

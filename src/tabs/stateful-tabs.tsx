@@ -37,7 +37,11 @@ export default class StatefulTabs extends React.Component<StatefulTabsPropsT, St
     if (initialState && initialState.activeKey) {
       return initialState.activeKey;
     } else {
-      return React.Children.map(children, (child, index) => child.key || String(index))[0];
+      return React.Children.map(
+        children,
+        // @ts-expect-error
+        (child, index) => child.key || String(index)
+      )[0];
     }
   }
 

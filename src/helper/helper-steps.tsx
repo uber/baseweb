@@ -32,7 +32,7 @@ export function HelperSteps({ index, length, onFinish, onPrev, onNext }: HelperS
         <ArrowLeft size={20} />
       </Button>
       <div className={css({ display: 'flex' })}>
-        {new Array(length).fill().map((_, i) => {
+        {new Array(length).fill(undefined).map((_, i) => {
           return (
             <div
               key={i}

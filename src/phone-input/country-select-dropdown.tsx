@@ -20,8 +20,9 @@ import { StyledEmptyState } from '../menu/styled-components';
 import { getOverrides } from '../helpers/overrides';
 import { iso2FlagEmoji } from './utils';
 
-import type { CountrySelectDropdownPropsT, ReactRefT } from './types';
+import type { CountrySelectDropdownPropsT } from './types';
 import type { LocaleT } from '../locale/types';
+import type { ComponentProps } from 'react';
 
 CountrySelectDropdown.defaultProps = {
   maxDropdownHeight: defaultProps.maxDropdownHeight,
@@ -30,7 +31,8 @@ CountrySelectDropdown.defaultProps = {
 
 function CountrySelectDropdown(
   props: CountrySelectDropdownPropsT & {
-    $forwardedRef: ReactRefT<HTMLElement> | ((a: null | HTMLElement) => unknown);
+    // todo(flow->ts) $forwardedRef: React.Ref<any>;
+    $forwardedRef: React.Ref<HTMLElement> | ((a: null | HTMLElement) => unknown);
   }
 ) {
   const {
@@ -129,8 +131,9 @@ function CountrySelectDropdown(
   );
 }
 
-const CountrySelectDropdownFwd = React.forwardRef<HTMLElement, CountrySelectDropdownPropsT>(
-  (props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />
-);
+const CountrySelectDropdownFwd = React.forwardRef<
+  HTMLElement,
+  ComponentProps<typeof CountrySelectDropdown>
+>((props, ref) => <CountrySelectDropdown {...props} $forwardedRef={ref} />);
 CountrySelectDropdownFwd.displayName = 'CountrySelectDropdownFwd';
 export default CountrySelectDropdownFwd;

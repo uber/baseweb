@@ -11,13 +11,6 @@ import type { OnChangeParamsT } from '../select/types';
 
 import type { ChangeEvent } from 'react';
 
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
 export type SizeT = keyof typeof SIZE;
 export type CountryIsoT = keyof typeof COUNTRIES;
 export type CountriesT = Readonly<CountryT>;
@@ -35,7 +28,11 @@ export type StateT = {
 
 export type StateChangeT = keyof typeof STATE_CHANGE_TYPE;
 
-export type StateReducerT = (type: StateChangeT, nextState: StateT, currentState: StateT) => StateT;
+export type StateReducerT = (
+  type: StateChangeT,
+  nextState: Partial<StateT>,
+  currentState: StateT
+) => StateT;
 
 export type mapIsoToLabelT = (iso: string) => string;
 
@@ -43,7 +40,7 @@ export type mapIsoToLabelT = (iso: string) => string;
 
 export type CountrySelectDropdownPropsT = {
   //flowlint-next-line unclear-type:off
-  children: ReadonlyArray<React.ReactElement<any>>;
+  children: Array<React.ReactElement<any>>;
   $country: CountryT;
   $mapIsoToLabel?: mapIsoToLabelT;
   $maxDropdownHeight: string;
@@ -67,7 +64,7 @@ export type CountrySelectPropsT = {
   country: CountryT;
   disabled: boolean;
   error: boolean;
-  inputRef: ReactRefT<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement>;
   onCountryChange: (event: OnChangeParamsT) => unknown;
   mapIsoToLabel?: mapIsoToLabelT;
   maxDropdownHeight: string;

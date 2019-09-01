@@ -45,7 +45,7 @@ const COLOR_STATE = {
   disabled: 'disabled',
   solid: 'solid',
   outline: 'outline',
-};
+} as const;
 
 // Probably best to bake this into the theme once we hit our next major.
 const pick = (theme, light, dark) => (theme.name && theme.name.includes('dark') ? dark : light);
@@ -254,7 +254,7 @@ const getColorStateFromProps = (props) => {
   return COLOR_STATE.outline;
 };
 
-export const Action = styled<SharedPropsArgT>(
+export const Action = styled<'span', SharedPropsArgT>(
   'span',
   (
     props: SharedPropsArgT & {
@@ -286,7 +286,7 @@ export const Action = styled<SharedPropsArgT>(
   }
 );
 
-export const StartEnhancerContainer = styled<SharedPropsArgT>(
+export const StartEnhancerContainer = styled<'div', SharedPropsArgT>(
   'div',
   ({
     $theme,
@@ -311,7 +311,7 @@ export const StartEnhancerContainer = styled<SharedPropsArgT>(
   }
 );
 
-export const Text = styled<SharedPropsArgT>(
+export const Text = styled<'span', SharedPropsArgT>(
   'span',
   (
     props: SharedPropsArgT & {
@@ -330,7 +330,7 @@ export const Text = styled<SharedPropsArgT>(
   }
 );
 
-export const Root = styled<SharedPropsArgT>(
+export const Root = styled<'span', SharedPropsArgT>(
   'span',
   (
     props: SharedPropsArgT & {

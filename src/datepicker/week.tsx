@@ -53,6 +53,7 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
             dateLabel={this.props.dateLabel}
             density={this.props.density}
             disabled={this.dateHelpers.isDayDisabled(day, this.props)}
+            // @ts-expect-error todo: excludeDates looks to be an error
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.props.highlightedDate}

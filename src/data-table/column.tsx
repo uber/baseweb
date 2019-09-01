@@ -24,8 +24,9 @@ function Column<ValueT, FilterParamsT>(
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
     minWidth: options.minWidth,
+    // todo(flow->ts) add proper type annotation
     // eslint-disable-next-line react/display-name
-    renderCell: React.forwardRef((props, ref) => {
+    renderCell: React.forwardRef((props, ref: any) => {
       const [css, theme] = useStyletron();
       const ProvidedCell = options.renderCell;
 

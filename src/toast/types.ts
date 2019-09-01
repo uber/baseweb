@@ -55,29 +55,29 @@ export type ToastPropsT = {
       This should only be used when there is no autoHideDuration
       and the toast for some reason has an action within it.
       Focusing alerts is bad for screenreaders! */
-  autoFocus: boolean;
+  autoFocus?: boolean;
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
-  autoHideDuration: number;
+  autoHideDuration?: number;
   /** Toast notification content. The children-as-function
    *  receives a dismiss method that can be called to
    * dismiss the notification and can be used as a
    * handler for an action inside the toast content. */
   children: ChildrenT | ComponentRenderPropT;
   /** When set to true a close button is displayed and the notification can be dismissed by a user. */
-  closeable: boolean;
+  closeable?: boolean;
   'data-baseweb'?: string;
-  key: React.Key;
+  key?: React.Key;
   /** Defines the type of notification. */
-  kind: KindTypeT;
-  notificationType: NotificationTypeT;
+  kind?: KindTypeT;
+  notificationType?: NotificationTypeT;
   /** A callback function called when a notification is dismissed. */
-  onBlur: (e: Event) => unknown;
-  onClose: () => unknown;
-  onFocus: (e: Event) => unknown;
-  onMouseEnter: (e: Event) => unknown;
-  onMouseLeave: (e: Event) => unknown;
-  overrides: OverridesT;
+  onBlur?: (e: React.FocusEvent) => unknown;
+  onClose?: () => unknown;
+  onFocus?: (e: React.FocusEvent) => unknown;
+  onMouseEnter?: (e: React.MouseEvent) => unknown;
+  onMouseLeave?: (e: React.MouseEvent) => unknown;
+  overrides?: OverridesT;
 };
 
 export type ToastPropsShapeT = Partial<Omit<ToastPropsT, 'children'>>;

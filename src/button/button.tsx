@@ -16,14 +16,14 @@ import { defaultProps } from './default-props';
 import { getOverrides } from '../helpers/overrides';
 import { isFocusVisible, forkFocus, forkBlur } from '../utils/focusVisible';
 
-import type { ButtonPropsT, SharedStylePropsT, ReactRefT } from './types';
+import type { ButtonPropsT, SharedStylePropsT } from './types';
 
-import type { SyntheticEvent } from 'react';
+import type { SyntheticEvent, ComponentProps } from 'react';
 
 class Button extends React.Component<
   ButtonPropsT & {
-    forwardedRef: ReactRefT<HTMLElement>;
-  },
+    forwardedRef: React.Ref<HTMLElement>;
+  } & Omit<ComponentProps<'button'>, keyof ButtonPropsT | 'ref'>,
   {
     isFocusVisible: boolean;
   }
@@ -37,6 +37,7 @@ class Button extends React.Component<
       args[0].preventDefault();
       return;
     }
+    // @ts-expect-error
     onClick && onClick(...args);
   };
 
@@ -128,8 +129,9 @@ class Button extends React.Component<
   }
 }
 
-const ForwardedButton = React.forwardRef<HTMLButtonElement, ButtonPropsT>( //$FlowFixMe
-  (props: ButtonPropsT, ref) => <Button forwardedRef={ref} {...props} />
-);
+const ForwardedButton = React.forwardRef<
+  HTMLElement,
+  Omit<ComponentProps<typeof Button>, 'forwardedRef'>
+>((props, ref) => <Button forwardedRef={ref} {...props} />);
 ForwardedButton.displayName = 'Button';
 export default ForwardedButton;

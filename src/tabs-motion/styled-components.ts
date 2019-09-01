@@ -12,9 +12,12 @@ import { isHorizontal, isVertical, isRTL, isIntrinsic, isFixed } from './utils';
 import type { StyleObject } from 'styletron-standard';
 import type { OrientationT, FillT } from './types';
 
-export const StyledRoot = styled<{
-  $orientation?: OrientationT;
-}>('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
+export const StyledRoot = styled<
+  'div',
+  {
+    $orientation?: OrientationT;
+  }
+>('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
     // Creates a stacking context so we can use z-index on the TabHighlight
     // without affecting anything outside of this element.
@@ -26,10 +29,13 @@ export const StyledRoot = styled<{
   return style;
 });
 
-export const StyledTabList = styled<{
-  $orientation?: OrientationT;
-  $fill?: FillT;
-}>('div', ({ $theme, $fill = FILL.intrinsic, $orientation = ORIENTATION.horizontal }) => {
+export const StyledTabList = styled<
+  'div',
+  {
+    $orientation?: OrientationT;
+    $fill?: FillT;
+  }
+>('div', ({ $theme, $fill = FILL.intrinsic, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
     position: 'relative',
     display: 'flex',
@@ -63,12 +69,15 @@ export const StyledTabList = styled<{
   return style;
 });
 
-export const StyledTab = styled<{
-  $orientation?: OrientationT;
-  $fill?: FillT;
-  $focusVisible?: boolean;
-  $isActive?: boolean;
-}>(
+export const StyledTab = styled<
+  'button',
+  {
+    $orientation?: OrientationT;
+    $fill?: FillT;
+    $focusVisible?: boolean;
+    $isActive?: boolean;
+  }
+>(
   'button',
   ({
     $theme,
@@ -134,9 +143,12 @@ export const StyledTab = styled<{
   }
 );
 
-export const StyledArtworkContainer = styled<{
-  $orientation?: OrientationT;
-}>('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
+export const StyledArtworkContainer = styled<
+  'div',
+  {
+    $orientation?: OrientationT;
+  }
+>('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
     display: 'flex',
   };
@@ -148,9 +160,12 @@ export const StyledArtworkContainer = styled<{
   return style;
 });
 
-export const StyledTabBorder = styled<{
-  $orientation?: OrientationT;
-}>('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
+export const StyledTabBorder = styled<
+  'div',
+  {
+    $orientation?: OrientationT;
+  }
+>('div', ({ $theme, $orientation = ORIENTATION.horizontal }) => {
   const style: StyleObject = {
     backgroundColor: $theme.colors.borderOpaque,
     position: 'relative',
@@ -163,12 +178,15 @@ export const StyledTabBorder = styled<{
   return style;
 });
 
-export const StyledTabHighlight = styled<{
-  $orientation?: OrientationT;
-  $length?: number;
-  $distance?: number;
-  $animate?: boolean;
-}>(
+export const StyledTabHighlight = styled<
+  'div',
+  {
+    $orientation?: OrientationT;
+    $length?: number;
+    $distance?: number;
+    $animate?: boolean;
+  }
+>(
   'div',
   ({
     $theme,
@@ -207,9 +225,12 @@ export const StyledTabHighlight = styled<{
   }
 );
 
-export const StyledTabPanel = styled<{
-  $pad: boolean;
-}>('div', ({ $theme, $pad = true }) => {
+export const StyledTabPanel = styled<
+  'div',
+  {
+    $pad: boolean;
+  }
+>('div', ({ $theme, $pad = true }) => {
   const style: StyleObject = {
     flexGrow: 1, // only used in vertical orientation
     outline: 'none',

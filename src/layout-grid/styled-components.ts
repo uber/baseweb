@@ -14,7 +14,7 @@ import type {
   StyledCellPropsT,
 } from './types';
 
-export const StyledGridWrapper = styled<StyledGridWrapperPropsT>(
+export const StyledGridWrapper = styled<'div', StyledGridWrapperPropsT>(
   'div',
   ({
     $theme,
@@ -31,7 +31,7 @@ export const StyledGridWrapper = styled<StyledGridWrapperPropsT>(
   })
 );
 
-export const StyledGrid = styled<StyledGridPropsT>(
+export const StyledGrid = styled<'div', StyledGridPropsT>(
   'div',
   ({
     $theme,
@@ -77,7 +77,7 @@ export const StyledGrid = styled<StyledGridPropsT>(
   }
 );
 
-export const StyledCell = styled<StyledCellPropsT>(
+export const StyledCell = styled<'div', StyledCellPropsT>(
   'div',
   ({
     $theme,

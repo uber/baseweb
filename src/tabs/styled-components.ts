@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 import { styled } from '../styles/index';
 import { ORIENTATION } from './constants';
 import type { SharedStylePropsArgT } from './types';
+import type { StyleObject } from 'styletron-standard';
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Root = styled<SharedStylePropsArgT>('div', (props) => {
+export const Root = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const { $orientation } = props;
   return {
     display: 'flex',
@@ -18,7 +19,7 @@ export const Root = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const Tab = styled<SharedStylePropsArgT>('div', (props) => {
+export const Tab = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const {
     $disabled,
     $active,
@@ -26,7 +27,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', (props) => {
     $isFocusVisible,
     $theme: { colors, sizing, typography },
   } = props;
-  let style = {
+  let style: StyleObject = {
     ...typography.font200,
     boxSizing: 'border-box',
     color: $active ? colors.contentPrimary : colors.tabColor,
@@ -60,7 +61,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const TabBar = styled<SharedStylePropsArgT>('div', (props) => {
+export const TabBar = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const {
     $orientation,
     $theme: { colors, sizing },
@@ -75,7 +76,7 @@ export const TabBar = styled<SharedStylePropsArgT>('div', (props) => {
 });
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const TabContent = styled<SharedStylePropsArgT>('div', (props) => {
+export const TabContent = styled<'div', SharedStylePropsArgT>('div', (props) => {
   const {
     $active,
     $theme: { sizing, typography },

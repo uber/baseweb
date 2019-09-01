@@ -1,4 +1,4 @@
-import type { SyntheticEvent } from 'react';
+import * as React from 'react';
 /*
 Copyright (c) Uber Technologies, Inc.
 
@@ -155,9 +155,9 @@ export const forkFocus =
   (
     // flowlint-next-line unclear-type:off
     rootProps: any,
-    handler: (e: SyntheticEvent) => void
+    handler: (e: React.FocusEvent) => void
   ) =>
-  (e: SyntheticEvent) => {
+  (e: React.FocusEvent) => {
     if (typeof rootProps.onFocus === 'function') {
       rootProps.onFocus(e);
     }
@@ -168,9 +168,9 @@ export const forkBlur =
   (
     // flowlint-next-line unclear-type:off
     rootProps: any,
-    handler: (e: SyntheticEvent) => void
+    handler: (e: React.FocusEvent) => void
   ) =>
-  (e: SyntheticEvent) => {
+  (e: React.FocusEvent) => {
     if (typeof rootProps.onBlur === 'function') {
       rootProps.onBlur(e);
     }

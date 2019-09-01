@@ -12,9 +12,12 @@ export const StyledRoot = styled('div', {});
 
 export const StyledInputContainer = styled('div', {});
 
-export const StyledListBox = styled<{
-  $width: string;
-}>('ul', ({ $theme, $width }) => {
+export const StyledListBox = styled<
+  'ul',
+  {
+    $width: string;
+  }
+>('ul', ({ $theme, $width }) => {
   return {
     backgroundColor: $theme.colors.backgroundPrimary,
     marginBlockStart: 'unset',
@@ -69,10 +72,13 @@ function buildStylesForSize(
   }
 }
 
-export const StyledListItem = styled<{
-  $isSelected: boolean;
-  $size: keyof typeof SIZE;
-}>('li', ({ $isSelected, $theme, $size }) => {
+export const StyledListItem = styled<
+  'li',
+  {
+    $isSelected: boolean;
+    $size: keyof typeof SIZE;
+  }
+>('li', ({ $isSelected, $theme, $size }) => {
   return {
     ...buildStylesForSize($size, $theme),
     alignItems: 'center',

@@ -15,7 +15,7 @@ import type {
 import { artworkSizeToValue } from './utils';
 import { SHAPE } from './constants';
 
-export const StyledRoot = styled<StyledRootPropsT>('li', ({ $theme, $shape }) => {
+export const StyledRoot = styled<'li', StyledRootPropsT>('li', ({ $theme, $shape }) => {
   return {
     alignItems: 'center',
     backgroundColor: $theme.colors.backgroundPrimary,
@@ -30,35 +30,38 @@ export const StyledRoot = styled<StyledRootPropsT>('li', ({ $theme, $shape }) =>
   };
 });
 
-export const StyledContent = styled<StyledContentPropsT>('div', ({ $mLeft, $sublist, $theme }) => {
-  return {
-    ...expandBorderStyles($theme.borders.border100),
-    alignItems: 'center',
-    borderTopStyle: 'none',
-    borderRightStyle: 'none',
-    borderLeftStyle: 'none',
-    display: 'flex',
-    flexGrow: 1,
-    minHeight: $sublist ? 'initial' : $theme.sizing.scale1600,
-    justifyContent: 'space-between',
-    ...($theme.direction === 'rtl'
-      ? {
-          paddingLeft: $theme.sizing.scale600,
-          marginRight: $mLeft ? $theme.sizing.scale600 : null,
-        }
-      : {
-          paddingRight: $theme.sizing.scale600,
-          marginLeft: $mLeft ? $theme.sizing.scale600 : null,
-        }),
-  };
-});
+export const StyledContent = styled<'div', StyledContentPropsT>(
+  'div',
+  ({ $mLeft, $sublist, $theme }) => {
+    return {
+      ...expandBorderStyles($theme.borders.border100),
+      alignItems: 'center',
+      borderTopStyle: 'none',
+      borderRightStyle: 'none',
+      borderLeftStyle: 'none',
+      display: 'flex',
+      flexGrow: 1,
+      minHeight: $sublist ? 'initial' : $theme.sizing.scale1600,
+      justifyContent: 'space-between',
+      ...($theme.direction === 'rtl'
+        ? {
+            paddingLeft: $theme.sizing.scale600,
+            marginRight: $mLeft ? $theme.sizing.scale600 : null,
+          }
+        : {
+            paddingRight: $theme.sizing.scale600,
+            marginLeft: $mLeft ? $theme.sizing.scale600 : null,
+          }),
+    };
+  }
+);
 
 export const StyledEndEnhancerContainer = styled('div', {
   alignItems: 'center',
   display: 'flex',
 });
 
-export const StyledArtworkContainer = styled<StyledArtworkContainerPropsT>(
+export const StyledArtworkContainer = styled<'div', StyledArtworkContainerPropsT>(
   'div',
   ({ $artworkSize, $sublist, $theme }) => {
     let sizeValue: number =
@@ -84,7 +87,7 @@ export const StyledArtworkContainer = styled<StyledArtworkContainerPropsT>(
   }
 );
 
-export const StyledLabelContent = styled<{}>('p', ({ $theme }) => {
+export const StyledLabelContent = styled('p', ({ $theme }) => {
   return {
     ...$theme.typography.LabelMedium,
     color: $theme.colors.contentPrimary,
@@ -93,7 +96,7 @@ export const StyledLabelContent = styled<{}>('p', ({ $theme }) => {
   };
 });
 
-export const StyledLabelDescription = styled<{}>('p', ({ $theme }) => {
+export const StyledLabelDescription = styled('p', ({ $theme }) => {
   return {
     ...$theme.typography.ParagraphSmall,
     color: $theme.colors.contentPrimary,
@@ -102,7 +105,7 @@ export const StyledLabelDescription = styled<{}>('p', ({ $theme }) => {
   };
 });
 
-export const StyledLabelSublistContent = styled<{}>('p', ({ $theme }) => {
+export const StyledLabelSublistContent = styled('p', ({ $theme }) => {
   return {
     ...$theme.typography.LabelMedium,
     color: $theme.colors.contentPrimary,
@@ -111,7 +114,7 @@ export const StyledLabelSublistContent = styled<{}>('p', ({ $theme }) => {
   };
 });
 
-export const StyledHeadingRoot = styled<StyledRootPropsT>('div', ({ $theme }) => {
+export const StyledHeadingRoot = styled<'div', StyledRootPropsT>('div', ({ $theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -122,7 +125,7 @@ export const StyledHeadingRoot = styled<StyledRootPropsT>('div', ({ $theme }) =>
   };
 });
 
-export const StyledHeadingContent = styled<{}>('div', ({ $theme }) => {
+export const StyledHeadingContent = styled('div', ({ $theme }) => {
   return {
     flexGrow: 1,
     width: '100%',
@@ -147,7 +150,7 @@ export const StyledHeadingContentRow = styled('div', {
   width: '100%',
 });
 
-export const StyledHeadingMainHeading = styled<StyledHeadingHeadingPropsT>(
+export const StyledHeadingMainHeading = styled<'p', StyledHeadingHeadingPropsT>(
   'p', // $FlowFixMe - suppressing due to webkit properties
   ({ $maxLines = 1, $theme }) => {
     return {
@@ -164,7 +167,7 @@ export const StyledHeadingMainHeading = styled<StyledHeadingHeadingPropsT>(
   }
 );
 
-export const StyledHeadingSubHeading = styled<StyledHeadingHeadingPropsT>(
+export const StyledHeadingSubHeading = styled<'p', StyledHeadingHeadingPropsT>(
   'p', // $FlowFixMe - suppressing due to webkit properties
   ({ $maxLines = 1, $theme }) => {
     return {
@@ -181,9 +184,12 @@ export const StyledHeadingSubHeading = styled<StyledHeadingHeadingPropsT>(
   }
 );
 
-export const StyledHeadingEndEnhancerContainer = styled<{
-  $isText: boolean;
-}>('div', ({ $isText, $theme }) => ({
+export const StyledHeadingEndEnhancerContainer = styled<
+  'div',
+  {
+    $isText: boolean;
+  }
+>('div', ({ $isText, $theme }) => ({
   ...$theme.typography.LabelMedium,
   display: 'flex',
   alignItems: $isText ? 'flex-end' : 'center',
@@ -192,7 +198,7 @@ export const StyledHeadingEndEnhancerContainer = styled<{
   textOverflow: 'ellipsis',
 }));
 
-export const StyledHeadingEndEnhancerDescriptionContainer = styled<{}>('p', ({ $theme }) => ({
+export const StyledHeadingEndEnhancerDescriptionContainer = styled('p', ({ $theme }) => ({
   ...$theme.typography.ParagraphMedium,
   marginTop: 0,
   marginBottom: 0,

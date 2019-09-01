@@ -16,7 +16,7 @@ import type { TimezonePickerPropsT, TimezonePickerStateT, TimezoneT } from './ty
 import { zones } from './tzdata';
 
 class TimezonePicker extends React.Component<TimezonePickerPropsT, TimezonePickerStateT> {
-  state = { timezones: [], value: null };
+  state = { timezones: [], value: null } as TimezonePickerStateT;
 
   componentDidMount() {
     const timezones = this.buildTimezones(this.props.date || new Date());

@@ -10,8 +10,9 @@ import { styled, withStyle } from '../styles/index';
 
 import { PLACEMENT } from './constants';
 import type { PlacementT } from './types';
+import type { StyleObject } from 'styletron-standard';
 
-export const StyledRoot = styled<{}>('div', ({ $theme }) => {
+export const StyledRoot = styled('div', ({ $theme }) => {
   return {
     backgroundColor: $theme.colors.backgroundInverseSecondary,
     borderTopLeftRadius: $theme.borders.radius400,
@@ -32,7 +33,7 @@ export const StyledContent = styled('div', {
   width: '100%',
 });
 
-export const StyledStartEnhancerContainer = styled<{}>('span', ({ $theme }) => {
+export const StyledStartEnhancerContainer = styled('span', ({ $theme }) => {
   const paddingDir: string = $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   return {
     alignItems: 'center',
@@ -55,9 +56,12 @@ export const StyledSpinner = withStyle<
   };
 });
 
-export const StyledMessage = styled<{
-  $hasSuffix: boolean;
-}>(
+export const StyledMessage = styled<
+  'p',
+  {
+    $hasSuffix: boolean;
+  }
+>(
   'p', //$FlowExpectedError[incompatible-shape]
   ({ $theme, $hasSuffix }) => {
     const prefixPadding: string = $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
@@ -81,14 +85,14 @@ export const StyledWrapActionButtonContainer = styled('div', {
   justifyContent: 'flex-end',
 });
 
-export const StyledActionButtonContainer = styled<{}>('div', ({ $theme }) => {
+export const StyledActionButtonContainer = styled('div', ({ $theme }) => {
   const marginDir: string = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     [marginDir]: 'auto',
   };
 });
 
-function placementRules(placement) {
+function placementRules(placement): StyleObject {
   switch (placement) {
     case PLACEMENT.topLeft:
       return {
@@ -130,11 +134,14 @@ function placementRules(placement) {
   }
 }
 
-export const StyledPlacementContainer = styled<{
-  $animating: boolean;
-  $placement: PlacementT;
-  $translateHeight: number;
-}>('div', ({ $animating, $placement, $translateHeight, $theme }) => {
+export const StyledPlacementContainer = styled<
+  'div',
+  {
+    $animating: boolean;
+    $placement: PlacementT;
+    $translateHeight: number;
+  }
+>('div', ({ $animating, $placement, $translateHeight, $theme }) => {
   return {
     ...placementRules($placement),
     display: 'flex',

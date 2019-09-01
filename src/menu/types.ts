@@ -63,16 +63,16 @@ export type RenderItemPropsT = {
   isFocused?: boolean;
   // indicates when the item is visually focused
   isHighlighted?: boolean;
-  onClick?: (event: MouseEvent<HTMLElement>) => unknown;
-  onMouseEnter?: (event: MouseEvent<HTMLElement>) => unknown;
-  resetMenu?: () => unknown;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
+  resetMenu?: () => void;
 };
 
-export type GetRequiredItemPropsFnT = (item: ItemT, index: number) => Partial<RenderItemPropsT>;
+export type GetRequiredItemPropsFnT = (item: ItemT, index: number) => RenderItemPropsT;
 
 export type StateReducerFnT = (
   changeType: keyof typeof STATE_CHANGE_TYPES | undefined | null,
-  changes: StatefulContainerStateT,
+  changes: Partial<StatefulContainerStateT>,
   currentState: StatefulContainerStateT
 ) => StatefulContainerStateT;
 

@@ -18,12 +18,12 @@ export type SizeT = keyof typeof SIZE;
 
 export type SharedStylePropsT = {
   $adjoined: keyof typeof ADJOINED;
-  $disabled: boolean;
-  $error: boolean;
-  $isFocused: boolean;
-  $isReadOnly: boolean;
+  $disabled?: boolean;
+  $error?: boolean;
+  $isFocused?: boolean;
+  $isReadOnly?: boolean;
   $positive?: boolean;
-  $required: boolean;
+  $required?: boolean;
   $size: SizeT;
 };
 

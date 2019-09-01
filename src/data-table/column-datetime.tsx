@@ -37,6 +37,7 @@ import { COLUMNS, DATETIME_OPERATIONS } from './constants';
 import FilterShell from './filter-shell';
 import type { ColumnT, SharedColumnOptionsT } from './types';
 import { LocaleContext } from '../locale/index';
+import type { ComponentProps } from 'react';
 
 type OptionsT = {
   formatString?: string;

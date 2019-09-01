@@ -21,7 +21,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     readOnly: false,
   };
 
-  state = { isFocusVisible: false, previewIndex: undefined };
+  state = { isFocusVisible: false, previewIndex: undefined } as RatingStateT;
 
   selectItem = (value: number) => {
     const { onChange } = this.props;

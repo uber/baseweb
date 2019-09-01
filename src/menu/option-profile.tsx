@@ -64,6 +64,7 @@ function OptionProfile(props: OptionProfilePropsT, ref: React.RefObject<any>) {
 
   return (
     <MaybeChildMenu
+      // @ts-expect-error todo(flow->ts)
       ref={ref}
       getChildMenu={getChildMenu}
       isOpen={!!$isHighlighted}

@@ -13,13 +13,6 @@ import type { SyntheticEvent, ChangeEvent, FocusEvent, KeyboardEvent } from 'rea
 export type AdjoinedT = keyof typeof ADJOINED;
 export type SizeT = keyof typeof SIZE;
 export type StateTypeT = keyof typeof STATE_CHANGE_TYPE;
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
 
 export type InternalStateT = {
   /** Renders UI in 'focus' state */
@@ -44,24 +37,24 @@ export type StateReducerT = (
 
 export type SharedPropsT = {
   /** Renders UI in 'focus' state */
-  $isFocused: boolean;
+  $isFocused?: boolean;
   /** Renders UI in 'readOnly' state */
-  $isReadOnly: boolean;
+  $isReadOnly?: boolean;
   /** Renders UI in 'disabled' state */
-  $disabled: boolean;
+  $disabled?: boolean;
   /** Renders UI in 'error' state */
-  $error: boolean;
+  $error?: boolean;
   /** Renders UI in 'positive' state */
-  $positive: boolean;
+  $positive?: boolean;
   /** Defines styles for inputs that are grouped with other controls. */
   $adjoined: AdjoinedT;
   /** Renders UI in provided size. */
   $size: SizeT;
   /** Renders UI in 'required' state */
-  $required: boolean;
-  $position: keyof typeof ENHANCER_POSITION;
+  $required?: boolean;
+  $position?: keyof typeof ENHANCER_POSITION;
   /** Defines if has a clearable or MaskToggleButton at the end */
-  $hasIconTrailing: boolean;
+  $hasIconTrailing?: boolean;
 };
 
 export type BaseInputComponentsT = {
@@ -101,9 +94,9 @@ export type BaseInputPropsT<T> = {
   /** Determines if browser should provide value suggestions. */
   autoComplete?: string;
   /** If true the input will be focused on the first mount. */
-  autoFocus: boolean;
+  autoFocus?: boolean;
   /** Renders component in 'disabled' state. */
-  disabled: boolean;
+  disabled?: boolean;
   /** Renders component in 'error' state. */
   error?: boolean;
   /** Renders component in 'positive' state. */
@@ -116,28 +109,28 @@ export type BaseInputPropsT<T> = {
   /** A  hint as to the type of data that might be entered by the user while editing the element or its contents. */
   inputMode?: string;
   /** A ref to access an input element. */
-  inputRef?: ReactRefT<T>;
-  name: string;
-  onBlur: (e: FocusEvent<T>) => unknown;
-  onChange?: (e: ChangeEvent<T>) => unknown;
-  onKeyDown?: (e: KeyboardEvent<T>) => unknown;
-  onKeyPress?: (e: KeyboardEvent<T>) => unknown;
-  onKeyUp?: (e: KeyboardEvent<T>) => unknown;
-  onFocus: (e: FocusEvent<T>) => unknown;
+  inputRef?: React.RefObject<T>;
+  name?: string;
+  onBlur?: (e: FocusEvent<T>) => void;
+  onChange?: (e: ChangeEvent<T>) => void;
+  onKeyDown?: (e: KeyboardEvent<T>) => void;
+  onKeyPress?: (e: KeyboardEvent<T>) => void;
+  onKeyUp?: (e: KeyboardEvent<T>) => void;
+  onFocus?: (e: FocusEvent<T>) => void;
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
   /** If undefined or true, clears the input when the Escape button is pressed with the input focused. True by default. */
   clearOnEscape?: boolean;
   maxLength?: number;
-  onClear?: (e: SyntheticEvent<T>) => unknown;
-  overrides: BaseInputComponentsT;
+  onClear?: (e: SyntheticEvent<T>) => void;
+  overrides?: BaseInputComponentsT;
   placeholder?: string;
   /** Renders component in 'required' state. */
-  required: boolean;
+  required?: boolean;
   /** Input role attribute. */
   role?: string;
   /** Renders component in provided size. */
-  size: SizeT;
+  size?: SizeT;
   /** Input type attribute. */
   type?: string;
   /** Input value attribute. */
@@ -154,16 +147,16 @@ export type BaseInputPropsT<T> = {
 };
 
 export type InputPropsT = {
-  overrides: InputComponentsT;
+  overrides?: InputComponentsT;
   /** An input helper rendered before and attached to the input field. */
-  startEnhancer: React.ReactNode | ((props: SharedPropsT) => React.ReactNode) | undefined | null;
+  startEnhancer?: React.ReactNode | ((props: SharedPropsT) => React.ReactNode);
   /** An input helper rendered after and attached to the input field. */
-  endEnhancer: React.ReactNode | ((props: SharedPropsT) => React.ReactNode) | undefined | null;
+  endEnhancer?: React.ReactNode | ((props: SharedPropsT) => React.ReactNode);
   /** Handler for the `focus` event. */
-  onFocus: (e: FocusEvent<HTMLInputElement>) => unknown;
+  onFocus?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   /** Handler for the `blur` event. */
-  onBlur: (e: FocusEvent<HTMLInputElement>) => unknown;
-} & BaseInputPropsT<HTMLInputElement>;
+  onBlur?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+} & BaseInputPropsT<HTMLInputElement | HTMLTextAreaElement>;
 
 export type MaskedInputPropsT = Partial<
   {
@@ -175,7 +168,7 @@ export type MaskedInputPropsT = Partial<
 >;
 
 export type StatefulContainerChildrenPropsT<T> = {
-  onChange: (e: ChangeEvent<T>) => unknown;
+  onChange: (e: ChangeEvent<T>) => void;
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
 } & StatefulInputPropsT;
@@ -185,11 +178,13 @@ export type StatefulContainerPropsT<T> = {
   /** Initial state of an uncontrolled input component. */
   initialState?: StateT;
   /** A state change handler. Used to override default state transitions. */
-  stateReducer: StateReducerT;
-  onChange: (e: ChangeEvent<T>) => unknown;
+  stateReducer?: StateReducerT;
+  onChange?: (e: ChangeEvent<T>) => void;
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean;
-} & StatefulInputPropsT;
+} & {
+  overrides?: InputComponentsT;
+} & Omit<InputPropsT, 'overrides' | 'children'>;
 
 type OmitPropsT = {
   overrides: InputComponentsT;
@@ -199,9 +194,9 @@ type OmitPropsT = {
     | null;
 };
 
-type FullStPropsT = InputPropsT & StatefulContainerPropsT<HTMLInputElement>;
+type FullStPropsT = InputPropsT & StatefulContainerPropsT<HTMLInputElement | HTMLTextAreaElement>;
 
-export type StInputPropsDiffT = Omit<FullStPropsT, keyof OmitPropsT>;
+export type StInputPropsDiffT = Omit<FullStPropsT, 'overrides' | 'children'>;
 
 export type StatefulInputPropsT = {
   overrides?: InputComponentsT;

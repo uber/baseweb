@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 // in the next v11 major version in favor of `CountryPicker`.
 // The `DialCode` rendering should be a part of the composed
 // non-split phone input.
-import React from 'react';
+import * as React from 'react';
 import { StyledDialCode, StyledCountrySelectContainer } from './styled-components';
 import BaseCountryPicker from './base-country-picker';
 import { SingleSelect as DefaultSelect } from '../select/index';

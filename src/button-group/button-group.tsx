@@ -27,8 +27,7 @@ function isIndexSelected(selected, index) {
 }
 
 export default class ButtonGroup extends React.Component<PropsT> {
-  childRefs: // flowlint-next-line unclear-type:off
-  {
+  childRefs: {
     [key: number]: React.RefObject<any>;
   } = {};
   static defaultProps = {

@@ -64,10 +64,10 @@ function getFontValue(obj, key) {
   return obj[key];
 }
 
-export const StyledBlock = styled<StyledBlockPropsT>('div', (props) => {
+export const StyledBlock = styled<'div', StyledBlockPropsT>('div', (props) => {
   const { breakpoints, colors, typography, sizing } = props.$theme;
 
-  const get = (obj, key) => obj[key];
+  const get = <O extends object, K extends keyof O>(obj: O, key: K) => obj[key];
   const getScale = (size) => sizing[size] || size;
 
   const styles = build(breakpoints);

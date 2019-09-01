@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 import * as React from 'react';
 import { Button } from '../button/index';
-import type { ButtonPropsT } from '../button/types';
 import { mergeOverrides } from '../helpers/overrides';
+import type { ComponentProps } from 'react';
 
 // ModalButtons should have some margin pre-applied
 const overrides = {
@@ -23,7 +23,7 @@ const overrides = {
   },
 };
 
-const ModalButton = React.forwardRef<HTMLElement, ButtonPropsT>((props, ref) => (
+const ModalButton = React.forwardRef<HTMLElement, ComponentProps<typeof Button>>((props, ref) => (
   //$FlowExpectedError[cannot-spread-inexact]
   <Button ref={ref} {...props} overrides={mergeOverrides(overrides, props.overrides)} />
 ));

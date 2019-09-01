@@ -9,10 +9,10 @@ export { SIZE } from '../input/index';
 export const TYPE = {
   select: 'select',
   search: 'search',
-};
+} as const;
 
 export const STATE_CHANGE_TYPE = Object.freeze({
   select: 'select',
   remove: 'remove',
   clear: 'clear',
-});
+} as const);

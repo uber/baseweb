@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-export default function FlagIR(props: unknown) {
+export default function FlagIR(props: React.ComponentProps<'img'>) {
   return (
     <img
       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAAtBAMAAADrb658AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAqUExURdoNGfz8/DW1Ui+oSvT09N0WIe6Nkut5gJXQo4TJlJbRo+BCS/HBw/G8v10P3zsAAAEWSURBVDjL1Y2xTsMwEIb/oc6GFEveYKjIC0TxAhuWTBYWLy4zC7xA+g7lUdgYsvXluP/SRKKoVocKwZfz3e+7/xzcllnjXxi6Mi2ahtU3J2jhOy80/gRrzONuNjUUHStbLXyZcwz3H6UQw92uFHzhvRQtbJn69w2DtS/HBmeDs8xy+it7Uy13K6qGC06IzMFdj9thH21QYpRTI8QQHW9OyuOA1ZYyckk+9wBJQaXM49OI1V5uXNC1IAZFeix9harSF7hEZsPMJzB+axwb+rSJRcMPLmHIz2+lSMib11KkM14ocylDytnkg9DMm1GRYJCQDKFIyTBJMVkFYMxhOhWVnGPqYCZNklm3xEWhrWVGwR8tawl/gy9otgdg5P49YQAAAABJRU5ErkJggg=="

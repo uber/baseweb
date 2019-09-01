@@ -126,7 +126,7 @@ describe('styled flow', () => {
       hello: string;
     };
 
-    const a = styled<P>('div', (props) => {
+    const a = styled<'div', P>('div', (props) => {
       console.log(props.hello);
       // $FlowFixMe
       console.log(props.world);
@@ -135,7 +135,7 @@ describe('styled flow', () => {
   });
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
-    const a = styled<{}>('div', (props) => {
+    const a = styled('div', (props) => {
       console.log(props.$theme.colors.primary400);
       // $FlowFixMe
       console.log(props.$theme.colors.primary9000);
@@ -144,8 +144,7 @@ describe('styled flow', () => {
   });
 
   test('it provides flow error if returning invalid style object', () => {
-    // $FlowFixMe
-    const a = styled<{}>('div', (props) => {
+    const a = styled('div', (props) => {
       return { invalid: 'true' };
     });
   });
@@ -214,7 +213,7 @@ describe('withStyle flow', () => {
       hello: string;
     };
 
-    const a = styled<P>('div', (props) => {
+    const a = styled<'div', P>('div', (props) => {
       return { color: 'blue' };
     });
 
@@ -231,7 +230,7 @@ describe('withStyle flow', () => {
   });
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
-    const a = styled<{}>('div', (props) => {
+    const a = styled('div', (props) => {
       console.log(props.$theme.colors.primary400);
       // $FlowFixMe
       console.log(props.$theme.colors.primary9000);
@@ -247,7 +246,7 @@ describe('withStyle flow', () => {
   });
 
   test('it provides flow error if returning invalid style object', () => {
-    const a = styled<{}>('div', (props) => {
+    const a = styled('div', (props) => {
       return { color: 'red' };
     });
     // $FlowFixMe
@@ -379,7 +378,7 @@ describe('themedUseStyletron flow', () => {
 
 describe('longhand border properties', () => {
   test('it accepts border style from theme in longhand property', () => {
-    const ProperBorderStyleType = styled<{}>('div', ({ $theme }) => {
+    const ProperBorderStyleType = styled('div', ({ $theme }) => {
       return {
         borderTopWidth: $theme.borders.border100.borderWidth,
         borderTopStyle: $theme.borders.border100.borderStyle,
@@ -388,7 +387,7 @@ describe('longhand border properties', () => {
     });
 
     // $FlowFixMe
-    const StringBorderStyleType = styled<{}>('div', ({ $theme }) => {
+    const StringBorderStyleType = styled('div', ({ $theme }) => {
       return {
         borderTopWidth: $theme.borders.border100.borderWidth,
         borderTopStyle: 'hello world',

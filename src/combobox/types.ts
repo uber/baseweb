@@ -11,14 +11,6 @@ import { SIZE } from '../input/index';
 
 import type { ChangeEvent } from 'react';
 
-export type ReactRefT<T> =
-  | {
-      current: null | T;
-    }
-  | {
-      current: null | T;
-    };
-
 export type PropsT<OptionT = unknown> = {
   // Controls if the input value will be updated while keyboard navigating. Defaults to true.
   autocomplete?: boolean;
@@ -39,7 +31,8 @@ export type PropsT<OptionT = unknown> = {
   id?: string;
   name?: string;
   // A ref to access the inner Input component.
-  inputRef?: ReactRefT<HTMLElement>;
+  // todo(flow->ts)  <any>
+  inputRef?: React.Ref<HTMLElement>;
   // Called when input loses focus.
   onBlur?: (a: ChangeEvent<HTMLInputElement>) => unknown;
   // Called when input value changes or option is selected. If user selects a

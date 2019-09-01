@@ -67,7 +67,7 @@ async function generateNewIcons() {
   svgs.forEach(async (svgFilename) => {
     const svgFile = svgFilename.split('.')[0];
     const componentName = pascalCase(svgFile);
-    iconExports.push(`export {default as ${componentName}} from './${svgFile}.js';`);
+    iconExports.push(`export {default as ${componentName}} from './${svgFile}';`);
 
     const svgFileContents = fs.readFileSync(
       path.resolve(__dirname, `./svg/${svgFilename}`),

@@ -4,7 +4,7 @@ Copyright (c) Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import React, { useState } from 'react';
+import React, { ComponentProps, useState } from 'react';
 
 import {
   StyledRoot,
@@ -34,14 +34,16 @@ CountryPicker.defaultProps = {
   required: defaultProps.required,
 };
 
-const DropdownListItem = React.forwardRef((props, ref) => {
-  const { children, ...rest } = props;
-  return (
-    <DefaultListItem ref={ref} {...rest}>
-      {props.children}
-    </DefaultListItem>
-  );
-});
+const DropdownListItem = React.forwardRef<HTMLLIElement, ComponentProps<typeof DefaultListItem>>(
+  (props, ref) => {
+    const { children, ...rest } = props;
+    return (
+      <DefaultListItem ref={ref} {...rest}>
+        {props.children}
+      </DefaultListItem>
+    );
+  }
+);
 DropdownListItem.displayName = 'DropdownListItem';
 
 function DropdownOptionContent(props) {

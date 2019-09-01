@@ -49,7 +49,7 @@ function format(value: number, options) {
   if (typeof options.format === 'function') {
     return options.format(value);
   }
-  let formatted = value.toString();
+  let formatted: string | number = value.toString();
   switch (options.format) {
     case NUMERICAL_FORMATS.ACCOUNTING: {
       const abs = Math.abs(value);
@@ -78,14 +78,23 @@ function validateInput(input) {
 
 const bisect = bisector((d) => d.x0);
 
-const Histogram = React.memo(function Histogram({
+type HistogramProps = {
+  data;
+  lower: number;
+  upper: number;
+  isRange: boolean;
+  exclude;
+  precision;
+};
+
+const Histogram = React.memo<any>(function Histogram({
   data,
   lower,
   upper,
   isRange,
   exclude,
   precision,
-}) {
+}: HistogramProps) {
   const [css, theme] = useStyletron();
 
   const { bins, xScale, yScale } = React.useMemo(() => {
@@ -261,7 +270,9 @@ function NumericalFilter(props) {
       excludeKind={excludeKind}
       onApply={() => {
         if (isRange) {
+          // @ts-expect-error todo(flow->ts)
           const lowerValue = parseFloat(inputValueLower);
+          // @ts-expect-error todo(flow->ts)
           const upperValue = parseFloat(inputValueUpper);
           props.setFilter({
             description: `≥ ${lowerValue} and ≤ ${upperValue}`,
@@ -271,6 +282,7 @@ function NumericalFilter(props) {
             excludeKind,
           });
         } else {
+          // @ts-expect-error todo(flow->ts)
           const value = parseFloat(inputValueLower);
           props.setFilter({
             description: `= ${value}`,
@@ -396,9 +408,9 @@ function NumericalFilter(props) {
           onChange={(event) => {
             if (validateInput(event.target.value)) {
               isRange
-                ? // $FlowFixMe - we know it is a number by now
+                ? // @ts-expect-error - we know it is a number by now
                   setLower(event.target.value)
-                : // $FlowFixMe - we know it is a number by now
+                : // @ts-expect-error - we know it is a number by now
                   setSingle(event.target.value);
             }
           }}
@@ -417,7 +429,7 @@ function NumericalFilter(props) {
             value={inputValueUpper}
             onChange={(event) => {
               if (validateInput(event.target.value)) {
-                // $FlowFixMe - we know it is a number by now
+                // @ts-expect-error - we know it is a number by now
                 setUpper(event.target.value);
               }
             }}

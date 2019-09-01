@@ -24,9 +24,12 @@ import type { ListPropsT, SharedStylePropsArgT } from './types';
 
 import type { SyntheticEvent } from 'react';
 
-const ItemLayer = ({ children, dragged }: { children: React.ReactNode; dragged: boolean }) => {
+const ItemLayer: React.FC<{ children: React.ReactNode; dragged: boolean }> = ({
+  children,
+  dragged,
+}) => {
   if (!dragged) {
-    return children;
+    return <>{children}</>;
   }
   return <Layer>{children}</Layer>;
 };

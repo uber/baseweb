@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 import type { BorderT, Globals, LineStyle } from '../themes/types';
+import type { StyleObject } from 'styletron-react';
 
 export function hexToRgb(hex: string = '', alpha: string = '1') {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -25,22 +26,10 @@ export const ellipsisText = {
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   wordWrap: 'normal',
-};
+} as const;
 
-export function expandBorderStyles(borderStyles: BorderT): {
-  borderTopStyle: Globals | LineStyle;
-  borderTopWidth: string;
-  borderTopColor: string;
-  borderBottomWidth: string;
-  borderBottomStyle: Globals | LineStyle;
-  borderBottomColor: string;
-  borderLeftWidth: string;
-  borderLeftStyle: Globals | LineStyle;
-  borderLeftColor: string;
-  borderRightWidth: string;
-  borderRightStyle: Globals | LineStyle;
-  borderRightColor: string;
-} {
+// todo(flow->ts) backport
+export function expandBorderStyles(borderStyles: BorderT): StyleObject {
   return {
     borderTopWidth: borderStyles.borderWidth,
     borderTopStyle: borderStyles.borderStyle,

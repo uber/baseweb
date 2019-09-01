@@ -25,7 +25,7 @@ const defaults = {
   Text: StyledProgressBarRoundedText,
 };
 
-function roundTo(n, digits) {
+function roundTo(n, digits?) {
   if (digits === undefined) {
     digits = 0;
   }
@@ -53,7 +53,7 @@ function ProgressBarRounded({
 
   // Get path length after initial render
   const [pathLength, setPathLength] = React.useState(0);
-  const pathRef = React.useRef();
+  const pathRef = React.useRef<SVGPathElement>();
   React.useEffect(() => {
     if (pathRef.current && pathRef.current.getTotalLength) {
       setPathLength(pathRef.current.getTotalLength());
@@ -61,7 +61,7 @@ function ProgressBarRounded({
   }, []);
 
   // Animation
-  const animationFrameRef = React.useRef();
+  const animationFrameRef = React.useRef<any>();
   const [pathProgress, setPathProgress] = React.useState(0);
   React.useEffect(() => {
     if (!animate) {

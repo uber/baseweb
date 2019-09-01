@@ -24,8 +24,8 @@ type HeaderCellPropsT = {
   isSelectable: boolean;
   isSelectedAll: boolean;
   isSelectedIndeterminate: boolean;
-  onMouseEnter: (a: number) => void;
-  onMouseLeave: (a: number) => void;
+  onMouseEnter: (a: any) => void;
+  onMouseLeave: (a: any) => void;
   onSelectAll: () => void;
   onSelectNone: () => void;
   onSort: (a: number) => void;
@@ -59,7 +59,7 @@ const HeaderCell = React.forwardRef<HTMLDivElement, HeaderCellPropsT>((props, re
     <div
       ref={ref}
       role="button"
-      tabIndex="0"
+      tabIndex={0 /* todo: bug string in js */}
       className={css({
         ...theme.typography.font350,
         alignItems: 'center',

@@ -21,6 +21,7 @@ export class Scenario extends React.Component<any, any> {
       <>
         <Calendar
           value={this.state.date}
+          // @ts-expect-error time is not declared in props type
           time={this.state.time}
           onChange={(data) => this.setState({ date: data.date })}
           onTimeChange={(data) => this.setState({ time: data.time })}

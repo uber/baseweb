@@ -9,7 +9,7 @@ import type { InputPropsT, BaseInputPropsT, InternalStateT, SharedPropsT } from 
 export function getSharedProps<T>(
   props: BaseInputPropsT<T> | InputPropsT,
   state: InternalStateT
-): Partial<SharedPropsT> {
+): SharedPropsT {
   const { disabled, error, positive, adjoined, size, required, readOnly } = props;
   const { isFocused } = state;
   return {

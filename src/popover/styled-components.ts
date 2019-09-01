@@ -14,6 +14,7 @@ import {
 } from './utils';
 import type { ArrowStylePropsArgT, BodyStylePropsArgT, InnerStylePropsArgT } from './types';
 import type { ThemeT } from '../styles/types';
+import type { StyleObject } from 'styletron-standard';
 
 /**
  * Main popover container element that gets positioned next to the anchor
@@ -22,7 +23,7 @@ export function getBodyStyles(
   props: BodyStylePropsArgT & {
     $theme: ThemeT;
   }
-) {
+): StyleObject {
   const {
     $animationDuration,
     $isOpen,
@@ -69,7 +70,7 @@ export function getBodyStyles(
   };
 }
 
-export const Body = styled<BodyStylePropsArgT>('div', getBodyStyles);
+export const Body = styled<'div', BodyStylePropsArgT>('div', getBodyStyles);
 
 /**
  * Arrow shown between the popover and the anchor element
@@ -78,7 +79,7 @@ export function getArrowStyles(
   props: ArrowStylePropsArgT & {
     $theme: ThemeT;
   }
-) {
+): StyleObject {
   const { $arrowOffset, $placement, $theme } = props;
   return {
     backgroundColor: $theme.colors.backgroundTertiary,
@@ -91,7 +92,7 @@ export function getArrowStyles(
   };
 }
 
-export const Arrow = styled<ArrowStylePropsArgT>('div', getArrowStyles);
+export const Arrow = styled<'div', ArrowStylePropsArgT>('div', getArrowStyles);
 
 /**
  * Extra div that holds the popover content. This extra element
@@ -99,7 +100,7 @@ export const Arrow = styled<ArrowStylePropsArgT>('div', getArrowStyles);
  * and rendering this extra element on top with a solid background
  * clips the part of the arrow that extends into the popover.
  */
-export function getInnerStyles({ $theme }: { $theme: ThemeT }) {
+export function getInnerStyles({ $theme }: { $theme: ThemeT }): StyleObject {
   return {
     backgroundColor: $theme.colors.backgroundTertiary,
     borderTopLeftRadius: $theme.borders.popoverBorderRadius,
@@ -111,7 +112,7 @@ export function getInnerStyles({ $theme }: { $theme: ThemeT }) {
   };
 }
 
-export const Inner = styled<InnerStylePropsArgT>('div', getInnerStyles);
+export const Inner = styled<'div', InnerStylePropsArgT>('div', getInnerStyles);
 
 /**
  * A drop-in component that provides the recommended padding

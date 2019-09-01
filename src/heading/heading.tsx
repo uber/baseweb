@@ -8,6 +8,7 @@ import * as React from 'react';
 import Block from '../block/block';
 import { LevelContext } from './heading-level';
 import type { HeadingPropsT } from './types';
+import type { ElementType } from 'react';
 
 const FONTS = ['', 'font1050', 'font950', 'font850', 'font750', 'font650', 'font550'];
 
@@ -27,7 +28,7 @@ const Heading = ({ styleLevel, ...restProps }: HeadingPropsT) => (
       return (
         <Block
           data-baseweb="heading"
-          as={`h${level}`}
+          as={`h${level}` as ElementType}
           font={styleLevel ? FONTS[styleLevel] : FONTS[level]}
           color="contentPrimary"
           {...restProps}

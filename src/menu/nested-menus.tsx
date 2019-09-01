@@ -18,6 +18,7 @@ type PropsT = {
   children: React.ReactNode;
 };
 
+// @ts-expect-error todo: incorrect default value
 export const NestedMenuContext: React.Context<NestedMenuContextT> = React.createContext({
   addMenuToNesting: () => {},
   removeMenuFromNesting: () => {},
