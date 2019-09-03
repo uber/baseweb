@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
-import {Paragraph1, Label1} from 'baseui/typography';
+import {Paragraph3, Label3} from 'baseui/typography';
 
 export default () => {
   const [useCss] = useStyletron();
@@ -22,11 +22,11 @@ export default () => {
           dismissOnEsc={false}
           dismissOnClickOutside={false}
           content={() => (
-            <Paragraph1 padding="scale500" maxWidth="200px">
+            <Paragraph3 padding="scale500" maxWidth="200px">
               Popover will reposition itself to avoid being clipped!
               <br />
-              <Label1> Try scrolling in this box...</Label1>
-            </Paragraph1>
+              <Label3> Try scrolling in this box...</Label3>
+            </Paragraph3>
           )}
           placement={PLACEMENT.top}
         >

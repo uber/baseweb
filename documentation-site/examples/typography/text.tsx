@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  Label1,
+  Label3,
   Label2,
   Caption1,
   Caption2,
-  Paragraph1,
+  Paragraph3,
   Paragraph2,
 } from 'baseui/typography';
 
@@ -15,8 +15,8 @@ export default () => (
   <React.Fragment>
     <Label2>Label2</Label2>
     <Paragraph2>{`Paragraph2 - ${bodyString}`}</Paragraph2>
-    <Label1>Label1</Label1>
-    <Paragraph1>{`Paragraph1 - ${bodyString}`}</Paragraph1>
+    <Label3>Label3</Label3>
+    <Paragraph3>{`Paragraph3 - ${bodyString}`}</Paragraph3>
     <Caption2>Caption2</Caption2>
     <Caption1>{`Caption1 - ${bodyString}`}</Caption1>
   </React.Fragment>

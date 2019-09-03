@@ -19,7 +19,7 @@ import {
   StyledCell,
   StyledAction,
 } from 'baseui/table';
-import {Caption1, Caption2, Paragraph1} from 'baseui/typography';
+import {Caption1, Caption2, Paragraph3} from 'baseui/typography';
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,
@@ -284,7 +284,7 @@ export default () => {
               <StyledHeadingCell>
                 <Block>
                   <Caption1>{row[2]}</Caption1>
-                  <Paragraph1 as="div">{row[1]}</Paragraph1>
+                  <Paragraph3 as="div">{row[1]}</Paragraph3>
                 </Block>
               </StyledHeadingCell>
 
