@@ -122,9 +122,15 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
           }
           item={
             <ColumnHeader
-              title={column.title}
-              onSort={i => {}}
+              filter={p => null}
               index={columnIndex}
+              isHovered={false}
+              isMeasured
+              onMouseEnter={() => {}}
+              onMouseLeave={() => {}}
+              onSort={i => {}}
+              sortDirection={null}
+              title={column.title}
             />
           }
         />

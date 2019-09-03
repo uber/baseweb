@@ -19,7 +19,7 @@ import {
   CategoricalFilter,
   buildCategoricalFilter,
 } from './column-categorical.js';
-import {COLUMNS} from './constants.js';
+import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
 import type {Columns, CategoricalFilterParameters, Props} from './types.js';
 
@@ -121,68 +121,20 @@ function useSortParameters() {
 
   function handleSort(columnIndex) {
     if (columnIndex === sortIndex) {
-      if (sortDirection === 'ASC') {
+      if (sortDirection === SORT_DIRECTIONS.ASC) {
         setSortIndex(-1);
-        setSortDirection('DESC');
+        setSortDirection(SORT_DIRECTIONS.DESC);
       } else {
-        setSortDirection('ASC');
+        setSortDirection(SORT_DIRECTIONS.ASC);
       }
     } else {
       setSortIndex(columnIndex);
-      setSortDirection('DESC');
+      setSortDirection(SORT_DIRECTIONS.DESC);
     }
   }
 
   return [sortIndex, sortDirection, handleSort];
 }
-
-// replaces the content of the virtualized window with contents. in this case,
-// we are prepending a table header row before the table rows (children to the fn).
-const InnerTableElement = React.forwardRef<
-  {children: React.Node, widths: number[], columns: Columns[], style: any},
-  HTMLDivElement,
->((props, ref) => {
-  const [useCss] = useStyletron();
-  return (
-    <div ref={ref} style={props.style}>
-      <div
-        className={useCss({
-          position: 'sticky',
-          top: 0,
-          left: 0,
-          width: `${props.widths.reduce((sum, w) => sum + w, 0)}px`,
-          height: '48px',
-          backgroundColor: 'blue',
-          display: 'flex',
-          // this feels bad.. the absolutely positioned children elements
-          // stack on top of this element with the layer component.
-          zIndex: 2,
-        })}
-      >
-        {props.columns.map((column, columnIndex) => {
-          const width = props.widths[columnIndex];
-          return (
-            <div key={columnIndex} style={{width}}>
-              <ColumnHeader
-                title={column.title}
-                index={columnIndex}
-                onSort={i => console.log('sort', i)}
-
-                // column={column}
-                // columnIndex={columnIndex}
-                // addFilter={addFilter}
-                // handleSort={handleSort}
-                // rows={props.rows}
-              />
-            </div>
-          );
-        })}
-      </div>
-      {props.children}
-    </div>
-  );
-});
-InnerTableElement.displayName = 'InnerTableElement';
 
 export function Unstable_DataTable(props: Props) {
   useDuplicateColumnTitleWarning(props.columns);
@@ -190,6 +142,7 @@ export function Unstable_DataTable(props: Props) {
   const [filters, setFilters] = React.useState(new Map());
   const [widths, setWidths] = React.useState(props.columns.map(() => 0));
   const gridRef = React.useRef<React.Ref<typeof VariableSizeGrid> | null>(null);
+  const [headerHoverIndex, setHeaderHoverIndex] = React.useState(-1);
 
   function addFilter(filterParams, title, description) {
     filters.set(title, {filterParams, description});
@@ -206,11 +159,11 @@ export function Unstable_DataTable(props: Props) {
 
     if (sortIndex !== -1) {
       const sortFn = sortFnByColumn(props.columns[sortIndex]);
-      if (sortDirection === 'DESC') {
+      if (sortDirection === SORT_DIRECTIONS.DESC) {
         toSort.sort((a, b) =>
           sortFn(a[0].data[sortIndex], b[0].data[sortIndex]),
         );
-      } else if (sortDirection === 'ASC') {
+      } else if (sortDirection === SORT_DIRECTIONS.ASC) {
         toSort.sort((a, b) =>
           sortFn(b[0].data[sortIndex], a[0].data[sortIndex]),
         );
@@ -251,6 +204,88 @@ export function Unstable_DataTable(props: Props) {
       .map(idx => props.rows[idx]);
   }, [sortedIndices, filteredIndices]);
 
+  // replaces the content of the virtualized window with contents. in this case,
+  // we are prepending a table header row before the table rows (children to the fn).
+  const InnerTableElement = React.forwardRef(({children, ...rest}, ref) => {
+    const [useCss, theme] = useStyletron();
+    return (
+      <div ref={ref} {...rest}>
+        <div
+          className={useCss({
+            position: 'sticky',
+            top: 0,
+            left: 0,
+            width: `${widths.reduce((sum, w) => sum + w, 0)}px`,
+            height: '48px',
+            display: 'flex',
+            // this feels bad.. the absolutely positioned children elements
+            // stack on top of this element with the layer component.
+            zIndex: 2,
+          })}
+        >
+          {props.columns.map((column, columnIndex) => {
+            const width = widths[columnIndex];
+            return (
+              <div
+                className={useCss({
+                  ...theme.borders.border200,
+                  backgroundColor: theme.colors.mono100,
+                  borderTop: 'none',
+                  borderLeft: 'none',
+                  boxSizing: 'border-box',
+                })}
+                key={columnIndex}
+                style={{width}}
+              >
+                <ColumnHeader
+                  index={columnIndex}
+                  isHovered={headerHoverIndex === columnIndex}
+                  onMouseEnter={() => setHeaderHoverIndex(columnIndex)}
+                  onMouseLeave={() => setHeaderHoverIndex(-1)}
+                  onSort={handleSort}
+                  filter={({close}) => {
+                    switch (column.kind) {
+                      case COLUMNS.CATEGORICAL:
+                        return (
+                          <CategoricalFilter
+                            setFilter={(filterParams, description) => {
+                              addFilter(
+                                filterParams,
+                                column.title,
+                                description,
+                              );
+                            }}
+                            data={props.rows.map(r => r.data[columnIndex])}
+                            close={close}
+                          />
+                        );
+                      case COLUMNS.STRING:
+                      case COLUMNS.NUMERICAL:
+                      case COLUMNS.BOOLEAN:
+                      case COLUMNS.CUSTOM:
+                      default:
+                        return (
+                          <div>
+                            <p>filter type {column.kind} not implemented.</p>
+                          </div>
+                        );
+                    }
+                  }}
+                  sortDirection={
+                    sortIndex === columnIndex ? sortDirection : null
+                  }
+                  title={column.title}
+                />
+              </div>
+            );
+          })}
+        </div>
+        {children}
+      </div>
+    );
+  });
+  InnerTableElement.displayName = 'InnerTableElement';
+
   return (
     <React.Fragment>
       <MeasureColumnWidths
@@ -276,13 +311,8 @@ export function Unstable_DataTable(props: Props) {
         {({height, width}) => (
           <VariableSizeGrid
             ref={(gridRef: any)}
-            innerElementType={innerProps => (
-              <InnerTableElement
-                {...innerProps}
-                columns={props.columns}
-                widths={widths}
-              />
-            )}
+            overscanRowCount={10}
+            innerElementType={InnerTableElement}
             columnCount={props.columns.length}
             columnWidth={columnIndex => widths[columnIndex]}
             height={height}

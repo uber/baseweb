@@ -8,7 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {COLUMNS, NUMERICAL_FORMATS} from './constants.js';
+import {COLUMNS, NUMERICAL_FORMATS, SORT_DIRECTIONS} from './constants.js';
+
+export type SortDirections =
+  | typeof SORT_DIRECTIONS.ASC
+  | typeof SORT_DIRECTIONS.DESC
+  | null;
 
 export type CategoricalColumn = {|
   title: string,
@@ -40,7 +45,6 @@ export type BooleanColumn = {|
 export type StringColumn = {|
   title: string,
   sortable?: boolean,
-  filterable?: boolean,
   kind: typeof COLUMNS.STRING,
 |};
 

@@ -15,7 +15,7 @@ import {Unstable_DataTable} from '../data-table.js';
 export const name = 'data-table';
 
 // https://gist.github.com/6174/6062387
-function randomString(rowIdx, columnIdx) {
+function pseudoRandomString(rowIdx, columnIdx) {
   return (
     (0.88 * rowIdx)
       .toString(36)
@@ -31,29 +31,29 @@ function makeRowsFromColumns(columns, rowCount) {
       data: columns.map((column, j) => {
         switch (column.kind) {
           case COLUMNS.CATEGORICAL:
-            // eslint-disable-next-line no-case-declarations
-            const grade = Math.floor(Math.random() * 100);
-            if (grade >= 90) {
-              return 'A';
-            } else if (grade >= 80) {
-              return 'B';
-            } else if (grade >= 70) {
-              return 'C';
-            } else if (grade >= 60) {
-              return 'D';
-            } else {
-              return 'F';
+            switch (i % 5) {
+              case 4:
+                return 'A';
+              case 3:
+                return 'B';
+              case 2:
+                return 'C';
+              case 1:
+                return 'D';
+              case 0:
+              default:
+                return 'F';
             }
           case COLUMNS.NUMERICAL:
-            return Math.floor(Math.random() * 200);
+            return i % 2 ? i - 1 : i + 3;
           case COLUMNS.BOOLEAN:
-            return Math.random() > 0.5;
+            return i % 2 === 0;
           case COLUMNS.STRING:
-            return randomString(i, j);
+            return pseudoRandomString(i, j);
           case COLUMNS.CUSTOM:
-            return randomString(i, j);
+            return pseudoRandomString(i, j);
           default:
-            return 'default' + randomString(i, j);
+            return 'default' + pseudoRandomString(i, j);
         }
       }),
     });

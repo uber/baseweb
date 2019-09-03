@@ -12,7 +12,7 @@ import {Button} from '../button/index.js';
 import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import {useStyletron} from '../styles/index.js';
 
-import type {CategoricalFilterParameters} from './types.js';
+import type {CategoricalFilterParameters, CategoricalColumn} from './types.js';
 
 export function buildCategoricalFilter(params: CategoricalFilterParameters) {
   return function(data: string) {

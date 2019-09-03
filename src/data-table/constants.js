@@ -19,3 +19,8 @@ export const NUMERICAL_FORMATS = Object.freeze({
   ACCOUNTING: 'ACCOUNTING',
   PERCENTAGE: 'PERCENTAGE',
 });
+
+export const SORT_DIRECTIONS = Object.freeze({
+  ASC: 'ASC',
+  DESC: 'DESC',
+});
