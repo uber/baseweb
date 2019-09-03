@@ -12,7 +12,7 @@ export const Link = styled<{}>('a', ({$theme}) => {
   const {colors, typography, animation} = $theme;
   return {
     color: colors.linkText,
-    ...typography.font450,
+    ...typography.font350,
     fontSize: 'inherit',
     lineHeight: 'inherit',
     transitionProperty: 'color',

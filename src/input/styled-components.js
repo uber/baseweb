@@ -54,9 +54,9 @@ function getInputPadding(size, sizing) {
 
 function getFont(size, typography) {
   return {
-    [SIZE.compact]: typography.font300,
-    [SIZE.default]: typography.font400,
-    [SIZE.large]: typography.font460,
+    [SIZE.compact]: typography.font200,
+    [SIZE.default]: typography.font300,
+    [SIZE.large]: typography.font400,
   }[size];
 }
 

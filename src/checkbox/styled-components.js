@@ -213,7 +213,7 @@ export const Label = styled<SharedStylePropsT>('div', props => {
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font350,
+    ...typography.font250,
     lineHeight: '24px',
   }: {});
 });

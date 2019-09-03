@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 
 export const Action = styled<{}>('div', ({$theme: {typography}}) => ({
-  ...typography.font450,
+  ...typography.font350,
 }));
 
 export const Body = styled<{}>('div', ({$theme}) => {
@@ -18,7 +18,7 @@ export const Body = styled<{}>('div', ({$theme}) => {
   return {
     marginBottom: sizing.scale600,
     color: colors.foregroundAlt,
-    ...typography.font300,
+    ...typography.font200,
   };
 });
 
@@ -75,7 +75,7 @@ export const Thumbnail = styled<{}>('img', props => {
 export const Title = styled<{}>('h1', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
-    ...typography.font500,
+    ...typography.font550,
     color: colors.foreground,
     fontWeight: 500,
     marginLeft: 0,

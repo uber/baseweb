@@ -16,9 +16,9 @@ import type {ThemeT} from '../styles/types.js';
 
 function getFont(size = SIZE.default, typography) {
   return {
-    [SIZE.compact]: typography.font300,
-    [SIZE.default]: typography.font400,
-    [SIZE.large]: typography.font460,
+    [SIZE.compact]: typography.font200,
+    [SIZE.default]: typography.font300,
+    [SIZE.large]: typography.font400,
   }[size];
 }
 
