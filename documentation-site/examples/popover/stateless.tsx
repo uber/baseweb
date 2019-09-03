@@ -12,7 +12,7 @@ export default () => {
         <Paragraph1 padding="scale500">hello world</Paragraph1>
       }
     >
-      <div className={useCss({...theme.typography.font400})}>
+      <div className={useCss({...theme.typography.font300})}>
         Always open
       </div>
     </Popover>

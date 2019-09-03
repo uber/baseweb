@@ -8,7 +8,7 @@ export default () => {
   return (
     <div
       className={useCss({
-        ...theme.typography.font450,
+        ...theme.typography.font350,
       })}
     >
       <StyledLink href="https://baseui.design">
