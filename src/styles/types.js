@@ -458,21 +458,23 @@ export type ColorsT = {
 
 export type TypographyT = {
   font100: Font,
+  font150: Font,
   font200: Font,
   font250: Font,
   font300: Font,
   font350: Font,
   font400: Font,
   font450: Font,
-  font460: Font,
-  font470: Font,
-  font500: Font,
-  font600: Font,
-  font700: Font,
-  font800: Font,
-  font900: Font,
-  font1000: Font,
-  font1100: Font,
+  font550: Font,
+  font650: Font,
+  font750: Font,
+  font850: Font,
+  font950: Font,
+  font1050: Font,
+  font1150: Font,
+  font1250: Font,
+  font1350: Font,
+  font1450: Font,
 };
 
 export type Font = {
