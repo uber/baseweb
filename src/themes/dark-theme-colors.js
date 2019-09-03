@@ -98,7 +98,7 @@ export default {
     // FileUploader
     fileUploaderBackgroundColor: primitives.mono700,
     fileUploaderBackgroundColorActive: primitives.mono600,
-    fileUploaderBorderColorActive: primitives.primary400,
+    fileUploaderBorderColorActive: primitives.primary,
     fileUploaderBorderColorDefault: primitives.mono500,
     fileUploaderMessageColor: primitives.mono100,
 

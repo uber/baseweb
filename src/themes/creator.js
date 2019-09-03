@@ -183,7 +183,7 @@ export default function createTheme(
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,
       fileUploaderBackgroundColorActive: primitives.primary50,
-      fileUploaderBorderColorActive: primitives.primary400,
+      fileUploaderBorderColorActive: primitives.primary,
       fileUploaderBorderColorDefault: primitives.mono500,
       fileUploaderMessageColor: primitives.mono600,
 
@@ -239,8 +239,8 @@ export default function createTheme(
       sliderTrackFill: primitives.mono400,
       sliderTrackFillHover: primitives.mono500,
       sliderTrackFillActive: primitives.mono600,
-      sliderTrackFillSelected: primitives.primary400,
-      sliderTrackFillSelectedHover: primitives.primary400,
+      sliderTrackFillSelected: primitives.primary,
+      sliderTrackFillSelectedHover: primitives.primary,
       sliderTrackFillSelectedActive: primitives.primary500,
       sliderTrackFillDisabled: primitives.mono300,
       sliderHandleFill: WHITE,
@@ -252,11 +252,11 @@ export default function createTheme(
       sliderHandleFillDisabled: primitives.mono500,
       sliderHandleInnerFill: primitives.mono400,
       sliderHandleInnerFillDisabled: primitives.mono400,
-      sliderHandleInnerFillSelectedHover: primitives.primary400,
+      sliderHandleInnerFillSelectedHover: primitives.primary,
       sliderHandleInnerFillSelectedActive: primitives.primary500,
 
       sliderBorder: primitives.mono500,
-      sliderBorderHover: primitives.primary400,
+      sliderBorderHover: primitives.primary,
       sliderBorderDisabled: primitives.mono600,
 
       // Inputs
