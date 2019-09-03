@@ -21,7 +21,7 @@ export default function createTheme(
     breakpoints: {
       small: 320,
       medium: 600,
-      large: 1280,
+      large: 1136,
     },
 
     colors: {
