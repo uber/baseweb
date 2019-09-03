@@ -136,6 +136,54 @@ function useSortParameters() {
   return [sortIndex, sortDirection, handleSort];
 }
 
+// replaces the content of the virtualized window with contents. in this case,
+// we are prepending a table header row before the table rows (children to the fn).
+const InnerTableElement = React.forwardRef<
+  {children: React.Node, widths: number[], columns: Columns[], style: any},
+  HTMLDivElement,
+>((props, ref) => {
+  const [useCss] = useStyletron();
+  return (
+    <div ref={ref} style={props.style}>
+      <div
+        className={useCss({
+          position: 'sticky',
+          top: 0,
+          left: 0,
+          width: `${props.widths.reduce((sum, w) => sum + w, 0)}px`,
+          height: '48px',
+          backgroundColor: 'blue',
+          display: 'flex',
+          // this feels bad.. the absolutely positioned children elements
+          // stack on top of this element with the layer component.
+          zIndex: 2,
+        })}
+      >
+        {props.columns.map((column, columnIndex) => {
+          const width = props.widths[columnIndex];
+          return (
+            <div key={columnIndex} style={{width}}>
+              <ColumnHeader
+                title={column.title}
+                index={columnIndex}
+                onSort={i => console.log('sort', i)}
+
+                // column={column}
+                // columnIndex={columnIndex}
+                // addFilter={addFilter}
+                // handleSort={handleSort}
+                // rows={props.rows}
+              />
+            </div>
+          );
+        })}
+      </div>
+      {props.children}
+    </div>
+  );
+});
+InnerTableElement.displayName = 'InnerTableElement';
+
 export function Unstable_DataTable(props: Props) {
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
@@ -203,51 +251,6 @@ export function Unstable_DataTable(props: Props) {
       .map(idx => props.rows[idx]);
   }, [sortedIndices, filteredIndices]);
 
-  // replaces the content of the virtualized window with contents. in this case,
-  // we are prepending a table header row before the table rows (children to the fn).
-  const InnerElementType = React.forwardRef(({children, ...rest}, ref) => {
-    const [useCss] = useStyletron();
-    return (
-      <div ref={ref} {...rest}>
-        <div
-          className={useCss({
-            position: 'sticky',
-            top: 0,
-            left: 0,
-            width: `${widths.reduce((sum, w) => sum + w, 0)}px`,
-            height: '48px',
-            backgroundColor: 'blue',
-            display: 'flex',
-            // this feels bad.. the absolutely positioned children elements
-            // stack on top of this element with the layer component.
-            zIndex: 2,
-          })}
-        >
-          {props.columns.map((column, columnIndex) => {
-            const width = widths[columnIndex];
-            return (
-              <div key={columnIndex} style={{width}}>
-                <ColumnHeader
-                  title={column.title}
-                  index={columnIndex}
-                  onSort={i => console.log('sort', i)}
-
-                  // column={column}
-                  // columnIndex={columnIndex}
-                  // addFilter={addFilter}
-                  // handleSort={handleSort}
-                  // rows={props.rows}
-                />
-              </div>
-            );
-          })}
-        </div>
-        {children}
-      </div>
-    );
-  });
-  InnerElementType.displayName = 'InnerElementType';
-
   return (
     <React.Fragment>
       <MeasureColumnWidths
@@ -273,7 +276,13 @@ export function Unstable_DataTable(props: Props) {
         {({height, width}) => (
           <VariableSizeGrid
             ref={(gridRef: any)}
-            innerElementType={InnerElementType}
+            innerElementType={innerProps => (
+              <InnerTableElement
+                {...innerProps}
+                columns={props.columns}
+                widths={widths}
+              />
+            )}
             columnCount={props.columns.length}
             columnWidth={columnIndex => widths[columnIndex]}
             height={height}
