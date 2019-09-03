@@ -16,6 +16,10 @@ export default () => (
           primary
         </Tag>
 
+        <Tag variant={variant} kind="accent">
+          accent
+        </Tag>
+
         <Tag variant={variant} kind="positive">
           positive
         </Tag>

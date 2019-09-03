@@ -342,6 +342,26 @@ interface Colors {
   tagPrimaryOutlinedFontHover: string;
   tagPrimaryFontDisabled: string;
 
+  tagAccentSolidBackground: string;
+  tagAccentSolidHover: string;
+  tagAccentSolidActive: string;
+  tagAccentSolidDisabled: string;
+  tagAccentSolidFont: string;
+  tagAccentSolidFontHover: string;
+  tagAccentLightBackground: string;
+  tagAccentLightHover: string;
+  tagAccentLightActive: string;
+  tagAccentLightDisabled: string;
+  tagAccentLightFont: string;
+  tagAccentLightFontHover: string;
+  tagAccentOutlinedBackground: string;
+  tagAccentOutlinedHover: string;
+  tagAccentOutlinedActive: string;
+  tagAccentOutlinedDisabled: string;
+  tagAccentOutlinedFont: string;
+  tagAccentOutlinedFontHover: string;
+  tagAccentFontDisabled: string;
+
   tagPositiveSolidBackground: string;
   tagPositiveSolidHover: string;
   tagPositiveSolidActive: string;
