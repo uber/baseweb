@@ -22,62 +22,77 @@ function getFont(size = SIZE.default, typography) {
   }[size];
 }
 
-function getControlPadding(props, emptyValue) {
+function getControlPaddingVertical(props, emptyValue) {
+  const {
+    $theme: {sizing},
+    $size = SIZE.default,
+    $multi,
+  } = props;
+  return {
+    [SIZE.compact]: {
+      // `sizing.scale200` based on the multi value component (Tag) top and bottom margin
+      paddingTop:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale200} - ${sizing.scale200})`
+          : sizing.scale200,
+      paddingBottom:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale200} - ${sizing.scale200})`
+          : sizing.scale200,
+    },
+    [SIZE.default]: {
+      // `sizing.scale200` based on the multi value component (Tag) top and bottom margin
+      paddingTop:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale400} - ${sizing.scale200})`
+          : sizing.scale400,
+      paddingBottom:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale400} - ${sizing.scale200})`
+          : sizing.scale400,
+    },
+    [SIZE.large]: {
+      // `sizing.scale200` based on the multi value component (Tag) top and bottom margin
+      paddingTop:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale550} - ${sizing.scale200})`
+          : sizing.scale550,
+      paddingBottom:
+        $multi && !emptyValue
+          ? `calc(${sizing.scale550} - ${sizing.scale200})`
+          : sizing.scale550,
+    },
+  }[$size];
+}
+
+function getControlPaddingHorizontal(props, emptyValue) {
   const {
     $theme,
     $theme: {sizing},
     $size = SIZE.default,
-    $type,
     $multi,
   } = props;
-  const isSearch = $type === TYPE.search;
-  const paddingLeft = isSearch ? sizing.scale1000 : sizing.scale500;
   return {
     [SIZE.compact]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
-      paddingTop:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
-          : sizing.scale200,
-      paddingBottom:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
-          : sizing.scale200,
       [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
         $multi && !emptyValue
-          ? `calc(${paddingLeft} - ${sizing.scale0})`
-          : paddingLeft,
+          ? `calc(${sizing.scale500} - ${sizing.scale0})`
+          : sizing.scale500,
       [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: '0',
     },
     [SIZE.default]: {
-      // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
-      paddingTop:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale400} - ${sizing.scale0})`
-          : sizing.scale400,
-      paddingBottom:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale400} - ${sizing.scale0})`
-          : sizing.scale400,
       [$theme.direction === 'rtl'
         ? 'paddingRight'
-        : 'paddingLeft']: paddingLeft,
+        : 'paddingLeft']: sizing.scale500,
       [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: 0,
     },
     [SIZE.large]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
-      paddingTop:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale550} - ${sizing.scale0})`
-          : sizing.scale550,
-      paddingBottom:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale550} - ${sizing.scale0})`
-          : sizing.scale550,
       [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
         $multi && !emptyValue
-          ? `calc(${paddingLeft} - ${sizing.scale0})`
-          : paddingLeft,
+          ? `calc(${sizing.scale500} - ${sizing.scale0})`
+          : sizing.scale500,
       [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: 0,
     },
   }[$size];
@@ -217,10 +232,8 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
 export const StyledValueContainer = styled<SharedStylePropsArgT>(
   'span',
   props => {
-    const padding = getControlPadding(props);
     return {
       boxSizing: 'border-box',
-      position: 'relative',
       flexGrow: 1,
       flexShrink: 1,
       flexBasis: '0%',
@@ -228,7 +241,7 @@ export const StyledValueContainer = styled<SharedStylePropsArgT>(
       alignItems: 'center',
       flexWrap: 'wrap',
       overflow: 'hidden',
-      ...padding,
+      ...getControlPaddingHorizontal(props),
     };
   },
 );
@@ -239,17 +252,12 @@ export const StyledPlaceholder = styled<SharedStylePropsArgT>('div', props => {
     $theme: {colors},
   } = props;
   return {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
     color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     maxWidth: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    ...getControlPadding(props, true),
+    ...getControlPaddingVertical(props, true),
   };
 });
 
@@ -257,20 +265,16 @@ export const StyledSingleValue = styled<SharedStylePropsArgT>('div', props => {
   const {
     $searchable,
     $size,
-    $theme,
     $theme: {typography},
   } = props;
   const font = getFont($size, typography);
   return {
     lineHeight: !$searchable ? font.lineHeight : 'inherit',
     boxSizing: 'border-box',
-    position: 'absolute',
-    top: 0,
-    [$theme.direction === 'rtl' ? 'right' : 'left']: 0,
     height: '100%',
     maxWidth: '100%',
     ...ellipsisText,
-    ...getControlPadding(props),
+    ...getControlPaddingVertical(props),
   };
 });
 
@@ -280,7 +284,8 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
     const {
       $size,
       $searchable,
-      $theme: {typography},
+      $theme,
+      $theme: {sizing, typography},
     } = props;
     const font = getFont($size, typography);
     return {
@@ -294,14 +299,19 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       outline: 'none',
       marginTop: 0,
       marginBottom: 0,
-      marginLeft: 0,
-      marginRight: 0,
+      [$theme.direction === 'rtl'
+        ? 'marginLeft'
+        : 'marginRight']: `-${sizing.scale0}`,
+      [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: 0,
       paddingTop: 0,
       paddingBottom: 0,
       paddingLeft: 0,
       paddingRight: 0,
       height: String(!$searchable ? font.lineHeight : 'auto'),
-      maxHeight: font.lineHeight,
+      maxHeight: `calc(${font.lineHeight}
+        getControlPaddingVertical(props).paddingTop} + ${
+          getControlPaddingVertical(props).paddingBottom
+        })`,
     };
   },
 );
@@ -328,10 +338,7 @@ export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
     marginBottom: '0',
     marginLeft: '0',
     marginRight: '0',
-    paddingTop: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
-    paddingRight: '0',
+    ...getControlPaddingVertical(props),
   };
 });
 
@@ -412,10 +419,11 @@ export const StyledSearchIcon = styled<SharedStylePropsArgT>('div', props => {
     ...getSvgStyles(props),
     color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     cursor: $disabled ? 'not-allowed' : 'pointer',
-    position: 'absolute',
-    [$theme.direction === 'rtl' ? 'right' : 'left']: sizing.scale500,
+    [$theme.direction === 'rtl'
+      ? 'marginRight'
+      : 'marginLeft']: sizing.scale500,
     display: 'flex',
     alignItems: 'center',
-    height: '100%',
+    height: 'auto',
   };
 });

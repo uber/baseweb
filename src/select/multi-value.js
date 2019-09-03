@@ -20,9 +20,9 @@ export default function MultiValue(props: any) {
         Root: {
           style: ({$theme: {sizing}}) => ({
             marginRight: sizing.scale0,
-            marginBottom: sizing.scale0,
+            marginBottom: sizing.scale200,
             marginLeft: sizing.scale0,
-            marginTop: sizing.scale0,
+            marginTop: sizing.scale200,
           }),
         },
       }}

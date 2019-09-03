@@ -319,7 +319,18 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (this.props.disabled) return;
     switch (event.keyCode) {
       case 8: // backspace
-        if (!this.state.inputValue && this.props.backspaceRemoves) {
+        if (!this.props.multi && this.props.value) {
+          if (!this.state.inputValue) {
+            const {labelKey, value: valueArray} = this.props;
+            const value = valueArray[0][labelKey];
+            this.setState({
+              // TODO: Not RTL friendly. Better to set state to full `value` then simulate a backspace keypress?
+              inputValue: value.slice(0, value.length - 1),
+            });
+          } else if (this.state.inputValue.length === 1) {
+            this.clearValue(event);
+          }
+        } else if (!this.state.inputValue && this.props.backspaceRemoves) {
           event.preventDefault();
           this.popValue();
         }
@@ -402,7 +413,11 @@ class Select extends React.Component<PropsT, SelectStateT> {
         }
         break;
       case 46: // delete
-        if (!this.state.inputValue && this.props.deleteRemoves) {
+        if (
+          !this.state.inputValue &&
+          this.props.multi &&
+          this.props.deleteRemoves
+        ) {
           event.preventDefault();
           this.popValue();
         }
@@ -506,14 +521,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   popValue = () => {
-    if (this.props.multi) {
-      const valueArray = [...this.props.value];
-      const valueLength = valueArray.length;
-      if (!valueLength) return;
-      if (valueArray[valueLength - 1].clearableValue === false) return;
-      const item = valueArray.pop();
-      this.setValue(valueArray, item, STATE_CHANGE_TYPE.remove);
-    }
+    const valueArray = [...this.props.value];
+    const valueLength = valueArray.length;
+    if (!valueLength) return;
+    if (valueArray[valueLength - 1].clearableValue === false) return;
+    const item = valueArray.pop();
+    this.setValue(valueArray, item, STATE_CHANGE_TYPE.remove);
   };
 
   removeValue = (item: OptionT) => {
@@ -562,14 +575,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     );
   }
 
-  renderValue(
+  renderPlaceholder(
     valueArray: ValueT,
     isOpen: boolean,
     locale: LocaleT,
   ): ?React.Node | Array<?React.Node> {
     const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
-    const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const [Placeholder, placeholderProps] = getOverrides(
       overrides.Placeholder,
       StyledPlaceholder,
@@ -585,6 +597,19 @@ class Select extends React.Component<PropsT, SelectStateT> {
           {this.props.placeholder || locale.select.placeholder}
         </Placeholder>
       ) : null;
+    }
+  }
+
+  renderValue(
+    valueArray: ValueT,
+    isOpen: boolean,
+    locale: LocaleT,
+  ): ?React.Node | Array<?React.Node> {
+    const {overrides = {}} = this.props;
+    const sharedProps = this.getSharedProps();
+    const renderLabel = this.props.getValueLabel || this.getValueLabel;
+    if (!valueArray.length) {
+      return null;
     }
     if (this.props.multi) {
       return valueArray.map((value, i) => {
@@ -825,6 +850,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       value,
       filterOutSelected,
     } = this.props;
+
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [ControlContainer, controlContainerProps] = getOverrides(
       overrides.ControlContainer,
@@ -930,6 +956,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 <ValueContainer {...sharedProps} {...valueContainerProps}>
                   {this.renderValue(valueArray, isOpen, locale)}
                   {this.renderInput()}
+                  {this.renderPlaceholder(valueArray, isOpen, locale)}
                 </ValueContainer>
                 <IconsContainer {...sharedProps} {...iconsContainerProps}>
                   {this.renderLoading()}
