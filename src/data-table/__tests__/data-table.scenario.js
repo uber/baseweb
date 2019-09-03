@@ -21,7 +21,7 @@ function randomString(rowIdx, columnIdx) {
       .toString(36)
       .replace('.', '')
       .substring(2) + (0.99 * columnIdx).toString(36).replace('.', '')
-  );
+  ).slice(0, 10);
 }
 
 function makeRowsFromColumns(columns, rowCount) {
@@ -65,19 +65,19 @@ const columns = [
   {kind: COLUMNS.CATEGORICAL, title: 'one'},
   {kind: COLUMNS.STRING, title: 'two'},
   {kind: COLUMNS.NUMERICAL, title: 'three', format: 'NONE'},
-  {kind: COLUMNS.NUMERICAL, title: 'four', format: 'NONE'},
-  {kind: COLUMNS.NUMERICAL, title: 'five', format: 'NONE'},
-  {kind: COLUMNS.BOOLEAN, title: 'six'},
-  {kind: COLUMNS.STRING, title: 'seven'},
-  {kind: COLUMNS.CATEGORICAL, title: 'eight'},
   {
     kind: COLUMNS.CUSTOM,
-    title: 'nine',
+    title: 'four',
     renderCell: function Cell(props) {
       const [useCss] = useStyletron();
       return <div className={useCss({color: 'green'})}>{props.data}</div>;
     },
   },
+  {kind: COLUMNS.BOOLEAN, title: 'five'},
+  {kind: COLUMNS.CATEGORICAL, title: 'six'},
+  {kind: COLUMNS.STRING, title: 'seven'},
+  {kind: COLUMNS.STRING, title: 'eight'},
+  {kind: COLUMNS.STRING, title: 'nine'},
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);

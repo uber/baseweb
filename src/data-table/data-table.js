@@ -7,20 +7,20 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import {VariableSizeGrid} from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
-import {StatefulPopover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
 import CellForColumn from './cell-for-column.js';
+import ColumnHeader from './column-header.js';
 import {
   CategoricalFilter,
   buildCategoricalFilter,
 } from './column-categorical.js';
 import {COLUMNS} from './constants.js';
+import MeasureColumnWidths from './measure-column-widths.js';
 import type {Columns, CategoricalFilterParameters, Props} from './types.js';
 
 function sortFnByColumn(column: Columns) {
@@ -74,21 +74,28 @@ function buildFilterFnByColumn(column: Columns) {
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
 
+  // ignores the table header row
   if (rowIndex === 0) {
     return null;
   }
 
   const column = data.columns[columnIndex];
+  // minus one to account for additional header row
   const value = data.rows[rowIndex - 1].data[columnIndex];
-  const cellStyles = {
-    ...theme.borders.border200,
-    borderTop: 'none',
-    // borderBottom: 'none',
-    borderLeft: 'none',
-    boxSizing: 'border-box',
-  };
   return (
-    <div className={useCss(cellStyles)} style={style}>
+    <div
+      className={useCss({
+        ...theme.borders.border200,
+        alignItems: 'center',
+        backgroundColor: rowIndex % 2 ? null : theme.colors.mono200,
+        borderTop: 'none',
+        borderBottom: 'none',
+        borderLeft: 'none',
+        boxSizing: 'border-box',
+        display: 'flex',
+      })}
+      style={style}
+    >
       <CellForColumn column={column} value={value} />
     </div>
   );
@@ -128,43 +135,6 @@ function useSortParameters() {
 
   return [sortIndex, sortDirection, handleSort];
 }
-
-const ColumnHeader = React.forwardRef((props, ref) => {
-  const [useCss, theme] = useStyletron();
-  return (
-    <div
-      ref={ref}
-      className={useCss({
-        ...theme.borders.border200,
-        ...theme.typography.font200,
-        borderTop: 'none',
-        borderBottom: 'none',
-        borderLeft: 'none',
-        boxSizing: 'border-box',
-        display: 'inline-block',
-        paddingLeft: theme.sizing.scale600,
-        paddingRight: theme.sizing.scale600,
-      })}
-    >
-      {props.column.title}
-      <button onClick={() => props.handleSort(props.columnIndex)}>sort</button>
-      <StatefulPopover
-        content={({close}) => (
-          <CategoricalFilter
-            setFilter={(filterParams, description) =>
-              props.addFilter(filterParams, props.column.title, description)
-            }
-            data={props.rows.map(r => r.data[props.columnIndex])}
-            close={close}
-          />
-        )}
-      >
-        <button>filter</button>
-      </StatefulPopover>
-    </div>
-  );
-});
-ColumnHeader.displayName = 'ColumnHeader';
 
 export function Unstable_DataTable(props: Props) {
   useDuplicateColumnTitleWarning(props.columns);
@@ -233,6 +203,8 @@ export function Unstable_DataTable(props: Props) {
       .map(idx => props.rows[idx]);
   }, [sortedIndices, filteredIndices]);
 
+  // replaces the content of the virtualized window with contents. in this case,
+  // we are prepending a table header row before the table rows (children to the fn).
   const InnerElementType = React.forwardRef(({children, ...rest}, ref) => {
     const [useCss] = useStyletron();
     return (
@@ -256,11 +228,15 @@ export function Unstable_DataTable(props: Props) {
             return (
               <div key={columnIndex} style={{width}}>
                 <ColumnHeader
-                  column={column}
-                  columnIndex={columnIndex}
-                  addFilter={addFilter}
-                  handleSort={handleSort}
-                  rows={props.rows}
+                  title={column.title}
+                  index={columnIndex}
+                  onSort={i => console.log('sort', i)}
+
+                  // column={column}
+                  // columnIndex={columnIndex}
+                  // addFilter={addFilter}
+                  // handleSort={handleSort}
+                  // rows={props.rows}
                 />
               </div>
             );
@@ -274,24 +250,25 @@ export function Unstable_DataTable(props: Props) {
 
   return (
     <React.Fragment>
-      <SampleColumnWidths
+      <MeasureColumnWidths
         columns={props.columns}
         rows={props.rows}
         widths={widths}
         onWidthsChange={nextWidths => {
           setWidths(nextWidths);
           if (gridRef.current) {
-            // trigger react-window to layout the elements again
-            // $FlowFixMe
+            // $FlowFixMe trigger react-window to layout the elements again
             gridRef.current.resetAfterColumnIndex(0, true);
           }
         }}
       />
+
       {Array.from(filters).map(([title, filter]) => (
         <Tag key={title} onActionClick={() => removeFilter(title)}>
           {title} | {filter.description}
         </Tag>
       ))}
+
       <AutoSizer>
         {({height, width}) => (
           <VariableSizeGrid
@@ -300,6 +277,7 @@ export function Unstable_DataTable(props: Props) {
             columnCount={props.columns.length}
             columnWidth={columnIndex => widths[columnIndex]}
             height={height}
+            // plus one to account for additional header row
             rowCount={rows.length + 1}
             rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
             width={width}
@@ -313,117 +291,5 @@ export function Unstable_DataTable(props: Props) {
         )}
       </AutoSizer>
     </React.Fragment>
-  );
-}
-
-// https://github.com/Swizec/useDimensions
-function useDimensions() {
-  const [dimensions, setDimensions] = React.useState({});
-  const [node, setNode] = React.useState(null);
-
-  const ref = React.useCallback(node => {
-    setNode(node);
-  }, []);
-
-  React.useLayoutEffect(() => {
-    if (node) {
-      window.requestAnimationFrame(() => {
-        setDimensions(node.getBoundingClientRect());
-      });
-    }
-  }, [node]);
-
-  return [ref, dimensions];
-}
-
-function ElementMeasurer(props) {
-  const [ref, dimensions] = useDimensions();
-  const [initialied, setInitialized] = React.useState(false);
-  React.useEffect(() => {
-    // ignores the first callback with empty information
-    if (initialied) {
-      props.onDimensionsChange(dimensions);
-    } else {
-      setInitialized(true);
-    }
-  }, [dimensions]);
-  return (
-    <div style={{maxWidth: '300px'}}>
-      {React.cloneElement(props.item, {ref})}
-    </div>
-  );
-}
-
-function SampleColumnWidths(props) {
-  const [useCss] = useStyletron();
-  const sampleRowIndicesByColumn = React.useMemo<number[][]>(() => {
-    // sample size could likely be generated based on row count, to have higher confidence
-    const sampleSize = 15;
-
-    return props.columns.map(() => {
-      if (props.rows.length <= sampleSize) {
-        return props.rows.map((_, i) => i);
-      }
-
-      const indices = [];
-      for (let i = 0; i < sampleSize; i++) {
-        indices.push(Math.floor(Math.random() * props.rows.length));
-      }
-      return indices;
-    });
-  }, [props.columns, props.rows]);
-
-  function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
-    const nextWidth = Math.max(props.widths[columnIndex], dimensions.width);
-    if (nextWidth !== props.widths[columnIndex]) {
-      const nextWidths = [...props.widths];
-      nextWidths[columnIndex] = nextWidth;
-      props.onWidthsChange(nextWidths);
-    }
-  }
-
-  return (
-    <div
-      className={useCss({
-        position: 'absolute',
-        overflow: 'hidden',
-        height: 0,
-      })}
-      aria-hidden
-    >
-      {sampleRowIndicesByColumn.map((rowIndices, columnIndex) => {
-        return rowIndices.map(rowIndex => (
-          <>
-            <ElementMeasurer
-              onDimensionsChange={dimensions =>
-                handleDimensionsChange(columnIndex, rowIndex, dimensions)
-              }
-              item={
-                <CellForColumn
-                  column={props.columns[columnIndex]}
-                  value={props.rows[rowIndex].data[columnIndex]}
-                />
-              }
-            />
-          </>
-        ));
-      })}
-      {props.columns.map((column, columnIndex) => (
-        <ElementMeasurer
-          onDimensionsChange={dimensions =>
-            handleDimensionsChange(columnIndex, -1, dimensions)
-          }
-          item={
-            <ColumnHeader
-              column={column}
-              columnIndex={columnIndex}
-              addFilter={(params, title, description) => {}}
-              handleSort={idx => {}}
-              rows={[]}
-            />
-          }
-        />
-      ))}
-    </div>
   );
 }
