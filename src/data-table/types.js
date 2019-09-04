@@ -15,15 +15,13 @@ export type SortDirectionsT =
   | typeof SORT_DIRECTIONS.DESC
   | null;
 
-type ColumnKindsT =
-  | typeof COLUMNS.BOOLEAN
-  | typeof COLUMNS.CATEGORICAL
-  | typeof COLUMNS.CUSTOM
-  | typeof COLUMNS.NUMERICAL
-  | typeof COLUMNS.STRING;
-
 export type ColumnT<ValueT, FilterParamsT> = {|
-  kind: ColumnKindsT,
+  kind:
+    | typeof COLUMNS.BOOLEAN
+    | typeof COLUMNS.CATEGORICAL
+    | typeof COLUMNS.CUSTOM
+    | typeof COLUMNS.NUMERICAL
+    | typeof COLUMNS.STRING,
   title: string,
   sortable?: boolean,
   filterable?: boolean,

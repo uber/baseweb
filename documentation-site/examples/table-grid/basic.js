@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import {useStyletron} from 'baseui/styles';
+import {useStyletron} from 'baseui';
 import {
   Unstable_StyledTable as StyledTable,
   Unstable_StyledHeadCell as StyledHeadCell,

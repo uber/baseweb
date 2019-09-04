@@ -219,6 +219,10 @@ const routes = [
             itemId: '/components/table-grid',
           },
           {
+            title: 'Data Table',
+            itemId: '/components/unstable-data-table',
+          },
+          {
             title: 'Tag',
             itemId: '/components/tag',
           },
