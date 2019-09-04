@@ -60,8 +60,8 @@ function BooleanColumn(options: OptionsT): BooleanColumnT {
   return {
     kind: COLUMNS.BOOLEAN,
     title: options.title,
-    sortable: options.sortable,
-    filterable: options.filterable,
+    sortable: options.sortable === undefined ? true : options.sortable,
+    filterable: options.filterable === undefined ? true : options.filterable,
     renderCell: BooleanCell,
     renderFilter: BooleanFilter,
     buildFilter: function(params) {

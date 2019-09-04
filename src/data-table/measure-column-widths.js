@@ -121,6 +121,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
           }
           item={
             <HeaderCell
+              filterable={column.filterable}
               filter={p => null}
               index={columnIndex}
               isHovered
@@ -128,6 +129,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
               onSort={i => {}}
+              sortable={column.sortable}
               sortDirection={null}
               title={column.title}
             />

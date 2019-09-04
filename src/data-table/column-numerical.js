@@ -102,8 +102,8 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
   return {
     kind: COLUMNS.NUMERICAL,
     title: options.title,
-    sortable: options.sortable,
-    filterable: options.filterable,
+    sortable: options.sortable === undefined ? true : options.sortable,
+    filterable: options.filterable === undefined ? true : options.filterable,
     renderCell: React.forwardRef((props, ref) => {
       return (
         <NumericalCell

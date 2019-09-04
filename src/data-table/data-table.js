@@ -182,6 +182,8 @@ export function Unstable_DataTable(props: Props) {
               >
                 <HeaderCell
                   index={columnIndex}
+                  filterable={column.filterable}
+                  sortable={column.sortable}
                   isHovered={headerHoverIndex === columnIndex}
                   onMouseEnter={() => setHeaderHoverIndex(columnIndex)}
                   onMouseLeave={() => setHeaderHoverIndex(-1)}

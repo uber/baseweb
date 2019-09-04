@@ -107,8 +107,8 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
   return {
     kind: COLUMNS.CATEGORICAL,
     title: options.title,
-    sortable: options.sortable,
-    filterable: options.filterable,
+    sortable: options.sortable === undefined ? true : options.sortable,
+    filterable: options.filterable === undefined ? true : options.filterable,
     renderCell: CategoricalCell,
     renderFilter: CategoricalFilter,
     buildFilter: function(params) {

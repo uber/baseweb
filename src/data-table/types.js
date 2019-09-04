@@ -23,8 +23,8 @@ export type ColumnT<ValueT, FilterParamsT> = {|
     | typeof COLUMNS.NUMERICAL
     | typeof COLUMNS.STRING,
   title: string,
-  sortable?: boolean,
-  filterable?: boolean,
+  sortable: boolean,
+  filterable: boolean,
   renderCell: React.ComponentType<{value: ValueT, isMeasured?: boolean}>,
   renderFilter: React.ComponentType<{|
     data: ValueT[],

@@ -54,8 +54,11 @@ function CustomColumn<ValueT, FilterParamsT>(
   return {
     kind: COLUMNS.CUSTOM,
     title: options.title,
-    sortable: options.sortable,
-    filterable: options.filterable,
+    sortable: Boolean(options.sortable) && Boolean(options.sortFn),
+    filterable:
+      Boolean(options.filterable) &&
+      Boolean(options.renderFilter) &&
+      Boolean(options.buildFilter),
     renderCell: React.forwardRef((props, ref) => {
       const ProvidedCell = options.renderCell;
       return (

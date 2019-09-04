@@ -56,7 +56,7 @@ function StringColumn(options: OptionsT): StringColumnT {
   return {
     kind: COLUMNS.STRING,
     title: options.title,
-    sortable: options.sortable,
+    sortable: options.sortable === undefined ? true : options.sortable,
     filterable: false,
     renderCell: StringCell,
     renderFilter: StringFilter,

@@ -19,12 +19,14 @@ import type {SortDirectionsT} from './types.js';
 
 type HeaderCellPropsT = {
   filter: React.ComponentType<{close: () => void}>,
+  filterable: boolean,
   index: number,
   isHovered: boolean,
   isMeasured?: boolean,
   onMouseEnter: number => void,
   onMouseLeave: number => void,
   onSort: number => void,
+  sortable: boolean,
   sortDirection: SortDirectionsT,
   title: string,
 };
@@ -38,15 +40,15 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
       alignItems: 'center',
       display: 'flex',
       flexShrink: 2,
+      marginLeft: theme.sizing.scale600,
       justifyContent: 'space-between',
-      width: '64px',
     });
 
     const filterButtonStyles = useCss({
-      marginLeft: theme.sizing.scale600,
       backgroundColor: 'transparent',
       border: 'none',
       cursor: 'pointer',
+      marginRight: props.sortable ? theme.sizing.scale600 : null,
       paddingTop: 0,
       paddingRight: 0,
       paddingBottom: 0,
@@ -73,7 +75,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           alignItems: 'center',
           backgroundColor: props.isHovered ? theme.colors.mono200 : null,
           boxSizing: 'border-box',
-          cursor: 'pointer',
+          cursor: props.sortable ? 'pointer' : null,
           display: props.isMeasured ? 'inline-flex' : 'flex',
           height: '100%',
           paddingLeft: theme.sizing.scale600,
@@ -99,7 +101,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
       >
         {props.title}
         <div className={controlStyles}>
-          {props.isHovered ? (
+          {props.isHovered && props.filterable ? (
             <StatefulPopover
               placement={PLACEMENT.bottomLeft}
               ignoreBoundary
@@ -114,7 +116,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
             <div />
           )}
 
-          {(props.isHovered || props.sortDirection) && (
+          {(props.isHovered || props.sortDirection) && props.sortable && (
             <>
               {(props.sortDirection === SORT_DIRECTIONS.DESC ||
                 !props.sortDirection) && (
