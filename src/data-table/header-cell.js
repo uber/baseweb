@@ -37,8 +37,9 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
     const controlStyles = useCss({
       alignItems: 'center',
       display: 'flex',
+      flexShrink: 2,
       justifyContent: 'space-between',
-      width: '100px',
+      width: '64px',
     });
 
     const filterButtonStyles = useCss({
@@ -73,10 +74,12 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           backgroundColor: props.isHovered ? theme.colors.mono200 : null,
           boxSizing: 'border-box',
           cursor: 'pointer',
-          display: props.isMeasured ? 'inline-block' : 'flex',
+          display: props.isMeasured ? 'inline-flex' : 'flex',
           height: '100%',
           paddingLeft: theme.sizing.scale600,
           paddingRight: theme.sizing.scale600,
+          flexWrap: 'nowrap',
+          whiteSpace: 'nowrap',
         })}
         onMouseEnter={props.onMouseEnter}
         onMouseLeave={props.onMouseLeave}

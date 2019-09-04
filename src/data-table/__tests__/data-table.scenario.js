@@ -15,7 +15,7 @@ import CategoricalColumn from '../column-categorical.js';
 import CustomColumn from '../column-custom.js';
 import NumericalColumn from '../column-numerical.js';
 import StringColumn from '../column-string.js';
-import {COLUMNS} from '../constants.js';
+import {COLUMNS, NUMERICAL_FORMATS} from '../constants.js';
 import {Unstable_DataTable} from '../data-table.js';
 
 export const name = 'data-table';
@@ -51,15 +51,15 @@ function makeRowsFromColumns(columns, rowCount) {
                 return 'F';
             }
           case COLUMNS.NUMERICAL:
-            return i % 2 ? i - 1 : i + 3;
+            let base = i % 2 ? i - 1 : i + 3;
+            if (!(i % 4)) base *= -1;
+            return (base * 99999) / 100;
           case COLUMNS.BOOLEAN:
             return i % 2 === 0;
           case COLUMNS.STRING:
             return pseudoRandomString(i, j);
           case COLUMNS.CUSTOM:
-            switch (i % 5) {
-              case 4:
-                return {color: 'red'};
+            switch (i % 4) {
               case 3:
                 return {color: 'green'};
               case 2:
@@ -68,7 +68,7 @@ function makeRowsFromColumns(columns, rowCount) {
                 return {color: 'purple'};
               case 0:
               default:
-                return {color: 'yellow'};
+                return {color: 'red'};
             }
           default:
             return 'default' + pseudoRandomString(i, j);
@@ -80,15 +80,23 @@ function makeRowsFromColumns(columns, rowCount) {
 }
 
 const columns = [
-  CategoricalColumn({title: 'one'}),
-  StringColumn({title: 'two'}),
-  NumericalColumn({title: 'three'}),
+  CategoricalColumn({title: 'categorical'}),
+  NumericalColumn({title: 'numerical'}),
+  NumericalColumn({title: 'neg std', highlight: n => n < 0}),
+  NumericalColumn({title: 'accounting', format: NUMERICAL_FORMATS.ACCOUNTING}),
+  NumericalColumn({title: 'percent', format: NUMERICAL_FORMATS.PERCENTAGE}),
   CustomColumn<{color: string}, {}>({
-    title: 'four',
+    title: 'custom color',
     renderCell: function Cell(props) {
       const [useCss] = useStyletron();
       return (
-        <div className={useCss({alignItems: 'center', display: 'flex'})}>
+        <div
+          className={useCss({
+            alignItems: 'center',
+            fontFamily: '"Comic Sans MS", cursive, sans-serif',
+            display: 'flex',
+          })}
+        >
           <div
             className={useCss({
               backgroundColor: props.value.color,
@@ -102,11 +110,9 @@ const columns = [
       );
     },
   }),
-  BooleanColumn({title: 'five'}),
-  CategoricalColumn({title: 'six'}),
-  StringColumn({title: 'seven'}),
-  StringColumn({title: 'eight'}),
-  StringColumn({title: 'nine'}),
+  StringColumn({title: 'string'}),
+  BooleanColumn({title: 'boolean'}),
+  CategoricalColumn({title: 'second category'}),
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);

@@ -10,6 +10,7 @@ import {
   NumericalColumn,
   StringColumn,
   COLUMNS,
+  NUMERICAL_FORMATS,
 } from 'baseui/data-table';
 
 // https://gist.github.com/6174/6062387
@@ -73,17 +74,23 @@ function makeRowsFromColumns(columns, rowCount) {
 }
 
 const columns = [
-  CategoricalColumn({title: 'one'}),
-  StringColumn({title: 'two'}),
+  CategoricalColumn({title: 'categorical'}),
+  StringColumn({title: 'string'}),
   NumericalColumn({title: 'three'}),
+  NumericalColumn({title: 'neg std', highlight: n => n < 0}),
+  NumericalColumn({
+    title: 'accounting',
+    format: NUMERICAL_FORMATS.ACCOUNTING,
+  }),
   CustomColumn<{color: string}, {}>({
-    title: 'four',
+    title: 'custom color',
     renderCell: function Cell(props) {
       const [useCss] = useStyletron();
       return (
         <div
           className={useCss({
             alignItems: 'center',
+            fontFamily: '"Comic Sans MS", cursive, sans-serif',
             display: 'flex',
           })}
         >
@@ -100,11 +107,8 @@ const columns = [
       );
     },
   }),
-  BooleanColumn({title: 'five'}),
-  CategoricalColumn({title: 'six'}),
-  StringColumn({title: 'seven'}),
-  StringColumn({title: 'eight'}),
-  StringColumn({title: 'nine'}),
+  BooleanColumn({title: 'boolean'}),
+  CategoricalColumn({title: 'second category'}),
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);

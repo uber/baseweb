@@ -123,7 +123,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
             <HeaderCell
               filter={p => null}
               index={columnIndex}
-              isHovered={false}
+              isHovered
               isMeasured
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
