@@ -10,9 +10,8 @@ import * as React from 'react';
 
 import {useStyletron} from '../styles/index.js';
 
-import CellForColumn from './cell-for-column.js';
-import ColumnHeader from './column-header.js';
-import type {Columns, Row} from './types.js';
+import HeaderCell from './header-cell.js';
+import type {ColumnT, Row} from './types.js';
 
 // https://github.com/Swizec/useDimensions
 function useDimensions() {
@@ -54,7 +53,7 @@ function ElementMeasurer(props: ElementMeasurerPropsT) {
 }
 
 type MeasureColumnWidthsPropsT = {
-  columns: Columns[],
+  columns: ColumnT<*, *>[],
   onWidthsChange: (number[]) => void,
   rows: Row[],
   widths: number[],
@@ -98,6 +97,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
       aria-hidden
     >
       {sampleRowIndicesByColumn.map((rowIndices, columnIndex) => {
+        const Cell = props.columns[columnIndex].renderCell;
         return rowIndices.map(rowIndex => (
           <ElementMeasurer
             key={`measure-${rowIndex}`}
@@ -105,11 +105,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
               handleDimensionsChange(columnIndex, rowIndex, dimensions)
             }
             item={
-              <CellForColumn
-                column={props.columns[columnIndex]}
-                value={props.rows[rowIndex].data[columnIndex]}
-                isMeasured
-              />
+              <Cell value={props.rows[rowIndex].data[columnIndex]} isMeasured />
             }
           />
         ));
@@ -121,7 +117,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
             handleDimensionsChange(columnIndex, -1, dimensions)
           }
           item={
-            <ColumnHeader
+            <HeaderCell
               filter={p => null}
               index={columnIndex}
               isHovered={false}

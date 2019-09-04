@@ -12,23 +12,28 @@ import {Button} from '../button/index.js';
 import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import {useStyletron} from '../styles/index.js';
 
-import type {CategoricalFilterParameters, CategoricalColumn} from './types.js';
+import {COLUMNS} from './constants.js';
+import type {ColumnT} from './types.js';
 
-export function buildCategoricalFilter(params: CategoricalFilterParameters) {
-  return function(data: string) {
-    const included = params.selection.has(data);
-    return params.exclude ? !included : included;
-  };
-}
+type CellPropsT = {
+  isMeasured?: boolean,
+  value: string,
+};
 
-export function CategoricalFilter(props: {
-  data: string[],
-  setFilter: (
-    filterParams: CategoricalFilterParameters,
-    description: string,
-  ) => void,
-  close: () => void,
-}) {
+type OptionsT = {|
+  title: string,
+  sortable?: boolean,
+  filterable?: boolean,
+|};
+
+type FilterParametersT = {|
+  selection: Set<string>,
+  exclude: boolean,
+|};
+
+type CategoricalColumnT = ColumnT<string, FilterParametersT>;
+
+function CategoricalFilter(props) {
   const [useCss] = useStyletron();
   const [selection, setSelection] = React.useState<Set<string>>(new Set());
   const [exclude, setExclude] = React.useState(false);
@@ -78,3 +83,44 @@ export function CategoricalFilter(props: {
     </div>
   );
 }
+
+const CategoricalCell = React.forwardRef<CellPropsT, HTMLDivElement>(
+  (props, ref) => {
+    const [useCss, theme] = useStyletron();
+    return (
+      <div
+        ref={ref}
+        className={useCss({
+          ...theme.typography.font200,
+          display: props.isMeasured ? 'inline-block' : null,
+          paddingLeft: theme.sizing.scale600,
+          paddingRight: theme.sizing.scale600,
+        })}
+      >
+        {props.value}
+      </div>
+    );
+  },
+);
+
+function CategoricalColumn(options: OptionsT): CategoricalColumnT {
+  return {
+    kind: COLUMNS.CATEGORICAL,
+    title: options.title,
+    sortable: options.sortable,
+    filterable: options.filterable,
+    renderCell: CategoricalCell,
+    renderFilter: CategoricalFilter,
+    buildFilter: function(params) {
+      return function(data) {
+        const included = params.selection.has(data);
+        return params.exclude ? !included : included;
+      };
+    },
+    sortFn: function(a, b) {
+      return a.localeCompare(b);
+    },
+  };
+}
+
+export default CategoricalColumn;

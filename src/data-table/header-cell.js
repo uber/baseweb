@@ -15,9 +15,9 @@ import ChevronUp from '../icon/chevron-up.js';
 import FilterIcon from '../icon/filter.js';
 
 import {SORT_DIRECTIONS} from './constants.js';
-import type {SortDirections} from './types.js';
+import type {SortDirectionsT} from './types.js';
 
-type ColumnHeaderPropsT = {
+type HeaderCellPropsT = {
   filter: React.ComponentType<{close: () => void}>,
   index: number,
   isHovered: boolean,
@@ -25,11 +25,11 @@ type ColumnHeaderPropsT = {
   onMouseEnter: number => void,
   onMouseLeave: number => void,
   onSort: number => void,
-  sortDirection: SortDirections,
+  sortDirection: SortDirectionsT,
   title: string,
 };
 
-const ColumnHeader = React.forwardRef<ColumnHeaderPropsT, HTMLDivElement>(
+const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
   (props, ref) => {
     const [useCss, theme] = useStyletron();
     const sortRef = React.useRef(null);
@@ -125,6 +125,6 @@ const ColumnHeader = React.forwardRef<ColumnHeaderPropsT, HTMLDivElement>(
     );
   },
 );
-ColumnHeader.displayName = 'ColumnHeader';
+HeaderCell.displayName = 'HeaderCell';
 
-export default ColumnHeader;
+export default HeaderCell;

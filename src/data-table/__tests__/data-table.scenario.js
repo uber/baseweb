@@ -9,6 +9,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
+
+import BooleanColumn from '../column-boolean.js';
+import CategoricalColumn from '../column-categorical.js';
+import CustomColumn from '../column-custom.js';
+import NumericalColumn from '../column-numerical.js';
+import StringColumn from '../column-string.js';
 import {COLUMNS} from '../constants.js';
 import {Unstable_DataTable} from '../data-table.js';
 
@@ -51,7 +57,19 @@ function makeRowsFromColumns(columns, rowCount) {
           case COLUMNS.STRING:
             return pseudoRandomString(i, j);
           case COLUMNS.CUSTOM:
-            return pseudoRandomString(i, j);
+            switch (i % 5) {
+              case 4:
+                return {color: 'red'};
+              case 3:
+                return {color: 'green'};
+              case 2:
+                return {color: 'blue'};
+              case 1:
+                return {color: 'purple'};
+              case 0:
+              default:
+                return {color: 'yellow'};
+            }
           default:
             return 'default' + pseudoRandomString(i, j);
         }
@@ -62,22 +80,33 @@ function makeRowsFromColumns(columns, rowCount) {
 }
 
 const columns = [
-  {kind: COLUMNS.CATEGORICAL, title: 'one'},
-  {kind: COLUMNS.STRING, title: 'two'},
-  {kind: COLUMNS.NUMERICAL, title: 'three', format: 'NONE'},
-  {
-    kind: COLUMNS.CUSTOM,
+  CategoricalColumn({title: 'one'}),
+  StringColumn({title: 'two'}),
+  NumericalColumn({title: 'three'}),
+  CustomColumn<{color: string}, {}>({
     title: 'four',
     renderCell: function Cell(props) {
       const [useCss] = useStyletron();
-      return <div className={useCss({color: 'green'})}>{props.data}</div>;
+      return (
+        <div className={useCss({alignItems: 'center', display: 'flex'})}>
+          <div
+            className={useCss({
+              backgroundColor: props.value.color,
+              height: '12px',
+              marginRight: '24px',
+              width: '12px',
+            })}
+          />
+          <div>{props.value.color}</div>
+        </div>
+      );
     },
-  },
-  {kind: COLUMNS.BOOLEAN, title: 'five'},
-  {kind: COLUMNS.CATEGORICAL, title: 'six'},
-  {kind: COLUMNS.STRING, title: 'seven'},
-  {kind: COLUMNS.STRING, title: 'eight'},
-  {kind: COLUMNS.STRING, title: 'nine'},
+  }),
+  BooleanColumn({title: 'five'}),
+  CategoricalColumn({title: 'six'}),
+  StringColumn({title: 'seven'}),
+  StringColumn({title: 'eight'}),
+  StringColumn({title: 'nine'}),
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);

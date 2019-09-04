@@ -13,63 +13,10 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
-import CellForColumn from './cell-for-column.js';
-import ColumnHeader from './column-header.js';
-import {
-  CategoricalFilter,
-  buildCategoricalFilter,
-} from './column-categorical.js';
+import HeaderCell from './header-cell.js';
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
-import type {Columns, CategoricalFilterParameters, Props} from './types.js';
-
-function sortFnByColumn(column: Columns) {
-  switch (column.kind) {
-    case COLUMNS.CATEGORICAL:
-    case COLUMNS.STRING:
-      return function sortCategories(a, b) {
-        return a.localeCompare(b);
-      };
-    case COLUMNS.NUMERICAL:
-      return function sortNumbers(a, b) {
-        return b - a;
-      };
-    case COLUMNS.BOOLEAN:
-      return function sortBooleans(a, b) {
-        if (a === b) return 0;
-        return a ? -1 : 1;
-      };
-    case COLUMNS.CUSTOM:
-      if (column.sortFn) {
-        return column.sortFn;
-      } else {
-        return (a, b) => 0;
-      }
-    default:
-      return (a, b) => 0;
-  }
-}
-
-function buildFilterFnByColumn(column: Columns) {
-  switch (column.kind) {
-    case COLUMNS.CATEGORICAL:
-      return buildCategoricalFilter;
-    case COLUMNS.STRING:
-      return params => any => true;
-    case COLUMNS.NUMERICAL:
-      return params => any => true;
-    case COLUMNS.BOOLEAN:
-      return params => any => true;
-    case COLUMNS.CUSTOM:
-      if (column.buildFilter) {
-        return column.buildFilter;
-      } else {
-        return null;
-      }
-    default:
-      return null;
-  }
-}
+import type {ColumnT, Props} from './types.js';
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
@@ -80,6 +27,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   }
 
   const column = data.columns[columnIndex];
+  const Cell = column.renderCell;
   // minus one to account for additional header row
   const value = data.rows[rowIndex - 1].data[columnIndex];
   return (
@@ -96,12 +44,12 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
       })}
       style={style}
     >
-      <CellForColumn column={column} value={value} />
+      <Cell value={value} />
     </div>
   );
 }
 
-function useDuplicateColumnTitleWarning(columns: Columns[]) {
+function useDuplicateColumnTitleWarning(columns: ColumnT<*, *>[]) {
   React.useEffect(() => {
     const titles = columns.reduce(
       (set, column) => set.add(column.title),
@@ -158,7 +106,7 @@ export function Unstable_DataTable(props: Props) {
     let toSort = props.rows.map((r, i) => [r, i]);
 
     if (sortIndex !== -1) {
-      const sortFn = sortFnByColumn(props.columns[sortIndex]);
+      const sortFn = props.columns[sortIndex].sortFn;
       if (sortDirection === SORT_DIRECTIONS.DESC) {
         toSort.sort((a, b) =>
           sortFn(a[0].data[sortIndex], b[0].data[sortIndex]),
@@ -182,12 +130,7 @@ export function Unstable_DataTable(props: Props) {
         return;
       }
 
-      const buildFilterFn = buildFilterFnByColumn(column);
-      if (!buildFilterFn) {
-        return;
-      }
-
-      const filterFn = buildFilterFn(filter.filterParams);
+      const filterFn = column.buildFilter(filter.filterParams);
       Array.from(set).forEach(idx => {
         if (!filterFn(props.rows[idx].data[columnIndex])) {
           set.delete(idx);
@@ -237,39 +180,23 @@ export function Unstable_DataTable(props: Props) {
                 key={columnIndex}
                 style={{width}}
               >
-                <ColumnHeader
+                <HeaderCell
                   index={columnIndex}
                   isHovered={headerHoverIndex === columnIndex}
                   onMouseEnter={() => setHeaderHoverIndex(columnIndex)}
                   onMouseLeave={() => setHeaderHoverIndex(-1)}
                   onSort={handleSort}
                   filter={({close}) => {
-                    switch (column.kind) {
-                      case COLUMNS.CATEGORICAL:
-                        return (
-                          <CategoricalFilter
-                            setFilter={(filterParams, description) => {
-                              addFilter(
-                                filterParams,
-                                column.title,
-                                description,
-                              );
-                            }}
-                            data={props.rows.map(r => r.data[columnIndex])}
-                            close={close}
-                          />
-                        );
-                      case COLUMNS.STRING:
-                      case COLUMNS.NUMERICAL:
-                      case COLUMNS.BOOLEAN:
-                      case COLUMNS.CUSTOM:
-                      default:
-                        return (
-                          <div>
-                            <p>filter type {column.kind} not implemented.</p>
-                          </div>
-                        );
-                    }
+                    const Filter = column.renderFilter;
+                    return (
+                      <Filter
+                        setFilter={(filterParams, description) => {
+                          addFilter(filterParams, column.title, description);
+                        }}
+                        data={props.rows.map(r => r.data[columnIndex])}
+                        close={close}
+                      />
+                    );
                   }}
                   sortDirection={
                     sortIndex === columnIndex ? sortDirection : null
