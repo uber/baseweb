@@ -68,14 +68,17 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     title: options.title,
     sortable: options.sortable,
     filterable: options.filterable,
-    renderCell: props => (
-      <NumericalCell
-        {...props}
-        format={options.format || NUMERICAL_FORMATS.DEFAULT}
-        highlight={options.highlight || (() => false)}
-        precision={options.precision || 2}
-      />
-    ),
+    renderCell: React.forwardRef((props, ref) => {
+      return (
+        <NumericalCell
+          {...props}
+          ref={ref}
+          format={options.format || NUMERICAL_FORMATS.DEFAULT}
+          highlight={options.highlight || (() => false)}
+          precision={options.precision || 2}
+        />
+      );
+    }),
     renderFilter: NumericalFilter,
     buildFilter: function(params) {
       return function(data) {

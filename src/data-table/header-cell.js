@@ -60,6 +60,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
     return (
       <div
         role="button"
+        tabIndex="0"
         ref={r => {
           if (typeof ref === 'function') {
             ref(r);
@@ -79,6 +80,11 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
         })}
         onMouseEnter={props.onMouseEnter}
         onMouseLeave={props.onMouseLeave}
+        onKeyUp={event => {
+          if (event.key === 'Enter') {
+            props.onSort(props.index);
+          }
+        }}
         onClick={event => {
           if (
             event.target.isSameNode(sortRef.current) ||

@@ -23,10 +23,12 @@ function useDimensions() {
   }, []);
 
   React.useLayoutEffect(() => {
-    if (node) {
-      window.requestAnimationFrame(() => {
-        setDimensions(node.getBoundingClientRect());
-      });
+    if (__BROWSER__) {
+      if (node) {
+        window.requestAnimationFrame(() => {
+          setDimensions(node.getBoundingClientRect());
+        });
+      }
     }
   }, [node]);
 
@@ -35,6 +37,7 @@ function useDimensions() {
 
 type ElementMeasurerPropsT = {
   onDimensionsChange: (dimensions: {width: number}) => void,
+  // eslint-disable-next-line flowtype/no-weak-types
   item: React.Element<any>,
 };
 
@@ -100,7 +103,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
         const Cell = props.columns[columnIndex].renderCell;
         return rowIndices.map(rowIndex => (
           <ElementMeasurer
-            key={`measure-${rowIndex}`}
+            key={`measure-${columnIndex}-${rowIndex}`}
             onDimensionsChange={dimensions =>
               handleDimensionsChange(columnIndex, rowIndex, dimensions)
             }
@@ -112,7 +115,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
       })}
       {props.columns.map((column, columnIndex) => (
         <ElementMeasurer
-          key={`measure-${columnIndex}`}
+          key={`measure-column-${columnIndex}`}
           onDimensionsChange={dimensions =>
             handleDimensionsChange(columnIndex, -1, dimensions)
           }

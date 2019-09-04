@@ -29,10 +29,6 @@ type OptionsT<ValueT, FilterParamsT> = {|
   sortFn?: (ValueT, ValueT) => number,
 |};
 
-function CustomFilter(props) {
-  return <div>not implemented for custom column</div>;
-}
-
 const CustomCell = React.forwardRef<
   {isMeasured?: boolean, children: React.Node},
   HTMLDivElement,
@@ -60,14 +56,14 @@ function CustomColumn<ValueT, FilterParamsT>(
     title: options.title,
     sortable: options.sortable,
     filterable: options.filterable,
-    renderCell: props => {
+    renderCell: React.forwardRef((props, ref) => {
       const ProvidedCell = options.renderCell;
       return (
-        <CustomCell {...props}>
+        <CustomCell {...props} ref={ref}>
           <ProvidedCell value={props.value} />
         </CustomCell>
       );
-    },
+    }),
     renderFilter: options.renderFilter || (() => null),
     buildFilter: options.buildFilter || (() => () => true),
     sortFn: options.sortFn || (() => 0),

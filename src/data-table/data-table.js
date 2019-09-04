@@ -14,7 +14,7 @@ import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
 import HeaderCell from './header-cell.js';
-import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
+import {SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
 import type {ColumnT, Props} from './types.js';
 
@@ -237,6 +237,7 @@ export function Unstable_DataTable(props: Props) {
       <AutoSizer>
         {({height, width}) => (
           <VariableSizeGrid
+            // eslint-disable-next-line flowtype/no-weak-types
             ref={(gridRef: any)}
             overscanRowCount={10}
             innerElementType={InnerTableElement}
