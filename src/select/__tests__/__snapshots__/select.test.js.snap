@@ -71,7 +71,7 @@ exports[`Select component renders component in search mode and false for multipl
     showArrow={false}
     triggerType="click"
   >
-    <ForwardRef
+    <StyledRoot
       $clearable={true}
       $creatable={false}
       $disabled={false}
@@ -153,12 +153,6 @@ exports[`Select component renders component in search mode and false for multipl
                     styled-component="true"
                     test-style="[object Object]"
                   >
-                    Select...
-                  </div>
-                  <div
-                    styled-component="true"
-                    test-style="[object Object]"
-                  >
                     <input
                       aria-autocomplete="list"
                       aria-expanded="false"
@@ -173,6 +167,12 @@ exports[`Select component renders component in search mode and false for multipl
                       styled-component="true"
                       test-style="[object Object]"
                     />
+                  </div>
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    Select...
                   </div>
                 </span>
                 <div
@@ -203,7 +203,7 @@ exports[`Select component renders component in search mode and false for multipl
             }
           }
         >
-          <ForwardRef
+          <StyledControlContainer
             $clearable={true}
             $creatable={false}
             $disabled={false}
@@ -276,7 +276,7 @@ exports[`Select component renders component in search mode and false for multipl
                   }
                 }
               >
-                <ForwardRef
+                <StyledSearchIcon
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -318,9 +318,8 @@ exports[`Select component renders component in search mode and false for multipl
                           "cursor": "pointer",
                           "display": "flex",
                           "fill": "currentColor",
-                          "height": "100%",
-                          "left": "$theme.sizing.scale500",
-                          "position": "absolute",
+                          "height": "auto",
+                          "marginLeft": "$theme.sizing.scale500",
                           "width": "$theme.sizing.scale600",
                         }
                       }
@@ -334,7 +333,7 @@ exports[`Select component renders component in search mode and false for multipl
                           title="search"
                           viewBox="0 0 24 24"
                         >
-                          <ForwardRef
+                          <Svg
                             $size={16}
                             data-baseweb="icon"
                             viewBox="0 0 24 24"
@@ -369,13 +368,13 @@ exports[`Select component renders component in search mode and false for multipl
                                 />
                               </svg>
                             </MockStyledComponent>
-                          </ForwardRef>
+                          </Svg>
                         </Icon>
                       </Search>
                     </div>
                   </MockStyledComponent>
-                </ForwardRef>
-                <ForwardRef
+                </StyledSearchIcon>
+                <StyledValueContainer
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -420,73 +419,12 @@ exports[`Select component renders component in search mode and false for multipl
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "overflow": "hidden",
-                          "paddingBottom": "$theme.sizing.scale400",
-                          "paddingLeft": "$theme.sizing.scale1000",
+                          "paddingLeft": "$theme.sizing.scale500",
                           "paddingRight": 0,
-                          "paddingTop": "$theme.sizing.scale400",
-                          "position": "relative",
                         }
                       }
                     >
-                      <ForwardRef
-                        $clearable={true}
-                        $creatable={false}
-                        $disabled={false}
-                        $error={false}
-                        $isFocused={false}
-                        $isLoading={false}
-                        $isOpen={false}
-                        $isPseudoFocused={false}
-                        $multi={false}
-                        $positive={false}
-                        $required={false}
-                        $searchable={true}
-                        $size="default"
-                        $type="search"
-                      >
-                        <MockStyledComponent
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="search"
-                          forwardedRef={null}
-                        >
-                          <div
-                            styled-component="true"
-                            test-style={
-                              Object {
-                                "bottom": 0,
-                                "color": "$theme.colors.foregroundAlt",
-                                "left": 0,
-                                "maxWidth": "100%",
-                                "overflow": "hidden",
-                                "paddingBottom": "$theme.sizing.scale400",
-                                "paddingLeft": "$theme.sizing.scale1000",
-                                "paddingRight": 0,
-                                "paddingTop": "$theme.sizing.scale400",
-                                "position": "absolute",
-                                "right": 0,
-                                "textOverflow": "ellipsis",
-                                "top": 0,
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            Select...
-                          </div>
-                        </MockStyledComponent>
-                      </ForwardRef>
-                      <ForwardRef
+                      <StyledInputContainer
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -531,9 +469,10 @@ exports[`Select component renders component in search mode and false for multipl
                                 "height": "auto",
                                 "marginBottom": 0,
                                 "marginLeft": 0,
-                                "marginRight": 0,
+                                "marginRight": "-$theme.sizing.scale0",
                                 "marginTop": 0,
-                                "maxHeight": "$theme.typography.font400.lineHeight",
+                                "maxHeight": "calc($theme.typography.font400.lineHeight
+        getControlPaddingVertical(props).paddingTop} + $theme.sizing.scale400)",
                                 "maxWidth": "100%",
                                 "outline": "none",
                                 "paddingBottom": 0,
@@ -583,7 +522,7 @@ exports[`Select component renders component in search mode and false for multipl
                               tabIndex={0}
                               value=""
                             >
-                              <ForwardRef
+                              <StyledInput
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -687,18 +626,16 @@ exports[`Select component renders component in search mode and false for multipl
                                         "marginTop": "0",
                                         "maxWidth": "100%",
                                         "outline": "none",
-                                        "paddingBottom": "0",
-                                        "paddingLeft": "0",
-                                        "paddingRight": "0",
-                                        "paddingTop": "0",
+                                        "paddingBottom": "$theme.sizing.scale400",
+                                        "paddingTop": "$theme.sizing.scale400",
                                         "width": "2px",
                                       }
                                     }
                                     value=""
                                   />
                                 </MockStyledComponent>
-                              </ForwardRef>
-                              <ForwardRef
+                              </StyledInput>
+                              <StyledInputSizer
                                 $size="default"
                               >
                                 <MockStyledComponent
@@ -724,15 +661,66 @@ exports[`Select component renders component in search mode and false for multipl
                                     }
                                   />
                                 </MockStyledComponent>
-                              </ForwardRef>
+                              </StyledInputSizer>
                             </AutosizeInput>
                           </div>
                         </MockStyledComponent>
-                      </ForwardRef>
+                      </StyledInputContainer>
+                      <StyledPlaceholder
+                        $clearable={true}
+                        $creatable={false}
+                        $disabled={false}
+                        $error={false}
+                        $isFocused={false}
+                        $isLoading={false}
+                        $isOpen={false}
+                        $isPseudoFocused={false}
+                        $multi={false}
+                        $positive={false}
+                        $required={false}
+                        $searchable={true}
+                        $size="default"
+                        $type="search"
+                      >
+                        <MockStyledComponent
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="search"
+                          forwardedRef={null}
+                        >
+                          <div
+                            styled-component="true"
+                            test-style={
+                              Object {
+                                "color": "$theme.colors.foregroundAlt",
+                                "maxWidth": "100%",
+                                "overflow": "hidden",
+                                "paddingBottom": "$theme.sizing.scale400",
+                                "paddingTop": "$theme.sizing.scale400",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            Select...
+                          </div>
+                        </MockStyledComponent>
+                      </StyledPlaceholder>
                     </span>
                   </MockStyledComponent>
-                </ForwardRef>
-                <ForwardRef
+                </StyledValueContainer>
+                <StyledIconsContainer
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -780,13 +768,13 @@ exports[`Select component renders component in search mode and false for multipl
                       }
                     />
                   </MockStyledComponent>
-                </ForwardRef>
+                </StyledIconsContainer>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledControlContainer>
         </div>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledRoot>
   </Popover>
 </Select>
 `;
@@ -862,7 +850,7 @@ exports[`Select component renders component in search mode and true for multiple
     showArrow={false}
     triggerType="click"
   >
-    <ForwardRef
+    <StyledRoot
       $clearable={true}
       $creatable={false}
       $disabled={false}
@@ -944,12 +932,6 @@ exports[`Select component renders component in search mode and true for multiple
                     styled-component="true"
                     test-style="[object Object]"
                   >
-                    Select...
-                  </div>
-                  <div
-                    styled-component="true"
-                    test-style="[object Object]"
-                  >
                     <input
                       aria-autocomplete="list"
                       aria-expanded="false"
@@ -964,6 +946,12 @@ exports[`Select component renders component in search mode and true for multiple
                       styled-component="true"
                       test-style="[object Object]"
                     />
+                  </div>
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    Select...
                   </div>
                 </span>
                 <div
@@ -994,7 +982,7 @@ exports[`Select component renders component in search mode and true for multiple
             }
           }
         >
-          <ForwardRef
+          <StyledControlContainer
             $clearable={true}
             $creatable={false}
             $disabled={false}
@@ -1067,7 +1055,7 @@ exports[`Select component renders component in search mode and true for multiple
                   }
                 }
               >
-                <ForwardRef
+                <StyledSearchIcon
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -1109,9 +1097,8 @@ exports[`Select component renders component in search mode and true for multiple
                           "cursor": "pointer",
                           "display": "flex",
                           "fill": "currentColor",
-                          "height": "100%",
-                          "left": "$theme.sizing.scale500",
-                          "position": "absolute",
+                          "height": "auto",
+                          "marginLeft": "$theme.sizing.scale500",
                           "width": "$theme.sizing.scale600",
                         }
                       }
@@ -1125,7 +1112,7 @@ exports[`Select component renders component in search mode and true for multiple
                           title="search"
                           viewBox="0 0 24 24"
                         >
-                          <ForwardRef
+                          <Svg
                             $size={16}
                             data-baseweb="icon"
                             viewBox="0 0 24 24"
@@ -1160,13 +1147,13 @@ exports[`Select component renders component in search mode and true for multiple
                                 />
                               </svg>
                             </MockStyledComponent>
-                          </ForwardRef>
+                          </Svg>
                         </Icon>
                       </Search>
                     </div>
                   </MockStyledComponent>
-                </ForwardRef>
-                <ForwardRef
+                </StyledSearchIcon>
+                <StyledValueContainer
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -1211,73 +1198,12 @@ exports[`Select component renders component in search mode and true for multiple
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "overflow": "hidden",
-                          "paddingBottom": "$theme.sizing.scale400",
-                          "paddingLeft": "$theme.sizing.scale1000",
+                          "paddingLeft": "$theme.sizing.scale500",
                           "paddingRight": 0,
-                          "paddingTop": "$theme.sizing.scale400",
-                          "position": "relative",
                         }
                       }
                     >
-                      <ForwardRef
-                        $clearable={true}
-                        $creatable={false}
-                        $disabled={false}
-                        $error={false}
-                        $isFocused={false}
-                        $isLoading={false}
-                        $isOpen={false}
-                        $isPseudoFocused={false}
-                        $multi={false}
-                        $positive={false}
-                        $required={false}
-                        $searchable={true}
-                        $size="default"
-                        $type="search"
-                      >
-                        <MockStyledComponent
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="search"
-                          forwardedRef={null}
-                        >
-                          <div
-                            styled-component="true"
-                            test-style={
-                              Object {
-                                "bottom": 0,
-                                "color": "$theme.colors.foregroundAlt",
-                                "left": 0,
-                                "maxWidth": "100%",
-                                "overflow": "hidden",
-                                "paddingBottom": "$theme.sizing.scale400",
-                                "paddingLeft": "$theme.sizing.scale1000",
-                                "paddingRight": 0,
-                                "paddingTop": "$theme.sizing.scale400",
-                                "position": "absolute",
-                                "right": 0,
-                                "textOverflow": "ellipsis",
-                                "top": 0,
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            Select...
-                          </div>
-                        </MockStyledComponent>
-                      </ForwardRef>
-                      <ForwardRef
+                      <StyledInputContainer
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -1322,9 +1248,10 @@ exports[`Select component renders component in search mode and true for multiple
                                 "height": "auto",
                                 "marginBottom": 0,
                                 "marginLeft": 0,
-                                "marginRight": 0,
+                                "marginRight": "-$theme.sizing.scale0",
                                 "marginTop": 0,
-                                "maxHeight": "$theme.typography.font400.lineHeight",
+                                "maxHeight": "calc($theme.typography.font400.lineHeight
+        getControlPaddingVertical(props).paddingTop} + $theme.sizing.scale400)",
                                 "maxWidth": "100%",
                                 "outline": "none",
                                 "paddingBottom": 0,
@@ -1374,7 +1301,7 @@ exports[`Select component renders component in search mode and true for multiple
                               tabIndex={0}
                               value=""
                             >
-                              <ForwardRef
+                              <StyledInput
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -1478,18 +1405,16 @@ exports[`Select component renders component in search mode and true for multiple
                                         "marginTop": "0",
                                         "maxWidth": "100%",
                                         "outline": "none",
-                                        "paddingBottom": "0",
-                                        "paddingLeft": "0",
-                                        "paddingRight": "0",
-                                        "paddingTop": "0",
+                                        "paddingBottom": "$theme.sizing.scale400",
+                                        "paddingTop": "$theme.sizing.scale400",
                                         "width": "2px",
                                       }
                                     }
                                     value=""
                                   />
                                 </MockStyledComponent>
-                              </ForwardRef>
-                              <ForwardRef
+                              </StyledInput>
+                              <StyledInputSizer
                                 $size="default"
                               >
                                 <MockStyledComponent
@@ -1515,15 +1440,66 @@ exports[`Select component renders component in search mode and true for multiple
                                     }
                                   />
                                 </MockStyledComponent>
-                              </ForwardRef>
+                              </StyledInputSizer>
                             </AutosizeInput>
                           </div>
                         </MockStyledComponent>
-                      </ForwardRef>
+                      </StyledInputContainer>
+                      <StyledPlaceholder
+                        $clearable={true}
+                        $creatable={false}
+                        $disabled={false}
+                        $error={false}
+                        $isFocused={false}
+                        $isLoading={false}
+                        $isOpen={false}
+                        $isPseudoFocused={false}
+                        $multi={false}
+                        $positive={false}
+                        $required={false}
+                        $searchable={true}
+                        $size="default"
+                        $type="search"
+                      >
+                        <MockStyledComponent
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="search"
+                          forwardedRef={null}
+                        >
+                          <div
+                            styled-component="true"
+                            test-style={
+                              Object {
+                                "color": "$theme.colors.foregroundAlt",
+                                "maxWidth": "100%",
+                                "overflow": "hidden",
+                                "paddingBottom": "$theme.sizing.scale400",
+                                "paddingTop": "$theme.sizing.scale400",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            Select...
+                          </div>
+                        </MockStyledComponent>
+                      </StyledPlaceholder>
                     </span>
                   </MockStyledComponent>
-                </ForwardRef>
-                <ForwardRef
+                </StyledValueContainer>
+                <StyledIconsContainer
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -1571,13 +1547,13 @@ exports[`Select component renders component in search mode and true for multiple
                       }
                     />
                   </MockStyledComponent>
-                </ForwardRef>
+                </StyledIconsContainer>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledControlContainer>
         </div>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledRoot>
   </Popover>
 </Select>
 `;
@@ -1653,7 +1629,7 @@ exports[`Select component renders component in select mode and false for multipl
     showArrow={false}
     triggerType="click"
   >
-    <ForwardRef
+    <StyledRoot
       $clearable={true}
       $creatable={false}
       $disabled={false}
@@ -1715,12 +1691,6 @@ exports[`Select component renders component in select mode and false for multipl
                     styled-component="true"
                     test-style="[object Object]"
                   >
-                    Select...
-                  </div>
-                  <div
-                    styled-component="true"
-                    test-style="[object Object]"
-                  >
                     <input
                       aria-autocomplete="list"
                       aria-expanded="false"
@@ -1735,6 +1705,12 @@ exports[`Select component renders component in select mode and false for multipl
                       styled-component="true"
                       test-style="[object Object]"
                     />
+                  </div>
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    Select...
                   </div>
                 </span>
                 <div
@@ -1779,7 +1755,7 @@ exports[`Select component renders component in select mode and false for multipl
             }
           }
         >
-          <ForwardRef
+          <StyledControlContainer
             $clearable={true}
             $creatable={false}
             $disabled={false}
@@ -1852,7 +1828,7 @@ exports[`Select component renders component in select mode and false for multipl
                   }
                 }
               >
-                <ForwardRef
+                <StyledValueContainer
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -1897,73 +1873,12 @@ exports[`Select component renders component in select mode and false for multipl
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "overflow": "hidden",
-                          "paddingBottom": "$theme.sizing.scale400",
                           "paddingLeft": "$theme.sizing.scale500",
                           "paddingRight": 0,
-                          "paddingTop": "$theme.sizing.scale400",
-                          "position": "relative",
                         }
                       }
                     >
-                      <ForwardRef
-                        $clearable={true}
-                        $creatable={false}
-                        $disabled={false}
-                        $error={false}
-                        $isFocused={false}
-                        $isLoading={false}
-                        $isOpen={false}
-                        $isPseudoFocused={false}
-                        $multi={false}
-                        $positive={false}
-                        $required={false}
-                        $searchable={true}
-                        $size="default"
-                        $type="select"
-                      >
-                        <MockStyledComponent
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="select"
-                          forwardedRef={null}
-                        >
-                          <div
-                            styled-component="true"
-                            test-style={
-                              Object {
-                                "bottom": 0,
-                                "color": "$theme.colors.foregroundAlt",
-                                "left": 0,
-                                "maxWidth": "100%",
-                                "overflow": "hidden",
-                                "paddingBottom": "$theme.sizing.scale400",
-                                "paddingLeft": "$theme.sizing.scale500",
-                                "paddingRight": 0,
-                                "paddingTop": "$theme.sizing.scale400",
-                                "position": "absolute",
-                                "right": 0,
-                                "textOverflow": "ellipsis",
-                                "top": 0,
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            Select...
-                          </div>
-                        </MockStyledComponent>
-                      </ForwardRef>
-                      <ForwardRef
+                      <StyledInputContainer
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -2008,9 +1923,10 @@ exports[`Select component renders component in select mode and false for multipl
                                 "height": "auto",
                                 "marginBottom": 0,
                                 "marginLeft": 0,
-                                "marginRight": 0,
+                                "marginRight": "-$theme.sizing.scale0",
                                 "marginTop": 0,
-                                "maxHeight": "$theme.typography.font400.lineHeight",
+                                "maxHeight": "calc($theme.typography.font400.lineHeight
+        getControlPaddingVertical(props).paddingTop} + $theme.sizing.scale400)",
                                 "maxWidth": "100%",
                                 "outline": "none",
                                 "paddingBottom": 0,
@@ -2060,7 +1976,7 @@ exports[`Select component renders component in select mode and false for multipl
                               tabIndex={0}
                               value=""
                             >
-                              <ForwardRef
+                              <StyledInput
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -2164,18 +2080,16 @@ exports[`Select component renders component in select mode and false for multipl
                                         "marginTop": "0",
                                         "maxWidth": "100%",
                                         "outline": "none",
-                                        "paddingBottom": "0",
-                                        "paddingLeft": "0",
-                                        "paddingRight": "0",
-                                        "paddingTop": "0",
+                                        "paddingBottom": "$theme.sizing.scale400",
+                                        "paddingTop": "$theme.sizing.scale400",
                                         "width": "2px",
                                       }
                                     }
                                     value=""
                                   />
                                 </MockStyledComponent>
-                              </ForwardRef>
-                              <ForwardRef
+                              </StyledInput>
+                              <StyledInputSizer
                                 $size="default"
                               >
                                 <MockStyledComponent
@@ -2201,15 +2115,66 @@ exports[`Select component renders component in select mode and false for multipl
                                     }
                                   />
                                 </MockStyledComponent>
-                              </ForwardRef>
+                              </StyledInputSizer>
                             </AutosizeInput>
                           </div>
                         </MockStyledComponent>
-                      </ForwardRef>
+                      </StyledInputContainer>
+                      <StyledPlaceholder
+                        $clearable={true}
+                        $creatable={false}
+                        $disabled={false}
+                        $error={false}
+                        $isFocused={false}
+                        $isLoading={false}
+                        $isOpen={false}
+                        $isPseudoFocused={false}
+                        $multi={false}
+                        $positive={false}
+                        $required={false}
+                        $searchable={true}
+                        $size="default"
+                        $type="select"
+                      >
+                        <MockStyledComponent
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="select"
+                          forwardedRef={null}
+                        >
+                          <div
+                            styled-component="true"
+                            test-style={
+                              Object {
+                                "color": "$theme.colors.foregroundAlt",
+                                "maxWidth": "100%",
+                                "overflow": "hidden",
+                                "paddingBottom": "$theme.sizing.scale400",
+                                "paddingTop": "$theme.sizing.scale400",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            Select...
+                          </div>
+                        </MockStyledComponent>
+                      </StyledPlaceholder>
                     </span>
                   </MockStyledComponent>
-                </ForwardRef>
-                <ForwardRef
+                </StyledValueContainer>
+                <StyledIconsContainer
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -2275,6 +2240,7 @@ exports[`Select component renders component in select mode and false for multipl
                           Object {
                             "Svg": Object {
                               "$$typeof": Symbol(react.forward_ref),
+                              "displayName": "StyledSelectArrow",
                               "render": [Function],
                             },
                           }
@@ -2301,6 +2267,7 @@ exports[`Select component renders component in select mode and false for multipl
                             Object {
                               "Svg": Object {
                                 "$$typeof": Symbol(react.forward_ref),
+                                "displayName": "StyledSelectArrow",
                                 "render": [Function],
                               },
                             }
@@ -2309,7 +2276,7 @@ exports[`Select component renders component in select mode and false for multipl
                           title="open"
                           viewBox="0 0 24 24"
                         >
-                          <ForwardRef
+                          <StyledSelectArrow
                             $clearable={true}
                             $creatable={false}
                             $disabled={false}
@@ -2369,18 +2336,18 @@ exports[`Select component renders component in select mode and false for multipl
                                 />
                               </svg>
                             </MockStyledComponent>
-                          </ForwardRef>
+                          </StyledSelectArrow>
                         </Icon>
                       </TriangleDown>
                     </div>
                   </MockStyledComponent>
-                </ForwardRef>
+                </StyledIconsContainer>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledControlContainer>
         </div>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledRoot>
   </Popover>
 </Select>
 `;
@@ -2456,7 +2423,7 @@ exports[`Select component renders component in select mode and true for multiple
     showArrow={false}
     triggerType="click"
   >
-    <ForwardRef
+    <StyledRoot
       $clearable={true}
       $creatable={false}
       $disabled={false}
@@ -2518,12 +2485,6 @@ exports[`Select component renders component in select mode and true for multiple
                     styled-component="true"
                     test-style="[object Object]"
                   >
-                    Select...
-                  </div>
-                  <div
-                    styled-component="true"
-                    test-style="[object Object]"
-                  >
                     <input
                       aria-autocomplete="list"
                       aria-expanded="false"
@@ -2538,6 +2499,12 @@ exports[`Select component renders component in select mode and true for multiple
                       styled-component="true"
                       test-style="[object Object]"
                     />
+                  </div>
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    Select...
                   </div>
                 </span>
                 <div
@@ -2582,7 +2549,7 @@ exports[`Select component renders component in select mode and true for multiple
             }
           }
         >
-          <ForwardRef
+          <StyledControlContainer
             $clearable={true}
             $creatable={false}
             $disabled={false}
@@ -2655,7 +2622,7 @@ exports[`Select component renders component in select mode and true for multiple
                   }
                 }
               >
-                <ForwardRef
+                <StyledValueContainer
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -2700,73 +2667,12 @@ exports[`Select component renders component in select mode and true for multiple
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "overflow": "hidden",
-                          "paddingBottom": "$theme.sizing.scale400",
                           "paddingLeft": "$theme.sizing.scale500",
                           "paddingRight": 0,
-                          "paddingTop": "$theme.sizing.scale400",
-                          "position": "relative",
                         }
                       }
                     >
-                      <ForwardRef
-                        $clearable={true}
-                        $creatable={false}
-                        $disabled={false}
-                        $error={false}
-                        $isFocused={false}
-                        $isLoading={false}
-                        $isOpen={false}
-                        $isPseudoFocused={false}
-                        $multi={false}
-                        $positive={false}
-                        $required={false}
-                        $searchable={true}
-                        $size="default"
-                        $type="select"
-                      >
-                        <MockStyledComponent
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="select"
-                          forwardedRef={null}
-                        >
-                          <div
-                            styled-component="true"
-                            test-style={
-                              Object {
-                                "bottom": 0,
-                                "color": "$theme.colors.foregroundAlt",
-                                "left": 0,
-                                "maxWidth": "100%",
-                                "overflow": "hidden",
-                                "paddingBottom": "$theme.sizing.scale400",
-                                "paddingLeft": "$theme.sizing.scale500",
-                                "paddingRight": 0,
-                                "paddingTop": "$theme.sizing.scale400",
-                                "position": "absolute",
-                                "right": 0,
-                                "textOverflow": "ellipsis",
-                                "top": 0,
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            Select...
-                          </div>
-                        </MockStyledComponent>
-                      </ForwardRef>
-                      <ForwardRef
+                      <StyledInputContainer
                         $clearable={true}
                         $creatable={false}
                         $disabled={false}
@@ -2811,9 +2717,10 @@ exports[`Select component renders component in select mode and true for multiple
                                 "height": "auto",
                                 "marginBottom": 0,
                                 "marginLeft": 0,
-                                "marginRight": 0,
+                                "marginRight": "-$theme.sizing.scale0",
                                 "marginTop": 0,
-                                "maxHeight": "$theme.typography.font400.lineHeight",
+                                "maxHeight": "calc($theme.typography.font400.lineHeight
+        getControlPaddingVertical(props).paddingTop} + $theme.sizing.scale400)",
                                 "maxWidth": "100%",
                                 "outline": "none",
                                 "paddingBottom": 0,
@@ -2863,7 +2770,7 @@ exports[`Select component renders component in select mode and true for multiple
                               tabIndex={0}
                               value=""
                             >
-                              <ForwardRef
+                              <StyledInput
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -2967,18 +2874,16 @@ exports[`Select component renders component in select mode and true for multiple
                                         "marginTop": "0",
                                         "maxWidth": "100%",
                                         "outline": "none",
-                                        "paddingBottom": "0",
-                                        "paddingLeft": "0",
-                                        "paddingRight": "0",
-                                        "paddingTop": "0",
+                                        "paddingBottom": "$theme.sizing.scale400",
+                                        "paddingTop": "$theme.sizing.scale400",
                                         "width": "2px",
                                       }
                                     }
                                     value=""
                                   />
                                 </MockStyledComponent>
-                              </ForwardRef>
-                              <ForwardRef
+                              </StyledInput>
+                              <StyledInputSizer
                                 $size="default"
                               >
                                 <MockStyledComponent
@@ -3004,15 +2909,66 @@ exports[`Select component renders component in select mode and true for multiple
                                     }
                                   />
                                 </MockStyledComponent>
-                              </ForwardRef>
+                              </StyledInputSizer>
                             </AutosizeInput>
                           </div>
                         </MockStyledComponent>
-                      </ForwardRef>
+                      </StyledInputContainer>
+                      <StyledPlaceholder
+                        $clearable={true}
+                        $creatable={false}
+                        $disabled={false}
+                        $error={false}
+                        $isFocused={false}
+                        $isLoading={false}
+                        $isOpen={false}
+                        $isPseudoFocused={false}
+                        $multi={false}
+                        $positive={false}
+                        $required={false}
+                        $searchable={true}
+                        $size="default"
+                        $type="select"
+                      >
+                        <MockStyledComponent
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="select"
+                          forwardedRef={null}
+                        >
+                          <div
+                            styled-component="true"
+                            test-style={
+                              Object {
+                                "color": "$theme.colors.foregroundAlt",
+                                "maxWidth": "100%",
+                                "overflow": "hidden",
+                                "paddingBottom": "$theme.sizing.scale400",
+                                "paddingTop": "$theme.sizing.scale400",
+                                "textOverflow": "ellipsis",
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            Select...
+                          </div>
+                        </MockStyledComponent>
+                      </StyledPlaceholder>
                     </span>
                   </MockStyledComponent>
-                </ForwardRef>
-                <ForwardRef
+                </StyledValueContainer>
+                <StyledIconsContainer
                   $clearable={true}
                   $creatable={false}
                   $disabled={false}
@@ -3078,6 +3034,7 @@ exports[`Select component renders component in select mode and true for multiple
                           Object {
                             "Svg": Object {
                               "$$typeof": Symbol(react.forward_ref),
+                              "displayName": "StyledSelectArrow",
                               "render": [Function],
                             },
                           }
@@ -3104,6 +3061,7 @@ exports[`Select component renders component in select mode and true for multiple
                             Object {
                               "Svg": Object {
                                 "$$typeof": Symbol(react.forward_ref),
+                                "displayName": "StyledSelectArrow",
                                 "render": [Function],
                               },
                             }
@@ -3112,7 +3070,7 @@ exports[`Select component renders component in select mode and true for multiple
                           title="open"
                           viewBox="0 0 24 24"
                         >
-                          <ForwardRef
+                          <StyledSelectArrow
                             $clearable={true}
                             $creatable={false}
                             $disabled={false}
@@ -3172,18 +3130,18 @@ exports[`Select component renders component in select mode and true for multiple
                                 />
                               </svg>
                             </MockStyledComponent>
-                          </ForwardRef>
+                          </StyledSelectArrow>
                         </Icon>
                       </TriangleDown>
                     </div>
                   </MockStyledComponent>
-                </ForwardRef>
+                </StyledIconsContainer>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledControlContainer>
         </div>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledRoot>
   </Popover>
 </Select>
 `;
