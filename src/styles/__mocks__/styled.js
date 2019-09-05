@@ -25,6 +25,17 @@ type StateT = {styles?: {}};
 const MOCK_THEME = createMockTheme(LightTheme);
 const IDENTITY = x => x;
 
+export function useStyletron() {
+  function useCss(styles: Object) {
+    return {
+      label: 'useStyletron mock describes the applied css properties',
+      ...styles,
+    };
+  }
+
+  return [useCss, MOCK_THEME];
+}
+
 export function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
   class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
