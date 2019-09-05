@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/tag/basic.js';
 import Variants from 'examples/tag/variants.js';
@@ -88,3 +89,5 @@ Compact UI to display a collection of concise information.
   heading="Tag API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tag/tag.js')}
 />
+
+<Exports component={TagExports} title="Tag exports" path="baseui/tag" />

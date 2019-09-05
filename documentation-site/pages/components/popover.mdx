@@ -8,9 +8,11 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Stateless from 'examples/popover/stateless.js';
 import StatefulClick from 'examples/popover/stateful-click.js';
+import Link from 'examples/popover/link.js';
 import StatefulHover from 'examples/popover/stateful-hover.js';
 import Placements from 'examples/popover/placements.js';
 import WithArrow from 'examples/popover/with-arrow.js';
@@ -59,6 +61,10 @@ structured content and imagery/illustration. It’s usage depends on the context
 
 <Example title="Popover opens on Click" path="popover/stateful-click.js">
   <StatefulClick />
+</Example>
+
+<Example title="Popover opens on link Click" path="popover/link.js">
+  <Link />
 </Example>
 
 <Example title="Popover Opens on Hover" path="popover/stateful-hover.js">
@@ -127,4 +133,10 @@ structured content and imagery/illustration. It’s usage depends on the context
 <API
   heading="Stateful Container API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/stateful-container.js')}
+/>
+
+<Exports
+  component={PopoverExports}
+  title="Popover exports"
+  path="baseui/popover"
 />

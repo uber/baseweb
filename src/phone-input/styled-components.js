@@ -5,8 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-
-import Flag from './flag.js';
 import {SIZE} from './constants.js';
 import {styled, withStyle} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
@@ -15,22 +13,23 @@ import {
   StyledRoot as SelectStyledRoot,
 } from '../select/index.js';
 import defaultProps from '../select/default-props.js';
+import type {SizeT} from './types.js';
 
 type SizeStyleProps = {
-  $size?: $Keys<typeof SIZE>,
+  $size?: SizeT,
 };
 type HeightStyleProps = {$height: string};
 
-export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
-  Flag,
+export const StyledFlagContainer = styled<SizeStyleProps>(
+  'span',
   ({$size = SIZE.default, $theme: {sizing}}) => {
-    const sizeToWidth = {
+    const sizeToFont = {
       [SIZE.compact]: sizing.scale800,
       [SIZE.default]: sizing.scale900,
       [SIZE.large]: sizing.scale1000,
     };
     return {
-      width: sizeToWidth[$size],
+      fontSize: sizeToFont[$size],
     };
   },
 );
@@ -76,6 +75,7 @@ export const StyledCountrySelectDropdownListItem = withStyle<
   paddingRight: 0,
   display: 'flex',
   alignItems: 'center',
+  height: '42px',
 });
 
 export const StyledCountrySelectDropdownFlagColumn = styled<{}>(

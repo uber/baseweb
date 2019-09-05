@@ -25,7 +25,7 @@ information about how this is used.
 
 ## Examples
 
-This modified version has access to [theme variables](/theming/theming-values/):
+This modified version has access to [theme variables](/guides/theming/#theming-values):
 
 <Example
   title="UseStyletron reading from Theme values"
@@ -51,19 +51,19 @@ further extended with your own custom hooks.
 
 ## Additional State Props
 
-When you [use overrides](/theming/understanding-overrides), you also get an access to additional component states, like `$disabled` or `$error`, depending
+When you [use overrides](/guides/understanding-overrides/), you also get an access to additional component states, like `$disabled` or `$error`, depending
 on the given component:
 
 <Example title="Overriding subcomponents" path="use-styletron/overrides.js">
   <StyledOverrides />
 </Example>
 
-To understand overrides better, go [here](/theming/understanding-overrides).
+To understand overrides better, go [here](/guides/understanding-overrides/).
 
 ## Custom themes and Flow type
 
 The `styled` and `withStyle` functions imported from `baseui` provide flow type support for the
-default [theme shape](/theming/theming-values). However, if you create a custom theme with additional fields,
+default [theme shape](/guides/theming/#theming-values). However, if you create a custom theme with additional fields,
 flow will show an error. To help, baseui exports two utility functions `createThemedStyled` and
 `createThemedWithStyle`. These will return their respective functions with a provided theme type.
 Doing so saves from needing to import the custom theme type around. See below for an example.
