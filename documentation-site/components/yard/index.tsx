@@ -3,6 +3,7 @@ import {Card, StyledBody} from 'baseui/card';
 import {Button} from 'baseui/button';
 import {Paragraph2} from 'baseui/typography';
 import getConfig from 'next/config';
+import {TYardProps} from './types';
 
 const {publicRuntimeConfig} = getConfig();
 
@@ -12,8 +13,7 @@ const isBrowser = typeof window !== 'undefined';
 
 const Yard = React.lazy(() => import('./yard'));
 
-type YardMainProps = {
-  componentName: 'Button' | 'Input';
+type TYardWrapperProps = TYardProps & {
   defaultHeight: number;
 };
 
@@ -33,7 +33,13 @@ const LoadingScreen: React.FC<{
   </StyledBody>
 );
 
-const YardMain: React.FC<YardMainProps> = ({componentName, defaultHeight}) => {
+const YardWrapper: React.FC<TYardWrapperProps> = ({
+  componentName,
+  scopeConfig,
+  propsConfig,
+  themeConfig,
+  defaultHeight,
+}) => {
   const [loadYard, setLoadYard] = React.useState(
     process.env.NODE_ENV !== 'development' ||
       publicRuntimeConfig.loadYard === 'true',
@@ -58,7 +64,12 @@ const YardMain: React.FC<YardMainProps> = ({componentName, defaultHeight}) => {
         >
           {loadYard ? (
             <StyledBody>
-              <Yard componentName={componentName} />
+              <Yard
+                componentName={componentName}
+                scopeConfig={scopeConfig}
+                propsConfig={propsConfig}
+                themeConfig={themeConfig}
+              />
             </StyledBody>
           ) : (
             <StyledBody
@@ -89,4 +100,4 @@ const YardMain: React.FC<YardMainProps> = ({componentName, defaultHeight}) => {
   );
 };
 
-export default YardMain;
+export default YardWrapper;

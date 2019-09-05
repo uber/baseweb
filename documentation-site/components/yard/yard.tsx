@@ -14,7 +14,7 @@ import copy from 'copy-to-clipboard';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Tag, VARIANT} from 'baseui/tag';
 
-import {COMPONENTS, Action} from './const';
+import {Action} from './const';
 import {getCode} from './code-generator';
 import Knobs from './knobs';
 import {
@@ -26,7 +26,7 @@ import {
 import {assertUnreachable} from './utils';
 import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
-import {TState, TProp} from './types';
+import {TYardProps, TState, TProp} from './types';
 
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 import darkTheme from './dark-theme';
@@ -104,29 +104,29 @@ export default withRouter(
   ({
     router,
     componentName,
-  }: {
+    propsConfig,
+    themeConfig,
+    scopeConfig,
+  }: TYardProps & {
     router: any;
-    componentName: keyof typeof COMPONENTS;
   }) => {
     const [css, theme] = useStyletron();
     const [editorFocused, focusEditor] = React.useState(false);
     const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
-    const componentProps = COMPONENTS[componentName].props;
-    const componentTheme = COMPONENTS[componentName].theme;
 
     const componentThemeObj: any = {};
-    componentTheme.forEach(key => {
+    themeConfig.forEach(key => {
       componentThemeObj[key] = (theme.colors as any)[key];
     });
 
     const [state, dispatch] = React.useReducer(reducer, {
       code: formatCode(
-        getCode(componentProps, componentName, {
+        getCode(propsConfig, componentName, {
           themeValues: {},
           themeName: '',
         }),
       ),
-      props: componentProps,
+      props: propsConfig,
       theme: componentThemeObj,
     });
 
@@ -137,14 +137,14 @@ export default withRouter(
         state.props[prop].value !== '' &&
         typeof state.props[prop].value !== 'undefined' &&
         //@ts-ignore
-        state.props[prop].value !== componentProps[prop].value
+        state.props[prop].value !== propsConfig[prop].value
       ) {
         changedProps++;
       }
     });
 
     const componentThemeValueDiff: any = {};
-    componentTheme.forEach(key => {
+    themeConfig.forEach(key => {
       if ((theme.colors as any)[key] !== state.theme[key]) {
         componentThemeValueDiff[key] = state.theme[key];
       }
@@ -174,13 +174,15 @@ export default withRouter(
           );
           Object.keys(state.props).forEach(name => {
             //@ts-ignore
-            propValues[name] = componentProps[name].value;
+            propValues[name] = propsConfig[name].value;
             if (name === 'overrides') {
               // overrides need a special treatment since the value needs to
               // be further analyzed and parsed
               propValues[name] = parseOverrides(
                 parsedProps[name],
-                componentProps.overrides.meta.names,
+                propsConfig.overrides && propsConfig.overrides.meta
+                  ? propsConfig.overrides.meta.names
+                  : [],
               );
             } else {
               propValues[name] = parsedProps[name];
@@ -209,7 +211,7 @@ export default withRouter(
         <LiveProvider
           code={state.code}
           scope={{
-            ...COMPONENTS[componentName].scope,
+            ...scopeConfig,
             ThemeProvider,
             lightThemePrimitives,
             darkThemePrimitives,
@@ -307,7 +309,7 @@ export default withRouter(
             >
               <Overrides
                 componentName={componentName}
-                componentConfig={componentProps}
+                componentConfig={propsConfig}
                 overrides={state.props.overrides}
                 set={(value: any) => {
                   const newCode = formatCode(
@@ -352,7 +354,7 @@ export default withRouter(
                 componentName={componentName}
                 set={(value: any) => {
                   const componentThemeValueDiff: any = {};
-                  componentTheme.forEach(key => {
+                  themeConfig.forEach(key => {
                     if ((theme.colors as any)[key] !== value[key]) {
                       componentThemeValueDiff[key] = value[key];
                     }
@@ -415,13 +417,15 @@ export default withRouter(
                   Object.keys(state.props).forEach(name => {
                     propValues[name] =
                       //@ts-ignore
-                      componentProps[name].value;
+                      propsConfig[name].value;
                     if (name === 'overrides') {
                       // overrides need a special treatment since the value needs to
                       // be further analyzed and parsed
                       propValues[name] = parseOverrides(
                         parsedProps[name],
-                        componentProps.overrides.meta.names,
+                        propsConfig.overrides && propsConfig.overrides.meta
+                          ? propsConfig.overrides.meta.names
+                          : [],
                       );
                     } else {
                       propValues[name] = parsedProps[name];
@@ -507,9 +511,9 @@ export default withRouter(
                   type: Action.Reset,
                   payload: {
                     code: formatCode(
-                      getCode(componentProps, componentName, {} as any),
+                      getCode(propsConfig, componentName, {} as any),
                     ),
-                    props: componentProps,
+                    props: propsConfig,
                     theme: componentThemeObj,
                   },
                 });
