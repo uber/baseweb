@@ -118,8 +118,9 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
         return true;
       };
     },
+    // initial sort should display largest values first
     sortFn: function(a, b) {
-      return a - b;
+      return b - a;
     },
   };
 }
