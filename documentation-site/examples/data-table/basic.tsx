@@ -8,7 +8,6 @@ import {
   NumericalColumn,
   StringColumn,
   COLUMNS,
-  // @ts-ignore
 } from 'baseui/data-table';
 
 // https://gist.github.com/6174/6062387
