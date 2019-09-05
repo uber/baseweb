@@ -86,4 +86,19 @@ describe('Avatar', () => {
 
     expect(wrapper.find(StyledInitials).text()).toBe('U');
   });
+
+  it('resets noImageAvailable flag when src is updated', done => {
+    const wrapper = mount(
+      <Avatar name="user name" src="invalid-img-src.png" />,
+    );
+
+    triggerLoadError(wrapper);
+    expect(wrapper.state().noImageAvailable).toBeTruthy();
+    wrapper.setProps({name: 'user name', src: 'valid-img-src.png'}, () => {
+      setTimeout(() => {
+        expect(wrapper.state().noImageAvailable).toBeFalsy();
+        done();
+      }, 0);
+    });
+  });
 });
