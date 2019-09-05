@@ -11,7 +11,6 @@ import {Button, KIND, SIZE} from 'baseui/button';
 import {StatefulTabs, Tab} from 'baseui/tabs';
 import {ButtonGroup} from 'baseui/button-group';
 import copy from 'copy-to-clipboard';
-import {Card, StyledBody as CardStyledBody} from 'baseui/card';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Tag, VARIANT} from 'baseui/tag';
 
@@ -236,320 +235,304 @@ export default withRouter(
           }
           language="jsx"
         >
-          <Card>
-            <CardStyledBody>
-              <LivePreview
-                className={css({
-                  display: 'flex',
-                  justifyContent: 'center',
-                  marginBottom: theme.sizing.scale1000,
-                  marginTop: theme.sizing.scale1000,
-                })}
-              />
-              <StatefulTabs
-                initialState={{activeKey: '0'}}
-                onChange={({activeKey}) => {
-                  trackEvent(
-                    'yard',
-                    `${componentName}:tab_switch_${activeKey}`,
+          <LivePreview
+            className={css({
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: theme.sizing.scale1000,
+              marginTop: theme.sizing.scale1000,
+            })}
+          />
+          <StatefulTabs
+            initialState={{activeKey: '0'}}
+            onChange={({activeKey}) => {
+              trackEvent('yard', `${componentName}:tab_switch_${activeKey}`);
+            }}
+            overrides={{
+              TabBar: {
+                style: {backgroundColor: 'transparent', paddingLeft: 0},
+              },
+              TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
+            }}
+          >
+            <Tab
+              title={`Props${changedProps > 0 ? ` (${changedProps})` : ''}`}
+              overrides={{
+                Tab: {
+                  style: ({$theme}) =>
+                    ({
+                      marginLeft: 0,
+                      ...$theme.typography.font450,
+                    } as any),
+                },
+              }}
+            >
+              <Knobs
+                knobProps={state.props}
+                set={(value: any, name: string) => {
+                  const newCode = formatCode(
+                    getCode(
+                      buildPropsObj(state, {[name]: value}),
+                      componentName,
+                      componentThemeDiff,
+                    ),
                   );
-                }}
-                overrides={{
-                  TabBar: {
-                    style: {backgroundColor: 'transparent', paddingLeft: 0},
-                  },
-                  TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
-                }}
-              >
-                <Tab
-                  title={`Props${changedProps > 0 ? ` (${changedProps})` : ''}`}
-                  overrides={{
-                    Tab: {
-                      style: ({$theme}) =>
-                        ({
-                          marginLeft: 0,
-                          ...$theme.typography.font450,
-                        } as any),
+                  trackEvent('yard', `${componentName}:knob_change_${name}`);
+                  dispatch({
+                    type: Action.UpdatePropsAndCode,
+                    payload: {
+                      code: newCode,
+                      updatedPropValues: {[name]: value},
                     },
-                  }}
-                >
-                  <Knobs
-                    knobProps={state.props}
-                    set={(value: any, name: string) => {
-                      const newCode = formatCode(
-                        getCode(
-                          buildPropsObj(state, {[name]: value}),
-                          componentName,
-                          componentThemeDiff,
-                        ),
-                      );
-                      trackEvent(
-                        'yard',
-                        `${componentName}:knob_change_${name}`,
-                      );
-                      dispatch({
-                        type: Action.UpdatePropsAndCode,
-                        payload: {
-                          code: newCode,
-                          updatedPropValues: {[name]: value},
-                        },
-                      });
-                      Router.push({
-                        pathname: router.pathname,
-                        query: {code: newCode},
-                      } as any);
-                    }}
-                  />
-                </Tab>
-                <Tab
-                  title={`Style Overrides${
-                    activeOverrides > 0 ? ` (${activeOverrides})` : ''
-                  }`}
-                  overrides={{
-                    Tab: {
-                      style: ({$theme}) =>
-                        ({
-                          ...$theme.typography.font450,
-                        } as any),
-                    },
-                  }}
-                >
-                  <Overrides
-                    componentName={componentName}
-                    componentConfig={componentProps}
-                    overrides={state.props.overrides}
-                    set={(value: any) => {
-                      const newCode = formatCode(
-                        getCode(
-                          buildPropsObj(state, {overrides: value}),
-                          componentName,
-                          componentThemeDiff,
-                        ),
-                      );
-                      dispatch({
-                        type: Action.UpdatePropsAndCode,
-                        payload: {
-                          code: newCode,
-                          updatedPropValues: {overrides: value},
-                        },
-                      });
-                      Router.push({
-                        pathname: router.pathname,
-                        query: {code: newCode},
-                      } as any);
-                    }}
-                  />
-                </Tab>
-                <Tab
-                  title={`Theme ${
-                    Object.keys(componentThemeValueDiff).length > 0
-                      ? `(${Object.keys(componentThemeValueDiff).length})`
-                      : ''
-                  }`}
-                  overrides={{
-                    Tab: {
-                      style: ({$theme}) =>
-                        ({
-                          ...$theme.typography.font450,
-                        } as any),
-                    },
-                  }}
-                >
-                  <ThemeEditor
-                    themeInit={componentThemeObj}
-                    theme={state.theme}
-                    componentName={componentName}
-                    set={(value: any) => {
-                      const componentThemeValueDiff: any = {};
-                      componentTheme.forEach(key => {
-                        if ((theme.colors as any)[key] !== value[key]) {
-                          componentThemeValueDiff[key] = value[key];
-                        }
-                      });
-                      const componentThemeDiff: any = {};
-                      if (Object.keys(componentThemeValueDiff).length > 0) {
-                        componentThemeDiff.themeValues = componentThemeValueDiff;
-                        componentThemeDiff.themeName = theme.name;
-                      }
-                      const newCode = formatCode(
-                        getCode(state.props, componentName, componentThemeDiff),
-                      );
-                      dispatch({
-                        type: Action.UpdateThemeAndCode,
-                        payload: {
-                          code: newCode,
-                          theme: value,
-                        },
-                      });
-                      Router.push({
-                        pathname: router.pathname,
-                        query: {code: newCode},
-                      } as any);
-                    }}
-                  />
-                </Tab>
-              </StatefulTabs>
-              <div
-                className={css({
-                  marginTop: `${theme.sizing.scale800}`,
-                  boxSizing: 'border-box',
-                  border: editorFocused
-                    ? `2px solid ${theme.colors.primary400}`
-                    : `2px solid ${
-                        theme.name.startsWith('light-theme')
-                          ? theme.colors.mono200
-                          : '#292929 '
-                      }`,
-                })}
-                onClick={() => {
-                  trackEvent('yard', `${componentName}:code_editor_focused`);
-                  focusEditor(true);
+                  });
+                  Router.push({
+                    pathname: router.pathname,
+                    query: {code: newCode},
+                  } as any);
                 }}
-                onBlur={() => focusEditor(false)}
-              >
-                <style
-                  dangerouslySetInnerHTML={{
-                    __html: `.npm__react-simple-code-editor__textarea { outline: none !important }`,
-                  }}
-                />
-                <LiveEditor
-                  lang="jsx"
-                  onChange={newCode => {
-                    const propValues: any = {};
-                    try {
-                      const {parsedProps, parsedTheme} = parseCode(
-                        newCode,
-                        componentName,
-                      );
-                      Object.keys(state.props).forEach(name => {
-                        propValues[name] =
-                          //@ts-ignore
-                          componentProps[name].value;
-                        if (name === 'overrides') {
-                          // overrides need a special treatment since the value needs to
-                          // be further analyzed and parsed
-                          propValues[name] = parseOverrides(
-                            parsedProps[name],
-                            componentProps.overrides.meta.names,
-                          );
-                        } else {
-                          propValues[name] = parsedProps[name];
-                        }
-                      });
-
-                      dispatch({
-                        type: Action.Update,
-                        payload: {
-                          code: newCode,
-                          updatedPropValues: propValues,
-                          theme: parsedTheme,
-                        },
-                      });
-                      Router.push({
-                        pathname: router.pathname,
-                        query: {code: newCode},
-                      } as any);
-                    } catch (e) {
-                      dispatch({
-                        type: Action.UpdateCode,
-                        payload: newCode,
-                      });
-                    }
-                  }}
-                />
-              </div>
-              <LiveError
-                className={css({
-                  backgroundColor: theme.colors.negative600,
-                  whiteSpace: 'pre',
-                  fontSize: '12px',
-                  fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
-                  color: theme.colors.mono100,
-                  padding: theme.sizing.scale600,
-                  overflowX: 'scroll',
-                })}
               />
-              <ButtonGroup
-                size={SIZE.compact}
-                overrides={{
-                  Root: {
-                    style: ({$theme}) => ({
-                      marginTop: $theme.sizing.scale300,
-                    }),
-                  },
+            </Tab>
+            <Tab
+              title={`Style Overrides${
+                activeOverrides > 0 ? ` (${activeOverrides})` : ''
+              }`}
+              overrides={{
+                Tab: {
+                  style: ({$theme}) =>
+                    ({
+                      ...$theme.typography.font450,
+                    } as any),
+                },
+              }}
+            >
+              <Overrides
+                componentName={componentName}
+                componentConfig={componentProps}
+                overrides={state.props.overrides}
+                set={(value: any) => {
+                  const newCode = formatCode(
+                    getCode(
+                      buildPropsObj(state, {overrides: value}),
+                      componentName,
+                      componentThemeDiff,
+                    ),
+                  );
+                  dispatch({
+                    type: Action.UpdatePropsAndCode,
+                    payload: {
+                      code: newCode,
+                      updatedPropValues: {overrides: value},
+                    },
+                  });
+                  Router.push({
+                    pathname: router.pathname,
+                    query: {code: newCode},
+                  } as any);
                 }}
+              />
+            </Tab>
+            <Tab
+              title={`Theme ${
+                Object.keys(componentThemeValueDiff).length > 0
+                  ? `(${Object.keys(componentThemeValueDiff).length})`
+                  : ''
+              }`}
+              overrides={{
+                Tab: {
+                  style: ({$theme}) =>
+                    ({
+                      ...$theme.typography.font450,
+                    } as any),
+                },
+              }}
+            >
+              <ThemeEditor
+                themeInit={componentThemeObj}
+                theme={state.theme}
+                componentName={componentName}
+                set={(value: any) => {
+                  const componentThemeValueDiff: any = {};
+                  componentTheme.forEach(key => {
+                    if ((theme.colors as any)[key] !== value[key]) {
+                      componentThemeValueDiff[key] = value[key];
+                    }
+                  });
+                  const componentThemeDiff: any = {};
+                  if (Object.keys(componentThemeValueDiff).length > 0) {
+                    componentThemeDiff.themeValues = componentThemeValueDiff;
+                    componentThemeDiff.themeName = theme.name;
+                  }
+                  const newCode = formatCode(
+                    getCode(state.props, componentName, componentThemeDiff),
+                  );
+                  dispatch({
+                    type: Action.UpdateThemeAndCode,
+                    payload: {
+                      code: newCode,
+                      theme: value,
+                    },
+                  });
+                  Router.push({
+                    pathname: router.pathname,
+                    query: {code: newCode},
+                  } as any);
+                }}
+              />
+            </Tab>
+          </StatefulTabs>
+          <div
+            className={css({
+              marginTop: `${theme.sizing.scale800}`,
+              boxSizing: 'border-box',
+              border: editorFocused
+                ? `2px solid ${theme.colors.primary400}`
+                : `2px solid ${
+                    theme.name.startsWith('light-theme')
+                      ? theme.colors.mono200
+                      : '#292929 '
+                  }`,
+            })}
+            onClick={() => {
+              trackEvent('yard', `${componentName}:code_editor_focused`);
+              focusEditor(true);
+            }}
+            onBlur={() => focusEditor(false)}
+          >
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `.npm__react-simple-code-editor__textarea { outline: none !important }`,
+              }}
+            />
+            <LiveEditor
+              lang="jsx"
+              onChange={newCode => {
+                const propValues: any = {};
+                try {
+                  const {parsedProps, parsedTheme} = parseCode(
+                    newCode,
+                    componentName,
+                  );
+                  Object.keys(state.props).forEach(name => {
+                    propValues[name] =
+                      //@ts-ignore
+                      componentProps[name].value;
+                    if (name === 'overrides') {
+                      // overrides need a special treatment since the value needs to
+                      // be further analyzed and parsed
+                      propValues[name] = parseOverrides(
+                        parsedProps[name],
+                        componentProps.overrides.meta.names,
+                      );
+                    } else {
+                      propValues[name] = parsedProps[name];
+                    }
+                  });
+
+                  dispatch({
+                    type: Action.Update,
+                    payload: {
+                      code: newCode,
+                      updatedPropValues: propValues,
+                      theme: parsedTheme,
+                    },
+                  });
+                  Router.push({
+                    pathname: router.pathname,
+                    query: {code: newCode},
+                  } as any);
+                } catch (e) {
+                  dispatch({
+                    type: Action.UpdateCode,
+                    payload: newCode,
+                  });
+                }
+              }}
+            />
+          </div>
+          <LiveError
+            className={css({
+              backgroundColor: theme.colors.negative600,
+              whiteSpace: 'pre',
+              fontSize: '12px',
+              fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
+              color: theme.colors.mono100,
+              padding: theme.sizing.scale600,
+              overflowX: 'scroll',
+            })}
+          />
+          <ButtonGroup
+            size={SIZE.compact}
+            overrides={{
+              Root: {
+                style: ({$theme}) => ({
+                  marginTop: $theme.sizing.scale300,
+                }),
+              },
+            }}
+          >
+            <Button
+              kind={KIND.tertiary}
+              onClick={() => {
+                trackEvent('yard', `${componentName}:format_code`);
+                dispatch({
+                  type: Action.UpdateCode,
+                  payload: formatCode(state.code),
+                });
+              }}
+            >
+              Format
+            </Button>
+            <Button
+              kind={KIND.tertiary}
+              onClick={() => {
+                trackEvent('yard', `${componentName}:copy_code`);
+                copy(formatCode(state.code));
+              }}
+            >
+              Copy code
+            </Button>
+            <Button
+              kind={KIND.tertiary}
+              onClick={() => {
+                trackEvent('yard', `${componentName}:copy_url`);
+                copy(window.location.href);
+              }}
+            >
+              Copy URL
+            </Button>
+            <Button
+              kind={KIND.tertiary}
+              onClick={() => {
+                dispatch({
+                  type: Action.Reset,
+                  payload: {
+                    code: formatCode(
+                      getCode(componentProps, componentName, {} as any),
+                    ),
+                    props: componentProps,
+                    theme: componentThemeObj,
+                  },
+                });
+                trackEvent('yard', `${componentName}:reset_code`);
+                Router.push({
+                  pathname: router.pathname,
+                } as any);
+              }}
+            >
+              Reset
+            </Button>
+          </ButtonGroup>
+          <div className={css({display: 'flex', justifyContent: 'flex-end'})}>
+            <Tag closeable={false} variant={VARIANT.outlined} kind="warning">
+              <StatefulTooltip
+                accessibilityType="tooltip"
+                placement="bottomLeft"
+                content="This is a new experimental component playground. Please use GitHub issues to report any feedback and bugs. Thank you!"
               >
-                <Button
-                  kind={KIND.tertiary}
-                  onClick={() => {
-                    trackEvent('yard', `${componentName}:format_code`);
-                    dispatch({
-                      type: Action.UpdateCode,
-                      payload: formatCode(state.code),
-                    });
-                  }}
-                >
-                  Format
-                </Button>
-                <Button
-                  kind={KIND.tertiary}
-                  onClick={() => {
-                    trackEvent('yard', `${componentName}:copy_code`);
-                    copy(formatCode(state.code));
-                  }}
-                >
-                  Copy code
-                </Button>
-                <Button
-                  kind={KIND.tertiary}
-                  onClick={() => {
-                    trackEvent('yard', `${componentName}:copy_url`);
-                    copy(window.location.href);
-                  }}
-                >
-                  Copy URL
-                </Button>
-                <Button
-                  kind={KIND.tertiary}
-                  onClick={() => {
-                    dispatch({
-                      type: Action.Reset,
-                      payload: {
-                        code: formatCode(
-                          getCode(componentProps, componentName, {} as any),
-                        ),
-                        props: componentProps,
-                        theme: componentThemeObj,
-                      },
-                    });
-                    trackEvent('yard', `${componentName}:reset_code`);
-                    Router.push({
-                      pathname: router.pathname,
-                    } as any);
-                  }}
-                >
-                  Reset
-                </Button>
-              </ButtonGroup>
-              <div
-                className={css({display: 'flex', justifyContent: 'flex-end'})}
-              >
-                <Tag
-                  closeable={false}
-                  variant={VARIANT.outlined}
-                  kind="warning"
-                >
-                  <StatefulTooltip
-                    accessibilityType="tooltip"
-                    placement="bottomLeft"
-                    content="This is a new experimental component playground. Please use GitHub issues to report any feedback and bugs. Thank you!"
-                  >
-                    Beta
-                  </StatefulTooltip>
-                </Tag>
-              </div>
-            </CardStyledBody>
-          </Card>
+                Beta
+              </StatefulTooltip>
+            </Tag>
+          </div>
         </LiveProvider>
       </React.Fragment>
     );
