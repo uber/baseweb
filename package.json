@@ -181,7 +181,7 @@
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
-    "styletron-react": "^5.2.0"
+    "styletron-react": "^5.2.1"
   },
   "resolutions": {
     "@types/react": "16.8.23"
