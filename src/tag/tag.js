@@ -14,6 +14,7 @@ import {
   Text as StyledText,
 } from './styled-components.js';
 import {KIND, VARIANT} from './constants.js';
+import {getTextFromChildren} from './utils.js';
 import type {PropsT, SharedPropsArgT} from './types.js';
 
 class Tag extends React.Component<PropsT, {}> {
@@ -65,6 +66,7 @@ class Tag extends React.Component<PropsT, {}> {
       isFocused,
       isHovered,
       kind,
+      title,
       onActionClick,
       onClick,
       overrides = {},
@@ -100,21 +102,24 @@ class Tag extends React.Component<PropsT, {}> {
       $kind: kind,
       $variant: variant,
     };
+    const titleText = title || getTextFromChildren(children);
     return (
       <Root
         data-baseweb="tag"
-        aria-label="button"
-        role="button"
+        aria-label={disabled ? null : 'button'}
+        role={disabled ? null : 'button'}
         tabIndex={clickable ? 0 : null}
         {...rootHandlers}
         {...sharedProps}
         {...rootProps}
       >
-        <Text {...textProps}>{children}</Text>
+        <Text title={titleText} {...textProps}>
+          {children}
+        </Text>
         {closeable ? (
           <Action
-            aria-label="close button"
-            role="button"
+            aria-label={disabled ? null : 'close button'}
+            role={disabled ? null : 'button'}
             tabIndex={0}
             {...actionHandlers}
             {...sharedProps}

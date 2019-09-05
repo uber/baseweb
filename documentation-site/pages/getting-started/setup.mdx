@@ -1,0 +1,83 @@
+<!--
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+
+export default Layout;
+
+# Setup
+
+## Installing Base Web
+
+Base Web is available on npm as [baseui](https://npmjs.com/package/baseui). This single
+package contains all Base Web components.
+
+```bash
+# using yarn
+yarn add baseui styletron-engine-atomic styletron-react
+
+# using npm
+npm install baseui styletron-engine-atomic styletron-react
+```
+
+Base Web comes with both Flow and TypeScript. Styletron only with Flow. If you use
+TypeScript there are an external declarations:
+
+```bash
+yarn add @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
+```
+
+Our React components don't use [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html).
+
+[Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the
+CSS in JS family. Base Web uses Styletron as a peer dependency to style all the elements, so you
+need to add them as dependencies too.
+
+## Adding Base Web to Your Application
+
+In order to use Base Web, you need to do a small setup and wrap the root of your
+application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
+
+```javascript
+import {Client as Styletron} from 'styletron-engine-atomic';
+import {Provider as StyletronProvider} from 'styletron-react';
+import {LightTheme, BaseProvider, styled} from 'baseui';
+import {StatefulInput} from 'baseui/input';
+
+const engine = new Styletron();
+
+const Centered = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+});
+
+export default function Hello() {
+  return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <Centered>
+          <StatefulInput />
+        </Centered>
+      </BaseProvider>
+    </StyletronProvider>
+  );
+}
+```
+
+There are detailed guides for Styletron setup for the following frameworks:
+
+- [Fusion.js](https://www.styletron.org/getting-started/#with-fusionjs)
+- [Next.js](https://www.styletron.org/getting-started/#with-nextjs)
+- [Gatsby](https://www.styletron.org/getting-started/#with-gatsby)
+- [Other React applications](https://www.styletron.org/getting-started/#with-react)
+- [Bedrock](http://t.uber.com/base-bedrock) (Uber only)
+
+## Next step
+
+Check out the [Learn Base Web](/getting-started/learn), to better understand the concepts of Base Web.

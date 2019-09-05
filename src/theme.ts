@@ -209,6 +209,11 @@ interface Colors {
   menuFontHighlighted: string;
   menuFontSelected: string;
 
+  // Modal
+  modalCloseColor: string;
+  modalCloseColorHover: string;
+  modalCloseColorFocus: string;
+
   // Pagination
   paginationTriangleDown: string;
 
@@ -426,6 +431,7 @@ interface Sizing {
   scale550: string;
   scale600: string;
   scale700: string;
+  scale750: string;
   scale800: string;
   scale900: string;
   scale1000: string;

@@ -20,7 +20,7 @@ export default function UnstableWarning() {
         functionality and API is subject to change in any version release. We
         publish unstable components so that feedback can be presented before
         aligning on a consistent design. Please see baseui's{' '}
-        <a href="/getting-started/versioning-policy">versioning policy</a> for
+        <a href="/discover-more/versioning-policy">versioning policy</a> for
         more information.
       </>
     </Notification>

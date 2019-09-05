@@ -12,6 +12,7 @@ import Overrides from '../../components/overrides';
 import {StatefulSelect, TYPE} from 'baseui/select';
 import {StatefulList} from 'baseui/dnd-list';
 import * as ListExports from 'baseui/dnd-list';
+import {Notification} from 'baseui/notification';
 
 import DndListExample from 'examples/dnd-list/overrides_short.js';
 import DndListExampleStyle from 'examples/dnd-list/overrides_style.js';
@@ -22,6 +23,16 @@ import SelectTagExample from 'examples/select/overriden-tag.js';
 export default Layout;
 
 # Understanding Overrides
+
+<Notification
+  overrides={{
+    Body: {style: {width: 'auto'}},
+  }}
+>
+  By the end of this guide, you'll learn the concept of overrides in Base Web,
+  and the ways you can use them to change the look or the behavior of
+  components.
+</Notification>
 
 **Base Web is a set of reusable React components that implements the Base Web design language** and can be used in two different ways:
 
@@ -108,7 +119,7 @@ The `overrides.Label.style` property accepts a [style object](https://www.stylet
 
 ## `$theme`
 
-If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base Web [design constants](/theming/theming-values). So instead of the hard-coded value `#892C21`, you can use the theme:
+If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base Web [design constants](/guides/theming/#theming-values). So instead of the hard-coded value `#892C21`, you can use the theme:
 
 ```jsx
 <StatefulList

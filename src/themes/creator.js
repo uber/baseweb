@@ -238,6 +238,11 @@ export default function createTheme(
       menuFontHighlighted: primitives.mono1000,
       menuFontSelected: primitives.mono1000,
 
+      // Modal
+      modalCloseColor: primitives.mono700,
+      modalCloseColorHover: primitives.mono800,
+      modalCloseColorFocus: primitives.mono800,
+
       // Pagination
       paginationTriangleDown: primitives.mono800,
 

@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import TabsControlled from 'examples/tabs/controlled.js';
 import TabsUncontrolled from 'examples/tabs/uncontrolled.js';
@@ -90,3 +91,5 @@ The Tabs component is used for navigating frequently accessed, but distinct cate
   heading="Tab API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/tab.js')}
 />
+
+<Exports component={TabsExports} title="Tabs exports" path="baseui/tabs" />

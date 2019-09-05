@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "8.16.5",
+  "version": "8.17.1",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -39,12 +39,12 @@
     "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "jest --runInBand -c jest.e2e.config.js",
     "e2e:test:ci": "jest -c jest.e2e.config.js",
-    "prepublish": "npm run build",
     "icon:generate": "node ./src/icon/build-icons.js",
     "predocumentation:dev": "node ./scripts/build-documentation-site-files.js",
     "predocumentation:dev:watch": "node ./scripts/build-documentation-site-files.js",
     "predocumentation:build": "node ./scripts/build-documentation-site-files.js",
     "predocumentation:serve": "node ./scripts/build-documentation-site-files.js",
+    "pretest": "node ./scripts/build-documentation-site-files.js",
     "documentation:dev": "run-p build:es2015 next:dev",
     "documentation:dev:watch": "yarn build:es2015 --watch & next documentation-site",
     "documentation:build": "run-s build:es2015 next:build next:export",
@@ -162,7 +162,7 @@
   },
   "dependencies": {
     "card-validator": "^6.1.0",
-    "date-fns": "2.0.0",
+    "date-fns": "2.0.1",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
     "polished": "^3.2.0",
@@ -183,7 +183,7 @@
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
-    "styletron-react": "^5.2.0"
+    "styletron-react": "^5.2.1"
   },
   "resolutions": {
     "@types/react": "16.8.23"

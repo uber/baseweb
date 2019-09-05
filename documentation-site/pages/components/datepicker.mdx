@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import DatepickerBasic from 'examples/datepicker/basic.js';
 import DatepickerInPopover from 'examples/datepicker/in-popover.js';
@@ -127,7 +128,7 @@ A simple and reusable component to work with or select a date or a range of date
   <NestedOverride />
 </Example>
 
-In this example we use a [nested override](/theming/understanding-overrides#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
+In this example we use a [nested override](/guides/understanding-overrides/#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
 
 ## Overrides
 
@@ -166,4 +167,10 @@ In this example we use a [nested override](/theming/understanding-overrides#over
 <API
   heading="TimezonePicker API"
   api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/timezone-picker.js')}
+/>
+
+<Exports
+  component={DatepickerExports}
+  title="Datepicker exports"
+  path="baseui/datepicker"
 />
