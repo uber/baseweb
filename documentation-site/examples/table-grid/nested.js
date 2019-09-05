@@ -10,7 +10,7 @@ import Overflow from 'baseui/icon/overflow';
 import {StyledLink} from 'baseui/link';
 import {StatefulMenu} from 'baseui/menu';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
-import {withStyle, useStyletron} from 'baseui/styles';
+import {withStyle, useStyletron} from 'baseui';
 import {
   Unstable_StyledTable as StyledTable,
   Unstable_StyledHeadCell as StyledHeadCell,

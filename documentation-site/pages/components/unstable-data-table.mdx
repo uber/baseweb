@@ -1,0 +1,31 @@
+<!--
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import UnstableWarning from '../../components/unstable-warning';
+
+import Basic from 'examples/data-table/basic.js';
+
+export default Layout;
+
+# Data-Table
+
+<UnstableWarning />
+
+Displays tabular data for analysis. The component accepts strict column definitions to consistently
+render the following data types: categorical (enum), number, boolean, string, and arbirary content.
+To facilitate a rich set of analysis features out-of-the-box, DataTable does not allow for overrides.
+If your application relies on rendering a custom table element, you may want to look into Base Web's
+other table options: [Table](/components/table) (uses css-flex) or [TableGrid](/components/table-grid)
+(uses css-grid) depending on your use-case.
+
+# Examples
+
+<Example title="Basic usage" path="data-table/basic.js">
+  <Basic />
+</Example>
