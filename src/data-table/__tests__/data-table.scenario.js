@@ -51,6 +51,7 @@ function makeRowsFromColumns(columns, rowCount) {
                 return 'F';
             }
           case COLUMNS.NUMERICAL:
+            // eslint-disable-next-line no-case-declarations
             let base = i % 2 ? i - 1 : i + 3;
             if (!(i % 4)) base *= -1;
             return (base * 99999) / 100;

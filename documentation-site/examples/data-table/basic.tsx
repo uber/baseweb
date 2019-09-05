@@ -8,10 +8,11 @@ import {
   NumericalColumn,
   StringColumn,
   COLUMNS,
+  // @ts-ignore
 } from 'baseui/data-table';
 
 // https://gist.github.com/6174/6062387
-function pseudoRandomString(rowIdx, columnIdx) {
+function pseudoRandomString(rowIdx: any, columnIdx: any) {
   return (
     (0.88 * rowIdx)
       .toString(36)
@@ -21,11 +22,11 @@ function pseudoRandomString(rowIdx, columnIdx) {
   ).slice(0, 10);
 }
 
-function makeRowsFromColumns(columns, rowCount) {
+function makeRowsFromColumns(columns: any, rowCount: number) {
   const rows = [];
   for (let i = 0; i < rowCount; i++) {
     rows.push({
-      data: columns.map((column, j) => {
+      data: columns.map((column: any, j: number) => {
         switch (column.kind) {
           case COLUMNS.CATEGORICAL:
             switch (i % 5) {
@@ -76,7 +77,7 @@ const columns = [
   NumericalColumn({title: 'three'}),
   CustomColumn({
     title: 'four',
-    renderCell: function Cell(props) {
+    renderCell: function Cell(props: any) {
       const [useCss] = useStyletron();
       return (
         <div

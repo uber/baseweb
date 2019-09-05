@@ -45,14 +45,6 @@ function NumericalFilter(props) {
   return <div>not implemented for numerical column</div>;
 }
 
-function formatAsAccounting(value) {
-  const abs = Math.abs(value);
-  if (value < 0) {
-    return `$(${abs})`;
-  }
-  return `$abs`;
-}
-
 const NumericalCell = React.forwardRef<NumericalCellPropsT, HTMLDivElement>(
   (props, ref) => {
     const [useCss, theme] = useStyletron();
