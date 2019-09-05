@@ -119,7 +119,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
       };
     },
     sortFn: function(a, b) {
-      return b - a;
+      return a - b;
     },
   };
 }
