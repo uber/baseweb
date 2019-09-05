@@ -8,8 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 module.exports = {
-  presets: [
-    ['@babel/preset-env', {targets: {node: 'current'}}],
-    ['@babel/preset-flow', {all: true}],
-  ],
+  env: {
+    node: true,
+  },
 };
