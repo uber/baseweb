@@ -19,6 +19,7 @@ export {LocaleProvider};
 export {
   createTheme,
   lightThemePrimitives,
+  darkThemePrimitives,
   DarkTheme,
   DarkThemeMove,
   LightTheme,
