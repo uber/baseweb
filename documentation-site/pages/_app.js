@@ -250,16 +250,18 @@ export default class MyApp extends App {
       <Container>
         <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
           <BaseProvider theme={this.state.theme}>
-            <Block {...blockProps}>
-              <DirectionContext.Provider value={this.state.direction}>
-                <Component
-                  {...pageProps}
-                  path={path}
-                  toggleTheme={this.toggleTheme.bind(this)}
-                  toggleDirection={this.toggleDirection.bind(this)}
-                />
-              </DirectionContext.Provider>
-            </Block>
+            <React.StrictMode>
+              <Block {...blockProps}>
+                <DirectionContext.Provider value={this.state.direction}>
+                  <Component
+                    {...pageProps}
+                    path={path}
+                    toggleTheme={this.toggleTheme.bind(this)}
+                    toggleDirection={this.toggleDirection.bind(this)}
+                  />
+                </DirectionContext.Provider>
+              </Block>
+            </React.StrictMode>
           </BaseProvider>
         </StyletronProvider>
       </Container>
