@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {H3} from './markdown-elements';
+import {H3, Paragraph, UnorderedList, ListItem} from './markdown-elements';
 import Code from './code';
 
 const Exports = props => {
@@ -19,15 +19,16 @@ const Exports = props => {
   return (
     <React.Fragment>
       <H3>{title}</H3>
-      This component exports the following subcomponents or utils:
-      <ul>
-        {exportNames.map(name => (
-          <li key={name}>{name}</li>
-        ))}
-      </ul>
-      To start using them, you can import them into your application using
-      something like this:
+      <Paragraph>You can import this module like so:</Paragraph>
       <Code>{code}</Code>
+      <Paragraph>
+        It exports the following components or utility functions:
+      </Paragraph>
+      <UnorderedList>
+        {exportNames.map(name => (
+          <ListItem key={name}>{name}</ListItem>
+        ))}
+      </UnorderedList>
     </React.Fragment>
   );
 };
