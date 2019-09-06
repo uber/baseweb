@@ -64,19 +64,19 @@ export const Heading = ({
   );
 };
 
-const ListItem = (props: Props) => (
+export const ListItem = (props: Props) => (
   <Block as="li" font="font400">
     {props.children}
   </Block>
 );
 
-const Paragraph = (props: Props) => (
+export const Paragraph = (props: Props) => (
   <Block as="p" font="font400">
     {props.children}
   </Block>
 );
 
-const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
+export const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
 const InlineCode = themedStyled('code', {
   backgroundColor: 'rgba(27, 31, 35, 0.05)',
