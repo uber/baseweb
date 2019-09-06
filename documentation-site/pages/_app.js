@@ -22,7 +22,7 @@ import {
 import {getMediaQuery} from 'baseui/helpers/responsive-helpers';
 import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
 
-import App, {Container} from 'next/app';
+import App from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
 import Router from 'next/router';
