@@ -28,6 +28,8 @@ export type HeadCellPropsT = {|
   },
   /** Column title. */
   title: string,
+  /** Extend click enable click to sort on whitespace in a header cell. */
+  extendClick?: boolean,
 |};
 
 export type TablePropsT = {|

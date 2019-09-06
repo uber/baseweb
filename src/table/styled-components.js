@@ -42,6 +42,7 @@ StyledTable.displayName = 'StyledTable';
 
 type HorizontalStyleProps = {
   $width?: string,
+  $cursor?: string,
 };
 
 const StyledHeadElement = styled<HorizontalStyleProps>(
@@ -65,26 +66,31 @@ export const StyledHead = ((React.forwardRef<HorizontalStyleProps, any>(
 StyledHead.__STYLETRON__ = StyledHeadElement.__STYLETRON__;
 StyledHead.displayName = 'StyledHead';
 
-const StyledHeadCellElement = styled<{}>('div', ({$theme}) => {
-  return {
-    ...$theme.typography.font350,
-    ...$theme.borders.border300,
-    borderTop: 'none',
-    borderBottom: 'none',
-    borderLeft: 'none',
-    color: $theme.colors.colorPrimary,
-    display: 'flex',
-    justifyContent: 'space-between',
-    paddingTop: $theme.sizing.scale500,
-    paddingRight: $theme.sizing.scale600,
-    paddingBottom: $theme.sizing.scale500,
-    paddingLeft: $theme.sizing.scale600,
-    width: '100%',
-    ':last-of-type': {
-      borderRight: 'none',
-    },
-  };
-});
+const StyledHeadCellElement = styled<HorizontalStyleProps>(
+  'div',
+  ({$theme, $cursor}) => {
+    console.log('inside head cell elem', $cursor);
+    return {
+      ...$theme.typography.font350,
+      ...$theme.borders.border300,
+      borderTop: 'none',
+      borderBottom: 'none',
+      borderLeft: 'none',
+      color: $theme.colors.colorPrimary,
+      display: 'flex',
+      justifyContent: 'space-between',
+      paddingTop: $theme.sizing.scale500,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale500,
+      paddingLeft: $theme.sizing.scale600,
+      cursor: $cursor ? $cursor : 'inherit',
+      width: '100%',
+      ':last-of-type': {
+        borderRight: 'none',
+      },
+    };
+  },
+);
 
 // eslint-disable-next-line flowtype/no-weak-types
 export const StyledHeadCell = ((React.forwardRef<{}, any>((props, ref) => (
