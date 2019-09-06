@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Card, StyledBody} from 'baseui/card';
+import {Card} from 'baseui/card';
 import {Button} from 'baseui/button';
 import {Paragraph2} from 'baseui/typography';
 import getConfig from 'next/config';
