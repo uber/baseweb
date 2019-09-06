@@ -23,16 +23,17 @@ import Clearable from 'examples/input/clearable.js';
 import Password from 'examples/input/password.js';
 import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
 
-import Overrides from '../../components/overrides';
-import Yard from '../../components/yard/yard';
 import {StatefulInput} from 'baseui/input';
 import * as InputExports from 'baseui/input';
+
+import Yard from '../../components/yard/index';
+import inputYardConfig from '../../components/yard/config/input';
 
 export default Layout;
 
 # Input
 
-<Yard componentName="Input" />
+<Yard componentName="Input" defaultHeight={726} {...inputYardConfig} />
 
 An input enables a person to type in text information.
 
