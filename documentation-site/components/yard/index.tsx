@@ -4,6 +4,7 @@ import {Button} from 'baseui/button';
 import {Paragraph2} from 'baseui/typography';
 import getConfig from 'next/config';
 import {TYardProps} from './types';
+import {useStyletron} from 'baseui';
 
 const {publicRuntimeConfig} = getConfig();
 
@@ -17,22 +18,6 @@ type TYardWrapperProps = TYardProps & {
   defaultHeight: number;
 };
 
-const LoadingScreen: React.FC<{
-  defaultHeight: number;
-  showSpinner: boolean;
-}> = ({defaultHeight, showSpinner}) => (
-  <StyledBody
-    $style={{
-      height: `${defaultHeight + 16}px`,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    {showSpinner && <Spinner />}
-  </StyledBody>
-);
-
 const YardWrapper: React.FC<TYardWrapperProps> = ({
   componentName,
   scopeConfig,
@@ -40,49 +25,43 @@ const YardWrapper: React.FC<TYardWrapperProps> = ({
   themeConfig,
   defaultHeight,
 }) => {
+  const [useCss] = useStyletron();
   const [loadYard, setLoadYard] = React.useState(
     process.env.NODE_ENV !== 'development' ||
       publicRuntimeConfig.loadYard === 'true',
   );
+
+  const loadingCx = useCss({
+    height: `${defaultHeight + 16}px`,
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    textAlign: 'center',
+  });
+
   return (
     <Card>
       {!isBrowser ? (
-        <LoadingScreen
-          defaultHeight={defaultHeight}
-          key="loading"
-          showSpinner={false}
-        />
+        <div className={loadingCx} />
       ) : (
         <React.Suspense
           fallback={
-            <LoadingScreen
-              defaultHeight={defaultHeight}
-              key="loading"
-              showSpinner
-            />
+            <div className={loadingCx}>
+              <Spinner />
+            </div>
           }
         >
           {loadYard ? (
-            <StyledBody>
-              <Yard
-                componentName={componentName}
-                scopeConfig={scopeConfig}
-                propsConfig={propsConfig}
-                themeConfig={themeConfig}
-              />
-            </StyledBody>
+            <Yard
+              componentName={componentName}
+              scopeConfig={scopeConfig}
+              propsConfig={propsConfig}
+              themeConfig={themeConfig}
+            />
           ) : (
-            <StyledBody
-              $style={{
-                height: `${defaultHeight + 16}px`,
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                textAlign: 'center',
-              }}
-            >
+            <div className={loadingCx}>
               <Button onClick={() => setLoadYard(true)}>Load Yard</Button>
               <Paragraph2>
                 Yard is not automatically loaded in the dev mode to speed up
@@ -92,7 +71,7 @@ const YardWrapper: React.FC<TYardWrapperProps> = ({
                 </b>{' '}
                 env flag.
               </Paragraph2>
-            </StyledBody>
+            </div>
           )}
         </React.Suspense>
       )}
