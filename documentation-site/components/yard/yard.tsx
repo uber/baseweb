@@ -6,6 +6,7 @@ import {
   darkThemePrimitives,
   ThemeProvider,
 } from 'baseui';
+import {Theme} from 'baseui/theme';
 import Router, {withRouter} from 'next/router';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {StatefulTabs, Tab} from 'baseui/tabs';
@@ -56,6 +57,14 @@ const buildPropsObj = (
     };
   });
   return newProps;
+};
+
+const getComponentThemeFromContext = (theme: Theme, themeConfig: string[]) => {
+  const componentThemeObj: {[key: string]: string} = {};
+  themeConfig.forEach(key => {
+    componentThemeObj[key] = (theme.colors as any)[key];
+  });
+  return componentThemeObj;
 };
 
 function reducer(state: TState, action: {type: Action; payload: any}): TState {
@@ -113,11 +122,7 @@ export default withRouter(
     const [css, theme] = useStyletron();
     const [editorFocused, focusEditor] = React.useState(false);
     const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
-
-    const componentThemeObj: any = {};
-    themeConfig.forEach(key => {
-      componentThemeObj[key] = (theme.colors as any)[key];
-    });
+    const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
 
     const [state, dispatch] = React.useReducer(reducer, {
       code: formatCode(
@@ -129,6 +134,29 @@ export default withRouter(
       props: propsConfig,
       theme: componentThemeObj,
     });
+
+    // when theme (context) is switched, reset the theme state
+    React.useEffect(() => {
+      const newCode = formatCode(
+        getCode(state.props, componentName, {
+          themeValues: {},
+          themeName: theme.name,
+        }),
+      );
+      dispatch({
+        type: Action.UpdateThemeAndCode,
+        payload: {
+          code: newCode,
+          theme: getComponentThemeFromContext(theme, themeConfig),
+        },
+      });
+      if (state.code !== newCode) {
+        Router.push({
+          pathname: router.pathname,
+          query: {code: newCode},
+        } as any);
+      }
+    }, [theme.name]);
 
     let changedProps = 0;
     Object.keys(state.props).forEach(prop => {
