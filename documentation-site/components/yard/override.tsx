@@ -65,7 +65,7 @@ const SharedPropsTooltip: React.FC<{
               <strong>$theme</strong>: <i>ThemeT</i> - Global theme object.
             </li>
             {sharedProps.map(prop => (
-              <li>
+              <li key={prop}>
                 <strong>{prop}</strong>: {getDescription(prop)}
               </li>
             ))}

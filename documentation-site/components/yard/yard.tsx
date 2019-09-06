@@ -387,7 +387,10 @@ export default withRouter(
                       componentThemeValueDiff[key] = value[key];
                     }
                   });
-                  const componentThemeDiff: any = {};
+                  const componentThemeDiff: any = {
+                    themeValues: {},
+                    themeName: '',
+                  };
                   if (Object.keys(componentThemeValueDiff).length > 0) {
                     componentThemeDiff.themeValues = componentThemeValueDiff;
                     componentThemeDiff.themeName = theme.name;
@@ -539,7 +542,10 @@ export default withRouter(
                   type: Action.Reset,
                   payload: {
                     code: formatCode(
-                      getCode(propsConfig, componentName, {} as any),
+                      getCode(propsConfig, componentName, {
+                        themeValues: {},
+                        themeName: '',
+                      } as any),
                     ),
                     props: propsConfig,
                     theme: componentThemeObj,

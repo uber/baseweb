@@ -10,8 +10,6 @@ const {publicRuntimeConfig} = getConfig();
 
 import {Spinner} from 'baseui/spinner';
 
-const isBrowser = typeof window !== 'undefined';
-
 const Yard = React.lazy(() => import('./yard'));
 
 type TYardWrapperProps = TYardProps & {
@@ -26,6 +24,8 @@ const YardWrapper: React.FC<TYardWrapperProps> = ({
   defaultHeight,
 }) => {
   const [useCss] = useStyletron();
+  const [isMounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
   const [loadYard, setLoadYard] = React.useState(
     process.env.NODE_ENV !== 'development' ||
       publicRuntimeConfig.loadYard === 'true',
@@ -43,7 +43,7 @@ const YardWrapper: React.FC<TYardWrapperProps> = ({
 
   return (
     <Card>
-      {!isBrowser ? (
+      {!isMounted ? (
         <div className={loadingCx} />
       ) : (
         <React.Suspense

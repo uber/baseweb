@@ -54,9 +54,10 @@ export const getCode = (
     }
   });
   const hasChild = children && children.value;
-  const themePrimitives = theme.themeName.startsWith('light-theme')
-    ? 'lightThemePrimitives'
-    : 'darkThemePrimitives';
+  const themePrimitives =
+    theme.themeName && theme.themeName.startsWith('dark-theme')
+      ? 'darkThemePrimitives'
+      : 'lightThemePrimitives';
   const themeImports = isCustomTheme
     ? `import {ThemeProvider, createTheme, ${themePrimitives}} from 'baseui';\n`
     : '';
