@@ -37,6 +37,12 @@ export default class Avatar extends React.Component<PropsT, StateT> {
     this.state = {noImageAvailable: !this.props.src};
   }
 
+  componentDidUpdate(prevProps: PropsT, prevState: StateT) {
+    if (prevProps.src !== this.props.src && prevState.noImageAvailable) {
+      this.setState({noImageAvailable: false});
+    }
+  }
+
   handleError = () => {
     this.setState({noImageAvailable: true});
   };

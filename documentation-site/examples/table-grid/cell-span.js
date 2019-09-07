@@ -3,7 +3,7 @@ import React from 'react';
 import {format} from 'date-fns';
 
 import {StyledLink} from 'baseui/link';
-import {useStyletron} from 'baseui/styles';
+import {useStyletron} from 'baseui';
 
 import {
   Unstable_StyledTable as StyledTable,
