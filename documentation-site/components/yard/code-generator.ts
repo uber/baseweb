@@ -9,47 +9,57 @@ export const getCode = (
 ) => {
   let propsString = ``;
   let enumImports = ``;
+  let stateHooks = ``;
   const isCustomTheme =
     theme && theme.themeValues && Object.keys(theme.themeValues).length > 0;
   const {children, ...restProps} = props;
   Object.keys(restProps).forEach(name => {
     const value = restProps[name].value;
     const type = restProps[name].type;
+    const isStateful: boolean = restProps[name].meta
+      ? (restProps[name].meta as any).stateful === true
+      : false;
     if (value) {
-      switch (type as PropTypes) {
-        case PropTypes.String:
-          propsString += ` ${name}="${value}"`;
-          break;
-        case PropTypes.Boolean:
-          propsString += ` ${name}`;
-          break;
-        case PropTypes.Ref:
-          break;
-        case PropTypes.Number:
-        case PropTypes.Array:
-        case PropTypes.Object:
-        case PropTypes.Function:
-        case PropTypes.ReactNode:
-          propsString += ` ${name}={${value}}`;
-          break;
-        case PropTypes.Enum:
-          enumImports += `, ${name.toUpperCase()}`;
-          propsString += ` ${name}={${value}}`;
-          break;
-        case PropTypes.Overrides:
-          if (!value) break;
-          let overrideString = '{';
-          Object.keys(value).forEach(key => {
-            if (value[key].active === true) {
-              overrideString += `${key}: { style: ${value[key].style} },`;
-            }
-          });
-          overrideString += '}';
-          if (overrideString === '{}') break;
-          propsString += ` ${name}={${overrideString}}`;
-          break;
-        default:
-          assertUnreachable();
+      if (isStateful) {
+        stateHooks += ` const [${name}, set${name[0].toUpperCase() +
+          name.slice(1)}] = React.useState('${value}');\n`;
+        propsString += ` ${name}={${name}}`;
+      } else {
+        switch (type as PropTypes) {
+          case PropTypes.String:
+            propsString += ` ${name}="${value}"`;
+            break;
+          case PropTypes.Boolean:
+            propsString += ` ${name}`;
+            break;
+          case PropTypes.Ref:
+            break;
+          case PropTypes.Number:
+          case PropTypes.Array:
+          case PropTypes.Object:
+          case PropTypes.Function:
+          case PropTypes.ReactNode:
+            propsString += ` ${name}={${value}}`;
+            break;
+          case PropTypes.Enum:
+            enumImports += `, ${name.toUpperCase()}`;
+            propsString += ` ${name}={${value}}`;
+            break;
+          case PropTypes.Overrides:
+            if (!value) break;
+            let overrideString = '{';
+            Object.keys(value).forEach(key => {
+              if (value[key].active === true) {
+                overrideString += `${key}: { style: ${value[key].style} },`;
+              }
+            });
+            overrideString += '}';
+            if (overrideString === '{}') break;
+            propsString += ` ${name}={${overrideString}}`;
+            break;
+          default:
+            assertUnreachable();
+        }
       }
     }
   });
@@ -71,7 +81,7 @@ export const getCode = (
         theme.themeValues,
       )} })}>`
     : '';
-  return `${imports}export default () => ${themeProviderOpen}<${componentName}${propsString}${
+  return `${imports}export default () => { ${stateHooks} return ( ${themeProviderOpen}<${componentName}${propsString}${
     hasChild ? `>${children.value}</${componentName}>` : ' />'
-  }${isCustomTheme ? '</ThemeProvider>' : ''}`;
+  }${isCustomTheme ? '</ThemeProvider>' : ''});}`;
 };

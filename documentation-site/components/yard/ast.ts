@@ -147,6 +147,7 @@ export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
 
 export function parseCode(code: string, elementName: string) {
   const propValues: any = {};
+  const stateValues: any = {};
   let themeValues: any = {};
   try {
     const ast = parse(code);
@@ -197,9 +198,39 @@ export function parseCode(code: string, elementName: string) {
           ).code.replace(/^\s+|\s+$/g, '');
         }
       },
+      VariableDeclarator(path) {
+        // looking for React.useState()
+        const node = path.node as any;
+        if (
+          node.id.type === 'ArrayPattern' &&
+          node.init.type === 'CallExpression' &&
+          node.init.callee.property.name === 'useState'
+        ) {
+          const name = node.id.elements[0].name;
+          const valueNode = node.init.arguments[0];
+          if (
+            valueNode.type === 'StringLiteral' ||
+            valueNode.type === 'BooleanLiteral'
+          ) {
+            stateValues[name] = valueNode.value;
+          } else {
+            stateValues[name] = generate(valueNode);
+          }
+        }
+      },
     });
   } catch (e) {
     throw new Error("Code is not valid and can't be parsed.");
   }
+
+  // override props by local state (React hooks)
+  Object.keys(stateValues).forEach(stateValueKey => {
+    Object.keys(propValues).forEach(propValueKey => {
+      if (propValues[propValueKey] === stateValueKey) {
+        propValues[propValueKey] = stateValues[stateValueKey];
+      }
+    });
+  });
+
   return {parsedProps: propValues, parsedTheme: themeValues};
 }

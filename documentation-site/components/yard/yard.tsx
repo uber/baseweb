@@ -209,7 +209,7 @@ export default withRouter(
               propValues[name] = parseOverrides(
                 parsedProps[name],
                 propsConfig.overrides && propsConfig.overrides.meta
-                  ? propsConfig.overrides.meta.names
+                  ? propsConfig.overrides.meta.names || []
                   : [],
               );
             } else {
@@ -455,7 +455,7 @@ export default withRouter(
                       propValues[name] = parseOverrides(
                         parsedProps[name],
                         propsConfig.overrides && propsConfig.overrides.meta
-                          ? propsConfig.overrides.meta.names
+                          ? propsConfig.overrides.meta.names || []
                           : [],
                       );
                     } else {
