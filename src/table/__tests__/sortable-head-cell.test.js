@@ -21,14 +21,29 @@ describe('sortable-head-cell', () => {
     expect(down).toHaveLength(1);
   });
 
-  it('prop extendClick enable click on the complete cell', () => {
+  it('fillClickTarget prop enable sort on cell click', () => {
+    const spy = jest.fn();
     const wrapper = mount(
-      <SortableHeadCell direction="ASC" title="test" extendClick />,
-    );
-    expect(typeof wrapper.find(StyledHeadCell).prop('onClick')).toBe(
-      'function',
+      <SortableHeadCell
+        onSort={spy}
+        direction="ASC"
+        title="test"
+        fillClickTarget
+      />,
     );
     expect(wrapper.find(StyledHeadCell).prop('$cursor')).toBe('pointer');
+    wrapper.simulate('click');
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('without fillClickTarget prop, no sort on cell click', () => {
+    const spy = jest.fn();
+    const wrapper = mount(
+      <SortableHeadCell onSort={spy} direction="ASC" title="test" />,
+    );
+    expect(wrapper.find(StyledHeadCell).prop('$cursor')).toBeUndefined();
+    wrapper.simulate('click');
+    expect(spy).not.toHaveBeenCalled();
   });
 
   it('displays triangle up when direction is DESC', () => {

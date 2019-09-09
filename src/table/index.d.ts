@@ -17,7 +17,7 @@ export interface SortableHeadCellProps {
     SortableLabel?: Override<any>;
   };
   title: string;
-  extendClick?: boolean;
+  fillClickTarget?: boolean;
 }
 export const SortableHeadCell: React.FC<SortableHeadCellProps>;
 

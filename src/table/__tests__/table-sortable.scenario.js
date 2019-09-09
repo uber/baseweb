@@ -107,7 +107,6 @@ class SortableTable extends React.Component<any, any> {
               title="Name"
               direction={this.state.nameDirection}
               onSort={() => this.handleSort('name', this.state.nameDirection)}
-              extendClick
             />
             <SortableHeadCell
               disabled
