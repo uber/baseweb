@@ -18,10 +18,19 @@ export default () => {
       {Object.values(ANCHOR).map((eachAnchor: string) => (
         <React.Fragment>
           <Button
-            overrides={{BaseButton: {style: {margin: 12}}}}
             onClick={() =>
               setIsOpen({...isOpen, [eachAnchor]: true})
             }
+            overrides={{
+              BaseButton: {
+                style: {
+                  marginTop: '12px',
+                  marginBottom: '12px',
+                  marginLeft: '12px',
+                  marginRight: '12px',
+                },
+              },
+            }}
           >
             Open Drawer on {eachAnchor}
           </Button>
