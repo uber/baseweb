@@ -61,7 +61,10 @@ export const getCode = (
   const themeImports = isCustomTheme
     ? `import {ThemeProvider, createTheme, ${themePrimitives}} from 'baseui';\n`
     : '';
-  const imports = `${themeImports}import {${componentName}${enumImports}} from 'baseui/${componentName.toLowerCase()}';\n\n`;
+  const imports = `${themeImports}import {${componentName}${enumImports}} from 'baseui/${componentName
+    .split(/(?=[A-Z])/)
+    .join('-')
+    .toLowerCase()}';\n\n`;
 
   const themeProviderOpen = isCustomTheme
     ? `<ThemeProvider theme={createTheme(${themePrimitives}, { colors: ${JSON.stringify(
