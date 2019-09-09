@@ -99,6 +99,21 @@ describe('Datepicker', () => {
     expect(selectedValue).toBe('2019/03/10');
   });
 
+  it('selects day when typed', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+
+    // input mask
+    let selectedValue = await page.$eval(selectors.input, input => input.value);
+    expect(selectedValue).toBe('    /  /  ');
+
+    // actual value
+    await page.type(selectors.input, '2019/03/10');
+    selectedValue = await page.$eval(selectors.input, input => input.value);
+    expect(selectedValue).toBe('2019/03/10');
+  });
+
   it('selects range', async () => {
     await mount(page, 'datepicker-range');
     await page.waitFor(selectors.input);
@@ -110,7 +125,7 @@ describe('Datepicker', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('2019/03/10');
+    expect(selectedValue1).toBe('2019/03/10 -     /  /  ');
 
     await page.click(selectors.day2);
     await page.waitFor(selectors.calendar, {
