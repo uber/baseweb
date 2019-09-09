@@ -48,6 +48,8 @@ const navBtnStyle = ({$theme}) => ({
 
 const MIN_YEAR = 2000;
 const MAX_YEAR = 2030;
+const MIN_MONTH = 0;
+const MAX_MONTH = 11;
 
 const DIRECTION = {
   NEXT: 'next',
@@ -281,19 +283,42 @@ export default class CalendarHeader extends React.Component<
       StatefulMenu,
     );
     const menuOverrides = mergeOverrides(
-      {List: {style: {height: '257px'}}},
+      {List: {style: {height: 'auto', maxHeight: '257px'}}},
       // $FlowFixMe
       menuProps && menuProps.overrides,
     );
     // $FlowFixMe
     menuProps.overrides = menuOverrides;
 
-    const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    const defaultMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     const maxYear = maxDate ? getYear(maxDate) : MAX_YEAR;
     const minYear = minDate ? getYear(minDate) : MIN_YEAR;
+
+    const maxDateMonth = maxDate ? getMonth(maxDate) : MAX_MONTH;
+    // Generates array like [0,1,.... maxDateMonth]
+    const maxYearMonths = Array.from({length: maxDateMonth + 1}, (x, i) => i);
+
+    const minDateMonth = minDate ? getMonth(minDate) : MIN_MONTH;
+    // Generates array like [minDateMonth, ...., 10, 11]
+    const minYearMonths = Array.from(
+      {length: 12 - minDateMonth},
+      (x, i) => i + minDateMonth,
+    );
+
     const items = [];
+
     for (let i = minYear; i <= maxYear; i++) {
-      MONTHS.forEach(month => {
+      let months;
+      if (i === minYear && i === maxYear) {
+        months = maxYearMonths.filter(month => minYearMonths.includes(month));
+      } else if (i === minYear) {
+        months = minYearMonths;
+      } else if (i === maxYear) {
+        months = maxYearMonths;
+      } else {
+        months = defaultMonths;
+      }
+      months.forEach(month => {
         items.push({
           id: yearMonthToId(i, month),
           label: `${getMonthInLocale(month, locale)} ${i}`,
