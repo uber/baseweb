@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils';
+import {act} from 'react-dom/test-utils.js';
 
 import {StringColumn} from '../index.js';
 

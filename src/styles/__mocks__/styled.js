@@ -26,6 +26,7 @@ const MOCK_THEME = createMockTheme(LightTheme);
 const IDENTITY = x => x;
 
 export function useStyletron() {
+  // eslint-disable-next-line flowtype/no-weak-types
   function useCss(styles: Object) {
     return {
       label: 'useStyletron mock describes the applied css properties',

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils';
+import {act} from 'react-dom/test-utils.js';
 
 import {CustomColumn} from '../index.js';
 
@@ -87,7 +87,7 @@ describe('custom column', () => {
   it('cell renders according to provided renderCell', () => {
     const column = CustomColumn<{color: string}, {}>({
       title: 'column',
-      renderCell: props => {
+      renderCell: function CustomCell(props) {
         return <div>{props.value.color}</div>;
       },
     });

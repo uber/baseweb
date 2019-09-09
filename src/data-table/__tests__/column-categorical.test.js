@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils';
+import {act} from 'react-dom/test-utils.js';
 
 import {CategoricalColumn} from '../index.js';
 
@@ -101,7 +101,9 @@ describe('categorical column', () => {
     });
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     act(() => {
-      checkboxes[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
+      if (__BROWSER__) {
+        checkboxes[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
+      }
     });
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
 
@@ -109,7 +111,9 @@ describe('categorical column', () => {
     buttons.forEach(button => {
       if (button.textContent === 'Apply') {
         act(() => {
-          button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+          if (__BROWSER__) {
+            button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+          }
         });
       }
     });
