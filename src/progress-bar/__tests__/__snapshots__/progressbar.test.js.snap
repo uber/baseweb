@@ -70,7 +70,7 @@ exports[`Stateless progress bar should render component: Component has correct r
                     styled-component="true"
                     test-style={
                       Object {
-                        "backgroundColor": "$theme.colors.primary400",
+                        "backgroundColor": "$theme.colors.accent",
                         "borderBottomLeftRadius": "$theme.sizing.scale0",
                         "borderBottomRightRadius": "$theme.sizing.scale0",
                         "borderTopLeftRadius": "$theme.sizing.scale0",
