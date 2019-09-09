@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "8.17.1",
+  "version": "8.17.2",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -128,7 +128,7 @@
     "markdownlint-cli": "^0.18.0",
     "memory-fs": "^0.4.1",
     "mkdirp": "^0.5.1",
-    "next": "^9.0.0",
+    "next": "^9.0.5",
     "next-images": "^1.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
@@ -162,7 +162,7 @@
   },
   "dependencies": {
     "card-validator": "^6.1.0",
-    "date-fns": "2.0.1",
+    "date-fns": "2.1.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
     "polished": "^3.2.0",

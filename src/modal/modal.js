@@ -10,7 +10,7 @@ import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {LocaleContext} from '../locale/index.js';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {Layer} from '../layer/index.js';
 import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
 import {
@@ -228,12 +228,17 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       Close: CloseOverride,
     } = overrides;
 
-    const Root = getOverride(RootOverride) || StyledRoot;
-    const Backdrop = getOverride(BackdropOverride) || StyledBackdrop;
-    const DialogContainer =
-      getOverride(DialogContainerOverride) || StyledDialogContainer;
-    const Dialog = getOverride(DialogOverride) || StyledDialog;
-    const Close = getOverride(CloseOverride) || StyledClose;
+    const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
+    const [Backdrop, backdropProps] = getOverrides(
+      BackdropOverride,
+      StyledBackdrop,
+    );
+    const [DialogContainer, dialogContainerProps] = getOverrides(
+      DialogContainerOverride,
+      StyledDialogContainer,
+    );
+    const [Dialog, dialogProps] = getOverrides(DialogOverride, StyledDialog);
+    const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
     const children = this.getChildren();
@@ -247,17 +252,14 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               data-baseweb="modal"
               ref={this.getRef('Root')}
               {...sharedProps}
-              {...getOverrideProps(RootOverride)}
+              {...rootProps}
             >
               <Backdrop
                 onClick={this.onBackdropClick}
                 {...sharedProps}
-                {...getOverrideProps(BackdropOverride)}
+                {...backdropProps}
               />
-              <DialogContainer
-                {...sharedProps}
-                {...getOverrideProps(DialogContainerOverride)}
-              >
+              <DialogContainer {...sharedProps} {...dialogContainerProps}>
                 <Dialog
                   tabIndex={-1}
                   aria-modal={
@@ -269,7 +271,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                   role={role}
                   ref={this.getRef('Dialog')}
                   {...sharedProps}
-                  {...getOverrideProps(DialogOverride)}
+                  {...dialogProps}
                 >
                   {children}
                   {closeable ? (
@@ -277,7 +279,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                       aria-label={locale.modal.close}
                       onClick={this.onCloseClick}
                       {...sharedProps}
-                      {...getOverrideProps(CloseOverride)}
+                      {...closeProps}
                     >
                       <CloseIcon />
                     </Close>
