@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulPopover, PLACEMENT} from '../popover/index.js';
+import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import ChevronDown from '../icon/chevron-down.js';
 import ChevronUp from '../icon/chevron-up.js';
@@ -21,8 +21,11 @@ type HeaderCellPropsT = {
   filter: React.ComponentType<{close: () => void}>,
   filterable: boolean,
   index: number,
+  isFilterOpen: boolean,
   isHovered: boolean,
   isMeasured?: boolean,
+  onFilterOpen: () => void,
+  onFilterClose: () => void,
   onMouseEnter: number => void,
   onMouseLeave: number => void,
   onSort: number => void,
@@ -84,7 +87,11 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           whiteSpace: 'nowrap',
         })}
         onMouseEnter={props.onMouseEnter}
-        onMouseLeave={props.onMouseLeave}
+        onMouseLeave={event => {
+          if (!props.isFilterOpen) {
+            props.onMouseLeave(event);
+          }
+        }}
         onKeyUp={event => {
           if (event.key === 'Enter') {
             props.onSort(props.index);
@@ -102,16 +109,23 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
         {props.title}
         <div className={controlStyles}>
           {props.isHovered && props.filterable ? (
-            <StatefulPopover
+            <Popover
               placement={PLACEMENT.bottomLeft}
               ignoreBoundary
-              onClick={e => e.stopPropagation()}
-              content={({close}) => <Filter close={close} />}
+              isOpen={props.isFilterOpen}
+              onClick={e => {
+                e.stopPropagation();
+                props.onFilterOpen();
+              }}
+              onClickOutside={() => {
+                props.onFilterClose();
+              }}
+              content={() => <Filter close={props.onFilterClose} />}
             >
               <button className={filterButtonStyles}>
                 <FilterIcon />
               </button>
-            </StatefulPopover>
+            </Popover>
           ) : (
             <div />
           )}

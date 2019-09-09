@@ -21,52 +21,6 @@ import {
 
 export const name = 'data-table-columns';
 
-// function Scenario(props) {
-//   return (
-//     <div
-//       id={props.id}
-//       style={{height: '500px', width: '500px', marginBottom: '100px'}}
-//     >
-//       {props.children}
-//     </div>
-//   );
-// }
-
-// function CountChildren() {
-//   const columns = [
-//     BooleanColumn({title: 'boolean-column'}),
-//     NumericalColumn({title: 'numerical-column'}),
-//   ];
-//   const rows = [
-//     {data: [true, 1]},
-//     {data: [false, 2]},
-//     {data: [true, 3]},
-//     {data: [false, 4]},
-//   ];
-
-//   return (
-//     <Scenario id="data-table-count-children">
-//       <Unstable_DataTable columns={columns} rows={rows} />
-//     </Scenario>
-//   );
-// }
-
-// function BooleanScenario() {
-//   const columns = [BooleanColumn({title: 'boolean-column'})];
-//   const rows = [
-//     {data: [true]},
-//     {data: [false]},
-//     {data: [true]},
-//     {data: [false]},
-//   ];
-
-//   return (
-//     <Scenario id="data-table-boolean-column">
-//       <Unstable_DataTable columns={columns} rows={rows} />
-//     </Scenario>
-//   );
-// }
-
 export const component = () => {
   const columns = [
     BooleanColumn({title: 'boolean-column'}),

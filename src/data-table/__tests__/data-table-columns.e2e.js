@@ -41,13 +41,22 @@ function getTextContentFromElements(page, elements) {
 
 async function getCellContentsAtColumnIndex(page, index) {
   const elements = await getCellsAtColumnIndex(page, index);
-  return getTextContentFromElements(page, elements);
+  return getTextContentFromElements(page, elements.filter(Boolean));
 }
 
 async function sortColumnAtIndex(page, index) {
   const headerCell = await getHeaderCellAtIndex(page, index);
   const sortButton = await headerCell.$('div[role="button"]');
   return sortButton.click();
+}
+
+async function openFilterAtIndex(page, index) {
+  const headerCell = await getHeaderCellAtIndex(page, index);
+  await headerCell.hover();
+  const hoveredHeaderCell = await getHeaderCellAtIndex(page, index);
+  const filterButton = await hoveredHeaderCell.$('button');
+  await filterButton.click();
+  return page.$('div[data-baseweb="popover"]');
 }
 
 function matchArrayElements(a, b) {
@@ -59,7 +68,6 @@ function matchArrayElements(a, b) {
 }
 
 describe('data table columns', () => {
-  jest.setTimeout(30 * 1000);
   it('passes basic a11y tests', async () => {
     await mount(page, 'data-table-columns');
     const accessibilityReport = await analyzeAccessibility(page);
@@ -166,11 +174,32 @@ describe('data table columns', () => {
   xit('filters boolean column', async () => {
     // boolean column filter not implemented
   });
-  xit('filters categorical column', async () => {});
+
+  it.only('filters categorical column', async () => {
+    const index = 1;
+    await mount(page, 'data-table-columns');
+    await page.waitFor('div[data-baseweb="data-table"]');
+    const initial = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(initial, ['A', 'B', 'A', 'A'])).toBe(true);
+
+    const popover = await openFilterAtIndex(page, index);
+    const checkbox = await popover.$('label[data-baseweb="checkbox"]');
+    await checkbox.click();
+    const apply = await popover.$('button');
+    await apply.click();
+
+    const filtered = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(filtered, ['A', 'A', 'A'])).toBe(true);
+
+    const tag = await page.$('span[data-baseweb="tag"]');
+    const closeTagButton = await tag.$('span[role="button"]');
+    await closeTagButton.click();
+
+    const restored = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(restored, ['A', 'B', 'A', 'A'])).toBe(true);
+  });
+
   xit('filters numerical column', async () => {
     // numerical column filter not implemented
   });
-
-  it('renders tag after applying filter', async () => {});
-  it('closing a filter restores filtered rows', async () => {});
 });
