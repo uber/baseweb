@@ -1,0 +1,92 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+import * as React from 'react';
+
+import {useStyletron} from '../../styles/index.js';
+
+import {COLUMNS, NUMERICAL_FORMATS} from '../constants.js';
+import {
+  Unstable_DataTable,
+  BooleanColumn,
+  CategoricalColumn,
+  NumericalColumn,
+  StringColumn,
+} from '../index.js';
+
+export const name = 'data-table-columns';
+
+// function Scenario(props) {
+//   return (
+//     <div
+//       id={props.id}
+//       style={{height: '500px', width: '500px', marginBottom: '100px'}}
+//     >
+//       {props.children}
+//     </div>
+//   );
+// }
+
+// function CountChildren() {
+//   const columns = [
+//     BooleanColumn({title: 'boolean-column'}),
+//     NumericalColumn({title: 'numerical-column'}),
+//   ];
+//   const rows = [
+//     {data: [true, 1]},
+//     {data: [false, 2]},
+//     {data: [true, 3]},
+//     {data: [false, 4]},
+//   ];
+
+//   return (
+//     <Scenario id="data-table-count-children">
+//       <Unstable_DataTable columns={columns} rows={rows} />
+//     </Scenario>
+//   );
+// }
+
+// function BooleanScenario() {
+//   const columns = [BooleanColumn({title: 'boolean-column'})];
+//   const rows = [
+//     {data: [true]},
+//     {data: [false]},
+//     {data: [true]},
+//     {data: [false]},
+//   ];
+
+//   return (
+//     <Scenario id="data-table-boolean-column">
+//       <Unstable_DataTable columns={columns} rows={rows} />
+//     </Scenario>
+//   );
+// }
+
+export const component = () => {
+  const columns = [
+    BooleanColumn({title: 'boolean-column'}),
+    CategoricalColumn({title: 'categorical-column'}),
+    NumericalColumn({title: 'numerical-column'}),
+    StringColumn({title: 'string-column'}),
+  ];
+
+  const rows = [
+    {data: [true, 'A', 2, 'one']},
+    {data: [false, 'B', 1, 'two']},
+    {data: [true, 'A', 4, 'three']},
+    {data: [false, 'A', 3, 'four']},
+  ];
+
+  return (
+    <React.Fragment>
+      <div style={{height: '600px', width: '1000px', marginBottom: '100px'}}>
+        <Unstable_DataTable columns={columns} rows={rows} />
+      </div>
+    </React.Fragment>
+  );
+};

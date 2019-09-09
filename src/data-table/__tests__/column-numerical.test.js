@@ -61,7 +61,7 @@ describe('numerical column', () => {
     });
     const cell = container.querySelector('div');
     if (cell) {
-      expect(cell.textContent).toBe('1999.89');
+      expect(cell.textContent).toBe('2000');
     } else {
       expect(cell).not.toBeNull();
     }

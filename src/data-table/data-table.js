@@ -152,7 +152,7 @@ export function Unstable_DataTable(props: Props) {
   const InnerTableElement = React.forwardRef(({children, ...rest}, ref) => {
     const [useCss, theme] = useStyletron();
     return (
-      <div ref={ref} {...rest}>
+      <div ref={ref} data-baseweb="data-table" {...rest}>
         <div
           className={useCss({
             position: 'sticky',
