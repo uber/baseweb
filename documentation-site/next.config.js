@@ -16,6 +16,9 @@ const withMDX = require('@zeit/next-mdx')({
 
 module.exports = withMDX(
   withImages({
+    publicRuntimeConfig: {
+      loadYard: process.env.LOAD_YARD,
+    },
     exportTrailingSlash: true,
     webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
       config.resolve.alias.baseui = resolve(__dirname, '../dist');
