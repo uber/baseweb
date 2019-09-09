@@ -116,6 +116,12 @@ export default class Calendar extends React.Component<
     ) {
       this.focusCalendar();
     }
+
+    if (prevProps.value !== this.props.value) {
+      this.setState({
+        date: this.getDateInView(),
+      });
+    }
   }
 
   getSingleDate(value: ?Date | Array<Date>): ?Date {
@@ -339,6 +345,7 @@ export default class Calendar extends React.Component<
       overrides.MonthContainer,
       StyledMonthContainer,
     );
+
     for (let i = 0; i < (this.props.monthsShown || 1); ++i) {
       const monthSubComponents = [];
       const monthDate = addMonths(this.state.date, i);
