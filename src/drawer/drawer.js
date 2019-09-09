@@ -10,15 +10,15 @@ import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {LocaleContext} from '../locale/index.js';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {Layer} from '../layer/index.js';
 import {SIZE, CLOSE_SOURCE, ANCHOR} from './constants.js';
 import {
-  Root as StyledRoot,
-  Backdrop as StyledBackdrop,
-  DrawerContainer as StyledDrawerContainer,
-  DrawerBody as StyledDrawerBody,
-  Close as StyledClose,
+  StyledRoot,
+  StyledBackdrop,
+  StyledDrawerContainer,
+  StyledDrawerBody,
+  StyledClose,
 } from './styled-components.js';
 import {CloseIcon} from './close-icon.js';
 
@@ -241,12 +241,20 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       Close: CloseOverride,
     } = overrides;
 
-    const Root = getOverride(RootOverride) || StyledRoot;
-    const Backdrop = getOverride(BackdropOverride) || StyledBackdrop;
-    const DrawerContainer =
-      getOverride(DrawerContainerOverride) || StyledDrawerContainer;
-    const DrawerBody = getOverride(DrawerBodyOverride) || StyledDrawerBody;
-    const Close = getOverride(CloseOverride) || StyledClose;
+    const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
+    const [Backdrop, backdropProps] = getOverrides(
+      BackdropOverride,
+      StyledBackdrop,
+    );
+    const [DrawerContainer, drawerContainerProps] = getOverrides(
+      DrawerContainerOverride,
+      StyledDrawerContainer,
+    );
+    const [DrawerBody, drawerBodyProps] = getOverrides(
+      DrawerBodyOverride,
+      StyledDrawerBody,
+    );
+    const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
     const children = this.getChildren();
@@ -261,24 +269,21 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                 data-baseweb="drawer"
                 ref={this.getRef('Root')}
                 {...sharedProps}
-                {...getOverrideProps(RootOverride)}
+                {...rootProps}
               >
                 {showBackdrop && (
                   <Backdrop
                     onClick={this.onBackdropClick}
                     {...sharedProps}
-                    {...getOverrideProps(BackdropOverride)}
+                    {...backdropProps}
                   />
                 )}
                 <DrawerContainer
                   aria-label="drawer"
                   {...sharedProps}
-                  {...getOverrideProps(DrawerContainerOverride)}
+                  {...drawerContainerProps}
                 >
-                  <DrawerBody
-                    {...sharedProps}
-                    {...getOverrideProps(DrawerBodyOverride)}
-                  >
+                  <DrawerBody {...sharedProps} {...drawerBodyProps}>
                     {children}
                   </DrawerBody>
                   {closeable ? (
@@ -286,7 +291,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                       aria-label={locale.drawer.close}
                       onClick={this.onCloseClick}
                       {...sharedProps}
-                      {...getOverrideProps(CloseOverride)}
+                      {...closeProps}
                     >
                       <CloseIcon />
                     </Close>
