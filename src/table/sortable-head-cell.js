@@ -28,21 +28,12 @@ function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
 }
 
 export default function SortableHeadCell(props: HeadCellPropsT) {
-  debugger;
-  console.log('extend click', props.extendClick);
-
-  const {extendClick} = props;
-
-  const {overrides = {}} = props;
-
-  console.log({overrides});
+  const {overrides = {}, extendClick} = props;
 
   const [HeadCell, headCellProps] = getOverrides(
     overrides.HeadCell,
     StyledHeadCell,
   );
-
-  console.log({HeadCell, headCellProps});
 
   const [SortableLabel, sortableLabelProps] = getOverrides(
     overrides.SortableLabel,
@@ -52,8 +43,6 @@ export default function SortableHeadCell(props: HeadCellPropsT) {
   const onClick = () => {
     props.onSort && props.onSort();
   };
-
-  console.log({extendClick, ptr: extendClick ? 'pointer' : undefined});
 
   return (
     <HeadCell

@@ -12,12 +12,23 @@ import {mount} from 'enzyme';
 import TriangleDown from '../../icon/triangle-down.js';
 import TriangleUp from '../../icon/triangle-up.js';
 import {SortableHeadCell} from '../index.js';
+import {StyledHeadCell} from '../styled-components.js';
 
 describe('sortable-head-cell', () => {
   it('displays triangle down when direction is ASC', () => {
     const wrapper = mount(<SortableHeadCell direction="ASC" title="test" />);
     const down = wrapper.find(TriangleDown);
     expect(down).toHaveLength(1);
+  });
+
+  it('prop extendClick enable click on the complete cell', () => {
+    const wrapper = mount(
+      <SortableHeadCell direction="ASC" title="test" extendClick />,
+    );
+    expect(typeof wrapper.find(StyledHeadCell).prop('onClick')).toBe(
+      'function',
+    );
+    expect(wrapper.find(StyledHeadCell).prop('$cursor')).toBe('pointer');
   });
 
   it('displays triangle up when direction is DESC', () => {

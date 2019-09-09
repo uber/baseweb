@@ -69,7 +69,6 @@ StyledHead.displayName = 'StyledHead';
 const StyledHeadCellElement = styled<HorizontalStyleProps>(
   'div',
   ({$theme, $cursor}) => {
-    console.log('inside head cell elem', $cursor);
     return {
       ...$theme.typography.font350,
       ...$theme.borders.border300,
