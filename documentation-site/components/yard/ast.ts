@@ -3,12 +3,19 @@ import traverse from '@babel/traverse';
 import generate from '@babel/generator';
 import * as t from 'babel-types';
 import babel from 'prettier/parser-babylon';
+import {TProp} from './types';
+// import {PropTypes} from './const';
 
 const parse = babel.parsers.babel.parse as (code: string) => any;
 
 // clean-up for react-live, removing all imports, exports and top level
 // variable declaration
-export const removeImportsAndExports = (code: string) => {
+export const removeImportsAndExports = (
+  code: string,
+  elementName: string,
+  propsConfig: {[key: string]: TProp},
+) => {
+  console.log(propsConfig, elementName);
   let result = code;
   try {
     const ast = parse(code);
@@ -32,9 +39,53 @@ export const removeImportsAndExports = (code: string) => {
           path.remove();
         }
       },
+      JSXElement(path) {
+        path.traverse({
+          ArrowFunctionExpression(path) {
+            (path.get('body') as any).pushContainer(
+              'body',
+              t.callExpression(t.identifier('window.__yard_onChange'), [
+                t.stringLiteral('Input'),
+                t.stringLiteral('value'),
+                t.identifier('e.target.value'),
+              ]),
+            );
+          },
+        });
+      },
+      // if (
+      //   path.node.openingElement.type === 'JSXOpeningElement' &&
+      //   //@ts-ignore
+      //   path.node.openingElement.name.name === elementName
+      // ) {
+      //   path.node.openingElement.attributes.forEach(
+      //     (attr: any, index: number) => {
+      //       const name = attr.name.name;
+      //       if (propsConfig[name].type === PropTypes.Function) {
+      //         const propHook: string | null = propsConfig[name].meta
+      //           ? (propsConfig[name].meta as any).propHook
+      //           : null;
+      //         if (propHook) {
+      //           const expression = (path.node.openingElement.attributes[
+      //             index
+      //           ] as any).value.expression.body;
+      //           console.log(expression);
+      // (expression.body as any).pushContainer(
+      //   'body',
+      //   t.callExpression(t.identifier('window.__yard_onChange'), [
+      //     t.stringLiteral('hey'),
+      //   ]),
+      //           );
+      //         }
+      //       }
+      //     },
+      //   );
+      // }
     });
     result = generate(ast).code;
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
   return result;
 };
 

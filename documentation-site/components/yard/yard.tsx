@@ -158,6 +158,33 @@ export default withRouter(
       }
     }, [theme.name]);
 
+    React.useEffect(() => {
+      (window as any).__yard_onChange = (
+        componentName: string,
+        propName: string,
+        propValue: any,
+      ) => {
+        const newCode = formatCode(
+          getCode(
+            buildPropsObj(state, {[propName]: propValue}),
+            componentName,
+            {themeValues: {}, themeName: ''},
+          ),
+        );
+        dispatch({
+          type: Action.UpdatePropsAndCode,
+          payload: {
+            code: newCode,
+            updatedPropValues: {[propName]: propValue},
+          },
+        });
+        Router.push({
+          pathname: router.pathname,
+          query: {code: newCode},
+        } as any);
+      };
+    });
+
     let changedProps = 0;
     Object.keys(state.props).forEach(prop => {
       if (
@@ -245,7 +272,9 @@ export default withRouter(
             darkThemePrimitives,
             createTheme,
           }}
-          transformCode={removeImportsAndExports}
+          transformCode={code =>
+            removeImportsAndExports(code, componentName, propsConfig)
+          }
           theme={
             theme.name.startsWith('light-theme')
               ? {
