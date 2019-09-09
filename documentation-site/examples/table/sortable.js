@@ -115,7 +115,6 @@ export default class SortableTable extends React.Component<
               onSort={() =>
                 this.handleSort('name', this.state.nameDirection)
               }
-              fillClickTarget
             />
             <SortableHeadCell
               title="Age"
