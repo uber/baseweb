@@ -18,6 +18,8 @@ const selectors = {
     '[aria-label="Choose Tuesday, February 19th 2019. It\'s available."]',
   leftArrow: '[aria-label="Previous month"]',
   rightArrow: '[aria-label="Next month"]',
+  monthYearSelectButton: '[data-id="monthYearSelectButton"]',
+  monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
 
 describe('Stateful Datepicker', () => {
@@ -64,5 +66,21 @@ describe('Stateful Datepicker', () => {
     await page.waitFor(selectors.rightArrow);
     value = await page.$eval(selectors.rightArrow, select => select.disabled);
     expect(value).toBe(false);
+  });
+
+  it('datepicker with min max date shows valid months in header dropdown', async () => {
+    await mount(page, 'stateful-datepicker-min-max-date');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.click(selectors.monthYearSelectButton);
+    await page.waitFor(selectors.monthYearSelectMenu);
+
+    let value = await page.$$eval('ul[role="listbox"] li', items => {
+      // Return the first and last month year option
+      return [items[0].textContent, items[items.length - 1].textContent];
+    });
+    expect(value[0]).toEqual('February 2019');
+    expect(value[1]).toEqual('March 2019');
   });
 });
