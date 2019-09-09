@@ -233,6 +233,33 @@ export default withRouter(
       } as any);
     };
 
+    React.useEffect(() => {
+      (window as any).__yard_onChange = (
+        componentName: string,
+        propName: string,
+        propValue: any,
+      ) => {
+        const newCode = formatCode(
+          getCode(
+            buildPropsObj(state, {[propName]: propValue}),
+            componentName,
+            {themeValues: {}, themeName: ''},
+          ),
+        );
+        dispatch({
+          type: Action.UpdatePropsAndCode,
+          payload: {
+            code: newCode,
+            updatedPropValues: {[propName]: propValue},
+          },
+        });
+        Router.push({
+          pathname: router.pathname,
+          query: {code: newCode},
+        } as any);
+      };
+    });
+
     let changedProps = 0;
     Object.keys(state.props).forEach(prop => {
       if (
@@ -344,6 +371,27 @@ export default withRouter(
             },
             TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
           }}
+          transformCode={code =>
+            removeImportsAndExports(code, componentName, propsConfig)
+          }
+          theme={
+            theme.name.startsWith('light-theme')
+              ? {
+                  ...lightTheme,
+                  plain: {
+                    ...lightTheme.plain,
+                    backgroundColor: theme.colors.mono200,
+                  },
+                }
+              : {
+                  ...darkTheme,
+                  plain: {
+                    ...darkTheme.plain,
+                    backgroundColor: editorFocused ? '#3D3D3D' : '#292929',
+                  },
+                }
+          }
+          language="jsx"
         >
           <Tab
             title={`Props${changedProps > 0 ? ` (${changedProps})` : ''}`}

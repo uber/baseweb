@@ -2,9 +2,9 @@ import traverse from '@babel/traverse';
 import generate from '@babel/generator';
 import {formatCode} from './code-generator';
 import * as t from 'babel-types';
-import {TProp, TPropHook} from './types';
-import {PropTypes} from './const';
-import {parse as babelParse} from '@babel/parser';
+import babel from 'prettier/parser-babylon';
+import {TProp} from './types';
+// import {PropTypes} from './const';
 
 export const parse = (code: string) =>
   babelParse(code, {
@@ -13,12 +13,14 @@ export const parse = (code: string) =>
   });
 
 // clean-up for react-live, removing all imports, exports and top level
-// variable declaration, add __yard_onChange instrumentation when needed
-export const transformBeforeCompilation = (
-  ast: any,
+// variable declaration
+export const removeImportsAndExports = (
+  code: string,
   elementName: string,
   propsConfig: {[key: string]: TProp},
 ) => {
+  console.log(propsConfig, elementName);
+  let result = code;
   try {
     traverse(ast, {
       VariableDeclaration(path) {
@@ -40,34 +42,55 @@ export const transformBeforeCompilation = (
           path.remove();
         }
       },
-      // adds internal state instrumentation through __yard_onChange callback
       JSXElement(path) {
-        if (
-          path.node.openingElement.type === 'JSXOpeningElement' &&
-          //@ts-ignore
-          path.node.openingElement.name.name === elementName
-        ) {
-          path
-            .get('openingElement')
-            .get('attributes')
-            .forEach(attr => {
-              const name = (attr.get('name') as any).node.name;
-              if (propsConfig[name].type === PropTypes.Function) {
-                const propHook: TPropHook = propsConfig[name].meta
-                  ? (propsConfig[name].meta as any).propHook
-                  : null;
-                if (propHook) {
-                  const yardOnChageCallExpression = t.callExpression(
-                    t.identifier('__yard_onChange'),
-                    [
-                      t.stringLiteral(elementName),
-                      t.stringLiteral(propHook.into),
-                      t.identifier(propHook.what),
-                    ],
-                  );
-                  const callbackBody = (attr.get('value') as any)
-                    .get('expression')
-                    .get('body');
+        path.traverse({
+          ArrowFunctionExpression(path) {
+            (path.get('body') as any).pushContainer(
+              'body',
+              t.callExpression(t.identifier('window.__yard_onChange'), [
+                t.stringLiteral('Input'),
+                t.stringLiteral('value'),
+                t.identifier('e.target.value'),
+              ]),
+            );
+          },
+        });
+      },
+      // if (
+      //   path.node.openingElement.type === 'JSXOpeningElement' &&
+      //   //@ts-ignore
+      //   path.node.openingElement.name.name === elementName
+      // ) {
+      //   path.node.openingElement.attributes.forEach(
+      //     (attr: any, index: number) => {
+      //       const name = attr.name.name;
+      //       if (propsConfig[name].type === PropTypes.Function) {
+      //         const propHook: string | null = propsConfig[name].meta
+      //           ? (propsConfig[name].meta as any).propHook
+      //           : null;
+      //         if (propHook) {
+      //           const expression = (path.node.openingElement.attributes[
+      //             index
+      //           ] as any).value.expression.body;
+      //           console.log(expression);
+      // (expression.body as any).pushContainer(
+      //   'body',
+      //   t.callExpression(t.identifier('window.__yard_onChange'), [
+      //     t.stringLiteral('hey'),
+      //   ]),
+      //           );
+      //         }
+      //       }
+      //     },
+      //   );
+      // }
+    });
+    result = generate(ast).code;
+  } catch (e) {
+    console.log(e);
+  }
+  return result;
+};
 
                   if (callbackBody.type === 'BlockStatement') {
                     // when the callback body is a block
