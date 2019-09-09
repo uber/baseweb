@@ -22,7 +22,7 @@ import {
 import {getMediaQuery} from 'baseui/helpers/responsive-helpers';
 import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
 
-import App, {Container} from 'next/app';
+import App from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
 import Router from 'next/router';
@@ -120,7 +120,8 @@ export default class MyApp extends App {
     if (window.matchMedia) {
       const mmDark = window.matchMedia(DARK_MEDIA_QUERY);
       const mmLight = window.matchMedia(LIGHT_MEDIA_QUERY);
-      if (mmDark.media === DARK_MEDIA_QUERY) {
+      // if no theme is set in localStorage, set theme based on user's OS preference
+      if (!this.getThemeStyle() && mmDark.media === DARK_MEDIA_QUERY) {
         const theme = mmDark.matches ? 'dark' : 'light';
         localStorage.setItem('docs-theme', theme);
       }
@@ -246,22 +247,20 @@ export default class MyApp extends App {
   render() {
     const {Component, pageProps, path} = this.props;
     return (
-      <Container>
-        <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
-          <BaseProvider theme={this.state.theme}>
-            <Block {...blockProps}>
-              <DirectionContext.Provider value={this.state.direction}>
-                <Component
-                  {...pageProps}
-                  path={path}
-                  toggleTheme={this.toggleTheme.bind(this)}
-                  toggleDirection={this.toggleDirection.bind(this)}
-                />
-              </DirectionContext.Provider>
-            </Block>
-          </BaseProvider>
-        </StyletronProvider>
-      </Container>
+      <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
+        <BaseProvider theme={this.state.theme}>
+          <Block {...blockProps}>
+            <DirectionContext.Provider value={this.state.direction}>
+              <Component
+                {...pageProps}
+                path={path}
+                toggleTheme={this.toggleTheme.bind(this)}
+                toggleDirection={this.toggleDirection.bind(this)}
+              />
+            </DirectionContext.Provider>
+          </Block>
+        </BaseProvider>
+      </StyletronProvider>
     );
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "8.17.0",
+  "version": "8.17.2",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -44,6 +44,7 @@
     "predocumentation:dev:watch": "node ./scripts/build-documentation-site-files.js",
     "predocumentation:build": "node ./scripts/build-documentation-site-files.js",
     "predocumentation:serve": "node ./scripts/build-documentation-site-files.js",
+    "pretest": "node ./scripts/build-documentation-site-files.js",
     "documentation:dev": "run-p build:es2015 next:dev",
     "documentation:dev:watch": "yarn build:es2015 --watch & next documentation-site",
     "documentation:build": "run-s build:es2015 next:build next:export",
@@ -127,7 +128,7 @@
     "markdownlint-cli": "^0.18.0",
     "memory-fs": "^0.4.1",
     "mkdirp": "^0.5.1",
-    "next": "^9.0.0",
+    "next": "^9.0.5",
     "next-images": "^1.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
@@ -161,7 +162,7 @@
   },
   "dependencies": {
     "card-validator": "^6.1.0",
-    "date-fns": "2.0.1",
+    "date-fns": "2.1.0",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
     "polished": "^3.2.0",
@@ -174,13 +175,15 @@
     "react-multi-ref": "^1.0.0",
     "react-range": "^1.3.0",
     "react-virtualized": "^9.21.1",
+    "react-virtualized-auto-sizer": "^1.0.2",
+    "react-window": "^1.8.5",
     "smoothscroll-polyfill": "^0.4.3",
     "timezone-support": "^2.0.0"
   },
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17",
-    "styletron-react": "^5.2.0"
+    "styletron-react": "^5.2.1"
   },
   "resolutions": {
     "@types/react": "16.8.23"

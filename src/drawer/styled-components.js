@@ -93,7 +93,7 @@ function getAnchorStyles(props: SharedStylePropsArgT) {
   }
 }
 
-export const Root = styled<SharedStylePropsArgT>('div', props => {
+export const StyledRoot = styled<SharedStylePropsArgT>('div', props => {
   return {
     position: 'fixed',
     overflow: 'auto',
@@ -104,7 +104,7 @@ export const Root = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
+export const StyledBackdrop = styled<SharedStylePropsArgT>('div', props => {
   const {$animating, $isOpen, $isVisible, $theme} = props;
   return {
     position: 'fixed',
@@ -128,31 +128,34 @@ export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-export const DrawerContainer = styled<SharedStylePropsArgT>('div', props => {
-  const {$animating, $isOpen, $isVisible, $theme} = props;
-  return {
-    backgroundColor: $theme.colors.backgroundAlt,
-    borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-    borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-    borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
-    borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
-    ...getAnchorStyles(props),
+export const StyledDrawerContainer = styled<SharedStylePropsArgT>(
+  'div',
+  props => {
+    const {$animating, $isOpen, $isVisible, $theme} = props;
+    return {
+      backgroundColor: $theme.colors.backgroundAlt,
+      borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
+      borderTopRightRadius: $theme.borders.surfaceBorderRadius,
+      borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+      borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
+      ...getAnchorStyles(props),
 
-    // Animation
-    opacity: $isVisible && $isOpen ? 1 : 0,
-    ...($animating
-      ? {
-          transitionProperty: 'opacity, transform',
-          transitionDuration: $theme.animation.timing400,
-          transitionTimingFunction: $theme.animation.easeOutCurve,
-        }
-      : null),
-    display: 'flex',
-    position: 'fixed',
-  };
-});
+      // Animation
+      opacity: $isVisible && $isOpen ? 1 : 0,
+      ...($animating
+        ? {
+            transitionProperty: 'opacity, transform',
+            transitionDuration: $theme.animation.timing400,
+            transitionTimingFunction: $theme.animation.easeOutCurve,
+          }
+        : null),
+      display: 'flex',
+      position: 'fixed',
+    };
+  },
+);
 
-export const DrawerBody = styled<SharedStylePropsArgT>('div', props => {
+export const StyledDrawerBody = styled<SharedStylePropsArgT>('div', props => {
   const {$theme} = props;
   return {
     ...$theme.typography.font300,
@@ -166,7 +169,7 @@ export const DrawerBody = styled<SharedStylePropsArgT>('div', props => {
   };
 });
 
-export const Close = styled<SharedStylePropsArgT>('button', props => {
+export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
   const {$theme} = props;
   return {
     // Reset button styles

@@ -88,9 +88,12 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           }
         }
       >
-        <ForwardRef>
+        <ForwardRef
+          title="Some tag"
+        >
           <MockStyledComponent
             forwardedRef={null}
+            title="Some tag"
           >
             <span
               styled-component="true"
@@ -102,6 +105,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                   "whiteSpace": "nowrap",
                 }
               }
+              title="Some tag"
             >
               Some tag
             </span>

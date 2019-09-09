@@ -12,7 +12,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   closeButton: 'button[aria-label="Close"]',
-  openDrawer: '.open-drawer-button',
+  openDrawer: '[data-e2e="open-drawer-button"]',
   selectInput: 'input[role="combobox"]',
   drawer: 'div[aria-label="drawer"]',
   selectDropDown: '[role="listbox"]',
@@ -23,8 +23,9 @@ const selectors = {
 const optionAtPosition = position =>
   `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
+jest.setTimeout(60000);
 describe('drawer', () => {
-  it('handles focus changes properly', async () => {
+  it('drawer component handles focus changes properly', async () => {
     await mount(page, 'drawer');
     await page.waitFor(selectors.closeButton);
     // close drawer to start fresh
