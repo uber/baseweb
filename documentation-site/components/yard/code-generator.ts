@@ -177,75 +177,81 @@ const getAst = (
   componentName: string,
   theme: any,
 ) => {
-  const {children, ...restProps} = props;
+  let propsString = ``;
+  let enumImports = ``;
+  let stateHooks = ``;
   const isCustomTheme =
     theme && theme.themeValues && Object.keys(theme.themeValues).length > 0;
+  const {children, ...restProps} = props;
+  Object.keys(restProps).forEach(name => {
+    const value = restProps[name].value;
+    const type = restProps[name].type;
+    const isStateful: boolean = restProps[name].meta
+      ? (restProps[name].meta as any).stateful === true
+      : false;
+    if (value) {
+      if (isStateful) {
+        stateHooks += ` const [${name}, set${name[0].toUpperCase() +
+          name.slice(1)}] = React.useState('${value}');\n`;
+        propsString += ` ${name}={${name}}`;
+      } else {
+        switch (type as PropTypes) {
+          case PropTypes.String:
+            propsString += ` ${name}="${value}"`;
+            break;
+          case PropTypes.Boolean:
+            propsString += ` ${name}`;
+            break;
+          case PropTypes.Ref:
+            break;
+          case PropTypes.Number:
+          case PropTypes.Array:
+          case PropTypes.Object:
+          case PropTypes.Function:
+          case PropTypes.ReactNode:
+            propsString += ` ${name}={${value}}`;
+            break;
+          case PropTypes.Enum:
+            enumImports += `, ${name.toUpperCase()}`;
+            propsString += ` ${name}={${value}}`;
+            break;
+          case PropTypes.Overrides:
+            if (!value) break;
+            let overrideString = '{';
+            Object.keys(value).forEach(key => {
+              if (value[key].active === true) {
+                overrideString += `${key}: { style: ${value[key].style} },`;
+              }
+            });
+            overrideString += '}';
+            if (overrideString === '{}') break;
+            propsString += ` ${name}={${overrideString}}`;
+            break;
+          default:
+            assertUnreachable();
+        }
+      }
+    }
+  });
+  const hasChild = children && children.value;
   const themePrimitives =
     theme.themeName && theme.themeName.startsWith('dark-theme')
       ? 'darkThemePrimitives'
       : 'lightThemePrimitives';
+  const themeImports = isCustomTheme
+    ? `import {ThemeProvider, createTheme, ${themePrimitives}} from 'baseui';\n`
+    : '';
+  const imports = `${themeImports}import {${componentName}${enumImports}} from 'baseui/${componentName
+    .split(/(?=[A-Z])/)
+    .join('-')
+    .toLowerCase()}';\n\n`;
 
-  const buildExport = template(`export default () => {%%body%%}`);
-
-  return t.file(
-    t.program([
-      getAstImport(
-        [componentName, ...getEnumsToImport(restProps)],
-        `baseui/${componentName
-          .split(/(?=[A-Z])/)
-          .join('-')
-          .toLowerCase()}`,
-      ),
-      ...getAstThemeImport(isCustomTheme, themePrimitives),
-      buildExport({
-        body: [
-          ...getAstReactHooks(restProps),
-          t.returnStatement(
-            getAstThemeWrapper(
-              theme.themeValues,
-              themePrimitives,
-              getAstJsxElement(
-                componentName,
-                getAstPropsArray(restProps),
-                children && children.value ? [t.jsxText(children.value)] : [],
-              ),
-            ),
-          ),
-        ],
-      }),
-    ] as any),
-    [],
-    [],
-  );
-};
-
-const formatAstAndPrint = (ast: t.Program) => {
-  const result = (prettier as any).__debug.formatAST(ast, {
-    originalText: '',
-    parser: 'babel',
-    printWidth: 70,
-    plugins: [parsers],
-  });
-  return (
-    result.formatted
-      // add a new line before export
-      .replace('export default', '\nexport default')
-      // remove newline at the end of file
-      .replace(/[\r\n]+$/, '')
-      // remove ; at the end of file
-      .replace(/[;]+$/, '')
-  );
-};
-
-export const formatCode = (code: string) => {
-  return formatAstAndPrint(parse(code) as any);
-};
-
-export const getCode = (
-  props: {[key: string]: TProp},
-  componentName: string,
-  theme: {themeValues: {[key: string]: string}; themeName: string},
-) => {
-  const ast = getAst(props, componentName, theme);
-  return formatAstAndPrint(ast as any);
+  const themeProviderOpen = isCustomTheme
+    ? `<ThemeProvider theme={createTheme(${themePrimitives}, { colors: ${JSON.stringify(
+        theme.themeValues,
+      )} })}>`
+    : '';
+  return `${imports}export default () => { ${stateHooks} return ( ${themeProviderOpen}<${componentName}${propsString}${
+    hasChild ? `>${children.value}</${componentName}>` : ' />'
+  }${isCustomTheme ? '</ThemeProvider>' : ''});}`;
 };

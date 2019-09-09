@@ -262,6 +262,26 @@ export function parseCode(code: string, elementName: string) {
           }
         }
       },
+      VariableDeclarator(path) {
+        // looking for React.useState()
+        const node = path.node as any;
+        if (
+          node.id.type === 'ArrayPattern' &&
+          node.init.type === 'CallExpression' &&
+          node.init.callee.property.name === 'useState'
+        ) {
+          const name = node.id.elements[0].name;
+          const valueNode = node.init.arguments[0];
+          if (
+            valueNode.type === 'StringLiteral' ||
+            valueNode.type === 'BooleanLiteral'
+          ) {
+            stateValues[name] = valueNode.value;
+          } else {
+            stateValues[name] = generate(valueNode);
+          }
+        }
+      },
     });
   } catch (e) {
     console.log(e);

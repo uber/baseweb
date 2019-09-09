@@ -31,6 +31,7 @@ export default {
     },
     onChange: {
       value: 'e => setValue(e.target.value)',
+      placeholder: 'e => setValue(e.target.value)',
       type: PropTypes.Function,
       description: 'Called when input value is changed.',
       meta: {

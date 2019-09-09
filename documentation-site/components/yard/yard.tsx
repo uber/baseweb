@@ -266,6 +266,49 @@ export default withRouter(
       key => state.props.overrides.value[key].active,
     ).length;
 
+    React.useEffect(() => {
+      if (!urlCodeHydrated && router.query.code) {
+        setUrlCodeHydrated(true);
+        try {
+          const propValues: {[key: string]: any} = {};
+          const {parsedProps, parsedTheme} = parseCode(
+            router.query.code as string,
+            componentName,
+          );
+          Object.keys(state.props).forEach(name => {
+            //@ts-ignore
+            propValues[name] = propsConfig[name].value;
+            if (name === 'overrides') {
+              // overrides need a special treatment since the value needs to
+              // be further analyzed and parsed
+              propValues[name] = parseOverrides(
+                parsedProps[name],
+                propsConfig.overrides && propsConfig.overrides.meta
+                  ? propsConfig.overrides.meta.names || []
+                  : [],
+              );
+            } else {
+              propValues[name] = parsedProps[name];
+            }
+          });
+
+          dispatch({
+            type: Action.Update,
+            payload: {
+              code: formatCode(router.query.code as string),
+              theme: parsedTheme,
+              updatedPropValues: propValues,
+            },
+          });
+        } catch (e) {
+          dispatch({
+            type: Action.UpdateCode,
+            payload: router.query.code,
+          });
+        }
+      }
+    }, [router.query.code]);
+
     return (
       <React.Fragment>
         <Compiler
@@ -362,9 +405,24 @@ export default withRouter(
                     componentName,
                     componentThemeDiff,
                   );
-                  if (error) {
-                    setError(null);
-                  }
+                  Object.keys(state.props).forEach(name => {
+                    propValues[name] =
+                      //@ts-ignore
+                      propsConfig[name].value;
+                    if (name === 'overrides') {
+                      // overrides need a special treatment since the value needs to
+                      // be further analyzed and parsed
+                      propValues[name] = parseOverrides(
+                        parsedProps[name],
+                        propsConfig.overrides && propsConfig.overrides.meta
+                          ? propsConfig.overrides.meta.names || []
+                          : [],
+                      );
+                    } else {
+                      propValues[name] = parsedProps[name];
+                    }
+                  });
+
                   dispatch({
                     type: Action.UpdatePropsAndCode,
                     payload: {
