@@ -19,40 +19,42 @@ import {Button, KIND} from 'baseui/button';
 import {version} from '../../package.json';
 import versions from '../../versions.json';
 
-// this is the only place needed to be updated if a new
-// major is cut
-const MAJOR_VERSIONS = [
-  {label: 'v9'},
-  {label: 'v8'},
-  {label: 'v7'},
-  {label: 'v6'},
-  {label: 'v5'},
-  {label: 'v4'},
-  {label: 'v3'},
-  {label: 'v2'},
-  {label: 'v1'},
-].map(version => {
+const majorVersions = Array.from(
+  versions.reduce((set, version) => {
+    return set.add(semver.major(version.tag_name));
+  }, new Set()),
+).map(version => ({
+  label: `v${version}`,
+}));
+
+const majorVersionsToDisplay = majorVersions.map(version => {
   const {label} = version;
 
   return {
     label: semver.satisfies(semver.coerce(label), '>=8.0.0')
       ? `${label} →`
       : label,
+    originalVersionNumber: label,
   };
 });
 
-const VersionSelector = () => {
-  const versionsToShow = versions
-    .filter(releaseVersion => {
-      // we have "now" deployments since v8.1.0
-      return semver.satisfies(releaseVersion.name, '>=8.1.0');
-    })
-    .map(item => {
-      return {
-        label: item.name,
-      };
+const versionsToShowPerMajor = versions
+  .filter(releaseVersion => {
+    // we have "now" deployments since v8.1.0
+    return semver.satisfies(releaseVersion.name, '>=8.1.0');
+  })
+  .reduce((acc, version) => {
+    const key = `v${semver.major(version.tag_name)}`;
+    acc[key] = acc[key] || [];
+
+    acc[key].push({
+      label: version.tag_name,
     });
 
+    return acc;
+  }, {});
+
+const VersionSelector = () => {
   return (
     <StatefulPopover
       placement={PopoverPlacement.bottomLeft}
@@ -60,7 +62,7 @@ const VersionSelector = () => {
       content={({close}) => (
         <NestedMenus>
           <StatefulMenu
-            items={MAJOR_VERSIONS}
+            items={majorVersionsToDisplay}
             onItemSelect={({item}) => {
               window.open(`https://${item.label}.baseweb.design`);
               close();
@@ -81,7 +83,9 @@ const VersionSelector = () => {
                       return (
                         <StatefulMenu
                           size="compact"
-                          items={versionsToShow}
+                          items={
+                            versionsToShowPerMajor[item.originalVersionNumber]
+                          }
                           onItemSelect={({item}) => {
                             window.open(
                               `https://${item.label.replace(
