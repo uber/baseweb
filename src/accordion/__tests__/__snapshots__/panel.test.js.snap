@@ -85,7 +85,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
             "color": "$theme.colors.primary",
           },
           "alignItems": "center",
-          "background": "$theme.colors.listHeaderFill",
+          "backgroundColor": "$theme.colors.listHeaderFill",
           "borderBottom": "1px solid $theme.colors.mono400",
           "color": "$theme.colors.colorPrimary",
           "cursor": "pointer",
