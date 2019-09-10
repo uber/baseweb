@@ -324,6 +324,8 @@ describe('Datepicker', () => {
     expect(text).toBe('December 2030Triangle Down');
   });
 
+  // This test is flakey, but stable when it's the last test.. While not a sustainable fix
+  // it will unblock work for now. https://github.com/uber-web/baseui/pull/1876
   it('selects day when typed', async () => {
     await mount(page, 'datepicker');
     await page.waitFor(selectors.input);
