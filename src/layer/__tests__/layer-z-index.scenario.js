@@ -24,7 +24,6 @@ function BlockComponent(props) {
   const {children, forwardedRef, offset, color, ...restProps} = props;
   return (
     <Block
-      // $FlowFixMe
       ref={forwardedRef}
       position="absolute"
       top={`${offset.top}px` || '50%'}

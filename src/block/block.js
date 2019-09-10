@@ -91,7 +91,10 @@ function Block({
 
   return (
     <BaseBlock
-      ref={forwardedRef}
+      // coerced to any because because of how react components are typed.
+      // cannot guarantee an html element
+      // eslint-disable-next-line flowtype/no-weak-types
+      ref={(forwardedRef: any)}
       $as={as}
       $color={color}
       $backgroundAttachment={backgroundAttachment}
@@ -167,7 +170,7 @@ function Block({
   );
 }
 
-const BlockComponent = React.forwardRef<BlockPropsT, mixed>(
+const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
   (props: BlockPropsT, ref) => <Block {...props} forwardedRef={ref} />,
 );
 BlockComponent.displayName = 'Block';
