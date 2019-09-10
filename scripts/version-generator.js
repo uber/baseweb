@@ -16,22 +16,38 @@ const fetch = require('isomorphic-fetch');
 
 const VERSIONS_PATH = resolve(__dirname, '../versions.json');
 
+async function fetchVersionsByPage(page = 1) {
+  const res = await fetch(
+    `https://api.github.com/repos/uber-web/baseui/releases?access_token=${process
+      .env.GITHUB_AUTH_TOKEN || ''}&page=${page}`,
+  );
+
+  return res.json();
+}
+
 module.exports = async function generateVersions() {
   try {
     unlinkSync(VERSIONS_PATH);
   } catch (ex) {
     // do nothing
   }
-  const res = await fetch(
-    `https://api.github.com/repos/uber-web/baseui/releases?access_token=${process
-      .env.GITHUB_AUTH_TOKEN || ''}`,
-  );
-  let releases = await res.json();
 
-  if (!Array.isArray(releases)) {
-    // fetching failed - probably with rate limit issues
-    releases = [];
+  let versions = [];
+  let page = 1;
+  while (page !== -1) {
+    const res = await fetchVersionsByPage(page);
+    versions = versions.concat(res);
+    if (res.length) {
+      page += 1;
+    } else {
+      page = -1;
+    }
   }
 
-  writeFileSync(VERSIONS_PATH, JSON.stringify(releases, null, 2));
+  if (!Array.isArray(versions)) {
+    // fetching failed - probably with rate limit issues
+    versions = [];
+  }
+
+  writeFileSync(VERSIONS_PATH, JSON.stringify(versions, null, 2));
 };
