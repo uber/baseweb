@@ -39,6 +39,8 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
     switch (props.$kind) {
       case KIND.neutral:
         return props.$theme.colors.tagNeutralFontDisabled;
+      case KIND.accent:
+        return props.$theme.colors.tagAccentFontDisabled;
       case KIND.positive:
         return props.$theme.colors.tagPositiveFontDisabled;
       case KIND.warning:
@@ -62,6 +64,9 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
         case KIND.neutral:
           if (!isHovered) return props.$theme.colors.tagNeutralSolidFont;
           return props.$theme.colors.tagNeutralSolidFontHover;
+        case KIND.accent:
+          if (!isHovered) return props.$theme.colors.tagAccentSolidFont;
+          return props.$theme.colors.tagAccentSolidFontHover;
         case KIND.positive:
           if (!isHovered) return props.$theme.colors.tagPositiveSolidFont;
           return props.$theme.colors.tagPositiveSolidFontHover;
@@ -93,6 +98,11 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
             return props.$theme.colors.tagNeutralOutlinedFont;
           }
           return props.$theme.colors.tagNeutralOutlinedFontHover;
+        case KIND.accent:
+          if (!isHovered || !isActionText) {
+            return props.$theme.colors.tagAccentOutlinedFont;
+          }
+          return props.$theme.colors.tagAccentOutlinedFontHover;
         case KIND.positive:
           if (!isHovered || !isActionText) {
             return props.$theme.colors.tagPositiveOutlinedFont;
@@ -132,6 +142,9 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
         case KIND.neutral:
           if (!isHovered) return props.$theme.colors.tagNeutralLightFont;
           return props.$theme.colors.tagNeutralLightFontHover;
+        case KIND.accent:
+          if (!isHovered) return props.$theme.colors.tagAccentLightFont;
+          return props.$theme.colors.tagAccentLightFontHover;
         case KIND.positive:
           if (!isHovered) return props.$theme.colors.tagPositiveLightFont;
           return props.$theme.colors.tagPositiveLightFontHover;
@@ -170,6 +183,8 @@ export const Action = styled<SharedPropsArgT>('span', props => {
         switch (props.$kind) {
           case KIND.neutral:
             return props.$theme.colors.tagNeutralSolidActive;
+          case KIND.accent:
+            return props.$theme.colors.tagAccentSolidActive;
           case KIND.positive:
             return props.$theme.colors.tagPositiveSolidActive;
           case KIND.warning:
@@ -190,6 +205,9 @@ export const Action = styled<SharedPropsArgT>('span', props => {
           case KIND.neutral:
             if (!isActive) return props.$theme.colors.tagNeutralOutlinedHover;
             return props.$theme.colors.tagNeutralOutlinedActive;
+          case KIND.accent:
+            if (!isActive) return props.$theme.colors.tagAccentOutlinedHover;
+            return props.$theme.colors.tagAccentOutlinedActive;
           case KIND.positive:
             if (!isActive) return props.$theme.colors.tagPositiveOutlinedHover;
             return props.$theme.colors.tagPositiveOutlinedActive;
@@ -219,6 +237,8 @@ export const Action = styled<SharedPropsArgT>('span', props => {
         switch (props.$kind) {
           case KIND.neutral:
             return props.$theme.colors.tagNeutralLightActive;
+          case KIND.accent:
+            return props.$theme.colors.tagAccentLightActive;
           case KIND.positive:
             return props.$theme.colors.tagPositiveLightActive;
           case KIND.warning:
@@ -288,7 +308,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
   const {$disabled, $theme, $closeable, $clickable, $kind, $variant} = props;
   const {
     sizing: {scale0, scale800, scale500},
-    typography: {font250},
+    typography: {font150},
   } = $theme;
 
   function backgroundColor(isHovered?: boolean, isActive?: boolean) {
@@ -310,6 +330,17 @@ export const Root = styled<SharedPropsArgT>('span', props => {
               return props.$theme.colors.tagNeutralSolidHover;
             }
             return props.$theme.colors.tagNeutralSolidBackground;
+          case KIND.accent:
+            if ($disabled) {
+              return props.$theme.colors.tagAccentSolidDisabled;
+            }
+            if (isActive) {
+              return props.$theme.colors.tagAccentSolidActive;
+            }
+            if (isHovered) {
+              return props.$theme.colors.tagAccentSolidHover;
+            }
+            return props.$theme.colors.tagAccentSolidBackground;
           case KIND.positive:
             if ($disabled) {
               return props.$theme.colors.tagPositiveSolidDisabled;
@@ -394,6 +425,17 @@ export const Root = styled<SharedPropsArgT>('span', props => {
               return props.$theme.colors.tagNeutralLightHover;
             }
             return props.$theme.colors.tagNeutralLightBackground;
+          case KIND.accent:
+            if ($disabled) {
+              return props.$theme.colors.tagAccentLightDisabled;
+            }
+            if (isActive) {
+              return props.$theme.colors.tagAccentLightActive;
+            }
+            if (isHovered) {
+              return props.$theme.colors.tagAccentLightHover;
+            }
+            return props.$theme.colors.tagAccentLightBackground;
           case KIND.positive:
             if ($disabled) {
               return props.$theme.colors.tagPositiveLightDisabled;
@@ -483,6 +525,17 @@ export const Root = styled<SharedPropsArgT>('span', props => {
           return props.$theme.colors.tagNeutralOutlinedHover;
         }
         return props.$theme.colors.tagNeutralOutlinedBackground;
+      case KIND.accent:
+        if ($disabled) {
+          return props.$theme.colors.tagAccentOutlinedDisabled;
+        }
+        if (isActive) {
+          return props.$theme.colors.tagAccentOutlinedActive;
+        }
+        if (isHovered) {
+          return props.$theme.colors.tagAccentOutlinedHover;
+        }
+        return props.$theme.colors.tagAccentOutlinedBackground;
       case KIND.positive:
         if ($disabled) {
           return props.$theme.colors.tagPositiveOutlinedDisabled;
@@ -560,7 +613,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     : 0;
 
   return ({
-    ...font250,
+    ...font150,
     alignItems: 'center',
     backgroundColor: backgroundColor(false, false),
     borderColor: borderColor(false, false),

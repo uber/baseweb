@@ -32,7 +32,7 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
     $theme: {colors, sizing, typography},
   } = props;
   return {
-    ...typography.font450,
+    ...typography.font350,
     color: colors.colorPrimary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     background: colors.listHeaderFill,
@@ -69,7 +69,7 @@ export const Content = styled<SharedStylePropsArgT>('div', props => {
     $expanded,
   } = props;
   return {
-    ...typography.font300,
+    ...typography.font200,
     backgroundColor: colors.listBodyFill,
     color: colors.foreground,
     paddingTop: $expanded ? sizing.scale800 : 0,

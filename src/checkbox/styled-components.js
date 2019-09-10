@@ -19,7 +19,7 @@ function getBorderColor(props) {
   } else if ($checked || $isIndeterminate) {
     return 'transparent';
   } else if ($isError) {
-    return colors.negative400;
+    return colors.borderError;
   } else {
     return colors.tickBorder;
   }
@@ -133,11 +133,13 @@ export const Root = styled<SharedStylePropsT>('label', props => {
 });
 
 export const Checkmark = styled<SharedStylePropsT>('span', props => {
-  const {$checked, $disabled, $isIndeterminate, $theme} = props;
+  const {$checked, $disabled, $isError, $isIndeterminate, $theme} = props;
   const {sizing, animation} = $theme;
 
   const tickColor = $disabled
     ? $theme.colors.tickMarkFillDisabled
+    : $isError
+    ? $theme.colors.tickMarkFillError
     : $theme.colors.tickMarkFill;
 
   const indeterminate = encodeURIComponent(`
@@ -211,7 +213,7 @@ export const Label = styled<SharedStylePropsT>('div', props => {
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font350,
+    ...typography.font250,
     lineHeight: '24px',
   }: {});
 });

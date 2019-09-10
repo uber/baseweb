@@ -29,7 +29,7 @@ export const Svg = styled<StylePropsT>('svg', props => {
   const {$theme, $color} = props;
   return {
     ...getSvgStyles(props),
-    fill: $color || $theme.colors.primary400,
+    fill: $color || $theme.colors.accent,
     cursor: 'wait',
     animationName: spin,
     animationDuration: $theme.animation.timing700,
@@ -44,5 +44,5 @@ export const StyledTrackPath = styled<StylePropsT>('path', props => ({
 }));
 
 export const StyledActivePath = styled<StylePropsT>('path', props => ({
-  fill: props.$color || props.$theme.colors.primary400,
+  fill: props.$color || props.$theme.colors.accent,
 }));

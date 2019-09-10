@@ -30,7 +30,7 @@ const StyledBorderBox = themedStyled<{$border: BorderT}>(
 function BorderPreview({name, border}) {
   return (
     <Block width="250px" margin="scale800">
-      <Block font="font400">
+      <Block font="font300">
         {name} ({border.borderWidth} {border.borderStyle} {border.borderColor})
       </Block>
       <StyledBorderBox $border={border} />

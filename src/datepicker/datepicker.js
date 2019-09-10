@@ -6,7 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Input} from '../input/index.js';
+import isValid from 'date-fns/isValid/index.js';
+import isAfter from 'date-fns/isAfter/index.js';
+
+import {MaskedInput} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
 import {formatDate} from './utils/index.js';
@@ -21,6 +24,8 @@ export default class Datepicker extends React.Component<
     isOpen: boolean,
     isPseudoFocused: boolean,
     lastActiveElm: ?HTMLElement,
+    inputValue?: string,
+    isInputUsed?: boolean,
   },
 > {
   static defaultProps = {
@@ -35,6 +40,8 @@ export default class Datepicker extends React.Component<
     isOpen: false,
     isPseudoFocused: false,
     lastActiveElm: null,
+    inputValue: this.formatDisplayValue(this.props.value) || '',
+    isInputUsed: false,
   };
 
   onChange = (data: {date: ?Date | Array<Date>}) => {
@@ -53,6 +60,7 @@ export default class Datepicker extends React.Component<
       isOpen,
       isPseudoFocused,
       ...(calendarFocused === null ? {} : {calendarFocused}),
+      inputValue: this.formatDisplayValue(date),
     });
     this.props.onChange && this.props.onChange(data);
   };
@@ -104,6 +112,34 @@ export default class Datepicker extends React.Component<
     }
   };
 
+  handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    const inputValue = event.currentTarget.value;
+    const date = [];
+
+    this.setState({
+      inputValue,
+      isInputUsed: true,
+    });
+
+    if (this.props.range) {
+      const dates = inputValue.split(' - ');
+      const startDate = new Date(dates[0]);
+      const endDate = new Date(dates[1]);
+      date.push(startDate);
+      date.push(endDate);
+    } else {
+      date.push(new Date(inputValue));
+    }
+
+    isValid(date[0]) &&
+      // if it's a range selector, make sure that the endDate is after the startDate
+      (date[1] ? isValid(date[1]) && isAfter(date[1], date[0]) : true) &&
+      this.props.onChange &&
+      this.props.onChange({
+        date,
+      });
+  };
+
   handleKeyDown = (event: KeyboardEvent) => {
     if (!this.state.isOpen && event.keyCode === 40) {
       this.open();
@@ -128,7 +164,10 @@ export default class Datepicker extends React.Component<
 
   render() {
     const {overrides = {}} = this.props;
-    const [InputComponent, inputProps] = getOverrides(overrides.Input, Input);
+    const [InputComponent, inputProps] = getOverrides(
+      overrides.Input,
+      MaskedInput,
+    );
     const [PopoverComponent, popoverProps] = getOverrides(
       overrides.Popover,
       Popover,
@@ -185,11 +224,21 @@ export default class Datepicker extends React.Component<
                   aria-describedby={this.props['aria-describedby']}
                   aria-required={this.props.required || null}
                   disabled={this.props.disabled}
-                  value={this.formatDisplayValue(this.props.value)}
+                  value={this.state.inputValue}
                   onFocus={this.open}
                   onBlur={this.handleInputBlur}
                   onKeyDown={this.handleKeyDown}
-                  placeholder={this.props.placeholder || 'YYYY/MM/DD'}
+                  onChange={this.handleInputChange}
+                  placeholder={
+                    this.props.placeholder || this.props.range
+                      ? 'YYYY/MM/DD - YYYY/MM/DD'
+                      : 'YYYY/MM/DD'
+                  }
+                  mask={
+                    this.props.mask || this.props.range
+                      ? '9999/99/99 - 9999/99/99'
+                      : '9999/99/99'
+                  }
                   required={this.props.required}
                   {...inputProps}
                 />
