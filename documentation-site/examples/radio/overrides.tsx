@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Paragraph1} from 'baseui/typography';
+import {Paragraph3} from 'baseui/typography';
 import {Radio, RadioGroup} from 'baseui/radio';
 
 export default () => {
@@ -13,9 +13,9 @@ export default () => {
       <Radio
         overrides={{
           Label: ({$value}) => (
-            <Paragraph1>
+            <Paragraph3>
               Custom label for value: {$value}
-            </Paragraph1>
+            </Paragraph3>
           ),
           RadioMarkOuter: {
             style: ({$theme}) => ({
@@ -30,9 +30,9 @@ export default () => {
       <Radio
         overrides={{
           Label: ({$value}) => (
-            <Paragraph1>
+            <Paragraph3>
               Custom label for value: {$value}
-            </Paragraph1>
+            </Paragraph3>
           ),
           RadioMarkOuter: {
             style: ({$theme}) => ({
@@ -47,9 +47,9 @@ export default () => {
       <Radio
         overrides={{
           Label: ({$value}) => (
-            <Paragraph1>
+            <Paragraph3>
               Custom label for value: {$value}
-            </Paragraph1>
+            </Paragraph3>
           ),
           RadioMarkOuter: {
             style: ({$theme}) => ({

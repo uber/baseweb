@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Popover} from 'baseui/popover';
-import {Paragraph1} from 'baseui/typography';
+import {Paragraph3} from 'baseui/typography';
 
 export default () => {
   const [useCss, theme] = useStyletron();
@@ -10,10 +10,10 @@ export default () => {
     <Popover
       isOpen
       content={
-        <Paragraph1 padding="scale500">hello world</Paragraph1>
+        <Paragraph3 padding="scale500">hello world</Paragraph3>
       }
     >
-      <div className={useCss({...theme.typography.font400})}>
+      <div className={useCss({...theme.typography.font300})}>
         Always open
       </div>
     </Popover>

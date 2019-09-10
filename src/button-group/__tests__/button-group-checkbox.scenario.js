@@ -14,7 +14,7 @@ import {StatefulButtonGroup, MODE} from '../index.js';
 export const name = 'button-group-checkbox';
 
 export const component = () => (
-  <StatefulButtonGroup mode={MODE.checkbox}>
+  <StatefulButtonGroup mode={MODE.checkbox} initialState={{selected: [0, 1]}}>
     <Button>Label</Button>
     <Button>Label</Button>
     <Button>Label</Button>

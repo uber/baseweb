@@ -15,7 +15,7 @@ export const Label = styled<StylePropsT>('label', props => {
     $theme: {colors, sizing, typography},
   } = props;
   return {
-    ...typography.font350,
+    ...typography.font250,
     fontWeight: 500,
     color: $disabled ? colors.foregroundAlt : colors.foreground,
     display: 'block',
@@ -45,7 +45,7 @@ export const Caption = styled<StylePropsT>('div', props => {
   }
 
   return {
-    ...typography.font200,
+    ...typography.font100,
     color: fontColor,
     paddingTop: 0,
     paddingRight: 0,

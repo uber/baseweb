@@ -29,7 +29,7 @@ const UberLogo = () => (
 const StyledFooter = themedStyled<{}>(
   'footer',
   ({$theme: {typography, sizing, colors, name}}) => ({
-    ...typography.font400,
+    ...typography.font300,
     position: 'sticky',
     bottom: 0,
     color: colors.foreground,

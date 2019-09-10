@@ -5,6 +5,7 @@ import {Override} from '../overrides';
 export interface KIND {
   neutral: 'neutral';
   primary: 'primary';
+  accent: 'accent';
   positive: 'positive';
   warning: 'warning';
   negative: 'negative';

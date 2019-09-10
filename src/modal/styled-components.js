@@ -158,7 +158,7 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
 });
 
 export const ModalHeader = styled<{}>('div', ({$theme}) => ({
-  ...$theme.typography.font500,
+  ...$theme.typography.font550,
   color: $theme.colors.foreground,
   marginTop: $theme.sizing.scale900,
   marginBottom: $theme.sizing.scale600,
@@ -170,7 +170,7 @@ export const ModalHeader = styled<{}>('div', ({$theme}) => ({
 }));
 
 export const ModalBody = styled<{}>('div', ({$theme}) => ({
-  ...$theme.typography.font300,
+  ...$theme.typography.font200,
   color: $theme.colors.foregroundAlt,
   marginTop: $theme.sizing.scale600,
   marginLeft: $theme.sizing.scale800,
@@ -179,7 +179,7 @@ export const ModalBody = styled<{}>('div', ({$theme}) => ({
 }));
 
 export const ModalFooter = styled<{}>('div', ({$theme}) => ({
-  ...$theme.typography.font300,
+  ...$theme.typography.font200,
   marginTop: $theme.sizing.scale700,
   marginLeft: $theme.sizing.scale800,
   marginRight: $theme.sizing.scale800,

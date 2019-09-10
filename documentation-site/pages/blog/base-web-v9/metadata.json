@@ -1,0 +1,17 @@
+{
+  "author": "Graham Murdoch",
+  "authorLink": "https://github.com/sandgraham",
+  "title": "Color and Typography Updates in v9",
+  "tagline": "Everything you need to know about the latest style updates in Base Web",
+  "date": "9 September 2019",
+  "coverImage": "https://res.cloudinary.com/dawr8pobn/image/upload/v1565816562/baseblack_oodvc1.png",
+  "coverImageWidth": 1200,
+  "coverImageHeight": 630,
+  "keyWords": [
+    "Base Web",
+    "Design System",
+    "React",
+    "Migration Guide",
+    "Major Version"
+  ]
+}

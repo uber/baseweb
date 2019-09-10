@@ -30,7 +30,7 @@ const GraphCell = ({children}: {children: React.ReactNode}) => {
         <div
           className={useCss({
             color: theme.colors.mono800,
-            ...theme.typography.font400,
+            ...theme.typography.font300,
           })}
         >
           100%
@@ -38,7 +38,7 @@ const GraphCell = ({children}: {children: React.ReactNode}) => {
         <div
           className={useCss({
             color: theme.colors.mono700,
-            ...theme.typography.font200,
+            ...theme.typography.font100,
           })}
         >
           0%

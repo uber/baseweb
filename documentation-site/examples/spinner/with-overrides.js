@@ -14,7 +14,7 @@ export default () => (
           borderTopRightRadius: '50%',
           borderBottomRightRadius: '50%',
           borderBottomLeftRadius: '50%',
-          backgroundColor: $theme.colors.primary50,
+          backgroundColor: $theme.colors.accent50,
         }),
       },
     }}

@@ -119,10 +119,10 @@ Now that our theme is set up with media queries, we can start using them to crea
 
 ```js
 const LoadStatus = themedStyled('span', ({$theme}) => ({
-  ...$theme.typography.font350,
+  ...$theme.typography.font250,
   color: $theme.colors.mono800,
   [$theme.media.small]: {
-    ...$theme.typography.font500,
+    ...$theme.typography.font550,
     color: $theme.colors.mono900,
   },
 }));

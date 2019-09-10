@@ -65,13 +65,13 @@ export const Heading = ({
 };
 
 export const ListItem = (props: Props) => (
-  <Block as="li" font="font400">
+  <Block as="li" font="font300">
     {props.children}
   </Block>
 );
 
 export const Paragraph = (props: Props) => (
-  <Block as="p" font="font400">
+  <Block as="p" font="font300">
     {props.children}
   </Block>
 );
@@ -128,20 +128,20 @@ export const H1 = ({children}: {children: React.Node}) => (
         Base Web - {children}
       </title>
     </Head>
-    <Heading element="h1" fontType="font700">
+    <Heading element="h1" fontType="font750">
       {children}
     </Heading>
   </React.Fragment>
 );
 
 export const H2 = ({children}: {children: React.Node}) => (
-  <Heading element="h2" fontType="font600" marginTop="scale1000">
+  <Heading element="h2" fontType="font650" marginTop="scale1000">
     {children}
   </Heading>
 );
 
 export const H3 = ({children}: {children: React.Node}) => (
-  <Heading element="h3" fontType="font500">
+  <Heading element="h3" fontType="font550">
     {children}
   </Heading>
 );
@@ -152,17 +152,17 @@ export default {
   h2: H2,
   h3: H3,
   h4: ({children}: {children: React.Node}) => (
-    <Heading element="h4" fontType="font400">
+    <Heading element="h4" fontType="font300">
       {children}
     </Heading>
   ),
   h5: ({children}: {children: React.Node}) => (
-    <Heading element="h5" fontType="font400">
+    <Heading element="h5" fontType="font300">
       {children}
     </Heading>
   ),
   h6: ({children}: {children: React.Node}) => (
-    <Heading element="h6" fontType="font300">
+    <Heading element="h6" fontType="font200">
       {children}
     </Heading>
   ),
