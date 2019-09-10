@@ -35,7 +35,7 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
     ...typography.font350,
     color: colors.colorPrimary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
-    background: colors.listHeaderFill,
+    backgroundColor: colors.listHeaderFill,
     paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,
     paddingLeft: sizing.scale700,
