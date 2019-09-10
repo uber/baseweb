@@ -95,18 +95,39 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
 );
 
 function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
-  return {
-    foreground: $disabled
-      ? $theme.colors.mono600
-      : $kind === KIND.primary
-      ? $theme.colors.white
-      : $theme.colors.primary,
-    background: $disabled
-      ? 'rgba(179, 179, 179, 0.32)'
-      : $kind === KIND.primary
-      ? 'rgba(255, 255, 255, 0.32)'
-      : 'rgba(39, 110, 241, 0.32)',
-  };
+  if ($disabled) {
+    return {
+      foreground: $theme.colors.buttonDisabledSpinnerForeground,
+      background: $theme.colors.buttonDisabledSpinnerBackground,
+    };
+  }
+  switch ($kind) {
+    case KIND.secondary: {
+      return {
+        foreground: $theme.colors.buttonSecondarySpinnerForeground,
+        background: $theme.colors.buttonSecondarySpinnerBackground,
+      };
+    }
+    case KIND.tertiary: {
+      return {
+        foreground: $theme.colors.buttonTertiarySpinnerForeground,
+        background: $theme.colors.buttonTertiarySpinnerBackground,
+      };
+    }
+    case KIND.minimal: {
+      return {
+        foreground: $theme.colors.buttonMinimalSpinnerForeground,
+        background: $theme.colors.buttonMinimalSpinnerBackground,
+      };
+    }
+    case KIND.primary:
+    default: {
+      return {
+        foreground: $theme.colors.buttonPrimarySpinnerForeground,
+        background: $theme.colors.buttonPrimarySpinnerBackground,
+      };
+    }
+  }
 }
 
 function getBorderRadiiStyles({$theme, $shape}) {
