@@ -26,8 +26,8 @@ function getBackgroundColor(
   const isInline = type === TYPE.inline;
   return {
     [KIND.info]: isInline
-      ? theme.colors.notificationPrimaryBackground
-      : theme.colors.toastPrimaryBackground,
+      ? theme.colors.notificationInfoBackground
+      : theme.colors.toastInfoBackground,
     [KIND.positive]: isInline
       ? theme.colors.notificationPositiveBackground
       : theme.colors.toastPositiveBackground,
@@ -42,7 +42,7 @@ function getBackgroundColor(
 
 function getFontColor(kind: KindTypeT, theme: ThemeT) {
   return {
-    [KIND.info]: theme.colors.notificationPrimaryText,
+    [KIND.info]: theme.colors.notificationInfoText,
     [KIND.positive]: theme.colors.notificationPositiveText,
     [KIND.warning]: theme.colors.notificationWarningText,
     [KIND.negative]: theme.colors.notificationNegativeText,
@@ -115,7 +115,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
   return {
-    ...$theme.typography.font350,
+    ...$theme.typography.font250,
     pointerEvents: 'auto',
     color: isInline ? getFontColor($kind, $theme) : $theme.colors.toastText,
     height: 'auto',
@@ -127,7 +127,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
     marginTop: $theme.sizing.scale300,
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
-      getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
+      getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
     borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
     borderTopRightRadius: $theme.borders.surfaceBorderRadius,
     borderBottomRightRadius: $theme.borders.surfaceBorderRadius,

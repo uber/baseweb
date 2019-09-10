@@ -158,7 +158,7 @@ export const StyledDrawerContainer = styled<SharedStylePropsArgT>(
 export const StyledDrawerBody = styled<SharedStylePropsArgT>('div', props => {
   const {$theme} = props;
   return {
-    ...$theme.typography.font300,
+    ...$theme.typography.font200,
     color: $theme.colors.foreground,
     marginTop: $theme.sizing.scale900,
     marginBottom: $theme.sizing.scale900,

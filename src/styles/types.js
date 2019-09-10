@@ -26,6 +26,17 @@ export type ColorsT = {
   primary600: string,
   primary700: string,
 
+  // Accent Palette
+  accent50: string,
+  accent100: string,
+  accent200: string,
+  accent300: string,
+  accent400: string,
+  accent: string,
+  accent500: string,
+  accent600: string,
+  accent700: string,
+
   // Alert Palette
   negative50: string,
   negative100: string,
@@ -104,10 +115,14 @@ export type ColorsT = {
   buttonPrimaryText: string,
   buttonPrimaryHover: string,
   buttonPrimaryActive: string,
+  buttonPrimarySelectedText: string,
+  buttonPrimarySelectedFill: string,
   buttonSecondaryFill: string,
   buttonSecondaryText: string,
   buttonSecondaryHover: string,
   buttonSecondaryActive: string,
+  buttonSecondarySelectedText: string,
+  buttonSecondarySelectedFill: string,
   buttonTertiaryFill: string,
   buttonTertiaryText: string,
   buttonTertiaryHover: string,
@@ -118,6 +133,8 @@ export type ColorsT = {
   buttonMinimalText: string,
   buttonMinimalHover: string,
   buttonMinimalActive: string,
+  buttonMinimalSelectedText: string,
+  buttonMinimalSelectedFill: string,
   buttonDisabledFill: string,
   buttonDisabledText: string,
 
@@ -131,6 +148,22 @@ export type ColorsT = {
   datepickerDayFontDisabled: string,
   datepickerDayPseudoSelected: string,
   datepickerDayPseudoHighlighted: string,
+
+  calendarBackground: string,
+  calendarForeground: string,
+  calendarForegroundDisabled: string,
+  calendarHeaderBackground: string,
+  calendarHeaderForeground: string,
+  calendarHeaderBackgroundActive: string,
+  calendarHeaderForegroundDisabled: string,
+  calendarDayBackgroundPseudoSelected: string,
+  calendarDayForegroundPseudoSelected: string,
+  calendarDayBackgroundPseudoSelectedHighlighted: string,
+  calendarDayForegroundPseudoSelectedHighlighted: string,
+  calendarDayBackgroundSelected: string,
+  calendarDayForegroundSelected: string,
+  calendarDayBackgroundSelectedHighlighted: string,
+  calendarDayForegroundSelectedHighlighted: string,
 
   // FileUploader
   fileUploaderBackgroundColor: string,
@@ -152,6 +185,10 @@ export type ColorsT = {
   listBorder: string,
 
   // ProgressSteps
+  progressStepsCompletedText: string,
+  progressStepsCompletedFill: string,
+  progressStepsActiveText: string,
+  progressStepsActiveFill: string,
   progressStepsIconActiveFill: string,
 
   // Ticks
@@ -172,6 +209,7 @@ export type ColorsT = {
   tickBorderError: string,
   tickMarkFill: string,
   tickMarkFillDisabled: string,
+  tickMarkFillError: string,
 
   // Slider/Toggle
   sliderTrackFill: string,
@@ -213,6 +251,8 @@ export type ColorsT = {
   // Notification
   notificationPrimaryBackground: string,
   notificationPrimaryText: string,
+  notificationInfoBackground: string,
+  notificationInfoText: string,
   notificationPositiveBackground: string,
   notificationPositiveText: string,
   notificationWarningBackground: string,
@@ -308,6 +348,26 @@ export type ColorsT = {
   tagPrimaryOutlinedFontHover: string,
   tagPrimaryFontDisabled: string,
 
+  tagAccentSolidBackground: string,
+  tagAccentSolidHover: string,
+  tagAccentSolidActive: string,
+  tagAccentSolidDisabled: string,
+  tagAccentSolidFont: string,
+  tagAccentSolidFontHover: string,
+  tagAccentLightBackground: string,
+  tagAccentLightHover: string,
+  tagAccentLightActive: string,
+  tagAccentLightDisabled: string,
+  tagAccentLightFont: string,
+  tagAccentLightFontHover: string,
+  tagAccentOutlinedBackground: string,
+  tagAccentOutlinedHover: string,
+  tagAccentOutlinedActive: string,
+  tagAccentOutlinedDisabled: string,
+  tagAccentOutlinedFont: string,
+  tagAccentOutlinedFontHover: string,
+  tagAccentFontDisabled: string,
+
   tagPositiveSolidBackground: string,
   tagPositiveSolidHover: string,
   tagPositiveSolidActive: string,
@@ -380,6 +440,7 @@ export type ColorsT = {
   // Toast
   toastText: string,
   toastPrimaryBackground: string,
+  toastInfoBackground: string,
   toastPositiveBackground: string,
   toastWarningBackground: string,
   toastNegativeBackground: string,
@@ -397,21 +458,23 @@ export type ColorsT = {
 
 export type TypographyT = {
   font100: Font,
+  font150: Font,
   font200: Font,
   font250: Font,
   font300: Font,
   font350: Font,
   font400: Font,
   font450: Font,
-  font460: Font,
-  font470: Font,
-  font500: Font,
-  font600: Font,
-  font700: Font,
-  font800: Font,
-  font900: Font,
-  font1000: Font,
-  font1100: Font,
+  font550: Font,
+  font650: Font,
+  font750: Font,
+  font850: Font,
+  font950: Font,
+  font1050: Font,
+  font1150: Font,
+  font1250: Font,
+  font1350: Font,
+  font1450: Font,
 };
 
 export type Font = {

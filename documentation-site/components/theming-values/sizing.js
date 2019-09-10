@@ -29,7 +29,7 @@ const StyledSizeBox = themedStyled<{$size: string}>(
 function SizePreview({name, size}) {
   return (
     <Block width="250px">
-      <Block font="font400">
+      <Block font="font300">
         {name} ({size})
       </Block>
       <StyledSizeBox $size={size} />

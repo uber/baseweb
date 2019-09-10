@@ -195,10 +195,10 @@ exports[`Select component renders component in search mode and false for multipl
           test-style={
             Object {
               "boxSizing": "border-box",
-              "fontFamily": "$theme.typography.font400.fontFamily",
-              "fontSize": "$theme.typography.font400.fontSize",
-              "fontWeight": "$theme.typography.font400.fontWeight",
-              "lineHeight": "$theme.typography.font400.lineHeight",
+              "fontFamily": "$theme.typography.font300.fontFamily",
+              "fontSize": "$theme.typography.font300.fontSize",
+              "fontWeight": "$theme.typography.font300.fontWeight",
+              "lineHeight": "$theme.typography.font300.lineHeight",
               "position": "relative",
             }
           }
@@ -314,7 +314,7 @@ exports[`Select component renders component in search mode and false for multipl
                       test-style={
                         Object {
                           "alignItems": "center",
-                          "color": "$theme.colors.foregroundAlt",
+                          "color": "$theme.colors.foreground",
                           "cursor": "pointer",
                           "display": "flex",
                           "fill": "currentColor",
@@ -533,7 +533,7 @@ exports[`Select component renders component in search mode and false for multipl
                                 "marginLeft": 0,
                                 "marginRight": 0,
                                 "marginTop": 0,
-                                "maxHeight": "$theme.typography.font400.lineHeight",
+                                "maxHeight": "$theme.typography.font300.lineHeight",
                                 "maxWidth": "100%",
                                 "outline": "none",
                                 "paddingBottom": 0,
@@ -677,10 +677,10 @@ exports[`Select component renders component in search mode and false for multipl
                                         "boxShadow": "none",
                                         "boxSizing": "content-box",
                                         "display": "inline-block",
-                                        "fontFamily": "$theme.typography.font400.fontFamily",
-                                        "fontSize": "$theme.typography.font400.fontSize",
-                                        "fontWeight": "$theme.typography.font400.fontWeight",
-                                        "lineHeight": "$theme.typography.font400.lineHeight",
+                                        "fontFamily": "$theme.typography.font300.fontFamily",
+                                        "fontSize": "$theme.typography.font300.fontSize",
+                                        "fontWeight": "$theme.typography.font300.fontWeight",
+                                        "lineHeight": "$theme.typography.font300.lineHeight",
                                         "marginBottom": "0",
                                         "marginLeft": "0",
                                         "marginRight": "0",
@@ -709,12 +709,12 @@ exports[`Select component renders component in search mode and false for multipl
                                     styled-component="true"
                                     test-style={
                                       Object {
-                                        "fontFamily": "$theme.typography.font400.fontFamily",
-                                        "fontSize": "$theme.typography.font400.fontSize",
-                                        "fontWeight": "$theme.typography.font400.fontWeight",
+                                        "fontFamily": "$theme.typography.font300.fontFamily",
+                                        "fontSize": "$theme.typography.font300.fontSize",
+                                        "fontWeight": "$theme.typography.font300.fontWeight",
                                         "height": 0,
                                         "left": 0,
-                                        "lineHeight": "$theme.typography.font400.lineHeight",
+                                        "lineHeight": "$theme.typography.font300.lineHeight",
                                         "overflow": "scroll",
                                         "position": "absolute",
                                         "top": 0,
@@ -986,10 +986,10 @@ exports[`Select component renders component in search mode and true for multiple
           test-style={
             Object {
               "boxSizing": "border-box",
-              "fontFamily": "$theme.typography.font400.fontFamily",
-              "fontSize": "$theme.typography.font400.fontSize",
-              "fontWeight": "$theme.typography.font400.fontWeight",
-              "lineHeight": "$theme.typography.font400.lineHeight",
+              "fontFamily": "$theme.typography.font300.fontFamily",
+              "fontSize": "$theme.typography.font300.fontSize",
+              "fontWeight": "$theme.typography.font300.fontWeight",
+              "lineHeight": "$theme.typography.font300.lineHeight",
               "position": "relative",
             }
           }
@@ -1105,7 +1105,7 @@ exports[`Select component renders component in search mode and true for multiple
                       test-style={
                         Object {
                           "alignItems": "center",
-                          "color": "$theme.colors.foregroundAlt",
+                          "color": "$theme.colors.foreground",
                           "cursor": "pointer",
                           "display": "flex",
                           "fill": "currentColor",
@@ -1324,7 +1324,7 @@ exports[`Select component renders component in search mode and true for multiple
                                 "marginLeft": 0,
                                 "marginRight": 0,
                                 "marginTop": 0,
-                                "maxHeight": "$theme.typography.font400.lineHeight",
+                                "maxHeight": "$theme.typography.font300.lineHeight",
                                 "maxWidth": "100%",
                                 "outline": "none",
                                 "paddingBottom": 0,
@@ -1468,10 +1468,10 @@ exports[`Select component renders component in search mode and true for multiple
                                         "boxShadow": "none",
                                         "boxSizing": "content-box",
                                         "display": "inline-block",
-                                        "fontFamily": "$theme.typography.font400.fontFamily",
-                                        "fontSize": "$theme.typography.font400.fontSize",
-                                        "fontWeight": "$theme.typography.font400.fontWeight",
-                                        "lineHeight": "$theme.typography.font400.lineHeight",
+                                        "fontFamily": "$theme.typography.font300.fontFamily",
+                                        "fontSize": "$theme.typography.font300.fontSize",
+                                        "fontWeight": "$theme.typography.font300.fontWeight",
+                                        "lineHeight": "$theme.typography.font300.lineHeight",
                                         "marginBottom": "0",
                                         "marginLeft": "0",
                                         "marginRight": "0",
@@ -1500,12 +1500,12 @@ exports[`Select component renders component in search mode and true for multiple
                                     styled-component="true"
                                     test-style={
                                       Object {
-                                        "fontFamily": "$theme.typography.font400.fontFamily",
-                                        "fontSize": "$theme.typography.font400.fontSize",
-                                        "fontWeight": "$theme.typography.font400.fontWeight",
+                                        "fontFamily": "$theme.typography.font300.fontFamily",
+                                        "fontSize": "$theme.typography.font300.fontSize",
+                                        "fontWeight": "$theme.typography.font300.fontWeight",
                                         "height": 0,
                                         "left": 0,
-                                        "lineHeight": "$theme.typography.font400.lineHeight",
+                                        "lineHeight": "$theme.typography.font300.lineHeight",
                                         "overflow": "scroll",
                                         "position": "absolute",
                                         "top": 0,
@@ -1771,10 +1771,10 @@ exports[`Select component renders component in select mode and false for multipl
           test-style={
             Object {
               "boxSizing": "border-box",
-              "fontFamily": "$theme.typography.font400.fontFamily",
-              "fontSize": "$theme.typography.font400.fontSize",
-              "fontWeight": "$theme.typography.font400.fontWeight",
-              "lineHeight": "$theme.typography.font400.lineHeight",
+              "fontFamily": "$theme.typography.font300.fontFamily",
+              "fontSize": "$theme.typography.font300.fontSize",
+              "fontWeight": "$theme.typography.font300.fontWeight",
+              "lineHeight": "$theme.typography.font300.lineHeight",
               "position": "relative",
             }
           }
@@ -2010,7 +2010,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 "marginLeft": 0,
                                 "marginRight": 0,
                                 "marginTop": 0,
-                                "maxHeight": "$theme.typography.font400.lineHeight",
+                                "maxHeight": "$theme.typography.font300.lineHeight",
                                 "maxWidth": "100%",
                                 "outline": "none",
                                 "paddingBottom": 0,
@@ -2154,10 +2154,10 @@ exports[`Select component renders component in select mode and false for multipl
                                         "boxShadow": "none",
                                         "boxSizing": "content-box",
                                         "display": "inline-block",
-                                        "fontFamily": "$theme.typography.font400.fontFamily",
-                                        "fontSize": "$theme.typography.font400.fontSize",
-                                        "fontWeight": "$theme.typography.font400.fontWeight",
-                                        "lineHeight": "$theme.typography.font400.lineHeight",
+                                        "fontFamily": "$theme.typography.font300.fontFamily",
+                                        "fontSize": "$theme.typography.font300.fontSize",
+                                        "fontWeight": "$theme.typography.font300.fontWeight",
+                                        "lineHeight": "$theme.typography.font300.lineHeight",
                                         "marginBottom": "0",
                                         "marginLeft": "0",
                                         "marginRight": "0",
@@ -2186,12 +2186,12 @@ exports[`Select component renders component in select mode and false for multipl
                                     styled-component="true"
                                     test-style={
                                       Object {
-                                        "fontFamily": "$theme.typography.font400.fontFamily",
-                                        "fontSize": "$theme.typography.font400.fontSize",
-                                        "fontWeight": "$theme.typography.font400.fontWeight",
+                                        "fontFamily": "$theme.typography.font300.fontFamily",
+                                        "fontSize": "$theme.typography.font300.fontSize",
+                                        "fontWeight": "$theme.typography.font300.fontWeight",
                                         "height": 0,
                                         "left": 0,
-                                        "lineHeight": "$theme.typography.font400.lineHeight",
+                                        "lineHeight": "$theme.typography.font300.lineHeight",
                                         "overflow": "scroll",
                                         "position": "absolute",
                                         "top": 0,
@@ -2351,7 +2351,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 styled-component="true"
                                 test-style={
                                   Object {
-                                    "color": "$theme.colors.foregroundAlt",
+                                    "color": "$theme.colors.foreground",
                                     "cursor": "pointer",
                                     "display": "inline-block",
                                     "fill": "currentColor",
@@ -2574,10 +2574,10 @@ exports[`Select component renders component in select mode and true for multiple
           test-style={
             Object {
               "boxSizing": "border-box",
-              "fontFamily": "$theme.typography.font400.fontFamily",
-              "fontSize": "$theme.typography.font400.fontSize",
-              "fontWeight": "$theme.typography.font400.fontWeight",
-              "lineHeight": "$theme.typography.font400.lineHeight",
+              "fontFamily": "$theme.typography.font300.fontFamily",
+              "fontSize": "$theme.typography.font300.fontSize",
+              "fontWeight": "$theme.typography.font300.fontWeight",
+              "lineHeight": "$theme.typography.font300.lineHeight",
               "position": "relative",
             }
           }
@@ -2813,7 +2813,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 "marginLeft": 0,
                                 "marginRight": 0,
                                 "marginTop": 0,
-                                "maxHeight": "$theme.typography.font400.lineHeight",
+                                "maxHeight": "$theme.typography.font300.lineHeight",
                                 "maxWidth": "100%",
                                 "outline": "none",
                                 "paddingBottom": 0,
@@ -2957,10 +2957,10 @@ exports[`Select component renders component in select mode and true for multiple
                                         "boxShadow": "none",
                                         "boxSizing": "content-box",
                                         "display": "inline-block",
-                                        "fontFamily": "$theme.typography.font400.fontFamily",
-                                        "fontSize": "$theme.typography.font400.fontSize",
-                                        "fontWeight": "$theme.typography.font400.fontWeight",
-                                        "lineHeight": "$theme.typography.font400.lineHeight",
+                                        "fontFamily": "$theme.typography.font300.fontFamily",
+                                        "fontSize": "$theme.typography.font300.fontSize",
+                                        "fontWeight": "$theme.typography.font300.fontWeight",
+                                        "lineHeight": "$theme.typography.font300.lineHeight",
                                         "marginBottom": "0",
                                         "marginLeft": "0",
                                         "marginRight": "0",
@@ -2989,12 +2989,12 @@ exports[`Select component renders component in select mode and true for multiple
                                     styled-component="true"
                                     test-style={
                                       Object {
-                                        "fontFamily": "$theme.typography.font400.fontFamily",
-                                        "fontSize": "$theme.typography.font400.fontSize",
-                                        "fontWeight": "$theme.typography.font400.fontWeight",
+                                        "fontFamily": "$theme.typography.font300.fontFamily",
+                                        "fontSize": "$theme.typography.font300.fontSize",
+                                        "fontWeight": "$theme.typography.font300.fontWeight",
                                         "height": 0,
                                         "left": 0,
-                                        "lineHeight": "$theme.typography.font400.lineHeight",
+                                        "lineHeight": "$theme.typography.font300.lineHeight",
                                         "overflow": "scroll",
                                         "position": "absolute",
                                         "top": 0,
@@ -3154,7 +3154,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 styled-component="true"
                                 test-style={
                                   Object {
-                                    "color": "$theme.colors.foregroundAlt",
+                                    "color": "$theme.colors.foreground",
                                     "cursor": "pointer",
                                     "display": "inline-block",
                                     "fill": "currentColor",

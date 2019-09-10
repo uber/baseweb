@@ -24,11 +24,11 @@ const Component = styled('div', p => ({color: 'red'}));`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      const Component = styled<any>('div', p => ({color: 'red'}));"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+const Component = styled<any>('div', p => ({color: 'red'}));"
+`);
   });
 
   it('does not apply type argument if base is element string, and obj style arg', async () => {
@@ -44,11 +44,11 @@ const Component = styled('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      const Component = styled('div', {color: 'red'});"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+const Component = styled('div', {color: 'red'});"
+`);
   });
 
   it('applies any as prop type if base is component, and fn style arg', async () => {
@@ -67,14 +67,14 @@ const Component = styled(Base, p => ({color: 'red'}));`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      function Base() {
-        return <div>base</div>;
-      }
-      const Component = styled<typeof Base, any>(Base, p => ({color: 'red'}));"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+function Base() {
+  return <div>base</div>;
+}
+const Component = styled<typeof Base, any>(Base, p => ({color: 'red'}));"
+`);
   });
 
   it('applies base type if base is component, and obj style arg', async () => {
@@ -93,14 +93,14 @@ const Component = styled(Base, {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      function Base() {
-        return <div>base</div>;
-      }
-      const Component = styled<typeof Base>(Base, {color: 'red'});"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+function Base() {
+  return <div>base</div>;
+}
+const Component = styled<typeof Base>(Base, {color: 'red'});"
+`);
   });
 
   it('does not apply change if no flow pragma exists', async () => {
@@ -115,10 +115,10 @@ const Component = styled('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      import {styled} from 'baseui';
-      const Component = styled('div', {color: 'red'});"
-    `);
+"
+import {styled} from 'baseui';
+const Component = styled('div', {color: 'red'});"
+`);
   });
 
   it('does not apply change styled call is not imported from baseui', async () => {
@@ -134,11 +134,11 @@ const Component = styled('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'styletron-react';
-      const Component = styled('div', {color: 'red'});"
-    `);
+"
+// @flow
+import {styled} from 'styletron-react';
+const Component = styled('div', {color: 'red'});"
+`);
   });
 
   it('does not mutate if styled call already has type annotations', async () => {
@@ -154,11 +154,11 @@ const Component = styled<{}>('div', p => ({color: 'red'}));`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      const Component = styled<{}>('div', p => ({color: 'red'}));"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+const Component = styled<{}>('div', p => ({color: 'red'}));"
+`);
   });
 
   it('appends object expression to args if no style object provided', async () => {
@@ -174,11 +174,11 @@ const Component = styled('div');`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      const Component = styled('div', {});"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+const Component = styled('div', {});"
+`);
   });
 
   it('handles styled call wrapped in another function', async () => {
@@ -194,10 +194,10 @@ const Component = something(styled('div', p => ({color: 'red'})));`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      const Component = something(styled<any>('div', p => ({color: 'red'})));"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+const Component = something(styled<any>('div', p => ({color: 'red'})));"
+`);
   });
 });

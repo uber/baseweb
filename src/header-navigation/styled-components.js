@@ -12,11 +12,11 @@ export const Root = styled<{}>('nav', props => {
   const {$theme} = props;
   const {
     sizing: {scale500},
-    typography: {font400},
+    typography: {font300},
     colors: {border},
   } = $theme;
   return {
-    ...font400,
+    ...font300,
     display: 'flex',
     paddingBottom: scale500,
     paddingTop: scale500,

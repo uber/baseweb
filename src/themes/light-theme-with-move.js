@@ -22,7 +22,16 @@ export const LightThemeMove = createTheme(
   {
     name: 'light-theme-with-move',
     typography: {
-      font1100: {
+      font1450: {
+        fontFamily: secondaryFontFamily,
+      },
+      font1350: {
+        fontFamily: secondaryFontFamily,
+      },
+      font1250: {
+        fontFamily: secondaryFontFamily,
+      },
+      font1150: {
         fontFamily: secondaryFontFamily,
       },
     },

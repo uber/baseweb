@@ -32,6 +32,16 @@ export default () => (
         <Tag
           closeable={false}
           onClick={() => {
+            onClick('accent');
+          }}
+          variant={variant}
+          kind="accent"
+        >
+          accent
+        </Tag>
+        <Tag
+          closeable={false}
+          onClick={() => {
             onClick('positive');
           }}
           variant={variant}

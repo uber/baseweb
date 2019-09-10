@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {withStyle} from 'baseui';
 import {Navigation, StyledNavItem as NavItem} from 'baseui/side-navigation';
-import {Label2, Label1} from 'baseui/typography';
+import {Label2, Label3} from 'baseui/typography';
 import Link from 'next/link';
 
 import Routes from '../routes';
@@ -39,7 +39,7 @@ const removeSlash = path => {
 
 function CustomNavItem(props) {
   const {item, onSelect, onClick, onKeyDown, ...sharedProps} = props;
-  const Label = props.$level === 1 ? Label2 : Label1;
+  const Label = props.$level === 1 ? Label2 : Label3;
 
   const NavLink = ({item}) => (
     <Link passHref={true} href={item.itemId}>

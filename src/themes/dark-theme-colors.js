@@ -9,12 +9,11 @@ LICENSE file in the root directory of this source tree.
 import {primitives} from './dark-theme-primitives.js';
 
 const WHITE = '#FFFFFF';
+const BLACK = '#000000';
 
 export default {
   colors: {
     // Semantic Colors
-
-    white: WHITE,
 
     // Font Color
     colorPrimary: primitives.mono100,
@@ -33,30 +32,40 @@ export default {
     // Borders
     border: primitives.mono600,
     borderAlt: primitives.mono700,
-    borderFocus: primitives.primary400,
-    borderError: primitives.negative400,
+    borderFocus: primitives.primary,
+    borderError: primitives.negative,
 
     // Buttons
-    buttonPrimaryFill: primitives.primary500,
-    buttonPrimaryText: primitives.mono100,
-    buttonPrimaryHover: primitives.primary600,
-    buttonPrimaryActive: primitives.primary700,
-    buttonSecondaryFill: primitives.mono600,
-    buttonSecondaryText: primitives.mono100,
-    buttonSecondaryHover: primitives.mono500,
-    buttonSecondaryActive: primitives.mono400,
-    buttonTertiaryFill: primitives.mono800,
-    buttonTertiaryText: primitives.mono100,
-    buttonTertiaryHover: primitives.mono700,
-    buttonTertiaryActive: primitives.mono600,
-    buttonTertiarySelectedText: primitives.mono100,
-    buttonTertiarySelectedFill: primitives.primary500,
+    buttonPrimaryFill: primitives.primary,
+    buttonPrimaryText: BLACK,
+    buttonPrimaryHover: primitives.primary100,
+    buttonPrimaryActive: primitives.primary200,
+    buttonPrimarySelectedText: BLACK,
+    buttonPrimarySelectedFill: primitives.primary200,
+
+    buttonSecondaryFill: primitives.primary700,
+    buttonSecondaryText: primitives.primary,
+    buttonSecondaryHover: primitives.primary600,
+    buttonSecondaryActive: primitives.primary500,
+    buttonSecondarySelectedText: primitives.primary,
+    buttonSecondarySelectedFill: primitives.primary500,
+
+    buttonTertiaryFill: 'transparent',
+    buttonTertiaryText: primitives.primary,
+    buttonTertiaryHover: primitives.primary700,
+    buttonTertiaryActive: primitives.primary600,
+    buttonTertiarySelectedText: primitives.primary,
+    buttonTertiarySelectedFill: primitives.primary600,
+
     buttonMinimalFill: 'transparent',
-    buttonMinimalText: primitives.primary400,
-    buttonMinimalHover: primitives.mono800,
-    buttonMinimalActive: primitives.mono700,
-    buttonDisabledFill: primitives.mono700,
-    buttonDisabledText: primitives.mono500,
+    buttonMinimalText: primitives.primary,
+    buttonMinimalHover: primitives.primary700,
+    buttonMinimalActive: primitives.primary600,
+    buttonMinimalSelectedText: primitives.primary,
+    buttonMinimalSelectedFill: primitives.primary600,
+
+    buttonDisabledFill: primitives.mono600,
+    buttonDisabledText: primitives.mono300,
 
     // Breadcrumbs
     breadcrumbsText: primitives.mono100,
@@ -69,18 +78,35 @@ export default {
     datepickerDayPseudoSelected: primitives.mono500,
     datepickerDayPseudoHighlighted: primitives.mono600,
 
+    // Calendar
+    calendarBackground: primitives.mono800,
+    calendarForeground: WHITE,
+    calendarForegroundDisabled: primitives.mono300,
+    calendarHeaderBackground: primitives.primary700,
+    calendarHeaderForeground: primitives.primary,
+    calendarHeaderBackgroundActive: primitives.primary600,
+    calendarHeaderForegroundDisabled: primitives.primary500,
+    calendarDayBackgroundPseudoSelected: primitives.primary700,
+    calendarDayForegroundPseudoSelected: primitives.primary,
+    calendarDayBackgroundPseudoSelectedHighlighted: primitives.primary600,
+    calendarDayForegroundPseudoSelectedHighlighted: primitives.primary,
+    calendarDayBackgroundSelected: primitives.primary,
+    calendarDayForegroundSelected: BLACK,
+    calendarDayBackgroundSelectedHighlighted: primitives.primary100,
+    calendarDayForegroundSelectedHighlighted: BLACK,
+
     // FileUploader
     fileUploaderBackgroundColor: primitives.mono700,
     fileUploaderBackgroundColorActive: primitives.mono600,
-    fileUploaderBorderColorActive: primitives.primary400,
+    fileUploaderBorderColorActive: primitives.primary,
     fileUploaderBorderColorDefault: primitives.mono500,
     fileUploaderMessageColor: primitives.mono100,
 
     // Links
-    linkText: primitives.primary300,
-    linkVisited: primitives.primary300,
-    linkHover: primitives.primary400,
-    linkActive: primitives.primary400,
+    linkText: primitives.primary,
+    linkVisited: primitives.primary100,
+    linkHover: primitives.primary200,
+    linkActive: primitives.primary300,
 
     // List
     listHeaderFill: primitives.mono600,
@@ -89,7 +115,10 @@ export default {
     listBorder: primitives.mono500,
 
     // ProgressSteps
-    progressStepsIconActiveFill: primitives.mono100,
+    progressStepsCompletedText: BLACK,
+    progressStepsCompletedFill: primitives.primary,
+    progressStepsActiveText: BLACK,
+    progressStepsActiveFill: primitives.primary,
 
     // Modal
     modalCloseColor: primitives.mono300,
@@ -99,6 +128,8 @@ export default {
     // Notification
     notificationPrimaryBackground: primitives.primary700,
     notificationPrimaryText: primitives.primary200,
+    notificationInfoBackground: primitives.accent700,
+    notificationInfoText: primitives.accent200,
     notificationPositiveBackground: primitives.positive700,
     notificationPositiveText: primitives.positive200,
     notificationWarningBackground: primitives.warning700,
@@ -147,11 +178,11 @@ export default {
     tagNeutralOutlinedFontHover: primitives.mono900,
     tagNeutralFontDisabled: primitives.mono500,
 
-    tagPrimarySolidBackground: primitives.primary500,
-    tagPrimarySolidHover: primitives.primary500,
+    tagPrimarySolidBackground: primitives.primary,
+    tagPrimarySolidHover: primitives.primary700,
     tagPrimarySolidActive: primitives.primary400,
     tagPrimarySolidDisabled: primitives.primary700,
-    tagPrimarySolidFont: primitives.primary100,
+    tagPrimarySolidFont: primitives.primary700,
     tagPrimarySolidFontHover: primitives.primary100,
     tagPrimaryLightBackground: primitives.primary700,
     tagPrimaryLightHover: primitives.primary700,
@@ -159,13 +190,33 @@ export default {
     tagPrimaryLightDisabled: primitives.primary700,
     tagPrimaryLightFont: primitives.primary100,
     tagPrimaryLightFontHover: primitives.primary100,
-    tagPrimaryOutlinedBackground: primitives.primary500,
-    tagPrimaryOutlinedHover: primitives.primary400,
-    tagPrimaryOutlinedActive: primitives.primary300,
+    tagPrimaryOutlinedBackground: primitives.primary,
+    tagPrimaryOutlinedHover: primitives.primary700,
+    tagPrimaryOutlinedActive: primitives.primary600,
     tagPrimaryOutlinedDisabled: primitives.primary700,
-    tagPrimaryOutlinedFont: primitives.primary200,
-    tagPrimaryOutlinedFontHover: primitives.primary700,
+    tagPrimaryOutlinedFont: primitives.primary,
+    tagPrimaryOutlinedFontHover: primitives.primary50,
     tagPrimaryFontDisabled: primitives.primary500,
+
+    tagAccentSolidBackground: primitives.accent500,
+    tagAccentSolidHover: primitives.accent500,
+    tagAccentSolidActive: primitives.accent400,
+    tagAccentSolidDisabled: primitives.accent700,
+    tagAccentSolidFont: primitives.accent100,
+    tagAccentSolidFontHover: primitives.accent100,
+    tagAccentLightBackground: primitives.accent700,
+    tagAccentLightHover: primitives.accent700,
+    tagAccentLightActive: primitives.accent600,
+    tagAccentLightDisabled: primitives.accent700,
+    tagAccentLightFont: primitives.accent100,
+    tagAccentLightFontHover: primitives.accent100,
+    tagAccentOutlinedBackground: primitives.accent500,
+    tagAccentOutlinedHover: primitives.accent400,
+    tagAccentOutlinedActive: primitives.accent300,
+    tagAccentOutlinedDisabled: primitives.accent700,
+    tagAccentOutlinedFont: primitives.accent200,
+    tagAccentOutlinedFontHover: primitives.accent700,
+    tagAccentFontDisabled: primitives.accent500,
 
     tagPositiveSolidBackground: primitives.positive500,
     tagPositiveSolidHover: primitives.positive500,
@@ -238,21 +289,28 @@ export default {
 
     // Tick
     tickFill: primitives.mono1000,
-    tickFillHover: primitives.mono800,
+    tickFillHover: primitives.mono700,
     tickFillActive: primitives.mono600,
-    tickFillSelected: primitives.primary500,
-    tickFillSelectedHover: primitives.primary600,
-    tickFillSelectedHoverActive: primitives.primary700,
+
+    tickFillSelected: primitives.primary,
+    tickFillSelectedHover: primitives.primary50,
+    tickFillSelectedHoverActive: primitives.primary100,
+
     tickFillError: primitives.negative700,
     tickFillErrorHover: primitives.negative600,
     tickFillErrorHoverActive: primitives.negative500,
+
     tickFillErrorSelected: primitives.negative500,
     tickFillErrorSelectedHover: primitives.negative600,
     tickFillErrorSelectedHoverActive: primitives.negative700,
+
     tickFillDisabled: primitives.mono700,
+
     tickBorder: primitives.mono300,
     tickBorderError: primitives.negative400,
-    tickMarkFill: primitives.mono100,
+
+    tickMarkFill: BLACK,
+    tickMarkFillError: WHITE,
     tickMarkFillDisabled: primitives.mono400,
 
     // Slider/Toggle

@@ -8,21 +8,51 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../index.js';
-import ArrowRight from '../../icon/arrow-right.js';
+import {Block} from '../../block/index.js';
+import {Button, KIND} from '../index.js';
 
 export const name = 'button';
 
 export const component = () => (
   <React.Fragment>
-    <Button>Primary</Button>
-    <br />
-    <Button startEnhancer={ArrowRight}>Start Enhancer</Button>
-    <br />
-    <Button endEnhancer={ArrowRight}>End Enhancer</Button>
-    <br />
-    <Button startEnhancer={ArrowRight} endEnhancer={ArrowRight}>
-      Both Enhancers
+    <Button kind={KIND.primary}>Button</Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.primary} isSelected>
+      Selected
+    </Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.primary} disabled>
+      Disabled
+    </Button>
+    <Block marginBottom="scale300" />
+    <Button kind={KIND.secondary}>Button</Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.secondary} isSelected>
+      Selected
+    </Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.secondary} disabled>
+      Disabled
+    </Button>
+    <Block marginBottom="scale300" />
+    <Button kind={KIND.tertiary}>Button</Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.tertiary} isSelected>
+      Selected
+    </Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.tertiary} disabled>
+      Disabled
+    </Button>
+    <Block marginBottom="scale300" />
+    <Button kind={KIND.minimal}>Button</Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.minimal} isSelected>
+      Selected
+    </Button>
+    <Block as="span" marginLeft="scale300" />
+    <Button kind={KIND.minimal} disabled>
+      Disabled
     </Button>
   </React.Fragment>
 );

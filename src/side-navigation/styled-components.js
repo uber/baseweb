@@ -14,7 +14,7 @@ export const StyledRoot = styled<SharedPropsT>('nav', props => {
     $theme: {colors, typography},
   } = props;
   return {
-    ...typography.font400,
+    ...typography.font300,
     color: colors.foreground,
     listStyleType: 'none',
     marginTop: 0,

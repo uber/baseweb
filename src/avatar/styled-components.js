@@ -38,7 +38,7 @@ export const Avatar = styled<AvatarStylePropsT>('img', props => {
 });
 
 export const Initials = styled<InitialsStylePropsT>('div', props => ({
-  ...props.$theme.typography.font400,
+  ...props.$theme.typography.font300,
   color: props.$theme.colors.mono100,
   alignItems: 'center',
   display: 'flex',

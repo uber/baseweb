@@ -8,6 +8,8 @@ export default () => (
 
     <Tag kind="primary">primary</Tag>
 
+    <Tag kind="accent">accent</Tag>
+
     <Tag kind="positive">positive</Tag>
 
     <Tag kind="warning">warning</Tag>

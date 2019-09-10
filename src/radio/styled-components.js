@@ -187,7 +187,7 @@ export const Label = styled<StylePropsT>('div', props => {
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font450,
+    ...typography.font350,
   };
 });
 
@@ -203,7 +203,7 @@ export const Input = styled('input', {
 
 export const Description = styled<StylePropsT>('div', props => {
   return {
-    ...props.$theme.typography.font300,
+    ...props.$theme.typography.font200,
     color: props.$theme.colors.colorSecondary,
     cursor: 'auto',
     [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props

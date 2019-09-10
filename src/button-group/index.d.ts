@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyledFn, StyletronComponent} from 'styletron-react';
-import {SHAPE, SIZE} from '../button';
+import {SHAPE, SIZE, KIND} from '../button';
 import {Override} from '../overrides';
 
 export interface MODE {
@@ -30,6 +30,7 @@ export interface ButtonGroupProps {
   selected?: number | number[];
   shape?: SHAPE[keyof SHAPE];
   size?: SIZE[keyof SIZE];
+  kind?: KIND[keyof KIND];
 }
 
 export const ButtonGroup: React.FC<ButtonGroupProps>;

@@ -22,6 +22,7 @@ import versions from '../../versions.json';
 // this is the only place needed to be updated if a new
 // major is cut
 const MAJOR_VERSIONS = [
+  {label: 'v9'},
   {label: 'v8'},
   {label: 'v7'},
   {label: 'v6'},
