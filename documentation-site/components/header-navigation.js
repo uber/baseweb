@@ -91,12 +91,12 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
               </Link>
               <Block marginLeft="scale300">
                 <VersionSelector />
-                <Link href="/blog/base-web-v8">
+                <Link href="/blog/base-web-v9">
                   <Button
                     size="compact"
                     kind={KIND.minimal}
                     $as="a"
-                    href="/blog/base-web-v8"
+                    href="/blog/base-web-v9"
                     overrides={{
                       BaseButton: {
                         style: {
@@ -108,7 +108,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                       },
                     }}
                   >
-                    {"What's new in v8?"}
+                    {"What's new in v9?"}
                   </Button>
                 </Link>
               </Block>
@@ -164,7 +164,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
               </Block>
               <Block
                 as="span"
-                font="font400"
+                font="font300"
                 marginLeft="scale400"
                 marginRight="scale400"
                 onClick={toggleDirection}
@@ -207,7 +207,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   content="Switch theme"
                   accessibilityType={'tooltip'}
                 >
-                  <Block as="span" font="font400">
+                  <Block as="span" font="font300">
                     <Bulb size={24} color={theme.colors.foreground} />
                   </Block>
                 </StatefulTooltip>

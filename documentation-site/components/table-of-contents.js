@@ -26,6 +26,7 @@ const TableOfContents = props => {
       if (
         element.props.name &&
         element.props.name.startsWith('h') &&
+        element.props.children &&
         element.props.children.toLowerCase
       ) {
         TOC.push({

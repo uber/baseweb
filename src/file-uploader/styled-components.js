@@ -38,7 +38,7 @@ export const StyledContentMessage = styled<StylePropsT>(
   'div',
   props =>
     ({
-      ...props.$theme.typography.font400,
+      ...props.$theme.typography.font300,
       color: props.$afterFileDrop
         ? props.$theme.colors.fileUploaderMessageColor
         : null,
@@ -50,14 +50,14 @@ export const StyledErrorMessage = styled<StylePropsT>(
   'div',
   props =>
     ({
-      ...props.$theme.typography.font400,
+      ...props.$theme.typography.font300,
       color: props.$theme.colors.negative,
       marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
     }: {}),
 );
 
 export const StyledRoot = styled<StylePropsT>('div', props => ({
-  ...props.$theme.typography.font400,
+  ...props.$theme.typography.font300,
   color: props.$theme.colors.fileUploaderMessageColor,
 }));
 

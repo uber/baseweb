@@ -11,6 +11,7 @@ import type {PrimitivesT} from './types.js';
 import deepMerge from '../utils/deep-merge.js';
 
 const WHITE = '#FFFFFF';
+const BLACK = '#000000';
 
 export default function createTheme(
   primitives: PrimitivesT,
@@ -20,56 +21,67 @@ export default function createTheme(
     breakpoints: {
       small: 320,
       medium: 600,
-      large: 1280,
+      large: 1136,
     },
 
     colors: {
       // Primary Palette
+      primary: primitives.primary,
       primary50: primitives.primary50,
       primary100: primitives.primary100,
       primary200: primitives.primary200,
       primary300: primitives.primary300,
       primary400: primitives.primary400,
-      primary: primitives.primary400,
       primary500: primitives.primary500,
       primary600: primitives.primary600,
       primary700: primitives.primary700,
 
+      // Accent Palette
+      accent: primitives.accent,
+      accent50: primitives.accent50,
+      accent100: primitives.accent100,
+      accent200: primitives.accent200,
+      accent300: primitives.accent300,
+      accent400: primitives.accent400,
+      accent500: primitives.accent500,
+      accent600: primitives.accent600,
+      accent700: primitives.accent700,
+
       // Negative Palette
+      negative: primitives.negative,
       negative50: primitives.negative50,
       negative100: primitives.negative100,
       negative200: primitives.negative200,
       negative300: primitives.negative300,
       negative400: primitives.negative400,
-      negative: primitives.negative400,
       negative500: primitives.negative500,
       negative600: primitives.negative600,
       negative700: primitives.negative700,
 
       // Warning Palette
+      warning: primitives.warning,
       warning50: primitives.warning50,
       warning100: primitives.warning100,
       warning200: primitives.warning200,
       warning300: primitives.warning300,
       warning400: primitives.warning400,
-      warning: primitives.warning400,
       warning500: primitives.warning500,
       warning600: primitives.warning600,
       warning700: primitives.warning700,
 
       // Positive Palette
+      positive: primitives.positive,
       positive50: primitives.positive50,
       positive100: primitives.positive100,
       positive200: primitives.positive200,
       positive300: primitives.positive300,
       positive400: primitives.positive400,
-      positive: primitives.positive400,
       positive500: primitives.positive500,
       positive600: primitives.positive600,
       positive700: primitives.positive700,
 
       // Monochrome Palette
-      white: primitives.mono100,
+      white: WHITE,
       mono100: primitives.mono100,
       mono200: primitives.mono200,
       mono300: primitives.mono300,
@@ -80,7 +92,7 @@ export default function createTheme(
       mono800: primitives.mono800,
       mono900: primitives.mono900,
       mono1000: primitives.mono1000,
-      black: primitives.mono1000,
+      black: BLACK,
 
       // Rating Palette,
       rating200: primitives.rating200,
@@ -105,34 +117,39 @@ export default function createTheme(
       // Borders
       border: primitives.mono500,
       borderAlt: primitives.mono600,
-      borderFocus: primitives.primary400,
-      borderError: primitives.negative400,
+      borderFocus: primitives.primary,
+      borderError: primitives.negative,
 
       // Buttons
-      buttonPrimaryFill: primitives.primary400,
-      buttonPrimaryText: primitives.mono100, // white
-      buttonPrimaryHover: primitives.primary500,
+      buttonPrimaryFill: primitives.primary,
+      buttonPrimaryText: WHITE,
+      buttonPrimaryHover: primitives.primary700,
       buttonPrimaryActive: primitives.primary600,
+      buttonPrimarySelectedFill: primitives.primary600,
+      buttonPrimarySelectedText: WHITE,
 
       buttonSecondaryFill: primitives.primary50,
-      buttonSecondaryText: primitives.primary400,
+      buttonSecondaryText: primitives.primary,
       buttonSecondaryHover: primitives.primary100,
       buttonSecondaryActive: primitives.primary200,
+      buttonSecondarySelectedFill: primitives.primary200,
+      buttonSecondarySelectedText: primitives.primary,
 
-      buttonTertiaryFill: primitives.mono200,
-      buttonTertiaryText: primitives.primary400,
-      buttonTertiaryHover: primitives.mono400,
-      buttonTertiaryActive: primitives.mono500,
-      // button $selected only applies to tertiary variant.
-      buttonTertiarySelectedFill: primitives.primary400,
-      buttonTertiarySelectedText: primitives.mono100,
+      buttonTertiaryFill: 'transparent',
+      buttonTertiaryText: primitives.primary,
+      buttonTertiaryHover: primitives.primary50,
+      buttonTertiaryActive: primitives.primary100,
+      buttonTertiarySelectedFill: primitives.primary100,
+      buttonTertiarySelectedText: primitives.primary,
 
       buttonMinimalFill: 'transparent',
-      buttonMinimalText: primitives.primary400,
-      buttonMinimalHover: primitives.mono200,
-      buttonMinimalActive: primitives.mono400,
+      buttonMinimalText: primitives.primary,
+      buttonMinimalHover: primitives.primary50,
+      buttonMinimalActive: primitives.primary100,
+      buttonMinimalSelectedFill: primitives.primary100,
+      buttonMinimalSelectedText: primitives.primary,
 
-      buttonDisabledFill: primitives.mono300,
+      buttonDisabledFill: primitives.mono200,
       buttonDisabledText: primitives.mono600,
 
       // Breadcrumbs
@@ -146,18 +163,35 @@ export default function createTheme(
       datepickerDayPseudoSelected: primitives.primary100,
       datepickerDayPseudoHighlighted: primitives.primary200,
 
+      // Calendar
+      calendarBackground: primitives.mono100,
+      calendarForeground: primitives.mono1000,
+      calendarForegroundDisabled: primitives.mono500,
+      calendarHeaderBackground: primitives.primary,
+      calendarHeaderForeground: WHITE,
+      calendarHeaderBackgroundActive: primitives.primary700,
+      calendarHeaderForegroundDisabled: primitives.primary500,
+      calendarDayBackgroundPseudoSelected: primitives.primary100,
+      calendarDayForegroundPseudoSelected: primitives.mono1000,
+      calendarDayBackgroundPseudoSelectedHighlighted: primitives.primary200,
+      calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
+      calendarDayBackgroundSelected: primitives.primary,
+      calendarDayForegroundSelected: WHITE,
+      calendarDayBackgroundSelectedHighlighted: primitives.primary700,
+      calendarDayForegroundSelectedHighlighted: primitives.mono100,
+
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,
       fileUploaderBackgroundColorActive: primitives.primary50,
-      fileUploaderBorderColorActive: primitives.primary400,
+      fileUploaderBorderColorActive: primitives.primary,
       fileUploaderBorderColorDefault: primitives.mono500,
       fileUploaderMessageColor: primitives.mono600,
 
       // Links
-      linkText: primitives.primary400,
-      linkVisited: primitives.primary500,
+      linkText: primitives.primary,
+      linkVisited: primitives.primary700,
       linkHover: primitives.primary600,
-      linkActive: primitives.primary600,
+      linkActive: primitives.primary500,
 
       // Shadow
       shadowFocus: 'rgba(39, 110, 241, 0.32)',
@@ -170,14 +204,19 @@ export default function createTheme(
       listBorder: primitives.mono500,
 
       // ProgressSteps
-      progressStepsIconActiveFill: primitives.primary100,
+      progressStepsCompletedText: WHITE,
+      progressStepsCompletedFill: primitives.primary,
+      progressStepsActiveText: WHITE,
+      progressStepsActiveFill: primitives.primary,
+      progressStepsIconActiveFill: primitives.primary,
 
       // Tick
-      tickFill: WHITE,
-      tickFillHover: primitives.mono400,
-      tickFillActive: primitives.mono500,
-      tickFillSelected: primitives.primary400,
-      tickFillSelectedHover: primitives.primary500,
+      tickFill: primitives.mono100,
+      tickFillHover: primitives.mono200,
+      tickFillActive: primitives.mono300,
+
+      tickFillSelected: primitives.primary,
+      tickFillSelectedHover: primitives.primary700,
       tickFillSelectedHoverActive: primitives.primary600,
 
       tickFillError: primitives.negative50,
@@ -188,17 +227,20 @@ export default function createTheme(
       tickFillErrorSelectedHoverActive: primitives.negative600,
 
       tickFillDisabled: primitives.mono300,
+
       tickBorder: primitives.mono700,
       tickBorderError: primitives.negative400,
+
       tickMarkFill: WHITE,
+      tickMarkFillError: WHITE,
       tickMarkFillDisabled: primitives.mono600,
 
       // Slider/Toggle
       sliderTrackFill: primitives.mono400,
       sliderTrackFillHover: primitives.mono500,
       sliderTrackFillActive: primitives.mono600,
-      sliderTrackFillSelected: primitives.primary400,
-      sliderTrackFillSelectedHover: primitives.primary400,
+      sliderTrackFillSelected: primitives.primary,
+      sliderTrackFillSelectedHover: primitives.primary,
       sliderTrackFillSelectedActive: primitives.primary500,
       sliderTrackFillDisabled: primitives.mono300,
       sliderHandleFill: WHITE,
@@ -210,11 +252,11 @@ export default function createTheme(
       sliderHandleFillDisabled: primitives.mono500,
       sliderHandleInnerFill: primitives.mono400,
       sliderHandleInnerFillDisabled: primitives.mono400,
-      sliderHandleInnerFillSelectedHover: primitives.primary400,
+      sliderHandleInnerFillSelectedHover: primitives.primary,
       sliderHandleInnerFillSelectedActive: primitives.primary500,
 
       sliderBorder: primitives.mono500,
-      sliderBorderHover: primitives.primary400,
+      sliderBorderHover: primitives.primary,
       sliderBorderDisabled: primitives.mono600,
 
       // Inputs
@@ -256,6 +298,8 @@ export default function createTheme(
       // Notification
       notificationPrimaryBackground: primitives.primary50,
       notificationPrimaryText: primitives.primary500,
+      notificationInfoBackground: primitives.accent50,
+      notificationInfoText: primitives.accent500,
       notificationPositiveBackground: primitives.positive50,
       notificationPositiveText: primitives.positive500,
       notificationWarningBackground: primitives.warning50,
@@ -304,25 +348,45 @@ export default function createTheme(
       tagNeutralOutlinedFontHover: primitives.mono200,
       tagNeutralFontDisabled: primitives.mono500,
 
-      tagPrimarySolidBackground: primitives.primary400,
-      tagPrimarySolidHover: primitives.primary50,
-      tagPrimarySolidActive: primitives.primary100,
+      tagPrimarySolidBackground: primitives.primary,
+      tagPrimarySolidHover: primitives.primary100,
+      tagPrimarySolidActive: primitives.primary200,
       tagPrimarySolidDisabled: primitives.primary50,
       tagPrimarySolidFont: primitives.primary50,
-      tagPrimarySolidFontHover: primitives.primary500,
+      tagPrimarySolidFontHover: primitives.primary700,
       tagPrimaryLightBackground: primitives.primary50,
       tagPrimaryLightHover: primitives.primary100,
       tagPrimaryLightActive: primitives.primary100,
       tagPrimaryLightDisabled: primitives.primary50,
       tagPrimaryLightFont: primitives.primary500,
       tagPrimaryLightFontHover: primitives.primary500,
-      tagPrimaryOutlinedBackground: primitives.primary400,
-      tagPrimaryOutlinedHover: primitives.primary500,
+      tagPrimaryOutlinedBackground: primitives.primary,
+      tagPrimaryOutlinedHover: primitives.primary700,
       tagPrimaryOutlinedActive: primitives.primary600,
       tagPrimaryOutlinedDisabled: primitives.primary50,
-      tagPrimaryOutlinedFont: primitives.primary500,
+      tagPrimaryOutlinedFont: primitives.primary,
       tagPrimaryOutlinedFontHover: primitives.primary50,
-      tagPrimaryFontDisabled: primitives.primary200,
+      tagPrimaryFontDisabled: primitives.primary400,
+
+      tagAccentSolidBackground: primitives.accent400,
+      tagAccentSolidHover: primitives.accent50,
+      tagAccentSolidActive: primitives.accent100,
+      tagAccentSolidDisabled: primitives.accent50,
+      tagAccentSolidFont: primitives.accent50,
+      tagAccentSolidFontHover: primitives.accent500,
+      tagAccentLightBackground: primitives.accent50,
+      tagAccentLightHover: primitives.accent100,
+      tagAccentLightActive: primitives.accent100,
+      tagAccentLightDisabled: primitives.accent50,
+      tagAccentLightFont: primitives.accent500,
+      tagAccentLightFontHover: primitives.accent500,
+      tagAccentOutlinedBackground: primitives.accent400,
+      tagAccentOutlinedHover: primitives.accent500,
+      tagAccentOutlinedActive: primitives.accent600,
+      tagAccentOutlinedDisabled: primitives.accent50,
+      tagAccentOutlinedFont: primitives.accent500,
+      tagAccentOutlinedFontHover: primitives.accent50,
+      tagAccentFontDisabled: primitives.accent200,
 
       tagPositiveSolidBackground: primitives.positive400,
       tagPositiveSolidHover: primitives.positive50,
@@ -396,6 +460,7 @@ export default function createTheme(
       // Toast
       toastText: WHITE,
       toastPrimaryBackground: primitives.primary500,
+      toastInfoBackground: primitives.accent500,
       toastPositiveBackground: primitives.positive500,
       toastWarningBackground: primitives.warning500,
       toastNegativeBackground: primitives.negative500,
@@ -413,99 +478,111 @@ export default function createTheme(
     typography: {
       font100: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '11px',
+        fontSize: '12px',
         fontWeight: 'normal',
-        lineHeight: '16px',
+        lineHeight: '20px',
+      },
+      font150: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '12px',
+        fontWeight: '500',
+        lineHeight: '20px',
       },
       font200: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '12px',
+        fontSize: '14px',
         fontWeight: 'normal',
         lineHeight: '20px',
       },
       font250: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '12px',
+        fontSize: '14px',
         fontWeight: 500,
         lineHeight: '20px',
       },
       font300: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '14px',
+        fontSize: '16px',
         fontWeight: 'normal',
-        lineHeight: '20px',
+        lineHeight: '24px',
       },
       font350: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '14px',
+        fontSize: '16px',
         fontWeight: 500,
-        lineHeight: '20px',
+        lineHeight: '24px',
       },
       font400: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '16px',
+        fontSize: '18px',
         fontWeight: 'normal',
-        lineHeight: '24px',
+        lineHeight: '28px',
       },
       font450: {
         fontFamily: primitives.primaryFontFamily,
-        fontSize: '16px',
-        fontWeight: 500,
-        lineHeight: '24px',
-      },
-      font460: {
-        fontFamily: primitives.primaryFontFamily,
-        fontSize: '18px',
-        fontWeight: 'normal',
-        lineHeight: '24px',
-      },
-      font470: {
-        fontFamily: primitives.primaryFontFamily,
         fontSize: '18px',
         fontWeight: 500,
-        lineHeight: '24px',
+        lineHeight: '28px',
       },
-      font500: {
+      font550: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '20px',
         fontWeight: 500,
         lineHeight: '28px',
       },
-      font600: {
+      font650: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '24px',
         fontWeight: 500,
+        lineHeight: '32px',
+      },
+      font750: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '28px',
+        fontWeight: 500,
         lineHeight: '36px',
       },
-      font700: {
+      font850: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '32px',
         fontWeight: 500,
-        lineHeight: '48px',
+        lineHeight: '40px',
       },
-      font800: {
+      font950: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '36px',
+        fontWeight: 500,
+        lineHeight: '44px',
+      },
+      font1050: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '40px',
         fontWeight: 500,
-        lineHeight: '56px',
+        lineHeight: '52px',
       },
-      font900: {
+      font1150: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '36px',
+        fontWeight: 500,
+        lineHeight: '44px',
+      },
+      font1250: {
+        fontFamily: primitives.primaryFontFamily,
+        fontSize: '44px',
+        fontWeight: 500,
+        lineHeight: '52px',
+      },
+      font1350: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '52px',
         fontWeight: 500,
-        lineHeight: '68px',
+        lineHeight: '64px',
       },
-      font1000: {
-        fontFamily: primitives.primaryFontFamily,
-        fontSize: '72px',
-        fontWeight: 'normal',
-        lineHeight: '96px',
-      },
-      font1100: {
+      font1450: {
         fontFamily: primitives.primaryFontFamily,
         fontSize: '96px',
-        fontWeight: 'normal',
-        lineHeight: '116px',
+        fontWeight: 500,
+        lineHeight: '112px',
       },
     },
     sizing: {

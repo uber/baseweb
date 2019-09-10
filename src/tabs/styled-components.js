@@ -27,7 +27,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     $theme: {colors, sizing, typography},
   } = props;
   let style = {
-    ...typography.font300,
+    ...typography.font200,
     boxSizing: 'border-box',
     color: $active ? colors.colorPrimary : colors.tabColor,
     cursor: $disabled ? 'not-allowed' : 'pointer',
@@ -39,7 +39,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     marginRight: sizing.scale200,
     borderBottom:
       $orientation === ORIENTATION.horizontal && $active
-        ? `2px solid ${colors.primary400}`
+        ? `2px solid ${colors.primary}`
         : 'none',
     display: 'inline-block',
   };
@@ -47,10 +47,10 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     style = {
       ...style,
       ':focus': {
-        color: colors.primary400,
+        color: colors.primary,
       },
       ':hover': {
-        color: colors.primary400,
+        color: colors.primary,
       },
     };
   }
@@ -79,7 +79,7 @@ export const TabContent = styled<SharedStylePropsArgT>('div', props => {
     $theme: {sizing, typography},
   } = props;
   return {
-    ...typography.font400,
+    ...typography.font300,
     display: $active ? 'block' : 'none',
     paddingLeft: sizing.scale800,
     paddingRight: sizing.scale800,

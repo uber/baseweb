@@ -80,6 +80,18 @@ function Colors() {
     primary50: {color: LightTheme.colors.primary50, dark: true},
   };
 
+  const accentColors = {
+    accent: {color: LightTheme.colors.accent, dark: false},
+    accent700: {color: LightTheme.colors.accent700, dark: false},
+    accent600: {color: LightTheme.colors.accent600, dark: false},
+    accent500: {color: LightTheme.colors.accent500, dark: false},
+    accent400: {color: LightTheme.colors.accent400, dark: false},
+    accent300: {color: LightTheme.colors.accent300, dark: true},
+    accent200: {color: LightTheme.colors.accent200, dark: true},
+    accent100: {color: LightTheme.colors.accent100, dark: true},
+    accent50: {color: LightTheme.colors.accent50, dark: true},
+  };
+
   const negativeColors = {
     negative: {color: LightTheme.colors.negative, dark: false},
     negative700: {color: LightTheme.colors.negative700, dark: false},
@@ -135,10 +147,11 @@ function Colors() {
   };
 
   return (
-    <Block font="font300">
+    <Block font="font200">
       <Header>Colors</Header>
       <ExampleWrapper>
         <ColorPreview colors={primaryColors} />
+        <ColorPreview colors={accentColors} />
         <ColorPreview colors={negativeColors} />
         <ColorPreview colors={warningColors} />
         <ColorPreview colors={positiveColors} />

@@ -27,7 +27,7 @@ function CustomTicks() {
             className={useCss({
               position: 'absolute',
               top: `-${theme.sizing.scale800}`,
-              ...theme.typography.font300,
+              ...theme.typography.font200,
               backgroundColor: 'transparent',
             })}
           >

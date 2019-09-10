@@ -31,6 +31,16 @@ export default () => (
         <Tag
           disabled
           onClick={() => {
+            onClick('accent');
+          }}
+          variant={variant}
+          kind="accent"
+        >
+          accent
+        </Tag>
+        <Tag
+          disabled
+          onClick={() => {
             onClick('positive');
           }}
           variant={variant}

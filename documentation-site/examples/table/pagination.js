@@ -48,7 +48,7 @@ function PaginatedTable(props: {data: any[], columns: any[]}) {
           paddingBottom: theme.sizing.scale600,
         })}
       >
-        <div className={useCss({...theme.typography.font700})}>
+        <div className={useCss({...theme.typography.font750})}>
           Table Example
         </div>
         <Button>

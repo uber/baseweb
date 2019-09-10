@@ -43,7 +43,7 @@ export const BarProgress = styled<StylePropsT>('div', props => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    backgroundColor: colors.primary400,
+    backgroundColor: colors.accent,
     width: width,
     transition: 'width 0.5s',
     height: '100%',
@@ -53,7 +53,7 @@ export const BarProgress = styled<StylePropsT>('div', props => {
 export const Label = styled<StylePropsT>('div', props => {
   return {
     textAlign: 'center',
-    ...props.$theme.typography.font250,
+    ...props.$theme.typography.font150,
     color: props.$theme.colors.mono700,
   };
 });

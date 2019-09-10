@@ -3,7 +3,7 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 import {StatefulPopover} from 'baseui/popover';
-import {Paragraph1} from 'baseui/typography';
+import {Paragraph3} from 'baseui/typography';
 
 export default () => {
   const [useCss, theme] = useStyletron();
@@ -18,11 +18,11 @@ export default () => {
       accessibilityType={'tooltip'}
       content={({close}) => (
         <div className={contentCx}>
-          <Paragraph1 paddingBottom="scale400">
+          <Paragraph3 paddingBottom="scale400">
             content render prop is passed a <code>close()</code>{' '}
             callback so it you can manually trigger popover close
             from within
-          </Paragraph1>
+          </Paragraph3>
           <Button onClick={close}>Dismiss</Button>
         </div>
       )}
