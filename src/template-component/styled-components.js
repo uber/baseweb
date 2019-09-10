@@ -12,7 +12,7 @@ import type {SharedStylePropsT} from './types.js';
 export const Root = styled<SharedStylePropsT>('div', props => {
   const {$prop, $theme} = props;
   return {
-    color: $prop ? $theme.colors.primary400 : $theme.colors.positive400,
+    color: $prop ? $theme.colors.accent : $theme.colors.positive400,
     cursor: 'pointer',
   };
 });

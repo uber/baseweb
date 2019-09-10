@@ -11,7 +11,7 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => ({
   display: 'flex',
   alignItems: 'center',
   color: $theme.colors.backgroundInv,
-  ...$theme.typography.font450,
+  ...$theme.typography.font350,
 }));
 
 export const StyledMaxLabel = styled<{}>('span', ({$theme}) => ({

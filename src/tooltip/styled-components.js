@@ -42,7 +42,7 @@ export const Inner = styled<SharedStylePropsArgT>('div', props => ({
   paddingBottom: props.$theme.sizing.scale300,
   paddingLeft: props.$theme.sizing.scale600,
   paddingRight: props.$theme.sizing.scale600,
-  ...props.$theme.typography.font250,
+  ...props.$theme.typography.font150,
   color: props.$theme.colors.tooltipText,
 }));
 

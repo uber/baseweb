@@ -29,7 +29,7 @@ const StyledLightingBox = themedStyled<{$boxShadow: string}>(
 function LightingPreview({name, boxShadow}) {
   return (
     <Block width="250px" margin="scale800">
-      <Block font="font400">
+      <Block font="font300">
         {name} ({boxShadow})
       </Block>
       <StyledLightingBox $boxShadow={boxShadow} />

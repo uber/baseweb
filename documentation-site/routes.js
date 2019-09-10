@@ -286,6 +286,10 @@ const routes = [
             itemId: '/components/styled',
           },
           {
+            title: 'Tokens',
+            itemId: '/components/tokens',
+          },
+          {
             title: 'A11y Validator',
             itemId: '/components/unstable-a11y',
           },

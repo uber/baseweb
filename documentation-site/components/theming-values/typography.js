@@ -18,7 +18,7 @@ function TypographyPreview({font}) {
 
   return (
     <Block margin="scale800">
-      <Block font="font400">{font}</Block>
+      <Block font="font300">{font}</Block>
       <Block font={font}>
         We ignite opportunity by setting the world in motion.
       </Block>
@@ -32,19 +32,23 @@ function TypographyPreview({font}) {
 function Typography() {
   const typography = [
     'font100',
+    'font150',
     'font200',
     'font250',
     'font300',
     'font350',
     'font400',
     'font450',
-    'font500',
-    'font600',
-    'font700',
-    'font800',
-    'font900',
-    'font1000',
-    'font1100',
+    'font550',
+    'font650',
+    'font750',
+    'font850',
+    'font950',
+    'font1050',
+    'font1150',
+    'font1250',
+    'font1350',
+    'font1450',
   ];
 
   return (
