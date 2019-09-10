@@ -96,7 +96,9 @@ const VersionSelector = () => {
                             close();
                           }}
                           overrides={{
-                            List: {style: {width: '100px'}},
+                            // using 315px to make sure an option is cut in half
+                            // so the user has a clue that it's scrollable
+                            List: {style: {width: '100px', maxHeight: '315px'}},
                             Option: {props: {size: 'compact'}},
                           }}
                         />
