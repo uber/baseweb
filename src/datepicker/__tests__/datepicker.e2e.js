@@ -99,21 +99,6 @@ describe('Datepicker', () => {
     expect(selectedValue).toBe('2019/03/10');
   });
 
-  it('selects day when typed', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
-    await page.click(selectors.input);
-
-    // input mask
-    let selectedValue = await page.$eval(selectors.input, input => input.value);
-    expect(selectedValue).toBe('    /  /  ');
-
-    // actual value
-    await page.type(selectors.input, '2019/03/10');
-    selectedValue = await page.$eval(selectors.input, input => input.value);
-    expect(selectedValue).toBe('2019/03/10');
-  });
-
   it('selects range', async () => {
     await mount(page, 'datepicker-range');
     await page.waitFor(selectors.input);
@@ -337,5 +322,23 @@ describe('Datepicker', () => {
     const text = await page.evaluate(element => element.textContent, value);
     // (Month YearTriangle Down) because it renders an icon within the element
     expect(text).toBe('December 2030Triangle Down');
+  });
+
+  it('selects day when typed', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+
+    // input mask
+    const initialValue = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(initialValue).toBe('    /  /  ');
+
+    // actual value
+    await page.type(selectors.input, '2019/03/10');
+    const nextValue = await page.$eval(selectors.input, input => input.value);
+    expect(nextValue).toBe('2019/03/10');
   });
 });
