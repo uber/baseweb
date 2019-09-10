@@ -14,7 +14,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
   overrides={Object {}}
   variant="light"
 >
-  <ForwardRef
+  <Root
     $clickable={false}
     $closeable={true}
     $disabled={false}
@@ -88,7 +88,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           }
         }
       >
-        <ForwardRef
+        <Text
           title="Some tag"
         >
           <MockStyledComponent
@@ -110,8 +110,8 @@ exports[`Stateless tag should render component: Component has correct render 1`]
               Some tag
             </span>
           </MockStyledComponent>
-        </ForwardRef>
-        <ForwardRef
+        </Text>
+        <Action
           $clickable={false}
           $closeable={true}
           $disabled={false}
@@ -174,7 +174,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                 }
               }
             >
-              <ForwardRef
+              <ActionIcon
                 fill="none"
                 height="10"
                 viewBox="0 0 8 8"
@@ -206,12 +206,12 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                     />
                   </svg>
                 </MockStyledComponent>
-              </ForwardRef>
+              </ActionIcon>
             </span>
           </MockStyledComponent>
-        </ForwardRef>
+        </Action>
       </span>
     </MockStyledComponent>
-  </ForwardRef>
+  </Root>
 </Tag>
 `;

@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Breadcrumbs displays separators in correct positions 1`] = `
-<ForwardRef
+<StyledRoot
   aria-label=""
   data-baseweb="breadcrumbs"
 >
-  <ForwardRef>
-    <ForwardRef
+  <StyledList>
+    <StyledListItem
       $itemIndex={0}
       key="breadcrumb-item-0"
     >
@@ -15,7 +15,7 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       >
         Parent Page
       </ForwardRef>
-      <ForwardRef
+      <StyledSeparator
         key="separator-0"
       >
         <ChevronRight
@@ -29,9 +29,9 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
             }
           }
         />
-      </ForwardRef>
-    </ForwardRef>
-    <ForwardRef
+      </StyledSeparator>
+    </StyledListItem>
+    <StyledListItem
       $itemIndex={1}
       key="breadcrumb-item-1"
     >
@@ -40,7 +40,7 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       >
         Sub-Parent Page
       </ForwardRef>
-      <ForwardRef
+      <StyledSeparator
         key="separator-1"
       >
         <ChevronRight
@@ -54,16 +54,16 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
             }
           }
         />
-      </ForwardRef>
-    </ForwardRef>
-    <ForwardRef
+      </StyledSeparator>
+    </StyledListItem>
+    <StyledListItem
       $itemIndex={2}
       key="breadcrumb-item-2"
     >
       <span>
         Current Page
       </span>
-    </ForwardRef>
-  </ForwardRef>
-</ForwardRef>
+    </StyledListItem>
+  </StyledList>
+</StyledRoot>
 `;
