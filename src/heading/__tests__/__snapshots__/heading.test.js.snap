@@ -7,25 +7,25 @@ exports[`Heading basic render 1`] = `
       as="h1"
       color="colorPrimary"
       data-baseweb="heading"
-      font="font1000"
+      font="font1050"
     >
       <Block
         as="h1"
         color="colorPrimary"
         data-baseweb="heading"
-        font="font1000"
+        font="font1050"
         forwardedRef={null}
       >
         <ForwardRef
           $as="h1"
           $color="colorPrimary"
-          $font="font1000"
+          $font="font1050"
           data-baseweb="heading"
         >
           <MockStyledComponent
             $as="h1"
             $color="colorPrimary"
-            $font="font1000"
+            $font="font1050"
             data-baseweb="heading"
             forwardedRef={null}
           >
@@ -35,10 +35,10 @@ exports[`Heading basic render 1`] = `
               test-style={
                 Object {
                   "color": "$theme.colors.colorPrimary",
-                  "fontFamily": "$theme.typography.font1000.fontFamily",
-                  "fontSize": "$theme.typography.font1000.fontSize",
-                  "fontWeight": "$theme.typography.font1000.fontWeight",
-                  "lineHeight": "$theme.typography.font1000.lineHeight",
+                  "fontFamily": "$theme.typography.font1050.fontFamily",
+                  "fontSize": "$theme.typography.font1050.fontSize",
+                  "fontWeight": "$theme.typography.font1050.fontWeight",
+                  "lineHeight": "$theme.typography.font1050.lineHeight",
                 }
               }
             >
@@ -55,25 +55,25 @@ exports[`Heading basic render 1`] = `
         as="h2"
         color="colorPrimary"
         data-baseweb="heading"
-        font="font900"
+        font="font950"
       >
         <Block
           as="h2"
           color="colorPrimary"
           data-baseweb="heading"
-          font="font900"
+          font="font950"
           forwardedRef={null}
         >
           <ForwardRef
             $as="h2"
             $color="colorPrimary"
-            $font="font900"
+            $font="font950"
             data-baseweb="heading"
           >
             <MockStyledComponent
               $as="h2"
               $color="colorPrimary"
-              $font="font900"
+              $font="font950"
               data-baseweb="heading"
               forwardedRef={null}
             >
@@ -83,10 +83,10 @@ exports[`Heading basic render 1`] = `
                 test-style={
                   Object {
                     "color": "$theme.colors.colorPrimary",
-                    "fontFamily": "$theme.typography.font900.fontFamily",
-                    "fontSize": "$theme.typography.font900.fontSize",
-                    "fontWeight": "$theme.typography.font900.fontWeight",
-                    "lineHeight": "$theme.typography.font900.lineHeight",
+                    "fontFamily": "$theme.typography.font950.fontFamily",
+                    "fontSize": "$theme.typography.font950.fontSize",
+                    "fontWeight": "$theme.typography.font950.fontWeight",
+                    "lineHeight": "$theme.typography.font950.lineHeight",
                   }
                 }
               >
@@ -103,25 +103,25 @@ exports[`Heading basic render 1`] = `
           as="h3"
           color="colorPrimary"
           data-baseweb="heading"
-          font="font800"
+          font="font850"
         >
           <Block
             as="h3"
             color="colorPrimary"
             data-baseweb="heading"
-            font="font800"
+            font="font850"
             forwardedRef={null}
           >
             <ForwardRef
               $as="h3"
               $color="colorPrimary"
-              $font="font800"
+              $font="font850"
               data-baseweb="heading"
             >
               <MockStyledComponent
                 $as="h3"
                 $color="colorPrimary"
-                $font="font800"
+                $font="font850"
                 data-baseweb="heading"
                 forwardedRef={null}
               >
@@ -131,10 +131,10 @@ exports[`Heading basic render 1`] = `
                   test-style={
                     Object {
                       "color": "$theme.colors.colorPrimary",
-                      "fontFamily": "$theme.typography.font800.fontFamily",
-                      "fontSize": "$theme.typography.font800.fontSize",
-                      "fontWeight": "$theme.typography.font800.fontWeight",
-                      "lineHeight": "$theme.typography.font800.lineHeight",
+                      "fontFamily": "$theme.typography.font850.fontFamily",
+                      "fontSize": "$theme.typography.font850.fontSize",
+                      "fontWeight": "$theme.typography.font850.fontWeight",
+                      "lineHeight": "$theme.typography.font850.lineHeight",
                     }
                   }
                 >
@@ -151,25 +151,25 @@ exports[`Heading basic render 1`] = `
             as="h4"
             color="colorPrimary"
             data-baseweb="heading"
-            font="font700"
+            font="font750"
           >
             <Block
               as="h4"
               color="colorPrimary"
               data-baseweb="heading"
-              font="font700"
+              font="font750"
               forwardedRef={null}
             >
               <ForwardRef
                 $as="h4"
                 $color="colorPrimary"
-                $font="font700"
+                $font="font750"
                 data-baseweb="heading"
               >
                 <MockStyledComponent
                   $as="h4"
                   $color="colorPrimary"
-                  $font="font700"
+                  $font="font750"
                   data-baseweb="heading"
                   forwardedRef={null}
                 >
@@ -179,10 +179,10 @@ exports[`Heading basic render 1`] = `
                     test-style={
                       Object {
                         "color": "$theme.colors.colorPrimary",
-                        "fontFamily": "$theme.typography.font700.fontFamily",
-                        "fontSize": "$theme.typography.font700.fontSize",
-                        "fontWeight": "$theme.typography.font700.fontWeight",
-                        "lineHeight": "$theme.typography.font700.lineHeight",
+                        "fontFamily": "$theme.typography.font750.fontFamily",
+                        "fontSize": "$theme.typography.font750.fontSize",
+                        "fontWeight": "$theme.typography.font750.fontWeight",
+                        "lineHeight": "$theme.typography.font750.lineHeight",
                       }
                     }
                   >
@@ -199,25 +199,25 @@ exports[`Heading basic render 1`] = `
               as="h5"
               color="colorPrimary"
               data-baseweb="heading"
-              font="font600"
+              font="font650"
             >
               <Block
                 as="h5"
                 color="colorPrimary"
                 data-baseweb="heading"
-                font="font600"
+                font="font650"
                 forwardedRef={null}
               >
                 <ForwardRef
                   $as="h5"
                   $color="colorPrimary"
-                  $font="font600"
+                  $font="font650"
                   data-baseweb="heading"
                 >
                   <MockStyledComponent
                     $as="h5"
                     $color="colorPrimary"
-                    $font="font600"
+                    $font="font650"
                     data-baseweb="heading"
                     forwardedRef={null}
                   >
@@ -227,10 +227,10 @@ exports[`Heading basic render 1`] = `
                       test-style={
                         Object {
                           "color": "$theme.colors.colorPrimary",
-                          "fontFamily": "$theme.typography.font600.fontFamily",
-                          "fontSize": "$theme.typography.font600.fontSize",
-                          "fontWeight": "$theme.typography.font600.fontWeight",
-                          "lineHeight": "$theme.typography.font600.lineHeight",
+                          "fontFamily": "$theme.typography.font650.fontFamily",
+                          "fontSize": "$theme.typography.font650.fontSize",
+                          "fontWeight": "$theme.typography.font650.fontWeight",
+                          "lineHeight": "$theme.typography.font650.lineHeight",
                         }
                       }
                     >
@@ -247,25 +247,25 @@ exports[`Heading basic render 1`] = `
                 as="h6"
                 color="colorPrimary"
                 data-baseweb="heading"
-                font="font500"
+                font="font550"
               >
                 <Block
                   as="h6"
                   color="colorPrimary"
                   data-baseweb="heading"
-                  font="font500"
+                  font="font550"
                   forwardedRef={null}
                 >
                   <ForwardRef
                     $as="h6"
                     $color="colorPrimary"
-                    $font="font500"
+                    $font="font550"
                     data-baseweb="heading"
                   >
                     <MockStyledComponent
                       $as="h6"
                       $color="colorPrimary"
-                      $font="font500"
+                      $font="font550"
                       data-baseweb="heading"
                       forwardedRef={null}
                     >
@@ -275,10 +275,10 @@ exports[`Heading basic render 1`] = `
                         test-style={
                           Object {
                             "color": "$theme.colors.colorPrimary",
-                            "fontFamily": "$theme.typography.font500.fontFamily",
-                            "fontSize": "$theme.typography.font500.fontSize",
-                            "fontWeight": "$theme.typography.font500.fontWeight",
-                            "lineHeight": "$theme.typography.font500.lineHeight",
+                            "fontFamily": "$theme.typography.font550.fontFamily",
+                            "fontSize": "$theme.typography.font550.fontSize",
+                            "fontWeight": "$theme.typography.font550.fontWeight",
+                            "lineHeight": "$theme.typography.font550.lineHeight",
                           }
                         }
                       >
@@ -298,25 +298,25 @@ exports[`Heading basic render 1`] = `
         as="h2"
         color="colorPrimary"
         data-baseweb="heading"
-        font="font900"
+        font="font950"
       >
         <Block
           as="h2"
           color="colorPrimary"
           data-baseweb="heading"
-          font="font900"
+          font="font950"
           forwardedRef={null}
         >
           <ForwardRef
             $as="h2"
             $color="colorPrimary"
-            $font="font900"
+            $font="font950"
             data-baseweb="heading"
           >
             <MockStyledComponent
               $as="h2"
               $color="colorPrimary"
-              $font="font900"
+              $font="font950"
               data-baseweb="heading"
               forwardedRef={null}
             >
@@ -326,10 +326,10 @@ exports[`Heading basic render 1`] = `
                 test-style={
                   Object {
                     "color": "$theme.colors.colorPrimary",
-                    "fontFamily": "$theme.typography.font900.fontFamily",
-                    "fontSize": "$theme.typography.font900.fontSize",
-                    "fontWeight": "$theme.typography.font900.fontWeight",
-                    "lineHeight": "$theme.typography.font900.lineHeight",
+                    "fontFamily": "$theme.typography.font950.fontFamily",
+                    "fontSize": "$theme.typography.font950.fontSize",
+                    "fontWeight": "$theme.typography.font950.fontWeight",
+                    "lineHeight": "$theme.typography.font950.lineHeight",
                   }
                 }
               >
@@ -353,25 +353,25 @@ exports[`Heading styleLevels 1`] = `
       as="h1"
       color="colorPrimary"
       data-baseweb="heading"
-      font="font900"
+      font="font950"
     >
       <Block
         as="h1"
         color="colorPrimary"
         data-baseweb="heading"
-        font="font900"
+        font="font950"
         forwardedRef={null}
       >
         <ForwardRef
           $as="h1"
           $color="colorPrimary"
-          $font="font900"
+          $font="font950"
           data-baseweb="heading"
         >
           <MockStyledComponent
             $as="h1"
             $color="colorPrimary"
-            $font="font900"
+            $font="font950"
             data-baseweb="heading"
             forwardedRef={null}
           >
@@ -381,10 +381,10 @@ exports[`Heading styleLevels 1`] = `
               test-style={
                 Object {
                   "color": "$theme.colors.colorPrimary",
-                  "fontFamily": "$theme.typography.font900.fontFamily",
-                  "fontSize": "$theme.typography.font900.fontSize",
-                  "fontWeight": "$theme.typography.font900.fontWeight",
-                  "lineHeight": "$theme.typography.font900.lineHeight",
+                  "fontFamily": "$theme.typography.font950.fontFamily",
+                  "fontSize": "$theme.typography.font950.fontSize",
+                  "fontWeight": "$theme.typography.font950.fontWeight",
+                  "lineHeight": "$theme.typography.font950.lineHeight",
                 }
               }
             >

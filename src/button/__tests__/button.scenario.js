@@ -8,21 +8,44 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../index.js';
-import ArrowRight from '../../icon/arrow-right.js';
+import {Button, KIND} from '../index.js';
 
 export const name = 'button';
 
-export const component = () => (
-  <React.Fragment>
-    <Button>Primary</Button>
-    <br />
-    <Button startEnhancer={ArrowRight}>Start Enhancer</Button>
-    <br />
-    <Button endEnhancer={ArrowRight}>End Enhancer</Button>
-    <br />
-    <Button startEnhancer={ArrowRight} endEnhancer={ArrowRight}>
-      Both Enhancers
-    </Button>
-  </React.Fragment>
-);
+export const component = () => {
+  return (
+    <table>
+      <tbody>
+        {Object.keys(KIND).map(kind => {
+          return (
+            <tr key={kind}>
+              <td>
+                <Button kind={kind}>Move</Button>
+              </td>
+              <td>
+                <Button kind={kind} isSelected>
+                  Move
+                </Button>
+              </td>
+              <td>
+                <Button kind={kind} isLoading>
+                  Move
+                </Button>
+              </td>
+              <td>
+                <Button kind={kind} disabled>
+                  Move
+                </Button>
+              </td>
+              <td>
+                <Button kind={kind} disabled isLoading>
+                  Move
+                </Button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+};

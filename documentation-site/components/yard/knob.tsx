@@ -35,7 +35,7 @@ const Label: React.FC<{
   return (
     <label
       className={css({
-        ...(theme.typography.font350 as any),
+        ...(theme.typography.font250 as any),
         color: theme.colors.foreground,
       })}
     >
@@ -137,7 +137,7 @@ const Knob: React.SFC<{
                     }),
                   },
                   Label: {
-                    style: ({$theme}) => $theme.typography.font350,
+                    style: ({$theme}) => $theme.typography.font250,
                   },
                 }}
               >

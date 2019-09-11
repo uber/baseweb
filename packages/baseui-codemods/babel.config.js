@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-/* global module */
 
 module.exports = {
   presets: [

@@ -217,7 +217,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                       </div>
                     }
                   >
-                    <Block font="font200">
+                    <Block font="font100">
                       [?] Component size, gzipped: {componentSizeKb}kb
                     </Block>
                   </StatefulTooltip>

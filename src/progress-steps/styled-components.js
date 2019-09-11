@@ -38,13 +38,13 @@ export const StyledIcon = styled<StylePropsT>(
     let size = $theme.sizing.scale300;
     let marginRight = $theme.sizing.scale500;
     let marginLeft = $theme.sizing.scale100;
-    let font = $theme.typography.font400;
+    let font = $theme.typography.font300;
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
+      currentColor = $theme.colors.primary;
     } else if ($isActive) {
-      font = $theme.typography.font450;
-      currentColor = $theme.colors.progressStepsIconActiveFill;
+      font = $theme.typography.font350;
+      currentColor = $theme.colors.progressStepsActiveFill;
     }
 
     if ($isActive) {
@@ -89,7 +89,7 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
     borderTopRightRadius: $theme.sizing.scale100,
     borderBottomRightRadius: $theme.sizing.scale100,
     borderBottomLeftRadius: $theme.sizing.scale100,
-    backgroundColor: $theme.colors.primary400,
+    backgroundColor: $theme.colors.progressStepsActiveText,
     textAlign: 'center',
   };
 });
@@ -105,11 +105,11 @@ export const StyledContentTitle = styled<StylePropsT>(
   'div',
   ({$theme, $isActive}) => {
     let color = $theme.colors.foregroundAlt;
-    let font = $theme.typography.font400;
+    let font = $theme.typography.font300;
 
     if ($isActive) {
       color = $theme.colors.foreground;
-      font = $theme.typography.font450;
+      font = $theme.typography.font350;
     }
 
     return {
@@ -125,7 +125,7 @@ export const StyledContentTail = styled<StylePropsT>(
     let currentColor = $theme.colors.mono400;
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
+      currentColor = $theme.colors.primary;
     }
 
     return {
@@ -171,16 +171,16 @@ export const StyledNumberIcon = styled<StylePropsT>(
     let color = $theme.colors.colorSecondary;
     let size = $theme.sizing.scale800;
     let marginRight = $theme.sizing.scale300;
-    let font = $theme.typography.font350;
-    let titleFont = $theme.typography.font400;
+    let font = $theme.typography.font250;
+    let titleFont = $theme.typography.font300;
 
     if ($isCompleted) {
-      backgroundColor = $theme.colors.primary400;
-      color = $theme.colors.white;
+      color = $theme.colors.progressStepsCompletedText;
+      backgroundColor = $theme.colors.progressStepsCompletedFill;
     } else if ($isActive) {
-      titleFont = $theme.typography.font450;
-      color = $theme.colors.primary400;
-      backgroundColor = $theme.colors.progressStepsIconActiveFill;
+      titleFont = $theme.typography.font350;
+      color = $theme.colors.progressStepsActiveText;
+      backgroundColor = $theme.colors.progressStepsActiveFill;
     }
 
     const marginTop = `calc((${titleFont.lineHeight} - ${size}) / 2)`;
@@ -212,7 +212,7 @@ export const StyledNumberContentTail = styled<StylePropsT>(
     let currentColor = $theme.colors.mono300;
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
+      currentColor = $theme.colors.primary;
     }
 
     return {
