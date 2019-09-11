@@ -9,6 +9,9 @@ export default () => (
       <Button>Default shape</Button>
     </p>
     <p>
+      <Button shape={SHAPE.pill}>Pill shape</Button>
+    </p>
+    <p>
       <Button shape={SHAPE.square}>
         <Upload />
       </Button>
