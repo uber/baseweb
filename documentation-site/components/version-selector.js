@@ -21,7 +21,10 @@ import versions from '../../versions.json';
 
 const majorVersions = Array.from(
   versions.reduce((set, version) => {
-    return set.add(semver.major(version.tag_name));
+    if (!version || !version.tag_name) {
+      return set;
+    }
+    return set.add(semver.major(semver.coerce(version.tag_name)));
   }, new Set()),
 ).map(version => ({
   label: `v${version}`,
