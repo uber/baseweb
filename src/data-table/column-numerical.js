@@ -89,6 +89,7 @@ const NumericalCell = React.forwardRef<NumericalCellPropsT, HTMLDivElement>(
     );
   },
 );
+NumericalCell.displayName = 'NumericalCell';
 
 function NumericalColumn(options: OptionsT): NumericalColumnT {
   return {
