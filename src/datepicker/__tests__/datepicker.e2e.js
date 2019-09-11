@@ -99,6 +99,18 @@ describe('Datepicker', () => {
     expect(selectedValue).toBe('2019/03/10');
   });
 
+  it('rerenders input if value is changed', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click('button');
+
+    const selectedValue = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue).toBe('2019/03/18');
+  });
+
   it('selects range', async () => {
     await mount(page, 'datepicker-range');
     await page.waitFor(selectors.input);
