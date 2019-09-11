@@ -8,19 +8,37 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDatepicker} from '../index.js';
+import {Datepicker} from '../index.js';
+import {Button} from '../../button/index.js';
 
 export const name = 'datepicker';
 
-export const component = () => (
-  <StatefulDatepicker
-    aria-label="Select a date"
-    highlightedDate={new Date('March 10, 2019')}
-    overrides={{
-      MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
-      MonthYearSelectStatefulMenu: {
-        props: {overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}}},
-      },
-    }}
-  />
-);
+export const component = () => {
+  const [date, setDate] = React.useState(null);
+
+  return (
+    <React.Fragment>
+      <Button
+        onClick={() => {
+          setDate(new Date('2019/03/18'));
+        }}
+        size="compact"
+      >
+        Set date
+      </Button>
+      <Datepicker
+        aria-label="Select a date"
+        highlightedDate={new Date('March 10, 2019')}
+        value={date}
+        overrides={{
+          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectStatefulMenu: {
+            props: {
+              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            },
+          },
+        }}
+      />
+    </React.Fragment>
+  );
+};
