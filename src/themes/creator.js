@@ -106,7 +106,7 @@ export default function createTheme(
 
       // Background
       background: primitives.mono100,
-      backgroundAlt: primitives.mono100,
+      backgroundAlt: primitives.mono200,
       backgroundInv: primitives.mono1000,
 
       // Foreground
