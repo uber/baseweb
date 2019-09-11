@@ -10,7 +10,9 @@ LICENSE file in the root directory of this source tree.
 import React, {Children} from 'react';
 
 import {LocaleContext} from '../locale/index.js';
+import {ThemeContext} from '../styles/theme-provider.js';
 import ChevronRight from '../icon/chevron-right.js';
+import ChevronLeft from '../icon/chevron-left.js';
 import type {BreadcrumbsPropsT} from './types.js';
 import type {BreadcrumbLocaleT} from './locale.js';
 import {
@@ -28,7 +30,8 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
   const childrenWithSeparators = [];
 
   const [Root, baseRootProps] = getOverrides(overrides.Root, StyledRoot);
-  const [Icon, baseIconProps] = getOverrides(overrides.Icon, ChevronRight);
+  const [Right, baseIconProps] = getOverrides(overrides.Icon, ChevronRight);
+  const [Left] = getOverrides(overrides.Icon, ChevronLeft);
   const [List, baseListProps] = getOverrides(overrides.List, StyledList);
   const [ListItem, baseListItemProps] = getOverrides(
     overrides.ListItem,
@@ -57,7 +60,15 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
         {child}
         {index !== numChildren - 1 && (
           <Separator {...baseSeparatorProps} key={`separator-${index}`}>
-            <Icon {...baseIconProps} />
+            <ThemeContext.Consumer>
+              {theme =>
+                theme.direction === 'rtl' ? (
+                  <Left {...baseIconProps} />
+                ) : (
+                  <Right {...baseIconProps} />
+                )
+              }
+            </ThemeContext.Consumer>
           </Separator>
         )}
       </ListItem>,
