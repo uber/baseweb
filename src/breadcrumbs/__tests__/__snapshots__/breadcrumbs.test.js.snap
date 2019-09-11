@@ -18,17 +18,9 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       <ForwardRef
         key="separator-0"
       >
-        <ChevronRight
-          overrides={
-            Object {
-              "Svg": Object {
-                "style": Object {
-                  "verticalAlign": "text-bottom",
-                },
-              },
-            }
-          }
-        />
+        <ContextConsumer>
+          <Component />
+        </ContextConsumer>
       </ForwardRef>
     </ForwardRef>
     <ForwardRef
@@ -43,17 +35,9 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       <ForwardRef
         key="separator-1"
       >
-        <ChevronRight
-          overrides={
-            Object {
-              "Svg": Object {
-                "style": Object {
-                  "verticalAlign": "text-bottom",
-                },
-              },
-            }
-          }
-        />
+        <ContextConsumer>
+          <Component />
+        </ContextConsumer>
       </ForwardRef>
     </ForwardRef>
     <ForwardRef
