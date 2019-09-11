@@ -1,5 +1,5 @@
 import {ButtonGroup, MODE} from 'baseui/button-group';
-import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
+import {Button} from 'baseui/button';
 import {PropTypes} from '../const';
 
 export default {
