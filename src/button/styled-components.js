@@ -34,7 +34,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     marginRight: 0,
     marginBottom: 0,
     ...getFontStyles({$theme, $size}),
-    ...getBorderRadiiStyles({$theme, $shape}),
+    ...getBorderRadiiStyles({$theme, $size, $shape}),
     ...getPaddingStyles({$theme, $size, $shape}),
     // Kind style override
     ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
@@ -95,24 +95,53 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
 );
 
 function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
-  return {
-    foreground: $disabled
-      ? $theme.colors.mono600
-      : $kind === KIND.primary
-      ? $theme.colors.white
-      : $theme.colors.primary,
-    background: $disabled
-      ? 'rgba(179, 179, 179, 0.32)'
-      : $kind === KIND.primary
-      ? 'rgba(255, 255, 255, 0.32)'
-      : 'rgba(39, 110, 241, 0.32)',
-  };
+  if ($disabled) {
+    return {
+      foreground: $theme.colors.buttonDisabledSpinnerForeground,
+      background: $theme.colors.buttonDisabledSpinnerBackground,
+    };
+  }
+  switch ($kind) {
+    case KIND.secondary: {
+      return {
+        foreground: $theme.colors.buttonSecondarySpinnerForeground,
+        background: $theme.colors.buttonSecondarySpinnerBackground,
+      };
+    }
+    case KIND.tertiary: {
+      return {
+        foreground: $theme.colors.buttonTertiarySpinnerForeground,
+        background: $theme.colors.buttonTertiarySpinnerBackground,
+      };
+    }
+    case KIND.minimal: {
+      return {
+        foreground: $theme.colors.buttonMinimalSpinnerForeground,
+        background: $theme.colors.buttonMinimalSpinnerBackground,
+      };
+    }
+    case KIND.primary:
+    default: {
+      return {
+        foreground: $theme.colors.buttonPrimarySpinnerForeground,
+        background: $theme.colors.buttonPrimarySpinnerBackground,
+      };
+    }
+  }
 }
 
-function getBorderRadiiStyles({$theme, $shape}) {
+function getBorderRadiiStyles({$theme, $size, $shape}) {
   let value = $theme.borders.buttonBorderRadius;
 
-  if ($shape === SHAPE.round) {
+  if ($shape === SHAPE.pill) {
+    if ($size === SIZE.compact) {
+      value = '30px';
+    } else if ($size === SIZE.large) {
+      value = '42px';
+    } else {
+      value = '38px';
+    }
+  } else if ($shape === SHAPE.round) {
     value = '50%';
   }
 
@@ -127,49 +156,49 @@ function getBorderRadiiStyles({$theme, $shape}) {
 function getFontStyles({$theme, $size}) {
   switch ($size) {
     case SIZE.compact:
-      return $theme.typography.font450;
+      return $theme.typography.font350;
     case SIZE.large:
-      return $theme.typography.font500;
+      return $theme.typography.font550;
     default:
-      return $theme.typography.font470;
+      return $theme.typography.font450;
   }
 }
 
 function getPaddingStyles({$theme, $size, $shape}) {
-  const defaultShape = $shape === SHAPE.default;
+  const iconShape = $shape === SHAPE.square || $shape === SHAPE.round;
   switch ($size) {
     case SIZE.compact:
       return {
         paddingTop: $theme.sizing.scale200,
         paddingBottom: $theme.sizing.scale200,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale500
-          : $theme.sizing.scale200,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale500
-          : $theme.sizing.scale200,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale500,
+        paddingRight: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale500,
       };
     case SIZE.large:
       return {
         paddingTop: $theme.sizing.scale550,
         paddingBottom: $theme.sizing.scale550,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale700
-          : $theme.sizing.scale550,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale700
-          : $theme.sizing.scale550,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale550
+          : $theme.sizing.scale700,
+        paddingRight: iconShape
+          ? $theme.sizing.scale550
+          : $theme.sizing.scale700,
       };
     default:
       return {
         paddingTop: $theme.sizing.scale500,
         paddingBottom: $theme.sizing.scale500,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale600
-          : $theme.sizing.scale500,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale600
-          : $theme.sizing.scale500,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale600,
+        paddingRight: iconShape
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale600,
       };
   }
 }
@@ -180,11 +209,15 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
   }
   switch ($kind) {
     case KIND.primary:
+      if ($isSelected) {
+        return {
+          color: $theme.colors.buttonPrimarySelectedText,
+          backgroundColor: $theme.colors.buttonPrimarySelectedFill,
+        };
+      }
       return {
         color: $theme.colors.buttonPrimaryText,
-        backgroundColor: $isSelected
-          ? $theme.colors.buttonPrimaryHover
-          : $theme.colors.buttonPrimaryFill,
+        backgroundColor: $theme.colors.buttonPrimaryFill,
         ':hover': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonPrimaryActive
@@ -200,11 +233,15 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         },
       };
     case KIND.secondary:
+      if ($isSelected) {
+        return {
+          color: $theme.colors.buttonSecondarySelectedText,
+          backgroundColor: $theme.colors.buttonSecondarySelectedFill,
+        };
+      }
       return {
         color: $theme.colors.buttonSecondaryText,
-        backgroundColor: $isSelected
-          ? $theme.colors.buttonSecondaryHover
-          : $theme.colors.buttonSecondaryFill,
+        backgroundColor: $theme.colors.buttonSecondaryFill,
         ':hover': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonSecondaryActive
@@ -225,31 +262,34 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
           color: $theme.colors.buttonTertiarySelectedText,
           backgroundColor: $theme.colors.buttonTertiarySelectedFill,
         };
-      } else {
+      }
+      return {
+        color: $theme.colors.buttonTertiaryText,
+        backgroundColor: $theme.colors.buttonTertiaryFill,
+        ':hover': {
+          backgroundColor: $isLoading
+            ? $theme.colors.buttonTertiaryActive
+            : $theme.colors.buttonTertiaryHover,
+        },
+        ':focus': {
+          backgroundColor: $isLoading
+            ? $theme.colors.buttonTertiaryActive
+            : $theme.colors.buttonTertiaryHover,
+        },
+        ':active': {
+          backgroundColor: $theme.colors.buttonTertiaryActive,
+        },
+      };
+    case KIND.minimal:
+      if ($isSelected) {
         return {
-          color: $theme.colors.buttonTertiaryText,
-          backgroundColor: $theme.colors.buttonTertiaryFill,
-          ':hover': {
-            backgroundColor: $isLoading
-              ? $theme.colors.buttonTertiaryActive
-              : $theme.colors.buttonTertiaryHover,
-          },
-          ':focus': {
-            backgroundColor: $isLoading
-              ? $theme.colors.buttonTertiaryActive
-              : $theme.colors.buttonTertiaryHover,
-          },
-          ':active': {
-            backgroundColor: $theme.colors.buttonTertiaryActive,
-          },
+          color: $theme.colors.buttonMinimalSelectedText,
+          backgroundColor: $theme.colors.buttonMinimalSelectedFill,
         };
       }
-    case KIND.minimal:
       return {
         color: $theme.colors.buttonMinimalText,
-        backgroundColor: $isSelected
-          ? $theme.colors.buttonMinimalHover
-          : $theme.colors.buttonMinimalFill,
+        backgroundColor: $theme.colors.buttonMinimalFill,
         ':hover': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonMinimalActive

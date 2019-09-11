@@ -58,7 +58,7 @@ export const Item = styled<SharedStylePropsArgT>(
       listStyle: 'none',
       cursor: $isDragged ? 'grabbing' : 'grab',
       backgroundColor: $theme.colors.backgroundAlt,
-      boxShadow: $isDragged ? '0 2px 6px rgba(39, 110, 241, 0.32)' : null,
+      boxShadow: $isDragged ? '0 2px 6px rgba(0, 0, 0, 0.32)' : null,
       borderTopWidth: '2px',
       borderBottomWidth: '2px',
       borderLeftWidth: '2px',
@@ -111,6 +111,6 @@ CloseHandle.displayName = 'StyledCloseHandle';
 
 export const Label = styled<SharedStylePropsArgT>('div', ({$theme}) => ({
   flexGrow: 1,
-  ...$theme.typography.font400,
+  ...$theme.typography.font300,
 }));
 Label.displayName = 'StyledLabel';

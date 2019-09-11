@@ -42,7 +42,7 @@ export default () => {
         BarProgress: {
           style: ({$theme, $value}) => {
             return {
-              ...$theme.typography.font450,
+              ...$theme.typography.font350,
               backgroundColor: $theme.colors.positive,
               color: $theme.colors.mono200,
               position: 'relative',

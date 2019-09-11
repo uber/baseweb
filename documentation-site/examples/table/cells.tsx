@@ -19,7 +19,7 @@ import {
   StyledCell,
   StyledAction,
 } from 'baseui/table';
-import {Caption1, Caption2, Paragraph1} from 'baseui/typography';
+import {Caption1, Caption2, Paragraph3} from 'baseui/typography';
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,
@@ -27,7 +27,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
 });
 
 const StyledDeltaCell = withStyle(StyledCell, (props: any) => ({
-  ...props.$theme.typography.font500,
+  ...props.$theme.typography.font550,
   alignItems: 'center',
   backgroundColor: props.$isNegative
     ? props.$theme.colors.negative50
@@ -284,7 +284,7 @@ export default () => {
               <StyledHeadingCell>
                 <Block>
                   <Caption1>{row[2]}</Caption1>
-                  <Paragraph1 as="div">{row[1]}</Paragraph1>
+                  <Paragraph3 as="div">{row[1]}</Paragraph3>
                 </Block>
               </StyledHeadingCell>
 
@@ -300,7 +300,7 @@ export default () => {
               </StyledDeltaCell>
 
               <StyledLargeText>
-                <Block font="font500">{row[4]}</Block>
+                <Block font="font550">{row[4]}</Block>
                 <Caption2 paddingLeft="scale200">+1000%</Caption2>
               </StyledLargeText>
 

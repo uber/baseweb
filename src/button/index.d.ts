@@ -21,6 +21,7 @@ export interface SIZE {
 
 export interface SHAPE {
   default: 'default';
+  pill: 'pill';
   round: 'round';
   square: 'square';
 }

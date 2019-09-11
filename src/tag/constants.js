@@ -15,6 +15,7 @@ export const VARIANT = Object.freeze({
 export const KIND = [
   'neutral',
   'primary',
+  'accent',
   'positive',
   'warning',
   'negative',

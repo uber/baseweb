@@ -7,7 +7,7 @@ import {
   PLACEMENT,
   TRIGGER_TYPE,
 } from 'baseui/popover';
-import {Paragraph1} from 'baseui/typography';
+import {Paragraph3} from 'baseui/typography';
 
 export default () => {
   const [useCss, theme] = useStyletron();
@@ -27,9 +27,7 @@ export default () => {
             placement={PLACEMENT[key]}
             triggerType={TRIGGER_TYPE.hover}
             content={
-              <Paragraph1 padding="scale300">{`PLACEMENT.${
-                PLACEMENT[key]
-              }`}</Paragraph1>
+              <Paragraph3 padding="scale300">{`PLACEMENT.${PLACEMENT[key]}`}</Paragraph3>
             }
             accessibilityType={'tooltip'}
           >

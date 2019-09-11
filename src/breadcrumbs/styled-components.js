@@ -12,7 +12,7 @@ import {styled} from '../styles/index.js';
 export const StyledRoot = styled<{}>('nav', ({$theme}) => {
   return {
     color: $theme.colors.breadcrumbsText,
-    ...$theme.typography.font450,
+    ...$theme.typography.font350,
   };
 });
 
@@ -21,14 +21,14 @@ export const StyledList = styled<{}>('ol', ({$theme}) => {
     listStyleType: 'none',
     margin: 0,
     padding: 0,
-    ...$theme.typography.font450,
+    ...$theme.typography.font350,
   };
 });
 
 export const StyledListItem = styled<{}>('li', ({$theme}) => {
   return {
     display: 'inline-block',
-    ...$theme.typography.font450,
+    ...$theme.typography.font350,
   };
 });
 

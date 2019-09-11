@@ -11,8 +11,8 @@ function ControlledButtonGroup() {
 
   const fontWeight =
     selected === 0
-      ? theme.typography.font450
-      : theme.typography.font400;
+      ? theme.typography.font350
+      : theme.typography.font300;
 
   return (
     <React.Fragment>
