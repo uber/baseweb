@@ -173,13 +173,13 @@ export default class Datepicker extends React.Component<
       Popover,
     );
     const mask =
+      // using the mask provided through the top-level API
+      this.props.mask ||
       // to make sure it's not a breaking change, we try calculating the input mask
       // from the formatString, if used by the developer
       (this.props.formatString
         ? this.props.formatString.replace(/[a-z]/gi, '9')
         : null) ||
-      // using the mask provided through the top-level API
-      this.props.mask ||
       // falling back to the default masks
       (this.props.range ? '9999/99/99 - 9999/99/99' : '9999/99/99');
 
