@@ -12,9 +12,12 @@ const ListItem = withStyle(StyledDropdownListItem, {
   alignItems: 'center',
 });
 
-const Container = withStyle(StyledList, ({$height}) => ({
-  height: $height,
-}));
+const Container = withStyle(
+  StyledList,
+  (props: {$height: string}) => ({
+    height: props.$height,
+  }),
+);
 
 const VirtualList = React.forwardRef((props: any, ref) => {
   const children = React.Children.toArray(props.children);
