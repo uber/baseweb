@@ -164,7 +164,7 @@ function Thumbnail({children, label, href, scale = 1}) {
 }
 
 function Section({nature}) {
-  const [css, theme] = useStyletron();
+  const [css] = useStyletron();
   return (
     <React.Fragment>
       <H4>{nature}</H4>
