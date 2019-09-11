@@ -162,6 +162,14 @@ export default class Datepicker extends React.Component<
     }
   };
 
+  componentDidUpdate(prevProps: DatepickerPropsT) {
+    if (prevProps.value !== this.props.value) {
+      this.setState({
+        inputValue: this.formatDisplayValue(this.props.value),
+      });
+    }
+  }
+
   render() {
     const {overrides = {}} = this.props;
     const [InputComponent, inputProps] = getOverrides(
