@@ -34,7 +34,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     marginRight: 0,
     marginBottom: 0,
     ...getFontStyles({$theme, $size}),
-    ...getBorderRadiiStyles({$theme, $shape}),
+    ...getBorderRadiiStyles({$theme, $size, $shape}),
     ...getPaddingStyles({$theme, $size, $shape}),
     // Kind style override
     ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
@@ -95,24 +95,53 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
 );
 
 function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
-  return {
-    foreground: $disabled
-      ? $theme.colors.mono600
-      : $kind === KIND.primary
-      ? $theme.colors.white
-      : $theme.colors.primary,
-    background: $disabled
-      ? 'rgba(179, 179, 179, 0.32)'
-      : $kind === KIND.primary
-      ? 'rgba(255, 255, 255, 0.32)'
-      : 'rgba(39, 110, 241, 0.32)',
-  };
+  if ($disabled) {
+    return {
+      foreground: $theme.colors.buttonDisabledSpinnerForeground,
+      background: $theme.colors.buttonDisabledSpinnerBackground,
+    };
+  }
+  switch ($kind) {
+    case KIND.secondary: {
+      return {
+        foreground: $theme.colors.buttonSecondarySpinnerForeground,
+        background: $theme.colors.buttonSecondarySpinnerBackground,
+      };
+    }
+    case KIND.tertiary: {
+      return {
+        foreground: $theme.colors.buttonTertiarySpinnerForeground,
+        background: $theme.colors.buttonTertiarySpinnerBackground,
+      };
+    }
+    case KIND.minimal: {
+      return {
+        foreground: $theme.colors.buttonMinimalSpinnerForeground,
+        background: $theme.colors.buttonMinimalSpinnerBackground,
+      };
+    }
+    case KIND.primary:
+    default: {
+      return {
+        foreground: $theme.colors.buttonPrimarySpinnerForeground,
+        background: $theme.colors.buttonPrimarySpinnerBackground,
+      };
+    }
+  }
 }
 
-function getBorderRadiiStyles({$theme, $shape}) {
+function getBorderRadiiStyles({$theme, $size, $shape}) {
   let value = $theme.borders.buttonBorderRadius;
 
-  if ($shape === SHAPE.round) {
+  if ($shape === SHAPE.pill) {
+    if ($size === SIZE.compact) {
+      value = '30px';
+    } else if ($size === SIZE.large) {
+      value = '42px';
+    } else {
+      value = '38px';
+    }
+  } else if ($shape === SHAPE.round) {
     value = '50%';
   }
 
@@ -136,40 +165,40 @@ function getFontStyles({$theme, $size}) {
 }
 
 function getPaddingStyles({$theme, $size, $shape}) {
-  const defaultShape = $shape === SHAPE.default;
+  const iconShape = $shape === SHAPE.square || $shape === SHAPE.round;
   switch ($size) {
     case SIZE.compact:
       return {
         paddingTop: $theme.sizing.scale200,
         paddingBottom: $theme.sizing.scale200,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale500
-          : $theme.sizing.scale200,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale500
-          : $theme.sizing.scale200,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale500,
+        paddingRight: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale500,
       };
     case SIZE.large:
       return {
         paddingTop: $theme.sizing.scale550,
         paddingBottom: $theme.sizing.scale550,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale700
-          : $theme.sizing.scale550,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale700
-          : $theme.sizing.scale550,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale550
+          : $theme.sizing.scale700,
+        paddingRight: iconShape
+          ? $theme.sizing.scale550
+          : $theme.sizing.scale700,
       };
     default:
       return {
         paddingTop: $theme.sizing.scale500,
         paddingBottom: $theme.sizing.scale500,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale600
-          : $theme.sizing.scale500,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale600
-          : $theme.sizing.scale500,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale600,
+        paddingRight: iconShape
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale600,
       };
   }
 }

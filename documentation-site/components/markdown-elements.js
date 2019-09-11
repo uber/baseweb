@@ -11,6 +11,7 @@ import * as React from 'react';
 
 import Head from 'next/head';
 import {Block} from 'baseui/block';
+import {StyledLink} from 'baseui/link';
 import Code from './code';
 import {themedStyled} from '../pages/_app';
 import Link from 'next/link';
@@ -113,9 +114,9 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
     (parts[0] === '' && parts[1] !== '') || !href.includes('http');
   return (
     <Link href={href}>
-      <a href={href} {...(internal ? {} : {target: '_blank'})}>
+      <StyledLink href={href} {...(internal ? {} : {target: '_blank'})}>
         {children}
-      </a>
+      </StyledLink>
     </Link>
   );
 };
