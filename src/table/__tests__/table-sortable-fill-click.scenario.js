@@ -1,3 +1,11 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
 import * as React from 'react';
 
 import {
@@ -8,7 +16,9 @@ import {
   StyledCell,
   SortableHeadCell,
   SORT_DIRECTION,
-} from 'baseui/table';
+} from '../index.js';
+
+export const name = 'table-sortable-fill-click';
 
 const DATA = [
   ['Marlyn', 10],
@@ -33,18 +43,11 @@ const DATA = [
   ['Neil', 27],
 ];
 
-type DirectionT = SORT_DIRECTION | null;
-
-export default class SortableTable extends React.Component<
-  {},
-  {
-    nameDirection: DirectionT;
-    ageDirection: DirectionT;
-  }
-> {
+// eslint-disable-next-line flowtype/no-weak-types
+class SortableTable extends React.Component<any, any> {
   state = {nameDirection: null, ageDirection: null};
 
-  handleSort = (title: string, prevDirection: DirectionT) => {
+  handleSort = (title: string, prevDirection: ?string) => {
     let nextDirection = null;
     if (prevDirection === SORT_DIRECTION.ASC) {
       nextDirection = SORT_DIRECTION.DESC;
@@ -57,28 +60,20 @@ export default class SortableTable extends React.Component<
     }
 
     if (title === 'name') {
-      this.setState({
-        nameDirection: nextDirection,
-        ageDirection: null,
-      });
+      this.setState({nameDirection: nextDirection, ageDirection: null});
       return;
     }
 
     if (title === 'age') {
-      this.setState({
-        nameDirection: null,
-        ageDirection: nextDirection,
-      });
+      this.setState({nameDirection: null, ageDirection: nextDirection});
       return;
     }
   };
 
   getSortedData = () => {
     if (this.state.nameDirection) {
-      const sorted = DATA.slice(0).sort((a, b) =>
-        //@ts-ignore
-        a[0].localeCompare(b[0]),
-      );
+      // $FlowFixMe
+      const sorted = DATA.slice(0).sort((a, b) => a[0].localeCompare(b[0]));
 
       if (this.state.nameDirection === SORT_DIRECTION.ASC) {
         return sorted;
@@ -90,7 +85,6 @@ export default class SortableTable extends React.Component<
     }
 
     if (this.state.ageDirection) {
-      //@ts-ignore
       const sorted = DATA.slice(0).sort((a, b) => a[1] - b[1]);
       if (this.state.ageDirection === SORT_DIRECTION.ASC) {
         return sorted;
@@ -112,17 +106,15 @@ export default class SortableTable extends React.Component<
             <SortableHeadCell
               title="Name"
               direction={this.state.nameDirection}
-              onSort={() =>
-                this.handleSort('name', this.state.nameDirection)
-              }
+              onSort={() => this.handleSort('name', this.state.nameDirection)}
               fillClickTarget
             />
             <SortableHeadCell
+              disabled
               title="Age"
               direction={this.state.ageDirection}
-              onSort={() =>
-                this.handleSort('age', this.state.ageDirection)
-              }
+              onSort={() => this.handleSort('age', this.state.ageDirection)}
+              fillClickTarget
             />
           </StyledHead>
           <StyledBody>
@@ -139,3 +131,5 @@ export default class SortableTable extends React.Component<
     );
   }
 }
+
+export const component = () => <SortableTable />;
