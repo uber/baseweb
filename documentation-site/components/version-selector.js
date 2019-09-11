@@ -21,7 +21,10 @@ import versions from '../../versions.json';
 
 const majorVersions = Array.from(
   versions.reduce((set, version) => {
-    return set.add(semver.major(version.tag_name));
+    if (!version || !version.tag_name) {
+      return set;
+    }
+    return set.add(semver.major(semver.coerce(version.tag_name)));
   }, new Set()),
 ).map(version => ({
   label: `v${version}`,
@@ -96,7 +99,9 @@ const VersionSelector = () => {
                             close();
                           }}
                           overrides={{
-                            List: {style: {width: '100px'}},
+                            // using 315px to make sure an option is cut in half
+                            // so the user has a clue that it's scrollable
+                            List: {style: {width: '100px', maxHeight: '315px'}},
                             Option: {props: {size: 'compact'}},
                           }}
                         />

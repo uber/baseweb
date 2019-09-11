@@ -42,6 +42,8 @@ export default {
     buttonPrimaryActive: primitives.primary200,
     buttonPrimarySelectedText: BLACK,
     buttonPrimarySelectedFill: primitives.primary200,
+    buttonPrimarySpinnerForeground: primitives.primary700,
+    buttonPrimarySpinnerBackground: primitives.primary300,
 
     buttonSecondaryFill: primitives.primary700,
     buttonSecondaryText: primitives.primary,
@@ -49,6 +51,8 @@ export default {
     buttonSecondaryActive: primitives.primary500,
     buttonSecondarySelectedText: primitives.primary,
     buttonSecondarySelectedFill: primitives.primary500,
+    buttonSecondarySpinnerForeground: WHITE,
+    buttonSecondarySpinnerBackground: primitives.primary400,
 
     buttonTertiaryFill: 'transparent',
     buttonTertiaryText: primitives.primary,
@@ -56,6 +60,8 @@ export default {
     buttonTertiaryActive: primitives.primary600,
     buttonTertiarySelectedText: primitives.primary,
     buttonTertiarySelectedFill: primitives.primary600,
+    buttonTertiarySpinnerForeground: primitives.primary50,
+    buttonTertiarySpinnerBackground: primitives.primary500,
 
     buttonMinimalFill: 'transparent',
     buttonMinimalText: primitives.primary,
@@ -63,9 +69,13 @@ export default {
     buttonMinimalActive: primitives.primary600,
     buttonMinimalSelectedText: primitives.primary,
     buttonMinimalSelectedFill: primitives.primary600,
+    buttonMinimalSpinnerForeground: primitives.primary50,
+    buttonMinimalSpinnerBackground: primitives.primary500,
 
     buttonDisabledFill: primitives.mono600,
     buttonDisabledText: primitives.mono300,
+    buttonDisabledSpinnerForeground: primitives.mono200,
+    buttonDisabledSpinnerBackground: primitives.mono400,
 
     // Breadcrumbs
     breadcrumbsText: primitives.mono100,

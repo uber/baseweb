@@ -127,6 +127,8 @@ export default function createTheme(
       buttonPrimaryActive: primitives.primary600,
       buttonPrimarySelectedFill: primitives.primary600,
       buttonPrimarySelectedText: WHITE,
+      buttonPrimarySpinnerForeground: primitives.primary50,
+      buttonPrimarySpinnerBackground: primitives.primary500,
 
       buttonSecondaryFill: primitives.primary50,
       buttonSecondaryText: primitives.primary,
@@ -134,6 +136,8 @@ export default function createTheme(
       buttonSecondaryActive: primitives.primary200,
       buttonSecondarySelectedFill: primitives.primary200,
       buttonSecondarySelectedText: primitives.primary,
+      buttonSecondarySpinnerForeground: primitives.primary700,
+      buttonSecondarySpinnerBackground: primitives.primary300,
 
       buttonTertiaryFill: 'transparent',
       buttonTertiaryText: primitives.primary,
@@ -141,6 +145,8 @@ export default function createTheme(
       buttonTertiaryActive: primitives.primary100,
       buttonTertiarySelectedFill: primitives.primary100,
       buttonTertiarySelectedText: primitives.primary,
+      buttonTertiarySpinnerForeground: primitives.primary700,
+      buttonTertiarySpinnerBackground: primitives.primary300,
 
       buttonMinimalFill: 'transparent',
       buttonMinimalText: primitives.primary,
@@ -148,9 +154,13 @@ export default function createTheme(
       buttonMinimalActive: primitives.primary100,
       buttonMinimalSelectedFill: primitives.primary100,
       buttonMinimalSelectedText: primitives.primary,
+      buttonMinimalSpinnerForeground: primitives.primary700,
+      buttonMinimalSpinnerBackground: primitives.primary300,
 
       buttonDisabledFill: primitives.mono200,
       buttonDisabledText: primitives.mono600,
+      buttonDisabledSpinnerForeground: primitives.mono600,
+      buttonDisabledSpinnerBackground: primitives.mono400,
 
       // Breadcrumbs
       breadcrumbsText: primitives.mono900,
