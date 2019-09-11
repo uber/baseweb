@@ -34,7 +34,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     marginRight: 0,
     marginBottom: 0,
     ...getFontStyles({$theme, $size}),
-    ...getBorderRadiiStyles({$theme, $shape}),
+    ...getBorderRadiiStyles({$theme, $size, $shape}),
     ...getPaddingStyles({$theme, $size, $shape}),
     // Kind style override
     ...getKindStyles({$theme, $kind, $isLoading, $isSelected, $disabled}),
@@ -130,10 +130,18 @@ function getLoadingSpinnerColors({$theme, $kind, $disabled}) {
   }
 }
 
-function getBorderRadiiStyles({$theme, $shape}) {
+function getBorderRadiiStyles({$theme, $size, $shape}) {
   let value = $theme.borders.buttonBorderRadius;
 
-  if ($shape === SHAPE.round) {
+  if ($shape === SHAPE.pill) {
+    if ($size === SIZE.compact) {
+      value = '30px';
+    } else if ($size === SIZE.large) {
+      value = '42px';
+    } else {
+      value = '38px';
+    }
+  } else if ($shape === SHAPE.round) {
     value = '50%';
   }
 
@@ -157,40 +165,40 @@ function getFontStyles({$theme, $size}) {
 }
 
 function getPaddingStyles({$theme, $size, $shape}) {
-  const defaultShape = $shape === SHAPE.default;
+  const iconShape = $shape === SHAPE.square || $shape === SHAPE.round;
   switch ($size) {
     case SIZE.compact:
       return {
         paddingTop: $theme.sizing.scale200,
         paddingBottom: $theme.sizing.scale200,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale500
-          : $theme.sizing.scale200,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale500
-          : $theme.sizing.scale200,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale500,
+        paddingRight: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale500,
       };
     case SIZE.large:
       return {
         paddingTop: $theme.sizing.scale550,
         paddingBottom: $theme.sizing.scale550,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale700
-          : $theme.sizing.scale550,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale700
-          : $theme.sizing.scale550,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale550
+          : $theme.sizing.scale700,
+        paddingRight: iconShape
+          ? $theme.sizing.scale550
+          : $theme.sizing.scale700,
       };
     default:
       return {
         paddingTop: $theme.sizing.scale500,
         paddingBottom: $theme.sizing.scale500,
-        paddingLeft: defaultShape
-          ? $theme.sizing.scale600
-          : $theme.sizing.scale500,
-        paddingRight: defaultShape
-          ? $theme.sizing.scale600
-          : $theme.sizing.scale500,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale600,
+        paddingRight: iconShape
+          ? $theme.sizing.scale500
+          : $theme.sizing.scale600,
       };
   }
 }
