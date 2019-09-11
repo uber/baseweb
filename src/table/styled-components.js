@@ -101,7 +101,7 @@ StyledHeadCell.displayName = 'StyledHeadCell';
 
 export const StyledSortableLabel = styled<{}>('button', ({$theme}) => {
   return {
-    ...$theme.typography.font350,
+    ...$theme.typography.font250,
     alignItems: 'center',
     backgroundColor: 'transparent',
     border: 'none',
@@ -153,7 +153,7 @@ const StyledCellElement = styled<CellStyledProps>(
   'div',
   ({$theme, $striped}) => {
     return {
-      ...$theme.typography.font300,
+      ...$theme.typography.font200,
       backgroundColor: $striped ? $theme.colors.tableStripedBackground : null,
       color: $theme.colors.colorPrimary,
       display: 'flex',
@@ -195,7 +195,7 @@ export const StyledFilterContent = styled<{}>('div', ({$theme}) => ({
 }));
 
 export const StyledFilterHeading = styled<{}>('div', ({$theme}) => ({
-  ...$theme.typography.font350,
+  ...$theme.typography.font250,
   color: $theme.colors.tableFilterHeading,
   paddingTop: $theme.sizing.scale500,
   paddingRight: $theme.sizing.scale600,

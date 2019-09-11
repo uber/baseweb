@@ -7,10 +7,21 @@ steps:
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
     agents:
       queue: builders
+  - name: ':docker: :package: docs'
+    plugins:
+      'docker-compose#v3.0.3':
+        build:
+          - docs-site
+          - docs-site-server
+          - docs-site-healthy
+        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
+    agents:
+      queue: builders
   - name: ':docker: :package: e2e'
     plugins:
       'docker-compose#v3.0.3':
         build:
+          - e2e-test
           - e2e-server
           - e2e-server-healthy
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber

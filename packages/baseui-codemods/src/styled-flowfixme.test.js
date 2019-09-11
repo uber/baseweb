@@ -24,12 +24,12 @@ const Component = styled('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      // $FlowFixMe
-      const Component = styled('div', {color: 'red'});"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+// $FlowFixMe
+const Component = styled('div', {color: 'red'});"
+`);
   });
 
   it('applies if styled function name is aliased', async () => {
@@ -45,12 +45,12 @@ const Component = baseStyled('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled as baseStyled} from 'baseui';
-      // $FlowFixMe
-      const Component = baseStyled('div', {color: 'red'});"
-    `);
+"
+// @flow
+import {styled as baseStyled} from 'baseui';
+// $FlowFixMe
+const Component = baseStyled('div', {color: 'red'});"
+`);
   });
 
   it('does not apply if styled is not imported from baseui package', async () => {
@@ -66,11 +66,11 @@ const Component = styled('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'styletron-react';
-      const Component = styled('div', {color: 'red'});"
-    `);
+"
+// @flow
+import {styled} from 'styletron-react';
+const Component = styled('div', {color: 'red'});"
+`);
   });
 
   it('does not apply if no flow pragma in file', async () => {
@@ -85,10 +85,10 @@ const Component = styled('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      import {styled} from 'baseui';
-      const Component = styled('div', {color: 'red'});"
-    `);
+"
+import {styled} from 'baseui';
+const Component = styled('div', {color: 'red'});"
+`);
   });
 
   it('does not apply if styled has existing type annotations', async () => {
@@ -104,11 +104,11 @@ const Component = styled<{foo: string}>('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      const Component = styled<{foo: string}>('div', {color: 'red'});"
-    `);
+"
+// @flow
+import {styled} from 'baseui';
+const Component = styled<{foo: string}>('div', {color: 'red'});"
+`);
   });
 
   it('does not apply if styled already has $FlowFixMe comment', async () => {
@@ -125,11 +125,11 @@ const Component = styled('div', {color: 'red'});`;
     await fixture.remove();
 
     expect(transformed).toMatchInlineSnapshot(`
-      "
-      // @flow
-      import {styled} from 'baseui';
-      // $FlowFixMe
-      const Component = styled('div', {color: 'red'});"
-  `);
+"
+// @flow
+import {styled} from 'baseui';
+// $FlowFixMe
+const Component = styled('div', {color: 'red'});"
+`);
   });
 });

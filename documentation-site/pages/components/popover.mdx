@@ -25,7 +25,7 @@ import Overrides from '../../components/overrides';
 import {Popover, PLACEMENT} from 'baseui/popover';
 import * as PopoverExports from 'baseui/popover';
 import {Block} from 'baseui/block';
-import {Paragraph1, Label1} from 'baseui/typography';
+import {Paragraph3, Label3} from 'baseui/typography';
 
 export default Layout;
 
@@ -104,15 +104,15 @@ structured content and imagery/illustration. It’s usage depends on the context
   renderExample={props => (
     <Popover
       isOpen
-      content={<Paragraph1 padding="scale500">hello world</Paragraph1>}
+      content={<Paragraph3 padding="scale500">hello world</Paragraph3>}
       showArrow
       placement={PLACEMENT.right}
       overrides={props.overrides}
     >
       <span>
-        <Label1 as="span" padding="scale500">
+        <Label3 as="span" padding="scale500">
           always open
-        </Label1>
+        </Label3>
       </span>
     </Popover>
   )}

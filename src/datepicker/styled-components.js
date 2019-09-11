@@ -16,9 +16,9 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
     $theme: {typography, colors, borders},
   } = props;
   return {
-    ...typography.font400,
-    color: props.$theme.colors.datepickerDayFont,
-    backgroundColor: colors.datepickerBackground,
+    ...typography.font200,
+    color: colors.calendarForeground,
+    backgroundColor: colors.calendarBackground,
     textAlign: 'center',
     borderTopLeftRadius: borders.surfaceBorderRadius,
     borderTopRightRadius: borders.surfaceBorderRadius,
@@ -62,7 +62,7 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     $theme: {borders, colors, sizing},
   } = props;
   return {
-    color: colors.white,
+    color: colors.calendarHeaderForeground,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -70,7 +70,7 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     paddingBottom: sizing.scale500,
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.calendarHeaderBackground,
     borderTopLeftRadius: borders.surfaceBorderRadius,
     borderTopRightRadius: borders.surfaceBorderRadius,
     borderBottomRightRadius: 0,
@@ -80,22 +80,24 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
 
 export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
   return {
-    color: props.$theme.colors.white,
-    backgroundColor: props.$theme.colors.primary,
+    color: props.$theme.colors.calendarHeaderForeground,
+    backgroundColor: props.$theme.colors.calendarHeaderBackground,
     whiteSpace: 'nowrap',
   };
 });
 
 export const StyledMonthYearSelectButton = styled<{}>('button', props => {
   return {
-    ...props.$theme.typography.font400,
+    ...props.$theme.typography.font200,
     alignItems: 'center',
     backgroundColor: 'transparent',
     borderWidth: 0,
-    color: props.$theme.colors.mono100,
+    color: props.$theme.colors.calendarHeaderForeground,
     cursor: 'pointer',
     display: 'flex',
-    ':focus': {backgroundColor: props.$theme.colors.primary500},
+    ':focus': {
+      backgroundColor: props.$theme.colors.calendarHeaderBackgroundActive,
+    },
   };
 });
 
@@ -112,8 +114,8 @@ function getArrowBtnStyle({$theme, $disabled}) {
   return {
     boxSizing: 'border-box',
     color: $disabled
-      ? $theme.colors.datepickerDayFontDisabled
-      : $theme.colors.white,
+      ? $theme.colors.calendarHeaderForegroundDisabled
+      : $theme.colors.calendarHeaderForeground,
     cursor: $disabled ? 'default' : 'pointer',
     backgroundColor: 'transparent',
     borderWidth: 0,
@@ -127,7 +129,7 @@ function getArrowBtnStyle({$theme, $disabled}) {
     ':focus': $disabled
       ? {}
       : {
-          backgroundColor: $theme.colors.primary500,
+          backgroundColor: $theme.colors.calendarHeaderBackgroundActive,
           borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
           borderTopRightRadius: $theme.borders.surfaceBorderRadius,
           borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
@@ -242,6 +244,61 @@ function calculateBorderRadius(props): ?BorderRadiusT {
   }
 }
 
+const getDayColors = (
+  colors,
+  {
+    $disabled,
+    $isHovered,
+    $selected,
+    $pseudoSelected,
+    $pseudoHighlighted,
+    $isHighlighted,
+    $outsideMonth,
+  },
+) => {
+  if ($selected) {
+    return $isHighlighted
+      ? {
+          color: colors.calendarDayForegroundSelectedHighlighted,
+          backgroundColor: colors.calendarDayBackgroundSelectedHighlighted,
+        }
+      : {
+          color: colors.calendarDayForegroundSelected,
+          backgroundColor: colors.calendarDayBackgroundSelected,
+        };
+  } else {
+    if ($outsideMonth || $disabled) {
+      return {
+        color: colors.calendarForegroundDisabled,
+        backgroundColor: 'transparent',
+      };
+    } else {
+      if ($pseudoSelected) {
+        return $isHighlighted
+          ? {
+              color: colors.calendarDayForegroundPseudoSelectedHighlighted,
+              backgroundColor:
+                colors.calendarDayBackgroundPseudoSelectedHighlighted,
+            }
+          : {
+              color: colors.calendarDayForegroundPseudoSelected,
+              backgroundColor: colors.calendarDayBackgroundPseudoSelected,
+            };
+      } else {
+        return $isHovered || $isHighlighted || $pseudoHighlighted
+          ? {
+              color: colors.calendarDayForegroundPseudoSelected,
+              backgroundColor: colors.calendarDayBackgroundPseudoSelected,
+            }
+          : {
+              color: 'inherit',
+              backgroundColor: 'transparent',
+            };
+      }
+    }
+  }
+};
+
 export const StyledDay = styled<SharedStylePropsT>('div', props => {
   const {
     $disabled,
@@ -271,22 +328,15 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
-    color: $selected
-      ? colors.white
-      : $outsideMonth || $disabled
-      ? colors.datepickerDayFontDisabled
-      : 'inherit',
-    backgroundColor: $selected
-      ? $isHighlighted
-        ? colors.primary500
-        : colors.primary
-      : $pseudoSelected
-      ? $isHighlighted
-        ? colors.datepickerDayPseudoHighlighted
-        : colors.datepickerDayPseudoSelected
-      : $isHovered || $isHighlighted || $pseudoHighlighted
-      ? colors.datepickerDayPseudoSelected
-      : 'transparent',
+    ...getDayColors(colors, {
+      $disabled,
+      $outsideMonth,
+      $isHovered,
+      $selected,
+      $pseudoSelected,
+      $pseudoHighlighted,
+      $isHighlighted,
+    }),
     ...calculateBorderRadius(props),
     ':first-child': {
       ...(borders.useRoundedCorners

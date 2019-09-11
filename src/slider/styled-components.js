@@ -64,7 +64,7 @@ InnerTrack.displayName = 'StyledInnerTrack';
 
 export const Tick = styled<StylePropsT>('div', props => {
   return {
-    ...props.$theme.typography.font300,
+    ...props.$theme.typography.font200,
   };
 });
 Tick.displayName = 'StyledTick';
@@ -132,7 +132,7 @@ export const ThumbValue = styled<{}>('div', props => {
   return {
     position: 'absolute',
     top: `-${$theme.sizing.scale800}`,
-    ...$theme.typography.font300,
+    ...$theme.typography.font200,
     backgroundColor: 'transparent',
     whiteSpace: 'nowrap',
   };

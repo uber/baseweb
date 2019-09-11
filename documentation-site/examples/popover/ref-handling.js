@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Label1} from 'baseui/typography';
+import {Label3} from 'baseui/typography';
 import {StatefulCheckbox} from 'baseui/checkbox';
 import {
   StatefulPopover,
@@ -46,9 +46,9 @@ export default () => {
         placement={PLACEMENT.bottomLeft}
         triggerType={TRIGGER_TYPE.hover}
         content={
-          <Label1 padding="scale300">
+          <Label3 padding="scale300">
             This is a popover example
-          </Label1>
+          </Label3>
         }
         accessibilityType={'tooltip'}
       >
@@ -63,9 +63,9 @@ export default () => {
         placement={PLACEMENT.bottomLeft}
         triggerType={TRIGGER_TYPE.hover}
         content={
-          <Label1 padding="scale300">
+          <Label3 padding="scale300">
             This is a popover example
-          </Label1>
+          </Label3>
         }
         accessibilityType={'tooltip'}
       >

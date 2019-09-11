@@ -193,7 +193,7 @@ export function parseCode(code: string, elementName: string) {
             propValues[name] = value;
           });
           propValues['children'] = generate(
-            (path.node as any).children[0],
+            (path.node as any).children,
           ).code.replace(/^\s+|\s+$/g, '');
         }
       },

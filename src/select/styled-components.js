@@ -16,9 +16,9 @@ import type {ThemeT} from '../styles/types.js';
 
 function getFont(size = SIZE.default, typography) {
   return {
-    [SIZE.compact]: typography.font300,
-    [SIZE.default]: typography.font400,
-    [SIZE.large]: typography.font460,
+    [SIZE.compact]: typography.font200,
+    [SIZE.default]: typography.font300,
+    [SIZE.large]: typography.font400,
   }[size];
 }
 
@@ -141,7 +141,7 @@ function getControlContainerColors(
   if ($isFocused || $isPseudoFocused) {
     return {
       color: colors.foreground,
-      borderColor: colors.primary400,
+      borderColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
   }
@@ -381,7 +381,7 @@ export const StyledSelectArrow = styled<SharedStylePropsArgT>('svg', props => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
+    color: $disabled ? colors.inputTextDisabled : colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
@@ -391,7 +391,7 @@ export const StyledClearIcon = styled<SharedStylePropsArgT>('svg', props => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: colors.foregroundAlt,
+    color: colors.foreground,
     cursor: 'pointer',
   };
 });
@@ -401,7 +401,7 @@ export const getLoadingIconStyles = (props: {$theme: ThemeT}) => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: colors.foregroundAlt,
+    color: colors.foreground,
   };
 };
 
@@ -410,7 +410,7 @@ export const StyledSearchIcon = styled<SharedStylePropsArgT>('div', props => {
   const {colors, sizing} = $theme;
   return {
     ...getSvgStyles(props),
-    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
+    color: $disabled ? colors.inputTextDisabled : colors.foreground,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     position: 'absolute',
     [$theme.direction === 'rtl' ? 'right' : 'left']: sizing.scale500,

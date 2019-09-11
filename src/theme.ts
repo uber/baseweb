@@ -16,6 +16,17 @@ interface Colors {
   primary600: string;
   primary700: string;
 
+  // Accent Palette
+  accent50: string;
+  accent100: string;
+  accent200: string;
+  accent300: string;
+  accent400: string;
+  accent: string;
+  accent500: string;
+  accent600: string;
+  accent700: string;
+
   // Alert Palette
   negative50: string;
   negative100: string;
@@ -94,22 +105,38 @@ interface Colors {
   buttonPrimaryText: string;
   buttonPrimaryHover: string;
   buttonPrimaryActive: string;
+  buttonPrimarySelectedText: string;
+  buttonPrimarySelectedFill: string;
+  buttonPrimarySpinnerForeground: string;
+  buttonPrimarySpinnerBackground: string;
   buttonSecondaryFill: string;
   buttonSecondaryText: string;
   buttonSecondaryHover: string;
   buttonSecondaryActive: string;
+  buttonSecondarySelectedText: string;
+  buttonSecondarySelectedFill: string;
+  buttonSecondarySpinnerForeground: string;
+  buttonSecondarySpinnerBackground: string;
   buttonTertiaryFill: string;
   buttonTertiaryText: string;
   buttonTertiaryHover: string;
   buttonTertiaryActive: string;
   buttonTertiarySelectedText: string;
   buttonTertiarySelectedFill: string;
+  buttonTertiarySpinnerForeground: string;
+  buttonTertiarySpinnerBackground: string;
   buttonMinimalFill: string;
   buttonMinimalText: string;
   buttonMinimalHover: string;
   buttonMinimalActive: string;
+  buttonMinimalSelectedText: string;
+  buttonMinimalSelectedFill: string;
+  buttonMinimalSpinnerForeground: string;
+  buttonMinimalSpinnerBackground: string;
   buttonDisabledFill: string;
   buttonDisabledText: string;
+  buttonDisabledSpinnerForeground: string;
+  buttonDisabledSpinnerBackground: string;
 
   // Breadcrumbs
   breadcrumbsText: string;
@@ -121,6 +148,22 @@ interface Colors {
   datepickerDayFontDisabled: string;
   datepickerDayPseudoSelected: string;
   datepickerDayPseudoHighlighted: string;
+
+  calendarBackground: string;
+  calendarForeground: string;
+  calendarForegroundDisabled: string;
+  calendarHeaderBackground: string;
+  calendarHeaderForeground: string;
+  calendarHeaderBackgroundActive: string;
+  calendarHeaderForegroundDisabled: string;
+  calendarDayBackgroundPseudoSelected: string;
+  calendarDayForegroundPseudoSelected: string;
+  calendarDayBackgroundPseudoSelectedHighlighted: string;
+  calendarDayForegroundPseudoSelectedHighlighted: string;
+  calendarDayBackgroundSelected: string;
+  calendarDayForegroundSelected: string;
+  calendarDayBackgroundSelectedHighlighted: string;
+  calendarDayForegroundSelectedHighlighted: string;
 
   // FileUploader
   fileUploaderBackgroundColor: string;
@@ -142,6 +185,10 @@ interface Colors {
   listBorder: string;
 
   // ProgressSteps
+  progressStepsCompletedText: string;
+  progressStepsCompletedFill: string;
+  progressStepsActiveText: string;
+  progressStepsActiveFill: string;
   progressStepsIconActiveFill: string;
 
   // Ticks
@@ -161,6 +208,8 @@ interface Colors {
   tickBorder: string;
   tickBorderError: string;
   tickMarkFill: string;
+  tickMarkFillDisabled: string;
+  tickMarkFillError: string;
 
   // Slider/Toggle
   sliderTrackFill: string;
@@ -194,6 +243,8 @@ interface Colors {
   // Notification
   notificationPrimaryBackground: string;
   notificationPrimaryText: string;
+  notificationInfoBackground: string;
+  notificationInfoText: string;
   notificationPositiveBackground: string;
   notificationPositiveText: string;
   notificationWarningBackground: string;
@@ -301,6 +352,26 @@ interface Colors {
   tagPrimaryOutlinedFontHover: string;
   tagPrimaryFontDisabled: string;
 
+  tagAccentSolidBackground: string;
+  tagAccentSolidHover: string;
+  tagAccentSolidActive: string;
+  tagAccentSolidDisabled: string;
+  tagAccentSolidFont: string;
+  tagAccentSolidFontHover: string;
+  tagAccentLightBackground: string;
+  tagAccentLightHover: string;
+  tagAccentLightActive: string;
+  tagAccentLightDisabled: string;
+  tagAccentLightFont: string;
+  tagAccentLightFontHover: string;
+  tagAccentOutlinedBackground: string;
+  tagAccentOutlinedHover: string;
+  tagAccentOutlinedActive: string;
+  tagAccentOutlinedDisabled: string;
+  tagAccentOutlinedFont: string;
+  tagAccentOutlinedFontHover: string;
+  tagAccentFontDisabled: string;
+
   tagPositiveSolidBackground: string;
   tagPositiveSolidHover: string;
   tagPositiveSolidActive: string;
@@ -372,6 +443,7 @@ interface Colors {
   // Toast
   toastText: string;
   toastPrimaryBackground: string;
+  toastInfoBackground: string;
   toastPositiveBackground: string;
   toastWarningBackground: string;
   toastNegativeBackground: string;
@@ -406,19 +478,23 @@ interface Font {
 
 interface Typography {
   font100: Font;
+  font150: Font;
   font200: Font;
   font250: Font;
   font300: Font;
   font350: Font;
   font400: Font;
   font450: Font;
-  font500: Font;
-  font600: Font;
-  font700: Font;
-  font800: Font;
-  font900: Font;
-  font1000: Font;
-  font1100: Font;
+  font550: Font;
+  font650: Font;
+  font750: Font;
+  font850: Font;
+  font950: Font;
+  font1050: Font;
+  font1150: Font;
+  font1250: Font;
+  font1350: Font;
+  font1450: Font;
 }
 
 interface Sizing {
@@ -504,6 +580,7 @@ export interface Theme {
 
 export interface ThemePrimitives {
   // Primary Palette
+  primary: string;
   primary50: string;
   primary100: string;
   primary200: string;
@@ -513,7 +590,19 @@ export interface ThemePrimitives {
   primary600: string;
   primary700: string;
 
+  // Accent Palette
+  accent: string;
+  accent50: string;
+  accent100: string;
+  accent200: string;
+  accent300: string;
+  accent400: string;
+  accent500: string;
+  accent600: string;
+  accent700: string;
+
   // Alert Palette
+  negative: string;
   negative50: string;
   negative100: string;
   negative200: string;
@@ -524,6 +613,7 @@ export interface ThemePrimitives {
   negative700: string;
 
   // Warning Palette
+  warning: string;
   warning50: string;
   warning100: string;
   warning200: string;
@@ -534,6 +624,7 @@ export interface ThemePrimitives {
   warning700: string;
 
   // Success Palette
+  positive: string;
   positive50: string;
   positive100: string;
   positive200: string;

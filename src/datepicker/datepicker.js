@@ -172,6 +172,20 @@ export default class Datepicker extends React.Component<
       overrides.Popover,
       Popover,
     );
+    const mask =
+      // using the mask provided through the top-level API
+      this.props.mask ||
+      // to make sure it's not a breaking change, we try calculating the input mask
+      // from the formatString, if used by the developer
+      (this.props.formatString
+        ? this.props.formatString.replace(/[a-z]/gi, '9')
+        : null) ||
+      // falling back to the default masks
+      (this.props.range ? '9999/99/99 - 9999/99/99' : '9999/99/99');
+
+    const placeholder =
+      this.props.placeholder ||
+      (this.props.range ? 'YYYY/MM/DD - YYYY/MM/DD' : 'YYYY/MM/DD');
 
     return (
       <LocaleContext.Consumer>
@@ -229,16 +243,8 @@ export default class Datepicker extends React.Component<
                   onBlur={this.handleInputBlur}
                   onKeyDown={this.handleKeyDown}
                   onChange={this.handleInputChange}
-                  placeholder={
-                    this.props.placeholder || this.props.range
-                      ? 'YYYY/MM/DD - YYYY/MM/DD'
-                      : 'YYYY/MM/DD'
-                  }
-                  mask={
-                    this.props.mask || this.props.range
-                      ? '9999/99/99 - 9999/99/99'
-                      : '9999/99/99'
-                  }
+                  placeholder={placeholder}
+                  mask={mask}
                   required={this.props.required}
                   {...inputProps}
                 />
