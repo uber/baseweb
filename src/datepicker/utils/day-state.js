@@ -5,6 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import type {SharedStylePropsT} from '../types.js';
+
 /**
   r == range - date range can be selected
   d == disabled - disabled date
@@ -27,7 +29,7 @@ LICENSE file in the root directory of this source tree.
 //  r  d  h  s  rS sD eD pS rH pH rR rL sM eM oM
 //  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
 
-export default function getDayStateCode(props: any) {
+export default function getDayStateCode(props: SharedStylePropsT) {
   const {
     $range = false,
     $disabled = false,

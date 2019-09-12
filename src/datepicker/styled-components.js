@@ -178,6 +178,7 @@ function getDayStyles(code, {colors}) {
   const highlightedStyle = {
     ':before': {content: null},
   };
+  // See the ./utils/day-state.js file for the description of all available states
   // rdhsrSsDeDpSrHpHrRrLsMeMoM
   // '000000000000000'
   const dayStateStyle = {
@@ -495,6 +496,7 @@ function getEdgeDayBeforeStyle(code, firstChild, peekNextMonth) {
         borderTopRightRadius: '100%',
         borderBottomRightRadius: '100%',
       };
+  // See the ./utils/day-state.js file for the description of all available states
   // rdhsrSsDeDpSrHpHrRrLsMeMoM
   // '0000000000000000'
   return (
@@ -536,7 +538,6 @@ function getEdgeDayBeforeStyle(code, firstChild, peekNextMonth) {
 export const StyledDay = styled<SharedStylePropsT>('div', props => {
   const {
     $disabled,
-    $isHeader,
     $isHovered,
     $isHighlighted,
     $peekNextMonth,
@@ -550,7 +551,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
   return ({
     boxSizing: 'border-box',
     position: 'relative',
-    cursor: $disabled || $isHeader ? 'default' : 'pointer',
+    cursor: $disabled ? 'default' : 'pointer',
     display: 'inline-block',
     width: sizing.scale1000,
     height: sizing.scale1000,
@@ -663,7 +664,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
   }: {});
 });
 
-export const StyledDayHead = styled<SharedStylePropsT>('div', props => {
+export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {sizing},
   } = props;
