@@ -9,16 +9,18 @@ LICENSE file in the root directory of this source tree.
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
+const TABLE_ROOT = 'div[data-baseweb="data-table"]';
+
 function getHeaderCellAtIndex(page, index) {
   return page.$(
     // plus one to convert to one indexed item
-    `div[data-baseweb="data-table"] > div > div:nth-child(${index + 1})`,
+    `${TABLE_ROOT} > div > div:nth-child(${index + 1})`,
   );
 }
 
 function getCellAtIndex(page, index) {
   // plus two to convert to one indexed item and skips header row
-  return page.$(`div[data-baseweb="data-table"] > div:nth-child(${index + 2})`);
+  return page.$(`${TABLE_ROOT} > div:nth-child(${index + 2})`);
 }
 
 function getCellsAtColumnIndex(page, index) {
@@ -76,15 +78,12 @@ describe('data table columns', () => {
 
   it('renders expected number of cells', async () => {
     await mount(page, 'data-table-columns');
-    await page.waitFor('div[data-baseweb="data-table"]');
+    await page.waitFor(TABLE_ROOT);
 
     // one extra child to account for header row
-    expect(
-      await page.$eval(
-        'div[data-baseweb="data-table"]',
-        node => node.childNodes.length,
-      ),
-    ).toBe(17);
+    expect(await page.$eval(TABLE_ROOT, node => node.childNodes.length)).toBe(
+      17,
+    );
   });
 
   it('sorts boolean column', async () => {
@@ -110,7 +109,7 @@ describe('data table columns', () => {
   it('sorts categorical column', async () => {
     const index = 1;
     await mount(page, 'data-table-columns');
-    await page.waitFor('div[data-baseweb="data-table"]');
+    await page.waitFor(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(page, index);
     expect(matchArrayElements(initial, ['A', 'B', 'A', 'A'])).toBe(true);
 
@@ -130,7 +129,7 @@ describe('data table columns', () => {
   it('sorts numerical column', async () => {
     const index = 2;
     await mount(page, 'data-table-columns');
-    await page.waitFor('div[data-baseweb="data-table"]');
+    await page.waitFor(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(page, index);
     expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
 
@@ -150,7 +149,7 @@ describe('data table columns', () => {
   it('sorts string column', async () => {
     const index = 3;
     await mount(page, 'data-table-columns');
-    await page.waitFor('div[data-baseweb="data-table"]');
+    await page.waitFor(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(page, index);
     expect(matchArrayElements(initial, ['one', 'two', 'three', 'four'])).toBe(
       true,
@@ -175,10 +174,10 @@ describe('data table columns', () => {
     // boolean column filter not implemented
   });
 
-  it.only('filters categorical column', async () => {
+  it('filters categorical column', async () => {
     const index = 1;
     await mount(page, 'data-table-columns');
-    await page.waitFor('div[data-baseweb="data-table"]');
+    await page.waitFor(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(page, index);
     expect(matchArrayElements(initial, ['A', 'B', 'A', 'A'])).toBe(true);
 

@@ -61,11 +61,9 @@ describe('boolean column', () => {
     });
 
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('T');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell may be null
+    expect(cell.textContent).toBe('T');
   });
 
   it('cell renders F if false value provided', () => {
@@ -77,11 +75,9 @@ describe('boolean column', () => {
     });
 
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('F');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('F');
   });
 
   xit('renders expected filter component', () => {

@@ -62,11 +62,9 @@ describe('categorical column', () => {
     });
 
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('A');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('A');
   });
 
   it('renders expected number of checkboxes in filter component', () => {

@@ -57,11 +57,9 @@ describe('string column', () => {
     });
 
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('hello');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('hello');
   });
 
   it('builds expected sort function', () => {

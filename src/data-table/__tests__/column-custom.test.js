@@ -98,10 +98,8 @@ describe('custom column', () => {
     });
 
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('blue');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('blue');
   });
 });

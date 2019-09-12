@@ -60,11 +60,9 @@ describe('numerical column', () => {
       ReactDOM.render(<Cell value={1999.888} />, container);
     });
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('2000');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('2000');
   });
 
   it('cell renders positive value according to accounting format', () => {
@@ -77,11 +75,9 @@ describe('numerical column', () => {
       ReactDOM.render(<Cell value={1999.888} />, container);
     });
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('$1999.89');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('$1999.89');
   });
 
   it('cell renders negative value according to accounting format', () => {
@@ -94,11 +90,9 @@ describe('numerical column', () => {
       ReactDOM.render(<Cell value={-1999.888} />, container);
     });
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('($1999.89)');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('($1999.89)');
   });
 
   it('cell renders value according to percentage format', () => {
@@ -111,11 +105,9 @@ describe('numerical column', () => {
       ReactDOM.render(<Cell value={1999.888} />, container);
     });
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('1999.89%');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('1999.89%');
   });
 
   it('cell renders value according to provided precision', () => {
@@ -128,11 +120,9 @@ describe('numerical column', () => {
       ReactDOM.render(<Cell value={1999.888} />, container);
     });
     const cell = container.querySelector('div');
-    if (cell) {
-      expect(cell.textContent).toBe('1999.888');
-    } else {
-      expect(cell).not.toBeNull();
-    }
+
+    // $FlowFixMe cell could be null
+    expect(cell.textContent).toBe('1999.888');
   });
 
   xit('can call setFilter with expected selection', () => {
