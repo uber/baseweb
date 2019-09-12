@@ -28,25 +28,34 @@ function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
 }
 
 export default function SortableHeadCell(props: HeadCellPropsT) {
-  const {overrides = {}} = props;
+  const {overrides = {}, fillClickTarget, disabled} = props;
 
   const [HeadCell, headCellProps] = getOverrides(
     overrides.HeadCell,
     StyledHeadCell,
   );
+
   const [SortableLabel, sortableLabelProps] = getOverrides(
     overrides.SortableLabel,
     StyledSortableLabel,
   );
 
+  const onClick = () => {
+    props.onSort && props.onSort();
+  };
+  const enableHeadClick = fillClickTarget && !disabled;
+
   return (
-    <HeadCell role="columnheader" {...headCellProps}>
+    <HeadCell
+      role="columnheader"
+      {...headCellProps}
+      $cursor={enableHeadClick ? 'pointer' : undefined}
+      onClick={enableHeadClick ? onClick : undefined}
+    >
       <SortableLabel
         aria-label={`sorts table by ${props.title} column`}
-        disabled={props.disabled}
-        onClick={() => {
-          props.onSort && props.onSort();
-        }}
+        disabled={disabled}
+        onClick={!fillClickTarget ? onClick : undefined}
         {...sortableLabelProps}
       >
         <SortDirectionIcon direction={props.direction} />
