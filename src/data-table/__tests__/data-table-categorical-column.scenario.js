@@ -47,9 +47,13 @@ const dataShort = [
 export const component = () => {
   return (
     <div style={{backgroundColor: 'lightgreen', padding: '24px'}}>
-      <Filter close={() => {}} setFilter={() => {}} data={dataLong} />
+      <div id="many-categories">
+        <Filter close={() => {}} setFilter={() => {}} data={dataLong} />
+      </div>
       <div style={{height: '48px'}} />
-      <Filter close={() => {}} setFilter={() => {}} data={dataShort} />
+      <div id="few-categories">
+        <Filter close={() => {}} setFilter={() => {}} data={dataShort} />
+      </div>
     </div>
   );
 };
