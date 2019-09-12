@@ -18,6 +18,7 @@ import {
   isStartOfMonth,
   isEndOfMonth,
 } from './utils/index.js';
+import getDayStateCode from './utils/day-state.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {DayPropsT, DayStateT} from './types.js';
 
@@ -179,8 +180,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         isAfter(highlightedDate, value[0]),
       $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
       $highlightedDate: highlightedDate,
-      $isHovered: this.state.isHovered,
       $isHighlighted,
+      $isHovered: this.state.isHovered,
       $startOfMonth: isStartOfMonth(date),
       $endOfMonth: isEndOfMonth(date),
       $outsideMonth: this.isOutsideMonth(),
@@ -194,7 +195,10 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       $range: this.props.range,
       $selected,
       $startDate:
-        Array.isArray(this.props.value) && this.props.range && $selected
+        Array.isArray(this.props.value) &&
+        this.props.value.length > 1 &&
+        this.props.range &&
+        $selected
           ? isSameDay(date, this.props.value[0])
           : false,
     };
@@ -227,10 +231,11 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     const sharedProps = this.getSharedProps();
     const [Day, dayProps] = getOverrides(overrides.Day, StyledDay);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
-      <Day />
+      <Day data-state-code={getDayStateCode(sharedProps)} />
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <Day
+        data-state-code={getDayStateCode(sharedProps)}
         aria-label={this.getAriaLabel(sharedProps)}
         ref={dayElm => {
           this.dayElm = dayElm;

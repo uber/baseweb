@@ -186,9 +186,9 @@ export default function createTheme(
       calendarDayBackgroundPseudoSelectedHighlighted: primitives.primary200,
       calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
       calendarDayBackgroundSelected: primitives.primary,
-      calendarDayForegroundSelected: WHITE,
+      calendarDayForegroundSelected: BLACK,
       calendarDayBackgroundSelectedHighlighted: primitives.primary700,
-      calendarDayForegroundSelectedHighlighted: primitives.mono100,
+      calendarDayForegroundSelectedHighlighted: BLACK,
 
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,
