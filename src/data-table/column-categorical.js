@@ -8,8 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../button/index.js';
+import {Button, SIZE as BUTTON_SIZE} from '../button/index.js';
 import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
+import Search from '../icon/search.js';
+import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 
 import {COLUMNS} from './constants.js';
@@ -33,34 +35,120 @@ type FilterParametersT = {|
 
 type CategoricalColumnT = ColumnT<string, FilterParametersT>;
 
+function InputBefore() {
+  const [useCss, theme] = useStyletron();
+  return (
+    <div
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: theme.sizing.scale500,
+      })}
+    >
+      <Search size="18px" />
+    </div>
+  );
+}
+
 function CategoricalFilter(props) {
-  const [useCss] = useStyletron();
+  const [useCss, theme] = useStyletron();
   const [selection, setSelection] = React.useState<Set<string>>(new Set());
   const [exclude, setExclude] = React.useState(false);
-
+  const [query, setQuery] = React.useState('');
   const categories = React.useMemo(() => {
     return props.data.reduce((set, category) => set.add(category), new Set());
   }, [props.data]);
 
+  const checkboxStyles = useCss({marginBottom: theme.sizing.scale200});
+
   return (
-    <div>
-      {Array.from(categories, (category, i) => (
-        <Checkbox
-          key={i}
-          checked={selection.has(category)}
-          onChange={() => {
-            if (selection.has(category)) {
-              selection.delete(category);
-            } else {
-              selection.add(category);
-            }
+    <div
+      className={useCss({
+        backgroundColor: theme.colors.white,
+        paddingTop: theme.sizing.scale600,
+        paddingRight: theme.sizing.scale600,
+        paddingBottom: theme.sizing.scale600,
+        paddingLeft: theme.sizing.scale600,
+        width: '320px',
+      })}
+    >
+      <Input
+        size={INPUT_SIZE.compact}
+        overrides={{Before: InputBefore}}
+        value={query}
+        onChange={event => setQuery(event.target.value)}
+      />
+
+      <div className={useCss({marginTop: theme.sizing.scale600})}>
+        <button
+          className={useCss({
+            ...theme.typography.font100,
+            borderTop: 0,
+            borderRight: 0,
+            borderBottom: 0,
+            borderLeft: 0,
+            cursor: 'pointer',
+          })}
+          onClick={() => {
+            categories.forEach(c => selection.add(c));
             setSelection(new Set(selection));
           }}
         >
-          {category}
-        </Checkbox>
-      ))}
-      <div className={useCss({display: 'flex'})}>
+          Select All
+        </button>
+        <span className={useCss({...theme.typography.font100})}> | </span>
+        <button
+          className={useCss({
+            ...theme.typography.font100,
+            borderTop: 0,
+            borderRight: 0,
+            borderBottom: 0,
+            borderLeft: 0,
+            cursor: 'pointer',
+          })}
+          onClick={() => {
+            setSelection(new Set());
+          }}
+        >
+          Clear
+        </button>
+      </div>
+
+      <div
+        className={useCss({
+          maxHeight: '256px',
+          overflowY: 'auto',
+          marginTop: theme.sizing.scale600,
+          marginBottom: theme.sizing.scale600,
+        })}
+      >
+        {Array.from(categories, c => c)
+          .filter(c => c.toLowerCase().includes(query.toLowerCase()))
+          .map((category, i) => (
+            <div className={checkboxStyles} key={i}>
+              <Checkbox
+                checked={selection.has(category)}
+                onChange={() => {
+                  if (selection.has(category)) {
+                    selection.delete(category);
+                  } else {
+                    selection.add(category);
+                  }
+                  setSelection(new Set(selection));
+                }}
+              >
+                {category}
+              </Checkbox>
+            </div>
+          ))}
+      </div>
+      <div
+        className={useCss({
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'space-between',
+        })}
+      >
         <Checkbox
           checked={exclude}
           onChange={() => setExclude(!exclude)}
@@ -69,6 +157,7 @@ function CategoricalFilter(props) {
           Exclude
         </Checkbox>
         <Button
+          size={BUTTON_SIZE.compact}
           onClick={() => {
             props.setFilter(
               {selection, exclude},
