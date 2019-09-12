@@ -11,99 +11,74 @@ import React from 'react';
 import {H4} from 'baseui/typography';
 import {useStyletron} from 'baseui/styles';
 
-import {Button} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
-import {Checkbox} from 'baseui/checkbox';
-import {RadioGroup, Radio} from 'baseui/radio';
-import {FormControl} from 'baseui/form-control';
-import {Input} from 'baseui/input';
-import {PaymentCard} from 'baseui/payment-card';
-import {PinCode} from 'baseui/pin-code';
-import {PhoneInput} from 'baseui/phone-input';
-import {Slider} from 'baseui/slider';
-import {Textarea} from 'baseui/textarea';
+import SvgButton from '../components/thumbs/button.js';
+import SvgButtonGroup from '../components/thumbs/button-group.js';
+import SvgCheckbox from '../components/thumbs/checkbox.js';
+import SvgFormControl from '../components/thumbs/form-control.js';
+import SvgInput from '../components/thumbs/input.js';
+import SvgPaymentCard from '../components/thumbs/payment-card.js';
+import SvgPhoneInput from '../components/thumbs/phone-input.js';
+import SvgPinCode from '../components/thumbs/pin-code.js';
+import SvgRadio from '../components/thumbs/radio.js';
+import SvgSlider from '../components/thumbs/slider.js';
+import SvgTextarea from '../components/thumbs/textarea.js';
 
 const COMPONENTS = {
   Inputs: [
     {
       label: 'Button',
       href: '/components/button',
-      Component: () => <Button>Hello</Button>,
+      Component: SvgButton,
     },
     {
       label: 'Button Group',
       href: '/components/button-group',
-      Component: () => (
-        <ButtonGroup>
-          <Button>Hello</Button>
-          <Button>Uber</Button>
-        </ButtonGroup>
-      ),
+      Component: SvgButtonGroup,
     },
     {
       label: 'Input',
       href: '/components/input',
-      Component: () => <Input value="Hello Uber" />,
+      Component: SvgInput,
     },
     {
       label: 'Checkbox',
       href: '/components/checkbox',
-      Component: () => (
-        <React.Fragment>
-          <Checkbox>Hello</Checkbox>
-          <Checkbox checked>Uber</Checkbox>
-        </React.Fragment>
-      ),
+      Component: SvgCheckbox,
     },
     {
       label: 'Radio',
       href: '/components/radio',
-      Component: () => (
-        <React.Fragment>
-          <RadioGroup value="2">
-            <Radio value="1" overrides={{Root: {style: {marginBottom: '0'}}}}>
-              Hello
-            </Radio>
-            <Radio value="2" overrides={{Root: {style: {marginTop: '0'}}}}>
-              Uber
-            </Radio>
-          </RadioGroup>
-        </React.Fragment>
-      ),
+      Component: SvgRadio,
     },
     {
       label: 'Textarea',
       href: '/components/textarea',
-      Component: () => <Textarea value="Hello Uber" />,
+      Component: SvgTextarea,
     },
     {
       label: 'Form Control',
       href: '/components/form-control',
-      Component: () => (
-        <FormControl label="Hello Uber" caption="Hello Uber">
-          <Input value="" />
-        </FormControl>
-      ),
+      Component: SvgFormControl,
     },
     {
       label: 'Payment Card',
       href: '/components/payment-card',
-      Component: () => <PaymentCard value="4242424242424242" />,
+      Component: SvgPaymentCard,
     },
     {
       label: 'Pin Code',
       href: '/components/pin-code',
-      Component: () => <PinCode value={['1', '2', '3', '4']} />,
+      Component: SvgPinCode,
     },
     {
       label: 'Phone Input',
       href: '/components/phone-input',
-      Component: () => <PhoneInput />,
+      Component: SvgPhoneInput,
     },
     {
       label: 'Slider',
       href: '/components/slider',
-      Component: () => <Slider value={[50]} />,
+      Component: SvgSlider,
     },
   ],
 };
@@ -114,50 +89,38 @@ function Thumbnail({children, label, href, scale = 1}) {
     <a
       href={href}
       className={css({
-        color: 'unset',
-        textDecoration: 'unset',
-        position: 'relative',
-        border: `solid 1px ${theme.colors.border}`,
-        height: '200px',
-        width: 'calc(33.33% - 20px)',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-        boxSizing: 'border-box',
-        marginBottom: '30px',
-        transition: 'all .25s ease-in-out',
-        filter: 'grayscale(100%)',
-        cursor: 'pointer',
+        flexDirection: 'column',
+        border: 'solid 2px transparent',
+        textDecoration: 'none',
         ':hover': {
-          border: `solid 1px ${theme.colors.borderFocus}`,
+          border: 'solid 2px #000',
         },
       })}
     >
       <div
         className={css({
-          transform: scale !== 1 ? `scale(${scale})` : null,
-          pointerEvents: 'none',
-          width: '75%',
-        })}
-      >
-        {children}
-      </div>
-      <div
-        className={css({
-          position: 'absolute',
-          bottom: '0px',
-          right: '0px',
-          width: '100%',
-          padding: '5px',
-          textAlign: 'right',
-          fontSize: '12px',
           fontFamily: 'Menlo',
-          backgroundColor: theme.colors.backgroundAlt,
-          lineHeight: 1,
+          fontSize: '12px',
+          color: `${theme.colors.foregroundAlt}`,
+          paddingTop: '8px',
+          paddingLeft: '12px',
+          paddingRight: '12px',
+          paddingBottom: '8px',
+          background: '#f6f6f6',
         })}
       >
         {'baseui/' + href.split('/')[2]}
+      </div>
+      <div
+        className={css({
+          paddingTop: '12px',
+          paddingLeft: '12px',
+          paddingRight: '12px',
+          paddingBottom: '12px',
+        })}
+      >
+        {children}
       </div>
     </a>
   );
@@ -172,7 +135,6 @@ function Section({nature}) {
         className={css({
           display: 'flex',
           flexWrap: 'wrap',
-          justifyContent: 'space-between',
         })}
       >
         {COMPONENTS[nature].map(({Component, ...props}) => {
@@ -182,8 +144,6 @@ function Section({nature}) {
             </Thumbnail>
           );
         })}
-        {/* Flexbox hack for aligning last item when using space-between */}
-        <div className={css({width: 'calc(33.33% - 20px)'})}></div>
       </div>
     </React.Fragment>
   );
