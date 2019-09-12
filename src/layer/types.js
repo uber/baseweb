@@ -8,10 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {TETHER_PLACEMENT} from './constants.js';
+import type {OverrideT} from '../helpers/overrides.js';
 
 /** LayersManager */
 export type LayersManagerPropsT = {
   children: React.Node,
+  overrides?: {
+    AppContainer?: OverrideT<{}>,
+    LayersContainer?: OverrideT<{}>,
+  },
   // z-index to be set for all the layers.
   zIndex?: number,
 };
