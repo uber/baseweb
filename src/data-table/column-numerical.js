@@ -90,25 +90,42 @@ const NumericalCell = React.forwardRef<NumericalCellPropsT, HTMLDivElement>(
   },
 );
 
+const defaultOptions = {
+  title: '',
+  sortable: true,
+  filterable: true,
+  format: NUMERICAL_FORMATS.DEFAULT,
+  highlight: () => false,
+  precision: 0,
+};
+
 function NumericalColumn(options: OptionsT): NumericalColumnT {
+  const normalizedOptions = {
+    ...defaultOptions,
+    ...options,
+  };
+
   return {
     kind: COLUMNS.NUMERICAL,
-    title: options.title,
-    sortable: options.sortable === undefined ? true : options.sortable,
-    filterable: options.filterable === undefined ? true : options.filterable,
+    title: normalizedOptions.title,
+    sortable: normalizedOptions.sortable,
+    filterable: normalizedOptions.filterable,
     renderCell: React.forwardRef((props, ref) => {
       return (
         <NumericalCell
           {...props}
           ref={ref}
-          format={options.format || NUMERICAL_FORMATS.DEFAULT}
+          format={normalizedOptions.format}
           highlight={
-            options.highlight ||
-            (options.format === NUMERICAL_FORMATS.ACCOUNTING
+            normalizedOptions.format === NUMERICAL_FORMATS.ACCOUNTING
               ? n => n < 0
-              : () => false)
+              : normalizedOptions.highlight
           }
-          precision={options.precision || 2}
+          precision={
+            normalizedOptions.format === NUMERICAL_FORMATS.DEFAULT
+              ? normalizedOptions.precision
+              : 2
+          }
         />
       );
     }),
@@ -118,6 +135,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
         return true;
       };
     },
+    // initial sort should display largest values first
     sortFn: function(a, b) {
       return b - a;
     },
