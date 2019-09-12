@@ -9,10 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Button, SIZE as BUTTON_SIZE} from '../button/index.js';
-import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
+import {Checkbox, StyledLabel, STYLE_TYPE} from '../checkbox/index.js';
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
-import {useStyletron} from '../styles/index.js';
+import {useStyletron, withStyle} from '../styles/index.js';
 import {Label3} from '../typography/index.js';
 
 import {COLUMNS} from './constants.js';
@@ -89,6 +89,22 @@ function FilterQuickControls(props: {
   );
 }
 
+const StyledHighlightLabel = withStyle(StyledLabel, props => {
+  const style = {
+    whiteSpace: 'pre',
+    color: props.$isActive
+      ? props.$theme.colors.black
+      : props.$theme.colors.mono600,
+  };
+
+  if (!props.$isFirst) {
+    // $FlowFixMe
+    style.paddingLeft = null;
+  }
+
+  return style;
+});
+
 function matchesQuery(category, query) {
   return category.toLowerCase().includes(query.toLowerCase());
 }
@@ -108,6 +124,29 @@ function CategoricalFilter(props) {
   const filteredCategories = Array.from(categories, c => c).filter(c =>
     matchesQuery(c, query),
   );
+
+  function HighlightCheckboxLabel(props) {
+    const {children, ...restProps} = props;
+
+    if (!query) {
+      return <StyledLabel {...restProps}>{children}</StyledLabel>;
+    }
+
+    return children.split(new RegExp(`(${query})`, 'i')).map((el, i) => {
+      if (matchesQuery(el, query)) {
+        return (
+          <StyledHighlightLabel {...restProps} key={i} $isFirst={!i} $isActive>
+            {el}
+          </StyledHighlightLabel>
+        );
+      }
+      return (
+        <StyledHighlightLabel {...restProps} key={i} $isFirst={!i}>
+          {el}
+        </StyledHighlightLabel>
+      );
+    });
+  }
 
   return (
     <div
@@ -173,6 +212,7 @@ function CategoricalFilter(props) {
                   }
                   setSelection(new Set(selection));
                 }}
+                overrides={{Label: HighlightCheckboxLabel}}
               >
                 {category}
               </Checkbox>
@@ -190,6 +230,7 @@ function CategoricalFilter(props) {
           checked={exclude}
           onChange={() => setExclude(!exclude)}
           checkmarkType={STYLE_TYPE.toggle}
+          labelPlacement="right"
         >
           Exclude
         </Checkbox>
