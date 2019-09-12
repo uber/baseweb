@@ -1,7 +1,7 @@
 import React from 'react';
 import {withStyle} from 'baseui';
 import {Select, StyledDropdownListItem, Value} from 'baseui/select';
-import {StyledList} from 'baseui/menu';
+import {StyledList, StyledEmptyState} from 'baseui/menu';
 
 import {List, AutoSizer} from 'react-virtualized';
 
@@ -12,19 +12,33 @@ const ListItem = withStyle(StyledDropdownListItem, {
   alignItems: 'center',
 });
 
-const Container = withStyle(StyledList, {height: '500px'});
+const Container = withStyle(
+  StyledList,
+  (props: {$height: string}) => ({
+    height: props.$height,
+  }),
+);
 
 const VirtualList = React.forwardRef((props: any, ref) => {
   const children = React.Children.toArray(props.children);
+
+  if (!children[0] || !children[0].props.item) {
+    return (
+      <Container $height="72px" ref={ref}>
+        <StyledEmptyState {...children[0].props} />
+      </Container>
+    );
+  }
+
   return (
-    <Container ref={ref}>
+    <Container $height="500px" ref={ref}>
       <AutoSizer>
         {({width}) => (
           <List
             role={props.role}
             height={500}
             width={width}
-            rowCount={props.children.length}
+            rowCount={children.length}
             rowHeight={36}
             rowRenderer={({index, key, style}) => {
               return (

@@ -47,12 +47,10 @@ export interface RenderItemProps {
   resetMenu?: () => any;
 }
 
-export type OnItemSelect = (
-  args: {
-    item: any;
-    event?: React.SyntheticEvent<HTMLElement> | KeyboardEvent;
-  },
-) => any;
+export type OnItemSelect = (args: {
+  item: any;
+  event?: React.SyntheticEvent<HTMLElement> | KeyboardEvent;
+}) => any;
 
 export type StateReducer = (
   changeType: STATE_CHANGE_TYPES[keyof STATE_CHANGE_TYPES],
@@ -163,6 +161,7 @@ export class NestedMenus extends React.Component<
   getChildMenu(ref: React.Ref<HTMLElement>): React.Ref<HTMLElement>;
 }
 
+export const StyledEmptyState: StyletronComponent<any>;
 export const StyledList: StyletronComponent<any>;
 export const StyledListItem: StyletronComponent<any>;
 export const StyledListItemProfile: StyletronComponent<any>;
