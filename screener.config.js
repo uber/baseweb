@@ -17,20 +17,12 @@ module.exports = {
       width: 1024,
       height: 768,
     },
-    {
-      deviceName: 'iPhone 8',
-      excludeRules: [/(^baseui-dark|-rtl$)/],
-    },
   ],
   baseBranch: 'master',
   failureExitCode: 0,
   browsers: [
     {
       browserName: 'chrome',
-    },
-    {
-      browserName: 'firefox',
-      excludeRules: [/(^baseui-dark|-rtl$)/],
     },
     {
       browserName: 'internet explorer',
