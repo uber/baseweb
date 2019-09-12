@@ -15,9 +15,10 @@ export const name = 'datepicker-int';
 export const component = () => (
   <StatefulDatepicker
     aria-label="Select a date"
+    formatString="dd.MM.yyyy"
+    placeholder="dd.mm.yyyy - dd.mm.yyyy"
     highlightedDate={new Date('March 10, 2019')}
-    formatString="MM/dd/yyyy"
-    placeholder="MM/DD/YYYY"
+    range
     overrides={{
       MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
       MonthYearSelectStatefulMenu: {
