@@ -15,6 +15,7 @@ export {default as NestedMenus} from './nested-menus.js';
 export {KEY_STRINGS, STATE_CHANGE_TYPES} from './constants.js';
 // Styled elements
 export {
+  StyledEmptyState,
   StyledList,
   StyledListItem,
   StyledListItemProfile,
