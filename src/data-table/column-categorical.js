@@ -13,6 +13,7 @@ import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
+import {Label3} from '../typography/index.js';
 
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
@@ -50,6 +51,48 @@ function InputBefore() {
   );
 }
 
+function FilterQuickControls(props: {
+  onSelectAll: () => void,
+  onClearSelection: () => void,
+}) {
+  const [useCss, theme] = useStyletron();
+  return (
+    <React.Fragment>
+      <button
+        className={useCss({
+          ...theme.typography.font100,
+          borderTop: 0,
+          borderRight: 0,
+          borderBottom: 0,
+          borderLeft: 0,
+          cursor: 'pointer',
+        })}
+        onClick={props.onSelectAll}
+      >
+        Select All
+      </button>
+      <span className={useCss({...theme.typography.font100})}> | </span>
+      <button
+        className={useCss({
+          ...theme.typography.font100,
+          borderTop: 0,
+          borderRight: 0,
+          borderBottom: 0,
+          borderLeft: 0,
+          cursor: 'pointer',
+        })}
+        onClick={props.onClearSelection}
+      >
+        Clear
+      </button>
+    </React.Fragment>
+  );
+}
+
+function matchesQuery(category, query) {
+  return category.toLowerCase().includes(query.toLowerCase());
+}
+
 function CategoricalFilter(props) {
   const [useCss, theme] = useStyletron();
   const [selection, setSelection] = React.useState<Set<string>>(new Set());
@@ -60,6 +103,11 @@ function CategoricalFilter(props) {
   }, [props.data]);
 
   const checkboxStyles = useCss({marginBottom: theme.sizing.scale200});
+
+  const showQuery = Boolean(categories.size >= 10);
+  const filteredCategories = Array.from(categories, c => c).filter(c =>
+    matchesQuery(c, query),
+  );
 
   return (
     <div
@@ -72,47 +120,33 @@ function CategoricalFilter(props) {
         width: '320px',
       })}
     >
-      <Input
-        size={INPUT_SIZE.compact}
-        overrides={{Before: InputBefore}}
-        value={query}
-        onChange={event => setQuery(event.target.value)}
-      />
+      {showQuery && (
+        <Input
+          size={INPUT_SIZE.compact}
+          overrides={{Before: InputBefore}}
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+          clearable
+        />
+      )}
 
-      <div className={useCss({marginTop: theme.sizing.scale600})}>
-        <button
-          className={useCss({
-            ...theme.typography.font100,
-            borderTop: 0,
-            borderRight: 0,
-            borderBottom: 0,
-            borderLeft: 0,
-            cursor: 'pointer',
-          })}
-          onClick={() => {
-            categories.forEach(c => selection.add(c));
-            setSelection(new Set(selection));
+      {!Boolean(query) && (
+        <div
+          style={{
+            marginTop: showQuery ? theme.sizing.scale600 : null,
           }}
         >
-          Select All
-        </button>
-        <span className={useCss({...theme.typography.font100})}> | </span>
-        <button
-          className={useCss({
-            ...theme.typography.font100,
-            borderTop: 0,
-            borderRight: 0,
-            borderBottom: 0,
-            borderLeft: 0,
-            cursor: 'pointer',
-          })}
-          onClick={() => {
-            setSelection(new Set());
-          }}
-        >
-          Clear
-        </button>
-      </div>
+          <FilterQuickControls
+            onSelectAll={() => {
+              categories.forEach(c => selection.add(c));
+              setSelection(new Set(selection));
+            }}
+            onClearSelection={() => {
+              setSelection(new Set());
+            }}
+          />
+        </div>
+      )}
 
       <div
         className={useCss({
@@ -122,9 +156,12 @@ function CategoricalFilter(props) {
           marginBottom: theme.sizing.scale600,
         })}
       >
-        {Array.from(categories, c => c)
-          .filter(c => c.toLowerCase().includes(query.toLowerCase()))
-          .map((category, i) => (
+        {!Boolean(filteredCategories.length) && (
+          <Label3>No Categories Found</Label3>
+        )}
+
+        {Boolean(filteredCategories.length) &&
+          filteredCategories.map((category, i) => (
             <div className={checkboxStyles} key={i}>
               <Checkbox
                 checked={selection.has(category)}

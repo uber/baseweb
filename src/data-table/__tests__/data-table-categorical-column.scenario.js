@@ -16,7 +16,7 @@ const Filter = Column.renderFilter;
 
 export const name = 'data-table-categorical-column';
 
-const data = [
+const dataLong = [
   'Bike',
   'Scooter',
   'Truck',
@@ -34,10 +34,22 @@ const data = [
   'Uber WAV',
 ];
 
+const dataShort = [
+  'Bike',
+  'Scooter',
+  'Truck',
+  'AIR Taxi',
+  'Transit',
+  'Taxi',
+  'UberX',
+];
+
 export const component = () => {
   return (
     <div style={{backgroundColor: 'lightgreen', padding: '24px'}}>
-      <Filter close={() => {}} setFilter={() => {}} data={data} />
+      <Filter close={() => {}} setFilter={() => {}} data={dataLong} />
+      <div style={{height: '48px'}} />
+      <Filter close={() => {}} setFilter={() => {}} data={dataShort} />
     </div>
   );
 };
