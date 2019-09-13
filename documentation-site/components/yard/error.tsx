@@ -26,10 +26,12 @@ const Error: React.FC<{error: string | null; code: string}> = ({
       className={css({
         backgroundColor: theme.colors.negative600,
         whiteSpace: 'pre',
-        fontSize: '12px',
+        fontSize: '11px',
         fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
         color: theme.colors.mono100,
         padding: theme.sizing.scale600,
+        marginTop: theme.sizing.scale600,
+        marginBottom: theme.sizing.scale500,
         overflowX: 'scroll',
       })}
     >

@@ -24,7 +24,7 @@ import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
 import {TYardProps, TState, TProp} from './types';
 
-import Compiler, {codeToAst} from './compiler';
+import Compiler from './compiler';
 import Editor from './editor';
 import Error from './error';
 
@@ -85,6 +85,11 @@ function reducer(state: TState, action: {type: Action; payload: any}): TState {
         ...state,
         codeNoRecompile: action.payload.codeNoRecompile,
         props: buildPropsObj(state.props, action.payload.updatedPropValues),
+      };
+    case Action.UpdateProps:
+      return {
+        ...state,
+        props: buildPropsObj(state, action.payload.updatedPropValues),
       };
     case Action.UpdatePropsAndCode:
       return {
@@ -234,32 +239,28 @@ export default withRouter(
       } as any);
     };
 
-    React.useEffect(() => {
-      (window as any).__yard_onChange = (
-        componentName: string,
-        propName: string,
-        propValue: any,
-      ) => {
-        const newCode = formatCode(
-          getCode(
-            buildPropsObj(state, {[propName]: propValue}),
-            componentName,
-            {themeValues: {}, themeName: ''},
-          ),
-        );
-        dispatch({
-          type: Action.UpdatePropsAndCode,
-          payload: {
-            code: newCode,
-            updatedPropValues: {[propName]: propValue},
-          },
-        });
-        Router.push({
-          pathname: router.pathname,
-          query: {code: newCode},
-        } as any);
-      };
-    });
+    const __yard_onChange = (
+      componentName: string,
+      propName: string,
+      propValue: any,
+    ) => {
+      const newCode = formatCode(
+        getCode(buildPropsObj(state, {[propName]: propValue}), componentName, {
+          themeValues: {},
+          themeName: '',
+        }),
+      );
+      dispatch({
+        type: Action.UpdateProps,
+        payload: {
+          updatedPropValues: {[propName]: propValue},
+        },
+      });
+      Router.push({
+        pathname: router.pathname,
+        query: {code: newCode},
+      } as any);
+    };
 
     let changedProps = 0;
     Object.keys(state.props).forEach(prop => {
@@ -350,24 +351,6 @@ export default withRouter(
             darkThemePrimitives,
             createTheme,
             __yard_onChange,
-          }}
-          PlaceholderElement={placeholderElement}
-        />
-        <StatefulTabs
-          initialState={{activeKey: '0'}}
-          onChange={({activeKey}) => {
-            trackEvent('yard', `${componentName}:tab_switch_${activeKey}`);
-          }}
-          overrides={{
-            Root: {
-              style: {
-                marginBottom: theme.sizing.scale400,
-              },
-            },
-            TabBar: {
-              style: {backgroundColor: 'transparent', paddingLeft: 0},
-            },
-            TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
           }}
         />
         <StatefulTabs
@@ -581,8 +564,8 @@ export default withRouter(
               }
             }}
           />
-          <Error error={error} code={state.code} />
         </div>
+        <Error error={error} code={state.code} />
         <ButtonGroup
           size={SIZE.compact}
           overrides={{
