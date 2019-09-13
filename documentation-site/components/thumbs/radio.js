@@ -7,21 +7,28 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
+import {useStyletron} from 'baseui/styles';
+import getFillColors from './getFillColors.js';
 
-const SvgRadio = props => (
-  <svg width={232} height={145} fill="none" {...props}>
-    <path fill="#E2E2E2" d="M90 47h65v12H90zM90 67h57v12H90zM90 87h80v12H90z" />
-    <circle cx={69} cy={53} r={7} fill="#EEE" />
-    <circle
-      cx={69}
-      cy={73}
-      r={4.5}
-      fill="#fff"
-      stroke="#ABABAB"
-      strokeWidth={5}
-    />
-    <circle cx={69} cy={93} r={7} fill="#EEE" />
-  </svg>
-);
-
-export default SvgRadio;
+export default function SvgRadio() {
+  const [, theme] = useStyletron();
+  const colors = getFillColors(theme);
+  return (
+    <svg width={232} height={145} fill="none">
+      <path
+        fill={colors[1]}
+        d="M90 47h65v12H90zM90 67h57v12H90zM90 87h80v12H90z"
+      />
+      <circle cx={69} cy={53} r={7} fill={colors[0]} />
+      <circle
+        cx={69}
+        cy={73}
+        r={4.5}
+        fill={colors[0]}
+        stroke={colors[2]}
+        strokeWidth={5}
+      />
+      <circle cx={69} cy={93} r={7} fill={colors[0]} />
+    </svg>
+  );
+}

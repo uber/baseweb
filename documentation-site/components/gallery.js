@@ -91,23 +91,29 @@ function Thumbnail({children, label, href, scale = 1}) {
       className={css({
         display: 'flex',
         flexDirection: 'column',
-        border: 'solid 2px transparent',
+        border: `solid 1px ${theme.colors.borderAlt}`,
+        marginRight: theme.sizing.scale800,
+        marginBottom: theme.sizing.scale800,
         textDecoration: 'none',
+        transitionProperty: 'all',
+        transitionDuration: theme.animation.timing100,
+        transitionTimingFunction: theme.animation.easeInOutCurve,
         ':hover': {
-          border: 'solid 2px #000',
+          border: `solid 1px ${theme.colors.borderFocus}`,
         },
       })}
     >
       <div
         className={css({
-          fontFamily: 'Menlo',
+          fontFamily:
+            'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
           fontSize: '12px',
           color: `${theme.colors.foregroundAlt}`,
           paddingTop: '8px',
           paddingLeft: '12px',
-          paddingRight: '12px',
+          paddingRight: '0',
           paddingBottom: '8px',
-          background: '#f6f6f6',
+          borderBottom: `solid 1px ${theme.colors.borderAlt}`,
         })}
       >
         {'baseui/' + href.split('/')[2]}

@@ -7,11 +7,15 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
+import {useStyletron} from 'baseui/styles';
+import getFillColors from './getFillColors.js';
 
-const SvgInput = props => (
-  <svg width={232} height={145} fill="none" {...props}>
-    <path fill="#EEE" d="M29 58h174v28H29z" />
-  </svg>
-);
-
-export default SvgInput;
+export default function SvgInput() {
+  const [, theme] = useStyletron();
+  const colors = getFillColors(theme);
+  return (
+    <svg width={232} height={145} fill="none">
+      <path fill={colors[0]} d="M29 58h174v28H29z" />
+    </svg>
+  );
+}
