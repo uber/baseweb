@@ -149,8 +149,11 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
               filterable={column.filterable}
               filter={p => null}
               index={columnIndex}
+              isFilterOpen={false}
               isHovered
               isMeasured
+              onFilterOpen={() => {}}
+              onFilterClose={() => {}}
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
               onSort={i => {}}

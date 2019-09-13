@@ -90,7 +90,11 @@ export function Unstable_DataTable(props: Props) {
   const [filters, setFilters] = React.useState(new Map());
   const [widths, setWidths] = React.useState(props.columns.map(() => 0));
   const gridRef = React.useRef<React.Ref<typeof VariableSizeGrid> | null>(null);
+  // indicates which header cell is currently hovered
   const [headerHoverIndex, setHeaderHoverIndex] = React.useState(-1);
+  // filter open state tracked outside of header cell so that mouse-leave from the header
+  // does not cause the popover to close.
+  const [filterOpenIndex, setFilterOpenIndex] = React.useState(-1);
 
   function addFilter(filterParams, title, description) {
     filters.set(title, {filterParams, description});
@@ -158,7 +162,7 @@ export function Unstable_DataTable(props: Props) {
     }
 
     return (
-      <div ref={ref} {...rest}>
+      <div ref={ref} data-baseweb="data-table" {...rest}>
         <div
           className={useCss({
             position: 'sticky',
@@ -191,7 +195,21 @@ export function Unstable_DataTable(props: Props) {
                   filterable={column.filterable}
                   sortable={column.sortable}
                   isHovered={headerHoverIndex === columnIndex}
-                  onMouseEnter={() => setHeaderHoverIndex(columnIndex)}
+                  isFilterOpen={filterOpenIndex === columnIndex}
+                  onFilterOpen={() => {
+                    if (filterOpenIndex === columnIndex) {
+                      setFilterOpenIndex(-1);
+                    } else {
+                      setFilterOpenIndex(columnIndex);
+                    }
+                  }}
+                  onFilterClose={() => setFilterOpenIndex(-1)}
+                  onMouseEnter={() => {
+                    setHeaderHoverIndex(columnIndex);
+                    if (columnIndex !== filterOpenIndex) {
+                      setFilterOpenIndex(-1);
+                    }
+                  }}
                   onMouseLeave={() => setHeaderHoverIndex(-1)}
                   onSort={handleSort}
                   filter={({close}) => {

@@ -6,7 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {styled} from '../styles/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 import type {LayersManagerPropsT, LayersContextT} from './types.js';
+
+const StyledAppContainer = styled('div', {});
+const StyledLayersContainer = styled('div', {});
 
 export const {
   Provider,
@@ -14,13 +19,25 @@ export const {
 }: React.Context<LayersContextT> = React.createContext({});
 
 export default class LayersManager extends React.Component<LayersManagerPropsT> {
-  host: {current: HTMLDivElement | null} = React.createRef();
+  host: {
+    // eslint-disable-next-line flowtype/no-weak-types
+    current: React.ElementRef<any> | null,
+  } = React.createRef();
 
   componentDidMount() {
     this.forceUpdate();
   }
 
   render() {
+    const {overrides = {}} = this.props;
+    const [AppContainer, appContainerProps] = getOverrides(
+      overrides.AppContainer,
+      StyledAppContainer,
+    );
+    const [LayersContainer, layersContainerProps] = getOverrides(
+      overrides.LayersContainer,
+      StyledLayersContainer,
+    );
     return (
       <Consumer>
         {({host}) => {
@@ -39,8 +56,10 @@ export default class LayersManager extends React.Component<LayersManagerPropsT> 
                 zIndex: this.props.zIndex,
               }}
             >
-              <div>{this.props.children}</div>
-              <div ref={this.host} />
+              <AppContainer {...appContainerProps}>
+                {this.props.children}
+              </AppContainer>
+              <LayersContainer {...layersContainerProps} ref={this.host} />
             </Provider>
           );
         }}

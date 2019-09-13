@@ -2,7 +2,7 @@
 import React from 'react';
 import {withStyle} from 'baseui';
 import {Select, StyledDropdownListItem} from 'baseui/select';
-import {StyledList} from 'baseui/menu';
+import {StyledList, StyledEmptyState} from 'baseui/menu';
 
 import List from 'react-virtualized/dist/commonjs/List';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
@@ -14,19 +14,30 @@ const ListItem = withStyle(StyledDropdownListItem, {
   alignItems: 'center',
 });
 
-const Container = withStyle(StyledList, {height: '500px'});
+const Container = withStyle(StyledList, ({$height}) => ({
+  height: $height,
+}));
 
 const VirtualList = React.forwardRef((props, ref) => {
   const children = React.Children.toArray(props.children);
+
+  if (!children[0] || !children[0].props.item) {
+    return (
+      <Container $height="72px" ref={ref}>
+        <StyledEmptyState {...children[0].props} />
+      </Container>
+    );
+  }
+
   return (
-    <Container ref={ref}>
+    <Container $height="500px" ref={ref}>
       <AutoSizer>
         {({width}) => (
           <List
             role={props.role}
             height={500}
             width={width}
-            rowCount={props.children.length}
+            rowCount={children.length}
             rowHeight={36}
             rowRenderer={({index, key, style}) => {
               return (
@@ -62,7 +73,7 @@ export default () => {
       options={options}
       labelKey="id"
       valueKey="label"
-      overrides={{Dropdown: {component: VirtualList}}}
+      overrides={{Dropdown: VirtualList}}
       onChange={({value}) => setValue(value)}
       value={value}
     />

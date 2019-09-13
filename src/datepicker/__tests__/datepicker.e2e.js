@@ -99,6 +99,18 @@ describe('Datepicker', () => {
     expect(selectedValue).toBe('2019/03/10');
   });
 
+  it('rerenders input if value is changed', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click('button');
+
+    const selectedValue = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue).toBe('2019/03/18');
+  });
+
   it('selects range', async () => {
     await mount(page, 'datepicker-range');
     await page.waitFor(selectors.input);
@@ -121,6 +133,30 @@ describe('Datepicker', () => {
       input => input.value,
     );
     expect(selectedValue2).toBe('2019/03/10 - 2019/03/28');
+  });
+
+  it('selects range - int', async () => {
+    await mount(page, 'datepicker-int');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.click(selectors.day);
+    await page.waitFor(selectors.calendar);
+    const selectedValue1 = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue1).toBe('10.03.2019 -   .  .    ');
+
+    await page.click(selectors.day2);
+    await page.waitFor(selectors.calendar, {
+      hidden: true,
+    });
+    const selectedValue2 = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue2).toBe('10.03.2019 - 28.03.2019');
   });
 
   it('selects range - verifies end of year', async () => {
