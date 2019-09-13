@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import {getInitialStyle} from 'styletron-standard';
 import {LightTheme} from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
@@ -37,7 +37,10 @@ export function useStyletron() {
   return [useCss, MOCK_THEME];
 }
 
-export function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
+export function styled(
+  ElementName: string | React.ComponentType<{}>,
+  objOrFn?: ObjOrFnT = {},
+) {
   class MockStyledComponent extends React.Component<PropsT, StateT> {
     static displayName = 'MockStyledComponent';
 
@@ -98,3 +101,5 @@ export function styled(ElementName: string, objOrFn?: ObjOrFnT = {}) {
     <MockStyledComponent forwardedRef={ref} {...props} />
   ));
 }
+
+export const withStyle = styled;

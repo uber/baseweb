@@ -109,6 +109,29 @@ function matchesQuery(category, query) {
   return category.toLowerCase().includes(query.toLowerCase());
 }
 
+function HighlightCheckboxLabel(props) {
+  const {children, ...restProps} = props;
+
+  if (!props.query) {
+    return <StyledLabel {...restProps}>{children}</StyledLabel>;
+  }
+
+  return children.split(new RegExp(`(${props.query})`, 'i')).map((el, i) => {
+    if (matchesQuery(el, props.query)) {
+      return (
+        <StyledHighlightLabel {...restProps} key={i} $isFirst={!i} $isActive>
+          {el}
+        </StyledHighlightLabel>
+      );
+    }
+    return (
+      <StyledHighlightLabel {...restProps} key={i} $isFirst={!i}>
+        {el}
+      </StyledHighlightLabel>
+    );
+  });
+}
+
 function CategoricalFilter(props) {
   const [useCss, theme] = useStyletron();
   const [selection, setSelection] = React.useState<Set<string>>(new Set());
@@ -124,29 +147,6 @@ function CategoricalFilter(props) {
   const filteredCategories = Array.from(categories, c => c).filter(c =>
     matchesQuery(c, query),
   );
-
-  function HighlightCheckboxLabel(props) {
-    const {children, ...restProps} = props;
-
-    if (!query) {
-      return <StyledLabel {...restProps}>{children}</StyledLabel>;
-    }
-
-    return children.split(new RegExp(`(${query})`, 'i')).map((el, i) => {
-      if (matchesQuery(el, query)) {
-        return (
-          <StyledHighlightLabel {...restProps} key={i} $isFirst={!i} $isActive>
-            {el}
-          </StyledHighlightLabel>
-        );
-      }
-      return (
-        <StyledHighlightLabel {...restProps} key={i} $isFirst={!i}>
-          {el}
-        </StyledHighlightLabel>
-      );
-    });
-  }
 
   return (
     <div
@@ -169,7 +169,7 @@ function CategoricalFilter(props) {
         />
       )}
 
-      {!Boolean(query) && (
+      {!query && (
         <div
           style={{
             marginTop: showQuery ? theme.sizing.scale600 : null,
@@ -195,9 +195,7 @@ function CategoricalFilter(props) {
           marginBottom: theme.sizing.scale600,
         })}
       >
-        {!Boolean(filteredCategories.length) && (
-          <Label3>No Categories Found</Label3>
-        )}
+        {!filteredCategories.length && <Label3>No Categories Found</Label3>}
 
         {Boolean(filteredCategories.length) &&
           filteredCategories.map((category, i) => (
@@ -212,7 +210,9 @@ function CategoricalFilter(props) {
                   }
                   setSelection(new Set(selection));
                 }}
-                overrides={{Label: HighlightCheckboxLabel}}
+                overrides={{
+                  Label: {component: HighlightCheckboxLabel, props: {query}},
+                }}
               >
                 {category}
               </Checkbox>
