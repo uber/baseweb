@@ -130,10 +130,10 @@ export default function createTheme(
       buttonPrimarySpinnerForeground: primitives.primary50,
       buttonPrimarySpinnerBackground: primitives.primary500,
 
-      buttonSecondaryFill: primitives.primary50,
+      buttonSecondaryFill: primitives.primary100,
       buttonSecondaryText: primitives.primary,
-      buttonSecondaryHover: primitives.primary100,
-      buttonSecondaryActive: primitives.primary200,
+      buttonSecondaryHover: primitives.primary200,
+      buttonSecondaryActive: primitives.primary300,
       buttonSecondarySelectedFill: primitives.primary200,
       buttonSecondarySelectedText: primitives.primary,
       buttonSecondarySpinnerForeground: primitives.primary700,
