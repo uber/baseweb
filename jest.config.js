@@ -15,6 +15,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/test/test-framework-setup.js'],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/packages/'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testRegex: '(.|-)test\\.js$',
   testURL: 'http://localhost/',

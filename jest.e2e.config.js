@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/dist/', './babel/cup.js'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   preset: 'jest-puppeteer',
   testRegex: './*\\e2e\\.js$', //only for now, will be changed back to e2e.js
   transformIgnorePatterns: ['./babel/cup.js'],
