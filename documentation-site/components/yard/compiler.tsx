@@ -1,7 +1,8 @@
 import React from 'react';
 import {transformFromAstSync} from '@babel/core';
-import {parse} from './ast';
+import {parse} from '@babel/parser';
 import {useStyletron} from 'baseui';
+//import generate from "@babel/generator";
 //@ts-ignore
 import presetReact from '@babel/preset-react';
 
@@ -21,6 +22,9 @@ const errorBoundary = (
   return ErrorBoundary;
 };
 
+export const codeToAst = (code: string) =>
+  parse(code, {sourceType: 'module', plugins: ['jsx']});
+
 const evalCode = (ast: babel.types.Node, scope: any) => {
   const transformedCode = transformFromAstSync(
     ast as babel.types.Node,
@@ -32,7 +36,6 @@ const evalCode = (ast: babel.types.Node, scope: any) => {
   const resultCode = transformedCode ? transformedCode.code : '';
   const scopeKeys = Object.keys(scope);
   const scopeValues = Object.values(scope);
-  // @ts-ignore
   const res = new Function('React', ...scopeKeys, `return ${resultCode}`);
   return res(React, ...scopeValues);
 };
@@ -55,10 +58,11 @@ const transpile = (
   try {
     const ast = transformations.reduce(
       (result, transformation) => transformation(result),
-      parse(code) as babel.types.Node,
+      codeToAst(code),
     );
     const component = generateElement(ast, scope, (error: Error) => {
       setError(error.toString());
+      setOutput({component: null});
     });
     setOutput({component});
     setError(null);
@@ -72,8 +76,7 @@ const Compiler: React.FC<{
   code: string;
   setError: (error: string | null) => void;
   transformations: ((ast: babel.types.Node) => babel.types.Node)[];
-  PlaceholderElement: React.FC;
-}> = ({scope, code, setError, transformations, PlaceholderElement}) => {
+}> = ({scope, code, setError, transformations}) => {
   const [output, setOutput] = React.useState<{
     component: React.ComponentClass | null;
   }>({component: null});
@@ -89,16 +92,12 @@ const Compiler: React.FC<{
       className={css({
         display: 'flex',
         justifyContent: 'center',
-        paddingTop: theme.sizing.scale600,
-        paddingBottom: theme.sizing.scale600,
+        padding: theme.sizing.scale600,
       })}
     >
-      {Element ? <Element /> : <PlaceholderElement />}
+      {Element && <Element />}
     </div>
   );
 };
 
-export default React.memo(
-  Compiler,
-  (prevProps, nextProps) => prevProps.code === nextProps.code,
-);
+export default Compiler;

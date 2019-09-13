@@ -24,7 +24,7 @@ import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
 import {TYardProps, TState, TProp} from './types';
 
-import Compiler from './compiler';
+import Compiler, {codeToAst} from './compiler';
 import Editor from './editor';
 import Error from './error';
 
@@ -127,6 +127,7 @@ export default withRouter(
   }) => {
     const [css, theme] = useStyletron();
     const [error, setError] = React.useState<string | null>(null);
+    const [editorFocused, focusEditor] = React.useState(false);
     const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
     const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
 
@@ -341,10 +342,7 @@ export default withRouter(
         <Compiler
           code={state.code}
           setError={setError}
-          transformations={[
-            code =>
-              transformBeforeCompilation(code, componentName, propsConfig),
-          ]}
+          transformations={[removeImportsAndExports]}
           scope={{
             ...scopeConfig,
             ThemeProvider,
@@ -371,27 +369,18 @@ export default withRouter(
             },
             TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
           }}
-          transformCode={code =>
-            removeImportsAndExports(code, componentName, propsConfig)
-          }
-          theme={
-            theme.name.startsWith('light-theme')
-              ? {
-                  ...lightTheme,
-                  plain: {
-                    ...lightTheme.plain,
-                    backgroundColor: theme.colors.mono200,
-                  },
-                }
-              : {
-                  ...darkTheme,
-                  plain: {
-                    ...darkTheme.plain,
-                    backgroundColor: editorFocused ? '#3D3D3D' : '#292929',
-                  },
-                }
-          }
-          language="jsx"
+        />
+        <StatefulTabs
+          initialState={{activeKey: '0'}}
+          onChange={({activeKey}) => {
+            trackEvent('yard', `${componentName}:tab_switch_${activeKey}`);
+          }}
+          overrides={{
+            TabBar: {
+              style: {backgroundColor: 'transparent', paddingLeft: 0},
+            },
+            TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
+          }}
         >
           <Tab
             title={`Props${changedProps > 0 ? ` (${changedProps})` : ''}`}
@@ -408,12 +397,13 @@ export default withRouter(
             <Knobs
               knobProps={state.props}
               set={(value: any, name: string) => {
-                const newCode = getCode(
-                  buildPropsObj(state.props, {[name]: value}),
-                  componentName,
-                  componentThemeDiff,
+                const newCode = formatCode(
+                  getCode(
+                    buildPropsObj(state, {[name]: value}),
+                    componentName,
+                    componentThemeDiff,
+                  ),
                 );
-
                 trackEvent('yard', `${componentName}:knob_change_${name}`);
                 dispatch({
                   type: Action.UpdatePropsAndCode,
@@ -447,44 +437,24 @@ export default withRouter(
               componentConfig={propsConfig}
               overrides={state.props.overrides}
               set={(value: any) => {
-                try {
-                  const newCode = getCode(
-                    buildPropsObj(state.props, {overrides: value}),
+                const newCode = formatCode(
+                  getCode(
+                    buildPropsObj(state, {overrides: value}),
                     componentName,
                     componentThemeDiff,
-                  );
-                  Object.keys(state.props).forEach(name => {
-                    propValues[name] =
-                      //@ts-ignore
-                      propsConfig[name].value;
-                    if (name === 'overrides') {
-                      // overrides need a special treatment since the value needs to
-                      // be further analyzed and parsed
-                      propValues[name] = parseOverrides(
-                        parsedProps[name],
-                        propsConfig.overrides && propsConfig.overrides.meta
-                          ? propsConfig.overrides.meta.names || []
-                          : [],
-                      );
-                    } else {
-                      propValues[name] = parsedProps[name];
-                    }
-                  });
-
-                  dispatch({
-                    type: Action.UpdatePropsAndCode,
-                    payload: {
-                      code: newCode,
-                      updatedPropValues: {overrides: value},
-                    },
-                  });
-                  Router.push({
-                    pathname: router.pathname,
-                    query: {code: newCode},
-                  } as any);
-                } catch (e) {
-                  setError(e.toString());
-                }
+                  ),
+                );
+                dispatch({
+                  type: Action.UpdatePropsAndCode,
+                  payload: {
+                    code: newCode,
+                    updatedPropValues: {overrides: value},
+                  },
+                });
+                Router.push({
+                  pathname: router.pathname,
+                  query: {code: newCode},
+                } as any);
               }}
             />
           </Tab>
@@ -522,10 +492,8 @@ export default withRouter(
                   componentThemeDiff.themeValues = componentThemeValueDiff;
                   componentThemeDiff.themeName = theme.name;
                 }
-                const newCode = getCode(
-                  state.props,
-                  componentName,
-                  componentThemeDiff,
+                const newCode = formatCode(
+                  getCode(state.props, componentName, componentThemeDiff),
                 );
                 dispatch({
                   type: Action.UpdateThemeAndCode,
@@ -542,56 +510,79 @@ export default withRouter(
             />
           </Tab>
         </StatefulTabs>
-        <Editor
-          code={
-            state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code
-          }
-          onChange={newCode => {
-            const propValues: any = {};
-            try {
-              const {parsedProps, parsedTheme} = parseCode(
-                newCode,
-                componentName,
-              );
-              Object.keys(state.props).forEach(name => {
-                propValues[name] =
-                  //@ts-ignore
-                  propsConfig[name].value;
-                if (name === 'overrides') {
-                  // overrides need a special treatment since the value needs to
-                  // be further analyzed and parsed
-                  propValues[name] = parseOverrides(
-                    parsedProps[name],
-                    propsConfig.overrides && propsConfig.overrides.meta
-                      ? propsConfig.overrides.meta.names || []
-                      : [],
-                  );
-                } else {
-                  propValues[name] = parsedProps[name];
-                }
-              });
-
-              dispatch({
-                type: Action.Update,
-                payload: {
-                  code: newCode,
-                  updatedPropValues: propValues,
-                  theme: parsedTheme,
-                },
-              });
-              Router.push({
-                pathname: router.pathname,
-                query: {code: newCode},
-              } as any);
-            } catch (e) {
-              dispatch({
-                type: Action.UpdateCode,
-                payload: newCode,
-              });
-            }
+        <div
+          className={css({
+            marginTop: `${theme.sizing.scale800}`,
+            boxSizing: 'border-box',
+            border: editorFocused
+              ? `2px solid ${theme.colors.primary400}`
+              : `2px solid ${
+                  theme.name.startsWith('light-theme')
+                    ? theme.colors.mono200
+                    : '#292929 '
+                }`,
+          })}
+          onClick={() => {
+            trackEvent('yard', `${componentName}:code_editor_focused`);
+            focusEditor(true);
           }}
-        />
-        <Error error={error} code={state.code} />
+          onBlur={() => focusEditor(false)}
+        >
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `.npm__react-simple-code-editor__textarea { outline: none !important }`,
+            }}
+          />
+          <Editor
+            focused={editorFocused}
+            code={state.code}
+            onChange={newCode => {
+              const propValues: any = {};
+              try {
+                const {parsedProps, parsedTheme} = parseCode(
+                  newCode,
+                  componentName,
+                );
+                Object.keys(state.props).forEach(name => {
+                  propValues[name] =
+                    //@ts-ignore
+                    propsConfig[name].value;
+                  if (name === 'overrides') {
+                    // overrides need a special treatment since the value needs to
+                    // be further analyzed and parsed
+                    propValues[name] = parseOverrides(
+                      parsedProps[name],
+                      propsConfig.overrides && propsConfig.overrides.meta
+                        ? propsConfig.overrides.meta.names || []
+                        : [],
+                    );
+                  } else {
+                    propValues[name] = parsedProps[name];
+                  }
+                });
+
+                dispatch({
+                  type: Action.Update,
+                  payload: {
+                    code: newCode,
+                    updatedPropValues: propValues,
+                    theme: parsedTheme,
+                  },
+                });
+                Router.push({
+                  pathname: router.pathname,
+                  query: {code: newCode},
+                } as any);
+              } catch (e) {
+                dispatch({
+                  type: Action.UpdateCode,
+                  payload: newCode,
+                });
+              }
+            }}
+          />
+          <Error error={error} code={state.code} />
+        </div>
         <ButtonGroup
           size={SIZE.compact}
           overrides={{
@@ -618,7 +609,7 @@ export default withRouter(
             kind={KIND.tertiary}
             onClick={() => {
               trackEvent('yard', `${componentName}:copy_code`);
-              copy(state.code);
+              copy(formatCode(state.code));
             }}
           >
             Copy code
@@ -638,10 +629,12 @@ export default withRouter(
               dispatch({
                 type: Action.Reset,
                 payload: {
-                  code: getCode(propsConfig, componentName, {
-                    themeValues: {},
-                    themeName: '',
-                  } as any),
+                  code: formatCode(
+                    getCode(propsConfig, componentName, {
+                      themeValues: {},
+                      themeName: '',
+                    } as any),
+                  ),
                   props: propsConfig,
                   theme: componentThemeObj,
                 },

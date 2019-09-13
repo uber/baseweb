@@ -20,19 +20,22 @@ const Error: React.FC<{error: string | null; code: string}> = ({
   code,
 }) => {
   const [css, theme] = useStyletron();
-  const errorCx = css({
-    backgroundColor: theme.colors.negative600,
-    whiteSpace: 'pre',
-    fontSize: '11px',
-    fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
-    color: theme.colors.mono100,
-    padding: theme.sizing.scale600,
-    marginTop: theme.sizing.scale600,
-    marginBottom: theme.sizing.scale500,
-    overflowX: 'scroll',
-  });
   if (!error) return null;
-  return <div className={errorCx}>{frameError(error, code)}</div>;
+  return (
+    <div
+      className={css({
+        backgroundColor: theme.colors.negative600,
+        whiteSpace: 'pre',
+        fontSize: '12px',
+        fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
+        color: theme.colors.mono100,
+        padding: theme.sizing.scale600,
+        overflowX: 'scroll',
+      })}
+    >
+      {frameError(error, code)}
+    </div>
+  );
 };
 
 export default Error;
