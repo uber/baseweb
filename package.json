@@ -146,7 +146,6 @@
     "react": "^16.8.6",
     "react-codesandboxer": "^3.1.1",
     "react-dom": "^16.8.6",
-    "react-live": "^2.1.2",
     "react-markdown": "^4.0.3",
     "react-simple-code-editor": "^0.9.14",
     "react-vis": "^1.11.6",

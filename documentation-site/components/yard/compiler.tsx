@@ -58,7 +58,7 @@ const transpile = (
   try {
     const ast = transformations.reduce(
       (result, transformation) => transformation(result),
-      codeToAst(code),
+      codeToAst(code) as babel.types.Node,
     );
     const component = generateElement(ast, scope, (error: Error) => {
       setError(error.toString());

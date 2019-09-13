@@ -1,6 +1,7 @@
 export enum Action {
   Update,
   UpdateCode,
+  UpdateProps,
   UpdatePropsAndCode,
   UpdateThemeAndCode,
   Reset,
