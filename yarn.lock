@@ -27,6 +27,13 @@
   dependencies:
     "@ampproject/toolbox-core" "^1.0.1"
 
+"@aparna036/babel-explode-module@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@aparna036/babel-explode-module/-/babel-explode-module-2.0.1.tgz#a6584580466b3256390fbd17fb2a6d9aab8b237f"
+  integrity sha512-0E7h/wnIyH2ReiS2+S9FchNcssVQclrFgOBKdpQR5iiwrZq5pAkSz8R2IKy0qaJNLPvIucSaL3rLHQenlC8RPw==
+  dependencies:
+    "@babel/types" "^7.0.0-beta.56"
+
 "@babel/cli@^7.0.0":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.1.2.tgz#fc2853ae96824b3779ca85de4fd025ce3cf62a5e"
@@ -2359,37 +2366,6 @@
   dependencies:
     csstype "^2.6.4"
 
-"@uber-web-ui/extract-react-types-loader@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@uber-web-ui/extract-react-types-loader/-/extract-react-types-loader-1.0.1.tgz#4dc56a4ee8cffc6d3be5c54666726ca608ea07ae"
-  integrity sha512-2k2vI1eGdvVD9ynrYDjjlRPbt8omfKHkb7CCDns+xgHNghL96Jqe2cU4y38g/4AvWvMFpxvBRNCu7KW+wY/s3A==
-  dependencies:
-    "@uber-web-ui/extract-react-types" "^1.0.1"
-
-"@uber-web-ui/extract-react-types@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@uber-web-ui/extract-react-types/-/extract-react-types-1.0.1.tgz#8685e9398ba4d4f610332e69ff56c84eabb35c55"
-  integrity sha512-/2pIoauOo9ebwMqBN+rLKwCW36MtxiNM9loRMsTivHRjAX5G8S8+QhLOAOZ5Te2sR3OEii8gF4C48KrEu4xgag==
-  dependencies:
-    "@babel/core" "^7.4.4"
-    "@babel/runtime" "^7.4.4"
-    "@babel/types" "^7.0.0-beta.56"
-    ast-pretty-print "^2.0.1"
-    babel-errors "^1.1.1"
-    babel-explode-module "^3.0.0"
-    babel-file "^3.0.0"
-    babel-file-loader "^2.0.0"
-    babel-flow-identifiers "^1.1.3"
-    babel-helper-simplify-module "^2.2.1"
-    babel-identifiers "^1.1.2"
-    babel-normalize-comments "^1.0.1"
-    babel-react-components "^1.1.0"
-    babel-type-scopes "^1.1.0"
-    babylon "^7.0.0-beta.22"
-    babylon-options "^2.0.1"
-    resolve "^1.10.1"
-    strip-indent "^2.0.0"
-
 "@webassemblyjs/ast@1.5.13":
   version "1.5.13"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.5.13.tgz#81155a570bd5803a30ec31436bc2c9c0ede38f25"
@@ -3513,13 +3489,6 @@ babel-explode-module@^1.4.0:
   integrity sha1-sgB28O5f8o6PFrqjFG/hNqJ8ZQQ=
   dependencies:
     babel-types "^6.24.1"
-
-babel-explode-module@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/babel-explode-module/-/babel-explode-module-3.0.0.tgz#5989f6db02d205ca538f514ba0b9108d43590f6d"
-  integrity sha512-dR2Q9+GnJa2Ylsa0MVubpcASaQGAk6y06jF9NvLC8lJ5e9Iu4sFULsjOeWV7HZCYWQq8EmjjuVe4k1dIDYB+RA==
-  dependencies:
-    "@babel/types" "^7.0.0-beta.56"
 
 babel-file-loader@^2.0.0:
   version "2.0.0"
@@ -7523,6 +7492,37 @@ extglob@^2.0.4:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
+
+extract-react-types-loader@^0.3.9:
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/extract-react-types-loader/-/extract-react-types-loader-0.3.9.tgz#d0d26f5215c2197e752a46d654c5a17791af19c5"
+  integrity sha512-zOyv/VRa/tpsUyl1Pdyj/+wUg74dW0YH57r5C5FY2DDbAt3Go8LjUkI5i+Lw3S84KjbOXP6ByxO9K7XT7Kby9A==
+  dependencies:
+    extract-react-types "^0.22.0"
+
+extract-react-types@^0.22.0, extract-react-types@^0.22.1:
+  version "0.22.1"
+  resolved "https://registry.yarnpkg.com/extract-react-types/-/extract-react-types-0.22.1.tgz#09beb26850214f1e5ed653296f41077eeb3927da"
+  integrity sha512-FuraEeFpL28GPoZAl7PClEBvtssd4owuCqpwjTI9TnlqueElXU/a+Qwtyt8WjwZ7f29d/zfznF6K4vUQNOF1jQ==
+  dependencies:
+    "@aparna036/babel-explode-module" "^2.0.1"
+    "@babel/core" "^7.4.4"
+    "@babel/runtime" "^7.4.4"
+    "@babel/types" "^7.0.0-beta.56"
+    ast-pretty-print "^2.0.1"
+    babel-errors "^1.1.1"
+    babel-file "^3.0.0"
+    babel-file-loader "^2.0.0"
+    babel-flow-identifiers "^1.1.3"
+    babel-helper-simplify-module "^2.2.1"
+    babel-identifiers "^1.1.2"
+    babel-normalize-comments "^1.0.1"
+    babel-react-components "^1.1.0"
+    babel-type-scopes "^1.1.0"
+    babylon "^7.0.0-beta.22"
+    babylon-options "^2.0.1"
+    resolve "^1.10.1"
+    strip-indent "^2.0.0"
 
 extract-zip@^1.6.6:
   version "1.6.7"
