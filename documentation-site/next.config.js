@@ -26,6 +26,7 @@ module.exports = withMDX(
 
       // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
       const originalEntry = config.entry;
+      config['node'] = {fs: 'empty'};
       config.entry = async () => {
         const entries = await originalEntry();
 
