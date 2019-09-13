@@ -36,6 +36,7 @@ const evalCode = (ast: babel.types.Node, scope: any) => {
   const resultCode = transformedCode ? transformedCode.code : '';
   const scopeKeys = Object.keys(scope);
   const scopeValues = Object.values(scope);
+  // @ts-ignore
   const res = new Function('React', ...scopeKeys, `return ${resultCode}`);
   return res(React, ...scopeValues);
 };
