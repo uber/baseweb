@@ -121,7 +121,7 @@ const COMPONENTS = {
     },
     {
       label: 'Side Navigation',
-      href: '/components/side-navigation',
+      href: '/components/side-nav',
       Component: thumbnails.SvgSideNavigation,
     },
     {
@@ -132,8 +132,8 @@ const COMPONENTS = {
   ],
   Content: [
     {
-      label: 'Accordian',
-      href: '/components/accordian',
+      label: 'Accordion',
+      href: '/components/accordion',
       Component: thumbnails.SvgAccordian,
     },
     {
@@ -168,7 +168,7 @@ const COMPONENTS = {
     },
     {
       label: 'Data Table',
-      href: '/components/data-table',
+      href: '/components/unstable-data-table',
       Component: thumbnails.SvgDataTable,
     },
     {

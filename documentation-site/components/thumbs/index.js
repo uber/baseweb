@@ -35,7 +35,7 @@ export {default as SvgSideNavigation} from './components/SideNavigation.js';
 export {default as SvgTabs} from './components/Tabs.js';
 
 // Content
-export {default as SvgAccordian} from './components/Accordian.js';
+export {default as SvgAccordion} from './components/Accordion.js';
 export {default as SvgAvatar} from './components/Avatar.js';
 export {default as SvgDndList} from './components/DndList.js';
 export {default as SvgHeading} from './components/Heading.js';
