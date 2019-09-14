@@ -134,7 +134,7 @@ const COMPONENTS = {
     {
       label: 'Accordion',
       href: '/components/accordion',
-      Component: thumbnails.SvgAccordian,
+      Component: thumbnails.SvgAccordion,
     },
     {
       label: 'Avatar',
