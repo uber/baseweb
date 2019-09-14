@@ -7,17 +7,13 @@ LICENSE file in the root directory of this source tree.
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react';
-import {useStyletron} from 'baseui/styles';
-import getFillColors from '../getFillColors.js';
 export default function SvgTabs(props) {
-  const [, theme] = useStyletron();
-  const colors = getFillColors(theme);
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <path fill={colors[2]} d="M43 68h41v10H43z" />
-      <path fill={colors[0]} d="M43 82h147v2H43z" />
-      <path fill={colors[2]} d="M43 82h41v2H43z" />
-      <path fill={colors[1]} d="M96 68h41v10H96zM149 68h41v10h-41z" />
+      <path fill={props.colors[2]} d="M43 68h41v10H43z" />
+      <path fill={props.colors[0]} d="M43 82h147v2H43z" />
+      <path fill={props.colors[2]} d="M43 82h41v2H43z" />
+      <path fill={props.colors[1]} d="M96 68h41v10H96zM149 68h41v10h-41z" />
     </svg>
   );
 }

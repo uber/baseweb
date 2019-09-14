@@ -7,15 +7,11 @@ LICENSE file in the root directory of this source tree.
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react';
-import {useStyletron} from 'baseui/styles';
-import getFillColors from '../getFillColors.js';
 export default function SvgPinCode(props) {
-  const [, theme] = useStyletron();
-  const colors = getFillColors(theme);
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path
-        fill={colors[1]}
+        fill={props.colors[1]}
         d="M52 58h28v28H52zM85 58h28v28H85zM118 58h28v28h-28zM151 58h28v28h-28z"
       />
     </svg>

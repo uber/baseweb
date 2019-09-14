@@ -68,7 +68,7 @@ import SvgTooltip from '../components/thumbs/components/Tooltip.js';
 import SvgAspectRatioBox from '../components/thumbs/components/AspectRatioBox.js';
 import SvgFlexGrid from '../components/thumbs/components/FlexGrid.js';
 import SvgLayer from '../components/thumbs/components/Layer.js';
-import SvgUnstableA11y from '../components/thumbs/components/UnstableA11y.js';
+import SvgUnstableA11y from '../components/thumbs/components/UnstableA11Y.js';
 import SvgTokens from '../components/thumbs/components/Tokens.js';
 import SvgBlock from '../components/thumbs/components/Block.js';
 
@@ -374,7 +374,11 @@ function Thumbnail({children, label, href, scale = 1}) {
 }
 
 function Section({nature}) {
-  const [css] = useStyletron();
+  const [css, theme] = useStyletron();
+  const colors =
+    theme.name === 'light-theme'
+      ? [theme.colors.mono200, theme.colors.mono400, theme.colors.mono600]
+      : [theme.colors.mono700, theme.colors.mono500, theme.colors.mono300];
   return (
     <React.Fragment>
       <H4>{nature}</H4>
@@ -387,7 +391,7 @@ function Section({nature}) {
         {COMPONENTS[nature].map(({Component, ...props}) => {
           return (
             <Thumbnail key={props.label} {...props}>
-              <Component />
+              <Component colors={colors} />
             </Thumbnail>
           );
         })}

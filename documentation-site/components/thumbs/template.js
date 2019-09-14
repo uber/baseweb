@@ -26,11 +26,7 @@ function template(api, opts, values) {
   return template.ast`
 ${header}
 ${imports}
-import {useStyletron} from 'baseui/styles';
-import getFillColors from '../getFillColors.js';
 export default function ${componentName} (${props}) {
-  const [, theme] = useStyletron();
-  const colors = getFillColors(theme);
   return ${jsx}
 }
 `;

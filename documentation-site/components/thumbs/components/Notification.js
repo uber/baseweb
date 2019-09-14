@@ -7,17 +7,13 @@ LICENSE file in the root directory of this source tree.
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react';
-import {useStyletron} from 'baseui/styles';
-import getFillColors from '../getFillColors.js';
 export default function SvgNotification(props) {
-  const [, theme] = useStyletron();
-  const colors = getFillColors(theme);
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <path fill={colors[0]} d="M55 48h123v48H55z" />
+      <path fill={props.colors[0]} d="M55 48h123v48H55z" />
       <path
         d="M170.64 56.24l-.88-.88-2.76 2.8-2.76-2.8-.88.88 2.8 2.76-2.8 2.76.88.88 2.76-2.8 2.76 2.8.88-.88-2.8-2.76 2.8-2.76z"
-        fill={colors[2]}
+        fill={props.colors[2]}
       />
     </svg>
   );
