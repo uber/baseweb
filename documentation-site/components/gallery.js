@@ -11,17 +11,18 @@ import React from 'react';
 import {H4} from 'baseui/typography';
 import {useStyletron} from 'baseui/styles';
 
-import SvgButton from '../components/thumbs/button.js';
-import SvgButtonGroup from '../components/thumbs/button-group.js';
-import SvgCheckbox from '../components/thumbs/checkbox.js';
-import SvgFormControl from '../components/thumbs/form-control.js';
-import SvgInput from '../components/thumbs/input.js';
-import SvgPaymentCard from '../components/thumbs/payment-card.js';
-import SvgPhoneInput from '../components/thumbs/phone-input.js';
-import SvgPinCode from '../components/thumbs/pin-code.js';
-import SvgRadio from '../components/thumbs/radio.js';
-import SvgSlider from '../components/thumbs/slider.js';
-import SvgTextarea from '../components/thumbs/textarea.js';
+// Inputs
+import SvgButton from '../components/thumbs/components/Button.js';
+import SvgButtonGroup from '../components/thumbs/components/ButtonGroup.js';
+import SvgCheckbox from '../components/thumbs/components/Checkbox.js';
+import SvgFormControl from '../components/thumbs/components/FormControl.js';
+import SvgInput from '../components/thumbs/components/Input.js';
+import SvgPaymentCard from '../components/thumbs/components/PaymentCard.js';
+import SvgPhoneInput from '../components/thumbs/components/PhoneInput.js';
+import SvgPinCode from '../components/thumbs/components/PinCode.js';
+import SvgRadio from '../components/thumbs/components/Radio.js';
+import SvgSlider from '../components/thumbs/components/Slider.js';
+import SvgTextarea from '../components/thumbs/components/Textarea.js';
 
 const COMPONENTS = {
   Inputs: [

@@ -7,10 +7,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 export default function getFillColors(theme) {
-  // SUPER HACK! Do not try this at home...
-  let themeIsLight = theme.colors.primary === '#000000';
-  if (themeIsLight) {
-    return [theme.colors.mono300, theme.colors.mono500, theme.colors.mono600];
+  if (theme.name === 'light-theme') {
+    return [theme.colors.mono200, theme.colors.mono400, theme.colors.mono600];
   } else {
     return [theme.colors.mono700, theme.colors.mono500, theme.colors.mono300];
   }
