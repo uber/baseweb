@@ -19,7 +19,7 @@ export default function SvgSideNavigation(props) {
         d="M82 29h41v6H82zM83 49h41v6H83zM83 109h41v6H83z"
       />
       <path fill={colors[0]} d="M74 64h83v16H74z" />
-      <path fill="#C4C4C4" d="M102 69h41v6h-41zM74 64h3v16h-3z" />
+      <path fill={colors[2]} d="M102 69h41v6h-41zM74 64h3v16h-3z" />
       <path fill={colors[1]} d="M102 89h41v6h-41z" />
     </svg>
   );

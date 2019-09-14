@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {useStyletron} from 'baseui/styles';
 import getFillColors from '../getFillColors.js';
-export default function SvgPopover1(props) {
+export default function SvgTooltip(props) {
   const [, theme] = useStyletron();
   const colors = getFillColors(theme);
   return (

@@ -14,9 +14,9 @@ export default function SvgPagination(props) {
   const colors = getFillColors(theme);
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <path fill="#C4C4C4" d="M139 65h46v16h-46z" />
+      <path fill={colors[2]} d="M139 65h46v16h-46z" />
       <path d="M179 73.23l-3.75 3.665v-7.328L179 73.23z" fill={colors[0]} />
-      <path fill="#C4C4C4" d="M92 81H46V65h46z" />
+      <path fill={colors[2]} d="M92 81H46V65h46z" />
       <path d="M52 72.77l3.75-3.665v7.328L52 72.77z" fill={colors[0]} />
       <path fill={colors[1]} d="M99 65h33v16H99z" />
     </svg>

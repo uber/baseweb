@@ -26,6 +26,51 @@ import SvgTextarea from '../components/thumbs/components/Textarea.js';
 
 // Pickers
 import SvgDatepicker from '../components/thumbs/components/Datepicker.js';
+import SvgFileUploader from '../components/thumbs/components/FileUploader.js';
+import SvgMenu from '../components/thumbs/components/Menu.js';
+import SvgRating from '../components/thumbs/components/Rating.js';
+import SvgSelect from '../components/thumbs/components/Select.js';
+
+// Navigation
+import SvgBreadcrumbs from '../components/thumbs/components/Breadcrumbs.js';
+import SvgHeaderNavigation from '../components/thumbs/components/HeaderNavigation.js';
+import SvgLink from '../components/thumbs/components/Link.js';
+import SvgPagination from '../components/thumbs/components/Pagination.js';
+import SvgSideNavigation from '../components/thumbs/components/SideNavigation.js';
+import SvgTabs from '../components/thumbs/components/Tabs.js';
+
+// Content
+import SvgAccordian from '../components/thumbs/components/Accordian.js';
+import SvgAvatar from '../components/thumbs/components/Avatar.js';
+import SvgDndList from '../components/thumbs/components/DndList.js';
+import SvgHeading from '../components/thumbs/components/Heading.js';
+import SvgIcon from '../components/thumbs/components/Icon.js';
+import SvgTable from '../components/thumbs/components/Table.js';
+import SvgTableGrid from '../components/thumbs/components/TableGrid.js';
+import SvgDataTable from '../components/thumbs/components/DataTable.js';
+import SvgTag from '../components/thumbs/components/Tag.js';
+import SvgTypography from '../components/thumbs/components/Typography.js';
+
+// Feedback
+import SvgNotification from '../components/thumbs/components/Notification.js';
+import SvgProgressBar from '../components/thumbs/components/ProgressBar.js';
+import SvgSpinner from '../components/thumbs/components/Spinner.js';
+import SvgToast from '../components/thumbs/components/Toast.js';
+
+// Surfaces
+import SvgCard from '../components/thumbs/components/Card.js';
+import SvgDrawer from '../components/thumbs/components/Drawer.js';
+import SvgModal from '../components/thumbs/components/Modal.js';
+import SvgPopover from '../components/thumbs/components/Popover.js';
+import SvgTooltip from '../components/thumbs/components/Tooltip.js';
+
+// Utility
+import SvgAspectRatioBox from '../components/thumbs/components/AspectRatioBox.js';
+import SvgFlexGrid from '../components/thumbs/components/FlexGrid.js';
+import SvgLayer from '../components/thumbs/components/Layer.js';
+import SvgUnstableA11y from '../components/thumbs/components/UnstableA11y.js';
+import SvgTokens from '../components/thumbs/components/Tokens.js';
+import SvgBlock from '../components/thumbs/components/Block.js';
 
 const COMPONENTS = {
   Inputs: [
@@ -90,6 +135,191 @@ const COMPONENTS = {
       label: 'Datepicker',
       href: '/components/datepicker',
       Component: SvgDatepicker,
+    },
+    {
+      label: 'File Uploader',
+      href: '/components/file-uploader',
+      Component: SvgFileUploader,
+    },
+    {
+      label: 'Menu',
+      href: '/components/menu',
+      Component: SvgMenu,
+    },
+    {
+      label: 'Rating',
+      href: '/components/rating',
+      Component: SvgRating,
+    },
+    {
+      label: 'Select',
+      href: '/components/select',
+      Component: SvgSelect,
+    },
+  ],
+  Navigation: [
+    {
+      label: 'Breadcrumbs',
+      href: '/components/breadcrumbs',
+      Component: SvgBreadcrumbs,
+    },
+    {
+      label: 'Header Navigation',
+      href: '/components/header-navigation',
+      Component: SvgHeaderNavigation,
+    },
+    {
+      label: 'Link',
+      href: '/components/link',
+      Component: SvgLink,
+    },
+    {
+      label: 'Pagination',
+      href: '/components/pagination',
+      Component: SvgPagination,
+    },
+    {
+      label: 'Side Navigation',
+      href: '/components/side-navigation',
+      Component: SvgSideNavigation,
+    },
+    {
+      label: 'Tabs',
+      href: '/components/tabs',
+      Component: SvgTabs,
+    },
+  ],
+  Content: [
+    {
+      label: 'Accordian',
+      href: '/components/accordian',
+      Component: SvgAccordian,
+    },
+    {
+      label: 'Avatar',
+      href: '/components/avatar',
+      Component: SvgAvatar,
+    },
+    {
+      label: 'Drag and Drop List',
+      href: '/components/dnd-list',
+      Component: SvgDndList,
+    },
+    {
+      label: 'Heading',
+      href: '/components/heading',
+      Component: SvgHeading,
+    },
+    {
+      label: 'Icon',
+      href: '/components/icon',
+      Component: SvgIcon,
+    },
+    {
+      label: 'Table',
+      href: '/components/table',
+      Component: SvgTable,
+    },
+    {
+      label: 'Table Grid',
+      href: '/components/table-grid',
+      Component: SvgTableGrid,
+    },
+    {
+      label: 'Data Table',
+      href: '/components/data-table',
+      Component: SvgDataTable,
+    },
+    {
+      label: 'Tag',
+      href: '/components/tag',
+      Component: SvgTag,
+    },
+    {
+      label: 'Typography',
+      href: '/components/typography',
+      Component: SvgTypography,
+    },
+  ],
+  Feedback: [
+    {
+      label: 'Notification',
+      href: '/components/notification',
+      Component: SvgNotification,
+    },
+    {
+      label: 'Progress Bar',
+      href: '/components/progress-bar',
+      Component: SvgProgressBar,
+    },
+    {
+      label: 'Spinner',
+      href: '/components/spinner',
+      Component: SvgSpinner,
+    },
+    {
+      label: 'Toast',
+      href: '/components/toast',
+      Component: SvgToast,
+    },
+  ],
+  Surfaces: [
+    {
+      label: 'card',
+      href: '/components/card',
+      Component: SvgCard,
+    },
+    {
+      label: 'Drawer',
+      href: '/components/drawer',
+      Component: SvgDrawer,
+    },
+    {
+      label: 'Modal',
+      href: '/components/modal',
+      Component: SvgModal,
+    },
+    {
+      label: 'Pop-Over',
+      href: '/components/popover',
+      Component: SvgPopover,
+    },
+    {
+      label: 'Tool-Tip',
+      href: '/components/tooltip',
+      Component: SvgTooltip,
+    },
+  ],
+  Utility: [
+    {
+      label: 'Aspect Ratio Box',
+      href: '/components/aspect-ratio-box',
+      Component: SvgAspectRatioBox,
+    },
+    {
+      label: 'Flex Grid',
+      href: '/components/flex-grid',
+      Component: SvgFlexGrid,
+    },
+    {
+      label: 'Layer',
+      href: '/components/layer',
+      Component: SvgLayer,
+    },
+    {
+      label: 'A11y Validator',
+      href: '/components/unstable-a11y',
+      Component: SvgUnstableA11y,
+    },
+    {
+      label: 'Tokens',
+      href: '/components/tokens',
+      Component: SvgTokens,
+    },
+    {
+      label: 'Block',
+      href: '/components/block',
+      Component: SvgBlock,
     },
   ],
 };
