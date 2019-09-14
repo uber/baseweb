@@ -24,6 +24,9 @@ import SvgRadio from '../components/thumbs/components/Radio.js';
 import SvgSlider from '../components/thumbs/components/Slider.js';
 import SvgTextarea from '../components/thumbs/components/Textarea.js';
 
+// Pickers
+import SvgDatepicker from '../components/thumbs/components/Datepicker.js';
+
 const COMPONENTS = {
   Inputs: [
     {
@@ -80,6 +83,13 @@ const COMPONENTS = {
       label: 'Slider',
       href: '/components/slider',
       Component: SvgSlider,
+    },
+  ],
+  Pickers: [
+    {
+      label: 'Datepicker',
+      href: '/components/datepicker',
+      Component: SvgDatepicker,
     },
   ],
 };
