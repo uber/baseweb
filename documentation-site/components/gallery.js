@@ -314,7 +314,7 @@ function Thumbnail({children, label, href, scale = 1}) {
   );
 }
 
-function Section({nature}) {
+function Section({category}) {
   const [css, theme] = useStyletron();
   const colors =
     theme.name === 'light-theme'
@@ -322,14 +322,14 @@ function Section({nature}) {
       : [theme.colors.mono700, theme.colors.mono500, theme.colors.mono300];
   return (
     <React.Fragment>
-      <H4>{nature}</H4>
+      <H4>{category}</H4>
       <div
         className={css({
           display: 'flex',
           flexWrap: 'wrap',
         })}
       >
-        {COMPONENTS[nature].map(({Component, ...props}) => {
+        {COMPONENTS[category].map(({Component, ...props}) => {
           return (
             <Thumbnail key={props.label} {...props}>
               <Component colors={colors} />
@@ -344,8 +344,8 @@ function Section({nature}) {
 function Gallery() {
   return (
     <React.Fragment>
-      {Object.keys(COMPONENTS).map(nature => (
-        <Section key={nature} nature={nature} />
+      {Object.keys(COMPONENTS).map(category => (
+        <Section key={category} category={category} />
       ))}
     </React.Fragment>
   );
