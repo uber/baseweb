@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {H4} from 'baseui/typography';
+import {H2} from '../components/markdown-elements';
 import {useStyletron} from 'baseui/styles';
 
 import * as thumbnails from '../components/thumbs';
@@ -278,11 +278,12 @@ function Section({category}) {
     : [theme.colors.mono700, theme.colors.mono500, theme.colors.mono300];
   return (
     <React.Fragment>
-      <H4>{category}</H4>
+      <H2>{category}</H2>
       <div
         className={css({
           display: 'flex',
           flexWrap: 'wrap',
+          marginTop: theme.sizing.scale800,
         })}
       >
         {COMPONENTS[category].map(({Component, ...props}) => {
