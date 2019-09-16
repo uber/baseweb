@@ -1,8 +1,26 @@
 import {TProp} from './types';
 import {PropTypes} from './const';
-import {parse} from './ast';
+import {assertUnreachable} from './utils';
 import template from '@babel/template';
 import * as t from '@babel/types';
+
+const getAST = (props: {[key: string]: TProp}, componentName: string) => {
+  console.log(props);
+  // const buildImport = template(`import {%%componentName%%} from %%source%%;`);
+  // return buildImport({
+  //   componentName: t.identifier(componentName),
+  //   source: t.stringLiteral(`baseui/${componentName}`),
+  // });
+  const buildRequire = template(`
+  var %%importName%% = require(%%source%%);
+`);
+
+  const ast = buildRequire({
+    importName: t.identifier('myModule'),
+    source: t.stringLiteral('my-module'),
+  });
+  return ast;
+};
 
 // forked prettier on a diet
 //@ts-ignore
@@ -177,6 +195,9 @@ const getAst = (
   componentName: string,
   theme: any,
 ) => {
+  const astt = getAST(props, componentName);
+  console.log(astt);
+
   let propsString = ``;
   let enumImports = ``;
   let stateHooks = ``;
