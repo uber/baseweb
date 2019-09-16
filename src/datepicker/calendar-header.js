@@ -18,7 +18,7 @@ import {
   StyledPrevButton,
   StyledNextButton,
   StyledMonthHeader,
-  StyledDay,
+  StyledWeekdayHeader,
   StyledMonthYearSelectButton,
   StyledMonthYearSelectIconContainer,
 } from './styled-components.js';
@@ -403,7 +403,7 @@ export default class CalendarHeader extends React.Component<
     );
     const [WeekdayHeader, weekdayHeaderProps] = getOverrides(
       overrides.WeekdayHeader,
-      StyledDay,
+      StyledWeekdayHeader,
     );
 
     const startOfWeek = getStartOfWeek(this.props.date, this.props.locale);
@@ -422,11 +422,7 @@ export default class CalendarHeader extends React.Component<
                   {WEEKDAYS.map(offset => {
                     const day = addDays(startOfWeek, offset);
                     return (
-                      <WeekdayHeader
-                        $isHeader
-                        key={offset}
-                        {...weekdayHeaderProps}
-                      >
+                      <WeekdayHeader key={offset} {...weekdayHeaderProps}>
                         {getWeekdayMinInLocale(day, this.props.locale)}
                       </WeekdayHeader>
                     );
