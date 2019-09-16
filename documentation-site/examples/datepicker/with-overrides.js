@@ -45,11 +45,18 @@ export default () => (
           $isHovered,
           $isHighlighted,
         }) => ({
-          backgroundColor: $selected
-            ? $theme.colors.positive
-            : $isHovered || $isHighlighted
-              ? $theme.colors.positive100
+          color: $selected
+            ? $theme.colors.white
+            : $theme.colors.calendarForeground,
+          ':after': {
+            backgroundColor: $selected
+              ? $isHovered || $isHighlighted
+                ? $theme.colors.positive500
+                : $theme.colors.positive
+              : $isHovered || $isHighlighted
+              ? $theme.colors.positive200
               : 'transparent',
+          },
         }),
       },
     }}

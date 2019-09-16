@@ -102,6 +102,7 @@ const CategoricalCell = React.forwardRef<CellPropsT, HTMLDivElement>(
     );
   },
 );
+CategoricalCell.displayName = 'CategoricalCell';
 
 function CategoricalColumn(options: OptionsT): CategoricalColumnT {
   return {

@@ -60,7 +60,7 @@ Object {
   "aria-labelledby": null,
   "aria-required": false,
   "autoComplete": "on",
-  "autoFocus": false,
+  "children": null,
   "disabled": false,
   "id": undefined,
   "inputMode": "text",
@@ -71,13 +71,10 @@ Object {
   "onKeyDown": [MockFunction],
   "onKeyPress": [MockFunction],
   "onKeyUp": [MockFunction],
-  "onMouseDown": [Function],
-  "onPaste": [Function],
   "pattern": null,
   "placeholder": "Placeholder",
   "required": false,
   "rows": null,
-  "size": "default",
   "styled-component": "true",
   "test-style": Object {
     "::placeholder": Object {

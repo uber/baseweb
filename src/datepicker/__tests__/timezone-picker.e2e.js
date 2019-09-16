@@ -60,4 +60,14 @@ describe('TimezonePicker', () => {
 
     expect(labelToShortCode(value)).toBe('EDT');
   });
+
+  it('prioritizes select with controlled value over browser default', async () => {
+    await mount(page, 'timezone-picker');
+    await page.waitFor(selectors.controlled);
+    const initial = await page.$eval(
+      `${selectors.controlled} ${selectors.value}`,
+      select => select.textContent,
+    );
+    expect(labelToShortCode(initial)).toBe('JST');
+  });
 });

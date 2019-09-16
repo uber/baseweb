@@ -12,7 +12,7 @@ import {
   findTimeZone,
   getZonedTime,
   listTimeZones,
-} from 'timezone-support/dist/index-2012-2022.js';
+} from 'timezone-support/dist/index-1900-2050.js';
 import {formatZonedTime} from 'timezone-support/dist/parse-format.js';
 
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
@@ -31,11 +31,15 @@ class TimezonePicker extends React.Component<
     const timezones = this.buildTimezones(this.props.date || new Date());
 
     if (__BROWSER__) {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      this.setState({timezones, value: tz});
+      if (!this.props.value) {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        this.setState({timezones, value: tz});
 
-      const option = timezones.find(o => o.id === tz);
-      option && this.props.onChange && this.props.onChange(option);
+        const option = timezones.find(o => o.id === tz);
+        option && this.props.onChange && this.props.onChange(option);
+      } else {
+        this.setState({timezones});
+      }
     } else {
       this.setState({timezones});
     }
