@@ -236,6 +236,10 @@ function Thumbnail({children, href}) {
         ':hover': {
           border: `solid 1px ${theme.colors.borderFocus}`,
         },
+        ':focus': {
+          outline: 'none',
+          border: `solid 1px ${theme.colors.borderFocus}`,
+        },
       })}
     >
       <div
