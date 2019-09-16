@@ -12,7 +12,7 @@ import {
   findTimeZone,
   getZonedTime,
   listTimeZones,
-} from 'timezone-support/dist/index-2012-2022.js';
+} from 'timezone-support/dist/index-1900-2050.js';
 import {formatZonedTime} from 'timezone-support/dist/parse-format.js';
 
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
