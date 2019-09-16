@@ -57,7 +57,7 @@ export const component = () => (
                 ? $theme.colors.positive500
                 : $theme.colors.positive
               : $isHovered || $isHighlighted
-              ? $theme.colors.positive100
+              ? $theme.colors.positive200
               : 'transparent',
           },
         }),

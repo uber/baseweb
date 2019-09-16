@@ -204,13 +204,13 @@ function getDayStyles(code, {colors}) {
     },
     // selected hightlighted date
     '001100000000000': {
-      color: colors.calendarDayForegroundSelected,
+      color: colors.calendarDayForegroundSelectedHighlighted,
     },
     '001100000000100': {
-      color: colors.calendarDayForegroundSelected,
+      color: colors.calendarDayForegroundSelectedHighlighted,
     },
     '001100000000010': {
-      color: colors.calendarDayForegroundSelected,
+      color: colors.calendarDayForegroundSelectedHighlighted,
     },
     // disabled date
     '010000000000000': {
@@ -273,13 +273,14 @@ function getDayStyles(code, {colors}) {
     // when single date selected in a range
     '101100000000000': {
       color: colors.calendarDayForegroundSelectedHighlighted,
+      ':before': {content: null},
     },
     '101100000000100': {
-      color: colors.calendarDayForegroundSelected,
+      color: colors.calendarDayForegroundSelectedHighlighted,
       ':before': {content: null},
     },
     '101100000000010': {
-      color: colors.calendarDayForegroundSelected,
+      color: colors.calendarDayForegroundSelectedHighlighted,
       ':before': {content: null},
     },
     // range: selected start and end dates are the same
@@ -399,6 +400,16 @@ function getDayStyles(code, {colors}) {
     },
     // range: pseudo-highlighted date (in a range where only one date is
     // selected and second date is highlighed)
+    '101000001100000': {
+      color: colors.calendarDayForegroundPseudoSelected,
+      ':before': {
+        left: '0',
+        width: '100%',
+      },
+      ':after': {
+        content: null,
+      },
+    },
     '100000001100000': {
       color: colors.calendarDayForegroundPseudoSelected,
       ':before': {
@@ -552,6 +563,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     boxSizing: 'border-box',
     position: 'relative',
     cursor: $disabled ? 'default' : 'pointer',
+    color: colors.calendarForeground,
     display: 'inline-block',
     width: sizing.scale1000,
     height: sizing.scale1000,
@@ -580,11 +592,11 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       display: 'inline-block',
       backgroundColor: $selected
         ? $isHighlighted
-          ? colors.mono200
-          : colors.white
+          ? colors.calendarDayBackgroundSelectedHighlighted
+          : colors.calendarDayBackgroundSelected
         : $pseudoSelected
         ? $isHighlighted
-          ? colors.mono200
+          ? colors.calendarDayBackgroundPseudoSelectedHighlighted
           : 'transparent'
         : $isHovered || $isHighlighted || $pseudoHighlighted
         ? colors.mono200
@@ -645,7 +657,6 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       ...($range
         ? {
             ':before': {
-              // ...getEdgeBeforeStyles(props, true),
               ...getEdgeDayBeforeStyle(code, true, $peekNextMonth),
             },
           }
