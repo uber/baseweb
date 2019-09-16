@@ -155,6 +155,12 @@ export function Unstable_DataTable(props: Props) {
   // we are prepending a table header row before the table rows (children to the fn).
   const InnerTableElement = React.forwardRef(({children, ...rest}, ref) => {
     const [useCss, theme] = useStyletron();
+
+    // no need to render the cells until the columns have been measured
+    if (!widths.filter(Boolean).length) {
+      return null;
+    }
+
     return (
       <div ref={ref} data-baseweb="data-table" {...rest}>
         <div
