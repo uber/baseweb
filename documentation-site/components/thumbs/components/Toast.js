@@ -10,7 +10,7 @@ import React from 'react';
 export default function SvgToast(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <path fill={props.colors[2]} d="M91 100h123v27H91z" />
+      <path fill="#000" fillOpacity={0.25} d="M91 100h123v27H91z" />
       <path fill={props.colors[0]} d="M89 98h123v27H89z" />
       <path
         d="M204.64 106.24l-.88-.88-2.76 2.8-2.76-2.8-.88.88 2.8 2.76-2.8 2.76.88.88 2.76-2.8 2.76 2.8.88-.88-2.8-2.76 2.8-2.76z"

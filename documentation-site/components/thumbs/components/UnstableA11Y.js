@@ -11,7 +11,7 @@ export default function SvgUnstableA11Y(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path fill={props.colors[1]} d="M79 72h50v18H79z" />
-      <path fill={props.colors[2]} d="M105 72h24v10h-24z" />
+      <path fill="#000" fillOpacity={0.25} d="M105 58h50v24h-50z" />
       <path fill={props.colors[0]} d="M103 56h50v24h-50z" />
       <g clipPath="url(#unstable-a11y_svg__clip0)">
         <path
