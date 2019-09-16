@@ -63,15 +63,21 @@ type MeasureColumnWidthsPropsT = {
 };
 
 // sample size could likely be generated based on row count, to have higher confidence
-const sampleSize = 10;
+const MAX_SAMPLE_SIZE = 10;
 
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   const [useCss] = useStyletron();
 
   const measurementCount = React.useRef(0);
+  const sampleSize = React.useMemo(() => {
+    if (props.rows.length < MAX_SAMPLE_SIZE) {
+      return props.rows.length;
+    }
+    return MAX_SAMPLE_SIZE;
+  }, [props.rows.length]);
   const finishedMeasurementCount = React.useMemo(
     () => (sampleSize + 1) * props.columns.length,
-    [props.columns],
+    [props.columns, sampleSize],
   );
   const dimensionsCache = React.useRef(props.widths);
 
