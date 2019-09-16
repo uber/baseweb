@@ -43,13 +43,13 @@ type ElementMeasurerPropsT = {
 
 function ElementMeasurer(props: ElementMeasurerPropsT) {
   const [ref, dimensions] = useDimensions();
-  const [initialied, setInitialized] = React.useState(false);
+  const initialized = React.useRef(false);
   React.useEffect(() => {
     // ignores the first callback with empty information
-    if (initialied) {
+    if (initialized.current) {
       props.onDimensionsChange(dimensions);
     } else {
-      setInitialized(true);
+      initialized.current = true;
     }
   }, [dimensions]);
   return React.cloneElement(props.item, {ref});
@@ -62,11 +62,28 @@ type MeasureColumnWidthsPropsT = {
   widths: number[],
 };
 
+// sample size could likely be generated based on row count, to have higher confidence
+const MAX_SAMPLE_SIZE = 10;
+
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   const [useCss] = useStyletron();
+
+  const measurementCount = React.useRef(0);
+  const sampleSize = React.useMemo(() => {
+    if (props.rows.length < MAX_SAMPLE_SIZE) {
+      return props.rows.length;
+    }
+    return MAX_SAMPLE_SIZE;
+  }, [props.rows.length]);
+  const finishedMeasurementCount = React.useMemo(
+    () => (sampleSize + 1) * props.columns.length,
+    [props.columns, sampleSize],
+  );
+  const dimensionsCache = React.useRef(props.widths);
+
   const sampleRowIndicesByColumn = React.useMemo<number[][]>(() => {
-    // sample size could likely be generated based on row count, to have higher confidence
-    const sampleSize = 10;
+    measurementCount.current = 0;
+    dimensionsCache.current = props.widths;
 
     return props.columns.map(() => {
       if (props.rows.length <= sampleSize) {
@@ -82,12 +99,26 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   }, [props.columns, props.rows]);
 
   function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
-    const nextWidth = Math.max(props.widths[columnIndex], dimensions.width);
-    if (nextWidth !== props.widths[columnIndex]) {
-      const nextWidths = [...props.widths];
+    measurementCount.current += 1;
+
+    const nextWidth = Math.max(
+      dimensionsCache.current[columnIndex],
+      dimensions.width,
+    );
+
+    if (nextWidth !== dimensionsCache.current[columnIndex]) {
+      const nextWidths = [...dimensionsCache.current];
       nextWidths[columnIndex] = nextWidth;
-      props.onWidthsChange(nextWidths);
+      dimensionsCache.current = nextWidths;
     }
+
+    if (measurementCount.current >= finishedMeasurementCount) {
+      props.onWidthsChange(dimensionsCache.current);
+    }
+  }
+
+  if (measurementCount === finishedMeasurementCount) {
+    return null;
   }
 
   return (
