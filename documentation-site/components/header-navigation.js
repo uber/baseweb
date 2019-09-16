@@ -27,7 +27,7 @@ import Search from './search';
 import {ThemeContext} from 'baseui/styles/theme-provider.js';
 import Bulb from './bulb';
 import {StatefulTooltip} from 'baseui/tooltip';
-import {Button, KIND} from 'baseui/button';
+import {Button, KIND, SIZE} from 'baseui/button';
 
 const Hamburger = themedStyled<{}>('div', ({$theme}) => ({
   display: 'block',
@@ -93,7 +93,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 <VersionSelector />
                 <Link href="/blog/base-web-v9">
                   <Button
-                    size="compact"
+                    size={SIZE.compact}
                     kind={KIND.minimal}
                     $as="a"
                     href="/blog/base-web-v9"
@@ -109,6 +109,26 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                     }}
                   >
                     {"What's new in v9?"}
+                  </Button>
+                </Link>
+              </Block>
+              <Block>
+                <Link href="/components/gallery">
+                  <Button
+                    size={SIZE.compact}
+                    kind={KIND.minimal}
+                    overrides={{
+                      BaseButton: {
+                        style: {
+                          display: 'none',
+                          '@media screen and (min-width: 820px)': {
+                            display: 'inline-block',
+                          },
+                        },
+                      },
+                    }}
+                  >
+                    Components
                   </Button>
                 </Link>
               </Block>

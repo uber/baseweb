@@ -110,7 +110,6 @@ const Index = (props: {
       Base Web is a foundation for initiating, evolving, and unifying web
       products.
     </Markdown.p>
-
     <Block
       display="flex"
       marginLeft="-16px"
@@ -169,6 +168,18 @@ const Index = (props: {
         </Button>
       </Card>
     </Block>
+    <H2>Components</H2>
+    <Markdown.p>
+      Base Web provides a robust suite of components out of the box. These
+      include complex, ready to use components such as the{' '}
+      <Link href="/components/datepicker">Datepicker</Link> and low-level
+      composable primitives, such as <Link href="/components/layer">Layer</Link>
+      .
+    </Markdown.p>
+    <Markdown.p>
+      For an overview of everything that we offer, check out the{` `}
+      <Link href="/components/gallery">component gallery</Link>.
+    </Markdown.p>
     <H2>Extensibility</H2>
     <Markdown.p>
       Through the{' '}
