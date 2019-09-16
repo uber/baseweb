@@ -316,10 +316,9 @@ function Thumbnail({children, label, href, scale = 1}) {
 
 function Section({category}) {
   const [css, theme] = useStyletron();
-  const colors =
-    theme.name === 'light-theme'
-      ? [theme.colors.mono200, theme.colors.mono400, theme.colors.mono600]
-      : [theme.colors.mono700, theme.colors.mono500, theme.colors.mono300];
+  const colors = theme.name.includes('light-theme')
+    ? [theme.colors.mono200, theme.colors.mono400, theme.colors.mono600]
+    : [theme.colors.mono700, theme.colors.mono500, theme.colors.mono300];
   return (
     <React.Fragment>
       <H4>{category}</H4>
