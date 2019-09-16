@@ -113,7 +113,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 </Link>
               </Block>
               <Block>
-                <Link href="/components/gallery">
+                <Link href="/components">
                   <Button
                     size={SIZE.compact}
                     kind={KIND.minimal}
