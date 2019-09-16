@@ -55,6 +55,7 @@ const BooleanCell = React.forwardRef<BooleanCellPropsT, HTMLDivElement>(
     );
   },
 );
+BooleanCell.displayName = 'BooleanCell';
 
 function BooleanColumn(options: OptionsT): BooleanColumnT {
   return {
