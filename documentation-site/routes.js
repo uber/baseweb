@@ -57,6 +57,10 @@ const routes = [
     title: 'Components',
     subNav: [
       {
+        title: 'Gallery',
+        itemId: '/components/gallery',
+      },
+      {
         title: 'Inputs',
         subNav: [
           {
