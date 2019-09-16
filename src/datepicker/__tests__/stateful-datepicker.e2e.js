@@ -23,6 +23,12 @@ const selectors = {
 };
 
 describe('Stateful Datepicker', () => {
+  jest.retryTimes(3);
+
+  beforeEach(async () => {
+    await jestPuppeteer.resetPage();
+  });
+
   it('passes basic a11y tests', async () => {
     await mount(page, 'stateful-datepicker');
     await page.waitFor(selectors.input);
