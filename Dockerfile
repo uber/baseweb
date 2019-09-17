@@ -11,8 +11,6 @@ RUN yarn global add now
 # Copy the current files to the docker image.
 COPY . .
 
-RUN yarn remove puppeteer && yarn add puppeteer
-
 # Perform any build steps if you want binaries inside of the image
 RUN yarn build
 RUN yarn build-storybook
