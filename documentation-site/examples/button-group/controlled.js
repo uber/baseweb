@@ -5,7 +5,7 @@ import {Button} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 
 function ControlledButtonGroup() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const [selected, setSelected] = React.useState(1);
   const [boldClickCount, setBoldClickCount] = React.useState(0);
 
@@ -34,7 +34,7 @@ function ControlledButtonGroup() {
       </ButtonGroup>
 
       <div
-        className={useCss({
+        className={css({
           ...fontWeight,
           paddingTop: theme.sizing.scale400,
         })}
@@ -47,7 +47,7 @@ function ControlledButtonGroup() {
         scaevola platonem mei ad.
       </div>
 
-      <div className={useCss({paddingTop: theme.sizing.scale800})}>
+      <div className={css({paddingTop: theme.sizing.scale800})}>
         The Bold option has been selected {boldClickCount} times
       </div>
     </React.Fragment>

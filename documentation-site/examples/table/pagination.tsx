@@ -8,7 +8,7 @@ import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {Table} from 'baseui/table';
 
 function PaginatedTable(props: {data: any[]; columns: any[]}) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const [page, setPage] = React.useState(1);
   const [limit, setLimit] = React.useState(12);
 
@@ -40,7 +40,7 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
   return (
     <React.Fragment>
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           justifyContent: 'space-between',
           paddingTop: theme.sizing.scale600,
@@ -48,7 +48,7 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
         })}
       >
         <div
-          className={useCss({
+          className={css({
             // ...theme.typography.font750
             fontFamily: theme.typography.font750.fontFamily,
             fontWeight: theme.typography.font750.fontWeight,
@@ -60,7 +60,7 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
         </div>
         <Button>
           <div
-            className={useCss({
+            className={css({
               paddingLeft: theme.sizing.scale1200,
               paddingRight: theme.sizing.scale1200,
             })}
@@ -69,11 +69,11 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
           </div>
         </Button>
       </div>
-      <div className={useCss({height: '500px'})}>
+      <div className={css({height: '500px'})}>
         <Table columns={props.columns} data={window()} />
       </div>
       <div
-        className={useCss({
+        className={css({
           paddingTop: theme.sizing.scale600,
           paddingBottom: theme.sizing.scale600,
           paddingRight: theme.sizing.scale800,

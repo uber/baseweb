@@ -4,7 +4,7 @@ import {Popover} from 'baseui/popover';
 import {Paragraph3} from 'baseui/typography';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <Popover
       isOpen
@@ -12,7 +12,7 @@ export default () => {
         <Paragraph3 padding="scale500">hello world</Paragraph3>
       }
     >
-      <div className={useCss({...theme.typography.font300})}>
+      <div className={css({...theme.typography.font300})}>
         Always open
       </div>
     </Popover>

@@ -12,14 +12,14 @@ import {
 const DATE = new Date(2019, 3, 1, 12, 0, 0);
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const [date, setDate] = useState<any>(DATE);
   const [zone, setZone] = useState(null);
 
   return (
-    <div className={useCss({display: 'flex'})}>
+    <div className={css({display: 'flex'})}>
       <div
-        className={useCss({
+        className={css({
           width: '120px',
           marginRight: theme.sizing.scale300,
         })}
@@ -34,7 +34,7 @@ export default () => {
       </div>
 
       <div
-        className={useCss({
+        className={css({
           width: '120px',
           marginRight: theme.sizing.scale300,
         })}
@@ -45,7 +45,7 @@ export default () => {
       </div>
 
       <div
-        className={useCss({
+        className={css({
           width: '340px',
         })}
       >

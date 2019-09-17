@@ -4,10 +4,10 @@ import {StatefulInput} from 'baseui/input';
 import {useStyletron} from 'baseui';
 
 export default function() {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

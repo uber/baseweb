@@ -24,15 +24,13 @@ function formatDateAtIndex(
 }
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const [dates, setDates] = useState<any>([START_DATE, END_DATE]);
 
   return (
-    <div
-      className={useCss({display: 'flex', alignItems: 'center'})}
-    >
+    <div className={css({display: 'flex', alignItems: 'center'})}>
       <div
-        className={useCss({
+        className={css({
           width: '120px',
           marginRight: theme.sizing.scale300,
         })}
@@ -49,7 +47,7 @@ export default () => {
       </div>
 
       <div
-        className={useCss({
+        className={css({
           width: '120px',
           marginRight: theme.sizing.scale300,
         })}
@@ -63,7 +61,7 @@ export default () => {
       </div>
 
       <div
-        className={useCss({
+        className={css({
           marginRight: theme.sizing.scale300,
         })}
       >
@@ -71,7 +69,7 @@ export default () => {
       </div>
 
       <div
-        className={useCss({
+        className={css({
           width: '120px',
           marginRight: theme.sizing.scale300,
         })}
@@ -93,7 +91,7 @@ export default () => {
       </div>
 
       <div
-        className={useCss({
+        className={css({
           width: '120px',
         })}
       >

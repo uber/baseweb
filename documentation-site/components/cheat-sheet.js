@@ -27,7 +27,7 @@ function buildHref(file, line) {
   return href;
 }
 function CheatSheet() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div>
       {!outlines.length && <p>no data to display</p>}
@@ -45,7 +45,7 @@ function CheatSheet() {
               </StyledLink>
             </H2>
             <ul
-              className={useCss({
+              className={css({
                 columnCount: 1,
                 '@media screen and (min-width: 920px)': {
                   gridTemplateColumns: 'repeat(3, 1fr)',
@@ -56,7 +56,7 @@ function CheatSheet() {
               {outline.definitions.map(t => (
                 <React.Fragment key={t.name}>
                   <li
-                    className={useCss({
+                    className={css({
                       ...theme.typography.font400,
                     })}
                   >
@@ -76,7 +76,7 @@ function CheatSheet() {
                   {t.children.map(c => (
                     <li
                       key={c.name}
-                      className={useCss({
+                      className={css({
                         ...theme.typography.font300,
                         paddingLeft: '12px',
                         listStyleType: 'none',

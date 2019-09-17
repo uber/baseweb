@@ -42,9 +42,9 @@ const cache = new CellMeasurerCache({
 });
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '500px'})}>
+    <div className={css({height: '500px'})}>
       <StyledTable
         role="grid"
         aria-colcount={COLUMNS.length}
@@ -58,7 +58,7 @@ export default () => {
           ))}
         </StyledHead>
 
-        <div className={useCss({height: '100%'})}>
+        <div className={css({height: '100%'})}>
           <AutoSizer>
             {({width, height}) => (
               <List

@@ -176,7 +176,7 @@ const CenteredBodyCell = withStyle(StyledBodyCell, {
 });
 
 function Row({striped, row}) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
     <React.Fragment>
@@ -212,7 +212,7 @@ function Row({striped, row}) {
       </CenteredBodyCell>
       <CenteredBodyCell $striped={striped}>
         <div
-          className={useCss({
+          className={css({
             textOverflow: 'ellipsis',
             maxWidth: '200px',
             overflow: 'hidden',
@@ -249,9 +249,9 @@ function Row({striped, row}) {
 }
 
 export default function() {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '600px'})}>
+    <div className={css({height: '600px'})}>
       <StyledTable $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto">
         <StyledHeadCell>Job Name</StyledHeadCell>
         <StyledHeadCell>Status</StyledHeadCell>

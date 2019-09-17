@@ -33,11 +33,11 @@ const CustomCell = React.forwardRef<
   {isMeasured?: boolean, children: React.Node},
   HTMLDivElement,
 >((props, ref) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
       ref={ref}
-      className={useCss({
+      className={css({
         display: props.isMeasured ? 'inline-block' : null,
         paddingLeft: theme.sizing.scale600,
         paddingRight: theme.sizing.scale600,

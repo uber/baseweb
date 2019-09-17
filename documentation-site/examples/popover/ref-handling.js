@@ -34,10 +34,10 @@ const CheckboxWrapped = props => {
 };
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         paddingTop: '24px',
         paddingBottom: '24px',
       })}

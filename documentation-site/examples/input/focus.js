@@ -5,12 +5,12 @@ import {Button} from 'baseui/button';
 import {Input} from 'baseui/input';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const inputRef = React.createRef();
   return (
-    <div className={useCss({display: 'flex'})}>
+    <div className={css({display: 'flex'})}>
       <div
-        className={useCss({
+        className={css({
           width: '50%',
           marginRight: theme.sizing.scale400,
         })}

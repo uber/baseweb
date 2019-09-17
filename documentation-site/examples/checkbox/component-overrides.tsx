@@ -4,14 +4,14 @@ import {StatefulCheckbox} from 'baseui/checkbox';
 import {Alert} from 'baseui/icon';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <StatefulCheckbox
       onChange={console.log}
       overrides={{
         Checkmark: props => (
           <div
-            className={useCss({
+            className={css({
               color: props.checked
                 ? theme.colors.primary
                 : theme.colors.mono700,

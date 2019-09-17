@@ -4,10 +4,10 @@ import {useStyletron} from 'baseui';
 import {ArrowRight} from 'baseui/icon';
 
 const CustomDragHandle = () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         marginRight: '1em',
         width: '24px',
         display: 'flex',

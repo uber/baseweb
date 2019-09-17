@@ -17,7 +17,7 @@ function getPadding(componentType) {
 }
 
 const TableOfContents = props => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const TOC = [];
   const content = props.content[0].props.children;
   content &&
@@ -63,7 +63,7 @@ const TableOfContents = props => {
 
   return (
     <ul
-      className={useCss({
+      className={css({
         [theme.direction === 'rtl'
           ? 'borderRight'
           : 'borderLeft']: `1px solid ${theme.colors.mono400}`,
@@ -84,7 +84,7 @@ const TableOfContents = props => {
       {TOC.map(header => (
         <li
           key={header.name}
-          className={useCss({
+          className={css({
             ...theme.typography.font100,
             [theme.direction === 'rtl'
               ? 'paddingRight'
@@ -92,7 +92,7 @@ const TableOfContents = props => {
           })}
         >
           <a
-            className={useCss({color: theme.colors.foregroundAlt})}
+            className={css({color: theme.colors.foregroundAlt})}
             href={header.anchor}
           >
             {header.name}

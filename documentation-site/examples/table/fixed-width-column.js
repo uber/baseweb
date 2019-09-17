@@ -84,9 +84,9 @@ const SmallerCell = withStyle(StyledCell, {
 });
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '400px'})}>
+    <div className={css({height: '400px'})}>
       <StyledTable>
         <StyledHead>
           <SmallerHeadCell>ID</SmallerHeadCell>

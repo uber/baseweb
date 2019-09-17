@@ -36,10 +36,10 @@ type HeaderCellPropsT = {
 
 const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
   (props, ref) => {
-    const [useCss, theme] = useStyletron();
+    const [css, theme] = useStyletron();
     const sortRef = React.useRef(null);
 
-    const controlStyles = useCss({
+    const controlStyles = css({
       alignItems: 'center',
       display: 'flex',
       flexShrink: 2,
@@ -47,7 +47,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
       justifyContent: 'space-between',
     });
 
-    const filterButtonStyles = useCss({
+    const filterButtonStyles = css({
       backgroundColor: 'transparent',
       border: 'none',
       cursor: 'pointer',
@@ -73,7 +73,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           }
           sortRef.current = r;
         }}
-        className={useCss({
+        className={css({
           ...theme.typography.font250,
           alignItems: 'center',
           backgroundColor: props.isHovered ? theme.colors.mono200 : null,

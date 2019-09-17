@@ -35,11 +35,11 @@ function StringFilter(props) {
 
 const StringCell = React.forwardRef<StringCellPropsT, HTMLDivElement>(
   (props, ref) => {
-    const [useCss, theme] = useStyletron();
+    const [css, theme] = useStyletron();
     return (
       <div
         ref={ref}
-        className={useCss({
+        className={css({
           ...theme.typography.font200,
           display: props.isMeasured ? 'inline-block' : null,
           paddingLeft: theme.sizing.scale600,

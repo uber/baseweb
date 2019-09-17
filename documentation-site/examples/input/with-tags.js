@@ -5,10 +5,10 @@ import {Input, StyledInput} from 'baseui/input';
 import {Tag, VARIANT as TAG_VARIANT} from 'baseui/tag';
 
 const InputReplacement = ({tags, removeTag, ...restProps}) => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         flex: '1 1 0%',
         flexWrap: 'wrap',
         display: 'flex',

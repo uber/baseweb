@@ -34,7 +34,7 @@ type FilterParametersT = {|
 type CategoricalColumnT = ColumnT<string, FilterParametersT>;
 
 function CategoricalFilter(props) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   const [selection, setSelection] = React.useState<Set<string>>(new Set());
   const [exclude, setExclude] = React.useState(false);
 
@@ -60,7 +60,7 @@ function CategoricalFilter(props) {
           {category}
         </Checkbox>
       ))}
-      <div className={useCss({display: 'flex'})}>
+      <div className={css({display: 'flex'})}>
         <Checkbox
           checked={exclude}
           onChange={() => setExclude(!exclude)}
@@ -86,11 +86,11 @@ function CategoricalFilter(props) {
 
 const CategoricalCell = React.forwardRef<CellPropsT, HTMLDivElement>(
   (props, ref) => {
-    const [useCss, theme] = useStyletron();
+    const [css, theme] = useStyletron();
     return (
       <div
         ref={ref}
-        className={useCss({
+        className={css({
           ...theme.typography.font200,
           display: props.isMeasured ? 'inline-block' : null,
           paddingLeft: theme.sizing.scale600,

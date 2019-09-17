@@ -8,11 +8,11 @@ import {StatefulInput} from 'baseui/input';
 
 export default () => {
   const [inputs, setInputs] = React.useState(['']);
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <A11y>
       <div
-        className={useCss({
+        className={css({
           padding: theme.sizing.scale900,
         })}
       >
