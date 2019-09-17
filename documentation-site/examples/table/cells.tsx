@@ -20,21 +20,26 @@ import {
   StyledAction,
 } from 'baseui/table';
 import {Caption1, Caption2, Paragraph3} from 'baseui/typography';
+import {Theme} from 'baseui/theme';
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,
   paddingBottom: 0,
 });
 
-const StyledDeltaCell = withStyle(StyledCell, (props: any) => ({
-  ...props.$theme.typography.font550,
+const StyledDeltaCell = withStyle<
+  typeof StyledCell,
+  {$isNegative: boolean},
+  Theme & {customThemeProp: string}
+>(StyledCell, ({$isNegative, $theme}) => ({
+  ...$theme.typography.font550,
   alignItems: 'center',
-  backgroundColor: props.$isNegative
-    ? props.$theme.colors.negative50
-    : props.$theme.colors.positive50,
-  color: props.$isNegative
-    ? props.$theme.colors.negative
-    : props.$theme.colors.positive,
+  backgroundColor: $isNegative
+    ? $theme.colors.negative50
+    : $theme.colors.positive50,
+  color: $isNegative
+    ? $theme.colors.negative
+    : $theme.colors.positive,
 }));
 
 const StyledLargeText = withStyle(StyledCell, {
