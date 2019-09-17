@@ -93,7 +93,8 @@ const Compiler: React.FC<{
       className={css({
         display: 'flex',
         justifyContent: 'center',
-        padding: theme.sizing.scale600,
+        paddingTop: theme.sizing.scale600,
+        paddingBottom: theme.sizing.scale600,
       })}
     >
       {Element && <Element />}

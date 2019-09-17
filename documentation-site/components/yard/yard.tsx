@@ -131,15 +131,24 @@ export default withRouter(
     const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
 
     const [state, dispatch] = React.useReducer(reducer, {
-      code: formatCode(
-        getCode(propsConfig, componentName, {
-          themeValues: {},
-          themeName: '',
-        }),
-      ),
+      code: '',
       props: propsConfig,
       theme: componentThemeObj,
     });
+
+    React.useEffect(
+      () =>
+        dispatch({
+          type: Action.UpdateCode,
+          payload: formatCode(
+            getCode(propsConfig, componentName, {
+              themeValues: {},
+              themeName: '',
+            }),
+          ),
+        }),
+      [],
+    );
 
     // when theme (context) is switched, reset the theme state
     React.useEffect(() => {
