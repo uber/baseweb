@@ -16,6 +16,7 @@ export const component = () => (
   <StatefulCalendar
     onChange={({date}) => console.log(date)}
     orientation={ORIENTATION.horizontal}
+    highlightedDate={new Date('March 10, 2019')}
     monthsShown={2}
     range
     quickSelect
