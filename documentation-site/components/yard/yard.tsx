@@ -174,18 +174,26 @@ export default withRouter(
     }
 
     const [state, dispatch] = React.useReducer(reducer, {
-      code:
-        router.query.code ||
-        getCode(propsConfig, componentName, {
-          themeValues: {},
-          themeName: theme.name,
-        }),
-      codeNoRecompile: '',
-      props: initialUrlProps || propsConfig,
-      theme: initialUrlTheme || componentThemeObj,
+      code: '',
+      props: propsConfig,
+      theme: componentThemeObj,
     });
 
-    //when theme (context) is switched, reset the theme state
+    React.useEffect(
+      () =>
+        dispatch({
+          type: Action.UpdateCode,
+          payload: formatCode(
+            getCode(propsConfig, componentName, {
+              themeValues: {},
+              themeName: '',
+            }),
+          ),
+        }),
+      [],
+    );
+
+    // when theme (context) is switched, reset the theme state
     React.useEffect(() => {
       // don't make the reset if theme values were untouched
       // prevents the initial re-update

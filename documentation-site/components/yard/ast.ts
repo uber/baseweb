@@ -40,20 +40,20 @@ export const removeImportsAndExports = (
           path.remove();
         }
       },
-      JSXElement(path) {
-        path.traverse({
-          ArrowFunctionExpression(path) {
-            (path.get('body') as any).pushContainer(
-              'body',
-              t.callExpression(t.identifier('__yard_onChange'), [
-                t.stringLiteral('Input'),
-                t.stringLiteral('value'),
-                t.identifier('e.target.value'),
-              ]),
-            );
-          },
-        });
-      },
+      // JSXElement(path) {
+      //   path.traverse({
+      //     ArrowFunctionExpression(path) {
+      //       (path.get('body') as any).pushContainer(
+      //         'body',
+      //         t.callExpression(t.identifier('__yard_onChange'), [
+      //           t.stringLiteral('Input'),
+      //           t.stringLiteral('value'),
+      //           t.identifier('e.target.value'),
+      //         ]),
+      //       );
+      //     },
+      //   });
+      // },
       // if (
       //   path.node.openingElement.type === 'JSXOpeningElement' &&
       //   //@ts-ignore
