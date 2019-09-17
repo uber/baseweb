@@ -8,10 +8,10 @@ type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
 export const useStyletron: UseStyletronFn<Theme>;
 
-export function createTheme(
+export function createTheme<P extends object>(
   primitives: ThemePrimitives,
-  overrides?: object,
-): Theme;
+  overrides?: P,
+): Theme & P;
 export function withProps(
   Component: React.ComponentType,
   customProps?: object,
@@ -22,10 +22,11 @@ export function mergeOverrides<T>(
 ): Overrides<T>;
 export function styled<
   P extends object,
-  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>
+  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  T = Theme
 >(
   component: C,
-  styledFn: StyleObject | ((props: {$theme: Theme} & P) => StyleObject),
+  styledFn: StyleObject | ((props: {$theme: T} & P) => StyleObject),
 ): StyletronComponent<
   Pick<
     React.ComponentProps<C>,
@@ -60,9 +61,9 @@ export interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps>;
 
 export interface WithStyleFn {
-  <C extends StyletronComponent<any>, P extends object>(
+  <C extends StyletronComponent<any>, P extends object, T = Theme>(
     component: C,
-    style: (props: P & {$theme: Theme}) => StyleObject,
+    style: (props: P & {$theme: T}) => StyleObject,
   ): StyletronComponent<React.ComponentProps<C> & P>;
   <C extends StyletronComponent<any>>(
     component: C,
