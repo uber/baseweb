@@ -50,11 +50,16 @@ export const component = () => (
       },
       Day: {
         style: ({$theme, $selected, $isHovered, $isHighlighted}) => ({
-          backgroundColor: $selected
-            ? $theme.colors.positive
-            : $isHovered || $isHighlighted
-            ? $theme.colors.positive100
-            : 'transparent',
+          color: $selected ? $theme.colors.white : $theme.colors.black,
+          ':after': {
+            backgroundColor: $selected
+              ? $isHovered || $isHighlighted
+                ? $theme.colors.positive500
+                : $theme.colors.positive
+              : $isHovered || $isHighlighted
+              ? $theme.colors.positive200
+              : 'transparent',
+          },
         }),
       },
     }}

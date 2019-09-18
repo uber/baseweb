@@ -47,6 +47,7 @@ const CustomCell = React.forwardRef<
     </div>
   );
 });
+CustomCell.displayName = 'CustomCell';
 
 function CustomColumn<ValueT, FilterParamsT>(
   options: OptionsT<ValueT, FilterParamsT>,

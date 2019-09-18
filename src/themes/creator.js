@@ -130,10 +130,10 @@ export default function createTheme(
       buttonPrimarySpinnerForeground: primitives.primary50,
       buttonPrimarySpinnerBackground: primitives.primary500,
 
-      buttonSecondaryFill: primitives.primary50,
+      buttonSecondaryFill: primitives.primary100,
       buttonSecondaryText: primitives.primary,
-      buttonSecondaryHover: primitives.primary100,
-      buttonSecondaryActive: primitives.primary200,
+      buttonSecondaryHover: primitives.primary200,
+      buttonSecondaryActive: primitives.primary300,
       buttonSecondarySelectedFill: primitives.primary200,
       buttonSecondarySelectedText: primitives.primary,
       buttonSecondarySpinnerForeground: primitives.primary700,
@@ -185,10 +185,10 @@ export default function createTheme(
       calendarDayForegroundPseudoSelected: primitives.mono1000,
       calendarDayBackgroundPseudoSelectedHighlighted: primitives.primary200,
       calendarDayForegroundPseudoSelectedHighlighted: primitives.mono1000,
-      calendarDayBackgroundSelected: primitives.primary,
-      calendarDayForegroundSelected: WHITE,
-      calendarDayBackgroundSelectedHighlighted: primitives.primary700,
-      calendarDayForegroundSelectedHighlighted: primitives.mono100,
+      calendarDayBackgroundSelected: WHITE,
+      calendarDayForegroundSelected: BLACK,
+      calendarDayBackgroundSelectedHighlighted: BLACK,
+      calendarDayForegroundSelectedHighlighted: WHITE,
 
       // FileUploader
       fileUploaderBackgroundColor: primitives.mono200,

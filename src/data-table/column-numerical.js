@@ -252,6 +252,7 @@ const NumericalCell = React.forwardRef<NumericalCellPropsT, HTMLDivElement>(
     );
   },
 );
+NumericalCell.displayName = 'NumericalCell';
 
 const defaultOptions = {
   title: '',

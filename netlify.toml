@@ -4,3 +4,7 @@
 
 [build.environment]
   NODE_ENV = "production"
+
+[[redirects]]
+  from = "/components/gallery"
+  to = "/components"
