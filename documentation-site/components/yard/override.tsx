@@ -4,7 +4,8 @@ import {Textarea} from 'baseui/textarea';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
-import {formatCode, toggleOverrideSharedProps} from './ast';
+import {toggleOverrideSharedProps} from './ast';
+import {formatCode} from './code-generator';
 import {trackEvent} from '../../helpers/ga';
 
 export const getHighlightStyles = (

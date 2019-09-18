@@ -16,14 +16,9 @@ import {StatefulTooltip} from 'baseui/tooltip';
 import {Tag, VARIANT} from 'baseui/tag';
 
 import {Action} from './const';
-import {getCode} from './code-generator';
+import {getCode, formatCode} from './code-generator';
 import Knobs from './knobs';
-import {
-  removeImportsAndExports,
-  formatCode,
-  parseCode,
-  parseOverrides,
-} from './ast';
+import {removeImportsAndExports, parseCode, parseOverrides} from './ast';
 import {assertUnreachable} from './utils';
 import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
@@ -140,24 +135,20 @@ export default withRouter(
       () =>
         dispatch({
           type: Action.UpdateCode,
-          payload: formatCode(
-            getCode(propsConfig, componentName, {
-              themeValues: {},
-              themeName: '',
-            }),
-          ),
+          payload: getCode(propsConfig, componentName, {
+            themeValues: {},
+            themeName: '',
+          }),
         }),
       [],
     );
 
     // when theme (context) is switched, reset the theme state
     React.useEffect(() => {
-      const newCode = formatCode(
-        getCode(state.props, componentName, {
-          themeValues: {},
-          themeName: theme.name,
-        }),
-      );
+      const newCode = getCode(state.props, componentName, {
+        themeValues: {},
+        themeName: theme.name,
+      });
       dispatch({
         type: Action.UpdateThemeAndCode,
         payload: {
@@ -178,11 +169,13 @@ export default withRouter(
       propName: string,
       propValue: any,
     ) => {
-      const newCode = formatCode(
-        getCode(buildPropsObj(state, {[propName]: propValue}), componentName, {
+      const newCode = getCode(
+        buildPropsObj(state, {[propName]: propValue}),
+        componentName,
+        {
           themeValues: {},
           themeName: '',
-        }),
+        },
       );
       dispatch({
         type: Action.UpdateProps,
@@ -314,12 +307,10 @@ export default withRouter(
             <Knobs
               knobProps={state.props}
               set={(value: any, name: string) => {
-                const newCode = formatCode(
-                  getCode(
-                    buildPropsObj(state, {[name]: value}),
-                    componentName,
-                    componentThemeDiff,
-                  ),
+                const newCode = getCode(
+                  buildPropsObj(state, {[name]: value}),
+                  componentName,
+                  componentThemeDiff,
                 );
                 trackEvent('yard', `${componentName}:knob_change_${name}`);
                 dispatch({
@@ -354,12 +345,10 @@ export default withRouter(
               componentConfig={propsConfig}
               overrides={state.props.overrides}
               set={(value: any) => {
-                const newCode = formatCode(
-                  getCode(
-                    buildPropsObj(state, {overrides: value}),
-                    componentName,
-                    componentThemeDiff,
-                  ),
+                const newCode = getCode(
+                  buildPropsObj(state, {overrides: value}),
+                  componentName,
+                  componentThemeDiff,
                 );
                 dispatch({
                   type: Action.UpdatePropsAndCode,
@@ -409,8 +398,10 @@ export default withRouter(
                   componentThemeDiff.themeValues = componentThemeValueDiff;
                   componentThemeDiff.themeName = theme.name;
                 }
-                const newCode = formatCode(
-                  getCode(state.props, componentName, componentThemeDiff),
+                const newCode = getCode(
+                  state.props,
+                  componentName,
+                  componentThemeDiff,
                 );
                 dispatch({
                   type: Action.UpdateThemeAndCode,
@@ -526,7 +517,7 @@ export default withRouter(
             kind={KIND.tertiary}
             onClick={() => {
               trackEvent('yard', `${componentName}:copy_code`);
-              copy(formatCode(state.code));
+              copy(state.code);
             }}
           >
             Copy code
@@ -546,12 +537,10 @@ export default withRouter(
               dispatch({
                 type: Action.Reset,
                 payload: {
-                  code: formatCode(
-                    getCode(propsConfig, componentName, {
-                      themeValues: {},
-                      themeName: '',
-                    } as any),
-                  ),
+                  code: getCode(propsConfig, componentName, {
+                    themeValues: {},
+                    themeName: '',
+                  } as any),
                   props: propsConfig,
                   theme: componentThemeObj,
                 },

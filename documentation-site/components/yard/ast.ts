@@ -1,12 +1,8 @@
-import prettier from 'prettier/standalone';
 import traverse from '@babel/traverse';
 import generate from '@babel/generator';
+import {formatCode} from './code-generator';
 import * as t from 'babel-types';
-import babel from 'prettier/parser-babylon';
-// import {TProp} from './types';
-// import {PropTypes} from './const';
-
-const parse = babel.parsers.babel.parse as (code: string) => any;
+import {parse} from '@babel/parser';
 
 // clean-up for react-live, removing all imports, exports and top level
 // variable declaration
@@ -85,30 +81,11 @@ export const removeImportsAndExports = (
   return ast;
 };
 
-export const formatCode = (code: string) => {
-  try {
-    return (
-      prettier
-        .format(code, {
-          parser: 'babel',
-          printWidth: 70,
-          plugins: [babel],
-        })
-        // remove newline at the end of file
-        .replace(/[\r\n]+$/, '')
-        // remove ; at the end of file
-        .replace(/[;]+$/, '')
-    );
-  } catch (e) {
-    return code;
-  }
-};
-
 export function parseOverrides(code: string, names: string[]) {
   const resultOverrides: any = {};
   try {
     // to make the AST root valid, let's add a const definition
-    const ast = parse(`const foo = ${code};`);
+    const ast: any = parse(`const foo = ${code};`);
     traverse(ast, {
       ObjectProperty(path) {
         const propertyName = path.node.key.name;
@@ -135,7 +112,7 @@ export function parseOverrides(code: string, names: string[]) {
 export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
   let result: string = '';
   try {
-    const ast = parse(code);
+    const ast = parse(code) as any;
     traverse(ast, {
       ArrowFunctionExpression(path) {
         if (result !== '') return;
@@ -197,7 +174,7 @@ export function parseCode(code: string, elementName: string) {
   const stateValues: any = {};
   let themeValues: any = {};
   try {
-    const ast = parse(code);
+    const ast = parse(code) as any;
     traverse(ast, {
       CallExpression(path) {
         if (

@@ -77,6 +77,8 @@
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@mdx-js/tag": "^0.20.0",
+    "@miksu/prettier": "^1.18.1",
+    "@next/bundle-analyzer": "^9.0.6",
     "@storybook/react": "^4.0.0",
     "@svgr/cli": "^4.3.2",
     "@types/babel__code-frame": "^7.0.1",
@@ -165,7 +167,6 @@
     "terser": "^4.1.4",
     "typescript": "^3.5.3",
     "webpack": "^4.17.1",
-    "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
