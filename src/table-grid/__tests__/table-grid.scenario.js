@@ -31,9 +31,9 @@ const data = Array(100)
   ]);
 
 export function component() {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '750px', width: '900px'})}>
+    <div className={useCss({height: '750px', width: '900px'})}>
       <StyledTable $gridTemplateColumns="minmax(400px, max-content) 200px 200px 200px 200px 200px">
         <StyledHeadCell>Column 1</StyledHeadCell>
         <StyledHeadCell>Column 2</StyledHeadCell>

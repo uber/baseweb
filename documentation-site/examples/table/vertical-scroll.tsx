@@ -20,9 +20,9 @@ const DATA = [
 const COLUMNS = ['Name', 'Age', 'Address'];
 
 export default () => {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '500%'})}>
+    <div className={useCss({height: '500%'})}>
       <Table columns={COLUMNS} data={DATA} />
     </div>
   );

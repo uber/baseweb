@@ -66,7 +66,7 @@ type MeasureColumnWidthsPropsT = {
 const MAX_SAMPLE_SIZE = 10;
 
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
 
   const measurementCount = React.useRef(0);
   const sampleSize = React.useMemo(() => {
@@ -123,7 +123,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
 
   return (
     <div
-      className={css({
+      className={useCss({
         position: 'absolute',
         overflow: 'hidden',
         height: 0,

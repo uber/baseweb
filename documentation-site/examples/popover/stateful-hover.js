@@ -5,7 +5,7 @@ import {StatefulPopover, TRIGGER_TYPE} from 'baseui/popover';
 import {Paragraph3} from 'baseui/typography';
 
 export default () => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
     <StatefulPopover
       content={
@@ -14,7 +14,7 @@ export default () => {
       accessibilityType={'tooltip'}
       triggerType={TRIGGER_TYPE.hover}
     >
-      <span className={css({...theme.typography.font300})}>
+      <span className={useCss({...theme.typography.font300})}>
         Hover
       </span>
     </StatefulPopover>

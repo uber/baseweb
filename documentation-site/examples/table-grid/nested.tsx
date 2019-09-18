@@ -126,10 +126,10 @@ function statusToTagKind(status: string) {
 }
 
 function Tasks(props: {tasks: any[]}) {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
     <div
-      className={css({
+      className={useCss({
         gridColumn: 'span 5',
         padding: '32px 24px',
       })}
@@ -172,7 +172,7 @@ const CenteredBodyCell = withStyle(StyledBodyCell, {
 });
 
 function Row({striped, row}: any) {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
     <React.Fragment>
@@ -208,7 +208,7 @@ function Row({striped, row}: any) {
       </CenteredBodyCell>
       <CenteredBodyCell $striped={striped}>
         <div
-          className={css({
+          className={useCss({
             textOverflow: 'ellipsis',
             maxWidth: '200px',
             overflow: 'hidden',
@@ -245,9 +245,9 @@ function Row({striped, row}: any) {
 }
 
 export default function() {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '600px'})}>
+    <div className={useCss({height: '600px'})}>
       <StyledTable $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto">
         <StyledHeadCell>Job Name</StyledHeadCell>
         <StyledHeadCell>Status</StyledHeadCell>

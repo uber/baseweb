@@ -4,9 +4,9 @@ import {TimezonePicker} from 'baseui/datepicker';
 import {FormControl} from 'baseui/form-control';
 
 export default () => {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({width: '400px'})}>
+    <div className={useCss({width: '400px'})}>
       <FormControl label="daylight savings time">
         <TimezonePicker date={new Date(2019, 3, 1)} />
       </FormControl>

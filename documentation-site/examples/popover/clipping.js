@@ -6,11 +6,11 @@ import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {Paragraph3, Label3} from 'baseui/typography';
 
 export default () => {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '300px', overflow: 'auto'})}>
+    <div className={useCss({height: '300px', overflow: 'auto'})}>
       <div
-        className={css({
+        className={useCss({
           width: '100%',
           height: '700px',
           padding: '140px 0',

@@ -9,7 +9,7 @@ import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {Table} from 'baseui/table';
 
 function PaginatedTable(props: {data: any[], columns: any[]}) {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   const [page, setPage] = React.useState(1);
   const [limit, setLimit] = React.useState(12);
 
@@ -41,19 +41,19 @@ function PaginatedTable(props: {data: any[], columns: any[]}) {
   return (
     <React.Fragment>
       <div
-        className={css({
+        className={useCss({
           display: 'flex',
           justifyContent: 'space-between',
           paddingTop: theme.sizing.scale600,
           paddingBottom: theme.sizing.scale600,
         })}
       >
-        <div className={css({...theme.typography.font750})}>
+        <div className={useCss({...theme.typography.font750})}>
           Table Example
         </div>
         <Button>
           <div
-            className={css({
+            className={useCss({
               paddingLeft: theme.sizing.scale1200,
               paddingRight: theme.sizing.scale1200,
             })}
@@ -62,11 +62,11 @@ function PaginatedTable(props: {data: any[], columns: any[]}) {
           </div>
         </Button>
       </div>
-      <div className={css({height: '500px'})}>
+      <div className={useCss({height: '500px'})}>
         <Table columns={props.columns} data={window()} />
       </div>
       <div
-        className={css({
+        className={useCss({
           paddingTop: theme.sizing.scale600,
           paddingBottom: theme.sizing.scale600,
           paddingRight: theme.sizing.scale800,

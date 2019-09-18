@@ -89,17 +89,17 @@ const columns = [
   CustomColumn<{color: string}, {}>({
     title: 'custom color',
     renderCell: function Cell(props) {
-      const [css] = useStyletron();
+      const [useCss] = useStyletron();
       return (
         <div
-          className={css({
+          className={useCss({
             alignItems: 'center',
             fontFamily: '"Comic Sans MS", cursive, sans-serif',
             display: 'flex',
           })}
         >
           <div
-            className={css({
+            className={useCss({
               backgroundColor: props.value.color,
               height: '12px',
               marginRight: '24px',

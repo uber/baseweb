@@ -31,9 +31,9 @@ const DateBox = props => (
 );
 
 export default () => {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({display: 'flex', flexWrap: 'wrap'})}>
+    <div className={useCss({display: 'flex', flexWrap: 'wrap'})}>
       <DateBox>Feb 1</DateBox>
       <DateBox>2</DateBox>
       <DateBox>3</DateBox>

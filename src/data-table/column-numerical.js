@@ -47,7 +47,7 @@ function NumericalFilter(props) {
 
 const NumericalCell = React.forwardRef<NumericalCellPropsT, HTMLDivElement>(
   (props, ref) => {
-    const [css, theme] = useStyletron();
+    const [useCss, theme] = useStyletron();
 
     let value = props.value;
     switch (props.format) {
@@ -73,7 +73,7 @@ const NumericalCell = React.forwardRef<NumericalCellPropsT, HTMLDivElement>(
     return (
       <div
         ref={ref}
-        className={css({
+        className={useCss({
           ...theme.typography.font200,
           color: props.highlight(props.value) ? theme.colors.negative : null,
           display: props.isMeasured ? 'inline-block' : null,

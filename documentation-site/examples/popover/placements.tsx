@@ -9,10 +9,10 @@ import {
 import {Paragraph3} from 'baseui/typography';
 
 export default () => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
     <div
-      className={css({
+      className={useCss({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

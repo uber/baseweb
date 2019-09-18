@@ -10,13 +10,13 @@ import {
 } from 'baseui/datepicker';
 
 export default () => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
     <React.Fragment>
       Disabled state
       <FlexGrid flexDirection="row">
         <div
-          className={css({
+          className={useCss({
             width: '120px',
             marginRight: theme.sizing.scale500,
           })}
@@ -26,7 +26,7 @@ export default () => {
           </FormControl>
         </div>
         <div
-          className={css({
+          className={useCss({
             width: '120px',
             marginRight: theme.sizing.scale500,
           })}
@@ -35,7 +35,7 @@ export default () => {
             <TimePicker disabled />
           </FormControl>
         </div>
-        <div className={css({flex: 1})}>
+        <div className={useCss({flex: 1})}>
           <FormControl label="TimezonePicker">
             <TimezonePicker disabled />
           </FormControl>
@@ -44,7 +44,7 @@ export default () => {
       Positive state
       <FlexGrid flexDirection="row">
         <div
-          className={css({
+          className={useCss({
             width: '120px',
             marginRight: theme.sizing.scale500,
           })}
@@ -54,7 +54,7 @@ export default () => {
           </FormControl>
         </div>
         <div
-          className={css({
+          className={useCss({
             width: '120px',
             marginRight: theme.sizing.scale500,
           })}
@@ -63,7 +63,7 @@ export default () => {
             <TimePicker positive />
           </FormControl>
         </div>
-        <div className={css({flex: 1})}>
+        <div className={useCss({flex: 1})}>
           <FormControl label="TimezonePicker">
             <TimezonePicker positive />
           </FormControl>
@@ -72,7 +72,7 @@ export default () => {
       Error state
       <FlexGrid flexDirection="row">
         <div
-          className={css({
+          className={useCss({
             width: '120px',
             marginRight: theme.sizing.scale500,
           })}
@@ -82,7 +82,7 @@ export default () => {
           </FormControl>
         </div>
         <div
-          className={css({
+          className={useCss({
             width: '120px',
             marginRight: theme.sizing.scale500,
           })}
@@ -91,7 +91,7 @@ export default () => {
             <TimePicker error />
           </FormControl>
         </div>
-        <div className={css({flex: 1})}>
+        <div className={useCss({flex: 1})}>
           <FormControl label="TimezonePicker">
             <TimezonePicker error />
           </FormControl>

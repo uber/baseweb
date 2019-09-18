@@ -4,13 +4,15 @@ import {Button} from 'baseui/button';
 import {PinCode} from 'baseui/pin-code';
 
 export default function() {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   const [showPinCode, toggle] = React.useState(false);
   const [values, setValues] = React.useState(['', '', '', '']);
   return (
-    <div className={css({display: 'flex'})}>
+    <div className={useCss({display: 'flex'})}>
       <Button onClick={() => toggle(s => !s)}>Mount PinCode</Button>
-      <div className={css({marginLeft: theme.sizing.scale300})} />
+      <div
+        className={useCss({marginLeft: theme.sizing.scale300})}
+      />
       {showPinCode ? (
         <PinCode
           values={values}

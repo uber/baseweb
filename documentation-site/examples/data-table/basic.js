@@ -85,17 +85,17 @@ const columns = [
   CustomColumn<{color: string}, {}>({
     title: 'custom color',
     renderCell: function Cell(props) {
-      const [css] = useStyletron();
+      const [useCss] = useStyletron();
       return (
         <div
-          className={css({
+          className={useCss({
             alignItems: 'center',
             fontFamily: '"Comic Sans MS", cursive, sans-serif',
             display: 'flex',
           })}
         >
           <div
-            className={css({
+            className={useCss({
               backgroundColor: props.value.color,
               height: '12px',
               marginRight: '24px',
@@ -114,9 +114,9 @@ const columns = [
 const rows = makeRowsFromColumns(columns, 2000);
 
 export default () => {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '800px'})}>
+    <div className={useCss({height: '800px'})}>
       <Unstable_DataTable columns={columns} rows={rows} />
     </div>
   );

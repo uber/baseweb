@@ -4,7 +4,7 @@ import {StatefulTooltip} from 'baseui/tooltip';
 import {useStyletron} from 'baseui';
 
 export default () => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
     <div>
       You can use tooltips in many places, including inline text{' '}
@@ -13,7 +13,7 @@ export default () => {
         content="Tooltips display short messages."
       >
         <span
-          className={css({
+          className={useCss({
             borderBottom: `1px dotted ${theme.colors.primary500}`,
             color: theme.colors.primary500,
           })}

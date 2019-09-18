@@ -3,9 +3,9 @@ import React from 'react';
 import {useStyletron} from 'baseui';
 
 function UseStyletronExample() {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
-    <div className={css({color: theme.colors.primary})}>
+    <div className={useCss({color: theme.colors.primary})}>
       This is a blue div
     </div>
   );

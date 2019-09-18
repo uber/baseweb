@@ -19,7 +19,7 @@ import MeasureColumnWidths from './measure-column-widths.js';
 import type {ColumnT, Props} from './types.js';
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
 
   // ignores the table header row
   if (rowIndex === 0) {
@@ -32,7 +32,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   const value = data.rows[rowIndex - 1].data[columnIndex];
   return (
     <div
-      className={css({
+      className={useCss({
         ...theme.borders.border200,
         alignItems: 'center',
         backgroundColor: rowIndex % 2 ? null : theme.colors.mono200,
@@ -154,7 +154,7 @@ export function Unstable_DataTable(props: Props) {
   // replaces the content of the virtualized window with contents. in this case,
   // we are prepending a table header row before the table rows (children to the fn).
   const InnerTableElement = React.forwardRef(({children, ...rest}, ref) => {
-    const [css, theme] = useStyletron();
+    const [useCss, theme] = useStyletron();
 
     // no need to render the cells until the columns have been measured
     if (!widths.filter(Boolean).length) {
@@ -164,7 +164,7 @@ export function Unstable_DataTable(props: Props) {
     return (
       <div ref={ref} data-baseweb="data-table" {...rest}>
         <div
-          className={css({
+          className={useCss({
             position: 'sticky',
             top: 0,
             left: 0,
@@ -180,7 +180,7 @@ export function Unstable_DataTable(props: Props) {
             const width = widths[columnIndex];
             return (
               <div
-                className={css({
+                className={useCss({
                   ...theme.borders.border200,
                   backgroundColor: theme.colors.mono100,
                   borderTop: 'none',

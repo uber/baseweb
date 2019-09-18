@@ -8,9 +8,9 @@ import {
 } from 'baseui/icon';
 
 export default () => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
-    <div className={css({color: theme.colors.warning})}>
+    <div className={useCss({color: theme.colors.warning})}>
       <ArrowUp size={36} />
       <ArrowUp size={36} />
       <ArrowDown size={36} />

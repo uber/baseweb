@@ -68,9 +68,9 @@ const DATA = [
 const COLUMNS = ['Id', 'First Name', 'Last Name', 'Age', 'Address'];
 
 export default () => {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '400px'})}>
+    <div className={useCss({height: '400px'})}>
       <Table
         columns={COLUMNS}
         data={DATA}

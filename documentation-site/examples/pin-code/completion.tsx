@@ -4,11 +4,11 @@ import {Button} from 'baseui/button';
 import {PinCode} from 'baseui/pin-code';
 
 export default function() {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   const [values, setValues] = React.useState(['', '', '', '']);
   const buttonRef = React.useRef<Button>(null);
   return (
-    <div className={css({display: 'flex'})}>
+    <div className={useCss({display: 'flex'})}>
       <PinCode
         values={values}
         onChange={({values}: any) => {

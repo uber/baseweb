@@ -10,11 +10,11 @@ import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
 function Wrapper(props: any) {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   const {offset, color, children, forwardedRef} = props;
   return (
     <div
-      className={css({
+      className={useCss({
         position: 'absolute',
         top: offset || '50%',
         left: offset || '50%',

@@ -17,16 +17,18 @@ import {
 } from 'react-vis';
 
 const GraphCell = ({children}: {children: React.ReactNode}) => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
-    <div className={css({display: 'flex', alignItems: 'center'})}>
+    <div
+      className={useCss({display: 'flex', alignItems: 'center'})}
+    >
       <div
-        className={css({
+        className={useCss({
           marginRight: theme.sizing.scale600,
         })}
       >
         <div
-          className={css({
+          className={useCss({
             color: theme.colors.mono800,
             ...theme.typography.font300,
           })}
@@ -34,7 +36,7 @@ const GraphCell = ({children}: {children: React.ReactNode}) => {
           100%
         </div>
         <div
-          className={css({
+          className={useCss({
             color: theme.colors.mono700,
             ...theme.typography.font100,
           })}

@@ -36,11 +36,11 @@ function BooleanFilter(props) {
 
 const BooleanCell = React.forwardRef<BooleanCellPropsT, HTMLDivElement>(
   (props, ref) => {
-    const [css, theme] = useStyletron();
+    const [useCss, theme] = useStyletron();
     return (
       <div
         ref={ref}
-        className={css({
+        className={useCss({
           ...theme.typography.font200,
           display: props.isMeasured ? 'inline-block' : null,
           paddingLeft: theme.sizing.scale600,

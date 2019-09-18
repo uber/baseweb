@@ -23,7 +23,7 @@ const YardWrapper: React.FC<TYardWrapperProps> = ({
   themeConfig,
   defaultHeight,
 }) => {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   const [isMounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
   const [loadYard, setLoadYard] = React.useState(
@@ -31,7 +31,7 @@ const YardWrapper: React.FC<TYardWrapperProps> = ({
       publicRuntimeConfig.loadYard === 'true',
   );
 
-  const loadingCx = css({
+  const loadingCx = useCss({
     height: `${defaultHeight + 16}px`,
     display: 'flex',
     flexWrap: 'wrap',

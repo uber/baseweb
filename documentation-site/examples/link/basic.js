@@ -4,10 +4,10 @@ import {StyledLink} from 'baseui/link';
 import {useStyletron} from 'baseui';
 
 export default () => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
     <div
-      className={css({
+      className={useCss({
         ...theme.typography.font350,
       })}
     >
