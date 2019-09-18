@@ -156,6 +156,44 @@ describe('Datepicker', () => {
     expect(renderedInput.props().value).toEqual('2019/01/01 - 2019/01/04');
   });
 
+  test('returns a single date object on input change', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const newDate = '2019/10/10';
+    const component = mount(<Datepicker onChange={onChange} value={date} />);
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: newDate,
+      },
+    });
+
+    expect(onChange.mock.calls[0][0]).toEqual({
+      date: new Date(newDate),
+    });
+  });
+
+  test('returns an array of date objects on input change', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const value = [date, addDays(date, 3)];
+    const component = mount(
+      <Datepicker range onChange={onChange} value={value} />,
+    );
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: '2019/10/10 - 2019/10/12',
+      },
+    });
+
+    expect(onChange.mock.calls[0][0]).toEqual({
+      date: [new Date('2019/10/10'), new Date('2019/10/12')],
+    });
+  });
+
   test('calendar popover renders multiple months', () => {
     const date = new Date('2019 01 01');
     const monthsShown = 2;
