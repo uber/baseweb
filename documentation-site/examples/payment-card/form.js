@@ -10,7 +10,7 @@ function getFormOverrides(width) {
     ControlContainer: {
       style: {
         width,
-        margin: '5px',
+        marginRight: '5px',
       },
     },
   };
@@ -30,7 +30,7 @@ export default () => {
   }
 
   return (
-    <div className={css({display: 'flex', flexDirecton: 'row'})}>
+    <div className={css({display: 'flex'})}>
       <FormControl
         overrides={getFormOverrides('250px')}
         caption="Card number"
@@ -46,6 +46,11 @@ export default () => {
         caption="Expiration date"
       >
         <MaskedInput
+          error={Boolean(
+            expiration &&
+              expiration.length &&
+              !valid.expirationDate(expiration).isPotentiallyValid,
+          )}
           value={expiration}
           onChange={event =>
             setExpiration(event.currentTarget.value)
@@ -59,6 +64,11 @@ export default () => {
         caption="CVC"
       >
         <MaskedInput
+          error={Boolean(
+            code &&
+              code.trim().length &&
+              !valid.cvv(code, codeLength).isPotentiallyValid,
+          )}
           value={code}
           onChange={event => setCode(event.currentTarget.value)}
           placeholder="CVC"
