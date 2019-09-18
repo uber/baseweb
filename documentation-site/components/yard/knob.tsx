@@ -19,9 +19,9 @@ const getTooltip = (description: string, type: string, name: string) => (
 );
 
 const Spacing: React.FC<{children: React.ReactNode}> = ({children}) => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
-    <div className={css({margin: `${theme.sizing.scale400} 0`})}>
+    <div className={useCss({margin: `${theme.sizing.scale400} 0`})}>
       {children}
     </div>
   );
@@ -31,10 +31,10 @@ const Label: React.FC<{
   children: React.ReactNode;
   tooltip: React.ReactNode;
 }> = ({children, tooltip}) => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
     <label
-      className={css({
+      className={useCss({
         ...(theme.typography.font250 as any),
         color: theme.colors.foreground,
       })}
@@ -55,7 +55,7 @@ const Knob: React.SFC<{
   options?: any;
   placeholder?: string;
 }> = ({name, type, val, set, options, description, placeholder}) => {
-  //const [css, theme] = useStyletron();
+  //const [useCss, theme] = useStyletron();
   switch (type) {
     case PropTypes.Ref:
       return (
