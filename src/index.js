@@ -14,8 +14,6 @@ export {
   createThemedUseStyletron,
   ThemeProvider,
 } from './styles/index.js';
-import LocaleProvider from './locale/index.js';
-export {LocaleProvider};
 export {
   createTheme,
   lightThemePrimitives,
@@ -25,6 +23,7 @@ export {
   LightTheme,
   LightThemeMove,
 } from './themes/index.js';
+export {default as LocaleProvider} from './locale/index.js';
 export {default as BaseProvider} from './helpers/base-provider.js';
 export {withProps} from './helpers/index.js';
 export {mergeOverrides} from './helpers/overrides.js';
