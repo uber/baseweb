@@ -1,0 +1,81 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+import React from 'react';
+
+import {ARTWORK_SIZES} from './constants.js';
+import {
+  StyledRoot,
+  StyledContent,
+  StyledEndEnhancerContainer,
+  StyledArtworkContainer,
+} from './styled-components.js';
+import type {PropsT} from './types.js';
+
+function artworkSizeToIconSize(artworkSize, isSublist) {
+  if (isSublist) {
+    switch (artworkSize) {
+      case ARTWORK_SIZES.LARGE:
+        return 22;
+      case ARTWORK_SIZES.SMALL:
+      default:
+        return 16;
+    }
+  }
+
+  switch (artworkSize) {
+    case ARTWORK_SIZES.SMALL:
+      return 16;
+    case ARTWORK_SIZES.LARGE:
+      return 33;
+    case ARTWORK_SIZES.MEDIUM:
+    default:
+      return 22;
+  }
+}
+
+function ListItem(props: PropsT) {
+  const Artwork = props.artwork;
+  const EndEnhancer = props.endEnhancer;
+
+  const artworkSize = React.useMemo(() => {
+    let size = props.sublist ? ARTWORK_SIZES.SMALL : ARTWORK_SIZES.MEDIUM;
+    if (props.sublist && props.artworkSize === ARTWORK_SIZES.MEDIUM) {
+      size = ARTWORK_SIZES.SMALL;
+      if (__DEV__) {
+        console.warn(
+          'When ListItem sublist prop is true, artworkSize MEDIUM is aliased to SMALL',
+        );
+      }
+    }
+    if (props.artworkSize) {
+      size = props.artworkSize;
+    }
+    return size;
+  }, [props.artworkSize]);
+
+  return (
+    <StyledRoot>
+      {Artwork && (
+        <StyledArtworkContainer $artworkSize={artworkSize}>
+          <Artwork size={artworkSizeToIconSize(artworkSize, props.sublist)} />
+        </StyledArtworkContainer>
+      )}
+      <StyledContent $mLeft={!Artwork} $sublist={!!props.sublist}>
+        {props.children}
+        {EndEnhancer && (
+          <StyledEndEnhancerContainer>
+            <EndEnhancer />
+          </StyledEndEnhancerContainer>
+        )}
+      </StyledContent>
+    </StyledRoot>
+  );
+}
+
+export default ListItem;
