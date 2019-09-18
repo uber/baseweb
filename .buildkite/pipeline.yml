@@ -67,7 +67,7 @@ steps:
     agents:
       queue: workers
   - name: ':screener:'
-    command: yarn storybook:screener:ci
+    command: yarn add puppeteer && yarn storybook:screener:ci
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
