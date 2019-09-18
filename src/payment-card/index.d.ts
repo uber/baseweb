@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
+import valid from 'card-validator';
 import {Override} from '../overrides';
 import {
   SIZE,
@@ -10,6 +11,8 @@ import {
 } from '../input';
 
 export {SIZE, StatefulContainer};
+
+export {valid};
 
 export type PaymentCardOverrides = InputOverrides & {
   IconWrapper?: Override<any>;
