@@ -13,6 +13,7 @@ import Exports from '../../components/exports';
 import Controlled from 'examples/payment-card/controlled.js';
 import Uncontrolled from 'examples/payment-card/uncontrolled.js';
 import DefaultValue from 'examples/payment-card/defaultvalue.js';
+import Form from 'examples/payment-card/form.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulPaymentCard} from 'baseui/payment-card';
@@ -56,6 +57,13 @@ This component is based on the [Input](/components/input) component. All of the 
 <Example title="Default value" path="payment-card/defaultvalue.js">
   <DefaultValue />
 </Example>
+
+<Example title="Payment form" path="payment-card/form.js">
+  <Form />
+</Example>
+
+If you'd like to add further validations, check out the [card-validator](https://www.npmjs.com/package/card-validator)
+package that Base Web uses under the hood too.
 
 <Example
   title="Stateful (uncontrolled) usage"
