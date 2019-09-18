@@ -16,6 +16,8 @@ const util = require('util');
 const recursive = require('recursive-readdir');
 
 const asyncRecursive = util.promisify(recursive);
+const asyncReaddir = util.promisify(fs.readdir);
+const asyncStat = util.promisify(fs.stat);
 
 const packageJson = require('../package.json');
 
@@ -24,7 +26,9 @@ async function run() {
   const projectRelativePaths = files.map(file => file.split('dist/esm')[1]);
 
   const modules = projectRelativePaths.reduce((acc, current) => {
-    acc[current] = `/esm${current}`;
+    if (current.endsWith('index.js')) {
+      acc[current] = `/esm${current}`;
+    }
     return acc;
   }, {});
 
@@ -36,3 +40,27 @@ async function run() {
 }
 
 run();
+
+async function buildPackageJsonFiles() {
+  const distPath = path.resolve(__dirname, '../dist');
+  const esmPath = path.join(distPath, 'esm');
+  const dirs = [];
+  for (const file of await asyncReaddir(esmPath)) {
+    const fileStat = await asyncStat(path.join(esmPath, file));
+    if (fileStat.isDirectory()) {
+      dirs.push(file);
+      const data = {
+        sideEffects: false,
+        module: path.join('../esm', file, 'index.js'),
+      };
+      fs.writeFileSync(
+        path.join(distPath, file, 'package.json'),
+        JSON.stringify(data, null, 2),
+        err => {
+          if (err) throw err;
+        },
+      );
+    }
+  }
+}
+buildPackageJsonFiles();
