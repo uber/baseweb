@@ -2353,10 +2353,10 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/tag/-/tag-0.20.3.tgz#9e2306040b6469248c45a5f5baf44d0014db0493"
   integrity sha512-Co3gUFmNDv9z2LjuvLTpTj2NaOSHFxuoZjohcG0YK/KfECO+Ns9idzThMYjfEDe1vAf4c824rqlBYseedJdFNw==
 
-"@miksu/prettier@^1.18.2":
-  version "1.18.2"
-  resolved "https://registry.yarnpkg.com/@miksu/prettier/-/prettier-1.18.2.tgz#ce07ec86bdd64eabeab3a21c67ceb8d97520720f"
-  integrity sha512-xNmyedThxdhbxOLPKAUCLNvK+Mde6I0nzvDUTlMGCDe8xyicKMgWhbHf6pdJwm0D4xQa2iNvXkY2hdXR1FXSPg==
+"@miksu/prettier@^1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@miksu/prettier/-/prettier-1.18.1.tgz#633f33dd274cd91f23a65513eb1932684f7dbfbe"
+  integrity sha512-OSLscNSqbxKOrXa10VRC9GexboNUKn3Ks4zzjQL0WiOCfDzZF3QL6QYagZftUV/HDqtDmfWWo+ueHkNbveQ9zQ==
   dependencies:
     "@babel/code-frame" "7.5.5"
     "@babel/parser" "^7.6.0"
@@ -2406,6 +2406,13 @@
     vnopts "1.0.2"
     write-file-atomic "2.3.0"
     yaml-unist-parser "1.0.0"
+
+"@next/bundle-analyzer@^9.0.6":
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-9.0.6.tgz#129ba8dc698aa1f7644d2e23afc4848f74339a74"
+  integrity sha512-mW7jDnnx6zojRSflXl9w3rrPVwoO673YrcB5cs8hubqaYQuJ9x/3U5M9xJ49nuKIWxwIPKvSueA/x/ZuJc5lrA==
+  dependencies:
+    webpack-bundle-analyzer "3.3.2"
 
 "@nodelib/fs.scandir@2.1.1":
   version "2.1.1"
@@ -17318,10 +17325,10 @@ webidl-conversions@^4.0.2:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
-webpack-bundle-analyzer@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.5.0.tgz#c82130a490a05f9267aa5956871aef574dff5074"
-  integrity sha512-NzueflueLSJxWGzDlMq5oUV+P8Qoq6yiaQlXGCbDYUpHEKlmzWdPLBJ4k/B6HTdAP/vHM8ply1Fx08mDnY+S8Q==
+webpack-bundle-analyzer@3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.3.2.tgz#3da733a900f515914e729fcebcd4c40dde71fc6f"
+  integrity sha512-7qvJLPKB4rRWZGjVp5U1KEjwutbDHSKboAl0IfafnrdXMrgC0tOtZbQD6Rw0u4cmpgRN4O02Fc0t8eAT+FgGzA==
   dependencies:
     acorn "^6.0.7"
     acorn-walk "^6.1.1"
@@ -17332,7 +17339,7 @@ webpack-bundle-analyzer@^3.5.0:
     express "^4.16.3"
     filesize "^3.6.1"
     gzip-size "^5.0.0"
-    lodash "^4.17.15"
+    lodash "^4.17.10"
     mkdirp "^0.5.1"
     opener "^1.5.1"
     ws "^6.0.0"

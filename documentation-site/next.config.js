@@ -13,34 +13,39 @@ const withImages = require('next-images');
 const withMDX = require('@zeit/next-mdx')({
   extension: /\.mdx?$/,
 });
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
-module.exports = withMDX(
-  withImages({
-    publicRuntimeConfig: {
-      loadYard: process.env.LOAD_YARD,
-    },
-    exportTrailingSlash: true,
-    webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
-      config.resolve.alias.baseui = resolve(__dirname, '../dist');
-      config.resolve.alias.examples = resolve(__dirname, 'examples');
-      // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
-      const originalEntry = config.entry;
-      config['node'] = {fs: 'empty'};
-      config.entry = async () => {
-        const entries = await originalEntry();
+module.exports = withBundleAnalyzer(
+  withMDX(
+    withImages({
+      publicRuntimeConfig: {
+        loadYard: process.env.LOAD_YARD,
+      },
+      exportTrailingSlash: true,
+      webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
+        config.resolve.alias.baseui = resolve(__dirname, '../dist');
+        config.resolve.alias.examples = resolve(__dirname, 'examples');
+        // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
+        const originalEntry = config.entry;
+        config['node'] = {fs: 'empty'};
+        config.entry = async () => {
+          const entries = await originalEntry();
 
-        if (
-          entries['main.js'] &&
-          !entries['main.js'].includes('./helpers/polyfills.js')
-        ) {
-          entries['main.js'].unshift('./helpers/polyfills.js');
-        }
+          if (
+            entries['main.js'] &&
+            !entries['main.js'].includes('./helpers/polyfills.js')
+          ) {
+            entries['main.js'].unshift('./helpers/polyfills.js');
+          }
 
-        return entries;
-      };
+          return entries;
+        };
 
-      return config;
-    },
-    pageExtensions: ['js', 'jsx', 'mdx'],
-  }),
+        return config;
+      },
+      pageExtensions: ['js', 'jsx', 'mdx'],
+    }),
+  ),
 );

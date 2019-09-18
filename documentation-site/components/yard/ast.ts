@@ -2,15 +2,7 @@ import traverse from '@babel/traverse';
 import generate from '@babel/generator';
 import {formatCode} from './code-generator';
 import * as t from 'babel-types';
-import babel from 'prettier/parser-babylon';
-// import {TProp} from './types';
-// import {PropTypes} from './const';
-
-export const parse = (code: string) =>
-  babelParse(code, {
-    sourceType: 'module',
-    plugins: ['jsx'],
-  });
+import {parse} from '@babel/parser';
 
 // clean-up for react-live, removing all imports, exports and top level
 // variable declaration
@@ -82,35 +74,6 @@ export const removeImportsAndExports = (
       //     },
       //   );
       // }
-    });
-  } catch (e) {
-    console.log(e);
-  }
-  return ast;
-};
-
-                  if (callbackBody.type === 'BlockStatement') {
-                    // when the callback body is a block
-                    // e.g.: e => { setValue(e.target.value) }
-                    callbackBody.pushContainer(
-                      'body',
-                      yardOnChageCallExpression,
-                    );
-                  } else {
-                    // when it is a single statement like e => setValue(e.target.value)
-                    // we have to create a BlockStatement first
-                    callbackBody.replaceWith(
-                      t.blockStatement([
-                        t.expressionStatement(callbackBody.node),
-                        t.expressionStatement(yardOnChageCallExpression),
-                      ]),
-                    );
-                  }
-                }
-              }
-            });
-        }
-      },
     });
   } catch (e) {
     console.log(e);

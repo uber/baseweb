@@ -1,8 +1,11 @@
 import {TProp} from './types';
 import {PropTypes} from './const';
-import {assertUnreachable} from './utils';
+//@ts-ignore
+import prettier from '@miksu/prettier/lib/standalone';
+//@ts-ignore
+import parsers from '@miksu/prettier/lib/language-js/parser-babylon';
+import {parse} from '@babel/parser';
 import template from '@babel/template';
-import generate from '@babel/generator';
 import * as t from '@babel/types';
 
 type TJsxChild =
@@ -181,29 +184,57 @@ const getAst = (
 
   const buildExport = template(`export default () => {%%body%%}`);
 
-  return t.program([
-    getAstImport(
-      [componentName, ...getEnumsToImport(restProps)],
-      `baseui/${componentName.toLowerCase()}`,
-    ),
-    ...getAstThemeImport(isCustomTheme, themePrimitives),
-
-    buildExport({
-      body: [
-        ...getAstReactHooks(restProps),
-        t.returnStatement(
-          getAstThemeWrapper(
-            theme.themeValues,
-            getAstJsxElement(
-              componentName,
-              getAstPropsArray(restProps),
-              children && children.value ? [t.jsxText(children.value)] : [],
+  return t.file(
+    t.program([
+      getAstImport(
+        [componentName, ...getEnumsToImport(restProps)],
+        `baseui/${componentName.toLowerCase()}`,
+      ),
+      ...getAstThemeImport(isCustomTheme, themePrimitives),
+      buildExport({
+        body: [
+          ...getAstReactHooks(restProps),
+          t.returnStatement(
+            getAstThemeWrapper(
+              theme.themeValues,
+              getAstJsxElement(
+                componentName,
+                getAstPropsArray(restProps),
+                children && children.value ? [t.jsxText(children.value)] : [],
+              ),
             ),
           ),
-        ),
-      ],
-    }),
-  ] as any);
+        ],
+      }),
+    ] as any),
+    [],
+    [],
+  );
+};
+
+const formatAstAndPrint = (ast: t.Program) => {
+  const result = (prettier as any).__debug.formatAST(ast, {
+    originalText: '',
+    parser: 'babel',
+    printWidth: 70,
+    plugins: [parsers],
+  });
+  return (
+    result.formatted
+      // add a new line before export
+      .replace('export default', '\nexport default')
+      // remove newline at the end of file
+      .replace(/[\r\n]+$/, '')
+      // remove ; at the end of file
+      .replace(/[;]+$/, '')
+  );
+};
+
+export const formatCode = (code: string) => {
+  return formatAstAndPrint(parse(code, {
+    sourceType: 'module',
+    plugins: ['jsx'],
+  }) as any);
 };
 
 export const getCode = (
@@ -212,5 +243,5 @@ export const getCode = (
   theme: {themeValues: {[key: string]: string}; themeName: string},
 ) => {
   const ast = getAst(props, componentName, theme);
-  return generate(ast).code;
+  return formatAstAndPrint(ast as any);
 };
