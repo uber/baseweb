@@ -59,6 +59,7 @@ function FilterQuickControls(props: {
   return (
     <React.Fragment>
       <button
+        type="button"
         className={useCss({
           ...theme.typography.font100,
           borderTop: 0,
@@ -73,6 +74,7 @@ function FilterQuickControls(props: {
       </button>
       <span className={useCss({...theme.typography.font100})}> | </span>
       <button
+        type="button"
         className={useCss({
           ...theme.typography.font100,
           borderTop: 0,
@@ -196,7 +198,6 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           maxHeight: '256px',
           overflowY: 'auto',
           marginTop: theme.sizing.scale600,
-          marginBottom: theme.sizing.scale600,
         })}
       >
         {!filteredCategories.length && <Label3>No Categories Found</Label3>}

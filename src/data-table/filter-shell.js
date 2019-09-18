@@ -22,7 +22,7 @@ type PropsT = {
 function FilterShell(props: PropsT) {
   const [useCss, theme] = useStyletron();
   return (
-    <div
+    <form
       className={useCss({
         backgroundColor: theme.colors.white,
         paddingTop: theme.sizing.scale600,
@@ -31,6 +31,10 @@ function FilterShell(props: PropsT) {
         paddingLeft: theme.sizing.scale600,
         width: '320px',
       })}
+      onSubmit={event => {
+        event.preventDefault();
+        props.onApply();
+      }}
     >
       {props.children}
       <div
@@ -38,6 +42,7 @@ function FilterShell(props: PropsT) {
           alignItems: 'center',
           display: 'flex',
           justifyContent: 'space-between',
+          marginTop: theme.sizing.scale600,
         })}
       >
         <Checkbox
@@ -48,11 +53,11 @@ function FilterShell(props: PropsT) {
         >
           Exclude
         </Checkbox>
-        <Button size={BUTTON_SIZE.compact} onClick={props.onApply}>
+        <Button size={BUTTON_SIZE.compact} type="submit">
           Apply
         </Button>
       </div>
-    </div>
+    </form>
   );
 }
 

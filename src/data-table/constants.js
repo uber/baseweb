@@ -20,6 +20,14 @@ export const NUMERICAL_FORMATS = Object.freeze({
   PERCENTAGE: 'PERCENTAGE',
 });
 
+export const NUMERICAL_OPERATIONS = Object.freeze({
+  EQ: 'EQ',
+  GT: 'GT',
+  GTE: 'GTE',
+  LT: 'LT',
+  LTE: 'LTE',
+});
+
 export const SORT_DIRECTIONS = Object.freeze({
   ASC: 'ASC',
   DESC: 'DESC',
