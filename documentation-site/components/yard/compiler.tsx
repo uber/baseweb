@@ -73,7 +73,7 @@ const Compiler: React.FC<{
   code: string;
   setError: (error: string | null) => void;
   transformations: ((ast: babel.types.Node) => babel.types.Node)[];
-  PlaceholderElement: React.ReactNode;
+  PlaceholderElement: React.FC;
 }> = ({scope, code, setError, transformations, PlaceholderElement}) => {
   const [output, setOutput] = React.useState<{
     component: React.ComponentClass | null;

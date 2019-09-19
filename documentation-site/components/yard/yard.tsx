@@ -123,7 +123,7 @@ export default withRouter(
     placeholderElement,
   }: TYardProps & {
     router: any;
-    placeholderElement: React.ReactNode;
+    placeholderElement: React.FC;
   }) => {
     const [css, theme] = useStyletron();
     const [error, setError] = React.useState<string | null>(null);

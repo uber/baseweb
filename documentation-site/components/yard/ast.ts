@@ -241,7 +241,10 @@ export function parseCode(code: string, elementName: string) {
             propValues[name] = value;
           });
           propValues['children'] = (path.node as any).children
-            .reduce((result, node) => `${result}${generate(node).code}`, '')
+            .reduce(
+              (result: string, node: any) => `${result}${generate(node).code}`,
+              '',
+            )
             .replace(/^\s+|\s+$/g, '');
         }
       },

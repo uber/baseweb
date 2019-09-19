@@ -24,6 +24,7 @@ export type TProp = {
 
 export type TState = {
   code: string;
+  codeNoRecompile: string;
   theme: {
     [key: string]: string;
   };
