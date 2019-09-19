@@ -123,7 +123,7 @@ export default withRouter(
     placeholderElement,
   }: TYardProps & {
     router: any;
-    placeholderElement: React.FC;
+    placeholderElement: React.ReactNode;
   }) => {
     const [css, theme] = useStyletron();
     const [error, setError] = React.useState<string | null>(null);
@@ -284,6 +284,7 @@ export default withRouter(
             createTheme,
             __yard_onChange,
           }}
+          PlaceholderElement={placeholderElement}
         />
         <StatefulTabs
           initialState={{activeKey: '0'}}

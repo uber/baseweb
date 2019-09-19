@@ -73,7 +73,8 @@ const Compiler: React.FC<{
   code: string;
   setError: (error: string | null) => void;
   transformations: ((ast: babel.types.Node) => babel.types.Node)[];
-}> = ({scope, code, setError, transformations}) => {
+  PlaceholderElement: React.ReactNode;
+}> = ({scope, code, setError, transformations, PlaceholderElement}) => {
   const [output, setOutput] = React.useState<{
     component: React.ComponentClass | null;
   }>({component: null});
@@ -93,7 +94,7 @@ const Compiler: React.FC<{
         paddingBottom: theme.sizing.scale600,
       })}
     >
-      {Element && <Element />}
+      {Element ? <Element /> : <PlaceholderElement />}
     </div>
   );
 };
