@@ -114,7 +114,6 @@ export default class Datepicker extends React.Component<
 
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
-    const date = [];
 
     this.setState({
       inputValue,
@@ -125,19 +124,21 @@ export default class Datepicker extends React.Component<
       const dates = inputValue.split(' - ');
       const startDate = new Date(dates[0]);
       const endDate = new Date(dates[1]);
-      date.push(startDate);
-      date.push(endDate);
+      isValid(startDate) &&
+        isValid(endDate) &&
+        isAfter(endDate, startDate) &&
+        this.props.onChange &&
+        this.props.onChange({
+          date: [startDate, endDate],
+        });
     } else {
-      date.push(new Date(inputValue));
+      const date = new Date(inputValue);
+      isValid(date) &&
+        this.props.onChange &&
+        this.props.onChange({
+          date,
+        });
     }
-
-    isValid(date[0]) &&
-      // if it's a range selector, make sure that the endDate is after the startDate
-      (date[1] ? isValid(date[1]) && isAfter(date[1], date[0]) : true) &&
-      this.props.onChange &&
-      this.props.onChange({
-        date,
-      });
   };
 
   handleKeyDown = (event: KeyboardEvent) => {

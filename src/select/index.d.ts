@@ -137,10 +137,10 @@ export class Select extends React.Component<SelectProps, SelectState> {
   handleTouchEndClearValue(event: TouchEvent): void;
   handleClick(event: MouseEvent | TouchEvent): void;
   closeMenu(): void;
-  handleInputFocus(event: React.FocusEventHandler<HTMLElement>): void;
+  handleInputFocus(event: React.FocusEvent<HTMLElement>): void;
   handleBlur(event: Event): void;
   handleClickOutside(event: MouseEvent): void;
-  handleInputChange(event: React.FormEventHandler<HTMLInputElement>): void;
+  handleInputChange(event: React.FormEvent<HTMLInputElement>): void;
   handleKeyDown(event: KeyboardEvent): void;
   getOptionLabel(
     locale: Locale,
