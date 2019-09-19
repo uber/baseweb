@@ -170,8 +170,30 @@ describe('data table columns', () => {
     expect(matchArrayElements(initial, restored)).toBe(true);
   });
 
-  xit('filters boolean column', async () => {
-    // boolean column filter not implemented
+  it('filters boolean column', async () => {
+    const index = 0;
+    await mount(page, 'data-table-columns');
+    await page.waitFor(TABLE_ROOT);
+    const initial = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(initial, ['T', 'F', 'T', 'F'])).toBe(true);
+
+    const popover = await openFilterAtIndex(page, index);
+    const checkbox = await popover.$('label[data-baseweb="checkbox"]');
+    await checkbox.click();
+    await popover.$$eval('button', items => {
+      const button = items.find(item => item.textContent === 'Apply');
+      return button.click();
+    });
+
+    const filtered = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(filtered, ['T', 'T'])).toBe(true);
+
+    const tag = await page.$('span[data-baseweb="tag"]');
+    const closeTagButton = await tag.$('span[role="button"]');
+    await closeTagButton.click();
+
+    const restored = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(restored, ['T', 'F', 'T', 'F'])).toBe(true);
   });
 
   it('filters categorical column', async () => {

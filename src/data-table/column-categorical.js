@@ -132,7 +132,13 @@ function HighlightCheckboxLabel(props) {
   });
 }
 
-function CategoricalFilter(props) {
+type CategoricalFilterProps = {
+  data: string[],
+  close: () => void,
+  setFilter: (FilterParametersT, string) => void,
+};
+
+export function CategoricalFilter(props: CategoricalFilterProps) {
   const [useCss, theme] = useStyletron();
   const [selection, setSelection] = React.useState<Set<string>>(new Set());
   const [exclude, setExclude] = React.useState(false);
