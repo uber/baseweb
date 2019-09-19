@@ -22,10 +22,7 @@ export interface ButtonGroupProps {
   children: React.ReactNode;
   disabled?: boolean;
   mode?: MODE[keyof MODE];
-  onClick?: (
-    event: React.MouseEventHandler<HTMLButtonElement>,
-    index: number,
-  ) => any;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, index: number) => any;
   overrides?: ButtonGroupOverrides;
   selected?: number | number[];
   shape?: SHAPE[keyof SHAPE];
@@ -59,10 +56,7 @@ export class StatefulContainer extends React.Component<
   State
 > {
   changeState(nextState: State): void;
-  onClick(
-    event: React.MouseEventHandler<HTMLButtonElement>,
-    index: number,
-  ): void;
+  onClick(event: React.MouseEvent<HTMLButtonElement>, index: number): void;
 }
 
 export const MODE: MODE;
