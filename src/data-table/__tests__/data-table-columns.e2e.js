@@ -222,7 +222,33 @@ describe('data table columns', () => {
     expect(matchArrayElements(restored, ['A', 'B', 'A', 'A'])).toBe(true);
   });
 
-  xit('filters numerical column', async () => {
-    // numerical column filter not implemented
+  it('filters numerical column as single value', async () => {
+    const index = 2;
+    await mount(page, 'data-table-columns');
+    await page.waitFor(TABLE_ROOT);
+    const initial = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(initial, ['2', '1', '4', '3'])).toBe(true);
+
+    const popover = await openFilterAtIndex(page, index);
+    await popover.$$eval('button', items => {
+      const button = items.find(item => item.textContent === 'Single Value');
+      return button.click();
+    });
+
+    await page.type('div[data-baseweb="input"] input', '2');
+    await popover.$$eval('button', items => {
+      const button = items.find(item => item.textContent === 'Apply');
+      return button.click();
+    });
+
+    const filtered = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(filtered, ['2'])).toBe(true);
+
+    const tag = await page.$('span[data-baseweb="tag"]');
+    const closeTagButton = await tag.$('span[role="button"]');
+    await closeTagButton.click();
+
+    const restored = await getCellContentsAtColumnIndex(page, index);
+    expect(matchArrayElements(restored, ['2', '1', '4', '3'])).toBe(true);
   });
 });

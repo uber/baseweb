@@ -8,8 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, SIZE as BUTTON_SIZE} from '../button/index.js';
-import {Checkbox, StyledLabel, STYLE_TYPE} from '../checkbox/index.js';
+import {Checkbox, StyledLabel} from '../checkbox/index.js';
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron, withStyle} from '../styles/index.js';
@@ -17,6 +16,7 @@ import {Label3} from '../typography/index.js';
 
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
+import FilterShell from './filter-shell.js';
 
 type CellPropsT = {
   isMeasured?: boolean,
@@ -59,6 +59,7 @@ function FilterQuickControls(props: {
   return (
     <React.Fragment>
       <button
+        type="button"
         className={useCss({
           ...theme.typography.font100,
           borderTop: 0,
@@ -73,6 +74,7 @@ function FilterQuickControls(props: {
       </button>
       <span className={useCss({...theme.typography.font100})}> | </span>
       <button
+        type="button"
         className={useCss({
           ...theme.typography.font100,
           borderTop: 0,
@@ -155,15 +157,13 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
   );
 
   return (
-    <div
-      className={useCss({
-        backgroundColor: theme.colors.white,
-        paddingTop: theme.sizing.scale600,
-        paddingRight: theme.sizing.scale600,
-        paddingBottom: theme.sizing.scale600,
-        paddingLeft: theme.sizing.scale600,
-        width: '320px',
-      })}
+    <FilterShell
+      exclude={exclude}
+      onExcludeChange={() => setExclude(!exclude)}
+      onApply={() => {
+        props.setFilter({selection, exclude}, Array.from(selection).join(', '));
+        props.close();
+      }}
     >
       {showQuery && (
         <Input
@@ -198,7 +198,6 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           maxHeight: '256px',
           overflowY: 'auto',
           marginTop: theme.sizing.scale600,
-          marginBottom: theme.sizing.scale600,
         })}
       >
         {!filteredCategories.length && <Label3>No Categories Found</Label3>}
@@ -225,35 +224,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
             </div>
           ))}
       </div>
-      <div
-        className={useCss({
-          alignItems: 'center',
-          display: 'flex',
-          justifyContent: 'space-between',
-        })}
-      >
-        <Checkbox
-          checked={exclude}
-          onChange={() => setExclude(!exclude)}
-          checkmarkType={STYLE_TYPE.toggle}
-          labelPlacement="right"
-        >
-          Exclude
-        </Checkbox>
-        <Button
-          size={BUTTON_SIZE.compact}
-          onClick={() => {
-            props.setFilter(
-              {selection, exclude},
-              Array.from(selection).join(', '),
-            );
-            props.close();
-          }}
-        >
-          Apply
-        </Button>
-      </div>
-    </div>
+    </FilterShell>
   );
 }
 
