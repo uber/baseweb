@@ -397,13 +397,20 @@ export const component = () => {
       </ListItem>
       <ListItem
         artwork={Search}
+        artworkSize={ARTWORK_SIZES.MEDIUM}
+        endEnhancer={() => <ChevronRight />}
+        sublist
+      >
+        <ListItemLabel sublist>Label</ListItemLabel>
+      </ListItem>
+      <ListItem
+        artwork={Search}
         artworkSize={ARTWORK_SIZES.LARGE}
         endEnhancer={() => <ChevronRight />}
         sublist
       >
         <ListItemLabel sublist>Label</ListItemLabel>
       </ListItem>
-      <div />
 
       {/* ---------------------------------------- */}
 
@@ -422,13 +429,20 @@ export const component = () => {
       </ListItem>
       <ListItem
         artwork={Search}
+        artworkSize={ARTWORK_SIZES.MEDIUM}
+        endEnhancer={() => <ListItemLabel sublist>Label</ListItemLabel>}
+        sublist
+      >
+        <ListItemLabel sublist>Label</ListItemLabel>
+      </ListItem>
+      <ListItem
+        artwork={Search}
         artworkSize={ARTWORK_SIZES.LARGE}
         endEnhancer={() => <ListItemLabel sublist>Label</ListItemLabel>}
         sublist
       >
         <ListItemLabel sublist>Label</ListItemLabel>
       </ListItem>
-      <div />
 
       {/* ---------------------------------------- */}
 
@@ -438,10 +452,12 @@ export const component = () => {
       <ListItem artwork={Search} sublist>
         <ListItemLabel sublist>Label</ListItemLabel>
       </ListItem>
+      <ListItem artwork={Search} artworkSize={ARTWORK_SIZES.MEDIUM} sublist>
+        <ListItemLabel sublist>Label</ListItemLabel>
+      </ListItem>
       <ListItem artwork={Search} artworkSize={ARTWORK_SIZES.LARGE} sublist>
         <ListItemLabel sublist>Label</ListItemLabel>
       </ListItem>
-      <div />
     </div>
   );
 };
