@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 
 import {ARTWORK_SIZES} from './constants.js';
-import type {ArtworkSizesT} from './types.js';
+import type {
+  ArtworkSizesT,
+  StyledContentPropsT,
+  StyledArtworkContainerPropsT,
+} from './types.js';
 
 export const StyledRoot = styled<{}>('li', ({$theme}) => {
   return {
@@ -20,7 +24,7 @@ export const StyledRoot = styled<{}>('li', ({$theme}) => {
   };
 });
 
-export const StyledContent = styled<{$mLeft: boolean, $sublist: boolean}>(
+export const StyledContent = styled<StyledContentPropsT>(
   'div',
   ({$mLeft, $sublist, $theme}) => {
     return {
@@ -44,26 +48,27 @@ export const StyledEndEnhancerContainer = styled('div', {
   display: 'flex',
 });
 
-export const StyledArtworkContainer = styled<{
-  $artworkSize: ArtworkSizesT,
-}>('div', ({$artworkSize, $theme}) => {
-  let padding = null;
-  switch ($artworkSize) {
-    case ARTWORK_SIZES.SMALL:
-      padding = $theme.sizing.scale800;
-      break;
-    case ARTWORK_SIZES.LARGE:
-      padding = $theme.sizing.scale600;
-      break;
-    case ARTWORK_SIZES.MEDIUM:
-    default:
-      padding = $theme.sizing.scale700;
-  }
+export const StyledArtworkContainer = styled<StyledArtworkContainerPropsT>(
+  'div',
+  ({$artworkSize, $theme}) => {
+    let padding = null;
+    switch ($artworkSize) {
+      case ARTWORK_SIZES.SMALL:
+        padding = $theme.sizing.scale800;
+        break;
+      case ARTWORK_SIZES.LARGE:
+        padding = $theme.sizing.scale600;
+        break;
+      case ARTWORK_SIZES.MEDIUM:
+      default:
+        padding = $theme.sizing.scale700;
+    }
 
-  return {
-    alignItems: 'center',
-    display: 'flex',
-    paddingLeft: padding,
-    paddingRight: padding,
-  };
-});
+    return {
+      alignItems: 'center',
+      display: 'flex',
+      paddingLeft: padding,
+      paddingRight: padding,
+    };
+  },
+);

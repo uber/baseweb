@@ -13,12 +13,27 @@ export type ArtworkSizesT =
   | ARTWORK_SIZES['MEDIUM']
   | ARTWORK_SIZES['LARGE'];
 
+export interface StyledArtworkContainerPropsT {
+  $artworkSize: ArtworkSizesT;
+}
+export interface StyledContentPropsT {
+  $mLeft: boolean;
+  $sublist: boolean;
+}
+
+export interface OverridesT {
+  Root: Override<{}>;
+  ArtworkContainer: Override<StyledArtworkContainerPropsT>;
+  Content: Override<StyledContentPropsT>;
+  EndEnhancerContainer: Override<{}>;
+}
+
 export interface PropsT {
   artwork?: React.ReactNode;
   artworkSize?: ArtworkSizesT;
   children: React.ReactNode;
   endEnhancer?: React.ReactNode;
-  overrides?: {};
+  overrides?: OverridesT;
   sublist?: boolean;
 }
 

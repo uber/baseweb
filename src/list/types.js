@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import type {OverrideT} from '../helpers/overrides.js';
 import {ARTWORK_SIZES} from './constants.js';
 
 export type ArtworkSizesT =
@@ -15,11 +16,22 @@ export type ArtworkSizesT =
   | typeof ARTWORK_SIZES.MEDIUM
   | typeof ARTWORK_SIZES.LARGE;
 
+export type StyledArtworkContainerPropsT = {$artworkSize: ArtworkSizesT};
+export type StyledContentPropsT = {$mLeft: boolean, $sublist: boolean};
+
+export type OverridesT = {|
+  Root: OverrideT<{}>,
+  ArtworkContainer: OverrideT<StyledArtworkContainerPropsT>,
+  Content: OverrideT<StyledContentPropsT>,
+  EndEnhancerContainer: OverrideT<{}>,
+|};
+
 export type PropsT = {|
   artwork?: React.ComponentType<{size: number}>,
   artworkSize?: ArtworkSizesT,
   children: React.Node,
   endEnhancer?: React.ComponentType<{}>,
+  overrides?: OverridesT,
   sublist?: boolean,
 |};
 
