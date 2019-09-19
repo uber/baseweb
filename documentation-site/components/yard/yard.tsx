@@ -80,15 +80,17 @@ function reducer(state: TState, action: {type: Action; payload: any}): TState {
         theme: newTheme,
         props: buildPropsObj(state.props, action.payload.updatedPropValues),
       };
-    case Action.UpdateProps:
+    case Action.UpdatePropsAndCodeNoRecompile:
       return {
         ...state,
+        codeNoRecompile: action.payload.codeNoRecompile,
         props: buildPropsObj(state.props, action.payload.updatedPropValues),
       };
     case Action.UpdatePropsAndCode:
       return {
         ...state,
         code: action.payload.code,
+        codeNoRecompile: '',
         props: buildPropsObj(state.props, action.payload.updatedPropValues),
       };
     case Action.UpdateThemeAndCode:
@@ -173,6 +175,7 @@ export default withRouter(
           themeValues: {},
           themeName: theme.name,
         }),
+      codeNoRecompile: '',
       props: initialUrlProps || propsConfig,
       theme: initialUrlTheme || componentThemeObj,
     });
@@ -219,8 +222,9 @@ export default withRouter(
         },
       );
       dispatch({
-        type: Action.UpdateProps,
+        type: Action.UpdatePropsAndCodeNoRecompile,
         payload: {
+          codeNoRecompile: newCode,
           updatedPropValues: {[propName]: propValue},
         },
       });
@@ -441,7 +445,9 @@ export default withRouter(
           />
           <Editor
             focused={editorFocused}
-            code={state.code}
+            code={
+              state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code
+            }
             onChange={newCode => {
               const propValues: any = {};
               try {
