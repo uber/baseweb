@@ -186,7 +186,8 @@
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
     "smoothscroll-polyfill": "^0.4.3",
-    "timezone-support": "^2.0.0"
+    "timezone-support": "^2.0.0",
+    "webpack-bundle-analyzer": "^3.5.0"
   },
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
