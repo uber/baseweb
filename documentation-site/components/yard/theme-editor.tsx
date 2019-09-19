@@ -20,10 +20,10 @@ type ColumnProps = {
 };
 
 const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
-  const [css, $theme] = useStyletron();
+  const [useCss, $theme] = useStyletron();
   return (
     <div
-      className={css({
+      className={useCss({
         flexBasis: '50%',
       })}
     >
@@ -31,13 +31,13 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
         return (
           <label
             key={key}
-            className={css({
+            className={useCss({
               display: 'flex',
               alignItems: 'center',
             })}
           >
             <div
-              className={css({
+              className={useCss({
                 width: '4px',
                 height: '36px',
                 backgroundColor: theme[key],
@@ -54,7 +54,7 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
               overrides={{Root: {style: {width: '100px'}}}}
             />
             <div
-              className={css({
+              className={useCss({
                 ...($theme.typography.font100 as any),
                 color: $theme.colors.foreground,
                 marginLeft: $theme.sizing.scale300,
@@ -75,7 +75,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
   set,
   componentName,
 }) => {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   const themeKeys = Object.keys(theme);
 
   const midPoint =
@@ -102,7 +102,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
         . Try different values:
       </Caption1>
       <div
-        className={css({
+        className={useCss({
           display: 'flex',
           flexDirection: 'row',
         })}
