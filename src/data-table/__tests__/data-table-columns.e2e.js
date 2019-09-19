@@ -184,8 +184,10 @@ describe('data table columns', () => {
     const popover = await openFilterAtIndex(page, index);
     const checkbox = await popover.$('label[data-baseweb="checkbox"]');
     await checkbox.click();
-    const apply = await popover.$('button');
-    await apply.click();
+    await popover.$$eval('button', items => {
+      const button = items.find(item => item.textContent === 'Apply');
+      return button.click();
+    });
 
     const filtered = await getCellContentsAtColumnIndex(page, index);
     expect(matchArrayElements(filtered, ['A', 'A', 'A'])).toBe(true);
