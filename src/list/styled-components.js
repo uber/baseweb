@@ -10,7 +10,6 @@ import {styled} from '../styles/index.js';
 
 import {ARTWORK_SIZES} from './constants.js';
 import type {
-  ArtworkSizesT,
   StyledContentPropsT,
   StyledArtworkContainerPropsT,
 } from './types.js';
