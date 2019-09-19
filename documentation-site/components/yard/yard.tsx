@@ -119,7 +119,7 @@ export default withRouter(
   }: TYardProps & {
     router: any;
   }) => {
-    const [css, theme] = useStyletron();
+    const [useCss, theme] = useStyletron();
     const [editorFocused, focusEditor] = React.useState(false);
     const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
     const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
@@ -266,7 +266,7 @@ export default withRouter(
           language="jsx"
         >
           <LivePreview
-            className={css({
+            className={useCss({
               display: 'flex',
               justifyContent: 'center',
               marginBottom: theme.sizing.scale1000,
@@ -414,7 +414,7 @@ export default withRouter(
             </Tab>
           </StatefulTabs>
           <div
-            className={css({
+            className={useCss({
               marginTop: `${theme.sizing.scale800}`,
               boxSizing: 'border-box',
               border: editorFocused
@@ -485,7 +485,7 @@ export default withRouter(
             />
           </div>
           <LiveError
-            className={css({
+            className={useCss({
               backgroundColor: theme.colors.negative600,
               whiteSpace: 'pre',
               fontSize: '12px',
@@ -560,7 +560,9 @@ export default withRouter(
               Reset
             </Button>
           </ButtonGroup>
-          <div className={css({display: 'flex', justifyContent: 'flex-end'})}>
+          <div
+            className={useCss({display: 'flex', justifyContent: 'flex-end'})}
+          >
             <Tag closeable={false} variant={VARIANT.outlined} kind="warning">
               <StatefulTooltip
                 accessibilityType="tooltip"

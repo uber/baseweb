@@ -48,9 +48,9 @@ const row = [
 const data: RowT[] = [row, row, row, row, row, row, row];
 
 export function component() {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
-    <div className={css({height: '600px'})}>
+    <div className={useCss({height: '600px'})}>
       <StyledTable $gridTemplateColumns="auto minmax(auto, 500px) repeat(4, auto)">
         <StyledHeadCell>Name</StyledHeadCell>
         <StyledHeadCell>Summary</StyledHeadCell>
