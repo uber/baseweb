@@ -109,12 +109,12 @@ export interface RadioState {
 }
 
 export class Radio extends React.Component<RadioProps, RadioState> {
-  onMouseEnter(event: React.MouseEventHandler<HTMLInputElement>): void;
-  onMouseLeave(event: React.MouseEventHandler<HTMLInputElement>): void;
-  onMouseDown(event: React.MouseEventHandler<HTMLInputElement>): void;
-  onMouseUp(event: React.MouseEventHandler<HTMLInputElement>): void;
-  onFocus(event: React.FocusEventHandler<HTMLInputElement>): void;
-  onBlur(event: React.FocusEventHandler<HTMLInputElement>): void;
+  onMouseEnter(event: React.MouseEvent<HTMLInputElement>): void;
+  onMouseLeave(event: React.MouseEvent<HTMLInputElement>): void;
+  onMouseDown(event: React.MouseEvent<HTMLInputElement>): void;
+  onMouseUp(event: React.MouseEvent<HTMLInputElement>): void;
+  onFocus(event: React.FocusEvent<HTMLInputElement>): void;
+  onBlur(event: React.FocusEvent<HTMLInputElement>): void;
 }
 
 export const StyledRoot: StyletronComponent<any>;
