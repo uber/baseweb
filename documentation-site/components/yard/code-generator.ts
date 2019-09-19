@@ -1,12 +1,14 @@
 import {TProp} from './types';
 import {PropTypes} from './const';
+import {parse} from './ast';
+import template from '@babel/template';
+import * as t from '@babel/types';
+
+// forked prettier on a diet
 //@ts-ignore
 import prettier from '@miksu/prettier/lib/standalone';
 //@ts-ignore
 import parsers from '@miksu/prettier/lib/language-js/parser-babylon';
-import {parse} from '@babel/parser';
-import template from '@babel/template';
-import * as t from '@babel/types';
 
 type TJsxChild =
   | t.JSXText
@@ -135,6 +137,7 @@ const getAstThemeImport = (isCustomTheme: boolean, themePrimitives: string) => {
 
 const getAstThemeWrapper = (
   themeValues: {[key: string]: string},
+  themePrimitives: string,
   children: t.JSXElement,
 ) => {
   if (!themeValues || Object.keys(themeValues).length === 0) {
@@ -147,7 +150,7 @@ const getAstThemeWrapper = (
         t.jsxIdentifier('theme'),
         t.jsxExpressionContainer(
           t.callExpression(t.identifier('createTheme'), [
-            t.stringLiteral('lightThemePrimitives'),
+            t.identifier(themePrimitives),
             t.objectExpression([
               t.objectProperty(
                 t.identifier('colors'),
@@ -197,6 +200,7 @@ const getAst = (
           t.returnStatement(
             getAstThemeWrapper(
               theme.themeValues,
+              themePrimitives,
               getAstJsxElement(
                 componentName,
                 getAstPropsArray(restProps),
@@ -231,10 +235,7 @@ const formatAstAndPrint = (ast: t.Program) => {
 };
 
 export const formatCode = (code: string) => {
-  return formatAstAndPrint(parse(code, {
-    sourceType: 'module',
-    plugins: ['jsx'],
-  }) as any);
+  return formatAstAndPrint(parse(code) as any);
 };
 
 export const getCode = (

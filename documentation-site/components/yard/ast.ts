@@ -2,14 +2,22 @@ import traverse from '@babel/traverse';
 import generate from '@babel/generator';
 import {formatCode} from './code-generator';
 import * as t from 'babel-types';
-import {parse} from '@babel/parser';
+import {TProp} from './types';
+import {PropTypes} from './const';
+import {parse as babelParse} from '@babel/parser';
+
+export const parse = (code: string) =>
+  babelParse(code, {
+    sourceType: 'module',
+    plugins: ['jsx'],
+  });
 
 // clean-up for react-live, removing all imports, exports and top level
-// variable declaration
-export const removeImportsAndExports = (
+// variable declaration, add __yard_onChange instrumentation when needed
+export const transformBeforeCompilation = (
   ast: any,
-  // elementName: string,
-  // propsConfig: {[key: string]: TProp},
+  elementName: string,
+  propsConfig: {[key: string]: TProp},
 ) => {
   try {
     traverse(ast, {
@@ -32,48 +40,44 @@ export const removeImportsAndExports = (
           path.remove();
         }
       },
-      // JSXElement(path) {
-      //   path.traverse({
-      //     ArrowFunctionExpression(path) {
-      //       (path.get('body') as any).pushContainer(
-      //         'body',
-      //         t.callExpression(t.identifier('__yard_onChange'), [
-      //           t.stringLiteral('Input'),
-      //           t.stringLiteral('value'),
-      //           t.identifier('e.target.value'),
-      //         ]),
-      //       );
-      //     },
-      //   });
-      // },
-      // if (
-      //   path.node.openingElement.type === 'JSXOpeningElement' &&
-      //   //@ts-ignore
-      //   path.node.openingElement.name.name === elementName
-      // ) {
-      //   path.node.openingElement.attributes.forEach(
-      //     (attr: any, index: number) => {
-      //       const name = attr.name.name;
-      //       if (propsConfig[name].type === PropTypes.Function) {
-      //         const propHook: string | null = propsConfig[name].meta
-      //           ? (propsConfig[name].meta as any).propHook
-      //           : null;
-      //         if (propHook) {
-      //           const expression = (path.node.openingElement.attributes[
-      //             index
-      //           ] as any).value.expression.body;
-      //           console.log(expression);
-      // (expression.body as any).pushContainer(
-      //   'body',
-      //   t.callExpression(t.identifier('window.__yard_onChange'), [
-      //     t.stringLiteral('hey'),
-      //   ]),
-      //           );
-      //         }
-      //       }
-      //     },
-      //   );
-      // }
+      JSXElement(path) {
+        if (
+          path.node.openingElement.type === 'JSXOpeningElement' &&
+          //@ts-ignore
+          path.node.openingElement.name.name === elementName
+        ) {
+          path.node.openingElement.attributes.forEach(
+            (attr: any, index: number) => {
+              const name = attr.name.name;
+              if (propsConfig[name].type === PropTypes.Function) {
+                const propHook: {
+                  what: string;
+                  into: string;
+                } | null = propsConfig[name].meta
+                  ? (propsConfig[name].meta as any).propHook
+                  : null;
+                if (propHook) {
+                  path
+                    .get('openingElement')
+                    .get('attributes')
+                    [index].get('value')
+                    //@ts-ignore
+                    .get('expression')
+                    .get('body')
+                    .pushContainer(
+                      'body',
+                      t.callExpression(t.identifier('__yard_onChange'), [
+                        t.stringLiteral(elementName),
+                        t.stringLiteral(propHook.into),
+                        t.identifier(propHook.what),
+                      ]),
+                    );
+                }
+              }
+            },
+          );
+        }
+      },
     });
   } catch (e) {
     console.log(e);

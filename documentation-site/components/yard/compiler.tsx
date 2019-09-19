@@ -1,8 +1,7 @@
 import React from 'react';
 import {transformFromAstSync} from '@babel/core';
-import {parse} from '@babel/parser';
+import {parse} from './ast';
 import {useStyletron} from 'baseui';
-//import generate from "@babel/generator";
 //@ts-ignore
 import presetReact from '@babel/preset-react';
 
@@ -21,9 +20,6 @@ const errorBoundary = (
   }
   return ErrorBoundary;
 };
-
-export const codeToAst = (code: string) =>
-  parse(code, {sourceType: 'module', plugins: ['jsx']});
 
 const evalCode = (ast: babel.types.Node, scope: any) => {
   const transformedCode = transformFromAstSync(
@@ -59,7 +55,7 @@ const transpile = (
   try {
     const ast = transformations.reduce(
       (result, transformation) => transformation(result),
-      codeToAst(code) as babel.types.Node,
+      parse(code) as babel.types.Node,
     );
     const component = generateElement(ast, scope, (error: Error) => {
       setError(error.toString());
@@ -102,4 +98,7 @@ const Compiler: React.FC<{
   );
 };
 
-export default Compiler;
+export default React.memo(
+  Compiler,
+  (prevProps, nextProps) => prevProps.code === nextProps.code,
+);

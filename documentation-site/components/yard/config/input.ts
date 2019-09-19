@@ -35,7 +35,10 @@ export default {
       type: PropTypes.Function,
       description: 'Called when input value is changed.',
       meta: {
-        propHook: 'value',
+        propHook: {
+          what: 'e.target.value',
+          into: 'value',
+        },
       },
     },
     disabled: {
