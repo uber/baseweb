@@ -222,31 +222,8 @@ export function parseCode(code: string, elementName: string) {
             propValues[name] = value;
           });
           propValues['children'] = (path.node as any).children
-            .reduce(
-              (result: string, node: any) => `${result}${generate(node).code}`,
-              '',
-            )
+            .reduce((result, node) => `${result}${generate(node).code}`, '')
             .replace(/^\s+|\s+$/g, '');
-        }
-      },
-      VariableDeclarator(path) {
-        // looking for React.useState()
-        const node = path.node as any;
-        if (
-          node.id.type === 'ArrayPattern' &&
-          node.init.type === 'CallExpression' &&
-          node.init.callee.property.name === 'useState'
-        ) {
-          const name = node.id.elements[0].name;
-          const valueNode = node.init.arguments[0];
-          if (
-            valueNode.type === 'StringLiteral' ||
-            valueNode.type === 'BooleanLiteral'
-          ) {
-            stateValues[name] = valueNode.value;
-          } else {
-            stateValues[name] = generate(valueNode);
-          }
         }
       },
       VariableDeclarator(path) {
