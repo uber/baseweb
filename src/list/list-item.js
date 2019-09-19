@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
+import {getOverrides} from '../helpers/overrides.js';
+
 import {ARTWORK_SIZES} from './constants.js';
 import {
   StyledRoot,
@@ -40,8 +42,23 @@ function artworkSizeToIconSize(artworkSize, isSublist) {
 }
 
 function ListItem(props: PropsT) {
+  const {overrides = {}} = props;
   const Artwork = props.artwork;
   const EndEnhancer = props.endEnhancer;
+
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [ArtworkContainer, artworkContainerProps] = getOverrides(
+    overrides.ArtworkContainer,
+    StyledArtworkContainer,
+  );
+  const [Content, contentProps] = getOverrides(
+    overrides.Content,
+    StyledContent,
+  );
+  const [EndEnhancerContainer, endEnhancerContainerProps] = getOverrides(
+    overrides.EndEnhancerContainer,
+    StyledEndEnhancerContainer,
+  );
 
   const artworkSize = React.useMemo(() => {
     if (props.sublist) {
@@ -61,21 +78,21 @@ function ListItem(props: PropsT) {
   }, [props.artworkSize, props.sublist]);
 
   return (
-    <StyledRoot>
+    <Root {...rootProps}>
       {Artwork && (
-        <StyledArtworkContainer $artworkSize={artworkSize}>
+        <ArtworkContainer $artworkSize={artworkSize} {...artworkContainerProps}>
           <Artwork size={artworkSizeToIconSize(artworkSize, props.sublist)} />
-        </StyledArtworkContainer>
+        </ArtworkContainer>
       )}
-      <StyledContent $mLeft={!Artwork} $sublist={!!props.sublist}>
+      <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
         {props.children}
         {EndEnhancer && (
-          <StyledEndEnhancerContainer>
+          <EndEnhancerContainer {...endEnhancerContainerProps}>
             <EndEnhancer />
-          </StyledEndEnhancerContainer>
+          </EndEnhancerContainer>
         )}
-      </StyledContent>
-    </StyledRoot>
+      </Content>
+    </Root>
   );
 }
 
