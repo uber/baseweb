@@ -10,14 +10,14 @@ import * as React from 'react';
 
 import {ARTWORK_SIZES} from './constants.js';
 
-export type ListArtworkSizesT =
+export type ArtworkSizesT =
   | typeof ARTWORK_SIZES.SMALL
   | typeof ARTWORK_SIZES.MEDIUM
   | typeof ARTWORK_SIZES.LARGE;
 
 export type PropsT = {|
   artwork?: React.ComponentType<{size: number}>,
-  artworkSize?: ListArtworkSizesT,
+  artworkSize?: ArtworkSizesT,
   children: React.Node,
   endEnhancer?: React.ComponentType<{}>,
   sublist?: boolean,

@@ -44,20 +44,21 @@ function ListItem(props: PropsT) {
   const EndEnhancer = props.endEnhancer;
 
   const artworkSize = React.useMemo(() => {
-    let size = props.sublist ? ARTWORK_SIZES.SMALL : ARTWORK_SIZES.MEDIUM;
-    if (props.sublist && props.artworkSize === ARTWORK_SIZES.MEDIUM) {
-      size = ARTWORK_SIZES.SMALL;
-      if (__DEV__) {
-        console.warn(
-          'When ListItem sublist prop is true, artworkSize MEDIUM is aliased to SMALL',
-        );
+    if (props.sublist) {
+      let size = props.artworkSize || ARTWORK_SIZES.SMALL;
+      if (props.artworkSize === ARTWORK_SIZES.MEDIUM) {
+        size = ARTWORK_SIZES.SMALL;
+        if (__DEV__) {
+          console.warn(
+            'When ListItem sublist prop is true, artworkSize MEDIUM is aliased to SMALL',
+          );
+        }
       }
+      return size;
+    } else {
+      return props.artworkSize || ARTWORK_SIZES.MEDIUM;
     }
-    if (props.artworkSize) {
-      size = props.artworkSize;
-    }
-    return size;
-  }, [props.artworkSize]);
+  }, [props.artworkSize, props.sublist]);
 
   return (
     <StyledRoot>

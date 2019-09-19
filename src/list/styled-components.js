@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 
 import {ARTWORK_SIZES} from './constants.js';
-import type {ListArtworkSizesT} from './types.js';
+import type {ArtworkSizesT} from './types.js';
 
 export const StyledRoot = styled<{}>('li', ({$theme}) => {
   return {
@@ -45,7 +45,7 @@ export const StyledEndEnhancerContainer = styled('div', {
 });
 
 export const StyledArtworkContainer = styled<{
-  $artworkSize: ListArtworkSizesT,
+  $artworkSize: ArtworkSizesT,
 }>('div', ({$artworkSize, $theme}) => {
   let padding = null;
   switch ($artworkSize) {
