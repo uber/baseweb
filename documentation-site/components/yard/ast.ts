@@ -40,6 +40,7 @@ export const transformBeforeCompilation = (
           path.remove();
         }
       },
+      // adds internal state instrumentation through __yard_onChange callback
       JSXElement(path) {
         if (
           path.node.openingElement.type === 'JSXOpeningElement' &&
@@ -57,21 +58,39 @@ export const transformBeforeCompilation = (
                   ? (propsConfig[name].meta as any).propHook
                   : null;
                 if (propHook) {
-                  path
+                  const yardOnChageCallExpression = t.callExpression(
+                    t.identifier('__yard_onChange'),
+                    [
+                      t.stringLiteral(elementName),
+                      t.stringLiteral(propHook.into),
+                      t.identifier(propHook.what),
+                    ],
+                  );
+                  const callbackBody = path
                     .get('openingElement')
                     .get('attributes')
                     [index].get('value')
                     //@ts-ignore
                     .get('expression')
-                    .get('body')
-                    .pushContainer(
+                    .get('body');
+
+                  if (callbackBody.type === 'BlockStatement') {
+                    // when the callback body is a block
+                    // e.g.: e => { setValue(e.target.value) }
+                    callbackBody.pushContainer(
                       'body',
-                      t.callExpression(t.identifier('__yard_onChange'), [
-                        t.stringLiteral(elementName),
-                        t.stringLiteral(propHook.into),
-                        t.identifier(propHook.what),
+                      yardOnChageCallExpression,
+                    );
+                  } else {
+                    // when it is a single statement like e => setValue(e.target.value)
+                    // we have to create a BlockStatement first
+                    callbackBody.replaceWith(
+                      t.blockStatement([
+                        t.expressionStatement(callbackBody.node),
+                        t.expressionStatement(yardOnChageCallExpression),
                       ]),
                     );
+                  }
                 }
               }
             },
