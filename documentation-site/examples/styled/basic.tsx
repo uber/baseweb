@@ -1,8 +1,17 @@
 import * as React from 'react';
 import {styled} from 'baseui';
+import {Theme} from 'baseui/theme';
 
-const BlueDiv = styled('div', ({$theme}) => ({
-  color: $theme.colors.primary,
+type CustomTheme = Theme & {extraProp: string};
+
+const BlueDiv = styled<
+  {$color: keyof Theme['colors']},
+  'div',
+  CustomTheme
+>('div', ({$color, $theme}) => ({
+  color: $theme.colors[$color],
 }));
 
-export default () => <BlueDiv>This is a blue div</BlueDiv>;
+export default () => (
+  <BlueDiv $color="primary">This is a blue div</BlueDiv>
+);

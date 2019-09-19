@@ -57,8 +57,8 @@ export interface DrawerProps {
   size?: SIZE[keyof SIZE] | string;
   anchor?: ANCHOR[keyof ANCHOR] | string;
   showBackdrop?: boolean;
-  onBackdropClick?: (event: React.MouseEventHandler<HTMLElement>) => any;
-  onEscapeKeyDown?: (event: React.KeyboardEventHandler<HTMLElement>) => any;
+  onBackdropClick?: (event: React.MouseEvent<HTMLElement>) => any;
+  onEscapeKeyDown?: (event: React.KeyboardEvent<HTMLElement>) => any;
 }
 export interface DrawerState {
   isVisible: boolean;

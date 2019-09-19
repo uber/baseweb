@@ -130,10 +130,10 @@ function statusToTagKind(status) {
 }
 
 function Tasks(props) {
-  const [css] = useStyletron();
+  const [useCss] = useStyletron();
   return (
     <div
-      className={css({
+      className={useCss({
         gridColumn: 'span 5',
         padding: '32px 24px',
       })}

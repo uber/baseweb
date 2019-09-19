@@ -103,16 +103,16 @@ export interface InternalState {
 }
 
 export class Input extends React.Component<InputProps, InternalState> {
-  onFocus(e: React.FocusEventHandler<HTMLInputElement>): void;
-  onBlur(e: React.FocusEventHandler<HTMLInputElement>): void;
+  onFocus(e: React.FocusEvent<HTMLInputElement>): void;
+  onBlur(e: React.FocusEvent<HTMLInputElement>): void;
 }
 
 export class BaseInput extends React.Component<
   BaseInputProps<HTMLInputElement>,
   InternalState
 > {
-  onFocus(e: React.FocusEventHandler<HTMLInputElement>): void;
-  onBlur(e: React.FocusEventHandler<HTMLInputElement>): void;
+  onFocus(e: React.FocusEvent<HTMLInputElement>): void;
+  onBlur(e: React.FocusEvent<HTMLInputElement>): void;
 }
 
 export interface MaskedInputProps extends InputProps {

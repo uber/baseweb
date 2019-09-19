@@ -51,6 +51,7 @@ const StringCell = React.forwardRef<StringCellPropsT, HTMLDivElement>(
     );
   },
 );
+StringCell.displayName = 'StringCell';
 
 function StringColumn(options: OptionsT): StringColumnT {
   return {
