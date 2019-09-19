@@ -394,7 +394,7 @@ export default class Calendar extends React.Component<
   };
 
   // eslint-disable-next-line flowtype/no-weak-types
-  renderTimeSelect = (value: ?Date, onChange: Function) => {
+  renderTimeSelect = (value: ?Date, onChange: Function, label: string) => {
     const {overrides = {}} = this.props;
     const [TimeSelectContainer, timeSelectContainerProps] = getOverrides(
       overrides.TimeSelectContainer,
@@ -410,22 +410,11 @@ export default class Calendar extends React.Component<
     );
 
     return (
-      <LocaleContext.Consumer>
-        {locale => (
-          <TimeSelectContainer {...timeSelectContainerProps}>
-            <TimeSelectFormControl
-              label={locale.datepicker.timeSelectLabel}
-              {...timeSelectFormControlProps}
-            >
-              <TimeSelect
-                value={value}
-                onChange={onChange}
-                {...timeSelectProps}
-              />
-            </TimeSelectFormControl>
-          </TimeSelectContainer>
-        )}
-      </LocaleContext.Consumer>
+      <TimeSelectContainer {...timeSelectContainerProps}>
+        <TimeSelectFormControl label={label} {...timeSelectFormControlProps}>
+          <TimeSelect value={value} onChange={onChange} {...timeSelectProps} />
+        </TimeSelectFormControl>
+      </TimeSelectContainer>
     );
   };
 
@@ -507,28 +496,36 @@ export default class Calendar extends React.Component<
     const [startDate, endDate] = [].concat(this.props.value);
 
     return (
-      <Root
-        data-baseweb="calendar"
-        ref={root => {
-          this.root = root;
-        }}
-        role="application"
-        aria-label="calendar"
-        onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
-        {...rootProps}
-      >
-        {this.renderMonths()}
-        {this.props.timeSelectStart &&
-          this.renderTimeSelect(startDate, time =>
-            this.handleTimeChange(time, 0),
-          )}
-        {this.props.timeSelectEnd &&
-          this.props.range &&
-          this.renderTimeSelect(endDate, time =>
-            this.handleTimeChange(time, 1),
-          )}
-        {this.renderQuickSelect()}
-      </Root>
+      <LocaleContext.Consumer>
+        {locale => (
+          <Root
+            data-baseweb="calendar"
+            ref={root => {
+              this.root = root;
+            }}
+            role="application"
+            aria-label="calendar"
+            onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
+            {...rootProps}
+          >
+            {this.renderMonths()}
+            {this.props.timeSelectStart &&
+              this.renderTimeSelect(
+                startDate,
+                time => this.handleTimeChange(time, 0),
+                locale.datepicker.timeSelectStartLabel,
+              )}
+            {this.props.timeSelectEnd &&
+              this.props.range &&
+              this.renderTimeSelect(
+                endDate,
+                time => this.handleTimeChange(time, 1),
+                locale.datepicker.timeSelectEndLabel,
+              )}
+            {this.renderQuickSelect()}
+          </Root>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 }
