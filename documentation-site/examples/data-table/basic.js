@@ -31,18 +31,32 @@ function makeRowsFromColumns(columns, rowCount) {
       data: columns.map((column, j) => {
         switch (column.kind) {
           case COLUMNS.CATEGORICAL:
-            switch (i % 5) {
+            switch (i % 11) {
+              case 11:
+                return 'UberX';
+              case 10:
+                return 'UberXL';
+              case 9:
+                return 'Uber Select';
+              case 8:
+                return 'Uber Comfort';
+              case 7:
+                return 'Uber Pool';
+              case 6:
+                return 'Uber Black';
+              case 5:
+                return 'Uber Assist';
               case 4:
-                return 'A';
+                return 'Uber WAV';
               case 3:
-                return 'B';
+                return 'Transit';
               case 2:
-                return 'C';
+                return 'Taxi';
               case 1:
-                return 'D';
+                return 'Bike';
               case 0:
               default:
-                return 'F';
+                return 'Scooter';
             }
           case COLUMNS.NUMERICAL:
             return i % 2 ? i - 1 : i + 3;
