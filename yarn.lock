@@ -2352,10 +2352,10 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/tag/-/tag-0.20.3.tgz#9e2306040b6469248c45a5f5baf44d0014db0493"
   integrity sha512-Co3gUFmNDv9z2LjuvLTpTj2NaOSHFxuoZjohcG0YK/KfECO+Ns9idzThMYjfEDe1vAf4c824rqlBYseedJdFNw==
 
-"@miksu/prettier@^1.18.1":
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@miksu/prettier/-/prettier-1.18.1.tgz#633f33dd274cd91f23a65513eb1932684f7dbfbe"
-  integrity sha512-OSLscNSqbxKOrXa10VRC9GexboNUKn3Ks4zzjQL0WiOCfDzZF3QL6QYagZftUV/HDqtDmfWWo+ueHkNbveQ9zQ==
+"@miksu/prettier@^1.18.2":
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/@miksu/prettier/-/prettier-1.18.2.tgz#ce07ec86bdd64eabeab3a21c67ceb8d97520720f"
+  integrity sha512-xNmyedThxdhbxOLPKAUCLNvK+Mde6I0nzvDUTlMGCDe8xyicKMgWhbHf6pdJwm0D4xQa2iNvXkY2hdXR1FXSPg==
   dependencies:
     "@babel/code-frame" "7.5.5"
     "@babel/parser" "^7.6.0"
@@ -13199,7 +13199,7 @@ parse-passwd@^1.0.0:
   resolved "https://registry.yarnpkg.com/parse-passwd/-/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
   integrity sha1-bVuTSkVpk7I9N/QKOC1vFmao5cY=
 
-parse-srcset@ikatyang/parse-srcset#54eb9c1cb21db5c62b4d0e275d7249516df6f0ee:
+"parse-srcset@github:ikatyang/parse-srcset#54eb9c1cb21db5c62b4d0e275d7249516df6f0ee":
   version "1.0.2"
   resolved "https://codeload.github.com/ikatyang/parse-srcset/tar.gz/54eb9c1cb21db5c62b4d0e275d7249516df6f0ee"
 
