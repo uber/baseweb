@@ -221,9 +221,9 @@ export function parseCode(code: string, elementName: string) {
             }
             propValues[name] = value;
           });
-          propValues['children'] = generate(
-            (path.node as any).children,
-          ).code.replace(/^\s+|\s+$/g, '');
+          propValues['children'] = (path.node as any).children
+            .reduce((result, node) => `${result}${generate(node).code}`, '')
+            .replace(/^\s+|\s+$/g, '');
         }
       },
       VariableDeclarator(path) {

@@ -191,7 +191,10 @@ const getAst = (
     t.program([
       getAstImport(
         [componentName, ...getEnumsToImport(restProps)],
-        `baseui/${componentName.toLowerCase()}`,
+        `baseui/${componentName
+          .split(/(?=[A-Z])/)
+          .join('-')
+          .toLowerCase()}`,
       ),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
