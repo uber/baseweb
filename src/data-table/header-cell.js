@@ -125,7 +125,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                 props.onFilterClose();
               }}
               content={() => (
-                <FocusLock>
+                <FocusLock autoFocus={false}>
                   <Filter close={props.onFilterClose} />
                 </FocusLock>
               )}
