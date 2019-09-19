@@ -4,10 +4,13 @@ import {Button, KIND, SIZE} from 'baseui/button';
 import Knob from './knob';
 
 const KnobColumn = ({knobProps, knobNames, set}: any) => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
     <div
-      className={css({flexBasis: '50%', padding: `0 ${theme.sizing.scale600}`})}
+      className={useCss({
+        flexBasis: '50%',
+        padding: `0 ${theme.sizing.scale600}`,
+      })}
     >
       {knobNames.map((name: string) => (
         <Knob
@@ -26,7 +29,7 @@ const KnobColumn = ({knobProps, knobNames, set}: any) => {
 };
 
 const Knobs = ({knobProps, set}: any) => {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   const [showAllKnobs, setShowAllKnobs] = React.useState(false);
   const allKnobNames = Object.keys(knobProps);
   const filteredKnobNames = allKnobNames.filter(
@@ -38,7 +41,7 @@ const Knobs = ({knobProps, set}: any) => {
   return (
     <React.Fragment>
       <div
-        className={css({
+        className={useCss({
           display: 'flex',
           margin: `0 -${theme.sizing.scale600}`,
         })}

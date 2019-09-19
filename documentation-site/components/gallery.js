@@ -219,11 +219,11 @@ const COMPONENTS = {
 };
 
 function Thumbnail({children, href}) {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   return (
     <a
       href={href}
-      className={css({
+      className={useCss({
         ...theme.borders.border300,
         display: 'flex',
         flexDirection: 'column',
@@ -243,7 +243,7 @@ function Thumbnail({children, href}) {
       })}
     >
       <div
-        className={css({
+        className={useCss({
           ...theme.typography.font100,
           fontFamily:
             'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
@@ -261,7 +261,7 @@ function Thumbnail({children, href}) {
         {'baseui/' + href.split('/')[2]}
       </div>
       <div
-        className={css({
+        className={useCss({
           padding: theme.sizing.scale500,
         })}
       >
@@ -272,7 +272,7 @@ function Thumbnail({children, href}) {
 }
 
 function Section({category}) {
-  const [css, theme] = useStyletron();
+  const [useCss, theme] = useStyletron();
   const colors = theme.name.includes('light-theme')
     ? [theme.colors.mono200, theme.colors.mono400, theme.colors.mono600]
     : [theme.colors.mono700, theme.colors.mono500, theme.colors.mono300];
@@ -280,7 +280,7 @@ function Section({category}) {
     <React.Fragment>
       <H2>{category}</H2>
       <div
-        className={css({
+        className={useCss({
           display: 'flex',
           flexWrap: 'wrap',
           marginTop: theme.sizing.scale800,

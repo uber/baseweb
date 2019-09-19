@@ -262,18 +262,18 @@ describe('themedWithStyle flow', () => {
 describe('useStyletron flow', () => {
   test('it provides flow error if argument is not a StyleObject', () => {
     function A() {
-      const [css] = useStyletron();
+      const [useCss] = useStyletron();
       // $FlowFixMe
-      return <div className={css(false)}>hello</div>;
+      return <div className={useCss(false)}>hello</div>;
     }
   });
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
     function A() {
-      const [css, theme] = useStyletron();
+      const [useCss, theme] = useStyletron();
       return (
         <div
-          className={css({
+          className={useCss({
             color: theme.colors.primary400,
             // $FlowFixMe
             backgroundColor: theme.colors.primary9000,
@@ -292,9 +292,9 @@ describe('themedUseStyletron flow', () => {
     const themedUseStyletron = createThemedUseStyletron<T>();
 
     function A() {
-      const [css] = themedUseStyletron();
+      const [useCss] = themedUseStyletron();
       // $FlowFixMe
-      return <div className={css(false)}>hello</div>;
+      return <div className={useCss(false)}>hello</div>;
     }
   });
 
@@ -303,10 +303,10 @@ describe('themedUseStyletron flow', () => {
       type T = {colors: {custom400: string}};
       const themedUseStyletron = createThemedUseStyletron<T>();
 
-      const [css, theme] = themedUseStyletron();
+      const [useCss, theme] = themedUseStyletron();
       return (
         <div
-          className={css({
+          className={useCss({
             color: theme.colors.custom400,
             // $FlowFixMe
             backgroundColor: theme.colors.custom9000,
