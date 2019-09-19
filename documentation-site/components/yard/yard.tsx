@@ -425,12 +425,8 @@ export default withRouter(
             marginTop: `${theme.sizing.scale800}`,
             boxSizing: 'border-box',
             border: editorFocused
-              ? `2px solid ${theme.colors.primary400}`
-              : `2px solid ${
-                  theme.name.startsWith('light-theme')
-                    ? theme.colors.mono200
-                    : '#292929 '
-                }`,
+              ? `2px solid ${theme.colors.borderFocus}`
+              : `2px solid ${theme.colors.inputFill}`,
           })}
           onClick={() => {
             trackEvent('yard', `${componentName}:code_editor_focused`);
