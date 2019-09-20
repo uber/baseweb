@@ -57,7 +57,7 @@ function ElementMeasurer(props: ElementMeasurerPropsT) {
 }
 
 type MeasureColumnWidthsPropsT = {
-  columns: ColumnT<mixed, mixed>[],
+  columns: ColumnT<>[],
   onWidthsChange: (number[]) => void,
   rows: RowT[],
   widths: number[],
