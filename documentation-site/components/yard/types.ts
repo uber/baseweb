@@ -18,7 +18,10 @@ export type TProp = {
     names?: string[];
     sharedKeys?: any;
     stateful?: boolean;
-    propHook?: string;
+    propHook?: {
+      what: string;
+      into: string;
+    };
   };
 };
 

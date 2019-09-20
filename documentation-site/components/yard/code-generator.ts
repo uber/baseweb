@@ -219,7 +219,7 @@ const getAst = (
   );
 };
 
-const formatAstAndPrint = (ast: t.Program) => {
+export const formatAstAndPrint = (ast: t.Program) => {
   const result = (prettier as any).__debug.formatAST(ast, {
     originalText: '',
     parser: 'babel',
@@ -237,7 +237,7 @@ const formatAstAndPrint = (ast: t.Program) => {
   );
 };
 
-export const formatCode = (code: string) => {
+export const formatCode = (code: string): string => {
   return formatAstAndPrint(parse(code) as any);
 };
 
