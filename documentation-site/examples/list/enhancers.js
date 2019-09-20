@@ -9,7 +9,13 @@ import {useStyletron} from 'baseui';
 export default () => {
   const [useCss] = useStyletron();
   return (
-    <div className={useCss({width: '375px'})}>
+    <ul
+      className={useCss({
+        width: '375px',
+        paddingLeft: 0,
+        paddingRight: 0,
+      })}
+    >
       <ListItem
         endEnhancer={() => (
           <Button size="compact" kind="secondary" shape="pill">
@@ -45,6 +51,6 @@ export default () => {
       >
         <ListItemLabel>Label</ListItemLabel>
       </ListItem>
-    </div>
+    </ul>
   );
 };

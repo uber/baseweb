@@ -6,7 +6,13 @@ import {useStyletron} from 'baseui';
 export default () => {
   const [useCss] = useStyletron();
   return (
-    <div className={useCss({width: '375px'})}>
+    <ul
+      className={useCss({
+        width: '375px',
+        paddingLeft: 0,
+        paddingRight: 0,
+      })}
+    >
       <ListItem sublist>
         <ListItemLabel sublist>Label One</ListItemLabel>
       </ListItem>
@@ -69,6 +75,6 @@ export default () => {
       >
         <ListItemLabel sublist>Label Eight</ListItemLabel>
       </ListItem>
-    </div>
+    </ul>
   );
 };
