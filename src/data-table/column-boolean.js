@@ -10,6 +10,7 @@ import * as React from 'react';
 
 import {useStyletron} from '../styles/index.js';
 
+import {CategoricalFilter} from './column-categorical.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 
@@ -25,13 +26,30 @@ export type OptionsT = {|
 |};
 
 type FilterParametersT = {|
+  selection: Set<boolean>,
   exclude: boolean,
 |};
 
 type BooleanColumnT = ColumnT<boolean, FilterParametersT>;
 
 function BooleanFilter(props) {
-  return <div>not implemented for boolean column</div>;
+  return (
+    <CategoricalFilter
+      data={['true', 'false']}
+      close={props.close}
+      setFilter={(params, description) => {
+        const coercedSelection = new Set();
+        params.selection.forEach(item =>
+          coercedSelection.add(item.toLowerCase() === 'true'),
+        );
+
+        props.setFilter(
+          {selection: coercedSelection, exclude: params.exclude},
+          description,
+        );
+      }}
+    />
+  );
 }
 
 const BooleanCell = React.forwardRef<BooleanCellPropsT, HTMLDivElement>(
@@ -67,7 +85,8 @@ function BooleanColumn(options: OptionsT): BooleanColumnT {
     renderFilter: BooleanFilter,
     buildFilter: function(params) {
       return function(data) {
-        return true;
+        const included = params.selection.has(data);
+        return params.exclude ? !included : included;
       };
     },
     sortFn: function(a, b) {

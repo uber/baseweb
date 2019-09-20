@@ -10,34 +10,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {act} from 'react-dom/test-utils.js';
 
+import {setNativeValue} from './shared.js';
 import {CategoricalColumn} from '../index.js';
 
 let container: HTMLDivElement;
-
-// at this point it's likely worth pulling in react-testing-library, but
-// it seems to require the latest React@16.9 with async act. this maybe a
-// simple update for applications depending on baseui, but i hestitate to
-// require others to update react just so we can use a testing tool.
-// https://github.com/facebook/react/issues/10135#issuecomment-314441175
-function setNativeValue(element: HTMLElement, value: any) {
-  // $FlowFixMe
-  const valueSetter = Object.getOwnPropertyDescriptor(element, 'value').set;
-  const prototype = Object.getPrototypeOf(element);
-
-  // $FlowFixMe
-  const prototypeValueSetter = Object.getOwnPropertyDescriptor(
-    prototype,
-    'value',
-  ).set;
-
-  if (valueSetter && valueSetter !== prototypeValueSetter) {
-    // $FlowFixMe
-    prototypeValueSetter.call(element, value);
-  } else {
-    // $FlowFixMe
-    valueSetter.call(element, value);
-  }
-}
 
 describe('categorical column', () => {
   beforeEach(() => {

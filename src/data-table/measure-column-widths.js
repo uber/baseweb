@@ -11,7 +11,7 @@ import * as React from 'react';
 import {useStyletron} from '../styles/index.js';
 
 import HeaderCell from './header-cell.js';
-import type {ColumnT, Row} from './types.js';
+import type {ColumnT, RowT} from './types.js';
 
 // https://github.com/Swizec/useDimensions
 function useDimensions() {
@@ -42,23 +42,24 @@ type ElementMeasurerPropsT = {
 };
 
 function ElementMeasurer(props: ElementMeasurerPropsT) {
+  const {onDimensionsChange} = props;
   const [ref, dimensions] = useDimensions();
   const initialized = React.useRef(false);
   React.useEffect(() => {
     // ignores the first callback with empty information
     if (initialized.current) {
-      props.onDimensionsChange(dimensions);
+      onDimensionsChange(dimensions);
     } else {
       initialized.current = true;
     }
-  }, [dimensions]);
+  }, [dimensions, onDimensionsChange]);
   return React.cloneElement(props.item, {ref});
 }
 
 type MeasureColumnWidthsPropsT = {
-  columns: ColumnT<*, *>[],
+  columns: ColumnT<>[],
   onWidthsChange: (number[]) => void,
-  rows: Row[],
+  rows: RowT[],
   widths: number[],
 };
 
@@ -96,7 +97,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
       }
       return indices;
     });
-  }, [props.columns, props.rows]);
+  }, [props.columns, props.rows, props.widths, sampleSize]);
 
   function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
     measurementCount.current += 1;
@@ -117,19 +118,18 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
     }
   }
 
+  const hiddenStyle = useCss({
+    position: 'absolute',
+    overflow: 'hidden',
+    height: 0,
+  });
+
   if (measurementCount === finishedMeasurementCount) {
     return null;
   }
 
   return (
-    <div
-      className={useCss({
-        position: 'absolute',
-        overflow: 'hidden',
-        height: 0,
-      })}
-      aria-hidden
-    >
+    <div className={hiddenStyle} aria-hidden>
       {sampleRowIndicesByColumn.map((rowIndices, columnIndex) => {
         const Cell = props.columns[columnIndex].renderCell;
         return rowIndices.map(rowIndex => (

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
@@ -120,7 +121,15 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
               onClickOutside={() => {
                 props.onFilterClose();
               }}
-              content={() => <Filter close={props.onFilterClose} />}
+              onEsc={() => {
+                props.onFilterClose();
+              }}
+              content={() => (
+                // eslint-disable-next-line jsx-a11y/no-autofocus
+                <FocusLock autoFocus={false}>
+                  <Filter close={props.onFilterClose} />
+                </FocusLock>
+              )}
             >
               <button className={filterButtonStyles}>
                 <FilterIcon />
