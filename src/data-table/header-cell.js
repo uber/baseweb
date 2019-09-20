@@ -125,7 +125,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                 props.onFilterClose();
               }}
               content={() => (
-                <FocusLock>
+                // eslint-disable-next-line jsx-a11y/no-autofocus
+                <FocusLock autoFocus={false}>
                   <Filter close={props.onFilterClose} />
                 </FocusLock>
               )}
