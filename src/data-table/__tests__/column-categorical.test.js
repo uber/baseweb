@@ -10,6 +10,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {act} from 'react-dom/test-utils.js';
 
+import {setNativeValue} from './shared.js';
 import {CategoricalColumn} from '../index.js';
 
 let container: HTMLDivElement;
@@ -123,6 +124,135 @@ describe('categorical column', () => {
     expect(filterParams.selection.has('C')).toBe(false);
     expect(filterParams.exclude).toBe(false);
     expect(description).toBe('A');
+  });
+
+  it('selects all options', () => {
+    const column = CategoricalColumn({title: 'column'});
+    const Filter = column.renderFilter;
+
+    const mockSetFilter = jest.fn();
+    const data = ['A', 'B', 'C'];
+    act(() => {
+      ReactDOM.render(
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+        container,
+      );
+    });
+    const buttons = container.querySelectorAll('button');
+    const selectAll = [...buttons].filter(b => b.textContent === 'Select All');
+    act(() => {
+      if (__BROWSER__) {
+        selectAll[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
+      }
+    });
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
+    expect(((checkboxes[1]: any): HTMLInputElement).checked).toBe(true);
+    expect(((checkboxes[2]: any): HTMLInputElement).checked).toBe(true);
+  });
+
+  it('clears current selection', () => {
+    const column = CategoricalColumn({title: 'column'});
+    const Filter = column.renderFilter;
+
+    const mockSetFilter = jest.fn();
+    const data = ['A', 'B', 'C'];
+    act(() => {
+      ReactDOM.render(
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+        container,
+      );
+    });
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    act(() => {
+      if (__BROWSER__) {
+        checkboxes[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
+      }
+    });
+
+    const buttons = container.querySelectorAll('button');
+    const clear = [...buttons].filter(b => b.textContent === 'Clear');
+    act(() => {
+      if (__BROWSER__) {
+        clear[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
+      }
+    });
+
+    expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(false);
+    expect(((checkboxes[1]: any): HTMLInputElement).checked).toBe(false);
+    expect(((checkboxes[2]: any): HTMLInputElement).checked).toBe(false);
+  });
+
+  it('renders input if more than 10 categories', () => {
+    const column = CategoricalColumn({title: 'column'});
+    const Filter = column.renderFilter;
+
+    const mockSetFilter = jest.fn();
+    const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+    act(() => {
+      ReactDOM.render(
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+        container,
+      );
+    });
+
+    const input = container.querySelector('[data-baseweb="input"] input');
+    expect(input).toBeTruthy();
+  });
+
+  it('filters categories based on query', () => {
+    const column = CategoricalColumn({title: 'column'});
+    const Filter = column.renderFilter;
+
+    const mockSetFilter = jest.fn();
+    const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+    act(() => {
+      ReactDOM.render(
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+        container,
+      );
+    });
+
+    const input = container.querySelector('[data-baseweb="input"] input');
+    act(() => {
+      if (__BROWSER__) {
+        setNativeValue((input: any), 'a');
+        // $FlowFixMe input may be null
+        input.dispatchEvent(new Event('input', {bubbles: true}));
+      }
+    });
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    expect(checkboxes.length).toBe(2);
+  });
+
+  it('quick actions hide when search query present', () => {
+    const column = CategoricalColumn({title: 'column'});
+    const Filter = column.renderFilter;
+
+    const mockSetFilter = jest.fn();
+    const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+    act(() => {
+      ReactDOM.render(
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+        container,
+      );
+    });
+
+    const input = container.querySelector('[data-baseweb="input"] input');
+    act(() => {
+      if (__BROWSER__) {
+        setNativeValue((input: any), 'a');
+        // $FlowFixMe input may be null
+        input.dispatchEvent(new Event('input', {bubbles: true}));
+      }
+    });
+
+    const buttons = container.querySelectorAll('button');
+    const selectAll = [...buttons].filter(b => b.textContent === 'Select All');
+    const clear = [...buttons].filter(b => b.textContent === 'Clear');
+    expect(selectAll.length).toBe(0);
+    expect(clear.length).toBe(0);
   });
 
   it('builds expected filter function', () => {
