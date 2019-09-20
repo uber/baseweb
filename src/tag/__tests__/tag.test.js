@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 import {Tag, StyledAction} from '../index.js';
+import type {TagKindT} from '../index.js';
 
 describe('Stateless tag', function() {
   let wrapper,
@@ -70,5 +71,13 @@ describe('Stateless tag', function() {
         allProps.onActionClick.mock.calls[0][0],
       );
     });
+  });
+
+  describe('tag flow validation', function() {
+    // https://github.com/uber-web/baseui/issues/1910
+    // eslint-disable-next-line no-unused-vars
+    function TagWrapper(props: {kind: TagKindT}) {
+      return <Tag kind={props.kind} />;
+    }
   });
 });

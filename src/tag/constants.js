@@ -12,15 +12,12 @@ export const VARIANT = Object.freeze({
   outlined: 'outlined',
 });
 
-export const KIND = [
-  'neutral',
-  'primary',
-  'accent',
-  'positive',
-  'warning',
-  'negative',
-  'custom',
-].reduce((kindMap, key) => {
-  kindMap[key] = key;
-  return kindMap;
-}, {});
+export const KIND = {
+  neutral: 'neutral',
+  primary: 'primary',
+  accent: 'accent',
+  positive: 'positive',
+  warning: 'warning',
+  negative: 'negative',
+  custom: 'custom',
+};
