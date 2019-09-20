@@ -35,12 +35,12 @@ export type ColumnT<ValueT, FilterParamsT> = {|
   sortFn: (ValueT, ValueT) => number,
 |};
 
-export type Row = {
+export type RowT = {
   // eslint-disable-next-line flowtype/no-weak-types
   data: any[],
 };
 
 export type Props = {
   columns: ColumnT<*, *>[],
-  rows: Row[],
+  rows: RowT[],
 };
