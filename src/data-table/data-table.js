@@ -48,7 +48,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   );
 }
 
-function useDuplicateColumnTitleWarning(columns: ColumnT<*, *>[]) {
+function useDuplicateColumnTitleWarning(columns: ColumnT<mixed, mixed>[]) {
   React.useEffect(() => {
     const titles = columns.reduce(
       (set, column) => set.add(column.title),
@@ -84,8 +84,8 @@ function useSortParameters() {
 }
 
 const HeaderContext = React.createContext<{
-  addFilter: (*, string, string) => void,
-  columns: ColumnT<*, *>[],
+  addFilter: (mixed, string, string) => void,
+  columns: ColumnT<mixed, mixed>[],
   filterOpenIndex: number,
   setFilterOpenIndex: number => void,
   handleSort: number => void,

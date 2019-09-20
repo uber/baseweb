@@ -15,7 +15,8 @@ export type SortDirectionsT =
   | typeof SORT_DIRECTIONS.DESC
   | null;
 
-export type ColumnT<ValueT, FilterParamsT> = {|
+// eslint-disable-next-line flowtype/no-weak-types
+export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   kind:
     | typeof COLUMNS.BOOLEAN
     | typeof COLUMNS.CATEGORICAL
@@ -41,6 +42,6 @@ export type RowT = {
 };
 
 export type Props = {
-  columns: ColumnT<*, *>[],
+  columns: ColumnT<>[],
   rows: RowT[],
 };
