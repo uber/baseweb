@@ -47,9 +47,11 @@ export const transformBeforeCompilation = (
           //@ts-ignore
           path.node.openingElement.name.name === elementName
         ) {
-          path.node.openingElement.attributes.forEach(
-            (attr: any, index: number) => {
-              const name = attr.name.name;
+          path
+            .get('openingElement')
+            .get('attributes')
+            .forEach(attr => {
+              const name = (attr.get('name') as any).node.name;
               if (propsConfig[name].type === PropTypes.Function) {
                 const propHook: TPropHook = propsConfig[name].meta
                   ? (propsConfig[name].meta as any).propHook
@@ -63,11 +65,7 @@ export const transformBeforeCompilation = (
                       t.identifier(propHook.what),
                     ],
                   );
-                  const callbackBody = path
-                    .get('openingElement')
-                    .get('attributes')
-                    [index].get('value')
-                    //@ts-ignore
+                  const callbackBody = (attr.get('value') as any)
                     .get('expression')
                     .get('body');
 
@@ -90,8 +88,7 @@ export const transformBeforeCompilation = (
                   }
                 }
               }
-            },
-          );
+            });
         }
       },
     });
