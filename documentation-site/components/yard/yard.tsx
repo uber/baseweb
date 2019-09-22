@@ -356,22 +356,29 @@ export default withRouter(
               componentConfig={propsConfig}
               overrides={state.props.overrides}
               set={(value: any) => {
-                const newCode = getCode(
-                  buildPropsObj(state.props, {overrides: value}),
-                  componentName,
-                  componentThemeDiff,
-                );
-                dispatch({
-                  type: Action.UpdatePropsAndCode,
-                  payload: {
-                    code: newCode,
-                    updatedPropValues: {overrides: value},
-                  },
-                });
-                Router.push({
-                  pathname: router.pathname,
-                  query: {code: newCode},
-                } as any);
+                try {
+                  const newCode = getCode(
+                    buildPropsObj(state.props, {overrides: value}),
+                    componentName,
+                    componentThemeDiff,
+                  );
+                  if (error) {
+                    setError(null);
+                  }
+                  dispatch({
+                    type: Action.UpdatePropsAndCode,
+                    payload: {
+                      code: newCode,
+                      updatedPropValues: {overrides: value},
+                    },
+                  });
+                  Router.push({
+                    pathname: router.pathname,
+                    query: {code: newCode},
+                  } as any);
+                } catch (e) {
+                  setError(e.toString());
+                }
               }}
             />
           </Tab>
