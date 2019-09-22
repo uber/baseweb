@@ -95,12 +95,6 @@ const Override: React.FC<TProps> = ({
   return (
     <React.Fragment>
       <Editor
-        onFocus={() => {
-          trackEvent(
-            'yard',
-            `${componentName}:override_textarea_focused_${overrideKey}`,
-          );
-        }}
         onChange={newCode => {
           set({
             ...overrides.value,
