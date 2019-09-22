@@ -1,5 +1,10 @@
 import {PropTypes} from './const';
 
+export type TPropHook = {
+  what: string;
+  into: string;
+} | null;
+
 export type TYardProps = {
   componentName: string;
   scopeConfig: {[key: string]: any};
@@ -18,7 +23,7 @@ export type TProp = {
     names?: string[];
     sharedKeys?: any;
     stateful?: boolean;
-    propHook?: string;
+    propHook?: TPropHook;
   };
 };
 

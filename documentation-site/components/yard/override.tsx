@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Textarea} from 'baseui/textarea';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';

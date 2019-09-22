@@ -2,7 +2,7 @@ import traverse from '@babel/traverse';
 import generate from '@babel/generator';
 import {formatCode} from './code-generator';
 import * as t from 'babel-types';
-import {TProp} from './types';
+import {TProp, TPropHook} from './types';
 import {PropTypes} from './const';
 import {parse as babelParse} from '@babel/parser';
 
@@ -51,10 +51,7 @@ export const transformBeforeCompilation = (
             (attr: any, index: number) => {
               const name = attr.name.name;
               if (propsConfig[name].type === PropTypes.Function) {
-                const propHook: {
-                  what: string;
-                  into: string;
-                } | null = propsConfig[name].meta
+                const propHook: TPropHook = propsConfig[name].meta
                   ? (propsConfig[name].meta as any).propHook
                   : null;
                 if (propHook) {
