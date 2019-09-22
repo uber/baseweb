@@ -13,7 +13,8 @@ export type DatepickerLocaleT = {|
   screenReaderMessageInput: string,
   quickSelectLabel: string,
   quickSelectAriaLabel: string,
-  timeSelectLabel: string,
+  timeSelectEndLabel: string,
+  timeSelectStartLabel: string,
   timePickerAriaLabel: string,
   timezonePickerAriaLabel: string,
 |};
@@ -26,7 +27,8 @@ const locale = {
     'Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.',
   quickSelectLabel: 'Choose a date range',
   quickSelectAriaLabel: 'Choose a date range',
-  timeSelectLabel: 'Start time',
+  timeSelectEndLabel: 'End time',
+  timeSelectStartLabel: 'Start time',
   timePickerAriaLabel: 'Select a time',
   timezonePickerAriaLabel: 'Select a timezone',
 };
