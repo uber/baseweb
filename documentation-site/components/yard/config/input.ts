@@ -25,12 +25,20 @@ export default {
       value: 'Hello',
       type: PropTypes.String,
       description: 'Input value attribute.',
+      meta: {
+        stateful: true,
+      },
     },
     onChange: {
-      value: undefined,
-      placeholder: 'e => console.log(e.target.value)',
+      value: 'e => setValue(e.target.value)',
       type: PropTypes.Function,
       description: 'Called when input value is changed.',
+      meta: {
+        propHook: {
+          what: 'e.target.value',
+          into: 'value',
+        },
+      },
     },
     disabled: {
       value: false,
@@ -54,7 +62,7 @@ export default {
       description: 'Renders component in provided size.',
     },
     placeholder: {
-      value: undefined,
+      value: 'Controlled Input',
       type: PropTypes.String,
       description: "Input's placeholder.",
     },

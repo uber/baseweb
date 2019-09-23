@@ -1,17 +1,25 @@
-import prettier from 'prettier/standalone';
 import traverse from '@babel/traverse';
 import generate from '@babel/generator';
+import {formatCode} from './code-generator';
 import * as t from 'babel-types';
-import babel from 'prettier/parser-babylon';
+import {TProp, TPropHook} from './types';
+import {PropTypes} from './const';
+import {parse as babelParse} from '@babel/parser';
 
-const parse = babel.parsers.babel.parse as (code: string) => any;
+export const parse = (code: string) =>
+  babelParse(code, {
+    sourceType: 'module',
+    plugins: ['jsx'],
+  });
 
 // clean-up for react-live, removing all imports, exports and top level
-// variable declaration
-export const removeImportsAndExports = (code: string) => {
-  let result = code;
+// variable declaration, add __yard_onChange instrumentation when needed
+export const transformBeforeCompilation = (
+  ast: any,
+  elementName: string,
+  propsConfig: {[key: string]: TProp},
+) => {
   try {
-    const ast = parse(code);
     traverse(ast, {
       VariableDeclaration(path) {
         if (path.parent.type === 'Program') {
@@ -32,36 +40,69 @@ export const removeImportsAndExports = (code: string) => {
           path.remove();
         }
       },
-    });
-    result = generate(ast).code;
-  } catch (e) {}
-  return result;
-};
+      // adds internal state instrumentation through __yard_onChange callback
+      JSXElement(path) {
+        if (
+          path.node.openingElement.type === 'JSXOpeningElement' &&
+          //@ts-ignore
+          path.node.openingElement.name.name === elementName
+        ) {
+          path
+            .get('openingElement')
+            .get('attributes')
+            .forEach(attr => {
+              const name = (attr.get('name') as any).node.name;
+              if (propsConfig[name].type === PropTypes.Function) {
+                const propHook: TPropHook = propsConfig[name].meta
+                  ? (propsConfig[name].meta as any).propHook
+                  : null;
+                if (propHook) {
+                  const yardOnChageCallExpression = t.callExpression(
+                    t.identifier('__yard_onChange'),
+                    [
+                      t.stringLiteral(elementName),
+                      t.stringLiteral(propHook.into),
+                      t.identifier(propHook.what),
+                    ],
+                  );
+                  const callbackBody = (attr.get('value') as any)
+                    .get('expression')
+                    .get('body');
 
-export const formatCode = (code: string) => {
-  try {
-    return (
-      prettier
-        .format(code, {
-          parser: 'babel',
-          printWidth: 70,
-          plugins: [babel],
-        })
-        // remove newline at the end of file
-        .replace(/[\r\n]+$/, '')
-        // remove ; at the end of file
-        .replace(/[;]+$/, '')
-    );
+                  if (callbackBody.type === 'BlockStatement') {
+                    // when the callback body is a block
+                    // e.g.: e => { setValue(e.target.value) }
+                    callbackBody.pushContainer(
+                      'body',
+                      yardOnChageCallExpression,
+                    );
+                  } else {
+                    // when it is a single statement like e => setValue(e.target.value)
+                    // we have to create a BlockStatement first
+                    callbackBody.replaceWith(
+                      t.blockStatement([
+                        t.expressionStatement(callbackBody.node),
+                        t.expressionStatement(yardOnChageCallExpression),
+                      ]),
+                    );
+                  }
+                }
+              }
+            });
+        }
+      },
+    });
   } catch (e) {
-    return code;
+    console.log(e);
   }
+  return ast;
 };
 
 export function parseOverrides(code: string, names: string[]) {
   const resultOverrides: any = {};
   try {
     // to make the AST root valid, let's add a const definition
-    const ast = parse(`const foo = ${code};`);
+    const ast: any = parse(`const foo = ${code};`);
     traverse(ast, {
       ObjectProperty(path) {
         const propertyName = path.node.key.name;
@@ -88,7 +129,7 @@ export function parseOverrides(code: string, names: string[]) {
 export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
   let result: string = '';
   try {
-    const ast = parse(code);
+    const ast = parse(code) as any;
     traverse(ast, {
       ArrowFunctionExpression(path) {
         if (result !== '') return;
@@ -147,9 +188,10 @@ export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
 
 export function parseCode(code: string, elementName: string) {
   const propValues: any = {};
+  const stateValues: any = {};
   let themeValues: any = {};
   try {
-    const ast = parse(code);
+    const ast = parse(code) as any;
     traverse(ast, {
       CallExpression(path) {
         if (
@@ -192,14 +234,48 @@ export function parseCode(code: string, elementName: string) {
             }
             propValues[name] = value;
           });
-          propValues['children'] = generate(
-            (path.node as any).children,
-          ).code.replace(/^\s+|\s+$/g, '');
+          propValues['children'] = (path.node as any).children
+            .reduce(
+              (result: string, node: any) => `${result}${generate(node).code}`,
+              '',
+            )
+            .replace(/^\s+|\s+$/g, '');
+        }
+      },
+      VariableDeclarator(path) {
+        // looking for React.useState()
+        const node = path.node as any;
+        if (
+          node.id.type === 'ArrayPattern' &&
+          node.init.type === 'CallExpression' &&
+          node.init.callee.property.name === 'useState'
+        ) {
+          const name = node.id.elements[0].name;
+          const valueNode = node.init.arguments[0];
+          if (
+            valueNode.type === 'StringLiteral' ||
+            valueNode.type === 'BooleanLiteral'
+          ) {
+            stateValues[name] = valueNode.value;
+          } else {
+            stateValues[name] = generate(valueNode);
+          }
         }
       },
     });
   } catch (e) {
+    console.log(e);
     throw new Error("Code is not valid and can't be parsed.");
   }
+
+  // override props by local state (React hooks)
+  Object.keys(stateValues).forEach(stateValueKey => {
+    Object.keys(propValues).forEach(propValueKey => {
+      if (propValues[propValueKey] === stateValueKey) {
+        propValues[propValueKey] = stateValues[stateValueKey];
+      }
+    });
+  });
+
   return {parsedProps: propValues, parsedTheme: themeValues};
 }
