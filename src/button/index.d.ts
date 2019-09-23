@@ -44,7 +44,7 @@ export interface ButtonProps
   isLoading?: boolean;
   isSelected?: boolean;
   kind?: KIND[keyof KIND];
-  onClick?: (event: React.MouseEventHandler<HTMLButtonElement>) => any;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => any;
   overrides?: ButtonOverrides;
   shape?: SHAPE[keyof SHAPE];
   size?: SIZE[keyof SIZE];
