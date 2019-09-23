@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 
 import {BooleanColumn} from '../index.js';
 
@@ -50,12 +50,45 @@ describe('boolean column', () => {
     expect(cell.textContent).toBe('F');
   });
 
-  xit('renders expected filter component', () => {
-    // boolean filter component is not implemented yet
+  it('applies filter with expected selection', () => {
+    const column = BooleanColumn({title: 'column'});
+    const Filter = column.renderFilter;
+
+    const mockSetFilter = jest.fn();
+    const data = [true, false, true];
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    fireEvent.click(checkboxes[0]);
+    expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
+
+    fireEvent.click(getByText('Apply'));
+
+    expect(mockSetFilter.mock.calls.length).toBe(1);
+    const [filterParams, description] = mockSetFilter.mock.calls[0];
+    expect(filterParams.selection.has(true)).toBe(true);
+    expect(filterParams.selection.has(false)).toBe(false);
+    expect(filterParams.exclude).toBe(false);
+    expect(description).toBe('true');
   });
 
-  xit('builds expected filter function', () => {
-    // boolean filter params are not implemented yet
+  it('builds expected filter function', () => {
+    const column = BooleanColumn({title: 'column'});
+    const simple = column.buildFilter({
+      selection: new Set([true]),
+      exclude: false,
+    });
+    expect(simple(true)).toBe(true);
+    expect(simple(false)).toBe(false);
+
+    const exclude = column.buildFilter({
+      selection: new Set([true]),
+      exclude: true,
+    });
+    expect(exclude(true)).toBe(false);
+    expect(exclude(false)).toBe(true);
   });
 
   it('builds expected sort function', () => {
