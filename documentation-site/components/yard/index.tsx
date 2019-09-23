@@ -1,80 +1,38 @@
 import * as React from 'react';
 import {Card} from 'baseui/card';
-import {Button} from 'baseui/button';
-import {Paragraph2} from 'baseui/typography';
-import getConfig from 'next/config';
+import {Spinner} from 'baseui/spinner';
 import {TYardProps} from './types';
+import Yard from './yard';
 import {useStyletron} from 'baseui';
 
-const {publicRuntimeConfig} = getConfig();
-
-import {Spinner} from 'baseui/spinner';
-
-const Yard = React.lazy(() => import('./yard'));
-
-type TYardWrapperProps = TYardProps & {
-  defaultHeight: number;
-};
-
-const YardWrapper: React.FC<TYardWrapperProps> = ({
+const YardWrapper: React.FC<TYardProps & {placeholderHeight: number}> = ({
   componentName,
   scopeConfig,
   propsConfig,
   themeConfig,
-  defaultHeight,
+  placeholderHeight,
 }) => {
   const [useCss] = useStyletron();
-  const [isMounted, setMounted] = React.useState(false);
-  React.useEffect(() => setMounted(true), []);
-  const [loadYard, setLoadYard] = React.useState(
-    process.env.NODE_ENV !== 'development' ||
-      publicRuntimeConfig.loadYard === 'true',
-  );
-
-  const loadingCx = useCss({
-    height: `${defaultHeight + 16}px`,
+  const placeholderCx = useCss({
+    height: `${placeholderHeight}px`,
+    width: '100%',
     display: 'flex',
-    flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column',
-    textAlign: 'center',
   });
-
   return (
     <Card>
-      {!isMounted ? (
-        <div className={loadingCx} />
-      ) : (
-        <React.Suspense
-          fallback={
-            <div className={loadingCx}>
-              <Spinner />
-            </div>
-          }
-        >
-          {loadYard ? (
-            <Yard
-              componentName={componentName}
-              scopeConfig={scopeConfig}
-              propsConfig={propsConfig}
-              themeConfig={themeConfig}
-            />
-          ) : (
-            <div className={loadingCx}>
-              <Button onClick={() => setLoadYard(true)}>Load Yard</Button>
-              <Paragraph2>
-                Yard is not automatically loaded in the dev mode to speed up
-                HMR. Click the button or use{' '}
-                <b>
-                  <code>LOAD_YARD="true"</code>
-                </b>{' '}
-                env flag.
-              </Paragraph2>
-            </div>
-          )}
-        </React.Suspense>
-      )}
+      <Yard
+        componentName={componentName}
+        scopeConfig={scopeConfig}
+        propsConfig={propsConfig}
+        themeConfig={themeConfig}
+        placeholderElement={() => (
+          <div className={placeholderCx}>
+            <Spinner size={placeholderHeight > 50 ? 50 : placeholderHeight} />
+          </div>
+        )}
+      />
     </Card>
   );
 };

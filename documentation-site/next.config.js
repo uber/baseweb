@@ -23,9 +23,9 @@ module.exports = withMDX(
     webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
       config.resolve.alias.baseui = resolve(__dirname, '../dist');
       config.resolve.alias.examples = resolve(__dirname, 'examples');
-
       // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
       const originalEntry = config.entry;
+      config['node'] = {fs: 'empty'};
       config.entry = async () => {
         const entries = await originalEntry();
 

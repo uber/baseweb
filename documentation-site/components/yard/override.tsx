@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Textarea} from 'baseui/textarea';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
-import {formatCode, toggleOverrideSharedProps} from './ast';
+import {toggleOverrideSharedProps} from './ast';
+import {formatCode} from './code-generator';
 import {trackEvent} from '../../helpers/ga';
+import Editor from './editor';
 
 export const getHighlightStyles = (
   isLightTheme: boolean,
@@ -87,45 +88,24 @@ const Override: React.FC<TProps> = ({
   set,
 }) => {
   const [, theme] = useStyletron();
-  const [textareaHeight, setTextareaHeight] = React.useState(162);
   const isLightTheme = theme.name.startsWith('light-theme');
-  const textareaValue = overridesObj[overrideKey]
+  const upStreamCode = overridesObj[overrideKey]
     ? overridesObj[overrideKey].style
     : '';
-  // autoresize textarea
-  React.useEffect(() => {
-    const height = textareaValue
-      ? textareaValue.split('\n').length * 24 + 16
-      : 160;
-    setTextareaHeight(height);
-  }, [textareaValue]);
+  const [code, setCode] = React.useState(upStreamCode);
+  React.useEffect(() => setCode(upStreamCode), [upStreamCode]);
+
   return (
     <React.Fragment>
-      <Textarea
-        onFocus={() => {
-          trackEvent(
-            'yard',
-            `${componentName}:override_textarea_focused_${overrideKey}`,
-          );
-        }}
-        onChange={event => {
-          const newValue = (event.target as HTMLTextAreaElement).value;
+      <Editor
+        onChange={newCode => {
+          setCode(newCode);
           set({
             ...overrides.value,
-            [overrideKey]: {style: newValue, active: true},
+            [overrideKey]: {style: newCode, active: true},
           });
         }}
-        value={textareaValue}
-        overrides={{
-          Input: {
-            style: () => ({
-              fontSize: '12px',
-              height: `${textareaHeight}px`,
-              fontFamily:
-                "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
-            }),
-          },
-        }}
+        code={code}
       />
       <ButtonGroup
         size={SIZE.compact}
