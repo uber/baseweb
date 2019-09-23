@@ -43,10 +43,23 @@ export interface LabelPropsT {
   sublist?: boolean;
 }
 
+export interface MenuAdapterPropsT extends PropsT {
+  // eslint-disable-next-line flowtype/no-weak-types
+  item: any;
+  onMouseEnter: (event: React.MouseEvent<HTMLLIElement>) => any;
+  onClick: (event: React.MouseEvent<HTMLLIElement>) => any;
+  $size: string;
+  $isHighlighted: boolean;
+  $disabled: boolean;
+}
+
 export const ListItem: React.FC<PropsT>;
 export const ListItemLabel: React.FC<LabelPropsT>;
+export const MenuAdapter: React.FC<MenuAdapterPropsT>;
 
-export const StyledRoot: StyletronComponent<any>;
-export const StyledContent: StyletronComponent<any>;
-export const StyledEndEnhancerContainer: StyletronComponent<any>;
-export const StyledArtworkContainer: StyletronComponent<any>;
+export const StyledRoot: StyletronComponent<{}>;
+export const StyledContent: StyletronComponent<StyledContentPropsT>;
+export const StyledEndEnhancerContainer: StyletronComponent<{}>;
+export const StyledArtworkContainer: StyletronComponent<
+  StyledArtworkContainerPropsT
+>;

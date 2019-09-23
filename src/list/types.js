@@ -20,10 +20,10 @@ export type StyledArtworkContainerPropsT = {$artworkSize: ArtworkSizesT};
 export type StyledContentPropsT = {$mLeft: boolean, $sublist: boolean};
 
 export type OverridesT = {|
-  Root: OverrideT<{}>,
-  ArtworkContainer: OverrideT<StyledArtworkContainerPropsT>,
-  Content: OverrideT<StyledContentPropsT>,
-  EndEnhancerContainer: OverrideT<{}>,
+  Root?: OverrideT<{}>,
+  ArtworkContainer?: OverrideT<StyledArtworkContainerPropsT>,
+  Content?: OverrideT<StyledContentPropsT>,
+  EndEnhancerContainer?: OverrideT<{}>,
 |};
 
 export type PropsT = {|
@@ -40,3 +40,14 @@ export type LabelPropsT = {|
   description?: React.Node,
   sublist?: boolean,
 |};
+
+export type MenuAdapterPropsT = {
+  ...PropsT,
+  // eslint-disable-next-line flowtype/no-weak-types
+  item: any,
+  onMouseEnter: MouseEvent => mixed,
+  onClick: MouseEvent => mixed,
+  $size: string,
+  $isHighlighted: boolean,
+  $disabled: boolean,
+};

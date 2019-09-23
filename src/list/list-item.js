@@ -41,7 +41,7 @@ function artworkSizeToIconSize(artworkSize, isSublist) {
   }
 }
 
-function ListItem(props: PropsT) {
+const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props, ref) => {
   const {overrides = {}} = props;
   const Artwork = props.artwork;
   const EndEnhancer = props.endEnhancer;
@@ -78,7 +78,8 @@ function ListItem(props: PropsT) {
   }, [props.artworkSize, props.sublist]);
 
   return (
-    <Root {...rootProps}>
+    // eslint-disable-next-line flowtype/no-weak-types
+    <Root ref={(ref: any)} {...rootProps}>
       {Artwork && (
         <ArtworkContainer $artworkSize={artworkSize} {...artworkContainerProps}>
           <Artwork size={artworkSizeToIconSize(artworkSize, props.sublist)} />
@@ -94,6 +95,7 @@ function ListItem(props: PropsT) {
       </Content>
     </Root>
   );
-}
+});
+ListItem.displayName = 'ListItem';
 
 export default ListItem;
