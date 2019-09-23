@@ -24,33 +24,46 @@ const highlightCode = (code: string, theme: any) => (
 const Editor: React.FC<{
   code: string;
   onChange: (code: string) => void;
-  focused: boolean;
-}> = ({code, onChange, focused}) => {
-  const [, theme] = useStyletron();
-  const editorTheme = theme.name.startsWith('light-theme')
-    ? {
-        ...lightTheme,
-        plain: {
-          ...lightTheme.plain,
-          backgroundColor: theme.colors.mono200,
-        },
-      }
-    : {
-        ...darkTheme,
-        plain: {
-          ...darkTheme.plain,
-          backgroundColor: focused ? '#3D3D3D' : '#292929',
-        },
-      };
+}> = ({code, onChange}) => {
+  const [css, theme] = useStyletron();
+  const [focused, setFocused] = React.useState(false);
+  const plainStyles = theme.name.startsWith('light-theme')
+    ? lightTheme
+    : darkTheme;
+  const editorTheme = {
+    ...plainStyles,
+    plain: {
+      ...plainStyles.plain,
+      backgroundColor: focused
+        ? theme.colors.inputFillActive
+        : theme.colors.inputFill,
+    },
+  };
 
   return (
-    <SimpleEditor
-      value={code}
-      highlight={code => highlightCode(code, editorTheme)}
-      onValueChange={code => onChange(code)}
-      padding={10}
-      style={editorTheme.plain}
-    />
+    <div
+      className={css({
+        boxSizing: 'border-box',
+        border: focused
+          ? `2px solid ${theme.colors.borderFocus}`
+          : `2px solid ${theme.colors.inputFill}`,
+      })}
+    >
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `.npm__react-simple-code-editor__textarea { outline: none !important }`,
+        }}
+      />
+      <SimpleEditor
+        value={code}
+        highlight={code => highlightCode(code, editorTheme)}
+        onValueChange={code => onChange(code)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        padding={10}
+        style={editorTheme.plain}
+      />
+    </div>
   );
 };
 export default Editor;

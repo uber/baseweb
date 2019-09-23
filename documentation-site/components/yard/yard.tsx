@@ -127,7 +127,6 @@ export default withRouter(
   }) => {
     const [css, theme] = useStyletron();
     const [error, setError] = React.useState<string | null>(null);
-    const [editorFocused, focusEditor] = React.useState(false);
     const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
     const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
 
@@ -299,6 +298,11 @@ export default withRouter(
               style: {backgroundColor: 'transparent', paddingLeft: 0},
             },
             TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
+            Root: {
+              style: {
+                marginBottom: theme.sizing.scale400,
+              },
+            },
           }}
         >
           <Tab
@@ -428,76 +432,56 @@ export default withRouter(
             />
           </Tab>
         </StatefulTabs>
-        <div
-          className={css({
-            marginTop: `${theme.sizing.scale800}`,
-            boxSizing: 'border-box',
-            border: editorFocused
-              ? `2px solid ${theme.colors.borderFocus}`
-              : `2px solid ${theme.colors.inputFill}`,
-          })}
-          onClick={() => {
-            trackEvent('yard', `${componentName}:code_editor_focused`);
-            focusEditor(true);
-          }}
-          onBlur={() => focusEditor(false)}
-        >
-          <style
-            dangerouslySetInnerHTML={{
-              __html: `.npm__react-simple-code-editor__textarea { outline: none !important }`,
-            }}
-          />
-          <Editor
-            focused={editorFocused}
-            code={
-              state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code
-            }
-            onChange={newCode => {
-              const propValues: any = {};
-              try {
-                const {parsedProps, parsedTheme} = parseCode(
-                  newCode,
-                  componentName,
-                );
-                Object.keys(state.props).forEach(name => {
-                  propValues[name] =
-                    //@ts-ignore
-                    propsConfig[name].value;
-                  if (name === 'overrides') {
-                    // overrides need a special treatment since the value needs to
-                    // be further analyzed and parsed
-                    propValues[name] = parseOverrides(
-                      parsedProps[name],
-                      propsConfig.overrides && propsConfig.overrides.meta
-                        ? propsConfig.overrides.meta.names || []
-                        : [],
-                    );
-                  } else {
-                    propValues[name] = parsedProps[name];
-                  }
-                });
+        <Editor
+          code={
+            state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code
+          }
+          onChange={newCode => {
+            const propValues: any = {};
+            try {
+              const {parsedProps, parsedTheme} = parseCode(
+                newCode,
+                componentName,
+              );
+              Object.keys(state.props).forEach(name => {
+                propValues[name] =
+                  //@ts-ignore
+                  propsConfig[name].value;
+                if (name === 'overrides') {
+                  // overrides need a special treatment since the value needs to
+                  // be further analyzed and parsed
+                  propValues[name] = parseOverrides(
+                    parsedProps[name],
+                    propsConfig.overrides && propsConfig.overrides.meta
+                      ? propsConfig.overrides.meta.names || []
+                      : [],
+                  );
+                } else {
+                  propValues[name] = parsedProps[name];
+                }
+              });
 
-                dispatch({
-                  type: Action.Update,
-                  payload: {
-                    code: newCode,
-                    updatedPropValues: propValues,
-                    theme: parsedTheme,
-                  },
-                });
-                Router.push({
-                  pathname: router.pathname,
-                  query: {code: newCode},
-                } as any);
-              } catch (e) {
-                dispatch({
-                  type: Action.UpdateCode,
-                  payload: newCode,
-                });
-              }
-            }}
-          />
-        </div>
+              dispatch({
+                type: Action.Update,
+                payload: {
+                  code: newCode,
+                  updatedPropValues: propValues,
+                  theme: parsedTheme,
+                },
+              });
+              Router.push({
+                pathname: router.pathname,
+                query: {code: newCode},
+              } as any);
+            } catch (e) {
+              dispatch({
+                type: Action.UpdateCode,
+                payload: newCode,
+              });
+            }
+          }}
+        />
+
         <Error error={error} code={state.code} />
         <ButtonGroup
           size={SIZE.compact}
