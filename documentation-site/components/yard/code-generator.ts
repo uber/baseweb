@@ -17,7 +17,7 @@ type TJsxChild =
   | t.JSXElement
   | t.JSXFragment;
 
-const getAstPropsArray = (props: {[key: string]: TProp}) => {
+export const getAstPropsArray = (props: {[key: string]: TProp}) => {
   return Object.entries(props).map(([name, prop]) => {
     const {value, meta} = prop;
     const isStateful: boolean = meta ? (meta as any).stateful === true : false;
@@ -33,7 +33,7 @@ const getAstPropsArray = (props: {[key: string]: TProp}) => {
   });
 };
 
-const getAstPropValue = (prop: TProp) => {
+export const getAstPropValue = (prop: TProp) => {
   const value = prop.value;
   switch (prop.type as PropTypes) {
     case PropTypes.String:
@@ -42,12 +42,18 @@ const getAstPropValue = (prop: TProp) => {
       return t.jsxExpressionContainer(t.booleanLiteral(value));
     case PropTypes.Ref:
       return null;
+    case PropTypes.Object:
+      return t.jsxExpressionContainer(
+        (template.ast(`(${value})`, {plugins: ['jsx']}) as any).expression,
+      );
     case PropTypes.Number:
     case PropTypes.Array:
     case PropTypes.Object:
     case PropTypes.Function:
     case PropTypes.ReactNode:
-      return t.jsxExpressionContainer((template.ast(value) as any).expression);
+      return t.jsxExpressionContainer(
+        (template.ast(value, {plugins: ['jsx']}) as any).expression,
+      );
     case PropTypes.Enum:
       return t.jsxExpressionContainer(t.identifier(value));
     case PropTypes.Overrides:
@@ -69,7 +75,7 @@ const getAstPropValue = (prop: TProp) => {
   }
 };
 
-const getAstReactHooks = (props: {[key: string]: TProp}) => {
+export const getAstReactHooks = (props: {[key: string]: TProp}) => {
   const hooks: babel.types.ExpressionStatement[] = [];
   const buildReactHook = template(
     `const [%%name%%, %%setName%%] = React.useState(%%value%%);`,
@@ -86,7 +92,7 @@ const getAstReactHooks = (props: {[key: string]: TProp}) => {
   return hooks;
 };
 
-const getAstImport = (identifiers: string[], source: string) => {
+export const getAstImport = (identifiers: string[], source: string) => {
   return t.importDeclaration(
     identifiers.map(identifier =>
       t.importSpecifier(t.identifier(identifier), t.identifier(identifier)),
@@ -95,7 +101,7 @@ const getAstImport = (identifiers: string[], source: string) => {
   );
 };
 
-const getEnumsToImport = (props: {[key: string]: TProp}) => {
+export const getEnumsToImport = (props: {[key: string]: TProp}) => {
   const enums: string[] = [];
   Object.keys(props).forEach(name => {
     if (props[name].type === PropTypes.Enum && props[name].value) {
@@ -105,7 +111,7 @@ const getEnumsToImport = (props: {[key: string]: TProp}) => {
   return enums;
 };
 
-const getAstJsxElement = (
+export const getAstJsxElement = (
   name: string,
   attrs: (t.JSXAttribute | null)[],
   children: TJsxChild[],
@@ -123,7 +129,10 @@ const getAstJsxElement = (
   );
 };
 
-const getAstThemeImport = (isCustomTheme: boolean, themePrimitives: string) => {
+export const getAstThemeImport = (
+  isCustomTheme: boolean,
+  themePrimitives: string,
+) => {
   if (!isCustomTheme) return [];
   const buildImportTheme = template(
     `import {ThemeProvider, createTheme, %%primitives%%} from "baseui"`,
@@ -135,7 +144,7 @@ const getAstThemeImport = (isCustomTheme: boolean, themePrimitives: string) => {
   ];
 };
 
-const getAstThemeWrapper = (
+export const getAstThemeWrapper = (
   themeValues: {[key: string]: string},
   themePrimitives: string,
   children: t.JSXElement,
@@ -172,7 +181,7 @@ const getAstThemeWrapper = (
   );
 };
 
-const getAst = (
+export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: any,
