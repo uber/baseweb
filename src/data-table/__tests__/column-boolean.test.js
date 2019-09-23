@@ -7,31 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils.js';
+import {render} from '@testing-library/react';
 
 import {BooleanColumn} from '../index.js';
 
-let container: HTMLDivElement;
-
 describe('boolean column', () => {
-  beforeEach(() => {
-    if (__BROWSER__) {
-      container = document.createElement('div');
-      if (document.body) {
-        document.body.appendChild(container);
-      }
-    }
-  });
-
-  afterEach(() => {
-    if (__BROWSER__) {
-      if (document.body && container) {
-        document.body.removeChild(container);
-      }
-    }
-  });
-
   it('is sortable by default', () => {
     const column = BooleanColumn({title: 'column'});
     expect(column.sortable).toBe(true);
@@ -56,13 +36,8 @@ describe('boolean column', () => {
     const column = BooleanColumn({title: 'column'});
     const Cell = column.renderCell;
 
-    act(() => {
-      ReactDOM.render(<Cell value={true} />, container);
-    });
-
+    const {container} = render(<Cell value={true} />);
     const cell = container.querySelector('div');
-
-    // $FlowFixMe cell may be null
     expect(cell.textContent).toBe('T');
   });
 
@@ -70,13 +45,8 @@ describe('boolean column', () => {
     const column = BooleanColumn({title: 'column'});
     const Cell = column.renderCell;
 
-    act(() => {
-      ReactDOM.render(<Cell value={false} />, container);
-    });
-
+    const {container} = render(<Cell value={false} />);
     const cell = container.querySelector('div');
-
-    // $FlowFixMe cell could be null
     expect(cell.textContent).toBe('F');
   });
 

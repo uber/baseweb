@@ -7,32 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils.js';
+import {render} from '@testing-library/react';
 
 import {CustomColumn} from '../index.js';
 
-let container: HTMLDivElement;
-
 describe('custom column', () => {
-  beforeEach(() => {
-    if (__BROWSER__) {
-      container = document.createElement('div');
-      if (document.body) {
-        document.body.appendChild(container);
-      }
-    }
-  });
-
-  afterEach(() => {
-    if (__BROWSER__) {
-      if (document.body && container) {
-        document.body.removeChild(container);
-        container.remove();
-      }
-    }
-  });
-
   it('is not sortable by default', () => {
     const column = CustomColumn({title: 'column', renderCell: () => null});
     expect(column.sortable).toBe(false);
@@ -93,13 +72,8 @@ describe('custom column', () => {
     });
     const Cell = column.renderCell;
 
-    act(() => {
-      ReactDOM.render(<Cell value={{color: 'blue'}} />, container);
-    });
-
+    const {container} = render(<Cell value={{color: 'blue'}} />);
     const cell = container.querySelector('div');
-
-    // $FlowFixMe cell could be null
     expect(cell.textContent).toBe('blue');
   });
 });

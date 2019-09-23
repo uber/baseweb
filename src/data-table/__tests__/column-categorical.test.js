@@ -7,33 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils.js';
+import {render, fireEvent} from '@testing-library/react';
 
-import {setNativeValue} from './shared.js';
 import {CategoricalColumn} from '../index.js';
 
-let container: HTMLDivElement;
-
 describe('categorical column', () => {
-  beforeEach(() => {
-    if (__BROWSER__) {
-      container = document.createElement('div');
-      if (document.body) {
-        document.body.appendChild(container);
-      }
-    }
-  });
-
-  afterEach(() => {
-    if (__BROWSER__) {
-      if (document.body && container) {
-        document.body.removeChild(container);
-        container.remove();
-      }
-    }
-  });
-
   it('is sortable by default', () => {
     const column = CategoricalColumn({title: 'column'});
     expect(column.sortable).toBe(true);
@@ -58,13 +36,8 @@ describe('categorical column', () => {
     const column = CategoricalColumn({title: 'column'});
     const Cell = column.renderCell;
 
-    act(() => {
-      ReactDOM.render(<Cell value="A" />, container);
-    });
-
+    const {container} = render(<Cell value="A" />);
     const cell = container.querySelector('div');
-
-    // $FlowFixMe cell could be null
     expect(cell.textContent).toBe('A');
   });
 
@@ -74,12 +47,9 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C'];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
+    const {container} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     // counts an additional checkbox to account for the 'exlude' toggle
@@ -92,30 +62,15 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C'];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
+
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
-    act(() => {
-      if (__BROWSER__) {
-        checkboxes[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
-      }
-    });
+    fireEvent.click(checkboxes[0]);
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
 
-    const buttons = container.querySelectorAll('button');
-    buttons.forEach(button => {
-      if (button.textContent === 'Apply') {
-        act(() => {
-          if (__BROWSER__) {
-            button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-          }
-        });
-      }
-    });
+    fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams, description] = mockSetFilter.mock.calls[0];
@@ -132,19 +87,12 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C'];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
-    const buttons = container.querySelectorAll('button');
-    const selectAll = [...buttons].filter(b => b.textContent === 'Select All');
-    act(() => {
-      if (__BROWSER__) {
-        selectAll[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
-      }
-    });
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
+
+    fireEvent.click(getByText('Select All'));
+
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
     expect(((checkboxes[1]: any): HTMLInputElement).checked).toBe(true);
@@ -157,27 +105,13 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C'];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
-    act(() => {
-      if (__BROWSER__) {
-        checkboxes[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
-      }
-    });
-
-    const buttons = container.querySelectorAll('button');
-    const clear = [...buttons].filter(b => b.textContent === 'Clear');
-    act(() => {
-      if (__BROWSER__) {
-        clear[0].dispatchEvent(new MouseEvent('click', {bubbles: true}));
-      }
-    });
+    fireEvent.click(checkboxes[0]);
+    fireEvent.click(getByText('Clear'));
 
     expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(false);
     expect(((checkboxes[1]: any): HTMLInputElement).checked).toBe(false);
@@ -190,12 +124,9 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
+    const {container} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
 
     const input = container.querySelector('[data-baseweb="input"] input');
     expect(input).toBeTruthy();
@@ -207,21 +138,13 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
+    const {container} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
 
     const input = container.querySelector('[data-baseweb="input"] input');
-    act(() => {
-      if (__BROWSER__) {
-        setNativeValue((input: any), 'a');
-        // $FlowFixMe input may be null
-        input.dispatchEvent(new Event('input', {bubbles: true}));
-      }
-    });
+    fireEvent.change(input, {target: {value: 'a'}});
+
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     expect(checkboxes.length).toBe(2);
   });
@@ -232,27 +155,18 @@ describe('categorical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
+    const {container, queryByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
+
+    expect(queryByText('Select All')).toBeTruthy();
+    expect(queryByText('Clear')).toBeTruthy();
 
     const input = container.querySelector('[data-baseweb="input"] input');
-    act(() => {
-      if (__BROWSER__) {
-        setNativeValue((input: any), 'a');
-        // $FlowFixMe input may be null
-        input.dispatchEvent(new Event('input', {bubbles: true}));
-      }
-    });
+    fireEvent.change(input, {target: {value: 'a'}});
 
-    const buttons = container.querySelectorAll('button');
-    const selectAll = [...buttons].filter(b => b.textContent === 'Select All');
-    const clear = [...buttons].filter(b => b.textContent === 'Clear');
-    expect(selectAll.length).toBe(0);
-    expect(clear.length).toBe(0);
+    expect(queryByText('Select All')).toBeFalsy();
+    expect(queryByText('Clear')).toBeFalsy();
   });
 
   it('builds expected filter function', () => {
