@@ -21,7 +21,7 @@ function ListItemLabel(props: LabelPropsT) {
     <div>
       <Label2>{props.children}</Label2>
       {props.description && (
-        <Paragraph3 $style={{marginBlockStart: 0, marginBlockEnd: 0}}>
+        <Paragraph3 $style={{marginTop: 0, marginBottom: 0}}>
           {props.description}
         </Paragraph3>
       )}
