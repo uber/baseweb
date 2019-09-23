@@ -29,7 +29,12 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
       );
     const astValue = getAstPropValue(prop);
     if (!astValue) return null;
-    return t.jsxAttribute(t.jsxIdentifier(name), astValue);
+    return t.jsxAttribute(
+      t.jsxIdentifier(name),
+      prop.type === PropTypes.String
+        ? astValue
+        : t.jsxExpressionContainer(astValue),
+    );
   });
 };
 
@@ -39,23 +44,18 @@ export const getAstPropValue = (prop: TProp) => {
     case PropTypes.String:
       return t.stringLiteral(value);
     case PropTypes.Boolean:
-      return t.jsxExpressionContainer(t.booleanLiteral(value));
+      return t.booleanLiteral(value);
+    case PropTypes.Enum:
+      return t.identifier(value);
     case PropTypes.Ref:
       return null;
     case PropTypes.Object:
-      return t.jsxExpressionContainer(
-        (template.ast(`(${value})`, {plugins: ['jsx']}) as any).expression,
-      );
-    case PropTypes.Number:
     case PropTypes.Array:
+    case PropTypes.Number:
     case PropTypes.Object:
     case PropTypes.Function:
     case PropTypes.ReactNode:
-      return t.jsxExpressionContainer(
-        (template.ast(value, {plugins: ['jsx']}) as any).expression,
-      );
-    case PropTypes.Enum:
-      return t.jsxExpressionContainer(t.identifier(value));
+      return (template.ast(value, {plugins: ['jsx']}) as any).expression;
     case PropTypes.Overrides:
       const activeValues = Object.entries(value).filter(
         ([, val]: any) => val.active,
@@ -71,7 +71,7 @@ export const getAstPropValue = (prop: TProp) => {
           ]),
         ),
       );
-      return t.jsxExpressionContainer(t.objectExpression(keys));
+      return t.objectExpression(keys);
   }
 };
 
