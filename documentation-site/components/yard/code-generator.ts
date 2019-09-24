@@ -50,9 +50,9 @@ export const getAstPropValue = (prop: TProp) => {
     case PropTypes.Ref:
       return null;
     case PropTypes.Object:
+      return template.ast(`${value}`, {plugins: ['jsx']}) as any;
     case PropTypes.Array:
     case PropTypes.Number:
-    case PropTypes.Object:
     case PropTypes.Function:
     case PropTypes.ReactNode:
       return (template.ast(value, {plugins: ['jsx']}) as any).expression;

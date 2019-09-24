@@ -20,8 +20,8 @@ describe('getAstPropValue', () => {
         description: '',
       }),
     ).toEqual({
-      expression: {type: 'BooleanLiteral', value: true},
-      type: 'JSXExpressionContainer',
+      type: 'BooleanLiteral',
+      value: true,
     });
   });
   test('string', () => {
@@ -44,16 +44,13 @@ describe('getAstPropValue', () => {
         description: '',
       }),
     ).toEqual({
-      expression: {
-        extra: {
-          raw: '42',
-          rawValue: 42,
-        },
-        loc: undefined,
-        type: 'NumericLiteral',
-        value: 42,
+      extra: {
+        raw: '42',
+        rawValue: 42,
       },
-      type: 'JSXExpressionContainer',
+      loc: undefined,
+      type: 'NumericLiteral',
+      value: 42,
     });
   });
   test('enum', () => {
@@ -64,11 +61,8 @@ describe('getAstPropValue', () => {
         description: '',
       }),
     ).toEqual({
-      expression: {
-        name: 'SIZE.large',
-        type: 'Identifier',
-      },
-      type: 'JSXExpressionContainer',
+      name: 'SIZE.large',
+      type: 'Identifier',
     });
   });
   test('ref', () => {
@@ -88,22 +82,19 @@ describe('getAstPropValue', () => {
         description: '',
       }),
     ).toEqual({
-      expression: {
-        elements: [
-          {
-            extra: {
-              raw: '1',
-              rawValue: 1,
-            },
-            loc: undefined,
-            type: 'NumericLiteral',
-            value: 1,
+      elements: [
+        {
+          extra: {
+            raw: '1',
+            rawValue: 1,
           },
-        ],
-        loc: undefined,
-        type: 'ArrayExpression',
-      },
-      type: 'JSXExpressionContainer',
+          loc: undefined,
+          type: 'NumericLiteral',
+          value: 1,
+        },
+      ],
+      loc: undefined,
+      type: 'ArrayExpression',
     });
   });
   test('object', () => {
@@ -114,33 +105,29 @@ describe('getAstPropValue', () => {
         description: '',
       }),
     ).toEqual({
-      expression: {
-        extra: {
-          parenStart: 23,
-          parenthesized: true,
-        },
-        loc: undefined,
-        properties: [
-          {
-            computed: false,
-            key: {
-              loc: undefined,
-              name: 'foo',
-              type: 'Identifier',
-            },
-            loc: undefined,
-            shorthand: false,
-            type: 'ObjectProperty',
-            value: {
+      body: [
+        {
+          body: {
+            expression: {
               loc: undefined,
               type: 'BooleanLiteral',
               value: true,
             },
+            loc: undefined,
+            type: 'ExpressionStatement',
           },
-        ],
-        type: 'ObjectExpression',
-      },
-      type: 'JSXExpressionContainer',
+          label: {
+            loc: undefined,
+            name: 'foo',
+            type: 'Identifier',
+          },
+          loc: undefined,
+          type: 'LabeledStatement',
+        },
+      ],
+      directives: [],
+      loc: undefined,
+      type: 'BlockStatement',
     });
   });
   test('React node', () => {
@@ -151,24 +138,21 @@ describe('getAstPropValue', () => {
         description: '',
       }),
     ).toEqual({
-      expression: {
-        children: [],
-        closingElement: null,
+      children: [],
+      closingElement: null,
+      loc: undefined,
+      openingElement: {
+        attributes: [],
         loc: undefined,
-        openingElement: {
-          attributes: [],
+        name: {
           loc: undefined,
-          name: {
-            loc: undefined,
-            name: 'div',
-            type: 'JSXIdentifier',
-          },
-          selfClosing: true,
-          type: 'JSXOpeningElement',
+          name: 'div',
+          type: 'JSXIdentifier',
         },
-        type: 'JSXElement',
+        selfClosing: true,
+        type: 'JSXOpeningElement',
       },
-      type: 'JSXExpressionContainer',
+      type: 'JSXElement',
     });
   });
   test('function', () => {
@@ -179,26 +163,23 @@ describe('getAstPropValue', () => {
         description: '',
       }),
     ).toEqual({
-      expression: {
-        async: false,
-        body: {
-          body: [],
-          directives: [],
-          loc: undefined,
-          type: 'BlockStatement',
-        },
-        generator: false,
+      async: false,
+      body: {
+        body: [],
+        directives: [],
         loc: undefined,
-        params: [
-          {
-            loc: undefined,
-            name: 'foo',
-            type: 'Identifier',
-          },
-        ],
-        type: 'ArrowFunctionExpression',
+        type: 'BlockStatement',
       },
-      type: 'JSXExpressionContainer',
+      generator: false,
+      loc: undefined,
+      params: [
+        {
+          loc: undefined,
+          name: 'foo',
+          type: 'Identifier',
+        },
+      ],
+      type: 'ArrowFunctionExpression',
     });
   });
   test('overrides', () => {
@@ -218,56 +199,58 @@ describe('getAstPropValue', () => {
         description: '',
       }),
     ).toEqual({
-      type: 'JSXExpressionContainer',
-      expression: {
-        type: 'ObjectExpression',
-        properties: [
-          {
-            type: 'ObjectProperty',
-            key: {type: 'Identifier', name: 'Root'},
-            value: {
-              type: 'ObjectExpression',
-              properties: [
-                {
-                  type: 'ObjectProperty',
-                  key: {type: 'Identifier', name: 'style'},
-                  value: {
-                    type: 'ArrowFunctionExpression',
-                    params: [],
-                    generator: false,
-                    async: false,
-                    body: {
-                      type: 'BlockStatement',
-                      directives: [],
-                      body: [
-                        {
-                          type: 'LabeledStatement',
-                          label: {type: 'Identifier', name: 'color'},
-                          body: {
-                            type: 'ExpressionStatement',
-                            expression: {
-                              type: 'StringLiteral',
-                              value: 'black',
-                              extra: {rawValue: 'black', raw: "'black'"},
-                            },
+      type: 'ObjectExpression',
+      properties: [
+        {
+          type: 'ObjectProperty',
+          key: {type: 'Identifier', name: 'Root'},
+          value: {
+            type: 'ObjectExpression',
+            properties: [
+              {
+                type: 'ObjectProperty',
+                key: {type: 'Identifier', name: 'style'},
+                value: {
+                  loc: undefined,
+                  type: 'ArrowFunctionExpression',
+                  params: [],
+                  generator: false,
+                  async: false,
+                  body: {
+                    loc: undefined,
+                    type: 'BlockStatement',
+                    directives: [],
+                    body: [
+                      {
+                        type: 'LabeledStatement',
+                        label: {type: 'Identifier', name: 'color'},
+                        loc: undefined,
+                        body: {
+                          type: 'ExpressionStatement',
+                          expression: {
+                            type: 'StringLiteral',
+                            value: 'black',
+                            extra: {rawValue: 'black', raw: "'black'"},
+                            loc: undefined,
                           },
+                          loc: undefined,
                         },
-                      ],
-                    },
-                    extra: {parenthesized: true, parenStart: 0},
+                      },
+                    ],
                   },
-                  computed: false,
-                  shorthand: false,
-                  decorators: null,
+                  extra: {parenthesized: true, parenStart: 0},
                 },
-              ],
-            },
-            computed: false,
-            shorthand: false,
-            decorators: null,
+                computed: false,
+                shorthand: false,
+                decorators: null,
+              },
+            ],
           },
-        ],
-      },
+          computed: false,
+          shorthand: false,
+          decorators: null,
+        },
+      ],
     });
   });
 });
