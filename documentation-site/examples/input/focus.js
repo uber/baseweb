@@ -9,14 +9,18 @@ export default () => {
   const inputRef = React.createRef();
   return (
     <div className={useCss({display: 'flex'})}>
-      <div
-        className={useCss({
-          width: '50%',
-          marginRight: theme.sizing.scale400,
-        })}
-      >
-        <Input inputRef={inputRef} placeholder="With input ref" />
-      </div>
+      <Input
+        inputRef={inputRef}
+        placeholder="With input ref"
+        overrides={{
+          Root: {
+            style: {
+              width: '50%',
+              marginRight: theme.sizing.scale400,
+            },
+          },
+        }}
+      />
       <Button
         onClick={() => inputRef.current && inputRef.current.focus()}
       >
