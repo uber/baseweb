@@ -27,21 +27,18 @@ const Editor: React.FC<{
 }> = ({code, onChange}) => {
   const [css, theme] = useStyletron();
   const [focused, setFocused] = React.useState(false);
-  const editorTheme = theme.name.startsWith('light-theme')
-    ? {
-        ...lightTheme,
-        plain: {
-          ...lightTheme.plain,
-          backgroundColor: theme.colors.mono200,
-        },
-      }
-    : {
-        ...darkTheme,
-        plain: {
-          ...darkTheme.plain,
-          backgroundColor: focused ? '#3D3D3D' : '#292929',
-        },
-      };
+  const plainStyles = theme.name.startsWith('light-theme')
+    ? lightTheme
+    : darkTheme;
+  const editorTheme = {
+    ...plainStyles,
+    plain: {
+      ...plainStyles.plain,
+      backgroundColor: focused
+        ? theme.colors.inputFillActive
+        : theme.colors.inputFill,
+    },
+  };
 
   return (
     <div

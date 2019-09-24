@@ -236,6 +236,7 @@ interface Colors {
 
   // Input
   inputFill: string;
+  inputFillActive: string;
   inputFillError: string;
   inputFillDisabled: string;
   inputTextDisabled: string;
