@@ -127,9 +127,7 @@ export default withRouter(
   }) => {
     const [css, theme] = useStyletron();
     const [error, setError] = React.useState<string | null>(null);
-    const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
     const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
-
     const [state, dispatch] = React.useReducer(reducer, {
       code:
         router.query.code ||
@@ -144,8 +142,7 @@ export default withRouter(
 
     React.useEffect(() => {
       // initialize from the URL
-      if (router.query.code && !urlCodeHydrated) {
-        setUrlCodeHydrated(true);
+      if (router.query.code) {
         try {
           const propValues: {[key: string]: any} = {};
           const {parsedProps, parsedTheme} = parseCode(
@@ -180,7 +177,7 @@ export default withRouter(
           console.log(e);
         }
       }
-    }, [router.query.code]);
+    }, []);
 
     //when theme (context) is switched, reset the theme state
     React.useEffect(() => {
