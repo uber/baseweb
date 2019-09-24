@@ -297,9 +297,8 @@ export default withRouter(
           }}
           PlaceholderElement={placeholderElement}
         />
-        {error.where === '__compiler' && error.msg && (
-          <PopupError error={error.msg} />
-        )}
+        {(error.where === '__compiler' || error.where === 'overrides') &&
+          error.msg && <PopupError error={error.msg} />}
         <StatefulTabs
           initialState={{activeKey: '0'}}
           onChange={({activeKey}) => {
@@ -401,6 +400,10 @@ export default withRouter(
                     query: {code: newCode},
                   } as any);
                 } catch (e) {
+                  dispatch({
+                    type: Action.UpdateProps,
+                    payload: {overrides: value},
+                  });
                   setError({where: `overrides`, msg: e.toString()});
                 }
               }}
