@@ -294,15 +294,15 @@ export default withRouter(
             trackEvent('yard', `${componentName}:tab_switch_${activeKey}`);
           }}
           overrides={{
-            TabBar: {
-              style: {backgroundColor: 'transparent', paddingLeft: 0},
-            },
-            TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
             Root: {
               style: {
                 marginBottom: theme.sizing.scale400,
               },
             },
+            TabBar: {
+              style: {backgroundColor: 'transparent', paddingLeft: 0},
+            },
+            TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
           }}
         >
           <Tab
@@ -359,22 +359,29 @@ export default withRouter(
               componentConfig={propsConfig}
               overrides={state.props.overrides}
               set={(value: any) => {
-                const newCode = getCode(
-                  buildPropsObj(state.props, {overrides: value}),
-                  componentName,
-                  componentThemeDiff,
-                );
-                dispatch({
-                  type: Action.UpdatePropsAndCode,
-                  payload: {
-                    code: newCode,
-                    updatedPropValues: {overrides: value},
-                  },
-                });
-                Router.push({
-                  pathname: router.pathname,
-                  query: {code: newCode},
-                } as any);
+                try {
+                  const newCode = getCode(
+                    buildPropsObj(state.props, {overrides: value}),
+                    componentName,
+                    componentThemeDiff,
+                  );
+                  if (error) {
+                    setError(null);
+                  }
+                  dispatch({
+                    type: Action.UpdatePropsAndCode,
+                    payload: {
+                      code: newCode,
+                      updatedPropValues: {overrides: value},
+                    },
+                  });
+                  Router.push({
+                    pathname: router.pathname,
+                    query: {code: newCode},
+                  } as any);
+                } catch (e) {
+                  setError(e.toString());
+                }
               }}
             />
           </Tab>
