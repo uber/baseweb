@@ -27,6 +27,7 @@ const YardWrapper: React.FC<TYardProps & {placeholderHeight: number}> = ({
         scopeConfig={scopeConfig}
         propsConfig={propsConfig}
         themeConfig={themeConfig}
+        minHeight={placeholderHeight}
         placeholderElement={() => (
           <div className={placeholderCx}>
             <Spinner size={placeholderHeight > 50 ? 50 : placeholderHeight} />

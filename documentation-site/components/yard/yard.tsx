@@ -22,6 +22,7 @@ import {transformBeforeCompilation, parseCode, parseOverrides} from './ast';
 import {assertUnreachable} from './utils';
 import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
+import PopupError from './popup-error';
 import {TYardProps, TState, TProp} from './types';
 
 import Compiler from './compiler';
@@ -86,6 +87,12 @@ function reducer(state: TState, action: {type: Action; payload: any}): TState {
         codeNoRecompile: action.payload.codeNoRecompile,
         props: buildPropsObj(state.props, action.payload.updatedPropValues),
       };
+    case Action.UpdateProps:
+      return {
+        ...state,
+        codeNoRecompile: '',
+        props: buildPropsObj(state.props, action.payload),
+      };
     case Action.UpdatePropsAndCode:
       return {
         ...state,
@@ -120,13 +127,17 @@ export default withRouter(
     propsConfig,
     themeConfig,
     scopeConfig,
+    minHeight,
     placeholderElement,
   }: TYardProps & {
     router: any;
     placeholderElement: React.FC;
   }) => {
     const [css, theme] = useStyletron();
-    const [error, setError] = React.useState<string | null>(null);
+    const [error, setError] = React.useState<{
+      where: string;
+      msg: string | null;
+    }>({where: '', msg: null});
     const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
     const [state, dispatch] = React.useReducer(reducer, {
       code:
@@ -270,7 +281,8 @@ export default withRouter(
       <React.Fragment>
         <Compiler
           code={state.code}
-          setError={setError}
+          setError={msg => setError({where: '__compiler', msg})}
+          minHeight={minHeight}
           transformations={[
             code =>
               transformBeforeCompilation(code, componentName, propsConfig),
@@ -285,6 +297,9 @@ export default withRouter(
           }}
           PlaceholderElement={placeholderElement}
         />
+        {error.where === '__compiler' && error.msg && (
+          <PopupError error={error.msg} />
+        )}
         <StatefulTabs
           initialState={{activeKey: '0'}}
           onChange={({activeKey}) => {
@@ -316,25 +331,34 @@ export default withRouter(
           >
             <Knobs
               knobProps={state.props}
+              error={error}
               set={(value: any, name: string) => {
-                const newCode = getCode(
-                  buildPropsObj(state.props, {[name]: value}),
-                  componentName,
-                  componentThemeDiff,
-                );
-
-                trackEvent('yard', `${componentName}:knob_change_${name}`);
-                dispatch({
-                  type: Action.UpdatePropsAndCode,
-                  payload: {
-                    code: newCode,
-                    updatedPropValues: {[name]: value},
-                  },
-                });
-                Router.push({
-                  pathname: router.pathname,
-                  query: {code: newCode},
-                } as any);
+                try {
+                  trackEvent('yard', `${componentName}:knob_change_${name}`);
+                  const newCode = getCode(
+                    buildPropsObj(state.props, {[name]: value}),
+                    componentName,
+                    componentThemeDiff,
+                  );
+                  if (error.msg !== null) setError({where: '', msg: null});
+                  dispatch({
+                    type: Action.UpdatePropsAndCode,
+                    payload: {
+                      code: newCode,
+                      updatedPropValues: {[name]: value},
+                    },
+                  });
+                  Router.push({
+                    pathname: router.pathname,
+                    query: {code: newCode},
+                  } as any);
+                } catch (e) {
+                  dispatch({
+                    type: Action.UpdateProps,
+                    payload: {[name]: value},
+                  });
+                  setError({where: name, msg: e.toString()});
+                }
               }}
             />
           </Tab>
@@ -362,8 +386,8 @@ export default withRouter(
                     componentName,
                     componentThemeDiff,
                   );
-                  if (error) {
-                    setError(null);
+                  if (error.msg !== null) {
+                    setError({where: '', msg: null});
                   }
                   dispatch({
                     type: Action.UpdatePropsAndCode,
@@ -377,7 +401,7 @@ export default withRouter(
                     query: {code: newCode},
                   } as any);
                 } catch (e) {
-                  setError(e.toString());
+                  setError({where: `overrides`, msg: e.toString()});
                 }
               }}
             />
@@ -485,8 +509,10 @@ export default withRouter(
             }
           }}
         />
-
-        <Error error={error} code={state.code} />
+        <Error
+          error={error.where === '__compiler' ? error.msg : null}
+          code={state.code}
+        />
         <ButtonGroup
           size={SIZE.compact}
           overrides={{
