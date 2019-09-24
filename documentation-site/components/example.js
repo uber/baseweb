@@ -99,7 +99,7 @@ class Example extends React.Component<PropsT, StateT> {
         // flow-remove-types doesn't remove // from the first line
         .replace(/^\/\//, '')
         // remove all instances of <{}>
-        .replace(/<\{\}>/g, '')
+        .replace(/<\{.*\}>/g, '')
         .trim(),
     });
   }
