@@ -33,30 +33,33 @@ export default {
   propsConfig: {
     children: {
       value:
-        '<Button>Label</Button>\n<Button>Label</Button>\n<Button>Label</Button>',
+        '<Button>Label</Button><Button>Label</Button><Button>Label</Button>',
       type: PropTypes.ReactNode,
       description: 'Buttons within the group',
     },
     onClick: {
-      value: '(event, index) => {\n  alert(`clicked ${index}`);\n}',
+      value: '(event, index) => {\n  setSelected([index]);\n}',
       type: PropTypes.Function,
       description: `Function called when any button is clicked.`,
-    },
-    disabled: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: 'Indicates that the button group is disabled',
-    },
-    mode: {
-      value: undefined,
-      options: MODE,
-      type: PropTypes.Enum,
-      description: 'Defines if the group allows for multiple buttons selected',
+      meta: {
+        propHook: {
+          what: '`[${index}]`',
+          into: 'selected',
+        },
+      },
     },
     selected: {
       value: '[0]',
       type: PropTypes.Array,
       description: 'Defines which buttons are selected',
+      meta: {
+        stateful: true,
+      },
+    },
+    disabled: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Indicates that the button group is disabled',
     },
     overrides: {
       value: undefined,
