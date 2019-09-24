@@ -130,43 +130,6 @@ export default withRouter(
     const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
     const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
 
-    let initialUrlProps = null;
-    let initialUrlTheme = null;
-
-    // initialize from the URL
-    if (router.query.code && !urlCodeHydrated) {
-      setUrlCodeHydrated(true);
-      try {
-        const propValues: {[key: string]: any} = {};
-        const {parsedProps, parsedTheme} = parseCode(
-          router.query.code as string,
-          componentName,
-        );
-        Object.keys(propsConfig).forEach(name => {
-          //@ts-ignore
-          propValues[name] = propsConfig[name].value;
-          if (name === 'overrides') {
-            // overrides need a special treatment since the value needs to
-            // be further analyzed and parsed
-            propValues[name] = parseOverrides(
-              parsedProps[name],
-              propsConfig.overrides && propsConfig.overrides.meta
-                ? propsConfig.overrides.meta.names || []
-                : [],
-            );
-          } else {
-            propValues[name] = parsedProps[name];
-          }
-        });
-        initialUrlProps = buildPropsObj(propsConfig, propValues);
-        if (Object.keys(parsedTheme).length > 0) {
-          initialUrlTheme = parsedTheme;
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
     const [state, dispatch] = React.useReducer(reducer, {
       code:
         router.query.code ||
@@ -175,9 +138,49 @@ export default withRouter(
           themeName: theme.name,
         }),
       codeNoRecompile: '',
-      props: initialUrlProps || propsConfig,
-      theme: initialUrlTheme || componentThemeObj,
+      props: propsConfig,
+      theme: componentThemeObj,
     });
+
+    React.useEffect(() => {
+      // initialize from the URL
+      if (router.query.code && !urlCodeHydrated) {
+        setUrlCodeHydrated(true);
+        try {
+          const propValues: {[key: string]: any} = {};
+          const {parsedProps, parsedTheme} = parseCode(
+            router.query.code as string,
+            componentName,
+          );
+          Object.keys(propsConfig).forEach(name => {
+            //@ts-ignore
+            propValues[name] = propsConfig[name].value;
+            if (name === 'overrides') {
+              // overrides need a special treatment since the value needs to
+              // be further analyzed and parsed
+              propValues[name] = parseOverrides(
+                parsedProps[name],
+                propsConfig.overrides && propsConfig.overrides.meta
+                  ? propsConfig.overrides.meta.names || []
+                  : [],
+              );
+            } else {
+              propValues[name] = parsedProps[name];
+            }
+          });
+          dispatch({
+            type: Action.Update,
+            payload: {
+              code: router.query.code,
+              updatedPropValues: propValues,
+              theme: parsedTheme,
+            },
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }, [router.query.code]);
 
     //when theme (context) is switched, reset the theme state
     React.useEffect(() => {
@@ -485,6 +488,7 @@ export default withRouter(
             }
           }}
         />
+
         <Error error={error} code={state.code} />
         <ButtonGroup
           size={SIZE.compact}

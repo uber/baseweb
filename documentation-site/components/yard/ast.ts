@@ -258,7 +258,7 @@ export function parseCode(code: string, elementName: string) {
           ) {
             stateValues[name] = valueNode.value;
           } else {
-            stateValues[name] = generate(valueNode);
+            stateValues[name] = generate(valueNode).code;
           }
         }
       },

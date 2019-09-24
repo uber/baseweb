@@ -105,7 +105,15 @@ const Overrides: React.FC<TOverridesProps> = ({
                 );
               }
             }}
-            overrides={{Content: {style: {backgroundColor: 'transparent'}}}}
+            overrides={{
+              Content: {
+                style: {
+                  backgroundColor: 'transparent',
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                },
+              },
+            }}
           >
             <Override
               key={overrideKey}
