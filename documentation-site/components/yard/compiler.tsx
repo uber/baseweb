@@ -59,7 +59,6 @@ const transpile = (
     );
     const component = generateElement(ast, scope, (error: Error) => {
       setError(error.toString());
-      setOutput({component: null});
     });
     setOutput({component});
     setError(null);
