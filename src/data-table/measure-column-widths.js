@@ -44,15 +44,11 @@ type ElementMeasurerPropsT = {
 function ElementMeasurer(props: ElementMeasurerPropsT) {
   const {onDimensionsChange} = props;
   const [ref, dimensions] = useDimensions();
-  const initialized = React.useRef(false);
+
   React.useEffect(() => {
-    // ignores the first callback with empty information
-    if (initialized.current) {
-      onDimensionsChange(dimensions);
-    } else {
-      initialized.current = true;
-    }
+    onDimensionsChange(dimensions);
   }, [dimensions, onDimensionsChange]);
+
   return React.cloneElement(props.item, {ref});
 }
 
@@ -100,6 +96,8 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   }, [props.columns, props.rows, props.widths, sampleSize]);
 
   function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
+    if (dimensions.width === undefined) return;
+
     measurementCount.current += 1;
 
     const nextWidth = Math.max(
