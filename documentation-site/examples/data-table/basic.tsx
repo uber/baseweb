@@ -25,6 +25,7 @@ function makeRowsFromColumns(columns: any, rowCount: number) {
   const rows = [];
   for (let i = 0; i < rowCount; i++) {
     rows.push({
+      id: i,
       data: columns.map((column: any, j: number) => {
         switch (column.kind) {
           case COLUMNS.CATEGORICAL:
