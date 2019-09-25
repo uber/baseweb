@@ -96,7 +96,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   }, [props.columns, props.rows, props.widths, sampleSize]);
 
   function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
-    if (!dimensions.width) return;
+    if (dimensions.width === undefined) return;
 
     measurementCount.current += 1;
 
