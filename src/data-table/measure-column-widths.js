@@ -44,15 +44,11 @@ type ElementMeasurerPropsT = {
 function ElementMeasurer(props: ElementMeasurerPropsT) {
   const {onDimensionsChange} = props;
   const [ref, dimensions] = useDimensions();
-  const initialized = React.useRef(false);
+
   React.useEffect(() => {
-    // ignores the first callback with empty information
-    if (initialized.current) {
-      onDimensionsChange(dimensions);
-    } else {
-      initialized.current = true;
-    }
+    onDimensionsChange(dimensions);
   }, [dimensions, onDimensionsChange]);
+
   return React.cloneElement(props.item, {ref});
 }
 

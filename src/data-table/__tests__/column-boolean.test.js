@@ -7,31 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils.js';
+import {render, fireEvent} from '@testing-library/react';
 
 import {BooleanColumn} from '../index.js';
 
-let container: HTMLDivElement;
-
 describe('boolean column', () => {
-  beforeEach(() => {
-    if (__BROWSER__) {
-      container = document.createElement('div');
-      if (document.body) {
-        document.body.appendChild(container);
-      }
-    }
-  });
-
-  afterEach(() => {
-    if (__BROWSER__) {
-      if (document.body && container) {
-        document.body.removeChild(container);
-      }
-    }
-  });
-
   it('is sortable by default', () => {
     const column = BooleanColumn({title: 'column'});
     expect(column.sortable).toBe(true);
@@ -56,13 +36,8 @@ describe('boolean column', () => {
     const column = BooleanColumn({title: 'column'});
     const Cell = column.renderCell;
 
-    act(() => {
-      ReactDOM.render(<Cell value={true} />, container);
-    });
-
+    const {container} = render(<Cell value={true} />);
     const cell = container.querySelector('div');
-
-    // $FlowFixMe cell may be null
     expect(cell.textContent).toBe('T');
   });
 
@@ -70,22 +45,50 @@ describe('boolean column', () => {
     const column = BooleanColumn({title: 'column'});
     const Cell = column.renderCell;
 
-    act(() => {
-      ReactDOM.render(<Cell value={false} />, container);
-    });
-
+    const {container} = render(<Cell value={false} />);
     const cell = container.querySelector('div');
-
-    // $FlowFixMe cell could be null
     expect(cell.textContent).toBe('F');
   });
 
-  xit('renders expected filter component', () => {
-    // boolean filter component is not implemented yet
+  it('applies filter with expected selection', () => {
+    const column = BooleanColumn({title: 'column'});
+    const Filter = column.renderFilter;
+
+    const mockSetFilter = jest.fn();
+    const data = [true, false, true];
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    fireEvent.click(checkboxes[0]);
+    expect(((checkboxes[0]: any): HTMLInputElement).checked).toBe(true);
+
+    fireEvent.click(getByText('Apply'));
+
+    expect(mockSetFilter.mock.calls.length).toBe(1);
+    const [filterParams, description] = mockSetFilter.mock.calls[0];
+    expect(filterParams.selection.has(true)).toBe(true);
+    expect(filterParams.selection.has(false)).toBe(false);
+    expect(filterParams.exclude).toBe(false);
+    expect(description).toBe('true');
   });
 
-  xit('builds expected filter function', () => {
-    // boolean filter params are not implemented yet
+  it('builds expected filter function', () => {
+    const column = BooleanColumn({title: 'column'});
+    const simple = column.buildFilter({
+      selection: new Set([true]),
+      exclude: false,
+    });
+    expect(simple(true)).toBe(true);
+    expect(simple(false)).toBe(false);
+
+    const exclude = column.buildFilter({
+      selection: new Set([true]),
+      exclude: true,
+    });
+    expect(exclude(true)).toBe(false);
+    expect(exclude(false)).toBe(true);
   });
 
   it('builds expected sort function', () => {

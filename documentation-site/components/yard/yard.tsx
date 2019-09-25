@@ -22,6 +22,7 @@ import {transformBeforeCompilation, parseCode, parseOverrides} from './ast';
 import {assertUnreachable} from './utils';
 import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
+import PopupError from './popup-error';
 import {TYardProps, TState, TProp} from './types';
 
 import Compiler from './compiler';
@@ -86,6 +87,12 @@ function reducer(state: TState, action: {type: Action; payload: any}): TState {
         codeNoRecompile: action.payload.codeNoRecompile,
         props: buildPropsObj(state.props, action.payload.updatedPropValues),
       };
+    case Action.UpdateProps:
+      return {
+        ...state,
+        codeNoRecompile: '',
+        props: buildPropsObj(state.props, action.payload),
+      };
     case Action.UpdatePropsAndCode:
       return {
         ...state,
@@ -120,53 +127,19 @@ export default withRouter(
     propsConfig,
     themeConfig,
     scopeConfig,
+    minHeight,
     placeholderElement,
   }: TYardProps & {
     router: any;
     placeholderElement: React.FC;
   }) => {
     const [css, theme] = useStyletron();
-    const [error, setError] = React.useState<string | null>(null);
-    const [urlCodeHydrated, setUrlCodeHydrated] = React.useState(false);
+    const [hydrated, setHydrated] = React.useState(false);
+    const [error, setError] = React.useState<{
+      where: string;
+      msg: string | null;
+    }>({where: '', msg: null});
     const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
-
-    let initialUrlProps = null;
-    let initialUrlTheme = null;
-
-    // initialize from the URL
-    if (router.query.code && !urlCodeHydrated) {
-      setUrlCodeHydrated(true);
-      try {
-        const propValues: {[key: string]: any} = {};
-        const {parsedProps, parsedTheme} = parseCode(
-          router.query.code as string,
-          componentName,
-        );
-        Object.keys(propsConfig).forEach(name => {
-          //@ts-ignore
-          propValues[name] = propsConfig[name].value;
-          if (name === 'overrides') {
-            // overrides need a special treatment since the value needs to
-            // be further analyzed and parsed
-            propValues[name] = parseOverrides(
-              parsedProps[name],
-              propsConfig.overrides && propsConfig.overrides.meta
-                ? propsConfig.overrides.meta.names || []
-                : [],
-            );
-          } else {
-            propValues[name] = parsedProps[name];
-          }
-        });
-        initialUrlProps = buildPropsObj(propsConfig, propValues);
-        if (Object.keys(parsedTheme).length > 0) {
-          initialUrlTheme = parsedTheme;
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
     const [state, dispatch] = React.useReducer(reducer, {
       code:
         router.query.code ||
@@ -175,9 +148,49 @@ export default withRouter(
           themeName: theme.name,
         }),
       codeNoRecompile: '',
-      props: initialUrlProps || propsConfig,
-      theme: initialUrlTheme || componentThemeObj,
+      props: propsConfig,
+      theme: componentThemeObj,
     });
+
+    React.useEffect(() => {
+      // initialize from the URL
+      if (router.query.code && !hydrated) {
+        setHydrated(true);
+        try {
+          const propValues: {[key: string]: any} = {};
+          const {parsedProps, parsedTheme} = parseCode(
+            router.query.code as string,
+            componentName,
+          );
+          Object.keys(propsConfig).forEach(name => {
+            //@ts-ignore
+            propValues[name] = propsConfig[name].value;
+            if (name === 'overrides') {
+              // overrides need a special treatment since the value needs to
+              // be further analyzed and parsed
+              propValues[name] = parseOverrides(
+                parsedProps[name],
+                propsConfig.overrides && propsConfig.overrides.meta
+                  ? propsConfig.overrides.meta.names || []
+                  : [],
+              );
+            } else {
+              propValues[name] = parsedProps[name];
+            }
+          });
+          dispatch({
+            type: Action.Update,
+            payload: {
+              code: router.query.code,
+              updatedPropValues: propValues,
+              theme: parsedTheme,
+            },
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }, [router.query.code]);
 
     //when theme (context) is switched, reset the theme state
     React.useEffect(() => {
@@ -212,6 +225,7 @@ export default withRouter(
       propName: string,
       propValue: any,
     ) => {
+      !hydrated && setHydrated(true);
       const newCode = getCode(
         buildPropsObj(state.props, {[propName]: propValue}),
         componentName,
@@ -270,7 +284,8 @@ export default withRouter(
       <React.Fragment>
         <Compiler
           code={state.code}
-          setError={setError}
+          setError={msg => setError({where: '__compiler', msg})}
+          minHeight={minHeight}
           transformations={[
             code =>
               transformBeforeCompilation(code, componentName, propsConfig),
@@ -285,6 +300,8 @@ export default withRouter(
           }}
           PlaceholderElement={placeholderElement}
         />
+        {(error.where === '__compiler' || error.where === 'overrides') &&
+          error.msg && <PopupError error={error.msg} />}
         <StatefulTabs
           initialState={{activeKey: '0'}}
           onChange={({activeKey}) => {
@@ -316,25 +333,34 @@ export default withRouter(
           >
             <Knobs
               knobProps={state.props}
+              error={error}
               set={(value: any, name: string) => {
-                const newCode = getCode(
-                  buildPropsObj(state.props, {[name]: value}),
-                  componentName,
-                  componentThemeDiff,
-                );
-
-                trackEvent('yard', `${componentName}:knob_change_${name}`);
-                dispatch({
-                  type: Action.UpdatePropsAndCode,
-                  payload: {
-                    code: newCode,
-                    updatedPropValues: {[name]: value},
-                  },
-                });
-                Router.push({
-                  pathname: router.pathname,
-                  query: {code: newCode},
-                } as any);
+                try {
+                  trackEvent('yard', `${componentName}:knob_change_${name}`);
+                  const newCode = getCode(
+                    buildPropsObj(state.props, {[name]: value}),
+                    componentName,
+                    componentThemeDiff,
+                  );
+                  if (error.msg !== null) setError({where: '', msg: null});
+                  dispatch({
+                    type: Action.UpdatePropsAndCode,
+                    payload: {
+                      code: newCode,
+                      updatedPropValues: {[name]: value},
+                    },
+                  });
+                  Router.push({
+                    pathname: router.pathname,
+                    query: {code: newCode},
+                  } as any);
+                } catch (e) {
+                  dispatch({
+                    type: Action.UpdateProps,
+                    payload: {[name]: value},
+                  });
+                  setError({where: name, msg: e.toString()});
+                }
               }}
             />
           </Tab>
@@ -362,8 +388,8 @@ export default withRouter(
                     componentName,
                     componentThemeDiff,
                   );
-                  if (error) {
-                    setError(null);
+                  if (error.msg !== null) {
+                    setError({where: '', msg: null});
                   }
                   dispatch({
                     type: Action.UpdatePropsAndCode,
@@ -377,7 +403,11 @@ export default withRouter(
                     query: {code: newCode},
                   } as any);
                 } catch (e) {
-                  setError(e.toString());
+                  dispatch({
+                    type: Action.UpdateProps,
+                    payload: {overrides: value},
+                  });
+                  setError({where: `overrides`, msg: e.toString()});
                 }
               }}
             />
@@ -485,7 +515,10 @@ export default withRouter(
             }
           }}
         />
-        <Error error={error} code={state.code} />
+        <Error
+          error={error.where === '__compiler' ? error.msg : null}
+          code={state.code}
+        />
         <ButtonGroup
           size={SIZE.compact}
           overrides={{

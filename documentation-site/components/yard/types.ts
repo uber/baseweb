@@ -7,6 +7,7 @@ export type TPropHook = {
 
 export type TYardProps = {
   componentName: string;
+  minHeight: number;
   scopeConfig: {[key: string]: any};
   propsConfig: {[key: string]: TProp};
   themeConfig: string[];
