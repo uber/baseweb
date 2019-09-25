@@ -71,6 +71,5 @@ export default function MaskedInput(props: MaskedInputPropsT) {
 }
 
 MaskedInput.defaultProps = {
-  ...Input.defaultProps,
   maskChar: ' ',
 };
