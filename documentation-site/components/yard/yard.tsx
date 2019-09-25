@@ -134,6 +134,7 @@ export default withRouter(
     placeholderElement: React.FC;
   }) => {
     const [css, theme] = useStyletron();
+    const [hydrated, setHydrated] = React.useState(false);
     const [error, setError] = React.useState<{
       where: string;
       msg: string | null;
@@ -153,7 +154,8 @@ export default withRouter(
 
     React.useEffect(() => {
       // initialize from the URL
-      if (router.query.code) {
+      if (router.query.code && !hydrated) {
+        setHydrated(true);
         try {
           const propValues: {[key: string]: any} = {};
           const {parsedProps, parsedTheme} = parseCode(
@@ -188,7 +190,7 @@ export default withRouter(
           console.log(e);
         }
       }
-    }, []);
+    }, [router.query.code]);
 
     //when theme (context) is switched, reset the theme state
     React.useEffect(() => {
@@ -223,6 +225,7 @@ export default withRouter(
       propName: string,
       propValue: any,
     ) => {
+      !hydrated && setHydrated(true);
       const newCode = getCode(
         buildPropsObj(state.props, {[propName]: propValue}),
         componentName,
