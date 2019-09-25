@@ -70,10 +70,18 @@ const transpile = (
 const Compiler: React.FC<{
   scope: any;
   code: string;
+  minHeight: number;
   setError: (error: string | null) => void;
   transformations: ((ast: babel.types.Node) => babel.types.Node)[];
   PlaceholderElement: React.FC;
-}> = ({scope, code, setError, transformations, PlaceholderElement}) => {
+}> = ({
+  scope,
+  code,
+  setError,
+  transformations,
+  PlaceholderElement,
+  minHeight,
+}) => {
   const [output, setOutput] = React.useState<{
     component: React.ComponentClass | null;
   }>({component: null});
@@ -88,6 +96,7 @@ const Compiler: React.FC<{
     <div
       className={css({
         display: 'flex',
+        minHeight: `${minHeight}px`,
         justifyContent: 'center',
         paddingTop: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
