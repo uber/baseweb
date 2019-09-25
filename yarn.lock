@@ -7330,6 +7330,15 @@ diff@3.5.0:
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
   integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
 
+differencify-jest-reporter@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/differencify-jest-reporter/-/differencify-jest-reporter-0.0.3.tgz#f32dc9c0e384edee3a6220a1ccbc05f452886b69"
+  integrity sha512-rwFfFCx18EppqDEAosbBoGGCLxHrk9qNidw0wPh9hc3m6sezbbt207CR5RY3qs/9PMHUXb8cUBMxRdxS5bSR/g==
+  dependencies:
+    chalk "^2.4.1"
+    fs "0.0.2"
+    pkg-dir "2.0.0"
+
 differencify@^1.5.3:
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/differencify/-/differencify-1.5.3.tgz#c142b1c1ca12aa3049d83c28978bd9f19e9cb06d"

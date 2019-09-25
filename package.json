@@ -112,6 +112,7 @@
     "copy-to-clipboard": "^3.2.0",
     "cross-env": "^6.0.0",
     "differencify": "^1.5.3",
+    "differencify-jest-reporter": "^0.0.3",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "enzyme-to-json": "^3.3.5",

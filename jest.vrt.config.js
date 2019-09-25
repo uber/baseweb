@@ -15,4 +15,18 @@ module.exports = {
   testRunner: 'jest-circus/runner',
   testRegex: 'vrt.js$',
   transformIgnorePatterns: ['./babel/cup.js'],
+  reporters: [
+    'default', // keep the default reporter
+    [
+      'differencify-jest-reporter',
+      {
+        debug: true,
+        reportPath: 'differencify_reports', // relative to root of project
+        reportTypes: {
+          html: 'index.html',
+          json: 'index.json',
+        },
+      },
+    ],
+  ],
 };

@@ -9,21 +9,40 @@ LICENSE file in the root directory of this source tree.
 
 const Differencify = require('differencify');
 const differencify = new Differencify();
-const {mount} = require('../../../e2e/helpers');
 
 describe('button', () => {
-  it('kinds', async () => {
-    await mount(page, 'button');
-    await page.waitFor('button');
-    await differencify
-      .init()
-      .launch()
-      .newPage()
-      .setViewport({width: 1600, height: 1200})
-      .goto('http://localhost:8080?name=button')
-      .screenshot()
-      .toMatchSnapshot()
-      .close()
-      .end();
+  beforeAll(async () => {
+    await differencify.launchBrowser({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+  });
+
+  afterAll(async () => {
+    await differencify.cleanup();
+  });
+
+  [
+    'button',
+    'button-shapes',
+    'button-sizes',
+    'button-rtl',
+    'button-enhancers',
+    'button-enhancers-compact',
+  ].forEach(name => {
+    it(
+      name,
+      async () => {
+        const target = differencify.init({chain: false});
+        const page = await target.newPage();
+        await page.goto(`http://localhost:8080?name=${name}`);
+        await page.setViewport({width: 1600, height: 1200});
+        await page.waitFor(1000);
+        const image = await page.screenshot();
+        const result = await target.toMatchSnapshot(image);
+        await page.close();
+        expect(result).toEqual(true);
+      },
+      30000,
+    );
   });
 });
