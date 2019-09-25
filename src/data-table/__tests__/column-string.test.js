@@ -7,32 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils.js';
+import {render} from '@testing-library/react';
 
 import {StringColumn} from '../index.js';
 
-let container: HTMLDivElement;
-
 describe('string column', () => {
-  beforeEach(() => {
-    if (__BROWSER__) {
-      container = document.createElement('div');
-      if (document.body) {
-        document.body.appendChild(container);
-      }
-    }
-  });
-
-  afterEach(() => {
-    if (__BROWSER__) {
-      if (document.body && container) {
-        document.body.removeChild(container);
-        container.remove();
-      }
-    }
-  });
-
   it('is sortable by default', () => {
     const column = StringColumn({title: 'column'});
     expect(column.sortable).toBe(true);
@@ -52,13 +31,8 @@ describe('string column', () => {
     const column = StringColumn({title: 'column'});
     const Cell = column.renderCell;
 
-    act(() => {
-      ReactDOM.render(<Cell value="hello" />, container);
-    });
-
+    const {container} = render(<Cell value="hello" />);
     const cell = container.querySelector('div');
-
-    // $FlowFixMe cell could be null
     expect(cell.textContent).toBe('hello');
   });
 
