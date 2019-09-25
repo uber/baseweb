@@ -7,33 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {act} from 'react-dom/test-utils.js';
+import {render, fireEvent} from '@testing-library/react';
 
-import {setNativeValue} from './shared.js';
 import {NumericalColumn, NUMERICAL_FORMATS} from '../index.js';
 
-let container: HTMLDivElement;
-
 describe('numerical column', () => {
-  beforeEach(() => {
-    if (__BROWSER__) {
-      container = document.createElement('div');
-      if (document.body) {
-        document.body.appendChild(container);
-      }
-    }
-  });
-
-  afterEach(() => {
-    if (__BROWSER__) {
-      if (document.body && container) {
-        document.body.removeChild(container);
-        container.remove();
-      }
-    }
-  });
-
   it('is sortable by default', () => {
     const column = NumericalColumn({title: 'column'});
     expect(column.sortable).toBe(true);
@@ -57,12 +35,9 @@ describe('numerical column', () => {
   it('cell renders provided value with default options', () => {
     const column = NumericalColumn({title: 'column'});
     const Cell = column.renderCell;
-    act(() => {
-      ReactDOM.render(<Cell value={1999.888} />, container);
-    });
-    const cell = container.querySelector('div');
 
-    // $FlowFixMe cell could be null
+    const {container} = render(<Cell value={1999.888} />);
+    const cell = container.querySelector('div');
     expect(cell.textContent).toBe('2000');
   });
 
@@ -72,12 +47,9 @@ describe('numerical column', () => {
       format: NUMERICAL_FORMATS.ACCOUNTING,
     });
     const Cell = column.renderCell;
-    act(() => {
-      ReactDOM.render(<Cell value={1999.888} />, container);
-    });
-    const cell = container.querySelector('div');
 
-    // $FlowFixMe cell could be null
+    const {container} = render(<Cell value={1999.888} />);
+    const cell = container.querySelector('div');
     expect(cell.textContent).toBe('$1999.89');
   });
 
@@ -87,12 +59,9 @@ describe('numerical column', () => {
       format: NUMERICAL_FORMATS.ACCOUNTING,
     });
     const Cell = column.renderCell;
-    act(() => {
-      ReactDOM.render(<Cell value={-1999.888} />, container);
-    });
-    const cell = container.querySelector('div');
 
-    // $FlowFixMe cell could be null
+    const {container} = render(<Cell value={-1999.888} />);
+    const cell = container.querySelector('div');
     expect(cell.textContent).toBe('($1999.89)');
   });
 
@@ -102,12 +71,9 @@ describe('numerical column', () => {
       format: NUMERICAL_FORMATS.PERCENTAGE,
     });
     const Cell = column.renderCell;
-    act(() => {
-      ReactDOM.render(<Cell value={1999.888} />, container);
-    });
-    const cell = container.querySelector('div');
 
-    // $FlowFixMe cell could be null
+    const {container} = render(<Cell value={1999.888} />);
+    const cell = container.querySelector('div');
     expect(cell.textContent).toBe('1999.89%');
   });
 
@@ -117,12 +83,9 @@ describe('numerical column', () => {
       precision: 3,
     });
     const Cell = column.renderCell;
-    act(() => {
-      ReactDOM.render(<Cell value={1999.888} />, container);
-    });
-    const cell = container.querySelector('div');
 
-    // $FlowFixMe cell could be null
+    const {container} = render(<Cell value={1999.888} />);
+    const cell = container.querySelector('div');
     expect(cell.textContent).toBe('1999.888');
   });
 
@@ -132,32 +95,13 @@ describe('numerical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = [1, 2, 3, 4];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
 
     const input = container.querySelector('div[data-baseweb="input"] input');
-    act(() => {
-      if (__BROWSER__) {
-        setNativeValue((input: any), '2');
-        // $FlowFixMe input may be null
-        input.dispatchEvent(new Event('input', {bubbles: true}));
-      }
-    });
-
-    const buttons = container.querySelectorAll('button');
-    buttons.forEach(button => {
-      if (button.textContent === 'Apply') {
-        act(() => {
-          if (__BROWSER__) {
-            button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-          }
-        });
-      }
-    });
+    fireEvent.change(input, {target: {value: '2'}});
+    fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams, description] = mockSetFilter.mock.calls[0];
@@ -173,28 +117,16 @@ describe('numerical column', () => {
 
     const mockSetFilter = jest.fn();
     const data = [1, 2, 3, 4];
-    act(() => {
-      ReactDOM.render(
-        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-        container,
-      );
-    });
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+    );
 
     const before = container.querySelectorAll(
       'div[data-baseweb="button-group"]',
     );
     expect(before.length).toBe(2);
 
-    const buttons = container.querySelectorAll('button');
-    buttons.forEach(button => {
-      if (button.textContent === 'Single Value') {
-        act(() => {
-          if (__BROWSER__) {
-            button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-          }
-        });
-      }
-    });
+    fireEvent.click(getByText('Single Value'));
 
     const after = container.querySelectorAll(
       'div[data-baseweb="button-group"]',
